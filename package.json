@@ -1,0 +1,45 @@
+{
+  "name": "vite-react-native-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "repository": {
+    "url": "https://github.com/natew/vite-react-native"
+  },
+  "workspaces": [
+    "./packages/*"
+  ],
+  "packageManager": "yarn@3.6.3",
+  "scripts": {
+    "setup": "node -r esbuild-register ./scripts/setup.ts",
+    "build:js": "./scripts/build-js.sh",
+    "build": "turbo run build --filter=!next-app",
+    "check": "manypkg check && check-dependency-version-consistency .",
+    "clean:build": "turbo run clean:build",
+    "clean:ts": "tsc -b --clean tsconfig.build.json",
+    "clean": "turbo run clean:build",
+    "fix": "manypkg fix",
+    "lint:fix": "ultra -r --no-pretty lint:fix",
+    "lint": "ultra -r --no-pretty lint",
+    "tamastack": "SKIP_PREBUILD_RN=1 yarn workspace @tamagui/stack dev",
+    "test": "turbo run --concurrency=1 test",
+    "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
+    "watch:js": "SKIP_TYPES=1 yarn watch:build",
+    "watch:ts": "tsc -b -w --preserveWatchOutput tsconfig.build.json",
+    "watch": "npm-run-all --parallel watch:ts watch:build"
+  },
+  "resolutions": {
+    "expo-modules-core": "1.7.0",
+    "react-native-screens@~3.22.0": "patch:react-native-screens@npm%3A3.22.1#./.yarn/patches/react-native-screens-npm-3.22.1-b3da351834.patch"
+  },
+  "dependencies": {
+    "@biomejs/biome": "^1.2.2",
+    "@manypkg/cli": "^0.19.1",
+    "check-dependency-version-consistency": "^3.0.3",
+    "npm-run-all": "^4.1.5",
+    "p-map": "^5.5.0",
+    "prettier": "^2.8.1",
+    "turbo": "^1.10.13",
+    "typescript": "^5.2.2",
+    "ultra-runner": "^3.10.5"
+  }
+}
