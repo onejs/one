@@ -1,0 +1,49 @@
+import { join } from 'node:path'
+
+import { readlink } from 'fs-extra'
+import { exec } from './exec'
+
+setup()
+
+/**
+ * Should be immutable function that runs and ensures all the packages are setup correctly
+ * Allowing you to make a new package just by adding a folder to packages and then running
+ * `yarn setup` once.
+ */
+
+async function setup() {
+  const workspaces = (await exec(`yarn workspaces list --json`)).stdout.trim().split('\n')
+  const packagePaths = workspaces.map((p) => JSON.parse(p)) as {
+    name: string
+    location: string
+  }[]
+
+  await Promise.all(
+    packagePaths.map(async ({ location, name }) => {
+      if (name === 'tamagui-monorepo') {
+        // avoid monorepo itself
+        return
+      }
+
+      const cwd = join(process.cwd(), location)
+      await Promise.all([
+        // ensure biome.json
+        (async () => {
+          const biomeConfig = join(cwd, 'biome.json')
+
+          try {
+            await readlink(biomeConfig)
+          } catch (err) {
+            if (`${err}`.includes(`no such file or directory`)) {
+              // biome-ignore lint/suspicious/noConsoleLog: ok
+              console.log(`No biome.json found for ${name}, linking from monorepo root`)
+              await exec(`ln -s ../../biome.json ./biome.json`, {
+                cwd,
+              })
+            }
+          }
+        })(),
+      ])
+    })
+  )
+}
