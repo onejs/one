@@ -1,5 +1,5 @@
 {
-  "name": "@tamagui/vite-react-native",
+  "name": "@vite-react-native/vite-react-native",
   "version": "0.0.0",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
@@ -28,9 +28,9 @@
     "@callstack/repack-debugger-app": "^1.0.0",
     "@fastify/sensible": "^4.1.0",
     "@fastify/static": "^5.0.2",
-    "@tamagui/vite-native-hmr": "1.74.6",
-    "@tamagui/vite-native-swc": "1.74.6",
-    "@tamagui/vite-plugin": "1.74.6",
+    "@tamagui/vite-plugin": "latest",
+    "@vite-react-native/vite-native-hmr": "0.0.0",
+    "@vite-react-native/vite-native-swc": "0.0.0",
     "@vitejs/plugin-react": "^4.0.4",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "chalk": "^4.1.2",
@@ -55,7 +55,7 @@
     "ws": "^8.7.0"
   },
   "devDependencies": {
-    "@tamagui/build": "1.74.6",
+    "@tamagui/build": "latest",
     "vitepress": "^1.0.0-rc.20"
   }
 }

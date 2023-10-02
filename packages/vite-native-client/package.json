@@ -1,6 +1,6 @@
 {
-  "name": "@tamagui/vite-native-client",
-  "version": "1.74.6",
+  "name": "@vite-react-native/vite-native-client",
+  "version": "0.0.0",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
@@ -27,7 +27,7 @@
     }
   },
   "devDependencies": {
-    "@tamagui/build": "1.74.6",
+    "@tamagui/build": "latest",
     "react-native": "^0.72.1"
   },
   "peerDependencies": {
