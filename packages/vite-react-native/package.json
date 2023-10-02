@@ -18,10 +18,7 @@
     "build": "tamagui-build",
     "watch": "yarn build --watch",
     "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "clean:build": "tamagui-build clean:build"
   },
   "dependencies": {
     "@babel/code-frame": "^7.21.4",
@@ -55,7 +52,6 @@
     "ws": "^8.7.0"
   },
   "devDependencies": {
-    "@tamagui/build": "latest",
-    "vitepress": "^1.0.0-rc.20"
+    "@tamagui/build": "latest"
   }
 }

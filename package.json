@@ -12,6 +12,9 @@
   "packageManager": "yarn@3.6.3",
   "scripts": {
     "setup": "node -r esbuild-register ./scripts/setup.ts",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "build:js": "./scripts/build-js.sh",
     "build": "turbo run build --filter=!next-app",
     "check": "manypkg check && check-dependency-version-consistency .",
@@ -45,6 +48,7 @@
     "prettier": "^2.8.1",
     "turbo": "^1.10.13",
     "typescript": "^5.2.2",
-    "ultra-runner": "^3.10.5"
+    "ultra-runner": "^3.10.5",
+    "vitepress": "^1.0.0-rc.20"
   }
 }

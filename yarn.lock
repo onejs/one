@@ -4749,7 +4749,6 @@ __metadata:
     source-map: ^0.7.3
     url: ^0.11.0
     vite: ^4.4.9
-    vitepress: ^1.0.0-rc.20
     ws: ^8.7.0
   languageName: unknown
   linkType: soft
@@ -13818,6 +13817,7 @@ __metadata:
     turbo: ^1.10.13
     typescript: ^5.2.2
     ultra-runner: ^3.10.5
+    vitepress: ^1.0.0-rc.20
   languageName: unknown
   linkType: soft
 
