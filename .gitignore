@@ -3,6 +3,8 @@
 # but map can be ignored and just published on npm
 **/types/**/*.d.ts.map
 
+docs/.vitepress/cache
+
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
