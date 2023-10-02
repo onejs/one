@@ -19,7 +19,11 @@ const extensions = [
   '.mjs',
 ]
 
-export function nativePlugin(options: { port: number; mode: 'build' | 'serve' }): Plugin {
+export function nativePlugin(options: {
+  root: string
+  port: number
+  mode: 'build' | 'serve'
+}): Plugin {
   return {
     name: 'tamagui-native',
     enforce: 'pre',
@@ -143,7 +147,7 @@ export function nativePlugin(options: { port: number; mode: 'build' | 'serve' })
                   counts[imp.n]++
                   if (counts[imp.n] == 2) {
                     // star export
-                    const path = await getVitePath(dirname(id), imp.n)
+                    const path = await getVitePath(options.root, dirname(id), imp.n)
                     forceExports += `Object.assign(exports, require("${path}"));`
                   }
                 }

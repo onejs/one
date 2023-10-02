@@ -5,8 +5,7 @@ import * as babel from '@babel/core'
 import viteReactPlugin, {
   swcTransform,
   transformForBuild,
-} from '@tamagui/vite-native-swc'
-import { getVitePath, nativePlugin } from '@tamagui/vite-plugin'
+} from '@vite-react-native/vite-native-swc'
 import react from '@vitejs/plugin-react-swc'
 import { parse } from 'es-module-lexer'
 import { pathExists } from 'fs-extra'
@@ -16,9 +15,15 @@ import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { createDevServer } from './dev/createDevServer'
 import { HMRListener } from './types'
 import { StartOptions } from './types'
+import { nativePlugin } from './nativePlugin'
+import { getVitePath } from './getVitePath'
 
 export const create = async (options: StartOptions) => {
-    const { root } = options
+  const { root } = options
+
+  // used for normalizing hot reloads
+  let entryRoot = ''
+
   const packageRootDir = join(__dirname, '..')
   const templateFile = join(packageRootDir, 'react-native-template.js')
 
@@ -81,7 +86,7 @@ export const create = async (options: StartOptions) => {
               const { n: importName, s: start } = specifier
 
               if (importName) {
-                const id = await getVitePath(file, importName)
+                const id = await getVitePath(entryRoot, file, importName)
                 if (!id) {
                   console.warn('???')
                   continue
@@ -122,6 +127,11 @@ export const create = async (options: StartOptions) => {
                   `globalThis['__importMetaGlobbed'] || {}`
                 )};
               return exports })({})`
+
+            if (process.env.DEBUG === 'vern') {
+              // biome-ignore lint/suspicious/noConsoleLog: <explanation>
+              console.log(`Sending hot update`, hotUpdateSource)
+            }
 
             hotUpdatedCJSFiles.set(id, hotUpdateSource)
           } catch (err) {
@@ -318,6 +328,7 @@ export const create = async (options: StartOptions) => {
         viteRNClientPlugin,
 
         nativePlugin({
+          root: options.root,
           port,
           mode: 'build',
         }),
@@ -369,28 +380,32 @@ export const create = async (options: StartOptions) => {
     let appCode = buildOutput.output
       // entry last
       .sort((a, b) => (a['isEntry'] ? 1 : -1))
-      .map((module) => {
-        if (module.type == 'chunk') {
+      .map((outputModule) => {
+        if (outputModule.type == 'chunk') {
           const importsMap = {}
-          for (const imp of module.imports) {
-            const relativePath = relative(dirname(module.fileName), imp)
+          for (const imp of outputModule.imports) {
+            const relativePath = relative(dirname(outputModule.fileName), imp)
             importsMap[relativePath[0] === '.' ? relativePath : './' + relativePath] = imp
           }
 
+          if (outputModule.isEntry) {
+            entryRoot = dirname(outputModule.fileName)
+          }
+
           return `
-___modules___["${module.fileName}"] = ((exports, module) => {
+___modules___["${outputModule.fileName}"] = ((exports, module) => {
   const require = createRequire(${JSON.stringify(importsMap, null, 2)})
 
-  ${module.code}
+  ${outputModule.code}
 })
 
 ${
-  module.isEntry
+  outputModule.isEntry
     ? `
 // run entry
 const __require = createRequire({})
 __require("react-native")
-__require("${module.fileName}")
+__require("${outputModule.fileName}")
 `
     : ''
 }
@@ -409,8 +424,6 @@ __require("${module.fileName}")
       .replaceAll('undefined.accept(function() {});', '') // swc
 
     const out = (await readFile(templateFile, 'utf-8')) + appCode
-
-    void writeFile(join(process.cwd(), '.tamagui', 'bundle.js'), out, 'utf-8')
 
     done(out)
     isBuilding = null

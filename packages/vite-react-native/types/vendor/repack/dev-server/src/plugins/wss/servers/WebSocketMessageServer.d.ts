@@ -22,9 +22,6 @@ export interface ReactNativeMessage {
     error?: Error;
     params?: Record<string, any>;
 }
-type WebSocketWithUpgradeReq = WebSocket & {
-    upgradeReq?: IncomingMessage;
-};
 /**
  * Class for creating a WebSocket server and sending messages between development server
  * and the React Native applications.
@@ -81,7 +78,7 @@ export declare class WebSocketMessageServer extends WebSocketServer {
      * @param clientId Id of the client.
      * @returns WebSocket connection.
      */
-    getClientSocket(clientId: string): WebSocketWithUpgradeReq;
+    getClientSocket(clientId: string): any;
     /**
      * Process error by sending an error message to the client whose message caused the error
      * to occur.
@@ -137,5 +134,4 @@ export declare class WebSocketMessageServer extends WebSocketServer {
      */
     onConnection(socket: WebSocket, request: IncomingMessage): void;
 }
-export {};
 //# sourceMappingURL=WebSocketMessageServer.d.ts.map

@@ -1,12 +1,9 @@
 import { Stack, TamaguiProvider, Text } from '@tamagui/core'
 import { LogBox } from 'react-native'
 
-// import { App as ExpoRouterApp } from './ExpoRouterApp'
 import { config } from './tamagui.config'
 
 LogBox.ignoreAllLogs()
-
-// export const App = ExpoRouterApp
 
 export function App() {
   return (
