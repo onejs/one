@@ -1,0 +1,18 @@
+{
+  "name": "example-tamagui",
+  "version": "1.74.6",
+  "private": true,
+  "main": "index.jsx",
+  "scripts": {
+    "dev": "node -r esbuild-register ./dev.ts"
+  },
+  "dependencies": {
+    "@tamagui/config": "latest",
+    "@tamagui/core": "latest",
+    "@vite-react-native/vite-react-native": "0.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-native": "^0.72.1",
+    "tamagui": "latest"
+  }
+}

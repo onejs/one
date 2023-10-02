@@ -6,7 +6,8 @@
     "url": "https://github.com/natew/vite-react-native"
   },
   "workspaces": [
-    "./packages/*"
+    "./packages/*",
+    "./examples/*"
   ],
   "packageManager": "yarn@3.6.3",
   "scripts": {
@@ -20,6 +21,7 @@
     "fix": "manypkg fix",
     "lint:fix": "ultra -r --no-pretty lint:fix",
     "lint": "ultra -r --no-pretty lint",
+    "upgrade:tamagui": "yarn up '*tamagui*'@latest '@tamagui/*'@latest",
     "tamastack": "SKIP_PREBUILD_RN=1 yarn workspace @tamagui/stack dev",
     "test": "turbo run --concurrency=1 test",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
@@ -34,6 +36,7 @@
   "dependencies": {
     "@biomejs/biome": "^1.2.2",
     "@manypkg/cli": "^0.19.1",
+    "@types/react": "^18.2.24",
     "check-dependency-version-consistency": "^3.0.3",
     "npm-run-all": "^4.1.5",
     "p-map": "^5.5.0",
