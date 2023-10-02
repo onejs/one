@@ -1,9 +1,10 @@
-import { join, relative } from 'path'
+import { join, relative, dirname } from 'path'
 
 import resolve from 'esm-resolve'
 import { realpath } from 'fs-extra'
 
 export async function getVitePath(
+  rootPath: string,
   importer: string,
   moduleName: string,
   absolute = false
@@ -23,8 +24,9 @@ export async function getVitePath(
   }
 
   if (moduleName[0] === '.') {
-    // hardcode for now. :/
-    return join(`apps/tamastack/src`, moduleName) + '.js'
+    const rootAt = importer.indexOf(rootPath)
+    const base = join(dirname(importer.slice(rootAt)), moduleName)
+    return base + '.js'
   } else {
     const sourceFile = join(process.cwd(), 'index.js')
     const resolved = resolve(sourceFile)(moduleName)

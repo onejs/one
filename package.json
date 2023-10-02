@@ -21,6 +21,8 @@
     "fix": "manypkg fix",
     "lint:fix": "ultra -r --no-pretty lint:fix",
     "lint": "ultra -r --no-pretty lint",
+    "dev:example-tamagui": "yarn workspace example-tamagui dev",
+    "dev:example-expo-router": "yarn workspace example-expo-router dev",
     "upgrade:tamagui": "yarn up '*tamagui*'@latest '@tamagui/*'@latest",
     "tamastack": "SKIP_PREBUILD_RN=1 yarn workspace @tamagui/stack dev",
     "test": "turbo run --concurrency=1 test",
