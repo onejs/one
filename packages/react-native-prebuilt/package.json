@@ -1,6 +1,6 @@
 {
   "name": "@vite-react-native/react-native-prebuilt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "react-native.js",
   "license": "MIT",
   "sideEffects": true,

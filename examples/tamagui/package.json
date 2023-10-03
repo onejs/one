@@ -1,6 +1,6 @@
 {
   "name": "example-tamagui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "main": "index.jsx",
   "scripts": {
@@ -13,6 +13,6 @@
     "react-dom": "^18.2.0",
     "react-native": "^0.72.1",
     "tamagui": "latest",
-    "vxrn": "0.0.1"
+    "vxrn": "0.0.2"
   }
 }

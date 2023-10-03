@@ -4656,7 +4656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vite-react-native/expo-router@0.0.1, @vite-react-native/expo-router@workspace:packages/expo-router":
+"@vite-react-native/expo-router@0.0.2, @vite-react-native/expo-router@workspace:packages/expo-router":
   version: 0.0.0-use.local
   resolution: "@vite-react-native/expo-router@workspace:packages/expo-router"
   dependencies:
@@ -4711,7 +4711,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vite-react-native/vite-native-hmr@0.0.1, @vite-react-native/vite-native-hmr@workspace:packages/vite-native-hmr":
+"@vite-react-native/vite-native-hmr@0.0.2, @vite-react-native/vite-native-hmr@workspace:packages/vite-native-hmr":
   version: 0.0.0-use.local
   resolution: "@vite-react-native/vite-native-hmr@workspace:packages/vite-native-hmr"
   dependencies:
@@ -4723,7 +4723,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vite-react-native/vite-native-swc@0.0.1, @vite-react-native/vite-native-swc@workspace:packages/vite-native-swc":
+"@vite-react-native/vite-native-swc@0.0.2, @vite-react-native/vite-native-swc@workspace:packages/vite-native-swc":
   version: 0.0.0-use.local
   resolution: "@vite-react-native/vite-native-swc@workspace:packages/vite-native-swc"
   dependencies:
@@ -7324,13 +7324,13 @@ __metadata:
   dependencies:
     "@react-navigation/native": ^6.1.7
     "@tamagui/cli": latest
-    "@vite-react-native/expo-router": 0.0.1
+    "@vite-react-native/expo-router": 0.0.2
     expo-modules-core: 1.7.0
     react: ^18.2.0
     react-dom: ^18.2.0
     react-native: ^0.72.1
     react-native-reanimated: ~3.3.0
-    vxrn: 0.0.1
+    vxrn: 0.0.2
   languageName: unknown
   linkType: soft
 
@@ -7344,7 +7344,7 @@ __metadata:
     react-dom: ^18.2.0
     react-native: ^0.72.1
     tamagui: latest
-    vxrn: 0.0.1
+    vxrn: 0.0.2
   languageName: unknown
   linkType: soft
 
@@ -14003,7 +14003,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vxrn@0.0.1, vxrn@workspace:packages/vxrn":
+"vxrn@0.0.2, vxrn@workspace:packages/vxrn":
   version: 0.0.0-use.local
   resolution: "vxrn@workspace:packages/vxrn"
   dependencies:
@@ -14013,8 +14013,8 @@ __metadata:
     "@fastify/static": ^5.0.2
     "@tamagui/build": latest
     "@tamagui/vite-plugin": latest
-    "@vite-react-native/vite-native-hmr": 0.0.1
-    "@vite-react-native/vite-native-swc": 0.0.1
+    "@vite-react-native/vite-native-hmr": 0.0.2
+    "@vite-react-native/vite-native-swc": 0.0.2
     "@vitejs/plugin-react": ^4.0.4
     "@vitejs/plugin-react-swc": ^3.3.2
     chalk: ^4.1.2
