@@ -13998,9 +13998,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vxrn@0.0.0, vxrn@workspace:packages/v-rn":
+"vxrn@0.0.0, vxrn@workspace:packages/vxrn":
   version: 0.0.0-use.local
-  resolution: "vxrn@workspace:packages/v-rn"
+  resolution: "vxrn@workspace:packages/vxrn"
   dependencies:
     "@babel/code-frame": ^7.21.4
     "@callstack/repack-debugger-app": ^1.0.0
