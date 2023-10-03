@@ -241,7 +241,7 @@ export const create = async (options: StartOptions) => {
     const jsxRuntime = {
       alias: 'virtual:react-jsx',
       contents: await readFile(
-        require.resolve('@tamagui/react-native-prebuilt/jsx-runtime'),
+        require.resolve('@vite-react-native/react-native-prebuilt/jsx-runtime'),
         'utf-8'
       ),
     } as const
@@ -250,14 +250,14 @@ export const create = async (options: StartOptions) => {
       'react-native': {
         alias: 'virtual:react-native',
         contents: await readFile(
-          require.resolve('@tamagui/react-native-prebuilt'),
+          require.resolve('@vite-react-native/react-native-prebuilt'),
           'utf-8'
         ),
       },
       react: {
         alias: 'virtual:react',
         contents: await readFile(
-          require.resolve('@tamagui/react-native-prebuilt/react'),
+          require.resolve('@vite-react-native/react-native-prebuilt/react'),
           'utf-8'
         ),
       },
