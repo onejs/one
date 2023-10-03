@@ -5,6 +5,9 @@
 
 docs/.vitepress/cache
 
+# just keeping this in repo for now
+!docs/.vitepress/dist/*
+
 .yarn/*
 !.yarn/patches
 !.yarn/plugins

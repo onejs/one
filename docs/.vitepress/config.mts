@@ -5,7 +5,9 @@ export default defineConfig({
   title: 'Vite React Native',
   description: 'React Native, on Vite',
   base: '/vite-react-native/',
+
   themeConfig: {
+    logo: '/vite-react-native.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
@@ -24,4 +26,6 @@ export default defineConfig({
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/natew/vite-react-native' }],
   },
+
+  ignoreDeadLinks: 'localhostLinks',
 })

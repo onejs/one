@@ -5,14 +5,14 @@ layout: home
 hero:
   name: "Vern"
   text: "The power of Vite meets React Native"
-  tagline: Share a single Vite instance to power your web and native React apps.
+  tagline: Share a single Vite instance to power your React (web and native) apps.
+  image:
+    src: /vite-react-native.svg
+    alt: Vite
   actions:
     - theme: brand
       text: Get Started
       link: /get-started
-    - theme: alt
-      text: API
-      link: /api
 
 features:
   - title: All the goodness of Vite
