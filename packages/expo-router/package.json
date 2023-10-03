@@ -1,6 +1,6 @@
 {
   "name": "@vite-react-native/expo-router",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",

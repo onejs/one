@@ -3825,9 +3825,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/react-native-prebuilt@1.74.7, @tamagui/react-native-prebuilt@workspace:packages/react-native-prebuilt":
+"@vite-react-native/react-native-prebuilt@npm:1.74.7":
+  version: 1.74.7
+  resolution: "@vite-react-native/react-native-prebuilt@npm:1.74.7"
+  checksum: 902aa2466e799ba2076a9d1787f9773312db555d75c0c8ef0c269dc313889cc58875dc5a0cc887b64e6465c868d498794aa54996bc252e0e7b506f70a6aed98c
+  languageName: node
+  linkType: hard
+
+"@vite-react-native/react-native-prebuilt@workspace:packages/react-native-prebuilt":
   version: 0.0.0-use.local
-  resolution: "@tamagui/react-native-prebuilt@workspace:packages/react-native-prebuilt"
+  resolution: "@vite-react-native/react-native-prebuilt@workspace:packages/react-native-prebuilt"
   dependencies:
     "@babel/core": ^7.21.8
     esbuild: ~0.19.3
@@ -4046,7 +4053,7 @@ __metadata:
     "@tamagui/helpers": 1.74.7
     "@tamagui/helpers-node": 1.74.7
     "@tamagui/proxy-worm": 1.74.7
-    "@tamagui/react-native-prebuilt": 1.74.7
+    "@vite-react-native/react-native-prebuilt": 1.74.7
     "@tamagui/shorthands": 1.74.7
     "@tamagui/types": 1.74.7
     babel-literal-to-ast: ^2.1.0
