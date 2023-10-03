@@ -26,5 +26,10 @@ async function dev() {
     stop()
   })
 
+  process.on('uncaughtException', (err) => {
+    // biome-ignore lint/suspicious/noConsoleLog: <explanation>
+    console.log(err?.message || err)
+  })
+
   await closePromise
 }

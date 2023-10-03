@@ -916,6 +916,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-object-assign@npm:^7.16.7":
+  version: 7.22.5
+  resolution: "@babel/plugin-transform-object-assign@npm:7.22.5"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.22.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 5b672d72c7b12973e5e5881c3e69ab02474c44add224a9972b9450f859e713b2065fa18b88797b1393ad72cb952c0b14d80fa36960a17d6b558f24ee5cde219c
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-object-super@npm:^7.0.0":
   version: 7.22.5
   resolution: "@babel/plugin-transform-object-super@npm:7.22.5"
@@ -1098,7 +1109,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-typescript@npm:^7.13.0":
+"@babel/preset-typescript@npm:^7.13.0, @babel/preset-typescript@npm:^7.16.7":
   version: 7.23.0
   resolution: "@babel/preset-typescript@npm:7.23.0"
   dependencies:
@@ -4672,6 +4683,7 @@ __metadata:
     react: ^18.2.0
     react-native: ^0.72.1
     react-native-safe-area-context: 4.6.3
+    react-native-screens: ~3.22.0
     schema-utils: ^4.0.1
     url: ^0.11.0
     url-parse: ^1.5.10
@@ -6232,6 +6244,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"compare-versions@npm:^3.4.0":
+  version: 3.6.0
+  resolution: "compare-versions@npm:3.6.0"
+  checksum: 7492a50cdaa2c27f5254eee7c4b38856e1c164991bab3d98d7fd067fe4b570d47123ecb92523b78338be86aa221668fd3868bfe8caa5587dc3ebbe1a03d52b5d
+  languageName: node
+  linkType: hard
+
 "compressible@npm:~2.0.16":
   version: 2.0.18
   resolution: "compressible@npm:2.0.18"
@@ -7337,9 +7356,11 @@ __metadata:
     "@tamagui/cli": latest
     "@vite-react-native/expo-router": 0.0.0
     "@vite-react-native/vite-react-native": 0.0.0
+    expo-modules-core: 1.7.0
     react: ^18.2.0
     react-dom: ^18.2.0
     react-native: ^0.72.1
+    react-native-reanimated: ~3.3.0
   languageName: unknown
   linkType: soft
 
@@ -7422,6 +7443,16 @@ __metadata:
     qs: ^6.11.0
     url-parse: ^1.5.9
   checksum: 4807372719932f1949783a93d264b56eb160cb9e2cebe47e3b77043d7360955c917c057acbf01042a3e62df413d97b264608f241b25273d68bbf171f98149e7d
+  languageName: node
+  linkType: hard
+
+"expo-modules-core@npm:1.7.0":
+  version: 1.7.0
+  resolution: "expo-modules-core@npm:1.7.0"
+  dependencies:
+    compare-versions: ^3.4.0
+    invariant: ^2.2.4
+  checksum: f851d7eb5cda55f918abd9acc5f74c1e842d9429ec92c04e0847cb6e6e541bebbdbbaf8550659c8d88f8e38752274b3dad9cd8c94e171ad2752bbabacb608124
   languageName: node
   linkType: hard
 
@@ -11445,7 +11476,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-freeze@npm:^1.0.3":
+"react-freeze@npm:^1.0.0, react-freeze@npm:^1.0.3":
   version: 1.0.3
   resolution: "react-freeze@npm:1.0.3"
   peerDependencies:
@@ -11491,6 +11522,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-reanimated@npm:~3.3.0":
+  version: 3.3.0
+  resolution: "react-native-reanimated@npm:3.3.0"
+  dependencies:
+    "@babel/plugin-transform-object-assign": ^7.16.7
+    "@babel/preset-typescript": ^7.16.7
+    convert-source-map: ^2.0.0
+    invariant: ^2.2.4
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+    "@babel/plugin-proposal-nullish-coalescing-operator": ^7.0.0-0
+    "@babel/plugin-proposal-optional-chaining": ^7.0.0-0
+    "@babel/plugin-transform-arrow-functions": ^7.0.0-0
+    "@babel/plugin-transform-shorthand-properties": ^7.0.0-0
+    "@babel/plugin-transform-template-literals": ^7.0.0-0
+    react: "*"
+    react-native: "*"
+  checksum: 58096b28caef8af261c446eccb91a5a74caa303ba3520b1a2767c5b922b3d19b9a58612ab9b517a959c1b562b2e76e4cf4a8ffb21136960ed63375f6a4c37d1e
+  languageName: node
+  linkType: hard
+
 "react-native-safe-area-context@npm:4.6.3":
   version: 4.6.3
   resolution: "react-native-safe-area-context@npm:4.6.3"
@@ -11498,6 +11550,32 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: f304d22f3df981b7d01b8a983ef5ace161b5352dfd293ef5b525071e861856ff5eda8720eacf1bc1d5153add9e53d09ce59f8cbdd20b590718863b8bb38eeebf
+  languageName: node
+  linkType: hard
+
+"react-native-screens@npm:3.22.1":
+  version: 3.22.1
+  resolution: "react-native-screens@npm:3.22.1"
+  dependencies:
+    react-freeze: ^1.0.0
+    warn-once: ^0.1.0
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 3b592ff31d9dfde5e2ce967f85f3ad17a94f4f3bee2248a3dad9ec791e7cda72a431f86b468b3b2a70ebeffb49b462f8162668a58fb9ddabb10b5a369816850d
+  languageName: node
+  linkType: hard
+
+"react-native-screens@patch:react-native-screens@npm%3A3.22.1#./.yarn/patches/react-native-screens-npm-3.22.1-b3da351834.patch::locator=vite-react-native-monorepo%40workspace%3A.":
+  version: 3.22.1
+  resolution: "react-native-screens@patch:react-native-screens@npm%3A3.22.1#./.yarn/patches/react-native-screens-npm-3.22.1-b3da351834.patch::version=3.22.1&hash=7fdf88&locator=vite-react-native-monorepo%40workspace%3A."
+  dependencies:
+    react-freeze: ^1.0.0
+    warn-once: ^0.1.0
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 7934cc19d9272bcb36013f760dd26afb84e6ac9fb4d64e766c839768ca79b538026e7e8562ab982bb5ffbb414a5ab646d04b7fa13f9df239761c1f8c834c6113
   languageName: node
   linkType: hard
 
@@ -13814,6 +13892,7 @@ __metadata:
     npm-run-all: ^4.1.5
     p-map: ^5.5.0
     prettier: ^2.8.1
+    react-native-screens: ~3.22.0
     turbo: ^1.10.13
     typescript: ^5.2.2
     ultra-runner: ^3.10.5
