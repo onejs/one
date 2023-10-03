@@ -103,9 +103,9 @@ And then run it:
 node dev.js
 ```
 
-This will start a server on `8081` and on `1421`, your native and web servers respectively.
+This will start a server on `8081` and on `5173`, your native and web servers respectively.
 
-You'll need a React Native app to connect to the native app, and you should be able to hit http://localhost:1421 right away in your browser.
+You'll need a React Native app to connect to the native app, and you should be able to hit http://localhost:5173 right away in your browser.
 
 If that worked, well, you're lucky!
 
