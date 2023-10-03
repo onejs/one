@@ -24,5 +24,13 @@ async function dev() {
 
   viteServer.printUrls()
 
+  process.on('beforeExit', () => {
+    stop()
+  })
+
+  process.on('SIGINT', () => {
+    stop()
+  })
+
   await closePromise
 }

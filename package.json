@@ -27,7 +27,6 @@
     "dev:example-tamagui": "yarn workspace example-tamagui dev",
     "dev:example-expo-router": "yarn workspace example-expo-router dev",
     "upgrade:tamagui": "yarn up '*tamagui*'@latest '@tamagui/*'@latest",
-    "tamastack": "SKIP_PREBUILD_RN=1 yarn workspace @tamagui/stack dev",
     "test": "turbo run --concurrency=1 test",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
     "watch:js": "SKIP_TYPES=1 yarn watch:build",

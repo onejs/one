@@ -38,9 +38,14 @@ export const create = async (options: StartOptions) => {
     clearScreen: false,
 
     resolve: {
+      dedupe: ['react', 'react-dom'],
       alias: {
         'react-native': 'react-native-web',
       },
+    },
+
+    optimizeDeps: {
+      include: ['react'],
     },
 
     plugins: [
@@ -141,6 +146,7 @@ export const create = async (options: StartOptions) => {
         },
       },
     ],
+
     server: {
       cors: true,
       port: options.port,
