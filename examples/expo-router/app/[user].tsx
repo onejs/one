@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from '@tamagui/expo-router'
+import { Link, useSearchParams } from '@vite-react-native/expo-router'
 import { Text, View } from 'react-native'
 
 export default function User() {
