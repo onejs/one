@@ -1,6 +1,6 @@
 {
   "name": "example-tamagui",
-  "version": "1.74.6",
+  "version": "0.0.0",
   "private": true,
   "main": "index.jsx",
   "scripts": {

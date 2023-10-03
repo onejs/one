@@ -17,6 +17,7 @@
     "docs:preview": "vitepress preview docs",
     "build:js": "./scripts/build-js.sh",
     "build": "turbo run build",
+    "release": "node -r esbuild-register ./scripts/release.ts",
     "check": "manypkg check && check-dependency-version-consistency .",
     "clean:build": "turbo run clean:build",
     "clean:ts": "tsc -b --clean tsconfig.build.json",

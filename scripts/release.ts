@@ -31,10 +31,9 @@ const skipTest =
   process.argv.includes('--skip-tests')
 const skipBuild = rePublish || process.argv.includes('--skip-build')
 const dryRun = process.argv.includes('--dry-run')
-const tamaguiGitUser = process.argv.includes('--tamagui-git-user')
 const isCI = process.argv.includes('--ci')
 
-const curVersion = fs.readJSONSync('./packages/tamagui/package.json').version
+const curVersion = fs.readJSONSync('./packages/vxrn/package.json').version
 
 const nextVersion = (() => {
   if (rePublish) {
@@ -46,7 +45,7 @@ const nextVersion = (() => {
   const patchVersion = patch ? curPatch + plusVersion : 0
   const curMinor = +curVersion.split('.')[1] || 0
   const minorVersion = curMinor + (patch || canary ? 0 : plusVersion)
-  const next = `1.${minorVersion}.${patchVersion}`
+  const next = `0.${minorVersion}.${patchVersion}`
 
   if (canary) {
     return `${next}-${Date.now()}`
@@ -74,19 +73,17 @@ async function run() {
     let version = curVersion
 
     // ensure we are up to date
-    // ensure we are on master
+    // ensure we are on main
     if (!canary) {
-      if ((await exec(`git rev-parse --abbrev-ref HEAD`)).stdout.trim() !== 'master') {
-        throw new Error(`Not on master`)
+      if ((await exec(`git rev-parse --abbrev-ref HEAD`)).trim() !== 'main') {
+        throw new Error(`Not on main`)
       }
       if (!dirty && !rePublish) {
-        await exec(`git pull --rebase origin master`)
+        await exec(`git pull --rebase origin main`)
       }
     }
 
-    const workspaces = (await exec(`yarn workspaces list --json`)).stdout
-      .trim()
-      .split('\n')
+    const workspaces = (await exec(`yarn workspaces list --json`)).trim().split('\n')
     const packagePaths = workspaces.map((p) => JSON.parse(p)) as {
       name: string
       location: string
@@ -108,7 +105,7 @@ async function run() {
             }
           })
       )
-    ).filter((x) => !x.json['tamagui-publish-skip'])
+    ).filter((x) => !x.json['publish-skip'])
 
     const packageJsons = allPackageJsons
       .filter((x) => {
@@ -138,10 +135,6 @@ async function run() {
           }
         })
       )
-    }
-    if (tamaguiGitUser) {
-      await exec(`git config --global user.name 'Tamagui'`)
-      await exec(`git config --global user.email 'tamagui@users.noreply.github.com`)
     }
 
     const answer =
@@ -254,12 +247,14 @@ async function run() {
             versionsOut = await exec(`npm view ${name} versions --json`, {
               avoidLog: true,
             })
-            const allVersions = JSON.parse(versionsOut.trim().replaceAll(`\n`, ''))
-            const latest = allVersions[allVersions.length - 1]
+            if (versionsOut) {
+              const allVersions = JSON.parse(versionsOut.trim().replaceAll(`\n`, ''))
+              const latest = allVersions[allVersions.length - 1]
 
-            if (latest === nextVersion) {
-              console.log(`Already published, skipping`)
-              return
+              if (latest === nextVersion) {
+                console.log(`Already published, skipping`)
+                return
+              }
             }
           } catch (err) {
             if (`${err}`.includes(`404`)) {
@@ -373,7 +368,7 @@ async function run() {
 
       if (!dirty) {
         // pull once more before pushing so if there was a push in interim we get it
-        await exec(`git pull --rebase origin master`)
+        await exec(`git pull --rebase origin main`)
       }
 
       await exec(`git push origin head`)
