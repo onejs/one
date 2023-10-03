@@ -1,4 +1,4 @@
-import { create } from '@tamagui/vite-react-native'
+import { create } from '@vite-react-native/vite-react-native'
 
 dev()
 
