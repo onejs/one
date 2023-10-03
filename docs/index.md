@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "Vern"
-  text: "The power of Vite meets React Native"
-  tagline: Share a single Vite instance to power your React (web and native) apps.
+  name: "vxrn"
+  text: "The power of Vite - meets React Native"
+  tagline: Start a single Vite instance to run your web and native React apps, at the same time.
   image:
     src: /vite-react-native.svg
     alt: Vite
@@ -20,6 +20,6 @@ features:
   - title: SWC and React Refresh
     details: Hot reloading works out of the box, and build times are snappy thanks to SWC.
   - title: Yes, it's beta
-    details: Vern is in early development and could use sponsors and mostly contributions!
+    details: VxRN is in early development and could use sponsors and mostly contributions!
 ---
 

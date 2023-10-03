@@ -5,7 +5,7 @@
     "rootDir": ".",
     "paths": {
       "vite-react-native": [
-        "packages/vite-react-native"
+        "packages/vxrn"
       ],
       "@vite-react-native/*": [
         "packages/*"

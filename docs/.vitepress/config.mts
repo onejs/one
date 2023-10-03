@@ -2,9 +2,9 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'Vite React Native',
+  title: 'vxrn',
   description: 'React Native, on Vite',
-  base: '/vite-react-native/',
+  // base: '/vite-react-native/',
 
   themeConfig: {
     logo: '/vite-react-native.svg',

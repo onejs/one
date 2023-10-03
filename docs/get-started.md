@@ -1,30 +1,30 @@
 # Get Started
 
 ::: warning
-Please note, Vern is in early alpha. We need contributions!
+Please note, vxrn is in early alpha. We need contributions!
 :::
 
-Vern is a package that lets you serve your React Native apps using Vite. This is pretty cool as Vite typically doesn't seem like it would "play well" with React Native  - React Native only supports CommonJS, even for hot reloading, whereas Vite is all-in on ESModules.
+vxrn is a package that lets you serve your React Native apps using Vite. This is pretty cool as Vite typically doesn't seem like it would "play well" with React Native  - React Native only supports CommonJS, even for hot reloading, whereas Vite is all-in on ESModules.
 
 Luckily, with some effort, we've put together a variety of plugins and configuration for Vite that make this work. We run a full `build` of your app on first request using Vite's internal Rollup, and make some modifications to the CJS it exports so that its well-suited for hot reloading as React Native expects.
 
-Today it runs many simple apps well. We'd like to get the community involved to make Vern viable for any scale of React Native app.
+Today it runs many simple apps well. We'd like to get the community involved to make vxrn viable for any scale of React Native app.
 
 ## Install
 
-For now Vern only works programatically as it must set up not only Vite but also Fastify, mostly because it re-uses great work by [Repack](https://www.callstack.com/open-source/re-pack) in order to provide the websocket for communicating with React Native.
+For now vxrn only works programatically as it must set up not only Vite but also Fastify, mostly because it re-uses great work by [Repack](https://www.callstack.com/open-source/re-pack) in order to provide the websocket for communicating with React Native.
 
 Install:
 
 ```bash
-npm i -d @vite-react-native/vite-react-native
+npm i -d vxrn
 npm i react-dom react react-native
 ```
 
 Create a file called `dev.js`:
 
 ```js
-import { create } from '@vite-react-native/vite-react-native'
+import { create } from 'vxrn'
 
 dev()
 
@@ -72,7 +72,7 @@ function App() {
 }
 ```
 
-And your web entry at `index.web.jsx`:
+Add your web entry at `index.web.jsx`:
 
 ```js
 import { createRoot } from 'react-dom/client'
@@ -82,6 +82,18 @@ function App() {
 }
 
 createRoot(document.querySelector('#root')).render(<App />)
+```
+
+And `index.html`:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.web.jsx"></script>
+  </body>
+</html>
 ```
 
 And then run it:

@@ -16,7 +16,7 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "build:js": "./scripts/build-js.sh",
-    "build": "turbo run build --filter=!next-app",
+    "build": "turbo run build",
     "check": "manypkg check && check-dependency-version-consistency .",
     "clean:build": "turbo run clean:build",
     "clean:ts": "tsc -b --clean tsconfig.build.json",

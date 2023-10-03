@@ -9,10 +9,10 @@
   "dependencies": {
     "@tamagui/config": "latest",
     "@tamagui/core": "latest",
-    "@vite-react-native/vite-react-native": "0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "^0.72.1",
-    "tamagui": "latest"
+    "tamagui": "latest",
+    "vxrn": "0.0.0"
   }
 }
