@@ -159,7 +159,7 @@ export function wrapSourceInRefreshRuntime(id: string, code: string, options: Op
   // ensure it loads react, react native, vite client
   import 'react-native'
   import 'react'
-  import '@vite-react-native/vite-native-client'
+  import '@vxrn/vite-native-client'
   `
       : ``
 

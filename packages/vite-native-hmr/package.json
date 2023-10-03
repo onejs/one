@@ -1,5 +1,5 @@
 {
-  "name": "@vite-react-native/vite-native-hmr",
+  "name": "@vxrn/vite-native-hmr",
   "version": "0.0.2",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",

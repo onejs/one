@@ -4,10 +4,10 @@
     "baseUrl": ".",
     "rootDir": ".",
     "paths": {
-      "vite-react-native": [
+      "vxrn": [
         "packages/vxrn"
       ],
-      "@vite-react-native/*": [
+      "@vxrn/*": [
         "packages/*"
       ],
     },

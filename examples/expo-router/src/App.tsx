@@ -1,4 +1,4 @@
-import { ExpoRoot } from '@vite-react-native/expo-router'
+import { ExpoRoot } from '@vxrn/expo-router'
 
 import { useExpoContext } from './useExpoContext'
 

@@ -1,4 +1,4 @@
-import { Link } from '@vite-react-native/expo-router'
+import { Link } from '@vxrn/expo-router'
 import { Button, Stack, Text } from 'tamagui'
 
 export default () => (

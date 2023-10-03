@@ -1,5 +1,5 @@
 {
-  "name": "@vite-react-native/react-native-prebuilt",
+  "name": "@vxrn/react-native-prebuilt",
   "version": "0.0.2",
   "main": "react-native.js",
   "license": "MIT",

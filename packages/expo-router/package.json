@@ -1,5 +1,5 @@
 {
-  "name": "@vite-react-native/expo-router",
+  "name": "@vxrn/expo-router",
   "version": "0.0.2",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
