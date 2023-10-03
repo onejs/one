@@ -1,6 +1,6 @@
 {
   "name": "@vite-react-native/vite-native-hmr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",
   "module": "dist/esm",

@@ -1,6 +1,6 @@
 {
   "name": "vxrn",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "main": "dist",
@@ -26,8 +26,8 @@
     "@fastify/sensible": "^4.1.0",
     "@fastify/static": "^5.0.2",
     "@tamagui/vite-plugin": "latest",
-    "@vite-react-native/vite-native-hmr": "0.0.1",
-    "@vite-react-native/vite-native-swc": "0.0.1",
+    "@vite-react-native/vite-native-hmr": "0.0.2",
+    "@vite-react-native/vite-native-swc": "0.0.2",
     "@vitejs/plugin-react": "^4.0.4",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "chalk": "^4.1.2",
