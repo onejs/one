@@ -2,10 +2,7 @@ import { readFile, writeFile } from 'fs/promises'
 import { dirname, join, relative } from 'path'
 
 import * as babel from '@babel/core'
-import viteReactPlugin, {
-  swcTransform,
-  transformForBuild,
-} from '@vite-react-native/vite-native-swc'
+import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import react from '@vitejs/plugin-react-swc'
 import { parse } from 'es-module-lexer'
 import { pathExists } from 'fs-extra'
@@ -241,7 +238,7 @@ export const create = async (options: StartOptions) => {
     const jsxRuntime = {
       alias: 'virtual:react-jsx',
       contents: await readFile(
-        require.resolve('@vite-react-native/react-native-prebuilt/jsx-runtime'),
+        require.resolve('@vxrn/react-native-prebuilt/jsx-runtime'),
         'utf-8'
       ),
     } as const
@@ -249,15 +246,12 @@ export const create = async (options: StartOptions) => {
     const virtualModules = {
       'react-native': {
         alias: 'virtual:react-native',
-        contents: await readFile(
-          require.resolve('@vite-react-native/react-native-prebuilt'),
-          'utf-8'
-        ),
+        contents: await readFile(require.resolve('@vxrn/react-native-prebuilt'), 'utf-8'),
       },
       react: {
         alias: 'virtual:react',
         contents: await readFile(
-          require.resolve('@vite-react-native/react-native-prebuilt/react'),
+          require.resolve('@vxrn/react-native-prebuilt/react'),
           'utf-8'
         ),
       },

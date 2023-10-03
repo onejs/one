@@ -1,5 +1,5 @@
 {
-  "name": "@vite-react-native/vite-native-swc",
+  "name": "@vxrn/vite-native-swc",
   "version": "0.0.2",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",

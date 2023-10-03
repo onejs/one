@@ -1,4 +1,4 @@
-import { Stack } from '@vite-react-native/expo-router'
+import { Stack } from '@vxrn/expo-router'
 
 export default function Layout() {
   return <Stack />
