@@ -133,7 +133,7 @@ export const create = async (options: StartOptions) => {
                 )};
               return exports })({})`
 
-            if (process.env.DEBUG === 'vern') {
+            if (process.env.DEBUG === 'vxrn') {
               // biome-ignore lint/suspicious/noConsoleLog: <explanation>
               console.log(`Sending hot update`, hotUpdateSource)
             }

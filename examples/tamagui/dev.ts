@@ -1,5 +1,5 @@
 import { tamaguiPlugin } from '@tamagui/vite-plugin'
-import { create } from '@vite-react-native/vite-react-native'
+import { create } from 'vxrn'
 
 dev()
 
