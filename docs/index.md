@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "vxrn"
-  text: "The power of Vite - meets React Native"
-  tagline: Start a single Vite instance to run your web and native React apps.
+  text: "The magic of Vite, meet React Native"
+  tagline: One Vite instance powering React Native and web at the same time.
   image:
     src: /vite-react-native.svg
     alt: Vite
