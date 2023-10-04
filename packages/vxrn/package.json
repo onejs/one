@@ -25,7 +25,6 @@
     "@callstack/repack-debugger-app": "^1.0.0",
     "@fastify/sensible": "^4.1.0",
     "@fastify/static": "^5.0.2",
-    "@tamagui/vite-plugin": "latest",
     "@vitejs/plugin-react": "^4.0.4",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "@vxrn/react-native-prebuilt": "0.0.6",
