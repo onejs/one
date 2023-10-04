@@ -24,7 +24,7 @@ export default defineConfig({
     //   },
     // ],
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/natew/vite-react-native' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/natew/vxrn' }],
   },
 
   ignoreDeadLinks: 'localhostLinks',
