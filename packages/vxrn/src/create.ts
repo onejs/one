@@ -17,7 +17,7 @@ import { getVitePath } from './getVitePath'
 import { DEFAULT_PORT } from './utils/constants'
 
 export const create = async (options: StartOptions) => {
-  const { host = '127.0.0.1', root, nativePort = 8081, webPort } = options
+  const { host = '127.0.0.1', root, nativePort = 8081, webPort, mode = 'development' } = options
   // used for normalizing hot reloads
   let entryRoot = ''
 
@@ -30,7 +30,7 @@ export const create = async (options: StartOptions) => {
 
   let serverConfig = {
     root,
-    mode: 'development',
+    mode,
     clearScreen: false,
 
     resolve: {
@@ -204,7 +204,7 @@ export const create = async (options: StartOptions) => {
     nativeServer: nativeServer.instance,
     viteServer,
 
-    async start() {
+    async start(): Promise<{ closePromise: Promise<void> }> {
       await Promise.all([viteServer.listen(), nativeServer.start()])
 
       return {
@@ -364,7 +364,7 @@ export const create = async (options: StartOptions) => {
         },
       },
 
-      mode: 'development',
+      mode,
       define: {
         'process.env.NODE_ENV': `"development"`,
       },
