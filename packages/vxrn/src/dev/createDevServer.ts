@@ -5,7 +5,11 @@ import { DEFAULT_PORT } from '../utils/constants'
 import { Server, createServer } from '../vendor/repack/dev-server/src'
 
 export async function createDevServer(
-  options: StartOptions,
+  options: {
+    host: string
+    port: number
+    root: string
+  },
   {
     indexJson,
     listenForHMR,
