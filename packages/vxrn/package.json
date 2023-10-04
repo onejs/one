@@ -28,6 +28,7 @@
     "@tamagui/vite-plugin": "latest",
     "@vitejs/plugin-react": "^4.0.4",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "@vxrn/vite-native-client": "0.0.5",
     "@vxrn/react-native-prebuilt": "0.0.5",
     "@vxrn/vite-native-hmr": "0.0.5",
     "@vxrn/vite-native-swc": "0.0.5",
