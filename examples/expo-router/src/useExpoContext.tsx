@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 let ctx
 
-// for some reason putting it in state doesnt even re-render
+// for some reason putting it in state doesn't even re-render
 export function useExpoContext(modules: any) {
   const [_, setState] = useState(0)
 
