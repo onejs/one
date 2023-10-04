@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'fs/promises'
+import { readFile } from 'fs/promises'
 import { dirname, join, relative } from 'path'
 
 import * as babel from '@babel/core'
@@ -195,7 +195,7 @@ export const create = async (options: StartOptions) => {
         hmrListeners.push(cb)
       },
       getIndexBundle: getBundleCode,
-      indexJson: getIndexJsonReponse({ port: nativePort, root }),
+      indexJson: getIndexJsonResponse({ port: nativePort, root }),
     }
   )
 
@@ -404,16 +404,15 @@ ___modules___["${outputModule.fileName}"] = ((exports, module) => {
   ${outputModule.code}
 })
 
-${
-  outputModule.isEntry
-    ? `
+${outputModule.isEntry
+              ? `
 // run entry
 const __require = createRequire({})
 __require("react-native")
 __require("${outputModule.fileName}")
 `
-    : ''
-}
+              : ''
+            }
 `
         }
       })
@@ -437,7 +436,7 @@ __require("${outputModule.fileName}")
   }
 }
 
-function getIndexJsonReponse({ port, root }: { port: number | string; root }) {
+function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
   return {
     name: 'myapp',
     slug: 'myapp',
