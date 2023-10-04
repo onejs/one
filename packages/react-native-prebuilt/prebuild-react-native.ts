@@ -22,8 +22,7 @@ async function nativeBabelFlowTransform(input: string) {
 }
 
 async function run() {
-  // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-  console.log(`Prebuilding React Native (one time cost...)`)
+  console.info(`Prebuilding React Native (one time cost...)`)
 
   const outPath = './dist/react-native.js'
   const reactOutPath = './dist/react.js'
@@ -51,11 +50,11 @@ async function run() {
       // manual force exports
       const bundled = await readFile(reactOutPath, 'utf-8')
       const outCode = `
-      const run = () => {  
+      const run = () => {
         ${bundled.replace(
-          `module.exports = require_react_development();`,
-          `return require_react_development();`
-        )}
+        `module.exports = require_react_development();`,
+        `return require_react_development();`
+      )}
       }
       const __mod__ = run()
       ${RExports.map((n) => `export const ${n} = __mod__.${n}`).join('\n')}
@@ -83,16 +82,16 @@ async function run() {
       // manual force exports
       const bundled = await readFile(reactJsxOutPath, 'utf-8')
       const outCode = `
-      const run = () => {  
+      const run = () => {
         ${bundled.replace(
-          `module.exports = require_react_jsx_dev_runtime_development();`,
-          `return require_react_jsx_dev_runtime_development();`
-        )}
+        `module.exports = require_react_jsx_dev_runtime_development();`,
+        `return require_react_jsx_dev_runtime_development();`
+      )}
       }
       const __mod__ = run()
       ${['jsx', 'jsxs', 'jsxDEV', 'Fragment']
-        .map((n) => `export const ${n} = __mod__.${n} || __mod__.jsx || __mod__.jsxDEV`)
-        .join('\n')}
+          .map((n) => `export const ${n} = __mod__.${n} || __mod__.jsx || __mod__.jsxDEV`)
+          .join('\n')}
       `
       await writeFile(reactJsxOutPath, outCode)
     }),
@@ -175,7 +174,7 @@ async function run() {
       // manual force exports
       const bundled = await readFile(outPath, 'utf-8')
       const outCode = `
-      const run = () => {  
+      const run = () => {
         ${bundled
           .replace(
             esbuildCommonJSFunction,
@@ -191,7 +190,7 @@ var __commonJS = (cb, mod) => function __require() {
 
   // this is our patch basically allowing importing the inner contents:
   globalThis['__cachedModules'][path.replace('../../node_modules/', '').replace('.js', '')] = mod
-  
+
   return mod
 };
 `
