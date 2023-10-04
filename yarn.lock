@@ -7340,6 +7340,7 @@ __metadata:
   dependencies:
     "@tamagui/config": latest
     "@tamagui/core": latest
+    "@tamagui/vite-plugin": latest
     react: ^18.2.0
     react-dom: ^18.2.0
     react-native: ^0.72.1
@@ -14012,7 +14013,6 @@ __metadata:
     "@fastify/sensible": ^4.1.0
     "@fastify/static": ^5.0.2
     "@tamagui/build": latest
-    "@tamagui/vite-plugin": latest
     "@vitejs/plugin-react": ^4.0.4
     "@vitejs/plugin-react-swc": ^3.3.2
     "@vxrn/react-native-prebuilt": 0.0.6
