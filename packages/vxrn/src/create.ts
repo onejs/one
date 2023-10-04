@@ -16,8 +16,7 @@ import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
 
 export const create = async (options: StartOptions) => {
-  const { root } = options
-
+  const { host = '127.0.0.1', root, nativePort = 8081, webPort } = options
   // used for normalizing hot reloads
   let entryRoot = ''
 
@@ -25,7 +24,6 @@ export const create = async (options: StartOptions) => {
   const templateFile = join(packageRootDir, 'react-native-template.js')
 
   // react native port (it scans 19000 +5)
-  const port = options.port || 8081
   const hmrListeners: HMRListener[] = []
   const hotUpdatedCJSFiles = new Map<string, string>()
 
@@ -146,8 +144,8 @@ export const create = async (options: StartOptions) => {
 
     server: {
       cors: true,
-      port: options.port,
-      host: options.host || '127.0.0.1',
+      port: webPort,
+      host,
     },
   } satisfies InlineConfig
 
@@ -185,14 +183,21 @@ export const create = async (options: StartOptions) => {
 
   let isBuilding: Promise<string> | null = null
 
-  const nativeServer = await createDevServer(options, {
-    hotUpdatedCJSFiles,
-    listenForHMR(cb) {
-      hmrListeners.push(cb)
+  const nativeServer = await createDevServer(
+    {
+      root,
+      port: nativePort,
+      host,
     },
-    getIndexBundle: getBundleCode,
-    indexJson: getIndexJsonReponse({ port, root }),
-  })
+    {
+      hotUpdatedCJSFiles,
+      listenForHMR(cb) {
+        hmrListeners.push(cb)
+      },
+      getIndexBundle: getBundleCode,
+      indexJson: getIndexJsonReponse({ port: nativePort, root }),
+    }
+  )
 
   return {
     nativeServer: nativeServer.instance,
@@ -329,7 +334,7 @@ export const create = async (options: StartOptions) => {
 
         nativePlugin({
           root: options.root,
-          port,
+          port: nativePort,
           mode: 'build',
         }),
 
