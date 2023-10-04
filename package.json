@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "repository": {
-    "url": "https://github.com/natew/vite-react-native"
+    "url": "https://github.com/natew/vxrn"
   },
   "workspaces": [
     "./packages/*",

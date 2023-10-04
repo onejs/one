@@ -109,4 +109,4 @@ You'll need a React Native app to connect to the native app, and you should be a
 
 If that worked, well, you're lucky!
 
-We've got [a couple examples in the repo](https://github.com/nate/vite-react-native) that probably are easier to get started with.
+We've got [a couple examples in the repo](https://github.com/nate/vxrn) that probably are easier to get started with.
