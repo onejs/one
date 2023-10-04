@@ -21,7 +21,7 @@ const rePublish = reRun || process.argv.includes('--republish')
 const finish = process.argv.includes('--finish')
 
 const canary = process.argv.includes('--canary')
-const skipVersion = rePublish || process.argv.includes('--skip-version')
+const skipVersion = finish || rePublish || process.argv.includes('--skip-version')
 const patch = process.argv.includes('--patch')
 const dirty = process.argv.includes('--dirty')
 const skipPublish = process.argv.includes('--skip-publish')
@@ -306,8 +306,6 @@ async function run() {
         }
       }
     }
-
-    await sleep(4 * 1000)
 
     if (rePublish) {
       // if all successful, re-tag as latest
