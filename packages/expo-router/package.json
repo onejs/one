@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/expo-router",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",
