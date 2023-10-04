@@ -13,10 +13,7 @@ setup()
 
 async function setup() {
   const workspaces = (await exec(`yarn workspaces list --json`)).trim().split('\n')
-  const packagePaths = workspaces.map((p) => JSON.parse(p)) as {
-    name: string
-    location: string
-  }[]
+  const packagePaths = workspaces.map((p) => JSON.parse(p) as { location: string; name: string })
 
   await Promise.all(
     packagePaths.map(async ({ location, name }) => {
