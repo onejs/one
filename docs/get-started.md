@@ -12,7 +12,7 @@ Today it runs many simple apps well. We'd like to get the community involved to 
 
 ## Install
 
-For now vxrn only works programmatically as it must set up not only Vite but also Fastify, mostly because it re-uses great work by [Repack](https://www.callstack.com/open-source/re-pack) in order to provide the websocket for communicating with React Native.
+For now vxrn only works programmatically as it must set up not only Vite but also Fastify, mostly because it re-uses great work by [Repack](https://re-pack.netlify.app/) in order to provide the websocket for communicating with React Native.
 
 Install:
 
