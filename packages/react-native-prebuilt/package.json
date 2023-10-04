@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/react-native-prebuilt",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "react-native.js",
   "license": "MIT",
   "sideEffects": true,
