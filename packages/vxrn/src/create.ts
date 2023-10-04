@@ -14,6 +14,7 @@ import { HMRListener } from './types'
 import { StartOptions } from './types'
 import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
+import { DEFAULT_PORT } from './utils/constants'
 
 export const create = async (options: StartOptions) => {
   const { host = '127.0.0.1', root, nativePort = 8081, webPort } = options
@@ -450,7 +451,7 @@ function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
       image: './assets/splash.png',
       resizeMode: 'contain',
       backgroundColor: '#ffffff',
-      imageUrl: 'http://127.0.0.1:8081/assets/./assets/splash.png',
+      imageUrl: `http://127.0.0.1:${DEFAULT_PORT}/assets/./assets/splash.png`,
     },
     updates: { fallbackToCacheTimeout: 0 },
     assetBundlePatterns: ['**/*'],
@@ -460,7 +461,7 @@ function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
       adaptiveIcon: {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#FFFFFF',
-        foregroundImageUrl: 'http://127.0.0.1:8081/assets/./assets/adaptive-icon.png',
+        foregroundImageUrl: `http://127.0.0.1:${DEFAULT_PORT}/assets/./assets/adaptive-icon.png`,
       },
     },
     web: { favicon: './assets/favicon.png' },

@@ -1,3 +1,4 @@
+import { DEFAULT_PORT } from './../../vxrn/src/utils/constants';
 // import '@vite/env'
 
 import type { InferCustomEventPayload } from './customEvent'
@@ -29,9 +30,8 @@ const socketProtocol =
   __HMR_PROTOCOL__ || (importMetaUrl.protocol === 'https:' ? 'wss' : 'ws')
 const hmrPort = __HMR_PORT__ || 5173
 
-const socketHost = `${__HMR_HOSTNAME__ || importMetaUrl.hostname}:${
-  hmrPort || importMetaUrl.port
-}${__HMR_BASE__}`
+const socketHost = `${__HMR_HOSTNAME__ || importMetaUrl.hostname}:${hmrPort || importMetaUrl.port
+  }${__HMR_BASE__}`
 const directSocketHost = __HMR_DIRECT_TARGET__
 const base = __BASE__ || '/'
 const messageBuffer: string[] = []
@@ -48,12 +48,12 @@ try {
       socket = setupWebSocket(socketProtocol, directSocketHost, () => {
         console.error(
           '[vite] failed to connect to websocket.\n' +
-            'your current setup:\n' +
-            `  (browser) ${JSON.stringify(
-              importMetaUrl
-            )} <--[HTTP]--> ${serverHost} (server)\n` +
-            `  (browser) ${socketHost} <--[WebSocket (failing)]--> ${directSocketHost} (server)\n` +
-            'Check out your Vite / network configuration and https://vitejs.dev/config/server-options.html#server-hmr .'
+          'your current setup:\n' +
+          `  (browser) ${JSON.stringify(
+            importMetaUrl
+          )} <--[HTTP]--> ${serverHost} (server)\n` +
+          `  (browser) ${socketHost} <--[WebSocket (failing)]--> ${directSocketHost} (server)\n` +
+          'Check out your Vite / network configuration and https://vitejs.dev/config/server-options.html#server-hmr .'
         )
       })
       socket.addEventListener(
@@ -130,8 +130,8 @@ function warnFailedFetch(err: Error, path: string | string[]) {
   console.error(`${err}`)
   console.error(
     `[hmr] Failed to reload ${path}. ` +
-      `This could be due to syntax errors or importing non-existent ` +
-      `modules. (see errors above)`
+    `This could be due to syntax errors or importing non-existent ` +
+    `modules. (see errors above)`
   )
 }
 
@@ -285,7 +285,7 @@ async function queueUpdate(p: Promise<(() => void) | undefined>) {
     pending = false
     const loading = [...queued]
     queued = []
-    ;(await Promise.all(loading)).forEach((fn) => fn && fn())
+      ; (await Promise.all(loading)).forEach((fn) => fn && fn())
   }
 }
 
@@ -310,7 +310,7 @@ async function waitForSuccessfulPing(
         },
       })
       return true
-    } catch {}
+    } catch { }
     return false
   }
 
@@ -361,13 +361,12 @@ async function fetchUpdate({
     const [acceptedPathWithoutQuery, query] = acceptedPath.split(`?`)
     try {
       const filePath = acceptedPathWithoutQuery
-      const finalQuery = `file?file=${encodeURIComponent(filePath)}&${
-        explicitImportRequired ? 'import&' : ''
-      }t=${timestamp}${query ? `&${query}` : ''}`
+      const finalQuery = `file?file=${encodeURIComponent(filePath)}&${explicitImportRequired ? 'import&' : ''
+        }t=${timestamp}${query ? `&${query}` : ''}`
 
       const scriptUrl =
         // re-route to our cjs endpoint
-        `http://${serverHost.replace('5173', '8081')}` + finalQuery
+        `http://${serverHost.replace('5173', `${DEFAULT_PORT}`)}` + finalQuery
 
       console.log(`fetching update: ${JSON.stringify({ path, mod, scriptUrl })}`)
 
@@ -448,7 +447,7 @@ globalThis['createHotContext'] = function createHotContext(
   const newListeners: CustomListenersMap = new Map()
   ctxToListenersMap.set(ownerPath, newListeners)
 
-  function acceptDeps(deps: string[], callback: HotCallback['fn'] = () => {}) {
+  function acceptDeps(deps: string[], callback: HotCallback['fn'] = () => { }) {
     const mod: HotModule = hotModulesMap.get(ownerPath) || {
       id: ownerPath,
       callbacks: [],
@@ -496,7 +495,7 @@ globalThis['createHotContext'] = function createHotContext(
     // Kept for backward compatibility (#11036)
     // @ts-expect-error untyped
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    decline() {},
+    decline() { },
 
     // tell the server to re-perform hmr propagation from this module as root
     invalidate(message) {
