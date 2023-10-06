@@ -16,3 +16,7 @@ You can try the example apps:
 
 - `yarn dev:example-tamagui`
 - `yarn dev:example-expo-router` (breaking)
+
+## Contributing
+
+[See the CONTRIBUTING.md](https://github.com/natew/vxrn/blob/main/CONTRIBUTING.md)
