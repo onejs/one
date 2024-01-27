@@ -105,6 +105,7 @@ export async function createServer(config: Server.Config) {
 
   instance.addHook('onSend', async (request, reply, payload) => {
     reply.header('X-Content-Type-Options', 'nosniff')
+    reply.header('X-React-Native-Project-Root', config.options.rootDir)
 
     const [pathname] = request.url.split('?')
     if (pathname.endsWith('.map')) {
