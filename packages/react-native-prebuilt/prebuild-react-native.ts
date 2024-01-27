@@ -140,7 +140,7 @@ async function run() {
               },
               async (input) => {
                 return {
-                  path: require.resolve('@tamagui/vite-native-hmr'),
+                  path: require.resolve('@vxrn/vite-native-hmr'),
                 }
               }
             )
