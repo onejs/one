@@ -20,7 +20,7 @@
     "esbuild": "~0.19.3",
     "fs-extra": "^11.1.0",
     "metro-react-native-babel-preset": "^0.77.0",
-    "react-native": "^0.72.1"
+    "react-native": "0.73.2"
   },
   "publishConfig": {
     "access": "public"

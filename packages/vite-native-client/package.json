@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@tamagui/build": "latest",
-    "react-native": "^0.72.1"
+    "react-native": "0.73.2"
   },
   "peerDependencies": {
     "react-native": "*"
