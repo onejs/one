@@ -236,7 +236,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    transitionDuration: '100ms',
   },
   filename: { color: 'white', fontSize: 20, marginLeft: 12 },
   virtual: { textAlign: 'right', color: 'white' },
