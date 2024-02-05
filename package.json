@@ -27,6 +27,7 @@
     "lint": "ultra -r --no-pretty lint",
     "dev:example-tamagui": "yarn workspace example-tamagui dev",
     "dev:example-expo-router": "yarn workspace example-expo-router dev",
+    "dev:example-bare": "yarn workspace example-bare dev",
     "upgrade:tamagui": "yarn up '*tamagui*'@latest '@tamagui/*'@latest",
     "test": "turbo run --concurrency=1 test",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
