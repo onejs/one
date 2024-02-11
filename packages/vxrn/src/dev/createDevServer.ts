@@ -88,7 +88,7 @@ export async function createDevServer(
 
         compiler: {
           getAsset: async (filename, platform, sendProgress) => {
-            console.log('[GET] - ', filename)
+            console.info('[GET] - ', filename)
             if (filename === 'index.bundle') {
               return await getIndexBundle()
             }
@@ -115,7 +115,7 @@ export async function createDevServer(
 
         symbolicator: {
           getSource: async (fileUrl) => {
-            console.log('get source', fileUrl)
+            console.info('get source', fileUrl)
             // const { filename, platform } = parseFileUrl(fileUrl)
             // return compiler.getSource(filename, platform)
             return ''
@@ -138,7 +138,6 @@ export async function createDevServer(
         hmr: {
           getUriPath: () => '/__hmr',
           onClientConnected: (platform, clientId) => {
-            // biome-ignore lint/suspicious/noConsoleLog: <explanation>
             // todo
             // const lastStats = {}
             // ctx.broadcastToHmrClients(
@@ -163,8 +162,7 @@ export async function createDevServer(
             if (logEntry.type === 'debug') return
 
             // error DevServer, warn DevServer
-            // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-            console.log(
+            console.info(
               '[logger]',
               logEntry.type === 'info' ? '' : logEntry.type,
               logEntry.message
@@ -181,7 +179,7 @@ export async function createDevServer(
           // getPlatforms: async () => Object.keys(compiler.workers),
           getPlatforms: async () => ['ios'],
           getAssets: async (platform) => {
-            console.log('get assets', platform)
+            console.info('get assets', platform)
             return []
             // return Object.entries(compiler.assetsCache[platform] ?? {}).map(([name, asset]) => ({
             //   name,

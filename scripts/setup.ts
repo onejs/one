@@ -32,8 +32,7 @@ async function setup() {
             await readlink(biomeConfig)
           } catch (err) {
             if (`${err}`.includes(`no such file or directory`)) {
-              // biome-ignore lint/suspicious/noConsoleLog: ok
-              console.log(`No biome.json found for ${name}, linking from monorepo root`)
+              console.error(`No biome.json found for ${name}, linking from monorepo root`)
               await exec(`ln -s ../../biome.json ./biome.json`, {
                 cwd,
               })

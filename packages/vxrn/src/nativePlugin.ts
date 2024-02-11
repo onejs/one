@@ -177,8 +177,7 @@ export function nativePlugin(options: {
       }
 
       if (process.env.DEBUG) {
-        // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-        console.log('config..', config)
+        console.info('config..', config)
       }
 
       const updateOutputOptions = (out: OutputOptions) => {

@@ -15,7 +15,7 @@ declare const __HMR_BASE__: string
 declare const __HMR_TIMEOUT__: number
 declare const __HMR_ENABLE_OVERLAY__: boolean
 
-console.log('[vite] connecting...')
+console.info('[vite] connecting...')
 
 const importMetaUrl = {
   hostname: '127.0.0.1',
@@ -59,7 +59,7 @@ try {
       socket.addEventListener(
         'open',
         () => {
-          console.log(
+          console.info(
             '[vite] Direct websocket connection fallback. Check out https://vitejs.dev/config/server-options.html#server-hmr to remove the previous connection error.'
           )
         },
@@ -97,12 +97,12 @@ function setupWebSocket(
 
   // Listen for messages
   socket.addEventListener('message', ({ data }) => {
-    console.log('🌶️' + data)
+    console.info('🌶️' + data)
     handleMessage(JSON.parse(data))
   })
 
   socket.addEventListener('error', (err) => {
-    console.log('err' + err['message'] + err['stack'])
+    console.info('err' + err['message'] + err['stack'])
   })
 
   // ping server
@@ -116,9 +116,9 @@ function setupWebSocket(
 
     notifyListeners('vite:ws:disconnect', { webSocket: socket })
 
-    console.log(`[vite] server connection lost. polling for restart...`)
+    console.info(`[vite] server connection lost. polling for restart...`)
     waitForSuccessfulPing(protocol, hostAndPath).then(() => {
-      console.log('shuld reload')
+      console.info('should reload')
       // location.reload()
     })
   })
@@ -154,7 +154,7 @@ const pageReload = debounceReload(50)
 async function handleMessage(payload: HMRPayload) {
   switch (payload.type) {
     case 'connected':
-      console.log(`[vite] connected.`)
+      console.info(`[vite] connected.`)
       sendMessageBuffer()
       // proxy(nginx, docker) hmr ws maybe caused timeout,
       // so send ping package let ws keep alive.
@@ -256,7 +256,7 @@ const enableOverlay = __HMR_ENABLE_OVERLAY__
 function createErrorOverlay(err: ErrorPayload['err']) {
   if (!enableOverlay) return
   clearErrorOverlay()
-  console.log('create error', err)
+  console.error('create error', err)
   // document.body.appendChild(new ErrorOverlay(err))
 }
 
@@ -369,7 +369,7 @@ async function fetchUpdate({
         // re-route to our cjs endpoint
         `http://${serverHost.replace('5173', '8081')}` + finalQuery
 
-      console.log(`fetching update: ${JSON.stringify({ path, mod, scriptUrl })}`)
+      console.info(`fetching update: ${JSON.stringify({ path, mod, scriptUrl })}`)
 
       const source = await fetch(scriptUrl).then((res) => res.text())
 
@@ -386,7 +386,7 @@ async function fetchUpdate({
       fn(deps.map((dep) => (dep === acceptedPath ? fetchedModule : undefined)))
     }
     const loggedPath = isSelfUpdate ? path : `${acceptedPath} via ${path}`
-    console.log(`[vite] hot updated: ${loggedPath}`)
+    console.info(`[vite] hot updated: ${loggedPath}`)
   }
 }
 
@@ -502,7 +502,7 @@ globalThis['createHotContext'] = function createHotContext(
     invalidate(message) {
       notifyListeners('vite:invalidate', { path: ownerPath, message })
       this.send('vite:invalidate', { path: ownerPath, message })
-      console.log(`[vite] invalidate ${ownerPath}${message ? `: ${message}` : ''}`)
+      console.info(`[vite] invalidate ${ownerPath}${message ? `: ${message}` : ''}`)
     },
 
     // custom events
