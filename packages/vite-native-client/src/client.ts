@@ -118,7 +118,7 @@ function setupWebSocket(
 
     console.info(`[vite] server connection lost. polling for restart...`)
     waitForSuccessfulPing(protocol, hostAndPath).then(() => {
-      console.info('shuld reload')
+      console.info('should reload')
       // location.reload()
     })
   })
