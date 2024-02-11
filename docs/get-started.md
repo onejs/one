@@ -53,7 +53,7 @@ async function dev() {
   })
 
   process.on('uncaughtException', (err) => {
-    console.log(err?.message || err)
+    console.error(err?.message || err)
   })
 
   await closePromise

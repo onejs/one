@@ -39,24 +39,23 @@ class HMRClient {
       }
     }
   ) {
-    this.url = `ws://${getDevServerLocation().hostname}:${
-      process.env.REACT_NATIVE_SERVER_PUBLIC_PORT
-    }/__hmr?platform=${process.env.REACT_NATIVE_PLATFORM || 'ios'}`
+    this.url = `ws://${getDevServerLocation().hostname}:${process.env.REACT_NATIVE_SERVER_PUBLIC_PORT
+      }/__hmr?platform=${process.env.REACT_NATIVE_PLATFORM || 'ios'}`
 
     this.socket = new WebSocket(this.url)
 
-    console.log('[HMRClient] Connecting...')
+    console.info('[HMRClient] Connecting...')
 
     this.socket.onopen = () => {
-      console.log('[HMRClient] Connected')
+      console.info('[HMRClient] Connected')
     }
 
     this.socket.onclose = () => {
-      console.log(`[HMRClient] Disconnected ${this.url}`)
+      console.info(`[HMRClient] Disconnected ${this.url}`)
     }
 
     this.socket.onerror = (event) => {
-      console.log('[HMRClient] Error', event)
+      console.error('[HMRClient] Error', event)
     }
 
     this.socket.onmessage = (event) => {
@@ -81,12 +80,12 @@ class HMRClient {
     switch (message.action) {
       case 'building':
         this.app.LoadingView.showMessage('Rebuilding...', 'refresh')
-        console.log('[HMRClient] Bundle rebuilding', {
+        console.info('[HMRClient] Bundle rebuilding', {
           name: message.body?.name,
         })
         break
       case 'built':
-        console.log('[HMRClient] Bundle rebuilt', {
+        console.info('[HMRClient] Bundle rebuilt', {
           name: message.body?.name,
           time: message.body?.time,
         })
@@ -121,7 +120,7 @@ class HMRClient {
     }
 
     if (!this.upToDate(update.hash) && module.hot.status() === 'idle') {
-      console.log('[HMRClient] Checking for updates on the server...')
+      console.info('[HMRClient] Checking for updates on the server...')
       this.checkUpdates(update)
     }
   }
@@ -163,7 +162,7 @@ class HMRClient {
         })
         this.app.reload()
       } else {
-        console.log('[HMRClient] Renewed modules - app is up to date', {
+        console.info('[HMRClient] Renewed modules - app is up to date', {
           renewedModules,
         })
         this.app.dismissErrors()

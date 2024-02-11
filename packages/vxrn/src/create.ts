@@ -129,14 +129,12 @@ export const create = async (options: StartOptions) => {
               return exports })({})`
 
             if (process.env.DEBUG === 'vxrn') {
-              // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-              console.log(`Sending hot update`, hotUpdateSource)
+              console.info(`Sending hot update`, hotUpdateSource)
             }
 
             hotUpdatedCJSFiles.set(id, hotUpdateSource)
           } catch (err) {
-            // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-            console.log(`Error processing hmr update:`, err)
+            console.error(`Error processing hmr update:`, err)
           }
         },
       },
@@ -176,8 +174,7 @@ export const create = async (options: StartOptions) => {
       void viteServer.transformRequest(id)
     } catch (err) {
       // ok
-      // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-      console.log('err', err)
+      console.info('err', err)
     }
   })
 
@@ -221,8 +218,7 @@ export const create = async (options: StartOptions) => {
       // for easier quick testing things:
       const tmpBundle = join(process.cwd(), 'bundle.tmp.js')
       if (await pathExists(tmpBundle)) {
-        // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-        console.log(
+        console.info(
           '⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️',
           tmpBundle
         )
