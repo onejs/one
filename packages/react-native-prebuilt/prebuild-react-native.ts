@@ -208,6 +208,7 @@ async function run() {
                   .relative(rootContext, resourceAbsoluteDirname)
 
                 /* TODO: properly receive scales and devServerEnabled (not sure if that's possible here) */
+
                 const code = `
                 var AssetRegistry = require('react-native/Libraries/Image/AssetRegistry');
                 module.exports = AssetRegistry.registerAsset({
@@ -216,7 +217,7 @@ async function run() {
                   name: ${JSON.stringify(resourceFilename)},
                   type: ${JSON.stringify(resourceExtensionType)},
                   hash: ${JSON.stringify(hash)},
-                  httpServerLocation: ${JSON.stringify(path.join(publicPath, JSON.stringify(resourceDirname)))},
+                  httpServerLocation: ${JSON.stringify(path.join(publicPath, resourceDirname))},
                   fileSystemLocation: ${JSON.stringify(resourceAbsoluteDirname)},
                   ${size ? `height: ${size.height},` : ''}
                   ${size ? `width: ${size.width},` : ''}
