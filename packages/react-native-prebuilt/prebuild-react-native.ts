@@ -3,6 +3,21 @@ import { readFile } from 'fs/promises'
 import * as babel from '@babel/core'
 import { build } from 'esbuild'
 import { writeFile } from 'fs-extra'
+import { getImageSize } from './utils';
+import path from 'path'
+import { createHash } from 'crypto'
+
+const SCALABLE_ASSETS = [
+  'bmp',
+  'gif',
+  'jpg',
+  'jpeg',
+  'png',
+  'psd',
+  'svg',
+  'webp',
+  'tiff',
+];
 
 run()
 
@@ -106,12 +121,6 @@ async function run() {
       allowOverwrite: true,
       platform: 'node',
       external,
-      loader: {
-        '.png': 'dataurl',
-        '.jpg': 'dataurl',
-        '.jpeg': 'dataurl',
-        '.gif': 'dataurl',
-      },
       define: {
         __DEV__: 'true',
         'process.env.NODE_ENV': `"development"`,
@@ -164,6 +173,59 @@ async function run() {
                 return {
                   contents: outagain,
                   loader: 'jsx',
+                }
+              }
+            )
+          },
+        },
+        {
+          name: 'assets',
+          setup(build) {
+            build.onLoad(
+              {
+                filter: new RegExp(`\\.(${SCALABLE_ASSETS.join('|')})$`)
+              },
+              async (input) => {
+                const size = getImageSize({
+                  resourcePath: input.path,
+                  resourceFilename: 'close',
+                  suffixPattern: '@\\d+x',
+                })
+
+                const resourceExtensionType = path.extname(input.path).replace(/^\./, '');
+                const suffixPattern = `(@\\d+(\\.\\d+)?x)?(\\.($ios|android|native))?\\.${resourceExtensionType}$`; // TODO: get platforms from vite config
+                const resourceFilename = path
+                  .basename(input.path)
+                  .replace(new RegExp(suffixPattern), '');
+
+                const hash = createHash('md5').update(input.path).digest('hex')
+
+                const rootContext = process.cwd() // TODO: get from vite config
+                const publicPath = 'assets'
+
+                const resourceAbsoluteDirname = path.dirname(input.path);
+                const resourceDirname = path
+                  .relative(rootContext, resourceAbsoluteDirname)
+
+                /* TODO: properly receive scales and devServerEnabled (not sure if that's possible here) */
+                const code = `
+                var AssetRegistry = require('react-native/Libraries/Image/AssetRegistry');
+                module.exports = AssetRegistry.registerAsset({
+                  __packager_asset: true,
+                  scales: [1], 
+                  name: ${JSON.stringify(resourceFilename)},
+                  type: ${JSON.stringify(resourceExtensionType)},
+                  hash: ${JSON.stringify(hash)},
+                  httpServerLocation: ${JSON.stringify(path.join(publicPath, JSON.stringify(resourceDirname)))},
+                  fileSystemLocation: ${JSON.stringify(resourceAbsoluteDirname)},
+                  ${size ? `height: ${size.height},` : ''}
+                  ${size ? `width: ${size.width},` : ''}
+                });
+                `;
+
+                return {
+                  contents: code,
+                  loader: 'js',
                 }
               }
             )
