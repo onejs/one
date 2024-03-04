@@ -1,5 +1,5 @@
 import { readFile } from 'fs/promises'
-import { dirname, join, relative } from 'path'
+import { dirname, join, relative, extname, basename } from 'path'
 
 import * as babel from '@babel/core'
 import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
@@ -7,6 +7,7 @@ import react from '@vitejs/plugin-react-swc'
 import { parse } from 'es-module-lexer'
 import { pathExists } from 'fs-extra'
 import { InlineConfig, build, createServer, mergeConfig, resolveConfig } from 'vite'
+import { createHash } from 'crypto'
 
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { createDevServer } from './dev/createDevServer'
@@ -14,6 +15,7 @@ import { HMRListener } from './types'
 import { StartOptions } from './types'
 import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
+import { SCALABLE_ASSETS, getImageSize } from './utils/assets'
 
 export const create = async (options: StartOptions) => {
   const { host = '127.0.0.1', root, nativePort = 8081, webPort } = options
@@ -166,6 +168,7 @@ export const create = async (options: StartOptions) => {
   // this fakes vite into thinking its loading files, so it hmrs in native mode despite not requesting
   viteServer.watcher.addListener('change', async (path) => {
     const id = path.replace(process.cwd(), '')
+    // TODO: add proper support for hot reloading assets
     if (!id.endsWith('tsx') && !id.endsWith('jsx')) {
       return
     }
@@ -338,6 +341,33 @@ export const create = async (options: StartOptions) => {
           tsDecorators: true,
           mode: 'build',
         }),
+        {
+          name: 'assets',
+          async transform(_, id) {
+            const extension = extname(id)
+            const hash = createHash('md5').update(id).digest('hex')
+
+            const { width, height } = getImageSize(id)
+
+            if (new RegExp(`\\.(${SCALABLE_ASSETS.join('|')})$`).test(extension)) {
+              return `
+              import AssetRegistry from "react-native/Libraries/Image/AssetRegistry";
+
+              export default AssetRegistry.registerAsset({
+                __packager_asset: true,
+                scales: [1], 
+                name: ${JSON.stringify(basename(id))},
+                type: ${JSON.stringify(extension)},
+                hash: ${JSON.stringify(hash)},
+                httpServerLocation: ${JSON.stringify(join('assets', relative(root, id)))},
+                fileSystemLocation: ${JSON.stringify(id)},
+                height: ${JSON.stringify(width)},
+                width: ${JSON.stringify(height)}
+              });
+              `
+            }
+          },
+        },
       ],
       appType: 'custom',
       root,
@@ -400,15 +430,16 @@ ___modules___["${outputModule.fileName}"] = ((exports, module) => {
   ${outputModule.code}
 })
 
-${outputModule.isEntry
-              ? `
+${
+  outputModule.isEntry
+    ? `
 // run entry
 const __require = createRequire({})
 __require("react-native")
 __require("${outputModule.fileName}")
 `
-              : ''
-            }
+    : ''
+}
 `
         }
       })

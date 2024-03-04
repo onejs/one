@@ -1,9 +1,9 @@
-import { dirname } from 'path'
+import { dirname, extname } from 'path'
 
 import { parse } from 'es-module-lexer'
 import { OutputOptions } from 'rollup'
 import type { Plugin } from 'vite'
-
+import { SCALABLE_ASSETS } from './utils/assets'
 import { getVitePath } from './getVitePath'
 
 const extensions = [
@@ -38,8 +38,6 @@ export function nativePlugin(options: {
       if (!config.build) config.build = {}
 
       config.build.modulePreload = { polyfill: false }
-      // Ensures that even very large assets are inlined in your JavaScript.
-      config.build.assetsInlineLimit = 100000000
       // Avoid warnings about large chunks.
       config.build.chunkSizeWarningLimit = 100000000
       // Emit all CSS as a single file, which `vite-plugin-singlefile` can then inline.
@@ -71,22 +69,23 @@ export function nativePlugin(options: {
       config.optimizeDeps.esbuildOptions.loader ??= {}
       config.optimizeDeps.esbuildOptions.loader['.js'] = 'jsx'
 
-      config.optimizeDeps.esbuildOptions.plugins.push({
-        name: 'react-native-assets',
-        setup(build) {
-          build.onResolve(
-            {
-              filter: /\.(png|jpg|gif|webp)$/,
-            },
-            async ({ path, namespace }) => {
-              return {
-                path: '',
-                external: true,
-              }
-            }
-          )
-        },
-      })
+      // TODO: move `@vxrn/react-native-prebuilt` logic into `config.optimizeDeps`
+      // config.optimizeDeps.esbuildOptions.plugins.push({
+      //   name: 'react-native-assets',
+      //   setup(build) {
+      //     build.onResolve(
+      //       {
+      //         filter: /\.(png|jpg|gif|webp)$/,
+      //       },
+      //       async ({ path, namespace }) => {
+      //         return {
+      //           path: '',
+      //           external: true,
+      //         }
+      //       }
+      //     )
+      //   },
+      // })
 
       config.build.rollupOptions ??= {}
 
@@ -186,8 +185,26 @@ export function nativePlugin(options: {
         // this fixes some warnings but breaks import { default as config }
         // out.exports = 'named'
 
+        out.assetFileNames = (assetInfo) => {
+          if (assetInfo.name) {
+            const extension = extname(assetInfo.name)
+
+            if (new RegExp(`\\.(${SCALABLE_ASSETS.join('|')})$`).test(extension)) {
+              return `assets/[name][extname]`
+            }
+          }
+
+          return '[name]'
+        }
+
         out.entryFileNames = (chunkInfo) => {
-          // ensures we have clean names for our require paths
+          // FIXME: for some reason assets files needs to be also checked here
+          if (
+            new RegExp(`\\.(${SCALABLE_ASSETS.join('|')})$`).test(extname(chunkInfo.name))
+          ) {
+            return `assets/[name]`
+          }
+
           return '[name].js'
         }
         // Ensure that as many resources as possible are inlined.
