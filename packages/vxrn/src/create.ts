@@ -217,18 +217,6 @@ export const create = async (options: StartOptions) => {
   }
 
   async function getBundleCode() {
-    if (process.env.LOAD_TMP_BUNDLE) {
-      // for easier quick testing things:
-      const tmpBundle = join(process.cwd(), 'bundle.tmp.js')
-      if (await pathExists(tmpBundle)) {
-        console.info(
-          '⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️',
-          tmpBundle
-        )
-        return await readFile(tmpBundle, 'utf-8')
-      }
-    }
-
     if (isBuilding) {
       const res = await isBuilding
       return res
