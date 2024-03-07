@@ -207,6 +207,7 @@ async function run() {
                 const marker = 'react-native'
 
                 const resourceDirname = input.path.substring(input.path.indexOf(marker))
+                const extension = extname(input.path)
 
                 /* TODO: properly receive scales and devServerEnabled (not sure if that's possible here) */
 
@@ -216,8 +217,8 @@ async function run() {
                 module.exports = AssetRegistry.registerAsset({
                   __packager_asset: true,
                   scales: [1],
-                  name: ${JSON.stringify(basename(input.path))},
-                  type: ${JSON.stringify(extname(input.path))},
+                  name: ${JSON.stringify(basename(input.path).replace(extension, ''))},
+                  type: ${JSON.stringify(extension).replace('.', '')},
                   hash: ${JSON.stringify(hash)},
                   httpServerLocation: ${JSON.stringify(
                     join(publicPath, dirname(resourceDirname))
