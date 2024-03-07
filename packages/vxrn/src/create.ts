@@ -1,21 +1,21 @@
 import { readFile } from 'fs/promises'
-import { dirname, join, relative, extname, basename } from 'path'
+import { basename, dirname, extname, join, relative } from 'path'
 
 import * as babel from '@babel/core'
-import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import react from '@vitejs/plugin-react-swc'
-import { parse } from 'es-module-lexer'
-import { pathExists } from 'fs-extra'
-import { InlineConfig, build, createServer, mergeConfig, resolveConfig } from 'vite'
+import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import { createHash } from 'crypto'
+import { parse } from 'es-module-lexer'
+import { InlineConfig, build, createServer, mergeConfig, resolveConfig } from 'vite'
 
+import copy from 'rollup-plugin-copy'
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { createDevServer } from './dev/createDevServer'
-import { HMRListener } from './types'
-import { StartOptions } from './types'
-import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
+import { nativePlugin } from './nativePlugin'
+import { HMRListener, StartOptions } from './types'
 import { SCALABLE_ASSETS, getImageSize } from './utils/assets'
+import readDirectory from './utils/readDirectory'
 
 export const create = async (options: StartOptions) => {
   const { host = '127.0.0.1', root, nativePort = 8081, webPort } = options
@@ -247,6 +247,11 @@ export const create = async (options: StartOptions) => {
       ),
     } as const
 
+    const staticAssets = await readDirectory(
+      dirname(require.resolve('@vxrn/react-native-prebuilt')),
+      true
+    )
+
     const virtualModules = {
       'react-native': {
         alias: 'virtual:react-native',
@@ -386,6 +391,28 @@ export const create = async (options: StartOptions) => {
             preserveModules: true,
             format: 'cjs',
           },
+          plugins: [
+            // for development purposes, `react-native` contains few assets,
+            // TODO: figure out unified way for this, so all libraries containing assets would work
+            copy({
+              hook: 'generateBundle',
+              targets: staticAssets.map((path) => {
+                return {
+                  src: path,
+                  dest: join(
+                    options.root,
+                    'dist',
+                    'assets',
+                    'react-native',
+                    dirname(path).replace(
+                      dirname(require.resolve('@vxrn/react-native-prebuilt')),
+                      ''
+                    )
+                  ),
+                }
+              }),
+            }),
+          ],
         },
       },
 

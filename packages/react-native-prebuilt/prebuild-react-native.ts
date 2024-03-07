@@ -3,6 +3,27 @@ import { readFile } from 'fs/promises'
 import * as babel from '@babel/core'
 import { build } from 'esbuild'
 import { writeFile } from 'fs-extra'
+import { imageSize } from 'image-size'
+import { relative, extname, basename, dirname, join } from 'path'
+import { createHash } from 'crypto'
+
+export function getImageSize(resourcePath: string): {
+  width?: number
+  height?: number
+} {
+  try {
+    let { width, height } = imageSize(resourcePath)
+
+    return { width, height }
+  } catch {
+    return {
+      width: 0,
+      height: 0,
+    }
+  }
+}
+
+const SCALABLE_ASSETS = ['bmp', 'gif', 'jpg', 'jpeg', 'png', 'psd', 'svg', 'webp', 'tiff']
 
 run()
 
@@ -29,6 +50,11 @@ async function run() {
   const reactJsxOutPath = './dist/react-jsx-runtime.js'
   const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 
+  const assetsLoader = SCALABLE_ASSETS.reduce((obj, item) => {
+    obj['.' + item] = 'file'
+    return obj
+  }, {})
+
   await Promise.all([
     build({
       bundle: true,
@@ -52,9 +78,9 @@ async function run() {
       const outCode = `
       const run = () => {
         ${bundled.replace(
-        `module.exports = require_react_development();`,
-        `return require_react_development();`
-      )}
+          `module.exports = require_react_development();`,
+          `return require_react_development();`
+        )}
       }
       const __mod__ = run()
       ${RExports.map((n) => `export const ${n} = __mod__.${n}`).join('\n')}
@@ -84,17 +110,18 @@ async function run() {
       const outCode = `
       const run = () => {
         ${bundled.replace(
-        `module.exports = require_react_jsx_dev_runtime_development();`,
-        `return require_react_jsx_dev_runtime_development();`
-      )}
+          `module.exports = require_react_jsx_dev_runtime_development();`,
+          `return require_react_jsx_dev_runtime_development();`
+        )}
       }
       const __mod__ = run()
       ${['jsx', 'jsxs', 'jsxDEV', 'Fragment']
-          .map((n) => `export const ${n} = __mod__.${n} || __mod__.jsx || __mod__.jsxDEV`)
-          .join('\n')}
+        .map((n) => `export const ${n} = __mod__.${n} || __mod__.jsx || __mod__.jsxDEV`)
+        .join('\n')}
       `
       await writeFile(reactJsxOutPath, outCode)
     }),
+
     build({
       bundle: true,
       entryPoints: [require.resolve('react-native')],
@@ -106,12 +133,8 @@ async function run() {
       allowOverwrite: true,
       platform: 'node',
       external,
-      loader: {
-        '.png': 'dataurl',
-        '.jpg': 'dataurl',
-        '.jpeg': 'dataurl',
-        '.gif': 'dataurl',
-      },
+      loader: assetsLoader,
+      assetNames: '[dir]/[name]',
       define: {
         __DEV__: 'true',
         'process.env.NODE_ENV': `"development"`,
@@ -164,6 +187,50 @@ async function run() {
                 return {
                   contents: outagain,
                   loader: 'jsx',
+                }
+              }
+            )
+          },
+        },
+        {
+          name: 'assets',
+          setup(build) {
+            build.onLoad(
+              {
+                filter: new RegExp(`\\.(${SCALABLE_ASSETS.join('|')})$`),
+              },
+              async (input) => {
+                const hash = createHash('md5').update(input.path).digest('hex')
+                const { width, height } = getImageSize(input.path)
+
+                const publicPath = 'assets'
+                const marker = 'react-native'
+
+                const resourceDirname = input.path.substring(input.path.indexOf(marker))
+
+                /* TODO: properly receive scales and devServerEnabled (not sure if that's possible here) */
+
+                const code = `
+                var AssetRegistry = require('react-native/Libraries/Image/AssetRegistry');
+
+                module.exports = AssetRegistry.registerAsset({
+                  __packager_asset: true,
+                  scales: [1],
+                  name: ${JSON.stringify(basename(input.path))},
+                  type: ${JSON.stringify(extname(input.path))},
+                  hash: ${JSON.stringify(hash)},
+                  httpServerLocation: ${JSON.stringify(
+                    join(publicPath, dirname(resourceDirname))
+                  )},
+                  fileSystemLocation: ${JSON.stringify(dirname(input.path))},
+                  ${height ? `height: ${height},` : ''}
+                  ${width ? `width: ${width},` : ''}
+                });
+                `
+
+                return {
+                  contents: code,
+                  loader: 'js',
                 }
               }
             )
