@@ -69,23 +69,7 @@ export function nativePlugin(options: {
       config.optimizeDeps.esbuildOptions.loader ??= {}
       config.optimizeDeps.esbuildOptions.loader['.js'] = 'jsx'
 
-      // TODO: move `@vxrn/react-native-prebuilt` logic into `config.optimizeDeps`
-      // config.optimizeDeps.esbuildOptions.plugins.push({
-      //   name: 'react-native-assets',
-      //   setup(build) {
-      //     build.onResolve(
-      //       {
-      //         filter: /\.(png|jpg|gif|webp)$/,
-      //       },
-      //       async ({ path, namespace }) => {
-      //         return {
-      //           path: '',
-      //           external: true,
-      //         }
-      //       }
-      //     )
-      //   },
-      // })
+      // TODO: move `@vxrn/react-native-prebuilt` logic into `config.optimizeDeps`, to support various React Native versions, not just one.
 
       config.build.rollupOptions ??= {}
 
@@ -107,6 +91,7 @@ export function nativePlugin(options: {
       }
 
       if (options.mode === 'build') {
+        console.log('is it always here?')
         config.plugins ||= []
 
         // https://vitejs.dev/config/dep-optimization-options.html
