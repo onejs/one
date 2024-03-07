@@ -2,10 +2,11 @@ import { readFile } from 'fs/promises'
 
 import * as babel from '@babel/core'
 import { build } from 'esbuild'
-import { writeFile } from 'fs-extra'
+import { mkdir, mkdirSync, writeFile } from 'fs-extra'
 import { imageSize } from 'image-size'
-import { relative, extname, basename, dirname, join } from 'path'
+import { extname, basename, dirname, join } from 'path'
 import { createHash } from 'crypto'
+import { readFileSync } from 'fs-extra'
 
 export function getImageSize(resourcePath: string): {
   width?: number
@@ -49,11 +50,6 @@ async function run() {
   const reactOutPath = './dist/react.js'
   const reactJsxOutPath = './dist/react-jsx-runtime.js'
   const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
-
-  const assetsLoader = SCALABLE_ASSETS.reduce((obj, item) => {
-    obj['.' + item] = 'file'
-    return obj
-  }, {})
 
   await Promise.all([
     build({
@@ -133,7 +129,6 @@ async function run() {
       allowOverwrite: true,
       platform: 'node',
       external,
-      loader: assetsLoader,
       assetNames: '[dir]/[name]',
       define: {
         __DEV__: 'true',
@@ -200,13 +195,24 @@ async function run() {
                 filter: new RegExp(`\\.(${SCALABLE_ASSETS.join('|')})$`),
               },
               async (input) => {
+                const marker = 'react-native'
+                const resource = input.path.substring(input.path.indexOf(marker))
+
+                // First we need to manually make a copy for an asset, and then we need to create an AssetRegistry call for it because esbuild doesn't support more than one loader per file
+                try {
+                  const file = await readFile(input.path)
+                  await mkdir(join(process.cwd(), 'dist', dirname(resource)), {
+                    recursive: true,
+                  })
+                  await writeFile(join(process.cwd(), 'dist', resource), file)
+                } catch {
+                  throw new Error('Failed to write assets')
+                }
+
                 const hash = createHash('md5').update(input.path).digest('hex')
                 const { width, height } = getImageSize(input.path)
 
                 const publicPath = 'assets'
-                const marker = 'react-native'
-
-                const resourceDirname = input.path.substring(input.path.indexOf(marker))
                 const extension = extname(input.path)
 
                 /* TODO: properly receive scales and devServerEnabled (not sure if that's possible here) */
@@ -221,7 +227,7 @@ async function run() {
                   type: ${JSON.stringify(extension).replace('.', '')},
                   hash: ${JSON.stringify(hash)},
                   httpServerLocation: ${JSON.stringify(
-                    join(publicPath, dirname(resourceDirname))
+                    join(publicPath, dirname(resource))
                   )},
                   fileSystemLocation: ${JSON.stringify(dirname(input.path))},
                   ${height ? `height: ${height},` : ''}
