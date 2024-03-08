@@ -3,6 +3,7 @@ import mime from 'mime/lite'
 import { HMRListener } from '../types'
 import { DEFAULT_PORT } from '../utils/constants'
 import { Server, createServer } from '../vendor/repack/dev-server/src'
+import { bindKeypressInput } from './bindKeypressInput'
 
 export async function createDevServer(
   options: {
@@ -36,9 +37,7 @@ export async function createDevServer(
     },
 
     delegate: (ctx): Server.Delegate => {
-      // if (args.interactive) {
-      //   bindKeypressInput(ctx)
-      // }
+      bindKeypressInput(ctx)
 
       // if (reversePort && args.port) {
       //   runAdbReverse(ctx, args.port)
@@ -102,14 +101,6 @@ export async function createDevServer(
 
           inferPlatform: (uri) => {
             return 'ios'
-
-            const url = new URL(uri, 'protocol://domain')
-            if (!url.searchParams.get('platform')) {
-              const [, platform] = /^\/(.+)\/.+$/.exec(url.pathname) ?? []
-              return platform
-            }
-
-            return undefined
           },
         },
 
