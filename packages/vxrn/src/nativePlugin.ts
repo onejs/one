@@ -25,7 +25,7 @@ export function nativePlugin(options: {
   mode: 'build' | 'serve'
 }): Plugin {
   return {
-    name: 'tamagui-native',
+    name: 'native',
     enforce: 'pre',
 
     config: async (config) => {
