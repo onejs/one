@@ -1,6 +1,5 @@
 import { Writable } from 'stream'
 
-// import debuggerAppPath from '@callstack/repack-debugger-app'
 import fastifySensible from '@fastify/sensible'
 import fastifyStatic from '@fastify/static'
 import Fastify from 'fastify'
@@ -89,14 +88,6 @@ export async function createServer(config: Server.Config) {
   })
   await instance.register(devtoolsPlugin, {
     options: config.options,
-  })
-
-  const debuggerAppPath = (await import('@callstack/repack-debugger-app')).default
-
-  await instance.register(fastifyStatic, {
-    root: debuggerAppPath,
-    prefix: '/debugger-ui',
-    prefixAvoidTrailingSlash: true,
   })
 
   // below is to prevent showing `GET 400 /favicon.ico`
