@@ -5,6 +5,7 @@ export default defineConfig({
   title: 'vxrn',
   description: 'React Native, on Vite',
   // base: '/vite-react-native/',
+  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
 
   themeConfig: {
     logo: '/vite-react-native.svg',
