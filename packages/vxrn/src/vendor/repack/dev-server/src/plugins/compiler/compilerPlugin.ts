@@ -41,11 +41,6 @@ async function compilerPlugin(
         return reply.badRequest('Cannot detect platform')
       }
 
-      // If platform happens to be in front of an asset remove it.
-      if (file.startsWith(`${platform}/`)) {
-        file = file.replace(`${platform}/`, '')
-      }
-
       const multipart = reply.asMultipart()
 
       const sendProgress: SendProgress = ({ completed, total }) => {

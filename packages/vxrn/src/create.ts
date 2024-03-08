@@ -391,7 +391,6 @@ export const create = async (options: StartOptions) => {
                     options.root,
                     'dist',
                     'assets',
-                    'react-native',
                     dirname(path).replace(
                       dirname(require.resolve('@vxrn/react-native-prebuilt')),
                       ''
