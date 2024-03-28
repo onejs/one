@@ -101,8 +101,6 @@ export async function createDevServer(
           },
 
           inferPlatform: (uri) => {
-            return 'ios'
-
             const url = new URL(uri, 'protocol://domain')
             if (!url.searchParams.get('platform')) {
               const [, platform] = /^\/(.+)\/.+$/.exec(url.pathname) ?? []
