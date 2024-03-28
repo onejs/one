@@ -47,7 +47,7 @@ export const create = async (options: StartOptions) => {
       react(),
 
       {
-        name: 'tamagui-client-transform',
+        name: 'client-transform',
 
         async handleHotUpdate({ read, modules, file }) {
           try {
@@ -400,15 +400,16 @@ ___modules___["${outputModule.fileName}"] = ((exports, module) => {
   ${outputModule.code}
 })
 
-${outputModule.isEntry
-              ? `
+${
+  outputModule.isEntry
+    ? `
 // run entry
 const __require = createRequire({})
 __require("react-native")
 __require("${outputModule.fileName}")
 `
-              : ''
-            }
+    : ''
+}
 `
         }
       })

@@ -54,7 +54,6 @@ const nextVersion = (() => {
   return next
 })()
 
-
 if (!finish) {
   if (!skipVersion) {
     console.info('Publishing version:', nextVersion, '\n')
@@ -84,10 +83,10 @@ async function run() {
       location: string
     }[]
 
-    const allPackageJsons = (
+    const packageJsons = (
       await Promise.all(
         packagePaths
-          .filter((i) => i.location !== '.' && !i.name.startsWith('@takeout'))
+          .filter((i) => i.location !== '.')
           .map(async ({ name, location }) => {
             const cwd = path.join(process.cwd(), location)
             const json = await fs.readJSON(path.join(cwd, 'package.json'))
@@ -100,19 +99,7 @@ async function run() {
             }
           })
       )
-    ).filter((x) => !x.json['publish-skip'])
-
-    const packageJsons = allPackageJsons
-      .filter((x) => {
-        return !x.json.private
-      })
-      // slow things last
-      .sort((a, b) => {
-        if (a.name.includes('font-') || a.name.includes('-icons')) {
-          return 1
-        }
-        return -1
-      })
+    ).filter((pkg) => !pkg.json.private)
 
     console.info(`Publishing in order:\n\n${packageJsons.map((x) => x.name).join('\n')}`)
 
@@ -135,11 +122,11 @@ async function run() {
       isCI || skipVersion
         ? { version: nextVersion }
         : await prompts({
-          type: 'text',
-          name: 'version',
-          message: 'Version?',
-          initial: nextVersion,
-        })
+            type: 'text',
+            name: 'version',
+            message: 'Version?',
+            initial: nextVersion,
+          })
 
     version = answer.version
 
@@ -174,7 +161,7 @@ async function run() {
 
     if (!skipVersion && !finish) {
       await Promise.all(
-        allPackageJsons.map(async ({ json, path }) => {
+        packageJsons.map(async ({ json, path }) => {
           const next = { ...json }
 
           next.version = version
