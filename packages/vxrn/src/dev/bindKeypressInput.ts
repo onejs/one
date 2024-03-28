@@ -22,16 +22,25 @@ export function bindKeypressInput(ctx: Server.DelegateContext) {
           process.emit('SIGTSTP', 'SIGTSTP')
           break
       }
-    } else if (name === 'r') {
-      ctx.broadcastToMessageClients({ method: 'reload' })
-      ctx.log.info({
-        msg: 'Reloading app',
-      })
-    } else if (name === 'd') {
-      ctx.broadcastToMessageClients({ method: 'devMenu' })
-      ctx.log.info({
-        msg: 'Opening developer menu',
-      })
+    } else {
+      switch (name) {
+        case 'r':
+          ctx.broadcastToMessageClients({ method: 'reload' })
+          ctx.log.info({
+            msg: 'Reloading app',
+          })
+          break
+        case 'd':
+          ctx.broadcastToMessageClients({ method: 'devMenu' })
+          ctx.log.info({
+            msg: 'Opening developer menu',
+          })
+          break
+        case 'c':
+          process.stdout.write('\u001b[2J\u001b[0;0H')
+          // TODO: after logging we should print information about port and host
+          break
+      }
     }
   })
 }
