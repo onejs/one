@@ -6,7 +6,15 @@ import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-nat
 import react from '@vitejs/plugin-react-swc'
 import { parse } from 'es-module-lexer'
 import { pathExists } from 'fs-extra'
-import { InlineConfig, build, createServer, mergeConfig, resolveConfig } from 'vite'
+import {
+  InlineConfig,
+  PluginOption,
+  UserConfig,
+  build,
+  createServer,
+  mergeConfig,
+  resolveConfig,
+} from 'vite'
 
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { createDevServer } from './dev/createDevServer'
@@ -14,6 +22,19 @@ import { HMRListener } from './types'
 import { StartOptions } from './types'
 import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
+
+const extensions = [
+  '.web.tsx',
+  '.tsx',
+  '.web.ts',
+  '.ts',
+  '.web.jsx',
+  '.jsx',
+  '.web.js',
+  '.js',
+  '.css',
+  '.json',
+]
 
 export const create = async (options: StartOptions) => {
   const { host = '127.0.0.1', root, nativePort = 8081, webPort } = options
@@ -26,26 +47,108 @@ export const create = async (options: StartOptions) => {
   // react native port (it scans 19000 +5)
   const hmrListeners: HMRListener[] = []
   const hotUpdatedCJSFiles = new Map<string, string>()
+  const jsxRuntime = {
+    // alias: 'virtual:react-jsx',
+    alias: require.resolve('@vxrn/react-native-prebuilt/jsx-runtime'),
+    contents: await readFile(
+      require.resolve('@vxrn/react-native-prebuilt/jsx-runtime'),
+      'utf-8'
+    ),
+  } as const
 
-  let serverConfig = {
+  const virtualModules = {
+    'react-native': {
+      // alias: 'virtual:react-native',
+      alias: require.resolve('@vxrn/react-native-prebuilt'),
+      contents: await readFile(require.resolve('@vxrn/react-native-prebuilt'), 'utf-8'),
+    },
+    react: {
+      // alias: 'virtual:react',
+      alias: require.resolve('@vxrn/react-native-prebuilt/react'),
+      contents: await readFile(
+        require.resolve('@vxrn/react-native-prebuilt/react'),
+        'utf-8'
+      ),
+    },
+    'react/jsx-runtime': jsxRuntime,
+    'react/jsx-dev-runtime': jsxRuntime,
+  } as const
+
+  const swapRnPlugin: PluginOption = {
+    name: `swap-react-native`,
+    enforce: 'pre',
+
+    resolveId(id) {
+      if (id.startsWith('react-native/Libraries')) {
+        return `virtual:rn-internals:${id}`
+      }
+
+      console.log('id with alias', id)
+      for (const targetId in virtualModules) {
+        if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
+          const info = virtualModules[targetId]
+          
+          return info.alias
+        }
+      }
+    },
+
+    load(id) {
+      if (id.startsWith('virtual:rn-internals')) {
+        const idOut = id.replace('virtual:rn-internals:', '')
+        return `const val = __cachedModules["${idOut}"]
+          export const PressabilityDebugView = val.PressabilityDebugView
+          export default val ? val.default || val : val`
+      }
+
+      for (const targetId in virtualModules) {
+        const info = virtualModules[targetId as keyof typeof virtualModules]
+        if (id === info.alias) {
+          return info.contents
+        }
+      }
+    },
+  } as const
+
+  console.log(
+    Object.fromEntries(Object.entries(virtualModules).map(([k, v]) => [k, v.alias]))
+  )
+  let serverConfig: UserConfig = {
     root,
     mode: 'development',
     clearScreen: false,
+    define: {
+      __DEV__: 'true',
+      'process.env.NODE_ENV': `"development"`,
+    },
 
     resolve: {
-      dedupe: ['react', 'react-dom'],
+      // dedupe: ['react', 'react-dom'],
       alias: {
-        'react-native': 'react-native-web',
+        // ...Object.fromEntries(Object.entries(virtualModules).map(([k, v]) => [k, v.alias])),
+        'react-native': require.resolve('react-native-web'),
       },
     },
-
     optimizeDeps: {
       include: ['react'],
+      exclude: Object.values(virtualModules).map((v) => v.alias),
+      force: true,
+      esbuildOptions: {
+        resolveExtensions: extensions,
+      },
     },
-
+    build: {
+      commonjsOptions: {
+        transformMixedEsModules: true,
+      },
+    },
     plugins: [
+      swapRnPlugin,
       react(),
-
+      // viteReactPlugin({
+      //   tsDecorators: true,
+      //   mode: 'serve',
+      // }),
       {
         name: 'client-transform',
 
@@ -158,7 +261,7 @@ export const create = async (options: StartOptions) => {
 
   serverConfig = {
     ...serverConfig,
-    plugins: [...serverConfig.plugins],
+    plugins: [...serverConfig.plugins!],
   }
 
   const viteServer = await createServer(serverConfig)
@@ -235,64 +338,6 @@ export const create = async (options: StartOptions) => {
     isBuilding = new Promise((res) => {
       done = res
     })
-
-    const jsxRuntime = {
-      alias: 'virtual:react-jsx',
-      contents: await readFile(
-        require.resolve('@vxrn/react-native-prebuilt/jsx-runtime'),
-        'utf-8'
-      ),
-    } as const
-
-    const virtualModules = {
-      'react-native': {
-        alias: 'virtual:react-native',
-        contents: await readFile(require.resolve('@vxrn/react-native-prebuilt'), 'utf-8'),
-      },
-      react: {
-        alias: 'virtual:react',
-        contents: await readFile(
-          require.resolve('@vxrn/react-native-prebuilt/react'),
-          'utf-8'
-        ),
-      },
-      'react/jsx-runtime': jsxRuntime,
-      'react/jsx-dev-runtime': jsxRuntime,
-    } as const
-
-    const swapRnPlugin = {
-      name: `swap-react-native`,
-      enforce: 'pre',
-
-      resolveId(id) {
-        if (id.startsWith('react-native/Libraries')) {
-          return `virtual:rn-internals:${id}`
-        }
-
-        for (const targetId in virtualModules) {
-          if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
-            const info = virtualModules[targetId]
-            return info.alias
-          }
-        }
-      },
-
-      load(id) {
-        if (id.startsWith('virtual:rn-internals')) {
-          const idOut = id.replace('virtual:rn-internals:', '')
-          return `const val = __cachedModules["${idOut}"]
-          export const PressabilityDebugView = val.PressabilityDebugView
-          export default val ? val.default || val : val`
-        }
-
-        for (const targetId in virtualModules) {
-          const info = virtualModules[targetId as keyof typeof virtualModules]
-          if (id === info.alias) {
-            return info.contents
-          }
-        }
-      },
-    } as const
 
     async function babelReanimated(input: string, filename: string) {
       return await new Promise<string>((res, rej) => {
