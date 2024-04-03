@@ -34,6 +34,7 @@
     "@react-navigation/routers": "^6.1.9",
     "@tamagui/web": "latest",
     "escape-string-regexp": "^5.0.0",
+    "expo": "^47.0.0",
     "expo-constants": "^14.4.2",
     "expo-head": "0.0.11",
     "expo-linking": "^5.0.2",

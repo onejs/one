@@ -40,3 +40,5 @@ node_modules
 .env.development.local
 .env.test.localp
 .env.production.local
+
+.expo

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    // THIS MUST BE AT ROOT, if you set baseurl in sub-package it breaks intellisense jump to
     "baseUrl": ".",
     "rootDir": ".",
     "paths": {
@@ -9,7 +8,7 @@
       ],
       "@vxrn/*": [
         "packages/*"
-      ],
+      ]
     },
     "outDir": "dist",
     "importHelpers": true,
@@ -31,17 +30,28 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "preserveConstEnums": true,
-    // DONT DO THIS so jsdoc will remain
     "removeComments": false,
     "skipLibCheck": true,
     "sourceMap": false,
     "strictNullChecks": true,
     "target": "es2020",
-    "types": ["node", "react"],
-    "lib": ["dom", "esnext"],
+    "types": [
+      "node",
+      "react"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ]
   },
-  "exclude": ["**/test", "**/dist", "**/types", "**/__tests__"],
+  "exclude": [
+    "**/test",
+    "**/dist",
+    "**/types",
+    "**/__tests__"
+  ],
   "typeAcquisition": {
     "enable": true
   },
+  "extends": "expo/tsconfig.base"
 }

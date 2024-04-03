@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { GestureResponderEvent, TextProps } from 'react-native';
-import { Href, resolveHref } from './href';
+import { type GestureResponderEvent, type TextProps } from 'react-native';
+import { type Href, resolveHref } from './href';
 export interface LinkProps extends Omit<TextProps, 'href' | 'hoverStyle'> {
     /** Path to route to. */
     href: Href;

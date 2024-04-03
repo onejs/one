@@ -1,4 +1,4 @@
-import { RouterFactory, useNavigationBuilder } from '@react-navigation/native';
+import { type RouterFactory, useNavigationBuilder } from '@react-navigation/native';
 import * as React from 'react';
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>;
 export declare const NavigatorContext: React.Context<{
@@ -15,7 +15,7 @@ export type NavigatorProps = {
     router?: Parameters<typeof useNavigationBuilder>[0];
 };
 /** An unstyled custom navigator. Good for basic web layouts */
-export declare function Navigator({ initialRouteName, screenOptions, children, router, }: NavigatorProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function Navigator({ initialRouteName, screenOptions, children, router }: NavigatorProps): import("react/jsx-runtime").JSX.Element | null;
 export declare namespace Navigator {
     var Slot: typeof import("./Navigator").Slot;
     var useContext: typeof useNavigatorContext;

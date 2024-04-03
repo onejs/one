@@ -1,10 +1,10 @@
-import { NavigationContainerRefWithCurrent } from '@react-navigation/native';
-import { ComponentType } from 'react';
-import { ResultState } from '../fork/getStateFromPath';
-import { ExpoLinkingOptions } from '../getLinkingConfig';
-import { UrlObject } from '../LocationProvider';
-import { RouteNode } from '../Route';
-import { RequireContext } from '../types';
+import { type NavigationContainerRefWithCurrent } from '@react-navigation/native';
+import { type ComponentType } from 'react';
+import type { ResultState } from '../fork/getStateFromPath';
+import { type ExpoLinkingOptions } from '../getLinkingConfig';
+import { type UrlObject } from '../LocationProvider';
+import type { RouteNode } from '../Route';
+import type { RequireContext } from '../types';
 /**
  * This is the global state for the router. It is used to keep track of the current route, and to provide a way to navigate to other routes.
  *
