@@ -1,17 +1,17 @@
 import {
-  NavigationContainerRefWithCurrent,
-  getPathFromState,
+  type NavigationContainerRefWithCurrent,
+  type getPathFromState,
   useNavigationContainerRef,
 } from '@react-navigation/native'
-import { ComponentType, Fragment, useMemo, useSyncExternalStore } from 'react'
+import { type ComponentType, Fragment, useMemo, useSyncExternalStore } from 'react'
 
 import { deepEqual, getPathDataFromState } from '../fork/getPathFromState'
-import { ResultState } from '../fork/getStateFromPath'
-import { ExpoLinkingOptions, getLinkingConfig } from '../getLinkingConfig'
+import type { ResultState } from '../fork/getStateFromPath'
+import { type ExpoLinkingOptions, getLinkingConfig } from '../getLinkingConfig'
 import { getRoutes } from '../getRoutes'
-import { UrlObject, getRouteInfoFromState } from '../LocationProvider'
-import { RouteNode } from '../Route'
-import { RequireContext } from '../types'
+import { type UrlObject, getRouteInfoFromState } from '../LocationProvider'
+import type { RouteNode } from '../Route'
+import type { RequireContext } from '../types'
 import { getQualifiedRouteComponent } from '../useScreens'
 import { _internal_maybeHideAsync } from '../views/Splash'
 import { canGoBack, goBack, linkTo, push, replace, setParams } from './routing'
@@ -64,9 +64,7 @@ export class RouterStore {
 
     this.routeNode = getRoutes(context)
 
-    this.rootComponent = this.routeNode
-      ? getQualifiedRouteComponent(this.routeNode)
-      : Fragment
+    this.rootComponent = this.routeNode ? getQualifiedRouteComponent(this.routeNode) : Fragment
 
     // Only error in production, in development we will show the onboarding screen
     if (!this.routeNode && process.env.NODE_ENV === 'production') {
@@ -229,10 +227,7 @@ export function useStoreRouteInfo() {
   )
 }
 
-export function useInitializeExpoRouter(
-  context: RequireContext,
-  initialLocation: URL | undefined
-) {
+export function useInitializeExpoRouter(context: RequireContext, initialLocation: URL | undefined) {
   const navigationRef = useNavigationContainerRef()
   useMemo(
     () => store.initialize(context, navigationRef, initialLocation),

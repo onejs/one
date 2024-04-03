@@ -1,15 +1,11 @@
-import { PathConfigMap } from '@react-navigation/core'
-import type {
-  InitialState,
-  NavigationState,
-  PartialState,
-} from '@react-navigation/routers'
+import type { PathConfigMap } from '@react-navigation/core'
+import type { InitialState, NavigationState, PartialState } from '@react-navigation/routers'
 import escapeString from 'escape-string-regexp'
 import * as queryString from 'query-string'
 import URL from 'url-parse'
 
 import { matchGroupName, stripGroupSegmentsFromPath } from '../matchers'
-import { RouteNode } from '../Route'
+import type { RouteNode } from '../Route'
 import { findFocusedRoute } from './findFocusedRoute'
 import validatePathConfig from './validatePathConfig'
 
@@ -91,9 +87,7 @@ export default function getStateFromPath<ParamList extends object>(
   return getStateFromPathWithConfigs(path, configs, initialRoutes)
 }
 
-export function getMatchableRouteConfigs<ParamList extends object>(
-  options?: Options<ParamList>
-) {
+export function getMatchableRouteConfigs<ParamList extends object>(options?: Options<ParamList>) {
   if (options) {
     validatePathConfig(options)
   }
@@ -101,9 +95,7 @@ export function getMatchableRouteConfigs<ParamList extends object>(
   const screens = options?.screens
   // Expo Router disallows usage without a linking config.
   if (!screens) {
-    throw Error(
-      "You must pass a 'screens' object to 'getStateFromPath' to generate a path."
-    )
+    throw Error("You must pass a 'screens' object to 'getStateFromPath' to generate a path.")
   }
 
   // This will be mutated...
@@ -155,9 +147,7 @@ function assertConfigDuplicates(configs: RouteConfig[]) {
       // It's not a problem if the path string omitted from a inner most screen
       // For example, it's ok if a path resolves to `A > B > C` or `A > B`
       const intersects =
-        a.length > b.length
-          ? b.every((it, i) => a[i] === it)
-          : a.every((it, i) => b[i] === it)
+        a.length > b.length ? b.every((it, i) => a[i] === it) : a.every((it, i) => b[i] === it)
 
       if (!intersects) {
         // NOTE(EvanBacon): Adds more context to the error message since we know about the
@@ -166,8 +156,8 @@ function assertConfigDuplicates(configs: RouteConfig[]) {
         const routeType = last?.startsWith(':')
           ? 'dynamic route'
           : last?.startsWith('*')
-          ? 'dynamic-rest route'
-          : 'route'
+            ? 'dynamic-rest route'
+            : 'route'
         throw new Error(
           `The ${routeType} pattern '${config.pattern || '/'}' resolves to both '${
             alpha.userReadableName
@@ -366,10 +356,7 @@ const joinPaths = (...paths: string[]): string =>
     .filter(Boolean)
     .join('/')
 
-function matchAgainstConfigs(
-  remaining: string,
-  configs: RouteConfig[]
-): ParsedRoute[] | undefined {
+function matchAgainstConfigs(remaining: string, configs: RouteConfig[]): ParsedRoute[] | undefined {
   let routes: ParsedRoute[] | undefined
   let remainingPath = remaining
 
@@ -573,7 +560,8 @@ function formatRegexPattern(it: string): string {
   if (it.startsWith(':')) {
     // TODO: Remove unused match group
     return `(([^/]+\\/)${it.endsWith('?') ? '?' : ''})`
-  } else if (it.startsWith('*')) {
+  }
+  if (it.startsWith('*')) {
     return `((.*\\/)${it.endsWith('?') ? '?' : ''})`
   }
 
@@ -719,10 +707,7 @@ const createNestedStateObject = (
   // Remove groups from the path while preserving a trailing slash.
   route.path = stripGroupSegmentsFromPath(path)
 
-  const params = parseQueryParams(
-    route.path,
-    findParseConfigForRoute(route.name, routeConfigs)
-  )
+  const params = parseQueryParams(route.path, findParseConfigForRoute(route.name, routeConfigs))
 
   if (params) {
     const resolvedParams = { ...route.params, ...params }
@@ -736,19 +721,13 @@ const createNestedStateObject = (
   return state
 }
 
-const parseQueryParams = (
-  path: string,
-  parseConfig?: Record<string, (value: string) => any>
-) => {
+const parseQueryParams = (path: string, parseConfig?: Record<string, (value: string) => any>) => {
   const query = path.split('?')[1]
   const params = queryString.parse(query)
 
   if (parseConfig) {
     Object.keys(params).forEach((name) => {
-      if (
-        Object.hasOwnProperty.call(parseConfig, name) &&
-        typeof params[name] === 'string'
-      ) {
+      if (Object.hasOwnProperty.call(parseConfig, name) && typeof params[name] === 'string') {
         params[name] = parseConfig[name](params[name] as string)
       }
     })

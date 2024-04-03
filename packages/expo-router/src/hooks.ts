@@ -1,12 +1,12 @@
 import {
   NavigationRouteContext,
-  ParamListBase,
-  RouteProp,
+  type ParamListBase,
+  type RouteProp,
 } from '@react-navigation/native'
 import React from 'react'
 
 import { store, useStoreRootState, useStoreRouteInfo } from './global-state/router-store'
-import { Router } from './types'
+import type { Router } from './types'
 import { useDeprecated } from './useDeprecated'
 
 type SearchParams = Record<string, string | string[]>
@@ -89,15 +89,13 @@ export function usePathname(): string {
  * @see `useLocalSearchParams`
  */
 export function useGlobalSearchParams<
-  TParams extends SearchParams = SearchParams
+  TParams extends SearchParams = SearchParams,
 >(): Partial<TParams> {
   return useStoreRouteInfo().params as Partial<TParams>
 }
 
 /** @deprecated renamed to `useGlobalSearchParams` */
-export function useSearchParams<
-  TParams extends SearchParams = SearchParams
->(): Partial<TParams> {
+export function useSearchParams<TParams extends SearchParams = SearchParams>(): Partial<TParams> {
   return useGlobalSearchParams<TParams>()
 }
 
@@ -108,7 +106,7 @@ export function useSearchParams<
  * To observe updates even when the invoking route is not focused, use `useGlobalSearchParams()`.
  */
 export function useLocalSearchParams<
-  TParams extends SearchParams = SearchParams
+  TParams extends SearchParams = SearchParams,
 >(): Partial<TParams> {
   return (useOptionalLocalRoute()?.params ?? ({} as any)) as Partial<TParams>
 }

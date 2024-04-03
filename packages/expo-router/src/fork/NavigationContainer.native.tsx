@@ -2,9 +2,9 @@
 // https://github.com/react-navigation/react-navigation/blob/main/packages/native/src/NavigationContainer.tsx
 import {
   BaseNavigationContainer,
-  NavigationContainerProps,
-  NavigationContainerRef,
-  ParamListBase,
+  type NavigationContainerProps,
+  type NavigationContainerRef,
+  type ParamListBase,
   getActionFromState,
   getPathFromState,
   getStateFromPath,
@@ -12,10 +12,10 @@ import {
 } from '@react-navigation/core'
 import {
   DefaultTheme,
-  DocumentTitleOptions,
+  type DocumentTitleOptions,
   LinkingContext,
-  LinkingOptions,
-  Theme,
+  type LinkingOptions,
+  type Theme,
   ThemeProvider,
 } from '@react-navigation/native'
 // import useBackButton from '@react-navigation/native/src/useBackButton'
@@ -137,7 +137,7 @@ function NavigationContainerInner(
 }
 
 const NavigationContainer = React.forwardRef(NavigationContainerInner) as <
-  RootParamList extends object = ReactNavigation.RootParamList
+  RootParamList extends object = ReactNavigation.RootParamList,
 >(
   props: Props<RootParamList> & {
     ref?: React.Ref<NavigationContainerRef<RootParamList>>

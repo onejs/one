@@ -1,14 +1,14 @@
 import {
-  BottomTabNavigationEventMap,
-  BottomTabNavigationOptions,
+  type BottomTabNavigationEventMap,
+  type BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs'
-import { ParamListBase, TabNavigationState } from '@react-navigation/native'
+import type { ParamListBase, TabNavigationState } from '@react-navigation/native'
 import React from 'react'
 import { Pressable } from 'react-native'
 import { Platform } from 'react-native'
 
-import { Href } from '../link/href'
+import type { Href } from '../link/href'
 import { Link } from '../link/Link'
 import { withLayoutContext } from './withLayoutContext'
 
@@ -37,11 +37,7 @@ export const Tabs = withLayoutContext<
               return null
             }
             const children =
-              Platform.OS === 'web' ? (
-                props.children
-              ) : (
-                <Pressable>{props.children}</Pressable>
-              )
+              Platform.OS === 'web' ? props.children : <Pressable>{props.children}</Pressable>
             return (
               <Link
                 {...props}

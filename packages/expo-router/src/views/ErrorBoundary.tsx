@@ -8,7 +8,7 @@ import { Platform, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Link } from '../link/Link'
-import { ErrorBoundaryProps } from './Try'
+import type { ErrorBoundaryProps } from './Try'
 
 // function useMetroSymbolication(error: Error) {
 //   const [logBoxLog, setLogBoxLog] = React.useState<LogBoxLog | null>(null)

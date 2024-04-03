@@ -6,7 +6,5 @@ export function getSortedRoutes(this: RouterStore) {
     throw new Error('No routes found')
   }
 
-  return this.routeNode.children
-    .filter((route) => !route.internal)
-    .sort(sortRoutes)
+  return this.routeNode.children.filter((route) => !route.internal).sort(sortRoutes)
 }

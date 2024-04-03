@@ -1,7 +1,13 @@
-import { SourceMapPayload, createRequire } from 'module'
+import { type SourceMapPayload, createRequire } from 'node:module'
 
-import { JscTarget, Output, ParserConfig, ReactConfig, transform } from '@swc/core'
-import { PluginOption } from 'vite'
+import {
+  type JscTarget,
+  type Output,
+  type ParserConfig,
+  type ReactConfig,
+  transform,
+} from '@swc/core'
+import type { PluginOption } from 'vite'
 
 const resolve = createRequire(
   typeof __filename !== 'undefined' ? __filename : import.meta.url
@@ -68,10 +74,10 @@ export default (_options?: Options): PluginOption[] => {
                         parser: id.endsWith('.tsx')
                           ? { syntax: 'typescript', tsx: true, decorators: true }
                           : id.endsWith('.ts')
-                          ? { syntax: 'typescript', tsx: false, decorators: true }
-                          : id.endsWith('.jsx')
-                          ? { syntax: 'ecmascript', jsx: true }
-                          : { syntax: 'ecmascript' },
+                            ? { syntax: 'typescript', tsx: false, decorators: true }
+                            : id.endsWith('.jsx')
+                              ? { syntax: 'ecmascript', jsx: true }
+                              : { syntax: 'ecmascript' },
                         transform: {
                           useDefineForClassFields: true,
                           react: {
@@ -98,9 +104,7 @@ export default (_options?: Options): PluginOption[] => {
           mdxIndex !== -1 &&
           mdxIndex > config.plugins.findIndex((p) => p.name === 'vite:react-swc')
         ) {
-          throw new Error(
-            '[vite:react-swc] The MDX plugin should be placed before this plugin'
-          )
+          throw new Error('[vite:react-swc] The MDX plugin should be placed before this plugin')
         }
         if (isWebContainer) {
           config.logger.warn(
@@ -200,10 +204,10 @@ export const transformForBuild = async (id: string, code: string) => {
       parser: id.endsWith('.tsx')
         ? { syntax: 'typescript', tsx: true, decorators: true }
         : id.endsWith('.ts')
-        ? { syntax: 'typescript', tsx: false, decorators: true }
-        : id.endsWith('.jsx')
-        ? { syntax: 'ecmascript', jsx: true }
-        : { syntax: 'ecmascript' },
+          ? { syntax: 'typescript', tsx: false, decorators: true }
+          : id.endsWith('.jsx')
+            ? { syntax: 'ecmascript', jsx: true }
+            : { syntax: 'ecmascript' },
       transform: {
         useDefineForClassFields: true,
         react: {
@@ -226,13 +230,13 @@ export const transformWithOptions = async (
   const parser: ParserConfig | undefined = id.endsWith('.tsx')
     ? { syntax: 'typescript', tsx: true, decorators }
     : id.endsWith('.ts')
-    ? { syntax: 'typescript', tsx: false, decorators }
-    : id.endsWith('.jsx')
-    ? { syntax: 'ecmascript', jsx: true }
-    : id.endsWith('.mdx')
-    ? // JSX is required to trigger fast refresh transformations, even if MDX already transforms it
-      { syntax: 'ecmascript', jsx: true }
-    : undefined
+      ? { syntax: 'typescript', tsx: false, decorators }
+      : id.endsWith('.jsx')
+        ? { syntax: 'ecmascript', jsx: true }
+        : id.endsWith('.mdx')
+          ? // JSX is required to trigger fast refresh transformations, even if MDX already transforms it
+            { syntax: 'ecmascript', jsx: true }
+          : undefined
   if (!parser) return
 
   let result: Output

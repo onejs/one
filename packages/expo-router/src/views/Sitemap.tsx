@@ -1,4 +1,4 @@
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack'
+import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 // import React from 'react'
 // import { Platform, ScrollView, StatusBar, useWindowDimensions } from 'react-native'

@@ -1,13 +1,13 @@
 import Constants from 'expo-constants'
 import { StatusBar } from 'expo-status-bar'
-import React, { Fragment, FunctionComponent, ReactNode } from 'react'
+import React, { Fragment, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { useInitializeExpoRouter } from './global-state/router-store'
-import { RequireContext } from './types'
+import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
 
 export type ExpoRootProps = {
@@ -75,9 +75,7 @@ export function ExpoRoot({ wrapper: ParentWrapper = Fragment, ...props }: ExpoRo
 }
 
 const initialUrl =
-  Platform.OS === 'web' && typeof window !== 'undefined'
-    ? new URL(window.location.href)
-    : undefined
+  Platform.OS === 'web' && typeof window !== 'undefined' ? new URL(window.location.href) : undefined
 
 function ContextNavigator({
   context,
@@ -95,10 +93,9 @@ function ContextNavigator({
           <Tutorial />
         </WrapperComponent>
       )
-    } else {
-      // Ensure tutorial styles are stripped in production.
-      return null
     }
+    // Ensure tutorial styles are stripped in production.
+    return null
   }
 
   const Component = store.rootComponent

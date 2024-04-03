@@ -1,14 +1,9 @@
-import { LinkingOptions, getActionFromState } from '@react-navigation/native'
+import { type LinkingOptions, getActionFromState } from '@react-navigation/native'
 
-import { State } from './fork/getPathFromState'
-import { Screen, getReactNavigationConfig } from './getReactNavigationConfig'
-import {
-  addEventListener,
-  getInitialURL,
-  getPathFromState,
-  getStateFromPath,
-} from './link/linking'
-import { RouteNode } from './Route'
+import type { State } from './fork/getPathFromState'
+import { type Screen, getReactNavigationConfig } from './getReactNavigationConfig'
+import { addEventListener, getInitialURL, getPathFromState, getStateFromPath } from './link/linking'
+import type { RouteNode } from './Route'
 
 export function getNavigationConfig(routes: RouteNode): {
   initialRouteName?: string
@@ -52,10 +47,7 @@ export function getLinkingConfig(routes: RouteNode): ExpoLinkingOptions {
 export const stateCache = new Map<string, any>()
 
 /** We can reduce work by memoizing the state by the pathname. This only works because the options (linking config) theoretically never change.  */
-function getStateFromPathMemoized(
-  path: string,
-  options: Parameters<typeof getStateFromPath>[1]
-) {
+function getStateFromPathMemoized(path: string, options: Parameters<typeof getStateFromPath>[1]) {
   const cached = stateCache.get(path)
   if (cached) {
     return cached

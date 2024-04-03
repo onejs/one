@@ -10,10 +10,10 @@ import React from 'react'
 import EXPO_ROUTER_IMPORT_MODE from './import-mode'
 import { Screen } from './primitives'
 import {
-  DynamicConvention,
-  LoadedRoute,
+  type DynamicConvention,
+  type LoadedRoute,
   Route,
-  RouteNode,
+  type RouteNode,
   sortRoutesWithInitial,
   useRouteNode,
 } from './Route'
@@ -24,7 +24,7 @@ import { Try } from './views/Try'
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
   State extends NavigationState = NavigationState,
-  EventMap extends EventMapBase = EventMapBase
+  EventMap extends EventMapBase = EventMapBase,
 > = {
   /** Name is required when used inside a Layout component. */
   name?: string
@@ -61,9 +61,7 @@ function getSortedChildren(
   const ordered = order
     .map(({ name, redirect, initialParams, listeners, options, getId }) => {
       if (!entries.length) {
-        console.warn(
-          `[Layout children]: Too many screens defined. Route "${name}" is extraneous.`
-        )
+        console.warn(`[Layout children]: Too many screens defined. Route "${name}" is extraneous.`)
         return null
       }
       const matchIndex = entries.findIndex((child) => child.route === name)
@@ -73,23 +71,22 @@ function getSortedChildren(
           children.map(({ route }) => route)
         )
         return null
-      } else {
-        // Get match and remove from entries
-        const match = entries[matchIndex]
-        entries.splice(matchIndex, 1)
+      }
+      // Get match and remove from entries
+      const match = entries[matchIndex]
+      entries.splice(matchIndex, 1)
 
-        // Ensure to return null after removing from entries.
-        if (redirect) {
-          if (typeof redirect === 'string') {
-            throw new Error(`Redirecting to a specific route is not supported yet.`)
-          }
-          return null
+      // Ensure to return null after removing from entries.
+      if (redirect) {
+        if (typeof redirect === 'string') {
+          throw new Error(`Redirecting to a specific route is not supported yet.`)
         }
+        return null
+      }
 
-        return {
-          route: match,
-          props: { initialParams, listeners, options, getId },
-        }
+      return {
+        route: match,
+        props: { initialParams, listeners, options, getId },
       }
     })
     .filter(Boolean) as {
@@ -99,9 +96,7 @@ function getSortedChildren(
 
   // Add any remaining children
   ordered.push(
-    ...entries
-      .sort(sortRoutesWithInitial(initialRouteName))
-      .map((route) => ({ route, props: {} }))
+    ...entries.sort(sortRoutesWithInitial(initialRouteName)).map((route) => ({ route, props: {} }))
   )
 
   return ordered
@@ -247,7 +242,8 @@ export function createGetIdForRoute(route: Pick<RouteNode, 'dynamic' | 'route'>)
       if (preferredId) {
         if (!Array.isArray(preferredId)) {
           return preferredId
-        } else if (preferredId.length) {
+        }
+        if (preferredId.length) {
           // Deep dynamic routes will return as an array, so we'll join them to create a
           // fully qualified string.
           return preferredId.join('/')
@@ -260,10 +256,7 @@ export function createGetIdForRoute(route: Pick<RouteNode, 'dynamic' | 'route'>)
   }
 }
 
-function routeToScreen(
-  route: RouteNode,
-  { options, ...props }: Partial<ScreenProps> = {}
-) {
+function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenProps> = {}) {
   return (
     <Screen
       // Users can override the screen getId function.

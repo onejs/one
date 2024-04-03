@@ -1,92 +1,78 @@
-import {
-  PathConfig,
-  PathConfigMap,
-  validatePathConfig,
-} from "@react-navigation/core";
-import type {
-  NavigationState,
-  PartialState,
-  Route,
-} from "@react-navigation/routers";
-import * as queryString from "query-string";
+import { type PathConfig, type PathConfigMap, validatePathConfig } from '@react-navigation/core'
+import type { NavigationState, PartialState, Route } from '@react-navigation/routers'
+import * as queryString from 'query-string'
 
-import {
-  matchDeepDynamicRouteName,
-  matchDynamicName,
-  matchGroupName,
-} from "../matchers";
+import { matchDeepDynamicRouteName, matchDynamicName, matchGroupName } from '../matchers'
 
 type Options<ParamList extends object> = {
-  initialRouteName?: string;
-  screens: PathConfigMap<ParamList>;
-};
+  initialRouteName?: string
+  screens: PathConfigMap<ParamList>
+}
 
-export type State =
-  | NavigationState
-  | Omit<PartialState<NavigationState>, "stale">;
+export type State = NavigationState | Omit<PartialState<NavigationState>, 'stale'>
 
-type StringifyConfig = Record<string, (value: any) => string>;
+type StringifyConfig = Record<string, (value: any) => string>
 
 type ConfigItem = {
-  pattern?: string;
-  stringify?: StringifyConfig;
-  screens?: Record<string, ConfigItem>;
+  pattern?: string
+  stringify?: StringifyConfig
+  screens?: Record<string, ConfigItem>
   // Used as fallback for groups
-  initialRouteName?: string;
-};
+  initialRouteName?: string
+}
 
 type CustomRoute = Route<string> & {
-  state?: State;
-};
+  state?: State
+}
 
-const DEFAULT_SCREENS: PathConfigMap<object> = {};
+const DEFAULT_SCREENS: PathConfigMap<object> = {}
 
 const getActiveRoute = (state: State): { name: string; params?: object } => {
   const route =
-    typeof state.index === "number"
+    typeof state.index === 'number'
       ? state.routes[state.index]
-      : state.routes[state.routes.length - 1];
+      : state.routes[state.routes.length - 1]
 
   if (route.state) {
-    return getActiveRoute(route.state);
+    return getActiveRoute(route.state)
   }
 
   if (route && isInvalidParams(route.params)) {
-    return getActiveRoute(createFakeState(route.params));
+    return getActiveRoute(createFakeState(route.params))
   }
 
-  return route;
-};
+  return route
+}
 
 function createFakeState(params: StateAsParams) {
   return {
     stale: false,
-    type: "UNKNOWN",
-    key: "UNKNOWN",
+    type: 'UNKNOWN',
+    key: 'UNKNOWN',
     index: 0,
     routeNames: [],
     routes: [
       {
-        key: "UNKNOWN",
+        key: 'UNKNOWN',
         name: params.screen,
         params: params.params,
         path: params.path,
       },
     ],
-  };
+  }
 }
 
 function segmentMatchesConvention(segment: string): boolean {
   return (
-    segment === "index" ||
+    segment === 'index' ||
     matchDynamicName(segment) != null ||
     matchGroupName(segment) != null ||
     matchDeepDynamicRouteName(segment) != null
-  );
+  )
 }
 
 function encodeURIComponentPreservingBrackets(str: string) {
-  return encodeURIComponent(str).replace(/%5B/g, "[").replace(/%5D/g, "]");
+  return encodeURIComponent(str).replace(/%5B/g, '[').replace(/%5D/g, ']')
 }
 
 /**
@@ -121,35 +107,31 @@ function encodeURIComponentPreservingBrackets(str: string) {
 export default function getPathFromState<ParamList extends object>(
   state: State,
   _options?: Options<ParamList> & {
-    preserveGroups?: boolean;
-    preserveDynamicRoutes?: boolean;
+    preserveGroups?: boolean
+    preserveDynamicRoutes?: boolean
   }
 ): string {
-  return getPathDataFromState(state, _options).path;
+  return getPathDataFromState(state, _options).path
 }
 
 export function getPathDataFromState<ParamList extends object>(
   state: State,
   _options: Options<ParamList> & {
-    preserveGroups?: boolean;
-    preserveDynamicRoutes?: boolean;
+    preserveGroups?: boolean
+    preserveDynamicRoutes?: boolean
   } = { screens: DEFAULT_SCREENS }
 ) {
   if (state == null) {
-    throw Error(
-      "Got 'undefined' for the navigation state. You must pass a valid state object."
-    );
+    throw Error("Got 'undefined' for the navigation state. You must pass a valid state object.")
   }
 
-  const { preserveGroups, preserveDynamicRoutes, ...options } = _options;
+  const { preserveGroups, preserveDynamicRoutes, ...options } = _options
 
-  validatePathConfig(options);
+  validatePathConfig(options)
 
   // Expo Router disallows usage without a linking config.
   if (Object.is(options.screens, DEFAULT_SCREENS)) {
-    throw Error(
-      "You must pass a 'screens' object to 'getPathFromState' to generate a path."
-    );
+    throw Error("You must pass a 'screens' object to 'getPathFromState' to generate a path.")
   }
 
   return getPathFromResolvedState(
@@ -157,14 +139,11 @@ export function getPathDataFromState<ParamList extends object>(
     // Create a normalized configs object which will be easier to use
     createNormalizedConfigs(options.screens),
     { preserveGroups, preserveDynamicRoutes }
-  );
+  )
 }
 
-function processParamsWithUserSettings(
-  configItem: ConfigItem,
-  params: Record<string, any>
-) {
-  const stringify = configItem?.stringify;
+function processParamsWithUserSettings(configItem: ConfigItem, params: Record<string, any>) {
+  const stringify = configItem?.stringify
 
   return Object.fromEntries(
     Object.entries(params).map(([key, value]) => [
@@ -173,94 +152,94 @@ function processParamsWithUserSettings(
       stringify?.[key]
         ? stringify[key](value)
         : // Preserve rest params
-        Array.isArray(value)
-        ? value
-        : String(value),
+          Array.isArray(value)
+          ? value
+          : String(value),
     ])
-  );
+  )
 }
 
 export function deepEqual(a: any, b: any) {
   if (a === b) {
-    return true;
+    return true
   }
 
   if (Array.isArray(a) && Array.isArray(b)) {
     if (a.length !== b.length) {
-      return false;
+      return false
     }
 
     for (let i = 0; i < a.length; i++) {
       if (!deepEqual(a[i], b[i])) {
-        return false;
+        return false
       }
     }
 
-    return true;
+    return true
   }
 
-  if (typeof a === "object" && typeof b === "object") {
-    const keysA = Object.keys(a);
-    const keysB = Object.keys(b);
+  if (typeof a === 'object' && typeof b === 'object') {
+    const keysA = Object.keys(a)
+    const keysB = Object.keys(b)
 
     if (keysA.length !== keysB.length) {
-      return false;
+      return false
     }
 
     for (const key of keysA) {
       if (!deepEqual(a[key], b[key])) {
-        return false;
+        return false
       }
     }
 
-    return true;
+    return true
   }
 
-  return false;
+  return false
 }
 
 function walkConfigItems(
   route: CustomRoute,
   focusedRoute: {
-    name: string;
-    params?: object;
+    name: string
+    params?: object
   },
   configs: Record<string, ConfigItem>,
   {
     preserveDynamicRoutes,
   }: {
-    preserveDynamicRoutes?: boolean;
+    preserveDynamicRoutes?: boolean
   }
 ) {
   // NOTE(EvanBacon): Fill in current route using state that was passed as params.
   if (!route.state && isInvalidParams(route.params)) {
-    route.state = createFakeState(route.params);
+    route.state = createFakeState(route.params)
   }
 
-  let pattern: string | null = null;
-  let focusedParams: Record<string, any> | undefined;
+  let pattern: string | null = null
+  let focusedParams: Record<string, any> | undefined
 
-  const collectedParams: Record<string, any> = {};
+  const collectedParams: Record<string, any> = {}
 
   while (route.name in configs) {
-    const configItem = configs[route.name];
-    const inputPattern = configItem.pattern;
+    const configItem = configs[route.name]
+    const inputPattern = configItem.pattern
 
     if (inputPattern == null) {
       // This should never happen in Expo Router.
-      throw new Error("Unexpected: No pattern found for route " + route.name);
+      throw new Error('Unexpected: No pattern found for route ' + route.name)
     }
-    pattern = inputPattern;
+    pattern = inputPattern
 
     if (route.params) {
-      const params = processParamsWithUserSettings(configItem, route.params);
+      const params = processParamsWithUserSettings(configItem, route.params)
       // TODO: Does this need to be a null check?
       if (pattern) {
-        Object.assign(collectedParams, params);
+        Object.assign(collectedParams, params)
       }
       if (deepEqual(focusedRoute, route)) {
         if (preserveDynamicRoutes) {
-          focusedParams = params;
+          focusedParams = params
         } else {
           // If this is the focused route, keep the params for later use
           // We save it here since it's been stringified already
@@ -268,13 +247,13 @@ function walkConfigItems(
             params,
             pattern,
             routeName: route.name,
-          });
+          })
         }
       }
     }
 
     if (!route.state && isInvalidParams(route.params)) {
-      route.state = createFakeState(route.params);
+      route.state = createFakeState(route.params)
     }
 
     // If there is no `screens` property or no nested state, we return pattern
@@ -285,11 +264,10 @@ function walkConfigItems(
         configItem.initialRouteName in configItem.screens &&
         configItem.screens[configItem.initialRouteName]?.pattern
       ) {
-        const initialRouteConfig =
-          configItem.screens[configItem.initialRouteName];
+        const initialRouteConfig = configItem.screens[configItem.initialRouteName]
 
         // NOTE(EvanBacon): Big hack to support initial route changes in tab bars.
-        pattern = initialRouteConfig.pattern!;
+        pattern = initialRouteConfig.pattern!
         if (focusedParams) {
           if (!preserveDynamicRoutes) {
             // If this is the focused route, keep the params for later use
@@ -298,39 +276,37 @@ function walkConfigItems(
               params: focusedParams,
               pattern,
               routeName: route.name,
-            });
+            })
           }
         }
       }
-      break;
+      break
     }
 
-    const index = route.state.index ?? route.state.routes.length - 1;
+    const index = route.state.index ?? route.state.routes.length - 1
 
-    const nextRoute = route.state.routes[index];
-    const nestedScreens = configItem.screens;
+    const nextRoute = route.state.routes[index]
+    const nestedScreens = configItem.screens
 
     // if there is config for next route name, we go deeper
     if (nestedScreens && nextRoute.name in nestedScreens) {
-      route = nextRoute as CustomRoute;
-      configs = nestedScreens;
+      route = nextRoute as CustomRoute
+      configs = nestedScreens
     } else {
       // If not, there is no sense in going deeper in config
-      break;
+      break
     }
   }
 
   if (pattern == null) {
     throw new Error(
-      `No pattern found for route "${route.name}". Options are: ${Object.keys(
-        configs
-      ).join(", ")}.`
-    );
+      `No pattern found for route "${route.name}". Options are: ${Object.keys(configs).join(', ')}.`
+    )
   }
 
   if (pattern && !focusedParams && focusedRoute.params) {
     if (preserveDynamicRoutes) {
-      focusedParams = focusedRoute.params;
+      focusedParams = focusedRoute.params
     } else {
       // If this is the focused route, keep the params for later use
       // We save it here since it's been stringified already
@@ -338,9 +314,9 @@ function walkConfigItems(
         params: focusedRoute.params,
         pattern,
         routeName: route.name,
-      });
+      })
     }
-    Object.assign(focusedParams, collectedParams);
+    Object.assign(focusedParams, collectedParams)
   }
 
   return {
@@ -348,7 +324,7 @@ function walkConfigItems(
     nextRoute: route,
     focusedParams,
     params: collectedParams,
-  };
+  }
 }
 
 function getPathFromResolvedState(
@@ -359,19 +335,19 @@ function getPathFromResolvedState(
     preserveDynamicRoutes,
   }: { preserveGroups?: boolean; preserveDynamicRoutes?: boolean }
 ) {
-  let path = "";
-  let current: State = state;
+  let path = ''
+  let current: State = state
 
-  const allParams: Record<string, any> = {};
+  const allParams: Record<string, any> = {}
 
   while (current) {
-    path += "/";
+    path += '/'
 
-    const route = { ...(current.routes[current.index ?? 0] as CustomRoute) };
+    const route = { ...(current.routes[current.index ?? 0] as CustomRoute) }
     // NOTE(EvanBacon): Fill in current route using state that was passed as params.
     // if (isInvalidParams(route.params)) {
     if (!route.state && isInvalidParams(route.params)) {
-      route.state = createFakeState(route.params);
+      route.state = createFakeState(route.params)
     }
 
     const { pattern, params, nextRoute, focusedParams } = walkConfigItems(
@@ -379,9 +355,9 @@ function getPathFromResolvedState(
       getActiveRoute(current),
       { ...configs },
       { preserveDynamicRoutes }
-    );
+    )
 
-    Object.assign(allParams, params);
+    Object.assign(allParams, params)
 
     path += getPathWithConventionsCollapsed({
       pattern,
@@ -390,7 +366,7 @@ function getPathFromResolvedState(
       initialRouteName: configs[nextRoute.name]?.initialRouteName,
       preserveGroups,
       preserveDynamicRoutes,
-    });
+    })
 
     if (
       nextRoute.state &&
@@ -401,7 +377,7 @@ function getPathFromResolvedState(
       configs[nextRoute.state.routes?.[nextRoute.state?.index ?? 0]?.name]
     ) {
       // Continue looping with the next state if available.
-      current = nextRoute.state;
+      current = nextRoute.state
     } else {
       // Finished crawling state.
 
@@ -409,32 +385,32 @@ function getPathFromResolvedState(
       if (focusedParams) {
         for (const param in focusedParams) {
           // TODO: This is not good. We shouldn't squat strings named "undefined".
-          if (focusedParams[param] === "undefined") {
+          if (focusedParams[param] === 'undefined') {
             // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-            delete focusedParams[param];
+            delete focusedParams[param]
           }
         }
 
-        const query = queryString.stringify(focusedParams, { sort: false });
+        const query = queryString.stringify(focusedParams, { sort: false })
         if (query) {
-          path += `?${query}`;
+          path += `?${query}`
         }
       }
-      break;
+      break
     }
   }
 
-  return { path: basicSanitizePath(path), params: decodeParams(allParams) };
+  return { path: basicSanitizePath(path), params: decodeParams(allParams) }
 }
 
 function decodeParams(params: Record<string, string>) {
-  const parsed: Record<string, any> = {};
+  const parsed: Record<string, any> = {}
 
   for (const [key, value] of Object.entries(params)) {
-    parsed[key] = decodeURIComponent(value);
+    parsed[key] = decodeURIComponent(value)
   }
 
-  return parsed;
+  return parsed
 }
 
 function getPathWithConventionsCollapsed({
@@ -445,48 +421,48 @@ function getPathWithConventionsCollapsed({
   preserveDynamicRoutes,
   initialRouteName,
 }: {
-  pattern: string;
-  routePath?: string;
-  params: Record<string, any>;
-  preserveGroups?: boolean;
-  preserveDynamicRoutes?: boolean;
-  initialRouteName?: string;
+  pattern: string
+  routePath?: string
+  params: Record<string, any>
+  preserveGroups?: boolean
+  preserveDynamicRoutes?: boolean
+  initialRouteName?: string
 }) {
-  const segments = pattern.split("/");
+  const segments = pattern.split('/')
   return segments
     .map((p, i) => {
-      const name = getParamName(p);
+      const name = getParamName(p)
 
       // We don't know what to show for wildcard patterns
       // Showing the route name seems ok, though whatever we show here will be incorrect
       // Since the page doesn't actually exist
-      if (p.startsWith("*")) {
+      if (p.startsWith('*')) {
         if (preserveDynamicRoutes) {
-          return `[...${name}]`;
+          return `[...${name}]`
         }
         if (params[name]) {
-          return params[name].join("/");
+          return params[name].join('/')
         }
         if (i === 0) {
           // This can occur when a wildcard matches all routes and the given path was `/`.
-          return routePath;
+          return routePath
         }
         // remove existing segments from route.path and return it
         // this is used for nested wildcard routes. Without this, the path would add
         // all nested segments to the beginning of the wildcard route.
         return routePath
-          ?.split("/")
+          ?.split('/')
           .slice(i + 1)
-          .join("/");
+          .join('/')
       }
 
       // If the path has a pattern for a param, put the param in the path
-      if (p.startsWith(":")) {
+      if (p.startsWith(':')) {
         if (preserveDynamicRoutes) {
-          return `[${name}]`;
+          return `[${name}]`
         }
         // Optional params without value assigned in route.params should be ignored
-        return params[name];
+        return params[name]
       }
 
       if (!preserveGroups && matchGroupName(p) != null) {
@@ -497,18 +473,18 @@ function getPathWithConventionsCollapsed({
           if (initialRouteName) {
             // Return an empty string if the init route is ambiguous.
             if (segmentMatchesConvention(initialRouteName)) {
-              return "";
+              return ''
             }
-            return encodeURIComponentPreservingBrackets(initialRouteName);
+            return encodeURIComponentPreservingBrackets(initialRouteName)
           }
         }
-        return "";
+        return ''
       }
       // Preserve dynamic syntax for rehydration
-      return encodeURIComponentPreservingBrackets(p);
+      return encodeURIComponentPreservingBrackets(p)
     })
-    .map((v) => v ?? "")
-    .join("/");
+    .map((v) => v ?? '')
+    .join('/')
 }
 
 /** Given a set of query params and a pattern with possible conventions, collapse the conventions and return the remaining params. */
@@ -517,131 +493,117 @@ function getParamsWithConventionsCollapsed({
   routeName,
   params,
 }: {
-  pattern: string;
+  pattern: string
   /** Route name is required for matching the wildcard route. This is specific to Expo Router. */
-  routeName: string;
-  params: object;
+  routeName: string
+  params: object
 }): Record<string, string> {
-  const processedParams: Record<string, string> = { ...params };
+  const processedParams: Record<string, string> = { ...params }
 
   // Remove the params present in the pattern since we'll only use the rest for query string
 
-  const segments = pattern.split("/");
+  const segments = pattern.split('/')
 
   // Dynamic Routes
   segments
-    .filter((segment) => segment.startsWith(":"))
+    .filter((segment) => segment.startsWith(':'))
     .forEach((segment) => {
-      const name = getParamName(segment);
-      delete processedParams[name];
-    });
+      const name = getParamName(segment)
+      delete processedParams[name]
+    })
 
   // Deep Dynamic Routes
-  if (segments.some((segment) => segment.startsWith("*"))) {
+  if (segments.some((segment) => segment.startsWith('*'))) {
     // NOTE(EvanBacon): Drop the param name matching the wildcard route name -- this is specific to Expo Router.
-    const name = matchDeepDynamicRouteName(routeName) ?? routeName;
-    delete processedParams[name];
+    const name = matchDeepDynamicRouteName(routeName) ?? routeName
+    delete processedParams[name]
   }
 
-  return processedParams;
+  return processedParams
 }
 
 // Remove multiple as well as trailing slashes
 function basicSanitizePath(path: string) {
   // Remove duplicate slashes like `foo//bar` -> `foo/bar`
-  const simplifiedPath = path.replace(/\/+/g, "/");
+  const simplifiedPath = path.replace(/\/+/g, '/')
   if (simplifiedPath.length <= 1) {
-    return simplifiedPath;
+    return simplifiedPath
   }
   // Remove trailing slash like `foo/bar/` -> `foo/bar`
-  return simplifiedPath.replace(/\/$/, "");
+  return simplifiedPath.replace(/\/$/, '')
 }
 
 type StateAsParams = {
-  initial: boolean;
-  path?: string;
-  screen: string;
-  params: Record<string, any>;
-};
+  initial: boolean
+  path?: string
+  screen: string
+  params: Record<string, any>
+}
 
 // TODO: Make StackRouter not do this...
 // Detect if the params came from StackRouter using `params` to pass around internal state.
-function isInvalidParams(
-  params?: Record<string, any>
-): params is StateAsParams {
+function isInvalidParams(params?: Record<string, any>): params is StateAsParams {
   if (!params) {
-    return false;
+    return false
   }
 
-  if (
-    "params" in params &&
-    typeof params.params === "object" &&
-    !!params.params
-  ) {
-    return true;
+  if ('params' in params && typeof params.params === 'object' && !!params.params) {
+    return true
   }
 
   return (
-    "initial" in params &&
-    typeof params.initial === "boolean" &&
+    'initial' in params &&
+    typeof params.initial === 'boolean' &&
     // "path" in params &&
-    "screen" in params
-  );
+    'screen' in params
+  )
 }
 
-const getParamName = (pattern: string) =>
-  pattern.replace(/^[:*]/, "").replace(/\?$/, "");
+const getParamName = (pattern: string) => pattern.replace(/^[:*]/, '').replace(/\?$/, '')
 
 const joinPaths = (...paths: string[]): string =>
   ([] as string[])
-    .concat(...paths.map((p) => p.split("/")))
+    .concat(...paths.map((p) => p.split('/')))
     .filter(Boolean)
-    .join("/");
+    .join('/')
 
 const createConfigItem = (
   config: PathConfig<object> | string,
   parentPattern?: string
 ): ConfigItem => {
-  if (typeof config === "string") {
+  if (typeof config === 'string') {
     // If a string is specified as the value of the key(e.g. Foo: '/path'), use it as the pattern
-    const pattern = parentPattern ? joinPaths(parentPattern, config) : config;
+    const pattern = parentPattern ? joinPaths(parentPattern, config) : config
 
-    return { pattern };
+    return { pattern }
   }
 
   if (config.exact && config.path === undefined) {
     throw new Error(
       "A 'path' needs to be specified when specifying 'exact: true'. If you don't want this screen in the URL, specify it as empty string, e.g. `path: ''`."
-    );
+    )
   }
 
   // If an object is specified as the value (e.g. Foo: { ... }),
   // It can have `path` property and `screens` prop which has nested configs
   const pattern =
-    config.exact !== true
-      ? joinPaths(parentPattern || "", config.path || "")
-      : config.path || "";
+    config.exact !== true ? joinPaths(parentPattern || '', config.path || '') : config.path || ''
 
-  const screens = config.screens
-    ? createNormalizedConfigs(config.screens, pattern)
-    : undefined;
+  const screens = config.screens ? createNormalizedConfigs(config.screens, pattern) : undefined
 
   return {
     // Normalize pattern to remove any leading, trailing slashes, duplicate slashes etc.
-    pattern: pattern?.split("/").filter(Boolean).join("/"),
+    pattern: pattern?.split('/').filter(Boolean).join('/'),
     stringify: config.stringify,
     screens,
     initialRouteName: config.initialRouteName,
-  };
-};
+  }
+}
 
 const createNormalizedConfigs = (
   options: PathConfigMap<object>,
   pattern?: string
 ): Record<string, ConfigItem> =>
   Object.fromEntries(
-    Object.entries(options).map(([name, c]) => [
-      name,
-      createConfigItem(c, pattern),
-    ])
-  );
+    Object.entries(options).map(([name, c]) => [name, createConfigItem(c, pattern)])
+  )

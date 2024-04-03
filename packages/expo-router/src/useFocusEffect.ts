@@ -13,10 +13,7 @@ type EffectCallback = () => undefined | void | (() => void)
  *
  * @param callback Memoized callback containing the effect, should optionally return a cleanup function.
  */
-export function useFocusEffect(
-  effect: EffectCallback,
-  do_not_pass_a_second_prop?: never
-) {
+export function useFocusEffect(effect: EffectCallback, do_not_pass_a_second_prop?: never) {
   const navigation = useOptionalNavigation()
 
   if (do_not_pass_a_second_prop !== undefined) {

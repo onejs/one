@@ -83,11 +83,7 @@ export function getRecursiveTree(files: FileNode[]): TreeNode {
 
 function assertDeprecatedFormat(tree: TreeNode) {
   for (const child of tree.children) {
-    if (
-      child.node &&
-      child.children.length &&
-      !child.node.normalizedName.endsWith('_layout')
-    ) {
+    if (child.node && child.children.length && !child.node.normalizedName.endsWith('_layout')) {
       const ext = child.node.contextKey.split('.').pop()
       throw new Error(
         `Using deprecated Layout Route format: Move \`./app/${child.node.normalizedName}.${ext}\` to \`./app/${child.node.normalizedName}/_layout.${ext}\``
@@ -98,9 +94,7 @@ function assertDeprecatedFormat(tree: TreeNode) {
 }
 
 function getTreeNodesAsRouteNodes(nodes: TreeNode[]): RouteNode[] {
-  return nodes
-    .flatMap((node) => treeNodeToRouteNode(node))
-    .filter(Boolean) as RouteNode[]
+  return nodes.flatMap((node) => treeNodeToRouteNode(node)).filter(Boolean) as RouteNode[]
 }
 
 export function generateDynamicFromSegment(name: string): DynamicConvention | null {
@@ -142,9 +136,7 @@ function applyDefaultInitialRouteName(node: RouteNode): RouteNode {
 
   // Guess at the initial route based on the group name.
   // TODO(EvanBacon): Perhaps we should attempt to warn when the group doesn't match any child routes.
-  let initialRouteName = groupName
-    ? getDefaultInitialRoute(node, groupName)?.route
-    : undefined
+  let initialRouteName = groupName ? getDefaultInitialRoute(node, groupName)?.route : undefined
   const loaded = node.loadRoute()
 
   if (loaded?.unstable_settings) {
@@ -153,8 +145,7 @@ function applyDefaultInitialRouteName(node: RouteNode): RouteNode {
 
     if (groupName) {
       // Allow unstable_settings={ 'custom': { initialRouteName: '...' } } to override the less specific initial route name.
-      const groupSpecificInitialRouteName =
-        loaded.unstable_settings?.[groupName]?.initialRouteName
+      const groupSpecificInitialRouteName = loaded.unstable_settings?.[groupName]?.initialRouteName
 
       initialRouteName = groupSpecificInitialRouteName ?? initialRouteName
     }
@@ -166,10 +157,7 @@ function applyDefaultInitialRouteName(node: RouteNode): RouteNode {
   }
 }
 
-function cloneGroupRoute(
-  node: RouteNode,
-  { name: nextName }: { name: string }
-): RouteNode {
+function cloneGroupRoute(node: RouteNode, { name: nextName }: { name: string }): RouteNode {
   const groupName = `(${nextName})`
   const parts = node.contextKey.split('/')
   parts[parts.length - 2] = groupName
@@ -209,9 +197,7 @@ function fileNodeToRouteNode(tree: TreeNode): RouteNode[] | null {
   const groupName = matchGroupName(name)
   const multiGroup = groupName?.includes(',')
 
-  const clones = multiGroup
-    ? groupName!.split(',').map((v) => ({ name: v.trim() }))
-    : null
+  const clones = multiGroup ? groupName!.split(',').map((v) => ({ name: v.trim() })) : null
 
   // Assert duplicates:
   if (clones) {
@@ -332,10 +318,13 @@ export function assertDuplicateRoutes(filenames: string[]) {
 
   const duplicates = filenames
     .map((filename) => removeSupportedExtensions(filename))
-    .reduce((acc, filename) => {
-      acc[filename] = acc[filename] ? acc[filename] + 1 : 1
-      return acc
-    }, {} as Record<string, number>)
+    .reduce(
+      (acc, filename) => {
+        acc[filename] = acc[filename] ? acc[filename] + 1 : 1
+        return acc
+      },
+      {} as Record<string, number>
+    )
 
   Object.entries(duplicates).forEach(([filename, count]) => {
     if (count > 1) {
@@ -345,10 +334,7 @@ export function assertDuplicateRoutes(filenames: string[]) {
 }
 
 /** Given a Metro context module, return an array of nested routes. */
-export function getRoutes(
-  contextModule: RequireContext,
-  options?: Options
-): RouteNode | null {
+export function getRoutes(contextModule: RequireContext, options?: Options): RouteNode | null {
   const route = getExactRoutes(contextModule, options)
 
   // If there is no route, return an empty route.
@@ -387,10 +373,7 @@ function getIgnoreList(options?: Options) {
 }
 
 /** Get routes without unmatched or sitemap. */
-export function getExactRoutes(
-  contextModule: RequireContext,
-  options?: Options
-): RouteNode | null {
+export function getExactRoutes(contextModule: RequireContext, options?: Options): RouteNode | null {
   const treeNodes = contextModuleToTree(contextModule, options)
   const route = treeNodesToRootRoute(treeNodes)
   return route || null

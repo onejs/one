@@ -122,10 +122,7 @@ export const create = async (options: StartOptions) => {
               ${source
                 .replace(`import.meta.hot.accept(() => {})`, ``)
                 // replace import.meta.glob with empty array in hot reloads
-                .replaceAll(
-                  /import.meta.glob\(.*\)/gi,
-                  `globalThis['__importMetaGlobbed'] || {}`
-                )};
+                .replaceAll(/import.meta.glob\(.*\)/gi, `globalThis['__importMetaGlobbed'] || {}`)};
               return exports })({})`
 
             if (process.env.DEBUG === 'vxrn') {
@@ -218,10 +215,7 @@ export const create = async (options: StartOptions) => {
       // for easier quick testing things:
       const tmpBundle = join(process.cwd(), 'bundle.tmp.js')
       if (await pathExists(tmpBundle)) {
-        console.info(
-          '⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️',
-          tmpBundle
-        )
+        console.info('⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️', tmpBundle)
         return await readFile(tmpBundle, 'utf-8')
       }
     }
@@ -238,10 +232,7 @@ export const create = async (options: StartOptions) => {
 
     const jsxRuntime = {
       alias: 'virtual:react-jsx',
-      contents: await readFile(
-        require.resolve('@vxrn/react-native-prebuilt/jsx-runtime'),
-        'utf-8'
-      ),
+      contents: await readFile(require.resolve('@vxrn/react-native-prebuilt/jsx-runtime'), 'utf-8'),
     } as const
 
     const virtualModules = {
@@ -251,10 +242,7 @@ export const create = async (options: StartOptions) => {
       },
       react: {
         alias: 'virtual:react',
-        contents: await readFile(
-          require.resolve('@vxrn/react-native-prebuilt/react'),
-          'utf-8'
-        ),
+        contents: await readFile(require.resolve('@vxrn/react-native-prebuilt/react'), 'utf-8'),
       },
       'react/jsx-runtime': jsxRuntime,
       'react/jsx-dev-runtime': jsxRuntime,
@@ -469,7 +457,7 @@ function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
       staticConfigPath: join(root, 'app.json'),
       packageJsonPath: join(root, 'package.json'),
     },
-    sdkVersion: '47.0.0',
+    sdkVersion: '49.0.0',
     platforms: ['ios', 'android', 'web'],
     iconUrl: `http://127.0.0.1:${port}/assets/./assets/icon.png`,
     debuggerHost: `127.0.0.1:${port}`,
