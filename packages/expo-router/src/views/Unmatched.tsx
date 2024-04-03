@@ -6,8 +6,7 @@ import { usePathname, useRouter } from '../hooks'
 import { Link } from '../link/Link'
 import { useNavigation } from '../useNavigation'
 
-const useLayoutEffect =
-  typeof window !== 'undefined' ? React.useLayoutEffect : function () {}
+const useLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : () => {}
 
 function NoSSR({ children }: { children: React.ReactNode }) {
   const [render, setRender] = React.useState(false)

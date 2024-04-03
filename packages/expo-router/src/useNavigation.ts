@@ -1,5 +1,5 @@
 import {
-  NavigationProp,
+  type NavigationProp,
   useNavigation as useUpstreamNavigation,
 } from '@react-navigation/native'
 import React from 'react'
@@ -46,10 +46,7 @@ export function useNavigation<T = NavigationProp<ReactNavigation.RootParamList>>
   return navigation
 }
 
-export function resolveParentId(
-  contextKey: string,
-  parentId?: string | null
-): string | null {
+export function resolveParentId(contextKey: string, parentId?: string | null): string | null {
   if (!parentId) {
     return null
   }

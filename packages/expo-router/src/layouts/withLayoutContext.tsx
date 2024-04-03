@@ -1,9 +1,9 @@
-import { EventMapBase, NavigationState } from '@react-navigation/native'
+import type { EventMapBase, NavigationState } from '@react-navigation/native'
 import React from 'react'
 
 import { useContextKey } from '../Route'
-import { PickPartial } from '../types'
-import { ScreenProps, useSortedScreens } from '../useScreens'
+import type { PickPartial } from '../types'
+import { type ScreenProps, useSortedScreens } from '../useScreens'
 import { Screen } from '../views/Screen'
 
 export function useFilterScreenChildren(
@@ -27,23 +27,20 @@ export function useFilterScreenChildren(
           )
         }
         if (process.env.NODE_ENV !== 'production') {
-          if (
-            ['children', 'component', 'getComponent'].some((key) => key in child.props)
-          ) {
+          if (['children', 'component', 'getComponent'].some((key) => key in child.props)) {
             throw new Error(
               `<Screen /> component in \`default export\` at \`app${contextKey}/_layout\` must not have a \`children\`, \`component\`, or \`getComponent\` prop when used as a child of a Layout Route`
             )
           }
         }
         return child.props
+      }
+      if (isCustomNavigator) {
+        customChildren.push(child)
       } else {
-        if (isCustomNavigator) {
-          customChildren.push(child)
-        } else {
-          console.warn(
-            `Layout children must be of type Screen, all other children are ignored. To use custom children, create a custom <Layout />. Update Layout Route at: "app${contextKey}/_layout"`
-          )
-        }
+        console.warn(
+          `Layout children must be of type Screen, all other children are ignored. To use custom children, create a custom <Layout />. Update Layout Route at: "app${contextKey}/_layout"`
+        )
       }
     })
 
@@ -68,7 +65,7 @@ export function withLayoutContext<
   TOptions extends object,
   T extends React.ComponentType<any>,
   State extends NavigationState,
-  EventMap extends EventMapBase
+  EventMap extends EventMapBase,
 >(
   Nav: T,
   processor?: (
@@ -82,10 +79,7 @@ export function withLayoutContext<
 } {
   const Navigator = React.forwardRef(
     (
-      {
-        children: userDefinedChildren,
-        ...props
-      }: PickPartial<React.ComponentProps<T>, 'children'>,
+      { children: userDefinedChildren, ...props }: PickPartial<React.ComponentProps<T>, 'children'>,
       ref
     ) => {
       const contextKey = useContextKey()

@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react'
 
-import { useDeprecated } from "../useDeprecated";
-import { useNavigation } from "../useNavigation";
+import { useDeprecated } from '../useDeprecated'
+import { useNavigation } from '../useNavigation'
 
-export type ScreenProps<
-  TOptions extends Record<string, any> = Record<string, any>
-> = {
+export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>> = {
   /**
    * Name is required when used inside a Layout component.
    *
@@ -13,17 +11,16 @@ export type ScreenProps<
    * This should not be used inside of a Layout component.
    * @example `/(root)` maps to a layout route `/app/(root).tsx`.
    */
-  name?: string;
+  name?: string
 
   /** Should redirect away from this screen. */
-  redirect?: boolean;
+  redirect?: boolean
 
-  initialParams?: { [key: string]: any };
-  options?: TOptions;
-};
+  initialParams?: { [key: string]: any }
+  options?: TOptions
+}
 
-const useLayoutEffect =
-  typeof window !== "undefined" ? React.useLayoutEffect : function () {};
+const useLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : () => {}
 
 /** Component for setting the current screen's options dynamically. */
 export function Screen<TOptions extends object = object>({
@@ -31,7 +28,7 @@ export function Screen<TOptions extends object = object>({
   redirect,
   options,
 }: ScreenProps<TOptions>) {
-  const navigation = useNavigation(name);
+  const navigation = useNavigation(name)
 
   useLayoutEffect(() => {
     if (
@@ -40,28 +37,28 @@ export function Screen<TOptions extends object = object>({
       // https://github.com/expo/router/issues/452
       Object.keys(options).length
     ) {
-      navigation.setOptions(options);
+      navigation.setOptions(options)
     }
-  }, [navigation, options]);
+  }, [navigation, options])
 
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useDeprecated(
-      "The `redirect` prop on <Screen /> is deprecated and will be removed. Please use `router.redirect` instead",
+      'The `redirect` prop on <Screen /> is deprecated and will be removed. Please use `router.redirect` instead',
       redirect
-    );
+    )
   }
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (redirect != null) {
         throw new Error(
-          "Screen components should only use the `redirect` prop when nested directly inside a Layout component."
-        );
+          'Screen components should only use the `redirect` prop when nested directly inside a Layout component.'
+        )
       }
-    }, [name, redirect]);
+    }, [name, redirect])
   }
 
-  return null;
+  return null
 }

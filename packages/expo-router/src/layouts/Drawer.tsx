@@ -1,9 +1,9 @@
 import {
-  DrawerNavigationEventMap,
-  DrawerNavigationOptions,
+  type DrawerNavigationEventMap,
+  type DrawerNavigationOptions,
   createDrawerNavigator,
 } from '@react-navigation/drawer'
-import { DrawerNavigationState, ParamListBase } from '@react-navigation/native'
+import type { DrawerNavigationState, ParamListBase } from '@react-navigation/native'
 
 import { withLayoutContext } from './withLayoutContext'
 
