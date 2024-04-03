@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from 'react'
+import React, { type ReactNode, useContext } from 'react'
 
 import type { ErrorBoundaryProps } from './views/Try'
 import { getContextKey, matchGroupName } from './matchers'
@@ -55,9 +55,7 @@ export function useContextKey(): string {
 
 /** Provides the matching routes and filename to the children. */
 export function Route({ children, node }: { children: ReactNode; node: RouteNode }) {
-  return (
-    <CurrentRouteContext.Provider value={node}>{children}</CurrentRouteContext.Provider>
-  )
+  return <CurrentRouteContext.Provider value={node}>{children}</CurrentRouteContext.Provider>
 }
 
 export function sortRoutesWithInitial(initialRouteName?: string) {

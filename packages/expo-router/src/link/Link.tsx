@@ -2,11 +2,11 @@
 // `to` / `action` support removed.
 import { Slot } from '@tamagui/web'
 import * as React from 'react'
-import { GestureResponderEvent, Platform, Text, TextProps } from 'react-native'
+import { type GestureResponderEvent, Platform, Text, type TextProps } from 'react-native'
 
 import { useRouter } from '../hooks'
 import { useFocusEffect } from '../useFocusEffect'
-import { Href, resolveHref } from './href'
+import { type Href, resolveHref } from './href'
 import useLinkToPathProps from './useLinkToPathProps'
 
 export interface LinkProps extends Omit<TextProps, 'href' | 'hoverStyle'> {
@@ -20,9 +20,7 @@ export interface LinkProps extends Omit<TextProps, 'href' | 'hoverStyle'> {
   /** Should replace the current route without adding to the history. */
   replace?: boolean
 
-  onPress?: (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent
-  ) => void
+  onPress?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => void
 }
 
 /** Redirects to the href as soon as the component is mounted. */
@@ -76,9 +74,7 @@ function ExpoRouterLink(
 
   const props = useLinkToPathProps({ href: resolvedHref, replace })
 
-  const onPress = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent
-  ) => {
+  const onPress = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => {
     if ('onPress' in rest) {
       rest.onPress?.(e)
     }

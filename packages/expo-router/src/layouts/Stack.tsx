@@ -1,7 +1,7 @@
-import { ParamListBase, StackNavigationState } from '@react-navigation/native'
+import type { ParamListBase, StackNavigationState } from '@react-navigation/native'
 import {
-  NativeStackNavigationEventMap,
-  NativeStackNavigationOptions,
+  type NativeStackNavigationEventMap,
+  type NativeStackNavigationOptions,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack'
 

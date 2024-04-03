@@ -3,8 +3,8 @@
 // For simplicity the following are disabled: enabled, prefixes, independent
 // https://github.com/react-navigation/react-navigation/blob/main/packages/native/src/useLinking.native.tsx
 import {
-  NavigationContainerRef,
-  ParamListBase,
+  type NavigationContainerRef,
+  type ParamListBase,
   getActionFromState as getActionFromStateDefault,
   getStateFromPath as getStateFromPathDefault,
 } from '@react-navigation/core'
@@ -130,9 +130,7 @@ export default function useLinking(
     // NOTE(EvanBacon): This is the important part.
     const path = extractExpoPathFromURL(url)
 
-    return path !== undefined
-      ? getStateFromPathRef.current(path, configRef.current)
-      : undefined
+    return path !== undefined ? getStateFromPathRef.current(path, configRef.current) : undefined
   }, [])
 
   const getInitialState = React.useCallback(() => {

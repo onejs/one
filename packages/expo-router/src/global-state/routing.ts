@@ -2,10 +2,10 @@ import { CommonActions, StackActions, getActionFromState } from '@react-navigati
 import { TabActions } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
 
-import { Href, resolveHref } from '../link/href'
+import { type Href, resolveHref } from '../link/href'
 import { resolve } from '../link/path'
 import {
-  NavigateAction,
+  type NavigateAction,
   findTopRouteForTarget,
   getEarliestMismatchedRoute,
   getQualifiedStateForTopOfTargetState,
@@ -42,10 +42,7 @@ export function canGoBack(this: RouterStore): boolean {
   return this.navigationRef?.current?.canGoBack() ?? false
 }
 
-export function setParams(
-  this: RouterStore,
-  params: Record<string, string | number> = {}
-) {
+export function setParams(this: RouterStore, params: Record<string, string | number> = {}) {
   assertIsReady(this)
   return (this.navigationRef?.current?.setParams as any)(params)
 }
@@ -90,9 +87,7 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
   const state = this.linking.getStateFromPath!(href, this.linking.config)
 
   if (!state) {
-    console.error(
-      'Could not generate a valid navigation state for the given path: ' + href
-    )
+    console.error('Could not generate a valid navigation state for the given path: ' + href)
     return
   }
 
@@ -150,9 +145,6 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
           navigationRef.dispatch(TabActions.jumpTo(earliest.name, earliest.params))
         }
         return
-      } else {
-        // This should never happen because moving to the same route would be handled earlier
-        // in the sibling operations.
       }
     }
 

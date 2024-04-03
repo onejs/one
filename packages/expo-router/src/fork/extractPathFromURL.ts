@@ -33,8 +33,7 @@ function extractExactPathFromURL(url: string): string {
           .map(([k, v]) => `${k}=${v}`)
           .join('&')
     return (
-      adjustPathname({ hostname: res.hostname, pathname: res.path || '' }) +
-      (qs ? '?' + qs : '')
+      adjustPathname({ hostname: res.hostname, pathname: res.path || '' }) + (qs ? '?' + qs : '')
     )
   }
 

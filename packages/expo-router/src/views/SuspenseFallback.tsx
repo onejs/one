@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { RouteNode } from '../Route'
+import type { RouteNode } from '../Route'
 
 // import { Toast, ToastWrapper } from './Toast'
 
