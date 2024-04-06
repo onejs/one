@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import type { ErrorBoundaryProps } from './views/Try';
 export type DynamicConvention = {
     name: string;

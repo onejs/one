@@ -1,19 +1,52 @@
+import viteInspectPlugin from 'vite-plugin-inspect'
 import { readFile } from 'fs/promises'
-import { dirname, join, relative } from 'path'
+import { dirname, join, relative, resolve } from 'node:path'
 
 import * as babel from '@babel/core'
 import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import react from '@vitejs/plugin-react-swc'
 import { parse } from 'es-module-lexer'
-import { pathExists } from 'fs-extra'
-import { InlineConfig, build, createServer, mergeConfig, resolveConfig } from 'vite'
+import { ensureDir, pathExists, pathExistsSync } from 'fs-extra'
+import {
+  type InlineConfig,
+  type PluginOption,
+  type UserConfig,
+  build,
+  createServer,
+  mergeConfig,
+  resolveConfig,
+} from 'vite'
+import { buildReactNative, buildReact, buildReactJSX } from '@vxrn/react-native-prebuilt'
 
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { createDevServer } from './dev/createDevServer'
-import { HMRListener } from './types'
-import { StartOptions } from './types'
+import type { HMRListener, StartOptions } from './types'
 import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
+
+const nativeExtensions = [
+  '.native.tsx',
+  '.native.jsx',
+  '.native.js',
+  '.tsx',
+  '.ts',
+  '.js',
+  '.css',
+  '.json',
+]
+
+const extensions = [
+  '.web.tsx',
+  '.tsx',
+  '.web.ts',
+  '.ts',
+  '.web.jsx',
+  '.jsx',
+  '.web.js',
+  '.js',
+  '.css',
+  '.json',
+]
 
 export const create = async (options: StartOptions) => {
   const { host = '127.0.0.1', root, nativePort = 8081, webPort } = options
@@ -21,31 +54,162 @@ export const create = async (options: StartOptions) => {
   let entryRoot = ''
 
   const packageRootDir = join(__dirname, '..')
+
+  const cacheDir = join(options.root, 'node_modules', '.cache', 'vxrn')
+
+  await ensureDir(cacheDir)
+
+  const prebuilds = {
+    reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
+    react: join(cacheDir, 'react.js'),
+    reactNative: join(cacheDir, 'react-native.js'),
+  }
+
+  if (!(await pathExists(prebuilds.reactNative))) {
+    console.info('Pre-building react, react-native react/jsx-runtime (one time cost)...')
+    await Promise.all([
+      buildReactNative({
+        entryPoints: [require.resolve('react-native')],
+        outfile: prebuilds.reactNative,
+      }),
+      buildReact({
+        entryPoints: [require.resolve('react')],
+        outfile: prebuilds.react,
+      }),
+      buildReactJSX({
+        entryPoints: [require.resolve('react/jsx-dev-runtime')],
+        outfile: prebuilds.reactJSX,
+      }),
+    ])
+  }
+
   const templateFile = join(packageRootDir, 'react-native-template.js')
 
   // react native port (it scans 19000 +5)
   const hmrListeners: HMRListener[] = []
   const hotUpdatedCJSFiles = new Map<string, string>()
+  const jsxRuntime = {
+    // alias: 'virtual:react-jsx',
+    alias: prebuilds.reactJSX,
+    contents: await readFile(prebuilds.reactJSX, 'utf-8'),
+  } as const
 
-  let serverConfig = {
+  const virtualModules = {
+    'react-native': {
+      // alias: 'virtual:react-native',
+      alias: prebuilds.reactNative,
+      contents: await readFile(prebuilds.reactNative, 'utf-8'),
+    },
+    react: {
+      // alias: 'virtual:react',
+      alias: prebuilds.react,
+      contents: await readFile(prebuilds.react, 'utf-8'),
+    },
+    'react/jsx-runtime': jsxRuntime,
+    'react/jsx-dev-runtime': jsxRuntime,
+  } as const
+
+  const swapRnPlugin: PluginOption = {
+    name: `swap-react-native`,
+    enforce: 'pre',
+
+    resolveId(id, importer = '') {
+      if (id.startsWith('react-native/Libraries')) {
+        return `virtual:rn-internals:${id}`
+      }
+
+      // this will break web support, we need a way to somehow switch between?
+      if (id === 'react-native-web') {
+        return prebuilds.reactNative
+      }
+
+      for (const targetId in virtualModules) {
+        if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
+          const info = virtualModules[targetId]
+
+          return info.alias
+        }
+      }
+
+      // TODO this is terrible and slow, we should be able to get extensions working:
+      // having trouble getting .native.js to be picked up via vite
+      // tried adding packages to optimizeDeps, tried resolveExtensions + extensions...
+      // tried this but seems to not be called for node_modules
+      if (id[0] === '.') {
+        const absolutePath = resolve(dirname(importer), id)
+        const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
+        if (nativePath === id) return
+        try {
+          const directoryPath = absolutePath + '/index.native.js'
+          const directoryNonNativePath = absolutePath + '/index.js'
+          if (pathExistsSync(directoryPath)) {
+            return directoryPath
+          }
+          if (pathExistsSync(directoryNonNativePath)) {
+            return directoryNonNativePath
+          }
+          if (pathExistsSync(nativePath)) {
+            return nativePath
+          }
+        } catch (err) {
+          console.warn(`error probably fine`, err)
+        }
+      }
+    },
+
+    load(id) {
+      if (id.startsWith('virtual:rn-internals')) {
+        const idOut = id.replace('virtual:rn-internals:', '')
+        return `const val = __cachedModules["${idOut}"]
+          export const PressabilityDebugView = val.PressabilityDebugView
+          export default val ? val.default || val : val`
+      }
+
+      for (const targetId in virtualModules) {
+        const info = virtualModules[targetId as keyof typeof virtualModules]
+        if (id === info.alias) {
+          return info.contents
+        }
+      }
+    },
+  } as const
+
+  let serverConfig: UserConfig = {
     root,
     mode: 'development',
     clearScreen: false,
+    define: {
+      __DEV__: 'true',
+      'process.env.NODE_ENV': `"development"`,
+    },
 
     resolve: {
-      dedupe: ['react', 'react-dom'],
+      // dedupe: ['react', 'react-dom'],
       alias: {
-        'react-native': 'react-native-web',
+        // ...Object.fromEntries(Object.entries(virtualModules).map(([k, v]) => [k, v.alias])),
+        'react-native': require.resolve('react-native-web-lite'),
       },
     },
-
     optimizeDeps: {
       include: ['react'],
+      exclude: Object.values(virtualModules).map((v) => v.alias),
+      force: true,
+      esbuildOptions: {
+        resolveExtensions: extensions,
+      },
     },
-
+    build: {
+      commonjsOptions: {
+        transformMixedEsModules: true,
+      },
+    },
     plugins: [
+      swapRnPlugin,
       react(),
-
+      // viteReactPlugin({
+      //   tsDecorators: true,
+      //   mode: 'serve',
+      // }),
       {
         name: 'client-transform',
 
@@ -155,7 +319,7 @@ export const create = async (options: StartOptions) => {
 
   serverConfig = {
     ...serverConfig,
-    plugins: [...serverConfig.plugins],
+    plugins: [...serverConfig.plugins!],
   }
 
   const viteServer = await createServer(serverConfig)
@@ -230,58 +394,6 @@ export const create = async (options: StartOptions) => {
       done = res
     })
 
-    const jsxRuntime = {
-      alias: 'virtual:react-jsx',
-      contents: await readFile(require.resolve('@vxrn/react-native-prebuilt/jsx-runtime'), 'utf-8'),
-    } as const
-
-    const virtualModules = {
-      'react-native': {
-        alias: 'virtual:react-native',
-        contents: await readFile(require.resolve('@vxrn/react-native-prebuilt'), 'utf-8'),
-      },
-      react: {
-        alias: 'virtual:react',
-        contents: await readFile(require.resolve('@vxrn/react-native-prebuilt/react'), 'utf-8'),
-      },
-      'react/jsx-runtime': jsxRuntime,
-      'react/jsx-dev-runtime': jsxRuntime,
-    } as const
-
-    const swapRnPlugin = {
-      name: `swap-react-native`,
-      enforce: 'pre',
-
-      resolveId(id) {
-        if (id.startsWith('react-native/Libraries')) {
-          return `virtual:rn-internals:${id}`
-        }
-
-        for (const targetId in virtualModules) {
-          if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
-            const info = virtualModules[targetId]
-            return info.alias
-          }
-        }
-      },
-
-      load(id) {
-        if (id.startsWith('virtual:rn-internals')) {
-          const idOut = id.replace('virtual:rn-internals:', '')
-          return `const val = __cachedModules["${idOut}"]
-          export const PressabilityDebugView = val.PressabilityDebugView
-          export default val ? val.default || val : val`
-        }
-
-        for (const targetId in virtualModules) {
-          const info = virtualModules[targetId as keyof typeof virtualModules]
-          if (id === info.alias) {
-            return info.contents
-          }
-        }
-      },
-    } as const
-
     async function babelReanimated(input: string, filename: string) {
       return await new Promise<string>((res, rej) => {
         babel.transform(
@@ -326,10 +438,30 @@ export const create = async (options: StartOptions) => {
           tsDecorators: true,
           mode: 'build',
         }),
+
+        viteInspectPlugin({
+          build: true,
+          outputDir: '.vite-inspect',
+        }),
+
+        {
+          name: 'native-extensions',
+
+          // async config(config) {
+          //   config.resolve!.extensions = nativeExtensions
+          //   config.optimizeDeps!.esbuildOptions!.resolveExtensions = nativeExtensions
+
+          //   return config
+          // },
+        },
       ],
       appType: 'custom',
       root,
       clearScreen: false,
+
+      // optimizeDeps: {
+      //   include: ['tamagui'],
+      // },
 
       build: {
         ssr: false,
@@ -345,6 +477,10 @@ export const create = async (options: StartOptions) => {
             format: 'cjs',
           },
         },
+      },
+
+      resolve: {
+        extensions: nativeExtensions,
       },
 
       mode: 'development',
@@ -412,7 +548,15 @@ __require("${outputModule.fileName}")
       .replaceAll('undefined.accept(() => {})', '')
       .replaceAll('undefined.accept(function() {});', '') // swc
 
-    const out = (await readFile(templateFile, 'utf-8')) + appCode
+    // TODO this is not stable based on cwd
+    const appRootParent = join(options.root, '..', '..')
+
+    const template = (await readFile(templateFile, 'utf-8'))
+      .replace('_virtual/virtual_react-native.js', relative(appRootParent, prebuilds.reactNative))
+      .replace('_virtual/virtual_react.js', relative(appRootParent, prebuilds.react))
+      .replaceAll('_virtual/virtual_react-jsx.js', relative(appRootParent, prebuilds.reactJSX))
+
+    const out = template + appCode
 
     done(out)
     isBuilding = null
@@ -457,7 +601,7 @@ function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
       staticConfigPath: join(root, 'app.json'),
       packageJsonPath: join(root, 'package.json'),
     },
-    sdkVersion: '49.0.0',
+    sdkVersion: '47.0.0',
     platforms: ['ios', 'android', 'web'],
     iconUrl: `http://127.0.0.1:${port}/assets/./assets/icon.png`,
     debuggerHost: `127.0.0.1:${port}`,

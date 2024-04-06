@@ -1,22 +1,35 @@
 {
   "name": "@vxrn/react-native-prebuilt",
+  "type": "module",
   "version": "0.0.7",
-  "main": "react-native.js",
+  "types": "./types/index.d.ts",
+  "main": "dist/cjs",
+  "module": "dist/esm",
   "license": "MIT",
-  "sideEffects": true,
   "files": [
     "dist"
   ],
   "scripts": {
-    "prebuild": "node -r esbuild-register ./prebuild-react-native.ts"
+    "prebuild": "node -r esbuild-register ./prebuild-react-native.ts",
+    "build": "tamagui-build",
+    "watch": "tamagui-build --watch",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build"
   },
   "exports": {
-    ".": "./dist/react-native.js",
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./react-native": "./dist/react-native.js",
     "./react": "./dist/react.js",
     "./jsx-runtime": "./dist/react-jsx-runtime.js"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
+    "@tamagui/build": "1.94.4",
     "esbuild": "~0.19.3",
     "fs-extra": "^11.1.0",
     "metro-react-native-babel-preset": "^0.77.0",
