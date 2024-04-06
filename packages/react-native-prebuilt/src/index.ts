@@ -20,9 +20,6 @@ async function nativeBabelFlowTransform(input: string) {
 }
 
 const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
-const outPath = './dist/react-native.js'
-const reactOutPath = './dist/react.js'
-const reactJsxOutPath = './dist/react-jsx-runtime.js'
 
 export async function buildAll() {
   console.info(`Prebuilding React Native (one time cost...)`)
@@ -33,7 +30,6 @@ export async function buildReactJSX(options: BuildOptions = {}) {
   return build({
     bundle: true,
     entryPoints: [require.resolve('react/jsx-dev-runtime')],
-    outfile: reactJsxOutPath,
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -49,7 +45,7 @@ export async function buildReactJSX(options: BuildOptions = {}) {
     ...options,
   }).then(async () => {
     // manual force exports
-    const bundled = await readFile(reactJsxOutPath, 'utf-8')
+    const bundled = await readFile(options.outfile!, 'utf-8')
     const outCode = `
     const run = () => {
       ${bundled.replace(
@@ -62,7 +58,7 @@ export async function buildReactJSX(options: BuildOptions = {}) {
       .map((n) => `export const ${n} = __mod__.${n} || __mod__.jsx || __mod__.jsxDEV`)
       .join('\n')}
     `
-    await writeFile(reactJsxOutPath, outCode)
+    await writeFile(options.outfile!, outCode)
   })
 }
 
@@ -70,7 +66,6 @@ export async function buildReact(options: BuildOptions = {}) {
   return build({
     bundle: true,
     entryPoints: [require.resolve('react')],
-    outfile: reactOutPath,
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -86,7 +81,7 @@ export async function buildReact(options: BuildOptions = {}) {
     ...options,
   }).then(async () => {
     // manual force exports
-    const bundled = await readFile(reactOutPath, 'utf-8')
+    const bundled = await readFile(options.outfile!, 'utf-8')
     const outCode = `
     const run = () => {
       ${bundled.replace(
@@ -98,7 +93,7 @@ export async function buildReact(options: BuildOptions = {}) {
     ${RExports.map((n) => `export const ${n} = __mod__.${n}`).join('\n')}
     export default __mod__
     `
-    await writeFile(reactOutPath, outCode)
+    await writeFile(options.outfile!, outCode)
   })
 }
 
@@ -106,7 +101,6 @@ export async function buildReactNative(options: BuildOptions = {}) {
   return build({
     bundle: true,
     entryPoints: [require.resolve('react-native')],
-    outfile: outPath,
     format: 'cjs',
     target: 'node20',
     jsx: 'transform',
@@ -178,7 +172,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
     ],
   }).then(async () => {
     // manual force exports
-    const bundled = await readFile(outPath, 'utf-8')
+    const bundled = await readFile(options.outfile!, 'utf-8')
     const outCode = `
     const run = () => {
       ${bundled
@@ -206,7 +200,7 @@ return mod
     const RN = run()
     ${RNExportNames.map((n) => `export const ${n} = RN.${n}`).join('\n')}
     `
-    await writeFile(outPath, outCode)
+    await writeFile(options.outfile!, outCode)
   })
 }
 

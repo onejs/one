@@ -5,7 +5,7 @@ import * as babel from '@babel/core'
 import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import react from '@vitejs/plugin-react-swc'
 import { parse } from 'es-module-lexer'
-import { pathExists } from 'fs-extra'
+import { ensureDir, pathExists } from 'fs-extra'
 import {
   type InlineConfig,
   type PluginOption,
@@ -43,10 +43,14 @@ export const create = async (options: StartOptions) => {
 
   const packageRootDir = join(__dirname, '..')
 
+  const cacheDir = join(options.root, 'node_modules', '.cache', 'vxrn')
+
+  await ensureDir(cacheDir)
+
   const prebuilds = {
-    reactJSX: join(options.root, 'dist', 'react-jsx-runtime.js'),
-    react: join(options.root, 'dist', 'react.js'),
-    reactNative: join(options.root, 'dist', 'react-native.js'),
+    reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
+    react: join(cacheDir, 'react.js'),
+    reactNative: join(cacheDir, 'react-native.js'),
   }
 
   if (!(await pathExists(prebuilds.reactNative))) {
@@ -54,12 +58,15 @@ export const create = async (options: StartOptions) => {
     await Promise.all([
       buildReactNative({
         entryPoints: [require.resolve('react-native')],
+        outfile: prebuilds.reactNative,
       }),
       buildReact({
         entryPoints: [require.resolve('react')],
+        outfile: prebuilds.react,
       }),
       buildReactJSX({
         entryPoints: [require.resolve('react/jsx-dev-runtime')],
+        outfile: prebuilds.reactJSX,
       }),
     ])
   }
@@ -398,6 +405,21 @@ export const create = async (options: StartOptions) => {
       appType: 'custom',
       root,
       clearScreen: false,
+
+      resolve: {
+        extensions: [
+          '.native.tsx',
+          '.tsx',
+          '.native.ts',
+          '.ts',
+          '.native.jsx',
+          '.jsx',
+          '.native.js',
+          '.js',
+          '.css',
+          '.json',
+        ],
+      },
 
       build: {
         ssr: false,
