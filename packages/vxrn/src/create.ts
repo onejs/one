@@ -406,21 +406,6 @@ export const create = async (options: StartOptions) => {
       root,
       clearScreen: false,
 
-      resolve: {
-        extensions: [
-          '.native.tsx',
-          '.tsx',
-          '.native.ts',
-          '.ts',
-          '.native.jsx',
-          '.jsx',
-          '.native.js',
-          '.js',
-          '.css',
-          '.json',
-        ],
-      },
-
       build: {
         ssr: false,
         minify: false,
