@@ -131,16 +131,28 @@ export const create = async (options: StartOptions) => {
         }
       }
 
+      // TODO this is terrible and slow, we should be able to get extensions working:
       // having trouble getting .native.js to be picked up via vite
       // tried adding packages to optimizeDeps, tried resolveExtensions + extensions...
       // tried this but seems to not be called for node_modules
       if (id[0] === '.') {
         const absolutePath = resolve(dirname(importer), id)
-        const nativePath = absolutePath.replace('.js', '') + '.native.js'
+        const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
         if (nativePath === id) return
-        if (pathExistsSync(nativePath)) {
-          console.info('swap for native', id, nativePath)
-          return nativePath
+        try {
+          const directoryPath = absolutePath + '/index.native.js'
+          const directoryNonNativePath = absolutePath + '/index.js'
+          if (pathExistsSync(directoryPath)) {
+            return directoryPath
+          }
+          if (pathExistsSync(directoryNonNativePath)) {
+            return directoryNonNativePath
+          }
+          if (pathExistsSync(nativePath)) {
+            return nativePath
+          }
+        } catch (err) {
+          console.warn(`error probably fine`, err)
         }
       }
     },
