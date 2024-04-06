@@ -7,19 +7,19 @@ import react from '@vitejs/plugin-react-swc'
 import { parse } from 'es-module-lexer'
 import { pathExists } from 'fs-extra'
 import {
-  InlineConfig,
-  PluginOption,
-  UserConfig,
+  type InlineConfig,
+  type PluginOption,
+  type UserConfig,
   build,
   createServer,
   mergeConfig,
   resolveConfig,
 } from 'vite'
+import { buildReactNative, buildReact, buildReactJSX } from '@vxrn/react-native-prebuilt'
 
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { createDevServer } from './dev/createDevServer'
-import { HMRListener } from './types'
-import { StartOptions } from './types'
+import type { HMRListener, StartOptions } from './types'
 import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
 
@@ -44,25 +44,44 @@ export const create = async (options: StartOptions) => {
   const packageRootDir = join(__dirname, '..')
   const templateFile = join(packageRootDir, 'react-native-template.js')
 
+  console.info('prebuilding react, react-native react/jsx-runtime...')
+  await Promise.all([
+    buildReactNative({
+      entryPoints: [require.resolve('react-native')],
+    }),
+    buildReact({
+      entryPoints: [require.resolve('react')],
+    }),
+    buildReactJSX({
+      entryPoints: [require.resolve('react/jsx-dev-runtime')],
+    }),
+  ])
+
+  const prebuilds = {
+    reactJSX: join(options.root, 'dist', 'react-jsx-runtime.js'),
+    react: join(options.root, 'dist', 'react.js'),
+    reactNative: join(options.root, 'dist', 'react-native.js'),
+  }
+
   // react native port (it scans 19000 +5)
   const hmrListeners: HMRListener[] = []
   const hotUpdatedCJSFiles = new Map<string, string>()
   const jsxRuntime = {
     // alias: 'virtual:react-jsx',
-    alias: require.resolve('@vxrn/react-native-prebuilt/jsx-runtime'),
-    contents: await readFile(require.resolve('@vxrn/react-native-prebuilt/jsx-runtime'), 'utf-8'),
+    alias: prebuilds.reactJSX,
+    contents: await readFile(prebuilds.reactJSX, 'utf-8'),
   } as const
 
   const virtualModules = {
     'react-native': {
       // alias: 'virtual:react-native',
-      alias: require.resolve('@vxrn/react-native-prebuilt'),
-      contents: await readFile(require.resolve('@vxrn/react-native-prebuilt'), 'utf-8'),
+      alias: prebuilds.reactNative,
+      contents: await readFile(prebuilds.reactNative, 'utf-8'),
     },
     react: {
       // alias: 'virtual:react',
-      alias: require.resolve('@vxrn/react-native-prebuilt/react'),
-      contents: await readFile(require.resolve('@vxrn/react-native-prebuilt/react'), 'utf-8'),
+      alias: prebuilds.react,
+      contents: await readFile(prebuilds.react, 'utf-8'),
     },
     'react/jsx-runtime': jsxRuntime,
     'react/jsx-dev-runtime': jsxRuntime,

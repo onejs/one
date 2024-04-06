@@ -52,6 +52,6 @@
     "ws": "^8.7.0"
   },
   "devDependencies": {
-    "@tamagui/build": "latest"
+    "@tamagui/build": "1.94.4"
   }
 }
