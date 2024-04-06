@@ -26,9 +26,7 @@ const patch = process.argv.includes('--patch')
 const dirty = process.argv.includes('--dirty')
 const skipPublish = process.argv.includes('--skip-publish')
 const skipTest =
-  rePublish ||
-  process.argv.includes('--skip-test') ||
-  process.argv.includes('--skip-tests')
+  rePublish || process.argv.includes('--skip-test') || process.argv.includes('--skip-tests')
 const skipBuild = rePublish || process.argv.includes('--skip-build')
 const dryRun = process.argv.includes('--dry-run')
 const isCI = process.argv.includes('--ci')
@@ -154,8 +152,8 @@ async function run() {
 
     if (!dirty && !dryRun && !rePublish) {
       const out = await exec(`git status --porcelain`)
-      if (out.stdout) {
-        throw new Error(`Has unsaved git changes: ${out.stdout}`)
+      if (out) {
+        throw new Error(`Has unsaved git changes: ${out}`)
       }
     }
 
@@ -221,9 +219,7 @@ async function run() {
           // check if already published first as its way faster for re-runs
           let versionsOut = ''
           try {
-            versionsOut = await exec(`npm view ${name} versions --json`, {
-              avoidLog: true,
-            })
+            versionsOut = await exec(`npm view ${name} versions --json`, {})
             if (versionsOut) {
               const allVersions = JSON.parse(versionsOut.trim().replaceAll(`\n`, ''))
               const latest = allVersions[allVersions.length - 1]
@@ -247,7 +243,6 @@ async function run() {
           try {
             await exec(`npm publish --tag prepub --access public`, {
               cwd,
-              avoidLog: true,
             })
             console.info(` 📢 pre-published ${name}`)
           } catch (err: any) {
@@ -264,9 +259,7 @@ async function run() {
         }
       )
 
-      console.info(
-        `✅ Published under dist-tag "prepub" (${erroredPackages.length} errors)\n`
-      )
+      console.info(`✅ Published under dist-tag "prepub" (${erroredPackages.length} errors)\n`)
     }
 
     if (!finish) {

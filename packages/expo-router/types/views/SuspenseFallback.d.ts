@@ -1,4 +1,4 @@
-import { RouteNode } from '../Route';
+import type { RouteNode } from '../Route';
 export declare function SuspenseFallback({ route }: {
     route: RouteNode;
 }): null;

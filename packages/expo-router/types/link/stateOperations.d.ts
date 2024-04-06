@@ -1,7 +1,7 @@
-import { InitialState, NavigationState, ParamListBase, PartialState, getActionFromState } from "@react-navigation/native";
-import { ResultState } from "../fork/getStateFromPath";
+import type { InitialState, NavigationState, ParamListBase, PartialState, getActionFromState } from '@react-navigation/native';
+import type { ResultState } from '../fork/getStateFromPath';
 export type NavigateAction = Extract<ReturnType<typeof getActionFromState>, {
-    type: "NAVIGATE";
+    type: 'NAVIGATE';
 }> & {
     payload: NavigateActionParams;
 };

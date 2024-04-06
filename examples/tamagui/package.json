@@ -7,13 +7,13 @@
     "dev": "node -r esbuild-register ./dev.ts"
   },
   "dependencies": {
-    "@tamagui/config": "latest",
-    "@tamagui/core": "latest",
-    "@tamagui/vite-plugin": "latest",
+    "@tamagui/config": "1.94.4",
+    "@tamagui/core": "1.94.4",
+    "@tamagui/vite-plugin": "1.94.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "0.73.2",
-    "tamagui": "latest",
+    "tamagui": "1.94.4",
     "vxrn": "0.0.7"
   }
 }

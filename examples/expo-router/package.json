@@ -17,6 +17,6 @@
     "vxrn": "0.0.7"
   },
   "devDependencies": {
-    "@tamagui/cli": "latest"
+    "@tamagui/cli": "1.94.4"
   }
 }

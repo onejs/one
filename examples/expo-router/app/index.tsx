@@ -1,18 +1,18 @@
 import { Link } from '@vxrn/expo-router'
-import { Button, Stack, Text } from 'tamagui'
+import { View, Text } from 'react-native'
 
 export default () => (
   <>
-    <Stack w={100} h={100} bc="pink">
+    <View>
       <Text>hi from home</Text>
-    </Stack>
+    </View>
     <Link
       href={{
         pathname: '/[user]',
         params: { user: 'abc' },
       }}
     >
-      <Button>Go to "other"</Button>
+      <Text>Go to "other"</Text>
     </Link>
   </>
 )

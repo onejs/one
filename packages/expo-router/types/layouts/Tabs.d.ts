@@ -1,7 +1,7 @@
-import { BottomTabNavigationEventMap, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
-import { ParamListBase, TabNavigationState } from '@react-navigation/native';
+import { type BottomTabNavigationEventMap, type BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
+import type { ParamListBase, TabNavigationState } from '@react-navigation/native';
 import React from 'react';
-import { Href } from '../link/href';
+import type { Href } from '../link/href';
 export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/native").DefaultRouterOptions<string> & {
     id?: string | undefined;
     children: React.ReactNode;

@@ -1,6 +1,6 @@
 import type { EventMapBase, NavigationState, ParamListBase, RouteProp, ScreenListeners } from '@react-navigation/native';
 import React from 'react';
-import { RouteNode } from './Route';
+import { type RouteNode } from './Route';
 export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>, State extends NavigationState = NavigationState, EventMap extends EventMapBase = EventMapBase> = {
     /** Name is required when used inside a Layout component. */
     name?: string;

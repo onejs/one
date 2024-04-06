@@ -1,4 +1,4 @@
-import { View, Text, AppRegistry } from 'react-native'
+import { AppRegistry } from 'react-native'
 import App from './src/App'
 
-AppRegistry.registerComponent('bare', () => App)
+AppRegistry.registerComponent('main', () => App)

@@ -1,5 +1,5 @@
-import { NavigationContainerProps, NavigationContainerRef } from '@react-navigation/core';
-import { DocumentTitleOptions, LinkingOptions, Theme } from '@react-navigation/native';
+import { type NavigationContainerProps, type NavigationContainerRef } from '@react-navigation/core';
+import { type DocumentTitleOptions, type LinkingOptions, type Theme } from '@react-navigation/native';
 import * as React from 'react';
 type Props<ParamList extends object> = NavigationContainerProps & {
     theme?: Theme;

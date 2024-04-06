@@ -1,6 +1,6 @@
 import { getActionFromState } from '@react-navigation/core';
-import { Href } from '../link/href';
-import { NavigateAction } from '../link/stateOperations';
+import { type Href } from '../link/href';
+import { type NavigateAction } from '../link/stateOperations';
 import type { RouterStore } from './router-store';
 export declare function push(this: RouterStore, url: Href): void;
 export declare function replace(this: RouterStore, url: Href): void;

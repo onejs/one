@@ -1,5 +1,5 @@
-import { FunctionComponent, ReactNode } from 'react';
-import { RequireContext } from './types';
+import { type FunctionComponent, type ReactNode } from 'react';
+import type { RequireContext } from './types';
 export type ExpoRootProps = {
     context: RequireContext;
     location?: URL;

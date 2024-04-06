@@ -1,4 +1,4 @@
-import { NavigationContainerRef, ParamListBase } from '@react-navigation/core';
+import { type NavigationContainerRef, type ParamListBase } from '@react-navigation/core';
 import type { LinkingOptions } from '@react-navigation/native';
 import * as React from 'react';
 type Options = LinkingOptions<ParamListBase>;
