@@ -99,6 +99,7 @@ export const create = async (options: StartOptions) => {
         return `virtual:rn-internals:${id}`
       }
 
+      // this will break web support, we need a way to somehow switch between?
       if (id === 'react-native-web') {
         return prebuilds.reactNative
       }

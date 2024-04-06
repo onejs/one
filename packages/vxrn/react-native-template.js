@@ -1,38 +1,38 @@
 const global =
-  typeof globalThis !== "undefined"
+  typeof globalThis !== 'undefined'
     ? globalThis
-    : typeof global !== "undefined"
-    ? global
-    : typeof window !== "undefined"
-    ? window
-    : this;
+    : typeof global !== 'undefined'
+      ? global
+      : typeof window !== 'undefined'
+        ? window
+        : this
 
-globalThis["global"] = global;
-global["react"] = {};
-global["exports"] = {};
-global["module"] = {};
-global["__DEV__"] = true;
-global["___modules___"] = {};
+globalThis['global'] = global
+global['react'] = {}
+global['exports'] = {}
+global['module'] = {}
+global['__DEV__'] = true
+global['___modules___'] = {}
 // to avoid it looking like browser...
-delete globalThis["window"];
+delete globalThis['window']
 
-globalThis['__cachedModules'] = {};
+globalThis['__cachedModules'] = {}
 
 function __getRequire(absPath) {
   if (!__cachedModules[absPath]) {
-    const runModule = ___modules___[absPath];
+    const runModule = ___modules___[absPath]
     if (runModule) {
-      const mod = { exports: {} };
-      runModule(mod.exports, mod);
+      const mod = { exports: {} }
+      runModule(mod.exports, mod)
       __cachedModules[absPath] = mod.exports || mod
     }
   }
-  return __cachedModules[absPath];
+  return __cachedModules[absPath]
 }
 
 const __specialRequireMap = {
   'react-native': '_virtual/virtual_react-native.js',
-  'react': '_virtual/virtual_react.js',
+  react: '_virtual/virtual_react.js',
   'react/jsx-runtime': '_virtual/virtual_react-jsx.js',
   'react/jsx-dev-runtime': '_virtual/virtual_react-jsx.js',
 }
@@ -46,7 +46,7 @@ function createRequire(importsMap) {
         return found
       }
       if (globalThis[path]) {
-        const output = globalThis[path]()  
+        const output = globalThis[path]()
         __cachedModules[_mod] = output
         return output
       }
@@ -54,51 +54,51 @@ function createRequire(importsMap) {
       // find our import.meta.glob which don't get the nice path addition, for now hardcode but this shouldnt be hard to fix properly:
       const foundGlob = __getRequire(
         path
-          .replace('../app', 'apps/tamastack/app')
+          .replace('../app', 'examples/expo-router/app')
           .replace('.tsx', '.js')
           .replace('.ts', '.js')
       )
       if (foundGlob) {
         return foundGlob
       }
-      
-      console.error(`Not found: ${_mod}`);
+
+      console.error(`Not found: ${_mod}`)
       return {}
     } catch (err) {
-      throw new Error(`\n◆ ${_mod} "${err}"`.replace('Error: ', '').replaceAll('"', ''));
+      throw new Error(`\n◆ ${_mod} "${err}"`.replace('Error: ', '').replaceAll('"', ''))
     }
-  };
+  }
 }
 
-globalThis["setImmediate"] = (cb) => cb();
+globalThis['setImmediate'] = (cb) => cb()
 //cb => Promise.resolve().then(() => cb())
 
 // idk why
-console._tmpLogs = [];
-["trace", "info", "warn", "error", "log", "group", "groupCollapsed", "groupEnd", "debug"].forEach(
+console._tmpLogs = []
+;['trace', 'info', 'warn', 'error', 'log', 'group', 'groupCollapsed', 'groupEnd', 'debug'].forEach(
   (level) => {
-    const og = globalThis["console"][level];
-    globalThis["_ogConsole" + level] = og;
-    const ogConsole = og.bind(globalThis["console"]);
-    globalThis["console"][level] = (...data) => {
+    const og = globalThis['console'][level]
+    globalThis['_ogConsole' + level] = og
+    const ogConsole = og.bind(globalThis['console'])
+    globalThis['console'][level] = (...data) => {
       if (console._tmpLogs) {
-        console._tmpLogs.push({ level, data });
+        console._tmpLogs.push({ level, data })
       }
-      return ogConsole(...data);
-    };
-  },
-);
+      return ogConsole(...data)
+    }
+  }
+)
 
-console._isPolyfilled = true;
+console._isPolyfilled = true
 
 global.performance = {
   now: () => Date.now(),
-};
+}
 
 global.ErrorUtils = {
   setGlobalHandler: () => {},
   reportFatalError: (err) => {
     // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-    console.log("err" + err["message"] + err["stack"]);
+    console.log('err' + err['message'] + err['stack'])
   },
-};
+}

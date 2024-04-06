@@ -1,6 +1,6 @@
 // Fork of @react-navigation/native Link.tsx with `href` and `replace` support added and
 // `to` / `action` support removed.
-import { Slot } from '@tamagui/web'
+// import { Slot } from '@tamagui/web'
 import * as React from 'react'
 import { type GestureResponderEvent, Platform, Text, type TextProps } from 'react-native'
 
@@ -82,8 +82,8 @@ function ExpoRouterLink(
   }
 
   return React.createElement(
-    // @ts-expect-error: slot is not type-safe
-    asChild ? Slot : Text,
+    // TODO should be ? Slot
+    asChild ? Text : Text,
     {
       ref,
       ...props,
