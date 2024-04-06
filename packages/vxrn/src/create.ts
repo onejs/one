@@ -1,11 +1,12 @@
+import viteInspectPlugin from 'vite-plugin-inspect'
 import { readFile } from 'fs/promises'
-import { dirname, join, relative } from 'path'
+import { dirname, join, relative, resolve } from 'node:path'
 
 import * as babel from '@babel/core'
 import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import react from '@vitejs/plugin-react-swc'
 import { parse } from 'es-module-lexer'
-import { ensureDir, pathExists } from 'fs-extra'
+import { ensureDir, pathExists, pathExistsSync } from 'fs-extra'
 import {
   type InlineConfig,
   type PluginOption,
@@ -22,6 +23,17 @@ import { createDevServer } from './dev/createDevServer'
 import type { HMRListener, StartOptions } from './types'
 import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
+
+const nativeExtensions = [
+  '.native.tsx',
+  '.native.jsx',
+  '.native.js',
+  '.tsx',
+  '.ts',
+  '.js',
+  '.css',
+  '.json',
+]
 
 const extensions = [
   '.web.tsx',
@@ -101,7 +113,7 @@ export const create = async (options: StartOptions) => {
     name: `swap-react-native`,
     enforce: 'pre',
 
-    resolveId(id) {
+    resolveId(id, importer = '') {
       if (id.startsWith('react-native/Libraries')) {
         return `virtual:rn-internals:${id}`
       }
@@ -116,6 +128,19 @@ export const create = async (options: StartOptions) => {
           const info = virtualModules[targetId]
 
           return info.alias
+        }
+      }
+
+      // having trouble getting .native.js to be picked up via vite
+      // tried adding packages to optimizeDeps, tried resolveExtensions + extensions...
+      // tried this but seems to not be called for node_modules
+      if (id[0] === '.') {
+        const absolutePath = resolve(dirname(importer), id)
+        const nativePath = absolutePath.replace('.js', '') + '.native.js'
+        if (nativePath === id) return
+        if (pathExistsSync(nativePath)) {
+          console.info('swap for native', id, nativePath)
+          return nativePath
         }
       }
     },
@@ -401,10 +426,30 @@ export const create = async (options: StartOptions) => {
           tsDecorators: true,
           mode: 'build',
         }),
+
+        viteInspectPlugin({
+          build: true,
+          outputDir: '.vite-inspect',
+        }),
+
+        {
+          name: 'native-extensions',
+
+          // async config(config) {
+          //   config.resolve!.extensions = nativeExtensions
+          //   config.optimizeDeps!.esbuildOptions!.resolveExtensions = nativeExtensions
+
+          //   return config
+          // },
+        },
       ],
       appType: 'custom',
       root,
       clearScreen: false,
+
+      // optimizeDeps: {
+      //   include: ['tamagui'],
+      // },
 
       build: {
         ssr: false,
@@ -420,6 +465,10 @@ export const create = async (options: StartOptions) => {
             format: 'cjs',
           },
         },
+      },
+
+      resolve: {
+        extensions: nativeExtensions,
       },
 
       mode: 'development',

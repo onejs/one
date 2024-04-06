@@ -52,12 +52,8 @@ export function nativePlugin(options: {
       config.resolve ??= {}
 
       config.resolve.extensions = extensions
-      // config.resolve.conditions = [
-      //   // for rn compat use require over exports
-      //   'require',
-      //   'default',
-      //   'import',
-      // ]
+
+      config.resolve.conditions = ['react-native', 'require', 'default', 'import']
 
       config.optimizeDeps ??= {}
 
@@ -198,8 +194,7 @@ export function nativePlugin(options: {
       }
 
       if (Array.isArray(config.build.rollupOptions.output)) {
-        for (const o in config.build.rollupOptions.output)
-          updateOutputOptions(o as OutputOptions)
+        for (const o in config.build.rollupOptions.output) updateOutputOptions(o as OutputOptions)
       } else {
         updateOutputOptions(config.build.rollupOptions.output as OutputOptions)
       }
