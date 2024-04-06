@@ -42,20 +42,6 @@ export const create = async (options: StartOptions) => {
   let entryRoot = ''
 
   const packageRootDir = join(__dirname, '..')
-  const templateFile = join(packageRootDir, 'react-native-template.js')
-
-  console.info('prebuilding react, react-native react/jsx-runtime...')
-  await Promise.all([
-    buildReactNative({
-      entryPoints: [require.resolve('react-native')],
-    }),
-    buildReact({
-      entryPoints: [require.resolve('react')],
-    }),
-    buildReactJSX({
-      entryPoints: [require.resolve('react/jsx-dev-runtime')],
-    }),
-  ])
 
   const prebuilds = {
     reactJSX: join(options.root, 'dist', 'react-jsx-runtime.js'),
@@ -63,7 +49,24 @@ export const create = async (options: StartOptions) => {
     reactNative: join(options.root, 'dist', 'react-native.js'),
   }
 
-  console.log('prebuilds', prebuilds)
+  console.log('wtf', prebuilds)
+
+  if (!(await pathExists(prebuilds.reactNative))) {
+    console.info('Pre-building react, react-native react/jsx-runtime (one time cost)...')
+    await Promise.all([
+      buildReactNative({
+        entryPoints: [require.resolve('react-native')],
+      }),
+      buildReact({
+        entryPoints: [require.resolve('react')],
+      }),
+      buildReactJSX({
+        entryPoints: [require.resolve('react/jsx-dev-runtime')],
+      }),
+    ])
+  }
+
+  const templateFile = join(packageRootDir, 'react-native-template.js')
 
   // react native port (it scans 19000 +5)
   const hmrListeners: HMRListener[] = []
@@ -124,7 +127,6 @@ export const create = async (options: StartOptions) => {
     },
   } as const
 
-  console.log(Object.fromEntries(Object.entries(virtualModules).map(([k, v]) => [k, v.alias])))
   let serverConfig: UserConfig = {
     root,
     mode: 'development',
@@ -475,7 +477,15 @@ __require("${outputModule.fileName}")
       .replaceAll('undefined.accept(() => {})', '')
       .replaceAll('undefined.accept(function() {});', '') // swc
 
-    const out = (await readFile(templateFile, 'utf-8')) + appCode
+    // TODO this is not stable based on cwd
+    const appRootParent = join(options.root, '..', '..')
+
+    const template = (await readFile(templateFile, 'utf-8'))
+      .replace('_virtual/virtual_react-native.js', relative(appRootParent, prebuilds.reactNative))
+      .replace('_virtual/virtual_react.js', relative(appRootParent, prebuilds.react))
+      .replaceAll('_virtual/virtual_react-jsx.js', relative(appRootParent, prebuilds.reactJSX))
+
+    const out = template + appCode
 
     done(out)
     isBuilding = null
