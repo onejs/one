@@ -49,8 +49,6 @@ export const create = async (options: StartOptions) => {
     reactNative: join(options.root, 'dist', 'react-native.js'),
   }
 
-  console.log('wtf', prebuilds)
-
   if (!(await pathExists(prebuilds.reactNative))) {
     console.info('Pre-building react, react-native react/jsx-runtime (one time cost)...')
     await Promise.all([
@@ -99,6 +97,10 @@ export const create = async (options: StartOptions) => {
     resolveId(id) {
       if (id.startsWith('react-native/Libraries')) {
         return `virtual:rn-internals:${id}`
+      }
+
+      if (id === 'react-native-web') {
+        return prebuilds.reactNative
       }
 
       for (const targetId in virtualModules) {
