@@ -63,6 +63,8 @@ export const create = async (options: StartOptions) => {
     reactNative: join(options.root, 'dist', 'react-native.js'),
   }
 
+  console.log('prebuilds', prebuilds)
+
   // react native port (it scans 19000 +5)
   const hmrListeners: HMRListener[] = []
   const hotUpdatedCJSFiles = new Map<string, string>()
@@ -96,7 +98,6 @@ export const create = async (options: StartOptions) => {
         return `virtual:rn-internals:${id}`
       }
 
-      console.log('id with alias', id)
       for (const targetId in virtualModules) {
         if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
           const info = virtualModules[targetId]
@@ -137,7 +138,7 @@ export const create = async (options: StartOptions) => {
       // dedupe: ['react', 'react-dom'],
       alias: {
         // ...Object.fromEntries(Object.entries(virtualModules).map(([k, v]) => [k, v.alias])),
-        'react-native': require.resolve('react-native-web'),
+        'react-native': require.resolve('react-native-web-lite'),
       },
     },
     optimizeDeps: {
