@@ -1,0 +1,35 @@
+name: Checks
+
+on: [pull_request, push]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install
+        uses: ./.github/actions/install
+
+      - name: Check
+        run: yarn check
+
+      - name: Lint
+        run: yarn lint
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install
+        uses: ./.github/actions/install
+
+      - name: Build
+        run: yarn build
+
+      - name: Test
+        run: yarn test
+
