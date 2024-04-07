@@ -207,7 +207,7 @@ export const create = async (options: StartOptions) => {
       },
     },
     optimizeDeps: {
-      include: ['react'],
+      include: ['react', 'react-dom', '@react-native/normalize-color'],
       exclude: Object.values(virtualModules).map((v) => v.alias),
       force: true,
       esbuildOptions: {
