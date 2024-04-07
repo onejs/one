@@ -424,8 +424,12 @@ export const create = async (options: StartOptions) => {
   )
 
   app.use(
-    '/message',
+    '/__hmr',
     defineWebSocketHandler({
+      upgrade(req) {
+        console.info('[ws] upgrade', req)
+      },
+
       open(peer) {
         console.info('[ws] open', peer)
       },
