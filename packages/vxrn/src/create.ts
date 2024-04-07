@@ -1,28 +1,40 @@
-import viteInspectPlugin from 'vite-plugin-inspect'
+import wsAdapter from 'crossws/adapters/node'
 import { readFile } from 'fs/promises'
+import {
+  createApp,
+  defineEventHandler,
+  defineWebSocketHandler,
+  eventHandler,
+  toNodeListener,
+  createRouter,
+  getQuery,
+} from 'h3'
+import { createProxyEventHandler } from 'h3-proxy'
+import { createServer as nodeCreateServer } from 'node:http'
 import { dirname, join, relative, resolve } from 'node:path'
+import readline from 'readline'
+import viteInspectPlugin from 'vite-plugin-inspect'
 
 import * as babel from '@babel/core'
-import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import react from '@vitejs/plugin-react-swc'
+import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
+import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import { parse } from 'es-module-lexer'
 import { ensureDir, pathExists, pathExistsSync } from 'fs-extra'
 import {
-  type InlineConfig,
-  type PluginOption,
-  type UserConfig,
   build,
   createServer,
   mergeConfig,
   resolveConfig,
+  type InlineConfig,
+  type PluginOption,
+  type UserConfig,
 } from 'vite'
-import { buildReactNative, buildReact, buildReactJSX } from '@vxrn/react-native-prebuilt'
 
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
-import { createDevServer } from './dev/createDevServer'
-import type { HMRListener, StartOptions } from './types'
-import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
+import { nativePlugin } from './nativePlugin'
+import type { HMRListener, StartOptions } from './types'
 
 const nativeExtensions = [
   '.native.tsx',
@@ -49,7 +61,11 @@ const extensions = [
 ]
 
 export const create = async (options: StartOptions) => {
-  const { host = '127.0.0.1', root, nativePort = 8081, webPort } = options
+  const { host = '127.0.0.1', root, port = 8081 } = options
+
+  // TODO move somewhere
+  bindKeypressInput()
+
   // used for normalizing hot reloads
   let entryRoot = ''
 
@@ -204,12 +220,15 @@ export const create = async (options: StartOptions) => {
       },
     },
     plugins: [
-      swapRnPlugin,
+      // this breaks web, but for native maybe we need to manually run in the native handleHotUpdate below
+      // swapRnPlugin,
+
       react(),
       // viteReactPlugin({
       //   tsDecorators: true,
       //   mode: 'serve',
       // }),
+
       {
         name: 'client-transform',
 
@@ -303,7 +322,6 @@ export const create = async (options: StartOptions) => {
 
     server: {
       cors: true,
-      port: webPort,
       host,
     },
   } satisfies InlineConfig
@@ -341,28 +359,147 @@ export const create = async (options: StartOptions) => {
 
   let isBuilding: Promise<string> | null = null
 
-  const nativeServer = await createDevServer(
-    {
-      root,
-      port: nativePort,
-      host,
+  await viteServer.listen()
+  const vitePort = viteServer.config.server.port
+
+  console.info('vite running on', vitePort)
+
+  const router = createRouter()
+  const app = createApp({
+    onError: (error) => {
+      console.error(error)
     },
-    {
-      hotUpdatedCJSFiles,
-      listenForHMR(cb) {
-        hmrListeners.push(cb)
-      },
-      getIndexBundle: getBundleCode,
-      indexJson: getIndexJsonResponse({ port: nativePort, root }),
-    }
+    onRequest: (event) => {
+      console.info('Request:', event.path)
+    },
+  })
+
+  router.get(
+    '/file',
+    defineEventHandler((e) => {
+      const query = getQuery(e)
+      if (typeof query.file === 'string') {
+        const source = hotUpdatedCJSFiles.get(query.file)
+        return new Response(source, {
+          headers: {
+            'content-type': 'text/javascript',
+          },
+        })
+      }
+    })
   )
 
+  router.get(
+    '/status',
+    defineEventHandler(() => `packager-status:running`)
+  )
+
+  app.use(router)
+
+  // TODO move these to router.get():
+  app.use(
+    defineEventHandler(async ({ node: { req } }) => {
+      if (!req.headers['user-agent']?.match(/Expo|React/)) {
+        return
+      }
+
+      if (req.url === '/' || req.url?.startsWith('/?platform=')) {
+        return getIndexJsonResponse({ port, root })
+      }
+
+      if (req.url?.includes('index.bundle')) {
+        return new Response(await getBundleCode(), {
+          headers: {
+            'content-type': 'text/javascript',
+          },
+        })
+      }
+    })
+  )
+
+  const { handleUpgrade } = wsAdapter(app.websocket)
+
+  app.use(
+    '/__hmr',
+    defineWebSocketHandler({
+      open(peer) {
+        console.debug('[hmr] open', peer)
+      },
+
+      message(peer, message) {
+        console.info('[hmr] message', peer, message)
+        if (message.text().includes('ping')) {
+          peer.send('pong')
+        }
+      },
+
+      close(peer, event) {
+        console.info('[hmr] close', peer, event)
+      },
+
+      error(peer, error) {
+        console.error('[hmr] error', peer, error)
+      },
+    })
+  )
+
+  type ClientMessage = {
+    type: 'client-log'
+    level: 'log' | 'error' | 'info' | 'debug' | 'warn'
+    data: string[]
+  }
+
+  app.use(
+    '/__client',
+    defineWebSocketHandler({
+      open(peer) {
+        console.debug('[client] open', peer)
+      },
+
+      message(peer, messageRaw) {
+        const message = JSON.parse(messageRaw.text()) as any as ClientMessage
+
+        switch (message.type) {
+          case 'client-log': {
+            console.info(`🪵 [${message.level}]`, ...message.data)
+            return
+          }
+
+          default: {
+            console.warn(`[client] Unknown message type`, message)
+          }
+        }
+      },
+
+      close(peer, event) {
+        console.info('[client] close', peer, event)
+      },
+
+      error(peer, error) {
+        console.error('[client] error', peer, error)
+      },
+    })
+  )
+
+  // Define proxy event handler
+  const proxyEventHandler = createProxyEventHandler({
+    target: `http://127.0.0.1:${vitePort}`,
+    enableLogger: true,
+  })
+  app.use(eventHandler(proxyEventHandler))
+
+  const server = nodeCreateServer(toNodeListener(app))
+
+  server.on('upgrade', handleUpgrade)
+
   return {
-    nativeServer: nativeServer.instance,
+    nativeServer: server,
     viteServer,
 
     async start() {
-      await Promise.all([viteServer.listen(), nativeServer.start()])
+      server.listen(port)
+
+      console.info(`Server running on http://localhost:${port}`)
 
       return {
         closePromise: new Promise((res) => viteServer.httpServer?.on('close', res)),
@@ -370,7 +507,7 @@ export const create = async (options: StartOptions) => {
     },
 
     stop: async () => {
-      await Promise.all([nativeServer.stop(), viteServer.close()])
+      await Promise.all([server.close(), viteServer.close()])
     },
   }
 
@@ -430,7 +567,7 @@ export const create = async (options: StartOptions) => {
 
         nativePlugin({
           root: options.root,
-          port: nativePort,
+          port,
           mode: 'build',
         }),
 
@@ -614,4 +751,49 @@ function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
     bundleUrl: `http://127.0.0.1:${port}/index.bundle?platform=ios&dev=true&hot=false&lazy=true`,
     id: '@anonymous/myapp-473c4543-3c36-4786-9db1-c66a62ac9b78',
   }
+}
+
+export function bindKeypressInput() {
+  if (!process.stdin.setRawMode) {
+    console.warn({
+      msg: 'Interactive mode is not supported in this environment',
+    })
+    return
+  }
+
+  readline.emitKeypressEvents(process.stdin)
+  process.stdin.setRawMode(true)
+
+  process.stdin.on('keypress', (_key, data) => {
+    const { ctrl, name } = data
+    if (ctrl === true) {
+      switch (name) {
+        // biome-ignore lint/suspicious/noFallthroughSwitchClause: <explanation>
+        case 'c':
+          process.exit()
+        case 'z':
+          process.emit('SIGTSTP', 'SIGTSTP')
+          break
+      }
+    } else {
+      switch (name) {
+        case 'r':
+          // ctx.broadcastToMessageClients({ method: 'reload' })
+          // ctx.log.info({
+          //   msg: 'Reloading app',
+          // })
+          break
+        case 'd':
+          // ctx.broadcastToMessageClients({ method: 'devMenu' })
+          // ctx.log.info({
+          //   msg: 'Opening developer menu',
+          // })
+          break
+        case 'c':
+          process.stdout.write('\u001b[2J\u001b[0;0H')
+          // TODO: after logging we should print information about port and host
+          break
+      }
+    }
+  })
 }

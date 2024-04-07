@@ -1,10 +1,9 @@
-import { InlineConfig } from 'vite'
+import type { InlineConfig } from 'vite'
 
 export type StartOptions = {
   root: string
   host?: string
-  webPort?: number
-  nativePort?: number
+  port?: number
   webConfig?: InlineConfig
   buildConfig?: InlineConfig
 }

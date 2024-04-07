@@ -99,20 +99,14 @@ export namespace Server {
      * @param clientIds Ids of the client to which broadcast should be sent.
      * If `undefined` the broadcast will be sent to all connected clients for the given `platform`.
      */
-    broadcastToHmrClients: <E = any>(
-      event: E,
-      platform: string,
-      clientIds?: string[]
-    ) => void
+    broadcastToHmrClients: <E = any>(event: E, platform: string, clientIds?: string[]) => void
 
     /**
      * Broadcast arbitrary method-like event to all connected message clients.
      *
      * @param event Arbitrary method-like event to broadcast.
      */
-    broadcastToMessageClients: <
-      E extends { method: string; params?: Record<string, any> }
-    >(
+    broadcastToMessageClients: <E extends { method: string; params?: Record<string, any> }>(
       event: E
     ) => void
   }
@@ -133,9 +127,6 @@ export namespace Server {
    * Delegate with implementation for messages used in route handlers.
    */
   export interface MessagesDelegate {
-    /** Get message to send as a reply for `GET /` route. */
-    getHello: () => Object
-
     /** Get message to send as a reply for `GET /status` route. */
     getStatus: () => string
   }

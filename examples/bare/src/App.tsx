@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 
-const App = () => {
+export const App = () => {
   return (
     <View style={styles.container}>
       <Text>Hello, world!</Text>

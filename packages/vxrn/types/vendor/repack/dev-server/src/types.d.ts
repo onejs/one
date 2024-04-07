@@ -98,8 +98,6 @@ export declare namespace Server {
      * Delegate with implementation for messages used in route handlers.
      */
     interface MessagesDelegate {
-        /** Get message to send as a reply for `GET /` route. */
-        getHello: () => Object;
         /** Get message to send as a reply for `GET /status` route. */
         getStatus: () => string;
     }

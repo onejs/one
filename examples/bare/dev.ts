@@ -1,9 +1,9 @@
-import {create} from 'vxrn';
+import { create } from 'vxrn'
 
-dev();
+dev()
 
 async function dev() {
-  const {viteServer, start, stop} = await create({
+  const { start, stop } = await create({
     root: process.cwd(),
     host: '127.0.0.1',
     webConfig: {
@@ -12,24 +12,22 @@ async function dev() {
     buildConfig: {
       plugins: [],
     },
-  });
+  })
 
-  const {closePromise} = await start();
-
-  viteServer.printUrls();
+  const { closePromise } = await start()
 
   process.on('beforeExit', () => {
-    stop();
-  });
+    stop()
+  })
 
   process.on('SIGINT', () => {
-    stop();
-  });
+    stop()
+  })
 
-  process.on('uncaughtException', err => {
+  process.on('uncaughtException', (err) => {
     // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-    console.log(err?.message || err);
-  });
+    console.log(err?.message || err)
+  })
 
-  await closePromise;
+  await closePromise
 }
