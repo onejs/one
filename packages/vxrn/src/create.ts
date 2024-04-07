@@ -517,51 +517,9 @@ export const create = async (options: StartOptions) => {
   })
   app.use(eventHandler(proxyEventHandler))
 
-  //   async configureServer(server) {
-  //     server.middlewares.use(async (req, res, next) => {
-  //       console.info(`[req] ${req.method || '-'}] ${req.url}`)
-
-  //       if (req.headers['user-agent']?.match(/Expo|React/)) {
-  //         if (req.url === '/' || req.url?.startsWith('/?platform=')) {
-  //           res.setHeader('content-type', 'text/json')
-  //           res.end(JSON.stringify(getIndexJsonResponse({ port, root })))
-  //           return
-  //         }
-
-  //         if (req.url?.includes('index.bundle')) {
-  //           res.setHeader('content-type', 'text/javascript')
-  //           res.end(await getBundleCode())
-  //           return
-  //         }
-
-  //         if (req.url === '/status') {
-  //           res.end(`packager-status:running`)
-  //           return
-  //         }
-  //       }
-
-  //       next()
-  //     })
-  //   },
-  // },
-
   const server = nodeCreateServer(toNodeListener(app))
 
   server.on('upgrade', handleUpgrade)
-
-  // const nativeServer = await createDevServer(
-  //   {
-  //     root,
-  //     port: nativePort,
-  //     host,
-  //   },
-  //   {
-  //     hotUpdatedCJSFiles,
-  //     listenForHMR(cb) {
-  //       hmrListeners.push(cb)
-  //     },
-  //   }
-  // )
 
   return {
     nativeServer: server,
