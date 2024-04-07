@@ -7861,7 +7861,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.6":
+"@types/react@npm:*":
   version: 18.2.53
   resolution: "@types/react@npm:18.2.53"
   dependencies:
@@ -11177,21 +11177,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-bare@workspace:examples/bare"
   dependencies:
-    "@babel/core": ^7.20.0
+    "@babel/core": ^7.21.8
     "@babel/preset-env": ^7.20.0
     "@babel/runtime": ^7.20.0
     "@react-native/babel-preset": 0.73.19
     "@react-native/metro-config": 0.73.3
     "@react-native/typescript-config": 0.73.1
     "@tamagui/cli": 1.94.4
-    "@types/react": ^18.2.6
+    "@types/react": ^18.2.24
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.6.3
     jest: ^29.6.3
-    react: 18.2.0
+    react: ^18.2.0
     react-native: 0.73.2
     react-test-renderer: 18.2.0
-    typescript: 5.0.4
+    typescript: ^5.2.2
     vxrn: 0.0.7
   languageName: unknown
   linkType: soft
@@ -16771,7 +16771,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0, react@npm:^18.2.0":
+"react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:
@@ -18918,16 +18918,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.0.4":
-  version: 5.0.4
-  resolution: "typescript@npm:5.0.4"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 82b94da3f4604a8946da585f7d6c3025fff8410779e5bde2855ab130d05e4fd08938b9e593b6ebed165bda6ad9292b230984f10952cf82f0a0ca07bbeaa08172
-  languageName: node
-  linkType: hard
-
 "typescript@npm:^5.2.2":
   version: 5.2.2
   resolution: "typescript@npm:5.2.2"
@@ -18945,16 +18935,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: a7b54515d2adfc75c8d14188af0216b6b9ae3c192c9732797c24b1d14608eac1c83be7b1c65ce6f4ced0f2c40583f11b495fe1ba3d982afadbcc523517d183c8
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@5.0.4#~builtin<compat/typescript>":
-  version: 5.0.4
-  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: d26b6ba97b6d163c55dbdffd9bbb4c211667ebebc743accfeb2c8c0154aace7afd097b51165a72a5bad2cf65a4612259344ff60f8e642362aa1695c760d303ac
   languageName: node
   linkType: hard
 

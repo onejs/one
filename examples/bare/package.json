@@ -10,24 +10,24 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-native": "0.73.2",
     "vxrn": "0.0.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
+    "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
     "@react-native/babel-preset": "0.73.19",
     "@react-native/metro-config": "0.73.3",
     "@react-native/typescript-config": "0.73.1",
     "@tamagui/cli": "1.94.4",
-    "@types/react": "^18.2.6",
+    "@types/react": "^18.2.24",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "jest": "^29.6.3",
     "react-test-renderer": "18.2.0",
-    "typescript": "5.0.4"
+    "typescript": "^5.2.2"
   },
   "engines": {
     "node": ">=18"
