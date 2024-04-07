@@ -220,43 +220,14 @@ export const create = async (options: StartOptions) => {
       },
     },
     plugins: [
+      // this breaks web, but for native maybe we need to manually run in the native handleHotUpdate below
       // swapRnPlugin,
+
       react(),
       // viteReactPlugin({
       //   tsDecorators: true,
       //   mode: 'serve',
       // }),
-
-      // {
-      //   name: 'vxrn-react-native-server',
-
-      //   async configureServer(server) {
-      //     server.middlewares.use(async (req, res, next) => {
-      //       console.info(`[req] ${req.method || '-'}] ${req.url}`)
-
-      //       if (req.headers['user-agent']?.match(/Expo|React/)) {
-      //         if (req.url === '/' || req.url?.startsWith('/?platform=')) {
-      //           res.setHeader('content-type', 'text/json')
-      //           res.end(JSON.stringify(getIndexJsonResponse({ port, root })))
-      //           return
-      //         }
-
-      //         if (req.url?.includes('index.bundle')) {
-      //           res.setHeader('content-type', 'text/javascript')
-      //           res.end(await getBundleCode())
-      //           return
-      //         }
-
-      //         if (req.url === '/status') {
-      //           res.end(`packager-status:running`)
-      //           return
-      //         }
-      //       }
-
-      //       next()
-      //     })
-      //   },
-      // },
 
       {
         name: 'client-transform',
