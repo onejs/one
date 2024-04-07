@@ -39,8 +39,10 @@ class HMRClient {
       }
     }
   ) {
-    this.url = `ws://${getDevServerLocation().hostname}:${process.env.REACT_NATIVE_SERVER_PUBLIC_PORT
-      }/__hmr?platform=${process.env.REACT_NATIVE_PLATFORM || 'ios'}`
+    const port = process.env.REACT_NATIVE_SERVER_PUBLIC_PORT || 8081
+    this.url = `ws://${getDevServerLocation().hostname}:${port}/__hmr?platform=${
+      process.env.REACT_NATIVE_PLATFORM || 'ios'
+    }`
 
     this.socket = new WebSocket(this.url)
 
