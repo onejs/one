@@ -1,13 +1,6 @@
 name: Checks
 
-on:
-  pull_request:
-  push:
-    paths-ignore:
-      - "assets/**"
-      - ".vscode/**"
-    branches:
-      - master
+on: [pull_request, push]
 
 jobs:
   checks:
