@@ -25,8 +25,7 @@ const importMetaUrl = {
 
 // use server configuration, then fallback to inference
 const serverHost = __SERVER_HOST__
-const socketProtocol =
-  __HMR_PROTOCOL__ || (importMetaUrl.protocol === 'https:' ? 'wss' : 'ws')
+const socketProtocol = __HMR_PROTOCOL__ || (importMetaUrl.protocol === 'https:' ? 'wss' : 'ws')
 const hmrPort = __HMR_PORT__ || 5173
 
 const socketHost = `${__HMR_HOSTNAME__ || importMetaUrl.hostname}:${
@@ -49,9 +48,7 @@ try {
         console.error(
           '[vite] failed to connect to websocket.\n' +
             'your current setup:\n' +
-            `  (browser) ${JSON.stringify(
-              importMetaUrl
-            )} <--[HTTP]--> ${serverHost} (server)\n` +
+            `  (browser) ${JSON.stringify(importMetaUrl)} <--[HTTP]--> ${serverHost} (server)\n` +
             `  (browser) ${socketHost} <--[WebSocket (failing)]--> ${directSocketHost} (server)\n` +
             'Check out your Vite / network configuration and https://vitejs.dev/config/server-options.html#server-hmr .'
         )
@@ -73,11 +70,7 @@ try {
   console.error(`[vite] failed to connect to websocket (${error}). `)
 }
 
-function setupWebSocket(
-  protocol: string,
-  hostAndPath: string,
-  onCloseWithoutOpen?: () => void
-) {
+function setupWebSocket(protocol: string, hostAndPath: string, onCloseWithoutOpen?: () => void) {
   const endpoint = `${protocol}://${hostAndPath}`
   const socket = new WebSocket(endpoint, 'vite-hmr')
   let isOpened = false
@@ -240,10 +233,7 @@ async function handleMessage(payload: HMRPayload) {
   }
 }
 
-function notifyListeners<T extends string>(
-  event: T,
-  data: InferCustomEventPayload<T>
-): void
+function notifyListeners<T extends string>(event: T, data: InferCustomEventPayload<T>): void
 function notifyListeners(event: string, data: any): void {
   const cbs = customListenersMap.get(event)
   if (cbs) {
@@ -289,11 +279,7 @@ async function queueUpdate(p: Promise<(() => void) | undefined>) {
   }
 }
 
-async function waitForSuccessfulPing(
-  socketProtocol: string,
-  hostAndPath: string,
-  ms = 1000
-) {
+async function waitForSuccessfulPing(socketProtocol: string, hostAndPath: string, ms = 1000) {
   const pingHostProtocol = socketProtocol === 'wss' ? 'https' : 'http'
 
   const ping = async () => {
@@ -332,12 +318,7 @@ function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function fetchUpdate({
-  path,
-  acceptedPath,
-  timestamp,
-  explicitImportRequired,
-}: Update) {
+async function fetchUpdate({ path, acceptedPath, timestamp, explicitImportRequired }: Update) {
   const mod = hotModulesMap.get(path)
 
   if (!mod) {
@@ -351,9 +332,7 @@ async function fetchUpdate({
   const isSelfUpdate = path === acceptedPath
 
   // determine the qualified callbacks before we re-import the modules
-  const qualifiedCallbacks = mod.callbacks.filter(({ deps }) =>
-    deps.includes(acceptedPath)
-  )
+  const qualifiedCallbacks = mod.callbacks.filter(({ deps }) => deps.includes(acceptedPath))
 
   if (isSelfUpdate || qualifiedCallbacks.length > 0) {
     const disposer = disposeMap.get(acceptedPath)
@@ -373,6 +352,7 @@ async function fetchUpdate({
 
       const source = await fetch(scriptUrl).then((res) => res.text())
 
+      // biome-ignore lint/security/noGlobalEval: this is one of those rare use cases
       const evaluatedModule = eval(source)
 
       fetchedModule = evaluatedModule
@@ -417,9 +397,7 @@ const dataMap = new Map<string, any>()
 const customListenersMap: CustomListenersMap = new Map()
 const ctxToListenersMap = new Map<string, CustomListenersMap>()
 
-globalThis['createHotContext'] = function createHotContext(
-  ownerPath: string
-): ViteHotContext {
+globalThis['createHotContext'] = function createHotContext(ownerPath: string): ViteHotContext {
   if (!dataMap.has(ownerPath)) {
     dataMap.set(ownerPath, {})
   }

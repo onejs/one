@@ -1,8 +1,8 @@
-import { Link, useSearchParams } from '@vxrn/expo-router'
+import { Link, useGlobalSearchParams } from '@vxrn/expo-router'
 import { Text, View } from 'react-native'
 
 export default function User() {
-  const params = useSearchParams()
+  const params = useGlobalSearchParams()
 
   return (
     <View>

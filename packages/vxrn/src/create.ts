@@ -234,7 +234,7 @@ export const create = async (options: StartOptions) => {
 
         async handleHotUpdate({ read, modules, file }) {
           try {
-            if (!file.includes('/src/')) {
+            if (!isWithin(options.root, file)) {
               return
             }
 
@@ -308,7 +308,7 @@ export const create = async (options: StartOptions) => {
                 .replaceAll(/import.meta.glob\(.*\)/gi, `globalThis['__importMetaGlobbed'] || {}`)};
               return exports })({})`
 
-            if (process.env.DEBUG === 'vxrn') {
+            if (process.env.DEBUG) {
               console.info(`Sending hot update`, hotUpdateSource)
             }
 
@@ -801,4 +801,9 @@ export function bindKeypressInput() {
       }
     }
   })
+}
+
+function isWithin(outer: string, inner: string) {
+  const rel = relative(outer, inner)
+  return !rel.startsWith('../') && rel !== '..'
 }
