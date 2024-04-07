@@ -217,26 +217,29 @@ export const create = async (options: StartOptions) => {
 
         async configureServer(server) {
           server.middlewares.use(async (req, res, next) => {
-            console.log('req', req.url)
+            if (req.headers['user-agent']?.match(/Expo|React/)) {
+              if (req.url === '/' || req.url?.startsWith('/?platform=')) {
+                res.setHeader('content-type', 'text/json')
+                res.end(JSON.stringify(getIndexJsonResponse({ port, root })))
+                return
+              }
 
-            if (req.url?.startsWith('/?platform=')) {
-              res.end(JSON.stringify(getIndexJsonResponse({ port, root })))
-              return
+              if (req.url?.includes('index.bundle')) {
+                res.setHeader('content-type', 'text/javascript')
+                res.end(await getBundleCode())
+                return
+              }
+
+              if (req.url === '/status') {
+                res.end(`packager-status:running`)
+                return
+              }
             }
 
-            if (req.url?.includes('index.bundle')) {
-              res.end(await getBundleCode())
-              return
-            }
-
-            if (req.url === '/status') {
-              res.end(`packager-status:running`)
-              return
-            }
-
-            // ??
-            res.end(``)
-            // next()
+            next()
+            // // ??
+            // res.end(``)
+            // // next()
           })
         },
       },
