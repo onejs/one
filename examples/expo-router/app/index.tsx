@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 export default () => (
   <>
     <View>
-      <Text>hi from home</Text>
+      <Text>hi from hoe</Text>
     </View>
     <Link
       href={{
