@@ -1,7 +1,7 @@
 import { dirname } from 'path'
 
 import { parse } from 'es-module-lexer'
-import { OutputOptions } from 'rollup'
+import type { OutputOptions } from 'rollup'
 import type { Plugin } from 'vite'
 
 import { getVitePath } from './getVitePath'

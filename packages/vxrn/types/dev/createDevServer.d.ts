@@ -1,12 +1,10 @@
 /// <reference types="node" />
-import { HMRListener } from '../types';
+import type { HMRListener } from '../types';
 export declare function createDevServer(options: {
     host: string;
     port: number;
     root: string;
-}, { indexJson, listenForHMR, getIndexBundle, hotUpdatedCJSFiles, }: {
-    indexJson: Object;
-    getIndexBundle: () => Promise<string>;
+}, { listenForHMR, hotUpdatedCJSFiles, }: {
     listenForHMR: (cb: HMRListener) => void;
     hotUpdatedCJSFiles: Map<string, string>;
 }): Promise<{

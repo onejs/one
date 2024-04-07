@@ -1,8 +1,8 @@
 import mime from 'mime/lite'
 
-import { HMRListener } from '../types'
+import type { HMRListener } from '../types'
 import { DEFAULT_PORT } from '../utils/constants'
-import { Server, createServer } from '../vendor/repack/dev-server/src'
+import { type Server, createServer } from '../vendor/repack/dev-server/src'
 import { bindKeypressInput } from './bindKeypressInput'
 
 export async function createDevServer(
@@ -12,13 +12,9 @@ export async function createDevServer(
     root: string
   },
   {
-    indexJson,
     listenForHMR,
-    getIndexBundle,
     hotUpdatedCJSFiles,
   }: {
-    indexJson: Object
-    getIndexBundle: () => Promise<string>
     listenForHMR: (cb: HMRListener) => void
     hotUpdatedCJSFiles: Map<string, string>
   }
@@ -88,9 +84,6 @@ export async function createDevServer(
         compiler: {
           getAsset: async (filename, platform, sendProgress) => {
             console.info('[GET] - ', filename)
-            if (filename === 'index.bundle') {
-              return await getIndexBundle()
-            }
             return ''
             // return (await compiler.getAsset(filename, platform, sendProgress)).data
           },
@@ -146,7 +139,6 @@ export async function createDevServer(
         },
 
         messages: {
-          getHello: () => indexJson,
           getStatus: () => 'packager-status:running',
         },
 

@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { Server } from './types';
+import { type Server } from './types';
 /**
  * Create instance of development server, powered by Fastify.
  *
