@@ -390,6 +390,17 @@ export const create = async (options: StartOptions) => {
   )
 
   router.get(
+    '/index.bundle',
+    defineEventHandler(async (e) => {
+      return new Response(await getBundleCode(), {
+        headers: {
+          'content-type': 'text/javascript',
+        },
+      })
+    })
+  )
+
+  router.get(
     '/status',
     defineEventHandler(() => `packager-status:running`)
   )
@@ -405,14 +416,6 @@ export const create = async (options: StartOptions) => {
 
       if (req.url === '/' || req.url?.startsWith('/?platform=')) {
         return getIndexJsonResponse({ port, root })
-      }
-
-      if (req.url?.includes('index.bundle')) {
-        return new Response(await getBundleCode(), {
-          headers: {
-            'content-type': 'text/javascript',
-          },
-        })
       }
     })
   )
@@ -683,7 +686,9 @@ __require("${outputModule.fileName}")
     appCode = appCode
       // this can be done in the individual file transform
       .replaceAll('undefined.accept(() => {})', '')
-      .replaceAll('undefined.accept(function() {});', '') // swc
+      .replaceAll('undefined.accept(function() {});', '')
+      .replaceAll('(void 0).accept(() => {})', '')
+      .replaceAll('(void 0).accept(function() {});', '')
 
     // TODO this is not stable based on cwd
     const appRootParent = join(options.root, '..', '..')
