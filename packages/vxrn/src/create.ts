@@ -1,6 +1,7 @@
 import viteInspectPlugin from 'vite-plugin-inspect'
 import { readFile } from 'fs/promises'
 import { dirname, join, relative, resolve } from 'node:path'
+import getPort from 'get-port'
 
 import * as babel from '@babel/core'
 import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
@@ -49,7 +50,7 @@ const extensions = [
 ]
 
 export const create = async (options: StartOptions) => {
-  const { host = '127.0.0.1', root, nativePort = 8081, webPort } = options
+  const { host = '127.0.0.1', root, port = 8081 } = options
   // used for normalizing hot reloads
   let entryRoot = ''
 
@@ -210,6 +211,36 @@ export const create = async (options: StartOptions) => {
       //   tsDecorators: true,
       //   mode: 'serve',
       // }),
+
+      {
+        name: 'vxrn-react-native-server',
+
+        async configureServer(server) {
+          server.middlewares.use(async (req, res, next) => {
+            console.log('req', req.url)
+
+            if (req.url?.startsWith('/?platform=')) {
+              res.end(JSON.stringify(getIndexJsonResponse({ port, root })))
+              return
+            }
+
+            if (req.url?.includes('index.bundle')) {
+              res.end(await getBundleCode())
+              return
+            }
+
+            if (req.url === '/status') {
+              res.end(`packager-status:running`)
+              return
+            }
+
+            // ??
+            res.end(``)
+            // next()
+          })
+        },
+      },
+
       {
         name: 'client-transform',
 
@@ -303,7 +334,7 @@ export const create = async (options: StartOptions) => {
 
     server: {
       cors: true,
-      port: webPort,
+      port,
       host,
     },
   } satisfies InlineConfig
@@ -344,7 +375,7 @@ export const create = async (options: StartOptions) => {
   const nativeServer = await createDevServer(
     {
       root,
-      port: nativePort,
+      port: await getPort(),
       host,
     },
     {
@@ -352,8 +383,6 @@ export const create = async (options: StartOptions) => {
       listenForHMR(cb) {
         hmrListeners.push(cb)
       },
-      getIndexBundle: getBundleCode,
-      indexJson: getIndexJsonResponse({ port: nativePort, root }),
     }
   )
 
@@ -430,7 +459,7 @@ export const create = async (options: StartOptions) => {
 
         nativePlugin({
           root: options.root,
-          port: nativePort,
+          port,
           mode: 'build',
         }),
 

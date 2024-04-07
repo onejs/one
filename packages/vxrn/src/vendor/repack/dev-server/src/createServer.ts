@@ -11,7 +11,7 @@ import devtoolsPlugin from './plugins/devtools'
 import multipartPlugin from './plugins/multipart'
 import symbolicatePlugin from './plugins/symbolicate'
 import wssPlugin from './plugins/wss'
-import { Internal, Server } from './types'
+import { Internal, type Server } from './types'
 
 /**
  * Create instance of development server, powered by Fastify.
@@ -107,7 +107,7 @@ export async function createServer(config: Server.Config) {
   })
 
   // Register routes
-  instance.get('/', async () => delegate.messages.getHello())
+
   instance.get('/status', async () => delegate.messages.getStatus())
 
   /** Start the development server. */
