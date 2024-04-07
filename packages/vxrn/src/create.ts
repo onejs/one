@@ -1,3 +1,4 @@
+import wsAdapter from 'crossws/adapters/node'
 import { readFile } from 'fs/promises'
 import {
   createApp,
@@ -5,6 +6,8 @@ import {
   defineWebSocketHandler,
   eventHandler,
   toNodeListener,
+  createRouter,
+  getQuery,
 } from 'h3'
 import { createProxyEventHandler } from 'h3-proxy'
 import { createServer as nodeCreateServer } from 'node:http'
@@ -390,6 +393,7 @@ export const create = async (options: StartOptions) => {
 
   console.info('vite running on', vitePort)
 
+  const router = createRouter()
   const app = createApp({
     onError: (error) => {
       console.error(error)
@@ -399,6 +403,29 @@ export const create = async (options: StartOptions) => {
     },
   })
 
+  router.get(
+    '/file',
+    defineEventHandler((e) => {
+      const query = getQuery(e)
+      if (typeof query.file === 'string') {
+        const source = hotUpdatedCJSFiles.get(query.file)
+        return new Response(source, {
+          headers: {
+            'content-type': 'text/javascript',
+          },
+        })
+      }
+    })
+  )
+
+  router.get(
+    '/status',
+    defineEventHandler(() => `packager-status:running`)
+  )
+
+  app.use(router)
+
+  // TODO move these to router.get():
   app.use(
     defineEventHandler(async ({ node: { req } }) => {
       if (!req.headers['user-agent']?.match(/Expo|React/)) {
@@ -416,37 +443,69 @@ export const create = async (options: StartOptions) => {
           },
         })
       }
-
-      if (req.url === '/status') {
-        return `packager-status:running`
-      }
     })
   )
+
+  const { handleUpgrade } = wsAdapter(app.websocket)
 
   app.use(
     '/__hmr',
     defineWebSocketHandler({
-      upgrade(req) {
-        console.info('[ws] upgrade', req)
-      },
-
       open(peer) {
-        console.info('[ws] open', peer)
+        console.debug('[hmr] open', peer)
       },
 
       message(peer, message) {
-        console.info('[ws] message', peer, message)
+        console.info('[hmr] message', peer, message)
         if (message.text().includes('ping')) {
           peer.send('pong')
         }
       },
 
       close(peer, event) {
-        console.info('[ws] close', peer, event)
+        console.info('[hmr] close', peer, event)
       },
 
       error(peer, error) {
-        console.info('[ws] error', peer, error)
+        console.error('[hmr] error', peer, error)
+      },
+    })
+  )
+
+  type ClientMessage = {
+    type: 'client-log'
+    level: 'log' | 'error' | 'info' | 'debug' | 'warn'
+    data: string[]
+  }
+
+  app.use(
+    '/__client',
+    defineWebSocketHandler({
+      open(peer) {
+        console.debug('[client] open', peer)
+      },
+
+      message(peer, messageRaw) {
+        const message = JSON.parse(messageRaw.text()) as any as ClientMessage
+
+        switch (message.type) {
+          case 'client-log': {
+            console.info(`🪵 [${message.level}]`, ...message.data)
+            return
+          }
+
+          default: {
+            console.warn(`[client] Unknown message type`, message)
+          }
+        }
+      },
+
+      close(peer, event) {
+        console.info('[client] close', peer, event)
+      },
+
+      error(peer, error) {
+        console.error('[client] error', peer, error)
       },
     })
   )
@@ -487,6 +546,8 @@ export const create = async (options: StartOptions) => {
   // },
 
   const server = nodeCreateServer(toNodeListener(app))
+
+  server.on('upgrade', handleUpgrade)
 
   // const nativeServer = await createDevServer(
   //   {
