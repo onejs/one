@@ -51,6 +51,8 @@ const extensions = [
 
 export const create = async (options: StartOptions) => {
   const { host = '127.0.0.1', root, port = 8081 } = options
+  const nativePort = await getPort()
+
   // used for normalizing hot reloads
   let entryRoot = ''
 
@@ -217,6 +219,8 @@ export const create = async (options: StartOptions) => {
 
         async configureServer(server) {
           server.middlewares.use(async (req, res, next) => {
+            console.info(`[req] ${req.method || '-'}] ${req.url}`)
+
             if (req.headers['user-agent']?.match(/Expo|React/)) {
               if (req.url === '/' || req.url?.startsWith('/?platform=')) {
                 res.setHeader('content-type', 'text/json')
@@ -237,9 +241,6 @@ export const create = async (options: StartOptions) => {
             }
 
             next()
-            // // ??
-            // res.end(``)
-            // // next()
           })
         },
       },
@@ -337,7 +338,6 @@ export const create = async (options: StartOptions) => {
 
     server: {
       cors: true,
-      port,
       host,
     },
   } satisfies InlineConfig
@@ -378,7 +378,7 @@ export const create = async (options: StartOptions) => {
   const nativeServer = await createDevServer(
     {
       root,
-      port: await getPort(),
+      port: nativePort,
       host,
     },
     {
@@ -394,7 +394,7 @@ export const create = async (options: StartOptions) => {
     viteServer,
 
     async start() {
-      await Promise.all([viteServer.listen(), nativeServer.start()])
+      //
 
       return {
         closePromise: new Promise((res) => viteServer.httpServer?.on('close', res)),
