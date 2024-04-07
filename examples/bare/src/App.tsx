@@ -1,14 +1,12 @@
 import { View, Text, StyleSheet } from 'react-native'
 
-const App = () => {
+export const App = () => {
   return (
     <View style={styles.container}>
-      <Text>Hello, world222222222222222!</Text>
+      <Text>Hello, world!</Text>
     </View>
   )
 }
-
-console.log(`Hello world test`)
 
 const styles = StyleSheet.create({
   container: {

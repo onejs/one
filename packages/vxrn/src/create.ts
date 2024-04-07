@@ -220,7 +220,7 @@ export const create = async (options: StartOptions) => {
       },
     },
     plugins: [
-      swapRnPlugin,
+      // swapRnPlugin,
       react(),
       // viteReactPlugin({
       //   tsDecorators: true,
