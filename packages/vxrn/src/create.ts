@@ -1,29 +1,37 @@
-import viteInspectPlugin from 'vite-plugin-inspect'
 import { readFile } from 'fs/promises'
+import {
+  createApp,
+  defineEventHandler,
+  defineWebSocketHandler,
+  eventHandler,
+  toNodeListener,
+} from 'h3'
+import { createProxyEventHandler } from 'h3-proxy'
+import { createServer as nodeCreateServer } from 'node:http'
 import { dirname, join, relative, resolve } from 'node:path'
-import getPort from 'get-port'
+import readline from 'readline'
+import viteInspectPlugin from 'vite-plugin-inspect'
 
 import * as babel from '@babel/core'
-import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import react from '@vitejs/plugin-react-swc'
+import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
+import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import { parse } from 'es-module-lexer'
 import { ensureDir, pathExists, pathExistsSync } from 'fs-extra'
 import {
-  type InlineConfig,
-  type PluginOption,
-  type UserConfig,
   build,
   createServer,
   mergeConfig,
   resolveConfig,
+  type InlineConfig,
+  type PluginOption,
+  type UserConfig,
 } from 'vite'
-import { buildReactNative, buildReact, buildReactJSX } from '@vxrn/react-native-prebuilt'
 
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
-import { createDevServer } from './dev/createDevServer'
-import type { HMRListener, StartOptions } from './types'
-import { nativePlugin } from './nativePlugin'
 import { getVitePath } from './getVitePath'
+import { nativePlugin } from './nativePlugin'
+import type { HMRListener, StartOptions } from './types'
 
 const nativeExtensions = [
   '.native.tsx',
@@ -51,7 +59,9 @@ const extensions = [
 
 export const create = async (options: StartOptions) => {
   const { host = '127.0.0.1', root, port = 8081 } = options
-  const nativePort = await getPort()
+
+  // TODO move somewhere
+  bindKeypressInput()
 
   // used for normalizing hot reloads
   let entryRoot = ''
@@ -214,36 +224,36 @@ export const create = async (options: StartOptions) => {
       //   mode: 'serve',
       // }),
 
-      {
-        name: 'vxrn-react-native-server',
+      // {
+      //   name: 'vxrn-react-native-server',
 
-        async configureServer(server) {
-          server.middlewares.use(async (req, res, next) => {
-            console.info(`[req] ${req.method || '-'}] ${req.url}`)
+      //   async configureServer(server) {
+      //     server.middlewares.use(async (req, res, next) => {
+      //       console.info(`[req] ${req.method || '-'}] ${req.url}`)
 
-            if (req.headers['user-agent']?.match(/Expo|React/)) {
-              if (req.url === '/' || req.url?.startsWith('/?platform=')) {
-                res.setHeader('content-type', 'text/json')
-                res.end(JSON.stringify(getIndexJsonResponse({ port, root })))
-                return
-              }
+      //       if (req.headers['user-agent']?.match(/Expo|React/)) {
+      //         if (req.url === '/' || req.url?.startsWith('/?platform=')) {
+      //           res.setHeader('content-type', 'text/json')
+      //           res.end(JSON.stringify(getIndexJsonResponse({ port, root })))
+      //           return
+      //         }
 
-              if (req.url?.includes('index.bundle')) {
-                res.setHeader('content-type', 'text/javascript')
-                res.end(await getBundleCode())
-                return
-              }
+      //         if (req.url?.includes('index.bundle')) {
+      //           res.setHeader('content-type', 'text/javascript')
+      //           res.end(await getBundleCode())
+      //           return
+      //         }
 
-              if (req.url === '/status') {
-                res.end(`packager-status:running`)
-                return
-              }
-            }
+      //         if (req.url === '/status') {
+      //           res.end(`packager-status:running`)
+      //           return
+      //         }
+      //       }
 
-            next()
-          })
-        },
-      },
+      //       next()
+      //     })
+      //   },
+      // },
 
       {
         name: 'client-transform',
@@ -375,26 +385,127 @@ export const create = async (options: StartOptions) => {
 
   let isBuilding: Promise<string> | null = null
 
-  const nativeServer = await createDevServer(
-    {
-      root,
-      port: nativePort,
-      host,
+  await viteServer.listen()
+  const vitePort = viteServer.config.server.port
+
+  console.info('vite running on', vitePort)
+
+  const app = createApp({
+    onError: (error) => {
+      console.error(error)
     },
-    {
-      hotUpdatedCJSFiles,
-      listenForHMR(cb) {
-        hmrListeners.push(cb)
-      },
-    }
+    onRequest: (event) => {
+      console.info('Request:', event.path)
+    },
+  })
+
+  app.use(
+    defineEventHandler(async ({ node: { req } }) => {
+      if (!req.headers['user-agent']?.match(/Expo|React/)) {
+        return
+      }
+
+      if (req.url === '/' || req.url?.startsWith('/?platform=')) {
+        return getIndexJsonResponse({ port, root })
+      }
+
+      if (req.url?.includes('index.bundle')) {
+        return new Response(await getBundleCode(), {
+          headers: {
+            'content-type': 'text/javascript',
+          },
+        })
+      }
+
+      if (req.url === '/status') {
+        return `packager-status:running`
+      }
+    })
   )
 
+  app.use(
+    '/message',
+    defineWebSocketHandler({
+      open(peer) {
+        console.info('[ws] open', peer)
+      },
+
+      message(peer, message) {
+        console.info('[ws] message', peer, message)
+        if (message.text().includes('ping')) {
+          peer.send('pong')
+        }
+      },
+
+      close(peer, event) {
+        console.info('[ws] close', peer, event)
+      },
+
+      error(peer, error) {
+        console.info('[ws] error', peer, error)
+      },
+    })
+  )
+
+  // Define proxy event handler
+  const proxyEventHandler = createProxyEventHandler({
+    target: `http://127.0.0.1:${vitePort}`,
+    enableLogger: true,
+  })
+  app.use(eventHandler(proxyEventHandler))
+
+  //   async configureServer(server) {
+  //     server.middlewares.use(async (req, res, next) => {
+  //       console.info(`[req] ${req.method || '-'}] ${req.url}`)
+
+  //       if (req.headers['user-agent']?.match(/Expo|React/)) {
+  //         if (req.url === '/' || req.url?.startsWith('/?platform=')) {
+  //           res.setHeader('content-type', 'text/json')
+  //           res.end(JSON.stringify(getIndexJsonResponse({ port, root })))
+  //           return
+  //         }
+
+  //         if (req.url?.includes('index.bundle')) {
+  //           res.setHeader('content-type', 'text/javascript')
+  //           res.end(await getBundleCode())
+  //           return
+  //         }
+
+  //         if (req.url === '/status') {
+  //           res.end(`packager-status:running`)
+  //           return
+  //         }
+  //       }
+
+  //       next()
+  //     })
+  //   },
+  // },
+
+  const server = nodeCreateServer(toNodeListener(app))
+
+  // const nativeServer = await createDevServer(
+  //   {
+  //     root,
+  //     port: nativePort,
+  //     host,
+  //   },
+  //   {
+  //     hotUpdatedCJSFiles,
+  //     listenForHMR(cb) {
+  //       hmrListeners.push(cb)
+  //     },
+  //   }
+  // )
+
   return {
-    nativeServer: nativeServer.instance,
+    nativeServer: server,
     viteServer,
 
     async start() {
-      //
+      server.listen(port)
+
+      console.info(`Server running on http://localhost:${port}`)
 
       return {
         closePromise: new Promise((res) => viteServer.httpServer?.on('close', res)),
@@ -402,7 +513,7 @@ export const create = async (options: StartOptions) => {
     },
 
     stop: async () => {
-      await Promise.all([nativeServer.stop(), viteServer.close()])
+      await Promise.all([server.close(), viteServer.close()])
     },
   }
 
@@ -646,4 +757,49 @@ function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
     bundleUrl: `http://127.0.0.1:${port}/index.bundle?platform=ios&dev=true&hot=false&lazy=true`,
     id: '@anonymous/myapp-473c4543-3c36-4786-9db1-c66a62ac9b78',
   }
+}
+
+export function bindKeypressInput() {
+  if (!process.stdin.setRawMode) {
+    console.warn({
+      msg: 'Interactive mode is not supported in this environment',
+    })
+    return
+  }
+
+  readline.emitKeypressEvents(process.stdin)
+  process.stdin.setRawMode(true)
+
+  process.stdin.on('keypress', (_key, data) => {
+    const { ctrl, name } = data
+    if (ctrl === true) {
+      switch (name) {
+        // biome-ignore lint/suspicious/noFallthroughSwitchClause: <explanation>
+        case 'c':
+          process.exit()
+        case 'z':
+          process.emit('SIGTSTP', 'SIGTSTP')
+          break
+      }
+    } else {
+      switch (name) {
+        case 'r':
+          // ctx.broadcastToMessageClients({ method: 'reload' })
+          // ctx.log.info({
+          //   msg: 'Reloading app',
+          // })
+          break
+        case 'd':
+          // ctx.broadcastToMessageClients({ method: 'devMenu' })
+          // ctx.log.info({
+          //   msg: 'Opening developer menu',
+          // })
+          break
+        case 'c':
+          process.stdout.write('\u001b[2J\u001b[0;0H')
+          // TODO: after logging we should print information about port and host
+          break
+      }
+    }
+  })
 }

@@ -22,8 +22,6 @@ async function dev() {
 
   const { closePromise } = await start()
 
-  viteServer.printUrls()
-
   process.on('beforeExit', () => {
     stop()
   })
