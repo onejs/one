@@ -21,7 +21,7 @@
     "@react-native/babel-preset": "0.73.19",
     "@react-native/metro-config": "0.73.3",
     "@react-native/typescript-config": "0.73.1",
-    "@tamagui/cli": "1.94.4",
+    "@tamagui/cli": "^1.94.4",
     "@types/react": "^18.2.24",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",

@@ -11,13 +11,13 @@
     "vxrn": "0.0.7"
   },
   "dependencies": {
-    "@tamagui/config": "1.94.4",
-    "@tamagui/core": "1.94.4",
-    "@tamagui/vite-plugin": "1.94.4",
+    "@tamagui/config": "^1.94.4",
+    "@tamagui/core": "^1.94.4",
+    "@tamagui/vite-plugin": "^1.94.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "0.73.2",
-    "tamagui": "1.94.4",
+    "tamagui": "^1.94.4",
     "vxrn": "0.0.7"
   }
 }

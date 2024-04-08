@@ -14,6 +14,7 @@ import { createServer as nodeCreateServer } from 'node:http'
 import { dirname, join, relative, resolve } from 'node:path'
 import readline from 'readline'
 import viteInspectPlugin from 'vite-plugin-inspect'
+import { WebSocket, WebSocketServer } from 'ws'
 
 import * as babel from '@babel/core'
 import react from '@vitejs/plugin-react-swc'
@@ -36,6 +37,7 @@ import { getVitePath } from './getVitePath'
 import { nativePlugin } from './nativePlugin'
 import type { HMRListener, VXRNConfig } from './types'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
+import { Peer } from 'crossws'
 
 const resolveFile = (path: string) => {
   try {
@@ -111,7 +113,6 @@ export const create = async (options: VXRNConfig) => {
   }
 
   const templateFile = resolveFile('vxrn/react-native-template.js')
-  console.log('templateFile', templateFile)
 
   // react native port (it scans 19000 +5)
   const hmrListeners: HMRListener[] = []
@@ -333,6 +334,9 @@ export const create = async (options: VXRNConfig) => {
     ],
 
     server: {
+      hmr: {
+        path: '/__vxrnhmr',
+      },
       cors: true,
       host,
     },
@@ -382,7 +386,7 @@ export const create = async (options: VXRNConfig) => {
       console.error(error)
     },
     onRequest: (event) => {
-      console.info('Request:', event.path)
+      console.info(' →', event.path)
     },
   })
 
@@ -434,6 +438,55 @@ export const create = async (options: VXRNConfig) => {
 
   const { handleUpgrade } = wsAdapter(app.websocket)
 
+  // vite hmr two way bridge:
+  if (vitePort) {
+    const clients = new Set<Peer>()
+    const socket = new WebSocket(`ws://localhost:${vitePort}/__vxrnhmr`, 'vite-hmr')
+
+    console.info(`connecting to vite...`)
+    socket.on('open', () => {
+      console.info('...connected to vite!')
+    })
+
+    socket.on('message', (msg) => {
+      const message = msg.toString()
+      console.info(clients.size, 'message', message)
+
+      for (const listener of [...clients]) {
+        listener.send(message)
+      }
+    })
+
+    socket.on('error', (err) => {
+      console.info('err', err)
+    })
+
+    // vite hmr:
+    app.use(
+      '/__vxrnhmr',
+      defineWebSocketHandler({
+        open(peer) {
+          console.debug('[hmr:web] open', peer)
+          clients.add(peer)
+        },
+
+        message(peer, message) {
+          socket.send(message.rawData)
+        },
+
+        close(peer, event) {
+          console.info('[hmr:web] close', peer, event)
+          clients.delete(peer)
+        },
+
+        error(peer, error) {
+          console.error('[hmr:web] error', peer, error)
+        },
+      })
+    )
+  }
+
+  // react native hmr:
   app.use(
     '/__hmr',
     defineWebSocketHandler({
@@ -468,7 +521,7 @@ export const create = async (options: VXRNConfig) => {
     '/__client',
     defineWebSocketHandler({
       open(peer) {
-        console.debug('[client] open', peer)
+        console.info('[client] open', peer)
       },
 
       message(peer, messageRaw) {
@@ -499,7 +552,7 @@ export const create = async (options: VXRNConfig) => {
   // Define proxy event handler
   const proxyEventHandler = createProxyEventHandler({
     target: `http://127.0.0.1:${vitePort}`,
-    enableLogger: true,
+    enableLogger: !!process.env.DEBUG,
   })
   app.use(eventHandler(proxyEventHandler))
 
