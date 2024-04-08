@@ -8251,6 +8251,7 @@ __metadata:
     "@tamagui/build": 1.94.4
     esbuild: ~0.19.3
     fs-extra: ^11.1.0
+    import-meta-resolve: ^4.0.0
     metro-react-native-babel-preset: ^0.77.0
     react-native: 0.73.2
   languageName: unknown
@@ -9701,6 +9702,15 @@ __metadata:
   version: 3.9.0
   resolution: "ci-info@npm:3.9.0"
   checksum: 6b19dc9b2966d1f8c2041a838217299718f15d6c4b63ae36e4674edd2bee48f780e94761286a56aa59eb305a85fbea4ddffb7630ec063e7ec7e7e5ad42549a87
+  languageName: node
+  linkType: hard
+
+"citty@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "citty@npm:0.1.6"
+  dependencies:
+    consola: ^3.2.3
+  checksum: 3fbcaaea92d328deddb5aba7d629d9076d4f1aa0338f59db7ea647a8f51eedc14b7f6218c87ad03c9e3c126213ba87d13d7774f9c30d64209f4b074aa83bd6ab
   languageName: node
   linkType: hard
 
@@ -12878,6 +12888,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"import-meta-resolve@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "import-meta-resolve@npm:4.0.0"
+  checksum: 51c50115fd38e9ba21736f8d7543a58446b92d2cb5f38c9b5ec72426afeb2fb790f82051560a0f16323f44dd73d8d37c07eab5f8dc4635bcdb401daa36727b1a
+  languageName: node
+  linkType: hard
+
 "imurmurhash@npm:^0.1.4":
   version: 0.1.4
   resolution: "imurmurhash@npm:0.1.4"
@@ -13935,6 +13952,15 @@ __metadata:
   version: 0.16.1
   resolution: "jimp-compact@npm:0.16.1"
   checksum: 5a1c62d70881b31f79ea65fecfe03617be0eb56139bc451f37e8972365c99ac3b52c5176c446ff27144c98ab664a99107ae08d347044e94e1de637f165b41a57
+  languageName: node
+  linkType: hard
+
+"jiti@npm:^1.21.0":
+  version: 1.21.0
+  resolution: "jiti@npm:1.21.0"
+  bin:
+    jiti: bin/jiti.js
+  checksum: a7bd5d63921c170eaec91eecd686388181c7828e1fa0657ab374b9372bfc1f383cf4b039e6b272383d5cb25607509880af814a39abdff967322459cca41f2961
   languageName: node
   linkType: hard
 
@@ -19720,6 +19746,7 @@ __metadata:
     "@vxrn/vite-native-hmr": 0.0.7
     "@vxrn/vite-native-swc": 0.0.7
     chalk: ^4.1.2
+    citty: ^0.1.6
     crossws: ^0.2.4
     es-module-lexer: ^1.3.0
     esbuild: ~0.19.3
@@ -19734,6 +19761,8 @@ __metadata:
     h3: ^1.11.1
     h3-proxy: ^1.12.0
     http-proxy-middleware: ^2.0.6
+    import-meta-resolve: ^4.0.0
+    jiti: ^1.21.0
     metro-inspector-proxy: ^0.71.0
     mime: ^3.0.0
     open-editor: ^4.1.1
@@ -19746,6 +19775,8 @@ __metadata:
     vite: ^5.2.8
     vite-plugin-inspect: ^0.8.3
     ws: ^8.7.0
+  bin:
+    vxrn: ./dist/esm/cli.mjs
   languageName: unknown
   linkType: soft
 

@@ -27,6 +27,9 @@
     "./react": "./dist/react.js",
     "./jsx-runtime": "./dist/react-jsx-runtime.js"
   },
+  "dependencies": {
+    "import-meta-resolve": "^4.0.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@tamagui/build": "1.94.4",

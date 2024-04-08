@@ -24,7 +24,7 @@ export function useLoadedNavigation() {
       const pendingCallbacks = pending.current
       pending.current = []
       pendingCallbacks.forEach((callback) => {
-        callback(navigation)
+        callback(navigation as any)
       })
     }
   }, [navigation])

@@ -1,8 +1,9 @@
 import { readFile } from 'node:fs/promises'
 
 import * as babel from '@babel/core'
-import { type BuildOptions, build } from 'esbuild'
-import { writeFile } from 'fs-extra'
+import { build, type BuildOptions } from 'esbuild'
+import FSExtra from 'fs-extra'
+import { resolve as importMetaResolve } from 'import-meta-resolve'
 
 async function nativeBabelFlowTransform(input: string) {
   return await new Promise<string>((res, rej) => {
@@ -26,10 +27,18 @@ export async function buildAll() {
   await Promise.all([buildReactJSX(), buildReact(), buildReactNative()])
 }
 
+const resolveFile = (path: string) => {
+  try {
+    return importMetaResolve(path, import.meta.url).replace('file://', '')
+  } catch {
+    return require.resolve(path)
+  }
+}
+
 export async function buildReactJSX(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [require.resolve('react/jsx-dev-runtime')],
+    entryPoints: [resolveFile('react/jsx-dev-runtime')],
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -58,14 +67,14 @@ export async function buildReactJSX(options: BuildOptions = {}) {
       .map((n) => `export const ${n} = __mod__.${n} || __mod__.jsx || __mod__.jsxDEV`)
       .join('\n')}
     `
-    await writeFile(options.outfile!, outCode)
+    await FSExtra.writeFile(options.outfile!, outCode)
   })
 }
 
 export async function buildReact(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [require.resolve('react')],
+    entryPoints: [resolveFile('react')],
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -93,14 +102,14 @@ export async function buildReact(options: BuildOptions = {}) {
     ${RExports.map((n) => `export const ${n} = __mod__.${n}`).join('\n')}
     export default __mod__
     `
-    await writeFile(options.outfile!, outCode)
+    await FSExtra.writeFile(options.outfile!, outCode)
   })
 }
 
 export async function buildReactNative(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [require.resolve('react-native')],
+    entryPoints: [resolveFile('react-native')],
     format: 'cjs',
     target: 'node20',
     jsx: 'transform',
@@ -142,7 +151,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
             },
             async (input) => {
               return {
-                path: require.resolve('@vxrn/vite-native-hmr'),
+                path: resolveFile('@vxrn/vite-native-hmr'),
               }
             }
           )
@@ -200,7 +209,7 @@ return mod
     const RN = run()
     ${RNExportNames.map((n) => `export const ${n} = RN.${n}`).join('\n')}
     `
-    await writeFile(options.outfile!, outCode)
+    await FSExtra.writeFile(options.outfile!, outCode)
   })
 }
 
