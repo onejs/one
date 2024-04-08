@@ -20,7 +20,7 @@ import react from '@vitejs/plugin-react-swc'
 import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
 import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import { parse } from 'es-module-lexer'
-import * as FSExtra from 'fs-extra'
+import FSExtra from 'fs-extra'
 import {
   build,
   createServer,
@@ -110,7 +110,8 @@ export const create = async (options: VXRNConfig) => {
     ])
   }
 
-  const templateFile = join(packageRootDir, 'react-native-template.js')
+  const templateFile = resolveFile('vxrn/react-native-template.js')
+  console.log('templateFile', templateFile)
 
   // react native port (it scans 19000 +5)
   const hmrListeners: HMRListener[] = []
