@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 
-import { readlink } from 'fs-extra'
+import FSExtra from 'fs-extra'
 import { exec } from './exec'
 
 setup()
@@ -29,7 +29,7 @@ async function setup() {
           const biomeConfig = join(cwd, 'biome.json')
 
           try {
-            await readlink(biomeConfig)
+            await FSExtra.readlink(biomeConfig)
           } catch (err) {
             if (`${err}`.includes(`no such file or directory`)) {
               console.error(`No biome.json found for ${name}, linking from monorepo root`)

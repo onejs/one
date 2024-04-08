@@ -1,10 +1,8 @@
 /* eslint-disable no-console */
-import * as proc from 'node:child_process'
 import { join } from 'node:path'
-import { promisify } from 'node:util'
 import path from 'path'
 
-import fs, { writeJSON } from 'fs-extra'
+import FSExtra from 'fs-extra'
 import pMap from 'p-map'
 import prompts from 'prompts'
 import { exec } from './exec'
@@ -31,7 +29,7 @@ const skipBuild = rePublish || process.argv.includes('--skip-build')
 const dryRun = process.argv.includes('--dry-run')
 const isCI = process.argv.includes('--ci')
 
-const curVersion = fs.readJSONSync('./packages/vxrn/package.json').version
+const curVersion = FSExtra.readJSONSync('./packages/vxrn/package.json').version
 
 const nextVersion = (() => {
   if (rePublish) {
@@ -87,7 +85,7 @@ async function run() {
           .filter((i) => i.location !== '.')
           .map(async ({ name, location }) => {
             const cwd = path.join(process.cwd(), location)
-            const json = await fs.readJSON(path.join(cwd, 'package.json'))
+            const json = await FSExtra.readJSON(path.join(cwd, 'package.json'))
             return {
               name,
               cwd,
@@ -108,7 +106,7 @@ async function run() {
           if (!json.scripts || json.scripts.build === 'true') {
             return
           }
-          if (!(await fs.pathExists(distDir))) {
+          if (!(await FSExtra.pathExists(distDir))) {
             console.warn('no dist dir!', distDir)
             process.exit(1)
           }
@@ -179,7 +177,7 @@ async function run() {
             }
           }
 
-          await writeJSON(path, next, { spaces: 2 })
+          await FSExtra.writeJSON(path, next, { spaces: 2 })
         })
       )
     }

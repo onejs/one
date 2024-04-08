@@ -1,7 +1,7 @@
 import { join, relative, dirname } from 'path'
 
 import resolve from 'esm-resolve'
-import { realpath } from 'fs-extra'
+import FSExtra from 'fs-extra'
 
 export async function getVitePath(
   rootPath: string,
@@ -34,7 +34,7 @@ export async function getVitePath(
     if (!resolved) {
       throw new Error(`❌ cant find`)
     }
-    const real = await realpath(resolved)
+    const real = await FSExtra.realpath(resolved)
     let id = real
     if (!absolute) {
       id = relative(importer, real)

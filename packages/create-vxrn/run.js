@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-const command = require.resolve('create-tamagui')
+const command = require.resolve('create-vxrn')
 const args = process.argv.slice(2)
 
 try {
   require('child_process').execSync(`node ${command} ${args.join(' ')}`, {
     stdio: 'inherit',
   })
-} catch(err) {
+} catch (err) {
   process.exit(1)
 }

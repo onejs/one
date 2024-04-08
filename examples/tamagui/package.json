@@ -1,10 +1,14 @@
 {
   "name": "example-tamagui",
   "version": "0.0.7",
+  "type": "module",
   "private": true,
   "main": "index.jsx",
   "scripts": {
-    "dev": "node -r esbuild-register ./dev.ts"
+    "dev": "vxrn dev"
+  },
+  "devDependencies": {
+    "vxrn": "0.0.7"
   },
   "dependencies": {
     "@tamagui/config": "1.94.4",

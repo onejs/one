@@ -57,7 +57,8 @@ export function nativePlugin(options: {
 
       config.optimizeDeps ??= {}
 
-      config.optimizeDeps.disabled = true
+      config.optimizeDeps.noDiscovery = true
+      config.optimizeDeps.include = undefined
 
       config.optimizeDeps.esbuildOptions ??= {}
       config.optimizeDeps.esbuildOptions.resolveExtensions = extensions
