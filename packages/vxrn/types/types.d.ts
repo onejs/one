@@ -1,6 +1,6 @@
 import type { InlineConfig } from 'vite';
-export type StartOptions = {
-    root: string;
+export type VXRNConfig = {
+    root?: string;
     host?: string;
     port?: number;
     webConfig?: InlineConfig;

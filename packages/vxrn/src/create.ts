@@ -20,7 +20,7 @@ import react from '@vitejs/plugin-react-swc'
 import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
 import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import { parse } from 'es-module-lexer'
-import { ensureDir, pathExists, pathExistsSync } from 'fs-extra'
+import * as FSExtra from 'fs-extra'
 import {
   build,
   createServer,
@@ -34,7 +34,16 @@ import {
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { getVitePath } from './getVitePath'
 import { nativePlugin } from './nativePlugin'
-import type { HMRListener, StartOptions } from './types'
+import type { HMRListener, VXRNConfig } from './types'
+import { resolve as importMetaResolve } from 'import-meta-resolve'
+
+const resolveFile = (path: string) => {
+  try {
+    return importMetaResolve(path, import.meta.url).replace('file://', '')
+  } catch {
+    return require.resolve(path)
+  }
+}
 
 const nativeExtensions = [
   '.native.tsx',
@@ -60,8 +69,10 @@ const extensions = [
   '.json',
 ]
 
-export const create = async (options: StartOptions) => {
-  const { host = '127.0.0.1', root, port = 8081 } = options
+const { ensureDir, pathExists, pathExistsSync } = FSExtra
+
+export const create = async (options: VXRNConfig) => {
+  const { host = '127.0.0.1', root = process.cwd(), port = 8081 } = options
 
   // TODO move somewhere
   bindKeypressInput()
@@ -69,9 +80,9 @@ export const create = async (options: StartOptions) => {
   // used for normalizing hot reloads
   let entryRoot = ''
 
-  const packageRootDir = join(__dirname, '..')
+  const packageRootDir = join(import.meta.url ?? __filename, '..')
 
-  const cacheDir = join(options.root, 'node_modules', '.cache', 'vxrn')
+  const cacheDir = join(root, 'node_modules', '.cache', 'vxrn')
 
   await ensureDir(cacheDir)
 
@@ -85,15 +96,15 @@ export const create = async (options: StartOptions) => {
     console.info('Pre-building react, react-native react/jsx-runtime (one time cost)...')
     await Promise.all([
       buildReactNative({
-        entryPoints: [require.resolve('react-native')],
+        entryPoints: [resolveFile('react-native')],
         outfile: prebuilds.reactNative,
       }),
       buildReact({
-        entryPoints: [require.resolve('react')],
+        entryPoints: [resolveFile('react')],
         outfile: prebuilds.react,
       }),
       buildReactJSX({
-        entryPoints: [require.resolve('react/jsx-dev-runtime')],
+        entryPoints: [resolveFile('react/jsx-dev-runtime')],
         outfile: prebuilds.reactJSX,
       }),
     ])
@@ -203,7 +214,7 @@ export const create = async (options: StartOptions) => {
       // dedupe: ['react', 'react-dom'],
       alias: {
         // ...Object.fromEntries(Object.entries(virtualModules).map(([k, v]) => [k, v.alias])),
-        'react-native': require.resolve('react-native-web-lite'),
+        'react-native': resolveFile('react-native-web-lite'),
       },
     },
     optimizeDeps: {
@@ -234,7 +245,7 @@ export const create = async (options: StartOptions) => {
 
         async handleHotUpdate({ read, modules, file }) {
           try {
-            if (!isWithin(options.root, file)) {
+            if (!isWithin(root, file)) {
               return
             }
 
@@ -569,7 +580,7 @@ export const create = async (options: StartOptions) => {
         viteRNClientPlugin,
 
         nativePlugin({
-          root: options.root,
+          root,
           port,
           mode: 'build',
         }),
@@ -691,7 +702,7 @@ __require("${outputModule.fileName}")
       .replaceAll('(void 0).accept(function() {});', '')
 
     // TODO this is not stable based on cwd
-    const appRootParent = join(options.root, '..', '..')
+    const appRootParent = join(root, '..', '..')
 
     const template = (await readFile(templateFile, 'utf-8'))
       .replace('_virtual/virtual_react-native.js', relative(appRootParent, prebuilds.reactNative))

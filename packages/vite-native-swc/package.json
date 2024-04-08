@@ -2,6 +2,7 @@
   "name": "@vxrn/vite-native-swc",
   "version": "0.0.7",
   "types": "./types/index.d.ts",
+  "type": "module",
   "main": "dist/cjs",
   "module": "dist/esm",
   "files": [
@@ -21,7 +22,7 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./types/index.d.ts",
-      "import": "./dist/esm/index.js",
+      "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
     }
   },
