@@ -2,7 +2,7 @@
   "name": "create-vxrn",
   "version": "0.0.7",
   "bin": "./run.js",
-  "main": "dist",
+  "module": "dist",
   "files": [
     "run.js",
     "dist"
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@expo/package-manager": "^1.1.2",
-    "@tamagui/build": "1.94.4",
+    "@tamagui/build": "^1.94.4",
     "@types/prompts": "^2.4.9",
     "@types/validate-npm-package-name": "^4.0.2",
     "async-retry": "1.3.1",

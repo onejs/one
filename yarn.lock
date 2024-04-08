@@ -4706,7 +4706,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/build@npm:1.94.4":
+"@tamagui/build@npm:1.94.4, @tamagui/build@npm:^1.94.4":
   version: 1.94.4
   resolution: "@tamagui/build@npm:1.94.4"
   dependencies:
@@ -4812,7 +4812,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/cli@npm:1.94.4":
+"@tamagui/cli@npm:^1.94.4":
   version: 1.94.4
   resolution: "@tamagui/cli@npm:1.94.4"
   dependencies:
@@ -4915,7 +4915,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/config@npm:1.94.4":
+"@tamagui/config@npm:^1.94.4":
   version: 1.94.4
   resolution: "@tamagui/config@npm:1.94.4"
   dependencies:
@@ -4942,7 +4942,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/core@npm:1.94.4":
+"@tamagui/core@npm:1.94.4, @tamagui/core@npm:^1.94.4":
   version: 1.94.4
   resolution: "@tamagui/core@npm:1.94.4"
   dependencies:
@@ -5963,7 +5963,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/vite-plugin@npm:1.94.4":
+"@tamagui/vite-plugin@npm:1.94.4, @tamagui/vite-plugin@npm:^1.94.4":
   version: 1.94.4
   resolution: "@tamagui/vite-plugin@npm:1.94.4"
   dependencies:
@@ -5978,7 +5978,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/web@npm:1.94.4":
+"@tamagui/web@npm:1.94.4, @tamagui/web@npm:^1.94.4":
   version: 1.94.4
   resolution: "@tamagui/web@npm:1.94.4"
   dependencies:
@@ -6277,6 +6277,15 @@ __metadata:
   version: 0.0.20
   resolution: "@types/web-bluetooth@npm:0.0.20"
   checksum: d6d61da683e876e8995ac57e2e5229d829d0f536deb3568d4430898fc626ebcb7e065fe7f655ac6a5205702f7f7049e6335abe689cd5291241eef6e39e8a4371
+  languageName: node
+  linkType: hard
+
+"@types/ws@npm:^8.5.10":
+  version: 8.5.10
+  resolution: "@types/ws@npm:8.5.10"
+  dependencies:
+    "@types/node": "*"
+  checksum: 3ec416ea2be24042ebd677932a462cf16d2080393d8d7d0b1b3f5d6eaa4a7387aaf0eefb99193c0bfd29444857cf2e0c3ac89899e130550dc6c14ada8a46d25e
   languageName: node
   linkType: hard
 
@@ -6594,8 +6603,8 @@ __metadata:
     "@react-navigation/native": ^6.1.7
     "@react-navigation/native-stack": ^6.9.13
     "@react-navigation/routers": ^6.1.9
-    "@tamagui/build": 1.94.4
-    "@tamagui/web": 1.94.4
+    "@tamagui/build": ^1.94.4
+    "@tamagui/web": ^1.94.4
     escape-string-regexp: ^5.0.0
     expo: ^47.0.0
     expo-constants: ^14.4.2
@@ -6622,7 +6631,7 @@ __metadata:
   resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
   dependencies:
     "@babel/core": ^7.21.8
-    "@tamagui/build": 1.94.4
+    "@tamagui/build": ^1.94.4
     esbuild: ~0.19.3
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.0.0
@@ -6636,7 +6645,7 @@ __metadata:
   resolution: "@vxrn/vite-native-client@workspace:packages/vite-native-client"
   dependencies:
     "@biomejs/biome": ^1.6.3
-    "@tamagui/build": 1.94.4
+    "@tamagui/build": ^1.94.4
     react-native: 0.73.2
   peerDependencies:
     react-native: "*"
@@ -6647,7 +6656,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-hmr@workspace:packages/vite-native-hmr"
   dependencies:
-    "@tamagui/build": 1.94.4
+    "@tamagui/build": ^1.94.4
     pretty-format: ^28.1.0
     react-native: 0.73.2
   peerDependencies:
@@ -6661,7 +6670,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": ^1.6.3
     "@swc/core": ^1.3.78
-    "@tamagui/build": 1.94.4
+    "@tamagui/build": ^1.94.4
     react-native: 0.73.2
   peerDependencies:
     react-native: "*"
@@ -8410,7 +8419,7 @@ __metadata:
   resolution: "create-vxrn@workspace:packages/create-vxrn"
   dependencies:
     "@expo/package-manager": ^1.1.2
-    "@tamagui/build": 1.94.4
+    "@tamagui/build": ^1.94.4
     "@types/prompts": ^2.4.9
     "@types/validate-npm-package-name": ^4.0.2
     async-retry: 1.3.1
@@ -9464,7 +9473,7 @@ __metadata:
     "@react-native/babel-preset": 0.73.19
     "@react-native/metro-config": 0.73.3
     "@react-native/typescript-config": 0.73.1
-    "@tamagui/cli": 1.94.4
+    "@tamagui/cli": ^1.94.4
     "@types/react": ^18.2.24
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.6.3
@@ -9482,7 +9491,8 @@ __metadata:
   resolution: "example-expo-router@workspace:examples/expo-router"
   dependencies:
     "@react-navigation/native": ^6.1.7
-    "@tamagui/cli": 1.94.4
+    "@tamagui/cli": ^1.94.4
+    "@tamagui/core": ^1.94.4
     "@vxrn/expo-router": 0.0.7
     expo-modules-core: 1.7.0
     react: ^18.2.0
@@ -9497,13 +9507,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-tamagui@workspace:examples/tamagui"
   dependencies:
-    "@tamagui/config": 1.94.4
-    "@tamagui/core": 1.94.4
-    "@tamagui/vite-plugin": 1.94.4
+    "@tamagui/config": ^1.94.4
+    "@tamagui/core": ^1.94.4
+    "@tamagui/vite-plugin": ^1.94.4
     react: ^18.2.0
     react-dom: ^18.2.0
     react-native: 0.73.2
-    tamagui: 1.94.4
+    tamagui: ^1.94.4
     vxrn: 0.0.7
   languageName: unknown
   linkType: soft
@@ -16706,7 +16716,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tamagui@npm:1.94.4":
+"tamagui@npm:^1.94.4":
   version: 1.94.4
   resolution: "tamagui@npm:1.94.4"
   dependencies:
@@ -17240,6 +17250,13 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 34e8fe6b892736204c6c72ae9e3027fb37f23e34cf748340712101cbe9c55527c379c4d275c407e5c66ff73eca56c7425b1fb4ac5b23dc7a62413cf6a8af98e8
+  languageName: node
+  linkType: hard
+
+"uWebSockets.js@github:uNetworking/uWebSockets.js#v20.33.0":
+  version: 20.33.0
+  resolution: "uWebSockets.js@https://github.com/uNetworking/uWebSockets.js.git#commit=c10b47c350cc97c299c6b4a07a98abb628704c71"
+  checksum: f4f20f6b4ebadfaf847a431ed8b79f81d0a69dffe9a561660fb9a7d71f0f67879a04ac9ffcfb918e85915e6643e31d34a38ad936cb8be7e8ce87b72fac8494b4
   languageName: node
   linkType: hard
 
@@ -17852,7 +17869,8 @@ __metadata:
     "@biomejs/biome": ^1.6.3
     "@fastify/sensible": ^4.1.0
     "@fastify/static": ^5.0.2
-    "@tamagui/build": 1.94.4
+    "@tamagui/build": ^1.94.4
+    "@types/ws": ^8.5.10
     "@vitejs/plugin-react": ^4.2.1
     "@vitejs/plugin-react-swc": ^3.6.0
     "@vxrn/react-native-prebuilt": 0.0.7
@@ -17885,6 +17903,7 @@ __metadata:
     readline: ^1.3.0
     rollup: ^3.29.4
     source-map: ^0.7.3
+    uWebSockets.js: "github:uNetworking/uWebSockets.js#v20.33.0"
     url: ^0.11.0
     vite: ^5.2.8
     vite-plugin-inspect: ^0.8.3
