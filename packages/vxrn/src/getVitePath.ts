@@ -1,7 +1,7 @@
 import { join, relative, dirname } from 'path'
 
 import resolve from 'esm-resolve'
-import * as FSExtra from 'fs-extra'
+import FSExtra from 'fs-extra'
 
 export async function getVitePath(
   rootPath: string,

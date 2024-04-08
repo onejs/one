@@ -1,10 +1,8 @@
 /* eslint-disable no-console */
-import * as proc from 'node:child_process'
 import { join } from 'node:path'
-import { promisify } from 'node:util'
 import path from 'path'
 
-import * as FSExtra from 'fs-extra'
+import FSExtra from 'fs-extra'
 import pMap from 'p-map'
 import prompts from 'prompts'
 import { exec } from './exec'

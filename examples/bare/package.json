@@ -3,16 +3,16 @@
   "version": "0.0.7",
   "private": true,
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "node -r esbuild-register ./dev.ts",
+    "dev": "vxrn dev",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "jest"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-native": "0.73.2",
-    "vxrn": "0.0.7"
+    "react-native": "0.73.2"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
@@ -27,7 +27,8 @@
     "babel-jest": "^29.6.3",
     "jest": "^29.6.3",
     "react-test-renderer": "18.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vxrn": "0.0.7"
   },
   "engines": {
     "node": ">=18"

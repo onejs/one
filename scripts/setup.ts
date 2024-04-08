@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 
-import * as FSExtra from 'fs-extra'
+import FSExtra from 'fs-extra'
 import { exec } from './exec'
 
 setup()

@@ -1,5 +1,5 @@
 import jiti from 'jiti'
-import * as FSExtra from 'fs-extra'
+import FSExtra from 'fs-extra'
 import type { VXRNConfig } from '../types'
 
 export async function readVXRNConfig(): Promise<VXRNConfig> {
