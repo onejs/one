@@ -5,7 +5,7 @@ export default () => {
   return (
     <>
       <View>
-        <Text style={{ color: 'blue' }}>hi from home??212322</Text>
+        <Text style={{ color: 'blue' }}>Hi from home</Text>
       </View>
       <Link
         href={{

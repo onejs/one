@@ -27,6 +27,7 @@ import {
   createServer,
   mergeConfig,
   resolveConfig,
+  transformWithEsbuild,
   type InlineConfig,
   type PluginOption,
   type UserConfig,
@@ -203,6 +204,8 @@ export const create = async (options: VXRNConfig) => {
     },
   } as const
 
+  const depsToOptimize = ['react', 'react-dom', '@react-native/normalize-color']
+
   let serverConfig: UserConfig = {
     root,
     mode: 'development',
@@ -220,7 +223,7 @@ export const create = async (options: VXRNConfig) => {
       },
     },
     optimizeDeps: {
-      include: ['react', 'react-dom', '@react-native/normalize-color'],
+      include: depsToOptimize,
       exclude: Object.values(virtualModules).map((v) => v.alias),
       force: true,
       esbuildOptions: {
@@ -650,6 +653,19 @@ export const create = async (options: VXRNConfig) => {
         }),
 
         {
+          name: 'treat-js-files-as-jsx',
+          async transform(code, id) {
+            if (!id.match(/expo-status-bar/)) return null
+            // Use the exposed transform from vite, instead of directly
+            // transforming with esbuild
+            return transformWithEsbuild(code, id, {
+              loader: 'jsx',
+              jsx: 'automatic',
+            })
+          },
+        },
+
+        {
           name: 'native-extensions',
 
           // async config(config) {
@@ -664,9 +680,12 @@ export const create = async (options: VXRNConfig) => {
       root,
       clearScreen: false,
 
-      // optimizeDeps: {
-      //   include: ['tamagui'],
-      // },
+      optimizeDeps: {
+        include: depsToOptimize,
+        esbuildOptions: {
+          jsx: 'automatic',
+        },
+      },
 
       build: {
         ssr: false,
