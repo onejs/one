@@ -60,9 +60,7 @@ const main = defineCommand({
 
     console.info()
     console.info(
-      ansis.bold(
-        ' Note: You may need to run "npm create vxrn@latest" to get the latest version!'
-      )
+      ansis.bold(' Note: You may need to run "npm create vxrn@latest" to get the latest version!')
     )
     console.info()
 
@@ -105,9 +103,7 @@ const main = defineCommand({
         ansis.red('🚨 [vxrn] error'),
         `You tried to make a project called ${ansis.underline(
           ansis.blueBright(projectName)
-        )}, but a folder with that name already exists: ${ansis.blueBright(
-          resolvedProjectPath
-        )}
+        )}, but a folder with that name already exists: ${ansis.blueBright(resolvedProjectPath)}
   
   ${ansis.bold(ansis.red(`Please pick a different project name 🥸`))}`
       )
@@ -140,8 +136,7 @@ const main = defineCommand({
     console.info()
 
     const packageManager =
-      ('packageManager' in template ? template.packageManager : undefined) ||
-      (await detect())
+      ('packageManager' in template ? template.packageManager : undefined) || (await detect())
 
     try {
       console.info('installing with ' + packageManager)
@@ -172,10 +167,7 @@ function updatePackageJsonName(projectName: string, dir: string) {
   const packageJsonPath = path.join(dir, 'package.json')
   if (existsSync(packageJsonPath)) {
     const content = readFileSync(packageJsonPath).toString()
-    const contentWithUpdatedName = content.replace(
-      /("name": ")(.*)(",)/,
-      `$1${projectName}$3`
-    )
+    const contentWithUpdatedName = content.replace(/("name": ")(.*)(",)/, `$1${projectName}$3`)
     writeFileSync(packageJsonPath, contentWithUpdatedName)
   }
 }
