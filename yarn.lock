@@ -6453,6 +6453,8 @@ __metadata:
     import-meta-resolve: ^4.0.0
     metro-react-native-babel-preset: ^0.77.0
     react-native: 0.73.2
+  peerDependencies:
+    react-native: "*"
   languageName: unknown
   linkType: soft
 
