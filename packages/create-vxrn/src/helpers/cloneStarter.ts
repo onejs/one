@@ -92,9 +92,7 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
     console.info()
   } catch (err: any) {
     console.info(
-      `Error updating: ${err.message} ${
-        isRetry ? `failing.\n${err.stack}` : 'trying from fresh.'
-      }`
+      `Error updating: ${err.message} ${isRetry ? `failing.\n${err.stack}` : 'trying from fresh.'}`
     )
     if (isRetry) {
       console.info(

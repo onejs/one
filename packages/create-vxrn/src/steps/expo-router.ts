@@ -6,7 +6,8 @@ import { exec } from '../helpers/exec'
 const packageManager = 'yarn'
 const useYarn = packageManager === 'yarn'
 
-const runCommand = (scriptName: string) => `${packageManager} ${useYarn ? '' : 'run '}${scriptName}`
+const runCommand = (scriptName: string) =>
+  `${packageManager} ${useYarn ? '' : 'run '}${scriptName}`
 
 const main: ExtraSteps = async ({ isFullClone, projectName }) => {
   exec(runCommand('patch-package'))

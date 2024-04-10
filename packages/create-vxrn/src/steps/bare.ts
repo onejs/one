@@ -85,9 +85,7 @@ const main: ExtraSteps = async ({ isFullClone, projectName }) => {
 
   if (isFullClone) {
     console.info(`
-${ansis.green.bold('Done!')} Created a new project under ./${ansis.greenBright(
-      projectName
-    )} visit your project:
+${ansis.green.bold('Done!')} Created a new project under ./${ansis.greenBright(projectName)} visit your project:
   • ${ansis.green('cd')} ${projectName}
 
 ${ansis.green(`Run instructions for ${ansis.bold('Android')}:`)}
