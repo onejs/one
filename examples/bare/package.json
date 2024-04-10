@@ -7,8 +7,7 @@
   "scripts": {
     "dev": "vxrn dev",
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "test": "jest"
+    "ios": "react-native run-ios"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -25,7 +24,6 @@
     "@types/react": "^18.2.24",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
-    "jest": "^29.6.3",
     "react-test-renderer": "18.2.0",
     "typescript": "^5.2.2",
     "vxrn": "0.0.7"
