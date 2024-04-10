@@ -2,10 +2,9 @@ import { execSync } from 'node:child_process'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 
-import chalk from 'chalk'
+import ansis from 'ansis'
 import { copy, ensureDir, pathExists, remove } from 'fs-extra'
 import { rimraf } from 'rimraf'
-import { $, cd } from 'zx'
 
 import type { templates } from '../templates'
 
@@ -31,7 +30,7 @@ export const cloneStarter = async (
   await setupVxrnDotDir(template)
   const starterDir = join(targetGitDir, ...template.repo.dir)
   console.info()
-  console.info(`Copying starter from ${starterDir} into ${chalk.blueBright(projectName)}...`)
+  console.info(`Copying starter from ${starterDir} into ${ansis.blueBright(projectName)}...`)
   console.info()
 
   // if (!(await pathExists(starterDir))) {
@@ -41,27 +40,18 @@ export const cloneStarter = async (
   await copy(starterDir, resolvedProjectPath)
   await rimraf(`${resolvedProjectPath}/.git`)
 
-  console.info(chalk.green(`${projectName} created!`))
+  console.info(ansis.green(`${projectName} created!`))
   console.info()
 }
 
 async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = false) {
   const repoRoot = join(__dirname, '..', '..', '..')
 
-  console.info(`Setting up ${chalk.blueBright(targetGitDir)}...`)
-
-  if (process.env.GITHUB_HEAD_REF) {
-    try {
-      await $`git switch -c ${process.env.GITHUB_HEAD_REF}`
-    } catch {
-      // re-tries branch already exists
-    }
-  }
+  console.info(`Setting up ${ansis.blueBright(targetGitDir)}...`)
 
   const branch = template.repo.branch
 
   await ensureDir(vxrnDir)
-  cd(vxrnDir)
 
   const isInSubDir = template.repo.dir.length > 0
 
