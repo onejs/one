@@ -2,19 +2,19 @@ import wsAdapter from 'crossws/adapters/node'
 import { readFile } from 'fs/promises'
 import {
   createApp,
+  createRouter,
   defineEventHandler,
   defineWebSocketHandler,
   eventHandler,
-  toNodeListener,
-  createRouter,
   getQuery,
+  toNodeListener,
 } from 'h3'
 import { createProxyEventHandler } from 'h3-proxy'
 import { createServer as nodeCreateServer } from 'node:http'
 import { dirname, join, relative, resolve } from 'node:path'
 import readline from 'readline'
 import viteInspectPlugin from 'vite-plugin-inspect'
-import { WebSocket, WebSocketServer } from 'ws'
+import { WebSocket } from 'ws'
 
 import * as babel from '@babel/core'
 import react from '@vitejs/plugin-react-swc'
@@ -33,12 +33,12 @@ import {
   type UserConfig,
 } from 'vite'
 
+import type { Peer } from 'crossws'
+import { resolve as importMetaResolve } from 'import-meta-resolve'
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { getVitePath } from './getVitePath'
 import { nativePlugin } from './nativePlugin'
 import type { HMRListener, VXRNConfig } from './types'
-import { resolve as importMetaResolve } from 'import-meta-resolve'
-import { Peer } from 'crossws'
 
 const resolveFile = (path: string) => {
   try {

@@ -1,10 +1,5 @@
-import { createURL } from 'expo-linking'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-
-import { usePathname, useRouter } from '../hooks'
-import { Link } from '../link/Link'
-import { useNavigation } from '../useNavigation'
+import { StyleSheet, Text } from 'react-native'
 
 const useLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : () => {}
 
