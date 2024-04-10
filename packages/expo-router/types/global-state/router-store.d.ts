@@ -24,12 +24,12 @@ export declare class RouterStore {
     rootStateSubscribers: Set<() => void>;
     storeSubscribers: Set<() => void>;
     linkTo: (href: string, event?: string | undefined) => void;
-    getSortedRoutes: () => RouteNode[];
     goBack: () => void;
     canGoBack: () => boolean;
     push: (url: import("../link/href").Href) => void;
     replace: (url: import("../link/href").Href) => void;
     setParams: (params?: Record<string, string | number> | undefined) => any;
+    getSortedRoutes: () => RouteNode[];
     initialize(context: RequireContext, navigationRef: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>, initialLocation?: URL): void;
     updateState(state: ResultState, nextState?: ResultState): void;
     getRouteInfo(state: ResultState): UrlObject;

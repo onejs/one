@@ -2,14 +2,14 @@ import { CommonActions, StackActions, getActionFromState } from '@react-navigati
 import { TabActions } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
 
-import { type Href, resolveHref } from '../link/href'
+import { resolveHref, type Href } from '../link/href'
 import { resolve } from '../link/path'
 import {
-  type NavigateAction,
   findTopRouteForTarget,
   getEarliestMismatchedRoute,
   getQualifiedStateForTopOfTargetState,
   isMovingToSiblingRoute,
+  type NavigateAction,
 } from '../link/stateOperations'
 import { hasUrlProtocolPrefix } from '../utils/url'
 import type { RouterStore } from './router-store'
