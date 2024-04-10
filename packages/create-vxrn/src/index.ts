@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // inspired by https://github.com/vercel/next.js/blob/0355e5f63f87db489f36db8d814958cb4c2b828b/packages/create-next-app/helpers/examples.ts#L71
 
-import chalk from 'chalk'
+import ansis from 'ansis'
 import { defineCommand, runMain } from 'citty'
 import { detect } from 'detect-package-manager'
 import { existsSync, readFileSync, writeFileSync } from 'fs-extra'
@@ -35,6 +35,7 @@ const main = defineCommand({
     directory: {
       type: 'positional',
       description: 'Directory to copy into',
+      default: '',
     },
     template: {
       type: 'string',
@@ -59,12 +60,12 @@ const main = defineCommand({
 
     console.info()
     console.info(
-      chalk.bold(' Note: You may need to run "npm create vxrn@latest" to get the latest version!')
+      ansis.bold(' Note: You may need to run "npm create vxrn@latest" to get the latest version!')
     )
     console.info()
 
     console.info() // this newline prevents the ascii art from breaking
-    console.info(chalk.bold('Creating vxrn app...'))
+    console.info(ansis.bold('Creating vxrn app...'))
 
     const gitVersionString = Number.parseFloat(
       execSync(`git --version`).toString().replace(`git version `, '').trim()
@@ -87,33 +88,33 @@ const main = defineCommand({
     const { valid, problems } = validateNpmName(projectName)
     if (!valid) {
       console.error(
-        `Could not create a project called ${chalk.red(
+        `Could not create a project called ${ansis.red(
           `"${projectName}"`
         )} because of npm naming restrictions:`
       )
 
-      problems!.forEach((p) => console.error(`    ${chalk.red.bold('*')} ${p}`))
+      problems!.forEach((p) => console.error(`    ${ansis.red.bold('*')} ${p}`))
       process.exit(1)
     }
 
     if (fs.existsSync(resolvedProjectPath)) {
       console.info()
       console.info(
-        chalk.red('🚨 [vxrn] error'),
-        `You tried to make a project called ${chalk.underline(
-          chalk.blueBright(projectName)
-        )}, but a folder with that name already exists: ${chalk.blueBright(resolvedProjectPath)}
+        ansis.red('🚨 [vxrn] error'),
+        `You tried to make a project called ${ansis.underline(
+          ansis.blueBright(projectName)
+        )}, but a folder with that name already exists: ${ansis.blueBright(resolvedProjectPath)}
   
-  ${chalk.bold(chalk.red(`Please pick a different project name 🥸`))}`
+  ${ansis.bold(ansis.red(`Please pick a different project name 🥸`))}`
       )
       console.info()
       console.info()
       process.exit(1)
     }
     console.info()
-    console.info(`Creating a new vxrn app ${chalk.blueBright(resolvedProjectPath)}...`)
+    console.info(`Creating a new vxrn app ${ansis.blueBright(resolvedProjectPath)}...`)
     fs.mkdirSync(resolvedProjectPath)
-    console.info(chalk.green(`${projectName} folder created.`))
+    console.info(ansis.green(`${projectName} folder created.`))
 
     try {
       await cloneStarter(template, resolvedProjectPath, projectName)

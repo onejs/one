@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-import chalk from 'chalk'
+import ansis from 'ansis'
 import prompts from 'prompts'
 
 import packageJson from '../../package.json'
@@ -34,12 +34,12 @@ export const getProjectName = async (projectPath?: string) => {
   if (!projectPath) {
     console.info()
     console.info('Please specify the project directory:')
-    console.info(`  ${chalk.cyan(packageJson.name)} ${chalk.green('<project-directory>')}`)
+    console.info(`  ${ansis.cyan(packageJson.name)} ${ansis.green('<project-directory>')}`)
     console.info()
     console.info('For example:')
-    console.info(`  ${chalk.cyan(packageJson.name)} ${chalk.green('my-app')}`)
+    console.info(`  ${ansis.cyan(packageJson.name)} ${ansis.green('my-app')}`)
     console.info()
-    console.info(`Run ${chalk.cyan(`${packageJson.name} --help`)} to see all options.`)
+    console.info(`Run ${ansis.cyan(`${packageJson.name} --help`)} to see all options.`)
     process.exit(1)
   }
   return projectPath
