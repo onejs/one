@@ -8,7 +8,7 @@
     "dev": "vxrn dev"
   },
   "devDependencies": {
-    "vxrn": "0.1.0"
+    "vxrn": "0.1.2"
   },
   "dependencies": {
     "@tamagui/config": "^1.94.4",
