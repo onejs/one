@@ -17,8 +17,6 @@ async function renameFile(filePath: string, oldName: string, newName: string) {
     basename(filePath).replace(new RegExp(oldName, 'g'), newName)
   )
 
-  console.debug(`Renaming ${filePath} -> file:${newFileName}`)
-
   await fs.rename(filePath, newFileName)
 }
 
@@ -37,7 +35,6 @@ export async function replaceNameInUTF8File(
   projectName: string,
   templateName: string
 ) {
-  console.debug(`Replacing in ${filePath}`)
   const fileContent = await fs.readFile(filePath, 'utf8')
   const replacedFileContent = fileContent
     .replace(new RegExp(templateName, 'g'), projectName)
@@ -50,12 +47,6 @@ export async function replaceNameInUTF8File(
 
 const main: ExtraSteps = async ({ isFullClone, projectName }) => {
   const placeholderName = 'bare'
-
-  if (projectName === placeholderName) {
-    console.error(`
-  ${ansis.red.bold('Error:')} Bare project cannot be named ${ansis.underline('bare')}.`)
-    process.exit(0)
-  }
 
   for (const filePath of walk(process.cwd()).reverse()) {
     if (shouldIgnoreFile(filePath)) {
@@ -72,25 +63,45 @@ const main: ExtraSteps = async ({ isFullClone, projectName }) => {
       await renameFile(filePath, placeholderName.toLowerCase(), projectName.toLowerCase())
     }
   }
+
+  // Inside vxrn's monorepo some paths are changed to root's node-modules, when generating a new project these should be changed.
+
+  await replaceNameInUTF8File(
+    'android/app/build.gradle',
+    '../../node_modules/',
+    '../../../../node_modules/'
+  )
+  await replaceNameInUTF8File(
+    'android/settings.gradle',
+    '../node_modules/',
+    '../../../node_modules/'
+  )
+
+  await replaceNameInUTF8File(
+    `ios/${projectName}.xcodeproj/project.pbxproj`,
+    '../node_modules/react-native/scripts/',
+    '../../../node_modules/react-native/scripts/'
+  )
+
   if (isFullClone) {
     console.info(`
-${ansis.green.bold('Done!')} created a new project under ./${projectName}
-
-visit your project:
-${ansis.green('cd')} ${projectName}
+${ansis.green.bold('Done!')} Created a new project under ./${ansis.greenBright(
+      projectName
+    )} visit your project:
+  • ${ansis.green('cd')} ${projectName}
 
 ${ansis.green(`Run instructions for ${ansis.bold('Android')}:`)}
   • Have an Android emulator running (quickest way to get started), or a device connected.
   • npx react-native run-android
 
-${ansis.blue(`Run instructions for ${ansis.blue('iOS')}:`)}
+${ansis.blue(`Run instructions for ${ansis.bold('iOS')}:`)}
   • Install Cocoapods
     • bundle install # you need to run this only once in your project.
     • bundle exec pod install
     • cd ..
 
   • npx react-native run-ios
-  - or -
+  ${ansis.gray('- or -')}
   • Open ${projectName}/ios/${projectName}.xcworkspace in Xcode or run "xed -b ios"
   • Hit the Run button
 
