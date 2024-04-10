@@ -9,7 +9,6 @@ import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { cwd } from 'node:process'
-import { cd } from 'zx'
 import packageJson from '../package.json'
 import { cloneStarter } from './helpers/cloneStarter'
 import { getProjectName } from './helpers/getProjectName'
@@ -118,7 +117,7 @@ const main = defineCommand({
 
     try {
       await cloneStarter(template, resolvedProjectPath, projectName)
-      cd(resolvedProjectPath)
+      process.chdir(resolvedProjectPath)
       // space
       console.info()
     } catch (e) {

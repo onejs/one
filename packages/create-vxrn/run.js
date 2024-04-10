@@ -4,7 +4,7 @@ const command = require.resolve('create-vxrn')
 const args = process.argv.slice(2)
 
 try {
-  require('child_process').execSync(`node ${command} ${args.join(' ')}`, {
+  require('node:child_process').execSync(`node ${command} ${args.join(' ')}`, {
     stdio: 'inherit',
   })
 } catch (err) {

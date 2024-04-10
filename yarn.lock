@@ -17909,7 +17909,7 @@ __metadata:
     vite-plugin-inspect: ^0.8.3
     ws: ^8.7.0
   bin:
-    vxrn: ./dist/esm/cli.mjs
+    vxrn: ./run.mjs
   languageName: unknown
   linkType: soft
 
