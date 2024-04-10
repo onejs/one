@@ -26,7 +26,7 @@
     "babel-jest": "^29.6.3",
     "react-test-renderer": "18.2.0",
     "typescript": "^5.2.2",
-    "vxrn": "0.1.2"
+    "vxrn": "0.1.3"
   },
   "engines": {
     "node": ">=18"
