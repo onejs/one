@@ -23,7 +23,7 @@
     "cpy": "^11.0.1",
     "detect-package-manager": "^3.0.1",
     "fs-extra": "^11.2.0",
-    "prompts": "2.1.0",
+    "prompts": "^2.4.2",
     "rimraf": "^5.0.1",
     "validate-npm-package-name": "3.0.0"
   },

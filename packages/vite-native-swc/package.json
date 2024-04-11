@@ -27,7 +27,7 @@
     }
   },
   "dependencies": {
-    "@swc/core": "^1.3.78"
+    "@swc/core": "^1.4.13"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.6.3",

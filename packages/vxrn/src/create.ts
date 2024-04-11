@@ -1,5 +1,5 @@
 import wsAdapter from 'crossws/adapters/node'
-import { readFile } from 'fs/promises'
+import { readFile } from 'node:fs/promises'
 import {
   createApp,
   createRouter,
@@ -12,9 +12,10 @@ import {
 import { createProxyEventHandler } from 'h3-proxy'
 import { createServer as nodeCreateServer } from 'node:http'
 import { dirname, join, relative, resolve } from 'node:path'
-import readline from 'readline'
+import readline from 'node:readline'
 import viteInspectPlugin from 'vite-plugin-inspect'
 import { WebSocket } from 'ws'
+import { readPackageJSON } from 'pkg-types'
 
 import * as babel from '@babel/core'
 import react from '@vitejs/plugin-react-swc'
@@ -72,10 +73,92 @@ const extensions = [
   '.json',
 ]
 
+type State = {
+  applyPatches?: boolean
+}
+
+async function readState(cacheDir: string) {
+  const statePath = join(cacheDir, 'state.json')
+  const state: State = (await FSExtra.pathExists(statePath))
+    ? await FSExtra.readJSON(statePath)
+    : {}
+  return state
+}
+
+async function getOptionsFilled(options: VXRNConfig) {
+  const { host = '127.0.0.1', root = process.cwd(), port = 8081 } = options
+  const packageRootDir = join(import.meta.url ?? __filename, '..', '..', '..').replace('file:', '')
+  const cacheDir = join(root, 'node_modules', '.cache', 'vxrn')
+  const internalPatchesDir = join(packageRootDir, 'patches')
+  const userPatchesDir = join(root, 'patches')
+  const [state, packageJSON] = await Promise.all([
+    //
+    readState(cacheDir),
+    readPackageJSON(),
+  ])
+  return {
+    ...options,
+    packageJSON,
+    state,
+    packageRootDir,
+    cacheDir,
+    userPatchesDir,
+    internalPatchesDir,
+    host,
+    root,
+    port,
+  }
+}
+
+type VXRNConfigFilled = Awaited<ReturnType<typeof getOptionsFilled>>
+
 const { ensureDir, pathExists, pathExistsSync } = FSExtra
 
-export const create = async (options: VXRNConfig) => {
-  const { host = '127.0.0.1', root = process.cwd(), port = 8081 } = options
+async function checkPatches(options: VXRNConfigFilled) {
+  if (options.state.applyPatches === false) {
+    return
+  }
+  const files = await FSExtra.readdir(options.internalPatchesDir)
+  const packages = Object.fromEntries(files.map((p) => [p.replace(/-npm-.*$/, ''), p] as const))
+
+  // TODO this doesnt work in a monorepo
+  let added = false
+
+  await Promise.all(
+    Object.keys(packages).map(async (name) => {
+      const moduleDir = join(options.root, 'node_modules', name)
+
+      if (await pathExists(moduleDir)) {
+        const src = join(options.internalPatchesDir, packages[name])
+        const dest = join(options.userPatchesDir, packages[name])
+        if (!(await pathExists(dest))) {
+          added = true
+          console.info(` → Adding patch for: ${name} to ${dest}.
+          
+          Add to your package.json "resolutions":
+
+  "react-native-screens@~3.22.0": "patch:react-native-screens@npm%3A3.22.1#./.yarn/patches/react-native-screens-npm-3.22.1-b3da351834.patch"
+          
+          `)
+
+          await ensureDir(options.userPatchesDir)
+          await FSExtra.copy(src, dest, {
+            overwrite: false,
+          })
+        }
+      }
+    })
+  )
+
+  if (added) {
+    console.info(`\n\n vxrn found necessary patches to modules and copied them to ./patches.
+    be sure to configure your package manager! we are working towards auto-applying patches.`)
+  }
+}
+
+export const create = async (optionsIn: VXRNConfig) => {
+  const options = await getOptionsFilled(optionsIn)
+  const { host, port, root, cacheDir } = options
 
   // TODO move somewhere
   bindKeypressInput()
@@ -83,9 +166,9 @@ export const create = async (options: VXRNConfig) => {
   // used for normalizing hot reloads
   let entryRoot = ''
 
-  const packageRootDir = join(import.meta.url ?? __filename, '..')
-
-  const cacheDir = join(root, 'node_modules', '.cache', 'vxrn')
+  checkPatches(options).catch((err) => {
+    console.error(`Error setting up patches`, err)
+  })
 
   await ensureDir(cacheDir)
 
@@ -663,17 +746,6 @@ export const create = async (options: VXRNConfig) => {
               jsx: 'automatic',
             })
           },
-        },
-
-        {
-          name: 'native-extensions',
-
-          // async config(config) {
-          //   config.resolve!.extensions = nativeExtensions
-          //   config.optimizeDeps!.esbuildOptions!.resolveExtensions = nativeExtensions
-
-          //   return config
-          // },
         },
       ],
       appType: 'custom',
