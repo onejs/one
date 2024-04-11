@@ -39,7 +39,7 @@ const main = defineCommand({
     },
     template: {
       type: 'string',
-      default: 'bare',
+      required: false,
       description: 'One of "bare", "tamagui", "expo-router".',
     },
     info: {
@@ -128,6 +128,9 @@ const main = defineCommand({
 
     // change root package.json's name to project name
     updatePackageJsonName(projectName, resolvedProjectPath)
+
+    // TODO allow choice
+    execSync(`touch yarn.lock`)
 
     console.info('Installing packages. This might take a couple of minutes.')
     console.info()

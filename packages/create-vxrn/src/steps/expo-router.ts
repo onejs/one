@@ -18,7 +18,7 @@ visit your project:
   }
   console.info(`
   To start the Next.js development server, run:
-    ${ansis.green(runCommand('web'))}
+    ${ansis.green(runCommand('dev'))}
 `)
 }
 
