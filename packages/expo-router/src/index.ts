@@ -15,7 +15,6 @@ export {
 } from './hooks'
 
 import { useGlobalSearchParams } from './hooks'
-console.log('useGlobalSearchParams', useGlobalSearchParams)
 
 export { router } from './imperative-api'
 
