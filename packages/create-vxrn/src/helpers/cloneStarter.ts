@@ -21,16 +21,16 @@ export const cloneStarter = async (
 
   console.info()
   await setupVxrnDotDir(template)
-  const starterDir = join(targetGitDir, ...template.repo.dir)
+  const dir = join(targetGitDir, ...template.repo.dir)
   console.info()
-  console.info(`Copying starter from ${starterDir} into ${ansis.blueBright(projectName)}...`)
+  console.info(`Copying starter from ${dir} into ${ansis.blueBright(projectName)}...`)
   console.info()
 
-  // if (!(await pathExists(starterDir))) {
-  //   console.error(`Missing template for ${template.value} in ${starterDir}`)
-  //   process.exit(1)
-  // }
-  await copy(starterDir, resolvedProjectPath)
+  if (!(await pathExists(dir))) {
+    console.error(`Missing template for ${template.value} in ${dir}`)
+    process.exit(1)
+  }
+  await copy(dir, resolvedProjectPath)
   await rimraf(`${resolvedProjectPath}/.git`)
 
   console.info(ansis.green(`${projectName} created!`))
@@ -38,8 +38,6 @@ export const cloneStarter = async (
 }
 
 async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = false) {
-  const repoRoot = join(__dirname, '..', '..', '..')
-
   console.info(`Setting up ${ansis.blueBright(targetGitDir)}...`)
 
   const branch = template.repo.branch
