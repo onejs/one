@@ -1,7 +1,7 @@
 {
   "name": "@vxrn/react-native-prebuilt",
   "type": "module",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
