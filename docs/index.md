@@ -15,7 +15,7 @@ hero:
       link: /get-started
     - theme: alt
       text: Github
-      link: https://github.com/natew/vxrn
+      link: https://github.com/universal-future/vxrn
 
 features:
   - title: All the goodness of Vite
