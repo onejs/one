@@ -17051,6 +17051,7 @@ __metadata:
     "@vitejs/plugin-react": ^4.2.1
     "@vitejs/plugin-react-swc": ^3.6.0
     "@vxrn/react-native-prebuilt": 0.1.9
+    "@vxrn/vite-flow": 0.1.9
     "@vxrn/vite-native-client": 0.1.9
     "@vxrn/vite-native-hmr": 0.1.9
     "@vxrn/vite-native-swc": 0.1.9
