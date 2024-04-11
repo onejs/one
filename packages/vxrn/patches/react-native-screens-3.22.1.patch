@@ -1,0 +1,57 @@
+diff --color -crB ./node_modules/react-native-screens/lib/module/index.native.js ./node_modules/react-native-screens2/lib/module/index.native.js
+*** ./node_modules/react-native-screens/lib/module/index.native.js	Wed Apr 10 21:24:18 2024
+--- ./node_modules/react-native-screens2/lib/module/index.native.js	Wed Apr 10 21:30:54 2024
+***************
+*** 363,368 ****
+--- 363,374 ----
+    }
+  }
+  _defineProperty(Screen, "contextType", ScreenContext);
++ const NativeScreen =  ScreensNativeModules.NativeScreen;
++ const NativeScreenContainer =  ScreensNativeModules.NativeScreenContainer;
++ const NativeScreenNavigationContainer =  ScreensNativeModules.NativeScreenNavigationContainer;
++ const ScreenStackHeaderConfig =  ScreensNativeModules.NativeScreenStackHeaderConfig;
++ const ScreenStackHeaderSubview =  ScreensNativeModules.NativeScreenStackHeaderSubview;
++ const SearchBarCommands =  ScreensNativeModules.NativeSearchBarCommands;
+  module.exports = {
+    // these are classes so they are not evaluated until used
+    // so no need to use getters for them
+***************
+*** 373,396 ****
+    InnerScreen,
+    SearchBar,
+    FullWindowOverlay,
+!   get NativeScreen() {
+!     return ScreensNativeModules.NativeScreen;
+!   },
+!   get NativeScreenContainer() {
+!     return ScreensNativeModules.NativeScreenContainer;
+!   },
+!   get NativeScreenNavigationContainer() {
+!     return ScreensNativeModules.NativeScreenNavigationContainer;
+!   },
+!   get ScreenStackHeaderConfig() {
+!     return ScreensNativeModules.NativeScreenStackHeaderConfig;
+!   },
+!   get ScreenStackHeaderSubview() {
+!     return ScreensNativeModules.NativeScreenStackHeaderSubview;
+!   },
+!   get SearchBarCommands() {
+!     return ScreensNativeModules.NativeSearchBarCommands;
+!   },
+    // these are functions and will not be evaluated until used
+    // so no need to use getters for them
+    ScreenStackHeaderBackButtonImage,
+--- 379,390 ----
+    InnerScreen,
+    SearchBar,
+    FullWindowOverlay,
+!   NativeScreen,
+!   NativeScreenContainer,
+!   NativeScreenNavigationContainer,
+!   ScreenStackHeaderConfig,
+!   ScreenStackHeaderSubview,
+!   SearchBarCommands,
+    // these are functions and will not be evaluated until used
+    // so no need to use getters for them
+    ScreenStackHeaderBackButtonImage,

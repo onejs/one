@@ -16,6 +16,7 @@ import readline from 'node:readline'
 import viteInspectPlugin from 'vite-plugin-inspect'
 import { WebSocket } from 'ws'
 import { readPackageJSON } from 'pkg-types'
+import findNodeModules from 'find-node-modules'
 
 import * as babel from '@babel/core'
 import react from '@vitejs/plugin-react-swc'
@@ -127,18 +128,26 @@ async function checkPatches(options: VXRNConfigFilled) {
     return
   }
 
+  const nodeModulesDirs = findNodeModules({
+    cwd: options.root,
+  }).map((relativePath) => join(options.root, relativePath))
+
   await Promise.all(
-    patches.map(async (patch) => {
-      const destModule = join(options.root, 'node_modules', patch.module)
-      if (await FSExtra.pathExists(destModule)) {
-        const patchPath = join(options.internalPatchesDir, patch.patchFile)
+    patches.flatMap(async (patch) => {
+      return nodeModulesDirs.map(async (dir) => {
+        const destModule = join(dir, patch.module)
+        if (await FSExtra.pathExists(destModule)) {
+          const patchPath = join(options.internalPatchesDir, patch.patchFile)
 
-        if (!(await FSExtra.pathExists(patchPath))) {
-          throw new Error(`No patch exists at ${patchPath}`)
+          if (!(await FSExtra.pathExists(patchPath))) {
+            throw new Error(`No patch exists at ${patchPath}`)
+          }
+
+          const command = `patch --verbose -p1 -d ${destModule} < ${patchPath}`
+          console.info(`$ ${command}`)
+          execSync(command)
         }
-
-        execSync(`patch -p1 -d ${destModule} < ${patchPath}`)
-      }
+      })
     })
   )
 }
