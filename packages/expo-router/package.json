@@ -3,6 +3,7 @@
   "version": "0.1.4",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
+  "type": "module",
   "main": "dist/cjs",
   "module": "dist/esm",
   "files": [
@@ -24,6 +25,9 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     }
+  },
+  "resolutions": {
+    "react-native-screens@~3.22.0": "patch:react-native-screens@npm%3A3.22.1#./patches/react-native-screens-npm-3.22.1-b3da351834.patch"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.8",

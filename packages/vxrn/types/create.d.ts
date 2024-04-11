@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import type { VXRNConfig } from './types';
-export declare const create: (options: VXRNConfig) => Promise<{
+export declare const create: (optionsIn: VXRNConfig) => Promise<{
     nativeServer: import("http").Server<typeof import("http").IncomingMessage, typeof import("http").ServerResponse>;
     viteServer: import("vite").ViteDevServer;
     start(): Promise<{
