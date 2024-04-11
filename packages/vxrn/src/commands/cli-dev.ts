@@ -21,6 +21,10 @@ export default defineCommand({
       buildConfig: {
         plugins: [],
       },
+      flow: {
+        include: [],
+        exclude: [],
+      },
       ...userConfig,
     })
 
