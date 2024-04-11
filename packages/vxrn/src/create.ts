@@ -40,6 +40,7 @@ import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { getVitePath } from './getVitePath'
 import { nativePlugin } from './nativePlugin'
 import type { HMRListener, VXRNConfig } from './types'
+import { execSync } from './utils/execSync'
 
 const resolveFile = (path: string) => {
   try {
@@ -114,46 +115,32 @@ type VXRNConfigFilled = Awaited<ReturnType<typeof getOptionsFilled>>
 
 const { ensureDir, pathExists, pathExistsSync } = FSExtra
 
+const patches = [
+  {
+    module: 'react-native-screens',
+    patchFile: 'react-native-screens-npm-3.22.1-b3da351834.patch',
+  },
+]
+
 async function checkPatches(options: VXRNConfigFilled) {
   if (options.state.applyPatches === false) {
     return
   }
-  const files = await FSExtra.readdir(options.internalPatchesDir)
-  const packages = Object.fromEntries(files.map((p) => [p.replace(/-npm-.*$/, ''), p] as const))
-
-  // TODO this doesnt work in a monorepo
-  let added = false
 
   await Promise.all(
-    Object.keys(packages).map(async (name) => {
-      const moduleDir = join(options.root, 'node_modules', name)
+    patches.map(async (patch) => {
+      const destModule = join(options.root, 'node_modules', patch.module)
+      if (await FSExtra.pathExists(destModule)) {
+        const patchPath = join(options.internalPatchesDir, patch.patchFile)
 
-      if (await pathExists(moduleDir)) {
-        const src = join(options.internalPatchesDir, packages[name])
-        const dest = join(options.userPatchesDir, packages[name])
-        if (!(await pathExists(dest))) {
-          added = true
-          console.info(` → Adding patch for: ${name} to ${dest}.
-          
-          Add to your package.json "resolutions":
-
-  "react-native-screens@~3.22.0": "patch:react-native-screens@npm%3A3.22.1#./.yarn/patches/react-native-screens-npm-3.22.1-b3da351834.patch"
-          
-          `)
-
-          await ensureDir(options.userPatchesDir)
-          await FSExtra.copy(src, dest, {
-            overwrite: false,
-          })
+        if (!(await FSExtra.pathExists(patchPath))) {
+          throw new Error(`No patch exists at ${patchPath}`)
         }
+
+        execSync(`patch -p1 -d ${destModule} < ${patchPath}`)
       }
     })
   )
-
-  if (added) {
-    console.info(`\n\n vxrn found necessary patches to modules and copied them to ./patches.
-    be sure to configure your package manager! we are working towards auto-applying patches.`)
-  }
 }
 
 export const create = async (optionsIn: VXRNConfig) => {
@@ -167,7 +154,7 @@ export const create = async (optionsIn: VXRNConfig) => {
   let entryRoot = ''
 
   checkPatches(options).catch((err) => {
-    console.error(`Error setting up patches`, err)
+    console.error(`\n 🥺 couldn't patch`, err)
   })
 
   await ensureDir(cacheDir)
