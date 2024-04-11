@@ -1,4 +1,5 @@
-import type { InlineConfig } from 'vite'
+import type { FilterPattern, InlineConfig } from 'vite'
+import type { Options as FlowOptions } from '@vxrn/vite-flow'
 
 export type VXRNConfig = {
   root?: string
@@ -6,6 +7,7 @@ export type VXRNConfig = {
   port?: number
   webConfig?: InlineConfig
   buildConfig?: InlineConfig
+  flow?: FlowOptions
 }
 
 export type HMRListener = (update: { file: string; contents: string }) => void

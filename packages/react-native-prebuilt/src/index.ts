@@ -1,24 +1,9 @@
 import { readFile } from 'node:fs/promises'
 
-import * as babel from '@babel/core'
+import { transformFlow } from '@vxrn/vite-flow'
 import { build, type BuildOptions } from 'esbuild'
 import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
-
-async function nativeBabelFlowTransform(input: string) {
-  return await new Promise<string>((res, rej) => {
-    babel.transform(
-      input,
-      {
-        presets: ['module:metro-react-native-babel-preset'],
-      },
-      (err: any, result) => {
-        if (!result || err) rej(err || 'no res')
-        res(result!.code!)
-      }
-    )
-  })
-}
 
 const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 
@@ -168,7 +153,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
               const code = await readFile(input.path, 'utf-8')
 
               // omg so ugly but no class support?
-              const outagain = await nativeBabelFlowTransform(code)
+              const outagain = await transformFlow(code)
 
               return {
                 contents: outagain,

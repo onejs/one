@@ -1,18 +1,20 @@
 {
-  "name": "@vxrn/react-native-prebuilt",
-  "type": "module",
+  "name": "@vxrn/vite-flow",
   "version": "0.1.9",
   "types": "./types/index.d.ts",
+  "type": "module",
   "main": "dist/cjs",
   "module": "dist/esm",
-  "license": "MIT",
   "files": [
+    "src",
+    "types",
     "dist"
   ],
   "scripts": {
-    "prebuild": "node -r esbuild-register ./prebuild-react-native.ts",
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
+    "lint": "../../node_modules/.bin/biome check src",
+    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
@@ -20,25 +22,18 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./types/index.d.ts",
-      "import": "./dist/esm/index.js",
+      "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
-    },
-    "./react-native": "./dist/react-native.js",
-    "./react": "./dist/react.js",
-    "./jsx-runtime": "./dist/react-jsx-runtime.js"
+    }
   },
   "dependencies": {
-    "@vxrn/vite-flow": "0.1.9",
-    "esbuild": "~0.19.3",
-    "fs-extra": "^11.2.0",
-    "import-meta-resolve": "^4.0.0"
+    "@babel/core": "^7.21.8",
+    "metro-react-native-babel-preset": "^0.77.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.6.3",
     "@tamagui/build": "^1.94.4",
-    "react-native": "0.73.2"
-  },
-  "peerDependencies": {
-    "react-native": "*"
+    "vite": "^5.2.8"
   },
   "publishConfig": {
     "access": "public"
