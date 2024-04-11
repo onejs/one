@@ -1,11 +1,12 @@
 diff --git a/node_modules/react-native-screens/lib/module/index.native.js b/node_modules/react-native-screens/lib/module/index.native.js
-index 4462af6..5a7f506 100644
+index 4462af6..2dc32ff 100644
 --- a/node_modules/react-native-screens/lib/module/index.native.js
 +++ b/node_modules/react-native-screens/lib/module/index.native.js
-@@ -363,6 +363,14 @@ class Screen extends React.Component {
+@@ -363,7 +363,15 @@ class Screen extends React.Component {
    }
  }
  _defineProperty(Screen, "contextType", ScreenContext);
+-module.exports = {
 +
 +const NativeScreen =  ScreensNativeModules.NativeScreen;
 +const NativeScreenContainer =  ScreensNativeModules.NativeScreenContainer;
@@ -14,9 +15,10 @@ index 4462af6..5a7f506 100644
 +const ScreenStackHeaderSubview =  ScreensNativeModules.NativeScreenStackHeaderSubview;
 +const SearchBarCommands =  ScreensNativeModules.NativeSearchBarCommands;
 +
- module.exports = {
++export {
    // these are classes so they are not evaluated until used
    // so no need to use getters for them
+   Screen,
 @@ -373,24 +381,12 @@ module.exports = {
    InnerScreen,
    SearchBar,
