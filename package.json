@@ -3,12 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "repository": {
-    "url": "https://github.com/natew/vxrn"
+    "url": "https://github.com/universal-future/vxrn"
   },
-  "workspaces": [
-    "./packages/*",
-    "./examples/*"
-  ],
+  "workspaces": ["./packages/*", "./examples/*"],
   "packageManager": "yarn@3.6.3",
   "scripts": {
     "setup": "node -r esbuild-register ./scripts/setup.ts",

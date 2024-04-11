@@ -19,4 +19,4 @@ You can try the example apps:
 
 ## Contributing
 
-[See the CONTRIBUTING.md](https://github.com/natew/vxrn/blob/main/CONTRIBUTING.md)
+[See the CONTRIBUTING.md](https://github.com/universal-future/vxrn/blob/main/CONTRIBUTING.md)

@@ -24,8 +24,8 @@ export const templates = [
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
-      url: `https://github.com/natew/vxrn.git`,
-      sshFallback: `git@github.com:natew/vxrn.git`,
+      url: `https://github.com/universal-future/vxrn.git`,
+      sshFallback: `git@github.com:universal-future/vxrn.git`,
       dir: [`examples`, `bare`],
       branch: 'main',
     },
@@ -38,8 +38,8 @@ export const templates = [
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
-      url: `https://github.com/natew/vxrn.git`,
-      sshFallback: `git@github.com:natew/vxrn.git`,
+      url: `https://github.com/universal-future/vxrn.git`,
+      sshFallback: `git@github.com:universal-future/vxrn.git`,
       dir: [`examples`, `tamagui`],
       branch: 'main',
     },
@@ -52,8 +52,8 @@ export const templates = [
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
-      url: `https://github.com/natew/vxrn.git`,
-      sshFallback: `git@github.com:natew/vxrn.git`,
+      url: `https://github.com/universal-future/vxrn.git`,
+      sshFallback: `git@github.com:universal-future/vxrn.git`,
       dir: [`examples`, `expo-router`],
       branch: 'main',
     },

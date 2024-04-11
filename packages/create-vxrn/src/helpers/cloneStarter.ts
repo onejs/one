@@ -96,7 +96,7 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
     )
     if (isRetry) {
       console.info(
-        `Please file an issue: https://github.com/vxrn/vxrn/issues/new?assignees=&labels=&template=bug_report.md&title=`
+        `Please file an issue: https://github.com/universal-future/vxrn/issues/new?assignees=&labels=&template=bug_report.md&title=`
       )
       process.exit(1)
     }
