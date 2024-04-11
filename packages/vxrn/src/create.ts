@@ -40,8 +40,8 @@ import { resolve as importMetaResolve } from 'import-meta-resolve'
 import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { getVitePath } from './getVitePath'
 import { nativePlugin } from './nativePlugin'
+import createViteFlow from '@vxrn/vite-flow'
 import type { HMRListener, VXRNConfig } from './types'
-import { execSync } from './utils/execSync'
 
 const resolveFile = (path: string) => {
   try {
@@ -206,6 +206,7 @@ export const create = async (optionsIn: VXRNConfig) => {
       }),
     ])
   }
+  const viteFlow = options.flow ? createViteFlow(options.flow) : null
 
   const templateFile = resolveFile('vxrn/react-native-template.js')
 
@@ -333,6 +334,7 @@ export const create = async (optionsIn: VXRNConfig) => {
       // this breaks web, but for native maybe we need to manually run in the native handleHotUpdate below
       // swapRnPlugin,
 
+      viteFlow,
       react(),
       // viteReactPlugin({
       //   tsDecorators: true,
@@ -715,6 +717,7 @@ export const create = async (optionsIn: VXRNConfig) => {
     // build app
     let buildConfig = {
       plugins: [
+        viteFlow,
         swapRnPlugin,
 
         {
