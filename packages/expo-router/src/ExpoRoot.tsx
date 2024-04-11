@@ -87,10 +87,11 @@ function ContextNavigator({
   if (store.shouldShowTutorial()) {
     SplashScreen.hideAsync()
     if (process.env.NODE_ENV === 'development') {
-      const Tutorial = require('./onboard/Tutorial').Tutorial
       return (
         <WrapperComponent>
-          <Tutorial />
+          {/* TODO */}
+          {/* <Tutorial /> */}
+          <React.Fragment />
         </WrapperComponent>
       )
     }

@@ -26,7 +26,7 @@ export const templates = [
     repo: {
       url: `https://github.com/natew/vxrn.git`,
       sshFallback: `git@github.com:natew/vxrn.git`,
-      dir: [`examples`, `vxrn`],
+      dir: [`examples`, `bare`],
       branch: 'main',
     },
     extraSteps: stepsBare,
