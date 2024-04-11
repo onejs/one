@@ -17,7 +17,7 @@ visit your project:
 `)
   }
   console.info(`
-  To start the Remix development server, run:
+  To start the dev server, run:
     ${ansis.green(runCommand('dev'))}
 `)
 }
