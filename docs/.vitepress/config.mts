@@ -25,7 +25,7 @@ export default defineConfig({
     //   },
     // ],
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/natew/vxrn' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/universal-future/vxrn' }],
   },
 
   ignoreDeadLinks: 'localhostLinks',
