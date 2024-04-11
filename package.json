@@ -36,8 +36,7 @@
     "watch": "npm-run-all --parallel watch:ts watch:build"
   },
   "resolutions": {
-    "expo-modules-core": "1.7.0",
-    "react-native-screens@~3.22.0": "patch:react-native-screens@npm%3A3.22.1#./.yarn/patches/react-native-screens-npm-3.22.1-b3da351834.patch"
+    "expo-modules-core": "1.7.0"
   },
   "dependencies": {
     "@biomejs/biome": "^1.6.3",

@@ -1,4 +1,3 @@
-import { execSync } from 'node:child_process'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 
@@ -7,13 +6,7 @@ import { copy, ensureDir, pathExists, remove } from 'fs-extra'
 import { rimraf } from 'rimraf'
 
 import type { templates } from '../templates'
-
-const exec = (cmd: string, options?: Parameters<typeof execSync>[1]) => {
-  return execSync(cmd, {
-    stdio: process.env.DEBUG ? 'inherit' : 'ignore',
-    ...options,
-  })
-}
+import { exec } from './exec'
 
 const home = homedir()
 const vxrnDir = join(home, '.vxrn')

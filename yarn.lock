@@ -14054,7 +14054,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-screens@npm:3.22.1":
+"react-native-screens@npm:~3.22.0":
   version: 3.22.1
   resolution: "react-native-screens@npm:3.22.1"
   dependencies:
@@ -14064,19 +14064,6 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 3b592ff31d9dfde5e2ce967f85f3ad17a94f4f3bee2248a3dad9ec791e7cda72a431f86b468b3b2a70ebeffb49b462f8162668a58fb9ddabb10b5a369816850d
-  languageName: node
-  linkType: hard
-
-"react-native-screens@patch:react-native-screens@npm%3A3.22.1#./.yarn/patches/react-native-screens-npm-3.22.1-b3da351834.patch::locator=vite-react-native-monorepo%40workspace%3A.":
-  version: 3.22.1
-  resolution: "react-native-screens@patch:react-native-screens@npm%3A3.22.1#./.yarn/patches/react-native-screens-npm-3.22.1-b3da351834.patch::version=3.22.1&hash=7fdf88&locator=vite-react-native-monorepo%40workspace%3A."
-  dependencies:
-    react-freeze: ^1.0.0
-    warn-once: ^0.1.0
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 7934cc19d9272bcb36013f760dd26afb84e6ac9fb4d64e766c839768ca79b538026e7e8562ab982bb5ffbb414a5ab646d04b7fa13f9df239761c1f8c834c6113
   languageName: node
   linkType: hard
 
