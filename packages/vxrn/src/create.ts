@@ -146,18 +146,25 @@ async function checkPatches(options: VXRNConfigFilled) {
     })
   )
 
+  let didCopy = false
+
   for (const patch of [...patchesToCopy]) {
-    console.info(`Copying patch ${patch.module}`)
-    const src = join(options.internalPatchesDir, patch.patchFile)
     const dest = join(options.userPatchesDir, patch.patchFile)
-    await FSExtra.copy(src, dest)
+    if (!(await pathExists(dest))) {
+      didCopy = true
+      console.info(`Copying patch ${patch.module}`)
+      const src = join(options.internalPatchesDir, patch.patchFile)
+      await FSExtra.copy(src, dest)
+    }
   }
 
-  console.info(
-    `\nPlease restart after applying the patch by running "npx patch-package".
-Ideally add it to your devDependencies and as a postinstall script.\n`
-  )
-  process.exit(0)
+  if (didCopy) {
+    console.info(
+      `\nPlease restart after applying the patch by running "npx patch-package".
+  Ideally add it to your devDependencies and as a postinstall script.\n`
+    )
+    process.exit(0)
+  }
 }
 
 export const create = async (optionsIn: VXRNConfig) => {
