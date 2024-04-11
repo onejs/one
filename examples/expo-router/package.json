@@ -4,7 +4,8 @@
   "private": true,
   "main": "index.jsx",
   "scripts": {
-    "dev": "vxrn dev"
+    "dev": "vxrn dev",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.7",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@tamagui/cli": "^1.94.4",
+    "patch-package": "^8.0.0",
     "vxrn": "0.1.5"
   }
 }

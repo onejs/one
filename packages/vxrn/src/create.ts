@@ -119,9 +119,11 @@ const { ensureDir, pathExists, pathExistsSync } = FSExtra
 const patches = [
   {
     module: 'react-native-screens',
-    patchFile: 'react-native-screens-npm-3.22.1-b3da351834.patch',
+    patchFile: 'react-native-screens+3.22.1.patch',
   },
 ]
+
+type Patch = (typeof patches)[0]
 
 async function checkPatches(options: VXRNConfigFilled) {
   if (options.state.applyPatches === false) {
@@ -132,24 +134,30 @@ async function checkPatches(options: VXRNConfigFilled) {
     cwd: options.root,
   }).map((relativePath) => join(options.root, relativePath))
 
+  const patchesToCopy = new Set<Patch>()
+
   await Promise.all(
-    patches.flatMap(async (patch) => {
-      return nodeModulesDirs.map(async (dir) => {
-        const destModule = join(dir, patch.module)
-        if (await FSExtra.pathExists(destModule)) {
-          const patchPath = join(options.internalPatchesDir, patch.patchFile)
-
-          if (!(await FSExtra.pathExists(patchPath))) {
-            throw new Error(`No patch exists at ${patchPath}`)
-          }
-
-          const command = `patch --verbose -p1 -d ${destModule} < ${patchPath}`
-          console.info(`$ ${command}`)
-          execSync(command)
+    patches.flatMap((patch) => {
+      return nodeModulesDirs.flatMap(async (dir) => {
+        if (await FSExtra.pathExists(join(dir, patch.module))) {
+          patchesToCopy.add(patch)
         }
       })
     })
   )
+
+  for (const patch of [...patchesToCopy]) {
+    console.info(`Copying patch ${patch.module}`)
+    const src = join(options.internalPatchesDir, patch.patchFile)
+    const dest = join(options.userPatchesDir, patch.patchFile)
+    await FSExtra.copy(src, dest)
+  }
+
+  console.info(
+    `\nPlease restart after applying the patch by running "npx patch-package".
+Ideally add it to your devDependencies and as a postinstall script.\n`
+  )
+  process.exit(0)
 }
 
 export const create = async (optionsIn: VXRNConfig) => {

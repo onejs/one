@@ -13,6 +13,7 @@
     "outDir": "dist",
     "importHelpers": true,
     "allowJs": false,
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
