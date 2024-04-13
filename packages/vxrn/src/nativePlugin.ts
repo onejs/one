@@ -3,6 +3,7 @@ import { dirname } from 'path'
 import { parse } from 'es-module-lexer'
 import type { OutputOptions } from 'rollup'
 import type { Plugin } from 'vite'
+import MagicString from 'magic-string'
 
 import { getVitePath } from './getVitePath'
 
@@ -125,7 +126,6 @@ export function nativePlugin(options: {
 
         config.build.rollupOptions.plugins.push({
           name: `force-export-all`,
-
           async transform(code, id) {
             // if (!id.includes('/node_modules/')) {
             //   return
@@ -164,8 +164,12 @@ export function nativePlugin(options: {
                   return out
                 })
                 .join(';')
+              const magicString = new MagicString(code + '\n' + forceExports)
 
-              return code + '\n' + forceExports
+              return {
+                code: magicString.toString(),
+                map: magicString.generateMap({ hires: true }),
+              }
             } catch (err) {
               console.warn(`Error forcing exports, probably ok`, id)
             }

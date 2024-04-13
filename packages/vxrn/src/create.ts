@@ -7,6 +7,7 @@ import {
   defineWebSocketHandler,
   eventHandler,
   getQuery,
+  readBody,
   toNodeListener,
 } from 'h3'
 import { createProxyEventHandler } from 'h3-proxy'
@@ -41,8 +42,8 @@ import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
 import { getVitePath } from './getVitePath'
 import { nativePlugin } from './nativePlugin'
 import type { HMRListener, VXRNConfig } from './types'
-import { execSync } from './utils/execSync'
-
+import type { ReactNativeStackFrame } from './types/symbolicate'
+import { inferPlatformFromStack, processStacks } from './symbolicate'
 const resolveFile = (path: string) => {
   try {
     return importMetaResolve(path, import.meta.url).replace('file://', '')
@@ -518,6 +519,34 @@ export const create = async (optionsIn: VXRNConfig) => {
     defineEventHandler(() => `packager-status:running`)
   )
 
+  router.post(
+    '/symbolicate',
+    defineEventHandler(async (e) => {
+      const body = await readBody(e)
+      // React Native sends stack as JSON but tests content-type to text/plain, so
+      // we cannot use JSON schema to validate the body.
+
+      try {
+        const { stack } = JSON.parse(body as string) as {
+          stack: ReactNativeStackFrame[]
+        }
+        const platform = inferPlatformFromStack(stack)
+
+        if (!platform) {
+          return new Response('Cannot infer platform from stack trace', { status: 400 })
+        }
+
+        // console.info({ msg: 'Starting symbolication', platform, stack })
+        const results = await processStacks(stack)
+        // console.info(results)
+        return new Response(JSON.stringify(results))
+      } catch (error) {
+        console.log(error)
+        // return new Response('error')
+      }
+    })
+  )
+
   app.use(router)
 
   // TODO move these to router.get():
@@ -776,6 +805,7 @@ export const create = async (optionsIn: VXRNConfig) => {
         commonjsOptions: {
           transformMixedEsModules: true,
         },
+        sourcemap: true,
         rollupOptions: {
           treeshake: false,
           preserveEntrySignatures: 'strict',
@@ -813,7 +843,11 @@ export const create = async (optionsIn: VXRNConfig) => {
       // entry last
       .sort((a, b) => (a['isEntry'] ? 1 : -1))
       .map((outputModule) => {
+        /*
+        1. how to combine sourcemaps into one? → `index.bundle.map`
+        */
         if (outputModule.type == 'chunk') {
+          console.log(outputModule.sourcemapFileName)
           const importsMap = {}
           for (const imp of outputModule.imports) {
             const relativePath = relative(dirname(outputModule.fileName), imp)
