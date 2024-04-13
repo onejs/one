@@ -183,7 +183,7 @@ moduleFn(mod.exports, mod)
 mod = mod.exports
 
 // this is our patch basically allowing importing the inner contents:
-globalThis['__cachedModules'][path.replace('../../node_modules/', '').replace('.js', '')] = mod
+globalThis['__cachedModules'][path.replace(/.*node_modules\//, '').replace('.js', '')] = mod
 
 return mod
 };

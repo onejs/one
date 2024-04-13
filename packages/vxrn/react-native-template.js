@@ -48,8 +48,6 @@ function createRequire(importsMap) {
       if (globalThis[path]) {
         const output = globalThis[path]()
         __cachedModules[_mod] = output
-        // we may not need this:
-        __cachedModules[_mod.replace('node_modules/', '')] = output
         return output
       }
 
