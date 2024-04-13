@@ -6486,7 +6486,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vxrn/expo-router@0.1.9, @vxrn/expo-router@workspace:packages/expo-router":
+"@vxrn/expo-router@0.1.10, @vxrn/expo-router@workspace:packages/expo-router":
   version: 0.0.0-use.local
   resolution: "@vxrn/expo-router@workspace:packages/expo-router"
   dependencies:
@@ -6519,12 +6519,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/react-native-prebuilt@0.1.9, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
+"@vxrn/react-native-prebuilt@0.1.10, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
   version: 0.0.0-use.local
   resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
   dependencies:
     "@tamagui/build": ^1.94.4
-    "@vxrn/vite-flow": 0.1.9
+    "@vxrn/vite-flow": 0.1.10
     esbuild: ~0.19.3
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.0.0
@@ -6534,7 +6534,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-flow@0.1.9, @vxrn/vite-flow@workspace:packages/vite-flow":
+"@vxrn/vite-flow@0.1.10, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
   dependencies:
@@ -6546,7 +6546,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-client@0.1.9, @vxrn/vite-native-client@workspace:packages/vite-native-client":
+"@vxrn/vite-native-client@0.1.10, @vxrn/vite-native-client@workspace:packages/vite-native-client":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-client@workspace:packages/vite-native-client"
   dependencies:
@@ -6558,7 +6558,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-hmr@0.1.9, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
+"@vxrn/vite-native-hmr@0.1.10, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-hmr@workspace:packages/vite-native-hmr"
   dependencies:
@@ -6570,7 +6570,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-swc@0.1.9, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
+"@vxrn/vite-native-swc@0.1.10, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-swc@workspace:packages/vite-native-swc"
   dependencies:
@@ -9250,7 +9250,7 @@ __metadata:
     react-native: 0.73.2
     react-test-renderer: 18.2.0
     typescript: ^5.2.2
-    vxrn: 0.1.9
+    vxrn: 0.1.10
   languageName: unknown
   linkType: soft
 
@@ -9261,14 +9261,14 @@ __metadata:
     "@react-navigation/native": ^6.1.7
     "@tamagui/cli": ^1.94.4
     "@tamagui/core": ^1.94.4
-    "@vxrn/expo-router": 0.1.9
+    "@vxrn/expo-router": 0.1.10
     expo-modules-core: 1.7.0
     patch-package: ^8.0.0
     react: ^18.2.0
     react-dom: ^18.2.0
     react-native: 0.73.2
     react-native-reanimated: ~3.3.0
-    vxrn: 0.1.9
+    vxrn: 0.1.10
   languageName: unknown
   linkType: soft
 
@@ -9284,7 +9284,7 @@ __metadata:
     react-dom: ^18.2.0
     react-native: 0.73.2
     tamagui: ^1.94.4
-    vxrn: 0.1.9
+    vxrn: 0.1.10
   languageName: unknown
   linkType: soft
 
@@ -17039,7 +17039,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vxrn@0.1.9, vxrn@workspace:packages/vxrn":
+"vxrn@0.1.10, vxrn@workspace:packages/vxrn":
   version: 0.0.0-use.local
   resolution: "vxrn@workspace:packages/vxrn"
   dependencies:
@@ -17050,11 +17050,11 @@ __metadata:
     "@types/ws": ^8.5.10
     "@vitejs/plugin-react": ^4.2.1
     "@vitejs/plugin-react-swc": ^3.6.0
-    "@vxrn/react-native-prebuilt": 0.1.9
-    "@vxrn/vite-flow": 0.1.9
-    "@vxrn/vite-native-client": 0.1.9
-    "@vxrn/vite-native-hmr": 0.1.9
-    "@vxrn/vite-native-swc": 0.1.9
+    "@vxrn/react-native-prebuilt": 0.1.10
+    "@vxrn/vite-flow": 0.1.10
+    "@vxrn/vite-native-client": 0.1.10
+    "@vxrn/vite-native-hmr": 0.1.10
+    "@vxrn/vite-native-swc": 0.1.10
     chalk: ^5.3.0
     citty: ^0.1.6
     crossws: ^0.2.4
