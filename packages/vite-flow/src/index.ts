@@ -23,6 +23,10 @@ export type Options = {
 }
 
 export default function createFlowPlugin(opts?: Options): PluginOption {
+  if (!opts?.include || (Array.isArray(opts.include) && opts.include.length === 0)) {
+    return
+  }
+
   const filter = createFilter(opts?.include, opts?.exclude)
 
   return {
