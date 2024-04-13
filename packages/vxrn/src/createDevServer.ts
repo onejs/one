@@ -470,12 +470,18 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
   // TODO move these to router.get():
   app.use(
     defineEventHandler(async ({ node: { req } }) => {
-      if (!req.headers['user-agent']?.match(/Expo|React/)) {
+      const platform = req.headers['expo-platform']
+
+      if (!platform) {
         return
       }
 
       if (req.url === '/' || req.url?.startsWith('/?platform=')) {
-        return getIndexJsonResponse({ port, root })
+        return getIndexJsonResponse({
+          port,
+          root,
+          platform: platform as string,
+        })
       }
     })
   )
@@ -823,7 +829,11 @@ __require("${outputModule.fileName}")
   }
 }
 
-function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
+function getIndexJsonResponse({
+  port,
+  root,
+  platform,
+}: { port: number | string; root: string; platform: string }) {
   return {
     name: 'myapp',
     slug: 'myapp',
@@ -869,7 +879,7 @@ function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
     mainModuleName: 'index',
     __flipperHack: 'React Native packager is running',
     hostUri: `127.0.0.1:${port}`,
-    bundleUrl: `http://127.0.0.1:${port}/index.bundle?platform=ios&dev=true&hot=false&lazy=true`,
+    bundleUrl: `http://127.0.0.1:${port}/index.bundle?platform=${platform}&dev=true&hot=false&lazy=true`,
     id: '@anonymous/myapp-473c4543-3c36-4786-9db1-c66a62ac9b78',
   }
 }
