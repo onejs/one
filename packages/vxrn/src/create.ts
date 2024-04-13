@@ -2,12 +2,14 @@ import wsAdapter from 'crossws/adapters/node'
 import { readFile } from 'node:fs/promises'
 import {
   createApp,
+  createError,
   createRouter,
   defineEventHandler,
   defineWebSocketHandler,
   eventHandler,
   getQuery,
   readBody,
+  readRawBody,
   toNodeListener,
 } from 'h3'
 import { createProxyEventHandler } from 'h3-proxy'
@@ -522,27 +524,37 @@ export const create = async (optionsIn: VXRNConfig) => {
   router.post(
     '/symbolicate',
     defineEventHandler(async (e) => {
-      const body = await readBody(e)
+      const body = await readRawBody(e)
+
+      if (!body) {
+        throw createError('No body')
+      }
+
       // React Native sends stack as JSON but tests content-type to text/plain, so
       // we cannot use JSON schema to validate the body.
 
       try {
-        const { stack } = JSON.parse(body as string) as {
+        const { stack } = JSON.parse(body) as {
           stack: ReactNativeStackFrame[]
         }
         const platform = inferPlatformFromStack(stack)
 
         if (!platform) {
-          return new Response('Cannot infer platform from stack trace', { status: 400 })
+          throw createError({
+            status: 400,
+            message: 'Cannot infer platform from the file in the stack frames.',
+          })
         }
 
-        // console.info({ msg: 'Starting symbolication', platform, stack })
         const results = await processStacks(stack)
-        // console.info(results)
-        return new Response(JSON.stringify(results))
+
+        return results
       } catch (error) {
-        console.log(error)
-        // return new Response('error')
+        throw createError({
+          status: 500,
+          message:
+            error instanceof Error ? error.message : 'Cannot process frame stacks from the body.',
+        })
       }
     })
   )
