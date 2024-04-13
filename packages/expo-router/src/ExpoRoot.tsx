@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar'
 import React, { Fragment, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
+// import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { useInitializeExpoRouter } from './global-state/router-store'
@@ -57,15 +57,15 @@ export function ExpoRoot({ wrapper: ParentWrapper = Fragment, ...props }: ExpoRo
     return (
       <ParentWrapper>
         {/* <GestureHandlerRootView> */}
-        <SafeAreaProvider
+        {/* <SafeAreaProvider
           // SSR support
           initialMetrics={INITIAL_METRICS}
-        >
-          {children}
+        > */}
+        {children}
 
-          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-          {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />}
-        </SafeAreaProvider>
+        {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+        {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />}
+        {/* </SafeAreaProvider> */}
         {/* </GestureHandlerRootView> */}
       </ParentWrapper>
     )
