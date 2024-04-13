@@ -282,13 +282,6 @@ export const create = async (optionsIn: VXRNConfig) => {
     },
 
     load(id) {
-      if (id.startsWith('virtual:rn-internals')) {
-        const idOut = id.replace('virtual:rn-internals:', '')
-        return `const val = __cachedModules["${idOut}"]
-          export const PressabilityDebugView = val.PressabilityDebugView
-          export default val ? val.default || val : val`
-      }
-
       for (const targetId in virtualModules) {
         const info = virtualModules[targetId as keyof typeof virtualModules]
         if (id === info.alias) {
