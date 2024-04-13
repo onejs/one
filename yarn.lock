@@ -8248,7 +8248,7 @@ __metadata:
     rimraf: ^5.0.1
     validate-npm-package-name: 3.0.0
   bin:
-    create-vxrn: ./run.js
+    create-vxrn: run.js
   languageName: unknown
   linkType: soft
 
@@ -17085,7 +17085,7 @@ __metadata:
     vite-plugin-inspect: ^0.8.3
     ws: ^8.7.0
   bin:
-    vxrn: ./run.mjs
+    vxrn: run.mjs
   languageName: unknown
   linkType: soft
 
