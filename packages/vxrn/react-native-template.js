@@ -40,7 +40,7 @@ const __specialRequireMap = {
 function createRequire(importsMap) {
   return function require(_mod) {
     try {
-      const path = __specialRequireMap[_mod] || importsMap[_mod] || _mod
+      let path = __specialRequireMap[_mod] || importsMap[_mod] || _mod
       const found = __getRequire(path)
       if (found) {
         return found
@@ -51,13 +51,25 @@ function createRequire(importsMap) {
         return output
       }
 
+      // quick and dirty relative()
+      const currentPath = importsMap.currentPath
+      if (currentPath && path[0] === '.') {
+        let currentDir = (() => {
+          const paths = currentPath.split('/')
+          return paths.slice(0, paths.length - 1) // remove last part to get dir
+        })()
+
+        const pathParts = path.split('/')
+        while (true) {
+          if (pathParts[0] !== '..') break
+          pathParts.shift()
+          currentDir.pop()
+        }
+        path = [...currentDir, ...pathParts].join('/')
+      }
+
       // find our import.meta.glob which don't get the nice path addition, for now hardcode but this shouldnt be hard to fix properly:
-      const foundGlob = __getRequire(
-        path
-          .replace('../app', 'examples/expo-router/app')
-          .replace('.tsx', '.js')
-          .replace('.ts', '.js')
-      )
+      const foundGlob = __getRequire(path.replace('.tsx', '.js').replace('.ts', '.js'))
       if (foundGlob) {
         return foundGlob
       }

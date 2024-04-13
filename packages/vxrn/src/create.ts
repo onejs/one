@@ -211,7 +211,6 @@ export const create = async (optionsIn: VXRNConfig) => {
   const templateFile = resolveFile('vxrn/react-native-template.js')
 
   // react native port (it scans 19000 +5)
-  const hmrListeners: HMRListener[] = []
   const hotUpdatedCJSFiles = new Map<string, string>()
   const jsxRuntime = {
     // alias: 'virtual:react-jsx',
@@ -411,6 +410,8 @@ export const create = async (optionsIn: VXRNConfig) => {
             if (!source) {
               throw '❌ no source'
             }
+
+            importsMap['currentPath'] = id
 
             const hotUpdateSource = `exports = ((exports) => {
               const require = createRequire(${JSON.stringify(importsMap, null, 2)})
@@ -817,7 +818,9 @@ export const create = async (optionsIn: VXRNConfig) => {
       .sort((a, b) => (a['isEntry'] ? 1 : -1))
       .map((outputModule) => {
         if (outputModule.type == 'chunk') {
-          const importsMap = {}
+          const importsMap = {
+            currentPath: outputModule.fileName,
+          }
           for (const imp of outputModule.imports) {
             const relativePath = relative(dirname(outputModule.fileName), imp)
             importsMap[relativePath[0] === '.' ? relativePath : './' + relativePath] = imp
