@@ -14,7 +14,6 @@ import { readFile } from 'node:fs/promises'
 import { createServer as nodeCreateServer } from 'node:http'
 import { dirname, join, relative, resolve } from 'node:path'
 import readline from 'node:readline'
-import viteInspectPlugin from 'vite-plugin-inspect'
 import { WebSocket } from 'ws'
 
 import * as babel from '@babel/core'
@@ -42,6 +41,7 @@ import type { VXRNConfig } from './types'
 import { getBaseViteConfig } from './utils/getBaseViteConfig'
 import { getOptionsFilled, type VXRNConfigFilled } from './utils/getOptionsFilled'
 import { getVitePath } from './utils/getVitePath'
+import { clientBundleTreeShakePlugin } from './plugins/clientBundleTreeShakePlugin'
 
 export const resolveFile = (path: string) => {
   try {
@@ -363,7 +363,11 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
     {
       root,
       clearScreen: false,
-      plugins: [reactNativeHMRPlugin],
+      plugins: [
+        reactNativeHMRPlugin,
+
+        clientBundleTreeShakePlugin({}),
+      ],
       optimizeDeps: {
         include: depsToOptimize,
         exclude: Object.values(virtualModules).map((v) => v.alias),
@@ -379,7 +383,7 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
         cors: true,
         host,
       },
-    }
+    } satisfies UserConfig
   ) satisfies InlineConfig
 
   if (options.webConfig) {
@@ -655,8 +659,6 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
       })
     }
 
-    const buildInput = options.entryNative || 'index.jsx'
-
     // build app
     let buildConfig = {
       plugins: [
@@ -674,6 +676,7 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
           },
         },
 
+        clientBundleTreeShakePlugin({}),
         viteRNClientPlugin,
 
         nativePlugin({
@@ -686,11 +689,6 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
           tsDecorators: true,
           mode: 'build',
         }),
-
-        // viteInspectPlugin({
-        //   build: true,
-        //   outputDir: '.vite-inspect',
-        // }),
 
         {
           name: 'treat-js-files-as-jsx',
