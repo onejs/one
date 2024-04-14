@@ -2,7 +2,8 @@ import { tamaguiPlugin } from '@tamagui/vite-plugin'
 import type { VXRNConfig } from 'vxrn'
 
 export default {
-  entryNative: './src/entry-native.tsx',
+  // not working yet, for now just use index.jsx
+  // entryNative: './src/entry-native.tsx',
 
   webConfig: {
     plugins: [
