@@ -92,7 +92,13 @@ export function ExpoRoot({
     )
   }
 
-  return <ContextNavigator {...props} wrapper={wrapper} />
+  return (
+    <ContextNavigator
+      navigationContainerProps={navigationContainerProps}
+      {...props}
+      wrapper={wrapper}
+    />
+  )
 }
 
 const initialUrl =
