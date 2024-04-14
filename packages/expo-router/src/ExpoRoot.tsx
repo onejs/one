@@ -9,11 +9,13 @@ import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { useInitializeExpoRouter } from './global-state/router-store'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
+import type { NavigationContainerProps } from '@react-navigation/core'
 
 export type ExpoRootProps = {
   context: RequireContext
   location?: URL
   wrapper?: FunctionComponent<{ children: ReactNode }>
+  navigationContainerProps?: NavigationContainerProps
 }
 
 // function getGestureHandlerRootView() {
@@ -47,7 +49,11 @@ const hasViewControllerBasedStatusBarAppearance =
   Platform.OS === 'ios' &&
   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
 
-export function ExpoRoot({ wrapper: ParentWrapper = Fragment, ...props }: ExpoRootProps) {
+export function ExpoRoot({
+  wrapper: ParentWrapper = Fragment,
+  navigationContainerProps,
+  ...props
+}: ExpoRootProps) {
   /*
    * Due to static rendering we need to wrap these top level views in second wrapper
    * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
@@ -84,6 +90,7 @@ function ContextNavigator({
   context,
   location: initialLocation = initialUrl,
   wrapper: WrapperComponent = Fragment,
+  navigationContainerProps,
 }: ExpoRootProps) {
   const store = useInitializeExpoRouter(context, initialLocation)
 
@@ -112,6 +119,7 @@ function ContextNavigator({
       documentTitle={{
         enabled: false,
       }}
+      {...navigationContainerProps}
     >
       <WrapperComponent>
         <Component />
