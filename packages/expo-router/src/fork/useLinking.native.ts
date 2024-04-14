@@ -150,6 +150,7 @@ export default function useLinking(
     // }
 
     const thenable = {
+      // biome-ignore lint/suspicious/noThenProperty: <explanation>
       then(onfulfilled?: (state: ResultState | undefined) => void) {
         onfulfilled?.(state)
         return thenable
