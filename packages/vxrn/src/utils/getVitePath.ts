@@ -1,4 +1,4 @@
-import { join, relative, dirname } from 'path'
+import { join, relative, dirname } from 'node:path'
 
 import resolve from 'esm-resolve'
 import FSExtra from 'fs-extra'
@@ -27,21 +27,21 @@ export async function getVitePath(
     const rootAt = importer.indexOf(rootPath)
     const base = join(dirname(importer.slice(rootAt)), moduleName)
     return base + '.js'
-  } else {
-    const sourceFile = join(process.cwd(), 'index.js')
-    const resolved = resolve(sourceFile)(moduleName)
-    // figure out symlinks
-    if (!resolved) {
-      throw new Error(`❌ cant find`)
-    }
-    const real = await FSExtra.realpath(resolved)
-    let id = real
-    if (!absolute) {
-      id = relative(importer, real)
-    }
-    if (id.endsWith(`/react/jsx-dev-runtime.js`)) {
-      id = 'react/jsx-runtime'
-    }
-    return id
   }
+
+  const sourceFile = join(process.cwd(), 'index.js')
+  const resolved = resolve(sourceFile)(moduleName)
+  // figure out symlinks
+  if (!resolved) {
+    throw new Error(`❌ cant find`)
+  }
+  const real = await FSExtra.realpath(resolved)
+  let id = real
+  if (!absolute) {
+    id = relative(importer, real)
+  }
+  if (id.endsWith(`/react/jsx-dev-runtime.js`)) {
+    id = 'react/jsx-runtime'
+  }
+  return id
 }

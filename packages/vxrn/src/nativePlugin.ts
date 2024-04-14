@@ -4,7 +4,7 @@ import { parse } from 'es-module-lexer'
 import type { OutputOptions } from 'rollup'
 import type { Plugin } from 'vite'
 
-import { getVitePath } from './getVitePath'
+import { getVitePath } from './utils/getVitePath'
 
 const extensions = [
   '.ios.js',

@@ -1,6 +1,6 @@
 import { ExpoRoot } from '@vxrn/expo-router'
 
-import { useExpoContext } from './useExpoContext'
+import { useExpoContext } from './hooks/useExpoContext'
 
 // @ts-ignore
 const modules = import.meta.glob('../app/**/*.tsx')
