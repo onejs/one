@@ -18,7 +18,7 @@ const bootstrap = async () => {
   // )
 
   app.use(
-    defineEventHandler(async (req, res) => {
+    defineEventHandler(async ({ node: { req, res } }) => {
       const url = req.originalUrl
       const template = fs.readFileSync(path.resolve('dist/client/index.html'), 'utf-8')
       // @ts-ignore

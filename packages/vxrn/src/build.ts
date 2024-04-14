@@ -1,4 +1,4 @@
-import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
+import { InlineConfig, mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import type { VXRNConfig } from './types'
@@ -28,18 +28,25 @@ const extensions = [
 
 export const build = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
-  const depsToOptimize = ['react', 'react-dom', '@react-native/normalize-color']
+  const depsToOptimize = [
+    'react',
+    'react-dom',
+    '@react-native/normalize-color',
+    '@react-navigation/native',
+    'expo-constants',
+    'expo-modules-core',
+    'expo-status-bar',
+  ]
 
   let buildConfig = mergeConfig(
     getBaseViteConfig({
-      mode: 'development',
+      mode: 'production',
     }),
     {
       root: options.root,
       clearScreen: false,
       optimizeDeps: {
         include: depsToOptimize,
-        force: true,
         esbuildOptions: {
           resolveExtensions: extensions,
         },
@@ -52,22 +59,38 @@ export const build = async (optionsIn: VXRNConfig) => {
   }
 
   console.info(`build client`)
-  await viteBuild({
-    ...buildConfig,
-    build: {
-      ...buildConfig.build,
-      ssrManifest: true,
-      outDir: 'dist/client',
-    },
-  })
+  await viteBuild(
+    mergeConfig(buildConfig, {
+      build: {
+        ssrManifest: true,
+        outDir: 'dist/client',
+      },
+    } satisfies UserConfig)
+  )
 
   console.info(`build server`)
-  await viteBuild({
-    ...buildConfig,
-    build: {
-      ...buildConfig.build,
-      ssr: 'src/entry-server.tsx',
-      outDir: 'dist/server',
-    },
-  })
+  await viteBuild(
+    mergeConfig(buildConfig, {
+      resolve: {
+        alias: {
+          'react-native': 'react-native-web-lite',
+        },
+      },
+      optimizeDeps: {
+        esbuildOptions: {
+          format: 'cjs',
+        },
+      },
+      ssr: {
+        noExternal: true,
+      },
+      build: {
+        ssr: 'src/entry-server.tsx',
+        outDir: 'dist/server',
+        rollupOptions: {
+          external: [],
+        },
+      },
+    } satisfies UserConfig)
+  )
 }
