@@ -1,6 +1,7 @@
-import type { InlineConfig } from 'vite';
 import type { Options as FlowOptions } from '@vxrn/vite-flow';
+import type { InlineConfig } from 'vite';
 export type VXRNConfig = {
+    entryNative?: string;
     root?: string;
     host?: string;
     port?: number;

@@ -10,4 +10,4 @@ export declare const createDevServer: (optionsIn: VXRNConfig) => Promise<{
     stop: () => Promise<void>;
 }>;
 export declare function bindKeypressInput(): void;
-//# sourceMappingURL=create.d.ts.map
+//# sourceMappingURL=createDevServer.d.ts.map
