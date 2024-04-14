@@ -9,13 +9,19 @@ import sirv from 'sirv'
 const bootstrap = async () => {
   const app = createApp()
 
-  // app.use(
-  //   defineEventHandler(
-  //     sirv('dist/client', {
-  //       gzip: true,
-  //     })
-  //   )
-  // )
+  const sirvMiddleware = sirv('dist/client', {
+    gzip: true,
+  })
+
+  app.use(
+    defineEventHandler(async ({ node: { req, res } }) => {
+      return await new Promise((response) => {
+        sirvMiddleware(req, res, (value) => {
+          response(value)
+        })
+      })
+    })
+  )
 
   app.use(
     defineEventHandler(async ({ node: { req, res } }) => {
