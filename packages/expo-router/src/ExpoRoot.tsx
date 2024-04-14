@@ -10,6 +10,7 @@ import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { useInitializeExpoRouter } from './global-state/router-store'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
+import { Head } from './head'
 
 export type ExpoRootProps = {
   context: RequireContext
@@ -73,22 +74,24 @@ export function ExpoRoot({
    */
   const wrapper: ExpoRootProps['wrapper'] = ({ children }) => {
     return (
-      <ParentWrapper>
-        {/* <GestureHandlerRootView> */}
-        <SafeAreaProvider
-          // SSR support
-          initialMetrics={INITIAL_METRICS}
-          style={{
-            flex: 1,
-          }}
-        >
-          {children}
+      <Head.Provider context={globalThis['vxrn__headContext__']}>
+        <ParentWrapper>
+          {/* <GestureHandlerRootView> */}
+          <SafeAreaProvider
+            // SSR support
+            initialMetrics={INITIAL_METRICS}
+            style={{
+              flex: 1,
+            }}
+          >
+            {children}
 
-          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-          {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />}
-        </SafeAreaProvider>
-        {/* </GestureHandlerRootView> */}
-      </ParentWrapper>
+            {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+            {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />}
+          </SafeAreaProvider>
+          {/* </GestureHandlerRootView> */}
+        </ParentWrapper>
+      </Head.Provider>
     )
   }
 

@@ -1,3 +1,4 @@
+import '@tamagui/core/reset.css'
 import { isWeb } from '@tamagui/core'
 import { Stack } from '@vxrn/expo-router'
 
