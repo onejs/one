@@ -1,6 +1,6 @@
 import { defineCommand } from 'citty'
 import { readVXRNConfig } from '../utils/readVXRNConfig'
-import { create } from '../create'
+import { createDevServer } from '../createDevServer'
 
 export default defineCommand({
   meta: {
@@ -12,7 +12,7 @@ export default defineCommand({
   async run({ args }) {
     const userConfig = await readVXRNConfig()
 
-    const { start, stop } = await create({
+    const { start, stop } = await createDevServer({
       root: process.cwd(),
       host: '127.0.0.1',
       webConfig: {
