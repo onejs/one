@@ -52,3 +52,11 @@ export default function User() {
     </View>
   )
 }
+
+export function generateStaticParams() {
+  return [
+    // example SSG:
+    { user: 'one' },
+    { user: 'two' },
+  ]
+}
