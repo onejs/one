@@ -21,15 +21,22 @@ npm i -d vxrn
 npm i react-dom react react-native
 ```
 
-Create a file called `dev.js`:
+You can use the build in cli:
+
+```bash
+npx vxrn dev # runs a dev server
+npx vxrn build # builds a production web app
+```
+
+Or use it programmatically with a `dev.js` file:
 
 ```js
-import { create } from 'vxrn'
+import { createDevServer } from 'vxrn'
 
-dev()
+main()
 
-async function dev() {
-  const { viteServer, start, stop } = await create({
+async function main() {
+  const { viteServer, start, stop } = await createDevServer({
     root: process.cwd(),
     host: '127.0.0.1',
     webConfig: {
