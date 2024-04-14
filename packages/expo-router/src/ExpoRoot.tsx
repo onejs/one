@@ -5,17 +5,29 @@ import { Platform } from 'react-native'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
+import type { NavigationContainerProps } from '@react-navigation/native'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { useInitializeExpoRouter } from './global-state/router-store'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
-import type { NavigationContainerProps } from '@react-navigation/core'
 
 export type ExpoRootProps = {
   context: RequireContext
   location?: URL
   wrapper?: FunctionComponent<{ children: ReactNode }>
-  navigationContainerProps?: NavigationContainerProps
+  navigationContainerProps?: NavigationContainerProps & {
+    theme?: {
+      dark: boolean
+      colors: {
+        primary: string
+        background: string
+        card: string
+        text: string
+        border: string
+        notification: string
+      }
+    }
+  }
 }
 
 // function getGestureHandlerRootView() {
