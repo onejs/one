@@ -1,20 +1,32 @@
 import { ExpoRoot } from '@vxrn/expo-router'
 
-import { useExpoContext } from './hooks/useExpoContext'
+import { StrictMode, Suspense } from 'react'
+import { useRoutes } from './hooks/useRoutes'
 
 // @ts-ignore
-const modules = import.meta.glob('../app/**/*.tsx')
+export const routes = import.meta.glob('../app/**/*.tsx')
 
-export function App() {
-  const context = useExpoContext(modules)
-
-  if (!context) {
-    return null
-  }
-
+export function App({ path }: { path?: string }) {
   return (
-    <>
-      <ExpoRoot context={context} />
-    </>
+    <StrictMode>
+      <Suspense fallback={null}>
+        <Router path={path} />
+      </Suspense>
+    </StrictMode>
+  )
+}
+
+function Router({ path }: { path?: string }) {
+  // idk why this fixes error logging
+  return <Test path={path} />
+}
+
+function Test({ path }: { path?: string }) {
+  const context = useRoutes(routes)
+  return (
+    <ExpoRoot
+      location={path ? new URL(`http://localhost:3333${path}`) : undefined}
+      context={context}
+    />
   )
 }
