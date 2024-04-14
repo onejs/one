@@ -10,6 +10,7 @@ export declare function getOptionsFilled(options: VXRNConfig): Promise<{
     host: string;
     root: string;
     port: number;
+    entryNative?: string | undefined;
     webConfig?: import("vite").InlineConfig | undefined;
     buildConfig?: import("vite").InlineConfig | undefined;
     flow?: import("@vxrn/vite-flow").Options | undefined;

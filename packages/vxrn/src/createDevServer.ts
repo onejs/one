@@ -655,6 +655,8 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
       })
     }
 
+    const buildInput = options.entryNative || 'index.jsx'
+
     // build app
     let buildConfig = {
       plugins: [
@@ -685,10 +687,10 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
           mode: 'build',
         }),
 
-        viteInspectPlugin({
-          build: true,
-          outputDir: '.vite-inspect',
-        }),
+        // viteInspectPlugin({
+        //   build: true,
+        //   outputDir: '.vite-inspect',
+        // }),
 
         {
           name: 'treat-js-files-as-jsx',
@@ -702,7 +704,7 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
             })
           },
         },
-      ],
+      ].filter(Boolean),
       appType: 'custom',
       root,
       clearScreen: false,
@@ -714,6 +716,14 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
         },
       },
 
+      resolve: {
+        extensions: nativeExtensions,
+      },
+
+      mode: 'development',
+      define: {
+        'process.env.NODE_ENV': `"development"`,
+      },
       build: {
         ssr: false,
         minify: false,
@@ -729,15 +739,6 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
           },
         },
       },
-
-      resolve: {
-        extensions: nativeExtensions,
-      },
-
-      mode: 'development',
-      define: {
-        'process.env.NODE_ENV': `"development"`,
-      },
     } satisfies InlineConfig
 
     if (options.buildConfig) {
@@ -746,6 +747,10 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
 
     // this fixes my swap-react-native plugin not being called pre 😳
     await resolveConfig(buildConfig, 'build')
+
+    // seems to be not working but needed to put it after the resolve or else it was cleared
+    // @ts-ignore
+    // buildConfig.build.rollupOptions.input = join(root, buildInput)
 
     const buildOutput = await build(buildConfig)
 
