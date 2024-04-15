@@ -25,10 +25,6 @@ export declare function generateDynamic(name: string): RouteNode['dynamic'];
 export declare function assertDuplicateRoutes(filenames: string[]): void;
 /** Given a Metro context module, return an array of nested routes. */
 export declare function getRoutes(contextModule: RequireContext, options?: Options): RouteNode | null;
-export declare function getRoutesAsync(contextModule: RequireContext, options?: Options): Promise<RouteNode | null>;
-/** Get routes without unmatched or sitemap. */
-export declare function getExactRoutes(contextModule: RequireContext, options?: Options): RouteNode | null;
-export declare function getExactRoutesAsync(contextModule: RequireContext, options?: Options): Promise<RouteNode | null>;
 /**
  * Exposed for testing.
  * @returns a top-level deep dynamic route if it exists, otherwise null.

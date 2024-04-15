@@ -350,30 +350,13 @@ export function getRoutes(contextModule: RequireContext, options?: Options): Rou
   return route
 }
 
-export async function getRoutesAsync(
-  contextModule: RequireContext,
-  options?: Options
-): Promise<RouteNode | null> {
-  const route = await getExactRoutesAsync(contextModule, options)
-  if (!route) {
-    return null
-  }
-
-  appendSitemapRoute(route)
-
-  // Auto add not found route if it doesn't exist
-  appendUnmatchedRoute(route)
-
-  return route
-}
-
 function getIgnoreList(options?: Options) {
   const ignore: RegExp[] = [/^\.\/\+html\.[tj]sx?$/, ...(options?.ignore ?? [])]
   return ignore
 }
 
 /** Get routes without unmatched or sitemap. */
-export function getExactRoutes(contextModule: RequireContext, options?: Options): RouteNode | null {
+function getExactRoutes(contextModule: RequireContext, options?: Options): RouteNode | null {
   const treeNodes = contextModuleToTree(contextModule, options)
   const route = treeNodesToRootRoute(treeNodes)
   return route || null
@@ -387,15 +370,6 @@ function contextModuleToTree(contextModule: RequireContext, options?: Options) {
   assertDuplicateRoutes(allowed)
   const files = contextModuleToFileNodes(contextModule, allowed)
   return getRecursiveTree(files)
-}
-
-export async function getExactRoutesAsync(
-  contextModule: RequireContext,
-  options?: Options
-): Promise<RouteNode | null> {
-  const treeNodes = contextModuleToTree(contextModule, options)
-  const route = treeNodesToRootRoute(treeNodes)
-  return route || null
 }
 
 function appendSitemapRoute(routes: RouteNode) {
