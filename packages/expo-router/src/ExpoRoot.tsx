@@ -138,6 +138,7 @@ function ContextNavigator({
       ref={store.navigationRef}
       initialState={store.initialState}
       linking={store.linking}
+      onUnhandledAction={onUnhandledAction}
       documentTitle={{
         enabled: false,
       }}
