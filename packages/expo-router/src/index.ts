@@ -3,15 +3,15 @@ export { Tabs } from './layouts/Tabs'
 import { Navigator, Slot } from './views/Navigator'
 
 export {
+  useRouter,
+  useUnstableGlobalHref,
+  usePathname,
+  useNavigationContainerRef,
   useGlobalSearchParams,
   useLocalSearchParams,
-  usePathname,
+  useSegments,
   useRootNavigation,
   useRootNavigationState,
-  useRouter,
-  useSearchParams,
-  useSegments,
-  useUnstableGlobalHref,
 } from './hooks'
 
 export { store as routerStore } from './global-state/router-store'

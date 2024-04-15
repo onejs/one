@@ -1,7 +1,7 @@
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
 import { Navigator, Slot } from './views/Navigator';
-export { useGlobalSearchParams, useLocalSearchParams, usePathname, useRootNavigation, useRootNavigationState, useRouter, useSearchParams, useSegments, useUnstableGlobalHref, } from './hooks';
+export { useRouter, useUnstableGlobalHref, usePathname, useNavigationContainerRef, useGlobalSearchParams, useLocalSearchParams, useSegments, useRootNavigation, useRootNavigationState, } from './hooks';
 export { store as routerStore } from './global-state/router-store';
 export { router } from './imperative-api';
 export { Link, Redirect } from './link/Link';

@@ -1,21 +1,32 @@
 import {
+  useNavigationContainerRef,
   type NavigationContainerRefWithCurrent,
   type getPathFromState,
-  useNavigationContainerRef,
 } from '@react-navigation/native'
-import { type ComponentType, Fragment, useMemo, useSyncExternalStore } from 'react'
+import * as SplashScreen from 'expo-splash-screen'
+import { Fragment, useMemo, useSyncExternalStore, type ComponentType } from 'react'
 
+import { getRouteInfoFromState, type UrlObject } from '../LocationProvider'
+import type { RouteNode } from '../Route'
 import { deepEqual, getPathDataFromState } from '../fork/getPathFromState'
 import type { ResultState } from '../fork/getStateFromPath'
-import { type ExpoLinkingOptions, getLinkingConfig } from '../getLinkingConfig'
+import { getLinkingConfig, type ExpoLinkingOptions } from '../getLinkingConfig'
 import { getRoutes } from '../getRoutes'
-import { type UrlObject, getRouteInfoFromState } from '../LocationProvider'
-import type { RouteNode } from '../Route'
 import type { RequireContext } from '../types'
 import { getQualifiedRouteComponent } from '../useScreens'
-import { _internal_maybeHideAsync } from '../views/Splash'
-import { canGoBack, goBack, linkTo, push, replace, setParams } from './routing'
-import { sortRoutes } from '../Route'
+import {
+  canDismiss,
+  canGoBack,
+  dismiss,
+  dismissAll,
+  goBack,
+  linkTo,
+  navigate,
+  push,
+  replace,
+  setParams,
+} from './routing'
+import { getSortedRoutes } from './sorted-routes'
 
 /**
  * This is the global state for the router. It is used to keep track of the current route, and to provide a way to navigate to other routes.
@@ -25,13 +36,14 @@ import { sortRoutes } from '../Route'
 export class RouterStore {
   routeNode!: RouteNode | null
   rootComponent!: ComponentType
-  linking: ExpoLinkingOptions | undefined
+  linking?: ExpoLinkingOptions
   private hasAttemptedToHideSplash = false
 
-  initialState: ResultState | undefined
-  rootState: ResultState | undefined
-  nextState: ResultState | undefined
-  routeInfo?: UrlObject | undefined
+  initialState?: ResultState
+  rootState?: ResultState
+  nextState?: ResultState
+  routeInfo?: UrlObject
+  splashScreenAnimationFrame?: number
 
   navigationRef!: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>
   navigationRefSubscription!: () => void
@@ -40,19 +52,16 @@ export class RouterStore {
   storeSubscribers = new Set<() => void>()
 
   linkTo = linkTo.bind(this)
+  getSortedRoutes = getSortedRoutes.bind(this)
   goBack = goBack.bind(this)
   canGoBack = canGoBack.bind(this)
   push = push.bind(this)
+  dismiss = dismiss.bind(this)
   replace = replace.bind(this)
+  dismissAll = dismissAll.bind(this)
+  canDismiss = canDismiss.bind(this)
   setParams = setParams.bind(this)
-
-  getSortedRoutes = () => {
-    if (!this.routeNode) {
-      throw new Error('No routes found')
-    }
-
-    return this.routeNode.children.filter((route) => !route.internal).sort(sortRoutes)
-  }
+  navigate = navigate.bind(this)
 
   initialize(
     context: RequireContext,
@@ -69,7 +78,7 @@ export class RouterStore {
     this.rootStateSubscribers.clear()
     this.storeSubscribers.clear()
 
-    this.routeNode = getRoutes(context)
+    this.routeNode = getRoutes(context, { ignoreEntryPoints: true })
 
     this.rootComponent = this.routeNode ? getQualifiedRouteComponent(this.routeNode) : Fragment
 
@@ -101,13 +110,14 @@ export class RouterStore {
       this.routeInfo = {
         unstable_globalHref: '',
         pathname: '',
+        isIndex: false,
         params: {},
         segments: [],
       }
     }
 
     /**
-     * Counter intuitively - this fires AFTER both React Navigations state change and the subsequent paint.
+     * Counter intuitively - this fires AFTER both React Navigation's state changes and the subsequent paint.
      * This poses a couple of issues for Expo Router,
      *   - Ensuring hooks (e.g. useSearchParams()) have data in the initial render
      *   - Reacting to state changes after a navigation event
@@ -123,7 +133,10 @@ export class RouterStore {
       if (!this.hasAttemptedToHideSplash) {
         this.hasAttemptedToHideSplash = true
         // NOTE(EvanBacon): `navigationRef.isReady` is sometimes not true when state is called initially.
-        requestAnimationFrame(() => _internal_maybeHideAsync())
+        this.splashScreenAnimationFrame = requestAnimationFrame(() => {
+          // @ts-expect-error: This function is native-only and for internal-use only.
+          SplashScreen._internal_maybeHideAsync?.()
+        })
       }
 
       let shouldUpdateSubscribers = this.nextState === state
@@ -197,6 +210,12 @@ export class RouterStore {
   }
   routeInfoSnapshot = () => {
     return this.routeInfo!
+  }
+
+  cleanup() {
+    if (this.splashScreenAnimationFrame) {
+      cancelAnimationFrame(this.splashScreenAnimationFrame)
+    }
   }
 }
 
