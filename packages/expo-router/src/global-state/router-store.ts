@@ -68,7 +68,6 @@ export class RouterStore {
     navigationRef: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>,
     initialLocation?: URL
   ) {
-    console.trace('init')
     // Clean up any previous state
     this.initialState = undefined
     this.rootState = undefined
@@ -256,8 +255,6 @@ export function useStoreRouteInfo() {
 
 export function useInitializeExpoRouter(context: RequireContext, initialLocation: URL | undefined) {
   const navigationRef = useNavigationContainerRef()
-  console.log('navigationRef', navigationRef, initialLocation)
-  window['a'] = navigationRef
   useMemo(
     () => store.initialize(context, navigationRef, initialLocation),
     [context, initialLocation]

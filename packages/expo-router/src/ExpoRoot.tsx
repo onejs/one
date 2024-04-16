@@ -13,7 +13,6 @@ import { SplashScreen } from './views/Splash'
 import { Head } from './head'
 import { ServerLocationContext } from './global-state/serverLocationContext'
 import * as RN from '@react-navigation/native'
-console.log('RN', RN)
 
 export type ExpoRootProps = {
   context: RequireContext

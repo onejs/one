@@ -136,8 +136,6 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
   }
 
   const rootState = navigationRef.getRootState()
-  globalThis['x'] = navigationRef
-  console.log('ok?', navigationRef, getNavigateAction(state, rootState, event))
   return navigationRef.dispatch(getNavigateAction(state, rootState, event))
 }
 
