@@ -84,7 +84,7 @@ function createRequire(importsMap) {
       console.error(`Not found: ${_mod}`)
       return {}
     } catch (err) {
-      throw new Error(`\n◆ ${_mod} "${err}"`.replace('Error: ', '').replaceAll('"', ''))
+      throw new Error(`\n◆ ${_mod} "${err}"`)
     }
   }
 }

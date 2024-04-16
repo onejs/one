@@ -33,7 +33,7 @@ export function nativePlugin(options: {
       config.define['process.env.REACT_NATIVE_SERVER_PUBLIC_PORT'] = JSON.stringify(
         `${options.port}`
       )
-      config.define['process.env.REACT_NATIVE_PLATFORM'] = JSON.stringify(`ios`)
+      config.define['process.env.REACT_NATIVE_PLATFORM'] = JSON.stringify(`android`)
 
       if (!config.build) config.build = {}
 
