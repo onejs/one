@@ -1,3 +1,5 @@
+import './side-effects'
+
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
 import { Navigator, Slot } from './views/Navigator'

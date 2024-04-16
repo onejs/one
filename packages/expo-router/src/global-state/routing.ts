@@ -132,6 +132,8 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
 
   if (!state || state.routes.length === 0) {
     console.error('Could not generate a valid navigation state for the given path: ' + href)
+    console.error(`this.linking.config`, this.linking.config)
+    console.error(`routes`, this.getSortedRoutes())
     return
   }
 

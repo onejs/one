@@ -49,12 +49,13 @@ export function getUrlWithReactNavigationConcessions(
 ) {
   let parsed: URL
   try {
-    parsed = new URL(path, 'https://phony.example')
-  } catch {
+    parsed = new URL(path, baseUrl || 'http://phony.example')
+  } catch (err) {
+    console.warn(`Error parsing url ${path}: ${err?.['message']}`)
     // Do nothing with invalid URLs.
     return {
-      nonstandardPathname: '',
-      inputPathnameWithoutHash: '',
+      nonstandardPathname: path,
+      inputPathnameWithoutHash: path.replace(/#.*$/g, ''),
       url: null,
     }
   }
@@ -96,6 +97,20 @@ export default function getStateFromPath<ParamList extends object>(
   options?: Options<ParamList>
 ): ResultState | undefined {
   const { initialRoutes, configs } = getMatchableRouteConfigs(options)
+
+  console.log(
+    'gogo',
+    path,
+    options,
+    initialRoutes.map((r) => r.initialRouteName)
+  )
+  console.log(
+    'gogo2',
+    configs.map((x) => x.path),
+    configs.map((x) => x.routeNames)
+  )
+
+  console.log('got;', getStateFromPathWithConfigs(path, configs, initialRoutes))
 
   return getStateFromPathWithConfigs(path, configs, initialRoutes)
 }
@@ -370,7 +385,10 @@ function getStateFromPathWithConfigs(
 ): ResultState | undefined {
   const formattedPaths = getUrlWithReactNavigationConcessions(path)
 
-  if (!formattedPaths.url) return
+  if (!formattedPaths.url) {
+    console.warn(`No url found for ${path}`)
+    return
+  }
 
   let cleanPath =
     stripBaseUrl(stripGroupSegmentsFromPath(formattedPaths.url.pathname), baseUrl) +

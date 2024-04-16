@@ -52,9 +52,11 @@
     "react-helmet-async": "^2.0.4",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
+    "react-native-url-polyfill": "^2.0.0",
     "schema-utils": "^4.0.1",
     "url": "^0.11.0",
-    "url-parse": "^1.5.10"
+    "url-parse": "^1.5.10",
+    "url-polyfill": "^1.1.12"
   },
   "peerDependencies": {
     "react": "*",
