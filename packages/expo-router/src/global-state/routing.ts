@@ -100,8 +100,6 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
     return
   }
 
-  const rootState = navigationRef.getRootState()
-
   if (href.startsWith('.')) {
     // Resolve base path by merging the current segments with the params
     let base =
@@ -137,6 +135,9 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
     return
   }
 
+  const rootState = navigationRef.getRootState()
+  globalThis['x'] = navigationRef
+  console.log('ok?', navigationRef, getNavigateAction(state, rootState, event))
   return navigationRef.dispatch(getNavigateAction(state, rootState, event))
 }
 

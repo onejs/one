@@ -1,7 +1,12 @@
+import { useNavigationState } from '@react-navigation/native'
 import { Link, Head } from '@vxrn/expo-router'
 import { View, Text } from 'react-native'
 
 export default () => {
+  useNavigationState((something) => {
+    console.log('something', something)
+  })
+
   return (
     <>
       <Head>

@@ -45,12 +45,12 @@ export async function loadRoutes(paths: any) {
     })
   )
   const moduleKeys = Object.keys(modulesSync)
-  function next(id: string) {
+  function resolver(id: string) {
     return modulesSync[id]
   }
-  next.keys = () => moduleKeys
-  next.id = ''
-  next.resolve = (id: string) => id
-  ctx = next
+  resolver.keys = () => moduleKeys
+  resolver.id = ''
+  resolver.resolve = (id: string) => id
+  ctx = resolver
   return ctx
 }

@@ -1,4 +1,5 @@
-import { ExpoRoot } from '@vxrn/expo-router'
+import { ExpoRoot, useNavigationContainerRef } from '@vxrn/expo-router'
+import { useNavigationContainerRef as b } from '@react-navigation/native'
 
 import { StrictMode, Suspense } from 'react'
 import { useRoutes } from './hooks/useRoutes'
@@ -23,6 +24,11 @@ function Router({ path }: { path?: string }) {
 
 function Test({ path }: { path?: string }) {
   const context = useRoutes(routes)
+
+  window['b'] = b()
+  console.log('gogo', useNavigationContainerRef(), b())
+
+  console.log('context', context)
   return (
     <ExpoRoot
       location={path ? new URL(`http://localhost:3333${path}`) : undefined}
