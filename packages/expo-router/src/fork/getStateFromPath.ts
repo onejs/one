@@ -97,21 +97,6 @@ export default function getStateFromPath<ParamList extends object>(
   options?: Options<ParamList>
 ): ResultState | undefined {
   const { initialRoutes, configs } = getMatchableRouteConfigs(options)
-
-  console.log(
-    'gogo',
-    path,
-    options,
-    initialRoutes.map((r) => r.initialRouteName)
-  )
-  console.log(
-    'gogo2',
-    configs.map((x) => x.path),
-    configs.map((x) => x.routeNames)
-  )
-
-  console.log('got;', getStateFromPathWithConfigs(path, configs, initialRoutes))
-
   return getStateFromPathWithConfigs(path, configs, initialRoutes)
 }
 
