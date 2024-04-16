@@ -7,7 +7,7 @@ import type { Plugin } from 'vite'
 import { getVitePath } from './getVitePath'
 
 const extensions = [
-  '.ios.js',
+  '.android.js',
   '.native.js',
   '.native.ts',
   '.native.tsx',

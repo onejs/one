@@ -21,9 +21,14 @@ globalThis['__cachedModules'] = {}
 function __getRequire(absPath) {
   if (!__cachedModules[absPath]) {
     const runModule = ___modules___[absPath]
+
     if (runModule) {
       const mod = { exports: {} }
-      runModule(mod.exports, mod)
+      try {
+        runModule(mod.exports, mod)
+      } catch (e) {
+        throw new Error(`Error in module, ${absPath}, ${e}`)
+      }
       __cachedModules[absPath] = mod.exports || mod
     }
   }
@@ -42,9 +47,11 @@ function createRequire(importsMap) {
     try {
       let path = __specialRequireMap[_mod] || importsMap[_mod] || _mod
       const found = __getRequire(path)
+
       if (found) {
         return found
       }
+
       if (globalThis[path]) {
         const output = globalThis[path]()
         __cachedModules[_mod] = output

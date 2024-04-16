@@ -114,7 +114,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
     },
     logLevel: 'warning',
     resolveExtensions: [
-      '.ios.js',
+      '.android.js',
       '.native.js',
       '.native.ts',
       '.native.tsx',
