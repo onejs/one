@@ -808,6 +808,8 @@ __require("${outputModule.fileName}")
       .replaceAll('undefined.accept(function() {});', '')
       .replaceAll('(void 0).accept(() => {})', '')
       .replaceAll('(void 0).accept(function() {});', '')
+      // TEMP FIX for expo-router tamagui thing since expo router 3 upgrade
+      .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
 
     // TODO this is not stable based on cwd
     const appRootParent = join(root, '..', '..')
