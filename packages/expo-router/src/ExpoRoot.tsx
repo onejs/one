@@ -8,11 +8,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { useInitializeExpoRouter } from './global-state/router-store'
+import { ServerLocationContext } from './global-state/serverLocationContext'
+import { Head } from './head'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
-import { Head } from './head'
-import { ServerLocationContext } from './global-state/serverLocationContext'
-import * as RN from '@react-navigation/native'
 
 export type ExpoRootProps = {
   context: RequireContext

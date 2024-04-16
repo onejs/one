@@ -46,9 +46,15 @@ export const clientBundleTreeShakePlugin = (options: TreeShakeTemplatePluginOpti
               }
             })
 
+            const replaceStr = `function generateStaticParams() {};`
+            const length = node['end'] - node['start']
+
             if (shouldRemove) {
               // @ts-ignore
-              s.remove(node.start, node.end + 1)
+              // s.remove(node.start, node.end + 1)
+              s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
+              // make sure it doesnt error with forceExports
+              // s.append(`function generateStaticParams {}`)
 
               if (node.type === 'ExportNamedDeclaration') {
                 // remove import declaration if it exists

@@ -23,6 +23,7 @@ delete globalThis['window']
 global['Event'] = function () {
   return this
 }
+global['dispatchEvent'] = () => {}
 
 globalThis['__cachedModules'] = {}
 
