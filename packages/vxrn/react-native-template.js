@@ -20,10 +20,12 @@ delete globalThis['window']
 // var e = new Event("vite:preloadError", {
 //   cancelable: true
 // });
-global['Event'] = function () {
-  return this
-}
-global['dispatchEvent'] = () => {}
+global['Event'] =
+  global['Event'] ||
+  function () {
+    return this
+  }
+global['dispatchEvent'] = global['dispatchEvent'] || (() => {})
 
 globalThis['__cachedModules'] = {}
 

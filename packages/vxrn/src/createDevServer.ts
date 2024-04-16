@@ -864,7 +864,7 @@ function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
       staticConfigPath: join(root, 'app.json'),
       packageJsonPath: join(root, 'package.json'),
     },
-    sdkVersion: '47.0.0',
+    sdkVersion: '50.0.0',
     platforms: ['ios', 'android', 'web'],
     iconUrl: `http://127.0.0.1:${port}/assets/./assets/icon.png`,
     debuggerHost: `127.0.0.1:${port}`,

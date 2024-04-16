@@ -65,16 +65,17 @@ function getUrlFromConstants(): string | null {
 }
 
 function throwOrAlert(msg: string) {
-  // Production apps fatally crash which is often not helpful.
-  if (
-    // @ts-ignore: process is defined
-    process.env.NODE_ENV === 'production'
-  ) {
-    console.error(msg)
-    alert(msg)
-  } else {
-    throw new Error(msg)
-  }
+  console.warn(`TODO FIX: ${msg}`)
+  // // Production apps fatally crash which is often not helpful.
+  // if (
+  //   // @ts-ignore: process is defined
+  //   process.env.NODE_ENV === 'production'
+  // ) {
+  //   console.error(msg)
+  //   alert(msg)
+  // } else {
+  //   throw new Error(msg)
+  // }
 }
 
 export function getStaticUrlFromExpoRouter(pathname: string) {
