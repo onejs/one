@@ -42,6 +42,7 @@ import { getBaseViteConfig } from './utils/getBaseViteConfig'
 import { getOptionsFilled, type VXRNConfigFilled } from './utils/getOptionsFilled'
 import { getVitePath } from './utils/getVitePath'
 import { clientBundleTreeShakePlugin } from './plugins/clientBundleTreeShakePlugin'
+import { createExpoServer } from './createExpoServer'
 
 export const resolveFile = (path: string) => {
   try {
@@ -433,6 +434,8 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
       console.info(' →', event.path)
     },
   })
+
+  createExpoServer(root, app)
 
   router.get(
     '/file',

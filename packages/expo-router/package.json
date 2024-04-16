@@ -22,8 +22,13 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./types/index.d.ts",
-      "import": "./dist/esm/index.js",
+      "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
+    },
+    "./routes-manifest": {
+      "types": "./types/routes-manifest.d.ts",
+      "import": "./dist/esm/routes-manifest.mjs",
+      "require": "./dist/cjs/routes-manifest.js"
     }
   },
   "dependencies": {

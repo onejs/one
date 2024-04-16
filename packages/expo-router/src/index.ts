@@ -36,3 +36,5 @@ export { SplashScreen } from './views/Splash'
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'
 export { useNavigation } from './useNavigation'
+
+export * from './routes-manifest'

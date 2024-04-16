@@ -14,4 +14,5 @@ export { Unmatched } from './views/Unmatched';
 export { SplashScreen } from './views/Splash';
 export { useFocusEffect } from './useFocusEffect';
 export { useNavigation } from './useNavigation';
+export * from './routes-manifest';
 //# sourceMappingURL=index.d.ts.map
