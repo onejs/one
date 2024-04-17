@@ -337,11 +337,11 @@ export const create = async (optionsIn: VXRNConfig) => {
       // swapRnPlugin,
 
       viteFlow,
-      react(),
-      // viteReactPlugin({
-      //   tsDecorators: true,
-      //   mode: 'serve',
-      // }),
+      // react(),
+      viteReactPlugin({
+        tsDecorators: true,
+        mode: 'serve',
+      }),
 
       {
         name: 'client-transform',
@@ -460,6 +460,20 @@ export const create = async (optionsIn: VXRNConfig) => {
   }
 
   const viteServer = await createServer(serverConfig)
+  // const mainJs = `${config.basePath}${config.srcDir}/${config.mainJs}`
+  const mainJs = 'index.js'
+  await viteServer.transformRequest(mainJs)
+  const resolved = await viteServer.pluginContainer.resolveId(mainJs)
+  const resolvedModule = viteServer.moduleGraph.idToModuleMap.get(resolved!.id)!
+  await Promise.all(
+    [...resolvedModule.importedModules].map(({ id }) => (id ? viteServer.warmupRequest(id) : null))
+  )
+
+  let initialModules = Array.from(viteServer.moduleGraph.idToModuleMap.values()).map((m) => ({
+    url: m.url,
+    file: m.file!,
+  }))
+  console.log('siema', initialModules)
 
   // this fakes vite into thinking its loading files, so it hmrs in native mode despite not requesting
   viteServer.watcher.addListener('change', async (path) => {
@@ -743,10 +757,10 @@ export const create = async (optionsIn: VXRNConfig) => {
           mode: 'build',
         }),
 
-        viteReactPlugin({
-          tsDecorators: true,
-          mode: 'build',
-        }),
+        // viteReactPlugin({
+        //   tsDecorators: true,
+        //   mode: 'build',
+        // }),
 
         viteInspectPlugin({
           build: true,

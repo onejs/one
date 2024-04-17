@@ -8,5 +8,6 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
   }
   const requireFile = jiti(process.cwd())
   const userConfig = requireFile('./vxrn.config.ts')
-  return userConfig?.default ?? {}
+  const value = await userConfig?.default()
+  return value ?? {}
 }
