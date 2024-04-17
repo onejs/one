@@ -41,16 +41,28 @@ export async function loadRoutes(paths: any) {
   const modulesSync = {}
   await Promise.all(
     Object.keys(paths).map(async (path) => {
-      modulesSync[path.replace('../app/', './')] = await paths[path]()
+      if (!paths[path]) {
+        console.error(`Error: Missing route at path ${path}`)
+        return
+      }
+      try {
+        modulesSync[path.replace('../app/', './')] = await paths[path]()
+      } catch (err) {
+        // @ts-ignore
+        console.error(`Error loading path ${path}: ${err?.message ?? ''} ${err?.stack ?? ''}`)
+      }
     })
   )
   const moduleKeys = Object.keys(modulesSync)
-  function next(id: string) {
+  function resolver(id: string) {
     return modulesSync[id]
   }
-  next.keys = () => moduleKeys
-  next.id = ''
-  next.resolve = (id: string) => id
-  ctx = next
+  resolver.keys = () => moduleKeys
+  resolver.id = ''
+  resolver.resolve = (id: string) => id
+
+  ctx = resolver
+  promise = null
+
   return ctx
 }

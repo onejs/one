@@ -1,14 +1,12 @@
 import {
+  createBottomTabNavigator,
   type BottomTabNavigationEventMap,
   type BottomTabNavigationOptions,
-  createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs'
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native'
-import React from 'react'
-import { Pressable } from 'react-native'
-import { Platform } from 'react-native'
+import { Platform, Pressable } from 'react-native'
 
-import type { Href } from '../link/href'
+import type { ExpoRouter } from '../interfaces/expo-router'
 import { Link } from '../link/Link'
 import { withLayoutContext } from './withLayoutContext'
 
@@ -16,7 +14,7 @@ import { withLayoutContext } from './withLayoutContext'
 const BottomTabNavigator = createBottomTabNavigator().Navigator
 
 export const Tabs = withLayoutContext<
-  BottomTabNavigationOptions & { href?: Href | null },
+  BottomTabNavigationOptions & { href?: ExpoRouter.Href | null },
   typeof BottomTabNavigator,
   TabNavigationState<ParamListBase>,
   BottomTabNavigationEventMap
@@ -44,9 +42,9 @@ export const Tabs = withLayoutContext<
                 style={[{ display: 'flex' }, props.style]}
                 href={href}
                 asChild={Platform.OS !== 'web'}
-              >
-                {children}
-              </Link>
+                // biome-ignore lint/correctness/noChildrenProp: <explanation>
+                children={children}
+              />
             )
           },
         },

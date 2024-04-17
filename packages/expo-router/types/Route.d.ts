@@ -3,6 +3,7 @@ import type { ErrorBoundaryProps } from './views/Try';
 export type DynamicConvention = {
     name: string;
     deep: boolean;
+    notFound?: boolean;
 };
 export type LoadedRoute = {
     ErrorBoundary?: React.ComponentType<ErrorBoundaryProps>;
@@ -14,6 +15,8 @@ export type LoadedRoute = {
     }) => Record<string, string | string[]>[];
 };
 export type RouteNode = {
+    /** The type of RouteNode */
+    type: 'route' | 'api' | 'layout';
     /** Load a route into memory. Returns the exports from a route. */
     loadRoute: () => Partial<LoadedRoute>;
     /** Loaded initial route name. */
@@ -30,6 +33,8 @@ export type RouteNode = {
     generated?: boolean;
     /** Internal screens like the directory or the auto 404 should be marked as internal. */
     internal?: boolean;
+    /** File paths for async entry modules that should be included in the initial chunk request to ensure the runtime JavaScript matches the statically rendered HTML representation. */
+    entryPoints?: string[];
 };
 /** Return the RouteNode at the current contextual boundary. */
 export declare function useRouteNode(): RouteNode | null;
@@ -39,6 +44,4 @@ export declare function Route({ children, node }: {
     children: ReactNode;
     node: RouteNode;
 }): import("react/jsx-runtime").JSX.Element;
-export declare function sortRoutesWithInitial(initialRouteName?: string): (a: RouteNode, b: RouteNode) => number;
-export declare function sortRoutes(a: RouteNode, b: RouteNode): number;
 //# sourceMappingURL=Route.d.ts.map

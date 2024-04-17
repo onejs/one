@@ -1,10 +1,10 @@
+/// <reference types="react" />
 import { type BottomTabNavigationEventMap, type BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native';
-import React from 'react';
-import type { Href } from '../link/href';
-export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/native").DefaultRouterOptions<string> & {
+import type { ExpoRouter } from '../interfaces/expo-router';
+export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/native").DefaultRouterOptions<string> & {
     id?: string | undefined;
-    children: React.ReactNode;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         tabPress: import("@react-navigation/native").EventListenerCallback<BottomTabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<ParamListBase>>, "tabPress">;
         tabLongPress: import("@react-navigation/native").EventListenerCallback<BottomTabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<ParamListBase>>, "tabLongPress">;
@@ -31,7 +31,7 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<import("@re
     backBehavior?: import("@react-navigation/routers/lib/typescript/src/TabRouter").BackBehavior | undefined;
 } & import("@react-navigation/bottom-tabs/lib/typescript/src/types").BottomTabNavigationConfig, "initialRouteName" | "children" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/native").DefaultRouterOptions<string> & {
     id?: string | undefined;
-    children: React.ReactNode;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         tabPress: import("@react-navigation/native").EventListenerCallback<BottomTabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<ParamListBase>>, "tabPress">;
         tabLongPress: import("@react-navigation/native").EventListenerCallback<BottomTabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<ParamListBase>>, "tabLongPress">;
@@ -56,7 +56,7 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<import("@re
     }) => BottomTabNavigationOptions) | undefined;
 }, "children"> & Partial<Pick<Omit<import("@react-navigation/native").DefaultRouterOptions<string> & {
     id?: string | undefined;
-    children: React.ReactNode;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         tabPress: import("@react-navigation/native").EventListenerCallback<BottomTabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<ParamListBase>>, "tabPress">;
         tabLongPress: import("@react-navigation/native").EventListenerCallback<BottomTabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<ParamListBase>>, "tabLongPress">;
@@ -83,7 +83,7 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<import("@re
     backBehavior?: import("@react-navigation/routers/lib/typescript/src/TabRouter").BackBehavior | undefined;
 } & import("@react-navigation/bottom-tabs/lib/typescript/src/types").BottomTabNavigationConfig, "initialRouteName" | "children" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/native").DefaultRouterOptions<string> & {
     id?: string | undefined;
-    children: React.ReactNode;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         tabPress: import("@react-navigation/native").EventListenerCallback<BottomTabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<ParamListBase>>, "tabPress">;
         tabLongPress: import("@react-navigation/native").EventListenerCallback<BottomTabNavigationEventMap & import("@react-navigation/native").EventMapCore<TabNavigationState<ParamListBase>>, "tabLongPress">;
@@ -106,7 +106,7 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<import("@re
         route: import("@react-navigation/native").RouteProp<ParamListBase, string>;
         navigation: any;
     }) => BottomTabNavigationOptions) | undefined;
-}, "children">> & React.RefAttributes<unknown>> & {
+}, "children">> & import("react").RefAttributes<unknown>> & {
     Screen: (props: import("../useScreens").ScreenProps<import("@react-navigation/elements").HeaderOptions & {
         title?: string | undefined;
         tabBarLabel?: string | ((props: {
@@ -114,7 +114,7 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<import("@re
             color: string;
             position: import("@react-navigation/bottom-tabs/lib/typescript/src/types").LabelPosition;
             children: string;
-        }) => React.ReactNode) | undefined;
+        }) => import("react").ReactNode) | undefined;
         tabBarShowLabel?: boolean | undefined;
         tabBarLabelPosition?: import("@react-navigation/bottom-tabs/lib/typescript/src/types").LabelPosition | undefined;
         tabBarLabelStyle?: import("react-native").StyleProp<import("react-native").TextStyle>;
@@ -123,13 +123,13 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<import("@re
             focused: boolean;
             color: string;
             size: number;
-        }) => React.ReactNode) | undefined;
+        }) => import("react").ReactNode) | undefined;
         tabBarIconStyle?: import("react-native").StyleProp<import("react-native").TextStyle>;
         tabBarBadge?: string | number | undefined;
         tabBarBadgeStyle?: import("react-native").StyleProp<import("react-native").TextStyle>;
         tabBarAccessibilityLabel?: string | undefined;
         tabBarTestID?: string | undefined;
-        tabBarButton?: ((props: import("@react-navigation/bottom-tabs").BottomTabBarButtonProps) => React.ReactNode) | undefined;
+        tabBarButton?: ((props: import("@react-navigation/bottom-tabs").BottomTabBarButtonProps) => import("react").ReactNode) | undefined;
         tabBarActiveTintColor?: string | undefined;
         tabBarInactiveTintColor?: string | undefined;
         tabBarActiveBackgroundColor?: string | undefined;
@@ -141,14 +141,14 @@ export declare const Tabs: React.ForwardRefExoticComponent<Omit<Omit<import("@re
             hide?: import("@react-navigation/bottom-tabs/lib/typescript/src/types").TabBarVisibilityAnimationConfig | undefined;
         } | undefined;
         tabBarStyle?: false | import("react-native").RegisteredStyle<import("react-native").ViewStyle> | import("react-native").Animated.Value | import("react-native").Animated.AnimatedInterpolation<string | number> | import("react-native").Animated.WithAnimatedObject<import("react-native").ViewStyle> | import("react-native").Animated.WithAnimatedArray<import("react-native").Falsy | import("react-native").ViewStyle | import("react-native").RegisteredStyle<import("react-native").ViewStyle> | import("react-native").RecursiveArray<import("react-native").Falsy | import("react-native").ViewStyle | import("react-native").RegisteredStyle<import("react-native").ViewStyle>> | readonly (import("react-native").Falsy | import("react-native").ViewStyle | import("react-native").RegisteredStyle<import("react-native").ViewStyle>)[]> | null | undefined;
-        tabBarBackground?: (() => React.ReactNode) | undefined;
+        tabBarBackground?: (() => import("react").ReactNode) | undefined;
         lazy?: boolean | undefined;
-        header?: ((props: import("@react-navigation/bottom-tabs").BottomTabHeaderProps) => React.ReactNode) | undefined;
+        header?: ((props: import("@react-navigation/bottom-tabs").BottomTabHeaderProps) => import("react").ReactNode) | undefined;
         headerShown?: boolean | undefined;
         unmountOnBlur?: boolean | undefined;
         freezeOnBlur?: boolean | undefined;
     } & {
-        href?: Href | null | undefined;
+        href?: ExpoRouter.Href | null | undefined;
     }, TabNavigationState<ParamListBase>, BottomTabNavigationEventMap>) => null;
 };
 export default Tabs;

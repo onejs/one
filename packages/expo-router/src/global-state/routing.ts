@@ -1,18 +1,14 @@
-import { CommonActions, StackActions, getActionFromState } from '@react-navigation/core'
-import { TabActions } from '@react-navigation/native'
+import { StackActions, type NavigationState, type PartialRoute } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
+import { nanoid } from 'nanoid/non-secure'
 
-import { resolveHref, type Href } from '../link/href'
-import { resolve } from '../link/path'
-import {
-  findTopRouteForTarget,
-  getEarliestMismatchedRoute,
-  getQualifiedStateForTopOfTargetState,
-  isMovingToSiblingRoute,
-  type NavigateAction,
-} from '../link/stateOperations'
-import { hasUrlProtocolPrefix } from '../utils/url'
 import type { RouterStore } from './router-store'
+import type { ExpoRouter } from '../interfaces/expo-router'
+import type { ResultState } from '../fork/getStateFromPath'
+import { resolveHref } from '../link/href'
+import { resolve } from '../link/path'
+import { matchDynamicName } from '../matchers'
+import { shouldLinkExternally } from '../utils/url'
 
 function assertIsReady(store: RouterStore) {
   if (!store.navigationRef.isReady()) {
@@ -22,12 +18,24 @@ function assertIsReady(store: RouterStore) {
   }
 }
 
-export function push(this: RouterStore, url: Href) {
-  return this.linkTo(resolveHref(url))
+export function navigate(this: RouterStore, url: ExpoRouter.Href) {
+  return this.linkTo(resolveHref(url), 'NAVIGATE')
 }
 
-export function replace(this: RouterStore, url: Href) {
+export function push(this: RouterStore, url: ExpoRouter.Href) {
+  return this.linkTo(resolveHref(url), 'PUSH')
+}
+
+export function dismiss(this: RouterStore, count?: number) {
+  this.navigationRef?.dispatch(StackActions.pop(count))
+}
+
+export function replace(this: RouterStore, url: ExpoRouter.Href) {
   return this.linkTo(resolveHref(url), 'REPLACE')
+}
+
+export function dismissAll(this: RouterStore) {
+  this.navigationRef?.dispatch(StackActions.popToTop())
 }
 
 export function goBack(this: RouterStore) {
@@ -36,10 +44,31 @@ export function goBack(this: RouterStore) {
 }
 
 export function canGoBack(this: RouterStore): boolean {
+  // Return a default value here if the navigation hasn't mounted yet.
+  // This can happen if the user calls `canGoBack` from the Root Layout route
+  // before mounting a navigator. This behavior exists due to React Navigation being dynamically
+  // constructed at runtime. We can get rid of this in the future if we use
+  // the static configuration internally.
   if (!this.navigationRef.isReady()) {
     return false
   }
   return this.navigationRef?.current?.canGoBack() ?? false
+}
+
+export function canDismiss(this: RouterStore): boolean {
+  let state = this.rootState
+
+  // Keep traversing down the state tree until we find a stack navigator that we can pop
+  while (state) {
+    if (state.type === 'stack' && state.routes.length > 1) {
+      return true
+    }
+    if (state.index === undefined) return false
+
+    state = state.routes?.[state.index]?.state as any
+  }
+
+  return false
 }
 
 export function setParams(this: RouterStore, params: Record<string, string | number> = {}) {
@@ -48,7 +77,7 @@ export function setParams(this: RouterStore, params: Record<string, string | num
 }
 
 export function linkTo(this: RouterStore, href: string, event?: string) {
-  if (hasUrlProtocolPrefix(href)) {
+  if (shouldLinkExternally(href)) {
     Linking.openURL(href)
     return
   }
@@ -72,124 +101,148 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
   }
 
   if (href.startsWith('.')) {
+    // Resolve base path by merging the current segments with the params
     let base =
-      this.linking.getPathFromState?.(navigationRef.getRootState(), {
-        screens: [],
-        preserveGroups: true,
-      }) ?? ''
+      this.routeInfo?.segments
+        ?.map((segment) => {
+          if (!segment.startsWith('[')) return segment
 
-    if (base && !base.endsWith('/')) {
+          if (segment.startsWith('[...')) {
+            segment = segment.slice(4, -1)
+            const params = this.routeInfo?.params?.[segment]
+            if (Array.isArray(params)) {
+              return params.join('/')
+            }
+            return params?.split(',')?.join('/') ?? ''
+          }
+          segment = segment.slice(1, -1)
+          return this.routeInfo?.params?.[segment]
+        })
+        .filter(Boolean)
+        .join('/') ?? '/'
+
+    if (!this.routeInfo?.isIndex) {
       base += '/..'
     }
+
     href = resolve(base, href)
   }
 
   const state = this.linking.getStateFromPath!(href, this.linking.config)
 
-  if (!state) {
+  if (!state || state.routes.length === 0) {
     console.error('Could not generate a valid navigation state for the given path: ' + href)
+    console.error(`this.linking.config`, this.linking.config)
+    console.error(`routes`, this.getSortedRoutes())
     return
   }
 
   const rootState = navigationRef.getRootState()
-
-  // Ensure simple operations are used when moving between siblings
-  // in the same navigator. This ensures that the state is not reset.
-  // TODO: We may need to apply this at a larger scale in the future.
-  if (isMovingToSiblingRoute(rootState, state)) {
-    // Can perform naive movements
-    const knownOwnerState = getQualifiedStateForTopOfTargetState(rootState, state)!
-    const nextRoute = findTopRouteForTarget(state)
-    // NOTE(EvanBacon): There's an issue where moving from "a -> b" is considered siblings:
-    // a. index (initialRouteName="index")
-    // b. stack/index
-    // However, the preservation approach doesn't work because it would be moving to a route with the same name.
-    // The next check will see if the current focused route has the same name as the next route, if so, then fallback on
-    // the default React Navigation logic.
-    if (
-      findTopRouteForTarget(
-        // @ts-expect-error: stale types don't matter here
-        rootState
-      )?.name !== nextRoute.name
-    ) {
-      if (event === 'REPLACE') {
-        if (knownOwnerState.type === 'tab') {
-          navigationRef.dispatch(TabActions.jumpTo(nextRoute.name, nextRoute.params))
-        } else {
-          navigationRef.dispatch(StackActions.replace(nextRoute.name, nextRoute.params))
-        }
-      } else {
-        // NOTE: Not sure if we should pop or push here...
-        navigationRef.dispatch(CommonActions.navigate(nextRoute.name, nextRoute.params))
-      }
-      return
-    }
-  }
-
-  // TODO: Advanced movements across multiple navigators
-
-  const action = getActionFromState(state, this.linking.config)
-  if (action) {
-    // Here we have a navigation action to a nested screen, where we should ideally replace.
-    // This request can only be fulfilled if the target is an initial route.
-    // First, check if the action is fully initial routes.
-    // Then find the nearest mismatched route in the existing state.
-    // Finally, use the correct navigator-based action to replace the nested screens.
-    // NOTE(EvanBacon): A future version of this will involve splitting the navigation request so we replace as much as possible, then push the remaining screens to fulfill the request.
-    if (event === 'REPLACE' && isAbsoluteInitialRoute(action)) {
-      const earliest = getEarliestMismatchedRoute(rootState, action.payload)
-      if (earliest) {
-        if (earliest.type === 'stack') {
-          navigationRef.dispatch(StackActions.replace(earliest.name, earliest.params))
-        } else {
-          navigationRef.dispatch(TabActions.jumpTo(earliest.name, earliest.params))
-        }
-        return
-      }
-    }
-
-    // Ignore the replace event here since replace across
-    // navigators is not supported.
-    navigationRef.dispatch(action)
-  } else {
-    navigationRef.reset(state)
-  }
+  return navigationRef.dispatch(getNavigateAction(state, rootState, event))
 }
 
-/** @returns `true` if the action is moving to the first screen of all the navigators in the action. */
-export function isAbsoluteInitialRoute(
-  action: ReturnType<typeof getActionFromState>
-): action is NavigateAction {
-  if (action?.type !== 'NAVIGATE') {
-    return false
+function getNavigateAction(
+  actionState: ResultState,
+  navigationState: NavigationState,
+  type = 'NAVIGATE'
+) {
+  /**
+   * We need to find the deepest navigator where the action and current state diverge, If they do not diverge, the
+   * lowest navigator is the target.
+   *
+   * By default React Navigation will target the current navigator, but this doesn't work for all actions
+   * For example:
+   *  - /deeply/nested/route -> /top-level-route the target needs to be the top-level navigator
+   *  - /stack/nestedStack/page -> /stack1/nestedStack/other-page needs to target the nestedStack navigator
+   *
+   * This matching needs to done by comparing the route names and the dynamic path, for example
+   * - /1/page -> /2/anotherPage needs to target the /[id] navigator
+   *
+   * Other parameters such as search params and hash are not evaluated.
+   *
+   */
+  let actionStateRoute: PartialRoute<any> | undefined
+
+  // Traverse the state tree comparing the current state and the action state until we find where they diverge
+  while (actionState && navigationState) {
+    const stateRoute = navigationState.routes[navigationState.index]
+
+    actionStateRoute = actionState.routes[actionState.routes.length - 1]
+
+    const childState = actionStateRoute.state
+    const nextNavigationState = stateRoute.state
+
+    const dynamicName = matchDynamicName(actionStateRoute.name)
+
+    const didActionAndCurrentStateDiverge =
+      actionStateRoute.name !== stateRoute.name ||
+      !childState ||
+      !nextNavigationState ||
+      (dynamicName && actionStateRoute.params?.[dynamicName] !== stateRoute.params?.[dynamicName])
+
+    if (didActionAndCurrentStateDiverge) {
+      break
+    }
+
+    actionState = childState
+    navigationState = nextNavigationState as NavigationState
   }
 
-  let next = action.payload.params
-  // iterate all child screens and bail out if any are not initial.
-  while (next) {
-    if (!isNavigationState(next)) {
-      // Not sure when this would happen
-      return false
-    }
-    if (next.initial === true) {
-      next = next.params
-      // return true;
-    } else if (next.initial === false) {
-      return false
+  /*
+   * We found the target navigator, but the payload is in the incorrect format
+   * We need to convert the action state to a payload that can be dispatched
+   */
+  const rootPayload: Record<string, any> = { params: {} }
+  let payload = rootPayload
+  let params = payload.params
+
+  // The root level of payload is a bit weird, its params are in the child object
+  while (actionStateRoute) {
+    Object.assign(params, { ...actionStateRoute.params })
+    payload.screen = actionStateRoute.name
+
+    actionStateRoute = actionStateRoute.state?.routes[actionStateRoute.state?.routes.length - 1]
+
+    payload.params ??= {}
+    payload = payload.params
+    params = payload
+  }
+
+  // Expo Router uses only three actions, but these don't directly translate to all navigator actions
+  if (type === 'PUSH') {
+    // Only stack navigators have a push action, and even then we want to use NAVIGATE (see below)
+    type = 'NAVIGATE'
+
+    /*
+     * The StackAction.PUSH does not work correctly with Expo Router.
+     *
+     * Expo Router provides a getId() function for every route, altering how React Navigation handles stack routing.
+     * Ordinarily, PUSH always adds a new screen to the stack. However, with getId() present, it navigates to the screen with the matching ID instead (by moving the screen to the top of the stack)
+     * When you try and push to a screen with the same ID, no navigation will occur
+     * Refer to: https://github.com/react-navigation/react-navigation/blob/13d4aa270b301faf07960b4cd861ffc91e9b2c46/packages/routers/src/StackRouter.tsx#L279-L290
+     *
+     * Expo Router needs to retain the default behavior of PUSH, consistently adding new screens to the stack, even if their IDs are identical.
+     *
+     * To resolve this issue, we switch to using a NAVIGATE action with a new key. In the navigate action, screens are matched by either key or getId() function.
+     * By generating a unique new key, we ensure that the screen is always pushed onto the stack.
+     *
+     */
+    if (navigationState.type === 'stack') {
+      rootPayload.key = `${rootPayload.name}-${nanoid()}` // @see https://github.com/react-navigation/react-navigation/blob/13d4aa270b301faf07960b4cd861ffc91e9b2c46/packages/routers/src/StackRouter.tsx#L406-L407
     }
   }
 
-  return true
-}
+  if (type === 'REPLACE' && navigationState.type === 'tab') {
+    type = 'JUMP_TO'
+  }
 
-type NavStateParams = {
-  params?: NavStateParams
-  path: string
-  initial: boolean
-  screen: string
-  state: unknown
-}
-
-function isNavigationState(obj: any): obj is NavStateParams {
-  return 'initial' in obj
+  return {
+    type,
+    target: navigationState.key,
+    payload: {
+      key: rootPayload.key,
+      name: rootPayload.screen,
+      params: rootPayload.params,
+    },
+  }
 }
