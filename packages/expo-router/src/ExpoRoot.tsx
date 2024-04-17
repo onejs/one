@@ -5,12 +5,13 @@ import { Platform } from 'react-native'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-import type { NavigationContainerProps } from '@react-navigation/native'
+import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { useInitializeExpoRouter } from './global-state/router-store'
+import { ServerLocationContext } from './global-state/serverLocationContext'
+import { Head } from './head'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
-import { Head } from './head'
 
 export type ExpoRootProps = {
   context: RequireContext
@@ -137,14 +138,62 @@ function ContextNavigator({
       ref={store.navigationRef}
       initialState={store.initialState}
       linking={store.linking}
+      onUnhandledAction={onUnhandledAction}
       documentTitle={{
         enabled: false,
       }}
       {...navigationContainerProps}
     >
-      <WrapperComponent>
-        <Component />
-      </WrapperComponent>
+      <ServerLocationContext.Provider value={initialLocation}>
+        <WrapperComponent>
+          <Component />
+        </WrapperComponent>
+      </ServerLocationContext.Provider>
     </UpstreamNavigationContainer>
   )
+}
+
+let onUnhandledAction: (action: NavigationAction) => void
+
+if (process.env.NODE_ENV !== 'production') {
+  onUnhandledAction = (action: NavigationAction) => {
+    const payload: Record<string, any> | undefined = action.payload
+
+    let message = `The action '${action.type}'${
+      payload ? ` with payload ${JSON.stringify(action.payload)}` : ''
+    } was not handled by any navigator.`
+
+    switch (action.type) {
+      case 'NAVIGATE':
+      case 'PUSH':
+      case 'REPLACE':
+      case 'JUMP_TO':
+        if (payload?.name) {
+          message += `\n\nDo you have a route named '${payload.name}'?`
+        } else {
+          message += `\n\nYou need to pass the name of the screen to navigate to. This may be a bug.`
+        }
+
+        break
+      case 'GO_BACK':
+      case 'POP':
+      case 'POP_TO_TOP':
+        message += `\n\nIs there any screen to go back to?`
+        break
+      case 'OPEN_DRAWER':
+      case 'CLOSE_DRAWER':
+      case 'TOGGLE_DRAWER':
+        message += `\n\nIs your screen inside a Drawer navigator?`
+        break
+    }
+
+    message += `\n\nThis is a development-only warning and won't be shown in production.`
+
+    if (process.env.NODE_ENV === 'test') {
+      throw new Error(message)
+    }
+    console.error(message)
+  }
+} else {
+  onUnhandledAction = () => {}
 }

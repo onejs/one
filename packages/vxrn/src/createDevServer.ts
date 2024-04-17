@@ -42,6 +42,7 @@ import { getBaseViteConfig } from './utils/getBaseViteConfig'
 import { getOptionsFilled, type VXRNConfigFilled } from './utils/getOptionsFilled'
 import { getVitePath } from './utils/getVitePath'
 import { clientBundleTreeShakePlugin } from './plugins/clientBundleTreeShakePlugin'
+import { createExpoServer } from './createExpoServer'
 
 export const resolveFile = (path: string) => {
   try {
@@ -434,6 +435,8 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
     },
   })
 
+  createExpoServer(root, app)
+
   router.get(
     '/file',
     defineEventHandler((e) => {
@@ -805,6 +808,8 @@ __require("${outputModule.fileName}")
       .replaceAll('undefined.accept(function() {});', '')
       .replaceAll('(void 0).accept(() => {})', '')
       .replaceAll('(void 0).accept(function() {});', '')
+      // TEMP FIX for expo-router tamagui thing since expo router 3 upgrade
+      .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
 
     // TODO this is not stable based on cwd
     const appRootParent = join(root, '..', '..')
@@ -859,7 +864,7 @@ function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
       staticConfigPath: join(root, 'app.json'),
       packageJsonPath: join(root, 'package.json'),
     },
-    sdkVersion: '47.0.0',
+    sdkVersion: '50.0.0',
     platforms: ['ios', 'android', 'web'],
     iconUrl: `http://127.0.0.1:${port}/assets/./assets/icon.png`,
     debuggerHost: `127.0.0.1:${port}`,

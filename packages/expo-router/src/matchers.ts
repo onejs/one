@@ -10,9 +10,19 @@ export function matchDeepDynamicRouteName(name: string): string | undefined {
   return name.match(/^\[\.\.\.([^/]+?)\]$/)?.[1]
 }
 
+/** Test `/` -> `page` */
+export function testNotFound(name: string): boolean {
+  return /\+not-found$/.test(name)
+}
+
 /** Match `(page)` -> `page` */
 export function matchGroupName(name: string): string | undefined {
-  return name.match(/^\(([^/]+?)\)$/)?.[1]
+  return name.match(/^(?:[^\\(\\)])*?\(([^\\/]+)\).*?$/)?.[1]
+}
+
+/** Match the first array group name `(a,b,c)/(d,c)` -> `'a,b,c'` */
+export function matchArrayGroupName(name: string) {
+  return name.match(/(?:[^\\(\\)])*?\(([^\\/]+,[^\\/]+)\).*?$/)?.[1]
 }
 
 export function getNameFromFilePath(name: string): string {
@@ -31,7 +41,7 @@ export function getContextKey(name: string): string {
 
 /** Remove `.js`, `.ts`, `.jsx`, `.tsx` */
 export function removeSupportedExtensions(name: string): string {
-  return name.replace(/\.[jt]sx?$/g, '')
+  return name.replace(/(\+api)?\.[jt]sx?$/g, '')
 }
 
 // Remove any amount of `./` and `../` from the start of the string
@@ -53,4 +63,13 @@ export function stripGroupSegmentsFromPath(path: string): string {
 
 export function stripInvisibleSegmentsFromPath(path: string): string {
   return stripGroupSegmentsFromPath(path).replace(/\/?index$/, '')
+}
+
+/**
+ * Match:
+ *  - _layout files, +html, +not-found, string+api, etc
+ *  - Routes can still use `+`, but it cannot be in the last segment.
+ */
+export function isTypedRoute(name: string) {
+  return !name.startsWith('+') && name.match(/(_layout|[^/]*?\+[^/]*?)\.[tj]sx?$/) === null
 }

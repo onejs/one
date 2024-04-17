@@ -16,6 +16,17 @@ global['___modules___'] = {}
 // to avoid it looking like browser...
 delete globalThis['window']
 
+// TODO fixing vite bringing along some preload-helper.js and this:
+// var e = new Event("vite:preloadError", {
+//   cancelable: true
+// });
+global['Event'] =
+  global['Event'] ||
+  function () {
+    return this
+  }
+global['dispatchEvent'] = global['dispatchEvent'] || (() => {})
+
 globalThis['__cachedModules'] = {}
 
 function __getRequire(absPath) {

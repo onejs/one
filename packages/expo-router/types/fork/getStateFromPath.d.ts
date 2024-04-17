@@ -13,9 +13,14 @@ type InitialRouteConfig = {
 export type ResultState = PartialState<NavigationState> & {
     state?: ResultState;
 };
-export declare function getUrlWithReactNavigationConcessions(path: string): {
+export declare function getUrlWithReactNavigationConcessions(path: string, baseUrl?: string | undefined): {
     nonstandardPathname: string;
     inputPathnameWithoutHash: string;
+    url: null;
+} | {
+    nonstandardPathname: string;
+    url: URL;
+    inputPathnameWithoutHash?: undefined;
 };
 /**
  * Utility to parse a path string to initial state object accepted by the container.
@@ -54,5 +59,6 @@ export declare function getMatchableRouteConfigs<ParamList extends object>(optio
     }[];
     initialRoutes: InitialRouteConfig[];
 };
+export declare function stripBaseUrl(path: string, baseUrl?: string | undefined): string;
 export {};
 //# sourceMappingURL=getStateFromPath.d.ts.map

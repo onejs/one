@@ -1,13 +1,8 @@
-import {
-  NavigationRouteContext,
-  type ParamListBase,
-  type RouteProp,
-} from '@react-navigation/native'
+import { NavigationRouteContext } from '@react-navigation/native'
 import React from 'react'
 
 import { store, useStoreRootState, useStoreRouteInfo } from './global-state/router-store'
-import type { Router } from './types'
-import { useDeprecated } from './useDeprecated'
+import type { ExpoRouter } from './interfaces/expo-router'
 
 type SearchParams = Record<string, string | string[]>
 
@@ -19,24 +14,29 @@ export function useRouteInfo() {
   return useStoreRouteInfo()
 }
 
+/** @deprecated use `useNavigationContainerRef()` instead, which returns a React ref. */
 export function useRootNavigation() {
   return store.navigationRef.current
 }
 
-// Wraps useLinkTo to provide an API which is similar to the Link component.
-export function useLink() {
-  useDeprecated('`useLink()` is deprecated in favor of `useRouter()`')
-  return useRouter()
+/** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
+export function useNavigationContainerRef() {
+  return store.navigationRef
 }
 
-export function useRouter(): Router {
+export function useRouter(): ExpoRouter.Router {
+  // @ts-ignore TODO
   return React.useMemo(
     () => ({
       push: store.push,
+      dismiss: store.dismiss,
+      dismissAll: store.dismissAll,
+      canDismiss: store.canDismiss,
       back: store.goBack,
       replace: store.replace,
       setParams: store.setParams,
       canGoBack: store.canGoBack,
+      navigate: store.navigate,
       // TODO(EvanBacon): add `reload`
     }),
     []
@@ -94,11 +94,6 @@ export function useGlobalSearchParams<
   return useStoreRouteInfo().params as Partial<TParams>
 }
 
-/** @deprecated renamed to `useGlobalSearchParams` */
-export function useSearchParams<TParams extends SearchParams = SearchParams>(): Partial<TParams> {
-  return useGlobalSearchParams<TParams>()
-}
-
 /**
  * Returns the URL search parameters for the contextually focused route. e.g. `/acme?foo=bar` -> `{ foo: "bar" }`.
  * This is useful for stacks where you may push a new screen that changes the query parameters.
@@ -108,10 +103,26 @@ export function useSearchParams<TParams extends SearchParams = SearchParams>(): 
 export function useLocalSearchParams<
   TParams extends SearchParams = SearchParams,
 >(): Partial<TParams> {
-  return (useOptionalLocalRoute()?.params ?? ({} as any)) as Partial<TParams>
-}
-
-function useOptionalLocalRoute<T extends RouteProp<ParamListBase>>(): T | undefined {
-  const route = React.useContext(NavigationRouteContext)
-  return route as T | undefined
+  const params = React.useContext(NavigationRouteContext)?.params ?? {}
+  return Object.fromEntries(
+    Object.entries(params).map(([key, value]) => {
+      if (Array.isArray(value)) {
+        return [
+          key,
+          value.map((v) => {
+            try {
+              return decodeURIComponent(v)
+            } catch {
+              return v
+            }
+          }),
+        ]
+      }
+      try {
+        return [key, decodeURIComponent(value as string)]
+      } catch {
+        return [key, value]
+      }
+    })
+  ) as Partial<TParams>
 }

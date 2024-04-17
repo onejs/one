@@ -1,11 +1,10 @@
 import type { PathConfigMap } from '@react-navigation/core'
 import type { InitialState, NavigationState, PartialState } from '@react-navigation/routers'
-import escapeString from 'escape-string-regexp'
-import * as queryString from 'query-string'
-import URL from 'url-parse'
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
+import escape from 'escape-string-regexp'
 
-import { matchGroupName, stripGroupSegmentsFromPath } from '../matchers'
 import type { RouteNode } from '../Route'
+import { matchGroupName, stripGroupSegmentsFromPath } from '../matchers'
 import { findFocusedRoute } from './findFocusedRoute'
 import validatePathConfig from './validatePathConfig'
 
@@ -41,19 +40,34 @@ export type ResultState = PartialState<NavigationState> & {
 type ParsedRoute = {
   name: string
   path?: string
-  params?: Record<string, any> | undefined
+  params?: Record<string, any>
 }
 
-export function getUrlWithReactNavigationConcessions(path: string) {
-  const parsed = new URL(path, 'https://acme.com')
+export function getUrlWithReactNavigationConcessions(
+  path: string,
+  baseUrl: string | undefined = process.env.EXPO_BASE_URL
+) {
+  let parsed: URL
+  try {
+    parsed = new URL(path, baseUrl || 'http://phony.example')
+  } catch (err) {
+    console.warn(`Error parsing url ${path}: ${err?.['message']}`)
+    // Do nothing with invalid URLs.
+    return {
+      nonstandardPathname: path,
+      inputPathnameWithoutHash: path.replace(/#.*$/g, ''),
+      url: null,
+    }
+  }
+
   const pathname = parsed.pathname
 
   // Make sure there is a trailing slash
   return {
     // The slashes are at the end, not the beginning
-    nonstandardPathname: pathname.replace(/^\/+/g, '').replace(/\/+$/g, '') + '/',
-    // React Navigation doesn't support hashes, so here
-    inputPathnameWithoutHash: path.replace(/#.*$/, ''),
+    nonstandardPathname:
+      stripBaseUrl(pathname, baseUrl).replace(/^\/+/g, '').replace(/\/+$/g, '') + '/',
+    url: parsed,
   }
 }
 
@@ -83,7 +97,6 @@ export default function getStateFromPath<ParamList extends object>(
   options?: Options<ParamList>
 ): ResultState | undefined {
   const { initialRoutes, configs } = getMatchableRouteConfigs(options)
-
   return getStateFromPathWithConfigs(path, configs, initialRoutes)
 }
 
@@ -109,9 +122,9 @@ export function getMatchableRouteConfigs<ParamList extends object>(options?: Opt
   }
 
   // Create a normalized configs array which will be easier to use.
-  const converted = Object.keys(screens).flatMap((key) =>
-    createNormalizedConfigs(key, screens, [], initialRoutes)
-  )
+  const converted = Object.keys(screens)
+    .flatMap((key) => createNormalizedConfigs(key, screens, [], initialRoutes))
+    .flat()
 
   const resolvedInitialPatterns = initialRoutes.map((route) =>
     joinPaths(...route.parentScreens, route.initialRouteName)
@@ -153,18 +166,21 @@ function assertConfigDuplicates(configs: RouteConfig[]) {
         // NOTE(EvanBacon): Adds more context to the error message since we know about the
         // file-based routing.
         const last = config.pattern.split('/').pop()
-        const routeType = last?.startsWith(':')
-          ? 'dynamic route'
-          : last?.startsWith('*')
-            ? 'dynamic-rest route'
-            : 'route'
-        throw new Error(
-          `The ${routeType} pattern '${config.pattern || '/'}' resolves to both '${
-            alpha.userReadableName
-          }' and '${
-            config.userReadableName
-          }'. Patterns must be unique and cannot resolve to more than one route.`
-        )
+
+        if (!last?.match(/^\*not-found$/)) {
+          const routeType = last?.startsWith(':')
+            ? 'dynamic route'
+            : last?.startsWith('*')
+              ? 'dynamic-rest route'
+              : 'route'
+          throw new Error(
+            `The ${routeType} pattern '${config.pattern || '/'}' resolves to both '${
+              alpha.userReadableName
+            }' and '${
+              config.userReadableName
+            }'. Patterns must be unique and cannot resolve to more than one route.`
+          )
+        }
       }
     }
 
@@ -206,12 +222,12 @@ function sortConfigs(a: RouteConfig, b: RouteConfig): number {
     .split('/')
     // Strip out group names to ensure they don't affect the priority.
     .filter((part) => matchGroupName(part) == null)
-  if (a.screen === 'index') {
+  if (a.screen === 'index' || a.screen.match(/\/index$/)) {
     aParts.push('index')
   }
 
   const bParts = b.pattern.split('/').filter((part) => matchGroupName(part) == null)
-  if (b.screen === 'index') {
+  if (b.screen === 'index' || b.screen.match(/\/index$/)) {
     bParts.push('index')
   }
 
@@ -224,10 +240,23 @@ function sortConfigs(a: RouteConfig, b: RouteConfig): number {
     if (bParts[i] == null) {
       return -1
     }
+
     const aWildCard = aParts[i].startsWith('*')
     const bWildCard = bParts[i].startsWith('*')
     // if both are wildcard we compare next component
     if (aWildCard && bWildCard) {
+      const aNotFound = aParts[i].match(/^[*]not-found$/)
+      const bNotFound = bParts[i].match(/^[*]not-found$/)
+
+      if (aNotFound && bNotFound) {
+        continue
+      }
+      if (aNotFound) {
+        return 1
+      }
+      if (bNotFound) {
+        return -1
+      }
       continue
     }
     // if only a is wild card, b get higher priority
@@ -243,6 +272,19 @@ function sortConfigs(a: RouteConfig, b: RouteConfig): number {
     const bSlug = bParts[i].startsWith(':')
     // if both are wildcard we compare next component
     if (aSlug && bSlug) {
+      const aNotFound = aParts[i].match(/^[*]not-found$/)
+      const bNotFound = bParts[i].match(/^[*]not-found$/)
+
+      if (aNotFound && bNotFound) {
+        continue
+      }
+      if (aNotFound) {
+        return 1
+      }
+      if (bNotFound) {
+        return -1
+      }
+
       continue
     }
     // if only a is wild card, b get higher priority
@@ -269,6 +311,7 @@ function sortConfigs(a: RouteConfig, b: RouteConfig): number {
 
 function getStateFromEmptyPathWithConfigs(
   path: string,
+  hash: string,
   configs: RouteConfig[],
   initialRoutes: InitialRouteConfig[]
 ): ResultState | undefined {
@@ -316,19 +359,32 @@ function getStateFromEmptyPathWithConfigs(
     }
   })
 
-  return createNestedStateObject(path, routes, configs, initialRoutes)
+  return createNestedStateObject(path, hash, routes, configs, initialRoutes)
 }
 
 function getStateFromPathWithConfigs(
   path: string,
   configs: RouteConfig[],
-  initialRoutes: InitialRouteConfig[]
+  initialRoutes: InitialRouteConfig[],
+  baseUrl: string | undefined = process.env.EXPO_BASE_URL
 ): ResultState | undefined {
   const formattedPaths = getUrlWithReactNavigationConcessions(path)
 
+  if (!formattedPaths.url) {
+    console.warn(`No url found for ${path}`)
+    return
+  }
+
+  let cleanPath =
+    stripBaseUrl(stripGroupSegmentsFromPath(formattedPaths.url.pathname), baseUrl) +
+    formattedPaths.url.search
+
+  if (!path.startsWith('/')) cleanPath = cleanPath.slice(1)
+
   if (formattedPaths.nonstandardPathname === '/') {
     return getStateFromEmptyPathWithConfigs(
-      formattedPaths.inputPathnameWithoutHash,
+      cleanPath,
+      formattedPaths.url.hash.slice(1),
       configs,
       initialRoutes
     )
@@ -343,7 +399,8 @@ function getStateFromPathWithConfigs(
   }
   // This will always be empty if full path matched
   return createNestedStateObject(
-    formattedPaths.inputPathnameWithoutHash,
+    cleanPath,
+    formattedPaths.url.hash.slice(1),
     routes,
     configs,
     initialRoutes
@@ -561,6 +618,7 @@ function formatRegexPattern(it: string): string {
     // TODO: Remove unused match group
     return `(([^/]+\\/)${it.endsWith('?') ? '?' : ''})`
   }
+
   if (it.startsWith('*')) {
     return `((.*\\/)${it.endsWith('?') ? '?' : ''})`
   }
@@ -570,10 +628,10 @@ function formatRegexPattern(it: string): string {
     // Groups are optional segments
     // this enables us to match `/bar` and `/(foo)/bar` for the same route
     // NOTE(EvanBacon): Ignore this match in the regex to avoid capturing the group
-    return `(?:${escapeString(it)}\\/)?`
+    return `(?:${escape(it)}\\/)?`
   }
 
-  return escapeString(it) + `\\/`
+  return escape(it) + `\\/`
 }
 
 const createConfigItem = (
@@ -638,9 +696,9 @@ const findInitialRoute = (
 // returns state object with values depending on whether
 // it is the end of state and if there is initialRoute for this level
 const createStateObject = (
-  initialRoute: string | undefined,
   route: ParsedRoute,
-  isEmpty: boolean
+  isEmpty: boolean,
+  initialRoute?: string
 ): InitialState => {
   if (isEmpty) {
     if (initialRoute) {
@@ -667,6 +725,7 @@ const createStateObject = (
 
 const createNestedStateObject = (
   path: string,
+  hash: string | undefined,
   routes: ParsedRoute[],
   routeConfigs: RouteConfig[],
   initialRoutes: InitialRouteConfig[]
@@ -678,7 +737,7 @@ const createNestedStateObject = (
 
   parentScreens.push(route.name)
 
-  const state: InitialState = createStateObject(initialRoute, route, routes.length === 0)
+  const state: InitialState = createStateObject(route, routes.length === 0, initialRoute)
 
   if (routes.length > 0) {
     let nestedState = state
@@ -689,9 +748,9 @@ const createNestedStateObject = (
       const nestedStateIndex = nestedState.index || nestedState.routes.length - 1
 
       nestedState.routes[nestedStateIndex].state = createStateObject(
-        initialRoute,
         route,
-        routes.length === 0
+        routes.length === 0,
+        initialRoute
       )
 
       if (routes.length > 0) {
@@ -705,17 +764,35 @@ const createNestedStateObject = (
   route = findFocusedRoute(state) as ParsedRoute
 
   // Remove groups from the path while preserving a trailing slash.
-  route.path = stripGroupSegmentsFromPath(path)
+  route.path = path
 
   const params = parseQueryParams(route.path, findParseConfigForRoute(route.name, routeConfigs))
 
   if (params) {
-    const resolvedParams = { ...route.params, ...params }
-    if (Object.keys(resolvedParams).length > 0) {
-      route.params = resolvedParams
-    } else {
+    route.params = Object.assign(Object.create(null), route.params) as Record<string, any>
+    for (const [name, value] of Object.entries(params)) {
+      if (route.params?.[name]) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(
+            `Route '/${route.name}' with param '${name}' was specified both in the path and as a param, removing from path`
+          )
+        }
+      }
+
+      if (!route.params?.[name]) {
+        route.params[name] = value
+        continue
+      }
+    }
+
+    if (Object.keys(route.params).length === 0) {
       delete route.params
     }
+  }
+
+  if (hash) {
+    route.params = Object.assign(Object.create(null), route.params) as Record<string, any>
+    route.params['#'] = hash
   }
 
   return state
@@ -723,7 +800,11 @@ const createNestedStateObject = (
 
 const parseQueryParams = (path: string, parseConfig?: Record<string, (value: string) => any>) => {
   const query = path.split('?')[1]
-  const params = queryString.parse(query)
+  const searchParams = new URLSearchParams(query)
+  const params = Object.fromEntries(
+    // @ts-ignore: [Symbol.iterator] is indeed, available on every platform.
+    searchParams
+  )
 
   if (parseConfig) {
     Object.keys(params).forEach((name) => {
@@ -734,4 +815,28 @@ const parseQueryParams = (path: string, parseConfig?: Record<string, (value: str
   }
 
   return Object.keys(params).length ? params : undefined
+}
+
+const baseUrlCache = new Map<string, RegExp>()
+
+function getBaseUrlRegex(baseUrl: string) {
+  if (baseUrlCache.has(baseUrl)) {
+    return baseUrlCache.get(baseUrl)!
+  }
+  const regex = new RegExp(`^\\/?${escape(baseUrl)}`, 'g')
+  baseUrlCache.set(baseUrl, regex)
+  return regex
+}
+
+export function stripBaseUrl(
+  path: string,
+  baseUrl: string | undefined = process.env.EXPO_BASE_URL
+) {
+  if (process.env.NODE_ENV !== 'development') {
+    if (baseUrl) {
+      const reg = getBaseUrlRegex(baseUrl)
+      return path.replace(/^\/+/g, '/').replace(reg, '')
+    }
+  }
+  return path
 }

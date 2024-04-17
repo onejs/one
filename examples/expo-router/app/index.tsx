@@ -1,5 +1,5 @@
-import { Link, Head } from '@vxrn/expo-router'
-import { View, Text } from 'react-native'
+import { Head, Link } from '@vxrn/expo-router'
+import { Text, View } from 'react-native'
 
 export default () => {
   return (

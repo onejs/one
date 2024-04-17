@@ -1,9 +1,9 @@
 import { type NavigationContainerRefWithCurrent } from '@react-navigation/native';
 import { type ComponentType } from 'react';
-import type { ResultState } from '../fork/getStateFromPath';
-import { type ExpoLinkingOptions } from '../getLinkingConfig';
 import { type UrlObject } from '../LocationProvider';
 import type { RouteNode } from '../Route';
+import type { ResultState } from '../fork/getStateFromPath';
+import { type ExpoLinkingOptions } from '../getLinkingConfig';
 import type { RequireContext } from '../types';
 /**
  * This is the global state for the router. It is used to keep track of the current route, and to provide a way to navigate to other routes.
@@ -13,23 +13,28 @@ import type { RequireContext } from '../types';
 export declare class RouterStore {
     routeNode: RouteNode | null;
     rootComponent: ComponentType;
-    linking: ExpoLinkingOptions | undefined;
+    linking?: ExpoLinkingOptions;
     private hasAttemptedToHideSplash;
-    initialState: ResultState | undefined;
-    rootState: ResultState | undefined;
-    nextState: ResultState | undefined;
-    routeInfo?: UrlObject | undefined;
+    initialState?: ResultState;
+    rootState?: ResultState;
+    nextState?: ResultState;
+    routeInfo?: UrlObject;
+    splashScreenAnimationFrame?: number;
     navigationRef: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>;
     navigationRefSubscription: () => void;
     rootStateSubscribers: Set<() => void>;
     storeSubscribers: Set<() => void>;
     linkTo: (href: string, event?: string | undefined) => void;
+    getSortedRoutes: () => RouteNode[];
     goBack: () => void;
     canGoBack: () => boolean;
-    push: (url: import("../link/href").Href) => void;
-    replace: (url: import("../link/href").Href) => void;
+    push: (url: import("../interfaces/expo-router").ExpoRouter.Href) => void;
+    dismiss: (count?: number | undefined) => void;
+    replace: (url: import("../interfaces/expo-router").ExpoRouter.Href) => void;
+    dismissAll: () => void;
+    canDismiss: () => boolean;
     setParams: (params?: Record<string, string | number> | undefined) => any;
-    getSortedRoutes: () => RouteNode[];
+    navigate: (url: import("../interfaces/expo-router").ExpoRouter.Href) => void;
     initialize(context: RequireContext, navigationRef: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>, initialLocation?: URL): void;
     updateState(state: ResultState, nextState?: ResultState): void;
     getRouteInfo(state: ResultState): UrlObject;
@@ -40,6 +45,7 @@ export declare class RouterStore {
     snapshot: () => this;
     rootStateSnapshot: () => ResultState;
     routeInfoSnapshot: () => UrlObject;
+    cleanup(): void;
 }
 export declare const store: RouterStore;
 export declare function useExpoRouter(): RouterStore;

@@ -7,19 +7,19 @@ import type {
 } from '@react-navigation/native'
 import React from 'react'
 
-import EXPO_ROUTER_IMPORT_MODE from './import-mode'
-import { Screen } from './primitives'
 import {
   type DynamicConvention,
   type LoadedRoute,
   Route,
   type RouteNode,
-  sortRoutesWithInitial,
   useRouteNode,
 } from './Route'
+import EXPO_ROUTER_IMPORT_MODE from './import-mode'
+import { Screen } from './primitives'
 import { EmptyRoute } from './views/EmptyRoute'
 import { SuspenseFallback } from './views/SuspenseFallback'
 import { Try } from './views/Try'
+import { sortRoutesWithInitial } from './sortRoutes'
 
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
@@ -33,7 +33,7 @@ export type ScreenProps<
    * If all children are redirect={true}, the layout will render `null` as there are no children to render.
    */
   redirect?: boolean
-  initialParams?: { [key: string]: any }
+  initialParams?: Record<string, any>
   options?: TOptions
 
   listeners?:
@@ -43,7 +43,7 @@ export type ScreenProps<
         navigation: any
       }) => ScreenListeners<State, EventMap>)
 
-  getId?: ({ params }: { params?: Record<string, any> | undefined }) => string | undefined
+  getId?: ({ params }: { params?: Record<string, any> }) => string | undefined
 }
 
 function getSortedChildren(
@@ -138,7 +138,8 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
       return { default: EmptyRoute }
     }
   }
-  return { default: component.default || EmptyRoute }
+
+  return { default: component.default }
 }
 
 function fromLoadedRoute(res: LoadedRoute) {
@@ -159,38 +160,27 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     return qualifiedStore.get(value)!
   }
 
-  let getLoadable: (props: any, ref: any) => JSX.Element
+  let ScreenComponent: React.ForwardRefExoticComponent<React.RefAttributes<unknown>>
 
   // TODO: This ensures sync doesn't use React.lazy, but it's not ideal.
   if (EXPO_ROUTER_IMPORT_MODE === 'lazy') {
-    const AsyncComponent = React.lazy(async () => {
+    ScreenComponent = React.lazy(async () => {
       const res = value.loadRoute()
       return fromLoadedRoute(res) as Promise<{
         default: React.ComponentType<any>
       }>
     })
-    getLoadable = (props: any, ref: any) => (
-      <React.Suspense fallback={<SuspenseFallback route={value} />}>
-        <AsyncComponent
-          {...{
-            ...props,
-            ref,
-            // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-            // the intention is to make it possible to deduce shared routes.
-            segment: value.route,
-          }}
-        />
-      </React.Suspense>
-    )
   } else {
-    const SyncComponent = React.forwardRef((props, ref) => {
-      const res = value.loadRoute()
-      const Component = fromImport(res).default
+    const res = value.loadRoute()
+    const Component = fromImport(res).default as React.ComponentType<any>
+    ScreenComponent = React.forwardRef((props, ref) => {
       return <Component {...props} ref={ref} />
     })
+  }
 
-    getLoadable = (props: any, ref: any) => (
-      <SyncComponent
+  const getLoadable = (props: any, ref: any) => (
+    <React.Suspense fallback={<SuspenseFallback route={value} />}>
+      <ScreenComponent
         {...{
           ...props,
           ref,
@@ -199,8 +189,8 @@ export function getQualifiedRouteComponent(value: RouteNode) {
           segment: value.route,
         }}
       />
-    )
-  }
+    </React.Suspense>
+  )
 
   const QualifiedRoute = React.forwardRef(
     (
@@ -228,31 +218,36 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 }
 
 /** @returns a function which provides a screen id that matches the dynamic route name in params. */
-export function createGetIdForRoute(route: Pick<RouteNode, 'dynamic' | 'route'>) {
-  if (!route.dynamic?.length) {
-    return undefined
-  }
-  return ({ params }: { params?: Record<string, any> }) => {
-    const getPreferredId = (segment: DynamicConvention) => {
-      // Params can be undefined when there are no params in the route.
-      const preferredId = params?.[segment.name]
-      // If the route has a dynamic segment, use the matching parameter
-      // as the screen id. This enables pushing a screen like `/[user]` multiple times
-      // when the user is different.
-      if (preferredId) {
-        if (!Array.isArray(preferredId)) {
-          return preferredId
-        }
-        if (preferredId.length) {
-          // Deep dynamic routes will return as an array, so we'll join them to create a
-          // fully qualified string.
-          return preferredId.join('/')
-        }
-        // Empty arrays...
-      }
-      return segment.deep ? `[...${segment.name}]` : `[${segment.name}]`
+export function createGetIdForRoute(
+  route: Pick<RouteNode, 'dynamic' | 'route' | 'contextKey' | 'children'>
+) {
+  const include = new Map<string, DynamicConvention>()
+
+  if (route.dynamic) {
+    for (const segment of route.dynamic) {
+      include.set(segment.name, segment)
     }
-    return route.dynamic?.map((segment) => getPreferredId(segment)).join('/')
+  }
+
+  return ({ params = {} } = {} as { params?: Record<string, any> }) => {
+    const segments: string[] = []
+
+    for (const dynamic of include.values()) {
+      const value = params?.[dynamic.name]
+      if (Array.isArray(value) && value.length > 0) {
+        // If we are an array with a value
+        segments.push(value.join('/'))
+      } else if (value && !Array.isArray(value)) {
+        // If we have a value and not an empty array
+        segments.push(value)
+      } else if (dynamic.deep) {
+        segments.push(`[...${dynamic.name}]`)
+      } else {
+        segments.push(`[${dynamic.name}]`)
+      }
+    }
+
+    return segments.join('/') ?? route.contextKey
   }
 }
 

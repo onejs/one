@@ -3,7 +3,7 @@ import React from 'react'
 
 import { useContextKey } from '../Route'
 import type { PickPartial } from '../types'
-import { type ScreenProps, useSortedScreens } from '../useScreens'
+import { useSortedScreens, type ScreenProps } from '../useScreens'
 import { Screen } from '../views/Screen'
 
 export function useFilterScreenChildren(
@@ -35,6 +35,7 @@ export function useFilterScreenChildren(
         }
         return child.props
       }
+
       if (isCustomNavigator) {
         customChildren.push(child)
       } else {
@@ -99,9 +100,8 @@ export function withLayoutContext<
 
       return (
         // @ts-expect-error
-        <Nav {...props} id={contextKey} ref={ref}>
-          {sorted}
-        </Nav>
+        // biome-ignore lint/correctness/noChildrenProp: <explanation>
+        <Nav {...props} id={contextKey} ref={ref} children={sorted} />
       )
     }
   )

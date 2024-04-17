@@ -35,9 +35,6 @@
     "watch:ts": "tsc -b -w --preserveWatchOutput tsconfig.json",
     "watch": "npm-run-all --parallel watch:ts watch:build"
   },
-  "resolutions": {
-    "expo-modules-core": "1.7.0"
-  },
   "dependencies": {
     "@biomejs/biome": "^1.6.3",
     "@manypkg/cli": "^0.19.1",
