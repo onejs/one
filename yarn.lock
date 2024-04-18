@@ -6517,7 +6517,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vxrn/expo-router@0.1.19, @vxrn/expo-router@^0.1.19, @vxrn/expo-router@workspace:packages/expo-router":
+"@vxrn/expo-router@0.1.19, @vxrn/expo-router@workspace:packages/expo-router":
   version: 0.0.0-use.local
   resolution: "@vxrn/expo-router@workspace:packages/expo-router"
   dependencies:
@@ -17129,7 +17129,7 @@ __metadata:
     "@types/ws": ^8.5.10
     "@vitejs/plugin-react": ^4.2.1
     "@vitejs/plugin-react-swc": ^3.6.0
-    "@vxrn/expo-router": ^0.1.19
+    "@vxrn/expo-router": 0.1.19
     "@vxrn/react-native-prebuilt": 0.1.19
     "@vxrn/vite-flow": 0.1.19
     "@vxrn/vite-native-client": 0.1.19
