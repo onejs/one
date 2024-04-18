@@ -5914,7 +5914,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/web@npm:1.94.4, @tamagui/web@npm:^1.94.4":
+"@tamagui/web@npm:1.94.4":
   version: 1.94.4
   resolution: "@tamagui/web@npm:1.94.4"
   dependencies:
@@ -6529,7 +6529,6 @@ __metadata:
     "@react-navigation/native-stack": ^6.9.13
     "@react-navigation/routers": ^6.1.9
     "@tamagui/build": ^1.94.4
-    "@tamagui/web": ^1.94.4
     escape-string-regexp: ^5.0.0
     expo: ^47.0.0
     expo-constants: ^14.4.2
