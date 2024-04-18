@@ -1,5 +1,5 @@
 import { Head, Link } from '@vxrn/expo-router'
-import { Text, View } from 'react-native'
+import { Text, View } from '@tamagui/core'
 
 export default () => {
   return (
@@ -9,8 +9,9 @@ export default () => {
       </Head>
 
       <View>
-        <Text style={{ color: 'blue' }}>Hi from home</Text>
+        <Text color="blue">Hi from home</Text>
       </View>
+
       <Link
         href={{
           pathname: '/[user]',
