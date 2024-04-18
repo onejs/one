@@ -39,7 +39,6 @@
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@react-navigation/routers": "^6.1.9",
-    "@tamagui/web": "^1.94.4",
     "escape-string-regexp": "^5.0.0",
     "expo": "^47.0.0",
     "expo-constants": "^14.4.2",
