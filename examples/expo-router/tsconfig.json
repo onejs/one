@@ -38,6 +38,7 @@
     ]
   },
   "exclude": [
+    "node_modules",
     "**/test",
     "**/dist",
     "**/types",
@@ -45,6 +46,5 @@
   ],
   "typeAcquisition": {
     "enable": true
-  },
-  "extends": "expo/tsconfig.base"
+  }
 }
