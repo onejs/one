@@ -81,15 +81,6 @@ export function clientInjectionsPlugin(config: ResolvedConfig): Plugin {
     transform(code, id, options) {
       if (id.includes('vite-native-client/dist/esm/client.')) {
         return injectConfigValues(code)
-      } else if (!options?.ssr && code.includes('process.env.NODE_ENV')) {
-        // replace process.env.NODE_ENV instead of defining a global
-        // for it to avoid shimming a `process` object during dev,
-        // avoiding inconsistencies between dev and build
-        // return code.replace(
-        //   process_env_NODE_ENV_RE,
-        //   config.define?.['process.env.NODE_ENV'] ||
-        //     JSON.stringify(process.env.NODE_ENV || config.mode)
-        // )
       }
     },
   }
@@ -104,9 +95,7 @@ function serializeDefine(define: Record<string, any>): string {
   let res = `{`
   for (const key in define) {
     const val = define[key]
-    res += `${JSON.stringify(key)}: ${
-      typeof val === 'string' ? `(${val})` : JSON.stringify(val)
-    }, `
+    res += `${JSON.stringify(key)}: ${typeof val === 'string' ? `(${val})` : JSON.stringify(val)}, `
   }
   return res + `}`
 }

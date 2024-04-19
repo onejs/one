@@ -35,14 +35,14 @@ import {
 import createViteFlow from '@vxrn/vite-flow'
 import type { Peer } from 'crossws'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
-import { clientInjectionsPlugin } from './dev/clientInjectPlugin'
-import { nativePlugin } from './nativePlugin'
-import type { VXRNConfig } from './types'
-import { getBaseViteConfig } from './utils/getBaseViteConfig'
-import { getOptionsFilled, type VXRNConfigFilled } from './utils/getOptionsFilled'
-import { getVitePath } from './utils/getVitePath'
-import { clientBundleTreeShakePlugin } from './plugins/clientBundleTreeShakePlugin'
-import { createExpoServer } from './createExpoServer'
+import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
+import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
+import type { VXRNConfig } from '../types'
+import { getBaseViteConfig } from '../utils/getBaseViteConfig'
+import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
+import { getVitePath } from '../utils/getVitePath'
+import { clientBundleTreeShakePlugin } from '../plugins/clientBundleTreeShakePlugin'
+import { createExpoServer } from '../vendor/createExpoServer'
 
 export const resolveFile = (path: string) => {
   try {
@@ -129,7 +129,7 @@ async function checkPatches(options: VXRNConfigFilled) {
   }
 }
 
-export const createDevServer = async (optionsIn: VXRNConfig) => {
+export const dev = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
   const { host, port, root, cacheDir } = options
 
@@ -682,7 +682,7 @@ export const createDevServer = async (optionsIn: VXRNConfig) => {
         clientBundleTreeShakePlugin({}),
         viteRNClientPlugin,
 
-        nativePlugin({
+        reactNativeCommonJsPlugin({
           root,
           port,
           mode: 'build',
