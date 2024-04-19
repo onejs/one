@@ -5,10 +5,10 @@ import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 
 import FSExtra from 'fs-extra'
 import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
-import { clientBundleTreeShakePlugin } from './plugins/clientBundleTreeShakePlugin'
-import type { VXRNConfig } from './types'
-import { getBaseViteConfig } from './utils/getBaseViteConfig'
-import { getOptionsFilled, type VXRNConfigFilled } from './utils/getOptionsFilled'
+import { clientBundleTreeShakePlugin } from '../plugins/clientBundleTreeShakePlugin'
+import type { VXRNConfig } from '../types'
+import { getBaseViteConfig } from '../utils/getBaseViteConfig'
+import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
 
 export const resolveFile = (path: string) => {
   try {

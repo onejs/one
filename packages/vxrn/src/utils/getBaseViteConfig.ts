@@ -1,5 +1,5 @@
 import type { UserConfig } from 'vite'
-import { resolveFile } from '../createDevServer'
+import { resolveFile } from '../exports/dev'
 
 export function getBaseViteConfig({ mode }: { mode: 'development' | 'production' }): UserConfig {
   return {

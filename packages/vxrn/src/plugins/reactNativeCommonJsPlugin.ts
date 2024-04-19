@@ -1,10 +1,10 @@
-import { dirname } from 'path'
+import { dirname } from 'node:path'
 
 import { parse } from 'es-module-lexer'
 import type { OutputOptions } from 'rollup'
 import type { Plugin } from 'vite'
 
-import { getVitePath } from './utils/getVitePath'
+import { getVitePath } from '../utils/getVitePath'
 
 const extensions = [
   '.ios.js',
@@ -19,7 +19,7 @@ const extensions = [
   '.mjs',
 ]
 
-export function nativePlugin(options: {
+export function reactNativeCommonJsPlugin(options: {
   root: string
   port: number
   mode: 'build' | 'serve'
@@ -93,35 +93,12 @@ export function nativePlugin(options: {
 
       config.build.rollupOptions.plugins ??= []
 
-      // config.build.rollupOptions.external = [
-      //   'react-native',
-      //   'react',
-      //   'react/jsx-runtime',
-      //   'react/jsx-dev-runtime',
-      // ]
-
       if (!Array.isArray(config.build.rollupOptions.plugins)) {
         throw `x`
       }
 
       if (options.mode === 'build') {
         config.plugins ||= []
-
-        // https://vitejs.dev/config/dep-optimization-options.html
-        // config.build.commonjsOptions ||= {}
-        // config.build.commonjsOptions.include = []
-
-        // CANT DO THIS BECAUSE TAMAGUI PLUGIN DOES THIS! they clobber each other!
-        // config.plugins.push(
-        //   viteCommonjs({
-        //     include: ['escape-string-regexp'],
-        //   })
-        // )
-
-        // config.resolve.alias = {
-        //   ...config.resolve.alias,
-        //   'react-native': virtualModuleId,
-        // }
 
         config.build.rollupOptions.plugins.push({
           name: `force-export-all`,
