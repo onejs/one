@@ -249,7 +249,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
     },
   })
 
-  createExpoServer(root, app)
+  createExpoServer(root, app, viteServer)
 
   router.get(
     '/file',
