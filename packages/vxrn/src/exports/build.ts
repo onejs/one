@@ -1,7 +1,9 @@
+import { build as esbuild } from 'esbuild'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import fs from 'node:fs'
 import path from 'node:path'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
+import { tmpdir } from 'node:os'
 
 import FSExtra from 'fs-extra'
 import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
@@ -179,10 +181,23 @@ async function generateStaticPages(
   ).flat()
 
   // for now just inline
-  const cssString = assets
+  const cssStringRaw = assets
     .filter((x) => x.name?.endsWith('.css'))
     .map((x) => x.source)
     .join('\n\n')
+
+  const tmpCssFile = path.join(tmpdir(), 'tmp.css')
+  await FSExtra.writeFile(tmpCssFile, cssStringRaw, 'utf-8')
+  await esbuild({
+    entryPoints: [tmpCssFile],
+    target: 'safari17',
+    bundle: true,
+    minifyWhitespace: true,
+    sourcemap: false,
+    outfile: tmpCssFile,
+    loader: { '.css': 'css' },
+  })
+  const cssString = await FSExtra.readFile(tmpCssFile, 'utf-8')
 
   // pre-render each route...
   for (const { path, props } of allRoutes) {
