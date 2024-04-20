@@ -6,7 +6,9 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
   if (!(await FSExtra.pathExists('vxrn.config.ts'))) {
     return {}
   }
-  const requireFile = jiti(process.cwd())
+  const requireFile = jiti(process.cwd(), {
+    esmResolve: true,
+  })
   const userConfig = requireFile('./vxrn.config.ts')
   return userConfig?.default ?? {}
 }
