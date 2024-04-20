@@ -30,7 +30,8 @@
     "target": "es2020",
     "types": [
       "node",
-      "react"
+      "react",
+      "vite/client"
     ],
     "lib": [
       "dom",

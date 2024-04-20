@@ -117,6 +117,7 @@ async function generateStaticPages(
   const staticDir = toAbsolute(`dist/static`)
   await ensureDir(staticDir)
   const template = fs.readFileSync(toAbsolute('index.html'), 'utf-8')
+
   const render = (await import(`${options.root}/dist/server/entry-server.js`)).render
 
   // load routes

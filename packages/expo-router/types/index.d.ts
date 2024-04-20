@@ -1,4 +1,6 @@
 import './polyfills';
+export { Root } from './Root';
+export { renderToString } from './renderToString';
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
 import { Navigator, Slot } from './views/Navigator';
@@ -9,7 +11,6 @@ export { Link, Redirect } from './link/Link';
 export { Head } from './head';
 export { withLayoutContext } from './layouts/withLayoutContext';
 export { Navigator, Slot };
-export { ExpoRoot } from './ExpoRoot';
 export { ErrorBoundary } from './views/ErrorBoundary';
 export { Unmatched } from './views/Unmatched';
 export { SplashScreen } from './views/Splash';

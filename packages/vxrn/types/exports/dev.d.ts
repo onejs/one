@@ -2,7 +2,7 @@
 import type { VXRNConfig } from '../types';
 export declare const resolveFile: (path: string) => string;
 export declare const dev: (optionsIn: VXRNConfig) => Promise<{
-    nativeServer: import("http").Server<typeof import("http").IncomingMessage, typeof import("http").ServerResponse>;
+    server: import("http").Server<typeof import("http").IncomingMessage, typeof import("http").ServerResponse>;
     viteServer: import("vite").ViteDevServer;
     start(): Promise<{
         closePromise: Promise<unknown>;
