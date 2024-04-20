@@ -10490,6 +10490,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jiti@npm:^1.21.0":
+  version: 1.21.0
+  resolution: "jiti@npm:1.21.0"
+  bin:
+    jiti: bin/jiti.js
+  checksum: a7bd5d63921c170eaec91eecd686388181c7828e1fa0657ab374b9372bfc1f383cf4b039e6b272383d5cb25607509880af814a39abdff967322459cca41f2961
+  languageName: node
+  linkType: hard
+
 "joi@npm:^17.2.1":
   version: 17.12.3
   resolution: "joi@npm:17.12.3"
@@ -15597,6 +15606,7 @@ __metadata:
     h3: ^1.11.1
     h3-proxy: ^1.12.0
     import-meta-resolve: ^4.0.0
+    jiti: ^1.21.0
     metro-inspector-proxy: ^0.71.0
     mime: ^3.0.0
     open-editor: ^4.1.1
