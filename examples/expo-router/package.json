@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vxrn dev",
     "build": "vxrn build",
-    "serve": "NODE_ENV=production node server",
+    "serve": "vxrn serve",
     "postinstall": "patch-package"
   },
   "dependencies": {

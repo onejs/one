@@ -145,21 +145,28 @@ async function generateStaticPages(
 
         const endpointPath = path.join(options.root, 'dist/server', output.fileName)
         const exported = await import(endpointPath)
-        const staticParams = await exported.generateStaticParams?.()
-        const result = (staticParams || [{}]).map((params) => {
-          return getUrl(params)
-        })
 
-        function getUrl(params = {}) {
+        const paramsList = ((await exported.generateStaticParams?.()) ?? []) as Object[]
+
+        return await Promise.all(
+          paramsList.map(async (params) => {
+            const path = getUrl(params)
+            const props =
+              (await exported.generateStaticProps?.({ path: getUrl(params), params })) ?? {}
+            return { path, props }
+          })
+        )
+
+        function getUrl(_params = {}) {
           return name === 'index'
             ? '/'
             : `/${name
                 .split('/')
                 .map((part) => {
                   if (part[0] === '[') {
-                    const found = params[part.slice(1, part.length - 1)]
+                    const found = _params[part.slice(1, part.length - 1)]
                     if (!found) {
-                      console.warn('not found', { params, part })
+                      console.warn('not found', { _params, part })
                     }
                     return found
                   }
@@ -167,8 +174,6 @@ async function generateStaticPages(
                 })
                 .join('/')}`
         }
-
-        return result
       })
     )
   ).flat()
@@ -180,13 +185,14 @@ async function generateStaticPages(
     .join('\n\n')
 
   // pre-render each route...
-  for (const path of allRoutes) {
-    const { appHtml, headHtml } = await render({ path })
+  for (const { path, props } of allRoutes) {
+    const { appHtml, headHtml } = await render({ path, props })
     const slashFileName = `${path === '/' ? '/index' : path}.html`
     const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
     const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
+    const propsHtml = `\n<script>globalThis['__vxrnProps']=${JSON.stringify(props)}</script>`
     const html = (clientHtml || template)
-      .replace(`<!--ssr-outlet-->`, appHtml)
+      .replace(`<!--ssr-outlet-->`, appHtml + propsHtml)
       .replace(
         `<!--head-outlet-->`,
         `${headHtml}\n${cssString ? `<style>${cssString}</style>` : ``}`

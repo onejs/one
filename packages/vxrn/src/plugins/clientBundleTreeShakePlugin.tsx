@@ -1,4 +1,4 @@
-import type { Node, Program } from 'estree'
+import type { Node, Program, BaseNode } from 'estree'
 import { walk } from 'estree-walker'
 import MagicString from 'magic-string'
 import type { Plugin } from 'vite'
@@ -17,7 +17,8 @@ export const clientBundleTreeShakePlugin = (options: TreeShakeTemplatePluginOpti
       if (id.includes('node_modules')) {
         return
       }
-      if (!code.includes(`generateStaticParams`)) {
+
+      if (!/generateStaticParams|generateStaticProps/.test(code)) {
         return
       }
 
@@ -26,45 +27,90 @@ export const clientBundleTreeShakePlugin = (options: TreeShakeTemplatePluginOpti
 
       walk(codeAst, {
         enter: (node) => {
-          if (node.type === 'ExportNamedDeclaration' || node.type === 'VariableDeclaration') {
-            let declarators = (
-              'declarations' in node
-                ? node.declarations
-                : 'declaration' in node
-                  ? [node.declaration]
-                  : []
-            ) as any[]
-
-            let shouldRemove = false
-
-            declarators.forEach((declarator) => {
-              if (
-                declarator.id.type === 'Identifier' &&
-                declarator.id.name === 'generateStaticParams'
-              ) {
-                shouldRemove = true
-              }
-            })
-
-            const replaceStr = `function generateStaticParams() {};`
-            const length = node['end'] - node['start']
-
-            if (shouldRemove) {
-              // @ts-ignore
-              // s.remove(node.start, node.end + 1)
-              s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
-              // make sure it doesnt error with forceExports
-              // s.append(`function generateStaticParams {}`)
-
-              if (node.type === 'ExportNamedDeclaration') {
-                // remove import declaration if it exists
-                // @ts-ignore
-                removeImportDeclaration(codeAst, node, s)
-              }
-            }
-          }
+          walkGenerateStaticParams(node)
+          walkGenerateStaticProps(node)
         },
       })
+
+      function walkGenerateStaticProps(node: BaseNode) {
+        if (node.type === 'ExportNamedDeclaration' || node.type === 'VariableDeclaration') {
+          let declarators = (
+            'declarations' in node
+              ? node.declarations
+              : 'declaration' in node
+                ? [node.declaration]
+                : []
+          ) as any[]
+
+          let shouldRemove = false
+
+          declarators.forEach((declarator) => {
+            if (
+              declarator.id.type === 'Identifier' &&
+              declarator.id.name === 'generateStaticProps'
+            ) {
+              shouldRemove = true
+            }
+          })
+
+          const replaceStr = `function generateStaticProps() {};`
+          const length = node['end'] - node['start']
+
+          if (shouldRemove) {
+            // @ts-ignore
+            // s.remove(node.start, node.end + 1)
+            s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
+            // make sure it doesnt error with forceExports
+            // s.append(`function generateStaticProps {}`)
+
+            if (node.type === 'ExportNamedDeclaration') {
+              // remove import declaration if it exists
+              // @ts-ignore
+              removeImportDeclaration(codeAst, node, s)
+            }
+          }
+        }
+      }
+
+      function walkGenerateStaticParams(node: BaseNode) {
+        if (node.type === 'ExportNamedDeclaration' || node.type === 'VariableDeclaration') {
+          let declarators = (
+            'declarations' in node
+              ? node.declarations
+              : 'declaration' in node
+                ? [node.declaration]
+                : []
+          ) as any[]
+
+          let shouldRemove = false
+
+          declarators.forEach((declarator) => {
+            if (
+              declarator.id.type === 'Identifier' &&
+              declarator.id.name === 'generateStaticParams'
+            ) {
+              shouldRemove = true
+            }
+          })
+
+          const replaceStr = `function generateStaticParams() {};`
+          const length = node['end'] - node['start']
+
+          if (shouldRemove) {
+            // @ts-ignore
+            // s.remove(node.start, node.end + 1)
+            s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
+            // make sure it doesnt error with forceExports
+            // s.append(`function generateStaticParams {}`)
+
+            if (node.type === 'ExportNamedDeclaration') {
+              // remove import declaration if it exists
+              // @ts-ignore
+              removeImportDeclaration(codeAst, node, s)
+            }
+          }
+        }
+      }
 
       if (s.hasChanged()) {
         return {

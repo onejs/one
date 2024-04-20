@@ -74,6 +74,32 @@ const build = defineCommand({
   },
 })
 
+const serve = defineCommand({
+  meta: {
+    name: 'serve',
+    version: '0.0.0',
+    description: 'Serve a built app for production',
+  },
+  args: {},
+  async run({ args }) {
+    const userConfig = await readVXRNConfig()
+    const { serve } = await import(
+      // @ts-expect-error
+      './exports/serve.mjs'
+    )
+
+    process.on('uncaughtException', (err) => {
+      console.error(err?.message || err)
+    })
+
+    const results = await serve(userConfig)
+
+    if (process.env.DEBUG) {
+      console.info('results', results)
+    }
+  },
+})
+
 const main = defineCommand({
   meta: {
     name: 'main',
@@ -83,6 +109,7 @@ const main = defineCommand({
   subCommands: {
     dev,
     build,
+    serve,
   },
 })
 
