@@ -49,7 +49,10 @@ export async function loadRoutes(paths: any) {
         return
       }
       try {
-        routesSync[path] = await paths[path]()
+        const evaluated = await paths[path]()
+        routesSync[path] = evaluated
+        // this is a temp fix for matching webpack style routes:
+        routesSync[path.replace('../app/', './')] = evaluated
       } catch (err) {
         // @ts-ignore
         console.error(`Error loading path ${path}: ${err?.message ?? ''} ${err?.stack ?? ''}`)
