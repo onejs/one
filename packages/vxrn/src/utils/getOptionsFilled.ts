@@ -1,16 +1,23 @@
 import { join } from 'node:path'
 import { readPackageJSON } from 'pkg-types'
-import { createRequire } from 'module'
+import { createRequire } from 'node:module'
 import FSExtra from 'fs-extra'
 import type { VXRNConfig } from '../types'
+import { getPort } from 'get-port-please'
 
 const require = createRequire(import.meta.url)
 
 export type VXRNConfigFilled = Awaited<ReturnType<typeof getOptionsFilled>>
 
 export async function getOptionsFilled(options: VXRNConfig) {
-  const { host = '127.0.0.1', root = process.cwd(), port = 8081 } = options
-  
+  const { host = '127.0.0.1', root = process.cwd() } = options
+
+  const defaultPort = options.port || 8081
+  const port = await getPort({
+    port: defaultPort,
+    portRange: [defaultPort, defaultPort + 1000],
+  })
+
   const packageRootDir = join(require.resolve('vxrn'), '../../..')
 
   const cacheDir = join(root, 'node_modules', '.cache', 'vxrn')
