@@ -1,7 +1,14 @@
 import { Head, Link } from '@vxrn/expo-router'
 import { Text, View } from '@tamagui/core'
+import { useEffect } from 'react'
 
 export default () => {
+  useEffect(() => {
+    fetch('/hello')
+      .then((res) => res.text())
+      .then((x) => console.log('got', x))
+  }, [])
+
   return (
     <>
       <Head>
