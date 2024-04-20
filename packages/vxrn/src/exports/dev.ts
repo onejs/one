@@ -304,11 +304,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
     const clients = new Set<Peer>()
     const socket = new WebSocket(`ws://localhost:${vitePort}/__vxrnhmr`, 'vite-hmr')
 
-    console.info(`connecting to vite...`)
-    socket.on('open', () => {
-      console.info('...connected to vite!')
-    })
-
     socket.on('message', (msg) => {
       const message = msg.toString()
       console.info(clients.size, 'message', message)
@@ -319,7 +314,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
     })
 
     socket.on('error', (err) => {
-      console.info('err', err)
+      console.info('error bridging socket to vite', err)
     })
 
     // vite hmr:
