@@ -39,10 +39,12 @@ import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
-import { getOptionsFilled } from '../utils/getOptionsFilled'
+import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
 import { getVitePath } from '../utils/getVitePath'
 import { checkPatches } from '../utils/patches'
 import { createExpoServer } from '../vendor/createExpoServer'
+
+const depsToOptimize = ['react', 'react-dom', '@react-native/normalize-color']
 
 export const resolveFile = (path: string) => {
   try {
@@ -85,9 +87,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
   // TODO move somewhere
   bindKeypressInput()
 
-  // used for normalizing hot reloads
-  let entryRoot = ''
-
   checkPatches(options).catch((err) => {
     console.error(`\n 🥺 couldn't patch`, err)
   })
@@ -122,7 +121,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
   const templateFile = resolveFile('vxrn/react-native-template.js')
 
   // react native port (it scans 19000 +5)
-  const hotUpdatedCJSFiles = new Map<string, string>()
   const jsxRuntime = {
     // alias: 'virtual:react-jsx',
     alias: prebuilds.reactJSX,
@@ -212,145 +210,12 @@ export const dev = async (optionsIn: VXRNConfig) => {
     },
   } as const
 
-  const depsToOptimize = ['react', 'react-dom', '@react-native/normalize-color']
-
-  const reactNativeHMRPlugin = {
-    name: 'client-transform',
-
-    async handleHotUpdate({ read, modules, file }) {
-      try {
-        if (!isWithin(root, file)) {
-          return
-        }
-
-        const [module] = modules
-        if (!module) return
-
-        const id = module?.url || file.replace(root, '')
-
-        const code = await read()
-
-        // got a weird pre compiled file on startup
-        if (code.startsWith(`'use strict';`)) return
-
-        if (!code) {
-          return
-        }
-
-        let source = code
-
-        // we have to remove jsx before we can parse imports...
-        source = (await transformForBuild(id, source))?.code || ''
-
-        const importsMap = {}
-
-        // parse imports of modules into ids:
-        // eg `import x from '@tamagui/core'` => `import x from '/me/node_modules/@tamagui/core/index.js'`
-        const [imports] = parse(source)
-
-        let accumulatedSliceOffset = 0
-
-        for (const specifier of imports) {
-          const { n: importName, s: start } = specifier
-
-          if (importName) {
-            const id = await getVitePath(entryRoot, file, importName)
-            if (!id) {
-              console.warn('???')
-              continue
-            }
-
-            importsMap[id] = id.replace(/^(\.\.\/)+/, '')
-
-            // replace module name with id for hmr
-            const len = importName.length
-            const extraLen = id.length - len
-            source =
-              source.slice(0, start + accumulatedSliceOffset) +
-              id +
-              source.slice(start + accumulatedSliceOffset + len)
-            accumulatedSliceOffset += extraLen
-          }
-        }
-
-        // then we have to convert to commonjs..
-        source =
-          (
-            await swcTransform(id, source, {
-              mode: 'serve-cjs',
-            })
-          )?.code || ''
-
-        if (!source) {
-          throw '❌ no source'
-        }
-
-        importsMap['currentPath'] = id
-
-        const hotUpdateSource = `exports = ((exports) => {
-          const require = createRequire(${JSON.stringify(importsMap, null, 2)})
-          ${source
-            .replace(`import.meta.hot.accept(() => {})`, ``)
-            // replace import.meta.glob with empty array in hot reloads
-            .replaceAll(/import.meta.glob\(.*\)/gi, `globalThis['__importMetaGlobbed'] || {}`)};
-          return exports })({})`
-
-        if (process.env.DEBUG) {
-          console.info(`Sending hot update`, hotUpdateSource)
-        }
-
-        hotUpdatedCJSFiles.set(id, hotUpdateSource)
-      } catch (err) {
-        console.error(`Error processing hmr update:`, err)
-      }
-    },
-  }
-
-  let serverConfig: UserConfig = mergeConfig(
-    getBaseViteConfig({
-      mode: 'development',
-    }),
-    {
-      root,
-      clearScreen: false,
-      plugins: [
-        reactNativeHMRPlugin,
-
-        clientBundleTreeShakePlugin({}),
-      ],
-      optimizeDeps: {
-        include: depsToOptimize,
-        exclude: Object.values(virtualModules).map((v) => v.alias),
-        force: true,
-        esbuildOptions: {
-          resolveExtensions: extensions,
-        },
-      },
-      server: {
-        hmr: {
-          path: '/__vxrnhmr',
-        },
-        cors: true,
-        host,
-      },
-    } satisfies UserConfig
-  ) satisfies InlineConfig
-
-  if (options.webConfig) {
-    serverConfig = mergeConfig(serverConfig, options.webConfig) as any
-  }
+  const { serverConfig, hotUpdateCache } = await getViteServerConfig(options)
+  const viteServer = await createServer(serverConfig)
 
   // first resolve config so we can pass into client plugin, then add client plugin:
   const resolvedConfig = await resolveConfig(serverConfig, 'serve')
-
   const viteRNClientPlugin = clientInjectionsPlugin(resolvedConfig)
-
-  serverConfig = {
-    ...serverConfig,
-    plugins: [...serverConfig.plugins!],
-  }
-
-  const viteServer = await createServer(serverConfig)
 
   // this fakes vite into thinking its loading files, so it hmrs in native mode despite not requesting
   viteServer.watcher.addListener('change', async (path) => {
@@ -391,7 +256,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
     defineEventHandler((e) => {
       const query = getQuery(e)
       if (typeof query.file === 'string') {
-        const source = hotUpdatedCJSFiles.get(query.file)
+        const source = hotUpdateCache.get(query.file)
         return new Response(source, {
           headers: {
             'content-type': 'text/javascript',
@@ -877,4 +742,147 @@ export function bindKeypressInput() {
 function isWithin(outer: string, inner: string) {
   const rel = relative(outer, inner)
   return !rel.startsWith('../') && rel !== '..'
+}
+
+// used for normalizing hot reloads
+let entryRoot = ''
+
+export async function getViteServerConfig({ root, host, webConfig, cacheDir }: VXRNConfigFilled) {
+  const hotUpdateCache = new Map<string, string>()
+
+  const reactNativeHMRPlugin = {
+    name: 'client-transform',
+
+    async handleHotUpdate({ read, modules, file }) {
+      try {
+        if (!isWithin(root, file)) {
+          return
+        }
+
+        const [module] = modules
+        if (!module) return
+
+        const id = module?.url || file.replace(root, '')
+
+        const code = await read()
+
+        // got a weird pre compiled file on startup
+        if (code.startsWith(`'use strict';`)) return
+
+        if (!code) {
+          return
+        }
+
+        let source = code
+
+        // we have to remove jsx before we can parse imports...
+        source = (await transformForBuild(id, source))?.code || ''
+
+        const importsMap = {}
+
+        // parse imports of modules into ids:
+        // eg `import x from '@tamagui/core'` => `import x from '/me/node_modules/@tamagui/core/index.js'`
+        const [imports] = parse(source)
+
+        let accumulatedSliceOffset = 0
+
+        for (const specifier of imports) {
+          const { n: importName, s: start } = specifier
+
+          if (importName) {
+            const id = await getVitePath(entryRoot, file, importName)
+            if (!id) {
+              console.warn('???')
+              continue
+            }
+
+            importsMap[id] = id.replace(/^(\.\.\/)+/, '')
+
+            // replace module name with id for hmr
+            const len = importName.length
+            const extraLen = id.length - len
+            source =
+              source.slice(0, start + accumulatedSliceOffset) +
+              id +
+              source.slice(start + accumulatedSliceOffset + len)
+            accumulatedSliceOffset += extraLen
+          }
+        }
+
+        // then we have to convert to commonjs..
+        source =
+          (
+            await swcTransform(id, source, {
+              mode: 'serve-cjs',
+            })
+          )?.code || ''
+
+        if (!source) {
+          throw '❌ no source'
+        }
+
+        importsMap['currentPath'] = id
+
+        const hotUpdateSource = `exports = ((exports) => {
+          const require = createRequire(${JSON.stringify(importsMap, null, 2)})
+          ${source
+            .replace(`import.meta.hot.accept(() => {})`, ``)
+            // replace import.meta.glob with empty array in hot reloads
+            .replaceAll(/import.meta.glob\(.*\)/gi, `globalThis['__importMetaGlobbed'] || {}`)};
+          return exports })({})`
+
+        if (process.env.DEBUG) {
+          console.info(`Sending hot update`, hotUpdateSource)
+        }
+
+        hotUpdateCache.set(id, hotUpdateSource)
+      } catch (err) {
+        console.error(`Error processing hmr update:`, err)
+      }
+    },
+  }
+
+  let serverConfig: UserConfig = mergeConfig(
+    getBaseViteConfig({
+      mode: 'development',
+    }),
+    {
+      root,
+      clearScreen: false,
+      plugins: [
+        reactNativeHMRPlugin,
+
+        clientBundleTreeShakePlugin({}),
+      ],
+      optimizeDeps: {
+        include: depsToOptimize,
+        exclude: [`${cacheDir}/*`],
+        force: true,
+        esbuildOptions: {
+          resolveExtensions: extensions,
+        },
+      },
+      server: {
+        hmr: {
+          path: '/__vxrnhmr',
+        },
+        cors: true,
+        host,
+      },
+    } satisfies UserConfig
+  ) satisfies InlineConfig
+
+  if (webConfig) {
+    serverConfig = mergeConfig(serverConfig, webConfig) as any
+  }
+
+  serverConfig = {
+    ...serverConfig,
+    plugins: [...serverConfig.plugins!],
+  }
+
+  return {
+    serverConfig,
+    hotUpdateCache,
+  }
 }
