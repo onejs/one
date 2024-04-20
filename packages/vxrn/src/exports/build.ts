@@ -152,30 +152,11 @@ async function generateStaticPages(
 
         return await Promise.all(
           paramsList.map(async (params) => {
-            const path = getUrl(params)
-            const props =
-              (await exported.generateStaticProps?.({ path: getUrl(params), params })) ?? {}
+            const path = getUrl(name, params)
+            const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
             return { path, props }
           })
         )
-
-        function getUrl(_params = {}) {
-          return name === 'index'
-            ? '/'
-            : `/${name
-                .split('/')
-                .map((part) => {
-                  if (part[0] === '[') {
-                    const found = _params[part.slice(1, part.length - 1)]
-                    if (!found) {
-                      console.warn('not found', { _params, part })
-                    }
-                    return found
-                  }
-                  return part
-                })
-                .join('/')}`
-        }
       })
     )
   ).flat()
@@ -215,4 +196,22 @@ async function generateStaticPages(
     const filePath = toAbsolute(`dist/static${slashFileName}`)
     fs.writeFileSync(toAbsolute(filePath), html)
   }
+}
+
+export function getUrl(name: string, _params = {}) {
+  return name === 'index'
+    ? '/'
+    : `/${name
+        .split('/')
+        .map((part) => {
+          if (part[0] === '[') {
+            const found = _params[part.slice(1, part.length - 1)]
+            if (!found) {
+              console.warn('not found', { _params, part })
+            }
+            return found
+          }
+          return part
+        })
+        .join('/')}`
 }

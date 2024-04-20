@@ -1,4 +1,4 @@
-import Constants from 'expo-constants'
+import Constants from '../constants'
 
 const protocolWarningString = `{ plugins: [["expo-router", { origin: "...<URL>..." }]] }`
 

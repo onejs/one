@@ -1,4 +1,4 @@
-import Constants from 'expo-constants'
+import Constants from './constants'
 import { StatusBar } from 'expo-status-bar'
 import React, { Fragment, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'

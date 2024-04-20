@@ -44,7 +44,19 @@ import { getVitePath } from '../utils/getVitePath'
 import { checkPatches } from '../utils/patches'
 import { createExpoServer } from '../vendor/createExpoServer'
 
-const depsToOptimize = ['react', 'react-dom', '@react-native/normalize-color']
+// TODO:
+let isBuildingNativeBundle: Promise<string> | null = null
+
+const depsToOptimize = [
+  'react',
+  'react-dom',
+  '@react-native/normalize-color',
+  'react/jsx-runtime',
+  'react/jsx-dev-runtime',
+  'expo-modules-core',
+  'react-native',
+  'expo-status-bar',
+]
 
 export const resolveFile = (path: string) => {
   try {
@@ -73,6 +85,8 @@ const extensions = [
   '.web.jsx',
   '.jsx',
   '.web.js',
+  '.web.mjs',
+  '.mjs',
   '.js',
   '.css',
   '.json',
@@ -80,19 +94,7 @@ const extensions = [
 
 const { ensureDir, pathExists, pathExistsSync } = FSExtra
 
-export const dev = async (optionsIn: VXRNConfig) => {
-  const options = await getOptionsFilled(optionsIn)
-  const { host, port, root, cacheDir } = options
-
-  // TODO move somewhere
-  bindKeypressInput()
-
-  checkPatches(options).catch((err) => {
-    console.error(`\n 🥺 couldn't patch`, err)
-  })
-
-  await ensureDir(cacheDir)
-
+async function getReactNativePrebuiltModules(cacheDir: string) {
   const prebuilds = {
     reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
     react: join(cacheDir, 'react.js'),
@@ -116,9 +118,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
       }),
     ])
   }
-  const viteFlow = options.flow ? createViteFlow(options.flow) : null
-
-  const templateFile = resolveFile('vxrn/react-native-template.js')
 
   // react native port (it scans 19000 +5)
   const jsxRuntime = {
@@ -142,7 +141,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
     'react/jsx-dev-runtime': jsxRuntime,
   } as const
 
-  const swapRnPlugin: PluginOption = {
+  return {
     name: `swap-react-native`,
     enforce: 'pre',
 
@@ -168,24 +167,26 @@ export const dev = async (optionsIn: VXRNConfig) => {
       // having trouble getting .native.js to be picked up via vite
       // tried adding packages to optimizeDeps, tried resolveExtensions + extensions...
       // tried this but seems to not be called for node_modules
-      if (id[0] === '.') {
-        const absolutePath = resolve(dirname(importer), id)
-        const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
-        if (nativePath === id) return
-        try {
-          const directoryPath = absolutePath + '/index.native.js'
-          const directoryNonNativePath = absolutePath + '/index.js'
-          if (pathExistsSync(directoryPath)) {
-            return directoryPath
+      if (isBuildingNativeBundle) {
+        if (id[0] === '.') {
+          const absolutePath = resolve(dirname(importer), id)
+          const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
+          if (nativePath === id) return
+          try {
+            const directoryPath = absolutePath + '/index.native.js'
+            const directoryNonNativePath = absolutePath + '/index.js'
+            if (pathExistsSync(directoryPath)) {
+              return directoryPath
+            }
+            if (pathExistsSync(directoryNonNativePath)) {
+              return directoryNonNativePath
+            }
+            if (pathExistsSync(nativePath)) {
+              return nativePath
+            }
+          } catch (err) {
+            console.warn(`error probably fine`, err)
           }
-          if (pathExistsSync(directoryNonNativePath)) {
-            return directoryNonNativePath
-          }
-          if (pathExistsSync(nativePath)) {
-            return nativePath
-          }
-        } catch (err) {
-          console.warn(`error probably fine`, err)
         }
       }
     },
@@ -208,7 +209,27 @@ export const dev = async (optionsIn: VXRNConfig) => {
         }
       }
     },
-  } as const
+  } satisfies PluginOption
+}
+
+export const dev = async (optionsIn: VXRNConfig) => {
+  const options = await getOptionsFilled(optionsIn)
+  const { host, port, root, cacheDir } = options
+
+  const swapRnPlugin = getReactNativePrebuiltModules(cacheDir)
+
+  // TODO move somewhere
+  bindKeypressInput()
+
+  checkPatches(options).catch((err) => {
+    console.error(`\n 🥺 couldn't patch`, err)
+  })
+
+  await ensureDir(cacheDir)
+
+  const viteFlow = options.flow ? createViteFlow(options.flow) : null
+
+  const templateFile = resolveFile('vxrn/react-native-template.js')
 
   const { serverConfig, hotUpdateCache } = await getViteServerConfig(options)
   const viteServer = await createServer(serverConfig)
@@ -232,8 +253,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
     }
   })
 
-  let isBuilding: Promise<string> | null = null
-
   await viteServer.listen()
   const vitePort = viteServer.config.server.port
 
@@ -249,6 +268,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
     },
   })
 
+  // TODO move, this does SSR + API
   createExpoServer(root, app, viteServer)
 
   router.get(
@@ -446,13 +466,13 @@ export const dev = async (optionsIn: VXRNConfig) => {
       }
     }
 
-    if (isBuilding) {
-      const res = await isBuilding
+    if (isBuildingNativeBundle) {
+      const res = await isBuildingNativeBundle
       return res
     }
 
     let done
-    isBuilding = new Promise((res) => {
+    isBuildingNativeBundle = new Promise((res) => {
       done = res
     })
 
@@ -624,6 +644,12 @@ __require("${outputModule.fileName}")
     // TODO this is not stable based on cwd
     const appRootParent = join(root, '..', '..')
 
+    const prebuilds = {
+      reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
+      react: join(cacheDir, 'react.js'),
+      reactNative: join(cacheDir, 'react-native.js'),
+    }
+
     const template = (await readFile(templateFile, 'utf-8'))
       .replace('_virtual/virtual_react-native.js', relative(appRootParent, prebuilds.reactNative))
       .replace('_virtual/virtual_react.js', relative(appRootParent, prebuilds.react))
@@ -632,7 +658,7 @@ __require("${outputModule.fileName}")
     const out = template + appCode
 
     done(out)
-    isBuilding = null
+    isBuildingNativeBundle = null
 
     return out
   }
@@ -844,11 +870,7 @@ export async function getViteServerConfig({ root, host, webConfig, cacheDir }: V
     {
       root,
       clearScreen: false,
-      plugins: [
-        reactNativeHMRPlugin,
-
-        clientBundleTreeShakePlugin({}),
-      ],
+      plugins: [reactNativeHMRPlugin, clientBundleTreeShakePlugin({})],
       optimizeDeps: {
         include: depsToOptimize,
         exclude: [`${cacheDir}/*`],
@@ -856,6 +878,12 @@ export async function getViteServerConfig({ root, host, webConfig, cacheDir }: V
         esbuildOptions: {
           resolveExtensions: extensions,
         },
+      },
+      ssr: {
+        optimizeDeps: {
+          include: depsToOptimize,
+        },
+        noExternal: depsToOptimize,
       },
       server: {
         hmr: {

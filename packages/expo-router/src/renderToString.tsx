@@ -4,9 +4,11 @@ import type { GlobbedRouteImports } from './types'
 
 export const renderToString = async (
   app: React.ReactElement,
-  { routes }: { routes: GlobbedRouteImports }
+  { routes }: { routes?: GlobbedRouteImports } = {}
 ) => {
-  await preloadRoutes(routes)
+  if (routes) {
+    await preloadRoutes(routes)
+  }
 
   const collectedHead: { helmet?: Record<string, any> } = {}
   globalThis['vxrn__headContext__'] = collectedHead
