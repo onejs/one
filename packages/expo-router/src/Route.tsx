@@ -13,6 +13,9 @@ export type LoadedRoute = {
   generateStaticParams?: (props: {
     params?: Record<string, string | string[]>
   }) => Record<string, string | string[]>[]
+  generateStaticProps?: (props: {
+    params?: Record<string, string | string[]>
+  }) => Record<string, string | string[]>[]
 }
 
 export type RouteNode = {

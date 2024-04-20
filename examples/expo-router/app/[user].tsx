@@ -1,13 +1,22 @@
 import { Link, useGlobalSearchParams } from '@vxrn/expo-router'
 import { Text, View } from 'react-native'
 
-export default function User() {
+type UserPath = {
+  user: string
+}
+
+type UserProps = {
+  hello: string
+}
+
+export default function User(props: UserProps) {
   const params = useGlobalSearchParams()
 
   return (
     <View>
       <View>
         <Text>User: {params?.user}</Text>
+        <Text>props: ${JSON.stringify(props || null)}</Text>
         <Link
           href={{
             pathname: '/[...spread]',
@@ -53,10 +62,12 @@ export default function User() {
   )
 }
 
-export function generateStaticParams() {
-  return [
-    // example SSG:
-    { user: 'one' },
-    { user: 'two' },
-  ]
+export async function generateStaticParams(): Promise<UserPath[]> {
+  return [{ user: 'one' }, { user: 'two' }]
+}
+
+export function generateStaticProps({ params }: { params: UserPath }): UserProps {
+  return {
+    hello: `${params.user}`,
+  }
 }

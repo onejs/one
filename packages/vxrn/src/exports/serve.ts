@@ -1,7 +1,8 @@
+import { createServer } from 'node:http'
 import sirv from 'sirv'
 import type { VXRNConfig } from '../types'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
-import { createApp, defineEventHandler } from 'h3'
+import { createApp, defineEventHandler, toNodeListener } from 'h3'
 
 export const serve = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
@@ -35,6 +36,16 @@ export const serve = async (optionsIn: VXRNConfig) => {
       })
     })
   )
+
+  const server = createServer(toNodeListener(app))
+  server.listen(3333)
+  console.info(`Listening on http://localhost:3333`)
+
+  await new Promise<void>((res) => {
+    server.on('close', () => {
+      res()
+    })
+  })
 }
 
 // app.use(
