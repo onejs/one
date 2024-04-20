@@ -1,5 +1,6 @@
+import { type ExpoRootProps } from './ExpoRoot';
 import type { GlobbedRouteImports } from './types';
-type RootProps = {
+type RootProps = Omit<ExpoRootProps, 'context'> & {
     routes: GlobbedRouteImports;
     path?: string;
 };

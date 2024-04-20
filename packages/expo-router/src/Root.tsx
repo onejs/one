@@ -1,10 +1,10 @@
-import { ExpoRoot } from './ExpoRoot'
+import { ExpoRoot, type ExpoRootProps } from './ExpoRoot'
 
 import { Suspense } from 'react'
-import { useViteRoutes } from './useViteRoutes'
 import type { GlobbedRouteImports } from './types'
+import { useViteRoutes } from './useViteRoutes'
 
-type RootProps = { routes: GlobbedRouteImports; path?: string }
+type RootProps = Omit<ExpoRootProps, 'context'> & { routes: GlobbedRouteImports; path?: string }
 
 export function Root(props: RootProps) {
   return (
@@ -22,12 +22,13 @@ function Router(props: RootProps) {
   return <Test {...props} />
 }
 
-function Test({ routes, path }: RootProps) {
+function Test({ routes, path, ...props }: RootProps) {
   const context = useViteRoutes(routes)
   return (
     <ExpoRoot
       location={path ? new URL(`http://localhost:3333${path}`) : undefined}
       context={context}
+      {...props}
     />
   )
 }
