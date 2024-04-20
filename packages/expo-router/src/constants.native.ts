@@ -1,2 +1,1 @@
-// export * from 'expo-constants'
-export default {}
+export * from 'expo-constants'

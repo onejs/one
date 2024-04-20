@@ -1,3 +1,2 @@
-declare const _default: {};
-export default _default;
+export * from 'expo-constants';
 //# sourceMappingURL=constants.native.d.ts.map

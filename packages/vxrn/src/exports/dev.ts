@@ -329,8 +329,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
 
     socket.on('message', (msg) => {
       const message = msg.toString()
-      console.info(clients.size, 'message', message)
-
       for (const listener of [...clients]) {
         listener.send(message)
       }
