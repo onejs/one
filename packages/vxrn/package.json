@@ -50,7 +50,6 @@
     "h3": "^1.11.1",
     "h3-proxy": "^1.12.0",
     "import-meta-resolve": "^4.0.0",
-    "jiti": "^1.21.0",
     "metro-inspector-proxy": "^0.71.0",
     "mime": "^3.0.0",
     "open-editor": "^4.1.1",
