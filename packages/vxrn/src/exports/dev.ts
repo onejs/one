@@ -53,14 +53,10 @@ const depsToOptimize = [
   '@vxrn/expo-router',
   'expo-modules-core',
   'expo-status-bar',
-  'react-dom',
   'react-dom/client',
   'react-native-safe-area-context',
   'react-native-web',
   'react-native',
-  'react',
-  'react/jsx-dev-runtime',
-  'react/jsx-runtime',
 ]
 
 export const resolveFile = (path: string) => {
@@ -873,15 +869,14 @@ export async function getViteServerConfig({ root, host, webConfig, cacheDir }: V
       clearScreen: false,
       plugins: [
         //
-        reactSwcPlugin(),
+        reactSwcPlugin({}),
         reactNativeHMRPlugin,
+        // TODO this one shouldnt be on for SSR so need to diverge somehow
         clientBundleTreeShakePlugin({}),
-        // swapReactNativeSSR(cacheDir),
       ],
       optimizeDeps: {
         include: depsToOptimize,
         exclude: [`${cacheDir}/*`],
-        // force: true,
         esbuildOptions: {
           resolveExtensions: extensions,
         },
