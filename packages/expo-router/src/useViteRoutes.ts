@@ -49,7 +49,7 @@ export async function loadRoutes(paths: any) {
         return
       }
       try {
-        routesSync[path.replace('../app/', './')] = await paths[path]()
+        routesSync[path] = await paths[path]()
       } catch (err) {
         // @ts-ignore
         console.error(`Error loading path ${path}: ${err?.message ?? ''} ${err?.stack ?? ''}`)
