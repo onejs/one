@@ -1,5 +1,4 @@
 import wsAdapter from 'crossws/adapters/node'
-import findNodeModules from 'find-node-modules'
 import {
   createApp,
   createRouter,
@@ -35,13 +34,14 @@ import {
 import createViteFlow from '@vxrn/vite-flow'
 import type { Peer } from 'crossws'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
+import { clientBundleTreeShakePlugin } from '../plugins/clientBundleTreeShakePlugin'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
-import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
+import { getOptionsFilled } from '../utils/getOptionsFilled'
 import { getVitePath } from '../utils/getVitePath'
-import { clientBundleTreeShakePlugin } from '../plugins/clientBundleTreeShakePlugin'
+import { checkPatches } from '../utils/patches'
 import { createExpoServer } from '../vendor/createExpoServer'
 
 export const resolveFile = (path: string) => {
@@ -77,57 +77,6 @@ const extensions = [
 ]
 
 const { ensureDir, pathExists, pathExistsSync } = FSExtra
-
-const patches = [
-  {
-    module: 'react-native-screens',
-    patchFile: 'react-native-screens+3.22.1.patch',
-  },
-]
-
-type Patch = (typeof patches)[0]
-
-async function checkPatches(options: VXRNConfigFilled) {
-  if (options.state.applyPatches === false) {
-    return
-  }
-
-  const nodeModulesDirs = findNodeModules({
-    cwd: options.root,
-  }).map((relativePath) => join(options.root, relativePath))
-
-  const patchesToCopy = new Set<Patch>()
-
-  await Promise.all(
-    patches.flatMap((patch) => {
-      return nodeModulesDirs.flatMap(async (dir) => {
-        if (await FSExtra.pathExists(join(dir, patch.module))) {
-          patchesToCopy.add(patch)
-        }
-      })
-    })
-  )
-
-  let didCopy = false
-
-  for (const patch of [...patchesToCopy]) {
-    const dest = join(options.userPatchesDir, patch.patchFile)
-    if (!(await pathExists(dest))) {
-      didCopy = true
-      console.info(`Copying patch ${patch.module}`)
-      const src = join(options.internalPatchesDir, patch.patchFile)
-      await FSExtra.copy(src, dest)
-    }
-  }
-
-  if (didCopy) {
-    console.info(
-      `\nPlease restart after applying the patch by running "npx patch-package".
-  Ideally add it to your devDependencies and as a postinstall script.\n`
-    )
-    process.exit(0)
-  }
-}
 
 export const dev = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
@@ -564,6 +513,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
     data: string[]
   }
 
+  // react native log bridge
   app.use(
     '/__client',
     defineWebSocketHandler({
@@ -608,7 +558,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
   server.on('upgrade', handleUpgrade)
 
   return {
-    nativeServer: server,
+    server,
     viteServer,
 
     async start() {
