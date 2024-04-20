@@ -1,4 +1,4 @@
-import { routerStore } from '@vxrn/expo-router'
+import { store as routerStore } from './global-state/router-store'
 import type { GlobbedRouteImports } from './types'
 
 // essentially a development helper
