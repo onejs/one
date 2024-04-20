@@ -5,7 +5,10 @@ export enum ExecutionEnvironment {
 }
 
 // @ts-nocheck
-import { Platform, uuidv4 } from 'expo-modules-core'
+import * as EMC from 'expo-modules-core'
+// for ssr support:
+const { Platform, uuidv4 } = EMC
+
 const ID_KEY = 'EXPO_CONSTANTS_INSTALLATION_ID'
 const _sessionId = uuidv4()
 function getBrowserName() {

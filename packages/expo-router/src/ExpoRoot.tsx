@@ -1,5 +1,5 @@
 import Constants from './constants'
-import { StatusBar } from 'expo-status-bar'
+import * as ESB from 'expo-status-bar'
 import React, { Fragment, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -7,11 +7,14 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
-import { useInitializeExpoRouter } from './global-state/router-store'
+import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
 import { ServerLocationContext } from './global-state/serverLocationContext'
 import { Head } from './head'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
+
+// for ssr support:
+const { StatusBar } = ESB
 
 export type ExpoRootProps = {
   context: RequireContext

@@ -30,3 +30,9 @@ export default () => {
     </>
   )
 }
+
+export function generateStaticProps() {
+  return {
+    hello: 'world',
+  }
+}

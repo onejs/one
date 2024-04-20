@@ -18,9 +18,9 @@ import {
   LinkingContext,
   type Theme,
 } from '@react-navigation/native'
-import useBackButton from '@react-navigation/native/src/useBackButton'
-import useDocumentTitle from '@react-navigation/native/src/useDocumentTitle'
-import useThenable from '@react-navigation/native/src/useThenable'
+import useBackButton from '@react-navigation/native/lib/commonjs/useBackButton.js'
+import useDocumentTitle from '@react-navigation/native/lib/commonjs/useDocumentTitle.js'
+import useThenable from '@react-navigation/native/lib/commonjs/useThenable.js'
 import * as React from 'react'
 
 import useLinking from './useLinking'

@@ -1,3 +1,4 @@
+import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import wsAdapter from 'crossws/adapters/node'
 import {
   createApp,
@@ -48,14 +49,18 @@ import { createExpoServer } from '../vendor/createExpoServer'
 let isBuildingNativeBundle: Promise<string> | null = null
 
 const depsToOptimize = [
-  'react',
-  'react-dom',
   '@react-native/normalize-color',
-  'react/jsx-runtime',
-  'react/jsx-dev-runtime',
+  '@vxrn/expo-router',
   'expo-modules-core',
-  'react-native',
   'expo-status-bar',
+  'react-dom',
+  'react-dom/client',
+  'react-native-safe-area-context',
+  'react-native-web',
+  'react-native',
+  'react',
+  'react/jsx-dev-runtime',
+  'react/jsx-runtime',
 ]
 
 export const resolveFile = (path: string) => {
@@ -197,8 +202,6 @@ async function getReactNativePrebuiltModules(cacheDir: string) {
         let out = `const ___val = __cachedModules["${idOut}"]
         const ___defaultVal = ___val ? ___val.default || ___val : ___val
         export default ___defaultVal`
-        // export const PressabilityDebugView = val.PressabilityDebugView
-        //
         return out
       }
 
@@ -870,20 +873,30 @@ export async function getViteServerConfig({ root, host, webConfig, cacheDir }: V
     {
       root,
       clearScreen: false,
-      plugins: [reactNativeHMRPlugin, clientBundleTreeShakePlugin({})],
+      plugins: [
+        //
+        reactSwcPlugin(),
+        reactNativeHMRPlugin,
+        clientBundleTreeShakePlugin({}),
+        // swapReactNativeSSR(cacheDir),
+      ],
       optimizeDeps: {
         include: depsToOptimize,
         exclude: [`${cacheDir}/*`],
-        force: true,
+        // force: true,
         esbuildOptions: {
           resolveExtensions: extensions,
         },
       },
       ssr: {
+        noExternal: depsToOptimize,
         optimizeDeps: {
           include: depsToOptimize,
+          extensions: extensions,
+          esbuildOptions: {
+            resolveExtensions: extensions,
+          },
         },
-        noExternal: depsToOptimize,
       },
       server: {
         hmr: {

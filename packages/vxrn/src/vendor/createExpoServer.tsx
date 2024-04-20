@@ -1,7 +1,8 @@
 import { sync as globSync } from 'glob'
 import { type NodeIncomingMessage, defineEventHandler, type App } from 'h3'
-import { join } from 'node:path'
-import { renderToString } from '@vxrn/expo-router'
+import { join, extname } from 'node:path'
+// @ts-ignore
+import { renderToString } from '@vxrn/expo-router/render-to-string'
 
 // @ts-ignore
 import { createRoutesManifest } from '@vxrn/expo-router/routes-manifest'
@@ -34,13 +35,12 @@ export function createExpoServer(root: string, app: App, vite: ViteDevServer) {
   app.use(
     defineEventHandler(async ({ node: { req } }) => {
       if (!req.url || (req.method !== 'HEAD' && req.method !== 'GET')) return
+      if (extname(req.url) !== '') return
 
       const url = new URL(req.url, 'http://tamagui.dev')
       const path = url.pathname // sanitized
 
       for (const route of manifest.htmlRoutes) {
-        console.log('route', route)
-
         // mutate TODO fix
         route.namedRegex = new RegExp(route.namedRegex)
 
@@ -49,20 +49,23 @@ export function createExpoServer(root: string, app: App, vite: ViteDevServer) {
         }
 
         const params = getParams(url, route)
+        const routeFile = join(root, 'app', route.file)
 
-        const exported = await vite.ssrLoadModule(join(root, 'app', route.file), {
+        console.info('ssr', path, params, routeFile)
+
+        const exported = await vite.ssrLoadModule(routeFile, {
           fixStacktrace: true,
         })
 
-        // console.info('exported', exported)
+        console.info('exported', path, exported)
 
-        // const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
+        const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
 
-        // const Root = exported.default
+        const Root = exported.default
 
-        // console.info('props', props)
+        console.info('props', props, Root, renderToString)
 
-        // return renderToString(<Root path={path} {...props} />)
+        return renderToString(<Root path={path} {...props} />)
       }
     })
   )

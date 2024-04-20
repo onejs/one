@@ -1,5 +1,7 @@
 import type React from 'react'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
+import * as HelmetAsync from 'react-helmet-async'
+// for ssr support:
+const { Helmet, HelmetProvider } = HelmetAsync
 
 export const Head: React.FC<{ children?: React.ReactNode }> & {
   Provider: typeof HelmetProvider
