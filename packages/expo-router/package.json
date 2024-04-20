@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/expo-router",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
