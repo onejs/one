@@ -12,6 +12,7 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
   try {
     // somewhat hacky creating a server just to read config?
     const vite = await createServer({
+      logLevel: 'silent',
       appType: 'custom',
     })
 
