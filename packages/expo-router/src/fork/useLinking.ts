@@ -16,7 +16,7 @@ import * as React from 'react'
 
 /* Start of fork. Source: https://github.com/react-navigation/react-navigation/blob/13d4aa270b301faf07960b4cd861ffc91e9b2c46/packages/native/src/useLinking.tsx#L13  */
 // createMemoryHistory is a self-contained module with no side effects any only depends on `nanoid` and `tiny-warning`
-import createMemoryHistory from '@react-navigation/native/lib/commonjs/createMemoryHistory'
+import { default as createMemoryHistory } from '@react-navigation/native/lib/commonjs/createMemoryHistory'
 // This was removed as we don't use ServerContext
 // import ServerContext from './ServerContext';
 import { ServerLocationContext } from '../global-state/serverLocationContext'
@@ -25,6 +25,8 @@ import type { LinkingOptions } from '@react-navigation/native'
 import { appendBaseUrl } from './getPathFromState'
 
 type ResultState = ReturnType<typeof getStateFromPathDefault>
+
+const historyGlobal = createMemoryHistory()
 
 /**
  * Find the matching navigation state that changed between 2 navigation states
@@ -130,7 +132,7 @@ export default function useLinking(
     }
   }, [enabled, independent])
 
-  const [history] = React.useState(createMemoryHistory)
+  const [history] = React.useState(historyGlobal)
 
   // We store these options in ref to avoid re-creating getInitialState and re-subscribing listeners
   // This lets user avoid wrapping the items in `React.useCallback` or `React.useMemo`
