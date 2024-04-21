@@ -268,7 +268,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
   })
 
   // TODO move, this does SSR + API
-  createExpoServer(root, app, viteServer)
+  createExpoServer(options, app, viteServer)
 
   router.get(
     '/file',

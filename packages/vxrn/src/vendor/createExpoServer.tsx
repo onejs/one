@@ -1,6 +1,6 @@
 import { sync as globSync } from 'glob'
-import { type NodeIncomingMessage, defineEventHandler, type App } from 'h3'
-import { join, extname } from 'node:path'
+import { defineEventHandler, type App } from 'h3'
+import { extname, join } from 'node:path'
 // @ts-ignore
 import { renderToString } from '@vxrn/expo-router/render-to-string'
 
@@ -10,7 +10,7 @@ import type { ViteDevServer } from 'vite'
 
 // TODO move out
 
-export function createExpoServer(root: string, app: App, vite: ViteDevServer) {
+export function createExpoServer({ root }: { root: string }, app: App, vite: ViteDevServer) {
   const routePaths = getRoutePaths(join(root, 'app'))
   const manifest = createRoutesManifest(routePaths)
 
@@ -65,7 +65,12 @@ export function createExpoServer(root: string, app: App, vite: ViteDevServer) {
 
         console.info('props', props, Root, renderToString)
 
-        const out = await renderToString(<Root path={path} {...props} />)
+        const render = (await import(`${root}/dist/server/entry-server.js`)).render
+
+        const out = await render({
+          path,
+          props,
+        })
 
         console.info('out', out)
 
