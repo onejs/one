@@ -869,7 +869,7 @@ export async function getViteServerConfig({ root, host, webConfig, cacheDir }: V
       clearScreen: false,
       plugins: [
         //
-        // reactSwcPlugin({}),
+        reactSwcPlugin({}),
         reactNativeHMRPlugin,
         // TODO this one shouldnt be on for SSR so need to diverge somehow
         clientBundleTreeShakePlugin({}),

@@ -64,14 +64,17 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
 
         const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
 
-        const render = (await import(`${root}/dist/server/entry-server.js`)).render
+        const { render } = await vite.ssrLoadModule(`${root}/src/entry-server.tsx`, {
+          fixStacktrace: true,
+        })
 
         const { appHtml, headHtml } = await render({
           path,
           props,
         })
 
-        const template = await readFile('./index.html', 'utf-8')
+        const indexHtml = await readFile('./index.html', 'utf-8')
+        const template = await vite.transformIndexHtml(path, indexHtml)
 
         return getHtml({
           appHtml,
