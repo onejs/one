@@ -43,8 +43,10 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
       const path = url.pathname // sanitized
 
       for (const route of manifest.htmlRoutes) {
-        // mutate TODO fix
-        route.namedRegex = new RegExp(route.namedRegex)
+        if (!(route.namedRegex instanceof RegExp)) {
+          // mutate TODO fix
+          route.namedRegex = new RegExp(route.namedRegex)
+        }
 
         if (!route.namedRegex.test(path)) {
           continue
