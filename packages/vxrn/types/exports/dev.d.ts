@@ -12,8 +12,5 @@ export declare const dev: (optionsIn: VXRNConfig) => Promise<{
     stop: () => Promise<void>;
 }>;
 export declare function bindKeypressInput(): void;
-export declare function getViteServerConfig({ root, host, webConfig, cacheDir }: VXRNConfigFilled): Promise<{
-    serverConfig: UserConfig;
-    hotUpdateCache: Map<string, string>;
-}>;
+export declare function getViteServerConfig(config: VXRNConfigFilled): Promise<UserConfig>;
 //# sourceMappingURL=dev.d.ts.map

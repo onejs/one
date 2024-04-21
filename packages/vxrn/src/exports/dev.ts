@@ -1,4 +1,3 @@
-import { cjsInterop } from 'vite-plugin-cjs-interop'
 import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import wsAdapter from 'crossws/adapters/node'
 import {
@@ -48,6 +47,7 @@ import { createExpoServer } from '../vendor/createExpoServer'
 
 // TODO:
 let isBuildingNativeBundle: Promise<string> | null = null
+const hotUpdateCache = new Map<string, string>()
 
 const depsToOptimize = [
   '@react-native/normalize-color',
@@ -56,13 +56,13 @@ const depsToOptimize = [
   '@vxrn/expo-router',
   'expo-modules-core',
   'expo-status-bar',
-  'react',
-  'react/jsx-dev-runtime',
-  'react/jsx-runtime',
-  'react-dom',
-  'react-dom/server',
-  'react-dom/client',
-  'react-dom/server',
+  // 'react',
+  // 'react/jsx-dev-runtime',
+  // 'react/jsx-runtime',
+  // 'react-dom',
+  // 'react-dom/server',
+  // 'react-dom/client',
+  // 'react-dom/server',
   'react-native-safe-area-context',
   'react-native-web',
   'react-native',
@@ -104,127 +104,9 @@ const extensions = [
 
 const { ensureDir, pathExists, pathExistsSync } = FSExtra
 
-async function getReactNativePrebuiltModules(cacheDir: string) {
-  const prebuilds = {
-    reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
-    react: join(cacheDir, 'react.js'),
-    reactNative: join(cacheDir, 'react-native.js'),
-  }
-
-  if (!(await pathExists(prebuilds.reactNative))) {
-    console.info('Pre-building react, react-native react/jsx-runtime (one time cost)...')
-    await Promise.all([
-      buildReactNative({
-        entryPoints: [resolveFile('react-native')],
-        outfile: prebuilds.reactNative,
-      }),
-      buildReact({
-        entryPoints: [resolveFile('react')],
-        outfile: prebuilds.react,
-      }),
-      buildReactJSX({
-        entryPoints: [resolveFile('react/jsx-dev-runtime')],
-        outfile: prebuilds.reactJSX,
-      }),
-    ])
-  }
-
-  // react native port (it scans 19000 +5)
-  const jsxRuntime = {
-    // alias: 'virtual:react-jsx',
-    alias: prebuilds.reactJSX,
-    contents: await readFile(prebuilds.reactJSX, 'utf-8'),
-  } as const
-
-  const virtualModules = {
-    'react-native': {
-      // alias: 'virtual:react-native',
-      alias: prebuilds.reactNative,
-      contents: await readFile(prebuilds.reactNative, 'utf-8'),
-    },
-    react: {
-      // alias: 'virtual:react',
-      alias: prebuilds.react,
-      contents: await readFile(prebuilds.react, 'utf-8'),
-    },
-    'react/jsx-runtime': jsxRuntime,
-    'react/jsx-dev-runtime': jsxRuntime,
-  } as const
-
-  return {
-    name: `swap-react-native`,
-    enforce: 'pre',
-
-    resolveId(id, importer = '') {
-      if (id.startsWith('react-native/Libraries')) {
-        return `virtual:rn-internals:${id}`
-      }
-
-      // this will break web support, we need a way to somehow switch between?
-      if (id === 'react-native-web') {
-        return prebuilds.reactNative
-      }
-
-      for (const targetId in virtualModules) {
-        if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
-          const info = virtualModules[targetId]
-
-          return info.alias
-        }
-      }
-
-      // TODO this is terrible and slow, we should be able to get extensions working:
-      // having trouble getting .native.js to be picked up via vite
-      // tried adding packages to optimizeDeps, tried resolveExtensions + extensions...
-      // tried this but seems to not be called for node_modules
-      if (isBuildingNativeBundle) {
-        if (id[0] === '.') {
-          const absolutePath = resolve(dirname(importer), id)
-          const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
-          if (nativePath === id) return
-          try {
-            const directoryPath = absolutePath + '/index.native.js'
-            const directoryNonNativePath = absolutePath + '/index.js'
-            if (pathExistsSync(directoryPath)) {
-              return directoryPath
-            }
-            if (pathExistsSync(directoryNonNativePath)) {
-              return directoryNonNativePath
-            }
-            if (pathExistsSync(nativePath)) {
-              return nativePath
-            }
-          } catch (err) {
-            console.warn(`error probably fine`, err)
-          }
-        }
-      }
-    },
-
-    load(id) {
-      if (id.startsWith('virtual:rn-internals')) {
-        const idOut = id.replace('virtual:rn-internals:', '')
-        let out = `const ___val = __cachedModules["${idOut}"]
-        const ___defaultVal = ___val ? ___val.default || ___val : ___val
-        export default ___defaultVal`
-        return out
-      }
-
-      for (const targetId in virtualModules) {
-        const info = virtualModules[targetId as keyof typeof virtualModules]
-        if (id === info.alias) {
-          return info.contents
-        }
-      }
-    },
-  } satisfies PluginOption
-}
-
 export const dev = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
   const { host, port, root, cacheDir } = options
-
-  const swapRnPlugin = getReactNativePrebuiltModules(cacheDir)
 
   // TODO move somewhere
   bindKeypressInput()
@@ -239,7 +121,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
 
   const templateFile = resolveFile('vxrn/react-native-template.js')
 
-  const { serverConfig, hotUpdateCache } = await getViteServerConfig(options)
+  const serverConfig = await getViteServerConfig(options)
   const viteServer = await createServer(serverConfig)
 
   // first resolve config so we can pass into client plugin, then add client plugin:
@@ -263,8 +145,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
 
   await viteServer.listen()
   const vitePort = viteServer.config.server.port
-
-  console.info('vite running on', vitePort)
 
   const router = createRouter()
   const app = createApp({
@@ -502,7 +382,8 @@ export const dev = async (optionsIn: VXRNConfig) => {
     let buildConfig = {
       plugins: [
         viteFlow,
-        swapRnPlugin,
+
+        swapPrebuiltReactModules(cacheDir),
 
         {
           name: 'reanimated',
@@ -670,6 +551,124 @@ __require("${outputModule.fileName}")
   }
 }
 
+// we should just detect or whitelist and use flow to convert instead of this but i did a
+// few things to the prebuilts to make them work, we may need to account for
+async function swapPrebuiltReactModules(cacheDir: string) {
+  const prebuilds = {
+    reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
+    react: join(cacheDir, 'react.js'),
+    reactNative: join(cacheDir, 'react-native.js'),
+  }
+
+  if (!(await pathExists(prebuilds.reactNative))) {
+    console.info('Pre-building react, react-native react/jsx-runtime (one time cost)...')
+    await Promise.all([
+      buildReactNative({
+        entryPoints: [resolveFile('react-native')],
+        outfile: prebuilds.reactNative,
+      }),
+      buildReact({
+        entryPoints: [resolveFile('react')],
+        outfile: prebuilds.react,
+      }),
+      buildReactJSX({
+        entryPoints: [resolveFile('react/jsx-dev-runtime')],
+        outfile: prebuilds.reactJSX,
+      }),
+    ])
+  }
+
+  // react native port (it scans 19000 +5)
+  const jsxRuntime = {
+    // alias: 'virtual:react-jsx',
+    alias: prebuilds.reactJSX,
+    contents: await readFile(prebuilds.reactJSX, 'utf-8'),
+  } as const
+
+  const virtualModules = {
+    'react-native': {
+      // alias: 'virtual:react-native',
+      alias: prebuilds.reactNative,
+      contents: await readFile(prebuilds.reactNative, 'utf-8'),
+    },
+    react: {
+      // alias: 'virtual:react',
+      alias: prebuilds.react,
+      contents: await readFile(prebuilds.react, 'utf-8'),
+    },
+    'react/jsx-runtime': jsxRuntime,
+    'react/jsx-dev-runtime': jsxRuntime,
+  } as const
+
+  return {
+    name: `swap-react-native`,
+    enforce: 'pre',
+
+    resolveId(id, importer = '') {
+      if (id.startsWith('react-native/Libraries')) {
+        return `virtual:rn-internals:${id}`
+      }
+
+      // this will break web support, we need a way to somehow switch between?
+      if (id === 'react-native-web') {
+        return prebuilds.reactNative
+      }
+
+      for (const targetId in virtualModules) {
+        if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
+          const info = virtualModules[targetId]
+
+          return info.alias
+        }
+      }
+
+      // TODO this is terrible and slow, we should be able to get extensions working:
+      // having trouble getting .native.js to be picked up via vite
+      // tried adding packages to optimizeDeps, tried resolveExtensions + extensions...
+      // tried this but seems to not be called for node_modules
+      if (isBuildingNativeBundle) {
+        if (id[0] === '.') {
+          const absolutePath = resolve(dirname(importer), id)
+          const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
+          if (nativePath === id) return
+          try {
+            const directoryPath = absolutePath + '/index.native.js'
+            const directoryNonNativePath = absolutePath + '/index.js'
+            if (pathExistsSync(directoryPath)) {
+              return directoryPath
+            }
+            if (pathExistsSync(directoryNonNativePath)) {
+              return directoryNonNativePath
+            }
+            if (pathExistsSync(nativePath)) {
+              return nativePath
+            }
+          } catch (err) {
+            console.warn(`error probably fine`, err)
+          }
+        }
+      }
+    },
+
+    load(id) {
+      if (id.startsWith('virtual:rn-internals')) {
+        const idOut = id.replace('virtual:rn-internals:', '')
+        let out = `const ___val = __cachedModules["${idOut}"]
+        const ___defaultVal = ___val ? ___val.default || ___val : ___val
+        export default ___defaultVal`
+        return out
+      }
+
+      for (const targetId in virtualModules) {
+        const info = virtualModules[targetId as keyof typeof virtualModules]
+        if (id === info.alias) {
+          return info.contents
+        }
+      }
+    },
+  } satisfies PluginOption
+}
+
 function getIndexJsonResponse({ port, root }: { port: number | string; root }) {
   return {
     name: 'myapp',
@@ -774,10 +773,77 @@ function isWithin(outer: string, inner: string) {
 // used for normalizing hot reloads
 let entryRoot = ''
 
-export async function getViteServerConfig({ root, host, webConfig, cacheDir }: VXRNConfigFilled) {
-  const hotUpdateCache = new Map<string, string>()
+export async function getViteServerConfig(config: VXRNConfigFilled) {
+  const { root, host, webConfig, cacheDir } = config
 
-  const reactNativeHMRPlugin = {
+  const ssrDepsToOptimize = [...depsToOptimize]
+
+  let serverConfig: UserConfig = mergeConfig(
+    getBaseViteConfig({
+      mode: 'development',
+    }),
+    {
+      root,
+      clearScreen: false,
+
+      // resolve: {
+      //   alias: {
+      //     'react/jsx-runtime': 'react/jsx-dev-runtime',
+      //   },
+      // },
+
+      plugins: [
+        //
+        reactSwcPlugin({}),
+        reactNativeHMRPlugin(config),
+        // TODO this one shouldnt be on for SSR so need to diverge somehow
+        clientBundleTreeShakePlugin({}),
+
+        // cjsInterop({
+        //   dependencies: ['react/jsx-runtime', 'react/jsx-dev-runtime'],
+        // }),
+      ],
+      optimizeDeps: {
+        include: depsToOptimize,
+        exclude: [`${cacheDir}/*`],
+        esbuildOptions: {
+          resolveExtensions: extensions,
+        },
+      },
+      ssr: {
+        noExternal: ssrDepsToOptimize,
+        optimizeDeps: {
+          include: ssrDepsToOptimize,
+          extensions: extensions,
+          esbuildOptions: {
+            resolveExtensions: extensions,
+          },
+        },
+      },
+      server: {
+        hmr: {
+          path: '/__vxrnhmr',
+        },
+        cors: true,
+        host,
+      },
+    } satisfies UserConfig
+  ) satisfies InlineConfig
+
+  if (webConfig) {
+    serverConfig = mergeConfig(serverConfig, webConfig) as any
+  }
+
+  serverConfig = {
+    ...serverConfig,
+    plugins: [...serverConfig.plugins!],
+  }
+
+  return serverConfig
+}
+
+function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
+  return {
     name: 'client-transform',
 
     async handleHotUpdate({ read, modules, file }) {
@@ -867,73 +933,5 @@ export async function getViteServerConfig({ root, host, webConfig, cacheDir }: V
         console.error(`Error processing hmr update:`, err)
       }
     },
-  }
-
-  const ssrDepsToOptimize = [...depsToOptimize]
-
-  let serverConfig: UserConfig = mergeConfig(
-    getBaseViteConfig({
-      mode: 'development',
-    }),
-    {
-      root,
-      clearScreen: false,
-
-      resolve: {
-        alias: {
-          'react/jsx-runtime': 'react/jsx-dev-runtime',
-        },
-      },
-
-      plugins: [
-        //
-        reactSwcPlugin({}),
-        reactNativeHMRPlugin,
-        // TODO this one shouldnt be on for SSR so need to diverge somehow
-        clientBundleTreeShakePlugin({}),
-
-        // cjsInterop({
-        //   dependencies: ['react/jsx-runtime', 'react/jsx-dev-runtime'],
-        // }),
-      ],
-      optimizeDeps: {
-        include: depsToOptimize,
-        exclude: [`${cacheDir}/*`],
-        esbuildOptions: {
-          resolveExtensions: extensions,
-        },
-      },
-      ssr: {
-        noExternal: ssrDepsToOptimize,
-        optimizeDeps: {
-          include: ssrDepsToOptimize,
-          extensions: extensions,
-          esbuildOptions: {
-            resolveExtensions: extensions,
-          },
-        },
-      },
-      server: {
-        hmr: {
-          path: '/__vxrnhmr',
-        },
-        cors: true,
-        host,
-      },
-    } satisfies UserConfig
-  ) satisfies InlineConfig
-
-  if (webConfig) {
-    serverConfig = mergeConfig(serverConfig, webConfig) as any
-  }
-
-  serverConfig = {
-    ...serverConfig,
-    plugins: [...serverConfig.plugins!],
-  }
-
-  return {
-    serverConfig,
-    hotUpdateCache,
   }
 }
