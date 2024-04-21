@@ -6,7 +6,6 @@ export const renderToString = async (
   app: React.ReactElement,
   { routes }: { routes?: GlobbedRouteImports } = {}
 ) => {
-  console.log('routes', routes)
   if (routes) {
     await preloadRoutes(routes)
   }

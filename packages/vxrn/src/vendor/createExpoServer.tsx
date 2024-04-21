@@ -38,6 +38,7 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
     defineEventHandler(async ({ node: { req } }) => {
       if (!req.url || (req.method !== 'HEAD' && req.method !== 'GET')) return
       if (extname(req.url) !== '') return
+      if (req.url.startsWith('/@')) return
 
       const url = new URL(req.url, 'http://tamagui.dev')
       const path = url.pathname // sanitized
