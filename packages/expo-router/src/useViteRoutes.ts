@@ -2,12 +2,12 @@ import type { GlobbedRouteImports } from './types'
 
 // essentially a development helper
 
-let ctx
+let context
 let promise: Promise<void> | null = null
 
 // for some reason putting it in state doesnt even re-render
 export function useViteRoutes(routes: GlobbedRouteImports) {
-  if (!promise && !ctx) {
+  if (!promise && !context) {
     promise = new Promise((res) => {
       loadRoutes(routes).then(() => {
         promise = null
@@ -20,21 +20,12 @@ export function useViteRoutes(routes: GlobbedRouteImports) {
     throw promise
   }
 
-  return ctx
-}
-
-export async function preloadRoutes(routes: any) {
-  await loadRoutes(routes)
-  return {
-    context: ctx,
-  }
+  return context
 }
 
 export async function loadRoutes(paths: any) {
-  if (globalThis['__importMetaGlobbed']) {
-    if (promise) await promise
-    return ctx
-  }
+  if (promise) await promise
+  if (context) return context
 
   globalThis['__importMetaGlobbed'] = paths
 
@@ -65,8 +56,8 @@ export async function loadRoutes(paths: any) {
   resolver.id = ''
   resolver.resolve = (id: string) => id
 
-  ctx = resolver
+  context = resolver
   promise = null
 
-  return ctx
+  return context
 }

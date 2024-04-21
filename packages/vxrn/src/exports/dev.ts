@@ -1,3 +1,4 @@
+import { cjsInterop } from 'vite-plugin-cjs-interop'
 import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import wsAdapter from 'crossws/adapters/node'
 import {
@@ -50,10 +51,18 @@ let isBuildingNativeBundle: Promise<string> | null = null
 
 const depsToOptimize = [
   '@react-native/normalize-color',
+  // '@react-navigation/core',
+  // '@react-navigation/native',
   '@vxrn/expo-router',
   'expo-modules-core',
   'expo-status-bar',
+  'react',
+  'react/jsx-dev-runtime',
+  'react/jsx-runtime',
+  'react-dom',
+  'react-dom/server',
   'react-dom/client',
+  'react-dom/server',
   'react-native-safe-area-context',
   'react-native-web',
   'react-native',
@@ -860,6 +869,8 @@ export async function getViteServerConfig({ root, host, webConfig, cacheDir }: V
     },
   }
 
+  const ssrDepsToOptimize = [...depsToOptimize]
+
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
       mode: 'development',
@@ -867,12 +878,23 @@ export async function getViteServerConfig({ root, host, webConfig, cacheDir }: V
     {
       root,
       clearScreen: false,
+
+      resolve: {
+        alias: {
+          'react/jsx-runtime': 'react/jsx-dev-runtime',
+        },
+      },
+
       plugins: [
         //
         reactSwcPlugin({}),
         reactNativeHMRPlugin,
         // TODO this one shouldnt be on for SSR so need to diverge somehow
         clientBundleTreeShakePlugin({}),
+
+        // cjsInterop({
+        //   dependencies: ['react/jsx-runtime', 'react/jsx-dev-runtime'],
+        // }),
       ],
       optimizeDeps: {
         include: depsToOptimize,
@@ -882,9 +904,9 @@ export async function getViteServerConfig({ root, host, webConfig, cacheDir }: V
         },
       },
       ssr: {
-        noExternal: depsToOptimize,
+        noExternal: ssrDepsToOptimize,
         optimizeDeps: {
-          include: depsToOptimize,
+          include: ssrDepsToOptimize,
           extensions: extensions,
           esbuildOptions: {
             resolveExtensions: extensions,

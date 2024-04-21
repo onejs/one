@@ -1,6 +1,6 @@
 import './polyfills';
 export { Root } from './Root';
-export { renderToString } from './renderToString';
+export { renderToString } from './render';
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
 import { Navigator, Slot } from './views/Navigator';

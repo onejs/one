@@ -13,7 +13,6 @@ if (typeof document !== 'undefined') {
   const props = globalThis['__vxrnProps'] ?? {}
 
   createRoot(document.querySelector('#root')!).render(
-    //
     <App path={window.location.pathname} {...props} />
   )
 }

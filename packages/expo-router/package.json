@@ -30,10 +30,10 @@
       "import": "./dist/esm/routes-manifest.mjs",
       "require": "./dist/cjs/routes-manifest.js"
     },
-    "./render-to-string": {
-      "types": "./types/renderToString.d.ts",
-      "import": "./dist/esm/renderToString.mjs",
-      "require": "./dist/cjs/renderToString.js"
+    "./render": {
+      "types": "./types/render.d.ts",
+      "import": "./dist/esm/render.mjs",
+      "require": "./dist/cjs/render.js"
     }
   },
   "dependencies": {

@@ -187,6 +187,7 @@ async function generateStaticPages(
     .map((x) => x.source)
     .join('\n\n')
 
+  // awkward way to get prefixes:
   const tmpCssFile = path.join(tmpdir(), 'tmp.css')
   await FSExtra.writeFile(tmpCssFile, cssStringRaw, 'utf-8')
   await esbuild({
