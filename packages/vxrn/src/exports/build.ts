@@ -11,6 +11,7 @@ import { clientBundleTreeShakePlugin } from '../plugins/clientBundleTreeShakePlu
 import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
+import { getHtml } from '../utils/getHtml'
 
 export const resolveFile = (path: string) => {
   try {
@@ -152,11 +153,30 @@ async function generateStaticPages(
 
         return await Promise.all(
           paramsList.map(async (params) => {
-            const path = getUrl(name, params)
-            const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
+            const path = getUrl(params)
+            const props =
+              (await exported.generateStaticProps?.({ path: getUrl(params), params })) ?? {}
             return { path, props }
           })
         )
+
+        function getUrl(_params = {}) {
+          return name === 'index'
+            ? '/'
+            : `/${name
+                .split('/')
+                .map((part) => {
+                  if (part[0] === '[') {
+                    const found = _params[part.slice(1, part.length - 1)]
+                    if (!found) {
+                      console.warn('not found', { _params, part })
+                    }
+                    return found
+                  }
+                  return part
+                })
+                .join('/')}`
+        }
       })
     )
   ).flat()
@@ -186,32 +206,14 @@ async function generateStaticPages(
     const slashFileName = `${path === '/' ? '/index' : path}.html`
     const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
     const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
-    const propsHtml = `\n<script>globalThis['__vxrnProps']=${JSON.stringify(props)}</script>`
-    const html = (clientHtml || template)
-      .replace(`<!--ssr-outlet-->`, appHtml + propsHtml)
-      .replace(
-        `<!--head-outlet-->`,
-        `${headHtml}\n${cssString ? `<style>${cssString}</style>` : ``}`
-      )
+    const html = getHtml({
+      template: clientHtml || template,
+      appHtml,
+      headHtml,
+      props,
+      css: cssString,
+    })
     const filePath = toAbsolute(`dist/static${slashFileName}`)
     fs.writeFileSync(toAbsolute(filePath), html)
   }
-}
-
-export function getUrl(name: string, _params = {}) {
-  return name === 'index'
-    ? '/'
-    : `/${name
-        .split('/')
-        .map((part) => {
-          if (part[0] === '[') {
-            const found = _params[part.slice(1, part.length - 1)]
-            if (!found) {
-              console.warn('not found', { _params, part })
-            }
-            return found
-          }
-          return part
-        })
-        .join('/')}`
 }

@@ -1,12 +1,14 @@
 import { sync as globSync } from 'glob'
 import { defineEventHandler, type App } from 'h3'
+import { readFile } from 'node:fs/promises'
 import { extname, join } from 'node:path'
+import type { ViteDevServer } from 'vite'
+import { getHtml } from '../utils/getHtml'
+
 // @ts-ignore
-import { renderToString } from '@vxrn/expo-router/render-to-string'
 
 // @ts-ignore
 import { createRoutesManifest } from '@vxrn/expo-router/routes-manifest'
-import type { ViteDevServer } from 'vite'
 
 // TODO move out
 
@@ -57,24 +59,23 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
           fixStacktrace: true,
         })
 
-        console.info('exported', path, exported)
-
         const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
-
-        const Root = exported.default
-
-        console.info('props', props, Root, renderToString)
 
         const render = (await import(`${root}/dist/server/entry-server.js`)).render
 
-        const out = await render({
+        const { appHtml, headHtml } = await render({
           path,
           props,
         })
 
-        console.info('out', out)
+        const template = await readFile('./index.html', 'utf-8')
 
-        return out.appHtml
+        return getHtml({
+          appHtml,
+          headHtml,
+          props,
+          template,
+        })
       }
     })
   )
