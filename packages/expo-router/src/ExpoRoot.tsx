@@ -78,7 +78,7 @@ export function ExpoRoot({
    */
   const wrapper: ExpoRootProps['wrapper'] = ({ children }) => {
     return (
-      <Head.Provider context={globalThis['vxrn__headContext__']}>
+      <Head.Provider context={globalThis['vxrn__headContext__'] || {}}>
         <ParentWrapper>
           {/* <GestureHandlerRootView> */}
           <SafeAreaProvider

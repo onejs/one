@@ -65,7 +65,11 @@ export function createExpoServer(root: string, app: App, vite: ViteDevServer) {
 
         console.info('props', props, Root, renderToString)
 
-        return renderToString(<Root path={path} {...props} />)
+        const out = await renderToString(<Root path={path} {...props} />)
+
+        console.info('out', out)
+
+        return out.appHtml
       }
     })
   )
