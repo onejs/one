@@ -33,6 +33,20 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
     return params
   }
 
+  // API ROUTES
+  app.use(
+    defineEventHandler(async ({ node: { req } }) => {
+      const matched = apiRoutesMap[req.url]
+      if (!matched) return
+      const loaded = await vite.ssrLoadModule(join(root, 'app', matched.file))
+      if (!loaded) return
+      const requestType = req.method || 'GET'
+      const method = loaded[requestType]
+      if (!method) return
+      return method(req)
+    })
+  )
+
   // SSR / HTML ROUTES
   app.use(
     defineEventHandler(async ({ node: { req } }) => {
@@ -83,20 +97,6 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
           template,
         })
       }
-    })
-  )
-
-  // API ROUTES
-  app.use(
-    defineEventHandler(async ({ node: { req } }) => {
-      const matched = apiRoutesMap[req.url]
-      if (!matched) return
-      const loaded = await vite.ssrLoadModule(join(root, 'app', matched.file))
-      if (!loaded) return
-      const requestType = req.method || 'GET'
-      const method = loaded[requestType]
-      if (!method) return
-      return method(req)
     })
   )
 }
