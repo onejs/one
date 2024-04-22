@@ -118,10 +118,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
 
   await ensureDir(cacheDir)
 
-  const viteFlow = options.flow ? createViteFlow(options.flow) : null
-
-  const templateFile = resolveFile('vxrn/react-native-template.js')
-
   const serverConfig = await getViteServerConfig(options)
   const viteServer = await createServer(serverConfig)
 
@@ -178,7 +174,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
   router.get(
     '/index.bundle',
     defineEventHandler(async (e) => {
-      return new Response(await getBundleCode(), {
+      return new Response(await getReactNativeBundle(options, viteRNClientPlugin), {
         headers: {
           'content-type': 'text/javascript',
         },
@@ -342,163 +338,168 @@ export const dev = async (optionsIn: VXRNConfig) => {
       await Promise.all([server.close(), viteServer.close()])
     },
   }
+}
 
-  async function getBundleCode() {
-    if (process.env.LOAD_TMP_BUNDLE) {
-      // for easier quick testing things:
-      const tmpBundle = join(process.cwd(), 'bundle.tmp.js')
-      if (await pathExists(tmpBundle)) {
-        console.info('⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️', tmpBundle)
-        return await readFile(tmpBundle, 'utf-8')
-      }
+async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugin: any) {
+  const { root, port, cacheDir } = options
+
+  if (process.env.LOAD_TMP_BUNDLE) {
+    // for easier quick testing things:
+    const tmpBundle = join(process.cwd(), 'bundle.tmp.js')
+    if (await pathExists(tmpBundle)) {
+      console.info('⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️', tmpBundle)
+      return await readFile(tmpBundle, 'utf-8')
     }
+  }
 
-    if (isBuildingNativeBundle) {
-      const res = await isBuildingNativeBundle
-      return res
-    }
+  if (isBuildingNativeBundle) {
+    const res = await isBuildingNativeBundle
+    return res
+  }
 
-    let done
-    isBuildingNativeBundle = new Promise((res) => {
-      done = res
+  let done
+  isBuildingNativeBundle = new Promise((res) => {
+    done = res
+  })
+
+  async function babelReanimated(input: string, filename: string) {
+    return await new Promise<string>((res, rej) => {
+      babel.transform(
+        input,
+        {
+          plugins: ['react-native-reanimated/plugin'],
+          filename,
+        },
+        (err: any, result) => {
+          if (!result || err) rej(err || 'no res')
+          res(result!.code!)
+        }
+      )
     })
+  }
 
-    async function babelReanimated(input: string, filename: string) {
-      return await new Promise<string>((res, rej) => {
-        babel.transform(
-          input,
-          {
-            plugins: ['react-native-reanimated/plugin'],
-            filename,
-          },
-          (err: any, result) => {
-            if (!result || err) rej(err || 'no res')
-            res(result!.code!)
+  const viteFlow = options.flow ? createViteFlow(options.flow) : null
+
+  // build app
+  let buildConfig = {
+    plugins: [
+      viteFlow,
+
+      swapPrebuiltReactModules(cacheDir),
+
+      {
+        name: 'reanimated',
+
+        async transform(code, id) {
+          if (code.includes('worklet')) {
+            const out = await babelReanimated(code, id)
+            return out
           }
-        )
-      })
-    }
-
-    // build app
-    let buildConfig = {
-      plugins: [
-        viteFlow,
-
-        swapPrebuiltReactModules(cacheDir),
-
-        {
-          name: 'reanimated',
-
-          async transform(code, id) {
-            if (code.includes('worklet')) {
-              const out = await babelReanimated(code, id)
-              return out
-            }
-          },
-        },
-
-        clientBundleTreeShakePlugin({}),
-        viteRNClientPlugin,
-
-        reactNativeCommonJsPlugin({
-          root,
-          port,
-          mode: 'build',
-        }),
-
-        viteReactPlugin({
-          tsDecorators: true,
-          mode: 'build',
-        }),
-
-        {
-          name: 'treat-js-files-as-jsx',
-          async transform(code, id) {
-            if (!id.match(/expo-status-bar/)) return null
-            // Use the exposed transform from vite, instead of directly
-            // transforming with esbuild
-            return transformWithEsbuild(code, id, {
-              loader: 'jsx',
-              jsx: 'automatic',
-            })
-          },
-        },
-      ].filter(Boolean),
-      appType: 'custom',
-      root,
-      clearScreen: false,
-
-      optimizeDeps: {
-        include: depsToOptimize,
-        esbuildOptions: {
-          jsx: 'automatic',
         },
       },
 
-      resolve: {
-        extensions: nativeExtensions,
-      },
+      clientBundleTreeShakePlugin({}),
+      viteRNClientPlugin,
 
-      mode: 'development',
-      define: {
-        'process.env.NODE_ENV': `"development"`,
-      },
-      build: {
-        ssr: false,
-        minify: false,
-        commonjsOptions: {
-          transformMixedEsModules: true,
+      reactNativeCommonJsPlugin({
+        root,
+        port,
+        mode: 'build',
+      }),
+
+      viteReactPlugin({
+        tsDecorators: true,
+        mode: 'build',
+      }),
+
+      {
+        name: 'treat-js-files-as-jsx',
+        async transform(code, id) {
+          if (!id.match(/expo-status-bar/)) return null
+          // Use the exposed transform from vite, instead of directly
+          // transforming with esbuild
+          return transformWithEsbuild(code, id, {
+            loader: 'jsx',
+            jsx: 'automatic',
+          })
         },
-        rollupOptions: {
-          treeshake: false,
-          preserveEntrySignatures: 'strict',
-          output: {
-            preserveModules: true,
-            format: 'cjs',
-          },
+      },
+    ].filter(Boolean),
+    appType: 'custom',
+    root,
+    clearScreen: false,
+
+    optimizeDeps: {
+      include: depsToOptimize,
+      esbuildOptions: {
+        jsx: 'automatic',
+      },
+    },
+
+    resolve: {
+      extensions: nativeExtensions,
+    },
+
+    mode: 'development',
+    define: {
+      'process.env.NODE_ENV': `"development"`,
+    },
+    build: {
+      ssr: false,
+      minify: false,
+      commonjsOptions: {
+        transformMixedEsModules: true,
+      },
+      rollupOptions: {
+        treeshake: false,
+        preserveEntrySignatures: 'strict',
+        output: {
+          preserveModules: true,
+          format: 'cjs',
         },
       },
-    } satisfies InlineConfig
+    },
+  } satisfies InlineConfig
 
-    if (options.buildConfig) {
-      buildConfig = mergeConfig(buildConfig, options.buildConfig) as any
-    }
+  if (options.buildConfig) {
+    buildConfig = mergeConfig(buildConfig, options.buildConfig) as any
+  }
 
-    // this fixes my swap-react-native plugin not being called pre 😳
-    await resolveConfig(buildConfig, 'build')
+  // this fixes my swap-react-native plugin not being called pre 😳
+  await resolveConfig(buildConfig, 'build')
 
-    // seems to be not working but needed to put it after the resolve or else it was cleared
-    // @ts-ignore
-    // buildConfig.build.rollupOptions.input = join(root, buildInput)
+  // seems to be not working but needed to put it after the resolve or else it was cleared
+  // @ts-ignore
+  // buildConfig.build.rollupOptions.input = join(root, buildInput)
 
-    const buildOutput = await build(buildConfig)
+  const buildOutput = await build(buildConfig)
 
-    if (!('output' in buildOutput)) {
-      throw `❌`
-    }
+  if (!('output' in buildOutput)) {
+    throw `❌`
+  }
 
-    let appCode = buildOutput.output
-      // entry last
-      .sort((a, b) => (a['isEntry'] ? 1 : -1))
-      .map((outputModule) => {
-        if (outputModule.type == 'chunk') {
-          const importsMap = {
-            currentPath: outputModule.fileName,
-          }
-          for (const imp of outputModule.imports) {
-            const relativePath = relative(dirname(outputModule.fileName), imp)
-            importsMap[relativePath[0] === '.' ? relativePath : './' + relativePath] = imp
-          }
+  let appCode = buildOutput.output
+    // entry last
+    .sort((a, b) => (a['isEntry'] ? 1 : -1))
+    .map((outputModule) => {
+      if (outputModule.type == 'chunk') {
+        const importsMap = {
+          currentPath: outputModule.fileName,
+        }
+        for (const imp of outputModule.imports) {
+          const relativePath = relative(dirname(outputModule.fileName), imp)
+          importsMap[relativePath[0] === '.' ? relativePath : './' + relativePath] = imp
+        }
 
-          if (outputModule.isEntry) {
-            entryRoot = dirname(outputModule.fileName)
-          }
+        if (outputModule.isEntry) {
+          entryRoot = dirname(outputModule.fileName)
+        }
 
-          return `
+        return `
 ___modules___["${outputModule.fileName}"] = ((exports, module) => {
-  const require = createRequire(${JSON.stringify(importsMap, null, 2)})
+const require = createRequire(${JSON.stringify(importsMap, null, 2)})
 
-  ${outputModule.code}
+${outputModule.code}
 })
 
 ${
@@ -512,44 +513,44 @@ __require("${outputModule.fileName}")
     : ''
 }
 `
-        }
-      })
-      .join('\n')
+      }
+    })
+    .join('\n')
 
-    if (!appCode) {
-      throw `❌`
-    }
-
-    appCode = appCode
-      // this can be done in the individual file transform
-      .replaceAll('undefined.accept(() => {})', '')
-      .replaceAll('undefined.accept(function() {});', '')
-      .replaceAll('(void 0).accept(() => {})', '')
-      .replaceAll('(void 0).accept(function() {});', '')
-      // TEMP FIX for expo-router tamagui thing since expo router 3 upgrade
-      .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
-
-    // TODO this is not stable based on cwd
-    const appRootParent = join(root, '..', '..')
-
-    const prebuilds = {
-      reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
-      react: join(cacheDir, 'react.js'),
-      reactNative: join(cacheDir, 'react-native.js'),
-    }
-
-    const template = (await readFile(templateFile, 'utf-8'))
-      .replace('_virtual/virtual_react-native.js', relative(appRootParent, prebuilds.reactNative))
-      .replace('_virtual/virtual_react.js', relative(appRootParent, prebuilds.react))
-      .replaceAll('_virtual/virtual_react-jsx.js', relative(appRootParent, prebuilds.reactJSX))
-
-    const out = template + appCode
-
-    done(out)
-    isBuildingNativeBundle = null
-
-    return out
+  if (!appCode) {
+    throw `❌`
   }
+
+  appCode = appCode
+    // this can be done in the individual file transform
+    .replaceAll('undefined.accept(() => {})', '')
+    .replaceAll('undefined.accept(function() {});', '')
+    .replaceAll('(void 0).accept(() => {})', '')
+    .replaceAll('(void 0).accept(function() {});', '')
+    // TEMP FIX for expo-router tamagui thing since expo router 3 upgrade
+    .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
+
+  // TODO this is not stable based on cwd
+  const appRootParent = join(root, '..', '..')
+
+  const prebuilds = {
+    reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
+    react: join(cacheDir, 'react.js'),
+    reactNative: join(cacheDir, 'react-native.js'),
+  }
+
+  const templateFile = resolveFile('vxrn/react-native-template.js')
+  const template = (await readFile(templateFile, 'utf-8'))
+    .replace('_virtual/virtual_react-native.js', relative(appRootParent, prebuilds.reactNative))
+    .replace('_virtual/virtual_react.js', relative(appRootParent, prebuilds.react))
+    .replaceAll('_virtual/virtual_react-jsx.js', relative(appRootParent, prebuilds.reactJSX))
+
+  const out = template + appCode
+
+  done(out)
+  isBuildingNativeBundle = null
+
+  return out
 }
 
 // we should just detect or whitelist and use flow to convert instead of this but i did a

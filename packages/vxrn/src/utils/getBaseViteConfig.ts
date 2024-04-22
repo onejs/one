@@ -11,7 +11,7 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
     },
     resolve: {
       alias: {
-        'react-native': 'react-native-web',
+        'react-native': 'react-native-web-lite',
         'react-native-safe-area-context': '@vxrn/safe-area',
       },
     },
