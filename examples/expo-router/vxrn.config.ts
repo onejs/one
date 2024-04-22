@@ -8,8 +8,8 @@ export default {
   webConfig: {
     plugins: [
       //
-      // tamaguiPlugin(),
-      // tamaguiExtractPlugin(),
+      tamaguiPlugin(),
+      tamaguiExtractPlugin(),
     ],
   },
 } satisfies VXRNConfig
