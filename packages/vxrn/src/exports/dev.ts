@@ -786,22 +786,12 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
       root,
       clearScreen: false,
 
-      // resolve: {
-      //   alias: {
-      //     'react/jsx-runtime': 'react/jsx-dev-runtime',
-      //   },
-      // },
-
       plugins: [
         //
         reactSwcPlugin({}),
         reactNativeHMRPlugin(config),
         // TODO this one shouldnt be on for SSR so need to diverge somehow
         clientBundleTreeShakePlugin({}),
-
-        // cjsInterop({
-        //   dependencies: ['react/jsx-runtime', 'react/jsx-dev-runtime'],
-        // }),
       ],
       optimizeDeps: {
         include: depsToOptimize,
