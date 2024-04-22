@@ -1,3 +1,4 @@
+import { dirname, join, relative, resolve } from 'node:path'
 import { build as esbuild } from 'esbuild'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import fs from 'node:fs'
@@ -21,7 +22,7 @@ export const resolveFile = (path: string) => {
   }
 }
 
-const { ensureDir, existsSync, readFile } = FSExtra
+const { ensureDir, existsSync, readFile, pathExists } = FSExtra
 
 const extensions = [
   '.web.tsx',
@@ -36,6 +37,8 @@ const extensions = [
   '.json',
 ]
 
+// web only for now
+
 export const build = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
   const depsToOptimize = [
@@ -46,9 +49,10 @@ export const build = async (optionsIn: VXRNConfig) => {
     'expo-constants',
     'expo-modules-core',
     'expo-status-bar',
+    'expo-splash-screen',
   ]
 
-  let buildConfig = mergeConfig(
+  let webBuildConfig = mergeConfig(
     getBaseViteConfig({
       mode: 'production',
     }),
@@ -65,12 +69,12 @@ export const build = async (optionsIn: VXRNConfig) => {
   ) satisfies UserConfig
 
   if (options.webConfig) {
-    buildConfig = mergeConfig(buildConfig, options.webConfig) as any
+    webBuildConfig = mergeConfig(webBuildConfig, options.webConfig) as any
   }
 
   console.info(`build client`)
   await viteBuild(
-    mergeConfig(buildConfig, {
+    mergeConfig(webBuildConfig, {
       plugins: [clientBundleTreeShakePlugin({})],
       build: {
         ssrManifest: true,
@@ -81,7 +85,34 @@ export const build = async (optionsIn: VXRNConfig) => {
 
   console.info(`build server`)
   const { output } = (await viteBuild(
-    mergeConfig(buildConfig, {
+    mergeConfig(webBuildConfig, {
+      plugins: [
+        {
+          name: 'test',
+          enforce: 'pre',
+          async resolveId(id, importer = '') {
+            if (id[0] === '.') {
+              const absolutePath = resolve(dirname(importer), id)
+              const webPath = absolutePath.replace(/(.m?js)/, '') + '.web.js'
+              if (webPath === id) return
+              try {
+                const directoryPath = absolutePath + '/index.web.js'
+                if (await pathExists(directoryPath)) {
+                  console.info(`temp fix found ${directoryPath}`)
+                  return directoryPath
+                }
+                if (await pathExists(webPath)) {
+                  console.info(`temp fix found ${webPath}`)
+                  return webPath
+                }
+              } catch (err) {
+                console.warn(`error probably fine`, err)
+              }
+            }
+          },
+        },
+      ],
+
       resolve: {
         alias: {
           'react-native': 'react-native-web-lite',
@@ -124,9 +155,9 @@ async function generateStaticPages(
   const render = (await import(`${options.root}/dist/server/entry-server.js`)).render
 
   // load routes
-  const entry = serverOutput.find(
-    (x) => x.type === 'chunk' && x.facadeModuleId?.includes('entry-server')
-  )
+  // const entry = serverOutput.find(
+  //   (x) => x.type === 'chunk' && x.facadeModuleId?.includes('entry-server')
+  // )
 
   const assets: OutputAsset[] = []
 
