@@ -78,9 +78,7 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
 
         const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
 
-        const { render } = await vite.ssrLoadModule(`${root}/src/entry-server.tsx`, {
-          fixStacktrace: true,
-        })
+        const { render } = await vite.ssrLoadModule(`${root}/src/entry-server.tsx`)
 
         const { appHtml, headHtml } = await render({
           path,

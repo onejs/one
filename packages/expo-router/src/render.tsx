@@ -1,3 +1,4 @@
+import stream from 'node:stream'
 import ReactDOMServer from 'react-dom/server'
 import type { GlobbedRouteImports } from './types'
 import { loadRoutes } from './useViteRoutes'
@@ -13,8 +14,7 @@ export const renderToString = async (
   const collectedHead: { helmet?: Record<string, any> } = {}
   globalThis['vxrn__headContext__'] = collectedHead
 
-  console.trace('renderToString', routes)
-
+  // just rendering to string for step 1 / dev mode but need suspense support
   const appHtml = await renderToStringWithSuspense(app)
   // const appHtml = ReactDOMServer.renderToString(app)
 
@@ -24,8 +24,6 @@ export const renderToString = async (
 
   return { appHtml, headHtml }
 }
-
-import stream from 'node:stream'
 
 function renderToStringWithSuspense(element) {
   return new Promise((resolve, reject) => {
@@ -48,17 +46,14 @@ function renderToStringWithSuspense(element) {
       },
       onAllReady() {
         console.debug('onAllReady')
-        // End the writable stream when React is done streaming
         writable.end()
       },
       onShellError(err) {
-        // Abort and reject on initial render error
         abort()
         writable.destroy()
         reject(err)
       },
       onError(error) {
-        // Handle subsequent errors
         writable.destroy()
         reject(error)
       },

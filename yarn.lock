@@ -6135,6 +6135,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@vxrn/safe-area@0.1.30, @vxrn/safe-area@workspace:packages/safe-area":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/safe-area@workspace:packages/safe-area"
+  dependencies:
+    "@biomejs/biome": ^1.6.3
+    "@tamagui/build": ^1.94.4
+  languageName: unknown
+  linkType: soft
+
 "@vxrn/vite-flow@0.1.30, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
@@ -15634,6 +15643,7 @@ __metadata:
     "@vitejs/plugin-react-swc": ^3.6.0
     "@vxrn/expo-router": 0.1.30
     "@vxrn/react-native-prebuilt": 0.1.30
+    "@vxrn/safe-area": 0.1.30
     "@vxrn/vite-flow": 0.1.30
     "@vxrn/vite-native-client": 0.1.30
     "@vxrn/vite-native-hmr": 0.1.30

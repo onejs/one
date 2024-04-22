@@ -45,7 +45,8 @@ import { getVitePath } from '../utils/getVitePath'
 import { checkPatches } from '../utils/patches'
 import { createExpoServer } from '../vendor/createExpoServer'
 
-// TODO:
+// sorry for the mess, exploring before abstracting
+
 let isBuildingNativeBundle: Promise<string> | null = null
 const hotUpdateCache = new Map<string, string>()
 
@@ -63,7 +64,7 @@ const depsToOptimize = [
   // 'react-dom/server',
   // 'react-dom/client',
   // 'react-dom/server',
-  'react-native-safe-area-context',
+  // 'react-native-safe-area-context',
   'react-native-web',
   'react-native',
 ]
@@ -773,7 +774,7 @@ function isWithin(outer: string, inner: string) {
 // used for normalizing hot reloads
 let entryRoot = ''
 
-export async function getViteServerConfig(config: VXRNConfigFilled) {
+async function getViteServerConfig(config: VXRNConfigFilled) {
   const { root, host, webConfig, cacheDir } = config
 
   const ssrDepsToOptimize = [...depsToOptimize]
