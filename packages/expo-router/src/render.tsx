@@ -13,7 +13,7 @@ export const renderToString = async (
   const collectedHead: { helmet?: Record<string, any> } = {}
   globalThis['vxrn__headContext__'] = collectedHead
 
-  console.log('go', routes)
+  console.trace('renderToString', routes)
 
   const appHtml = await renderToStringWithSuspense(app)
   // const appHtml = ReactDOMServer.renderToString(app)
