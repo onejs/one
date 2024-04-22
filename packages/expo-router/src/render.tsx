@@ -15,8 +15,8 @@ export const renderToString = async (
   globalThis['vxrn__headContext__'] = collectedHead
 
   // just rendering to string for step 1 / dev mode but need suspense support
-  const appHtml = await renderToStringWithSuspense(app)
-  // const appHtml = ReactDOMServer.renderToString(app)
+  // const appHtml = await renderToStringWithSuspense(app)
+  const appHtml = ReactDOMServer.renderToString(app)
 
   const headHtml = `${Object.values(collectedHead?.helmet ?? {})
     .map((v: any) => v.toString())
@@ -25,43 +25,41 @@ export const renderToString = async (
   return { appHtml, headHtml }
 }
 
-function renderToStringWithSuspense(element) {
-  return new Promise((resolve, reject) => {
-    const writable = new stream.Writable({
-      write(chunk, encoding, callback) {
-        result += chunk.toString()
-        callback()
-      },
-    })
+// function renderToStringWithSuspense(element) {
+//   return new Promise((resolve, reject) => {
+//     const writable = new stream.Writable({
+//       write(chunk, encoding, callback) {
+//         result += chunk.toString()
+//         console.log('writing', result)
+//         callback()
+//       },
+//     })
 
-    writable.on('finish', () => {
-      resolve(result)
-    })
+//     writable.on('finish', () => {
+//       resolve(result)
+//     })
 
-    let result = ''
+//     let result = ''
 
-    const { pipe, abort } = ReactDOMServer.renderToPipeableStream(element, {
-      onShellReady() {
-        console.debug('onShellReady')
-      },
-      onAllReady() {
-        console.debug('onAllReady')
-        writable.end()
-      },
-      onShellError(err) {
-        abort()
-        writable.destroy()
-        reject(err)
-      },
-      onError(error) {
-        writable.destroy()
-        reject(error)
-      },
-    })
+//     const { pipe, abort } = ReactDOMServer.renderToPipeableStream(element, {
+//       onShellReady() {},
+//       onAllReady() {
+//         writable.end()
+//       },
+//       onShellError(err) {
+//         abort()
+//         writable.destroy()
+//         reject(err)
+//       },
+//       onError(error) {
+//         writable.destroy()
+//         reject(error)
+//       },
+//     })
 
-    pipe(writable)
-  })
-}
+//     pipe(writable)
+//   })
+// }
 
 // function renderToStringWithSuspense(element) {
 //   return new Promise((resolve, reject) => {

@@ -6152,7 +6152,7 @@ __metadata:
     "@biomejs/biome": ^1.6.3
     "@tamagui/build": ^1.94.4
     metro-react-native-babel-preset: ^0.77.0
-    vite: ^5.2.8
+    vite: ^5.2.10
   languageName: unknown
   linkType: soft
 
@@ -15516,7 +15516,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.2.2, vite@npm:^5.2.6, vite@npm:^5.2.8":
+"vite@npm:^5.2.10":
+  version: 5.2.10
+  resolution: "vite@npm:5.2.10"
+  dependencies:
+    esbuild: ^0.20.1
+    fsevents: ~2.3.3
+    postcss: ^8.4.38
+    rollup: ^4.13.0
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: feb11be2b97259783afe1d0ff4b7ee0bef78fe8934d8b043465e039e4d8318249e2263adc724b719b9e9b45a37e012caeb7746854768f371d1a82bb189f50fe6
+  languageName: node
+  linkType: hard
+
+"vite@npm:^5.2.2, vite@npm:^5.2.6":
   version: 5.2.8
   resolution: "vite@npm:5.2.8"
   dependencies:
@@ -15676,7 +15716,7 @@ __metadata:
     sirv: ^2.0.4
     source-map: ^0.7.3
     url: ^0.11.0
-    vite: ^5.2.8
+    vite: ^5.2.10
     vite-plugin-cjs-interop: ^2.1.0
     vite-plugin-inspect: ^0.8.3
     ws: ^8.7.0
