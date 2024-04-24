@@ -3,8 +3,6 @@ import { Text, View } from '@tamagui/core'
 import { useEffect } from 'react'
 
 export default () => {
-  console.log('render /index! ⚠️')
-
   useEffect(() => {
     fetch('/hello')
       .then((res) => res.text())
@@ -21,7 +19,7 @@ export default () => {
       )}
 
       <View>
-        <Text color="blue">Hi from home2222222222222222</Text>
+        <Text color="blue">Hi from home</Text>
       </View>
 
       <Link

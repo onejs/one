@@ -39,9 +39,11 @@ export function createFileSystemRouter(options: Options): Plugin {
 
         server.middlewares.use(async (req, res, next) => {
           try {
-            if (!req.url) return
-            if (req.originalUrl === '/__vxrnhmr') return
-            if (shouldIgnore?.(req)) return
+            if (!req.url || req.originalUrl === '/__vxrnhmr') {
+              next()
+              return
+            }
+            // if (shouldIgnore?.(req)) return
 
             const apiResponse = await handleAPIRoutes(options, server, req, apiRoutesMap)
             if (apiResponse) {
@@ -116,7 +118,7 @@ async function handleSSR(
 
   if (extname(pathOg) !== '') return
 
-  const url = new URL(pathOg, 'http://tamagui.dev')
+  const url = new URL(pathOg, `http://${req.headers.host}`)
   const path = url.pathname // sanitized
 
   let resolve = () => {}
