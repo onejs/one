@@ -11,6 +11,7 @@ import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getHtml } from '../utils/getHtml'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
+import { ssrOptimizeDeps } from '../constants'
 
 export const resolveFile = (path: string) => {
   try {
@@ -57,12 +58,7 @@ export const build = async (optionsIn: VXRNConfig) => {
     {
       root: options.root,
       clearScreen: false,
-      optimizeDeps: {
-        include: depsToOptimize,
-        esbuildOptions: {
-          resolveExtensions: extensions,
-        },
-      },
+      optimizeDeps: ssrOptimizeDeps,
     }
   ) satisfies UserConfig
 
@@ -115,6 +111,7 @@ export const build = async (optionsIn: VXRNConfig) => {
           'react-native': 'react-native-web-lite',
         },
       },
+
       optimizeDeps: {
         esbuildOptions: {
           format: 'cjs',
@@ -122,6 +119,7 @@ export const build = async (optionsIn: VXRNConfig) => {
       },
       ssr: {
         noExternal: true,
+        optimizeDeps: ssrOptimizeDeps,
       },
       build: {
         // we want one big file of css
@@ -132,7 +130,7 @@ export const build = async (optionsIn: VXRNConfig) => {
           external: [],
         },
       },
-    } satisfies UserConfig)
+    })
   )) as RollupOutput
 
   console.info(`generating static pages`)
@@ -169,8 +167,6 @@ async function generateStaticPages(
         const id = output.facadeModuleId || ''
         const file = path.basename(id)
         const name = file.replace(/\.[^/.]+$/, '')
-
-        console.log('look at ', name, file)
 
         if (!id || file[0] === '_' || file.includes('entry-server')) {
           return []

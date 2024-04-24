@@ -34,6 +34,7 @@ import {
 import createViteFlow from '@vxrn/vite-flow'
 import type { Peer } from 'crossws'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
+import { depsToOptimize, nativeExtensions, ssrOptimizeDeps, webExtensions } from '../constants'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import type { VXRNConfig } from '../types'
@@ -47,25 +48,6 @@ import { checkPatches } from '../utils/patches'
 let isBuildingNativeBundle: Promise<string> | null = null
 const hotUpdateCache = new Map<string, string>()
 
-const depsToOptimize = [
-  '@react-native/normalize-color',
-  // '@react-navigation/core',
-  // '@react-navigation/native',
-  '@vxrn/expo-router',
-  'expo-modules-core',
-  'expo-status-bar',
-  // 'react',
-  // 'react/jsx-dev-runtime',
-  // 'react/jsx-runtime',
-  // 'react-dom',
-  // 'react-dom/server',
-  // 'react-dom/client',
-  // 'react-dom/server',
-  // 'react-native-safe-area-context',
-  'react-native-web',
-  'react-native',
-]
-
 export const resolveFile = (path: string) => {
   try {
     return importMetaResolve(path, import.meta.url).replace('file://', '')
@@ -73,32 +55,6 @@ export const resolveFile = (path: string) => {
     return require.resolve(path)
   }
 }
-
-const nativeExtensions = [
-  '.native.tsx',
-  '.native.jsx',
-  '.native.js',
-  '.tsx',
-  '.ts',
-  '.js',
-  '.css',
-  '.json',
-]
-
-const extensions = [
-  '.web.tsx',
-  '.tsx',
-  '.web.ts',
-  '.ts',
-  '.web.jsx',
-  '.jsx',
-  '.web.js',
-  '.web.mjs',
-  '.mjs',
-  '.js',
-  '.css',
-  '.json',
-]
 
 const { ensureDir, pathExists, pathExistsSync } = FSExtra
 
@@ -791,21 +747,6 @@ let entryRoot = ''
 async function getViteServerConfig(config: VXRNConfigFilled) {
   const { root, host, webConfig, cacheDir } = config
 
-  const needsInterop = [
-    'react',
-    'react/jsx-runtime',
-    'react/jsx-dev-runtime',
-    'react-native-web-internals',
-    'react-dom',
-    'react-native-web-lite',
-    // '@vxrn/expo-router',
-    // '@vxrn/expo-router/render',
-    'react-dom/server',
-    'react-dom/client',
-  ]
-
-  const ssrDepsToOptimize = [...depsToOptimize, ...needsInterop]
-
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
       mode: 'development',
@@ -823,19 +764,12 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
         include: depsToOptimize,
         exclude: [`${cacheDir}/*`],
         esbuildOptions: {
-          resolveExtensions: extensions,
+          resolveExtensions: webExtensions,
         },
       },
       ssr: {
         noExternal: true,
-        optimizeDeps: {
-          include: ssrDepsToOptimize,
-          extensions: extensions,
-          needsInterop: needsInterop,
-          esbuildOptions: {
-            resolveExtensions: extensions,
-          },
-        },
+        optimizeDeps: ssrOptimizeDeps,
       },
       server: {
         hmr: {
