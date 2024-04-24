@@ -1,4 +1,4 @@
-import { type NavigationContainerRefWithCurrent } from '@react-navigation/native';
+import type { NavigationContainerRefWithCurrent } from '@react-navigation/native';
 import { type ComponentType } from 'react';
 import { type UrlObject } from '../LocationProvider';
 import type { RouteNode } from '../Route';
@@ -51,5 +51,4 @@ export declare const store: RouterStore;
 export declare function useExpoRouter(): RouterStore;
 export declare function useStoreRootState(): ResultState;
 export declare function useStoreRouteInfo(): UrlObject;
-export declare function useInitializeExpoRouter(context: RequireContext, initialLocation: URL | undefined): RouterStore;
 //# sourceMappingURL=router-store.d.ts.map

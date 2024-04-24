@@ -1,5 +1,7 @@
-import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
+import { createFileSystemRouter, clientTreeShakePlugin } from '@vxrn/expo-router/vite'
 import type { VXRNConfig } from 'vxrn'
+
+Error.stackTraceLimit = Number.POSITIVE_INFINITY
 
 export default {
   // not working yet, for now just use index.jsx
@@ -7,9 +9,14 @@ export default {
 
   webConfig: {
     plugins: [
+      clientTreeShakePlugin(),
+      createFileSystemRouter({
+        root: __dirname,
+        routesDir: 'app',
+      }),
       //
-      tamaguiPlugin(),
-      tamaguiExtractPlugin(),
+      // tamaguiPlugin(),
+      // tamaguiExtractPlugin(),
     ],
   },
 } satisfies VXRNConfig

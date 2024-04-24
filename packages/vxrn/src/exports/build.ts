@@ -1,14 +1,17 @@
+import { build as esbuild } from 'esbuild'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import fs from 'node:fs'
-import path from 'node:path'
+import { tmpdir } from 'node:os'
+import path, { dirname, resolve } from 'node:path'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 
 import FSExtra from 'fs-extra'
 import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
-import { clientBundleTreeShakePlugin } from '../plugins/clientBundleTreeShakePlugin'
 import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
+import { getHtml } from '../utils/getHtml'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
+import { ssrOptimizeDeps } from '../constants'
 
 export const resolveFile = (path: string) => {
   try {
@@ -18,57 +21,34 @@ export const resolveFile = (path: string) => {
   }
 }
 
-const { ensureDir, existsSync, readFile } = FSExtra
+const { ensureDir, existsSync, readFile, pathExists } = FSExtra
 
-const extensions = [
-  '.web.tsx',
-  '.tsx',
-  '.web.ts',
-  '.ts',
-  '.web.jsx',
-  '.jsx',
-  '.web.js',
-  '.js',
-  '.css',
-  '.json',
-]
+// web only for now
 
 export const build = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
-  const depsToOptimize = [
-    'react',
-    'react-dom',
-    '@react-native/normalize-color',
-    '@react-navigation/native',
-    'expo-constants',
-    'expo-modules-core',
-    'expo-status-bar',
-  ]
 
-  let buildConfig = mergeConfig(
+  // TODO?
+  process.env.NODE_ENV = 'production'
+
+  let webBuildConfig = mergeConfig(
     getBaseViteConfig({
       mode: 'production',
     }),
     {
       root: options.root,
       clearScreen: false,
-      optimizeDeps: {
-        include: depsToOptimize,
-        esbuildOptions: {
-          resolveExtensions: extensions,
-        },
-      },
+      optimizeDeps: ssrOptimizeDeps,
     }
   ) satisfies UserConfig
 
   if (options.webConfig) {
-    buildConfig = mergeConfig(buildConfig, options.webConfig) as any
+    webBuildConfig = mergeConfig(webBuildConfig, options.webConfig) as any
   }
 
   console.info(`build client`)
   await viteBuild(
-    mergeConfig(buildConfig, {
-      plugins: [clientBundleTreeShakePlugin({})],
+    mergeConfig(webBuildConfig, {
       build: {
         ssrManifest: true,
         outDir: 'dist/client',
@@ -78,20 +58,51 @@ export const build = async (optionsIn: VXRNConfig) => {
 
   console.info(`build server`)
   const { output } = (await viteBuild(
-    mergeConfig(buildConfig, {
+    mergeConfig(webBuildConfig, {
+      plugins: [
+        {
+          name: 'test',
+          enforce: 'pre',
+          async resolveId(id, importer = '') {
+            if (id[0] === '.') {
+              const absolutePath = resolve(dirname(importer), id)
+              const webPath = absolutePath.replace(/(.m?js)/, '') + '.web.js'
+              if (webPath === id) return
+              try {
+                const directoryPath = absolutePath + '/index.web.js'
+                if (await pathExists(directoryPath)) {
+                  console.info(`temp fix found ${directoryPath}`)
+                  return directoryPath
+                }
+                if (await pathExists(webPath)) {
+                  console.info(`temp fix found ${webPath}`)
+                  return webPath
+                }
+              } catch (err) {
+                console.warn(`error probably fine`, err)
+              }
+            }
+          },
+        },
+      ],
+
       resolve: {
         alias: {
           'react-native': 'react-native-web-lite',
         },
       },
+
       optimizeDeps: {
         esbuildOptions: {
           format: 'cjs',
         },
       },
+
       ssr: {
         noExternal: true,
+        optimizeDeps: ssrOptimizeDeps,
       },
+
       build: {
         // we want one big file of css
         cssCodeSplit: false,
@@ -101,7 +112,7 @@ export const build = async (optionsIn: VXRNConfig) => {
           external: [],
         },
       },
-    } satisfies UserConfig)
+    })
   )) as RollupOutput
 
   console.info(`generating static pages`)
@@ -121,9 +132,9 @@ async function generateStaticPages(
   const render = (await import(`${options.root}/dist/server/entry-server.js`)).render
 
   // load routes
-  const entry = serverOutput.find(
-    (x) => x.type === 'chunk' && x.facadeModuleId?.includes('entry-server')
-  )
+  // const entry = serverOutput.find(
+  //   (x) => x.type === 'chunk' && x.facadeModuleId?.includes('entry-server')
+  // )
 
   const assets: OutputAsset[] = []
 
@@ -142,11 +153,14 @@ async function generateStaticPages(
         if (!id || file[0] === '_' || file.includes('entry-server')) {
           return []
         }
+        if (id.includes('+api')) {
+          return []
+        }
 
         const endpointPath = path.join(options.root, 'dist/server', output.fileName)
         const exported = await import(endpointPath)
 
-        const paramsList = ((await exported.generateStaticParams?.()) ?? []) as Object[]
+        const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
         return await Promise.all(
           paramsList.map(async (params) => {
@@ -179,10 +193,24 @@ async function generateStaticPages(
   ).flat()
 
   // for now just inline
-  const cssString = assets
+  const cssStringRaw = assets
     .filter((x) => x.name?.endsWith('.css'))
     .map((x) => x.source)
     .join('\n\n')
+
+  // awkward way to get prefixes:
+  const tmpCssFile = path.join(tmpdir(), 'tmp.css')
+  await FSExtra.writeFile(tmpCssFile, cssStringRaw, 'utf-8')
+  await esbuild({
+    entryPoints: [tmpCssFile],
+    target: 'safari17',
+    bundle: true,
+    minifyWhitespace: true,
+    sourcemap: false,
+    outfile: tmpCssFile,
+    loader: { '.css': 'css' },
+  })
+  const cssString = await FSExtra.readFile(tmpCssFile, 'utf-8')
 
   // pre-render each route...
   for (const { path, props } of allRoutes) {
@@ -190,13 +218,13 @@ async function generateStaticPages(
     const slashFileName = `${path === '/' ? '/index' : path}.html`
     const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
     const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
-    const propsHtml = `\n<script>globalThis['__vxrnProps']=${JSON.stringify(props)}</script>`
-    const html = (clientHtml || template)
-      .replace(`<!--ssr-outlet-->`, appHtml + propsHtml)
-      .replace(
-        `<!--head-outlet-->`,
-        `${headHtml}\n${cssString ? `<style>${cssString}</style>` : ``}`
-      )
+    const html = getHtml({
+      template: clientHtml || template,
+      appHtml,
+      headHtml,
+      props,
+      css: cssString,
+    })
     const filePath = toAbsolute(`dist/static${slashFileName}`)
     fs.writeFileSync(toAbsolute(filePath), html)
   }

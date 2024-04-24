@@ -47,16 +47,3 @@ export const serve = async (optionsIn: VXRNConfig) => {
     })
   })
 }
-
-// app.use(
-//   defineEventHandler(async ({ node: { req, res } }) => {
-//     const url = req.originalUrl
-//     const template = fs.readFileSync(path.resolve('dist/client/index.html'), 'utf-8')
-//     // @ts-ignore
-//     const render = (await import('./dist/server/entry-server.js')).render
-//     const appHtml = await render({ path: url })
-//     const html = template.replace(`<!--ssr-outlet-->`, appHtml)
-//     res.setHeader('Content-Type', 'text/html')
-//     return html
-//   })
-// )

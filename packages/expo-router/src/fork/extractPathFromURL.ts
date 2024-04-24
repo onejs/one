@@ -1,4 +1,4 @@
-import Constants, { ExecutionEnvironment } from 'expo-constants'
+import Constants, { ExecutionEnvironment } from '../constants'
 import * as Linking from 'expo-linking'
 import URL from 'url-parse'
 

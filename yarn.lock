@@ -5719,6 +5719,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^20.12.7":
+  version: 20.12.7
+  resolution: "@types/node@npm:20.12.7"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: 7cc979f7e2ca9a339ec71318c3901b9978555257929ef3666987f3e447123bc6dc92afcc89f6347e09e07d602fde7d51bcddea626c23aa2bb74aeaacfd1e1686
+  languageName: node
+  linkType: hard
+
 "@types/prompts@npm:^2.4.9":
   version: 2.4.9
   resolution: "@types/prompts@npm:2.4.9"
@@ -5740,6 +5749,15 @@ __metadata:
   version: 6.9.14
   resolution: "@types/qs@npm:6.9.14"
   checksum: d3b76021d36b86c0063ec4b7373e9fa470754914e486fbfe54b3a8866dad037800a2c2068ecbcaa9399ae3ed15772a26b07e67793ed2519cf2de199104014716
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18.2.25":
+  version: 18.2.25
+  resolution: "@types/react-dom@npm:18.2.25"
+  dependencies:
+    "@types/react": "*"
+  checksum: 85f9278d6456c6cdc76da6806a33b472588cdd029b08dde32e8b5636b25a3eae529b4ac2e08c848a3d7ca44e4e97ee9a3df406c96fa0768de935c8eed6e07590
   languageName: node
   linkType: hard
 
@@ -6099,6 +6117,8 @@ __metadata:
     "@react-navigation/native-stack": ^6.9.13
     "@react-navigation/routers": ^6.1.9
     "@tamagui/build": ^1.94.4
+    "@types/node": ^20.12.7
+    "@types/react-dom": ^18.2.25
     escape-string-regexp: ^5.0.0
     expo-constants: ^14.4.2
     expo-linking: ^5.0.2
@@ -6135,6 +6155,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@vxrn/safe-area@0.1.30, @vxrn/safe-area@workspace:packages/safe-area":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/safe-area@workspace:packages/safe-area"
+  dependencies:
+    "@biomejs/biome": ^1.6.3
+    "@tamagui/build": ^1.94.4
+  languageName: unknown
+  linkType: soft
+
 "@vxrn/vite-flow@0.1.30, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
@@ -6143,7 +6172,7 @@ __metadata:
     "@biomejs/biome": ^1.6.3
     "@tamagui/build": ^1.94.4
     metro-react-native-babel-preset: ^0.77.0
-    vite: ^5.2.8
+    vite: ^5.2.10
   languageName: unknown
   linkType: soft
 
@@ -6268,6 +6297,15 @@ __metadata:
     mime-types: ~2.1.34
     negotiator: 0.6.3
   checksum: 50c43d32e7b50285ebe84b613ee4a3aa426715a7d131b65b786e2ead0fd76b6b60091b9916d3478a75f11f162628a2139991b6c03ab3f1d9ab7c86075dc8eab4
+  languageName: node
+  linkType: hard
+
+"acorn-import-assertions@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "acorn-import-assertions@npm:1.9.0"
+  peerDependencies:
+    acorn: ^8
+  checksum: 944fb2659d0845c467066bdcda2e20c05abe3aaf11972116df457ce2627628a81764d800dd55031ba19de513ee0d43bb771bc679cc0eda66dc8b4fade143bc0c
   languageName: node
   linkType: hard
 
@@ -8540,6 +8578,15 @@ __metadata:
   version: 2.0.2
   resolution: "estree-walker@npm:2.0.2"
   checksum: 6151e6f9828abe2259e57f5fd3761335bb0d2ebd76dc1a01048ccee22fabcfef3c0859300f6d83ff0d1927849368775ec5a6d265dde2f6de5a1be1721cd94efc
+  languageName: node
+  linkType: hard
+
+"estree-walker@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "estree-walker@npm:3.0.3"
+  dependencies:
+    "@types/estree": ^1.0.0
+  checksum: a65728d5727b71de172c5df323385755a16c0fdab8234dc756c3854cfee343261ddfbb72a809a5660fac8c75d960bb3e21aa898c2d7e9b19bb298482ca58a3af
   languageName: node
   linkType: hard
 
@@ -10962,6 +11009,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"magic-string@npm:^0.30.8":
+  version: 0.30.10
+  resolution: "magic-string@npm:0.30.10"
+  dependencies:
+    "@jridgewell/sourcemap-codec": ^1.4.15
+  checksum: 456fd47c39b296c47dff967e1965121ace35417eab7f45a99e681e725b8661b48e1573c366ee67a27715025b3740773c46b088f115421c7365ea4ea6fa10d399
+  languageName: node
+  linkType: hard
+
 "make-dir@npm:^2.0.0, make-dir@npm:^2.1.0":
   version: 2.1.0
   resolution: "make-dir@npm:2.1.0"
@@ -11491,7 +11547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^9.0.1":
+"minimatch@npm:^9.0.1, minimatch@npm:^9.0.3":
   version: 9.0.4
   resolution: "minimatch@npm:9.0.4"
   dependencies:
@@ -15398,6 +15454,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vite-plugin-cjs-interop@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "vite-plugin-cjs-interop@npm:2.1.0"
+  dependencies:
+    acorn: ^8.11.3
+    acorn-import-assertions: ^1.9.0
+    estree-walker: ^3.0.3
+    magic-string: ^0.30.8
+    minimatch: ^9.0.3
+  checksum: 1bf6d10ee6f81652831d7be7ffb9c0113634f7c290c8d386f21ebcac801bb5d67f082d885d892faba57186ca2ca36ff2ce4f226eee62d0844e21be9b4214c912
+  languageName: node
+  linkType: hard
+
 "vite-plugin-entry-shaking@npm:^0.3.2":
   version: 0.3.3
   resolution: "vite-plugin-entry-shaking@npm:0.3.3"
@@ -15467,7 +15536,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.2.2, vite@npm:^5.2.6, vite@npm:^5.2.8":
+"vite@npm:^5.2.10":
+  version: 5.2.10
+  resolution: "vite@npm:5.2.10"
+  dependencies:
+    esbuild: ^0.20.1
+    fsevents: ~2.3.3
+    postcss: ^8.4.38
+    rollup: ^4.13.0
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: feb11be2b97259783afe1d0ff4b7ee0bef78fe8934d8b043465e039e4d8318249e2263adc724b719b9e9b45a37e012caeb7746854768f371d1a82bb189f50fe6
+  languageName: node
+  linkType: hard
+
+"vite@npm:^5.2.2, vite@npm:^5.2.6":
   version: 5.2.8
   resolution: "vite@npm:5.2.8"
   dependencies:
@@ -15594,6 +15703,7 @@ __metadata:
     "@vitejs/plugin-react-swc": ^3.6.0
     "@vxrn/expo-router": 0.1.30
     "@vxrn/react-native-prebuilt": 0.1.30
+    "@vxrn/safe-area": 0.1.30
     "@vxrn/vite-flow": 0.1.30
     "@vxrn/vite-native-client": 0.1.30
     "@vxrn/vite-native-hmr": 0.1.30
@@ -15626,7 +15736,8 @@ __metadata:
     sirv: ^2.0.4
     source-map: ^0.7.3
     url: ^0.11.0
-    vite: ^5.2.8
+    vite: ^5.2.10
+    vite-plugin-cjs-interop: ^2.1.0
     vite-plugin-inspect: ^0.8.3
     ws: ^8.7.0
   bin:

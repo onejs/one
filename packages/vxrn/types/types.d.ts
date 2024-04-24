@@ -6,7 +6,7 @@ export type VXRNConfig = {
     host?: string;
     port?: number;
     webConfig?: InlineConfig;
-    buildConfig?: InlineConfig;
+    nativeConfig?: InlineConfig;
     flow?: FlowOptions;
 };
 export type HMRListener = (update: {

@@ -27,7 +27,7 @@
     "lint:fix": "ultra -r --no-pretty lint:fix",
     "lint": "ultra -r --no-pretty lint",
     "dev:example-tamagui": "yarn workspace example-tamagui dev",
-    "dev:example-expo-router": "yarn workspace example-expo-router dev",
+    "dev:example-expo-router": "rm -r examples/expo-router/node_modules/.vite || true && yarn workspace example-expo-router dev",
     "dev:example-bare": "yarn workspace example-bare dev",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
     "test": "turbo run --concurrency=1 test",
