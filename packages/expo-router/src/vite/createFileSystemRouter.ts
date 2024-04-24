@@ -116,18 +116,16 @@ async function handleSSR(
   req: Connect.IncomingMessage,
   manifest: ExpoRoutesManifestV1<string>
 ) {
-  if (!req.url) return
-  if (req.url.startsWith('/@')) return
-  if (req.url === '/__vxrnhmr') return
+  const url = req.originalUrl || ''
+  if (!url) return
+  if (url === '/__vxrnhmr') return
   if (req.method !== 'GET') return
+  if (url.startsWith('/@')) return
+  if (extname(url) !== '') return
   if (currentSSRBuild) await currentSSRBuild
 
-  const pathOg = req.originalUrl || ''
-
-  if (extname(pathOg) !== '') return
-
-  const url = new URL(pathOg, `http://${req.headers.host}`)
-  const path = url.pathname // sanitized
+  const parsedUrl = new URL(url, `http://${req.headers.host}`)
+  const path = parsedUrl.pathname // sanitized
 
   let resolve = () => {}
 
@@ -137,7 +135,7 @@ async function handleSSR(
       continue
     }
 
-    const params = getParams(url, route)
+    const params = getParams(parsedUrl, route)
     const routeFile = join(routesDir, route.file)
 
     currentSSRBuild = new Promise((res) => {
