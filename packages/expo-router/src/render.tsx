@@ -1,73 +1,17 @@
-import stream from 'node:stream'
-import { renderToPipeableStream } from 'react-dom/server'
-import type { GlobbedRouteImports } from './types'
+import { hydrateRoot } from 'react-dom/client'
 
-export const renderToString = async (
-  app: React.ReactElement,
-  { routes }: { routes?: GlobbedRouteImports } = {}
-) => {
-  const collectedHead: { helmet?: Record<string, any> } = {}
-  globalThis['vxrn__headContext__'] = collectedHead
+globalThis['__vxrnVersion'] ||= 0
 
-  const appHtml = await renderToStringWithSuspense(app)
-  // const appHtml = ReactDOMServer.renderToString(app)
-
-  const headHtml = `${Object.values(collectedHead?.helmet ?? {})
-    .map((v: any) => v.toString())
-    .join('\n')}`
-
-  return { appHtml, headHtml }
-}
-
-function renderToStringWithSuspense(element) {
-  return new Promise((resolve, reject) => {
-    const writable = new stream.Writable({
-      write(chunk, encoding, callback) {
-        if (this.writableEnded) {
-          console.info('[renderToStringWithSuspense] Attempt to write after end:', chunk.toString())
-          callback()
-          return
-        }
-
-        result += chunk.toString()
-        callback()
-      },
-      final(callback) {
-        callback()
-      },
-    })
-
-    writable.on('finish', () => {
-      resolve(result)
-    })
-
-    writable.on('error', (error) => {
-      console.error('[renderToStringWithSuspense] Stream error:', error)
-      reject(error)
-    })
-
-    let result = ''
-
-    const { pipe, abort } = renderToPipeableStream(element, {
-      onShellReady() {
-        pipe(writable)
-      },
-      onAllReady() {
-        setImmediate(() => {
-          writable.end()
-        })
-      },
-      onShellError(err) {
-        console.error('[renderToStringWithSuspense] Shell error:', err)
-        abort()
-        writable.destroy()
-        reject(err)
-      },
-      onError(err) {
-        console.error('[renderToStringWithSuspense] Error during rendering:', err)
-        writable.destroy()
-        reject(err)
-      },
-    })
-  })
+export function render(App: (props: { path: string }) => JSX.Element, rootQuerySelector = '#root') {
+  if (typeof document === 'undefined') return
+  const container = document.querySelector(rootQuerySelector)
+  if (!container) throw new Error(`No container element found`)
+  const props = globalThis['__vxrnProps'] ?? {}
+  const element = <App path={window.location.pathname} />
+  if (globalThis['__vxrnRoot']) {
+    globalThis['__vxrnVersion']++
+    globalThis['__vxrnRoot'].render(element)
+  } else {
+    globalThis['__vxrnRoot'] = hydrateRoot(container, element)
+  }
 }

@@ -4,11 +4,7 @@ import { Suspense } from 'react'
 import type { GlobbedRouteImports } from './types'
 import { useViteRoutes } from './useViteRoutes'
 
-type RootProps = Omit<ExpoRootProps, 'context'> & {
-  routes: GlobbedRouteImports
-  path?: string
-  version?: number
-}
+type RootProps = Omit<ExpoRootProps, 'context'> & { routes: GlobbedRouteImports; path?: string }
 
 export function Root(props: RootProps) {
   return (
@@ -26,9 +22,8 @@ function Router(props: RootProps) {
   return <Test {...props} />
 }
 
-function Test({ routes, path, version, ...props }: RootProps) {
-  console.log('wtf2', version)
-  const context = useViteRoutes(routes, version)
+function Test({ routes, path, ...props }: RootProps) {
+  const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
 
   return (
     <ExpoRoot

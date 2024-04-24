@@ -8,8 +8,6 @@ let promise: Promise<void> | null = null
 
 // for some reason putting it in state doesnt even re-render
 export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
-  console.log('got version', version)
-
   if (version && version > lastVersion) {
     // reload
     context = null

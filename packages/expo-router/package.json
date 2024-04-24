@@ -35,10 +35,10 @@
       "import": "./dist/esm/routes-manifest.mjs",
       "require": "./dist/cjs/routes-manifest.js"
     },
-    "./render": {
-      "types": "./types/render.d.ts",
-      "import": "./dist/esm/render.mjs",
-      "require": "./dist/cjs/render.js"
+    "./server-render": {
+      "types": "./types/server-render.d.ts",
+      "import": "./dist/esm/server-render.mjs",
+      "require": "./dist/cjs/server-render.js"
     }
   },
   "dependencies": {
