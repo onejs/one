@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "vxrn"
   text: "Vite ↔ React Native"
-  tagline: Vite plugins to serve React Native apps with hot reloading.
+  tagline: Vite plugins to serve React Native apps with hot reloading. Serve web and native apps at once.
   image:
     src: /vite-react-native.svg
     alt: Vite
@@ -22,7 +22,7 @@ features:
     details: Incredibly quick startup, amazing web features, and a beautiful plugin API.
   - title: SWC and React Refresh
     details: Hot reloading works out of the box, and build times are snappy thanks to SWC.
-  - title: Yes, it's beta
-    details: Don't worry about it.
+  - title: Experimental CLI
+    details: npm create vxrn@latest
 ---
 
