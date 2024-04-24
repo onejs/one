@@ -5,8 +5,10 @@ globalThis['global'] = globalThis
 
 // --------------- URL -------------------
 
-import URL from 'url-parse'
+import URLPolyfill from 'url-parse'
 
-if (typeof window === 'undefined') {
-  globalThis['URL'] = URL
+try {
+  new URL(`https://tamagui.dev/test`).pathname
+} catch {
+  globalThis['URL'] = URLPolyfill
 }

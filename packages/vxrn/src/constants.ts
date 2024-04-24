@@ -17,8 +17,8 @@ export const depsToOptimize = [
   // 'react-dom/client',
   // 'react-dom/server',
   // 'react-native-safe-area-context',
-  'react-native-web',
-  'react-native-web-lite',
+  // 'react-native-web',
+  // 'react-native-web-lite',
   'react-native',
 ]
 
