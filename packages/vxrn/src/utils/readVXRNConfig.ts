@@ -23,6 +23,11 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
     await vite.close()
     return userConfig?.default ?? {}
   } catch (err) {
+    console.info(`Error loading config via ESM, attempting CJS, DEBUG=1 to see logs`)
+    if (process.env.DEBUG) {
+      console.info(err)
+    }
+
     const requireFile = jiti(process.cwd(), {
       esmResolve: true,
     })

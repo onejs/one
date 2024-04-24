@@ -1,8 +1,10 @@
-import { sync as globSync } from 'glob'
+import * as Glob from 'glob'
 import { readFile, rm } from 'node:fs/promises'
 import { extname, join } from 'node:path'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { type ExpoRoutesManifestV1, createRoutesManifest } from '../routes-manifest'
+
+const { sync: globSync } = Glob
 
 type Options = {
   root: string

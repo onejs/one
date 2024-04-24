@@ -11,7 +11,7 @@ export default {
     plugins: [
       clientTreeShakePlugin(),
       createFileSystemRouter({
-        root: __dirname,
+        root: import.meta.dirname,
         routesDir: 'app',
       }),
       //
