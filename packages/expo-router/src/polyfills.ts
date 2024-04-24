@@ -7,4 +7,6 @@ globalThis['global'] = globalThis
 
 import URL from 'url-parse'
 
-globalThis['URL'] = URL
+if (typeof window === 'undefined') {
+  globalThis['URL'] = URL
+}
