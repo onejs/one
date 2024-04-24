@@ -5590,7 +5590,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/estree@npm:1.0.5, @types/estree@npm:^1.0.0":
+"@types/estree@npm:1.0.5, @types/estree@npm:^1.0.0, @types/estree@npm:^1.0.5":
   version: 1.0.5
   resolution: "@types/estree@npm:1.0.5"
   checksum: dd8b5bed28e6213b7acd0fb665a84e693554d850b0df423ac8076cc3ad5823a6bc26b0251d080bdc545af83179ede51dd3f6fa78cad2c46ed1f29624ddf3e41a
@@ -6117,14 +6117,17 @@ __metadata:
     "@react-navigation/native-stack": ^6.9.13
     "@react-navigation/routers": ^6.1.9
     "@tamagui/build": ^1.94.4
+    "@types/estree": ^1.0.5
     "@types/node": ^20.12.7
     "@types/react-dom": ^18.2.25
     escape-string-regexp: ^5.0.0
+    estree-walker: ^3.0.3
     expo-constants: ^14.4.2
     expo-linking: ^5.0.2
     expo-splash-screen: ~0.20.4
     expo-status-bar: ^1.6.0
     fast-deep-equal: ^3.1.3
+    magic-string: ^0.30.10
     query-string: 7.1.3
     react: ^18.2.0
     react-helmet-async: ^2.0.4
@@ -11000,21 +11003,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"magic-string@npm:^0.30.10, magic-string@npm:^0.30.8":
+  version: 0.30.10
+  resolution: "magic-string@npm:0.30.10"
+  dependencies:
+    "@jridgewell/sourcemap-codec": ^1.4.15
+  checksum: 456fd47c39b296c47dff967e1965121ace35417eab7f45a99e681e725b8661b48e1573c366ee67a27715025b3740773c46b088f115421c7365ea4ea6fa10d399
+  languageName: node
+  linkType: hard
+
 "magic-string@npm:^0.30.5, magic-string@npm:^0.30.7":
   version: 0.30.9
   resolution: "magic-string@npm:0.30.9"
   dependencies:
     "@jridgewell/sourcemap-codec": ^1.4.15
   checksum: a97b9a706b39e9569781dcb662b15ab085ca3af8b916cd69d8485e8565108917c17e4eb03b6b1013389387d827bb3025711ebeafe237f742bc95a90708416147
-  languageName: node
-  linkType: hard
-
-"magic-string@npm:^0.30.8":
-  version: 0.30.10
-  resolution: "magic-string@npm:0.30.10"
-  dependencies:
-    "@jridgewell/sourcemap-codec": ^1.4.15
-  checksum: 456fd47c39b296c47dff967e1965121ace35417eab7f45a99e681e725b8661b48e1573c366ee67a27715025b3740773c46b088f115421c7365ea4ea6fa10d399
   languageName: node
   linkType: hard
 
@@ -14943,7 +14946,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.11.3":
+"turbo@npm:^1.13.2":
   version: 1.13.2
   resolution: "turbo@npm:1.13.2"
   dependencies:
@@ -15513,7 +15516,7 @@ __metadata:
     npm-run-all: ^4.1.5
     p-map: ^5.5.0
     patch-package: ^8.0.0
-    turbo: ^1.11.3
+    turbo: ^1.13.2
     typescript: ^5.2.2
     ultra-runner: ^3.10.5
     vitepress: ^1.0.0-rc.20
