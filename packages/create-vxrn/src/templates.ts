@@ -1,5 +1,5 @@
 import stepsBare from './steps/bare'
-import stepsExpoRouter from './steps/expo-router'
+import stepsExpoRouter from './steps/router'
 import stepsTamagui from './steps/tamagui'
 
 export const templates = [
@@ -48,13 +48,13 @@ export const templates = [
 
   {
     title: `Expo Router`,
-    value: 'expo-router',
+    value: 'router',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
       url: `https://github.com/universal-future/vxrn.git`,
       sshFallback: `git@github.com:universal-future/vxrn.git`,
-      dir: [`examples`, `expo-router`],
+      dir: [`examples`, `router`],
       branch: 'main',
     },
     extraSteps: stepsExpoRouter,

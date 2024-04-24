@@ -11,7 +11,7 @@
 ## Development
 
 1. `yarn dev:example-tamagui`
-1. `yarn dev:example-expo-router`
+1. `yarn dev:example-router`
 
 ### VSCode Extensions
 

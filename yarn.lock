@@ -6105,9 +6105,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vxrn/expo-router@0.1.34, @vxrn/expo-router@workspace:packages/expo-router":
+"@vxrn/router@0.1.34, @vxrn/router@workspace:packages/router":
   version: 0.0.0-use.local
-  resolution: "@vxrn/expo-router@workspace:packages/expo-router"
+  resolution: "@vxrn/router@workspace:packages/router"
   dependencies:
     "@radix-ui/react-slot": ^1.0.2
     "@react-navigation/bottom-tabs": ^6.5.8
@@ -8651,14 +8651,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-expo-router@workspace:examples/expo-router":
+"example-router@workspace:examples/router":
   version: 0.0.0-use.local
-  resolution: "example-expo-router@workspace:examples/expo-router"
+  resolution: "example-router@workspace:examples/router"
   dependencies:
     "@react-navigation/native": ^6.1.7
     "@tamagui/cli": ^1.94.4
     "@tamagui/core": ^1.94.4
-    "@vxrn/expo-router": 0.1.34
+    "@vxrn/router": 0.1.34
     expo-modules-core: 1.7.0
     h3: ^1.11.1
     patch-package: ^8.0.0
@@ -15704,7 +15704,7 @@ __metadata:
     "@types/ws": ^8.5.10
     "@vitejs/plugin-react": ^4.2.1
     "@vitejs/plugin-react-swc": ^3.6.0
-    "@vxrn/expo-router": 0.1.34
+    "@vxrn/router": 0.1.34
     "@vxrn/react-native-prebuilt": 0.1.34
     "@vxrn/safe-area": 0.1.34
     "@vxrn/vite-flow": 0.1.34
