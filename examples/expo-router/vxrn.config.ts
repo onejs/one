@@ -7,16 +7,6 @@ export default {
   // not working yet, for now just use index.jsx
   // entryNative: './src/entry-native.tsx',
 
-  buildConfig: {
-    plugins: [
-      clientTreeShakePlugin(),
-      createFileSystemRouter({
-        root: __dirname,
-        routesDir: 'app',
-      }),
-    ],
-  },
-
   webConfig: {
     plugins: [
       clientTreeShakePlugin(),

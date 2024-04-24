@@ -474,8 +474,8 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
     },
   } satisfies InlineConfig
 
-  if (options.buildConfig) {
-    buildConfig = mergeConfig(buildConfig, options.buildConfig) as any
+  if (options.nativeConfig) {
+    buildConfig = mergeConfig(buildConfig, options.nativeConfig) as any
   }
 
   // this fixes my swap-react-native plugin not being called pre 😳
@@ -846,8 +846,6 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
       },
     } satisfies UserConfig
   ) satisfies InlineConfig
-
-  console.log('webConfig', webConfig)
 
   if (webConfig) {
     serverConfig = mergeConfig(serverConfig, webConfig) as any
