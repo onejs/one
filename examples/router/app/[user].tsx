@@ -1,5 +1,5 @@
 import { Link, useGlobalSearchParams } from '@vxrn/router'
-import { Text, View } from 'react-native'
+import { Text, View } from 'tamagui'
 
 type UserPath = {
   user: string
