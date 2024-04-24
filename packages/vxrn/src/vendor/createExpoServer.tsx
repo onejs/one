@@ -5,6 +5,8 @@ import { extname, join } from 'node:path'
 import type { ViteDevServer } from 'vite'
 import { getHtml } from '../utils/getHtml'
 
+Error.stackTraceLimit = Infinity
+
 // @ts-ignore
 
 // @ts-ignore
@@ -72,28 +74,41 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
 
         console.info('ssr', path, params, routeFile)
 
-        const exported = await vite.ssrLoadModule(routeFile, {
-          fixStacktrace: true,
-        })
+        try {
+          const exported = await vite.ssrLoadModule(routeFile, {
+            fixStacktrace: true,
+          })
 
-        const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
+          console.info(`got exported`, Object.keys(exported))
 
-        const { render } = await vite.ssrLoadModule(`${root}/src/entry-server.tsx`)
+          const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
 
-        const { appHtml, headHtml } = await render({
-          path,
-          props,
-        })
+          console.info(`got props`, props)
 
-        const indexHtml = await readFile('./index.html', 'utf-8')
-        const template = await vite.transformIndexHtml(path, indexHtml)
+          const { render } = await vite.ssrLoadModule(`${root}/src/entry-server.tsx`)
 
-        return getHtml({
-          appHtml,
-          headHtml,
-          props,
-          template,
-        })
+          console.trace(`SSR loaded the server entry, rendering...`)
+
+          const { appHtml, headHtml } = await render({
+            path,
+            props,
+          })
+
+          console.info(`got`, appHtml)
+
+          const indexHtml = await readFile('./index.html', 'utf-8')
+          const template = await vite.transformIndexHtml(path, indexHtml)
+
+          return getHtml({
+            appHtml,
+            headHtml,
+            props,
+            template,
+          })
+        } catch (err) {
+          const message = err instanceof Error ? `${err.message}:\n${err.stack}` : `${err}`
+          console.error(`Error in SSR: ${message}`)
+        }
       }
     })
   )

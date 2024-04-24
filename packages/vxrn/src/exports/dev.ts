@@ -778,7 +778,21 @@ let entryRoot = ''
 async function getViteServerConfig(config: VXRNConfigFilled) {
   const { root, host, webConfig, cacheDir } = config
 
-  const ssrDepsToOptimize = [...depsToOptimize]
+  const ssrDepsToOptimize = [
+    ...depsToOptimize,
+    'react',
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime',
+    'react-native-web-internals',
+    'react-dom',
+    'react-native-web-lite',
+    '@tamagui/web',
+    '@tamagui/core',
+    '@vxrn/expo-router',
+    '@vxrn/expo-router/render',
+    'react-dom/server',
+    'react-dom/client',
+  ]
 
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
@@ -803,10 +817,11 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
         },
       },
       ssr: {
-        noExternal: ssrDepsToOptimize,
+        noExternal: true,
         optimizeDeps: {
           include: ssrDepsToOptimize,
           extensions: extensions,
+          needsInterop: ssrDepsToOptimize,
           esbuildOptions: {
             resolveExtensions: extensions,
           },

@@ -1,4 +1,4 @@
-import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
+// import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
 import type { VXRNConfig } from 'vxrn'
 
 export default {
@@ -8,8 +8,8 @@ export default {
   webConfig: {
     plugins: [
       //
-      tamaguiPlugin(),
-      tamaguiExtractPlugin(),
+      // tamaguiPlugin(),
+      // tamaguiExtractPlugin(),
     ],
   },
 } satisfies VXRNConfig
