@@ -221,23 +221,29 @@ export const dev = async (optionsIn: VXRNConfig) => {
     // vite hmr:
     app.use(
       '/__vxrnhmr',
-      defineWebSocketHandler({
-        open(peer) {
-          console.debug('[hmr:web] open', peer)
-          clients.add(peer)
+      defineEventHandler({
+        handler() {
+          //
         },
 
-        message(peer, message) {
-          socket.send(message.rawData)
-        },
+        websocket: {
+          open(peer) {
+            console.debug('[hmr:web] open', peer)
+            clients.add(peer)
+          },
 
-        close(peer, event) {
-          console.info('[hmr:web] close', peer, event)
-          clients.delete(peer)
-        },
+          message(peer, message) {
+            socket.send(message.rawData)
+          },
 
-        error(peer, error) {
-          console.error('[hmr:web] error', peer, error)
+          close(peer, event) {
+            console.info('[hmr:web] close', peer, event)
+            clients.delete(peer)
+          },
+
+          error(peer, error) {
+            console.error('[hmr:web] error', peer, error)
+          },
         },
       })
     )
@@ -246,24 +252,30 @@ export const dev = async (optionsIn: VXRNConfig) => {
   // react native hmr:
   app.use(
     '/__hmr',
-    defineWebSocketHandler({
-      open(peer) {
-        console.debug('[hmr] open', peer)
+    defineEventHandler({
+      handler() {
+        //
       },
 
-      message(peer, message) {
-        console.info('[hmr] message', peer, message)
-        if (message.text().includes('ping')) {
-          peer.send('pong')
-        }
-      },
+      websocket: {
+        open(peer) {
+          console.debug('[hmr] open', peer)
+        },
 
-      close(peer, event) {
-        console.info('[hmr] close', peer, event)
-      },
+        message(peer, message) {
+          console.info('[hmr] message', peer, message)
+          if (message.text().includes('ping')) {
+            peer.send('pong')
+          }
+        },
 
-      error(peer, error) {
-        console.error('[hmr] error', peer, error)
+        close(peer, event) {
+          console.info('[hmr] close', peer, event)
+        },
+
+        error(peer, error) {
+          console.error('[hmr] error', peer, error)
+        },
       },
     })
   )
@@ -277,32 +289,38 @@ export const dev = async (optionsIn: VXRNConfig) => {
   // react native log bridge
   app.use(
     '/__client',
-    defineWebSocketHandler({
-      open(peer) {
-        console.info('[client] open', peer)
+    defineEventHandler({
+      handler() {
+        // no
       },
 
-      message(peer, messageRaw) {
-        const message = JSON.parse(messageRaw.text()) as any as ClientMessage
+      websocket: {
+        open(peer) {
+          console.info('[client] open', peer)
+        },
 
-        switch (message.type) {
-          case 'client-log': {
-            console.info(`🪵 [${message.level}]`, ...message.data)
-            return
+        message(peer, messageRaw) {
+          const message = JSON.parse(messageRaw.text()) as any as ClientMessage
+
+          switch (message.type) {
+            case 'client-log': {
+              console.info(`🪵 [${message.level}]`, ...message.data)
+              return
+            }
+
+            default: {
+              console.warn(`[client] Unknown message type`, message)
+            }
           }
+        },
 
-          default: {
-            console.warn(`[client] Unknown message type`, message)
-          }
-        }
-      },
+        close(peer, event) {
+          console.info('[client] close', peer, event)
+        },
 
-      close(peer, event) {
-        console.info('[client] close', peer, event)
-      },
-
-      error(peer, error) {
-        console.error('[client] error', peer, error)
+        error(peer, error) {
+          console.error('[client] error', peer, error)
+        },
       },
     })
   )

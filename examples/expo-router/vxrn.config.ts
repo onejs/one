@@ -1,7 +1,4 @@
-// import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
-// @ts-ignore
 import { createFileSystemRouter } from '@vxrn/expo-router/vite'
-import { join } from 'node:path'
 import type { VXRNConfig } from 'vxrn'
 
 Error.stackTraceLimit = Number.POSITIVE_INFINITY

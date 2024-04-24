@@ -1,5 +1,6 @@
 import { join, relative, dirname } from 'node:path'
 
+// @ts-ignore
 import resolve from 'esm-resolve'
 import FSExtra from 'fs-extra'
 
