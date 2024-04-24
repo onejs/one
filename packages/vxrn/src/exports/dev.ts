@@ -153,61 +153,48 @@ export const dev = async (optionsIn: VXRNConfig) => {
     })
   )
 
+  const clients = new Set<Peer>()
+  let socket: WebSocket | null = null
+
   const { handleUpgrade } = wsAdapter(app.websocket)
 
   // vite hmr two way bridge:
-  if (vitePort) {
-    const clients = new Set<Peer>()
-    const socket = new WebSocket(`ws://localhost:${vitePort}/__vxrnhmr`, 'vite-hmr')
+  // vite hmr:
+  app.use(
+    '/__vxrnhmr',
+    defineEventHandler({
+      handler() {
+        // avoid errors
+      },
 
-    socket.on('message', (msg) => {
-      const message = msg.toString()
-      for (const listener of [...clients]) {
-        listener.send(message)
-      }
-    })
-
-    socket.on('error', (err) => {
-      console.info('error bridging socket to vite', err)
-    })
-
-    // vite hmr:
-    app.use(
-      '/__vxrnhmr',
-      defineEventHandler({
-        handler() {
-          //
+      websocket: {
+        open(peer) {
+          if (process.env.DEBUG) console.debug('[hmr:web] open', peer)
+          clients.add(peer)
         },
 
-        websocket: {
-          open(peer) {
-            if (process.env.DEBUG) console.debug('[hmr:web] open', peer)
-            clients.add(peer)
-          },
-
-          message(peer, message) {
-            socket.send(message.rawData)
-          },
-
-          close(peer, event) {
-            if (process.env.DEBUG) console.info('[hmr:web] close', peer, event)
-            clients.delete(peer)
-          },
-
-          error(peer, error) {
-            console.error('[hmr:web] error', peer, error)
-          },
+        message(peer, message) {
+          socket?.send(message.rawData)
         },
-      })
-    )
-  }
+
+        close(peer, event) {
+          if (process.env.DEBUG) console.info('[hmr:web] close', peer, event)
+          clients.delete(peer)
+        },
+
+        error(peer, error) {
+          console.error('[hmr:web] error', peer, error)
+        },
+      },
+    })
+  )
 
   // react native hmr:
   app.use(
     '/__hmr',
     defineEventHandler({
       handler() {
-        //
+        // avoid errors
       },
 
       websocket: {
@@ -305,6 +292,22 @@ export const dev = async (optionsIn: VXRNConfig) => {
       server.listen(port)
 
       console.info(`Server running on http://localhost:${port}`)
+
+      // bridge socket between vite
+      if (vitePort) {
+        socket = new WebSocket(`ws://localhost:${vitePort}/__vxrnhmr`, 'vite-hmr')
+
+        socket.on('message', (msg) => {
+          const message = msg.toString()
+          for (const listener of [...clients]) {
+            listener.send(message)
+          }
+        })
+
+        socket.on('error', (err) => {
+          console.info('error bridging socket to vite', err)
+        })
+      }
 
       return {
         closePromise: new Promise((res) => viteServer.httpServer?.on('close', res)),

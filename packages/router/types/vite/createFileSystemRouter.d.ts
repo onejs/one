@@ -3,6 +3,7 @@ type Options = {
     root: string;
     routesDir: string;
     shouldIgnore?: (req: Connect.IncomingMessage) => boolean;
+    disableSSR?: boolean;
 };
 export declare function createFileSystemRouter(options: Options): Plugin;
 export declare function getHtml({ template, props, appHtml, headHtml, css, }: {
