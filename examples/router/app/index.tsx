@@ -1,5 +1,5 @@
 import { Head, Link } from '@vxrn/router'
-import { Text, View } from '@tamagui/core'
+import { Text, View } from 'tamagui'
 import { useEffect } from 'react'
 
 export default () => {

@@ -20,21 +20,7 @@ export const depsToOptimize = [
   'react-native-web',
   'react-native-web-lite',
   'react-native',
-]
-
-export const needsInterop = [
-  'react',
-  'react/jsx-runtime',
-  'react/jsx-dev-runtime',
-  'react-native-web-internals',
-  'react-dom',
-  'react-native-web',
-  // '@vxrn/router',
-  // '@vxrn/router/render',
-  'react-dom/server',
-  'react-dom/client',
-  'react-native-web',
-  'react-native-web-lite',
+  'tamagui',
   '@tamagui/sheet',
   '@tamagui/dialog',
   '@tamagui/alert-dialog',
@@ -50,7 +36,22 @@ export const needsInterop = [
   '@tamagui/toggle-group',
   '@tamagui/tooltip',
   '@tamagui/use-window-dimensions',
+  'react-native-web',
+  'react-native-web-lite',
   'reforest',
+]
+
+export const needsInterop = [
+  'react',
+  'react/jsx-runtime',
+  'react/jsx-dev-runtime',
+  'react-native-web-internals',
+  'react-dom',
+  'react-native-web',
+  // '@vxrn/router',
+  // '@vxrn/router/render',
+  'react-dom/server',
+  'react-dom/client',
 ]
 
 export const ssrDepsToOptimize = [...new Set([...depsToOptimize, ...needsInterop])]
