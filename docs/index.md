@@ -23,6 +23,6 @@ features:
   - title: SWC and React Refresh
     details: Hot reloading works out of the box, and build times are snappy thanks to SWC.
   - title: Yes, it's beta
-    details: vxrn is in early development and could use contributions!
+    details: Don't worry about it.
 ---
 
