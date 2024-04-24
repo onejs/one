@@ -13,7 +13,7 @@ export declare function getOptionsFilled(options: VXRNConfig): Promise<{
     entryNative?: string | undefined;
     webConfig?: import("vite").InlineConfig | undefined;
     nativeConfig?: import("vite").InlineConfig | undefined;
-    flow?: any;
+    flow?: import("@vxrn/vite-flow").Options | undefined;
 }>;
 type State = {
     applyPatches?: boolean;
