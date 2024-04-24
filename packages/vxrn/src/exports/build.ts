@@ -184,12 +184,9 @@ async function generateStaticPages(
 
         const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
-        console.log('go', name, paramsList)
-
         return await Promise.all(
           paramsList.map(async (params) => {
             const path = getUrl(params)
-            console.log('gogo?', path)
             const props =
               (await exported.generateStaticProps?.({ path: getUrl(params), params })) ?? {}
             return { path, props }
@@ -237,13 +234,10 @@ async function generateStaticPages(
   })
   const cssString = await FSExtra.readFile(tmpCssFile, 'utf-8')
 
-  console.log('allRoutes', allRoutes)
-
   // pre-render each route...
   for (const { path, props } of allRoutes) {
     const { appHtml, headHtml } = await render({ path, props })
     const slashFileName = `${path === '/' ? '/index' : path}.html`
-    console.log('rendered', path, slashFileName)
     const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
     const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
     const html = getHtml({

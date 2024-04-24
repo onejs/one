@@ -1,5 +1,5 @@
 import stream from 'node:stream'
-import ReactDOMServer from 'react-dom/server'
+import { renderToPipeableStream } from 'react-dom/server'
 import type { GlobbedRouteImports } from './types'
 import { loadRoutes } from './useViteRoutes'
 
@@ -28,6 +28,12 @@ function renderToStringWithSuspense(element) {
   return new Promise((resolve, reject) => {
     const writable = new stream.Writable({
       write(chunk, encoding, callback) {
+        if (this.writableEnded) {
+          console.info('[renderToStringWithSuspense] Attempt to write after end:', chunk.toString())
+          callback()
+          return
+        }
+
         result += chunk.toString()
         callback()
       },
@@ -47,12 +53,14 @@ function renderToStringWithSuspense(element) {
 
     let result = ''
 
-    const { pipe, abort } = ReactDOMServer.renderToPipeableStream(element, {
+    const { pipe, abort } = renderToPipeableStream(element, {
       onShellReady() {
         pipe(writable)
       },
       onAllReady() {
-        writable.end()
+        setImmediate(() => {
+          writable.end()
+        })
       },
       onShellError(err) {
         console.error('[renderToStringWithSuspense] Shell error:', err)

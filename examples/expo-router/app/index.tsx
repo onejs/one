@@ -21,7 +21,7 @@ export default () => {
       )}
 
       <View>
-        <Text color="blue">Hi from home</Text>
+        <Text color="blue">Hi from home 23</Text>
       </View>
 
       <Link

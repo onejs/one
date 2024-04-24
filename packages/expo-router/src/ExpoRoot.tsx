@@ -1,6 +1,6 @@
 import Constants from './constants'
 import * as ESB from 'expo-status-bar'
-import React, { Fragment, type FunctionComponent, type ReactNode } from 'react'
+import React, { Fragment, useMemo, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
@@ -71,6 +71,13 @@ export function ExpoRoot({
   navigationContainerProps,
   ...props
 }: ExpoRootProps) {
+  const headContext = useMemo(
+    () => ({
+      ...globalThis['vxrn__headContext__'],
+    }),
+    []
+  )
+
   /*
    * Due to static rendering we need to wrap these top level views in second wrapper
    * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
@@ -78,7 +85,7 @@ export function ExpoRoot({
    */
   const wrapper: ExpoRootProps['wrapper'] = ({ children }) => {
     return (
-      <Head.Provider context={globalThis['vxrn__headContext__'] || {}}>
+      <Head.Provider context={headContext.current}>
         <ParentWrapper>
           {/* <GestureHandlerRootView> */}
           <SafeAreaProvider

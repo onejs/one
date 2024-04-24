@@ -52,9 +52,11 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
   // SSR / HTML ROUTES
   app.use(
     defineEventHandler(async ({ node: { req } }) => {
-      if (!req.url || (req.method !== 'HEAD' && req.method !== 'GET')) return
+      if (!req.url || req.method !== 'GET') return
+
       if (extname(req.url) !== '') return
       if (req.url.startsWith('/@')) return
+      if (req.url === '/__vxrnhmr') return
 
       const url = new URL(req.url, 'http://tamagui.dev')
       const path = url.pathname // sanitized
@@ -72,18 +74,16 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
         const params = getParams(url, route)
         const routeFile = join(root, 'app', route.file)
 
-        console.info('ssr', path, params, routeFile)
+        console.info('ssr', path, params, routeFile, req.headers)
 
         try {
+          vite.moduleGraph.invalidateAll()
+
           const exported = await vite.ssrLoadModule(routeFile, {
             fixStacktrace: true,
           })
 
-          console.info(`got exported`, Object.keys(exported))
-
           const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
-
-          console.info(`got props`, props)
 
           const { render } = await vite.ssrLoadModule(`${root}/src/entry-server.tsx`)
 
@@ -93,8 +93,6 @@ export function createExpoServer({ root }: { root: string }, app: App, vite: Vit
             path,
             props,
           })
-
-          console.info(`got`, appHtml)
 
           const indexHtml = await readFile('./index.html', 'utf-8')
           const template = await vite.transformIndexHtml(path, indexHtml)

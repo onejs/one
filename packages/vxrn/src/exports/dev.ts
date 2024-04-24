@@ -153,9 +153,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
     },
   })
 
-  // TODO move, this does SSR + API
-  createExpoServer(options, app, viteServer)
-
   router.get(
     '/file',
     defineEventHandler((e) => {
@@ -201,6 +198,9 @@ export const dev = async (optionsIn: VXRNConfig) => {
       }
     })
   )
+
+  // TODO move, this does SSR + API
+  createExpoServer(options, app, viteServer)
 
   const { handleUpgrade } = wsAdapter(app.websocket)
 
