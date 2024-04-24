@@ -7,7 +7,7 @@
     "dev": "vxrn dev",
     "build": "vxrn build",
     "serve": "vxrn serve",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package || true"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.7",
