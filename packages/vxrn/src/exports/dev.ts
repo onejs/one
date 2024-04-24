@@ -778,8 +778,7 @@ let entryRoot = ''
 async function getViteServerConfig(config: VXRNConfigFilled) {
   const { root, host, webConfig, cacheDir } = config
 
-  const ssrDepsToOptimize = [
-    ...depsToOptimize,
+  const needsInterop = [
     'react',
     'react/jsx-runtime',
     'react/jsx-dev-runtime',
@@ -793,6 +792,8 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
     'react-dom/server',
     'react-dom/client',
   ]
+
+  const ssrDepsToOptimize = [...depsToOptimize, ...needsInterop]
 
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
@@ -821,7 +822,7 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
         optimizeDeps: {
           include: ssrDepsToOptimize,
           extensions: extensions,
-          needsInterop: ssrDepsToOptimize,
+          needsInterop: needsInterop,
           esbuildOptions: {
             resolveExtensions: extensions,
           },
