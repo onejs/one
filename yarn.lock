@@ -6105,6 +6105,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vxrn/react-native-prebuilt@0.1.34, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
+  dependencies:
+    "@tamagui/build": ^1.94.4
+    "@vxrn/vite-flow": 0.1.34
+    esbuild: ~0.19.3
+    fs-extra: ^11.2.0
+    import-meta-resolve: ^4.0.0
+    react-native: 0.73.2
+  peerDependencies:
+    react-native: "*"
+  languageName: unknown
+  linkType: soft
+
 "@vxrn/router@0.1.34, @vxrn/router@workspace:packages/router":
   version: 0.0.0-use.local
   resolution: "@vxrn/router@workspace:packages/router"
@@ -6133,27 +6148,12 @@ __metadata:
     react-helmet-async: ^2.0.4
     react-native: 0.73.2
     react-native-safe-area-context: 4.6.3
-    react-native-screens: ~3.22.0
+    react-native-screens: 3.22.1
     schema-utils: ^4.0.1
     url: ^0.11.0
     url-parse: ^1.5.10
   peerDependencies:
     react: "*"
-    react-native: "*"
-  languageName: unknown
-  linkType: soft
-
-"@vxrn/react-native-prebuilt@0.1.34, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
-  version: 0.0.0-use.local
-  resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
-  dependencies:
-    "@tamagui/build": ^1.94.4
-    "@vxrn/vite-flow": 0.1.34
-    esbuild: ~0.19.3
-    fs-extra: ^11.2.0
-    import-meta-resolve: ^4.0.0
-    react-native: 0.73.2
-  peerDependencies:
     react-native: "*"
   languageName: unknown
   linkType: soft
@@ -13029,7 +13029,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-screens@npm:~3.22.0":
+"react-native-screens@npm:3.22.1":
   version: 3.22.1
   resolution: "react-native-screens@npm:3.22.1"
   dependencies:
@@ -15704,8 +15704,8 @@ __metadata:
     "@types/ws": ^8.5.10
     "@vitejs/plugin-react": ^4.2.1
     "@vitejs/plugin-react-swc": ^3.6.0
-    "@vxrn/router": 0.1.34
     "@vxrn/react-native-prebuilt": 0.1.34
+    "@vxrn/router": 0.1.34
     "@vxrn/safe-area": 0.1.34
     "@vxrn/vite-flow": 0.1.34
     "@vxrn/vite-native-client": 0.1.34
