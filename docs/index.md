@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "vxrn"
-  text: "The magic of Vite, meet React Native"
-  tagline: One Vite instance powering React Native and web at the same time.
+  text: "Vite ↔ React Native"
+  tagline: Vite plugins to serve React Native apps with hot reloading.
   image:
     src: /vite-react-native.svg
     alt: Vite
