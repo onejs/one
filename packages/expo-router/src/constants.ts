@@ -38,6 +38,7 @@ function getBrowserName() {
   }
   return undefined
 }
+
 export default {
   get name() {
     return 'ExponentConstants'

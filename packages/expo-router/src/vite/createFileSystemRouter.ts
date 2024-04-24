@@ -39,7 +39,7 @@ export function createFileSystemRouter(options: Options): Plugin {
 
         server.middlewares.use(async (req, res, next) => {
           try {
-            if (!req.url || req.originalUrl === '/__vxrnhmr') {
+            if (!req.url || req.originalUrl === '/__vxrnhmr' || extname(req.url) !== '') {
               next()
               return
             }
@@ -68,7 +68,7 @@ export function createFileSystemRouter(options: Options): Plugin {
             // will treat it as an error since there will be no one else to
             // handle it in production.
             if (!res.writableEnded) {
-              next(new Error("SSR handler didn't send a response"))
+              next(new Error(`SSR handler didn't send a response for url: ${req.originalUrl}`))
             }
           } catch (error) {
             // Forward the error to Vite
