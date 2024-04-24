@@ -153,6 +153,9 @@ async function generateStaticPages(
         if (!id || file[0] === '_' || file.includes('entry-server')) {
           return []
         }
+        if (id.includes('+api')) {
+          return []
+        }
 
         const endpointPath = path.join(options.root, 'dist/server', output.fileName)
         const exported = await import(endpointPath)
