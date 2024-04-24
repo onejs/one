@@ -10,6 +10,7 @@ type Options = {
   root: string
   routesDir: string
   shouldIgnore?: (req: Connect.IncomingMessage) => boolean
+  disableSSR?: boolean
 }
 
 export function createFileSystemRouter(options: Options): Plugin {
@@ -111,7 +112,7 @@ async function handleAPIRoutes(
 let currentSSRBuild: Promise<void> | null = null
 
 async function handleSSR(
-  { routesDir, root }: Options,
+  { routesDir, root, disableSSR }: Options,
   server: ViteDevServer,
   req: Connect.IncomingMessage,
   manifest: ExpoRoutesManifestV1<string>
@@ -126,6 +127,11 @@ async function handleSSR(
 
   const parsedUrl = new URL(url, `http://${req.headers.host}`)
   const path = parsedUrl.pathname // sanitized
+  const indexHtml = await readFile('./index.html', 'utf-8')
+
+  if (disableSSR) {
+    return indexHtml
+  }
 
   let resolve = () => {}
 
@@ -173,7 +179,6 @@ async function handleSSR(
         props,
       })
 
-      const indexHtml = await readFile('./index.html', 'utf-8')
       const template = await server.transformIndexHtml(path, indexHtml)
 
       return getHtml({
@@ -185,7 +190,7 @@ async function handleSSR(
     } catch (err) {
       const message = err instanceof Error ? `${err.message}:\n${err.stack}` : `${err}`
       console.error(`Error in SSR: ${message}`)
-      break
+      return indexHtml
     } finally {
       currentSSRBuild = null
       resolve()
