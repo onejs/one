@@ -1,16 +1,11 @@
 import stream from 'node:stream'
 import { renderToPipeableStream } from 'react-dom/server'
 import type { GlobbedRouteImports } from './types'
-import { loadRoutes } from './useViteRoutes'
 
 export const renderToString = async (
   app: React.ReactElement,
   { routes }: { routes?: GlobbedRouteImports } = {}
 ) => {
-  if (routes) {
-    await loadRoutes(routes)
-  }
-
   const collectedHead: { helmet?: Record<string, any> } = {}
   globalThis['vxrn__headContext__'] = collectedHead
 

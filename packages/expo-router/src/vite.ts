@@ -134,6 +134,7 @@ async function handleSSR(
     // in dev mode clear the entire temp dir to ensure clean build?
     if (process.env.NODE_ENV === 'development') {
       try {
+        // server.moduleGraph.invalidateAll()
         await rm(join(root, 'node_modules', '.vite', 'deps_ssr'), {
           recursive: true,
         })

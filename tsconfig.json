@@ -38,6 +38,7 @@
     "strictNullChecks": true,
     "target": "es2020",
     "types": [
+      "vite/client",
       "node",
       "react"
     ],

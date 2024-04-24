@@ -2,11 +2,20 @@ import type { GlobbedRouteImports } from './types'
 
 // essentially a development helper
 
+let lastVersion = 0
 let context
 let promise: Promise<void> | null = null
 
 // for some reason putting it in state doesnt even re-render
-export function useViteRoutes(routes: GlobbedRouteImports) {
+export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
+  console.log('got version', version)
+
+  if (version && version > lastVersion) {
+    // reload
+    context = null
+    lastVersion = version
+  }
+
   if (!promise && !context) {
     promise = new Promise((res) => {
       loadRoutes(routes).then(() => {

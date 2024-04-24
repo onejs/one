@@ -1,104 +1,104 @@
 /// <reference types="react" />
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
 import { type NativeStackNavigationEventMap, type NativeStackNavigationOptions } from '@react-navigation/native-stack';
-export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/native").DefaultRouterOptions<string> & {
+export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/routers").DefaultRouterOptions<string> & {
     id?: string | undefined;
     children: import("react").ReactNode;
     screenListeners?: Partial<{
-        transitionStart: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
-        transitionEnd: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
-        focus: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
-        blur: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
-        state: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
-        beforeRemove: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
+        transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
+        transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
+        focus: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
+        blur: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
+        state: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
+        beforeRemove: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
     }> | ((props: {
-        route: import("@react-navigation/native").RouteProp<ParamListBase, string>;
+        route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
         navigation: any;
     }) => Partial<{
-        transitionStart: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
-        transitionEnd: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
-        focus: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
-        blur: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
-        state: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
-        beforeRemove: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
+        transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
+        transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
+        focus: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
+        blur: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
+        state: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
+        beforeRemove: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
     }>) | undefined;
     screenOptions?: NativeStackNavigationOptions | ((props: {
-        route: import("@react-navigation/native").RouteProp<ParamListBase, string>;
+        route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
         navigation: any;
     }) => NativeStackNavigationOptions) | undefined;
-} & import("@react-navigation/native").StackRouterOptions, "initialRouteName" | "children" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/native").DefaultRouterOptions<string> & {
+} & import("@react-navigation/routers").StackRouterOptions, "initialRouteName" | "children" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     id?: string | undefined;
     children: import("react").ReactNode;
     screenListeners?: Partial<{
-        transitionStart: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
-        transitionEnd: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
-        focus: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
-        blur: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
-        state: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
-        beforeRemove: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
+        transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
+        transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
+        focus: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
+        blur: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
+        state: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
+        beforeRemove: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
     }> | ((props: {
-        route: import("@react-navigation/native").RouteProp<ParamListBase, string>;
+        route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
         navigation: any;
     }) => Partial<{
-        transitionStart: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
-        transitionEnd: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
-        focus: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
-        blur: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
-        state: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
-        beforeRemove: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
+        transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
+        transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
+        focus: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
+        blur: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
+        state: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
+        beforeRemove: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
     }>) | undefined;
     screenOptions?: NativeStackNavigationOptions | ((props: {
-        route: import("@react-navigation/native").RouteProp<ParamListBase, string>;
+        route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
         navigation: any;
     }) => NativeStackNavigationOptions) | undefined;
-}, "children"> & Partial<Pick<Omit<import("@react-navigation/native").DefaultRouterOptions<string> & {
+}, "children"> & Partial<Pick<Omit<import("@react-navigation/routers").DefaultRouterOptions<string> & {
     id?: string | undefined;
     children: import("react").ReactNode;
     screenListeners?: Partial<{
-        transitionStart: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
-        transitionEnd: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
-        focus: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
-        blur: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
-        state: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
-        beforeRemove: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
+        transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
+        transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
+        focus: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
+        blur: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
+        state: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
+        beforeRemove: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
     }> | ((props: {
-        route: import("@react-navigation/native").RouteProp<ParamListBase, string>;
+        route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
         navigation: any;
     }) => Partial<{
-        transitionStart: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
-        transitionEnd: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
-        focus: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
-        blur: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
-        state: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
-        beforeRemove: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
+        transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
+        transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
+        focus: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
+        blur: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
+        state: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
+        beforeRemove: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
     }>) | undefined;
     screenOptions?: NativeStackNavigationOptions | ((props: {
-        route: import("@react-navigation/native").RouteProp<ParamListBase, string>;
+        route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
         navigation: any;
     }) => NativeStackNavigationOptions) | undefined;
-} & import("@react-navigation/native").StackRouterOptions, "initialRouteName" | "children" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/native").DefaultRouterOptions<string> & {
+} & import("@react-navigation/routers").StackRouterOptions, "initialRouteName" | "children" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     id?: string | undefined;
     children: import("react").ReactNode;
     screenListeners?: Partial<{
-        transitionStart: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
-        transitionEnd: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
-        focus: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
-        blur: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
-        state: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
-        beforeRemove: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
+        transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
+        transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
+        focus: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
+        blur: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
+        state: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
+        beforeRemove: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
     }> | ((props: {
-        route: import("@react-navigation/native").RouteProp<ParamListBase, string>;
+        route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
         navigation: any;
     }) => Partial<{
-        transitionStart: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
-        transitionEnd: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
-        focus: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
-        blur: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
-        state: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
-        beforeRemove: import("@react-navigation/native").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/native").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
+        transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
+        transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
+        focus: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "focus">;
+        blur: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "blur">;
+        state: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "state">;
+        beforeRemove: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "beforeRemove">;
     }>) | undefined;
     screenOptions?: NativeStackNavigationOptions | ((props: {
-        route: import("@react-navigation/native").RouteProp<ParamListBase, string>;
+        route: import("@react-navigation/core").RouteProp<ParamListBase, string>;
         navigation: any;
     }) => NativeStackNavigationOptions) | undefined;
 }, "children">> & import("react").RefAttributes<unknown>> & {
