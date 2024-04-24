@@ -4,7 +4,7 @@ import { extname, join } from 'node:path'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { type ExpoRoutesManifestV1, createRoutesManifest } from '../routes-manifest'
 
-const { sync: globSync } = Glob
+const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 
 type Options = {
   root: string
@@ -41,11 +41,17 @@ export function createFileSystemRouter(options: Options): Plugin {
 
         server.middlewares.use(async (req, res, next) => {
           try {
-            if (!req.url || req.originalUrl === '/__vxrnhmr' || extname(req.url) !== '') {
+            const ogUrl = req.originalUrl
+            if (
+              !ogUrl ||
+              ogUrl === '/__vxrnhmr' ||
+              ogUrl.startsWith('/@') ||
+              extname(ogUrl) !== '' ||
+              shouldIgnore?.(req)
+            ) {
               next()
               return
             }
-            // if (shouldIgnore?.(req)) return
 
             const apiResponse = await handleAPIRoutes(options, server, req, apiRoutesMap)
             if (apiResponse) {
@@ -70,7 +76,7 @@ export function createFileSystemRouter(options: Options): Plugin {
             // will treat it as an error since there will be no one else to
             // handle it in production.
             if (!res.writableEnded) {
-              next(new Error(`SSR handler didn't send a response for url: ${req.originalUrl}`))
+              next(new Error(`SSR handler didn't send a response for url: ${ogUrl}`))
             }
           } catch (error) {
             // Forward the error to Vite

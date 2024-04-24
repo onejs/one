@@ -86,12 +86,6 @@ export const build = async (optionsIn: VXRNConfig) => {
         },
       ],
 
-      resolve: {
-        alias: {
-          'react-native': 'react-native-web-lite',
-        },
-      },
-
       optimizeDeps: {
         esbuildOptions: {
           format: 'cjs',
