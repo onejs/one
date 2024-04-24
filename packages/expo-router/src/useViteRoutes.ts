@@ -10,8 +10,8 @@ export function useViteRoutes(routes: GlobbedRouteImports) {
   if (!promise && !context) {
     promise = new Promise((res) => {
       loadRoutes(routes).then(() => {
-        promise = null
         res()
+        promise = null
       })
     })
   }
@@ -26,6 +26,7 @@ export function useViteRoutes(routes: GlobbedRouteImports) {
 export async function loadRoutes(paths: any) {
   if (promise) await promise
   if (context) return context
+  console.debug(`Loading routes`, paths)
 
   globalThis['__importMetaGlobbed'] = paths
 
@@ -37,6 +38,9 @@ export async function loadRoutes(paths: any) {
         console.error(`Error: Missing route at path ${path}`)
         return
       }
+      const tm = setTimeout(() => {
+        console.error(`Error: Timed out loading ${path}`)
+      }, 1000)
       try {
         const evaluated = await paths[path]()
         routesSync[path] = evaluated
@@ -45,6 +49,8 @@ export async function loadRoutes(paths: any) {
       } catch (err) {
         // @ts-ignore
         console.error(`Error loading path ${path}: ${err?.message ?? ''} ${err?.stack ?? ''}`)
+      } finally {
+        clearTimeout(tm)
       }
     })
   )
@@ -58,6 +64,7 @@ export async function loadRoutes(paths: any) {
 
   context = resolver
   promise = null
+  console.debug(`Loaded routes`)
 
   return context
 }

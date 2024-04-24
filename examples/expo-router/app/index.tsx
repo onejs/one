@@ -3,6 +3,8 @@ import { Text, View } from '@tamagui/core'
 import { useEffect } from 'react'
 
 export default () => {
+  console.log('render /index! ⚠️')
+
   useEffect(() => {
     fetch('/hello')
       .then((res) => res.text())

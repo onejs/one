@@ -5,6 +5,7 @@ import { Root } from '@vxrn/expo-router'
 export const routes = import.meta.glob('../app/**/*.tsx')
 
 export function App(props: { path: string }) {
+  console.info('render App', props.path)
   return <Root routes={routes} path={props.path} />
 }
 
