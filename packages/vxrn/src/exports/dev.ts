@@ -785,10 +785,8 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
     'react-native-web-internals',
     'react-dom',
     'react-native-web-lite',
-    '@tamagui/web',
-    '@tamagui/core',
-    '@vxrn/expo-router',
-    '@vxrn/expo-router/render',
+    // '@vxrn/expo-router',
+    // '@vxrn/expo-router/render',
     'react-dom/server',
     'react-dom/client',
   ]
