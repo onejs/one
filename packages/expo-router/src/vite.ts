@@ -7,10 +7,11 @@ import { type ExpoRoutesManifestV1, createRoutesManifest } from './routes-manife
 type Options = {
   root: string
   routesDir: string
+  shouldIgnore?: (req: Connect.IncomingMessage) => boolean
 }
 
 export function createFileSystemRouter(options: Options): Plugin {
-  const { root, routesDir } = options
+  const { root, routesDir, shouldIgnore } = options
 
   return {
     name: `router-fs`,
@@ -39,6 +40,8 @@ export function createFileSystemRouter(options: Options): Plugin {
         server.middlewares.use(async (req, res, next) => {
           try {
             if (!req.url) return
+            if (req.originalUrl === '/__vxrnhmr') return
+            if (shouldIgnore?.(req)) return
 
             const apiResponse = await handleAPIRoutes(options, server, req, apiRoutesMap)
             if (apiResponse) {

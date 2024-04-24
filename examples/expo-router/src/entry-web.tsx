@@ -6,4 +6,6 @@ export function App(props: { path: string }) {
   return <Root routes={routes} path={props.path} />
 }
 
+console.warn('RENDER')
+
 render(App)
