@@ -27,7 +27,7 @@ export const needsInterop = [
   'react/jsx-dev-runtime',
   'react-native-web-internals',
   'react-dom',
-  'react-native-web-lite',
+  'react-native-web',
   // '@vxrn/expo-router',
   // '@vxrn/expo-router/render',
   'react-dom/server',
