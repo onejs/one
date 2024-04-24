@@ -1,18 +1,16 @@
-import { dirname, join, relative, resolve } from 'node:path'
 import { build as esbuild } from 'esbuild'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import fs from 'node:fs'
-import path from 'node:path'
-import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 import { tmpdir } from 'node:os'
+import path, { dirname, resolve } from 'node:path'
+import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 
 import FSExtra from 'fs-extra'
 import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
-import { clientBundleTreeShakePlugin } from '../plugins/clientBundleTreeShakePlugin'
 import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
-import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
 import { getHtml } from '../utils/getHtml'
+import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
 
 export const resolveFile = (path: string) => {
   try {
@@ -75,7 +73,6 @@ export const build = async (optionsIn: VXRNConfig) => {
   console.info(`build client`)
   await viteBuild(
     mergeConfig(webBuildConfig, {
-      plugins: [clientBundleTreeShakePlugin({})],
       build: {
         ssrManifest: true,
         outDir: 'dist/client',

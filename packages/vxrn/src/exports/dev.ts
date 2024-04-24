@@ -4,7 +4,6 @@ import {
   createApp,
   createRouter,
   defineEventHandler,
-  defineWebSocketHandler,
   eventHandler,
   getQuery,
   toNodeListener,
@@ -35,7 +34,6 @@ import {
 import createViteFlow from '@vxrn/vite-flow'
 import type { Peer } from 'crossws'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
-import { clientBundleTreeShakePlugin } from '../plugins/clientBundleTreeShakePlugin'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import type { VXRNConfig } from '../types'
@@ -414,7 +412,6 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
         },
       },
 
-      clientBundleTreeShakePlugin({}),
       viteRNClientPlugin,
 
       reactNativeCommonJsPlugin({
@@ -821,8 +818,6 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
         //
         reactSwcPlugin({}),
         reactNativeHMRPlugin(config),
-        // TODO this one shouldnt be on for SSR so need to diverge somehow
-        clientBundleTreeShakePlugin({}),
       ],
       optimizeDeps: {
         include: depsToOptimize,
@@ -851,6 +846,8 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
       },
     } satisfies UserConfig
   ) satisfies InlineConfig
+
+  console.log('webConfig', webConfig)
 
   if (webConfig) {
     serverConfig = mergeConfig(serverConfig, webConfig) as any

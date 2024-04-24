@@ -9,7 +9,7 @@ interface TreeShakeTemplatePluginOptions {
 
 type AcornNode<N extends Node> = N & { start: number; end: number }
 
-export const clientBundleTreeShakePlugin = (options: TreeShakeTemplatePluginOptions) => {
+export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = {}): Plugin => {
   return {
     name: 'vxrn:client-tree-shake',
     enforce: 'post',
@@ -119,7 +119,7 @@ export const clientBundleTreeShakePlugin = (options: TreeShakeTemplatePluginOpti
         }
       }
     },
-  } satisfies Plugin
+  }
 }
 
 function removeImportDeclaration(
