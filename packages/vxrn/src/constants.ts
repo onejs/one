@@ -17,8 +17,8 @@ export const depsToOptimize = [
   // 'react-dom/client',
   // 'react-dom/server',
   // 'react-native-safe-area-context',
-  // 'react-native-web',
-  // 'react-native-web-lite',
+  'react-native-web',
+  'react-native-web-lite',
   'react-native',
 ]
 
@@ -35,7 +35,30 @@ export const needsInterop = [
   'react-dom/client',
 ]
 
-export const ssrDepsToOptimize = [...depsToOptimize, ...needsInterop]
+export const ssrDepsToOptimize = [
+  ...new Set([
+    'react-native-web',
+    'react-native-web-lite',
+    '@tamagui/sheet',
+    '@tamagui/dialog',
+    '@tamagui/alert-dialog',
+    '@tamagui/image',
+    '@tamagui/avatar',
+    '@tamagui/group',
+    '@tamagui/popper',
+    '@tamagui/popover',
+    '@tamagui/scroll-view',
+    '@tamagui/select',
+    '@tamagui/switch',
+    '@tamagui/tabs',
+    '@tamagui/toggle-group',
+    '@tamagui/tooltip',
+    '@tamagui/use-window-dimensions',
+    'reforest',
+    ...depsToOptimize,
+    ...needsInterop,
+  ]),
+]
 
 export const nativeExtensions = [
   '.native.tsx',
