@@ -12,23 +12,20 @@ Today it runs many simple apps well. We'd like to get the community involved to 
 
 ## Install
 
-For now vxrn only works programmatically as it must set up not only Vite but also Fastify, mostly because it re-uses great work by [Repack](https://re-pack.netlify.app/) in order to provide the websocket for communicating with React Native.
-
 Install:
 
 ```bash
 npm i -d vxrn
-npm i react-dom react react-native
 ```
 
-You can use the build in cli:
+You can use it directly in your shell:
 
 ```bash
 npx vxrn dev # runs a dev server
 npx vxrn build # builds a production web app
 ```
 
-Or use it programmatically with a `dev.js` file:
+Or programmatically, for example if you have a `dev.js` file:
 
 ```js
 import { createDevServer } from 'vxrn'
@@ -83,6 +80,7 @@ Add your web entry at `index.web.jsx`:
 
 ```js
 import { createRoot } from 'react-dom/client'
+import { View } from 'react-native'
 
 function App() {
   return <View style={{ width: 100, height: 100, backgroundColor: 'red' }} />
@@ -109,10 +107,4 @@ And then run it:
 node dev.js
 ```
 
-This will start a server on `8081` and on `5173`, your native and web servers respectively.
-
-You'll need a React Native app to connect to the native app, and you should be able to hit http://localhost:5173 right away in your browser.
-
-If that worked, well, you're lucky!
-
-We've got [a couple examples in the repo](https://github.com/universal-future/vxrn) that probably are easier to get started with.
+This will start a server on `8081`, which you can now see the web version at http://localhost:8081 or through a pre-built React Native or Expo Go client, by entering the above url.

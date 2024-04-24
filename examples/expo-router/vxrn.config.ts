@@ -4,11 +4,20 @@ import type { VXRNConfig } from 'vxrn'
 
 Error.stackTraceLimit = Number.POSITIVE_INFINITY
 
+const extraDepsToOptimize = ['test']
+
 export default {
   // not working yet, for now just use index.jsx
   // entryNative: './src/entry-native.tsx',
 
   webConfig: {
+    ssr: {
+      optimizeDeps: {
+        include: extraDepsToOptimize,
+        needsInterop: extraDepsToOptimize,
+      },
+    },
+
     plugins: [
       clientTreeShakePlugin(),
       createFileSystemRouter({
