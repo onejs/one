@@ -4,6 +4,12 @@ vxrn is an experimental package to build and serve your React Native apps using 
 
 ## Install
 
+We have a very experimental create package now with some template starters:
+
+```bash
+npx create vxrn@latest
+```
+
 Install:
 
 ```bash
