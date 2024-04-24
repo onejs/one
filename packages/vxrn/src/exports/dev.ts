@@ -1,4 +1,3 @@
-import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import wsAdapter from 'crossws/adapters/node'
 import {
   createApp,
@@ -351,7 +350,7 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
   const viteFlow = options.flow ? createViteFlow(options.flow) : null
 
   // build app
-  let buildConfig = {
+  let nativeBuildConfig = {
     plugins: [
       viteFlow,
 
@@ -410,9 +409,11 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
     },
 
     mode: 'development',
+
     define: {
       'process.env.NODE_ENV': `"development"`,
     },
+
     build: {
       ssr: false,
       minify: false,
@@ -431,17 +432,17 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
   } satisfies InlineConfig
 
   if (options.nativeConfig) {
-    buildConfig = mergeConfig(buildConfig, options.nativeConfig) as any
+    nativeBuildConfig = mergeConfig(nativeBuildConfig, options.nativeConfig) as any
   }
 
   // this fixes my swap-react-native plugin not being called pre 😳
-  await resolveConfig(buildConfig, 'build')
+  await resolveConfig(nativeBuildConfig, 'build')
 
   // seems to be not working but needed to put it after the resolve or else it was cleared
   // @ts-ignore
-  // buildConfig.build.rollupOptions.input = join(root, buildInput)
+  // nativeBuildConfig.build.rollupOptions.input = join(root, buildInput)
 
-  const buildOutput = await build(buildConfig)
+  const buildOutput = await build(nativeBuildConfig)
 
   if (!('output' in buildOutput)) {
     throw `❌`
@@ -755,11 +756,7 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
       root,
       clearScreen: false,
 
-      plugins: [
-        //
-        reactSwcPlugin({}),
-        reactNativeHMRPlugin(config),
-      ],
+      plugins: [reactNativeHMRPlugin(config)],
       optimizeDeps: {
         include: depsToOptimize,
         exclude: [`${cacheDir}/*`],

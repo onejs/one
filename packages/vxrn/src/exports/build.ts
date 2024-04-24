@@ -23,33 +23,13 @@ export const resolveFile = (path: string) => {
 
 const { ensureDir, existsSync, readFile, pathExists } = FSExtra
 
-const extensions = [
-  '.web.tsx',
-  '.tsx',
-  '.web.ts',
-  '.ts',
-  '.web.jsx',
-  '.jsx',
-  '.web.js',
-  '.js',
-  '.css',
-  '.json',
-]
-
 // web only for now
 
 export const build = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
-  const depsToOptimize = [
-    'react',
-    'react-dom',
-    '@react-native/normalize-color',
-    '@react-navigation/native',
-    'expo-constants',
-    'expo-modules-core',
-    'expo-status-bar',
-    'expo-splash-screen',
-  ]
+
+  // TODO?
+  process.env.NODE_ENV = 'production'
 
   let webBuildConfig = mergeConfig(
     getBaseViteConfig({
@@ -117,10 +97,12 @@ export const build = async (optionsIn: VXRNConfig) => {
           format: 'cjs',
         },
       },
+
       ssr: {
         noExternal: true,
         optimizeDeps: ssrOptimizeDeps,
       },
+
       build: {
         // we want one big file of css
         cssCodeSplit: false,
