@@ -239,6 +239,14 @@ export const dev = async (optionsIn: VXRNConfig) => {
     data: string[]
   }
 
+  // symbolicate
+  app.use(
+    '/symbolicate',
+    defineEventHandler(() => {
+      return 'TODO'
+    })
+  )
+
   // react native log bridge
   app.use(
     '/__client',
