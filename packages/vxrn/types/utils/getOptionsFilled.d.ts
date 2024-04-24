@@ -12,8 +12,8 @@ export declare function getOptionsFilled(options: VXRNConfig): Promise<{
     port: number;
     entryNative?: string | undefined;
     webConfig?: import("vite").InlineConfig | undefined;
-    buildConfig?: import("vite").InlineConfig | undefined;
-    flow?: import("@vxrn/vite-flow").Options | undefined;
+    nativeConfig?: import("vite").InlineConfig | undefined;
+    flow?: any;
 }>;
 type State = {
     applyPatches?: boolean;

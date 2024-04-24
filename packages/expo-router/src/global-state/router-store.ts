@@ -1,10 +1,6 @@
-import {
-  useNavigationContainerRef,
-  type NavigationContainerRefWithCurrent,
-  type getPathFromState,
-} from '@react-navigation/native'
+import type { NavigationContainerRefWithCurrent, getPathFromState } from '@react-navigation/native'
 import * as SplashScreen from 'expo-splash-screen'
-import { Fragment, useMemo, useSyncExternalStore, type ComponentType } from 'react'
+import { Fragment, useSyncExternalStore, type ComponentType } from 'react'
 
 import { getRouteInfoFromState, type UrlObject } from '../LocationProvider'
 import type { RouteNode } from '../Route'
@@ -251,14 +247,4 @@ export function useStoreRouteInfo() {
     store.routeInfoSnapshot,
     store.routeInfoSnapshot
   )
-}
-
-export function useInitializeExpoRouter(context: RequireContext, initialLocation: URL | undefined) {
-  const navigationRef = useNavigationContainerRef()
-  useMemo(
-    () => store.initialize(context, navigationRef, initialLocation),
-    [context, initialLocation]
-  )
-  useExpoRouter()
-  return store
 }

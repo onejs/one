@@ -1,5 +1,5 @@
 /// <reference types="react" />
-export declare const Screen: <RouteName extends string>(_: import("@react-navigation/core").RouteConfig<import("@react-navigation/core").ParamListBase, RouteName, Readonly<{
+export declare const Screen: <RouteName extends string>(_: import("@react-navigation/core").RouteConfig<import("@react-navigation/routers").ParamListBase, RouteName, Readonly<{
     key: string;
     index: number;
     routeNames: string[];
@@ -11,9 +11,9 @@ export declare const Screen: <RouteName extends string>(_: import("@react-naviga
     }> & Readonly<{
         params?: Readonly<object | undefined>;
     }> & {
-        state?: Readonly<any> | import("@react-navigation/core").PartialState<Readonly<any>> | undefined;
+        state?: Readonly<any> | import("@react-navigation/routers").PartialState<Readonly<any>> | undefined;
     })[];
     type: string;
     stale: false;
-}>, {}, import("@react-navigation/core").EventMapBase>) => null, Group: import("react").ComponentType<import("@react-navigation/core").RouteGroupConfig<import("@react-navigation/core").ParamListBase, {}>>;
+}>, {}, import("@react-navigation/core").EventMapBase>) => null, Group: import("react").ComponentType<import("@react-navigation/core").RouteGroupConfig<import("@react-navigation/routers").ParamListBase, {}>>;
 //# sourceMappingURL=primitives.d.ts.map

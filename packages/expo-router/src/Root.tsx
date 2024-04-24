@@ -23,7 +23,8 @@ function Router(props: RootProps) {
 }
 
 function Test({ routes, path, ...props }: RootProps) {
-  const context = useViteRoutes(routes)
+  const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
+
   return (
     <ExpoRoot
       location={path ? new URL(`http://localhost:3333${path}`) : undefined}

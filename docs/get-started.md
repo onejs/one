@@ -42,7 +42,7 @@ async function main() {
     webConfig: {
       plugins: [],
     },
-    buildConfig: {
+    nativeConfig: {
       plugins: [],
     },
   })

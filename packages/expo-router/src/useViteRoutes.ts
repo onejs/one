@@ -1,18 +1,24 @@
-import { store as routerStore } from './global-state/router-store'
 import type { GlobbedRouteImports } from './types'
 
 // essentially a development helper
 
-let ctx
+let lastVersion = 0
+let context
 let promise: Promise<void> | null = null
 
 // for some reason putting it in state doesnt even re-render
-export function useViteRoutes(routes: GlobbedRouteImports) {
-  if (!promise && !ctx) {
+export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
+  if (version && version > lastVersion) {
+    // reload
+    context = null
+    lastVersion = version
+  }
+
+  if (!promise && !context) {
     promise = new Promise((res) => {
       loadRoutes(routes).then(() => {
-        promise = null
         res()
+        promise = null
       })
     })
   }
@@ -21,22 +27,12 @@ export function useViteRoutes(routes: GlobbedRouteImports) {
     throw promise
   }
 
-  return ctx
-}
-
-export async function preloadRoutes(routes: any) {
-  await loadRoutes(routes)
-  return {
-    context: ctx,
-    routerStore,
-  }
+  return context
 }
 
 export async function loadRoutes(paths: any) {
-  if (globalThis['__importMetaGlobbed']) {
-    if (promise) await promise
-    return ctx
-  }
+  if (promise) await promise
+  if (context) return context
 
   globalThis['__importMetaGlobbed'] = paths
 
@@ -48,6 +44,9 @@ export async function loadRoutes(paths: any) {
         console.error(`Error: Missing route at path ${path}`)
         return
       }
+      const tm = setTimeout(() => {
+        console.error(`Error: Timed out loading ${path}`)
+      }, 1000)
       try {
         const evaluated = await paths[path]()
         routesSync[path] = evaluated
@@ -56,6 +55,8 @@ export async function loadRoutes(paths: any) {
       } catch (err) {
         // @ts-ignore
         console.error(`Error loading path ${path}: ${err?.message ?? ''} ${err?.stack ?? ''}`)
+      } finally {
+        clearTimeout(tm)
       }
     })
   )
@@ -67,8 +68,8 @@ export async function loadRoutes(paths: any) {
   resolver.id = ''
   resolver.resolve = (id: string) => id
 
-  ctx = resolver
+  context = resolver
   promise = null
 
-  return ctx
+  return context
 }

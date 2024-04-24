@@ -1,7 +1,7 @@
 import './polyfills'
 
 export { Root } from './Root'
-export { renderToString } from './renderToString'
+export { render } from './render'
 
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'

@@ -1,17 +1,20 @@
-import Constants from 'expo-constants'
-import { StatusBar } from 'expo-status-bar'
-import React, { Fragment, type FunctionComponent, type ReactNode } from 'react'
+import Constants from './constants'
+import * as ESB from 'expo-status-bar'
+import React, { Fragment, useMemo, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
-import { useInitializeExpoRouter } from './global-state/router-store'
+import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
 import { ServerLocationContext } from './global-state/serverLocationContext'
 import { Head } from './head'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
+
+// for ssr support:
+const { StatusBar } = ESB
 
 export type ExpoRootProps = {
   context: RequireContext
@@ -68,6 +71,13 @@ export function ExpoRoot({
   navigationContainerProps,
   ...props
 }: ExpoRootProps) {
+  const headContext = useMemo(
+    () => ({
+      ...globalThis['vxrn__headContext__'],
+    }),
+    []
+  )
+
   /*
    * Due to static rendering we need to wrap these top level views in second wrapper
    * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
@@ -75,7 +85,7 @@ export function ExpoRoot({
    */
   const wrapper: ExpoRootProps['wrapper'] = ({ children }) => {
     return (
-      <Head.Provider context={globalThis['vxrn__headContext__']}>
+      <Head.Provider context={headContext.current}>
         <ParentWrapper>
           {/* <GestureHandlerRootView> */}
           <SafeAreaProvider

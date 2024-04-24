@@ -21,13 +21,13 @@ export default function useLinking(ref: React.RefObject<NavigationContainerRef<P
         }> & Readonly<{
             params?: Readonly<object | undefined>;
         }> & {
-            state?: Readonly<any> | import("@react-navigation/core").PartialState<Readonly<any>> | undefined;
+            state?: Readonly<any> | import("@react-navigation/routers").PartialState<Readonly<any>> | undefined;
         })[];
         type: string;
         stale: false;
     }>, "stale" | "routes">> & Readonly<{
         stale?: true | undefined;
-        routes: import("@react-navigation/core").PartialRoute<import("@react-navigation/core").Route<string, object | undefined>>[];
+        routes: import("@react-navigation/routers").PartialRoute<import("@react-navigation/routers").Route<string, object | undefined>>[];
     }> & {
         state?: (Partial<Omit<Readonly<{
             key: string;
@@ -41,13 +41,13 @@ export default function useLinking(ref: React.RefObject<NavigationContainerRef<P
             }> & Readonly<{
                 params?: Readonly<object | undefined>;
             }> & {
-                state?: Readonly<any> | import("@react-navigation/core").PartialState<Readonly<any>> | undefined;
+                state?: Readonly<any> | import("@react-navigation/routers").PartialState<Readonly<any>> | undefined;
             })[];
             type: string;
             stale: false;
         }>, "stale" | "routes">> & Readonly<{
             stale?: true | undefined;
-            routes: import("@react-navigation/core").PartialRoute<import("@react-navigation/core").Route<string, object | undefined>>[];
+            routes: import("@react-navigation/routers").PartialRoute<import("@react-navigation/routers").Route<string, object | undefined>>[];
         }> & any) | undefined;
     }) | undefined>;
 };

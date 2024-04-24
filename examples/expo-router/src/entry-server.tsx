@@ -1,8 +1,7 @@
-import { renderToString } from '@vxrn/expo-router'
-import { App, routes } from './entry-web'
+import { renderToString } from '@vxrn/expo-router/server-render'
+import { App } from './entry-web'
 
 export const render = async ({ path, props }: { path: string; props: Object }) => {
-  return renderToString(<App path={path} {...props} />, {
-    routes,
-  })
+  console.info(`[entry-server] render path ${path}`)
+  return renderToString(<App path={path} {...props} />)
 }

@@ -18,9 +18,9 @@ import {
   type Theme,
   ThemeProvider,
 } from '@react-navigation/native'
-// import useBackButton from '@react-navigation/native/src/useBackButton'
-import useDocumentTitle from '@react-navigation/native/src/useDocumentTitle'
-import useThenable from '@react-navigation/native/src/useThenable'
+// import useBackButton from '@react-navigation/native/lib/module/useBackButton.native.js'
+import useDocumentTitle from '@react-navigation/native/lib/module/useDocumentTitle.native.js'
+import useThenable from '@react-navigation/native/lib/module/useThenable.js'
 import * as React from 'react'
 
 import useLinking from './useLinking'
