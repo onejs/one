@@ -34,9 +34,8 @@ export function createRoutesManifest(paths: string[]): ExpoRoutesManifestV1 | nu
     ignoreRequireErrors: true,
     ignoreEntryPoints: true,
   })
-
   if (!routeTree) {
-    return null
+    throw new Error(`No route tree found`)
   }
   return getServerManifest(routeTree)
 }

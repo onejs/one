@@ -43,7 +43,6 @@ import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
 import { getVitePath } from '../utils/getVitePath'
 import { checkPatches } from '../utils/patches'
-import { createExpoServer } from '../vendor/createExpoServer'
 
 // sorry for the mess, exploring before abstracting
 
@@ -198,9 +197,6 @@ export const dev = async (optionsIn: VXRNConfig) => {
       }
     })
   )
-
-  // TODO move, this does SSR + API
-  createExpoServer(options, app, viteServer)
 
   const { handleUpgrade } = wsAdapter(app.websocket)
 

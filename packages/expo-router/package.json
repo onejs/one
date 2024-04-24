@@ -25,6 +25,11 @@
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
     },
+    "./vite": {
+      "types": "./types/vite.d.ts",
+      "import": "./dist/esm/vite.mjs",
+      "require": "./dist/cjs/vite.js"
+    },
     "./routes-manifest": {
       "types": "./types/routes-manifest.d.ts",
       "import": "./dist/esm/routes-manifest.mjs",
