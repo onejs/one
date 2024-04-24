@@ -19,6 +19,6 @@
   },
   "devDependencies": {
     "patch-package": "^8.0.0",
-    "vxrn": "0.1.34"
+    "vxrn": "0.1.35"
   }
 }
