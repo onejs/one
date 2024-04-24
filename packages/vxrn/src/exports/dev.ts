@@ -181,7 +181,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
 
         websocket: {
           open(peer) {
-            console.debug('[hmr:web] open', peer)
+            if (process.env.DEBUG) console.debug('[hmr:web] open', peer)
             clients.add(peer)
           },
 
@@ -190,7 +190,7 @@ export const dev = async (optionsIn: VXRNConfig) => {
           },
 
           close(peer, event) {
-            console.info('[hmr:web] close', peer, event)
+            if (process.env.DEBUG) console.info('[hmr:web] close', peer, event)
             clients.delete(peer)
           },
 
