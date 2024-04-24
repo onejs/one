@@ -26,7 +26,6 @@ export function useViteRoutes(routes: GlobbedRouteImports) {
 export async function loadRoutes(paths: any) {
   if (promise) await promise
   if (context) return context
-  console.debug(`Loading routes`, paths)
 
   globalThis['__importMetaGlobbed'] = paths
 
@@ -64,7 +63,6 @@ export async function loadRoutes(paths: any) {
 
   context = resolver
   promise = null
-  console.debug(`Loaded routes`)
 
   return context
 }

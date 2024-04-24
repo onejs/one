@@ -148,7 +148,9 @@ export const dev = async (optionsIn: VXRNConfig) => {
       console.error(error)
     },
     onRequest: (event) => {
-      console.info(' →', event.path)
+      if (process.env.DEBUG) {
+        console.info(' →', event.path)
+      }
     },
   })
 

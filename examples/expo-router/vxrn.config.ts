@@ -13,7 +13,8 @@ export default {
   webConfig: {
     plugins: [
       createFileSystemRouter({
-        root: join(__dirname, 'app'),
+        root: __dirname,
+        routesDir: 'app',
       }),
       //
       // tamaguiPlugin(),

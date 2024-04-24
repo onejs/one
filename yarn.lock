@@ -5719,6 +5719,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^20.12.7":
+  version: 20.12.7
+  resolution: "@types/node@npm:20.12.7"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: 7cc979f7e2ca9a339ec71318c3901b9978555257929ef3666987f3e447123bc6dc92afcc89f6347e09e07d602fde7d51bcddea626c23aa2bb74aeaacfd1e1686
+  languageName: node
+  linkType: hard
+
 "@types/prompts@npm:^2.4.9":
   version: 2.4.9
   resolution: "@types/prompts@npm:2.4.9"
@@ -6108,6 +6117,7 @@ __metadata:
     "@react-navigation/native-stack": ^6.9.13
     "@react-navigation/routers": ^6.1.9
     "@tamagui/build": ^1.94.4
+    "@types/node": ^20.12.7
     "@types/react-dom": ^18.2.25
     escape-string-regexp: ^5.0.0
     expo-constants: ^14.4.2

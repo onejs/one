@@ -1,16 +1,16 @@
 import { sync as globSync } from 'glob'
-import { readFile } from 'node:fs/promises'
+import { readFile, rm } from 'node:fs/promises'
 import { extname, join } from 'node:path'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { type ExpoRoutesManifestV1, createRoutesManifest } from './routes-manifest'
 
 type Options = {
   root: string
+  routesDir: string
 }
 
 export function createFileSystemRouter(options: Options): Plugin {
-  console.log('options', options)
-  const { root } = options
+  const { root, routesDir } = options
 
   return {
     name: `router-fs`,
@@ -24,7 +24,7 @@ export function createFileSystemRouter(options: Options): Plugin {
       // we're interested in.
 
       return () => {
-        const routePaths = getRoutePaths(root)
+        const routePaths = getRoutePaths(routesDir)
         const manifest = createRoutesManifest(routePaths)
 
         if (!manifest) {
@@ -40,7 +40,14 @@ export function createFileSystemRouter(options: Options): Plugin {
           try {
             if (!req.url) return
 
-            if (await handleAPIRoutes(options, server, req, apiRoutesMap)) {
+            const apiResponse = await handleAPIRoutes(options, server, req, apiRoutesMap)
+            if (apiResponse) {
+              const isPlainResponse = !apiResponse || typeof apiResponse === 'string'
+              if (!isPlainResponse) {
+                res.setHeader('Content-Type', 'application/json')
+              }
+              res.write(isPlainResponse ? apiResponse : JSON.stringify(apiResponse))
+              res.end()
               return
             }
 
@@ -74,22 +81,24 @@ async function handleAPIRoutes(
   req: Connect.IncomingMessage,
   apiRoutesMap: Object
 ) {
-  const matched = apiRoutesMap[req.url!]
+  const matched = apiRoutesMap[req.originalUrl!]
   if (matched) {
-    const loaded = await server.ssrLoadModule(join(options.root, matched.file))
+    const loaded = await server.ssrLoadModule(join(options.routesDir, matched.file))
     if (loaded) {
       const requestType = req.method || 'GET'
       const method = loaded[requestType]
       if (method) {
-        method(req)
-        return true
+        return await method(req)
       }
     }
   }
 }
 
+// ensure only one at a time
+let currentSSRBuild: Promise<void> | null = null
+
 async function handleSSR(
-  { root }: Options,
+  { routesDir, root }: Options,
   server: ViteDevServer,
   req: Connect.IncomingMessage,
   manifest: ExpoRoutesManifestV1<string>
@@ -97,10 +106,17 @@ async function handleSSR(
   if (!req.url) return
   if (req.url.startsWith('/@')) return
   if (req.url === '/__vxrnhmr') return
+  if (req.method !== 'GET') return
+  if (currentSSRBuild) await currentSSRBuild
 
-  const pathOg = req.url === '/index.html' ? '/' : req.url
+  const pathOg = req.originalUrl || ''
+
+  if (extname(pathOg) !== '') return
+
   const url = new URL(pathOg, 'http://tamagui.dev')
   const path = url.pathname // sanitized
+
+  let resolve = () => {}
 
   for (const route of manifest.htmlRoutes) {
     // TODO performance
@@ -109,20 +125,36 @@ async function handleSSR(
     }
 
     const params = getParams(url, route)
-    const routeFile = join(root, route.file)
+    const routeFile = join(routesDir, route.file)
+
+    currentSSRBuild = new Promise((res) => {
+      resolve = res
+    })
+
+    // in dev mode clear the entire temp dir to ensure clean build?
+    if (process.env.NODE_ENV === 'development') {
+      try {
+        await rm(join(root, 'node_modules', '.vite', 'deps_ssr'), {
+          recursive: true,
+        })
+      } catch (err) {
+        if (err instanceof Error) {
+          // @ts-expect-error wtf
+          if (err.code !== 'ENOENT') {
+            throw Error
+          }
+        }
+      }
+    }
 
     try {
-      server.moduleGraph.invalidateAll()
-
       const exported = await server.ssrLoadModule(routeFile, {
         fixStacktrace: true,
       })
 
       const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
 
-      const { render } = await server.ssrLoadModule(`${root}/../src/entry-server.tsx`)
-
-      console.trace(`SSR loaded the server entry, rendering...`)
+      const { render } = await server.ssrLoadModule(`${routesDir}/../src/entry-server.tsx`)
 
       const { appHtml, headHtml } = await render({
         path,
@@ -141,6 +173,10 @@ async function handleSSR(
     } catch (err) {
       const message = err instanceof Error ? `${err.message}:\n${err.stack}` : `${err}`
       console.error(`Error in SSR: ${message}`)
+      break
+    } finally {
+      currentSSRBuild = null
+      resolve()
     }
   }
 }
