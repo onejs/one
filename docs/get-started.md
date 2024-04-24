@@ -1,14 +1,6 @@
 # Get Started
 
-::: warning
-Please note, vxrn is in early alpha. We need contributions!
-:::
-
-vxrn is a package that lets you serve your React Native apps using Vite. This is pretty cool as Vite typically doesn't seem like it would "play well" with React Native - React Native only supports CommonJS, even for hot reloading, whereas Vite is all-in on ESModules.
-
-Luckily, with some effort, we've put together a variety of plugins and configuration for Vite that make this work. We run a full `build` of your app on first request using Vite's internal Rollup, and make some modifications to the CJS it exports so that its well-suited for hot reloading as React Native expects.
-
-Today it runs many simple apps well. We'd like to get the community involved to make vxrn viable for any scale of React Native app.
+vxrn is an experimental package to build and serve your React Native apps using only Vite.
 
 ## Install
 
