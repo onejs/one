@@ -5,7 +5,8 @@
   "private": true,
   "main": "index.jsx",
   "scripts": {
-    "dev": "vxrn dev"
+    "dev": "vxrn dev",
+    "postinstall": "patch-package || true"
   },
   "dependencies": {
     "@tamagui/config": "^1.94.4",
