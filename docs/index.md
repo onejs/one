@@ -19,7 +19,7 @@ hero:
 
 features:
   - title: All the goodness of Vite
-    details: Incredibly quick startup, amazing web features, and a beautiful plugin API.
+    details: Quick startup, great web support, easy configuration, large and growing  community.
   - title: SWC and React Refresh
     details: Hot reloading works out of the box, and build times are snappy thanks to SWC.
   - title: Experimental CLI
