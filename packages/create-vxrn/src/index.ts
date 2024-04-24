@@ -40,7 +40,7 @@ const main = defineCommand({
     template: {
       type: 'string',
       required: false,
-      description: 'One of "bare", "tamagui", "expo-router".',
+      description: 'One of "bare", "tamagui", "router".',
     },
     info: {
       type: 'boolean',
