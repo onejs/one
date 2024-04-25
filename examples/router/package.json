@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.7",
-    "@vxrn/router": "0.1.41",
+    "@vxrn/router": "0.1.42",
     "expo-modules-core": "1.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,6 +24,6 @@
     "h3": "^1.11.1",
     "patch-package": "^8.0.0",
     "sirv": "^2.0.4",
-    "vxrn": "0.1.41"
+    "vxrn": "0.1.42"
   }
 }
