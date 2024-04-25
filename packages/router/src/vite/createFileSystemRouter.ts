@@ -192,7 +192,7 @@ async function handleSSR(
     } catch (err) {
       const message = err instanceof Error ? `${err.message}:\n${err.stack}` : `${err}`
       console.error(`Error in SSR: ${message}`)
-      return indexHtml
+      return template
     } finally {
       currentSSRBuild = null
       resolve()
