@@ -16,4 +16,5 @@ export { Unmatched } from './views/Unmatched';
 export { SplashScreen } from './views/Splash';
 export { useFocusEffect } from './useFocusEffect';
 export { useNavigation } from './useNavigation';
+export { type LoaderProps, useLoader } from './useLoader';
 //# sourceMappingURL=index.d.ts.map

@@ -1,4 +1,4 @@
-import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
+// import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
 import { createFileSystemRouter, clientTreeShakePlugin } from '@vxrn/router/vite'
 import type { VXRNConfig } from 'vxrn'
 
@@ -18,8 +18,7 @@ export default {
     plugins: [
       clientTreeShakePlugin(),
       createFileSystemRouter({
-        root: import.meta.dirname,
-        routesDir: 'app',
+        root: 'app',
       }),
       // tamaguiPlugin(),
       // tamaguiExtractPlugin(),

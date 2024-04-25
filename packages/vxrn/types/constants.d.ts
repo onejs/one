@@ -1,4 +1,5 @@
 export declare const DEFAULT_PORT = 8081;
+export declare const EMPTY_LOADER_STRING = "function loader() {/* \u2737\u2737\u2737 */};";
 export declare const nativeExtensions: string[];
 export declare const webExtensions: string[];
 export declare const depsToOptimize: string[];

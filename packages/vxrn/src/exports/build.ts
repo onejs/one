@@ -25,6 +25,11 @@ const { ensureDir, existsSync, readFile, pathExists } = FSExtra
 
 // web only for now
 
+// TODO:
+//  - make this only build native or web bundles
+//  - move router stuff into router package
+//  - generateStaticPages becomes a vite 'post' postbuild callback in router plugin
+
 export const build = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
 
@@ -159,9 +164,8 @@ async function generateStaticPages(
         return await Promise.all(
           paramsList.map(async (params) => {
             const path = getUrl(params)
-            const props =
-              (await exported.generateStaticProps?.({ path: getUrl(params), params })) ?? {}
-            return { path, props }
+            const loaderData = (await exported.loader?.({ path: getUrl(params), params })) ?? {}
+            return { path, loaderData }
           })
         )
 
@@ -207,8 +211,8 @@ async function generateStaticPages(
   const cssString = await FSExtra.readFile(tmpCssFile, 'utf-8')
 
   // pre-render each route...
-  for (const { path, props } of allRoutes) {
-    const { appHtml, headHtml } = await render({ path, props })
+  for (const { path, loaderData } of allRoutes) {
+    const { appHtml, headHtml } = await render({ path })
     const slashFileName = `${path === '/' ? '/index' : path}.html`
     const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
     const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
@@ -216,7 +220,7 @@ async function generateStaticPages(
       template: clientHtml || template,
       appHtml,
       headHtml,
-      props,
+      loaderData,
       css: cssString,
     })
     const filePath = toAbsolute(`dist/static${slashFileName}`)

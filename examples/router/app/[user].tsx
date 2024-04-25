@@ -1,4 +1,4 @@
-import { Link, useGlobalSearchParams } from '@vxrn/router'
+import { Link, useGlobalSearchParams, useLoader } from '@vxrn/router'
 import { Text, View } from 'tamagui'
 
 type UserPath = {
@@ -9,14 +9,26 @@ type UserProps = {
   hello: string
 }
 
+export async function generateStaticParams(): Promise<UserPath[]> {
+  return [{ user: 'one' }, { user: 'two' }]
+}
+
+export async function loader({ params }: { params: UserPath }) {
+  return {
+    hello: `${params.user}`,
+  }
+}
+
 export default function User(props: UserProps) {
   const params = useGlobalSearchParams()
+  const data = useLoader(loader)
 
   return (
     <View>
       <View>
         <Text>User: {params?.user}</Text>
         <Text>props: ${JSON.stringify(props || null)}</Text>
+        <Text>data: ${JSON.stringify(data || null)}</Text>
         <Link
           href={{
             pathname: '/[...spread]',
@@ -60,14 +72,4 @@ export default function User(props: UserProps) {
       </View>
     </View>
   )
-}
-
-export async function generateStaticParams(): Promise<UserPath[]> {
-  return [{ user: 'one' }, { user: 'two' }]
-}
-
-export function generateStaticProps({ params }: { params: UserPath }): UserProps {
-  return {
-    hello: `${params.user}`,
-  }
 }

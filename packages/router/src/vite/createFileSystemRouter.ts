@@ -1,20 +1,20 @@
 import * as Glob from 'glob'
-import { readFile, rm } from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 import { extname, join } from 'node:path'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
-import { type ExpoRoutesManifestV1, createRoutesManifest } from '../routes-manifest'
+import { createRoutesManifest, type ExpoRoutesManifestV1 } from '../routes-manifest'
+import { getHtml } from './getHtml'
 
 const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 
 type Options = {
   root: string
-  routesDir: string
   shouldIgnore?: (req: Connect.IncomingMessage) => boolean
   disableSSR?: boolean
 }
 
 export function createFileSystemRouter(options: Options): Plugin {
-  const { root, routesDir, shouldIgnore } = options
+  const { root, shouldIgnore } = options
 
   return {
     name: `router-fs`,
@@ -28,7 +28,7 @@ export function createFileSystemRouter(options: Options): Plugin {
       // we're interested in.
 
       return () => {
-        const routePaths = getRoutePaths(routesDir)
+        const routePaths = getRoutePaths(root)
         const manifest = createRoutesManifest(routePaths)
 
         if (!manifest) {
@@ -97,7 +97,7 @@ async function handleAPIRoutes(
 ) {
   const matched = apiRoutesMap[req.originalUrl!]
   if (matched) {
-    const loaded = await server.ssrLoadModule(join(options.routesDir, matched.file))
+    const loaded = await server.ssrLoadModule(join(options.root, matched.file))
     if (loaded) {
       const requestType = req.method || 'GET'
       const method = loaded[requestType]
@@ -112,7 +112,7 @@ async function handleAPIRoutes(
 let currentSSRBuild: Promise<void> | null = null
 
 async function handleSSR(
-  { routesDir, root, disableSSR }: Options,
+  { root, disableSSR }: Options,
   server: ViteDevServer,
   req: Connect.IncomingMessage,
   manifest: ExpoRoutesManifestV1<string>
@@ -146,7 +146,7 @@ async function handleSSR(
     }
 
     const params = getParams(parsedUrl, route)
-    const routeFile = join(routesDir, route.file)
+    const routeFile = join(root, route.file)
 
     currentSSRBuild = new Promise((res) => {
       resolve = res
@@ -159,27 +159,28 @@ async function handleSSR(
         fixStacktrace: true,
       })
 
-      const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
+      const loaderData = await exported.loader?.({ path, params })
 
-      if (Object.keys(props).length) {
-        console.info(`Got props: ${JSON.stringify(props)}`)
+      if (loaderData) {
+        console.info(` [vxrn] loader(): ${JSON.stringify(loaderData)}`)
       }
 
-      const entryServer = `${routesDir}/../src/entry-server.tsx`
+      const entryServer = `${root}/../src/entry-server.tsx`
 
       process.env.TAMAGUI_IS_SERVER = '1'
 
       const { render } = await server.ssrLoadModule(entryServer)
 
+      globalThis['__vxrnLoaderData__'] = loaderData
+
       const { appHtml, headHtml } = await render({
         path,
-        props,
       })
 
       return getHtml({
         appHtml,
         headHtml,
-        props,
+        loaderData,
         template,
       })
     } catch (err) {
@@ -214,25 +215,4 @@ function getRoutePaths(cwd: string) {
 
 function normalizePaths(p: string) {
   return p.replace(/\\/g, '/')
-}
-
-export function getHtml({
-  template,
-  props,
-  appHtml,
-  headHtml,
-  css,
-}: { css?: string; template: string; props: Object; appHtml: string; headHtml: string }) {
-  const propsHtml = `\n<script>globalThis['__vxrnProps']=${JSON.stringify(props)}</script>`
-
-  if (!template.includes(`<!--ssr-outlet-->`)) {
-    throw new Error(`No <!--ssr-outlet--> found in html to inject SSR contents`)
-  }
-  if (!template.includes(`<!--head-outlet-->`)) {
-    throw new Error(`No <!--head-outlet--> found in html to inject SSR contents`)
-  }
-
-  return template
-    .replace(`<!--ssr-outlet-->`, appHtml + propsHtml)
-    .replace(`<!--head-outlet-->`, `${headHtml}\n${css ? `<style>${css}</style>` : ``}`)
 }

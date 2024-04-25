@@ -2,6 +2,7 @@ import type { Node, Program, BaseNode } from 'estree'
 import { walk } from 'estree-walker'
 import MagicString from 'magic-string'
 import type { Plugin } from 'vite'
+import { EMPTY_LOADER_STRING } from './constants'
 
 interface TreeShakeTemplatePluginOptions {
   sourcemap?: boolean
@@ -18,7 +19,7 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
       if (settings?.ssr) return
       if (id.includes('node_modules')) return
 
-      if (!/generateStaticParams|generateStaticProps/.test(code)) {
+      if (!/generateStaticParams|loader/.test(code)) {
         return
       }
 
@@ -28,11 +29,11 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
       walk(codeAst, {
         enter: (node) => {
           walkGenerateStaticParams(node)
-          walkGenerateStaticProps(node)
+          walkLoader(node)
         },
       })
 
-      function walkGenerateStaticProps(node: BaseNode) {
+      function walkLoader(node: BaseNode) {
         if (node.type === 'ExportNamedDeclaration' || node.type === 'VariableDeclaration') {
           let declarators = (
             'declarations' in node
@@ -45,23 +46,18 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
           let shouldRemove = false
 
           declarators.forEach((declarator) => {
-            if (
-              declarator.id.type === 'Identifier' &&
-              declarator.id.name === 'generateStaticProps'
-            ) {
+            if (declarator.id.type === 'Identifier' && declarator.id.name === 'loader') {
               shouldRemove = true
             }
           })
 
-          const replaceStr = `function generateStaticProps() {};`
+          const replaceStr = EMPTY_LOADER_STRING
           const length = node['end'] - node['start']
 
           if (shouldRemove) {
             // @ts-ignore
             // s.remove(node.start, node.end + 1)
             s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
-            // make sure it doesnt error with forceExports
-            // s.append(`function generateStaticProps {}`)
 
             if (node.type === 'ExportNamedDeclaration') {
               // remove import declaration if it exists

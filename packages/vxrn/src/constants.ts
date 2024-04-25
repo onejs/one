@@ -1,6 +1,9 @@
-import type { SSROptions, UserConfig } from 'vite'
+import type { UserConfig } from 'vite'
 
 export const DEFAULT_PORT = 8081
+
+// TODO move to router
+export const EMPTY_LOADER_STRING = `function loader() {/* ✷✷✷ */};`
 
 export const nativeExtensions = [
   '.native.tsx',
