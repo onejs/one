@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url)
 export type VXRNConfigFilled = Awaited<ReturnType<typeof getOptionsFilled>>
 
 export async function getOptionsFilled(options: VXRNConfig) {
-  const { host = '127.0.0.1', root = process.cwd() } = options
+  const { host = '127.0.0.1', root = process.cwd(), entries } = options
 
   const defaultPort = options.port || 8081
   const port = await getPort({
@@ -30,6 +30,11 @@ export async function getOptionsFilled(options: VXRNConfig) {
   ])
   return {
     ...options,
+    entries: {
+      native: './src/entry-native.tsx',
+      server: './src/entry-server.tsx',
+      ...entries,
+    },
     packageJSON,
     state,
     packageRootDir,

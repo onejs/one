@@ -1,7 +1,5 @@
-// sorry - don't want this file here but need to fix entryNative
-
 import { AppRegistry, LogBox } from 'react-native'
-import { App } from './src/entry-web'
+import { App } from './entry-web'
 
 AppRegistry.registerComponent('main', () => App)
 
