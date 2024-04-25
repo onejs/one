@@ -152,33 +152,20 @@ async function handleSSR(
       resolve = res
     })
 
-    // in dev mode clear the entire temp dir to ensure clean build?
-    if (process.env.NODE_ENV === 'development') {
-      try {
-        // server.moduleGraph.invalidateAll()
-        await rm(join(root, 'node_modules', '.vite', 'deps_ssr'), {
-          recursive: true,
-          force: true,
-        })
-      } catch (err) {
-        if (err instanceof Error) {
-          // @ts-expect-error wtf
-          if (err.code !== 'ENOENT') {
-            throw Error
-          }
-        }
-      }
-    }
-
     try {
       console.info(`SSR load`, routeFile)
+
       const exported = await server.ssrLoadModule(routeFile, {
         fixStacktrace: true,
       })
 
       const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
 
-      const { render } = await server.ssrLoadModule(`${routesDir}/../src/entry-server.tsx`)
+      const entryServer = `${routesDir}/../src/entry-server.tsx`
+
+      process.env.TAMAGUI_IS_SERVER = '1'
+
+      const { render } = await server.ssrLoadModule(entryServer)
 
       const { appHtml, headHtml } = await render({
         path,

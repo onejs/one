@@ -7,7 +7,11 @@ const dev = defineCommand({
     version: '0.0.0',
     description: 'Start the dev server',
   },
-  args: {},
+  args: {
+    clean: {
+      type: 'boolean',
+    },
+  },
   async run({ args }) {
     const userConfig = await readVXRNConfig()
     const { dev } = await import(
@@ -15,6 +19,7 @@ const dev = defineCommand({
       './exports/dev.mjs'
     )
     const { start, stop } = await dev({
+      clean: args.clean,
       root: process.cwd(),
       host: '127.0.0.1',
       webConfig: {

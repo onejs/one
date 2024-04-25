@@ -13,12 +13,14 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
       __DEV__: `${mode === 'development'}`,
       'process.env.NODE_ENV': `"${mode}"`,
     },
+
     resolve: {
       alias: {
         'react-native': 'react-native-web',
         'react-native-safe-area-context': '@vxrn/safe-area',
       },
     },
+
     build: {
       commonjsOptions: {
         transformMixedEsModules: true,
