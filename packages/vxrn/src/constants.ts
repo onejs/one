@@ -1,60 +1,6 @@
-import type { SSROptions } from 'vite'
+import type { SSROptions, UserConfig } from 'vite'
 
 export const DEFAULT_PORT = 8081
-
-export const depsToOptimize = [
-  '@react-native/normalize-color',
-  // '@react-navigation/core',
-  // '@react-navigation/native',
-  '@vxrn/router',
-  'expo-modules-core',
-  'expo-status-bar',
-  // 'react',
-  // 'react/jsx-dev-runtime',
-  // 'react/jsx-runtime',
-  // 'react-dom',
-  // 'react-dom/server',
-  // 'react-dom/client',
-  // 'react-dom/server',
-  // 'react-native-safe-area-context',
-  'react-native-web',
-  'react-native-web-lite',
-  'react-native',
-  'tamagui',
-  '@tamagui/sheet',
-  '@tamagui/dialog',
-  '@tamagui/alert-dialog',
-  '@tamagui/image',
-  '@tamagui/avatar',
-  '@tamagui/group',
-  '@tamagui/popper',
-  '@tamagui/popover',
-  '@tamagui/scroll-view',
-  '@tamagui/select',
-  '@tamagui/switch',
-  '@tamagui/tabs',
-  '@tamagui/toggle-group',
-  '@tamagui/tooltip',
-  '@tamagui/use-window-dimensions',
-  'react-native-web',
-  'react-native-web-lite',
-  'reforest',
-]
-
-export const needsInterop = [
-  'react',
-  'react/jsx-runtime',
-  'react/jsx-dev-runtime',
-  'react-native-web-internals',
-  'react-dom',
-  'react-native-web',
-  // '@vxrn/router',
-  // '@vxrn/router/render',
-  'react-dom/server',
-  'react-dom/client',
-]
-
-export const ssrDepsToOptimize = [...new Set([...depsToOptimize, ...needsInterop])]
 
 export const nativeExtensions = [
   '.native.tsx',
@@ -82,11 +28,74 @@ export const webExtensions = [
   '.json',
 ]
 
-export const ssrOptimizeDeps = {
-  include: ssrDepsToOptimize,
-  extensions: webExtensions,
+const needsInterop = [
+  'react',
+  'react/jsx-runtime',
+  'react/jsx-dev-runtime',
+  'react-native-web-internals',
+  'react-dom',
+  'react-native-web',
+  'react-dom/server',
+  'react-dom/client',
+
+  'url-parse',
+  '@vxrn/safe-area',
+  'query-string',
+  'escape-string-regexp',
+  'use-latest-callback',
+  'react-is',
+  'fast-deep-equal',
+  '@react-navigation/native',
+  'tamagui/linear-gradient',
+  'react-native-svg',
+  '@supabase/auth-helpers-react',
+  'parse-numeric-range',
+  'use-sync-external-store',
+  'use-sync-external-store/shim',
+  'swr',
+]
+
+export const depsToOptimize = [
+  ...needsInterop,
+  '@react-native/normalize-color',
+  '@vxrn/router',
+  'expo-modules-core',
+  'expo-status-bar',
+  'react-native-web',
+  'react-native-web-lite',
+  'react-native',
+  '@tamagui/alert-dialog',
+  '@tamagui/avatar',
+  '@tamagui/core',
+  '@tamagui/dialog',
+  '@tamagui/group',
+  '@tamagui/helpers-icon',
+  '@tamagui/helpers',
+  '@tamagui/image',
+  '@tamagui/lucide-icons',
+  '@tamagui/popover',
+  '@tamagui/popper',
+  '@tamagui/scroll-view',
+  '@tamagui/select',
+  '@tamagui/sheet',
+  '@tamagui/switch',
+  '@tamagui/tabs',
+  '@tamagui/toast',
+  '@tamagui/toggle-group',
+  '@tamagui/tooltip',
+  '@tamagui/use-window-dimensions',
+  '@tamagui/web',
+  'tamagui',
+  'react-native-web',
+  'react-native-web-lite',
+  'reforest',
+]
+
+export const optimizeDeps = {
+  include: depsToOptimize,
   needsInterop,
+  exclude: ['util'],
   esbuildOptions: {
     resolveExtensions: webExtensions,
   },
-} satisfies SSROptions['optimizeDeps']
+} satisfies UserConfig['optimizeDeps']

@@ -11,7 +11,7 @@ import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getHtml } from '../utils/getHtml'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
-import { ssrOptimizeDeps } from '../constants'
+import { optimizeDeps } from '../constants'
 
 export const resolveFile = (path: string) => {
   try {
@@ -38,7 +38,7 @@ export const build = async (optionsIn: VXRNConfig) => {
     {
       root: options.root,
       clearScreen: false,
-      optimizeDeps: ssrOptimizeDeps,
+      optimizeDeps,
     }
   ) satisfies UserConfig
 
@@ -94,7 +94,7 @@ export const build = async (optionsIn: VXRNConfig) => {
 
       ssr: {
         noExternal: true,
-        optimizeDeps: ssrOptimizeDeps,
+        optimizeDeps,
       },
 
       build: {

@@ -33,7 +33,7 @@ import {
 import createViteFlow from '@vxrn/vite-flow'
 import type { Peer } from 'crossws'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
-import { depsToOptimize, nativeExtensions, ssrOptimizeDeps, webExtensions } from '../constants'
+import { depsToOptimize, nativeExtensions, optimizeDeps, webExtensions } from '../constants'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import type { VXRNConfig } from '../types'
@@ -766,18 +766,11 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
     {
       root,
       clearScreen: false,
-
       plugins: [reactNativeHMRPlugin(config)],
-      optimizeDeps: {
-        include: depsToOptimize,
-        exclude: [`${cacheDir}/*`],
-        esbuildOptions: {
-          resolveExtensions: webExtensions,
-        },
-      },
+      optimizeDeps,
       ssr: {
         noExternal: true,
-        optimizeDeps: ssrOptimizeDeps,
+        optimizeDeps,
       },
       server: {
         hmr: {
