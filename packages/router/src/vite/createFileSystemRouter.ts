@@ -128,9 +128,10 @@ async function handleSSR(
   const parsedUrl = new URL(url, `http://${req.headers.host}`)
   const path = parsedUrl.pathname // sanitized
   const indexHtml = await readFile('./index.html', 'utf-8')
+  const template = await server.transformIndexHtml(path, indexHtml)
 
   if (disableSSR) {
-    return indexHtml
+    return template
   }
 
   let resolve = () => {}
@@ -178,8 +179,6 @@ async function handleSSR(
         path,
         props,
       })
-
-      const template = await server.transformIndexHtml(path, indexHtml)
 
       return getHtml({
         appHtml,

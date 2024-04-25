@@ -791,6 +791,16 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
 
   if (webConfig) {
     serverConfig = mergeConfig(serverConfig, webConfig) as any
+    // it doesnt override true with array which youd expect
+    const theirNoExternal = serverConfig.ssr?.noExternal
+    if (theirNoExternal != null && theirNoExternal !== true) {
+      serverConfig.ssr!.noExternal = theirNoExternal
+    }
+  }
+
+  if (process.env.DEBUG) {
+    console.debug('server config is', serverConfig)
+    console.debug('server ssr', serverConfig.ssr)
   }
 
   serverConfig = {
