@@ -8,7 +8,7 @@ import {
   toNodeListener,
 } from 'h3'
 import { createProxyEventHandler } from 'h3-proxy'
-import { readFile } from 'node:fs/promises'
+import { readFile, rm } from 'node:fs/promises'
 import { createServer as nodeCreateServer } from 'node:http'
 import { dirname, join, relative, resolve } from 'node:path'
 import readline from 'node:readline'
@@ -33,7 +33,7 @@ import {
 import createViteFlow from '@vxrn/vite-flow'
 import type { Peer } from 'crossws'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
-import { depsToOptimize, nativeExtensions, optimizeDeps, webExtensions } from '../constants'
+import { depsToOptimize, nativeExtensions, optimizeDeps } from '../constants'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import type { VXRNConfig } from '../types'
@@ -57,9 +57,26 @@ export const resolveFile = (path: string) => {
 
 const { ensureDir, pathExists, pathExistsSync } = FSExtra
 
-export const dev = async (_options: VXRNConfig) => {
-  const options = await getOptionsFilled(_options)
+export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) => {
+  const options = await getOptionsFilled(rest)
   const { host, port, root, cacheDir } = options
+
+  if (clean) {
+    try {
+      console.info(` [vxrn] cleaning node_modules/.vite`)
+      await rm(join(root, 'node_modules', '.vite'), {
+        recursive: true,
+        force: true,
+      })
+    } catch (err) {
+      if (err instanceof Error) {
+        // @ts-expect-error wtf
+        if (err.code !== 'ENOENT') {
+          throw Error
+        }
+      }
+    }
+  }
 
   // TODO move somewhere
   bindKeypressInput()
@@ -756,6 +773,21 @@ function isWithin(outer: string, inner: string) {
 // used for normalizing hot reloads
 let entryRoot = ''
 
+// function watchNodeModules(modules: string[]): PluginOption {
+//   return {
+//     name: 'watch-node-modules',
+//     config() {
+//       return {
+//         server: {
+//           watch: {
+//             ignored: modules.map((m) => `!**/packages/${m}/**`),
+//           },
+//         },
+//       }
+//     },
+//   }
+// }
+
 async function getViteServerConfig(config: VXRNConfigFilled) {
   const { root, host, webConfig, cacheDir } = config
 
@@ -766,7 +798,20 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
     {
       root,
       clearScreen: false,
-      plugins: [reactNativeHMRPlugin(config)],
+      plugins: [
+        reactNativeHMRPlugin(config),
+        // watchNodeModules(['@tamagui/popper'])
+
+        {
+          name: 'process-env-ssr',
+          transform(code, id, options) {
+            if (id.includes('node_modules')) return
+            if (code.includes('process.env.TAMAGUI_IS_SERVER')) {
+              return code.replaceAll('process.env.TAMAGUI_IS_SERVER', `${!!options?.ssr}`)
+            }
+          },
+        },
+      ],
       optimizeDeps,
       ssr: {
         noExternal: true,
