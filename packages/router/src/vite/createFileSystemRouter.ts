@@ -168,7 +168,7 @@ async function handleSSR(
 
     try {
       const exported = await server.ssrLoadModule(routeFile, {
-        // fixStacktrace: true,
+        fixStacktrace: true,
       })
 
       const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
