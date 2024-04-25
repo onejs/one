@@ -800,7 +800,7 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
 
   if (process.env.DEBUG) {
     console.debug('server config is', serverConfig)
-    console.debug('server ssr', serverConfig.ssr)
+    console.debug('server ssr\n', JSON.stringify(serverConfig.ssr, null, 2))
   }
 
   serverConfig = {
