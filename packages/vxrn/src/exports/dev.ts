@@ -386,7 +386,6 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
 
       {
         name: 'reanimated',
-
         async transform(code, id) {
           if (code.includes('worklet')) {
             const out = await babelReanimated(code, id)
@@ -411,7 +410,7 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
       {
         name: 'treat-js-files-as-jsx',
         async transform(code, id) {
-          if (!id.match(/expo-status-bar/)) return null
+          if (!id.includes(`expo-status-bar`)) return null
           // Use the exposed transform from vite, instead of directly
           // transforming with esbuild
           return transformWithEsbuild(code, id, {
@@ -421,6 +420,7 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
         },
       },
     ].filter(Boolean),
+
     appType: 'custom',
     root,
     clearScreen: false,
@@ -449,6 +449,7 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
         transformMixedEsModules: true,
       },
       rollupOptions: {
+        input: options.entries.native,
         treeshake: false,
         preserveEntrySignatures: 'strict',
         output: {
@@ -463,12 +464,8 @@ async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugi
     nativeBuildConfig = mergeConfig(nativeBuildConfig, options.nativeConfig) as any
   }
 
-  // this fixes my swap-react-native plugin not being called pre 😳
+  // // this fixes my swap-react-native plugin not being called pre 😳
   await resolveConfig(nativeBuildConfig, 'build')
-
-  // seems to be not working but needed to put it after the resolve or else it was cleared
-  // @ts-ignore
-  // nativeBuildConfig.build.rollupOptions.input = join(root, buildInput)
 
   const buildOutput = await build(nativeBuildConfig)
 

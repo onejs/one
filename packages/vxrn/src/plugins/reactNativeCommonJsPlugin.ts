@@ -87,8 +87,6 @@ export function reactNativeCommonJsPlugin(options: {
 
       config.build.rollupOptions ??= {}
 
-      config.build.rollupOptions.input = config.root
-
       config.build.rollupOptions.output ??= {}
 
       config.build.rollupOptions.plugins ??= []

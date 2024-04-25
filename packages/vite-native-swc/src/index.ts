@@ -82,6 +82,7 @@ export default (_options?: Options): PluginOption[] => {
                           useDefineForClassFields: true,
                           react: {
                             development: true,
+                            // refresh: false,
                             runtime: 'automatic',
                           },
                         },

@@ -1,6 +1,10 @@
 import type { VXRNConfig } from '../types';
 export type VXRNConfigFilled = Awaited<ReturnType<typeof getOptionsFilled>>;
 export declare function getOptionsFilled(options: VXRNConfig): Promise<{
+    entries: {
+        native: string;
+        server: string;
+    };
     packageJSON: import("pkg-types").PackageJson;
     state: State;
     packageRootDir: string;
@@ -10,7 +14,6 @@ export declare function getOptionsFilled(options: VXRNConfig): Promise<{
     host: string;
     root: string;
     port: number;
-    entryNative?: string | undefined;
     webConfig?: import("vite").InlineConfig | undefined;
     nativeConfig?: import("vite").InlineConfig | undefined;
     flow?: import("@vxrn/vite-flow").Options | undefined;
