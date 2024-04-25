@@ -82,7 +82,7 @@ export default (_options?: Options): PluginOption[] => {
                           useDefineForClassFields: true,
                           react: {
                             development: true,
-                            // refresh: false,
+                            refresh: false,
                             runtime: 'automatic',
                           },
                         },
@@ -181,15 +181,16 @@ module.hot = createHotContext(module.url)
 
 ${code}
 
-import.meta.hot.accept(() => {})
 
 if (module.hot) {
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
   globalThis['lastHmrExports'] = JSON.stringify(Object.keys(exports))
+  if (module.hot.accept) {
     module.hot.accept((nextExports) => {
       RefreshRuntime.performReactRefresh()
     });
+  }
 }
   `
 }

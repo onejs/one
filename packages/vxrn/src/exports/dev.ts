@@ -517,11 +517,6 @@ __require("${outputModule.fileName}")
   }
 
   appCode = appCode
-    // this can be done in the individual file transform
-    .replaceAll('undefined.accept(() => {})', '')
-    .replaceAll('undefined.accept(function() {});', '')
-    .replaceAll('(void 0).accept(() => {})', '')
-    .replaceAll('(void 0).accept(function() {});', '')
     // TEMP FIX for router tamagui thing since expo router 3 upgrade
     .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
 
