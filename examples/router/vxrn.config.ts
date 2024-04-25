@@ -24,8 +24,8 @@ export default {
         root: import.meta.dirname,
         routesDir: 'app',
       }),
-      tamaguiPlugin(),
-      tamaguiExtractPlugin(),
+      // tamaguiPlugin(),
+      // tamaguiExtractPlugin(),
     ],
   },
 } satisfies VXRNConfig
