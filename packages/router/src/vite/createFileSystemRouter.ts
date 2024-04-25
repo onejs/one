@@ -158,6 +158,7 @@ async function handleSSR(
         // server.moduleGraph.invalidateAll()
         await rm(join(root, 'node_modules', '.vite', 'deps_ssr'), {
           recursive: true,
+          force: true,
         })
       } catch (err) {
         if (err instanceof Error) {
@@ -170,6 +171,7 @@ async function handleSSR(
     }
 
     try {
+      console.info(`SSR load`, routeFile)
       const exported = await server.ssrLoadModule(routeFile, {
         fixStacktrace: true,
       })
@@ -231,6 +233,14 @@ export function getHtml({
   css,
 }: { css?: string; template: string; props: Object; appHtml: string; headHtml: string }) {
   const propsHtml = `\n<script>globalThis['__vxrnProps']=${JSON.stringify(props)}</script>`
+
+  if (!template.includes(`<!--ssr-outlet-->`)) {
+    throw new Error(`No <!--ssr-outlet--> found in html to inject SSR contents`)
+  }
+  if (!template.includes(`<!--head-outlet-->`)) {
+    throw new Error(`No <!--head-outlet--> found in html to inject SSR contents`)
+  }
+
   return template
     .replace(`<!--ssr-outlet-->`, appHtml + propsHtml)
     .replace(`<!--head-outlet-->`, `${headHtml}\n${css ? `<style>${css}</style>` : ``}`)
