@@ -30,6 +30,8 @@ export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
   return context
 }
 
+export const loadingRoutes = new Set()
+
 export async function loadRoutes(paths: any) {
   if (promise) await promise
   if (context) return context
@@ -48,7 +50,7 @@ export async function loadRoutes(paths: any) {
         console.error(`Error: Timed out loading ${path}`)
       }, 1000)
       try {
-        const evaluated = await paths[path]()
+        const evaluated = paths[path]
         routesSync[path] = evaluated
         // this is a temp fix for matching webpack style routes:
         routesSync[path.replace('../app/', './')] = evaluated
@@ -61,14 +63,23 @@ export async function loadRoutes(paths: any) {
     })
   )
   const moduleKeys = Object.keys(routesSync)
-  function resolver(id: string) {
+  function resolve(id: string) {
+    if (typeof routesSync[id] === 'function') {
+      const promise = routesSync[id]().then((val: any) => {
+        routesSync[id] = val
+        loadingRoutes.delete(promise)
+      })
+      loadingRoutes.add(promise)
+      return { default: null }
+    }
+
     return routesSync[id]
   }
-  resolver.keys = () => moduleKeys
-  resolver.id = ''
-  resolver.resolve = (id: string) => id
+  resolve.keys = () => moduleKeys
+  resolve.id = ''
+  resolve.resolve = (id: string) => id
 
-  context = resolver
+  context = resolve
   promise = null
 
   return context

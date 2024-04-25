@@ -5,7 +5,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React from 'react'
+import React, { useRef } from 'react'
 
 import {
   type DynamicConvention,
@@ -20,6 +20,7 @@ import { EmptyRoute } from './views/EmptyRoute'
 import { SuspenseFallback } from './views/SuspenseFallback'
 import { Try } from './views/Try'
 import { sortRoutesWithInitial } from './sortRoutes'
+import { loadingRoutes } from './useViteRoutes'
 
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
@@ -171,9 +172,26 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }>
     })
   } else {
-    const res = value.loadRoute()
-    const Component = fromImport(res).default as React.ComponentType<any>
     ScreenComponent = React.forwardRef((props, ref) => {
+      const res = value.loadRoute()
+      const Component = fromImport(res).default as React.ComponentType<any>
+      const promise = useRef<any>()
+
+      if (promise.current) throw promise.current
+      if (loadingRoutes.size) {
+        promise.current = new Promise<void>((res) => {
+          Promise.all([...loadingRoutes]).then(() => {
+            promise.current = null
+            res()
+          })
+        })
+      }
+
+      if (!Component) {
+        // this isnt pretty :)
+        throw new Promise<void>((res) => res())
+      }
+
       return <Component {...props} ref={ref} />
     })
   }
