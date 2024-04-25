@@ -161,6 +161,10 @@ async function handleSSR(
 
       const props = (await exported.generateStaticProps?.({ path, params })) ?? {}
 
+      if (Object.keys(props).length) {
+        console.info(`Got props: ${JSON.stringify(props)}`)
+      }
+
       const entryServer = `${routesDir}/../src/entry-server.tsx`
 
       process.env.TAMAGUI_IS_SERVER = '1'
