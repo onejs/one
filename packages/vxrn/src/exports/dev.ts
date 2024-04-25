@@ -57,8 +57,8 @@ export const resolveFile = (path: string) => {
 
 const { ensureDir, pathExists, pathExistsSync } = FSExtra
 
-export const dev = async (optionsIn: VXRNConfig) => {
-  const options = await getOptionsFilled(optionsIn)
+export const dev = async (_options: VXRNConfig) => {
+  const options = await getOptionsFilled(_options)
   const { host, port, root, cacheDir } = options
 
   // TODO move somewhere
@@ -792,7 +792,7 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
   if (webConfig) {
     serverConfig = mergeConfig(serverConfig, webConfig) as any
     // it doesnt override true with array which youd expect
-    const theirNoExternal = serverConfig.ssr?.noExternal
+    const theirNoExternal = webConfig.ssr?.noExternal
     if (theirNoExternal != null && theirNoExternal !== true) {
       serverConfig.ssr!.noExternal = theirNoExternal
     }
