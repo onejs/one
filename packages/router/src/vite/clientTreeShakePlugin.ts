@@ -10,24 +10,13 @@ interface TreeShakeTemplatePluginOptions {
 type AcornNode<N extends Node> = N & { start: number; end: number }
 
 export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = {}): Plugin => {
-  let shouldShake = true
-
   return {
     name: 'vxrn:client-tree-shake',
     enforce: 'post',
 
-    config(config, { command }) {
-      // weird not sure best pattern here:
-      if (config.build?.ssrManifest) {
-        shouldShake = false
-      }
-    },
-
-    transform(code, id) {
-      if (!shouldShake) return
-      if (id.includes('node_modules')) {
-        return
-      }
+    transform(code, id, settings) {
+      if (settings?.ssr) return
+      if (id.includes('node_modules')) return
 
       if (!/generateStaticParams|generateStaticProps/.test(code)) {
         return
