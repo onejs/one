@@ -130,8 +130,11 @@ async function handleSSR(
   const indexHtml = await readFile('./index.html', 'utf-8')
   const template = await server.transformIndexHtml(path, indexHtml)
 
-  if (disableSSR) {
-    return template
+  if (
+    disableSSR ||
+    (process.env.NODE_ENV === 'development' && parsedUrl.search?.includes('vxrnDisableSSR'))
+  ) {
+    return indexHtml
   }
 
   let resolve = () => {}
