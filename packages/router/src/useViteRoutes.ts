@@ -66,6 +66,7 @@ export async function loadRoutes(paths: any) {
   function resolve(id: string) {
     if (typeof routesSync[id] === 'function') {
       const promise = routesSync[id]().then((val: any) => {
+        // we aren't running it right away! instead lazy load on render
         routesSync[id] = val
         loadingRoutes.delete(promise)
       })

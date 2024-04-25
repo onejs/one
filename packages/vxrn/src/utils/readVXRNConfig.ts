@@ -8,6 +8,14 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
     return {}
   }
 
+  if (process.env.VXRN_CJS) {
+    const requireFile = jiti(process.cwd(), {
+      esmResolve: true,
+    })
+    const userConfig = requireFile('./vxrn.config.ts')
+    return (userConfig?.default ?? {}) as any
+  }
+
   // try esm load
   try {
     // somewhat hacky creating a server just to read config?
@@ -23,15 +31,9 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
     await vite.close()
     return userConfig?.default ?? {}
   } catch (err) {
-    console.info(`Error loading config via ESM, attempting CJS, DEBUG=1 to see logs`)
-    if (process.env.DEBUG) {
-      console.info(err)
-    }
-
-    const requireFile = jiti(process.cwd(), {
-      esmResolve: true,
-    })
-    const userConfig = requireFile('./vxrn.config.ts')
-    return userConfig?.default ?? {}
+    console.info(
+      ` [vxrn] Error loading config via ESM, attempting CJS, set VXRN_CJS=1 to run in cjs mode`
+    )
+    throw err
   }
 }

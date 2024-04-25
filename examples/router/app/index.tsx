@@ -1,8 +1,16 @@
-import { Head, Link } from '@vxrn/router'
+import { Head, Link, useLoader } from '@vxrn/router'
 import { Text, View } from 'tamagui'
 import { useEffect } from 'react'
 
+export function loader() {
+  return {
+    hello: 'world',
+  }
+}
+
 export default () => {
+  const data = useLoader(loader)
+
   useEffect(() => {
     fetch('/hello')
       .then((res) => res.text())
@@ -22,6 +30,12 @@ export default () => {
         <Text color="blue">Hi from home</Text>
       </View>
 
+      <View>
+        <Text fontSize={30} color="blue">
+          data: {JSON.stringify(data, null, 2)}
+        </Text>
+      </View>
+
       <Link
         href={{
           pathname: '/[user]',
@@ -32,10 +46,4 @@ export default () => {
       </Link>
     </>
   )
-}
-
-export function generateStaticProps() {
-  return {
-    hello: 'world',
-  }
 }

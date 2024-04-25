@@ -40,3 +40,5 @@ export { SplashScreen } from './views/Splash'
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'
 export { useNavigation } from './useNavigation'
+
+export { type LoaderProps, useLoader } from './useLoader'
