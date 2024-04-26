@@ -121,6 +121,7 @@ export function useSlot() {
 export function Slot(props: Omit<NavigatorProps, 'children'>) {
   const contextKey = useContextKey()
   const context = React.useContext(NavigatorContext)
+
   // Ensure the context is for the current contextKey
   if (context?.contextKey !== contextKey) {
     // Qualify the content and re-export.
