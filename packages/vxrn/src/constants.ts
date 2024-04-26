@@ -49,7 +49,6 @@ const needsInterop = [
   'react-is',
   'fast-deep-equal',
   '@react-navigation/native',
-  'tamagui/linear-gradient',
   'react-native-svg',
   '@supabase/auth-helpers-react',
   'parse-numeric-range',
@@ -60,6 +59,8 @@ const needsInterop = [
 
 export const depsToOptimize = [
   ...needsInterop,
+  'tamagui/linear-gradient',
+  '@tamagui/linear-gradient',
   '@react-native/normalize-color',
   '@vxrn/router',
   'expo-modules-core',

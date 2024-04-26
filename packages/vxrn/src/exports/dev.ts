@@ -807,24 +807,13 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
       optimizeDeps,
 
       ssr: {
-        // external: ['react', 'react-dom', 'react-dom/client', 'react-dom/server'],
         // noExternal true causes many incompat issues because we need things on disk to work
         // eg generally node uses .cjs extensions to "switch" back to cjs mode on import, but once bundled
         // this wont happen, breaking many things
+        // but we need react related things always so they dont duplicate
         noExternal: ['react', 'react-dom', 'react-dom/server'],
         optimizeDeps,
       },
-
-      // build: {
-      //   rollupOptions: {
-      //     external: ['react'],
-      //   },
-      // },
-
-      // build: {
-      //   ssr: true,
-      //   ssrEmitAssets: true,
-      // },
 
       server: {
         hmr: {
