@@ -781,7 +781,7 @@ let entryRoot = ''
 // }
 
 async function getViteServerConfig(config: VXRNConfigFilled) {
-  const { root, host, webConfig, cacheDir } = config
+  const { root, host, webConfig } = config
 
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
@@ -805,10 +805,27 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
         },
       ],
       optimizeDeps,
+
       ssr: {
-        noExternal: true,
+        // external: ['react', 'react-dom', 'react-dom/client', 'react-dom/server'],
+        // noExternal true causes many incompat issues because we need things on disk to work
+        // eg generally node uses .cjs extensions to "switch" back to cjs mode on import, but once bundled
+        // this wont happen, breaking many things
+        noExternal: ['react', 'react-dom', 'react-dom/server'],
         optimizeDeps,
       },
+
+      // build: {
+      //   rollupOptions: {
+      //     external: ['react'],
+      //   },
+      // },
+
+      // build: {
+      //   ssr: true,
+      //   ssrEmitAssets: true,
+      // },
+
       server: {
         hmr: {
           path: '/__vxrnhmr',
