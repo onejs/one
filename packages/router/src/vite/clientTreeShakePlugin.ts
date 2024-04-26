@@ -112,10 +112,13 @@ async function removeUnusedImports(s: MagicString): Promise<string> {
   const output = await transform(s.toString(), {
     jsc: {
       minify: {
+        mangle: false,
         compress: {
+          dead_code: true,
           unused: true,
+          drop_debugger: false,
+          evaluate: false,
         },
-        mangle: true,
       },
       target: 'esnext',
     },

@@ -3,7 +3,7 @@ import type { UserConfig } from 'vite'
 export const DEFAULT_PORT = 8081
 
 // TODO move to router
-export const EMPTY_LOADER_STRING = `function loader() {/* ✷✷✷ */};`
+export const EMPTY_LOADER_STRING = `function loader() {return [][0 + 0]}`
 
 export const nativeExtensions = [
   '.native.tsx',

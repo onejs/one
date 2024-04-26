@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createRoutesManifest, type ExpoRoutesManifestV1 } from '../routes-manifest'
 import { getHtml } from './getHtml'
+import { EMPTY_LOADER_STRING } from './constants'
 
 const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 
@@ -70,29 +71,33 @@ export function createFileSystemRouter(options: Options): Plugin {
               return
             }
 
-            let pathname = url.pathname
+            if (process.env.NODE_ENV === 'development' && url.search.includes('vxrnDisableSSR')) {
+              options.disableSSR = true
+            }
 
             const isClientRequestingNewRoute = url.pathname.startsWith('/_vxrn/')
-
             if (isClientRequestingNewRoute) {
               const search = new URLSearchParams(url.search)
               const realPathName = search.get('pathname') || '/'
-              // use the param
               url = new URL(realPathName, urlBase)
-              console.log('LOAINF', url)
-
-              // TODO not handleSSR because we need to return just the JS + loaded data inline, not
-              // the entire html response
+              const jsSSRResponse = await handleSSRJS({
+                options,
+                server,
+                manifest,
+                url,
+              })
+              res.setHeader('Content-Type', 'text/javascript')
+              res.write(jsSSRResponse)
+              res.end()
+              return
             }
 
-            const ssrResponse = await handleSSR({
+            const ssrResponse = await handleSSRHTML({
               options,
               server,
               manifest,
               url,
             })
-
-            console.info(`ssrResponse`, ssrResponse)
 
             if (ssrResponse) {
               res.write(ssrResponse)
@@ -105,7 +110,9 @@ export function createFileSystemRouter(options: Options): Plugin {
             // will treat it as an error since there will be no one else to
             // handle it in production.
             if (!res.writableEnded) {
-              next(new Error(`SSR handler didn't send a response for url: ${pathname}`))
+              console.warn(`SSR handler didn't send a response for url: ${url.pathname}`)
+              next()
+              // next(new Error(`SSR handler didn't send a response for url: ${url.pathname}`))
             }
           } catch (error) {
             // Forward the error to Vite
@@ -136,11 +143,7 @@ async function handleAPIRoutes(
   }
 }
 
-// TODO not needed anymore i think
-// ensure only one at a time
-// let currentSSRBuild: Promise<void> | null = null
-
-async function handleSSR({
+async function handleSSRJS({
   options,
   server,
   manifest,
@@ -152,10 +155,57 @@ async function handleSSR({
   options: Options
 }) {
   const { pathname } = url
-  if (pathname === '/__vxrnhmr') return
-  if (pathname.startsWith('/@')) return
-  // if (currentSSRBuild) await currentSSRBuild
+  const { root, disableSSR } = options
 
+  // TODO we can find this without needing to match.
+  for (const route of manifest.htmlRoutes) {
+    // TODO performance
+    if (!new RegExp(route.namedRegex).test(pathname)) {
+      continue
+    }
+
+    const params = getParams(url, route)
+    const routeFile = join(root, route.file)
+
+    // this will remove all loaders
+    let transformedJS = (await server.transformRequest(routeFile))?.code
+    if (!transformedJS) {
+      throw new Error(`No transformed js returned`)
+    }
+
+    if (disableSSR) {
+      return transformedJS
+    }
+
+    const exported = await server.ssrLoadModule(routeFile, {
+      fixStacktrace: true,
+    })
+    const loaderData = await exported.loader?.({ path: pathname, params })
+
+    if (loaderData) {
+      // add loader back in!
+      transformedJS = transformedJS.replace(
+        /function\s+loader\(\)\s+{\s+return \[\]\[0\];?\s+}/gm,
+        `function loader(){ return ${JSON.stringify(loaderData)} }`
+      )
+    }
+
+    return transformedJS
+  }
+}
+
+async function handleSSRHTML({
+  options,
+  server,
+  manifest,
+  url,
+}: {
+  server: ViteDevServer
+  url: URL
+  manifest: ExpoRoutesManifestV1<string>
+  options: Options
+}) {
+  const { pathname } = url
   const { root, disableSSR } = options
 
   const indexHtml = await readFile('./index.html', 'utf-8')
@@ -169,8 +219,6 @@ async function handleSSR({
     return indexHtml
   }
 
-  let resolve = () => {}
-
   for (const route of manifest.htmlRoutes) {
     // TODO performance
     if (!new RegExp(route.namedRegex).test(pathname)) {
@@ -180,10 +228,6 @@ async function handleSSR({
     const params = getParams(url, route)
     const routeFile = join(root, route.file)
 
-    // currentSSRBuild = new Promise((res) => {
-    //   resolve = res
-    // })
-
     try {
       console.info(`SSR load`, routeFile)
 
@@ -191,14 +235,7 @@ async function handleSSR({
         fixStacktrace: true,
       })
 
-      console.info(`Loaded`)
-
       const loaderData = await exported.loader?.({ path: pathname, params })
-
-      if (loaderData) {
-        console.info(` [vxrn] loader(): ${JSON.stringify(loaderData)}`)
-      }
-
       const entryServer = `${root}/../src/entry-server.tsx`
 
       // TODO move
@@ -212,8 +249,6 @@ async function handleSSR({
         path: pathname,
       })
 
-      console.info(`returning appHtml`, appHtml)
-
       return getHtml({
         appHtml,
         headHtml,
@@ -224,9 +259,6 @@ async function handleSSR({
       const message = err instanceof Error ? `${err.message}:\n${err.stack}` : `${err}`
       console.error(`Error in SSR: ${message}`)
       return template
-    } finally {
-      // currentSSRBuild = null
-      resolve()
     }
   }
 }

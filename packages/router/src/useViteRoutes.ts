@@ -30,15 +30,11 @@ export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
   return context
 }
 
-export const loadingRoutes = new Set()
-
 export async function loadRoutes(paths: any) {
   if (promise) await promise
   if (context) return context
 
   globalThis['__importMetaGlobbed'] = paths
-
-  console.log('load')
 
   // make it look like webpack context
   const routesSync = {}
@@ -53,22 +49,21 @@ export async function loadRoutes(paths: any) {
       }, 1000)
       try {
         const loadRouteFunction = paths[path]
+        // TODO this is a temp fix for matching webpack style routes:
+        const pathWithoutRelative = path.replace('../app/', './')
 
         if (typeof window !== 'undefined') {
-          // TODO this is a temp fix for matching webpack style routes:
-          const pathWithoutRelative = path.replace('../app/', './')
-
           // for SSR support we rewrite these:
           routesSync[pathWithoutRelative] = path.includes('_layout.')
             ? loadRouteFunction
             : () => {
-                return import(
-                  '/_vxrn' +
-                    pathWithoutRelative.slice(1) +
-                    '?pathname=' +
-                    encodeURIComponent(window.location.pathname)
+                const realPath = encodeURIComponent(
+                  globalThis['__vxrntodopath'] ?? window.location.pathname
                 )
+                return import('/_vxrn' + pathWithoutRelative.slice(1) + '?pathname=' + realPath)
               }
+        } else {
+          routesSync[pathWithoutRelative] = loadRouteFunction
         }
       } catch (err) {
         // @ts-ignore
@@ -79,20 +74,33 @@ export async function loadRoutes(paths: any) {
     })
   )
 
+  const promises = {}
+  const loadedRoutes = {}
+  const clears = {}
+
   const moduleKeys = Object.keys(routesSync)
   function resolve(id: string) {
-    if (typeof routesSync[id] === 'function') {
-      const promise = routesSync[id]().then((val: any) => {
-        // we aren't running it right away! instead lazy load on render
-        routesSync[id] = val
-        loadingRoutes.delete(promise)
-      })
-      loadingRoutes.add(promise)
-      return { default: null }
+    if (typeof routesSync[id] !== 'function') {
+      return routesSync[id]
     }
+    clearTimeout(clears[id])
+    if (loadedRoutes[id]) {
+      return loadedRoutes[id]
+    }
+    if (!promises[id]) {
+      promises[id] = routesSync[id]().then((val: any) => {
+        loadedRoutes[id] = val
+        delete promises[id]
 
-    return routesSync[id]
+        // clear cache so we get fresh contents in dev mode (hacky)
+        clears[id] = setTimeout(() => {
+          delete loadedRoutes[id]
+        }, 1000)
+      })
+    }
+    throw promises[id]
   }
+
   resolve.keys = () => moduleKeys
   resolve.id = ''
   resolve.resolve = (id: string) => id
