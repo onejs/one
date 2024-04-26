@@ -95,14 +95,19 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
       }
 
       if (s.hasChanged()) {
-        return await removeUnusedImports(s)
+        return {
+          code: await removeUnusedImports(s),
+          map: s.generateMap({ hires: true }),
+        }
       }
     },
   }
 }
 
 // we assume side effects are false
-async function removeUnusedImports(s: MagicString): Promise<{ code: string; map?: any }> {
+// dont change anything in terms of source map
+
+async function removeUnusedImports(s: MagicString): Promise<string> {
   // partially removes unused imports
   const output = await transform(s.toString(), {
     jsc: {
@@ -112,16 +117,11 @@ async function removeUnusedImports(s: MagicString): Promise<{ code: string; map?
         },
         mangle: true,
       },
-      target: 'es2022',
+      target: 'esnext',
     },
   })
 
   // removes the leftover imports
   // TODO ensure they were only ones that were previously using some sort of identifier
-  const code = output.code.replaceAll(/import \'[^']+\';$/gm, '\n')
-
-  return {
-    code,
-    map: output.map,
-  }
+  return output.code.replaceAll(/import \'[^']+\';$/gm, '\n')
 }
