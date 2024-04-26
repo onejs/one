@@ -128,6 +128,9 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
     href = resolve(base, href)
   }
 
+  // todo
+  globalThis['__vxrntodopath'] = href
+
   const state = this.linking.getStateFromPath!(href, this.linking.config)
 
   if (!state || state.routes.length === 0) {

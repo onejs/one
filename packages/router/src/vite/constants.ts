@@ -1,1 +1,1 @@
-export const EMPTY_LOADER_STRING = `function loader() {/* ✷✷✷ */};`
+export const EMPTY_LOADER_STRING = `function loader() {return [][0 + 0]}`
