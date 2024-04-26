@@ -1,6 +1,6 @@
 import * as Glob from 'glob'
 import { readFile } from 'node:fs/promises'
-import { extname, join } from 'node:path'
+import { join } from 'node:path'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createRoutesManifest, type ExpoRoutesManifestV1 } from '../routes-manifest'
 import { getHtml } from './getHtml'
@@ -22,17 +22,17 @@ export function createFileSystemRouter(options: Options): Plugin {
     apply: 'serve',
 
     configureServer(server) {
+      const routePaths = getRoutePaths(root)
+      const manifest = createRoutesManifest(routePaths, {
+        platform: 'web',
+      })
+
       // Instead of adding the middleware here, we return a function that Vite
       // will call after adding its own middlewares. We want our code to run after
       // Vite's transform middleware so that we can focus on handling the requests
       // we're interested in.
 
       return () => {
-        const routePaths = getRoutePaths(root)
-        const manifest = createRoutesManifest(routePaths, {
-          platform: 'web',
-        })
-
         if (!manifest) {
           throw new Error(`No routes manifest`)
         }
@@ -44,17 +44,20 @@ export function createFileSystemRouter(options: Options): Plugin {
 
         server.middlewares.use(async (req, res, next) => {
           try {
-            const ogUrl = req.originalUrl
+            const urlString = req.originalUrl || ''
             if (
-              !ogUrl ||
-              ogUrl === '/__vxrnhmr' ||
-              ogUrl.startsWith('/@') ||
-              extname(ogUrl) !== '' ||
+              !urlString ||
+              req.method !== 'GET' ||
+              urlString === '/__vxrnhmr' ||
+              urlString.startsWith('/@') ||
               shouldIgnore?.(req)
             ) {
               next()
               return
             }
+
+            const urlBase = `http://${req.headers.host}`
+            let url = new URL(urlString, urlBase)
 
             const apiResponse = await handleAPIRoutes(options, server, req, apiRoutesMap)
             if (apiResponse) {
@@ -67,7 +70,30 @@ export function createFileSystemRouter(options: Options): Plugin {
               return
             }
 
-            const ssrResponse = await handleSSR(options, server, req, manifest)
+            let pathname = url.pathname
+
+            const isClientRequestingNewRoute = url.pathname.startsWith('/_vxrn/')
+
+            if (isClientRequestingNewRoute) {
+              const search = new URLSearchParams(url.search)
+              const realPathName = search.get('pathname') || '/'
+              // use the param
+              url = new URL(realPathName, urlBase)
+              console.log('LOAINF', url)
+
+              // TODO not handleSSR because we need to return just the JS + loaded data inline, not
+              // the entire html response
+            }
+
+            const ssrResponse = await handleSSR({
+              options,
+              server,
+              manifest,
+              url,
+            })
+
+            console.info(`ssrResponse`, ssrResponse)
+
             if (ssrResponse) {
               res.write(ssrResponse)
               res.end()
@@ -79,7 +105,7 @@ export function createFileSystemRouter(options: Options): Plugin {
             // will treat it as an error since there will be no one else to
             // handle it in production.
             if (!res.writableEnded) {
-              next(new Error(`SSR handler didn't send a response for url: ${ogUrl}`))
+              next(new Error(`SSR handler didn't send a response for url: ${pathname}`))
             }
           } catch (error) {
             // Forward the error to Vite
@@ -110,31 +136,35 @@ async function handleAPIRoutes(
   }
 }
 
+// TODO not needed anymore i think
 // ensure only one at a time
-let currentSSRBuild: Promise<void> | null = null
+// let currentSSRBuild: Promise<void> | null = null
 
-async function handleSSR(
-  { root, disableSSR }: Options,
-  server: ViteDevServer,
-  req: Connect.IncomingMessage,
+async function handleSSR({
+  options,
+  server,
+  manifest,
+  url,
+}: {
+  server: ViteDevServer
+  url: URL
   manifest: ExpoRoutesManifestV1<string>
-) {
-  const url = req.originalUrl || ''
-  if (!url) return
-  if (url === '/__vxrnhmr') return
-  if (req.method !== 'GET') return
-  if (url.startsWith('/@')) return
-  if (extname(url) !== '') return
-  if (currentSSRBuild) await currentSSRBuild
+  options: Options
+}) {
+  const { pathname } = url
+  if (pathname === '/__vxrnhmr') return
+  if (pathname.startsWith('/@')) return
+  // if (currentSSRBuild) await currentSSRBuild
 
-  const parsedUrl = new URL(url, `http://${req.headers.host}`)
-  const path = parsedUrl.pathname // sanitized
+  const { root, disableSSR } = options
+
   const indexHtml = await readFile('./index.html', 'utf-8')
-  const template = await server.transformIndexHtml(path, indexHtml)
+  const template = await server.transformIndexHtml(pathname, indexHtml)
 
   if (
     disableSSR ||
-    (process.env.NODE_ENV === 'development' && parsedUrl.search?.includes('vxrnDisableSSR'))
+    // TODO search not pathname
+    (process.env.NODE_ENV === 'development' && pathname.includes('vxrnDisableSSR'))
   ) {
     return indexHtml
   }
@@ -143,16 +173,16 @@ async function handleSSR(
 
   for (const route of manifest.htmlRoutes) {
     // TODO performance
-    if (!new RegExp(route.namedRegex).test(path)) {
+    if (!new RegExp(route.namedRegex).test(pathname)) {
       continue
     }
 
-    const params = getParams(parsedUrl, route)
+    const params = getParams(url, route)
     const routeFile = join(root, route.file)
 
-    currentSSRBuild = new Promise((res) => {
-      resolve = res
-    })
+    // currentSSRBuild = new Promise((res) => {
+    //   resolve = res
+    // })
 
     try {
       console.info(`SSR load`, routeFile)
@@ -161,7 +191,9 @@ async function handleSSR(
         fixStacktrace: true,
       })
 
-      const loaderData = await exported.loader?.({ path, params })
+      console.info(`Loaded`)
+
+      const loaderData = await exported.loader?.({ path: pathname, params })
 
       if (loaderData) {
         console.info(` [vxrn] loader(): ${JSON.stringify(loaderData)}`)
@@ -177,8 +209,10 @@ async function handleSSR(
       globalThis['__vxrnLoaderData__'] = loaderData
 
       const { appHtml, headHtml } = await render({
-        path,
+        path: pathname,
       })
+
+      console.info(`returning appHtml`, appHtml)
 
       return getHtml({
         appHtml,
@@ -191,7 +225,7 @@ async function handleSSR(
       console.error(`Error in SSR: ${message}`)
       return template
     } finally {
-      currentSSRBuild = null
+      // currentSSRBuild = null
       resolve()
     }
   }

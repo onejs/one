@@ -38,6 +38,8 @@ export async function loadRoutes(paths: any) {
 
   globalThis['__importMetaGlobbed'] = paths
 
+  console.log('load')
+
   // make it look like webpack context
   const routesSync = {}
   await Promise.all(
@@ -50,10 +52,24 @@ export async function loadRoutes(paths: any) {
         console.error(`Error: Timed out loading ${path}`)
       }, 1000)
       try {
-        const evaluated = paths[path]
-        routesSync[path] = evaluated
-        // this is a temp fix for matching webpack style routes:
-        routesSync[path.replace('../app/', './')] = evaluated
+        const loadRouteFunction = paths[path]
+
+        if (typeof window !== 'undefined') {
+          // TODO this is a temp fix for matching webpack style routes:
+          const pathWithoutRelative = path.replace('../app/', './')
+
+          // for SSR support we rewrite these:
+          routesSync[pathWithoutRelative] = path.includes('_layout.')
+            ? loadRouteFunction
+            : () => {
+                return import(
+                  '/_vxrn' +
+                    pathWithoutRelative.slice(1) +
+                    '?pathname=' +
+                    encodeURIComponent(window.location.pathname)
+                )
+              }
+        }
       } catch (err) {
         // @ts-ignore
         console.error(`Error loading path ${path}: ${err?.message ?? ''} ${err?.stack ?? ''}`)
@@ -62,6 +78,7 @@ export async function loadRoutes(paths: any) {
       }
     })
   )
+
   const moduleKeys = Object.keys(routesSync)
   function resolve(id: string) {
     if (typeof routesSync[id] === 'function') {
