@@ -23,6 +23,7 @@ import {
   setParams,
 } from './routing'
 import { getSortedRoutes } from './sorted-routes'
+import { Platform } from 'react-native'
 
 /**
  * This is the global state for the router. It is used to keep track of the current route, and to provide a way to navigate to other routes.
@@ -74,7 +75,7 @@ export class RouterStore {
     this.rootStateSubscribers.clear()
     this.storeSubscribers.clear()
 
-    this.routeNode = getRoutes(context, { ignoreEntryPoints: true })
+    this.routeNode = getRoutes(context, { ignoreEntryPoints: true, platform: Platform.OS })
 
     this.rootComponent = this.routeNode ? getQualifiedRouteComponent(this.routeNode) : Fragment
 
