@@ -13,7 +13,7 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
       esmResolve: true,
     })
     const userConfig = requireFile('./vxrn.config.ts')
-    return (userConfig?.default ?? {}) as any
+    return resolveOptionalAsyncFunction(userConfig?.default ?? {})
   }
 
   // try esm load
@@ -29,11 +29,21 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
     })
 
     await vite.close()
-    return userConfig?.default ?? {}
+    return resolveOptionalAsyncFunction(userConfig?.default ?? {})
   } catch (err) {
     console.info(
       ` [vxrn] Error loading config via ESM, attempting CJS, set VXRN_CJS=1 to run in cjs mode`
     )
     throw err
   }
+}
+
+async function resolveOptionalAsyncFunction(value: any) {
+  if (typeof value === 'function') {
+    value = value()
+  }
+  if (value instanceof Promise) {
+    value = await value
+  }
+  return value
 }
