@@ -765,21 +765,6 @@ function isWithin(outer: string, inner: string) {
 // used for normalizing hot reloads
 let entryRoot = ''
 
-// function watchNodeModules(modules: string[]): PluginOption {
-//   return {
-//     name: 'watch-node-modules',
-//     config() {
-//       return {
-//         server: {
-//           watch: {
-//             ignored: modules.map((m) => `!**/packages/${m}/**`),
-//           },
-//         },
-//       }
-//     },
-//   }
-// }
-
 async function getViteServerConfig(config: VXRNConfigFilled) {
   const { root, host, webConfig } = config
 
@@ -792,7 +777,6 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
       clearScreen: false,
       plugins: [
         reactNativeHMRPlugin(config),
-        // watchNodeModules(['@tamagui/popper'])
 
         {
           name: 'process-env-ssr',
