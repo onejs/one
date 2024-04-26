@@ -1,4 +1,5 @@
-import type { Node, Program, BaseNode } from 'estree'
+import { transform } from '@swc/core'
+import type { BaseNode, Node, Program } from 'estree'
 import { walk } from 'estree-walker'
 import MagicString from 'magic-string'
 import type { Plugin } from 'vite'
@@ -13,9 +14,9 @@ type AcornNode<N extends Node> = N & { start: number; end: number }
 export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = {}): Plugin => {
   return {
     name: 'vxrn:client-tree-shake',
-    enforce: 'post',
+    // enforce: 'post',
 
-    transform(code, id, settings) {
+    async transform(code, id, settings) {
       if (settings?.ssr) return
       if (id.includes('node_modules')) return
 
@@ -56,14 +57,7 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
 
           if (shouldRemove) {
             // @ts-ignore
-            // s.remove(node.start, node.end + 1)
             s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
-
-            if (node.type === 'ExportNamedDeclaration') {
-              // remove import declaration if it exists
-              // @ts-ignore
-              removeImportDeclaration(codeAst, node, s)
-            }
           }
         }
       }
@@ -96,52 +90,38 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
             // @ts-ignore
             // s.remove(node.start, node.end + 1)
             s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
-            // make sure it doesnt error with forceExports
-            // s.append(`function generateStaticParams {}`)
-
-            if (node.type === 'ExportNamedDeclaration') {
-              // remove import declaration if it exists
-              // @ts-ignore
-              removeImportDeclaration(codeAst, node, s)
-            }
           }
         }
       }
 
       if (s.hasChanged()) {
-        return {
-          code: s.toString(),
-          map: options.sourcemap ? s.generateMap({ hires: true }) : undefined,
-        }
+        return await removeUnusedImports(s)
       }
     },
   }
 }
 
-function removeImportDeclaration(
-  ast: Program,
-  importName: string,
-  magicString: MagicString
-): boolean {
-  for (const node of ast.body) {
-    if (node.type === 'ImportDeclaration') {
-      const specifier = node.specifiers.find((s) => s.local.name === importName)
-      if (specifier) {
-        if (node.specifiers.length > 1) {
-          const specifierIndex = node.specifiers.findIndex((s) => s.local.name === importName)
-          if (specifierIndex > -1) {
-            magicString.remove(
-              (node.specifiers[specifierIndex] as AcornNode<Node>).start,
-              (node.specifiers[specifierIndex] as AcornNode<Node>).end + 1
-            )
-            node.specifiers.splice(specifierIndex, 1)
-          }
-        } else {
-          magicString.remove((node as AcornNode<Node>).start, (node as AcornNode<Node>).end)
-        }
-        return true
-      }
-    }
+// we assume side effects are false
+async function removeUnusedImports(s: MagicString): Promise<{ code: string; map?: any }> {
+  // partially removes unused imports
+  const output = await transform(s.toString(), {
+    jsc: {
+      minify: {
+        compress: {
+          unused: true,
+        },
+        mangle: true,
+      },
+      target: 'es2022',
+    },
+  })
+
+  // removes the leftover imports
+  // TODO ensure they were only ones that were previously using some sort of identifier
+  const code = output.code.replaceAll(/import \'[^']+\';$/gm, '\n')
+
+  return {
+    code,
+    map: output.map,
   }
-  return false
 }
