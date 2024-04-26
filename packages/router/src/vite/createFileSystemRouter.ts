@@ -29,7 +29,9 @@ export function createFileSystemRouter(options: Options): Plugin {
 
       return () => {
         const routePaths = getRoutePaths(root)
-        const manifest = createRoutesManifest(routePaths)
+        const manifest = createRoutesManifest(routePaths, {
+          platform: 'web',
+        })
 
         if (!manifest) {
           throw new Error(`No routes manifest`)
