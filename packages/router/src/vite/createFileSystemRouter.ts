@@ -6,6 +6,7 @@ import { createRoutesManifest, type ExpoRoutesManifestV1 } from '../routes-manif
 import { getHtml } from './getHtml'
 import { EMPTY_LOADER_STRING } from './constants'
 import { loadEnv } from './loadEnv'
+import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
 
 const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 
@@ -130,6 +131,8 @@ export function createFileSystemRouter(options: Options): Plugin {
   }
 }
 
+// TODO move
+
 async function handleAPIRoutes(
   options: Options,
   server: ViteDevServer,
@@ -137,16 +140,36 @@ async function handleAPIRoutes(
   apiRoutesMap: Object
 ) {
   const matched = apiRoutesMap[req.originalUrl!]
-  if (matched) {
-    const loaded = await server.ssrLoadModule(join(options.root, matched.file))
-    if (loaded) {
-      const requestType = req.method || 'GET'
-      const method = loaded[requestType]
-      if (method) {
-        return await method(req)
+  if (!matched) return
+  const loaded = await server.ssrLoadModule(join(options.root, matched.file))
+  if (!loaded) return
+  const requestType = req.method || 'GET'
+  const handler = loaded[requestType] || loaded.default
+  if (!handler) return
+  return new Promise((res) => {
+    const id = {}
+    requestAsyncLocalStore.run(id, async () => {
+      try {
+        let response = await handler(await convertIncomingMessageToRequest(req))
+        const asyncHeaders = asyncHeadersCache.get(id)
+        if (asyncHeaders) {
+          if (response instanceof Response) {
+            mergeHeaders(response.headers, asyncHeaders)
+          } else {
+            response = new Response(response, { headers: asyncHeaders })
+          }
+        }
+        res(response)
+      } catch (err) {
+        // allow throwing a response
+        if (err instanceof Response) {
+          res(err)
+        } else {
+          throw err
+        }
       }
-    }
-  }
+    })
+  })
 }
 
 async function handleSSRJS({
@@ -262,7 +285,6 @@ async function handleSSRHTML({
         template,
       })
     } catch (err) {
-      const message = err instanceof Error ? `${err.message}:\n${err.stack}` : err
       console.error(`Error rendering ${pathname} on server:`)
       console.error(err)
       return template
@@ -291,4 +313,28 @@ function getRoutePaths(cwd: string) {
 
 function normalizePaths(p: string) {
   return p.replace(/\\/g, '/')
+}
+
+const convertIncomingMessageToRequest = async (req: Connect.IncomingMessage): Promise<Request> => {
+  if (!req.originalUrl) {
+    throw new Error(`Can't convert`)
+  }
+  const headers = new Headers()
+  for (const key in req.headers) {
+    if (req.headers[key]) headers.append(key, req.headers[key] as string)
+  }
+  return new Request(req.originalUrl, {
+    method: req.method,
+    body: req.method === 'POST' ? await readStream(req) : null,
+    headers,
+  })
+}
+
+function readStream(stream: Connect.IncomingMessage): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    const chunks: Uint8Array[] = []
+    stream.on('data', (chunk: Uint8Array) => chunks.push(chunk))
+    stream.on('end', () => resolve(Buffer.concat(chunks)))
+    stream.on('error', reject)
+  })
 }
