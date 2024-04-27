@@ -6112,6 +6112,7 @@ __metadata:
     "@types/estree": ^1.0.5
     "@types/node": ^20.12.7
     "@types/react-dom": ^18.2.25
+    dotenv: ^16.4.5
     escape-string-regexp: ^5.0.0
     estree-walker: ^3.0.3
     expo-constants: ^14.4.2
@@ -7999,6 +8000,13 @@ __metadata:
     no-case: ^3.0.4
     tslib: ^2.0.3
   checksum: a65e3519414856df0228b9f645332f974f2bf5433370f544a681122eab59e66038fc3349b4be1cdc47152779dac71a5864f1ccda2f745e767c46e9c6543b1169
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^16.4.5":
+  version: 16.4.5
+  resolution: "dotenv@npm:16.4.5"
+  checksum: 301a12c3d44fd49888b74eb9ccf9f07a1f5df43f489e7fcb89647a2edcd84c42d6bc349dc8df099cd18f07c35c7b04685c1a4f3e6a6a9e6b30f8d48c15b7f49c
   languageName: node
   linkType: hard
 

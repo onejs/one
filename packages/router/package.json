@@ -50,6 +50,7 @@
     "@react-navigation/native-stack": "^6.9.13",
     "@react-navigation/routers": "^6.1.9",
     "@types/estree": "^1.0.5",
+    "dotenv": "^16.4.5",
     "escape-string-regexp": "^5.0.0",
     "estree-walker": "^3.0.3",
     "expo-constants": "^14.4.2",

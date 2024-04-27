@@ -5,6 +5,7 @@ import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createRoutesManifest, type ExpoRoutesManifestV1 } from '../routes-manifest'
 import { getHtml } from './getHtml'
 import { EMPTY_LOADER_STRING } from './constants'
+import { loadEnv } from './loadEnv'
 
 const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 
@@ -16,6 +17,11 @@ type Options = {
 
 export function createFileSystemRouter(options: Options): Plugin {
   const { root, shouldIgnore } = options
+
+  // TODO need a higher level package
+  void loadEnv(process.cwd()).then(() => {
+    // console.log('loading env', process.env.POSTMARK_SERVER_TOKEN)
+  })
 
   return {
     name: `router-fs`,
@@ -256,8 +262,9 @@ async function handleSSRHTML({
         template,
       })
     } catch (err) {
-      const message = err instanceof Error ? `${err.message}:\n${err.stack}` : `${err}`
-      console.error(`Error in SSR: ${message}`)
+      const message = err instanceof Error ? `${err.message}:\n${err.stack}` : err
+      console.error(`Error rendering ${pathname} on server:`)
+      console.error(err)
       return template
     }
   }
