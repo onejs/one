@@ -4,7 +4,6 @@ import type { GlobbedRouteImports } from './types'
 
 let lastVersion = 0
 let context
-let promise: Promise<void> | null = null
 
 // for some reason putting it in state doesnt even re-render
 export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
@@ -14,65 +13,54 @@ export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
     lastVersion = version
   }
 
-  if (!promise && !context) {
-    promise = new Promise((res) => {
-      loadRoutes(routes).then(() => {
-        res()
-        promise = null
-      })
-    })
-  }
-
-  if (promise) {
-    throw promise
+  if (!context) {
+    loadRoutes(routes)
   }
 
   return context
 }
 
-export async function loadRoutes(paths: any) {
-  if (promise) await promise
+export function loadRoutes(paths: any) {
   if (context) return context
 
   globalThis['__importMetaGlobbed'] = paths
 
   // make it look like webpack context
   const routesSync = {}
-  await Promise.all(
-    Object.keys(paths).map(async (path) => {
-      if (!paths[path]) {
-        console.error(`Error: Missing route at path ${path}`)
-        return
-      }
-      const tm = setTimeout(() => {
-        console.error(`Error: Timed out loading ${path}`)
-      }, 1000)
-      try {
-        const loadRouteFunction = paths[path]
-        // TODO this is a temp fix for matching webpack style routes:
-        const pathWithoutRelative = path.replace('../app/', './')
 
-        if (typeof window !== 'undefined') {
-          // for SSR support we rewrite these:
-          routesSync[pathWithoutRelative] = path.includes('_layout.')
-            ? loadRouteFunction
-            : () => {
-                const realPath = encodeURIComponent(
-                  globalThis['__vxrntodopath'] ?? window.location.pathname
-                )
-                return import('/_vxrn' + pathWithoutRelative.slice(1) + '?pathname=' + realPath)
-              }
-        } else {
-          routesSync[pathWithoutRelative] = loadRouteFunction
-        }
-      } catch (err) {
-        // @ts-ignore
-        console.error(`Error loading path ${path}: ${err?.message ?? ''} ${err?.stack ?? ''}`)
-      } finally {
-        clearTimeout(tm)
+  Object.keys(paths).map((path) => {
+    if (!paths[path]) {
+      console.error(`Error: Missing route at path ${path}`)
+      return
+    }
+    const tm = setTimeout(() => {
+      console.error(`Error: Timed out loading ${path}`)
+    }, 1000)
+    try {
+      const loadRouteFunction = paths[path]
+      // TODO this is a temp fix for matching webpack style routes:
+      const pathWithoutRelative = path.replace('../app/', './')
+
+      if (typeof window !== 'undefined') {
+        // for SSR support we rewrite these:
+        routesSync[pathWithoutRelative] = path.includes('_layout.')
+          ? loadRouteFunction
+          : () => {
+              const realPath = encodeURIComponent(
+                globalThis['__vxrntodopath'] ?? window.location.pathname
+              )
+              return import('/_vxrn' + pathWithoutRelative.slice(1) + '?pathname=' + realPath)
+            }
+      } else {
+        routesSync[pathWithoutRelative] = loadRouteFunction
       }
-    })
-  )
+    } catch (err) {
+      // @ts-ignore
+      console.error(`Error loading path ${path}: ${err?.message ?? ''} ${err?.stack ?? ''}`)
+    } finally {
+      clearTimeout(tm)
+    }
+  })
 
   const promises = {}
   const loadedRoutes = {}
@@ -106,7 +94,6 @@ export async function loadRoutes(paths: any) {
   resolve.resolve = (id: string) => id
 
   context = resolve
-  promise = null
 
   return context
 }

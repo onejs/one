@@ -9,20 +9,14 @@ type RootProps = Omit<ExpoRootProps, 'context'> & { routes: GlobbedRouteImports;
 export function Root(props: RootProps) {
   return (
     // ⚠️ <StrictMode> breaks expo router!
-    <>
-      <Suspense fallback={null}>
-        <Router {...props} />
-      </Suspense>
-    </>
+    // this made hydration mis-match despite nothing thrown?
+    // <Suspense fallback={null}>
+    <Contents {...props} />
+    // </Suspense>
   )
 }
 
-// idk why this in between view fixed an error with logs not showing
-function Router(props: RootProps) {
-  return <Test {...props} />
-}
-
-function Test({ routes, path, ...props }: RootProps) {
+function Contents({ routes, path, ...props }: RootProps) {
   const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
 
   return (

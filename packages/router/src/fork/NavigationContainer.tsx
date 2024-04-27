@@ -105,31 +105,28 @@ function NavigationContainerInner(
     }
   })
 
-  const [isResolved, initialState] = useThenable(getInitialState)
+  if (cache.val === 0) {
+    cache.promise = new Promise<void>((res) => {
+      getInitialState().then((val) => {
+        cache.val = val
+        cache.done = true
+        res()
+      })
+    })
+  }
+  if (!cache.done) {
+    console.log('suspending')
+    throw cache.promise
+  }
+  const initialState = cache.val!
 
   React.useImperativeHandle(ref, () => refContainer.current)
 
   const linkingContext = React.useMemo(() => ({ options: linking }), [linking])
 
-  const isReady = rest.initialState != null || !isLinkingEnabled || isResolved
-
-  const onReadyRef = React.useRef(onReady)
-
   React.useEffect(() => {
-    onReadyRef.current = onReady
-  })
-
-  React.useEffect(() => {
-    if (isReady) {
-      onReadyRef.current?.()
-    }
-  }, [isReady])
-
-  if (!isReady) {
-    // This is temporary until we have Suspense for data-fetching
-    // Then the fallback will be handled by a parent `Suspense` component
-    return fallback as React.ReactElement
-  }
+    onReady?.()
+  }, [onReady])
 
   return (
     <LinkingContext.Provider value={linkingContext}>
@@ -142,6 +139,12 @@ function NavigationContainerInner(
       </ThemeProvider>
     </LinkingContext.Provider>
   )
+}
+
+const cache = {
+  done: false,
+  promise: null as any,
+  val: 0 as any,
 }
 
 const NavigationContainer = React.forwardRef(NavigationContainerInner) as <

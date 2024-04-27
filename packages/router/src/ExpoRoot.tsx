@@ -67,10 +67,30 @@ const hasViewControllerBasedStatusBarAppearance =
   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
 
 export function ExpoRoot({
-  wrapper: ParentWrapper = Fragment,
+  wrapper = Fragment,
   navigationContainerProps,
   ...props
 }: ExpoRootProps) {
+  return (
+    <ContextNavigator
+      navigationContainerProps={navigationContainerProps}
+      {...props}
+      wrapper={wrapper}
+    />
+  )
+}
+
+const initialUrl =
+  Platform.OS === 'web' && typeof window !== 'undefined' ? new URL(window.location.href) : undefined
+
+function ContextNavigator({
+  wrapper: ParentWrapper = Fragment,
+  context,
+  location: initialLocation = initialUrl,
+  navigationContainerProps,
+}: ExpoRootProps) {
+  const store = useInitializeExpoRouter(context, initialLocation)
+
   const headContext = useMemo(
     () => ({
       ...globalThis['vxrn__headContext__'],
@@ -83,7 +103,7 @@ export function ExpoRoot({
    * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
    * is a HTML document, we need to ensure its inside the <body>
    */
-  const wrapper: ExpoRootProps['wrapper'] = ({ children }) => {
+  const wrapper = (children: any) => {
     return (
       <Head.Provider context={headContext.current}>
         <ParentWrapper>
@@ -106,35 +126,15 @@ export function ExpoRoot({
     )
   }
 
-  return (
-    <ContextNavigator
-      navigationContainerProps={navigationContainerProps}
-      {...props}
-      wrapper={wrapper}
-    />
-  )
-}
-
-const initialUrl =
-  Platform.OS === 'web' && typeof window !== 'undefined' ? new URL(window.location.href) : undefined
-
-function ContextNavigator({
-  context,
-  location: initialLocation = initialUrl,
-  wrapper: WrapperComponent = Fragment,
-  navigationContainerProps,
-}: ExpoRootProps) {
-  const store = useInitializeExpoRouter(context, initialLocation)
-
   if (store.shouldShowTutorial()) {
     SplashScreen.hideAsync()
     if (process.env.NODE_ENV === 'development') {
-      return (
-        <WrapperComponent>
+      return wrapper(
+        <>
           {/* TODO */}
           {/* <Tutorial /> */}
           <React.Fragment />
-        </WrapperComponent>
+        </>
       )
     }
     // Ensure tutorial styles are stripped in production.
@@ -155,9 +155,7 @@ function ContextNavigator({
       {...navigationContainerProps}
     >
       <ServerLocationContext.Provider value={initialLocation}>
-        <WrapperComponent>
-          <Component />
-        </WrapperComponent>
+        {wrapper(<Component />)}
       </ServerLocationContext.Provider>
     </UpstreamNavigationContainer>
   )
