@@ -21,5 +21,5 @@ export type ExpoRootProps = {
         };
     };
 };
-export declare function ExpoRoot({ wrapper: ParentWrapper, navigationContainerProps, ...props }: ExpoRootProps): import("react/jsx-runtime").JSX.Element;
+export declare function ExpoRoot({ wrapper, navigationContainerProps, ...props }: ExpoRootProps): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=ExpoRoot.d.ts.map
