@@ -47,7 +47,7 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
           let shouldRemove = false
 
           declarators.forEach((declarator) => {
-            if (declarator.id.type === 'Identifier' && declarator.id.name === 'loader') {
+            if (declarator.id?.type === 'Identifier' && declarator.id?.name === 'loader') {
               shouldRemove = true
             }
           })
@@ -76,8 +76,8 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
 
           declarators.forEach((declarator) => {
             if (
-              declarator.id.type === 'Identifier' &&
-              declarator.id.name === 'generateStaticParams'
+              declarator.id?.type === 'Identifier' &&
+              declarator.id?.name === 'generateStaticParams'
             ) {
               shouldRemove = true
             }
