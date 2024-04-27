@@ -34,7 +34,9 @@ export async function getVitePath(
   const resolved = resolve(sourceFile)(moduleName)
   // figure out symlinks
   if (!resolved) {
-    throw new Error(`❌ cant find`)
+    throw new Error(
+      ` ❌ Path not found ${sourceFile} (rootPath ${rootPath}, importer ${importer}, moduleName ${moduleName})`
+    )
   }
   const real = await FSExtra.realpath(resolved)
   let id = real
