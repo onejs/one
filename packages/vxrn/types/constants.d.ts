@@ -5,8 +5,8 @@ export declare const webExtensions: string[];
 export declare const depsToOptimize: string[];
 export declare const optimizeDeps: {
     include: string[];
-    needsInterop: string[];
     exclude: string[];
+    needsInterop: string[];
     esbuildOptions: {
         resolveExtensions: string[];
     };
