@@ -47,6 +47,8 @@ import { checkPatches } from '../utils/patches'
 let isBuildingNativeBundle: Promise<string> | null = null
 const hotUpdateCache = new Map<string, string>()
 
+let connectedNativeClients = 0
+
 export const resolveFile = (path: string) => {
   try {
     return importMetaResolve(path, import.meta.url).replace('file://', '')
@@ -217,6 +219,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
       websocket: {
         open(peer) {
           console.debug('[hmr] open', peer)
+          connectedNativeClients++
         },
 
         message(peer, message) {
@@ -228,6 +231,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
 
         close(peer, event) {
           console.info('[hmr] close', peer, event)
+          connectedNativeClients--
         },
 
         error(peer, error) {
@@ -838,6 +842,9 @@ function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
     async handleHotUpdate({ read, modules, file }) {
       try {
         if (!isWithin(root, file)) {
+          return
+        }
+        if (!connectedNativeClients) {
           return
         }
 

@@ -55,6 +55,11 @@ export function createFileSystemRouter(options: Options): Plugin {
           return acc
         }, {})
 
+        // its really common for people to hit refresh a couple times even on accident
+        // sending two ssr requests at once and causing slowdown.
+        // use this to avoid
+        const activeRequests = {}
+
         server.middlewares.use(async (req, res, next) => {
           try {
             const urlString = req.originalUrl || ''
@@ -104,17 +109,40 @@ export function createFileSystemRouter(options: Options): Plugin {
               return
             }
 
-            const ssrResponse = await handleSSRHTML({
-              options,
-              server,
-              manifest,
-              url,
-            })
-
-            if (ssrResponse) {
+            if (activeRequests[urlString]) {
+              const ssrResponse = await activeRequests[urlString]
               res.write(ssrResponse)
               res.end()
               return
+            }
+
+            let resolve
+            let reject
+            activeRequests[urlString] = new Promise((res, rej) => {
+              resolve = res
+              reject = rej
+            })
+
+            try {
+              const ssrResponse = await handleSSRHTML({
+                options,
+                server,
+                manifest,
+                url,
+              })
+
+              resolve(ssrResponse)
+
+              if (ssrResponse) {
+                res.write(ssrResponse)
+                res.end()
+                return
+              }
+            } catch (err) {
+              reject(err)
+              throw err
+            } finally {
+              delete activeRequests[urlString]
             }
 
             // We're not calling `next` because our handler will always be
