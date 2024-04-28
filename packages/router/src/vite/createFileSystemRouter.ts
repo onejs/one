@@ -268,7 +268,7 @@ async function handleSSRHTML({
       const entryServer = `${root}/../src/entry-server.tsx`
 
       // TODO move
-      process.env.TAMAGUI_IS_SERVER = '1'
+      eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
       const { render } = await server.ssrLoadModule(entryServer)
 

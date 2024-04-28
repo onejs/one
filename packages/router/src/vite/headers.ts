@@ -4,6 +4,8 @@ export const requestAsyncLocalStore = new AsyncLocalStorage()
 
 export const asyncHeadersCache = new WeakMap<any, Headers>()
 
+// TODO move this to `RequestContext.setHeaders()`
+
 export async function setCurrentRequestHeaders(cb: (headers: Headers) => void) {
   const id = requestAsyncLocalStore.getStore()
   const headers = asyncHeadersCache.get(id) ?? new Headers()

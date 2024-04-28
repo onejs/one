@@ -59,6 +59,7 @@ const needsInterop = [
 
 export const depsToOptimize = [
   ...needsInterop,
+  '@vxrn/router/headers',
   'tamagui/linear-gradient',
   '@tamagui/linear-gradient',
   '@react-native/normalize-color',
