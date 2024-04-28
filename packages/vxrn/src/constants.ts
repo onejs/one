@@ -58,6 +58,7 @@ const needsInterop = [
 
 export const depsToOptimize = [
   ...needsInterop,
+  'swr',
   'tamagui/linear-gradient',
   '@tamagui/linear-gradient',
   '@react-native/normalize-color',
