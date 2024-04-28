@@ -1,10 +1,21 @@
-import { useRef } from 'react'
+import { useId, useRef } from 'react'
 
 export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
+  const id = useId()
   const initialData = useRef(globalThis['__vxrnLoaderData__'])
+
+  console.trace(
+    'i am',
+    id,
+    'global is',
+    globalThis['__vxrnLoaderData__'],
+    'local is',
+    initialData.current
+  )
+
   const cached = initialData.current
   if (cached) {
     if (cached === globalThis['__vxrnLoaderData__']) {

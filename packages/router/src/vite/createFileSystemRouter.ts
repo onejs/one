@@ -4,13 +4,14 @@ import { join } from 'node:path'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createRoutesManifest, type ExpoRoutesManifestV1 } from '../routes-manifest'
 import { getHtml } from './getHtml'
-import { EMPTY_LOADER_STRING } from './constants'
-import { loadEnv } from './loadEnv'
 import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
+import { loadEnv } from './loadEnv'
+import { transformTreeShakeClient } from './clientTreeShakePlugin'
+import { LoaderDataCache } from './constants'
 
 const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 
-type Options = {
+export type Options = {
   root: string
   shouldIgnore?: (req: Connect.IncomingMessage) => boolean
   disableSSR?: boolean
@@ -28,6 +29,10 @@ export function createFileSystemRouter(options: Options): Plugin {
     name: `router-fs`,
     enforce: 'post',
     apply: 'serve',
+
+    async transform(code, id, settings) {
+      return await transformTreeShakeClient(code, id, settings, this.parse, options.root)
+    },
 
     configureServer(server) {
       const routePaths = getRoutePaths(root)
@@ -267,12 +272,13 @@ async function handleSSRHTML({
       const loaderData = await exported.loader?.({ path: pathname, params })
       const entryServer = `${root}/../src/entry-server.tsx`
 
-      // TODO move
+      // TODO move to tamagui plugin, also esbuild was getting mad
       eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
       const { render } = await server.ssrLoadModule(entryServer)
 
       globalThis['__vxrnLoaderData__'] = loaderData
+      LoaderDataCache[route.file] = loaderData
 
       const { appHtml, headHtml } = await render({
         path: pathname,

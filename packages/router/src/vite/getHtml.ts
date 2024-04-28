@@ -18,6 +18,6 @@ export function getHtml({
 
   return template
     .replace(/\s*<!--ssr-outlet-->\s*/, appHtml)
-    .replace(`<!--head-outlet-->`, `${headHtml}\n${css ? `<style>${css}</style>` : ``}`)
+    .replace(`<!--head-outlet-->`, `${headHtml}\n${css ? `<style>${css}</style>\n` : ``}`)
     .replace('</body>', loaderDataString)
 }
