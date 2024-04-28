@@ -7,15 +7,6 @@ export function useLoader<
   const id = useId()
   const initialData = useRef(globalThis['__vxrnLoaderData__'])
 
-  console.trace(
-    'i am',
-    id,
-    'global is',
-    globalThis['__vxrnLoaderData__'],
-    'local is',
-    initialData.current
-  )
-
   const cached = initialData.current
   if (cached) {
     if (cached === globalThis['__vxrnLoaderData__']) {
