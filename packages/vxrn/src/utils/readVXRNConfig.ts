@@ -30,10 +30,12 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
 
     await vite.close()
     return resolveOptionalAsyncFunction(userConfig?.default ?? {})
-  } catch (err) {
-    console.info(
-      ` [vxrn] Error loading config via ESM, attempting CJS, set VXRN_CJS=1 to run in cjs mode`
-    )
+  } catch (err: any) {
+    console.info(` [vxrn] Error loading config via ESM:
+
+${err.stack}
+    
+ To load as CommonJS, set VXRN_CJS=1`)
     throw err
   }
 }

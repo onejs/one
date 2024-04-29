@@ -22,7 +22,7 @@ export function vitePluginSsrCss(pluginOpts: { entries: string[] }): Plugin {
           invalidateModule(server, '\0' + VIRTUAL_ENTRY + '?direct')
 
           let code = await collectStyle(server, pluginOpts.entries)
-          res.setHeader('Content-Type', 'text/javascript')
+          res.setHeader('Content-Type', 'text/css')
           res.write(code)
           res.end()
           return

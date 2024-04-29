@@ -1,4 +1,4 @@
-export { build } from '../src/exports/build'
-export { dev } from '../src/exports/dev'
-export * from '../src/types'
+export { build } from './exports/build';
+export { dev } from './exports/dev';
+export * from './types';
 //# sourceMappingURL=index.d.ts.map
