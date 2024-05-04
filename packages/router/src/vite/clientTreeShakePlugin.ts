@@ -1,5 +1,5 @@
 import { transform } from '@swc/core'
-import type { BaseNode, Node, Program } from 'estree'
+import type { Node, Program } from 'estree'
 import { walk } from 'estree-walker'
 import MagicString from 'magic-string'
 import { relative } from 'node:path'
@@ -117,6 +117,7 @@ export async function transformTreeShakeClient(
   })
 
   if (s.hasChanged()) {
+    console.log(`shook`, await removeUnusedImports(s))
     return {
       code: await removeUnusedImports(s),
       map: s.generateMap({ hires: true }),
@@ -134,10 +135,9 @@ async function removeUnusedImports(s: MagicString): Promise<string> {
       minify: {
         mangle: false,
         compress: {
+          side_effects: true,
           dead_code: true,
-          unused: true,
           drop_debugger: false,
-          evaluate: false,
         },
       },
       target: 'esnext',
@@ -147,5 +147,5 @@ async function removeUnusedImports(s: MagicString): Promise<string> {
   // swc assumes side effects are true and leaves the `import "x"` behind
   // we want to remove them to avoid clients importing server stuff
   // TODO ensure they were only ones that were previously using some sort of identifier
-  return output.code.replaceAll(/import \'[^']+\';$/gm, '\n')
+  return output.code.replaceAll(/import [\'\"][^']+[\'\"];$/gm, '\n')
 }
