@@ -139,15 +139,12 @@ async function generateStaticPages(
 
     const endpointPath = path.join(options.root, 'dist/server', output.fileName)
 
-    console.info(`importing`, name, 'from', endpointPath)
     const exported = await import(endpointPath)
 
-    console.info(`generating params`, endpointPath)
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
     for (const params of paramsList) {
       const path = getUrl(params)
-      console.info(`running loader`, { path, params })
       const loaderData = (await exported.loader?.({ path, params })) ?? {}
       allRoutes.push({ path, params, loaderData })
     }
