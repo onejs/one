@@ -37,7 +37,6 @@ const needsInterop = [
   'react-native-web',
   'react-dom/server',
   'react-dom/client',
-
   'url-parse',
   '@vxrn/safe-area',
   'query-string',
@@ -45,12 +44,12 @@ const needsInterop = [
   'use-latest-callback',
   'react-is',
   'fast-deep-equal',
-  '@react-navigation/native',
   'react-native-svg',
   '@supabase/auth-helpers-react',
   'parse-numeric-range',
   'use-sync-external-store',
   'use-sync-external-store/shim',
+  'expo-constants',
 ]
 
 export const depsToOptimize = [
@@ -85,6 +84,7 @@ export const depsToOptimize = [
   '@tamagui/toggle-group',
   '@tamagui/tooltip',
   '@tamagui/use-window-dimensions',
+  '@react-navigation/native',
   '@tamagui/web',
   'tamagui',
   'react-native-web',

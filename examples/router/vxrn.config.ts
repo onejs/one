@@ -2,7 +2,7 @@
 import { createFileSystemRouter, clientTreeShakePlugin } from '@vxrn/router/vite'
 import type { VXRNConfig } from 'vxrn'
 
-Error.stackTraceLimit = Number.POSITIVE_INFINITY
+Error.stackTraceLimit = Infinity
 
 const extraDepsToOptimize = ['test']
 
