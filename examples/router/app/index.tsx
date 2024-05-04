@@ -1,8 +1,12 @@
 import { Head, Link, useLoader } from '@vxrn/router'
 import { Text, View } from 'tamagui'
 import { useEffect } from 'react'
+import fs from 'node:fs'
 
 export function loader() {
+  // testing import shaking:
+  fs.read
+
   return {
     hello: 'world',
   }

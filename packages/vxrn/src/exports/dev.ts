@@ -799,7 +799,7 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
         // eg generally node uses .cjs extensions to "switch" back to cjs mode on import, but once bundled
         // this wont happen, breaking many things
         // but we need react related things always so they dont duplicate
-        noExternal: ['react', 'react-dom', 'react-dom/server'],
+        noExternal: ['react', 'react-dom', 'react-dom/server', 'react-dom/client'],
         optimizeDeps,
       },
 

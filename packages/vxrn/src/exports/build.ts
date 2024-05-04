@@ -164,7 +164,7 @@ async function generateStaticPages(
         return await Promise.all(
           paramsList.map(async (params) => {
             const path = getUrl(params)
-            const loaderData = (await exported.loader?.({ path: getUrl(params), params })) ?? {}
+            const loaderData = (await exported.loader?.({ path, params })) ?? {}
             return { path, loaderData }
           })
         )

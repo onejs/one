@@ -57,6 +57,7 @@ export async function transformTreeShakeClient(
           let shouldRemove = false
 
           declarators.forEach((declarator) => {
+            if (!declarator) return
             if (declarator.id?.type === 'Identifier' && declarator.id?.name === 'loader') {
               shouldRemove = true
             }
@@ -93,6 +94,7 @@ export async function transformTreeShakeClient(
           let shouldRemove = false
 
           declarators.forEach((declarator) => {
+            if (!declarator) return
             if (
               declarator.id?.type === 'Identifier' &&
               declarator.id?.name === 'generateStaticParams'
