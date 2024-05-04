@@ -19,7 +19,7 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
     async transform(code, id, settings) {
       return await transformTreeShakeClient(code, id, settings, this.parse, '')
     },
-  }
+  } satisfies Plugin
 }
 
 export async function transformTreeShakeClient(

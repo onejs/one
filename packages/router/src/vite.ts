@@ -1,3 +1,4 @@
+import type { Plugin } from 'vite'
 import { existsSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { clientTreeShakePlugin } from './vite/clientTreeShakePlugin'
@@ -32,7 +33,7 @@ export function getVitePlugins(options: Options) {
           console.warn(`error probably fine`, err)
         }
       },
-    },
+    } satisfies Plugin,
 
     createFileSystemRouter(options),
     clientTreeShakePlugin(),

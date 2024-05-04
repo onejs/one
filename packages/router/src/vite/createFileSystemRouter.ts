@@ -161,7 +161,7 @@ export function createFileSystemRouter(options: Options): Plugin {
         })
       }
     },
-  }
+  } satisfies Plugin
 }
 
 // TODO move
