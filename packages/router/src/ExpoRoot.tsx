@@ -1,5 +1,4 @@
 import Constants from './constants'
-import * as ESB from 'expo-status-bar'
 import React, { Fragment, useMemo, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -12,9 +11,6 @@ import { ServerLocationContext } from './global-state/serverLocationContext'
 import { Head } from './head'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
-
-// for ssr support:
-const { StatusBar } = ESB
 
 export type ExpoRootProps = {
   context: RequireContext
@@ -118,7 +114,7 @@ function ContextNavigator({
             {children}
 
             {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-            {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />}
+            {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
           </SafeAreaProvider>
           {/* </GestureHandlerRootView> */}
         </ParentWrapper>

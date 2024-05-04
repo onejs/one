@@ -13,6 +13,8 @@ import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getHtml } from '../utils/getHtml'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
 
+Error.stackTraceLimit = Infinity
+
 export const resolveFile = (path: string) => {
   try {
     return importMetaResolve(path, import.meta.url).replace('file://', '')
@@ -72,10 +74,10 @@ export const build = async (optionsIn: VXRNConfig, { step }: { step?: string } =
       //   },
       // },
 
-      // ssr: {
-      //   noExternal: true,
-      //   optimizeDeps,
-      // },
+      ssr: {
+        noExternal: optimizeDeps.include,
+        optimizeDeps,
+      },
 
       build: {
         // we want one big file of css
@@ -86,7 +88,7 @@ export const build = async (optionsIn: VXRNConfig, { step }: { step?: string } =
           external: [],
         },
       },
-    })
+    } satisfies UserConfig)
   )) as RollupOutput
 
   console.info(`generating static pages`)
