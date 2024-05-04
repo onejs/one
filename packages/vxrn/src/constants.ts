@@ -52,6 +52,7 @@ const needsInterop = [
   'expo-constants',
   'expo-linking',
   'uuid',
+  '@react-navigation/core',
   '@react-navigation/native',
   '@react-navigation/elements',
   '@react-navigation/bottom-tabs',
