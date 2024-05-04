@@ -61,11 +61,15 @@ const needsInterop = [
   '@algolia/autocomplete-core',
   '@algolia/autocomplete-plugin-algolia-insights',
   '@algolia/autocomplete-shared',
+  'react-native-reanimated',
+  'moti',
 ]
 
 export const depsToOptimize = [
   ...needsInterop,
   'swr',
+  'refractor/lang/tsx',
+  'invariant',
   'tamagui/linear-gradient',
   '@tamagui/linear-gradient',
   '@react-native/normalize-color',
