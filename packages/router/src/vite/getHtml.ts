@@ -1,10 +1,19 @@
+// TODO merge with the other one
 export function getHtml({
   template,
   loaderData,
+  loaderProps,
   appHtml,
   headHtml,
   css,
-}: { css?: string; template: string; loaderData: Object; appHtml: string; headHtml: string }) {
+}: {
+  css?: string
+  template: string
+  loaderData: Object
+  loaderProps?: any
+  appHtml: string
+  headHtml: string
+}) {
   if (!template.includes(`<!--ssr-outlet-->`)) {
     throw new Error(`No <!--ssr-outlet--> found in html to inject SSR contents`)
   }
@@ -12,9 +21,12 @@ export function getHtml({
     throw new Error(`No <!--head-outlet--> found in html to inject SSR contents`)
   }
 
-  const loaderDataString = `\n<script>globalThis['__vxrnLoaderData__']=${JSON.stringify(
-    loaderData
-  )}</script>`
+  const loaderDataJS = `globalThis['__vxrnLoaderData__']=${JSON.stringify(loaderData)}`
+  const loaderPropsJS = `globalThis['__vxrnLoaderProps__']=${JSON.stringify(loaderProps || null)}`
+  const loaderDataString = `\n<script>
+    ${loaderDataJS};
+    ${loaderPropsJS};
+  </script>`
 
   return template
     .replace(/\s*<!--ssr-outlet-->\s*/, appHtml)

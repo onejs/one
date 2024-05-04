@@ -212,7 +212,8 @@ async function generateStaticPages(
 
   // pre-render each route...
   for (const { path, loaderData, params } of allRoutes) {
-    globalThis['__vxrnLoaderProps__'] = { params }
+    const loaderProps = { params }
+    globalThis['__vxrnLoaderProps__'] = loaderProps
     const { appHtml, headHtml } = await render({ path })
     const slashFileName = `${path === '/' ? '/index' : path}.html`
     const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
@@ -222,6 +223,7 @@ async function generateStaticPages(
       appHtml,
       headHtml,
       loaderData,
+      loaderProps,
       css: cssString,
     })
     const filePath = toAbsolute(`dist/static${slashFileName}`)
