@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { type ViewProps } from 'react-native';
-import type { EdgeInsets, Metrics, Rect } from './SafeArea.types';
+import type { EdgeInsets, Metrics, Rect } from './SafeArea-types';
 export declare const SafeAreaInsetsContext: React.Context<EdgeInsets | null>;
 export declare const SafeAreaFrameContext: React.Context<Rect | null>;
 export interface SafeAreaProviderProps extends ViewProps {

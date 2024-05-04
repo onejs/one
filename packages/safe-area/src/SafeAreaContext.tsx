@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Dimensions, StyleSheet, type ViewProps } from 'react-native'
 import { NativeSafeAreaProvider } from './NativeSafeAreaProvider'
-import type { EdgeInsets, InsetChangedEvent, Metrics, Rect } from './SafeArea.types'
+import type { EdgeInsets, InsetChangedEvent, Metrics, Rect } from './SafeArea-types'
 
 const isDev = process.env.NODE_ENV !== 'production'
 

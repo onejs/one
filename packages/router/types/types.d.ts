@@ -11,4 +11,5 @@ export interface RequireContext {
 /** The list of input keys will become optional, everything else will remain the same. */
 export type PickPartial<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 export type GlobbedRouteImports = Record<string, () => Promise<unknown>>;
+export type Endpoint = (req: Request) => Response | string | Object | null;
 //# sourceMappingURL=types.d.ts.map

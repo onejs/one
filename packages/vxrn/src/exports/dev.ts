@@ -47,6 +47,8 @@ import { checkPatches } from '../utils/patches'
 let isBuildingNativeBundle: Promise<string> | null = null
 const hotUpdateCache = new Map<string, string>()
 
+let connectedNativeClients = 0
+
 export const resolveFile = (path: string) => {
   try {
     return importMetaResolve(path, import.meta.url).replace('file://', '')
@@ -217,6 +219,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
       websocket: {
         open(peer) {
           console.debug('[hmr] open', peer)
+          connectedNativeClients++
         },
 
         message(peer, message) {
@@ -228,6 +231,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
 
         close(peer, event) {
           console.info('[hmr] close', peer, event)
+          connectedNativeClients--
         },
 
         error(peer, error) {
@@ -795,7 +799,13 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
         // eg generally node uses .cjs extensions to "switch" back to cjs mode on import, but once bundled
         // this wont happen, breaking many things
         // but we need react related things always so they dont duplicate
-        noExternal: ['react', 'react-dom', 'react-dom/server'],
+        noExternal: [
+          ...optimizeDeps.include,
+          'react',
+          'react-dom',
+          'react-dom/server',
+          'react-dom/client',
+        ],
         optimizeDeps,
       },
 
@@ -838,6 +848,9 @@ function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
     async handleHotUpdate({ read, modules, file }) {
       try {
         if (!isWithin(root, file)) {
+          return
+        }
+        if (!connectedNativeClients) {
           return
         }
 

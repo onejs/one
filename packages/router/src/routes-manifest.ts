@@ -4,7 +4,7 @@ import { type Options, getRoutes } from './getRoutes'
 import { getServerManifest } from './getServerManifest'
 import type { RequireContext } from './types'
 
-export { Options } from './getRoutes'
+export { type Options } from './getRoutes'
 
 export type RouteInfo<TRegex = string> = {
   file: string

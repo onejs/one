@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { View } from 'react-native'
-import type { NativeSafeAreaProviderProps } from './SafeArea.types'
+import type { NativeSafeAreaProviderProps } from './SafeArea-types'
 
 /**
  * TODO:

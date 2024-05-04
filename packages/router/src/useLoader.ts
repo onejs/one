@@ -5,14 +5,9 @@ export function useLoader<
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
   const initialData = useRef(globalThis['__vxrnLoaderData__'])
-  const cached = initialData.current
-  if (cached) {
-    if (cached === globalThis['__vxrnLoaderData__']) {
-      delete globalThis['__vxrnLoaderData__']
-    }
-    return cached
-  }
-  return typeof loader === 'function' ? useAsyncFn(loader) : null
+  return typeof loader === 'function'
+    ? useAsyncFn(loader, globalThis['__vxrnLoaderProps__'])
+    : initialData.current
 }
 
 export type LoaderProps<Params extends Object = Record<string, string>> = {
@@ -23,15 +18,20 @@ export type LoaderProps<Params extends Object = Record<string, string>> = {
 const results = new WeakMap()
 const started = new WeakMap()
 
-function useAsyncFn(val: any) {
+function useAsyncFn(val: any, props?: any) {
   if (!started.get(val)) {
     started.set(val, true)
 
-    let next = val()
+    let next = val(props)
     if (next instanceof Promise) {
-      next = next.then((final) => {
-        results.set(val, final)
-      })
+      next = next
+        .then((final) => {
+          results.set(val, final)
+        })
+        .catch((err) => {
+          console.error(`Error running loader()`, err)
+          results.set(val, undefined)
+        })
     }
     results.set(val, next)
   }

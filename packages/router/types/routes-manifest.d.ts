@@ -1,5 +1,5 @@
 import { type Options } from './getRoutes';
-export { Options } from './getRoutes';
+export { type Options } from './getRoutes';
 export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;

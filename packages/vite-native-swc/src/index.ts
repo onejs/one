@@ -9,6 +9,7 @@ import {
 } from '@swc/core'
 import type { PluginOption } from 'vite'
 
+// TODO node has an import to do this: const require = createRequire(import.meta.url)
 const resolve = createRequire(
   typeof __filename !== 'undefined' ? __filename : import.meta.url
 ).resolve
