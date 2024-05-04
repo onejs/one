@@ -139,7 +139,7 @@ async function generateStaticPages(
 
     const endpointPath = path.join(options.root, 'dist/server', output.fileName)
 
-    console.info(`importing`, endpointPath)
+    console.info(`importing`, name, 'from', endpointPath)
     const exported = await import(endpointPath)
 
     console.info(`generating params`, endpointPath)
@@ -153,21 +153,26 @@ async function generateStaticPages(
     }
 
     function getUrl(_params = {}) {
-      return name === 'index'
-        ? '/'
-        : `/${name
-            .split('/')
-            .map((part) => {
-              if (part[0] === '[') {
-                const found = _params[part.slice(1, part.length - 1)]
-                if (!found) {
-                  console.warn('not found', { _params, part })
-                }
-                return found
-              }
-              return part
-            })
-            .join('/')}`
+      if (name === 'index') {
+        return '/'
+      }
+      if (name.startsWith('[...')) {
+        const part = name.replace('[...', '').replace(']', '')
+        return `/${_params[part]}`
+      }
+      return `/${name
+        .split('/')
+        .map((part) => {
+          if (part[0] === '[') {
+            const found = _params[part.slice(1, part.length - 1)]
+            if (!found) {
+              console.warn('not found', { _params, part })
+            }
+            return found
+          }
+          return part
+        })
+        .join('/')}`
     }
   }
 
