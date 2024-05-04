@@ -117,10 +117,7 @@ function ExpoRouterLink(
     return resolveHref(href)
   }, [href])
 
-  let event
-  if (push) event = 'PUSH'
-  if (replace) event = 'REPLACE'
-
+  const event = push ? 'PUSH' : replace ? 'REPLACE' : undefined
   const props = useLinkToPathProps({ href: resolvedHref, event })
 
   const onPress = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => {
