@@ -114,58 +114,115 @@ async function generateStaticPages(
 
   const assets: OutputAsset[] = []
 
-  const allRoutes = (
-    await Promise.all(
-      serverOutput.flatMap(async (output) => {
-        if (output.type === 'asset') {
-          assets.push(output)
-          return []
-        }
+  const allRoutes: {
+    path: string
+    params: Object
+    loaderData: any
+  }[] = []
 
-        const id = output.facadeModuleId || ''
-        const file = path.basename(id)
-        const name = file.replace(/\.[^/.]+$/, '')
+  for (const output of serverOutput) {
+    if (output.type === 'asset') {
+      assets.push(output)
+      continue
+    }
 
-        if (!id || file[0] === '_' || file.includes('entry-server')) {
-          return []
-        }
-        if (id.includes('+api')) {
-          return []
-        }
+    const id = output.facadeModuleId || ''
+    const file = path.basename(id)
+    const name = file.replace(/\.[^/.]+$/, '')
 
-        const endpointPath = path.join(options.root, 'dist/server', output.fileName)
-        const exported = await import(endpointPath)
+    if (!id || file[0] === '_' || file.includes('entry-server')) {
+      continue
+    }
+    if (id.includes('+api')) {
+      continue
+    }
 
-        const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
+    const endpointPath = path.join(options.root, 'dist/server', output.fileName)
 
-        return await Promise.all(
-          paramsList.map(async (params) => {
-            const path = getUrl(params)
-            const loaderData = (await exported.loader?.({ path, params })) ?? {}
-            return { path, params, loaderData }
-          })
-        )
+    console.info(`importing`, endpointPath)
+    const exported = await import(endpointPath)
 
-        function getUrl(_params = {}) {
-          return name === 'index'
-            ? '/'
-            : `/${name
-                .split('/')
-                .map((part) => {
-                  if (part[0] === '[') {
-                    const found = _params[part.slice(1, part.length - 1)]
-                    if (!found) {
-                      console.warn('not found', { _params, part })
-                    }
-                    return found
-                  }
-                  return part
-                })
-                .join('/')}`
-        }
-      })
-    )
-  ).flat()
+    console.info(`generating params`, endpointPath)
+    const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
+
+    for (const params of paramsList) {
+      const path = getUrl(params)
+      console.info(`running loader`, { path, params })
+      const loaderData = (await exported.loader?.({ path, params })) ?? {}
+      allRoutes.push({ path, params, loaderData })
+    }
+
+    function getUrl(_params = {}) {
+      return name === 'index'
+        ? '/'
+        : `/${name
+            .split('/')
+            .map((part) => {
+              if (part[0] === '[') {
+                const found = _params[part.slice(1, part.length - 1)]
+                if (!found) {
+                  console.warn('not found', { _params, part })
+                }
+                return found
+              }
+              return part
+            })
+            .join('/')}`
+    }
+  }
+
+  // const allRoutes = (
+  //   await Promise.all(
+  //     serverOutput.flatMap(async (output) => {
+  //       if (output.type === 'asset') {
+  //         assets.push(output)
+  //         return []
+  //       }
+
+  //       const id = output.facadeModuleId || ''
+  //       const file = path.basename(id)
+  //       const name = file.replace(/\.[^/.]+$/, '')
+
+  //       if (!id || file[0] === '_' || file.includes('entry-server')) {
+  //         return []
+  //       }
+  //       if (id.includes('+api')) {
+  //         return []
+  //       }
+
+  //       const endpointPath = path.join(options.root, 'dist/server', output.fileName)
+  //       const exported = await import(endpointPath)
+
+  //       const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
+
+  //       return await Promise.all(
+  //         paramsList.map(async (params) => {
+  //           const path = getUrl(params)
+  //           const loaderData = (await exported.loader?.({ path, params })) ?? {}
+  //           return { path, params, loaderData }
+  //         })
+  //       )
+
+  //       function getUrl(_params = {}) {
+  //         return name === 'index'
+  //           ? '/'
+  //           : `/${name
+  //               .split('/')
+  //               .map((part) => {
+  //                 if (part[0] === '[') {
+  //                   const found = _params[part.slice(1, part.length - 1)]
+  //                   if (!found) {
+  //                     console.warn('not found', { _params, part })
+  //                   }
+  //                   return found
+  //                 }
+  //                 return part
+  //               })
+  //               .join('/')}`
+  //       }
+  //     })
+  //   )
+  // ).flat()
 
   // for now just inline
   const cssStringRaw = assets
@@ -191,6 +248,7 @@ async function generateStaticPages(
   for (const { path, loaderData, params } of allRoutes) {
     const loaderProps = { params }
     globalThis['__vxrnLoaderProps__'] = loaderProps
+    console.info(`render`, path)
     const { appHtml, headHtml } = await render({ path })
     const slashFileName = `${path === '/' ? '/index' : path}.html`
     const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
