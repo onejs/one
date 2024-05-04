@@ -19,17 +19,13 @@ const results = new WeakMap()
 const started = new WeakMap()
 
 function useAsyncFn(val: any, props?: any) {
-  console.log('using async fn', started.get(val))
-
   if (!started.get(val)) {
-    console.log('SET', val)
     started.set(val, true)
 
     let next = val(props)
     if (next instanceof Promise) {
       next = next
         .then((final) => {
-          console.log('promise dun')
           results.set(val, final)
         })
         .catch((err) => {
@@ -41,7 +37,6 @@ function useAsyncFn(val: any, props?: any) {
   }
 
   const current = results.get(val)
-  console.log('current', current)
 
   if (current instanceof Promise) {
     throw current

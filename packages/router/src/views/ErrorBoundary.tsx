@@ -48,8 +48,6 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   const inTabBar = React.useContext(BottomTabBarHeightContext)
   const Wrapper = inTabBar ? View : SafeAreaView
 
-  debugger
-
   console.error('error', error)
 
   return null

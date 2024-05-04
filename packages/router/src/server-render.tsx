@@ -12,7 +12,7 @@ export const renderToString = async (
   const appHtml = await renderToStringWithSuspense(app)
   // const appHtml = ReactDOMServer.renderToString(app)
 
-  console.log('collected', collectedHead.helmet)
+  // console.log('collected', collectedHead.helmet)
 
   const headHtml = `${Object.values(collectedHead?.helmet ?? {})
     .map((v: any) => v.toString())
