@@ -165,7 +165,7 @@ async function generateStaticPages(
           paramsList.map(async (params) => {
             const path = getUrl(params)
             const loaderData = (await exported.loader?.({ path, params })) ?? {}
-            return { path, loaderData }
+            return { path, params, loaderData }
           })
         )
 
@@ -211,7 +211,8 @@ async function generateStaticPages(
   const cssString = await FSExtra.readFile(tmpCssFile, 'utf-8')
 
   // pre-render each route...
-  for (const { path, loaderData } of allRoutes) {
+  for (const { path, loaderData, params } of allRoutes) {
+    globalThis['__vxrnLoaderProps__'] = { params }
     const { appHtml, headHtml } = await render({ path })
     const slashFileName = `${path === '/' ? '/index' : path}.html`
     const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
