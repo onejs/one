@@ -39,6 +39,11 @@
       "types": "./types/server-render.d.ts",
       "import": "./dist/esm/server-render.mjs",
       "require": "./dist/cjs/server-render.js"
+    },
+    "./headers": {
+      "types": "./types/vite/headers.d.ts",
+      "import": "./dist/esm/vite/headers.mjs",
+      "require": "./dist/cjs/vite/headers.js"
     }
   },
   "dependencies": {

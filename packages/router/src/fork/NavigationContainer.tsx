@@ -115,7 +115,6 @@ function NavigationContainerInner(
     })
   }
   if (!cache.done) {
-    console.log('suspending')
     throw cache.promise
   }
   const initialState = cache.val!

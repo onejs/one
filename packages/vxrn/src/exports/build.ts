@@ -2,16 +2,16 @@ import { build as esbuild } from 'esbuild'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import fs from 'node:fs'
 import { tmpdir } from 'node:os'
-import path, { dirname, resolve } from 'node:path'
+import path from 'node:path'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 
 import FSExtra from 'fs-extra'
 import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
+import { optimizeDeps } from '../constants'
 import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getHtml } from '../utils/getHtml'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
-import { optimizeDeps } from '../constants'
 
 export const resolveFile = (path: string) => {
   try {
@@ -30,7 +30,7 @@ const { ensureDir, existsSync, readFile, pathExists } = FSExtra
 //  - move router stuff into router package
 //  - generateStaticPages becomes a vite 'post' postbuild callback in router plugin
 
-export const build = async (optionsIn: VXRNConfig) => {
+export const build = async (optionsIn: VXRNConfig, { step }: { step?: string } = {}) => {
   const options = await getOptionsFilled(optionsIn)
 
   // TODO?
@@ -51,56 +51,31 @@ export const build = async (optionsIn: VXRNConfig) => {
     webBuildConfig = mergeConfig(webBuildConfig, options.webConfig) as any
   }
 
-  console.info(`build client`)
-  await viteBuild(
-    mergeConfig(webBuildConfig, {
-      build: {
-        ssrManifest: true,
-        outDir: 'dist/client',
-      },
-    } satisfies UserConfig)
-  )
+  if (step !== 'generate') {
+    console.info(`build client`)
+    await viteBuild(
+      mergeConfig(webBuildConfig, {
+        build: {
+          ssrManifest: true,
+          outDir: 'dist/client',
+        },
+      } satisfies UserConfig)
+    )
+  }
 
   console.info(`build server`)
   const { output } = (await viteBuild(
     mergeConfig(webBuildConfig, {
-      plugins: [
-        {
-          name: 'test',
-          enforce: 'pre',
-          async resolveId(id, importer = '') {
-            if (id[0] === '.') {
-              const absolutePath = resolve(dirname(importer), id)
-              const webPath = absolutePath.replace(/(.m?js)/, '') + '.web.js'
-              if (webPath === id) return
-              try {
-                const directoryPath = absolutePath + '/index.web.js'
-                if (await pathExists(directoryPath)) {
-                  console.info(`temp fix found ${directoryPath}`)
-                  return directoryPath
-                }
-                if (await pathExists(webPath)) {
-                  console.info(`temp fix found ${webPath}`)
-                  return webPath
-                }
-              } catch (err) {
-                console.warn(`error probably fine`, err)
-              }
-            }
-          },
-        },
-      ],
+      // optimizeDeps: {
+      //   esbuildOptions: {
+      //     format: 'cjs',
+      //   },
+      // },
 
-      optimizeDeps: {
-        esbuildOptions: {
-          format: 'cjs',
-        },
-      },
-
-      ssr: {
-        noExternal: true,
-        optimizeDeps,
-      },
+      // ssr: {
+      //   noExternal: true,
+      //   optimizeDeps,
+      // },
 
       build: {
         // we want one big file of css
@@ -164,8 +139,8 @@ async function generateStaticPages(
         return await Promise.all(
           paramsList.map(async (params) => {
             const path = getUrl(params)
-            const loaderData = (await exported.loader?.({ path: getUrl(params), params })) ?? {}
-            return { path, loaderData }
+            const loaderData = (await exported.loader?.({ path, params })) ?? {}
+            return { path, params, loaderData }
           })
         )
 
@@ -211,7 +186,9 @@ async function generateStaticPages(
   const cssString = await FSExtra.readFile(tmpCssFile, 'utf-8')
 
   // pre-render each route...
-  for (const { path, loaderData } of allRoutes) {
+  for (const { path, loaderData, params } of allRoutes) {
+    const loaderProps = { params }
+    globalThis['__vxrnLoaderProps__'] = loaderProps
     const { appHtml, headHtml } = await render({ path })
     const slashFileName = `${path === '/' ? '/index' : path}.html`
     const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
@@ -221,6 +198,7 @@ async function generateStaticPages(
       appHtml,
       headHtml,
       loaderData,
+      loaderProps,
       css: cssString,
     })
     const filePath = toAbsolute(`dist/static${slashFileName}`)

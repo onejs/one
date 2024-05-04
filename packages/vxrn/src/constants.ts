@@ -2,9 +2,6 @@ import type { UserConfig } from 'vite'
 
 export const DEFAULT_PORT = 8081
 
-// TODO move to router
-export const EMPTY_LOADER_STRING = `function loader() {return [][0 + 0]}`
-
 export const nativeExtensions = [
   '.native.tsx',
   '.native.jsx',
@@ -54,11 +51,11 @@ const needsInterop = [
   'parse-numeric-range',
   'use-sync-external-store',
   'use-sync-external-store/shim',
-  'swr',
 ]
 
 export const depsToOptimize = [
   ...needsInterop,
+  'swr',
   'tamagui/linear-gradient',
   '@tamagui/linear-gradient',
   '@react-native/normalize-color',
@@ -97,8 +94,8 @@ export const depsToOptimize = [
 
 export const optimizeDeps = {
   include: depsToOptimize,
+  exclude: ['util', '@swc/wasm', '@swc/core-darwin-arm64'],
   needsInterop,
-  exclude: ['util'],
   esbuildOptions: {
     resolveExtensions: webExtensions,
   },

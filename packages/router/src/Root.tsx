@@ -1,6 +1,4 @@
 import { ExpoRoot, type ExpoRootProps } from './ExpoRoot'
-
-import { Suspense } from 'react'
 import type { GlobbedRouteImports } from './types'
 import { useViteRoutes } from './useViteRoutes'
 

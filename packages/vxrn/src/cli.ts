@@ -59,7 +59,12 @@ const build = defineCommand({
     version: '0.0.0',
     description: 'Build your app',
   },
-  args: {},
+  args: {
+    step: {
+      type: 'string',
+      required: false,
+    },
+  },
   async run({ args }) {
     const userConfig = await readVXRNConfig()
     const { build } = await import(
@@ -71,7 +76,7 @@ const build = defineCommand({
       console.error(err?.message || err)
     })
 
-    const results = await build(userConfig)
+    const results = await build(userConfig, args)
 
     if (process.env.DEBUG) {
       console.info('results', results)

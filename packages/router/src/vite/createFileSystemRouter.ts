@@ -4,12 +4,14 @@ import { join } from 'node:path'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createRoutesManifest, type ExpoRoutesManifestV1 } from '../routes-manifest'
 import { getHtml } from './getHtml'
-import { EMPTY_LOADER_STRING } from './constants'
+import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
 import { loadEnv } from './loadEnv'
+import { transformTreeShakeClient } from './clientTreeShakePlugin'
+import { LoaderDataCache } from './constants'
 
 const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 
-type Options = {
+export type Options = {
   root: string
   shouldIgnore?: (req: Connect.IncomingMessage) => boolean
   disableSSR?: boolean
@@ -27,6 +29,10 @@ export function createFileSystemRouter(options: Options): Plugin {
     name: `router-fs`,
     enforce: 'post',
     apply: 'serve',
+
+    async transform(code, id, settings) {
+      return await transformTreeShakeClient(code, id, settings, this.parse, options.root)
+    },
 
     configureServer(server) {
       const routePaths = getRoutePaths(root)
@@ -48,6 +54,11 @@ export function createFileSystemRouter(options: Options): Plugin {
           acc[cur.page] = cur
           return acc
         }, {})
+
+        // its really common for people to hit refresh a couple times even on accident
+        // sending two ssr requests at once and causing slowdown.
+        // use this to avoid
+        const activeRequests = {}
 
         server.middlewares.use(async (req, res, next) => {
           try {
@@ -98,17 +109,40 @@ export function createFileSystemRouter(options: Options): Plugin {
               return
             }
 
-            const ssrResponse = await handleSSRHTML({
-              options,
-              server,
-              manifest,
-              url,
-            })
-
-            if (ssrResponse) {
+            if (activeRequests[urlString]) {
+              const ssrResponse = await activeRequests[urlString]
               res.write(ssrResponse)
               res.end()
               return
+            }
+
+            let resolve
+            let reject
+            activeRequests[urlString] = new Promise((res, rej) => {
+              resolve = res
+              reject = rej
+            })
+
+            try {
+              const ssrResponse = await handleSSRHTML({
+                options,
+                server,
+                manifest,
+                url,
+              })
+
+              resolve(ssrResponse)
+
+              if (ssrResponse) {
+                res.write(ssrResponse)
+                res.end()
+                return
+              }
+            } catch (err) {
+              reject(err)
+              throw err
+            } finally {
+              delete activeRequests[urlString]
             }
 
             // We're not calling `next` because our handler will always be
@@ -127,8 +161,10 @@ export function createFileSystemRouter(options: Options): Plugin {
         })
       }
     },
-  }
+  } satisfies Plugin
 }
+
+// TODO move
 
 async function handleAPIRoutes(
   options: Options,
@@ -137,16 +173,36 @@ async function handleAPIRoutes(
   apiRoutesMap: Object
 ) {
   const matched = apiRoutesMap[req.originalUrl!]
-  if (matched) {
-    const loaded = await server.ssrLoadModule(join(options.root, matched.file))
-    if (loaded) {
-      const requestType = req.method || 'GET'
-      const method = loaded[requestType]
-      if (method) {
-        return await method(req)
+  if (!matched) return
+  const loaded = await server.ssrLoadModule(join(options.root, matched.file))
+  if (!loaded) return
+  const requestType = req.method || 'GET'
+  const handler = loaded[requestType] || loaded.default
+  if (!handler) return
+  return new Promise((res) => {
+    const id = {}
+    requestAsyncLocalStore.run(id, async () => {
+      try {
+        let response = await handler(await convertIncomingMessageToRequest(req))
+        const asyncHeaders = asyncHeadersCache.get(id)
+        if (asyncHeaders) {
+          if (response instanceof Response) {
+            mergeHeaders(response.headers, asyncHeaders)
+          } else {
+            response = new Response(response, { headers: asyncHeaders })
+          }
+        }
+        res(response)
+      } catch (err) {
+        // allow throwing a response
+        if (err instanceof Response) {
+          res(err)
+        } else {
+          throw err
+        }
       }
-    }
-  }
+    })
+  })
 }
 
 async function handleSSRJS({
@@ -244,12 +300,13 @@ async function handleSSRHTML({
       const loaderData = await exported.loader?.({ path: pathname, params })
       const entryServer = `${root}/../src/entry-server.tsx`
 
-      // TODO move
-      process.env.TAMAGUI_IS_SERVER = '1'
+      // TODO move to tamagui plugin, also esbuild was getting mad
+      eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
       const { render } = await server.ssrLoadModule(entryServer)
 
       globalThis['__vxrnLoaderData__'] = loaderData
+      LoaderDataCache[route.file] = loaderData
 
       const { appHtml, headHtml } = await render({
         path: pathname,
@@ -262,7 +319,6 @@ async function handleSSRHTML({
         template,
       })
     } catch (err) {
-      const message = err instanceof Error ? `${err.message}:\n${err.stack}` : err
       console.error(`Error rendering ${pathname} on server:`)
       console.error(err)
       return template
@@ -291,4 +347,28 @@ function getRoutePaths(cwd: string) {
 
 function normalizePaths(p: string) {
   return p.replace(/\\/g, '/')
+}
+
+const convertIncomingMessageToRequest = async (req: Connect.IncomingMessage): Promise<Request> => {
+  if (!req.originalUrl) {
+    throw new Error(`Can't convert`)
+  }
+  const headers = new Headers()
+  for (const key in req.headers) {
+    if (req.headers[key]) headers.append(key, req.headers[key] as string)
+  }
+  return new Request(req.originalUrl, {
+    method: req.method,
+    body: req.method === 'POST' ? await readStream(req) : null,
+    headers,
+  })
+}
+
+function readStream(stream: Connect.IncomingMessage): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    const chunks: Uint8Array[] = []
+    stream.on('data', (chunk: Uint8Array) => chunks.push(chunk))
+    stream.on('end', () => resolve(Buffer.concat(chunks)))
+    stream.on('error', reject)
+  })
 }
