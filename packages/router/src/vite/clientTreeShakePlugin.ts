@@ -117,7 +117,6 @@ export async function transformTreeShakeClient(
   })
 
   if (s.hasChanged()) {
-    console.log(`shook`, await removeUnusedImports(s))
     return {
       code: await removeUnusedImports(s),
       map: s.generateMap({ hires: true }),
