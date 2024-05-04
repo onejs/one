@@ -50,6 +50,17 @@ const needsInterop = [
   'use-sync-external-store',
   'use-sync-external-store/shim',
   'expo-constants',
+  'expo-linking',
+  'uuid',
+  '@react-navigation/native',
+  '@react-navigation/elements',
+  '@react-navigation/bottom-tabs',
+  '@react-navigation/native-stack',
+  'inline-style-prefixer',
+  '@docsearch/react',
+  '@algolia/autocomplete-core',
+  '@algolia/autocomplete-plugin-algolia-insights',
+  '@algolia/autocomplete-shared',
 ]
 
 export const depsToOptimize = [
@@ -84,7 +95,6 @@ export const depsToOptimize = [
   '@tamagui/toggle-group',
   '@tamagui/tooltip',
   '@tamagui/use-window-dimensions',
-  '@react-navigation/native',
   '@tamagui/web',
   'tamagui',
   'react-native-web',
