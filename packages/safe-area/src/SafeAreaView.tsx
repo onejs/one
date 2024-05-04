@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from './SafeAreaContext'
-import type { Edge, NativeSafeAreaViewInstance, NativeSafeAreaViewProps } from './SafeArea.types'
+import type { Edge, NativeSafeAreaViewInstance, NativeSafeAreaViewProps } from './SafeArea-types'
 
 // prettier-ignore
 const TOP = 0b1000
