@@ -6082,12 +6082,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vxrn/react-native-prebuilt@0.1.46, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
+"@vxrn/react-native-prebuilt@0.1.47, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
   version: 0.0.0-use.local
   resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
   dependencies:
     "@tamagui/build": ^1.95.1
-    "@vxrn/vite-flow": 0.1.46
+    "@vxrn/vite-flow": 0.1.47
     esbuild: ~0.19.3
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.0.0
@@ -6097,7 +6097,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/router@0.1.46, @vxrn/router@workspace:packages/router":
+"@vxrn/router@0.1.47, @vxrn/router@workspace:packages/router":
   version: 0.0.0-use.local
   resolution: "@vxrn/router@workspace:packages/router"
   dependencies:
@@ -6136,7 +6136,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/safe-area@0.1.46, @vxrn/safe-area@workspace:packages/safe-area":
+"@vxrn/safe-area@0.1.47, @vxrn/safe-area@workspace:packages/safe-area":
   version: 0.0.0-use.local
   resolution: "@vxrn/safe-area@workspace:packages/safe-area"
   dependencies:
@@ -6145,7 +6145,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-flow@0.1.46, @vxrn/vite-flow@workspace:packages/vite-flow":
+"@vxrn/vite-flow@0.1.47, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
   dependencies:
@@ -6157,7 +6157,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-client@0.1.46, @vxrn/vite-native-client@workspace:packages/vite-native-client":
+"@vxrn/vite-native-client@0.1.47, @vxrn/vite-native-client@workspace:packages/vite-native-client":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-client@workspace:packages/vite-native-client"
   dependencies:
@@ -6169,7 +6169,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-hmr@0.1.46, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
+"@vxrn/vite-native-hmr@0.1.47, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-hmr@workspace:packages/vite-native-hmr"
   dependencies:
@@ -6181,7 +6181,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-swc@0.1.46, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
+"@vxrn/vite-native-swc@0.1.47, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-swc@workspace:packages/vite-native-swc"
   dependencies:
@@ -8583,7 +8583,7 @@ __metadata:
     react-native: 0.73.2
     react-test-renderer: 18.2.0
     typescript: ^5.2.2
-    vxrn: 0.1.46
+    vxrn: 0.1.47
   languageName: unknown
   linkType: soft
 
@@ -8594,7 +8594,7 @@ __metadata:
     "@react-navigation/native": ^6.1.7
     "@tamagui/cli": ^1.95.1
     "@tamagui/config": ^1.95.1
-    "@vxrn/router": 0.1.46
+    "@vxrn/router": 0.1.47
     expo-modules-core: 1.7.0
     h3: ^1.11.1
     patch-package: ^8.0.0
@@ -8604,7 +8604,7 @@ __metadata:
     react-native-reanimated: ~3.3.0
     sirv: ^2.0.4
     tamagui: ^1.95.1
-    vxrn: 0.1.46
+    vxrn: 0.1.47
   languageName: unknown
   linkType: soft
 
@@ -15531,7 +15531,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vxrn@0.1.46, vxrn@workspace:packages/vxrn":
+"vxrn@0.1.47, vxrn@workspace:packages/vxrn":
   version: 0.0.0-use.local
   resolution: "vxrn@workspace:packages/vxrn"
   dependencies:
@@ -15542,13 +15542,13 @@ __metadata:
     "@types/ws": ^8.5.10
     "@vitejs/plugin-react": ^4.2.1
     "@vitejs/plugin-react-swc": ^3.6.0
-    "@vxrn/react-native-prebuilt": 0.1.46
-    "@vxrn/router": 0.1.46
-    "@vxrn/safe-area": 0.1.46
-    "@vxrn/vite-flow": 0.1.46
-    "@vxrn/vite-native-client": 0.1.46
-    "@vxrn/vite-native-hmr": 0.1.46
-    "@vxrn/vite-native-swc": 0.1.46
+    "@vxrn/react-native-prebuilt": 0.1.47
+    "@vxrn/router": 0.1.47
+    "@vxrn/safe-area": 0.1.47
+    "@vxrn/vite-flow": 0.1.47
+    "@vxrn/vite-native-client": 0.1.47
+    "@vxrn/vite-native-hmr": 0.1.47
+    "@vxrn/vite-native-swc": 0.1.47
     citty: ^0.1.6
     crossws: ^0.2.4
     es-module-lexer: ^1.3.0

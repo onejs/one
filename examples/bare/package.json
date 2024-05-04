@@ -27,7 +27,7 @@
     "patch-package": "^8.0.0",
     "react-test-renderer": "18.2.0",
     "typescript": "^5.2.2",
-    "vxrn": "0.1.46"
+    "vxrn": "0.1.47"
   },
   "engines": {
     "node": ">=18"
