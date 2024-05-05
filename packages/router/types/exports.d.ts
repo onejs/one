@@ -1,4 +1,3 @@
-import './polyfills';
 export { Root } from './Root';
 export { render } from './render';
 export { Stack } from './layouts/Stack';
@@ -16,4 +15,4 @@ export { SplashScreen } from './views/Splash';
 export { useFocusEffect } from './useFocusEffect';
 export { useNavigation } from './useNavigation';
 export { type LoaderProps, useLoader } from './useLoader';
-//# sourceMappingURL=index.d.ts.map
+//# sourceMappingURL=exports.d.ts.map

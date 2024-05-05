@@ -178,7 +178,6 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   const { handleUpgrade } = wsAdapter(app.websocket)
 
   // vite hmr two way bridge:
-  // vite hmr:
   app.use(
     '/__vxrnhmr',
     defineEventHandler({
@@ -297,7 +296,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   // Define proxy event handler
   const proxyEventHandler = createProxyEventHandler({
     target: `http://127.0.0.1:${vitePort}`,
-    enableLogger: !!process.env.DEBUG,
+    enableLogger: true,
   })
   app.use(eventHandler(proxyEventHandler))
 
@@ -792,6 +791,7 @@ async function getViteServerConfig(config: VXRNConfigFilled) {
           },
         },
       ],
+
       optimizeDeps,
 
       ssr: {

@@ -33,7 +33,7 @@ export function getVitePlugins(options: Options) {
           console.warn(`error probably fine`, err)
         }
       },
-    } satisfies Plugin,
+    } as Plugin,
 
     createFileSystemRouter(options),
     clientTreeShakePlugin(),

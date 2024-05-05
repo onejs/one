@@ -81,7 +81,7 @@ export function vitePluginSsrCss(pluginOpts: { entries: string[] }): Plugin {
         ]
       },
     },
-  }
+  } satisfies Plugin
 }
 
 function invalidateModule(server: ViteDevServer, id: string) {

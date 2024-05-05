@@ -118,7 +118,7 @@ export async function transformTreeShakeClient(
 
   if (s.hasChanged()) {
     return {
-      code: await removeUnusedImports(s),
+      code: await removeUnusedImports(id, s),
       map: s.generateMap({ hires: true }),
     }
   }
@@ -127,24 +127,30 @@ export async function transformTreeShakeClient(
 // we assume side effects are false
 // dont change anything in terms of source map
 
-async function removeUnusedImports(s: MagicString): Promise<string> {
-  // partially removes unused imports
-  const output = await transform(s.toString(), {
-    jsc: {
-      minify: {
-        mangle: false,
-        compress: {
-          side_effects: true,
-          dead_code: true,
-          drop_debugger: false,
+async function removeUnusedImports(id: string, s: MagicString): Promise<string> {
+  try {
+    // partially removes unused imports
+    const output = await transform(s.toString(), {
+      jsc: {
+        minify: {
+          mangle: false,
+          compress: {
+            side_effects: true,
+            dead_code: true,
+            drop_debugger: false,
+          },
         },
+        target: 'esnext',
       },
-      target: 'esnext',
-    },
-  })
+    })
 
-  // swc assumes side effects are true and leaves the `import "x"` behind
-  // we want to remove them to avoid clients importing server stuff
-  // TODO ensure they were only ones that were previously using some sort of identifier
-  return output.code.replaceAll(/import [\'\"][^']+[\'\"];$/gm, '\n')
+    // swc assumes side effects are true and leaves the `import "x"` behind
+    // we want to remove them to avoid clients importing server stuff
+    // TODO ensure they were only ones that were previously using some sort of identifier
+    return output.code.replaceAll(/import [\'\"][^']+[\'\"];$/gm, '\n')
+  } catch (err) {
+    throw new Error(`Error removing unused imports from ${id}`, {
+      cause: err,
+    })
+  }
 }

@@ -47,7 +47,7 @@
     "get-port-please": "^3.1.2",
     "glob": "^10.3.12",
     "h3": "^1.11.1",
-    "h3-proxy": "^1.12.0",
+    "h3-proxy": "^1.13.0",
     "import-meta-resolve": "^4.0.0",
     "jiti": "^1.21.0",
     "metro-inspector-proxy": "^0.71.0",
@@ -60,7 +60,7 @@
     "sirv": "^2.0.4",
     "source-map": "^0.7.3",
     "url": "^0.11.0",
-    "vite": "^5.2.10",
+    "vite": "^5.2.11",
     "ws": "^8.7.0"
   },
   "devDependencies": {

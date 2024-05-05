@@ -1,6 +1,9 @@
 import type { VXRNConfig } from '../types';
 export declare const resolveFile: (path: string) => string;
-export declare const build: (optionsIn: VXRNConfig, { step }?: {
+type BuildOptions = {
     step?: string;
-}) => Promise<void>;
+    page?: string;
+};
+export declare const build: (optionsIn: VXRNConfig, buildOptions?: BuildOptions) => Promise<void>;
+export {};
 //# sourceMappingURL=build.d.ts.map
