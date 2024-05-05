@@ -14,18 +14,14 @@ export async function generateStaticParams(): Promise<UserPath[]> {
 }
 
 export async function loader({ params }: { params: UserPath }) {
-  console.log('retunring', params)
   return {
     hello: `${params.user}`,
   }
 }
 
 export default function User(props: UserProps) {
-  console.log('load user')
   const params = useGlobalSearchParams()
-  console.log('params', params)
   const data = useLoader(loader)
-  console.log('data', data)
 
   return (
     <View>

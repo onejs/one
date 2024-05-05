@@ -64,6 +64,11 @@ const build = defineCommand({
       type: 'string',
       required: false,
     },
+    // always wanted to be able to just generate one-off pages
+    // page: {
+    //   type: 'string',
+    //   required: false,
+    // },
   },
   async run({ args }) {
     const userConfig = await readVXRNConfig()

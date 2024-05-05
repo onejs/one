@@ -111,6 +111,7 @@ export function useSortedScreens(order: ScreenProps[]): React.ReactNode[] {
   const sorted = node?.children?.length
     ? getSortedChildren(node.children, order, node.initialRouteName)
     : []
+
   return React.useMemo(
     () => sorted.map((value) => routeToScreen(value.route, value.props)),
     [sorted]

@@ -25,6 +25,8 @@ export const resolveFile = (path: string) => {
 
 const { ensureDir, existsSync, readFile, pathExists } = FSExtra
 
+type BuildOptions = { step?: string; page?: string }
+
 // web only for now
 
 // TODO:
@@ -32,7 +34,7 @@ const { ensureDir, existsSync, readFile, pathExists } = FSExtra
 //  - move router stuff into router package
 //  - generateStaticPages becomes a vite 'post' postbuild callback in router plugin
 
-export const build = async (optionsIn: VXRNConfig, { step }: { step?: string } = {}) => {
+export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = {}) => {
   const options = await getOptionsFilled(optionsIn)
 
   // TODO?
@@ -53,7 +55,7 @@ export const build = async (optionsIn: VXRNConfig, { step }: { step?: string } =
     webBuildConfig = mergeConfig(webBuildConfig, options.webConfig) as any
   }
 
-  if (step !== 'generate') {
+  if (buildOptions.step !== 'generate') {
     console.info(`build client`)
     await viteBuild(
       mergeConfig(webBuildConfig, {
@@ -173,56 +175,9 @@ async function generateStaticPages(
     }
   }
 
+  // can build them in parallel
   // const allRoutes = (
   //   await Promise.all(
-  //     serverOutput.flatMap(async (output) => {
-  //       if (output.type === 'asset') {
-  //         assets.push(output)
-  //         return []
-  //       }
-
-  //       const id = output.facadeModuleId || ''
-  //       const file = path.basename(id)
-  //       const name = file.replace(/\.[^/.]+$/, '')
-
-  //       if (!id || file[0] === '_' || file.includes('entry-server')) {
-  //         return []
-  //       }
-  //       if (id.includes('+api')) {
-  //         return []
-  //       }
-
-  //       const endpointPath = path.join(options.root, 'dist/server', output.fileName)
-  //       const exported = await import(endpointPath)
-
-  //       const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
-
-  //       return await Promise.all(
-  //         paramsList.map(async (params) => {
-  //           const path = getUrl(params)
-  //           const loaderData = (await exported.loader?.({ path, params })) ?? {}
-  //           return { path, params, loaderData }
-  //         })
-  //       )
-
-  //       function getUrl(_params = {}) {
-  //         return name === 'index'
-  //           ? '/'
-  //           : `/${name
-  //               .split('/')
-  //               .map((part) => {
-  //                 if (part[0] === '[') {
-  //                   const found = _params[part.slice(1, part.length - 1)]
-  //                   if (!found) {
-  //                     console.warn('not found', { _params, part })
-  //                   }
-  //                   return found
-  //                 }
-  //                 return part
-  //               })
-  //               .join('/')}`
-  //       }
-  //     })
   //   )
   // ).flat()
 

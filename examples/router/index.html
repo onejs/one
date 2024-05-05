@@ -20,6 +20,8 @@
   </head>
   <body>
     <div id="root"><!--ssr-outlet--></div>
+    <!-- have to run this before react navigation because its a bad boy... -->
+    <script type="module" src="/src/polyfills.tsx"></script>
     <script type="module" src="/src/entry-web.tsx"></script>
   </body>
 </html>

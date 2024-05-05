@@ -1,5 +1,5 @@
 // import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
-import { createFileSystemRouter, clientTreeShakePlugin } from '@vxrn/router/vite'
+import { getVitePlugins } from '@vxrn/router/vite'
 import type { VXRNConfig } from 'vxrn'
 
 Error.stackTraceLimit = Infinity
@@ -16,8 +16,7 @@ export default {
     },
 
     plugins: [
-      clientTreeShakePlugin(),
-      createFileSystemRouter({
+      ...getVitePlugins({
         root: 'app',
       }),
       // tamaguiPlugin(),

@@ -3,11 +3,10 @@ import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createRoutesManifest, type ExpoRoutesManifestV1 } from '../routes-manifest'
+import { LoaderDataCache } from './constants'
 import { getHtml } from './getHtml'
 import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
 import { loadEnv } from './loadEnv'
-import { transformTreeShakeClient } from './clientTreeShakePlugin'
-import { LoaderDataCache } from './constants'
 
 const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 
@@ -29,10 +28,6 @@ export function createFileSystemRouter(options: Options): Plugin {
     name: `router-fs`,
     enforce: 'post',
     apply: 'serve',
-
-    async transform(code, id, settings) {
-      return await transformTreeShakeClient(code, id, settings, this.parse, options.root)
-    },
 
     configureServer(server) {
       const routePaths = getRoutePaths(root)
@@ -271,6 +266,7 @@ async function handleSSRHTML({
   const { root, disableSSR } = options
 
   const indexHtml = await readFile('./index.html', 'utf-8')
+
   const template = await server.transformIndexHtml(pathname, indexHtml)
 
   if (

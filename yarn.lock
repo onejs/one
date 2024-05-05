@@ -6118,7 +6118,6 @@ __metadata:
     expo-constants: ^14.4.2
     expo-linking: ^5.0.2
     expo-splash-screen: ~0.20.4
-    expo-status-bar: ^1.6.0
     fast-deep-equal: ^3.1.3
     magic-string: ^0.30.10
     query-string: 7.1.3
@@ -6153,7 +6152,7 @@ __metadata:
     "@biomejs/biome": ^1.6.3
     "@tamagui/build": ^1.95.1
     metro-react-native-babel-preset: ^0.77.0
-    vite: ^5.2.10
+    vite: ^5.2.11
   languageName: unknown
   linkType: soft
 
@@ -8692,13 +8691,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-status-bar@npm:^1.6.0":
-  version: 1.11.1
-  resolution: "expo-status-bar@npm:1.11.1"
-  checksum: 5ac4d6b592acff4c8d5da2cbe1eb337b9389b648e4e4c56af4c484b5f1fa0dddf09f5b7c86b34fb03d0a77d4a6658e370cfd57904587794fa14b7e06cae41e88
-  languageName: node
-  linkType: hard
-
 "exponential-backoff@npm:^3.1.1":
   version: 3.1.1
   resolution: "exponential-backoff@npm:3.1.1"
@@ -9522,16 +9514,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"h3-proxy@npm:^1.12.0":
-  version: 1.12.0
-  resolution: "h3-proxy@npm:1.12.0"
+"h3-proxy@npm:^1.13.0":
+  version: 1.13.0
+  resolution: "h3-proxy@npm:1.13.0"
   dependencies:
     consola: ^3.2.3
     is-glob: ^4.0.3
     micromatch: ^4.0.5
   peerDependencies:
     h3: ^1.6.0
-  checksum: 5c4ac302bc3daf1bc5bc277e10227ec9737de845a3d5d426ff9157bc87f476ffd7494db0fc29698edef22320ace9d36bf34e64e2375fcfe62d0f7f51e2c0b4b8
+  checksum: 812e15b143f0343e998d657f14a6d87995899f47bb8d325002b0c65177ae2d2ef9d2edc63a6b1a2bf622da4d6aab9b84d435202785a9bc3d4c9522966040d0f0
   languageName: node
   linkType: hard
 
@@ -15377,9 +15369,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.2.10":
-  version: 5.2.10
-  resolution: "vite@npm:5.2.10"
+"vite@npm:^5.2.11":
+  version: 5.2.11
+  resolution: "vite@npm:5.2.11"
   dependencies:
     esbuild: ^0.20.1
     fsevents: ~2.3.3
@@ -15413,7 +15405,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: feb11be2b97259783afe1d0ff4b7ee0bef78fe8934d8b043465e039e4d8318249e2263adc724b719b9e9b45a37e012caeb7746854768f371d1a82bb189f50fe6
+  checksum: 3f9f976cc6ada93aca56abcc683a140e807725b351abc241a1ec0763ec561a4bf5760e1ad94de4e59505904ddaa88727de66af02f61ecf540c7720045de55d0a
   languageName: node
   linkType: hard
 
@@ -15560,7 +15552,7 @@ __metadata:
     get-port-please: ^3.1.2
     glob: ^10.3.12
     h3: ^1.11.1
-    h3-proxy: ^1.12.0
+    h3-proxy: ^1.13.0
     import-meta-resolve: ^4.0.0
     jiti: ^1.21.0
     metro-inspector-proxy: ^0.71.0
@@ -15574,7 +15566,7 @@ __metadata:
     sirv: ^2.0.4
     source-map: ^0.7.3
     url: ^0.11.0
-    vite: ^5.2.10
+    vite: ^5.2.11
     ws: ^8.7.0
   bin:
     vxrn: run.mjs
