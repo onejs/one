@@ -142,7 +142,16 @@ async function generateStaticPages(
 
     const endpointPath = path.join(options.root, 'dist/server', output.fileName)
 
-    const exported = await import(endpointPath)
+    let exported
+    try {
+      exported = await import(endpointPath)
+    } catch (err) {
+      console.error(`Error importing page (original error)`, err)
+      // err cause not showing in vite or something
+      throw new Error(`Error importing page: ${endpointPath}`, {
+        cause: err,
+      })
+    }
 
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
@@ -204,22 +213,33 @@ async function generateStaticPages(
 
   // pre-render each route...
   for (const { path, loaderData, params } of allRoutes) {
-    const loaderProps = { params }
-    globalThis['__vxrnLoaderProps__'] = loaderProps
-    console.info(`render`, path)
-    const { appHtml, headHtml } = await render({ path })
-    const slashFileName = `${path === '/' ? '/index' : path}.html`
-    const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
-    const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
-    const html = getHtml({
-      template: clientHtml || template,
-      appHtml,
-      headHtml,
-      loaderData,
-      loaderProps,
-      css: cssString,
-    })
-    const filePath = toAbsolute(`dist/static${slashFileName}`)
-    fs.writeFileSync(toAbsolute(filePath), html)
+    try {
+      const loaderProps = { params }
+      globalThis['__vxrnLoaderProps__'] = loaderProps
+      console.info(`render`, path)
+      const { appHtml, headHtml } = await render({ path })
+      const slashFileName = `${path === '/' ? '/index' : path}.html`
+      const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
+      const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
+      const html = getHtml({
+        template: clientHtml || template,
+        appHtml,
+        headHtml,
+        loaderData,
+        loaderProps,
+        css: cssString,
+      })
+      const filePath = toAbsolute(`dist/static${slashFileName}`)
+      fs.writeFileSync(toAbsolute(filePath), html)
+    } catch (err) {
+      throw new Error(
+        `Error building static page: ${path} with:
+  loaderData: ${JSON.stringify(loaderData || null)}
+  params: ${JSON.stringify(params || null)}`,
+        {
+          cause: err,
+        }
+      )
+    }
   }
 }
