@@ -1,3 +1,5 @@
+import './polyfills'
+
 import type { Plugin } from 'vite'
 import { existsSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'

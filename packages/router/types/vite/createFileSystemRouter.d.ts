@@ -1,7 +1,7 @@
-import type { Connect, Plugin } from 'vite';
+import type { Plugin } from 'vite';
 export type Options = {
     root: string;
-    shouldIgnore?: (req: Connect.IncomingMessage) => boolean;
+    shouldIgnore?: (req: Request) => boolean;
     disableSSR?: boolean;
 };
 export declare function createFileSystemRouter(options: Options): Plugin;

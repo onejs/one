@@ -92,7 +92,7 @@ export function loadRoutes(paths: any) {
           loadedRoutes[id] = () => null
         })
     }
-    console.warn(`throw it`, id)
+
     throw promises[id]
   }
 
