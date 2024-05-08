@@ -96,26 +96,24 @@ function ContextNavigator({
    */
   const wrapper = (children: any) => {
     return (
-      <RootErrorBoundary>
-        <HeadProvider context={headContext.current}>
-          <ParentWrapper>
-            {/* <GestureHandlerRootView> */}
-            <SafeAreaProvider
-              // SSR support
-              initialMetrics={INITIAL_METRICS}
-              style={{
-                flex: 1,
-              }}
-            >
-              {children}
+      <HeadProvider context={headContext.current}>
+        <ParentWrapper>
+          {/* <GestureHandlerRootView> */}
+          <SafeAreaProvider
+            // SSR support
+            initialMetrics={INITIAL_METRICS}
+            style={{
+              flex: 1,
+            }}
+          >
+            {children}
 
-              {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-              {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-            </SafeAreaProvider>
-            {/* </GestureHandlerRootView> */}
-          </ParentWrapper>
-        </HeadProvider>
-      </RootErrorBoundary>
+            {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+            {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+          </SafeAreaProvider>
+          {/* </GestureHandlerRootView> */}
+        </ParentWrapper>
+      </HeadProvider>
     )
   }
 
@@ -156,33 +154,6 @@ function ContextNavigator({
       </ServerLocationContext.Provider>
     </UpstreamNavigationContainer>
   )
-}
-
-class RootErrorBoundary extends React.Component<{ children: any }> {
-  state = { hasError: false }
-
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true }
-  }
-
-  componentDidCatch(error, info) {
-    // Example "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
-    console.error('ERROR', error, info)
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return null
-    }
-
-    return this.props.children
-  }
 }
 
 let onUnhandledAction: (action: NavigationAction) => void

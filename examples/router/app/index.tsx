@@ -13,11 +13,7 @@ export function loader() {
 }
 
 export default () => {
-  console.log('load em')
-
   const data = useLoader(loader)
-
-  console.log('loaded', data)
 
   useEffect(() => {
     fetch('/hello')

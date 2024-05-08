@@ -86,6 +86,7 @@ export function loadRoutes(paths: any) {
         }, 1000)
       })
     }
+    console.warn(`throw it`, id)
     throw promises[id]
   }
 
