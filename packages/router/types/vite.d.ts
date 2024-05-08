@@ -1,3 +1,4 @@
+import './polyfills';
 import type { Plugin } from 'vite';
 import { type Options } from './vite/createFileSystemRouter';
 export { clientTreeShakePlugin } from './vite/clientTreeShakePlugin';

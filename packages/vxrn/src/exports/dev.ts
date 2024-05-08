@@ -294,11 +294,14 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   )
 
   // Define proxy event handler
-  const proxyEventHandler = createProxyEventHandler({
-    target: `http://127.0.0.1:${vitePort}`,
-    enableLogger: true,
-  })
-  app.use(eventHandler(proxyEventHandler))
+  app.use(
+    eventHandler(
+      createProxyEventHandler({
+        target: `http://127.0.0.1:${vitePort}`,
+        enableLogger: process.env.DEBUG?.startsWith('vxrn'),
+      })
+    )
+  )
 
   const server = nodeCreateServer(toNodeListener(app))
 
@@ -313,21 +316,23 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
 
       console.info(`Server running on http://localhost:${port}`)
 
-      // bridge socket between vite
-      if (vitePort) {
-        socket = new WebSocket(`ws://localhost:${vitePort}/__vxrnhmr`, 'vite-hmr')
+      server.once('listening', () => {
+        // bridge socket between vite
+        if (vitePort) {
+          socket = new WebSocket(`ws://127.0.0.1:${vitePort}/__vxrnhmr`, 'vite-hmr')
 
-        socket.on('message', (msg) => {
-          const message = msg.toString()
-          for (const listener of [...clients]) {
-            listener.send(message)
-          }
-        })
+          socket.on('message', (msg) => {
+            const message = msg.toString()
+            for (const listener of [...clients]) {
+              listener.send(message)
+            }
+          })
 
-        socket.on('error', (err) => {
-          console.info('error bridging socket to vite', err)
-        })
-      }
+          socket.on('error', (err) => {
+            console.info('error bridging socket to vite', err)
+          })
+        }
+      })
 
       return {
         closePromise: new Promise((res) => viteServer.httpServer?.on('close', res)),
