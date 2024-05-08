@@ -1,3 +1,4 @@
+import { startTransition } from 'react'
 import { hydrateRoot } from 'react-dom/client'
 
 globalThis['__vxrnVersion'] ||= 0
@@ -11,6 +12,8 @@ export function render(App: (props: { path: string }) => JSX.Element, rootQueryS
     globalThis['__vxrnVersion']++
     globalThis['__vxrnRoot'].render(element)
   } else {
-    globalThis['__vxrnRoot'] = hydrateRoot(container, element)
+    startTransition(() => {
+      globalThis['__vxrnRoot'] = hydrateRoot(container, element)
+    })
   }
 }

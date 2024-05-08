@@ -13,7 +13,6 @@ import { createServer as nodeCreateServer } from 'node:http'
 import { dirname, join, relative, resolve } from 'node:path'
 import readline from 'node:readline'
 import { WebSocket } from 'ws'
-
 import * as babel from '@babel/core'
 import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
 import viteReactPlugin, { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
