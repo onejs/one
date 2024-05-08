@@ -76,15 +76,21 @@ export function loadRoutes(paths: any) {
       return loadedRoutes[id]
     }
     if (!promises[id]) {
-      promises[id] = routesSync[id]().then((val: any) => {
-        loadedRoutes[id] = val
-        delete promises[id]
+      promises[id] = routesSync[id]()
+        .then((val: any) => {
+          loadedRoutes[id] = val
+          delete promises[id]
 
-        // clear cache so we get fresh contents in dev mode (hacky)
-        clears[id] = setTimeout(() => {
-          delete loadedRoutes[id]
-        }, 1000)
-      })
+          // clear cache so we get fresh contents in dev mode (hacky)
+          clears[id] = setTimeout(() => {
+            delete loadedRoutes[id]
+          }, 1000)
+        })
+        .catch((err) => {
+          console.error(`Error loading route`, id, err)
+          delete promises[id]
+          loadedRoutes[id] = () => null
+        })
     }
     console.warn(`throw it`, id)
     throw promises[id]
