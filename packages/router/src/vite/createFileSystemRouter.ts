@@ -63,7 +63,10 @@ export function createFileSystemRouter(options: Options): Plugin {
             })
           } catch (err) {
             console.error(`Error rendering ${url.pathname} on server:`)
-            console.error(err)
+            if (err instanceof Error) {
+              console.error(err.message)
+              console.error(err.stack)
+            }
           }
 
           return template

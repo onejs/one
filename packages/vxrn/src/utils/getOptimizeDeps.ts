@@ -67,6 +67,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-native-web',
     'react-native-web-lite',
     'react-native',
+    '@floating-ui/react',
+    '@floating-ui/react-dom',
     '@tamagui/constants',
     '@tamagui/react-native-use-responder-events',
     '@tamagui/alert-dialog',
