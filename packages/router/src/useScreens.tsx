@@ -99,6 +99,8 @@ function getSortedChildren(
     ...entries.sort(sortRoutesWithInitial(initialRouteName)).map((route) => ({ route, props: {} }))
   )
 
+  console.log('sorted', ordered)
+
   return ordered
 }
 
@@ -175,24 +177,25 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     ScreenComponent = React.forwardRef((props, ref) => {
       const res = value.loadRoute()
       const Component = fromImport(res).default as React.ComponentType<any>
-
       return <Component {...props} ref={ref} />
     })
   }
 
-  const getLoadable = (props: any, ref: any) => (
-    <React.Suspense fallback={<SuspenseFallback route={value} />}>
-      <ScreenComponent
-        {...{
-          ...props,
-          ref,
-          // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-          // the intention is to make it possible to deduce shared routes.
-          segment: value.route,
-        }}
-      />
-    </React.Suspense>
-  )
+  const getLoadable = (props: any, ref: any) => {
+    return (
+      <React.Suspense fallback={<SuspenseFallback route={value} />}>
+        <ScreenComponent
+          {...{
+            ...props,
+            ref,
+            // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+            // the intention is to make it possible to deduce shared routes.
+            segment: value.route,
+          }}
+        />
+      </React.Suspense>
+    )
+  }
 
   const QualifiedRoute = React.forwardRef(
     (
@@ -208,7 +211,6 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       ref: any
     ) => {
       const loadable = getLoadable(props, ref)
-
       return <Route node={value}>{loadable}</Route>
     }
   )

@@ -1,3 +1,4 @@
+import * as JSX from 'react/jsx-runtime'
 import { build as esbuild } from 'esbuild'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import fs from 'node:fs'
@@ -7,11 +8,12 @@ import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 
 import FSExtra from 'fs-extra'
 import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
-import { optimizeDeps } from '../constants'
 import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getHtml } from '../utils/getHtml'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
+import { getOptimizeDeps } from '../utils/getOptimizeDeps'
+import React from 'react'
 
 Error.stackTraceLimit = Infinity
 
@@ -27,6 +29,29 @@ const { ensureDir, existsSync, readFile, pathExists } = FSExtra
 
 type BuildOptions = { step?: string; page?: string }
 
+// its so hard to debug ssr and we get no componentstack trace, this helps:
+if (typeof window === 'undefined') {
+  const og = React.createElement
+  // @ts-ignore
+  React.createElement = (...args) => {
+    if (!args[0]) {
+      console.trace('Missing export, better stack trace here', !!args[0])
+    }
+    // @ts-ignore
+    return og(...args)
+  }
+
+  const og2 = JSX.jsx
+  // @ts-ignore
+  JSX.jsx = (...args) => {
+    if (!args[0]) {
+      console.trace('Missing export, better stack trace here', !!args[0])
+    }
+    // @ts-ignore
+    return og2(...args)
+  }
+}
+
 // web only for now
 
 // TODO:
@@ -39,6 +64,8 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
 
   // TODO?
   process.env.NODE_ENV = 'production'
+
+  const { optimizeDeps } = getOptimizeDeps('build')
 
   let webBuildConfig = mergeConfig(
     getBaseViteConfig({

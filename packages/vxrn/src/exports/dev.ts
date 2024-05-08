@@ -33,7 +33,7 @@ import {
 import createViteFlow from '@vxrn/vite-flow'
 import type { Peer } from 'crossws'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
-import { depsToOptimize, nativeExtensions, optimizeDeps } from '../constants'
+import { nativeExtensions } from '../constants'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import type { VXRNConfig } from '../types'
@@ -41,6 +41,7 @@ import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
 import { getVitePath } from '../utils/getVitePath'
 import { checkPatches } from '../utils/patches'
+import { getOptimizeDeps } from '../utils/getOptimizeDeps'
 
 // sorry for the mess, exploring before abstracting
 
@@ -342,6 +343,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
 
 async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugin: any) {
   const { root, port, cacheDir } = options
+  const { depsToOptimize } = getOptimizeDeps('build')
 
   if (process.env.LOAD_TMP_BUNDLE) {
     // for easier quick testing things:
@@ -770,6 +772,7 @@ let entryRoot = ''
 
 async function getViteServerConfig(config: VXRNConfigFilled) {
   const { root, host, webConfig } = config
+  const { optimizeDeps } = getOptimizeDeps('serve')
 
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
