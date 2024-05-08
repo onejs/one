@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/router",
-  "version": "0.1.47",
+  "version": "0.1.48",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
