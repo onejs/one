@@ -24,7 +24,6 @@
     "tamagui": "^1.95.1"
   },
   "devDependencies": {
-    "@tamagui/cli": "^1.95.1",
     "h3": "^1.11.1",
     "patch-package": "^8.0.0",
     "sirv": "^2.0.4",
