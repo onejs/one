@@ -2,7 +2,7 @@ import { build as esbuild } from 'esbuild'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import fs from 'node:fs'
 import { tmpdir } from 'node:os'
-import path from 'node:path'
+import Path from 'node:path'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 import FSExtra from 'fs-extra'
 import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
@@ -11,6 +11,7 @@ import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getHtml } from '../utils/getHtml'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
 import { getOptionsFilled, type VXRNConfigFilled } from '../utils/getOptionsFilled'
+import { assertIsError } from '../utils/assert'
 
 Error.stackTraceLimit = Infinity
 
@@ -102,7 +103,7 @@ async function generateStaticPages(
   options: VXRNConfigFilled,
   serverOutput: (OutputChunk | OutputAsset)[]
 ) {
-  const toAbsolute = (p) => path.resolve(options.root, p)
+  const toAbsolute = (p) => Path.resolve(options.root, p)
 
   const staticDir = toAbsolute(`dist/static`)
   await ensureDir(staticDir)
@@ -130,7 +131,7 @@ async function generateStaticPages(
     }
 
     const id = output.facadeModuleId || ''
-    const file = path.basename(id)
+    const file = Path.basename(id)
     const name = file.replace(/\.[^/.]+$/, '')
 
     if (!id || file[0] === '_' || file.includes('entry-server')) {
@@ -140,7 +141,7 @@ async function generateStaticPages(
       continue
     }
 
-    const endpointPath = path.join(options.root, 'dist/server', output.fileName)
+    const endpointPath = Path.join(options.root, 'dist/server', output.fileName)
 
     let exported
     try {
@@ -198,7 +199,7 @@ async function generateStaticPages(
     .join('\n\n')
 
   // awkward way to get prefixes:
-  const tmpCssFile = path.join(tmpdir(), 'tmp.css')
+  const tmpCssFile = Path.join(tmpdir(), 'tmp.css')
   await FSExtra.writeFile(tmpCssFile, cssStringRaw, 'utf-8')
   await esbuild({
     entryPoints: [tmpCssFile],
@@ -230,8 +231,11 @@ async function generateStaticPages(
         css: cssString,
       })
       const filePath = toAbsolute(`dist/static${slashFileName}`)
+      await ensureDir(Path.dirname(filePath))
       fs.writeFileSync(toAbsolute(filePath), html)
     } catch (err) {
+      assertIsError(err)
+      console.error(`og error because cause not working`, err)
       throw new Error(
         `Error building static page: ${path} with:
   loaderData: ${JSON.stringify(loaderData || null)}
