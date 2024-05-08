@@ -1,5 +1,7 @@
 import './polyfills'
 
+export type { Endpoint } from './types'
+
 export { Root } from './Root'
 export { render } from './render'
 

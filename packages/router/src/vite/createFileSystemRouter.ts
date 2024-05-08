@@ -95,11 +95,11 @@ export function createFileSystemRouter(options: Options): Plugin {
 
         async handleAPI({ request, route }) {
           const loaded = await server.ssrLoadModule(join(options.root, route.file))
-          if (!loaded) return null
+          if (!loaded) return
 
           const requestType = request.method || 'GET'
           const handler = loaded[requestType] || loaded.default
-          if (!handler) return null
+          if (!handler) return
 
           return new Promise((res) => {
             const id = {}
@@ -143,6 +143,16 @@ export function createFileSystemRouter(options: Options): Plugin {
 
             if (reply.type) {
               res.setHeader('Content-Type', reply.type)
+            }
+
+            if (reply.response instanceof Response) {
+              res.statusCode = reply.response.status
+              res.statusMessage = reply.response.statusText
+              // assume json for now?
+              res.setHeader('Content-Type', 'Application/json')
+              res.write(JSON.stringify(await reply.response.json()))
+              res.end()
+              return
             }
 
             res.write(reply.response)

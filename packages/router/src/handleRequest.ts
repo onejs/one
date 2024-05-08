@@ -70,7 +70,7 @@ export function createHandleRequest(
     const apiRoute = apiRoutesMap[pathname]
     if (apiRoute) {
       const out = await handlers.handleAPI({ request, route: apiRoute, url })
-      const isJSON = out && typeof out === 'object'
+      const isJSON = out && !(out instanceof Response) && typeof out === 'object'
       return {
         type: isJSON ? 'application/json' : undefined,
         response: isJSON ? JSON.stringify(out) : out,
