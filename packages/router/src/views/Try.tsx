@@ -36,6 +36,7 @@ export class Try extends React.Component<
   }
 
   render() {
+    console.log('asdsadasdsa')
     const { error } = this.state
     const { catch: ErrorBoundary, children } = this.props
     if (!error) {

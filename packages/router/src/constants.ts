@@ -11,6 +11,7 @@ const { Platform, uuidv4 } = EMC
 
 const ID_KEY = 'EXPO_CONSTANTS_INSTALLATION_ID'
 const _sessionId = uuidv4()
+
 function getBrowserName() {
   if (Platform.isDOMAvailable) {
     const agent = navigator.userAgent.toLowerCase()

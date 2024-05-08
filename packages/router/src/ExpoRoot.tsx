@@ -8,7 +8,7 @@ import type { NavigationAction, NavigationContainerProps } from '@react-navigati
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
 import { ServerLocationContext } from './global-state/serverLocationContext'
-import { Head } from './head'
+import { Head, HeadProvider } from './head'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
 
@@ -87,12 +87,7 @@ function ContextNavigator({
 }: ExpoRootProps) {
   const store = useInitializeExpoRouter(context, initialLocation)
 
-  const headContext = useMemo(
-    () => ({
-      ...globalThis['vxrn__headContext__'],
-    }),
-    []
-  )
+  const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
 
   /*
    * Due to static rendering we need to wrap these top level views in second wrapper
@@ -101,24 +96,26 @@ function ContextNavigator({
    */
   const wrapper = (children: any) => {
     return (
-      <Head.Provider context={headContext.current}>
-        <ParentWrapper>
-          {/* <GestureHandlerRootView> */}
-          <SafeAreaProvider
-            // SSR support
-            initialMetrics={INITIAL_METRICS}
-            style={{
-              flex: 1,
-            }}
-          >
-            {children}
+      <RootErrorBoundary>
+        <HeadProvider context={headContext.current}>
+          <ParentWrapper>
+            {/* <GestureHandlerRootView> */}
+            <SafeAreaProvider
+              // SSR support
+              initialMetrics={INITIAL_METRICS}
+              style={{
+                flex: 1,
+              }}
+            >
+              {children}
 
-            {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-            {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-          </SafeAreaProvider>
-          {/* </GestureHandlerRootView> */}
-        </ParentWrapper>
-      </Head.Provider>
+              {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+              {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+            </SafeAreaProvider>
+            {/* </GestureHandlerRootView> */}
+          </ParentWrapper>
+        </HeadProvider>
+      </RootErrorBoundary>
     )
   }
 
@@ -139,6 +136,10 @@ function ContextNavigator({
 
   const Component = store.rootComponent
 
+  if (!Component) {
+    throw new Error(`No root component found`)
+  }
+
   return (
     <UpstreamNavigationContainer
       ref={store.navigationRef}
@@ -155,6 +156,33 @@ function ContextNavigator({
       </ServerLocationContext.Provider>
     </UpstreamNavigationContainer>
   )
+}
+
+class RootErrorBoundary extends React.Component<{ children: any }> {
+  state = { hasError: false }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true }
+  }
+
+  componentDidCatch(error, info) {
+    // Example "componentStack":
+    //   in ComponentThatThrows (created by App)
+    //   in ErrorBoundary (created by App)
+    //   in div (created by App)
+    //   in App
+    console.error('ERROR', error, info)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return null
+    }
+
+    return this.props.children
+  }
 }
 
 let onUnhandledAction: (action: NavigationAction) => void
