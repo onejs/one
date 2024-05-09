@@ -93,10 +93,11 @@ export function loadRoutes(paths: any) {
         })
     }
 
+    promises[id].stack = new Error().stack
+
     // this is called in useScreens value.loadRoute
     // see getRoutes.ts contextModule.loadRoute
     // where contextModule === this resolve function
-    console.info(`loadRoute`, id)
     throw promises[id]
   }
 
