@@ -523,18 +523,18 @@ function getLayoutNode(node: RouteNode, options: Options) {
     return child.route.replace(/\/index$/, '') === groupName
   })
   let initialRouteName = childMatchingGroup?.route
-  const loaded = node.loadRoute()
-  if (loaded?.unstable_settings) {
-    // Allow unstable_settings={ initialRouteName: '...' } to override the default initial route name.
-    initialRouteName = loaded.unstable_settings.initialRouteName ?? initialRouteName
+  // const loaded = node.loadRoute()
+  // if (loaded?.unstable_settings) {
+  //   // Allow unstable_settings={ initialRouteName: '...' } to override the default initial route name.
+  //   initialRouteName = loaded.unstable_settings.initialRouteName ?? initialRouteName
 
-    if (groupName) {
-      // Allow unstable_settings={ 'custom': { initialRouteName: '...' } } to override the less specific initial route name.
-      const groupSpecificInitialRouteName = loaded.unstable_settings?.[groupName]?.initialRouteName
+  //   if (groupName) {
+  //     // Allow unstable_settings={ 'custom': { initialRouteName: '...' } } to override the less specific initial route name.
+  //     const groupSpecificInitialRouteName = loaded.unstable_settings?.[groupName]?.initialRouteName
 
-      initialRouteName = groupSpecificInitialRouteName ?? initialRouteName
-    }
-  }
+  //     initialRouteName = groupSpecificInitialRouteName ?? initialRouteName
+  //   }
+  // }
 
   return {
     ...node,
