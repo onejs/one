@@ -1,3 +1,4 @@
+import { StrictMode } from 'react'
 import { ExpoRoot, type ExpoRootProps } from './ExpoRoot'
 import { RootErrorBoundary } from './RootErrorBoundary'
 import type { GlobbedRouteImports } from './types'
@@ -19,13 +20,19 @@ export function Root({ routes, path, ...props }: RootProps) {
   const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
 
   return (
-    <RootErrorBoundary>
-      <ExpoRoot
-        location={path ? new URL(`http://localhost:3333${path}`) : undefined}
-        context={context}
-        {...props}
-      />
-    </RootErrorBoundary>
+    <StrictMode>
+      <RootErrorBoundary>
+        <ExpoRoot
+          location={
+            typeof window !== 'undefined'
+              ? new URL(path || window.location.pathname || '/', window.location.href)
+              : new URL(path || '/', 'https://localhost')
+          }
+          context={context}
+          {...props}
+        />
+      </RootErrorBoundary>
+    </StrictMode>
   )
 }
 

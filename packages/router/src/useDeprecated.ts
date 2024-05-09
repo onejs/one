@@ -18,7 +18,7 @@ export function useWarnOnce(message: string, guard: unknown = true, key = messag
       warned.add(key)
       console.warn(message)
     }
-  }, [guard])
+  }, [guard, key, message])
 }
 
 export function useDeprecated(message: string, guard: unknown = true, key = message) {

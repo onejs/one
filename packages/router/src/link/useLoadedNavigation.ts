@@ -35,7 +35,7 @@ export function useLoadedNavigation() {
     if (navigationRef.current) {
       flush()
     }
-  }, [flush])
+  }, [flush, navigationRef])
 
   const push = useCallback(
     (fn: (navigation: GenericNavigation) => void) => {
@@ -44,7 +44,7 @@ export function useLoadedNavigation() {
         flush()
       }
     },
-    [flush]
+    [flush, navigationRef]
   )
 
   return push
@@ -56,7 +56,7 @@ export function useOptionalNavigation(): GenericNavigation | null {
 
   useEffect(() => {
     loadNavigation((nav) => setNavigation(nav))
-  }, [])
+  }, [loadNavigation])
 
   return navigation
 }

@@ -99,8 +99,6 @@ function getSortedChildren(
     ...entries.sort(sortRoutesWithInitial(initialRouteName)).map((route) => ({ route, props: {} }))
   )
 
-  console.log('sorted', ordered)
-
   return ordered
 }
 
@@ -110,14 +108,13 @@ function getSortedChildren(
 export function useSortedScreens(order: ScreenProps[]): React.ReactNode[] {
   const node = useRouteNode()
 
-  const sorted = node?.children?.length
-    ? getSortedChildren(node.children, order, node.initialRouteName)
-    : []
+  return React.useMemo(() => {
+    const sorted = node?.children?.length
+      ? getSortedChildren(node.children, order, node.initialRouteName)
+      : []
 
-  return React.useMemo(
-    () => sorted.map((value) => routeToScreen(value.route, value.props)),
-    [sorted]
-  )
+    return sorted.map((value) => routeToScreen(value.route, value.props))
+  }, [node?.children, node?.initialRouteName, order])
 }
 
 function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
