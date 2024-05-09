@@ -20,19 +20,19 @@ export function Root({ routes, path, ...props }: RootProps) {
   const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
 
   return (
-    <StrictMode>
-      <RootErrorBoundary>
-        <ExpoRoot
-          location={
-            typeof window !== 'undefined'
-              ? new URL(path || window.location.pathname || '/', window.location.href)
-              : new URL(path || '/', 'https://localhost')
-          }
-          context={context}
-          {...props}
-        />
-      </RootErrorBoundary>
-    </StrictMode>
+    // <StrictMode>
+    <RootErrorBoundary>
+      <ExpoRoot
+        location={
+          typeof window !== 'undefined'
+            ? new URL(path || window.location.pathname || '/', window.location.href)
+            : new URL(path || '/', 'https://localhost')
+        }
+        context={context}
+        {...props}
+      />
+    </RootErrorBoundary>
+    // </StrictMode>
   )
 }
 
