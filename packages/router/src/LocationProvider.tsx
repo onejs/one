@@ -28,10 +28,26 @@ export function getRouteInfoFromState(
   }
 }
 
+type RouteLikeTree = { name: string; state?: { routes?: RouteLikeTree[] } }
+
+function getActualLastRoute<A extends RouteLikeTree>(routeLike: A): A {
+  // if group, traverse
+  if (routeLike.name[0] === '(' && routeLike.state?.routes) {
+    const routes = routeLike.state.routes
+    return getActualLastRoute(routes[routes.length - 1]) as any
+  }
+  return routeLike
+}
+
 function isIndexPath(state: State) {
-  const route = state.routes[state.index ?? state.routes.length - 1]
+  const route = getActualLastRoute(state.routes[state.index ?? state.routes.length - 1])
+
   if (route.state) {
     return isIndexPath(route.state)
+  }
+
+  if (route.name === 'index') {
+    return true
   }
 
   // Index routes on the same level as a layout do not have `index` in their name
@@ -43,7 +59,9 @@ function isIndexPath(state: State) {
   // So we need to do a positive lookahead to check if the route ends with /index
   // Nested routes that are hoisted will have a name ending with /index
   // e.g name could be /user/[id]/index
-  if (route.name.match(/.+\/index$/)) return true
+  if (route.name.match(/.+\/index$/)) {
+    return true
+  }
 
   // The state will either have params (because there are multiple _layout) or it will be hoisted with a name
   // If we don't match the above cases, then it's not an index route

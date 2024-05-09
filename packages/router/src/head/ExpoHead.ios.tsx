@@ -156,7 +156,7 @@ function useActivityFromMetaChildren(meta: MetaNode[]) {
 
     cachedActivity.current = userActivity
     return userActivity
-  }, [meta, pathname, href])
+  }, [sortedMeta])
 
   const parsedActivity: UserActivity = {
     keywords: [title],
@@ -205,7 +205,7 @@ function useRegisterCurrentActivity(activity: UserActivity) {
   // Using all segments ensures that cascading routes are considered.
   const activityId = urlToId(usePathname() || '/')
   const cascadingId = urlToId(useSegments().join('-') || '-')
-  const activityIds = Array.from(activities.keys())
+
   const cascadingActivity: UserActivity = React.useMemo(() => {
     // Get all nested activities together, then update the id to match the current pathname.
     // This enables cases like `/user/[name]/post/[id]` to match all nesting, while still having a URL-specific ID, i.e. `/user/evanbacon/post/123`
@@ -222,7 +222,7 @@ function useRegisterCurrentActivity(activity: UserActivity) {
     activities.set(cascadingId, cascadingActivity)
 
     return cascadingActivity
-  }, [cascadingId, activityId, activity, activityIds])
+  }, [cascadingId, activityId, activity])
 
   const previousActivity = React.useRef<UserActivity | null>(null)
 

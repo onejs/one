@@ -36,7 +36,7 @@ export function getLinkingConfig(routes: RouteNode, metaOnly = true): ExpoLinkin
       return (
         getPathFromState(state, {
           screens: [],
-          ...this.config,
+          // ...this.config,
           ...options,
         }) ?? '/'
       )

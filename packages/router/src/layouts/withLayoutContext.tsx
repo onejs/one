@@ -58,7 +58,7 @@ export function useFilterScreenChildren(
       screens,
       children: customChildren,
     }
-  }, [children])
+  }, [children, contextKey, isCustomNavigator])
 }
 
 /** Return a navigator that automatically injects matched routes and renders nothing when there are no children. Return type with children prop optional */

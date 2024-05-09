@@ -6,7 +6,8 @@ export function useLoader<
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
   const initialData = useRef(globalThis['__vxrnLoaderData__'])
   return typeof loader === 'function'
-    ? useAsyncFn(loader, globalThis['__vxrnLoaderProps__'])
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useAsyncFn(loader, globalThis['__vxrnLoaderProps__'])
     : initialData.current
 }
 

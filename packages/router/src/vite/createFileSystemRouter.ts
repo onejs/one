@@ -36,6 +36,9 @@ export function createFileSystemRouter(options: Options): Plugin {
           // }
           const routeFile = join(root, route.file)
 
+          // warm up the entry
+          void server.warmupRequest(routeFile)
+
           try {
             const exported = await server.ssrLoadModule(routeFile, {
               fixStacktrace: true,

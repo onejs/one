@@ -57,7 +57,7 @@ function uniqueBy<T>(arr: T[], key: (item: T) => string): T[] {
 export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 {
   function getFlatNodes(route: RouteNode): [string, RouteNode][] {
     if (route.children.length) {
-      return route.children.map((child) => getFlatNodes(child)).flat()
+      return route.children.flatMap((child) => getFlatNodes(child))
     }
 
     // API Routes are handled differently to HTML routes because they have no nested behavior.
@@ -193,7 +193,7 @@ function getNamedParametrizedRoute(route: string) {
           if (cleanedKey.length === 0 || cleanedKey.length > 30) {
             invalidKey = true
           }
-          if (!isNaN(parseInt(cleanedKey.slice(0, 1), 10))) {
+          if (!Number.isNaN(Number.parseInt(cleanedKey.slice(0, 1), 10))) {
             invalidKey = true
           }
 
