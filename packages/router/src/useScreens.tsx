@@ -253,6 +253,7 @@ export function createGetIdForRoute(
 }
 
 function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenProps> = {}) {
+  console.log('route to screen', route, createGetIdForRoute(route), route.loadRoute())
   return (
     <Screen
       // Users can override the screen getId function.

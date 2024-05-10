@@ -7,6 +7,7 @@ import Path, { join } from 'node:path'
 import type { OutputAsset, OutputChunk } from 'rollup'
 import { getHtml, getOptionsFilled, type VXRNConfig } from 'vxrn'
 import { getManifest } from './getManifest'
+import { rm } from 'node:fs/promises'
 
 export const resolveFile = (path: string) => {
   try {
@@ -21,6 +22,11 @@ const { ensureDir, existsSync, readFile, outputFile } = FSExtra
 export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | OutputAsset)[]) {
   const options = await getOptionsFilled(optionsIn)
   const toAbsolute = (p) => Path.resolve(options.root, p)
+
+  // lets always clean dist folder for now to be sure were correct
+  if (existsSync('dist')) {
+    await rm('dist', { recursive: true, force: true })
+  }
 
   const staticDir = toAbsolute(`dist/static`)
   await ensureDir(staticDir)
