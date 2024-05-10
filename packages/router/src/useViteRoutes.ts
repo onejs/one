@@ -37,7 +37,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
     // TODO this is a temp fix for matching webpack style routes:
     const pathWithoutRelative = path.replace('../app/', './')
 
-    if (import.meta.env.DEV && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       // for SSR support we rewrite these:
       routesSync[pathWithoutRelative] = path.includes('_layout.')
         ? loadRouteFunction

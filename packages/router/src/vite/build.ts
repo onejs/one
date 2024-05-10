@@ -16,7 +16,7 @@ export const resolveFile = (path: string) => {
   }
 }
 
-const { ensureDir, existsSync, readFile } = FSExtra
+const { ensureDir, existsSync, readFile, outputFile } = FSExtra
 
 export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | OutputAsset)[]) {
   const options = await getOptionsFilled(optionsIn)
@@ -36,7 +36,7 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
   }[] = []
 
   const manifest = getManifest(join(options.root, 'app'))
-  console.log('manifest', manifest)
+  // console.log('manifest', manifest)
 
   for (const output of serverOutput) {
     if (output.type === 'asset') {
@@ -69,6 +69,8 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
     }
 
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
+
+    console.info(` [build] ${id} with params`, paramsList)
 
     for (const params of paramsList) {
       const path = getUrl(params)
@@ -124,15 +126,13 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
     outfile: tmpCssFile,
     loader: { '.css': 'css' },
   })
-  const cssString = await FSExtra.readFile(tmpCssFile, 'utf-8')
+  const cssString = await readFile(tmpCssFile, 'utf-8')
 
   // pre-render each route...
   for (const { path, loaderData, params } of allRoutes) {
     try {
       const loaderProps = { params }
       globalThis['__vxrnLoaderProps__'] = loaderProps
-
-      console.info(`render`, path)
 
       const { appHtml, headHtml } = await render({ path })
 
@@ -142,6 +142,7 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
       const slashFileName = `${path === '/' ? '/index' : path}.html`
       const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
       const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
+
       const html = getHtml({
         template: clientHtml || template,
         appHtml,
@@ -151,8 +152,12 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
         css: cssString,
       })
       const filePath = toAbsolute(`dist/static${slashFileName}`)
-      await ensureDir(Path.dirname(filePath))
-      fs.writeFileSync(toAbsolute(filePath), html)
+
+      if (path === '/') {
+        console.info(`output`, filePath, path, '\n', appHtml)
+      }
+
+      await outputFile(toAbsolute(filePath), html)
     } catch (err) {
       assertIsError(err)
       console.error(`og error because cause not working`, err)

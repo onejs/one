@@ -34,19 +34,19 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
       root: options.root,
       clearScreen: false,
       optimizeDeps,
-    }
-  ) satisfies UserConfig
+    } satisfies UserConfig
+  )
 
   if (options.webConfig) {
     webBuildConfig = mergeConfig(webBuildConfig, options.webConfig) as any
   }
 
   if (buildOptions.step !== 'generate') {
-    console.info(`build client`, webBuildConfig)
     await viteBuild(
       mergeConfig(webBuildConfig, {
         build: {
           ssrManifest: true,
+          minify: false,
           outDir: 'dist/client',
         },
       } satisfies UserConfig)

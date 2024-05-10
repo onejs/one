@@ -13,10 +13,7 @@ type RequestHandlerProps = {
         params: Record<string, any>;
     };
 };
-type RequestHandlerResponse = null | {
-    type?: 'text/javascript' | 'application/json';
-    response: string | Response;
-};
+type RequestHandlerResponse = null | string | Response;
 export declare function createHandleRequest(options: Options, handlers: {
     handleSSR?: (props: RequestHandlerProps) => Promise<any>;
     handleLoader?: (props: RequestHandlerProps) => Promise<any>;

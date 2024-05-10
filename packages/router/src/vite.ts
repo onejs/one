@@ -27,11 +27,9 @@ export function getVitePlugins(options: Options) {
         try {
           const directoryPath = absolutePath + '/index.web.js'
           if (existsSync(directoryPath)) {
-            console.info(`temp fix found ${directoryPath}`)
             return directoryPath
           }
           if (existsSync(webPath)) {
-            console.info(`temp fix found ${webPath}`)
             return webPath
           }
         } catch (err) {
