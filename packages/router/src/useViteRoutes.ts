@@ -20,7 +20,7 @@ export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
   return context
 }
 
-export function loadRoutes(paths: any) {
+export function loadRoutes(paths: Record<string, () => Promise<any>>) {
   if (context) return context
 
   globalThis['__importMetaGlobbed'] = paths
@@ -33,32 +33,20 @@ export function loadRoutes(paths: any) {
       console.error(`Error: Missing route at path ${path}`)
       return
     }
-    const tm = setTimeout(() => {
-      console.error(`Error: Timed out loading ${path}`)
-    }, 1000)
-    try {
-      const loadRouteFunction = paths[path]
-      // TODO this is a temp fix for matching webpack style routes:
-      const pathWithoutRelative = path.replace('../app/', './')
+    const loadRouteFunction = paths[path]
+    // TODO this is a temp fix for matching webpack style routes:
+    const pathWithoutRelative = path.replace('../app/', './')
 
-      if (typeof window !== 'undefined') {
-        // for SSR support we rewrite these:
-        routesSync[pathWithoutRelative] = path.includes('_layout.')
-          ? loadRouteFunction
-          : () => {
-              const realPath = encodeURIComponent(
-                globalThis['__vxrntodopath'] ?? window.location.pathname
-              )
-              return import('/_vxrn' + pathWithoutRelative.slice(1) + '?pathname=' + realPath)
-            }
-      } else {
-        routesSync[pathWithoutRelative] = loadRouteFunction
-      }
-    } catch (err) {
-      // @ts-ignore
-      console.error(`Error loading path ${path}: ${err?.message ?? ''} ${err?.stack ?? ''}`)
-    } finally {
-      clearTimeout(tm)
+    if (import.meta.env.DEV && typeof window !== 'undefined') {
+      // for SSR support we rewrite these:
+      routesSync[pathWithoutRelative] = path.includes('_layout.')
+        ? loadRouteFunction
+        : () => {
+            const realPath = globalThis['__vxrntodopath'] ?? window.location.pathname
+            return import('/_vxrn' + realPath)
+          }
+    } else {
+      routesSync[pathWithoutRelative] = loadRouteFunction
     }
   })
 

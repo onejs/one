@@ -1,4 +1,6 @@
 import type { Options as FlowOptions } from '@vxrn/vite-flow';
+import type { App } from 'h3';
+import type { OutputAsset, OutputChunk } from 'rollup';
 import type { InlineConfig } from 'vite';
 export type VXRNConfig = {
     /**
@@ -18,6 +20,8 @@ export type VXRNConfig = {
     webConfig?: InlineConfig;
     nativeConfig?: InlineConfig;
     flow?: FlowOptions;
+    afterBuild?: (options: VXRNConfig, output: [OutputChunk, ...(OutputChunk | OutputAsset)[]]) => void | Promise<void>;
+    serve?: (options: VXRNConfig, app: App) => void;
 };
 export type HMRListener = (update: {
     file: string;

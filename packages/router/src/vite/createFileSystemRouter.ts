@@ -1,11 +1,11 @@
+import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Connect, Plugin } from 'vite'
+import { getHtml } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
+import { LoaderDataCache } from './constants'
 import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
 import { loadEnv } from './loadEnv'
-import { readFile } from 'node:fs/promises'
-import { LoaderDataCache } from './constants'
-import { getHtml } from './getHtml'
 
 export type Options = {
   root: string

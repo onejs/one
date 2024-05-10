@@ -1,7 +1,5 @@
-import * as Glob from 'glob'
-import { createRoutesManifest, type RouteInfo } from './routes-manifest'
-
-const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
+import type { RouteInfo } from './routes-manifest'
+import { getManifest } from './vite/getManifest'
 
 export type Options = {
   root: string
@@ -24,17 +22,14 @@ type RequestHandlerResponse = null | {
 export function createHandleRequest(
   options: Options,
   handlers: {
-    handleSSR(props: RequestHandlerProps): Promise<any>
-    handleLoader(props: RequestHandlerProps): Promise<any>
-    handleAPI(props: RequestHandlerProps): Promise<any>
+    handleSSR?: (props: RequestHandlerProps) => Promise<any>
+    handleLoader?: (props: RequestHandlerProps) => Promise<any>
+    handleAPI?: (props: RequestHandlerProps) => Promise<any>
   }
 ) {
   const { root, shouldIgnore, disableSSR } = options
-  const routePaths = getRoutePaths(root)
-  const manifest = createRoutesManifest(routePaths, {
-    platform: 'web',
-  })
 
+  const manifest = getManifest(root)
   if (!manifest) {
     throw new Error(`No routes manifest`)
   }
@@ -67,73 +62,80 @@ export function createHandleRequest(
       return null
     }
 
-    const apiRoute = apiRoutesMap[pathname]
-    if (apiRoute) {
-      const out = await handlers.handleAPI({ request, route: apiRoute, url })
-      const isJSON = out && !(out instanceof Response) && typeof out === 'object'
-      return {
-        type: isJSON ? 'application/json' : undefined,
-        response: isJSON ? JSON.stringify(out) : out,
-      }
-    }
-
-    const isClientRequestingNewRoute = pathname.startsWith('/_vxrn/')
-    if (isClientRequestingNewRoute) {
-      const finalUrl = getRealUrl(url.host, urlString)
-
-      for (const route of manifest.htmlRoutes) {
-        // TODO performance
-        if (!new RegExp(route.namedRegex).test(finalUrl.pathname)) {
-          continue
-        }
-
-        const reply = await handlers.handleLoader({
-          request,
-          route,
-          url,
-          loaderProps: {
-            path: finalUrl.pathname,
-            params: getLoaderParams(finalUrl, route),
-          },
-        })
-
+    if (handlers.handleAPI) {
+      const apiRoute = apiRoutesMap[pathname]
+      if (apiRoute) {
+        const out = await handlers.handleAPI({ request, route: apiRoute, url })
+        const isJSON = out && !(out instanceof Response) && typeof out === 'object'
         return {
-          type: 'text/javascript',
-          response: reply,
+          type: isJSON ? 'application/json' : undefined,
+          response: isJSON ? JSON.stringify(out) : out,
         }
       }
     }
 
-    const { promise, reject, resolve } = Promise.withResolvers()
-    activeRequests[pathname] = promise
+    if (handlers.handleLoader) {
+      const prefix = '/_vxrn'
+      const isClientRequestingNewRoute = pathname.startsWith(prefix)
+      if (isClientRequestingNewRoute) {
+        const finalUrl = new URL(pathname.slice(prefix.length), url.origin)
 
-    try {
-      for (const route of manifest.htmlRoutes) {
-        // TODO performance
-        if (!new RegExp(route.namedRegex).test(pathname)) {
-          continue
-        }
+        for (const route of manifest.htmlRoutes) {
+          // TODO performance
+          if (!new RegExp(route.namedRegex).test(finalUrl.pathname)) {
+            continue
+          }
 
-        const ssrResponse = {
-          response: await handlers.handleSSR({
+          const reply = await handlers.handleLoader({
             request,
             route,
             url,
             loaderProps: {
-              path: pathname,
-              params: getLoaderParams(url, route),
+              path: finalUrl.pathname,
+              params: getLoaderParams(finalUrl, route),
             },
-          }),
-        }
+          })
 
-        resolve(ssrResponse)
-        return ssrResponse
+          return {
+            type: 'text/javascript',
+            response: reply,
+          }
+        }
       }
-    } catch (err) {
-      reject(err)
-      throw err
-    } finally {
-      delete activeRequests[pathname]
+    }
+
+    if (handlers.handleSSR) {
+      const { promise, reject, resolve } = Promise.withResolvers()
+      activeRequests[pathname] = promise
+
+      try {
+        for (const route of manifest.htmlRoutes) {
+          // TODO performance
+          if (!new RegExp(route.namedRegex).test(pathname)) {
+            continue
+          }
+
+          const ssrResponse = {
+            response: await handlers.handleSSR({
+              request,
+              route,
+              url,
+              loaderProps: {
+                path: pathname,
+                params: getLoaderParams(url, route),
+              },
+            }),
+          }
+
+          resolve(ssrResponse)
+          return ssrResponse
+        }
+      } catch (err) {
+        reject(err)
+        throw err
+      } finally {
+        delete activeRequests[pathname]
+      }
     }
 
     return null
@@ -150,29 +152,4 @@ function getLoaderParams(url: URL, config: any) {
     }
   }
   return params
-}
-
-// Used to emulate a context module, but way faster. TODO: May need to adjust the extensions to stay in sync with Metro.
-function getRoutePaths(cwd: string) {
-  return globSync('**/*.@(ts|tsx|js|jsx)', {
-    cwd,
-  }).map((p) => './' + normalizePaths(p))
-}
-
-function normalizePaths(p: string) {
-  return p.replace(/\\/g, '/')
-}
-
-function getRealUrl(host: string, urlString: string) {
-  const urlBase = `http://${host}`
-  return (() => {
-    let _ = new URL(urlString, urlBase)
-    const isClientRequestingNewRoute = _.pathname.startsWith('/_vxrn/')
-    if (isClientRequestingNewRoute) {
-      const search = new URLSearchParams(urlString)
-      const realPathName = search.get('pathname') || '/'
-      _ = new URL(realPathName, urlBase)
-    }
-    return _
-  })()
 }
