@@ -1,7 +1,7 @@
 import { defineEventHandler, type App } from 'h3'
 import { getOptionsFilled, type VXRNConfig } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
-import { IncomingMessage } from 'http'
+import type { IncomingMessage } from 'node:http'
 
 export async function serve(optionsIn: VXRNConfig, app: App) {
   const options = await getOptionsFilled(optionsIn)
@@ -12,9 +12,7 @@ export async function serve(optionsIn: VXRNConfig, app: App) {
     {
       async handleAPI(props) {
         console.log('handle api!')
-        return {
-          response: { hello: 'world' },
-        }
+        return { hello: 'world' }
         // const loaded = await server.ssrLoadModule(join(options.root, route.file))
         // if (!loaded) return
 
@@ -56,7 +54,7 @@ export async function serve(optionsIn: VXRNConfig, app: App) {
 
       console.log('got reply', reply)
 
-      return Response.json(reply?.response)
+      return reply
     })
   )
 }

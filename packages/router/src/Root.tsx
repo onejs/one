@@ -26,7 +26,7 @@ export function Root({ routes, path, ...props }: RootProps) {
         location={
           typeof window !== 'undefined'
             ? new URL(path || window.location.pathname || '/', window.location.href)
-            : new URL(path || '/', 'https://localhost')
+            : new URL(path || '/', 'http://localhost')
         }
         context={context}
         {...props}
@@ -36,6 +36,7 @@ export function Root({ routes, path, ...props }: RootProps) {
   )
 }
 
+// if getting element type is undefined
 // this helped debug some hard to debug ish
 // // its so hard to debug ssr and we get no componentstack trace, this helps:
 // if (typeof window === 'undefined') {

@@ -14,10 +14,7 @@ type RequestHandlerProps = {
   loaderProps?: { path: string; params: Record<string, any> }
 }
 
-type RequestHandlerResponse = null | {
-  type?: 'text/javascript' | 'application/json'
-  response: string | Response
-}
+type RequestHandlerResponse = null | string | Response
 
 export function createHandleRequest(
   options: Options,
@@ -65,12 +62,7 @@ export function createHandleRequest(
     if (handlers.handleAPI) {
       const apiRoute = apiRoutesMap[pathname]
       if (apiRoute) {
-        const out = await handlers.handleAPI({ request, route: apiRoute, url })
-        const isJSON = out && !(out instanceof Response) && typeof out === 'object'
-        return {
-          type: isJSON ? 'application/json' : undefined,
-          response: isJSON ? JSON.stringify(out) : out,
-        }
+        return await handlers.handleAPI({ request, route: apiRoute, url })
       }
     }
 
@@ -86,20 +78,23 @@ export function createHandleRequest(
             continue
           }
 
-          const reply = await handlers.handleLoader({
-            request,
-            route,
-            url,
-            loaderProps: {
-              path: finalUrl.pathname,
-              params: getLoaderParams(finalUrl, route),
-            },
-          })
+          const headers = new Headers()
+          headers.set('Content-Type', 'text/javascript')
 
-          return {
-            type: 'text/javascript',
-            response: reply,
-          }
+          return new Response(
+            await handlers.handleLoader({
+              request,
+              route,
+              url,
+              loaderProps: {
+                path: finalUrl.pathname,
+                params: getLoaderParams(finalUrl, route),
+              },
+            }),
+            {
+              headers,
+            }
+          )
         }
       }
     }
@@ -115,17 +110,15 @@ export function createHandleRequest(
             continue
           }
 
-          const ssrResponse = {
-            response: await handlers.handleSSR({
-              request,
-              route,
-              url,
-              loaderProps: {
-                path: pathname,
-                params: getLoaderParams(url, route),
-              },
-            }),
-          }
+          const ssrResponse = await handlers.handleSSR({
+            request,
+            route,
+            url,
+            loaderProps: {
+              path: pathname,
+              params: getLoaderParams(url, route),
+            },
+          })
 
           resolve(ssrResponse)
           return ssrResponse

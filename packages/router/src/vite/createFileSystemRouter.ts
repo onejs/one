@@ -147,21 +147,33 @@ export function createFileSystemRouter(options: Options): Plugin {
               return next()
             }
 
-            if (reply.type) {
-              res.setHeader('Content-Type', reply.type)
-            }
+            if (reply instanceof Response) {
+              res.statusCode = reply.status
+              res.statusMessage = reply.statusText
 
-            if (reply.response instanceof Response) {
-              res.statusCode = reply.response.status
-              res.statusMessage = reply.response.statusText
-              // assume json for now?
-              res.setHeader('Content-Type', 'Application/json')
-              res.write(JSON.stringify(await reply.response.json()))
+              const contentType = reply.headers.get('Content-Type')
+              if (contentType) {
+                res.setHeader('Content-Type', contentType)
+              }
+
+              const outString =
+                contentType === 'application/json'
+                  ? JSON.stringify(await reply.json())
+                  : await reply.text()
+
+              res.write(outString)
               res.end()
               return
             }
 
-            res.write(reply.response)
+            if (reply && typeof reply === 'object') {
+              res.setHeader('Content-Type', 'application/json')
+              res.write(JSON.stringify(reply))
+              res.end()
+              return
+            }
+
+            res.write(reply)
             res.end()
             return
           } catch (error) {
