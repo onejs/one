@@ -1,4 +1,4 @@
-import { type RouteInfo } from './routes-manifest';
+import type { RouteInfo } from './routes-manifest';
 export type Options = {
     root: string;
     shouldIgnore?: (req: Request) => boolean;
@@ -18,9 +18,9 @@ type RequestHandlerResponse = null | {
     response: string | Response;
 };
 export declare function createHandleRequest(options: Options, handlers: {
-    handleSSR(props: RequestHandlerProps): Promise<any>;
-    handleLoader(props: RequestHandlerProps): Promise<any>;
-    handleAPI(props: RequestHandlerProps): Promise<any>;
+    handleSSR?: (props: RequestHandlerProps) => Promise<any>;
+    handleLoader?: (props: RequestHandlerProps) => Promise<any>;
+    handleAPI?: (props: RequestHandlerProps) => Promise<any>;
 }): (request: Request) => Promise<RequestHandlerResponse>;
 export {};
 //# sourceMappingURL=handleRequest.d.ts.map

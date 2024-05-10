@@ -12,6 +12,9 @@ export { createFileSystemRouter } from './vite/createFileSystemRouter'
 export { setCurrentRequestHeaders } from './vite/headers'
 export { vitePluginSsrCss } from './vite/vitePluginSsrCss'
 
+export { build } from './vite/build'
+export { serve } from './vite/serve'
+
 export function getVitePlugins(options: Options) {
   return [
     {

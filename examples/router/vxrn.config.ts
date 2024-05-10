@@ -1,5 +1,5 @@
 // import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
-import { getVitePlugins } from '@vxrn/router/vite'
+import { getVitePlugins, build, serve } from '@vxrn/router/vite'
 import type { VXRNConfig } from 'vxrn'
 
 Error.stackTraceLimit = Infinity
@@ -22,5 +22,13 @@ export default {
       // tamaguiPlugin(),
       // tamaguiExtractPlugin(),
     ],
+  },
+
+  async afterBuild(options, output) {
+    await build(options, output)
+  },
+
+  serve(options, app) {
+    serve(options, app)
   },
 } satisfies VXRNConfig

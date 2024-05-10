@@ -13,6 +13,10 @@ export const serve = async (optionsIn: VXRNConfig) => {
     gzip: true,
   })
 
+  if (options.serve) {
+    options.serve(options, app)
+  }
+
   app.use(
     defineEventHandler(async ({ node: { req, res } }) => {
       await new Promise<void>((response) => {
