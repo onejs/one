@@ -7,6 +7,7 @@ import {
 } from './matchers'
 import type { DynamicConvention, RouteNode } from './Route'
 import type { RequireContext } from './types'
+import { Unmatched } from './views/Unmatched'
 
 export type Options = {
   ignore?: RegExp[]
@@ -495,7 +496,7 @@ function appendNotFoundRoute(directory: DirectoryNode) {
     directory.files.set('+not-found', [
       {
         loadRoute() {
-          return { default: require('./views/Unmatched').Unmatched }
+          return { default: Unmatched }
         },
         type: 'route',
         route: '+not-found',
