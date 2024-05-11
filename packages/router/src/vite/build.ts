@@ -167,11 +167,18 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
       await outputFile(toAbsolute(filePath), html)
     } catch (err) {
       assertIsError(err)
-      console.error(`og error because cause not working`, err)
       throw new Error(
-        `Error building static page: ${path} with:
-  loaderData: ${JSON.stringify(loaderData || null)}
-  params: ${JSON.stringify(params || null)}`,
+        `Error building static page at ${path}:
+
+${err.message}
+${err.stack}
+
+  loaderData:
+  
+${JSON.stringify(loaderData || null, null, 2)}
+  params:
+  
+${JSON.stringify(params || null, null, 2)}`,
         {
           cause: err,
         }

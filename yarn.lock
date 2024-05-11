@@ -8240,6 +8240,7 @@ __metadata:
     "@react-navigation/native": ^6.1.7
     "@tamagui/config": ^1.95.1
     "@vxrn/router": 0.1.50
+    esbuild: ~0.19.3
     expo-modules-core: 1.7.0
     h3: ^1.11.1
     patch-package: ^8.0.0
