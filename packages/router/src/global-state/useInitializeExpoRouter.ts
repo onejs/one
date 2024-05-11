@@ -14,3 +14,7 @@ export function useInitializeExpoRouter(context: RequireContext, initialLocation
 
   return store
 }
+
+export function reset() {
+  initialize = null
+}
