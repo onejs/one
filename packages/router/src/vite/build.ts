@@ -161,7 +161,7 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
       const filePath = toAbsolute(`dist/static${slashFileName}`)
 
       if (path === '/') {
-        console.info(`output`, filePath, path, '\n', appHtml)
+        console.info(`output`, filePath, path, '\n', appHtml, loaderProps)
       }
 
       await outputFile(toAbsolute(filePath), html)
