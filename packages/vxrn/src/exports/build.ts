@@ -60,7 +60,6 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
       mergeConfig(webBuildConfig, {
         build: {
           ssrManifest: true,
-          minify: false,
           outDir: 'dist/client',
         },
       } satisfies UserConfig)

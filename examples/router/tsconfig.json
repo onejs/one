@@ -3,6 +3,9 @@
     "baseUrl": ".",
     "rootDir": ".",
     "outDir": "dist",
+    "paths": {
+      "~/*": ["./*"]
+    },
     "importHelpers": true,
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
