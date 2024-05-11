@@ -70,7 +70,8 @@ export function createHandleRequest(
       const prefix = '/_vxrn'
       const isClientRequestingNewRoute = pathname.startsWith(prefix)
       if (isClientRequestingNewRoute) {
-        const finalUrl = new URL(pathname.slice(prefix.length), url.origin)
+        const originalUrl = pathname.slice(prefix.length).replace('route.js', '')
+        const finalUrl = new URL(originalUrl, url.origin)
 
         for (const route of manifest.htmlRoutes) {
           // TODO performance

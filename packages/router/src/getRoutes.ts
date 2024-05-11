@@ -240,23 +240,23 @@ function getDirectoryTree(contextModule: RequireContext, options: Options) {
    * If there are no top-level _layout, add a default _layout
    * While this is a generated route, it will still be generated even if skipGenerated is true.
    */
-  // if (!rootDirectory.layout) {
-  //   rootDirectory.layout = [
-  //     {
-  //       type: 'layout',
-  //       loadRoute: () => ({
-  //         default: (require('./views/Navigator') as typeof import('./views/Navigator'))
-  //           .DefaultNavigator,
-  //       }),
-  //       // Generate a fake file name for the directory
-  //       contextKey: 'router/build/views/Navigator.js',
-  //       route: '',
-  //       generated: true,
-  //       dynamic: null,
-  //       children: [],
-  //     },
-  //   ]
-  // }
+  if (!rootDirectory.layout) {
+    rootDirectory.layout = [
+      {
+        type: 'layout',
+        loadRoute: () => ({
+          default: (require('./views/Navigator') as typeof import('./views/Navigator'))
+            .DefaultNavigator,
+        }),
+        // Generate a fake file name for the directory
+        contextKey: 'router/build/views/Navigator.js',
+        route: '',
+        generated: true,
+        dynamic: null,
+        children: [],
+      },
+    ]
+  }
 
   // Only include the sitemap if there are routes.
   if (!options.skipGenerated) {

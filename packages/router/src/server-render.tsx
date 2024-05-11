@@ -1,16 +1,12 @@
 import stream from 'node:stream'
-import { renderToPipeableStream, renderToString as rs } from 'react-dom/server'
-import type { GlobbedRouteImports } from './types'
-import { reset } from './global-state/useInitializeExpoRouter'
+import { renderToPipeableStream } from 'react-dom/server'
+import { resetState } from './global-state/useInitializeExpoRouter'
 
-export const renderToString = async (
-  app: React.ReactElement,
-  { routes }: { routes?: GlobbedRouteImports } = {}
-) => {
+export const renderToString = async (app: React.ReactElement) => {
   const collectedHead: { helmet?: Record<string, any> } = {}
   globalThis['vxrn__headContext__'] = collectedHead
 
-  reset()
+  resetState()
 
   const appHtml = await renderToStringWithSuspense(app)
   const headHtml = `${Object.values(collectedHead?.helmet ?? {})

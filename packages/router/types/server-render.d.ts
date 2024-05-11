@@ -1,7 +1,4 @@
-import type { GlobbedRouteImports } from './types';
-export declare const renderToString: (app: React.ReactElement, { routes }?: {
-    routes?: GlobbedRouteImports;
-}) => Promise<{
+export declare const renderToString: (app: React.ReactElement) => Promise<{
     appHtml: unknown;
     headHtml: string;
 }>;

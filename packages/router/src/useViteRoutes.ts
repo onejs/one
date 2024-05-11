@@ -36,14 +36,15 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
     const loadRouteFunction = paths[path]
     // TODO this is a temp fix for matching webpack style routes:
     const pathWithoutRelative = path.replace('../app/', './')
+    const shouldRewrite = typeof window !== 'undefined' && !import.meta.env.PROD
 
-    if (typeof window !== 'undefined') {
+    if (shouldRewrite) {
       // for SSR support we rewrite these:
       routesSync[pathWithoutRelative] = path.includes('_layout.')
         ? loadRouteFunction
         : () => {
             const realPath = globalThis['__vxrntodopath'] ?? window.location.pathname
-            return import('/_vxrn' + realPath)
+            return import('/_vxrn' + realPath + 'route.js')
           }
     } else {
       routesSync[pathWithoutRelative] = loadRouteFunction

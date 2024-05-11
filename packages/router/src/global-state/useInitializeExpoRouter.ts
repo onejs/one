@@ -15,6 +15,6 @@ export function useInitializeExpoRouter(context: RequireContext, initialLocation
   return store
 }
 
-export function reset() {
+export function resetState() {
   initialize = null
 }
