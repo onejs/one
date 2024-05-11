@@ -30,6 +30,7 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
   const entryServer = `${options.root}/dist/server/entry-server.js`
   console.info(`import entry-server`, entryServer)
 
+  // for the require Sitemap in getRoutes
   globalThis['require'] = createRequire(join(import.meta.url, '..'))
 
   const render = (await import(entryServer)).render
@@ -42,8 +43,11 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
     loaderData: any
   }[] = []
 
-  const manifest = getManifest(join(options.root, 'app'))
-  // console.log('manifest', manifest)
+  // const manifest = getManifest(join(options.root, 'app'))!
+  // for (const { page } of manifest.htmlRoutes) {
+  //   const outFile = join('dist/static/_vxrn', page.replace(/\/index$/, '/'), 'route.js')
+  //   console.info('generate js partial', outFile)
+  // }
 
   for (const output of serverOutput) {
     if (output.type === 'asset') {
@@ -159,10 +163,6 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
         css: cssString,
       })
       const filePath = toAbsolute(`dist/static${slashFileName}`)
-
-      if (path === '/') {
-        console.info(`output`, filePath, path, '\n', appHtml, loaderProps)
-      }
 
       await outputFile(toAbsolute(filePath), html)
     } catch (err) {
