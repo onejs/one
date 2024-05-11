@@ -19,7 +19,6 @@ export async function getOptionsFilled(options: VXRNConfig) {
   })
 
   const packageRootDir = join(require.resolve('vxrn'), '../../..')
-
   const cacheDir = join(root, 'node_modules', '.vxrn')
   const internalPatchesDir = join(packageRootDir, 'patches')
   const userPatchesDir = join(root, 'patches')

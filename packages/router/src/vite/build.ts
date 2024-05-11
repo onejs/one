@@ -7,7 +7,7 @@ import Path, { join } from 'node:path'
 import type { OutputAsset, OutputChunk } from 'rollup'
 import { getHtml, getOptionsFilled, type VXRNConfig } from 'vxrn'
 import { getManifest } from './getManifest'
-import { rm } from 'node:fs/promises'
+import { createRequire } from 'node:module'
 
 export const resolveFile = (path: string) => {
   try {
@@ -23,16 +23,17 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
   const options = await getOptionsFilled(optionsIn)
   const toAbsolute = (p) => Path.resolve(options.root, p)
 
-  // lets always clean dist folder for now to be sure were correct
-  if (existsSync('dist')) {
-    await rm('dist', { recursive: true, force: true })
-  }
-
   const staticDir = toAbsolute(`dist/static`)
   await ensureDir(staticDir)
   const template = fs.readFileSync(toAbsolute('index.html'), 'utf-8')
 
-  const render = (await import(`${options.root}/dist/server/entry-server.js`)).render
+  const entryServer = `${options.root}/dist/server/entry-server.js`
+  console.info(`import entry-server`, entryServer)
+
+  globalThis['require'] = createRequire(join(import.meta.url, '..'))
+
+  const render = (await import(entryServer)).render
+
   const assets: OutputAsset[] = []
 
   const allRoutes: {

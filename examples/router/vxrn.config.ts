@@ -2,8 +2,6 @@
 import { getVitePlugins, build, serve } from '@vxrn/router/vite'
 import type { VXRNConfig } from 'vxrn'
 
-Error.stackTraceLimit = Infinity
-
 const extraDepsToOptimize = ['test']
 
 export default {
