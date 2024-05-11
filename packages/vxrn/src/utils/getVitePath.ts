@@ -1,7 +1,6 @@
 import { join, relative, dirname } from 'node:path'
+import { createRequire } from 'node:module'
 
-// @ts-ignore
-import resolve from 'esm-resolve'
 import FSExtra from 'fs-extra'
 
 export async function getVitePath(
@@ -31,7 +30,8 @@ export async function getVitePath(
   }
 
   const sourceFile = join(process.cwd(), 'index.js')
-  const resolved = resolve(sourceFile)(moduleName)
+  const require = createRequire(moduleName)
+  const resolved = require.resolve(sourceFile)
   // figure out symlinks
   if (!resolved) {
     throw new Error(

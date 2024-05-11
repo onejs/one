@@ -1,43 +1,26 @@
 import FSExtra from 'fs-extra'
 import type { VXRNConfig } from '../types'
-import { createServer } from 'vite'
-import jiti from 'jiti'
+import { join } from 'node:path'
+import { build } from 'esbuild'
 
 export async function readVXRNConfig(): Promise<VXRNConfig> {
   if (!(await FSExtra.pathExists('vxrn.config.ts'))) {
     return {}
   }
 
-  if (process.env.VXRN_CJS) {
-    const requireFile = jiti(process.cwd(), {
-      esmResolve: true,
-    })
-    const userConfig = requireFile('./vxrn.config.ts')
-    return resolveOptionalAsyncFunction(userConfig?.default ?? {})
-  }
+  await build({
+    entryPoints: ['vxrn.config.ts'],
+    bundle: false,
+    outfile: 'dist/vxrn.config.js',
+    platform: 'node', // Specify 'browser' if it is intended for the browser
+    format: 'esm', // CommonJS format, change to 'esm' if you need ECMAScript modules
+    sourcemap: true, // Include if you want source maps
+    minify: false, // Disable minification
+  })
 
-  // try esm load
-  try {
-    // somewhat hacky creating a server just to read config?
-    const vite = await createServer({
-      logLevel: 'silent',
-      appType: 'custom',
-    })
+  const exportedConfig = (await import(join(process.cwd(), 'dist/vxrn.config.js'))).default
 
-    const userConfig = await vite.ssrLoadModule('./vxrn.config.ts', {
-      fixStacktrace: true,
-    })
-
-    await vite.close()
-    return resolveOptionalAsyncFunction(userConfig?.default ?? {})
-  } catch (err: any) {
-    console.info(` [vxrn] Error loading config via ESM:
-
-${err.stack}
-    
- To load as CommonJS, set VXRN_CJS=1`)
-    throw err
-  }
+  return await resolveOptionalAsyncFunction(exportedConfig)
 }
 
 async function resolveOptionalAsyncFunction(value: any) {

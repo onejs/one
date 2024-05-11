@@ -19,6 +19,7 @@
     "@tamagui/config": "^1.95.1",
     "@vxrn/router": "0.1.50",
     "expo-modules-core": "1.7.0",
+    "esbuild": "~0.19.3",
     "h3": "^1.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
