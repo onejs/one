@@ -8,19 +8,29 @@ export async function readVXRNConfig(): Promise<VXRNConfig> {
     return {}
   }
 
-  await build({
-    entryPoints: ['vxrn.config.ts'],
-    bundle: false,
-    outfile: 'dist/vxrn.config.js',
-    platform: 'node', // Specify 'browser' if it is intended for the browser
-    format: 'esm', // CommonJS format, change to 'esm' if you need ECMAScript modules
-    sourcemap: true, // Include if you want source maps
-    minify: false, // Disable minification
-  })
+  const outfile = join(process.cwd(), 'vxrn.config.js')
 
-  const exportedConfig = (await import(join(process.cwd(), 'dist/vxrn.config.js'))).default
+  try {
+    // output to same place so paths and relative things work
+    await build({
+      entryPoints: ['vxrn.config.ts'],
+      bundle: false,
+      outfile,
+      platform: 'node',
+      format: 'esm',
+      sourcemap: false,
+      minify: false,
+    })
 
-  return await resolveOptionalAsyncFunction(exportedConfig)
+    const exportedConfig = (await import(outfile)).default
+
+    return await resolveOptionalAsyncFunction(exportedConfig)
+  } catch (err) {
+    console.error(` [vxrn] Error building vxrn.config.ts`)
+    throw err
+  } finally {
+    FSExtra.removeSync(outfile)
+  }
 }
 
 async function resolveOptionalAsyncFunction(value: any) {
