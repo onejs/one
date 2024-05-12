@@ -5888,44 +5888,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/router@0.1.53, @vxrn/router@workspace:packages/router":
-  version: 0.0.0-use.local
-  resolution: "@vxrn/router@workspace:packages/router"
-  dependencies:
-    "@radix-ui/react-slot": ^1.0.2
-    "@react-navigation/bottom-tabs": ^6.5.8
-    "@react-navigation/core": ^6.4.9
-    "@react-navigation/drawer": ^6.6.3
-    "@react-navigation/native": ^6.1.7
-    "@react-navigation/native-stack": ^6.9.13
-    "@react-navigation/routers": ^6.1.9
-    "@tamagui/build": ^1.95.1
-    "@types/estree": ^1.0.5
-    "@types/node": ^20.12.7
-    "@types/react-dom": ^18.2.25
-    dotenv: ^16.4.5
-    escape-string-regexp: ^5.0.0
-    estree-walker: ^3.0.3
-    expo-constants: ^14.4.2
-    expo-linking: ^5.0.2
-    expo-splash-screen: ~0.20.4
-    fast-deep-equal: ^3.1.3
-    magic-string: ^0.30.10
-    query-string: 7.1.3
-    react: ^18.2.0
-    react-helmet-async: ^2.0.4
-    react-native: 0.73.2
-    react-native-safe-area-context: 4.6.3
-    react-native-screens: 3.22.1
-    schema-utils: ^4.0.1
-    url: ^0.11.0
-    url-parse: ^1.5.10
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  languageName: unknown
-  linkType: soft
-
 "@vxrn/safe-area@0.1.53, @vxrn/safe-area@workspace:packages/safe-area":
   version: 0.0.0-use.local
   resolution: "@vxrn/safe-area@workspace:packages/safe-area"
@@ -8233,13 +8195,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-router@workspace:examples/router":
+"example-router@workspace:examples/vxs":
   version: 0.0.0-use.local
-  resolution: "example-router@workspace:examples/router"
+  resolution: "example-router@workspace:examples/vxs"
   dependencies:
     "@react-navigation/native": ^6.1.7
     "@tamagui/config": ^1.95.1
-    "@vxrn/router": 0.1.53
     esbuild: ~0.19.3
     expo-modules-core: 1.7.0
     h3: ^1.11.1
@@ -8252,6 +8213,7 @@ __metadata:
     sirv: ^2.0.4
     tamagui: ^1.95.1
     vxrn: 0.1.53
+    vxs: 0.1.53
   languageName: unknown
   linkType: soft
 
@@ -14771,7 +14733,6 @@ __metadata:
     "@vitejs/plugin-react": ^4.2.1
     "@vitejs/plugin-react-swc": ^3.6.0
     "@vxrn/react-native-prebuilt": 0.1.53
-    "@vxrn/router": 0.1.53
     "@vxrn/safe-area": 0.1.53
     "@vxrn/vite-flow": 0.1.53
     "@vxrn/vite-native-client": 0.1.53
@@ -14803,9 +14764,48 @@ __metadata:
     source-map: ^0.7.3
     url: ^0.11.0
     vite: alpha
+    vxs: 0.1.53
     ws: ^8.7.0
   bin:
     vxrn: run.mjs
+  languageName: unknown
+  linkType: soft
+
+"vxs@0.1.53, vxs@workspace:packages/vxs":
+  version: 0.0.0-use.local
+  resolution: "vxs@workspace:packages/vxs"
+  dependencies:
+    "@radix-ui/react-slot": ^1.0.2
+    "@react-navigation/bottom-tabs": ^6.5.8
+    "@react-navigation/core": ^6.4.9
+    "@react-navigation/drawer": ^6.6.3
+    "@react-navigation/native": ^6.1.7
+    "@react-navigation/native-stack": ^6.9.13
+    "@react-navigation/routers": ^6.1.9
+    "@tamagui/build": ^1.95.1
+    "@types/estree": ^1.0.5
+    "@types/node": ^20.12.7
+    "@types/react-dom": ^18.2.25
+    dotenv: ^16.4.5
+    escape-string-regexp: ^5.0.0
+    estree-walker: ^3.0.3
+    expo-constants: ^14.4.2
+    expo-linking: ^5.0.2
+    expo-splash-screen: ~0.20.4
+    fast-deep-equal: ^3.1.3
+    magic-string: ^0.30.10
+    query-string: 7.1.3
+    react: ^18.2.0
+    react-helmet-async: ^2.0.4
+    react-native: 0.73.2
+    react-native-safe-area-context: 4.6.3
+    react-native-screens: 3.22.1
+    schema-utils: ^4.0.1
+    url: ^0.11.0
+    url-parse: ^1.5.10
+  peerDependencies:
+    react: "*"
+    react-native: "*"
   languageName: unknown
   linkType: soft
 

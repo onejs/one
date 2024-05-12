@@ -1,5 +1,5 @@
 // import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
-import { getVitePlugins, build, serve } from '@vxrn/router/vite'
+import { getVitePlugins, build, serve } from 'vxs/vite'
 import type { VXRNConfig } from 'vxrn'
 
 const extraDepsToOptimize = ['test']

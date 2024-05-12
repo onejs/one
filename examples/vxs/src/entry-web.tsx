@@ -1,4 +1,4 @@
-import { Root, render } from '@vxrn/router'
+import { Root, render } from '@vxrn/vxs/types'
 
 const routes = import.meta.glob('../app/**/*.tsx')
 
