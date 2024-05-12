@@ -143,8 +143,10 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
   for (const { path, loaderData, params } of allRoutes) {
     try {
       const loaderProps = { params }
+
       globalThis['__vxrnLoaderProps__'] = loaderProps
 
+      // importing resetState causes issues :/
       globalThis['__vxrnresetState']?.()
 
       const { appHtml, headHtml } = await render({ path })

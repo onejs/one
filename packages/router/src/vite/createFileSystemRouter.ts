@@ -39,6 +39,9 @@ export function createFileSystemRouter(options: Options): Plugin {
           // warm up the entry
           void server.warmupRequest(routeFile)
 
+          // importing resetState causes issues :/
+          globalThis['__vxrnresetState']?.()
+
           try {
             const exported = await server.ssrLoadModule(routeFile, {
               fixStacktrace: true,
