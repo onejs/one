@@ -95,7 +95,7 @@ async function run() {
             }
           })
       )
-    ).filter((pkg) => !pkg.json.private)
+    ).filter((pkg) => !pkg.json.private && !pkg.json.skipRelease)
 
     console.info(`Publishing in order:\n\n${packageJsons.map((x) => x.name).join('\n')}`)
 

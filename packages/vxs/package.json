@@ -1,5 +1,5 @@
 {
-  "name": "@vxrn/router",
+  "name": "vxs",
   "version": "0.1.53",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",

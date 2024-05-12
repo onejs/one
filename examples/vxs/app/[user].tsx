@@ -1,4 +1,4 @@
-import { Link, useGlobalSearchParams, useLoader } from '@vxrn/router'
+import { Link, useGlobalSearchParams, useLoader } from '@vxrn/vxs/types'
 import { Text, View } from 'tamagui'
 
 type UserPath = {

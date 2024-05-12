@@ -30,7 +30,6 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "@vxrn/react-native-prebuilt": "0.1.53",
-    "@vxrn/router": "0.1.53",
     "@vxrn/safe-area": "0.1.53",
     "@vxrn/vite-flow": "0.1.53",
     "@vxrn/vite-native-client": "0.1.53",
@@ -61,6 +60,7 @@
     "source-map": "^0.7.3",
     "url": "^0.11.0",
     "vite": "alpha",
+    "vxs": "0.1.53",
     "ws": "^8.7.0"
   },
   "devDependencies": {
