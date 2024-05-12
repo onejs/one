@@ -147,7 +147,9 @@ async function removeUnusedImports(id: string, s: MagicString): Promise<string> 
     // swc assumes side effects are true and leaves the `import "x"` behind
     // we want to remove them to avoid clients importing server stuff
     // TODO ensure they were only ones that were previously using some sort of identifier
-    const withoutSideEffectImports = output.code.replaceAll(/import [\'\"][^"]+[\'\"];$/gm, '\n')
+    const withoutSideEffectImports = output.code
+      .replaceAll(/import [\"][^"]+[\"];$/gm, '\n')
+      .replaceAll(/import [\'][^']+[\'];$/gm, '\n')
 
     return withoutSideEffectImports
   } catch (err) {

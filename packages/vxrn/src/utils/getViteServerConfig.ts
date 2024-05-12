@@ -98,7 +98,5 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
     plugins: [...serverConfig.plugins!],
   }
 
-  console.log(`final server config ssr`, serverConfig.ssr)
-
   return serverConfig
 }
