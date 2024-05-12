@@ -1,6 +1,5 @@
 /// <reference types="node" />
 import type { VXRNConfig } from '../types';
-export declare const resolveFile: (path: string) => string;
 export declare const dev: ({ clean, ...rest }: VXRNConfig & {
     clean?: boolean;
 }) => Promise<{
@@ -11,5 +10,4 @@ export declare const dev: ({ clean, ...rest }: VXRNConfig & {
     }>;
     stop: () => Promise<void>;
 }>;
-export declare function bindKeypressInput(): void;
 //# sourceMappingURL=dev.d.ts.map

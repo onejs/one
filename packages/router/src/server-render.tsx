@@ -1,12 +1,9 @@
 import stream from 'node:stream'
 import { renderToPipeableStream } from 'react-dom/server'
-import { resetState } from './global-state/useInitializeExpoRouter'
 
 export const renderToString = async (app: React.ReactElement) => {
   const collectedHead: { helmet?: Record<string, any> } = {}
   globalThis['vxrn__headContext__'] = collectedHead
-
-  resetState()
 
   const appHtml = await renderToStringWithSuspense(app)
   const headHtml = `${Object.values(collectedHead?.helmet ?? {})
