@@ -7,7 +7,7 @@ import { coerceToArray } from './coerceToArray'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
 
 export async function getViteServerConfig(config: VXRNConfigFilled) {
-  const { root, host, webConfig } = config
+  const { root, host } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
 
   let serverConfig: UserConfig = mergeConfig(
@@ -47,6 +47,8 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
     } satisfies UserConfig
   ) satisfies InlineConfig
 
+  let webConfig = config.webConfig || {}
+
   if (webConfig) {
     serverConfig = mergeConfig(serverConfig, webConfig) as any
   }
@@ -56,41 +58,53 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
   }
 
   // vite doesnt merge arrays but we want that
+
   serverConfig.ssr ||= {}
-  serverConfig.ssr.noExternal = [
+  serverConfig.ssr.optimizeDeps ||= {}
+
+  webConfig.ssr ||= {}
+  webConfig.ssr.optimizeDeps ||= {}
+
+  serverConfig.ssr.noExternal = uniq([
     ...coerceToArray((serverConfig.ssr?.noExternal as string[]) || []),
+    ...(serverConfig.ssr?.optimizeDeps.include || []),
+    ...(webConfig.ssr?.optimizeDeps.include || []),
+    ...coerceToArray(webConfig.ssr?.noExternal || []),
     ...optimizeDeps.include,
     'react',
     'react-dom',
     'react-dom/server',
     'react-dom/client',
-  ]
+  ])
 
-  serverConfig.ssr.optimizeDeps = {}
   serverConfig.ssr.optimizeDeps.exclude = uniq([
     ...(serverConfig.ssr?.optimizeDeps.exclude || []),
+    ...(webConfig.ssr?.optimizeDeps.exclude || []),
     ...optimizeDeps.exclude,
   ])
 
   serverConfig.ssr.optimizeDeps.include = uniq([
     ...(serverConfig.ssr?.optimizeDeps.include || []),
+    ...(webConfig.ssr?.optimizeDeps.include || []),
     ...optimizeDeps.include,
   ])
 
   serverConfig.ssr.optimizeDeps.needsInterop = uniq([
     ...(serverConfig.ssr?.optimizeDeps.needsInterop || []),
+    ...(webConfig.ssr?.optimizeDeps.needsInterop || []),
     ...optimizeDeps.needsInterop,
   ])
 
   serverConfig.ssr.optimizeDeps.esbuildOptions = {
     ...(serverConfig.ssr?.optimizeDeps.esbuildOptions || {}),
+    ...(webConfig.ssr?.optimizeDeps.esbuildOptions || {}),
     ...optimizeDeps.esbuildOptions,
   }
 
   // manually merge
   if (process.env.DEBUG) {
-    console.debug('server config is', serverConfig)
-    console.debug('server ssr\n', JSON.stringify(serverConfig.ssr, null, 2))
+    console.debug('user config is', JSON.stringify(webConfig, null, 2))
+    console.debug('server config is', JSON.stringify(serverConfig, null, 2))
   }
 
   serverConfig = {
