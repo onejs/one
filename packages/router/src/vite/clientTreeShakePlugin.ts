@@ -135,7 +135,7 @@ async function removeUnusedImports(id: string, s: MagicString): Promise<string> 
         minify: {
           mangle: false,
           compress: {
-            side_effects: true,
+            side_effects: false,
             dead_code: true,
             drop_debugger: false,
           },
@@ -147,7 +147,9 @@ async function removeUnusedImports(id: string, s: MagicString): Promise<string> 
     // swc assumes side effects are true and leaves the `import "x"` behind
     // we want to remove them to avoid clients importing server stuff
     // TODO ensure they were only ones that were previously using some sort of identifier
-    return output.code.replaceAll(/import [\'\"][^']+[\'\"];$/gm, '\n')
+    const withoutSideEffectImports = output.code.replaceAll(/import [\'\"][^"]+[\'\"];$/gm, '\n')
+
+    return withoutSideEffectImports
   } catch (err) {
     throw new Error(`Error removing unused imports from ${id}`, {
       cause: err,

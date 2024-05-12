@@ -56,14 +56,34 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
   }
 
   if (buildOptions.step !== 'generate') {
-    await viteBuild(
-      mergeConfig(webBuildConfig, {
-        build: {
-          ssrManifest: true,
-          outDir: 'dist/client',
+    let clientBuildConfig = mergeConfig(webBuildConfig, {
+      build: {
+        ssrManifest: true,
+        outDir: 'dist/client',
+      },
+    } satisfies UserConfig)
+
+    if (process.env.VXRN_DISABLE_PROD_OPTIMIZATION) {
+      clientBuildConfig = mergeConfig(clientBuildConfig, {
+        optimizeDeps: {
+          esbuildOptions: {
+            minify: false,
+          },
         },
-      } satisfies UserConfig)
-    )
+
+        build: {
+          minify: false,
+          rollupOptions: {
+            treeshake: false,
+            output: {
+              minifyInternalExports: false,
+            },
+          },
+        },
+      })
+    }
+
+    await viteBuild(clientBuildConfig)
   }
 
   console.info(`build server`)
