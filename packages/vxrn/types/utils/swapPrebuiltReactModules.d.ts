@@ -1,7 +1,3 @@
-export declare function swapPrebuiltReactModules(cacheDir: string): Promise<{
-    name: string;
-    enforce: "pre";
-    resolveId(this: import("rollup").PluginContext, id: string, importer?: string | undefined): any;
-    load(this: import("rollup").PluginContext, id: string): string | undefined;
-}>;
+import type { Plugin } from 'vite';
+export declare function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin>;
 //# sourceMappingURL=swapPrebuiltReactModules.d.ts.map
