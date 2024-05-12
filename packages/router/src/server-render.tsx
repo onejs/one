@@ -13,7 +13,7 @@ export const renderToString = async (app: React.ReactElement) => {
   return { appHtml, headHtml }
 }
 
-function renderToStringWithSuspense(element) {
+function renderToStringWithSuspense(element): Promise<string> {
   return new Promise((resolve, reject) => {
     const writable = new stream.Writable({
       write(chunk, encoding, callback) {
