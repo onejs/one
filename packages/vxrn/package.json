@@ -60,7 +60,7 @@
     "sirv": "^2.0.4",
     "source-map": "^0.7.3",
     "url": "^0.11.0",
-    "vite": "^5.2.11",
+    "vite": "alpha",
     "ws": "^8.7.0"
   },
   "devDependencies": {

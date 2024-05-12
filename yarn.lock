@@ -5943,7 +5943,7 @@ __metadata:
     "@biomejs/biome": ^1.6.3
     "@tamagui/build": ^1.95.1
     metro-react-native-babel-preset: ^0.77.0
-    vite: ^5.2.11
+    vite: alpha
   languageName: unknown
   linkType: soft
 
@@ -14580,7 +14580,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.2.10, vite@npm:^5.2.11":
+"vite@npm:^5.2.10":
   version: 5.2.11
   resolution: "vite@npm:5.2.11"
   dependencies:
@@ -14617,6 +14617,46 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 3f9f976cc6ada93aca56abcc683a140e807725b351abc241a1ec0763ec561a4bf5760e1ad94de4e59505904ddaa88727de66af02f61ecf540c7720045de55d0a
+  languageName: node
+  linkType: hard
+
+"vite@npm:alpha":
+  version: 6.0.0-alpha.11
+  resolution: "vite@npm:6.0.0-alpha.11"
+  dependencies:
+    esbuild: ^0.20.1
+    fsevents: ~2.3.3
+    postcss: ^8.4.38
+    rollup: ^4.13.0
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 0d7e0209eeec790ff6938d0e8673787325bc1882fb49145a0960fe17e9c275582fca1870d6fe1b8f565e9815d02c8181b1aa153a46bdf0d7d5aa5e00f2f21bac
   languageName: node
   linkType: hard
 
@@ -14762,7 +14802,7 @@ __metadata:
     sirv: ^2.0.4
     source-map: ^0.7.3
     url: ^0.11.0
-    vite: ^5.2.11
+    vite: alpha
     ws: ^8.7.0
   bin:
     vxrn: run.mjs

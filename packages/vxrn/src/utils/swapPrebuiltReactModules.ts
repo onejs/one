@@ -1,15 +1,15 @@
+import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
+import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
-import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
-import type { PluginOption } from 'vite'
-import { resolveFile } from './resolveFile'
-import FSExtra from 'fs-extra'
+import type { Plugin } from 'vite'
 import { isBuildingNativeBundle } from './isBuildingNativeBundle'
+import { resolveFile } from './resolveFile'
 
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
 
-export async function swapPrebuiltReactModules(cacheDir: string) {
+export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin> {
   const prebuilds = {
     reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
     react: join(cacheDir, 'react.js'),
@@ -122,5 +122,5 @@ export async function swapPrebuiltReactModules(cacheDir: string) {
         }
       }
     },
-  } satisfies PluginOption
+  } satisfies Plugin
 }
