@@ -2,12 +2,12 @@ import { build as esbuild } from 'esbuild'
 import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import fs from 'node:fs'
+import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import Path, { join } from 'node:path'
 import type { OutputAsset, OutputChunk } from 'rollup'
 import { getHtml, getOptionsFilled, type VXRNConfig } from 'vxrn'
-import { getManifest } from './getManifest'
-import { createRequire } from 'node:module'
+// import { resetState } from '../global-state/useInitializeExpoRouter'
 
 export const resolveFile = (path: string) => {
   try {
@@ -144,6 +144,8 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
     try {
       const loaderProps = { params }
       globalThis['__vxrnLoaderProps__'] = loaderProps
+
+      globalThis['__vxrnresetState']?.()
 
       const { appHtml, headHtml } = await render({ path })
 

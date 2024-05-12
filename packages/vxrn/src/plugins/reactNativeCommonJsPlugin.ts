@@ -1,9 +1,7 @@
 import { dirname } from 'node:path'
-
 import { parse } from 'es-module-lexer'
 import type { OutputOptions } from 'rollup'
 import type { Plugin } from 'vite'
-
 import { getVitePath } from '../utils/getVitePath'
 
 const extensions = [

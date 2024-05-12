@@ -1,15 +1,15 @@
-import { optimizeDeps, type UserConfig } from 'vite'
+import type { UserConfig } from 'vite'
 import { webExtensions } from '../constants'
 
 export function getOptimizeDeps(mode: 'build' | 'serve') {
   const needsInterop = [
     'react',
-    'react/jsx-runtime',
-    'react/jsx-dev-runtime',
     'react-native-web-internals',
     'react-dom',
     'react-native-web',
     'react-dom/server',
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime',
     'react-dom/client',
     'url-parse',
     '@vxrn/safe-area',
@@ -26,11 +26,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'expo-constants',
     'expo-linking',
     'uuid',
-    '@react-navigation/core',
-    '@react-navigation/native',
-    '@react-navigation/elements',
-    '@react-navigation/bottom-tabs',
-    '@react-navigation/native-stack',
     'inline-style-prefixer',
     '@docsearch/react',
     '@algolia/autocomplete-core',
@@ -42,6 +37,11 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
   const depsToOptimize = [
     ...needsInterop,
+    '@react-navigation/core',
+    '@react-navigation/native',
+    '@react-navigation/elements',
+    '@react-navigation/bottom-tabs',
+    '@react-navigation/native-stack',
     'requires-port',
     'querystringify',
     'compare-versions',
@@ -62,6 +62,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@tamagui/linear-gradient',
     '@react-native/normalize-color',
     '@vxrn/router',
+    '@vxrn/router/server-render',
     'expo-modules-core',
     'expo-status-bar',
     'react-native-web',

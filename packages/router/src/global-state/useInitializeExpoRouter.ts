@@ -18,3 +18,5 @@ export function useInitializeExpoRouter(context: RequireContext, initialLocation
 export function resetState() {
   initialize = null
 }
+
+globalThis['__vxrnresetState'] = resetState
