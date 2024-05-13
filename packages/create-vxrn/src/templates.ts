@@ -1,6 +1,6 @@
 import stepsBare from './steps/bare'
-import stepsExpoRouter from './steps/router'
-import stepsTamagui from './steps/tamagui'
+import setupVxs from './steps/vxs'
+// import stepsTamagui from './steps/tamagui'
 
 export const templates = [
   // {
@@ -32,31 +32,31 @@ export const templates = [
     extraSteps: stepsBare,
   },
 
-  {
-    title: `Tamagui`,
-    value: 'tamagui',
-    type: 'included-in-monorepo',
-    hidden: false,
-    repo: {
-      url: `https://github.com/universal-future/vxrn.git`,
-      sshFallback: `git@github.com:universal-future/vxrn.git`,
-      dir: [`examples`, `tamagui`],
-      branch: 'main',
-    },
-    extraSteps: stepsTamagui,
-  },
+  // {
+  //   title: `Tamagui`,
+  //   value: 'tamagui',
+  //   type: 'included-in-monorepo',
+  //   hidden: false,
+  //   repo: {
+  //     url: `https://github.com/universal-future/vxrn.git`,
+  //     sshFallback: `git@github.com:universal-future/vxrn.git`,
+  //     dir: [`examples`, `tamagui`],
+  //     branch: 'main',
+  //   },
+  //   extraSteps: stepsTamagui,
+  // },
 
   {
-    title: `Expo Router`,
-    value: 'router',
+    title: `vxs`,
+    value: 'vxs',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
       url: `https://github.com/universal-future/vxrn.git`,
       sshFallback: `git@github.com:universal-future/vxrn.git`,
-      dir: [`examples`, `router`],
+      dir: [`examples`, `vxs`],
       branch: 'main',
     },
-    extraSteps: stepsExpoRouter,
+    extraSteps: setupVxs,
   },
 ] as const
