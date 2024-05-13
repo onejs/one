@@ -8130,9 +8130,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-router@workspace:examples/vxs":
+"example-vxs@workspace:examples/vxs":
   version: 0.0.0-use.local
-  resolution: "example-router@workspace:examples/vxs"
+  resolution: "example-vxs@workspace:examples/vxs"
   dependencies:
     "@react-navigation/native": ^6.1.7
     "@tamagui/config": ^1.95.1

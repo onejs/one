@@ -31,7 +31,7 @@ export default function HomePage() {
       )}
 
       <View>
-        <Text color="blue">Hi from home</Text>
+        <Text color="blue">Hi from home222</Text>
       </View>
 
       <View>

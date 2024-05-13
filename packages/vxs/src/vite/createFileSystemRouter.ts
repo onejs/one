@@ -45,6 +45,8 @@ export function createFileSystemRouter(options: Options): Plugin {
           globalThis['__vxrnresetState']?.()
 
           try {
+            runner.clearCache()
+
             const exported = await runner.import(routeFile)
 
             const loaderData = await exported.loader?.(loaderProps)
@@ -54,9 +56,7 @@ export function createFileSystemRouter(options: Options): Plugin {
             // biome-ignore lint/security/noGlobalEval: <explanation>
             eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
-            const { render } = await server.ssrLoadModule(entryServer, {
-              fixStacktrace: true,
-            })
+            const { render } = await runner.import(entryServer)
 
             globalThis['__vxrnLoaderData__'] = loaderData
             LoaderDataCache[route.file] = loaderData
@@ -90,9 +90,7 @@ export function createFileSystemRouter(options: Options): Plugin {
           // if (disableSSR) {
           //   return transformedJS
           // }
-          const exported = await server.ssrLoadModule(routeFile, {
-            fixStacktrace: true,
-          })
+          const exported = await runner.import(routeFile)
           const loaderData = await exported.loader?.(loaderProps)
           if (loaderData) {
             // add loader back in!
@@ -105,9 +103,7 @@ export function createFileSystemRouter(options: Options): Plugin {
         },
 
         async handleAPI({ request, route }) {
-          const loaded = await server.ssrLoadModule(join(options.root, route.file), {
-            fixStacktrace: true,
-          })
+          const loaded = await runner.import(join(options.root, route.file))
           if (!loaded) return
 
           const requestType = request.method || 'GET'

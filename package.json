@@ -37,7 +37,8 @@
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
     "watch:js": "SKIP_TYPES=1 yarn watch:build",
     "watch:ts": "tsc -b -w --preserveWatchOutput tsconfig.json",
-    "watch": "npm-run-all --parallel watch:ts watch:build"
+    "watch": "npm-run-all --parallel watch:ts watch:build",
+    "vxs": "yarn workspace example-vxs"
   },
   "dependencies": {
     "@biomejs/biome": "^1.6.3",
