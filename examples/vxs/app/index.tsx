@@ -1,4 +1,4 @@
-import { Head, Link, useLoader } from '@vxrn/vxs/types'
+import { Head, Link, useLoader } from 'vxs'
 import { Text, View } from 'tamagui'
 import { useEffect } from 'react'
 import fs from 'node:fs'
