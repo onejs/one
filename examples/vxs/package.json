@@ -18,7 +18,7 @@
     "@react-navigation/native": "^6.1.7",
     "@tamagui/config": "^1.95.1",
     "esbuild": "~0.19.3",
-    "expo-modules-core": "1.7.0",
+    "expo-modules-core": "1.12.10",
     "h3": "^1.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
