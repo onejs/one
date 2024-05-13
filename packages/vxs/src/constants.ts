@@ -7,10 +7,10 @@ export enum ExecutionEnvironment {
 // @ts-nocheck
 import * as EMC from 'expo-modules-core'
 // for ssr support:
-const { Platform, uuidv4 } = EMC
+const { Platform, uuid } = EMC
 
 const ID_KEY = 'EXPO_CONSTANTS_INSTALLATION_ID'
-const _sessionId = uuidv4()
+const _sessionId = uuid.v4()
 
 function getBrowserName() {
   if (Platform.isDOMAvailable) {
@@ -55,7 +55,7 @@ export default {
     try {
       installationId = localStorage.getItem(ID_KEY)
       if (installationId == null || typeof installationId !== 'string') {
-        installationId = uuidv4()
+        installationId = uuid.v4()
         localStorage.setItem(ID_KEY, installationId)
       }
     } catch {
