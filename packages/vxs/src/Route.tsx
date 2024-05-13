@@ -62,7 +62,5 @@ export function useContextKey(): string {
 
 /** Provides the matching routes and filename to the children. */
 export function Route({ children, node }: { children: ReactNode; node: RouteNode }) {
-  return (
-    <CurrentRouteContext.Provider value={node}>{children}</CurrentRouteContext.Provider>
-  )
+  return <CurrentRouteContext.Provider value={node}>{children}</CurrentRouteContext.Provider>
 }
