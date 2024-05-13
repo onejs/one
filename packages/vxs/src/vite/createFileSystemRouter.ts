@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Connect, Plugin } from 'vite'
+import { createServerModuleRunner } from 'vite'
 import { getHtml } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
 import { LoaderDataCache } from './constants'
@@ -27,25 +28,24 @@ export function createFileSystemRouter(options: Options): Plugin {
     apply: 'serve',
 
     configureServer(server) {
+      const runner = createServerModuleRunner(server.environments.ssr)
+
       const handleRequest = createHandleRequest(options, {
         async handleSSR({ route, url, loaderProps }) {
           const indexHtml = await readFile('./index.html', 'utf-8')
           const template = await server.transformIndexHtml(url.pathname, indexHtml)
+
           // if (disableSSR) {
           //   return indexHtml
           // }
-          const routeFile = join(root, route.file)
 
-          // warm up the entry
-          void server.warmupRequest(routeFile)
+          const routeFile = join(root, route.file)
 
           // importing resetState causes issues :/
           globalThis['__vxrnresetState']?.()
 
           try {
-            const exported = await server.ssrLoadModule(routeFile, {
-              fixStacktrace: true,
-            })
+            const exported = await runner.import(routeFile)
 
             const loaderData = await exported.loader?.(loaderProps)
             const entryServer = `${root}/../src/entry-server.tsx`

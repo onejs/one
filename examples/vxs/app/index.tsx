@@ -12,7 +12,7 @@ export function loader() {
   }
 }
 
-export default () => {
+export default function HomePage() {
   const data = useLoader(loader)
 
   useEffect(() => {
