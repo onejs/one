@@ -1,4 +1,4 @@
-import { mergeConfig, type InlineConfig, type UserConfig } from 'vite'
+import { createNodeDevEnvironment, mergeConfig, type InlineConfig, type UserConfig } from 'vite'
 import { getBaseViteConfig } from './getBaseViteConfig'
 import type { VXRNConfigFilled } from './getOptionsFilled'
 import { getOptimizeDeps } from './getOptimizeDeps'
@@ -36,6 +36,14 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
       ssr: {
         optimizeDeps,
       },
+
+      // environments: {
+      //   node: {
+      //     dev: {
+      //       createEnvironment: createNodeDevEnvironment,
+      //     },
+      //   },
+      // },
 
       server: {
         hmr: {

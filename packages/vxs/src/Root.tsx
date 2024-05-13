@@ -4,7 +4,10 @@ import { RootErrorBoundary } from './RootErrorBoundary'
 import type { GlobbedRouteImports } from './types'
 import { useViteRoutes } from './useViteRoutes'
 
-type RootProps = Omit<ExpoRootProps, 'context'> & { routes: GlobbedRouteImports; path?: string }
+type RootProps = Omit<ExpoRootProps, 'context'> & {
+  routes: GlobbedRouteImports
+  path?: string
+}
 
 // export function Root(props: RootProps) {
 //   return (
