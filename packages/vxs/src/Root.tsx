@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { ExpoRoot, type ExpoRootProps } from './ExpoRoot'
 import { RootErrorBoundary } from './RootErrorBoundary'
 import type { GlobbedRouteImports } from './types'
@@ -9,17 +9,17 @@ type RootProps = Omit<ExpoRootProps, 'context'> & {
   path?: string
 }
 
-// export function Root(props: RootProps) {
-//   return (
-//     // ⚠️ <StrictMode> breaks expo router!
-//     // this made hydration mis-match despite nothing thrown?
-//     // <Suspense fallback={null}>
-//     // <Contents {...props} />
-//     // </Suspense>
-//   )
-// }
+export function Root(props: RootProps) {
+  // ⚠️ <StrictMode> breaks expo router!
+  // this made hydration mis-match despite nothing thrown?
+  return (
+    <Suspense fallback={null}>
+      <Contents {...props} />
+    </Suspense>
+  )
+}
 
-export function Root({ routes, path, ...props }: RootProps) {
+export function Contents({ routes, path, ...props }: RootProps) {
   const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
 
   return (
