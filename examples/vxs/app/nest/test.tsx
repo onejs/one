@@ -1,4 +1,4 @@
-import { useGlobalSearchParams, useLoader } from '@vxrn/vxs/types'
+import { useGlobalSearchParams, useLoader } from 'vxs'
 import { Text, View } from 'tamagui'
 
 export async function generateStaticParams() {
