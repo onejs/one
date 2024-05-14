@@ -157,7 +157,7 @@ const qualifiedStore = new WeakMap<RouteNode, React.ComponentType<any>>()
 
 /** Wrap the component with various enhancements and add access to child routes. */
 export function getQualifiedRouteComponent(value: RouteNode) {
-  if (qualifiedStore.has(value)) {
+  if (value && qualifiedStore.has(value)) {
     return qualifiedStore.get(value)!
   }
 

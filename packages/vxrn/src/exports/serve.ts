@@ -5,10 +5,12 @@ import { createProdServer } from './createServer'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
 
 export const serve = async (optionsIn: VXRNConfig) => {
-  const options = await getOptionsFilled(optionsIn)
+  const options = await getOptionsFilled(optionsIn, { mode: 'prod' })
   const app = await createProdServer(options)
   const server = createServer(toNodeListener(app))
-  server.listen()
+  // getPort hangs onto the port for a moment...
+  await new Promise((res) => setTimeout(res, 1))
+  server.listen(options.port)
   console.info(`Listening on http://localhost:${options.port}`)
   await new Promise<void>((res) => {
     server.on('close', () => {

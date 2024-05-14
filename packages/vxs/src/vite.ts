@@ -1,11 +1,11 @@
 import './polyfills'
 
 import type { Plugin } from 'vite'
-import { existsSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { clientTreeShakePlugin } from './vite/clientTreeShakePlugin'
 import { createFileSystemRouter, type Options } from './vite/createFileSystemRouter'
 import { vitePluginSsrCss } from './vite/vitePluginSsrCss'
+import { exists } from 'node:fs'
 
 export { clientTreeShakePlugin } from './vite/clientTreeShakePlugin'
 export { createFileSystemRouter } from './vite/createFileSystemRouter'
@@ -14,6 +14,16 @@ export { vitePluginSsrCss } from './vite/vitePluginSsrCss'
 
 export { build } from './vite/build'
 export { serve } from './vite/serve'
+
+const existsAsync = (file: string) => {
+  return new Promise((res, rej) => {
+    try {
+      exists(file, res)
+    } catch {
+      return false
+    }
+  })
+}
 
 export function getVitePlugins(options: Options) {
   return [
@@ -26,10 +36,10 @@ export function getVitePlugins(options: Options) {
         if (webPath === id) return
         try {
           const directoryPath = absolutePath + '/index.web.js'
-          if (existsSync(directoryPath)) {
+          if (await existsAsync(directoryPath)) {
             return directoryPath
           }
-          if (existsSync(webPath)) {
+          if (await existsAsync(webPath)) {
             return webPath
           }
         } catch (err) {

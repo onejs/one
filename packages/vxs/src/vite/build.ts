@@ -1,25 +1,13 @@
-import { nodeExternals } from 'rollup-plugin-node-externals'
 import { build as esbuild } from 'esbuild'
 import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
-import {
-  mergeConfig,
-  build as viteBuild,
-  type UserConfig,
-  createNodeDevEnvironment,
-  BuildEnvironment,
-} from 'vite'
 import Path, { join } from 'node:path'
-import type { OutputAsset, OutputChunk } from 'rollup'
-import {
-  getHtml,
-  getOptionsFilled,
-  type VXRNConfig,
-  type AfterBuildProps,
-  getOptimizeDeps,
-} from 'vxrn'
+import type { OutputAsset } from 'rollup'
+import { nodeExternals } from 'rollup-plugin-node-externals'
+import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
+import { getHtml, getOptimizeDeps, getOptionsFilled, type AfterBuildProps } from 'vxrn'
 import { getManifest } from './getManifest'
 // import { resetState } from '../global-state/useInitializeExpoRouter'
 
@@ -31,7 +19,7 @@ export const resolveFile = (path: string) => {
   }
 }
 
-const { ensureDir, existsSync, readFile, writeFile, outputFile } = FSExtra
+const { ensureDir, existsSync, readFile, outputFile } = FSExtra
 
 export async function build(props: AfterBuildProps) {
   const options = await getOptionsFilled(props.options)
@@ -233,7 +221,7 @@ export async function build(props: AfterBuildProps) {
         css: cssString,
       })
       const filePath = join(staticDir, slashFileName)
-      await writeFile(toAbsolute(filePath), html)
+      await outputFile(toAbsolute(filePath), html)
     } catch (err) {
       assertIsError(err)
       throw new Error(

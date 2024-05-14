@@ -41,8 +41,14 @@ export async function transformTreeShakeClient(
 
   walk(codeAst, {
     enter: (node) => {
-      shakeGenerateStaticParams()
-      shakeLoader()
+      const didShakeParams = shakeGenerateStaticParams()
+      const didShakeLoader = shakeLoader()
+
+      if (didShakeParams || didShakeLoader) {
+        if (process.env.DEBUG?.startsWith('vxs')) {
+          console.info(`Removed params/loader from client file:\n\n`, s.toString(), '\n')
+        }
+      }
 
       function shakeLoader() {
         if (node.type === 'ExportNamedDeclaration' || node.type === 'VariableDeclaration') {
@@ -77,6 +83,7 @@ export async function transformTreeShakeClient(
           if (shouldRemove) {
             // @ts-ignore
             s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
+            return true
           }
         }
       }
@@ -110,6 +117,7 @@ export async function transformTreeShakeClient(
             // @ts-ignore
             // s.remove(node.start, node.end + 1)
             s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
+            return true
           }
         }
       }
