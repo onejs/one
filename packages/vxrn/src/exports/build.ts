@@ -1,8 +1,7 @@
 import FSExtra from 'fs-extra'
-import { resolve as importMetaResolve } from 'import-meta-resolve'
 import { rm } from 'node:fs/promises'
 import type { RollupOutput } from 'rollup'
-import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
+import { type Plugin, mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
@@ -10,15 +9,7 @@ import { getOptionsFilled } from '../utils/getOptionsFilled'
 
 const { existsSync } = FSExtra
 
-Error.stackTraceLimit = Infinity
-
-export const resolveFile = (path: string) => {
-  try {
-    return importMetaResolve(path, import.meta.url).replace('file://', '')
-  } catch {
-    return require.resolve(path)
-  }
-}
+Error.stackTraceLimit = Number.POSITIVE_INFINITY
 
 type BuildOptions = { step?: string; page?: string }
 
@@ -51,12 +42,24 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
     } satisfies UserConfig
   )
 
+  const excludeAPIRoutesPlugin = {
+    enforce: 'pre',
+    name: 'omit-api-routes',
+    transform(code, id) {
+      if (/\+api.tsx?$/.test(id)) {
+        return ``
+      }
+    },
+  } satisfies Plugin
+
   if (options.webConfig) {
     webBuildConfig = mergeConfig(webBuildConfig, options.webConfig) as any
   }
 
   if (buildOptions.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
+      plugins: [excludeAPIRoutesPlugin],
+
       build: {
         ssrManifest: true,
         outDir: 'dist/client',
@@ -90,6 +93,8 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
   console.info(`\n 🔨 build server\n`)
   const { output } = (await viteBuild(
     mergeConfig(webBuildConfig, {
+      plugins: [excludeAPIRoutesPlugin],
+
       ssr: {
         noExternal: optimizeDeps.include,
         optimizeDeps,
