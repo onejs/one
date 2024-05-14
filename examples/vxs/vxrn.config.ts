@@ -29,8 +29,8 @@ export default {
     ],
   },
 
-  async afterBuild(options, output) {
-    await build(options, output)
+  async afterBuild(...args) {
+    await build(...args)
   },
 
   serve(options, app) {

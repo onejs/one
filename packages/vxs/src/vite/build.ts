@@ -1,12 +1,25 @@
 import { build as esbuild } from 'esbuild'
 import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
-import fs from 'node:fs'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
+import {
+  mergeConfig,
+  build as viteBuild,
+  type UserConfig,
+  createNodeDevEnvironment,
+  BuildEnvironment,
+} from 'vite'
 import Path, { join } from 'node:path'
 import type { OutputAsset, OutputChunk } from 'rollup'
-import { getHtml, getOptionsFilled, type VXRNConfig } from 'vxrn'
+import {
+  getHtml,
+  getOptionsFilled,
+  type VXRNConfig,
+  type AfterBuildProps,
+  getOptimizeDeps,
+} from 'vxrn'
+import { getManifest } from './getManifest'
 // import { resetState } from '../global-state/useInitializeExpoRouter'
 
 export const resolveFile = (path: string) => {
@@ -19,16 +32,62 @@ export const resolveFile = (path: string) => {
 
 const { ensureDir, existsSync, readFile, outputFile } = FSExtra
 
-export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | OutputAsset)[]) {
-  const options = await getOptionsFilled(optionsIn)
+export async function build(props: AfterBuildProps) {
+  const options = await getOptionsFilled(props.options)
   const toAbsolute = (p) => Path.resolve(options.root, p)
 
   const staticDir = toAbsolute(`dist/static`)
   await ensureDir(staticDir)
-  const template = fs.readFileSync(toAbsolute('index.html'), 'utf-8')
 
+  const manifest = getManifest(join(options.root, 'app'))!
+  const { optimizeDeps } = getOptimizeDeps('build')
+  const apiBuildConfig = mergeConfig(props.webBuildConfig, {
+    appType: 'custom',
+    optimizeDeps,
+  } satisfies UserConfig)
+
+  console.info(`\n 🔨 build api\n`)
+
+  const buildEnv = new BuildEnvironment('api', props.webBuildConfig as any)
+  await buildEnv.init()
+
+  for (const { page, file } of manifest.apiRoutes) {
+    console.info(` [api]`, file)
+    await viteBuild(
+      mergeConfig(apiBuildConfig, {
+        appType: 'custom',
+        build: {
+          outDir: 'dist/api',
+          copyPublicDir: false,
+          rollupOptions: {
+            input: join('app', file),
+            preserveEntrySignatures: 'strict',
+            output: {
+              entryFileNames: page.slice(1) + '.js',
+              format: 'esm',
+              exports: 'auto',
+            },
+          },
+        },
+
+        // environments: {
+        //   node: {
+        //     build: {
+        //       outDir: 'dist/api',
+        //       rollupOptions: {
+        //         input: join('app', file),
+        //       },
+        //     },
+        //   },
+        // },
+      } satisfies UserConfig)
+    )
+    // const out = ''
+    // await FSExtra.writeFile(outFile, out)
+  }
+
+  console.info(`\n 🔨 build static routes\n`)
   const entryServer = `${options.root}/dist/server/entry-server.js`
-  console.info(`import entry-server`, entryServer)
 
   // for the require Sitemap in getRoutes
   globalThis['require'] = createRequire(join(import.meta.url, '..'))
@@ -43,13 +102,7 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
     loaderData: any
   }[] = []
 
-  // const manifest = getManifest(join(options.root, 'app'))!
-  // for (const { page } of manifest.htmlRoutes) {
-  //   const outFile = join('dist/static/_vxrn', page.replace(/\/index$/, '/'), 'route.js')
-  //   console.info('generate js partial', outFile)
-  // }
-
-  for (const output of serverOutput) {
+  for (const output of props.output) {
     if (output.type === 'asset') {
       assets.push(output)
       continue
@@ -140,6 +193,7 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
   const cssString = await readFile(tmpCssFile, 'utf-8')
 
   // pre-render each route...
+  const template = await readFile(toAbsolute('index.html'), 'utf-8')
   for (const { path, loaderData, params } of allRoutes) {
     try {
       const loaderProps = { params }
@@ -157,7 +211,6 @@ export async function build(optionsIn: VXRNConfig, serverOutput: (OutputChunk | 
       const slashFileName = `${path === '/' ? '/index' : path}.html`
       const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
       const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
-
       const html = getHtml({
         template: clientHtml || template,
         appHtml,

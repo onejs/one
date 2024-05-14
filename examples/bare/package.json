@@ -11,7 +11,7 @@
     "ios": "react-native run-ios"
   },
   "dependencies": {
-    "react": "^18.2.0",
+    "react": "19.0.0-beta-9d76c954cf-20240510",
     "react-native": "0.73.2"
   },
   "devDependencies": {

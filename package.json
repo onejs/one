@@ -11,6 +11,10 @@
     "./studio2"
   ],
   "packageManager": "yarn@3.6.3",
+  "resolutions": {
+    "react": "19.0.0-beta-9d76c954cf-20240510",
+    "react-dom": "19.0.0-beta-9d76c954cf-20240510"
+  },
   "scripts": {
     "postinstall": "patch-package",
     "setup": "node -r esbuild-register ./scripts/setup.ts",

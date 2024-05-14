@@ -1,7 +1,13 @@
 import type { Options as FlowOptions } from '@vxrn/vite-flow'
 import type { App } from 'h3'
 import type { OutputAsset, OutputChunk } from 'rollup'
-import type { InlineConfig } from 'vite'
+import type { InlineConfig, UserConfig } from 'vite'
+
+export type AfterBuildProps = {
+  options: VXRNConfig
+  output: [OutputChunk, ...(OutputChunk | OutputAsset)[]]
+  webBuildConfig: UserConfig
+}
 
 export type VXRNConfig = {
   /**
@@ -22,10 +28,7 @@ export type VXRNConfig = {
   nativeConfig?: InlineConfig
   flow?: FlowOptions
 
-  afterBuild?: (
-    options: VXRNConfig,
-    output: [OutputChunk, ...(OutputChunk | OutputAsset)[]]
-  ) => void | Promise<void>
+  afterBuild?: (props: AfterBuildProps) => void | Promise<void>
 
   serve?: (options: VXRNConfig, app: App) => void
 }
