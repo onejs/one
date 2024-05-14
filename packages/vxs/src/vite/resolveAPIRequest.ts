@@ -17,7 +17,11 @@ export function resolveAPIRequest(module: any, request: Request) {
           if (response instanceof Response) {
             mergeHeaders(response.headers, asyncHeaders)
           } else {
-            response = new Response(response, { headers: asyncHeaders })
+            if (response && typeof response === 'object') {
+              response = Response.json(response, { headers: asyncHeaders })
+            } else {
+              response = new Response(response, { headers: asyncHeaders })
+            }
           }
         }
         res(response)

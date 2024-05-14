@@ -1,5 +1,5 @@
 import { NavigationRouteContext } from '@react-navigation/native'
-import React from 'react'
+import React, { ReactNode, createContext, useContext } from 'react'
 
 import { store, useStoreRootState, useStoreRouteInfo } from './global-state/router-store'
 import type { ExpoRouter } from './interfaces/router'
@@ -24,24 +24,47 @@ export function useNavigationContainerRef() {
   return store.navigationRef
 }
 
+const FrozeContext = createContext(false)
+
+export function Frozen({ on = false, children }: { on?: boolean; children: ReactNode }) {
+  return <FrozeContext.Provider value={on}>{children}</FrozeContext.Provider>
+}
+
 export function useRouter(): ExpoRouter.Router {
+  const isFrozen = useContext(FrozeContext)
+
   // @ts-ignore TODO
   return React.useMemo(
-    () => ({
-      push: store.push,
-      dismiss: store.dismiss,
-      dismissAll: store.dismissAll,
-      canDismiss: store.canDismiss,
-      back: store.goBack,
-      replace: store.replace,
-      setParams: store.setParams,
-      canGoBack: store.canGoBack,
-      navigate: store.navigate,
-      // TODO(EvanBacon): add `reload`
-    }),
-    []
+    () =>
+      isFrozen
+        ? {
+            push: emptyFn,
+            dismiss: emptyFn,
+            dismissAll: emptyFn,
+            canDismiss: emptyFn,
+            back: emptyFn,
+            replace: emptyFn,
+            setParams: emptyFn,
+            canGoBack: () => false,
+            navigate: emptyFn,
+          }
+        : {
+            push: store.push,
+            dismiss: store.dismiss,
+            dismissAll: store.dismissAll,
+            canDismiss: store.canDismiss,
+            back: store.goBack,
+            replace: store.replace,
+            setParams: store.setParams,
+            canGoBack: store.canGoBack,
+            navigate: store.navigate,
+            // TODO(EvanBacon): add `reload`
+          },
+    [isFrozen]
   )
 }
+
+const emptyFn = () => {}
 
 /**
  * @private
