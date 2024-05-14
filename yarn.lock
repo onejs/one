@@ -8141,7 +8141,7 @@ __metadata:
     h3: ^1.11.1
     patch-package: ^8.0.0
     react: 19.0.0-beta-9d76c954cf-20240510
-    react-dom: beta
+    react-dom: 19.0.0-beta-9d76c954cf-20240510
     react-native: 0.73.2
     react-native-reanimated: ~3.3.0
     react-native-web: ^0.19.11
@@ -12687,6 +12687,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rollup-plugin-node-externals@npm:^7.1.2":
+  version: 7.1.2
+  resolution: "rollup-plugin-node-externals@npm:7.1.2"
+  peerDependencies:
+    rollup: ^3.0.0 || ^4.0.0
+  checksum: 577db5d20e3a7863ff6db655bf31819ab6f79290168f464aed531b0715bbe1bb8ce04a13f8303013c6dcb33be880e5ed50c670af7f5f1be0cdfabcc7ff9b2923
+  languageName: node
+  linkType: hard
+
 "rollup@npm:^3.29.4":
   version: 3.29.4
   resolution: "rollup@npm:3.29.4"
@@ -14662,6 +14671,7 @@ __metadata:
     prompts: ^2.4.2
     readline: ^1.3.0
     rollup: ^3.29.4
+    rollup-plugin-node-externals: ^7.1.2
     sirv: ^2.0.4
     source-map: ^0.7.3
     url: ^0.11.0

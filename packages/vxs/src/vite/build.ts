@@ -1,3 +1,4 @@
+import { nodeExternals } from 'rollup-plugin-node-externals'
 import { build as esbuild } from 'esbuild'
 import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
@@ -46,22 +47,48 @@ export async function build(props: AfterBuildProps) {
     optimizeDeps,
   } satisfies UserConfig)
 
-  console.info(`\n 🔨 build api\n`)
+  // console.info(`\n 🔨 build api\n`)
 
-  const buildEnv = new BuildEnvironment('api', props.webBuildConfig as any)
-  await buildEnv.init()
+  // await viteBuild({
+  //   environments: {
+  //     node: {
+  //       build: {
+  //         async createEnvironment(builder) {
+  //           return {
+  //             mode: 'build',
+  //             name: 'api',
+  //             plugins: [],
+  //             logger() {},
+  //             async init() {},
+  //             options: {
+  //               nodeCompatible: true,
+  //             },
+  //             config: {
+  //               appType: 'custom',
+  //               ...(props.webBuildConfig as any),
+  //             },
+  //           } as any
+  //         },
+  //       },
+  //     },
+  //   },
+  // })
+
+  console.info(`\n 🔨 build api\n`)
 
   for (const { page, file } of manifest.apiRoutes) {
     console.info(` [api]`, file)
     await viteBuild(
       mergeConfig(apiBuildConfig, {
         appType: 'custom',
+        plugins: [nodeExternals() as any],
         build: {
           outDir: 'dist/api',
           copyPublicDir: false,
           rollupOptions: {
             input: join('app', file),
             preserveEntrySignatures: 'strict',
+            external: [/node_modules/],
             output: {
               entryFileNames: page.slice(1) + '.js',
               format: 'esm',
