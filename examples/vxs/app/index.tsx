@@ -17,7 +17,7 @@ export default function HomePage() {
 
   useEffect(() => {
     fetch('/hello')
-      .then((res) => res.text())
+      .then((res) => res.json())
       .then((x) => console.log('got', x))
   }, [])
 
