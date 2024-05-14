@@ -198,6 +198,7 @@ export async function build(props: AfterBuildProps) {
     bundle: true,
     minifyWhitespace: true,
     sourcemap: false,
+    allowOverwrite: true,
     outfile: tmpCssFile,
     loader: { '.css': 'css' },
   })

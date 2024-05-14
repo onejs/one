@@ -23,6 +23,11 @@
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
+    },
+    "./serve": {
+      "types": "./types/exports/createServer.d.ts",
+      "import": "./dist/esm/exports/createServer.mjs",
+      "require": "./dist/cjs/exports/createServer.js"
     }
   },
   "dependencies": {
@@ -60,7 +65,7 @@
     "sirv": "^2.0.4",
     "source-map": "^0.7.3",
     "url": "^0.11.0",
-    "vite": "alpha",
+    "vite": "6.0.0-alpha.11",
     "vxs": "0.1.58",
     "ws": "^8.7.0"
   },
