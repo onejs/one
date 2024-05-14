@@ -31,14 +31,11 @@ export const resolveFile = (path: string) => {
   }
 }
 
-const { ensureDir, existsSync, readFile, outputFile } = FSExtra
+const { ensureDir, existsSync, readFile, writeFile, outputFile } = FSExtra
 
 export async function build(props: AfterBuildProps) {
   const options = await getOptionsFilled(props.options)
   const toAbsolute = (p) => Path.resolve(options.root, p)
-
-  const staticDir = toAbsolute(`dist/static`)
-  await ensureDir(staticDir)
 
   const manifest = getManifest(join(options.root, 'app'))!
   const { optimizeDeps } = getOptimizeDeps('build')
@@ -96,21 +93,8 @@ export async function build(props: AfterBuildProps) {
             },
           },
         },
-
-        // environments: {
-        //   node: {
-        //     build: {
-        //       outDir: 'dist/api',
-        //       rollupOptions: {
-        //         input: join('app', file),
-        //       },
-        //     },
-        //   },
-        // },
       } satisfies UserConfig)
     )
-    // const out = ''
-    // await FSExtra.writeFile(outFile, out)
   }
 
   console.info(`\n 🔨 build static routes\n`)
@@ -219,6 +203,9 @@ export async function build(props: AfterBuildProps) {
   })
   const cssString = await readFile(tmpCssFile, 'utf-8')
 
+  const staticDir = toAbsolute(`dist/static`)
+  await ensureDir(staticDir)
+
   // pre-render each route...
   const template = await readFile(toAbsolute('index.html'), 'utf-8')
   for (const { path, loaderData, params } of allRoutes) {
@@ -232,11 +219,9 @@ export async function build(props: AfterBuildProps) {
 
       const { appHtml, headHtml } = await render({ path })
 
-      // output the static js (for client side navigation)
-
       // output the static html
       const slashFileName = `${path === '/' ? '/index' : path}.html`
-      const clientHtmlPath = toAbsolute(`dist/client${slashFileName}`)
+      const clientHtmlPath = toAbsolute(join(`dist/client`, slashFileName))
       const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
       const html = getHtml({
         template: clientHtml || template,
@@ -246,9 +231,8 @@ export async function build(props: AfterBuildProps) {
         loaderProps,
         css: cssString,
       })
-      const filePath = toAbsolute(`dist/static${slashFileName}`)
-
-      await outputFile(toAbsolute(filePath), html)
+      const filePath = join(staticDir, slashFileName)
+      await writeFile(toAbsolute(filePath), html)
     } catch (err) {
       assertIsError(err)
       throw new Error(
