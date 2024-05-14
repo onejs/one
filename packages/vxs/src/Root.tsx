@@ -1,8 +1,10 @@
-import { StrictMode, Suspense } from 'react'
+import { StrictMode } from 'react'
 import { ExpoRoot, type ExpoRootProps } from './ExpoRoot'
-import { RootErrorBoundary } from './RootErrorBoundary'
+import { RootErrorBoundary } from './views/RootErrorBoundary'
 import type { GlobbedRouteImports } from './types'
 import { useViteRoutes } from './useViteRoutes'
+import { SuspenseFallback } from './views/SuspenseFallback'
+import { SuspenseFallbackLastContents } from './views/SuspenseFallbackLastContents'
 
 type RootProps = Omit<ExpoRootProps, 'context'> & {
   routes: GlobbedRouteImports
@@ -13,9 +15,9 @@ export function Root(props: RootProps) {
   // ⚠️ <StrictMode> breaks expo router!
   // this made hydration mis-match despite nothing thrown?
   return (
-    <Suspense fallback={null}>
+    <SuspenseFallbackLastContents>
       <Contents {...props} />
-    </Suspense>
+    </SuspenseFallbackLastContents>
   )
 }
 
