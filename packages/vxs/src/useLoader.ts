@@ -7,11 +7,15 @@ export function useLoader<
   const loadedData = globalThis['__vxrnLoaderData__']
   const initialData = useRef(loadedData)
 
-  useEffect(() => {
-    if (loadedData) {
-      globalThis['__vxrnLoaderData__'] = null
-    }
-  }, [loadedData])
+  if (process.env.NODE_ENV === 'development') {
+    // this fixes dev, breaks prod, can do it better
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      if (loadedData) {
+        globalThis['__vxrnLoaderData__'] = null
+      }
+    }, [loadedData])
+  }
 
   return (
     initialData.current ??
@@ -29,24 +33,26 @@ const results = new WeakMap()
 const started = new WeakMap()
 
 function useAsyncFn(val: any, props?: any) {
-  if (!started.get(val)) {
-    started.set(val, true)
+  if (val) {
+    if (!started.get(val)) {
+      started.set(val, true)
 
-    let next = val(props)
-    if (next instanceof Promise) {
-      next = next
-        .then((final) => {
-          results.set(val, final)
-        })
-        .catch((err) => {
-          console.error(`Error running loader()`, err)
-          results.set(val, undefined)
-        })
+      let next = val(props)
+      if (next instanceof Promise) {
+        next = next
+          .then((final) => {
+            results.set(val, final)
+          })
+          .catch((err) => {
+            console.error(`Error running loader()`, err)
+            results.set(val, undefined)
+          })
+      }
+      results.set(val, next)
     }
-    results.set(val, next)
   }
 
-  const current = results.get(val)
+  const current = val ? results.get(val) : val
 
   if (current instanceof Promise) {
     throw current

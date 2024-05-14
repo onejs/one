@@ -64,8 +64,8 @@ const build = defineCommand({
       type: 'string',
       required: false,
     },
-    // always wanted to be able to just generate one-off pages
-    // page: {
+    // build one page
+    // route: {
     //   type: 'string',
     //   required: false,
     // },

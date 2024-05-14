@@ -9,13 +9,16 @@ const require = createRequire(import.meta.url)
 
 export type VXRNConfigFilled = Awaited<ReturnType<typeof getOptionsFilled>>
 
-export async function getOptionsFilled(options: VXRNConfig) {
+export async function getOptionsFilled(
+  options: VXRNConfig,
+  internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
+) {
   const { host = '127.0.0.1', root = process.cwd(), entries } = options
 
-  const defaultPort = options.port || 8081
+  const defaultPort = options.port || (internal.mode === 'dev' ? 8081 : 3000)
   const port = await getPort({
     port: defaultPort,
-    portRange: [defaultPort, defaultPort + 1000],
+    portRange: [defaultPort, defaultPort + 100],
   })
 
   const packageRootDir = join(require.resolve('vxrn'), '../../..')

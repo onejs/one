@@ -13,13 +13,13 @@ export const nativeExtensions = [
 
 export const webExtensions = [
   '.web.tsx',
-  '.tsx',
   '.web.ts',
-  '.ts',
   '.web.jsx',
-  '.jsx',
-  '.web.js',
   '.web.mjs',
+  '.web.js',
+  '.tsx',
+  '.ts',
+  '.jsx',
   '.mjs',
   '.js',
   '.css',

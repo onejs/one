@@ -1,6 +1,8 @@
 import type { VXRNConfig } from '../types';
 export type VXRNConfigFilled = Awaited<ReturnType<typeof getOptionsFilled>>;
-export declare function getOptionsFilled(options: VXRNConfig): Promise<{
+export declare function getOptionsFilled(options: VXRNConfig, internal?: {
+    mode?: 'dev' | 'prod';
+}): Promise<{
     entries: {
         native: string;
         server: string;
