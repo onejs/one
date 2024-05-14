@@ -37,14 +37,6 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
         optimizeDeps,
       },
 
-      // environments: {
-      //   node: {
-      //     dev: {
-      //       createEnvironment: createNodeDevEnvironment,
-      //     },
-      //   },
-      // },
-
       server: {
         hmr: {
           path: '/__vxrnhmr',

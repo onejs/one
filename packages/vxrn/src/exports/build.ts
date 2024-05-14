@@ -83,10 +83,11 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
       })
     }
 
+    console.info(`\n 🔨 build client\n`)
     await viteBuild(clientBuildConfig)
   }
 
-  console.info(`build server`)
+  console.info(`\n 🔨 build server\n`)
   const { output } = (await viteBuild(
     mergeConfig(webBuildConfig, {
       ssr: {
@@ -107,6 +108,8 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
   )) as RollupOutput
 
   if (options.afterBuild) {
-    await options.afterBuild(options, output)
+    await options.afterBuild({ options, output, webBuildConfig })
   }
+
+  console.info(`\n ✔️ build complete\n`)
 }

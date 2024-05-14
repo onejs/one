@@ -7,6 +7,7 @@ import { createHandleRequest } from '../handleRequest'
 import { LoaderDataCache } from './constants'
 import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
 import { loadEnv } from './loadEnv'
+import { resolveAPIRequest } from './resolveAPIRequest'
 
 export type Options = {
   root: string
@@ -103,37 +104,7 @@ export function createFileSystemRouter(options: Options): Plugin {
         },
 
         async handleAPI({ request, route }) {
-          const loaded = await runner.import(join(options.root, route.file))
-          if (!loaded) return
-
-          const requestType = request.method || 'GET'
-          const handler = loaded[requestType] || loaded.default
-          if (!handler) return
-
-          return new Promise((res) => {
-            const id = {}
-            requestAsyncLocalStore.run(id, async () => {
-              try {
-                let response = await handler(request)
-                const asyncHeaders = asyncHeadersCache.get(id)
-                if (asyncHeaders) {
-                  if (response instanceof Response) {
-                    mergeHeaders(response.headers, asyncHeaders)
-                  } else {
-                    response = new Response(response, { headers: asyncHeaders })
-                  }
-                }
-                res(response)
-              } catch (err) {
-                // allow throwing a response
-                if (err instanceof Response) {
-                  res(err)
-                } else {
-                  throw err
-                }
-              }
-            })
-          })
+          return resolveAPIRequest(await runner.import(join(options.root, route.file)), request)
         },
       })
 

@@ -8122,7 +8122,7 @@ __metadata:
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.6.3
     patch-package: ^8.0.0
-    react: ^18.2.0
+    react: 19.0.0-beta-9d76c954cf-20240510
     react-native: 0.73.2
     react-test-renderer: 18.2.0
     typescript: ^5.2.2
@@ -8140,8 +8140,8 @@ __metadata:
     expo-modules-core: 1.12.10
     h3: ^1.11.1
     patch-package: ^8.0.0
-    react: ^18.2.0
-    react-dom: ^18.2.0
+    react: 19.0.0-beta-9d76c954cf-20240510
+    react-dom: beta
     react-native: 0.73.2
     react-native-reanimated: ~3.3.0
     react-native-web: ^0.19.11
@@ -12046,15 +12046,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.2.0":
-  version: 18.2.0
-  resolution: "react-dom@npm:18.2.0"
+"react-dom@npm:19.0.0-beta-9d76c954cf-20240510":
+  version: 19.0.0-beta-9d76c954cf-20240510
+  resolution: "react-dom@npm:19.0.0-beta-9d76c954cf-20240510"
   dependencies:
-    loose-envify: ^1.1.0
-    scheduler: ^0.23.0
+    scheduler: 0.25.0-beta-9d76c954cf-20240510
   peerDependencies:
-    react: ^18.2.0
-  checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
+    react: 19.0.0-beta-9d76c954cf-20240510
+  checksum: 9f0ca75d345177abdb04ec8f66ac260f8b2766ae13b9453d94cd9c8a35fd472b9aca3ebf6a5095ba1c61e19d77232bfe2cc6c2cbac4e0ae1e92bc4650850120e
   languageName: node
   linkType: hard
 
@@ -12312,12 +12311,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.2.0":
-  version: 18.2.0
-  resolution: "react@npm:18.2.0"
-  dependencies:
-    loose-envify: ^1.1.0
-  checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
+"react@npm:19.0.0-beta-9d76c954cf-20240510":
+  version: 19.0.0-beta-9d76c954cf-20240510
+  resolution: "react@npm:19.0.0-beta-9d76c954cf-20240510"
+  checksum: 5a58ac89b85fa9547bd570166b9c3796902db1802cc9fc0c2b44b6df7741b0b6d607a423561912bcad27af0ee590998610dee1d51c75d4ddb33daaa8bf45b986
   languageName: node
   linkType: hard
 
@@ -12830,6 +12827,13 @@ __metadata:
   dependencies:
     loose-envify: ^1.1.0
   checksum: 232149125c10f10193b1340ec4bbf14a8e6a845152790d6fd6f58207642db801abdb5a21227561a0a93871b98ba47539a6233b4e6155aae72d6db6db9f9f09b3
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:0.25.0-beta-9d76c954cf-20240510":
+  version: 0.25.0-beta-9d76c954cf-20240510
+  resolution: "scheduler@npm:0.25.0-beta-9d76c954cf-20240510"
+  checksum: 823f30e799324fabb2073f06d0dd4dd5edb993c1e62556a83fe04d1b357bd9ddf22324ba97f244f037f2c1cf2f65c518cabd18f0deada6534bc06fa4aa00123e
   languageName: node
   linkType: hard
 
@@ -14693,7 +14697,7 @@ __metadata:
     fast-deep-equal: ^3.1.3
     magic-string: ^0.30.10
     query-string: 7.1.3
-    react: ^18.2.0
+    react: 19.0.0-beta-9d76c954cf-20240510
     react-helmet-async: ^2.0.4
     react-native: 0.73.2
     react-native-safe-area-context: 4.6.3

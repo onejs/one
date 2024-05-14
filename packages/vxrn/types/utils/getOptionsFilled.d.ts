@@ -17,7 +17,7 @@ export declare function getOptionsFilled(options: VXRNConfig): Promise<{
     webConfig?: import("vite").InlineConfig | undefined;
     nativeConfig?: import("vite").InlineConfig | undefined;
     flow?: import("@vxrn/vite-flow").Options | undefined;
-    afterBuild?: ((options: VXRNConfig, output: [import("rollup").OutputChunk, ...(import("rollup").OutputChunk | import("rollup").OutputAsset)[]]) => void | Promise<void>) | undefined;
+    afterBuild?: ((props: import("..").AfterBuildProps) => void | Promise<void>) | undefined;
     serve?: ((options: VXRNConfig, app: import("h3").App) => void) | undefined;
 }>;
 type State = {

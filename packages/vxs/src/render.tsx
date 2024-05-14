@@ -1,6 +1,4 @@
-import { startTransition } from 'react'
 import { hydrateRoot } from 'react-dom/client'
-import { loadRoutes } from './useViteRoutes'
 
 globalThis['__vxrnVersion'] ||= 0
 
@@ -21,7 +19,18 @@ export function render(
         throw new Error(`No container element found`)
       }
       // startTransition(() => {
-      globalThis['__vxrnRoot'] = hydrateRoot(container, element)
+      globalThis['__vxrnRoot'] = hydrateRoot(container, element, {
+        onRecoverableError(...args) {
+          console.error(`[vxs] onRecoverableError`, ...args)
+        },
+        // @ts-expect-error
+        onUncaughtError(...args) {
+          console.error(`[vxs] onUncaughtError`, ...args)
+        },
+        onCaughtError(...args) {
+          console.error(`[vxs] onCaughtError`, ...args)
+        },
+      })
       // })
     }
 
