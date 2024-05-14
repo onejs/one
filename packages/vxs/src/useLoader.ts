@@ -1,10 +1,18 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
-  const initialData = useRef(globalThis['__vxrnLoaderData__'])
+  const loadedData = globalThis['__vxrnLoaderData__']
+  const initialData = useRef(loadedData)
+
+  useEffect(() => {
+    if (loadedData) {
+      globalThis['__vxrnLoaderData__'] = null
+    }
+  }, [loadedData])
+
   return (
     initialData.current ??
     // eslint-disable-next-line react-hooks/rules-of-hooks
