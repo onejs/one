@@ -6,8 +6,9 @@ import { createApp, defineEventHandler, toNodeListener } from 'h3'
 
 export const serve = async (optionsIn: VXRNConfig) => {
   const options = await getOptionsFilled(optionsIn)
-
   const app = createApp()
+  // in prod default to 3000 not 8081
+  const port = optionsIn.port ?? 3000
 
   const sirvStaticMiddleware = sirv('dist/static', {
     gzip: true,
@@ -42,8 +43,8 @@ export const serve = async (optionsIn: VXRNConfig) => {
   )
 
   const server = createServer(toNodeListener(app))
-  server.listen(3333)
-  console.info(`Listening on http://localhost:3333`)
+  server.listen(port)
+  console.info(`Listening on http://localhost:${port}`)
 
   await new Promise<void>((res) => {
     server.on('close', () => {
