@@ -20,6 +20,7 @@ import { sortRoutesWithInitial } from './sortRoutes'
 import { EmptyRoute } from './views/EmptyRoute'
 import { SuspenseFallback } from './views/SuspenseFallback'
 import { Try } from './views/Try'
+import { SuspenseFallbackLastContents } from './views/SuspenseFallbackLastContents'
 
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
@@ -180,7 +181,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   const getLoadable = (props: any, ref: any) => {
     return (
-      <React.Suspense fallback={<SuspenseFallback route={value} />}>
+      <SuspenseFallbackLastContents>
         <ScreenComponent
           {...{
             ...props,
@@ -190,7 +191,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
             segment: value.route,
           }}
         />
-      </React.Suspense>
+      </SuspenseFallbackLastContents>
     )
   }
 

@@ -1,14 +1,14 @@
-import Constants from './constants'
 import React, { Fragment, useMemo, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
+import Constants from './constants'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
-import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
 import { ServerLocationContext } from './global-state/serverLocationContext'
-import { Head, HeadProvider } from './head'
+import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
+import { HeadProvider } from './head'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
 
