@@ -13,6 +13,24 @@ Error.stackTraceLimit = Number.POSITIVE_INFINITY
 
 type BuildOptions = { step?: string; page?: string }
 
+const disableOptimizationConfig = {
+  optimizeDeps: {
+    esbuildOptions: {
+      minify: false,
+    },
+  },
+
+  build: {
+    minify: false,
+    rollupOptions: {
+      treeshake: false,
+      output: {
+        minifyInternalExports: false,
+      },
+    },
+  },
+} satisfies UserConfig
+
 export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = {}) => {
   const options = await getOptionsFilled(optionsIn)
 
@@ -67,50 +85,45 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
     } satisfies UserConfig)
 
     if (process.env.VXRN_DISABLE_PROD_OPTIMIZATION) {
-      clientBuildConfig = mergeConfig(clientBuildConfig, {
-        optimizeDeps: {
-          esbuildOptions: {
-            minify: false,
-          },
-        },
-
-        build: {
-          minify: false,
-          rollupOptions: {
-            treeshake: false,
-            output: {
-              minifyInternalExports: false,
-            },
-          },
-        },
-      })
+      clientBuildConfig = mergeConfig(clientBuildConfig, disableOptimizationConfig)
     }
 
     console.info(`\n 🔨 build client\n`)
+    console.info(JSON.stringify(clientBuildConfig, null, 2))
     await viteBuild(clientBuildConfig)
   }
 
   console.info(`\n 🔨 build server\n`)
-  const { output } = (await viteBuild(
-    mergeConfig(webBuildConfig, {
-      plugins: [excludeAPIRoutesPlugin],
 
-      ssr: {
-        noExternal: optimizeDeps.include,
-        optimizeDeps,
-      },
+  let serverBuildConfig = mergeConfig(webBuildConfig, {
+    plugins: [excludeAPIRoutesPlugin],
 
-      build: {
-        // we want one big file of css
-        cssCodeSplit: false,
-        ssr: 'src/entry-server.tsx',
-        outDir: 'dist/server',
-        rollupOptions: {
-          external: [],
-        },
+    define: {
+      'process.env.TAMAGUI_IS_SERVER': '"1"',
+      ...webBuildConfig.define,
+    },
+
+    ssr: {
+      noExternal: optimizeDeps.include,
+      optimizeDeps,
+    },
+
+    build: {
+      // we want one big file of css
+      cssCodeSplit: false,
+      ssr: 'src/entry-server.tsx',
+      outDir: 'dist/server',
+      rollupOptions: {
+        external: [],
       },
-    } satisfies UserConfig)
-  )) as RollupOutput
+    },
+  } satisfies UserConfig)
+
+  // if (process.env.VXRN_DISABLE_PROD_OPTIMIZATION) {
+  //   serverBuildConfig = mergeConfig(serverBuildConfig, disableOptimizationConfig)
+  // }
+
+  const { output } = (await viteBuild(serverBuildConfig)) as RollupOutput
 
   if (options.afterBuild) {
     await options.afterBuild({ options, output, webBuildConfig })

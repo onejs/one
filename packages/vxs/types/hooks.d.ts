@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import type { ExpoRouter } from './interfaces/router';
 type SearchParams = Record<string, string | string[]>;
 export declare function useRootNavigationState(): import("./fork/getStateFromPath").ResultState;
