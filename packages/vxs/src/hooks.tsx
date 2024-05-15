@@ -1,5 +1,5 @@
 import { NavigationRouteContext } from '@react-navigation/native'
-import React, { ReactNode, createContext, useContext } from 'react'
+import React, { type ReactNode, createContext, useContext } from 'react'
 
 import { store, useStoreRootState, useStoreRouteInfo } from './global-state/router-store'
 import type { ExpoRouter } from './interfaces/router'

@@ -8139,6 +8139,7 @@ __metadata:
     esbuild: ~0.19.3
     expo-modules-core: 1.12.10
     h3: ^1.11.1
+    p-map: ^7.0.2
     patch-package: ^8.0.0
     react: 19.0.0-beta-9d76c954cf-20240510
     react-dom: 19.0.0-beta-9d76c954cf-20240510
@@ -11465,7 +11466,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-map@npm:^5.1.0, p-map@npm:^5.5.0":
+"p-map@npm:^5.1.0":
   version: 5.5.0
   resolution: "p-map@npm:5.5.0"
   dependencies:
@@ -11478,6 +11479,13 @@ __metadata:
   version: 6.0.0
   resolution: "p-map@npm:6.0.0"
   checksum: 41e20c30a08da664610ff1ed198519d8cb93567491392c819ce502f523dde1187afab23e75e4c0fe74310d424a6f74ceaebe73ad5496c9e27d91183184fedd37
+  languageName: node
+  linkType: hard
+
+"p-map@npm:^7.0.2":
+  version: 7.0.2
+  resolution: "p-map@npm:7.0.2"
+  checksum: bc128c2b244ef5d4619392b2247d718a3fe471d5fa4a73834fd96182a237f460ec7e0ad0f95139ef7103a6b50ed164228c62e2f8e41ba2b15360fe1c20d13563
   languageName: node
   linkType: hard
 
@@ -14623,7 +14631,7 @@ __metadata:
     eslint: ^8.56.0
     eslint-plugin-react-hooks: ^4.6.2
     npm-run-all: ^4.1.5
-    p-map: ^5.5.0
+    p-map: ^7.0.2
     patch-package: ^8.0.0
     turbo: ^1.13.2
     typescript: ^5.2.2

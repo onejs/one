@@ -9,6 +9,7 @@ import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 import { getHtml, getOptimizeDeps, getOptionsFilled, type AfterBuildProps } from 'vxrn'
 import { getManifest } from './getManifest'
+import pMap from 'p-map'
 // import { resetState } from '../global-state/useInitializeExpoRouter'
 
 export const resolveFile = (path: string) => {
@@ -61,29 +62,35 @@ export async function build(props: AfterBuildProps) {
 
   console.info(`\n 🔨 build api\n`)
 
-  for (const { page, file } of manifest.apiRoutes) {
-    console.info(` [api]`, file)
-    await viteBuild(
-      mergeConfig(apiBuildConfig, {
-        appType: 'custom',
-        plugins: [nodeExternals() as any],
-        build: {
-          outDir: 'dist/api',
-          copyPublicDir: false,
-          rollupOptions: {
-            input: join('app', file),
-            preserveEntrySignatures: 'strict',
-            external: [/node_modules/],
-            output: {
-              entryFileNames: page.slice(1) + '.js',
-              format: 'esm',
-              exports: 'auto',
+  await pMap(
+    manifest.apiRoutes,
+    async ({ page, file }) => {
+      console.info(` [api]`, file)
+      await viteBuild(
+        mergeConfig(apiBuildConfig, {
+          appType: 'custom',
+          plugins: [nodeExternals() as any],
+          build: {
+            outDir: 'dist/api',
+            copyPublicDir: false,
+            rollupOptions: {
+              input: join('app', file),
+              preserveEntrySignatures: 'strict',
+              external: [/node_modules/],
+              output: {
+                entryFileNames: page.slice(1) + '.js',
+                format: 'esm',
+                exports: 'auto',
+              },
             },
           },
-        },
-      } satisfies UserConfig)
-    )
-  }
+        } satisfies UserConfig)
+      )
+    },
+    {
+      concurrency: 5,
+    }
+  )
 
   console.info(`\n 🔨 build static routes\n`)
   const entryServer = `${options.root}/dist/server/entry-server.js`
@@ -115,6 +122,11 @@ export async function build(props: AfterBuildProps) {
       continue
     }
     if (id.includes('+api')) {
+      continue
+    }
+
+    // temp we should use manifest but lets just filter out non-app dir stuff
+    if (!id.includes('/app/')) {
       continue
     }
 
