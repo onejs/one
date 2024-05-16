@@ -284,7 +284,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     viteServer,
 
     async start() {
-      server.listen(port)
+      server.listen(port, options.host)
 
       console.info(`Server running on http://localhost:${port}`)
 
