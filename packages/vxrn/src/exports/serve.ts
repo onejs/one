@@ -10,8 +10,8 @@ export const serve = async (optionsIn: VXRNConfig) => {
   const server = createServer(toNodeListener(app))
   // strange prevents a cant listen on port issue
   await new Promise((res) => setTimeout(res, 1))
-  server.listen(options.port)
-  console.info(`Listening on http://localhost:${options.port}`)
+  server.listen(options.port, options.host)
+  console.info(`Listening on http://${options.host}:${options.port}`)
   await new Promise<void>((res) => {
     server.on('close', () => {
       res()
