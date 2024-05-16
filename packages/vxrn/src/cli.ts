@@ -11,6 +11,9 @@ const dev = defineCommand({
     clean: {
       type: 'boolean',
     },
+    host: {
+      type: 'string',
+    },
   },
   async run({ args }) {
     const userConfig = await readVXRNConfig()
@@ -21,7 +24,6 @@ const dev = defineCommand({
     const { start, stop } = await dev({
       clean: args.clean,
       root: process.cwd(),
-      host: '127.0.0.1',
       webConfig: {
         plugins: [],
       },
@@ -33,6 +35,7 @@ const dev = defineCommand({
         exclude: [],
       },
       ...userConfig,
+      host: args.host ?? userConfig.host,
     })
 
     const { closePromise } = await start()
@@ -95,7 +98,11 @@ const serve = defineCommand({
     version: '0.0.0',
     description: 'Serve a built app for production',
   },
-  args: {},
+  args: {
+    host: {
+      type: 'string',
+    },
+  },
   async run({ args }) {
     const userConfig = await readVXRNConfig()
     const { serve } = await import(
@@ -107,7 +114,10 @@ const serve = defineCommand({
       console.error(err?.message || err)
     })
 
-    const results = await serve(userConfig)
+    const results = await serve({
+      ...userConfig,
+      host: args.host ?? userConfig.host,
+    })
 
     if (process.env.DEBUG) {
       console.info('results', results)
