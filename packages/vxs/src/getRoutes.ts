@@ -110,6 +110,7 @@ function getDirectoryTree(contextModule: RequireContext, options: Options) {
     let node: RouteNode = {
       type: meta.isApi ? 'api' : meta.isLayout ? 'layout' : 'route',
       loadRoute() {
+        console.warn(`load route`, filePath)
         if (options.ignoreRequireErrors) {
           try {
             return contextModule(filePath)

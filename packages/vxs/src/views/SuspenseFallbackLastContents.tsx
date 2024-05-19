@@ -24,5 +24,5 @@ export const SuspenseFallbackLastContents = ({ children }: { children: any }) =>
   //   return
   // }
 
-  return <Suspense fallback={hasLoaded ? null : <Frozen on>{last}</Frozen>}>{children}</Suspense>
+  return <Suspense fallback={<Frozen on>{last}</Frozen>}>{children}</Suspense>
 }
