@@ -1,25 +1,28 @@
 import { Suspense, useEffect, useState } from 'react'
 import { Frozen } from '../hooks'
 
+// only on initial load
+let hasLoaded = false
+
 export const SuspenseFallbackLastContents = ({ children }: { children: any }) => {
-  const [last, setLast] = useState(children)
+  const [last] = useState(children)
 
   useEffect(() => {
-    setLast(children)
-  }, [children])
+    // TODO hacky but works for now
+    setTimeout(() => {
+      hasLoaded = true
+    }, 500)
+  }, [])
 
-  return (
-    <Suspense
-      fallback={
-        // TODO the non Frozen versions "works" but it causes mayhem due to the tree running logic
-        // this would be good for React.Offscreen/Activity but not out
-        // tried react-freeze but it brings back the flickering
-        // tried Frozen but i'd have to disable a variety of hooks, will first look to see if better solution
-        null
-        // <Frozen on>{last}</Frozen>
-      }
-    >
-      {children}
-    </Suspense>
-  )
+  // const FallbackComponent = () => {
+  //   console.log('falling back!', { hasLoaded, last, children })
+  //   // TODO the non Frozen versions "works" but it causes mayhem due to the tree running logic
+  //   // this would be good for React.Offscreen/Activity but not out
+  //   // tried react-freeze but it brings back the flickering
+  //   // tried Frozen but i'd have to disable a variety of hooks, will first look to see if better solution
+  //   // null
+  //   return
+  // }
+
+  return <Suspense fallback={hasLoaded ? null : <Frozen on>{last}</Frozen>}>{children}</Suspense>
 }
