@@ -27,7 +27,17 @@ export function useNavigationContainerRef() {
 const FrozeContext = createContext(false)
 
 export function Frozen({ on = false, children }: { on?: boolean; children: ReactNode }) {
-  return <FrozeContext.Provider value={on}>{children}</FrozeContext.Provider>
+  return (
+    <FrozeContext.Provider value={on}>
+      <div
+        // @ts-ignore
+        inert
+        style={{ display: 'contents' }}
+      >
+        {children}
+      </div>
+    </FrozeContext.Provider>
+  )
 }
 
 export function useRouter(): ExpoRouter.Router {
