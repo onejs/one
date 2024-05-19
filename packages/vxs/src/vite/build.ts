@@ -62,35 +62,36 @@ export async function build(props: AfterBuildProps) {
 
   console.info(`\n 🔨 build api\n`)
 
-  await pMap(
-    manifest.apiRoutes,
-    async ({ page, file }) => {
-      console.info(` [api]`, file)
-      await viteBuild(
-        mergeConfig(apiBuildConfig, {
-          appType: 'custom',
-          plugins: [nodeExternals() as any],
-          build: {
-            outDir: 'dist/api',
-            copyPublicDir: false,
-            rollupOptions: {
-              input: join('app', file),
-              preserveEntrySignatures: 'strict',
-              external: [/node_modules/],
-              output: {
-                entryFileNames: page.slice(1) + '.js',
-                format: 'esm',
-                exports: 'auto',
-              },
+  // await pMap(
+  //   manifest.apiRoutes,
+  //   async ({ page, file }) => {
+  for (const { page, file } of manifest.apiRoutes) {
+    console.info(` [api]`, file)
+    await viteBuild(
+      mergeConfig(apiBuildConfig, {
+        appType: 'custom',
+        plugins: [nodeExternals() as any],
+        build: {
+          outDir: 'dist/api',
+          copyPublicDir: false,
+          rollupOptions: {
+            input: join('app', file),
+            preserveEntrySignatures: 'strict',
+            external: [/node_modules/],
+            output: {
+              entryFileNames: page.slice(1) + '.js',
+              format: 'esm',
+              exports: 'auto',
             },
           },
-        } satisfies UserConfig)
-      )
-    },
-    {
-      concurrency: 5,
-    }
-  )
+        },
+      } satisfies UserConfig)
+    )
+  }
+  //   {
+  //     concurrency: 5,
+  //   }
+  // )
 
   console.info(`\n 🔨 build static routes\n`)
   const entryServer = `${options.root}/dist/server/entry-server.js`
