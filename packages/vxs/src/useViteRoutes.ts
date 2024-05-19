@@ -65,8 +65,10 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
       return loadedRoutes[id]
     }
     if (!promises[id]) {
+      console.info(` [vxs] load ${id}`, routesSync[id].toString())
       promises[id] = routesSync[id]()
         .then((val: any) => {
+          console.info(` [vxs] loaded ${id}`)
           loadedRoutes[id] = val
           delete promises[id]
 

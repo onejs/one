@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import type { ExpoRouter } from './interfaces/router';
 type SearchParams = Record<string, string | string[]>;
 export declare function useRootNavigationState(): import("./fork/getStateFromPath").ResultState;
@@ -10,7 +10,7 @@ export declare function useNavigationContainerRef(): import("@react-navigation/c
 export declare function Frozen({ on, children }: {
     on?: boolean;
     children: ReactNode;
-}): import("react/jsx-runtime").JSX.Element;
+}): string | number | boolean | Iterable<React.ReactNode> | import("react/jsx-runtime").JSX.Element | null | undefined;
 export declare function useRouter(): ExpoRouter.Router;
 /**
  * @private

@@ -1,8 +1,9 @@
 import { NavigationRouteContext } from '@react-navigation/native'
-import React, { type ReactNode, createContext, useContext } from 'react'
-
+import React, { type ReactNode, createContext, useContext, useEffect } from 'react'
+import { Freeze } from 'react-freeze'
 import { store, useStoreRootState, useStoreRouteInfo } from './global-state/router-store'
 import type { ExpoRouter } from './interfaces/router'
+import { enableFreeze } from 'react-native-screens'
 
 type SearchParams = Record<string, string | string[]>
 
@@ -27,8 +28,20 @@ export function useNavigationContainerRef() {
 const FrozeContext = createContext(false)
 
 export function Frozen({ on = false, children }: { on?: boolean; children: ReactNode }) {
+  // useEffect(() => {
+  //   enableFreeze(true)
+  //   return () => {
+  //     enableFreeze(false)
+  //   }
+  // }, [on])
+
+  if (typeof window === 'undefined') {
+    return children
+  }
+
   return (
     <FrozeContext.Provider value={on}>
+      {/* <Freeze freeze={on}> */}
       <div
         // @ts-ignore
         inert
@@ -36,6 +49,7 @@ export function Frozen({ on = false, children }: { on?: boolean; children: React
       >
         {children}
       </div>
+      {/* </Freeze> */}
     </FrozeContext.Provider>
   )
 }
