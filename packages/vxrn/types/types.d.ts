@@ -6,6 +6,16 @@ export type AfterBuildProps = {
     options: VXRNConfig;
     output: [OutputChunk, ...(OutputChunk | OutputAsset)[]];
     webBuildConfig: UserConfig;
+    clientManifest: {
+        [key: string]: {
+            file: string;
+            src?: string;
+            isDynamicEntry?: boolean;
+            isEntry?: boolean;
+            name: string;
+            imports: string[];
+        };
+    };
 };
 export type VXRNConfig = {
     /**

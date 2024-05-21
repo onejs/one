@@ -6,6 +6,7 @@ export function getHtml({
   appHtml,
   headHtml,
   css,
+  preloads,
 }: {
   css?: string
   template: string
@@ -13,6 +14,7 @@ export function getHtml({
   loaderProps?: any
   appHtml: string
   headHtml: string
+  preloads: string[]
 }) {
   if (!template.includes(`<!--ssr-outlet-->`)) {
     throw new Error(`No <!--ssr-outlet--> found in html to inject SSR contents`)
@@ -30,6 +32,13 @@ export function getHtml({
 
   return template
     .replace(/\s*<!--ssr-outlet-->\s*/, appHtml)
-    .replace(`<!--head-outlet-->`, `${headHtml}\n${css ? `<style>${css}</style>\n` : ``}`)
+    .replace(
+      `<!--head-outlet-->`,
+      [
+        headHtml,
+        `<style>${css}</style>\n`,
+        ...preloads.map((src) => `<link rel="modulepreload" href="${src}" />`),
+      ].join('\n  ')
+    )
     .replace('</body>', loaderDataString)
 }

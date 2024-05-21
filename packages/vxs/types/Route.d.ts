@@ -38,6 +38,8 @@ export type RouteNode = {
     internal?: boolean;
     /** File paths for async entry modules that should be included in the initial chunk request to ensure the runtime JavaScript matches the statically rendered HTML representation. */
     entryPoints?: string[];
+    /** Parent layouts */
+    layouts?: string[];
 };
 /** Return the RouteNode at the current contextual boundary. */
 export declare function useRouteNode(): RouteNode | null;

@@ -18,6 +18,7 @@ export type ExpoRouterServerManifestV1Route<TRegex = string> = {
   routeKeys: Record<string, string>
   namedRegex: TRegex
   generated?: boolean
+  layouts?: string[]
 }
 
 export type ExpoRouterServerManifestV1<TRegex = string> = {
@@ -55,9 +56,11 @@ function uniqueBy<T>(arr: T[], key: (item: T) => string): T[] {
 
 // Given a nested route tree, return a flattened array of all routes that can be matched.
 export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 {
-  function getFlatNodes(route: RouteNode): [string, RouteNode][] {
+  function getFlatNodes(route: RouteNode, layouts?: string[]): [string, RouteNode][] {
     if (route.children.length) {
-      return route.children.flatMap((child) => getFlatNodes(child))
+      return route.children.flatMap((child) =>
+        getFlatNodes(child, [...(layouts || []), route.contextKey])
+      )
     }
 
     // API Routes are handled differently to HTML routes because they have no nested behavior.
@@ -69,7 +72,7 @@ export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 
     } else {
       key = getContextKey(route.route).replace(/\/index$/, '') ?? '/'
     }
-    return [[key, route]]
+    return [[key, { ...route, layouts }]]
   }
 
   // Remove duplicates from the runtime manifest which expands array syntax.
@@ -108,7 +111,8 @@ function getMatchableManifestForPaths(
     const matcher: ExpoRouterServerManifestV1Route = getNamedRouteRegex(
       normalizedRoutePath[0],
       getContextKey(normalizedRoutePath[1].route),
-      normalizedRoutePath[1].contextKey
+      normalizedRoutePath[1].contextKey,
+      normalizedRoutePath[1].layouts
     )
     if (normalizedRoutePath[1].generated) {
       matcher.generated = true
@@ -120,7 +124,8 @@ function getMatchableManifestForPaths(
 function getNamedRouteRegex(
   normalizedRoute: string,
   page: string,
-  file: string
+  file: string,
+  layouts?: string[]
 ): ExpoRouterServerManifestV1Route {
   const result = getNamedParametrizedRoute(normalizedRoute)
   return {
@@ -128,6 +133,7 @@ function getNamedRouteRegex(
     page,
     namedRegex: `^${result.namedParameterizedRoute}(?:/)?$`,
     routeKeys: result.routeKeys,
+    layouts,
   }
 }
 

@@ -69,6 +69,7 @@ export function createFileSystemRouter(options: Options): Plugin {
               headHtml,
               loaderData,
               template,
+              preloads: [],
             })
           } catch (err) {
             console.error(`Error rendering ${url.pathname} on server:`)
