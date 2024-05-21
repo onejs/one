@@ -36,6 +36,7 @@
     "dev:example-tamagui": "yarn workspace example-tamagui dev",
     "dev:example-router": "rm -r examples/router/node_modules/.vite || true && yarn workspace example-router dev",
     "dev:example-bare": "yarn workspace example-bare dev",
+    "dev:example-vxs": "rm -r examples/vxs/node_modules/.vite || true && yarn workspace example-vxs dev",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
     "test": "yarn turbo:run --concurrency=1 test",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
