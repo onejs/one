@@ -5,6 +5,7 @@ export type RouteInfo<TRegex = string> = {
     page: string;
     namedRegex: TRegex;
     routeKeys: Record<string, string>;
+    layouts?: string[];
 };
 export type ExpoRoutesManifestV1<TRegex = string> = {
     apiRoutes: RouteInfo<TRegex>[];

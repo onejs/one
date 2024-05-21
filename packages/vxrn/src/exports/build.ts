@@ -1,4 +1,4 @@
-import FSExtra from 'fs-extra'
+import FSExtra, { readJSON } from 'fs-extra'
 import { rm } from 'node:fs/promises'
 import type { RollupOutput } from 'rollup'
 import { type Plugin, mergeConfig, build as viteBuild, type UserConfig } from 'vite'
@@ -81,6 +81,7 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
       build: {
         ssrManifest: true,
         outDir: 'dist/client',
+        manifest: true,
       },
     } satisfies UserConfig)
 
@@ -126,7 +127,9 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
   const { output } = (await viteBuild(serverBuildConfig)) as RollupOutput
 
   if (options.afterBuild) {
-    await options.afterBuild({ options, output, webBuildConfig })
+    const clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
+
+    await options.afterBuild({ options, output, webBuildConfig, clientManifest })
   }
 
   console.info(`\n ✔️ build complete\n`)

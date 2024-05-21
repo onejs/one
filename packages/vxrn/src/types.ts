@@ -7,6 +7,17 @@ export type AfterBuildProps = {
   options: VXRNConfig
   output: [OutputChunk, ...(OutputChunk | OutputAsset)[]]
   webBuildConfig: UserConfig
+  clientManifest: {
+    // app/[user].tsx
+    [key: string]: {
+      file: string // assets/_user_-Bg0DW2rm.js
+      src?: string // app/[user].tsx
+      isDynamicEntry?: boolean // true for import.meta.globbed
+      isEntry?: boolean // true for index.html
+      name: string // _user_
+      imports: string[]
+    }
+  }
 }
 
 export type VXRNConfig = {

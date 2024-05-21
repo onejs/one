@@ -11,6 +11,7 @@ export type RouteInfo<TRegex = string> = {
   page: string
   namedRegex: TRegex
   routeKeys: Record<string, string>
+  layouts?: string[]
 }
 
 export type ExpoRoutesManifestV1<TRegex = string> = {
@@ -44,5 +45,6 @@ export function createRoutesManifest(
   if (!routeTree) {
     throw new Error(`No route tree found`)
   }
+
   return getServerManifest(routeTree)
 }

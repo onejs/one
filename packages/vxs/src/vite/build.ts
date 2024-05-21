@@ -62,9 +62,8 @@ export async function build(props: AfterBuildProps) {
 
   console.info(`\n 🔨 build api\n`)
 
-  // await pMap(
-  //   manifest.apiRoutes,
-  //   async ({ page, file }) => {
+  console.log('manifest', JSON.stringify(manifest, null, 2))
+
   for (const { page, file } of manifest.apiRoutes) {
     console.info(` [api]`, file)
     await viteBuild(
@@ -88,10 +87,6 @@ export async function build(props: AfterBuildProps) {
       } satisfies UserConfig)
     )
   }
-  //   {
-  //     concurrency: 5,
-  //   }
-  // )
 
   console.info(`\n 🔨 build static routes\n`)
   const entryServer = `${options.root}/dist/server/entry-server.js`
@@ -107,6 +102,7 @@ export async function build(props: AfterBuildProps) {
     path: string
     params: Object
     loaderData: any
+    preloads: string[]
   }[] = []
 
   for (const output of props.output) {
@@ -144,6 +140,35 @@ export async function build(props: AfterBuildProps) {
       })
     }
 
+    // gather the initial import.meta.glob js parts:
+    const clientManifestKey =
+      Object.keys(props.clientManifest).find((key) => {
+        return id.endsWith(key)
+      }) || ''
+    const clientManifestEntry = props.clientManifest[clientManifestKey]
+
+    const htmlRoute = manifest.htmlRoutes.find((route) => {
+      return clientManifestKey.endsWith(route.file.slice(1))
+    })
+
+    const preloads = [
+      // add the main entry js (like ./app/index.ts)
+      clientManifestEntry.file,
+
+      // add in the layouts
+      ...(htmlRoute?.layouts?.flatMap((layout) => {
+        // TODO hardcoded app/
+        const clientKey = `app${layout.slice(1)}`
+        const layoutClientEntry = props.clientManifest[clientKey]?.file
+        return [layoutClientEntry].filter(Boolean)
+      }) || []),
+
+      ...clientManifestEntry.imports.flatMap((x) =>
+        // for some reason it starts with a _
+        x.endsWith('.js') ? [`assets/${x.slice(1)}`] : []
+      ),
+    ]
+
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
     console.info(` [build] ${id} with params`, paramsList)
@@ -151,7 +176,8 @@ export async function build(props: AfterBuildProps) {
     for (const params of paramsList) {
       const path = getUrl(params)
       const loaderData = (await exported.loader?.({ path, params })) ?? {}
-      allRoutes.push({ path, params, loaderData })
+
+      allRoutes.push({ path, params, loaderData, preloads })
     }
 
     function getUrl(_params = {}) {
@@ -177,12 +203,6 @@ export async function build(props: AfterBuildProps) {
         .join('/')}`
     }
   }
-
-  // can build them in parallel
-  // const allRoutes = (
-  //   await Promise.all(
-  //   )
-  // ).flat()
 
   // for now just inline
   const cssStringRaw = assets
@@ -210,7 +230,7 @@ export async function build(props: AfterBuildProps) {
 
   // pre-render each route...
   const template = await readFile(toAbsolute('index.html'), 'utf-8')
-  for (const { path, loaderData, params } of allRoutes) {
+  for (const { path, loaderData, params, preloads } of allRoutes) {
     try {
       const loaderProps = { params }
 
@@ -231,6 +251,7 @@ export async function build(props: AfterBuildProps) {
         headHtml,
         loaderData,
         loaderProps,
+        preloads,
         css: cssString,
       })
       const filePath = join(staticDir, slashFileName)
