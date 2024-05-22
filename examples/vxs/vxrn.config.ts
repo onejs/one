@@ -15,7 +15,8 @@ export default {
 
     resolve: {
       alias: {
-        '~': import.meta.dirname,
+        // if you're using Node 20.11.0 or later, you can use `import.meta.dirname`
+        '~': import.meta.url.split('/').slice(1, -1).join('/'),
         'react-native-svg': '@tamagui/react-native-svg',
       },
     },

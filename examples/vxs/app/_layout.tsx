@@ -5,7 +5,7 @@ import { TamaguiProvider, isWeb } from 'tamagui'
 import { Stack } from 'vxs'
 import config from '../src/tamagui.config'
 // @ts-ignore idk why only cli watch is getting mad at this
-import { TestComponent } from '../components/TestComponent'
+import { TestComponent } from '~/components/TestComponent'
 
 export default function Layout() {
   return (
