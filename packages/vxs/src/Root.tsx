@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo, type FunctionComponent, type ReactNode } from 'react'
+import React, { Fragment, Suspense, useMemo, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 import Constants from './constants'
 import type { GlobbedRouteImports } from './types'
@@ -43,9 +43,9 @@ export function Root(props: RootProps) {
   // ⚠️ <StrictMode> breaks expo router!
   // this made hydration mis-match despite nothing thrown?
   return (
-    <SuspenseFallbackLastContents>
-      <Contents {...props} />
-    </SuspenseFallbackLastContents>
+    // <Suspense fallback={null}>
+    <Contents {...props} />
+    // </Suspense>
   )
 }
 
