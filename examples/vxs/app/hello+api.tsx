@@ -1,8 +1,9 @@
 import { setCurrentRequestHeaders } from 'vxs/headers'
 
 export function GET(request: Request) {
+  // just to test importing node stuff
   setCurrentRequestHeaders((headers) => {
-    // just to test importing node stuff
+    headers.set('test-this-out', 'hi mom')
   })
   return { hello: 'world' }
 }

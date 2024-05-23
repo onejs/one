@@ -1,5 +1,5 @@
 import type { Options as FlowOptions } from '@vxrn/vite-flow';
-import type { App } from 'h3';
+import type { Hono } from 'hono';
 import type { OutputAsset, OutputChunk } from 'rollup';
 import type { InlineConfig, UserConfig } from 'vite';
 export type AfterBuildProps = {
@@ -36,7 +36,7 @@ export type VXRNConfig = {
     nativeConfig?: InlineConfig;
     flow?: FlowOptions;
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
-    serve?: (options: VXRNConfig, app: App) => void;
+    serve?: (options: VXRNConfig, app: Hono) => void;
 };
 export type HMRListener = (update: {
     file: string;

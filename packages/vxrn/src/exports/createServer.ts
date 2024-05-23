@@ -1,44 +1,24 @@
-import { createApp, defineEventHandler } from 'h3'
-import sirv from 'sirv'
-import { useCompressionStream } from 'h3-compression'
+import { Hono } from 'hono'
+import { compress } from 'hono/compress'
+import { serveStatic } from '@hono/node-server/serve-static'
+
 import type { VXRNConfig } from '../types'
 
 export const createProdServer = async (options: VXRNConfig) => {
-  const app = createApp({
-    onBeforeResponse: useCompressionStream,
-  })
+  const app = new Hono()
 
-  const sirvStaticMiddleware = sirv('dist/static', {
-    gzip: true,
-  })
+  app.use(compress())
+
+  app.use(
+    '*',
+    serveStatic({
+      root: './dist/client',
+    })
+  )
 
   if (options.serve) {
     options.serve(options, app)
   }
-
-  app.use(
-    defineEventHandler(async ({ node: { req, res } }) => {
-      await new Promise<void>((response) => {
-        sirvStaticMiddleware(req, res, () => {
-          response()
-        })
-      })
-    })
-  )
-
-  const sirvMiddleware = sirv('dist/client', {
-    gzip: true,
-  })
-
-  app.use(
-    defineEventHandler(async ({ node: { req, res } }) => {
-      await new Promise<void>((response) => {
-        sirvMiddleware(req, res, () => {
-          response()
-        })
-      })
-    })
-  )
 
   return app
 }

@@ -226,6 +226,7 @@ export async function build(props: AfterBuildProps) {
   const cssString = await readFile(tmpCssFile, 'utf-8')
 
   const staticDir = toAbsolute(`dist/static`)
+  const clientDir = toAbsolute(`dist/client`)
   await ensureDir(staticDir)
 
   // pre-render each route...
@@ -276,10 +277,22 @@ ${JSON.stringify(params || null, null, 2)}`,
       )
     }
   }
+
+  // once done building static we can move it to client dir:
+  await moveAllFiles(staticDir, clientDir)
+  await FSExtra.rm(staticDir, { force: true, recursive: true })
 }
 
 function assertIsError(error: unknown): asserts error is Error {
   if (!(error instanceof Error)) {
     throw error
+  }
+}
+
+async function moveAllFiles(src: string, dest: string) {
+  try {
+    await FSExtra.copy(src, dest, { overwrite: true, errorOnExist: false })
+  } catch (err) {
+    console.error('Error moving files:', err)
   }
 }
