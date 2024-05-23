@@ -1,9 +1,12 @@
 import { createApp, defineEventHandler } from 'h3'
 import sirv from 'sirv'
+import { useCompressionStream } from 'h3-compression'
 import type { VXRNConfig } from '../types'
 
 export const createProdServer = async (options: VXRNConfig) => {
-  const app = createApp()
+  const app = createApp({
+    onBeforeResponse: useCompressionStream,
+  })
 
   const sirvStaticMiddleware = sirv('dist/static', {
     gzip: true,
