@@ -1,4 +1,4 @@
-import type { RouteInfo } from './routes-manifest';
+import type { RouteInfo } from './server/routes-manifest';
 export type Options = {
     root: string;
     shouldIgnore?: (req: Request) => boolean;

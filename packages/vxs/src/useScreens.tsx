@@ -5,7 +5,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 import {
   Route,
@@ -18,9 +18,7 @@ import EXPO_ROUTER_IMPORT_MODE from './import-mode'
 import { Screen } from './primitives'
 import { sortRoutesWithInitial } from './sortRoutes'
 import { EmptyRoute } from './views/EmptyRoute'
-import { SuspenseFallback } from './views/SuspenseFallback'
 import { Try } from './views/Try'
-import { SuspenseFallbackLastContents } from './views/SuspenseFallbackLastContents'
 
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
@@ -109,13 +107,15 @@ function getSortedChildren(
 export function useSortedScreens(order: ScreenProps[]): React.ReactNode[] {
   const node = useRouteNode()
 
-  return React.useMemo(() => {
+  const sortedScreens = React.useMemo(() => {
     const sorted = node?.children?.length
       ? getSortedChildren(node.children, order, node.initialRouteName)
       : []
 
     return sorted.map((value) => routeToScreen(value.route, value.props))
   }, [node?.children, node?.initialRouteName, order])
+
+  return sortedScreens
 }
 
 function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
@@ -177,11 +177,45 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       const Component = fromImport(res).default as React.ComponentType<any>
       return <Component {...props} ref={ref} />
     })
+
+    // ScreenComponent = React.forwardRef((props, ref) => {
+    //   const [loaded, setLoaded] = useState(false)
+
+    //   useEffect(() => {
+    //     resolveRoute()
+
+    //     async function resolveRoute() {
+    //       while (true) {
+    //         try {
+    //           value.loadRoute()
+    //           setLoaded(true)
+    //           break
+    //         } catch (value) {
+    //           if (value instanceof Promise) {
+    //             console.warn('wait')
+    //             await new Promise((res) => setTimeout(res))
+    //           } else {
+    //             throw value
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }, [])
+
+    //   if (!loaded) {
+    //     return null
+    //   }
+
+    //   const res = value.loadRoute()
+    //   const Component = fromImport(res).default as React.ComponentType<any>
+
+    //   return <Component {...props} ref={ref} />
+    // })
   }
 
   const getLoadable = (props: any, ref: any) => {
     return (
-      <SuspenseFallbackLastContents>
+      <Suspense fallback={null}>
         <ScreenComponent
           {...{
             ...props,
@@ -191,7 +225,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
             segment: value.route,
           }}
         />
-      </SuspenseFallbackLastContents>
+      </Suspense>
     )
   }
 
