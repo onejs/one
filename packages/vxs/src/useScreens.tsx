@@ -215,17 +215,17 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   const getLoadable = (props: any, ref: any) => {
     return (
-      <Suspense fallback={null}>
-        <ScreenComponent
-          {...{
-            ...props,
-            ref,
-            // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-            // the intention is to make it possible to deduce shared routes.
-            segment: value.route,
-          }}
-        />
-      </Suspense>
+      // <Suspense fallback={null}>
+      <ScreenComponent
+        {...{
+          ...props,
+          ref,
+          // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+          // the intention is to make it possible to deduce shared routes.
+          segment: value.route,
+        }}
+      />
+      // </Suspense>
     )
   }
 

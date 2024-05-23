@@ -8943,6 +8943,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"h3-compression@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "h3-compression@npm:0.3.2"
+  peerDependencies:
+    h3: ^1.6.0
+  checksum: 7c28bc9929985b1c43f5a6606e7561c26c285d55677409fab403ab87d4239c696c4100e54080cba7acf07c115ab5572666e536c6d80d6cb76e6bb242b3d4a4de
+  languageName: node
+  linkType: hard
+
 "h3-proxy@npm:^1.13.0":
   version: 1.13.0
   resolution: "h3-proxy@npm:1.13.0"
@@ -14668,6 +14677,7 @@ __metadata:
     get-port-please: ^3.1.2
     glob: ^10.3.12
     h3: ^1.11.1
+    h3-compression: ^0.3.2
     h3-proxy: ^1.13.0
     import-meta-resolve: ^4.0.0
     jiti: ^1.21.0
