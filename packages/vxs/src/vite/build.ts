@@ -146,27 +146,45 @@ export async function build(props: AfterBuildProps) {
         return id.endsWith(key)
       }) || ''
     const clientManifestEntry = props.clientManifest[clientManifestKey]
-
     const htmlRoute = manifest.htmlRoutes.find((route) => {
       return clientManifestKey.endsWith(route.file.slice(1))
     })
 
-    const preloads = [
-      // add the main entry js (like ./app/index.ts)
-      clientManifestEntry.file,
+    function getAllClientManifestImports({ imports = [] }: { imports?: string[] }) {
+      return [
+        ...new Set(
+          [
+            ...imports,
+            // recurse
+            ...imports.flatMap((name) => {
+              return props.clientManifest[name].imports
+            }),
+          ]
+            .flat()
+            .filter((x) => x && x.endsWith('.js'))
+            .map((x) => `assets/${x.slice(1)}`)
+        ),
+      ]
+    }
 
-      // add in the layouts
-      ...(htmlRoute?.layouts?.flatMap((layout) => {
+    const allSubImports = getAllClientManifestImports(clientManifestEntry)
+
+    const allLayoutSubImports =
+      htmlRoute?.layouts?.flatMap((layout) => {
         // TODO hardcoded app/
         const clientKey = `app${layout.slice(1)}`
         const layoutClientEntry = props.clientManifest[clientKey]?.file
-        return [layoutClientEntry].filter(Boolean)
-      }) || []),
+        const subImports = getAllClientManifestImports(props.clientManifest[clientKey])
+        return [layoutClientEntry, ...subImports].filter(Boolean)
+      }) || []
 
-      ...clientManifestEntry.imports.flatMap((x) =>
-        // for some reason it starts with a _
-        x.endsWith('.js') ? [`assets/${x.slice(1)}`] : []
-      ),
+    const preloads = [
+      ...new Set([
+        // add the main entry js (like ./app/index.ts)
+        clientManifestEntry.file,
+        ...allSubImports,
+        ...allLayoutSubImports,
+      ]),
     ]
 
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
