@@ -1,4 +1,11 @@
-import React, { Fragment, Suspense, useMemo, type FunctionComponent, type ReactNode } from 'react'
+import React, {
+  Fragment,
+  StrictMode,
+  Suspense,
+  useMemo,
+  type FunctionComponent,
+  type ReactNode,
+} from 'react'
 import { Platform } from 'react-native'
 import Constants from './constants'
 import type { GlobbedRouteImports } from './types'
@@ -10,7 +17,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { ServerLocationContext } from './global-state/serverLocationContext'
 import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
-import { HeadProvider } from './head'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
 
@@ -42,9 +48,11 @@ export function Root(props: RootProps) {
   // ⚠️ <StrictMode> breaks expo router! seems like a react-navigation bug theres an open issue
   // this made hydration mis-match despite nothing thrown?
   return (
-    <Suspense fallback={null}>
-      <Contents {...props} />
-    </Suspense>
+    <>
+      <Suspense fallback={null}>
+        <Contents {...props} />
+      </Suspense>
+    </>
   )
 }
 
@@ -129,24 +137,24 @@ function ContextNavigator({
    */
   const wrapper = (children: any) => {
     return (
-      <HeadProvider context={headContext.current}>
-        <ParentWrapper>
-          {/* <GestureHandlerRootView> */}
-          <SafeAreaProvider
-            // SSR support
-            initialMetrics={INITIAL_METRICS}
-            style={{
-              flex: 1,
-            }}
-          >
-            {children}
+      // <HeadProvider context={headContext.current}>
+      <ParentWrapper>
+        {/* <GestureHandlerRootView> */}
+        <SafeAreaProvider
+          // SSR support
+          initialMetrics={INITIAL_METRICS}
+          style={{
+            flex: 1,
+          }}
+        >
+          {children}
 
-            {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-            {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-          </SafeAreaProvider>
-          {/* </GestureHandlerRootView> */}
-        </ParentWrapper>
-      </HeadProvider>
+          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+        </SafeAreaProvider>
+        {/* </GestureHandlerRootView> */}
+      </ParentWrapper>
+      // </HeadProvider>
     )
   }
 
