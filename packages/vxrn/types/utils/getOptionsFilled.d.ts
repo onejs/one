@@ -20,7 +20,7 @@ export declare function getOptionsFilled(options: VXRNConfig, internal?: {
     nativeConfig?: import("vite").InlineConfig | undefined;
     flow?: import("@vxrn/vite-flow").Options | undefined;
     afterBuild?: ((props: import("..").AfterBuildProps) => void | Promise<void>) | undefined;
-    serve?: ((options: VXRNConfig, app: import("h3").App) => void) | undefined;
+    serve?: ((options: VXRNConfig, app: import("hono").Hono<import("hono").Env, import("hono/types").BlankSchema, "/">) => void) | undefined;
 }>;
 type State = {
     applyPatches?: boolean;

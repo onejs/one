@@ -134,8 +134,6 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
 
   const state = this.linking.getStateFromPath!(href, this.linking.config)
 
-  console.log('state', state)
-
   if (!state || state.routes.length === 0) {
     console.error('Could not generate a valid navigation state for the given path: ' + href)
     console.error(`this.linking.config`, this.linking.config)
@@ -145,7 +143,6 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
 
   const rootState = navigationRef.getRootState()
   const action = getNavigateAction(state, rootState, event)
-  console.log('dispatch', action)
 
   startTransition(() => {
     navigationRef.dispatch(action)
