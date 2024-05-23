@@ -1,4 +1,4 @@
-import type { RouteInfo } from './routes-manifest'
+import type { RouteInfo } from './server/routes-manifest'
 import { getManifest } from './vite/getManifest'
 
 export type Options = {

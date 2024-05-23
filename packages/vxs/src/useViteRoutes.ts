@@ -66,7 +66,13 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
     }
     if (!promises[id]) {
       console.info(` [vxs] load ${id}`, routesSync[id].toString())
+
       promises[id] = routesSync[id]()
+        // adding artifical delay to test
+        // .then(async (val) => {
+        //   await new Promise((res) => setTimeout(res, 2000))
+        //   return val
+        // })
         .then((val: any) => {
           console.info(` [vxs] loaded ${id}`)
           loadedRoutes[id] = val

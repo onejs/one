@@ -1,5 +1,5 @@
 import * as Glob from 'glob'
-import { createRoutesManifest } from '../routes-manifest'
+import { createRoutesManifest } from '../server/routes-manifest'
 
 const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 

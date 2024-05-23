@@ -9,6 +9,7 @@ import { resolveHref } from '../link/href'
 import { resolve } from '../link/path'
 import { matchDynamicName } from '../matchers'
 import { shouldLinkExternally } from '../utils/url'
+import { startTransition } from 'react'
 
 function assertIsReady(store: RouterStore) {
   if (!store.navigationRef.isReady()) {
@@ -133,6 +134,8 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
 
   const state = this.linking.getStateFromPath!(href, this.linking.config)
 
+  console.log('state', state)
+
   if (!state || state.routes.length === 0) {
     console.error('Could not generate a valid navigation state for the given path: ' + href)
     console.error(`this.linking.config`, this.linking.config)
@@ -141,7 +144,14 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
   }
 
   const rootState = navigationRef.getRootState()
-  return navigationRef.dispatch(getNavigateAction(state, rootState, event))
+  const action = getNavigateAction(state, rootState, event)
+  console.log('dispatch', action)
+
+  startTransition(() => {
+    navigationRef.dispatch(action)
+  })
+
+  return
 }
 
 function getNavigateAction(
@@ -190,6 +200,8 @@ function getNavigateAction(
     actionState = childState
     navigationState = nextNavigationState as NavigationState
   }
+
+  console.log('go to', { actionState, navigationState })
 
   /*
    * We found the target navigator, but the payload is in the incorrect format

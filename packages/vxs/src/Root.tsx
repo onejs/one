@@ -1,10 +1,9 @@
-import React, { Fragment, Suspense, useMemo, type FunctionComponent, type ReactNode } from 'react'
+import React, { Fragment, useMemo, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 import Constants from './constants'
 import type { GlobbedRouteImports } from './types'
 import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
-import { SuspenseFallbackLastContents } from './views/SuspenseFallbackLastContents'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
@@ -40,7 +39,7 @@ type InnerProps = {
 }
 
 export function Root(props: RootProps) {
-  // ⚠️ <StrictMode> breaks expo router!
+  // ⚠️ <StrictMode> breaks expo router! seems like a react-navigation bug theres an open issue
   // this made hydration mis-match despite nothing thrown?
   return (
     // <Suspense fallback={null}>

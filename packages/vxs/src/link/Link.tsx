@@ -9,6 +9,7 @@ import type { ExpoRouter } from '../interfaces/router'
 import { useFocusEffect } from '../useFocusEffect'
 import { resolveHref } from './href'
 import useLinkToPathProps from './useLinkToPathProps'
+import { useRouteNode } from '../Route'
 
 /** Redirects to the href as soon as the component is mounted. */
 export function Redirect({ href }: { href: ExpoRouter.Href }) {
@@ -40,7 +41,7 @@ export interface LinkComponent {
  * @param props.children Child elements to render the content.
  * @param props.className On web, this sets the HTML `class` directly. On native, this can be used with CSS interop tools like Nativewind.
  */
-export const Link = React.forwardRef(ExpoRouterLink) as unknown as LinkComponent
+export const Link = React.forwardRef(LinkInner) as unknown as LinkComponent
 
 Link.resolveHref = resolveHref
 
@@ -90,7 +91,7 @@ const useHrefAttrs = Platform.select<
   },
 })
 
-function ExpoRouterLink(
+function LinkInner(
   {
     href,
     replace,
@@ -104,6 +105,8 @@ function ExpoRouterLink(
   }: ExpoRouter.LinkProps,
   ref: React.ForwardedRef<Text>
 ) {
+  const node = useRouteNode()
+
   // Mutate the style prop to add the className on web.
   const style = useInteropClassName(rest)
 

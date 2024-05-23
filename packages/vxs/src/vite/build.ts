@@ -62,8 +62,6 @@ export async function build(props: AfterBuildProps) {
 
   console.info(`\n 🔨 build api\n`)
 
-  console.log('manifest', JSON.stringify(manifest, null, 2))
-
   for (const { page, file } of manifest.apiRoutes) {
     console.info(` [api]`, file)
     await viteBuild(
@@ -73,7 +71,9 @@ export async function build(props: AfterBuildProps) {
         build: {
           outDir: 'dist/api',
           copyPublicDir: false,
+          minify: false,
           rollupOptions: {
+            treeshake: false,
             input: join('app', file),
             preserveEntrySignatures: 'strict',
             external: [/node_modules/],
