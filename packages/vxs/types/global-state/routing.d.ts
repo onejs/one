@@ -1,5 +1,5 @@
-import type { RouterStore } from './router-store';
 import type { ExpoRouter } from '../interfaces/router';
+import type { RouterStore } from './router-store';
 export declare function navigate(this: RouterStore, url: ExpoRouter.Href): void;
 export declare function push(this: RouterStore, url: ExpoRouter.Href): void;
 export declare function dismiss(this: RouterStore, count?: number): void;
