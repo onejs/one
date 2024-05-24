@@ -1,4 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+const promises = {}
 
 export function useLoader<
   Loader extends Function,
@@ -6,6 +8,17 @@ export function useLoader<
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
   const loadedData = globalThis['__vxrnLoaderData__']
   const initialData = useRef(loadedData)
+  const [loadedPaths, setLoadedPaths] = useState({})
+
+  // TODO
+  // const currentPath = globalThis['__vxrntodopath'] || '' as string
+  // if (!loadedPaths[currentPath]) {
+  //   if (!promises[currentPath]) {
+  //     promises[currentPath] = () => {
+  //       fetch(`/_vxrn/`)
+  //     }
+  //   }
+  // }
 
   if (process.env.NODE_ENV === 'development') {
     // this fixes dev, breaks prod, can do it better

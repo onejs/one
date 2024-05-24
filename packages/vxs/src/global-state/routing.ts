@@ -1,15 +1,14 @@
 import { StackActions, type NavigationState, type PartialRoute } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
 import { nanoid } from 'nanoid/non-secure'
-
-import type { RouterStore } from './router-store'
-import type { ExpoRouter } from '../interfaces/router'
+import { startTransition } from 'react'
 import type { ResultState } from '../fork/getStateFromPath'
+import type { ExpoRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
 import { resolve } from '../link/path'
 import { matchDynamicName } from '../matchers'
 import { shouldLinkExternally } from '../utils/url'
-import { startTransition } from 'react'
+import type { RouterStore } from './router-store'
 
 function assertIsReady(store: RouterStore) {
   if (!store.navigationRef.isReady()) {
@@ -197,8 +196,6 @@ function getNavigateAction(
     actionState = childState
     navigationState = nextNavigationState as NavigationState
   }
-
-  console.log('go to', { actionState, navigationState })
 
   /*
    * We found the target navigator, but the payload is in the incorrect format

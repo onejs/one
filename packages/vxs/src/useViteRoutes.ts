@@ -65,8 +65,6 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
       return loadedRoutes[id]
     }
     if (!promises[id]) {
-      console.info(` [vxs] load ${id}`, routesSync[id].toString())
-
       promises[id] = routesSync[id]()
         // adding artifical delay to test
         // .then(async (val) => {
@@ -74,14 +72,13 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
         //   return val
         // })
         .then((val: any) => {
-          console.info(` [vxs] loaded ${id}`)
           loadedRoutes[id] = val
           delete promises[id]
 
           // clear cache so we get fresh contents in dev mode (hacky)
           clears[id] = setTimeout(() => {
             delete loadedRoutes[id]
-          }, 1000)
+          }, 500)
         })
         .catch((err) => {
           console.error(`Error loading route`, id, err)
