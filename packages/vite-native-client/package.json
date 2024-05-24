@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-client",
-  "version": "0.1.63",
+  "version": "0.1.64",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
