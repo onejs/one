@@ -69,20 +69,22 @@ export async function transformTreeShakeClient(
             }
           })
 
-          const relativeId = relative(process.cwd(), id).replace(new RegExp(`^${root}/`), './')
-
-          let replaceStr = EMPTY_LOADER_STRING
-
-          const loaderData = LoaderDataCache[relativeId]
-          if (loaderData !== undefined) {
-            replaceStr = `function loader(){ return ${JSON.stringify(loaderData)} }`
-          }
-
-          const length = node['end'] - node['start']
-
           if (shouldRemove) {
+            const relativeId = relative(process.cwd(), id).replace(new RegExp(`^${root}/`), './')
+
+            let replaceStr = EMPTY_LOADER_STRING
+
+            const loaderData = LoaderDataCache[relativeId]
+            if (loaderData !== undefined) {
+              replaceStr = `export function loader(){ return ${JSON.stringify(loaderData)} }`
+            }
+
+            const length = node['end'] - node['start']
             // @ts-ignore
             s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
+
+            console.log('replacing', replaceStr, loaderData, s.toString())
+
             return true
           }
         }

@@ -95,10 +95,12 @@ export function createFileSystemRouter(options: Options): Plugin {
           const exported = await runner.import(routeFile)
           const loaderData = await exported.loader?.(loaderProps)
           if (loaderData) {
+            console.log('adding loader back in', loaderData)
+
             // add loader back in!
             transformedJS = transformedJS.replace(
-              /function\s+loader\(\)\s+{\s+return \[\]\[0\];?\s+}/gm,
-              `function loader(){ return ${JSON.stringify(loaderData)} }`
+              /export\s+function\s+loader\(\)\s+{\s+return \[\]\[0\];?\s+}/gm,
+              `export function loader(){ return ${JSON.stringify(loaderData)} }`
             )
           }
           return transformedJS
