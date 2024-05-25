@@ -10,10 +10,11 @@ type UserProps = {
 }
 
 export async function generateStaticParams(): Promise<UserPath[]> {
-  return [{ user: 'unique-string-hi' }, { user: 'two' }]
+  return [{ user: 'unique-string-hi' }, { user: 'two' }, { user: 'other' }]
 }
 
 export async function loader({ params }: { params: UserPath }) {
+  console.info('user loader params', params)
   return {
     hello: `${params.user}`,
   }

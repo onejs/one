@@ -3,6 +3,7 @@ import { join } from 'node:path'
 import { getOptionsFilled, type VXRNConfig } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
 import { resolveAPIRequest } from './resolveAPIRequest'
+import FSExtra from 'fs-extra'
 
 export async function serve(optionsIn: VXRNConfig, app: Hono) {
   const options = await getOptionsFilled(optionsIn, { mode: 'prod' })
@@ -19,7 +20,16 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
     }
   )
 
+  const routeMap = await FSExtra.readJSON('dist/routeMap.json')
+
   app.use(async (context, next) => {
+    // serve our generated html files
+    const htmlPath = routeMap[context.req.path]
+    if (htmlPath) {
+      const html = await FSExtra.readFile(join('dist/client', htmlPath), 'utf-8')
+      return context.html(html)
+    }
+
     const res = await handleRequest(context.req.raw)
     if (res) {
       if (

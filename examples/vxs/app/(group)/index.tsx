@@ -43,7 +43,7 @@ export default function HomePage() {
       <Link
         href={{
           pathname: '/[user]',
-          params: { user: 'abc' },
+          params: { user: 'other' },
         }}
       >
         <Text>Go to "other"</Text>
