@@ -35,8 +35,16 @@ export function useLoader<
     if (!promises[currentPath]) {
       const getData = async () => {
         const loaderJSUrl = `/_vxrn${currentPath}route.js`
+        console.warn(`loading loader`, loaderJSUrl)
         const response = await import(loaderJSUrl)
-        loadedData[currentPath] = response.loader()
+        console.warn(`loader got back`, response)
+        try {
+          loadedData[currentPath] = response.loader()
+          return loadedData[currentPath]
+        } catch (err) {
+          console.error(`Error calling loader: ${err}`)
+          return null
+        }
       }
       promises[currentPath] = getData()
     }
