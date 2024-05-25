@@ -247,11 +247,11 @@ export async function build(props: AfterBuildProps) {
   console.info(`\n 🔨 building static html\n`)
 
   // pre-render each route...
-  const template = await readFile(toAbsolute('index.html'), 'utf-8')
+  const template = await readFile(toAbsolute(join(`dist/client/index.html`)), 'utf-8')
 
   for (const { path, loaderData, params, preloads, htmlPath } of allRoutes) {
     try {
-      console.info(` [build] static ${path}`)
+      console.info(` [build] static ${path} params ${JSON.stringify(params)}`)
       const loaderProps = { params }
 
       globalThis['__vxrnLoaderProps__'] = loaderProps
@@ -262,10 +262,8 @@ export async function build(props: AfterBuildProps) {
       const { appHtml, headHtml } = await render({ path })
 
       // output the static html
-      const clientHtmlPath = toAbsolute(join(`dist/client`, htmlPath))
-      const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
       const html = getHtml({
-        template: clientHtml || template,
+        template,
         appHtml,
         headHtml,
         loaderData,

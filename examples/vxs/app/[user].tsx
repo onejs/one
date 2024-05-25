@@ -1,5 +1,5 @@
 import { Link, useGlobalSearchParams, useLoader } from 'vxs'
-import { Text, View } from 'tamagui'
+import { Separator, Text, View } from 'tamagui'
 
 type UserPath = {
   user: string
@@ -23,54 +23,56 @@ export async function loader({ params }: { params: UserPath }) {
 export default function User(props: UserProps) {
   const params = useGlobalSearchParams()
   const data = useLoader(loader)
+  console.log('rendering', data)
 
   return (
-    <View>
-      <View>
-        <Text>User: {params?.user}</Text>
-        <Text>props: ${JSON.stringify(props || null)}</Text>
-        <Text>data: ${JSON.stringify(data || null)}</Text>
-        <Link
-          href={{
-            pathname: '/[...spread]',
-            params: { spread: [Date.now(), 'other'] },
-          }}
-        >
-          Go to multi-level user
-        </Link>
-        <Link
-          href={{
-            pathname: '/[user]',
-            params: { user: params.user },
-          }}
-        >
-          Go to same user
-        </Link>
-        <Link
-          href={{
-            pathname: '/[user]',
-            params: { user: Date.now() },
-          }}
-        >
-          Go to posts
-        </Link>
-        <Link
-          replace
-          href={{
-            pathname: '/[user]',
-            params: { user: Date.now() },
-          }}
-        >
-          Go to posts (replace)
-        </Link>
-        <Link
-          href={{
-            pathname: '/other',
-          }}
-        >
-          Go to "other"
-        </Link>
-      </View>
+    <View gap="$4">
+      <Text>User: {params?.user}</Text>
+      <Text>props: {JSON.stringify(props || null)}</Text>
+      <Text>data: {JSON.stringify(data || null)}</Text>
+      <br />
+      <Link href="/">Go home</Link>
+
+      <Link
+        href={{
+          pathname: '/[...spread]',
+          params: { spread: [Date.now(), 'other'] },
+        }}
+      >
+        Go to multi-level user
+      </Link>
+      <Link
+        href={{
+          pathname: '/[user]',
+          params: { user: params.user },
+        }}
+      >
+        Go to same user
+      </Link>
+      <Link
+        href={{
+          pathname: '/[user]',
+          params: { user: Date.now() },
+        }}
+      >
+        Go to posts
+      </Link>
+      <Link
+        replace
+        href={{
+          pathname: '/[user]',
+          params: { user: Date.now() },
+        }}
+      >
+        Go to posts (replace)
+      </Link>
+      <Link
+        href={{
+          pathname: '/other',
+        }}
+      >
+        Go to "other"
+      </Link>
     </View>
   )
 }
