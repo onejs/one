@@ -83,8 +83,6 @@ export async function transformTreeShakeClient(
             // @ts-ignore
             s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
 
-            console.log('replacing', replaceStr, loaderData, s.toString())
-
             return true
           }
         }
