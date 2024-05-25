@@ -100,6 +100,7 @@ export async function build(props: AfterBuildProps) {
 
   const allRoutes: {
     path: string
+    htmlPath: string
     params: Object
     loaderData: any
     preloads: string[]
@@ -198,6 +199,7 @@ export async function build(props: AfterBuildProps) {
 
     for (const [index2, params] of paramsList.entries()) {
       const path = getPathnameFromFilePath(relativeId, params)
+      const htmlPath = `${path === '/' ? '/index' : path}.html`
 
       console.info(
         ` [build] (${index + index2}/${outputEntries.length}) ${path} with params`,
@@ -206,7 +208,7 @@ export async function build(props: AfterBuildProps) {
 
       try {
         const loaderData = (await exported.loader?.({ path, params })) ?? {}
-        allRoutes.push({ path, params, loaderData, preloads })
+        allRoutes.push({ path, htmlPath, params, loaderData, preloads })
       } catch (err) {
         console.error(`Error building ${relativeId}`)
         console.error(err)
@@ -247,7 +249,7 @@ export async function build(props: AfterBuildProps) {
   // pre-render each route...
   const template = await readFile(toAbsolute('index.html'), 'utf-8')
 
-  for (const { path, loaderData, params, preloads } of allRoutes) {
+  for (const { path, loaderData, params, preloads, htmlPath } of allRoutes) {
     try {
       console.info(` [build] static ${path}`)
       const loaderProps = { params }
@@ -260,8 +262,7 @@ export async function build(props: AfterBuildProps) {
       const { appHtml, headHtml } = await render({ path })
 
       // output the static html
-      const slashFileName = `${path === '/' ? '/index' : path}.html`
-      const clientHtmlPath = toAbsolute(join(`dist/client`, slashFileName))
+      const clientHtmlPath = toAbsolute(join(`dist/client`, htmlPath))
       const clientHtml = existsSync(clientHtmlPath) ? await readFile(clientHtmlPath, 'utf-8') : null
       const html = getHtml({
         template: clientHtml || template,
@@ -272,7 +273,7 @@ export async function build(props: AfterBuildProps) {
         preloads,
         css: cssString,
       })
-      const filePath = join(staticDir, slashFileName)
+      const filePath = join(staticDir, htmlPath)
       await outputFile(toAbsolute(filePath), html)
     } catch (err) {
       const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
@@ -298,12 +299,18 @@ ${JSON.stringify(params || null, null, 2)}`,
   // once done building static we can move it to client dir:
   await moveAllFiles(staticDir, clientDir)
   await FSExtra.rm(staticDir, { force: true, recursive: true })
-}
 
-function assertIsError(error: unknown): asserts error is Error {
-  if (!(error instanceof Error)) {
-    throw error
-  }
+  // write out the pathname => html map for the server
+  await FSExtra.writeJSON(
+    toAbsolute(`dist/routeMap.json`),
+    allRoutes.reduce((acc, { path, htmlPath }) => {
+      acc[path] = htmlPath
+      return acc
+    }, {}),
+    {
+      spaces: 2,
+    }
+  )
 }
 
 async function moveAllFiles(src: string, dest: string) {
