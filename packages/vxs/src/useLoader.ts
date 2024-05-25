@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
+import { weakKey } from './utils/weakKey'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const loadedData: Record<string, any> = {}
@@ -65,30 +66,32 @@ export type LoaderProps<Params extends Object = Record<string, string>> = {
   params: Params
 }
 
-const results = new WeakMap()
-const started = new WeakMap()
+const results = new Map()
+const started = new Map()
 
 function useAsyncFn(val: any, props?: any) {
+  const key = weakKey(val) + JSON.stringify(props)
+
   if (val) {
-    if (!started.get(val)) {
-      started.set(val, true)
+    if (!started.get(key)) {
+      started.set(key, true)
 
       let next = val(props)
       if (next instanceof Promise) {
         next = next
           .then((final) => {
-            results.set(val, final)
+            results.set(key, final)
           })
           .catch((err) => {
             console.error(`Error running loader()`, err)
-            results.set(val, undefined)
+            results.set(key, undefined)
           })
       }
-      results.set(val, next)
+      results.set(key, next)
     }
   }
 
-  const current = val ? results.get(val) : val
+  const current = results.get(key)
 
   if (current instanceof Promise) {
     throw current
