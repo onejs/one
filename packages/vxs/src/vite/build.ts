@@ -315,9 +315,7 @@ async function moveAllFiles(src: string, dest: string) {
 }
 
 function getPathnameFromFilePath(path: string, _params = {}) {
-  const dirname = Path.dirname(path)
-    .replace(/\([^\/]+\)\//gi, '')
-    .replace(/\/\/+/gi, '/')
+  const dirname = Path.dirname(path).replace(/\([^\/]+\)\//gi, '')
 
   const file = Path.basename(path)
   const name = file.replace(/\.[^/.]+$/, '')
@@ -345,5 +343,5 @@ function getPathnameFromFilePath(path: string, _params = {}) {
       .join('/')}`
   })()
 
-  return `${dirname}${nameWithParams}`
+  return `${dirname}${nameWithParams}`.replace(/\/\/+/gi, '/')
 }
