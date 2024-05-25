@@ -90,7 +90,6 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
     }
 
     console.info(`\n 🔨 build client\n`)
-    console.info(JSON.stringify(clientBuildConfig, null, 2))
     await viteBuild(clientBuildConfig)
   }
 

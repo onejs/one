@@ -3,7 +3,7 @@ import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
-import Path, { join } from 'node:path'
+import Path, { basename, dirname, join, relative } from 'node:path'
 import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
@@ -105,7 +105,9 @@ export async function build(props: AfterBuildProps) {
     preloads: string[]
   }[] = []
 
-  for (const output of props.output) {
+  const outputEntries = [...props.output.entries()]
+
+  for (const [index, output] of outputEntries) {
     if (output.type === 'asset') {
       assets.push(output)
       continue
@@ -113,7 +115,6 @@ export async function build(props: AfterBuildProps) {
 
     const id = output.facadeModuleId || ''
     const file = Path.basename(id)
-    const name = file.replace(/\.[^/.]+$/, '')
 
     if (!id || file[0] === '_' || file.includes('entry-server')) {
       continue
@@ -189,38 +190,32 @@ export async function build(props: AfterBuildProps) {
 
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
-    console.info(` [build] ${id} with params`, paramsList)
+    const relativeId = relative(process.cwd(), id)
+      // TODO hardcoded app
+      .replace('app/', '/')
 
-    for (const params of paramsList) {
-      const path = getUrl(params)
-      const loaderData = (await exported.loader?.({ path, params })) ?? {}
+    console.info(`\n [build] page ${relativeId}\n`)
 
-      allRoutes.push({ path, params, loaderData, preloads })
-    }
+    for (const [index2, params] of paramsList.entries()) {
+      const path = getPathnameFromFilePath(relativeId, params)
 
-    function getUrl(_params = {}) {
-      if (name === 'index') {
-        return '/'
+      console.info(
+        ` [build] (${index + index2}/${outputEntries.length}) ${path} with params`,
+        params
+      )
+
+      try {
+        const loaderData = (await exported.loader?.({ path, params })) ?? {}
+        allRoutes.push({ path, params, loaderData, preloads })
+      } catch (err) {
+        console.error(`Error building ${relativeId}`)
+        console.error(err)
+        process.exit(1)
       }
-      if (name.startsWith('[...')) {
-        const part = name.replace('[...', '').replace(']', '')
-        return `/${_params[part]}`
-      }
-      return `/${name
-        .split('/')
-        .map((part) => {
-          if (part[0] === '[') {
-            const found = _params[part.slice(1, part.length - 1)]
-            if (!found) {
-              console.warn('not found', { _params, part })
-            }
-            return found
-          }
-          return part
-        })
-        .join('/')}`
     }
   }
+
+  console.info(`\n 🔨 build css\n`)
 
   // for now just inline
   const cssStringRaw = assets
@@ -247,10 +242,14 @@ export async function build(props: AfterBuildProps) {
   const clientDir = toAbsolute(`dist/client`)
   await ensureDir(staticDir)
 
+  console.info(`\n 🔨 building static html\n`)
+
   // pre-render each route...
   const template = await readFile(toAbsolute('index.html'), 'utf-8')
+
   for (const { path, loaderData, params, preloads } of allRoutes) {
     try {
+      console.info(` [build] static ${path}`)
       const loaderProps = { params }
 
       globalThis['__vxrnLoaderProps__'] = loaderProps
@@ -276,12 +275,12 @@ export async function build(props: AfterBuildProps) {
       const filePath = join(staticDir, slashFileName)
       await outputFile(toAbsolute(filePath), html)
     } catch (err) {
-      assertIsError(err)
+      const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
+
       throw new Error(
         `Error building static page at ${path}:
 
-${err.message}
-${err.stack}
+${errMsg}
 
   loaderData:
   
@@ -313,4 +312,38 @@ async function moveAllFiles(src: string, dest: string) {
   } catch (err) {
     console.error('Error moving files:', err)
   }
+}
+
+function getPathnameFromFilePath(path: string, _params = {}) {
+  const dirname = Path.dirname(path)
+    .replace(/\([^\/]+\)\//gi, '')
+    .replace(/\/\/+/gi, '/')
+
+  const file = Path.basename(path)
+  const name = file.replace(/\.[^/.]+$/, '')
+
+  const nameWithParams = (() => {
+    if (name === 'index') {
+      return '/'
+    }
+    if (name.startsWith('[...')) {
+      const part = name.replace('[...', '').replace(']', '')
+      return `/${_params[part]}`
+    }
+    return `/${name
+      .split('/')
+      .map((part) => {
+        if (part[0] === '[') {
+          const found = _params[part.slice(1, part.length - 1)]
+          if (!found) {
+            console.warn('not found', { _params, part })
+          }
+          return found
+        }
+        return part
+      })
+      .join('/')}`
+  })()
+
+  return `${dirname}${nameWithParams}`
 }
