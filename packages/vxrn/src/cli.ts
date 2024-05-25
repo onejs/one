@@ -14,6 +14,9 @@ const dev = defineCommand({
     host: {
       type: 'string',
     },
+    port: {
+      type: 'string',
+    },
   },
   async run({ args }) {
     const userConfig = await readVXRNConfig()
@@ -36,6 +39,7 @@ const dev = defineCommand({
       },
       ...userConfig,
       host: args.host ?? userConfig.host,
+      port: args.port ? +args.port : userConfig.port,
     })
 
     const { closePromise } = await start()
@@ -102,6 +106,9 @@ const serve = defineCommand({
     host: {
       type: 'string',
     },
+    port: {
+      type: 'string',
+    },
   },
   async run({ args }) {
     const userConfig = await readVXRNConfig()
@@ -116,6 +123,7 @@ const serve = defineCommand({
 
     const results = await serve({
       ...userConfig,
+      port: args.port ? +args.port : userConfig.port,
       host: args.host ?? userConfig.host,
     })
 

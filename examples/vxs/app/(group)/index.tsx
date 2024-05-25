@@ -3,7 +3,7 @@ import { Text, View } from 'tamagui'
 import { useEffect } from 'react'
 import fs from 'node:fs'
 
-export function loader() {
+export async function loader() {
   // testing import shaking:
   fs.read
 

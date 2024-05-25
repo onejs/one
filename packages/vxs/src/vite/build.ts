@@ -314,8 +314,8 @@ async function moveAllFiles(src: string, dest: string) {
   }
 }
 
-function getPathnameFromFilePath(path: string, _params = {}) {
-  const dirname = Path.dirname(path).replace(/\([^\/]+\)\//gi, '')
+function getPathnameFromFilePath(path: string, params = {}) {
+  const dirname = Path.dirname(path).replace(/\([^\/]+\)/gi, '')
 
   const file = Path.basename(path)
   const name = file.replace(/\.[^/.]+$/, '')
@@ -326,15 +326,15 @@ function getPathnameFromFilePath(path: string, _params = {}) {
     }
     if (name.startsWith('[...')) {
       const part = name.replace('[...', '').replace(']', '')
-      return `/${_params[part]}`
+      return `/${params[part]}`
     }
     return `/${name
       .split('/')
       .map((part) => {
         if (part[0] === '[') {
-          const found = _params[part.slice(1, part.length - 1)]
+          const found = params[part.slice(1, part.length - 1)]
           if (!found) {
-            console.warn('not found', { _params, part })
+            console.warn('not found', { params, part })
           }
           return found
         }
