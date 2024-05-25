@@ -10,7 +10,7 @@ export function useLoader<
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
   // server side we just run the loader directly
   if (typeof window === 'undefined') {
-    return useAsyncFn(loader)
+    return useAsyncFn(loader, globalThis['__vxrnLoaderProps__'])
   }
 
   const preloadedData = globalThis['__vxrnLoaderData__']
