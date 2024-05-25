@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
 
 const promises: Record<string, undefined | Promise<void>> = {}
@@ -7,6 +8,11 @@ export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
+  // server side we just run the loader directly
+  if (typeof window === 'undefined') {
+    return useAsyncFn(loader)
+  }
+
   const preloadedData = globalThis['__vxrnLoaderData__']
   const currentData = useRef(preloadedData)
   const currentPath =
@@ -59,34 +65,34 @@ export type LoaderProps<Params extends Object = Record<string, string>> = {
   params: Params
 }
 
-// const results = new WeakMap()
-// const started = new WeakMap()
+const results = new WeakMap()
+const started = new WeakMap()
 
-// function useAsyncFn(val: any, props?: any) {
-//   if (val) {
-//     if (!started.get(val)) {
-//       started.set(val, true)
+function useAsyncFn(val: any, props?: any) {
+  if (val) {
+    if (!started.get(val)) {
+      started.set(val, true)
 
-//       let next = val(props)
-//       if (next instanceof Promise) {
-//         next = next
-//           .then((final) => {
-//             results.set(val, final)
-//           })
-//           .catch((err) => {
-//             console.error(`Error running loader()`, err)
-//             results.set(val, undefined)
-//           })
-//       }
-//       results.set(val, next)
-//     }
-//   }
+      let next = val(props)
+      if (next instanceof Promise) {
+        next = next
+          .then((final) => {
+            results.set(val, final)
+          })
+          .catch((err) => {
+            console.error(`Error running loader()`, err)
+            results.set(val, undefined)
+          })
+      }
+      results.set(val, next)
+    }
+  }
 
-//   const current = val ? results.get(val) : val
+  const current = val ? results.get(val) : val
 
-//   if (current instanceof Promise) {
-//     throw current
-//   }
+  if (current instanceof Promise) {
+    throw current
+  }
 
-//   return current
-// }
+  return current
+}
