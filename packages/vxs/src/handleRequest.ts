@@ -82,20 +82,19 @@ export function createHandleRequest(
           const headers = new Headers()
           headers.set('Content-Type', 'text/javascript')
 
-          return new Response(
-            await handlers.handleLoader({
-              request,
-              route,
-              url,
-              loaderProps: {
-                path: finalUrl.pathname,
-                params: getLoaderParams(finalUrl, route),
-              },
-            }),
-            {
-              headers,
-            }
-          )
+          const loaderResponse = await handlers.handleLoader({
+            request,
+            route,
+            url,
+            loaderProps: {
+              path: finalUrl.pathname,
+              params: getLoaderParams(finalUrl, route),
+            },
+          })
+
+          return new Response(loaderResponse, {
+            headers,
+          })
         }
       }
     }
