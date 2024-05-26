@@ -12,8 +12,8 @@
   ],
   "packageManager": "yarn@3.6.3",
   "resolutions": {
-    "react": "19.0.0-beta-9d76c954cf-20240510",
-    "react-dom": "19.0.0-beta-9d76c954cf-20240510"
+    "react": "19.0.0-rc-935180c7e0-20240524",
+    "react-dom": "19.0.0-rc-935180c7e0-20240524"
   },
   "scripts": {
     "postinstall": "patch-package",
