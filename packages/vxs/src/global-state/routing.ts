@@ -139,7 +139,9 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
     // fetch loader
     if (!preloadingLoader[href]) {
       preloadingLoader[href] = (async () => {
-        const loaderJSUrl = `${CLIENT_BASE_URL}/assets${href}_vxrn_loader.js`
+        const loaderJSUrl = `${CLIENT_BASE_URL}/assets/${href
+          .slice(1)
+          .replaceAll('/', '_')}_vxrn_loader.js`
         const response = await import(loaderJSUrl)
         try {
           return await response.loader()
