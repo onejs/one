@@ -1,7 +1,8 @@
-import FSExtra, { readJSON } from 'fs-extra'
+import FSExtra from 'fs-extra'
 import { rm } from 'node:fs/promises'
 import type { RollupOutput } from 'rollup'
-import { type Plugin, mergeConfig, build as viteBuild, type UserConfig } from 'vite'
+import { mergeConfig, build as viteBuild, type Plugin, type UserConfig } from 'vite'
+import { analyzer } from 'vite-bundle-analyzer'
 import type { VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
@@ -78,7 +79,13 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
 
   if (buildOptions.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
-      plugins: [excludeAPIRoutesPlugin],
+      plugins: [
+        excludeAPIRoutesPlugin,
+        analyzer({
+          analyzerMode: 'static',
+          fileName: '../report',
+        }),
+      ],
 
       build: {
         ssrManifest: true,
