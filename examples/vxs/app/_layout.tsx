@@ -10,6 +10,12 @@ import { TestComponent } from '~/components/TestComponent'
 export default function Layout() {
   return (
     <TamaguiProvider disableInjectCSS config={config}>
+      <style
+        // href="/tamagui-style"
+        precedence="highest"
+      >
+        {config.getCSS()}
+      </style>
       <TestComponent />
       <Stack
         screenOptions={

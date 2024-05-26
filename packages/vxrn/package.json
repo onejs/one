@@ -69,6 +69,7 @@
     "source-map": "^0.7.3",
     "url": "^0.11.0",
     "vite": "6.0.0-alpha.11",
+    "vite-bundle-analyzer": "^0.9.4",
     "vxs": "0.1.74",
     "ws": "^8.7.0"
   },
