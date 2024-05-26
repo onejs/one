@@ -107,7 +107,36 @@ export async function build(props: AfterBuildProps) {
     preloads: string[]
   }[] = []
 
+  console.info(`\n 🔨 build css\n`)
+
+  // for now just inline
+  const cssStringRaw = assets
+    .filter((x) => x.name?.endsWith('.css'))
+    .map((x) => x.source)
+    .join('\n\n')
+
+  // awkward way to get prefixes:
+  const tmpCssFile = Path.join(tmpdir(), 'tmp.css')
+  await FSExtra.writeFile(tmpCssFile, cssStringRaw, 'utf-8')
+  await esbuild({
+    entryPoints: [tmpCssFile],
+    target: 'safari17',
+    bundle: true,
+    minifyWhitespace: true,
+    sourcemap: false,
+    allowOverwrite: true,
+    outfile: tmpCssFile,
+    loader: { '.css': 'css' },
+  })
+  const cssString = await readFile(tmpCssFile, 'utf-8')
+
+  const staticDir = join(`dist/static`)
+  const clientDir = join(`dist/client`)
+  await ensureDir(staticDir)
+
   const outputEntries = [...props.serverOutput.entries()]
+
+  const template = await readFile(toAbsolute(join(`dist/client/index.html`)), 'utf-8')
 
   for (const [index, output] of outputEntries) {
     if (output.type === 'asset') {
@@ -130,6 +159,8 @@ export async function build(props: AfterBuildProps) {
       continue
     }
 
+    console.log('wtf', id)
+
     const jsPath = toAbsolute(join('dist/server', output.fileName))
 
     let exported
@@ -150,11 +181,8 @@ export async function build(props: AfterBuildProps) {
       }) || ''
 
     if (!clientManifestKey) {
-      console.error(
-        `No clientManifestKey ending with id "${id}" found in \n${Object.keys(
-          props.clientManifest
-        ).join('\n')}`
-      )
+      // this is something that has /app in it but isnt actually in our manifest, ignore
+      continue
     }
 
     const clientManifestEntry = props.clientManifest[clientManifestKey]
@@ -233,95 +261,48 @@ export async function build(props: AfterBuildProps) {
 
       try {
         const loaderData = (await exported.loader?.({ path, params })) ?? {}
-        allRoutes.push({
-          path,
-          htmlPath,
-          params,
-          loaderData,
-          preloads,
-          clientJsPath: join(`dist/client`, clientManifestEntry.file),
-        })
-      } catch (err) {
-        console.error(`Error building ${relativeId}`)
-        console.error(err)
-        process.exit(1)
-      }
-    }
-  }
+        const clientJsPath = join(`dist/client`, clientManifestEntry.file)
 
-  console.info(`\n 🔨 build css\n`)
+        try {
+          console.info(` [build] static ${path} params ${JSON.stringify(params)}`)
+          const loaderProps = { params }
 
-  // for now just inline
-  const cssStringRaw = assets
-    .filter((x) => x.name?.endsWith('.css'))
-    .map((x) => x.source)
-    .join('\n\n')
+          globalThis['__vxrnLoaderProps__'] = loaderProps
 
-  // awkward way to get prefixes:
-  const tmpCssFile = Path.join(tmpdir(), 'tmp.css')
-  await FSExtra.writeFile(tmpCssFile, cssStringRaw, 'utf-8')
-  await esbuild({
-    entryPoints: [tmpCssFile],
-    target: 'safari17',
-    bundle: true,
-    minifyWhitespace: true,
-    sourcemap: false,
-    allowOverwrite: true,
-    outfile: tmpCssFile,
-    loader: { '.css': 'css' },
-  })
-  const cssString = await readFile(tmpCssFile, 'utf-8')
+          // importing resetState causes issues :/
+          globalThis['__vxrnresetState']?.()
 
-  const staticDir = join(`dist/static`)
-  const clientDir = join(`dist/client`)
-  await ensureDir(staticDir)
+          const { appHtml, headHtml } = await render({ path })
 
-  console.info(`\n 🔨 building static html\n`)
+          // output the static html
+          const html = getHtml({
+            template,
+            appHtml,
+            headHtml,
+            loaderData,
+            loaderProps,
+            preloads,
+            css: cssString,
+          })
 
-  // pre-render each route...
-  const template = await readFile(toAbsolute(join(`dist/client/index.html`)), 'utf-8')
+          const filePath = join(staticDir, htmlPath)
+          const loaderPartialPath = join(
+            staticDir,
+            'assets',
+            path.slice(1).replaceAll('/', '_') + '_vxrn_loader.js'
+          )
 
-  for (const { path, loaderData, params, preloads, htmlPath, clientJsPath } of allRoutes) {
-    try {
-      console.info(` [build] static ${path} params ${JSON.stringify(params)}`)
-      const loaderProps = { params }
+          const code = await readFile(clientJsPath, 'utf-8')
 
-      globalThis['__vxrnLoaderProps__'] = loaderProps
+          await Promise.all([
+            outputFile(toAbsolute(filePath), html),
+            outputFile(loaderPartialPath, replaceLoader(code, loaderData, '[a-z]+')),
+          ])
+        } catch (err) {
+          const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
 
-      // importing resetState causes issues :/
-      globalThis['__vxrnresetState']?.()
-
-      const { appHtml, headHtml } = await render({ path })
-
-      // output the static html
-      const html = getHtml({
-        template,
-        appHtml,
-        headHtml,
-        loaderData,
-        loaderProps,
-        preloads,
-        css: cssString,
-      })
-
-      const filePath = join(staticDir, htmlPath)
-      const loaderPartialPath = join(
-        staticDir,
-        'assets',
-        path.slice(1).replaceAll('/', '_') + '_vxrn_loader.js'
-      )
-
-      const code = await readFile(clientJsPath, 'utf-8')
-
-      await Promise.all([
-        outputFile(toAbsolute(filePath), html),
-        outputFile(loaderPartialPath, replaceLoader(code, loaderData, '[a-z]+')),
-      ])
-    } catch (err) {
-      const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
-
-      throw new Error(
-        `Error building static page at ${path}:
+          throw new Error(
+            `Error building static page at ${path}:
 
 ${errMsg}
 
@@ -331,10 +312,16 @@ ${JSON.stringify(loaderData || null, null, 2)}
   params:
   
 ${JSON.stringify(params || null, null, 2)}`,
-        {
-          cause: err,
+            {
+              cause: err,
+            }
+          )
         }
-      )
+      } catch (err) {
+        console.error(`Error building ${relativeId}`)
+        console.error(err)
+        process.exit(1)
+      }
     }
   }
 
