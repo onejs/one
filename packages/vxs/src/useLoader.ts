@@ -2,8 +2,10 @@
 import { useEffect, useRef } from 'react'
 import { weakKey } from './utils/weakKey'
 import { preloadingLoader } from './global-state/routing'
+import { CLIENT_BASE_URL } from './global-state/constants'
 
 const promises: Record<string, undefined | Promise<void>> = {}
+const errors = {}
 const loadedData: Record<string, any> = {}
 
 export function useLoader<
@@ -32,6 +34,10 @@ export function useLoader<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preloadedData])
 
+  if (errors[currentPath]) {
+    throw errors[currentPath]
+  }
+
   // TODO
   if (!preloadedData) {
     const loaded = loadedData[currentPath]
@@ -41,21 +47,29 @@ export function useLoader<
 
     if (preloadingLoader[currentPath]) {
       console.warn('were loading it meo')
-      promises[currentPath] = preloadingLoader[currentPath].then((val) => {
-        console.log('got em', val)
-        loadedData[currentPath] = val
-      })
+      promises[currentPath] = preloadingLoader[currentPath]
+        .then((val) => {
+          loadedData[currentPath] = val
+        })
+        .catch((err) => {
+          console.error(`Error loading loader`, err)
+          errors[currentPath] = err
+          delete promises[currentPath]
+          delete preloadingLoader[currentPath]
+        })
     }
 
     if (!promises[currentPath]) {
       const getData = async () => {
-        const loaderJSUrl = `/${currentPath}_vxrn_loader.js`
+        const loaderJSUrl = `${CLIENT_BASE_URL}${currentPath}_vxrn_loader.js`
         const response = await import(loaderJSUrl)
         try {
           loadedData[currentPath] = response.loader()
           return loadedData[currentPath]
         } catch (err) {
           console.error(`Error calling loader: ${err}`)
+          errors[currentPath] = err
+          delete promises[currentPath]
           return null
         }
       }

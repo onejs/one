@@ -9,6 +9,7 @@ import { resolve } from '../link/path'
 import { matchDynamicName } from '../matchers'
 import { shouldLinkExternally } from '../utils/url'
 import type { RouterStore } from './router-store'
+import { CLIENT_BASE_URL } from './constants'
 
 function assertIsReady(store: RouterStore) {
   if (!store.navigationRef.isReady()) {
@@ -138,12 +139,12 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
     // fetch loader
     if (!preloadingLoader[href]) {
       preloadingLoader[href] = (async () => {
-        const loaderJSUrl = `${window.location.protocol}//${window.location.host}/assets${href}_vxrn_loader.js`
+        const loaderJSUrl = `${CLIENT_BASE_URL}/assets${href}_vxrn_loader.js`
         const response = await import(loaderJSUrl)
         try {
           return await response.loader()
         } catch (err) {
-          console.error(`Error calling loader: ${err}`)
+          console.error(`Error preloading loader: ${err}`)
           return null
         }
       })()
