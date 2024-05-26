@@ -23,7 +23,6 @@ export async function loader({ params }: { params: UserPath }) {
 export default function User(props: UserProps) {
   const params = useGlobalSearchParams()
   const data = useLoader(loader)
-  console.log('rendering', data)
 
   return (
     <View gap="$4">

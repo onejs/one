@@ -44,7 +44,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
         ? loadRouteFunction
         : () => {
             const realPath = globalThis['__vxrntodopath'] ?? window.location.pathname
-            return import('/_vxrn' + realPath + 'route.js')
+            return import(realPath + '_vxrn_loader.js')
           }
     } else {
       routesSync[pathWithoutRelative] = loadRouteFunction

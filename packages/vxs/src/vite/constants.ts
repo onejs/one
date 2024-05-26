@@ -1,3 +1,3 @@
-export const EMPTY_LOADER_STRING = `function loader() {return [][0 + 0]}`
+export const EMPTY_LOADER_STRING = `function loader() {return "__vxrn__loader__"}`
 
 export const LoaderDataCache = {}

@@ -76,6 +76,9 @@ export function setParams(this: RouterStore, params: Record<string, string | num
   return (this.navigationRef?.current?.setParams as any)(params)
 }
 
+// TODO
+export const preloadingLoader = {}
+
 export function linkTo(this: RouterStore, href: string, event?: string) {
   if (shouldLinkExternally(href)) {
     Linking.openURL(href)
@@ -130,6 +133,22 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
 
   // todo
   globalThis['__vxrntodopath'] = href
+
+  if (import.meta.env.PROD) {
+    // fetch loader
+    if (!preloadingLoader[href]) {
+      preloadingLoader[href] = (async () => {
+        const loaderJSUrl = `${window.location.protocol}//${window.location.host}/assets${href}_vxrn_loader.js`
+        const response = await import(loaderJSUrl)
+        try {
+          return await response.loader()
+        } catch (err) {
+          console.error(`Error calling loader: ${err}`)
+          return null
+        }
+      })()
+    }
+  }
 
   const state = this.linking.getStateFromPath!(href, this.linking.config)
 
