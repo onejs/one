@@ -74,6 +74,8 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
     webBuildConfig = mergeConfig(webBuildConfig, options.webConfig) as any
   }
 
+  let clientOutput
+
   if (buildOptions.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
       plugins: [excludeAPIRoutesPlugin],
@@ -90,7 +92,8 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
     }
 
     console.info(`\n 🔨 build client\n`)
-    await viteBuild(clientBuildConfig)
+    const { output } = (await viteBuild(clientBuildConfig)) as RollupOutput
+    clientOutput = output
   }
 
   console.info(`\n 🔨 build server\n`)
@@ -123,12 +126,18 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
   //   serverBuildConfig = mergeConfig(serverBuildConfig, disableOptimizationConfig)
   // }
 
-  const { output } = (await viteBuild(serverBuildConfig)) as RollupOutput
+  const { output: serverOutput } = (await viteBuild(serverBuildConfig)) as RollupOutput
 
   if (options.afterBuild) {
     const clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
 
-    await options.afterBuild({ options, output, webBuildConfig, clientManifest })
+    await options.afterBuild({
+      options,
+      clientOutput,
+      serverOutput,
+      webBuildConfig,
+      clientManifest,
+    })
   }
 
   console.info(`\n ✔️ build complete\n`)

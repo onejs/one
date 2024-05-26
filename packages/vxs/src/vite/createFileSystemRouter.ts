@@ -8,6 +8,7 @@ import { LoaderDataCache } from './constants'
 import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
 import { loadEnv } from './loadEnv'
 import { resolveAPIRequest } from './resolveAPIRequest'
+import { replaceLoader } from './replaceLoader'
 
 export type Options = {
   root: string
@@ -89,19 +90,14 @@ export function createFileSystemRouter(options: Options): Plugin {
           if (!transformedJS) {
             throw new Error(`No transformed js returned`)
           }
-          // if (disableSSR) {
-          //   return transformedJS
-          // }
           const exported = await runner.import(routeFile)
           const loaderData = await exported.loader?.(loaderProps)
 
           if (loaderData) {
             // add loader back in!
-            transformedJS = transformedJS.replace(
-              /(export\s+)?function\s+loader\(\)\s+{\s+return \[\]\[0\];?\s+}/gm,
-              `export function loader(){ return ${JSON.stringify(loaderData)} }`
-            )
+            transformedJS = replaceLoader(transformedJS, loaderData)
           }
+
           return transformedJS
         },
 

@@ -3,9 +3,12 @@ import type { Hono } from 'hono'
 import type { OutputAsset, OutputChunk } from 'rollup'
 import type { InlineConfig, UserConfig } from 'vite'
 
+type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
+
 export type AfterBuildProps = {
   options: VXRNConfig
-  output: [OutputChunk, ...(OutputChunk | OutputAsset)[]]
+  clientOutput: RollupOutputList
+  serverOutput: RollupOutputList
   webBuildConfig: UserConfig
   clientManifest: {
     // app/[user].tsx

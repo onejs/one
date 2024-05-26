@@ -3,13 +3,13 @@ import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
-import Path, { basename, dirname, join, relative } from 'node:path'
+import Path, { join, relative } from 'node:path'
 import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 import { getHtml, getOptimizeDeps, getOptionsFilled, type AfterBuildProps } from 'vxrn'
 import { getManifest } from './getManifest'
-import pMap from 'p-map'
+import { replaceLoader } from './replaceLoader'
 // import { resetState } from '../global-state/useInitializeExpoRouter'
 
 export const resolveFile = (path: string) => {
@@ -101,12 +101,13 @@ export async function build(props: AfterBuildProps) {
   const allRoutes: {
     path: string
     htmlPath: string
+    clientJsPath: string
     params: Object
     loaderData: any
     preloads: string[]
   }[] = []
 
-  const outputEntries = [...props.output.entries()]
+  const outputEntries = [...props.serverOutput.entries()]
 
   for (const [index, output] of outputEntries) {
     if (output.type === 'asset') {
@@ -129,15 +130,15 @@ export async function build(props: AfterBuildProps) {
       continue
     }
 
-    const endpointPath = Path.join(options.root, 'dist/server', output.fileName)
+    const jsPath = toAbsolute(join('dist/server', output.fileName))
 
     let exported
     try {
-      exported = await import(endpointPath)
+      exported = await import(jsPath)
     } catch (err) {
       console.error(`Error importing page (original error)`, err)
       // err cause not showing in vite or something
-      throw new Error(`Error importing page: ${endpointPath}`, {
+      throw new Error(`Error importing page: ${jsPath}`, {
         cause: err,
       })
     }
@@ -148,6 +149,7 @@ export async function build(props: AfterBuildProps) {
         return id.endsWith(key)
       }) || ''
     const clientManifestEntry = props.clientManifest[clientManifestKey]
+
     const htmlRoute = manifest.htmlRoutes.find((route) => {
       return clientManifestKey.endsWith(route.file.slice(1))
     })
@@ -208,7 +210,14 @@ export async function build(props: AfterBuildProps) {
 
       try {
         const loaderData = (await exported.loader?.({ path, params })) ?? {}
-        allRoutes.push({ path, htmlPath, params, loaderData, preloads })
+        allRoutes.push({
+          path,
+          htmlPath,
+          params,
+          loaderData,
+          preloads,
+          clientJsPath: join(`dist/client`, clientManifestEntry.file),
+        })
       } catch (err) {
         console.error(`Error building ${relativeId}`)
         console.error(err)
@@ -240,8 +249,8 @@ export async function build(props: AfterBuildProps) {
   })
   const cssString = await readFile(tmpCssFile, 'utf-8')
 
-  const staticDir = toAbsolute(`dist/static`)
-  const clientDir = toAbsolute(`dist/client`)
+  const staticDir = join(`dist/static`)
+  const clientDir = join(`dist/client`)
   await ensureDir(staticDir)
 
   console.info(`\n 🔨 building static html\n`)
@@ -249,7 +258,7 @@ export async function build(props: AfterBuildProps) {
   // pre-render each route...
   const template = await readFile(toAbsolute(join(`dist/client/index.html`)), 'utf-8')
 
-  for (const { path, loaderData, params, preloads, htmlPath } of allRoutes) {
+  for (const { path, loaderData, params, preloads, htmlPath, clientJsPath } of allRoutes) {
     try {
       console.info(` [build] static ${path} params ${JSON.stringify(params)}`)
       const loaderProps = { params }
@@ -271,8 +280,16 @@ export async function build(props: AfterBuildProps) {
         preloads,
         css: cssString,
       })
+
       const filePath = join(staticDir, htmlPath)
-      await outputFile(toAbsolute(filePath), html)
+      const loaderPartialPath = join(staticDir, 'assets', path + '_vxrn_loader.js')
+
+      const code = await readFile(clientJsPath, 'utf-8')
+
+      await Promise.all([
+        outputFile(toAbsolute(filePath), html),
+        outputFile(loaderPartialPath, replaceLoader(code, loaderData, '[a-z]+')),
+      ])
     } catch (err) {
       const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
 

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
 import { weakKey } from './utils/weakKey'
+import { preloadingLoader } from './global-state/routing'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const loadedData: Record<string, any> = {}
@@ -21,17 +22,15 @@ export function useLoader<
     // TODO likely either not needed or needs proper path from server side
     (typeof window !== 'undefined' ? window.location.pathname : '/')
 
-  if (process.env.NODE_ENV === 'development') {
-    // this fixes dev, breaks prod, can do it better
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      if (preloadedData) {
-        loadedData[currentPath] = preloadedData
-        globalThis['__vxrnLoaderData__'] = null
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [preloadedData])
-  }
+  console.log('preloadedData', preloadedData)
+
+  useEffect(() => {
+    if (preloadedData) {
+      loadedData[currentPath] = preloadedData
+      globalThis['__vxrnLoaderData__'] = null
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preloadedData])
 
   // TODO
   if (!preloadedData) {
@@ -39,12 +38,19 @@ export function useLoader<
     if (loaded) {
       return loaded
     }
+
+    if (preloadingLoader[currentPath]) {
+      console.warn('were loading it meo')
+      promises[currentPath] = preloadingLoader[currentPath].then((val) => {
+        console.log('got em', val)
+        loadedData[currentPath] = val
+      })
+    }
+
     if (!promises[currentPath]) {
       const getData = async () => {
-        const loaderJSUrl = `/_vxrn${currentPath}route.js`
-        console.warn(`loading loader`, loaderJSUrl)
+        const loaderJSUrl = `/${currentPath}_vxrn_loader.js`
         const response = await import(loaderJSUrl)
-        console.warn(`loader got back`, response)
         try {
           loadedData[currentPath] = response.loader()
           return loadedData[currentPath]
