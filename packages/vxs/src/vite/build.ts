@@ -282,7 +282,11 @@ export async function build(props: AfterBuildProps) {
       })
 
       const filePath = join(staticDir, htmlPath)
-      const loaderPartialPath = join(staticDir, 'assets', path + '_vxrn_loader.js')
+      const loaderPartialPath = join(
+        staticDir,
+        'assets',
+        path.slice(1).replaceAll('/', '_') + '_vxrn_loader.js'
+      )
 
       const code = await readFile(clientJsPath, 'utf-8')
 

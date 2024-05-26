@@ -22,7 +22,10 @@ export function replaceLoader(code: string, loaderData: Object, loaderRegexName 
 
   // if minified loaderName !== loader so we re-add the export
   if (loaderName !== 'loader') {
-    return `${code.replace(loaderReturnRegex, loaderReturn)}\n${loaderWithExport}`
+    return `${code.replace(loaderReturnRegex, loaderReturn)}\n${
+      // hacky af but ok for now, "detect" if its not exported and re-export
+      code.includes('as loader') ? '' : loaderWithExport
+    }`
   }
 
   return code.replace(loaderReturnRegex, loaderReturn)
