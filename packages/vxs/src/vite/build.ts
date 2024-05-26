@@ -148,6 +148,15 @@ export async function build(props: AfterBuildProps) {
       Object.keys(props.clientManifest).find((key) => {
         return id.endsWith(key)
       }) || ''
+
+    if (!clientManifestKey) {
+      console.error(
+        `No clientManifestKey ending with id "${id}" found in \n${Object.keys(
+          props.clientManifest
+        ).join('\n')}`
+      )
+    }
+
     const clientManifestEntry = props.clientManifest[clientManifestKey]
 
     const htmlRoute = manifest.htmlRoutes.find((route) => {
