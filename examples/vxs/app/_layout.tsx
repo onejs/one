@@ -11,8 +11,10 @@ export default function Layout() {
   return (
     <TamaguiProvider disableInjectCSS config={config}>
       <style
-        // href="/tamagui-style"
-        precedence="highest"
+        // @ts-ignore
+        href="Tamagui.getCSS"
+        // @ts-ignore
+        precedence="medium"
       >
         {config.getCSS()}
       </style>
