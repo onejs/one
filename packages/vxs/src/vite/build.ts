@@ -175,7 +175,17 @@ export async function build(props: AfterBuildProps) {
       ]
     }
 
-    const allSubImports = getAllClientManifestImports(clientManifestEntry)
+    if (!clientManifestEntry) {
+      console.warn(
+        `No client manifest entry found: ${clientManifestKey} in manifest ${JSON.stringify(
+          props.clientManifest,
+          null,
+          2
+        )}`
+      )
+    }
+
+    const allSubImports = getAllClientManifestImports(clientManifestEntry || {})
 
     const allLayoutSubImports =
       htmlRoute?.layouts?.flatMap((layout) => {
