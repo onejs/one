@@ -1,3 +1,4 @@
+import { CLIENT_BASE_URL } from './global-state/constants'
 import type { GlobbedRouteImports } from './types'
 
 // essentially a development helper
@@ -44,7 +45,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
         ? loadRouteFunction
         : () => {
             const realPath = globalThis['__vxrntodopath'] ?? window.location.pathname
-            return import(realPath + '_vxrn_loader.js')
+            return import(`${CLIENT_BASE_URL}${realPath}_vxrn_loader.js`)
           }
     } else {
       routesSync[pathWithoutRelative] = loadRouteFunction

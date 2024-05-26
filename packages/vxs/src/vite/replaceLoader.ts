@@ -1,21 +1,29 @@
-const loaderReturnRegex = `return\\s*\\"__vxrn__loader__\\"`
+const loaderReturnStr = `return\\s*\\"__vxrn__loader__\\"`
+const loaderReturnRegex = new RegExp(loaderReturnStr, 'gi')
 
 export function replaceLoader(code: string, loaderData: Object, loaderRegexName = 'loader') {
-  const regexStr = `(export\\s+)?function\\s+(${loaderRegexName})\\([^\\)]?\\)\\s*{\\s*${loaderReturnRegex};?}`
-  const regex = new RegExp(regexStr, 'i')
-  const match = code.match(regex)
+  const loaderReturn = `return ${JSON.stringify(loaderData)}`
+  const loaderRegex = new RegExp(
+    `(export\\s+)?function\\s+(${loaderRegexName})\\([^\\)]?\\)\\s*{\\s*${loaderReturnStr};?\\s*}`,
+    'i'
+  )
+  const loaderWithExport = `export function loader() {${loaderReturn}}`
+
+  if (loaderRegexName === 'loader') {
+    return code.replace(loaderRegex, loaderWithExport)
+  }
+
+  const match = code.match(loaderRegex)
   if (!match) {
     return code
   }
 
   const [_a, _b, loaderName] = match
-  const loaderReturn = `return ${JSON.stringify(loaderData)}`
-  const reExport = `export function loader() {${loaderReturn}}`
 
   // if minified loaderName !== loader so we re-add the export
   if (loaderName !== 'loader') {
-    return `${code.replace(new RegExp(loaderReturnRegex, 'gi'), loaderReturn)}\n${reExport}`
+    return `${code.replace(loaderReturnRegex, loaderReturn)}\n${loaderWithExport}`
   }
 
-  return code.replace(regex, reExport)
+  return code.replace(loaderReturnRegex, loaderReturn)
 }
