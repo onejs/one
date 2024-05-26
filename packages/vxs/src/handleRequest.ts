@@ -67,21 +67,16 @@ export function createHandleRequest(
     }
 
     if (handlers.handleLoader) {
-      console.log('pathname?', pathname)
       const isClientRequestingNewRoute = pathname.endsWith('_vxrn_loader.js')
       if (isClientRequestingNewRoute) {
         const originalUrl = pathname.replace('_vxrn_loader.js', '')
         const finalUrl = new URL(originalUrl, url.origin)
-
-        console.log('finalUrl.pathname', finalUrl.pathname)
 
         for (const route of manifest.htmlRoutes) {
           // TODO performance
           if (!new RegExp(route.namedRegex).test(finalUrl.pathname)) {
             continue
           }
-
-          console.log('match', route)
 
           const headers = new Headers()
           headers.set('Content-Type', 'text/javascript')

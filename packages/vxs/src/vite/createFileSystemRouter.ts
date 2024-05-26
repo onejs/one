@@ -98,8 +98,6 @@ export function createFileSystemRouter(options: Options): Plugin {
             transformedJS = replaceLoader(transformedJS, loaderData)
           }
 
-          console.log('returning', loaderData, transformedJS)
-
           return transformedJS
         },
 
