@@ -159,8 +159,6 @@ export async function build(props: AfterBuildProps) {
       continue
     }
 
-    console.log('wtf', id)
-
     const jsPath = toAbsolute(join('dist/server', output.fileName))
 
     let exported
@@ -250,59 +248,52 @@ export async function build(props: AfterBuildProps) {
 
     console.info(`\n [build] page ${relativeId}\n`)
 
-    for (const [index2, params] of paramsList.entries()) {
+    for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params)
       const htmlPath = `${path === '/' ? '/index' : path}.html`
-
-      console.info(
-        ` [build] (${index + index2}/${outputEntries.length}) ${path} with params`,
-        params
-      )
+      const loaderData = (await exported.loader?.({ path, params })) ?? {}
+      const clientJsPath = join(`dist/client`, clientManifestEntry.file)
 
       try {
-        const loaderData = (await exported.loader?.({ path, params })) ?? {}
-        const clientJsPath = join(`dist/client`, clientManifestEntry.file)
+        console.info(` [build] static ${path} params ${JSON.stringify(params)}`)
+        const loaderProps = { params }
 
-        try {
-          console.info(` [build] static ${path} params ${JSON.stringify(params)}`)
-          const loaderProps = { params }
+        globalThis['__vxrnLoaderProps__'] = loaderProps
 
-          globalThis['__vxrnLoaderProps__'] = loaderProps
+        // importing resetState causes issues :/
+        globalThis['__vxrnresetState']?.()
 
-          // importing resetState causes issues :/
-          globalThis['__vxrnresetState']?.()
+        const { appHtml, headHtml } = await render({ path })
 
-          const { appHtml, headHtml } = await render({ path })
+        // output the static html
+        const html = getHtml({
+          template,
+          appHtml,
+          headHtml,
+          loaderData,
+          loaderProps,
+          preloads,
+          css: cssString,
+        })
 
-          // output the static html
-          const html = getHtml({
-            template,
-            appHtml,
-            headHtml,
-            loaderData,
-            loaderProps,
-            preloads,
-            css: cssString,
-          })
+        const filePath = join(staticDir, htmlPath)
+        const loaderPartialPath = join(
+          staticDir,
+          'assets',
+          path.slice(1).replaceAll('/', '_') + '_vxrn_loader.js'
+        )
 
-          const filePath = join(staticDir, htmlPath)
-          const loaderPartialPath = join(
-            staticDir,
-            'assets',
-            path.slice(1).replaceAll('/', '_') + '_vxrn_loader.js'
-          )
+        const code = await readFile(clientJsPath, 'utf-8')
 
-          const code = await readFile(clientJsPath, 'utf-8')
+        await Promise.all([
+          outputFile(toAbsolute(filePath), html),
+          outputFile(loaderPartialPath, replaceLoader(code, loaderData, '[a-z]+')),
+        ])
+      } catch (err) {
+        const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
 
-          await Promise.all([
-            outputFile(toAbsolute(filePath), html),
-            outputFile(loaderPartialPath, replaceLoader(code, loaderData, '[a-z]+')),
-          ])
-        } catch (err) {
-          const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
-
-          throw new Error(
-            `Error building static page at ${path}:
+        console.error(
+          `Error building static page at ${path} with id ${relativeId}:
 
 ${errMsg}
 
@@ -311,14 +302,8 @@ ${errMsg}
 ${JSON.stringify(loaderData || null, null, 2)}
   params:
   
-${JSON.stringify(params || null, null, 2)}`,
-            {
-              cause: err,
-            }
-          )
-        }
-      } catch (err) {
-        console.error(`Error building ${relativeId}`)
+${JSON.stringify(params || null, null, 2)}`
+        )
         console.error(err)
         process.exit(1)
       }
