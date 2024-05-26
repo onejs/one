@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-swc",
-  "version": "0.1.70",
+  "version": "0.1.71",
   "types": "./types/index.d.ts",
   "type": "module",
   "main": "dist/cjs",
