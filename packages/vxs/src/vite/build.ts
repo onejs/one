@@ -161,7 +161,11 @@ export async function build(props: AfterBuildProps) {
             ...imports,
             // recurse
             ...imports.flatMap((name) => {
-              return props.clientManifest[name].imports
+              const found = props.clientManifest[name]
+              if (!found) {
+                console.warn(`No found imports`, name, props.clientManifest)
+              }
+              return found?.imports ?? []
             }),
           ]
             .flat()
