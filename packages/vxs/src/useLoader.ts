@@ -24,8 +24,6 @@ export function useLoader<
     // TODO likely either not needed or needs proper path from server side
     (typeof window !== 'undefined' ? window.location.pathname : '/')
 
-  console.log('preloadedData', preloadedData)
-
   useEffect(() => {
     if (preloadedData) {
       loadedData[currentPath] = preloadedData

@@ -45,8 +45,7 @@ type InnerProps = {
 }
 
 export function Root(props: RootProps) {
-  // ⚠️ <StrictMode> breaks expo router! seems like a react-navigation bug theres an open issue
-  // this made hydration mis-match despite nothing thrown?
+  // ⚠️ <StrictMode> breaks routing!
   return (
     <>
       <Suspense fallback={null}>
@@ -60,7 +59,6 @@ function Contents({ routes, path, ...props }: RootProps) {
   const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
 
   return (
-    // <StrictMode>
     <RootErrorBoundary>
       <Inner
         location={
@@ -72,7 +70,6 @@ function Contents({ routes, path, ...props }: RootProps) {
         {...props}
       />
     </RootErrorBoundary>
-    // </StrictMode>
   )
 }
 
