@@ -88,7 +88,9 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
         })
     }
 
-    promises[id].stack = new Error().stack
+    if (process.env.NODE_ENV === 'development') {
+      promises[id].stack = new Error().stack
+    }
 
     // this is called in useScreens value.loadRoute
     // see getRoutes.ts contextModule.loadRoute

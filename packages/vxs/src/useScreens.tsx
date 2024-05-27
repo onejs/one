@@ -5,7 +5,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 
 import {
   Route,
@@ -19,6 +19,7 @@ import { Screen } from './primitives'
 import { sortRoutesWithInitial } from './sortRoutes'
 import { EmptyRoute } from './views/EmptyRoute'
 import { Try } from './views/Try'
+import { RootErrorBoundary } from './views/RootErrorBoundary'
 
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
@@ -215,7 +216,8 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   const getLoadable = (props: any, ref: any) => {
     return (
-      // <Suspense fallback={null}>
+      // <RootErrorBoundary>
+      //   <Suspense fallback={<Throws />}>
       <ScreenComponent
         {...{
           ...props,
@@ -225,9 +227,25 @@ export function getQualifiedRouteComponent(value: RouteNode) {
           segment: value.route,
         }}
       />
-      // </Suspense>
+      //   </Suspense>
+      // </RootErrorBoundary>
     )
   }
+
+  // const Throws = () => {
+  //   const [promse] = useState(
+  //     new Promise((res) => {
+  //       setTimeout(res, 1000)
+  //     })
+  //   )
+
+  //   if (typeof window !== 'undefined') {
+  //     console.log('throw it')
+  //     throw promse
+  //   }
+
+  //   return null
+  // }
 
   const QualifiedRoute = React.forwardRef(
     (
