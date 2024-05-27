@@ -1,8 +1,3 @@
-import type { VXRNConfig } from '../types';
-type BuildOptions = {
-    step?: string;
-    page?: string;
-};
-export declare const build: (optionsIn: VXRNConfig, buildOptions?: BuildOptions) => Promise<void>;
-export {};
+import type { BuildArgs, VXRNConfig } from '../types';
+export declare const build: (optionsIn: VXRNConfig, buildArgs?: BuildArgs) => Promise<void>;
 //# sourceMappingURL=build.d.ts.map

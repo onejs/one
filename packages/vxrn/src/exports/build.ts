@@ -3,7 +3,7 @@ import { rm } from 'node:fs/promises'
 import type { RollupOutput } from 'rollup'
 import { mergeConfig, build as viteBuild, type Plugin, type UserConfig } from 'vite'
 import { analyzer } from 'vite-bundle-analyzer'
-import type { VXRNConfig } from '../types'
+import type { BuildArgs, VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
@@ -11,8 +11,6 @@ import { getOptionsFilled } from '../utils/getOptionsFilled'
 const { existsSync } = FSExtra
 
 Error.stackTraceLimit = Number.POSITIVE_INFINITY
-
-type BuildOptions = { step?: string; page?: string }
 
 const disableOptimizationConfig = {
   optimizeDeps: {
@@ -32,7 +30,7 @@ const disableOptimizationConfig = {
   },
 } satisfies UserConfig
 
-export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = {}) => {
+export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) => {
   const options = await getOptionsFilled(optionsIn)
 
   // lets always clean dist folder for now to be sure were correct
@@ -77,7 +75,7 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
 
   let clientOutput
 
-  if (buildOptions.step !== 'generate') {
+  if (buildArgs.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
       plugins: [
         excludeAPIRoutesPlugin,
@@ -142,6 +140,7 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
 
     await options.afterBuild({
       options,
+      buildArgs,
       clientOutput,
       serverOutput,
       webBuildConfig,

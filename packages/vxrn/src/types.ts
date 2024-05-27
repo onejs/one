@@ -5,11 +5,14 @@ import type { InlineConfig, UserConfig } from 'vite'
 
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
 
+export type BuildArgs = { step?: string; only?: string }
+
 export type AfterBuildProps = {
   options: VXRNConfig
   clientOutput: RollupOutputList
   serverOutput: RollupOutputList
   webBuildConfig: UserConfig
+  buildArgs?: BuildArgs
   clientManifest: {
     // app/[user].tsx
     [key: string]: {

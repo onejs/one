@@ -3,11 +3,16 @@ import type { Hono } from 'hono';
 import type { OutputAsset, OutputChunk } from 'rollup';
 import type { InlineConfig, UserConfig } from 'vite';
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
+export type BuildArgs = {
+    step?: string;
+    only?: string;
+};
 export type AfterBuildProps = {
     options: VXRNConfig;
     clientOutput: RollupOutputList;
     serverOutput: RollupOutputList;
     webBuildConfig: UserConfig;
+    buildArgs?: BuildArgs;
     clientManifest: {
         [key: string]: {
             file: string;
