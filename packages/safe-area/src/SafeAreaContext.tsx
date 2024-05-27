@@ -15,7 +15,7 @@ if (isDev) {
   SafeAreaFrameContext.displayName = 'SafeAreaFrameContext'
 }
 
-export interface SafeAreaProviderProps extends ViewProps {
+export interface SafeAreaProviderProps {
   children?: React.ReactNode
   initialMetrics?: Metrics | null
   /**
@@ -28,7 +28,6 @@ export function SafeAreaProvider({
   children,
   initialMetrics,
   initialSafeAreaInsets,
-  style,
   ...others
 }: SafeAreaProviderProps) {
   const parentInsets = useParentSafeAreaInsets()
@@ -51,54 +50,44 @@ export function SafeAreaProvider({
       nativeEvent: { frame: nextFrame, insets: nextInsets },
     } = event
 
-    setFrame((curFrame) => {
-      if (
-        // Backwards compat with old native code that won't send frame.
-        nextFrame &&
-        (nextFrame.height !== curFrame.height ||
-          nextFrame.width !== curFrame.width ||
-          nextFrame.x !== curFrame.x ||
-          nextFrame.y !== curFrame.y)
-      ) {
-        return nextFrame
-      } else {
+    React.startTransition(() => {
+      setFrame((curFrame) => {
+        if (
+          // Backwards compat with old native code that won't send frame.
+          nextFrame &&
+          (nextFrame.height !== curFrame.height ||
+            nextFrame.width !== curFrame.width ||
+            nextFrame.x !== curFrame.x ||
+            nextFrame.y !== curFrame.y)
+        ) {
+          return nextFrame
+        }
         return curFrame
-      }
-    })
+      })
 
-    setInsets((curInsets) => {
-      if (
-        !curInsets ||
-        nextInsets.bottom !== curInsets.bottom ||
-        nextInsets.left !== curInsets.left ||
-        nextInsets.right !== curInsets.right ||
-        nextInsets.top !== curInsets.top
-      ) {
-        return nextInsets
-      } else {
+      setInsets((curInsets) => {
+        if (
+          !curInsets ||
+          nextInsets.bottom !== curInsets.bottom ||
+          nextInsets.left !== curInsets.left ||
+          nextInsets.right !== curInsets.right ||
+          nextInsets.top !== curInsets.top
+        ) {
+          return nextInsets
+        }
         return curInsets
-      }
+      })
     })
   }, [])
 
   return (
-    <NativeSafeAreaProvider
-      style={[styles.fill, style]}
-      onInsetsChange={onInsetsChange}
-      {...others}
-    >
-      {insets != null ? (
-        <SafeAreaFrameContext.Provider value={frame}>
-          <SafeAreaInsetsContext.Provider value={insets}>{children}</SafeAreaInsetsContext.Provider>
-        </SafeAreaFrameContext.Provider>
-      ) : null}
+    <NativeSafeAreaProvider onInsetsChange={onInsetsChange} {...others}>
+      <SafeAreaFrameContext.Provider value={frame}>
+        <SafeAreaInsetsContext.Provider value={insets}>{children}</SafeAreaInsetsContext.Provider>
+      </SafeAreaFrameContext.Provider>
     </NativeSafeAreaProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  fill: { flex: 1 },
-})
 
 function useParentSafeAreaInsets(): EdgeInsets | null {
   return React.useContext(SafeAreaInsetsContext)

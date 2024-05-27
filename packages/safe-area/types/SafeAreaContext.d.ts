@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { type ViewProps } from 'react-native';
 import type { EdgeInsets, Metrics, Rect } from './SafeArea-types';
 export declare const SafeAreaInsetsContext: React.Context<EdgeInsets | null>;
 export declare const SafeAreaFrameContext: React.Context<Rect | null>;
-export interface SafeAreaProviderProps extends ViewProps {
+export interface SafeAreaProviderProps {
     children?: React.ReactNode;
     initialMetrics?: Metrics | null;
     /**
@@ -11,7 +10,7 @@ export interface SafeAreaProviderProps extends ViewProps {
      */
     initialSafeAreaInsets?: EdgeInsets | null;
 }
-export declare function SafeAreaProvider({ children, initialMetrics, initialSafeAreaInsets, style, ...others }: SafeAreaProviderProps): import("react/jsx-runtime").JSX.Element;
+export declare function SafeAreaProvider({ children, initialMetrics, initialSafeAreaInsets, ...others }: SafeAreaProviderProps): import("react/jsx-runtime").JSX.Element;
 export declare function useSafeAreaInsets(): EdgeInsets;
 export declare function useSafeAreaFrame(): Rect;
 export type WithSafeAreaInsetsProps = {
