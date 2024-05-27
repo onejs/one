@@ -3,6 +3,7 @@ import React, {
   StrictMode,
   Suspense,
   useMemo,
+  useState,
   type FunctionComponent,
   type ReactNode,
 } from 'react'
@@ -47,40 +48,24 @@ type InnerProps = {
 export function Root(props: RootProps) {
   // ⚠️ <StrictMode> breaks routing!
   return (
-    <>
-      <Suspense fallback={null}>
-        <Contents {...props} />
-      </Suspense>
-    </>
-  )
-}
-
-function Contents({ routes, path, ...props }: RootProps) {
-  const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
-
-  return (
     <RootErrorBoundary>
-      <Inner
-        location={
-          typeof window !== 'undefined'
-            ? new URL(path || window.location.pathname || '/', window.location.href)
-            : new URL(path || '/', 'http://localhost')
-        }
-        context={context}
-        {...props}
-      />
+      <>
+        <Suspense fallback={null}>
+          <Contents {...props} />
+        </Suspense>
+      </>
     </RootErrorBoundary>
   )
 }
 
-function Inner({ wrapper = Fragment, navigationContainerProps, ...props }: InnerProps) {
-  return (
-    <ContextNavigator
-      navigationContainerProps={navigationContainerProps}
-      {...props}
-      wrapper={wrapper}
-    />
-  )
+function Contents({ routes, path, wrapper = Fragment, ...props }: RootProps) {
+  const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
+  const location =
+    typeof window !== 'undefined'
+      ? new URL(path || window.location.pathname || '/', window.location.href)
+      : new URL(path || '/', 'http://localhost')
+
+  return <ContextNavigator {...props} location={location} context={context} wrapper={wrapper} />
 }
 
 // function getGestureHandlerRootView() {
@@ -137,18 +122,18 @@ function ContextNavigator({
       // <HeadProvider context={headContext.current}>
       <ParentWrapper>
         {/* <GestureHandlerRootView> */}
-        <SafeAreaProvider
+        {/* <SafeAreaProvider
           // SSR support
           initialMetrics={INITIAL_METRICS}
           style={{
             flex: 1,
           }}
-        >
-          {children}
+        > */}
+        {children}
 
-          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-        </SafeAreaProvider>
+        {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+        {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+        {/* </SafeAreaProvider> */}
         {/* </GestureHandlerRootView> */}
       </ParentWrapper>
       // </HeadProvider>

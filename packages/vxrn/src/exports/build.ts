@@ -81,7 +81,7 @@ export const build = async (optionsIn: VXRNConfig, buildOptions: BuildOptions = 
     let clientBuildConfig = mergeConfig(webBuildConfig, {
       plugins: [
         excludeAPIRoutesPlugin,
-        import.meta.env.PROD
+        process.env.NODE_ENV === 'production'
           ? analyzer({
               analyzerMode: 'static',
               fileName: '../report',
