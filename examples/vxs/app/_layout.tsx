@@ -1,7 +1,7 @@
 import '@tamagui/core/reset.css'
 import '../public/tamagui.css'
 
-import { TamaguiProvider, isWeb } from 'tamagui'
+import { TamaguiProvider, isWeb } from '@tamagui/core'
 import { Stack } from 'vxs'
 import config from '../src/tamagui.config'
 // @ts-ignore idk why only cli watch is getting mad at this

@@ -1,10 +1,10 @@
-import { createNodeDevEnvironment, mergeConfig, type InlineConfig, type UserConfig } from 'vite'
-import { getBaseViteConfig } from './getBaseViteConfig'
-import type { VXRNConfigFilled } from './getOptionsFilled'
-import { getOptimizeDeps } from './getOptimizeDeps'
-import { uniq } from './uniq'
-import { coerceToArray } from './coerceToArray'
+import { mergeConfig, type InlineConfig, type UserConfig } from 'vite'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
+import { coerceToArray } from './coerceToArray'
+import { getBaseViteConfig } from './getBaseViteConfig'
+import { getOptimizeDeps } from './getOptimizeDeps'
+import type { VXRNConfigFilled } from './getOptionsFilled'
+import { uniq } from './uniq'
 
 export async function getViteServerConfig(config: VXRNConfigFilled) {
   const { root, host } = config

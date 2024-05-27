@@ -18,6 +18,8 @@ export default {
         '~': import.meta.dirname,
         'react-native-svg': '@tamagui/react-native-svg',
       },
+
+      dedupe: ['react', 'react-dom', '@tamagui/core', '@tamagui/web'],
     },
 
     plugins: [
