@@ -23,7 +23,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* TODO breaking in ssr */}
       <meta name="description" content="This is my blog." />
 
       <TestPerformance />
