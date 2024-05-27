@@ -10,6 +10,7 @@ import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 import { getHtml, getOptimizeDeps, getOptionsFilled, type AfterBuildProps } from 'vxrn'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
+import MicroMatch from 'micromatch'
 // import { resetState } from '../global-state/useInitializeExpoRouter'
 
 export const resolveFile = (path: string) => {
@@ -245,6 +246,13 @@ export async function build(props: AfterBuildProps) {
     const relativeId = relative(process.cwd(), id)
       // TODO hardcoded app
       .replace('app/', '/')
+
+    const onlyBuild = props.buildArgs?.only
+    if (onlyBuild) {
+      if (!MicroMatch.isMatch(relativeId, `**/${onlyBuild}*`)) {
+        continue
+      }
+    }
 
     console.info(`\n [build] page ${relativeId}\n`)
 

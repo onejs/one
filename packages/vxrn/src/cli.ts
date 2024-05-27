@@ -71,11 +71,11 @@ const build = defineCommand({
       type: 'string',
       required: false,
     },
-    // build one page
-    // route: {
-    //   type: 'string',
-    //   required: false,
-    // },
+    // limit the pages built
+    only: {
+      type: 'string',
+      required: false,
+    },
   },
   async run({ args }) {
     const userConfig = await readVXRNConfig()

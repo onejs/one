@@ -24,11 +24,9 @@ export default function HomePage() {
   return (
     <>
       {/* TODO breaking in ssr */}
-      {typeof window !== 'undefined' && (
-        <Head>
-          <meta name="description" content="This is my blog." />
-        </Head>
-      )}
+      <meta name="description" content="This is my blog." />
+
+      <TestPerformance />
 
       <View>
         <Text color="blue">Hi from home222</Text>
@@ -50,4 +48,10 @@ export default function HomePage() {
       </Link>
     </>
   )
+}
+
+const TestPerformance = () => {
+  return new Array(2000).fill(0).map((_, i) => {
+    return <View key={i} bg="green" w={10} h={10} />
+  })
 }

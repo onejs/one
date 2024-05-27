@@ -19,8 +19,10 @@
     "@tamagui/config": "^1.99.1",
     "esbuild": "~0.19.3",
     "expo-modules-core": "1.12.10",
+    "fast-glob": "^3.2.11",
     "h3": "^1.11.1",
     "hono": "^4.3.10",
+    "micromatch": "^4.0.7",
     "p-map": "^7.0.2",
     "react": "19.0.0-beta-26f2496093-20240514",
     "react-dom": "19.0.0-beta-26f2496093-20240514",
@@ -31,6 +33,7 @@
     "vxs": "0.1.76"
   },
   "devDependencies": {
+    "@types/micromatch": "^4.0.7",
     "patch-package": "^8.0.0",
     "sirv": "^2.0.4",
     "vxrn": "0.1.76"

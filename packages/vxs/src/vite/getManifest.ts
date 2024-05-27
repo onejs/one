@@ -1,7 +1,5 @@
-import * as Glob from 'glob'
+import Glob from 'fast-glob'
 import { createRoutesManifest } from '../server/routes-manifest'
-
-const { sync: globSync } = (Glob['default'] || Glob) as typeof Glob
 
 export function getManifest(root: string) {
   const routePaths = getRoutePaths(root)
@@ -12,7 +10,7 @@ export function getManifest(root: string) {
 
 // Used to emulate a context module, but way faster. TODO: May need to adjust the extensions to stay in sync with Metro.
 function getRoutePaths(cwd: string) {
-  return globSync('**/*.@(ts|tsx|js|jsx)', {
+  return Glob.sync('**/*.@(ts|tsx|js|jsx)', {
     cwd,
   }).map((p) => './' + normalizePaths(p))
 }
