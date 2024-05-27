@@ -9,7 +9,6 @@ import type { ExpoRouter } from '../interfaces/router'
 import { useFocusEffect } from '../useFocusEffect'
 import { resolveHref } from './href'
 import useLinkToPathProps from './useLinkToPathProps'
-import { useRouteNode } from '../Route'
 
 /** Redirects to the href as soon as the component is mounted. */
 export function Redirect({ href }: { href: ExpoRouter.Href }) {
@@ -105,8 +104,6 @@ function LinkInner(
   }: ExpoRouter.LinkProps,
   ref: React.ForwardedRef<Text>
 ) {
-  const node = useRouteNode()
-
   // Mutate the style prop to add the className on web.
   const style = useInteropClassName(rest)
 

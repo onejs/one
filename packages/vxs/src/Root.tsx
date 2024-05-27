@@ -2,6 +2,7 @@ import React, {
   Fragment,
   StrictMode,
   Suspense,
+  useEffect,
   useMemo,
   useState,
   type FunctionComponent,
@@ -20,6 +21,7 @@ import { ServerLocationContext } from './global-state/serverLocationContext'
 import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
+import { preloadRoute } from './global-state/routing'
 
 type RootProps = Omit<InnerProps, 'context'> & {
   routes: GlobbedRouteImports
@@ -49,13 +51,31 @@ export function Root(props: RootProps) {
   // ⚠️ <StrictMode> breaks routing!
   return (
     <RootErrorBoundary>
-      <>
-        <Suspense fallback={null}>
-          <Contents {...props} />
-        </Suspense>
-      </>
+      <Suspense fallback={null}>
+        <Contents {...props} />
+        <PreloadLinks />
+      </Suspense>
     </RootErrorBoundary>
   )
+}
+
+function PreloadLinks() {
+  useEffect(() => {
+    document.addEventListener('mouseover', (e) => {
+      let target = e.target
+      if (!(target instanceof HTMLElement)) return
+      target = target instanceof HTMLAnchorElement ? target : target.parentElement
+      if (!(target instanceof HTMLAnchorElement)) return
+      const href = target.getAttribute('href')
+      if (href?.[0] === '/') {
+        console.log('preload')
+        // local route
+        preloadRoute(href)
+      }
+    })
+  }, [])
+
+  return null
 }
 
 function Contents({ routes, path, wrapper = Fragment, ...props }: RootProps) {

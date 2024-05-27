@@ -44,7 +44,6 @@ export function useLoader<
     }
 
     if (preloadingLoader[currentPath]) {
-      console.warn('were loading it meo')
       promises[currentPath] = preloadingLoader[currentPath]
         .then((val) => {
           loadedData[currentPath] = val
@@ -88,7 +87,7 @@ const results = new Map()
 const started = new Map()
 
 function useAsyncFn(val: any, props?: any) {
-  const key = weakKey(val) + JSON.stringify(props)
+  const key = (val ? weakKey(val) : '') + JSON.stringify(props)
 
   if (val) {
     if (!started.get(key)) {
