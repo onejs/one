@@ -38,10 +38,10 @@ export function NativeSafeAreaProvider({
         window.getComputedStyle(element)
 
       const insets = {
-        top: paddingTop ? parseInt(paddingTop, 10) : 0,
-        bottom: paddingBottom ? parseInt(paddingBottom, 10) : 0,
-        left: paddingLeft ? parseInt(paddingLeft, 10) : 0,
-        right: paddingRight ? parseInt(paddingRight, 10) : 0,
+        top: paddingTop ? Number.parseInt(paddingTop, 10) : 0,
+        bottom: paddingBottom ? Number.parseInt(paddingBottom, 10) : 0,
+        left: paddingLeft ? Number.parseInt(paddingLeft, 10) : 0,
+        right: paddingRight ? Number.parseInt(paddingRight, 10) : 0,
       }
       const frame = {
         x: 0,
@@ -60,7 +60,7 @@ export function NativeSafeAreaProvider({
     }
   }, [onInsetsChange])
 
-  return <View style={style}>{children}</View>
+  return <>{children}</>
 }
 
 let _supportedTransitionEvent: string | null | undefined = null
