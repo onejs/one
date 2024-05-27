@@ -1,4 +1,3 @@
-/* eslint-disable */
 import type { ReactNode } from 'react'
 import type { TextProps, GestureResponderEvent } from 'react-native'
 
