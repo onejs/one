@@ -1,6 +1,6 @@
 {
   "name": "vxs",
-  "version": "0.1.75",
+  "version": "0.1.76",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
