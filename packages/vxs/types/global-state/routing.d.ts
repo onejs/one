@@ -10,5 +10,6 @@ export declare function canGoBack(this: RouterStore): boolean;
 export declare function canDismiss(this: RouterStore): boolean;
 export declare function setParams(this: RouterStore, params?: Record<string, string | number>): any;
 export declare const preloadingLoader: {};
+export declare function preloadRoute(href: string): void;
 export declare function linkTo(this: RouterStore, href: string, event?: string): void;
 //# sourceMappingURL=routing.d.ts.map

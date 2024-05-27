@@ -80,6 +80,29 @@ export function setParams(this: RouterStore, params: Record<string, string | num
 // TODO
 export const preloadingLoader = {}
 
+function setupPreload(href: string) {
+  if (preloadingLoader[href]) return
+  preloadingLoader[href] = async () => {
+    const loaderJSUrl = `${CLIENT_BASE_URL}/assets/${href
+      .slice(1)
+      .replaceAll('/', '_')}_vxrn_loader.js`
+    const response = await import(loaderJSUrl)
+    try {
+      return await response.loader()
+    } catch (err) {
+      console.error(`Error preloading loader: ${err}`)
+      return null
+    }
+  }
+}
+
+export function preloadRoute(href: string) {
+  if (import.meta.env.PROD) {
+    setupPreload(href)
+    void preloadingLoader[href]()
+  }
+}
+
 export function linkTo(this: RouterStore, href: string, event?: string) {
   if (shouldLinkExternally(href)) {
     Linking.openURL(href)
@@ -135,23 +158,7 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
   // todo
   globalThis['__vxrntodopath'] = href
 
-  if (import.meta.env.PROD) {
-    // fetch loader
-    if (!preloadingLoader[href]) {
-      preloadingLoader[href] = (async () => {
-        const loaderJSUrl = `${CLIENT_BASE_URL}/assets/${href
-          .slice(1)
-          .replaceAll('/', '_')}_vxrn_loader.js`
-        const response = await import(loaderJSUrl)
-        try {
-          return await response.loader()
-        } catch (err) {
-          console.error(`Error preloading loader: ${err}`)
-          return null
-        }
-      })()
-    }
-  }
+  preloadRoute(href)
 
   const state = this.linking.getStateFromPath!(href, this.linking.config)
 
