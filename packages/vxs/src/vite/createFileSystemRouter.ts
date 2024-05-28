@@ -5,10 +5,9 @@ import { createServerModuleRunner } from 'vite'
 import { getHtml } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
 import { LoaderDataCache } from './constants'
-import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
 import { loadEnv } from './loadEnv'
-import { resolveAPIRequest } from './resolveAPIRequest'
 import { replaceLoader } from './replaceLoader'
+import { resolveAPIRequest } from './resolveAPIRequest'
 
 export type Options = {
   root: string
