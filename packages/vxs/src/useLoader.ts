@@ -44,6 +44,9 @@ export function useLoader<
     }
 
     if (preloadingLoader[currentPath]) {
+      if (typeof preloadingLoader[currentPath] === 'function') {
+        preloadingLoader[currentPath] = preloadingLoader[currentPath]()
+      }
       promises[currentPath] = preloadingLoader[currentPath]
         .then((val) => {
           loadedData[currentPath] = val

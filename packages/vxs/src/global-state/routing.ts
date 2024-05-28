@@ -99,7 +99,9 @@ function setupPreload(href: string) {
 export function preloadRoute(href: string) {
   if (import.meta.env.PROD) {
     setupPreload(href)
-    void preloadingLoader[href]()
+    if (typeof preloadingLoader[href] === 'function') {
+      void preloadingLoader[href]()
+    }
   }
 }
 
