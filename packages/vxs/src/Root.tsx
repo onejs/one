@@ -1,10 +1,8 @@
 import React, {
   Fragment,
-  StrictMode,
   Suspense,
   useEffect,
   useMemo,
-  useState,
   type FunctionComponent,
   type ReactNode,
 } from 'react'
@@ -15,13 +13,12 @@ import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
+import { preloadRoute } from './global-state/routing'
 import { ServerLocationContext } from './global-state/serverLocationContext'
 import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
-import { preloadRoute } from './global-state/routing'
 
 type RootProps = Omit<InnerProps, 'context'> & {
   routes: GlobbedRouteImports
@@ -68,7 +65,6 @@ function PreloadLinks() {
       if (!(target instanceof HTMLAnchorElement)) return
       const href = target.getAttribute('href')
       if (href?.[0] === '/') {
-        console.log('preload')
         // local route
         preloadRoute(href)
       }

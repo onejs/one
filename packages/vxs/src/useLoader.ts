@@ -27,7 +27,7 @@ export function useLoader<
   useEffect(() => {
     if (preloadedData) {
       loadedData[currentPath] = preloadedData
-      globalThis['__vxrnLoaderData__'] = null
+      delete globalThis['__vxrnLoaderData__']
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preloadedData])
@@ -36,13 +36,12 @@ export function useLoader<
     throw errors[currentPath]
   }
 
-  // TODO
-  if (!preloadedData) {
-    const loaded = loadedData[currentPath]
-    if (loaded) {
-      return loaded
-    }
+  const loaded = loadedData[currentPath]
+  if (loaded) {
+    return loaded
+  }
 
+  if (!preloadedData) {
     if (preloadingLoader[currentPath]) {
       if (typeof preloadingLoader[currentPath] === 'function') {
         preloadingLoader[currentPath] = preloadingLoader[currentPath]()
@@ -75,6 +74,7 @@ export function useLoader<
       }
       promises[currentPath] = getData()
     }
+
     throw promises[currentPath]
   }
 

@@ -1,12 +1,33 @@
-import type { PluginOption } from 'vite'
 import { dirname, resolve } from 'node:path'
+import type { PluginOption } from 'vite'
+import { existsAsync } from '../utils/existsAsync'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter, type Options } from './createFileSystemRouter'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
-import { existsAsync } from '../utils/existsAsync'
 
 export function vxs(options: Options): PluginOption {
   return [
+    // not working to watch various things...
+    // {
+    //   name: 'watch-node-modules',
+    //   configureServer(server) {
+    //     const { watcher, moduleGraph } = server
+
+    //     // Watch the specified include patterns using Vite's internal watcher
+    //     const customWatcher = chokidar.watch(['node_modules/**/*.js'], {
+    //       cwd: join(process.cwd(), '..', '..'),
+    //       ignoreInitial: true,
+    //     })
+
+    //     customWatcher.on('all', (event, path) => {
+    //       console.log('gotem', path)
+    //       moduleGraph.invalidateAll()
+    //     })
+
+    //     watcher.on('close', () => customWatcher.close())
+    //   },
+    // },
+
     {
       name: 'load-web-extensions',
       enforce: 'pre',
