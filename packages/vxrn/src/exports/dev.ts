@@ -238,7 +238,8 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     },
     shouldIncludeFrame: (frame) => {
       // If the frame points to internal bootstrap/module system logic, skip the code frame.
-      return !/webpack[/\\]runtime[/\\].+\s/.test(frame.file)
+      // return !/vite[/\\]runtime[/\\].+\s/.test(frame.file)
+      return true
     },
   }
 
