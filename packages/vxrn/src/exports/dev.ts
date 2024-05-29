@@ -1,12 +1,16 @@
 import type { Peer } from 'crossws'
 import wsAdapter from 'crossws/adapters/node'
 import FSExtra from 'fs-extra'
+import path from 'node:path'
+import fs from 'node:fs'
 import {
   createApp,
+  createError,
   createRouter,
   defineEventHandler,
   eventHandler,
   getQuery,
+  readBody,
   toNodeListener,
 } from 'h3'
 import { createProxyEventHandler } from 'h3-proxy'
@@ -28,6 +32,8 @@ import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { checkPatches } from '../utils/patches'
+import { Symbolicator } from '../utils/symbolicate/Symbolicator'
+import type { ReactNativeStackFrame } from '../utils/symbolicate'
 
 const { ensureDir } = FSExtra
 
@@ -217,12 +223,61 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     level: 'log' | 'error' | 'info' | 'debug' | 'warn'
     data: string[]
   }
+  const symbolicatorConfig = {
+    getSource: (fileUrl) => {
+      const { filename, platform } = parseFileUrl(fileUrl)
+      return getSource(filename, platform)
+    },
+    getSourceMap: (fileUrl) => {
+      const { filename, platform } = parseFileUrl(fileUrl)
+      if (!platform) {
+        throw new Error('Cannot infer platform for file URL')
+      }
 
+      return getSourceMap(filename, platform)
+    },
+    shouldIncludeFrame: (frame) => {
+      // If the frame points to internal bootstrap/module system logic, skip the code frame.
+      return !/webpack[/\\]runtime[/\\].+\s/.test(frame.file)
+    },
+  }
+
+  // TODO: fillin the blank
+  const symbolicator = new Symbolicator(symbolicatorConfig as any)
   // symbolicate
   app.use(
     '/symbolicate',
-    defineEventHandler(() => {
-      return 'TODO'
+    defineEventHandler(async (event) => {
+      console.info('symbolicate called')
+      try {
+        const body = await readBody(event)
+
+        const { stack } = JSON.parse(body) as {
+          stack: ReactNativeStackFrame[]
+        }
+        const platform = Symbolicator.inferPlatformFromStack(stack)
+        if (!platform) {
+          console.info({ msg: 'Received stack', stack })
+          throw createError({
+            status: 400,
+            message: 'Bad request',
+            statusMessage: 'Bad request message',
+          })
+        }
+        console.info({ msg: 'Starting symbolication', platform, stack })
+        const results = await symbolicator.process(stack)
+        return results
+      } catch (error) {
+        console.error({
+          msg: 'Failed to symbolicate',
+          error: (error as Error).message,
+        })
+        throw createError({
+          status: 500,
+          message: 'Fatal error',
+          fatal: true,
+        })
+      }
     })
   )
 
@@ -315,4 +370,38 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
       await Promise.all([server.close(), viteServer.close()])
     },
   }
+}
+
+// TODO: move it somewhere else
+function parseFileUrl(fileUrl: string) {
+  const { pathname: filename, searchParams } = new URL(fileUrl)
+  let platform = searchParams.get('platform')
+  if (!platform) {
+    const [, platformOrName, name] = filename.split('.').reverse()
+    if (name !== undefined) {
+      platform = platformOrName
+    }
+  }
+
+  return {
+    filename: filename.replace(/^\//, ''),
+    platform: platform || undefined,
+  }
+}
+
+const getSource = async (filename: string, platform?: string): Promise<string | Buffer> => {
+  return fs.promises.readFile(import.meta.resolve(import.meta.dirname, filename), 'utf8')
+}
+
+const getSourceMap = async (filename: string, platform: string): Promise<string | Buffer> => {
+  const file = await fs.promises.readFile(
+    import.meta.resolve(import.meta.dirname, filename),
+    'utf8'
+  )
+
+  if (file) {
+    return file
+  }
+
+  return Promise.reject(new Error(`Source map for ${filename} for ${platform} is missing`))
 }
