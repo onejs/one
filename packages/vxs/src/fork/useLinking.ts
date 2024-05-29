@@ -34,6 +34,12 @@ if (typeof createMemoryHistory?.default === 'function') {
 
 const historyGlobal = createMemoryHistory()
 
+if (typeof window !== 'undefined') {
+  historyGlobal.listen(() => {
+    globalThis['__vxrntodopath'] = window.location.pathname
+  })
+}
+
 /**
  * Find the matching navigation state that changed between 2 navigation states
  * e.g.: a -> b -> c -> d and a -> b -> c -> e -> f, if history in b changed, b is the matching state

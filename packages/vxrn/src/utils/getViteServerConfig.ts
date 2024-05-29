@@ -38,6 +38,12 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
       },
 
       server: {
+        watch: {
+          ignored: (path) => {
+            // console.log('>??', path)
+            return false
+          },
+        },
         hmr: {
           path: '/__vxrnhmr',
         },
