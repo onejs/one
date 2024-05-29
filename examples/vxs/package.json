@@ -30,12 +30,12 @@
     "react-native-reanimated": "~3.3.0",
     "react-native-web": "^0.19.11",
     "tamagui": "^1.99.1",
-    "vxs": "0.1.77"
+    "vxs": "0.1.78"
   },
   "devDependencies": {
     "@types/micromatch": "^4.0.7",
     "patch-package": "^8.0.0",
     "sirv": "^2.0.4",
-    "vxrn": "0.1.77"
+    "vxrn": "0.1.78"
   }
 }
