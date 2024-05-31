@@ -25,7 +25,7 @@ export default function HomePage() {
     <>
       <meta name="description" content="This is my blog." />
 
-      <TestPerformance />
+      {/* <TestPerformance /> */}
 
       <View>
         <Text color="blue">Hi from home222</Text>

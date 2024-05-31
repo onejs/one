@@ -21,6 +21,7 @@ import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
 
 type RootProps = Omit<InnerProps, 'context'> & {
+  isClient?: boolean
   routes: GlobbedRouteImports
   path?: string
 }
@@ -46,13 +47,53 @@ type InnerProps = {
 
 export function Root(props: RootProps) {
   // ⚠️ <StrictMode> breaks routing!
-  return (
+
+  const contents = (
     <RootErrorBoundary>
-      <Suspense fallback={null}>
-        <Contents {...props} />
-        <PreloadLinks />
-      </Suspense>
+      <Contents {...props} />
+      <PreloadLinks />
     </RootErrorBoundary>
+  )
+
+  if (props.isClient) {
+    return contents
+  }
+
+  return (
+    <html lang="en-US">
+      <head>
+        {import.meta.env.DEV ? <DevHead /> : null}
+        <script>{`globalThis['global'] = globalThis`}</script>
+      </head>
+      <body>{contents}</body>
+    </html>
+  )
+}
+
+function DevHead() {
+  return (
+    <>
+      <link
+        rel="stylesheet"
+        href="/@id/__x00__virtual:ssr-css.css"
+        // @ts-ignore
+        precedence="default"
+        data-ssr-css
+      />
+      <script type="module">
+        {`import { createHotContext } from "/@vite/client";
+        const hot = createHotContext("/__clear_ssr_css");
+        hot.on("vite:afterUpdate", () => {
+          document
+            .querySelectorAll("[data-ssr-css]")
+            .forEach(node => node.remove());
+        });`}
+      </script>
+      <script type="module">{`import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;`}</script>
+    </>
   )
 }
 
@@ -135,7 +176,6 @@ function ContextNavigator({
    */
   const wrapper = (children: any) => {
     return (
-      // <HeadProvider context={headContext.current}>
       <ParentWrapper>
         {/* <GestureHandlerRootView> */}
         {/* <SafeAreaProvider
@@ -152,7 +192,6 @@ function ContextNavigator({
         {/* </SafeAreaProvider> */}
         {/* </GestureHandlerRootView> */}
       </ParentWrapper>
-      // </HeadProvider>
     )
   }
 

@@ -16,6 +16,7 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
     }),
     {
       root,
+      appType: 'custom',
       clearScreen: false,
       plugins: [
         reactNativeHMRPlugin(config),
@@ -109,8 +110,7 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
 
   // manually merge
   if (process.env.DEBUG) {
-    console.debug('user config is', JSON.stringify(webConfig, null, 2))
-    console.debug('server config is', JSON.stringify(serverConfig, null, 2))
+    console.debug('merged config is', JSON.stringify(serverConfig, null, 2))
   }
 
   serverConfig = {

@@ -5716,7 +5716,7 @@ __metadata:
     "@biomejs/biome": ^1.6.3
     "@tamagui/build": ^1.99.1
     metro-react-native-babel-preset: ^0.77.0
-    vite: 6.0.0-alpha.11
+    vite: 6.0.0-alpha.17
   languageName: unknown
   linkType: soft
 
@@ -8000,7 +8000,7 @@ __metadata:
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.6.3
     patch-package: ^8.0.0
-    react: 19.0.0-beta-26f2496093-20240514
+    react: 19.0.0-rc-f994737d14-20240522
     react-native: 0.73.2
     react-test-renderer: 18.2.0
     typescript: ^5.2.2
@@ -8023,8 +8023,9 @@ __metadata:
     micromatch: ^4.0.7
     p-map: ^7.0.2
     patch-package: ^8.0.0
-    react: 19.0.0-beta-26f2496093-20240514
-    react-dom: 19.0.0-beta-26f2496093-20240514
+    react: 19.0.0-rc-f994737d14-20240522
+    react-dom: 19.0.0-rc-f994737d14-20240522
+    react-helmet-async: ^2.0.5
     react-native: 0.73.2
     react-native-reanimated: ~3.3.0
     react-native-web: ^0.19.11
@@ -11911,14 +11912,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0-beta-26f2496093-20240514":
-  version: 19.0.0-beta-26f2496093-20240514
-  resolution: "react-dom@npm:19.0.0-beta-26f2496093-20240514"
+"react-dom@npm:19.0.0-rc-f994737d14-20240522":
+  version: 19.0.0-rc-f994737d14-20240522
+  resolution: "react-dom@npm:19.0.0-rc-f994737d14-20240522"
   dependencies:
-    scheduler: 0.25.0-beta-26f2496093-20240514
+    scheduler: 0.25.0-rc-f994737d14-20240522
   peerDependencies:
-    react: 19.0.0-beta-26f2496093-20240514
-  checksum: 08e2927c5c2ea933fd23069bce541f3d8d14e99835db757a8816a7955c84c5ccd36d6f76655e8fa003e2d76c4f98536a2c7116de49885945c3d53d7c1d445525
+    react: 19.0.0-rc-f994737d14-20240522
+  checksum: 6511038bf6492084eefaf5b519b1635ae57c791394cc520d1d7b6e04afbe7dbc06fb6405145effa9ddc176ec0f9edb3fa935e56d7c7b4091077a540f2ea83c2c
+  languageName: node
+  linkType: hard
+
+"react-fast-compare@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "react-fast-compare@npm:3.2.2"
+  checksum: 2071415b4f76a3e6b55c84611c4d24dcb12ffc85811a2840b5a3f1ff2d1a99be1020d9437ee7c6e024c9f4cbb84ceb35e48cf84f28fcb00265ad2dfdd3947704
   languageName: node
   linkType: hard
 
@@ -11928,6 +11936,19 @@ __metadata:
   peerDependencies:
     react: ">=17.0.0"
   checksum: 6b4d93209dff04a1f25d9f8e0c56a9a8a80e7889e8e8267299f34449c7e41a9ab90cad24569d03dd7173b56b7496576dba68f71f1d4e5c8be72f0633023668bc
+  languageName: node
+  linkType: hard
+
+"react-helmet-async@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "react-helmet-async@npm:2.0.5"
+  dependencies:
+    invariant: ^2.2.4
+    react-fast-compare: ^3.2.2
+    shallowequal: ^1.1.0
+  peerDependencies:
+    react: ^16.6.0 || ^17.0.0 || ^18.0.0
+  checksum: cc2d13496f6fdee6b5f9472d3f7369db3e70e4fc1a55793708c2bbd90d48b0dedc725fd066f987c7a3d74b03a29bd5e65b9f40fa29bd8239e7cfb526aff4d4b6
   languageName: node
   linkType: hard
 
@@ -12155,10 +12176,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.0.0-beta-26f2496093-20240514":
-  version: 19.0.0-beta-26f2496093-20240514
-  resolution: "react@npm:19.0.0-beta-26f2496093-20240514"
-  checksum: fc63f94750a9a853faaa039588418a8d706c776e6dd780a92d993819daf65d63603b05fd9cefaf9d2dd3b3513f1c9e65285085c8772c8ff8638882b3573403fa
+"react@npm:19.0.0-rc-f994737d14-20240522":
+  version: 19.0.0-rc-f994737d14-20240522
+  resolution: "react@npm:19.0.0-rc-f994737d14-20240522"
+  checksum: 167cbe78782d2e909e20bbd424e069f4777c0f736c1527a713abb9e7971725cff0e059a00d3d5841cfd077ed8b7ef6f0db4f16b1db065c812aadf3d35d860a03
   languageName: node
   linkType: hard
 
@@ -12683,10 +12704,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.25.0-beta-26f2496093-20240514":
-  version: 0.25.0-beta-26f2496093-20240514
-  resolution: "scheduler@npm:0.25.0-beta-26f2496093-20240514"
-  checksum: e61c97a9b67117bd75dd3c6f6b24794ff1b3ccfeb1533e1d3d111a1d1524f70ed2c705e3f4980c721777e9c465212580098fb845be621701bff959e2e48ac007
+"scheduler@npm:0.25.0-rc-f994737d14-20240522":
+  version: 0.25.0-rc-f994737d14-20240522
+  resolution: "scheduler@npm:0.25.0-rc-f994737d14-20240522"
+  checksum: 7b5184eb84c8f75440eefd416ef1a7e41b96f3d4851ae8f1c83808848aec0178e7a598856c4e6b17ec19bd2b0723fecf5ff4c7c1b6d58a5df13407dac75149e4
   languageName: node
   linkType: hard
 
@@ -12871,6 +12892,13 @@ __metadata:
   dependencies:
     kind-of: ^6.0.2
   checksum: 39b3dd9630a774aba288a680e7d2901f5c0eae7b8387fc5c8ea559918b29b3da144b7bdb990d7ccd9e11be05508ac9e459ce51d01fd65e583282f6ffafcba2e7
+  languageName: node
+  linkType: hard
+
+"shallowequal@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "shallowequal@npm:1.1.0"
+  checksum: f4c1de0837f106d2dbbfd5d0720a5d059d1c66b42b580965c8f06bb1db684be8783538b684092648c981294bf817869f743a066538771dbecb293df78f765e00
   languageName: node
   linkType: hard
 
@@ -14286,9 +14314,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:6.0.0-alpha.11":
-  version: 6.0.0-alpha.11
-  resolution: "vite@npm:6.0.0-alpha.11"
+"vite@npm:6.0.0-alpha.17":
+  version: 6.0.0-alpha.17
+  resolution: "vite@npm:6.0.0-alpha.17"
   dependencies:
     esbuild: ^0.20.1
     fsevents: ~2.3.3
@@ -14322,7 +14350,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 0d7e0209eeec790ff6938d0e8673787325bc1882fb49145a0960fe17e9c275582fca1870d6fe1b8f565e9815d02c8181b1aa153a46bdf0d7d5aa5e00f2f21bac
+  checksum: ffd5bc07d4c28f411c8c7e5259b3fc3163928c26e46565ae9d482350a0adf3271106260dc4d3527730fb5eabbd88a83f262325655e601328c6dc4f4940fb4790
   languageName: node
   linkType: hard
 
@@ -14510,7 +14538,7 @@ __metadata:
     sirv: ^2.0.4
     source-map: ^0.7.3
     url: ^0.11.0
-    vite: 6.0.0-alpha.11
+    vite: 6.0.0-alpha.17
     vite-bundle-analyzer: ^0.9.4
     vxs: 0.1.78
     ws: ^8.7.0
@@ -14543,13 +14571,14 @@ __metadata:
     fast-deep-equal: ^3.1.3
     magic-string: ^0.30.10
     query-string: 7.1.3
-    react: 19.0.0-beta-26f2496093-20240514
+    react: 19.0.0-rc-f994737d14-20240522
     react-native: 0.73.2
     react-native-safe-area-context: 4.6.3
     react-native-screens: 3.22.1
     schema-utils: ^4.0.1
     url: ^0.11.0
     url-parse: ^1.5.10
+    vite: 6.0.0-alpha.17
   peerDependencies:
     react: "*"
     react-native: "*"

@@ -11,7 +11,13 @@ export { render } from './render'
 
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
+
 export { Navigator, Slot } from './views/Navigator'
+export { ErrorBoundary } from './views/ErrorBoundary'
+export { Unmatched } from './views/Unmatched'
+export { SplashScreen } from './views/Splash'
+
+export { createApp } from './createApp'
 
 export {
   useRouter,
@@ -34,13 +40,6 @@ export { Link, Redirect } from './link/Link'
 export { Head } from './head'
 
 export { withLayoutContext } from './layouts/withLayoutContext'
-
-// Expo Router Views
-export { ErrorBoundary } from './views/ErrorBoundary'
-export { Unmatched } from './views/Unmatched'
-
-// Platform
-export { SplashScreen } from './views/Splash'
 
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'

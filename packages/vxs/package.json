@@ -68,7 +68,8 @@
     "react-native-screens": "3.22.1",
     "schema-utils": "^4.0.1",
     "url": "^0.11.0",
-    "url-parse": "^1.5.10"
+    "url-parse": "^1.5.10",
+    "vite": "6.0.0-alpha.17"
   },
   "peerDependencies": {
     "react": "*",
@@ -78,7 +79,7 @@
     "@tamagui/build": "^1.99.1",
     "@types/node": "^20.12.7",
     "@types/react-dom": "^18.2.25",
-    "react": "19.0.0-beta-26f2496093-20240514",
+    "react": "19.0.0-rc-f994737d14-20240522",
     "react-native": "0.73.2"
   },
   "publishConfig": {
