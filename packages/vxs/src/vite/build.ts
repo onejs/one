@@ -1,16 +1,16 @@
 import { build as esbuild } from 'esbuild'
 import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
+import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import Path, { join, relative } from 'node:path'
 import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
-import { getHtml, getOptimizeDeps, getOptionsFilled, type AfterBuildProps } from 'vxrn'
+import { getOptimizeDeps, getOptionsFilled, type AfterBuildProps } from 'vxrn'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
-import MicroMatch from 'micromatch'
 // import { resetState } from '../global-state/useInitializeExpoRouter'
 
 export const resolveFile = (path: string) => {
@@ -89,13 +89,8 @@ export async function build(props: AfterBuildProps) {
     )
   }
 
-  console.info(`\n 🔨 build static routes\n`)
-  const entryServer = `${options.root}/dist/server/entry-server.js`
-
   // for the require Sitemap in getRoutes
   globalThis['require'] = createRequire(join(import.meta.url, '..'))
-
-  const render = (await import(entryServer)).render
 
   const assets: OutputAsset[] = []
 
@@ -131,13 +126,15 @@ export async function build(props: AfterBuildProps) {
   })
   const cssString = await readFile(tmpCssFile, 'utf-8')
 
+  console.info(`\n 🔨 build static routes\n`)
+  const entryServer = `${options.root}/dist/server/entry.js`
+  const render = (await import(entryServer)).default.render
+
   const staticDir = join(`dist/static`)
   const clientDir = join(`dist/client`)
   await ensureDir(staticDir)
 
   const outputEntries = [...props.serverOutput.entries()]
-
-  const template = await readFile(toAbsolute(join(`dist/client/index.html`)), 'utf-8')
 
   for (const [index, output] of outputEntries) {
     if (output.type === 'asset') {
@@ -271,18 +268,7 @@ export async function build(props: AfterBuildProps) {
         // importing resetState causes issues :/
         globalThis['__vxrnresetState']?.()
 
-        const { appHtml, headHtml } = await render({ path })
-
-        // output the static html
-        const html = getHtml({
-          template,
-          appHtml,
-          headHtml,
-          loaderData,
-          loaderProps,
-          preloads,
-          css: cssString,
-        })
+        const html = await render({ path, preloads, loaderProps, loaderData })
 
         const filePath = join(staticDir, htmlPath)
         const loaderPartialPath = join(

@@ -1,8 +1,8 @@
 import ReactDOMServer from 'react-dom/server.browser'
 
-export const renderToString = async (app: React.ReactElement) => {
+export const renderToString = async (app: React.ReactElement, options: { preloads?: string[] }) => {
   const readableStream = await ReactDOMServer.renderToReadableStream(app, {
-    bootstrapModules: ['/@vite/client', './src/entry.tsx', '/@vxs/entry'],
+    bootstrapModules: options.preloads,
   })
   await readableStream.allReady
   const out = await streamToString(readableStream)

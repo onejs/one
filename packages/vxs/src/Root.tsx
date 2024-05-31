@@ -24,6 +24,10 @@ type RootProps = Omit<InnerProps, 'context'> & {
   isClient?: boolean
   routes: GlobbedRouteImports
   path?: string
+
+  // for server
+  loaderData?: any
+  loaderProps?: Object
 }
 
 type InnerProps = {
@@ -66,6 +70,17 @@ export function Root(props: RootProps) {
         <script>{`globalThis['global'] = globalThis`}</script>
       </head>
       <body>{contents}</body>
+      {/* could this just be loaded via the same loader.js? as a preload? i think so... */}
+      <script
+        async
+        // @ts-ignore
+        href="loader-data"
+      >
+        {`
+            globalThis['__vxrnLoaderData__'] = ${JSON.stringify(props.loaderData)};
+            globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(props.loaderProps)};
+        `}
+      </script>
     </html>
   )
 }

@@ -28,28 +28,28 @@ export function vxs(options: Options): PluginOption {
     //   },
     // },
 
-    {
-      name: 'vxs-virtual-entry',
-      enforce: 'pre',
-      resolveId(id) {
-        if (id === '/@vxs/entry') {
-          return id
-        }
-      },
-      load(id, options) {
-        this.parse
-        if (id === '/@vxs/entry') {
-          return `
-            import { Root, render } from 'vxs'
-            import { createElement } from 'react'
-            setTimeout(() => {
-              const routes = globalThis['__vxrnApp'].routes
-              render(createElement(Root, { isClient: true, routes, path: window.location.pathname }))
-            }, 0)
-          `
-        }
-      },
-    },
+    // {
+    //   name: 'vxs-virtual-entry',
+    //   enforce: 'pre',
+    //   resolveId(id) {
+    //     if (id === '/@vxs/entry') {
+    //       return id
+    //     }
+    //   },
+    //   load(id, options) {
+    //     this.parse
+    //     if (id === '/@vxs/entry') {
+    //       return `
+    //         import { Root, render } from 'vxs'
+    //         import { createElement } from 'react'
+    //         setTimeout(() => {
+    //           const routes = globalThis['__vxrnApp'].routes
+    //           render(createElement(Root, { isClient: true, routes, path: window.location.pathname }))
+    //         }, 0)
+    //       `
+    //     }
+    //   },
+    // },
 
     {
       name: 'load-web-extensions',

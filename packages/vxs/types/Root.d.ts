@@ -6,6 +6,8 @@ type RootProps = Omit<InnerProps, 'context'> & {
     isClient?: boolean;
     routes: GlobbedRouteImports;
     path?: string;
+    loaderData?: any;
+    loaderProps?: Object;
 };
 type InnerProps = {
     context: RequireContext;

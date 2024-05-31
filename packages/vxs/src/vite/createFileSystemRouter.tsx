@@ -52,7 +52,12 @@ export function createFileSystemRouter(options: Options): Plugin {
             globalThis['__vxrnLoaderData__'] = loaderData
             LoaderDataCache[route.file] = loaderData
 
-            const html = await entry.default.render(loaderProps)
+            const html = await entry.default.render({
+              loaderData,
+              loaderProps,
+              path: loaderProps?.path,
+              preloads: ['/@vite/client', './src/entry.tsx', '/@vxs/entry'],
+            })
 
             return html
           } catch (err) {

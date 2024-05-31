@@ -99,6 +99,10 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
         ssrManifest: true,
         outDir: 'dist/client',
         manifest: true,
+
+        rollupOptions: {
+          input: ['./src/entry.tsx']
+        }
       },
     } satisfies UserConfig)
 
@@ -129,7 +133,7 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     build: {
       // we want one big file of css
       cssCodeSplit: false,
-      ssr: 'src/entry-server.tsx',
+      ssr: 'src/entry.tsx',
       outDir: 'dist/server',
       rollupOptions: {
         external: [],

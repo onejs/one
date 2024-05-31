@@ -15,6 +15,9 @@ export default function Layout() {
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
       <TamaguiProvider disableInjectCSS config={config}>
+        {/* TODO we could automatically take any css inlined in the root _layout and extract to shared external css */}
+        {/* since the root layout will always be shared between all pages */}
+        {/* sub-layouts could do this too and share between sub-pages */}
         <style
           // @ts-ignore
           href="Tamagui.getCSS"

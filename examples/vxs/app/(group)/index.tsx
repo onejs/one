@@ -13,7 +13,9 @@ export async function loader() {
 }
 
 export default function HomePage() {
+  console.log('render home')
   const data = useLoader(loader)
+  console.log('got data', data)
 
   useEffect(() => {
     fetch('/hello')
