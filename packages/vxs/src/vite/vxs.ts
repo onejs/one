@@ -41,7 +41,6 @@ export function vxs(options: Options): PluginOption {
         if (id === '/@vxs/entry') {
           return `
             import { Root, render } from 'vxs'
-            console.log('Root', Root)
             import { createElement } from 'react'
             setTimeout(() => {
               const routes = globalThis['__vxrnApp'].routes
@@ -76,7 +75,7 @@ export function vxs(options: Options): PluginOption {
     createFileSystemRouter(options),
     clientTreeShakePlugin(),
     vitePluginSsrCss({
-      entries: ['/src/entry-web'],
+      entries: ['/src/entry'],
     }),
   ]
 }

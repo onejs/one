@@ -51,7 +51,6 @@ export function createFileSystemRouter(options: Options): Plugin {
             eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
             const entry = await runner.import(`${root}/../src/entry.tsx`)
-            console.warn('now import', entry)
 
             globalThis['__vxrnLoaderData__'] = loaderData
             LoaderDataCache[route.file] = loaderData

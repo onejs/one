@@ -1,9 +1,8 @@
-import type { GlobbedRouteImports } from './types';
 export declare function createApp(options: {
-    routes: GlobbedRouteImports;
+    routes: Record<string, () => Promise<unknown>>;
 }): {
     options: {
-        routes: GlobbedRouteImports;
+        routes: Record<string, () => Promise<unknown>>;
     };
     render: ({ path }: {
         path: string;
