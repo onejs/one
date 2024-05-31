@@ -31,9 +31,6 @@ export function createFileSystemRouter(options: Options): Plugin {
 
       const handleRequest = createHandleRequest(options, {
         async handleSSR({ route, url, loaderProps }) {
-          const indexHtml = ``
-          const template = await server.transformIndexHtml(url.pathname, indexHtml)
-
           const routeFile = join(root, route.file)
 
           // importing resetState causes issues :/
@@ -65,8 +62,6 @@ export function createFileSystemRouter(options: Options): Plugin {
               console.error(err.stack)
             }
           }
-
-          return template
         },
 
         async handleLoader({ request, route, loaderProps }) {
