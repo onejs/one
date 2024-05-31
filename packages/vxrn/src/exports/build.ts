@@ -99,10 +99,6 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
         ssrManifest: true,
         outDir: 'dist/client',
         manifest: true,
-
-        rollupOptions: {
-          input: '/@vxs/entry',
-        },
       },
     } satisfies UserConfig)
 
