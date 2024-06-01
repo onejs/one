@@ -15,15 +15,18 @@ export type AfterBuildProps = {
   buildArgs?: BuildArgs
   clientManifest: {
     // app/[user].tsx
-    [key: string]: {
-      file: string // assets/_user_-Bg0DW2rm.js
-      src?: string // app/[user].tsx
-      isDynamicEntry?: boolean // true for import.meta.globbed
-      isEntry?: boolean // true for index.html
-      name: string // _user_
-      imports: string[]
-    }
+    [key: string]: ClientManifestEntry
   }
+}
+
+export type ClientManifestEntry = {
+  file: string // assets/_user_-Bg0DW2rm.js
+  src?: string // app/[user].tsx
+  isDynamicEntry?: boolean // true for import.meta.globbed
+  isEntry?: boolean // true for index.html
+  name: string // _user_
+  imports: string[]
+  css?: string[]
 }
 
 export type VXRNConfig = {

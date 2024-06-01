@@ -1,14 +1,10 @@
+import type { RenderAppProps } from './types';
 export declare function createApp(options: {
     routes: Record<string, () => Promise<unknown>>;
 }): {
     options: {
         routes: Record<string, () => Promise<unknown>>;
     };
-    render: ({ path, preloads, loaderData, loaderProps, }: {
-        path: string;
-        preloads?: string[];
-        loaderData?: any;
-        loaderProps?: Object;
-    }) => Promise<string>;
+    render: (props: RenderAppProps) => Promise<string>;
 } | undefined;
 //# sourceMappingURL=createApp.d.ts.map

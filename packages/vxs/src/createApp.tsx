@@ -1,26 +1,16 @@
 import { Root } from './Root'
 import { render } from './render'
 import { renderToString } from './server-render'
+import type { RenderAppProps } from './types'
 
 export function createApp(options: { routes: Record<string, () => Promise<unknown>> }) {
   if (import.meta.env.SSR) {
     return {
       options,
-      render: async ({
-        path,
-        preloads,
-        loaderData,
-        loaderProps,
-      }: { path: string; preloads?: string[]; loaderData?: any; loaderProps?: Object }) => {
-        return await renderToString(
-          <Root
-            routes={options.routes}
-            path={path}
-            loaderData={loaderData}
-            loaderProps={loaderProps}
-          />,
-          { preloads }
-        )
+      render: async (props: RenderAppProps) => {
+        return await renderToString(<Root routes={options.routes} {...props} />, {
+          preloads: props.preloads,
+        })
       },
     }
   }
