@@ -87,12 +87,12 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
         excludeAPIRoutesPlugin,
         // if an error occurs (like can't find index.html, it seems to show an
         // error saying can't find report here instead, so a bit confusing)
-        // process.env.NODE_ENV === 'production'
-        //   ? analyzer({
-        //       analyzerMode: 'static',
-        //       fileName: '../report',
-        //     })
-        //   : null,
+        buildArgs.analyze
+          ? analyzer({
+              analyzerMode: 'static',
+              fileName: '../report',
+            })
+          : null,
       ],
 
       build: {
@@ -101,8 +101,8 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
         manifest: true,
 
         rollupOptions: {
-          input: ['./src/entry.tsx']
-        }
+          input: ['./src/entry.tsx'],
+        },
       },
     } satisfies UserConfig)
 

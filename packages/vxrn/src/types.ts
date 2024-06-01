@@ -5,7 +5,7 @@ import type { InlineConfig, UserConfig } from 'vite'
 
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
 
-export type BuildArgs = { step?: string; only?: string }
+export type BuildArgs = { step?: string; only?: string; analyze?: boolean }
 
 export type AfterBuildProps = {
   options: VXRNConfig

@@ -76,6 +76,10 @@ const build = defineCommand({
       type: 'string',
       required: false,
     },
+    analyze: {
+      type: 'boolean',
+      required: false,
+    },
   },
   async run({ args }) {
     const userConfig = await readVXRNConfig()
