@@ -18,14 +18,6 @@ export default function Layout() {
         {/* TODO we could automatically take any css inlined in the root _layout and extract to shared external css */}
         {/* since the root layout will always be shared between all pages */}
         {/* sub-layouts could do this too and share between sub-pages */}
-        <style
-          // @ts-ignore
-          href="Tamagui.getCSS"
-          // @ts-ignore
-          precedence="medium"
-        >
-          {config.getCSS()}
-        </style>
         <TestComponent />
         <Stack
           screenOptions={

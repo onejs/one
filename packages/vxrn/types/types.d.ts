@@ -6,6 +6,7 @@ type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
 export type BuildArgs = {
     step?: string;
     only?: string;
+    analyze?: boolean;
 };
 export type AfterBuildProps = {
     options: VXRNConfig;
