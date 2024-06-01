@@ -5684,12 +5684,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vxrn/react-native-prebuilt@0.1.79, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
+"@vxrn/react-native-prebuilt@0.1.80, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
   version: 0.0.0-use.local
   resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
   dependencies:
     "@tamagui/build": ^1.99.1
-    "@vxrn/vite-flow": 0.1.79
+    "@vxrn/vite-flow": 0.1.80
     esbuild: ~0.19.3
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.0.0
@@ -5699,7 +5699,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/safe-area@0.1.79, @vxrn/safe-area@workspace:packages/safe-area":
+"@vxrn/safe-area@0.1.80, @vxrn/safe-area@workspace:packages/safe-area":
   version: 0.0.0-use.local
   resolution: "@vxrn/safe-area@workspace:packages/safe-area"
   dependencies:
@@ -5708,7 +5708,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-flow@0.1.79, @vxrn/vite-flow@workspace:packages/vite-flow":
+"@vxrn/vite-flow@0.1.80, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
   dependencies:
@@ -5720,7 +5720,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-client@0.1.79, @vxrn/vite-native-client@workspace:packages/vite-native-client":
+"@vxrn/vite-native-client@0.1.80, @vxrn/vite-native-client@workspace:packages/vite-native-client":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-client@workspace:packages/vite-native-client"
   dependencies:
@@ -5732,7 +5732,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-hmr@0.1.79, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
+"@vxrn/vite-native-hmr@0.1.80, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-hmr@workspace:packages/vite-native-hmr"
   dependencies:
@@ -5744,7 +5744,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-swc@0.1.79, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
+"@vxrn/vite-native-swc@0.1.80, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-swc@workspace:packages/vite-native-swc"
   dependencies:
@@ -8004,7 +8004,7 @@ __metadata:
     react-native: 0.73.2
     react-test-renderer: 18.2.0
     typescript: ^5.2.2
-    vxrn: 0.1.79
+    vxrn: 0.1.80
   languageName: unknown
   linkType: soft
 
@@ -8031,8 +8031,8 @@ __metadata:
     react-native-web: ^0.19.11
     sirv: ^2.0.4
     tamagui: ^1.99.1
-    vxrn: 0.1.79
-    vxs: 0.1.79
+    vxrn: 0.1.80
+    vxs: 0.1.80
   languageName: unknown
   linkType: soft
 
@@ -14493,7 +14493,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"vxrn@0.1.79, vxrn@workspace:packages/vxrn":
+"vxrn@0.1.80, vxrn@workspace:packages/vxrn":
   version: 0.0.0-use.local
   resolution: "vxrn@workspace:packages/vxrn"
   dependencies:
@@ -14505,12 +14505,12 @@ __metadata:
     "@types/ws": ^8.5.10
     "@vitejs/plugin-react": ^4.2.1
     "@vitejs/plugin-react-swc": ^3.6.0
-    "@vxrn/react-native-prebuilt": 0.1.79
-    "@vxrn/safe-area": 0.1.79
-    "@vxrn/vite-flow": 0.1.79
-    "@vxrn/vite-native-client": 0.1.79
-    "@vxrn/vite-native-hmr": 0.1.79
-    "@vxrn/vite-native-swc": 0.1.79
+    "@vxrn/react-native-prebuilt": 0.1.80
+    "@vxrn/safe-area": 0.1.80
+    "@vxrn/vite-flow": 0.1.80
+    "@vxrn/vite-native-client": 0.1.80
+    "@vxrn/vite-native-hmr": 0.1.80
+    "@vxrn/vite-native-swc": 0.1.80
     citty: ^0.1.6
     crossws: ^0.2.4
     es-module-lexer: ^1.3.0
@@ -14540,14 +14540,14 @@ __metadata:
     url: ^0.11.0
     vite: 6.0.0-alpha.17
     vite-bundle-analyzer: ^0.9.4
-    vxs: 0.1.79
+    vxs: 0.1.80
     ws: ^8.7.0
   bin:
     vxrn: run.mjs
   languageName: unknown
   linkType: soft
 
-"vxs@0.1.79, vxs@workspace:packages/vxs":
+"vxs@0.1.80, vxs@workspace:packages/vxs":
   version: 0.0.0-use.local
   resolution: "vxs@workspace:packages/vxs"
   dependencies:
