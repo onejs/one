@@ -13,7 +13,9 @@ export async function loader() {
 }
 
 export default function HomePage() {
+  console.log('render home')
   const data = useLoader(loader)
+  console.log('got data', data)
 
   useEffect(() => {
     fetch('/hello')
@@ -25,7 +27,7 @@ export default function HomePage() {
     <>
       <meta name="description" content="This is my blog." />
 
-      <TestPerformance />
+      {/* <TestPerformance /> */}
 
       <View>
         <Text color="blue">Hi from home222</Text>

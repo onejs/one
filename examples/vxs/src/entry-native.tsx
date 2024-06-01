@@ -1,6 +1,5 @@
 import { AppRegistry, LogBox } from 'react-native'
-import { App } from './entry-web'
 
-AppRegistry.registerComponent('main', () => App)
+AppRegistry.registerComponent('main', () => null as any)
 
 LogBox.install()

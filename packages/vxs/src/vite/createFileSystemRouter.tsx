@@ -1,8 +1,6 @@
-import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Connect, Plugin } from 'vite'
 import { createServerModuleRunner } from 'vite'
-import { getHtml } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
 import { LoaderDataCache } from './constants'
 import { loadEnv } from './loadEnv'
@@ -33,13 +31,6 @@ export function createFileSystemRouter(options: Options): Plugin {
 
       const handleRequest = createHandleRequest(options, {
         async handleSSR({ route, url, loaderProps }) {
-          const indexHtml = await readFile('./index.html', 'utf-8')
-          const template = await server.transformIndexHtml(url.pathname, indexHtml)
-
-          // if (disableSSR) {
-          //   return indexHtml
-          // }
-
           const routeFile = join(root, route.file)
 
           // importing resetState causes issues :/
@@ -51,26 +42,24 @@ export function createFileSystemRouter(options: Options): Plugin {
             const exported = await runner.import(routeFile)
 
             const loaderData = await exported.loader?.(loaderProps)
-            const entryServer = `${root}/../src/entry-server.tsx`
 
             // TODO move to tamagui plugin, also esbuild was getting mad
             // biome-ignore lint/security/noGlobalEval: <explanation>
             eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
-            const { render } = await runner.import(entryServer)
+            const entry = await runner.import(`${root}/../src/entry.tsx`)
 
             globalThis['__vxrnLoaderData__'] = loaderData
             LoaderDataCache[route.file] = loaderData
 
-            const { appHtml, headHtml } = await render(loaderProps)
-
-            return getHtml({
-              appHtml,
-              headHtml,
+            const html = await entry.default.render({
               loaderData,
-              template,
-              preloads: [],
+              loaderProps,
+              path: loaderProps?.path,
+              preloads: ['/@vite/client', './src/entry.tsx', '/@vxs/entry'],
             })
+
+            return html
           } catch (err) {
             console.error(`Error rendering ${url.pathname} on server:`)
             if (err instanceof Error) {
@@ -78,8 +67,6 @@ export function createFileSystemRouter(options: Options): Plugin {
               console.error(err.stack)
             }
           }
-
-          return template
         },
 
         async handleLoader({ request, route, loaderProps }) {

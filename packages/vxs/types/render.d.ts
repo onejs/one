@@ -1,5 +1,3 @@
 /// <reference types="react" />
-export declare function render(App: (props: {
-    path: string;
-}) => JSX.Element, rootQuerySelector?: string): void;
+export declare function render(element: React.ReactNode): void;
 //# sourceMappingURL=render.d.ts.map
