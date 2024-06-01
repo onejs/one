@@ -8,10 +8,15 @@ import Path, { join, relative } from 'node:path'
 import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
-import { getOptimizeDeps, getOptionsFilled, type AfterBuildProps } from 'vxrn'
+import {
+  type ClientManifestEntry,
+  getOptimizeDeps,
+  getOptionsFilled,
+  type AfterBuildProps,
+} from 'vxrn'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
-// import { resetState } from '../global-state/useInitializeExpoRouter'
+import type { RenderApp } from '../types'
 
 export const resolveFile = (path: string) => {
   try {
@@ -128,7 +133,7 @@ export async function build(props: AfterBuildProps) {
 
   console.info(`\n 🔨 build static routes\n`)
   const entryServer = `${options.root}/dist/server/entry.js`
-  const render = (await import(entryServer)).default.render
+  const render = (await import(entryServer)).default.render as RenderApp
 
   const staticDir = join(`dist/static`)
   const clientDir = join(`dist/client`)
@@ -187,23 +192,25 @@ export async function build(props: AfterBuildProps) {
       return clientManifestKey.endsWith(route.file.slice(1))
     })
 
-    function getAllClientManifestImports({ imports = [] }: { imports?: string[] }) {
+    function collectImports(
+      { imports = [], css }: ClientManifestEntry,
+      { type = 'js' }: { type?: 'js' | 'css' } = {}
+    ): string[] {
       return [
         ...new Set(
           [
-            ...imports,
-            // recurse
+            ...(type === 'js' ? imports : css || []),
             ...imports.flatMap((name) => {
               const found = props.clientManifest[name]
               if (!found) {
                 console.warn(`No found imports`, name, props.clientManifest)
               }
-              return found?.imports ?? []
+              return collectImports(found, { type })
             }),
           ]
             .flat()
-            .filter((x) => x && x.endsWith('.js'))
-            .map((x) => `assets/${x.slice(1)}`)
+            .filter((x) => x && (type === 'css' || x.endsWith('.js')))
+            .map((x) => (type === 'css' ? x : `assets/${x.slice(1)}`))
         ),
       ]
     }
@@ -218,25 +225,31 @@ export async function build(props: AfterBuildProps) {
       )
     }
 
-    const allSubImports = getAllClientManifestImports(clientManifestEntry || {})
+    const entryImports = collectImports(clientManifestEntry || {})
 
-    const allLayoutSubImports =
+    // TODO isnt this getting all layouts not just the ones for this route?
+    const layoutEntries =
       htmlRoute?.layouts?.flatMap((layout) => {
         // TODO hardcoded app/
         const clientKey = `app${layout.slice(1)}`
-        const layoutClientEntry = props.clientManifest[clientKey]?.file
-        const subImports = getAllClientManifestImports(props.clientManifest[clientKey])
-        return [layoutClientEntry, ...subImports].filter(Boolean)
-      }) || []
+        return props.clientManifest[clientKey]
+      }) ?? []
+
+    const layoutImports = layoutEntries.flatMap((entry) => {
+      return [entry.file, ...collectImports(entry)]
+    })
 
     const preloads = [
       ...new Set([
         // add the main entry js (like ./app/index.ts)
         clientManifestEntry.file,
-        ...allSubImports,
-        ...allLayoutSubImports,
+        ...entryImports,
+        ...layoutImports,
       ]),
     ]
+
+    const allEntries = [clientManifestEntry, ...layoutEntries]
+    const allCSS = allEntries.flatMap((entry) => collectImports(entry, { type: 'css' }))
 
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
@@ -268,7 +281,7 @@ export async function build(props: AfterBuildProps) {
         // importing resetState causes issues :/
         globalThis['__vxrnresetState']?.()
 
-        const html = await render({ path, preloads, loaderProps, loaderData })
+        const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
 
         const filePath = join(staticDir, htmlPath)
         const loaderPartialPath = join(

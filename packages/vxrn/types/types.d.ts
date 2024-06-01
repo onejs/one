@@ -15,15 +15,17 @@ export type AfterBuildProps = {
     webBuildConfig: UserConfig;
     buildArgs?: BuildArgs;
     clientManifest: {
-        [key: string]: {
-            file: string;
-            src?: string;
-            isDynamicEntry?: boolean;
-            isEntry?: boolean;
-            name: string;
-            imports: string[];
-        };
+        [key: string]: ClientManifestEntry;
     };
+};
+export type ClientManifestEntry = {
+    file: string;
+    src?: string;
+    isDynamicEntry?: boolean;
+    isEntry?: boolean;
+    name: string;
+    imports: string[];
+    css?: string[];
 };
 export type VXRNConfig = {
     /**

@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import { Platform } from 'react-native'
 import Constants from './constants'
-import type { GlobbedRouteImports } from './types'
+import type { GlobbedRouteImports, RenderAppProps } from './types'
 import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -20,15 +20,11 @@ import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
 
-type RootProps = Omit<InnerProps, 'context'> & {
-  isClient?: boolean
-  routes: GlobbedRouteImports
-  path?: string
-
-  // for server
-  loaderData?: any
-  loaderProps?: Object
-}
+type RootProps = RenderAppProps &
+  Omit<InnerProps, 'context'> & {
+    isClient?: boolean
+    routes: GlobbedRouteImports
+  }
 
 type InnerProps = {
   context: RequireContext
@@ -68,6 +64,10 @@ export function Root(props: RootProps) {
       <head>
         {import.meta.env.DEV ? <DevHead /> : null}
         <script>{`globalThis['global'] = globalThis`}</script>
+
+        {props.css?.map((file) => {
+          return <link key={file} rel="text/css" href={file} />
+        })}
       </head>
       <body>{contents}</body>
       {/* could this just be loaded via the same loader.js? as a preload? i think so... */}

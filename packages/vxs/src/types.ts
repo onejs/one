@@ -30,3 +30,13 @@ export type Options = {
   platformRoutes?: boolean
   platform?: string
 }
+
+export type RenderApp = (props: RenderAppProps) => Promise<string>
+
+export type RenderAppProps = {
+  path: string
+  preloads?: string[]
+  css?: string[]
+  loaderData?: any
+  loaderProps?: Object
+}
