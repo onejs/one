@@ -33,15 +33,21 @@ const disableOptimizationConfig = {
 export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) => {
   const options = await getOptionsFilled(optionsIn)
 
-  // lets always clean dist folder for now to be sure were correct
-  if (existsSync('dist')) {
-    await rm('dist', { recursive: true, force: true })
-  }
-
-  // lets always clean dist folder for now to be sure were correct
-  if (existsSync('node_modules/.vite')) {
-    await rm('node_modules/.vite', { recursive: true, force: true })
-  }
+  // clean
+  await Promise.all([
+    (async () => {
+      // lets always clean dist folder for now to be sure were correct
+      if (existsSync('dist')) {
+        await rm('dist', { recursive: true, force: true })
+      }
+    })(),
+    (async () => {
+      // lets always clean dist folder for now to be sure were correct
+      if (existsSync('node_modules/.vite')) {
+        await rm('node_modules/.vite', { recursive: true, force: true })
+      }
+    })(),
+  ])
 
   // TODO?
   process.env.NODE_ENV = 'production'
@@ -79,18 +85,24 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     let clientBuildConfig = mergeConfig(webBuildConfig, {
       plugins: [
         excludeAPIRoutesPlugin,
-        process.env.NODE_ENV === 'production'
-          ? analyzer({
-              analyzerMode: 'static',
-              fileName: '../report',
-            })
-          : null,
+        // if an error occurs (like can't find index.html, it seems to show an
+        // error saying can't find report here instead, so a bit confusing)
+        // process.env.NODE_ENV === 'production'
+        //   ? analyzer({
+        //       analyzerMode: 'static',
+        //       fileName: '../report',
+        //     })
+        //   : null,
       ],
 
       build: {
         ssrManifest: true,
         outDir: 'dist/client',
         manifest: true,
+
+        rollupOptions: {
+          input: ['./src/entry.tsx']
+        }
       },
     } satisfies UserConfig)
 
@@ -121,7 +133,7 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     build: {
       // we want one big file of css
       cssCodeSplit: false,
-      ssr: 'src/entry-server.tsx',
+      ssr: 'src/entry.tsx',
       outDir: 'dist/server',
       rollupOptions: {
         external: [],

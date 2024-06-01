@@ -3,8 +3,11 @@ import type { GlobbedRouteImports } from './types';
 import type { NavigationContainerProps } from '@react-navigation/native';
 import type { RequireContext } from './types';
 type RootProps = Omit<InnerProps, 'context'> & {
+    isClient?: boolean;
     routes: GlobbedRouteImports;
     path?: string;
+    loaderData?: any;
+    loaderProps?: Object;
 };
 type InnerProps = {
     context: RequireContext;
