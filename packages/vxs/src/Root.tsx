@@ -66,7 +66,7 @@ export function Root(props: RootProps) {
         <script>{`globalThis['global'] = globalThis`}</script>
 
         {props.css?.map((file) => {
-          return <link key={file} rel="text/css" href={file} />
+          return <link key={file} rel="stylesheet" href={file} />
         })}
       </head>
       <body>{contents}</body>
