@@ -4075,17 +4075,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/core@npm:1.99.1":
-  version: 1.99.1
-  resolution: "@tamagui/core@npm:1.99.1"
+"@tamagui/core@portal:/Users/n8/tamagui/packages/core::locator=vxrn-monorepo%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@tamagui/core@portal:/Users/n8/tamagui/packages/core::locator=vxrn-monorepo%40workspace%3A."
   dependencies:
     "@tamagui/react-native-use-pressable": 1.99.1
     "@tamagui/react-native-use-responder-events": 1.99.1
     "@tamagui/use-event": 1.99.1
     "@tamagui/web": 1.99.1
-  checksum: 73f01c9bba724519f9ec8bd8a1dd4e2bab6e97a59d5f409d3024bb2a79441f906dd0358fabef7c66ba65ff000b263fdc04ba27403ba7ec0f756169f3c952e807
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@tamagui/create-context@npm:1.99.1":
   version: 1.99.1
@@ -4973,9 +4972,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/web@npm:1.99.1":
-  version: 1.99.1
-  resolution: "@tamagui/web@npm:1.99.1"
+"@tamagui/web@portal:/Users/n8/tamagui/packages/web::locator=vxrn-monorepo%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@tamagui/web@portal:/Users/n8/tamagui/packages/web::locator=vxrn-monorepo%40workspace%3A."
   dependencies:
     "@tamagui/compose-refs": 1.99.1
     "@tamagui/constants": 1.99.1
@@ -4986,9 +4985,8 @@ __metadata:
     "@tamagui/use-did-finish-ssr": 1.99.1
     "@tamagui/use-event": 1.99.1
     "@tamagui/use-force-update": 1.99.1
-  checksum: e2b932b08fd5838861fb641dde16f124373f53c014c0f9707bedeb5fd9e51a707146c211ab801bab60a23a8c04e728956b6f5d76f40f9bbd427aaee25fbf77ef
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@types/babel__core@npm:^7.1.14, @types/babel__core@npm:^7.20.5":
   version: 7.20.5
@@ -8023,8 +8021,6 @@ __metadata:
     micromatch: ^4.0.7
     p-map: ^7.0.2
     patch-package: ^8.0.0
-    react: 19.0.0-rc-f994737d14-20240522
-    react-dom: 19.0.0-rc-f994737d14-20240522
     react-helmet-async: ^2.0.5
     react-native: 0.73.2
     react-native-reanimated: ~3.3.0
@@ -11912,17 +11908,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0-rc-f994737d14-20240522":
-  version: 19.0.0-rc-f994737d14-20240522
-  resolution: "react-dom@npm:19.0.0-rc-f994737d14-20240522"
-  dependencies:
-    scheduler: 0.25.0-rc-f994737d14-20240522
-  peerDependencies:
-    react: 19.0.0-rc-f994737d14-20240522
-  checksum: 6511038bf6492084eefaf5b519b1635ae57c791394cc520d1d7b6e04afbe7dbc06fb6405145effa9ddc176ec0f9edb3fa935e56d7c7b4091077a540f2ea83c2c
-  languageName: node
-  linkType: hard
-
 "react-fast-compare@npm:^3.2.2":
   version: 3.2.2
   resolution: "react-fast-compare@npm:3.2.2"
@@ -12701,13 +12686,6 @@ __metadata:
   dependencies:
     loose-envify: ^1.1.0
   checksum: 232149125c10f10193b1340ec4bbf14a8e6a845152790d6fd6f58207642db801abdb5a21227561a0a93871b98ba47539a6233b4e6155aae72d6db6db9f9f09b3
-  languageName: node
-  linkType: hard
-
-"scheduler@npm:0.25.0-rc-f994737d14-20240522":
-  version: 0.25.0-rc-f994737d14-20240522
-  resolution: "scheduler@npm:0.25.0-rc-f994737d14-20240522"
-  checksum: 7b5184eb84c8f75440eefd416ef1a7e41b96f3d4851ae8f1c83808848aec0178e7a598856c4e6b17ec19bd2b0723fecf5ff4c7c1b6d58a5df13407dac75149e4
   languageName: node
   linkType: hard
 

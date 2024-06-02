@@ -74,7 +74,7 @@ export function Root(props: RootProps) {
       <script
         async
         // @ts-ignore
-        href="loader-data"
+        href="vxs-loader-data"
       >
         {`
             globalThis['__vxrnLoaderData__'] = ${JSON.stringify(props.loaderData)};

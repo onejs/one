@@ -75,6 +75,7 @@ export async function build(props: AfterBuildProps) {
         appType: 'custom',
         plugins: [nodeExternals() as any],
         build: {
+          emptyOutDir: false,
           outDir: 'dist/api',
           copyPublicDir: false,
           minify: false,
