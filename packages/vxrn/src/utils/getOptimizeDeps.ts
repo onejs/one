@@ -66,7 +66,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'expo-modules-core',
     'expo-status-bar',
     'react-native-web',
-    'react-native-web-lite',
+    // 'react-native-web-lite',
     'react-native',
     '@floating-ui/react',
     '@floating-ui/react-dom',
@@ -101,7 +101,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@tamagui/web',
     'tamagui',
     'react-native-web',
-    'react-native-web-lite',
+    // 'react-native-web-lite',
     'reforest',
   ]
 
