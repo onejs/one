@@ -1,11 +1,4 @@
-import React, {
-  Fragment,
-  Suspense,
-  useEffect,
-  useMemo,
-  type FunctionComponent,
-  type ReactNode,
-} from 'react'
+import React, { Fragment, useEffect, useMemo, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 import Constants from './constants'
 import type { GlobbedRouteImports, RenderAppProps } from './types'
