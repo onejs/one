@@ -27,11 +27,12 @@
     }
   },
   "dependencies": {
-    "@swc/core": "^1.4.13"
+    "@swc/core": "^1.4.13",
+    "@vxrn/vite-native-client": "0.1.83"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.6.3",
-    "@tamagui/build": "^1.99.1",
+    "@tamagui/build": "^1.100.0",
     "react-native": "0.73.2"
   },
   "peerDependencies": {

@@ -16,6 +16,10 @@
       ],
       "outputs": [".next/**", "dist/**", "types/**"]
     },
+    "check": {
+      "cache": false,
+      "outputs": []
+    },
     "test": {
       "dependsOn": ["^build:js"],
       "outputs": []
@@ -32,6 +36,7 @@
       "outputs": []
     },
     "lint:fix": {
+      "cache": false,
       "outputs": ["src/**"]
     }
   }

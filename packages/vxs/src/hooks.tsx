@@ -1,9 +1,7 @@
 import { NavigationRouteContext } from '@react-navigation/native'
-import React, { type ReactNode, createContext, useContext, useEffect } from 'react'
-import { Freeze } from 'react-freeze'
+import React, { createContext, useContext, type ReactNode } from 'react'
 import { store, useStoreRootState, useStoreRouteInfo } from './global-state/router-store'
 import type { ExpoRouter } from './interfaces/router'
-import { enableFreeze } from 'react-native-screens'
 
 type SearchParams = Record<string, string | string[]>
 
