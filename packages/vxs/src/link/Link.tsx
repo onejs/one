@@ -136,7 +136,7 @@ function LinkInner(
       {...props}
       {...hrefAttrs}
       {...rest}
-      style={style}
+      style={asChild ? null : style}
       {...Platform.select({
         web: {
           onClick: onPress,

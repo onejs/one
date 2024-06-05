@@ -3,8 +3,12 @@ import { render } from './render'
 import { renderToString } from './server-render'
 import type { RenderAppProps } from './types'
 
-export function createApp(options: { routes: Record<string, () => Promise<unknown>> }) {
+export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
+
+export function createApp(options: CreateAppProps): void {
   if (import.meta.env.SSR) {
+    // @ts-expect-error
+    // biome-ignore lint/correctness/noVoidTypeReturn: <explanation>
     return {
       options,
       render: async (props: RenderAppProps) => {
