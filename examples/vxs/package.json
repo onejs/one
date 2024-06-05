@@ -15,16 +15,7 @@
     "postinstall": "patch-package || true"
   },
   "dependencies": {
-    "@react-navigation/native": "^6.1.7",
     "@tamagui/config": "^1.99.1",
-    "esbuild": "~0.19.3",
-    "expo-modules-core": "1.12.10",
-    "fast-glob": "^3.2.11",
-    "h3": "^1.11.1",
-    "hono": "^4.3.10",
-    "micromatch": "^4.0.7",
-    "p-map": "^7.0.2",
-    "react-helmet-async": "^2.0.5",
     "react-native": "0.73.2",
     "react-native-reanimated": "~3.3.0",
     "react-native-web": "^0.19.11",
@@ -32,9 +23,7 @@
     "vxs": "0.1.83"
   },
   "devDependencies": {
-    "@types/micromatch": "^4.0.7",
     "patch-package": "^8.0.0",
-    "sirv": "^2.0.4",
     "vxrn": "0.1.83"
   }
 }

@@ -1,10 +1,5 @@
-import type { RenderAppProps } from './types';
-export declare function createApp(options: {
+export type CreateAppProps = {
     routes: Record<string, () => Promise<unknown>>;
-}): {
-    options: {
-        routes: Record<string, () => Promise<unknown>>;
-    };
-    render: (props: RenderAppProps) => Promise<string>;
-} | undefined;
+};
+export declare function createApp(options: CreateAppProps): void;
 //# sourceMappingURL=createApp.d.ts.map
