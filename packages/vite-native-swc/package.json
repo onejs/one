@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-swc",
-  "version": "0.1.83",
+  "version": "0.1.84",
   "types": "./types/index.d.ts",
   "type": "module",
   "main": "dist/cjs",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@swc/core": "^1.4.13",
-    "@vxrn/vite-native-client": "0.1.83"
+    "@vxrn/vite-native-client": "0.1.84"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.6.3",
