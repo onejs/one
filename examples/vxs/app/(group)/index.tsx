@@ -1,7 +1,7 @@
-import { Head, Link, useLoader } from 'vxs'
-import { Text, View } from 'tamagui'
-import { useEffect } from 'react'
 import fs from 'node:fs'
+import { useEffect } from 'react'
+import { Text, View } from 'tamagui'
+import { Link, useLoader } from 'vxs'
 
 export async function loader() {
   // testing import shaking:

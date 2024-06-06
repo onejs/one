@@ -19,6 +19,16 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
         'react-native': 'react-native-web',
         'react-native-safe-area-context': '@vxrn/safe-area',
       },
+
+      // TODO auto dedupe all include optimize deps?
+      dedupe: [
+        'react',
+        'react-dom',
+        'react-dom/client',
+        'react-native-web',
+        '@tamagui/core',
+        '@tamagui/web',
+      ],
     },
 
     build: {
