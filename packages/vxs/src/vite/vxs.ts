@@ -1,11 +1,21 @@
-import { dirname, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import type { PluginOption } from 'vite'
 import { existsAsync } from '../utils/existsAsync'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter, type Options } from './createFileSystemRouter'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
+import { getOptimizeDeps } from 'vxrn'
 
 export function vxs(options: Options): PluginOption {
+  // build is superset for now
+  const { optimizeDeps } = getOptimizeDeps('build')
+  const optimizeIds = optimizeDeps.include
+  const optimizeIdRegex = new RegExp(
+    // santize ids for regex
+    // https://stackoverflow.com/questions/6300183/sanitize-string-of-regex-characters-before-regexp-build
+    `${optimizeIds.map((id) => id.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&')).join('|')}`
+  )
+
   return [
     // not working to watch various things...
     // {
@@ -30,22 +40,23 @@ export function vxs(options: Options): PluginOption {
 
     // {
     //   name: 'vxs-virtual-entry',
-    //   enforce: 'pre',
+    //   // enforce: 'pre',
     //   resolveId(id) {
     //     if (id === '/@vxs/entry') {
     //       return id
     //     }
     //   },
-    //   load(id, options) {
-    //     this.parse
+    //   load(id) {
+    //     const appDirGlob = `${join(process.cwd(), options.root)}/**/*.tsx`
+
     //     if (id === '/@vxs/entry') {
     //       return `
-    //         import { Root, render } from 'vxs'
-    //         import { createElement } from 'react'
-    //         setTimeout(() => {
-    //           const routes = globalThis['__vxrnApp'].routes
-    //           render(createElement(Root, { isClient: true, routes, path: window.location.pathname }))
-    //         }, 0)
+    //         import { createApp } from 'vxs'
+
+    //         // globbing ${appDirGlob}
+    //         createApp({
+    //           routes: import.meta.glob('${appDirGlob}'),
+    //         })
     //       `
     //     }
     //   },
@@ -55,19 +66,23 @@ export function vxs(options: Options): PluginOption {
       name: 'load-web-extensions',
       enforce: 'pre',
       async resolveId(id, importer = '') {
-        const absolutePath = resolve(dirname(importer), id)
-        const webPath = absolutePath.replace(/(.m?js)/, '') + '.web.js'
-        if (webPath === id) return
-        try {
-          const directoryPath = absolutePath + '/index.web.js'
-          if (await existsAsync(directoryPath)) {
-            return directoryPath
+        const shouldOptimize = optimizeIdRegex.test(importer)
+
+        if (shouldOptimize) {
+          const absolutePath = resolve(dirname(importer), id)
+          const webPath = absolutePath.replace(/(.m?js)/, '') + '.web.js'
+          if (webPath === id) return
+          try {
+            const directoryPath = absolutePath + '/index.web.js'
+            if (await existsAsync(directoryPath)) {
+              return directoryPath
+            }
+            if (await existsAsync(webPath)) {
+              return webPath
+            }
+          } catch (err) {
+            console.warn(`error probably fine`, err)
           }
-          if (await existsAsync(webPath)) {
-            return webPath
-          }
-        } catch (err) {
-          console.warn(`error probably fine`, err)
         }
       },
     },

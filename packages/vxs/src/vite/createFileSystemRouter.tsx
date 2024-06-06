@@ -56,7 +56,12 @@ export function createFileSystemRouter(options: Options): Plugin {
               loaderData,
               loaderProps,
               path: loaderProps?.path,
-              preloads: ['/@vite/client', './src/entry.tsx', '/@vxs/entry'],
+              preloads: [
+                '/@vite/client',
+                // once we get vxs-virtual-entry working can comment out this and uncomment the next
+                './src/entry.tsx',
+                // '/@vxs/entry',
+              ],
             })
 
             return html
