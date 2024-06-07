@@ -14882,8 +14882,8 @@ __metadata:
     magic-string: ^0.30.10
     micromatch: ^4.0.7
     nanoid: ^3.3.7
-    react: ^19.0.0-rc-f994737d14-20240522
-    react-dom: ^19.0.0-rc-f994737d14-20240522
+    react: 19.0.0-rc-f994737d14-20240522
+    react-dom: 19.0.0-rc-f994737d14-20240522
     react-native: 0.73.2
     react-native-safe-area-context: 4.6.3
     react-native-screens: 3.22.1
@@ -14895,6 +14895,7 @@ __metadata:
     vxrn: 0.1.84
   peerDependencies:
     react: "*"
+    react-dom: "*"
     react-native: "*"
   languageName: unknown
   linkType: soft
