@@ -96,6 +96,13 @@ export function createHandleRequest(
           })
         }
 
+        if (import.meta.env.DEV) {
+          console.error(`No matching route found!`, {
+            originalUrl,
+            htmlRoutes: manifest.htmlRoutes,
+          })
+        }
+
         // error no match!
 
         return Response.error()
