@@ -27,9 +27,7 @@ export default {
     },
 
     plugins: [
-      vxs({
-        root: 'app',
-      }),
+      vxs(),
       // tamaguiPlugin(),
       // tamaguiExtractPlugin(),
     ],

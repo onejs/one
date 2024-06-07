@@ -1,12 +1,19 @@
-import { dirname, join, resolve } from 'node:path'
+import { dirname, resolve } from 'node:path'
 import type { PluginOption } from 'vite'
+import { getOptimizeDeps } from 'vxrn'
 import { existsAsync } from '../utils/existsAsync'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter, type Options } from './createFileSystemRouter'
+import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
-import { getOptimizeDeps } from 'vxrn'
 
-export function vxs(options: Options): PluginOption {
+export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
+  // hardcoding app
+  const options = {
+    ...options_,
+    root: 'app',
+  }
+
   // build is superset for now
   const { optimizeDeps } = getOptimizeDeps('build')
   const optimizeIds = optimizeDeps.include
@@ -38,29 +45,7 @@ export function vxs(options: Options): PluginOption {
     //   },
     // },
 
-    // {
-    //   name: 'vxs-virtual-entry',
-    //   // enforce: 'pre',
-    //   resolveId(id) {
-    //     if (id === '/@vxs/entry') {
-    //       return id
-    //     }
-    //   },
-    //   load(id) {
-    //     const appDirGlob = `${join(process.cwd(), options.root)}/**/*.tsx`
-
-    //     if (id === '/@vxs/entry') {
-    //       return `
-    //         import { createApp } from 'vxs'
-
-    //         // globbing ${appDirGlob}
-    //         createApp({
-    //           routes: import.meta.glob('${appDirGlob}'),
-    //         })
-    //       `
-    //     }
-    //   },
-    // },
+    createVirtualEntry(options),
 
     {
       name: 'load-web-extensions',
@@ -90,7 +75,7 @@ export function vxs(options: Options): PluginOption {
     createFileSystemRouter(options),
     clientTreeShakePlugin(),
     vitePluginSsrCss({
-      entries: ['/src/entry'],
+      entries: [virtualEntryId],
     }),
   ]
 }

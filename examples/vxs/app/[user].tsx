@@ -1,5 +1,5 @@
+import { Text, View } from 'tamagui'
 import { Link, useGlobalSearchParams, useLoader } from 'vxs'
-import { Separator, Text, View } from 'tamagui'
 
 type UserPath = {
   user: string

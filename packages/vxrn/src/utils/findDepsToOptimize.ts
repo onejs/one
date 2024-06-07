@@ -4,13 +4,13 @@ import fs from 'node:fs/promises'
 import fsSync from 'node:fs'
 import path from 'node:path'
 
-let pnp
-if (process.versions.pnp) {
-  try {
-    const { createRequire } = (await import('node:module')).default
-    pnp = createRequire(import.meta.url)('pnpapi')
-  } catch {}
-}
+// let pnp
+// if (process.versions.pnp) {
+//   try {
+//     const { createRequire } = (await import('node:module')).default
+//     pnp = createRequire(import.meta.url)('pnpapi')
+//   } catch {}
+// }
 
 export { isDepIncluded, isDepExcluded, isDepNoExternaled, isDepExternaled }
 
@@ -180,15 +180,15 @@ export async function crawlFrameworkPkgs(options) {
 }
 
 export async function findDepPkgJsonPath(dep, parent) {
-  if (pnp) {
-    try {
-      const depRoot = pnp.resolveToUnqualified(dep, parent)
-      if (!depRoot) return
-      return path.join(depRoot, 'package.json')
-    } catch {
-      return
-    }
-  }
+  // if (pnp) {
+  //   try {
+  //     const depRoot = pnp.resolveToUnqualified(dep, parent)
+  //     if (!depRoot) return
+  //     return path.join(depRoot, 'package.json')
+  //   } catch {
+  //     return
+  //   }
+  // }
 
   let root = parent
   while (root) {

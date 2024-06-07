@@ -101,7 +101,7 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
         manifest: true,
 
         rollupOptions: {
-          input: ['./src/entry.tsx'],
+          input: ['virtual:vxs-entry'],
         },
       },
     } satisfies UserConfig)
@@ -133,10 +133,11 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     build: {
       // we want one big file of css
       cssCodeSplit: false,
-      ssr: 'src/entry.tsx',
+      ssr: true,
       outDir: 'dist/server',
       rollupOptions: {
         external: [],
+        input: ['virtual:vxs-entry'],
       },
     },
   } satisfies UserConfig)
