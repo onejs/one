@@ -5485,16 +5485,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prompts@npm:^2.4.9":
-  version: 2.4.9
-  resolution: "@types/prompts@npm:2.4.9"
-  dependencies:
-    "@types/node": "*"
-    kleur: ^3.0.3
-  checksum: 69b8372f4c790b45fea16a46ff8d1bcc71b14579481776b67bd6263637118a7ecb1f12e1311506c29fadc81bf618dc64f1a91f903cfd5be67a0455a227b3e462
-  languageName: node
-  linkType: hard
-
 "@types/prop-types@npm:*":
   version: 15.7.12
   resolution: "@types/prop-types@npm:15.7.12"
@@ -7301,7 +7291,6 @@ __metadata:
   dependencies:
     "@expo/package-manager": ^1.1.2
     "@tamagui/build": ^1.100.0
-    "@types/prompts": ^2.4.9
     "@types/validate-npm-package-name": ^4.0.2
     ansis: ^3.1.0
     async-retry: 1.3.1

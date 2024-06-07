@@ -139,7 +139,7 @@ export function getPathDataFromState<ParamList extends object>(
   }
 
   return getPathFromResolvedState(
-    JSON.parse(JSON.stringify(state)),
+    state,
     // Create a normalized configs object which will be easier to use
     createNormalizedConfigs(options.screens),
     { preserveGroups, preserveDynamicRoutes }
@@ -243,9 +243,11 @@ function walkConfigItems(
       }
 
       const params = processParamsWithUserSettings(configItem, route.params)
+
       if (pattern !== undefined && pattern !== null) {
         Object.assign(collectedParams, params)
       }
+
       if (deepEqual(focusedRoute, route)) {
         if (preserveDynamicRoutes) {
           focusedParams = params
@@ -400,7 +402,12 @@ function getPathFromResolvedState(
       // Finished crawling state.
 
       // Check for query params before exiting.
-      if (focusedParams) {
+      if (
+        focusedParams &&
+        // note: using [...route] is returning an array which shouldn't go on search, this is just
+        // an initial hacky test to work around this as we dont want to pass that to search
+        !Array.isArray(focusedParams)
+      ) {
         for (const param in focusedParams) {
           // TODO: This is not good. We shouldn't squat strings named "undefined".
           if (focusedParams[param] === 'undefined') {

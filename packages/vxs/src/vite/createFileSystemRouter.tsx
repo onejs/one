@@ -72,6 +72,7 @@ export function createFileSystemRouter(options: Options): Plugin {
 
         async handleLoader({ request, route, loaderProps }) {
           const routeFile = join(root, route.file)
+
           // this will remove all loaders
           let transformedJS = (await server.transformRequest(routeFile))?.code
           if (!transformedJS) {
