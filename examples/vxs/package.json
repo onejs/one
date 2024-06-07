@@ -20,10 +20,10 @@
     "react-native-reanimated": "~3.3.0",
     "react-native-web": "^0.19.11",
     "tamagui": "^1.100.0",
-    "vxs": "0.1.84"
+    "vxs": "0.1.85"
   },
   "devDependencies": {
     "patch-package": "^8.0.0",
-    "vxrn": "0.1.84"
+    "vxrn": "0.1.85"
   }
 }
