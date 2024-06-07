@@ -5,6 +5,7 @@ export declare function getOptionsFilled(options: VXRNConfig, internal?: {
 }): Promise<{
     entries: {
         native: string;
+        web?: string | undefined;
         server: string;
     };
     packageJSON: import("pkg-types").PackageJson;

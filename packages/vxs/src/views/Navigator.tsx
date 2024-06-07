@@ -143,11 +143,11 @@ export function QualifiedSlot() {
 
 export function DefaultNavigator() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Navigator>
-        <QualifiedSlot />
-      </Navigator>
-    </SafeAreaView>
+    // <SafeAreaView style={{ flex: 1 }}>
+    <Navigator>
+      <QualifiedSlot />
+    </Navigator>
+    // </SafeAreaView>
   )
 }
 

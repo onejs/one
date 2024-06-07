@@ -35,8 +35,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
       return
     }
     const loadRouteFunction = paths[path]
-    // TODO this is a temp fix for matching webpack style routes:
-    const pathWithoutRelative = path.replace('../app/', './')
+    const pathWithoutRelative = path.replace('/app/', './')
     const shouldRewrite = typeof window !== 'undefined' && !import.meta.env.PROD
 
     if (shouldRewrite) {

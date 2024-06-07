@@ -31,15 +31,14 @@ export type ClientManifestEntry = {
 
 export type VXRNConfig = {
   /**
-   * The entry points to your app. For web, it uses your `root` and looks for an index.html
+   * The entry points to your app. For web, it defaults to using your `root` to look for an index.html
    *
    * Defaults:
    *   native: ./src/entry-native.tsx
-   *   server: ./src/entry-server.tsx
    */
   entries?: {
     native?: string
-    server?: string
+    web?: string
   }
   root?: string
   host?: string

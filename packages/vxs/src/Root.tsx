@@ -12,6 +12,7 @@ import { ServerLocationContext } from './global-state/serverLocationContext'
 import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 type RootProps = RenderAppProps &
   Omit<InnerProps, 'context'> & {

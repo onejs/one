@@ -6,6 +6,7 @@ import { LoaderDataCache } from './constants'
 import { loadEnv } from './loadEnv'
 import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
+import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 
 export type Options = {
   root: string
@@ -47,7 +48,7 @@ export function createFileSystemRouter(options: Options): Plugin {
             // biome-ignore lint/security/noGlobalEval: <explanation>
             eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
-            const entry = await runner.import(`${root}/../src/entry.tsx`)
+            const entry = await runner.import(virtualEntryId)
 
             globalThis['__vxrnLoaderData__'] = loaderData
             LoaderDataCache[route.file] = loaderData
@@ -56,12 +57,7 @@ export function createFileSystemRouter(options: Options): Plugin {
               loaderData,
               loaderProps,
               path: loaderProps?.path,
-              preloads: [
-                '/@vite/client',
-                // once we get vxs-virtual-entry working can comment out this and uncomment the next
-                './src/entry.tsx',
-                // '/@vxs/entry',
-              ],
+              preloads: ['/@vite/client', virtalEntryIdClient],
             })
 
             return html

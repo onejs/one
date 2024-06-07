@@ -133,7 +133,7 @@ export async function build(props: AfterBuildProps) {
   const cssString = await readFile(tmpCssFile, 'utf-8')
 
   console.info(`\n 🔨 build static routes\n`)
-  const entryServer = `${options.root}/dist/server/entry.js`
+  const entryServer = `${options.root}/dist/server/_virtual_vxs-entry.js`
   const render = (await import(entryServer)).default.render as RenderApp
 
   const staticDir = join(`dist/static`)
