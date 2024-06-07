@@ -1,6 +1,6 @@
 {
   "name": "vxs",
-  "version": "0.1.85",
+  "version": "0.1.86",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -80,7 +80,7 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.17",
-    "vxrn": "0.1.85"
+    "vxrn": "0.1.86"
   },
   "peerDependencies": {
     "react": "*",
