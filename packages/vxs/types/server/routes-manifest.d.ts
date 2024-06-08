@@ -1,11 +1,12 @@
 import { type Options } from '../getRoutes';
+import type { RouteNode } from '../Route';
 export { type Options } from '../getRoutes';
 export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;
     namedRegex: TRegex;
     routeKeys: Record<string, string>;
-    layouts?: string[];
+    layouts?: RouteNode[];
 };
 export type ExpoRoutesManifestV1<TRegex = string> = {
     apiRoutes: RouteInfo<TRegex>[];

@@ -3,6 +3,7 @@
 import { type Options, getRoutes } from '../getRoutes'
 import { getServerManifest } from './getServerManifest'
 import type { RequireContext } from '../types'
+import type { RouteNode } from '../Route'
 
 export { type Options } from '../getRoutes'
 
@@ -11,7 +12,7 @@ export type RouteInfo<TRegex = string> = {
   page: string
   namedRegex: TRegex
   routeKeys: Record<string, string>
-  layouts?: string[]
+  layouts?: RouteNode[]
 }
 
 export type ExpoRoutesManifestV1<TRegex = string> = {
@@ -42,6 +43,7 @@ export function createRoutesManifest(
     ignoreEntryPoints: true,
     platform: 'web',
   })
+
   if (!routeTree) {
     throw new Error(`No route tree found`)
   }

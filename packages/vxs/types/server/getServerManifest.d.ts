@@ -14,7 +14,7 @@ export type ExpoRouterServerManifestV1Route<TRegex = string> = {
     routeKeys: Record<string, string>;
     namedRegex: TRegex;
     generated?: boolean;
-    layouts?: string[];
+    layouts?: RouteNode[];
 };
 export type ExpoRouterServerManifestV1<TRegex = string> = {
     apiRoutes: ExpoRouterServerManifestV1Route<TRegex>[];
