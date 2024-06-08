@@ -1,12 +1,12 @@
 import * as React from 'react';
-import type { ExpoRouter } from '../interfaces/router';
+import type { VXSRouter } from '../interfaces/router';
 import { resolveHref } from './href';
 /** Redirects to the href as soon as the component is mounted. */
 export declare function Redirect({ href }: {
-    href: ExpoRouter.Href;
+    href: VXSRouter.Href;
 }): null;
 export interface LinkComponent {
-    (props: React.PropsWithChildren<ExpoRouter.LinkProps>): JSX.Element;
+    (props: React.PropsWithChildren<VXSRouter.LinkProps>): JSX.Element;
     /** Helper method to resolve an Href object into a string. */
     resolveHref: typeof resolveHref;
 }

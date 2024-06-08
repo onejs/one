@@ -1,2 +1,2 @@
-export declare function getStaticUrlFromExpoRouter(pathname: string): string;
+export declare function getStaticUrlFromVXSRouter(pathname: string): string;
 //# sourceMappingURL=url.d.ts.map

@@ -5,13 +5,13 @@ import * as React from 'react'
 import { Platform, Text, type GestureResponderEvent, type TextProps } from 'react-native'
 
 import { useRouter } from '../hooks'
-import type { ExpoRouter } from '../interfaces/router'
+import type { VXSRouter } from '../interfaces/router'
 import { useFocusEffect } from '../useFocusEffect'
 import { resolveHref } from './href'
 import useLinkToPathProps from './useLinkToPathProps'
 
 /** Redirects to the href as soon as the component is mounted. */
-export function Redirect({ href }: { href: ExpoRouter.Href }) {
+export function Redirect({ href }: { href: VXSRouter.Href }) {
   const router = useRouter()
   useFocusEffect(() => {
     try {
@@ -24,7 +24,7 @@ export function Redirect({ href }: { href: ExpoRouter.Href }) {
 }
 
 export interface LinkComponent {
-  (props: React.PropsWithChildren<ExpoRouter.LinkProps>): JSX.Element
+  (props: React.PropsWithChildren<VXSRouter.LinkProps>): JSX.Element
   /** Helper method to resolve an Href object into a string. */
   resolveHref: typeof resolveHref
 }
@@ -68,9 +68,9 @@ function useInteropClassName(props: { style?: TextProps['style']; className?: st
 }
 
 const useHrefAttrs = Platform.select<
-  (props: Partial<ExpoRouter.LinkProps>) => { hrefAttrs?: any } & Partial<ExpoRouter.LinkProps>
+  (props: Partial<VXSRouter.LinkProps>) => { hrefAttrs?: any } & Partial<VXSRouter.LinkProps>
 >({
-  web: function useHrefAttrs({ asChild, rel, target, download }: Partial<ExpoRouter.LinkProps>) {
+  web: function useHrefAttrs({ asChild, rel, target, download }: Partial<VXSRouter.LinkProps>) {
     return React.useMemo(() => {
       const hrefAttrs = {
         rel,
@@ -101,7 +101,7 @@ function LinkInner(
     target,
     download,
     ...rest
-  }: ExpoRouter.LinkProps,
+  }: VXSRouter.LinkProps,
   ref: React.ForwardedRef<Text>
 ) {
   // Mutate the style prop to add the className on web.

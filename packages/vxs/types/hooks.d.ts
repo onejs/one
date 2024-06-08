@@ -1,5 +1,5 @@
 import React, { type ReactNode } from 'react';
-import type { ExpoRouter } from './interfaces/router';
+import type { VXSRouter } from './interfaces/router';
 type SearchParams = Record<string, string | string[]>;
 export declare function useRootNavigationState(): import("./fork/getStateFromPath").ResultState;
 export declare function useRouteInfo(): import("./LocationProvider").UrlObject;
@@ -11,7 +11,7 @@ export declare function Frozen({ on, children }: {
     on?: boolean;
     children: ReactNode;
 }): string | number | boolean | Iterable<React.ReactNode> | import("react/jsx-runtime").JSX.Element | null | undefined;
-export declare function useRouter(): ExpoRouter.Router;
+export declare function useRouter(): VXSRouter.Router;
 /**
  * @private
  * @returns the current global pathname with query params attached. This may change in the future to include the hostname from a predefined universal link, i.e. `/foobar?hey=world` becomes `https://acme.dev/foobar?hey=world`

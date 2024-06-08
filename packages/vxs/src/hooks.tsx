@@ -1,7 +1,7 @@
 import { NavigationRouteContext } from '@react-navigation/native'
 import React, { createContext, useContext, type ReactNode } from 'react'
 import { store, useStoreRootState, useStoreRouteInfo } from './global-state/router-store'
-import type { ExpoRouter } from './interfaces/router'
+import type { VXSRouter } from './interfaces/router'
 
 type SearchParams = Record<string, string | string[]>
 
@@ -52,38 +52,21 @@ export function Frozen({ on = false, children }: { on?: boolean; children: React
   )
 }
 
-export function useRouter(): ExpoRouter.Router {
-  const isFrozen = useContext(FrozeContext)
+const publicRouterInterface = {
+  push: store.push,
+  dismiss: store.dismiss,
+  dismissAll: store.dismissAll,
+  canDismiss: store.canDismiss,
+  back: store.goBack,
+  replace: store.replace,
+  // TODO type mis-match
+  setParams: store.setParams as any,
+  canGoBack: store.canGoBack,
+  navigate: store.navigate,
+}
 
-  // @ts-ignore TODO
-  return React.useMemo(
-    () =>
-      isFrozen
-        ? {
-            push: emptyFn,
-            dismiss: emptyFn,
-            dismissAll: emptyFn,
-            canDismiss: emptyFn,
-            back: emptyFn,
-            replace: emptyFn,
-            setParams: emptyFn,
-            canGoBack: () => false,
-            navigate: emptyFn,
-          }
-        : {
-            push: store.push,
-            dismiss: store.dismiss,
-            dismissAll: store.dismissAll,
-            canDismiss: store.canDismiss,
-            back: store.goBack,
-            replace: store.replace,
-            setParams: store.setParams,
-            canGoBack: store.canGoBack,
-            navigate: store.navigate,
-            // TODO(EvanBacon): add `reload`
-          },
-    [isFrozen]
-  )
+export function useRouter(): VXSRouter.Router {
+  return publicRouterInterface
 }
 
 const emptyFn = () => {}

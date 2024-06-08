@@ -1,16 +1,13 @@
 import type { ReactNode } from 'react';
 import type { TextProps, GestureResponderEvent } from 'react-native';
-export declare namespace ExpoRouter {
+export declare namespace VXSRouter {
     type StaticRoutes = string;
     type DynamicRouteTemplate = never;
     export type RelativePathString = `./${string}` | `../${string}` | '..';
     export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;
     export type ExternalPathString = `${string}:${string}`;
-    export type ExpoRouterRoutes = DynamicRouteTemplate | StaticRoutes | RelativePathString;
-    export type AllRoutes = ExpoRouterRoutes | ExternalPathString;
-    /****************
-     * Route Utils  *
-     ****************/
+    export type VXSRouterRoutes = DynamicRouteTemplate | StaticRoutes | RelativePathString;
+    export type AllRoutes = VXSRouterRoutes | ExternalPathString;
     type SearchOrHash = `?${string}` | `#${string}`;
     export type UnknownInputParams = Record<string, string | number | undefined | null | (string | number)[]>;
     type UnknownOutputParams = Record<string, string | string[]>;

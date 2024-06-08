@@ -12,7 +12,7 @@ import { getContextKey, matchGroupName } from '../matchers'
 import { sortRoutes } from '../sortRoutes'
 
 // TODO: Share these types across cli, server, router, etc.
-export type ExpoRouterServerManifestV1Route<TRegex = string> = {
+export type VXSRouterServerManifestV1Route<TRegex = string> = {
   file: string
   page: string
   routeKeys: Record<string, string>
@@ -21,10 +21,10 @@ export type ExpoRouterServerManifestV1Route<TRegex = string> = {
   layouts?: RouteNode[]
 }
 
-export type ExpoRouterServerManifestV1<TRegex = string> = {
-  apiRoutes: ExpoRouterServerManifestV1Route<TRegex>[]
-  htmlRoutes: ExpoRouterServerManifestV1Route<TRegex>[]
-  notFoundRoutes: ExpoRouterServerManifestV1Route<TRegex>[]
+export type VXSRouterServerManifestV1<TRegex = string> = {
+  apiRoutes: VXSRouterServerManifestV1Route<TRegex>[]
+  htmlRoutes: VXSRouterServerManifestV1Route<TRegex>[]
+  notFoundRoutes: VXSRouterServerManifestV1Route<TRegex>[]
 }
 
 export interface Group {
@@ -55,7 +55,7 @@ function uniqueBy<T>(arr: T[], key: (item: T) => string): T[] {
 }
 
 // Given a nested route tree, return a flattened array of all routes that can be matched.
-export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 {
+export function getServerManifest(route: RouteNode): VXSRouterServerManifestV1 {
   function getFlatNodes(route: RouteNode, layouts?: RouteNode[]): [string, RouteNode][] {
     if (route.children.length) {
       return route.children.flatMap((child) => {
@@ -115,9 +115,9 @@ export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 
 
 function getMatchableManifestForPaths(
   paths: [string, RouteNode][]
-): ExpoRouterServerManifestV1Route[] {
+): VXSRouterServerManifestV1Route[] {
   return paths.map((normalizedRoutePath) => {
-    const matcher: ExpoRouterServerManifestV1Route = getNamedRouteRegex(
+    const matcher: VXSRouterServerManifestV1Route = getNamedRouteRegex(
       normalizedRoutePath[0],
       getContextKey(normalizedRoutePath[1].route),
       normalizedRoutePath[1].contextKey,
@@ -135,7 +135,7 @@ function getNamedRouteRegex(
   page: string,
   file: string,
   layouts?: RouteNode[]
-): ExpoRouterServerManifestV1Route {
+): VXSRouterServerManifestV1Route {
   const result = getNamedParametrizedRoute(normalizedRoute)
   return {
     file,

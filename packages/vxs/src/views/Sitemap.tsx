@@ -4,7 +4,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 // import { Platform, ScrollView, StatusBar, useWindowDimensions } from 'react-native'
 // import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-// import { useExpoRouter } from '../global-state/router-store'
+// import { useVXSRouter } from '../global-state/router-store'
 // import { router } from '../imperative-api'
 // import { Link } from '../link/Link'
 // import { matchDeepDynamicRouteName } from '../matchers'
@@ -67,7 +67,7 @@ export function Sitemap() {
   // }
 
   // function FileSystemView() {
-  //   const routes = useExpoRouter().getSortedRoutes()
+  //   const routes = useVXSRouter().getSortedRoutes()
 
   //   return (
   //     <>

@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { type BottomTabNavigationEventMap, type BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native';
-import type { ExpoRouter } from '../interfaces/router';
+import type { VXSRouter } from '../interfaces/router';
 export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/routers").DefaultRouterOptions<string> & {
     id?: string | undefined;
     children: import("react").ReactNode;
@@ -148,7 +148,7 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<i
         unmountOnBlur?: boolean | undefined;
         freezeOnBlur?: boolean | undefined;
     } & {
-        href?: ExpoRouter.Href | null | undefined;
+        href?: VXSRouter.Href | null | undefined;
     }, TabNavigationState<ParamListBase>, BottomTabNavigationEventMap>) => null;
 };
 export default Tabs;

@@ -1,7 +1,7 @@
 import { useNavigation, type NavigationProp, type NavigationState } from '@react-navigation/native'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { useExpoRouter } from '../global-state/router-store'
+import { useVXSRouter } from '../global-state/router-store'
 
 type GenericNavigation = NavigationProp<ReactNavigation.RootParamList> & {
   getState(): NavigationState | undefined
@@ -9,7 +9,7 @@ type GenericNavigation = NavigationProp<ReactNavigation.RootParamList> & {
 
 /** Returns a callback which is invoked when the navigation state has loaded. */
 export function useLoadedNavigation() {
-  const { navigationRef } = useExpoRouter()
+  const { navigationRef } = useVXSRouter()
   const navigation = useNavigation()
   const isMounted = useRef(true)
   const pending = useRef<((navigation: GenericNavigation) => void)[]>([])

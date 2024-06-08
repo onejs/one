@@ -1,7 +1,7 @@
 import { store } from './global-state/router-store'
-import type { ExpoRouter } from './interfaces/router'
+import type { VXSRouter } from './interfaces/router'
 
-export const router: ExpoRouter.Router = {
+export const router: VXSRouter.Router = {
   navigate: (href) => store.navigate(href),
   push: (href) => store.push(href),
   dismiss: (count) => store.dismiss(count),

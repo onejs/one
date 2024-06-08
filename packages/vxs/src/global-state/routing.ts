@@ -3,7 +3,7 @@ import * as Linking from 'expo-linking'
 import { nanoid } from 'nanoid/non-secure'
 import { startTransition } from 'react'
 import type { ResultState } from '../fork/getStateFromPath'
-import type { ExpoRouter } from '../interfaces/router'
+import type { VXSRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
 import { resolve } from '../link/path'
 import { matchDynamicName } from '../matchers'
@@ -19,11 +19,11 @@ function assertIsReady(store: RouterStore) {
   }
 }
 
-export function navigate(this: RouterStore, url: ExpoRouter.Href) {
+export function navigate(this: RouterStore, url: VXSRouter.Href) {
   return this.linkTo(resolveHref(url), 'NAVIGATE')
 }
 
-export function push(this: RouterStore, url: ExpoRouter.Href) {
+export function push(this: RouterStore, url: VXSRouter.Href) {
   return this.linkTo(resolveHref(url), 'PUSH')
 }
 
@@ -31,7 +31,7 @@ export function dismiss(this: RouterStore, count?: number) {
   this.navigationRef?.dispatch(StackActions.pop(count))
 }
 
-export function replace(this: RouterStore, url: ExpoRouter.Href) {
+export function replace(this: RouterStore, url: VXSRouter.Href) {
   return this.linkTo(resolveHref(url), 'REPLACE')
 }
 
@@ -175,10 +175,40 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
   const action = getNavigateAction(state, rootState, event)
 
   startTransition(() => {
+    const current = navigationRef.getCurrentRoute()
+
+    // loading state
+    send('start')
     navigationRef.dispatch(action)
+    let warningTm
+    const interval = setInterval(() => {
+      const next = navigationRef.getCurrentRoute()
+      if (current !== next) {
+        send('finish')
+      }
+      clearTimeout(warningTm)
+      clearTimeout(interval)
+    }, 16)
+    if (process.env.NODE_ENV === 'development') {
+      warningTm = setTimeout(() => {
+        console.warn(`Routing took more than 8 seconds`)
+      }, 1000)
+    }
   })
 
   return
+}
+
+function send(event: 'start' | 'finish') {
+  listners.forEach((l) => l(event))
+}
+
+const listners = new Set<Function>()
+export function onLoadingState(l: Function) {
+  listners.add(l)
+  return () => {
+    listners.delete(l)
+  }
 }
 
 function getNavigateAction(
