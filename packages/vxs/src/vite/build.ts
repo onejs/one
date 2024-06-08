@@ -194,9 +194,12 @@ export async function build(props: AfterBuildProps) {
     })
 
     if (!htmlRoute) {
-      console.error(` No html route found!`, { id, clientManifestKey })
-      console.error(` In manifest`, manifest.htmlRoutes)
-      process.exit(1)
+      if (clientManifestKey.startsWith('app')) {
+        console.error(` No html route found!`, { id, clientManifestKey })
+        console.error(` In manifest`, manifest.htmlRoutes)
+        process.exit(1)
+      }
+      continue
     }
 
     function collectImports(
