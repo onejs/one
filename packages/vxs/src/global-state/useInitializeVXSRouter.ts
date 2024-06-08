@@ -4,7 +4,7 @@ import { store } from './router-store'
 
 let initialize
 
-export function useInitializeExpoRouter(context: RequireContext, initialLocation: URL | undefined) {
+export function useInitializeVXSRouter(context: RequireContext, initialLocation: URL | undefined) {
   const navigationRef = useNavigationContainerRef()
 
   if (!initialize) {

@@ -2,7 +2,7 @@ import type * as React from 'react'
 import { Platform, type GestureResponderEvent } from 'react-native'
 
 import { appendBaseUrl } from '../fork/getPathFromState'
-import { useExpoRouter } from '../global-state/router-store'
+import { useVXSRouter } from '../global-state/router-store'
 import { stripGroupSegmentsFromPath } from '../matchers'
 
 function eventShouldPreventDefault(
@@ -30,7 +30,7 @@ function eventShouldPreventDefault(
 }
 
 export default function useLinkToPathProps(props: { href: string; event?: string }) {
-  const { linkTo } = useExpoRouter()
+  const { linkTo } = useVXSRouter()
 
   const onPress = (e?: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => {
     let shouldHandle = false

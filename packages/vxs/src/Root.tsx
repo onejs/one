@@ -9,7 +9,7 @@ import type { NavigationAction, NavigationContainerProps } from '@react-navigati
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { preloadRoute } from './global-state/routing'
 import { ServerLocationContext } from './global-state/serverLocationContext'
-import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
+import { useInitializeVXSRouter } from './global-state/useInitializeVXSRouter'
 import type { RequireContext } from './types'
 import { SplashScreen } from './views/Splash'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
@@ -174,7 +174,7 @@ function ContextNavigator({
   location: initialLocation = initialUrl,
   navigationContainerProps,
 }: InnerProps) {
-  const store = useInitializeExpoRouter(context, initialLocation)
+  const store = useInitializeVXSRouter(context, initialLocation)
 
   const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
 

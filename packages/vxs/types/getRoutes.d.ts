@@ -7,7 +7,7 @@ export type Options = {
     ignoreEntryPoints?: boolean;
     internal_stripLoadRoute?: boolean;
     skipGenerated?: boolean;
-    importMode?: string;
+    importMode?: 'sync';
     platformRoutes?: boolean;
     platform?: string;
 };

@@ -18,7 +18,7 @@ export type Options = {
   internal_stripLoadRoute?: boolean
   /* Used to simplify by skipping the generated routes */
   skipGenerated?: boolean
-  importMode?: string
+  importMode?: 'sync'
   platformRoutes?: boolean
   platform?: string
 }

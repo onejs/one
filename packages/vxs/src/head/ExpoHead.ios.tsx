@@ -2,7 +2,7 @@ import { useIsFocused } from '@react-navigation/core'
 import React from 'react'
 
 import { ExpoHead, type UserActivity } from './ExpoHeadModule'
-import { getStaticUrlFromExpoRouter } from './url'
+import { getStaticUrlFromVXSRouter } from './url'
 import { useLocalSearchParams, useUnstableGlobalHref, usePathname, useSegments } from '../hooks'
 
 function urlToId(url: string) {
@@ -20,7 +20,7 @@ function getLastSegment(path: string) {
 function useAddressableLink() {
   const pathname = useUnstableGlobalHref()
   const params = useLocalSearchParams<any>()
-  const url = getStaticUrlFromExpoRouter(pathname)
+  const url = getStaticUrlFromVXSRouter(pathname)
   return { url, pathname, params }
 }
 
@@ -91,7 +91,7 @@ function useActivityFromMetaChildren(meta: MetaNode[]) {
     if (urlMeta) {
       // Support =`/foo/bar` -> `https://example.com/foo/bar`
       if (urlMeta.props.content?.startsWith('/')) {
-        return getStaticUrlFromExpoRouter(urlMeta.props.content)
+        return getStaticUrlFromVXSRouter(urlMeta.props.content)
       }
       return urlMeta.props.content
     }

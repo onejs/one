@@ -8,7 +8,7 @@ import type { RequireContext } from '../types';
 /**
  * This is the global state for the router. It is used to keep track of the current route, and to provide a way to navigate to other routes.
  *
- * There should only be one instance of this class and be initialized via `useInitializeExpoRouter`
+ * There should only be one instance of this class and be initialized via `useInitializeVXSRouter`
  */
 export declare class RouterStore {
     routeNode: RouteNode | null;
@@ -28,13 +28,13 @@ export declare class RouterStore {
     getSortedRoutes: () => RouteNode[];
     goBack: () => void;
     canGoBack: () => boolean;
-    push: (url: import("../interfaces/router").ExpoRouter.Href) => void;
+    push: (url: import("../interfaces/router").VXSRouter.Href) => void;
     dismiss: (count?: number | undefined) => void;
-    replace: (url: import("../interfaces/router").ExpoRouter.Href) => void;
+    replace: (url: import("../interfaces/router").VXSRouter.Href) => void;
     dismissAll: () => void;
     canDismiss: () => boolean;
     setParams: (params?: Record<string, string | number> | undefined) => any;
-    navigate: (url: import("../interfaces/router").ExpoRouter.Href) => void;
+    navigate: (url: import("../interfaces/router").VXSRouter.Href) => void;
     initialize(context: RequireContext, navigationRef: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>, initialLocation?: URL): void;
     updateState(state: ResultState, nextState?: ResultState): void;
     getRouteInfo(state: ResultState): UrlObject;
@@ -48,7 +48,7 @@ export declare class RouterStore {
     cleanup(): void;
 }
 export declare const store: RouterStore;
-export declare function useExpoRouter(): RouterStore;
+export declare function useVXSRouter(): RouterStore;
 export declare function useStoreRootState(): ResultState;
 export declare function useStoreRouteInfo(): UrlObject;
 //# sourceMappingURL=router-store.d.ts.map

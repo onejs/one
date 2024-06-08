@@ -28,7 +28,7 @@ import { Platform } from 'react-native'
 /**
  * This is the global state for the router. It is used to keep track of the current route, and to provide a way to navigate to other routes.
  *
- * There should only be one instance of this class and be initialized via `useInitializeExpoRouter`
+ * There should only be one instance of this class and be initialized via `useInitializeVXSRouter`
  */
 export class RouterStore {
   routeNode!: RouteNode | null
@@ -218,7 +218,7 @@ export class RouterStore {
 
 export const store = new RouterStore()
 
-export function useExpoRouter() {
+export function useVXSRouter() {
   return useSyncExternalStore(store.subscribeToStore, store.snapshot, store.snapshot)
 }
 

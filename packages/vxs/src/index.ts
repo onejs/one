@@ -1,10 +1,10 @@
 import './polyfills'
-import type { ExpoRouter } from './interfaces/router'
+import type { VXSRouter } from './interfaces/router'
 
 export type { Endpoint } from './types'
 
-export type Href = ExpoRouter.Href
-export type LinkProps = ExpoRouter.LinkProps
+export type Href = VXSRouter.Href
+export type LinkProps = VXSRouter.LinkProps
 
 export { Root } from './Root'
 export { render } from './render'

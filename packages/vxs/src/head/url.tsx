@@ -78,7 +78,7 @@ function throwOrAlert(msg: string) {
   // }
 }
 
-export function getStaticUrlFromExpoRouter(pathname: string) {
+export function getStaticUrlFromVXSRouter(pathname: string) {
   // const host = "https://expo.io";
   // Append the URL we'd find in context
   return getUrlFromConstants() + pathname
