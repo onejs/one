@@ -303,6 +303,15 @@ export async function build(props: AfterBuildProps) {
           outputFile(toAbsolute(filePath), html),
           outputFile(loaderPartialPath, replaceLoader(code, loaderData, '[a-z]+')),
         ])
+
+        allRoutes.push({
+          clientJsPath,
+          htmlPath,
+          loaderData,
+          params,
+          path,
+          preloads,
+        })
       } catch (err) {
         const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
 
