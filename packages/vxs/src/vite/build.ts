@@ -193,6 +193,12 @@ export async function build(props: AfterBuildProps) {
       return clientManifestKey.endsWith(route.file.slice(1))
     })
 
+    if (!htmlRoute) {
+      console.error(` No html route found!`, { id, clientManifestKey })
+      console.error(` In manifest`, manifest.htmlRoutes)
+      process.exit(1)
+    }
+
     function collectImports(
       { imports = [], css }: ClientManifestEntry,
       { type = 'js' }: { type?: 'js' | 'css' } = {}
@@ -232,7 +238,7 @@ export async function build(props: AfterBuildProps) {
     const layoutEntries =
       htmlRoute?.layouts?.flatMap((layout) => {
         // TODO hardcoded app/
-        const clientKey = `app${layout.slice(1)}`
+        const clientKey = `app${layout.contextKey.slice(1)}`
         return props.clientManifest[clientKey]
       }) ?? []
 

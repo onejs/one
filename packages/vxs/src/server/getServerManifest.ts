@@ -18,7 +18,7 @@ export type ExpoRouterServerManifestV1Route<TRegex = string> = {
   routeKeys: Record<string, string>
   namedRegex: TRegex
   generated?: boolean
-  layouts?: string[]
+  layouts?: RouteNode[]
 }
 
 export type ExpoRouterServerManifestV1<TRegex = string> = {
@@ -56,11 +56,11 @@ function uniqueBy<T>(arr: T[], key: (item: T) => string): T[] {
 
 // Given a nested route tree, return a flattened array of all routes that can be matched.
 export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 {
-  function getFlatNodes(route: RouteNode, layouts?: string[]): [string, RouteNode][] {
+  function getFlatNodes(route: RouteNode, layouts?: RouteNode[]): [string, RouteNode][] {
     if (route.children.length) {
-      return route.children.flatMap((child) =>
-        getFlatNodes(child, [...(layouts || []), route.contextKey])
-      )
+      return route.children.flatMap((child) => {
+        return getFlatNodes(child, [...(layouts || []), route])
+      })
     }
 
     // API Routes are handled differently to HTML routes because they have no nested behavior.
@@ -68,10 +68,19 @@ export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 
     // copies should be rendered. However, an API route is always the same regardless of parent segments.
     let key: string
     if (route.type === 'api') {
-      key = getContextKey(route.contextKey).replace(/\/index$/, '') ?? '/'
+      key = getContextKey(route.contextKey).replace(/\/index$/, '') || '/'
     } else {
-      key = getContextKey(route.route).replace(/\/index$/, '') ?? '/'
+      const parentSegments = layouts?.flatMap((route) => {
+        const key = getContextKey(route.route).replace(/\/index$/, '') || '/'
+        if (key === '/' || key.startsWith('/(')) {
+          return []
+        }
+        return [key]
+      })
+
+      key = parentSegments + getContextKey(route.route).replace(/\/index$/, '') || '/'
     }
+
     return [[key, { ...route, layouts }]]
   }
 
@@ -125,7 +134,7 @@ function getNamedRouteRegex(
   normalizedRoute: string,
   page: string,
   file: string,
-  layouts?: string[]
+  layouts?: RouteNode[]
 ): ExpoRouterServerManifestV1Route {
   const result = getNamedParametrizedRoute(normalizedRoute)
   return {
