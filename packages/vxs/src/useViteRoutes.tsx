@@ -1,3 +1,4 @@
+import { Text, View } from 'react-native'
 import { CLIENT_BASE_URL } from './global-state/constants'
 import type { GlobbedRouteImports } from './types'
 
@@ -83,13 +84,33 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
         })
         .catch((err) => {
           console.error(`Error loading route`, id, err)
+          loadedRoutes[id] = {
+            default: () => (
+              <View
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: '#000',
+                  gap: 20,
+                }}
+              >
+                <Text style={{ fontSize: 24, color: '#fff' }}>Error loading route</Text>
+                <Text style={{ fontSize: 16, color: '#fff' }}>{id}</Text>
+                <Text style={{ fontSize: 18, color: '#fff', maxWidth: 800 }}>{`${err}`}</Text>
+              </View>
+            ),
+          }
           delete promises[id]
-          loadedRoutes[id] = () => null
         })
-    }
 
-    if (process.env.NODE_ENV === 'development') {
-      promises[id].stack = new Error().stack
+      if (process.env.NODE_ENV === 'development') {
+        promises[id].stack = new Error().stack
+      }
     }
 
     // this is called in useScreens value.loadRoute
