@@ -5,7 +5,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { Suspense, useState } from 'react'
+import React from 'react'
 
 import {
   Route,
@@ -19,7 +19,6 @@ import { Screen } from './primitives'
 import { sortRoutesWithInitial } from './sortRoutes'
 import { EmptyRoute } from './views/EmptyRoute'
 import { Try } from './views/Try'
-import { RootErrorBoundary } from './views/RootErrorBoundary'
 
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
@@ -178,40 +177,6 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       const Component = fromImport(res).default as React.ComponentType<any>
       return <Component {...props} ref={ref} />
     })
-
-    // ScreenComponent = React.forwardRef((props, ref) => {
-    //   const [loaded, setLoaded] = useState(false)
-
-    //   useEffect(() => {
-    //     resolveRoute()
-
-    //     async function resolveRoute() {
-    //       while (true) {
-    //         try {
-    //           value.loadRoute()
-    //           setLoaded(true)
-    //           break
-    //         } catch (value) {
-    //           if (value instanceof Promise) {
-    //             console.warn('wait')
-    //             await new Promise((res) => setTimeout(res))
-    //           } else {
-    //             throw value
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }, [])
-
-    //   if (!loaded) {
-    //     return null
-    //   }
-
-    //   const res = value.loadRoute()
-    //   const Component = fromImport(res).default as React.ComponentType<any>
-
-    //   return <Component {...props} ref={ref} />
-    // })
   }
 
   const getLoadable = (props: any, ref: any) => {
