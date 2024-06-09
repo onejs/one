@@ -400,7 +400,7 @@ function getMostSpecific(routes: RouteNode[]) {
 
   if (!routes[0]) {
     throw new Error(
-      `The file ${route.contextKey} does not have a fallback sibling file without a platform extension.`
+      ` [vxs] The file ${route.contextKey} does not have a fallback sibling file without a platform extension.`
     )
   }
 

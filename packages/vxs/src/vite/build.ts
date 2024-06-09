@@ -274,7 +274,7 @@ export async function build(props: AfterBuildProps) {
       }
     }
 
-    console.info(`\n [build] page ${relativeId}\n`)
+    console.info(`\n [build] page ${relativeId} (with ${paramsList.length} routes)\n`)
 
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params)
@@ -283,7 +283,7 @@ export async function build(props: AfterBuildProps) {
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
 
       try {
-        console.info(` [build] static ${path} params ${JSON.stringify(params)}`)
+        console.info(`  ↦ route ${path} params ${JSON.stringify(params)}`)
         const loaderProps = { params }
 
         globalThis['__vxrnLoaderProps__'] = loaderProps
@@ -297,7 +297,11 @@ export async function build(props: AfterBuildProps) {
         const loaderPartialPath = join(
           staticDir,
           'assets',
-          path.slice(1).replaceAll('/', '_') + '_vxrn_loader.js'
+          path
+            .slice(1)
+            .replaceAll('/', '_')
+            // remove trailing _
+            .replace(/_$/, '') + '_vxrn_loader.js'
         )
 
         const code = await readFile(clientJsPath, 'utf-8')
