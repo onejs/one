@@ -30,14 +30,22 @@ export function createFileSystemRouter(options: Options): Plugin {
     configureServer(server) {
       const runner = createServerModuleRunner(server.environments.ssr)
 
+      // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
+      let renderPromise: Promise<void> | null = null
+
       const handleRequest = createHandleRequest(options, {
         async handleSSR({ route, url, loaderProps }) {
-          const routeFile = join(root, route.file)
+          if (renderPromise) {
+            await renderPromise
+          }
 
-          // importing resetState causes issues :/
-          globalThis['__vxrnresetState']?.()
+          const { promise, resolve } = Promise.withResolvers<void>()
+          renderPromise = promise
 
           try {
+            const routeFile = join(root, route.file)
+            // importing directly causes issues :/
+            globalThis['__vxrnresetState']?.()
             runner.clearCache()
 
             const exported = await runner.import(routeFile)
@@ -51,6 +59,7 @@ export function createFileSystemRouter(options: Options): Plugin {
             const entry = await runner.import(virtualEntryId)
 
             globalThis['__vxrnLoaderData__'] = loaderData
+            globalThis['__vxrnLoaderProps__'] = loaderProps
             LoaderDataCache[route.file] = loaderData
 
             const html = await entry.default.render({
@@ -59,7 +68,6 @@ export function createFileSystemRouter(options: Options): Plugin {
               path: loaderProps?.path,
               preloads: ['/@vite/client', virtalEntryIdClient],
             })
-
             return html
           } catch (err) {
             console.error(`Error rendering ${url.pathname} on server:`)
@@ -67,6 +75,8 @@ export function createFileSystemRouter(options: Options): Plugin {
               console.error(err.message)
               console.error(err.stack)
             }
+          } finally {
+            resolve()
           }
         },
 
@@ -83,7 +93,11 @@ export function createFileSystemRouter(options: Options): Plugin {
 
           if (loaderData) {
             // add loader back in!
-            transformedJS = replaceLoader(transformedJS, loaderData)
+            transformedJS = replaceLoader({
+              code: transformedJS,
+              loaderData,
+              loaderProps,
+            })
           }
 
           return transformedJS

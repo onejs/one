@@ -304,7 +304,14 @@ export async function build(props: AfterBuildProps) {
 
         await Promise.all([
           outputFile(toAbsolute(filePath), html),
-          outputFile(loaderPartialPath, replaceLoader(code, loaderData, '[a-z]+')),
+          outputFile(
+            loaderPartialPath,
+            replaceLoader({
+              code,
+              loaderData,
+              loaderRegexName: '[a-z]+',
+            })
+          ),
         ])
 
         allRoutes.push({
