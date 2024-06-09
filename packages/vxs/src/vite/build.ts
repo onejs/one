@@ -220,7 +220,7 @@ export async function build(props: AfterBuildProps) {
           ]
             .flat()
             .filter((x) => x && (type === 'css' || x.endsWith('.js')))
-            .map((x) => (type === 'css' ? x : `assets/${x.slice(1)}`))
+            .map((x) => (type === 'css' ? x : x.startsWith('assets/') ? x : `assets/${x.slice(1)}`))
         ),
       ]
     }
@@ -257,9 +257,14 @@ export async function build(props: AfterBuildProps) {
         ...layoutImports,
       ]),
     ]
+      // nested path pages need to reference root assets
+      .map((path) => `/${path}`)
 
     const allEntries = [clientManifestEntry, ...layoutEntries]
-    const allCSS = allEntries.flatMap((entry) => collectImports(entry, { type: 'css' }))
+    const allCSS = allEntries
+      .flatMap((entry) => collectImports(entry, { type: 'css' }))
+      // nested path pages need to reference root assets
+      .map((path) => `/${path}`)
 
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
@@ -279,12 +284,12 @@ export async function build(props: AfterBuildProps) {
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params)
       const htmlPath = `${path === '/' ? '/index' : path}.html`
-      const loaderData = (await exported.loader?.({ path, params })) ?? {}
+      const loaderData = (await exported.loader?.({ path, params })) ?? null
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
 
       try {
         console.info(`  ↦ route ${path} params ${JSON.stringify(params)}`)
-        const loaderProps = { params }
+        const loaderProps = { path, params }
 
         globalThis['__vxrnLoaderProps__'] = loaderProps
 

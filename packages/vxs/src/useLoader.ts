@@ -12,6 +12,13 @@ export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
+  // console.log('run loader', {
+  //   props: globalThis['__vxrnLoaderProps__'],
+  //   preloaded: globalThis['__vxrnLoaderData__'],
+  //   function: `${loader}`,
+  //   dotpath: globalThis['__vxrntodopath'],
+  // })
+
   // server side we just run the loader directly
   if (typeof window === 'undefined') {
     return useAsyncFn(loader, globalThis['__vxrnLoaderProps__'])
