@@ -14,7 +14,6 @@ export const serve = async (optionsIn: VXRNConfig) => {
     port: options.port,
     hostname: options.host,
   })
-  // server.listen(options.port, options.host)
   console.info(`Listening on http://${options.host}:${options.port}`)
   await new Promise<void>((res) => {
     server.on('close', () => {

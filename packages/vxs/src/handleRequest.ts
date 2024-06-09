@@ -1,3 +1,4 @@
+import { join } from 'node:path'
 import type { RouteInfo } from './server/routes-manifest'
 import { getManifest } from './vite/getManifest'
 
@@ -26,7 +27,7 @@ export function createHandleRequest(
 ) {
   const { root, shouldIgnore, disableSSR } = options
 
-  const manifest = getManifest(root)
+  const manifest = getManifest(join(root, 'app'))
   if (!manifest) {
     throw new Error(`No routes manifest`)
   }

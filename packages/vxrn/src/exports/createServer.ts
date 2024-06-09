@@ -17,6 +17,10 @@ export const createProdServer = async (options: VXRNConfig) => {
     })
   )
 
+  if (options.serve) {
+    options.serve(options, app)
+  }
+
   // app.get(
   //   '*',
   //   cache({
@@ -24,10 +28,6 @@ export const createProdServer = async (options: VXRNConfig) => {
   //     cacheControl: 'max-age=3600',
   //   })
   // )
-
-  if (options.serve) {
-    options.serve(options, app)
-  }
 
   return app
 }
