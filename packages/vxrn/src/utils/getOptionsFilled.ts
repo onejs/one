@@ -16,9 +16,11 @@ export async function getOptionsFilled(
   const { host = '127.0.0.1', root = process.cwd(), entries } = options
 
   const defaultPort = options.port || (internal.mode === 'dev' ? 8081 : 3000)
+
   const port = await getPort({
     port: defaultPort,
     portRange: [defaultPort, defaultPort + 100],
+    host: '127.0.0.1',
   })
 
   const packageRootDir = join(require.resolve('vxrn'), '../../..')
