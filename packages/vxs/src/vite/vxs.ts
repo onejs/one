@@ -6,12 +6,18 @@ import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter, type Options } from './createFileSystemRouter'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
+import { version } from 'react'
 
 export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
+  if (!version.startsWith('19.')) {
+    console.error(`Must be on React 19, instead found`, version)
+    process.exit(1)
+  }
+
   // hardcoding app
   const options = {
     ...options_,
-    root: '.',
+    root: 'app',
   }
 
   // build is superset for now
