@@ -17,6 +17,12 @@ import {
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 import type { RenderApp } from '../types'
+import { version } from 'react'
+
+if (!version.startsWith('19.')) {
+  console.error(`Must be on React 19, instead found`, version)
+  process.exit(1)
+}
 
 export const resolveFile = (path: string) => {
   try {
