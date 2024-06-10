@@ -57,7 +57,12 @@ export function Root(props: RootProps) {
     <html lang="en-US">
       <head>
         {import.meta.env.DEV ? <DevHead /> : null}
-        <script>{`globalThis['global'] = globalThis`}</script>
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `globalThis['global'] = globalThis`,
+          }}
+        />
 
         {props.css?.map((file) => {
           return <link key={file} rel="stylesheet" href={file} />
@@ -69,12 +74,13 @@ export function Root(props: RootProps) {
         async
         // @ts-ignore
         href="vxs-loader-data"
-      >
-        {`
+        dangerouslySetInnerHTML={{
+          __html: `
             globalThis['__vxrnLoaderData__'] = ${JSON.stringify(props.loaderData)};
             globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(props.loaderProps)};
-        `}
-      </script>
+        `,
+        }}
+      />
     </html>
   )
 }
@@ -89,19 +95,27 @@ function DevHead() {
         precedence="default"
         data-ssr-css
       />
-      <script type="module">
-        {`import { createHotContext } from "/@vite/client";
+      <script
+        type="module"
+        dangerouslySetInnerHTML={{
+          __html: `import { createHotContext } from "/@vite/client";
         const hot = createHotContext("/__clear_ssr_css");
         hot.on("vite:afterUpdate", () => {
           document
             .querySelectorAll("[data-ssr-css]")
             .forEach(node => node.remove());
-        });`}
-      </script>
-      <script type="module">{`import { injectIntoGlobalHook } from "/@react-refresh";
+        });`,
+        }}
+      />
+      <script
+        type="module"
+        dangerouslySetInnerHTML={{
+          __html: `import { injectIntoGlobalHook } from "/@react-refresh";
 injectIntoGlobalHook(window);
 window.$RefreshReg$ = () => {};
-window.$RefreshSig$ = () => (type) => type;`}</script>
+window.$RefreshSig$ = () => (type) => type;`,
+        }}
+      />
     </>
   )
 }

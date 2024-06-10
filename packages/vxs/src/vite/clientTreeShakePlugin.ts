@@ -76,7 +76,7 @@ export async function transformTreeShakeClient(
 
             const loaderData = LoaderDataCache[relativeId]
             if (loaderData !== undefined) {
-              replaceStr = `export function loader(){ return ${JSON.stringify(loaderData)} }`
+              replaceStr = `export function loader(){ return ${JSON.stringify(loaderData)}; }`
             }
 
             const length = node['end'] - node['start']
