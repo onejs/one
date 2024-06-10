@@ -59,7 +59,6 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
       mode: 'production',
     }),
     {
-      root: options.root,
       clearScreen: false,
       optimizeDeps,
     } satisfies UserConfig
@@ -99,7 +98,6 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
         ssrManifest: true,
         outDir: 'dist/client',
         manifest: true,
-
         rollupOptions: {
           input: ['virtual:vxs-entry'],
         },
