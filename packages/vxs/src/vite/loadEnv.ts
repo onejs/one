@@ -7,4 +7,5 @@ export async function loadEnv(root: string) {
   const dotenv = await import('dotenv')
   const result = dotenv.config({ path: envPath })
   if (result.error) throw result.error
+  return true
 }

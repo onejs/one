@@ -7,8 +7,11 @@ import { createFileSystemRouter, type Options } from './createFileSystemRouter'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
 import { version } from 'react'
+import { loadEnv } from './loadEnv'
 
 export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
+  void loadEnv(process.cwd())
+
   if (!version.startsWith('19.')) {
     console.error(`Must be on React 19, instead found`, version)
     process.exit(1)
