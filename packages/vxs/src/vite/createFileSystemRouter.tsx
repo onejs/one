@@ -3,7 +3,6 @@ import type { Connect, Plugin } from 'vite'
 import { createServerModuleRunner } from 'vite'
 import { createHandleRequest } from '../handleRequest'
 import { LoaderDataCache } from './constants'
-import { loadEnv } from './loadEnv'
 import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
@@ -14,11 +13,6 @@ export type Options = {
 }
 
 export function createFileSystemRouter(options: Options): Plugin {
-  // TODO need a higher level package
-  void loadEnv(process.cwd()).then(() => {
-    // console.log('loading env', process.env.POSTMARK_SERVER_TOKEN)
-  })
-
   return {
     name: `router-fs`,
     enforce: 'post',
