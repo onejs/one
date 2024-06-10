@@ -1,6 +1,6 @@
 import type { LoaderProps } from '../useLoader'
 
-const loaderReturnStr = `return\\s*\\"__vxrn__loader__\\"`
+const loaderReturnStr = `return\\s*\\"__vxrn__loader__\\";?`
 const loaderReturnRegex = new RegExp(loaderReturnStr, 'gi')
 
 export function replaceLoader({
