@@ -11,7 +11,7 @@ export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
   // hardcoding app
   const options = {
     ...options_,
-    root: 'app',
+    root: '.',
   }
 
   // build is superset for now

@@ -19,42 +19,42 @@ export namespace VXSRouter {
   >
   type UnknownOutputParams = Record<string, string | string[]>
 
-  /**
-   * Return only the RoutePart of a string. If the string has multiple parts return never
-   *
-   * string   | type
-   * ---------|------
-   * 123      | 123
-   * /123/abc | never
-   * 123?abc  | never
-   * ./123    | never
-   * /123     | never
-   * 123/../  | never
-   */
-  type SingleRoutePart<S extends string> = S extends `${string}/${string}`
-    ? never
-    : S extends `${string}${SearchOrHash}`
-      ? never
-      : S extends ''
-        ? never
-        : S extends `(${string})`
-          ? never
-          : S extends `[${string}]`
-            ? never
-            : S
+  // /**
+  //  * Return only the RoutePart of a string. If the string has multiple parts return never
+  //  *
+  //  * string   | type
+  //  * ---------|------
+  //  * 123      | 123
+  //  * /123/abc | never
+  //  * 123?abc  | never
+  //  * ./123    | never
+  //  * /123     | never
+  //  * 123/../  | never
+  //  */
+  // type SingleRoutePart<S extends string> = S extends `${string}/${string}`
+  //   ? never
+  //   : S extends `${string}${SearchOrHash}`
+  //     ? never
+  //     : S extends ''
+  //       ? never
+  //       : S extends `(${string})`
+  //         ? never
+  //         : S extends `[${string}]`
+  //           ? never
+  //           : S
 
-  /**
-   * Return only the CatchAll router part. If the string has search parameters or a hash return never
-   */
-  type CatchAllRoutePart<S extends string> = S extends `${string}${SearchOrHash}`
-    ? never
-    : S extends ''
-      ? never
-      : S extends `${string}(${string})${string}`
-        ? never
-        : S extends `${string}[${string}]${string}`
-          ? never
-          : S
+  // /**
+  //  * Return only the CatchAll router part. If the string has search parameters or a hash return never
+  //  */
+  // type CatchAllRoutePart<S extends string> = S extends `${string}${SearchOrHash}`
+  //   ? never
+  //   : S extends ''
+  //     ? never
+  //     : S extends `${string}(${string})${string}`
+  //       ? never
+  //       : S extends `${string}[${string}]${string}`
+  //         ? never
+  //         : S
 
   /**
    * Return the name of a route parameter

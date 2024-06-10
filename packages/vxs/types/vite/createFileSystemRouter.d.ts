@@ -1,6 +1,5 @@
 import type { Plugin } from 'vite';
 export type Options = {
-    root: string;
     shouldIgnore?: (req: Request) => boolean;
     disableSSR?: boolean;
 };

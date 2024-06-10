@@ -45,7 +45,7 @@ export function createRoutesManifest(
   })
 
   if (!routeTree) {
-    throw new Error(`No route tree found`)
+    throw new Error(`No route tree found in paths: ${JSON.stringify(paths)}`)
   }
 
   return getServerManifest(routeTree)
