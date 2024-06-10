@@ -72,6 +72,8 @@ export default function User(props: UserProps) {
       >
         Go to "other"
       </Link>
+
+      <View height={2000} width={20} bg="red" />
     </View>
   )
 }

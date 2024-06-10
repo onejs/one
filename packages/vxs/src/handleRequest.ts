@@ -3,7 +3,6 @@ import type { RouteInfo } from './server/routes-manifest'
 import { getManifest } from './vite/getManifest'
 
 export type Options = {
-  root: string
   shouldIgnore?: (req: Request) => boolean
   disableSSR?: boolean
 }
@@ -25,9 +24,9 @@ export function createHandleRequest(
     handleAPI?: (props: RequestHandlerProps) => Promise<any>
   }
 ) {
-  const { root, shouldIgnore, disableSSR } = options
+  const { shouldIgnore, disableSSR } = options
 
-  const manifest = getManifest(join(root, 'app'))
+  const manifest = getManifest('app')
   if (!manifest) {
     throw new Error(`No routes manifest`)
   }

@@ -11,6 +11,7 @@ export { Navigator, Slot } from './views/Navigator';
 export { ErrorBoundary } from './views/ErrorBoundary';
 export { Unmatched } from './views/Unmatched';
 export { SplashScreen } from './views/Splash';
+export { ScrollRestoration } from './views/ScrollRestoration';
 export { createApp } from './createApp';
 export { useRouter, useUnstableGlobalHref, usePathname, useNavigationContainerRef, useGlobalSearchParams, useLocalSearchParams, useSegments, useRootNavigation, useRootNavigationState, } from './hooks';
 export { store as routerStore } from './global-state/router-store';

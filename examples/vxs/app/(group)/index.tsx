@@ -43,8 +43,10 @@ export default function HomePage() {
           params: { user: 'other' },
         }}
       >
-        <Text>Go to "other"</Text>
+        <Text>Go to "other" user</Text>
       </Link>
+
+      <View height={2000} width={20} bg="red" />
     </>
   )
 }

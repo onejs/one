@@ -1,18 +1,14 @@
+import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
 import { join } from 'node:path'
-import { getOptionsFilled, type VXRNConfig } from 'vxrn'
+import type { VXRNConfig } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
 import { resolveAPIRequest } from './resolveAPIRequest'
-import FSExtra from 'fs-extra'
 
 export async function serve(optionsIn: VXRNConfig, app: Hono) {
   try {
-    const options = await getOptionsFilled(optionsIn, { mode: 'prod' })
-
     const handleRequest = createHandleRequest(
-      {
-        root: options.root,
-      },
+      {},
       {
         async handleAPI({ route, request }) {
           const apiFile = join(process.cwd(), 'dist/api', route.page + '.js')

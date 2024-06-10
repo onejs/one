@@ -1,6 +1,5 @@
 import type { RouteInfo } from './server/routes-manifest';
 export type Options = {
-    root: string;
     shouldIgnore?: (req: Request) => boolean;
     disableSSR?: boolean;
 };

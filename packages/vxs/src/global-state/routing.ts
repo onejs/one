@@ -10,6 +10,7 @@ import { matchDynamicName } from '../matchers'
 import { shouldLinkExternally } from '../utils/url'
 import type { RouterStore } from './router-store'
 import { CLIENT_BASE_URL } from './constants'
+import { rememberScrollPosition } from '../views/ScrollRestoration'
 
 function assertIsReady(store: RouterStore) {
   if (!store.navigationRef.isReady()) {
@@ -176,6 +177,8 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
 
   startTransition(() => {
     const current = navigationRef.getCurrentRoute()
+
+    rememberScrollPosition()
 
     // loading state
     send('start')

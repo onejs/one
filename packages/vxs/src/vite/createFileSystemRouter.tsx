@@ -9,14 +9,11 @@ import { resolveAPIRequest } from './resolveAPIRequest'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 
 export type Options = {
-  root: string
   shouldIgnore?: (req: Request) => boolean
   disableSSR?: boolean
 }
 
 export function createFileSystemRouter(options: Options): Plugin {
-  const { root } = options
-
   // TODO need a higher level package
   void loadEnv(process.cwd()).then(() => {
     // console.log('loading env', process.env.POSTMARK_SERVER_TOKEN)
@@ -43,7 +40,7 @@ export function createFileSystemRouter(options: Options): Plugin {
           renderPromise = promise
 
           try {
-            const routeFile = join(root, route.file)
+            const routeFile = join('app', route.file)
             // importing directly causes issues :/
             globalThis['__vxrnresetState']?.()
             runner.clearCache()
@@ -81,7 +78,7 @@ export function createFileSystemRouter(options: Options): Plugin {
         },
 
         async handleLoader({ request, route, loaderProps }) {
-          const routeFile = join(root, route.file)
+          const routeFile = join('app', route.file)
 
           // this will remove all loaders
           let transformedJS = (await server.transformRequest(routeFile))?.code
@@ -104,7 +101,7 @@ export function createFileSystemRouter(options: Options): Plugin {
         },
 
         async handleAPI({ request, route }) {
-          return resolveAPIRequest(await runner.import(join(options.root, route.file)), request)
+          return resolveAPIRequest(await runner.import(join('app', route.file)), request)
         },
       })
 
