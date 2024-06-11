@@ -1,29 +1,25 @@
-import type { NavigationContainerRefWithCurrent, getPathFromState } from '@react-navigation/native'
+import {
+  StackActions,
+  type NavigationContainerRefWithCurrent,
+  type getPathFromState,
+} from '@react-navigation/native'
 import * as SplashScreen from 'expo-splash-screen'
 import { Fragment, useSyncExternalStore, type ComponentType } from 'react'
 
+import { Platform } from 'react-native'
 import { getRouteInfoFromState, type UrlObject } from '../LocationProvider'
 import type { RouteNode } from '../Route'
 import { deepEqual, getPathDataFromState } from '../fork/getPathFromState'
 import type { ResultState } from '../fork/getStateFromPath'
 import { getLinkingConfig, type ExpoLinkingOptions } from '../getLinkingConfig'
 import { getRoutes } from '../getRoutes'
+import type { VXSRouter } from '../interfaces/router'
+import { resolveHref } from '../link/href'
+import { sortRoutes } from '../sortRoutes'
 import type { RequireContext } from '../types'
 import { getQualifiedRouteComponent } from '../useScreens'
-import {
-  canDismiss,
-  canGoBack,
-  dismiss,
-  dismissAll,
-  goBack,
-  linkTo,
-  navigate,
-  push,
-  replace,
-  setParams,
-} from './routing'
-import { getSortedRoutes } from './sorted-routes'
-import { Platform } from 'react-native'
+import { assertIsReady } from '../utils/assertIsReady'
+import { linkTo } from './routing'
 
 /**
  * This is the global state for the router. It is used to keep track of the current route, and to provide a way to navigate to other routes.
@@ -42,23 +38,13 @@ export class RouterStore {
   routeInfo?: UrlObject
   splashScreenAnimationFrame?: number
 
-  navigationRef!: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>
+  navigationRef!: VXSRouter.NavigationRef
   navigationRefSubscription!: () => void
+
+  linkTo = linkTo.bind(this)
 
   rootStateSubscribers = new Set<() => void>()
   storeSubscribers = new Set<() => void>()
-
-  linkTo = linkTo.bind(this)
-  getSortedRoutes = getSortedRoutes.bind(this)
-  goBack = goBack.bind(this)
-  canGoBack = canGoBack.bind(this)
-  push = push.bind(this)
-  dismiss = dismiss.bind(this)
-  replace = replace.bind(this)
-  dismissAll = dismissAll.bind(this)
-  canDismiss = canDismiss.bind(this)
-  setParams = setParams.bind(this)
-  navigate = navigate.bind(this)
 
   initialize(
     context: RequireContext,
@@ -159,7 +145,73 @@ export class RouterStore {
     }
   }
 
-  updateState(state: ResultState, nextState = state) {
+  navigate = (url: VXSRouter.Href) => {
+    return this.linkTo(resolveHref(url), 'NAVIGATE')
+  }
+
+  push = (url: VXSRouter.Href) => {
+    return this.linkTo(resolveHref(url), 'PUSH')
+  }
+
+  dismiss = (count?: number) => {
+    this.navigationRef?.dispatch(StackActions.pop(count))
+  }
+
+  replace = (url: VXSRouter.Href) => {
+    return this.linkTo(resolveHref(url), 'REPLACE')
+  }
+
+  setParams = (params: Record<string, string | number> = {}) => {
+    assertIsReady(this.navigationRef)
+    return (this.navigationRef?.current?.setParams as any)(params)
+  }
+
+  dismissAll = () => {
+    this.navigationRef?.dispatch(StackActions.popToTop())
+  }
+
+  goBack = () => {
+    assertIsReady(this.navigationRef)
+    this.navigationRef?.current?.goBack()
+  }
+
+  canGoBack = (): boolean => {
+    // Return a default value here if the navigation hasn't mounted yet.
+    // This can happen if the user calls `canGoBack` from the Root Layout route
+    // before mounting a navigator. This behavior exists due to React Navigation being dynamically
+    // constructed at runtime. We can get rid of this in the future if we use
+    // the static configuration internally.
+    if (!this.navigationRef.isReady()) {
+      return false
+    }
+    return this.navigationRef?.current?.canGoBack() ?? false
+  }
+
+  canDismiss = (): boolean => {
+    let state = this.rootState
+
+    // Keep traversing down the state tree until we find a stack navigator that we can pop
+    while (state) {
+      if (state.type === 'stack' && state.routes.length > 1) {
+        return true
+      }
+      if (state.index === undefined) {
+        return false
+      }
+      state = state.routes?.[state.index]?.state as any
+    }
+
+    return false
+  }
+
+  getSortedRoutes = () => {
+    if (!this.routeNode) {
+      throw new Error('No routes')
+    }
+    return this.routeNode.children.filter((route) => !route.internal).sort(sortRoutes)
+  }
+
+  updateState = (state: ResultState, nextState = state) => {
     store.rootState = state
     store.nextState = nextState
 

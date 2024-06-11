@@ -1,6 +1,6 @@
 import { NavigationRouteContext } from '@react-navigation/native'
 import React, { createContext, useContext, type ReactNode } from 'react'
-import { store, useStoreRootState, useStoreRouteInfo } from './global-state/router-store'
+import { store, useStoreRootState, useStoreRouteInfo } from './router/router-store'
 import type { VXSRouter } from './interfaces/router'
 
 type SearchParams = Record<string, string | string[]>

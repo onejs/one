@@ -3,11 +3,9 @@
 // import { LogBoxLog, parseErrorStack } from '@expo/metro-runtime/symbolicate'
 import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs'
 import React from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { Platform, ScrollView } from 'react-native'
+import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { Link } from '../link/Link'
 import type { ErrorBoundaryProps } from './Try'
 
 // function useMetroSymbolication(error: Error) {

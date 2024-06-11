@@ -15,7 +15,6 @@ export { Tabs } from './layouts/Tabs'
 export { Navigator, Slot } from './views/Navigator'
 export { ErrorBoundary } from './views/ErrorBoundary'
 export { Unmatched } from './views/Unmatched'
-export { SplashScreen } from './views/Splash'
 export { ScrollRestoration } from './views/ScrollRestoration'
 
 export { createApp } from './createApp'
@@ -32,7 +31,7 @@ export {
   useRootNavigationState,
 } from './hooks'
 
-export { store as routerStore } from './global-state/router-store'
+export { store as routerStore } from './router/router-store'
 
 export { router } from './imperative-api'
 

@@ -19,7 +19,7 @@ import * as React from 'react'
 import * as ReactNavMemoryHistory from '@react-navigation/native/lib/commonjs/createMemoryHistory.js'
 // This was removed as we don't use ServerContext
 // import ServerContext from './ServerContext';
-import { ServerLocationContext } from '../global-state/serverLocationContext'
+import { ServerLocationContext } from '../router/serverLocationContext'
 /* End of fork */
 import type { LinkingOptions } from '@react-navigation/native'
 import { appendBaseUrl } from './getPathFromState'

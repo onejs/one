@@ -37,11 +37,9 @@ function createQualifiedPathname(
 }
 
 function encodeParam(param: any): string {
-  if (Array.isArray(param)) {
-    return param.map((p) => encodeParam(p)).join('/')
-  }
-
-  return encodeURIComponent(param.toString())
+  return Array.isArray(param)
+    ? param.map((p) => encodeParam(p)).join('/')
+    : encodeURIComponent(`${param}`)
 }
 
 function createQueryParams(params: Record<string, any>): string {

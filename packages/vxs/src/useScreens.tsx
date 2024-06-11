@@ -14,11 +14,15 @@ import {
   type LoadedRoute,
   type RouteNode,
 } from './Route'
-import EXPO_ROUTER_IMPORT_MODE from './import-mode'
-import { Screen } from './primitives'
+import VXS_ROUTER_IMPORT_MODE from './import-mode'
 import { sortRoutesWithInitial } from './sortRoutes'
 import { EmptyRoute } from './views/EmptyRoute'
 import { Try } from './views/Try'
+import { createNavigatorFactory } from '@react-navigation/core'
+
+// `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
+// do this hack.
+export const { Screen, Group } = createNavigatorFactory({} as any)()
 
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
@@ -164,7 +168,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
   let ScreenComponent: React.ForwardRefExoticComponent<React.RefAttributes<unknown>>
 
   // TODO: This ensures sync doesn't use React.lazy, but it's not ideal.
-  if (EXPO_ROUTER_IMPORT_MODE === 'lazy') {
+  if (VXS_ROUTER_IMPORT_MODE === 'lazy') {
     ScreenComponent = React.lazy(async () => {
       const res = value.loadRoute()
       return fromLoadedRoute(res) as Promise<{

@@ -74,7 +74,7 @@ export function getExactRoutes(
  * Converts the RequireContext keys (file paths) into a directory tree.
  */
 function getDirectoryTree(contextModule: RequireContext, options: Options) {
-  const importMode = options.importMode || process.env.EXPO_ROUTER_IMPORT_MODE
+  const importMode = options.importMode || process.env.VXS_ROUTER_IMPORT_MODE
 
   const ignoreList: RegExp[] = [/^\.\/\+html\.[tj]sx?$/] // Ignore the top level ./+html file
 
@@ -127,7 +127,7 @@ function getDirectoryTree(contextModule: RequireContext, options: Options) {
     }
 
     if (process.env.NODE_ENV === 'development') {
-      // If the user has set the `EXPO_ROUTER_IMPORT_MODE` to `sync` then we should
+      // If the user has set the `VXS_ROUTER_IMPORT_MODE` to `sync` then we should
       // filter the missing routes.
       if (node.type !== 'api' && importMode === 'sync') {
         if (!node.loadRoute()?.default) {

@@ -1,7 +1,7 @@
 import { useNavigation, type NavigationProp, type NavigationState } from '@react-navigation/native'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { useVXSRouter } from '../global-state/router-store'
+import { useVXSRouter } from '../router/router-store'
 
 type GenericNavigation = NavigationProp<ReactNavigation.RootParamList> & {
   getState(): NavigationState | undefined
