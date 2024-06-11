@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native'
-import { CLIENT_BASE_URL } from './global-state/constants'
+import { CLIENT_BASE_URL } from './router/constants'
 import type { GlobbedRouteImports } from './types'
 
 // essentially a development helper

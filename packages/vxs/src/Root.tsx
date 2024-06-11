@@ -7,11 +7,11 @@ import { RootErrorBoundary } from './views/RootErrorBoundary'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
-import { preloadRoute } from './global-state/routing'
-import { ServerLocationContext } from './global-state/serverLocationContext'
-import { useInitializeVXSRouter } from './global-state/useInitializeVXSRouter'
+import { preloadRoute } from './router/routing'
+import { ServerLocationContext } from './router/serverLocationContext'
+import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import type { RequireContext } from './types'
-import { SplashScreen } from './views/Splash'
+// import { SplashScreen } from './views/Splash'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 type RootProps = RenderAppProps &
@@ -219,7 +219,7 @@ function ContextNavigator({
   }
 
   if (store.shouldShowTutorial()) {
-    SplashScreen.hideAsync()
+    // SplashScreen.hideAsync()
     if (process.env.NODE_ENV === 'development') {
       return wrapper(
         <>

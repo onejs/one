@@ -1,82 +1,15 @@
-import { StackActions, type NavigationState, type PartialRoute } from '@react-navigation/native'
+import type { NavigationState, PartialRoute } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
 import { nanoid } from 'nanoid/non-secure'
 import { startTransition } from 'react'
 import type { ResultState } from '../fork/getStateFromPath'
-import type { VXSRouter } from '../interfaces/router'
-import { resolveHref } from '../link/href'
 import { resolve } from '../link/path'
 import { matchDynamicName } from '../matchers'
+import { assertIsReady } from '../utils/assertIsReady'
 import { shouldLinkExternally } from '../utils/url'
-import type { RouterStore } from './router-store'
-import { CLIENT_BASE_URL } from './constants'
 import { rememberScrollPosition } from '../views/ScrollRestoration'
-
-function assertIsReady(store: RouterStore) {
-  if (!store.navigationRef.isReady()) {
-    throw new Error(
-      'Attempted to navigate before mounting the Root Layout component. Ensure the Root Layout component is rendering a Slot, or other navigator on the first render.'
-    )
-  }
-}
-
-export function navigate(this: RouterStore, url: VXSRouter.Href) {
-  return this.linkTo(resolveHref(url), 'NAVIGATE')
-}
-
-export function push(this: RouterStore, url: VXSRouter.Href) {
-  return this.linkTo(resolveHref(url), 'PUSH')
-}
-
-export function dismiss(this: RouterStore, count?: number) {
-  this.navigationRef?.dispatch(StackActions.pop(count))
-}
-
-export function replace(this: RouterStore, url: VXSRouter.Href) {
-  return this.linkTo(resolveHref(url), 'REPLACE')
-}
-
-export function dismissAll(this: RouterStore) {
-  this.navigationRef?.dispatch(StackActions.popToTop())
-}
-
-export function goBack(this: RouterStore) {
-  assertIsReady(this)
-  this.navigationRef?.current?.goBack()
-}
-
-export function canGoBack(this: RouterStore): boolean {
-  // Return a default value here if the navigation hasn't mounted yet.
-  // This can happen if the user calls `canGoBack` from the Root Layout route
-  // before mounting a navigator. This behavior exists due to React Navigation being dynamically
-  // constructed at runtime. We can get rid of this in the future if we use
-  // the static configuration internally.
-  if (!this.navigationRef.isReady()) {
-    return false
-  }
-  return this.navigationRef?.current?.canGoBack() ?? false
-}
-
-export function canDismiss(this: RouterStore): boolean {
-  let state = this.rootState
-
-  // Keep traversing down the state tree until we find a stack navigator that we can pop
-  while (state) {
-    if (state.type === 'stack' && state.routes.length > 1) {
-      return true
-    }
-    if (state.index === undefined) return false
-
-    state = state.routes?.[state.index]?.state as any
-  }
-
-  return false
-}
-
-export function setParams(this: RouterStore, params: Record<string, string | number> = {}) {
-  assertIsReady(this)
-  return (this.navigationRef?.current?.setParams as any)(params)
-}
+import { CLIENT_BASE_URL } from './constants'
+import type { RouterStore } from './router-store'
 
 // TODO
 export const preloadingLoader = {}
@@ -112,7 +45,7 @@ export function linkTo(this: RouterStore, href: string, event?: string) {
     return
   }
 
-  assertIsReady(this)
+  assertIsReady(this.navigationRef)
   const navigationRef = this.navigationRef.current
 
   if (navigationRef == null) {

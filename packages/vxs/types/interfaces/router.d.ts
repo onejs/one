@@ -1,8 +1,10 @@
+import type { NavigationContainerRefWithCurrent } from '@react-navigation/core';
 import type { ReactNode } from 'react';
 import type { TextProps, GestureResponderEvent } from 'react-native';
 export declare namespace VXSRouter {
     type StaticRoutes = string;
     type DynamicRouteTemplate = never;
+    export type NavigationRef = NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>;
     export type RelativePathString = `./${string}` | `../${string}` | '..';
     export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;
     export type ExternalPathString = `${string}:${string}`;

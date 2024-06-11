@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { SplashScreen } from './Splash'
-
 /** Props passed to a page's `ErrorBoundary` export. */
 export type ErrorBoundaryProps = {
   /** Retry rendering the component by clearing the `error` state. */
@@ -22,7 +20,7 @@ export class Try extends React.Component<
 
   static getDerivedStateFromError(error: Error) {
     // Force hide the splash screen if an error occurs.
-    SplashScreen.hideAsync()
+    // SplashScreen.hideAsync()
 
     return { error }
   }

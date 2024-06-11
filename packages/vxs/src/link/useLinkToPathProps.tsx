@@ -2,7 +2,7 @@ import type * as React from 'react'
 import { Platform, type GestureResponderEvent } from 'react-native'
 
 import { appendBaseUrl } from '../fork/getPathFromState'
-import { useVXSRouter } from '../global-state/router-store'
+import { useVXSRouter } from '../router/router-store'
 import { stripGroupSegmentsFromPath } from '../matchers'
 
 function eventShouldPreventDefault(

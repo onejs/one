@@ -6,7 +6,7 @@ export declare function useRouteInfo(): import("./LocationProvider").UrlObject;
 /** @deprecated use `useNavigationContainerRef()` instead, which returns a React ref. */
 export declare function useRootNavigation(): import("@react-navigation/core").NavigationContainerRef<ReactNavigation.RootParamList> | null;
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
-export declare function useNavigationContainerRef(): import("@react-navigation/core").NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>;
+export declare function useNavigationContainerRef(): VXSRouter.NavigationRef;
 export declare function Frozen({ on, children }: {
     on?: boolean;
     children: ReactNode;
