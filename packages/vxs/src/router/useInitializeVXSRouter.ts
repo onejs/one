@@ -1,25 +1,27 @@
 import { useNavigationContainerRef } from '@react-navigation/native'
 import type { RequireContext } from '../types'
-import { store } from './router-store'
+import { initialize } from './router'
+import * as routerStore from './router'
 
-let initialize
+let initialized = false
 
 export function useInitializeVXSRouter(context: RequireContext, initialLocation: URL | undefined) {
   const navigationRef = useNavigationContainerRef()
 
-  if (!initialize) {
-    store.initialize(context, navigationRef, initialLocation)
-    initialize = true
+  if (!initialized) {
+    initialize(context, navigationRef, initialLocation)
+    initialized = true
   }
 
-  return store
+  return routerStore
 }
 
 export function resetState() {
-  initialize = null
+  initialized = false
   resetReactNavigationContexts()
 }
 
+// TODO remove global
 globalThis['__vxrnresetState'] = resetState
 
 function resetReactNavigationContexts() {

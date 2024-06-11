@@ -31,7 +31,7 @@ export {
   useRootNavigationState,
 } from './hooks'
 
-export { store as routerStore } from './router/router-store'
+export * as routerStore from './router/router'
 
 export { router } from './imperative-api'
 

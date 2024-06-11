@@ -7,7 +7,7 @@ import { RootErrorBoundary } from './views/RootErrorBoundary'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
-import { preloadRoute } from './router/routing'
+import { preloadRoute } from './router/router'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import type { RequireContext } from './types'
@@ -190,7 +190,7 @@ function ContextNavigator({
 }: InnerProps) {
   const store = useInitializeVXSRouter(context, initialLocation)
 
-  const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
+  // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
 
   /*
    * Due to static rendering we need to wrap these top level views in second wrapper
@@ -216,21 +216,6 @@ function ContextNavigator({
         {/* </GestureHandlerRootView> */}
       </ParentWrapper>
     )
-  }
-
-  if (store.shouldShowTutorial()) {
-    // SplashScreen.hideAsync()
-    if (process.env.NODE_ENV === 'development') {
-      return wrapper(
-        <>
-          {/* TODO */}
-          {/* <Tutorial /> */}
-          <React.Fragment />
-        </>
-      )
-    }
-    // Ensure tutorial styles are stripped in production.
-    return null
   }
 
   const Component = store.rootComponent

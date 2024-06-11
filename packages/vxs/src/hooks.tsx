@@ -1,7 +1,8 @@
 import { NavigationRouteContext } from '@react-navigation/native'
 import React, { createContext, useContext, type ReactNode } from 'react'
-import { store, useStoreRootState, useStoreRouteInfo } from './router/router-store'
+import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 import type { VXSRouter } from './interfaces/router'
+import * as store from './router/router'
 
 type SearchParams = Record<string, string | string[]>
 
@@ -15,12 +16,12 @@ export function useRouteInfo() {
 
 /** @deprecated use `useNavigationContainerRef()` instead, which returns a React ref. */
 export function useRootNavigation() {
-  return store.navigationRef.current
+  return navigationRef.current
 }
 
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
 export function useNavigationContainerRef() {
-  return store.navigationRef
+  return navigationRef
 }
 
 const FrozeContext = createContext(false)
@@ -68,8 +69,6 @@ const publicRouterInterface = {
 export function useRouter(): VXSRouter.Router {
   return publicRouterInterface
 }
-
-const emptyFn = () => {}
 
 /**
  * @private

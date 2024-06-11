@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
 import { weakKey } from './utils/weakKey'
-import { preloadingLoader } from './router/routing'
+import { preloadingLoader } from './router/router'
 import { CLIENT_BASE_URL } from './router/constants'
 
 const promises: Record<string, undefined | Promise<void>> = {}

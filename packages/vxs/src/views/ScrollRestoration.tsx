@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { store } from '../router/router-store'
+import * as store from '../router/router'
 
 const KEY = 'vxs-sr'
 
