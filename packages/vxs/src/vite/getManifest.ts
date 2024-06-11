@@ -1,5 +1,5 @@
 import Glob from 'fast-glob'
-import { createRoutesManifest } from '../server/routes-manifest'
+import { createRoutesManifest } from '../server/createRoutesManifest'
 
 export function getManifest(root: string) {
   const routePaths = getRoutePaths(root)

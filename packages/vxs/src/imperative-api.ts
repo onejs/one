@@ -1,4 +1,4 @@
-import { store } from './router/router-store'
+import * as store from './router/router'
 import type { VXSRouter } from './interfaces/router'
 
 export const router: VXSRouter.Router = {

@@ -1,4 +1,5 @@
 /**
+ * Copyright © 2023 Tamagui LLC.
  * Copyright © 2023 650 Industries.
  * Copyright © 2023 Vercel, Inc.
  *
@@ -31,7 +32,7 @@ export interface RouteRegex {
     re: RegExp;
 }
 export declare function getServerManifest(route: RouteNode): VXSRouterServerManifestV1;
-export declare function parseParameter(param: string): {
+export declare function parseParam(param: string): {
     name: string;
     repeat: boolean;
     optional: boolean;

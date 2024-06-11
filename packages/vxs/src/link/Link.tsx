@@ -40,57 +40,7 @@ export interface LinkComponent {
  * @param props.children Child elements to render the content.
  * @param props.className On web, this sets the HTML `class` directly. On native, this can be used with CSS interop tools like Nativewind.
  */
-export const Link = React.forwardRef(LinkInner) as unknown as LinkComponent
-
-Link.resolveHref = resolveHref
-
-// Mutate the style prop to add the className on web.
-function useInteropClassName(props: { style?: TextProps['style']; className?: string }) {
-  if (Platform.OS !== 'web') {
-    return props.style
-  }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  return React.useMemo(() => {
-    if (props.className == null) {
-      return props.style
-    }
-    const cssStyle = {
-      $$css: true,
-      __routerLinkClassName: props.className,
-    }
-
-    if (Array.isArray(props.style)) {
-      return [...props.style, cssStyle]
-    }
-    return [props.style, cssStyle]
-  }, [props.style, props.className])
-}
-
-const useHrefAttrs = Platform.select<
-  (props: Partial<VXSRouter.LinkProps>) => { hrefAttrs?: any } & Partial<VXSRouter.LinkProps>
->({
-  web: function useHrefAttrs({ asChild, rel, target, download }: Partial<VXSRouter.LinkProps>) {
-    return React.useMemo(() => {
-      const hrefAttrs = {
-        rel,
-        target,
-        download,
-      }
-      if (asChild) {
-        return hrefAttrs
-      }
-      return {
-        hrefAttrs,
-      }
-    }, [asChild, rel, target, download])
-  },
-  default: function useHrefAttrs() {
-    return {}
-  },
-})
-
-function LinkInner(
+export const Link = React.forwardRef(function Link(
   {
     href,
     replace,
@@ -145,4 +95,52 @@ function LinkInner(
       })}
     />
   )
+}) as unknown as LinkComponent
+
+Link.resolveHref = resolveHref
+
+// Mutate the style prop to add the className on web.
+function useInteropClassName(props: { style?: TextProps['style']; className?: string }) {
+  if (Platform.OS !== 'web') {
+    return props.style
+  }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  return React.useMemo(() => {
+    if (props.className == null) {
+      return props.style
+    }
+    const cssStyle = {
+      $$css: true,
+      __routerLinkClassName: props.className,
+    }
+
+    if (Array.isArray(props.style)) {
+      return [...props.style, cssStyle]
+    }
+    return [props.style, cssStyle]
+  }, [props.style, props.className])
 }
+
+const useHrefAttrs = Platform.select<
+  (props: Partial<VXSRouter.LinkProps>) => { hrefAttrs?: any } & Partial<VXSRouter.LinkProps>
+>({
+  web: function useHrefAttrs({ asChild, rel, target, download }: Partial<VXSRouter.LinkProps>) {
+    return React.useMemo(() => {
+      const hrefAttrs = {
+        rel,
+        target,
+        download,
+      }
+      if (asChild) {
+        return hrefAttrs
+      }
+      return {
+        hrefAttrs,
+      }
+    }, [asChild, rel, target, download])
+  },
+  default: function useHrefAttrs() {
+    return {}
+  },
+})

@@ -1,4 +1,4 @@
-import type { RouteInfo } from './server/routes-manifest';
+import type { RouteInfo } from './server/createRoutesManifest';
 export type Options = {
     shouldIgnore?: (req: Request) => boolean;
     disableSSR?: boolean;
