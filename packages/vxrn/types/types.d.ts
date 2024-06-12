@@ -1,7 +1,7 @@
 import type { Options as FlowOptions } from '@vxrn/vite-flow';
 import type { Hono } from 'hono';
 import type { OutputAsset, OutputChunk } from 'rollup';
-import type { InlineConfig, UserConfig } from 'vite';
+import type { UserConfig } from 'vite';
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
 export type BuildArgs = {
     step?: string;
@@ -41,11 +41,9 @@ export type VXRNConfig = {
     root?: string;
     host?: string;
     port?: number;
-    webConfig?: InlineConfig;
-    nativeConfig?: InlineConfig;
     flow?: FlowOptions;
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
-    serve?: (options: VXRNConfig, app: Hono) => void;
+    onServe?: (options: VXRNConfig, app: Hono) => void;
 };
 export type HMRListener = (update: {
     file: string;

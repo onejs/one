@@ -8,6 +8,7 @@ import {
   transform,
 } from '@swc/core'
 import type { PluginOption } from 'vite'
+import { extname } from 'node:path'
 
 // TODO node has an import to do this: const require = createRequire(import.meta.url)
 const resolve = createRequire(
@@ -37,6 +38,29 @@ type Options = {
 
 const isWebContainer = globalThis.process?.versions?.webcontainer
 
+const parsers: Record<string, ParserConfig> = {
+  '.tsx': { syntax: 'typescript', tsx: true, decorators: true },
+  '.ts': { syntax: 'typescript', tsx: false, decorators: true },
+  '.jsx': { syntax: 'ecmascript', jsx: true },
+  '.js': { syntax: 'ecmascript' },
+  // JSX is required to trigger fast refresh transformations, even if MDX already transforms it
+  '.mdx': { syntax: 'ecmascript', jsx: true },
+}
+
+function getParser(id: string) {
+  const extension = extname(id)
+  let parser: ParserConfig = !extension ? parsers['.js'] : parsers[extension]
+
+  // compat
+  if (extension === '.js') {
+    if (id.includes('expo-modules-core')) {
+      parser = parsers['.jsx']
+    }
+  }
+
+  return parser
+}
+
 export default (_options?: Options): PluginOption[] => {
   const options = {
     mode: _options?.mode ?? 'serve',
@@ -52,6 +76,7 @@ export default (_options?: Options): PluginOption[] => {
   return [
     {
       name: 'vite:react-swc',
+      enforce: 'pre',
 
       config: (config) => {
         return {
@@ -63,22 +88,21 @@ export default (_options?: Options): PluginOption[] => {
               plugins: [
                 {
                   name: `native-transform`,
+                  options: {
+                    order: 'pre',
+                    handler(options) {},
+                  },
 
                   async transform(code, id) {
-                    let out = await transform(code, {
+                    const parser = getParser(id)
+                    const out = await transform(code, {
                       filename: id,
                       swcrc: false,
                       configFile: false,
                       sourceMaps: true,
                       jsc: {
                         target: 'es5',
-                        parser: id.endsWith('.tsx')
-                          ? { syntax: 'typescript', tsx: true, decorators: true }
-                          : id.endsWith('.ts')
-                            ? { syntax: 'typescript', tsx: false, decorators: true }
-                            : id.endsWith('.jsx')
-                              ? { syntax: 'ecmascript', jsx: true }
-                              : { syntax: 'ecmascript' },
+                        parser,
                         transform: {
                           useDefineForClassFields: true,
                           react: {
@@ -120,6 +144,7 @@ export default (_options?: Options): PluginOption[] => {
         if (_id.includes(`virtual:`)) {
           return
         }
+
         const out = await swcTransform(_id, code, options)
         hasTransformed[_id] = true
         return out
@@ -197,6 +222,8 @@ if (module.hot) {
 }
 
 export const transformForBuild = async (id: string, code: string) => {
+  const parser = getParser(id)
+  if (!parser) return
   return await transform(code, {
     filename: id,
     swcrc: false,
@@ -204,13 +231,7 @@ export const transformForBuild = async (id: string, code: string) => {
     sourceMaps: true,
     jsc: {
       target: 'es2019',
-      parser: id.endsWith('.tsx')
-        ? { syntax: 'typescript', tsx: true, decorators: true }
-        : id.endsWith('.ts')
-          ? { syntax: 'typescript', tsx: false, decorators: true }
-          : id.endsWith('.jsx')
-            ? { syntax: 'ecmascript', jsx: true }
-            : { syntax: 'ecmascript' },
+      parser,
       transform: {
         useDefineForClassFields: true,
         react: {
@@ -229,17 +250,7 @@ export const transformWithOptions = async (
   options: Options,
   reactConfig: ReactConfig
 ) => {
-  const decorators = options?.tsDecorators ?? false
-  const parser: ParserConfig | undefined = id.endsWith('.tsx')
-    ? { syntax: 'typescript', tsx: true, decorators }
-    : id.endsWith('.ts')
-      ? { syntax: 'typescript', tsx: false, decorators }
-      : id.endsWith('.jsx')
-        ? { syntax: 'ecmascript', jsx: true }
-        : id.endsWith('.mdx')
-          ? // JSX is required to trigger fast refresh transformations, even if MDX already transforms it
-            { syntax: 'ecmascript', jsx: true }
-          : undefined
+  const parser = getParser(id)
   if (!parser) return
 
   let result: Output

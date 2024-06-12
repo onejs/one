@@ -1,4 +1,3 @@
-import { readVXRNConfig } from './utils/readVXRNConfig'
 import { defineCommand, runMain } from 'citty'
 
 const dev = defineCommand({
@@ -19,7 +18,6 @@ const dev = defineCommand({
     },
   },
   async run({ args }) {
-    const userConfig = await readVXRNConfig()
     const { dev } = await import(
       // @ts-expect-error
       './exports/dev.mjs'
@@ -37,9 +35,8 @@ const dev = defineCommand({
         include: [],
         exclude: [],
       },
-      ...userConfig,
-      host: args.host ?? userConfig.host,
-      port: args.port ? +args.port : userConfig.port,
+      host: args.host,
+      port: args.port ? +args.port : undefined,
     })
 
     const { closePromise } = await start()
@@ -82,7 +79,6 @@ const build = defineCommand({
     },
   },
   async run({ args }) {
-    const userConfig = await readVXRNConfig()
     const { build } = await import(
       // @ts-expect-error
       './exports/build.mjs'
@@ -92,7 +88,7 @@ const build = defineCommand({
       console.error(err?.message || err)
     })
 
-    const results = await build(userConfig, args)
+    const results = await build({}, args)
 
     if (process.env.DEBUG) {
       console.info('results', results)
@@ -115,7 +111,6 @@ const serve = defineCommand({
     },
   },
   async run({ args }) {
-    const userConfig = await readVXRNConfig()
     const { serve } = await import(
       // @ts-expect-error
       './exports/serve.mjs'
@@ -126,9 +121,8 @@ const serve = defineCommand({
     })
 
     const results = await serve({
-      ...userConfig,
-      port: args.port ? +args.port : userConfig.port,
-      host: args.host ?? userConfig.host,
+      port: args.port ? +args.port : undefined,
+      host: args.host,
     })
 
     if (process.env.DEBUG) {

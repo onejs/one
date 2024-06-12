@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import { useEffect } from 'react'
-import { Text, View } from 'tamagui'
+import { Text, View } from '@tamagui/core'
 import { Link, useLoader } from 'vxs'
 
 export async function loader() {

@@ -17,10 +17,6 @@ export const createProdServer = async (options: VXRNConfig) => {
     })
   )
 
-  if (options.serve) {
-    options.serve(options, app)
-  }
-
   // app.get(
   //   '*',
   //   cache({
