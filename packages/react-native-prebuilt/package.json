@@ -36,9 +36,13 @@
   },
   "devDependencies": {
     "@tamagui/build": "^1.100.0",
+    "react": "19.0.0-rc-f994737d14-20240522",
+    "react-dom": "19.0.0-rc-f994737d14-20240522",
     "react-native": "0.73.2"
   },
   "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
     "react-native": "*"
   },
   "publishConfig": {

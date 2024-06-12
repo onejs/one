@@ -5977,8 +5977,12 @@ __metadata:
     esbuild: ~0.19.3
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.1.0
+    react: 19.0.0-rc-f994737d14-20240522
+    react-dom: 19.0.0-rc-f994737d14-20240522
     react-native: 0.73.2
   peerDependencies:
+    react: "*"
+    react-dom: "*"
     react-native: "*"
   languageName: unknown
   linkType: soft
@@ -8392,7 +8396,7 @@ __metadata:
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.6.3
     patch-package: ^8.0.0
-    react: ^18.3.1
+    react: 19.0.0-rc-f994737d14-20240522
     react-native: 0.73.2
     react-test-renderer: 18.2.0
     typescript: ^5.2.2
@@ -12525,15 +12529,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.3.1":
-  version: 18.3.1
-  resolution: "react@npm:18.3.1"
-  dependencies:
-    loose-envify: ^1.1.0
-  checksum: a27bcfa8ff7c15a1e50244ad0d0c1cb2ad4375eeffefd266a64889beea6f6b64c4966c9b37d14ee32d6c9fcd5aa6ba183b6988167ab4d127d13e7cb5b386a376
-  languageName: node
-  linkType: hard
-
 "read-pkg@npm:^3.0.0":
   version: 3.0.0
   resolution: "read-pkg@npm:3.0.0"
@@ -14864,6 +14859,7 @@ __metadata:
     "@types/estree": ^1.0.5
     "@types/node": ^20.12.7
     "@types/react-dom": ^18.2.25
+    citty: ^0.1.6
     depcheck: ^1.4.7
     dotenv: ^16.4.5
     esbuild: ~0.19.3
@@ -14893,8 +14889,6 @@ __metadata:
     vite: 6.0.0-alpha.17
     vxrn: 0.1.96
   peerDependencies:
-    react: "*"
-    react-dom: "*"
     react-native: "*"
   bin:
     vxs: run.mjs

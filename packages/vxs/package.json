@@ -59,6 +59,7 @@
     "@react-navigation/routers": "^6.1.9",
     "@swc/core": "^1.4.13",
     "@types/estree": "^1.0.5",
+    "citty": "^0.1.6",
     "dotenv": "^16.4.5",
     "esbuild": "~0.19.3",
     "escape-string-regexp": "^5.0.0",
@@ -87,8 +88,6 @@
     "vxrn": "0.1.96"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
     "react-native": "*"
   },
   "devDependencies": {
