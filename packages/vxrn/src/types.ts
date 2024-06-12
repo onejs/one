@@ -43,13 +43,11 @@ export type VXRNConfig = {
   root?: string
   host?: string
   port?: number
-  webConfig?: InlineConfig
-  nativeConfig?: InlineConfig
   flow?: FlowOptions
 
+  // for hooking into things
   afterBuild?: (props: AfterBuildProps) => void | Promise<void>
-
-  serve?: (options: VXRNConfig, app: Hono) => void
+  onServe?: (options: VXRNConfig, app: Hono) => void
 }
 
 export type HMRListener = (update: { file: string; contents: string }) => void

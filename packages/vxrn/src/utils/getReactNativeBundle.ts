@@ -20,7 +20,7 @@ export let entryRoot = ''
 
 export async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugin: any) {
   const { root, port, cacheDir } = options
-  const { depsToOptimize } = getOptimizeDeps('build')
+  const { depsToOptimize, needsInterop } = getOptimizeDeps('build')
 
   if (process.env.LOAD_TMP_BUNDLE) {
     // for easier quick testing things:
@@ -111,6 +111,7 @@ export async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClie
 
     optimizeDeps: {
       include: depsToOptimize,
+      needsInterop,
       esbuildOptions: {
         jsx: 'automatic',
       },
@@ -144,9 +145,10 @@ export async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClie
     },
   } satisfies InlineConfig
 
-  if (options.nativeConfig) {
-    nativeBuildConfig = mergeConfig(nativeBuildConfig, options.nativeConfig) as any
-  }
+  // TODO
+  // if (options.nativeConfig) {
+  //   nativeBuildConfig = mergeConfig(nativeBuildConfig, options.nativeConfig) as any
+  // }
 
   // // this fixes my swap-react-native plugin not being called pre 😳
   await resolveConfig(nativeBuildConfig, 'build')

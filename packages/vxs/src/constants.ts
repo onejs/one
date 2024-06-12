@@ -4,16 +4,14 @@ export enum ExecutionEnvironment {
   StoreClient = 'storeClient',
 }
 
-// @ts-nocheck
-import * as EMC from 'expo-modules-core'
-// for ssr support:
-const { Platform, uuid } = EMC
+const uuid = () => `${Math.random()}`.slice(3)
 
 const ID_KEY = 'EXPO_CONSTANTS_INSTALLATION_ID'
-const _sessionId = uuid.v4()
+const _sessionId = uuid()
+const hasDOM = typeof window !== 'undefined'
 
 function getBrowserName() {
-  if (Platform.isDOMAvailable) {
+  if (hasDOM) {
     const agent = navigator.userAgent.toLowerCase()
     if (agent.includes('edge')) {
       return 'Edge'
@@ -55,7 +53,7 @@ export default {
     try {
       installationId = localStorage.getItem(ID_KEY)
       if (installationId == null || typeof installationId !== 'string') {
-        installationId = uuid.v4()
+        installationId = uuid()
         localStorage.setItem(ID_KEY, installationId)
       }
     } catch {
@@ -69,10 +67,10 @@ export default {
     return _sessionId
   },
   get platform() {
-    return { web: Platform.isDOMAvailable ? { ua: navigator.userAgent } : undefined }
+    return { web: hasDOM ? { ua: navigator.userAgent } : undefined }
   },
   get isHeadless() {
-    if (!Platform.isDOMAvailable) return true
+    if (!hasDOM) return true
     return /\bHeadlessChrome\//.test(navigator.userAgent)
   },
   get isDevice() {
@@ -83,7 +81,7 @@ export default {
     return this.manifest.sdkVersion || null
   },
   get linkingUri() {
-    if (Platform.isDOMAvailable) {
+    if (hasDOM) {
       // On native this is `exp://`
       // On web we should use the protocol and hostname (location.origin)
       return location.origin
@@ -122,7 +120,7 @@ export default {
     return null
   },
   get experienceUrl() {
-    if (Platform.isDOMAvailable) {
+    if (hasDOM) {
       return location.origin
     }
     return ''
@@ -131,7 +129,7 @@ export default {
     return __DEV__
   },
   async getWebViewUserAgentAsync() {
-    if (Platform.isDOMAvailable) {
+    if (hasDOM) {
       return navigator.userAgent
     }
     return null

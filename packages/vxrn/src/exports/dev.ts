@@ -33,7 +33,7 @@ const { ensureDir } = FSExtra
 
 export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) => {
   const options = await getOptionsFilled(rest)
-  const { host, port, root, cacheDir } = options
+  const { port, root, cacheDir } = options
 
   if (clean) {
     try {

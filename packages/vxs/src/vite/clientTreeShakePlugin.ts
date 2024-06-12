@@ -16,6 +16,8 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
   return {
     name: 'vxrn:client-tree-shake',
 
+    enforce: 'post',
+
     async transform(code, id, settings) {
       return await transformTreeShakeClient(code, id, settings, this.parse, '')
     },

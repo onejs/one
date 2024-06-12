@@ -1,7 +1,14 @@
 import FSExtra from 'fs-extra'
 import { rm } from 'node:fs/promises'
 import type { RollupOutput } from 'rollup'
-import { mergeConfig, build as viteBuild, type Plugin, type UserConfig } from 'vite'
+import {
+  loadConfigFromFile,
+  mergeConfig,
+  resolveConfig,
+  build as viteBuild,
+  type Plugin,
+  type UserConfig,
+} from 'vite'
 import { analyzer } from 'vite-bundle-analyzer'
 import type { BuildArgs, VXRNConfig } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
@@ -31,7 +38,13 @@ const disableOptimizationConfig = {
 } satisfies UserConfig
 
 export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) => {
-  const options = await getOptionsFilled(optionsIn)
+  const [options, viteConfig] = await Promise.all([
+    getOptionsFilled(optionsIn),
+    loadConfigFromFile({
+      command: 'build',
+      mode: 'prod',
+    }).then((_) => _?.config),
+  ])
 
   // clean
   await Promise.all([
@@ -74,8 +87,8 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     },
   } satisfies Plugin
 
-  if (options.webConfig) {
-    webBuildConfig = mergeConfig(webBuildConfig, options.webConfig) as any
+  if (viteConfig) {
+    webBuildConfig = mergeConfig(webBuildConfig, viteConfig) as any
   }
 
   let clientOutput
@@ -145,19 +158,16 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
   // }
 
   const { output: serverOutput } = (await viteBuild(serverBuildConfig)) as RollupOutput
+  const clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
 
-  if (options.afterBuild) {
-    const clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
+  console.info(`\n ✔️ vxrn build complete\n`)
 
-    await options.afterBuild({
-      options,
-      buildArgs,
-      clientOutput,
-      serverOutput,
-      webBuildConfig,
-      clientManifest,
-    })
+  return {
+    options,
+    buildArgs,
+    clientOutput,
+    serverOutput,
+    webBuildConfig,
+    clientManifest,
   }
-
-  console.info(`\n ✔️ build complete\n`)
 }

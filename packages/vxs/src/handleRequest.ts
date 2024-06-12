@@ -1,4 +1,3 @@
-import { join } from 'node:path'
 import type { RouteInfo } from './server/createRoutesManifest'
 import { getManifest } from './vite/getManifest'
 

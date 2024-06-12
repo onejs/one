@@ -14,6 +14,10 @@ export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
 
   if (!version.startsWith('19.')) {
     console.error(`Must be on React 19, instead found`, version)
+    console.error(
+      ` vxs vendors React 18 and aliases to it for native environments.
+ It uses our local React for web, where it requires React 19.`
+    )
     process.exit(1)
   }
 
@@ -56,10 +60,30 @@ export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
 
     createVirtualEntry(options),
 
+    // TODO only on native env
+    // {
+    //   name: 'use-react-18 for native',
+    //   enforce: 'pre',
+
+    //   async config() {
+    //     return {
+    //       resolve: {
+    //         alias: {
+    //           react: import.meta.resolve('vxs/react-18'),
+    //           'react-dom': import.meta.resolve('vxs/react-dom-18'),
+    //         },
+    //       },
+    //     }
+    //   },
+    // },
+
     {
       name: 'load-web-extensions',
       enforce: 'pre',
+
       async resolveId(id, importer = '') {
+        // client or ssr
+        // console.log('env', this.environment?.name)
         const shouldOptimize = optimizeIdRegex.test(importer)
 
         if (shouldOptimize) {
