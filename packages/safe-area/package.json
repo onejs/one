@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/safe-area",
-  "version": "0.1.96",
+  "version": "0.1.97",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
