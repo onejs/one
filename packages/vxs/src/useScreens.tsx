@@ -167,29 +167,21 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   let ScreenComponent: React.ForwardRefExoticComponent<React.RefAttributes<unknown>>
 
-  console.log('VXS_ROUTER_IMPORT_MODE', VXS_ROUTER_IMPORT_MODE)
-
-  // TODO: This ensures sync doesn't use React.lazy, but it's not ideal.
   if (VXS_ROUTER_IMPORT_MODE === 'lazy') {
     ScreenComponent = React.forwardRef((props, ref) => {
+      // for native avoid suspense for now
       const [loaded, setLoaded] = useState<any>(null)
-
-      console.log('loaded', loaded)
 
       useEffect(() => {
         try {
           const found = value.loadRoute()
-          console.log('found', found)
           if (found) {
             setLoaded(found)
           }
         } catch (err) {
-          console.log('er', err)
           if (err instanceof Promise) {
-            console.log('loading', err)
             err
               .then((res) => {
-                console.log('finally', res)
                 setLoaded(res)
               })
               .catch((err) => {
