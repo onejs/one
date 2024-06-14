@@ -6,11 +6,14 @@ import { entryRoot } from '../utils/getReactNativeBundle'
 import { getVitePath } from '../utils/getVitePath'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
+import type { Plugin } from 'vite'
 
 export function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
   return {
     name: 'client-transform',
 
+    // TODO see about moving to hotUpdate
+    // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
     async handleHotUpdate({ read, modules, file }) {
       try {
         if (!isWithin(root, file)) {
@@ -101,5 +104,5 @@ export function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
         console.error(`Error processing hmr update:`, err)
       }
     },
-  }
+  } satisfies Plugin
 }

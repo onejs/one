@@ -1,6 +1,6 @@
 import { dirname, resolve } from 'node:path'
-import type { PluginOption } from 'vite'
-import { getOptimizeDeps } from 'vxrn'
+import type { InlineConfig, PluginOption } from 'vite'
+import { getOptimizeDeps, isWebEnvironment } from 'vxrn'
 import { existsAsync } from '../utils/existsAsync'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter, type Options } from './createFileSystemRouter'
@@ -16,7 +16,7 @@ export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
     console.error(`Must be on React 19, instead found`, version)
     console.error(
       ` vxs vendors React 18 and aliases to it for native environments.
- It uses our local React for web, where it requires React 19.`
+ It uses your local React for web, where it requires React 19.`
     )
     process.exit(1)
   }
@@ -61,27 +61,42 @@ export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
     createVirtualEntry(options),
 
     // TODO only on native env
-    // {
-    //   name: 'use-react-18 for native',
-    //   enforce: 'pre',
+    {
+      name: 'use-react-18 for native',
+      enforce: 'pre',
 
-    //   async config() {
-    //     return {
-    //       resolve: {
-    //         alias: {
-    //           react: import.meta.resolve('vxs/react-18'),
-    //           'react-dom': import.meta.resolve('vxs/react-dom-18'),
-    //         },
-    //       },
-    //     }
-    //   },
-    // },
+      async config() {
+        const sharedNativeConfig = {
+          resolve: {
+            alias: {
+              react: import.meta.resolve('vxs/react-18'),
+              'react-dom': import.meta.resolve('vxs/react-dom-18'),
+            },
+          },
+        } satisfies InlineConfig
+
+        return {
+          environments: {
+            ios: {
+              ...sharedNativeConfig,
+            },
+            android: {
+              ...sharedNativeConfig,
+            },
+          },
+        }
+      },
+    },
 
     {
       name: 'load-web-extensions',
       enforce: 'pre',
 
       async resolveId(id, importer = '') {
+        if (!isWebEnvironment(this.environment!)) {
+          return
+        }
+
         // client or ssr
         // console.log('env', this.environment?.name)
         const shouldOptimize = optimizeIdRegex.test(importer)

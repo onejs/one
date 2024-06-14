@@ -6,4 +6,6 @@ export * from './utils/getOptionsFilled'
 export * from './utils/getOptimizeDeps'
 export * from './utils/getBaseViteConfig'
 
+export * from './utils/environmentUtils'
+
 export * from './types'

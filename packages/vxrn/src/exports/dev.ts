@@ -134,8 +134,10 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   // TODO move these to router.get():
   app.use(
     defineEventHandler(async ({ node: { req } }) => {
-      if (!req.headers['user-agent']?.match(/Expo|React/)) {
-        return
+      if (!req.headers['expo-platform']) {
+        if (!req.headers['user-agent']?.match(/Expo|React/)) {
+          return
+        }
       }
 
       if (req.url === '/' || req.url?.startsWith('/?platform=')) {

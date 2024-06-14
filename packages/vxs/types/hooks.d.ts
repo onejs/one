@@ -10,7 +10,7 @@ export declare function useNavigationContainerRef(): VXSRouter.NavigationRef;
 export declare function Frozen({ on, children }: {
     on?: boolean;
     children: ReactNode;
-}): string | number | boolean | import("react/jsx-runtime").JSX.Element | Iterable<React.ReactNode> | null | undefined;
+}): string | number | boolean | Iterable<React.ReactNode> | import("react/jsx-runtime").JSX.Element | null | undefined;
 export declare function useRouter(): VXSRouter.Router;
 /**
  * @private

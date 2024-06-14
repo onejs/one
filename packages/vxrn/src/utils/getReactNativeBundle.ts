@@ -3,7 +3,14 @@ import createViteFlow from '@vxrn/vite-flow'
 import viteReactPlugin from '@vxrn/vite-native-swc'
 import { readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
-import { build, mergeConfig, resolveConfig, transformWithEsbuild, type InlineConfig } from 'vite'
+import {
+  build,
+  createBuilder,
+  mergeConfig,
+  resolveConfig,
+  transformWithEsbuild,
+  type InlineConfig,
+} from 'vite'
 import { nativeExtensions } from '../constants'
 import { resolveFile } from './resolveFile'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
@@ -153,7 +160,9 @@ export async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClie
   // // this fixes my swap-react-native plugin not being called pre 😳
   await resolveConfig(nativeBuildConfig, 'build')
 
-  const buildOutput = await build(nativeBuildConfig)
+  const builder = await createBuilder(nativeBuildConfig)
+
+  const buildOutput = await builder.build(builder.environments.ios)
 
   if (!('output' in buildOutput)) {
     throw `❌`

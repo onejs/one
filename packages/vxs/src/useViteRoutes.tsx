@@ -81,6 +81,8 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
           clears[id] = setTimeout(() => {
             delete loadedRoutes[id]
           }, 500)
+
+          return val
         })
         .catch((err) => {
           console.error(`Error loading route`, id, err)

@@ -237,12 +237,16 @@ function getRouteInfoFromState(
 // Subscription functions
 export function subscribeToRootState(subscriber: () => void) {
   rootStateSubscribers.add(subscriber)
-  return () => rootStateSubscribers.delete(subscriber)
+  return () => {
+    rootStateSubscribers.delete(subscriber)
+  }
 }
 
 export function subscribeToStore(subscriber: () => void) {
   storeSubscribers.add(subscriber)
-  return () => storeSubscribers.delete(subscriber)
+  return () => {
+    storeSubscribers.delete(subscriber)
+  }
 }
 
 // Snapshot function
@@ -356,7 +360,6 @@ import { startTransition } from 'react'
 import { resolve } from '../link/path'
 import { matchDynamicName } from '../matchers'
 import { shouldLinkExternally } from '../utils/url'
-import { rememberScrollPosition } from '../views/ScrollRestoration'
 import { CLIENT_BASE_URL } from './constants'
 
 // TODO
@@ -459,8 +462,6 @@ export function linkTo(href: string, event?: string) {
   startTransition(() => {
     const current = navigationRef.getCurrentRoute()
 
-    rememberScrollPosition()
-
     // loading state
     send('start')
     navigationRef.dispatch(action)
@@ -483,12 +484,15 @@ export function linkTo(href: string, event?: string) {
   return
 }
 
-function send(event: 'start' | 'finish') {
+type LoadState = 'start' | 'finish'
+type LoadStateListener = (type: LoadState) => void
+
+function send(event: LoadState) {
   linkEventListeners.forEach((l) => l(event))
 }
 
-const linkEventListeners = new Set<Function>()
-export function onLoadingState(l: Function) {
+const linkEventListeners = new Set<LoadStateListener>()
+export function onLoadingState(l: LoadStateListener) {
   linkEventListeners.add(l)
   return () => {
     linkEventListeners.delete(l)

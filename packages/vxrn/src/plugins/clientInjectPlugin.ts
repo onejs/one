@@ -1,6 +1,7 @@
 import path from 'node:path'
 
 import type { HmrOptions, Plugin, ResolvedConfig, UserConfig } from 'vite'
+import { isNativeEnvironment } from '../utils/environmentUtils'
 
 const process_env_NODE_ENV_RE = /(\bglobal(This)?\.)?\bprocess\.env\.NODE_ENV\b/g
 
@@ -78,9 +79,11 @@ export function clientInjectionsPlugin(config: ResolvedConfig): Plugin {
       }
     },
 
-    transform(code, id, options) {
-      if (id.includes('vite-native-client/dist/esm/client.')) {
-        return injectConfigValues(code)
+    transform(code, id) {
+      if (isNativeEnvironment(this.environment!)) {
+        if (id.includes('vite-native-client/dist/esm/client.')) {
+          return injectConfigValues(code)
+        }
       }
     },
   }

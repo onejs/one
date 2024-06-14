@@ -27,8 +27,8 @@ export declare function canDismiss(): boolean;
 export declare function getSortedRoutes(): RouteNode[];
 export declare function updateState(state: ResultState, nextStateParam?: ResultState): void;
 export declare function getRouteInfo(state: ResultState): UrlObject;
-export declare function subscribeToRootState(subscriber: () => void): () => boolean;
-export declare function subscribeToStore(subscriber: () => void): () => boolean;
+export declare function subscribeToRootState(subscriber: () => void): () => void;
+export declare function subscribeToStore(subscriber: () => void): () => void;
 export declare function snapshot(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
@@ -69,5 +69,8 @@ export declare function cleanup(): void;
 export declare const preloadingLoader: {};
 export declare function preloadRoute(href: string): void;
 export declare function linkTo(href: string, event?: string): void;
-export declare function onLoadingState(l: Function): () => void;
+type LoadState = 'start' | 'finish';
+type LoadStateListener = (type: LoadState) => void;
+export declare function onLoadingState(l: LoadStateListener): () => void;
+export {};
 //# sourceMappingURL=router.d.ts.map
