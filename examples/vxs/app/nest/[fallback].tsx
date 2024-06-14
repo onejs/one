@@ -1,5 +1,5 @@
 import { useGlobalSearchParams, useLoader } from 'vxs'
-import { Text, View } from 'tamagui'
+import { Text, View } from '@tamagui/core'
 
 export async function generateStaticParams() {
   return [{ fallback: 'one' }, { fallback: 'two' }]

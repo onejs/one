@@ -8404,6 +8404,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"example-vxs-plain@workspace:examples/vxs-plain":
+  version: 0.0.0-use.local
+  resolution: "example-vxs-plain@workspace:examples/vxs-plain"
+  dependencies:
+    patch-package: ^8.0.0
+    react-native: 0.73.2
+    react-native-reanimated: ~3.3.0
+    react-native-web: ^0.19.11
+    vite: 6.0.0-alpha.17
+    vxrn: 0.1.97
+    vxs: 0.1.97
+  languageName: unknown
+  linkType: soft
+
 "example-vxs@workspace:examples/vxs":
   version: 0.0.0-use.local
   resolution: "example-vxs@workspace:examples/vxs"

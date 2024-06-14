@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import * as store from '../router/router'
+import { onLoadingState, subscribeToRootState } from '../router/router'
 
 const KEY = 'vxs-sr'
 
@@ -22,7 +22,7 @@ function restorePosition() {
 
 let didPop = false
 
-export function rememberScrollPosition() {
+function rememberScrollPosition() {
   didPop = false
   const state = getState()
   state[window.location.pathname] = window.scrollY
@@ -31,13 +31,23 @@ export function rememberScrollPosition() {
 
 export function ScrollRestoration() {
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
     let isInitial = true
 
     window.addEventListener('popstate', () => {
       didPop = true
     })
 
-    store.subscribeToRootState(() => {
+    const disposeOnLoadState = onLoadingState((state) => {
+      if (state === 'start') {
+        rememberScrollPosition()
+      }
+    })
+
+    const disposeOnRootState = subscribeToRootState(() => {
       if (isInitial) {
         isInitial = false
         return
@@ -51,6 +61,11 @@ export function ScrollRestoration() {
         window.scrollTo(0, 0)
       }
     })
+
+    return () => {
+      disposeOnLoadState()
+      disposeOnRootState()
+    }
   }, [])
 
   return null

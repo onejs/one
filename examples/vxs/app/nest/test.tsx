@@ -1,4 +1,4 @@
-import { Text, View } from 'tamagui'
+import { Text, View } from '@tamagui/core'
 import { Link } from 'vxs'
 
 export default function Test() {

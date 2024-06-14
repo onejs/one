@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useMemo, type FunctionComponent, type ReactNode } from 'react'
+import { Fragment, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 import Constants from './constants'
 import type { GlobbedRouteImports, RenderAppProps } from './types'
@@ -7,12 +7,11 @@ import { RootErrorBoundary } from './views/RootErrorBoundary'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
-import { preloadRoute } from './router/router'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import type { RequireContext } from './types'
+import { PreloadLinks } from './PreloadLinks'
 // import { SplashScreen } from './views/Splash'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 type RootProps = RenderAppProps &
   Omit<InnerProps, 'context'> & {
@@ -118,24 +117,6 @@ window.$RefreshSig$ = () => (type) => type;`,
       />
     </>
   )
-}
-
-function PreloadLinks() {
-  useEffect(() => {
-    document.addEventListener('mouseover', (e) => {
-      let target = e.target
-      if (!(target instanceof HTMLElement)) return
-      target = target instanceof HTMLAnchorElement ? target : target.parentElement
-      if (!(target instanceof HTMLAnchorElement)) return
-      const href = target.getAttribute('href')
-      if (href?.[0] === '/') {
-        // local route
-        preloadRoute(href)
-      }
-    })
-  }, [])
-
-  return null
 }
 
 function Contents({ routes, path, wrapper = Fragment, ...props }: RootProps) {
