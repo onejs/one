@@ -3,8 +3,6 @@ import type { VXSRouter } from './interfaces/router';
 type SearchParams = Record<string, string | string[]>;
 export declare function useRootNavigationState(): import("./fork/getStateFromPath").ResultState;
 export declare function useRouteInfo(): import("./router/getNormalizedStatePath").UrlObject;
-/** @deprecated use `useNavigationContainerRef()` instead, which returns a React ref. */
-export declare function useRootNavigation(): import("@react-navigation/core").NavigationContainerRef<ReactNavigation.RootParamList> | null;
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
 export declare function useNavigationContainerRef(): VXSRouter.NavigationRef;
 export declare function Frozen({ on, children }: {

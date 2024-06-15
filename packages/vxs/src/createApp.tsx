@@ -20,5 +20,5 @@ export function createApp(options: CreateAppProps): void {
   }
 
   // on client we just render
-  render(<Root isClient routes={options.routes} path={window.location.pathname} />)
+  render(<Root isClient routes={options.routes} path={window.location.href} />)
 }

@@ -121,9 +121,11 @@ window.$RefreshSig$ = () => (type) => type;`,
 
 function Contents({ routes, path, wrapper = Fragment, ...props }: RootProps) {
   const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
+
+  // TODO can probably remove since we handle this above
   const location =
     typeof window !== 'undefined'
-      ? new URL(path || window.location.pathname || '/', window.location.href)
+      ? new URL(path || window.location.href || '/', window.location.href)
       : new URL(path || '/', 'http://localhost')
 
   return <ContextNavigator {...props} location={location} context={context} wrapper={wrapper} />
@@ -160,13 +162,10 @@ const hasViewControllerBasedStatusBarAppearance =
   Platform.OS === 'ios' &&
   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
 
-const initialUrl =
-  Platform.OS === 'web' && typeof window !== 'undefined' ? new URL(window.location.href) : undefined
-
 function ContextNavigator({
   wrapper: ParentWrapper = Fragment,
   context,
-  location: initialLocation = initialUrl,
+  location: initialLocation,
   navigationContainerProps,
 }: InnerProps) {
   const store = useInitializeVXSRouter(context, initialLocation)

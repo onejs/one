@@ -1,8 +1,8 @@
 import { NavigationRouteContext } from '@react-navigation/native'
-import React, { createContext, useContext, type ReactNode } from 'react'
-import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
+import React, { createContext, type ReactNode } from 'react'
 import type { VXSRouter } from './interfaces/router'
 import * as store from './router/router'
+import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 
 type SearchParams = Record<string, string | string[]>
 
@@ -12,11 +12,6 @@ export function useRootNavigationState() {
 
 export function useRouteInfo() {
   return useStoreRouteInfo()
-}
-
-/** @deprecated use `useNavigationContainerRef()` instead, which returns a React ref. */
-export function useRootNavigation() {
-  return navigationRef.current
 }
 
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
@@ -130,7 +125,8 @@ export function useGlobalSearchParams<
 export function useLocalSearchParams<
   TParams extends SearchParams = SearchParams,
 >(): Partial<TParams> {
-  const params = React.useContext(NavigationRouteContext)?.params ?? {}
+  const context = React.useContext(NavigationRouteContext)
+  const params = context?.params ?? {}
   return Object.fromEntries(
     Object.entries(params).map(([key, value]) => {
       if (Array.isArray(value)) {
