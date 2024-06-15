@@ -2,6 +2,8 @@ import type { NavigationState } from '@react-navigation/core'
 import { nanoid } from 'nanoid/non-secure'
 
 // forked from @react-navigation/native/src/createMemoryHistory.tsx
+// NOTE there was a change we made for search params, but we've fixed it upstream
+// we can revert this back to the react-navigation one if we want
 
 type HistoryRecord = {
   // Unique identifier for this record to match it with window.history.state
@@ -90,10 +92,11 @@ export default function createMemoryHistory() {
       // or the previous history entry had the same path
       let pathWithHash = path
 
-      if (window.location.search) {
-        console.log('replacing!')
-        pathWithHash = pathWithHash + window.location.search
-      }
+      // NOTE: this was the wrong fix
+      // if (window.location.search) {
+      //   console.log('replacing!')
+      //   pathWithHash = pathWithHash + window.location.search
+      // }
 
       if (!items.length || items.findIndex((item) => item.id === id) < 0) {
         // There are two scenarios for creating an array with only one history record:

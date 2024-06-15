@@ -296,6 +296,7 @@ export function useVXSRouter() {
 function syncStoreRootState() {
   if (navigationRef.isReady()) {
     const currentState = navigationRef.getRootState() as unknown as ResultState
+    console.log('currentState', currentState)
 
     if (rootState !== currentState) {
       updateState(currentState)

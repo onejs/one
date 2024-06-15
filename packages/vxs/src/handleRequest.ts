@@ -43,7 +43,7 @@ export function createHandleRequest(
   return async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
     const urlString = request.url || ''
     const url = new URL(urlString)
-    const { pathname } = url
+    const { pathname, search } = url
 
     if (urlString in activeRequests) {
       return await activeRequests[urlString]
@@ -124,7 +124,7 @@ export function createHandleRequest(
             route,
             url,
             loaderProps: {
-              path: pathname,
+              path: pathname + search,
               params: getLoaderParams(url, route),
             },
           })

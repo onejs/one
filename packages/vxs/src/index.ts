@@ -27,7 +27,6 @@ export {
   useGlobalSearchParams,
   useLocalSearchParams,
   useSegments,
-  useRootNavigation,
   useRootNavigationState,
 } from './hooks'
 
