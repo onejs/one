@@ -1,6 +1,8 @@
 // thanks to hi-ogawa https://github.com/hi-ogawa/vite-plugins/tree/main/packages/ssr-css
 
 import type { Plugin, ViteDevServer } from 'vite'
+import { postprocessCSS } from './postprocessCSS'
+import { basename, dirname } from 'path'
 
 const VIRTUAL_ENTRY = 'virtual:ssr-css.css'
 
@@ -22,6 +24,7 @@ export function vitePluginSsrCss(pluginOpts: { entries: string[] }): Plugin {
           invalidateModule(server, '\0' + VIRTUAL_ENTRY + '?direct')
 
           let code = await collectStyle(server, pluginOpts.entries)
+
           res.setHeader('Content-Type', 'text/css')
           res.write(code)
           res.end()
@@ -100,7 +103,20 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
   const codes = await Promise.all(
     urls.map(async (url) => {
       const res = await server.transformRequest(url + '?direct')
-      return [`/* [collectStyle] ${url} */`, res?.code]
+      const code = res?.code || ''
+      const prefix = `/* [collectStyle] ${url} */`
+
+      try {
+        const processed = await postprocessCSS(code, {
+          resolveDir: dirname(url),
+          sourcefile: basename(url),
+        })
+
+        return [prefix, processed]
+      } catch (err) {
+        console.error(` [vxs] Error post-processing CSS, leaving un-processed: ${err}`)
+        return [prefix, code]
+      }
     })
   )
   return codes.flat().filter(Boolean).join('\n\n')

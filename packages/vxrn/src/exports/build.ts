@@ -4,7 +4,6 @@ import type { RollupOutput } from 'rollup'
 import {
   loadConfigFromFile,
   mergeConfig,
-  resolveConfig,
   build as viteBuild,
   type Plugin,
   type UserConfig,
