@@ -16,6 +16,9 @@ const dev = defineCommand({
     port: {
       type: 'string',
     },
+    https: {
+      type: 'boolean',
+    },
   },
   async run({ args }) {
     const { dev } = await import(
@@ -25,6 +28,7 @@ const dev = defineCommand({
     const { start, stop } = await dev({
       clean: args.clean,
       root: process.cwd(),
+      https: args.https,
       webConfig: {
         plugins: [],
       },

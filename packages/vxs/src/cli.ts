@@ -18,11 +18,15 @@ const dev = defineCommand({
     port: {
       type: 'string',
     },
+    https: {
+      type: 'boolean',
+    },
   },
   async run({ args }) {
     const { dev } = await import('vxrn')
     const { start, stop } = await dev({
       clean: args.clean,
+      https: args.https,
       root: process.cwd(),
       host: args.host,
       port: args.port ? +args.port : undefined,
