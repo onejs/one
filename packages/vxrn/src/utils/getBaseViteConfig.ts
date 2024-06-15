@@ -4,15 +4,6 @@ import type { UserConfig } from 'vite'
 // essentially base web config not base everything
 
 export function getBaseViteConfig({ mode }: { mode: 'development' | 'production' }): UserConfig {
-  const sharedWebConfig = {
-    resolve: {
-      alias: {
-        'react-native': 'react-native-web',
-        'react-native-safe-area-context': '@vxrn/safe-area',
-      },
-    },
-  } satisfies UserConfig
-
   return {
     mode,
 
@@ -26,6 +17,7 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
     resolve: {
       alias: {
         'react-native': 'react-native-web',
+        'react-native-safe-area-context': '@vxrn/safe-area',
       },
 
       // TODO auto dedupe all include optimize deps?
@@ -44,16 +36,6 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
     build: {
       commonjsOptions: {
         transformMixedEsModules: true,
-      },
-    },
-
-    environments: {
-      web: {
-        ...sharedWebConfig,
-      },
-
-      ssr: {
-        ...sharedWebConfig,
       },
     },
   }
