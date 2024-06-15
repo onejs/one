@@ -61,11 +61,27 @@ export function createFileSystemRouter(options: Options): Plugin {
             })
             return html
           } catch (err) {
-            console.error(`Error rendering ${url.pathname} on server:`)
-            if (err instanceof Error) {
-              console.error(err.message)
-              console.error(err.stack)
-            }
+            const title = `Error rendering ${url.pathname} on server`
+            const message = err instanceof Error ? err.message : `${err}`
+            const stack = err instanceof Error ? err.stack : ''
+
+            console.error(`${title}\n ${message}\n\n${stack}\n`)
+
+            return `
+              <html>
+                <body style="background: #000; color: #fff; padding: 5%; font-family: monospace; line-height: 2rem;">
+                  <h1>${title}</h1>
+                  <h2>${message}</h2>
+                  ${
+                    stack
+                      ? `<pre style="font-size: 15px; line-height: 24px; white-space: pre;">
+                      ${stack}
+                  </pre>`
+                      : ``
+                  }
+                </body>
+              </html>
+            `
           } finally {
             resolve()
           }
