@@ -13,7 +13,7 @@ export async function getOptionsFilled(
   options: VXRNConfig,
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ) {
-  const { host = '127.0.0.1', root = process.cwd(), entries } = options
+  const { host = '127.0.0.1', root = process.cwd(), entries, https } = options
 
   const defaultPort = options.port || (internal.mode === 'dev' ? 8081 : 3000)
 
@@ -34,6 +34,7 @@ export async function getOptionsFilled(
   ])
   return {
     ...options,
+    protocol: https ? ('https:' as const) : ('http:' as const),
     entries: {
       native: './src/entry-native.tsx',
       server: './src/entry-server.tsx',

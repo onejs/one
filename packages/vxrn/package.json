@@ -53,6 +53,7 @@
     "pkg-types": "^1.0.3",
     "vite": "6.0.0-alpha.17",
     "vite-bundle-analyzer": "^0.9.4",
+    "vite-plugin-mkcert": "^1.17.5",
     "ws": "^8.7.0"
   },
   "devDependencies": {

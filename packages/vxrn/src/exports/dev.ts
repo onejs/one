@@ -271,7 +271,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   app.use(
     eventHandler(
       createProxyEventHandler({
-        target: `http://127.0.0.1:${vitePort}`,
+        target: `${options.protocol}//127.0.0.1:${vitePort}`,
         enableLogger: process.env.DEBUG?.startsWith('vxrn'),
       })
     )
@@ -288,7 +288,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     async start() {
       server.listen(port, options.host)
 
-      console.info(`Server running on http://localhost:${port}`)
+      console.info(`Server running on ${options.protocol}//localhost:${port}`)
 
       server.once('listening', () => {
         // bridge socket between vite

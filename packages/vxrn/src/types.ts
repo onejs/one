@@ -43,6 +43,12 @@ export type VXRNConfig = {
   root?: string
   host?: string
   port?: number
+
+  /**
+   * Uses mkcert to create a self-signed certificate
+   */
+  https?: boolean
+
   flow?: FlowOptions
 
   // for hooking into things

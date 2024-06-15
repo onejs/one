@@ -5,9 +5,10 @@ import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNConfigFilled } from './getOptionsFilled'
 import { uniq } from './uniq'
+import mkcert from 'vite-plugin-mkcert'
 
 export async function getViteServerConfig(config: VXRNConfigFilled) {
-  const { root, host } = config
+  const { root, host, https } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
   const { config: userViteConfig } =
     (await loadConfigFromFile({
@@ -24,6 +25,8 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
       appType: 'custom',
       clearScreen: false,
       plugins: [
+        https ? mkcert() : null,
+
         reactNativeHMRPlugin(config),
 
         {

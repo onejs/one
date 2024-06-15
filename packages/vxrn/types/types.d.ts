@@ -41,6 +41,10 @@ export type VXRNConfig = {
     root?: string;
     host?: string;
     port?: number;
+    /**
+     * Uses mkcert to create a self-signed certificate
+     */
+    https?: boolean;
     flow?: FlowOptions;
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
     onServe?: (options: VXRNConfig, app: Hono) => void;
