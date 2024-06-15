@@ -348,6 +348,8 @@ ${JSON.stringify(params || null, null, 2)}`
       spaces: 2,
     }
   )
+
+  console.info(`\n\n🩶 build complete\n\n`)
 }
 
 async function moveAllFiles(src: string, dest: string) {
