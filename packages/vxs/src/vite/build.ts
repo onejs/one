@@ -1,23 +1,21 @@
-import { build as esbuild } from 'esbuild'
 import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
-import { tmpdir } from 'node:os'
 import Path, { join, relative } from 'node:path'
+import { version } from 'react'
 import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 import {
-  type ClientManifestEntry,
   getOptimizeDeps,
   getOptionsFilled,
   type AfterBuildProps,
+  type ClientManifestEntry,
 } from 'vxrn'
+import type { RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
-import type { RenderApp } from '../types'
-import { version } from 'react'
 
 if (!version.startsWith('19.')) {
   console.error(`Must be on React 19, instead found`, version)
@@ -114,29 +112,6 @@ export async function build(props: AfterBuildProps) {
     loaderData: any
     preloads: string[]
   }[] = []
-
-  console.info(`\n 🔨 build css\n`)
-
-  // for now just inline
-  const cssStringRaw = assets
-    .filter((x) => x.name?.endsWith('.css'))
-    .map((x) => x.source)
-    .join('\n\n')
-
-  // awkward way to get prefixes:
-  const tmpCssFile = Path.join(tmpdir(), 'tmp.css')
-  await FSExtra.writeFile(tmpCssFile, cssStringRaw, 'utf-8')
-  await esbuild({
-    entryPoints: [tmpCssFile],
-    target: 'safari17',
-    bundle: true,
-    minifyWhitespace: true,
-    sourcemap: false,
-    allowOverwrite: true,
-    outfile: tmpCssFile,
-    loader: { '.css': 'css' },
-  })
-  const cssString = await readFile(tmpCssFile, 'utf-8')
 
   console.info(`\n 🔨 build static routes\n`)
   const entryServer = `${options.root}/dist/server/_virtual_vxs-entry.js`
