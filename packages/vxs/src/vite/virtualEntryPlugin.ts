@@ -5,8 +5,9 @@ export const virtualEntryId = `virtual:${virtualEntryIdName}`
 export const virtalEntryIdClient = `/@id/__x00__virtual:${virtualEntryIdName}`
 const resolvedVirtualEntryId = '\0' + virtualEntryId
 
-export const virtualEntryIdNative = `virtual:${virtualEntryIdName}`
-const resolvedVirtualEntryIdNative = '\0' + virtualEntryId
+const virtualEntryIdNativeName = `${virtualEntryIdName}-native`
+export const virtualEntryIdNative = `virtual:${virtualEntryIdNativeName}`
+const resolvedVirtualEntryIdNative = '\0' + virtualEntryIdNativeName
 
 export function createVirtualEntry(options: { root: string }): Plugin {
   const appDirGlob = `/${options.root}/**/*.tsx`

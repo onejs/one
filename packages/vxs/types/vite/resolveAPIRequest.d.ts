@@ -1,2 +1,2 @@
-export declare function resolveAPIRequest(module: any, request: Request): Promise<unknown> | undefined;
+export declare function resolveAPIRequest(asyncImport: () => Promise<any>, request: Request): Promise<unknown> | undefined;
 //# sourceMappingURL=resolveAPIRequest.d.ts.map

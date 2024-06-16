@@ -1,13 +1,28 @@
 import { AsyncLocalStorage } from 'node:async_hooks'
 
-export const requestAsyncLocalStore = new AsyncLocalStorage()
+export const requestAsyncLocalStore =
+  globalThis['__vxrnrequestAsyncLocalStore'] ?? new AsyncLocalStorage()
 
-export const asyncHeadersCache = new WeakMap<any, Headers>()
+export const asyncHeadersCache =
+  globalThis['__vxrnasyncHeadersCache'] ?? new WeakMap<any, Headers>()
+
+// NOTE: we have a big issue right now, we have "vxs" in optimizeDeps
+// because otherwise you get an error when Root imports Text/View from react-native
+// even though react-native is in optimizeDeps, it seems thats not working
+// but what happens is that somehow vxs is imported directly by node right away
+// and then later its imported through optimizeDeps, a seaprate instance, creating a separate requestAsyncLocalStore
+globalThis['__vxrnrequestAsyncLocalStore'] ||= requestAsyncLocalStore
+globalThis['__vxrnasyncHeadersCache'] ||= asyncHeadersCache
 
 // TODO move this to `RequestContext.setHeaders()`
 
 export async function setCurrentRequestHeaders(cb: (headers: Headers) => void) {
   const id = requestAsyncLocalStore.getStore()
+
+  if (!id) {
+    throw new Error(`AsyncLocalStorage not working, no id!`)
+  }
+
   const headers = asyncHeadersCache.get(id) ?? new Headers()
   asyncHeadersCache.set(id, headers)
   cb(headers)
@@ -15,8 +30,8 @@ export async function setCurrentRequestHeaders(cb: (headers: Headers) => void) {
 
 export function mergeHeaders(onto: Headers, from: Headers) {
   from.forEach((value, key) => {
-    if (onto.has(key)) {
-      onto.set(key, value)
+    if (value === undefined || value === 'undefined') {
+      onto.delete(key)
     } else {
       onto.append(key, value)
     }

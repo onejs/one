@@ -46,7 +46,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
         : () => {
             const realPath = (globalThis['__vxrntodopath'] ?? window.location.pathname).trim()
             const importUrl = `${CLIENT_BASE_URL}${realPath}_vxrn_loader.js`
-            return import(importUrl)
+            return import(/* @vite-ignore */ importUrl)
           }
     } else {
       routesSync[pathWithoutRelative] = loadRouteFunction

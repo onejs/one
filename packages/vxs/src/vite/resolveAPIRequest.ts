@@ -1,17 +1,23 @@
 import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
 
-export function resolveAPIRequest(module: any, request: Request) {
-  if (!module) return
-
-  const requestType = request.method || 'GET'
-  const handler = module[requestType] || module.default
-  if (!handler) return
+export function resolveAPIRequest(asyncImport: () => Promise<any>, request: Request) {
+  if (!asyncImport) return
 
   return new Promise((res) => {
-    const id = {}
+    const id = { _id: Math.random() }
     requestAsyncLocalStore.run(id, async () => {
+      const imported = await asyncImport()
+      const requestType = request.method || 'GET'
+      const handler = imported[requestType] || imported.default
+
+      if (!handler) {
+        console.warn(`No handler found for request ${requestType}`)
+        return
+      }
+
+      let response = await handler(request)
+
       try {
-        let response = await handler(request)
         const asyncHeaders = asyncHeadersCache.get(id)
         if (asyncHeaders) {
           if (response instanceof Response) {
@@ -20,10 +26,11 @@ export function resolveAPIRequest(module: any, request: Request) {
             if (response && typeof response === 'object') {
               response = Response.json(response, { headers: asyncHeaders })
             } else {
-              response = new Response(response, { headers: asyncHeaders })
+              response = new Response(response as any, { headers: asyncHeaders })
             }
           }
         }
+
         res(response)
       } catch (err) {
         // allow throwing a response
