@@ -72,12 +72,23 @@ export async function build(props: AfterBuildProps) {
 
   console.info(`\n 🔨 build api\n`)
 
+  const processEnvDefines = Object.fromEntries(
+    Object.entries(process.env).map(([key, value]) => {
+      return [`process.env.${key}`, JSON.stringify(value)]
+    })
+  )
+
   for (const { page, file } of manifest.apiRoutes) {
     console.info(` [api]`, file)
     await viteBuild(
       mergeConfig(apiBuildConfig, {
         appType: 'custom',
         plugins: [nodeExternals() as any],
+
+        define: {
+          ...processEnvDefines,
+        },
+
         build: {
           emptyOutDir: false,
           outDir: 'dist/api',

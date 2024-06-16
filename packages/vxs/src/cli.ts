@@ -1,6 +1,9 @@
 import { defineCommand, runMain } from 'citty'
 import { build, serve } from './vite'
 import { virtualEntryIdNative } from './vite/virtualEntryPlugin'
+import { loadEnv } from './vite/loadEnv'
+
+void loadEnv(process.cwd())
 
 const dev = defineCommand({
   meta: {

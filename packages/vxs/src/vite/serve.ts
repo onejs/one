@@ -12,8 +12,7 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
       {
         async handleAPI({ route, request }) {
           const apiFile = join(process.cwd(), 'dist/api', route.page + '.js')
-          const exported = await import(apiFile)
-          return resolveAPIRequest(exported, request)
+          return resolveAPIRequest(() => import(apiFile), request)
         },
       }
     )
