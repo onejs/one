@@ -41,6 +41,7 @@ export function createHandleRequest(
   const activeRequests = {}
 
   return async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
+    const { method } = request
     const urlString = request.url || ''
     const url = new URL(urlString)
     const { pathname, search } = url
@@ -58,7 +59,10 @@ export function createHandleRequest(
       return null
     }
 
+    const logPrefix = ` [vxs] ${method}`
+
     if (handlers.handleAPI) {
+      console.info(`${logPrefix} API ${pathname}`)
       const apiRoute = apiRoutesMap[pathname]
       if (apiRoute) {
         return await handlers.handleAPI({ request, route: apiRoute, url })
@@ -66,6 +70,7 @@ export function createHandleRequest(
     }
 
     if (handlers.handleLoader) {
+      console.info(`${logPrefix} loader ${pathname}`)
       const isClientRequestingNewRoute = pathname.endsWith('_vxrn_loader.js')
       if (isClientRequestingNewRoute) {
         const originalUrl = pathname.replace('_vxrn_loader.js', '')
@@ -109,6 +114,7 @@ export function createHandleRequest(
     }
 
     if (handlers.handleSSR) {
+      console.info(`${logPrefix} SSR ${pathname}`)
       const { promise, reject, resolve } = Promise.withResolvers()
       activeRequests[pathname] = promise
 

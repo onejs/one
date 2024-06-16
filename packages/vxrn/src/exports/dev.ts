@@ -1,20 +1,12 @@
 import type { Peer } from 'crossws'
 import wsAdapter from 'crossws/adapters/node'
 import FSExtra from 'fs-extra'
-import {
-  createApp,
-  createRouter,
-  defineEventHandler,
-  eventHandler,
-  getQuery,
-  toNodeListener,
-} from 'h3'
-import { createProxyEventHandler } from 'h3-proxy'
+import { type Handler, Hono } from 'hono'
 import { rm } from 'node:fs/promises'
 import { createServer as nodeCreateServer } from 'node:http'
 import { join } from 'node:path'
 import { createServer, resolveConfig } from 'vite'
-import { WebSocket } from 'ws'
+import { WebSocket, WebSocketServer } from 'ws'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
 import type { VXRNConfig } from '../types'
 import { bindKeypressInput } from '../utils/bindKeypressInput'
@@ -22,12 +14,11 @@ import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
-import { getIndexJsonResponse } from '../utils/getIndexJsonResponse'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
 import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
-import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { checkPatches } from '../utils/patches'
+import { serve } from '@hono/node-server'
 
 const { ensureDir } = FSExtra
 
@@ -86,133 +77,113 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   await viteServer.listen()
   const vitePort = viteServer.config.server.port
 
-  const router = createRouter()
-  const app = createApp({
-    onError: (error) => {
-      console.error(error)
-    },
-    onRequest: (event) => {
-      if (process.env.DEBUG) {
-        console.info(' →', event.path)
-      }
-    },
+  const app = new Hono()
+
+  // app.get(
+  //   '/file',
+  //   ((c) => {
+  //     const query = getQuery(e)
+  //     if (typeof query.file === 'string') {
+  //       const source = hotUpdateCache.get(query.file)
+  //       return new Response(source, {
+  //         headers: {
+  //           'content-type': 'text/javascript',
+  //         },
+  //       })
+  //     }
+  //   })
+  // )
+
+  app.get('/index.bundle', async () => {
+    return new Response(await getReactNativeBundle(options, viteRNClientPlugin), {
+      headers: {
+        'content-type': 'text/javascript',
+      },
+    })
   })
 
-  router.get(
-    '/file',
-    defineEventHandler((e) => {
-      const query = getQuery(e)
-      if (typeof query.file === 'string') {
-        const source = hotUpdateCache.get(query.file)
-        return new Response(source, {
-          headers: {
-            'content-type': 'text/javascript',
-          },
-        })
-      }
-    })
-  )
-
-  router.get(
-    '/index.bundle',
-    defineEventHandler(async (e) => {
-      return new Response(await getReactNativeBundle(options, viteRNClientPlugin), {
-        headers: {
-          'content-type': 'text/javascript',
-        },
-      })
-    })
-  )
-
-  router.get(
-    '/status',
-    defineEventHandler(() => `packager-status:running`)
-  )
-
-  app.use(router)
+  app.get('/status', () => new Response(`packager-status:running`))
 
   // TODO move these to router.get():
-  app.use(
-    defineEventHandler(async ({ node: { req } }) => {
-      if (!req.headers['expo-platform']) {
-        if (!req.headers['user-agent']?.match(/Expo|React/)) {
-          return
-        }
+  app.use(async ({ req }) => {
+    if (!req.header('expo-platform')) {
+      if (!req.header('user-agent')?.match(/Expo|React/)) {
+        return
       }
+    }
 
-      if (req.url === '/' || req.url?.startsWith('/?platform=')) {
-        return getIndexJsonResponse({ port, root })
-      }
-    })
-  )
+    if (req.url === '/' || req.url?.startsWith('/?platform=')) {
+      // return getIndexJsonResponse({ port, root })
+    }
+  })
 
   const clients = new Set<Peer>()
   let socket: WebSocket | null = null
 
-  const { handleUpgrade } = wsAdapter(app.websocket)
+  // const { handleUpgrade } = wsAdapter(app.websocket)
 
   // vite hmr two way bridge:
-  app.use(
-    '/__vxrnhmr',
-    defineEventHandler({
-      handler() {
-        // avoid errors
-      },
+  // app.use(
+  //   '/__vxrnhmr',
+  //   defineEventHandler({
+  //     handler() {
+  //       // avoid errors
+  //     },
 
-      websocket: {
-        open(peer) {
-          if (process.env.DEBUG) console.debug('[hmr:web] open', peer)
-          clients.add(peer)
-        },
+  //     websocket: {
+  //       open(peer) {
+  //         if (process.env.DEBUG) console.debug('[hmr:web] open', peer)
+  //         clients.add(peer)
+  //       },
 
-        message(peer, message) {
-          socket?.send(message.rawData)
-        },
+  //       message(peer, message) {
+  //         socket?.send(message.rawData)
+  //       },
 
-        close(peer, event) {
-          if (process.env.DEBUG) console.info('[hmr:web] close', peer, event)
-          clients.delete(peer)
-        },
+  //       close(peer, event) {
+  //         if (process.env.DEBUG) console.info('[hmr:web] close', peer, event)
+  //         clients.delete(peer)
+  //       },
 
-        error(peer, error) {
-          console.error('[hmr:web] error', peer, error)
-        },
-      },
-    })
-  )
+  //       error(peer, error) {
+  //         console.error('[hmr:web] error', peer, error)
+  //       },
+  //     },
+  //   })
+  // )
 
   // react native hmr:
-  app.use(
-    '/__hmr',
-    defineEventHandler({
-      handler() {
-        // avoid errors
-      },
+  // app.use(
+  //   '/__hmr',
+  //   defineEventHandler({
+  //     handler() {
+  //       // avoid errors
+  //     },
 
-      websocket: {
-        open(peer) {
-          console.debug('[hmr] open', peer)
-          addConnectedNativeClient()
-        },
+  //     websocket: {
+  //       open(peer) {
+  //         console.debug('[hmr] open', peer)
+  //         addConnectedNativeClient()
+  //       },
 
-        message(peer, message) {
-          console.info('[hmr] message', peer, message)
-          if (message.text().includes('ping')) {
-            peer.send('pong')
-          }
-        },
+  //       message(peer, message) {
+  //         console.info('[hmr] message', peer, message)
+  //         if (message.text().includes('ping')) {
+  //           peer.send('pong')
+  //         }
+  //       },
 
-        close(peer, event) {
-          console.info('[hmr] close', peer, event)
-          removeConnectedNativeClient()
-        },
+  //       close(peer, event) {
+  //         console.info('[hmr] close', peer, event)
+  //         removeConnectedNativeClient()
+  //       },
 
-        error(peer, error) {
-          console.error('[hmr] error', peer, error)
-        },
-      },
-    })
-  )
+  //       error(peer, error) {
+  //         console.error('[hmr] error', peer, error)
+  //       },
+  //     },
+  //   })
+  // )
 
   type ClientMessage = {
     type: 'client-log'
@@ -221,65 +192,57 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   }
 
   // symbolicate
-  app.use(
-    '/symbolicate',
-    defineEventHandler(() => {
-      return 'TODO'
-    })
-  )
-
-  // react native log bridge
-  app.use(
-    '/__client',
-    defineEventHandler({
-      handler() {
-        // no
-      },
-
-      websocket: {
-        open(peer) {
-          console.info('[client] open', peer)
-        },
-
-        message(peer, messageRaw) {
-          const message = JSON.parse(messageRaw.text()) as any as ClientMessage
-
-          switch (message.type) {
-            case 'client-log': {
-              console.info(`🪵 [${message.level}]`, ...message.data)
-              return
-            }
-
-            default: {
-              console.warn(`[client] Unknown message type`, message)
-            }
-          }
-        },
-
-        close(peer, event) {
-          console.info('[client] close', peer, event)
-        },
-
-        error(peer, error) {
-          console.error('[client] error', peer, error)
-        },
-      },
-    })
-  )
+  app.get('/symbolicate', () => {
+    return new Response('TODO')
+  })
 
   // Define proxy event handler
-  app.use(
-    eventHandler(
-      createProxyEventHandler({
-        target: `${options.protocol}//127.0.0.1:${vitePort}`,
-        enableLogger: process.env.DEBUG?.startsWith('vxrn'),
-      })
-    )
-  )
+  app.use(basicProxy(`${options.protocol}//127.0.0.1:${vitePort}`))
 
-  const server = nodeCreateServer(toNodeListener(app))
+  const server = serve(app)
 
-  server.on('upgrade', handleUpgrade)
+  const wss = new WebSocketServer({ server: server as any })
+
+  wss.on('connection', (ws) => {
+    console.log('connection', ws)
+    ws.on('error', console.error)
+    ws.on('message', (data) => {
+      // todo port this from h3 into here:
+      // app.use(
+      //   '/__client',
+      //   ({
+      //     handler() {
+      //       // no
+      //     },
+      //     websocket: {
+      //       open(peer) {
+      //         console.info('[client] open', peer)
+      //       },
+      //       message(peer, messageRaw) {
+      //         const message = JSON.parse(messageRaw.text()) as any as ClientMessage
+      //         switch (message.type) {
+      //           case 'client-log': {
+      //             console.info(`🪵 [${message.level}]`, ...message.data)
+      //             return
+      //           }
+      //           default: {
+      //             console.warn(`[client] Unknown message type`, message)
+      //           }
+      //         }
+      //       },
+      //       close(peer, event) {
+      //         console.info('[client] close', peer, event)
+      //       },
+      //       error(peer, error) {
+      //         console.error('[client] error', peer, error)
+      //       },
+      //     },
+      //   })
+      // )
+    })
+  })
+
+  // server.on('upgrade', handleUpgrade)
 
   return {
     server,
@@ -316,5 +279,24 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     stop: async () => {
       await Promise.all([server.close(), viteServer.close()])
     },
+  }
+}
+
+function basicProxy(proxy_url = ''): Handler {
+  return async (c) => {
+    let path = c.req.path
+    let url = proxy_url ? proxy_url + path : c.req.url
+    // add params to URL
+    if (c.req.query()) url = url + '?' + new URLSearchParams(c.req.query())
+    // request
+    const rep = await fetch(url, {
+      method: c.req.method,
+      headers: c.req.raw.headers,
+      body: c.req.raw.body,
+      // duplex: "half",
+    })
+    if (rep.status === 101) return rep
+
+    return new Response(rep.body, rep)
   }
 }
