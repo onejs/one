@@ -111,7 +111,7 @@ export function createFileSystemRouter(options: Options): Plugin {
         },
 
         async handleAPI({ request, route }) {
-          return resolveAPIRequest(await runner.import(join('app', route.file)), request)
+          return resolveAPIRequest(() => runner.import(join('app', route.file)), request)
         },
       })
 
@@ -132,11 +132,19 @@ export function createFileSystemRouter(options: Options): Plugin {
               res.statusCode = reply.status
               res.statusMessage = reply.statusText
 
-              const contentType = reply.headers.get('Content-Type')
-              if (contentType) {
-                res.setHeader('Content-Type', contentType)
-              }
+              reply.headers.forEach((value, key) => {
+                if (key === 'set-cookie') {
+                  // for some reason it wasnt doing working without this?
+                  const cookies = value.split(', ')
+                  for (const cookie of cookies) {
+                    res.appendHeader('Set-Cookie', cookie)
+                  }
+                } else {
+                  res.setHeader(key, value)
+                }
+              })
 
+              const contentType = reply.headers.get('Content-Type')
               const outString =
                 contentType === 'application/json'
                   ? JSON.stringify(await reply.json())
