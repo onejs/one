@@ -19,6 +19,8 @@ export { ScrollRestoration } from './views/ScrollRestoration'
 
 export { createApp } from './createApp'
 
+export { useLinkTo } from './link/useLinkTo'
+
 export {
   useRouter,
   useUnstableGlobalHref,
