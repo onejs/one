@@ -243,8 +243,10 @@ export async function build(props: AfterBuildProps) {
 
     const preloads = [
       ...new Set([
-        // add the main entry js (like ./app/index.ts)
+        // add the route entry js (like ./app/index.ts)
         clientManifestEntry.file,
+        // add the virtual entry
+        props.clientManifest['virtual:vxs-entry'].file,
         ...entryImports,
         ...layoutImports,
       ]),
@@ -266,7 +268,7 @@ export async function build(props: AfterBuildProps) {
 
     const onlyBuild = props.buildArgs?.only
     if (onlyBuild) {
-      if (!MicroMatch.isMatch(relativeId, `**/${onlyBuild}*`)) {
+      if (!MicroMatch.contains(relativeId, onlyBuild)) {
         continue
       }
     }
@@ -310,7 +312,7 @@ export async function build(props: AfterBuildProps) {
             replaceLoader({
               code,
               loaderData,
-              loaderRegexName: '[a-z]+',
+              loaderRegexName: '[a-z0-9]+',
             })
           ),
         ])
