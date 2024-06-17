@@ -37,6 +37,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
   const depsToOptimize = [
     ...needsInterop,
+    'use-sync-external-store',
     '@react-navigation/core',
     '@react-navigation/native',
     '@react-navigation/elements',
@@ -59,6 +60,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'expo-splash-screen',
     'nanoid',
     'swr',
+    'swr/mutation',
     'refractor/lang/tsx',
     'invariant',
     'tamagui/linear-gradient',
