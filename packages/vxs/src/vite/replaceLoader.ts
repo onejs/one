@@ -15,10 +15,8 @@ export function replaceLoader({
   loaderRegexName?: string
 }) {
   const loaderReturn = `return ${JSON.stringify(loaderData)};`
-  const loaderRegex = new RegExp(
-    `(export\\s+)?function\\s+(${loaderRegexName})\\([^\\)]?\\)\\s*{\\s*${loaderReturnStr};?\\s*}`,
-    'i'
-  )
+  const regexString = `(export\\s+)?function\\s+(${loaderRegexName})\\([^\\)]?\\)\\s*{\\s*${loaderReturnStr};?\\s*}`
+  const loaderRegex = new RegExp(regexString, 'i')
   const loaderWithExport = `export function loader() {${loaderReturn}}`
 
   if (loaderRegexName === 'loader') {
@@ -27,6 +25,16 @@ export function replaceLoader({
 
   const match = code.match(loaderRegex)
   if (!match) {
+    // slow down just a tiny bit but adds some safety in case the regex doesnt match, seems worthwhile
+    // since swc could change their output, or users can somehow get some weird code
+    if (code.includes('__vxrn__loader__')) {
+      console.error(`Regex didn't match, this is a vxs bug, to see details use DEBUG=vxs`)
+      if (process.env.DEBUG?.startsWith('vxs')) {
+        console.info(`Using regex\n`, regexString, '\n')
+        console.info(`From code`, code)
+      }
+      process.exit(1)
+    }
     return code
   }
 
