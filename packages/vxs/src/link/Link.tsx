@@ -8,7 +8,7 @@ import { useRouter } from '../hooks'
 import type { VXSRouter } from '../interfaces/router'
 import { useFocusEffect } from '../useFocusEffect'
 import { resolveHref } from './href'
-import useLinkToPathProps from './useLinkToPathProps'
+import { useLinkTo } from './useLinkTo'
 
 /** Redirects to the href as soon as the component is mounted. */
 export function Redirect({ href }: { href: VXSRouter.Href }) {
@@ -67,8 +67,7 @@ export const Link = React.forwardRef(function Link(
     return resolveHref(href)
   }, [href])
 
-  const event = push ? 'PUSH' : replace ? 'REPLACE' : undefined
-  const props = useLinkToPathProps({ href: resolvedHref, event })
+  const props = useLinkTo({ href: resolvedHref, replace })
 
   const onPress = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => {
     if ('onPress' in rest) {

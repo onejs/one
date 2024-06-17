@@ -29,10 +29,11 @@ function eventShouldPreventDefault(
   return false
 }
 
-export default function useLinkToPathProps(props: { href: string; event?: string }) {
+export function useLinkTo(props: { href: string; replace?: boolean }) {
   const { linkTo } = useVXSRouter()
 
   const onPress = (e?: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => {
+    const event = props.replace ? 'REPLACE' : 'PUSH'
     let shouldHandle = false
 
     if (Platform.OS !== 'web' || !e) {
@@ -43,7 +44,7 @@ export default function useLinkToPathProps(props: { href: string; event?: string
     }
 
     if (shouldHandle) {
-      linkTo(props.href, props.event)
+      linkTo(props.href, event)
     }
   }
 
