@@ -1,6 +1,7 @@
 import type { PathConfigMap } from '@react-navigation/core';
 import type { NavigationState, PartialState } from '@react-navigation/routers';
 import type { RouteNode } from '../Route';
+import type { VXSRouter } from '../interfaces/router';
 type Options<ParamList extends object> = {
     initialRouteName?: string;
     screens: PathConfigMap<ParamList>;
@@ -12,6 +13,7 @@ type InitialRouteConfig = {
 };
 export type ResultState = PartialState<NavigationState> & {
     state?: ResultState;
+    linkOptions?: VXSRouter.LinkToOptions;
 };
 export declare function getUrlWithReactNavigationConcessions(path: string, baseUrl?: string | undefined): {
     nonstandardPathname: string;

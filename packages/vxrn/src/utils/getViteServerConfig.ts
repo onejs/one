@@ -24,6 +24,7 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
       root,
       appType: 'custom',
       clearScreen: false,
+      publicDir: 'public',
       plugins: [
         https ? mkcert() : null,
 
