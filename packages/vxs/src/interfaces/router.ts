@@ -182,11 +182,11 @@ export namespace VXSRouter {
     /** If there's history that supports invoking the `back` function. */
     canGoBack: () => boolean
     /** Navigate to the provided href using a push operation if possible. */
-    push: (href: Href) => void
+    push: (href: Href, options?: LinkToOptions) => void
     /** Navigate to the provided href. */
-    navigate: (href: Href) => void
+    navigate: (href: Href, options?: LinkToOptions) => void
     /** Navigate to route without appending to the history. */
-    replace: (href: Href) => void
+    replace: (href: Href, options?: LinkToOptions) => void
     /** Navigate to the provided href using a push operation if possible. */
     dismiss: (count?: number) => void
     /** Navigate to first screen within the lowest stack. */

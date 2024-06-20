@@ -493,7 +493,6 @@ export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToO
   return
 }
 
-let nextOptionsTm = 0 as any
 let nextOptions: VXSRouter.LinkToOptions | null = null
 
 type LoadState = 'start' | 'finish'
