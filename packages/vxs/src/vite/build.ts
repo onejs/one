@@ -277,7 +277,7 @@ export async function build(props: AfterBuildProps) {
 
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params)
-      const htmlPath = `${path.endsWith('/') ? '/index' : path}.html`
+      const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
       const loaderData = (await exported.loader?.({ path, params })) ?? null
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
 
@@ -366,7 +366,7 @@ ${JSON.stringify(params || null, null, 2)}`
 }
 
 function removeTrailingSlash(path: string) {
-  return path.endsWith('/') ? path.replace(/\/$/, '') : path
+  return path.endsWith('/') ? path.slice(0, path.length - 1) : path
 }
 
 async function moveAllFiles(src: string, dest: string) {
