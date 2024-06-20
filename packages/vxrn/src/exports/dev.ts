@@ -68,13 +68,13 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   const resolvedConfig = await resolveConfig(serverConfig, 'serve')
   const viteRNClientPlugin = clientInjectionsPlugin(resolvedConfig)
 
-  // this fakes vite into thinking its loading files, so it hmrs in native mode despite not requesting
+  // this fakes vite into thinking its loading files, so it hmrs in native mode despite not us never requesting the url
   viteServer.watcher.addListener('change', async (path) => {
     const id = path.replace(process.cwd(), '')
     if (!id.endsWith('tsx') && !id.endsWith('jsx')) {
       return
     }
-    // just so it thinks its loaded
+    // so it thinks its loaded
     try {
       void viteServer.transformRequest(id)
     } catch (err) {
@@ -98,6 +98,8 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     },
   })
 
+  // react native endppints:
+
   router.get(
     '/file',
     defineEventHandler((e) => {
@@ -113,6 +115,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     })
   )
 
+  // builds the dev initial bundle for react native
   router.get(
     '/index.bundle',
     defineEventHandler(async (e) => {

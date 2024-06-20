@@ -37,7 +37,9 @@ let splashScreenAnimationFrame: number | undefined
 export let navigationRef: VXSRouter.NavigationRef = null as any
 let navigationRefSubscription: () => void
 
-let rootStateSubscribers = new Set<() => void>()
+type RootStateListener = (state: ResultState) => void
+
+let rootStateSubscribers = new Set<RootStateListener>()
 let storeSubscribers = new Set<() => void>()
 
 // Initialize function
@@ -108,6 +110,11 @@ function subscribeToNavigationChanges() {
       })
     }
 
+    if (nextOptions) {
+      state.linkOptions = nextOptions
+      nextOptions = null
+    }
+
     let shouldUpdateSubscribers = nextState === state
     nextState = undefined
 
@@ -118,7 +125,7 @@ function subscribeToNavigationChanges() {
 
     if (shouldUpdateSubscribers) {
       for (const subscriber of rootStateSubscribers) {
-        subscriber()
+        subscriber(state)
       }
     }
   })
@@ -130,20 +137,20 @@ function subscribeToNavigationChanges() {
 }
 
 // Navigation functions
-export function navigate(url: VXSRouter.Href) {
-  return linkTo(resolveHref(url), 'NAVIGATE')
+export function navigate(url: VXSRouter.Href, options?: VXSRouter.LinkToOptions) {
+  return linkTo(resolveHref(url), 'NAVIGATE', options)
 }
 
-export function push(url: VXSRouter.Href) {
-  return linkTo(resolveHref(url), 'PUSH')
+export function push(url: VXSRouter.Href, options?: VXSRouter.LinkToOptions) {
+  return linkTo(resolveHref(url), 'PUSH', options)
 }
 
 export function dismiss(count?: number) {
   navigationRef?.dispatch(StackActions.pop(count))
 }
 
-export function replace(url: VXSRouter.Href) {
-  return linkTo(resolveHref(url), 'REPLACE')
+export function replace(url: VXSRouter.Href, options?: VXSRouter.LinkToOptions) {
+  return linkTo(resolveHref(url), 'REPLACE', options)
 }
 
 export function setParams(params: Record<string, string | number> = {}) {
@@ -235,7 +242,7 @@ function getRouteInfoFromState(
 }
 
 // Subscription functions
-export function subscribeToRootState(subscriber: () => void) {
+export function subscribeToRootState(subscriber: RootStateListener) {
   rootStateSubscribers.add(subscriber)
   return () => {
     rootStateSubscribers.delete(subscriber)
@@ -389,7 +396,7 @@ export function preloadRoute(href: string) {
   }
 }
 
-export function linkTo(href: string, event?: string) {
+export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToOptions) {
   if (shouldLinkExternally(href)) {
     Linking.openURL(href)
     return
@@ -458,6 +465,9 @@ export function linkTo(href: string, event?: string) {
   const rootState = navigationRef.getRootState()
   const action = getNavigateAction(state, rootState, event)
 
+  // a bit hacky until can figure out a reliable way to tie it to the state
+  nextOptions = options ?? null
+
   startTransition(() => {
     const current = navigationRef.getCurrentRoute()
 
@@ -482,6 +492,9 @@ export function linkTo(href: string, event?: string) {
 
   return
 }
+
+let nextOptionsTm = 0 as any
+let nextOptions: VXSRouter.LinkToOptions | null = null
 
 type LoadState = 'start' | 'finish'
 type LoadStateListener = (type: LoadState) => void

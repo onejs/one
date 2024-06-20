@@ -47,9 +47,13 @@ export function ScrollRestoration() {
       }
     })
 
-    const disposeOnRootState = subscribeToRootState(() => {
+    const disposeOnRootState = subscribeToRootState((state) => {
       if (isInitial) {
         isInitial = false
+        return
+      }
+
+      if (state.linkOptions?.scroll === false) {
         return
       }
 

@@ -15,6 +15,10 @@ export namespace VXSRouter {
   export type VXSRouterRoutes = DynamicRouteTemplate | StaticRoutes | RelativePathString
   export type AllRoutes = VXSRouterRoutes | ExternalPathString
 
+  export type LinkToOptions = {
+    scroll?: boolean
+  }
+
   type SearchOrHash = `?${string}` | `#${string}`
 
   export type UnknownInputParams = Record<

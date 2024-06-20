@@ -10,6 +10,9 @@ export declare namespace VXSRouter {
     export type ExternalPathString = `${string}:${string}`;
     export type VXSRouterRoutes = DynamicRouteTemplate | StaticRoutes | RelativePathString;
     export type AllRoutes = VXSRouterRoutes | ExternalPathString;
+    export type LinkToOptions = {
+        scroll?: boolean;
+    };
     type SearchOrHash = `?${string}` | `#${string}`;
     export type UnknownInputParams = Record<string, string | number | undefined | null | (string | number)[]>;
     type UnknownOutputParams = Record<string, string | string[]>;

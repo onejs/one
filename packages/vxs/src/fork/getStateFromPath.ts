@@ -2,11 +2,11 @@ import type { PathConfigMap } from '@react-navigation/core'
 import type { InitialState, NavigationState, PartialState } from '@react-navigation/routers'
 // biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 import escape from 'escape-string-regexp'
-
 import type { RouteNode } from '../Route'
 import { matchGroupName, stripGroupSegmentsFromPath } from '../matchers'
 import { findFocusedRoute } from './findFocusedRoute'
 import validatePathConfig from './validatePathConfig'
+import type { VXSRouter } from '../interfaces/router'
 
 type Options<ParamList extends object> = {
   initialRouteName?: string
@@ -35,6 +35,7 @@ type InitialRouteConfig = {
 
 export type ResultState = PartialState<NavigationState> & {
   state?: ResultState
+  linkOptions?: VXSRouter.LinkToOptions
 }
 
 type ParsedRoute = {

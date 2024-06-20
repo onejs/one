@@ -1,24 +1,17 @@
 import * as babel from '@babel/core'
 import createViteFlow from '@vxrn/vite-flow'
 import viteReactPlugin from '@vxrn/vite-native-swc'
+import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
-import {
-  build,
-  createBuilder,
-  mergeConfig,
-  resolveConfig,
-  transformWithEsbuild,
-  type InlineConfig,
-} from 'vite'
+import { createBuilder, resolveConfig, transformWithEsbuild, type InlineConfig } from 'vite'
 import { nativeExtensions } from '../constants'
-import { resolveFile } from './resolveFile'
-import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
-import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNConfigFilled } from './getOptionsFilled'
-import FSExtra from 'fs-extra'
+import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
+import { resolveFile } from './resolveFile'
+import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 
 const { pathExists } = FSExtra
 
