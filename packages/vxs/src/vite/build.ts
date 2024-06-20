@@ -277,7 +277,7 @@ export async function build(props: AfterBuildProps) {
 
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params)
-      const htmlPath = `${path === '/' ? '/index' : path}.html`
+      const htmlPath = `${path.endsWith('/') ? '/index' : path}.html`
       const loaderData = (await exported.loader?.({ path, params })) ?? null
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
 
@@ -354,7 +354,7 @@ ${JSON.stringify(params || null, null, 2)}`
   await FSExtra.writeJSON(
     toAbsolute(`dist/routeMap.json`),
     allRoutes.reduce((acc, { path, htmlPath }) => {
-      acc[path] = htmlPath
+      acc[path === '/' ? path : removeTrailingSlash(path)] = htmlPath
       return acc
     }, {}),
     {
@@ -363,6 +363,10 @@ ${JSON.stringify(params || null, null, 2)}`
   )
 
   console.info(`\n\n🩶 build complete\n\n`)
+}
+
+function removeTrailingSlash(path: string) {
+  return path.endsWith('/') ? path.replace(/\/$/, '') : path
 }
 
 async function moveAllFiles(src: string, dest: string) {

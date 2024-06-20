@@ -89,7 +89,7 @@ export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
     },
 
     {
-      name: 'load-web-extensions',
+      name: 'optimize-deps-load-web-extensions',
       enforce: 'pre',
 
       async resolveId(id, importer = '') {
