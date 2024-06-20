@@ -18,11 +18,11 @@
     "react-native": "0.73.2",
     "react-native-reanimated": "~3.3.0",
     "react-native-web": "^0.19.11",
-    "vxs": "0.1.105"
+    "vxs": "0.1.106"
   },
   "devDependencies": {
     "patch-package": "^8.0.0",
     "vite": "6.0.0-alpha.17",
-    "vxrn": "0.1.105"
+    "vxrn": "0.1.106"
   }
 }
