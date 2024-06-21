@@ -1,7 +1,7 @@
 import React, { type ReactNode } from 'react';
 import type { VXSRouter } from './interfaces/router';
 type SearchParams = Record<string, string | string[]>;
-export declare function useRootNavigationState(): import("./fork/getStateFromPath").ResultState;
+export declare function useRootNavigationState(): VXSRouter.ResultState;
 export declare function useRouteInfo(): import("./router/getNormalizedStatePath").UrlObject;
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
 export declare function useNavigationContainerRef(): VXSRouter.NavigationRef;

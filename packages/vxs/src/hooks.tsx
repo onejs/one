@@ -1,7 +1,7 @@
 import { NavigationRouteContext } from '@react-navigation/native'
 import React, { createContext, type ReactNode } from 'react'
+import { router } from './imperative-api'
 import type { VXSRouter } from './interfaces/router'
-import * as store from './router/router'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 
 type SearchParams = Record<string, string | string[]>
@@ -48,21 +48,8 @@ export function Frozen({ on = false, children }: { on?: boolean; children: React
   )
 }
 
-const publicRouterInterface = {
-  push: store.push,
-  dismiss: store.dismiss,
-  dismissAll: store.dismissAll,
-  canDismiss: store.canDismiss,
-  back: store.goBack,
-  replace: store.replace,
-  // TODO type mis-match
-  setParams: store.setParams as any,
-  canGoBack: store.canGoBack,
-  navigate: store.navigate,
-}
-
 export function useRouter(): VXSRouter.Router {
-  return publicRouterInterface
+  return router
 }
 
 /**
