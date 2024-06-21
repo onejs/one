@@ -8,7 +8,6 @@ import { Platform } from 'react-native'
 import type { RouteNode } from '../Route'
 import type { State } from '../fork/getPathFromState'
 import { deepEqual, getPathDataFromState } from '../fork/getPathFromState'
-import type { ResultState } from '../fork/getStateFromPath'
 import { stripBaseUrl } from '../fork/getStateFromPath'
 import { getLinkingConfig, type ExpoLinkingOptions } from '../getLinkingConfig'
 import { getRoutes } from '../getRoutes'
@@ -26,10 +25,10 @@ export let rootComponent: ComponentType
 export let linking: ExpoLinkingOptions | undefined
 
 export let hasAttemptedToHideSplash = false
-export let initialState: ResultState | undefined
-export let rootState: ResultState | undefined
+export let initialState: VXSRouter.ResultState | undefined
+export let rootState: VXSRouter.ResultState | undefined
 
-let nextState: ResultState | undefined
+let nextState: VXSRouter.ResultState | undefined
 export let routeInfo: UrlObject | undefined
 let splashScreenAnimationFrame: number | undefined
 
@@ -37,9 +36,7 @@ let splashScreenAnimationFrame: number | undefined
 export let navigationRef: VXSRouter.NavigationRef = null as any
 let navigationRefSubscription: () => void
 
-type RootStateListener = (state: ResultState) => void
-
-let rootStateSubscribers = new Set<RootStateListener>()
+let rootStateSubscribers = new Set<VXSRouter.RootStateListener>()
 let storeSubscribers = new Set<() => void>()
 
 // Initialize function
@@ -101,7 +98,7 @@ function setupLinking(initialLocation?: URL) {
 
 function subscribeToNavigationChanges() {
   navigationRefSubscription = navigationRef.addListener('state', (data) => {
-    const state = data.data.state as ResultState
+    const state = data.data.state as VXSRouter.ResultState
 
     if (!hasAttemptedToHideSplash) {
       hasAttemptedToHideSplash = true
@@ -200,7 +197,7 @@ export function getSortedRoutes() {
   return routeNode.children.filter((route) => !route.internal).sort(sortRoutes)
 }
 
-export function updateState(state: ResultState, nextStateParam = state) {
+export function updateState(state: VXSRouter.ResultState, nextStateParam = state) {
   rootState = state
   nextState = nextStateParam
 
@@ -211,7 +208,7 @@ export function updateState(state: ResultState, nextStateParam = state) {
   }
 }
 
-export function getRouteInfo(state: ResultState) {
+export function getRouteInfo(state: VXSRouter.ResultState) {
   return getRouteInfoFromState(
     (state: Parameters<typeof originalGetPathFromState>[0], asPath: boolean) => {
       return getPathDataFromState(state, {
@@ -242,7 +239,7 @@ function getRouteInfoFromState(
 }
 
 // Subscription functions
-export function subscribeToRootState(subscriber: RootStateListener) {
+export function subscribeToRootState(subscriber: VXSRouter.RootStateListener) {
   rootStateSubscribers.add(subscriber)
   return () => {
     rootStateSubscribers.delete(subscriber)
@@ -302,7 +299,7 @@ export function useVXSRouter() {
 
 function syncStoreRootState() {
   if (navigationRef.isReady()) {
-    const currentState = navigationRef.getRootState() as unknown as ResultState
+    const currentState = navigationRef.getRootState() as unknown as VXSRouter.ResultState
     if (rootState !== currentState) {
       updateState(currentState)
     }
@@ -511,7 +508,7 @@ export function onLoadingState(l: LoadStateListener) {
 }
 
 function getNavigateAction(
-  actionState: ResultState,
+  actionState: VXSRouter.ResultState,
   navigationState: NavigationState,
   type = 'NAVIGATE'
 ) {

@@ -15,4 +15,5 @@ export const router: VXSRouter.Router = {
       // TODO
       params as any
     ),
+  subscribe: store.subscribeToRootState,
 }

@@ -1,4 +1,4 @@
-import type { NavigationContainerRefWithCurrent } from '@react-navigation/core';
+import type { NavigationContainerRefWithCurrent, NavigationState, PartialState } from '@react-navigation/core';
 import type { ReactNode } from 'react';
 import type { TextProps, GestureResponderEvent } from 'react-native';
 export declare namespace VXSRouter {
@@ -93,6 +93,11 @@ export declare namespace VXSRouter {
         pathname: T;
         params: InputRouteParams<T>;
     } : never;
+    export type ResultState = PartialState<NavigationState> & {
+        state?: ResultState;
+        linkOptions?: VXSRouter.LinkToOptions;
+    };
+    export type RootStateListener = (state: ResultState) => void;
     /***********************
      * Expo Router Exports *
      ***********************/
@@ -115,6 +120,8 @@ export declare namespace VXSRouter {
         canDismiss: () => boolean;
         /** Update the current route query params. */
         setParams: <T = ''>(params?: T extends '' ? Record<string, string | undefined | null> : InputRouteParams<T>) => void;
+        /** Subscribe to state updates from the router */
+        subscribe: (listener: RootStateListener) => () => void;
     };
     /** The imperative router. */
     export const router: Router;
