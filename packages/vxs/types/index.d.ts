@@ -12,6 +12,7 @@ export { ErrorBoundary } from './views/ErrorBoundary';
 export { Unmatched } from './views/Unmatched';
 export { ScrollRestoration } from './views/ScrollRestoration';
 export { createApp } from './createApp';
+export { isResponse } from './utils/isResponse';
 export { useLinkTo } from './link/useLinkTo';
 export { useRouter, useUnstableGlobalHref, usePathname, useNavigationContainerRef, useGlobalSearchParams, useLocalSearchParams, useSegments, useRootNavigationState, } from './hooks';
 export * as routerStore from './router/router';
