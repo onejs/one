@@ -5,7 +5,6 @@ import { createRequire } from 'node:module'
 import Path, { join, relative } from 'node:path'
 import { version } from 'react'
 import type { OutputAsset } from 'rollup'
-import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
 import {
   getOptimizeDeps,
@@ -14,6 +13,7 @@ import {
   type ClientManifestEntry,
 } from 'vxrn'
 import type { RenderApp } from '../types'
+import { nodeExternals } from './customNodeExternals'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 
@@ -78,12 +78,14 @@ export async function build(props: AfterBuildProps) {
     })
   )
 
+  const apiRouteExternalRegex = buildRegexExcludingDeps(optimizeDeps.include)
+
   for (const { page, file } of manifest.apiRoutes) {
     console.info(` [api]`, file)
     await viteBuild(
       mergeConfig(apiBuildConfig, {
         appType: 'custom',
-        plugins: [nodeExternals() as any],
+        plugins: [nodeExternals()],
 
         define: {
           ...processEnvDefines,
@@ -95,10 +97,9 @@ export async function build(props: AfterBuildProps) {
           copyPublicDir: false,
           minify: false,
           rollupOptions: {
-            treeshake: false,
+            treeshake: true,
             input: join('app', file),
-            preserveEntrySignatures: 'strict',
-            external: [/node_modules/],
+            external: apiRouteExternalRegex,
             output: {
               entryFileNames: page.slice(1) + '.js',
               format: 'esm',
@@ -407,4 +408,18 @@ function getPathnameFromFilePath(path: string, params = {}) {
   })()
 
   return `${dirname}${nameWithParams}`.replace(/\/\/+/gi, '/')
+}
+
+function escapeRegex(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
+}
+
+function buildRegexExcludingDeps(deps: string[]) {
+  // Sanitize each dependency
+  const sanitizedDeps = deps.map((dep) => escapeRegex(dep))
+  // Join them with the OR operator |
+  const exclusionPattern = sanitizedDeps.join('|')
+  // Build the final regex pattern
+  const regexPattern = `node_modules/(?!(${exclusionPattern})).*`
+  return new RegExp(regexPattern)
 }

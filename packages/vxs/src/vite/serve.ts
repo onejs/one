@@ -8,33 +8,47 @@ import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
 
 export async function serve(optionsIn: VXRNConfig, app: Hono) {
-  try {
-    const handleRequest = createHandleRequest(
-      {},
-      {
-        async handleAPI({ route, request }) {
-          const apiFile = join(process.cwd(), 'dist/api', route.page + '.js')
-          return resolveAPIRequest(() => import(apiFile), request)
-        },
-      }
-    )
+  const handleRequest = createHandleRequest(
+    {},
+    {
+      async handleAPI({ route, request }) {
+        const apiFile = join(process.cwd(), 'dist/api', route.page + '.js')
+        return resolveAPIRequest(
+          () =>
+            import(apiFile).catch((err) => {
+              console.error(`\n [vxs] Error importing API route at ${apiFile}:
+         
+    ${err}
 
-    const routeMap = await FSExtra.readJSON('dist/routeMap.json')
+    🐞 For a better error message run "node" and enter:
+    
+    import('${apiFile}')\n\n`)
+              return {}
+            }),
+          request
+        )
+      },
+    }
+  )
 
-    // preload reading in all the files, for prod performance:
-    const htmlFiles: Record<string, string> = {}
-    for (const key in routeMap) {
-      htmlFiles[key] = await FSExtra.readFile(join('dist/client', routeMap[key]), 'utf-8')
+  const routeMap = await FSExtra.readJSON('dist/routeMap.json')
+
+  // preload reading in all the files, for prod performance:
+  const htmlFiles: Record<string, string> = {}
+  for (const key in routeMap) {
+    htmlFiles[key] = await FSExtra.readFile(join('dist/client', routeMap[key]), 'utf-8')
+  }
+
+  app.use(async (context, next) => {
+    // serve our generated html files
+    const html = htmlFiles[context.req.path]
+    if (html) {
+      return context.html(html)
     }
 
-    app.use(async (context, next) => {
-      // serve our generated html files
-      const html = htmlFiles[context.req.path]
-      if (html) {
-        return context.html(html)
-      }
-
+    try {
       const res = await handleRequest(context.req.raw)
+
       if (res) {
         if (isResponse(res)) {
           if (isStatusRedirect(res.status)) {
@@ -45,10 +59,10 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
         }
         return context.json(res)
       }
-      await next()
-    })
-  } catch (err) {
-    console.error(` [vxs] Error serving ${err}`)
-    throw err
-  }
+    } catch (err) {
+      console.error(` [vxs] Error handling request: ${err}`)
+    }
+
+    await next()
+  })
 }
