@@ -5,6 +5,7 @@ import type { VXRNConfig } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import { isResponse } from '../utils/isResponse'
+import { isStatusRedirect } from '../utils/isStatus'
 
 export async function serve(optionsIn: VXRNConfig, app: Hono) {
   try {
@@ -36,6 +37,10 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
       const res = await handleRequest(context.req.raw)
       if (res) {
         if (isResponse(res)) {
+          if (isStatusRedirect(res.status)) {
+            const location = `${res.headers.get('location') || ''}`
+            return context.redirect(location, res.status)
+          }
           return res as Response
         }
         return context.json(res)
