@@ -90,7 +90,6 @@
     "react-native-screens": "3.22.1",
     "react-native-web": "^0.19.11",
     "rollup": "^3.29.4",
-    "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.17",
     "vxrn": "0.1.112"

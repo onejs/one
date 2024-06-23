@@ -37,6 +37,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
   const depsToOptimize = [
     ...needsInterop,
+    'css-in-js-utils',
     'use-sync-external-store',
     '@react-navigation/core',
     '@react-navigation/native',
