@@ -1,4 +1,4 @@
-import { Fragment, type FunctionComponent, type ReactNode } from 'react'
+import { Fragment, StrictMode, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 import Constants from './constants'
 import type { GlobbedRouteImports, RenderAppProps } from './types'
@@ -42,10 +42,12 @@ export function Root(props: RootProps) {
   // ⚠️ <StrictMode> breaks routing!
 
   const contents = (
+    // <StrictMode>
     <RootErrorBoundary>
       <Contents {...props} />
       <PreloadLinks />
     </RootErrorBoundary>
+    // </StrictMode>
   )
 
   if (props.isClient) {

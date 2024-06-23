@@ -87,6 +87,9 @@ const buildCommand = defineCommand({
     const outputInfo = await vxrnBuild({}, args)
 
     await build(outputInfo)
+
+    // TODO somewhere just before 1787f241b79 this stopped exiting, must have some hanging task
+    process.exit(0)
   },
 })
 
