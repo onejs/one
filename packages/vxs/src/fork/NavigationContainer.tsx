@@ -5,22 +5,21 @@ import {
   getActionFromState,
   getPathFromState,
   getStateFromPath,
+  validatePathConfig,
   type NavigationContainerProps,
   type NavigationContainerRef,
   type ParamListBase,
-  validatePathConfig,
 } from '@react-navigation/core'
 import {
   DefaultTheme,
+  LinkingContext,
   ThemeProvider,
   type DocumentTitleOptions,
   type LinkingOptions,
-  LinkingContext,
   type Theme,
 } from '@react-navigation/native'
-import useBackButton from '@react-navigation/native/src/useBackButton'
-import useDocumentTitle from '@react-navigation/native/src/useDocumentTitle'
-import useThenable from '@react-navigation/native/src/useThenable'
+import useBackButton from '@react-navigation/native/lib/module/useBackButton.js'
+import useDocumentTitle from '@react-navigation/native/lib/module/useDocumentTitle.js'
 import * as React from 'react'
 
 import useLinking from './useLinking'

@@ -6,6 +6,8 @@ import { LoaderDataCache } from './constants'
 import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
+import { isResponse } from '../utils/isResponse'
+import { isStatusRedirect } from '../utils/isStatus'
 
 export type Options = {
   shouldIgnore?: (req: Request) => boolean
@@ -128,9 +130,9 @@ export function createFileSystemRouter(options: Options): Plugin {
               return next()
             }
 
-            if (reply instanceof Response) {
-              if (reply.status > 300 && reply.status < 309) {
-                const location = reply.url || `${reply.headers.get('location') || ''}`
+            if (typeof reply !== 'string' && isResponse(reply)) {
+              if (isStatusRedirect(reply.status)) {
+                const location = `${reply.headers.get('location') || ''}`
                 console.info(` ↦ Redirect ${location}`)
                 if (location) {
                   res.writeHead(reply.status, {
