@@ -282,7 +282,7 @@ export async function build(props: AfterBuildProps) {
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
 
       try {
-        console.info(`  ↦ route ${path} params ${JSON.stringify(params)}`)
+        console.info(`  ↦ route ${path}`)
         const loaderProps = { path, params }
 
         globalThis['__vxrnLoaderProps__'] = loaderProps

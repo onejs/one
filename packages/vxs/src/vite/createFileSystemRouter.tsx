@@ -129,6 +129,19 @@ export function createFileSystemRouter(options: Options): Plugin {
             }
 
             if (reply instanceof Response) {
+              if (reply.status > 300 && reply.status < 309) {
+                const location = reply.url || `${reply.headers.get('location') || ''}`
+                console.info(` ↦ Redirect ${location}`)
+                if (location) {
+                  res.writeHead(reply.status, {
+                    Location: location,
+                  })
+                  res.end()
+                  return
+                }
+                console.error(`No location provided to redirected status reply`, reply)
+              }
+
               res.statusCode = reply.status
               res.statusMessage = reply.statusText
 
