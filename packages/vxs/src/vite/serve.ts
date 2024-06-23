@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import type { VXRNConfig } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
 import { resolveAPIRequest } from './resolveAPIRequest'
+import { isResponse } from '../utils/isResponse'
 
 export async function serve(optionsIn: VXRNConfig, app: Hono) {
   try {
@@ -34,11 +35,7 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
 
       const res = await handleRequest(context.req.raw)
       if (res) {
-        if (
-          res instanceof Response ||
-          // for some reason this isnt instanceof properly???
-          isResponseLike(res)
-        ) {
+        if (isResponse(res)) {
           return res as Response
         }
         return context.json(res)
@@ -49,8 +46,4 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
     console.error(` [vxs] Error serving ${err}`)
     throw err
   }
-}
-
-function isResponseLike(res: any) {
-  return res.status && res.body && res.ok
 }
