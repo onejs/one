@@ -41,6 +41,10 @@ export function createHandleRequest(
   const activeRequests = {}
 
   return async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
+    if (shouldIgnore?.(request)) {
+      return null
+    }
+
     const urlString = request.url || ''
     const url = new URL(urlString)
     const { pathname, search } = url
@@ -49,20 +53,15 @@ export function createHandleRequest(
       return await activeRequests[urlString]
     }
 
-    if (
-      request.method !== 'GET' ||
-      pathname === '/__vxrnhmr' ||
-      pathname.startsWith('/@') ||
-      shouldIgnore?.(request)
-    ) {
-      return null
-    }
-
     if (handlers.handleAPI) {
       const apiRoute = apiRoutesMap[pathname]
       if (apiRoute) {
         return await handlers.handleAPI({ request, route: apiRoute, url })
       }
+    }
+
+    if (request.method !== 'GET' || pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
+      return null
     }
 
     if (handlers.handleLoader) {

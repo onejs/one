@@ -31,6 +31,16 @@ import { checkPatches } from '../utils/patches'
 
 const { ensureDir } = FSExtra
 
+/**
+ * The main entry point for dev mode
+ *
+ * Note that much of the logic is being run by plugins:
+ *
+ *  - createFileSystemRouter does most of the fs-routes/request handling
+ *  - clientTreeShakePlugin handles loaders/transforms
+ *
+ */
+
 export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) => {
   const options = await getOptionsFilled(rest)
   const { port, root, cacheDir } = options
