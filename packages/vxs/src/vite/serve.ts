@@ -20,6 +20,9 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
          
     ${err}
 
+    If this is an import error, you can likely fix this by adding this dependency to
+    the "optimizeDeps.include" array in your vite.config.ts.
+
     🐞 For a better error message run "node" and enter:
     
     import('${apiFile}')\n\n`)

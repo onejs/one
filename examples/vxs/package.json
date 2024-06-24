@@ -19,6 +19,7 @@
     "react-native": "0.73.2",
     "react-native-reanimated": "~3.3.0",
     "react-native-web": "^0.19.11",
+    "rollup-plugin-node-externals": "^7.1.2",
     "tamagui": "^1.100.0",
     "vxs": "0.1.112"
   },

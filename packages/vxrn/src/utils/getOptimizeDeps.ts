@@ -1,6 +1,8 @@
 import type { UserConfig } from 'vite'
 import { webExtensions } from '../constants'
 
+// TODO we need to traverse to get sub-deps...
+
 export function getOptimizeDeps(mode: 'build' | 'serve') {
   const needsInterop = [
     'react',
@@ -37,7 +39,9 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
   const depsToOptimize = [
     ...needsInterop,
+    'memoize-one',
     'css-in-js-utils',
+    'hyphenate-style-name',
     'use-sync-external-store',
     '@react-navigation/core',
     '@react-navigation/native',
@@ -46,6 +50,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@react-navigation/native-stack',
     'vxs',
     'vxs/server-render',
+    'styleq',
+    'fbjs',
     'vxs/headers',
     'requires-port',
     'querystringify',
