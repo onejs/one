@@ -127,11 +127,19 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
 
   console.info(`\n 🔨 build server\n`)
 
+  // servers can get all the defines
+  const processEnvDefines = Object.fromEntries(
+    Object.entries(process.env).map(([key, value]) => {
+      return [`process.env.${key}`, JSON.stringify(value)]
+    })
+  )
+
   let serverBuildConfig = mergeConfig(webBuildConfig, {
     plugins: [excludeAPIRoutesPlugin],
 
     define: {
       'process.env.TAMAGUI_IS_SERVER': '"1"',
+      ...processEnvDefines,
       ...webBuildConfig.define,
     },
 
