@@ -101,7 +101,9 @@ export async function build(props: AfterBuildProps) {
           copyPublicDir: false,
           minify: false,
           rollupOptions: {
-            treeshake: false,
+            treeshake: {
+              moduleSideEffects: 'no-external',
+            },
             // too many issues
             // treeshake: {
             //   moduleSideEffects: false,
