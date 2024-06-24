@@ -2,7 +2,7 @@ import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
-import Path, { join, relative } from 'node:path'
+import Path, { isAbsolute, join, relative } from 'node:path'
 import { version } from 'react'
 import type { OutputAsset } from 'rollup'
 import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
@@ -13,7 +13,7 @@ import {
   type ClientManifestEntry,
 } from 'vxrn'
 import type { RenderApp } from '../types'
-import { nodeExternals } from './customNodeExternals'
+import { nodeExternals } from 'rollup-plugin-node-externals'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 
@@ -85,7 +85,11 @@ export async function build(props: AfterBuildProps) {
     await viteBuild(
       mergeConfig(apiBuildConfig, {
         appType: 'custom',
-        plugins: [nodeExternals()],
+        plugins: [
+          nodeExternals({
+            exclude: optimizeDeps.include,
+          }) as any,
+        ],
 
         define: {
           ...processEnvDefines,
@@ -97,12 +101,19 @@ export async function build(props: AfterBuildProps) {
           copyPublicDir: false,
           minify: false,
           rollupOptions: {
-            treeshake: true,
+            treeshake: false,
+            // too many issues
+            // treeshake: {
+            //   moduleSideEffects: false,
+            // },
+            // prevents it from shaking out the exports
+            preserveEntrySignatures: 'strict',
             input: join('app', file),
             external: apiRouteExternalRegex,
             output: {
               entryFileNames: page.slice(1) + '.js',
               format: 'esm',
+              esModule: true,
               exports: 'auto',
             },
           },
