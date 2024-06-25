@@ -380,10 +380,6 @@ async function run() {
       const tagPrefix = canary ? 'canary' : 'v'
       const gitTag = `${tagPrefix}${version}`
 
-      if (!finish) {
-        await sleep(4 * 1000)
-      }
-
       await finishAndCommit()
 
       async function finishAndCommit(cwd = process.cwd()) {
