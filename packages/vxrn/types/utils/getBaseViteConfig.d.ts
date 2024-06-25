@@ -1,5 +1,5 @@
-import type { UserConfig } from 'vite';
+import type { InlineConfig } from 'vite';
 export declare function getBaseViteConfig({ mode }: {
     mode: 'development' | 'production';
-}): UserConfig;
+}): InlineConfig;
 //# sourceMappingURL=getBaseViteConfig.d.ts.map

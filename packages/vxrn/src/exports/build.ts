@@ -5,6 +5,7 @@ import {
   loadConfigFromFile,
   mergeConfig,
   build as viteBuild,
+  type InlineConfig,
   type Plugin,
   type UserConfig,
 } from 'vite'
@@ -72,8 +73,9 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     }),
     {
       clearScreen: false,
+      configFile: false,
       optimizeDeps,
-    } satisfies UserConfig
+    } satisfies InlineConfig
   )
 
   const excludeAPIRoutesPlugin = {
@@ -121,6 +123,7 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     }
 
     console.info(`\n 🔨 build client\n`)
+
     const { output } = (await viteBuild(clientBuildConfig)) as RollupOutput
     clientOutput = output
   }
