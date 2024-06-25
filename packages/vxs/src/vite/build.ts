@@ -44,34 +44,7 @@ export async function build(props: AfterBuildProps) {
     optimizeDeps,
   } satisfies InlineConfig)
 
-  // console.info(`\n 🔨 build api\n`)
-
-  // await viteBuild({
-  //   environments: {
-  //     node: {
-  //       build: {
-  //         async createEnvironment(builder) {
-  //           return {
-  //             mode: 'build',
-  //             name: 'api',
-  //             plugins: [],
-  //             logger() {},
-  //             async init() {},
-  //             options: {
-  //               nodeCompatible: true,
-  //             },
-  //             config: {
-  //               appType: 'custom',
-  //               ...(props.webBuildConfig as any),
-  //             },
-  //           } as any
-  //         },
-  //       },
-  //     },
-  //   },
-  // })
-
-  console.info(`\n 🔨 build api\n`)
+  console.info(`\n 🔨 build api routes\n`)
 
   const processEnvDefines = Object.fromEntries(
     Object.entries(process.env).map(([key, value]) => {
@@ -81,50 +54,52 @@ export async function build(props: AfterBuildProps) {
 
   const apiRouteExternalRegex = buildRegexExcludingDeps(optimizeDeps.include)
 
-  for (const { page, file } of manifest.apiRoutes) {
-    console.info(` [api]`, file)
-    await viteBuild(
-      mergeConfig(apiBuildConfig, {
-        appType: 'custom',
-        configFile: false,
-        plugins: [
-          nodeExternals({
-            exclude: optimizeDeps.include,
-          }) as any,
-        ],
+  const apiEntryPoints = manifest.apiRoutes.reduce((entries, { page, file }) => {
+    entries[page.slice(1) + '.js'] = join('app', file)
+    return entries
+  }, {}) as Record<string, string>
 
-        define: {
-          ...processEnvDefines,
-        },
+  await viteBuild(
+    mergeConfig(apiBuildConfig, {
+      appType: 'custom',
+      configFile: false,
+      plugins: [
+        nodeExternals({
+          exclude: optimizeDeps.include,
+        }) as any,
+      ],
 
-        build: {
-          emptyOutDir: false,
-          outDir: 'dist/api',
-          copyPublicDir: false,
-          minify: false,
-          rollupOptions: {
-            treeshake: {
-              moduleSideEffects: 'no-external',
-            },
-            // too many issues
-            // treeshake: {
-            //   moduleSideEffects: false,
-            // },
-            // prevents it from shaking out the exports
-            preserveEntrySignatures: 'strict',
-            input: join('app', file),
-            external: apiRouteExternalRegex,
-            output: {
-              entryFileNames: page.slice(1) + '.js',
-              format: 'esm',
-              esModule: true,
-              exports: 'auto',
-            },
+      define: {
+        ...processEnvDefines,
+      },
+
+      build: {
+        emptyOutDir: false,
+        outDir: 'dist/api',
+        copyPublicDir: false,
+        minify: false,
+        rollupOptions: {
+          treeshake: {
+            moduleSideEffects: 'no-external',
+          },
+          // too many issues
+          // treeshake: {
+          //   moduleSideEffects: false,
+          // },
+          // prevents it from shaking out the exports
+          preserveEntrySignatures: 'strict',
+          input: apiEntryPoints,
+          external: apiRouteExternalRegex,
+          output: {
+            entryFileNames: '[name]',
+            format: 'esm',
+            esModule: true,
+            exports: 'auto',
           },
         },
-      } satisfies InlineConfig)
-    )
-  }
+      },
+    } satisfies InlineConfig)
+  )
 
   // for the require Sitemap in getRoutes
   globalThis['require'] = createRequire(join(import.meta.url, '..'))
