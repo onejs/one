@@ -2,10 +2,11 @@ import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
-import Path, { isAbsolute, join, relative } from 'node:path'
+import Path, { join, relative } from 'node:path'
 import { version } from 'react'
 import type { OutputAsset } from 'rollup'
-import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
+import { nodeExternals } from 'rollup-plugin-node-externals'
+import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
 import {
   getOptimizeDeps,
   getOptionsFilled,
@@ -13,7 +14,6 @@ import {
   type ClientManifestEntry,
 } from 'vxrn'
 import type { RenderApp } from '../types'
-import { nodeExternals } from 'rollup-plugin-node-externals'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 
@@ -30,7 +30,7 @@ export const resolveFile = (path: string) => {
   }
 }
 
-const { ensureDir, existsSync, readFile, outputFile } = FSExtra
+const { ensureDir, readFile, outputFile } = FSExtra
 
 export async function build(props: AfterBuildProps) {
   const options = await getOptionsFilled(props.options)
@@ -39,9 +39,10 @@ export async function build(props: AfterBuildProps) {
   const manifest = getManifest(join(options.root, 'app'))!
   const { optimizeDeps } = getOptimizeDeps('build')
   const apiBuildConfig = mergeConfig(props.webBuildConfig, {
+    configFile: false,
     appType: 'custom',
     optimizeDeps,
-  } satisfies UserConfig)
+  } satisfies InlineConfig)
 
   // console.info(`\n 🔨 build api\n`)
 
@@ -85,6 +86,7 @@ export async function build(props: AfterBuildProps) {
     await viteBuild(
       mergeConfig(apiBuildConfig, {
         appType: 'custom',
+        configFile: false,
         plugins: [
           nodeExternals({
             exclude: optimizeDeps.include,
@@ -120,7 +122,7 @@ export async function build(props: AfterBuildProps) {
             },
           },
         },
-      } satisfies UserConfig)
+      } satisfies InlineConfig)
     )
   }
 

@@ -1,9 +1,9 @@
 import reactSwcPlugin from '@vitejs/plugin-react-swc'
-import type { UserConfig } from 'vite'
+import type { InlineConfig, UserConfig } from 'vite'
 
 // essentially base web config not base everything
 
-export function getBaseViteConfig({ mode }: { mode: 'development' | 'production' }): UserConfig {
+export function getBaseViteConfig({ mode }: { mode: 'development' | 'production' }): InlineConfig {
   return {
     mode,
 

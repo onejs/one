@@ -92,7 +92,7 @@
     "rollup": "^3.29.4",
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
-    "vite": "6.0.0-alpha.17",
+    "vite": "6.0.0-alpha.18",
     "vxrn": "0.1.114"
   },
   "peerDependencies": {
