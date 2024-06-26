@@ -2,6 +2,8 @@ import { defineCommand, runMain } from 'citty'
 import { build, serve } from './vite'
 import { virtualEntryIdNative } from './vite/virtualEntryPlugin'
 import { loadEnv } from './vite/loadEnv'
+import { loadConfigFromFile } from 'vite'
+import { getUserVXSOptions, loadUserVXSOptions } from './vite/vxs'
 
 void loadEnv(process.cwd())
 
@@ -114,12 +116,13 @@ const serveCommand = defineCommand({
       console.error(err?.message || err)
     })
 
+    const vxsOptions = await loadUserVXSOptions('serve')
+
     await vxrnServe({
       port: args.port ? +args.port : undefined,
       host: args.host,
       afterServerStart(options, app) {
-        // TODO proper types
-        serve(options as any, app)
+        serve(vxsOptions, options, app)
       },
     })
   },

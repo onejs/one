@@ -7,8 +7,9 @@ import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import type { VXSOptions } from './types'
+import type { VXRNOptions } from 'vxrn'
 
-export async function serve(options: VXSOptions, app: Hono) {
+export async function serve(options: VXSOptions, vxrnOptions: VXRNOptions, app: Hono) {
   const isAPIRequest = new WeakMap<any, boolean>()
   const toAbsolute = (p) => Path.resolve(options.root || '.', p)
 
@@ -88,7 +89,7 @@ export async function serve(options: VXSOptions, app: Hono) {
     await options?.afterServerStart?.(
       options,
       app,
-      await FSExtra.readJSON(toAbsolute(`dist/buildInfo.json`))
+      JSON.parse(await FSExtra.readFile(toAbsolute(`dist/buildInfo.json`), 'utf-8'))
     )
   }
 }
