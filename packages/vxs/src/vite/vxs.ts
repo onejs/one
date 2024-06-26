@@ -1,15 +1,22 @@
 import { dirname, resolve } from 'node:path'
+import { version } from 'react'
 import type { InlineConfig, PluginOption } from 'vite'
 import { getOptimizeDeps, isWebEnvironment } from 'vxrn'
 import { existsAsync } from '../utils/existsAsync'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
-import { createFileSystemRouter, type Options } from './createFileSystemRouter'
+import { createFileSystemRouter } from './createFileSystemRouter'
+import { loadEnv } from './loadEnv'
+import type { VXSPluginOptions } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
-import { version } from 'react'
-import { loadEnv } from './loadEnv'
 
-export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
+const userOptions = new WeakMap<any, VXSPluginOptions>()
+
+export function getUserVXSOptions(plugin: any) {
+  return userOptions.get(plugin)
+}
+
+export function vxs(options: VXSPluginOptions = {}): PluginOption {
   void loadEnv(process.cwd())
 
   if (!version.startsWith('19.')) {
@@ -21,12 +28,6 @@ export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
     process.exit(1)
   }
 
-  // hardcoding app
-  const options = {
-    ...options_,
-    root: 'app',
-  }
-
   // build is superset for now
   const { optimizeDeps } = getOptimizeDeps('build')
   const optimizeIds = optimizeDeps.include
@@ -36,7 +37,15 @@ export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
     `${optimizeIds.map((id) => id.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&')).join('|')}`
   )
 
+  // weird i know
+  const userOptionsPlugin = {
+    name: 'vxs-user-options',
+  }
+
+  userOptions.set(userOptionsPlugin, options)
+
   return [
+    userOptionsPlugin,
     // not working to watch various things...
     // {
     //   name: 'watch-node-modules',
@@ -58,7 +67,10 @@ export function vxs(options_: Omit<Options, 'root'> = {}): PluginOption {
     //   },
     // },
 
-    createVirtualEntry(options),
+    createVirtualEntry({
+      ...options,
+      root: 'app',
+    }),
 
     // TODO only on native env
     {
