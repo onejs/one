@@ -1,14 +1,14 @@
 import { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import { parse } from 'es-module-lexer'
 import { connectedNativeClients } from '../utils/connectedNativeClients'
-import type { VXRNConfigFilled } from '../utils/getOptionsFilled'
+import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
 import { entryRoot } from '../utils/getReactNativeBundle'
 import { getVitePath } from '../utils/getVitePath'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
 import type { Plugin } from 'vite'
 
-export function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
+export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
   return {
     name: 'client-transform',
 

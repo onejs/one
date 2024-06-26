@@ -8,7 +8,7 @@ type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
 export type BuildArgs = { step?: string; only?: string; analyze?: boolean }
 
 export type AfterBuildProps = {
-  options: VXRNConfig
+  options: VXRNOptions
   clientOutput: RollupOutputList
   serverOutput: RollupOutputList
   webBuildConfig: UserConfig
@@ -29,7 +29,7 @@ export type ClientManifestEntry = {
   css?: string[]
 }
 
-export type VXRNConfig = {
+export type VXRNOptions = {
   /**
    * The entry points to your app. For web, it defaults to using your `root` to look for an index.html
    *
@@ -53,7 +53,7 @@ export type VXRNConfig = {
 
   // for hooking into things
   afterBuild?: (props: AfterBuildProps) => void | Promise<void>
-  onServe?: (options: VXRNConfig, app: Hono) => void
+  afterServerStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>
 }
 
 export type HMRListener = (update: { file: string; contents: string }) => void

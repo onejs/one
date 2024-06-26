@@ -2,9 +2,9 @@ import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
 import { compress } from 'hono/compress'
 
-import type { VXRNConfig } from '../types'
+import type { VXRNOptions } from '../types'
 
-export const createProdServer = async (options: VXRNConfig) => {
+export const createProdServer = async (options: VXRNOptions) => {
   const app = new Hono()
 
   app.use(compress())
