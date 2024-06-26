@@ -65,14 +65,9 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
             return context.redirect(location, response.status)
           }
 
-          if (!response.headers.get('cache-control')) {
-            if (isAPIRequest.get(request)) {
-              // don't cache api requests by default
-              response.headers.set('cache-control', 'no-store')
-            } else {
-              // pages are static and can be cached:
-              response.headers.set('cache-control', 'public, max-age=31536000, immutable')
-            }
+          if (isAPIRequest.get(request)) {
+            // don't cache api requests by default
+            response.headers.set('cache-control', 'no-store')
           }
 
           return response as Response
