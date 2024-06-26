@@ -1,7 +1,7 @@
 import findNodeModules from 'find-node-modules'
 import { join } from 'node:path'
 import FSExtra from 'fs-extra'
-import type { VXRNConfigFilled } from './getOptionsFilled'
+import type { VXRNOptionsFilled } from './getOptionsFilled'
 
 const patches = [
   {
@@ -11,7 +11,7 @@ const patches = [
 ]
 type Patch = (typeof patches)[0]
 
-export async function checkPatches(options: VXRNConfigFilled) {
+export async function checkPatches(options: VXRNOptionsFilled) {
   if (options.state.applyPatches === false) {
     return
   }

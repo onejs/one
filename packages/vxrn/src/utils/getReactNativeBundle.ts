@@ -8,7 +8,7 @@ import { createBuilder, resolveConfig, transformWithEsbuild, type InlineConfig }
 import { nativeExtensions } from '../constants'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import { getOptimizeDeps } from './getOptimizeDeps'
-import type { VXRNConfigFilled } from './getOptionsFilled'
+import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { resolveFile } from './resolveFile'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
@@ -18,7 +18,7 @@ const { pathExists } = FSExtra
 // used for normalizing hot reloads
 export let entryRoot = ''
 
-export async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugin: any) {
+export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
   const { root, port, cacheDir } = options
   const { depsToOptimize, needsInterop } = getOptimizeDeps('build')
 

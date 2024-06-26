@@ -3,11 +3,11 @@ import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
 import { coerceToArray } from './coerceToArray'
 import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
-import type { VXRNConfigFilled } from './getOptionsFilled'
+import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { uniq } from './uniq'
 import mkcert from 'vite-plugin-mkcert'
 
-export async function getViteServerConfig(config: VXRNConfigFilled) {
+export async function getViteServerConfig(config: VXRNOptionsFilled) {
   const { root, host, https } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
   const { config: userViteConfig } =

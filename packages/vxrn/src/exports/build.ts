@@ -10,7 +10,7 @@ import {
   type UserConfig,
 } from 'vite'
 import { analyzer } from 'vite-bundle-analyzer'
-import type { BuildArgs, VXRNConfig } from '../types'
+import type { BuildArgs, VXRNOptions } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
@@ -37,7 +37,7 @@ const disableOptimizationConfig = {
   },
 } satisfies UserConfig
 
-export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) => {
+export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) => {
   const [options, viteConfig] = await Promise.all([
     getOptionsFilled(optionsIn),
     loadConfigFromFile({

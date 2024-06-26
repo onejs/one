@@ -16,7 +16,7 @@ import { join } from 'node:path'
 import { createServer, resolveConfig } from 'vite'
 import { WebSocket } from 'ws'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
-import type { VXRNConfig } from '../types'
+import type { VXRNOptions } from '../types'
 import { bindKeypressInput } from '../utils/bindKeypressInput'
 import {
   addConnectedNativeClient,
@@ -41,7 +41,7 @@ const { ensureDir } = FSExtra
  *
  */
 
-export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) => {
+export const dev = async ({ clean, ...rest }: VXRNOptions & { clean?: boolean }) => {
   const options = await getOptionsFilled(rest)
   const { port, root, cacheDir } = options
 
