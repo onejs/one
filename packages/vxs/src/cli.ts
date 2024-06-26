@@ -117,8 +117,9 @@ const serveCommand = defineCommand({
     await vxrnServe({
       port: args.port ? +args.port : undefined,
       host: args.host,
-      onServe(options, app) {
-        serve(options, app)
+      afterServerStart(options, app) {
+        // TODO proper types
+        serve(options as any, app)
       },
     })
   },
