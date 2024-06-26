@@ -8,11 +8,16 @@ import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
 
 export async function serve(optionsIn: VXRNConfig, app: Hono) {
+  const isAPIRequest = new WeakMap<any, boolean>()
+
   const handleRequest = createHandleRequest(
     {},
     {
       async handleAPI({ route, request }) {
         const apiFile = join(process.cwd(), 'dist/api', route.page + '.js')
+
+        isAPIRequest.set(request, true)
+
         return resolveAPIRequest(
           () =>
             import(apiFile).catch((err) => {
@@ -50,17 +55,30 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
     }
 
     try {
-      const res = await handleRequest(context.req.raw)
+      const request = context.req.raw
+      const response = await handleRequest(request)
 
-      if (res) {
-        if (isResponse(res)) {
-          if (isStatusRedirect(res.status)) {
-            const location = `${res.headers.get('location') || ''}`
-            return context.redirect(location, res.status)
+      if (response) {
+        if (isResponse(response)) {
+          if (isStatusRedirect(response.status)) {
+            const location = `${response.headers.get('location') || ''}`
+            return context.redirect(location, response.status)
           }
-          return res as Response
+
+          if (!response.headers.get('cache-control')) {
+            if (isAPIRequest.get(request)) {
+              // don't cache api requests by default
+              response.headers.set('cache-control', 'no-store')
+            } else {
+              // pages are static and can be cached:
+              response.headers.set('cache-control', 'public, max-age=31536000, immutable')
+            }
+          }
+
+          return response as Response
         }
-        return context.json(res)
+
+        return context.json(response)
       }
     } catch (err) {
       console.error(` [vxs] Error handling request: ${err}`)
