@@ -16,6 +16,8 @@ import {
 import type { RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
+import { getUserVXSOptions } from './vxs'
+import { VXSRouteBuildInfo } from './types'
 
 if (!version.startsWith('19.')) {
   console.error(`Must be on React 19, instead found`, version)
@@ -33,6 +35,10 @@ export const resolveFile = (path: string) => {
 const { ensureDir, readFile, outputFile } = FSExtra
 
 export async function build(props: AfterBuildProps) {
+  const flatPlugins = [...(props.webBuildConfig.plugins || [])].flat(3)
+  const userOptionsPlugin = flatPlugins.find((x) => x && x['name'] === 'vxs-user-options')
+  const userOptions = getUserVXSOptions(userOptionsPlugin)
+
   const options = await getOptionsFilled(props.options)
   const toAbsolute = (p) => Path.resolve(options.root, p)
 
@@ -106,14 +112,7 @@ export async function build(props: AfterBuildProps) {
 
   const assets: OutputAsset[] = []
 
-  const allRoutes: {
-    path: string
-    htmlPath: string
-    clientJsPath: string
-    params: Object
-    loaderData: any
-    preloads: string[]
-  }[] = []
+  const builtRoutes: VXSRouteBuildInfo[] = []
 
   console.info(`\n 🔨 build static routes\n`)
   const entryServer = `${options.root}/dist/server/_virtual_vxs-entry.js`
@@ -308,7 +307,7 @@ export async function build(props: AfterBuildProps) {
           ),
         ])
 
-        allRoutes.push({
+        builtRoutes.push({
           clientJsPath,
           htmlPath,
           loaderData,
@@ -342,16 +341,22 @@ ${JSON.stringify(params || null, null, 2)}`
   await FSExtra.rm(staticDir, { force: true, recursive: true })
 
   // write out the pathname => html map for the server
-  await FSExtra.writeJSON(
-    toAbsolute(`dist/routeMap.json`),
-    allRoutes.reduce((acc, { path, htmlPath }) => {
-      acc[path === '/' ? path : removeTrailingSlash(path)] = htmlPath
-      return acc
-    }, {}),
-    {
-      spaces: 2,
-    }
-  )
+  const routeMap = builtRoutes.reduce((acc, { path, htmlPath }) => {
+    acc[path === '/' ? path : removeTrailingSlash(path)] = htmlPath
+    return acc
+  }, {}) satisfies Record<string, string>
+
+  await FSExtra.writeJSON(toAbsolute(`dist/routeMap.json`), routeMap, {
+    spaces: 2,
+  })
+
+  if (userOptions?.afterBuild) {
+    await userOptions?.afterBuild?.({
+      ...props,
+      routeMap,
+      builtRoutes,
+    })
+  }
 
   console.info(`\n\n🩶 build complete\n\n`)
 }

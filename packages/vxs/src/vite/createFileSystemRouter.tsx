@@ -8,13 +8,9 @@ import { resolveAPIRequest } from './resolveAPIRequest'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
+import type { VXSPluginOptions } from './types'
 
-export type Options = {
-  shouldIgnore?: (req: Request) => boolean
-  disableSSR?: boolean
-}
-
-export function createFileSystemRouter(options: Options): Plugin {
+export function createFileSystemRouter(options: VXSPluginOptions): Plugin {
   return {
     name: `router-fs`,
     enforce: 'post',
