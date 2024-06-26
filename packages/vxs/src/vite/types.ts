@@ -1,9 +1,16 @@
-import type { AfterBuildProps } from 'vxrn'
+import type { Hono } from 'hono'
+import type { AfterBuildProps, VXRNOptions } from 'vxrn'
+
+export type VXSOptions = Omit<VXRNOptions, keyof VXSPluginOptions> & VXSPluginOptions
 
 export type VXSPluginOptions = {
   shouldIgnore?: (req: Request) => boolean
   disableSSR?: boolean
   afterBuild?: (props: VXSAfterBuildProps) => void | Promise<void>
+
+  afterServerStart?:
+    | ((options: VXSOptions, server: Hono) => void | Promise<void>)
+    | ((options: VXSOptions, server: Hono, buildProps: VXSAfterBuildProps) => void | Promise<void>)
 }
 
 export type VXSAfterBuildProps = AfterBuildProps & {

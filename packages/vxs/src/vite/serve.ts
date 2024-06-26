@@ -1,14 +1,16 @@
 import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
-import { join } from 'node:path'
-import type { VXRNConfig } from 'vxrn'
+import Path, { join } from 'node:path'
+
 import { createHandleRequest } from '../handleRequest'
-import { resolveAPIRequest } from './resolveAPIRequest'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
+import { resolveAPIRequest } from './resolveAPIRequest'
+import type { VXSOptions } from './types'
 
-export async function serve(optionsIn: VXRNConfig, app: Hono) {
+export async function serve(options: VXSOptions, app: Hono) {
   const isAPIRequest = new WeakMap<any, boolean>()
+  const toAbsolute = (p) => Path.resolve(options.root || '.', p)
 
   const handleRequest = createHandleRequest(
     {},
@@ -81,4 +83,12 @@ export async function serve(optionsIn: VXRNConfig, app: Hono) {
 
     await next()
   })
+
+  if (options?.afterServerStart) {
+    await options?.afterServerStart?.(
+      options,
+      app,
+      await FSExtra.readJSON(toAbsolute(`dist/buildInfo.json`))
+    )
+  }
 }

@@ -1,4 +1,4 @@
 import type { Hono } from 'hono';
-import type { VXRNConfig } from 'vxrn';
-export declare function serve(optionsIn: VXRNConfig, app: Hono): Promise<void>;
+import type { VXSOptions } from './types';
+export declare function serve(options: VXSOptions, app: Hono): Promise<void>;
 //# sourceMappingURL=serve.d.ts.map

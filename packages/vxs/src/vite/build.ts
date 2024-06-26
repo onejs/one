@@ -351,11 +351,15 @@ ${JSON.stringify(params || null, null, 2)}`
   })
 
   if (userOptions?.afterBuild) {
-    await userOptions?.afterBuild?.({
+    const buildInfo = {
       ...props,
       routeMap,
       builtRoutes,
-    })
+    }
+
+    await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfo)
+
+    await userOptions?.afterBuild?.(buildInfo)
   }
 
   console.info(`\n\n🩶 build complete\n\n`)
