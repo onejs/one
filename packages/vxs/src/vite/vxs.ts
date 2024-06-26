@@ -1,6 +1,6 @@
 import { dirname, resolve } from 'node:path'
 import { version } from 'react'
-import type { InlineConfig, PluginOption } from 'vite'
+import { type UserConfig, type InlineConfig, type PluginOption, loadConfigFromFile } from 'vite'
 import { getOptimizeDeps, isWebEnvironment } from 'vxrn'
 import { existsAsync } from '../utils/existsAsync'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
@@ -12,8 +12,25 @@ import { vitePluginSsrCss } from './vitePluginSsrCss'
 
 const userOptions = new WeakMap<any, VXSPluginOptions>()
 
-export function getUserVXSOptions(plugin: any) {
-  return userOptions.get(plugin)
+export async function loadUserVXSOptions(command: 'serve') {
+  const found = await loadConfigFromFile({
+    mode: 'prod',
+    command,
+  })
+  if (!found) {
+    throw new Error(`No config found`)
+  }
+  const foundVxsConfig = getUserVXSOptions(found.config)
+  if (!foundVxsConfig) {
+    throw new Error(`No VXS plugin added to config`)
+  }
+  return foundVxsConfig
+}
+
+export function getUserVXSOptions(config: UserConfig) {
+  const flatPlugins = [...(config.plugins || [])].flat(3)
+  const userOptionsPlugin = flatPlugins.find((x) => x && x['name'] === 'vxs-user-options')
+  return userOptions.get(userOptionsPlugin)
 }
 
 export function vxs(options: VXSPluginOptions = {}): PluginOption {

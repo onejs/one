@@ -17,7 +17,7 @@ import type { RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 import { getUserVXSOptions } from './vxs'
-import type { VXSRouteBuildInfo } from './types'
+import type { AfterServerStartBuildInfo, VXSRouteBuildInfo } from './types'
 
 if (!version.startsWith('19.')) {
   console.error(`Must be on React 19, instead found`, version)
@@ -35,10 +35,7 @@ export const resolveFile = (path: string) => {
 const { ensureDir, readFile, outputFile } = FSExtra
 
 export async function build(props: AfterBuildProps) {
-  const flatPlugins = [...(props.webBuildConfig.plugins || [])].flat(3)
-  const userOptionsPlugin = flatPlugins.find((x) => x && x['name'] === 'vxs-user-options')
-  const userOptions = getUserVXSOptions(userOptionsPlugin)
-
+  const userOptions = getUserVXSOptions(props.webBuildConfig)
   const options = await getOptionsFilled(props.options)
   const toAbsolute = (p) => Path.resolve(options.root, p)
 
@@ -346,19 +343,25 @@ ${JSON.stringify(params || null, null, 2)}`
     return acc
   }, {}) satisfies Record<string, string>
 
-  await FSExtra.writeJSON(toAbsolute(`dist/routeMap.json`), routeMap, {
-    spaces: 2,
-  })
+  const buildInfo = {
+    ...props,
+    routeMap,
+    builtRoutes,
+  }
+
+  const buildInfoForWriting: AfterServerStartBuildInfo = {
+    routeMap,
+    builtRoutes,
+  }
+
+  await Promise.all([
+    FSExtra.writeJSON(toAbsolute(`dist/routeMap.json`), routeMap, {
+      spaces: 2,
+    }),
+    FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting),
+  ])
 
   if (userOptions?.afterBuild) {
-    const buildInfo = {
-      ...props,
-      routeMap,
-      builtRoutes,
-    }
-
-    await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfo)
-
     await userOptions?.afterBuild?.(buildInfo)
   }
 
