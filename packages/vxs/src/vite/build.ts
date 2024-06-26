@@ -17,7 +17,7 @@ import type { RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 import { getUserVXSOptions } from './vxs'
-import { VXSRouteBuildInfo } from './types'
+import type { VXSRouteBuildInfo } from './types'
 
 if (!version.startsWith('19.')) {
   console.error(`Must be on React 19, instead found`, version)
