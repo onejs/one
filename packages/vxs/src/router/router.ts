@@ -363,7 +363,7 @@ import { startTransition } from 'react'
 import { resolve } from '../link/path'
 import { matchDynamicName } from '../matchers'
 import { shouldLinkExternally } from '../utils/url'
-import { CLIENT_BASE_URL } from './constants'
+import { CACHE_KEY, CLIENT_BASE_URL } from './constants'
 
 // TODO
 export const preloadingLoader = {}
@@ -373,7 +373,7 @@ function setupPreload(href: string) {
   preloadingLoader[href] = async () => {
     const loaderJSUrl = `${CLIENT_BASE_URL}/assets/${href
       .slice(1)
-      .replaceAll('/', '_')}_vxrn_loader.js`
+      .replaceAll('/', '_')}_vxrn_loader.js?${CACHE_KEY}`
     const response = await import(loaderJSUrl)
     try {
       return await response.loader()

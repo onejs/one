@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react'
 import { weakKey } from './utils/weakKey'
 import { preloadingLoader } from './router/router'
-import { CLIENT_BASE_URL } from './router/constants'
+import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -67,7 +67,7 @@ export function useLoader<
 
     if (!promises[currentPath]) {
       const getData = async () => {
-        const loaderJSUrl = `${CLIENT_BASE_URL}${currentPath}_vxrn_loader.js`
+        const loaderJSUrl = `${CLIENT_BASE_URL}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
         const response = await import(loaderJSUrl)
         try {
           loadedData[currentPath] = response.loader()

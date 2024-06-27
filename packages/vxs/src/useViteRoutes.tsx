@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native'
-import { CLIENT_BASE_URL } from './router/constants'
+import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 import type { GlobbedRouteImports } from './types'
 
 // essentially a development helper
@@ -45,7 +45,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
         ? loadRouteFunction
         : () => {
             const realPath = (globalThis['__vxrntodopath'] ?? window.location.pathname).trim()
-            const importUrl = `${CLIENT_BASE_URL}${realPath}_vxrn_loader.js`
+            const importUrl = `${CLIENT_BASE_URL}${realPath}_vxrn_loader.js?${CACHE_KEY}`
             return import(/* @vite-ignore */ importUrl)
           }
     } else {
