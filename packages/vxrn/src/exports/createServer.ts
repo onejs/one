@@ -18,8 +18,11 @@ export const createProdServer = async (options: VXRNOptions) => {
       return
     }
 
-    // set cache control header
-    c.header('Cache-Control', 'public, max-age=31536000, immutable')
+    // set reasonable cache control header
+    c.header(
+      'Cache-Control',
+      'public, max-age=3600, stale-while-revalidate=600, stale-if-error=86400'
+    )
 
     return response
   })

@@ -1,9 +1,8 @@
 import { defineCommand, runMain } from 'citty'
 import { build, serve } from './vite'
-import { virtualEntryIdNative } from './vite/virtualEntryPlugin'
 import { loadEnv } from './vite/loadEnv'
-import { loadConfigFromFile } from 'vite'
-import { getUserVXSOptions, loadUserVXSOptions } from './vite/vxs'
+import { virtualEntryIdNative } from './vite/virtualEntryPlugin'
+import { loadUserVXSOptions } from './vite/vxs'
 
 void loadEnv(process.cwd())
 

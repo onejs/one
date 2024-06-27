@@ -18,6 +18,7 @@ import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 import { getUserVXSOptions } from './vxs'
 import type { AfterServerStartBuildInfo, VXSRouteBuildInfo } from './types'
+import { CACHE_KEY } from '../router/constants'
 
 if (!version.startsWith('19.')) {
   console.error(`Must be on React 19, instead found`, version)
@@ -287,7 +288,7 @@ export async function build(props: AfterBuildProps) {
             .slice(1)
             .replaceAll('/', '_')
             // remove trailing _
-            .replace(/_$/, '') + '_vxrn_loader.js'
+            .replace(/_$/, '') + `_vxrn_loader.js`
         )
 
         const code = await readFile(clientJsPath, 'utf-8')
