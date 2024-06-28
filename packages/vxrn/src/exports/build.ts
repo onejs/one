@@ -38,6 +38,9 @@ const disableOptimizationConfig = {
 } satisfies UserConfig
 
 export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) => {
+  // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
+  process.env.NODE_ENV = 'production'
+
   const [options, viteConfig] = await Promise.all([
     getOptionsFilled(optionsIn),
     loadConfigFromFile({
@@ -61,9 +64,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       }
     })(),
   ])
-
-  // TODO?
-  process.env.NODE_ENV = 'production'
 
   const { optimizeDeps } = getOptimizeDeps('build')
 
