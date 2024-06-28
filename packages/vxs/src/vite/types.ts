@@ -1,34 +1,46 @@
 import type { Hono } from 'hono'
-import type { AfterBuildProps, VXRNOptions } from 'vxrn'
+import type { AfterBuildProps as VXRNAfterBuildProps, VXRNOptions } from 'vxrn'
 
-export type VXSOptions = Omit<VXRNOptions, keyof VXSPluginOptions> & VXSPluginOptions
+export namespace VXS {
+  export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
 
-export type VXSPluginOptions = {
-  shouldIgnore?: (req: Request) => boolean
-  disableSSR?: boolean
-  afterBuild?: (props: VXSAfterBuildProps) => void | Promise<void>
+  export type PluginOptions = {
+    redirects?: Redirects
 
-  afterServerStart?:
-    | ((options: VXSOptions, server: Hono) => void | Promise<void>)
-    | ((
-        options: VXSOptions,
-        server: Hono,
-        buildInfo: AfterServerStartBuildInfo
-      ) => void | Promise<void>)
-}
+    shouldIgnore?: (req: Request) => boolean
+    disableSSR?: boolean
+    afterBuild?: (props: AfterBuildProps) => void | Promise<void>
 
-export type AfterServerStartBuildInfo = Pick<VXSAfterBuildProps, 'routeMap' | 'builtRoutes'>
+    afterServerStart?:
+      | ((options: Options, server: Hono) => void | Promise<void>)
+      | ((
+          options: Options,
+          server: Hono,
+          buildInfo: AfterServerStartBuildInfo
+        ) => void | Promise<void>)
+  }
 
-export type VXSAfterBuildProps = AfterBuildProps & {
-  routeMap: Record<string, string>
-  builtRoutes: VXSRouteBuildInfo[]
-}
+  export type Redirect = {
+    source: string
+    destination: string
+    permanent: boolean
+  }
 
-export type VXSRouteBuildInfo = {
-  path: string
-  htmlPath: string
-  clientJsPath: string
-  params: Object
-  loaderData: any
-  preloads: string[]
+  export type Redirects = Redirect[]
+
+  export type AfterServerStartBuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'>
+
+  export type AfterBuildProps = VXRNAfterBuildProps & {
+    routeMap: Record<string, string>
+    builtRoutes: RouteBuildInfo[]
+  }
+
+  export type RouteBuildInfo = {
+    path: string
+    htmlPath: string
+    clientJsPath: string
+    params: Object
+    loaderData: any
+    preloads: string[]
+  }
 }

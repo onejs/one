@@ -6,12 +6,25 @@ import { createHandleRequest } from '../handleRequest'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
 import { resolveAPIRequest } from './resolveAPIRequest'
-import type { VXSOptions } from './types'
+import type { VXS } from './types'
 import type { VXRNOptions } from 'vxrn'
 
-export async function serve(options: VXSOptions, vxrnOptions: VXRNOptions, app: Hono) {
+export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hono) {
   const isAPIRequest = new WeakMap<any, boolean>()
   const toAbsolute = (p) => Path.resolve(options.root || '.', p)
+
+  // add redirects
+  if (options.redirects) {
+    for (const redirect of options.redirects) {
+      app.get(redirect.source, (context) => {
+        const destinationUrl = redirect.destination.replace(/:\w+/g, (param) => {
+          const paramName = param.substring(1)
+          return context.req.param(paramName) || ''
+        })
+        return context.redirect(destinationUrl, redirect.permanent ? 301 : 302)
+      })
+    }
+  }
 
   const handleRequest = createHandleRequest(
     {},

@@ -16,9 +16,8 @@ import {
 import type { RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
+import type { VXS } from './types'
 import { getUserVXSOptions } from './vxs'
-import type { AfterServerStartBuildInfo, VXSRouteBuildInfo } from './types'
-import { CACHE_KEY } from '../router/constants'
 
 if (!version.startsWith('19.')) {
   console.error(`Must be on React 19, instead found`, version)
@@ -110,7 +109,7 @@ export async function build(props: AfterBuildProps) {
 
   const assets: OutputAsset[] = []
 
-  const builtRoutes: VXSRouteBuildInfo[] = []
+  const builtRoutes: VXS.RouteBuildInfo[] = []
 
   console.info(`\n 🔨 build static routes\n`)
   const entryServer = `${options.root}/dist/server/_virtual_vxs-entry.js`
@@ -350,7 +349,7 @@ ${JSON.stringify(params || null, null, 2)}`
     builtRoutes,
   }
 
-  const buildInfoForWriting: AfterServerStartBuildInfo = {
+  const buildInfoForWriting: VXS.AfterServerStartBuildInfo = {
     routeMap,
     builtRoutes,
   }

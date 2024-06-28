@@ -8,9 +8,9 @@ import { resolveAPIRequest } from './resolveAPIRequest'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
-import type { VXSPluginOptions } from './types'
+import type { VXS } from './types'
 
-export function createFileSystemRouter(options: VXSPluginOptions): Plugin {
+export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
   return {
     name: `router-fs`,
     enforce: 'post',
@@ -120,6 +120,31 @@ export function createFileSystemRouter(options: VXSPluginOptions): Plugin {
       return () => {
         server.middlewares.use(async (req, res, next) => {
           try {
+            if (options.redirects) {
+              const url = new URL(req.url || '', `http://${req.headers.host}`)
+              for (const redirect of options.redirects) {
+                const regexStr = `^${redirect.source.replace(/:\w+/g, '([^/]+)')}$`
+                const match = url.pathname.match(new RegExp(regexStr))
+
+                if (match) {
+                  let destination = redirect.destination
+                  const params = redirect.source.match(/:\w+/g)
+
+                  if (params) {
+                    params.forEach((param, index) => {
+                      destination = destination.replace(param, match[index + 1] || '')
+                    })
+                  }
+
+                  console.warn(` [vxs] redirecting via redirect: ${destination}`)
+
+                  res.writeHead(redirect.permanent ? 301 : 302, { Location: destination })
+                  res.end()
+                  return
+                }
+              }
+            }
+
             const reply = await handleRequest(await convertIncomingMessageToRequest(req))
 
             if (!reply) {

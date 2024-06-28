@@ -57,7 +57,7 @@ export function Root(props: RootProps) {
   return (
     <html lang="en-US">
       <head>
-        {import.meta.env.DEV ? <DevHead /> : null}
+        {process.env.NODE_ENV === 'development' ? <DevHead /> : null}
 
         <script
           dangerouslySetInnerHTML={{
