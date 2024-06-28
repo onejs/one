@@ -158,8 +158,10 @@ async function removeUnusedImports(id: string, s: MagicString): Promise<string> 
     // we want to remove them to avoid clients importing server stuff
     // TODO ensure they were only ones that were previously using some sort of identifier
     const withoutSideEffectImports = output.code
-      .replaceAll(/import [\"][^"]+[\"];$/gm, '\n')
-      .replaceAll(/import [\'][^']+[\'];$/gm, '\n')
+      // remove no-path-specifier imports
+      .replaceAll(/^\s*import [\"\'][^"'\.]+[\"\'];?$/gm, '\n')
+      // remove .js path-specifier imports
+      .replaceAll(/^\s*import [\"\'][^"']+\.js[\"\'];?$/gm, '\n')
 
     return withoutSideEffectImports
   } catch (err) {
