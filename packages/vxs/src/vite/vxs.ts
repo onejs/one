@@ -6,11 +6,11 @@ import { existsAsync } from '../utils/existsAsync'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter } from './createFileSystemRouter'
 import { loadEnv } from './loadEnv'
-import type { VXSPluginOptions } from './types'
+import type { VXS } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
 
-const userOptions = new WeakMap<any, VXSPluginOptions>()
+const userOptions = new WeakMap<any, VXS.PluginOptions>()
 
 export async function loadUserVXSOptions(command: 'serve') {
   const found = await loadConfigFromFile({
@@ -33,7 +33,7 @@ export function getUserVXSOptions(config: UserConfig) {
   return userOptions.get(userOptionsPlugin)
 }
 
-export function vxs(options: VXSPluginOptions = {}): PluginOption {
+export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   void loadEnv(process.cwd())
 
   if (!version.startsWith('19.')) {
