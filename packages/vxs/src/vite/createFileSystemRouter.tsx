@@ -1,6 +1,7 @@
+import { BroadcastChannel, Worker } from 'node:worker_threads'
 import { join } from 'node:path'
 import type { Connect, Plugin } from 'vite'
-import { createServerModuleRunner } from 'vite'
+import { DevEnvironment, RemoteEnvironmentTransport, createServerModuleRunner } from 'vite'
 import { createHandleRequest } from '../handleRequest'
 import { LoaderDataCache } from './constants'
 import { replaceLoader } from './replaceLoader'
@@ -9,12 +10,42 @@ import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
 import type { VXS } from './types'
+import { getOptimizeDeps } from 'vxrn'
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
+  const optimizeDeps = getOptimizeDeps('serve')
+
   return {
     name: `router-fs`,
     enforce: 'post',
     apply: 'serve',
+
+    // config() {
+    //   return {
+    //     environments: {
+    //       server: {
+    //         dev: {
+    //           moduleRunnerTransform: true,
+    //           preTransformRequests: true,
+    //           optimizeDeps,
+    //           createEnvironment(name, config) {
+    //             const worker = new Worker(join(import.meta.dirname, 'server.js'))
+    //             // const hot = new
+    //             return new DevEnvironment(name, config, {
+    //               hot: false,
+    //               runner: {
+    //                 transport: new RemoteEnvironmentTransport({
+    //                   send: (data) => worker.postMessage(data),
+    //                   onMessage: (listener) => worker.on('message', listener),
+    //                 }),
+    //               },
+    //             })
+    //           },
+    //         },
+    //       },
+    //     },
+    //   }
+    // },
 
     configureServer(server) {
       const runner = createServerModuleRunner(server.environments.ssr)
@@ -24,6 +55,8 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
 
       const handleRequest = createHandleRequest(options, {
         async handleSSR({ route, url, loaderProps }) {
+          console.info(` [vxs] «« ${url} resolved to ${route.file}`)
+
           if (renderPromise) {
             await renderPromise
           }

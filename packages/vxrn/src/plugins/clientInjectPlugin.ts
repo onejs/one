@@ -79,11 +79,13 @@ export function clientInjectionsPlugin(config: ResolvedConfig): Plugin {
       }
     },
 
+    applyToEnvironment(environment) {
+      return isNativeEnvironment(environment)
+    },
+
     transform(code, id) {
-      if (isNativeEnvironment(this.environment!)) {
-        if (id.includes('vite-native-client/dist/esm/client.')) {
-          return injectConfigValues(code)
-        }
+      if (id.includes('vite-native-client/dist/esm/client.')) {
+        return injectConfigValues(code)
       }
     },
   }

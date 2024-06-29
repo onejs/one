@@ -1,7 +1,7 @@
+import { Text, View } from '@tamagui/core'
 import fs from 'node:fs'
 import { useEffect } from 'react'
-import { Text, View } from '@tamagui/core'
-import { Link, useGlobalSearchParams, useLoader, useLocalSearchParams } from 'vxs'
+import { Link, useLoader } from 'vxs'
 
 export async function loader() {
   // testing import shaking:
@@ -14,8 +14,6 @@ export async function loader() {
 
 export default function HomePage() {
   const data = useLoader(loader)
-
-  console.info('??', useLocalSearchParams(), useGlobalSearchParams())
 
   useEffect(() => {
     fetch('/hello')

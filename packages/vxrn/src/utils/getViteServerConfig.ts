@@ -43,17 +43,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
 
       optimizeDeps,
 
-      ssr: {
-        optimizeDeps,
-      },
-
       server: {
-        // watch: {
-        //   ignored: (path) => {
-        //     // console.log('>??', path)
-        //     return false
-        //   },
-        // },
         hmr: {
           path: '/__vxrnhmr',
         },
