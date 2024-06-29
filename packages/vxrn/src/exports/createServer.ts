@@ -10,11 +10,16 @@ export const createProdServer = async (options: VXRNOptions) => {
   app.use(compress())
 
   app.use('*', async (c, next) => {
+    let didCallNext = false
+
     const response = await serveStatic({
       root: './dist/client',
-    })(c, next)
+    })(c, async () => {
+      didCallNext = true
+      await next()
+    })
 
-    if (!response) {
+    if (!response || didCallNext) {
       return
     }
 

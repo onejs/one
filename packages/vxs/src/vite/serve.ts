@@ -76,20 +76,28 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
 
       if (response) {
         if (isResponse(response)) {
+          if (isAPIRequest.get(request)) {
+            // don't cache api requests by default
+            response.headers.set('Cache-Control', 'no-store')
+          }
+
           if (isStatusRedirect(response.status)) {
             const location = `${response.headers.get('location') || ''}`
             return context.redirect(location, response.status)
           }
 
-          if (isAPIRequest.get(request)) {
-            // don't cache api requests by default
-            response.headers.set('cache-control', 'no-store')
-          }
-
           return response as Response
         }
 
-        return context.json(response)
+        return context.json(
+          response,
+          200,
+          isAPIRequest.get(request)
+            ? {
+                'Cache-Control': 'no-store',
+              }
+            : undefined
+        )
       }
     } catch (err) {
       console.error(` [vxs] Error handling request: ${err}`)
