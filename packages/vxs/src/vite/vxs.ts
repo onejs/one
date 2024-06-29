@@ -62,27 +62,14 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   userOptions.set(userOptionsPlugin, options)
 
   return [
+    /**
+     * This is really the meat of vxs, where it handles requests:
+     */
+    createFileSystemRouter(options),
+
+    clientTreeShakePlugin(),
+
     userOptionsPlugin,
-    // not working to watch various things...
-    // {
-    //   name: 'watch-node-modules',
-    //   configureServer(server) {
-    //     const { watcher, moduleGraph } = server
-
-    //     // Watch the specified include patterns using Vite's internal watcher
-    //     const customWatcher = chokidar.watch(['node_modules/**/*.js'], {
-    //       cwd: join(process.cwd(), '..', '..'),
-    //       ignoreInitial: true,
-    //     })
-
-    //     customWatcher.on('all', (event, path) => {
-    //       console.log('gotem', path)
-    //       moduleGraph.invalidateAll()
-    //     })
-
-    //     watcher.on('close', () => customWatcher.close())
-    //   },
-    // },
 
     createVirtualEntry({
       ...options,
@@ -121,13 +108,11 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       name: 'optimize-deps-load-web-extensions',
       enforce: 'pre',
 
-      async resolveId(id, importer = '') {
-        if (!isWebEnvironment(this.environment!)) {
-          return
-        }
+      applyToEnvironment(environment) {
+        return isWebEnvironment(environment)
+      },
 
-        // client or ssr
-        // console.log('env', this.environment?.name)
+      async resolveId(id, importer = '') {
         const shouldOptimize = optimizeIdRegex.test(importer)
 
         if (shouldOptimize) {
@@ -149,8 +134,6 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       },
     },
 
-    createFileSystemRouter(options),
-    clientTreeShakePlugin(),
     vitePluginSsrCss({
       entries: [virtualEntryId],
     }),
