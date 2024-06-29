@@ -76,14 +76,18 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
 
       if (response) {
         if (isResponse(response)) {
-          if (isAPIRequest.get(request)) {
-            // don't cache api requests by default
-            response.headers.set('Cache-Control', 'no-store')
-          }
-
           if (isStatusRedirect(response.status)) {
             const location = `${response.headers.get('location') || ''}`
             return context.redirect(location, response.status)
+          }
+
+          if (isAPIRequest.get(request)) {
+            try {
+              // don't cache api requests by default
+              response.headers.set('Cache-Control', 'no-store')
+            } catch (err) {
+              console.info(`Error udpating cache header on api route, continue`, err)
+            }
           }
 
           return response as Response

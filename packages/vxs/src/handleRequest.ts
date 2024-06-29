@@ -58,8 +58,10 @@ export function createHandleRequest(
     )
     const { pathname, search } = url
 
-    if (activeRequests[pathname]) {
-      return await activeRequests[pathname]
+    if (process.env.NODE_ENV !== 'production') {
+      if (activeRequests[pathname]) {
+        return await activeRequests[pathname]
+      }
     }
 
     if (handlers.handleAPI) {
