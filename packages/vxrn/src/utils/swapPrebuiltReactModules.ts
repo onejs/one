@@ -24,11 +24,13 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
         outfile: prebuilds.reactNative,
       }),
       buildReact({
-        entryPoints: [resolveFile('react')],
+        // use vendor
+        // entryPoints: [resolveFile('react')],
         outfile: prebuilds.react,
       }),
       buildReactJSX({
-        entryPoints: [resolveFile('react/jsx-dev-runtime')],
+        // use vendor
+        // entryPoints: [resolveFile('react/jsx-dev-runtime')],
         outfile: prebuilds.reactJSX,
       }),
     ])

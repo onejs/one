@@ -39,8 +39,13 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
   const depsToOptimize = [
     ...needsInterop,
+
+    // added these when using a worker env
+    'reading-time',
+    'mdx-bundler',
     'gray-matter',
     'glob',
+
     'memoize-one',
     'css-in-js-utils',
     'hyphenate-style-name',

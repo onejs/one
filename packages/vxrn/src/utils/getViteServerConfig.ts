@@ -22,7 +22,6 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
     }),
     {
       root,
-      appType: 'custom',
       clearScreen: false,
       publicDir: 'public',
       plugins: [

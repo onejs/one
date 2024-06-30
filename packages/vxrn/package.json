@@ -34,6 +34,8 @@
   "dependencies": {
     "@babel/core": "^7.21.8",
     "@hono/node-server": "^1.11.1",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "@vxrn/react-native-prebuilt": "1.1.125",
     "@vxrn/safe-area": "1.1.125",

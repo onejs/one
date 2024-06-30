@@ -41,17 +41,18 @@ function __getRequire(absPath) {
   return __cachedModules[absPath]
 }
 
-const __specialRequireMap = {
-  'react-native': '_virtual/virtual_react-native.js',
-  react: '_virtual/virtual_react.js',
-  'react/jsx-runtime': '_virtual/virtual_react-jsx.js',
-  'react/jsx-dev-runtime': '_virtual/virtual_react-jsx.js',
-}
+// const __specialRequireMap = {
+//   'react-native': '_virtual/virtual_react-native.js',
+//   react: '_virtual/virtual_react.js',
+//   'react/jsx-runtime': '_virtual/virtual_react-jsx.js',
+//   'react/jsx-dev-runtime': '_virtual/virtual_react-jsx.js',
+// }
 
 function createRequire(importsMap) {
   return function require(_mod) {
     try {
-      let path = __specialRequireMap[_mod] || importsMap[_mod] || _mod
+      // __specialRequireMap[_mod] ||
+      let path = importsMap[_mod] || _mod
       const found = __getRequire(path)
       if (found) {
         return found

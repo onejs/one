@@ -47,14 +47,6 @@
       "types": "./types/vite/headers.d.ts",
       "import": "./dist/esm/vite/headers.mjs",
       "require": "./dist/cjs/vite/headers.js"
-    },
-    "./react-18": {
-      "require": "./vendor/react/cjs/react.development.js",
-      "import": "./vendor/react/cjs/react.development.js"
-    },
-    "./react-dom-18": {
-      "require": "./vendor/react-dom/cjs/react-dom.development.js",
-      "import": "./vendor/react-dom/cjs/react-dom.development.js"
     }
   },
   "dependencies": {
