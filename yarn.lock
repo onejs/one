@@ -6285,8 +6285,8 @@ __metadata:
     esbuild: ~0.19.3
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.1.0
-    react: 18.2.0
-    react-dom: 18.2.0
+    react: 19.0.0-rc-3563387fe3-20240621
+    react-dom: 19.0.0-rc-3563387fe3-20240621
     react-native: 0.73.2
   peerDependencies:
     react: "*"
@@ -12797,18 +12797,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.2.0":
-  version: 18.2.0
-  resolution: "react-dom@npm:18.2.0"
-  dependencies:
-    loose-envify: ^1.1.0
-    scheduler: ^0.23.0
-  peerDependencies:
-    react: ^18.2.0
-  checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
-  languageName: node
-  linkType: hard
-
 "react-dom@npm:19.0.0-rc-3563387fe3-20240621":
   version: 19.0.0-rc-3563387fe3-20240621
   resolution: "react-dom@npm:19.0.0-rc-3563387fe3-20240621"
@@ -13050,15 +13038,6 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 6b6980ced93fa2b72662d5e4ab3b4896833586940047ce52ca9aca801e5432adf05fcbe28289b0af3ce6a2a7c590974e25dcc8aa43d0de658bfe8bbcd686f958
-  languageName: node
-  linkType: hard
-
-"react@npm:18.2.0":
-  version: 18.2.0
-  resolution: "react@npm:18.2.0"
-  dependencies:
-    loose-envify: ^1.1.0
-  checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
   languageName: node
   linkType: hard
 
@@ -14638,58 +14617,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-darwin-64@npm:2.0.4"
+"turbo-darwin-64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-darwin-64@npm:2.0.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-darwin-arm64@npm:2.0.4"
+"turbo-darwin-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-darwin-arm64@npm:2.0.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-linux-64@npm:2.0.4"
+"turbo-linux-64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-linux-64@npm:2.0.6"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-linux-arm64@npm:2.0.4"
+"turbo-linux-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-linux-arm64@npm:2.0.6"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-windows-64@npm:2.0.4"
+"turbo-windows-64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-windows-64@npm:2.0.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.0.4":
-  version: 2.0.4
-  resolution: "turbo-windows-arm64@npm:2.0.4"
+"turbo-windows-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "turbo-windows-arm64@npm:2.0.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "turbo@npm:2.0.4"
+"turbo@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "turbo@npm:2.0.6"
   dependencies:
-    turbo-darwin-64: 2.0.4
-    turbo-darwin-arm64: 2.0.4
-    turbo-linux-64: 2.0.4
-    turbo-linux-arm64: 2.0.4
-    turbo-windows-64: 2.0.4
-    turbo-windows-arm64: 2.0.4
+    turbo-darwin-64: 2.0.6
+    turbo-darwin-arm64: 2.0.6
+    turbo-linux-64: 2.0.6
+    turbo-linux-arm64: 2.0.6
+    turbo-windows-64: 2.0.6
+    turbo-windows-arm64: 2.0.6
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -14705,7 +14684,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: eade7410cdd53f503c7038dbf6f56bda0fca8a0ac94c4889e1a514bad5b67df415ed1b3b28ea74a371a3b16b912f68083554a32784e729dc97aef4f9c580c0e9
+  checksum: c6d8dffd89d923021ef1b319d7aa7649ab1cace15f2cbea542aae890c94eaa78634474598be8da9d8299b07a14ae175fba62539966426b8d11bc23b6e2d642c4
   languageName: node
   linkType: hard
 
@@ -15319,7 +15298,7 @@ __metadata:
     npm-run-all: ^4.1.5
     p-map: ^7.0.2
     patch-package: ^8.0.0
-    turbo: ^2.0.4
+    turbo: ^2.0.6
     typescript: ^5.2.2
     ultra-runner: ^3.10.5
     vitepress: ^1.1.4
