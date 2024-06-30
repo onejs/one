@@ -39,6 +39,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
   const depsToOptimize = [
     ...needsInterop,
+    'gray-matter',
+    'glob',
     'memoize-one',
     'css-in-js-utils',
     'hyphenate-style-name',

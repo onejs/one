@@ -3,6 +3,17 @@ import type { InlineConfig, UserConfig } from 'vite'
 
 // essentially base web config not base everything
 
+export const dedupe = [
+  'vxs',
+  '@vxrn/safe-area',
+  'react',
+  'react-dom',
+  'react-dom/client',
+  'react-native-web',
+  '@tamagui/core',
+  '@tamagui/web',
+]
+
 export function getBaseViteConfig({ mode }: { mode: 'development' | 'production' }): InlineConfig {
   return {
     mode,
@@ -21,16 +32,7 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
       },
 
       // TODO auto dedupe all include optimize deps?
-      dedupe: [
-        'vxs',
-        '@vxrn/safe-area',
-        'react',
-        'react-dom',
-        'react-dom/client',
-        'react-native-web',
-        '@tamagui/core',
-        '@tamagui/web',
-      ],
+      dedupe,
     },
 
     build: {
