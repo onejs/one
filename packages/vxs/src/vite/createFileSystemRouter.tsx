@@ -1,53 +1,60 @@
-import { BroadcastChannel, Worker } from 'node:worker_threads'
 import { join } from 'node:path'
+import { Worker } from 'node:worker_threads'
 import type { Connect, Plugin } from 'vite'
 import { DevEnvironment, RemoteEnvironmentTransport, createServerModuleRunner } from 'vite'
+import { getOptimizeDeps } from 'vxrn'
 import { createHandleRequest } from '../handleRequest'
+import { isResponse } from '../utils/isResponse'
+import { isStatusRedirect } from '../utils/isStatus'
 import { LoaderDataCache } from './constants'
 import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
-import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
-import { isResponse } from '../utils/isResponse'
-import { isStatusRedirect } from '../utils/isStatus'
 import type { VXS } from './types'
-import { getOptimizeDeps } from 'vxrn'
+import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
-  const optimizeDeps = getOptimizeDeps('serve')
+  const { optimizeDeps } = getOptimizeDeps('serve')
 
   return {
     name: `router-fs`,
     enforce: 'post',
     apply: 'serve',
 
-    // config() {
-    //   return {
-    //     environments: {
-    //       server: {
-    //         dev: {
-    //           moduleRunnerTransform: true,
-    //           preTransformRequests: true,
-    //           optimizeDeps,
-    //           createEnvironment(name, config) {
-    //             const worker = new Worker(join(import.meta.dirname, 'server.js'))
-    //             // const hot = new
-    //             return new DevEnvironment(name, config, {
-    //               hot: false,
-    //               runner: {
-    //                 transport: new RemoteEnvironmentTransport({
-    //                   send: (data) => worker.postMessage(data),
-    //                   onMessage: (listener) => worker.on('message', listener),
-    //                 }),
-    //               },
-    //             })
-    //           },
-    //         },
-    //       },
-    //     },
-    //   }
-    // },
+    async config() {
+      return {
+        appType: 'custom',
+        environments: {
+          server: {
+            resolve: {
+              dedupe: optimizeDeps.include,
+              external: [],
+              noExternal: true,
+            },
+            // webCompatible: true,
+            nodeCompatible: true,
+            dev: {
+              optimizeDeps,
+              createEnvironment(name, config) {
+                const worker = new Worker(join(import.meta.dirname, 'server.js'))
+                // const hot = new
+                return new DevEnvironment(name, config, {
+                  hot: false,
+                  runner: {
+                    transport: new RemoteEnvironmentTransport({
+                      send: (data) => worker.postMessage(data),
+                      onMessage: (listener) => worker.on('message', listener),
+                    }),
+                  },
+                })
+              },
+            },
+          },
+        },
+      }
+    },
 
     configureServer(server) {
+      // change this to .server to test using the indepedently scoped env
       const runner = createServerModuleRunner(server.environments.ssr)
 
       // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
