@@ -40,9 +40,12 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
   const depsToOptimize = [
     ...needsInterop,
 
+    'lodash',
+
     // added these when using a worker env
     'reading-time',
     'mdx-bundler',
+    'mdx-bundler/client',
     'gray-matter',
     'glob',
 
@@ -89,6 +92,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@floating-ui/react-dom',
     '@tamagui/constants',
     '@tamagui/react-native-use-responder-events',
+    '@tamagui/react-native-svg',
     '@tamagui/alert-dialog',
     '@react-navigation/routers',
     '@tamagui/simple-hash',
