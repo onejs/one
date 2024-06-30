@@ -64,6 +64,9 @@ export async function getReactNativeBundle(
         }
 
         return `
+// fileName: ${outputModule.fileName}
+// name: ${outputModule.name}
+// facadeModuleId: ${outputModule.facadeModuleId}
 ___modules___["${outputModule.fileName}"] = ((exports, module) => {
 const require = createRequire(${JSON.stringify(importsMap, null, 2)})
 
@@ -93,9 +96,6 @@ __require("${outputModule.fileName}")
     // TEMP FIX for router tamagui thing since expo router 3 upgrade
     .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
 
-  // TODO this is not stable based on cwd
-  const appRootParent = join(root, '..', '..')
-
   const prebuilds = {
     reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
     react: join(cacheDir, 'react.js'),
@@ -104,9 +104,11 @@ __require("${outputModule.fileName}")
 
   const templateFile = resolveFile('vxrn/react-native-template.js')
   const template = (await readFile(templateFile, 'utf-8'))
-    .replace('_virtual/virtual_react-native.js', relative(appRootParent, prebuilds.reactNative))
-    .replace('_virtual/virtual_react.js', relative(appRootParent, prebuilds.react))
-    .replaceAll('_virtual/virtual_react-jsx.js', relative(appRootParent, prebuilds.reactJSX))
+
+    // TODO this is not stable based on cwd
+    .replace('_virtual/virtual_react-native.js', relative(root, prebuilds.reactNative))
+    .replace('_virtual/virtual_react.js', relative(root, prebuilds.react))
+    .replaceAll('_virtual/virtual_react-jsx.js', relative(root, prebuilds.reactJSX))
 
   const out = template + appCode
 

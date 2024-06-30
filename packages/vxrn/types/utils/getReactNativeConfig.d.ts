@@ -25,6 +25,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, viteRNC
         minify: false;
         commonjsOptions: {
             transformMixedEsModules: true;
+            ignore(id: string): boolean;
         };
         rollupOptions: {
             input: string;

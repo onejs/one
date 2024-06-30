@@ -178,6 +178,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
     const outCode = `
     const run = () => {
       ${bundled
+        // .replaceAll('require("react/jsx-runtime")', 'require("react/jsx-dev-runtime")')
         .replace(
           esbuildCommonJSFunction,
           `

@@ -1,18 +1,23 @@
 import * as babel from '@babel/core'
 import createViteFlow from '@vxrn/vite-flow'
 import viteReactPlugin from '@vxrn/vite-native-swc'
-import type { Plugin } from 'vite'
-import { type UserConfig, resolveConfig, transformWithEsbuild, type InlineConfig } from 'vite'
+import {
+  type Plugin,
+  resolveConfig,
+  transformWithEsbuild,
+  type InlineConfig,
+  type UserConfig,
+} from 'vite'
 import { nativeExtensions } from '../constants'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
+import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
-import { basename } from 'node:path'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 import commonjs from '@rollup/plugin-commonjs'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import { rollup } from 'rollup'
-import { dedupe } from './getBaseViteConfig'
+import { basename } from 'node:path'
 
 export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
   const { root, port, cacheDir } = options
@@ -36,38 +41,6 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
 
   const viteFlow = options.flow ? createViteFlow(options.flow) : null
 
-  // const alias = {
-  //   'react/jsx-runtime': import.meta.resolve('vxrn/react-jsx-runtime-18').replace('file://', ''),
-  //   'react/jsx-dev-runtime': import.meta
-  //     .resolve('vxrn/react-jsx-dev-runtime-18')
-  //     .replace('file://', ''),
-  //   'react-dom': import.meta.resolve('vxrn/react-dom-18').replace('file://', ''),
-  //   react: import.meta.resolve('vxrn/react-18').replace('file://', ''),
-  // }
-
-  const vendorFilenames = new Set([
-    'react-jsx-dev-runtime.development.js',
-    'react.development.js',
-    'react-dom.development.js',
-    'react-jsx-runtime.development.js',
-  ])
-
-  async function optimizeWithRollup(code: string, id: string) {
-    const inputOptions = {
-      input: id,
-      plugins: [nodeResolve(), commonjs()],
-    }
-    const bundle = await rollup(inputOptions)
-    const { output } = await bundle.generate({
-      format: 'es',
-    })
-    const optimizedCode = output[0].code
-
-    await bundle.close()
-
-    return optimizedCode
-  }
-
   // build app
   let nativeBuildConfig = {
     plugins: [
@@ -76,30 +49,68 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
       swapPrebuiltReactModules(cacheDir),
 
       // lol realized this is already done here ^
-      // {
-      //   name: 'use-react-18 for native',
-      //   enforce: 'pre',
+      // ((): Plugin => {
+      //   // const alias = {
+      //   //   'react/jsx-runtime': import.meta
+      //   //     .resolve('@vxrn/react-native-prebuilt/react-18-jsx-runtime')
+      //   //     .replace('file://', ''),
+      //   //   'react/jsx-dev-runtime': import.meta
+      //   //     .resolve('@vxrn/react-native-prebuilt/react-18-jsx-dev-runtime')
+      //   //     .replace('file://', ''),
+      //   //   'react-dom': import.meta
+      //   //     .resolve('@vxrn/react-native-prebuilt/react-18-dom')
+      //   //     .replace('file://', ''),
+      //   //   react: import.meta.resolve('@vxrn/react-native-prebuilt/react-18').replace('file://', ''),
+      //   // }
 
-      //   // we gotta manually do the es conversion
-      //   async transform(code, id) {
-      //     const name = basename(id)
-      //     if (vendorFilenames.has(name)) {
-      //       const codeOut = await optimizeWithRollup(code, id)
-      //       return {
-      //         code: codeOut,
-      //       }
+      //   const vendorFilenames = new Set([
+      //     'react-jsx-dev-runtime.development.js',
+      //     'react.development.js',
+      //     'react-dom.development.js',
+      //     'react-jsx-runtime.development.js',
+      //   ])
+
+      //   async function optimizeWithRollup(code: string, id: string) {
+      //     const inputOptions = {
+      //       input: id,
+      //       plugins: [nodeResolve(), commonjs()],
       //     }
-      //   },
+      //     const bundle = await rollup(inputOptions)
+      //     const { output } = await bundle.generate({
+      //       format: 'es',
+      //     })
+      //     const optimizedCode = output[0].code
 
-      //   async config() {
-      //     return {
-      //       resolve: {
-      //         dedupe: [...Object.keys(alias), ...Object.values(alias)],
-      //         alias,
-      //       },
-      //     } satisfies InlineConfig
-      //   },
-      // } satisfies Plugin,
+      //     await bundle.close()
+
+      //     return optimizedCode
+      //   }
+
+      //   return {
+      //     name: 'use-react-18 for native',
+      //     enforce: 'pre',
+
+      //     // we gotta manually do the es conversion
+      //     async transform(code, id) {
+      //       const name = basename(id)
+      //       if (vendorFilenames.has(name)) {
+      //         const codeOut = await optimizeWithRollup(code, id)
+      //         return {
+      //           code: codeOut,
+      //         }
+      //       }
+      //     },
+
+      //     async config() {
+      //       return {
+      //         resolve: {
+      //           dedupe: [...Object.keys(alias), ...Object.values(alias)],
+      //           alias,
+      //         },
+      //       } satisfies InlineConfig
+      //     },
+      //   }
+      // })(),
 
       {
         name: 'reanimated',
@@ -165,6 +176,9 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
       minify: false,
       commonjsOptions: {
         transformMixedEsModules: true,
+        ignore(id) {
+          return id === 'react/jsx-runtime' || id === 'react/jsx-dev-runtime'
+        },
       },
       rollupOptions: {
         input: options.entries.native,

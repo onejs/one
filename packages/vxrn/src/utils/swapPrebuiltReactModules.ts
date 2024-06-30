@@ -38,19 +38,16 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
 
   // react native port (it scans 19000 +5)
   const jsxRuntime = {
-    // alias: 'virtual:react-jsx',
     alias: prebuilds.reactJSX,
     contents: await readFile(prebuilds.reactJSX, 'utf-8'),
   } as const
 
   const virtualModules = {
     'react-native': {
-      // alias: 'virtual:react-native',
       alias: prebuilds.reactNative,
       contents: await readFile(prebuilds.reactNative, 'utf-8'),
     },
     react: {
-      // alias: 'virtual:react',
       alias: prebuilds.react,
       contents: await readFile(prebuilds.react, 'utf-8'),
     },
@@ -75,7 +72,6 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
       for (const targetId in virtualModules) {
         if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
           const info = virtualModules[targetId]
-
           return info.alias
         }
       }
