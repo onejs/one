@@ -10,9 +10,10 @@ const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 export async function buildAll() {
   console.info(`Prebuilding React Native (one time cost...)`)
   await Promise.all([
-    // buildReactJSX(),
+    //
+    buildReactJSX(),
     buildReact(),
-    // buildReactNative()
+    buildReactNative(),
   ])
 }
 

@@ -5,6 +5,8 @@ import { createBuilder, type UserConfig } from 'vite'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { resolveFile } from './resolveFile'
+import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
+import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
 
 const { pathExists } = FSExtra
 
@@ -25,6 +27,8 @@ export async function getReactNativeBundle(
       return await readFile(tmpBundle, 'utf-8')
     }
   }
+
+  await prebuildReactNativeModules(options.cacheDir)
 
   if (isBuildingNativeBundle) {
     const res = await isBuildingNativeBundle
