@@ -9,12 +9,14 @@ import { resolveFile } from './resolveFile'
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
 
-export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin> {
-  const prebuilds = {
-    reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
-    react: join(cacheDir, 'react.js'),
-    reactNative: join(cacheDir, 'react-native.js'),
-  }
+const getPrebuilds = (cacheDir: string) => ({
+  reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
+  react: join(cacheDir, 'react.js'),
+  reactNative: join(cacheDir, 'react-native.js'),
+})
+
+export async function prebuildReactNativeModules(cacheDir: string) {
+  const prebuilds = getPrebuilds(cacheDir)
 
   if (!(await FSExtra.pathExists(prebuilds.reactNative))) {
     console.info('Pre-building react, react-native react/jsx-runtime (one time cost)...')
@@ -35,6 +37,10 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
       }),
     ])
   }
+}
+
+export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin> {
+  const prebuilds = getPrebuilds(cacheDir)
 
   // react native port (it scans 19000 +5)
   const jsxRuntime = {

@@ -20,7 +20,7 @@ import { rollup } from 'rollup'
 import { basename } from 'node:path'
 
 export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
-  const { root, port, cacheDir } = options
+  const { root, port } = options
   const { optimizeDeps } = getOptimizeDeps('build')
 
   async function babelReanimated(input: string, filename: string) {
@@ -46,7 +46,7 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
     plugins: [
       viteFlow,
 
-      swapPrebuiltReactModules(cacheDir),
+      swapPrebuiltReactModules(),
 
       // lol realized this is already done here ^
       // ((): Plugin => {
