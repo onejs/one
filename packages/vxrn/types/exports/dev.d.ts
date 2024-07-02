@@ -9,7 +9,7 @@ import type { VXRNOptions } from '../types';
  *  - clientTreeShakePlugin handles loaders/transforms
  *
  */
-export declare const dev: ({ clean, ...rest }: VXRNOptions & {
+export declare const dev: (optionsIn: VXRNOptions & {
     clean?: boolean;
 }) => Promise<{
     server: import("http").Server<typeof import("http").IncomingMessage, typeof import("http").ServerResponse>;

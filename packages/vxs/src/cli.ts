@@ -127,6 +127,21 @@ const serveCommand = defineCommand({
   },
 })
 
+const clean = defineCommand({
+  meta: {
+    name: 'clean',
+    version: '0.0.0',
+    description: 'Clean build folders',
+  },
+  args: {},
+  async run() {
+    const { clean: vxrnClean } = await import('vxrn')
+    await vxrnClean({
+      root: process.cwd(),
+    })
+  },
+})
+
 const main = defineCommand({
   meta: {
     name: 'main',
@@ -135,6 +150,7 @@ const main = defineCommand({
   },
   subCommands: {
     dev,
+    clean,
     build: buildCommand,
     serve: serveCommand,
   },

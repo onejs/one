@@ -8,15 +8,15 @@
   ],
   "scripts": {
     "dev": "vxs dev",
-    "dev:clean": "yarn clean && yarn dev",
-    "clean": "rm -r dist || true && rm -r node_modules/.vite || true",
-    "build": "vxs build",
+    "dev:clean": "vxs dev --clean",
+    "clean": "vxs clean",
+    "build:prod": "vxs build",
     "serve": "vxs serve",
     "postinstall": "patch-package || true"
   },
   "dependencies": {
     "@tamagui/config": "^1.100.0",
-    "react-native": "0.73.2",
+    "react-native": "0.74.1",
     "react-native-reanimated": "~3.3.0",
     "react-native-web": "^0.19.11",
     "tamagui": "^1.100.0",

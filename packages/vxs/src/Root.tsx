@@ -1,4 +1,4 @@
-import { Fragment, StrictMode, type FunctionComponent, type ReactNode } from 'react'
+import { Fragment, type FunctionComponent, type ReactNode } from 'react'
 import { Platform } from 'react-native'
 import Constants from './constants'
 import type { GlobbedRouteImports, RenderAppProps } from './types'
@@ -6,11 +6,11 @@ import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
+import { PreloadLinks } from './PreloadLinks'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import type { RequireContext } from './types'
-import { PreloadLinks } from './PreloadLinks'
 // import { SplashScreen } from './views/Splash'
 
 type RootProps = RenderAppProps &

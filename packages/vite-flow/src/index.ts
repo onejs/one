@@ -8,6 +8,7 @@ export async function transformFlow(input: string) {
       input,
       {
         presets: ['module:metro-react-native-babel-preset'],
+        plugins: [['@babel/plugin-transform-private-methods', { loose: true }]],
       },
       (err: any, result) => {
         if (!result || err) rej(err || 'no res')
