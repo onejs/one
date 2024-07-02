@@ -27,7 +27,7 @@
     }
   },
   "dependencies": {
-    "@swc/core": "^1.4.13",
+    "@swc/core": "^1.6.6",
     "@vxrn/vite-native-client": "1.1.126"
   },
   "devDependencies": {

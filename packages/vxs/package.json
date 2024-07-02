@@ -65,7 +65,7 @@
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@react-navigation/routers": "^6.1.9",
-    "@swc/core": "^1.4.13",
+    "@swc/core": "^1.6.6",
     "@types/estree": "^1.0.5",
     "citty": "^0.1.6",
     "dotenv": "^16.4.5",
