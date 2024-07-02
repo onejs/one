@@ -26,13 +26,11 @@ export async function prebuildReactNativeModules(cacheDir: string) {
         outfile: prebuilds.reactNative,
       }),
       buildReact({
-        // use vendor
-        // entryPoints: [resolveFile('react')],
+        entryPoints: [resolveFile('react')],
         outfile: prebuilds.react,
       }),
       buildReactJSX({
-        // use vendor
-        // entryPoints: [resolveFile('react/jsx-dev-runtime')],
+        entryPoints: [resolveFile('react/jsx-dev-runtime')],
         outfile: prebuilds.reactJSX,
       }),
     ])

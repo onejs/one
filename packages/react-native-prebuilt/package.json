@@ -23,10 +23,9 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
-    "./react-18": "./vendor/react/cjs/react.development.js",
-    "./react-18-jsx-runtime": "./vendor/react/cjs/react-jsx-runtime.development.js",
-    "./react-18-jsx-dev-runtime": "./vendor/react/cjs/react-jsx-dev-runtime.development.js",
-    "./react-18-dom": "./vendor/react-dom/cjs/react-dom.development.js"
+    "./react-native": "./dist/react-native.js",
+    "./react": "./dist/react.js",
+    "./jsx-runtime": "./dist/react-jsx-runtime.js"
   },
   "dependencies": {
     "@vxrn/vite-flow": "1.1.126",

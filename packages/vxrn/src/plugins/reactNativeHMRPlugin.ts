@@ -85,10 +85,8 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
           throw '❌ no source'
         }
 
-        importsMap['currentPath'] = id
-
         const hotUpdateSource = `exports = ((exports) => {
-          const require = createRequire(${JSON.stringify(importsMap, null, 2)})
+          const require = createRequire("${id}", ${JSON.stringify(importsMap, null, 2)})
           ${source
             .replace(`import.meta.hot.accept(() => {})`, ``)
             // replace import.meta.glob with empty array in hot reloads

@@ -1,23 +1,13 @@
 import * as babel from '@babel/core'
 import createViteFlow from '@vxrn/vite-flow'
 import viteReactPlugin from '@vxrn/vite-native-swc'
-import {
-  type Plugin,
-  resolveConfig,
-  transformWithEsbuild,
-  type InlineConfig,
-  type UserConfig,
-} from 'vite'
+import { resolveConfig, transformWithEsbuild, type InlineConfig, type UserConfig } from 'vite'
 import { nativeExtensions } from '../constants'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
-import commonjs from '@rollup/plugin-commonjs'
-import nodeResolve from '@rollup/plugin-node-resolve'
-import { rollup } from 'rollup'
-import { basename } from 'node:path'
 
 export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
   const { root, port } = options

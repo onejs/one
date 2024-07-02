@@ -34,7 +34,11 @@ function __getRequire(absPath) {
     const runModule = ___modules___[absPath]
     if (runModule) {
       const mod = { exports: {} }
-      runModule(mod.exports, mod)
+      try {
+        runModule(mod.exports, mod)
+      } catch (err) {
+        console.error('Error running module: ' + mod + err)
+      }
       __cachedModules[absPath] = mod.exports || mod
     }
   }
@@ -42,13 +46,17 @@ function __getRequire(absPath) {
 }
 
 const __specialRequireMap = {
-  'react-native': '_virtual/virtual_react-native.js',
-  react: '_virtual/virtual_react.js',
-  'react/jsx-runtime': '_virtual/virtual_react-jsx.js',
-  'react/jsx-dev-runtime': '_virtual/virtual_react-jsx.js',
+  'react-native': '.vxrn/react-native.js',
+  react: '.vxrn/react.js',
+  'react/jsx-runtime': '.vxrn/react-jsx-runtime.js',
+  'react/jsx-dev-runtime': '.vxrn/react-jsx-runtime.js',
 }
 
-function createRequire(importsMap) {
+function createRequire(importer, importsMap) {
+  if (!importsMap) {
+    console.error(`No imports map given from ${importer}\n${new Error().stack}`)
+  }
+
   return function require(_mod) {
     try {
       let path = __specialRequireMap[_mod] || importsMap[_mod] || _mod
@@ -63,10 +71,9 @@ function createRequire(importsMap) {
       }
 
       // quick and dirty relative()
-      const currentPath = importsMap.currentPath
-      if (currentPath && path[0] === '.') {
+      if (importer && path[0] === '.') {
         let currentDir = (() => {
-          const paths = currentPath.split('/')
+          const paths = importer.split('/')
           return paths.slice(0, paths.length - 1) // remove last part to get dir
         })()
 
@@ -85,7 +92,12 @@ function createRequire(importsMap) {
         return foundGlob
       }
 
-      console.error(`Not found: ${_mod}`)
+      console.error(
+        `Module not found "${_mod}" imported by "${importer}"\n ${new Error().stack
+          .split('\n')
+          .map((l) => `    ${l}`)
+          .join('\n')}`
+      )
       return {}
     } catch (err) {
       throw new Error(`\n◆ ${_mod} "${err}"`.replace('Error: ', '').replaceAll('"', ''))
