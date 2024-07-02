@@ -5,10 +5,13 @@ import {
   type Output,
   type ParserConfig,
   type ReactConfig,
+  type Options as SWCOptions,
   transform,
 } from '@swc/core'
 import type { PluginOption } from 'vite'
 import { extname } from 'node:path'
+
+// this file is a mess lol
 
 // TODO node has an import to do this: const require = createRequire(import.meta.url)
 const resolve = createRequire(
@@ -48,6 +51,10 @@ const parsers: Record<string, ParserConfig> = {
 }
 
 function getParser(id: string) {
+  if (id.endsWith('vxs-entry-native')) {
+    return parsers['.tsx']
+  }
+
   const extension = extname(id)
   let parser: ParserConfig = !extension ? parsers['.js'] : parsers[extension]
 
@@ -95,6 +102,7 @@ export default (_options?: Options): PluginOption[] => {
 
                   async transform(code, id) {
                     const parser = getParser(id)
+
                     const out = await transform(code, {
                       filename: id,
                       swcrc: false,
@@ -183,6 +191,60 @@ export async function swcTransform(_id: string, code: string, options: Options) 
   return { code: result.code, map: sourceMap }
 }
 
+export const transformWithOptions = async (
+  id: string,
+  code: string,
+  target: JscTarget,
+  options: Options,
+  reactConfig: ReactConfig
+) => {
+  const parser = getParser(id)
+  if (!parser) return
+
+  let result: Output
+  try {
+    const transformOptions = {
+      filename: id,
+      swcrc: false,
+      configFile: false,
+      sourceMaps: true,
+      module: {
+        type: 'nodenext',
+      },
+      ...(options.mode === 'serve-cjs' && {
+        module: {
+          type: 'commonjs',
+          strict: true,
+          importInterop: 'node',
+        },
+      }),
+      jsc: {
+        target,
+        parser,
+        transform: {
+          useDefineForClassFields: true,
+          react: reactConfig,
+        },
+      },
+    } satisfies SWCOptions
+
+    result = await transform(code, transformOptions)
+  } catch (e: any) {
+    const message: string = e.message
+    const fileStartIndex = message.indexOf('╭─[')
+    if (fileStartIndex !== -1) {
+      const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
+      if (match) {
+        e.line = match[1]
+        e.column = match[2]
+      }
+    }
+    throw e
+  }
+
+  return result
+}
+
 export function wrapSourceInRefreshRuntime(id: string, code: string, options: Options) {
   const prefixCode =
     options.mode === 'build'
@@ -241,56 +303,4 @@ export const transformForBuild = async (id: string, code: string) => {
       },
     },
   })
-}
-
-export const transformWithOptions = async (
-  id: string,
-  code: string,
-  target: JscTarget,
-  options: Options,
-  reactConfig: ReactConfig
-) => {
-  const parser = getParser(id)
-  if (!parser) return
-
-  let result: Output
-  try {
-    result = await transform(code, {
-      filename: id,
-      swcrc: false,
-      configFile: false,
-      sourceMaps: true,
-      module: {
-        type: 'nodenext',
-      },
-      ...(options.mode === 'serve-cjs' && {
-        module: {
-          type: 'commonjs',
-          strict: true,
-          importInterop: 'node',
-        },
-      }),
-      jsc: {
-        target,
-        parser,
-        transform: {
-          useDefineForClassFields: true,
-          react: reactConfig,
-        },
-      },
-    })
-  } catch (e: any) {
-    const message: string = e.message
-    const fileStartIndex = message.indexOf('╭─[')
-    if (fileStartIndex !== -1) {
-      const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
-      if (match) {
-        e.line = match[1]
-        e.column = match[2]
-      }
-    }
-    throw e
-  }
-
-  return result
 }

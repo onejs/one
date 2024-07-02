@@ -16,6 +16,7 @@ import {
   prebuildReactNativeModules,
   swapPrebuiltReactModules,
 } from './swapPrebuiltReactModules'
+import { getReactNativeConfig } from './getReactNativeConfig'
 
 const { pathExists } = FSExtra
 
@@ -65,99 +66,8 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
     })
   }
 
-  const viteFlow = options.flow ? createViteFlow(options.flow) : null
-
   // build app
-  let nativeBuildConfig = {
-    plugins: [
-      viteFlow,
-
-      swapPrebuiltReactModules(cacheDir),
-
-      {
-        name: 'reanimated',
-        async transform(code, id) {
-          if (code.includes('worklet')) {
-            const out = await babelReanimated(code, id)
-            return out
-          }
-        },
-      },
-
-      viteRNClientPlugin,
-
-      reactNativeCommonJsPlugin({
-        root,
-        port,
-        mode: 'build',
-      }),
-
-      viteReactPlugin({
-        tsDecorators: true,
-        mode: 'build',
-      }),
-
-      {
-        name: 'treat-js-files-as-jsx',
-        async transform(code, id) {
-          if (!id.includes(`expo-status-bar`)) return null
-          // Use the exposed transform from vite, instead of directly
-          // transforming with esbuild
-          return transformWithEsbuild(code, id, {
-            loader: 'jsx',
-            jsx: 'automatic',
-          })
-        },
-      },
-    ].filter(Boolean),
-
-    appType: 'custom',
-    root,
-    clearScreen: false,
-
-    optimizeDeps: {
-      include: depsToOptimize,
-      needsInterop,
-      esbuildOptions: {
-        jsx: 'automatic',
-      },
-    },
-
-    resolve: {
-      extensions: nativeExtensions,
-    },
-
-    mode: 'development',
-
-    define: {
-      'process.env.NODE_ENV': `"development"`,
-    },
-
-    build: {
-      ssr: false,
-      minify: false,
-      commonjsOptions: {
-        transformMixedEsModules: true,
-      },
-      rollupOptions: {
-        input: options.entries.native,
-        treeshake: false,
-        preserveEntrySignatures: 'strict',
-        output: {
-          preserveModules: true,
-          format: 'cjs',
-        },
-      },
-    },
-  } satisfies InlineConfig
-
-  // TODO
-  // if (options.nativeConfig) {
-  //   nativeBuildConfig = mergeConfig(nativeBuildConfig, options.nativeConfig) as any
-  // }
-
-  // // this fixes my swap-react-native plugin not being called pre 😳
-  await resolveConfig(nativeBuildConfig, 'build')
+  const nativeBuildConfig = await getReactNativeConfig(options, viteRNClientPlugin)
 
   const builder = await createBuilder(nativeBuildConfig)
 
