@@ -39,18 +39,13 @@ export default createApp({
 
       if (id === resolvedVirtualEntryIdNative) {
         return `
-import { AppRegistry, LogBox } from 'react-native'
 import { createApp } from 'vxs'
 
 // globbing ${appDirGlob}
-const routes = import.meta.glob('${appDirGlob}')
-
-AppRegistry.registerComponent('main', 
-  () => <Root isClient routes={routes} path="/" />
-)
-
-LogBox.install()
-`
+export default createApp({
+  routes: import.meta.glob('${appDirGlob}'),
+})
+        `
       }
     },
   }
