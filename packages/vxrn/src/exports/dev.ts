@@ -118,11 +118,17 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   router.get(
     '/index.bundle',
     defineEventHandler(async (e) => {
-      return new Response(await getReactNativeBundle(options, viteRNClientPlugin), {
-        headers: {
-          'content-type': 'text/javascript',
-        },
-      })
+      try {
+        const bundle = await getReactNativeBundle(options, viteRNClientPlugin)
+        return new Response(bundle, {
+          headers: {
+            'content-type': 'text/javascript',
+          },
+        })
+      } catch (err) {
+        const message = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
+        console.error(` Error building React Native bundle: ${message}`)
+      }
     })
   )
 
