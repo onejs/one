@@ -1,22 +1,14 @@
 import * as babel from '@babel/core'
-import createViteFlow from '@vxrn/vite-flow'
-import viteReactPlugin from '@vxrn/vite-native-swc'
 import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
-import { createBuilder, resolveConfig, transformWithEsbuild, type InlineConfig } from 'vite'
-import { nativeExtensions } from '../constants'
-import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
+import { createBuilder } from 'vite'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
+import { getReactNativeConfig } from './getReactNativeConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { resolveFile } from './resolveFile'
-import {
-  getPrebuilds,
-  prebuildReactNativeModules,
-  swapPrebuiltReactModules,
-} from './swapPrebuiltReactModules'
-import { getReactNativeConfig } from './getReactNativeConfig'
+import { getPrebuilds, prebuildReactNativeModules } from './swapPrebuiltReactModules'
 
 const { pathExists } = FSExtra
 
@@ -84,9 +76,7 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
       const id = outputModule.fileName.replace(/.*node_modules\//, '')
 
       if (outputModule.type == 'chunk') {
-        const importsMap = {
-          currentPath: id,
-        }
+        const importsMap = {}
         for (const imp of outputModule.imports) {
           const relativePath = relative(dirname(id), imp)
           importsMap[relativePath[0] === '.' ? relativePath : './' + relativePath] = imp.replace(

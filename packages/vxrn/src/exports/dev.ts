@@ -28,6 +28,7 @@ import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { checkPatches } from '../utils/patches'
+import { clean } from './clean'
 
 const { ensureDir } = FSExtra
 
@@ -41,25 +42,13 @@ const { ensureDir } = FSExtra
  *
  */
 
-export const dev = async ({ clean, ...rest }: VXRNOptions & { clean?: boolean }) => {
+export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
+  const { clean: shouldClean, ...rest } = optionsIn
   const options = await getOptionsFilled(rest)
   const { port, root, cacheDir } = options
 
-  if (clean) {
-    try {
-      console.info(` [vxrn] cleaning node_modules/.vite`)
-      await rm(join(root, 'node_modules', '.vite'), {
-        recursive: true,
-        force: true,
-      })
-    } catch (err) {
-      if (err instanceof Error) {
-        // @ts-expect-error wtf
-        if (err.code !== 'ENOENT') {
-          throw Error
-        }
-      }
-    }
+  if (shouldClean) {
+    await clean(optionsIn)
   }
 
   // TODO move somewhere

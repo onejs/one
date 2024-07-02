@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.21.8",
+    "@babel/plugin-transform-private-methods": "^7.24.7",
     "metro-react-native-babel-preset": "^0.77.0"
   },
   "devDependencies": {

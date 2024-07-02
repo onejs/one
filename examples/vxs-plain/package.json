@@ -15,7 +15,7 @@
     "postinstall": "patch-package || true"
   },
   "dependencies": {
-    "react-native": "0.73.2",
+    "react-native": "0.74.1",
     "react-native-reanimated": "~3.3.0",
     "react-native-web": "^0.19.11",
     "vxs": "1.1.126"

@@ -209,6 +209,7 @@ const esbuildCommonJSFunction = `var __commonJS = (cb, mod) => function __requir
 };`
 
 const RNExportNames = [
+  'registerCallableModule',
   'AccessibilityInfo',
   'ActivityIndicator',
   'Button',
@@ -268,6 +269,7 @@ const RNExportNames = [
   'TurboModuleRegistry',
   'UIManager',
   'unstable_batchedUpdates',
+  'useAnimatedValue',
   'useColorScheme',
   'useWindowDimensions',
   'UTFSequence',
@@ -282,6 +284,7 @@ const RNExportNames = [
   'processColor',
   'requireNativeComponent',
   'RootTagContext',
+  'unstable_enableLogBox',
 ]
 
 const RExports = [

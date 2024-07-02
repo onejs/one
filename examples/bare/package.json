@@ -6,14 +6,16 @@
   "type": "module",
   "scripts": {
     "dev": "vxrn dev",
-    "dev:clean": "rm -r dist || true && vxrn dev",
+    "dev:clean": "vxrn dev --clean",
+    "clean": "vxrn clean",
     "build:prod": "vxrn build",
+    "serve": "vxrn serve",
     "android": "react-native run-android",
     "ios": "react-native run-ios"
   },
   "dependencies": {
     "react": "19.0.0-rc-3563387fe3-20240621",
-    "react-native": "0.73.2"
+    "react-native": "0.74.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",

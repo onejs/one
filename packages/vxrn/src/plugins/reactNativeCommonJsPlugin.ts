@@ -71,7 +71,6 @@ export function reactNativeCommonJsPlugin(options: {
                   if (id.includes('?commonjs')) {
                     return
                   }
-                  console.log('id', id)
 
                   // if (!id.includes('/node_modules/')) {
                   //   return

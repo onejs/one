@@ -135,6 +135,24 @@ const serve = defineCommand({
   },
 })
 
+const clean = defineCommand({
+  meta: {
+    name: 'clean',
+    version: '0.0.0',
+    description: 'Clean build folders',
+  },
+  args: {},
+  async run() {
+    const { clean: vxrnClean } = await import(
+      // @ts-expect-error
+      './exports/clean.mjs'
+    )
+    await vxrnClean({
+      root: process.cwd(),
+    })
+  },
+})
+
 const main = defineCommand({
   meta: {
     name: 'main',
@@ -145,6 +163,7 @@ const main = defineCommand({
     dev,
     build,
     serve,
+    clean,
   },
 })
 

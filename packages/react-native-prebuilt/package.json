@@ -23,9 +23,8 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
-    "./react-native": "./dist/react-native.js",
-    "./react": "./dist/react.js",
-    "./jsx-runtime": "./dist/react-jsx-runtime.js"
+    "./react": "./vendor/react/index.js",
+    "./jsx-runtime": "./vendor/react/jsx-dev-runtime.js"
   },
   "dependencies": {
     "@vxrn/vite-flow": "1.1.126",
@@ -38,7 +37,7 @@
     "@tamagui/build": "^1.100.0",
     "react": "19.0.0-rc-3563387fe3-20240621",
     "react-dom": "19.0.0-rc-3563387fe3-20240621",
-    "react-native": "0.73.2"
+    "react-native": "0.74.1"
   },
   "peerDependencies": {
     "react": "*",
