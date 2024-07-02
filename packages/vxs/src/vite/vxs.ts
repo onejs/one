@@ -76,6 +76,34 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       root: 'app',
     }),
 
+    // TODO only on native env
+    {
+      name: 'use-react-18 for native',
+      enforce: 'pre',
+
+      async config() {
+        const sharedNativeConfig = {
+          resolve: {
+            alias: {
+              react: import.meta.resolve('vxs/react-18'),
+              'react-dom': import.meta.resolve('vxs/react-dom-18'),
+            },
+          },
+        } satisfies InlineConfig
+
+        return {
+          environments: {
+            ios: {
+              ...sharedNativeConfig,
+            },
+            android: {
+              ...sharedNativeConfig,
+            },
+          },
+        }
+      },
+    },
+
     {
       name: 'optimize-deps-load-web-extensions',
       enforce: 'pre',

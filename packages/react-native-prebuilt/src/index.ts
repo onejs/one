@@ -10,9 +10,10 @@ const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 export async function buildAll() {
   console.info(`Prebuilding React Native (one time cost...)`)
   await Promise.all([
-    // buildReactJSX(),
+    //
+    buildReactJSX(),
     buildReact(),
-    // buildReactNative()
+    buildReactNative(),
   ])
 }
 
@@ -27,7 +28,7 @@ const resolveFile = (path: string) => {
 export async function buildReactJSX(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [resolveFile('@vxrn/react-native-prebuilt/react-18-jsx-dev-runtime')],
+    entryPoints: [resolveFile('react/jsx-dev-runtime')],
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -41,30 +42,29 @@ export async function buildReactJSX(options: BuildOptions = {}) {
     external,
     logLevel: 'warning',
     ...options,
+  }).then(async () => {
+    // manual force exports
+    const bundled = await readFile(options.outfile!, 'utf-8')
+    const outCode = `
+    const run = () => {
+      ${bundled.replace(
+        `module.exports = require_react_jsx_dev_runtime_development();`,
+        `return require_react_jsx_dev_runtime_development();`
+      )}
+    }
+    const __mod__ = run()
+    ${['jsx', 'jsxs', 'jsxDEV', 'Fragment']
+      .map((n) => `export const ${n} = __mod__.${n} || __mod__.jsx || __mod__.jsxDEV`)
+      .join('\n')}
+    `
+    await FSExtra.writeFile(options.outfile!, outCode)
   })
-  // .then(async () => {
-  //   // manual force exports
-  //   const bundled = await readFile(options.outfile!, 'utf-8')
-  //   const outCode = `
-  //   const run = () => {
-  //     ${bundled.replace(
-  //       `module.exports = require_react_jsx_dev_runtime_development();`,
-  //       `return require_react_jsx_dev_runtime_development();`
-  //     )}
-  //   }
-  //   const __mod__ = run()
-  //   ${['jsx', 'jsxs', 'jsxDEV', 'Fragment']
-  //     .map((n) => `export const ${n} = __mod__.${n} || __mod__.jsx || __mod__.jsxDEV`)
-  //     .join('\n')}
-  //   `
-  //   await FSExtra.writeFile(options.outfile!, outCode)
-  // })
 }
 
 export async function buildReact(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [resolveFile('@vxrn/react-native-prebuilt/react-18')],
+    entryPoints: [resolveFile('react')],
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -78,25 +78,22 @@ export async function buildReact(options: BuildOptions = {}) {
     logLevel: 'warning',
     external,
     ...options,
+  }).then(async () => {
+    // manual force exports
+    const bundled = await readFile(options.outfile!, 'utf-8')
+    const outCode = `
+    const run = () => {
+      ${bundled.replace(
+        `module.exports = require_react_development();`,
+        `return require_react_development();`
+      )}
+    }
+    const __mod__ = run()
+    ${RExports.map((n) => `export const ${n} = __mod__.${n}`).join('\n')}
+    export default __mod__
+    `
+    await FSExtra.writeFile(options.outfile!, outCode)
   })
-  // .then(async () => {
-  //   // manual force exports
-  //   const bundled = await readFile(options.outfile!, 'utf-8')
-
-  //   const outCode = `
-  //   const run = () => {
-  //     ${bundled.replace(
-  //       `module.exports = require_react_development();`,
-  //       `return require_react_development();`
-  //     )}
-  //   }
-  //   const __mod__ = run()
-  //   ${RExports.map((n) => `export const ${n} = __mod__.${n}`).join('\n')}
-  //   export default __mod__
-  //   `
-
-  //   await FSExtra.writeFile(options.outfile!, outCode)
-  // })
 }
 
 export async function buildReactNative(options: BuildOptions = {}) {
@@ -178,6 +175,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
     const outCode = `
     const run = () => {
       ${bundled
+        // .replaceAll('require("react/jsx-runtime")', 'require("react/jsx-dev-runtime")')
         .replace(
           esbuildCommonJSFunction,
           `

@@ -28,7 +28,6 @@ import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { checkPatches } from '../utils/patches'
-import { getReactNativeConfig } from '../utils/getReactNativeConfig'
 
 const { ensureDir } = FSExtra
 
@@ -109,20 +108,7 @@ export const dev = async ({ clean, ...rest }: VXRNOptions & { clean?: boolean })
     },
   })
 
-  // react native endpoints:
-
-  // main bundle:
-  const reactNativeBuildConfig = await getReactNativeConfig(options, viteRNClientPlugin)
-  router.get(
-    '/index.bundle',
-    defineEventHandler(async (e) => {
-      return new Response(await getReactNativeBundle(options, reactNativeBuildConfig), {
-        headers: {
-          'content-type': 'text/javascript',
-        },
-      })
-    })
-  )
+  // react native endppints:
 
   router.get(
     '/file',
@@ -136,6 +122,18 @@ export const dev = async ({ clean, ...rest }: VXRNOptions & { clean?: boolean })
           },
         })
       }
+    })
+  )
+
+  // builds the dev initial bundle for react native
+  router.get(
+    '/index.bundle',
+    defineEventHandler(async (e) => {
+      return new Response(await getReactNativeBundle(options, viteRNClientPlugin), {
+        headers: {
+          'content-type': 'text/javascript',
+        },
+      })
     })
   )
 
