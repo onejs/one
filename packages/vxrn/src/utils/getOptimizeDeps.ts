@@ -107,6 +107,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@tamagui/helpers',
     '@tamagui/image',
     '@tamagui/lucide-icons',
+    '@tamagui/animations-moti',
     '@tamagui/popover',
     '@tamagui/popper',
     '@tamagui/scroll-view',
