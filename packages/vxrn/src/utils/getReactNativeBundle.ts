@@ -5,8 +5,7 @@ import { createBuilder, type UserConfig } from 'vite'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { resolveFile } from './resolveFile'
-import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
-import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
+import { getPrebuilds, prebuildReactNativeModules } from './swapPrebuiltReactModules'
 
 const { pathExists } = FSExtra
 
@@ -100,13 +99,8 @@ __require("${outputModule.fileName}")
     // TEMP FIX for router tamagui thing since expo router 3 upgrade
     .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
 
-  const prebuilds = {
-    reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
-    react: join(cacheDir, 'react.js'),
-    reactNative: join(cacheDir, 'react-native.js'),
-  }
-
   const templateFile = resolveFile('vxrn/react-native-template.js')
+  const prebuilds = getPrebuilds(options.cacheDir)
   const template = (await readFile(templateFile, 'utf-8'))
 
     // TODO this is not stable based on cwd

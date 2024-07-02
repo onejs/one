@@ -12797,14 +12797,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0-rc-3563387fe3-20240621":
-  version: 19.0.0-rc-3563387fe3-20240621
-  resolution: "react-dom@npm:19.0.0-rc-3563387fe3-20240621"
+"react-dom@npm:18.3.1":
+  version: 18.3.1
+  resolution: "react-dom@npm:18.3.1"
   dependencies:
-    scheduler: 0.25.0-rc-3563387fe3-20240621
+    loose-envify: ^1.1.0
+    scheduler: ^0.23.2
   peerDependencies:
-    react: 19.0.0-rc-3563387fe3-20240621
-  checksum: 93c82cdd34be56e9f525feff1079e29f9c5d4c8e941edf47d40650737ae512a296af81c352f83dcd0d068bc98ec9b5068aec97d1e9c807f91cba9d2279e4fc65
+    react: ^18.3.1
+  checksum: 298954ecd8f78288dcaece05e88b570014d8f6dce5db6f66e6ee91448debeb59dcd31561dddb354eee47e6c1bb234669459060deb238ed0213497146e555a0b9
   languageName: node
   linkType: hard
 
@@ -13041,10 +13042,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.0.0-rc-3563387fe3-20240621":
-  version: 19.0.0-rc-3563387fe3-20240621
-  resolution: "react@npm:19.0.0-rc-3563387fe3-20240621"
-  checksum: 775809c7ef5999d5d36546086bb06731f6f662028656567b2ccd01e196e839936fa544810ffaaf237c439c337ba6b55374a634ebf2934d900ffc998bce40fe7c
+"react@npm:18.3.1":
+  version: 18.3.1
+  resolution: "react@npm:18.3.1"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: a27bcfa8ff7c15a1e50244ad0d0c1cb2ad4375eeffefd266a64889beea6f6b64c4966c9b37d14ee32d6c9fcd5aa6ba183b6988167ab4d127d13e7cb5b386a376
   languageName: node
   linkType: hard
 
@@ -13576,19 +13579,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.25.0-rc-3563387fe3-20240621":
-  version: 0.25.0-rc-3563387fe3-20240621
-  resolution: "scheduler@npm:0.25.0-rc-3563387fe3-20240621"
-  checksum: 3969aa480699053ce12201d41b2238b1160c54472f5a9f5ce019bd520535e13ce66f9212e07078c390c0f98389aebbd8b7410f394ce8c5d4f15d20345b57ef76
-  languageName: node
-  linkType: hard
-
 "scheduler@npm:^0.23.0":
   version: 0.23.0
   resolution: "scheduler@npm:0.23.0"
   dependencies:
     loose-envify: ^1.1.0
   checksum: d79192eeaa12abef860c195ea45d37cbf2bbf5f66e3c4dcd16f54a7da53b17788a70d109ee3d3dde1a0fd50e6a8fc171f4300356c5aee4fc0171de526bf35f8a
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.23.2":
+  version: 0.23.2
+  resolution: "scheduler@npm:0.23.2"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 3e82d1f419e240ef6219d794ff29c7ee415fbdc19e038f680a10c067108e06284f1847450a210b29bbaf97b9d8a97ced5f624c31c681248ac84c80d56ad5a2c4
   languageName: node
   linkType: hard
 

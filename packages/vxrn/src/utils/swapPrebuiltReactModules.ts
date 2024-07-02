@@ -9,7 +9,7 @@ import { resolveFile } from './resolveFile'
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
 
-const getPrebuilds = (cacheDir: string) => ({
+export const getPrebuilds = (cacheDir: string) => ({
   reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
   react: join(cacheDir, 'react.js'),
   reactNative: join(cacheDir, 'react-native.js'),
@@ -42,30 +42,47 @@ export async function prebuildReactNativeModules(cacheDir: string) {
 export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin> {
   const prebuilds = getPrebuilds(cacheDir)
 
-  // react native port (it scans 19000 +5)
-  const jsxRuntime = {
-    alias: prebuilds.reactJSX,
-    contents: await readFile(prebuilds.reactJSX, 'utf-8'),
-  } as const
+  let cached: null | Record<
+    'react-native' | 'react' | 'react/jsx-runtime' | 'react/jsx-dev-runtime',
+    {
+      alias: string
+      contents: string
+    }
+  > = null
 
-  const virtualModules = {
-    'react-native': {
-      alias: prebuilds.reactNative,
-      contents: await readFile(prebuilds.reactNative, 'utf-8'),
-    },
-    react: {
-      alias: prebuilds.react,
-      contents: await readFile(prebuilds.react, 'utf-8'),
-    },
-    'react/jsx-runtime': jsxRuntime,
-    'react/jsx-dev-runtime': jsxRuntime,
-  } as const
+  const getVirtualModules = async () => {
+    if (cached) return cached
+
+    // react native port (it scans 19000 +5)
+    const jsxRuntime = {
+      // alias: 'virtual:react-jsx',
+      alias: prebuilds.reactJSX,
+      contents: await readFile(prebuilds.reactJSX, 'utf-8'),
+    } as const
+
+    cached = {
+      'react-native': {
+        // alias: 'virtual:react-native',
+        alias: prebuilds.reactNative,
+        contents: await readFile(prebuilds.reactNative, 'utf-8'),
+      },
+      react: {
+        // alias: 'virtual:react',
+        alias: prebuilds.react,
+        contents: await readFile(prebuilds.react, 'utf-8'),
+      },
+      'react/jsx-runtime': jsxRuntime,
+      'react/jsx-dev-runtime': jsxRuntime,
+    } as const
+
+    return cached
+  }
 
   return {
     name: `swap-react-native`,
     enforce: 'pre',
 
-    resolveId(id, importer = '') {
+    async resolveId(id, importer = '') {
       if (id.startsWith('react-native/Libraries')) {
         return `virtual:rn-internals:${id}`
       }
@@ -74,6 +91,8 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
       if (id === 'react-native-web') {
         return prebuilds.reactNative
       }
+
+      const virtualModules = await getVirtualModules()
 
       for (const targetId in virtualModules) {
         if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
@@ -110,7 +129,7 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
       }
     },
 
-    load(id) {
+    async load(id) {
       if (id.startsWith('virtual:rn-internals')) {
         const idOut = id.replace('virtual:rn-internals:', '')
         let out = `const ___val = __cachedModules["${idOut}"]
@@ -119,6 +138,7 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
         return out
       }
 
+      const virtualModules = await getVirtualModules()
       for (const targetId in virtualModules) {
         const info = virtualModules[targetId as keyof typeof virtualModules]
         if (id === info.alias) {

@@ -46,7 +46,7 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
     plugins: [
       viteFlow,
 
-      swapPrebuiltReactModules(),
+      swapPrebuiltReactModules(options.cacheDir),
 
       // lol realized this is already done here ^
       // ((): Plugin => {
