@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vxrn dev",
-    "dev:clean": "yarn clean && vxrn dev",
-    "clean": "rm -r dist || true && rm -r node_modules/.vite || true",
+    "dev:clean": "rm -r dist || true && vxrn dev",
     "build:prod": "vxrn build",
     "android": "react-native run-android",
     "ios": "react-native run-ios"

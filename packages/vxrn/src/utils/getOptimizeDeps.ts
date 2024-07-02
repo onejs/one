@@ -48,7 +48,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'mdx-bundler/client',
     'gray-matter',
     'glob',
-
     'memoize-one',
     'css-in-js-utils',
     'hyphenate-style-name',

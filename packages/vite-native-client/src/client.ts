@@ -120,7 +120,11 @@ function setupWebSocket(protocol: string, hostAndPath: string, onCloseWithoutOpe
 }
 
 function warnFailedFetch(err: Error, path: string | string[]) {
-  console.error(`${err}`)
+  try {
+    console.error(`${err.message}\n${err.stack}`)
+  } catch {
+    console.error(`${err}`)
+  }
   console.error(
     `[hmr] Failed to reload ${path}. ` +
       `This could be due to syntax errors or importing non-existent ` +

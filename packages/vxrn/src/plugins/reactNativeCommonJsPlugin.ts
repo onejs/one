@@ -67,17 +67,18 @@ export function reactNativeCommonJsPlugin(options: {
             plugins: [
               {
                 name: `force-export-all`,
-
                 async transform(code, id) {
+                  if (id.includes('?commonjs')) {
+                    return
+                  }
+                  console.log('id', id)
+
                   // if (!id.includes('/node_modules/')) {
                   //   return
                   // }
-
                   try {
                     const [imports, exports] = parse(code)
-
                     let forceExports = ''
-
                     // note that es-module-lexer parses export * from as an import (twice) for some reason
                     let counts = {}
                     for (const imp of imports) {
@@ -91,7 +92,6 @@ export function reactNativeCommonJsPlugin(options: {
                         }
                       }
                     }
-
                     forceExports += exports
                       .map((e) => {
                         if (e.n === 'default') {
@@ -106,7 +106,6 @@ export function reactNativeCommonJsPlugin(options: {
                         return out
                       })
                       .join(';')
-
                     return code + '\n' + forceExports
                   } catch (err) {
                     console.warn(`Error forcing exports, probably ok`, id)
