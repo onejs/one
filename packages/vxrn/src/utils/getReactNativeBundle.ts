@@ -3,7 +3,6 @@ import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
 import { createBuilder } from 'vite'
-import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { getReactNativeConfig } from './getReactNativeConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
@@ -16,9 +15,6 @@ const { pathExists } = FSExtra
 export let entryRoot = ''
 
 export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
-  const { root, port, cacheDir } = options
-  const { depsToOptimize, needsInterop } = getOptimizeDeps('build')
-
   if (process.env.LOAD_TMP_BUNDLE) {
     // for easier quick testing things:
     const tmpBundle = join(process.cwd(), 'bundle.tmp.js')
