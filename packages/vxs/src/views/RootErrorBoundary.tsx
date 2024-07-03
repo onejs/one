@@ -15,7 +15,7 @@ export class RootErrorBoundary extends React.Component<{ children: any }> {
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
     //   in App
-    console.error('RootErrorBoundary.error', error, info)
+    console.error(`RootErrorBoundary.error:\n${printError(error)}\n${info.componentStack}`)
   }
 
   render() {
@@ -26,4 +26,8 @@ export class RootErrorBoundary extends React.Component<{ children: any }> {
 
     return this.props.children
   }
+}
+
+function printError(err) {
+  return `${err instanceof Error ? `${err.message}\n${err.stack}` : err}`
 }
