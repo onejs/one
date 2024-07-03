@@ -28,6 +28,10 @@ export async function getVitePath(
     const base = join(dirname(importer.slice(rootAt)), moduleName)
     return base + '.js'
   }
+  if (moduleName === 'vxs') {
+    // TODO hardcoded
+    return 'vxs'
+  }
 
   const sourceFile = join(process.cwd(), 'index.js')
   const require = createRequire(moduleName)
