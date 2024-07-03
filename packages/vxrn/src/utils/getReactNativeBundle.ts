@@ -86,7 +86,7 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
         }
 
         return `
-// fileName: ${id}
+// id: ${id}
 // name: ${outputModule.name}
 // facadeModuleId: ${outputModule.facadeModuleId}
 ___modules___["${id}"] = ((exports, module) => {

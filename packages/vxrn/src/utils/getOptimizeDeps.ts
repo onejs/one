@@ -136,7 +136,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     depsToOptimize,
     optimizeDeps: {
       include: depsToOptimize,
-      exclude: ['util', '@swc/wasm', '@swc/core-darwin-arm64'],
+      exclude: ['util', '@swc/wasm', '@swc/core-darwin-arm64', 'moti/author'],
       needsInterop,
       esbuildOptions: {
         resolveExtensions: webExtensions,
