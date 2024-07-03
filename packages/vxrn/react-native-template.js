@@ -42,6 +42,7 @@ function __getRequire(absPath) {
         runModule(mod.exports, mod)
       } catch (err) {
         console.error(`Error running module: "${absPath}"\n${printError(err)}`)
+        return {}
       }
       __cachedModules[absPath] = mod.exports || mod
     }
@@ -71,7 +72,7 @@ function createRequire(importer, importsMap) {
   return function require(_mod) {
     try {
       if (_mod.startsWith('node:') || nodeImports[_mod]) {
-        console.warn(`Warning node imports not supported`)
+        console.warn(`Warning node import not supported: "${_mod}" from "${importer}"`)
         return {}
       }
 
