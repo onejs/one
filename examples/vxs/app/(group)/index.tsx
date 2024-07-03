@@ -23,7 +23,8 @@ export default function HomePage() {
 
   return (
     <>
-      <meta name="description" content="This is my blog." />
+      {/* breaks native */}
+      {/* <meta name="description" content="This is my blog." /> */}
 
       {/* <TestPerformance /> */}
 

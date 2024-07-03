@@ -29,6 +29,10 @@ global['dispatchEvent'] = global['dispatchEvent'] || (() => {})
 
 globalThis['__cachedModules'] = {}
 
+function printError(err) {
+  return `${err instanceof Error ? `${err.message}\n${err.stack}` : err}`
+}
+
 function __getRequire(absPath) {
   if (!__cachedModules[absPath]) {
     const runModule = ___modules___[absPath]
@@ -37,7 +41,7 @@ function __getRequire(absPath) {
       try {
         runModule(mod.exports, mod)
       } catch (err) {
-        console.error('Error running module: ' + mod + err)
+        console.error(`Error running module: "${absPath}"\n${printError(err)}`)
       }
       __cachedModules[absPath] = mod.exports || mod
     }
@@ -52,6 +56,13 @@ const __specialRequireMap = {
   'react/jsx-dev-runtime': '.vxrn/react-jsx-runtime.js',
 }
 
+const nodeImports = {
+  fs: true,
+  path: true,
+  os: true,
+  child_process: true,
+}
+
 function createRequire(importer, importsMap) {
   if (!importsMap) {
     console.error(`No imports map given from ${importer}\n${new Error().stack}`)
@@ -59,11 +70,45 @@ function createRequire(importer, importsMap) {
 
   return function require(_mod) {
     try {
+      if (_mod.startsWith('node:') || nodeImports[_mod]) {
+        console.warn(`Warning node imports not supported`)
+        return {}
+      }
+
+      // find via maps
       let path = __specialRequireMap[_mod] || importsMap[_mod] || _mod
       const found = __getRequire(path)
-      if (found) {
-        return found
+      if (found) return found
+
+      // find internals loosely
+      try {
+        for (const [key, value] of Object.entries(__specialRequireMap)) {
+          if (_mod.endsWith(value)) {
+            const found = __getRequire(__specialRequireMap[key])
+            if (found) {
+              return found
+            }
+          }
+        }
+      } catch (err) {
+        console.info('error loose internal', err)
       }
+
+      // find externals loosely
+      try {
+        for (const [key, value] of Object.entries(importsMap)) {
+          if (key.endsWith(_mod.replace(/(\.\.?\/)+/, ''))) {
+            const found = __getRequire(importsMap[key])
+            if (found) {
+              return found
+            }
+          }
+        }
+      } catch (err) {
+        console.info('error loose external', err)
+      }
+
+      // is this cruft
       if (globalThis[path]) {
         const output = globalThis[path]()
         __cachedModules[_mod] = output
@@ -87,16 +132,27 @@ function createRequire(importer, importsMap) {
       }
 
       // find our import.meta.glob which don't get the nice path addition, for now hardcode but this shouldnt be hard to fix properly:
-      const foundGlob = __getRequire(path.replace('.tsx', '.js').replace('.ts', '.js'))
+      const foundGlob = __getRequire(path.replace(/\.[jt]sx?$/, '.js'))
       if (foundGlob) {
         return foundGlob
       }
 
       console.error(
-        `Module not found "${_mod}" imported by "${importer}"\n ${new Error().stack
-          .split('\n')
-          .map((l) => `    ${l}`)
-          .join('\n')}`
+        `Module not found "${_mod}" imported by "${importer}"\n
+
+  In importsMap:
+
+${JSON.stringify(importsMap, null, 2)}
+
+  Stack:
+
+${new Error().stack
+  .split('\n')
+  .map((l) => `    ${l}`)
+  .join('\n')}
+  
+  
+--------------`
       )
       return {}
     } catch (err) {
