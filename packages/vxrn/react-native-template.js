@@ -71,6 +71,12 @@ function createRequire(importer, importsMap) {
 
   return function require(_mod) {
     try {
+      if (_mod === 'vxs') {
+        // TODO this should be passed in not hardcoded
+        const found = __getRequire('packages/vxs/dist/esm/index.js')
+        if (found) return found
+      }
+
       if (_mod.startsWith('node:') || nodeImports[_mod]) {
         console.warn(`Warning node import not supported: "${_mod}" from "${importer}"`)
         return {}

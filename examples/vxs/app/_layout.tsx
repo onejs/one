@@ -3,7 +3,7 @@ import '../public/tamagui.css'
 
 import { TamaguiProvider, isWeb } from '@tamagui/core'
 import { Stack, ScrollRestoration } from 'vxs'
-import config from '../src/tamagui.config'
+import config from '../tamagui.config'
 
 export default function Layout() {
   return (
