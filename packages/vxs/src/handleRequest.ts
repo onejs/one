@@ -95,7 +95,17 @@ export function createHandleRequest(
             continue
           }
           if (route.routeType === 'spa') {
-            return Response.json({})
+            return new Response(
+              `
+              export default () => null
+              export const loader = () => null
+              `,
+              {
+                headers: {
+                  'content-type': 'text/javascript',
+                },
+              }
+            )
           }
 
           const headers = new Headers()
