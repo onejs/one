@@ -54,15 +54,18 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
       loadedRoutes[pathWithoutRelative] = () => {
         return null
       }
-    } else if (shouldRewrite) {
+    }
+    // TODO this entire conditional seems like it can go away
+    else if (shouldRewrite) {
       // for SSR support we rewrite these:
-      routesSync[pathWithoutRelative] = path.includes('_layout.')
-        ? loadRouteFunction
-        : () => {
-            const realPath = (globalThis['__vxrntodopath'] ?? window.location.pathname).trim()
-            const importUrl = `${CLIENT_BASE_URL}${realPath}_vxrn_loader.js?${CACHE_KEY}`
-            return import(/* @vite-ignore */ importUrl)
-          }
+      routesSync[pathWithoutRelative] =
+        path.includes('_layout.') || path.includes('+spa')
+          ? loadRouteFunction
+          : () => {
+              const realPath = (globalThis['__vxrntodopath'] ?? window.location.pathname).trim()
+              const importUrl = `${CLIENT_BASE_URL}${realPath}_vxrn_loader.js?${CACHE_KEY}`
+              return import(/* @vite-ignore */ importUrl)
+            }
     } else {
       routesSync[pathWithoutRelative] = loadRouteFunction
     }
@@ -79,11 +82,6 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
     }
     if (!promises[id]) {
       promises[id] = routesSync[id]()
-        // adding artifical delay to test
-        // .then(async (val) => {
-        //   await new Promise((res) => setTimeout(res, 2000))
-        //   return val
-        // })
         .then((val: any) => {
           loadedRoutes[id] = val
           delete promises[id]

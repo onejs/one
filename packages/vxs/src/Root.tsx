@@ -1,11 +1,4 @@
-import {
-  Fragment,
-  useEffect,
-  useLayoutEffect,
-  useState,
-  type FunctionComponent,
-  type ReactNode,
-} from 'react'
+import { Fragment, useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
 import type { GlobbedRouteImports, RenderAppProps } from './types'
 import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
