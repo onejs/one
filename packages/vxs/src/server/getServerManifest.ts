@@ -24,7 +24,8 @@ export type VXSRouterServerManifestV1Route<TRegex = string> = {
 
 export type VXSRouterServerManifestV1<TRegex = string> = {
   apiRoutes: VXSRouterServerManifestV1Route<TRegex>[]
-  htmlRoutes: VXSRouterServerManifestV1Route<TRegex>[]
+  spaRoutes: VXSRouterServerManifestV1Route<TRegex>[]
+  ssgRoutes: VXSRouterServerManifestV1Route<TRegex>[]
   notFoundRoutes: VXSRouterServerManifestV1Route<TRegex>[]
 }
 
@@ -94,19 +95,26 @@ export function getServerManifest(route: RouteNode): VXSRouterServerManifestV1 {
     flat.filter(([, route]) => route.type === 'api'),
     ([path]) => path
   )
+
   const otherRoutes = uniqueBy(
     flat.filter(([, route]) => route.type === 'route'),
     ([path]) => path
   )
+
   const standardRoutes = otherRoutes.filter(([, route]) => !isNotFoundRoute(route))
+  const ssgRoutes = standardRoutes.filter(([, route]) => route.routeType === 'ssg')
+  const spaRoutes = standardRoutes.filter(([, route]) => route.routeType === 'spa')
   const notFoundRoutes = otherRoutes.filter(([, route]) => isNotFoundRoute(route))
 
   return {
     apiRoutes: getMatchableManifestForPaths(
       apiRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
     ),
-    htmlRoutes: getMatchableManifestForPaths(
-      standardRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
+    spaRoutes: getMatchableManifestForPaths(
+      spaRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
+    ),
+    ssgRoutes: getMatchableManifestForPaths(
+      ssgRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
     ),
     notFoundRoutes: getMatchableManifestForPaths(
       notFoundRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])

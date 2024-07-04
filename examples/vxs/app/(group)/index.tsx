@@ -29,7 +29,7 @@ export default function HomePage() {
 
       <Link
         href={{
-          pathname: '/[user]',
+          pathname: '/user/[user]',
           params: { user: 'other' },
         }}
       >

@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native'
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 import type { GlobbedRouteImports } from './types'
+import type { VXS } from './vite/types'
 
 // essentially a development helper
 
@@ -8,7 +9,11 @@ let lastVersion = 0
 let context
 
 // for some reason putting it in state doesnt even re-render
-export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
+export function useViteRoutes(
+  routes: GlobbedRouteImports,
+  options?: VXS.RouteOptions,
+  version?: number
+) {
   if (version && version > lastVersion) {
     // reload
     context = null
@@ -16,19 +21,22 @@ export function useViteRoutes(routes: GlobbedRouteImports, version?: number) {
   }
 
   if (!context) {
-    loadRoutes(routes)
+    loadRoutes(routes, options)
   }
 
   return context
 }
 
-export function loadRoutes(paths: Record<string, () => Promise<any>>) {
+export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: VXS.RouteOptions) {
   if (context) return context
 
   globalThis['__importMetaGlobbed'] = paths
 
   // make it look like webpack context
   const routesSync = {}
+  const promises = {}
+  const loadedRoutes = {}
+  const clears = {}
 
   Object.keys(paths).map((path) => {
     if (!paths[path]) {
@@ -39,7 +47,14 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
     const pathWithoutRelative = path.replace('/app/', './')
     const shouldRewrite = typeof window !== 'undefined' && !import.meta.env.PROD
 
-    if (shouldRewrite) {
+    const originalPath = pathWithoutRelative.slice(1).replace(/\.[jt]sx?$/, '')
+    if (options?.routeModes?.[originalPath] === 'spa') {
+      console.info(`Spa mode: ${originalPath}`)
+      // in SPA mode return null for any route
+      loadedRoutes[pathWithoutRelative] = () => {
+        return null
+      }
+    } else if (shouldRewrite) {
       // for SSR support we rewrite these:
       routesSync[pathWithoutRelative] = path.includes('_layout.')
         ? loadRouteFunction
@@ -53,18 +68,14 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>) {
     }
   })
 
-  const promises = {}
-  const loadedRoutes = {}
-  const clears = {}
-
   const moduleKeys = Object.keys(routesSync)
   function resolve(id: string) {
-    if (typeof routesSync[id] !== 'function') {
-      return routesSync[id]
-    }
     clearTimeout(clears[id])
     if (loadedRoutes[id]) {
       return loadedRoutes[id]
+    }
+    if (typeof routesSync[id] !== 'function') {
+      return routesSync[id]
     }
     if (!promises[id]) {
       promises[id] = routesSync[id]()

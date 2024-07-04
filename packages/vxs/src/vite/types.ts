@@ -4,6 +4,12 @@ import type { AfterBuildProps as VXRNAfterBuildProps, VXRNOptions } from 'vxrn'
 export namespace VXS {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
 
+  export type RouteMode = 'ssg' | 'spa'
+
+  export type RouteOptions = {
+    routeModes?: Record<string, VXS.RouteMode>
+  }
+
   export type PluginOptions = {
     redirects?: Redirects
 

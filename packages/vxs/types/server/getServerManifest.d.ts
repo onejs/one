@@ -19,7 +19,8 @@ export type VXSRouterServerManifestV1Route<TRegex = string> = {
 };
 export type VXSRouterServerManifestV1<TRegex = string> = {
     apiRoutes: VXSRouterServerManifestV1Route<TRegex>[];
-    htmlRoutes: VXSRouterServerManifestV1Route<TRegex>[];
+    spaRoutes: VXSRouterServerManifestV1Route<TRegex>[];
+    ssgRoutes: VXSRouterServerManifestV1Route<TRegex>[];
     notFoundRoutes: VXSRouterServerManifestV1Route<TRegex>[];
 };
 export interface Group {

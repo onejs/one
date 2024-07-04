@@ -2,9 +2,9 @@ import type { RouteInfo } from './server/createRoutesManifest'
 import { getManifest } from './vite/getManifest'
 import type { VXS } from './vite/types'
 
-type RequestHandlerProps = {
+type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
   request: Request
-  route: RouteInfo<string>
+  route: RouteInfo<string> & RouteExtraProps
   url: URL
   loaderProps?: { path: string; params: Record<string, any> }
 }
@@ -14,7 +14,7 @@ type RequestHandlerResponse = null | string | Response
 export function createHandleRequest(
   options: VXS.PluginOptions,
   handlers: {
-    handleSSR?: (props: RequestHandlerProps) => Promise<any>
+    handleSSR?: (props: RequestHandlerProps<{ routeType: 'ssg' | 'spa' }>) => Promise<any>
     handleLoader?: (props: RequestHandlerProps) => Promise<any>
     handleAPI?: (props: RequestHandlerProps) => Promise<any>
   }
@@ -40,11 +40,20 @@ export function createHandleRequest(
   // use this to avoid
   const activeRequests = {}
 
-  const routesWithRegex = manifest.htmlRoutes.map((route) => ({
+  // shouldn't be mapping back and forth...
+  const ssgRoutes = manifest.ssgRoutes.map((route) => ({
     ...route,
-    // todo
+    routeType: 'ssg' as const,
     workingRegex: new RegExp(route.namedRegex),
   }))
+
+  const spaRoutes = manifest.spaRoutes.map((route) => ({
+    ...route,
+    routeType: 'spa' as const,
+    workingRegex: new RegExp(route.namedRegex),
+  }))
+
+  const routesWithRegex = [...ssgRoutes, ...spaRoutes]
 
   return async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
     if (shouldIgnore?.(request)) {
@@ -82,9 +91,11 @@ export function createHandleRequest(
         const finalUrl = new URL(originalUrl, url.origin)
 
         for (const route of routesWithRegex) {
-          // TODO performance
           if (!route.workingRegex.test(finalUrl.pathname)) {
             continue
+          }
+          if (route.routeType === 'spa') {
+            return Response.json({})
           }
 
           const headers = new Headers()
@@ -108,7 +119,8 @@ export function createHandleRequest(
         if (process.env.NODE_ENV === 'development') {
           console.error(`No matching route found!`, {
             originalUrl,
-            htmlRoutes: manifest.htmlRoutes,
+            ssgRoutes: manifest.ssgRoutes,
+            spaRoutes: manifest.spaRoutes,
           })
         }
 
@@ -124,7 +136,6 @@ export function createHandleRequest(
 
       try {
         for (const route of routesWithRegex) {
-          // TODO performance
           if (!route.workingRegex.test(pathname)) {
             continue
           }

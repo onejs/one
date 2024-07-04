@@ -1,6 +1,11 @@
-import { Fragment, type FunctionComponent, type ReactNode } from 'react'
-import { Platform } from 'react-native'
-import Constants from './constants'
+import {
+  Fragment,
+  useEffect,
+  useLayoutEffect,
+  useState,
+  type FunctionComponent,
+  type ReactNode,
+} from 'react'
 import type { GlobbedRouteImports, RenderAppProps } from './types'
 import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
@@ -11,12 +16,15 @@ import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import type { RequireContext } from './types'
+import type { VXS } from './vite/types'
 // import { SplashScreen } from './views/Splash'
 
 type RootProps = RenderAppProps &
   Omit<InnerProps, 'context'> & {
+    mode?: VXS.RouteMode
     isClient?: boolean
     routes: GlobbedRouteImports
+    routeOptions?: VXS.RouteOptions
   }
 
 type InnerProps = {
@@ -51,6 +59,17 @@ export function Root(props: RootProps) {
   )
 
   if (props.isClient) {
+    if (globalThis['__vxrnHydrateMode__'] === 'spa') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [show, setShow] = useState(false)
+
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useEffect(() => {
+        setShow(true)
+      }, [])
+
+      return show ? contents : null
+    }
     return contents
   }
 
@@ -79,6 +98,7 @@ export function Root(props: RootProps) {
           __html: `
             globalThis['__vxrnLoaderData__'] = ${JSON.stringify(props.loaderData)};
             globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(props.loaderProps)};
+            globalThis['__vxrnHydrateMode__'] = ${JSON.stringify(props.mode)};
         `,
         }}
       />
@@ -121,8 +141,8 @@ window.$RefreshSig$ = () => (type) => type;`,
   )
 }
 
-function Contents({ routes, path, wrapper = Fragment, ...props }: RootProps) {
-  const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
+function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: RootProps) {
+  const context = useViteRoutes(routes, routeOptions, globalThis['__vxrnVersion'])
 
   // TODO can probably remove since we handle this above
   const location =
@@ -155,14 +175,14 @@ function Contents({ routes, path, wrapper = Fragment, ...props }: RootProps) {
 
 // const GestureHandlerRootView = getGestureHandlerRootView()
 
-const INITIAL_METRICS = {
-  frame: { x: 0, y: 0, width: 0, height: 0 },
-  insets: { top: 0, left: 0, right: 0, bottom: 0 },
-}
+// const INITIAL_METRICS = {
+//   frame: { x: 0, y: 0, width: 0, height: 0 },
+//   insets: { top: 0, left: 0, right: 0, bottom: 0 },
+// }
 
-const hasViewControllerBasedStatusBarAppearance =
-  Platform.OS === 'ios' &&
-  !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
+// const hasViewControllerBasedStatusBarAppearance =
+//   Platform.OS === 'ios' &&
+//   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
 
 function ContextNavigator({
   wrapper: ParentWrapper = Fragment,

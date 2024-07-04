@@ -170,14 +170,14 @@ export async function build(props: AfterBuildProps) {
 
     const clientManifestEntry = props.clientManifest[clientManifestKey]
 
-    const htmlRoute = manifest.htmlRoutes.find((route) => {
+    const htmlRoute = manifest.ssgRoutes.find((route) => {
       return clientManifestKey.endsWith(route.file.slice(1))
     })
 
     if (!htmlRoute) {
       if (clientManifestKey.startsWith('app')) {
         console.error(` No html route found!`, { id, clientManifestKey })
-        console.error(` In manifest`, manifest.htmlRoutes)
+        console.error(` In manifest`, manifest.ssgRoutes)
         process.exit(1)
       }
       continue

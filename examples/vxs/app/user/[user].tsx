@@ -42,7 +42,7 @@ export default function User(props: UserProps) {
       </Link>
       <Link
         href={{
-          pathname: '/[user]',
+          pathname: '/user/[user]',
           params: { user: params.user },
         }}
       >
@@ -50,7 +50,7 @@ export default function User(props: UserProps) {
       </Link>
       <Link
         href={{
-          pathname: '/[user]',
+          pathname: '/user/[user]',
           params: { user: Date.now() },
         }}
       >
@@ -59,7 +59,7 @@ export default function User(props: UserProps) {
       <Link
         replace
         href={{
-          pathname: '/[user]',
+          pathname: '/user/[user]',
           params: { user: Date.now() },
         }}
       >
