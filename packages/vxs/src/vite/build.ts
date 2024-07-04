@@ -18,6 +18,7 @@ import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 import type { VXS } from './types'
 import { getUserVXSOptions } from './vxs'
+import type { RouteInfo } from '../server/createRoutesManifest'
 
 if (!version.startsWith('19.')) {
   console.error(`Must be on React 19, instead found`, version)
@@ -170,12 +171,16 @@ export async function build(props: AfterBuildProps) {
 
     const clientManifestEntry = props.clientManifest[clientManifestKey]
 
-    const htmlRoute = manifest.ssgRoutes.find((route) => {
+    const findMatchingRoute = (route: RouteInfo<string>) => {
       return clientManifestKey.endsWith(route.file.slice(1))
-    })
+    }
 
-    if (!htmlRoute) {
-      if (clientManifestKey.startsWith('app')) {
+    const ssgRoute = manifest.ssgRoutes.find(findMatchingRoute)
+
+    if (!ssgRoute) {
+      const spaRoute = manifest.spaRoutes.find(findMatchingRoute)
+
+      if (!spaRoute && clientManifestKey.startsWith('app')) {
         console.error(` No html route found!`, { id, clientManifestKey })
         console.error(` In manifest`, manifest.ssgRoutes)
         process.exit(1)
@@ -220,7 +225,7 @@ export async function build(props: AfterBuildProps) {
 
     // TODO isnt this getting all layouts not just the ones for this route?
     const layoutEntries =
-      htmlRoute?.layouts?.flatMap((layout) => {
+      ssgRoute?.layouts?.flatMap((layout) => {
         // TODO hardcoded app/
         const clientKey = `app${layout.contextKey.slice(1)}`
         return props.clientManifest[clientKey]
