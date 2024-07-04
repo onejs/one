@@ -20,38 +20,38 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
     enforce: 'post',
     apply: 'serve',
 
-    async config() {
-      return {
-        appType: 'custom',
-        environments: {
-          server: {
-            resolve: {
-              dedupe: optimizeDeps.include,
-              external: [],
-              noExternal: true,
-            },
-            // webCompatible: true,
-            nodeCompatible: true,
-            dev: {
-              optimizeDeps,
-              createEnvironment(name, config) {
-                const worker = new Worker(join(import.meta.dirname, 'server.js'))
-                // const hot = new
-                return new DevEnvironment(name, config, {
-                  hot: false,
-                  runner: {
-                    transport: new RemoteEnvironmentTransport({
-                      send: (data) => worker.postMessage(data),
-                      onMessage: (listener) => worker.on('message', listener),
-                    }),
-                  },
-                })
-              },
-            },
-          },
-        },
-      }
-    },
+    // async config() {
+    //   return {
+    //     appType: 'custom',
+    //     environments: {
+    //       server: {
+    //         resolve: {
+    //           dedupe: optimizeDeps.include,
+    //           external: [],
+    //           noExternal: true,
+    //         },
+    //         // webCompatible: true,
+    //         nodeCompatible: true,
+    //         dev: {
+    //           optimizeDeps,
+    //           createEnvironment(name, config) {
+    //             const worker = new Worker(join(import.meta.dirname, 'server.js'))
+    //             // const hot = new
+    //             return new DevEnvironment(name, config, {
+    //               hot: false,
+    //               runner: {
+    //                 transport: new RemoteEnvironmentTransport({
+    //                   send: (data) => worker.postMessage(data),
+    //                   onMessage: (listener) => worker.on('message', listener),
+    //                 }),
+    //               },
+    //             })
+    //           },
+    //         },
+    //       },
+    //     },
+    //   }
+    // },
 
     configureServer(server) {
       // change this to .server to test using the indepedently scoped env
@@ -60,9 +60,27 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
       // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
       let renderPromise: Promise<void> | null = null
 
+      const preloads = ['/@vite/client', virtalEntryIdClient]
+
       const handleRequest = createHandleRequest(options, {
         async handleSSR({ route, url, loaderProps }) {
-          console.info(` [vxs] «« ${url} resolved to ${route.file}`)
+          console.info(` [vxs] «« [${route.routeType}] ${url} resolved to ${route.file}`)
+
+          if (route.routeType === 'spa') {
+            // render just the layouts? route.layouts
+            return `<html><head>
+              <script>globalThis['global'] = globalThis</script>
+              <script>globalThis['__vxrnIsSPA'] = true</script>
+              <script type="module">
+                import { injectIntoGlobalHook } from "/@react-refresh";
+                injectIntoGlobalHook(window);
+                window.$RefreshReg$ = () => {};
+                window.$RefreshSig$ = () => (type) => type;
+              </script>
+              <script type="module" src="/@vite/client" async=""></script>
+              <script type="module" src="/@id/__x00__virtual:vxs-entry" async=""></script>
+            </head></html>`
+          }
 
           if (renderPromise) {
             await renderPromise
@@ -77,7 +95,13 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
             globalThis['__vxrnresetState']?.()
             runner.clearCache()
 
-            const exported = await runner.import(routeFile)
+            let exported = await runner.import(routeFile)
+
+            const routeOptions: VXS.RouteOptions = {
+              routeModes: {
+                [route.page]: exported.mode,
+              },
+            }
 
             const loaderData = await exported.loader?.(loaderProps)
 
@@ -94,8 +118,10 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
             const html = await entry.default.render({
               loaderData,
               loaderProps,
+              routeOptions,
+              mode: exported.mode,
               path: loaderProps?.path,
-              preloads: ['/@vite/client', virtalEntryIdClient],
+              preloads,
             })
             return html
           } catch (err) {

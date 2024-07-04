@@ -2,7 +2,7 @@ import '@tamagui/core/reset.css'
 import '../public/tamagui.css'
 
 import { TamaguiProvider, isWeb } from '@tamagui/core'
-import { Stack, ScrollRestoration } from 'vxs'
+import { Stack, ScrollRestoration, Slot } from 'vxs'
 import config from '../tamagui.config'
 
 export default function Layout() {
@@ -18,17 +18,7 @@ export default function Layout() {
         {/* TODO we could automatically take any css inlined in the root _layout and extract to shared external css */}
         {/* since the root layout will always be shared between all pages */}
         {/* sub-layouts could do this too and share between sub-pages */}
-        <Stack
-          screenOptions={
-            isWeb
-              ? {
-                  header() {
-                    return null
-                  },
-                }
-              : {}
-          }
-        />
+        <Slot />
       </TamaguiProvider>
     </>
   )
