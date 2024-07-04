@@ -76,18 +76,6 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       root: 'app',
     }),
 
-    {
-      name: 'swap-rnw-lite-on-ssr',
-      enforce: 'pre',
-      transform(code, id) {
-        if (this.environment.name === 'ssr') {
-          if (id.endsWith('.mjs') && id.includes('tamagui/code/')) {
-            return code.replaceAll(`from "react-native-web"`, `from "react-native-web-lite"`)
-          }
-        }
-      },
-    },
-
     // TODO only on native env
     {
       name: 'use-react-18 for native',
