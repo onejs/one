@@ -322,6 +322,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
     },
 
     stop: async () => {
+      viteServer.watcher.removeAllListeners()
       await Promise.all([server.close(), viteServer.close()])
     },
   }

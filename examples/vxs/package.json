@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@tamagui/config": "^1.100.0",
+    "@tamagui/use-debounce": "^1.101.7",
     "react-native": "0.74.1",
     "react-native-reanimated": "~3.3.0",
     "react-native-web": "^0.19.11",

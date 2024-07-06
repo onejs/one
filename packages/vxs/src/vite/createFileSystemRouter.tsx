@@ -11,6 +11,7 @@ import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import type { VXS } from './types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
+import { debounce } from '@tamagui/use-debounce'
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
   const { optimizeDeps } = getOptimizeDeps('serve')
@@ -62,122 +63,139 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
 
       const preloads = ['/@vite/client', virtalEntryIdClient]
 
-      const handleRequest = createHandleRequest(options, {
-        async handleSSR({ route, url, loaderProps }) {
-          console.info(` [vxs] «« [${route.routeType}] ${url} resolved to ${route.file}`)
+      const appDir = join(process.cwd(), 'app')
 
-          if (route.routeType === 'spa') {
-            // render just the layouts? route.layouts
-            return `<html><head>
-              <script>globalThis['global'] = globalThis</script>
-              <script>globalThis['__vxrnIsSPA'] = true</script>
-              <script type="module">
-                import { injectIntoGlobalHook } from "/@react-refresh";
-                injectIntoGlobalHook(window);
-                window.$RefreshReg$ = () => {};
-                window.$RefreshSig$ = () => (type) => type;
-              </script>
-              <script type="module" src="/@vite/client" async=""></script>
-              <script type="module" src="/@id/__x00__virtual:vxs-entry" async=""></script>
-            </head></html>`
+      // on change ./app stuff lets reload this to pick up any route changes
+      const fileWatcherChangeListener = debounce(async (type: string, path: string) => {
+        if (type === 'add' || type === 'delete') {
+          if (path.startsWith(appDir)) {
+            handleRequest = createRequestHandler()
           }
+        }
+      }, 100)
 
-          if (renderPromise) {
-            await renderPromise
-          }
+      server.watcher.addListener('all', fileWatcherChangeListener)
 
-          const { promise, resolve } = Promise.withResolvers<void>()
-          renderPromise = promise
+      let handleRequest = createRequestHandler()
 
-          try {
-            const routeFile = join('app', route.file)
-            // importing directly causes issues :/
-            globalThis['__vxrnresetState']?.()
-            runner.clearCache()
+      function createRequestHandler() {
+        return createHandleRequest(options, {
+          async handleSSR({ route, url, loaderProps }) {
+            console.info(` [vxs] «« [${route.routeType}] ${url} resolved to ${route.file}`)
 
-            let exported = await runner.import(routeFile)
-
-            const routeOptions: VXS.RouteOptions = {
-              routeModes: {
-                [route.page]: exported.mode,
-              },
+            if (route.routeType === 'spa') {
+              // render just the layouts? route.layouts
+              return `<html><head>
+                <script>globalThis['global'] = globalThis</script>
+                <script>globalThis['__vxrnIsSPA'] = true</script>
+                <script type="module">
+                  import { injectIntoGlobalHook } from "/@react-refresh";
+                  injectIntoGlobalHook(window);
+                  window.$RefreshReg$ = () => {};
+                  window.$RefreshSig$ = () => (type) => type;
+                </script>
+                <script type="module" src="/@vite/client" async=""></script>
+                <script type="module" src="/@id/__x00__virtual:vxs-entry" async=""></script>
+              </head></html>`
             }
 
+            if (renderPromise) {
+              await renderPromise
+            }
+
+            const { promise, resolve } = Promise.withResolvers<void>()
+            renderPromise = promise
+
+            try {
+              const routeFile = join('app', route.file)
+              // importing directly causes issues :/
+              globalThis['__vxrnresetState']?.()
+              runner.clearCache()
+
+              let exported = await runner.import(routeFile)
+
+              const routeOptions: VXS.RouteOptions = {
+                routeModes: {
+                  [route.page]: exported.mode,
+                },
+              }
+
+              const loaderData = await exported.loader?.(loaderProps)
+
+              // TODO move to tamagui plugin, also esbuild was getting mad
+              // biome-ignore lint/security/noGlobalEval: <explanation>
+              eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
+
+              const entry = await runner.import(virtualEntryId)
+
+              globalThis['__vxrnLoaderData__'] = loaderData
+              globalThis['__vxrnLoaderProps__'] = loaderProps
+              LoaderDataCache[route.file] = loaderData
+
+              const html = await entry.default.render({
+                loaderData,
+                loaderProps,
+                routeOptions,
+                mode: exported.mode,
+                path: loaderProps?.path,
+                preloads,
+              })
+              return html
+            } catch (err) {
+              const title = `Error rendering ${url.pathname} on server`
+              const message = err instanceof Error ? err.message : `${err}`
+              const stack = err instanceof Error ? err.stack : ''
+
+              console.error(`${title}\n ${message}\n\n${stack}\n`)
+
+              return `
+                <html>
+                  <body style="background: #000; color: #fff; padding: 5%; font-family: monospace; line-height: 2rem;">
+                    <h1>${title}</h1>
+                    <h2>${message}</h2>
+                    ${
+                      stack
+                        ? `<pre style="font-size: 15px; line-height: 24px; white-space: pre;">
+                        ${stack}
+                    </pre>`
+                        : ``
+                    }
+                  </body>
+                </html>
+              `
+            } finally {
+              resolve()
+            }
+          },
+
+          async handleLoader({ request, route, loaderProps }) {
+            const routeFile = join('app', route.file)
+
+            // this will remove all loaders
+            let transformedJS = (await server.transformRequest(routeFile))?.code
+            if (!transformedJS) {
+              throw new Error(`No transformed js returned`)
+            }
+            const exported = await runner.import(routeFile)
             const loaderData = await exported.loader?.(loaderProps)
 
-            // TODO move to tamagui plugin, also esbuild was getting mad
-            // biome-ignore lint/security/noGlobalEval: <explanation>
-            eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
+            if (loaderData) {
+              // add loader back in!
+              transformedJS = replaceLoader({
+                code: transformedJS,
+                loaderData,
+                loaderProps,
+              })
+            }
 
-            const entry = await runner.import(virtualEntryId)
+            return transformedJS
+          },
 
-            globalThis['__vxrnLoaderData__'] = loaderData
-            globalThis['__vxrnLoaderProps__'] = loaderProps
-            LoaderDataCache[route.file] = loaderData
-
-            const html = await entry.default.render({
-              loaderData,
-              loaderProps,
-              routeOptions,
-              mode: exported.mode,
-              path: loaderProps?.path,
-              preloads,
-            })
-            return html
-          } catch (err) {
-            const title = `Error rendering ${url.pathname} on server`
-            const message = err instanceof Error ? err.message : `${err}`
-            const stack = err instanceof Error ? err.stack : ''
-
-            console.error(`${title}\n ${message}\n\n${stack}\n`)
-
-            return `
-              <html>
-                <body style="background: #000; color: #fff; padding: 5%; font-family: monospace; line-height: 2rem;">
-                  <h1>${title}</h1>
-                  <h2>${message}</h2>
-                  ${
-                    stack
-                      ? `<pre style="font-size: 15px; line-height: 24px; white-space: pre;">
-                      ${stack}
-                  </pre>`
-                      : ``
-                  }
-                </body>
-              </html>
-            `
-          } finally {
-            resolve()
-          }
-        },
-
-        async handleLoader({ request, route, loaderProps }) {
-          const routeFile = join('app', route.file)
-
-          // this will remove all loaders
-          let transformedJS = (await server.transformRequest(routeFile))?.code
-          if (!transformedJS) {
-            throw new Error(`No transformed js returned`)
-          }
-          const exported = await runner.import(routeFile)
-          const loaderData = await exported.loader?.(loaderProps)
-
-          if (loaderData) {
-            // add loader back in!
-            transformedJS = replaceLoader({
-              code: transformedJS,
-              loaderData,
-              loaderProps,
-            })
-          }
-
-          return transformedJS
-        },
-
-        async handleAPI({ request, route }) {
-          return resolveAPIRequest(() => runner.import(join('app', route.file)), request)
-        },
-      })
+          async handleAPI({ request, route }) {
+            return resolveAPIRequest(() => runner.import(join('app', route.file)), request)
+          },
+        })
+      }
 
       // Instead of adding the middleware here, we return a function that Vite
       // will call after adding its own middlewares. We want our code to run after
