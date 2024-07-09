@@ -264,11 +264,19 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
                 }
               })
 
-              const contentType = reply.headers.get('Content-Type')
-              const outString =
-                contentType === 'application/json'
-                  ? JSON.stringify(await reply.json())
-                  : await reply.text()
+              let outString = ''
+
+              if (reply.body) {
+                if (reply.body.locked) {
+                  console.warn(`Body is locked??`)
+                }
+              }
+
+              try {
+                outString = reply.body ? await streamToString(reply.body) : ''
+              } catch (err) {
+                console.warn(`Error converting body in dev mode: ${err}`)
+              }
 
               res.write(outString)
               res.end()
@@ -299,6 +307,26 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
       }
     },
   } satisfies Plugin
+}
+
+async function streamToString(stream: ReadableStream) {
+  const reader = stream.getReader()
+  const decoder = new TextDecoder()
+  let result = ''
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      result += decoder.decode(value, { stream: true })
+    }
+  } catch (error) {
+    console.error('Error reading the stream:', error)
+  } finally {
+    reader.releaseLock()
+  }
+
+  return result
 }
 
 const convertIncomingMessageToRequest = async (req: Connect.IncomingMessage): Promise<Request> => {
