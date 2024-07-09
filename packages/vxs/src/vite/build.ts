@@ -145,17 +145,15 @@ export async function build(props: AfterBuildProps) {
       continue
     }
 
-    const jsPath = toAbsolute(join('dist/server', output.fileName))
+    const relativeId = relative(process.cwd(), id)
+      // TODO hardcoded app
+      .replace('app/', '/')
 
-    let exported
-    try {
-      exported = await import(jsPath)
-    } catch (err) {
-      console.error(`Error importing page (original error)`, err)
-      // err cause not showing in vite or something
-      throw new Error(`Error importing page: ${jsPath}`, {
-        cause: err,
-      })
+    const onlyBuild = props.buildArgs?.only
+    if (onlyBuild) {
+      if (!MicroMatch.contains(relativeId, onlyBuild)) {
+        continue
+      }
     }
 
     // gather the initial import.meta.glob js parts:
@@ -176,13 +174,13 @@ export async function build(props: AfterBuildProps) {
     }
 
     const ssgRoute = manifest.ssgRoutes.find(findMatchingRoute)
+    const spaRoute = manifest.spaRoutes.find(findMatchingRoute)
+    const foundRoute = ssgRoute || spaRoute
 
-    if (!ssgRoute) {
-      const spaRoute = manifest.spaRoutes.find(findMatchingRoute)
-
-      if (!spaRoute && clientManifestKey.startsWith('app')) {
+    if (!foundRoute) {
+      if (clientManifestKey.startsWith('app')) {
         console.error(` No html route found!`, { id, clientManifestKey })
-        console.error(` In manifest`, manifest.ssgRoutes)
+        console.error(` In manifest`, manifest)
         process.exit(1)
       }
       continue
@@ -225,7 +223,7 @@ export async function build(props: AfterBuildProps) {
 
     // TODO isnt this getting all layouts not just the ones for this route?
     const layoutEntries =
-      ssgRoute?.layouts?.flatMap((layout) => {
+      foundRoute.layouts?.flatMap((layout) => {
         // TODO hardcoded app/
         const clientKey = `app${layout.contextKey.slice(1)}`
         return props.clientManifest[clientKey]
@@ -254,71 +252,93 @@ export async function build(props: AfterBuildProps) {
       // nested path pages need to reference root assets
       .map((path) => `/${path}`)
 
-    const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
+    const jsPath = toAbsolute(join('dist/server', output.fileName))
 
-    const relativeId = relative(process.cwd(), id)
-      // TODO hardcoded app
-      .replace('app/', '/')
-
-    const onlyBuild = props.buildArgs?.only
-    if (onlyBuild) {
-      if (!MicroMatch.contains(relativeId, onlyBuild)) {
-        continue
-      }
+    let exported
+    try {
+      exported = await import(jsPath)
+    } catch (err) {
+      console.error(`Error importing page (original error)`, err)
+      // err cause not showing in vite or something
+      throw new Error(`Error importing page: ${jsPath}`, {
+        cause: err,
+      })
     }
+
+    const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
     console.info(`\n [build] page ${relativeId} (with ${paramsList.length} routes)\n`)
 
     for (const params of paramsList) {
-      const path = getPathnameFromFilePath(relativeId, params)
+      const path = getPathnameFromFilePath(relativeId, params).replace('+spa', '')
       const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
       const loaderData = (await exported.loader?.({ path, params })) ?? null
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
+      const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
 
       try {
         console.info(`  ↦ route ${path}`)
+
         const loaderProps = { path, params }
-
         globalThis['__vxrnLoaderProps__'] = loaderProps
-
         // importing resetState causes issues :/
         globalThis['__vxrnresetState']?.()
 
-        const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
+        if (ssgRoute) {
+          const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
+          const loaderPartialPath = join(
+            staticDir,
+            'assets',
+            path
+              .slice(1)
+              .replaceAll('/', '_')
+              // remove trailing _
+              .replace(/_$/, '') + `_vxrn_loader.js`
+          )
 
-        const filePath = join(staticDir, htmlPath)
-        const loaderPartialPath = join(
-          staticDir,
-          'assets',
-          path
-            .slice(1)
-            .replaceAll('/', '_')
-            // remove trailing _
-            .replace(/_$/, '') + `_vxrn_loader.js`
-        )
+          const code = await readFile(clientJsPath, 'utf-8')
 
-        const code = await readFile(clientJsPath, 'utf-8')
+          await Promise.all([
+            outputFile(htmlOutPath, html),
+            outputFile(
+              loaderPartialPath,
+              replaceLoader({
+                code,
+                loaderData,
+                loaderRegexName: '[a-z0-9]+',
+              })
+            ),
+          ])
 
-        await Promise.all([
-          outputFile(toAbsolute(filePath), html),
-          outputFile(
-            loaderPartialPath,
-            replaceLoader({
-              code,
-              loaderData,
-              loaderRegexName: '[a-z0-9]+',
-            })
-          ),
-        ])
+          builtRoutes.push({
+            clientJsPath,
+            htmlPath,
+            loaderData,
+            params,
+            path,
+            preloads,
+          })
+        } else {
+          await outputFile(
+            htmlOutPath,
+            `<html><head>
+            <script>globalThis['global'] = globalThis</script>
+            <script>globalThis['__vxrnIsSPA'] = true</script>
+            ${preloads
+              .map((preload) => `   <script type="module" src="${preload}"></script>`)
+              .join('\n')}
+          </head></html>`
+          )
 
-        builtRoutes.push({
-          clientJsPath,
-          htmlPath,
-          loaderData,
-          params,
-          path,
-          preloads,
-        })
+          builtRoutes.push({
+            clientJsPath,
+            htmlPath,
+            loaderData: {},
+            params,
+            path,
+            preloads,
+          })
+        }
       } catch (err) {
         const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
 
