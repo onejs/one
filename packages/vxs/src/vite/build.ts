@@ -327,6 +327,7 @@ export async function build(props: AfterBuildProps) {
             ${preloads
               .map((preload) => `   <script type="module" src="${preload}"></script>`)
               .join('\n')}
+            ${allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')}
           </head></html>`
           )
 
