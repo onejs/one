@@ -2,6 +2,7 @@ import { Text, View } from 'react-native'
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 import type { GlobbedRouteImports } from './types'
 import type { VXS } from './vite/types'
+import { removeSearch } from './utils/removeSearch'
 
 // essentially a development helper
 
@@ -63,7 +64,9 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
           ? loadRouteFunction
           : () => {
               const realPath = (globalThis['__vxrntodopath'] ?? window.location.pathname).trim()
-              const importUrl = `${CLIENT_BASE_URL}${realPath}_vxrn_loader.js?${CACHE_KEY}`
+              const importUrl = `${CLIENT_BASE_URL}${removeSearch(
+                realPath
+              )}_vxrn_loader.js?${CACHE_KEY}`
               return import(/* @vite-ignore */ importUrl)
             }
     } else {

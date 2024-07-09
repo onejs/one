@@ -364,6 +364,7 @@ import { resolve } from '../link/path'
 import { matchDynamicName } from '../matchers'
 import { shouldLinkExternally } from '../utils/url'
 import { CACHE_KEY, CLIENT_BASE_URL } from './constants'
+import { removeSearch } from '../utils/removeSearch'
 
 // TODO
 export const preloadingLoader = {}
@@ -371,9 +372,9 @@ export const preloadingLoader = {}
 function setupPreload(href: string) {
   if (preloadingLoader[href]) return
   preloadingLoader[href] = async () => {
-    const loaderJSUrl = `${CLIENT_BASE_URL}/assets/${href
-      .slice(1)
-      .replaceAll('/', '_')}_vxrn_loader.js?${CACHE_KEY}`
+    const loaderJSUrl = `${CLIENT_BASE_URL}/assets/${removeSearch(
+      href.slice(1).replaceAll('/', '_')
+    )}_vxrn_loader.js?${CACHE_KEY}`
     const response = await import(loaderJSUrl)
     try {
       return await response.loader()
@@ -446,7 +447,7 @@ export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToO
   }
 
   // todo
-  globalThis['__vxrntodopath'] = href
+  globalThis['__vxrntodopath'] = removeSearch(href)
 
   preloadRoute(href)
 
