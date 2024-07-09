@@ -97,27 +97,27 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
           return val
         })
         .catch((err) => {
-          console.error(`Error loading route`, id, err)
+          console.error(`Error loading route`, id, err, new Error().stack)
           loadedRoutes[id] = {
-            default: () => (
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: '#000',
-                  gap: 20,
-                }}
-              >
-                <Text style={{ fontSize: 24, color: '#fff' }}>Error loading route</Text>
-                <Text style={{ fontSize: 16, color: '#fff' }}>{id}</Text>
-                <Text style={{ fontSize: 18, color: '#fff', maxWidth: 800 }}>{`${err}`}</Text>
-              </View>
-            ),
+            default: () =>
+              null,
+              // <View
+              //   style={{
+              //     position: 'absolute',
+              //     top: 0,
+              //     left: 0,
+              //     right: 0,
+              //     bottom: 0,
+              //     alignItems: 'center',
+              //     justifyContent: 'center',
+              //     backgroundColor: '#000',
+              //     gap: 20,
+              //   }}
+              // >
+              //   <Text style={{ fontSize: 24, color: '#fff' }}>Error loading route</Text>
+              //   <Text style={{ fontSize: 16, color: '#fff' }}>{id}</Text>
+              //   <Text style={{ fontSize: 18, color: '#fff', maxWidth: 800 }}>{`${err}`}</Text>
+              // </View>
           }
           delete promises[id]
         })

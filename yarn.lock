@@ -5347,6 +5347,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tamagui/use-debounce@npm:^1.101.7":
+  version: 1.102.0
+  resolution: "@tamagui/use-debounce@npm:1.102.0"
+  peerDependencies:
+    react: "*"
+  checksum: 152e57c76f4d0c173deaeff9aa5dbb389e33c7155eaf09902ec430ca31dbfc2a087adb36a6df9e1b8f3e4f476d34903ab1102c86b362d84fd2d587cfca43a8cd
+  languageName: node
+  linkType: hard
+
 "@tamagui/use-did-finish-ssr@npm:1.100.0":
   version: 1.100.0
   resolution: "@tamagui/use-did-finish-ssr@npm:1.100.0"
@@ -14998,6 +15007,7 @@ __metadata:
     "@react-navigation/routers": ^6.1.9
     "@swc/core": ^1.6.6
     "@tamagui/build": ^1.100.0
+    "@tamagui/use-debounce": ^1.101.7
     "@types/estree": ^1.0.5
     "@types/node": ^20.12.7
     "@types/react-dom": ^18.2.25
