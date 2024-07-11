@@ -14965,6 +14965,7 @@ __metadata:
     "@hono/node-server": ^1.11.1
     "@tamagui/build": ^1.100.0
     "@types/find-node-modules": ^2.1.2
+    "@types/node": ^20.12.7
     "@types/ws": ^8.5.10
     "@vitejs/plugin-react-swc": ^3.6.0
     "@vxrn/react-native-prebuilt": 1.1.133
