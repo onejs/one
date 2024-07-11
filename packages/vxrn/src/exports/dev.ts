@@ -10,9 +10,7 @@ import {
   toNodeListener,
 } from 'h3'
 import { createProxyEventHandler } from 'h3-proxy'
-import { rm } from 'node:fs/promises'
 import { createServer as nodeCreateServer } from 'node:http'
-import { join } from 'node:path'
 import { createServer, resolveConfig } from 'vite'
 import { WebSocket } from 'ws'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
@@ -22,13 +20,13 @@ import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
-import { getIndexJsonResponse } from '../utils/getIndexJsonResponse'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
 import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { checkPatches } from '../utils/patches'
 import { clean } from './clean'
+import { TLSSocket } from 'node:tls'
 
 const { ensureDir } = FSExtra
 
@@ -138,21 +136,6 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   )
 
   app.use(router)
-
-  // TODO move these to router.get():
-  app.use(
-    defineEventHandler(async ({ node: { req } }) => {
-      if (!req.headers['expo-platform']) {
-        if (!req.headers['user-agent']?.match(/Expo|React/)) {
-          return
-        }
-      }
-
-      if (req.url === '/' || req.url?.startsWith('/?platform=')) {
-        return getIndexJsonResponse({ port, root })
-      }
-    })
-  )
 
   const clients = new Set<Peer>()
   let socket: WebSocket | null = null
