@@ -39,8 +39,7 @@ export const clean = async (rest: VXRNOptions) => {
 
 function throwIfNotMissingError(err: unknown) {
   if (err instanceof Error) {
-    // @ts-expect-error wtf
-    if (err.code !== 'ENOENT') {
+    if ((err as NodeJS.ErrnoException).code !== 'ENOENT') {
       throw Error
     }
   }
