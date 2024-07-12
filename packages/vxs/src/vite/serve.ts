@@ -87,7 +87,9 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
               response.headers.set('Cache-Control', 'no-store')
             } catch (err) {
               console.info(
-                `Error udpating cache header on api route "${context.req.path}", continue`,
+                `Error udpating cache header on api route "${
+                  context.req.path
+                }" to no-store, it is ${response.headers.get('cache-control')}, continue`,
                 err
               )
             }

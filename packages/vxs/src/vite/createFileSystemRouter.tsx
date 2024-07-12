@@ -1,8 +1,7 @@
+import { debounce } from '@tamagui/use-debounce'
 import { join } from 'node:path'
-import { Worker } from 'node:worker_threads'
 import type { Connect, Plugin } from 'vite'
-import { DevEnvironment, RemoteEnvironmentTransport, createServerModuleRunner } from 'vite'
-import { getOptimizeDeps } from 'vxrn'
+import { createServerModuleRunner } from 'vite'
 import { createHandleRequest } from '../handleRequest'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
@@ -11,10 +10,9 @@ import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import type { VXS } from './types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
-import { debounce } from '@tamagui/use-debounce'
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
-  const { optimizeDeps } = getOptimizeDeps('serve')
+  // const { optimizeDeps } = getOptimizeDeps('serve')
 
   return {
     name: `router-fs`,

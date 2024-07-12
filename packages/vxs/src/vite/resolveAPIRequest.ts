@@ -20,14 +20,30 @@ export function resolveAPIRequest(asyncImport: () => Promise<any>, request: Requ
         let response = await handler(request)
 
         const asyncHeaders = asyncHeadersCache.get(id)
+
         if (asyncHeaders) {
-          if (response instanceof Response) {
-            mergeHeaders(response.headers, asyncHeaders)
-          } else {
-            if (response && typeof response === 'object') {
-              response = Response.json(response, { headers: asyncHeaders })
+          try {
+            if (response instanceof Response) {
+              mergeHeaders(response.headers, asyncHeaders)
             } else {
-              response = new Response(response as any, { headers: asyncHeaders })
+              if (response && typeof response === 'object') {
+                response = Response.json(response, { headers: asyncHeaders })
+              } else {
+                response = new Response(response as any, { headers: asyncHeaders })
+              }
+            }
+          } catch (err) {
+            if (`${err}`.includes('immutable')) {
+              // we have to create a new response
+              const body = response.body ? await streamToString(response.body) : ''
+              response = new Response(body, {
+                headers: response.headers,
+                status: response.status,
+                statusText: response.statusText,
+              })
+              mergeHeaders(response.headers, asyncHeaders)
+            } else {
+              console.error(` [vxs] error adding headers: ${err}`)
             }
           }
         }
@@ -43,4 +59,24 @@ export function resolveAPIRequest(asyncImport: () => Promise<any>, request: Requ
       }
     })
   })
+}
+
+async function streamToString(stream: ReadableStream) {
+  const reader = stream.getReader()
+  const decoder = new TextDecoder()
+  let result = ''
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      result += decoder.decode(value, { stream: true })
+    }
+  } catch (error) {
+    console.error('Error reading the stream:', error)
+  } finally {
+    reader.releaseLock()
+  }
+
+  return result
 }
