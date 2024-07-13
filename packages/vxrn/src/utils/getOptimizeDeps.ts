@@ -1,5 +1,6 @@
 import type { UserConfig } from 'vite'
 import { webExtensions } from '../constants'
+import { dedupe } from './getBaseViteConfig'
 
 // TODO we need to traverse to get sub-deps...
 
@@ -33,13 +34,13 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@algolia/autocomplete-core',
     '@algolia/autocomplete-plugin-algolia-insights',
     '@algolia/autocomplete-shared',
-    'react-native-reanimated',
     'moti',
   ]
 
   const depsToOptimize = [
     ...needsInterop,
 
+    'react-native-reanimated',
     'lodash',
 
     // added these when using a worker env
@@ -85,7 +86,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'expo-modules-core',
     'expo-status-bar',
     'react-native-web',
-    // 'react-native-web-lite',
     'react-native',
     '@floating-ui/react',
     '@floating-ui/react-dom',
@@ -121,8 +121,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@tamagui/use-window-dimensions',
     '@tamagui/web',
     'tamagui',
-    'react-native-web',
-    // 'react-native-web-lite',
     'reforest',
   ]
 
@@ -134,6 +132,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
   return {
     needsInterop,
     depsToOptimize,
+    dedupe: [...new Set([...depsToOptimize, ...dedupe])],
     optimizeDeps: {
       include: depsToOptimize,
       exclude: ['util', '@swc/wasm', '@swc/core-darwin-arm64', 'moti/author'],
