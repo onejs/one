@@ -1,5 +1,6 @@
 import { loadConfigFromFile, mergeConfig, type InlineConfig, type UserConfig } from 'vite'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
+import { expoManifestRequestHandlerPlugin } from '../plugins/expoManifestRequestHandlerPlugin'
 import { coerceToArray } from './coerceToArray'
 import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
@@ -29,6 +30,10 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
         https ? mkcert() : null,
 
         reactNativeHMRPlugin(config),
+
+        expoManifestRequestHandlerPlugin({
+          projectRoot: root,
+        }),
 
         {
           name: 'process-env-ssr',
