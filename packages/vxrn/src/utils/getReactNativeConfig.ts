@@ -87,7 +87,7 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
     },
 
     resolve: {
-      dedupe: dedupe,
+      dedupe,
       extensions: nativeExtensions,
     },
 

@@ -8,7 +8,16 @@ const patches = [
     module: 'react-native-screens',
     patchFile: 'react-native-screens+3.22.1.patch',
   },
+  {
+    module: 'h3',
+    patchFile: 'h3+1.11.1.patch',
+  },
+  {
+    module: 'react-native-reanimated',
+    patchFile: 'react-native-reanimated+3.14.0.patch',
+  },
 ]
+
 type Patch = (typeof patches)[0]
 
 export async function checkPatches(options: VXRNOptionsFilled) {

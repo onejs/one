@@ -62,10 +62,12 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   const viteServer = await createServer(serverConfig)
 
   // first resolve config so we can pass into client plugin, then add client plugin:
+  // TODO do we need this really? seems like we don't, can check if we can do this without the resolveConfig()
   const resolvedConfig = await resolveConfig(serverConfig, 'serve')
   const viteRNClientPlugin = clientInjectionsPlugin(resolvedConfig)
 
   // this fakes vite into thinking its loading files, so it hmrs in native mode despite not us never requesting the url
+  // TODO we can check if any native clients are connected to avoid some work here
   viteServer.watcher.addListener('change', async (path) => {
     const id = path.replace(process.cwd(), '')
     if (!id.endsWith('tsx') && !id.endsWith('jsx')) {

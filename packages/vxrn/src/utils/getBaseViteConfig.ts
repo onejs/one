@@ -1,5 +1,6 @@
 import reactSwcPlugin from '@vitejs/plugin-react-swc'
-import type { InlineConfig, UserConfig } from 'vite'
+import type { InlineConfig } from 'vite'
+import { fixDependenciesPlugin } from '../plugins/fixDependenciesPlugin'
 
 // essentially base web config not base everything
 

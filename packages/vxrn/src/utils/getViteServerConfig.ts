@@ -35,6 +35,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
           projectRoot: root,
         }),
 
+        // TODO very hacky/arbitrary
         {
           name: 'process-env-ssr',
           transform(code, id, options) {
@@ -115,11 +116,6 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
   // manually merge
   if (process.env.DEBUG) {
     console.debug('merged config is', JSON.stringify(serverConfig, null, 2))
-  }
-
-  serverConfig = {
-    ...serverConfig,
-    plugins: [...serverConfig.plugins!],
   }
 
   return serverConfig
