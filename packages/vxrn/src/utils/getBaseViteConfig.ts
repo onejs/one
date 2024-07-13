@@ -12,6 +12,7 @@ export const dedupe = [
   'react-native-web',
   '@tamagui/core',
   '@tamagui/web',
+  'react-native-reanimated',
 ]
 
 export function getBaseViteConfig({ mode }: { mode: 'development' | 'production' }): InlineConfig {

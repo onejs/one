@@ -12,7 +12,7 @@ const hasDOM = typeof window !== 'undefined'
 
 function getBrowserName() {
   if (hasDOM) {
-    const agent = navigator.userAgent.toLowerCase()
+    const agent = navigator.userAgent?.toLowerCase() || ''
     if (agent.includes('edge')) {
       return 'Edge'
     }
@@ -71,7 +71,7 @@ export default {
   },
   get isHeadless() {
     if (!hasDOM) return true
-    return /\bHeadlessChrome\//.test(navigator.userAgent)
+    return /\bHeadlessChrome\//.test(navigator.userAgent || '')
   },
   get isDevice() {
     // TODO: Bacon: Possibly want to add information regarding simulators
