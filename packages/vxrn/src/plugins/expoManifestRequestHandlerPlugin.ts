@@ -1,20 +1,23 @@
+import { join } from 'node:path'
 import module from 'node:module'
 import { TLSSocket } from 'node:tls'
 
 import type { Plugin } from 'vite'
 
+// Can support more [options](https://github.com/expo/expo/blob/sdk-50/packages/%40expo/cli/src/start/server/middleware/ManifestMiddleware.ts#L113-L121) in the future.
 type ExpoManifestRequestHandlerPluginConfig = {
   /** The root of the Expo project. */
   projectRoot: string
-  // Can support more [options](https://github.com/expo/expo/blob/sdk-50/packages/%40expo/cli/src/start/server/middleware/ManifestMiddleware.ts#L113-L121) in the future.
+  port: number
 }
 
 /**
  * Let the Vite dev server support handling [Expo Manifest Request](https://github.com/expo/expo/blob/sdk-50/docs/pages/archive/technical-specs/expo-updates-0.mdx#manifest-request), which is required for Expo Go to work.
  */
-export function expoManifestRequestHandlerPlugin({
-  projectRoot,
-}: ExpoManifestRequestHandlerPluginConfig): Plugin {
+export function expoManifestRequestHandlerPlugin(
+  options: ExpoManifestRequestHandlerPluginConfig
+): Plugin {
+  const { projectRoot } = options
   return {
     name: 'vxrn:expo-manifest-request-handler',
 
@@ -67,7 +70,14 @@ export function expoManifestRequestHandlerPlugin({
             `Is this a Expo project, or are you using a supported version of Expo SDK? (${projectRoot})`
           )
 
-          return next()
+          const json = getIndexJsonResponse(options)
+
+          res.setHeader('content-type', 'application/json')
+          res.write(JSON.stringify(json))
+          res.end()
+
+          // fallback to our preset index json for now
+          return
         }
 
         const manifestHandlerMiddleware = new ExpoGoManifestHandlerMiddleware(projectRoot, {
@@ -97,5 +107,56 @@ export function expoManifestRequestHandlerPlugin({
         manifestHandlerMiddleware.handleRequestAsync(req, res, next)
       })
     },
+  }
+}
+
+function getIndexJsonResponse({ port, projectRoot }: ExpoManifestRequestHandlerPluginConfig) {
+  return {
+    name: 'myapp',
+    slug: 'myapp',
+    scheme: 'myapp',
+    version: '1.0.0',
+    jsEngine: 'jsc',
+    orientation: 'portrait',
+    icon: './assets/icon.png',
+    userInterfaceStyle: 'light',
+    splash: {
+      image: './assets/splash.png',
+      resizeMode: 'contain',
+      backgroundColor: '#ffffff',
+      imageUrl: 'http://127.0.0.1:8081/assets/./assets/splash.png',
+    },
+    updates: { fallbackToCacheTimeout: 0 },
+    assetBundlePatterns: ['**/*'],
+    ios: { supportsTablet: true, bundleIdentifier: 'com.natew.myapp' },
+    android: {
+      package: 'com.tamagui.myapp',
+      adaptiveIcon: {
+        foregroundImage: './assets/adaptive-icon.png',
+        backgroundColor: '#FFFFFF',
+        foregroundImageUrl: 'http://127.0.0.1:8081/assets/./assets/adaptive-icon.png',
+      },
+    },
+    web: { favicon: './assets/favicon.png' },
+    extra: { eas: { projectId: '061b4470-78c7-4d6a-b850-8167fb0a3434' } },
+    _internal: {
+      isDebug: false,
+      projectRoot: projectRoot,
+      dynamicConfigPath: null,
+      staticConfigPath: join(projectRoot, 'app.json'),
+      packageJsonPath: join(projectRoot, 'package.json'),
+    },
+    sdkVersion: '50.0.0',
+    platforms: ['ios', 'android', 'web'],
+    iconUrl: `http://127.0.0.1:${port}/assets/./assets/icon.png`,
+    debuggerHost: `127.0.0.1:${port}`,
+    logUrl: `http://127.0.0.1:${port}/logs`,
+    developer: { tool: 'expo-cli', projectRoot: projectRoot },
+    packagerOpts: { dev: true },
+    mainModuleName: 'index',
+    __flipperHack: 'React Native packager is running',
+    hostUri: `127.0.0.1:${port}`,
+    bundleUrl: `http://127.0.0.1:${port}/index.bundle?platform=ios&dev=true&hot=false&lazy=true`,
+    id: '@anonymous/myapp-473c4543-3c36-4786-9db1-c66a62ac9b78',
   }
 }

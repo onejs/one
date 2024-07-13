@@ -9,7 +9,7 @@ import { uniq } from './uniq'
 import mkcert from 'vite-plugin-mkcert'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled) {
-  const { root, host, https } = config
+  const { root, host, https, port } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
   const { config: userViteConfig } =
     (await loadConfigFromFile({
@@ -33,6 +33,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
 
         expoManifestRequestHandlerPlugin({
           projectRoot: root,
+          port,
         }),
 
         // TODO very hacky/arbitrary
