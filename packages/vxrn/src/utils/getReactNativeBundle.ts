@@ -38,22 +38,6 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
     })
   )
 
-  async function babelReanimated(input: string, filename: string) {
-    return await new Promise<string>((res, rej) => {
-      babel.transform(
-        input,
-        {
-          plugins: ['react-native-reanimated/plugin'],
-          filename,
-        },
-        (err: any, result) => {
-          if (!result || err) rej(err || 'no res')
-          res(result!.code!)
-        }
-      )
-    })
-  }
-
   // build app
   const nativeBuildConfig = await getReactNativeConfig(options, viteRNClientPlugin)
 

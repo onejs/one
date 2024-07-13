@@ -1,6 +1,7 @@
 export declare function getOptimizeDeps(mode: 'build' | 'serve'): {
     needsInterop: string[];
     depsToOptimize: string[];
+    dedupe: string[];
     optimizeDeps: {
         include: string[];
         exclude: string[];
