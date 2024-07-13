@@ -8,7 +8,7 @@ import {
   type Options as SWCOptions,
   transform,
 } from '@swc/core'
-import type { PluginOption } from 'vite'
+import type { PluginOption, UserConfig } from 'vite'
 import { extname } from 'node:path'
 
 // this file is a mess lol
@@ -85,8 +85,8 @@ export default (_options?: Options): PluginOption[] => {
       name: 'vite:react-swc',
       enforce: 'pre',
 
-      config: (config) => {
-        return {
+      config: () => {
+        const config = {
           esbuild: false,
 
           build: {
@@ -128,6 +128,13 @@ export default (_options?: Options): PluginOption[] => {
                 },
               ],
             },
+          },
+        } satisfies UserConfig
+
+        return {
+          environments: {
+            ios: config,
+            android: config,
           },
         }
       },
