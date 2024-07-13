@@ -1,6 +1,6 @@
 {
   "name": "example-vxs",
-  "version": "1.1.134",
+  "version": "1.1.135",
   "private": true,
   "type": "module",
   "sideEffects": [
@@ -20,11 +20,11 @@
     "react-native-reanimated": "^3.14.0",
     "react-native-web": "^0.19.11",
     "tamagui": "^1.100.0",
-    "vxs": "1.1.134"
+    "vxs": "1.1.135"
   },
   "devDependencies": {
     "patch-package": "^8.0.0",
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.134"
+    "vxrn": "1.1.135"
   }
 }
