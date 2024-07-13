@@ -12,10 +12,10 @@ const patches = [
     module: 'h3',
     patchFile: 'h3+1.11.1.patch',
   },
-  {
-    module: 'react-native-reanimated',
-    patchFile: 'react-native-reanimated+3.14.0.patch',
-  },
+  // {
+  //   module: 'react-native-reanimated',
+  //   patchFile: 'react-native-reanimated+3.14.0.patch',
+  // },
 ]
 
 type Patch = (typeof patches)[0]
