@@ -5,6 +5,14 @@
   "types": "./types/index.d.ts",
   "type": "module",
   "module": "dist",
+  "files": [
+    "src",
+    "types",
+    "patches",
+    "dist",
+    "run.mjs",
+    "react-native-template.js"
+  ],
   "publishConfig": {
     "access": "public"
   },
