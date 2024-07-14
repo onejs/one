@@ -4,8 +4,7 @@
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
-  "main": "dist/cjs",
-  "module": "dist/esm",
+  "module": "dist",
   "publishConfig": {
     "access": "public"
   },
@@ -22,13 +21,11 @@
     "./react-native-template.js": "./react-native-template.js",
     ".": {
       "types": "./types/index.d.ts",
-      "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js"
+      "default": "./dist/index.mjs"
     },
     "./serve": {
       "types": "./types/exports/createServer.d.ts",
-      "import": "./dist/esm/exports/createServer.mjs",
-      "require": "./dist/cjs/exports/createServer.js"
+      "default": "./dist/exports/createServer.mjs"
     }
   },
   "dependencies": {
