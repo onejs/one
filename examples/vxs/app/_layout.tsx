@@ -1,8 +1,8 @@
 import '@tamagui/core/reset.css'
 import '../public/tamagui.css'
 
-import { TamaguiProvider, isWeb } from '@tamagui/core'
-import { Stack, ScrollRestoration, Slot } from 'vxs'
+import { TamaguiProvider } from '@tamagui/core'
+import { PageLoadProgressBar, ScrollRestoration, Slot } from 'vxs'
 import config from '../tamagui.config'
 
 export default function Layout() {
@@ -13,6 +13,7 @@ export default function Layout() {
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> */}
 
       <ScrollRestoration />
+      <PageLoadProgressBar />
 
       <TamaguiProvider disableInjectCSS config={config}>
         {/* TODO we could automatically take any css inlined in the root _layout and extract to shared external css */}
