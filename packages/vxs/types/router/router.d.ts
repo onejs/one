@@ -28,6 +28,8 @@ export declare function updateState(state: VXSRouter.ResultState, nextStateParam
 export declare function getRouteInfo(state: VXSRouter.ResultState): UrlObject;
 export declare function subscribeToRootState(subscriber: VXSRouter.RootStateListener): () => void;
 export declare function subscribeToStore(subscriber: () => void): () => void;
+export declare function subscribeToLoadingState(subscriber: VXSRouter.LoadingStateListener): () => void;
+export declare function setLoadingState(state: VXSRouter.LoadingState): void;
 export declare function snapshot(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
@@ -68,8 +70,4 @@ export declare function cleanup(): void;
 export declare const preloadingLoader: {};
 export declare function preloadRoute(href: string): void;
 export declare function linkTo(href: string, event?: string, options?: VXSRouter.LinkToOptions): void;
-type LoadState = 'start' | 'finish';
-type LoadStateListener = (type: LoadState) => void;
-export declare function onLoadingState(l: LoadStateListener): () => void;
-export {};
 //# sourceMappingURL=router.d.ts.map

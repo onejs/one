@@ -36,8 +36,9 @@ let splashScreenAnimationFrame: number | undefined
 export let navigationRef: VXSRouter.NavigationRef = null as any
 let navigationRefSubscription: () => void
 
-let rootStateSubscribers = new Set<VXSRouter.RootStateListener>()
-let storeSubscribers = new Set<() => void>()
+const rootStateSubscribers = new Set<VXSRouter.RootStateListener>()
+const loadingStateSubscribers = new Set<VXSRouter.LoadingStateListener>()
+const storeSubscribers = new Set<() => void>()
 
 // Initialize function
 export function initialize(
@@ -253,6 +254,20 @@ export function subscribeToStore(subscriber: () => void) {
   }
 }
 
+// Subscription functions
+export function subscribeToLoadingState(subscriber: VXSRouter.LoadingStateListener) {
+  loadingStateSubscribers.add(subscriber)
+  return () => {
+    loadingStateSubscribers.delete(subscriber)
+  }
+}
+
+export function setLoadingState(state: VXSRouter.LoadingState) {
+  for (const listener of loadingStateSubscribers) {
+    listener(state)
+  }
+}
+
 // Snapshot function
 
 let currentSnapshot: ReturnType<typeof getSnapshot> | null = null
@@ -446,11 +461,6 @@ export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToO
     href = resolve(base, href)
   }
 
-  // todo
-  globalThis['__vxrntodopath'] = removeSearch(href)
-
-  preloadRoute(href)
-
   const state = linking.getStateFromPath!(href, linking.config)
 
   if (!state || state.routes.length === 0) {
@@ -459,6 +469,12 @@ export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToO
     console.error(`routes`, getSortedRoutes())
     return
   }
+
+  setLoadingState('loading')
+
+  // todo
+  globalThis['__vxrntodopath'] = removeSearch(href)
+  preloadRoute(href)
 
   const rootState = navigationRef.getRootState()
   const action = getNavigateAction(state, rootState, event)
@@ -469,14 +485,12 @@ export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToO
   startTransition(() => {
     const current = navigationRef.getCurrentRoute()
 
-    // loading state
-    send('start')
     navigationRef.dispatch(action)
     let warningTm
     const interval = setInterval(() => {
       const next = navigationRef.getCurrentRoute()
       if (current !== next) {
-        send('finish')
+        setLoadingState('loaded')
       }
       clearTimeout(warningTm)
       clearTimeout(interval)
@@ -492,21 +506,6 @@ export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToO
 }
 
 let nextOptions: VXSRouter.LinkToOptions | null = null
-
-type LoadState = 'start' | 'finish'
-type LoadStateListener = (type: LoadState) => void
-
-function send(event: LoadState) {
-  linkEventListeners.forEach((l) => l(event))
-}
-
-const linkEventListeners = new Set<LoadStateListener>()
-export function onLoadingState(l: LoadStateListener) {
-  linkEventListeners.add(l)
-  return () => {
-    linkEventListeners.delete(l)
-  }
-}
 
 function getNavigateAction(
   actionState: VXSRouter.ResultState,

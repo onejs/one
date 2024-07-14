@@ -16,4 +16,5 @@ export const router: VXSRouter.Router = {
       params as any
     ),
   subscribe: store.subscribeToRootState,
+  onLoadState: store.subscribeToLoadingState,
 }

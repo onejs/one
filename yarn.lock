@@ -6069,8 +6069,8 @@ __metadata:
     esbuild: ~0.19.3
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.1.0
-    react: 19.0.0-rc-3563387fe3-20240621
-    react-dom: 19.0.0-rc-3563387fe3-20240621
+    react: 19.0.0-rc-fb9a90fa48-20240614
+    react-dom: 19.0.0-rc-fb9a90fa48-20240614
     react-native: 0.74.1
   peerDependencies:
     react: "*"
@@ -8496,7 +8496,7 @@ __metadata:
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.6.3
     patch-package: ^8.0.0
-    react: 19.0.0-rc-3563387fe3-20240621
+    react: 19.0.0-rc-fb9a90fa48-20240614
     react-native: 0.74.1
     react-test-renderer: 18.2.0
     typescript: ^5.2.2
@@ -12367,14 +12367,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0-rc-3563387fe3-20240621":
-  version: 19.0.0-rc-3563387fe3-20240621
-  resolution: "react-dom@npm:19.0.0-rc-3563387fe3-20240621"
+"react-dom@npm:19.0.0-rc-fb9a90fa48-20240614":
+  version: 19.0.0-rc-fb9a90fa48-20240614
+  resolution: "react-dom@npm:19.0.0-rc-fb9a90fa48-20240614"
   dependencies:
-    scheduler: 0.25.0-rc-3563387fe3-20240621
+    scheduler: 0.25.0-rc-fb9a90fa48-20240614
   peerDependencies:
-    react: 19.0.0-rc-3563387fe3-20240621
-  checksum: 93c82cdd34be56e9f525feff1079e29f9c5d4c8e941edf47d40650737ae512a296af81c352f83dcd0d068bc98ec9b5068aec97d1e9c807f91cba9d2279e4fc65
+    react: 19.0.0-rc-fb9a90fa48-20240614
+  checksum: 6da2fc33dc231b2f3516417a8d4c30d805d837460121b9c47ef37472119f1cd4f1b14f426cba1a37961eb00f6941d663fbc7e8d2e30d17de34a296539db26b7a
   languageName: node
   linkType: hard
 
@@ -12615,10 +12615,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.0.0-rc-3563387fe3-20240621":
-  version: 19.0.0-rc-3563387fe3-20240621
-  resolution: "react@npm:19.0.0-rc-3563387fe3-20240621"
-  checksum: 775809c7ef5999d5d36546086bb06731f6f662028656567b2ccd01e196e839936fa544810ffaaf237c439c337ba6b55374a634ebf2934d900ffc998bce40fe7c
+"react@npm:19.0.0-rc-fb9a90fa48-20240614":
+  version: 19.0.0-rc-fb9a90fa48-20240614
+  resolution: "react@npm:19.0.0-rc-fb9a90fa48-20240614"
+  checksum: 04647b2f1472f525f6bc1619b420e17bdc091b39f164ec1013c7fcc2232f759579449f34bc60bb5f8b8dfc5f791408f1fae8eb03ec5d901b5d7e2e081f0b71e1
   languageName: node
   linkType: hard
 
@@ -13150,10 +13150,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.25.0-rc-3563387fe3-20240621":
-  version: 0.25.0-rc-3563387fe3-20240621
-  resolution: "scheduler@npm:0.25.0-rc-3563387fe3-20240621"
-  checksum: 3969aa480699053ce12201d41b2238b1160c54472f5a9f5ce019bd520535e13ce66f9212e07078c390c0f98389aebbd8b7410f394ce8c5d4f15d20345b57ef76
+"scheduler@npm:0.25.0-rc-fb9a90fa48-20240614":
+  version: 0.25.0-rc-fb9a90fa48-20240614
+  resolution: "scheduler@npm:0.25.0-rc-fb9a90fa48-20240614"
+  checksum: aa86a6e8ecdaedc6bd561be039ec7113f30b121e9788e96e7d87f7808a148075506726b139d9aa50f4881c99563f8b1df69d423b2c88aee211e0d60e6a8dc4d3
   languageName: node
   linkType: hard
 
@@ -14942,8 +14942,8 @@ __metadata:
     magic-string: ^0.30.10
     micromatch: ^4.0.7
     nanoid: ^3.3.7
-    react: 19.0.0-rc-3563387fe3-20240621
-    react-dom: 19.0.0-rc-3563387fe3-20240621
+    react: 19.0.0-rc-fb9a90fa48-20240614
+    react-dom: 19.0.0-rc-fb9a90fa48-20240614
     react-native: 0.74.1
     react-native-safe-area-context: 4.6.3
     react-native-screens: 3.22.1

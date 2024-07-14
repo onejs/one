@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { onLoadingState, subscribeToRootState } from '../router/router'
+import { subscribeToLoadingState, subscribeToRootState } from '../router/router'
 
 const KEY = 'vxs-sr'
 
@@ -41,8 +41,8 @@ export function ScrollRestoration() {
       didPop = true
     })
 
-    const disposeOnLoadState = onLoadingState((state) => {
-      if (state === 'start') {
+    const disposeOnLoadState = subscribeToLoadingState((state) => {
+      if (state === 'loading') {
         rememberScrollPosition()
       }
     })

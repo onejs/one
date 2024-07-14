@@ -93,11 +93,13 @@ export declare namespace VXSRouter {
         pathname: T;
         params: InputRouteParams<T>;
     } : never;
+    export type LoadingState = 'loading' | 'loaded';
     export type ResultState = PartialState<NavigationState> & {
         state?: ResultState;
         linkOptions?: VXSRouter.LinkToOptions;
     };
     export type RootStateListener = (state: ResultState) => void;
+    export type LoadingStateListener = (state: LoadingState) => void;
     /***********************
      * Expo Router Exports *
      ***********************/
@@ -122,6 +124,8 @@ export declare namespace VXSRouter {
         setParams: <T = ''>(params?: T extends '' ? Record<string, string | undefined | null> : InputRouteParams<T>) => void;
         /** Subscribe to state updates from the router */
         subscribe: (listener: RootStateListener) => () => void;
+        /** Subscribe to loading state updates */
+        onLoadState: (listener: LoadingStateListener) => () => void;
     };
     /** The imperative router. */
     export const router: Router;
