@@ -1,5 +1,6 @@
 import { defineCommand, runMain } from 'citty'
-import { build, serve } from './vite'
+import { serve } from './vite/serve'
+import { build } from './vite/build'
 import { loadEnv } from './vite/loadEnv'
 import { virtualEntryIdNative } from './vite/virtualEntryPlugin'
 import { loadUserVXSOptions } from './vite/vxs'
