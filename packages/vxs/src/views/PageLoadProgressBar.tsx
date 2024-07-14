@@ -61,7 +61,7 @@ export const PageLoadProgressBar = ({
       dispose()
       clearInterval(loadInterval)
     }
-  }, [finishDelay, initialPercent, updateInterval])
+  }, [finishDelay, initialPercent, sporadicness, updateInterval])
 
   return (
     <View
