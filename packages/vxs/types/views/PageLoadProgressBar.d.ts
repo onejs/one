@@ -1,9 +1,10 @@
 import { type ViewProps } from 'react-native';
-export type PageLoadProgressBarProps = ViewProps & {
+export type PageLoadProgressBarProps = {
+    startDelay?: number;
     finishDelay?: number;
     initialPercent?: number;
     updateInterval?: number;
     sporadicness?: number;
-};
-export declare const PageLoadProgressBar: ({ finishDelay, initialPercent, updateInterval, sporadicness, ...props }: PageLoadProgressBarProps) => import("react/jsx-runtime").JSX.Element;
+} & Pick<ViewProps, 'style' | 'onLayout' | 'children'>;
+export declare const PageLoadProgressBar: ({ startDelay, finishDelay, initialPercent, updateInterval, sporadicness, ...props }: PageLoadProgressBarProps) => import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=PageLoadProgressBar.d.ts.map

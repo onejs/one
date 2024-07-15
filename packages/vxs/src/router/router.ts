@@ -409,7 +409,7 @@ export function preloadRoute(href: string) {
   }
 }
 
-export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToOptions) {
+export async function linkTo(href: string, event?: string, options?: VXSRouter.LinkToOptions) {
   if (shouldLinkExternally(href)) {
     Linking.openURL(href)
     return
@@ -472,6 +472,8 @@ export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToO
 
   setLoadingState('loading')
 
+  await new Promise((res) => setTimeout(res, 2000))
+
   // todo
   globalThis['__vxrntodopath'] = removeSearch(href)
   preloadRoute(href)
@@ -490,7 +492,10 @@ export function linkTo(href: string, event?: string, options?: VXSRouter.LinkToO
     const interval = setInterval(() => {
       const next = navigationRef.getCurrentRoute()
       if (current !== next) {
-        setLoadingState('loaded')
+        // let the main thread clear at least before running
+        setTimeout(() => {
+          setLoadingState('loaded')
+        })
       }
       clearTimeout(warningTm)
       clearTimeout(interval)
