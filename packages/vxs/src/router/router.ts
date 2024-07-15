@@ -472,8 +472,6 @@ export async function linkTo(href: string, event?: string, options?: VXSRouter.L
 
   setLoadingState('loading')
 
-  await new Promise((res) => setTimeout(res, 2000))
-
   // todo
   globalThis['__vxrntodopath'] = removeSearch(href)
   preloadRoute(href)

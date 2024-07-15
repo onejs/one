@@ -29,23 +29,25 @@ export const PageLoadProgressBar = ({
 
       switch (state) {
         case 'loading': {
-          setLoaded(initialPercent)
+          loadInterval = setTimeout(() => {
+            setLoaded(initialPercent)
 
-          // to make it feel more realistic, we skip every N updates
-          let intervalCount = 0
+            // to make it feel more realistic, we skip every N updates
+            let intervalCount = 0
 
-          loadInterval = setInterval(() => {
-            intervalCount++
+            loadInterval = setInterval(() => {
+              intervalCount++
 
-            if (intervalCount % sporadicness === 0) {
-              return
-            }
+              if (intervalCount % sporadicness === 0) {
+                return
+              }
 
-            setLoaded((prev) => {
-              const increment = (100 - prev) * (prev > 80 ? 0.05 : 0.1) * Math.random()
-              return Math.min(prev + increment, 100)
-            })
-          }, updateInterval)
+              setLoaded((prev) => {
+                const increment = (100 - prev) * (prev > 80 ? 0.05 : 0.1) * Math.random()
+                return Math.min(prev + increment, 100)
+              })
+            }, updateInterval)
+          }, startDelay)
           break
         }
 
