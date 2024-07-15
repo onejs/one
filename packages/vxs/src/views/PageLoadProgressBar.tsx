@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react'
 import { View, type ViewProps } from 'react-native'
 import { router } from '../imperative-api'
 
-export type PageLoadProgressBarProps = ViewProps & {
+export type PageLoadProgressBarProps = {
+  startDelay?: number
   finishDelay?: number
   initialPercent?: number
   updateInterval?: number
   sporadicness?: number
-}
+} & Pick<ViewProps, 'style' | 'onLayout' | 'children'>
 
 export const PageLoadProgressBar = ({
-  finishDelay = 150,
+  startDelay = 500,
+  finishDelay = 50,
   initialPercent = 20,
   updateInterval = 300,
   sporadicness = 3,
@@ -40,7 +42,8 @@ export const PageLoadProgressBar = ({
             }
 
             setLoaded((prev) => {
-              return prev + Math.random() * (prev > 80 ? 2 : 10)
+              const increment = (100 - prev) * (prev > 80 ? 0.05 : 0.1) * Math.random()
+              return Math.min(prev + increment, 100)
             })
           }, updateInterval)
           break
@@ -73,7 +76,7 @@ export const PageLoadProgressBar = ({
       style={[
         {
           display: loaded === 0 ? 'none' : 'flex',
-          height: 3,
+          height: 1,
           position: 'absolute',
           top: 0,
           left: 0,
