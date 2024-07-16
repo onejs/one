@@ -102,6 +102,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
     entryPoints: [resolveFile('react-native')],
     format: 'cjs',
     target: 'node20',
+    // Note: JSX is actually being transformed by the "remove-flow" plugin defined underneath, not by esbuild. The following JSX options may not actually make a difference.
     jsx: 'transform',
     jsxFactory: 'react',
     allowOverwrite: true,
@@ -158,7 +159,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
               const code = await readFile(input.path, 'utf-8')
 
               // omg so ugly but no class support?
-              const outagain = await transformFlow(code)
+              const outagain = await transformFlow(code, { development: true })
 
               return {
                 contents: outagain,
