@@ -2,13 +2,27 @@ import type { FilterPattern, PluginOption } from 'vite'
 import { createFilter } from 'vite'
 import babel from '@babel/core'
 
-export async function transformFlow(input: string) {
+export async function transformFlow(
+  input: string,
+  { development = false }: { development?: boolean } = {}
+) {
   return await new Promise<string>((res, rej) => {
     babel.transform(
       input,
       {
-        presets: ['module:metro-react-native-babel-preset'],
-        plugins: [['@babel/plugin-transform-private-methods', { loose: true }]],
+        presets: [
+          [
+            'module:metro-react-native-babel-preset',
+            {
+              // To use the `@babel/plugin-transform-react-jsx` plugin for JSX.
+              useTransformReactJSXExperimental: true,
+            },
+          ],
+        ],
+        plugins: [
+          ['@babel/plugin-transform-react-jsx', { development }],
+          ['@babel/plugin-transform-private-methods', { loose: true }],
+        ],
       },
       (err: any, result) => {
         if (!result || err) rej(err || 'no res')
