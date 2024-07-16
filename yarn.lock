@@ -14897,6 +14897,7 @@ __metadata:
     h3-proxy: ^1.13.0
     hono: ^4.3.10
     import-meta-resolve: ^4.1.0
+    picocolors: ^1.0.0
     pkg-types: ^1.0.3
     rollup: ^3.29.4
     vite: 6.0.0-alpha.18

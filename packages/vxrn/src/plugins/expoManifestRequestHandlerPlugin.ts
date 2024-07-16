@@ -3,6 +3,7 @@ import module from 'node:module'
 import { TLSSocket } from 'node:tls'
 
 import type { Plugin } from 'vite'
+import colors from 'picocolors'
 
 // Can support more [options](https://github.com/expo/expo/blob/sdk-50/packages/%40expo/cli/src/start/server/middleware/ManifestMiddleware.ts#L113-L121) in the future.
 type ExpoManifestRequestHandlerPluginConfig = {
@@ -22,6 +23,9 @@ export function expoManifestRequestHandlerPlugin(
     name: 'vxrn:expo-manifest-request-handler',
 
     configureServer(server) {
+      const { logger } = server.config
+      const defaultLogOptions = { timestamp: true }
+
       // Add a middleware to Vite's internal Connect server to handle the Expo Manifest Request.
       server.middlewares.use(async (req, res, next) => {
         if (!req.headers['expo-platform']) {
@@ -54,20 +58,30 @@ export function expoManifestRequestHandlerPlugin(
             expoGoManifestHandlerMiddlewareImportError instanceof Error &&
             (expoGoManifestHandlerMiddlewareImportError as any).code === 'MODULE_NOT_FOUND'
           ) {
-            console.warn(
-              `Failed to locate Expo SDK in your project: ${expoGoManifestHandlerMiddlewareImportError}`
+            logger.warn(
+              colors.yellow(
+                `Failed to locate Expo SDK in your project: ${expoGoManifestHandlerMiddlewareImportError}`
+              ),
+              defaultLogOptions
             )
           } else {
-            console.warn(
-              `Failed to import Expo SDK from your project: ${expoGoManifestHandlerMiddlewareImportError}`
+            logger.warn(
+              colors.yellow(
+                `Failed to import Expo SDK from your project: ${expoGoManifestHandlerMiddlewareImportError}`
+              ),
+              defaultLogOptions
             )
           }
 
-          console.warn(
-            'Ignoring the error and proceeding without handling the Expo manifest request.'
+          logger.warn(
+            'Ignoring the error and respond with preset manifest content, which may not work with Expo Go or your development build.',
+            defaultLogOptions
           )
-          console.warn(
-            `Is this a Expo project, or are you using a supported version of Expo SDK? (${projectRoot})`
+          logger.warn(
+            colors.yellow(
+              `Is this a Expo project, or are you using a supported version of Expo SDK? (${projectRoot})`
+            ),
+            defaultLogOptions
           )
 
           const json = getIndexJsonResponse(options)
