@@ -1,5 +1,6 @@
+import { useEffect } from 'react'
 import { Text, View } from 'react-native'
-import { Link, useGlobalSearchParams, useLoader } from 'vxs'
+import { Link, useLocalSearchParams, useLoader, useNavigation } from 'vxs'
 
 type UserPath = {
   user: string
@@ -21,8 +22,13 @@ export async function loader({ params }: { params: UserPath }) {
 }
 
 export default function User(props: UserProps) {
-  const params = useGlobalSearchParams()
+  const navigation = useNavigation()
+  const params = useLocalSearchParams()
   const data = useLoader(loader)
+
+  useEffect(() => {
+    navigation.setOptions({ title: `User ${params?.user}` })
+  }, [params?.user])
 
   return (
     <View>
@@ -47,6 +53,14 @@ export default function User(props: UserProps) {
         }}
       >
         Go to same user
+      </Link>
+      <Link
+        href={{
+          pathname: '/[user]',
+          params: { user: 'another' },
+        }}
+      >
+        Go to "another" user
       </Link>
       <Link
         href={{
