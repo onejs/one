@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Text, View } from 'react-native'
-import { Link, useLoader } from 'vxs'
+import { Link, useLoader, useNavigation } from 'vxs'
 
 // export async function loader() {
 //   return {
@@ -9,6 +9,12 @@ import { Link, useLoader } from 'vxs'
 // }
 
 export default function HomePage() {
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    navigation.setOptions({ title: 'Home' })
+  }, [])
+
   // const data = useLoader(loader)
 
   useEffect(() => {
