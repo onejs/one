@@ -29,7 +29,7 @@ export default function User(props: UserProps) {
       <Text>User: {params?.user}</Text>
       <Text>props: {JSON.stringify(props || null)}</Text>
       <Text>data: {JSON.stringify(data || null)}</Text>
-      <br />
+
       <Link href="/">Go home</Link>
 
       <Link
