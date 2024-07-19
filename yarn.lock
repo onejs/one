@@ -6088,6 +6088,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@vxrn/vendor@workspace:packages/vendor":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/vendor@workspace:packages/vendor"
+  languageName: unknown
+  linkType: soft
+
 "@vxrn/vite-flow@1.1.144, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
