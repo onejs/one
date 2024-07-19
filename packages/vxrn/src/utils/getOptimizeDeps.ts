@@ -5,6 +5,8 @@ import { webExtensions } from '../constants'
 
 export function getOptimizeDeps(mode: 'build' | 'serve') {
   const needsInterop = [
+    '@vxrn/vendor/react-19',
+    '@vxrn/vendor/react-dom-19',
     'react',
     'react-native-web-internals',
     'react-dom',
