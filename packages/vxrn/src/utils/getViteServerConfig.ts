@@ -1,4 +1,10 @@
-import { loadConfigFromFile, mergeConfig, type InlineConfig, type UserConfig } from 'vite'
+import {
+  DepOptimizationConfig,
+  loadConfigFromFile,
+  mergeConfig,
+  type InlineConfig,
+  type UserConfig,
+} from 'vite'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
 import { expoManifestRequestHandlerPlugin } from '../plugins/expoManifestRequestHandlerPlugin'
 import { coerceToArray } from './coerceToArray'
@@ -71,47 +77,10 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
   // vite doesnt merge arrays but we want that
 
   if (userViteConfig) {
+    // TODO move to `server` environment
     serverConfig.ssr ||= {}
-    serverConfig.ssr.optimizeDeps ||= {}
-
     userViteConfig.ssr ||= {}
-    userViteConfig.ssr.optimizeDeps ||= {}
-
-    serverConfig.ssr.noExternal = uniq([
-      ...coerceToArray((serverConfig.ssr?.noExternal as string[]) || []),
-      ...(serverConfig.ssr?.optimizeDeps.include || []),
-      ...(userViteConfig.ssr?.optimizeDeps.include || []),
-      ...coerceToArray(userViteConfig.ssr?.noExternal || []),
-      ...optimizeDeps.include,
-      'react',
-      'react-dom',
-      'react-dom/server',
-      'react-dom/client',
-    ])
-
-    serverConfig.ssr.optimizeDeps.exclude = uniq([
-      ...(serverConfig.ssr?.optimizeDeps.exclude || []),
-      ...(userViteConfig.ssr?.optimizeDeps.exclude || []),
-      ...optimizeDeps.exclude,
-    ])
-
-    serverConfig.ssr.optimizeDeps.include = uniq([
-      ...(serverConfig.ssr?.optimizeDeps.include || []),
-      ...(userViteConfig.ssr?.optimizeDeps.include || []),
-      ...optimizeDeps.include,
-    ])
-
-    serverConfig.ssr.optimizeDeps.needsInterop = uniq([
-      ...(serverConfig.ssr?.optimizeDeps.needsInterop || []),
-      ...(userViteConfig.ssr?.optimizeDeps.needsInterop || []),
-      ...optimizeDeps.needsInterop,
-    ])
-
-    serverConfig.ssr.optimizeDeps.esbuildOptions = {
-      ...(serverConfig.ssr?.optimizeDeps.esbuildOptions || {}),
-      ...(userViteConfig.ssr?.optimizeDeps.esbuildOptions || {}),
-      ...optimizeDeps.esbuildOptions,
-    }
+    deepAssignDepsOptimizationConfig(serverConfig.ssr, userViteConfig.ssr, optimizeDeps)
   }
 
   // manually merge
@@ -120,4 +89,63 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
   }
 
   return serverConfig
+}
+
+type DepsOptConf = {
+  optimizeDeps?: DepOptimizationConfig
+  noExternal?: string | true | RegExp | (string | RegExp)[] | undefined
+}
+
+type UserOptimizeDeps = {
+  include: string[]
+  exclude: string[]
+  needsInterop: string[]
+  esbuildOptions: {
+    resolveExtensions: string[]
+  }
+}
+
+function deepAssignDepsOptimizationConfig(
+  a: DepsOptConf,
+  b: DepsOptConf,
+  extraDepsOpt: UserOptimizeDeps
+) {
+  a.optimizeDeps ||= {}
+  b.optimizeDeps ||= {}
+
+  a.noExternal = uniq([
+    ...coerceToArray((a.noExternal as string[]) || []),
+    ...(a.optimizeDeps.include || []),
+    ...(b.optimizeDeps.include || []),
+    ...coerceToArray(b.noExternal || []),
+    ...extraDepsOpt.include,
+    'react',
+    'react-dom',
+    'react-dom/server',
+    'react-dom/client',
+  ])
+
+  a.optimizeDeps.exclude = uniq([
+    ...(a.optimizeDeps.exclude || []),
+    ...(b.optimizeDeps.exclude || []),
+    ...extraDepsOpt.exclude,
+  ])
+
+  a.optimizeDeps.include = uniq([
+    ...(a.optimizeDeps.include || []),
+    ...(b.optimizeDeps.include || []),
+    ...extraDepsOpt.include,
+  ])
+
+  a.optimizeDeps.needsInterop = uniq([
+    ...(a.optimizeDeps.needsInterop || []),
+    ...(b.optimizeDeps.needsInterop || []),
+    ...extraDepsOpt.needsInterop,
+  ])
+
+  a.optimizeDeps.esbuildOptions = {
+    ...(a.optimizeDeps.esbuildOptions || {}),
+    ...(b.optimizeDeps.esbuildOptions || {}),
+    ...extraDepsOpt.esbuildOptions,
+  }
 }

@@ -140,17 +140,26 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   let serverBuildConfig = mergeConfig(webBuildConfig, {
     plugins: [excludeAPIRoutesPlugin],
 
+    // resolve: {
+    // this breaks needsInterop
+    // alias: {
+    //   react: '@vxrn/vendor/react-19',
+    //   'react-dom': '@vxrn/vendor/react-dom-19',
+    // },
+    // },
+
     define: {
       'process.env.TAMAGUI_IS_SERVER': '"1"',
       ...processEnvDefines,
       ...webBuildConfig.define,
     },
 
-    // builder: {
-    //   async buildApp(builder) {
-    //     await builder.build(builder.environments.server)
-    //   },
-    // },
+    builder: {
+      async buildApp(builder) {
+        // console.warn('building??????')
+        await builder.build(builder.environments.server)
+      },
+    },
 
     ssr: {
       noExternal: optimizeDeps.include,
