@@ -44,7 +44,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
     // added these when using a worker env
     'reading-time',
-    'mdx-bundler',
     'mdx-bundler/client',
     'gray-matter',
     'glob',

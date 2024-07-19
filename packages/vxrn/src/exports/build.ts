@@ -146,6 +146,12 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       ...webBuildConfig.define,
     },
 
+    // builder: {
+    //   async buildApp(builder) {
+    //     await builder.build(builder.environments.server)
+    //   },
+    // },
+
     ssr: {
       noExternal: optimizeDeps.include,
       optimizeDeps,

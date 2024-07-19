@@ -1,7 +1,7 @@
 import { debounce } from '@tamagui/use-debounce'
 import { join } from 'node:path'
 import type { Connect, Plugin } from 'vite'
-import { createServerModuleRunner } from 'vite'
+import { createServerModuleRunner, DevEnvironment, RemoteEnvironmentTransport } from 'vite'
 import { createHandleRequest } from '../handleRequest'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
@@ -10,51 +10,63 @@ import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import type { VXS } from './types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
+import { getOptimizeDeps } from 'vxrn'
+import { Worker } from 'node:worker_threads'
+
+const USE_SERVER_ENV = true //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
-  // const { optimizeDeps } = getOptimizeDeps('serve')
+  const { optimizeDeps } = getOptimizeDeps('serve')
 
   return {
     name: `router-fs`,
     enforce: 'post',
     apply: 'serve',
 
-    // async config() {
-    //   return {
-    //     appType: 'custom',
-    //     environments: {
-    //       server: {
-    //         resolve: {
-    //           dedupe: optimizeDeps.include,
-    //           external: [],
-    //           noExternal: true,
-    //         },
-    //         // webCompatible: true,
-    //         nodeCompatible: true,
-    //         dev: {
-    //           optimizeDeps,
-    //           createEnvironment(name, config) {
-    //             const worker = new Worker(join(import.meta.dirname, 'server.js'))
-    //             // const hot = new
-    //             return new DevEnvironment(name, config, {
-    //               hot: false,
-    //               runner: {
-    //                 transport: new RemoteEnvironmentTransport({
-    //                   send: (data) => worker.postMessage(data),
-    //                   onMessage: (listener) => worker.on('message', listener),
-    //                 }),
-    //               },
-    //             })
-    //           },
-    //         },
-    //       },
-    //     },
-    //   }
-    // },
+    async config() {
+      if (USE_SERVER_ENV) {
+        return {
+          appType: 'custom',
+          environments: {
+            server: {
+              resolve: {
+                dedupe: optimizeDeps.include,
+                external: [],
+                noExternal: optimizeDeps.include,
+                alias: {
+                  react: '@vxrn/vendor/react-19',
+                  'react-dom': '@vxrn/vendor/react-dom-19',
+                },
+              },
+              // webCompatible: true,
+              nodeCompatible: true,
+              dev: {
+                optimizeDeps,
+                createEnvironment(name, config) {
+                  const worker = new Worker(join(import.meta.dirname, 'server.js'))
+                  // const hot = new
+                  return new DevEnvironment(name, config, {
+                    hot: false,
+                    runner: {
+                      transport: new RemoteEnvironmentTransport({
+                        send: (data) => worker.postMessage(data),
+                        onMessage: (listener) => worker.on('message', listener),
+                      }),
+                    },
+                  })
+                },
+              },
+            },
+          },
+        }
+      }
+    },
 
     configureServer(server) {
       // change this to .server to test using the indepedently scoped env
-      const runner = createServerModuleRunner(server.environments.ssr)
+      const runner = createServerModuleRunner(
+        USE_SERVER_ENV ? server.environments.server : server.environments.ssr
+      )
 
       // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
       let renderPromise: Promise<void> | null = null
