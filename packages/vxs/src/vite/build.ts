@@ -305,7 +305,7 @@ export async function build(props: AfterBuildProps) {
               replaceLoader({
                 code,
                 loaderData,
-                loaderRegexName: '[a-z0-9]+',
+                loaderRegexName: '[a-z0-9_]+',
               })
             ),
           ])
