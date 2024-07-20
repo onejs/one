@@ -87,6 +87,31 @@ function createRequire(importer, importsMap) {
       const found = __getRequire(path)
       if (found) return found
 
+      // quick and dirty relative()
+      if (importer && path[0] === '.') {
+        let currentDir = (() => {
+          const paths = importer.split('/')
+          return paths.slice(0, paths.length - 1) // remove last part to get dir
+        })()
+
+        const pathParts = path.split('/')
+        while (true) {
+          if (pathParts[0] !== '..') break
+          pathParts.shift()
+          currentDir.pop()
+        }
+        path = [...currentDir, ...pathParts]
+          // Prevent generating a path like this: `foo/./bar.js` when requiring `./bar.js` from `foo`.
+          .filter((p) => p !== '.')
+          .join('/')
+      }
+
+      // find our import.meta.glob which don't get the nice path addition, for now hardcode but this shouldnt be hard to fix properly:
+      const foundGlob = __getRequire(path.replace(/\.[jt]sx?$/, '.js'))
+      if (foundGlob) {
+        return foundGlob
+      }
+
       // find internals loosely
       try {
         for (const [key, value] of Object.entries(__specialRequireMap)) {
@@ -122,28 +147,6 @@ function createRequire(importer, importsMap) {
         return output
       }
 
-      // quick and dirty relative()
-      if (importer && path[0] === '.') {
-        let currentDir = (() => {
-          const paths = importer.split('/')
-          return paths.slice(0, paths.length - 1) // remove last part to get dir
-        })()
-
-        const pathParts = path.split('/')
-        while (true) {
-          if (pathParts[0] !== '..') break
-          pathParts.shift()
-          currentDir.pop()
-        }
-        path = [...currentDir, ...pathParts].join('/')
-      }
-
-      // find our import.meta.glob which don't get the nice path addition, for now hardcode but this shouldnt be hard to fix properly:
-      const foundGlob = __getRequire(path.replace(/\.[jt]sx?$/, '.js'))
-      if (foundGlob) {
-        return foundGlob
-      }
-
       console.error(
         `Module not found "${_mod}" imported by "${importer}"\n
 
@@ -157,8 +160,8 @@ ${new Error().stack
   .split('\n')
   .map((l) => `    ${l}`)
   .join('\n')}
-  
-  
+
+
 --------------`
       )
       return {}
