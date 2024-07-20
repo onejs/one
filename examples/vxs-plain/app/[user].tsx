@@ -28,7 +28,7 @@ export default function User(props: UserProps) {
 
   useEffect(() => {
     navigation.setOptions({ title: `User ${params?.user}` })
-  }, [params?.user])
+  }, [navigation, params?.user])
 
   return (
     <View>

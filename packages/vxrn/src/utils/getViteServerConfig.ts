@@ -1,5 +1,5 @@
 import {
-  DepOptimizationConfig,
+  type DepOptimizationConfig,
   loadConfigFromFile,
   mergeConfig,
   type InlineConfig,

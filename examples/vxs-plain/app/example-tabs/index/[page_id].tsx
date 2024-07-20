@@ -8,14 +8,13 @@ export default function Page() {
 
   useEffect(() => {
     navigation.setOptions({ title: `Page ${params?.page_id}` })
-  }, [params?.user])
+  }, [navigation, params?.page_id, params.user])
 
   return (
     <View>
       <Text>Page: {params?.page_id}</Text>
 
       <Link href="..">Go back</Link>
-
 
       <Link
         href={{
