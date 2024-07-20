@@ -7,7 +7,7 @@ export default function HomePage() {
 
   useEffect(() => {
     navigation.setOptions({ title: 'Settings' })
-  }, [])
+  }, [navigation])
 
   return (
     <>
