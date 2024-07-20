@@ -41,6 +41,15 @@ export default function HomePage() {
       >
         <Text>Go to "other" user</Text>
       </Link>
+
+      <Link
+        href={{
+          pathname: '/example-tabs',
+          params: { user: 'other' },
+        }}
+      >
+        <Text>Go to tabs example</Text>
+      </Link>
     </>
   )
 }
