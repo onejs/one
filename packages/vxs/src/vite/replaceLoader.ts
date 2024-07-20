@@ -28,11 +28,9 @@ export function replaceLoader({
     // slow down just a tiny bit but adds some safety in case the regex doesnt match, seems worthwhile
     // since swc could change their output, or users can somehow get some weird code
     if (code.includes('__vxrn__loader__')) {
-      console.error(`Regex didn't match, this is a vxs bug, to see details use DEBUG=vxs`)
-      if (process.env.DEBUG?.startsWith('vxs')) {
-        console.info(`Using regex\n`, regexString, '\n')
-        console.info(`From code`, code)
-      }
+      console.error(`Loader regex didn't match, this is a vxs bug, to see details use DEBUG=vxs`)
+      console.info(`Using regex\n`, regexString, '\n')
+      console.info(`From code`, code)
       process.exit(1)
     }
     return code
