@@ -201,7 +201,7 @@ function FocusedHead(props: { children?: React.ReactNode }): JSX.Element {
 const activities: Map<string, UserActivity> = new Map()
 
 function useRegisterCurrentActivity(activity: UserActivity) {
-  // ID is tied to Expo Router and agnostic of URLs to ensure dynamic parameters are not considered.
+  // ID is tied to VXS and agnostic of URLs to ensure dynamic parameters are not considered.
   // Using all segments ensures that cascading routes are considered.
   const activityId = urlToId(usePathname() || '/')
   const cascadingId = urlToId(useSegments().join('-') || '-')

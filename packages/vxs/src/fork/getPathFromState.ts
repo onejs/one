@@ -133,7 +133,7 @@ export function getPathDataFromState<ParamList extends object>(
 
   validatePathConfig(options)
 
-  // Expo Router disallows usage without a linking config.
+  // VXS disallows usage without a linking config.
   if (Object.is(options.screens, DEFAULT_SCREENS)) {
     throw Error("You must pass a 'screens' object to 'getPathFromState' to generate a path.")
   }
@@ -231,7 +231,7 @@ function walkConfigItems(
     const inputPattern = configItem.pattern
 
     if (inputPattern == null) {
-      // This should never happen in Expo Router.
+      // This should never happen in VXS.
       throw new Error('Unexpected: No pattern found for route ' + route.name)
     }
     pattern = inputPattern
@@ -540,7 +540,7 @@ function getParamsWithConventionsCollapsed({
   params,
 }: {
   pattern: string
-  /** Route name is required for matching the wildcard route. This is specific to Expo Router. */
+  /** Route name is required for matching the wildcard route. This is specific to VXS. */
   routeName: string
   params: object
 }): Record<string, string> {
@@ -560,7 +560,7 @@ function getParamsWithConventionsCollapsed({
 
   // Deep Dynamic Routes
   if (segments.some((segment) => segment.startsWith('*'))) {
-    // NOTE(EvanBacon): Drop the param name matching the wildcard route name -- this is specific to Expo Router.
+    // NOTE(EvanBacon): Drop the param name matching the wildcard route name -- this is specific to VXS.
     const name = testNotFound(routeName)
       ? 'not-found'
       : matchDeepDynamicRouteName(routeName) ?? routeName

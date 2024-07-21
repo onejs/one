@@ -307,7 +307,7 @@ function flattenDirectoryTreeToRoutes(
   }
 
   // This should never occur as there will always be a root layout, but it makes the type system happy
-  if (!layout) throw new Error('Expo Router Internal Error: No nearest layout')
+  if (!layout) throw new Error('VXS Internal Error: No nearest layout')
 
   for (const routes of directory.files.values()) {
     // TODO(Platform Routes): We need to pick the most specific layout and ensure that all routes have a non-platform route.

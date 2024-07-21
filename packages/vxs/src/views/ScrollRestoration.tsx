@@ -1,5 +1,9 @@
 import { useEffect } from 'react'
-import { subscribeToLoadingState, subscribeToRootState } from '../router/router'
+import {
+  lastUserRouteAction,
+  subscribeToLoadingState,
+  subscribeToRootState,
+} from '../router/router'
 
 const KEY = 'vxs-sr'
 
@@ -42,12 +46,22 @@ export function ScrollRestoration() {
     })
 
     const disposeOnLoadState = subscribeToLoadingState((state) => {
+      if (Date.now() - lastUserRouteAction > 1) {
+        // this isn't a state change due to a link press, ignore
+        return
+      }
+
       if (state === 'loading') {
         rememberScrollPosition()
       }
     })
 
     const disposeOnRootState = subscribeToRootState((state) => {
+      if (Date.now() - lastUserRouteAction > 1) {
+        // this isn't a state change due to a link press, ignore
+        return
+      }
+
       if (isInitial) {
         isInitial = false
         return
