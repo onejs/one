@@ -102,7 +102,7 @@ export function getMatchableRouteConfigs<ParamList extends object>(options?: Opt
   }
 
   const screens = options?.screens
-  // Expo Router disallows usage without a linking config.
+  // VXS disallows usage without a linking config.
   if (!screens) {
     throw Error("You must pass a 'screens' object to 'getStateFromPath' to generate a path.")
   }

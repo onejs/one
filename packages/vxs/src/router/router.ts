@@ -409,6 +409,8 @@ export function preloadRoute(href: string) {
   }
 }
 
+export let lastUserRouteAction = Date.now()
+
 export async function linkTo(href: string, event?: string, options?: VXSRouter.LinkToOptions) {
   if (shouldLinkExternally(href)) {
     Linking.openURL(href)
@@ -427,6 +429,8 @@ export async function linkTo(href: string, event?: string, options?: VXSRouter.L
   if (!linking) {
     throw new Error('Attempted to link to route when no routes are present')
   }
+
+  lastUserRouteAction = Date.now()
 
   if (href === '..' || href === '../') {
     current.goBack()
@@ -577,20 +581,22 @@ function getNavigateAction(
     params = payload
   }
 
-  // Expo Router uses only three actions, but these don't directly translate to all navigator actions
+  // VXS uses only three actions, but these don't directly translate to all navigator actions
   if (type === 'PUSH') {
+    lastUserRouteAction = Date.now()
+
     // Only stack navigators have a push action, and even then we want to use NAVIGATE (see below)
     type = 'NAVIGATE'
 
     /*
-     * The StackAction.PUSH does not work correctly with Expo Router.
+     * The StackAction.PUSH does not work correctly with VXS.
      *
-     * Expo Router provides a getId() function for every route, altering how React Navigation handles stack routing.
+     * VXS provides a getId() function for every route, altering how React Navigation handles stack routing.
      * Ordinarily, PUSH always adds a new screen to the stack. However, with getId() present, it navigates to the screen with the matching ID instead (by moving the screen to the top of the stack)
      * When you try and push to a screen with the same ID, no navigation will occur
      * Refer to: https://github.com/react-navigation/react-navigation/blob/13d4aa270b301faf07960b4cd861ffc91e9b2c46/packages/routers/src/StackRouter.tsx#L279-L290
      *
-     * Expo Router needs to retain the default behavior of PUSH, consistently adding new screens to the stack, even if their IDs are identical.
+     * VXS needs to retain the default behavior of PUSH, consistently adding new screens to the stack, even if their IDs are identical.
      *
      * To resolve this issue, we switch to using a NAVIGATE action with a new key. In the navigate action, screens are matched by either key or getId() function.
      * By generating a unique new key, we ensure that the screen is always pushed onto the stack.

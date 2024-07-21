@@ -69,5 +69,6 @@ export declare function useStoreRouteInfo(): UrlObject;
 export declare function cleanup(): void;
 export declare const preloadingLoader: {};
 export declare function preloadRoute(href: string): void;
+export declare let lastUserRouteAction: number;
 export declare function linkTo(href: string, event?: string, options?: VXSRouter.LinkToOptions): Promise<void>;
 //# sourceMappingURL=router.d.ts.map

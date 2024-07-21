@@ -79,7 +79,7 @@ export declare namespace VXSRouter {
      * Href  *
      *********/
     /**
-     * The main routing type for Expo Router. Includes all available routes with strongly typed parameters.
+     * The main routing type for VXS. Includes all available routes with strongly typed parameters.
      *
      * Allows for static routes, relative paths, external paths, dynamic routes, and the dynamic route provided as a static string
      */
@@ -101,7 +101,7 @@ export declare namespace VXSRouter {
     export type RootStateListener = (state: ResultState) => void;
     export type LoadingStateListener = (state: LoadingState) => void;
     /***********************
-     * Expo Router Exports *
+     * VXS Exports *
      ***********************/
     export type Router = {
         /** Go back in the history. */
