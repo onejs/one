@@ -1,23 +1,8 @@
 import stepsBare from './steps/bare'
+import setupFullstack from './steps/fullstack'
 import setupVxs from './steps/vxs'
-// import stepsTamagui from './steps/tamagui'
 
 export const templates = [
-  // {
-  //   title: `Free - Expo + Next in a production ready monorepo`,
-  //   value: 'starter-free',
-  //   type: 'free',
-  //   hidden: false,
-  //   packageManager: 'yarn',
-  //   repo: {
-  //     url: `https://github.com/tamagui/starter-free.git`,
-  //     sshFallback: `git@github.com:tamagui/starter-free.git`,
-  //     dir: [],
-  //     branch: 'main',
-  //   },
-  //   extraSteps: starterFree,
-  // },
-
   {
     title: `Bare`,
     value: 'bare',
@@ -32,20 +17,6 @@ export const templates = [
     extraSteps: stepsBare,
   },
 
-  // {
-  //   title: `Tamagui`,
-  //   value: 'tamagui',
-  //   type: 'included-in-monorepo',
-  //   hidden: false,
-  //   repo: {
-  //     url: `https://github.com/universal-future/vxrn.git`,
-  //     sshFallback: `git@github.com:universal-future/vxrn.git`,
-  //     dir: [`examples`, `tamagui`],
-  //     branch: 'main',
-  //   },
-  //   extraSteps: stepsTamagui,
-  // },
-
   {
     title: `vxs`,
     value: 'vxs',
@@ -58,5 +29,19 @@ export const templates = [
       branch: 'main',
     },
     extraSteps: setupVxs,
+  },
+
+  {
+    title: `fullstack`,
+    value: 'fullstack',
+    type: 'included-in-monorepo',
+    hidden: false,
+    repo: {
+      url: `https://github.com/universal-future/vxrn.git`,
+      sshFallback: `git@github.com:universal-future/vxrn.git`,
+      dir: [`examples`, `fullstack`],
+      branch: 'main',
+    },
+    extraSteps: setupFullstack,
   },
 ] as const
