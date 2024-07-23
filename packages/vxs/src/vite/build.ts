@@ -269,15 +269,22 @@ export async function build(props: AfterBuildProps) {
 
     console.info(`\n [build] page ${relativeId} (with ${paramsList.length} routes)\n`)
 
+    if (process.env.DEBUG) {
+      console.info(`paramsList`, JSON.stringify(paramsList, null, 2))
+    }
+
     for (const params of paramsList) {
-      const path = getPathnameFromFilePath(relativeId, params).replace('+spa', '')
+      const path = getPathnameFromFilePath(relativeId.replace('+spa', ''), params)
       const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
-      const loaderData = (await exported.loader?.({ path, params })) ?? null
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
       const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
 
+      let loaderData: any
+
       try {
         console.info(`  ↦ route ${path}`)
+
+        loaderData = (await exported.loader?.({ path, params })) ?? null
 
         const loaderProps = { path, params }
         globalThis['__vxrnLoaderProps__'] = loaderProps
@@ -309,16 +316,9 @@ export async function build(props: AfterBuildProps) {
               })
             ),
           ])
-
-          builtRoutes.push({
-            clientJsPath,
-            htmlPath,
-            loaderData,
-            params,
-            path,
-            preloads,
-          })
         } else {
+          // spa route
+          loaderData = {} // TODO not sure why i needed this
           await outputFile(
             htmlOutPath,
             `<html><head>
@@ -330,16 +330,16 @@ export async function build(props: AfterBuildProps) {
             ${allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')}
           </head></html>`
           )
-
-          builtRoutes.push({
-            clientJsPath,
-            htmlPath,
-            loaderData: {},
-            params,
-            path,
-            preloads,
-          })
         }
+
+        builtRoutes.push({
+          clientJsPath,
+          htmlPath,
+          loaderData,
+          params,
+          path,
+          preloads,
+        })
       } catch (err) {
         const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
 
@@ -420,6 +420,9 @@ function getPathnameFromFilePath(path: string, params = {}) {
     }
     if (name.startsWith('[...')) {
       const part = name.replace('[...', '').replace(']', '')
+      if (!params[part]) {
+        console.warn(`couldn't resolve ${name} segment in path ${path}`)
+      }
       return `/${params[part]}`
     }
     return `/${name
