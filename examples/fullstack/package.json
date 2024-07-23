@@ -1,6 +1,6 @@
 {
   "name": "example-fullstack",
-  "version": "1.1.148",
+  "version": "1.1.149",
   "type": "module",
   "private": true,
   "scripts": {
@@ -28,7 +28,7 @@
     "tamagui": "^1.104.0",
     "vite": "6.0.0-alpha.18",
     "vite-plugin-inspect": "^0.8.4",
-    "vxs": "^1.1.148"
+    "vxs": "1.1.149"
   },
   "devDependencies": {
     "@tamagui/vite-plugin": "^1.104.0",
