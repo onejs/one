@@ -1,11 +1,12 @@
 import '~/app.css'
 import '~/tamagui.css'
+
 import { ToastProvider } from '@tamagui/toast'
 import { isWeb, setupPopper, TamaguiProvider } from 'tamagui'
 import { PageLoadProgressBar, ScrollRestoration, Slot, Stack } from 'vxs'
 import { HeadInfo } from '~/components/HeadInfo'
 import tamaConf from '~/config/tamagui.config'
-import { UserThemeProvider, useUserTheme } from '~/features/site/theme/useUserTheme'
+import { UserThemeProvider, useUserTheme } from '~/features/theme/useUserTheme'
 
 setupPopper({
   // prevents a reflow on mount

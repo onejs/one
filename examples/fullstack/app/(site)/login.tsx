@@ -1,13 +1,10 @@
 import type { Provider } from '@supabase/supabase-js'
 import { LogoIcon } from '@tamagui/logo'
 import type { FormEvent } from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Button, Input, Paragraph, Separator, Spinner, XStack, YStack } from 'tamagui'
 import { HeadInfo } from '~/components/HeadInfo'
-import { Notice } from '~/components/Notice'
-import { useSupabase } from '~/features/auth/useSupabaseClient'
-import { GithubIcon } from '~/features/icons/GithubIcon'
-import { useForwardToDashboard } from '~/features/user/useForwardToDashboard'
+import { useSupabase } from '~/features/supabase/useSupabaseClient'
 import { useUser } from '~/features/user/useUser'
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -34,14 +31,6 @@ function SignIn() {
   })
   const { data } = useUser()
   const user = data?.user
-  const emailRef = useRef(null)
-
-  useEffect(() => {
-    // @ts-ignore
-    emailRef.current?.focus()
-  }, [])
-
-  useForwardToDashboard()
 
   if (!supabase) {
     return (
@@ -111,9 +100,9 @@ function SignIn() {
           </YStack>
 
           {Boolean(message.content) && (
-            <Notice>
+            <>
               <Paragraph>{message.content}</Paragraph>
-            </Notice>
+            </>
           )}
 
           <Button
@@ -122,14 +111,13 @@ function SignIn() {
             disabled={loading}
             onClick={() => handleOAuthSignIn('github')}
             size="$4"
-            icon={GithubIcon}
           >
             Continue with GitHub
           </Button>
 
           <Paragraph ta="center" color="$color8">
-            Note: If part of a sponsoring organization, you'll need to grant access to
-            your org when logging in to access sponsor benefits.
+            Note: If part of a sponsoring organization, you'll need to grant access to your org when
+            logging in to access sponsor benefits.
           </Paragraph>
 
           {!emailAuthDisabledFlag && (
@@ -151,7 +139,6 @@ function SignIn() {
                         onSubmitEditing={handleSignin}
                         value={email}
                         onChange={(e) => setEmail(e.nativeEvent.text)}
-                        ref={emailRef}
                         disabled={emailAuthDisabledFlag}
                       />
                       <Button
@@ -192,9 +179,7 @@ function SignIn() {
                         // @ts-ignore
                         type="submit"
                         loading={loading}
-                        disabled={
-                          !password.length || !email.length || emailAuthDisabledFlag
-                        }
+                        disabled={!password.length || !email.length || emailAuthDisabledFlag}
                       >
                         Sign in
                       </Button>
@@ -222,30 +207,6 @@ function SignIn() {
               </YStack>
             </>
           )}
-          {/* <YStack space="$2" >
-            <Paragraph
-              tag="button"
-              ta="center"
-              size="$2"
-              cursor="pointer"
-              className="text-zinc-200 text-accent-9 hover:underline cursor-pointer"
-              onPress={() => {
-                if (showPasswordInput) setPassword('')
-                setShowPasswordInput(!showPasswordInput)
-                setMessage({})
-              }}
-            >
-              Or sign in with {showPasswordInput ? 'magic link' : 'password'}
-            </Paragraph>
-
-            <Paragraph theme="alt2" ta="center" size="$2">
-              Don't have an account?
-              {` `}
-              <Link href="/signup" style={{ fontWeight: '800' }}>
-                Sign up.
-              </Link>
-            </Paragraph> 
-          </YStack> */}
         </YStack>
       </YStack>
     )
