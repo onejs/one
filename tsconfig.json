@@ -46,9 +46,6 @@
       "esnext"
     ]
   },
-  "include": [
-    "packages/**/*"
-  ],
   "exclude": [
     "**/test",
     "**/dist",

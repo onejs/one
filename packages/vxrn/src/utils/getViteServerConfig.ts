@@ -62,10 +62,10 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
   serverConfig = mergeUserConfig(optimizeDeps, serverConfig, userViteConfig)
 
   // manually merge
-  // if (process.env.DEBUG) {
-  console.debug('user config in:', JSON.stringify(userViteConfig, null, 2), `\n----\n`)
-  console.debug('merged config:', JSON.stringify(serverConfig, null, 2), `\n----\n`)
-  // }
+  if (process.env.DEBUG) {
+    // console.debug('user config in:', JSON.stringify(userViteConfig, null, 2), `\n----\n`)
+    console.debug('merged config:', JSON.stringify(serverConfig, null, 2), `\n----\n`)
+  }
 
   return serverConfig
 }
