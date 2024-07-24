@@ -14,6 +14,7 @@ import type { BuildArgs, VXRNOptions } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
+import { mergeUserConfig } from '../utils/mergeUserConfig'
 
 const { existsSync } = FSExtra
 
@@ -41,7 +42,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
   process.env.NODE_ENV = 'production'
 
-  const [options, viteConfig] = await Promise.all([
+  const [options, userViteConfig] = await Promise.all([
     getOptionsFilled(optionsIn),
     loadConfigFromFile({
       command: 'build',
@@ -78,6 +79,8 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     } satisfies InlineConfig
   )
 
+  mergeUserConfig(optimizeDeps, webBuildConfig, userViteConfig)
+
   const excludeAPIRoutesPlugin = {
     enforce: 'pre',
     name: 'omit-api-routes',
@@ -87,10 +90,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       }
     },
   } satisfies Plugin
-
-  if (viteConfig) {
-    webBuildConfig = mergeConfig(webBuildConfig, viteConfig) as any
-  }
 
   let clientOutput
 
