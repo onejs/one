@@ -16,7 +16,6 @@ import {
   YStack,
 } from 'tamagui'
 import { Code } from '~/components/Code'
-import { HR } from '~/components/HR'
 import { LI } from '~/components/LI'
 import { Link } from '~/components/Link'
 import { UL } from '~/components/UL'
@@ -55,8 +54,6 @@ const componentsIn = {
       </Link>
     )
   },
-
-  hr: HR,
 
   ul: ({ children }) => {
     return (
@@ -110,12 +107,11 @@ export class ErrorBoundary extends React.Component<{ children: any; name: string
 }
 
 export const components = Object.fromEntries(
-  Object.entries(componentsIn).map(([key, Component]) => {
+  Object.entries(componentsIn as Record<string, React.FC<any>>).map(([key, Component]) => {
     const out = (props) => {
       // adds error boundary here as these errors are stupid to debug
       return (
         <ErrorBoundary name={key}>
-          {/* @ts-expect-error */}
           <Component {...props} />
         </ErrorBoundary>
       )
