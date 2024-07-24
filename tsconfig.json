@@ -10,7 +10,6 @@
         "packages/*"
       ]
     },
-    "outDir": "dist",
     "importHelpers": true,
     "allowJs": false,
     "resolveJsonModule": true,
@@ -47,6 +46,9 @@
       "esnext"
     ]
   },
+  "include": [
+    "packages/**/*"
+  ],
   "exclude": [
     "**/test",
     "**/dist",
