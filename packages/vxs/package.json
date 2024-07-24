@@ -99,7 +99,7 @@
     "react-native": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.104.0",
+    "@tamagui/build": "^1.104.2",
     "@types/node": "^20.12.7",
     "@types/react-dom": "^18.2.25",
     "depcheck": "^1.4.7",

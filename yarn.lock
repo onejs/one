@@ -4846,7 +4846,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/build@npm:1.104.0, @tamagui/build@npm:^1.104.0":
+"@tamagui/babel-plugin-fully-specified@npm:1.104.2":
+  version: 1.104.2
+  resolution: "@tamagui/babel-plugin-fully-specified@npm:1.104.2"
+  dependencies:
+    "@babel/core": ^7.23.3
+  checksum: 3727625cfc443157961c1ec319355d799734f21daa1c27b0d6d5478a80620113880f2f5b1432ffccb3805d959b2c48a13f61c070fe9560e1162a9db4446ab4e9
+  languageName: node
+  linkType: hard
+
+"@tamagui/build@npm:1.104.0":
   version: 1.104.0
   resolution: "@tamagui/build@npm:1.104.0"
   dependencies:
@@ -4866,6 +4875,29 @@ __metadata:
     tamagui-build: tamagui-build.js
     teesx: teesx.sh
   checksum: c9472e5471d2bb96b9c28d63beff7f17940e4237901cc4be8cdd2e11eb17723f4f4f4e3a0ed7f2f0b251bd18fc9460ed6fa887c08699765ed0f103c9481b2365
+  languageName: node
+  linkType: hard
+
+"@tamagui/build@npm:^1.104.2":
+  version: 1.104.2
+  resolution: "@tamagui/build@npm:1.104.2"
+  dependencies:
+    "@babel/core": ^7.23.3
+    "@tamagui/babel-plugin-fully-specified": 1.104.2
+    "@types/fs-extra": ^9.0.13
+    babel-plugin-fully-specified: "*"
+    chokidar: ^3.5.2
+    esbuild: ^0.23.0
+    esbuild-plugin-es5: ^2.1.0
+    esbuild-register: ^3.5.0
+    execa: ^5.0.0
+    fast-glob: ^3.2.11
+    fs-extra: ^11.2.0
+    lodash.debounce: ^4.0.8
+  bin:
+    tamagui-build: tamagui-build.js
+    teesx: teesx.sh
+  checksum: 012ad38968ffea980c095901f3aa513d36dad194b5ee165018566871344b6e5df1e6d7622c6b5a57c95af36bbc75687808d30dd2fb291407efa4c2bcaba243e4
   languageName: node
   linkType: hard
 
@@ -7028,7 +7060,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
   dependencies:
-    "@tamagui/build": ^1.104.0
+    "@tamagui/build": ^1.104.2
     "@vxrn/vite-flow": 1.1.150
     "@vxrn/vite-native-hmr": 1.1.150
     esbuild: ~0.19.3
@@ -7049,7 +7081,7 @@ __metadata:
   resolution: "@vxrn/safe-area@workspace:packages/safe-area"
   dependencies:
     "@biomejs/biome": ^1.6.3
-    "@tamagui/build": ^1.104.0
+    "@tamagui/build": ^1.104.2
   languageName: unknown
   linkType: soft
 
@@ -7066,7 +7098,7 @@ __metadata:
     "@babel/core": ^7.21.8
     "@babel/plugin-transform-private-methods": ^7.24.7
     "@biomejs/biome": ^1.6.3
-    "@tamagui/build": ^1.104.0
+    "@tamagui/build": ^1.104.2
     metro-react-native-babel-preset: ^0.77.0
     vite: 6.0.0-alpha.18
   languageName: unknown
@@ -7077,7 +7109,7 @@ __metadata:
   resolution: "@vxrn/vite-native-client@workspace:packages/vite-native-client"
   dependencies:
     "@biomejs/biome": ^1.6.3
-    "@tamagui/build": ^1.104.0
+    "@tamagui/build": ^1.104.2
     react-native: 0.74.1
   peerDependencies:
     react-native: "*"
@@ -7088,7 +7120,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-hmr@workspace:packages/vite-native-hmr"
   dependencies:
-    "@tamagui/build": ^1.104.0
+    "@tamagui/build": ^1.104.2
     pretty-format: ^28.1.0
     react-native: 0.74.1
   peerDependencies:
@@ -7102,7 +7134,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": ^1.6.3
     "@swc/core": ^1.6.6
-    "@tamagui/build": ^1.104.0
+    "@tamagui/build": ^1.104.2
     "@vxrn/vite-native-client": 1.1.150
     react-native: 0.74.1
   peerDependencies:
@@ -8554,7 +8586,7 @@ __metadata:
   resolution: "create-vxrn@workspace:packages/create-vxrn"
   dependencies:
     "@expo/package-manager": ^1.1.2
-    "@tamagui/build": ^1.104.0
+    "@tamagui/build": ^1.104.2
     "@types/validate-npm-package-name": ^4.0.2
     ansis: ^3.1.0
     async-retry: 1.3.1
@@ -18270,7 +18302,7 @@ __metadata:
     "@babel/core": ^7.21.8
     "@biomejs/biome": ^1.6.3
     "@hono/node-server": ^1.11.1
-    "@tamagui/build": ^1.104.0
+    "@tamagui/build": ^1.104.2
     "@types/find-node-modules": ^2.1.2
     "@types/node": ^20.12.7
     "@types/ws": ^8.5.10
@@ -18315,7 +18347,7 @@ __metadata:
     "@react-navigation/native-stack": ^6.9.13
     "@react-navigation/routers": ^6.1.9
     "@swc/core": ^1.6.6
-    "@tamagui/build": ^1.104.0
+    "@tamagui/build": ^1.104.2
     "@tamagui/use-debounce": ^1.104.0
     "@types/estree": ^1.0.5
     "@types/node": ^20.12.7
