@@ -13,6 +13,7 @@ import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 import { getOptimizeDeps } from 'vxrn'
 import { Worker } from 'node:worker_threads'
 
+// server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
