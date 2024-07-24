@@ -1,8 +1,2 @@
-- move away from import.meta.glob:
-  - index.html loads vxs/entry
-  - make `app` mandatory fs routes dir
-  - remove entry-web, entry-server
-  - the root _layout can optionally control navigationContainerProps by using new NavigationContainer component from vxs
-  - vxs/entry is built server side and generates the routesMap
+- we need to ensure any dep that depends on a optimizedep transitively is optimized as well, eg react, or else you end up with duplications
 
-- remove react-helmet in favor of react 19 head
