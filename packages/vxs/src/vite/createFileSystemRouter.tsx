@@ -13,7 +13,7 @@ import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 import { getOptimizeDeps } from 'vxrn'
 import { Worker } from 'node:worker_threads'
 
-const USE_SERVER_ENV = true //!!process.env.USE_SERVER_ENV
+const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
   const { optimizeDeps } = getOptimizeDeps('serve')
@@ -23,7 +23,7 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
     enforce: 'post',
     apply: 'serve',
 
-    async config() {
+    async config(userConfig) {
       if (USE_SERVER_ENV) {
         return {
           appType: 'custom',

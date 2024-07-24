@@ -26,7 +26,6 @@ import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { checkPatches } from '../utils/patches'
 import { clean } from './clean'
-import { TLSSocket } from 'node:tls'
 
 const { ensureDir } = FSExtra
 
