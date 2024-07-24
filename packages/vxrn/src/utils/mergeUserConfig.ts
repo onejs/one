@@ -28,21 +28,19 @@ export function mergeUserConfig(
       throw new Error(`ssr.noExternal must be array`)
     }
 
-    deepAssignDepsOptimizationConfig(serverConfig, userViteConfig, optimizeDeps)
-
     // vite doesnt merge arrays but we want that
+    deepMergeOptimizeDeps(serverConfig, userViteConfig, optimizeDeps)
+
     // TODO move to `server` environment
     serverConfig.ssr ||= {}
     userViteConfig.ssr ||= {}
-    deepAssignDepsOptimizationConfig(serverConfig.ssr, userViteConfig.ssr, optimizeDeps)
+    deepMergeOptimizeDeps(serverConfig.ssr, userViteConfig.ssr, optimizeDeps)
   }
+
+  return serverConfig
 }
 
-function deepAssignDepsOptimizationConfig(
-  a: DepsOptConf,
-  b: DepsOptConf,
-  extraDepsOpt: OptimizeDepsConf
-) {
+function deepMergeOptimizeDeps(a: DepsOptConf, b: DepsOptConf, extraDepsOpt: OptimizeDepsConf) {
   a.optimizeDeps ||= {}
   b.optimizeDeps ||= {}
 
