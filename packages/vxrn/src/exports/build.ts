@@ -79,7 +79,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     } satisfies InlineConfig
   )
 
-  mergeUserConfig(optimizeDeps, webBuildConfig, userViteConfig)
+  webBuildConfig = mergeUserConfig(optimizeDeps, webBuildConfig, userViteConfig)
 
   const excludeAPIRoutesPlugin = {
     enforce: 'pre',
