@@ -1,0 +1,19 @@
+{
+  "files": [],
+  "compilerOptions": {
+    "typeRoots": ["node_modules/@types"],
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
+  },
+  "references": [
+    {
+      "path": "examples/fullstack"
+    },
+    {
+      "path": "examples/vxs"
+    },
+    {
+      "path": "examples/bare"
+    }
+  ]
+}
