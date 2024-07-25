@@ -63,14 +63,19 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
 
       {
         name: 'treat-js-files-as-jsx',
-        async transform(code, id) {
-          if (!id.includes(`expo-status-bar`)) return null
-          // Use the exposed transform from vite, instead of directly
-          // transforming with esbuild
-          return transformWithEsbuild(code, id, {
-            loader: 'jsx',
-            jsx: 'automatic',
-          })
+        transform: {
+          order: 'pre',
+          async handler(code, id) {
+            if (!id.includes('node_modules/expo-') && !id.includes('node_modules/@expo/')) {
+              return null
+            }
+            // Use the exposed transform from vite, instead of directly
+            // transforming with esbuild
+            return transformWithEsbuild(code, id, {
+              loader: 'jsx',
+              jsx: 'automatic',
+            })
+          },
         },
       },
     ].filter(Boolean),
