@@ -97,11 +97,11 @@ export function reactNativeCommonJsPlugin(options: {
                           return ''
                         }
                         let out = ''
-                        if (e.ln !== e.n) {
+                        if (e.ln !== e.n && !RESERVED_WORDS.includes(e.n)) {
                           // forces the "as x" to be referenced so it gets exported
-                          out += `__ignore = typeof ${e.n} === 'undefined' ? 0 : 0;`
+                          out += `\n__ignore = typeof ${e.n} === 'undefined' ? 0 : 0;`
                         }
-                        out += `globalThis.____forceExport = ${e.ln}`
+                        out += `\nglobalThis.____forceExport = ${e.ln}`
                         return out
                       })
                       .join(';')
@@ -186,3 +186,48 @@ export function reactNativeCommonJsPlugin(options: {
     },
   }
 }
+
+/**
+ * List of reserved words in JS. From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words.
+ */
+const RESERVED_WORDS = [
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'debugger',
+  'default',
+  'delete',
+  'do',
+  'else',
+  'export',
+  'extends',
+  'false',
+  'finally',
+  'for',
+  'function',
+  'if',
+  'import',
+  'in',
+  'instanceof',
+  'new',
+  'null',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'typeof',
+  'var',
+  'void',
+  'while',
+  'with',
+  'let',
+  'static',
+  'yield',
+  'enum',
+]
