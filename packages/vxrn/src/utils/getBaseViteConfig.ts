@@ -14,6 +14,7 @@ export const dedupe = [
   '@tamagui/core',
   '@tamagui/web',
   'react-native-reanimated',
+  'expo-modules-core',
 ]
 
 export function getBaseViteConfig({ mode }: { mode: 'development' | 'production' }): InlineConfig {
