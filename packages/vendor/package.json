@@ -12,6 +12,7 @@
     "./react-jsx-19": "./react/jsx-runtime.js",
     "./react-dom-19": "./react-dom/index.js",
     "./react-dom-client-19": "./react-dom/client.js",
+    "./react-dom-test-utils-19": "./react-dom/test-utils.js",
     "./react-dom-server.browser-19": "./react-dom/server.browser.js"
   }
 }
