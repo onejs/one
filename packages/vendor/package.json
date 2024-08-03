@@ -8,9 +8,10 @@
   "exports": {
     "./package.json": "./package.json",
     "./react-19": "./react/index.js",
-    "./react-19/jsx-runtime": "./react/jsx-runtime.js",
+    "./react-jsx-dev-19": "./react/jsx-dev-runtime.js",
+    "./react-jsx-19": "./react/jsx-runtime.js",
     "./react-dom-19": "./react-dom/index.js",
-    "./react-dom-19/client": "./react-dom/client.js",
-    "./react-dom-19/server.browser": "./react-dom/server.browser.js"
+    "./react-dom-client-19": "./react-dom/client.js",
+    "./react-dom-server.browser-19": "./react-dom/server.browser.js"
   }
 }
