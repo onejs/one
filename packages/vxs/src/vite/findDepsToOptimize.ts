@@ -11,7 +11,6 @@ export async function getAllDependencies(root: string, depth = 20) {
     return []
   }
   const pkgJsonPath = await findClosestPkgJsonPath(root)
-  console.log('pkgJsonPath', pkgJsonPath)
   if (!pkgJsonPath) {
     throw new Error(`Cannot find package.json from ${root}`)
   }

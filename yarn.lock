@@ -7053,7 +7053,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vendor@workspace:packages/vendor":
+"@vxrn/vendor@1.1.154, @vxrn/vendor@workspace:packages/vendor":
   version: 0.0.0-use.local
   resolution: "@vxrn/vendor@workspace:packages/vendor"
   languageName: unknown
@@ -18255,6 +18255,7 @@ __metadata:
     "@vitejs/plugin-react-swc": ^3.6.0
     "@vxrn/react-native-prebuilt": 1.1.154
     "@vxrn/safe-area": 1.1.154
+    "@vxrn/vendor": 1.1.154
     "@vxrn/vite-flow": 1.1.154
     "@vxrn/vite-native-swc": 1.1.154
     citty: ^0.1.6
