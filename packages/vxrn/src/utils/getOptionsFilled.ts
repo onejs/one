@@ -23,7 +23,7 @@ export async function getOptionsFilled(
     host: '127.0.0.1',
   })
 
-  const packageRootDir = join(require.resolve('vxrn'), '../../..')
+  const packageRootDir = join(require.resolve('vxrn'), '../..')
   const cacheDir = join(root, 'node_modules', '.vxrn')
   const internalPatchesDir = join(packageRootDir, 'patches')
   const userPatchesDir = join(root, 'patches')
