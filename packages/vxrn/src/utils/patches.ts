@@ -33,13 +33,13 @@ export async function checkPatches(options: VXRNOptionsFilled) {
     cwd: options.root,
   }).map((relativePath) => join(options.root, relativePath))
 
-  const patchesToCopy = new Set<Patch>()
+  const patchesToCopy: { patch: Patch; dir: string }[] = []
 
   await Promise.all(
     patches.flatMap((patch) => {
       return nodeModulesDirs.flatMap(async (dir) => {
         if (await FSExtra.pathExists(join(dir, patch.module))) {
-          patchesToCopy.add(patch)
+          patchesToCopy.push({ patch, dir })
         }
       })
     })
@@ -47,20 +47,32 @@ export async function checkPatches(options: VXRNOptionsFilled) {
 
   let didCopy = false
 
-  for (const patch of [...patchesToCopy]) {
-    const dest = join(options.userPatchesDir, patch.patchFile)
-    if (!(await FSExtra.pathExists(dest))) {
+  for (const { patch, dir } of patchesToCopy) {
+    const patchesDir = join(dir, '..', 'patches')
+
+    if (!(await FSExtra.pathExists(patchesDir))) {
+      await FSExtra.mkdir(patchesDir)
+    }
+
+    const src = join(options.internalPatchesDir, patch.patchFile)
+    const dest = join(patchesDir, patch.patchFile)
+    const patchContents = await FSExtra.readFile(src, 'utf-8')
+
+    if (
+      !(await FSExtra.pathExists(dest)) ||
+      (await FSExtra.readFile(dest, 'utf-8')) !== patchContents
+    ) {
       didCopy = true
-      console.info(`Copying patch ${patch.module}`)
-      const src = join(options.internalPatchesDir, patch.patchFile)
+      console.info(` 🩹 Adding patch ${patch.module}`)
       await FSExtra.copy(src, dest)
     }
   }
 
   if (didCopy) {
     console.info(
-      `\nPlease restart after applying the patch by running "npx patch-package".
-  Ideally add it to your devDependencies and as a postinstall script.\n`
+      `\nWe've added patches to support running React 19 and 18 in parallel. Please run "npx patch-package" and re-run.
+  
+      You'll want to add "patch-package" to your devDependencies and scripts.postinstall in your package.json.\n`
     )
     process.exit(0)
   }
