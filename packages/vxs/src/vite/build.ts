@@ -110,6 +110,7 @@ export async function build(props: AfterBuildProps) {
   const builtRoutes: VXS.RouteBuildInfo[] = []
 
   console.info(`\n 🔨 build static routes\n`)
+
   const entryServer = `${options.root}/dist/server/_virtual_vxs-entry.js`
   const render = (await import(entryServer)).default.render as RenderApp
 
