@@ -36,15 +36,6 @@ export function getUserVXSOptions(config: UserConfig) {
 export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   void loadEnv(process.cwd())
 
-  if (!version.startsWith('19.')) {
-    console.error(`Must be on React 19, instead found`, version)
-    console.error(
-      ` vxs vendors React 18 and aliases to it for native environments.
- It uses your local React for web, where it requires React 19.`
-    )
-    process.exit(1)
-  }
-
   // build is superset for now
   const { optimizeDeps } = getOptimizeDeps('build')
   const optimizeIds = optimizeDeps.include

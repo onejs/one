@@ -4,6 +4,7 @@ import '../public/tamagui.css'
 import { TamaguiProvider } from '@tamagui/core'
 import { PageLoadProgressBar, ScrollRestoration, Slot } from 'vxs'
 import config from '../tamagui.config'
+import { version } from 'react'
 
 export default function Layout() {
   return (

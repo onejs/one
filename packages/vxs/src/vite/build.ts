@@ -20,11 +20,6 @@ import type { VXS } from './types'
 import { getUserVXSOptions } from './vxs'
 import type { RouteInfo } from '../server/createRoutesManifest'
 
-if (!version.startsWith('19.')) {
-  console.error(`Must be on React 19, instead found`, version)
-  process.exit(1)
-}
-
 export const resolveFile = (path: string) => {
   try {
     return importMetaResolve(path, import.meta.url).replace('file://', '')
