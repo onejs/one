@@ -29,6 +29,7 @@
     "lint": "yarn lint:eslint && ultra -r --no-pretty lint",
     "lint:eslint": "echo eslint && eslint '**/*.{ts,tsx}'",
     "dev:example-vxs": "yarn workspace example-vxs dev:clean",
+    "dev:example-fullstack": "yarn workspace example-fullstack dev:clean",
     "dev:example-bare": "yarn workspace example-bare dev:clean",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
     "test": "yarn turbo:run --concurrency=1 test",

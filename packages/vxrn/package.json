@@ -42,6 +42,7 @@
     "@vitejs/plugin-react-swc": "^3.6.0",
     "@vxrn/react-native-prebuilt": "1.1.154",
     "@vxrn/safe-area": "1.1.154",
+    "@vxrn/vendor": "1.1.154",
     "@vxrn/vite-flow": "1.1.154",
     "@vxrn/vite-native-swc": "1.1.154",
     "citty": "^0.1.6",
