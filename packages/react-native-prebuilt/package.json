@@ -7,7 +7,10 @@
   "module": "dist/esm",
   "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "vendor",
+    "src",
+    "types"
   ],
   "scripts": {
     "prebuild": "node -r esbuild-register ./prebuild-react-native.ts",
