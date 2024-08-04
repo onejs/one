@@ -23,11 +23,10 @@ export const createProdServer = async (options: VXRNOptions) => {
       return
     }
 
-    // set reasonable cache control header
-    c.header(
-      'Cache-Control',
-      'public, max-age=3600, stale-while-revalidate=600, stale-if-error=86400'
-    )
+    // no cache let cdn do that shit
+    if (!c.req.header('Cache-Control')) {
+      c.header('Cache-Control', 'no-store')
+    }
 
     return response
   })
