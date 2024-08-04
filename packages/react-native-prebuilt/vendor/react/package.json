@@ -9,6 +9,7 @@
   "bugs": "https://github.com/facebook/react/issues",
   "license": "MIT",
   "files": [
+    "vendor",
     "LICENSE",
     "README.md",
     "index.js",
