@@ -18,7 +18,15 @@ export const getPrebuilds = (cacheDir: string) => ({
 export async function prebuildReactNativeModules(cacheDir: string) {
   const prebuilds = getPrebuilds(cacheDir)
 
-  if (!(await FSExtra.pathExists(prebuilds.reactNative))) {
+  if (
+    !(
+      await Promise.all([
+        FSExtra.pathExists(prebuilds.reactNative),
+        FSExtra.pathExists(prebuilds.react),
+        FSExtra.pathExists(prebuilds.reactJSX),
+      ])
+    ).every(Boolean)
+  ) {
     console.info('Pre-building react, react-native react/jsx-runtime (one time cost)...')
     await Promise.all([
       buildReactNative({
