@@ -1,9 +1,12 @@
+import type { NavigationState, PartialRoute } from '@react-navigation/native'
 import {
   StackActions,
   type NavigationContainerRefWithCurrent,
   type getPathFromState as originalGetPathFromState,
 } from '@react-navigation/native'
-import { Fragment, useSyncExternalStore, type ComponentType } from 'react'
+import * as Linking from 'expo-linking'
+import { nanoid } from 'nanoid/non-secure'
+import { Fragment, startTransition, useSyncExternalStore, type ComponentType } from 'react'
 import { Platform } from 'react-native'
 import type { RouteNode } from '../Route'
 import type { State } from '../fork/getPathFromState'
@@ -13,11 +16,17 @@ import { getLinkingConfig, type ExpoLinkingOptions } from '../getLinkingConfig'
 import { getRoutes } from '../getRoutes'
 import type { VXSRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
+import { resolve } from '../link/path'
+import { matchDynamicName } from '../matchers'
 import { sortRoutes } from '../sortRoutes'
 import type { RequireContext } from '../types'
 import { getQualifiedRouteComponent } from '../useScreens'
 import { assertIsReady } from '../utils/assertIsReady'
+import { removeSearch } from '../utils/removeSearch'
+import { shouldLinkExternally } from '../utils/url'
+import { CACHE_KEY, CLIENT_BASE_URL } from './constants'
 import { getNormalizedStatePath, type UrlObject } from './getNormalizedStatePath'
+import { setLastAction } from './lastAction'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -371,16 +380,6 @@ export function cleanup() {
   }
 }
 
-import type { NavigationState, PartialRoute } from '@react-navigation/native'
-import * as Linking from 'expo-linking'
-import { nanoid } from 'nanoid/non-secure'
-import { startTransition } from 'react'
-import { resolve } from '../link/path'
-import { matchDynamicName } from '../matchers'
-import { shouldLinkExternally } from '../utils/url'
-import { CACHE_KEY, CLIENT_BASE_URL } from './constants'
-import { removeSearch } from '../utils/removeSearch'
-
 // TODO
 export const preloadingLoader = {}
 
@@ -409,8 +408,6 @@ export function preloadRoute(href: string) {
   }
 }
 
-export let lastUserRouteAction = Date.now()
-
 export async function linkTo(href: string, event?: string, options?: VXSRouter.LinkToOptions) {
   if (shouldLinkExternally(href)) {
     Linking.openURL(href)
@@ -430,7 +427,7 @@ export async function linkTo(href: string, event?: string, options?: VXSRouter.L
     throw new Error('Attempted to link to route when no routes are present')
   }
 
-  lastUserRouteAction = Date.now()
+  setLastAction()
 
   if (href === '..' || href === '../') {
     current.goBack()
@@ -583,7 +580,7 @@ function getNavigateAction(
 
   // VXS uses only three actions, but these don't directly translate to all navigator actions
   if (type === 'PUSH') {
-    lastUserRouteAction = Date.now()
+    setLastAction()
 
     // Only stack navigators have a push action, and even then we want to use NAVIGATE (see below)
     type = 'NAVIGATE'
