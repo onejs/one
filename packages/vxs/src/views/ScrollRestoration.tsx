@@ -1,9 +1,6 @@
 import { useEffect } from 'react'
-import {
-  lastUserRouteAction,
-  subscribeToLoadingState,
-  subscribeToRootState,
-} from '../router/router'
+import { getLastAction, setLastAction } from '../router/lastAction'
+import { subscribeToLoadingState, subscribeToRootState } from '../router/router'
 
 const KEY = 'vxs-sr'
 
@@ -43,11 +40,12 @@ export function ScrollRestoration() {
 
     window.addEventListener('popstate', () => {
       didPop = true
+      setLastAction()
     })
 
     const disposeOnLoadState = subscribeToLoadingState((state) => {
-      if (Date.now() - lastUserRouteAction > 1) {
-        // this isn't a state change due to a link press, ignore
+      if (Date.now() - getLastAction() > 30) {
+        // this isn't a state change due to a link press or back, ignore
         return
       }
 
@@ -57,7 +55,7 @@ export function ScrollRestoration() {
     })
 
     const disposeOnRootState = subscribeToRootState((state) => {
-      if (Date.now() - lastUserRouteAction > 1) {
+      if (Date.now() - getLastAction() > 16) {
         // this isn't a state change due to a link press, ignore
         return
       }
