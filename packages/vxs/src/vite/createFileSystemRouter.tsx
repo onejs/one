@@ -1,4 +1,4 @@
-import { debounce } from '@tamagui/use-debounce'
+import { debounce } from 'perfect-debounce'
 import { join } from 'node:path'
 import type { Connect, Plugin } from 'vite'
 import { createServerModuleRunner, DevEnvironment, RemoteEnvironmentTransport } from 'vite'
