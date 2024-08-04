@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@tamagui/vite-plugin": "^1.108.0",
-    "h3": "^1.11.1",
+    "h3": "1.11.1",
     "patch-package": "^8.0.0",
     "supabase": "1.127.4"
   }
