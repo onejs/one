@@ -25,7 +25,7 @@ function sanitizeUrl(url: string): string {
 
   if (!validProtocol) {
     throwOrAlert(
-      `Expo Head: Native origin has invalid protocol "${parsed.protocol}" for URL in Expo Config: ${protocolWarningString}.`
+      `VXS Head: Native origin has invalid protocol "${parsed.protocol}" for URL in Config: ${protocolWarningString}.`
     )
   }
 
@@ -40,14 +40,11 @@ function sanitizeUrl(url: string): string {
 const memoSanitizeUrl = memoize(sanitizeUrl)
 
 function getUrlFromConstants(): string | null {
-  // This will require a rebuild in bare-workflow to update.
-  const manifest = Constants.expoConfig
-
-  const origin = manifest?.extra?.router?.headOrigin ?? manifest?.extra?.router?.origin
+  const origin = process.env.VXS_ORIGIN
 
   if (!origin) {
     throwOrAlert(
-      `Expo Head: Add the handoff origin to the Expo Config (requires rebuild). Add the Config Plugin ${protocolWarningString}, where \`origin\` is the hosted URL.`
+      `VXS Head: Add the handoff origin to the Config (requires rebuild). Add the Config Plugin ${protocolWarningString}, where \`origin\` is the hosted URL.`
     )
     // Fallback value that shouldn't be used for real.
     return 'https://expo.dev'
@@ -56,7 +53,7 @@ function getUrlFromConstants(): string | null {
   // Without this, the URL will go to an IP address which is not allowed.
   if (!origin.match(/^http(s)?:\/\//)) {
     console.warn(
-      `Expo Head: origin "${origin}" is missing a \`https://\` protocol. ${protocolWarningString}.`
+      `VXS Head: origin "${origin}" is missing a \`https://\` protocol. ${protocolWarningString}.`
     )
   }
 

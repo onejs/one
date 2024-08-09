@@ -24,7 +24,7 @@
     }
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.6.3",
-    "@tamagui/build": "^1.108.0"
+    "@biomejs/biome": "^1.8.3",
+    "@tamagui/build": "^1.108.2"
   }
 }
