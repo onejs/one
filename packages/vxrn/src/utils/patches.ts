@@ -5,10 +5,6 @@ import type { VXRNOptionsFilled } from './getOptionsFilled'
 
 const patches = [
   {
-    module: 'react-native-screens',
-    patchFile: 'react-native-screens+3.22.1.patch',
-  },
-  {
     module: 'h3',
     patchFile: 'h3+1.11.1.patch',
   },

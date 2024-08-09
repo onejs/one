@@ -28,6 +28,19 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
       plugins: [
         https ? mkcert() : null,
 
+        // avoid logging the optimizeDeps we add that aren't in the app:
+        // likely we need a whole better solution to optimize deps
+        {
+          name: `avoid-optimize-logs`,
+          buildStart() {
+            const ogWarn = this.warn
+            this.warn = (...args) => {
+              console.log('???', args)
+              ogWarn(...args)
+            }
+          },
+        },
+
         reactNativeHMRPlugin(config),
 
         expoManifestRequestHandlerPlugin({

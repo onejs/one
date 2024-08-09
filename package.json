@@ -40,7 +40,7 @@
     "vxs": "yarn workspace example-vxs"
   },
   "dependencies": {
-    "@biomejs/biome": "^1.6.3",
+    "@biomejs/biome": "^1.8.3",
     "@manypkg/cli": "^0.19.1",
     "@types/eslint": "^8",
     "@types/react": "^18.2.24",

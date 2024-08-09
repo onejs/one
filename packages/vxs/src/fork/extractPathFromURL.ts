@@ -1,5 +1,3 @@
-import Constants, { ExecutionEnvironment } from '../constants'
-import * as Linking from 'expo-linking'
 import URL from 'url-parse'
 
 // This is only run on native.
@@ -14,28 +12,28 @@ function extractExactPathFromURL(url: string): string {
   }
 
   // Handle special URLs used in Expo Go: `/--/pathname` -> `pathname`
-  if (
-    Constants.executionEnvironment === ExecutionEnvironment.StoreClient &&
-    // while not exhaustive, `exp` and `exps` are the only two schemes which
-    // are passed through to other apps in Expo Go.
-    url.match(/^exp(s)?:\/\//)
-  ) {
-    const pathname = url.match(/exps?:\/\/.*?\/--\/(.*)/)?.[1]
-    if (pathname) {
-      return fromDeepLink('a://' + pathname)
-    }
+  // if (
+  //   Constants.executionEnvironment === ExecutionEnvironment.StoreClient &&
+  //   // while not exhaustive, `exp` and `exps` are the only two schemes which
+  //   // are passed through to other apps in Expo Go.
+  //   url.match(/^exp(s)?:\/\//)
+  // ) {
+  //   const pathname = url.match(/exps?:\/\/.*?\/--\/(.*)/)?.[1]
+  //   if (pathname) {
+  //     return fromDeepLink('a://' + pathname)
+  //   }
 
-    const res = Linking.parse(url)
+  //   const res = Linking.parse(url)
 
-    const qs = !res.queryParams
-      ? ''
-      : Object.entries(res.queryParams)
-          .map(([k, v]) => `${k}=${v}`)
-          .join('&')
-    return (
-      adjustPathname({ hostname: res.hostname, pathname: res.path || '' }) + (qs ? '?' + qs : '')
-    )
-  }
+  //   const qs = !res.queryParams
+  //     ? ''
+  //     : Object.entries(res.queryParams)
+  //         .map(([k, v]) => `${k}=${v}`)
+  //         .join('&')
+  //   return (
+  //     adjustPathname({ hostname: res.hostname, pathname: res.path || '' }) + (qs ? '?' + qs : '')
+  //   )
+  // }
 
   // TODO: Support dev client URLs
 
