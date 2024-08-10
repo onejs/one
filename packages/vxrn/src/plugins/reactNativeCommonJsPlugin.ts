@@ -138,6 +138,7 @@ export function reactNativeCommonJsPlugin(options: {
 
             resolve: {
               extensions: getNativeExtensions('ios'),
+              conditions: ['react-native-import', 'react-native'],
             },
 
             optimizeDeps: {
@@ -173,6 +174,7 @@ export function reactNativeCommonJsPlugin(options: {
 
             resolve: {
               extensions: getNativeExtensions('android'),
+              conditions: ['react-native-import', 'react-native'],
             },
 
             optimizeDeps: {
