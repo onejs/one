@@ -1,6 +1,6 @@
 import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import type { InlineConfig } from 'vite'
-import { fixDependenciesPlugin } from '../plugins/fixDependenciesPlugin'
+import { androidExtensions, iosExtensions, webExtensions } from '../constants'
 
 // essentially base web config not base everything
 
@@ -21,7 +21,34 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
   return {
     mode,
 
-    plugins: [reactSwcPlugin({})],
+    plugins: [
+      {
+        name: 'platform-specific-resolve',
+        config() {
+          return {
+            resolve: {
+              extensions: webExtensions,
+            },
+
+            environments: {
+              ios: {
+                resolve: {
+                  extensions: iosExtensions,
+                },
+              },
+
+              android: {
+                resolve: {
+                  extensions: androidExtensions,
+                },
+              },
+            },
+          }
+        },
+      },
+
+      reactSwcPlugin({}),
+    ],
 
     define: {
       __DEV__: `${mode === 'development'}`,
