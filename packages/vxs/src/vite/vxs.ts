@@ -73,6 +73,10 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       enforce: 'pre',
 
       async config() {
+        if (typeof import.meta.resolve === 'undefined') {
+          throw new Error(`Must be on Node version >= 19`)
+        }
+
         const sharedNativeConfig = {
           resolve: {
             alias: {
