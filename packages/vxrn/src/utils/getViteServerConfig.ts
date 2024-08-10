@@ -6,6 +6,7 @@ import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
+import { androidExtensions, iosExtensions, webExtensions } from '../constants'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled) {
   const { root, host, https, port } = config
@@ -28,15 +29,22 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
       plugins: [
         https ? mkcert() : null,
 
+        // temp fix
         // avoid logging the optimizeDeps we add that aren't in the app:
         // likely we need a whole better solution to optimize deps
         {
           name: `avoid-optimize-logs`,
-          buildStart() {
-            const ogWarn = this.warn
-            this.warn = (...args) => {
-              console.log('???', args)
-              ogWarn(...args)
+
+          configureServer() {
+            const ogWarn = console.warn
+            console.warn = (...args: any[]) => {
+              if (
+                typeof args[0] === 'string' &&
+                args[0].startsWith(`Failed to resolve dependency:`)
+              ) {
+                return
+              }
+              return ogWarn(...args)
             }
           },
         },
