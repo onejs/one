@@ -1,7 +1,7 @@
 {
   "name": "@vxrn/react-native-prebuilt",
   "type": "module",
-  "version": "1.1.163",
+  "version": "1.1.164",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
@@ -30,8 +30,8 @@
     "./jsx-runtime": "./vendor/react/jsx-dev-runtime.js"
   },
   "dependencies": {
-    "@vxrn/vite-flow": "1.1.163",
-    "@vxrn/vite-native-hmr": "1.1.163",
+    "@vxrn/vite-flow": "1.1.164",
+    "@vxrn/vite-native-hmr": "1.1.164",
     "esbuild": "^0.23.0",
     "fs-extra": "^11.2.0",
     "import-meta-resolve": "^4.1.0"

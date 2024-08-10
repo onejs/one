@@ -1,5 +1,3 @@
-import Constants from '../constants'
-
 const protocolWarningString = `{ plugins: [["router", { origin: "...<URL>..." }]] }`
 
 /** `lodash.memoize` */
