@@ -43,7 +43,8 @@
       "require": "./dist/cjs/server-render.js"
     },
     "./headers": {
-      "react-native": "./dist/esm/vite/headers.native.mjs",
+      "react-native-import": "./dist/esm/vite/headers.native.js",
+      "react-native": "./dist/cjs/vite/headers.native.js",
       "types": "./types/vite/headers.d.ts",
       "import": "./dist/esm/vite/headers.mjs",
       "require": "./dist/cjs/vite/headers.js"
