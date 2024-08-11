@@ -1,6 +1,7 @@
 // helper for SEO/social meta attributes
 
 import { Fragment } from 'react'
+import { isWeb } from 'tamagui'
 
 export function HeadInfo({
   title,
@@ -17,6 +18,10 @@ export function HeadInfo({
     images?: { url: string; width?: number; height?: number }[]
   }
 }) {
+  if (!isWeb) {
+    return null
+  }
+
   const fullTitle = title?.includes('Tamagui') ? title : `${title} | Tamagui`
 
   return (
@@ -48,12 +53,8 @@ export function HeadInfo({
             return (
               <Fragment key={image.url}>
                 <meta property="og:image" content={image.url} />
-                {image.width && (
-                  <meta property="og:image:width" content={`${image.width}`} />
-                )}
-                {image.height && (
-                  <meta property="og:image:height" content={`${image.height}`} />
-                )}
+                {image.width && <meta property="og:image:width" content={`${image.width}`} />}
+                {image.height && <meta property="og:image:height" content={`${image.height}`} />}
               </Fragment>
             )
           })}

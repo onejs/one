@@ -1,12 +1,12 @@
 import '~/app.css'
 import '~/tamagui.css'
 
-import { ToastProvider } from '@tamagui/toast'
+import { ToastProvider, ToastViewport } from '@tamagui/toast'
 import { isWeb, setupPopper, TamaguiProvider } from 'tamagui'
 import { PageLoadProgressBar, ScrollRestoration, Slot, Stack } from 'vxs'
 import { HeadInfo } from '~/components/HeadInfo'
 import tamaConf from '~/config/tamagui.config'
-import { UserThemeProvider, useUserTheme } from '~/features/theme/useUserTheme'
+import { UserThemeProvider, useUserTheme, HydrateTheme } from '@tamagui/one-theme'
 
 setupPopper({
   // prevents a reflow on mount
@@ -16,55 +16,57 @@ setupPopper({
 export default function Layout() {
   return (
     <>
-      <meta charSet="utf-8" />
-      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+      {isWeb && (
+        <>
+          <ToastViewport flexDirection="column-reverse" top="$2" left={0} right={0} />
+          <ToastViewport
+            multipleToasts
+            name="viewport-multiple"
+            flexDirection="column-reverse"
+            top="$2"
+            left={0}
+            right={0}
+          />
 
-      <link rel="icon" href="/favicon.png" />
-      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      <meta name="docsearch:language" content="en" />
-      <meta name="docsearch:version" content="1.0.0,latest" />
-      <meta id="theme-color" name="theme-color" />
-      <meta name="color-scheme" content="light dark" />
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
 
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@tamagui_js" />
-      <meta name="twitter:creator" content="@natebirdman" />
+          <link rel="icon" href="/favicon.png" />
+          <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+          <meta name="docsearch:language" content="en" />
+          <meta name="docsearch:version" content="1.0.0,latest" />
+          <meta id="theme-color" name="theme-color" />
+          <meta name="color-scheme" content="light dark" />
 
-      <HeadInfo
-        openGraph={{
-          type: 'website',
-          locale: 'en_US',
-          url: 'https://tamagui.dev',
-          siteName: 'Tamagui',
-          images: [
-            {
-              url: 'https://tamagui.dev/social.png',
-            },
-          ],
-        }}
-      />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@tamagui_js" />
+          <meta name="twitter:creator" content="@natebirdman" />
 
-      <ScrollRestoration />
-      <PageLoadProgressBar />
+          <HeadInfo
+            openGraph={{
+              type: 'website',
+              locale: 'en_US',
+              url: 'https://tamagui.dev',
+              siteName: 'Tamagui',
+              images: [
+                {
+                  url: 'https://tamagui.dev/social.png',
+                },
+              ],
+            }}
+          />
 
-      <meta name="robots" content="index,follow" />
+          <ScrollRestoration />
+          <PageLoadProgressBar />
 
-      {/* load fonts, css scripts here */}
+          <meta name="robots" content="index,follow" />
 
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `let d = document.documentElement.classList
-          d.remove('t_light')
-          d.remove('t_dark')
-          let e = localStorage.getItem('user-theme')
-          let t =
-            'system' === e || !e
-              ? window.matchMedia('(prefers-color-scheme: dark)').matches
-              : e === 'dark'
-          t ? d.add('t_dark') : d.add('t_light')`,
-        }}
-      />
+          {/* load fonts, css scripts here */}
+
+          <HydrateTheme />
+        </>
+      )}
 
       <Providers>
         {isWeb ? (
@@ -104,16 +106,13 @@ function TamaguiRootProvider(props: { children: any }) {
   const [{ resolvedTheme }] = useUserTheme()
 
   return (
-    // react 19 hydration breaks if theres not a single root node, which disableRootThemeClass causes
-    <span style={{ display: 'contents' }}>
-      <TamaguiProvider
-        disableRootThemeClass
-        disableInjectCSS
-        defaultTheme={resolvedTheme}
-        config={tamaConf}
-      >
-        <ToastProvider swipeDirection="horizontal">{props.children}</ToastProvider>
-      </TamaguiProvider>
-    </span>
+    <TamaguiProvider
+      disableRootThemeClass
+      disableInjectCSS
+      defaultTheme={resolvedTheme}
+      config={tamaConf}
+    >
+      <ToastProvider swipeDirection="horizontal">{props.children}</ToastProvider>
+    </TamaguiProvider>
   )
 }

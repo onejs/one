@@ -1,5 +1,4 @@
-import { join, relative, dirname } from 'node:path'
-import { createRequire } from 'node:module'
+import { dirname, join, relative } from 'node:path'
 
 import FSExtra from 'fs-extra'
 
@@ -7,6 +6,7 @@ export async function getVitePath(
   rootPath: string,
   importer: string,
   moduleName: string,
+  resolver: (moduleName: string, importer: string) => Promise<string>,
   absolute = false
 ) {
   // our virtual modules
@@ -34,21 +34,28 @@ export async function getVitePath(
   }
 
   const sourceFile = join(process.cwd(), 'index.js')
-  const require = createRequire(moduleName)
-  const resolved = require.resolve(sourceFile)
+  const resolved = await resolver(moduleName, sourceFile)
+
   // figure out symlinks
   if (!resolved) {
     throw new Error(
       ` ❌ Path not found ${sourceFile} (rootPath ${rootPath}, importer ${importer}, moduleName ${moduleName})`
     )
   }
+
   const real = await FSExtra.realpath(resolved)
+
   let id = real
-  if (!absolute) {
-    id = relative(importer, real)
-  }
+
+  // if (!absolute) {
+  //   id = relative(importer, real)
+  // }
+
+  console.log('gog?', { sourceFile, moduleName, rootPath, importer, real, id })
+
   if (id.endsWith(`/react/jsx-dev-runtime.js`)) {
     id = 'react/jsx-runtime'
   }
+
   return id
 }

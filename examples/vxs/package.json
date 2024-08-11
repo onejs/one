@@ -15,13 +15,13 @@
     "postinstall": "patch-package || true"
   },
   "dependencies": {
-    "@tamagui/config": "^1.108.2",
+    "@tamagui/config": "^1.108.3",
     "moti": "^0.29.0",
     "react": "^18.3.1",
     "react-native": "0.74.1",
     "react-native-reanimated": "npm:react-native-reanimated@3.13.0-rc.1",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.108.2",
+    "tamagui": "^1.108.3",
     "vxs": "1.1.164"
   },
   "devDependencies": {
