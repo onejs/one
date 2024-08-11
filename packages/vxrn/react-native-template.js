@@ -35,13 +35,6 @@ function printError(err) {
 }
 
 function __getRequire(absPath) {
-  if (___vxrnAbsoluteToRelative___[absPath]) {
-    console.log(`we got an abs to relative!`, absPath, 'to', ___vxrnAbsoluteToRelative___[absPath])
-    if (__cachedModules[___vxrnAbsoluteToRelative___[absPath]]) {
-      console.log('what is', `${__cachedModules[___vxrnAbsoluteToRelative___[absPath]]}`)
-    }
-  }
-
   absPath = ___vxrnAbsoluteToRelative___[absPath] || absPath
 
   if (!__cachedModules[absPath]) {
@@ -54,10 +47,6 @@ function __getRequire(absPath) {
       } catch (err) {
         console.error(`Error running module: "${absPath}"\n${printError(err)}`)
         return {}
-      }
-
-      if (absPath === 'tamagui/code/ui/tamagui/dist/esm/index.native.js') {
-        console.log('????????', `${mod.exports}`, Object.keys(mod.exports))
       }
 
       __cachedModules[absPath] = mod.exports || mod
