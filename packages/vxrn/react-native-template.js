@@ -34,19 +34,31 @@ function printError(err) {
   return `${err instanceof Error ? `${err.message}\n${err.stack}` : err}`
 }
 
+const __runningModules = new Map()
+
 function __getRequire(absPath) {
   absPath = ___vxrnAbsoluteToRelative___[absPath] || absPath
 
   if (!__cachedModules[absPath]) {
     const runModule = ___modules___[absPath]
 
+    // do not run again if the module is already running, avoids stack overflow on circular dependencies
+    if (__runningModules.has(absPath)) {
+      // TODO we can probably print a circular dependency warning for this
+      return __runningModules.get(absPath).exports
+    }
+
     if (runModule) {
       const mod = { exports: {} }
+      __runningModules.set(absPath, mod)
+
       try {
         runModule(mod.exports, mod)
       } catch (err) {
         console.error(`Error running module: "${absPath}"\n${printError(err)}`)
         return {}
+      } finally {
+        __runningModules.delete(absPath)
       }
 
       __cachedModules[absPath] = mod.exports || mod
