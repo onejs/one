@@ -51,8 +51,6 @@ export async function getVitePath(
   //   id = relative(importer, real)
   // }
 
-  console.log('gog?', { sourceFile, moduleName, rootPath, importer, real, id })
-
   if (id.endsWith(`/react/jsx-dev-runtime.js`)) {
     id = 'react/jsx-runtime'
   }
