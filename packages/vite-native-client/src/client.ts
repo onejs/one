@@ -356,8 +356,6 @@ async function fetchUpdate({ path, acceptedPath, timestamp, explicitImportRequir
 
       const source = await fetch(scriptUrl).then((res) => res.text())
 
-      console.info(`got update source: ${source}`)
-
       // biome-ignore lint/security/noGlobalEval: this is one of those rare use cases
       const evaluatedModule = eval(source)
 
