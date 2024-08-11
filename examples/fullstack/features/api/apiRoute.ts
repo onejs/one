@@ -1,4 +1,3 @@
-import type { PostgrestError } from '@supabase/supabase-js'
 import type { Endpoint } from 'vxs'
 import { isResponse } from 'vxs'
 
@@ -46,17 +45,6 @@ export function apiRoute(handler: Endpoint) {
       )
     }
   }) satisfies Endpoint
-}
-
-export function postgresError(err: PostgrestError): Error {
-  return new Error(`Postgres query error: [${err.code}]:
-  message:
-${err.message}
-  details:
-${err.details}
-  hint:
-${err.hint}
-`)
 }
 
 async function streamToString(stream: ReadableStream) {
