@@ -7,10 +7,19 @@ import { getVitePath } from '../utils/getVitePath'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
 import type { Plugin } from 'vite'
+import { conditions } from './reactNativeCommonJsPlugin'
 
 export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
+  let resolver
+
   return {
     name: 'client-transform',
+
+    async configResolved(config) {
+      resolver = config.createResolver({
+        conditions,
+      })
+    },
 
     // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
@@ -54,7 +63,7 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
           const { n: importName, s: start } = specifier
 
           if (importName) {
-            const id = await getVitePath(entryRoot, file, importName)
+            const id = await getVitePath(entryRoot, file, importName, resolver)
             if (!id) {
               console.warn('???')
               continue

@@ -15,6 +15,8 @@ const { pathExists } = FSExtra
 export let entryRoot = ''
 
 export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
+  entryRoot = options.root
+
   if (process.env.LOAD_TMP_BUNDLE) {
     // for easier quick testing things:
     const tmpBundle = join(process.cwd(), 'bundle.tmp.js')
@@ -65,14 +67,12 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
           )
         }
 
-        if (outputModule.isEntry) {
-          entryRoot = dirname(id)
-        }
-
         return `
 // id: ${id}
 // name: ${outputModule.name}
 // facadeModuleId: ${outputModule.facadeModuleId}
+// fileName: ${outputModule.fileName}
+___vxrnAbsoluteToRelative___["${outputModule.facadeModuleId}"] = "${id}"
 ___modules___["${id}"] = ((exports, module) => {
 const require = createRequire("${id}", ${JSON.stringify(importsMap, null, 2)})
 

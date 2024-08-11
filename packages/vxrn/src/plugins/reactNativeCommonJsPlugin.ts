@@ -21,14 +21,24 @@ const getNativeExtensions = (platform: 'ios' | 'android') => {
   ]
 }
 
+export const conditions = ['react-native-import', 'react-native']
+
 export function reactNativeCommonJsPlugin(options: {
   root: string
   port: number
   mode: 'build' | 'serve'
 }): Plugin {
+  let resolver
+
   return {
     name: 'native',
     enforce: 'pre',
+
+    async configResolved(config) {
+      resolver = config.createResolver({
+        conditions,
+      })
+    },
 
     config: async () => {
       const sharedNativeConfig = {
@@ -76,22 +86,23 @@ export function reactNativeCommonJsPlugin(options: {
                   //   return
                   // }
                   try {
-                    const [imports, exports] = parse(code)
+                    const [foundImports, foundExports] = parse(code)
+
                     let forceExports = ''
                     // note that es-module-lexer parses export * from as an import (twice) for some reason
                     let counts = {}
-                    for (const imp of imports) {
+                    for (const imp of foundImports) {
                       if (imp.n && imp.n[0] !== '.') {
                         counts[imp.n] ||= 0
                         counts[imp.n]++
                         if (counts[imp.n] == 2) {
                           // star export
-                          const path = await getVitePath(options.root, dirname(id), imp.n)
+                          const path = await getVitePath(options.root, dirname(id), imp.n, resolver)
                           forceExports += `Object.assign(exports, require("${path}"));`
                         }
                       }
                     }
-                    forceExports += exports
+                    forceExports += foundExports
                       .map((e) => {
                         if (e.n === 'default') {
                           return ''
@@ -138,7 +149,7 @@ export function reactNativeCommonJsPlugin(options: {
 
             resolve: {
               extensions: getNativeExtensions('ios'),
-              conditions: ['react-native-import', 'react-native'],
+              conditions,
             },
 
             optimizeDeps: {
@@ -174,7 +185,7 @@ export function reactNativeCommonJsPlugin(options: {
 
             resolve: {
               extensions: getNativeExtensions('android'),
-              conditions: ['react-native-import', 'react-native'],
+              conditions,
             },
 
             optimizeDeps: {

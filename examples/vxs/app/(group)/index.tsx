@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Text, View } from 'react-native'
 import { Link } from 'vxs'
 
