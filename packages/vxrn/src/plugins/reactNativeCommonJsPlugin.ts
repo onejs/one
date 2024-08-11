@@ -63,6 +63,8 @@ export function reactNativeCommonJsPlugin(options: {
           reportCompressedSize: false,
 
           rollupOptions: {
+            treeshake: false,
+
             output: {
               preserveModules: true,
               manualChunks: undefined,
@@ -86,37 +88,50 @@ export function reactNativeCommonJsPlugin(options: {
                   //   return
                   // }
                   try {
-                    const [foundImports, foundExports] = parse(code)
+                    const [_foundImports, foundExports] = parse(code)
 
                     let forceExports = ''
-                    // note that es-module-lexer parses export * from as an import (twice) for some reason
-                    let counts = {}
-                    for (const imp of foundImports) {
-                      if (imp.n && imp.n[0] !== '.') {
-                        counts[imp.n] ||= 0
-                        counts[imp.n]++
-                        if (counts[imp.n] == 2) {
-                          // star export
-                          const path = await getVitePath(options.root, dirname(id), imp.n, resolver)
-                          forceExports += `Object.assign(exports, require("${path}"));`
+
+                    // lets handle export * as since es-module-lexer doesn't :/
+                    let found = 0
+                    for (const line of code.split('\n')) {
+                      if (line.startsWith('export * from')) {
+                        const [_, exportedName] =
+                          line.match(/export \* from [\'\"]([^\'\"]+)[\'\"]/) || []
+                        if (exportedName) {
+                          found++
+                          const name = `__vxrnExp${found}`
+                          forceExports += `
+                            import * as ${name} from '${exportedName}';
+                            globalThis.__forceExport${name} = ${name}
+                            Object.assign(exports, globalThis.__forceExport${name});
+                          `
                         }
                       }
                     }
+
                     forceExports += foundExports
                       .map((e) => {
                         if (e.n === 'default') {
                           return ''
                         }
                         let out = ''
+
                         if (e.ln !== e.n && !RESERVED_WORDS.includes(e.n)) {
                           // forces the "as x" to be referenced so it gets exported
                           out += `\n__ignore = typeof ${e.n} === 'undefined' ? 0 : 0;`
                         }
+
                         out += `\nglobalThis.____forceExport = ${e.ln}`
+
                         return out
                       })
                       .join(';')
-                    return code + '\n' + forceExports
+
+                    return {
+                      code: code + '\n' + forceExports,
+                      moduleSideEffects: 'no-treeshake',
+                    }
                   } catch (err) {
                     console.warn(`Error forcing exports, probably ok`, id)
                   }
