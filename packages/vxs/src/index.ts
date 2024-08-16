@@ -29,17 +29,24 @@ export {
   useUnstableGlobalHref,
   usePathname,
   useNavigationContainerRef,
-  useGlobalSearchParams,
-  useLocalSearchParams,
+  useParams,
+  useRouteParams,
   useSegments,
   useRootNavigationState,
+} from './hooks'
+
+// for easier expo-router migration
+export {
+  useLocalSearchParams,
+  useGlobalSearchParams,
 } from './hooks'
 
 export * as routerStore from './router/router'
 
 export { router } from './imperative-api'
 
-export { Link, Redirect } from './link/Link'
+export { Link } from './link/Link'
+export { Redirect } from './link/Redirect'
 
 export { Head } from './head'
 
