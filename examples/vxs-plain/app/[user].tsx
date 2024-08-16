@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Text, View } from 'react-native'
-import { Link, useLocalSearchParams, useLoader, useNavigation } from 'vxs'
+import { Link, useParams, useLoader, useNavigation } from 'vxs'
 
 type UserPath = {
   user: string
@@ -23,7 +23,7 @@ export async function loader({ params }: { params: UserPath }) {
 
 export default function User(props: UserProps) {
   const navigation = useNavigation()
-  const params = useLocalSearchParams()
+  const params = useParams()
   const data = useLoader(loader)
 
   useEffect(() => {

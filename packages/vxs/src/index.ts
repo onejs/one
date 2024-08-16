@@ -37,8 +37,8 @@ export {
 
 // for easier expo-router migration
 export {
-  useLocalSearchParams,
-  useGlobalSearchParams,
+  useParams,
+  useActiveParams,
 } from './hooks'
 
 export * as routerStore from './router/router'

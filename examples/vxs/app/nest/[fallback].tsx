@@ -1,4 +1,4 @@
-import { useGlobalSearchParams, useLoader } from 'vxs'
+import { useActiveParams, useLoader } from 'vxs'
 import { Text, View } from '@tamagui/core'
 
 export async function generateStaticParams() {
@@ -12,7 +12,7 @@ export async function loader(props) {
 }
 
 export default function Fallback() {
-  const params = useGlobalSearchParams()
+  const params = useActiveParams()
   const data = useLoader(loader)
   return (
     <View bg="red" w={100} h={100}>
