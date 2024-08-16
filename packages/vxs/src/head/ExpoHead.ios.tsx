@@ -3,7 +3,7 @@ import React from 'react'
 
 import { ExpoHead, type UserActivity } from './ExpoHeadModule'
 import { getStaticUrlFromVXSRouter } from './url'
-import { useLocalSearchParams, useUnstableGlobalHref, usePathname, useSegments } from '../hooks'
+import { useParams, useUnstableGlobalHref, usePathname, useSegments } from '../hooks'
 
 function urlToId(url: string) {
   return url.replace(/[^a-zA-Z0-9]/g, '-')
@@ -19,7 +19,7 @@ function getLastSegment(path: string) {
 
 function useAddressableLink() {
   const pathname = useUnstableGlobalHref()
-  const params = useLocalSearchParams<any>()
+  const params = useParams<any>()
   const url = getStaticUrlFromVXSRouter(pathname)
   return { url, pathname, params }
 }

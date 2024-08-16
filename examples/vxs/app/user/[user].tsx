@@ -1,5 +1,5 @@
 import { Text, View } from '@tamagui/core'
-import { Link, useGlobalSearchParams, useLoader } from 'vxs'
+import { Link, useActiveParams, useLoader } from 'vxs'
 
 type UserPath = {
   user: string
@@ -21,7 +21,7 @@ export async function loader({ params }: { params: UserPath }) {
 }
 
 export default function User(props: UserProps) {
-  const params = useGlobalSearchParams()
+  const params = useActiveParams()
   const data = useLoader(loader)
 
   return (

@@ -92,14 +92,12 @@ export function usePathname(): string {
  * Get the globally selected query parameters, including dynamic path segments. This function will update even when the route is not focused.
  * Useful for analytics or other background operations that don't draw to the screen.
  *
- * When querying search params in a stack, opt-towards using `useLocalSearchParams` as these will only
+ * When querying search params in a stack, opt-towards using `useParams` as these will only
  * update when the route is focused.
  *
- * @see `useLocalSearchParams`
+ * @see `useParams`
  */
-export function useGlobalSearchParams<
-  TParams extends SearchParams = SearchParams,
->(): Partial<TParams> {
+export function useActiveParams<TParams extends SearchParams = SearchParams>(): Partial<TParams> {
   return useStoreRouteInfo().params as Partial<TParams>
 }
 
@@ -107,11 +105,9 @@ export function useGlobalSearchParams<
  * Returns the URL search parameters for the contextually focused route. e.g. `/acme?foo=bar` -> `{ foo: "bar" }`.
  * This is useful for stacks where you may push a new screen that changes the query parameters.
  *
- * To observe updates even when the invoking route is not focused, use `useGlobalSearchParams()`.
+ * To observe updates even when the invoking route is not focused, use `useActiveParams()`.
  */
-export function useLocalSearchParams<
-  TParams extends SearchParams = SearchParams,
->(): Partial<TParams> {
+export function useParams<TParams extends SearchParams = SearchParams>(): Partial<TParams> {
   const context = React.useContext(NavigationRouteContext)
   const params = context?.params ?? {}
   return Object.fromEntries(

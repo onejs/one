@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { Text, View } from 'react-native'
-import { Link, useLocalSearchParams, useNavigation } from 'vxs'
+import { Link, useParams, useNavigation } from 'vxs'
 
 export default function Page() {
   const navigation = useNavigation()
-  const params = useLocalSearchParams()
+  const params = useParams()
 
   useEffect(() => {
     navigation.setOptions({ title: `Page ${params?.page_id}` })

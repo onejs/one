@@ -327,13 +327,13 @@ export namespace VXSRouter {
    * Returns the URL search parameters for the contextually focused route. e.g. \`/acme?foo=bar\` -> \`{ foo: "bar" }\`.
    * This is useful for stacks where you may push a new screen that changes the query parameters.
    *
-   * To observe updates even when the invoking route is not focused, use \`useGlobalSearchParams()\`.
-   * @see \`useGlobalSearchParams\`
+   * To observe updates even when the invoking route is not focused, use \`useActiveParams()\`.
+   * @see \`useActiveParams\`
    */
-  export declare function useLocalSearchParams<
+  export declare function useParams<
     TParams extends AllRoutes | UnknownOutputParams = UnknownOutputParams,
   >(): TParams extends AllRoutes ? SearchParams<TParams> : TParams
-  type useLocalSearchParams = typeof useLocalSearchParams
+  type useParams = typeof useParams
 
   export declare function useSearchParams<
     TParams extends AllRoutes | UnknownOutputParams = UnknownOutputParams,
@@ -344,15 +344,15 @@ export namespace VXSRouter {
    * Get the globally selected query parameters, including dynamic path segments. This function will update even when the route is not focused.
    * Useful for analytics or other background operations that don't draw to the screen.
    *
-   * When querying search params in a stack, opt-towards using \`useLocalSearchParams\` as these will only
+   * When querying search params in a stack, opt-towards using \`useParams\` as these will only
    * update when the route is focused.
    *
-   * @see \`useLocalSearchParams\`
+   * @see \`useParams\`
    */
-  export declare function useGlobalSearchParams<
+  export declare function useActiveParams<
     T extends AllRoutes | UnknownOutputParams = UnknownOutputParams,
   >(): T extends AllRoutes ? SearchParams<T> : T
-  type useGlobalSearchParams = typeof useGlobalSearchParams
+  type useActiveParams = typeof useActiveParams
 
   /**
    * Get a list of selected file segments for the currently selected route. Segments are not normalized, so they will be the same as the file path. e.g. /[id]?id=normal -> ["[id]"]
