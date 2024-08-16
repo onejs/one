@@ -101,6 +101,12 @@ export function useActiveParams<TParams extends SearchParams = SearchParams>(): 
   return useStoreRouteInfo().params as Partial<TParams>
 }
 
+/** @deprecated @see `useParams` */
+export const useLocalSearchParams = useParams
+
+/** @deprecated @see `useActiveParams` */
+export const useGlobalSearchParams = useActiveParams
+
 /**
  * Returns the URL search parameters for the contextually focused route. e.g. `/acme?foo=bar` -> `{ foo: "bar" }`.
  * This is useful for stacks where you may push a new screen that changes the query parameters.

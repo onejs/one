@@ -30,15 +30,15 @@ export {
   usePathname,
   useNavigationContainerRef,
   useParams,
-  useRouteParams,
+  useActiveParams,
   useSegments,
   useRootNavigationState,
 } from './hooks'
 
 // for easier expo-router migration
 export {
-  useParams,
-  useActiveParams,
+  useLocalSearchParams,
+  useGlobalSearchParams,
 } from './hooks'
 
 export * as routerStore from './router/router'
