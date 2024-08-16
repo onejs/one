@@ -30,18 +30,31 @@ function rememberScrollPosition() {
   sessionStorage.setItem(KEY, JSON.stringify(state))
 }
 
-export function ScrollRestoration() {
+export function ScrollRestoration(props: {
+  disable?: boolean | 'restore'
+}) {
   useEffect(() => {
     if (typeof window === 'undefined') {
+      return
+    }
+    if (props.disable) {
       return
     }
 
     let isInitial = true
 
-    window.addEventListener('popstate', () => {
-      didPop = true
-      setLastAction()
-    })
+    const popStateController = new AbortController()
+
+    window.addEventListener(
+      'popstate',
+      () => {
+        didPop = true
+        setLastAction()
+      },
+      {
+        signal: popStateController.signal,
+      }
+    )
 
     const disposeOnLoadState = subscribeToLoadingState((state) => {
       if (Date.now() - getLastAction() > 30) {
@@ -55,7 +68,7 @@ export function ScrollRestoration() {
     })
 
     const disposeOnRootState = subscribeToRootState((state) => {
-      if (Date.now() - getLastAction() > 16) {
+      if (Date.now() - getLastAction() > 30) {
         // this isn't a state change due to a link press, ignore
         return
       }
@@ -70,8 +83,10 @@ export function ScrollRestoration() {
       }
 
       if (didPop) {
-        // for now only restore on back button
-        restorePosition()
+        if (props.disable !== 'restore') {
+          // for now only restore on back button
+          restorePosition()
+        }
       } else {
         // if new page just set back to top
         window.scrollTo(0, 0)
@@ -79,10 +94,11 @@ export function ScrollRestoration() {
     })
 
     return () => {
+      popStateController.abort()
       disposeOnLoadState()
       disposeOnRootState()
     }
-  }, [])
+  }, [props.disable])
 
   return null
 }
