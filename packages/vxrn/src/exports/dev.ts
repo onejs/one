@@ -60,8 +60,8 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   const serverConfig = await getViteServerConfig(options)
   const viteServer = await createServer(serverConfig)
 
-  // first resolve config so we can pass into client plugin, then add client plugin:
-  // TODO do we need this really? seems like we don't, can check if we can do this without the resolveConfig()
+  // we pass resolved config into client inject to get the final port etc to use
+  // probably can be done better
   const resolvedConfig = await resolveConfig(serverConfig, 'serve')
   const viteRNClientPlugin = clientInjectionsPlugin(resolvedConfig)
 
