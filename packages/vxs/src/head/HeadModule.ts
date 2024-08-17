@@ -30,7 +30,7 @@ export type UserActivity = {
   expirationDate?: Date
 }
 
-let ExpoHead: {
+let HeadModule: {
   activities: {
     INDEXED_ROUTE: string
   }
@@ -44,7 +44,7 @@ let ExpoHead: {
 // If running in Expo Go.
 // @ts-ignore
 if (typeof expo !== 'undefined' && globalThis.expo?.modules?.ExpoGo) {
-  ExpoHead = globalThis.expo?.modules?.ExpoHead
+  HeadModule = globalThis.expo?.modules?.HeadModule
 }
 
-export { ExpoHead }
+export { HeadModule }
