@@ -11,7 +11,9 @@ export { render } from './render'
 
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
-export { Drawer } from './layouts/Drawer'
+
+// TODO breaking due to react-native-gesture-handler
+// export { Drawer } from './layouts/Drawer'
 
 export { Navigator, Slot } from './views/Navigator'
 export { ErrorBoundary } from './views/ErrorBoundary'
