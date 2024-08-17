@@ -1,9 +1,9 @@
 import { useIsFocused } from '@react-navigation/core'
 import React from 'react'
-
-import { ExpoHead, type UserActivity } from './ExpoHeadModule'
+import { HeadModule, type UserActivity } from './HeadModule'
 import { getStaticUrlFromVXSRouter } from './url'
 import { useParams, useUnstableGlobalHref, usePathname, useSegments } from '../hooks'
+import type { HeadType } from './types'
 
 function urlToId(url: string) {
   return url.replace(/[^a-zA-Z0-9]/g, '-')
@@ -163,7 +163,7 @@ function useActivityFromMetaChildren(meta: MetaNode[]) {
     ...activity,
     title,
     webpageURL: url,
-    activityType: ExpoHead!.activities.INDEXED_ROUTE,
+    activityType: Head!.activities.INDEXED_ROUTE,
     userInfo: {
       // TODO: This may need to be  versioned in the future, e.g. `_v1` if we change the format.
       href,
@@ -244,7 +244,7 @@ function useRegisterCurrentActivity(activity: UserActivity) {
 
     // If no features are enabled, then skip registering the activity
     if (cascadingActivity.isEligibleForHandoff || cascadingActivity.isEligibleForSearch) {
-      ExpoHead?.createActivity(cascadingActivity)
+      Head?.createActivity(cascadingActivity)
     }
 
     return () => {}
@@ -253,7 +253,7 @@ function useRegisterCurrentActivity(activity: UserActivity) {
   React.useEffect(() => {
     return () => {
       if (activityId) {
-        ExpoHead?.suspendActivity(activityId)
+        HeadModule?.suspendActivity(activityId)
       }
     }
   }, [activityId])
@@ -296,6 +296,7 @@ function HeadShim(props: React.PropsWithChildren) {
 HeadShim.Provider = React.Fragment
 
 // Native Head is only enabled in bare iOS apps.
-export const Head: ((props: React.PropsWithChildren) => React.ReactNode) & {
-  Provider: React.ComponentType
-} = ExpoHead ? HeadNative : HeadShim
+// @ts-ignore
+export const Head: HeadType = HeadModule ? HeadNative : HeadShim
+
+Object.assign(Head, HeadModule)
