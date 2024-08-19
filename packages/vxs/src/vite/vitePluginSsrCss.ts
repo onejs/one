@@ -106,15 +106,11 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
       const prefix = `/* [collectStyle] ${url} */`
 
       try {
-        console.log('wtf', server.config.css.lightningcss)
-
         const processed = transform({
           filename: 'code.css',
           code: Buffer.from(code),
           ...server.config.css.lightningcss,
         }).code.toString()
-
-        console.log('processed', processed)
 
         return [prefix, processed]
       } catch (err) {
