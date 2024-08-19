@@ -1,8 +1,7 @@
-// thanks to hi-ogawa https://github.com/hi-ogawa/vite-plugins/tree/main/packages/ssr-css
-
+import { transform } from 'lightningcss'
 import type { Plugin, ViteDevServer } from 'vite'
-import { postprocessCSS } from './postprocessCSS'
-import { basename, dirname } from 'path'
+
+// thanks to hi-ogawa https://github.com/hi-ogawa/vite-plugins/tree/main/packages/ssr-css
 
 const VIRTUAL_ENTRY = 'virtual:ssr-css.css'
 
@@ -107,10 +106,15 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
       const prefix = `/* [collectStyle] ${url} */`
 
       try {
-        const processed = await postprocessCSS(code, {
-          resolveDir: dirname(url),
-          sourcefile: basename(url),
-        })
+        console.log('wtf', server.config.css.lightningcss)
+
+        const processed = transform({
+          filename: 'code.css',
+          code: Buffer.from(code),
+          ...server.config.css.lightningcss,
+        }).code.toString()
+
+        console.log('processed', processed)
 
         return [prefix, processed]
       } catch (err) {

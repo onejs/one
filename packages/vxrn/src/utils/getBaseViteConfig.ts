@@ -50,6 +50,16 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
       reactSwcPlugin({}),
     ],
 
+    // TODO make this documented / configurable through the plugins
+    css: {
+      transformer: 'lightningcss',
+      lightningcss: {
+        targets: {
+          safari: (15 << 16) | (2 << 8),
+        },
+      },
+    },
+
     define: {
       __DEV__: `${mode === 'development'}`,
       'process.env.NODE_ENV': `"${mode}"`,
