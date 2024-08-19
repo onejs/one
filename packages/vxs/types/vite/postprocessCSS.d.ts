@@ -1,5 +1,2 @@
-export declare function postprocessCSS(input: string, { resolveDir, sourcefile, }?: {
-    resolveDir?: string;
-    sourcefile?: string;
-}): Promise<string>;
+export declare function postprocessCSS(input: string): Promise<string>;
 //# sourceMappingURL=postprocessCSS.d.ts.map

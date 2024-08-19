@@ -1,2 +1,2 @@
-export * from './ExpoHead';
+export * from './Head';
 //# sourceMappingURL=index.d.ts.map
