@@ -162,7 +162,7 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
               return `
                 <html>
                   <body style="background: #000; color: #fff; padding: 5%; font-family: monospace; line-height: 2rem;">
-                    <h1>${title}</h1>
+                    <h1 style="display: inline-flex; background: red; color: white; padding: 5px; margin: -5px;">${title}</h1>
                     <h2>${message}</h2>
                     ${
                       stack
