@@ -56,6 +56,26 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
         mode: 'build',
       }),
 
+      // Avoid "failed to read input source map: failed to parse inline source map url" errors on certain packages, such as react-native-reanimated.
+      {
+        name: 'remove-inline-source-maps',
+        transform: {
+          order: 'pre',
+          async handler(code, id) {
+            if (!id.includes('react-native-reanimated')) {
+              return null
+            }
+
+            const inlineSourceMapIndex = code.lastIndexOf('//# sourceMappingURL=')
+            if (inlineSourceMapIndex >= 0) {
+              return code.slice(0, inlineSourceMapIndex).trimEnd();
+            }
+
+            return null;
+          },
+        },
+      },
+
       viteNativeSWC({
         tsDecorators: true,
         mode: 'build',
