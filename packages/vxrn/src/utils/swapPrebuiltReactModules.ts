@@ -141,6 +141,17 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
         let out = `const ___val = __cachedModules["${idOut}"]
         const ___defaultVal = ___val ? ___val.default || ___val : ___val
         export default ___defaultVal`
+
+        // Some packages such as react-native-gesture-handler are importing from react-native internals with named imports.
+        // TODO: This is a workaround to handle it case by case.
+        if (id.includes('react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry')) {
+          out += '\nexport const customBubblingEventTypes = ___val.customBubblingEventTypes'
+          out += '\nexport const customDirectEventTypes = ___val.customDirectEventTypes'
+        }
+        if (id.includes('react-native/Libraries/Pressability/PressabilityDebug')) {
+          out += '\nexport const PressabilityDebugView = ___val.PressabilityDebugView'
+        }
+
         return out
       }
 
