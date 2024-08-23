@@ -11,7 +11,11 @@ import type { VXS } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
 
-const userOptions = new WeakMap<any, VXS.PluginOptions>()
+export function getUserVXSOptions(config: UserConfig) {
+  const flatPlugins = [...(config.plugins || [])].flat(3)
+  const userOptionsPlugin = flatPlugins.find((x) => x && x['name'] === 'vxs-user-options')
+  return userOptions.get(userOptionsPlugin)
+}
 
 export async function loadUserVXSOptions(command: 'serve') {
   const found = await loadConfigFromFile({
@@ -28,11 +32,7 @@ export async function loadUserVXSOptions(command: 'serve') {
   return foundVxsConfig
 }
 
-export function getUserVXSOptions(config: UserConfig) {
-  const flatPlugins = [...(config.plugins || [])].flat(3)
-  const userOptionsPlugin = flatPlugins.find((x) => x && x['name'] === 'vxs-user-options')
-  return userOptions.get(userOptionsPlugin)
-}
+const userOptions = new WeakMap<any, VXS.PluginOptions>()
 
 export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   void loadEnv(process.cwd())
@@ -69,6 +69,21 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       ...options,
       root: 'app',
     }),
+
+    {
+      name: 'define-app-key',
+      config() {
+        if (!options.app?.key) {
+          return
+        }
+
+        return {
+          define: {
+            'process.env.VXS_APP_NAME': JSON.stringify(options.app.key),
+          },
+        }
+      },
+    },
 
     // TODO only on native env
     {

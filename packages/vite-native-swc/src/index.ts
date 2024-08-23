@@ -197,9 +197,13 @@ export async function swcTransform(_id: string, code: string, options: Options) 
 
   result.code = wrapSourceInRefreshRuntime(id, result.code, options)
 
-  const sourceMap: SourceMapPayload = JSON.parse(result.map!)
-  sourceMap.mappings = ';;;;;;;;' + sourceMap.mappings
-  return { code: result.code, map: sourceMap }
+  if (result.map) {
+    const sourceMap: SourceMapPayload = JSON.parse(result.map)
+    sourceMap.mappings = ';;;;;;;;' + sourceMap.mappings
+    return { code: result.code, map: sourceMap }
+  }
+
+  return { code: result.code }
 }
 
 export const transformWithOptions = async (
