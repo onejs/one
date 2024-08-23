@@ -9927,7 +9927,6 @@ __metadata:
     react-native-web: ^0.19.12
     tamagui: ^1.108.4
     vite: 6.0.0-alpha.18
-    vxrn: 1.1.169
     vxs: 1.1.169
   languageName: unknown
   linkType: soft
