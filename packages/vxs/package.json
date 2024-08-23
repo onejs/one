@@ -1,6 +1,6 @@
 {
   "name": "vxs",
-  "version": "1.1.174",
+  "version": "1.1.175",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -62,7 +62,7 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
     "@react-navigation/bottom-tabs": "^6.5.8",
-    "@react-navigation/core": ">=6.4.9",
+    "@react-navigation/core": "^6.4.9",
     "@react-navigation/drawer": "^6.6.3",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
@@ -94,7 +94,7 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.174"
+    "vxrn": "1.1.175"
   },
   "peerDependencies": {
     "react-native": "*"
