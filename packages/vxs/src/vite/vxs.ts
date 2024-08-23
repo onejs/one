@@ -9,6 +9,7 @@ import { loadEnv } from './loadEnv'
 import type { VXS } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
+import { requireResolve } from '../utils/requireResolve'
 
 const userOptions = new WeakMap<any, VXS.PluginOptions>()
 
@@ -73,15 +74,11 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       enforce: 'pre',
 
       async config() {
-        if (typeof import.meta.resolve === 'undefined') {
-          throw new Error(`Must be on Node version >= 19`)
-        }
-
         const sharedNativeConfig = {
           resolve: {
             alias: {
-              react: import.meta.resolve('vxs/react-18'),
-              'react-dom': import.meta.resolve('vxs/react-dom-18'),
+              react: requireResolve('vxs/react-18'),
+              'react-dom': requireResolve('vxs/react-dom-18'),
             },
           },
         } satisfies InlineConfig
