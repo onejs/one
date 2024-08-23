@@ -10,7 +10,8 @@
   "files": [
     "src",
     "types",
-    "dist"
+    "dist",
+    "vendor"
   ],
   "scripts": {
     "build": "tamagui-build",
