@@ -33,7 +33,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'use-sync-external-store/shim',
     'expo-constants',
     'expo-linking',
-    'uuid',
     'inline-style-prefixer',
     '@docsearch/react',
     '@algolia/autocomplete-core',

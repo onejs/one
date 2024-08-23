@@ -21,6 +21,16 @@ export function fixDependenciesPlugin(options?: VXS.FixDependencies): Plugin {
           continue
         }
 
+        if (value === false) {
+          if (config.optimizeDeps?.include) {
+            config.optimizeDeps.include = config.optimizeDeps.include.filter((x) => x !== key)
+          }
+          config.optimizeDeps ||= {}
+          config.optimizeDeps.exclude ||= []
+          config.optimizeDeps.exclude.push(key)
+          continue
+        }
+
         if (value === 'interop') {
           config.optimizeDeps?.include?.push(key)
           config.optimizeDeps?.needsInterop?.push(key)

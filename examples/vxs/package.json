@@ -21,6 +21,7 @@
     "react-native-reanimated": "npm:react-native-reanimated@3.13.0-rc.1",
     "react-native-web": "^0.19.12",
     "tamagui": "^1.108.4",
+    "uuid": "9.0.0",
     "vxs": "1.1.172"
   },
   "devDependencies": {
