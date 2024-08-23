@@ -24,7 +24,7 @@ import { getOptionsFilled } from '../utils/getOptionsFilled'
 import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
-import { checkPatches } from '../utils/patches'
+import { applyBuiltInPatches } from '../utils/patches'
 import { clean } from './clean'
 
 const { ensureDir } = FSExtra
@@ -51,8 +51,8 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   // TODO move somewhere
   bindKeypressInput()
 
-  checkPatches(options).catch((err) => {
-    console.error(`\n 🥺 couldn't patch`, err)
+  applyBuiltInPatches(options).catch((err) => {
+    console.error(`\n 🥺 error applying built-in patches`, err)
   })
 
   await ensureDir(cacheDir)

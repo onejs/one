@@ -1,1 +1,0 @@
-module.exports = require('@vxrn/vendor/react-jsx-dev-19');

@@ -1,4 +1,4 @@
-import { type UserConfig, type PluginOption } from 'vite';
+import { type PluginOption, type UserConfig } from 'vite';
 import type { VXS } from './types';
 export declare function loadUserVXSOptions(command: 'serve'): Promise<VXS.PluginOptions>;
 export declare function getUserVXSOptions(config: UserConfig): VXS.PluginOptions | undefined;
