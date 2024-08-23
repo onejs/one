@@ -1,6 +1,6 @@
 {
   "name": "example-vxs",
-  "version": "1.1.170",
+  "version": "1.1.171",
   "private": true,
   "type": "module",
   "sideEffects": [
@@ -21,7 +21,7 @@
     "react-native-reanimated": "npm:react-native-reanimated@3.13.0-rc.1",
     "react-native-web": "^0.19.12",
     "tamagui": "^1.108.4",
-    "vxs": "1.1.170"
+    "vxs": "1.1.171"
   },
   "devDependencies": {
     "vite": "6.0.0-alpha.18"
