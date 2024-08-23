@@ -12,7 +12,6 @@
   ],
   "packageManager": "yarn@1.22.22",
   "scripts": {
-    "postinstall": "patch-package",
     "setup": "node -r esbuild-register ./scripts/setup.ts",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
