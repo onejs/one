@@ -1,5 +1,5 @@
 import type { Hono } from 'hono'
-import type { AfterBuildProps as VXRNAfterBuildProps, VXRNOptions } from 'vxrn'
+import type { DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNOptions } from 'vxrn'
 
 export namespace VXS {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
@@ -10,7 +10,13 @@ export namespace VXS {
     routeModes?: Record<string, VXS.RouteMode>
   }
 
+  export type FixDependencies = {
+    [key: string]: boolean | 'interop' | DepPatch['patchFiles']
+  }
+
   export type PluginOptions = {
+    fixDependencies?: FixDependencies
+
     redirects?: Redirects
 
     shouldIgnore?: (req: Request) => boolean

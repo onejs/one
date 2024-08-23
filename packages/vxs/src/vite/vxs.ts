@@ -1,15 +1,15 @@
 import { dirname, resolve } from 'node:path'
-import { version } from 'react'
-import { type UserConfig, type InlineConfig, type PluginOption, loadConfigFromFile } from 'vite'
+import { type InlineConfig, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import { getOptimizeDeps, isWebEnvironment } from 'vxrn'
 import { existsAsync } from '../utils/existsAsync'
+import { requireResolve } from '../utils/requireResolve'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter } from './createFileSystemRouter'
+import { fixDependenciesPlugin } from './fixDependenciesPlugin'
 import { loadEnv } from './loadEnv'
 import type { VXS } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
-import { requireResolve } from '../utils/requireResolve'
 
 const userOptions = new WeakMap<any, VXS.PluginOptions>()
 
@@ -60,6 +60,8 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
     createFileSystemRouter(options),
 
     clientTreeShakePlugin(),
+
+    fixDependenciesPlugin(options.fixDependencies),
 
     userOptionsPlugin,
 
