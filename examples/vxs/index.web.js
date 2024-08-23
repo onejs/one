@@ -1,0 +1,1 @@
+module.exports = require('@vxrn/vendor/react-19');
