@@ -1,8 +1,13 @@
+import { transformFlow } from '@vxrn/vite-flow'
 import findNodeModules from 'find-node-modules'
-import { join } from 'node:path'
 import FSExtra from 'fs-extra'
-import type { VXRNOptionsFilled } from './getOptionsFilled'
+import { join } from 'node:path'
 import { depPatches } from './depPatches'
+import type { VXRNOptionsFilled } from './getOptionsFilled'
+import { globDir } from './globDir'
+import { swcTransform } from '@vxrn/vite-native-swc'
+
+type Strategies = 'swc' | 'flow'
 
 export type DepPatch = {
   module: string
@@ -12,6 +17,7 @@ export type DepPatch = {
       | {
           add: string
         }
+      | Strategies[]
   }
 }
 
@@ -35,8 +41,6 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
     cwd: root,
   }).map((relativePath) => join(root, relativePath))
 
-  const logged = {}
-
   await Promise.all(
     patches.flatMap((patch) => {
       return nodeModulesDirs.flatMap(async (dir) => {
@@ -44,41 +48,72 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
 
         if (await FSExtra.pathExists(nodeModuleDir)) {
           for (const file in patch.patchFiles) {
-            const log = () => {
-              if (logged[patch.module]) return
-              logged[patch.module] = true
-              console.info(` Applying patch to ${patch.module}`)
-            }
+            const filesToApply = file.includes('*') ? globDir(nodeModuleDir) : [file]
 
-            try {
-              const fullPath = join(nodeModuleDir, file)
-              const patchDefinition = patch.patchFiles[file]
-
-              // create
-              if (typeof patchDefinition === 'object') {
-                if (patchDefinition.add) {
-                  if (!(await FSExtra.pathExists(fullPath))) {
-                    log()
-                    await FSExtra.writeFile(fullPath, patchDefinition.add)
-                    continue
-                  }
+            await Promise.all(
+              filesToApply.map(async (relativePath) => {
+                const log = () => {
+                  console.info(` 🩹 Applied patch to ${relativePath}`)
                 }
 
-                continue
-              }
+                try {
+                  const fullPath = join(nodeModuleDir, relativePath)
+                  const patchDefinition = patch.patchFiles[file]
 
-              // update
-              log()
-              await FSExtra.writeFile(
-                fullPath,
-                await patchDefinition(await FSExtra.readFile(fullPath, 'utf-8'))
-              )
-            } catch (err) {
-              if (err instanceof Bail) {
-                return
-              }
-              throw err
-            }
+                  // strategy
+                  if (Array.isArray(patchDefinition)) {
+                    const contentsIn = await FSExtra.readFile(fullPath, 'utf-8')
+                    let contents = contentsIn
+
+                    for (const strategy of patchDefinition) {
+                      if (strategy === 'flow') {
+                        contents = await transformFlow(contents)
+                      }
+                      if (strategy === 'swc') {
+                        contents =
+                          (
+                            await swcTransform(fullPath, contents, {
+                              mode: 'build',
+                            })
+                          )?.code || contents
+                      }
+                    }
+
+                    if (contentsIn !== contents) {
+                      log()
+                      await FSExtra.writeFile(fullPath, contents)
+                    }
+
+                    return
+                  }
+
+                  // create
+                  if (typeof patchDefinition === 'object') {
+                    if (patchDefinition.add) {
+                      if (!(await FSExtra.pathExists(fullPath))) {
+                        log()
+                        await FSExtra.writeFile(fullPath, patchDefinition.add)
+                        return
+                      }
+                    }
+
+                    return
+                  }
+
+                  // update
+                  log()
+                  await FSExtra.writeFile(
+                    fullPath,
+                    await patchDefinition(await FSExtra.readFile(fullPath, 'utf-8'))
+                  )
+                } catch (err) {
+                  if (err instanceof Bail) {
+                    return
+                  }
+                  throw err
+                }
+              })
+            )
           }
         }
       })
