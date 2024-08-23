@@ -1,5 +1,4 @@
 import { type SourceMapPayload, createRequire } from 'node:module'
-
 import {
   type JscTarget,
   type Output,
@@ -12,6 +11,7 @@ import type { PluginOption, UserConfig } from 'vite'
 import { extname } from 'node:path'
 
 // this file is a mess lol
+const ENABLE_SOURCE_MAP = process.env.VXRN_DISABLE_SOURCE_MAP !== '1'
 
 // TODO node has an import to do this: const require = createRequire(import.meta.url)
 const resolve = createRequire(
@@ -107,7 +107,7 @@ export default (_options?: Options): PluginOption[] => {
                       filename: id,
                       swcrc: false,
                       configFile: false,
-                      sourceMaps: true,
+                      sourceMaps: ENABLE_SOURCE_MAP,
                       jsc: {
                         target: 'es5',
                         parser,
@@ -214,7 +214,7 @@ export const transformWithOptions = async (
       filename: id,
       swcrc: false,
       configFile: false,
-      sourceMaps: true,
+      sourceMaps: ENABLE_SOURCE_MAP,
       module: {
         type: 'nodenext',
       },
@@ -297,7 +297,7 @@ export const transformForBuild = async (id: string, code: string) => {
     filename: id,
     swcrc: false,
     configFile: false,
-    sourceMaps: true,
+    sourceMaps: ENABLE_SOURCE_MAP,
     jsc: {
       target: 'es2019',
       parser,
