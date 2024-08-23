@@ -28,12 +28,26 @@ const patches: Patch[] = [
       'dist/index.mjs': (contents) => {
         assertString(contents)
         bailIfExists(contents, '/** patch-version-1 **/')
+        return contents.replace(
+          `function getProxyRequestHeaders(event) {
+  const headers = /* @__PURE__ */ Object.create(null);
+  const reqHeaders = getRequestHeaders(event);
+  for (const name in reqHeaders) {
+    if (!ignoredHeaders.has(name)) {
+      headers[name] = reqHeaders[name];
+    }
+  }
+  return headers;
+}`,
+          `function getProxyRequestHeaders(event) {
+  const headers = /* @__PURE__ */ Object.create(null);
+  const reqHeaders = getRequestHeaders(event);
+  for (const name in reqHeaders) {
+    if (!ignoredHeaders.has(name)) {
+      headers[name] = reqHeaders[name];
+    }
+  }
 
-        const insertPoint = contents.indexOf(`   return headers;`)
-        return (
-          contents.slice(0, insertPoint) +
-          `
-  /** patch-version-1 **/
   // The expoManifestRequestHandlerPlugin (Vite plugin) needs the original request host so that it can compose URLs that can be accessed by physical devices. This won't be needed once we retire h3 and use the Vite Dev Server directly.
   // This may not work if one installed vxrn from NPM since this patch may not apply.
   const originalHost = reqHeaders.host;
@@ -41,8 +55,8 @@ const patches: Patch[] = [
     headers['X-Forwarded-Host'] = originalHost;
   }
 
-` +
-          contents.slice(insertPoint)
+  return headers;
+}`
         )
       },
     },
