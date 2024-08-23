@@ -10,6 +10,13 @@ export declare namespace VXS {
         [key: string]: boolean | 'exclude' | 'interop' | DepPatch['patchFiles'];
     };
     type PluginOptions = {
+        app?: {
+            /**
+             * The uid of your native app, this will be used internally in vxs to call
+             * `AppRegistry.registerComponent(key)`
+             */
+            key?: string;
+        };
         fixDependencies?: FixDependencies;
         redirects?: Redirects;
         shouldIgnore?: (req: Request) => boolean;

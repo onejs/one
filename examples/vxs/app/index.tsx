@@ -9,19 +9,18 @@ export async function loader() {
 }
 
 export default function HomePage() {
-  const data = useLoader(loader)
+  // suspending here is breaking native
+  // const data = useLoader(loader)
 
-  useEffect(() => {
-    fetch('/hello')
-      .then((res) => res.json())
-      .then((x) => console.log('got', x))
-  }, [])
+  // useEffect(() => {
+  //   fetch('/hello')
+  //     .then((res) => res.json())
+  //     .then((x) => console.log('got', x))
+  // }, [])
 
   return (
     <>
-      <View>
-        <Text>Hello {data.hello}</Text>
-      </View>
+      <View>{/* <Text>Hello {data.hello}</Text> */}</View>
 
       <Link
         href={{
