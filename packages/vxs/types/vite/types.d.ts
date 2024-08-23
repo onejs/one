@@ -7,7 +7,7 @@ export declare namespace VXS {
         routeModes?: Record<string, VXS.RouteMode>;
     };
     type FixDependencies = {
-        [key: string]: boolean | 'interop' | DepPatch['patchFiles'];
+        [key: string]: boolean | 'exclude' | 'interop' | DepPatch['patchFiles'];
     };
     type PluginOptions = {
         fixDependencies?: FixDependencies;
