@@ -140,4 +140,18 @@ export const depPatches: DepPatch[] = [
       },
     },
   },
+
+  {
+    module: '@react-native-masked-view/masked-view',
+    patchFiles: {
+      '*.js': ['flow'],
+    },
+  },
+
+  {
+    module: 'react-native-webview',
+    patchFiles: {
+      '*.js': ['swc'],
+    },
+  },
 ]
