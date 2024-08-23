@@ -21,7 +21,7 @@ export function fixDependenciesPlugin(options?: VXS.FixDependencies): Plugin {
           continue
         }
 
-        if (value === false) {
+        if (value === false || value === 'exclude') {
           if (config.optimizeDeps?.include) {
             config.optimizeDeps.include = config.optimizeDeps.include.filter((x) => x !== key)
           }
