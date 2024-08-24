@@ -18,6 +18,10 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
     host: string;
     root: string;
     port: number;
+    hono?: {
+        compression?: boolean | undefined;
+        cacheHeaders?: "off" | undefined;
+    } | undefined;
     https?: boolean | undefined;
     flow?: import("@vxrn/vite-flow").Options | undefined;
     afterBuild?: ((props: import("..").AfterBuildProps) => void | Promise<void>) | undefined;
