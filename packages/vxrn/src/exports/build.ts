@@ -15,6 +15,7 @@ import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
 import { mergeUserConfig } from '../utils/mergeUserConfig'
+import { applyBuiltInPatches } from '../utils/patches'
 
 const { existsSync } = FSExtra
 
@@ -49,6 +50,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       mode: 'prod',
     }).then((_) => _?.config),
   ])
+
+  await applyBuiltInPatches(options).catch((err) => {
+    console.error(`\n 🥺 error applying built-in patches`, err)
+  })
 
   // clean
   await Promise.all([
