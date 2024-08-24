@@ -13,7 +13,7 @@ export type DepPatch = {
   module: string
   patchFiles: {
     [key: string]:
-      | ((contents?: string) => string | Promise<string>)
+      | ((contents?: string) => void | string | Promise<void | string>)
       | {
           add: string
         }
@@ -129,7 +129,10 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
                   }
 
                   // update
-                  await write(await patchDefinition(contentsIn))
+                  const out = await patchDefinition(contentsIn)
+                  if (typeof out === 'string') {
+                    await write(out)
+                  }
                 } catch (err) {
                   if (err instanceof Bail) {
                     return
