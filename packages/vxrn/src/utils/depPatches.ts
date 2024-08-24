@@ -155,6 +155,13 @@ export const depPatches: DepPatch[] = [
     },
   },
 
+  {
+    module: '@sentry/react-native',
+    patchFiles: {
+      'dist/**/*.js': ['jsx'],
+    },
+  },
+
   // could almost do this? it has a couple errors though
   // {
   //   module: 'react-native',
