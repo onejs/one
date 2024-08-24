@@ -1,7 +1,6 @@
 import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import type { InlineConfig } from 'vite'
 import { androidExtensions, iosExtensions, webExtensions } from '../constants'
-import { version } from 'react'
 
 // essentially base web config not base everything
 
@@ -30,6 +29,13 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
             resolve: {
               extensions: webExtensions,
               conditions: ['vxrn-web'],
+            },
+
+            ssr: {
+              noExternal: true,
+              resolve: {
+                externalConditions: ['vxrn-web'],
+              },
             },
 
             environments: {
