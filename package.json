@@ -11,6 +11,12 @@
     "./studio2"
   ],
   "packageManager": "yarn@1.22.22",
+  "resolutionsComments": {
+    "vite": "because vitepress brings along vite 5"
+  },
+  "resolutions": {
+    "vite": "6.0.0-alpha.18"
+  },
   "scripts": {
     "setup": "node -r esbuild-register ./scripts/setup.ts",
     "docs:dev": "vitepress dev docs",
