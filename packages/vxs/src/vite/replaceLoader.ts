@@ -14,13 +14,19 @@ export function replaceLoader({
   loaderProps?: LoaderProps
   loaderRegexName?: string
 }) {
+  /**
+   * NOTE: the () => '' replace style is necessary to avoid $ being mangled
+   * see: https://stackoverflow.com/questions/38866071/javascript-replace-method-dollar-signs
+   */
+
   const loaderReturn = `return ${JSON.stringify(loaderData)};`
-  const regexString = `(export\\s+)?function\\s+(${loaderRegexName})\\([^\\)]?\\)\\s*{\\s*${loaderReturnStr};?\\s*}`
+
+  const regexString = `export\\s+function\\s+(${loaderRegexName})\\([^\\)]?\\)\\s*{\\s*${loaderReturnStr};?\\s*}`
   const loaderRegex = new RegExp(regexString, 'i')
   const loaderWithExport = `export function loader() {${loaderReturn}}`
 
   if (loaderRegexName === 'loader') {
-    return code.replace(loaderRegex, loaderWithExport)
+    return code.replace(loaderRegex, () => loaderWithExport)
   }
 
   const match = code.match(loaderRegex)
@@ -41,11 +47,11 @@ export function replaceLoader({
 
   // if minified loaderName !== loader so we re-add the export
   if (loaderName !== 'loader') {
-    return `${code.replace(loaderReturnRegex, loaderReturn)}\n${
+    return `${code.replace(loaderReturnRegex, () => loaderReturn)}\n${
       // hacky af but ok for now, "detect" if its not exported and re-export
       code.includes('as loader') ? '' : loaderWithExport
     }`
   }
 
-  return code.replace(loaderReturnRegex, loaderReturn)
+  return code.replace(loaderReturnRegex, () => loaderReturn)
 }

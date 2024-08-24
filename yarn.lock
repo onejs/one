@@ -2910,10 +2910,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hono/node-server@npm:^1.11.1":
-  version: 1.11.1
-  resolution: "@hono/node-server@npm:1.11.1"
-  checksum: 00b6d55b8345567b931b8c4106c0aa2d5ff84de48e3ab999b70a614585775c11973fb865ca9a748578a3bc2be9491d35051af220c432370c6168087a95583064
+"@hono/node-server@npm:^1.12.1":
+  version: 1.12.1
+  resolution: "@hono/node-server@npm:1.12.1"
+  checksum: 0bdb44bc0f0ab7e92f770be89b839e5a03b30be400312924e43bf93ffafaa16a10de3aabbde7af73db547250448f43e595170c3f58937d76e90f55a56d0a41ea
   languageName: node
   linkType: hard
 
@@ -11758,10 +11758,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hono@npm:^4.3.10":
-  version: 4.3.10
-  resolution: "hono@npm:4.3.10"
-  checksum: bf67c0bb9a048b2da6b197bcf2ed80abf422e53f1c24ee03a8145baee5ebfc67a85720b6fb46633b3fdbac515b03c6c0ff8b3a8e8569d052b41500c22abf72b7
+"hono@npm:^4.5.8":
+  version: 4.5.8
+  resolution: "hono@npm:4.5.8"
+  checksum: b6b348886e0a2fa5945d32aa1e1d64edadca13a06e8cf739a7c364a06750d75527f634bd595309b81db17841d8766cd77d99070e5422d6c4eb68f9ee0e4bc4c1
   languageName: node
   linkType: hard
 
@@ -18984,7 +18984,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.21.8
     "@biomejs/biome": ^1.8.3
-    "@hono/node-server": ^1.11.1
+    "@hono/node-server": ^1.12.1
     "@tamagui/build": ^1.109.0
     "@types/find-node-modules": ^2.1.2
     "@types/node": ^22.1.0
@@ -19006,7 +19006,7 @@ __metadata:
     get-port-please: ^3.1.2
     h3: 1.11.1
     h3-proxy: ^1.13.0
-    hono: ^4.3.10
+    hono: ^4.5.8
     import-meta-resolve: ^4.1.0
     lightningcss: ^1.26.0
     picocolors: ^1.0.0
@@ -19048,7 +19048,7 @@ __metadata:
     fast-deep-equal: ^3.1.3
     fast-glob: ^3.2.11
     fs-extra: ^11.2.0
-    hono: ^4.3.10
+    hono: ^4.5.8
     import-meta-resolve: ^4.1.0
     lightningcss: ^1.26.0
     micromatch: ^4.0.7

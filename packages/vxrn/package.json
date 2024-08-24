@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.21.8",
-    "@hono/node-server": "^1.11.1",
+    "@hono/node-server": "^1.12.1",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vxrn/react-native-prebuilt": "1.1.185",
     "@vxrn/safe-area": "1.1.185",
@@ -55,7 +55,7 @@
     "get-port-please": "^3.1.2",
     "h3": "1.11.1",
     "h3-proxy": "^1.13.0",
-    "hono": "^4.3.10",
+    "hono": "^4.5.8",
     "import-meta-resolve": "^4.1.0",
     "lightningcss": "^1.26.0",
     "picocolors": "^1.0.0",
