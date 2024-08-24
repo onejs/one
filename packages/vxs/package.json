@@ -1,6 +1,6 @@
 {
   "name": "vxs",
-  "version": "1.1.181",
+  "version": "1.1.182",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -63,7 +63,6 @@
     "@babel/generator": "^7.25.4",
     "@babel/parser": "^7.25.4",
     "@babel/traverse": "^7.25.4",
-    "@babel/types": "^7.25.4",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/core": "^6.4.9",
@@ -71,12 +70,10 @@
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@react-navigation/routers": "^6.1.9",
-    "@swc/core": "^1.7.14",
     "babel-dead-code-elimination": "^1.0.6",
     "citty": "^0.1.6",
     "dotenv": "^16.4.5",
     "escape-string-regexp": "^5.0.0",
-    "estree-walker": "^3.0.3",
     "expo-linking": "~6.3.1",
     "expo-modules-core": "1.12.10",
     "fast-deep-equal": "^3.1.3",
@@ -85,7 +82,6 @@
     "hono": "^4.3.10",
     "import-meta-resolve": "^4.1.0",
     "lightningcss": "^1.26.0",
-    "magic-string": "^0.30.10",
     "micromatch": "^4.0.7",
     "nanoid": "^3.3.7",
     "perfect-debounce": "^1.0.0",
@@ -99,14 +95,13 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.181"
+    "vxrn": "1.1.182"
   },
   "peerDependencies": {
     "react-native": "*"
   },
   "devDependencies": {
     "@tamagui/build": "^1.109.0",
-    "@types/estree": "^1.0.5",
     "@types/node": "^22.1.0",
     "@types/react-dom": "^18.2.25",
     "depcheck": "^1.4.7",
