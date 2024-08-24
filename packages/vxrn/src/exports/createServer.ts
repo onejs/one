@@ -7,7 +7,9 @@ import type { VXRNOptions } from '../types'
 export const createProdServer = async (options: VXRNOptions) => {
   const app = new Hono()
 
-  app.use(compress())
+  if (options.hono?.compression) {
+    app.use(compress())
+  }
 
   app.use('*', async (c, next) => {
     let didCallNext = false
@@ -24,67 +26,17 @@ export const createProdServer = async (options: VXRNOptions) => {
     }
 
     // no cache let cdn do that shit
-    if (!c.req.header('Cache-Control')) {
-      c.header('Cache-Control', 'no-store')
-      // safari was aggressively caching js for some reason despite no-store
-      // https://stackoverflow.com/questions/48693693/macos-safari-caching-response-while-headers-specify-no-caching
-      c.header('Vary', '*')
+    if (options.hono?.cacheHeaders !== 'off') {
+      if (!c.req.header('Cache-Control')) {
+        c.header('Cache-Control', 'no-store')
+        // safari was aggressively caching js for some reason despite no-store
+        // https://stackoverflow.com/questions/48693693/macos-safari-caching-response-while-headers-specify-no-caching
+        c.header('Vary', '*')
+      }
     }
 
     return response
   })
 
-  // app.get(
-  //   '*',
-  //   cache({
-  //     cacheName: 'vxs-app',
-  //     // 2 days
-  //     cacheControl: 'public, max-age=172800, immutable',
-  //   })
-  // )
-
   return app
 }
-
-// simple memory cache
-// const caches = {}
-
-// function createCache(name: string) {
-//   if (caches[name]) return caches[name] as any
-
-//   let store = {}
-
-//   function clearIfMemoryPressure() {
-//     const total = os.totalmem()
-//     const free = os.freemem()
-//     const used = total - free
-//     // Threshold (50% of total memory)
-//     if (used > total * 0.5) {
-//       console.info('Clearing cache due to memory pressure')
-//       store = {}
-//     }
-//   }
-
-//   const cache = {
-//     async match(key: string) {
-//       return store[key]
-//     },
-//     async put(key: string, val: string) {
-//       // prevent oom
-//       clearIfMemoryPressure()
-//       store[key] = val
-//     },
-//     async delete(key: string) {
-//       delete store[key]
-//     },
-//   }
-//   caches[name] = cache
-//   return cache
-// }
-
-// globalThis.caches = {
-//   ...createCache(''),
-//   async open(name: string) {
-//     return createCache(name)
-//   },
-// }

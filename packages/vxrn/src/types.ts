@@ -40,6 +40,12 @@ export type VXRNOptions = {
     native?: string
     web?: string
   }
+
+  hono?: {
+    compression?: boolean
+    cacheHeaders?: 'off'
+  }
+
   root?: string
   host?: string
   port?: number
