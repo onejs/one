@@ -24,6 +24,7 @@ export function replaceLoader({
   }
 
   const match = code.match(loaderRegex)
+
   if (!match) {
     // slow down just a tiny bit but adds some safety in case the regex doesnt match, seems worthwhile
     // since swc could change their output, or users can somehow get some weird code

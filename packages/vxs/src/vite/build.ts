@@ -301,16 +301,17 @@ export async function build(props: AfterBuildProps) {
 
           const code = await readFile(clientJsPath, 'utf-8')
 
+          const withLoader = replaceLoader({
+            code,
+            loaderData,
+            loaderRegexName: '[a-z0-9_]+',
+          })
+
+          console.log('replacing loader', withLoader)
+
           await Promise.all([
             outputFile(htmlOutPath, html),
-            outputFile(
-              loaderPartialPath,
-              replaceLoader({
-                code,
-                loaderData,
-                loaderRegexName: '[a-z0-9_]+',
-              })
-            ),
+            outputFile(loaderPartialPath, withLoader),
           ])
         } else {
           // spa route

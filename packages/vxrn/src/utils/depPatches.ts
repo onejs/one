@@ -69,17 +69,20 @@ export const depPatches: DepPatch[] = [
         pkg.exports['.'] = {
           'react-server': './react.shared-subset.js',
           'react-native': './index.js',
-          default: './index.vxrn-web.js',
+          'vxrn-web': './index.vxrn-web.js',
+          default: './index.js',
         }
 
         pkg.exports['./jsx-runtime'] = {
           'react-native': './jsx-runtime.js',
-          default: './jsx-runtime.vxrn-web.js',
+          'vxrn-web': './jsx-runtime.vxrn-web.js',
+          default: './jsx-runtime.js',
         }
 
         pkg.exports['./jsx-dev-runtime'] = {
           'react-native': './jsx-dev-runtime.js',
-          default: './jsx-dev-runtime.vxrn-web.js',
+          'vxrn-web': './jsx-dev-runtime.vxrn-web.js',
+          default: './jsx-dev-runtime.js',
         }
 
         return JSON.stringify(pkg, null, 2)
@@ -118,22 +121,26 @@ export const depPatches: DepPatch[] = [
 
         pkg.exports['.'] = {
           'react-native': './index.js',
-          default: './index.vxrn-web.js',
+          'vxrn-web': './index.vxrn-web.js',
+          default: './index.js',
         }
 
         pkg.exports['./client'] = {
           'react-native': './client.js',
-          default: './client.vxrn-web.js',
+          'vxrn-web': './client.vxrn-web.js',
+          default: './client.js',
         }
 
         pkg.exports['./server.browser'] = {
           'react-native': './server.browser.js',
-          default: './server.browser.vxrn-web.js',
+          'vxrn-web': './server.browser.vxrn-web.js',
+          default: './server.browser.js',
         }
 
         pkg.exports['./test-utils'] = {
           'react-native': './test-utils.js',
-          default: './test-utils.vxrn-web.js',
+          'vxrn-web': './test-utils.vxrn-web.js',
+          default: './test-utils.js',
         }
 
         return JSON.stringify(pkg, null, 2)
