@@ -184,14 +184,20 @@ export async function swcTransform(_id: string, code: string, options: Options) 
 
   // const refresh = !transformOptions?.ssr && !hmrDisabled
   // only change for now:
-  const refresh = true
+  const refresh = !options.forceJSX
 
-  const result = await transformWithOptions(id, code, 'es5', options, {
-    refresh,
-    development: true,
-    runtime: 'automatic',
-    importSource: options.jsxImportSource,
-  })
+  const result = await transformWithOptions(
+    id,
+    code,
+    options.forceJSX ? 'esnext' : 'es5',
+    options,
+    {
+      refresh,
+      development: !options.forceJSX,
+      runtime: 'automatic',
+      importSource: options.jsxImportSource,
+    }
+  )
 
   if (!result) {
     return
