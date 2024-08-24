@@ -16,7 +16,6 @@
   "dependencies": {
     "react-native": "0.74.1",
     "react-native-reanimated": "~3.3.0",
-    "react-native-web": "^0.19.12",
     "vxs": "1.1.189"
   },
   "devDependencies": {

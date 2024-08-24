@@ -7,7 +7,9 @@ export declare namespace VXS {
         routeModes?: Record<string, VXS.RouteMode>;
     };
     type FixDependencies = {
-        [key: string]: boolean | 'exclude' | 'interop' | DepPatch['patchFiles'];
+        [key: string]: boolean | 'exclude' | 'interop' | (DepPatch['patchFiles'] & {
+            version?: string;
+        });
     };
     type PluginOptions = {
         app?: {
@@ -17,7 +19,7 @@ export declare namespace VXS {
              */
             key?: string;
         };
-        fixDependencies?: FixDependencies;
+        deps?: FixDependencies;
         redirects?: Redirects;
         shouldIgnore?: (req: Request) => boolean;
         disableSSR?: boolean;
