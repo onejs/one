@@ -1,9 +1,6 @@
 import path from 'node:path'
-
 import ansis from 'ansis'
 import prompts from 'prompts'
-
-import packageJson from '../../package.json'
 import { validateNpmName } from './validateNpmPackage'
 
 export const getProjectName = async (projectPath?: string) => {
@@ -32,14 +29,15 @@ export const getProjectName = async (projectPath?: string) => {
   }
 
   if (!projectPath) {
+    const name = `create-vxrn`
     console.info()
     console.info('Please specify the project directory:')
-    console.info(`  ${ansis.cyan(packageJson.name)} ${ansis.green('<project-directory>')}`)
+    console.info(`  ${ansis.cyan(name)} ${ansis.green('<project-directory>')}`)
     console.info()
     console.info('For example:')
-    console.info(`  ${ansis.cyan(packageJson.name)} ${ansis.green('my-app')}`)
+    console.info(`  ${ansis.cyan(name)} ${ansis.green('my-app')}`)
     console.info()
-    console.info(`Run ${ansis.cyan(`${packageJson.name} --help`)} to see all options.`)
+    console.info(`Run ${ansis.cyan(`${name} --help`)} to see all options.`)
     process.exit(1)
   }
   return projectPath
