@@ -1,5 +1,4 @@
 import ansis from 'ansis'
-import { detect } from 'detect-package-manager'
 import FSExtra from 'fs-extra'
 import { execSync } from 'node:child_process'
 import fs from 'node:fs'
@@ -9,6 +8,8 @@ import { getProjectName } from './helpers/getProjectName'
 import { getTemplateInfo } from './helpers/getTemplateInfo'
 import { installDependencies } from './helpers/installDependencies'
 import { validateNpmName } from './helpers/validateNpmPackage'
+import prompts from 'prompts'
+import { detectPackageManager, type PackageManagerName } from './helpers/detectPackageManager'
 
 const { existsSync, readFileSync, writeFileSync } = FSExtra
 
@@ -25,13 +26,28 @@ export async function create(args: { template?: string }) {
 
   projectPath ||= await getProjectName(projectPath)
 
+  const resolvedProjectPath = path.resolve(process.cwd(), projectPath)
+  const projectName = path.basename(resolvedProjectPath)
+
+  if (fs.existsSync(resolvedProjectPath)) {
+    console.info()
+    console.info(
+      ansis.red('🚨 [vxrn] error'),
+      `You tried to make a project called ${ansis.underline(
+        ansis.blueBright(projectName)
+      )}, but a folder with that name already exists: ${ansis.blueBright(resolvedProjectPath)}
+
+${ansis.bold(ansis.red(`Please pick a different project name`))}`
+    )
+    console.info()
+    console.info()
+    process.exit(1)
+  }
+
   let template = await getTemplateInfo(args.template)
 
   // space
   console.info()
-
-  const resolvedProjectPath = path.resolve(process.cwd(), projectPath)
-  const projectName = path.basename(resolvedProjectPath)
 
   const { valid, problems } = validateNpmName(projectName)
   if (!valid) {
@@ -45,20 +61,6 @@ export async function create(args: { template?: string }) {
     process.exit(1)
   }
 
-  if (fs.existsSync(resolvedProjectPath)) {
-    console.info()
-    console.info(
-      ansis.red('🚨 [vxrn] error'),
-      `You tried to make a project called ${ansis.underline(
-        ansis.blueBright(projectName)
-      )}, but a folder with that name already exists: ${ansis.blueBright(resolvedProjectPath)}
-
-${ansis.bold(ansis.red(`Please pick a different project name 🥸`))}`
-    )
-    console.info()
-    console.info()
-    process.exit(1)
-  }
   console.info()
   console.info(`Creating a new vxrn app ${ansis.blueBright(resolvedProjectPath)}...`)
   fs.mkdirSync(resolvedProjectPath)
@@ -77,17 +79,35 @@ ${ansis.bold(ansis.red(`Please pick a different project name 🥸`))}`
   // change root package.json's name to project name
   updatePackageJsonName(projectName, resolvedProjectPath)
 
-  // TODO allow choice
-  execSync(`touch yarn.lock`)
-
   console.info('Installing packages. This might take a couple of minutes.')
   console.info()
 
-  const packageManager =
-    ('packageManager' in template ? template.packageManager : undefined) ||
-    (await detect({
-      includeGlobalBun: true,
-    }))
+  const packageManager: PackageManagerName = await (async () => {
+    if ('packageManager' in template) {
+      return template.packageManager
+    }
+    const found = await detectPackageManager()
+
+    const allFound = Object.keys(found) as PackageManagerName[]
+
+    if (allFound.length === 1) {
+      return allFound[0]
+    }
+
+    const response = await prompts({
+      name: 'packageManager',
+      type: 'select',
+      message: `Package Manager:`,
+      choices: allFound
+        .filter((x) => found[x])
+        .map((name) => ({
+          title: name,
+          value: name,
+        })),
+    })
+
+    return response.packageManager
+  })()
 
   try {
     console.info('installing with ' + packageManager)
@@ -98,6 +118,7 @@ ${ansis.bold(ansis.red(`Please pick a different project name 🥸`))}`
   }
 
   await template.extraSteps({
+    packageManager,
     isFullClone: true,
     projectName,
     projectPath: resolvedProjectPath,
