@@ -21,7 +21,7 @@ export function replaceLoader({
 
   const loaderReturn = `return ${JSON.stringify(loaderData)};`
 
-  const regexString = `export\\s+function\\s+(${loaderRegexName})\\([^\\)]?\\)\\s*{\\s*${loaderReturnStr};?\\s*}`
+  const regexString = `(export\\s+)?function\\s+(${loaderRegexName})\\([^\\)]?\\)\\s*{\\s*${loaderReturnStr};?\\s*}`
   const loaderRegex = new RegExp(regexString, 'i')
   const loaderWithExport = `export function loader() {${loaderReturn}}`
 
