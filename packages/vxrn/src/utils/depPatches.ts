@@ -47,15 +47,12 @@ export const depPatches: DepPatch[] = [
   {
     module: 'react',
     patchFiles: {
-      'index.vxrn-web.js': {
-        add: `module.exports = require('@vxrn/vendor/react-19');`,
-      },
-      'jsx-dev-runtime.vxrn-web.js': {
-        add: `module.exports = require('@vxrn/vendor/react-jsx-dev-19');`,
-      },
-      'jsx-runtime.vxrn-web.js': {
-        add: `module.exports = require('@vxrn/vendor/react-jsx-19');`,
-      },
+      version: '18.*',
+
+      'index.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-19');`,
+      'jsx-dev-runtime.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-jsx-dev-19');`,
+      'jsx-runtime.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-jsx-19');`,
+
       'package.json': (contents) => {
         assertString(contents)
         bailIfExists(contents, 'index.vxrn-web.js')
@@ -95,21 +92,15 @@ export const depPatches: DepPatch[] = [
   {
     module: 'react-dom',
     patchFiles: {
-      'client.vxrn-web.js': {
-        add: `module.exports = require('@vxrn/vendor/react-dom-client-19')`,
-      },
+      version: '18.*',
 
-      'index.vxrn-web.js': {
-        add: `module.exports = require('@vxrn/vendor/react-dom-19')`,
-      },
+      'client.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-dom-client-19')`,
 
-      'server.browser.vxrn-web.js': {
-        add: `module.exports = require('@vxrn/vendor/react-dom-server.browser-19')`,
-      },
+      'index.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-dom-19')`,
 
-      'test-utils.vxrn-web.js': {
-        add: `module.exports = require('@vxrn/vendor/react-dom-test-utils-19')`,
-      },
+      'server.browser.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-dom-server.browser-19')`,
+
+      'test-utils.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-dom-test-utils-19')`,
 
       'package.json': (contents) => {
         assertString(contents)
@@ -169,6 +160,20 @@ export const depPatches: DepPatch[] = [
     module: '@sentry/react-native',
     patchFiles: {
       'dist/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: 'rollup',
+    patchFiles: {
+      'dist/es/shared/node-entry.js': (contents) => {
+        assertString(contents)
+        // fixes problem with @sentry/react-native 5.5.0 using setimmediate polyfill causing error
+        return contents.replace(
+          `return this.exportNamesByVariable.get(variable)[0];`,
+          `return this.exportNamesByVariable.get(variable)?.[0] || (() => { console.log("rollup error parsing module, vxrn patch to fallback"); return '' }());`
+        )
+      },
     },
   },
 

@@ -28,7 +28,13 @@ global['Event'] =
   }
 global['dispatchEvent'] = global['dispatchEvent'] || (() => {})
 
-globalThis['__cachedModules'] = {}
+globalThis['__cachedModules'] = {
+  // potentially, but need to verify other things first:
+  // // framer-motion fix
+  // '@emotion/is-prop-valid': {
+  //   default: {},
+  // },
+}
 
 function printError(err) {
   return `${err instanceof Error ? `${err.message}\n${err.stack}` : err}`

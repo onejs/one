@@ -6,18 +6,16 @@ import { depPatches } from './depPatches'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { globDir } from './globDir'
 import { swcTransform } from '@vxrn/vite-native-swc'
+import semver from 'semver'
 
 type Strategies = 'swc' | 'flow' | 'jsx'
 
 export type DepPatch = {
   module: string
   patchFiles: {
-    [key: string]:
-      | ((contents?: string) => void | string | Promise<void | string>)
-      | {
-          add: string
-        }
-      | Strategies[]
+    [Key in string]: Key extends 'version'
+      ? string
+      : ((contents?: string) => void | string | Promise<void | string>) | string | Strategies[]
   }
 }
 
@@ -45,10 +43,18 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
     patches.flatMap((patch) => {
       return nodeModulesDirs.flatMap(async (dir) => {
         const nodeModuleDir = join(dir, patch.module)
+        const version = patch.patchFiles.version
 
         let hasLogged = false
 
         if (await FSExtra.pathExists(nodeModuleDir)) {
+          if (typeof version === 'string') {
+            const pkgJSON = await FSExtra.readJSON(join(nodeModuleDir, 'package.json'))
+            if (!semver.satisfies(pkgJSON.version, version)) {
+              return
+            }
+          }
+
           for (const file in patch.patchFiles) {
             const filesToApply = file.includes('*') ? globDir(nodeModuleDir, file) : [file]
 
@@ -94,11 +100,9 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
 
                   const patchDefinition = patch.patchFiles[file]
 
-                  if (!Array.isArray(patchDefinition) && typeof patchDefinition === 'object') {
-                    // add
-                    if (patchDefinition.add) {
-                      await write(patchDefinition.add)
-                    }
+                  // add
+                  if (typeof patchDefinition === 'string') {
+                    await write(patchDefinition)
                     return
                   }
 

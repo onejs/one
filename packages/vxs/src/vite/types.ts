@@ -11,7 +11,13 @@ export namespace VXS {
   }
 
   export type FixDependencies = {
-    [key: string]: boolean | 'exclude' | 'interop' | DepPatch['patchFiles']
+    [key: string]:
+      | boolean
+      | 'exclude'
+      | 'interop'
+      | (DepPatch['patchFiles'] & {
+          version?: string
+        })
   }
 
   export type PluginOptions = {
@@ -23,7 +29,7 @@ export namespace VXS {
       key?: string
     }
 
-    fixDependencies?: FixDependencies
+    deps?: FixDependencies
 
     redirects?: Redirects
 

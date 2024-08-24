@@ -3,9 +3,7 @@ type Strategies = 'swc' | 'flow' | 'jsx';
 export type DepPatch = {
     module: string;
     patchFiles: {
-        [key: string]: ((contents?: string) => void | string | Promise<void | string>) | {
-            add: string;
-        } | Strategies[];
+        [Key in string]: Key extends 'version' ? string : ((contents?: string) => void | string | Promise<void | string>) | string | Strategies[];
     };
 };
 export declare function bailIfExists(haystack: string, needle: string): void;

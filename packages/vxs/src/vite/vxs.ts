@@ -61,7 +61,7 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
 
     clientTreeShakePlugin(),
 
-    fixDependenciesPlugin(options.fixDependencies),
+    fixDependenciesPlugin(options.deps),
 
     userOptionsPlugin,
 

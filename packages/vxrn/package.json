@@ -60,6 +60,7 @@
     "lightningcss": "^1.26.0",
     "picocolors": "^1.0.0",
     "pkg-types": "^1.0.3",
+    "semver": "^7.6.3",
     "vite": "6.0.0-alpha.18",
     "vite-bundle-analyzer": "^0.9.4",
     "vite-plugin-mkcert": "^1.17.5",
