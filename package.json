@@ -36,7 +36,6 @@
     "dev:example-basic": "yarn workspace example-basic dev",
     "dev:example-weird-deps": "yarn workspace example-weird-deps dev",
     "dev:example-fullstack": "yarn workspace example-fullstack dev",
-    "dev:example-bare": "yarn workspace example-bare dev",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
     "test": "yarn turbo:run --concurrency=1 test",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
