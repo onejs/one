@@ -47,18 +47,18 @@ export const depPatches: DepPatch[] = [
   {
     module: 'react',
     patchFiles: {
-      'index.web.js': {
+      'index.vxrn-web.js': {
         add: `module.exports = require('@vxrn/vendor/react-19');`,
       },
-      'jsx-dev-runtime.web.js': {
+      'jsx-dev-runtime.vxrn-web.js': {
         add: `module.exports = require('@vxrn/vendor/react-jsx-dev-19');`,
       },
-      'jsx-runtime.web.js': {
+      'jsx-runtime.vxrn-web.js': {
         add: `module.exports = require('@vxrn/vendor/react-jsx-19');`,
       },
       'package.json': (contents) => {
         assertString(contents)
-        bailIfExists(contents, 'index.web.js')
+        bailIfExists(contents, 'index.vxrn-web.js')
 
         const pkg = JSON.parse(contents)
 
@@ -69,17 +69,17 @@ export const depPatches: DepPatch[] = [
         pkg.exports['.'] = {
           'react-server': './react.shared-subset.js',
           'react-native': './index.js',
-          default: './index.web.js',
+          default: './index.vxrn-web.js',
         }
 
         pkg.exports['./jsx-runtime'] = {
           'react-native': './jsx-runtime.js',
-          default: './jsx-runtime.web.js',
+          default: './jsx-runtime.vxrn-web.js',
         }
 
         pkg.exports['./jsx-dev-runtime'] = {
           'react-native': './jsx-dev-runtime.js',
-          default: './jsx-dev-runtime.web.js',
+          default: './jsx-dev-runtime.vxrn-web.js',
         }
 
         return JSON.stringify(pkg, null, 2)
@@ -90,25 +90,25 @@ export const depPatches: DepPatch[] = [
   {
     module: 'react-dom',
     patchFiles: {
-      'client.web.js': {
+      'client.vxrn-web.js': {
         add: `module.exports = require('@vxrn/vendor/react-dom-client-19')`,
       },
 
-      'index.web.js': {
+      'index.vxrn-web.js': {
         add: `module.exports = require('@vxrn/vendor/react-dom-19')`,
       },
 
-      'server.browser.web.js': {
+      'server.browser.vxrn-web.js': {
         add: `module.exports = require('@vxrn/vendor/react-dom-server.browser-19')`,
       },
 
-      'test-utils.web.js': {
+      'test-utils.vxrn-web.js': {
         add: `module.exports = require('@vxrn/vendor/react-dom-test-utils-19')`,
       },
 
       'package.json': (contents) => {
         assertString(contents)
-        bailIfExists(contents, 'index.web.js')
+        bailIfExists(contents, 'index.vxrn-web.js')
 
         const pkg = JSON.parse(contents)
 
@@ -118,22 +118,22 @@ export const depPatches: DepPatch[] = [
 
         pkg.exports['.'] = {
           'react-native': './index.js',
-          default: './index.web.js',
+          default: './index.vxrn-web.js',
         }
 
         pkg.exports['./client'] = {
           'react-native': './client.js',
-          default: './client.web.js',
+          default: './client.vxrn-web.js',
         }
 
         pkg.exports['./server.browser'] = {
           'react-native': './server.browser.js',
-          default: './server.browser.web.js',
+          default: './server.browser.vxrn-web.js',
         }
 
         pkg.exports['./test-utils'] = {
           'react-native': './test-utils.js',
-          default: './test-utils.web.js',
+          default: './test-utils.vxrn-web.js',
         }
 
         return JSON.stringify(pkg, null, 2)
@@ -144,14 +144,22 @@ export const depPatches: DepPatch[] = [
   {
     module: '@react-native-masked-view/masked-view',
     patchFiles: {
-      '*.js': ['flow'],
+      '**/*.js': ['flow', 'swc'],
     },
   },
 
   {
     module: 'react-native-webview',
     patchFiles: {
-      '*.js': ['swc'],
+      '**/*.js': ['swc'],
     },
   },
+
+  // could almost do this? it has a couple errors though
+  // {
+  //   module: 'react-native',
+  //   patchFiles: {
+  //     '**/*.js': ['flow'],
+  //   },
+  // },
 ]
