@@ -1,7 +1,5 @@
 import { parse } from 'es-module-lexer'
-import { dirname } from 'node:path'
 import { mergeConfig, type Plugin, type UserConfig } from 'vite'
-import { getVitePath } from '../utils/getVitePath'
 
 const getNativeExtensions = (platform: 'ios' | 'android') => {
   return [

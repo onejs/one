@@ -48,21 +48,49 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
 
         if (await FSExtra.pathExists(nodeModuleDir)) {
           for (const file in patch.patchFiles) {
-            const filesToApply = file.includes('*') ? globDir(nodeModuleDir) : [file]
+            const filesToApply = file.includes('*') ? globDir(nodeModuleDir, file) : [file]
 
             await Promise.all(
               filesToApply.map(async (relativePath) => {
-                const log = () => {
-                  console.info(` 🩹 Applied patch to ${relativePath}`)
-                }
-
                 try {
                   const fullPath = join(nodeModuleDir, relativePath)
+                  const ogFile = fullPath + '.vxrn.ogfile'
+
+                  // for any update we store an "og" file to compare and decide if we need to run again
+                  const existingPatch = (await FSExtra.pathExists(ogFile))
+                    ? await FSExtra.readFile(ogFile, 'utf8')
+                    : null
+
+                  const contentsIn = await FSExtra.readFile(fullPath, 'utf-8').catch((err) => {
+                    // no file
+                    return ''
+                  })
+
+                  const write = async (contents: string) => {
+                    await Promise.all([
+                      FSExtra.writeFile(ogFile, contentsIn),
+                      FSExtra.writeFile(fullPath, contents),
+                    ])
+                    console.info(` 🩹 Applied patch to ${patch.module}: ${relativePath}`)
+                  }
+
                   const patchDefinition = patch.patchFiles[file]
+
+                  if (existingPatch && existingPatch === contentsIn) {
+                    // we patched already and file hasn't changed from when we patched
+                    return
+                  }
+
+                  if (!Array.isArray(patchDefinition) && typeof patchDefinition === 'object') {
+                    // add
+                    if (patchDefinition.add) {
+                      await write(patchDefinition.add)
+                    }
+                    return
+                  }
 
                   // strategy
                   if (Array.isArray(patchDefinition)) {
-                    const contentsIn = await FSExtra.readFile(fullPath, 'utf-8')
                     let contents = contentsIn
 
                     for (const strategy of patchDefinition) {
@@ -80,37 +108,19 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
                     }
 
                     if (contentsIn !== contents) {
-                      log()
-                      await FSExtra.writeFile(fullPath, contents)
-                    }
-
-                    return
-                  }
-
-                  // create
-                  if (typeof patchDefinition === 'object') {
-                    if (patchDefinition.add) {
-                      if (!(await FSExtra.pathExists(fullPath))) {
-                        log()
-                        await FSExtra.writeFile(fullPath, patchDefinition.add)
-                        return
-                      }
+                      await write(contents)
                     }
 
                     return
                   }
 
                   // update
-                  log()
-                  await FSExtra.writeFile(
-                    fullPath,
-                    await patchDefinition(await FSExtra.readFile(fullPath, 'utf-8'))
-                  )
+                  await write(await patchDefinition(await FSExtra.readFile(fullPath, 'utf-8')))
                 } catch (err) {
                   if (err instanceof Bail) {
                     return
                   }
-                  throw err
+                  console.error(`Error applying patch to ${patch.module} ${relativePath}: ${err}`)
                 }
               })
             )

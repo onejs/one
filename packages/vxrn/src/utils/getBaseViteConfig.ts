@@ -28,6 +28,7 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
           return {
             resolve: {
               extensions: webExtensions,
+              conditions: ['vxrn-web'],
             },
 
             environments: {
