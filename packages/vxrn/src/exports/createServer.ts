@@ -26,6 +26,9 @@ export const createProdServer = async (options: VXRNOptions) => {
     // no cache let cdn do that shit
     if (!c.req.header('Cache-Control')) {
       c.header('Cache-Control', 'no-store')
+      // safari was aggressively caching js for some reason despite no-store
+      // https://stackoverflow.com/questions/48693693/macos-safari-caching-response-while-headers-specify-no-caching
+      c.header('Vary', '*')
     }
 
     return response
