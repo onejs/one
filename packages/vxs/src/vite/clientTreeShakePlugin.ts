@@ -79,6 +79,7 @@ export async function transformTreeShakeClient(
     // add back in empty or filled loader and genparams
     const codeOut =
       out.code +
+      '\n\n' +
       // TODO ideally put it back in same place as it was
       removedFunctions
         .map((key) => {

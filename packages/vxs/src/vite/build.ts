@@ -307,8 +307,6 @@ export async function build(props: AfterBuildProps) {
             loaderRegexName: '[a-z0-9_]+',
           })
 
-          console.log('replacing loader', withLoader)
-
           await Promise.all([
             outputFile(htmlOutPath, html),
             outputFile(loaderPartialPath, withLoader),
