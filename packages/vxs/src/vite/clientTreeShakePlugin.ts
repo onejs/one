@@ -60,9 +60,11 @@ export async function transformTreeShakeClient(
             declarator.id.type === 'Identifier' &&
             (declarator.id.name === 'loader' || declarator.id.name === 'generateStaticParams')
           ) {
-            // @ts-expect-error always one
-            path.get('declaration.declarations.' + index).remove()
-            removed[declarator.id.name] = true
+            const declaration = path.get('declaration.declarations.' + index)
+            if (!Array.isArray(declaration)) {
+              declaration.remove()
+              removed[declarator.id.name] = true
+            }
           }
         })
       }
@@ -90,7 +92,7 @@ export async function transformTreeShakeClient(
             // this is only used during dev build, for prod build see replaceLoader
             const loaderData = LoaderDataCache[relativeId]
             if (loaderData !== undefined) {
-              return `export function loader(){ return ${JSON.stringify(loaderData)}; }`
+              return `export function loader(){ return ${JSON.stringify(loaderData)}; };`
             }
 
             return EMPTY_LOADER_STRING
