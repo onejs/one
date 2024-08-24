@@ -332,8 +332,6 @@ async function run() {
     }
 
     if (!finish) {
-      await sleep(4 * 1000)
-
       if (rePublish) {
         // if all successful, re-tag as latest
         await pMap(

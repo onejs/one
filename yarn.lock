@@ -8942,7 +8942,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-vxrn@workspace:packages/create-vxrn":
+"create-vxrn@1.1.190, create-vxrn@workspace:packages/create-vxrn":
   version: 0.0.0-use.local
   resolution: "create-vxrn@workspace:packages/create-vxrn"
   dependencies:
@@ -18757,6 +18757,7 @@ __metadata:
     "@types/react-dom": ^18.2.25
     babel-dead-code-elimination: ^1.0.6
     citty: ^0.1.6
+    create-vxrn: 1.1.190
     depcheck: ^1.4.7
     dotenv: ^16.4.5
     escape-string-regexp: ^5.0.0

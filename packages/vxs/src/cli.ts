@@ -2,7 +2,6 @@ import { defineCommand, runMain } from 'citty'
 import { serve } from './vite/serve'
 import { build } from './vite/build'
 import { loadEnv } from './vite/loadEnv'
-import { virtualEntryIdNative } from './vite/virtualEntryPlugin'
 import { loadUserVXSOptions } from './vite/vxs'
 
 void loadEnv(process.cwd())
@@ -28,33 +27,8 @@ const dev = defineCommand({
     },
   },
   async run({ args }) {
-    const { dev } = await import('vxrn')
-    const { start, stop } = await dev({
-      clean: args.clean,
-      https: args.https,
-      root: process.cwd(),
-      host: args.host,
-      port: args.port ? +args.port : undefined,
-      entries: {
-        native: virtualEntryIdNative,
-      },
-    })
-
-    const { closePromise } = await start()
-
-    process.on('beforeExit', () => {
-      stop()
-    })
-
-    process.on('SIGINT', () => {
-      stop()
-    })
-
-    process.on('uncaughtException', (err) => {
-      console.error(err?.message || err)
-    })
-
-    await closePromise
+    const { run } = await import('./cli/run')
+    await run(args)
   },
 })
 
@@ -148,6 +122,11 @@ const main = defineCommand({
     name: 'main',
     version: '0.0.0',
     description: 'Welcome to vxrn',
+  },
+  args: {},
+  async run({ args }) {
+    const { cliMain } = await import('./cli/main')
+    await cliMain(args)
   },
   subCommands: {
     dev,
