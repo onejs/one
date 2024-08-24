@@ -1,8 +1,7 @@
-import { Text, View } from 'react-native'
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 import type { GlobbedRouteImports } from './types'
-import type { VXS } from './vite/types'
 import { removeSearch } from './utils/removeSearch'
+import type { VXS } from './vite/types'
 
 // essentially a development helper
 
@@ -66,7 +65,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
               const realPath = (globalThis['__vxrntodopath'] ?? window.location.pathname).trim()
               const importUrl = `${CLIENT_BASE_URL}${removeSearch(
                 realPath
-              )}_vxrn_loader.js?${CACHE_KEY}`
+              )}_vxrn_loader.js?cache_key=${CACHE_KEY}`
               return import(/* @vite-ignore */ importUrl)
             }
     } else {
@@ -99,25 +98,24 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
         .catch((err) => {
           console.error(`Error loading route`, id, err, new Error().stack)
           loadedRoutes[id] = {
-            default: () =>
-              null,
-              // <View
-              //   style={{
-              //     position: 'absolute',
-              //     top: 0,
-              //     left: 0,
-              //     right: 0,
-              //     bottom: 0,
-              //     alignItems: 'center',
-              //     justifyContent: 'center',
-              //     backgroundColor: '#000',
-              //     gap: 20,
-              //   }}
-              // >
-              //   <Text style={{ fontSize: 24, color: '#fff' }}>Error loading route</Text>
-              //   <Text style={{ fontSize: 16, color: '#fff' }}>{id}</Text>
-              //   <Text style={{ fontSize: 18, color: '#fff', maxWidth: 800 }}>{`${err}`}</Text>
-              // </View>
+            default: () => null,
+            // <View
+            //   style={{
+            //     position: 'absolute',
+            //     top: 0,
+            //     left: 0,
+            //     right: 0,
+            //     bottom: 0,
+            //     alignItems: 'center',
+            //     justifyContent: 'center',
+            //     backgroundColor: '#000',
+            //     gap: 20,
+            //   }}
+            // >
+            //   <Text style={{ fontSize: 24, color: '#fff' }}>Error loading route</Text>
+            //   <Text style={{ fontSize: 16, color: '#fff' }}>{id}</Text>
+            //   <Text style={{ fontSize: 18, color: '#fff', maxWidth: 800 }}>{`${err}`}</Text>
+            // </View>
           }
           delete promises[id]
         })
