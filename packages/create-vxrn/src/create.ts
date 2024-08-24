@@ -84,7 +84,10 @@ ${ansis.bold(ansis.red(`Please pick a different project name 🥸`))}`
   console.info()
 
   const packageManager =
-    ('packageManager' in template ? template.packageManager : undefined) || (await detect())
+    ('packageManager' in template ? template.packageManager : undefined) ||
+    (await detect({
+      includeGlobalBun: true,
+    }))
 
   try {
     console.info('installing with ' + packageManager)

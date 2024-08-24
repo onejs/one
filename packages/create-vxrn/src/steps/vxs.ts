@@ -2,10 +2,10 @@ import ansis from 'ansis'
 
 import type { ExtraSteps } from './types'
 
-const packageManager = 'yarn'
-const useYarn = packageManager === 'yarn'
+const packageManager = 'useBun'
+const useBun = packageManager === 'useBun'
 
-const runCommand = (scriptName: string) => `${packageManager} ${useYarn ? '' : 'run '}${scriptName}`
+const runCommand = (scriptName: string) => `${packageManager} ${useBun ? '' : 'run '}${scriptName}`
 
 const main: ExtraSteps = async ({ isFullClone, projectName }) => {
   if (isFullClone) {

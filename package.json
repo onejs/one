@@ -33,7 +33,7 @@
     "lint:fix": "yarn lint:eslint --fix && ultra -r --no-pretty lint:fix",
     "lint": "yarn lint:eslint && ultra -r --no-pretty lint",
     "lint:eslint": "echo eslint && eslint '**/*.{ts,tsx}'",
-    "dev:example-vxs": "yarn workspace example-vxs dev",
+    "dev:example-basic": "yarn workspace example-basic dev",
     "dev:example-weird-deps": "yarn workspace example-weird-deps dev",
     "dev:example-fullstack": "yarn workspace example-fullstack dev",
     "dev:example-bare": "yarn workspace example-bare dev",
@@ -43,7 +43,7 @@
     "watch:js": "SKIP_TYPES=1 yarn watch:build",
     "watch:ts": "tsc -b -w --preserveWatchOutput tsconfig.build.json",
     "watch": "npm-run-all --parallel watch:ts watch:build",
-    "vxs": "yarn workspace example-vxs"
+    "vxs": "yarn workspace example-basic"
   },
   "dependencies": {
     "@biomejs/biome": "^1.8.3",
