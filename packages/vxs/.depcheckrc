@@ -1,1 +1,1 @@
-ignores: ["expo-modules-core"]
+ignores: ["expo-modules-core", "react-native-web"]
