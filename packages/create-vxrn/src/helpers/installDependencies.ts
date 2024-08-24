@@ -5,7 +5,10 @@ export async function installDependencies(
   packageManager: 'yarn' | 'npm' | 'pnpm' | 'bun'
 ) {
   const options = { cwd: projectRoot }
-  if (packageManager === 'yarn') {
+  if (packageManager === 'bun') {
+    const bun = new PackageManager.BunPackageManager(options)
+    await bun.installAsync()
+  } else if (packageManager === 'yarn') {
     const yarn = new PackageManager.YarnPackageManager(options)
     await yarn.installAsync()
   } else {
