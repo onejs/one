@@ -1,1 +1,1 @@
-ignores: ["@vxrn/safe-area", "@biomejs/biome", "vxrn", "@expo/cli", "@vxrn/vendor"]
+ignores: ["@vxrn/safe-area", "@biomejs/biome", "vxrn", "@expo/cli", "@vxrn/vendor", "react"]
