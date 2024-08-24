@@ -58,13 +58,21 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
 
                   // for any update we store an "og" file to compare and decide if we need to run again
                   const existingPatch = (await FSExtra.pathExists(ogFile))
-                    ? await FSExtra.readFile(ogFile, 'utf8')
+                    ? await FSExtra.readFile(ogFile, 'utf-8')
                     : null
 
-                  const contentsIn = await FSExtra.readFile(fullPath, 'utf-8').catch((err) => {
-                    // no file
-                    return ''
-                  })
+                  let contentsIn = (await FSExtra.pathExists(fullPath))
+                    ? await FSExtra.readFile(fullPath, 'utf-8')
+                    : ''
+
+                  if (typeof existingPatch === 'string') {
+                    if (!process.env.VXRN_FORCE_PATCH) {
+                      return
+                    }
+
+                    // start from the OG
+                    contentsIn = existingPatch
+                  }
 
                   const write = async (contents: string) => {
                     await Promise.all([
@@ -75,11 +83,6 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
                   }
 
                   const patchDefinition = patch.patchFiles[file]
-
-                  if (existingPatch && existingPatch === contentsIn) {
-                    // we patched already and file hasn't changed from when we patched
-                    return
-                  }
 
                   if (!Array.isArray(patchDefinition) && typeof patchDefinition === 'object') {
                     // add
@@ -116,7 +119,7 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
                   }
 
                   // update
-                  await write(await patchDefinition(await FSExtra.readFile(fullPath, 'utf-8')))
+                  await write(await patchDefinition(contentsIn))
                 } catch (err) {
                   if (err instanceof Bail) {
                     return
