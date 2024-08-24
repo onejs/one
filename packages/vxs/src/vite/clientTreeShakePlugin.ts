@@ -76,15 +76,17 @@ export async function transformTreeShakeClient(
 
     const out = generate(ast)
 
-    // add back in empty versions
+    // add back in empty or filled loader and genparams
     const codeOut =
       out.code +
+      // TODO ideally put it back in same place as it was
       removedFunctions
         .map((key) => {
           if (key === 'loader') {
             const relativeId = relative(process.cwd(), id)
             //.replace(new RegExp(`^${root}/`), './')
 
+            // this is only used during dev build, for prod build see replaceLoader
             const loaderData = LoaderDataCache[relativeId]
             if (loaderData !== undefined) {
               return `export function loader(){ return ${JSON.stringify(loaderData)}; }`

@@ -46,6 +46,8 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
       return nodeModulesDirs.flatMap(async (dir) => {
         const nodeModuleDir = join(dir, patch.module)
 
+        let hasLogged = false
+
         if (await FSExtra.pathExists(nodeModuleDir)) {
           for (const file in patch.patchFiles) {
             const filesToApply = file.includes('*') ? globDir(nodeModuleDir, file) : [file]
@@ -79,7 +81,15 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
                       FSExtra.writeFile(ogFile, contentsIn),
                       FSExtra.writeFile(fullPath, contents),
                     ])
-                    console.info(` 🩹 Applied patch to ${patch.module}: ${relativePath}`)
+
+                    if (!hasLogged) {
+                      hasLogged = true
+                      console.info(` 🩹 Patching ${patch.module}`)
+                    }
+
+                    if (import.meta.env.DEBUG) {
+                      console.info(`  - Applied patch to ${patch.module}: ${relativePath}`)
+                    }
                   }
 
                   const patchDefinition = patch.patchFiles[file]

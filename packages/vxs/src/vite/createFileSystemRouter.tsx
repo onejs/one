@@ -141,6 +141,7 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
 
               globalThis['__vxrnLoaderData__'] = loaderData
               globalThis['__vxrnLoaderProps__'] = loaderProps
+
               LoaderDataCache[route.file] = loaderData
 
               const html = await entry.default.render({
