@@ -87,7 +87,7 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
                       console.info(` 🩹 Patching ${patch.module}`)
                     }
 
-                    if (import.meta.env.DEBUG) {
+                    if (process.env.DEBUG) {
                       console.info(`  - Applied patch to ${patch.module}: ${relativePath}`)
                     }
                   }
