@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.108.4",
+    "@tamagui/build": "^1.109.0",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",
     "@types/ws": "^8.5.10",

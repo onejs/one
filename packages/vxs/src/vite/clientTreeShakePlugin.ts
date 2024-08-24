@@ -1,18 +1,15 @@
-import { transform } from '@swc/core'
-import type { Node, Program } from 'estree'
-import { walk } from 'estree-walker'
-import MagicString from 'magic-string'
+import BabelGenerate from '@babel/generator'
+import { parse } from '@babel/parser'
+import BabelTraverse from '@babel/traverse'
+import { deadCodeElimination, findReferencedIdentifiers } from 'babel-dead-code-elimination'
 import { relative } from 'node:path'
 import type { Plugin } from 'vite'
 import { EMPTY_LOADER_STRING, LoaderDataCache } from './constants'
 
-interface TreeShakeTemplatePluginOptions {
-  sourcemap?: boolean
-}
+const traverse = BabelTraverse['default'] as typeof BabelTraverse
+const generate = BabelGenerate['default'] as any as typeof BabelGenerate
 
-type AcornNode<N extends Node> = N & { start: number; end: number }
-
-export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = {}): Plugin => {
+export const clientTreeShakePlugin = (): Plugin => {
   return {
     name: 'vxrn:client-tree-shake',
 
@@ -23,7 +20,7 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
     },
 
     async transform(code, id, settings) {
-      return await transformTreeShakeClient(code, id, settings, this.parse, '')
+      return await transformTreeShakeClient(code, id, settings)
     },
   } satisfies Plugin
 }
@@ -31,9 +28,7 @@ export const clientTreeShakePlugin = (options: TreeShakeTemplatePluginOptions = 
 export async function transformTreeShakeClient(
   code: string,
   id: string,
-  settings: { ssr?: boolean } | undefined,
-  parse: any,
-  root: string
+  settings: { ssr?: boolean } | undefined
 ) {
   if (settings?.ssr) return
   if (id.includes('node_modules')) return
@@ -42,135 +37,69 @@ export async function transformTreeShakeClient(
     return
   }
 
-  const s = new MagicString(code)
-  const codeAst = parse(code) as AcornNode<Program>
+  const ast = parse(code, { sourceType: 'module', plugins: ['typescript', 'jsx'] })
+  const referenced = findReferencedIdentifiers(ast)
 
-  walk(codeAst, {
-    enter: (node) => {
-      const didShakeParams = shakeGenerateStaticParams()
-      const didShakeLoader = shakeLoader()
+  const removed = {
+    loader: false,
+    generateStaticParams: false,
+  }
 
-      if (didShakeParams || didShakeLoader) {
-        if (process.env.DEBUG?.startsWith('vxs')) {
-          console.info(`Removed params/loader from client file:\n\n`, s.toString(), '\n')
+  traverse(ast, {
+    ExportNamedDeclaration(path) {
+      if (path.node.declaration && path.node.declaration.type === 'FunctionDeclaration') {
+        if (!path.node.declaration.id) return
+        const functionName = path.node.declaration.id.name
+        if (functionName === 'loader' || functionName === 'generateStaticParams') {
+          path.remove()
+          removed[functionName] = true
         }
-      }
-
-      function shakeLoader() {
-        if (node.type === 'ExportNamedDeclaration' || node.type === 'VariableDeclaration') {
-          let declarators = (
-            'declarations' in node
-              ? node.declarations
-              : 'declaration' in node
-                ? [node.declaration]
-                : []
-          ) as any[]
-
-          let shouldRemove = false
-
-          declarators.forEach((declarator) => {
-            if (!declarator) return
-            if (declarator.id?.type === 'Identifier' && declarator.id?.name === 'loader') {
-              shouldRemove = true
-            }
-          })
-
-          if (shouldRemove) {
-            const relativeId = relative(process.cwd(), id).replace(new RegExp(`^${root}/`), './')
-
-            let replaceStr = EMPTY_LOADER_STRING
-
-            const loaderData = LoaderDataCache[relativeId]
-            if (loaderData !== undefined) {
-              replaceStr = `export function loader(){ return ${JSON.stringify(loaderData)}; }`
-            }
-
-            const length = node['end'] - node['start']
-            // @ts-ignore
-            s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
-
-            return true
+      } else if (path.node.declaration && path.node.declaration.type === 'VariableDeclaration') {
+        path.node.declaration.declarations.forEach((declarator, index) => {
+          if (
+            declarator.id.type === 'Identifier' &&
+            (declarator.id.name === 'loader' || declarator.id.name === 'generateStaticParams')
+          ) {
+            // @ts-expect-error always one
+            path.get('declaration.declarations.' + index).remove()
+            removed[declarator.id.name] = true
           }
-        }
-      }
-
-      function shakeGenerateStaticParams() {
-        if (node.type === 'ExportNamedDeclaration' || node.type === 'VariableDeclaration') {
-          let declarators = (
-            'declarations' in node
-              ? node.declarations
-              : 'declaration' in node
-                ? [node.declaration]
-                : []
-          ) as any[]
-
-          let shouldRemove = false
-
-          declarators.forEach((declarator) => {
-            if (!declarator) return
-            if (
-              declarator.id?.type === 'Identifier' &&
-              declarator.id?.name === 'generateStaticParams'
-            ) {
-              shouldRemove = true
-            }
-          })
-
-          const replaceStr = `function generateStaticParams() {};`
-          const length = node['end'] - node['start']
-
-          if (shouldRemove) {
-            // @ts-ignore
-            // s.remove(node.start, node.end + 1)
-            s.update(node.start, node.end + 1, replaceStr.padEnd(length - replaceStr.length))
-            return true
-          }
-        }
+        })
       }
     },
   })
 
-  if (s.hasChanged()) {
+  const removedFunctions = Object.keys(removed).filter((key) => removed[key])
+
+  if (removedFunctions.length) {
+    deadCodeElimination(ast, referenced)
+
+    const out = generate(ast)
+
+    // add back in empty versions
+    const codeOut =
+      out.code +
+      removedFunctions
+        .map((key) => {
+          if (key === 'loader') {
+            const relativeId = relative(process.cwd(), id)
+            //.replace(new RegExp(`^${root}/`), './')
+
+            const loaderData = LoaderDataCache[relativeId]
+            if (loaderData !== undefined) {
+              return `export function loader(){ return ${JSON.stringify(loaderData)}; }`
+            }
+
+            return EMPTY_LOADER_STRING
+          }
+
+          return `export function generateStaticParams() {};`
+        })
+        .join('\n')
+
     return {
-      code: await removeUnusedImports(id, s),
-      map: s.generateMap({ hires: true }),
+      code: codeOut,
+      map: out.map,
     }
-  }
-}
-
-// we assume side effects are false
-// dont change anything in terms of source map
-
-async function removeUnusedImports(id: string, s: MagicString): Promise<string> {
-  try {
-    // partially removes unused imports
-    const output = await transform(s.toString(), {
-      jsc: {
-        minify: {
-          mangle: false,
-          compress: {
-            side_effects: false,
-            dead_code: true,
-            drop_debugger: false,
-          },
-        },
-        target: 'esnext',
-      },
-    })
-
-    // swc assumes side effects are true and leaves the `import "x"` behind
-    // we want to remove them to avoid clients importing server stuff
-    // TODO ensure they were only ones that were previously using some sort of identifier
-    const withoutSideEffectImports = output.code
-      // remove no-path-specifier imports
-      .replaceAll(/^\s*import [\"\'][^"'\.]+[\"\'];?$/gm, '\n')
-      // remove .js path-specifier imports
-      .replaceAll(/^\s*import [\"\'][^"']+\.js[\"\'];?$/gm, '\n')
-
-    return withoutSideEffectImports
-  } catch (err) {
-    throw new Error(`Error removing unused imports from ${id}`, {
-      cause: err,
-    })
   }
 }
