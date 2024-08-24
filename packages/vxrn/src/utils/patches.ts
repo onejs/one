@@ -7,7 +7,7 @@ import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { globDir } from './globDir'
 import { swcTransform } from '@vxrn/vite-native-swc'
 
-type Strategies = 'swc' | 'flow'
+type Strategies = 'swc' | 'flow' | 'jsx'
 
 export type DepPatch = {
   module: string
@@ -97,11 +97,12 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
                       if (strategy === 'flow') {
                         contents = await transformFlow(contents)
                       }
-                      if (strategy === 'swc') {
+                      if (strategy === 'swc' || strategy === 'jsx') {
                         contents =
                           (
                             await swcTransform(fullPath, contents, {
                               mode: 'build',
+                              forceJSX: strategy === 'jsx',
                             })
                           )?.code || contents
                       }

@@ -151,7 +151,7 @@ export const depPatches: DepPatch[] = [
   {
     module: 'react-native-webview',
     patchFiles: {
-      '**/*.js': ['swc'],
+      '**/*.js': ['jsx'],
     },
   },
 

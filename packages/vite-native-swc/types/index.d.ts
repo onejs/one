@@ -19,6 +19,7 @@ type Options = {
      * @default undefined
      */
     plugins?: [string, Record<string, any>][];
+    forceJSX?: boolean;
 };
 declare const _default: (_options?: Options) => PluginOption[];
 export default _default;

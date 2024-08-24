@@ -41,6 +41,8 @@ type Options = {
    * @default undefined
    */
   plugins?: [string, Record<string, any>][]
+
+  forceJSX?: boolean
 }
 
 const isWebContainer = globalThis.process?.versions?.webcontainer
@@ -54,7 +56,7 @@ const parsers: Record<string, ParserConfig> = {
   '.mdx': { syntax: 'ecmascript', jsx: true },
 }
 
-function getParser(id: string) {
+function getParser(id: string, forceJSX = false) {
   if (id.endsWith('vxs-entry-native')) {
     return parsers['.tsx']
   }
@@ -64,6 +66,10 @@ function getParser(id: string) {
 
   // compat
   if (extension === '.js') {
+    if (forceJSX) {
+      parser = parsers['.jsx']
+    }
+
     if (id.includes('expo-modules-core')) {
       parser = parsers['.jsx']
     }
@@ -213,7 +219,7 @@ export const transformWithOptions = async (
   options: Options,
   reactConfig: ReactConfig
 ) => {
-  const parser = getParser(id)
+  const parser = getParser(id, options.forceJSX)
   if (!parser) return
 
   let result: Output
