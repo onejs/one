@@ -1,6 +1,6 @@
 {
   "name": "example-vxs",
-  "version": "1.1.186",
+  "version": "1.1.187",
   "private": true,
   "type": "module",
   "sideEffects": [
@@ -22,7 +22,7 @@
     "react-native-web": "^0.19.12",
     "tamagui": "^1.109.0",
     "uuid": "9.0.0",
-    "vxs": "1.1.186"
+    "vxs": "1.1.187"
   },
   "devDependencies": {
     "vite": "6.0.0-alpha.18"
