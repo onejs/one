@@ -57,10 +57,6 @@ export default {
     needsInterop: optimizeInterop,
   },
 
-  ssr: {
-    external: ['@tamagui/mdx'],
-  },
-
   build: {
     cssTarget: 'safari15',
   },

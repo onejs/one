@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
 import { Text, View } from 'react-native'
-import { Link, useLoader } from 'vxs'
+import { Link } from 'vxs'
 
 export async function loader() {
   return {

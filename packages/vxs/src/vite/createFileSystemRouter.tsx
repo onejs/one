@@ -34,6 +34,7 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
                 dedupe: optimizeDeps.include,
                 external: [],
                 noExternal: optimizeDeps.include,
+                conditions: ['vxrn-web'],
                 alias: {
                   react: '@vxrn/vendor/react-19',
                   'react-dom': '@vxrn/vendor/react-dom-19',
@@ -137,6 +138,7 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
               // biome-ignore lint/security/noGlobalEval: <explanation>
               eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
+              // const entry = await server.ssrLoadModule(virtualEntryId)
               const entry = await runner.import(virtualEntryId)
 
               globalThis['__vxrnLoaderData__'] = loaderData
