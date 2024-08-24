@@ -62,6 +62,11 @@ export const depPatches: DepPatch[] = [
 
         const pkg = JSON.parse(contents)
 
+        if (pkg.version.startsWith('19.')) {
+          // already on 19 no need to patch!
+          return
+        }
+
         if (!pkg.exports['.']) {
           throw new Error(`Expected a version of React that has package.json exports defined`)
         }
@@ -114,6 +119,11 @@ export const depPatches: DepPatch[] = [
         bailIfExists(contents, 'index.vxrn-web.js')
 
         const pkg = JSON.parse(contents)
+
+        if (pkg.version.startsWith('19.')) {
+          // already on 19 no need to patch!
+          return
+        }
 
         if (!pkg.exports['.']) {
           throw new Error(`Expected a version of React that has package.json exports defined`)

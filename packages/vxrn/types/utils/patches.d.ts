@@ -3,7 +3,7 @@ type Strategies = 'swc' | 'flow' | 'jsx';
 export type DepPatch = {
     module: string;
     patchFiles: {
-        [key: string]: ((contents?: string) => string | Promise<string>) | {
+        [key: string]: ((contents?: string) => void | string | Promise<void | string>) | {
             add: string;
         } | Strategies[];
     };
