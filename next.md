@@ -1,13 +1,6 @@
 - dep issues
 
-for all of these we can also add better fixDependencies options:
-
-`'flow' | 'jsx'`
-
-    - `@react-native-masked-view/masked-view` ships flow in .js file for native
-      - auto-detect @flow annotation and transform?
-
-    - `react-native-webview/lib/WebView.js` is jsx
+  -  ../../node_modules/@sentry/react-native/dist/js/utils/environment.js (1:9): "version" is not exported by "virtual:rn-internals:react-native/Libraries/Core/ReactNativeVersion", imported by "../../node_modules/@sentry/react-native/dist/js/utils/environment.js".
 
 - move clientTreeShakePlugin.ts to use:
   - https://github.com/pcattori/babel-dead-code-elimination

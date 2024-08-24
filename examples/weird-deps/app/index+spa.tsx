@@ -1,5 +1,6 @@
 import MaskedView from '@react-native-masked-view/masked-view'
 import WebView from 'react-native-webview'
+import * as Sentry from '@sentry/react-native'
 import { View } from 'react-native'
 
 export async function loader() {
@@ -11,10 +12,11 @@ export async function loader() {
 export default function HomePage() {
   console.info('MaskedView', MaskedView)
   console.info('WebView', WebView)
+  console.info('Sentry', Sentry)
 
   return (
     <>
-      <View />
+      <View style={{ width: 200, height: 200, backgroundColor: 'red' }} />
     </>
   )
 }
