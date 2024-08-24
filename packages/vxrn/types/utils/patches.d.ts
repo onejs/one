@@ -1,5 +1,5 @@
 import type { VXRNOptionsFilled } from './getOptionsFilled';
-type Strategies = 'swc' | 'flow';
+type Strategies = 'swc' | 'flow' | 'jsx';
 export type DepPatch = {
     module: string;
     patchFiles: {
