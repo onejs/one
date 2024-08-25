@@ -1,6 +1,6 @@
 {
   "name": "example-vxs-plain",
-  "version": "1.1.193",
+  "version": "1.1.194",
   "private": true,
   "type": "module",
   "sideEffects": [
@@ -16,10 +16,10 @@
   "dependencies": {
     "react-native": "0.74.1",
     "react-native-reanimated": "~3.10.1",
-    "vxs": "1.1.193"
+    "vxs": "1.1.194"
   },
   "devDependencies": {
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.193"
+    "vxrn": "1.1.194"
   }
 }
