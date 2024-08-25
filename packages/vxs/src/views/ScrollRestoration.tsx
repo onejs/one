@@ -34,7 +34,7 @@ export function ScrollRestoration(props: {
   disable?: boolean | 'restore'
 }) {
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined' || !window.addEventListener) {
       return
     }
     if (props.disable) {

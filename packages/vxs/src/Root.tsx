@@ -140,7 +140,7 @@ function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: 
 
   // TODO can probably remove since we handle this above
   const location =
-    typeof window !== 'undefined'
+    typeof window !== 'undefined' && window.location
       ? new URL(path || window.location.href || '/', window.location.href)
       : new URL(path || '/', 'http://localhost')
 
