@@ -11,3 +11,7 @@
 - RootErrorBoundary and errors in general need love
   - bring back some form of useMetroSymbolication
 - safe-area-context should be configurable to leave it out entirely if you want
+
+- vxs should have more than just patches, but also config that is set per-node_module
+  - eg, react 19 sets: 'process.env.TAMAGUI_REACT_19': '"1"'
+  - another cool idea: node_modules package.json sets "vite" field that can add these custom configs, so `tamagui` package can define that *for* react 19
