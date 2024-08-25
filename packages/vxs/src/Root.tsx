@@ -46,8 +46,9 @@ export function Root(props: RootProps) {
   const contents = (
     // <StrictMode>
     <RootErrorBoundary>
-      <Contents {...props} />
-      <PreloadLinks />
+      {/* for some reason warning if no key here */}
+      <Contents key="contents" {...props} />
+      <PreloadLinks key="preload-links" />
     </RootErrorBoundary>
     // </StrictMode>
   )
