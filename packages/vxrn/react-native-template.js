@@ -199,15 +199,15 @@ globalThis['setImmediate'] = (cb) => cb()
 //cb => Promise.resolve().then(() => cb())
 
 // idk why
-console._tmpLogs = []
+globalThis.__vxrnTmpLogs = []
 ;['trace', 'info', 'warn', 'error', 'log', 'group', 'groupCollapsed', 'groupEnd', 'debug'].forEach(
   (level) => {
     const og = globalThis['console'][level]
     globalThis['_ogConsole' + level] = og
     const ogConsole = og.bind(globalThis['console'])
     globalThis['console'][level] = (...data) => {
-      if (console._tmpLogs) {
-        console._tmpLogs.push({ level, data })
+      if (globalThis.__vxrnTmpLogs) {
+        globalThis.__vxrnTmpLogs.push({ level, data }) // will cause "non-std C++ exception" red box on Expo Go or "cannot add a new property" error.
       }
       return ogConsole(...data)
     }
