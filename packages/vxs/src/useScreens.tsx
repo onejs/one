@@ -200,10 +200,20 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     })
   }
 
+  const wrapSuspense = (children: any) => {
+    if (process.env.TAMAGUI_TARGET === 'native') {
+      return <Suspense fallback={<SuspenseFallback route={value} />}>{children}</Suspense>
+    }
+    // on web avoiding suspense for now
+    // its causing page flickers, we need to make sure we wrap loaders + page nav
+    // in startTransition
+    return children
+  }
+
   const getLoadable = (props: any, ref: any) => {
     return (
       <RootErrorBoundary>
-        <Suspense fallback={<SuspenseFallback route={value} />}>
+        {wrapSuspense(
           <ScreenComponent
             {...{
               ...props,
@@ -213,7 +223,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
               segment: value.route,
             }}
           />
-        </Suspense>
+        )}
       </RootErrorBoundary>
     )
   }
