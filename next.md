@@ -8,4 +8,6 @@
 
 - for some reason rollup newer versions have syntax error on trying to load native bundle on basic starter
 
-- 
+- RootErrorBoundary and errors in general need love
+  - bring back some form of useMetroSymbolication
+- safe-area-context should be configurable to leave it out entirely if you want
