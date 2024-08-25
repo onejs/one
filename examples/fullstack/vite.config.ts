@@ -15,7 +15,6 @@ export default {
   resolve: {
     alias: {
       '~': import.meta.dirname,
-      'react-native-svg': '@tamagui/react-native-svg',
     },
 
     dedupe: [

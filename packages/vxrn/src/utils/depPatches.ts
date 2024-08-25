@@ -177,6 +177,18 @@ export const depPatches: DepPatch[] = [
     },
   },
 
+  {
+    module: 'react-native-svg',
+    patchFiles: {},
+  },
+
+  {
+    module: '@react-native/assets-registry',
+    patchFiles: {
+      '**/*.js': ['flow'],
+    },
+  },
+
   // could almost do this? it has a couple errors though
   // {
   //   module: 'react-native',

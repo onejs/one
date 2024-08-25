@@ -26,7 +26,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'use-latest-callback',
     'react-is',
     'fast-deep-equal',
-    'react-native-svg',
     '@supabase/auth-helpers-react',
     'parse-numeric-range',
     'use-sync-external-store',
