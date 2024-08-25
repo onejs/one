@@ -227,3 +227,13 @@ global.ErrorUtils = {
     console.log('err' + err['message'] + err['stack'])
   },
 }
+
+// These are necessary for react-native-reanimated to work. Without this, app will crash with `EXC_BAD_ACCESS` [here](https://github.com/software-mansion/react-native-reanimated/blob/3.10.1/Common/cpp/SharedItems/Shareables.cpp#L57) with `function.getProperty(rt, "name").getString(rt).utf8(rt).c_str()` being `assert`, `clear`, `dir`, `dirxml`, `profile`, `profileEnd`, `table`, etc.
+// TODO: We may need to implement these functions in the future.
+console.assert = () => {}
+console.clear = () => {}
+console.dir = () => {}
+console.dirxml = () => {}
+console.profile = () => {}
+console.profileEnd = () => {}
+console.table = () => {}
