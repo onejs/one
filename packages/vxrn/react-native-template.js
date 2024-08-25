@@ -207,7 +207,7 @@ globalThis.__vxrnTmpLogs = []
     const ogConsole = og.bind(globalThis['console'])
     globalThis['console'][level] = (...data) => {
       if (globalThis.__vxrnTmpLogs) {
-        globalThis.__vxrnTmpLogs.push({ level, data }) // will cause "non-std C++ exception" red box on Expo Go or "cannot add a new property" error.
+        globalThis.__vxrnTmpLogs.push({ level, data })
       }
       return ogConsole(...data)
     }
