@@ -74,7 +74,7 @@ export function expoManifestRequestHandlerPlugin(
           }
 
           logger.warn(
-            'Ignoring the error and respond with preset manifest content, which may not work with Expo Go or your development build.',
+            'Ignoring the error and responding with preset manifest, this may not work with Expo Go or your development build.',
             defaultLogOptions
           )
           logger.warn(
