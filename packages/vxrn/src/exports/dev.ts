@@ -114,20 +114,25 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   )
 
   // builds the dev initial bundle for react native
+  const rnBundleHandler =  defineEventHandler(async (e) => {
+    try {
+      const bundle = await getReactNativeBundle(options, viteRNClientPlugin)
+      return new Response(bundle, {
+        headers: {
+          'content-type': 'text/javascript',
+        },
+      })
+    } catch (err) {
+      console.error(` Error building React Native bundle: ${err}`)
+    }
+  })
   router.get(
     '/index.bundle',
-    defineEventHandler(async (e) => {
-      try {
-        const bundle = await getReactNativeBundle(options, viteRNClientPlugin)
-        return new Response(bundle, {
-          headers: {
-            'content-type': 'text/javascript',
-          },
-        })
-      } catch (err) {
-        console.error(` Error building React Native bundle: ${err}`)
-      }
-    })
+    rnBundleHandler
+  )
+  router.get(
+    '/.expo/.virtual-metro-entry.bundle', // for Expo development builds
+    rnBundleHandler
   )
 
   router.get(
