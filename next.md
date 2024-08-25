@@ -1,3 +1,6 @@
+- ScrollRestoration seems to have regressed (site not doing it consistently)
+  - also we should default this on but have a way to turn it off
+
 - dep issues
 
   -  ../../node_modules/@sentry/react-native/dist/js/utils/environment.js (1:9): "version" is not exported by "virtual:rn-internals:react-native/Libraries/Core/ReactNativeVersion", imported by "../../node_modules/@sentry/react-native/dist/js/utils/environment.js".
@@ -25,3 +28,5 @@
 [vite] connected.
 Port 5173 is in use, trying another one...
 Server running on http://127.0.0.1:8082
+
+- an easy way to disable swc transform for a node_module using `deps`

@@ -1,8 +1,5 @@
 import { Text } from 'react-native'
 import { Link, Stack } from 'vxs'
-import { Path } from 'react-native-svg'
-
-console.log('wut', Path)
 
 export default function HomePage() {
   return (
