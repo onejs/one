@@ -43,7 +43,11 @@ function printError(err) {
 const __runningModules = new Map()
 
 function __getRequire(absPath) {
-  absPath = ___vxrnAbsoluteToRelative___[absPath] || absPath
+  absPath =
+    ___vxrnAbsoluteToRelative___[absPath] ||
+    ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')] ||
+    ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.ts')] ||
+    absPath
 
   if (!__cachedModules[absPath]) {
     const runModule = ___modules___[absPath]
@@ -197,6 +201,10 @@ ${new Error().stack
 
 globalThis['setImmediate'] = (cb) => cb()
 //cb => Promise.resolve().then(() => cb())
+
+globalThis.__vxrnReloadApp = () => {
+  require('react-native').DevSettings.reload()
+}
 
 // idk why
 globalThis.__vxrnTmpLogs = []

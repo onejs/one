@@ -9,7 +9,7 @@ export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
 export function createApp(options: CreateAppProps): void {
   console.info(
-    `createApp(${process.env.VXS_APP_NAME}) routes: ${options.routes}\n${Object.keys(options.routes || []).join('\n')}`
+    `createApp(${process.env.VXS_APP_NAME}) routes: ${Object.keys(options.routes || []).join('\n')}`
   )
 
   const App = () => <Root isClient routes={options.routes} path="/" />
