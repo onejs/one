@@ -113,7 +113,7 @@ export default (_options?: Options): PluginOption[] => {
             rollupOptions: {
               plugins: [
                 {
-                  name: `native-transform`,
+                  name: `swc-react-native-transform`,
                   options: {
                     order: 'pre',
                     handler(options) {},
@@ -122,27 +122,61 @@ export default (_options?: Options): PluginOption[] => {
                   async transform(code, id) {
                     const parser = getParser(id)
 
-                    const out = await transform(code, {
-                      filename: id,
-                      swcrc: false,
-                      configFile: false,
-                      sourceMaps: shouldSourceMap(),
-                      jsc: {
-                        parser,
-                        transform: {
-                          useDefineForClassFields: true,
-                          react: {
-                            development: true,
-                            refresh: false,
-                            runtime: 'automatic',
+                    // seeing an error with /Users/n8/universe/node_modules/@floating-ui/core/dist/floating-ui.core.mjs
+                    // fallback to a different config:
+
+                    try {
+                      const out = await transform(code, {
+                        filename: id,
+                        swcrc: false,
+                        configFile: false,
+                        sourceMaps: shouldSourceMap(),
+                        jsc: {
+                          parser,
+                          transform: {
+                            useDefineForClassFields: true,
+                            react: {
+                              development: true,
+                              refresh: false,
+                              runtime: 'automatic',
+                            },
                           },
                         },
-                      },
-                      env: SWC_ENV,
-                    })
+                        env: SWC_ENV,
+                      })
 
-                    hasTransformed[id] = true
-                    return out
+                      hasTransformed[id] = true
+                      return out
+                    } catch (err) {
+                      console.info(
+                        `Error parsing file ${id}, attempting different config. For full error DEBUG=vxrn`
+                      )
+                      if (process.env.DEBUG === 'vxrn') {
+                        console.error(`${err}`)
+                      }
+
+                      const out = await transform(code, {
+                        filename: id,
+                        swcrc: false,
+                        configFile: false,
+                        sourceMaps: shouldSourceMap(),
+                        jsc: {
+                          parser,
+                          target: 'es5',
+                          transform: {
+                            useDefineForClassFields: true,
+                            react: {
+                              development: true,
+                              refresh: false,
+                              runtime: 'automatic',
+                            },
+                          },
+                        },
+                      })
+
+                      hasTransformed[id] = true
+                      return out
+                    }
                   },
                 },
               ],
