@@ -171,7 +171,7 @@ export const depPatches: DepPatch[] = [
         // fixes problem with @sentry/react-native 5.5.0 using setimmediate polyfill causing error
         return contents.replace(
           `return this.exportNamesByVariable.get(variable)[0];`,
-          `return this.exportNamesByVariable.get(variable)?.[0] || (() => { console.log("rollup error parsing module, vxrn patch to fallback"); return '' }());`
+          `return this.exportNamesByVariable.get(variable)?.[0];`
         )
       },
     },

@@ -60,6 +60,7 @@
     "lightningcss": "^1.26.0",
     "picocolors": "^1.0.0",
     "pkg-types": "^1.0.3",
+    "rollup": "^4.21.0",
     "semver": "^7.6.3",
     "vite": "6.0.0-alpha.18",
     "vite-bundle-analyzer": "^0.9.4",
@@ -72,7 +73,6 @@
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",
     "@types/ws": "^8.5.10",
-    "depcheck": "^1.4.7",
-    "rollup": "4.21.0"
+    "depcheck": "^1.4.7"
   }
 }

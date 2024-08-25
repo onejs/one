@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState, type FunctionComponent, type ReactNode }
 import type { GlobbedRouteImports, RenderAppProps } from './types'
 import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
 import { PreloadLinks } from './PreloadLinks'
@@ -177,6 +178,14 @@ function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: 
 //   Platform.OS === 'ios' &&
 //   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
 
+const INITIAL_METRICS =
+  process.env.TAMAGUI_TARGET === 'web'
+    ? {
+        frame: { x: 0, y: 0, width: 0, height: 0 },
+        insets: { top: 0, left: 0, right: 0, bottom: 0 },
+      }
+    : undefined
+
 function ContextNavigator({
   wrapper: ParentWrapper = Fragment,
   context,
@@ -196,18 +205,18 @@ function ContextNavigator({
     return (
       <ParentWrapper>
         {/* <GestureHandlerRootView> */}
-        {/* <SafeAreaProvider
-          // SSR support
+        <SafeAreaProvider
+          // SSR
           initialMetrics={INITIAL_METRICS}
           style={{
             flex: 1,
           }}
-        > */}
-        {children}
+        >
+          {children}
 
-        {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-        {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-        {/* </SafeAreaProvider> */}
+          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+        </SafeAreaProvider>
         {/* </GestureHandlerRootView> */}
       </ParentWrapper>
     )
