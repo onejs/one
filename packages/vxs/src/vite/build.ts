@@ -3,7 +3,6 @@ import { resolve as importMetaResolve } from 'import-meta-resolve'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
 import Path, { join, relative } from 'node:path'
-import { version } from 'react'
 import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
@@ -13,12 +12,12 @@ import {
   type AfterBuildProps,
   type ClientManifestEntry,
 } from 'vxrn'
+import type { RouteInfo } from '../server/createRoutesManifest'
 import type { RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 import type { VXS } from './types'
 import { getUserVXSOptions } from './vxs'
-import type { RouteInfo } from '../server/createRoutesManifest'
 
 export const resolveFile = (path: string) => {
   try {
