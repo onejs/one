@@ -74,9 +74,7 @@ class DevServerClient {
           JSON.stringify({
             type: 'client-log',
             level,
-            data: data.map((item: any) =>
-              typeof item === 'string' ? item : JSON.stringify(item)
-            ),
+            data: data.map((item: any) => (typeof item === 'string' ? item : JSON.stringify(item))),
           })
         )
       } catch (err) {
@@ -97,11 +95,11 @@ class DevServerClient {
   }
 
   flushBuffer() {
-    if (console['_tmpLogs']) {
-      console['_tmpLogs'].forEach(({ level, data }) => {
+    if (globalThis['__vxrnTmpLogs']) {
+      globalThis['__vxrnTmpLogs'].forEach(({ level, data }) => {
         this.buffer.push({ level, data })
       })
-      delete console['_tmpLogs']
+      delete globalThis['__vxrnTmpLogs']
     }
 
     for (const { level, data } of this.buffer) {
@@ -115,7 +113,7 @@ class DevServerClient {
       this.flushBuffer()
       this.send(level, data)
     } else {
-      if (console['_tmpLogs']) return
+      if (globalThis['__vxrnTmpLogs']) return
       this.buffer.push({ level, data })
     }
   }
