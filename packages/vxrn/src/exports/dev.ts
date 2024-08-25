@@ -125,8 +125,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
           },
         })
       } catch (err) {
-        const message = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
-        console.error(` Error building React Native bundle: ${message}`)
+        console.error(` Error building React Native bundle: ${err}`)
       }
     })
   )

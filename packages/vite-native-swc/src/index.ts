@@ -14,7 +14,7 @@ import { extname } from 'node:path'
 
 // TODO we arent reading .env early enough to just put this in parent scope
 function shouldSourceMap() {
-  return process.env.VXRN_DISABLE_SOURCE_MAP !== '1'
+  return process.env.VXRN_ENABLE_SOURCE_MAP === '1'
 }
 
 // TODO node has an import to do this: const require = createRequire(import.meta.url)
