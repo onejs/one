@@ -1,3 +1,5 @@
+- we should redo our prebuild react-native system to instead just use our patches/depsPatches system + support using their native react/react-dom versions at leasts optionally
+
 - add test to weird-deps so we know no regressions
 
 - ScrollRestoration seems to have regressed (site not doing it consistently)
