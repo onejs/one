@@ -15,3 +15,13 @@
 - vxs should have more than just patches, but also config that is set per-node_module
   - eg, react 19 sets: 'process.env.TAMAGUI_REACT_19': '"1"'
   - another cool idea: node_modules package.json sets "vite" field that can add these custom configs, so `tamagui` package can define that *for* react 19
+
+- docs section for tamagui, note one-theme
+
+- changing vite.config seems to not close old server and so starts on new port, seeing this:
+
+8:27:01 AM [vite] server restarted.
+[vite] connected.
+[vite] connected.
+Port 5173 is in use, trying another one...
+Server running on http://127.0.0.1:8082

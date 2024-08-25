@@ -12,10 +12,6 @@ if (!import.meta.dirname) {
 const optimizeInterop = ['expo-splash-screen']
 
 export default {
-  define: {
-    'process.env.TAMAGUI_REACT_19': '"1"',
-  },
-
   resolve: {
     alias: {
       '~': import.meta.dirname,
