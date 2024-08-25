@@ -11,12 +11,9 @@
   "dependencies": {
     "expo": "~51.0.17",
     "expo-status-bar": "~1.12.1",
-    "react": "18.2.0",
-    "react-native": "0.74.2",
-    "vxrn": "workspace:^"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "react": "^18.3.1",
+    "react-native": "0.74.1",
+    "vxrn": "1.1.192"
   },
   "private": true
 }

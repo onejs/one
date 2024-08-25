@@ -104,7 +104,8 @@
     "@types/node": "^22.1.0",
     "@types/react-dom": "^18.2.25",
     "depcheck": "^1.4.7",
-    "react-native": "0.74.1"
+    "react-native": "0.74.1",
+    "rollup": "^4.21.0"
   },
   "publishConfig": {
     "access": "public"
