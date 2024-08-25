@@ -7157,13 +7157,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vxrn/react-native-prebuilt@1.1.195, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
+"@vxrn/react-native-prebuilt@1.1.196, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
   version: 0.0.0-use.local
   resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
   dependencies:
     "@tamagui/build": ^1.109.0
-    "@vxrn/vite-flow": 1.1.195
-    "@vxrn/vite-native-hmr": 1.1.195
+    "@vxrn/vite-flow": 1.1.196
+    "@vxrn/vite-native-hmr": 1.1.196
     esbuild: ^0.23.0
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.1.0
@@ -7178,7 +7178,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/safe-area@1.1.195, @vxrn/safe-area@workspace:packages/safe-area":
+"@vxrn/safe-area@1.1.196, @vxrn/safe-area@workspace:packages/safe-area":
   version: 0.0.0-use.local
   resolution: "@vxrn/safe-area@workspace:packages/safe-area"
   dependencies:
@@ -7187,13 +7187,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vendor@1.1.195, @vxrn/vendor@workspace:packages/vendor":
+"@vxrn/vendor@1.1.196, @vxrn/vendor@workspace:packages/vendor":
   version: 0.0.0-use.local
   resolution: "@vxrn/vendor@workspace:packages/vendor"
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-flow@1.1.195, @vxrn/vite-flow@workspace:packages/vite-flow":
+"@vxrn/vite-flow@1.1.196, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
   dependencies:
@@ -7206,7 +7206,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-client@1.1.195, @vxrn/vite-native-client@workspace:packages/vite-native-client":
+"@vxrn/vite-native-client@1.1.196, @vxrn/vite-native-client@workspace:packages/vite-native-client":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-client@workspace:packages/vite-native-client"
   dependencies:
@@ -7218,7 +7218,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-hmr@1.1.195, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
+"@vxrn/vite-native-hmr@1.1.196, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-hmr@workspace:packages/vite-native-hmr"
   dependencies:
@@ -7230,14 +7230,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-swc@1.1.195, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
+"@vxrn/vite-native-swc@1.1.196, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-swc@workspace:packages/vite-native-swc"
   dependencies:
     "@biomejs/biome": ^1.8.3
     "@swc/core": ^1.7.14
     "@tamagui/build": ^1.109.0
-    "@vxrn/vite-native-client": 1.1.195
+    "@vxrn/vite-native-client": 1.1.196
     react-native: 0.74.1
   peerDependencies:
     react-native: "*"
@@ -8808,7 +8808,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-vxrn@1.1.195, create-vxrn@workspace:packages/create-vxrn":
+"create-vxrn@1.1.196, create-vxrn@workspace:packages/create-vxrn":
   version: 0.0.0-use.local
   resolution: "create-vxrn@workspace:packages/create-vxrn"
   dependencies:
@@ -10010,7 +10010,7 @@ __metadata:
     react-native: 0.74.1
     react-test-renderer: 18.2.0
     typescript: ^5.2.2
-    vxrn: 1.1.195
+    vxrn: 1.1.196
   languageName: unknown
   linkType: soft
 
@@ -10027,7 +10027,7 @@ __metadata:
     tamagui: ^1.109.0
     uuid: 9.0.0
     vite: 6.0.0-alpha.18
-    vxs: 1.1.195
+    vxs: 1.1.196
   languageName: unknown
   linkType: soft
 
@@ -10056,7 +10056,7 @@ __metadata:
     tamagui: ^1.109.0
     vite: 6.0.0-alpha.18
     vite-plugin-inspect: ^0.8.4
-    vxs: 1.1.195
+    vxs: 1.1.196
   languageName: unknown
   linkType: soft
 
@@ -10067,8 +10067,8 @@ __metadata:
     react-native: 0.74.1
     react-native-reanimated: ~3.10.1
     vite: 6.0.0-alpha.18
-    vxrn: 1.1.195
-    vxs: 1.1.195
+    vxrn: 1.1.196
+    vxs: 1.1.196
   languageName: unknown
   linkType: soft
 
@@ -10087,7 +10087,7 @@ __metadata:
     tamagui: ^1.109.0
     uuid: 9.0.0
     vite: 6.0.0-alpha.18
-    vxs: 1.1.195
+    vxs: 1.1.196
   languageName: unknown
   linkType: soft
 
@@ -10180,7 +10180,7 @@ __metadata:
     expo-status-bar: ~1.12.1
     react: ^18.3.1
     react-native: 0.74.1
-    vxrn: 1.1.195
+    vxrn: 1.1.196
   languageName: unknown
   linkType: soft
 
@@ -10278,7 +10278,7 @@ __metadata:
     react: ^18.3.1
     react-native: 0.74.1
     react-native-reanimated: ~3.10.1
-    vxrn: 1.1.195
+    vxrn: 1.1.196
   languageName: unknown
   linkType: soft
 
@@ -19113,7 +19113,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"vxrn@1.1.195, vxrn@workspace:packages/vxrn":
+"vxrn@1.1.196, vxrn@workspace:packages/vxrn":
   version: 0.0.0-use.local
   resolution: "vxrn@workspace:packages/vxrn"
   dependencies:
@@ -19125,11 +19125,11 @@ __metadata:
     "@types/node": ^22.1.0
     "@types/ws": ^8.5.10
     "@vitejs/plugin-react-swc": ^3.7.0
-    "@vxrn/react-native-prebuilt": 1.1.195
-    "@vxrn/safe-area": 1.1.195
-    "@vxrn/vendor": 1.1.195
-    "@vxrn/vite-flow": 1.1.195
-    "@vxrn/vite-native-swc": 1.1.195
+    "@vxrn/react-native-prebuilt": 1.1.196
+    "@vxrn/safe-area": 1.1.196
+    "@vxrn/vendor": 1.1.196
+    "@vxrn/vite-flow": 1.1.196
+    "@vxrn/vite-native-swc": 1.1.196
     citty: ^0.1.6
     crossws: ^0.2.4
     depcheck: ^1.4.7
@@ -19157,7 +19157,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"vxs@1.1.195, vxs@workspace:packages/vxs":
+"vxs@1.1.196, vxs@workspace:packages/vxs":
   version: 0.0.0-use.local
   resolution: "vxs@workspace:packages/vxs"
   dependencies:
@@ -19176,7 +19176,7 @@ __metadata:
     "@types/react-dom": ^18.2.25
     babel-dead-code-elimination: ^1.0.6
     citty: ^0.1.6
-    create-vxrn: 1.1.195
+    create-vxrn: 1.1.196
     depcheck: ^1.4.7
     dotenv: ^16.4.5
     escape-string-regexp: ^5.0.0
@@ -19201,7 +19201,7 @@ __metadata:
     rollup-plugin-node-externals: ^7.1.2
     url-parse: ^1.5.10
     vite: 6.0.0-alpha.18
-    vxrn: 1.1.195
+    vxrn: 1.1.196
   peerDependencies:
     react-native: "*"
   bin:
