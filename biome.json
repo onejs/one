@@ -33,7 +33,8 @@
         "useConst": "off",
         "useEnumInitializers": "off",
         "useTemplate": "off",
-        "useSelfClosingElements": "off"
+        "useSelfClosingElements": "off",
+        "useImportType": "error"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off",
@@ -46,6 +47,7 @@
       "complexity": {
         "noForEach": "off",
         "noBannedTypes": "off",
+        "noUselessFragments": "off",
         "useLiteralKeys": "off",
         "useSimplifiedLogicExpression": "off",
         "useOptionalChain": "off"
