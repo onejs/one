@@ -62,8 +62,7 @@ const SWC_ENV = {
   },
   include: [],
   // this breaks the uniswap app for any file with a ...spread
-  // exclude: ['transform-spread', 'transform-destructuring', 'transform-object-rest-spread'],
-  exclude: [],
+  exclude: ['transform-spread', 'transform-destructuring', 'transform-object-rest-spread'],
 }
 
 function getParser(id: string, forceJSX = false) {
