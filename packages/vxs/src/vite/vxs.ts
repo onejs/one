@@ -71,6 +71,18 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
     }),
 
     {
+      name: 'tamagui-react-19',
+      config() {
+        return {
+          define: {
+            // safe to set because it only affects web in tamagui, and vxs is always react 19
+            'process.env.TAMAGUI_REACT_19': '"1"',
+          },
+        }
+      },
+    },
+
+    {
       name: 'define-app-key',
       config() {
         if (!options.app?.key) {

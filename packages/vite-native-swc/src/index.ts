@@ -294,16 +294,23 @@ export const transformWithOptions = async (
 
     result = await transform(code, transformOptions)
   } catch (e: any) {
-    const message: string = e.message
-    const fileStartIndex = message.indexOf('╭─[')
-    if (fileStartIndex !== -1) {
-      const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
-      if (match) {
-        e.line = match[1]
-        e.column = match[2]
-      }
-    }
-    throw e
+    // try another config?
+    console.info(
+      `SWC failed to transform file, but sometimes this is fine so continuing... Please report: ${id} ${e.message}`
+    )
+
+    return { code }
+
+    // const message: string = e.message
+    // const fileStartIndex = message.indexOf('╭─[')
+    // if (fileStartIndex !== -1) {
+    //   const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
+    //   if (match) {
+    //     e.line = match[1]
+    //     e.column = match[2]
+    //   }
+    // }
+    // throw e
   }
 
   return result
