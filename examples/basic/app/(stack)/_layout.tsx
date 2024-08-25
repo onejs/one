@@ -1,9 +1,9 @@
-import { Slot } from 'vxs'
+import { Stack } from 'vxs'
 
 export default function Layout() {
   return (
     <>
-      <Slot />
+      <Stack />
     </>
   )
 }
