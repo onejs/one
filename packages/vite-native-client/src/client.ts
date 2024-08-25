@@ -142,7 +142,7 @@ const debounceReload = (time: number) => {
       timer = null
     }
     timer = setTimeout(() => {
-      location.reload()
+      __vxrnReloadApp()
     }, time)
   }
 }
@@ -168,8 +168,7 @@ async function handleMessage(payload: HMRPayload) {
       // module script failed to load (since one of the nested imports is 500).
       // in this case a normal update won't work and a full reload is needed.
       if (isFirstUpdate && hasErrorOverlay()) {
-        // !
-        // window.location.reload()
+        __vxrnReloadApp()
         return
       } else {
         clearErrorOverlay()
