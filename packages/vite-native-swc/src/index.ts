@@ -56,6 +56,14 @@ const parsers: Record<string, ParserConfig> = {
   '.mdx': { syntax: 'ecmascript', jsx: true },
 }
 
+const SWC_ENV = {
+  targets: {
+    node: '4',
+  },
+  include: [],
+  exclude: ['transform-spread', 'transform-destructuring', 'transform-object-rest-spread'],
+}
+
 function getParser(id: string, forceJSX = false) {
   if (id.endsWith('vxs-entry-native')) {
     return parsers['.tsx']
@@ -119,7 +127,6 @@ export default (_options?: Options): PluginOption[] => {
                       configFile: false,
                       sourceMaps: shouldSourceMap(),
                       jsc: {
-                        target: 'es5',
                         parser,
                         transform: {
                           useDefineForClassFields: true,
@@ -130,6 +137,7 @@ export default (_options?: Options): PluginOption[] => {
                           },
                         },
                       },
+                      env: SWC_ENV,
                     })
 
                     hasTransformed[id] = true
@@ -186,18 +194,12 @@ export async function swcTransform(_id: string, code: string, options: Options) 
   // only change for now:
   const refresh = !options.forceJSX
 
-  const result = await transformWithOptions(
-    id,
-    code,
-    options.forceJSX ? 'esnext' : 'es5',
-    options,
-    {
-      refresh,
-      development: !options.forceJSX,
-      runtime: 'automatic',
-      importSource: options.jsxImportSource,
-    }
-  )
+  const result = await transformWithOptions(id, code, options, {
+    refresh,
+    development: !options.forceJSX,
+    runtime: 'automatic',
+    importSource: options.jsxImportSource,
+  })
 
   if (!result) {
     return
@@ -221,7 +223,6 @@ export async function swcTransform(_id: string, code: string, options: Options) 
 export const transformWithOptions = async (
   id: string,
   code: string,
-  target: JscTarget,
   options: Options,
   reactConfig: ReactConfig
 ) => {
@@ -246,13 +247,14 @@ export const transformWithOptions = async (
         },
       }),
       jsc: {
-        target,
         parser,
         transform: {
           useDefineForClassFields: true,
           react: reactConfig,
         },
+        ...(options.forceJSX ? { target: 'esnext' } : {}),
       },
+      ...(options.forceJSX ? {} : { env: SWC_ENV }),
     } satisfies SWCOptions
 
     result = await transform(code, transformOptions)
