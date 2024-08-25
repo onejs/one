@@ -8,6 +8,7 @@ import { useContextKey } from '../Route'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
 import { useSortedScreens } from '../useScreens'
 import { Screen } from './Screen'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>
 
@@ -142,11 +143,11 @@ export function QualifiedSlot() {
 
 export function DefaultNavigator() {
   return (
-    // <SafeAreaView style={{ flex: 1 }}>
-    <Navigator>
-      <QualifiedSlot />
-    </Navigator>
-    // </SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Navigator>
+        <QualifiedSlot />
+      </Navigator>
+    </SafeAreaView>
   )
 }
 

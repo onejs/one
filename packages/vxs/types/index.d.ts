@@ -7,6 +7,7 @@ export { Root } from './Root';
 export { render } from './render';
 export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
+export { SafeAreaView } from 'react-native-safe-area-context';
 export { Navigator, Slot } from './views/Navigator';
 export { ErrorBoundary } from './views/ErrorBoundary';
 export { Unmatched } from './views/Unmatched';

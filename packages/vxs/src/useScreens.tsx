@@ -1,3 +1,4 @@
+import { createNavigatorFactory } from '@react-navigation/core'
 import type {
   EventMapBase,
   NavigationState,
@@ -5,8 +6,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
-
+import React, { Suspense, useEffect, useState } from 'react'
 import {
   Route,
   useRouteNode,
@@ -17,8 +17,8 @@ import {
 import VXS_ROUTER_IMPORT_MODE from './import-mode'
 import { sortRoutesWithInitial } from './sortRoutes'
 import { EmptyRoute } from './views/EmptyRoute'
+import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { Try } from './views/Try'
-import { createNavigatorFactory } from '@react-navigation/core'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -147,14 +147,6 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
   return { default: component.default }
 }
 
-function fromLoadedRoute(res: LoadedRoute) {
-  if (!(res instanceof Promise)) {
-    return fromImport(res)
-  }
-
-  return res.then(fromImport)
-}
-
 // TODO: Maybe there's a more React-y way to do this?
 // Without this store, the process enters a recursive loop.
 const qualifiedStore = new WeakMap<RouteNode, React.ComponentType<any>>()
@@ -210,36 +202,29 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   const getLoadable = (props: any, ref: any) => {
     return (
-      // <RootErrorBoundary>
-      //   <Suspense fallback={<Throws />}>
-      <ScreenComponent
-        {...{
-          ...props,
-          ref,
-          // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-          // the intention is to make it possible to deduce shared routes.
-          segment: value.route,
-        }}
-      />
-      //   </Suspense>
-      // </RootErrorBoundary>
+      <RootErrorBoundary>
+        <Suspense fallback={<SuspenseFallback route={value} />}>
+          <ScreenComponent
+            {...{
+              ...props,
+              ref,
+              // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+              // the intention is to make it possible to deduce shared routes.
+              segment: value.route,
+            }}
+          />
+        </Suspense>
+      </RootErrorBoundary>
     )
   }
 
-  // const Throws = () => {
-  //   const [promse] = useState(
-  //     new Promise((res) => {
-  //       setTimeout(res, 1000)
-  //     })
-  //   )
+  const SuspenseFallback = ({ route }: { route: RouteNode }) => {
+    useEffect(() => {
+      console.warn(`⚠️ Suspended:`, route)
+    }, [route])
 
-  //   if (typeof window !== 'undefined') {
-  //     console.log('throw it')
-  //     throw promse
-  //   }
-
-  //   return null
-  // }
+    return null
+  }
 
   const QualifiedRoute = React.forwardRef(
     (
