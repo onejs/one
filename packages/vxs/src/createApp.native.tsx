@@ -1,6 +1,6 @@
-// TODO HACK why is window being defined????
-// @ts-ignore
-delete globalThis.window
+// // TODO HACK why is window being defined????
+// // @ts-ignore
+// delete globalThis.window
 
 import { Root } from './Root'
 import { AppRegistry } from 'react-native'

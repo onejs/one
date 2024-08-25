@@ -1,3 +1,5 @@
+- add test to weird-deps so we know no regressions
+
 - ScrollRestoration seems to have regressed (site not doing it consistently)
   - also we should default this on but have a way to turn it off
 

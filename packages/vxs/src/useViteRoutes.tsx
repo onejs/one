@@ -45,7 +45,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
     }
     const loadRouteFunction = paths[path]
     const pathWithoutRelative = path.replace('/app/', './')
-    const shouldRewrite = typeof window !== 'undefined' && !import.meta.env.PROD
+    const shouldRewrite = typeof window !== 'undefined' && window.location && !import.meta.env.PROD
 
     const originalPath = pathWithoutRelative.slice(1).replace(/\.[jt]sx?$/, '')
     if (options?.routeModes?.[originalPath] === 'spa') {
