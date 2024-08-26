@@ -85,10 +85,22 @@ export function reactNativeCommonJsPlugin(options: {
                   // if (!id.includes('/node_modules/')) {
                   //   return
                   // }
-                  try {
-                    const [_foundImports, foundExports] = parse(code)
 
-                    let forceExports = ''
+                  try {
+                    const [foundImports, foundExports] = parse(code)
+
+                    // id => export names
+                    const toReExport: Record<string, string[]> = {}
+                    for (const exp of foundExports) {
+                      const matchingImp = foundImports.find((i) => exp.e < i.se && exp.s > i.ss)
+                      const expName = exp.ln || exp.n
+                      if (expName && matchingImp?.n) {
+                        toReExport[matchingImp.n] ||= []
+                        toReExport[matchingImp.n].push(expName)
+                      }
+                    }
+
+                    let forceExports = ``
 
                     // lets handle export * as since es-module-lexer doesn't :/
                     let found = 0
@@ -104,25 +116,21 @@ export function reactNativeCommonJsPlugin(options: {
                             globalThis.__forceExport${name} = ${name}
                             Object.assign(exports, globalThis.__forceExport${name});
                           `
+                          continue
                         }
                       }
                     }
 
-                    forceExports += foundExports
-                      .map((e) => {
-                        if (e.n === 'default') {
-                          return ''
-                        }
-                        let out = ''
+                    forceExports += Object.keys(toReExport)
+                      .map((path) => {
+                        const exportedNames = toReExport[path]
 
-                        if (e.ln !== e.n && !RESERVED_WORDS.includes(e.n)) {
-                          // forces the "as x" to be referenced so it gets exported
-                          out += `\n__ignore = typeof ${e.n} === 'undefined' ? 0 : 0;`
-                        }
-
-                        out += `\nglobalThis.____forceExport = ${e.ln}`
-
-                        return out
+                        found++
+                        const name = `__vxrnExp${found}`
+                        return `
+                          import * as ${name} from '${path}';
+                          globalThis.__forceExport${name} = [${exportedNames.map((n) => (n === 'default' ? name : `${name}.${n}`)).join(',')}]
+                        `
                       })
                       .join(';')
 
