@@ -211,7 +211,7 @@ globalThis['setImmediate'] = (cb) => cb()
 //cb => Promise.resolve().then(() => cb())
 
 globalThis.__vxrnReloadApp = () => {
-  require('react-native').DevSettings.reload()
+  __getRequire(__specialRequireMap['react-native']).DevSettings.reload()
 }
 
 // idk why
