@@ -68,10 +68,10 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
 
             const inlineSourceMapIndex = code.lastIndexOf('//# sourceMappingURL=')
             if (inlineSourceMapIndex >= 0) {
-              return code.slice(0, inlineSourceMapIndex).trimEnd();
+              return code.slice(0, inlineSourceMapIndex).trimEnd()
             }
 
-            return null;
+            return null
           },
         },
       },
@@ -139,6 +139,27 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
           preserveModules: true,
           format: 'cjs',
         },
+
+        onwarn(message, warn) {
+          // Suppress "Module level directives cause errors when bundled" warnings
+          if (!process.env.DEBUG?.startsWith('vxrn')) {
+            if (
+              message.code === 'MODULE_LEVEL_DIRECTIVE' ||
+              message.code === 'INVALID_ANNOTATION' ||
+              message.code === 'MISSING_EXPORT' ||
+              message.code === 'SOURCEMAP_ERROR'
+            ) {
+              if (!didWarn) {
+                didWarn = true
+                console.warn(
+                  ` [vxrn] Supressing a few mostly harmless logs, enable with DEBUG=vxrn`
+                )
+              }
+              return
+            }
+          }
+          warn(message)
+        },
       },
     },
   } satisfies InlineConfig
@@ -153,3 +174,5 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
 
   return nativeBuildConfig satisfies UserConfig
 }
+
+let didWarn = false
