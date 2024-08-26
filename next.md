@@ -1,3 +1,12 @@
+- export default not hot reloading on routes
+
+- avoid work on hard reloads
+  - we keep a Map of built modules => source
+  - we hook into viteServer.watcher and track changes
+  - add a rollup plugin to the build
+    - if not changed, return the og source
+    - could maybe be better than this too
+
 - we should redo our prebuild react-native system to instead just use our patches/depsPatches system + support using their native react/react-dom versions at leasts optionally
 
 - add test to weird-deps so we know no regressions
