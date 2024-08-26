@@ -121,7 +121,10 @@ ${new Error().stack
     try {
       if (_mod === 'vxs') {
         // TODO this should be passed in not hardcoded
-        const found = __getRequire('packages/vxs/dist/esm/index.js', _mod)
+        const found =
+          __getRequire('packages/vxs/dist/esm/index.js', _mod) ||
+          // this is only for developing links module in ~/vxrn, can remove later
+          __getRequire('vxrn/packages/vxs/dist/esm/index.js', _mod)
         if (found) return found
       }
 
