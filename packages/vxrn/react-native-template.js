@@ -42,7 +42,7 @@ function printError(err) {
 
 const __runningModules = new Map()
 
-function __getRequire(absPath) {
+function __getRequire(absPath, parent) {
   absPath =
     ___vxrnAbsoluteToRelative___[absPath] ||
     ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')] ||
@@ -65,8 +65,9 @@ function __getRequire(absPath) {
       try {
         runModule(mod.exports, mod)
       } catch (err) {
-        console.error(`Error running module: "${absPath}"\n${printError(err)}`)
-        return {}
+        throw new Error(
+          `Error running module (parent: ${parent}): "${absPath}"\n${printError(err)}`
+        )
       } finally {
         __runningModules.delete(absPath)
       }
@@ -98,10 +99,29 @@ function createRequire(importer, importsMap) {
   }
 
   return function require(_mod) {
+    const getErrorDetails = (withStack) => {
+      return `In importsMap:
+
+${JSON.stringify(importsMap, null, 2)}
+
+  ${
+    withStack
+      ? `Stack:
+
+${new Error().stack
+  .split('\n')
+  .map((l) => `    ${l}`)
+  .join('\n')}`
+      : ''
+  }
+
+--------------`
+    }
+
     try {
       if (_mod === 'vxs') {
         // TODO this should be passed in not hardcoded
-        const found = __getRequire('packages/vxs/dist/esm/index.js')
+        const found = __getRequire('packages/vxs/dist/esm/index.js', _mod)
         if (found) return found
       }
 
@@ -112,7 +132,7 @@ function createRequire(importer, importsMap) {
 
       // find via maps
       let path = __specialRequireMap[_mod] || importsMap[_mod] || _mod
-      const found = __getRequire(path)
+      const found = __getRequire(path, _mod)
       if (found) return found
 
       // quick and dirty relative()
@@ -135,7 +155,7 @@ function createRequire(importer, importsMap) {
       }
 
       // find our import.meta.glob which don't get the nice path addition, for now hardcode but this shouldnt be hard to fix properly:
-      const foundGlob = __getRequire(path.replace(/\.[jt]sx?$/, '.js'))
+      const foundGlob = __getRequire(path.replace(/\.[jt]sx?$/, '.js'), _mod)
       if (foundGlob) {
         return foundGlob
       }
@@ -158,7 +178,7 @@ function createRequire(importer, importsMap) {
       try {
         for (const [key, value] of Object.entries(importsMap)) {
           if (key.endsWith(_mod.replace(/(\.\.?\/)+/, ''))) {
-            const found = __getRequire(importsMap[key])
+            const found = __getRequire(importsMap[key], key)
             if (found) {
               return found
             }
@@ -175,26 +195,14 @@ function createRequire(importer, importsMap) {
         return output
       }
 
-      console.error(
-        `Module not found "${_mod}" imported by "${importer}"\n
-
-  In importsMap:
-
-${JSON.stringify(importsMap, null, 2)}
-
-  Stack:
-
-${new Error().stack
-  .split('\n')
-  .map((l) => `    ${l}`)
-  .join('\n')}
-
-
---------------`
-      )
+      console.error(`Module not found "${_mod}" imported by "${importer}"\n${getErrorDetails()}`)
       return {}
     } catch (err) {
-      throw new Error(`\n◆ ${_mod} "${err}"`.replace('Error: ', '').replaceAll('"', ''))
+      console.error(
+        `\n◆ ${_mod} "${err}"`.replace('Error: ', '').replaceAll('"', '') +
+          '\n' +
+          getErrorDetails(false)
+      )
     }
   }
 }
