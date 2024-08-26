@@ -329,7 +329,10 @@ export function wrapSourceInRefreshRuntime(id: string, code: string, options: Op
 
   return `const RefreshRuntime = __cachedModules["react-refresh/cjs/react-refresh-runtime.development"];
 const prevRefreshReg = globalThis.$RefreshReg$;
-const prevRefreshSig = globalThis.$RefreshSig$;
+const prevRefreshSig = globalThis.$RefreshSig$ || (() => {
+  console.info("no react refresh setup!")
+  return (x) => x
+});
 globalThis.$RefreshReg$ = (type, id) => RefreshRuntime.register(type, "${id}" + " " + id);
 globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 
