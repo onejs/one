@@ -5,7 +5,6 @@ import ansis from 'ansis'
 import { defineCommand, runMain } from 'citty'
 import path from 'node:path'
 import { cwd } from 'node:process'
-import packageJson from '../package.json'
 import { getTemplateInfo } from './helpers/getTemplateInfo'
 import { create } from './create'
 

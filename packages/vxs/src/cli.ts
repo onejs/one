@@ -3,13 +3,14 @@ import { serve } from './vite/serve'
 import { build } from './vite/build'
 import { loadEnv } from './vite/loadEnv'
 import { loadUserVXSOptions } from './vite/vxs'
+// import packageJson from 'vxs/package.json' with { type: 'json' }
 
 void loadEnv(process.cwd())
 
 const dev = defineCommand({
   meta: {
     name: 'dev',
-    version: '0.0.0',
+    // version: packageJson.version,
     description: 'Start the dev server',
   },
   args: {
