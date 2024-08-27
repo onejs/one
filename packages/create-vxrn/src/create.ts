@@ -62,9 +62,8 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
   }
 
   console.info()
-  console.info(`Creating a new vxrn app ${ansis.blueBright(resolvedProjectPath)}...`)
   fs.mkdirSync(resolvedProjectPath)
-  console.info(ansis.green(`${projectName} folder created.`))
+  console.info(ansis.green(`Created: ${projectName}`))
 
   try {
     await cloneStarter(template, resolvedProjectPath, projectName)
@@ -78,9 +77,6 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
 
   // change root package.json's name to project name
   updatePackageJsonName(projectName, resolvedProjectPath)
-
-  console.info('Installing packages. This might take a couple of minutes.')
-  console.info()
 
   const packageManager: PackageManagerName = await (async () => {
     if ('packageManager' in template) {
@@ -110,7 +106,9 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
   })()
 
   try {
-    console.info('installing with ' + packageManager)
+    console.info()
+    console.info(ansis.green(`Installing with ${packageManager}...`))
+    console.info()
     await installDependencies(resolvedProjectPath, packageManager as any)
   } catch (e: any) {
     console.error('[vxrn] error installing with ' + packageManager + '\n' + `${e}`)

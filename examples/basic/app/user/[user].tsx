@@ -14,7 +14,6 @@ export async function generateStaticParams(): Promise<UserPath[]> {
 }
 
 export async function loader({ params }: { params: UserPath }) {
-  console.info('user loader params', params)
   return {
     hello: `${params.user}`,
   }
