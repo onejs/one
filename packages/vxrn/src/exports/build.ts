@@ -84,6 +84,11 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     } satisfies InlineConfig
   )
 
+  const rerouteNoExternalConfig = userViteConfig?.ssr?.noExternal === true
+  if (rerouteNoExternalConfig) {
+    delete userViteConfig.ssr!.noExternal
+  }
+
   webBuildConfig = mergeUserConfig(optimizeDeps, webBuildConfig, userViteConfig)
 
   const excludeAPIRoutesPlugin = {
@@ -173,6 +178,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       },
     },
   } satisfies UserConfig)
+
+  if (rerouteNoExternalConfig) {
+    serverBuildConfig.ssr!.noExternal = true
+  }
 
   // if (process.env.VXRN_DISABLE_PROD_OPTIMIZATION) {
   //   serverBuildConfig = mergeConfig(serverBuildConfig, disableOptimizationConfig)
