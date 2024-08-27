@@ -1,10 +1,8 @@
 import { homedir } from 'node:os'
 import { join } from 'node:path'
-
 import ansis from 'ansis'
 import { copy, ensureDir, pathExists, remove } from 'fs-extra'
 import { rimraf } from 'rimraf'
-
 import type { templates } from '../templates'
 import { exec } from './exec'
 
@@ -22,7 +20,6 @@ export const cloneStarter = async (
   console.info()
   await setupVxrnDotDir(template)
   const dir = join(targetGitDir, ...template.repo.dir)
-  console.info()
   console.info(`Copying starter from ${dir} into ${ansis.blueBright(projectName)}...`)
   console.info()
 
