@@ -1,6 +1,6 @@
 {
   "name": "vxs",
-  "version": "1.1.197",
+  "version": "1.1.198",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -72,7 +72,7 @@
     "@react-navigation/routers": "^6.1.9",
     "babel-dead-code-elimination": "^1.0.6",
     "citty": "^0.1.6",
-    "create-vxrn": "1.1.197",
+    "create-vxrn": "1.1.198",
     "dotenv": "^16.4.5",
     "escape-string-regexp": "^5.0.0",
     "expo-linking": "~6.3.1",
@@ -94,7 +94,7 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.197"
+    "vxrn": "1.1.198"
   },
   "peerDependencies": {
     "react-native": "*"
