@@ -57,7 +57,7 @@ export function ScrollRestoration(props: {
     )
 
     const disposeOnLoadState = subscribeToLoadingState((state) => {
-      if (Date.now() - getLastAction() > 30) {
+      if (Date.now() - getLastAction() > 100) {
         // this isn't a state change due to a link press or back, ignore
         return
       }
@@ -68,13 +68,8 @@ export function ScrollRestoration(props: {
     })
 
     const disposeOnRootState = subscribeToRootState((state) => {
-      if (Date.now() - getLastAction() > 30) {
+      if (Date.now() - getLastAction() > 100) {
         // this isn't a state change due to a link press, ignore
-        return
-      }
-
-      if (isInitial) {
-        isInitial = false
         return
       }
 
