@@ -43,3 +43,5 @@ Port 5173 is in use, trying another one...
 Server running on http://127.0.0.1:8082
 
 - an easy way to disable swc transform for a node_module using `deps`
+
+- @ethersproject/hash property "atob" doesnt exist
