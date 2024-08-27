@@ -142,7 +142,7 @@ const debounceReload = (time: number) => {
       timer = null
     }
     timer = setTimeout(() => {
-      __vxrnReloadApp()
+      globalThis.__vxrnReloadApp()
     }, time)
   }
 }
@@ -168,12 +168,12 @@ async function handleMessage(payload: HMRPayload) {
       // module script failed to load (since one of the nested imports is 500).
       // in this case a normal update won't work and a full reload is needed.
       if (isFirstUpdate && hasErrorOverlay()) {
-        __vxrnReloadApp()
+        globalThis.__vxrnReloadApp()
         return
-      } else {
-        clearErrorOverlay()
-        isFirstUpdate = false
       }
+      clearErrorOverlay()
+      isFirstUpdate = false
+
       await Promise.all(
         payload.updates.map((update) => {
           if (update.type === 'js-update') {
@@ -202,9 +202,9 @@ async function handleMessage(payload: HMRPayload) {
           pageReload()
         }
         return
-      } else {
-        pageReload()
       }
+      pageReload()
+
       break
     case 'prune':
       notifyListeners('vite:beforePrune', payload)
