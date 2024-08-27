@@ -80,7 +80,16 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
     } satisfies UserConfig
   ) satisfies InlineConfig
 
+  const rerouteNoExternalConfig = userViteConfig?.ssr?.noExternal === true
+  if (rerouteNoExternalConfig) {
+    delete userViteConfig.ssr!.noExternal
+  }
+
   serverConfig = mergeUserConfig(optimizeDeps, serverConfig, userViteConfig)
+
+  if (rerouteNoExternalConfig) {
+    serverConfig.ssr!.noExternal = true
+  }
 
   // manually merge
   if (process.env.DEBUG) {
