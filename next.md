@@ -1,6 +1,7 @@
-- platform-specific route files
+- support export ending in `Page` instead of just `export default` for routes (hot reload friendly)
+  - support export default hot reloads (would require react-refresh changes)
 
-- export default not hot reloading on routes
+- platform-specific route files
 
 - avoid work on hard reloads
   - we keep a Map of built modules => source
@@ -47,3 +48,5 @@ Server running on http://127.0.0.1:8082
 - an easy way to disable swc transform for a node_module using `deps`
 
 - @ethersproject/hash property "atob" doesnt exist
+
+- TODO this would probably want to support their configured extensions
