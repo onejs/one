@@ -20,6 +20,8 @@ export type LoadedRoute = {
 export type RouteNode = {
     /** The type of RouteNode */
     type: 'route' | 'api' | 'layout';
+    /** is type = 'route', the render type of that route */
+    routeType: 'ssg' | 'spa';
     /** Load a route into memory. Returns the exports from a route. */
     loadRoute: () => Partial<LoadedRoute>;
     /** Loaded initial route name. */
@@ -39,7 +41,7 @@ export type RouteNode = {
     /** File paths for async entry modules that should be included in the initial chunk request to ensure the runtime JavaScript matches the statically rendered HTML representation. */
     entryPoints?: string[];
     /** Parent layouts */
-    layouts?: string[];
+    layouts?: RouteNode[];
 };
 /** Return the RouteNode at the current contextual boundary. */
 export declare function useRouteNode(): RouteNode | null;

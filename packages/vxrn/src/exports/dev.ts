@@ -14,55 +14,51 @@ import {
   toNodeListener,
 } from 'h3'
 import { createProxyEventHandler } from 'h3-proxy'
-import { rm } from 'node:fs/promises'
 import { createServer as nodeCreateServer } from 'node:http'
-import { join } from 'node:path'
 import { createServer, resolveConfig } from 'vite'
 import { WebSocket } from 'ws'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
-import type { VXRNConfig } from '../types'
+import type { VXRNOptions } from '../types'
 import { bindKeypressInput } from '../utils/bindKeypressInput'
 import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
-import { getIndexJsonResponse } from '../utils/getIndexJsonResponse'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
 import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
-import { checkPatches } from '../utils/patches'
+import { applyBuiltInPatches } from '../utils/patches'
+import { clean } from './clean'
 import { Symbolicator } from '../utils/symbolicate/Symbolicator'
 import type { ReactNativeStackFrame } from '../utils/symbolicate'
 
 const { ensureDir } = FSExtra
 
-export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) => {
-  const options = await getOptionsFilled(rest)
-  const { host, port, root, cacheDir } = options
+/**
+ * The main entry point for dev mode
+ *
+ * Note that much of the logic is being run by plugins:
+ *
+ *  - createFileSystemRouter does most of the fs-routes/request handling
+ *  - clientTreeShakePlugin handles loaders/transforms
+ *
+ */
 
-  if (clean) {
-    try {
-      console.info(` [vxrn] cleaning node_modules/.vite`)
-      await rm(join(root, 'node_modules', '.vite'), {
-        recursive: true,
-        force: true,
-      })
-    } catch (err) {
-      if (err instanceof Error) {
-        // @ts-expect-error wtf
-        if (err.code !== 'ENOENT') {
-          throw Error
-        }
-      }
-    }
+export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
+  const { clean: shouldClean, ...rest } = optionsIn
+  const options = await getOptionsFilled(rest)
+  const { port, root, cacheDir } = options
+
+  if (shouldClean) {
+    await clean(optionsIn)
   }
 
   // TODO move somewhere
   bindKeypressInput()
 
-  checkPatches(options).catch((err) => {
-    console.error(`\n 🥺 couldn't patch`, err)
+  applyBuiltInPatches(options).catch((err) => {
+    console.error(`\n 🥺 error applying built-in patches`, err)
   })
 
   await ensureDir(cacheDir)
@@ -70,17 +66,19 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   const serverConfig = await getViteServerConfig(options)
   const viteServer = await createServer(serverConfig)
 
-  // first resolve config so we can pass into client plugin, then add client plugin:
+  // we pass resolved config into client inject to get the final port etc to use
+  // probably can be done better
   const resolvedConfig = await resolveConfig(serverConfig, 'serve')
   const viteRNClientPlugin = clientInjectionsPlugin(resolvedConfig)
 
-  // this fakes vite into thinking its loading files, so it hmrs in native mode despite not requesting
+  // this fakes vite into thinking its loading files, so it hmrs in native mode despite not us never requesting the url
+  // TODO we can check if any native clients are connected to avoid some work here
   viteServer.watcher.addListener('change', async (path) => {
     const id = path.replace(process.cwd(), '')
     if (!id.endsWith('tsx') && !id.endsWith('jsx')) {
       return
     }
-    // just so it thinks its loaded
+    // so it thinks its loaded
     try {
       void viteServer.transformRequest(id)
     } catch (err) {
@@ -104,6 +102,8 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     },
   })
 
+  // react native endppints:
+
   router.get(
     '/file',
     defineEventHandler((e) => {
@@ -119,15 +119,23 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     })
   )
 
-  router.get(
-    '/index.bundle',
-    defineEventHandler(async (e) => {
-      return new Response(await getReactNativeBundle(options, viteRNClientPlugin), {
+  // builds the dev initial bundle for react native
+  const rnBundleHandler = defineEventHandler(async (e) => {
+    try {
+      const bundle = await getReactNativeBundle(options, viteRNClientPlugin)
+      return new Response(bundle, {
         headers: {
           'content-type': 'text/javascript',
         },
       })
-    })
+    } catch (err) {
+      console.error(` Error building React Native bundle: ${err}`)
+    }
+  })
+  router.get('/index.bundle', rnBundleHandler)
+  router.get(
+    '/.expo/.virtual-metro-entry.bundle', // for Expo development builds
+    rnBundleHandler
   )
 
   router.get(
@@ -136,19 +144,6 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   )
 
   app.use(router)
-
-  // TODO move these to router.get():
-  app.use(
-    defineEventHandler(async ({ node: { req } }) => {
-      if (!req.headers['user-agent']?.match(/Expo|React/)) {
-        return
-      }
-
-      if (req.url === '/' || req.url?.startsWith('/?platform=')) {
-        return getIndexJsonResponse({ port, root })
-      }
-    })
-  )
 
   const clients = new Set<Peer>()
   let socket: WebSocket | null = null
@@ -223,7 +218,8 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     level: 'log' | 'error' | 'info' | 'debug' | 'warn'
     data: string[]
   }
-  const symbolicatorConfig = {
+
+  const symbolicator = new Symbolicator({
     getSource: (fileUrl) => {
       const { filename, platform } = parseFileUrl(fileUrl)
       return getSource(filename, platform)
@@ -241,11 +237,52 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
       // return !/vite[/\\]runtime[/\\].+\s/.test(frame.file)
       return true
     },
+  })
+
+  // symbolicate
+
+  // TODO: move somewhere else
+
+  /**
+   * TODO:
+   *
+   *  - right now it returns stack frames and the lineNumber is off
+   *  - need to see if maybe its not including comments? or why its off
+   *  - likely need to track id => line number as we build the bundle from outputModules
+   */
+
+  function parseFileUrl(fileUrl: string) {
+    const { pathname: filename, searchParams } = new URL(fileUrl)
+    let platform = searchParams.get('platform')
+    if (!platform) {
+      const [, platformOrName, name] = filename.split('.').reverse()
+      if (name !== undefined) {
+        platform = platformOrName
+      }
+    }
+
+    return {
+      filename: filename.replace(/^\//, ''),
+      platform: platform || undefined,
+    }
   }
 
-  // TODO: fillin the blank
-  const symbolicator = new Symbolicator(symbolicatorConfig as any)
-  // symbolicate
+  const getSource = async (filename: string, platform?: string): Promise<string | Buffer> => {
+    const resolvedPath = import.meta.resolve(import.meta.dirname, filename).replace('file://', '')
+    return fs.promises.readFile(resolvedPath, 'utf8')
+  }
+
+  const getSourceMap = async (filename: string, platform: string): Promise<string | Buffer> => {
+    const resolvedPath = import.meta.resolve(import.meta.dirname, filename).replace('file://', '')
+    const file = await fs.promises.readFile(resolvedPath, 'utf8')
+
+    if (file) {
+      return file
+    }
+
+    return Promise.reject(new Error(`Source map for ${filename} for ${platform} is missing`))
+  }
+
   app.use(
     '/symbolicate',
     defineEventHandler(async (event) => {
@@ -325,7 +362,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
   app.use(
     eventHandler(
       createProxyEventHandler({
-        target: `http://127.0.0.1:${vitePort}`,
+        target: `${options.protocol}//127.0.0.1:${vitePort}`,
         enableLogger: process.env.DEBUG?.startsWith('vxrn'),
       })
     )
@@ -342,7 +379,7 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     async start() {
       server.listen(port, options.host)
 
-      console.info(`Server running on http://localhost:${port}`)
+      console.info(`Server running on ${options.protocol}//${options.host}:${port}`)
 
       server.once('listening', () => {
         // bridge socket between vite
@@ -368,41 +405,8 @@ export const dev = async ({ clean, ...rest }: VXRNConfig & { clean?: boolean }) 
     },
 
     stop: async () => {
+      viteServer.watcher.removeAllListeners()
       await Promise.all([server.close(), viteServer.close()])
     },
   }
-}
-
-// TODO: move it somewhere else
-function parseFileUrl(fileUrl: string) {
-  const { pathname: filename, searchParams } = new URL(fileUrl)
-  let platform = searchParams.get('platform')
-  if (!platform) {
-    const [, platformOrName, name] = filename.split('.').reverse()
-    if (name !== undefined) {
-      platform = platformOrName
-    }
-  }
-
-  return {
-    filename: filename.replace(/^\//, ''),
-    platform: platform || undefined,
-  }
-}
-
-const getSource = async (filename: string, platform?: string): Promise<string | Buffer> => {
-  return fs.promises.readFile(import.meta.resolve(import.meta.dirname, filename), 'utf8')
-}
-
-const getSourceMap = async (filename: string, platform: string): Promise<string | Buffer> => {
-  const file = await fs.promises.readFile(
-    import.meta.resolve(import.meta.dirname, filename),
-    'utf8'
-  )
-
-  if (file) {
-    return file
-  }
-
-  return Promise.reject(new Error(`Source map for ${filename} for ${platform} is missing`))
 }

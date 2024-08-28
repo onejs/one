@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
 import { weakKey } from './utils/weakKey'
-import { preloadingLoader } from './global-state/routing'
-import { CLIENT_BASE_URL } from './global-state/constants'
+import { preloadingLoader } from './router/router'
+import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -12,6 +12,13 @@ export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
+  // console.log('run loader', {
+  //   props: globalThis['__vxrnLoaderProps__'],
+  //   preloaded: globalThis['__vxrnLoaderData__'],
+  //   function: `${loader}`,
+  //   dotpath: globalThis['__vxrntodopath'],
+  // })
+
   // server side we just run the loader directly
   if (typeof window === 'undefined') {
     return useAsyncFn(loader, globalThis['__vxrnLoaderProps__'])
@@ -60,7 +67,7 @@ export function useLoader<
 
     if (!promises[currentPath]) {
       const getData = async () => {
-        const loaderJSUrl = `${CLIENT_BASE_URL}${currentPath}_vxrn_loader.js`
+        const loaderJSUrl = `${CLIENT_BASE_URL}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
         const response = await import(loaderJSUrl)
         try {
           loadedData[currentPath] = response.loader()

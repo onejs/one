@@ -1,10 +1,13 @@
 import { type FunctionComponent, type ReactNode } from 'react';
-import type { GlobbedRouteImports } from './types';
+import type { GlobbedRouteImports, RenderAppProps } from './types';
 import type { NavigationContainerProps } from '@react-navigation/native';
 import type { RequireContext } from './types';
-type RootProps = Omit<InnerProps, 'context'> & {
+import type { VXS } from './vite/types';
+type RootProps = RenderAppProps & Omit<InnerProps, 'context'> & {
+    mode?: VXS.RouteMode;
+    isClient?: boolean;
     routes: GlobbedRouteImports;
-    path?: string;
+    routeOptions?: VXS.RouteOptions;
 };
 type InnerProps = {
     context: RequireContext;
@@ -26,6 +29,6 @@ type InnerProps = {
         };
     };
 };
-export declare function Root(props: RootProps): import("react/jsx-runtime").JSX.Element;
+export declare function Root(props: RootProps): import("react/jsx-runtime").JSX.Element | null;
 export {};
 //# sourceMappingURL=Root.d.ts.map

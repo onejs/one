@@ -9,7 +9,12 @@ const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 
 export async function buildAll() {
   console.info(`Prebuilding React Native (one time cost...)`)
-  await Promise.all([buildReactJSX(), buildReact(), buildReactNative()])
+  await Promise.all([
+    //
+    buildReactJSX(),
+    buildReact(),
+    buildReactNative(),
+  ])
 }
 
 const resolveFile = (path: string) => {
@@ -97,6 +102,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
     entryPoints: [resolveFile('react-native')],
     format: 'cjs',
     target: 'node20',
+    // Note: JSX is actually being transformed by the "remove-flow" plugin defined underneath, not by esbuild. The following JSX options may not actually make a difference.
     jsx: 'transform',
     jsxFactory: 'react',
     allowOverwrite: true,
@@ -153,7 +159,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
               const code = await readFile(input.path, 'utf-8')
 
               // omg so ugly but no class support?
-              const outagain = await transformFlow(code)
+              const outagain = await transformFlow(code, { development: true })
 
               return {
                 contents: outagain,
@@ -170,6 +176,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
     const outCode = `
     const run = () => {
       ${bundled
+        // .replaceAll('require("react/jsx-runtime")', 'require("react/jsx-dev-runtime")')
         .replace(
           esbuildCommonJSFunction,
           `
@@ -203,6 +210,7 @@ const esbuildCommonJSFunction = `var __commonJS = (cb, mod) => function __requir
 };`
 
 const RNExportNames = [
+  'registerCallableModule',
   'AccessibilityInfo',
   'ActivityIndicator',
   'Button',
@@ -262,6 +270,7 @@ const RNExportNames = [
   'TurboModuleRegistry',
   'UIManager',
   'unstable_batchedUpdates',
+  'useAnimatedValue',
   'useColorScheme',
   'useWindowDimensions',
   'UTFSequence',
@@ -276,6 +285,7 @@ const RNExportNames = [
   'processColor',
   'requireNativeComponent',
   'RootTagContext',
+  'unstable_enableLogBox',
 ]
 
 const RExports = [

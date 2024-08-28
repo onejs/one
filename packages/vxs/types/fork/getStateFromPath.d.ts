@@ -1,6 +1,6 @@
 import type { PathConfigMap } from '@react-navigation/core';
-import type { NavigationState, PartialState } from '@react-navigation/routers';
 import type { RouteNode } from '../Route';
+import type { VXSRouter } from '../interfaces/router';
 type Options<ParamList extends object> = {
     initialRouteName?: string;
     screens: PathConfigMap<ParamList>;
@@ -9,9 +9,6 @@ type ParseConfig = Record<string, (value: string) => any>;
 type InitialRouteConfig = {
     initialRouteName: string;
     parentScreens: string[];
-};
-export type ResultState = PartialState<NavigationState> & {
-    state?: ResultState;
 };
 export declare function getUrlWithReactNavigationConcessions(path: string, baseUrl?: string | undefined): {
     nonstandardPathname: string;
@@ -43,7 +40,7 @@ export declare function getUrlWithReactNavigationConcessions(path: string, baseU
  * @param path Path string to parse and convert, e.g. /foo/bar?count=42.
  * @param options Extra options to fine-tune how to parse the path.
  */
-export default function getStateFromPath<ParamList extends object>(path: string, options?: Options<ParamList>): ResultState | undefined;
+export default function getStateFromPath<ParamList extends object>(path: string, options?: Options<ParamList>): VXSRouter.ResultState | undefined;
 export declare function getMatchableRouteConfigs<ParamList extends object>(options?: Options<ParamList>): {
     configs: {
         isInitial: boolean;

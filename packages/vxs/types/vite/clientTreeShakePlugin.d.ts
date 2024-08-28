@@ -1,13 +1,17 @@
 import type { Plugin } from 'vite';
-interface TreeShakeTemplatePluginOptions {
-    sourcemap?: boolean;
-}
-export declare const clientTreeShakePlugin: (options?: TreeShakeTemplatePluginOptions) => Plugin;
+export declare const clientTreeShakePlugin: () => Plugin;
 export declare function transformTreeShakeClient(code: string, id: string, settings: {
     ssr?: boolean;
-} | undefined, parse: any, root: string): Promise<{
+} | undefined): Promise<{
     code: string;
-    map: import("magic-string").SourceMap;
+    map: {
+        version: number;
+        sources: string[];
+        names: string[];
+        sourceRoot?: string | undefined;
+        sourcesContent?: string[] | undefined;
+        mappings: string;
+        file: string;
+    } | null;
 } | undefined>;
-export {};
 //# sourceMappingURL=clientTreeShakePlugin.d.ts.map

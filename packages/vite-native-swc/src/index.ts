@@ -1,13 +1,21 @@
 import { type SourceMapPayload, createRequire } from 'node:module'
-
 import {
   type JscTarget,
   type Output,
   type ParserConfig,
   type ReactConfig,
+  type Options as SWCOptions,
   transform,
 } from '@swc/core'
-import type { PluginOption } from 'vite'
+import type { PluginOption, UserConfig } from 'vite'
+import { extname } from 'node:path'
+
+// this file is a mess lol
+
+// TODO we arent reading .env early enough to just put this in parent scope
+function shouldSourceMap() {
+  return process.env.VXRN_ENABLE_SOURCE_MAP === '1'
+}
 
 // TODO node has an import to do this: const require = createRequire(import.meta.url)
 const resolve = createRequire(
@@ -33,9 +41,51 @@ type Options = {
    * @default undefined
    */
   plugins?: [string, Record<string, any>][]
+
+  forceJSX?: boolean
 }
 
 const isWebContainer = globalThis.process?.versions?.webcontainer
+
+const parsers: Record<string, ParserConfig> = {
+  '.tsx': { syntax: 'typescript', tsx: true, decorators: true },
+  '.ts': { syntax: 'typescript', tsx: false, decorators: true },
+  '.jsx': { syntax: 'ecmascript', jsx: true },
+  '.js': { syntax: 'ecmascript' },
+  // JSX is required to trigger fast refresh transformations, even if MDX already transforms it
+  '.mdx': { syntax: 'ecmascript', jsx: true },
+}
+
+const SWC_ENV = {
+  targets: {
+    node: '4',
+  },
+  include: [],
+  // this breaks the uniswap app for any file with a ...spread
+  exclude: ['transform-spread', 'transform-destructuring', 'transform-object-rest-spread'],
+}
+
+function getParser(id: string, forceJSX = false) {
+  if (id.endsWith('vxs-entry-native')) {
+    return parsers['.tsx']
+  }
+
+  const extension = extname(id)
+  let parser: ParserConfig = !extension ? parsers['.js'] : parsers[extension]
+
+  // compat
+  if (extension === '.js') {
+    if (forceJSX) {
+      parser = parsers['.jsx']
+    }
+
+    if (id.includes('expo-modules-core')) {
+      parser = parsers['.jsx']
+    }
+  }
+
+  return parser
+}
 
 export default (_options?: Options): PluginOption[] => {
   const options = {
@@ -52,9 +102,10 @@ export default (_options?: Options): PluginOption[] => {
   return [
     {
       name: 'vite:react-swc',
+      enforce: 'pre',
 
-      config: (config) => {
-        return {
+      config: () => {
+        const config = {
           esbuild: false,
 
           build: {
@@ -62,40 +113,81 @@ export default (_options?: Options): PluginOption[] => {
             rollupOptions: {
               plugins: [
                 {
-                  name: `native-transform`,
+                  name: `swc-react-native-transform`,
+                  options: {
+                    order: 'pre',
+                    handler(options) {},
+                  },
 
                   async transform(code, id) {
-                    let out = await transform(code, {
-                      filename: id,
-                      swcrc: false,
-                      configFile: false,
-                      sourceMaps: true,
-                      jsc: {
-                        target: 'es5',
-                        parser: id.endsWith('.tsx')
-                          ? { syntax: 'typescript', tsx: true, decorators: true }
-                          : id.endsWith('.ts')
-                            ? { syntax: 'typescript', tsx: false, decorators: true }
-                            : id.endsWith('.jsx')
-                              ? { syntax: 'ecmascript', jsx: true }
-                              : { syntax: 'ecmascript' },
-                        transform: {
-                          useDefineForClassFields: true,
-                          react: {
-                            development: true,
-                            refresh: false,
-                            runtime: 'automatic',
+                    const parser = getParser(id)
+
+                    // seeing an error with /Users/n8/universe/node_modules/@floating-ui/core/dist/floating-ui.core.mjs
+                    // fallback to a different config:
+
+                    try {
+                      const out = await transform(code, {
+                        filename: id,
+                        swcrc: false,
+                        configFile: false,
+                        sourceMaps: shouldSourceMap(),
+                        jsc: {
+                          parser,
+                          transform: {
+                            useDefineForClassFields: true,
+                            react: {
+                              development: true,
+                              refresh: false,
+                              runtime: 'automatic',
+                            },
                           },
                         },
-                      },
-                    })
+                        env: SWC_ENV,
+                      })
 
-                    hasTransformed[id] = true
-                    return out
+                      hasTransformed[id] = true
+                      return out
+                    } catch (err) {
+                      console.info(
+                        `Error parsing file ${id}, attempting different config. For full error DEBUG=vxrn`
+                      )
+                      if (process.env.DEBUG === 'vxrn') {
+                        console.error(`${err}`)
+                      }
+
+                      const out = await transform(code, {
+                        filename: id,
+                        swcrc: false,
+                        configFile: false,
+                        sourceMaps: shouldSourceMap(),
+                        jsc: {
+                          parser,
+                          target: 'es5',
+                          transform: {
+                            useDefineForClassFields: true,
+                            react: {
+                              development: true,
+                              refresh: false,
+                              runtime: 'automatic',
+                            },
+                          },
+                        },
+                      })
+
+                      hasTransformed[id] = true
+                      return out
+                    }
                   },
                 },
               ],
             },
+          },
+        } satisfies UserConfig
+
+        return {
+          environments: {
+            ios: config,
+            android: config,
           },
         }
       },
@@ -120,6 +212,7 @@ export default (_options?: Options): PluginOption[] => {
         if (_id.includes(`virtual:`)) {
           return
         }
+
         const out = await swcTransform(_id, code, options)
         hasTransformed[_id] = true
         return out
@@ -134,11 +227,11 @@ export async function swcTransform(_id: string, code: string, options: Options) 
 
   // const refresh = !transformOptions?.ssr && !hmrDisabled
   // only change for now:
-  const refresh = true
+  const refresh = !options.forceJSX
 
-  const result = await transformWithOptions(id, code, 'es5', options, {
+  const result = await transformWithOptions(id, code, options, {
     refresh,
-    development: true,
+    development: !options.forceJSX,
     runtime: 'automatic',
     importSource: options.jsxImportSource,
   })
@@ -153,9 +246,74 @@ export async function swcTransform(_id: string, code: string, options: Options) 
 
   result.code = wrapSourceInRefreshRuntime(id, result.code, options)
 
-  const sourceMap: SourceMapPayload = JSON.parse(result.map!)
-  sourceMap.mappings = ';;;;;;;;' + sourceMap.mappings
-  return { code: result.code, map: sourceMap }
+  if (result.map) {
+    const sourceMap: SourceMapPayload = JSON.parse(result.map)
+    sourceMap.mappings = ';;;;;;;;' + sourceMap.mappings
+    return { code: result.code, map: sourceMap }
+  }
+
+  return { code: result.code }
+}
+
+export const transformWithOptions = async (
+  id: string,
+  code: string,
+  options: Options,
+  reactConfig: ReactConfig
+) => {
+  const parser = getParser(id, options.forceJSX)
+  if (!parser) return
+
+  let result: Output
+  try {
+    const transformOptions = {
+      filename: id,
+      swcrc: false,
+      configFile: false,
+      sourceMaps: shouldSourceMap(),
+      module: {
+        type: 'nodenext',
+      },
+      ...(options.mode === 'serve-cjs' && {
+        module: {
+          type: 'commonjs',
+          strict: true,
+          importInterop: 'node',
+        },
+      }),
+      jsc: {
+        parser,
+        transform: {
+          useDefineForClassFields: true,
+          react: reactConfig,
+        },
+        ...(options.forceJSX ? { target: 'esnext' } : {}),
+      },
+      ...(options.forceJSX ? {} : { env: SWC_ENV }),
+    } satisfies SWCOptions
+
+    result = await transform(code, transformOptions)
+  } catch (e: any) {
+    // try another config?
+    console.info(
+      `SWC failed to transform file, but sometimes this is fine so continuing... Please report: ${id} ${e.message}`
+    )
+
+    return { code }
+
+    // const message: string = e.message
+    // const fileStartIndex = message.indexOf('╭─[')
+    // if (fileStartIndex !== -1) {
+    //   const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
+    //   if (match) {
+    //     e.line = match[1]
+    //     e.column = match[2]
+    //   }
+    // }
+    // throw e
+  }
+
+  return result
 }
 
 export function wrapSourceInRefreshRuntime(id: string, code: string, options: Options) {
@@ -171,7 +329,10 @@ export function wrapSourceInRefreshRuntime(id: string, code: string, options: Op
 
   return `const RefreshRuntime = __cachedModules["react-refresh/cjs/react-refresh-runtime.development"];
 const prevRefreshReg = globalThis.$RefreshReg$;
-const prevRefreshSig = globalThis.$RefreshSig$;
+const prevRefreshSig = globalThis.$RefreshSig$ || (() => {
+  console.info("no react refresh setup!")
+  return (x) => x
+});
 globalThis.$RefreshReg$ = (type, id) => RefreshRuntime.register(type, "${id}" + " " + id);
 globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 
@@ -197,20 +358,16 @@ if (module.hot) {
 }
 
 export const transformForBuild = async (id: string, code: string) => {
+  const parser = getParser(id)
+  if (!parser) return
   return await transform(code, {
     filename: id,
     swcrc: false,
     configFile: false,
-    sourceMaps: true,
+    sourceMaps: shouldSourceMap(),
     jsc: {
       target: 'es2019',
-      parser: id.endsWith('.tsx')
-        ? { syntax: 'typescript', tsx: true, decorators: true }
-        : id.endsWith('.ts')
-          ? { syntax: 'typescript', tsx: false, decorators: true }
-          : id.endsWith('.jsx')
-            ? { syntax: 'ecmascript', jsx: true }
-            : { syntax: 'ecmascript' },
+      parser,
       transform: {
         useDefineForClassFields: true,
         react: {
@@ -220,66 +377,4 @@ export const transformForBuild = async (id: string, code: string) => {
       },
     },
   })
-}
-
-export const transformWithOptions = async (
-  id: string,
-  code: string,
-  target: JscTarget,
-  options: Options,
-  reactConfig: ReactConfig
-) => {
-  const decorators = options?.tsDecorators ?? false
-  const parser: ParserConfig | undefined = id.endsWith('.tsx')
-    ? { syntax: 'typescript', tsx: true, decorators }
-    : id.endsWith('.ts')
-      ? { syntax: 'typescript', tsx: false, decorators }
-      : id.endsWith('.jsx')
-        ? { syntax: 'ecmascript', jsx: true }
-        : id.endsWith('.mdx')
-          ? // JSX is required to trigger fast refresh transformations, even if MDX already transforms it
-            { syntax: 'ecmascript', jsx: true }
-          : undefined
-  if (!parser) return
-
-  let result: Output
-  try {
-    result = await transform(code, {
-      filename: id,
-      swcrc: false,
-      configFile: false,
-      sourceMaps: true,
-      module: {
-        type: 'nodenext',
-      },
-      ...(options.mode === 'serve-cjs' && {
-        module: {
-          type: 'commonjs',
-          strict: true,
-          importInterop: 'node',
-        },
-      }),
-      jsc: {
-        target,
-        parser,
-        transform: {
-          useDefineForClassFields: true,
-          react: reactConfig,
-        },
-      },
-    })
-  } catch (e: any) {
-    const message: string = e.message
-    const fileStartIndex = message.indexOf('╭─[')
-    if (fileStartIndex !== -1) {
-      const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
-      if (match) {
-        e.line = match[1]
-        e.column = match[2]
-      }
-    }
-    throw e
-  }
-
-  return result
 }

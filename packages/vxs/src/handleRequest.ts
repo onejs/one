@@ -1,15 +1,10 @@
-import type { RouteInfo } from './server/routes-manifest'
+import type { RouteInfo } from './server/createRoutesManifest'
 import { getManifest } from './vite/getManifest'
+import type { VXS } from './vite/types'
 
-export type Options = {
-  root: string
-  shouldIgnore?: (req: Request) => boolean
-  disableSSR?: boolean
-}
-
-type RequestHandlerProps = {
+type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
   request: Request
-  route: RouteInfo<string>
+  route: RouteInfo<string> & RouteExtraProps
   url: URL
   loaderProps?: { path: string; params: Record<string, any> }
 }
@@ -17,16 +12,20 @@ type RequestHandlerProps = {
 type RequestHandlerResponse = null | string | Response
 
 export function createHandleRequest(
-  options: Options,
+  options: VXS.PluginOptions,
   handlers: {
-    handleSSR?: (props: RequestHandlerProps) => Promise<any>
+    handleSSR?: (props: RequestHandlerProps<{ routeType: 'ssg' | 'spa' }>) => Promise<any>
     handleLoader?: (props: RequestHandlerProps) => Promise<any>
     handleAPI?: (props: RequestHandlerProps) => Promise<any>
   }
 ) {
-  const { root, shouldIgnore, disableSSR } = options
+  const { shouldIgnore, disableSSR } = options
 
-  const manifest = getManifest(root)
+  if (import.meta.env) {
+    throw new Error(`No import.meta.env - Node 22 or greater required.`)
+  }
+
+  const manifest = getManifest('app')
   if (!manifest) {
     throw new Error(`No routes manifest`)
   }
@@ -41,22 +40,37 @@ export function createHandleRequest(
   // use this to avoid
   const activeRequests = {}
 
-  return async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
-    const urlString = request.url || ''
-    const url = new URL(urlString)
-    const { pathname } = url
+  // shouldn't be mapping back and forth...
+  const ssgRoutes = manifest.ssgRoutes.map((route) => ({
+    ...route,
+    routeType: 'ssg' as const,
+    workingRegex: new RegExp(route.namedRegex),
+  }))
 
-    if (urlString in activeRequests) {
-      return await activeRequests[urlString]
+  const spaRoutes = manifest.spaRoutes.map((route) => ({
+    ...route,
+    routeType: 'spa' as const,
+    workingRegex: new RegExp(route.namedRegex),
+  }))
+
+  const routesWithRegex = [...ssgRoutes, ...spaRoutes]
+
+  return async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
+    if (shouldIgnore?.(request)) {
+      return null
     }
 
-    if (
-      request.method !== 'GET' ||
-      pathname === '/__vxrnhmr' ||
-      pathname.startsWith('/@') ||
-      shouldIgnore?.(request)
-    ) {
-      return null
+    const urlString = request.url || ''
+    const url = new URL(
+      urlString || '',
+      request.headers.get('host') ? `http://${request.headers.get('host')}` : ''
+    )
+    const { pathname, search } = url
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (activeRequests[pathname]) {
+        return await activeRequests[pathname]
+      }
     }
 
     if (handlers.handleAPI) {
@@ -66,16 +80,32 @@ export function createHandleRequest(
       }
     }
 
+    if (request.method !== 'GET' || pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
+      return null
+    }
+
     if (handlers.handleLoader) {
       const isClientRequestingNewRoute = pathname.endsWith('_vxrn_loader.js')
       if (isClientRequestingNewRoute) {
         const originalUrl = pathname.replace('_vxrn_loader.js', '')
         const finalUrl = new URL(originalUrl, url.origin)
 
-        for (const route of manifest.htmlRoutes) {
-          // TODO performance
-          if (!new RegExp(route.namedRegex).test(finalUrl.pathname)) {
+        for (const route of routesWithRegex) {
+          if (!route.workingRegex.test(finalUrl.pathname)) {
             continue
+          }
+          if (route.routeType === 'spa') {
+            return new Response(
+              `
+              export default () => null
+              export const loader = () => null
+              `,
+              {
+                headers: {
+                  'content-type': 'text/javascript',
+                },
+              }
+            )
           }
 
           const headers = new Headers()
@@ -96,6 +126,14 @@ export function createHandleRequest(
           })
         }
 
+        if (process.env.NODE_ENV === 'development') {
+          console.error(`No matching route found!`, {
+            originalUrl,
+            ssgRoutes: manifest.ssgRoutes,
+            spaRoutes: manifest.spaRoutes,
+          })
+        }
+
         // error no match!
 
         return Response.error()
@@ -107,9 +145,8 @@ export function createHandleRequest(
       activeRequests[pathname] = promise
 
       try {
-        for (const route of manifest.htmlRoutes) {
-          // TODO performance
-          if (!new RegExp(route.namedRegex).test(pathname)) {
+        for (const route of routesWithRegex) {
+          if (!route.workingRegex.test(pathname)) {
             continue
           }
 
@@ -118,7 +155,7 @@ export function createHandleRequest(
             route,
             url,
             loaderProps: {
-              path: pathname,
+              path: pathname + search,
               params: getLoaderParams(url, route),
             },
           })
@@ -138,9 +175,12 @@ export function createHandleRequest(
   }
 }
 
-function getLoaderParams(url: URL, config: any) {
+function getLoaderParams(
+  url: URL,
+  config: { workingRegex: RegExp; routeKeys: Record<string, string> }
+) {
   const params: Record<string, string> = {}
-  const match = new RegExp(config.namedRegex).exec(url.pathname)
+  const match = new RegExp(config.workingRegex).exec(url.pathname)
   if (match?.groups) {
     for (const [key, value] of Object.entries(match.groups)) {
       const namedKey = config.routeKeys[key]

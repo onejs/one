@@ -1,49 +1,57 @@
 import type { Options as FlowOptions } from '@vxrn/vite-flow';
 import type { Hono } from 'hono';
 import type { OutputAsset, OutputChunk } from 'rollup';
-import type { InlineConfig, UserConfig } from 'vite';
+import type { UserConfig } from 'vite';
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
 export type BuildArgs = {
     step?: string;
     only?: string;
+    analyze?: boolean;
 };
 export type AfterBuildProps = {
-    options: VXRNConfig;
+    options: VXRNOptions;
     clientOutput: RollupOutputList;
     serverOutput: RollupOutputList;
     webBuildConfig: UserConfig;
     buildArgs?: BuildArgs;
     clientManifest: {
-        [key: string]: {
-            file: string;
-            src?: string;
-            isDynamicEntry?: boolean;
-            isEntry?: boolean;
-            name: string;
-            imports: string[];
-        };
+        [key: string]: ClientManifestEntry;
     };
 };
-export type VXRNConfig = {
+export type ClientManifestEntry = {
+    file: string;
+    src?: string;
+    isDynamicEntry?: boolean;
+    isEntry?: boolean;
+    name: string;
+    imports: string[];
+    css?: string[];
+};
+export type VXRNOptions = {
     /**
-     * The entry points to your app. For web, it uses your `root` and looks for an index.html
+     * The entry points to your app. For web, it defaults to using your `root` to look for an index.html
      *
      * Defaults:
      *   native: ./src/entry-native.tsx
-     *   server: ./src/entry-server.tsx
      */
     entries?: {
         native?: string;
-        server?: string;
+        web?: string;
+    };
+    hono?: {
+        compression?: boolean;
+        cacheHeaders?: 'off';
     };
     root?: string;
     host?: string;
     port?: number;
-    webConfig?: InlineConfig;
-    nativeConfig?: InlineConfig;
+    /**
+     * Uses mkcert to create a self-signed certificate
+     */
+    https?: boolean;
     flow?: FlowOptions;
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
-    serve?: (options: VXRNConfig, app: Hono) => void;
+    afterServerStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
 };
 export type HMRListener = (update: {
     file: string;

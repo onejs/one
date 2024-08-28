@@ -85,7 +85,12 @@ export class Symbolicator {
       console.warn({ msg: 'Processing frames', frames })
 
       const processedFrames: StackFrame[] = []
+
       for (const frame of frames) {
+        if (!frame.file) {
+          continue
+        }
+
         if (!this.sourceMapConsumerCache[frame.file]) {
           console.warn({
             msg: 'Loading raw source map data',

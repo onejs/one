@@ -1,7 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "extends": ["//"],
-  "pipeline": {
+  "tasks": {
     "build:js": {
       "cache": false
     },
@@ -10,18 +10,22 @@
       "inputs": [
         "tsconfig.json",
         "package.json",
-        "src/**",
+        "src/**/*",
         "tamagui-build.js",
         "externalNodePlugin.js"
       ],
-      "outputs": [".next/**", "dist/**", "types/**"]
+      "outputs": [".next/**/*", "dist/**/*", "types/**/*"]
+    },
+    "check": {
+      "cache": false,
+      "outputs": []
     },
     "test": {
       "dependsOn": ["^build:js"],
       "outputs": []
     },
     "clean": {
-      "outputs": ["dist/**"],
+      "outputs": ["dist/**/*"],
       "cache": false
     },
     "clean:build": {
@@ -32,7 +36,8 @@
       "outputs": []
     },
     "lint:fix": {
-      "outputs": ["src/**"]
+      "cache": false,
+      "outputs": ["src/**/*"]
     }
   }
 }

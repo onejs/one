@@ -120,7 +120,11 @@ function setupWebSocket(protocol: string, hostAndPath: string, onCloseWithoutOpe
 }
 
 function warnFailedFetch(err: Error, path: string | string[]) {
-  console.error(`${err}`)
+  try {
+    console.error(`${err.message}\n${err.stack}`)
+  } catch {
+    console.error(`${err}`)
+  }
   console.error(
     `[hmr] Failed to reload ${path}. ` +
       `This could be due to syntax errors or importing non-existent ` +
@@ -138,7 +142,7 @@ const debounceReload = (time: number) => {
       timer = null
     }
     timer = setTimeout(() => {
-      location.reload()
+      globalThis.__vxrnReloadApp()
     }, time)
   }
 }
@@ -164,13 +168,12 @@ async function handleMessage(payload: HMRPayload) {
       // module script failed to load (since one of the nested imports is 500).
       // in this case a normal update won't work and a full reload is needed.
       if (isFirstUpdate && hasErrorOverlay()) {
-        // !
-        // window.location.reload()
+        globalThis.__vxrnReloadApp()
         return
-      } else {
-        clearErrorOverlay()
-        isFirstUpdate = false
       }
+      clearErrorOverlay()
+      isFirstUpdate = false
+
       await Promise.all(
         payload.updates.map((update) => {
           if (update.type === 'js-update') {
@@ -199,9 +202,9 @@ async function handleMessage(payload: HMRPayload) {
           pageReload()
         }
         return
-      } else {
-        pageReload()
       }
+      pageReload()
+
       break
     case 'prune':
       notifyListeners('vite:beforePrune', payload)

@@ -18,7 +18,7 @@ export type Options = {
   internal_stripLoadRoute?: boolean
   /* Used to simplify by skipping the generated routes */
   skipGenerated?: boolean
-  importMode?: string
+  importMode?: 'sync'
   platformRoutes?: boolean
   platform?: string
 }
@@ -74,7 +74,7 @@ export function getExactRoutes(
  * Converts the RequireContext keys (file paths) into a directory tree.
  */
 function getDirectoryTree(contextModule: RequireContext, options: Options) {
-  const importMode = options.importMode || process.env.EXPO_ROUTER_IMPORT_MODE
+  const importMode = options.importMode || process.env.VXS_ROUTER_IMPORT_MODE
 
   const ignoreList: RegExp[] = [/^\.\/\+html\.[tj]sx?$/] // Ignore the top level ./+html file
 
@@ -109,6 +109,7 @@ function getDirectoryTree(contextModule: RequireContext, options: Options) {
 
     let node: RouteNode = {
       type: meta.isApi ? 'api' : meta.isLayout ? 'layout' : 'route',
+      routeType: meta.isSPA ? 'spa' : 'ssg',
       loadRoute() {
         if (options.ignoreRequireErrors) {
           try {
@@ -127,7 +128,7 @@ function getDirectoryTree(contextModule: RequireContext, options: Options) {
     }
 
     if (process.env.NODE_ENV === 'development') {
-      // If the user has set the `EXPO_ROUTER_IMPORT_MODE` to `sync` then we should
+      // If the user has set the `VXS_ROUTER_IMPORT_MODE` to `sync` then we should
       // filter the missing routes.
       if (node.type !== 'api' && importMode === 'sync') {
         if (!node.loadRoute()?.default) {
@@ -244,6 +245,7 @@ function getDirectoryTree(contextModule: RequireContext, options: Options) {
     rootDirectory.layout = [
       {
         type: 'layout',
+        routeType: 'ssg',
         loadRoute: () => ({
           default: (require('./views/Navigator') as typeof import('./views/Navigator'))
             .DefaultNavigator,
@@ -305,7 +307,7 @@ function flattenDirectoryTreeToRoutes(
   }
 
   // This should never occur as there will always be a root layout, but it makes the type system happy
-  if (!layout) throw new Error('Expo Router Internal Error: No nearest layout')
+  if (!layout) throw new Error('VXS Internal Error: No nearest layout')
 
   for (const routes of directory.files.values()) {
     // TODO(Platform Routes): We need to pick the most specific layout and ensure that all routes have a non-platform route.
@@ -340,6 +342,7 @@ function getFileMeta(key: string, options: Options) {
   const filenameWithoutExtensions = removeSupportedExtensions(filename)
   const isLayout = filenameWithoutExtensions === '_layout'
   const isApi = filename.match(/\+api\.(\w+\.)?[jt]sx?$/)
+  const isSPA = filename.match(/\+spa\.(\w+\.)?[jt]sx?$/)
 
   if (filenameWithoutExtensions.startsWith('(') && filenameWithoutExtensions.endsWith(')')) {
     throw new Error(`Invalid route ./${key}. Routes cannot end with '(group)' syntax`)
@@ -352,6 +355,7 @@ function getFileMeta(key: string, options: Options) {
       `Invalid route ./${key}. Route nodes cannot start with the '+' character. "Please rename to ${renamedRoute}"`
     )
   }
+
   let specificity = 0
 
   const platformExtension = filenameWithoutExtensions.split('.')[1]
@@ -392,6 +396,7 @@ function getFileMeta(key: string, options: Options) {
     specificity,
     isLayout,
     isApi,
+    isSPA,
   }
 }
 
@@ -400,7 +405,7 @@ function getMostSpecific(routes: RouteNode[]) {
 
   if (!routes[0]) {
     throw new Error(
-      `The file ${route.contextKey} does not have a fallback sibling file without a platform extension.`
+      ` [vxs] The file ${route.contextKey} does not have a fallback sibling file without a platform extension.`
     )
   }
 
@@ -481,6 +486,7 @@ function appendSitemapRoute(directory: DirectoryNode) {
           return { default: () => null, getNavOptions: () => {} }
         },
         route: '_sitemap',
+        routeType: 'ssg',
         type: 'route',
         contextKey: 'router/build/views/Sitemap.js',
         generated: true,
@@ -500,6 +506,7 @@ function appendNotFoundRoute(directory: DirectoryNode) {
           return { default: () => null }
         },
         type: 'route',
+        routeType: 'ssg',
         route: '+not-found',
         contextKey: 'router/build/views/Unmatched.js',
         generated: true,

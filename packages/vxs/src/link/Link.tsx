@@ -4,27 +4,12 @@ import { Slot } from '@radix-ui/react-slot'
 import * as React from 'react'
 import { Platform, Text, type GestureResponderEvent, type TextProps } from 'react-native'
 
-import { useRouter } from '../hooks'
-import type { ExpoRouter } from '../interfaces/router'
-import { useFocusEffect } from '../useFocusEffect'
+import type { VXSRouter } from '../interfaces/router'
 import { resolveHref } from './href'
-import useLinkToPathProps from './useLinkToPathProps'
-
-/** Redirects to the href as soon as the component is mounted. */
-export function Redirect({ href }: { href: ExpoRouter.Href }) {
-  const router = useRouter()
-  useFocusEffect(() => {
-    try {
-      router.replace(href)
-    } catch (error) {
-      console.error(error)
-    }
-  })
-  return null
-}
+import { useLinkTo } from './useLinkTo'
 
 export interface LinkComponent {
-  (props: React.PropsWithChildren<ExpoRouter.LinkProps>): JSX.Element
+  (props: React.PropsWithChildren<VXSRouter.LinkProps>): JSX.Element
   /** Helper method to resolve an Href object into a string. */
   resolveHref: typeof resolveHref
 }
@@ -40,7 +25,61 @@ export interface LinkComponent {
  * @param props.children Child elements to render the content.
  * @param props.className On web, this sets the HTML `class` directly. On native, this can be used with CSS interop tools like Nativewind.
  */
-export const Link = React.forwardRef(LinkInner) as unknown as LinkComponent
+export const Link = React.forwardRef(function Link(
+  {
+    href,
+    replace,
+    push,
+    // TODO: This does not prevent default on the anchor tag.
+    asChild,
+    rel,
+    target,
+    download,
+    ...rest
+  }: VXSRouter.LinkProps,
+  ref: React.ForwardedRef<Text>
+) {
+  // Mutate the style prop to add the className on web.
+  const style = useInteropClassName(rest)
+
+  // If not passing asChild, we need to forward the props to the anchor tag using React Native Web's `hrefAttrs`.
+  const hrefAttrs = useHrefAttrs({ asChild, rel, target, download })
+
+  const resolvedHref = React.useMemo(() => {
+    if (href == null) {
+      throw new Error('Link: href is required')
+    }
+    return resolveHref(href)
+  }, [href])
+
+  const props = useLinkTo({ href: resolvedHref, replace })
+
+  const onPress = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => {
+    if ('onPress' in rest) {
+      rest.onPress?.(e)
+    }
+    props.onPress(e)
+  }
+
+  const Element = asChild ? Slot : Text
+
+  // Avoid using createElement directly, favoring JSX, to allow tools like Nativewind to perform custom JSX handling on native.
+  return (
+    <Element
+      ref={ref}
+      {...props}
+      {...hrefAttrs}
+      {...rest}
+      style={asChild ? null : style}
+      {...Platform.select({
+        web: {
+          onClick: onPress,
+        } as any,
+        default: { onPress },
+      })}
+    />
+  )
+}) as unknown as LinkComponent
 
 Link.resolveHref = resolveHref
 
@@ -68,9 +107,9 @@ function useInteropClassName(props: { style?: TextProps['style']; className?: st
 }
 
 const useHrefAttrs = Platform.select<
-  (props: Partial<ExpoRouter.LinkProps>) => { hrefAttrs?: any } & Partial<ExpoRouter.LinkProps>
+  (props: Partial<VXSRouter.LinkProps>) => { hrefAttrs?: any } & Partial<VXSRouter.LinkProps>
 >({
-  web: function useHrefAttrs({ asChild, rel, target, download }: Partial<ExpoRouter.LinkProps>) {
+  web: function useHrefAttrs({ asChild, rel, target, download }: Partial<VXSRouter.LinkProps>) {
     return React.useMemo(() => {
       const hrefAttrs = {
         rel,
@@ -89,60 +128,3 @@ const useHrefAttrs = Platform.select<
     return {}
   },
 })
-
-function LinkInner(
-  {
-    href,
-    replace,
-    push,
-    // TODO: This does not prevent default on the anchor tag.
-    asChild,
-    rel,
-    target,
-    download,
-    ...rest
-  }: ExpoRouter.LinkProps,
-  ref: React.ForwardedRef<Text>
-) {
-  // Mutate the style prop to add the className on web.
-  const style = useInteropClassName(rest)
-
-  // If not passing asChild, we need to forward the props to the anchor tag using React Native Web's `hrefAttrs`.
-  const hrefAttrs = useHrefAttrs({ asChild, rel, target, download })
-
-  const resolvedHref = React.useMemo(() => {
-    if (href == null) {
-      throw new Error('Link: href is required')
-    }
-    return resolveHref(href)
-  }, [href])
-
-  const event = push ? 'PUSH' : replace ? 'REPLACE' : undefined
-  const props = useLinkToPathProps({ href: resolvedHref, event })
-
-  const onPress = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => {
-    if ('onPress' in rest) {
-      rest.onPress?.(e)
-    }
-    props.onPress(e)
-  }
-
-  const Element = asChild ? Slot : Text
-
-  // Avoid using createElement directly, favoring JSX, to allow tools like Nativewind to perform custom JSX handling on native.
-  return (
-    <Element
-      ref={ref}
-      {...props}
-      {...hrefAttrs}
-      {...rest}
-      style={style}
-      {...Platform.select({
-        web: {
-          onClick: onPress,
-        } as any,
-        default: { onPress },
-      })}
-    />
-  )
-}

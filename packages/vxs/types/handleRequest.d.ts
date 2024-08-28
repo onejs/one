@@ -1,12 +1,8 @@
-import type { RouteInfo } from './server/routes-manifest';
-export type Options = {
-    root: string;
-    shouldIgnore?: (req: Request) => boolean;
-    disableSSR?: boolean;
-};
-type RequestHandlerProps = {
+import type { RouteInfo } from './server/createRoutesManifest';
+import type { VXS } from './vite/types';
+type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
     request: Request;
-    route: RouteInfo<string>;
+    route: RouteInfo<string> & RouteExtraProps;
     url: URL;
     loaderProps?: {
         path: string;
@@ -14,8 +10,10 @@ type RequestHandlerProps = {
     };
 };
 type RequestHandlerResponse = null | string | Response;
-export declare function createHandleRequest(options: Options, handlers: {
-    handleSSR?: (props: RequestHandlerProps) => Promise<any>;
+export declare function createHandleRequest(options: VXS.PluginOptions, handlers: {
+    handleSSR?: (props: RequestHandlerProps<{
+        routeType: 'ssg' | 'spa';
+    }>) => Promise<any>;
     handleLoader?: (props: RequestHandlerProps) => Promise<any>;
     handleAPI?: (props: RequestHandlerProps) => Promise<any>;
 }): (request: Request) => Promise<RequestHandlerResponse>;

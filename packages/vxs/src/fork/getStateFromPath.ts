@@ -1,12 +1,12 @@
 import type { PathConfigMap } from '@react-navigation/core'
-import type { InitialState, NavigationState, PartialState } from '@react-navigation/routers'
+import type { InitialState } from '@react-navigation/routers'
 // biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 import escape from 'escape-string-regexp'
-
 import type { RouteNode } from '../Route'
 import { matchGroupName, stripGroupSegmentsFromPath } from '../matchers'
 import { findFocusedRoute } from './findFocusedRoute'
 import validatePathConfig from './validatePathConfig'
+import type { VXSRouter } from '../interfaces/router'
 
 type Options<ParamList extends object> = {
   initialRouteName?: string
@@ -31,10 +31,6 @@ type RouteConfig = {
 type InitialRouteConfig = {
   initialRouteName: string
   parentScreens: string[]
-}
-
-export type ResultState = PartialState<NavigationState> & {
-  state?: ResultState
 }
 
 type ParsedRoute = {
@@ -95,7 +91,7 @@ export function getUrlWithReactNavigationConcessions(
 export default function getStateFromPath<ParamList extends object>(
   path: string,
   options?: Options<ParamList>
-): ResultState | undefined {
+): VXSRouter.ResultState | undefined {
   const { initialRoutes, configs } = getMatchableRouteConfigs(options)
   return getStateFromPathWithConfigs(path, configs, initialRoutes)
 }
@@ -106,7 +102,7 @@ export function getMatchableRouteConfigs<ParamList extends object>(options?: Opt
   }
 
   const screens = options?.screens
-  // Expo Router disallows usage without a linking config.
+  // VXS disallows usage without a linking config.
   if (!screens) {
     throw Error("You must pass a 'screens' object to 'getStateFromPath' to generate a path.")
   }
@@ -314,7 +310,7 @@ function getStateFromEmptyPathWithConfigs(
   hash: string,
   configs: RouteConfig[],
   initialRoutes: InitialRouteConfig[]
-): ResultState | undefined {
+): VXSRouter.ResultState | undefined {
   // We need to add special handling of empty path so navigation to empty path also works
   // When handling empty path, we should only look at the root level config
 
@@ -367,7 +363,7 @@ function getStateFromPathWithConfigs(
   configs: RouteConfig[],
   initialRoutes: InitialRouteConfig[],
   baseUrl: string | undefined = process.env.EXPO_BASE_URL
-): ResultState | undefined {
+): VXSRouter.ResultState | undefined {
   const formattedPaths = getUrlWithReactNavigationConcessions(path)
 
   if (!formattedPaths.url) {

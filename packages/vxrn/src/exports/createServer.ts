@@ -1,60 +1,42 @@
+import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
 import { compress } from 'hono/compress'
-// import { cache } from 'hono/cache'
-import { serveStatic } from '@hono/node-server/serve-static'
 
-import type { VXRNConfig } from '../types'
+import type { VXRNOptions } from '../types'
 
-export const createProdServer = async (options: VXRNConfig) => {
+export const createProdServer = async (options: VXRNOptions) => {
   const app = new Hono()
 
-  app.use(compress())
-
-  app.use(
-    '*',
-    serveStatic({
-      root: './dist/client',
-    })
-  )
-
-  // app.get(
-  //   '*',
-  //   cache({
-  //     cacheName: 'my-app',
-  //     cacheControl: 'max-age=3600',
-  //   })
-  // )
-
-  if (options.serve) {
-    options.serve(options, app)
+  if (options.hono?.compression) {
+    app.use(compress())
   }
+
+  app.use('*', async (c, next) => {
+    let didCallNext = false
+
+    const response = await serveStatic({
+      root: './dist/client',
+    })(c, async () => {
+      didCallNext = true
+      await next()
+    })
+
+    if (!response || didCallNext) {
+      return
+    }
+
+    // no cache let cdn do that shit
+    if (options.hono?.cacheHeaders !== 'off') {
+      if (!c.req.header('Cache-Control')) {
+        c.header('Cache-Control', 'no-store')
+        // safari was aggressively caching js for some reason despite no-store
+        // https://stackoverflow.com/questions/48693693/macos-safari-caching-response-while-headers-specify-no-caching
+        c.header('Vary', '*')
+      }
+    }
+
+    return response
+  })
 
   return app
 }
-
-// // testing cache
-// const caches = {}
-// function createCache(name: string) {
-//   if (caches[name]) return caches[name] as any
-//   const store = {}
-//   const cache = {
-//     async match(key: string) {
-//       console.log('matching', key)
-//       return store[key]
-//     },
-//     async put(key: string, val) {
-//       store[key] = val
-//     },
-//     async delete(key: string) {
-//       delete store[key]
-//     },
-//   }
-//   caches[name] = cache
-//   return cache
-// }
-// globalThis.caches = {
-//   ...createCache(''),
-//   async open(name: string) {
-//     return createCache(name)
-//   },
-// }

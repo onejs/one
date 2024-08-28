@@ -1,15 +1,12 @@
 import ansis from 'ansis'
 
 import type { ExtraSteps } from './types'
-import { exec } from '../helpers/exec'
 
-const packageManager = 'yarn'
-const useYarn = packageManager === 'yarn'
+const main: ExtraSteps = async ({ isFullClone, projectName, packageManager }) => {
+  const useBun = packageManager === 'bun'
 
-const runCommand = (scriptName: string) => `${packageManager} ${useYarn ? '' : 'run '}${scriptName}`
-
-const main: ExtraSteps = async ({ isFullClone, projectName }) => {
-  exec(runCommand('patch-package'))
+  const runCommand = (scriptName: string) =>
+    `${packageManager} ${useBun ? '' : 'run '}${scriptName}`
 
   if (isFullClone) {
     console.info(`

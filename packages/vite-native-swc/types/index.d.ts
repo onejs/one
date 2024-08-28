@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { type SourceMapPayload } from 'node:module';
-import { type JscTarget, type Output, type ReactConfig } from '@swc/core';
+import { type Output, type ReactConfig } from '@swc/core';
 import type { PluginOption } from 'vite';
 type Options = {
     mode: 'serve' | 'serve-cjs' | 'build';
@@ -19,6 +19,7 @@ type Options = {
      * @default undefined
      */
     plugins?: [string, Record<string, any>][];
+    forceJSX?: boolean;
 };
 declare const _default: (_options?: Options) => PluginOption[];
 export default _default;
@@ -26,7 +27,7 @@ export declare function swcTransform(_id: string, code: string, options: Options
     code: string;
     map: SourceMapPayload;
 } | undefined>;
+export declare const transformWithOptions: (id: string, code: string, options: Options, reactConfig: ReactConfig) => Promise<Output | undefined>;
 export declare function wrapSourceInRefreshRuntime(id: string, code: string, options: Options): string;
-export declare const transformForBuild: (id: string, code: string) => Promise<Output>;
-export declare const transformWithOptions: (id: string, code: string, target: JscTarget, options: Options, reactConfig: ReactConfig) => Promise<Output | undefined>;
+export declare const transformForBuild: (id: string, code: string) => Promise<Output | undefined>;
 //# sourceMappingURL=index.d.ts.map

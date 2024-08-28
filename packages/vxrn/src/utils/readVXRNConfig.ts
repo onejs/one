@@ -1,9 +1,9 @@
 import FSExtra from 'fs-extra'
-import type { VXRNConfig } from '../types'
+import type { VXRNOptions } from '../types'
 import { join } from 'node:path'
 import { build } from 'esbuild'
 
-export async function readVXRNConfig(): Promise<VXRNConfig> {
+export async function readVXRNOptions(): Promise<VXRNOptions> {
   if (!(await FSExtra.pathExists('vxrn.config.ts'))) {
     return {}
   }
@@ -46,11 +46,11 @@ async function resolveOptionalAsyncFunction(value: any) {
 // // vite version:
 
 // import FSExtra from 'fs-extra'
-// import type { VXRNConfig } from '../types'
+// import type { VXRNOptions } from '../types'
 // import { join } from 'node:path'
 // import { build } from 'vite'
 
-// export async function readVXRNConfig(): Promise<VXRNConfig> {
+// export async function readVXRNOptions(): Promise<VXRNOptions> {
 //   if (!(await FSExtra.pathExists('vxrn.config.ts'))) {
 //     return {}
 //   }

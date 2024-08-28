@@ -1,17 +1,23 @@
-import { build as esbuild } from 'esbuild'
 import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
+import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
-import { tmpdir } from 'node:os'
 import Path, { join, relative } from 'node:path'
 import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
-import { mergeConfig, build as viteBuild, type UserConfig } from 'vite'
-import { getHtml, getOptimizeDeps, getOptionsFilled, type AfterBuildProps } from 'vxrn'
+import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
+import {
+  getOptimizeDeps,
+  getOptionsFilled,
+  type AfterBuildProps,
+  type ClientManifestEntry,
+} from 'vxrn'
+import type { RouteInfo } from '../server/createRoutesManifest'
+import type { RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
-import MicroMatch from 'micromatch'
-// import { resetState } from '../global-state/useInitializeExpoRouter'
+import type { VXS } from './types'
+import { getUserVXSOptions } from './vxs'
 
 export const resolveFile = (path: string) => {
   try {
@@ -21,123 +27,97 @@ export const resolveFile = (path: string) => {
   }
 }
 
-const { ensureDir, existsSync, readFile, outputFile } = FSExtra
+const { ensureDir, readFile, outputFile } = FSExtra
 
 export async function build(props: AfterBuildProps) {
+  const userOptions = getUserVXSOptions(props.webBuildConfig)
   const options = await getOptionsFilled(props.options)
   const toAbsolute = (p) => Path.resolve(options.root, p)
 
   const manifest = getManifest(join(options.root, 'app'))!
   const { optimizeDeps } = getOptimizeDeps('build')
   const apiBuildConfig = mergeConfig(props.webBuildConfig, {
+    configFile: false,
     appType: 'custom',
     optimizeDeps,
-  } satisfies UserConfig)
+  } satisfies InlineConfig)
 
-  // console.info(`\n 🔨 build api\n`)
+  if (manifest.apiRoutes.length) {
+    console.info(`\n 🔨 build api routes\n`)
 
-  // await viteBuild({
-  //   environments: {
-  //     node: {
-  //       build: {
-  //         async createEnvironment(builder) {
-  //           return {
-  //             mode: 'build',
-  //             name: 'api',
-  //             plugins: [],
-  //             logger() {},
-  //             async init() {},
-  //             options: {
-  //               nodeCompatible: true,
-  //             },
-  //             config: {
-  //               appType: 'custom',
-  //               ...(props.webBuildConfig as any),
-  //             },
-  //           } as any
-  //         },
-  //       },
-  //     },
-  //   },
-  // })
+    const processEnvDefines = Object.fromEntries(
+      Object.entries(process.env).map(([key, value]) => {
+        return [`process.env.${key}`, JSON.stringify(value)]
+      })
+    )
 
-  console.info(`\n 🔨 build api\n`)
+    const apiRouteExternalRegex = buildRegexExcludingDeps(optimizeDeps.include)
 
-  for (const { page, file } of manifest.apiRoutes) {
-    console.info(` [api]`, file)
+    const apiEntryPoints = manifest.apiRoutes.reduce((entries, { page, file }) => {
+      entries[page.slice(1) + '.js'] = join('app', file)
+      return entries
+    }, {}) as Record<string, string>
+
     await viteBuild(
       mergeConfig(apiBuildConfig, {
         appType: 'custom',
-        plugins: [nodeExternals() as any],
+        configFile: false,
+        plugins: [
+          nodeExternals({
+            exclude: optimizeDeps.include,
+          }) as any,
+        ],
+
+        define: {
+          ...processEnvDefines,
+        },
+
         build: {
+          emptyOutDir: false,
           outDir: 'dist/api',
           copyPublicDir: false,
           minify: false,
           rollupOptions: {
-            treeshake: false,
-            input: join('app', file),
+            treeshake: {
+              moduleSideEffects: 'no-external',
+            },
+            // too many issues
+            // treeshake: {
+            //   moduleSideEffects: false,
+            // },
+            // prevents it from shaking out the exports
             preserveEntrySignatures: 'strict',
-            external: [/node_modules/],
+            input: apiEntryPoints,
+            external: apiRouteExternalRegex,
             output: {
-              entryFileNames: page.slice(1) + '.js',
+              entryFileNames: '[name]',
               format: 'esm',
+              esModule: true,
               exports: 'auto',
             },
           },
         },
-      } satisfies UserConfig)
+      } satisfies InlineConfig)
     )
   }
-
-  console.info(`\n 🔨 build static routes\n`)
-  const entryServer = `${options.root}/dist/server/entry-server.js`
 
   // for the require Sitemap in getRoutes
   globalThis['require'] = createRequire(join(import.meta.url, '..'))
 
-  const render = (await import(entryServer)).render
-
   const assets: OutputAsset[] = []
 
-  const allRoutes: {
-    path: string
-    htmlPath: string
-    clientJsPath: string
-    params: Object
-    loaderData: any
-    preloads: string[]
-  }[] = []
+  const builtRoutes: VXS.RouteBuildInfo[] = []
 
-  console.info(`\n 🔨 build css\n`)
+  console.info(`\n 🔨 build static routes\n`)
 
-  // for now just inline
-  const cssStringRaw = assets
-    .filter((x) => x.name?.endsWith('.css'))
-    .map((x) => x.source)
-    .join('\n\n')
-
-  // awkward way to get prefixes:
-  const tmpCssFile = Path.join(tmpdir(), 'tmp.css')
-  await FSExtra.writeFile(tmpCssFile, cssStringRaw, 'utf-8')
-  await esbuild({
-    entryPoints: [tmpCssFile],
-    target: 'safari17',
-    bundle: true,
-    minifyWhitespace: true,
-    sourcemap: false,
-    allowOverwrite: true,
-    outfile: tmpCssFile,
-    loader: { '.css': 'css' },
-  })
-  const cssString = await readFile(tmpCssFile, 'utf-8')
+  const entryServer = `${options.root}/dist/server/_virtual_vxs-entry.js`
+  const render = (await import(entryServer)).default.render as RenderApp
 
   const staticDir = join(`dist/static`)
   const clientDir = join(`dist/client`)
   await ensureDir(staticDir)
 
   const outputEntries = [...props.serverOutput.entries()]
-
-  const template = await readFile(toAbsolute(join(`dist/client/index.html`)), 'utf-8')
 
   for (const [index, output] of outputEntries) {
     if (output.type === 'asset') {
@@ -160,17 +140,15 @@ export async function build(props: AfterBuildProps) {
       continue
     }
 
-    const jsPath = toAbsolute(join('dist/server', output.fileName))
+    const relativeId = relative(process.cwd(), id)
+      // TODO hardcoded app
+      .replace('app/', '/')
 
-    let exported
-    try {
-      exported = await import(jsPath)
-    } catch (err) {
-      console.error(`Error importing page (original error)`, err)
-      // err cause not showing in vite or something
-      throw new Error(`Error importing page: ${jsPath}`, {
-        cause: err,
-      })
+    const onlyBuild = props.buildArgs?.only
+    if (onlyBuild) {
+      if (!MicroMatch.contains(relativeId, onlyBuild)) {
+        continue
+      }
     }
 
     // gather the initial import.meta.glob js parts:
@@ -186,27 +164,42 @@ export async function build(props: AfterBuildProps) {
 
     const clientManifestEntry = props.clientManifest[clientManifestKey]
 
-    const htmlRoute = manifest.htmlRoutes.find((route) => {
+    const findMatchingRoute = (route: RouteInfo<string>) => {
       return clientManifestKey.endsWith(route.file.slice(1))
-    })
+    }
 
-    function getAllClientManifestImports({ imports = [] }: { imports?: string[] }) {
+    const ssgRoute = manifest.ssgRoutes.find(findMatchingRoute)
+    const spaRoute = manifest.spaRoutes.find(findMatchingRoute)
+    const foundRoute = ssgRoute || spaRoute
+
+    if (!foundRoute) {
+      if (clientManifestKey.startsWith('app')) {
+        console.error(` No html route found!`, { id, clientManifestKey })
+        console.error(` In manifest`, manifest)
+        process.exit(1)
+      }
+      continue
+    }
+
+    function collectImports(
+      { imports = [], css }: ClientManifestEntry,
+      { type = 'js' }: { type?: 'js' | 'css' } = {}
+    ): string[] {
       return [
         ...new Set(
           [
-            ...imports,
-            // recurse
+            ...(type === 'js' ? imports : css || []),
             ...imports.flatMap((name) => {
               const found = props.clientManifest[name]
               if (!found) {
                 console.warn(`No found imports`, name, props.clientManifest)
               }
-              return found?.imports ?? []
+              return collectImports(found, { type })
             }),
           ]
             .flat()
-            .filter((x) => x && x.endsWith('.js'))
-            .map((x) => `assets/${x.slice(1)}`)
+            .filter((x) => x && (type === 'css' || x.endsWith('.js')))
+            .map((x) => (type === 'css' ? x : x.startsWith('assets/') ? x : `assets/${x.slice(1)}`))
         ),
       ]
     }
@@ -221,82 +214,126 @@ export async function build(props: AfterBuildProps) {
       )
     }
 
-    const allSubImports = getAllClientManifestImports(clientManifestEntry || {})
+    const entryImports = collectImports(clientManifestEntry || {})
 
-    const allLayoutSubImports =
-      htmlRoute?.layouts?.flatMap((layout) => {
+    // TODO isnt this getting all layouts not just the ones for this route?
+    const layoutEntries =
+      foundRoute.layouts?.flatMap((layout) => {
         // TODO hardcoded app/
-        const clientKey = `app${layout.slice(1)}`
-        const layoutClientEntry = props.clientManifest[clientKey]?.file
-        const subImports = getAllClientManifestImports(props.clientManifest[clientKey])
-        return [layoutClientEntry, ...subImports].filter(Boolean)
-      }) || []
+        const clientKey = `app${layout.contextKey.slice(1)}`
+        return props.clientManifest[clientKey]
+      }) ?? []
+
+    const layoutImports = layoutEntries.flatMap((entry) => {
+      return [entry.file, ...collectImports(entry)]
+    })
 
     const preloads = [
       ...new Set([
-        // add the main entry js (like ./app/index.ts)
+        // add the route entry js (like ./app/index.ts)
         clientManifestEntry.file,
-        ...allSubImports,
-        ...allLayoutSubImports,
+        // add the virtual entry
+        props.clientManifest['virtual:vxs-entry'].file,
+        ...entryImports,
+        ...layoutImports,
       ]),
     ]
+      // nested path pages need to reference root assets
+      .map((path) => `/${path}`)
+
+    const allEntries = [clientManifestEntry, ...layoutEntries]
+    const allCSS = allEntries
+      .flatMap((entry) => collectImports(entry, { type: 'css' }))
+      // nested path pages need to reference root assets
+      .map((path) => `/${path}`)
+
+    const jsPath = toAbsolute(join('dist/server', output.fileName))
+
+    let exported
+    try {
+      exported = await import(jsPath)
+    } catch (err) {
+      console.error(`Error importing page (original error)`, err)
+      // err cause not showing in vite or something
+      throw new Error(`Error importing page: ${jsPath}`, {
+        cause: err,
+      })
+    }
 
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
-    const relativeId = relative(process.cwd(), id)
-      // TODO hardcoded app
-      .replace('app/', '/')
+    console.info(`\n [build] page ${relativeId} (with ${paramsList.length} routes)\n`)
 
-    const onlyBuild = props.buildArgs?.only
-    if (onlyBuild) {
-      if (!MicroMatch.isMatch(relativeId, `**/${onlyBuild}*`)) {
-        continue
-      }
+    if (process.env.DEBUG) {
+      console.info(`paramsList`, JSON.stringify(paramsList, null, 2))
     }
 
-    console.info(`\n [build] page ${relativeId}\n`)
-
     for (const params of paramsList) {
-      const path = getPathnameFromFilePath(relativeId, params)
-      const htmlPath = `${path === '/' ? '/index' : path}.html`
-      const loaderData = (await exported.loader?.({ path, params })) ?? {}
+      const path = getPathnameFromFilePath(relativeId.replace('+spa', ''), params)
+      const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
+      const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
+
+      let loaderData: any
 
       try {
-        console.info(` [build] static ${path} params ${JSON.stringify(params)}`)
-        const loaderProps = { params }
+        console.info(`  ↦ route ${path}`)
 
+        loaderData = (await exported.loader?.({ path, params })) ?? null
+
+        const loaderProps = { path, params }
         globalThis['__vxrnLoaderProps__'] = loaderProps
-
         // importing resetState causes issues :/
         globalThis['__vxrnresetState']?.()
 
-        const { appHtml, headHtml } = await render({ path })
+        if (ssgRoute) {
+          const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
+          const loaderPartialPath = join(
+            staticDir,
+            'assets',
+            path
+              .slice(1)
+              .replaceAll('/', '_')
+              // remove trailing _
+              .replace(/_$/, '') + `_vxrn_loader.js`
+          )
 
-        // output the static html
-        const html = getHtml({
-          template,
-          appHtml,
-          headHtml,
+          const code = await readFile(clientJsPath, 'utf-8')
+
+          const withLoader = replaceLoader({
+            code,
+            loaderData,
+            loaderRegexName: '[a-z0-9_]+',
+          })
+
+          await Promise.all([
+            outputFile(htmlOutPath, html),
+            outputFile(loaderPartialPath, withLoader),
+          ])
+        } else {
+          // spa route
+          loaderData = {} // TODO not sure why i needed this
+          await outputFile(
+            htmlOutPath,
+            `<html><head>
+            <script>globalThis['global'] = globalThis</script>
+            <script>globalThis['__vxrnIsSPA'] = true</script>
+            ${preloads
+              .map((preload) => `   <script type="module" src="${preload}"></script>`)
+              .join('\n')}
+            ${allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')}
+          </head></html>`
+          )
+        }
+
+        builtRoutes.push({
+          clientJsPath,
+          htmlPath,
           loaderData,
-          loaderProps,
+          params,
+          path,
           preloads,
-          css: cssString,
         })
-
-        const filePath = join(staticDir, htmlPath)
-        const loaderPartialPath = join(
-          staticDir,
-          'assets',
-          path.slice(1).replaceAll('/', '_') + '_vxrn_loader.js'
-        )
-
-        const code = await readFile(clientJsPath, 'utf-8')
-
-        await Promise.all([
-          outputFile(toAbsolute(filePath), html),
-          outputFile(loaderPartialPath, replaceLoader(code, loaderData, '[a-z]+')),
-        ])
       } catch (err) {
         const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
 
@@ -323,16 +360,38 @@ ${JSON.stringify(params || null, null, 2)}`
   await FSExtra.rm(staticDir, { force: true, recursive: true })
 
   // write out the pathname => html map for the server
-  await FSExtra.writeJSON(
-    toAbsolute(`dist/routeMap.json`),
-    allRoutes.reduce((acc, { path, htmlPath }) => {
-      acc[path] = htmlPath
-      return acc
-    }, {}),
-    {
+  const routeMap = builtRoutes.reduce((acc, { path, htmlPath }) => {
+    acc[path === '/' ? path : removeTrailingSlash(path)] = htmlPath
+    return acc
+  }, {}) satisfies Record<string, string>
+
+  const buildInfo = {
+    ...props,
+    routeMap,
+    builtRoutes,
+  }
+
+  const buildInfoForWriting: VXS.AfterServerStartBuildInfo = {
+    routeMap,
+    builtRoutes,
+  }
+
+  await Promise.all([
+    FSExtra.writeJSON(toAbsolute(`dist/routeMap.json`), routeMap, {
       spaces: 2,
-    }
-  )
+    }),
+    FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting),
+  ])
+
+  if (userOptions?.afterBuild) {
+    await userOptions?.afterBuild?.(buildInfo)
+  }
+
+  console.info(`\n\n🩶 build complete\n\n`)
+}
+
+function removeTrailingSlash(path: string) {
+  return path.endsWith('/') ? path.slice(0, path.length - 1) : path
 }
 
 async function moveAllFiles(src: string, dest: string) {
@@ -355,6 +414,9 @@ function getPathnameFromFilePath(path: string, params = {}) {
     }
     if (name.startsWith('[...')) {
       const part = name.replace('[...', '').replace(']', '')
+      if (!params[part]) {
+        console.warn(`couldn't resolve ${name} segment in path ${path}`)
+      }
       return `/${params[part]}`
     }
     return `/${name
@@ -373,4 +435,18 @@ function getPathnameFromFilePath(path: string, params = {}) {
   })()
 
   return `${dirname}${nameWithParams}`.replace(/\/\/+/gi, '/')
+}
+
+function escapeRegex(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
+}
+
+function buildRegexExcludingDeps(deps: string[]) {
+  // Sanitize each dependency
+  const sanitizedDeps = deps.map((dep) => escapeRegex(dep))
+  // Join them with the OR operator |
+  const exclusionPattern = sanitizedDeps.join('|')
+  // Build the final regex pattern
+  const regexPattern = `node_modules/(?!(${exclusionPattern})).*`
+  return new RegExp(regexPattern)
 }

@@ -1,4 +1,4 @@
-import { type RouterFactory, useNavigationBuilder } from '@react-navigation/native';
+import { useNavigationBuilder, type RouterFactory } from '@react-navigation/native';
 import * as React from 'react';
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>;
 export declare const NavigatorContext: React.Context<{

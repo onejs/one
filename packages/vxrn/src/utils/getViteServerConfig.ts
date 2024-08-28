@@ -1,14 +1,21 @@
-import { mergeConfig, type InlineConfig, type UserConfig } from 'vite'
+import { loadConfigFromFile, mergeConfig, type InlineConfig, type UserConfig } from 'vite'
+import mkcert from 'vite-plugin-mkcert'
+import { expoManifestRequestHandlerPlugin } from '../plugins/expoManifestRequestHandlerPlugin'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
-import { coerceToArray } from './coerceToArray'
 import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
-import type { VXRNConfigFilled } from './getOptionsFilled'
-import { uniq } from './uniq'
+import type { VXRNOptionsFilled } from './getOptionsFilled'
+import { mergeUserConfig } from './mergeUserConfig'
+import { androidExtensions, iosExtensions, webExtensions } from '../constants'
 
-export async function getViteServerConfig(config: VXRNConfigFilled) {
-  const { root, host } = config
+export async function getViteServerConfig(config: VXRNOptionsFilled) {
+  const { root, host, https, port } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
+  const { config: userViteConfig } =
+    (await loadConfigFromFile({
+      mode: 'dev',
+      command: 'serve',
+    })) ?? {}
 
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
@@ -16,10 +23,40 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
     }),
     {
       root,
+      appType: 'custom',
       clearScreen: false,
+      publicDir: 'public',
       plugins: [
+        https ? mkcert() : null,
+
+        // temp fix
+        // avoid logging the optimizeDeps we add that aren't in the app:
+        // likely we need a whole better solution to optimize deps
+        {
+          name: `avoid-optimize-logs`,
+
+          configureServer() {
+            const ogWarn = console.warn
+            console.warn = (...args: any[]) => {
+              if (
+                typeof args[0] === 'string' &&
+                args[0].startsWith(`Failed to resolve dependency:`)
+              ) {
+                return
+              }
+              return ogWarn(...args)
+            }
+          },
+        },
+
         reactNativeHMRPlugin(config),
 
+        expoManifestRequestHandlerPlugin({
+          projectRoot: root,
+          port,
+        }),
+
+        // TODO very hacky/arbitrary
         {
           name: 'process-env-ssr',
           transform(code, id, options) {
@@ -33,17 +70,7 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
 
       optimizeDeps,
 
-      ssr: {
-        optimizeDeps,
-      },
-
       server: {
-        watch: {
-          ignored: (path) => {
-            // console.log('>??', path)
-            return false
-          },
-        },
         hmr: {
           path: '/__vxrnhmr',
         },
@@ -53,69 +80,21 @@ export async function getViteServerConfig(config: VXRNConfigFilled) {
     } satisfies UserConfig
   ) satisfies InlineConfig
 
-  let webConfig = config.webConfig || {}
-
-  if (webConfig) {
-    serverConfig = mergeConfig(serverConfig, webConfig) as any
+  const rerouteNoExternalConfig = userViteConfig?.ssr?.noExternal === true
+  if (rerouteNoExternalConfig) {
+    delete userViteConfig.ssr!.noExternal
   }
 
-  if (serverConfig.ssr?.noExternal && !Array.isArray(serverConfig.ssr?.noExternal)) {
-    throw new Error(`ssr.noExternal must be array`)
-  }
+  serverConfig = mergeUserConfig(optimizeDeps, serverConfig, userViteConfig)
 
-  // vite doesnt merge arrays but we want that
-
-  serverConfig.ssr ||= {}
-  serverConfig.ssr.optimizeDeps ||= {}
-
-  webConfig.ssr ||= {}
-  webConfig.ssr.optimizeDeps ||= {}
-
-  serverConfig.ssr.noExternal = uniq([
-    ...coerceToArray((serverConfig.ssr?.noExternal as string[]) || []),
-    ...(serverConfig.ssr?.optimizeDeps.include || []),
-    ...(webConfig.ssr?.optimizeDeps.include || []),
-    ...coerceToArray(webConfig.ssr?.noExternal || []),
-    ...optimizeDeps.include,
-    'react',
-    'react-dom',
-    'react-dom/server',
-    'react-dom/client',
-  ])
-
-  serverConfig.ssr.optimizeDeps.exclude = uniq([
-    ...(serverConfig.ssr?.optimizeDeps.exclude || []),
-    ...(webConfig.ssr?.optimizeDeps.exclude || []),
-    ...optimizeDeps.exclude,
-  ])
-
-  serverConfig.ssr.optimizeDeps.include = uniq([
-    ...(serverConfig.ssr?.optimizeDeps.include || []),
-    ...(webConfig.ssr?.optimizeDeps.include || []),
-    ...optimizeDeps.include,
-  ])
-
-  serverConfig.ssr.optimizeDeps.needsInterop = uniq([
-    ...(serverConfig.ssr?.optimizeDeps.needsInterop || []),
-    ...(webConfig.ssr?.optimizeDeps.needsInterop || []),
-    ...optimizeDeps.needsInterop,
-  ])
-
-  serverConfig.ssr.optimizeDeps.esbuildOptions = {
-    ...(serverConfig.ssr?.optimizeDeps.esbuildOptions || {}),
-    ...(webConfig.ssr?.optimizeDeps.esbuildOptions || {}),
-    ...optimizeDeps.esbuildOptions,
+  if (rerouteNoExternalConfig) {
+    serverConfig.ssr!.noExternal = true
   }
 
   // manually merge
   if (process.env.DEBUG) {
-    console.debug('user config is', JSON.stringify(webConfig, null, 2))
-    console.debug('server config is', JSON.stringify(serverConfig, null, 2))
-  }
-
-  serverConfig = {
-    ...serverConfig,
-    plugins: [...serverConfig.plugins!],
+    // console.debug('user config in:', JSON.stringify(userViteConfig, null, 2), `\n----\n`)
+    console.debug('merged config:', JSON.stringify(serverConfig, null, 2), `\n----\n`)
   }
 
   return serverConfig

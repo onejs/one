@@ -1,4 +1,5 @@
 /**
+ * Copyright © 2023 Tamagui LLC.
  * Copyright © 2023 650 Industries.
  * Copyright © 2023 Vercel, Inc.
  *
@@ -8,18 +9,19 @@
  * Based on https://github.com/vercel/next.js/blob/1df2686bc9964f1a86c444701fa5cbf178669833/packages/next/src/shared/lib/router/utils/route-regex.ts
  */
 import type { RouteNode } from '../Route';
-export type ExpoRouterServerManifestV1Route<TRegex = string> = {
+export type VXSRouterServerManifestV1Route<TRegex = string> = {
     file: string;
     page: string;
     routeKeys: Record<string, string>;
     namedRegex: TRegex;
     generated?: boolean;
-    layouts?: string[];
+    layouts?: RouteNode[];
 };
-export type ExpoRouterServerManifestV1<TRegex = string> = {
-    apiRoutes: ExpoRouterServerManifestV1Route<TRegex>[];
-    htmlRoutes: ExpoRouterServerManifestV1Route<TRegex>[];
-    notFoundRoutes: ExpoRouterServerManifestV1Route<TRegex>[];
+export type VXSRouterServerManifestV1<TRegex = string> = {
+    apiRoutes: VXSRouterServerManifestV1Route<TRegex>[];
+    spaRoutes: VXSRouterServerManifestV1Route<TRegex>[];
+    ssgRoutes: VXSRouterServerManifestV1Route<TRegex>[];
+    notFoundRoutes: VXSRouterServerManifestV1Route<TRegex>[];
 };
 export interface Group {
     pos: number;
@@ -30,8 +32,8 @@ export interface RouteRegex {
     groups: Record<string, Group>;
     re: RegExp;
 }
-export declare function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1;
-export declare function parseParameter(param: string): {
+export declare function getServerManifest(route: RouteNode): VXSRouterServerManifestV1;
+export declare function parseParam(param: string): {
     name: string;
     repeat: boolean;
     optional: boolean;

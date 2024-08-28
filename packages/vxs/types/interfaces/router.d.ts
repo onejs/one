@@ -1,19 +1,38 @@
+import type { NavigationContainerRefWithCurrent, NavigationState, PartialState } from '@react-navigation/core';
 import type { ReactNode } from 'react';
 import type { TextProps, GestureResponderEvent } from 'react-native';
-export declare namespace ExpoRouter {
+export declare namespace VXSRouter {
     type StaticRoutes = string;
     type DynamicRouteTemplate = never;
+    export type NavigationRef = NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>;
     export type RelativePathString = `./${string}` | `../${string}` | '..';
     export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;
     export type ExternalPathString = `${string}:${string}`;
-    export type ExpoRouterRoutes = DynamicRouteTemplate | StaticRoutes | RelativePathString;
-    export type AllRoutes = ExpoRouterRoutes | ExternalPathString;
-    /****************
-     * Route Utils  *
-     ****************/
+    export type VXSRouterRoutes = DynamicRouteTemplate | StaticRoutes | RelativePathString;
+    export type AllRoutes = VXSRouterRoutes | ExternalPathString;
+    export type LinkToOptions = {
+        scroll?: boolean;
+    };
     type SearchOrHash = `?${string}` | `#${string}`;
     export type UnknownInputParams = Record<string, string | number | undefined | null | (string | number)[]>;
     type UnknownOutputParams = Record<string, string | string[]>;
+    /**
+     * Return only the RoutePart of a string. If the string has multiple parts return never
+     *
+     * string   | type
+     * ---------|------
+     * 123      | 123
+     * /123/abc | never
+     * 123?abc  | never
+     * ./123    | never
+     * /123     | never
+     * 123/../  | never
+     */
+    export type SingleRoutePart<S extends string> = S extends `${string}/${string}` ? never : S extends `${string}${SearchOrHash}` ? never : S extends '' ? never : S extends `(${string})` ? never : S extends `[${string}]` ? never : S;
+    /**
+     * Return only the CatchAll router part. If the string has search parameters or a hash return never
+     */
+    export type CatchAllRoutePart<S extends string> = S extends `${string}${SearchOrHash}` ? never : S extends '' ? never : S extends `${string}(${string})${string}` ? never : S extends `${string}[${string}]${string}` ? never : S;
     /**
      * Return the name of a route parameter
      * '[test]'    -> 'test'
@@ -60,7 +79,7 @@ export declare namespace ExpoRouter {
      * Href  *
      *********/
     /**
-     * The main routing type for Expo Router. Includes all available routes with strongly typed parameters.
+     * The main routing type for VXS. Includes all available routes with strongly typed parameters.
      *
      * Allows for static routes, relative paths, external paths, dynamic routes, and the dynamic route provided as a static string
      */
@@ -74,8 +93,15 @@ export declare namespace ExpoRouter {
         pathname: T;
         params: InputRouteParams<T>;
     } : never;
+    export type LoadingState = 'loading' | 'loaded';
+    export type ResultState = PartialState<NavigationState> & {
+        state?: ResultState;
+        linkOptions?: VXSRouter.LinkToOptions;
+    };
+    export type RootStateListener = (state: ResultState) => void;
+    export type LoadingStateListener = (state: LoadingState) => void;
     /***********************
-     * Expo Router Exports *
+     * VXS Exports *
      ***********************/
     export type Router = {
         /** Go back in the history. */
@@ -83,11 +109,11 @@ export declare namespace ExpoRouter {
         /** If there's history that supports invoking the `back` function. */
         canGoBack: () => boolean;
         /** Navigate to the provided href using a push operation if possible. */
-        push: (href: Href) => void;
+        push: (href: Href, options?: LinkToOptions) => void;
         /** Navigate to the provided href. */
-        navigate: (href: Href) => void;
+        navigate: (href: Href, options?: LinkToOptions) => void;
         /** Navigate to route without appending to the history. */
-        replace: (href: Href) => void;
+        replace: (href: Href, options?: LinkToOptions) => void;
         /** Navigate to the provided href using a push operation if possible. */
         dismiss: (count?: number) => void;
         /** Navigate to first screen within the lowest stack. */
@@ -96,6 +122,10 @@ export declare namespace ExpoRouter {
         canDismiss: () => boolean;
         /** Update the current route query params. */
         setParams: <T = ''>(params?: T extends '' ? Record<string, string | undefined | null> : InputRouteParams<T>) => void;
+        /** Subscribe to state updates from the router */
+        subscribe: (listener: RootStateListener) => () => void;
+        /** Subscribe to loading state updates */
+        onLoadState: (listener: LoadingStateListener) => () => void;
     };
     /** The imperative router. */
     export const router: Router;
@@ -193,21 +223,21 @@ export declare namespace ExpoRouter {
      * Returns the URL search parameters for the contextually focused route. e.g. \`/acme?foo=bar\` -> \`{ foo: "bar" }\`.
      * This is useful for stacks where you may push a new screen that changes the query parameters.
      *
-     * To observe updates even when the invoking route is not focused, use \`useGlobalSearchParams()\`.
-     * @see \`useGlobalSearchParams\`
+     * To observe updates even when the invoking route is not focused, use \`useActiveParams()\`.
+     * @see \`useActiveParams\`
      */
-    export function useLocalSearchParams<TParams extends AllRoutes | UnknownOutputParams = UnknownOutputParams>(): TParams extends AllRoutes ? SearchParams<TParams> : TParams;
+    export function useParams<TParams extends AllRoutes | UnknownOutputParams = UnknownOutputParams>(): TParams extends AllRoutes ? SearchParams<TParams> : TParams;
     export function useSearchParams<TParams extends AllRoutes | UnknownOutputParams = UnknownOutputParams>(): TParams extends AllRoutes ? SearchParams<TParams> : TParams;
     /**
      * Get the globally selected query parameters, including dynamic path segments. This function will update even when the route is not focused.
      * Useful for analytics or other background operations that don't draw to the screen.
      *
-     * When querying search params in a stack, opt-towards using \`useLocalSearchParams\` as these will only
+     * When querying search params in a stack, opt-towards using \`useParams\` as these will only
      * update when the route is focused.
      *
-     * @see \`useLocalSearchParams\`
+     * @see \`useParams\`
      */
-    export function useGlobalSearchParams<T extends AllRoutes | UnknownOutputParams = UnknownOutputParams>(): T extends AllRoutes ? SearchParams<T> : T;
+    export function useActiveParams<T extends AllRoutes | UnknownOutputParams = UnknownOutputParams>(): T extends AllRoutes ? SearchParams<T> : T;
     /**
      * Get a list of selected file segments for the currently selected route. Segments are not normalized, so they will be the same as the file path. e.g. /[id]?id=normal -> ["[id]"]
      *

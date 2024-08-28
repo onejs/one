@@ -1,67 +1,24 @@
-import stream from 'node:stream'
-import { renderToPipeableStream } from 'react-dom/server'
+// @ts-ignore
+import ReactDOMServer from 'react-dom/server.browser'
 
-export const renderToString = async (app: React.ReactElement) => {
-  const collectedHead: { helmet?: Record<string, any> } = {}
-  globalThis['vxrn__headContext__'] = collectedHead
-
-  const appHtml = await renderToStringWithSuspense(app)
-  const headHtml = `${Object.values(collectedHead?.helmet ?? {})
-    .map((v: any) => v.toString())
-    .join('\n')}`
-
-  return { appHtml, headHtml }
+export const renderToString = async (app: React.ReactElement, options: { preloads?: string[] }) => {
+  const readableStream = await ReactDOMServer.renderToReadableStream(app, {
+    bootstrapModules: options.preloads,
+  })
+  await readableStream.allReady
+  const out = await streamToString(readableStream)
+  return out
 }
 
-function renderToStringWithSuspense(element): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const writable = new stream.Writable({
-      write(chunk, encoding, callback) {
-        if (this.writableEnded) {
-          console.info('[renderToStringWithSuspense] Attempt to write after end:', chunk.toString())
-          callback()
-          return
-        }
+async function streamToString(stream: ReadableStream<Uint8Array>): Promise<string> {
+  const decoder = new TextDecoder('utf-8', { fatal: true })
+  let result = ''
 
-        result += chunk.toString()
-        callback()
-      },
-      final(callback) {
-        callback()
-      },
-    })
+  // @ts-expect-error TS is wrong, see https://nodejs.org/api/webstreams.html#async-iteration
+  for await (const chunk of stream) {
+    result += decoder.decode(chunk, { stream: true })
+  }
 
-    writable.on('finish', () => {
-      resolve(result)
-    })
-
-    writable.on('error', (error) => {
-      console.error('[renderToStringWithSuspense] Stream error:', error)
-      reject(error)
-    })
-
-    let result = ''
-
-    const { pipe, abort } = renderToPipeableStream(element, {
-      onShellReady() {
-        pipe(writable)
-      },
-      onAllReady() {
-        setImmediate(() => {
-          writable.end()
-        })
-      },
-      onShellError(err) {
-        console.error('[renderToStringWithSuspense] Shell error:', err)
-        abort()
-        writable.destroy()
-        reject(err)
-      },
-      onError(err) {
-        console.error('[renderToStringWithSuspense] Error during rendering:', err)
-        writable.destroy()
-        reject(err)
-      },
-    })
-  })
+  result += decoder.decode()
+  return result
 }

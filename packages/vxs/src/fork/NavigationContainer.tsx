@@ -18,9 +18,9 @@ import {
   LinkingContext,
   type Theme,
 } from '@react-navigation/native'
-import useBackButton from '@react-navigation/native/src/useBackButton'
-import useDocumentTitle from '@react-navigation/native/src/useDocumentTitle'
-import useThenable from '@react-navigation/native/src/useThenable'
+// import useBackButton from '@react-navigation/native/src/useBackButton'
+// import useDocumentTitle from '@react-navigation/native/src/useDocumentTitle'
+// import useThenable from '@react-navigation/native/src/useThenable'
 import * as React from 'react'
 
 import useLinking from './useLinking'
@@ -76,8 +76,8 @@ function NavigationContainerInner(
 
   const refContainer = React.useRef<NavigationContainerRef<ParamListBase>>(null)
 
-  useBackButton(refContainer)
-  useDocumentTitle(refContainer, documentTitle)
+  // useBackButton(refContainer)
+  // useDocumentTitle(refContainer, documentTitle)
 
   const { getInitialState } = useLinking(refContainer, {
     independent: rest.independent,

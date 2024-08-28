@@ -1,46 +1,60 @@
 import './polyfills'
-import type { ExpoRouter } from './interfaces/router'
+import type { VXSRouter } from './interfaces/router'
 
 export type { Endpoint } from './types'
 
-export type Href = ExpoRouter.Href
-export type LinkProps = ExpoRouter.LinkProps
+export type Href = VXSRouter.Href
+export type LinkProps = VXSRouter.LinkProps
 
 export { Root } from './Root'
 export { render } from './render'
 
 export { Stack } from './layouts/Stack'
 export { Tabs } from './layouts/Tabs'
+
+// TODO breaking due to react-native-gesture-handler
+// export { Drawer } from './layouts/Drawer'
+
+export { SafeAreaView } from 'react-native-safe-area-context'
 export { Navigator, Slot } from './views/Navigator'
+export { ErrorBoundary } from './views/ErrorBoundary'
+export { Unmatched } from './views/Unmatched'
+export { ScrollRestoration } from './views/ScrollRestoration'
+export { PageLoadProgressBar } from './views/PageLoadProgressBar'
+
+export { createApp } from './createApp'
+
+export { isResponse } from './utils/isResponse'
+
+export { useLinkTo } from './link/useLinkTo'
 
 export {
   useRouter,
   useUnstableGlobalHref,
   usePathname,
   useNavigationContainerRef,
-  useGlobalSearchParams,
-  useLocalSearchParams,
+  useParams,
+  useActiveParams,
   useSegments,
-  useRootNavigation,
   useRootNavigationState,
 } from './hooks'
 
-export { store as routerStore } from './global-state/router-store'
+// for easier expo-router migration
+export {
+  useLocalSearchParams,
+  useGlobalSearchParams,
+} from './hooks'
+
+export * as routerStore from './router/router'
 
 export { router } from './imperative-api'
 
-export { Link, Redirect } from './link/Link'
+export { Link } from './link/Link'
+export { Redirect } from './link/Redirect'
 
 export { Head } from './head'
 
 export { withLayoutContext } from './layouts/withLayoutContext'
-
-// Expo Router Views
-export { ErrorBoundary } from './views/ErrorBoundary'
-export { Unmatched } from './views/Unmatched'
-
-// Platform
-export { SplashScreen } from './views/Splash'
 
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'

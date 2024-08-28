@@ -10,7 +10,6 @@
         "packages/*"
       ]
     },
-    "outDir": "dist",
     "importHelpers": true,
     "allowJs": false,
     "resolveJsonModule": true,

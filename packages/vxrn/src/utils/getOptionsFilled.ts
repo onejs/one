@@ -2,26 +2,28 @@ import { join } from 'node:path'
 import { readPackageJSON } from 'pkg-types'
 import { createRequire } from 'node:module'
 import FSExtra from 'fs-extra'
-import type { VXRNConfig } from '../types'
+import type { VXRNOptions } from '../types'
 import { getPort } from 'get-port-please'
 
 const require = createRequire(import.meta.url)
 
-export type VXRNConfigFilled = Awaited<ReturnType<typeof getOptionsFilled>>
+export type VXRNOptionsFilled = Awaited<ReturnType<typeof getOptionsFilled>>
 
 export async function getOptionsFilled(
-  options: VXRNConfig,
+  options: VXRNOptions,
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ) {
-  const { host = '127.0.0.1', root = process.cwd(), entries } = options
+  const { host = '127.0.0.1', root = process.cwd(), entries, https } = options
 
   const defaultPort = options.port || (internal.mode === 'dev' ? 8081 : 3000)
+
   const port = await getPort({
     port: defaultPort,
     portRange: [defaultPort, defaultPort + 100],
+    host: '127.0.0.1',
   })
 
-  const packageRootDir = join(require.resolve('vxrn'), '../../..')
+  const packageRootDir = join(require.resolve('vxrn'), '../..')
   const cacheDir = join(root, 'node_modules', '.vxrn')
   const internalPatchesDir = join(packageRootDir, 'patches')
   const userPatchesDir = join(root, 'patches')
@@ -32,6 +34,7 @@ export async function getOptionsFilled(
   ])
   return {
     ...options,
+    protocol: https ? ('https:' as const) : ('http:' as const),
     entries: {
       native: './src/entry-native.tsx',
       server: './src/entry-server.tsx',

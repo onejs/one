@@ -6,7 +6,7 @@ import {
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native'
 import { Platform, Pressable } from 'react-native'
 
-import type { ExpoRouter } from '../interfaces/router'
+import type { VXSRouter } from '../interfaces/router'
 import { Link } from '../link/Link'
 import { withLayoutContext } from './withLayoutContext'
 
@@ -14,7 +14,7 @@ import { withLayoutContext } from './withLayoutContext'
 const BottomTabNavigator = createBottomTabNavigator().Navigator
 
 export const Tabs = withLayoutContext<
-  BottomTabNavigationOptions & { href?: ExpoRouter.Href | null },
+  BottomTabNavigationOptions & { href?: VXSRouter.Href | null },
   typeof BottomTabNavigator,
   TabNavigationState<ParamListBase>,
   BottomTabNavigationEventMap

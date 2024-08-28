@@ -1,61 +1,80 @@
 /* eslint-disable no-console */
+import * as proc from 'node:child_process'
 import { join } from 'node:path'
+import { promisify } from 'node:util'
 import path from 'path'
 
-import FSExtra from 'fs-extra'
+import fs, { writeJSON } from 'fs-extra'
 import pMap from 'p-map'
 import prompts from 'prompts'
-import { exec } from './exec'
+
+import { spawnify } from './spawnify'
 
 // avoid emitter error
 process.setMaxListeners(0)
 
 // --resume would be cool here where it stores the last failed step somewhere and tries resuming
 
+const exec = promisify(proc.exec)
+export const spawn = proc.spawn
+
 // for failed publishes that need to re-run
 const confirmFinalPublish = process.argv.includes('--confirm-final-publish')
 const reRun = process.argv.includes('--rerun')
 const rePublish = reRun || process.argv.includes('--republish')
 const finish = process.argv.includes('--finish')
+const skipFinish = process.argv.includes('--skip-finish')
 
 const canary = process.argv.includes('--canary')
 const skipVersion = finish || rePublish || process.argv.includes('--skip-version')
-const patch = process.argv.includes('--patch')
-const dirty = process.argv.includes('--dirty')
+const shouldPatch = process.argv.includes('--patch')
+const dirty = finish || process.argv.includes('--dirty')
 const skipPublish = process.argv.includes('--skip-publish')
 const skipTest =
-  rePublish || process.argv.includes('--skip-test') || process.argv.includes('--skip-tests')
-const skipBuild = rePublish || process.argv.includes('--skip-build')
+  finish ||
+  rePublish ||
+  process.argv.includes('--skip-test') ||
+  process.argv.includes('--skip-tests')
+const skipBuild = finish || rePublish || process.argv.includes('--skip-build')
 const dryRun = process.argv.includes('--dry-run')
-const isCI = process.argv.includes('--ci')
+const tamaguiGitUser = process.argv.includes('--tamagui-git-user')
+const isCI = finish || process.argv.includes('--ci')
 
-const curVersion = FSExtra.readJSONSync('./packages/vxrn/package.json').version
+const curVersion = fs.readJSONSync('./packages/vxs/package.json').version
 
 const nextVersion = (() => {
+  if (canary) {
+    return `${curVersion}-${Date.now()}`
+  }
+
   if (rePublish) {
     return curVersion
   }
 
-  const plusVersion = skipVersion ? 0 : 1
-  const curPatch = +curVersion.split('.')[2] || 0
-  const patchVersion = patch ? curPatch + plusVersion : 0
-  const curMinor = +curVersion.split('.')[1] || 0
-  const minorVersion = curMinor + (patch || canary ? 0 : plusVersion)
-  const next = `0.${minorVersion}.${patchVersion}`
-
-  if (canary) {
-    return `${next}-${Date.now()}`
+  let plusVersion = skipVersion ? 0 : 1
+  const patchAndCanary = curVersion.split('.')[2]
+  const [patch, lastCanary] = patchAndCanary.split('-')
+  // if were publishing another canary no bump version
+  if (lastCanary && canary) {
+    plusVersion = 0
   }
+  const patchVersion = shouldPatch ? +patch + plusVersion : 0
+  const curMinor = +curVersion.split('.')[1] || 0
+  const minorVersion = curMinor + (shouldPatch ? 0 : plusVersion)
+  const next = `1.${minorVersion}.${patchVersion}`
 
   return next
 })()
 
-if (!finish) {
-  if (!skipVersion) {
-    console.info('Publishing version:', nextVersion, '\n')
-  } else {
-    console.info(`Re-publishing ${curVersion}`)
-  }
+const sleep = (ms) => {
+  console.info(`Sleeping ${ms}ms`)
+  return new Promise((res) => setTimeout(res, ms))
+}
+
+if (!skipVersion) {
+  console.info('Current:', curVersion, '\n')
+} else {
+  console.info(`Re-publishing ${curVersion}`)
 }
 
 async function run() {
@@ -65,39 +84,69 @@ async function run() {
     // ensure we are up to date
     // ensure we are on main
     if (!canary) {
-      if ((await exec(`git rev-parse --abbrev-ref HEAD`)).trim() !== 'main') {
+      if ((await exec(`git rev-parse --abbrev-ref HEAD`)).stdout.trim() !== 'main') {
         throw new Error(`Not on main`)
       }
-      if (!dirty && !rePublish) {
-        await exec(`git pull --rebase origin main`)
+      if (!dirty && !rePublish && !finish) {
+        await spawnify(`git pull --rebase origin main`)
       }
     }
 
-    const workspaces = (await exec(`yarn workspaces list --json`)).trim().split('\n')
+    const workspaces = (await exec(`yarn workspaces list --json`)).stdout.trim().split('\n')
     const packagePaths = workspaces.map((p) => JSON.parse(p)) as {
       name: string
       location: string
     }[]
 
-    const packageJsons = (
+    const allPackageJsons = (
       await Promise.all(
         packagePaths
-          .filter((i) => i.location !== '.')
-          .map(async ({ name, location }) => {
+          .filter((i) => i.location !== '.' && !i.name.startsWith('@takeout'))
+          .flatMap(async ({ name, location }) => {
             const cwd = path.join(process.cwd(), location)
-            const json = await FSExtra.readJSON(path.join(cwd, 'package.json'))
-            return {
+            const json = await fs.readJSON(path.join(cwd, 'package.json'))
+            const item = {
               name,
               cwd,
               json,
               path: path.join(cwd, 'package.json'),
               directory: location,
             }
+
+            if (json.alsoPublishAs) {
+              console.info(` ${name}: Also publishing as ${json.alsoPublishAs.join(', ')}`)
+              return [
+                item,
+                ...json.alsoPublishAs.map((name) => ({
+                  ...item,
+                  json: { ...json, name },
+                  name,
+                })),
+              ]
+            }
+
+            return [item]
           })
       )
-    ).filter((pkg) => !pkg.json.private && !pkg.json.skipRelease)
+    )
+      .flat()
+      .filter((x) => !x.json['skipPublish'])
 
-    console.info(`Publishing in order:\n\n${packageJsons.map((x) => x.name).join('\n')}`)
+    const packageJsons = allPackageJsons
+      .filter((x) => {
+        return !x.json.private
+      })
+      // slow things last
+      .sort((a, b) => {
+        if (a.name.includes('font-') || a.name.includes('-icons')) {
+          return 1
+        }
+        return -1
+      })
+
+    if (!finish) {
+      console.info(`Publishing in order:\n\n${packageJsons.map((x) => x.name).join('\n')}`)
+    }
 
     async function checkDistDirs() {
       await Promise.all(
@@ -106,58 +155,64 @@ async function run() {
           if (!json.scripts || json.scripts.build === 'true') {
             return
           }
-          if (!(await FSExtra.pathExists(distDir))) {
+          if (!(await fs.pathExists(distDir))) {
             console.warn('no dist dir!', distDir)
             process.exit(1)
           }
         })
       )
     }
+    if (tamaguiGitUser) {
+      await spawnify(`git config --global user.name 'Tamagui'`)
+      await spawnify(`git config --global user.email 'tamagui@users.noreply.github.com`)
+    }
 
-    const answer =
-      isCI || skipVersion
-        ? { version: nextVersion }
-        : await prompts({
-            type: 'text',
-            name: 'version',
-            message: 'Version?',
-            initial: nextVersion,
-          })
+    if (!finish) {
+      const answer =
+        isCI || skipVersion
+          ? { version: nextVersion }
+          : await prompts({
+              type: 'text',
+              name: 'version',
+              message: 'Version?',
+              initial: nextVersion,
+            })
 
-    version = answer.version
+      version = answer.version
+      console.info('Next:', version, '\n')
+    }
 
     console.info('install and build')
 
-    if (!rePublish) {
-      await exec(`yarn install`)
+    if (!rePublish && !finish) {
+      await spawnify(`yarn install`)
     }
 
-    if (!skipBuild) {
-      await exec(`yarn build`)
+    if (!skipBuild && !finish) {
+      // lets do a full clean and build:force, to ensure we dont have weird cached or leftover files
+      await spawnify(`yarn build`)
       await checkDistDirs()
     }
 
-    console.info('run checks')
-
     if (!finish) {
+      console.info('run checks')
       if (!skipTest) {
-        await exec(`yarn fix`)
-        await exec(`yarn lint`)
-        await exec(`yarn check`)
-        await exec(`yarn test`)
+        await spawnify(`yarn lint`)
+        await spawnify(`yarn check`)
+        await spawnify(`yarn test`)
       }
     }
 
     if (!dirty && !dryRun && !rePublish) {
       const out = await exec(`git status --porcelain`)
-      if (out) {
-        throw new Error(`Has unsaved git changes: ${out}`)
+      if (out.stdout) {
+        throw new Error(`Has unsaved git changes: ${out.stdout}`)
       }
     }
 
     if (!skipVersion && !finish) {
       await Promise.all(
-        packageJsons.map(async ({ json, path }) => {
+        allPackageJsons.map(async ({ json, path }) => {
           const next = { ...json }
 
           next.version = version
@@ -171,13 +226,13 @@ async function run() {
             const nextDeps = next[field]
             if (!nextDeps) continue
             for (const depName in nextDeps) {
-              if (packageJsons.some((p) => p.name === depName)) {
+              if (allPackageJsons.some((p) => p.name === depName)) {
                 nextDeps[depName] = version
               }
             }
           }
 
-          await FSExtra.writeJSON(path, next, { spaces: 2 })
+          await writeJSON(path, next, { spaces: 2 })
         })
       )
     }
@@ -188,7 +243,7 @@ async function run() {
     }
 
     if (!finish && !rePublish) {
-      await exec(`git diff`)
+      await spawnify(`git diff`)
     }
 
     if (!isCI) {
@@ -212,35 +267,37 @@ async function run() {
         packageJsons,
         async (pkg) => {
           const { cwd, name } = pkg
+
           console.info(`Publish ${name}`)
 
           // check if already published first as its way faster for re-runs
           let versionsOut = ''
           try {
-            versionsOut = await exec(`npm view ${name} versions --json`, {})
-            if (versionsOut) {
-              const allVersions = JSON.parse(versionsOut.trim().replaceAll(`\n`, ''))
-              const latest = allVersions[allVersions.length - 1]
+            versionsOut = await spawnify(`npm view ${name} versions --json`, {
+              avoidLog: true,
+            })
+            const allVersions = JSON.parse(versionsOut.trim().replaceAll(`\n`, ''))
+            const latest = allVersions[allVersions.length - 1]
 
-              if (latest === nextVersion) {
-                console.info(`Already published, skipping`)
-                return
-              }
+            if (latest === nextVersion) {
+              console.info(`Already published, skipping`)
+              return
             }
           } catch (err) {
             if (`${err}`.includes(`404`)) {
               // fails if never published before, ok
             } else {
               if (`${err}`.includes(`Unexpected token`)) {
-                console.error(`Bad JSON? ${versionsOut}`)
+                console.info(`Bad JSON? ${versionsOut}`)
               }
               throw err
             }
           }
 
           try {
-            await exec(`npm publish --tag prepub --access public`, {
+            await spawnify(`npm publish --tag prepub --access public`, {
               cwd,
+              avoidLog: true,
             })
             console.info(` 📢 pre-published ${name}`)
           } catch (err: any) {
@@ -249,7 +306,7 @@ async function run() {
               console.info('Already published, skipping')
               return
             }
-            console.error(`Error publishing!`, `${err}`)
+            console.info(`Error publishing!`, `${err}`)
           }
         },
         {
@@ -260,7 +317,7 @@ async function run() {
       console.info(`✅ Published under dist-tag "prepub" (${erroredPackages.length} errors)\n`)
     }
 
-    if (!finish) {
+    if (!finish && !skipPublish) {
       if (confirmFinalPublish) {
         const { confirmed } = await prompts({
           type: 'confirm',
@@ -274,69 +331,96 @@ async function run() {
       }
     }
 
-    if (rePublish) {
-      // if all successful, re-tag as latest
-      await pMap(
-        packageJsons,
-        async ({ name, cwd }) => {
-          const tag = canary ? ` --tag canary` : ''
-
-          console.info(`Publishing ${name}${tag}`)
-
-          await exec(`npm publish${tag}`, {
-            cwd,
-          }).catch((err) => console.error(err))
-        },
-        {
-          concurrency: 15,
-        }
-      )
-    } else {
-      const distTag = canary ? 'canary' : 'latest'
-
-      // if all successful, re-tag as latest (try and be fast)
-      await pMap(
-        packageJsons,
-        async ({ name, cwd }) => {
-          await exec(`npm dist-tag add ${name}@${version} ${distTag}`, {
-            cwd,
-          }).catch((err) => console.error(err))
-        },
-        {
-          concurrency: 20,
-        }
-      )
-    }
-
-    console.info(`✅ Published\n`)
-
-    // then git tag, commit, push
     if (!finish) {
-      await exec(`yarn fix`)
-      await exec(`yarn install`)
-    }
+      if (rePublish) {
+        // if all successful, re-tag as latest
+        await pMap(
+          packageJsons,
+          async ({ name, cwd }) => {
+            const tag = canary ? ` --tag canary` : ''
 
-    const tagPrefix = canary ? 'canary' : 'v'
-    const gitTag = `${tagPrefix}${version}`
+            console.info(`Publishing ${name}${tag}`)
 
-    if (!rePublish || reRun || finish) {
-      await exec(`git add -A`)
-      await exec(`git commit -m ${gitTag}`)
-      await exec(`git tag ${gitTag}`)
+            await spawnify(`npm publish${tag}`, {
+              cwd,
+            }).catch((err) => console.error(err))
+          },
+          {
+            concurrency: 15,
+          }
+        )
+      } else {
+        const distTag = canary ? 'canary' : 'latest'
 
-      if (!dirty) {
-        // pull once more before pushing so if there was a push in interim we get it
-        await exec(`git pull --rebase origin main`)
+        // if all successful, re-tag as latest (try and be fast)
+        await pMap(
+          packageJsons,
+          async ({ name, cwd }) => {
+            await spawnify(`npm dist-tag add ${name}@${version} ${distTag}`, {
+              cwd,
+            }).catch((err) => console.error(err))
+          },
+          {
+            concurrency: 20,
+          }
+        )
       }
 
-      await exec(`git push origin head`)
-      await exec(`git push origin ${gitTag}`)
-      console.info(`✅ Pushed and versioned\n`)
+      console.info(`✅ Published\n`)
+    }
+
+    if (!skipFinish) {
+      // then git tag, commit, push
+      if (!finish) {
+        await spawnify(`yarn install`)
+      }
+
+      const tagPrefix = canary ? 'canary' : 'v'
+      const gitTag = `${tagPrefix}${version}`
+
+      await finishAndCommit()
+
+      async function finishAndCommit(cwd = process.cwd()) {
+        if (!rePublish || reRun || finish) {
+          await spawnify(`git add -A`, { cwd })
+          await spawnify(`git commit -m ${gitTag}`, { cwd })
+          if (!canary) {
+            await spawnify(`git tag ${gitTag}`, { cwd })
+          }
+
+          if (!dirty) {
+            // pull once more before pushing so if there was a push in interim we get it
+            await spawnify(`git pull --rebase origin HEAD`, { cwd })
+          }
+
+          await spawnify(`git push origin head`, { cwd })
+          if (!canary) {
+            await spawnify(`git push origin ${gitTag}`, { cwd })
+          }
+
+          console.info(`✅ Pushed and versioned\n`)
+        }
+      }
+
+      // console.info(`All done, cleanup up in...`)
+      // await sleep(2 * 1000)
+      // // then remove old prepub tag
+      // await pMap(
+      //   packageJsons,
+      //   async ({ name, cwd }) => {
+      //     await spawnify(`npm dist-tag remove ${name}@${version} prepub`, {
+      //       cwd,
+      //     }).catch((err) => console.error(err))
+      //   },
+      //   {
+      //     concurrency: 20,
+      //   }
+      // )
     }
 
     console.info(`✅ Done\n`)
   } catch (err) {
-    console.error('\nError:\n', err)
+    console.info('\nError:\n', err)
     process.exit(1)
   }
 }

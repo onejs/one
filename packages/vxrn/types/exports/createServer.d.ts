@@ -1,4 +1,4 @@
 import { Hono } from 'hono';
-import type { VXRNConfig } from '../types';
-export declare const createProdServer: (options: VXRNConfig) => Promise<Hono<import("hono").Env, import("hono/types").BlankSchema, "/">>;
+import type { VXRNOptions } from '../types';
+export declare const createProdServer: (options: VXRNOptions) => Promise<Hono<import("hono/types").BlankEnv, import("hono/types").BlankSchema, "/">>;
 //# sourceMappingURL=createServer.d.ts.map

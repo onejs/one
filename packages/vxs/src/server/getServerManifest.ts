@@ -1,4 +1,5 @@
 /**
+ * Copyright © 2023 Tamagui LLC.
  * Copyright © 2023 650 Industries.
  * Copyright © 2023 Vercel, Inc.
  *
@@ -12,19 +13,20 @@ import { getContextKey, matchGroupName } from '../matchers'
 import { sortRoutes } from '../sortRoutes'
 
 // TODO: Share these types across cli, server, router, etc.
-export type ExpoRouterServerManifestV1Route<TRegex = string> = {
+export type VXSRouterServerManifestV1Route<TRegex = string> = {
   file: string
   page: string
   routeKeys: Record<string, string>
   namedRegex: TRegex
   generated?: boolean
-  layouts?: string[]
+  layouts?: RouteNode[]
 }
 
-export type ExpoRouterServerManifestV1<TRegex = string> = {
-  apiRoutes: ExpoRouterServerManifestV1Route<TRegex>[]
-  htmlRoutes: ExpoRouterServerManifestV1Route<TRegex>[]
-  notFoundRoutes: ExpoRouterServerManifestV1Route<TRegex>[]
+export type VXSRouterServerManifestV1<TRegex = string> = {
+  apiRoutes: VXSRouterServerManifestV1Route<TRegex>[]
+  spaRoutes: VXSRouterServerManifestV1Route<TRegex>[]
+  ssgRoutes: VXSRouterServerManifestV1Route<TRegex>[]
+  notFoundRoutes: VXSRouterServerManifestV1Route<TRegex>[]
 }
 
 export interface Group {
@@ -55,12 +57,12 @@ function uniqueBy<T>(arr: T[], key: (item: T) => string): T[] {
 }
 
 // Given a nested route tree, return a flattened array of all routes that can be matched.
-export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 {
-  function getFlatNodes(route: RouteNode, layouts?: string[]): [string, RouteNode][] {
+export function getServerManifest(route: RouteNode): VXSRouterServerManifestV1 {
+  function getFlatNodes(route: RouteNode, layouts?: RouteNode[]): [string, RouteNode][] {
     if (route.children.length) {
-      return route.children.flatMap((child) =>
-        getFlatNodes(child, [...(layouts || []), route.contextKey])
-      )
+      return route.children.flatMap((child) => {
+        return getFlatNodes(child, [...(layouts || []), route])
+      })
     }
 
     // API Routes are handled differently to HTML routes because they have no nested behavior.
@@ -68,10 +70,19 @@ export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 
     // copies should be rendered. However, an API route is always the same regardless of parent segments.
     let key: string
     if (route.type === 'api') {
-      key = getContextKey(route.contextKey).replace(/\/index$/, '') ?? '/'
+      key = getContextKey(route.contextKey).replace(/\/index$/, '') || '/'
     } else {
-      key = getContextKey(route.route).replace(/\/index$/, '') ?? '/'
+      const parentSegments = layouts?.flatMap((route) => {
+        const key = getContextKey(route.route).replace(/\/index$/, '') || '/'
+        if (key === '/' || key.startsWith('/(')) {
+          return []
+        }
+        return [key]
+      })
+
+      key = parentSegments + getContextKey(route.route).replace(/\/index$/, '') || '/'
     }
+
     return [[key, { ...route, layouts }]]
   }
 
@@ -84,19 +95,26 @@ export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 
     flat.filter(([, route]) => route.type === 'api'),
     ([path]) => path
   )
+
   const otherRoutes = uniqueBy(
     flat.filter(([, route]) => route.type === 'route'),
     ([path]) => path
   )
+
   const standardRoutes = otherRoutes.filter(([, route]) => !isNotFoundRoute(route))
+  const ssgRoutes = standardRoutes.filter(([, route]) => route.routeType === 'ssg')
+  const spaRoutes = standardRoutes.filter(([, route]) => route.routeType === 'spa')
   const notFoundRoutes = otherRoutes.filter(([, route]) => isNotFoundRoute(route))
 
   return {
     apiRoutes: getMatchableManifestForPaths(
       apiRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
     ),
-    htmlRoutes: getMatchableManifestForPaths(
-      standardRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
+    spaRoutes: getMatchableManifestForPaths(
+      spaRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
+    ),
+    ssgRoutes: getMatchableManifestForPaths(
+      ssgRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
     ),
     notFoundRoutes: getMatchableManifestForPaths(
       notFoundRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
@@ -106,9 +124,9 @@ export function getServerManifest(route: RouteNode): ExpoRouterServerManifestV1 
 
 function getMatchableManifestForPaths(
   paths: [string, RouteNode][]
-): ExpoRouterServerManifestV1Route[] {
+): VXSRouterServerManifestV1Route[] {
   return paths.map((normalizedRoutePath) => {
-    const matcher: ExpoRouterServerManifestV1Route = getNamedRouteRegex(
+    const matcher: VXSRouterServerManifestV1Route = getNamedRouteRegex(
       normalizedRoutePath[0],
       getContextKey(normalizedRoutePath[1].route),
       normalizedRoutePath[1].contextKey,
@@ -125,13 +143,13 @@ function getNamedRouteRegex(
   normalizedRoute: string,
   page: string,
   file: string,
-  layouts?: string[]
-): ExpoRouterServerManifestV1Route {
-  const result = getNamedParametrizedRoute(normalizedRoute)
+  layouts?: RouteNode[]
+): VXSRouterServerManifestV1Route {
+  const result = getNamedRegex(normalizedRoute)
   return {
     file,
     page,
-    namedRegex: `^${result.namedParameterizedRoute}(?:/)?$`,
+    namedRegex: result.namedRegex,
     routeKeys: result.routeKeys,
     layouts,
   }
@@ -177,91 +195,96 @@ function removeTrailingSlash(route: string): string {
   return route.replace(/\/$/, '') || '/'
 }
 
-function getNamedParametrizedRoute(route: string) {
+function getNamedRegex(route: string) {
   const segments = removeTrailingSlash(route).slice(1).split('/')
   const getSafeRouteKey = buildGetSafeRouteKey()
   const routeKeys: Record<string, string> = {}
+  const routeSegments = segments
+    .map((segment, index) => {
+      if (segment === '+not-found' && index === segments.length - 1) {
+        segment = '[...not-found]'
+      }
+      if (/^\[.*\]$/.test(segment)) {
+        const { name, optional, repeat } = parseParam(segment)
+        // replace non-word characters since they can break the named regex
+        let cleanedKey = name.replace(/\W/g, '')
+        let invalidKey = false
+
+        // check if the key is still invalid and fallback to using a known safe key
+        if (cleanedKey.length === 0 || cleanedKey.length > 30) {
+          invalidKey = true
+        }
+        if (!Number.isNaN(Number.parseInt(cleanedKey.slice(0, 1), 10))) {
+          invalidKey = true
+        }
+
+        // Prevent duplicates after sanitizing the key
+        if (cleanedKey in routeKeys) {
+          invalidKey = true
+        }
+
+        if (invalidKey) {
+          cleanedKey = getSafeRouteKey()
+        }
+
+        routeKeys[cleanedKey] = name
+        return repeat
+          ? optional
+            ? `(?:/(?<${cleanedKey}>.+?))?`
+            : `/(?<${cleanedKey}>.+?)`
+          : `/(?<${cleanedKey}>[^/]+?)`
+      }
+
+      if (insideParensRegex.test(segment)) {
+        const groupName = matchGroupName(segment)!
+          .split(',')
+          .map((group) => group.trim())
+          .filter(Boolean)
+        if (groupName.length > 1) {
+          const optionalSegment = `\\((?:${groupName.map(escapeStringRegexp).join('|')})\\)`
+          // Make section optional
+          return `(?:/${optionalSegment})?`
+        }
+        // Use simpler regex for single groups
+        return `(?:/${escapeStringRegexp(segment)})?`
+      }
+
+      return `/${escapeStringRegexp(segment)}`
+    })
+    .join('')
+
   return {
-    namedParameterizedRoute: segments
-      .map((segment, index) => {
-        if (segment === '+not-found' && index === segments.length - 1) {
-          segment = '[...not-found]'
-        }
-        if (/^\[.*\]$/.test(segment)) {
-          const { name, optional, repeat } = parseParameter(segment)
-          // replace any non-word characters since they can break
-          // the named regex
-          let cleanedKey = name.replace(/\W/g, '')
-          let invalidKey = false
-
-          // check if the key is still invalid and fallback to using a known
-          // safe key
-          if (cleanedKey.length === 0 || cleanedKey.length > 30) {
-            invalidKey = true
-          }
-          if (!Number.isNaN(Number.parseInt(cleanedKey.slice(0, 1), 10))) {
-            invalidKey = true
-          }
-
-          // Prevent duplicates after sanitizing the key
-          if (cleanedKey in routeKeys) {
-            invalidKey = true
-          }
-
-          if (invalidKey) {
-            cleanedKey = getSafeRouteKey()
-          }
-
-          routeKeys[cleanedKey] = name
-          return repeat
-            ? optional
-              ? `(?:/(?<${cleanedKey}>.+?))?`
-              : `/(?<${cleanedKey}>.+?)`
-            : `/(?<${cleanedKey}>[^/]+?)`
-        }
-        if (/^\(.*\)$/.test(segment)) {
-          const groupName = matchGroupName(segment)!
-            .split(',')
-            .map((group) => group.trim())
-            .filter(Boolean)
-          if (groupName.length > 1) {
-            const optionalSegment = `\\((?:${groupName.map(escapeStringRegexp).join('|')})\\)`
-            // Make section optional
-            return `(?:/${optionalSegment})?`
-          }
-          // Use simpler regex for single groups
-          return `(?:/${escapeStringRegexp(segment)})?`
-        }
-        return `/${escapeStringRegexp(segment)}`
-      })
-      .join(''),
+    namedRegex: `^${routeSegments}(?:/)?$`,
     routeKeys,
   }
 }
 
-// regexp is based on https://github.com/sindresorhus/escape-string-regexp
-const reHasRegExp = /[|\\{}()[\]^$+*?.-]/
-const reReplaceRegExp = /[|\\{}()[\]^$+*?.-]/g
+const insideBracketsRegex = /^\[.*\]$/
+const insideParensRegex = /^\(.*\)$/
+const tripleDotRegex = /^\.\.\./
+const replaceRegex = /[|\\{}()[\]^$+*?.-]/g
+// based on https://github.com/sindresorhus/escape-string-regexp
+const hasRegExpRegex = /[|\\{}()[\]^$+*?.-]/
 
 function escapeStringRegexp(str: string) {
   // see also: https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/escapeRegExp.js#L23
-  if (reHasRegExp.test(str)) {
-    return str.replace(reReplaceRegExp, '\\$&')
+  if (hasRegExpRegex.test(str)) {
+    return str.replace(replaceRegex, '\\$&')
   }
   return str
 }
 
-export function parseParameter(param: string) {
+export function parseParam(param: string) {
   let repeat = false
   let optional = false
   let name = param
 
-  if (/^\[.*\]$/.test(name)) {
+  if (insideBracketsRegex.test(name)) {
     optional = true
     name = name.slice(1, -1)
   }
 
-  if (/^\.\.\./.test(name)) {
+  if (tripleDotRegex.test(name)) {
     repeat = true
     name = name.slice(3)
   }

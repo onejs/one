@@ -1,29 +1,25 @@
-import React, {
-  Fragment,
-  Suspense,
-  useEffect,
-  useMemo,
-  type FunctionComponent,
-  type ReactNode,
-} from 'react'
-import { Platform } from 'react-native'
-import Constants from './constants'
-import type { GlobbedRouteImports } from './types'
+import { Fragment, useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
+import type { GlobbedRouteImports, RenderAppProps } from './types'
 import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
+import { PreloadLinks } from './PreloadLinks'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
-import { preloadRoute } from './global-state/routing'
-import { ServerLocationContext } from './global-state/serverLocationContext'
-import { useInitializeExpoRouter } from './global-state/useInitializeExpoRouter'
+import { ServerLocationContext } from './router/serverLocationContext'
+import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import type { RequireContext } from './types'
-import { SplashScreen } from './views/Splash'
+import type { VXS } from './vite/types'
+// import { SplashScreen } from './views/Splash'
 
-type RootProps = Omit<InnerProps, 'context'> & {
-  routes: GlobbedRouteImports
-  path?: string
-}
+type RootProps = RenderAppProps &
+  Omit<InnerProps, 'context'> & {
+    mode?: VXS.RouteMode
+    isClient?: boolean
+    routes: GlobbedRouteImports
+    routeOptions?: VXS.RouteOptions
+  }
 
 type InnerProps = {
   context: RequireContext
@@ -46,39 +42,107 @@ type InnerProps = {
 
 export function Root(props: RootProps) {
   // ⚠️ <StrictMode> breaks routing!
-  return (
+
+  const contents = (
+    // <StrictMode>
     <RootErrorBoundary>
-      <Suspense fallback={null}>
-        <Contents {...props} />
-        <PreloadLinks />
-      </Suspense>
+      {/* for some reason warning if no key here */}
+      <Contents key="contents" {...props} />
+      <PreloadLinks key="preload-links" />
     </RootErrorBoundary>
+    // </StrictMode>
+  )
+
+  if (props.isClient) {
+    if (globalThis['__vxrnHydrateMode__'] === 'spa') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [show, setShow] = useState(false)
+
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useEffect(() => {
+        setShow(true)
+      }, [])
+
+      return show ? contents : null
+    }
+    return contents
+  }
+
+  return (
+    <html lang="en-US">
+      <head>
+        {process.env.NODE_ENV === 'development' ? <DevHead /> : null}
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `globalThis['global'] = globalThis`,
+          }}
+        />
+
+        {props.css?.map((file) => {
+          return <link key={file} rel="stylesheet" href={file} />
+        })}
+      </head>
+      <body>{contents}</body>
+      {/* could this just be loaded via the same loader.js? as a preload? i think so... */}
+      <script
+        async
+        // @ts-ignore
+        href="vxs-loader-data"
+        dangerouslySetInnerHTML={{
+          __html: `
+            globalThis['__vxrnLoaderData__'] = ${JSON.stringify(props.loaderData)};
+            globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(props.loaderProps)};
+            globalThis['__vxrnHydrateMode__'] = ${JSON.stringify(props.mode)};
+        `,
+        }}
+      />
+    </html>
   )
 }
 
-function PreloadLinks() {
-  useEffect(() => {
-    document.addEventListener('mouseover', (e) => {
-      let target = e.target
-      if (!(target instanceof HTMLElement)) return
-      target = target instanceof HTMLAnchorElement ? target : target.parentElement
-      if (!(target instanceof HTMLAnchorElement)) return
-      const href = target.getAttribute('href')
-      if (href?.[0] === '/') {
-        // local route
-        preloadRoute(href)
-      }
-    })
-  }, [])
-
-  return null
+function DevHead() {
+  return (
+    <>
+      <link
+        rel="stylesheet"
+        href="/@id/__x00__virtual:ssr-css.css"
+        // @ts-ignore
+        precedence="default"
+        data-ssr-css
+      />
+      <script
+        type="module"
+        dangerouslySetInnerHTML={{
+          __html: `import { createHotContext } from "/@vite/client";
+        const hot = createHotContext("/__clear_ssr_css");
+        hot.on("vite:afterUpdate", () => {
+          document
+            .querySelectorAll("[data-ssr-css]")
+            .forEach(node => node.remove());
+        });`,
+        }}
+      />
+      <script
+        type="module"
+        dangerouslySetInnerHTML={{
+          __html: `import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;`,
+        }}
+      />
+    </>
+  )
 }
 
-function Contents({ routes, path, wrapper = Fragment, ...props }: RootProps) {
-  const context = useViteRoutes(routes, globalThis['__vxrnVersion'])
+function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: RootProps) {
+  const context = useViteRoutes(routes, routeOptions, globalThis['__vxrnVersion'])
+
+  // TODO can probably remove since we handle this above
   const location =
-    typeof window !== 'undefined'
-      ? new URL(path || window.location.pathname || '/', window.location.href)
+    typeof window !== 'undefined' && window.location
+      ? new URL(path || window.location.href || '/', window.location.href)
       : new URL(path || '/', 'http://localhost')
 
   return <ContextNavigator {...props} location={location} context={context} wrapper={wrapper} />
@@ -106,27 +170,32 @@ function Contents({ routes, path, wrapper = Fragment, ...props }: RootProps) {
 
 // const GestureHandlerRootView = getGestureHandlerRootView()
 
-const INITIAL_METRICS = {
-  frame: { x: 0, y: 0, width: 0, height: 0 },
-  insets: { top: 0, left: 0, right: 0, bottom: 0 },
-}
+// const INITIAL_METRICS = {
+//   frame: { x: 0, y: 0, width: 0, height: 0 },
+//   insets: { top: 0, left: 0, right: 0, bottom: 0 },
+// }
 
-const hasViewControllerBasedStatusBarAppearance =
-  Platform.OS === 'ios' &&
-  !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
+// const hasViewControllerBasedStatusBarAppearance =
+//   Platform.OS === 'ios' &&
+//   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
 
-const initialUrl =
-  Platform.OS === 'web' && typeof window !== 'undefined' ? new URL(window.location.href) : undefined
+const INITIAL_METRICS =
+  process.env.TAMAGUI_TARGET === 'web'
+    ? {
+        frame: { x: 0, y: 0, width: 0, height: 0 },
+        insets: { top: 0, left: 0, right: 0, bottom: 0 },
+      }
+    : undefined
 
 function ContextNavigator({
   wrapper: ParentWrapper = Fragment,
   context,
-  location: initialLocation = initialUrl,
+  location: initialLocation,
   navigationContainerProps,
 }: InnerProps) {
-  const store = useInitializeExpoRouter(context, initialLocation)
+  const store = useInitializeVXSRouter(context, initialLocation)
 
-  const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
+  // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
 
   /*
    * Due to static rendering we need to wrap these top level views in second wrapper
@@ -135,40 +204,23 @@ function ContextNavigator({
    */
   const wrapper = (children: any) => {
     return (
-      // <HeadProvider context={headContext.current}>
       <ParentWrapper>
         {/* <GestureHandlerRootView> */}
-        {/* <SafeAreaProvider
-          // SSR support
+        <SafeAreaProvider
+          // SSR
           initialMetrics={INITIAL_METRICS}
           style={{
             flex: 1,
           }}
-        > */}
-        {children}
+        >
+          {children}
 
-        {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-        {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-        {/* </SafeAreaProvider> */}
+          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+        </SafeAreaProvider>
         {/* </GestureHandlerRootView> */}
       </ParentWrapper>
-      // </HeadProvider>
     )
-  }
-
-  if (store.shouldShowTutorial()) {
-    SplashScreen.hideAsync()
-    if (process.env.NODE_ENV === 'development') {
-      return wrapper(
-        <>
-          {/* TODO */}
-          {/* <Tutorial /> */}
-          <React.Fragment />
-        </>
-      )
-    }
-    // Ensure tutorial styles are stripped in production.
-    return null
   }
 
   const Component = store.rootComponent

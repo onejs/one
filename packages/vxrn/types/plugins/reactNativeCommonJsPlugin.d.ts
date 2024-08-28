@@ -1,4 +1,5 @@
-import type { Plugin } from 'vite';
+import { type Plugin } from 'vite';
+export declare const conditions: string[];
 export declare function reactNativeCommonJsPlugin(options: {
     root: string;
     port: number;

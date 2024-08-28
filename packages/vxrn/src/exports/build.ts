@@ -1,12 +1,21 @@
 import FSExtra from 'fs-extra'
 import { rm } from 'node:fs/promises'
 import type { RollupOutput } from 'rollup'
-import { mergeConfig, build as viteBuild, type Plugin, type UserConfig } from 'vite'
+import {
+  loadConfigFromFile,
+  mergeConfig,
+  build as viteBuild,
+  type InlineConfig,
+  type Plugin,
+  type UserConfig,
+} from 'vite'
 import { analyzer } from 'vite-bundle-analyzer'
-import type { BuildArgs, VXRNConfig } from '../types'
+import type { BuildArgs, VXRNOptions } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
+import { mergeUserConfig } from '../utils/mergeUserConfig'
+import { applyBuiltInPatches } from '../utils/patches'
 
 const { existsSync } = FSExtra
 
@@ -30,21 +39,37 @@ const disableOptimizationConfig = {
   },
 } satisfies UserConfig
 
-export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) => {
-  const options = await getOptionsFilled(optionsIn)
-
-  // lets always clean dist folder for now to be sure were correct
-  if (existsSync('dist')) {
-    await rm('dist', { recursive: true, force: true })
-  }
-
-  // lets always clean dist folder for now to be sure were correct
-  if (existsSync('node_modules/.vite')) {
-    await rm('node_modules/.vite', { recursive: true, force: true })
-  }
-
-  // TODO?
+export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) => {
+  // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
   process.env.NODE_ENV = 'production'
+
+  const [options, userViteConfig] = await Promise.all([
+    getOptionsFilled(optionsIn),
+    loadConfigFromFile({
+      command: 'build',
+      mode: 'prod',
+    }).then((_) => _?.config),
+  ])
+
+  await applyBuiltInPatches(options).catch((err) => {
+    console.error(`\n 🥺 error applying built-in patches`, err)
+  })
+
+  // clean
+  await Promise.all([
+    (async () => {
+      // lets always clean dist folder for now to be sure were correct
+      if (existsSync('dist')) {
+        await rm('dist', { recursive: true, force: true })
+      }
+    })(),
+    (async () => {
+      // lets always clean dist folder for now to be sure were correct
+      if (existsSync('node_modules/.vite')) {
+        await rm('node_modules/.vite', { recursive: true, force: true })
+      }
+    })(),
+  ])
 
   const { optimizeDeps } = getOptimizeDeps('build')
 
@@ -53,11 +78,18 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
       mode: 'production',
     }),
     {
-      root: options.root,
       clearScreen: false,
+      configFile: false,
       optimizeDeps,
-    } satisfies UserConfig
+    } satisfies InlineConfig
   )
+
+  const rerouteNoExternalConfig = userViteConfig?.ssr?.noExternal === true
+  if (rerouteNoExternalConfig) {
+    delete userViteConfig.ssr!.noExternal
+  }
+
+  webBuildConfig = mergeUserConfig(optimizeDeps, webBuildConfig, userViteConfig)
 
   const excludeAPIRoutesPlugin = {
     enforce: 'pre',
@@ -69,17 +101,15 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     },
   } satisfies Plugin
 
-  if (options.webConfig) {
-    webBuildConfig = mergeConfig(webBuildConfig, options.webConfig) as any
-  }
-
   let clientOutput
 
   if (buildArgs.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
       plugins: [
         excludeAPIRoutesPlugin,
-        process.env.NODE_ENV === 'production'
+        // if an error occurs (like can't find index.html, it seems to show an
+        // error saying can't find report here instead, so a bit confusing)
+        buildArgs.analyze
           ? analyzer({
               analyzerMode: 'static',
               fileName: '../report',
@@ -91,6 +121,9 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
         ssrManifest: true,
         outDir: 'dist/client',
         manifest: true,
+        rollupOptions: {
+          input: ['virtual:vxs-entry'],
+        },
       },
     } satisfies UserConfig)
 
@@ -99,18 +132,34 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     }
 
     console.info(`\n 🔨 build client\n`)
+
     const { output } = (await viteBuild(clientBuildConfig)) as RollupOutput
     clientOutput = output
   }
 
   console.info(`\n 🔨 build server\n`)
 
+  // servers can get all the defines
+  const processEnvDefines = Object.fromEntries(
+    Object.entries(process.env).map(([key, value]) => {
+      return [`process.env.${key}`, JSON.stringify(value)]
+    })
+  )
+
   let serverBuildConfig = mergeConfig(webBuildConfig, {
     plugins: [excludeAPIRoutesPlugin],
 
     define: {
       'process.env.TAMAGUI_IS_SERVER': '"1"',
+      ...processEnvDefines,
       ...webBuildConfig.define,
+    },
+
+    builder: {
+      async buildApp(builder) {
+        // console.warn('building??????')
+        await builder.build(builder.environments.server)
+      },
     },
 
     ssr: {
@@ -121,32 +170,34 @@ export const build = async (optionsIn: VXRNConfig, buildArgs: BuildArgs = {}) =>
     build: {
       // we want one big file of css
       cssCodeSplit: false,
-      ssr: 'src/entry-server.tsx',
+      ssr: true,
       outDir: 'dist/server',
       rollupOptions: {
         external: [],
+        input: ['virtual:vxs-entry'],
       },
     },
   } satisfies UserConfig)
+
+  if (rerouteNoExternalConfig) {
+    serverBuildConfig.ssr!.noExternal = true
+  }
 
   // if (process.env.VXRN_DISABLE_PROD_OPTIMIZATION) {
   //   serverBuildConfig = mergeConfig(serverBuildConfig, disableOptimizationConfig)
   // }
 
   const { output: serverOutput } = (await viteBuild(serverBuildConfig)) as RollupOutput
+  const clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
 
-  if (options.afterBuild) {
-    const clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
+  console.info(`\n ✔️ vxrn build complete\n`)
 
-    await options.afterBuild({
-      options,
-      buildArgs,
-      clientOutput,
-      serverOutput,
-      webBuildConfig,
-      clientManifest,
-    })
+  return {
+    options,
+    buildArgs,
+    clientOutput,
+    serverOutput,
+    webBuildConfig,
+    clientManifest,
   }
-
-  console.info(`\n ✔️ build complete\n`)
 }

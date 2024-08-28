@@ -1,6 +1,15 @@
 /// <reference types="node" />
-import type { VXRNConfig } from '../types';
-export declare const dev: ({ clean, ...rest }: VXRNConfig & {
+import type { VXRNOptions } from '../types';
+/**
+ * The main entry point for dev mode
+ *
+ * Note that much of the logic is being run by plugins:
+ *
+ *  - createFileSystemRouter does most of the fs-routes/request handling
+ *  - clientTreeShakePlugin handles loaders/transforms
+ *
+ */
+export declare const dev: (optionsIn: VXRNOptions & {
     clean?: boolean;
 }) => Promise<{
     server: import("http").Server<typeof import("http").IncomingMessage, typeof import("http").ServerResponse>;

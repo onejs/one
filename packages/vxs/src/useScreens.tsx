@@ -1,3 +1,4 @@
+import { createNavigatorFactory } from '@react-navigation/core'
 import type {
   EventMapBase,
   NavigationState,
@@ -5,8 +6,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { Suspense, useState } from 'react'
-
+import React, { Suspense, useEffect, useState } from 'react'
 import {
   Route,
   useRouteNode,
@@ -14,12 +14,15 @@ import {
   type LoadedRoute,
   type RouteNode,
 } from './Route'
-import EXPO_ROUTER_IMPORT_MODE from './import-mode'
-import { Screen } from './primitives'
+import VXS_ROUTER_IMPORT_MODE from './import-mode'
 import { sortRoutesWithInitial } from './sortRoutes'
 import { EmptyRoute } from './views/EmptyRoute'
-import { Try } from './views/Try'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
+import { Try } from './views/Try'
+
+// `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
+// do this hack.
+export const { Screen, Group } = createNavigatorFactory({} as any)()
 
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
@@ -144,14 +147,6 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
   return { default: component.default }
 }
 
-function fromLoadedRoute(res: LoadedRoute) {
-  if (!(res instanceof Promise)) {
-    return fromImport(res)
-  }
-
-  return res.then(fromImport)
-}
-
 // TODO: Maybe there's a more React-y way to do this?
 // Without this store, the process enters a recursive loop.
 const qualifiedStore = new WeakMap<RouteNode, React.ComponentType<any>>()
@@ -164,13 +159,38 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   let ScreenComponent: React.ForwardRefExoticComponent<React.RefAttributes<unknown>>
 
-  // TODO: This ensures sync doesn't use React.lazy, but it's not ideal.
-  if (EXPO_ROUTER_IMPORT_MODE === 'lazy') {
-    ScreenComponent = React.lazy(async () => {
-      const res = value.loadRoute()
-      return fromLoadedRoute(res) as Promise<{
-        default: React.ComponentType<any>
-      }>
+  if (VXS_ROUTER_IMPORT_MODE === 'lazy') {
+    ScreenComponent = React.forwardRef((props, ref) => {
+      // for native avoid suspense for now
+      const [loaded, setLoaded] = useState<any>(null)
+
+      useEffect(() => {
+        try {
+          const found = value.loadRoute()
+          if (found) {
+            setLoaded(found)
+          }
+        } catch (err) {
+          if (err instanceof Promise) {
+            err
+              .then((res) => {
+                setLoaded(res)
+              })
+              .catch((err) => {
+                console.error(`Error loading route`, err)
+              })
+          } else {
+            setLoaded(err as any)
+          }
+        }
+      }, [])
+
+      if (loaded) {
+        const Component = fromImport(loaded).default as React.ComponentType<any>
+        return <Component {...props} ref={ref} />
+      }
+
+      return null
     })
   } else {
     ScreenComponent = React.forwardRef((props, ref) => {
@@ -178,74 +198,43 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       const Component = fromImport(res).default as React.ComponentType<any>
       return <Component {...props} ref={ref} />
     })
+  }
 
-    // ScreenComponent = React.forwardRef((props, ref) => {
-    //   const [loaded, setLoaded] = useState(false)
-
-    //   useEffect(() => {
-    //     resolveRoute()
-
-    //     async function resolveRoute() {
-    //       while (true) {
-    //         try {
-    //           value.loadRoute()
-    //           setLoaded(true)
-    //           break
-    //         } catch (value) {
-    //           if (value instanceof Promise) {
-    //             console.warn('wait')
-    //             await new Promise((res) => setTimeout(res))
-    //           } else {
-    //             throw value
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }, [])
-
-    //   if (!loaded) {
-    //     return null
-    //   }
-
-    //   const res = value.loadRoute()
-    //   const Component = fromImport(res).default as React.ComponentType<any>
-
-    //   return <Component {...props} ref={ref} />
-    // })
+  const wrapSuspense = (children: any) => {
+    if (process.env.TAMAGUI_TARGET === 'native') {
+      return <Suspense fallback={<SuspenseFallback route={value} />}>{children}</Suspense>
+    }
+    // on web avoiding suspense for now
+    // its causing page flickers, we need to make sure we wrap loaders + page nav
+    // in startTransition
+    return children
   }
 
   const getLoadable = (props: any, ref: any) => {
     return (
-      // <RootErrorBoundary>
-      //   <Suspense fallback={<Throws />}>
-      <ScreenComponent
-        {...{
-          ...props,
-          ref,
-          // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-          // the intention is to make it possible to deduce shared routes.
-          segment: value.route,
-        }}
-      />
-      //   </Suspense>
-      // </RootErrorBoundary>
+      <RootErrorBoundary>
+        {wrapSuspense(
+          <ScreenComponent
+            {...{
+              ...props,
+              ref,
+              // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+              // the intention is to make it possible to deduce shared routes.
+              segment: value.route,
+            }}
+          />
+        )}
+      </RootErrorBoundary>
     )
   }
 
-  // const Throws = () => {
-  //   const [promse] = useState(
-  //     new Promise((res) => {
-  //       setTimeout(res, 1000)
-  //     })
-  //   )
+  const SuspenseFallback = ({ route }: { route: RouteNode }) => {
+    useEffect(() => {
+      console.warn(`⚠️ Suspended:`, route)
+    }, [route])
 
-  //   if (typeof window !== 'undefined') {
-  //     console.log('throw it')
-  //     throw promse
-  //   }
-
-  //   return null
-  // }
+    return null
+  }
 
   const QualifiedRoute = React.forwardRef(
     (

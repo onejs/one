@@ -1,177 +1,267 @@
-import { dirname } from 'node:path'
 import { parse } from 'es-module-lexer'
-import type { OutputOptions } from 'rollup'
-import type { Plugin } from 'vite'
-import { getVitePath } from '../utils/getVitePath'
+import { mergeConfig, type Plugin, type UserConfig } from 'vite'
 
-const extensions = [
-  '.ios.js',
-  '.native.js',
-  '.native.ts',
-  '.native.tsx',
-  '.js',
-  '.jsx',
-  '.json',
-  '.ts',
-  '.tsx',
-  '.mjs',
-]
+const getNativeExtensions = (platform: 'ios' | 'android') => {
+  return [
+    `.${platform}.tsx`,
+    `.${platform}.ts`,
+    `.${platform}.jsx`,
+    `.${platform}.js`,
+    '.native.js',
+    '.native.ts',
+    '.native.tsx',
+    '.tsx',
+    '.ts',
+    '.js',
+    '.jsx',
+    '.json',
+    '.mjs',
+  ]
+}
+
+export const conditions = ['react-native-import', 'react-native']
 
 export function reactNativeCommonJsPlugin(options: {
   root: string
   port: number
   mode: 'build' | 'serve'
 }): Plugin {
+  let resolver
+
   return {
     name: 'native',
     enforce: 'pre',
 
-    config: async (config) => {
-      config.define ||= {}
-      config.define['process.env.REACT_NATIVE_SERVER_PUBLIC_PORT'] = JSON.stringify(
-        `${options.port}`
-      )
-      config.define['process.env.REACT_NATIVE_PLATFORM'] = JSON.stringify(`ios`)
-
-      if (!config.build) config.build = {}
-
-      config.build.modulePreload = { polyfill: false }
-      // Ensures that even very large assets are inlined in your JavaScript.
-      config.build.assetsInlineLimit = 100000000
-      // Avoid warnings about large chunks.
-      config.build.chunkSizeWarningLimit = 100000000
-      // Emit all CSS as a single file, which `vite-plugin-singlefile` can then inline.
-      config.build.cssCodeSplit = false
-      // Avoids the extra step of testing Brotli compression, which isn't really pertinent to a file served locally.
-      config.build.reportCompressedSize = false
-      // Subfolder bases are not supported, and shouldn't be needed because we're embedding everything.
-      config.base = undefined
-
-      config.resolve ??= {}
-
-      config.resolve.extensions = extensions
-
-      config.resolve.conditions = ['react-native', 'require', 'default', 'import']
-
-      config.optimizeDeps ??= {}
-
-      config.optimizeDeps.noDiscovery = true
-      config.optimizeDeps.include = undefined
-
-      config.optimizeDeps.esbuildOptions ??= {}
-      config.optimizeDeps.esbuildOptions.resolveExtensions = extensions
-
-      config.optimizeDeps.esbuildOptions.plugins ??= []
-
-      config.optimizeDeps.esbuildOptions.loader ??= {}
-      config.optimizeDeps.esbuildOptions.loader['.js'] = 'jsx'
-
-      config.optimizeDeps.esbuildOptions.plugins.push({
-        name: 'react-native-assets',
-        setup(build) {
-          build.onResolve(
-            {
-              filter: /\.(png|jpg|gif|webp)$/,
-            },
-            async ({ path, namespace }) => {
-              return {
-                path: '',
-                external: true,
-              }
-            }
-          )
-        },
+    async configResolved(config) {
+      resolver = config.createResolver({
+        conditions,
       })
+    },
 
-      config.build.rollupOptions ??= {}
+    config: async () => {
+      const sharedNativeConfig = {
+        // Subfolder bases are not supported, and shouldn't be needed because we're embedding everything
+        base: undefined,
 
-      config.build.rollupOptions.output ??= {}
+        define: {
+          'process.env.REACT_NATIVE_SERVER_PUBLIC_PORT': JSON.stringify(`${options.port}`),
+        },
 
-      config.build.rollupOptions.plugins ??= []
-
-      if (!Array.isArray(config.build.rollupOptions.plugins)) {
-        throw `x`
-      }
-
-      if (options.mode === 'build') {
-        config.plugins ||= []
-
-        config.build.rollupOptions.plugins.push({
-          name: `force-export-all`,
-
-          async transform(code, id) {
-            // if (!id.includes('/node_modules/')) {
-            //   return
-            // }
-
-            try {
-              const [imports, exports] = parse(code)
-
-              let forceExports = ''
-
-              // note that es-module-lexer parses export * from as an import (twice) for some reason
-              let counts = {}
-              for (const imp of imports) {
-                if (imp.n && imp.n[0] !== '.') {
-                  counts[imp.n] ||= 0
-                  counts[imp.n]++
-                  if (counts[imp.n] == 2) {
-                    // star export
-                    const path = await getVitePath(options.root, dirname(id), imp.n)
-                    forceExports += `Object.assign(exports, require("${path}"));`
-                  }
-                }
-              }
-
-              forceExports += exports
-                .map((e) => {
-                  if (e.n === 'default') {
-                    return ''
-                  }
-                  let out = ''
-                  if (e.ln !== e.n) {
-                    // forces the "as x" to be referenced so it gets exported
-                    out += `__ignore = typeof ${e.n} === 'undefined' ? 0 : 0;`
-                  }
-                  out += `globalThis.____forceExport = ${e.ln}`
-                  return out
-                })
-                .join(';')
-
-              return code + '\n' + forceExports
-            } catch (err) {
-              console.warn(`Error forcing exports, probably ok`, id)
-            }
+        build: {
+          modulePreload: {
+            polyfill: false,
           },
-        })
-      }
+          // Ensures that even very large assets are inlined in your JavaScript.
+          assetsInlineLimit: 100000000,
+          // Avoid warnings about large chunks
+          chunkSizeWarningLimit: 100000000,
+          // Emit all CSS as a single file, which `vite-plugin-singlefile` can then inline
+          cssCodeSplit: false,
+          // Avoids the extra step of testing Brotli compression, which isn't really pertinent to a file served locally
+          reportCompressedSize: false,
 
-      if (process.env.DEBUG) {
-        console.info('config..', config)
-      }
+          rollupOptions: {
+            treeshake: false,
 
-      const updateOutputOptions = (out: OutputOptions) => {
-        out.preserveModules = true
+            output: {
+              preserveModules: true,
+              manualChunks: undefined,
+              // Ensure that as many resources as possible are inlined.
+              // inlineDynamicImports: true,
+              // this fixes some warnings but breaks import { default as config }
+              exports: 'named',
+              // ensures we have clean names for our require paths
+              entryFileNames: () => `[name].js`,
+            },
 
-        // this fixes some warnings but breaks import { default as config }
-        // out.exports = 'named'
+            plugins: [
+              {
+                name: `force-export-all`,
+                async transform(code, id) {
+                  if (id.includes('?commonjs')) {
+                    return
+                  }
 
-        out.entryFileNames = (chunkInfo) => {
-          // ensures we have clean names for our require paths
-          return '[name].js'
-        }
-        // Ensure that as many resources as possible are inlined.
-        // out.inlineDynamicImports = true
+                  // if (!id.includes('/node_modules/')) {
+                  //   return
+                  // }
 
-        // added by me (nate):
-        out.manualChunks = undefined
-      }
+                  try {
+                    const [foundImports, foundExports] = parse(code)
 
-      if (Array.isArray(config.build.rollupOptions.output)) {
-        for (const o in config.build.rollupOptions.output) updateOutputOptions(o as OutputOptions)
-      } else {
-        updateOutputOptions(config.build.rollupOptions.output as OutputOptions)
+                    // id => export names
+                    const toReExport: Record<string, string[]> = {}
+                    for (const exp of foundExports) {
+                      const matchingImp = foundImports.find((i) => exp.e < i.se && exp.s > i.ss)
+                      const expName = exp.ln || exp.n
+                      if (expName && matchingImp?.n) {
+                        toReExport[matchingImp.n] ||= []
+                        toReExport[matchingImp.n].push(expName)
+                      }
+                    }
+
+                    let forceExports = ``
+
+                    // lets handle export * as since es-module-lexer doesn't :/
+                    let found = 0
+                    for (const line of code.split('\n')) {
+                      if (line.startsWith('export * from')) {
+                        const [_, exportedName] =
+                          line.match(/export \* from [\'\"]([^\'\"]+)[\'\"]/) || []
+                        if (exportedName) {
+                          found++
+                          const name = `__vxrnExp${found}`
+                          forceExports += `
+                            import * as ${name} from '${exportedName}';
+                            globalThis.__forceExport${name} = ${name}
+                            Object.assign(exports, globalThis.__forceExport${name});
+                          `
+                          continue
+                        }
+                      }
+                    }
+
+                    forceExports += Object.keys(toReExport)
+                      .map((path) => {
+                        const exportedNames = toReExport[path]
+
+                        found++
+                        const name = `__vxrnExp${found}`
+                        return `
+                          import * as ${name} from '${path}';
+                          globalThis.__forceExport${name} = [${exportedNames.map((n) => (n === 'default' ? name : `${name}.${n}`)).join(',')}]
+                        `
+                      })
+                      .join(';')
+
+                    return {
+                      code: code + '\n' + forceExports,
+                      moduleSideEffects: 'no-treeshake',
+                    }
+                  } catch (err) {
+                    console.warn(`Error forcing exports, probably ok`, id)
+                  }
+                },
+              },
+            ],
+          },
+        },
+
+        optimizeDeps: {
+          noDiscovery: true,
+          include: undefined,
+
+          esbuildOptions: {
+            loader: {
+              '.js': 'jsx',
+            },
+          },
+        },
+      } satisfies UserConfig
+
+      // per-enviroment config:
+
+      return {
+        environments: {
+          ios: mergeConfig(sharedNativeConfig, {
+            define: {
+              'process.env.REACT_NATIVE_PLATFORM': JSON.stringify(`ios`),
+            },
+
+            resolve: {
+              extensions: getNativeExtensions('ios'),
+              conditions,
+            },
+
+            optimizeDeps: {
+              esbuildOptions: {
+                resolveExtensions: getNativeExtensions('ios'),
+
+                plugins: [
+                  {
+                    name: 'react-native-assets',
+                    setup(build) {
+                      build.onResolve(
+                        {
+                          filter: /\.(png|jpg|gif|webp)$/,
+                        },
+                        async ({ path, namespace }) => {
+                          return {
+                            path: '',
+                            external: true,
+                          }
+                        }
+                      )
+                    },
+                  },
+                ],
+              },
+            },
+          } satisfies UserConfig),
+
+          android: mergeConfig(sharedNativeConfig, {
+            define: {
+              'process.env.REACT_NATIVE_PLATFORM': JSON.stringify(`android`),
+            },
+
+            resolve: {
+              extensions: getNativeExtensions('android'),
+              conditions,
+            },
+
+            optimizeDeps: {
+              esbuildOptions: {
+                resolveExtensions: getNativeExtensions('android'),
+              },
+            },
+          } satisfies UserConfig),
+        },
       }
     },
   }
 }
+
+/**
+ * List of reserved words in JS. From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words.
+ */
+const RESERVED_WORDS = [
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'debugger',
+  'default',
+  'delete',
+  'do',
+  'else',
+  'export',
+  'extends',
+  'false',
+  'finally',
+  'for',
+  'function',
+  'if',
+  'import',
+  'in',
+  'instanceof',
+  'new',
+  'null',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'typeof',
+  'var',
+  'void',
+  'while',
+  'with',
+  'let',
+  'static',
+  'yield',
+  'enum',
+]

@@ -1,16 +1,28 @@
 import { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import { parse } from 'es-module-lexer'
 import { connectedNativeClients } from '../utils/connectedNativeClients'
-import type { VXRNConfigFilled } from '../utils/getOptionsFilled'
+import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
 import { entryRoot } from '../utils/getReactNativeBundle'
 import { getVitePath } from '../utils/getVitePath'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
+import type { Plugin } from 'vite'
+import { conditions } from './reactNativeCommonJsPlugin'
 
-export function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
+export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
+  let resolver
+
   return {
     name: 'client-transform',
 
+    async configResolved(config) {
+      resolver = config.createResolver({
+        conditions,
+      })
+    },
+
+    // TODO see about moving to hotUpdate
+    // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
     async handleHotUpdate({ read, modules, file }) {
       try {
         if (!isWithin(root, file)) {
@@ -51,7 +63,7 @@ export function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
           const { n: importName, s: start } = specifier
 
           if (importName) {
-            const id = await getVitePath(entryRoot, file, importName)
+            const id = await getVitePath(entryRoot, file, importName, resolver)
             if (!id) {
               console.warn('???')
               continue
@@ -82,10 +94,8 @@ export function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
           throw '❌ no source'
         }
 
-        importsMap['currentPath'] = id
-
         const hotUpdateSource = `exports = ((exports) => {
-          const require = createRequire(${JSON.stringify(importsMap, null, 2)})
+          const require = createRequire("${id}", ${JSON.stringify(importsMap, null, 2)})
           ${source
             .replace(`import.meta.hot.accept(() => {})`, ``)
             // replace import.meta.glob with empty array in hot reloads
@@ -101,5 +111,5 @@ export function reactNativeHMRPlugin({ root }: VXRNConfigFilled) {
         console.error(`Error processing hmr update:`, err)
       }
     },
-  }
+  } satisfies Plugin
 }

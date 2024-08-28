@@ -1,33 +1,36 @@
 {
   "name": "example-bare",
-  "version": "0.0.7",
+  "version": "1.1.200",
   "private": true,
   "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "vxrn dev",
+    "dev:clean": "vxrn dev --clean",
+    "clean": "vxrn clean",
     "build:prod": "vxrn build",
+    "serve": "vxrn serve",
     "android": "react-native run-android",
     "ios": "react-native run-ios"
   },
   "dependencies": {
-    "react": "19.0.0-beta-26f2496093-20240514",
-    "react-native": "0.73.2"
+    "expo-constants": "~16.0.0",
+    "react": "^18.3.1",
+    "react-native": "0.74.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.8",
-    "@babel/preset-env": "^7.20.0",
-    "@babel/runtime": "^7.20.0",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/runtime": "^7.25.4",
     "@react-native/babel-preset": "0.73.19",
     "@react-native/metro-config": "0.73.3",
     "@react-native/typescript-config": "0.73.1",
     "@types/react": "^18.2.24",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
-    "patch-package": "^8.0.0",
     "react-test-renderer": "18.2.0",
     "typescript": "^5.2.2",
-    "vxrn": "0.1.78"
+    "vxrn": "1.1.200"
   },
   "engines": {
     "node": ">=18"

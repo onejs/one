@@ -1,26 +1,21 @@
 import * as babel from '@babel/core'
-import createViteFlow from '@vxrn/vite-flow'
-import viteReactPlugin from '@vxrn/vite-native-swc'
+import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
-import { build, mergeConfig, resolveConfig, transformWithEsbuild, type InlineConfig } from 'vite'
-import { nativeExtensions } from '../constants'
-import { resolveFile } from './resolveFile'
+import { createBuilder } from 'vite'
+import type { VXRNOptionsFilled } from './getOptionsFilled'
+import { getReactNativeConfig } from './getReactNativeConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
-import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
-import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
-import { getOptimizeDeps } from './getOptimizeDeps'
-import type { VXRNConfigFilled } from './getOptionsFilled'
-import FSExtra from 'fs-extra'
+import { resolveFile } from './resolveFile'
+import { getPrebuilds, prebuildReactNativeModules } from './swapPrebuiltReactModules'
 
 const { pathExists } = FSExtra
 
 // used for normalizing hot reloads
 export let entryRoot = ''
 
-export async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClientPlugin: any) {
-  const { root, port, cacheDir } = options
-  const { depsToOptimize } = getOptimizeDeps('build')
+export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
+  entryRoot = options.root
 
   if (process.env.LOAD_TMP_BUNDLE) {
     // for easier quick testing things:
@@ -30,6 +25,8 @@ export async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClie
       return await readFile(tmpBundle, 'utf-8')
     }
   }
+
+  await prebuildReactNativeModules(options.cacheDir)
 
   if (isBuildingNativeBundle) {
     const res = await isBuildingNativeBundle
@@ -43,115 +40,12 @@ export async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClie
     })
   )
 
-  async function babelReanimated(input: string, filename: string) {
-    return await new Promise<string>((res, rej) => {
-      babel.transform(
-        input,
-        {
-          plugins: ['react-native-reanimated/plugin'],
-          filename,
-        },
-        (err: any, result) => {
-          if (!result || err) rej(err || 'no res')
-          res(result!.code!)
-        }
-      )
-    })
-  }
-
-  const viteFlow = options.flow ? createViteFlow(options.flow) : null
-
   // build app
-  let nativeBuildConfig = {
-    plugins: [
-      viteFlow,
+  const nativeBuildConfig = await getReactNativeConfig(options, viteRNClientPlugin)
 
-      swapPrebuiltReactModules(cacheDir),
+  const builder = await createBuilder(nativeBuildConfig)
 
-      {
-        name: 'reanimated',
-        async transform(code, id) {
-          if (code.includes('worklet')) {
-            const out = await babelReanimated(code, id)
-            return out
-          }
-        },
-      },
-
-      viteRNClientPlugin,
-
-      reactNativeCommonJsPlugin({
-        root,
-        port,
-        mode: 'build',
-      }),
-
-      viteReactPlugin({
-        tsDecorators: true,
-        mode: 'build',
-      }),
-
-      {
-        name: 'treat-js-files-as-jsx',
-        async transform(code, id) {
-          if (!id.includes(`expo-status-bar`)) return null
-          // Use the exposed transform from vite, instead of directly
-          // transforming with esbuild
-          return transformWithEsbuild(code, id, {
-            loader: 'jsx',
-            jsx: 'automatic',
-          })
-        },
-      },
-    ].filter(Boolean),
-
-    appType: 'custom',
-    root,
-    clearScreen: false,
-
-    optimizeDeps: {
-      include: depsToOptimize,
-      esbuildOptions: {
-        jsx: 'automatic',
-      },
-    },
-
-    resolve: {
-      extensions: nativeExtensions,
-    },
-
-    mode: 'development',
-
-    define: {
-      'process.env.NODE_ENV': `"development"`,
-    },
-
-    build: {
-      ssr: false,
-      minify: false,
-      commonjsOptions: {
-        transformMixedEsModules: true,
-      },
-      rollupOptions: {
-        input: options.entries.native,
-        treeshake: false,
-        preserveEntrySignatures: 'strict',
-        output: {
-          preserveModules: true,
-          format: 'cjs',
-        },
-      },
-    },
-  } satisfies InlineConfig
-
-  if (options.nativeConfig) {
-    nativeBuildConfig = mergeConfig(nativeBuildConfig, options.nativeConfig) as any
-  }
-
-  // // this fixes my swap-react-native plugin not being called pre 😳
-  await resolveConfig(nativeBuildConfig, 'build')
-
-  const buildOutput = await build(nativeBuildConfig)
+  const buildOutput = await builder.build(builder.environments.ios)
 
   if (!('output' in buildOutput)) {
     throw `❌`
@@ -161,33 +55,47 @@ export async function getReactNativeBundle(options: VXRNConfigFilled, viteRNClie
     // entry last
     .sort((a, b) => (a['isEntry'] ? 1 : -1))
     .map((outputModule) => {
+      const id = outputModule.fileName.replace(/.*node_modules\//, '')
+
       if (outputModule.type == 'chunk') {
-        const importsMap = {
-          currentPath: outputModule.fileName,
-        }
+        const importsMap = {}
         for (const imp of outputModule.imports) {
-          const relativePath = relative(dirname(outputModule.fileName), imp)
-          importsMap[relativePath[0] === '.' ? relativePath : './' + relativePath] = imp
+          const relativePath = relative(dirname(id), imp)
+          importsMap[relativePath[0] === '.' ? relativePath : './' + relativePath] = imp.replace(
+            /.*node_modules\//,
+            ''
+          )
         }
 
-        if (outputModule.isEntry) {
-          entryRoot = dirname(outputModule.fileName)
+        let code = outputModule.code
+
+        // A hacky way to exclude node-fetch from the bundle.
+        //
+        // Some part of Supabase SDK will import node-fetch statically (https://github.com/supabase/supabase-js/blob/v2.45.1/src/lib/fetch.ts#L2), or dynamically (https://github.com/supabase/auth-js/blob/8222ee198a0ab10570e8b4c31ffb2aeafef86392/src/lib/helpers.ts#L99), causing the node-fetch to be included in the bundle, and while imported statically it will throw a runtime error when running on React Native.
+        if (outputModule.facadeModuleId?.includes('@supabase/node-fetch')) {
+          // This should be safe since the imported '@supabase/node-fetch' will not actually be used in Supabase SDK as there's already a global `fetch` in React Native.
+          code = ''
         }
 
         return `
-___modules___["${outputModule.fileName}"] = ((exports, module) => {
-const require = createRequire(${JSON.stringify(importsMap, null, 2)})
+// id: ${id}
+// name: ${outputModule.name}
+// facadeModuleId: ${outputModule.facadeModuleId}
+// fileName: ${outputModule.fileName}
+___vxrnAbsoluteToRelative___["${outputModule.facadeModuleId}"] = "${id}"
+___modules___["${id}"] = ((exports, module) => {
+const require = createRequire("${id}", ${JSON.stringify(importsMap, null, 2)})
 
-${outputModule.code}
+${code}
 })
 
 ${
   outputModule.isEntry
     ? `
 // run entry
-const __require = createRequire({})
+const __require = createRequire(":root:", {})
 __require("react-native")
-__require("${outputModule.fileName}")
+__require("${id}")
 `
     : ''
 }
@@ -204,20 +112,14 @@ __require("${outputModule.fileName}")
     // TEMP FIX for router tamagui thing since expo router 3 upgrade
     .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
 
-  // TODO this is not stable based on cwd
-  const appRootParent = join(root, '..', '..')
-
-  const prebuilds = {
-    reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
-    react: join(cacheDir, 'react.js'),
-    reactNative: join(cacheDir, 'react-native.js'),
-  }
-
   const templateFile = resolveFile('vxrn/react-native-template.js')
-  const template = (await readFile(templateFile, 'utf-8'))
-    .replace('_virtual/virtual_react-native.js', relative(appRootParent, prebuilds.reactNative))
-    .replace('_virtual/virtual_react.js', relative(appRootParent, prebuilds.react))
-    .replaceAll('_virtual/virtual_react-jsx.js', relative(appRootParent, prebuilds.reactJSX))
+  const prebuilds = getPrebuilds(options.cacheDir)
+  const template = await readFile(templateFile, 'utf-8')
+
+  // TODO this is not stable based on cwd
+  // .replace('_virtual/virtual_react-native.js', relative(root, prebuilds.reactNative))
+  // .replace('_virtual/virtual_react.js', relative(root, prebuilds.react))
+  // .replaceAll('_virtual/virtual_react-jsx.js', relative(root, prebuilds.reactJSX))
 
   const out = template + appCode
 
