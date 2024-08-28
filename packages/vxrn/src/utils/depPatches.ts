@@ -157,13 +157,6 @@ export const depPatches: DepPatch[] = [
   },
 
   {
-    module: '@sentry/react-native',
-    patchFiles: {
-      'dist/**/*.js': ['jsx'],
-    },
-  },
-
-  {
     module: 'rollup',
     patchFiles: {
       'dist/es/shared/node-entry.js': (contents) => {
@@ -181,6 +174,31 @@ export const depPatches: DepPatch[] = [
     module: '@react-native/assets-registry',
     patchFiles: {
       '**/*.js': ['flow'],
+    },
+  },
+
+  {
+    module: '@sentry/react-native',
+    patchFiles: {
+      version: '>=5.6.0',
+      'dist/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: '@sentry/react-native',
+    patchFiles: {
+      version: '>=5.0.0 <5.6.0',
+
+      'dist/js/utils/environment.js': (contents) => {
+        assertString(contents)
+        return contents.replace(
+          `import { version as RNV } from 'react-native/Libraries/Core/ReactNativeVersion';`,
+          `import { Platform } from 'react-native';\nconst RNV = Platform.constants.reactNativeVersion;\n`
+        )
+      },
+
+      'dist/**/*.js': ['jsx'],
     },
   },
 
