@@ -1,13 +1,22 @@
 import * as babel from '@babel/core'
 import createViteFlow from '@vxrn/vite-flow'
 import viteNativeSWC from '@vxrn/vite-native-swc'
-import { resolveConfig, transformWithEsbuild, type InlineConfig, type UserConfig } from 'vite'
+import {
+  Plugin,
+  resolveConfig,
+  transformWithEsbuild,
+  type InlineConfig,
+  type UserConfig,
+} from 'vite'
 import { nativeExtensions } from '../constants'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
+import nodeResolve from '@rollup/plugin-node-resolve'
+import { dirname, join } from 'path'
+import { stat } from 'fs/promises'
 
 export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
   const { root, port } = options
@@ -34,6 +43,46 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
   // build app
   let nativeBuildConfig = {
     plugins: [
+      // vite doesnt support importing from a directory but its so common in react native
+      // so lets make it work, and node resolve theoretically fixes but you have to pass in moduleDirs
+      // but we need this to work anywhere including in normal source files
+      {
+        name: 'node-dir-imports',
+        enforce: 'pre',
+
+        async resolveId(importee, importer) {
+          if (!importer || !importee.startsWith('./')) {
+            return null
+          }
+          // let nodeResolve handle node_modules
+          if (importer?.includes('node_modules')) {
+            return
+          }
+          try {
+            const resolved = join(dirname(importer), importee)
+            if ((await stat(resolved)).isDirectory()) {
+              // fix for importing a directory
+              // TODO this would probably want to support their configured extensions
+              // TODO also platform-specific extensions
+              for (const ext of ['ts', 'tsx', 'js']) {
+                try {
+                  const withExt = join(resolved, `index.${ext}`)
+                  await stat(withExt)
+                  // its a match
+                  return withExt
+                } catch {
+                  // keep going
+                }
+              }
+            }
+          } catch {
+            // not a dir keep going
+          }
+        },
+      } satisfies Plugin,
+
+      nodeResolve(),
+
       viteFlow,
 
       swapPrebuiltReactModules(options.cacheDir),
