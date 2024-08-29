@@ -26,18 +26,21 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
         name: 'platform-specific-resolve',
         config() {
           return {
-            resolve: {
-              extensions: webExtensions,
-              conditions: ['vxrn-web'],
-            },
-
             ssr: {
               resolve: {
+                extensions: webExtensions,
                 externalConditions: ['vxrn-web'],
               },
             },
 
             environments: {
+              client: {
+                resolve: {
+                  extensions: webExtensions,
+                  conditions: ['vxrn-web'],
+                },
+              },
+
               ios: {
                 resolve: {
                   extensions: iosExtensions,
