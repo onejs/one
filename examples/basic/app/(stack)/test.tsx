@@ -1,4 +1,4 @@
-import { Text } from 'react-native'
+import { Text } from '@tamagui/core'
 import { Stack } from 'vxs'
 
 export default function TestPage() {
