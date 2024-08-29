@@ -7183,13 +7183,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vxrn/react-native-prebuilt@1.1.200, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
+"@vxrn/react-native-prebuilt@1.1.201, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
   version: 0.0.0-use.local
   resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
   dependencies:
     "@tamagui/build": ^1.109.0
-    "@vxrn/vite-flow": 1.1.200
-    "@vxrn/vite-native-hmr": 1.1.200
+    "@vxrn/vite-flow": 1.1.201
+    "@vxrn/vite-native-hmr": 1.1.201
     esbuild: ^0.23.0
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.1.0
@@ -7204,7 +7204,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/safe-area@1.1.200, @vxrn/safe-area@workspace:packages/safe-area":
+"@vxrn/safe-area@1.1.201, @vxrn/safe-area@workspace:packages/safe-area":
   version: 0.0.0-use.local
   resolution: "@vxrn/safe-area@workspace:packages/safe-area"
   dependencies:
@@ -7213,13 +7213,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vendor@1.1.200, @vxrn/vendor@workspace:packages/vendor":
+"@vxrn/vendor@1.1.201, @vxrn/vendor@workspace:packages/vendor":
   version: 0.0.0-use.local
   resolution: "@vxrn/vendor@workspace:packages/vendor"
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-flow@1.1.200, @vxrn/vite-flow@workspace:packages/vite-flow":
+"@vxrn/vite-flow@1.1.201, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
   dependencies:
@@ -7232,7 +7232,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-client@1.1.200, @vxrn/vite-native-client@workspace:packages/vite-native-client":
+"@vxrn/vite-native-client@1.1.201, @vxrn/vite-native-client@workspace:packages/vite-native-client":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-client@workspace:packages/vite-native-client"
   dependencies:
@@ -7244,7 +7244,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-hmr@1.1.200, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
+"@vxrn/vite-native-hmr@1.1.201, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-hmr@workspace:packages/vite-native-hmr"
   dependencies:
@@ -7256,14 +7256,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-swc@1.1.200, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
+"@vxrn/vite-native-swc@1.1.201, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-swc@workspace:packages/vite-native-swc"
   dependencies:
     "@biomejs/biome": ^1.8.3
     "@swc/core": ^1.7.14
     "@tamagui/build": ^1.109.0
-    "@vxrn/vite-native-client": 1.1.200
+    "@vxrn/vite-native-client": 1.1.201
     react-native: 0.74.1
   peerDependencies:
     react-native: "*"
@@ -8841,7 +8841,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"create-vxrn@1.1.200, create-vxrn@workspace:packages/create-vxrn":
+"create-vxrn@1.1.201, create-vxrn@workspace:packages/create-vxrn":
   version: 0.0.0-use.local
   resolution: "create-vxrn@workspace:packages/create-vxrn"
   dependencies:
@@ -10055,7 +10055,7 @@ __metadata:
     react-native: 0.74.1
     react-test-renderer: 18.2.0
     typescript: ^5.2.2
-    vxrn: 1.1.200
+    vxrn: 1.1.201
   languageName: unknown
   linkType: soft
 
@@ -10072,7 +10072,7 @@ __metadata:
     tamagui: ^1.109.0
     uuid: 9.0.0
     vite: 6.0.0-alpha.18
-    vxs: 1.1.200
+    vxs: 1.1.201
   languageName: unknown
   linkType: soft
 
@@ -10101,7 +10101,7 @@ __metadata:
     tamagui: ^1.109.0
     vite: 6.0.0-alpha.18
     vite-plugin-inspect: ^0.8.7
-    vxs: 1.1.200
+    vxs: 1.1.201
   languageName: unknown
   linkType: soft
 
@@ -10112,8 +10112,8 @@ __metadata:
     react-native: 0.74.1
     react-native-reanimated: ~3.10.1
     vite: 6.0.0-alpha.18
-    vxrn: 1.1.200
-    vxs: 1.1.200
+    vxrn: 1.1.201
+    vxs: 1.1.201
   languageName: unknown
   linkType: soft
 
@@ -10133,7 +10133,7 @@ __metadata:
     tamagui: ^1.109.0
     uuid: 9.0.0
     vite: 6.0.0-alpha.18
-    vxs: 1.1.200
+    vxs: 1.1.201
   languageName: unknown
   linkType: soft
 
@@ -10226,7 +10226,7 @@ __metadata:
     expo-status-bar: ~1.12.1
     react: ^18.3.1
     react-native: 0.74.1
-    vxrn: 1.1.200
+    vxrn: 1.1.201
   languageName: unknown
   linkType: soft
 
@@ -10324,7 +10324,7 @@ __metadata:
     react: ^18.3.1
     react-native: 0.74.1
     react-native-reanimated: ~3.10.1
-    vxrn: 1.1.200
+    vxrn: 1.1.201
   languageName: unknown
   linkType: soft
 
@@ -18183,58 +18183,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "turbo-darwin-64@npm:2.0.6"
+"turbo-darwin-64@npm:2.1.0":
+  version: 2.1.0
+  resolution: "turbo-darwin-64@npm:2.1.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "turbo-darwin-arm64@npm:2.0.6"
+"turbo-darwin-arm64@npm:2.1.0":
+  version: 2.1.0
+  resolution: "turbo-darwin-arm64@npm:2.1.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "turbo-linux-64@npm:2.0.6"
+"turbo-linux-64@npm:2.1.0":
+  version: 2.1.0
+  resolution: "turbo-linux-64@npm:2.1.0"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "turbo-linux-arm64@npm:2.0.6"
+"turbo-linux-arm64@npm:2.1.0":
+  version: 2.1.0
+  resolution: "turbo-linux-arm64@npm:2.1.0"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "turbo-windows-64@npm:2.0.6"
+"turbo-windows-64@npm:2.1.0":
+  version: 2.1.0
+  resolution: "turbo-windows-64@npm:2.1.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.0.6":
-  version: 2.0.6
-  resolution: "turbo-windows-arm64@npm:2.0.6"
+"turbo-windows-arm64@npm:2.1.0":
+  version: 2.1.0
+  resolution: "turbo-windows-arm64@npm:2.1.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.0.6":
-  version: 2.0.6
-  resolution: "turbo@npm:2.0.6"
+"turbo@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "turbo@npm:2.1.0"
   dependencies:
-    turbo-darwin-64: 2.0.6
-    turbo-darwin-arm64: 2.0.6
-    turbo-linux-64: 2.0.6
-    turbo-linux-arm64: 2.0.6
-    turbo-windows-64: 2.0.6
-    turbo-windows-arm64: 2.0.6
+    turbo-darwin-64: 2.1.0
+    turbo-darwin-arm64: 2.1.0
+    turbo-linux-64: 2.1.0
+    turbo-linux-arm64: 2.1.0
+    turbo-windows-64: 2.1.0
+    turbo-windows-arm64: 2.1.0
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -18250,7 +18250,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: c6d8dffd89d923021ef1b319d7aa7649ab1cace15f2cbea542aae890c94eaa78634474598be8da9d8299b07a14ae175fba62539966426b8d11bc23b6e2d642c4
+  checksum: 20b4fa917d6ee0ddf2a9bf90364cda58e9541d61d027b5bf40edc7856f8300ac2cb99cd0c3d43460a4e44c88b9d235738d88d59b7fba25f08dfd7fb123ec0a7a
   languageName: node
   linkType: hard
 
@@ -19168,14 +19168,14 @@ __metadata:
     npm-run-all: ^4.1.5
     p-map: ^7.0.2
     patch-package: ^8.0.0
-    turbo: ^2.0.6
+    turbo: ^2.1.0
     typescript: ^5.2.2
     ultra-runner: ^3.10.5
     vitepress: ^1.1.4
   languageName: unknown
   linkType: soft
 
-"vxrn@1.1.200, vxrn@workspace:packages/vxrn":
+"vxrn@1.1.201, vxrn@workspace:packages/vxrn":
   version: 0.0.0-use.local
   resolution: "vxrn@workspace:packages/vxrn"
   dependencies:
@@ -19188,11 +19188,11 @@ __metadata:
     "@types/node": ^22.1.0
     "@types/ws": ^8.5.10
     "@vitejs/plugin-react-swc": ^3.7.0
-    "@vxrn/react-native-prebuilt": 1.1.200
-    "@vxrn/safe-area": 1.1.200
-    "@vxrn/vendor": 1.1.200
-    "@vxrn/vite-flow": 1.1.200
-    "@vxrn/vite-native-swc": 1.1.200
+    "@vxrn/react-native-prebuilt": 1.1.201
+    "@vxrn/safe-area": 1.1.201
+    "@vxrn/vendor": 1.1.201
+    "@vxrn/vite-flow": 1.1.201
+    "@vxrn/vite-native-swc": 1.1.201
     citty: ^0.1.6
     crossws: ^0.2.4
     depcheck: ^1.4.7
@@ -19220,7 +19220,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"vxs@1.1.200, vxs@workspace:packages/vxs":
+"vxs@1.1.201, vxs@workspace:packages/vxs":
   version: 0.0.0-use.local
   resolution: "vxs@workspace:packages/vxs"
   dependencies:
@@ -19239,7 +19239,7 @@ __metadata:
     "@types/react-dom": ^18.2.25
     babel-dead-code-elimination: ^1.0.6
     citty: ^0.1.6
-    create-vxrn: 1.1.200
+    create-vxrn: 1.1.201
     depcheck: ^1.4.7
     dotenv: ^16.4.5
     escape-string-regexp: ^5.0.0
@@ -19264,7 +19264,7 @@ __metadata:
     rollup-plugin-node-externals: ^7.1.2
     url-parse: ^1.5.10
     vite: 6.0.0-alpha.18
-    vxrn: 1.1.200
+    vxrn: 1.1.201
   peerDependencies:
     react-native: "*"
   bin:

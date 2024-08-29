@@ -1,6 +1,6 @@
 {
   "name": "example-basic",
-  "version": "1.1.200",
+  "version": "1.1.201",
   "private": true,
   "type": "module",
   "scripts": {
@@ -19,7 +19,7 @@
     "react-native-web": "^0.19.12",
     "tamagui": "^1.109.0",
     "uuid": "9.0.0",
-    "vxs": "1.1.200"
+    "vxs": "1.1.201"
   },
   "devDependencies": {
     "vite": "6.0.0-alpha.18"
