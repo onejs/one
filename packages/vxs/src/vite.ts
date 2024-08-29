@@ -5,6 +5,7 @@ export { clientTreeShakePlugin } from './vite/clientTreeShakePlugin'
 export { createFileSystemRouter } from './vite/createFileSystemRouter'
 export { vitePluginSsrCss } from './vite/vitePluginSsrCss'
 export { removeReactNativeWebAnimatedPlugin } from './vite/removeReactNativeWebAnimatedPlugin'
+export { makePluginWebOnly } from './vite/makePluginWebOnly'
 
 export { setCurrentRequestHeaders } from './vite/headers'
 
