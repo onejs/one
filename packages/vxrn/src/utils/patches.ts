@@ -7,16 +7,20 @@ import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { globDir } from './globDir'
 import { swcTransform } from '@vxrn/vite-native-swc'
 import semver from 'semver'
+import type { UserConfig } from 'vite'
 
 type Strategies = 'swc' | 'flow' | 'jsx'
 
+export type DepOptimize = boolean | 'exclude' | 'interop'
+
+export type DepFileStrategy =
+  | ((contents?: string) => void | string | Promise<void | string>)
+  | string
+  | Strategies[]
+
 export type DepPatch = {
   module: string
-  patchFiles: {
-    [Key in string]: Key extends 'version'
-      ? string
-      : ((contents?: string) => void | string | Promise<void | string>) | string | Strategies[]
-  }
+  patchFiles: { optimize?: DepOptimize; version?: string } & { [key: string]: DepFileStrategy }
 }
 
 class Bail extends Error {}
@@ -31,17 +35,46 @@ export async function applyBuiltInPatches(options: VXRNOptionsFilled) {
   if (options.state.applyPatches === false) {
     return
   }
-  await applyPatches(depPatches, options.root)
+  await applyDependencyPatches(depPatches, { root: options.root })
 }
 
-export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
+export async function applyOptimizePatches(patches: DepPatch[], config: UserConfig) {
+  patches.forEach((patch) => {
+    // apply non-file-specific optimizations:
+    const optimize = patch.patchFiles.optimize
+    if (config && typeof optimize !== 'undefined') {
+      if (optimize === true) {
+        config.optimizeDeps?.include?.push(patch.module)
+      }
+      if (optimize === false || optimize === 'exclude') {
+        if (config.optimizeDeps?.include) {
+          config.optimizeDeps.include = config.optimizeDeps.include.filter(
+            (x) => x !== patch.module
+          )
+        }
+        config.optimizeDeps ||= {}
+        config.optimizeDeps.exclude ||= []
+        config.optimizeDeps.exclude.push(patch.module)
+      }
+      if (optimize === 'interop') {
+        config.optimizeDeps?.include?.push(patch.module)
+        config.optimizeDeps?.needsInterop?.push(patch.module)
+      }
+    }
+  })
+}
+
+export async function applyDependencyPatches(
+  patches: DepPatch[],
+  { root = process.cwd() }: { root?: string } = {}
+) {
   const nodeModulesDirs = findNodeModules({
     cwd: root,
   }).map((relativePath) => join(root, relativePath))
 
   await Promise.all(
     patches.flatMap((patch) => {
-      return nodeModulesDirs.flatMap(async (dir) => {
+      return nodeModulesDirs!.flatMap(async (dir) => {
         const nodeModuleDir = join(dir, patch.module)
         const version = patch.patchFiles.version
 
@@ -56,6 +89,10 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
           }
 
           for (const file in patch.patchFiles) {
+            if (file === 'optimize' || file === 'version') {
+              continue
+            }
+
             const filesToApply = file.includes('*') ? globDir(nodeModuleDir, file) : [file]
 
             await Promise.all(
@@ -131,6 +168,8 @@ export async function applyPatches(patches: DepPatch[], root = process.cwd()) {
 
                     return
                   }
+
+                  console.log('patchDefinition', patchDefinition)
 
                   // update
                   const out = await patchDefinition(contentsIn)

@@ -1,13 +1,22 @@
 import type { VXRNOptionsFilled } from './getOptionsFilled';
+import type { UserConfig } from 'vite';
 type Strategies = 'swc' | 'flow' | 'jsx';
+export type DepOptimize = boolean | 'exclude' | 'interop';
+export type DepFileStrategy = ((contents?: string) => void | string | Promise<void | string>) | string | Strategies[];
 export type DepPatch = {
     module: string;
     patchFiles: {
-        [Key in string]: Key extends 'version' ? string : ((contents?: string) => void | string | Promise<void | string>) | string | Strategies[];
+        optimize?: DepOptimize;
+        version?: string;
+    } & {
+        [key: string]: DepFileStrategy;
     };
 };
 export declare function bailIfExists(haystack: string, needle: string): void;
 export declare function applyBuiltInPatches(options: VXRNOptionsFilled): Promise<void>;
-export declare function applyPatches(patches: DepPatch[], root?: string): Promise<void>;
+export declare function applyOptimizePatches(patches: DepPatch[], config: UserConfig): Promise<void>;
+export declare function applyDependencyPatches(patches: DepPatch[], { root }?: {
+    root?: string;
+}): Promise<void>;
 export {};
 //# sourceMappingURL=patches.d.ts.map
