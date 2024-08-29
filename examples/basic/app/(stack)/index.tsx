@@ -1,4 +1,4 @@
-import { Text } from 'react-native'
+import { Text } from '@tamagui/core'
 import { Link, Stack } from 'vxs'
 
 export default function HomePage() {
@@ -10,14 +10,14 @@ export default function HomePage() {
         }}
       />
 
-      <Text>HomePage</Text>
+      <Text color="yellow">HomePage</Text>
 
       <Link
         href={{
           pathname: '/test',
         }}
       >
-        <Text>Stack into test page</Text>
+        <Text color="$color">Stack into test page</Text>
       </Link>
 
       <Link
@@ -26,7 +26,7 @@ export default function HomePage() {
           params: { user: 'other' },
         }}
       >
-        <Text>Go to user tab</Text>
+        <Text color="$color">Go to user tab</Text>
       </Link>
     </>
   )
