@@ -1,16 +1,22 @@
 import { Fragment, useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import type { GlobbedRouteImports, RenderAppProps } from './types'
 import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 // import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
-import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
+import {
+  DarkTheme,
+  DefaultTheme,
+  type NavigationAction,
+  type NavigationContainerProps,
+} from '@react-navigation/native'
 import { PreloadLinks } from './PreloadLinks'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import type { RequireContext } from './types'
 import type { VXS } from './vite/types'
+import { Appearance } from 'react-native'
 // import { SplashScreen } from './views/Splash'
 
 type RootProps = RenderAppProps &
@@ -194,6 +200,17 @@ function ContextNavigator({
   navigationContainerProps,
 }: InnerProps) {
   const store = useInitializeVXSRouter(context, initialLocation)
+  const [scheme, setScheme] = useState(Appearance.getColorScheme())
+
+  useEffect(() => {
+    const listener = Appearance.addChangeListener((next) => {
+      setScheme(next.colorScheme)
+    })
+
+    return () => {
+      listener.remove()
+    }
+  }, [])
 
   // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
 
@@ -235,6 +252,7 @@ function ContextNavigator({
       initialState={store.initialState}
       linking={store.linking}
       onUnhandledAction={onUnhandledAction}
+      theme={scheme ? DarkTheme : DefaultTheme}
       documentTitle={{
         enabled: false,
       }}
