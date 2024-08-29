@@ -9,6 +9,7 @@
       "dependsOn": ["^build"],
       "inputs": [
         "tsconfig.json",
+        "biome.json",
         "package.json",
         "src/**/*",
         "tamagui-build.js",
