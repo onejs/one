@@ -18,6 +18,27 @@ import nodeResolve from '@rollup/plugin-node-resolve'
 import { dirname, join } from 'node:path'
 import { stat } from 'node:fs/promises'
 
+/**
+ * Taken from https://github.com/software-mansion/react-native-reanimated/blob/3.15.1/packages/react-native-reanimated/plugin/src/autoworkletization.ts#L19-L59, need to check if this is up-to-date when supporting newer versions of react-native-reanimated.
+ */
+const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
+  'useAnimatedGestureHandler',
+  'useAnimatedScrollHandler',
+  'useFrameCallback',
+  'useAnimatedStyle',
+  'useAnimatedProps',
+  'createAnimatedPropAdapter',
+  'useDerivedValue',
+  'useAnimatedReaction',
+  'useWorkletCallback',
+  'withTiming',
+  'withSpring',
+  'withDecay',
+  'withRepeat',
+  'runOnUI',
+  'executeOnUIRuntimeSync',
+]
+
 export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
   const { root, port } = options
   const { optimizeDeps } = getOptimizeDeps('build')
@@ -90,7 +111,10 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
       {
         name: 'reanimated',
         async transform(code, id) {
-          if (code.includes('worklet')) {
+          if (
+            code.includes('worklet') ||
+            REANIMATED_AUTOWORKLETIZATION_KEYWORDS.some((k) => code.includes(k))
+          ) {
             const out = await babelReanimated(code, id)
             return out
           }
