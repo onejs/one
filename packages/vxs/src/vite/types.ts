@@ -1,5 +1,10 @@
 import type { Hono } from 'hono'
-import type { DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNOptions } from 'vxrn'
+import type {
+  DepOptimize,
+  DepPatch,
+  AfterBuildProps as VXRNAfterBuildProps,
+  VXRNOptions,
+} from 'vxrn'
 
 export namespace VXS {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
@@ -11,13 +16,7 @@ export namespace VXS {
   }
 
   export type FixDependencies = {
-    [key: string]:
-      | boolean
-      | 'exclude'
-      | 'interop'
-      | (DepPatch['patchFiles'] & {
-          version?: string
-        })
+    [key: string]: DepOptimize | DepPatch['patchFiles']
   }
 
   export type PluginOptions = {
