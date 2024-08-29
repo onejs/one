@@ -1,6 +1,6 @@
 import { type FunctionComponent, type ReactNode } from 'react';
 import type { GlobbedRouteImports, RenderAppProps } from './types';
-import type { NavigationContainerProps } from '@react-navigation/native';
+import { type NavigationContainerProps } from '@react-navigation/native';
 import type { RequireContext } from './types';
 import type { VXS } from './vite/types';
 type RootProps = RenderAppProps & Omit<InnerProps, 'context'> & {
