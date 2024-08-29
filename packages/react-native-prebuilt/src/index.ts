@@ -4,6 +4,7 @@ import { transformFlow } from '@vxrn/vite-flow'
 import { build, type BuildOptions } from 'esbuild'
 import FSExtra from 'fs-extra'
 import { resolve as importMetaResolve } from 'import-meta-resolve'
+import process from 'node:process'
 
 const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 
@@ -19,8 +20,8 @@ export async function buildAll() {
 
 const resolveFile = (path: string) => {
   try {
-    return importMetaResolve(path, import.meta.url).replace('file://', '')
-  } catch {
+    return importMetaResolve(path, `file://${process.cwd()}`).replace('file://', '')
+  } catch (err) {
     return require.resolve(path)
   }
 }
@@ -97,6 +98,8 @@ export async function buildReact(options: BuildOptions = {}) {
 }
 
 export async function buildReactNative(options: BuildOptions = {}) {
+  console.log('resolved to', resolveFile('react-native'))
+
   return build({
     bundle: true,
     entryPoints: [resolveFile('react-native')],
@@ -176,7 +179,6 @@ export async function buildReactNative(options: BuildOptions = {}) {
     const outCode = `
     const run = () => {
       ${bundled
-        // .replaceAll('require("react/jsx-runtime")', 'require("react/jsx-dev-runtime")')
         .replace(
           esbuildCommonJSFunction,
           `

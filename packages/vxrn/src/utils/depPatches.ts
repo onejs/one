@@ -1,8 +1,6 @@
 import { assertString } from './assert'
 import { type DepPatch, bailIfExists } from './patches'
 
-// TODO has no concept of version range checking, or patch versions
-
 export const depPatches: DepPatch[] = [
   {
     module: 'h3',
@@ -201,6 +199,18 @@ export const depPatches: DepPatch[] = [
       'dist/**/*.js': ['jsx'],
     },
   },
+
+  // {
+  //   module: 'react-native-reanimated',
+  //   patchFiles: {
+  //     'package.json': (contents) => {
+  //       assertString(contents)
+  //       const pkg = JSON.parse(contents)
+  //       pkg.type = 'module'
+  //       return JSON.stringify(pkg, null, 2)
+  //     },
+  //   },
+  // },
 
   // could almost do this? it has a couple errors though
   // {

@@ -37,7 +37,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@algolia/autocomplete-core',
     '@algolia/autocomplete-plugin-algolia-insights',
     '@algolia/autocomplete-shared',
-    'react-native-reanimated',
     'moti',
   ]
 
@@ -56,6 +55,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'css-in-js-utils',
     'hyphenate-style-name',
     'use-sync-external-store',
+    'react-native-reanimated', // uses .web.js extensions
     '@react-navigation/core',
     '@react-navigation/native',
     '@react-navigation/elements',
@@ -127,7 +127,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@tamagui/web',
     'tamagui',
     'react-native-web',
-    // 'react-native-web-lite',
     'reforest',
   ]
 
