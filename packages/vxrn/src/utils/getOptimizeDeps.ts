@@ -99,6 +99,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@tamagui/alert-dialog',
     '@react-navigation/routers',
     '@tamagui/simple-hash',
+    '@tamagui/one-theme',
     '@tamagui/use-did-finish-ssr',
     '@tamagui/use-event',
     '@tamagui/portal',

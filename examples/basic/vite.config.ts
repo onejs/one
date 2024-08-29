@@ -10,11 +10,7 @@ export default {
   },
 
   plugins: [
-    vxs({
-      // app: {
-      //   key: 'test',
-      // },
-    }),
+    vxs({}),
     // tamaguiPlugin(),
     // tamaguiExtractPlugin(),
   ],

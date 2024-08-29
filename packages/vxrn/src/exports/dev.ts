@@ -63,6 +63,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   // we pass resolved config into client inject to get the final port etc to use
   // probably can be done better
   const resolvedConfig = await resolveConfig(serverConfig, 'serve')
+
   const viteRNClientPlugin = clientInjectionsPlugin(resolvedConfig)
 
   // this fakes vite into thinking its loading files, so it hmrs in native mode despite not us never requesting the url
@@ -114,7 +115,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   )
 
   // builds the dev initial bundle for react native
-  const rnBundleHandler =  defineEventHandler(async (e) => {
+  const rnBundleHandler = defineEventHandler(async (e) => {
     try {
       const bundle = await getReactNativeBundle(options, viteRNClientPlugin)
       return new Response(bundle, {
@@ -126,10 +127,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
       console.error(` Error building React Native bundle: ${err}`)
     }
   })
-  router.get(
-    '/index.bundle',
-    rnBundleHandler
-  )
+  router.get('/index.bundle', rnBundleHandler)
   router.get(
     '/.expo/.virtual-metro-entry.bundle', // for Expo development builds
     rnBundleHandler

@@ -41,7 +41,11 @@ export function mergeUserConfig(
   return serverConfig
 }
 
-function deepMergeOptimizeDeps(a: DepsOptConf, b: DepsOptConf, extraDepsOpt: OptimizeDepsConf) {
+export function deepMergeOptimizeDeps(
+  a: DepsOptConf,
+  b: DepsOptConf,
+  extraDepsOpt?: OptimizeDepsConf
+) {
   a.optimizeDeps ||= {}
   b.optimizeDeps ||= {}
 
@@ -50,7 +54,7 @@ function deepMergeOptimizeDeps(a: DepsOptConf, b: DepsOptConf, extraDepsOpt: Opt
     ...(a.optimizeDeps.include || []),
     ...(b.optimizeDeps.include || []),
     ...coerceToArray(b.noExternal || []),
-    ...extraDepsOpt.include,
+    ...(extraDepsOpt?.include || []),
     'react',
     'react-dom',
     'react-dom/server',
@@ -60,24 +64,24 @@ function deepMergeOptimizeDeps(a: DepsOptConf, b: DepsOptConf, extraDepsOpt: Opt
   a.optimizeDeps.exclude = uniq([
     ...(a.optimizeDeps.exclude || []),
     ...(b.optimizeDeps.exclude || []),
-    ...extraDepsOpt.exclude,
+    ...(extraDepsOpt?.exclude || []),
   ])
 
   a.optimizeDeps.include = uniq([
     ...(a.optimizeDeps.include || []),
     ...(b.optimizeDeps.include || []),
-    ...extraDepsOpt.include,
+    ...(extraDepsOpt?.include || []),
   ])
 
   a.optimizeDeps.needsInterop = uniq([
     ...(a.optimizeDeps.needsInterop || []),
     ...(b.optimizeDeps.needsInterop || []),
-    ...extraDepsOpt.needsInterop,
+    ...(extraDepsOpt?.needsInterop || []),
   ])
 
   a.optimizeDeps.esbuildOptions = {
     ...(a.optimizeDeps.esbuildOptions || {}),
     ...(b.optimizeDeps.esbuildOptions || {}),
-    ...extraDepsOpt.esbuildOptions,
+    ...(extraDepsOpt?.esbuildOptions || {}),
   }
 }

@@ -8,6 +8,7 @@ import { globDir } from './globDir'
 import { swcTransform } from '@vxrn/vite-native-swc'
 import semver from 'semver'
 import type { UserConfig } from 'vite'
+import { deepMergeOptimizeDeps } from './mergeUserConfig'
 
 type Strategies = 'swc' | 'flow' | 'jsx'
 
@@ -39,29 +40,34 @@ export async function applyBuiltInPatches(options: VXRNOptionsFilled) {
 }
 
 export async function applyOptimizePatches(patches: DepPatch[], config: UserConfig) {
+  const optimizeDeps = {
+    include: [] as string[],
+    exclude: [] as string[],
+    needsInterop: [] as string[],
+  } satisfies Partial<UserConfig['optimizeDeps']>
+
   patches.forEach((patch) => {
     // apply non-file-specific optimizations:
     const optimize = patch.patchFiles.optimize
-    if (config && typeof optimize !== 'undefined') {
+    if (typeof optimize !== 'undefined') {
       if (optimize === true) {
-        config.optimizeDeps?.include?.push(patch.module)
+        optimizeDeps.include.push(patch.module)
       }
       if (optimize === false || optimize === 'exclude') {
-        if (config.optimizeDeps?.include) {
-          config.optimizeDeps.include = config.optimizeDeps.include.filter(
-            (x) => x !== patch.module
-          )
+        if (optimizeDeps?.include) {
+          optimizeDeps.include = optimizeDeps.include.filter((x) => x !== patch.module)
         }
-        config.optimizeDeps ||= {}
-        config.optimizeDeps.exclude ||= []
-        config.optimizeDeps.exclude.push(patch.module)
+        optimizeDeps.exclude.push(patch.module)
       }
       if (optimize === 'interop') {
-        config.optimizeDeps?.include?.push(patch.module)
-        config.optimizeDeps?.needsInterop?.push(patch.module)
+        optimizeDeps?.include?.push(patch.module)
+        optimizeDeps?.needsInterop?.push(patch.module)
       }
     }
   })
+
+  deepMergeOptimizeDeps(config, { optimizeDeps })
+  deepMergeOptimizeDeps(config.ssr!, { optimizeDeps })
 }
 
 export async function applyDependencyPatches(

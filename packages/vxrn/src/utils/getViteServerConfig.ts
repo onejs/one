@@ -17,6 +17,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
       command: 'serve',
     })) ?? {}
 
+  // TODO: can we move most of this into `vxs` plugin:
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
       mode: 'development',
