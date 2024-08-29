@@ -1,7 +1,24 @@
+1.0 ordered from most work to least:
+
+  - native
+    - large test suite + supports 1000 most popular dependencies
+    - better hmr
+    - better rebuild module caching
+    - complete website / docs
+    - build to production
+    - android
+    - assets
+    - symbolicator
+
+- uniswap repo has to use commonjs plugin but its very tricky to configure
+  - ideally we get a lot better at automating this, documenting, and maybe make it just a configuration key in vxs plugin
+
 - support export ending in `Page` instead of just `export default` for routes (hot reload friendly)
   - support export default hot reloads (would require react-refresh changes)
 
 - platform-specific route files
+
+- use dom
 
 - avoid work on hard reloads
   - we keep a Map of built modules => source
@@ -10,17 +27,12 @@
     - if not changed, return the og source
     - could maybe be better than this too
 
-- we should redo our prebuild react-native system to instead just use our patches/depsPatches system + support using their native react/react-dom versions at leasts optionally
+- prebuild react native shouldn't have hardcoded exports list
 
 - add test to weird-deps so we know no regressions
 
 - ScrollRestoration seems to have regressed (site not doing it consistently)
   - also we should default this on but have a way to turn it off
-
-- dep issues
-
-  -  ../../node_modules/@sentry/react-native/dist/js/utils/environment.js (1:9): "version" is not exported by "virtual:rn-internals:react-native/Libraries/Core/ReactNativeVersion", imported by "../../node_modules/@sentry/react-native/dist/js/utils/environment.js".
-
 
 - turn this back off VXRN_ENABLE_SOURCE_MAP:
   - https://github.com/swc-project/swc/issues/9416
