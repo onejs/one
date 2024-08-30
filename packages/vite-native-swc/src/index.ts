@@ -278,7 +278,7 @@ export const transformWithOptions = async (
         module: {
           type: 'commonjs',
           strict: true,
-          importInterop: 'node',
+          importInterop: 'none', // We want SWC to transform imports to require since there's no Rollup to handle them afterwards, but without adding any interop helpers that would break with our RN module system
         },
       }),
       jsc: {
