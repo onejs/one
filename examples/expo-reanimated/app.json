@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-blank-app",
-    "slug": "expo-blank-app",
+    "name": "expo-reanimated-app",
+    "slug": "expo-reanimated-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,14 +13,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.zetavg.expoblankapp"
+      "bundleIdentifier": "dev.onestack.vxrn.examples.expo.reanimated"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.zetavg.expoblankapp"
+      "package": "dev.onestack.vxrn.examples.expo.reanimated"
     },
     "web": {
       "favicon": "./assets/favicon.png"
