@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tamagui/config": "^1.109.8",
+    "@tamagui/core": "^1.109.8",
     "@tamagui/lucide-icons": "^1.109.8",
     "@tamagui/one-theme": "^1.109.8",
     "moti": "^0.29.0",
