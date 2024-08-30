@@ -1,10 +1,11 @@
 import '@tamagui/core/reset.css'
 import '../public/tamagui.css'
 
-import { TamaguiProvider, isWeb } from '@tamagui/core'
+import { TamaguiProvider, isWeb, View } from '@tamagui/core'
 import { UserThemeProvider, useUserTheme } from '@tamagui/one-theme'
 import { PageLoadProgressBar, ScrollRestoration, Tabs } from 'vxs'
 import config from '../tamagui.config'
+import { Home } from '@tamagui/lucide-icons'
 
 export default function Layout() {
   return (
@@ -22,7 +23,23 @@ export default function Layout() {
 
       <UserThemeProvider>
         <TamaguiRootProvider>
-          <Tabs />
+          <Tabs>
+            <Tabs.Screen
+              name="(stack)"
+              options={{
+                title: 'Home',
+                tabBarIcon: ({ color }) => <Home size={20} color="red" />,
+              }}
+            />
+
+            <Tabs.Screen
+              name="spa"
+              options={{
+                title: 'Profile',
+                tabBarIcon: ({ color }) => <View width={20} height={20} bg="green" />,
+              }}
+            />
+          </Tabs>
         </TamaguiRootProvider>
       </UserThemeProvider>
     </>
