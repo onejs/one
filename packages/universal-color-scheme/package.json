@@ -1,0 +1,44 @@
+{
+  "name": "@vxrn/universal-color-scheme",
+  "version": "1.1.201",
+  "source": "src/index.ts",
+  "types": "./types/index.d.ts",
+  "type": "module",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "bin": "run.mjs",
+  "files": [
+    "src",
+    "types",
+    "dist",
+    "vendor"
+  ],
+  "scripts": {
+    "build": "tamagui-build",
+    "watch": "tamagui-build --watch",
+    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "dependencies": {
+    "react": "^18.2.0 || ^19.0.0"
+  },
+  "peerDependencies": {
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@tamagui/build": "^1.109.8",
+    "react-native": "0.74.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
