@@ -1,3 +1,7 @@
+nice for demo:
+
+- react navigation 7 has animations between tabs
+
 1.0 ordered from most work to least:
 
   - native
@@ -62,3 +66,8 @@ Server running on http://127.0.0.1:8082
 - @ethersproject/hash property "atob" doesnt exist
 
 - TODO this would probably want to support their configured extensions
+
+- useLoader new useEffect to fetch new loader loader data
+  - hits /_vxrn/load/pathname.js for ssg at least
+  - in dev mode handleRequest just runs handleLoader
+  - in build mode generates the json

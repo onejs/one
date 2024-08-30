@@ -5217,6 +5217,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tamagui/babel-plugin-fully-specified@npm:1.110.0":
+  version: 1.110.0
+  resolution: "@tamagui/babel-plugin-fully-specified@npm:1.110.0"
+  dependencies:
+    "@babel/core": ^7.25.2
+  checksum: 46ec4ac4d861b8d5832dddc08393156230660af581ec74b8cd0e2ac929ab3773a34007ae1579dbbfa436ab190a32a977c3ada8bc837c1ea92fd73a23f5458b37
+  languageName: node
+  linkType: hard
+
 "@tamagui/build@npm:1.109.8, @tamagui/build@npm:^1.109.8":
   version: 1.109.8
   resolution: "@tamagui/build@npm:1.109.8"
@@ -5238,6 +5247,30 @@ __metadata:
     tamagui-build: tamagui-build.js
     teesx: teesx.sh
   checksum: cbeca1a7a373b72b8d190508696cc67c9ff95af4251ada31349770d169bba6e523e7b31135577e1d5145dec728ebd3aceed7e2e2fb15168a5ce991d1d5d90a9e
+  languageName: node
+  linkType: hard
+
+"@tamagui/build@npm:1.110.0":
+  version: 1.110.0
+  resolution: "@tamagui/build@npm:1.110.0"
+  dependencies:
+    "@babel/core": ^7.25.2
+    "@swc/core": ^1.7.21
+    "@tamagui/babel-plugin-fully-specified": 1.110.0
+    "@types/fs-extra": ^9.0.13
+    babel-plugin-fully-specified: "*"
+    chokidar: ^3.5.2
+    esbuild: ^0.23.0
+    esbuild-plugin-es5: ^2.1.0
+    esbuild-register: ^3.6.0
+    execa: ^5.0.0
+    fast-glob: ^3.2.11
+    fs-extra: ^11.2.0
+    lodash.debounce: ^4.0.8
+  bin:
+    tamagui-build: tamagui-build.js
+    teesx: teesx.sh
+  checksum: 3c3762b8fc4b609b43ff328803890d03b56a20cacaf98741f767ca52322eb84d5f92b8bc5044a5a60a861e141067a3e09c89462901352c5d4994d7a9d9601939
   languageName: node
   linkType: hard
 
@@ -6579,7 +6612,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/use-did-finish-ssr@npm:1.110.0":
+"@tamagui/use-did-finish-ssr@npm:1.110.0, @tamagui/use-did-finish-ssr@npm:^1.110.0":
   version: 1.110.0
   resolution: "@tamagui/use-did-finish-ssr@npm:1.110.0"
   peerDependencies:
@@ -7441,6 +7474,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vxrn/color-scheme@workspace:packages/color-scheme":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/color-scheme@workspace:packages/color-scheme"
+  dependencies:
+    "@tamagui/build": 1.110.0
+    "@tamagui/use-did-finish-ssr": ^1.110.0
+    "@vxrn/universal-color-scheme": ^1.1.201
+    react: ^18.2.0 || ^19.0.0
+    react-native: 0.74.1
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  languageName: unknown
+  linkType: soft
+
 "@vxrn/react-native-prebuilt@1.1.201, @vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt":
   version: 0.0.0-use.local
   resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
@@ -7452,8 +7500,8 @@ __metadata:
     fs-extra: ^11.2.0
     import-meta-resolve: ^4.1.0
     metro-react-native-babel-preset: ^0.77.0
-    react: ^18.3.1
-    react-dom: ^18.3.1
+    react: ^18.2.0 || ^19.0.0
+    react-dom: ^18.2.0 || ^19.0.0
     react-native: 0.74.1
   peerDependencies:
     react: "*"
@@ -7468,6 +7516,20 @@ __metadata:
   dependencies:
     "@biomejs/biome": ^1.8.3
     "@tamagui/build": ^1.109.8
+  languageName: unknown
+  linkType: soft
+
+"@vxrn/universal-color-scheme@1.1.201, @vxrn/universal-color-scheme@^1.1.201, @vxrn/universal-color-scheme@workspace:packages/universal-color-scheme":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/universal-color-scheme@workspace:packages/universal-color-scheme"
+  dependencies:
+    "@tamagui/build": ^1.109.8
+    react: ^18.2.0 || ^19.0.0
+    react-native: 0.74.1
+  peerDependencies:
+    react-native: "*"
+  bin:
+    universal-color-scheme: run.mjs
   languageName: unknown
   linkType: soft
 
@@ -19498,6 +19560,7 @@ __metadata:
     "@tamagui/build": ^1.109.8
     "@types/node": ^22.1.0
     "@types/react-dom": ^18.2.25
+    "@vxrn/universal-color-scheme": 1.1.201
     babel-dead-code-elimination: ^1.0.6
     citty: ^0.1.6
     create-vxrn: 1.1.201
@@ -19515,7 +19578,7 @@ __metadata:
     micromatch: ^4.0.7
     nanoid: ^3.3.7
     perfect-debounce: ^1.0.0
-    react: ^18.3.1
+    react: ^18.2.0 || ^19.0.0
     react-dom: ^18.3.1
     react-native: 0.74.1
     react-native-gesture-handler: ^2.18.1

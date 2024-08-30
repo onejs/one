@@ -3,6 +3,8 @@ import type { VXSRouter } from './interfaces/router'
 
 export type { Endpoint } from './types'
 
+export * from '@vxrn/universal-color-scheme'
+
 export type Href = VXSRouter.Href
 export type LinkProps = VXSRouter.LinkProps
 

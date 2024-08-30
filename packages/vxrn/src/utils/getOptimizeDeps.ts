@@ -66,6 +66,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'styleq',
     'fbjs',
     'vxs/headers',
+    '@vxrn/universal-color-scheme',
+    '@vxrn/color-scheme',
     'requires-port',
     'querystringify',
     'compare-versions',

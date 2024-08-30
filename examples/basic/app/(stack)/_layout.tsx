@@ -2,7 +2,6 @@ import { View } from '@tamagui/core'
 import { useUserTheme } from '@tamagui/one-theme'
 import { Appearance } from 'react-native'
 import { Stack } from 'vxs'
-import { Moon } from '@tamagui/lucide-icons'
 
 export default function Layout() {
   const [{ resolvedTheme }, setTheme] = useUserTheme()
