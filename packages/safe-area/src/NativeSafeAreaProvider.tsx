@@ -1,8 +1,8 @@
 /* eslint-env browser */
 
 import * as React from 'react'
-import { View } from 'react-native'
 import type { NativeSafeAreaProviderProps } from './SafeArea-types'
+import { View } from 'react-native'
 
 /**
  * TODO:
@@ -60,7 +60,15 @@ export function NativeSafeAreaProvider({
     }
   }, [onInsetsChange])
 
-  return <>{children}</>
+  const finalStyle = style || {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    maxHeight: '100%',
+    maxWidth: '100%',
+  }
+
+  return <View style={finalStyle}>{children}</View>
 }
 
 let _supportedTransitionEvent: string | null | undefined = null

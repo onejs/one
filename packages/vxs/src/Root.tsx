@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import type { GlobbedRouteImports, RenderAppProps } from './types'
 import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
@@ -10,13 +9,13 @@ import {
   type NavigationAction,
   type NavigationContainerProps,
 } from '@react-navigation/native'
+import { useColorScheme } from '@vxrn/universal-color-scheme'
 import { PreloadLinks } from './PreloadLinks'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import type { RequireContext } from './types'
 import type { VXS } from './vite/types'
-import { Appearance } from 'react-native'
 // import { SplashScreen } from './views/Splash'
 
 type RootProps = RenderAppProps &
@@ -200,17 +199,7 @@ function ContextNavigator({
   navigationContainerProps,
 }: InnerProps) {
   const store = useInitializeVXSRouter(context, initialLocation)
-  const [scheme, setScheme] = useState(Appearance.getColorScheme())
-
-  useEffect(() => {
-    const listener = Appearance.addChangeListener((next) => {
-      setScheme(next.colorScheme)
-    })
-
-    return () => {
-      listener.remove()
-    }
-  }, [])
+  const [colorScheme] = useColorScheme()
 
   // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
 
@@ -223,18 +212,25 @@ function ContextNavigator({
     return (
       <ParentWrapper>
         {/* <GestureHandlerRootView> */}
-        <SafeAreaProvider
+        {/* <SafeAreaProvider
           // SSR
           initialMetrics={INITIAL_METRICS}
           style={{
+            // THIS DOESNT DO ANYTHING BECAUSE react-navigation has its own internal safe area it passes!
+            // in fact not even sure we want this here?
             flex: 1,
+            maxHeight: '100%',
+            height: '100%',
+            maxWidth: '100%',
+            width: '100%',
+            backgroundColor: 'green',
           }}
-        >
-          {children}
+        > */}
+        {children}
 
-          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-        </SafeAreaProvider>
+        {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+        {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+        {/* </SafeAreaProvider> */}
         {/* </GestureHandlerRootView> */}
       </ParentWrapper>
     )
@@ -252,7 +248,7 @@ function ContextNavigator({
       initialState={store.initialState}
       linking={store.linking}
       onUnhandledAction={onUnhandledAction}
-      theme={scheme ? DarkTheme : DefaultTheme}
+      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
       documentTitle={{
         enabled: false,
       }}

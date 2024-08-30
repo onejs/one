@@ -1,4 +1,0 @@
-- useLoader new useEffect to fetch new loader loader data
-  - hits /_vxrn/load/pathname.js for ssg at least
-  - in dev mode handleRequest just runs handleLoader
-  - in build mode generates the json
