@@ -39,6 +39,13 @@ const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
   'executeOnUIRuntimeSync',
 ]
 
+/**
+ * Regex to test if a piece of code should be processed by react-native-reanimated's Babel plugin.
+ */
+const REANIMATED_REGEX = new RegExp(
+  ['worklet', ...REANIMATED_AUTOWORKLETIZATION_KEYWORDS].join('|')
+)
+
 export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
   const { root, port } = options
   const { optimizeDeps } = getOptimizeDeps('build')
@@ -111,10 +118,7 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
       {
         name: 'reanimated',
         async transform(code, id) {
-          if (
-            code.includes('worklet') ||
-            REANIMATED_AUTOWORKLETIZATION_KEYWORDS.some((k) => code.includes(k))
-          ) {
+          if (REANIMATED_REGEX.test(code)) {
             const out = await babelReanimated(code, id)
             return out
           }
