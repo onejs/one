@@ -5410,7 +5410,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/core@npm:1.110.0, @tamagui/core@npm:^1.110.0":
+"@tamagui/core@npm:1.110.0":
   version: 1.110.0
   resolution: "@tamagui/core@npm:1.110.0"
   dependencies:
@@ -7322,7 +7322,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vxrn/color-scheme@workspace:packages/color-scheme":
+"@vxrn/color-scheme@^1.1.201, @vxrn/color-scheme@workspace:packages/color-scheme":
   version: 0.0.0-use.local
   resolution: "@vxrn/color-scheme@workspace:packages/color-scheme"
   dependencies:
@@ -10240,17 +10240,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-basic@workspace:examples/basic"
   dependencies:
-    "@tamagui/config": ^1.110.0
-    "@tamagui/core": ^1.110.0
     "@tamagui/lucide-icons": ^1.110.0
-    "@tamagui/one-theme": ^1.110.0
-    moti: ^0.29.0
+    "@tamagui/vite-plugin": ^1.110.0
+    "@vxrn/color-scheme": ^1.1.201
     react: ^18.3.1
     react-native: 0.74.1
     react-native-reanimated: "npm:react-native-reanimated@3.13.0-rc.1"
+    react-native-svg: ^15.6.0
     react-native-web: ^0.19.12
     tamagui: ^1.110.0
-    uuid: 9.0.0
     vite: 6.0.0-alpha.18
     vxs: 1.1.201
   languageName: unknown
@@ -16186,6 +16184,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-svg@npm:^15.6.0":
+  version: 15.6.0
+  resolution: "react-native-svg@npm:15.6.0"
+  dependencies:
+    css-select: ^5.1.0
+    css-tree: ^1.1.3
+    warn-once: 0.1.1
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 31c70317b7ca4c74d2b1db28af7ae127920c004c606ed4bd37f1e191a9433f6ce9929eabd105ed8768a1327ad26675ef0eaa06a97ca736ced8bfc6410b0d7480
+  languageName: node
+  linkType: hard
+
 "react-native-web-internals@npm:1.110.0":
   version: 1.110.0
   resolution: "react-native-web-internals@npm:1.110.0"
@@ -19470,7 +19482,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"warn-once@npm:^0.1.0":
+"warn-once@npm:0.1.1, warn-once@npm:^0.1.0":
   version: 0.1.1
   resolution: "warn-once@npm:0.1.1"
   checksum: e6a5a1f5a8dba7744399743d3cfb571db4c3947897875d4962a7c5b1bf2195ab4518c838cb4cea652e71729f21bba2e98dc75686f5fccde0fabbd894e2ed0c0d
