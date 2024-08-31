@@ -175,8 +175,6 @@ export async function applyDependencyPatches(
                     return
                   }
 
-                  console.log('patchDefinition', patchDefinition)
-
                   // update
                   const out = await patchDefinition(contentsIn)
                   if (typeof out === 'string') {

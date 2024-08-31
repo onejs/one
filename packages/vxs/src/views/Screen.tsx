@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useNavigation } from '../useNavigation'
+import { useIsomorphicLayoutEffect } from '../utils/useIsomorphicLayoutEffect'
 
 export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>> = {
   /**
@@ -15,13 +16,11 @@ export type ScreenProps<TOptions extends Record<string, any> = Record<string, an
   options?: TOptions
 }
 
-const useLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : () => {}
-
 /** Component for setting the current screen's options dynamically. */
 export function Screen<TOptions extends object = object>({ name, options }: ScreenProps<TOptions>) {
   const navigation = useNavigation(name)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (
       options &&
       // React Navigation will infinitely loop in some cases if an empty object is passed to setOptions.

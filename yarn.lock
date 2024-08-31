@@ -7481,6 +7481,7 @@ __metadata:
     "@tamagui/build": 1.110.0
     "@tamagui/use-did-finish-ssr": ^1.110.0
     "@vxrn/universal-color-scheme": ^1.1.201
+    "@vxrn/use-isomorphic-layout-effect": ^1.1.201
     react: ^18.2.0 || ^19.0.0
     react-native: 0.74.1
   peerDependencies:
@@ -7524,12 +7525,20 @@ __metadata:
   resolution: "@vxrn/universal-color-scheme@workspace:packages/universal-color-scheme"
   dependencies:
     "@tamagui/build": ^1.109.8
+    "@vxrn/use-isomorphic-layout-effect": ^1.1.201
     react: ^18.2.0 || ^19.0.0
     react-native: 0.74.1
   peerDependencies:
     react-native: "*"
-  bin:
-    universal-color-scheme: run.mjs
+  languageName: unknown
+  linkType: soft
+
+"@vxrn/use-isomorphic-layout-effect@^1.1.201, @vxrn/use-isomorphic-layout-effect@workspace:packages/use-isomorphic-layout-effect":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/use-isomorphic-layout-effect@workspace:packages/use-isomorphic-layout-effect"
+  dependencies:
+    "@tamagui/build": ^1.109.8
+    react: ^18.2.0 || ^19.0.0
   languageName: unknown
   linkType: soft
 
@@ -19561,6 +19570,7 @@ __metadata:
     "@types/node": ^22.1.0
     "@types/react-dom": ^18.2.25
     "@vxrn/universal-color-scheme": 1.1.201
+    "@vxrn/use-isomorphic-layout-effect": ^1.1.201
     babel-dead-code-elimination: ^1.0.6
     citty: ^0.1.6
     create-vxrn: 1.1.201

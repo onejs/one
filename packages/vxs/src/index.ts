@@ -27,6 +27,7 @@ export { PageLoadProgressBar } from './views/PageLoadProgressBar'
 export { createApp } from './createApp'
 
 export { isResponse } from './utils/isResponse'
+export { useIsomorphicLayoutEffect } from './utils/useIsomorphicLayoutEffect'
 
 export { useLinkTo } from './link/useLinkTo'
 
