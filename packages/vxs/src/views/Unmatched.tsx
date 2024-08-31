@@ -1,8 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text } from 'react-native'
 
-const useLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : () => {}
-
 function NoSSR({ children }: { children: React.ReactNode }) {
   const [render, setRender] = React.useState(false)
   React.useEffect(() => {

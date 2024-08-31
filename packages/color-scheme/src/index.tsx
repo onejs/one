@@ -4,7 +4,8 @@ import {
   useColorScheme as useColorSchemeBase,
   useColorSchemeSetting,
 } from '@vxrn/universal-color-scheme'
-import { createContext, useContext, useLayoutEffect, useMemo } from 'react'
+import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
+import { createContext, useContext, useMemo } from 'react'
 
 export type Scheme = 'light' | 'dark'
 export type SchemeSetting = 'system' | 'light' | 'dark'
@@ -58,7 +59,7 @@ export function SchemeProvider({
   const [colorScheme] = useColorScheme()
 
   if (process.env.TAMAGUI_TARGET !== 'native') {
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       const toAdd = getClassName(colorScheme)
       const { classList } = document.documentElement
       if (!classList.contains(toAdd)) {

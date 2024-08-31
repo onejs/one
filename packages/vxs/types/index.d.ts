@@ -16,6 +16,7 @@ export { ScrollRestoration } from './views/ScrollRestoration';
 export { PageLoadProgressBar } from './views/PageLoadProgressBar';
 export { createApp } from './createApp';
 export { isResponse } from './utils/isResponse';
+export { useIsomorphicLayoutEffect } from './utils/useIsomorphicLayoutEffect';
 export { useLinkTo } from './link/useLinkTo';
 export { useRouter, useUnstableGlobalHref, usePathname, useNavigationContainerRef, useParams, useActiveParams, useSegments, useRootNavigationState, } from './hooks';
 export { useLocalSearchParams, useGlobalSearchParams, } from './hooks';

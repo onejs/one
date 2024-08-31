@@ -3,8 +3,9 @@
 // but its common to want to have a way to force override the scheme
 // this implements a setColorScheme and getColorScheme that can override system
 
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import { Appearance } from 'react-native'
+import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
 
 export type ColorSchemeName = 'light' | 'dark'
 export type ColorSchemeSetting = ColorSchemeName | 'system'
@@ -29,7 +30,7 @@ export function onColorSchemeChange(listener: ColorSchemeListener) {
 export function useColorScheme() {
   const [state, setState] = useState(getColorScheme())
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     return onColorSchemeChange(setState)
   }, [])
 
@@ -39,7 +40,7 @@ export function useColorScheme() {
 export function useColorSchemeSetting() {
   const [state, setState] = useState(getColorSchemeSetting())
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     return onColorSchemeChange(() => setState(getColorSchemeSetting()))
   }, [])
 
