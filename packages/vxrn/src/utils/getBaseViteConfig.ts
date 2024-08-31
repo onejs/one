@@ -29,6 +29,7 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
             ssr: {
               resolve: {
                 extensions: webExtensions,
+                conditions: ['vxrn-web'],
                 externalConditions: ['vxrn-web'],
               },
             },
