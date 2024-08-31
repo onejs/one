@@ -14,6 +14,8 @@ nice for demo:
     - assets
     - symbolicator
 
+- document @vxrn/color-scheme and @vxrn/universal-color-scheme
+
 - uniswap repo has to use commonjs plugin but its very tricky to configure
   - ideally we get a lot better at automating this, documenting, and maybe make it just a configuration key in vxs plugin
 
