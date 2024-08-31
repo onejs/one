@@ -114,10 +114,21 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
     })
   )
 
+  let cachedReactNativeBundle: string | null = null
   // builds the dev initial bundle for react native
   const rnBundleHandler = defineEventHandler(async (e) => {
     try {
-      const bundle = await getReactNativeBundle(options, viteRNClientPlugin)
+      const bundle = await (async () => {
+        if (cachedReactNativeBundle) {
+          console.info('Serving React Native bundle from cache')
+          return cachedReactNativeBundle
+        }
+
+        const builtBundle = await getReactNativeBundle(options, viteRNClientPlugin)
+        cachedReactNativeBundle = builtBundle
+        return builtBundle
+      })()
+
       return new Response(bundle, {
         headers: {
           'content-type': 'text/javascript',
@@ -126,6 +137,9 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
     } catch (err) {
       console.error(` Error building React Native bundle: ${err}`)
     }
+  })
+  viteServer.watcher.addListener('change', () => {
+    cachedReactNativeBundle = null // invalidate cache when something changes
   })
   router.get('/index.bundle', rnBundleHandler)
   router.get(
