@@ -36,6 +36,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, viteRNC
                 format: "cjs";
             };
             onwarn(message: import("rollup").RollupLog, warn: import("rollup").LoggingFunction): void;
+            onLog(level: import("rollup").LogLevel, log: import("rollup").RollupLog, handler: import("rollup").LogOrStringHandler): void;
         };
     };
 }>;

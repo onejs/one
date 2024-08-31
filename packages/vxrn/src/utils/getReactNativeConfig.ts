@@ -46,6 +46,9 @@ const REANIMATED_REGEX = new RegExp(
   ['worklet', ...REANIMATED_AUTOWORKLETIZATION_KEYWORDS].join('|')
 )
 
+const IGNORE_ROLLUP_LOGS_RE =
+  /vite-native-client\/dist\/esm\/client\.native\.js|node_modules\/\.vxrn\/react-native\.js/
+
 export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
   const { root, port } = options
   const { optimizeDeps } = getOptimizeDeps('build')
@@ -226,16 +229,22 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
               message.code === 'MISSING_EXPORT' ||
               message.code === 'SOURCEMAP_ERROR'
             ) {
-              if (!didWarn) {
-                didWarn = true
-                console.warn(
-                  ` [vxrn] Supressing a few mostly harmless logs, enable with DEBUG=vxrn`
-                )
-              }
+              warnAboutSuppressingLogsOnce()
               return
             }
           }
           warn(message)
+        },
+
+        onLog(level, log, handler) {
+          if (!process.env.DEBUG?.startsWith('vxrn')) {
+            if (IGNORE_ROLLUP_LOGS_RE.test(log.message)) {
+              warnAboutSuppressingLogsOnce()
+              return
+            }
+          }
+
+          handler(level, log)
         },
       },
     },
@@ -252,4 +261,10 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
   return nativeBuildConfig satisfies UserConfig
 }
 
-let didWarn = false
+let didWarnSuppressingLogs = false
+function warnAboutSuppressingLogsOnce() {
+  if (!didWarnSuppressingLogs) {
+    didWarnSuppressingLogs = true
+    console.warn(` [vxrn] Suppressing a few mostly harmless logs, enable with DEBUG=vxrn`)
+  }
+}
