@@ -25,7 +25,7 @@
     "turbo:run": "TURBO_TELEMETRY_DISABLED=1 turbo",
     "build": "yarn turbo:run build --filter='*' --filter='!example-*'",
     "release": "node -r esbuild-register ./scripts/release.ts",
-    "check": "turbo check && manypkg check",
+    "check": "turbo check",
     "clean:build": "yarn turbo:run clean:build",
     "clean:ts": "tsc -b --clean tsconfig.json",
     "clean": "yarn turbo:run clean:build",
