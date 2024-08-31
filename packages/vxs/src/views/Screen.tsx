@@ -1,7 +1,5 @@
-import React from 'react'
-
+import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
 import { useNavigation } from '../useNavigation'
-import { useIsomorphicLayoutEffect } from '../utils/useIsomorphicLayoutEffect'
 
 export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>> = {
   /**

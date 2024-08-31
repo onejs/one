@@ -2,6 +2,9 @@ import type { Plugin } from 'vite'
 import type { VXS } from './types'
 import { applyOptimizePatches, applyDependencyPatches, type DepPatch } from 'vxrn'
 
+// TEMP
+let hasApplied = false
+
 export function fixDependenciesPlugin(options?: VXS.FixDependencies): Plugin {
   const patches: DepPatch[] = []
   for (const key in options) {
@@ -21,7 +24,8 @@ export function fixDependenciesPlugin(options?: VXS.FixDependencies): Plugin {
     name: 'vxs-fix-dependencies',
 
     async config(config) {
-      if (patches.length) {
+      if (!hasApplied && patches.length) {
+        hasApplied = true
         await applyOptimizePatches(patches, config)
       }
     },
