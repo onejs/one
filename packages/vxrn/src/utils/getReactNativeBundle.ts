@@ -3,16 +3,20 @@ import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
 import { createBuilder } from 'vite'
+import type { RollupCache } from 'rollup'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { getReactNativeConfig } from './getReactNativeConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { resolveFile } from './resolveFile'
 import { getPrebuilds, prebuildReactNativeModules } from './swapPrebuiltReactModules'
+import { buildEnvironment } from './fork/vite/build'
 
 const { pathExists } = FSExtra
 
 // used for normalizing hot reloads
 export let entryRoot = ''
+
+const cache: Record<string, RollupCache> = {}
 
 export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
   entryRoot = options.root
@@ -45,7 +49,18 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
 
   const builder = await createBuilder(nativeBuildConfig)
 
-  const buildOutput = await builder.build(builder.environments.ios)
+  const environmentName = 'ios' as const
+  const environment = builder.environments[environmentName]
+
+  // See: https://rollupjs.org/configuration-options/#cache
+  environment.config.build.rollupOptions.cache =
+    cache[environmentName] || true /* to initially enable Rollup cache */
+
+  // We are using a forked version of the Vite internal function `buildEnvironment` (which is what `builder.build` calls) that will return the Rollup cache object with the build output, and also with some performance improvements.
+  const buildOutput = await buildEnvironment(environment.config, environment)
+  if (buildOutput.cache) {
+    cache[environmentName] = buildOutput.cache
+  }
 
   if (!('output' in buildOutput)) {
     throw `❌`
