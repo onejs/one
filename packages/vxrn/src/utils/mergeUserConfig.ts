@@ -44,22 +44,27 @@ export function mergeUserConfig(
 export function deepMergeOptimizeDeps(
   a: DepsOptConf,
   b: DepsOptConf,
-  extraDepsOpt?: OptimizeDepsConf
+  extraDepsOpt?: OptimizeDepsConf,
+  avoidMergeExternal = false
 ) {
   a.optimizeDeps ||= {}
   b.optimizeDeps ||= {}
 
-  a.noExternal = uniq([
-    ...coerceToArray((a.noExternal as string[]) || []),
-    ...(a.optimizeDeps.include || []),
-    ...(b.optimizeDeps.include || []),
-    ...coerceToArray(b.noExternal || []),
-    ...(extraDepsOpt?.include || []),
-    'react',
-    'react-dom',
-    'react-dom/server',
-    'react-dom/client',
-  ])
+  if (!avoidMergeExternal) {
+    a.noExternal = uniq([
+      ...coerceToArray((a.noExternal as string[]) || []),
+      ...(a.optimizeDeps.include || []),
+      ...(b.optimizeDeps.include || []),
+      ...coerceToArray(b.noExternal || []),
+      ...(extraDepsOpt?.include || []),
+
+      // TODO at least move to getOptimizeDeps
+      'react',
+      'react-dom',
+      'react-dom/server',
+      'react-dom/client',
+    ])
+  }
 
   a.optimizeDeps.exclude = uniq([
     ...(a.optimizeDeps.exclude || []),

@@ -12,6 +12,6 @@ type DepsOptConf = {
     noExternal?: string | true | RegExp | (string | RegExp)[] | undefined;
 };
 export declare function mergeUserConfig(optimizeDeps: OptimizeDepsConf, serverConfig: UserConfig, userViteConfig?: UserConfig | null): UserConfig;
-export declare function deepMergeOptimizeDeps(a: DepsOptConf, b: DepsOptConf, extraDepsOpt?: OptimizeDepsConf): void;
+export declare function deepMergeOptimizeDeps(a: DepsOptConf, b: DepsOptConf, extraDepsOpt?: OptimizeDepsConf, avoidMergeExternal?: boolean): void;
 export {};
 //# sourceMappingURL=mergeUserConfig.d.ts.map

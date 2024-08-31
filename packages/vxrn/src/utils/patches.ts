@@ -64,8 +64,8 @@ export async function applyOptimizePatches(patches: DepPatch[], config: UserConf
     }
   })
 
-  deepMergeOptimizeDeps(config, { optimizeDeps })
-  deepMergeOptimizeDeps(config.ssr!, { optimizeDeps })
+  deepMergeOptimizeDeps(config, { optimizeDeps }, undefined, true)
+  deepMergeOptimizeDeps(config.ssr!, { optimizeDeps }, undefined, true)
 }
 
 export async function applyDependencyPatches(
