@@ -11,15 +11,15 @@
     "serve": "vxs serve"
   },
   "dependencies": {
-    "@tamagui/lucide-icons": "^1.110.0",
-    "@tamagui/vite-plugin": "^1.110.0",
+    "@tamagui/lucide-icons": "^1.110.1",
+    "@tamagui/vite-plugin": "^1.110.1",
     "@vxrn/color-scheme": "1.1.202",
     "react": "^18.3.1",
     "react-native": "0.74.1",
     "react-native-reanimated": "npm:react-native-reanimated@3.13.0-rc.1",
     "react-native-svg": "^15.6.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.110.0",
+    "tamagui": "^1.110.1",
     "vxs": "1.1.202"
   },
   "devDependencies": {
