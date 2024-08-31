@@ -1,10 +1,10 @@
 import '@tamagui/core/reset.css'
 import '../public/tamagui.css'
 
-import { TamaguiProvider, isWeb, View } from '@tamagui/core'
-import { UserThemeProvider, useUserTheme } from '@tamagui/one-theme'
+import { TamaguiProvider, isWeb, View } from 'tamagui'
+import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { PageLoadProgressBar, ScrollRestoration, Tabs } from 'vxs'
-import config from '../tamagui.config'
+import config from '../config/tamagui.config'
 import { Home } from '@tamagui/lucide-icons'
 
 export default function Layout() {
@@ -21,7 +21,7 @@ export default function Layout() {
       <ScrollRestoration />
       <PageLoadProgressBar />
 
-      <UserThemeProvider>
+      <SchemeProvider>
         <TamaguiRootProvider>
           <Tabs>
             <Tabs.Screen
@@ -41,16 +41,16 @@ export default function Layout() {
             />
           </Tabs>
         </TamaguiRootProvider>
-      </UserThemeProvider>
+      </SchemeProvider>
     </>
   )
 }
 
 const TamaguiRootProvider = ({ children }: { children: React.ReactNode }) => {
-  const [{ resolvedTheme }] = useUserTheme()
+  const [scheme] = useColorScheme()
 
   return (
-    <TamaguiProvider disableInjectCSS config={config} defaultTheme={resolvedTheme}>
+    <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme}>
       {children}
     </TamaguiProvider>
   )

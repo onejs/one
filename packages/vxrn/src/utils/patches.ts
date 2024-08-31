@@ -52,14 +52,12 @@ export async function applyOptimizePatches(patches: DepPatch[], config: UserConf
     if (typeof optimize !== 'undefined') {
       if (optimize === true) {
         optimizeDeps.include.push(patch.module)
-      }
-      if (optimize === false || optimize === 'exclude') {
+      } else if (optimize === false || optimize === 'exclude') {
         if (optimizeDeps?.include) {
           optimizeDeps.include = optimizeDeps.include.filter((x) => x !== patch.module)
         }
         optimizeDeps.exclude.push(patch.module)
-      }
-      if (optimize === 'interop') {
+      } else if (optimize === 'interop') {
         optimizeDeps?.include?.push(patch.module)
         optimizeDeps?.needsInterop?.push(patch.module)
       }

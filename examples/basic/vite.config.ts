@@ -1,13 +1,6 @@
+import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
+import type { UserConfig } from 'vite'
 import { vxs } from 'vxs/vite'
-import type { DevEnvironmentOptions, UserConfig } from 'vite'
-
-const webEnvironmentOptions: UserConfig = {
-  resolve: {
-    alias: {
-      'react-native-svg': '@tamagui/react-native-svg',
-    },
-  },
-}
 
 export default {
   resolve: {
@@ -16,14 +9,12 @@ export default {
     },
   },
 
-  environments: {
-    client: webEnvironmentOptions,
-    ssr: webEnvironmentOptions,
-  },
-
   plugins: [
-    vxs({}),
-    // tamaguiPlugin(),
+    //
+    vxs(),
+    tamaguiPlugin({
+      config: 'config/tamagui.config.ts',
+    }),
     // tamaguiExtractPlugin(),
   ],
 } satisfies UserConfig
