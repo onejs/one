@@ -1,4 +1,3 @@
-import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
 import type { UserConfig } from 'vite'
 import { vxs } from 'vxs/vite'
 
@@ -12,9 +11,9 @@ export default {
   plugins: [
     //
     vxs(),
-    tamaguiPlugin({
-      config: 'config/tamagui.config.ts',
-    }),
+    // tamaguiPlugin({
+    //   config: 'config/tamagui.config.ts',
+    // }),
     // tamaguiExtractPlugin(),
   ],
 } satisfies UserConfig
