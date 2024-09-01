@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import { weakKey } from './utils/weakKey'
 import { preloadingLoader } from './router/router'
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
-import { usePathname } from './hooks'
+import { useActiveParams, usePathname } from './hooks'
 import { dynamicImport } from './utils/dynamicImport'
 
 const promises: Record<string, undefined | Promise<void>> = {}
@@ -22,8 +22,13 @@ export function useLoader<
   // })
 
   // server side we just run the loader directly
-  if (typeof window === 'undefined') {
-    return useAsyncFn(loader, globalThis['__vxrnLoaderProps__'])
+  if (process.env.TAMAGUI_TARGET === 'native' || typeof window === 'undefined') {
+    return useAsyncFn(
+      loader,
+      globalThis['__vxrnLoaderProps__'] || {
+        params: useActiveParams(),
+      }
+    )
   }
 
   const preloadedData = globalThis['__vxrnLoaderData__']

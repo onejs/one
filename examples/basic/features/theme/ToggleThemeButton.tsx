@@ -11,7 +11,7 @@ export function ToggleThemeButton() {
 
   return (
     <View pointerEvents="auto" onPress={onPress}>
-      <Icon size={24} />
+      <Icon size={22} />
     </View>
   )
 }

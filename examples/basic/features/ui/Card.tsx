@@ -7,6 +7,7 @@ export const Card = styled(XStack, {
   gap: '$5',
   bbw: 1,
   bbc: '$borderColor',
+  minHeight: 100,
 
   hoverStyle: {
     bg: '$color2',

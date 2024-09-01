@@ -14,10 +14,16 @@ nice for demo:
     - assets
     - symbolicator
 
+- get type generation working for routes
+
 pokai:
 
   - make sure useLoader working on native
-  - logging improvements
+  - hot reloading PageContainer breaks "_indexnative.styled is not a function"
+  - log error on loading native: called `Option::unwrap()` on a `None` value
+  - on load warning: Each child in a list should have a unique "key" prop.
+    - i disabled the log via logbox.ignore for now
+    - seems like it comes from lucide icons SVG, maybe from react-native-svg
   - +ssr routes
   - hmr adding route
 
@@ -25,7 +31,6 @@ jon:
   - improve errors, RootErrorBoundary, etc
   - test cli, improve cli visuals
   - design polish
-  - get type generation working for routes
   - ScrollRestoration seems to have regressed (site not doing it consistently)
     - make it default to be on, but if you import and use it it overrides
 

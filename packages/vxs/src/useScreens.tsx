@@ -230,7 +230,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   const SuspenseFallback = ({ route }: { route: RouteNode }) => {
     useEffect(() => {
-      console.warn(`⚠️ Suspended:`, route)
+      console.info(`⚠️ Suspended:`, route)
     }, [route])
 
     return null

@@ -7,7 +7,7 @@ import { Card } from '../ui/Card'
 
 export const FeedCard = (props: FeedItem) => {
   return (
-    <Link href={`/post/${props.id}`}>
+    <Link asChild href={`/post/${props.id}`}>
       <Card tag="a">
         <Image width={50} height={50} br={100} src={props.user.avatar} />
         <YStack f={1}>
