@@ -188,7 +188,9 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
             if (!transformedJS) {
               throw new Error(`No transformed js returned`)
             }
+
             const exported = await runner.import(routeFile)
+
             const loaderData = await exported.loader?.(loaderProps)
 
             if (loaderData) {

@@ -4,6 +4,7 @@ import { weakKey } from './utils/weakKey'
 import { preloadingLoader } from './router/router'
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 import { usePathname } from './hooks'
+import { dynamicImport } from './utils/dynamicImport'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -46,7 +47,7 @@ export function useLoader<
   }
 
   const loaded = loadedData[currentPath]
-  if (loaded) {
+  if (typeof loaded !== 'undefined') {
     return loaded
   }
 
@@ -69,11 +70,12 @@ export function useLoader<
 
     if (!promises[currentPath]) {
       const getData = async () => {
-        const loaderJSUrl = `${typeof window.location === 'undefined' ? 'http://127.0.0.1:8081' /* TODO */: CLIENT_BASE_URL}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
+        const isNative = process.env.TAMAGUI_TARGET === 'native'
+        const loaderJSUrl = `${isNative ? 'http://127.0.0.1:8081' /* TODO */ : CLIENT_BASE_URL}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
 
         try {
           const response = await (async () => {
-            if (typeof window.location === 'undefined') {
+            if (isNative) {
               // On native, we need to fetch the loader code and eval it
               const loaderJsCode = await fetch(
                 `${loaderJSUrl}&platform=ios` /* TODO: platform */
@@ -83,7 +85,7 @@ export function useLoader<
             }
 
             // On web, we can use import to dynamically load the loader
-            return await import(loaderJSUrl)
+            return await dynamicImport(loaderJSUrl)
           })()
 
           loadedData[currentPath] = response.loader()
