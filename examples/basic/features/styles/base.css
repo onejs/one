@@ -34,6 +34,6 @@ a {
   color: inherit;
 }
 
-a.is_Button, .text-decoration-none {
+a.is_Button, .text-decoration-none, a:has(div) {
   text-decoration: none;
 }

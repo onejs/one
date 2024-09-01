@@ -1,11 +1,15 @@
 import { Image as Image2, type ImageProps } from '@tamagui/image-next'
-import { isWeb, styled, View } from 'tamagui'
+import { isWeb, View } from 'tamagui'
 
-const WebImage = styled(View, {
-  name: 'Image',
-  tag: 'img',
-})
-
-export function Image(props: ImageProps) {
-  return isWeb ? <WebImage {...props} /> : <Image2 {...props} />
+export function Image({ src, ...props }: ImageProps) {
+  return isWeb ? (
+    <View userSelect="none" pe="none" ov="hidden" {...props}>
+      <img
+        src={src}
+        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+      />
+    </View>
+  ) : (
+    <Image2 {...props} src={src} />
+  )
 }
