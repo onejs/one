@@ -1,12 +1,11 @@
 import '@tamagui/core/reset.css'
-import '../public/tamagui.css'
-
-import { Bell, Home, User } from '@tamagui/lucide-icons'
+import '~/features/styles/base.css'
+import '~/features/styles/tamagui.css'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { isWeb, TamaguiProvider } from 'tamagui'
-import { PageLoadProgressBar, ScrollRestoration, Tabs } from 'vxs'
-import { ToggleThemeButton } from '~/features/theme/ToggleThemeButton'
+import { PageLoadProgressBar, ScrollRestoration } from 'vxs'
 import config from '../config/tamagui.config'
+import { HomeLayout } from '~/features/home/HomeLayout'
 
 export default function Layout() {
   return (
@@ -24,34 +23,7 @@ export default function Layout() {
 
       <SchemeProvider>
         <TamaguiRootProvider>
-          <Tabs>
-            <Tabs.Screen
-              name="(stack)"
-              options={{
-                title: 'Home',
-                tabBarIcon: () => <Home size={20} />,
-                headerRight() {
-                  return <ToggleThemeButton />
-                },
-              }}
-            />
-
-            <Tabs.Screen
-              name="spa"
-              options={{
-                title: 'Profile',
-                tabBarIcon: () => <Bell size={20} />,
-              }}
-            />
-
-            <Tabs.Screen
-              name="user/[user]"
-              options={{
-                title: 'Profile',
-                tabBarIcon: () => <User size={20} />,
-              }}
-            />
-          </Tabs>
+          <HomeLayout />
         </TamaguiRootProvider>
       </SchemeProvider>
     </>

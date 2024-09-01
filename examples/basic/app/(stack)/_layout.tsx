@@ -1,9 +1,6 @@
-import { Stack } from 'vxs'
+import { isWeb } from 'tamagui'
+import { Slot, Stack } from 'vxs'
 
 export default function Layout() {
-  return (
-    <>
-      <Stack />
-    </>
-  )
+  return <>{isWeb ? <Slot /> : <Stack />}</>
 }

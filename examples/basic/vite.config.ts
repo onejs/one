@@ -12,8 +12,9 @@ export default {
   plugins: [
     vxs(),
     tamaguiExtractPlugin({
+      disableExtraction: true,
       config: 'config/tamagui.config.ts',
-      outputCSS: 'public/tamagui.css',
+      outputCSS: 'features/styles/tamagui.css',
       components: ['tamagui'],
     }),
   ],
