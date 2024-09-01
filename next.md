@@ -75,3 +75,7 @@ jon:
   - hits /_vxrn/load/pathname.js for ssg at least
   - in dev mode handleRequest just runs handleLoader
   - in build mode generates the json
+
+- `Error building React Native bundle: Error ... EISDIR: illegal operation on a directory, read`
+  - Happens with react-native-svg 15.6.0 where it has `elements.js` and `elements` directory at the same time
+  - Might be related to bug [40E4] in the VXRN Takeout Issue List
