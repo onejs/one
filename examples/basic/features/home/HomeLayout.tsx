@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import {
   createStyledContext,
   isTouchable,
+  ScrollView,
   SizableText,
   styled,
   View,
@@ -9,7 +10,7 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { Link, Slot } from 'vxs'
+import { Link, Slot, usePathname } from 'vxs'
 import { Logo } from '../brand/Logo'
 import { useToggleTheme } from '../theme/ToggleThemeButton'
 import { HomeIcons } from './HomeIcons'
@@ -35,7 +36,9 @@ function HomeLayoutTouch() {
       </XStack>
 
       <YStack f={1}>
-        <Slot />
+        <ScrollView>
+          <Slot />
+        </ScrollView>
       </YStack>
 
       <XStack ai="center" jc="space-around" btw={1} btc="$borderColor" py="$1" gap="$1">
@@ -47,7 +50,7 @@ function HomeLayoutTouch() {
 
 function HomeLayoutMouse() {
   return (
-    <XStack f={1}>
+    <XStack f={1} mah="100vh">
       <YStack
         miw={220}
         ai="center"
@@ -80,7 +83,9 @@ function HomeLayoutMouse() {
       </YStack>
 
       <YStack f={1}>
-        <Slot />
+        <ScrollView>
+          <Slot />
+        </ScrollView>
       </YStack>
     </XStack>
   )
@@ -89,7 +94,7 @@ function HomeLayoutMouse() {
 function NavLinks() {
   return (
     <>
-      <SideMenuLink href="/" Icon={HomeIcons.Home}>
+      <SideMenuLink href="/" subPaths={['/post/']} Icon={HomeIcons.Home}>
         Feed
       </SideMenuLink>
 
@@ -128,12 +133,21 @@ const ToggleThemeLink = (props: ViewProps) => {
 
 const SideMenuLink = ({
   href,
+  subPaths,
   Icon,
   children,
-}: { href: string; Icon: (typeof HomeIcons)['Home']; children: ReactNode }) => {
+}: {
+  subPaths?: string[]
+  href: string
+  Icon: (typeof HomeIcons)['Home']
+  children: ReactNode
+}) => {
+  const pathname = usePathname()
+  const isActive = pathname === href || subPaths?.some((p) => pathname.startsWith(p))
+
   return (
     <Link asChild href={href}>
-      <LinkContainer>
+      <LinkContainer isActive={isActive}>
         <IconFrame>
           <Icon size={28} />
         </IconFrame>
@@ -153,6 +167,12 @@ const LinkText = styled(SizableText, {
   $xs: {
     display: 'none',
   },
+
+  variants: {
+    isVertical: {
+      true: {},
+    },
+  } as const,
 })
 
 const LinkContainer = styled(XStack, {
@@ -171,6 +191,12 @@ const LinkContainer = styled(XStack, {
   },
 
   variants: {
+    isActive: {
+      true: {
+        backgroundColor: '$color2',
+      },
+    },
+
     isVertical: {
       true: {
         f: 1,
