@@ -6,9 +6,9 @@ export function HomeLayout() {
   return (
     <Tabs>
       <Tabs.Screen
-        name="(stack)"
+        name="(feed)"
         options={{
-          title: 'Home',
+          title: 'Feed',
           tabBarIcon: () => <HomeIcons.Home size={20} />,
           headerRight() {
             return <ToggleThemeButton />
