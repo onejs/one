@@ -27,6 +27,7 @@ import { shouldLinkExternally } from '../utils/url'
 import { CACHE_KEY, CLIENT_BASE_URL } from './constants'
 import { getNormalizedStatePath, type UrlObject } from './getNormalizedStatePath'
 import { setLastAction } from './lastAction'
+import { dynamicImport } from '../utils/dynamicImport'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -389,7 +390,7 @@ function setupPreload(href: string) {
     const loaderJSUrl = `${CLIENT_BASE_URL}/assets/${removeSearch(
       href.slice(1).replaceAll('/', '_')
     )}_vxrn_loader.js?${CACHE_KEY}`
-    const response = await import(loaderJSUrl)
+    const response = await dynamicImport(loaderJSUrl)
     try {
       return await response.loader()
     } catch (err) {

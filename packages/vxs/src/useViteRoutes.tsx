@@ -1,5 +1,6 @@
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 import type { GlobbedRouteImports } from './types'
+import { dynamicImport } from './utils/dynamicImport'
 import { removeSearch } from './utils/removeSearch'
 import type { VXS } from './vite/types'
 
@@ -66,7 +67,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
               const importUrl = `${CLIENT_BASE_URL}${removeSearch(
                 realPath
               )}_vxrn_loader.js?cache_key=${CACHE_KEY}`
-              return import(/* @vite-ignore */ importUrl)
+              return dynamicImport(importUrl)
             }
     } else {
       routesSync[pathWithoutRelative] = loadRouteFunction
