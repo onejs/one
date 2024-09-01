@@ -31,6 +31,15 @@ jon:
 
 ---
 
+should have some sprints with "challenges":
+
+- "never needing to restart the server challenge"
+- "use any dependency without config challenge"
+- "make error messages as clear as possible challenge"
+- "hot reload any file challenge"
+
+---
+
 # backlog
 
 - document @vxrn/color-scheme and @vxrn/universal-color-scheme
