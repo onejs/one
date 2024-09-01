@@ -1,7 +1,7 @@
 import { Text } from '@tamagui/core'
 import { Stack } from 'vxs'
 
-export default function TestPage() {
+export default function FeedItemPage() {
   return (
     <>
       <Stack.Screen
