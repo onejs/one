@@ -157,6 +157,7 @@ const LinkText = styled(SizableText, {
 
 const LinkContainer = styled(XStack, {
   context: Context,
+  tag: 'a',
   className: 'text-decoration-none',
   gap: '$4',
   br: '$6',

@@ -3,14 +3,16 @@ import { feedData } from '~/features/feed/data'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { PageContainer } from '~/features/ui/PageContainer'
 
-export function loader() {
-  return {
-    feed: feedData,
-  }
+export function loader({ params }) {
+  return feedData.find((x) => x.id === +params.id)
 }
 
-export default function FeedPage() {
-  const { feed } = useLoader(loader)
+export default function FeedItemPage() {
+  const data = useLoader(loader)
+
+  if (!data) {
+    return null
+  }
 
   return (
     <>
@@ -21,9 +23,7 @@ export default function FeedPage() {
       />
 
       <PageContainer>
-        {feed.map((item, i) => {
-          return <FeedCard key={i} {...item} />
-        })}
+        <FeedCard {...data} />
       </PageContainer>
     </>
   )
