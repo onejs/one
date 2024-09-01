@@ -43,6 +43,7 @@ type Options = {
   plugins?: [string, Record<string, any>][]
 
   forceJSX?: boolean
+  noHMR?: boolean
 }
 
 const isWebContainer = globalThis.process?.versions?.webcontainer
@@ -227,7 +228,7 @@ export async function swcTransform(_id: string, code: string, options: Options) 
 
   // const refresh = !transformOptions?.ssr && !hmrDisabled
   // only change for now:
-  const refresh = !options.forceJSX
+  const refresh = options.noHMR ? false : !options.forceJSX
 
   const result = await transformWithOptions(id, code, options, {
     refresh,

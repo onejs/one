@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import { weakKey } from './utils/weakKey'
 import { preloadingLoader } from './router/router'
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
+import { usePathname } from './hooks'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -26,10 +27,11 @@ export function useLoader<
 
   const preloadedData = globalThis['__vxrnLoaderData__']
   const currentData = useRef(preloadedData)
+  const pathName = usePathname()
   const currentPath =
     globalThis['__vxrntodopath'] ||
     // TODO likely either not needed or needs proper path from server side
-    (typeof window !== 'undefined' ? window.location.pathname : '/')
+    (typeof window !== 'undefined' ? window.location?.pathname || pathName : '/')
 
   useEffect(() => {
     if (preloadedData) {
@@ -67,9 +69,23 @@ export function useLoader<
 
     if (!promises[currentPath]) {
       const getData = async () => {
-        const loaderJSUrl = `${CLIENT_BASE_URL}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
-        const response = await import(loaderJSUrl)
+        const loaderJSUrl = `${typeof window.location === 'undefined' ? 'http://127.0.0.1:8081' /* TODO */: CLIENT_BASE_URL}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
+
         try {
+          const response = await (async () => {
+            if (typeof window.location === 'undefined') {
+              // On native, we need to fetch the loader code and eval it
+              const loaderJsCode = await fetch(
+                `${loaderJSUrl}&platform=ios` /* TODO: platform */
+              ).then((res) => res.text())
+              // biome-ignore lint/security/noGlobalEval: <explanation>
+              return eval(`() => { exports = {}; ${loaderJsCode}; return exports; }`)()
+            }
+
+            // On web, we can use import to dynamically load the loader
+            return await import(loaderJSUrl)
+          })()
+
           loadedData[currentPath] = response.loader()
           return loadedData[currentPath]
         } catch (err) {

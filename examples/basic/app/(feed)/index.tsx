@@ -1,7 +1,7 @@
 import { Image as Image2 } from '@tamagui/image-next'
 import { Heart } from '@tamagui/lucide-icons'
 import { Image, Paragraph, SizableText, styled, View, XStack, YStack } from 'tamagui'
-import { Stack, useLoader } from 'vxs'
+import { Link, Stack, useLoader } from 'vxs'
 
 export function loader() {
   return {
@@ -20,11 +20,20 @@ export default function FeedPage() {
         }}
       />
 
-      <YStack maw={600} mx="auto">
+      <Link
+        href={{
+          pathname: '/user/[user]',
+          params: { user: 1234 },
+        }}
+      >
+        Go to user 1234
+      </Link>
+
+      {/* <YStack maw={600} mx="auto">
         {feed.map((item, i) => {
           return <FeedCard key={i} {...item} />
         })}
-      </YStack>
+      </YStack> */}
     </>
   )
 }

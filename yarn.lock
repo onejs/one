@@ -19418,6 +19418,7 @@ __metadata:
     "@types/react-dom": ^18.2.25
     "@vxrn/universal-color-scheme": 1.1.202
     "@vxrn/use-isomorphic-layout-effect": 1.1.202
+    "@vxrn/vite-native-swc": 1.1.202
     babel-dead-code-elimination: ^1.0.6
     citty: ^0.1.6
     create-vxrn: 1.1.202
