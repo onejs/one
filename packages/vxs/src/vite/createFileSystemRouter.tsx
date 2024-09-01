@@ -180,7 +180,7 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
             }
           },
 
-          async handleLoader({ request, route, loaderProps }) {
+          async handleLoader({ request, route, url, loaderProps }) {
             const routeFile = join('app', route.file)
 
             // this will remove all loaders
@@ -198,6 +198,78 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
                 loaderData,
                 loaderProps,
               })
+            }
+
+            const platform = url.searchParams.get('platform')
+
+            if (platform === 'ios' || platform === 'android') {
+              // Need to transpile to CommonJS for React Native
+
+              const environment = server.environments[platform || '']
+              if (!environment) {
+                throw new Error(
+                  `[handleLoader] No Vite environment found for platform '${platform}'`
+                )
+              }
+
+              // [1] Too complex and not working...
+              //
+              // const originalPluginContainer = environment.pluginContainer
+              // // For some reason we need to ignore some plugins, so we create a new EnvironmentPluginContainer with some plugins removed.
+              // // @ts-ignore we cannot import the `EnvironmentPluginContainer` class from Vite, instead this is a hacky way to create a new instance of the plugin container.
+              // const pluginContainer = new environment.pluginContainer.constructor(
+              //   originalPluginContainer.environment,
+              //   originalPluginContainer.plugins.filter((p) => {
+              //     if (p.name === 'vite:import-analysis') {
+              //       // If not skipped, it will throw "There is a new version of the pre-bundle for ..., a page reload is going to ask for it." error if `importerModule` is empty where `const importerModule = moduleGraph.getModuleById(importer);` since moduleGraph would be empty.
+              //       return false
+              //     }
+              //   }),
+              //   originalPluginContainer.watcher
+              // )
+              //
+              // const nativeTransformResult = await pluginContainer.transform(transformedJS, '')
+              // const nativeTransformedJS = nativeTransformResult.code
+
+              // [2] Still need to let `require` work.
+              //
+              // const nativeTransformResult = await swcTransform(routeFile, transformedJS, {
+              //   mode: 'serve-cjs',
+              //   noHMR: true,
+              // })
+              // let nativeTransformedJS = nativeTransformResult?.code || ''
+              //
+              // // Workaround "'import.meta' is currently unsupported" error
+              // let _removingBlock = false
+              // nativeTransformedJS = nativeTransformedJS
+              //   .split('\n')
+              //   .filter((line) => {
+              //     if (_removingBlock) {
+              //       if (!line.startsWith('    ')) {
+              //         _removingBlock = false
+              //       }
+              //       return false
+              //     }
+              //
+              //     if (line.startsWith('import.meta.hot')) {
+              //       return false
+              //     }
+              //     if (line.startsWith('window.$Refresh')) {
+              //       return false
+              //     }
+              //     if (line.startsWith('_reactrefresh.__hmr_import')) {
+              //       _removingBlock = true
+              //       return false
+              //     }
+              //
+              //     return true
+              //   })
+              //   .join('\n')
+
+              // [3] Just use a simple function to return the loader data for now.
+              const nativeTransformedJS = `exports.loader = () => (${JSON.stringify(loaderData)});`
+
+              return nativeTransformedJS
             }
 
             return transformedJS
