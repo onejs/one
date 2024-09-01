@@ -1,7 +1,7 @@
-import { debounce } from 'perfect-debounce'
 import { join } from 'node:path'
+import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin } from 'vite'
-import { createServerModuleRunner, DevEnvironment, RemoteEnvironmentTransport } from 'vite'
+import { createServerModuleRunner } from 'vite'
 import { createHandleRequest } from '../handleRequest'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
@@ -10,14 +10,12 @@ import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import type { VXS } from './types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
-import { getOptimizeDeps } from 'vxrn'
-import { Worker } from 'node:worker_threads'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
-  const { optimizeDeps } = getOptimizeDeps('serve')
+  // const { optimizeDeps } = getOptimizeDeps('serve')
 
   return {
     name: `router-fs`,
@@ -25,43 +23,43 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
     apply: 'serve',
 
     async config(userConfig) {
-      if (USE_SERVER_ENV) {
-        return {
-          appType: 'custom',
-          environments: {
-            server: {
-              resolve: {
-                dedupe: optimizeDeps.include,
-                external: [],
-                noExternal: optimizeDeps.include,
-                conditions: ['vxrn-web'],
-                alias: {
-                  react: '@vxrn/vendor/react-19',
-                  'react-dom': '@vxrn/vendor/react-dom-19',
-                },
-              },
-              // webCompatible: true,
-              nodeCompatible: true,
-              dev: {
-                optimizeDeps,
-                createEnvironment(name, config) {
-                  const worker = new Worker(join(import.meta.dirname, 'server.js'))
-                  // const hot = new
-                  return new DevEnvironment(name, config, {
-                    hot: false,
-                    runner: {
-                      transport: new RemoteEnvironmentTransport({
-                        send: (data) => worker.postMessage(data),
-                        onMessage: (listener) => worker.on('message', listener),
-                      }),
-                    },
-                  })
-                },
-              },
-            },
-          },
-        }
-      }
+      // if (USE_SERVER_ENV) {
+      //   return {
+      //     appType: 'custom',
+      //     environments: {
+      //       server: {
+      //         resolve: {
+      //           dedupe: optimizeDeps.include,
+      //           external: [],
+      //           noExternal: optimizeDeps.include,
+      //           conditions: ['vxrn-web'],
+      //           alias: {
+      //             react: '@vxrn/vendor/react-19',
+      //             'react-dom': '@vxrn/vendor/react-dom-19',
+      //           },
+      //         },
+      //         // webCompatible: true,
+      //         nodeCompatible: true,
+      //         dev: {
+      //           optimizeDeps,
+      //           createEnvironment(name, config) {
+      //             const worker = new Worker(join(import.meta.dirname, 'server.js'))
+      //             // const hot = new
+      //             return new DevEnvironment(name, config, {
+      //               hot: false,
+      //               runner: {
+      //                 transport: new RemoteEnvironmentTransport({
+      //                   send: (data) => worker.postMessage(data),
+      //                   onMessage: (listener) => worker.on('message', listener),
+      //                 }),
+      //               },
+      //             })
+      //           },
+      //         },
+      //       },
+      //     },
+      //   }
+      // }
     },
 
     configureServer(server) {
