@@ -11,6 +11,7 @@
     "serve": "vxs serve"
   },
   "dependencies": {
+    "@tamagui/image-next": "^1.110.1",
     "@tamagui/lucide-icons": "^1.110.1",
     "@tamagui/vite-plugin": "^1.110.1",
     "@vxrn/color-scheme": "1.1.202",

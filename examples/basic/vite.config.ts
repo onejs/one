@@ -10,7 +10,11 @@ export default {
   },
 
   plugins: [
-    vxs(),
+    vxs({
+      deps: {
+        '@tamagui/image-next': true,
+      },
+    }),
     tamaguiExtractPlugin({
       disableExtraction: true,
       config: 'config/tamagui.config.ts',

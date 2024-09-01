@@ -77,13 +77,14 @@ export function SchemeProvider({
           dangerouslySetInnerHTML={{
             __html: `let d = document.documentElement.classList
           d.remove('${getClassName('light')}')
-          d.remove('${getClassName('dark')}')
-          let e = localStorage.getItem('user-theme')
+            d.remove('${getClassName('dark')}')
+          let e = localStorage.getItem('${storageKey}')
           let t =
             'system' === e || !e
               ? window.matchMedia('(prefers-color-scheme: dark)').matches
               : e === 'dark'
-          t ? d.add('${getClassName('dark')}') : d.add('${getClassName('light')}')`,
+          t ? d.add('${getClassName('dark')}') : d.add('${getClassName('light')}')
+          `,
           }}
         />
       )}
