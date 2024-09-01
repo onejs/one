@@ -29,7 +29,7 @@ export function mergeUserConfig(
     }
 
     // vite doesnt merge arrays but we want that
-    deepMergeOptimizeDeps(serverConfig, userViteConfig, optimizeDeps)
+    // deepMergeOptimizeDeps(serverConfig, userViteConfig, optimizeDeps)
 
     // TODO move to `server` environment
     serverConfig.ssr ||= {}
