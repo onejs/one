@@ -6,7 +6,7 @@ import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
-import { androidExtensions, iosExtensions, webExtensions } from '../constants'
+import { webExtensions } from '../constants'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled) {
   const { root, host, https, port } = config
@@ -69,7 +69,22 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
         },
       ],
 
-      optimizeDeps,
+      ssr: {
+        optimizeDeps,
+      },
+
+      environments: {
+        client: {
+          dev: {
+            optimizeDeps: {
+              include: ['react-native-screens'],
+              esbuildOptions: {
+                resolveExtensions: webExtensions,
+              },
+            },
+          },
+        },
+      },
 
       server: {
         hmr: {
