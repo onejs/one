@@ -1,11 +1,13 @@
-// // TODO HACK why is window being defined????
-// // @ts-ignore
-// delete globalThis.window
-
 import { Root } from './Root'
-import { AppRegistry } from 'react-native'
+import { AppRegistry, LogBox } from 'react-native'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
+
+// TODO temporary
+LogBox.ignoreLogs([
+  /Sending .* with no listeners registered/,
+  /Each child in a list should have a unique/,
+])
 
 export function createApp(options: CreateAppProps): void {
   console.info(

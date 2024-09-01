@@ -1,6 +1,7 @@
 import { Tabs } from 'vxs'
 import { ToggleThemeButton } from '../theme/ToggleThemeButton'
 import { HomeIcons } from './HomeIcons'
+import { View } from 'tamagui'
 
 export function HomeLayout() {
   return (
@@ -11,21 +12,25 @@ export function HomeLayout() {
           title: 'Feed',
           tabBarIcon: () => <HomeIcons.Home size={20} />,
           headerRight() {
-            return <ToggleThemeButton />
+            return (
+              <View px="$4">
+                <ToggleThemeButton />
+              </View>
+            )
           },
         }}
       />
 
       <Tabs.Screen
-        name="spa"
+        name="notifications"
         options={{
-          title: 'Profile',
+          title: 'Notifications',
           tabBarIcon: () => <HomeIcons.Notifications size={20} />,
         }}
       />
 
       <Tabs.Screen
-        name="user/[user]"
+        name="profile"
         options={{
           title: 'Profile',
           tabBarIcon: () => <HomeIcons.User size={20} />,
