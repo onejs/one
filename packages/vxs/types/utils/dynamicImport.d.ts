@@ -1,2 +1,2 @@
-export declare const dynamicImport: (path: string) => Promise<any>;
+export declare const dynamicImport: (path: string) => any;
 //# sourceMappingURL=dynamicImport.d.ts.map
