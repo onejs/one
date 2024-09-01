@@ -27,10 +27,10 @@ if (setting !== 'system') {
 
 const SchemeContext = createContext<{
   setting: SchemeSetting
-  value: 'light' | 'dark'
+  scheme: 'light' | 'dark'
 }>({
   setting: 'system',
-  value: 'light',
+  scheme: 'light',
 })
 
 export const useColorScheme = () => {
@@ -90,7 +90,7 @@ export function SchemeProvider({
       <SchemeContext.Provider
         value={useMemo(
           () => ({
-            value: colorScheme,
+            scheme: colorScheme,
             setting: colorSchemeSetting,
           }),
           [colorScheme, colorSchemeSetting]

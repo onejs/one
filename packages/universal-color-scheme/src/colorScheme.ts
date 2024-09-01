@@ -12,8 +12,7 @@ export type ColorSchemeSetting = ColorSchemeName | 'system'
 export type ColorSchemeListener = (current: ColorSchemeName) => void
 
 export function setColorScheme(next: ColorSchemeSetting) {
-  isOverriden = next !== 'system'
-  update(next === 'system' ? getSystemColorScheme() : next)
+  update(next)
 }
 
 export function getColorScheme(): ColorSchemeName {
@@ -71,8 +70,14 @@ let colorScheme: ColorSchemeName = getSystemColorScheme()
 
 const listeners = new Set<ColorSchemeListener>()
 
-function update(next: ColorSchemeName) {
-  if (next === colorScheme) return
+function update(setting: ColorSchemeSetting) {
+  if (setting === colorScheme) {
+    if (isOverriden) {
+      return
+    }
+  }
+  isOverriden = setting !== 'system'
+  const next = setting === 'system' ? getSystemColorScheme() : setting
   colorScheme = next
   if (process.env.TAMAGUI_TARGET === 'native') {
     Appearance.setColorScheme(next)

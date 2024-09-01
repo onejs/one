@@ -5,7 +5,7 @@ export { getColorScheme, onColorSchemeChange } from '@vxrn/universal-color-schem
 export declare const useColorScheme: () => readonly ["light" | "dark", typeof setSchemeSetting];
 export declare function useSchemeSetting(): readonly [{
     setting: SchemeSetting;
-    value: "light" | "dark";
+    scheme: "light" | "dark";
 }, typeof setSchemeSetting];
 export declare function setSchemeSetting(next: SchemeSetting): void;
 export declare function SchemeProvider({ children, getClassName, }: {
