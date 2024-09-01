@@ -7,24 +7,31 @@ import { isWeb } from 'tamagui'
 const schemeSettings = ['light', 'dark', 'system'] as const
 
 export function ToggleThemeButton() {
-  const [{ setting, scheme }, setSchemeSetting] = useSchemeSetting()
-  const Icon = setting === 'system' ? SunMoon : setting === 'dark' ? Moon : Sun
+  const { onPress, Icon } = useToggleTheme()
 
   return (
-    <View
-      p="$8"
-      pointerEvents="auto"
-      onPress={() => {
-        const next = schemeSettings[(schemeSettings.indexOf(setting) + 1) % 3]
-
-        if (!isWeb) {
-          Appearance.setColorScheme(next === 'system' ? scheme : next)
-        }
-
-        setSchemeSetting(next)
-      }}
-    >
+    <View pointerEvents="auto" onPress={onPress}>
       <Icon size={24} />
     </View>
   )
+}
+
+export function useToggleTheme() {
+  const [{ setting, scheme }, setSchemeSetting] = useSchemeSetting()
+  const Icon = setting === 'system' ? SunMoon : setting === 'dark' ? Moon : Sun
+
+  return {
+    setting,
+    scheme,
+    Icon,
+    onPress: () => {
+      const next = schemeSettings[(schemeSettings.indexOf(setting) + 1) % 3]
+
+      if (!isWeb) {
+        Appearance.setColorScheme(next === 'system' ? scheme : next)
+      }
+
+      setSchemeSetting(next)
+    },
+  }
 }
