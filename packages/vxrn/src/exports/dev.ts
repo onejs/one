@@ -120,7 +120,6 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
     try {
       const bundle = await (async () => {
         if (cachedReactNativeBundle) {
-          console.info('Serving React Native bundle from cache')
           return cachedReactNativeBundle
         }
 

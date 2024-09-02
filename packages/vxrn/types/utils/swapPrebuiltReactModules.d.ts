@@ -1,9 +1,13 @@
 import type { Plugin } from 'vite';
-export declare const getPrebuilds: (cacheDir: string) => {
-    reactJSX: string;
+type PrebuildVersions = {
     react: string;
     reactNative: string;
 };
-export declare function prebuildReactNativeModules(cacheDir: string): Promise<void>;
-export declare function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin>;
+export declare function prebuildReactNativeModules(cacheDir: string, versions?: PrebuildVersions): Promise<{
+    reactJSX: string;
+    react: string;
+    reactNative: string;
+} | undefined>;
+export declare function swapPrebuiltReactModules(cacheDir: string, versions?: PrebuildVersions): Promise<Plugin>;
+export {};
 //# sourceMappingURL=swapPrebuiltReactModules.d.ts.map

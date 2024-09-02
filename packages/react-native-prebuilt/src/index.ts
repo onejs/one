@@ -110,8 +110,6 @@ export async function buildReact(options: BuildOptions = {}) {
 }
 
 export async function buildReactNative(options: BuildOptions = {}) {
-  console.log('resolved to', resolveFile('react-native'))
-
   return build({
     bundle: true,
     entryPoints: [resolveFile('react-native')],

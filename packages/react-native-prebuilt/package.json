@@ -26,8 +26,9 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
-    "./react": "./vendor/react/index.js",
-    "./jsx-runtime": "./vendor/react/jsx-dev-runtime.js"
+    "./vendor/react-native-0.74.1": "./vendor/react-native-0.74.1/index.js",
+    "./vendor/react-18.3.1": "./vendor/react-18.3.1/index.js",
+    "./vendor/react-jsx-runtime-18.3.1": "./vendor/react-jsx-runtime-18.3.1/index.js"
   },
   "dependencies": {
     "@vxrn/vite-flow": "1.1.203",
