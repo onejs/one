@@ -6,7 +6,6 @@ export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 // TODO temporary
 LogBox.ignoreLogs([
   /Sending .* with no listeners registered/,
-  /Each child in a list should have a unique/,
 ])
 
 export function createApp(options: CreateAppProps): void {
