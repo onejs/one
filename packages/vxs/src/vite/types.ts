@@ -45,6 +45,14 @@ export namespace VXS {
         ) => void | Promise<void>)
   }
 
+  export interface RouteContext {
+    keys(): string[]
+    (id: string): any
+    <T>(id: string): T
+    resolve(id: string): string
+    id: string
+  }
+
   export type Redirect = {
     source: string
     destination: string

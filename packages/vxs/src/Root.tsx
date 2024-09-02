@@ -14,7 +14,6 @@ import { PreloadLinks } from './PreloadLinks'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
-import type { RequireContext } from './types'
 import type { VXS } from './vite/types'
 import { ScrollRestoration } from './views/ScrollRestoration'
 // import { SplashScreen } from './views/Splash'
@@ -28,7 +27,7 @@ type RootProps = RenderAppProps &
   }
 
 type InnerProps = {
-  context: RequireContext
+  context: VXS.RouteContext
   location?: URL
   wrapper?: FunctionComponent<{ children: ReactNode }>
   navigationContainerProps?: NavigationContainerProps & {

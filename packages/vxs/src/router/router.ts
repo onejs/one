@@ -19,7 +19,6 @@ import { resolveHref } from '../link/href'
 import { resolve } from '../link/path'
 import { matchDynamicName } from '../matchers'
 import { sortRoutes } from '../sortRoutes'
-import type { RequireContext } from '../types'
 import { getQualifiedRouteComponent } from '../useScreens'
 import { assertIsReady } from '../utils/assertIsReady'
 import { removeSearch } from '../utils/removeSearch'
@@ -28,6 +27,7 @@ import { CACHE_KEY, CLIENT_BASE_URL } from './constants'
 import { getNormalizedStatePath, type UrlObject } from './getNormalizedStatePath'
 import { setLastAction } from './lastAction'
 import { dynamicImport } from '../utils/dynamicImport'
+import type { VXS } from '../vite/types'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -52,7 +52,7 @@ const storeSubscribers = new Set<() => void>()
 
 // Initialize function
 export function initialize(
-  context: RequireContext,
+  context: VXS.RouteContext,
   ref: NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>,
   initialLocation?: URL
 ) {

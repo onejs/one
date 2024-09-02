@@ -10,6 +10,7 @@ import { loadEnv } from './loadEnv'
 import type { VXS } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
+import { generateTypesForRoutes } from './generateTypesForRoutes'
 
 export function getUserVXSOptions(config: UserConfig) {
   const flatPlugins = [...(config.plugins || [])].flat(3)
@@ -58,6 +59,8 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
      * This is really the meat of vxs, where it handles requests:
      */
     createFileSystemRouter(options),
+
+    generateTypesForRoutes(options),
 
     clientTreeShakePlugin(),
 

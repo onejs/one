@@ -1,5 +1,5 @@
 import type { DynamicConvention, RouteNode } from './Route';
-import type { RequireContext } from './types';
+import type { VXS } from './vite/types';
 export type Options = {
     ignore?: RegExp[];
     preserveApiRoutes?: boolean;
@@ -23,8 +23,8 @@ export type Options = {
  *      - The name of the route is relative to the nearest _layout
  *      - If multiple routes have the same name, the most specific route is used
  */
-export declare function getRoutes(contextModule: RequireContext, options?: Options): RouteNode | null;
-export declare function getExactRoutes(contextModule: RequireContext, options?: Options): RouteNode | null;
+export declare function getRoutes(contextModule: VXS.RouteContext, options?: Options): RouteNode | null;
+export declare function getExactRoutes(contextModule: VXS.RouteContext, options?: Options): RouteNode | null;
 export declare function getIgnoreList(options?: Options): RegExp[];
 /**
  * Generates a set of strings which have the router array syntax extrapolated.

@@ -1,11 +1,14 @@
 import { useNavigationContainerRef } from '@react-navigation/native'
-import type { RequireContext } from '../types'
 import { initialize } from './router'
 import * as routerStore from './router'
+import type { VXS } from '../vite/types'
 
 let initialized = false
 
-export function useInitializeVXSRouter(context: RequireContext, initialLocation: URL | undefined) {
+export function useInitializeVXSRouter(
+  context: VXS.RouteContext,
+  initialLocation: URL | undefined
+) {
   const navigationRef = useNavigationContainerRef()
 
   if (!initialized) {

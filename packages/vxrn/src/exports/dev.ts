@@ -138,9 +138,11 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
       console.error(` Error building React Native bundle: ${err}`)
     }
   })
+
   viteServer.watcher.addListener('change', () => {
     cachedReactNativeBundle = null // invalidate cache when something changes
   })
+
   router.get('/index.bundle', rnBundleHandler)
   router.get(
     '/.expo/.virtual-metro-entry.bundle', // for Expo development builds

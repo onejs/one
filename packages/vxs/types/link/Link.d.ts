@@ -1,11 +1,4 @@
-import * as React from 'react';
 import type { VXSRouter } from '../interfaces/router';
-import { resolveHref } from './href';
-export interface LinkComponent {
-    (props: React.PropsWithChildren<VXSRouter.LinkProps>): JSX.Element;
-    /** Helper method to resolve an Href object into a string. */
-    resolveHref: typeof resolveHref;
-}
 /**
  * Component to render link to another route using a path.
  * Uses an anchor tag on the web.
@@ -17,5 +10,5 @@ export interface LinkComponent {
  * @param props.children Child elements to render the content.
  * @param props.className On web, this sets the HTML `class` directly. On native, this can be used with CSS interop tools like Nativewind.
  */
-export declare const Link: LinkComponent;
+export declare const Link: VXSRouter.LinkComponent;
 //# sourceMappingURL=Link.d.ts.map

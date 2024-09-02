@@ -6,7 +6,7 @@ import {
   removeSupportedExtensions,
 } from './matchers'
 import type { DynamicConvention, RouteNode } from './Route'
-import type { RequireContext } from './types'
+import type { VXS } from './vite/types'
 // import { Unmatched } from './views/Unmatched'
 
 export type Options = {
@@ -43,7 +43,10 @@ const validPlatforms = new Set(['android', 'ios', 'native', 'web'])
  *      - The name of the route is relative to the nearest _layout
  *      - If multiple routes have the same name, the most specific route is used
  */
-export function getRoutes(contextModule: RequireContext, options: Options = {}): RouteNode | null {
+export function getRoutes(
+  contextModule: VXS.RouteContext,
+  options: Options = {}
+): RouteNode | null {
   const directoryTree = getDirectoryTree(contextModule, options)
 
   // If there are no routes
@@ -61,7 +64,7 @@ export function getRoutes(contextModule: RequireContext, options: Options = {}):
 }
 
 export function getExactRoutes(
-  contextModule: RequireContext,
+  contextModule: VXS.RouteContext,
   options: Options = {}
 ): RouteNode | null {
   return getRoutes(contextModule, {
@@ -71,9 +74,9 @@ export function getExactRoutes(
 }
 
 /**
- * Converts the RequireContext keys (file paths) into a directory tree.
+ * Converts the VXS.RouteContext keys (file paths) into a directory tree.
  */
-function getDirectoryTree(contextModule: RequireContext, options: Options) {
+function getDirectoryTree(contextModule: VXS.RouteContext, options: Options) {
   const importMode = options.importMode || process.env.VXS_ROUTER_IMPORT_MODE
 
   const ignoreList: RegExp[] = [/^\.\/\+html\.[tj]sx?$/] // Ignore the top level ./+html file

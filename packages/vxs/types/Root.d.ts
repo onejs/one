@@ -1,7 +1,6 @@
 import { type FunctionComponent, type ReactNode } from 'react';
 import type { GlobbedRouteImports, RenderAppProps } from './types';
 import { type NavigationContainerProps } from '@react-navigation/native';
-import type { RequireContext } from './types';
 import type { VXS } from './vite/types';
 type RootProps = RenderAppProps & Omit<InnerProps, 'context'> & {
     mode?: VXS.RouteMode;
@@ -10,7 +9,7 @@ type RootProps = RenderAppProps & Omit<InnerProps, 'context'> & {
     routeOptions?: VXS.RouteOptions;
 };
 type InnerProps = {
-    context: RequireContext;
+    context: VXS.RouteContext;
     location?: URL;
     wrapper?: FunctionComponent<{
         children: ReactNode;

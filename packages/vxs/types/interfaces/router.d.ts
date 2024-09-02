@@ -2,8 +2,17 @@ import type { NavigationContainerRefWithCurrent, NavigationState, PartialState }
 import type { ReactNode } from 'react';
 import type { TextProps, GestureResponderEvent } from 'react-native';
 export declare namespace VXSRouter {
-    type StaticRoutes = string;
-    type DynamicRouteTemplate = never;
+    export interface __routes<T extends string = string> extends Record<string, unknown> {
+    }
+    type StaticRoutes = __routes extends {
+        StaticRoutes: string;
+    } ? __routes['StaticRoutes'] : string;
+    type DynamicRoutes<T extends string> = __routes<T> extends {
+        DynamicRoutes: any;
+    } ? T extends __routes<infer _>['DynamicRoutes'] ? T : never : string;
+    type DynamicRouteTemplate = __routes extends {
+        DynamicRouteTemplate: string;
+    } ? __routes['DynamicRouteTemplate'] : string;
     export type NavigationRef = NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>;
     export type RelativePathString = `./${string}` | `../${string}` | '..';
     export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;
@@ -78,17 +87,25 @@ export declare namespace VXSRouter {
     /*********
      * Href  *
      *********/
+    export type DynamicRoutesHref = DynamicRouteString<{
+        __branded__: any;
+    }, DynamicRouteTemplate>;
+    export type DynamicRoutesHref2 = DynamicRouteString<string, DynamicRouteTemplate>;
     /**
      * The main routing type for VXS. Includes all available routes with strongly typed parameters.
-     *
-     * Allows for static routes, relative paths, external paths, dynamic routes, and the dynamic route provided as a static string
      */
-    export type Href = StringRouteToType<AllUngroupedRoutes<StaticRoutes> | RelativePathString | ExternalPathString> | DynamicRouteTemplateToString<DynamicRouteTemplate> | DynamicRouteObject<StaticRoutes | RelativePathString | ExternalPathString | DynamicRouteTemplate>;
+    export type Href<T extends string | object = {
+        __branded__: any;
+    }> = StringRouteToType<AllUngroupedRoutes<StaticRoutes> | RelativePathString | ExternalPathString> | DynamicRouteString<T, DynamicRouteTemplate> | DynamicRouteObject<StaticRoutes | RelativePathString | ExternalPathString | DynamicRouteTemplate>;
     type StringRouteToType<T extends string> = T | `${T}${SearchOrHash}` | {
         pathname: T;
         params?: UnknownInputParams | never;
     };
-    type DynamicRouteTemplateToString<Path> = Path extends `${infer PartA}/${infer PartB}` ? `${PartA extends `[${string}]` ? string : PartA}/${DynamicRouteTemplateToString<PartB>}` : Path extends `[${string}]` ? string : Path;
+    /**
+     * Converts a dynamic route template to a Href string type
+     */
+    type DynamicRouteString<T extends string | object, P = DynamicRouteTemplate> = '__branded__' extends keyof T ? DynamicTemplateToHrefString<P> : T extends string ? DynamicRoutes<T> : never;
+    type DynamicTemplateToHrefString<Path> = Path extends `${infer PartA}/${infer PartB}` ? `${PartA extends `[${string}]` ? string : PartA}/${DynamicTemplateToHrefString<PartB>}` : Path extends `[${string}]` ? string : Path;
     type DynamicRouteObject<T> = T extends DynamicRouteTemplate ? {
         pathname: T;
         params: InputRouteParams<T>;
@@ -181,9 +198,9 @@ export declare namespace VXSRouter {
          */
         download?: string;
     }
-    export interface LinkProps<T = string> extends Omit<TextProps, 'href'>, WebAnchorProps {
+    export interface LinkProps<T extends string | object> extends Omit<TextProps, 'href'>, WebAnchorProps {
         /** Path to route to. */
-        href: Href;
+        href: Href<T>;
         /** Forward props to child component. Useful for custom buttons. */
         asChild?: boolean;
         /** Should replace the current route without adding to the history. */
@@ -195,7 +212,7 @@ export declare namespace VXSRouter {
         onPress?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => void;
     }
     export interface LinkComponent {
-        (props: React.PropsWithChildren<LinkProps>): JSX.Element;
+        <T extends string | object>(props: React.PropsWithChildren<LinkProps<T>>): JSX.Element;
         /** Helper method to resolve an Href object into a string. */
         resolveHref: (href: Href) => string;
     }

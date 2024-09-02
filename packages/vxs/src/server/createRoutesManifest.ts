@@ -1,7 +1,7 @@
 import { type Options, getRoutes } from '../getRoutes'
 import { getServerManifest } from './getServerManifest'
-import type { RequireContext } from '../types'
 import type { RouteNode } from '../Route'
+import type { VXS } from '../vite/types'
 
 export { type Options } from '../getRoutes'
 
@@ -27,7 +27,7 @@ function createMockModuleWithContext(map: string[] = []) {
     value: () => map,
   })
 
-  return contextModule as RequireContext
+  return contextModule as VXS.RouteContext
 }
 
 export function createRoutesManifest(paths: string[], options: Options): RoutesManifest | null {
