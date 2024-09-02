@@ -16,7 +16,7 @@ const getPrebuilds = (cacheDir: string) => ({
 })
 
 const requireResolve = (inPath: string) => {
-  return import.meta.resolve(inPath).replace('file://', '')
+  return import.meta.resolve(inPath, join(process.cwd(), 'index.js')).replace('file://', '')
 }
 
 type PrebuildVersions = {
