@@ -5,6 +5,7 @@ import { preloadingLoader } from './router/router'
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 import { useActiveParams, usePathname } from './hooks'
 import { dynamicImport } from './utils/dynamicImport'
+import { getDevServerUrl } from './getDevServerUrl'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -76,7 +77,7 @@ export function useLoader<
     if (!promises[currentPath]) {
       const getData = async () => {
         const isNative = process.env.TAMAGUI_TARGET === 'native'
-        const loaderJSUrl = `${isNative ? 'http://127.0.0.1:8081' /* TODO */ : CLIENT_BASE_URL}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
+        const loaderJSUrl = `${getDevServerUrl() /* TODO: production? */}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
 
         try {
           const response = await (async () => {
