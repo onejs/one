@@ -13,7 +13,7 @@ export const config = createTamagui({
   settings: {
     ...configOptions.settings,
     // avoids CSS bloat so long as you don't need nesting of dark/light themes
-    maxDarkLightNesting: 1,
+    maxDarkLightNesting: 2,
   },
 })
 

@@ -15,4 +15,18 @@ export const Card = styled(XStack, {
   pressStyle: {
     bg: '$color2',
   },
+
+  variants: {
+    disableLink: {
+      true: {
+        hoverStyle: {
+          bg: 'transparent',
+        },
+
+        pressStyle: {
+          bg: 'transparent',
+        },
+      },
+    },
+  } as const,
 })
