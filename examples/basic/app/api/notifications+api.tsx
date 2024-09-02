@@ -29,7 +29,7 @@ export async function GET(request: Request): Promise<Response> {
   const limit = Number(url.searchParams.get('limit') || '10')
 
   // TODO: Replace this with actual user authentication
-  const USER_ID = 405
+  const USER_ID = 651
 
   const offset = (page - 1) * limit
 

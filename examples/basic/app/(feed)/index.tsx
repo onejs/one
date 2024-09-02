@@ -2,13 +2,16 @@ import { useEffect } from 'react'
 import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
 import { useLoader, useNavigation } from 'vxs'
-import { feedData } from '~/features/feed/data'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { PageContainer } from '~/features/ui/PageContainer'
+import { fetchFeed } from '~/data/feed'
 
-export function loader() {
+export async function loader() {
+  const data = await fetchFeed({
+    queryKey: ['feed', 1, 40],
+  })
   return {
-    feed: feedData,
+    feed: data,
   }
 }
 
@@ -20,7 +23,6 @@ export default function FeedPage() {
   }, [navigation])
 
   const { feed } = useLoader(loader)
-
   return (
     <>
       <PageContainer>

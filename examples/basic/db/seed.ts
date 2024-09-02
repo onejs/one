@@ -34,8 +34,8 @@ const seed = async () => {
     // Insert posts
     console.info('Generating 10 posts for each user...')
     const postPromises = userIds.flatMap((user) => {
+      console.info(`Generating 10 posts for user ${user.id}`)
       return Array.from({ length: 10 }).map(() => {
-        console.info(`Generating post for user ${user.id}`)
         return db.insert(posts).values({
           userId: user.id,
           content: faker.lorem.sentence(),
@@ -47,12 +47,16 @@ const seed = async () => {
     await Promise.all(postPromises)
     console.info('Posts generated.')
 
+    // Fetch all post IDs
+    console.info('Fetching all post IDs...')
+    const allPostIds: { id: number }[] = await db.select({ id: posts.id }).from(posts)
+
     // Insert follows
     console.info('Each user follows 10 other users...')
     const followPromises = userIds.flatMap((follower) => {
       const followingIds = faker.helpers.arrayElements(userIds, 10)
+      console.info(`User ${follower.id} follows ${followingIds.length} users`)
       return followingIds.map((following) => {
-        console.info(`User ${follower.id} follows user ${following.id}`)
         return db.insert(follows).values({
           followerId: follower.id,
           followingId: following.id,
@@ -65,25 +69,12 @@ const seed = async () => {
     console.info('Follows inserted.')
 
     // Insert likes
-    console.info('Fetching post IDs for likes...')
-    const allPostIds: { id: number }[] = await db
-      .insert(posts)
-      .values(
-        userIds.flatMap((user) =>
-          Array.from({ length: 10 }).map(() => ({
-            userId: user.id,
-            content: faker.lorem.sentence(),
-            createdAt: faker.date.recent({ days: 1 }), // Random date within the last 1 day
-          }))
-        )
-      )
-      .returning({ id: posts.id })
-
-    console.info('Each user likes 20 random posts...')
+    console.info('Each user likes 150 random posts...')
     const likePromises = userIds.flatMap((user) => {
-      const postIds = faker.helpers.arrayElements(allPostIds, 20)
+      const shuffledPostIds = faker.helpers.shuffle(allPostIds)
+      const postIds = shuffledPostIds.slice(0, 150)
+      console.info(`User ${user.id} likes ${postIds.length} posts`)
       return postIds.map((post) => {
-        console.info(`User ${user.id} likes post ${post.id}`)
         return db.insert(likes).values({
           userId: user.id,
           postId: post.id,
@@ -96,9 +87,11 @@ const seed = async () => {
     console.info('Likes inserted.')
 
     // Insert reposts
-    console.info('Each user reposts 5 random posts...')
+    console.info('Each user reposts 10 random posts...')
     const repostPromises = userIds.flatMap((user) => {
-      const postIds = faker.helpers.arrayElements(allPostIds, 5)
+      const shuffledPostIds = faker.helpers.shuffle(allPostIds)
+      const postIds = shuffledPostIds.slice(0, 10)
+      console.info(`User ${user.id} reposts ${postIds.length} posts`)
       return postIds.map((post) => {
         console.info(`User ${user.id} reposts post ${post.id}`)
         return db.insert(reposts).values({
@@ -113,11 +106,12 @@ const seed = async () => {
     console.info('Reposts inserted.')
 
     // Insert replies
-    console.info('Each user replies to 10 random posts...')
+    console.info('Each user replies to 20 random posts...')
     const replyPromises = userIds.flatMap((user) => {
-      const postIds = faker.helpers.arrayElements(allPostIds, 10)
+      const shuffledPostIds = faker.helpers.shuffle(allPostIds)
+      const postIds = shuffledPostIds.slice(0, 20)
+      console.info(`User ${user.id} replies to ${postIds.length} posts`)
       return postIds.map((post) => {
-        console.info(`User ${user.id} replies to post ${post.id}`)
         return db.insert(replies).values({
           userId: user.id,
           postId: post.id,

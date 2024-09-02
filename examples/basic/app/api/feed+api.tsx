@@ -1,6 +1,6 @@
 import { db } from '~/db/connection'
-import { posts, users } from '~/db/schema'
-import { eq, desc } from 'drizzle-orm'
+import { posts, users, likes, replies, reposts } from '~/db/schema'
+import { eq, desc, sql } from 'drizzle-orm'
 
 export async function GET(request: Request) {
   const url = new URL(request.url)
@@ -19,6 +19,17 @@ export async function GET(request: Request) {
           name: users.username,
           avatar: users.avatarUrl,
         },
+        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+          'likesCount'
+        ),
+        repliesCount:
+          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+            'repliesCount'
+          ),
+        repostsCount:
+          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+            'repostsCount'
+          ),
       })
       .from(posts)
       .leftJoin(users, eq(users.id, posts.userId))

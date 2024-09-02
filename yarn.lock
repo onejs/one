@@ -7193,6 +7193,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.53.3":
+  version: 5.53.3
+  resolution: "@tanstack/query-core@npm:5.53.3"
+  checksum: 58692328047b16ebd52752f63a5f1bc5539b9d258c5b2d3921ebf45e0a6ee6746c5dc7a8e3503b6bc9d06ffbe6af59b0bfb2a3a1621eb79b98e0c9f2a68e4b42
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.53.3":
+  version: 5.53.3
+  resolution: "@tanstack/react-query@npm:5.53.3"
+  dependencies:
+    "@tanstack/query-core": 5.53.3
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 108839b2f77ebd50fce895caaaee1a3fbd84fab7f3991dd5a7d6094aa01bd95e80f925fb145b2332d0f48f17d6f64c3186da2cd748904be5bd8197fffead2bb7
+  languageName: node
+  linkType: hard
+
 "@types/acorn@npm:^4.0.0":
   version: 4.0.6
   resolution: "@types/acorn@npm:4.0.6"
@@ -11176,6 +11194,7 @@ __metadata:
     "@tamagui/image-next": ^1.110.1
     "@tamagui/lucide-icons": ^1.110.1
     "@tamagui/vite-plugin": ^1.110.1
+    "@tanstack/react-query": ^5.53.3
     "@vxrn/color-scheme": 1.1.203
     dotenv: ^16.4.5
     drizzle-kit: ^0.24.2

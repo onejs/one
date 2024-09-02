@@ -3,9 +3,22 @@ import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { Link } from 'vxs'
 import { Card } from '../ui/Card'
 import { Image } from '../ui/Image'
-import type { FeedItem } from './data'
 
-export const FeedCard = (props: FeedItem & { disableLink?: boolean }) => {
+type FeedItem = {
+  id: number
+  content: string
+  createdAt: string
+  user: {
+    name: string
+    avatar: string
+  }
+  likesCount: number
+  repliesCount: number
+  repostsCount: number
+  disableLink?: boolean
+}
+
+export const FeedCard = (props: FeedItem) => {
   const content = (
     <Card tag="a">
       <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar} />
@@ -29,9 +42,9 @@ export const FeedCard = (props: FeedItem & { disableLink?: boolean }) => {
           {props.content}
         </Paragraph>
         <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
-          <StatItem Icon={Repeat} count={4} />
-          <StatItem Icon={Heart} count={73} />
-          <StatItem Icon={Reply} count={4} />
+          <StatItem Icon={Reply} count={props.repliesCount} />
+          <StatItem Icon={Repeat} count={props.repostsCount} />
+          <StatItem Icon={Heart} count={props.likesCount} />
         </XStack>
       </YStack>
     </Card>
