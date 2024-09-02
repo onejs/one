@@ -2071,7 +2071,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
 "@dotenvx/dotenvx@npm:^1.12.1":
   version: 1.12.1
   resolution: "@dotenvx/dotenvx@npm:1.12.1"
@@ -2092,8 +2091,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-=======
->>>>>>> main
 "@drizzle-team/brocli@npm:^0.10.1":
   version: 0.10.1
   resolution: "@drizzle-team/brocli@npm:0.10.1"
@@ -11180,10 +11177,7 @@ __metadata:
     "@tamagui/lucide-icons": ^1.110.1
     "@tamagui/vite-plugin": ^1.110.1
     "@vxrn/color-scheme": 1.1.203
-<<<<<<< HEAD
     dotenv: ^16.4.5
-=======
->>>>>>> main
     drizzle-kit: ^0.24.2
     drizzle-orm: ^0.33.0
     postgres: ^3.4.4
@@ -12153,11 +12147,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
 "get-tsconfig@npm:^4.7.0, get-tsconfig@npm:^4.7.5":
-=======
-"get-tsconfig@npm:^4.7.0":
->>>>>>> main
   version: 4.8.0
   resolution: "get-tsconfig@npm:4.8.0"
   dependencies:
