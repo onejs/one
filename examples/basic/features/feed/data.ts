@@ -1,10 +1,10 @@
 export const feedData = [
   {
     id: 1,
-    content: `I work 9-5, have a family, manage to publish videos consistently, work on side projects, run 2-3 miles daily, but you can’t even finish watching one 30 minute coding tutorial.
+    content: `I work 9-5, have a family, manage to publish videos consistently, work on side projects, run 2-3 miles daily, but you can't even finish watching one 30 minute coding tutorial.
 
-You don’t need guidance.
-you don’t need a mentor.
+You don't need guidance.
+you don't need a mentor.
 You need discipline.`,
     user: {
       name: `SomeRandomDevWeb`,

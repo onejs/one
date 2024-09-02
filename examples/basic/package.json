@@ -10,6 +10,7 @@
     "build:prod": "vxs build",
     "serve": "vxs serve",
     "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
+    "orm:push": "drizzle-kit push --config ./db/drizzle.config.ts",
     "orm:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
     "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts"
   },
