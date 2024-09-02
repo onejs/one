@@ -10,13 +10,16 @@
     "build:prod": "vxs build",
     "serve": "vxs serve",
     "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
-    "orm:migrate": "yarn dlx tsx db/run-migrations.ts"
+    "orm:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
+    "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.12.1",
     "@tamagui/image-next": "^1.110.1",
     "@tamagui/lucide-icons": "^1.110.1",
     "@tamagui/vite-plugin": "^1.110.1",
     "@vxrn/color-scheme": "1.1.203",
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
     "postgres": "^3.4.4",
@@ -31,6 +34,8 @@
     "vxs": "1.1.203"
   },
   "devDependencies": {
+    "@faker-js/faker": "next",
+    "tsx": "^4.19.0",
     "vite": "6.0.0-alpha.18"
   }
 }

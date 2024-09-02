@@ -10,7 +10,7 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { Link, Slot, usePathname } from 'vxs'
+import { type Href, Link, Slot, usePathname } from 'vxs'
 import { Logo } from '../brand/Logo'
 import { useToggleTheme } from '../theme/ToggleThemeButton'
 import { HomeIcons } from './HomeIcons'
@@ -138,7 +138,7 @@ const SideMenuLink = ({
   children,
 }: {
   subPaths?: string[]
-  href: string
+  href: Href
   Icon: (typeof HomeIcons)['Home']
   children: ReactNode
 }) => {
