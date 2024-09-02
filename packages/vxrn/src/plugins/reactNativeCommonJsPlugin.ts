@@ -89,14 +89,26 @@ export function reactNativeCommonJsPlugin(options: {
                   try {
                     const [foundImports, foundExports] = parse(code)
 
-                    // id => export names
+                    // build a rough mapping of identifiers to moduleName
+                    const idToModule: Record<string, string> = {}
+                    for (const imp of foundImports) {
+                      if (imp.n) {
+                        const line = code.slice(imp.ss, imp.se)
+                        const imports = getAllImportedIdentifiers(line)
+                        for (const id of imports) {
+                          idToModule[id] = imp.n
+                        }
+                      }
+                    }
+
+                    // moduleName => export identifiers
                     const toReExport: Record<string, string[]> = {}
                     for (const exp of foundExports) {
-                      const matchingImp = foundImports.find((i) => exp.e < i.se && exp.s > i.ss)
                       const expName = exp.ln || exp.n
-                      if (expName && matchingImp?.n) {
-                        toReExport[matchingImp.n] ||= []
-                        toReExport[matchingImp.n].push(expName)
+                      const moduleName = idToModule[expName]
+                      if (moduleName) {
+                        toReExport[moduleName] ||= []
+                        toReExport[moduleName].push(expName)
                       }
                     }
 
@@ -221,47 +233,21 @@ export function reactNativeCommonJsPlugin(options: {
   }
 }
 
-/**
- * List of reserved words in JS. From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words.
- */
-const RESERVED_WORDS = [
-  'break',
-  'case',
-  'catch',
-  'class',
-  'const',
-  'continue',
-  'debugger',
-  'default',
-  'delete',
-  'do',
-  'else',
-  'export',
-  'extends',
-  'false',
-  'finally',
-  'for',
-  'function',
-  'if',
-  'import',
-  'in',
-  'instanceof',
-  'new',
-  'null',
-  'return',
-  'super',
-  'switch',
-  'this',
-  'throw',
-  'true',
-  'try',
-  'typeof',
-  'var',
-  'void',
-  'while',
-  'with',
-  'let',
-  'static',
-  'yield',
-  'enum',
-]
+function getAllImportedIdentifiers(importStatement: string): string[] {
+  const importRegex = /{([^}]+)}/
+  const match = importStatement.match(importRegex)
+
+  if (!match) {
+    return []
+  }
+
+  const imports = match[1]
+
+  return imports
+    .split(',')
+    .map((name) => {
+      const parts = name.split(/\s+as\s+/)
+      return parts[parts.length - 1].trim()
+    })
+    .filter(Boolean)
+}
