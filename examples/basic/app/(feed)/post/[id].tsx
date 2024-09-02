@@ -1,4 +1,4 @@
-import { Stack, useLoader } from 'vxs'
+import { useLoader } from 'vxs'
 import { feedData } from '~/features/feed/data'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { PageContainer } from '~/features/ui/PageContainer'
@@ -16,12 +16,6 @@ export default function FeedItemPage() {
 
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-      />
-
       <PageContainer>
         <FeedCard {...data} />
       </PageContainer>

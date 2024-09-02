@@ -1,5 +1,5 @@
 import { ScrollView } from 'tamagui'
-import { Stack, useLoader } from 'vxs'
+import { useLoader } from 'vxs'
 import { feedData } from '~/features/feed/data'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { PageContainer } from '~/features/ui/PageContainer'
@@ -15,12 +15,6 @@ export default function FeedPage() {
 
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-      />
-
       <PageContainer>
         <ScrollView maxHeight="100%">
           {feed.map((item, i) => {
