@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { getLastAction, setLastAction } from '../router/lastAction'
+import { setLastAction } from '../router/lastAction'
 import { subscribeToLoadingState, subscribeToRootState } from '../router/router'
 
 const KEY = 'vxs-sr'
@@ -30,69 +30,66 @@ function rememberScrollPosition() {
   sessionStorage.setItem(KEY, JSON.stringify(state))
 }
 
-export function ScrollRestoration(props: {
+type ScrollRestorationProps = {
   disable?: boolean | 'restore'
-}) {
+}
+
+let disable: (() => void) | null = null
+
+function configure(props: ScrollRestorationProps) {
+  if (typeof window === 'undefined' || !window.addEventListener) {
+    return
+  }
+
+  disable?.()
+
+  const popStateController = new AbortController()
+
+  window.addEventListener(
+    'popstate',
+    () => {
+      didPop = true
+      setLastAction()
+    },
+    {
+      signal: popStateController.signal,
+    }
+  )
+
+  const disposeOnLoadState = subscribeToLoadingState((state) => {
+    if (state === 'loading') {
+      rememberScrollPosition()
+    }
+  })
+
+  const disposeOnRootState = subscribeToRootState((state) => {
+    if (state.linkOptions?.scroll === false) {
+      return
+    }
+
+    if (didPop) {
+      if (props.disable !== 'restore') {
+        // for now only restore on back button
+        restorePosition()
+      }
+    } else {
+      // if new page just set back to top
+      window.scrollTo(0, 0)
+    }
+  })
+
+  disable = () => {
+    popStateController.abort()
+    disposeOnLoadState()
+    disposeOnRootState()
+  }
+
+  return disable!
+}
+
+export function ScrollRestoration(props: ScrollRestorationProps) {
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.addEventListener) {
-      return
-    }
-    if (props.disable) {
-      return
-    }
-
-    let isInitial = true
-
-    const popStateController = new AbortController()
-
-    window.addEventListener(
-      'popstate',
-      () => {
-        didPop = true
-        setLastAction()
-      },
-      {
-        signal: popStateController.signal,
-      }
-    )
-
-    const disposeOnLoadState = subscribeToLoadingState((state) => {
-      if (Date.now() - getLastAction() > 100) {
-        // this isn't a state change due to a link press or back, ignore
-        return
-      }
-
-      if (state === 'loading') {
-        rememberScrollPosition()
-      }
-    })
-
-    const disposeOnRootState = subscribeToRootState((state) => {
-      if (Date.now() - getLastAction() > 100) {
-        // this isn't a state change due to a link press, ignore
-        return
-      }
-
-      if (state.linkOptions?.scroll === false) {
-        return
-      }
-
-      if (didPop) {
-        if (props.disable !== 'restore') {
-          // for now only restore on back button
-          restorePosition()
-        }
-      } else {
-        // if new page just set back to top
-        window.scrollTo(0, 0)
-      }
-    })
-
-    return () => {
-      popStateController.abort()
-      disposeOnLoadState()
-      disposeOnRootState()
-    }
+    return configure(props)
   }, [props.disable])
 
   return null

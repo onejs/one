@@ -1,12 +1,12 @@
 import '~/app.css'
 import '~/tamagui.css'
 
+import { HydrateTheme, UserThemeProvider, useUserTheme } from '@tamagui/one-theme'
 import { ToastProvider, ToastViewport } from '@tamagui/toast'
 import { isWeb, setupPopper, TamaguiProvider } from 'tamagui'
-import { PageLoadProgressBar, ScrollRestoration, Slot, Stack } from 'vxs'
+import { PageLoadProgressBar, Slot, Stack } from 'vxs'
 import { HeadInfo } from '~/components/HeadInfo'
 import tamaConf from '~/config/tamagui.config'
-import { UserThemeProvider, useUserTheme, HydrateTheme } from '@tamagui/one-theme'
 
 setupPopper({
   // prevents a reflow on mount
@@ -57,7 +57,6 @@ export default function Layout() {
             }}
           />
 
-          <ScrollRestoration />
           <PageLoadProgressBar />
 
           <meta name="robots" content="index,follow" />

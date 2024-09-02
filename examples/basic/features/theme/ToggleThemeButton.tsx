@@ -25,7 +25,12 @@ export function useToggleTheme() {
     scheme,
     Icon,
     onPress: () => {
-      const next = schemeSettings[(schemeSettings.indexOf(setting) + 1) % 3]
+      const next =
+        setting === 'system'
+          ? scheme === 'light'
+            ? 'dark'
+            : 'light'
+          : schemeSettings[(schemeSettings.indexOf(setting) + 1) % 3]
 
       if (!isWeb) {
         Appearance.setColorScheme(next === 'system' ? scheme : next)

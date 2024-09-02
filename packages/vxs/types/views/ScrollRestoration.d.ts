@@ -1,4 +1,6 @@
-export declare function ScrollRestoration(props: {
+type ScrollRestorationProps = {
     disable?: boolean | 'restore';
-}): null;
+};
+export declare function ScrollRestoration(props: ScrollRestorationProps): null;
+export {};
 //# sourceMappingURL=ScrollRestoration.d.ts.map
