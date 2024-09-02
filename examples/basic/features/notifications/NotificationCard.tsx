@@ -6,7 +6,7 @@ import { Card } from '../ui/Card'
 
 export const NotificationCard = (props: NotificationItem) => {
   return (
-    <Link href={`/post/${props.postId}`}>
+    <Link asChild href={`/post/${props.postId}`}>
       <Card tag="a">
         <Image width={50} height={50} br={100} src={props.user.avatar} />
         <YStack f={1}>

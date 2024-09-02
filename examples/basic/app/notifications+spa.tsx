@@ -1,4 +1,5 @@
-import { Stack, useLoader } from 'vxs'
+import { isWeb } from 'tamagui'
+import { SafeAreaView, useLoader } from 'vxs'
 import { notificationData } from '~/features/notifications/data'
 import { NotificationCard } from '~/features/notifications/NotificationCard'
 import { PageContainer } from '~/features/ui/PageContainer'
@@ -12,19 +13,13 @@ export function loader() {
 export default function NotificationsPage() {
   const { notifications } = useLoader(loader)
 
+  const feed = notifications.map((item, i) => {
+    return <NotificationCard key={i} {...item} />
+  })
+
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-      />
-
-      <PageContainer>
-        {notifications.map((item, i) => {
-          return <NotificationCard key={i} {...item} />
-        })}
-      </PageContainer>
+      <PageContainer>{isWeb ? feed : <SafeAreaView>{feed}</SafeAreaView>}</PageContainer>
     </>
   )
 }
