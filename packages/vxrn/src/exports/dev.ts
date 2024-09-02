@@ -26,6 +26,7 @@ import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { applyBuiltInPatches } from '../utils/patches'
 import { clean } from './clean'
+import { join } from 'node:path'
 
 const { ensureDir } = FSExtra
 
@@ -115,16 +116,41 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   )
 
   let cachedReactNativeBundle: string | null = null
+  const reactNativeBundleCacheFile = join(
+    options.cacheDir,
+    `rn-cached-bundle-${'ios' /* TODO */}.js`
+  )
   // builds the dev initial bundle for react native
   const rnBundleHandler = defineEventHandler(async (e) => {
     try {
       const bundle = await (async () => {
+        if (!cachedReactNativeBundle && process.env.UNSTABLE_BUNDLE_CACHE) {
+          try {
+            if (await FSExtra.pathExists(reactNativeBundleCacheFile)) {
+              cachedReactNativeBundle = await FSExtra.readFile(reactNativeBundleCacheFile, 'utf-8')
+            }
+          } catch (e) {
+            console.error(`Error loading cache from ${reactNativeBundleCacheFile}: ${e}`)
+          }
+        }
+
         if (cachedReactNativeBundle) {
           return cachedReactNativeBundle
         }
 
         const builtBundle = await getReactNativeBundle(options, viteRNClientPlugin)
         cachedReactNativeBundle = builtBundle
+        if (process.env.UNSTABLE_BUNDLE_CACHE) {
+          // do not await cache write
+          ;(async () => {
+            try {
+              await FSExtra.writeFile(reactNativeBundleCacheFile, builtBundle)
+            } catch (e) {
+              console.error(`Error saving cache to ${reactNativeBundleCacheFile}: ${e}`)
+            }
+          })()
+        }
+
         return builtBundle
       })()
 
