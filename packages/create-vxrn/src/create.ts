@@ -1,5 +1,5 @@
 import ansis from 'ansis'
-import FSExtra from 'fs-extra'
+import FSExtra, { copyFileSync } from 'fs-extra'
 import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -113,6 +113,14 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
   } catch (e: any) {
     console.error('[vxrn] error installing with ' + packageManager + '\n' + `${e}`)
     process.exit(1)
+  }
+
+  // copy .env.default to .env
+  if (existsSync(path.join(resolvedProjectPath, '.env.default'))) {
+    copyFileSync(
+      path.join(resolvedProjectPath, '.env.default'),
+      path.join(resolvedProjectPath, '.env')
+    )
   }
 
   await template.extraSteps({
