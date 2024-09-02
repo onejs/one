@@ -247,7 +247,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
 
       websocket: {
         open(peer) {
-          console.info('[client] open', peer)
+          console.info(' ①  open', peer)
         },
 
         message(peer, messageRaw) {
@@ -255,22 +255,35 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
 
           switch (message.type) {
             case 'client-log': {
-              console.info(`🪵 [${message.level}]`, ...message.data)
+              // TODO temp
+              if (
+                message.level === 'warn' &&
+                message.data[0]?.startsWith(
+                  'Sending `appearanceChanged` with no listeners registered.'
+                )
+              ) {
+                return
+              }
+
+              console.info(
+                ` ① · ${message.level === 'info' ? '' : ` [${message.level}]`}`,
+                ...message.data
+              )
               return
             }
 
             default: {
-              console.warn(`[client] Unknown message type`, message)
+              console.warn(` ①  Unknown message type`, message)
             }
           }
         },
 
         close(peer, event) {
-          console.info('[client] close', peer, event)
+          console.info(' ①  close', peer, event)
         },
 
         error(peer, error) {
-          console.error('[client] error', peer, error)
+          console.error(' ①  error', peer, error)
         },
       },
     })
