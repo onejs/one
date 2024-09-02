@@ -52,14 +52,39 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
   const environmentName = 'ios' as const
   const environment = builder.environments[environmentName]
 
+  const rollupCacheFile = join(options.cacheDir, `rn-rollup-cache-${environmentName}.json`)
+
   // See: https://rollupjs.org/configuration-options/#cache
   environment.config.build.rollupOptions.cache =
-    cache[environmentName] || true /* to initially enable Rollup cache */
+    cache[environmentName] ||
+    (await (async () => {
+      // Try to load Rollup cache from disk
+      try {
+        if (await pathExists(rollupCacheFile)) {
+          const c = await FSExtra.readJSON(rollupCacheFile)
+          return c
+        }
+      } catch (e) {
+        console.error(`Error loading Rollup cache from ${rollupCacheFile}: ${e}`)
+      }
+
+      return null
+    })()) ||
+    true /* to initially enable Rollup cache */
 
   // We are using a forked version of the Vite internal function `buildEnvironment` (which is what `builder.build` calls) that will return the Rollup cache object with the build output, and also with some performance improvements.
   const buildOutput = await buildEnvironment(environment.config, environment)
   if (buildOutput.cache) {
     cache[environmentName] = buildOutput.cache
+
+    // do not await cache write
+    ;(async () => {
+      try {
+        await FSExtra.writeJSON(rollupCacheFile, buildOutput.cache)
+      } catch (e) {
+        console.error(`Error saving Rollup cache to ${rollupCacheFile}: ${e}`)
+      }
+    })()
   }
 
   if (!('output' in buildOutput)) {
