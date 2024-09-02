@@ -88,10 +88,10 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
     })
     console.info()
   } catch (err: any) {
-    console.info(
-      `Error updating: ${err.message} ${isRetry ? `failing.\n${err.stack}` : 'trying from fresh.'}`
-    )
     if (isRetry) {
+      console.info(
+        `Error updating: ${err.message} ${isRetry ? `failing.\n${err.stack}` : 'trying from fresh.'}`
+      )
       console.info(
         `Please file an issue: https://github.com/universal-future/vxrn/issues/new?assignees=&labels=&template=bug_report.md&title=`
       )

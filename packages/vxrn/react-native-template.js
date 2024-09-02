@@ -79,7 +79,7 @@ function __getRequire(absPath, parent) {
   return __cachedModules[absPath]
 }
 
-const __specialRequireMap = {
+const __specialRequireMap = globalThis.__vxrnPrebuildSpecialRequireMap || {
   'react-native': '.vxrn/react-native.js',
   react: '.vxrn/react.js',
   'react/jsx-runtime': '.vxrn/react-jsx-runtime.js',

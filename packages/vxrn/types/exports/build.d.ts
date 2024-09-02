@@ -8,13 +8,15 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             server: string;
         };
         packageJSON: import("pkg-types").PackageJson;
+        packageVersions: {
+            react: string;
+            reactNative: string;
+        } | undefined;
         state: {
             applyPatches?: boolean | undefined;
         };
         packageRootDir: string;
         cacheDir: string;
-        userPatchesDir: string;
-        internalPatchesDir: string;
         host: string;
         root: string;
         port: number;

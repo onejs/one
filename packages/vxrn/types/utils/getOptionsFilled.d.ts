@@ -10,11 +10,13 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
         server: string;
     };
     packageJSON: import("pkg-types").PackageJson;
+    packageVersions: {
+        react: string;
+        reactNative: string;
+    } | undefined;
     state: State;
     packageRootDir: string;
     cacheDir: string;
-    userPatchesDir: string;
-    internalPatchesDir: string;
     host: string;
     root: string;
     port: number;

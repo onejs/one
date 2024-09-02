@@ -16,22 +16,29 @@ export async function getOptionsFilled(
   const { host = '127.0.0.1', root = process.cwd(), entries, https } = options
 
   const defaultPort = options.port || (internal.mode === 'dev' ? 8081 : 3000)
-
-  const port = await getPort({
-    port: defaultPort,
-    portRange: [defaultPort, defaultPort + 100],
-    host: '127.0.0.1',
-  })
-
   const packageRootDir = join(require.resolve('vxrn'), '../..')
   const cacheDir = join(root, 'node_modules', '.vxrn')
-  const internalPatchesDir = join(packageRootDir, 'patches')
-  const userPatchesDir = join(root, 'patches')
-  const [state, packageJSON] = await Promise.all([
-    //
+
+  const [port, state, packageJSON] = await Promise.all([
+    getPort({
+      port: defaultPort,
+      portRange: [defaultPort, defaultPort + 100],
+      host: '127.0.0.1',
+    }),
     readState(cacheDir),
     readPackageJSON(),
   ])
+
+  const deps = packageJSON.dependencies || {}
+
+  const packageVersions =
+    deps.react && deps['react-native']
+      ? {
+          react: deps.react.replace(/[\^\~]/, ''),
+          reactNative: deps['react-native'].replace(/[\^\~]/, ''),
+        }
+      : undefined
+
   return {
     ...options,
     protocol: https ? ('https:' as const) : ('http:' as const),
@@ -41,11 +48,10 @@ export async function getOptionsFilled(
       ...entries,
     },
     packageJSON,
+    packageVersions,
     state,
     packageRootDir,
     cacheDir,
-    userPatchesDir,
-    internalPatchesDir,
     host,
     root,
     port,
