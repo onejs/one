@@ -1,7 +1,6 @@
 import { styled, XStack } from 'tamagui'
 
 export const Card = styled(XStack, {
-  f: 1,
   ov: 'hidden',
   p: '$4',
   gap: '$5',
@@ -10,6 +9,10 @@ export const Card = styled(XStack, {
   minHeight: 100,
 
   hoverStyle: {
+    bg: '$color2',
+  },
+
+  pressStyle: {
     bg: '$color2',
   },
 })
