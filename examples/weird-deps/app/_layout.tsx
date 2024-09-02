@@ -2,7 +2,7 @@ import '@tamagui/core/reset.css'
 import '../public/tamagui.css'
 
 import { TamaguiProvider } from '@tamagui/core'
-import { PageLoadProgressBar, ScrollRestoration, Slot } from 'vxs'
+import { PageLoadProgressBar, Slot } from 'vxs'
 import config from '../tamagui.config'
 
 export default function Layout() {
@@ -12,7 +12,6 @@ export default function Layout() {
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> */}
 
-      <ScrollRestoration />
       <PageLoadProgressBar />
 
       <TamaguiProvider disableInjectCSS config={config}>

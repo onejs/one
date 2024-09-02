@@ -22,8 +22,10 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
       if (!resolver) {
         const rnConfig = getReactNativeResolvedConfig()
         if (!rnConfig) {
-          throw new Error(`No rn config`)
+          // they are only running web app not native
+          return
         }
+
         // for some reason rnConfig.resolve.conditions is empty array
         const resolverConfig = {
           conditions,

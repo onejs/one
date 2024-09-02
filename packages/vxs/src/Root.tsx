@@ -16,6 +16,7 @@ import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import type { RequireContext } from './types'
 import type { VXS } from './vite/types'
+import { ScrollRestoration } from './views/ScrollRestoration'
 // import { SplashScreen } from './views/Splash'
 
 type RootProps = RenderAppProps &
@@ -211,6 +212,8 @@ function ContextNavigator({
   const wrapper = (children: any) => {
     return (
       <ParentWrapper>
+        {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
+        <ScrollRestoration />
         {/* <GestureHandlerRootView> */}
         {/* <SafeAreaProvider
           // SSR

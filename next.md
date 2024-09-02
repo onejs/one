@@ -18,8 +18,6 @@ nice for demo:
 
 pokai:
 
-  - make sure useLoader working on native
-  - hot reloading PageContainer breaks "_indexnative.styled is not a function"
   - log error on loading native: called `Option::unwrap()` on a `None` value
   - on load warning: Each child in a list should have a unique "key" prop.
     - i disabled the log via logbox.ignore for now
@@ -28,6 +26,7 @@ pokai:
   - hmr adding route
 
 jon:
+  - lets add postgres + drizzle + real scheme/data for the basic demo app
   - improve errors, RootErrorBoundary, etc
   - test cli, improve cli visuals
   - design polish
