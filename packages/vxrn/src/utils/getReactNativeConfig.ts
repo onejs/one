@@ -7,6 +7,7 @@ import {
   transformWithEsbuild,
   type InlineConfig,
   type UserConfig,
+  ResolvedConfig,
 } from 'vite'
 import { nativeExtensions } from '../constants'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
@@ -256,9 +257,14 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
   // }
 
   // // this fixes my swap-react-native plugin not being called pre 😳
-  await resolveConfig(nativeBuildConfig, 'build')
+  resolvedConfig = await resolveConfig(nativeBuildConfig, 'build')
 
   return nativeBuildConfig satisfies UserConfig
+}
+
+let resolvedConfig: ResolvedConfig | null = null
+export function getReactNativeResolvedConfig() {
+  return resolvedConfig
 }
 
 let didWarnSuppressingLogs = false

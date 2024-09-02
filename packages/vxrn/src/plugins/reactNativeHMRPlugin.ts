@@ -8,6 +8,7 @@ import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
 import type { Plugin } from 'vite'
 import { conditions } from './reactNativeCommonJsPlugin'
+import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
 
 export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
   let resolver
@@ -15,15 +16,23 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
   return {
     name: 'client-transform',
 
-    async configResolved(config) {
-      resolver = config.createResolver({
-        conditions,
-      })
-    },
-
     // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
     async handleHotUpdate({ read, modules, file }) {
+      if (!resolver) {
+        const rnConfig = getReactNativeResolvedConfig()
+        if (!rnConfig) {
+          throw new Error(`No rn config`)
+        }
+        // for some reason rnConfig.resolve.conditions is empty array
+        const resolverConfig = {
+          conditions,
+          mainFields: rnConfig.resolve.mainFields,
+          extensions: rnConfig.resolve.extensions,
+        }
+        resolver = rnConfig.createResolver(resolverConfig)
+      }
+
       try {
         if (!isWithin(root, file)) {
           return
