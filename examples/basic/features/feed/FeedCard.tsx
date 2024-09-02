@@ -22,6 +22,7 @@ export const FeedCard = (props: FeedItem & { disableLink?: boolean }) => {
 
         <Paragraph
           size="$4"
+          whiteSpace="pre-wrap"
           $gtSm={{
             size: '$5',
           }}
