@@ -1,5 +1,5 @@
 import { homedir } from 'node:os'
-import { join } from 'node:path'
+import { join, sep } from 'node:path'
 import ansis from 'ansis'
 import { copy, ensureDir, pathExists, remove } from 'fs-extra'
 import { rimraf } from 'rimraf'
@@ -17,7 +17,6 @@ export const cloneStarter = async (
 ) => {
   targetGitDir = join(vxrnDir, 'vxrn', template.repo.url.split('/').at(-1)!)
 
-  console.info()
   await setupVxrnDotDir(template)
   const dir = join(targetGitDir, ...template.repo.dir)
   console.info(`Copying starter from ${dir} into ${ansis.blueBright(projectName)}...`)
@@ -71,16 +70,17 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
     }
   } else {
     if (!(await pathExists(join(targetGitDir, '.git')))) {
-      console.error(`Corrupt Vxrn directory, please delete ${targetGitDir} and re-run`)
+      console.error(`Corrupt vxrn directory, please delete ${targetGitDir} folder and re-run`)
       process.exit(1)
     }
   }
 
   if (isInSubDir) {
-    const cmd = `git sparse-checkout set ${template.repo.dir[0] ?? '.'}`
+    const cmd = `git sparse-checkout set ${template.repo.dir.join(sep) ?? '.'}`
     exec(cmd, { cwd: targetGitDir })
     console.info()
   }
+
   try {
     const cmd2 = `git pull --rebase --allow-unrelated-histories --depth 1 origin ${branch}`
     exec(cmd2, {

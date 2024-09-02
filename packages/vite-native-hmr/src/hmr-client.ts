@@ -46,18 +46,18 @@ class HMRClient {
 
     this.socket = new WebSocket(this.url)
 
-    console.info('[HMRClient] Connecting...')
+    console.info(' ⓵  [hmr] connecting...')
 
     this.socket.onopen = () => {
-      console.info('[HMRClient] Connected')
+      console.info(' ⓵  [hmr] connected')
     }
 
     this.socket.onclose = () => {
-      console.info(`[HMRClient] Disconnected ${this.url}`)
+      console.info(`[hmr] disconnected ${this.url}`)
     }
 
     this.socket.onerror = (event) => {
-      console.error('[HMRClient] Error', event)
+      console.error(' ⓵  [hmr] error', event)
     }
 
     this.socket.onmessage = (event) => {
@@ -65,7 +65,7 @@ class HMRClient {
         const data = JSON.parse(event.data.toString())
         this.processMessage(data)
       } catch (error) {
-        console.warn('[HMRClient] Invalid HMR message', error)
+        console.warn(' ⓵  [hmr] invalid message', error)
       }
     }
   }
@@ -82,19 +82,19 @@ class HMRClient {
     switch (message.action) {
       case 'building':
         this.app.LoadingView.showMessage('Rebuilding...', 'refresh')
-        console.info('[HMRClient] Bundle rebuilding', {
+        console.info(' ⓵  [hmr] bundle rebuilding', {
           name: message.body?.name,
         })
         break
       case 'built':
-        console.info('[HMRClient] Bundle rebuilt', {
+        console.info(' ⓵  [hmr] bundle rebuilt', {
           name: message.body?.name,
           time: message.body?.time,
         })
       // Fall through
       case 'sync':
         if (!message.body) {
-          console.warn('[HMRClient] HMR message body is empty')
+          console.warn(' ⓵  [hmr] message body is empty')
           return
         }
 
@@ -108,7 +108,7 @@ class HMRClient {
 
         if (message.body.warnings?.length) {
           message.body.warnings.forEach((warning) => {
-            console.warn('[HMRClient] Bundle contains warnings:', warning)
+            console.warn(' ⓵  [hmr] bundle contains warnings:', warning)
           })
         }
 
@@ -118,11 +118,11 @@ class HMRClient {
 
   applyUpdate(update: HMRMessageBody) {
     if (!module.hot) {
-      throw new Error('[HMRClient] Hot Module Replacement is disabled.')
+      throw new Error(' ⓵  [hmr] hot Module Replacement is disabled.')
     }
 
     if (!this.upToDate(update.hash) && module.hot.status() === 'idle') {
-      console.info('[HMRClient] Checking for updates on the server...')
+      console.info(' ⓵  [hmr] checking for updates on the server...')
       this.checkUpdates(update)
     }
   }
@@ -132,7 +132,7 @@ class HMRClient {
       this.app.LoadingView.showMessage('Refreshing...', 'refresh')
       const updatedModules = await module.hot?.check(false)
       if (!updatedModules) {
-        console.warn('[HMRClient] Cannot find update - full reload needed')
+        console.warn(' ⓵  [hmr] cannot find update - full reload needed')
         this.app.reload()
         return
       }
@@ -143,7 +143,7 @@ class HMRClient {
         ignoreErrored: false,
         onDeclined: (data) => {
           // This module declined update, no need to do anything
-          console.warn('[HMRClient] Ignored an update due to declined module', {
+          console.warn(' ⓵  [hmr] ignored an update due to declined module', {
             chain: data.chain,
           })
         },
@@ -159,23 +159,23 @@ class HMRClient {
       })
 
       if (unacceptedModules.length) {
-        console.warn('[HMRClient] Not every module was accepted - full reload needed', {
+        console.warn(' ⓵  [hmr] not every module was accepted - full reload needed', {
           unacceptedModules,
         })
         this.app.reload()
       } else {
-        console.info('[HMRClient] Renewed modules - app is up to date', {
+        console.info(' ⓵  [hmr] renewed modules - app is up to date', {
           renewedModules,
         })
         this.app.dismissErrors()
       }
     } catch (error) {
       if (module.hot?.status() === 'fail' || module.hot?.status() === 'abort') {
-        console.warn('[HMRClient] Cannot check for update - full reload needed')
-        console.warn('[HMRClient]', error)
+        console.warn(' ⓵  [hmr] cannot check for update - full reload needed')
+        console.warn(' ⓵  [hmr]', error)
         this.app.reload()
       } else {
-        console.warn('[HMRClient] Update check failed', { error })
+        console.warn(' ⓵  [hmr] update check failed', { error })
       }
     } finally {
       this.app.LoadingView.hide()

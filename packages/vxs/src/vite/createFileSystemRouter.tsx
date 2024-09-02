@@ -91,7 +91,7 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
       function createRequestHandler() {
         return createHandleRequest(options, {
           async handleSSR({ route, url, loaderProps }) {
-            console.info(` [vxs] «« [${route.routeType}] ${url} resolved to ${route.file}`)
+            console.info(` ⓵  [${route.routeType}] ${url} resolved to ${route.file}`)
 
             if (route.routeType === 'spa') {
               // render just the layouts? route.layouts

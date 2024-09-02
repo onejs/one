@@ -17,6 +17,7 @@ export default {
     }),
     tamaguiExtractPlugin({
       disableExtraction: true,
+      disableServerOptimization: true,
       config: 'config/tamagui.config.ts',
       outputCSS: 'features/styles/tamagui.css',
       components: ['tamagui'],
