@@ -1,5 +1,5 @@
 import ansis from 'ansis'
-import FSExtra, { copyFileSync } from 'fs-extra'
+import FSExtra from 'fs-extra'
 import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -117,7 +117,7 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
 
   // copy .env.default to .env
   if (existsSync(path.join(resolvedProjectPath, '.env.default'))) {
-    copyFileSync(
+    await FSExtra.move(
       path.join(resolvedProjectPath, '.env.default'),
       path.join(resolvedProjectPath, '.env')
     )
