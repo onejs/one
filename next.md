@@ -44,6 +44,8 @@ should have some sprints with "challenges":
 
 # backlog
 
+- if they choose yarn we create-vxrn should copy in the .yarnrc.yml + .yarn/releases so it doesnt use old yarn 1
+
 - document @vxrn/color-scheme and @vxrn/universal-color-scheme
 
 - uniswap repo has to use commonjs plugin but its very tricky to configure

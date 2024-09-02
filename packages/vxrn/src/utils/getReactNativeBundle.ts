@@ -132,15 +132,13 @@ __require("${id}")
   const templateFile = resolveFile('vxrn/react-native-template.js')
   const template = await readFile(templateFile, 'utf-8')
 
-  const replacePrefix = (path) =>
-    path.replace(/.*packages\/react-native-prebuilt/, 'packages/react-native-prebuilt')
   const specialRequireMap = vendoredModulesMap
     ? `
 globalThis.__vxrnPrebuildSpecialRequireMap = {
-  'react-native': '${replacePrefix(vendoredModulesMap.reactNative)}',
-  react: '${replacePrefix(vendoredModulesMap.react)}',
-  'react/jsx-runtime': '${replacePrefix(vendoredModulesMap.reactJSX)}',
-  'react/jsx-dev-runtime': '${replacePrefix(vendoredModulesMap.reactJSX)}',
+  'react-native': '${vendoredModulesMap.reactNative}',
+  react: '${vendoredModulesMap.react}',
+  'react/jsx-runtime': '${vendoredModulesMap.reactJSX}',
+  'react/jsx-dev-runtime': '${vendoredModulesMap.reactJSX}',
 }
   `
     : ``
