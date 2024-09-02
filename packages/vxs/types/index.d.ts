@@ -1,9 +1,10 @@
 import './polyfills';
+export type { VXSRouter } from './interfaces/router';
 import type { VXSRouter } from './interfaces/router';
+export type Href = VXSRouter.Href;
+export type LinkProps<T extends string | object> = VXSRouter.LinkProps<T>;
 export type { Endpoint } from './types';
 export * from '@vxrn/universal-color-scheme';
-export type Href = VXSRouter.Href;
-export type LinkProps = VXSRouter.LinkProps;
 export { Root } from './Root';
 export { render } from './render';
 export { Stack } from './layouts/Stack';

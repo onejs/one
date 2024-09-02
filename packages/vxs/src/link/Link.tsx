@@ -8,12 +8,6 @@ import type { VXSRouter } from '../interfaces/router'
 import { resolveHref } from './href'
 import { useLinkTo } from './useLinkTo'
 
-export interface LinkComponent {
-  (props: React.PropsWithChildren<VXSRouter.LinkProps>): JSX.Element
-  /** Helper method to resolve an Href object into a string. */
-  resolveHref: typeof resolveHref
-}
-
 /**
  * Component to render link to another route using a path.
  * Uses an anchor tag on the web.
@@ -36,7 +30,7 @@ export const Link = React.forwardRef(function Link(
     target,
     download,
     ...rest
-  }: VXSRouter.LinkProps,
+  }: VXSRouter.LinkProps<any>,
   ref: React.ForwardedRef<Text>
 ) {
   // Mutate the style prop to add the className on web.
@@ -79,7 +73,7 @@ export const Link = React.forwardRef(function Link(
       })}
     />
   )
-}) as unknown as LinkComponent
+}) as unknown as VXSRouter.LinkComponent
 
 Link.resolveHref = resolveHref
 
@@ -107,9 +101,16 @@ function useInteropClassName(props: { style?: TextProps['style']; className?: st
 }
 
 const useHrefAttrs = Platform.select<
-  (props: Partial<VXSRouter.LinkProps>) => { hrefAttrs?: any } & Partial<VXSRouter.LinkProps>
+  (
+    props: Partial<VXSRouter.LinkProps<any>>
+  ) => { hrefAttrs?: any } & Partial<VXSRouter.LinkProps<any>>
 >({
-  web: function useHrefAttrs({ asChild, rel, target, download }: Partial<VXSRouter.LinkProps>) {
+  web: function useHrefAttrs({
+    asChild,
+    rel,
+    target,
+    download,
+  }: Partial<VXSRouter.LinkProps<any>>) {
     return React.useMemo(() => {
       const hrefAttrs = {
         rel,

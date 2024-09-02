@@ -24,6 +24,13 @@ export declare namespace VXS {
         afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
         afterServerStart?: ((options: Options, server: Hono) => void | Promise<void>) | ((options: Options, server: Hono, buildInfo: AfterServerStartBuildInfo) => void | Promise<void>);
     };
+    interface RouteContext {
+        keys(): string[];
+        (id: string): any;
+        <T>(id: string): T;
+        resolve(id: string): string;
+        id: string;
+    }
     type Redirect = {
         source: string;
         destination: string;

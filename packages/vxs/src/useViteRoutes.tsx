@@ -28,11 +28,17 @@ export function useViteRoutes(
   return context
 }
 
-export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: VXS.RouteOptions) {
+export function loadRoutes(paths: GlobbedRouteImports, options?: VXS.RouteOptions) {
   if (context) return context
-
   globalThis['__importMetaGlobbed'] = paths
+  context = globbedRoutesToRouteContext(paths, options)
+  return context
+}
 
+export function globbedRoutesToRouteContext(
+  paths: GlobbedRouteImports,
+  options?: VXS.RouteOptions
+): VXS.RouteContext {
   // make it look like webpack context
   const routesSync = {}
   const promises = {}
@@ -75,6 +81,7 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
   })
 
   const moduleKeys = Object.keys(routesSync)
+
   function resolve(id: string) {
     clearTimeout(clears[id])
     if (loadedRoutes[id]) {
@@ -136,7 +143,5 @@ export function loadRoutes(paths: Record<string, () => Promise<any>>, options?: 
   resolve.id = ''
   resolve.resolve = (id: string) => id
 
-  context = resolve
-
-  return context
+  return resolve
 }

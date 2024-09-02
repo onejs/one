@@ -148,7 +148,9 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<i
         unmountOnBlur?: boolean | undefined;
         freezeOnBlur?: boolean | undefined;
     } & {
-        href?: VXSRouter.Href | null | undefined;
+        href?: VXSRouter.Href<{
+            __branded__: any;
+        }> | null | undefined;
     }, TabNavigationState<ParamListBase>, BottomTabNavigationEventMap>) => null;
 };
 export default Tabs;
