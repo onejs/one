@@ -1,6 +1,8 @@
-export type ExtraSteps = (args: {
-  packageManager: string
-  isFullClone: boolean
-  projectPath: string
+export type ExtraSteps = (args: CreateTemplateProps) => Promise<void>
+
+export type CreateTemplateProps = {
   projectName: string
-}) => Promise<void>
+  isFullClone?: boolean
+  packageManager?: string
+  projectPath?: string
+}

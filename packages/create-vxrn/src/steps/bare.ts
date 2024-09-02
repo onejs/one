@@ -1,7 +1,7 @@
 import ansis from 'ansis'
 import fs from 'fs-extra'
+import { basename, dirname, join } from 'node:path'
 import type { ExtraSteps } from './types'
-import { join, basename, dirname } from 'node:path'
 
 function shouldIgnoreFile(filePath: string) {
   return filePath.match(/node_modules|yarn.lock|package-lock.json/g)
