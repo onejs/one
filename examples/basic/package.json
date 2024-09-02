@@ -8,13 +8,18 @@
     "dev:clean": "vxs dev --clean",
     "clean": "vxs clean",
     "build:prod": "vxs build",
-    "serve": "vxs serve"
+    "serve": "vxs serve",
+    "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
+    "orm:migrate": "yarn dlx tsx db/run-migrations.ts"
   },
   "dependencies": {
     "@tamagui/image-next": "^1.110.1",
     "@tamagui/lucide-icons": "^1.110.1",
     "@tamagui/vite-plugin": "^1.110.1",
     "@vxrn/color-scheme": "1.1.203",
+    "drizzle-kit": "^0.24.2",
+    "drizzle-orm": "^0.33.0",
+    "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.1",
     "react-native-reanimated": "npm:react-native-reanimated@3.13.0-rc.1",
