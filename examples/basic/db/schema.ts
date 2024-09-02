@@ -27,6 +27,7 @@ export const follows = pgTable('follows', {
   followingId: integer('following_id')
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
 })
 
 export const likes = pgTable(
@@ -38,6 +39,7 @@ export const likes = pgTable(
     postId: integer('post_id')
       .references(() => posts.id, { onDelete: 'cascade' })
       .notNull(),
+    createdAt: timestamp('created_at').defaultNow(),
   },
   (table) => {
     return {

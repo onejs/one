@@ -1,30 +1,47 @@
-import { Heart } from '@tamagui/lucide-icons'
+import { Heart, Repeat, Reply } from '@tamagui/lucide-icons'
 import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { Link } from 'vxs'
 import { Card } from '../ui/Card'
 import { Image } from '../ui/Image'
 import type { FeedItem } from './data'
 
-export const FeedCard = (props: FeedItem) => {
-  return (
+export const FeedCard = (props: FeedItem & { disableLink?: boolean }) => {
+  const content = (
+    <Card tag="a">
+      <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar} />
+      <YStack f={1} gap="$2">
+        <Paragraph
+          size="$5"
+          fow="bold"
+          textDecorationLine="underline"
+          textDecorationStyle="solid"
+          textDecorationColor="$color8"
+        >
+          {props.user.name}
+        </Paragraph>
+
+        <Paragraph
+          size="$4"
+          $gtSm={{
+            size: '$5',
+          }}
+        >
+          {props.content}
+        </Paragraph>
+        <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
+          <StatItem Icon={Repeat} count={4} />
+          <StatItem Icon={Heart} count={73} />
+          <StatItem Icon={Reply} count={4} />
+        </XStack>
+      </YStack>
+    </Card>
+  )
+
+  return props.disableLink ? (
+    content
+  ) : (
     <Link asChild href={`/post/${props.id}`}>
-      <Card tag="a">
-        <Image width={50} height={50} br={100} src={props.user.avatar} />
-        <YStack f={1}>
-          <Paragraph size="$5" fow="700">
-            {props.user.name}
-          </Paragraph>
-
-          <Paragraph size="$5">{props.content}</Paragraph>
-
-          <XStack mt="$3" jc="space-between" px="$5">
-            <StatItem Icon={Heart} count={10} />
-            <StatItem Icon={Heart} count={10} />
-            <StatItem Icon={Heart} count={10} />
-            <StatItem Icon={Heart} count={10} />
-          </XStack>
-        </YStack>
-      </Card>
+      {content}
     </Link>
   )
 }

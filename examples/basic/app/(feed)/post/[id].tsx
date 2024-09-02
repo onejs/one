@@ -25,7 +25,7 @@ export default function FeedItemPage() {
   return (
     <>
       <PageContainer>
-        <FeedCard {...data} />
+        <FeedCard {...data} disableLink />
       </PageContainer>
     </>
   )

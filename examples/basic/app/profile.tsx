@@ -17,14 +17,14 @@ export default function ProfilePage() {
   return (
     <PageContainer>
       <ScrollView>
-        <YStack pos="relative" w="100%" h={250} ov="hidden">
+        <YStack pos="relative" w="100%" h={180} ov="hidden">
           <Image
             pos="absolute"
             t={0}
             r={0}
             b={0}
             l={0}
-            src="https://placecats.com/millie/500/300"
+            src="https://placecats.com/millie/300/200"
           />
           <Image
             pos="absolute"

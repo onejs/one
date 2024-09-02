@@ -4,7 +4,7 @@ export const Card = styled(XStack, {
   ov: 'hidden',
   minWidth: '100%',
   p: '$4',
-  gap: '$5',
+  gap: '$4',
   bbw: 1,
   bbc: '$borderColor',
 
