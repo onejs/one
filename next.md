@@ -30,8 +30,6 @@ jon:
   - improve errors, RootErrorBoundary, etc
   - test cli, improve cli visuals
   - design polish
-  - ScrollRestoration seems to have regressed (site not doing it consistently)
-    - make it default to be on, but if you import and use it it overrides
 
 ---
 
