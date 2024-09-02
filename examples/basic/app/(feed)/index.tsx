@@ -1,3 +1,4 @@
+import { ScrollView } from 'tamagui'
 import { Stack, useLoader } from 'vxs'
 import { feedData } from '~/features/feed/data'
 import { FeedCard } from '~/features/feed/FeedCard'
@@ -21,9 +22,11 @@ export default function FeedPage() {
       />
 
       <PageContainer>
-        {feed.map((item, i) => {
-          return <FeedCard key={i} {...item} />
-        })}
+        <ScrollView maxHeight="100%">
+          {feed.map((item, i) => {
+            return <FeedCard key={i} {...item} />
+          })}
+        </ScrollView>
       </PageContainer>
     </>
   )
