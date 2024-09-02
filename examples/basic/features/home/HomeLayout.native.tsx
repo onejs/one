@@ -1,18 +1,23 @@
 import { Tabs } from 'vxs'
 import { HomeIcons } from './HomeIcons'
+import { useTheme } from 'tamagui'
 
 export function HomeLayout() {
+  const theme = useTheme()
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
+        tabBarActiveTintColor: theme.accentColor.val,
+        tabBarInactiveTintColor: theme.gray9.val,
       }}
     >
       <Tabs.Screen
         name="(feed)"
         options={{
           title: 'Feed',
-          tabBarIcon: () => <HomeIcons.Home size={20} />,
+          tabBarIcon: ({ color }) => <HomeIcons.Home size={20} color={color} />,
         }}
       />
 
@@ -20,7 +25,7 @@ export function HomeLayout() {
         name="notifications"
         options={{
           title: 'Notifications',
-          tabBarIcon: () => <HomeIcons.Notifications size={20} />,
+          tabBarIcon: ({ color }) => <HomeIcons.Notifications size={20} color={color} />,
         }}
       />
 
@@ -28,7 +33,7 @@ export function HomeLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: () => <HomeIcons.User size={20} />,
+          tabBarIcon: ({ color }) => <HomeIcons.User size={20} color={color} />,
         }}
       />
     </Tabs>
