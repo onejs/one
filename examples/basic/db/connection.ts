@@ -1,8 +1,18 @@
-import { config } from 'dotenv'
-// @ts-expect-error
-import postgres from 'postgres'
 import { drizzle } from 'drizzle-orm/postgres-js'
-config({ path: '../.env' })
+import postgres from 'postgres'
 import * as schema from './schema'
-export const connection = postgres(process.env.DATABASE_URL!)
-export const db = drizzle(connection, { schema })
+
+console.info('DATABASE_URL', process.env.DATABASE_URL)
+
+let connection
+let db
+
+if (!global._db) {
+  connection = postgres(process.env.DATABASE_URL!)
+  db = drizzle(connection, { schema })
+  global._db = db
+} else {
+  db = global._db
+}
+
+export { db, connection }
