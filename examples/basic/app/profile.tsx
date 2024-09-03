@@ -1,18 +1,105 @@
 import { ScrollView, YStack, Text, SizableStack, XStack } from 'tamagui'
-import { useLoader } from 'vxs'
+import { type LoaderProps, useLoader } from 'vxs'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { Image } from '~/features/ui/Image'
 import { PageContainer } from '~/features/ui/PageContainer'
-import { fetchProfile } from '~/data/profile'
-import { Recycle, Repeat2 } from '@tamagui/lucide-icons'
+import { Repeat2 } from '@tamagui/lucide-icons'
+import { db } from '~/db/connection'
+import { posts, reposts, users, likes, replies } from '~/db/schema'
+import { eq, sql, desc } from 'drizzle-orm'
+import { getURL } from '~/helpers/getURL'
 
-export async function loader() {
-  const data = await fetchProfile({
-    queryKey: ['profile', 1, 30],
-  })
-  return {
-    profileFeed: data.profileFeed,
-    userData: data.userData,
+export async function loader({ path }: LoaderProps) {
+  try {
+    // Fetch a random user from the database
+    const randomUserQuery = db
+      .select({
+        id: users.id,
+        name: users.username,
+        avatar: users.avatarUrl,
+      })
+      .from(users)
+      .orderBy(sql`RANDOM()`)
+      .limit(1)
+
+    const randomUser = await randomUserQuery
+
+    if (randomUser.length === 0) {
+      throw new Error('No users found in the database')
+    }
+
+    const USER_ID = randomUser[0].id
+
+    const url = new URL(getURL() + path)
+    const page = Number(url.searchParams.get('page') || '1')
+    const limit = Number(url.searchParams.get('limit') || '10')
+    const offset = (page - 1) * limit
+
+    const postsQuery = db
+      .select({
+        id: posts.id,
+        content: posts.content,
+        createdAt: sql`${posts.createdAt} as created_at`,
+        user: {
+          name: users.username,
+          avatar: users.avatarUrl,
+        },
+        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+          'likesCount'
+        ),
+        repliesCount:
+          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+            'repliesCount'
+          ),
+        repostsCount:
+          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+            'repostsCount'
+          ),
+        type: sql`'post'`.as('type'),
+      })
+      .from(posts)
+      .leftJoin(users, eq(users.id, posts.userId))
+      .where(eq(posts.userId, USER_ID))
+
+    const repostsQuery = db
+      .select({
+        id: posts.id,
+        content: posts.content,
+        createdAt: sql`${reposts.createdAt} as created_at`,
+        user: {
+          name: users.username,
+          avatar: users.avatarUrl,
+        },
+        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+          'likesCount'
+        ),
+        repliesCount:
+          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+            'repliesCount'
+          ),
+        repostsCount:
+          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+            'repostsCount'
+          ),
+        type: sql`'repost'`.as('type'),
+      })
+      .from(reposts)
+      .leftJoin(posts, eq(posts.id, reposts.postId))
+      .leftJoin(users, eq(users.id, posts.userId))
+      .where(eq(reposts.userId, USER_ID))
+
+    const combinedFeedQuery = postsQuery
+      .unionAll(repostsQuery)
+      .orderBy(desc(sql`created_at`))
+      .limit(limit)
+      .offset(offset)
+
+    const combinedFeed = await combinedFeedQuery
+
+    return { profileFeed: combinedFeed, userData: randomUser[0] }
+  } catch (error) {
+    console.error(error)
+    throw new Error(`Failed to fetch profile feed: ${(error as Error).message}`)
   }
 }
 

@@ -1,17 +1,52 @@
 import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
-import { Stack, useLoader } from 'vxs'
+import { Stack, useLoader, type LoaderProps } from 'vxs'
 import { FeedCard } from '~/features/feed/FeedCard'
-import { feedData } from '~/features/feed/data'
 import { PageContainer } from '~/features/ui/PageContainer'
-import { fetchFeed } from '~/data/feed'
+import { db } from '~/db/connection'
+import { posts, users, likes, replies, reposts } from '~/db/schema'
+import { eq, desc, sql } from 'drizzle-orm'
+import { getURL } from '~/helpers/getURL'
+import { feedData } from '~/features/feed/data'
 
-export async function loader() {
-  const data = await fetchFeed({
-    queryKey: ['feed', 1, 40],
-  })
-  return {
-    feed: data,
+export async function loader({ path }: LoaderProps) {
+  try {
+    const url = new URL(getURL() + path)
+    const page = Number(url.searchParams.get('page') || '1')
+    const limit = Number(url.searchParams.get('limit') || '10')
+    const offset = (page - 1) * limit
+
+    const feed = await db
+      .select({
+        id: posts.id,
+        content: posts.content,
+        createdAt: posts.createdAt,
+        user: {
+          name: users.username,
+          avatar: users.avatarUrl,
+        },
+        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+          'likesCount'
+        ),
+        repliesCount:
+          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+            'repliesCount'
+          ),
+        repostsCount:
+          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+            'repostsCount'
+          ),
+      })
+      .from(posts)
+      .leftJoin(users, eq(users.id, posts.userId))
+      .orderBy(desc(posts.createdAt))
+      .limit(limit)
+      .offset(offset)
+
+    return { feed: [...feedData, ...feed] }
+  } catch (error) {
+    console.error(error)
+    throw new Error(`Failed to fetch feed: ${(error as Error).message}`)
   }
 }
 
@@ -28,9 +63,9 @@ export default function FeedPage() {
       <PageContainer>
         <ScrollView maxHeight="100%">
           <RefreshControl refreshing={false} />
-          {[...feedData, ...feed].map((item, i) => {
-            return <FeedCard key={i} {...item} />
-          })}
+          {feed.map((item) => (
+            <FeedCard key={item.id} {...item} />
+          ))}
         </ScrollView>
       </PageContainer>
     </>

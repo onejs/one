@@ -1,15 +1,71 @@
 import { useEffect } from 'react'
 import { YStack } from 'tamagui'
 import { useLoader, useNavigation, useParams } from 'vxs'
-import { fetchPost } from '~/data/post'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { PageContainer } from '~/features/ui/PageContainer'
+import { db } from '~/db/connection'
+import { posts, users, likes, replies, reposts } from '~/db/schema'
+import { eq, sql } from 'drizzle-orm'
 
 export async function loader({ params }) {
-  const data = await fetchPost({
-    queryKey: ['post', params.id],
-  })
-  return data
+  const id = params.id
+
+  if (!id) {
+    throw new Error('Invalid post ID')
+  }
+
+  try {
+    const post = await db
+      .select({
+        id: posts.id,
+        content: posts.content,
+        createdAt: posts.createdAt,
+        user: {
+          name: users.username,
+          avatar: users.avatarUrl,
+        },
+        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+          'likesCount'
+        ),
+        repliesCount:
+          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+            'repliesCount'
+          ),
+        repostsCount:
+          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+            'repostsCount'
+          ),
+      })
+      .from(posts)
+      .leftJoin(users, eq(users.id, posts.userId))
+      .where(eq(posts.id, Number(id)))
+      .limit(1)
+
+    if (post.length === 0) {
+      throw new Error('Post not found')
+    }
+
+    const repliesData = await db
+      .select({
+        id: replies.id,
+        content: replies.content,
+        createdAt: replies.createdAt,
+        user: {
+          name: users.username,
+          avatar: users.avatarUrl,
+        },
+      })
+      .from(replies)
+      .leftJoin(users, eq(users.id, replies.userId))
+      .where(eq(replies.postId, Number(id)))
+
+    return {
+      ...post[0],
+      replies: repliesData,
+    }
+  } catch (error) {
+    throw new Error(`Failed to fetch post: ${(error as Error).message}`)
+  }
 }
 
 export default () => <PostPage />
