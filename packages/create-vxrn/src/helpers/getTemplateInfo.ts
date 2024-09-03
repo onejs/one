@@ -11,11 +11,12 @@ export const getTemplateInfo = async (template?: string): Promise<(typeof templa
     process.exit(1)
   }
   if (!res) {
+    console.info()
     template = (
       await prompts({
         name: 'template',
         type: 'select',
-        message: `Pick a template:`,
+        message: `Template`,
         choices: templates.filter((t) => !t.hidden),
       })
     ).template
