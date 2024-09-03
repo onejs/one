@@ -1,16 +1,18 @@
-import { drizzle } from 'drizzle-orm/better-sqlite3'
-import Database from 'better-sqlite3'
+import { drizzle } from 'drizzle-orm/postgres-js'
+import postgres from 'postgres'
 import * as schema from './schema'
 
-let sqlite
+console.info('DATABASE_URL', process.env.DATABASE_URL)
+
+let connection
 let db
 
 if (!global._db) {
-  sqlite = new Database('sqlite.db')
-  db = drizzle(sqlite, { schema })
+  connection = postgres(process.env.DATABASE_URL!)
+  db = drizzle(connection, { schema })
   global._db = db
 } else {
   db = global._db
 }
 
-export { db, sqlite as connection }
+export { db, connection }

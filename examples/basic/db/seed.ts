@@ -2,6 +2,13 @@ import { db } from './connection'
 import { users, posts, follows, likes, reposts, replies } from './schema'
 import { faker } from '@faker-js/faker'
 
+const USER_COUNT = 10
+const POST_COUNT_PER_USER = 10
+const REPLY_COUNT_PER_POST = 2.5
+const FOLLOW_COUNT_PER_USER = 7.5
+const LIKE_COUNT_PER_USER = 20
+const REPOST_COUNT_PER_USER = 4
+
 const userNames = [
   'SomeRandomDevWeb',
   'Floren Ryance',
@@ -240,125 +247,50 @@ const seed = async () => {
 
     // Clear existing data
     console.info('Clearing existing data...')
-    await db.delete(replies)
-    await db.delete(reposts)
-    await db.delete(likes)
-    await db.delete(follows)
-    await db.delete(posts)
-    await db.delete(users)
+    await db.transaction(async (trx) => {
+      await trx.delete(replies)
+      await trx.delete(reposts)
+      await trx.delete(likes)
+      await trx.delete(follows)
+      await trx.delete(posts)
+      await trx.delete(users)
+    })
     console.info('Existing data cleared.')
 
-    // Insert users and return their IDs
-    console.info('Generating 100 users with predefined names...')
-    const userIds: { id: number }[] = await db
-      .insert(users)
-      .values(
-        userNames.map((name) => ({
-          username: name,
-          email: `${name.toLowerCase().replace(/\s+/g, '.')}@example.com`,
-          passwordHash: faker.internet.password(),
-          avatarUrl: `https://i.pravatar.cc/150?u=${name}`,
-        }))
-      )
-      .returning({ id: users.id })
-    console.info('100 users generated.')
+    // Insert users
+    const randomizedUserCount = Math.round(USER_COUNT * (0.8 + Math.random() * 0.4))
+    console.info(`Generating ${randomizedUserCount} users with random names...`)
+    const userIds = await insertUsers(randomizedUserCount)
+    console.info(`${userIds.length} users generated.`)
 
-    // Insert posts and replies
-    console.info('Generating 10 posts for each user and replies...')
-    const postAndReplyPromises = userIds.flatMap((user) => {
-      console.info(`Generating 10 posts for user ${user.id}`)
-      return Array.from({ length: 10 }).map(async () => {
-        const topic = topics[Math.floor(Math.random() * topics.length)]
-        const postContent = generatePostContent(topic)
-
-        // Insert post
-        const [insertedPost] = await db
-          .insert(posts)
-          .values({
-            userId: user.id,
-            content: postContent,
-            createdAt: faker.date.recent({ days: 1 }),
-          })
-          .returning({ id: posts.id })
-
-        // Generate and insert replies
-        const replyCount = Math.floor(Math.random() * 5) + 1 // 1 to 5 replies per post
-        const replyPromises = Array.from({ length: replyCount }).map(() => {
-          const replyingUser = userIds[Math.floor(Math.random() * userIds.length)]
-          return db.insert(replies).values({
-            userId: replyingUser.id,
-            postId: insertedPost.id,
-            content: generateReply(topic),
-            createdAt: faker.date.recent({ days: 1 }),
-          })
-        })
-
-        await Promise.all(replyPromises)
-      })
-    })
-
-    await Promise.all(postAndReplyPromises)
-    console.info('Posts and replies generated.')
+    // Insert posts
+    console.info('Generating posts...')
+    await generatePosts(userIds)
+    console.info('Posts generation completed.')
 
     // Fetch all post IDs
-    console.info('Fetching all post IDs...')
-    const allPostIds: { id: number; userId: number }[] = await db
-      .select({ id: posts.id, userId: posts.userId })
-      .from(posts)
+    const allPostIds = await db.select({ id: posts.id }).from(posts)
+    console.info(`${allPostIds.length} posts fetched.`)
+
+    // Insert replies
+    console.info('Generating replies...')
+    await generateReplies(userIds, allPostIds)
+    console.info('Replies generation completed.')
 
     // Insert follows
-    console.info('Each user follows 10 other users...')
-    const followPromises = userIds.flatMap((follower) => {
-      const followingIds = faker.helpers.arrayElements(userIds, 10)
-      console.info(`User ${follower.id} follows ${followingIds.length} users`)
-      return followingIds.map((following) => {
-        return db.insert(follows).values({
-          followerId: follower.id,
-          followingId: following.id,
-          createdAt: faker.date.recent({ days: 1 }),
-        })
-      })
-    })
-
-    await Promise.all(followPromises)
-    console.info('Follows inserted.')
+    console.info('Generating follows...')
+    await generateFollows(userIds)
+    console.info('Follows generation completed.')
 
     // Insert likes
-    console.info('Each user likes 150 random posts...')
-    const likePromises = userIds.flatMap((user) => {
-      const shuffledPostIds = faker.helpers.shuffle(allPostIds)
-      const postIds = shuffledPostIds.slice(0, 150)
-      console.info(`User ${user.id} likes ${postIds.length} posts`)
-      return postIds.map((post) => {
-        return db.insert(likes).values({
-          userId: user.id,
-          postId: post.id,
-          createdAt: faker.date.recent({ days: 1 }),
-        })
-      })
-    })
-
-    await Promise.all(likePromises)
-    console.info('Likes inserted.')
+    console.info('Generating likes...')
+    await generateLikes(userIds, allPostIds)
+    console.info('Likes generation completed.')
 
     // Insert reposts
-    console.info('Each user reposts 10 random posts...')
-    const repostPromises = userIds.flatMap((user) => {
-      const shuffledPostIds = faker.helpers.shuffle(allPostIds)
-      const postIds = shuffledPostIds.filter((post) => post.userId !== user.id).slice(0, 10)
-      console.info(`User ${user.id} reposts ${postIds.length} posts`)
-      return postIds.map((post) => {
-        console.info(`User ${user.id} reposts post ${post.id}`)
-        return db.insert(reposts).values({
-          userId: user.id,
-          postId: post.id,
-          createdAt: faker.date.recent({ days: 1 }),
-        })
-      })
-    })
-
-    await Promise.all(repostPromises)
-    console.info('Reposts inserted.')
+    console.info('Generating reposts...')
+    await generateReposts(userIds, allPostIds)
+    console.info('Reposts generation completed.')
 
     console.info('Seeding completed successfully.')
     process.exit(0)
@@ -366,6 +298,147 @@ const seed = async () => {
     console.error('Error seeding data:', error)
     process.exit(1)
   }
+}
+
+async function insertUsers(count: number) {
+  const selectedUserNames = faker.helpers.arrayElements(userNames, count)
+  console.time('insertUsers')
+  const userIds: { id: number }[] = await db.transaction(async (trx) => {
+    return trx
+      .insert(users)
+      .values(
+        selectedUserNames.map((name) => ({
+          username: name,
+          email: `${name.toLowerCase().replace(/\s+/g, '.')}@example.com`,
+          passwordHash: faker.internet.password(),
+          avatarUrl: `https://i.pravatar.cc/150?u=${name}`,
+        }))
+      )
+      .returning({ id: users.id })
+  })
+  console.timeEnd('insertUsers')
+  return userIds
+}
+
+async function generatePosts(userIds: { id: number }[]) {
+  console.time('generatePosts')
+  for (const user of userIds) {
+    const randomizedPostCount = Math.round(POST_COUNT_PER_USER * (0.8 + Math.random() * 0.4))
+    for (let i = 0; i < randomizedPostCount; i++) {
+      try {
+        const topic = topics[Math.floor(Math.random() * topics.length)]
+        const postContent = generatePostContent(topic)
+
+        await db.insert(posts).values({
+          userId: user.id,
+          content: postContent,
+          createdAt: faker.date.recent({ days: 1 }),
+        })
+      } catch (error) {
+        console.error(`Failed to insert post for user ${user.id}:`, error)
+      }
+    }
+  }
+  console.timeEnd('generatePosts')
+}
+
+async function generateReplies(userIds: { id: number }[], allPostIds: { id: number }[]) {
+  console.time('generateReplies')
+  for (const post of allPostIds) {
+    const randomizedReplyCount = Math.round(REPLY_COUNT_PER_POST * (0.8 + Math.random() * 0.4))
+    for (let j = 0; j < randomizedReplyCount; j++) {
+      try {
+        const replyingUser = userIds[Math.floor(Math.random() * userIds.length)]
+        const topic = topics[Math.floor(Math.random() * topics.length)]
+        await db.insert(replies).values({
+          userId: replyingUser.id,
+          postId: post.id,
+          content: generateReply(topic),
+          createdAt: faker.date.recent({ days: 1 }),
+        })
+      } catch (error) {
+        console.error(`Failed to insert reply for post ${post.id}:`, error)
+      }
+    }
+  }
+  console.timeEnd('generateReplies')
+}
+
+async function generateFollows(userIds: { id: number }[]) {
+  console.time('generateFollows')
+  for (const follower of userIds) {
+    const randomizedFollowCount = Math.round(FOLLOW_COUNT_PER_USER * (0.8 + Math.random() * 0.4))
+    const followingIds = faker.helpers.arrayElements(
+      userIds.filter((user) => user.id !== follower.id),
+      Math.min(randomizedFollowCount, userIds.length - 1)
+    )
+    for (const following of followingIds) {
+      try {
+        await db.insert(follows).values({
+          followerId: follower.id,
+          followingId: following.id,
+          createdAt: faker.date.recent({ days: 1 }),
+        })
+      } catch (error) {
+        console.error(
+          `Failed to insert follow relationship (${follower.id} -> ${following.id}):`,
+          error
+        )
+      }
+    }
+  }
+  console.timeEnd('generateFollows')
+}
+
+async function generateLikes(userIds: { id: number }[], allPostIds: { id: number }[]) {
+  console.time('generateLikes')
+  for (const user of userIds) {
+    const postIds = faker.helpers.arrayElements(
+      allPostIds,
+      Math.min(LIKE_COUNT_PER_USER, allPostIds.length)
+    )
+    for (const post of postIds) {
+      try {
+        await db.insert(likes).values({
+          userId: user.id,
+          postId: post.id,
+          createdAt: faker.date.recent({ days: 1 }),
+        })
+      } catch (error) {
+        console.error(`Failed to insert like (user ${user.id}, post ${post.id}):`, error)
+      }
+    }
+  }
+  console.timeEnd('generateLikes')
+}
+
+async function generateReposts(userIds: { id: number }[], allPostIds: { id: number }[]) {
+  console.time('generateReposts')
+  const allPostsWithUsers: {
+    id: number
+    userId: number
+  }[] = await db.select({ id: posts.id, userId: posts.userId }).from(posts)
+  for (const user of userIds) {
+    // This code selects random posts for a user to repost
+    // It filters out the user's own posts to avoid self-reposts
+    // The number of reposts is limited by REPOST_COUNT_PER_USER or the total available posts
+    const postIds = faker.helpers.arrayElements(
+      allPostsWithUsers.filter((post) => post.userId !== user.id),
+      Math.min(REPOST_COUNT_PER_USER, allPostsWithUsers.length)
+    )
+    for (const post of postIds) {
+      try {
+        await db.insert(reposts).values({
+          userId: user.id,
+          postId: post.id,
+          createdAt: faker.date.recent({ days: 1 }),
+        })
+      } catch (error) {
+        console.error(`Failed to insert repost (user ${user.id}, post ${post.id}):`, error)
+      }
+    }
+  }
+  console.timeEnd('generateReposts')
 }
 
 seed()

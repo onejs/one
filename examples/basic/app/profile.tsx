@@ -8,7 +8,7 @@ import { Recycle, Repeat2 } from '@tamagui/lucide-icons'
 
 export async function loader() {
   const data = await fetchProfile({
-    queryKey: ['profile', 1, 10],
+    queryKey: ['profile', 1, 30],
   })
   return {
     profileFeed: data.profileFeed,

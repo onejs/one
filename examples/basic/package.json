@@ -11,8 +11,7 @@
     "serve": "vxs serve",
     "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
     "orm:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
-    "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts",
-    "postinstall": "[ ! -f sqlite.db ] && touch sqlite.db || true"
+    "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
@@ -25,6 +24,7 @@
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
+    "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.1",
     "react-native-reanimated": "npm:react-native-reanimated@3.13.0-rc.1",
