@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "id": "2f93bb5b-7109-4581-be80-83a981983806",
-=======
-  "id": "6b43cede-b7fa-4dd4-b35d-f147a339d173",
->>>>>>> main
+  "id": "ccebedf0-f104-420e-95b1-155591f0ef6c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -23,7 +19,6 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": true
-<<<<<<< HEAD
         },
         "created_at": {
           "name": "created_at",
@@ -31,8 +26,6 @@
           "primaryKey": false,
           "notNull": false,
           "default": "now()"
-=======
->>>>>>> main
         }
       },
       "indexes": {},
@@ -82,7 +75,6 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": true
-<<<<<<< HEAD
         },
         "created_at": {
           "name": "created_at",
@@ -90,8 +82,6 @@
           "primaryKey": false,
           "notNull": false,
           "default": "now()"
-=======
->>>>>>> main
         }
       },
       "indexes": {},

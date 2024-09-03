@@ -5,25 +5,9 @@
     {
       "idx": 0,
       "version": "7",
-<<<<<<< HEAD
-      "when": 1725353283072,
-      "tag": "0000_far_gambit",
+      "when": 1725362020757,
+      "tag": "0000_tiny_joseph",
       "breakpoints": true
     }
   ]
 }
-=======
-      "when": 1725275624482,
-      "tag": "0000_keen_mandarin",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1725287753922,
-      "tag": "0001_icy_wolverine",
-      "breakpoints": true
-    }
-  ]
-}
->>>>>>> main
