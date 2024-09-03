@@ -64,7 +64,6 @@ export function initialize(
     throw new Error('No routes found')
   }
 
-  // @ts-expect-error
   navigationRef = ref
   setupLinking(initialLocation)
   subscribeToNavigationChanges()

@@ -4659,7 +4659,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/bottom-tabs@npm:^6.5.8":
+"@react-navigation/bottom-tabs@npm:~6.5.8":
   version: 6.5.20
   resolution: "@react-navigation/bottom-tabs@npm:6.5.20"
   dependencies:
@@ -4676,7 +4676,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/core@npm:^6.4.17":
+"@react-navigation/core@npm:^6.4.17, @react-navigation/core@npm:~6.4.9":
   version: 6.4.17
   resolution: "@react-navigation/core@npm:6.4.17"
   dependencies:
@@ -4692,23 +4692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/core@npm:^6.4.9":
-  version: 6.4.16
-  resolution: "@react-navigation/core@npm:6.4.16"
-  dependencies:
-    "@react-navigation/routers": ^6.1.9
-    escape-string-regexp: ^4.0.0
-    nanoid: ^3.1.23
-    query-string: ^7.1.3
-    react-is: ^16.13.0
-    use-latest-callback: ^0.1.9
-  peerDependencies:
-    react: "*"
-  checksum: 22e0dadd71f4748b123effc69eab5ca8d8ab0c8733927f2fab7be52bd53c85f9ed178c25e5c42b86d465f87235766a1889e1285505b3239146ac0ac6934f7b68
-  languageName: node
-  linkType: hard
-
-"@react-navigation/drawer@npm:^6.6.3":
+"@react-navigation/drawer@npm:~6.6.3":
   version: 6.6.15
   resolution: "@react-navigation/drawer@npm:6.6.15"
   dependencies:
@@ -4739,7 +4723,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/native-stack@npm:^6.9.13":
+"@react-navigation/native-stack@npm:~6.9.13":
   version: 6.9.26
   resolution: "@react-navigation/native-stack@npm:6.9.26"
   dependencies:
@@ -4755,7 +4739,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/native@npm:>=6.1.7 <=6.2.0":
+"@react-navigation/native@npm:~6.1.7":
   version: 6.1.18
   resolution: "@react-navigation/native@npm:6.1.18"
   dependencies:
@@ -4770,7 +4754,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/routers@npm:^6.1.9":
+"@react-navigation/routers@npm:^6.1.9, @react-navigation/routers@npm:~6.1.9":
   version: 6.1.9
   resolution: "@react-navigation/routers@npm:6.1.9"
   dependencies:
@@ -20015,15 +19999,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-latest-callback@npm:^0.1.9":
-  version: 0.1.9
-  resolution: "use-latest-callback@npm:0.1.9"
-  peerDependencies:
-    react: ">=16.8"
-  checksum: 620969d85763b65aca5f9b601c31eb476a8f7602cfccfb3c0f9dc60ff3b863e04dd64360ada255e15606771513de33b25e4631607d702605b26630f61381b3d4
-  languageName: node
-  linkType: hard
-
 "use-latest-callback@npm:^0.2.1":
   version: 0.2.1
   resolution: "use-latest-callback@npm:0.2.1"
@@ -20436,12 +20411,12 @@ __metadata:
     "@babel/parser": ^7.25.4
     "@babel/traverse": ^7.25.4
     "@radix-ui/react-slot": ^1.0.2
-    "@react-navigation/bottom-tabs": ^6.5.8
-    "@react-navigation/core": ^6.4.9
-    "@react-navigation/drawer": ^6.6.3
-    "@react-navigation/native": ">=6.1.7 <=6.2.0"
-    "@react-navigation/native-stack": ^6.9.13
-    "@react-navigation/routers": ^6.1.9
+    "@react-navigation/bottom-tabs": ~6.5.8
+    "@react-navigation/core": ~6.4.9
+    "@react-navigation/drawer": ~6.6.3
+    "@react-navigation/native": ~6.1.7
+    "@react-navigation/native-stack": ~6.9.13
+    "@react-navigation/routers": ~6.1.9
     "@tamagui/build": ^1.110.1
     "@types/node": ^22.1.0
     "@types/react-dom": ^18.2.25
