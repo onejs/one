@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
+import { YStack } from 'tamagui'
 import { useLoader, useNavigation, useParams } from 'vxs'
+import { fetchPost } from '~/data/post'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { PageContainer } from '~/features/ui/PageContainer'
-import { fetchPost } from '~/data/post'
-import { YStack } from 'tamagui'
 
 export async function loader({ params }) {
   const data = await fetchPost({
@@ -12,7 +12,9 @@ export async function loader({ params }) {
   return data
 }
 
-export default function FeedItemPage() {
+export default () => <PostPage />
+
+export function PostPage() {
   const data = useLoader(loader)
 
   const navigation = useNavigation()

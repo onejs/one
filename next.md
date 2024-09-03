@@ -30,8 +30,6 @@ jon:
   - improve errors, RootErrorBoundary, etc
   - test cli, improve cli visuals
   - design polish
-  - ScrollRestoration seems to have regressed (site not doing it consistently)
-    - make it default to be on, but if you import and use it it overrides
 
 ---
 
@@ -45,6 +43,8 @@ should have some sprints with "challenges":
 ---
 
 # backlog
+
+- if they choose yarn we create-vxrn should copy in the .yarnrc.yml + .yarn/releases so it doesnt use old yarn 1
 
 - document @vxrn/color-scheme and @vxrn/universal-color-scheme
 

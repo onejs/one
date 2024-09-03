@@ -90,7 +90,9 @@ function setupWebSocket(protocol: string, hostAndPath: string, onCloseWithoutOpe
 
   // Listen for messages
   socket.addEventListener('message', ({ data }) => {
-    console.info('🌶️' + data)
+    if (process.env.DEBUG) {
+      console.info(' 🤖 ' + data.type)
+    }
     handleMessage(JSON.parse(data))
   })
 

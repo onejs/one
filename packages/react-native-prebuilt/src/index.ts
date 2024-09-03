@@ -55,7 +55,19 @@ export async function buildReactJSX(options: BuildOptions = {}) {
     }
     const __mod__ = run()
     ${['jsx', 'jsxs', 'jsxDEV', 'Fragment']
-      .map((n) => `export const ${n} = __mod__.${n} || __mod__.jsx || __mod__.jsxDEV`)
+      .map(
+        (n) =>
+          `export const ${n} = __mod__.${n} || __mod__.jsx || ${(() => {
+            // To prevent false warnings about `Each child in a list should have a unique "key" prop` (which can occur when `jsx` and `jsxs` are used in pre-built code within packages installed in node_modules, where JSX has already been transformed),
+            // we need to map `jsxs` to `jsxWithValidationStatic` as how it's done here:
+            // https://github.com/facebook/react/blob/v18.3.1/fixtures/legacy-jsx-runtimes/react-17/cjs/react-jsx-runtime.development.js#L1202-L1216
+            if (n === 'jsxs') {
+              return 'function (type, props, key) { return __mod__.jsxDEV(type, props, key, true) }'
+            }
+
+            return '__mod__.jsxDEV'
+          })()}`
+      )
       .join('\n')}
     `
     await FSExtra.writeFile(options.outfile!, outCode)
@@ -98,8 +110,6 @@ export async function buildReact(options: BuildOptions = {}) {
 }
 
 export async function buildReactNative(options: BuildOptions = {}) {
-  console.log('resolved to', resolveFile('react-native'))
-
   return build({
     bundle: true,
     entryPoints: [resolveFile('react-native')],

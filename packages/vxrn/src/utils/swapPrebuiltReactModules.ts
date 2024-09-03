@@ -9,44 +9,86 @@ import { resolveFile } from './resolveFile'
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
 
-export const getPrebuilds = (cacheDir: string) => ({
+const getPrebuilds = (cacheDir: string) => ({
   reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
   react: join(cacheDir, 'react.js'),
   reactNative: join(cacheDir, 'react-native.js'),
 })
 
-export async function prebuildReactNativeModules(cacheDir: string) {
-  const prebuilds = getPrebuilds(cacheDir)
+const requireResolve = (inPath: string) => {
+  return import.meta.resolve(inPath, join(process.cwd(), 'index.js')).replace('file://', '')
+}
 
-  if (
-    !(
-      await Promise.all([
-        FSExtra.pathExists(prebuilds.reactNative),
-        FSExtra.pathExists(prebuilds.react),
-        FSExtra.pathExists(prebuilds.reactJSX),
-      ])
-    ).every(Boolean)
-  ) {
-    console.info('Pre-building react, react-native react/jsx-runtime (one time cost)...')
-    await Promise.all([
-      buildReactNative({
-        entryPoints: [resolveFile('react-native')],
-        outfile: prebuilds.reactNative,
-      }),
-      buildReact({
-        entryPoints: [resolveFile('@vxrn/react-native-prebuilt/react')],
-        outfile: prebuilds.react,
-      }),
-      buildReactJSX({
-        entryPoints: [resolveFile('@vxrn/react-native-prebuilt/jsx-runtime')],
-        outfile: prebuilds.reactJSX,
-      }),
-    ])
+type PrebuildVersions = {
+  react: string
+  reactNative: string
+}
+
+const getVendoredPrebuilds = (versions: PrebuildVersions) => {
+  try {
+    return {
+      reactJSX: requireResolve(
+        `@vxrn/react-native-prebuilt/vendor/react-jsx-runtime-${versions.react}`
+      ),
+      react: requireResolve(`@vxrn/react-native-prebuilt/vendor/react-${versions.react}`),
+      reactNative: requireResolve(
+        `@vxrn/react-native-prebuilt/vendor/react-native-${versions.reactNative}`
+      ),
+    }
+  } catch {
+    return null
   }
 }
 
-export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin> {
+const allExist = async (paths: string[]) => {
+  return (await Promise.all(paths.map((p) => FSExtra.pathExists(p)))).every(Boolean)
+}
+
+export async function prebuildReactNativeModules(cacheDir: string, versions?: PrebuildVersions) {
   const prebuilds = getPrebuilds(cacheDir)
+
+  if (versions) {
+    const vendored = getVendoredPrebuilds(versions)
+    if (vendored && (await allExist(Object.values(vendored)))) {
+      // already vendored
+      return vendored
+    }
+  }
+
+  if (await allExist(Object.values(prebuilds))) {
+    return
+  }
+
+  console.info('\n ❶ Pre-building react-native (one time cost)...\n')
+
+  await Promise.all([
+    buildReactNative({
+      entryPoints: [resolveFile('react-native')],
+      outfile: prebuilds.reactNative,
+    }),
+    buildReact({
+      entryPoints: [resolveFile('react')],
+      outfile: prebuilds.react,
+    }),
+    buildReactJSX({
+      entryPoints: [resolveFile('react/jsx-dev-runtime')],
+      outfile: prebuilds.reactJSX,
+    }),
+  ])
+}
+
+export async function swapPrebuiltReactModules(
+  cacheDir: string,
+  versions?: PrebuildVersions
+): Promise<Plugin> {
+  let prebuilds = getPrebuilds(cacheDir)
+
+  if (versions) {
+    const vendored = getVendoredPrebuilds(versions)
+    if (vendored && (await allExist(Object.values(vendored)))) {
+      prebuilds = vendored
+    }
+  }
 
   let cached: null | Record<
     'react-native' | 'react' | 'react/jsx-runtime' | 'react/jsx-dev-runtime',
@@ -59,21 +101,17 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
   const getVirtualModules = async () => {
     if (cached) return cached
 
-    // react native port (it scans 19000 +5)
     const jsxRuntime = {
-      // alias: 'virtual:react-jsx',
       alias: prebuilds.reactJSX,
       contents: await readFile(prebuilds.reactJSX, 'utf-8'),
     } as const
 
     cached = {
       'react-native': {
-        // alias: 'virtual:react-native',
         alias: prebuilds.reactNative,
         contents: await readFile(prebuilds.reactNative, 'utf-8'),
       },
       react: {
-        // alias: 'virtual:react',
         alias: prebuilds.react,
         contents: await readFile(prebuilds.react, 'utf-8'),
       },
@@ -84,6 +122,14 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
     return cached
   }
 
+  const virtualModules = await getVirtualModules()
+
+  const cachedIdToContents = Object.keys(virtualModules).reduce((acc, key) => {
+    const cur = virtualModules[key]
+    acc[cur.alias] = cur.contents
+    return acc
+  }, {})
+
   return {
     name: `swap-react-native`,
     enforce: 'pre',
@@ -93,20 +139,18 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
         return `virtual:rn-internals:${id}`
       }
 
-      // this will break web support, we need a way to somehow switch between?
       if (id === 'react-native-web') {
         return prebuilds.reactNative
       }
 
-      const virtualModules = await getVirtualModules()
-
       for (const targetId in virtualModules) {
-        if (id === targetId || id.includes(`node_modules/${targetId}/`)) {
+        if (id === targetId || id.includes(`/node_modules/${targetId}/`)) {
           const info = virtualModules[targetId]
           return info.alias
         }
       }
 
+      // TODO this also shouldnt be here
       // TODO this is terrible and slow, we should be able to get extensions working:
       // having trouble getting .native.js to be picked up via vite
       // tried adding packages to optimizeDeps, tried resolveExtensions + extensions...
@@ -116,16 +160,22 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
           const absolutePath = resolve(dirname(importer), id)
           const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
           if (nativePath === id) return
+
+          // // if exists can skip
+          // if (await FSExtra.pathExists(absolutePath)) {
+          //   return
+          // }
+
           try {
             const directoryPath = absolutePath + '/index.native.js'
             const directoryNonNativePath = absolutePath + '/index.js'
-            if (FSExtra.pathExistsSync(directoryPath)) {
+            if (await FSExtra.pathExists(directoryPath)) {
               return directoryPath
             }
-            if (FSExtra.pathExistsSync(directoryNonNativePath)) {
+            if (await FSExtra.pathExists(directoryNonNativePath)) {
               return directoryNonNativePath
             }
-            if (FSExtra.pathExistsSync(nativePath)) {
+            if (await FSExtra.pathExists(nativePath)) {
               return nativePath
             }
           } catch (err) {
@@ -155,12 +205,8 @@ export async function swapPrebuiltReactModules(cacheDir: string): Promise<Plugin
         return out
       }
 
-      const virtualModules = await getVirtualModules()
-      for (const targetId in virtualModules) {
-        const info = virtualModules[targetId as keyof typeof virtualModules]
-        if (id === info.alias) {
-          return info.contents
-        }
+      if (id in cachedIdToContents) {
+        return cachedIdToContents[id]
       }
     },
   } satisfies Plugin

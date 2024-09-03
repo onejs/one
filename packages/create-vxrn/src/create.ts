@@ -10,6 +10,7 @@ import { installDependencies } from './helpers/installDependencies'
 import { validateNpmName } from './helpers/validateNpmPackage'
 import prompts from 'prompts'
 import { detectPackageManager, type PackageManagerName } from './helpers/detectPackageManager'
+import Spinner from 'yocto-spinner'
 
 const { existsSync, readFileSync, writeFileSync } = FSExtra
 
@@ -44,10 +45,10 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
     process.exit(1)
   }
 
-  let template = await getTemplateInfo(args.template)
-
   // space
   console.info()
+
+  let template = await getTemplateInfo(args.template)
 
   const { valid, problems } = validateNpmName(projectName)
   if (!valid) {
@@ -62,18 +63,31 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
   }
 
   console.info()
-  fs.mkdirSync(resolvedProjectPath)
-  console.info(ansis.green(`Created: ${projectName}`))
+
+  const spinner = Spinner({
+    text: `Creating...`,
+    spinner: {
+      frames: ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'],
+      interval: 100,
+    },
+  }).start()
+
+  await FSExtra.mkdir(resolvedProjectPath)
 
   try {
     await cloneStarter(template, resolvedProjectPath, projectName)
     process.chdir(resolvedProjectPath)
-    // space
-    console.info()
   } catch (e) {
     console.error(`[vxrn] Failed to copy example into ${resolvedProjectPath}\n\n`, e)
     process.exit(1)
   }
+
+  spinner.stop()
+  console.info()
+  console.info()
+  console.info(ansis.green(`${projectName} created!`))
+  console.info()
+  console.info()
 
   // change root package.json's name to project name
   updatePackageJsonName(projectName, resolvedProjectPath)
@@ -105,6 +119,8 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
     return response.packageManager
   })()
 
+  console.info()
+
   try {
     console.info()
     console.info(ansis.green(`Installing with ${packageManager}...`))
@@ -113,6 +129,14 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
   } catch (e: any) {
     console.error('[vxrn] error installing with ' + packageManager + '\n' + `${e}`)
     process.exit(1)
+  }
+
+  // copy .env.default to .env
+  if (existsSync(path.join(resolvedProjectPath, '.env.default'))) {
+    await FSExtra.move(
+      path.join(resolvedProjectPath, '.env.default'),
+      path.join(resolvedProjectPath, '.env')
+    )
   }
 
   await template.extraSteps({

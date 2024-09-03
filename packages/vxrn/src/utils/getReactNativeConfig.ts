@@ -117,7 +117,7 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
 
       viteFlow,
 
-      swapPrebuiltReactModules(options.cacheDir),
+      swapPrebuiltReactModules(options.cacheDir, options.packageVersions),
 
       {
         name: 'reanimated',

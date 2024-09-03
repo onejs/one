@@ -65,8 +65,8 @@ export const FeedCard = (props: FeedItem) => {
 const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
   return (
     <XStack ai="center" jc="center" gap="$2">
-      <Icon color="$color8" size={14} />
-      <SizableText fow="700" color="$color8" userSelect="none">
+      <Icon color="$color10" size={14} />
+      <SizableText fow="700" color="$color10" userSelect="none">
         {count}
       </SizableText>
     </XStack>

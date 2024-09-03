@@ -1,15 +1,14 @@
-import * as babel from '@babel/core'
 import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
-import { createBuilder } from 'vite'
 import type { RollupCache } from 'rollup'
+import { createBuilder } from 'vite'
+import { buildEnvironment } from './fork/vite/build'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { getReactNativeConfig } from './getReactNativeConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { resolveFile } from './resolveFile'
-import { getPrebuilds, prebuildReactNativeModules } from './swapPrebuiltReactModules'
-import { buildEnvironment } from './fork/vite/build'
+import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
 
 const { pathExists } = FSExtra
 
@@ -30,7 +29,10 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
     }
   }
 
-  await prebuildReactNativeModules(options.cacheDir)
+  const vendoredModulesMap = await prebuildReactNativeModules(
+    options.cacheDir,
+    options.packageVersions
+  )
 
   if (isBuildingNativeBundle) {
     const res = await isBuildingNativeBundle
@@ -68,7 +70,7 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
 
   let appCode = buildOutput.output
     // entry last
-    .sort((a, b) => (a['isEntry'] ? 1 : -1))
+    .sort((a, b) => (a['isEntry'] ? 1 : a['fileName'].localeCompare(b['fileName']) + -2))
     .map((outputModule) => {
       const id = outputModule.fileName.replace(/.*node_modules\//, '')
 
@@ -128,15 +130,20 @@ __require("${id}")
     .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
 
   const templateFile = resolveFile('vxrn/react-native-template.js')
-  const prebuilds = getPrebuilds(options.cacheDir)
   const template = await readFile(templateFile, 'utf-8')
 
-  // TODO this is not stable based on cwd
-  // .replace('_virtual/virtual_react-native.js', relative(root, prebuilds.reactNative))
-  // .replace('_virtual/virtual_react.js', relative(root, prebuilds.react))
-  // .replaceAll('_virtual/virtual_react-jsx.js', relative(root, prebuilds.reactJSX))
+  const specialRequireMap = vendoredModulesMap
+    ? `
+globalThis.__vxrnPrebuildSpecialRequireMap = {
+  'react-native': '${vendoredModulesMap.reactNative}',
+  react: '${vendoredModulesMap.react}',
+  'react/jsx-runtime': '${vendoredModulesMap.reactJSX}',
+  'react/jsx-dev-runtime': '${vendoredModulesMap.reactJSX}',
+}
+  `
+    : ``
 
-  const out = template + appCode
+  const out = specialRequireMap + template + appCode
 
   done(out)
   setIsBuildingNativeBundle(null)

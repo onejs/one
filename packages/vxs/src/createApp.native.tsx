@@ -4,16 +4,9 @@ import { AppRegistry, LogBox } from 'react-native'
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
 // TODO temporary
-LogBox.ignoreLogs([
-  /Sending .* with no listeners registered/,
-  /Each child in a list should have a unique/,
-])
+LogBox.ignoreLogs([/Sending .* with no listeners registered/])
 
 export function createApp(options: CreateAppProps): void {
-  console.info(
-    `createApp(${process.env.VXS_APP_NAME}) routes: ${Object.keys(options.routes || []).join('\n')}`
-  )
-
   const App = () => <Root isClient routes={options.routes} path="/" />
 
   AppRegistry.registerComponent('main', () => App)
