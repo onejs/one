@@ -17,7 +17,7 @@ export declare const Screen: <RouteName extends string>(_: import("@react-naviga
     })[];
     type: string;
     stale: false;
-}>, {}, EventMapBase>) => null, Group: React.ComponentType<import("@react-navigation/core").RouteGroupConfig<ParamListBase, {}>>;
+}>, {}, import("@react-navigation/core").EventMapBase>) => null, Group: React.ComponentType<import("@react-navigation/core").RouteGroupConfig<ParamListBase, {}>>;
 export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>, State extends NavigationState = NavigationState, EventMap extends EventMapBase = EventMapBase> = {
     /** Name is required when used inside a Layout component. */
     name?: string;

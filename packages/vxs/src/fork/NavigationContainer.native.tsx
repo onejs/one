@@ -82,18 +82,22 @@ function NavigationContainerInner(
   // This will be used by the devtools
   React.useEffect(() => {
     if (refContainer.current) {
-      global.REACT_NAVIGATION_DEVTOOLS.set(refContainer.current, {
-        get linking() {
-          return {
-            ...linking,
-            enabled: isLinkingEnabled,
-            prefixes: linking?.prefixes ?? [],
-            getStateFromPath: linking?.getStateFromPath ?? getStateFromPath,
-            getPathFromState: linking?.getPathFromState ?? getPathFromState,
-            getActionFromState: linking?.getActionFromState ?? getActionFromState,
-          }
-        },
-      })
+      global.REACT_NAVIGATION_DEVTOOLS.set(
+        // @ts-expect-error
+        refContainer.current,
+        {
+          get linking() {
+            return {
+              ...linking,
+              enabled: isLinkingEnabled,
+              prefixes: linking?.prefixes ?? [],
+              getStateFromPath: linking?.getStateFromPath ?? getStateFromPath,
+              getPathFromState: linking?.getPathFromState ?? getPathFromState,
+              getActionFromState: linking?.getActionFromState ?? getActionFromState,
+            }
+          },
+        }
+      )
     }
   })
 
