@@ -1,7 +1,4 @@
-import { exec } from 'node:child_process'
-import { promisify } from 'node:util'
-
-const execAsync = promisify(exec)
+import { execPromise } from './exec'
 
 export async function installDependencies(
   projectRoot: string,
@@ -26,7 +23,7 @@ export async function installDependencies(
   }
 
   try {
-    await execAsync(command, options)
+    await execPromise(command, options)
     console.info(`${packageManager} install completed successfully.`)
   } catch (error) {
     console.error(`Failed to install dependencies using ${packageManager}:`, error)
