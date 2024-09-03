@@ -1,18 +1,23 @@
-import { ScrollView, YStack } from 'tamagui'
+import { ScrollView, YStack, Text, SizableStack, XStack } from 'tamagui'
 import { useLoader } from 'vxs'
-import { feedData } from '~/features/feed/data'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { Image } from '~/features/ui/Image'
 import { PageContainer } from '~/features/ui/PageContainer'
+import { fetchProfile } from '~/data/profile'
+import { Recycle, Repeat2 } from '@tamagui/lucide-icons'
 
-export function loader() {
+export async function loader() {
+  const data = await fetchProfile({
+    queryKey: ['profile', 1, 10],
+  })
   return {
-    posts: feedData,
+    profileFeed: data.profileFeed,
+    userData: data.userData,
   }
 }
 
 export default function ProfilePage() {
-  const { posts } = useLoader(loader)
+  const { profileFeed, userData } = useLoader(loader)
 
   return (
     <PageContainer>
@@ -33,7 +38,7 @@ export default function ProfilePage() {
             w={100}
             h={100}
             br={100}
-            src="https://placecats.com/500/300"
+            src={userData.avatar}
             bw={1}
             bc="$color1"
             shadowColor="rgba(0,0,0,0.5)"
@@ -45,7 +50,28 @@ export default function ProfilePage() {
           />
         </YStack>
 
-        {posts.map((post) => {
+        {profileFeed.map((post) => {
+          if (post.type === 'repost') {
+            return (
+              <YStack
+                key={post.id}
+                padding="$4"
+                borderColor="$borderColor"
+                borderWidth={1}
+                borderRadius="$4"
+                marginBottom="$4"
+                mt="$4"
+              >
+                <XStack gap="$2" marginBottom="$2">
+                  <Repeat2 size={12} color="$accent1" />
+                  <Text ff="$body" color="$accent1" fontSize={10}>
+                    Reposted by {userData.name}
+                  </Text>
+                </XStack>
+                <FeedCard {...post} />
+              </YStack>
+            )
+          }
           return <FeedCard key={post.id} {...post} />
         })}
       </ScrollView>

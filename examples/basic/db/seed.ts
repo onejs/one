@@ -49,7 +49,9 @@ const seed = async () => {
 
     // Fetch all post IDs
     console.info('Fetching all post IDs...')
-    const allPostIds: { id: number }[] = await db.select({ id: posts.id }).from(posts)
+    const allPostIds: { id: number; userId: number }[] = await db
+      .select({ id: posts.id, userId: posts.userId })
+      .from(posts)
 
     // Insert follows
     console.info('Each user follows 10 other users...')
@@ -90,7 +92,7 @@ const seed = async () => {
     console.info('Each user reposts 10 random posts...')
     const repostPromises = userIds.flatMap((user) => {
       const shuffledPostIds = faker.helpers.shuffle(allPostIds)
-      const postIds = shuffledPostIds.slice(0, 10)
+      const postIds = shuffledPostIds.filter((post) => post.userId !== user.id).slice(0, 10)
       console.info(`User ${user.id} reposts ${postIds.length} posts`)
       return postIds.map((post) => {
         console.info(`User ${user.id} reposts post ${post.id}`)

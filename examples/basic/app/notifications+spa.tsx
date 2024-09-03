@@ -1,18 +1,20 @@
 import { isWeb } from 'tamagui'
 import { SafeAreaView, useLoader } from 'vxs'
-import { notificationData } from '~/features/notifications/data'
 import { NotificationCard } from '~/features/notifications/NotificationCard'
 import { PageContainer } from '~/features/ui/PageContainer'
+import { fetchNotifications } from '~/data/notifications'
 
-export function loader() {
+export async function loader() {
+  const data = await fetchNotifications({
+    queryKey: ['notifications', 1, 40],
+  })
   return {
-    notifications: notificationData,
+    notifications: data.notifications, // Extract notifications array
   }
 }
 
 export default function NotificationsPage() {
   const { notifications } = useLoader(loader)
-
   const feed = notifications.map((item, i) => {
     return <NotificationCard key={i} {...item} />
   })

@@ -1,11 +1,15 @@
 import { useEffect } from 'react'
 import { useLoader, useNavigation, useParams } from 'vxs'
-import { feedData } from '~/features/feed/data'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { PageContainer } from '~/features/ui/PageContainer'
+import { fetchPost } from '~/data/post'
+import { YStack } from 'tamagui'
 
-export function loader({ params }) {
-  return feedData.find((x) => x.id === +params.id)
+export async function loader({ params }) {
+  const data = await fetchPost({
+    queryKey: ['post', params.id],
+  })
+  return data
 }
 
 export default function FeedItemPage() {
@@ -16,7 +20,7 @@ export default function FeedItemPage() {
 
   useEffect(() => {
     navigation.setOptions({ title: data?.content || `Post #${params.id}` })
-  }, [navigation])
+  }, [navigation, data?.content, params.id])
 
   if (!data) {
     return null
@@ -26,6 +30,18 @@ export default function FeedItemPage() {
     <>
       <PageContainer>
         <FeedCard {...data} disableLink />
+        {data.replies && data.replies.length > 0 && (
+          <YStack
+            marginLeft="$7"
+            borderLeftWidth={1}
+            borderRightWidth={1}
+            borderColor="$borderColor"
+          >
+            {data.replies.map((reply) => (
+              <FeedCard key={reply.id} {...reply} disableLink isReply />
+            ))}
+          </YStack>
+        )}
       </PageContainer>
     </>
   )

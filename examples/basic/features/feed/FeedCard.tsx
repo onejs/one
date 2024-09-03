@@ -16,6 +16,7 @@ type FeedItem = {
   repliesCount: number
   repostsCount: number
   disableLink?: boolean
+  isReply?: boolean
 }
 
 export const FeedCard = (props: FeedItem) => {
@@ -41,11 +42,13 @@ export const FeedCard = (props: FeedItem) => {
         >
           {props.content}
         </Paragraph>
-        <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
-          <StatItem Icon={Reply} count={props.repliesCount} />
-          <StatItem Icon={Repeat} count={props.repostsCount} />
-          <StatItem Icon={Heart} count={props.likesCount} />
-        </XStack>
+        {!props.isReply ? (
+          <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
+            <StatItem Icon={Reply} count={props.repliesCount} />
+            <StatItem Icon={Repeat} count={props.repostsCount} />
+            <StatItem Icon={Heart} count={props.likesCount} />
+          </XStack>
+        ) : null}
       </YStack>
     </Card>
   )
