@@ -24,15 +24,21 @@ type PrebuildVersions = {
   reactNative: string
 }
 
-const getVendoredPrebuilds = (versions: PrebuildVersions) => ({
-  reactJSX: requireResolve(
-    `@vxrn/react-native-prebuilt/vendor/react-jsx-runtime-${versions.react}`
-  ),
-  react: requireResolve(`@vxrn/react-native-prebuilt/vendor/react-${versions.react}`),
-  reactNative: requireResolve(
-    `@vxrn/react-native-prebuilt/vendor/react-native-${versions.reactNative}`
-  ),
-})
+const getVendoredPrebuilds = (versions: PrebuildVersions) => {
+  try {
+    return {
+      reactJSX: requireResolve(
+        `@vxrn/react-native-prebuilt/vendor/react-jsx-runtime-${versions.react}`
+      ),
+      react: requireResolve(`@vxrn/react-native-prebuilt/vendor/react-${versions.react}`),
+      reactNative: requireResolve(
+        `@vxrn/react-native-prebuilt/vendor/react-native-${versions.reactNative}`
+      ),
+    }
+  } catch {
+    return null
+  }
+}
 
 const allExist = async (paths: string[]) => {
   return (await Promise.all(paths.map((p) => FSExtra.pathExists(p)))).every(Boolean)
@@ -43,7 +49,7 @@ export async function prebuildReactNativeModules(cacheDir: string, versions?: Pr
 
   if (versions) {
     const vendored = getVendoredPrebuilds(versions)
-    if (await allExist(Object.values(vendored))) {
+    if (vendored && (await allExist(Object.values(vendored)))) {
       // already vendored
       return vendored
     }
@@ -79,7 +85,7 @@ export async function swapPrebuiltReactModules(
 
   if (versions) {
     const vendored = getVendoredPrebuilds(versions)
-    if (await allExist(Object.values(vendored))) {
+    if (vendored && (await allExist(Object.values(vendored)))) {
       prebuilds = vendored
     }
   }
