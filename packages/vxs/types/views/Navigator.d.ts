@@ -116,7 +116,7 @@ export declare function useNavigatorContext(): {
         isFocused(): boolean;
         canGoBack(): boolean;
         getId(): string | undefined;
-        getParent<T = import("@react-navigation/native").NavigationHelpers<import("@react-navigation/routers").ParamListBase, {}> | undefined>(id?: string | undefined): T;
+        getParent<T = import("@react-navigation/core").NavigationHelpers<import("@react-navigation/routers").ParamListBase, {}> | undefined>(id?: string | undefined): T;
         getState(): Readonly<{
             key: string;
             index: number;
@@ -134,10 +134,10 @@ export declare function useNavigatorContext(): {
             type: string;
             stale: false;
         }>;
-    } & import("@react-navigation/native").PrivateValueStore<[import("@react-navigation/routers").ParamListBase, unknown, unknown]> & import("@react-navigation/native").EventEmitter<Record<string, any>> & {
+    } & import("@react-navigation/core").PrivateValueStore<[import("@react-navigation/routers").ParamListBase, unknown, unknown]> & import("@react-navigation/core").EventEmitter<Record<string, any>> & {
         setParams<RouteName_2 extends string>(params: Partial<object | undefined>): void;
     } & Record<string, () => void>;
-    descriptors: Record<string, import("@react-navigation/native").Descriptor<{}, Omit<{
+    descriptors: Record<string, import("@react-navigation/core").Descriptor<{}, Omit<{
         dispatch(action: Readonly<{
             type: string;
             payload?: object | undefined;
@@ -213,7 +213,7 @@ export declare function useNavigatorContext(): {
         isFocused(): boolean;
         canGoBack(): boolean;
         getId(): string | undefined;
-        getParent<T_1 = import("@react-navigation/native").NavigationHelpers<import("@react-navigation/routers").ParamListBase, {}> | undefined>(id?: string | undefined): T_1;
+        getParent<T_1 = import("@react-navigation/core").NavigationHelpers<import("@react-navigation/routers").ParamListBase, {}> | undefined>(id?: string | undefined): T_1;
         getState(): Readonly<{
             key: string;
             index: number;
@@ -231,8 +231,8 @@ export declare function useNavigatorContext(): {
             type: string;
             stale: false;
         }>;
-    } & import("@react-navigation/native").PrivateValueStore<[import("@react-navigation/routers").ParamListBase, unknown, unknown]>, "getParent"> & {
-        getParent<T_1_1 = import("@react-navigation/native").NavigationProp<import("@react-navigation/routers").ParamListBase, string, undefined, Readonly<{
+    } & import("@react-navigation/core").PrivateValueStore<[import("@react-navigation/routers").ParamListBase, unknown, unknown]>, "getParent"> & {
+        getParent<T_1_1 = import("@react-navigation/core").NavigationProp<import("@react-navigation/routers").ParamListBase, string, undefined, Readonly<{
             key: string;
             index: number;
             routeNames: string[];
@@ -251,7 +251,7 @@ export declare function useNavigatorContext(): {
         }>, {}, {}> | undefined>(id?: string | undefined): T_1_1;
         setParams(params: Partial<object | undefined>): void;
         setOptions(options: Partial<{}>): void;
-    } & import("@react-navigation/native").EventConsumer<Record<string, any> & import("@react-navigation/native").EventMapCore<Readonly<{
+    } & import("@react-navigation/core").EventConsumer<Record<string, any> & import("@react-navigation/core").EventMapCore<Readonly<{
         key: string;
         index: number;
         routeNames: string[];
@@ -267,7 +267,7 @@ export declare function useNavigatorContext(): {
         })[];
         type: string;
         stale: false;
-    }>>> & import("@react-navigation/native").PrivateValueStore<[import("@react-navigation/routers").ParamListBase, string, Record<string, any>]> & Record<string, () => void>, import("@react-navigation/native").RouteProp<import("@react-navigation/routers").ParamListBase, string>>>;
+    }>>> & import("@react-navigation/core").PrivateValueStore<[import("@react-navigation/routers").ParamListBase, string, Record<string, any>]> & Record<string, () => void>, import("@react-navigation/core").RouteProp<import("@react-navigation/routers").ParamListBase, string>>>;
     router: RouterFactory<any, any, any>;
 };
 export declare function useSlot(): JSX.Element | null;
