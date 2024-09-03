@@ -4,7 +4,7 @@ import setupBasic from './steps/vxs'
 
 export const templates = [
   {
-    title: `Basic`,
+    title: `Feed`,
     value: 'Basic',
     type: 'included-in-monorepo',
     hidden: false,
@@ -18,7 +18,7 @@ export const templates = [
   },
 
   {
-    title: `fullstack`,
+    title: `User & Auth`,
     value: 'fullstack',
     type: 'included-in-monorepo',
     hidden: false,

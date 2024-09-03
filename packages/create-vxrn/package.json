@@ -27,7 +27,6 @@
     }
   },
   "dependencies": {
-    "@expo/package-manager": "^1.1.2",
     "@tamagui/build": "^1.110.1",
     "@types/validate-npm-package-name": "^4.0.2",
     "ansis": "^3.1.0",
@@ -38,7 +37,8 @@
     "fs-extra": "^11.2.0",
     "prompts": "^2.4.2",
     "rimraf": "^5.0.1",
-    "validate-npm-package-name": "3.0.0"
+    "validate-npm-package-name": "3.0.0",
+    "yocto-spinner": "^0.1.0"
   },
   "publishConfig": {
     "access": "public"

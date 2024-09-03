@@ -10,12 +10,13 @@ const main: ExtraSteps = async ({ isFullClone, projectName, packageManager }) =>
 
   if (isFullClone) {
     console.info(`
-${ansis.green.bold('Done!')} Created a new project under ./${ansis.greenBright(projectName)} visit your project:
- • ${ansis.green('cd')} ${projectName}
-`)
+  ${ansis.green.bold('Done!')} Created a new project under ./${ansis.greenBright(projectName)}`)
   }
   console.info(`
-To start the dev server, run: ${ansis.green(runCommand('dev'))}
+  To run: 
+  
+  ${ansis.green('cd')} ${projectName}
+  ${ansis.green(runCommand('dev'))}
 `)
 }
 

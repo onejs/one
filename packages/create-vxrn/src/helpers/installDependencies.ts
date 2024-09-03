@@ -1,17 +1,35 @@
-import * as PackageManager from '@expo/package-manager'
+import { exec } from 'node:child_process'
+import { promisify } from 'node:util'
+
+const execAsync = promisify(exec)
 
 export async function installDependencies(
   projectRoot: string,
   packageManager: 'yarn' | 'npm' | 'pnpm' | 'bun'
 ) {
   const options = { cwd: projectRoot }
-  if (packageManager === 'bun') {
-    const bun = new PackageManager.BunPackageManager(options)
-    await bun.installAsync()
-  } else if (packageManager === 'yarn') {
-    const yarn = new PackageManager.YarnPackageManager(options)
-    await yarn.installAsync()
-  } else {
-    await new PackageManager.NpmPackageManager(options).installAsync()
+  let command: string
+
+  switch (packageManager) {
+    case 'bun':
+      command = 'bun install'
+      break
+    case 'yarn':
+      command = 'yarn install'
+      break
+    case 'pnpm':
+      command = 'pnpm install'
+      break
+    default:
+      command = 'npm install'
+      break
+  }
+
+  try {
+    await execAsync(command, options)
+    console.info(`${packageManager} install completed successfully.`)
+  } catch (error) {
+    console.error(`Failed to install dependencies using ${packageManager}:`, error)
+    throw error
   }
 }

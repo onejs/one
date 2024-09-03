@@ -4,7 +4,7 @@ import ansis from 'ansis'
 import { copy, ensureDir, pathExists, remove } from 'fs-extra'
 import { rimraf } from 'rimraf'
 import type { templates } from '../templates'
-import { exec } from './exec'
+import { execPromise } from './exec'
 
 const home = homedir()
 const vxrnDir = join(home, '.vxrn')
@@ -19,8 +19,6 @@ export const cloneStarter = async (
 
   await setupVxrnDotDir(template)
   const dir = join(targetGitDir, ...template.repo.dir)
-  console.info(`Copying starter from ${dir} into ${ansis.blueBright(projectName)}...`)
-  console.info()
 
   if (!(await pathExists(dir))) {
     console.error(`Missing template for ${template.value} in ${dir}`)
@@ -28,14 +26,9 @@ export const cloneStarter = async (
   }
   await copy(dir, resolvedProjectPath)
   await rimraf(`${resolvedProjectPath}/.git`)
-
-  console.info(ansis.green(`${projectName} created!`))
-  console.info()
 }
 
 async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = false) {
-  console.info(`Setting up ${ansis.blueBright(targetGitDir)}...`)
-
   const branch = template.repo.branch
 
   await ensureDir(vxrnDir)
@@ -43,9 +36,6 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
   const isInSubDir = template.repo.dir.length > 0
 
   if (!(await pathExists(targetGitDir))) {
-    console.info(`Cloning vxrn base directory`)
-    console.info()
-
     const sourceGitRepo = template.repo.url
     const sourceGitRepoSshFallback = template.repo.sshFallback
 
@@ -54,16 +44,12 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
     }${sourceGitRepo} "${targetGitDir}"`
 
     try {
-      console.info(`$ ${cmd}`)
-      console.info()
-      exec(cmd)
+      await execPromise(cmd)
     } catch (error) {
       if (cmd.includes('https://')) {
         console.info(`https failed - trying with ssh now...`)
         const sshCmd = cmd.replace(sourceGitRepo, sourceGitRepoSshFallback)
-        console.info(`$ ${sshCmd}`)
-        console.info()
-        exec(sshCmd)
+        await execPromise(sshCmd)
       } else {
         throw error
       }
@@ -77,13 +63,12 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
 
   if (isInSubDir) {
     const cmd = `git sparse-checkout set ${template.repo.dir.join(sep) ?? '.'}`
-    exec(cmd, { cwd: targetGitDir })
-    console.info()
+    await execPromise(cmd, { cwd: targetGitDir })
   }
 
   try {
     const cmd2 = `git pull --rebase --allow-unrelated-histories --depth 1 origin ${branch}`
-    exec(cmd2, {
+    await execPromise(cmd2, {
       cwd: targetGitDir,
     })
     console.info()

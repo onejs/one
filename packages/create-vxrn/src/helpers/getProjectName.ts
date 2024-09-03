@@ -8,23 +8,37 @@ export const getProjectName = async (projectPath?: string) => {
     projectPath = projectPath.trim()
   }
 
+  console.info(
+    ansis.green(`
+
+  Welcome!`)
+  )
+
+  console.info(
+    ansis.yellow(`
+  Let's create a new ${ansis.yellowBright(`①`)}  app...
+
+`)
+  )
+
   if (!projectPath) {
+    const defaultName = 'one'
     const res = await prompts({
       type: 'text',
       name: 'path',
-      message: 'Project name:',
-      initial: 'myapp',
-      validate: (name) => {
+      message: 'Name',
+      initial: defaultName,
+      validate: (name: string) => {
         const validation = validateNpmName(path.basename(path.resolve(name)))
         if (validation.valid) {
           return true
         }
-        return 'Invalid project name: ' + validation.problems![0]
+        return 'Invalid name: ' + validation.problems![0]
       },
     })
 
     if (typeof res.path === 'string') {
-      projectPath = res.path.trim()
+      projectPath = res.path.trim() || defaultName
     }
   }
 
