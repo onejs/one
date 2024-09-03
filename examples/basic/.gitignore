@@ -30,5 +30,3 @@ tsconfig.tsbuildinfo
 .env.production.local
 
 .expo
-
-sqlite.db
