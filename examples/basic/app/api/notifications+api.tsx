@@ -27,13 +27,31 @@ export async function GET(request: Request): Promise<Response> {
   const url = new URL(request.url)
   const page = Number(url.searchParams.get('page') || '1')
   const limit = Number(url.searchParams.get('limit') || '10')
-
-  // TODO: Replace this with actual user authentication
-  const USER_ID = 751
-
   const offset = (page - 1) * limit
 
   try {
+    // Fetch a random user from the database
+    const randomUserQuery = db
+      .select({
+        id: users.id,
+        name: users.username,
+        avatar: users.avatarUrl,
+      })
+      .from(users)
+      .orderBy(sql`RANDOM()`)
+      .limit(1)
+
+    const randomUser = await randomUserQuery
+
+    if (randomUser.length === 0) {
+      return new Response(JSON.stringify({ error: 'No users found in the database' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
+
+    const USER_ID = randomUser[0].id
+
     const notificationsQuery = db
       .select({
         username: users.username,

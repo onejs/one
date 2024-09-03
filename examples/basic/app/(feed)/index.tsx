@@ -2,6 +2,7 @@ import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
 import { Stack, useLoader } from 'vxs'
 import { FeedCard } from '~/features/feed/FeedCard'
+import { feedData } from '~/features/feed/data'
 import { PageContainer } from '~/features/ui/PageContainer'
 import { fetchFeed } from '~/data/feed'
 
@@ -27,7 +28,7 @@ export default function FeedPage() {
       <PageContainer>
         <ScrollView maxHeight="100%">
           <RefreshControl refreshing={false} />
-          {feed.map((item, i) => {
+          {[...feedData, ...feed].map((item, i) => {
             return <FeedCard key={i} {...item} />
           })}
         </ScrollView>

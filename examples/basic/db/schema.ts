@@ -1,45 +1,45 @@
-import { integer, serial, varchar, text, timestamp, pgTable, primaryKey } from 'drizzle-orm/pg-core'
-import { relations } from 'drizzle-orm'
+import { integer, text, sqliteTable, primaryKey } from 'drizzle-orm/sqlite-core'
+import { relations, sql } from 'drizzle-orm'
 
-export const users = pgTable('users', {
-  id: serial('id').primaryKey(),
-  username: varchar('username', { length: 50 }).notNull().unique(),
-  email: varchar('email', { length: 100 }).notNull().unique(),
-  passwordHash: varchar('password_hash', { length: 255 }).notNull(),
+export const users = sqliteTable('users', {
+  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  username: text('username').notNull().unique(),
+  email: text('email').notNull().unique(),
+  passwordHash: text('password_hash').notNull(),
   bio: text('bio').default(''),
-  avatarUrl: varchar('avatar_url', { length: 255 }).default(''),
-  createdAt: timestamp('created_at').defaultNow(),
+  avatarUrl: text('avatar_url').default(''),
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(CURRENT_TIMESTAMP)`),
 })
 
-export const posts = pgTable('posts', {
-  id: serial('id').primaryKey(),
-  userId: integer('user_id')
+export const posts = sqliteTable('posts', {
+  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  userId: integer('user_id', { mode: 'number' })
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
   content: text('content').notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(CURRENT_TIMESTAMP)`),
 })
 
-export const follows = pgTable('follows', {
-  followerId: integer('follower_id')
+export const follows = sqliteTable('follows', {
+  followerId: integer('follower_id', { mode: 'number' })
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
-  followingId: integer('following_id')
+  followingId: integer('following_id', { mode: 'number' })
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(CURRENT_TIMESTAMP)`),
 })
 
-export const likes = pgTable(
+export const likes = sqliteTable(
   'likes',
   {
-    userId: integer('user_id')
+    userId: integer('user_id', { mode: 'number' })
       .references(() => users.id, { onDelete: 'cascade' })
       .notNull(),
-    postId: integer('post_id')
+    postId: integer('post_id', { mode: 'number' })
       .references(() => posts.id, { onDelete: 'cascade' })
       .notNull(),
-    createdAt: timestamp('created_at').defaultNow(),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(CURRENT_TIMESTAMP)`),
   },
   (table) => {
     return {
@@ -48,16 +48,16 @@ export const likes = pgTable(
   }
 )
 
-export const reposts = pgTable(
+export const reposts = sqliteTable(
   'reposts',
   {
-    userId: integer('user_id')
+    userId: integer('user_id', { mode: 'number' })
       .references(() => users.id, { onDelete: 'cascade' })
       .notNull(),
-    postId: integer('post_id')
+    postId: integer('post_id', { mode: 'number' })
       .references(() => posts.id, { onDelete: 'cascade' })
       .notNull(),
-    createdAt: timestamp('created_at').defaultNow(),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(CURRENT_TIMESTAMP)`),
   },
   (table) => {
     return {
@@ -66,16 +66,16 @@ export const reposts = pgTable(
   }
 )
 
-export const replies = pgTable('replies', {
-  id: serial('id').primaryKey(),
-  userId: integer('user_id')
+export const replies = sqliteTable('replies', {
+  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  userId: integer('user_id', { mode: 'number' })
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
-  postId: integer('post_id')
+  postId: integer('post_id', { mode: 'number' })
     .references(() => posts.id, { onDelete: 'cascade' })
     .notNull(),
   content: text('content').notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
+  createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(CURRENT_TIMESTAMP)`),
 })
 
 export const userRelations = relations(users, ({ one, many }) => ({
