@@ -4755,7 +4755,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/native@npm:>=6.1.7":
+"@react-navigation/native@npm:>=6.1.7 <=6.2.0":
   version: 6.1.18
   resolution: "@react-navigation/native@npm:6.1.18"
   dependencies:
@@ -20439,7 +20439,7 @@ __metadata:
     "@react-navigation/bottom-tabs": ^6.5.8
     "@react-navigation/core": ^6.4.9
     "@react-navigation/drawer": ^6.6.3
-    "@react-navigation/native": ">=6.1.7"
+    "@react-navigation/native": ">=6.1.7 <=6.2.0"
     "@react-navigation/native-stack": ^6.9.13
     "@react-navigation/routers": ^6.1.9
     "@tamagui/build": ^1.110.1
