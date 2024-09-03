@@ -205,7 +205,7 @@ export const depPatches: DepPatch[] = [
     patchFiles: {
       version: '<=1.5.1',
 
-      'qrcode/lib/server.js': (contents) => {
+      'lib/server.js': (contents) => {
         assertString(contents)
         return contents.replace(
           `const TerminalRenderer = require('./renderer/terminal')`,
