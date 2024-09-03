@@ -4,7 +4,7 @@ import ansis from 'ansis'
 import { copy, ensureDir, pathExists, remove } from 'fs-extra'
 import { rimraf } from 'rimraf'
 import type { templates } from '../templates'
-import { execPromise } from './exec'
+import { execPromise, execPromiseQuiet } from './exec'
 
 const home = homedir()
 const vxrnDir = join(home, '.vxrn')
@@ -44,12 +44,12 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
     }${sourceGitRepo} "${targetGitDir}"`
 
     try {
-      await execPromise(cmd)
+      await execPromiseQuiet(cmd)
     } catch (error) {
       if (cmd.includes('https://')) {
         console.info(`https failed - trying with ssh now...`)
         const sshCmd = cmd.replace(sourceGitRepo, sourceGitRepoSshFallback)
-        await execPromise(sshCmd)
+        await execPromiseQuiet(sshCmd)
       } else {
         throw error
       }
@@ -63,12 +63,12 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
 
   if (isInSubDir) {
     const cmd = `git sparse-checkout set ${template.repo.dir.join(sep) ?? '.'}`
-    await execPromise(cmd, { cwd: targetGitDir })
+    await execPromiseQuiet(cmd, { cwd: targetGitDir })
   }
 
   try {
     const cmd2 = `git pull --rebase --allow-unrelated-histories --depth 1 origin ${branch}`
-    await execPromise(cmd2, {
+    await execPromiseQuiet(cmd2, {
       cwd: targetGitDir,
     })
     console.info()
