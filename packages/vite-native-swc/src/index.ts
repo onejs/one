@@ -63,7 +63,12 @@ const SWC_ENV = {
   },
   include: [],
   // this breaks the uniswap app for any file with a ...spread
-  exclude: ['transform-spread', 'transform-destructuring', 'transform-object-rest-spread'],
+  exclude: [
+    'transform-spread',
+    'transform-destructuring',
+    'transform-object-rest-spread',
+    'transform-async-to-generator', // `transform-async-to-generator` is relying on `transform-destructuring`. If we exclude `transform-destructuring` but not `transform-async-to-generator`, the SWC binary will panic with error: `called `Option::unwrap()` on a `None` value`. See: https://github.com/swc-project/swc/blob/v1.7.14/crates/swc_ecma_compat_es2015/src/generator.rs#L703-L705
+  ],
 }
 
 function getParser(id: string, forceJSX = false) {
