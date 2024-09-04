@@ -4,7 +4,8 @@ import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './heade
 export function resolveAPIRequest(asyncImport: () => Promise<any>, request: Request) {
   if (!asyncImport) return
 
-  return new Promise((res) => {
+  return new Promise((res, rej) => {
+    // Added rejection handler
     const id = { _id: Math.random() }
     requestAsyncLocalStore.run(id, async () => {
       try {
@@ -54,7 +55,7 @@ export function resolveAPIRequest(asyncImport: () => Promise<any>, request: Requ
         if (isResponse(err)) {
           res(err)
         } else {
-          throw err
+          rej(err) // Reject the promise on error
         }
       }
     })
