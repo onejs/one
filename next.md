@@ -94,3 +94,5 @@ should have some sprints with "challenges":
   - hits /_vxrn/load/pathname.js for ssg at least
   - in dev mode handleRequest just runs handleLoader
   - in build mode generates the json
+
+- Better SWC config in vite-native-swc to fit Hermes better. Maybe we can see what's included in [`@react-native/babel-preset`](https://github.com/facebook/react-native/tree/main/packages/react-native-babel-preset) and try to match that.
