@@ -1,11 +1,13 @@
 CREATE TABLE IF NOT EXISTS "follows" (
 	"follower_id" integer NOT NULL,
-	"following_id" integer NOT NULL
+	"following_id" integer NOT NULL,
+	"created_at" timestamp DEFAULT now()
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "likes" (
 	"user_id" integer NOT NULL,
 	"post_id" integer NOT NULL,
+	"created_at" timestamp DEFAULT now(),
 	CONSTRAINT "likes_user_id_post_id_pk" PRIMARY KEY("user_id","post_id")
 );
 --> statement-breakpoint

@@ -1,13 +1,71 @@
 import { useEffect } from 'react'
-import { Button, TextArea, XStack, YStack } from 'tamagui'
+import { YStack } from 'tamagui'
 import { useLoader, useNavigation, useParams } from 'vxs'
-import { feedData } from '~/features/feed/data'
 import { FeedCard } from '~/features/feed/FeedCard'
-import { Image } from '~/features/ui/Image'
 import { PageContainer } from '~/features/ui/PageContainer'
+import { db } from '~/db/connection'
+import { posts, users, likes, replies, reposts } from '~/db/schema'
+import { eq, sql } from 'drizzle-orm'
 
-export function loader({ params }) {
-  return feedData.find((x) => x.id === +params.id)
+export async function loader({ params }) {
+  const id = params.id
+
+  if (!id) {
+    throw new Error('Invalid post ID')
+  }
+
+  try {
+    const post = await db
+      .select({
+        id: posts.id,
+        content: posts.content,
+        createdAt: posts.createdAt,
+        user: {
+          name: users.username,
+          avatar: users.avatarUrl,
+        },
+        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+          'likesCount'
+        ),
+        repliesCount:
+          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+            'repliesCount'
+          ),
+        repostsCount:
+          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+            'repostsCount'
+          ),
+      })
+      .from(posts)
+      .leftJoin(users, eq(users.id, posts.userId))
+      .where(eq(posts.id, Number(id)))
+      .limit(1)
+
+    if (post.length === 0) {
+      throw new Error('Post not found')
+    }
+
+    const repliesData = await db
+      .select({
+        id: replies.id,
+        content: replies.content,
+        createdAt: replies.createdAt,
+        user: {
+          name: users.username,
+          avatar: users.avatarUrl,
+        },
+      })
+      .from(replies)
+      .leftJoin(users, eq(users.id, replies.userId))
+      .where(eq(replies.postId, Number(id)))
+
+    return {
+      ...post[0],
+      replies: repliesData,
+    }
+  } catch (error) {
+    throw new Error(`Failed to fetch post: ${(error as Error).message}`)
+  }
 }
 
 export default () => <PostPage />
@@ -20,7 +78,7 @@ export function PostPage() {
 
   useEffect(() => {
     navigation.setOptions({ title: data?.content || `Post #${params.id}` })
-  }, [navigation])
+  }, [navigation, data?.content, params.id])
 
   if (!data) {
     return null
@@ -30,31 +88,18 @@ export function PostPage() {
     <>
       <PageContainer>
         <FeedCard {...data} disableLink />
-
-        <XStack p="$4" gap="$4" bbw={1} bbc="$borderColor">
-          <Image
-            width={32}
-            height={32}
-            br={100}
-            mt="$2"
-            src="https://placecats.com/millie/300/200"
-          />
-          <YStack f={1} gap="$2">
-            <TextArea
-              unstyled
-              ff="$body"
-              fos="$5"
-              color="$color"
-              py="$2"
-              rows={4}
-              autoFocus
-              placeholder="Your reply..."
-            />
-            <Button als="flex-end" br="$10" themeInverse>
-              Post
-            </Button>
+        {data.replies && data.replies.length > 0 && (
+          <YStack
+            marginLeft="$7"
+            borderLeftWidth={1}
+            borderRightWidth={1}
+            borderColor="$borderColor"
+          >
+            {data.replies.map((reply) => (
+              <FeedCard key={reply.id} {...reply} disableLink isReply />
+            ))}
           </YStack>
-        </XStack>
+        )}
       </PageContainer>
     </>
   )
