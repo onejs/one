@@ -3,11 +3,25 @@ import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { Link } from 'vxs'
 import { Card } from '../ui/Card'
 import { Image } from '../ui/Image'
-import type { FeedItem } from './data'
 
-export const FeedCard = (props: FeedItem & { disableLink?: boolean }) => {
+type FeedItem = {
+  id: number
+  content: string
+  createdAt: string
+  user: {
+    name: string
+    avatar: string
+  }
+  likesCount: number
+  repliesCount: number
+  repostsCount: number
+  disableLink?: boolean
+  isReply?: boolean
+}
+
+export const FeedCard = (props: FeedItem) => {
   const content = (
-    <Card disableLink={props.disableLink} tag="a">
+    <Card tag="a">
       <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar} />
       <YStack f={1} gap="$2">
         <Paragraph
@@ -16,7 +30,6 @@ export const FeedCard = (props: FeedItem & { disableLink?: boolean }) => {
           textDecorationLine="underline"
           textDecorationStyle="solid"
           textDecorationColor="$color8"
-          cur="default"
         >
           {props.user.name}
         </Paragraph>
@@ -24,18 +37,19 @@ export const FeedCard = (props: FeedItem & { disableLink?: boolean }) => {
         <Paragraph
           size="$4"
           whiteSpace="pre-wrap"
-          cur="default"
           $gtSm={{
             size: '$5',
           }}
         >
           {props.content}
         </Paragraph>
-        <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
-          <StatItem Icon={Repeat} count={4} />
-          <StatItem Icon={Heart} count={73} />
-          <StatItem Icon={Reply} count={4} />
-        </XStack>
+        {!props.isReply ? (
+          <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
+            <StatItem Icon={Reply} count={props.repliesCount} />
+            <StatItem Icon={Repeat} count={props.repostsCount} />
+            <StatItem Icon={Heart} count={props.likesCount} />
+          </XStack>
+        ) : null}
       </YStack>
     </Card>
   )
