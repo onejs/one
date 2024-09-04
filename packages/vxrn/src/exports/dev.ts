@@ -44,7 +44,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   const options = await getOptionsFilled(optionsIn)
   const { port, cacheDir } = options
 
-  if (options.shouldClean) {
+  if (options.clean) {
     await clean(optionsIn)
   }
 
@@ -119,6 +119,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
     options.cacheDir,
     `rn-cached-bundle-${'ios' /* TODO */}.js`
   )
+
   // builds the dev initial bundle for react native
   const rnBundleHandler = defineEventHandler(async (e) => {
     try {

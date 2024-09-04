@@ -54,6 +54,9 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
 
   userOptions.set(userOptionsPlugin, options)
 
+  // TODO make this passed into vxrn through real API
+  globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
+
   return [
     /**
      * This is really the meat of vxs, where it handles requests:
@@ -100,7 +103,6 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       },
     },
 
-    // TODO only on native env
     {
       name: 'use-react-18 for native',
       enforce: 'pre',

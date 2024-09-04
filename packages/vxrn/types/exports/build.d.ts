@@ -1,7 +1,7 @@
 import type { BuildArgs, VXRNOptions } from '../types';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<{
     options: {
-        shouldClean: boolean;
+        clean: boolean;
         protocol: "https:" | "http:";
         entries: {
             native: string;

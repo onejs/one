@@ -3,7 +3,7 @@ export type VXRNOptionsFilled = Awaited<ReturnType<typeof getOptionsFilled>>;
 export declare function getOptionsFilled(options: VXRNOptions, internal?: {
     mode?: 'dev' | 'prod';
 }): Promise<{
-    shouldClean: boolean;
+    clean: boolean;
     protocol: "https:" | "http:";
     entries: {
         native: string;

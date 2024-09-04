@@ -41,16 +41,14 @@ export async function getOptionsFilled(
       : undefined
 
   const versionHash = hashString(JSON.stringify(packageJSON))
-  const shouldClean = Boolean(
-    options.shouldClean ?? (state.versionHash && state.versionHash !== versionHash)
-  )
+  const clean = Boolean(options.clean ?? (state.versionHash && state.versionHash !== versionHash))
 
   // no need to wait to write state
   void writeState(cacheDir, { versionHash })
 
   return {
     ...options,
-    shouldClean,
+    clean,
     protocol: https ? ('https:' as const) : ('http:' as const),
     entries: {
       native: './src/entry-native.tsx',

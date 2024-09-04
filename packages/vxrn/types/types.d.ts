@@ -51,7 +51,7 @@ export type VXRNOptions = {
     /**
      * Whether to clean cache directories on startup
      */
-    shouldClean?: boolean;
+    clean?: boolean;
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
     afterServerStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
 };
