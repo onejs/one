@@ -200,6 +200,21 @@ export const depPatches: DepPatch[] = [
     },
   },
 
+  {
+    module: 'qrcode',
+    patchFiles: {
+      version: '<=1.5.1',
+
+      'lib/server.js': (contents) => {
+        assertString(contents)
+        return contents.replace(
+          `const TerminalRenderer = require('./renderer/terminal')`,
+          `const TerminalRenderer = require('./renderer/terminal.js')`
+        )
+      },
+    },
+  },
+
   // {
   //   module: 'react-native-reanimated',
   //   patchFiles: {

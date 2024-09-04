@@ -44,6 +44,12 @@ should have some sprints with "challenges":
 
 # backlog
 
+- `Error building React Native bundle: Error ... EISDIR: illegal operation on a directory, read`
+  - Happens with react-native-svg 15.6.0 where it has `elements.js` and `elements` directory at the same time
+  - happens on `qrcode@1.5.1`
+    - qrcode/lib/renderer/terminal (imported by qrcode/lib/server.js
+  - Might be related to bug [40E4] in the VXRN Takeout Issue List
+
 - if they choose yarn we create-vxrn should copy in the .yarnrc.yml + .yarn/releases so it doesnt use old yarn 1
 
 - document @vxrn/color-scheme and @vxrn/universal-color-scheme
@@ -89,6 +95,4 @@ should have some sprints with "challenges":
   - in dev mode handleRequest just runs handleLoader
   - in build mode generates the json
 
-- `Error building React Native bundle: Error ... EISDIR: illegal operation on a directory, read`
-  - Happens with react-native-svg 15.6.0 where it has `elements.js` and `elements` directory at the same time
-  - Might be related to bug [40E4] in the VXRN Takeout Issue List
+- Better SWC config in vite-native-swc to fit Hermes better. Maybe we can see what's included in [`@react-native/babel-preset`](https://github.com/facebook/react-native/tree/main/packages/react-native-babel-preset) and try to match that.

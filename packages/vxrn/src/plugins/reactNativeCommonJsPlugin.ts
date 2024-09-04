@@ -105,6 +105,11 @@ export function reactNativeCommonJsPlugin(options: {
                     const toReExport: Record<string, string[]> = {}
                     for (const exp of foundExports) {
                       const expName = exp.ln || exp.n
+
+                      if (RESERVED_WORDS.has(expName)) {
+                        continue
+                      }
+
                       const moduleName = idToModule[expName]
                       if (moduleName) {
                         toReExport[moduleName] ||= []
@@ -251,3 +256,50 @@ function getAllImportedIdentifiers(importStatement: string): string[] {
     })
     .filter(Boolean)
 }
+
+/**
+ * List of reserved words in JS. From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words.
+ */
+const RESERVED_WORDS = new Set([
+  'toString',
+
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'debugger',
+  'default',
+  'delete',
+  'do',
+  'else',
+  'export',
+  'extends',
+  'false',
+  'finally',
+  'for',
+  'function',
+  'if',
+  'import',
+  'in',
+  'instanceof',
+  'new',
+  'null',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'typeof',
+  'var',
+  'void',
+  'while',
+  'with',
+  'let',
+  'static',
+  'yield',
+  'enum',
+])
