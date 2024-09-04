@@ -5,7 +5,6 @@ export function resolveAPIRequest(asyncImport: () => Promise<any>, request: Requ
   if (!asyncImport) return
 
   return new Promise((res, rej) => {
-    // Added rejection handler
     const id = { _id: Math.random() }
     requestAsyncLocalStore.run(id, async () => {
       try {
@@ -55,7 +54,7 @@ export function resolveAPIRequest(asyncImport: () => Promise<any>, request: Requ
         if (isResponse(err)) {
           res(err)
         } else {
-          rej(err) // Reject the promise on error
+          rej(err) // reject the promise on any other error
         }
       }
     })
