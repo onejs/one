@@ -1,13 +1,15 @@
 import * as babel from '@babel/core'
-import createViteFlow from '@vxrn/vite-flow'
+import nodeResolve from '@rollup/plugin-node-resolve'
 import viteNativeSWC from '@vxrn/vite-native-swc'
+import { stat } from 'node:fs/promises'
+import { dirname, join } from 'node:path'
 import {
+  type InlineConfig,
   type Plugin,
   resolveConfig,
+  type ResolvedConfig,
   transformWithEsbuild,
-  type InlineConfig,
   type UserConfig,
-  ResolvedConfig,
 } from 'vite'
 import { nativeExtensions } from '../constants'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
@@ -15,9 +17,6 @@ import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
-import nodeResolve from '@rollup/plugin-node-resolve'
-import { dirname, join } from 'node:path'
-import { stat } from 'node:fs/promises'
 
 /**
  * Taken from https://github.com/software-mansion/react-native-reanimated/blob/3.15.1/packages/react-native-reanimated/plugin/src/autoworkletization.ts#L19-L59, need to check if this is up-to-date when supporting newer versions of react-native-reanimated.
@@ -70,8 +69,6 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
     })
   }
 
-  const viteFlow = options.flow ? createViteFlow(options.flow) : null
-
   // build app
   let nativeBuildConfig = {
     plugins: [
@@ -114,8 +111,6 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
       } satisfies Plugin,
 
       nodeResolve(),
-
-      viteFlow,
 
       swapPrebuiltReactModules(options.cacheDir, options.packageVersions),
 
@@ -271,6 +266,7 @@ let didWarnSuppressingLogs = false
 function warnAboutSuppressingLogsOnce() {
   if (!didWarnSuppressingLogs) {
     didWarnSuppressingLogs = true
-    console.warn(` [vxrn] Suppressing a few mostly harmless logs, enable with DEBUG=vxrn`)
+    // honestly they are harmdless so no need to warn, but it would be nice to do it once ever and then save that we did to disk
+    // console.warn(` [vxrn] Suppressing mostly harmless logs, enable with DEBUG=vxrn`)
   }
 }

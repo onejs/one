@@ -11,6 +11,7 @@ import {
 } from 'h3'
 import { createProxyEventHandler } from 'h3-proxy'
 import { createServer as nodeCreateServer } from 'node:http'
+import { join } from 'node:path'
 import { createServer, resolveConfig } from 'vite'
 import { WebSocket } from 'ws'
 import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
@@ -26,7 +27,6 @@ import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { applyBuiltInPatches } from '../utils/patches'
 import { clean } from './clean'
-import { join } from 'node:path'
 
 const { ensureDir } = FSExtra
 
@@ -41,11 +41,10 @@ const { ensureDir } = FSExtra
  */
 
 export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
-  const { clean: shouldClean, ...rest } = optionsIn
-  const options = await getOptionsFilled(rest)
-  const { port, root, cacheDir } = options
+  const options = await getOptionsFilled(optionsIn)
+  const { port, cacheDir } = options
 
-  if (shouldClean) {
+  if (options.shouldClean) {
     await clean(optionsIn)
   }
 
@@ -161,6 +160,9 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
       })
     } catch (err) {
       console.error(` Error building React Native bundle: ${err}`)
+      console.error(
+        `\n\n  Note, some errors may happen due to a stale Vite cache, you may want to try re-running with the "--clean" flag`
+      )
     }
   })
 

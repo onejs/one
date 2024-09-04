@@ -3,6 +3,7 @@ export type VXRNOptionsFilled = Awaited<ReturnType<typeof getOptionsFilled>>;
 export declare function getOptionsFilled(options: VXRNOptions, internal?: {
     mode?: 'dev' | 'prod';
 }): Promise<{
+    shouldClean: boolean;
     protocol: "https:" | "http:";
     entries: {
         native: string;
@@ -14,7 +15,9 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
         react: string;
         reactNative: string;
     } | undefined;
-    state: State;
+    state: {
+        versionHash?: string | undefined;
+    };
     packageRootDir: string;
     cacheDir: string;
     host: string;
@@ -25,12 +28,7 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
         cacheHeaders?: "off" | undefined;
     } | undefined;
     https?: boolean | undefined;
-    flow?: import("@vxrn/vite-flow").Options | undefined;
     afterBuild?: ((props: import("..").AfterBuildProps) => void | Promise<void>) | undefined;
     afterServerStart?: ((options: VXRNOptions, app: import("hono").Hono<import("hono/types").BlankEnv, import("hono/types").BlankSchema, "/">) => void | Promise<void>) | undefined;
 }>;
-type State = {
-    applyPatches?: boolean;
-};
-export {};
 //# sourceMappingURL=getOptionsFilled.d.ts.map

@@ -9,10 +9,10 @@
  * - GET (logout): Log out the user using a query string parameter
  */
 
-import { db } from '~/db/connection'
-import { users } from '~/db/schema'
 import { eq } from 'drizzle-orm'
 import { createHash, randomBytes, timingSafeEqual } from 'node:crypto'
+import { db } from '~/db/connection'
+import { users } from '~/db/schema'
 
 // Helper function to hash passwords
 const hashPassword = (password: string) => {

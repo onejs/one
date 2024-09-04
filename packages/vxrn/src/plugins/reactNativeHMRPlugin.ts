@@ -51,7 +51,10 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
         const code = await read()
 
         // got a weird pre compiled file on startup
-        if (code.startsWith(`'use strict';`)) return
+        if (code.startsWith(`'use strict';`)) {
+          console.log('is this still happening?')
+          return
+        }
 
         if (!code) {
           return
