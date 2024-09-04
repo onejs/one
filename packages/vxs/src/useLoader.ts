@@ -3,9 +3,11 @@ import { useEffect, useRef } from 'react'
 import { weakKey } from './utils/weakKey'
 import { preloadingLoader } from './router/router'
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
-import { useActiveParams, usePathname } from './hooks'
+import { useActiveParams, useParams, usePathname } from './hooks'
 import { dynamicImport } from './utils/dynamicImport'
 import { getDevServerUrl } from './getDevServerUrl'
+import { useRouteNode } from './Route'
+import { resolveHref } from './link/href'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -23,7 +25,7 @@ export function useLoader<
   // })
 
   // server side we just run the loader directly
-  if (process.env.TAMAGUI_TARGET === 'native' || typeof window === 'undefined') {
+  if (typeof window === 'undefined') {
     return useAsyncFn(
       loader,
       globalThis['__vxrnLoaderProps__'] || {
@@ -34,9 +36,16 @@ export function useLoader<
 
   const preloadedData = globalThis['__vxrnLoaderData__']
   const currentData = useRef(preloadedData)
-  const pathName = usePathname()
+
+  const isNative = process.env.TAMAGUI_TARGET === 'native'
+  const routeNode = useRouteNode()
+  const params = useParams()
+  // Cannot use usePathname() here since it will change every time the route changes,
+  // but here here we want to get the current local pathname which renders this screen.
+  const pathName =
+    '/' + resolveHref({ pathname: routeNode?.route || '', params }).replace(/index$/, '')
   const currentPath =
-    globalThis['__vxrntodopath'] ||
+    (isNative ? null : globalThis['__vxrntodopath']) || // @zetavg: not sure why we're using `globalThis['__vxrntodopath']` here, but this breaks native when switching between tabs where the value stays with the previous path, so ignoring this on native
     // TODO likely either not needed or needs proper path from server side
     (typeof window !== 'undefined' ? window.location?.pathname || pathName : '/')
 
@@ -76,7 +85,6 @@ export function useLoader<
 
     if (!promises[currentPath]) {
       const getData = async () => {
-        const isNative = process.env.TAMAGUI_TARGET === 'native'
         const loaderJSUrl = `${getDevServerUrl() /* TODO: production? */}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
 
         try {
@@ -86,8 +94,8 @@ export function useLoader<
               const loaderJsCode = await fetch(
                 `${loaderJSUrl}&platform=ios` /* TODO: platform */
               ).then((res) => res.text())
-              // biome-ignore lint/security/noGlobalEval: <explanation>
-              return eval(`() => { exports = {}; ${loaderJsCode}; return exports; }`)()
+              // biome-ignore lint/security/noGlobalEval: we can't use dynamic `import` on native so we need to fetch and `eval` the code
+              return eval(`() => { var exports = {}; ${loaderJsCode}; return exports; }`)()
             }
 
             // On web, we can use import to dynamically load the loader
