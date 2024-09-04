@@ -571,6 +571,7 @@ function getNavigateAction(
   while (actionStateRoute) {
     Object.assign(params, { ...actionStateRoute.params })
     payload.screen = actionStateRoute.name
+    payload.params = { ...actionStateRoute.params }
 
     actionStateRoute = actionStateRoute.state?.routes[actionStateRoute.state?.routes.length - 1]
 
