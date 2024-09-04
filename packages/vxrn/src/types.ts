@@ -55,7 +55,10 @@ export type VXRNOptions = {
    */
   https?: boolean
 
-  flow?: FlowOptions
+  /**
+   * Whether to clean cache directories on startup
+   */
+  shouldClean?: boolean
 
   // for hooking into things
   afterBuild?: (props: AfterBuildProps) => void | Promise<void>

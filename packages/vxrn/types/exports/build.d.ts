@@ -1,6 +1,7 @@
 import type { BuildArgs, VXRNOptions } from '../types';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<{
     options: {
+        shouldClean: boolean;
         protocol: "https:" | "http:";
         entries: {
             native: string;
@@ -13,7 +14,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             reactNative: string;
         } | undefined;
         state: {
-            applyPatches?: boolean | undefined;
+            versionHash?: string | undefined;
         };
         packageRootDir: string;
         cacheDir: string;
@@ -25,7 +26,6 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             cacheHeaders?: "off" | undefined;
         } | undefined;
         https?: boolean | undefined;
-        flow?: import("@vxrn/vite-flow").Options | undefined;
         afterBuild?: ((props: import("..").AfterBuildProps) => void | Promise<void>) | undefined;
         afterServerStart?: ((options: VXRNOptions, app: import("hono").Hono<import("hono/types").BlankEnv, import("hono/types").BlankSchema, "/">) => void | Promise<void>) | undefined;
     };

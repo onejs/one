@@ -1,4 +1,3 @@
-import type { Options as FlowOptions } from '@vxrn/vite-flow';
 import type { Hono } from 'hono';
 import type { OutputAsset, OutputChunk } from 'rollup';
 import type { UserConfig } from 'vite';
@@ -49,7 +48,10 @@ export type VXRNOptions = {
      * Uses mkcert to create a self-signed certificate
      */
     https?: boolean;
-    flow?: FlowOptions;
+    /**
+     * Whether to clean cache directories on startup
+     */
+    shouldClean?: boolean;
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
     afterServerStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
 };

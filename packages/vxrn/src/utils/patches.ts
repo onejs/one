@@ -33,9 +33,6 @@ export function bailIfExists(haystack: string, needle: string) {
 }
 
 export async function applyBuiltInPatches(options: VXRNOptionsFilled) {
-  if (options.state.applyPatches === false) {
-    return
-  }
   await applyDependencyPatches(depPatches, { root: options.root })
 }
 

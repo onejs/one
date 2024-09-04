@@ -1,9 +1,10 @@
+import { getPort } from 'get-port-please'
+import { createHash } from 'node:crypto'
+import { createRequire } from 'node:module'
 import { join } from 'node:path'
 import { readPackageJSON } from 'pkg-types'
-import { createRequire } from 'node:module'
-import FSExtra from 'fs-extra'
 import type { VXRNOptions } from '../types'
-import { getPort } from 'get-port-please'
+import { readState, writeState } from './state'
 
 const require = createRequire(import.meta.url)
 
@@ -39,8 +40,17 @@ export async function getOptionsFilled(
         }
       : undefined
 
+  const versionHash = hashString(JSON.stringify(packageJSON))
+  const shouldClean = Boolean(
+    options.shouldClean ?? (state.versionHash && state.versionHash !== versionHash)
+  )
+
+  // no need to wait to write state
+  void writeState(cacheDir, { versionHash })
+
   return {
     ...options,
+    shouldClean,
     protocol: https ? ('https:' as const) : ('http:' as const),
     entries: {
       native: './src/entry-native.tsx',
@@ -58,14 +68,8 @@ export async function getOptionsFilled(
   }
 }
 
-type State = {
-  applyPatches?: boolean
-}
-
-async function readState(cacheDir: string) {
-  const statePath = join(cacheDir, 'state.json')
-  const state: State = (await FSExtra.pathExists(statePath))
-    ? await FSExtra.readJSON(statePath)
-    : {}
-  return state
+function hashString(str: string): string {
+  const hash = createHash('sha256') // Create a hash object with the desired algorithm (e.g., 'sha256')
+  hash.update(str) // Update the hash content with the input string
+  return hash.digest('hex') // Output the final hash in hexadecimal format
 }

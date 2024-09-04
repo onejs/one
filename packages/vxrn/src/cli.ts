@@ -35,10 +35,6 @@ const dev = defineCommand({
       buildConfig: {
         plugins: [],
       },
-      flow: {
-        include: [],
-        exclude: [],
-      },
       host: args.host,
       port: args.port ? +args.port : undefined,
     })
