@@ -36,6 +36,7 @@ export const FeedCard = (props: FeedItem) => {
 
         <Paragraph
           size="$4"
+          whiteSpace="pre-wrap"
           $gtSm={{
             size: '$5',
           }}
