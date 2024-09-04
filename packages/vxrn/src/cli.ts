@@ -1,4 +1,5 @@
 import { defineCommand, runMain } from 'citty'
+import type { dev as devFn } from './exports/dev'
 
 const dev = defineCommand({
   meta: {
@@ -21,20 +22,18 @@ const dev = defineCommand({
     },
   },
   async run({ args }) {
-    const { dev } = await import(
+    const imported = await import(
       // @ts-expect-error
       './exports/dev.mjs'
     )
+
+    // for type safety with our weird import setup
+    const dev = imported.dev as typeof devFn
+
     const { start, stop } = await dev({
       clean: args.clean,
       root: process.cwd(),
       https: args.https,
-      webConfig: {
-        plugins: [],
-      },
-      buildConfig: {
-        plugins: [],
-      },
       host: args.host,
       port: args.port ? +args.port : undefined,
     })

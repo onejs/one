@@ -1,4 +1,3 @@
-import * as babel from '@babel/core'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import viteNativeSWC from '@vxrn/vite-native-swc'
 import { stat } from 'node:fs/promises'
@@ -17,34 +16,7 @@ import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
-
-/**
- * Taken from https://github.com/software-mansion/react-native-reanimated/blob/3.15.1/packages/react-native-reanimated/plugin/src/autoworkletization.ts#L19-L59, need to check if this is up-to-date when supporting newer versions of react-native-reanimated.
- */
-const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
-  'useAnimatedGestureHandler',
-  'useAnimatedScrollHandler',
-  'useFrameCallback',
-  'useAnimatedStyle',
-  'useAnimatedProps',
-  'createAnimatedPropAdapter',
-  'useDerivedValue',
-  'useAnimatedReaction',
-  'useWorkletCallback',
-  'withTiming',
-  'withSpring',
-  'withDecay',
-  'withRepeat',
-  'runOnUI',
-  'executeOnUIRuntimeSync',
-]
-
-/**
- * Regex to test if a piece of code should be processed by react-native-reanimated's Babel plugin.
- */
-const REANIMATED_REGEX = new RegExp(
-  ['worklet', ...REANIMATED_AUTOWORKLETIZATION_KEYWORDS].join('|')
-)
+import { getBabelReanimatedPlugin } from '../plugins/babelReanimated'
 
 const IGNORE_ROLLUP_LOGS_RE =
   /vite-native-client\/dist\/esm\/client\.native\.js|node_modules\/\.vxrn\/react-native\.js/
@@ -53,25 +25,11 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
   const { root, port } = options
   const { optimizeDeps } = getOptimizeDeps('build')
 
-  async function babelReanimated(input: string, filename: string) {
-    return await new Promise<string>((res, rej) => {
-      babel.transform(
-        input,
-        {
-          plugins: ['react-native-reanimated/plugin'],
-          filename,
-        },
-        (err: any, result) => {
-          if (!result || err) rej(err || 'no res')
-          res(result!.code!)
-        }
-      )
-    })
-  }
-
   // build app
   let nativeBuildConfig = {
     plugins: [
+      ...(globalThis.__vxrnAddNativePlugins || []),
+
       // vite doesnt support importing from a directory but its so common in react native
       // so lets make it work, and node resolve theoretically fixes but you have to pass in moduleDirs
       // but we need this to work anywhere including in normal source files
@@ -114,15 +72,7 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
 
       swapPrebuiltReactModules(options.cacheDir, options.packageVersions),
 
-      {
-        name: 'reanimated',
-        async transform(code, id) {
-          if (REANIMATED_REGEX.test(code)) {
-            const out = await babelReanimated(code, id)
-            return out
-          }
-        },
-      },
+      getBabelReanimatedPlugin(),
 
       viteRNClientPlugin,
 

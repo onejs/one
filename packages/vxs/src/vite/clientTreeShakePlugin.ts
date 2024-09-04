@@ -13,24 +13,22 @@ export const clientTreeShakePlugin = (): Plugin => {
   return {
     name: 'vxrn:client-tree-shake',
 
-    enforce: 'post',
+    enforce: 'pre',
 
     applyToEnvironment(env) {
-      return env.name === 'client'
+      return env.name === 'client' || env.name === 'ios' || env.name === 'android'
     },
 
     async transform(code, id, settings) {
-      return await transformTreeShakeClient(code, id, settings)
+      if (this.environment.name === 'ssr') {
+        return
+      }
+      return await transformTreeShakeClient(code, id)
     },
   } satisfies Plugin
 }
 
-export async function transformTreeShakeClient(
-  code: string,
-  id: string,
-  settings: { ssr?: boolean } | undefined
-) {
-  if (settings?.ssr) return
+export async function transformTreeShakeClient(code: string, id: string) {
   if (id.includes('node_modules')) return
 
   if (!/generateStaticParams|loader/.test(code)) {
