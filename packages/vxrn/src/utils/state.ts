@@ -15,5 +15,6 @@ export async function readState(cacheDir: string) {
 
 export async function writeState(cacheDir: string, state: State) {
   const statePath = join(cacheDir, 'state.json')
+  await FSExtra.ensureDir(cacheDir)
   await FSExtra.writeJSON(statePath, state)
 }
