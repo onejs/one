@@ -1,25 +1,21 @@
 {
   "name": "vxs",
-  "version": "1.1.212",
+  "version": "1.1.211",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
   "main": "dist/cjs",
   "module": "dist/esm",
   "bin": "run.mjs",
-  "files": [
-    "src",
-    "types",
-    "dist",
-    "vendor"
-  ],
+  "files": ["src", "types", "dist", "vendor"],
   "scripts": {
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
     "check": "yarn depcheck",
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
+    "clean:build": "tamagui-build clean:build",
+    "test": "vitest"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -70,11 +66,11 @@
     "@react-navigation/native": "~6.1.7",
     "@react-navigation/native-stack": "~6.9.13",
     "@react-navigation/routers": "~6.1.9",
-    "@vxrn/universal-color-scheme": "1.1.212",
-    "@vxrn/use-isomorphic-layout-effect": "1.1.212",
+    "@vxrn/universal-color-scheme": "1.1.211",
+    "@vxrn/use-isomorphic-layout-effect": "1.1.211",
     "babel-dead-code-elimination": "^1.0.6",
     "citty": "^0.1.6",
-    "create-vxrn": "1.1.212",
+    "create-vxrn": "1.1.211",
     "dotenv": "^16.4.5",
     "escape-string-regexp": "^5.0.0",
     "expo-linking": "~6.3.1",
@@ -95,7 +91,7 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.212"
+    "vxrn": "1.1.211"
   },
   "peerDependencies": {
     "react-native": "*"
