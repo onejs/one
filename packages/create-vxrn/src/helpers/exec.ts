@@ -2,10 +2,7 @@ import { execSync, spawn, type SpawnOptions } from 'node:child_process'
 
 // Synchronous exec function using execSync
 export const exec = (cmd: string, options?: Parameters<typeof execSync>[1]) => {
-  return execSync(cmd, {
-    stdio: process.env.DEBUG ? 'inherit' : 'ignore',
-    ...options,
-  })
+  return execSync(cmd, options)?.toString() || ''
 }
 
 export const execPromise = (
