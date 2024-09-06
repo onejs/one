@@ -17,7 +17,7 @@ export type NavigatorProps = {
 /** An unstyled custom navigator. Good for basic web layouts */
 export declare function Navigator({ initialRouteName, screenOptions, children, router }: NavigatorProps): import("react/jsx-runtime").JSX.Element | null;
 export declare namespace Navigator {
-    var Slot: typeof import("./Navigator").Slot;
+    var Slot: React.NamedExoticComponent<Omit<NavigatorProps, "children">>;
     var useContext: typeof useNavigatorContext;
     var Screen: typeof import("./Screen").Screen;
 }
@@ -272,7 +272,7 @@ export declare function useNavigatorContext(): {
 };
 export declare function useSlot(): JSX.Element | null;
 /** Renders the currently selected content. */
-export declare function Slot(props: Omit<NavigatorProps, 'children'>): import("react/jsx-runtime").JSX.Element;
+export declare const Slot: React.NamedExoticComponent<Omit<NavigatorProps, "children">>;
 export declare function QualifiedSlot(): JSX.Element | null;
 export declare function DefaultNavigator(): import("react/jsx-runtime").JSX.Element;
 export {};
