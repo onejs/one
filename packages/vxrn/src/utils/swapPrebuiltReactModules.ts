@@ -175,7 +175,10 @@ export async function swapPrebuiltReactModules(
             if (await FSExtra.pathExists(directoryNonNativePath)) {
               return directoryNonNativePath
             }
-            if (await FSExtra.pathExists(nativePath)) {
+            if (
+              (await FSExtra.pathExists(nativePath)) &&
+              (await FSExtra.stat(nativePath)).isFile() // Prevents "EISDIR: illegal operation on a directory, read" errors
+            ) {
               return nativePath
             }
           } catch (err) {
