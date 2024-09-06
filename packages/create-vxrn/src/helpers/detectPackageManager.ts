@@ -1,9 +1,6 @@
 import { promises as fs } from 'node:fs'
 import { resolve } from 'node:path'
-import * as execa2 from 'execa'
-
-// @ts-ignore
-const execa = execa2['execa'] as (typeof execa2)['default']
+import { exec } from './exec'
 
 export type PackageManagerName = 'npm' | 'yarn' | 'pnpm' | 'bun'
 
@@ -18,8 +15,9 @@ async function pathExists(p: string) {
 
 async function hasGlobal(pm: PackageManagerName): Promise<boolean> {
   try {
-    const res = await execa(pm, ['--version'])
-    return /^\d+.\d+.\d+$/.test(res.stdout)
+    const res = exec(`${pm} --version`).toString()
+    console.log('res', res)
+    return /^\d+.\d+.\d+$/.test(res)
   } catch (err) {
     return false
   }
