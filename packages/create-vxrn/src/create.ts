@@ -24,24 +24,30 @@ export async function create(args: { template?: string }) {
     process.exit(1)
   }
 
-  projectPath ||= await getProjectName(projectPath)
+  let projectName = ''
+  let resolvedProjectPath = ''
 
-  const resolvedProjectPath = path.resolve(process.cwd(), projectPath)
-  const projectName = path.basename(resolvedProjectPath)
+  async function promptForName() {
+    projectPath = await getProjectName()
+    resolvedProjectPath = path.resolve(process.cwd(), projectPath)
+    projectName = path.basename(resolvedProjectPath)
+  }
 
-  if (fs.existsSync(resolvedProjectPath)) {
-    console.info()
-    console.info(
-      ansis.red('🚨 [vxrn] error'),
-      `You tried to make a project called ${ansis.underline(
-        ansis.blueBright(projectName)
-      )}, but a folder with that name already exists: ${ansis.blueBright(resolvedProjectPath)}
+  if (!projectPath) {
+    await promptForName()
 
-${ansis.bold(ansis.red(`Please pick a different project name`))}`
-    )
-    console.info()
-    console.info()
-    process.exit(1)
+    while (fs.existsSync(resolvedProjectPath)) {
+      console.info()
+      console.info(
+        ansis.yellow('⚠️'),
+        `The folder ${ansis.underline(
+          ansis.blueBright(projectName)
+        )} already exists, lets try another name`
+      )
+      console.info()
+      console.info()
+      await promptForName()
+    }
   }
 
   // space

@@ -15,10 +15,9 @@ async function pathExists(p: string) {
 
 async function hasGlobal(pm: PackageManagerName): Promise<boolean> {
   try {
-    const res = exec(`${pm} --version`).toString()
-    console.log('res', res)
-    return /^\d+.\d+.\d+$/.test(res)
-  } catch (err) {
+    const res = exec(`which ${pm}`)
+    return !!res.length
+  } catch {
     return false
   }
 }
@@ -53,11 +52,13 @@ const foundSome = (obj: Object) => Object.keys(obj).some((k) => !!obj[k])
 export const detectPackageManager = async ({ cwd }: { cwd?: string } = {}) => {
   const fromLockfile = await getFromLockfile(cwd)
   if (foundSome(fromLockfile)) {
+    console.log('1', fromLockfile)
     return fromLockfile
   }
 
   const fromPackageJson = await getFromPackage(cwd)
   if (fromPackageJson && foundSome(fromPackageJson)) {
+    console.log('2', fromPackageJson)
     return fromPackageJson
   }
 
