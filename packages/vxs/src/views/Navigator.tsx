@@ -120,7 +120,7 @@ export function useSlot() {
 }
 
 /** Renders the currently selected content. */
-export function Slot(props: Omit<NavigatorProps, 'children'>) {
+export const Slot = React.memo(function Slot(props: Omit<NavigatorProps, 'children'>) {
   const contextKey = useContextKey()
   const context = React.useContext(NavigatorContext)
 
@@ -135,7 +135,7 @@ export function Slot(props: Omit<NavigatorProps, 'children'>) {
   }
 
   return <QualifiedSlot />
-}
+})
 
 export function QualifiedSlot() {
   return useSlot()
