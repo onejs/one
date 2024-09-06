@@ -8,18 +8,9 @@ export const getProjectName = async (projectPath?: string) => {
     projectPath = projectPath.trim()
   }
 
-  console.info(
-    ansis.green(`
-
-  Welcome!`)
-  )
-
-  console.info(
-    ansis.yellow(`
-  Let's create a new ${ansis.yellowBright(`①`)}  app...
-
-`)
-  )
+  console.info()
+  console.info(ansis.yellow(`  Hello. Let's create a new ${ansis.yellowBright(`①`)}  app...`))
+  console.info()
 
   if (!projectPath) {
     const defaultName = 'one'
