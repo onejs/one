@@ -45,26 +45,20 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
           if (importer?.includes('node_modules')) {
             return
           }
-          /** Should be 'ios' or 'android' */
-          const environmentName = this.environment.name
           try {
             const resolved = join(dirname(importer), importee)
             if ((await stat(resolved)).isDirectory()) {
               // fix for importing a directory
               // TODO this would probably want to support their configured extensions
-              for (const ext of ['ts', 'tsx', 'js', 'jsx']) {
-                for (const platformExt of [environmentName, 'native', null]) {
-                  try {
-                    const withExt = join(
-                      resolved,
-                      ['index', platformExt, ext].filter(Boolean).join('.')
-                    )
-                    await stat(withExt)
-                    // its a match
-                    return withExt
-                  } catch {
-                    // keep going
-                  }
+              // TODO also platform-specific extensions
+              for (const ext of ['ts', 'tsx', 'js']) {
+                try {
+                  const withExt = join(resolved, `index.${ext}`)
+                  await stat(withExt)
+                  // its a match
+                  return withExt
+                } catch {
+                  // keep going
                 }
               }
             }
