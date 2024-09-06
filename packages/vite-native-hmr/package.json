@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-hmr",
-  "version": "1.1.210",
+  "version": "1.1.211",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
