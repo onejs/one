@@ -10,7 +10,6 @@ import { installDependencies } from './helpers/installDependencies'
 import { validateNpmName } from './helpers/validateNpmPackage'
 import prompts from 'prompts'
 import { detectPackageManager, type PackageManagerName } from './helpers/detectPackageManager'
-import Spinner from 'yocto-spinner'
 
 const { existsSync, readFileSync, writeFileSync } = FSExtra
 
@@ -63,6 +62,8 @@ ${ansis.bold(ansis.red(`Please pick a different project name`))}`
   }
 
   console.info()
+
+  const Spinner = await import('yocto-spinner').then((x) => x.default)
 
   const spinner = Spinner({
     text: `Creating...`,
