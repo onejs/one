@@ -10,7 +10,7 @@
     "./examples/*",
     "./studio2"
   ],
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "yarn@4.4.1",
   "resolutionsComments": {
     "vite": "because vitepress brings along vite 5"
   },

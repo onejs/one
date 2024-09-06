@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
+    "@tamagui/config": "^1.110.2",
     "@tamagui/image-next": "^1.110.1",
     "@tamagui/lucide-icons": "^1.110.1",
     "@tamagui/vite-plugin": "^1.110.1",
@@ -24,6 +25,7 @@
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
+    "expo-modules-core": "^1.12.24",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.1",
