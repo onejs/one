@@ -1,13 +1,13 @@
 const userSchema = {
   tableName: 'users',
   columns: {
-    id: { type: 'number' },
+    id: { type: 'string' },
     username: { type: 'string' },
     email: { type: 'string' },
     passwordHash: { type: 'string' },
     bio: { type: 'string' },
-    avatarUrl: { type: 'string' },
-    createdAt: { type: 'number' },
+    avatar_url: { type: 'string' },
+    created_at: { type: 'number' },
   },
   primaryKey: ['id'],
 } as const
@@ -15,15 +15,15 @@ const userSchema = {
 const postSchema = {
   tableName: 'posts',
   columns: {
-    id: { type: 'number' },
-    userId: { type: 'number' },
+    id: { type: 'string' },
+    user_id: { type: 'string' },
     content: { type: 'string' },
-    createdAt: { type: 'number' },
+    created_at: { type: 'number' },
   },
   primaryKey: ['id'],
   relationships: {
     user: {
-      source: 'userId',
+      source: 'user_id',
       dest: {
         field: 'id',
         schema: () => userSchema,
@@ -32,21 +32,21 @@ const postSchema = {
     likes: {
       source: 'id',
       dest: {
-        field: 'postId',
+        field: 'post_id',
         schema: () => likeSchema,
       },
     },
     reposts: {
       source: 'id',
       dest: {
-        field: 'postId',
+        field: 'post_id',
         schema: () => repostSchema,
       },
     },
     replies: {
       source: 'id',
       dest: {
-        field: 'postId',
+        field: 'post_id',
         schema: () => replySchema,
       },
     },
@@ -56,21 +56,21 @@ const postSchema = {
 const followSchema = {
   tableName: 'follows',
   columns: {
-    followerId: { type: 'number' },
-    followingId: { type: 'number' },
-    createdAt: { type: 'number' },
+    follower_id: { type: 'string' },
+    following_id: { type: 'string' },
+    created_at: { type: 'number' },
   },
-  primaryKey: ['followerId', 'followingId'],
+  primaryKey: ['follower_id', 'following_id'],
   relationships: {
     follower: {
-      source: 'followerId',
+      source: 'follower_id',
       dest: {
         field: 'id',
         schema: () => userSchema,
       },
     },
     following: {
-      source: 'followingId',
+      source: 'following_id',
       dest: {
         field: 'id',
         schema: () => userSchema,
@@ -82,21 +82,21 @@ const followSchema = {
 const likeSchema = {
   tableName: 'likes',
   columns: {
-    userId: { type: 'number' },
-    postId: { type: 'number' },
-    createdAt: { type: 'number' },
+    user_id: { type: 'string' },
+    post_id: { type: 'string' },
+    created_at: { type: 'number' },
   },
-  primaryKey: ['userId', 'postId'],
+  primaryKey: ['user_id', 'post_id'],
   relationships: {
     user: {
-      source: 'userId',
+      source: 'user_id',
       dest: {
         field: 'id',
         schema: () => userSchema,
       },
     },
     post: {
-      source: 'postId',
+      source: 'post_id',
       dest: {
         field: 'id',
         schema: () => postSchema,
@@ -108,21 +108,21 @@ const likeSchema = {
 const repostSchema = {
   tableName: 'reposts',
   columns: {
-    userId: { type: 'number' },
-    postId: { type: 'number' },
-    createdAt: { type: 'number' },
+    user_id: { type: 'string' },
+    post_id: { type: 'string' },
+    created_at: { type: 'number' },
   },
-  primaryKey: ['userId', 'postId'],
+  primaryKey: ['user_id', 'post_id'],
   relationships: {
     user: {
-      source: 'userId',
+      source: 'user_id',
       dest: {
         field: 'id',
         schema: () => userSchema,
       },
     },
     post: {
-      source: 'postId',
+      source: 'post_id',
       dest: {
         field: 'id',
         schema: () => postSchema,
@@ -134,23 +134,23 @@ const repostSchema = {
 const replySchema = {
   tableName: 'replies',
   columns: {
-    id: { type: 'number' },
-    userId: { type: 'number' },
-    postId: { type: 'number' },
+    id: { type: 'string' },
+    user_id: { type: 'string' },
+    post_id: { type: 'string' },
     content: { type: 'string' },
-    createdAt: { type: 'number' },
+    created_at: { type: 'number' },
   },
   primaryKey: ['id'],
   relationships: {
     user: {
-      source: 'userId',
+      source: 'user_id',
       dest: {
         field: 'id',
         schema: () => userSchema,
       },
     },
     post: {
-      source: 'postId',
+      source: 'post_id',
       dest: {
         field: 'id',
         schema: () => postSchema,

@@ -9,6 +9,7 @@ import { HomeLayout } from '~/features/home/HomeLayout'
 import { zero, ZeroProvider } from '~/features/zero/client'
 import { useQuery } from '~/features/zero/query'
 import config from '../config/tamagui.config'
+import { useEffect } from 'react'
 
 export default function Layout() {
   return (
@@ -19,7 +20,7 @@ export default function Layout() {
         <SchemeProvider>
           <TamaguiRootProvider>
             <HomeLayout />
-            <TestZero />
+            {/* <TestZero /> */}
           </TamaguiRootProvider>
         </SchemeProvider>
       </ZeroProvider>
@@ -27,13 +28,29 @@ export default function Layout() {
   )
 }
 
-const TestZero = () => {
-  const results = useQuery(zero.query.posts.limit(10))
+// const TestZero = () => {
+//   const results = useQuery(zero.query.posts.limit(10))
 
-  console.log('results', results)
+//   useEffect(() => {
+//     const result = results[0]
+//     if (!result) {
+//       return
+//     }
+//     const tm = setTimeout(() => {
+//       console.warn(`updating content`)
+//       zero.mutate.posts.update({
+//         ...result,
+//         content: `HELLO WORLD`,
+//       })
+//     }, 5000)
 
-  return null
-}
+//     return () => {
+//       clearTimeout(tm)
+//     }
+//   }, [results])
+
+//   return null
+// }
 
 const TamaguiRootProvider = ({ children }: { children: React.ReactNode }) => {
   const [scheme] = useColorScheme()

@@ -1,81 +1,68 @@
-import { integer, serial, varchar, text, timestamp, pgTable, primaryKey } from 'drizzle-orm/pg-core'
+import { text, varchar, doublePrecision, pgTable, primaryKey } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 
 export const users = pgTable('users', {
-  id: serial('id').primaryKey(),
+  id: text('id').primaryKey(),
   username: varchar('username', { length: 50 }).notNull().unique(),
   email: varchar('email', { length: 100 }).notNull().unique(),
   passwordHash: varchar('password_hash', { length: 255 }).notNull(),
   bio: text('bio').default(''),
   avatarUrl: varchar('avatar_url', { length: 255 }).default(''),
-  createdAt: timestamp('created_at').defaultNow(),
+  createdAt: doublePrecision('created_at'),
 })
 
 export const posts = pgTable('posts', {
-  id: serial('id').primaryKey(),
-  userId: integer('user_id')
+  id: text('id').primaryKey(),
+  userId: text('user_id')
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
   content: text('content').notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
+  createdAt: doublePrecision('created_at'),
 })
 
 export const follows = pgTable('follows', {
-  followerId: integer('follower_id')
+  id: text('id').primaryKey(),
+  followerId: text('follower_id')
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
-  followingId: integer('following_id')
+  followingId: text('following_id')
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
+  createdAt: doublePrecision('created_at'),
 })
 
-export const likes = pgTable(
-  'likes',
-  {
-    userId: integer('user_id')
-      .references(() => users.id, { onDelete: 'cascade' })
-      .notNull(),
-    postId: integer('post_id')
-      .references(() => posts.id, { onDelete: 'cascade' })
-      .notNull(),
-    createdAt: timestamp('created_at').defaultNow(),
-  },
-  (table) => {
-    return {
-      pk: primaryKey({ columns: [table.userId, table.postId] }),
-    }
-  }
-)
-
-export const reposts = pgTable(
-  'reposts',
-  {
-    userId: integer('user_id')
-      .references(() => users.id, { onDelete: 'cascade' })
-      .notNull(),
-    postId: integer('post_id')
-      .references(() => posts.id, { onDelete: 'cascade' })
-      .notNull(),
-    createdAt: timestamp('created_at').defaultNow(),
-  },
-  (table) => {
-    return {
-      pk: primaryKey({ columns: [table.userId, table.postId] }),
-    }
-  }
-)
-
-export const replies = pgTable('replies', {
-  id: serial('id').primaryKey(),
-  userId: integer('user_id')
+export const likes = pgTable('likes', {
+  id: text('id').primaryKey(),
+  userId: text('user_id')
     .references(() => users.id, { onDelete: 'cascade' })
     .notNull(),
-  postId: integer('post_id')
+  postId: text('post_id')
+    .references(() => posts.id, { onDelete: 'cascade' })
+    .notNull(),
+  createdAt: doublePrecision('created_at'),
+})
+
+export const reposts = pgTable('reposts', {
+  id: text('id').primaryKey(),
+  userId: text('user_id')
+    .references(() => users.id, { onDelete: 'cascade' })
+    .notNull(),
+  postId: text('post_id')
+    .references(() => posts.id, { onDelete: 'cascade' })
+    .notNull(),
+  createdAt: doublePrecision('created_at'),
+})
+
+export const replies = pgTable('replies', {
+  id: text('id').primaryKey(),
+  userId: text('user_id')
+    .references(() => users.id, { onDelete: 'cascade' })
+    .notNull(),
+  postId: text('post_id')
     .references(() => posts.id, { onDelete: 'cascade' })
     .notNull(),
   content: text('content').notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
+  createdAt: doublePrecision('created_at'),
 })
 
 export const userRelations = relations(users, ({ one, many }) => ({

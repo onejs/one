@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto'
 import { db } from './connection'
 import { users, posts, follows, likes, reposts, replies } from './schema'
 import { faker } from '@faker-js/faker'
@@ -300,14 +301,18 @@ const seed = async () => {
   }
 }
 
-async function insertUsers(count: number) {
+// Function to generate a unique ID
+const generateId = () => randomUUID()
+
+async function insertUsers(count) {
   const selectedUserNames = faker.helpers.arrayElements(userNames, count)
   console.time('insertUsers')
-  const userIds: { id: number }[] = await db.transaction(async (trx) => {
+  const userIds = await db.transaction(async (trx) => {
     return trx
       .insert(users)
       .values(
         selectedUserNames.map((name) => ({
+          id: generateId(), // Generate a unique ID for each user
           username: name,
           email: `${name.toLowerCase().replace(/\s+/g, '.')}@example.com`,
           passwordHash: faker.internet.password(),
@@ -320,7 +325,7 @@ async function insertUsers(count: number) {
   return userIds
 }
 
-async function generatePosts(userIds: { id: number }[]) {
+async function generatePosts(userIds) {
   console.time('generatePosts')
   for (const user of userIds) {
     const randomizedPostCount = Math.round(POST_COUNT_PER_USER * (0.8 + Math.random() * 0.4))
@@ -330,9 +335,10 @@ async function generatePosts(userIds: { id: number }[]) {
         const postContent = generatePostContent(topic)
 
         await db.insert(posts).values({
+          id: generateId(), // Generate a unique ID for each post
           userId: user.id,
           content: postContent,
-          createdAt: faker.date.recent({ days: 1 }),
+          createdAt: faker.date.recent({ days: 1 }).getTime() / 1000,
         })
       } catch (error) {
         console.error(`Failed to insert post for user ${user.id}:`, error)
@@ -342,7 +348,7 @@ async function generatePosts(userIds: { id: number }[]) {
   console.timeEnd('generatePosts')
 }
 
-async function generateReplies(userIds: { id: number }[], allPostIds: { id: number }[]) {
+async function generateReplies(userIds, allPostIds) {
   console.time('generateReplies')
   for (const post of allPostIds) {
     const randomizedReplyCount = Math.round(REPLY_COUNT_PER_POST * (0.8 + Math.random() * 0.4))
@@ -351,10 +357,11 @@ async function generateReplies(userIds: { id: number }[], allPostIds: { id: numb
         const replyingUser = userIds[Math.floor(Math.random() * userIds.length)]
         const topic = topics[Math.floor(Math.random() * topics.length)]
         await db.insert(replies).values({
+          id: generateId(), // Generate a unique ID for each reply
           userId: replyingUser.id,
           postId: post.id,
           content: generateReply(topic),
-          createdAt: faker.date.recent({ days: 1 }),
+          createdAt: faker.date.recent({ days: 1 }).getTime() / 1000,
         })
       } catch (error) {
         console.error(`Failed to insert reply for post ${post.id}:`, error)
@@ -364,7 +371,7 @@ async function generateReplies(userIds: { id: number }[], allPostIds: { id: numb
   console.timeEnd('generateReplies')
 }
 
-async function generateFollows(userIds: { id: number }[]) {
+async function generateFollows(userIds) {
   console.time('generateFollows')
   for (const follower of userIds) {
     const randomizedFollowCount = Math.round(FOLLOW_COUNT_PER_USER * (0.8 + Math.random() * 0.4))
@@ -375,9 +382,10 @@ async function generateFollows(userIds: { id: number }[]) {
     for (const following of followingIds) {
       try {
         await db.insert(follows).values({
+          id: generateId(), // Generate a unique ID for each follow
           followerId: follower.id,
           followingId: following.id,
-          createdAt: faker.date.recent({ days: 1 }),
+          createdAt: faker.date.recent({ days: 1 }).getTime() / 1000,
         })
       } catch (error) {
         console.error(
@@ -390,7 +398,7 @@ async function generateFollows(userIds: { id: number }[]) {
   console.timeEnd('generateFollows')
 }
 
-async function generateLikes(userIds: { id: number }[], allPostIds: { id: number }[]) {
+async function generateLikes(userIds, allPostIds) {
   console.time('generateLikes')
   for (const user of userIds) {
     const postIds = faker.helpers.arrayElements(
@@ -400,9 +408,10 @@ async function generateLikes(userIds: { id: number }[], allPostIds: { id: number
     for (const post of postIds) {
       try {
         await db.insert(likes).values({
+          id: generateId(), // Generate a unique ID for each like
           userId: user.id,
           postId: post.id,
-          createdAt: faker.date.recent({ days: 1 }),
+          createdAt: faker.date.recent({ days: 1 }).getTime() / 1000,
         })
       } catch (error) {
         console.error(`Failed to insert like (user ${user.id}, post ${post.id}):`, error)
@@ -412,16 +421,10 @@ async function generateLikes(userIds: { id: number }[], allPostIds: { id: number
   console.timeEnd('generateLikes')
 }
 
-async function generateReposts(userIds: { id: number }[], allPostIds: { id: number }[]) {
+async function generateReposts(userIds, allPostIds) {
   console.time('generateReposts')
-  const allPostsWithUsers: {
-    id: number
-    userId: number
-  }[] = await db.select({ id: posts.id, userId: posts.userId }).from(posts)
+  const allPostsWithUsers = await db.select({ id: posts.id, userId: posts.userId }).from(posts)
   for (const user of userIds) {
-    // This code selects random posts for a user to repost
-    // It filters out the user's own posts to avoid self-reposts
-    // The number of reposts is limited by REPOST_COUNT_PER_USER or the total available posts
     const postIds = faker.helpers.arrayElements(
       allPostsWithUsers.filter((post) => post.userId !== user.id),
       Math.min(REPOST_COUNT_PER_USER, allPostsWithUsers.length)
@@ -429,9 +432,10 @@ async function generateReposts(userIds: { id: number }[], allPostIds: { id: numb
     for (const post of postIds) {
       try {
         await db.insert(reposts).values({
+          id: generateId(), // Generate a unique ID for each repost
           userId: user.id,
           postId: post.id,
-          createdAt: faker.date.recent({ days: 1 }),
+          createdAt: faker.date.recent({ days: 1 }).getTime() / 1000,
         })
       } catch (error) {
         console.error(`Failed to insert repost (user ${user.id}, post ${post.id}):`, error)
@@ -441,4 +445,5 @@ async function generateReposts(userIds: { id: number }[], allPostIds: { id: numb
   console.timeEnd('generateReposts')
 }
 
+// Run the seed function
 seed()

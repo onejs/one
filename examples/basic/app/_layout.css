@@ -21,3 +21,7 @@ a {
   text-underline-offset: 3px;
   transition: all ease-in 100ms;
 }
+
+a.is_Button, .text-decoration-none, a:has(div) {
+  text-decoration: none;
+}

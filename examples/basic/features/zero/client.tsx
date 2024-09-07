@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react'
 import type { QueryDefs } from 'zero-client'
 import { Zero } from 'zero-client'
-import { Schema, schema } from './schema'
+import { schema } from './schema'
 
 const ZeroContext = createContext<Zero<QueryDefs> | undefined>(undefined)
 
@@ -15,7 +15,7 @@ export function useZero<Q extends QueryDefs>(): Zero<Q> {
 
 export const zero = new Zero({
   logLevel: 'info',
-  server: import.meta.env.VITE_PUBLIC_SERVER,
+  server: `http://localhost:3000`,
   userID: 'anon',
   schemas: schema,
 })
