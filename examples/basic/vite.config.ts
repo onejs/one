@@ -10,8 +10,8 @@ export default {
 
   plugins: [
     vxs({
-      deps: {
-        '@tamagui/image-next': true,
+      app: {
+        key: 'OneDemo',
       },
     }),
   ],
