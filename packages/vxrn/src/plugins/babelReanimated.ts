@@ -28,6 +28,17 @@ const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
  */
 const REANIMATED_REGEX = new RegExp(REANIMATED_AUTOWORKLETIZATION_KEYWORDS.join('|'))
 
+const REANIMATED_IGNORED_PATHS = [
+  // React and React Native libraries are not likely to use reanimated.
+  // This can also avoid the "[BABEL] Note: The code generator has deoptimised the styling of ... as it exceeds the max of 500KB" warning since the react-native source code also contains `useAnimatedProps`.
+  'react-native-prebuilt/vendor',
+  'node_modules/.vxrn/react-native',
+]
+
+const REANIMATED_IGNORED_PATHS_REGEX = new RegExp(
+  REANIMATED_IGNORED_PATHS.map((s) => s.replace(/\//g, '/')).join('|')
+)
+
 async function babelReanimated(input: string, filename: string) {
   return await new Promise<string>((res, rej) => {
     babel.transform(
@@ -52,7 +63,7 @@ export function getBabelReanimatedPlugin(): Plugin {
         return
       }
 
-      if (REANIMATED_REGEX.test(code)) {
+      if (!REANIMATED_IGNORED_PATHS_REGEX.test(id) && REANIMATED_REGEX.test(code)) {
         const out = await babelReanimated(code, id)
         return out
       }
