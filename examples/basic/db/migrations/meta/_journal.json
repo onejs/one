@@ -8,6 +8,13 @@
       "when": 1725362020757,
       "tag": "0000_tiny_joseph",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1725733717565,
+      "tag": "0001_brown_the_executioner",
+      "breakpoints": true
     }
   ]
 }

@@ -9,6 +9,8 @@
     "clean": "vxs clean",
     "build:prod": "vxs build",
     "serve": "vxs serve",
+    "db:start": "docker-compose up",
+    "db:init": "yarn orm:generate && yarn orm:push && yarn orm:seed",
     "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
     "orm:push": "drizzle-kit push --config ./db/drizzle.config.ts",
     "orm:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
@@ -33,12 +35,18 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
+    "replicache": "portal:/Users/n8/github/mono/packages/replicache",
+    "shared": "portal:/Users/n8/github/mono/packages/shared",
     "tamagui": "^1.110.1",
-    "vxs": "1.1.212"
+    "vxs": "1.1.212",
+    "zero-client": "portal:/Users/n8/github/mono/packages/zero-client",
+    "zql": "portal:/Users/n8/github/mono/packages/zql"
   },
   "devDependencies": {
     "@faker-js/faker": "next",
+    "@vitejs/plugin-react": "^4.3.1",
     "tsx": "^4.19.0",
-    "vite": "6.0.0-alpha.18"
+    "vite": "6.0.0-alpha.18",
+    "vite-tsconfig-paths": "^5.0.1"
   }
 }
