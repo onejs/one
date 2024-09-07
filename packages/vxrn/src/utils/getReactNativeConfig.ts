@@ -17,11 +17,12 @@ import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 import { getBabelReanimatedPlugin } from '../plugins/babelReanimated'
+import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
 
 const IGNORE_ROLLUP_LOGS_RE =
   /vite-native-client\/dist\/esm\/client\.native\.js|node_modules\/\.vxrn\/react-native\.js/
 
-export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
+export async function getReactNativeConfig(options: VXRNOptionsFilled) {
   const { root, port } = options
   const { optimizeDeps } = getOptimizeDeps('build')
 
@@ -29,6 +30,8 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
   let nativeBuildConfig = {
     plugins: [
       ...(globalThis.__vxrnAddNativePlugins || []),
+
+      nativeClientInjectPlugin(),
 
       // vite doesnt support importing from a directory but its so common in react native
       // so lets make it work, and node resolve theoretically fixes but you have to pass in moduleDirs
@@ -73,8 +76,6 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled, viteRNCli
       swapPrebuiltReactModules(options.cacheDir, options.packageVersions),
 
       getBabelReanimatedPlugin(),
-
-      viteRNClientPlugin,
 
       reactNativeCommonJsPlugin({
         root,

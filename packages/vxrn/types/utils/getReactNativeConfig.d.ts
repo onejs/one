@@ -1,6 +1,6 @@
 import { type InlineConfig, type Plugin, type UserConfig } from 'vite';
 import type { VXRNOptionsFilled } from './getOptionsFilled';
-export declare function getReactNativeConfig(options: VXRNOptionsFilled, viteRNClientPlugin: any): Promise<{
+export declare function getReactNativeConfig(options: VXRNOptionsFilled): Promise<{
     plugins: any[];
     appType: "custom";
     root: string;
@@ -41,7 +41,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, viteRNC
         };
     };
 }>;
-export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig, "plugins" | "css" | "assetsInclude" | "optimizeDeps" | "worker" | "build" | "dev" | "environments"> & {
+export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig, "worker" | "dev" | "plugins" | "css" | "assetsInclude" | "optimizeDeps" | "build" | "environments"> & {
     configFile: string | undefined;
     configFileDependencies: string[];
     inlineConfig: InlineConfig;

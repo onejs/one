@@ -11,7 +11,7 @@ export default {
   plugins: [
     vxs({
       app: {
-        key: 'OneDemo',
+        key: 'One',
       },
     }),
   ],

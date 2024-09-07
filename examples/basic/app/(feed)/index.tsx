@@ -50,7 +50,9 @@ export async function loader({ path }: LoaderProps) {
   }
 }
 
-export default function FeedPage() {
+export default () => <FeedPage />
+
+function FeedPage() {
   const { feed } = useLoader(loader)
   return (
     <>
