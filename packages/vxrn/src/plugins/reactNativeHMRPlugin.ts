@@ -14,7 +14,7 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
   let resolver
 
   return {
-    name: 'client-transform',
+    name: 'vxrn:native-hmr-transform',
 
     // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
@@ -52,7 +52,6 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
 
         // got a weird pre compiled file on startup
         if (code.startsWith(`'use strict';`)) {
-          console.log('is this still happening?')
           return
         }
 

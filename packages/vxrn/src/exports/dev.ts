@@ -57,6 +57,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   await ensureDir(cacheDir)
 
   const serverConfig = await getViteServerConfig(options)
+
   const viteServer = await createServer(serverConfig)
 
   // this fakes vite into thinking its loading files, so it hmrs in native mode despite not us never requesting the url
