@@ -19,8 +19,12 @@ import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 import { getBabelReanimatedPlugin } from '../plugins/babelReanimated'
 import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
 
+// Suppress these logs:
+// * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
+// * Use of eval in "(...)/vxs/dist/esm/useLoader.native.js" is strongly discouraged as it poses security risks and may cause issues with minification.
+// (not an exhaustive list)
 const IGNORE_ROLLUP_LOGS_RE =
-  /vite-native-client\/dist\/esm\/client\.native\.js|node_modules\/\.vxrn\/react-native\.js/
+  /vite-native-client\/dist\/esm\/client\.native\.js|node_modules\/\.vxrn\/react-native\.js|react-native-prebuilt\/vendor|vxs\/dist/
 
 export async function getReactNativeConfig(options: VXRNOptionsFilled) {
   const { root, port } = options
