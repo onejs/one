@@ -21,6 +21,9 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
   return {
     mode,
 
+    // we load the config ourselves
+    configFile: false,
+
     plugins: [
       {
         name: 'platform-specific-resolve',
