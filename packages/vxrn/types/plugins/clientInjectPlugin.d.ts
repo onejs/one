@@ -1,7 +1,54 @@
-import type { Plugin, ResolvedConfig } from 'vite';
+import type { Plugin, UserConfig } from 'vite';
+export declare function getServerConfigPlugin(): {
+    name: string;
+    configResolved(this: void, conf: Readonly<Omit<UserConfig, "worker" | "dev" | "plugins" | "css" | "assetsInclude" | "optimizeDeps" | "build" | "environments"> & {
+        configFile: string | undefined;
+        configFileDependencies: string[];
+        inlineConfig: import("vite").InlineConfig;
+        root: string;
+        base: string;
+        publicDir: string;
+        cacheDir: string;
+        command: "build" | "serve";
+        mode: string;
+        isWorker: boolean;
+        isProduction: boolean;
+        envDir: string;
+        env: Record<string, any>;
+        resolve: Required<import("vite").ResolveOptions> & {
+            alias: import("vite").Alias[];
+        };
+        plugins: readonly Plugin<any>[];
+        css: import("vite").ResolvedCSSOptions;
+        esbuild: false | import("vite").ESBuildOptions;
+        server: import("vite").ResolvedServerOptions;
+        dev: import("vite").ResolvedDevEnvironmentOptions;
+        builder: Required<import("vite").BuilderOptions>;
+        build: import("vite").ResolvedBuildOptions;
+        preview: import("vite").ResolvedPreviewOptions;
+        ssr: import("vite").ResolvedSSROptions;
+        assetsInclude: (file: string) => boolean;
+        logger: import("vite").Logger;
+        createResolver: (options?: Partial<import("vite").InternalResolveOptions> | undefined) => import("vite").ResolveFn;
+        optimizeDeps: import("vite").DepOptimizationOptions;
+        worker: import("vite").ResolvedWorkerOptions;
+        appType: import("vite").AppType;
+        experimental: import("vite").ExperimentalOptions;
+        environments: Record<string, {
+            resolve: Required<import("vite").ResolveOptions & {
+                alias?: import("vite").AliasOptions | undefined;
+            }>;
+            nodeCompatible: boolean;
+            webCompatible: boolean;
+            injectInvalidationTimestamp: boolean;
+            dev: import("vite").ResolvedDevEnvironmentOptions;
+            build: import("vite").ResolvedBuildEnvironmentOptions;
+        }>;
+    } & import("vite").PluginHookUtils>): void;
+};
 /**
  * some values used by the client needs to be dynamically injected by the server
  * @server-only
  */
-export declare function clientInjectionsPlugin(config: ResolvedConfig): Plugin;
+export declare function nativeClientInjectPlugin(): Plugin;
 //# sourceMappingURL=clientInjectPlugin.d.ts.map

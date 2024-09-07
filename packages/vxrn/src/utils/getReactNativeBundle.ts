@@ -17,7 +17,7 @@ export let entryRoot = ''
 
 const cache: Record<string, RollupCache> = {}
 
-export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNClientPlugin: any) {
+export async function getReactNativeBundle(options: VXRNOptionsFilled) {
   entryRoot = options.root
 
   if (process.env.LOAD_TMP_BUNDLE) {
@@ -47,7 +47,7 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled, viteRNCli
   )
 
   // build app
-  const nativeBuildConfig = await getReactNativeConfig(options, viteRNClientPlugin)
+  const nativeBuildConfig = await getReactNativeConfig(options)
 
   const builder = await createBuilder(nativeBuildConfig)
 
