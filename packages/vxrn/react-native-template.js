@@ -256,3 +256,5 @@ console.dirxml = () => {}
 console.profile = () => {}
 console.profileEnd = () => {}
 console.table = () => {}
+
+// Symbol.asyncIterator = '@@asyncIterator'

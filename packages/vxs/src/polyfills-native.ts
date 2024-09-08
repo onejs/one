@@ -3,19 +3,25 @@
 
 globalThis['global'] = globalThis
 
+// --------------- Symbol.asyncIterator -------------------
+
+import '@azure/core-asynciterator-polyfill'
+
 // --------------- URL -------------------
 
-import URLPolyfill from 'url-parse'
-import { promiseWithResolvers } from './utils/promiseWithResolvers'
+import 'core-js/actual/url'
+import 'core-js/actual/url-search-params'
 
-try {
-  new URL(`https://tamagui.dev/test`).pathname
-} catch {
-  globalThis['URL'] = URLPolyfill
-}
+// import URLPolyfill from 'url-parse'
+// try {
+//   new URL(`https://tamagui.dev/test`).pathname
+// } catch {
+//   globalThis['URL'] = URLPolyfill
+// }
 
 // --------------- Promise.withResolver -------------------
 
+import { promiseWithResolvers } from './utils/promiseWithResolvers'
 Promise.withResolvers ||
   // @ts-ignore
   (Promise.withResolvers = promiseWithResolvers)
