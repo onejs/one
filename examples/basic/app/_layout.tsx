@@ -1,7 +1,7 @@
 import '@tamagui/core/reset.css'
 import '~/features/styles/tamagui.css'
 import './_layout.css'
-
+import '~/features/zero/setup'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
 import { PageLoadProgressBar } from 'vxs'

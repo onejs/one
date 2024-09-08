@@ -19,10 +19,6 @@ type FeedItem = {
 export const FeedCard = (props: FeedItem) => {
   const user = props.user[0]
 
-  if (user && !globalThis['found_user_id']) {
-    globalThis['found_user'] = user
-  }
-
   const content = (
     <Card tag="a">
       <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />

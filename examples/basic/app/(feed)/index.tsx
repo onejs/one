@@ -6,13 +6,15 @@ import { PageContainer } from '~/features/ui/PageContainer'
 import { zero } from '~/features/zero/client'
 import { useQuery } from '~/features/zero/query'
 
+export const loader = () => feedQuery
+
+const feedQuery = zero.query.posts
+  .orderBy('created_at', 'desc')
+  .limit(20)
+  .related('user', (q) => q.limit(1))
+
 export function FeedPage() {
-  const posts = useQuery(
-    zero.query.posts
-      .orderBy('created_at', 'desc')
-      .limit(20)
-      .related('user', (q) => q.limit(1))
-  )
+  const posts = useQuery(feedQuery)
 
   return (
     <>

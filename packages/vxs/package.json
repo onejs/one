@@ -97,7 +97,8 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.213"
+    "vxrn": "1.1.213",
+    "ws": "^8.18.0"
   },
   "peerDependencies": {
     "react-native": "*"

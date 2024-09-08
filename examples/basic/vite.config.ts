@@ -3,12 +3,6 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { vxs } from 'vxs/vite'
 
 export default {
-  define: {
-    REPLICACHE_VERSION: '"15.2.1"',
-    ZERO_VERSION: '"0.0.0"',
-    TESTING: 'false',
-  },
-
   plugins: [
     tsconfigPaths({
       projects: [

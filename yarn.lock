@@ -20701,6 +20701,7 @@ __metadata:
     url-parse: ^1.5.10
     vite: 6.0.0-alpha.18
     vxrn: 1.1.213
+    ws: ^8.18.0
   peerDependencies:
     react-native: "*"
   bin:
@@ -20971,7 +20972,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.12.1, ws@npm:^8.14.2, ws@npm:^8.7.0":
+"ws@npm:^8.12.1, ws@npm:^8.14.2, ws@npm:^8.18.0, ws@npm:^8.7.0":
   version: 8.18.0
   resolution: "ws@npm:8.18.0"
   peerDependencies:
