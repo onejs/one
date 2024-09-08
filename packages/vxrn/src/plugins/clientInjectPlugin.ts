@@ -3,21 +3,35 @@ import path from 'node:path'
 import type { HmrOptions, Plugin, ResolvedConfig, UserConfig } from 'vite'
 import { isNativeEnvironment } from '../utils/environmentUtils'
 
-const process_env_NODE_ENV_RE = /(\bglobal(This)?\.)?\bprocess\.env\.NODE_ENV\b/g
+let config: ResolvedConfig | null
 
 const isObject = (x: any): x is Object => x && typeof x === 'object'
+
+export function getServerConfigPlugin() {
+  return {
+    name: 'get-server-config',
+
+    configResolved(conf) {
+      config = conf
+    },
+  } satisfies Plugin
+}
 
 /**
  * some values used by the client needs to be dynamically injected by the server
  * @server-only
  */
-export function clientInjectionsPlugin(config: ResolvedConfig): Plugin {
+export function nativeClientInjectPlugin(): Plugin {
   let injectConfigValues: (code: string) => string
 
   return {
-    name: 'vite:client-inject',
+    name: 'vite:native-client-inject',
 
     async buildStart() {
+      if (!config) {
+        throw new Error(`Server config not resolved yet`)
+      }
+
       const resolvedServerHostname = '127.0.0.1'
       const resolvedServerPort = config.server!.port! || 5173
       const devBase = config.base || '/'

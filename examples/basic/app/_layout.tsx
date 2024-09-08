@@ -1,4 +1,6 @@
 import '@tamagui/core/reset.css'
+import './_layout.css'
+
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
 import { PageLoadProgressBar } from 'vxs'

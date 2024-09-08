@@ -1,12 +1,13 @@
 import { loadConfigFromFile, mergeConfig, type InlineConfig, type UserConfig } from 'vite'
 import mkcert from 'vite-plugin-mkcert'
+import { webExtensions } from '../constants'
+import { getServerConfigPlugin } from '../plugins/clientInjectPlugin'
 import { expoManifestRequestHandlerPlugin } from '../plugins/expoManifestRequestHandlerPlugin'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
 import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
-import { webExtensions } from '../constants'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled) {
   const { root, host, https, port } = config
@@ -22,12 +23,15 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
     getBaseViteConfig({
       mode: 'development',
     }),
+
     {
       root,
       appType: 'custom',
       clearScreen: false,
       publicDir: 'public',
       plugins: [
+        getServerConfigPlugin(),
+
         https ? mkcert() : null,
 
         // temp fix

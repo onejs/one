@@ -12,9 +12,8 @@ import {
 import { createProxyEventHandler } from 'h3-proxy'
 import { createServer as nodeCreateServer } from 'node:http'
 import { join } from 'node:path'
-import { createServer, resolveConfig } from 'vite'
+import { createServer } from 'vite'
 import { WebSocket } from 'ws'
-import { clientInjectionsPlugin } from '../plugins/clientInjectPlugin'
 import type { VXRNOptions } from '../types'
 import { bindKeypressInput } from '../utils/bindKeypressInput'
 import {
@@ -59,12 +58,6 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
 
   const serverConfig = await getViteServerConfig(options)
   const viteServer = await createServer(serverConfig)
-
-  // we pass resolved config into client inject to get the final port etc to use
-  // probably can be done better
-  const resolvedConfig = await resolveConfig(serverConfig, 'serve')
-
-  const viteRNClientPlugin = clientInjectionsPlugin(resolvedConfig)
 
   // this fakes vite into thinking its loading files, so it hmrs in native mode despite not us never requesting the url
   // TODO we can check if any native clients are connected to avoid some work here
@@ -138,7 +131,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
           return cachedReactNativeBundle
         }
 
-        const builtBundle = await getReactNativeBundle(options, viteRNClientPlugin)
+        const builtBundle = await getReactNativeBundle(options)
         cachedReactNativeBundle = builtBundle
         if (process.env.UNSTABLE_BUNDLE_CACHE) {
           // do not await cache write
