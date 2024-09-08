@@ -27,6 +27,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-is',
     'fast-deep-equal',
     '@supabase/auth-helpers-react',
+    'core-js',
+    'core-js/es/symbol/index.js',
     'parse-numeric-range',
     'use-sync-external-store',
     'use-sync-external-store/shim',

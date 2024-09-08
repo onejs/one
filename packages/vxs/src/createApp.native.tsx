@@ -1,3 +1,4 @@
+import './polyfills-native'
 import { Root } from './Root'
 import { AppRegistry, LogBox } from 'react-native'
 

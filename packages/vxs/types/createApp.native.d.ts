@@ -1,3 +1,4 @@
+import './polyfills-native';
 export type CreateAppProps = {
     routes: Record<string, () => Promise<unknown>>;
 };

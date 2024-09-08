@@ -17,6 +17,7 @@
     "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts"
   },
   "dependencies": {
+    "@azure/core-asynciterator-polyfill": "^1.0.2",
     "@dotenvx/dotenvx": "^1.12.1",
     "@tamagui/config": "^1.110.1",
     "@tamagui/image-next": "^1.110.1",
