@@ -1,14 +1,14 @@
-import { type SourceMapPayload, createRequire } from 'node:module'
 import {
-  type JscTarget,
   type Output,
   type ParserConfig,
   type ReactConfig,
   type Options as SWCOptions,
   transform,
 } from '@swc/core'
-import type { PluginOption, UserConfig } from 'vite'
+import { type SourceMapPayload, createRequire } from 'node:module'
 import { extname } from 'node:path'
+import type { PluginOption, UserConfig } from 'vite'
+import { transformGenerators } from './transformBabel'
 
 // this file is a mess lol
 
@@ -67,7 +67,11 @@ const SWC_ENV = {
     'transform-spread',
     'transform-destructuring',
     'transform-object-rest-spread',
-    'transform-async-to-generator', // `transform-async-to-generator` is relying on `transform-destructuring`. If we exclude `transform-destructuring` but not `transform-async-to-generator`, the SWC binary will panic with error: `called `Option::unwrap()` on a `None` value`. See: https://github.com/swc-project/swc/blob/v1.7.14/crates/swc_ecma_compat_es2015/src/generator.rs#L703-L705
+    // `transform-async-to-generator` is relying on `transform-destructuring`.
+    // If we exclude `transform-destructuring` but not `transform-async-to-generator`, the SWC binary will panic
+    // with error: `called `Option::unwrap()` on a `None` value`.
+    // See: https://github.com/swc-project/swc/blob/v1.7.14/crates/swc_ecma_compat_es2015/src/generator.rs#L703-L705
+    'transform-async-to-generator',
     'transform-regenerator', // Similar to above
   ],
 }
@@ -95,6 +99,60 @@ function getParser(id: string, forceJSX = false) {
 }
 
 export default (_options?: Options): PluginOption[] => {
+  const hasTransformed = {}
+
+  const asyncGeneratorRegex = /(async \*|async function\*|for await)/
+
+  const transformWithoutGenerators = async (code: string, id: string) => {
+    const parser = getParser(id)
+    hasTransformed[id] = true
+    return await transform(code, {
+      filename: id,
+      swcrc: false,
+      configFile: false,
+      sourceMaps: shouldSourceMap(),
+      jsc: {
+        parser,
+        transform: {
+          useDefineForClassFields: true,
+          react: {
+            development: true,
+            refresh: false,
+            runtime: 'automatic',
+          },
+        },
+      },
+      env: SWC_ENV,
+    })
+  }
+
+  const transformWithGenerators = async (code: string, id: string) => {
+    if (process.env.VXRN_USE_BABEL_FOR_GENERATORS) {
+      return await transformGenerators(code)
+    }
+
+    const parser = getParser(id)
+    hasTransformed[id] = true
+    return await transform(code, {
+      filename: id,
+      swcrc: false,
+      configFile: false,
+      sourceMaps: shouldSourceMap(),
+      jsc: {
+        parser,
+        target: 'es5',
+        transform: {
+          useDefineForClassFields: true,
+          react: {
+            development: true,
+            refresh: false,
+            runtime: 'automatic',
+          },
+        },
+      },
+    })
+  }
+
   const options = {
     mode: _options?.mode ?? 'serve',
     jsxImportSource: _options?.jsxImportSource ?? 'react',
@@ -103,8 +161,6 @@ export default (_options?: Options): PluginOption[] => {
       ? _options?.plugins.map((el): typeof el => [resolve(el[0]), el[1]])
       : undefined,
   }
-
-  const hasTransformed = {}
 
   return [
     {
@@ -127,62 +183,24 @@ export default (_options?: Options): PluginOption[] => {
                   },
 
                   async transform(code, id) {
-                    const parser = getParser(id)
+                    // cant actually do this! we should prebuild using swc probably
+                    // if (id.includes('react-native-prebuilt')) {
+                    //   return
+                    // }
 
-                    // seeing an error with /Users/n8/universe/node_modules/@floating-ui/core/dist/floating-ui.core.mjs
-                    // fallback to a different config:
+                    if (asyncGeneratorRegex.test(code)) {
+                      return await transformWithGenerators(code, id)
+                    }
 
                     try {
-                      const out = await transform(code, {
-                        filename: id,
-                        swcrc: false,
-                        configFile: false,
-                        sourceMaps: shouldSourceMap(),
-                        jsc: {
-                          parser,
-                          transform: {
-                            useDefineForClassFields: true,
-                            react: {
-                              development: true,
-                              refresh: false,
-                              runtime: 'automatic',
-                            },
-                          },
-                        },
-                        env: SWC_ENV,
-                      })
-
-                      hasTransformed[id] = true
-                      return out
+                      return await transformWithoutGenerators(code, id)
                     } catch (err) {
-                      console.info(
-                        `Error parsing file ${id}, attempting different config. For full error DEBUG=vxrn`
-                      )
+                      // seeing an error with /Users/n8/universe/node_modules/@floating-ui/core/dist/floating-ui.core.mjs
+                      // fallback to a different config:
                       if (process.env.DEBUG === 'vxrn') {
                         console.error(`${err}`)
                       }
-
-                      const out = await transform(code, {
-                        filename: id,
-                        swcrc: false,
-                        configFile: false,
-                        sourceMaps: shouldSourceMap(),
-                        jsc: {
-                          parser,
-                          target: 'es5',
-                          transform: {
-                            useDefineForClassFields: true,
-                            react: {
-                              development: true,
-                              refresh: false,
-                              runtime: 'automatic',
-                            },
-                          },
-                        },
-                      })
-
-                      hasTransformed[id] = true
-                      return out
+                      return await transformWithGenerators(code, id)
                     }
                   },
                 },
@@ -218,6 +236,10 @@ export default (_options?: Options): PluginOption[] => {
         if (hasTransformed[_id]) return
         if (_id.includes(`virtual:`)) {
           return
+        }
+
+        if (asyncGeneratorRegex.test(code)) {
+          return await transformWithGenerators(code, _id)
         }
 
         const out = await swcTransform(_id, code, options)

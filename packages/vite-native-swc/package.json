@@ -27,8 +27,14 @@
     }
   },
   "dependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-transform-destructuring": "^7.24.8",
+    "@babel/plugin-transform-private-methods": "^7.24.7",
+    "@babel/plugin-transform-react-jsx": "^7.25.2",
+    "@babel/plugin-transform-regenerator": "^7.24.7",
     "@swc/core": "^1.7.14",
-    "@vxrn/vite-native-client": "1.1.212"
+    "@vxrn/vite-native-client": "1.1.212",
+    "metro-react-native-babel-preset": "^0.77.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
