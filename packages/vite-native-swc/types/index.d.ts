@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import { type SourceMapPayload } from 'node:module';
 import { type Output, type ReactConfig } from '@swc/core';
+import { type SourceMapPayload } from 'node:module';
 import type { PluginOption } from 'vite';
 type Options = {
     mode: 'serve' | 'serve-cjs' | 'build';

@@ -18,6 +18,7 @@ export const zero = new Zero({
   server: `http://localhost:3000`,
   userID: 'anon',
   schemas: schema,
+  kvStore: 'mem',
 })
 
 export function ZeroProvider({
@@ -25,5 +26,5 @@ export function ZeroProvider({
 }: {
   children?: any
 }) {
-  return <ZeroContext.Provider value={zero}>{children}</ZeroContext.Provider>
+  return <ZeroContext.Provider value={zero as any}>{children}</ZeroContext.Provider>
 }

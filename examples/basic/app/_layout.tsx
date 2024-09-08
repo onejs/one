@@ -6,51 +6,26 @@ import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
 import { PageLoadProgressBar } from 'vxs'
 import { HomeLayout } from '~/features/home/HomeLayout'
-import { zero, ZeroProvider } from '~/features/zero/client'
-import { useQuery } from '~/features/zero/query'
+import * as Zero from '~/features/zero/client'
 import config from '../config/tamagui.config'
-import { useEffect } from 'react'
+
+console.log('Zero', Zero)
 
 export default function Layout() {
   return (
     <>
       <PageLoadProgressBar />
 
-      <ZeroProvider>
+      <Zero.ZeroProvider>
         <SchemeProvider>
           <TamaguiRootProvider>
             <HomeLayout />
-            {/* <TestZero /> */}
           </TamaguiRootProvider>
         </SchemeProvider>
-      </ZeroProvider>
+      </Zero.ZeroProvider>
     </>
   )
 }
-
-// const TestZero = () => {
-//   const results = useQuery(zero.query.posts.limit(10))
-
-//   useEffect(() => {
-//     const result = results[0]
-//     if (!result) {
-//       return
-//     }
-//     const tm = setTimeout(() => {
-//       console.warn(`updating content`)
-//       zero.mutate.posts.update({
-//         ...result,
-//         content: `HELLO WORLD`,
-//       })
-//     }, 5000)
-
-//     return () => {
-//       clearTimeout(tm)
-//     }
-//   }, [results])
-
-//   return null
-// }
 
 const TamaguiRootProvider = ({ children }: { children: React.ReactNode }) => {
   const [scheme] = useColorScheme()

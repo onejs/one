@@ -1,14 +1,14 @@
-import { type SourceMapPayload, createRequire } from 'node:module'
 import {
-  type JscTarget,
   type Output,
   type ParserConfig,
   type ReactConfig,
   type Options as SWCOptions,
   transform,
 } from '@swc/core'
-import type { PluginOption, UserConfig } from 'vite'
+import { type SourceMapPayload, createRequire } from 'node:module'
 import { extname } from 'node:path'
+import type { PluginOption, UserConfig } from 'vite'
+import { transformGenerators } from './transformBabel'
 
 // this file is a mess lol
 
@@ -127,6 +127,16 @@ export default (_options?: Options): PluginOption[] => {
                   },
 
                   async transform(code, id) {
+                    // need to transform these to regenerator:
+                    // TODO improve, also the code length thing just so we avoid massive file scans, for now it works
+                    if (code.length < 50_000 && code.includes('async function*')) {
+                      try {
+                        code = await transformGenerators(code)
+                      } catch (err) {
+                        console.error('❌ error transforming generators', err)
+                      }
+                    }
+
                     const parser = getParser(id)
 
                     // seeing an error with /Users/n8/universe/node_modules/@floating-ui/core/dist/floating-ui.core.mjs
