@@ -63,17 +63,17 @@ const SWC_ENV = {
   },
   include: [],
   // this breaks the uniswap app for any file with a ...spread
-  // exclude: [
-  //   'transform-spread',
-  //   'transform-destructuring',
-  //   'transform-object-rest-spread',
-  //   // `transform-async-to-generator` is relying on `transform-destructuring`.
-  //   // If we exclude `transform-destructuring` but not `transform-async-to-generator`, the SWC binary will panic
-  //   // with error: `called `Option::unwrap()` on a `None` value`.
-  //   // See: https://github.com/swc-project/swc/blob/v1.7.14/crates/swc_ecma_compat_es2015/src/generator.rs#L703-L705
-  //   'transform-async-to-generator',
-  //   'transform-regenerator', // Similar to above
-  // ],
+  exclude: [
+    'transform-spread',
+    'transform-destructuring',
+    'transform-object-rest-spread',
+    // `transform-async-to-generator` is relying on `transform-destructuring`.
+    // If we exclude `transform-destructuring` but not `transform-async-to-generator`, the SWC binary will panic
+    // with error: `called `Option::unwrap()` on a `None` value`.
+    // See: https://github.com/swc-project/swc/blob/v1.7.14/crates/swc_ecma_compat_es2015/src/generator.rs#L703-L705
+    'transform-async-to-generator',
+    'transform-regenerator', // Similar to above
+  ],
 }
 
 function getParser(id: string, forceJSX = false) {
@@ -99,15 +99,6 @@ function getParser(id: string, forceJSX = false) {
 }
 
 export default (_options?: Options): PluginOption[] => {
-  const options = {
-    mode: _options?.mode ?? 'serve',
-    jsxImportSource: _options?.jsxImportSource ?? 'react',
-    tsDecorators: _options?.tsDecorators,
-    plugins: _options?.plugins
-      ? _options?.plugins.map((el): typeof el => [resolve(el[0]), el[1]])
-      : undefined,
-  }
-
   const hasTransformed = {}
 
   const asyncGeneratorRegex = /(async \*|async function\*|for await)/
@@ -162,6 +153,15 @@ export default (_options?: Options): PluginOption[] => {
     })
   }
 
+  const options = {
+    mode: _options?.mode ?? 'serve',
+    jsxImportSource: _options?.jsxImportSource ?? 'react',
+    tsDecorators: _options?.tsDecorators,
+    plugins: _options?.plugins
+      ? _options?.plugins.map((el): typeof el => [resolve(el[0]), el[1]])
+      : undefined,
+  }
+
   return [
     {
       name: 'vite:react-swc',
@@ -183,6 +183,11 @@ export default (_options?: Options): PluginOption[] => {
                   },
 
                   async transform(code, id) {
+                    // cant actually do this! we should prebuild using swc probably
+                    // if (id.includes('react-native-prebuilt')) {
+                    //   return
+                    // }
+
                     if (asyncGeneratorRegex.test(code)) {
                       return await transformWithGenerators(code, id)
                     }
@@ -227,16 +232,20 @@ export default (_options?: Options): PluginOption[] => {
         }
       },
 
-      //   async transform(code, _id, transformOptions) {
-      //     if (hasTransformed[_id]) return
-      //     if (_id.includes(`virtual:`)) {
-      //       return
-      //     }
+      async transform(code, _id, transformOptions) {
+        if (hasTransformed[_id]) return
+        if (_id.includes(`virtual:`)) {
+          return
+        }
 
-      //     const out = await swcTransform(_id, code, options)
-      //     hasTransformed[_id] = true
-      //     return out
-      //   },
+        if (asyncGeneratorRegex.test(code)) {
+          return await transformWithGenerators(code, _id)
+        }
+
+        const out = await swcTransform(_id, code, options)
+        hasTransformed[_id] = true
+        return out
+      },
     },
   ]
 }

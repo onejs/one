@@ -257,4 +257,6 @@ console.profile = () => {}
 console.profileEnd = () => {}
 console.table = () => {}
 
-// Symbol.asyncIterator = '@@asyncIterator'
+// ensure this exists
+global.$RefreshReg$ = () => {}
+global.$RefreshSig$ = () => (type) => type

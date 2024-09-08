@@ -31,8 +31,6 @@ export async function transformGenerators(
       (err: any, result) => {
         if (!result || err) rej(err || 'no res')
 
-        console.log('?', result?.code)
-
         res(result!.code!)
       }
     )
