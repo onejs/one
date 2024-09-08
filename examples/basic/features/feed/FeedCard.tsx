@@ -11,7 +11,7 @@ type FeedItem = {
   user: {
     username: string
     avatar_url: string
-  }
+  }[]
   // likesCount: number
   // repliesCount: number
   // repostsCount: number
@@ -20,12 +20,14 @@ type FeedItem = {
 }
 
 export const FeedCard = (props: FeedItem) => {
+  const user = props.user[0]
+
   const content = (
     <Card tag="a">
-      <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar_url} />
+      <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />
       <YStack f={1} gap="$2">
         <Paragraph size="$5" fow="bold">
-          {props.user.username}
+          {user.username}
         </Paragraph>
 
         <Paragraph
