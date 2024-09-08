@@ -7,6 +7,14 @@ body {
   overflow-x: hidden;
 }
 
+:root {
+  --bodyBg: #fff;
+}
+
+:root.t_dark {
+  --bodyBg: #000;
+}
+
 body {
   margin: 0;
   position: relative;
