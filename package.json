@@ -15,7 +15,11 @@
     "vite": "because vitepress brings along vite 5"
   },
   "resolutions": {
-    "vite": "6.0.0-alpha.18"
+    "vite": "6.0.0-alpha.18",
+    "replicache": "portal:/Users/n8/github/mono/packages/replicache",
+    "shared": "portal:/Users/n8/github/mono/packages/shared",
+    "zero-client": "portal:/Users/n8/github/mono/packages/zero-client",
+    "zql": "portal:/Users/n8/github/mono/packages/zql"
   },
   "scripts": {
     "setup": "node -r esbuild-register ./scripts/setup.ts",

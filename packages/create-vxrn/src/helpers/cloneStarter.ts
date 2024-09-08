@@ -1,10 +1,9 @@
+import { copy, ensureDir, move, pathExists, remove } from 'fs-extra'
 import { homedir } from 'node:os'
 import { join, sep } from 'node:path'
-import ansis from 'ansis'
-import { copy, ensureDir, pathExists, remove } from 'fs-extra'
 import { rimraf } from 'rimraf'
 import type { templates } from '../templates'
-import { execPromise, execPromiseQuiet } from './exec'
+import { execPromiseQuiet } from './exec'
 
 const home = homedir()
 const vxrnDir = join(home, '.vxrn')
@@ -17,15 +16,25 @@ export const cloneStarter = async (
 ) => {
   targetGitDir = join(vxrnDir, 'vxrn', template.repo.url.split('/').at(-1)!)
 
-  await setupVxrnDotDir(template)
-  const dir = join(targetGitDir, ...template.repo.dir)
+  if (!process.env.VXRN_DEMO_MODE) {
+    await setupVxrnDotDir(template)
+  }
+
+  const dir = process.env.VXRN_DEMO_MODE
+    ? join(home, 'vxrn', 'examples', 'basic')
+    : join(targetGitDir, ...template.repo.dir)
 
   if (!(await pathExists(dir))) {
     console.error(`Missing template for ${template.value} in ${dir}`)
     process.exit(1)
   }
   await copy(dir, resolvedProjectPath)
-  await rimraf(`${resolvedProjectPath}/.git`)
+  await rimraf(join(resolvedProjectPath, '.git'))
+
+  const yarnLockDefault = join(resolvedProjectPath, 'yarn.lock.default')
+  if (await pathExists(yarnLockDefault)) {
+    await move(yarnLockDefault, join(resolvedProjectPath, 'yarn.lock'))
+  }
 }
 
 async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = false) {

@@ -16,7 +16,17 @@
     "orm:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
     "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts"
   },
+  "resolutions": {
+    "replicache": "portal:/Users/n8/github/mono/packages/replicache",
+    "shared": "portal:/Users/n8/github/mono/packages/shared",
+    "zero-client": "portal:/Users/n8/github/mono/packages/zero-client",
+    "zql": "portal:/Users/n8/github/mono/packages/zql"
+  },
   "dependencies": {
+    "replicache": "*",
+    "shared": "*",
+    "zero-client": "*",
+    "zql": "*",
     "@azure/core-asynciterator-polyfill": "^1.0.2",
     "@dotenvx/dotenvx": "^1.12.1",
     "@tamagui/config": "^1.110.1",
@@ -36,12 +46,8 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
-    "replicache": "portal:/Users/n8/github/mono/packages/replicache",
-    "shared": "portal:/Users/n8/github/mono/packages/shared",
     "tamagui": "^1.110.1",
-    "vxs": "1.1.213",
-    "zero-client": "portal:/Users/n8/github/mono/packages/zero-client",
-    "zql": "portal:/Users/n8/github/mono/packages/zql"
+    "vxs": "1.1.213"
   },
   "devDependencies": {
     "@faker-js/faker": "next",
