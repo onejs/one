@@ -15,13 +15,24 @@ export async function transformGenerators(
         plugins: [
           ['@babel/plugin-transform-destructuring'],
           ['@babel/plugin-transform-react-jsx', { development }],
-          ['@babel/plugin-transform-regenerator'], // Transform generator functions
+          ['@babel/plugin-transform-async-generator-functions'],
+          ['@babel/plugin-transform-async-to-generator'],
+          [
+            '@babel/plugin-transform-runtime',
+            {
+              helpers: true,
+              rengerator: false,
+            },
+          ],
         ],
         compact: false,
         minified: false,
       },
       (err: any, result) => {
         if (!result || err) rej(err || 'no res')
+
+        console.log('?', result?.code)
+
         res(result!.code!)
       }
     )
