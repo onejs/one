@@ -256,3 +256,7 @@ console.dirxml = () => {}
 console.profile = () => {}
 console.profileEnd = () => {}
 console.table = () => {}
+
+// ensure this exists
+global.$RefreshReg$ = () => {}
+global.$RefreshSig$ = () => (type) => type
