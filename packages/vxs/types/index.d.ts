@@ -1,4 +1,3 @@
-import './polyfills';
 export type { VXSRouter } from './interfaces/router';
 import type { VXSRouter } from './interfaces/router';
 export type Href = VXSRouter.Href;

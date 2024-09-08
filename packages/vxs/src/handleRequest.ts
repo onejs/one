@@ -1,4 +1,5 @@
 import type { RouteInfo } from './server/createRoutesManifest'
+import { promiseWithResolvers } from './utils/promiseWithResolvers'
 import { getManifest } from './vite/getManifest'
 import type { VXS } from './vite/types'
 
@@ -144,7 +145,7 @@ export function createHandleRequest(
     }
 
     if (handlers.handleSSR) {
-      const { promise, reject, resolve } = Promise.withResolvers()
+      const { promise, reject, resolve } = promiseWithResolvers()
       activeRequests[pathname] = promise
 
       try {

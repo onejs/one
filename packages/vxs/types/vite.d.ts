@@ -1,4 +1,3 @@
-import './polyfills';
 export { clientTreeShakePlugin } from './vite/clientTreeShakePlugin';
 export { createFileSystemRouter } from './vite/createFileSystemRouter';
 export { vitePluginSsrCss } from './vite/vitePluginSsrCss';
