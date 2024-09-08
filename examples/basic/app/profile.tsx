@@ -155,13 +155,27 @@ export default function ProfilePage() {
                     Reposted by {userData.name}
                   </Text>
                 </XStack>
-                <FeedCard {...post} />
+                <FeedCard {...temp(post)} />
               </YStack>
             )
           }
-          return <FeedCard key={post.id} {...post} />
+          return <FeedCard key={post.id} {...temp(post)} />
         })}
       </ScrollView>
     </PageContainer>
   )
+}
+
+// TODO convert to new style
+const temp = ({ user, ...rest }) => {
+  return {
+    ...rest,
+    created_at: rest.createdAt,
+    user: [
+      {
+        avatar_url: user.avatar,
+        username: user.name,
+      },
+    ],
+  } as any
 }
