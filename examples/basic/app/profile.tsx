@@ -1,13 +1,13 @@
-import { ScrollView, YStack, Text, SizableStack, XStack } from 'tamagui'
+import { Repeat2 } from '@tamagui/lucide-icons'
+import { desc, eq, sql } from 'drizzle-orm'
+import { ScrollView, Text, XStack, YStack } from 'tamagui'
 import { type LoaderProps, useLoader } from 'vxs'
+import { db } from '~/db/connection'
+import { likes, posts, replies, reposts, users } from '~/db/schema'
 import { FeedCard } from '~/features/feed/FeedCard'
+import { getURL } from '~/features/helpers/getURL'
 import { Image } from '~/features/ui/Image'
 import { PageContainer } from '~/features/ui/PageContainer'
-import { Repeat2 } from '@tamagui/lucide-icons'
-import { db } from '~/db/connection'
-import { posts, reposts, users, likes, replies } from '~/db/schema'
-import { eq, sql, desc } from 'drizzle-orm'
-import { getURL } from '~/helpers/getURL'
 
 export async function loader({ path }: LoaderProps) {
   try {

@@ -1,11 +1,11 @@
+import { desc, eq, sql } from 'drizzle-orm'
 import { isWeb } from 'tamagui'
 import { SafeAreaView, useLoader, type LoaderProps } from 'vxs'
+import { db } from '~/db/connection'
+import { follows, likes, posts, reposts, users } from '~/db/schema'
+import { getURL } from '~/features/helpers/getURL'
 import { NotificationCard } from '~/features/notifications/NotificationCard'
 import { PageContainer } from '~/features/ui/PageContainer'
-import { db } from '~/db/connection'
-import { likes, reposts, users, posts, follows } from '~/db/schema'
-import { eq, desc, sql } from 'drizzle-orm'
-import { getURL } from '~/helpers/getURL'
 
 type Notification = {
   action: 'like' | 'follow' | 'repost'
