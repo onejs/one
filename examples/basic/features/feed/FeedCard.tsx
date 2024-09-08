@@ -12,15 +12,16 @@ type FeedItem = {
     username: string
     avatar_url: string
   }[]
-  // likesCount: number
-  // repliesCount: number
-  // repostsCount: number
   disableLink?: boolean
   isReply?: boolean
 }
 
 export const FeedCard = (props: FeedItem) => {
   const user = props.user[0]
+
+  if (user && !globalThis['found_user_id']) {
+    globalThis['found_user'] = user
+  }
 
   const content = (
     <Card tag="a">
