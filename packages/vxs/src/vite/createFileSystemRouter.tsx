@@ -11,6 +11,7 @@ import { resolveAPIRequest } from './resolveAPIRequest'
 import type { VXS } from './types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 import { promiseWithResolvers } from '../utils/promiseWithResolvers'
+import { getPageExport } from '../utils/getPageExport'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -145,7 +146,9 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
 
               LoaderDataCache[route.file] = loaderData
 
-              const html = await entry.default.render({
+              console.log('getting it for server rendering', entry)
+
+              const html = await getPageExport(entry).render({
                 loaderData,
                 loaderProps,
                 routeOptions,

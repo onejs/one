@@ -30,7 +30,7 @@ async function getFromLockfile(cwd = '.') {
     pathExists(resolve(cwd, 'bun.lockb')),
   ])
 
-  return { yarn, bun, pnpm, npm }
+  return { bun, yarn, pnpm, npm }
 }
 
 async function getFromPackage(cwd = '.') {
@@ -41,7 +41,7 @@ async function getFromPackage(cwd = '.') {
       const pnpm = !!json.packageManager.starsWith('pnpm')
       const bun = !!json.packageManager.starsWith('bun')
       const npm = !!json.packageManager.starsWith('npm')
-      return { yarn, bun, pnpm, npm }
+      return { bun, yarn, pnpm, npm }
     }
   }
 }
@@ -68,8 +68,8 @@ export const detectPackageManager = async ({ cwd }: { cwd?: string } = {}) => {
   ])
 
   return {
-    yarn,
     bun,
+    yarn,
     pnpm,
     npm,
   }

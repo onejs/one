@@ -11347,15 +11347,15 @@ __metadata:
     react-native-screens: 3.31.1
     react-native-svg: 15.2.0
     react-native-web: ^0.19.12
-    replicache: "portal:/Users/n8/github/mono/packages/replicache"
-    shared: "portal:/Users/n8/github/mono/packages/shared"
+    replicache: "link:replicache"
+    shared: "link:shared"
     tamagui: ^1.110.1
     tsx: ^4.19.0
     vite: 6.0.0-alpha.18
     vite-tsconfig-paths: ^5.0.1
     vxs: 1.1.213
-    zero-client: "portal:/Users/n8/github/mono/packages/zero-client"
-    zql: "portal:/Users/n8/github/mono/packages/zql"
+    zero-client: "link:zero-client"
+    zql: "link:zql"
   languageName: unknown
   linkType: soft
 
@@ -17874,9 +17874,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"replicache@portal:/Users/n8/github/mono/packages/replicache::locator=example-basic%40workspace%3Aexamples%2Fbasic":
+"replicache@portal:/Users/n8/github/mono/packages/replicache::locator=vxrn-monorepo%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "replicache@portal:/Users/n8/github/mono/packages/replicache::locator=example-basic%40workspace%3Aexamples%2Fbasic"
+  resolution: "replicache@portal:/Users/n8/github/mono/packages/replicache::locator=vxrn-monorepo%40workspace%3A."
   dependencies:
     "@badrap/valita": ^0.3.0
     "@rocicorp/lock": ^1.0.4
@@ -18443,9 +18443,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shared@portal:/Users/n8/github/mono/packages/shared::locator=example-basic%40workspace%3Aexamples%2Fbasic":
+"shared@portal:/Users/n8/github/mono/packages/shared::locator=vxrn-monorepo%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "shared@portal:/Users/n8/github/mono/packages/shared::locator=example-basic%40workspace%3Aexamples%2Fbasic"
+  resolution: "shared@portal:/Users/n8/github/mono/packages/shared::locator=vxrn-monorepo%40workspace%3A."
   dependencies:
     "@badrap/valita": ^0.3.0
     "@rocicorp/logger": ^5.2.2
@@ -21194,9 +21194,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zero-client@portal:/Users/n8/github/mono/packages/zero-client::locator=example-basic%40workspace%3Aexamples%2Fbasic":
+"zero-client@portal:/Users/n8/github/mono/packages/zero-client::locator=vxrn-monorepo%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "zero-client@portal:/Users/n8/github/mono/packages/zero-client::locator=example-basic%40workspace%3Aexamples%2Fbasic"
+  resolution: "zero-client@portal:/Users/n8/github/mono/packages/zero-client::locator=vxrn-monorepo%40workspace%3A."
   dependencies:
     "@badrap/valita": ^0.3.0
     "@rocicorp/lock": ^1.0.4
@@ -21205,9 +21205,9 @@ __metadata:
   languageName: node
   linkType: soft
 
-"zql@portal:/Users/n8/github/mono/packages/zql::locator=example-basic%40workspace%3Aexamples%2Fbasic":
+"zql@portal:/Users/n8/github/mono/packages/zql::locator=vxrn-monorepo%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "zql@portal:/Users/n8/github/mono/packages/zql::locator=example-basic%40workspace%3Aexamples%2Fbasic"
+  resolution: "zql@portal:/Users/n8/github/mono/packages/zql::locator=vxrn-monorepo%40workspace%3A."
   dependencies:
     "@rocicorp/resolver": ^1.0.2
     compare-utf8: ^0.1.1

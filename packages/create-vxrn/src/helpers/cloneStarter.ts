@@ -16,6 +16,8 @@ export const cloneStarter = async (
 ) => {
   targetGitDir = join(vxrnDir, 'vxrn', template.repo.url.split('/').at(-1)!)
 
+  console.log('demo mode', process.env.VXRN_DEMO_MODE)
+
   if (!process.env.VXRN_DEMO_MODE) {
     await setupVxrnDotDir(template)
   }
@@ -24,11 +26,15 @@ export const cloneStarter = async (
     ? join(home, 'vxrn', 'examples', 'basic')
     : join(targetGitDir, ...template.repo.dir)
 
+  console.log('demo mode', dir)
+
   if (!(await pathExists(dir))) {
     console.error(`Missing template for ${template.value} in ${dir}`)
     process.exit(1)
   }
+
   await copy(dir, resolvedProjectPath)
+
   await rimraf(join(resolvedProjectPath, '.git'))
 
   const yarnLockDefault = join(resolvedProjectPath, 'yarn.lock.default')

@@ -1,12 +1,10 @@
-import { useEffect } from 'react'
-import { YStack } from 'tamagui'
-import { useNavigation, useParams } from 'vxs'
+import { Button, TextArea, YStack } from 'tamagui'
+import { useParams } from 'vxs'
 import { FeedCard } from '~/features/feed/FeedCard'
+import { useSetNavigationOptions } from '~/features/routing/useSetNavigationOptions'
 import { PageContainer } from '~/features/ui/PageContainer'
 import { zero } from '~/features/zero/client'
 import { useQuery } from '~/features/zero/query'
-
-export default () => <PostPage />
 
 export function PostPage() {
   const params = useParams()
@@ -19,11 +17,9 @@ export function PostPage() {
       .related('user', (q) => q.limit(1))
   )[0]
 
-  const navigation = useNavigation()
-
-  useEffect(() => {
-    navigation.setOptions({ title: post?.content || `Post #${params.id}` })
-  }, [navigation, post?.content, params.id])
+  useSetNavigationOptions({
+    title: post?.content || `Post #${params.id}`,
+  })
 
   if (!post) {
     return null
@@ -45,6 +41,13 @@ export function PostPage() {
             ))}
           </YStack>
         )}
+
+        <YStack gap="$4" mt={20} mx={20}>
+          <TextArea />
+          <Button als="flex-end" onPress={() => {}}>
+            Reply
+          </Button>
+        </YStack>
       </PageContainer>
     </>
   )

@@ -6,9 +6,7 @@ import { PageContainer } from '~/features/ui/PageContainer'
 import { zero } from '~/features/zero/client'
 import { useQuery } from '~/features/zero/query'
 
-export default () => <FeedPage />
-
-function FeedPage() {
+export function FeedPage() {
   const posts = useQuery(
     zero.query.posts
       .orderBy('created_at', 'desc')
