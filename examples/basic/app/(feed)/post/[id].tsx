@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { Button, ScrollView, SizableText, Text, TextArea, XStack, YStack } from 'tamagui'
 import { useParams } from 'vxs'
 import { FeedCard } from '~/features/feed/FeedCard'
@@ -69,43 +69,48 @@ function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
   const user = useUser()
   const [content, setContent] = useState('')
   const charLimit = 160
-  const limitCondition = content.length > charLimit
+
+  const limitCondition = useMemo(() => content.length > charLimit, [content.length, charLimit])
+
+  const handleSubmit = useCallback(() => {
+    if (user) {
+      zero.mutate.replies.create({
+        id: uuid(),
+        content,
+        created_at: Date.now(),
+        post_id: post[0].id,
+        user_id: user.id,
+      })
+      setContent('')
+    }
+  }, [user, content, post])
+
+  const handleChangeText = useCallback((text: string) => {
+    setContent(text)
+  }, [])
+
   return (
-    <>
-      <XStack gap="$3" theme={limitCondition ? 'red_active' : undefined}>
-        <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />
-        <YStack gap="$3" flexGrow={1}>
-          <TextArea
-            onChangeText={setContent}
-            placeholder={`What ya thinkin'?`}
-            borderColor="none"
-            borderWidth={0}
-            defaultValue={content}
-            multiline={true}
-            rows={3}
-          />
-          <XStack justifyContent="space-between">
-            <SizableText color={limitCondition ? '$red10' : undefined} size="$1">
-              {content.length} / {charLimit}
-            </SizableText>
-            <Button
-              disabled={limitCondition}
-              als="flex-end"
-              onPress={() => {
-                zero.mutate.replies.create({
-                  id: uuid(),
-                  content,
-                  created_at: Date.now(),
-                  post_id: post[0].id,
-                  user_id: user.id,
-                })
-              }}
-            >
-              Reply
-            </Button>
-          </XStack>
-        </YStack>
-      </XStack>
-    </>
+    <XStack gap="$3" theme={limitCondition ? 'red_active' : undefined}>
+      {user ? <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} /> : null}
+      <YStack gap="$3" flexGrow={1}>
+        <TextArea
+          onChangeText={handleChangeText}
+          placeholder={`What ya thinkin'?`}
+          borderColor="none"
+          borderWidth={0}
+          value={content}
+          multiline={true}
+          rows={3}
+        />
+        <XStack justifyContent="space-between">
+          <SizableText color={limitCondition ? '$red10' : undefined} size="$1">
+            {content.length} / {charLimit}
+          </SizableText>
+          <Button disabled={limitCondition} als="flex-end" onPress={handleSubmit}>
+            Reply
+          </Button>
+        </XStack>
+      </YStack>
+    </XStack>
   )
 }
