@@ -11,6 +11,10 @@ import { useUser } from '~/features/user/useUser'
 import { zero } from '~/features/zero/client'
 import { useQuery } from '~/features/zero/query'
 
+export const loader = ({ params }) => {
+  return postQuery(params)
+}
+
 const postQuery = expect(
   {
     id: '',
@@ -44,6 +48,7 @@ export function PostPage() {
     <ScrollView>
       <PageContainer>
         <FeedCard {...post} disableLink />
+
         {post.replies && post.replies.length > 0 && (
           <YStack
             marginLeft="$7"
@@ -69,32 +74,16 @@ function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
   const user = useUser()
   const [content, setContent] = useState('')
   const charLimit = 160
-
-  const limitCondition = useMemo(() => content.length > charLimit, [content.length, charLimit])
-
-  const handleSubmit = useCallback(() => {
-    if (user) {
-      zero.mutate.replies.create({
-        id: uuid(),
-        content,
-        created_at: Date.now(),
-        post_id: post[0].id,
-        user_id: user.id,
-      })
-      setContent('')
-    }
-  }, [user, content, post])
-
-  const handleChangeText = useCallback((text: string) => {
-    setContent(text)
-  }, [])
+  const limitCondition = content.length > charLimit
 
   return (
     <XStack gap="$3" theme={limitCondition ? 'red_active' : undefined}>
-      {user ? <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} /> : null}
+      {user && <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />}
       <YStack gap="$3" flexGrow={1}>
         <TextArea
-          onChangeText={handleChangeText}
+          onChangeText={(text: string) => {
+            setContent(text)
+          }}
           placeholder={`What ya thinkin'?`}
           borderColor="none"
           borderWidth={0}
@@ -106,7 +95,22 @@ function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
           <SizableText color={limitCondition ? '$red10' : undefined} size="$1">
             {content.length} / {charLimit}
           </SizableText>
-          <Button disabled={limitCondition} als="flex-end" onPress={handleSubmit}>
+          <Button
+            disabled={limitCondition}
+            als="flex-end"
+            onPress={() => {
+              if (user) {
+                zero.mutate.replies.create({
+                  id: uuid(),
+                  content,
+                  created_at: Date.now(),
+                  post_id: post[0].id,
+                  user_id: user.id,
+                })
+                setContent('')
+              }
+            }}
+          >
             Reply
           </Button>
         </XStack>
