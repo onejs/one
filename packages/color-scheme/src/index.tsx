@@ -74,8 +74,6 @@ export function SchemeProvider({
     <>
       {process.env.TAMAGUI_TARGET === 'native' ? null : (
         <script
-          src="vxrn-color-scheme"
-          key="vxrn-color-scheme"
           dangerouslySetInnerHTML={{
             __html: `let d = document.documentElement.classList
           d.remove('${getClassName('light')}')
@@ -86,6 +84,7 @@ export function SchemeProvider({
               ? window.matchMedia('(prefers-color-scheme: dark)').matches
               : e === 'dark'
           t ? d.add('${getClassName('dark')}') : d.add('${getClassName('light')}')
+          debugger
           `,
           }}
         />
