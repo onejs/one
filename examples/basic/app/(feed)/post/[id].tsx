@@ -74,14 +74,15 @@ function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
     <>
       <XStack gap="$3" theme={limitCondition ? 'red_active' : undefined}>
         <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />
-        <YStack gap="$3" width="100%">
+        <YStack gap="$3" flexGrow={1}>
           <TextArea
             onChangeText={setContent}
             placeholder={`What ya thinkin'?`}
             borderColor="none"
             borderWidth={0}
-            width="100%"
             defaultValue={content}
+            multiline={true}
+            rows={2}
           />
           <XStack justifyContent="space-between">
             <SizableText color={limitCondition ? 'red' : undefined} size="$1">
