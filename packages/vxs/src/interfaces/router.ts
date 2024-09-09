@@ -9,6 +9,13 @@ import type { TextProps, GestureResponderEvent } from 'react-native'
 export namespace VXSRouter {
   export interface __routes<T extends string = string> extends Record<string, unknown> {}
 
+  // making a simple helper that gives you everything for a route
+  export type Route<Path> = {
+    Params: InputRouteParams<Path>
+    Props: { params: InputRouteParams<Path> }
+    Loader: (props: { params: InputRouteParams<Path> }) => any
+  }
+
   type StaticRoutes = __routes extends { StaticRoutes: string } ? __routes['StaticRoutes'] : string
 
   type DynamicRoutes<T extends string> = __routes<T> extends { DynamicRoutes: any }
@@ -17,7 +24,7 @@ export namespace VXSRouter {
       : never
     : string
 
-  type DynamicRouteTemplate = __routes extends { DynamicRouteTemplate: string }
+  export type DynamicRouteTemplate = __routes extends { DynamicRouteTemplate: string }
     ? __routes['DynamicRouteTemplate']
     : string
 
@@ -128,8 +135,10 @@ export namespace VXSRouter {
   export type InputRouteParams<Path> = {
     [Key in ParameterNames<Path> as Key extends `...${infer Name}`
       ? Name
-      : Key]: Key extends `...${string}` ? (string | number)[] : string | number
-  } & UnknownInputParams
+      : Key]: Key extends `...${string}` ? string[] : string
+  }
+  // TODO @nate: i commented this out to get better types but we probably need to fix better
+  // & UnknownInputParams
 
   type OutputRouteParams<Path> = {
     [Key in ParameterNames<Path> as Key extends `...${infer Name}`
@@ -398,4 +407,9 @@ export namespace VXSRouter {
     T extends AbsoluteRoute | RouteSegments<AbsoluteRoute> | RelativePathString,
   >(): T extends AbsoluteRoute ? RouteSegments<T> : T extends string ? string[] : T
   type useSegments = typeof useSegments
+}
+
+// TEMP
+export namespace One {
+  export type Route<Path> = VXSRouter.Route<Path>
 }
