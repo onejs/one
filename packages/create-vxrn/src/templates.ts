@@ -4,7 +4,7 @@ import setupBasic from './steps/vxs'
 
 export const templates = [
   {
-    title: `Feed`,
+    title: `Demo`,
     value: 'Basic',
     type: 'included-in-monorepo',
     hidden: false,

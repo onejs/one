@@ -31,7 +31,11 @@ export const cloneStarter = async (
 
   await copy(dir, resolvedProjectPath)
 
+  // reset git
   await rimraf(join(resolvedProjectPath, '.git'))
+  await execPromiseQuiet(`git init`, {
+    cwd: resolvedProjectPath,
+  })
 
   const yarnLockDefault = join(resolvedProjectPath, 'yarn.lock.default')
   if (await pathExists(yarnLockDefault)) {
