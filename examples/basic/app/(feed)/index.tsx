@@ -12,6 +12,12 @@ const feedQuery = zero.query.posts
   .orderBy('created_at', 'desc')
   .limit(20)
   .related('user', (q) => q.limit(1))
+  .related('replies', (q) =>
+    q
+      .orderBy('created_at', 'asc')
+      .limit(10)
+      .related('user', (q) => q.limit(1))
+  )
 
 export function FeedPage() {
   const posts = useQuery(feedQuery)
