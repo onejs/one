@@ -85,7 +85,7 @@ function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
             rows={2}
           />
           <XStack justifyContent="space-between">
-            <SizableText color={limitCondition ? 'red' : undefined} size="$1">
+            <SizableText color={limitCondition ? '$red10' : undefined} size="$1">
               {content.length} / {charLimit}
             </SizableText>
             <Button
