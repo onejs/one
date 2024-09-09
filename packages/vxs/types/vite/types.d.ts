@@ -18,6 +18,9 @@ export declare namespace VXS {
             key?: string;
         };
         deps?: FixDependencies;
+        loaders?: {
+            serverResolver?: (loaded: any) => any;
+        };
         redirects?: Redirects;
         shouldIgnore?: (req: Request) => boolean;
         disableSSR?: boolean;

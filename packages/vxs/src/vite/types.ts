@@ -30,6 +30,10 @@ export namespace VXS {
 
     deps?: FixDependencies
 
+    loaders?: {
+      serverResolver?: (loaded: any) => any
+    }
+
     redirects?: Redirects
 
     shouldIgnore?: (req: Request) => boolean

@@ -1,4 +1,5 @@
 import { Root } from './Root'
+import { resolveClientLoader } from './clientLoaderResolver'
 import { render } from './render'
 import { renderToString } from './server-render'
 import type { RenderAppProps } from './types'
@@ -12,6 +13,7 @@ export function createApp(options: CreateAppProps): void {
     return {
       options,
       render: async (props: RenderAppProps) => {
+        await resolveClientLoader(props)
         return await renderToString(<Root routes={options.routes} {...props} />, {
           preloads: props.preloads,
         })

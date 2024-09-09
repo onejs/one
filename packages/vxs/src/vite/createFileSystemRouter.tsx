@@ -5,18 +5,23 @@ import { createServerModuleRunner } from 'vite'
 import { createHandleRequest } from '../handleRequest'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
+import { promiseWithResolvers } from '../utils/promiseWithResolvers'
 import { LoaderDataCache } from './constants'
 import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import type { VXS } from './types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
-import { promiseWithResolvers } from '../utils/promiseWithResolvers'
+import type { RenderAppProps } from '../types'
+import WebSocket from 'ws'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
   // const { optimizeDeps } = getOptimizeDeps('serve')
+
+  // make websockets work on server
+  globalThis['WebSocket'] ||= WebSocket as any
 
   return {
     name: `router-fs`,
@@ -125,11 +130,11 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
 
               let exported = await runner.import(routeFile)
 
-              const routeOptions: VXS.RouteOptions = {
-                routeModes: {
-                  [route.page]: exported.mode,
-                },
-              }
+              // const routeOptions: VXS.RouteOptions = {
+              //   routeModes: {
+              //     [route.page]: exported.mode,
+              //   },
+              // }
 
               const loaderData = await exported.loader?.(loaderProps)
 
@@ -139,20 +144,29 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
 
               // const entry = await server.ssrLoadModule(virtualEntryId)
               const entry = await runner.import(virtualEntryId)
+              const render = entry.default.render as (props: RenderAppProps) => any
 
               globalThis['__vxrnLoaderData__'] = loaderData
               globalThis['__vxrnLoaderProps__'] = loaderProps
 
+              let loaderServerData = null
+
+              const loaderServerHandler = options.loaders?.serverResolver
+              if (loaderServerHandler) {
+                loaderServerData = (await loaderServerHandler(loaderData)) ?? null
+                console.log('loaderServerData', loaderServerData)
+              }
+
               LoaderDataCache[route.file] = loaderData
 
-              const html = await entry.default.render({
+              const html = render({
+                loaderServerData,
                 loaderData,
                 loaderProps,
-                routeOptions,
-                mode: exported.mode,
-                path: loaderProps?.path,
+                path: loaderProps?.path || '/',
                 preloads,
               })
+
               return html
             } catch (err) {
               const title = `Error rendering ${url.pathname} on server`
