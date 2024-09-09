@@ -73,6 +73,13 @@ export function Root(props: RootProps) {
     return contents
   }
 
+  let { loaderData } = props
+  // If loaderData is a zql QueryImpl we don't want to send it to the client,
+  // as it will be stringified into an empty object `{}` and mess up the client-side cache.
+  if (loaderData?.constructor?.name === 'QueryImpl') {
+    loaderData = undefined
+  }
+
   return (
     <html lang="en-US">
       <head>
@@ -97,7 +104,7 @@ export function Root(props: RootProps) {
         dangerouslySetInnerHTML={{
           __html: `
             globalThis['__vxrnLoaderServerData__'] = ${JSON.stringify(props.loaderServerData)};
-            globalThis['__vxrnLoaderData__'] = ${JSON.stringify(props.loaderData)};
+            globalThis['__vxrnLoaderData__'] = ${JSON.stringify(loaderData)};
             globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(props.loaderProps)};
             globalThis['__vxrnHydrateMode__'] = ${JSON.stringify(props.mode)};
         `,
