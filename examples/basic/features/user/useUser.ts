@@ -1,13 +1,10 @@
-// fake for now
+import { useQuery } from '~/features/zero/query'
+import { zero } from '~/features/zero/client'
 
 export const useUser = () => {
-  return {
-    id: '2f8e3e74-e366-4e76-b6bc-f5f63d3f7107',
-    username: 'SonarQubeSorcerer',
-    email: 'sonarqubesorcerer@example.com',
-    password_hash: 'P66pOpsQZyYRyTS',
-    bio: '',
-    avatar_url: 'https://i.pravatar.cc/150?u=SonarQubeSorcerer',
-    created_at: null,
-  }
+  // Get a random user
+  const userQuery = zero.query.users.limit(1)
+  userQuery.materialize()
+  const user = useQuery(userQuery)
+  return user.length > 0 ? user[0] : null
 }
