@@ -39,6 +39,9 @@
     "validate-npm-package-name": "3.0.0",
     "yocto-spinner": "^0.1.0"
   },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9"
+  },
   "publishConfig": {
     "access": "public"
   }

@@ -52,13 +52,11 @@ const foundSome = (obj: Object) => Object.keys(obj).some((k) => !!obj[k])
 export const detectPackageManager = async ({ cwd }: { cwd?: string } = {}) => {
   const fromLockfile = await getFromLockfile(cwd)
   if (foundSome(fromLockfile)) {
-    console.log('1', fromLockfile)
     return fromLockfile
   }
 
   const fromPackageJson = await getFromPackage(cwd)
   if (fromPackageJson && foundSome(fromPackageJson)) {
-    console.log('2', fromPackageJson)
     return fromPackageJson
   }
 

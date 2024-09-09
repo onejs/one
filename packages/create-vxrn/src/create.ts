@@ -139,11 +139,10 @@ export async function create(args: { template?: string }) {
   }
 
   // copy .env.default to .env
-  if (existsSync(path.join(resolvedProjectPath, '.env.default'))) {
-    await FSExtra.move(
-      path.join(resolvedProjectPath, '.env.default'),
-      path.join(resolvedProjectPath, '.env')
-    )
+  const envDefault = path.join(resolvedProjectPath, '.env.default')
+  const env = path.join(resolvedProjectPath, '.env')
+  if (existsSync(envDefault) && !existsSync(env)) {
+    await FSExtra.move(envDefault, env)
   }
 
   await template.extraSteps({
