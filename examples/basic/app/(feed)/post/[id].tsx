@@ -74,10 +74,10 @@ function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
   const user = useUser()
   const [content, setContent] = useState('')
   const charLimit = 160
-  const limitCondition = content.length > charLimit
+  const isOverLimit = content.length > charLimit
 
   return (
-    <XStack gap="$3" theme={limitCondition ? 'red_active' : undefined}>
+    <XStack gap="$3" theme={isOverLimit ? 'red_active' : undefined}>
       {user && <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />}
       <YStack gap="$3" flexGrow={1}>
         <TextArea
@@ -92,11 +92,11 @@ function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
           rows={3}
         />
         <XStack justifyContent="space-between">
-          <SizableText color={limitCondition ? '$red10' : undefined} size="$1">
+          <SizableText color={isOverLimit ? '$red10' : undefined} size="$1">
             {content.length} / {charLimit}
           </SizableText>
           <Button
-            disabled={limitCondition}
+            disabled={isOverLimit}
             als="flex-end"
             onPress={() => {
               if (user) {
