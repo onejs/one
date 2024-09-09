@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-flow",
-  "version": "1.1.215",
+  "version": "1.1.216",
   "types": "./types/index.d.ts",
   "type": "module",
   "main": "dist/cjs",

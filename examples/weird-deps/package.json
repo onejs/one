@@ -1,6 +1,6 @@
 {
   "name": "example-weird-deps",
-  "version": "1.1.215",
+  "version": "1.1.216",
   "private": true,
   "type": "module",
   "scripts": {
@@ -22,7 +22,7 @@
     "react-native-webview": "^13.11.1",
     "tamagui": "^1.110.3",
     "uuid": "9.0.0",
-    "vxs": "1.1.215"
+    "vxs": "1.1.216"
   },
   "devDependencies": {
     "vite": "6.0.0-alpha.18"
