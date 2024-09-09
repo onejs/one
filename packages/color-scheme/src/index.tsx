@@ -84,7 +84,6 @@ export function SchemeProvider({
               ? window.matchMedia('(prefers-color-scheme: dark)').matches
               : e === 'dark'
           t ? d.add('${getClassName('dark')}') : d.add('${getClassName('light')}')
-          debugger
           `,
           }}
         />
