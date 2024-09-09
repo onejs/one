@@ -13,13 +13,49 @@ export function useZero<Q extends QueryDefs>(): Zero<Q> {
   return zero as Zero<Q>
 }
 
-export const zero = new Zero({
+const server = typeof window === 'undefined' ? 'http://localhost:0000' : `http://localhost:3000`
+
+const zero1 = new Zero({
   logLevel: 'info',
-  server: `http://localhost:3000`,
+  server,
   userID: 'anon',
   schemas: schema,
   kvStore: 'mem',
 })
+
+const postsSubQuery = zero1.query.posts.limit(1).related('user').related('replies')
+const repliesSubQuery = zero1.query.replies.limit(1).related('user')
+
+type Param<A> = A | (A & { __keep: true })
+
+export const zero = zero1 as typeof zero1 & {
+  subquery: {
+    posts: (
+      props: any,
+      q?: (q: typeof zero1.query.posts) => any
+    ) => (props: { id: Param<string> }) => typeof postsSubQuery
+
+    replies: (
+      props: any,
+      q?: (q: typeof zero1.query.posts) => any
+    ) => (props: { id: Param<string> }) => typeof postsSubQuery
+  }
+}
+
+// @ts-ignore
+zero1.subquery = {
+  posts: (field: 'id', sub: any) => {
+    return (params) => {
+      return zero.query.posts.where(field, '=', params[field]).related('user').related('replies')
+    }
+  },
+
+  replies: (field: 'id', sub: any) => {
+    return (params) => {
+      return zero.query.replies.where(field, '=', params[field]).related('user')
+    }
+  },
+}
 
 export function ZeroProvider({
   children,

@@ -1,7 +1,7 @@
 import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
 import { Stack } from 'vxs'
-import { FeedCard } from '~/features/feed/FeedCard'
+import { FeedCard, feedCardQuery } from '~/features/feed/FeedCard'
 import { PageContainer } from '~/features/ui/PageContainer'
 import { zero } from '~/features/zero/client'
 import { useQuery } from '~/features/zero/query'
@@ -11,13 +11,7 @@ export const loader = () => feedQuery
 const feedQuery = zero.query.posts
   .orderBy('created_at', 'desc')
   .limit(20)
-  .related('user', (q) => q.limit(1))
-  .related('replies', (q) =>
-    q
-      .orderBy('created_at', 'asc')
-      .limit(10)
-      .related('user', (q) => q.limit(1))
-  )
+  .sub((q) => feedCardQuery({ id: q.parent.id }))
 
 export function FeedPage() {
   const posts = useQuery(feedQuery)
@@ -34,7 +28,7 @@ export function FeedPage() {
         <ScrollView maxHeight="100%">
           <RefreshControl refreshing={false} />
           {posts.map((item) => (
-            <FeedCard key={item.id} {...item} />
+            <FeedCard key={item.id} id={item.id} />
           ))}
         </ScrollView>
       </PageContainer>

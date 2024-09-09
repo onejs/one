@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { preloadRoute } from './router/router'
+import { preloadRoute } from '../router/router'
 
 export function PreloadLinks() {
   useEffect(() => {

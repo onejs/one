@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react'
 import { Button, ScrollView, SizableText, Text, TextArea, XStack, YStack } from 'tamagui'
-import { useParams } from 'vxs'
+import { createRoute, Link } from 'vxs'
 import { FeedCard } from '~/features/feed/FeedCard'
 import { Image } from '~/features/ui/Image'
 import { expect, type ExpectedResult } from '~/features/helpers/param'
@@ -11,9 +11,9 @@ import { useUser } from '~/features/user/useUser'
 import { zero } from '~/features/zero/client'
 import { useQuery } from '~/features/zero/query'
 
-export const loader = ({ params }) => {
-  return postQuery(params)
-}
+const { createLoader, useParams } = createRoute<'/post/[id]'>()
+
+// export const loader = createLoader(({ params }) => postQuery(params))
 
 const postQuery = expect(
   {
@@ -34,7 +34,7 @@ const postQuery = expect(
 
 export function PostPage() {
   const params = useParams()
-  const post = useQuery(postQuery({ id: `${params.id}` }))[0]
+  const post = useQuery(postQuery(params))[0]
 
   useSetNavigationOptions({
     title: post?.content || `Post #${params.id}`,
@@ -57,7 +57,7 @@ export function PostPage() {
             borderColor="$borderColor"
           >
             {post.replies.map((reply) => (
-              <FeedCard key={reply.id} {...reply} disableLink isReply />
+              <FeedCard key={reply.id} id={reply.id} disableLink isReply />
             ))}
           </YStack>
         )}
@@ -81,7 +81,7 @@ function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
       {user && <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />}
       <YStack gap="$3" flexGrow={1}>
         <TextArea
-          onChangeText={(text: string) => {
+          onChangeText={(text) => {
             setContent(text)
           }}
           placeholder={`What ya thinkin'?`}
