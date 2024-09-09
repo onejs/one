@@ -21,8 +21,6 @@ export const FeedCard = (props: FeedItem) => {
     props.isReply ? feedCardReplyQuery({ id: props.id }) : feedCardQuery({ id: props.id })
   )
 
-  console.log('got', post)
-
   if (!post) {
     return null
   }
