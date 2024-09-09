@@ -10,7 +10,7 @@ type FeedItem = {
   created_at: number
   user: {
     username: string
-    avatar_url: string
+    avatar_url?: string
   }[]
   disableLink?: boolean
   isReply?: boolean
@@ -23,10 +23,12 @@ export const FeedCard = (props: FeedItem) => {
 
   const content = (
     <Card tag="a">
-      <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />
+      {user?.avatar_url ? (
+        <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />
+      ) : null}
       <YStack f={1} gap="$2">
         <Paragraph size="$5" fow="bold">
-          {user.username}
+          {user?.username || 'No username'}
         </Paragraph>
 
         <Paragraph

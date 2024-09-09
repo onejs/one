@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Button, ScrollView, TextArea, YStack } from 'tamagui'
+import { Button, ScrollView, SizableText, Text, TextArea, XStack, YStack } from 'tamagui'
 import { useParams } from 'vxs'
 import { FeedCard } from '~/features/feed/FeedCard'
+import { Image } from '~/features/ui/Image'
 import { expect, type ExpectedResult } from '~/features/helpers/param'
 import { uuid } from '~/features/helpers/uuid'
 import { useSetNavigationOptions } from '~/features/routing/useSetNavigationOptions'
@@ -67,23 +68,43 @@ export function PostPage() {
 function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
   const user = useUser()
   const [content, setContent] = useState('')
+  const charLimit = 160
+  const limitCondition = content.length > charLimit
   return (
     <>
-      <TextArea onChangeText={setContent} />
-      <Button
-        als="flex-end"
-        onPress={() => {
-          zero.mutate.replies.create({
-            id: uuid(),
-            content,
-            created_at: Date.now(),
-            post_id: post[0].id,
-            user_id: user.id,
-          })
-        }}
-      >
-        Reply
-      </Button>
+      <XStack gap="$3" theme={limitCondition ? 'red_active' : undefined}>
+        <Image width={32} height={32} br={100} mt="$2" src={user.avatar_url} />
+        <YStack gap="$3" width="100%">
+          <TextArea
+            onChangeText={setContent}
+            placeholder={`What ya thinkin'?`}
+            borderColor="none"
+            borderWidth={0}
+            width="100%"
+            defaultValue={content}
+          />
+          <XStack justifyContent="space-between">
+            <SizableText color={limitCondition ? 'red' : undefined} size="$1">
+              {content.length} / {charLimit}
+            </SizableText>
+            <Button
+              disabled={limitCondition}
+              als="flex-end"
+              onPress={() => {
+                zero.mutate.replies.create({
+                  id: uuid(),
+                  content,
+                  created_at: Date.now(),
+                  post_id: post[0].id,
+                  user_id: user.id,
+                })
+              }}
+            >
+              Reply
+            </Button>
+          </XStack>
+        </YStack>
+      </XStack>
     </>
   )
 }
