@@ -29,7 +29,7 @@ export function HomeLayout() {
 
 function HomeLayoutTouch() {
   return (
-    <YStack f={1}>
+    <YStack ov="hidden" mah="100vh" f={1}>
       <XStack ai="center" jc="space-between" py="$1" px="$4" bbc="$borderColor" bbw={1}>
         <Logo />
         <ToggleThemeLink f={0} />
