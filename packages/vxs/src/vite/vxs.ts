@@ -58,6 +58,19 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
 
   return [
+    {
+      name: 'one-zero',
+      config() {
+        return {
+          define: {
+            REPLICACHE_VERSION: '"15.2.1"',
+            ZERO_VERSION: '"0.0.0"',
+            TESTING: 'false',
+          },
+        }
+      },
+    },
+
     /**
      * This is really the meat of vxs, where it handles requests:
      */
