@@ -6,6 +6,7 @@ import {
   removeSupportedExtensions,
 } from './matchers'
 import type { DynamicConvention, RouteNode } from './Route'
+import { getPageExport } from './utils/getPageExport'
 import type { VXS } from './vite/types'
 // import { Unmatched } from './views/Unmatched'
 
@@ -134,7 +135,7 @@ function getDirectoryTree(contextModule: VXS.RouteContext, options: Options) {
       // If the user has set the `VXS_ROUTER_IMPORT_MODE` to `sync` then we should
       // filter the missing routes.
       if (node.type !== 'api' && importMode === 'sync') {
-        if (!node.loadRoute()?.default) {
+        if (!getPageExport(node.loadRoute())) {
           continue
         }
       }

@@ -96,6 +96,7 @@ export function Root(props: RootProps) {
         href="vxs-loader-data"
         dangerouslySetInnerHTML={{
           __html: `
+            globalThis['__vxrnLoaderServerData__'] = ${JSON.stringify(props.loaderServerData)};
             globalThis['__vxrnLoaderData__'] = ${JSON.stringify(props.loaderData)};
             globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(props.loaderProps)};
             globalThis['__vxrnHydrateMode__'] = ${JSON.stringify(props.mode)};

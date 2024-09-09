@@ -97,13 +97,14 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.213"
+    "vxrn": "1.1.213",
+    "ws": "^8.18.0"
   },
   "peerDependencies": {
     "react-native": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.110.1",
+    "@tamagui/build": "^1.110.3",
     "@types/node": "^22.1.0",
     "@types/react-dom": "^18.2.25",
     "depcheck": "^1.4.7",

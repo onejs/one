@@ -18,6 +18,7 @@ export type RenderAppProps = {
     path: string;
     preloads?: string[];
     css?: string[];
+    loaderServerData?: any;
     loaderData?: any;
     loaderProps?: Object;
 };

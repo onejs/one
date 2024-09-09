@@ -19,6 +19,7 @@ import { sortRoutesWithInitial } from './sortRoutes'
 import { EmptyRoute } from './views/EmptyRoute'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { Try } from './views/Try'
+import { getPageExport } from './utils/getPageExport'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -126,7 +127,7 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
   if (ErrorBoundary) {
     return {
       default: React.forwardRef((props: any, ref: any) => {
-        const children = React.createElement(component.default || EmptyRoute, {
+        const children = React.createElement(getPageExport(component) || EmptyRoute, {
           ...props,
           ref,
         })
@@ -135,16 +136,13 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
     }
   }
   if (process.env.NODE_ENV !== 'production') {
-    if (
-      typeof component.default === 'object' &&
-      component.default &&
-      Object.keys(component.default).length === 0
-    ) {
+    const exported = getPageExport(component)
+    if (exported && typeof exported === 'object' && Object.keys(exported).length === 0) {
       return { default: EmptyRoute }
     }
   }
 
-  return { default: component.default }
+  return { default: getPageExport(component) }
 }
 
 // TODO: Maybe there's a more React-y way to do this?
@@ -186,7 +184,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }, [])
 
       if (loaded) {
-        const Component = fromImport(loaded).default as React.ComponentType<any>
+        const Component = getPageExport(fromImport(loaded)) as React.ComponentType<any>
         return <Component {...props} ref={ref} />
       }
 
@@ -195,7 +193,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
   } else {
     ScreenComponent = React.forwardRef((props, ref) => {
       const res = value.loadRoute()
-      const Component = fromImport(res).default as React.ComponentType<any>
+      const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
       return <Component {...props} ref={ref} />
     })
   }
