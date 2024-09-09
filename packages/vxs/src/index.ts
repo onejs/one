@@ -25,7 +25,7 @@ export { ScrollRestoration } from './views/ScrollRestoration'
 export { PageLoadProgressBar } from './views/PageLoadProgressBar'
 
 export { createApp } from './createApp'
-export { createRoute } from './createRoute'
+export { createRoute, route } from './createRoute'
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 export { isResponse } from './utils/isResponse'

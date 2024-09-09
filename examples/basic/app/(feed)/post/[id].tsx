@@ -1,35 +1,30 @@
-import { useState, useMemo, useCallback } from 'react'
-import { Button, ScrollView, SizableText, Text, TextArea, XStack, YStack } from 'tamagui'
-import { createRoute, Link } from 'vxs'
+import { useState } from 'react'
+import { Button, ScrollView, SizableText, TextArea, XStack, YStack } from 'tamagui'
+import { route } from 'vxs'
 import { FeedCard } from '~/features/feed/FeedCard'
-import { Image } from '~/features/ui/Image'
-import { expect, type ExpectedResult } from '~/features/helpers/param'
+import type { ExpectedResult } from '~/features/helpers/param'
 import { uuid } from '~/features/helpers/uuid'
 import { useSetNavigationOptions } from '~/features/routing/useSetNavigationOptions'
+import { Image } from '~/features/ui/Image'
 import { PageContainer } from '~/features/ui/PageContainer'
 import { useUser } from '~/features/user/useUser'
 import { zero } from '~/features/zero/client'
 import { useQuery } from '~/features/zero/query'
 
-const { createLoader, useParams } = createRoute<'/post/[id]'>()
+const { createLoader, useParams } = route.post.id
 
-// export const loader = createLoader(({ params }) => postQuery(params))
+export const loader = createLoader(({ params }) => postQuery(params))
 
-const postQuery = expect(
-  {
-    id: '',
-  },
-  (params) =>
-    zero.query.posts
-      .where('id', '=', `${params.id}`)
-      .limit(1)
-      .related('replies', (q) =>
-        q
-          .orderBy('created_at', 'asc')
-          .limit(100)
-          .related('user', (q) => q.limit(1))
-      )
-      .related('user', (q) => q.limit(1))
+const postQuery = zero.subquery.posts('id', (q) =>
+  q
+    .limit(1)
+    .related('replies', (q) =>
+      q
+        .orderBy('created_at', 'asc')
+        .limit(100)
+        .related('user', (q) => q.limit(1))
+    )
+    .related('user', (q) => q.limit(1))
 )
 
 export function PostPage() {

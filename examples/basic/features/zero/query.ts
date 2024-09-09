@@ -3,6 +3,8 @@ import type { Schema } from 'zql/src/zql/query/schema.js'
 import type { Query, QueryResultRow, Smash } from 'zql/src/zql/query/query'
 import type { TypedView } from 'zql/src/zql/query/typed-view'
 import { deepClone } from 'shared/src/deep-clone'
+import { curId } from './client'
+import { isWeb } from 'tamagui'
 
 export function useQuery<TSchema extends Schema, TReturn extends Array<QueryResultRow>>(
   q: Query<TSchema, TReturn> | undefined,
@@ -11,6 +13,16 @@ export function useQuery<TSchema extends Schema, TReturn extends Array<QueryResu
 ): Smash<TReturn> {
   const [snapshot, setSnapshot] = useState<Smash<TReturn>>()
   const [, setView] = useState<TypedView<Smash<TReturn>> | undefined>(undefined)
+
+  const uid = useRef({})
+  if (!rootUID) {
+    rootUID = uid
+  }
+
+  if (isWeb && typeof window === 'undefined' && curId) {
+    const found = cachedData.find((x) => x.id === curId) as any
+    return found ? [found] : []
+  }
 
   useLayoutEffect(() => {
     if (enabled && q) {
@@ -31,17 +43,11 @@ export function useQuery<TSchema extends Schema, TReturn extends Array<QueryResu
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies)
 
-  const uid = useRef({})
-  if (!rootUID) {
-    rootUID = uid
+  if (!snapshot && uid === rootUID) {
+    return cachedData as any
   }
 
-  return (
-    snapshot ||
-    // TEMP until we get zero loading on server for server-side cached data
-    // simulating it here
-    (uid === rootUID && !snapshot ? (cachedData as any[]) : [])
-  )
+  return snapshot || []
 }
 
 let rootUID

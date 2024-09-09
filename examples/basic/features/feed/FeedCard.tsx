@@ -14,14 +14,14 @@ type FeedItem = {
 
 export const feedCardQuery = zero.subquery.posts('id', (q) => q.related('replies').related('user'))
 
-export const feedCardReplyQuery = zero.subquery.replies('id', (q) =>
-  q.related('replies').related('user')
-)
+export const feedCardReplyQuery = zero.subquery.replies('id', (q) => q.related('user'))
 
 export const FeedCard = (props: FeedItem) => {
   const [post] = useQuery(
     props.isReply ? feedCardReplyQuery({ id: props.id }) : feedCardQuery({ id: props.id })
   )
+
+  console.log('got', post)
 
   if (!post) {
     return null

@@ -11,3 +11,29 @@ export function createRoute<Path>() {
     createLoader: (a: Route['Loader']) => a,
   }
 }
+
+const defaults = createRoute()
+
+const getProxy = () =>
+  new Proxy(
+    {},
+    {
+      get(target, key) {
+        if (Reflect.has(defaults, key)) {
+          return Reflect.get(defaults, key)
+        }
+
+        return getProxy()
+      },
+    }
+  )
+
+const postIdRoute = createRoute<'/post/[id]'>()
+
+export const route = getProxy() as {
+  post: {
+    id: typeof postIdRoute
+  }
+}
+
+console.log('route', route)

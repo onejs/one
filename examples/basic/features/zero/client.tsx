@@ -42,17 +42,21 @@ export const zero = zero1 as typeof zero1 & {
   }
 }
 
+export let curId = ''
+
 // @ts-ignore
 zero1.subquery = {
   posts: (field: 'id', sub: any) => {
     return (params) => {
-      return zero.query.posts.where(field, '=', params[field]).related('user').related('replies')
+      curId = params.id
+      return sub(zero.query.posts.where(field, '=', params[field]))
     }
   },
 
   replies: (field: 'id', sub: any) => {
     return (params) => {
-      return zero.query.replies.where(field, '=', params[field]).related('user')
+      curId = params.id
+      return sub(zero.query.replies.where(field, '=', params[field]))
     }
   },
 }

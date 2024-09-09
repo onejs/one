@@ -8,4 +8,19 @@ export declare function createRoute<Path>(): {
         params: VXSRouter.InputRouteParams<Path>;
     }) => any;
 };
+declare const postIdRoute: {
+    useParams: () => VXSRouter.InputRouteParams<"/post/[id]">;
+    useActiveParams: () => Partial<VXSRouter.InputRouteParams<"/post/[id]">>;
+    createLoader: (a: (props: {
+        params: VXSRouter.InputRouteParams<"/post/[id]">;
+    }) => any) => (props: {
+        params: VXSRouter.InputRouteParams<"/post/[id]">;
+    }) => any;
+};
+export declare const route: {
+    post: {
+        id: typeof postIdRoute;
+    };
+};
+export {};
 //# sourceMappingURL=createRoute.d.ts.map
