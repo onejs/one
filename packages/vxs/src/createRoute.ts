@@ -35,5 +35,3 @@ export const route = getProxy() as {
     id: typeof postIdRoute
   }
 }
-
-console.log('route', route)
