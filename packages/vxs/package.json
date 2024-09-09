@@ -1,6 +1,6 @@
 {
   "name": "vxs",
-  "version": "1.1.216",
+  "version": "1.1.217",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -71,12 +71,12 @@
     "@react-navigation/native": "~6.1.7",
     "@react-navigation/native-stack": "~6.9.13",
     "@react-navigation/routers": "~6.1.9",
-    "@vxrn/universal-color-scheme": "1.1.216",
-    "@vxrn/use-isomorphic-layout-effect": "1.1.216",
+    "@vxrn/universal-color-scheme": "1.1.217",
+    "@vxrn/use-isomorphic-layout-effect": "1.1.217",
     "babel-dead-code-elimination": "^1.0.6",
     "citty": "^0.1.6",
     "core-js": "^3.38.1",
-    "create-vxrn": "1.1.216",
+    "create-vxrn": "1.1.217",
     "dotenv": "^16.4.5",
     "escape-string-regexp": "^5.0.0",
     "expo-linking": "~6.3.1",
@@ -97,7 +97,7 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.216",
+    "vxrn": "1.1.217",
     "ws": "^8.18.0"
   },
   "peerDependencies": {
