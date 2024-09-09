@@ -26,5 +26,8 @@ export function ZeroProvider({
 }: {
   children?: any
 }) {
+  if (typeof window === 'undefined') {
+    return children
+  }
   return <ZeroContext.Provider value={zero as any}>{children}</ZeroContext.Provider>
 }

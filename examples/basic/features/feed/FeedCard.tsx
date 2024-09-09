@@ -3,6 +3,8 @@ import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { Link } from 'vxs'
 import { Card } from '../ui/Card'
 import { Image } from '../ui/Image'
+import { expect } from '../helpers/param'
+import { zero } from '../zero/client'
 
 type FeedItem = {
   id: string
@@ -15,6 +17,8 @@ type FeedItem = {
   disableLink?: boolean
   isReply?: boolean
 }
+
+export const feedCardQuery = expect(zero.query.users, (users) => users.limit(1))
 
 export const FeedCard = (props: FeedItem) => {
   const user = props.user[0]
@@ -36,13 +40,13 @@ export const FeedCard = (props: FeedItem) => {
         >
           {props.content}
         </Paragraph>
-        {!props.isReply ? (
+
+        {!props.isReply && (
           <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
-            <StatItem Icon={Reply} count={0} />
             <StatItem Icon={Repeat} count={0} />
             <StatItem Icon={Heart} count={0} />
           </XStack>
-        ) : null}
+        )}
       </YStack>
     </Card>
   )
