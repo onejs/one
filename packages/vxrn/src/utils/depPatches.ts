@@ -225,7 +225,11 @@ export const depPatches: DepPatch[] = [
       // treats any .json changing in the entire repo as a reason to reload the entire app?
       'dist/node/chunks/dep-DXWVQosX.js': (contents) => {
         assertString(contents)
-        return contents.replace(`changedFile.endsWith('.json') /*`, `false /*`)
+        // just disable it fully for now for some reason its always triggering for me
+        return contents.replace(
+          `// any tsconfig.json that's added in the workspace could be closer to a code file than a previously cached one`,
+          `return`
+        )
       },
     },
   },
