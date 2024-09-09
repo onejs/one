@@ -18,7 +18,10 @@ export default function FeedLayout() {
               )
             },
           }}
-        />
+        >
+          <Stack.Screen name="index" options={{ title: 'Feed' }} />
+          <Stack.Screen name="post/[id]" options={{ title: 'Post' }} />
+        </Stack>
       )}
     </>
   )
