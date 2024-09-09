@@ -82,7 +82,7 @@ function ReplyBox({ post }: { post: ExpectedResult<typeof postQuery> }) {
             borderWidth={0}
             defaultValue={content}
             multiline={true}
-            rows={2}
+            rows={3}
           />
           <XStack justifyContent="space-between">
             <SizableText color={limitCondition ? '$red10' : undefined} size="$1">
