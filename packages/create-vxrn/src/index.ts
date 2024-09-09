@@ -66,6 +66,7 @@ const main = defineCommand({
 runMain(main)
 
 if (process.argv.includes('--version')) {
-  console.info(packageJson.version)
+  // TODO
+  // console.info(packageJson.version)
   process.exit(0)
 }
