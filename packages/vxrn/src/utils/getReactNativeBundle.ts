@@ -63,7 +63,7 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled) {
       // Try to load Rollup cache from disk
       try {
         if (await pathExists(rollupCacheFile)) {
-          const c = await FSExtra.readJSON(rollupCacheFile)
+          const c = await FSExtra.readJSON(rollupCacheFile, { reviver: bigIntReviver })
           return c
         }
       } catch (e) {
@@ -82,7 +82,7 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled) {
     // do not await cache write
     ;(async () => {
       try {
-        await FSExtra.writeJSON(rollupCacheFile, buildOutput.cache)
+        await FSExtra.writeJSON(rollupCacheFile, buildOutput.cache, { replacer: bigIntReplacer })
       } catch (e) {
         console.error(`Error saving Rollup cache to ${rollupCacheFile}: ${e}`)
       }
@@ -174,4 +174,18 @@ globalThis.__vxrnPrebuildSpecialRequireMap = {
   setIsBuildingNativeBundle(null)
 
   return out
+}
+
+function bigIntReplacer(_key: string, value: any): any {
+  if (typeof value === 'bigint') {
+    return '__BigInt__:' + value.toString() + 'n'
+  }
+  return value
+}
+
+function bigIntReviver(_key: string, value: any): any {
+  if (typeof value === 'string' && /^__BigInt__:\d+n$/.test(value)) {
+    return BigInt(value.slice(11, -1))
+  }
+  return value
 }
