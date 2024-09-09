@@ -52,7 +52,9 @@ export const FeedCard = (props: FeedItem) => {
 
         {!props.isReply && (
           <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
-            {props.replies ? <StatItem Icon={MessageSquare} count={props.replies.length} /> : null}
+            {props.replies ? (
+              <StatItem Icon={MessageSquare} count={props.replies.length} />
+            ) : null}
             <StatItem Icon={Repeat} count={0} />
             <StatItem Icon={Heart} count={0} />
           </XStack>
