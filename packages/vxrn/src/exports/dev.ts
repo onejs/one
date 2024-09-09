@@ -223,7 +223,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
 
       websocket: {
         open(peer) {
-          console.debug('[hmr] open', peer)
+          if (process.env.DEBUG) console.debug('[hmr] open', peer)
           addConnectedNativeClient()
         },
 
@@ -235,7 +235,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
         },
 
         close(peer, event) {
-          console.info('[hmr] close', peer, event)
+          if (process.env.DEBUG) console.info('[hmr] close', peer, event)
           removeConnectedNativeClient()
         },
 
@@ -289,7 +289,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
               }
 
               console.info(
-                ` ① · ${message.level === 'info' ? '' : ` [${message.level}]`}`,
+                ` ①  ${message.level === 'info' ? '' : ` [${message.level}]`}`,
                 ...message.data
               )
               return

@@ -15,8 +15,6 @@ declare const __HMR_BASE__: string
 declare const __HMR_TIMEOUT__: number
 declare const __HMR_ENABLE_OVERLAY__: boolean
 
-console.info('[vite] connecting...')
-
 const importMetaUrl = {
   hostname: '127.0.0.1',
   protocol: 'http',
@@ -353,7 +351,7 @@ async function fetchUpdate({ path, acceptedPath, timestamp, explicitImportRequir
         // re-route to our cjs endpoint
         `http://${serverHost.replace('5173', '8081')}` + finalQuery
 
-      console.info(`fetching update: ${JSON.stringify({ path, mod, scriptUrl })}`)
+      console.info(`fetching update: ${scriptUrl}`)
 
       const source = await fetch(scriptUrl).then((res) => res.text())
 
@@ -371,7 +369,9 @@ async function fetchUpdate({ path, acceptedPath, timestamp, explicitImportRequir
       fn(deps.map((dep) => (dep === acceptedPath ? fetchedModule : undefined)))
     }
     const loggedPath = isSelfUpdate ? path : `${acceptedPath} via ${path}`
-    console.info(`[vite] hot updated: ${loggedPath}`)
+    if (process.env.DEBUG) {
+      console.info(`[vite] hot updated: ${loggedPath}`)
+    }
   }
 }
 
