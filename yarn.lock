@@ -261,7 +261,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.13.16, @babel/core@npm:^7.20.0, @babel/core@npm:^7.21.8, @babel/core@npm:^7.23.7, @babel/core@npm:^7.24.5, @babel/core@npm:^7.25.2":
+"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.13.16, @babel/core@npm:^7.20.0, @babel/core@npm:^7.21.8, @babel/core@npm:^7.23.7, @babel/core@npm:^7.25.2":
   version: 7.25.2
   resolution: "@babel/core@npm:7.25.2"
   dependencies:
@@ -1528,17 +1528,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-react-jsx-self@npm:^7.24.5":
-  version: 7.24.7
-  resolution: "@babel/plugin-transform-react-jsx-self@npm:7.24.7"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.24.7
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 2d72c33664e614031b8a03fc2d4cfd185e99efb1d681cbde4b0b4ab379864b31d83ee923509892f6d94b2c5893c309f0217d33bcda3e470ed42297f958138381
-  languageName: node
-  linkType: hard
-
 "@babel/plugin-transform-react-jsx-source@npm:^7.0.0":
   version: 7.24.1
   resolution: "@babel/plugin-transform-react-jsx-source@npm:7.24.1"
@@ -1547,17 +1536,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 396ce878dc588e74113d38c5a1773e0850bb878a073238a74f8cdf62d968d56a644f5485bf4032dc095fe8863fe2bd9fbbbab6abc3adf69542e038ac5c689d4c
-  languageName: node
-  linkType: hard
-
-"@babel/plugin-transform-react-jsx-source@npm:^7.24.1":
-  version: 7.24.7
-  resolution: "@babel/plugin-transform-react-jsx-source@npm:7.24.7"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.24.7
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: c9afcb2259dd124a2de76f8a578589c18bd2f24dbcf78fe02b53c5cbc20c493c4618369604720e4e699b52be10ba0751b97140e1ef8bc8f0de0a935280e9d5b7
   languageName: node
   linkType: hard
 
@@ -7218,7 +7196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/babel__core@npm:^7.1.14, @types/babel__core@npm:^7.20.5":
+"@types/babel__core@npm:^7.1.14":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
   dependencies:
@@ -7693,21 +7671,6 @@ __metadata:
   peerDependencies:
     vite: ^4 || ^5
   checksum: 87ee71cc7d261a0047a1a080c81081cb163edd555e1c8c60ff3372d14b7d76a19a28a7a03334417f622e704abd67e39e89a59d45f4742ec7036ca2988ee6651f
-  languageName: node
-  linkType: hard
-
-"@vitejs/plugin-react@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "@vitejs/plugin-react@npm:4.3.1"
-  dependencies:
-    "@babel/core": ^7.24.5
-    "@babel/plugin-transform-react-jsx-self": ^7.24.5
-    "@babel/plugin-transform-react-jsx-source": ^7.24.1
-    "@types/babel__core": ^7.20.5
-    react-refresh: ^0.14.2
-  peerDependencies:
-    vite: ^4.2.0 || ^5.0.0
-  checksum: 57872e0193c7e545c5ef4852cbe1adf17a6b35406a2aba4b3acce06c173a9dabbf6ff4c72701abc11bb3cbe24a056f5054f39018f7034c9aa57133a3a7770237
   languageName: node
   linkType: hard
 
@@ -11210,6 +11173,7 @@ __metadata:
     tamagui: ^1.110.3
     tsx: ^4.19.0
     vite: 6.0.0-alpha.18
+    vite-tsconfig-paths: ^5.0.1
     vxs: 1.1.217
   languageName: unknown
   linkType: soft
