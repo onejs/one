@@ -1,5 +1,6 @@
-export type { VXSRouter } from './interfaces/router'
+export type { VXSRouter, One } from './interfaces/router'
 import type { VXSRouter } from './interfaces/router'
+
 export type Href = VXSRouter.Href
 export type LinkProps<T extends string | object> = VXSRouter.LinkProps<T>
 
@@ -24,6 +25,7 @@ export { ScrollRestoration } from './views/ScrollRestoration'
 export { PageLoadProgressBar } from './views/PageLoadProgressBar'
 
 export { createApp } from './createApp'
+export { createRoute, route } from './createRoute'
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 export { isResponse } from './utils/isResponse'
