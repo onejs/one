@@ -1,10 +1,8 @@
-import { Heart, Repeat, Reply } from '@tamagui/lucide-icons'
+import { Heart, Repeat } from '@tamagui/lucide-icons'
 import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { Link } from 'vxs'
 import { Card } from '../ui/Card'
 import { Image } from '../ui/Image'
-import { expect } from '../helpers/param'
-import { zero } from '../zero/client'
 
 type FeedItem = {
   id: string
@@ -18,7 +16,7 @@ type FeedItem = {
   isReply?: boolean
 }
 
-export const feedCardQuery = expect(zero.query.users, (users) => users.limit(1))
+// export const feedCardQuery = expect(zero.query.posts, (q) => q.related('user', q => q.limit(1)))
 
 export const FeedCard = (props: FeedItem) => {
   const user = props.user[0]
