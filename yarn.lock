@@ -1960,13 +1960,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@badrap/valita@npm:^0.3.0":
-  version: 0.3.9
-  resolution: "@badrap/valita@npm:0.3.9"
-  checksum: d9b7c5b3b079f7b9a65f6494e6ea2bf7eafc1e21f16a364fdb1449d18d08f89f7d16f359ae11135648b3a7b3a234f760c409911dc6e33177e3372632b2f2c385
-  languageName: node
-  linkType: hard
-
 "@biomejs/biome@npm:^1.8.3":
   version: 1.8.3
   resolution: "@biomejs/biome@npm:1.8.3"
@@ -4643,29 +4636,6 @@ __metadata:
     mkdirp: ^1.0.4
     rimraf: ^3.0.2
   checksum: c72113e32c222af94482a60e7cea8d296360abbc503afa64394af65ca106c7a36d975a68fed63e8cf5668ffebc33fa636665ceaf55c75d4cf949fb40302fc409
-  languageName: node
-  linkType: hard
-
-"@rocicorp/lock@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@rocicorp/lock@npm:1.0.4"
-  dependencies:
-    "@rocicorp/resolver": ^1.0.2
-  checksum: d585c44f16a303b60e30325b62faf64188cc1718fbde281a8aa8e7a0a5f71736deba98ab4f100679f9e84ce52258ef63cf66e78eb59f2d5ca6852e8092e89d60
-  languageName: node
-  linkType: hard
-
-"@rocicorp/logger@npm:^5.2.2":
-  version: 5.2.2
-  resolution: "@rocicorp/logger@npm:5.2.2"
-  checksum: 86b628be61dc74eef38dd2cf10734c8a26f3d22248714915f3aa180c01e10393e532548cc6c6e3e0ca2e278974a1e9516a3a95493602518cfc19b6236c056f87
-  languageName: node
-  linkType: hard
-
-"@rocicorp/resolver@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@rocicorp/resolver@npm:1.0.2"
-  checksum: 924e8b069bdc8e92deec5382da1fad9a69ac518e397165c70c014b87669cb70d822fc0c61924753c2579e0724eb5601189e7d9dd25ef819e48fbb507016af9c0
   languageName: node
   linkType: hard
 
@@ -11159,7 +11129,7 @@ __metadata:
     dotenv: ^16.4.5
     drizzle-kit: ^0.24.2
     drizzle-orm: ^0.33.0
-    one: 1.1.220
+    one: "npm:vxs@1.1.221"
     postgres: ^3.4.4
     react: ^18.3.1
     react-native: 0.74.1
@@ -11168,12 +11138,10 @@ __metadata:
     react-native-screens: 3.31.1
     react-native-svg: 15.2.0
     react-native-web: ^0.19.12
-    replicache: "link:replicache"
-    shared: "link:shared"
     tamagui: ^1.110.3
     tsx: ^4.19.0
     vite: 6.0.0-alpha.18
-    vxs: 1.1.221
+    vite-tsconfig-paths: ^5.0.1
   languageName: unknown
   linkType: soft
 
@@ -16045,9 +16013,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"one@1.1.220, one@workspace:packages/vxs":
+"one@npm:vxs@1.1.221, vxs@1.1.221, vxs@workspace:packages/vxs":
   version: 0.0.0-use.local
-  resolution: "one@workspace:packages/vxs"
+  resolution: "vxs@workspace:packages/vxs"
   dependencies:
     "@azure/core-asynciterator-polyfill": ^1.0.2
     "@babel/generator": ^7.25.4
@@ -16063,12 +16031,12 @@ __metadata:
     "@tamagui/build": ^1.110.3
     "@types/node": ^22.1.0
     "@types/react-dom": ^18.2.25
-    "@vxrn/universal-color-scheme": 1.1.220
-    "@vxrn/use-isomorphic-layout-effect": 1.1.220
+    "@vxrn/universal-color-scheme": 1.1.221
+    "@vxrn/use-isomorphic-layout-effect": 1.1.221
     babel-dead-code-elimination: ^1.0.6
     citty: ^0.1.6
     core-js: ^3.38.1
-    create-vxrn: 1.1.220
+    create-vxrn: 1.1.221
     depcheck: ^1.4.7
     dotenv: ^16.4.5
     escape-string-regexp: ^5.0.0
@@ -16092,12 +16060,12 @@ __metadata:
     rollup-plugin-node-externals: ^7.1.2
     url-parse: ^1.5.10
     vite: 6.0.0-alpha.18
-    vxrn: 1.1.220
+    vxrn: 1.1.221
     ws: ^8.18.0
   peerDependencies:
     react-native: "*"
   bin:
-    one: run.mjs
+    vxs: run.mjs
   languageName: unknown
   linkType: soft
 
@@ -17748,19 +17716,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"replicache@portal:/Users/n8/github/mono/packages/replicache::locator=vxrn-monorepo%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "replicache@portal:/Users/n8/github/mono/packages/replicache::locator=vxrn-monorepo%40workspace%3A."
-  dependencies:
-    "@badrap/valita": ^0.3.0
-    "@rocicorp/lock": ^1.0.4
-    "@rocicorp/logger": ^5.2.2
-    "@rocicorp/resolver": ^1.0.2
-  bin:
-    replicache: ./out/cli.cjs
-  languageName: node
-  linkType: soft
-
 "require-directory@npm:^2.1.1":
   version: 2.1.1
   resolution: "require-directory@npm:2.1.1"
@@ -18316,17 +18271,6 @@ __metadata:
   checksum: 39b3dd9630a774aba288a680e7d2901f5c0eae7b8387fc5c8ea559918b29b3da144b7bdb990d7ccd9e11be05508ac9e459ce51d01fd65e583282f6ffafcba2e7
   languageName: node
   linkType: hard
-
-"shared@portal:/Users/n8/github/mono/packages/shared::locator=vxrn-monorepo%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "shared@portal:/Users/n8/github/mono/packages/shared::locator=vxrn-monorepo%40workspace%3A."
-  dependencies:
-    "@badrap/valita": ^0.3.0
-    "@rocicorp/logger": ^5.2.2
-    "@rocicorp/resolver": ^1.0.2
-    semver: ^7.5.4
-  languageName: node
-  linkType: soft
 
 "shebang-command@npm:^1.2.0":
   version: 1.2.0
@@ -20526,61 +20470,6 @@ __metadata:
     vxrn: run.mjs
   languageName: unknown
   linkType: soft
-
-"vxs@1.1.221, vxs@workspace:packages/vxs":
-  version: 0.0.0-use.local
-  resolution: "vxs@workspace:packages/vxs"
-  dependencies:
-    "@azure/core-asynciterator-polyfill": ^1.0.2
-    "@babel/generator": ^7.25.4
-    "@babel/parser": ^7.25.4
-    "@babel/traverse": ^7.25.4
-    "@radix-ui/react-slot": ^1.0.2
-    "@react-navigation/bottom-tabs": ~6.5.8
-    "@react-navigation/core": 6.4.17
-    "@react-navigation/drawer": ~6.6.3
-    "@react-navigation/native": ~6.1.7
-    "@react-navigation/native-stack": ~6.9.13
-    "@react-navigation/routers": ~6.1.9
-    "@tamagui/build": ^1.110.3
-    "@types/node": ^22.1.0
-    "@types/react-dom": ^18.2.25
-    "@vxrn/universal-color-scheme": 1.1.221
-    "@vxrn/use-isomorphic-layout-effect": 1.1.221
-    babel-dead-code-elimination: ^1.0.6
-    citty: ^0.1.6
-    core-js: ^3.38.1
-    create-vxrn: 1.1.221
-    depcheck: ^1.4.7
-    dotenv: ^16.4.5
-    escape-string-regexp: ^5.0.0
-    expo-linking: ~6.3.1
-    fast-deep-equal: ^3.1.3
-    fast-glob: ^3.2.11
-    fs-extra: ^11.2.0
-    hono: ^4.5.8
-    import-meta-resolve: ^4.1.0
-    lightningcss: ^1.26.0
-    micromatch: ^4.0.7
-    nanoid: ^3.3.7
-    perfect-debounce: ^1.0.0
-    react: ^18.2.0 || ^19.0.0
-    react-dom: ^18.3.1
-    react-native-gesture-handler: ^2.18.1
-    react-native-safe-area-context: ^4.10.1
-    react-native-screens: 3.31.1
-    rollup-plugin-node-externals: ^7.1.2
-    url-parse: ^1.5.10
-    vite: 6.0.0-alpha.18
-    vxrn: 1.1.221
-    ws: ^8.18.0
-  peerDependencies:
-    react-native: "*"
-  bin:
-    vxs: run.mjs
-  checksum: 649b4ef8c14346f32b2feac084ad19c039b50057994de021c880951087e1b3a83a3dfc9e6b8fc5ebfd0e3b2eb9528d5ccc5aa85700a45e660f7b4dfaa8679047
-  languageName: node
-  linkType: hard
 
 "w-json@npm:1.3.10, w-json@npm:^1.3.10":
   version: 1.3.10
