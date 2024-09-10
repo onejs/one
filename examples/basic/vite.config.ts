@@ -5,11 +5,7 @@ import { one } from 'one/vite'
 export default {
   plugins: [
     tsconfigPaths({
-      projects: [
-        'tsconfig.json',
-        '/Users/n8/github/mono/tsconfig.json',
-        '/Users/n8/github/mono/packages/replicache/tsconfig.json',
-      ],
+      projects: ['tsconfig.json'],
     }),
 
     one({
