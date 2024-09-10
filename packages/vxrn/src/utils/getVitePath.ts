@@ -22,7 +22,7 @@ export async function getVitePath(
   if (moduleName === 'react/jsx-dev-runtime') {
     return 'react/jsx-dev-runtime'
   }
-  if (moduleName.includes('one/dist/esm/index') || moduleName.endsWith('one/index.js')) {
+  if (moduleName.includes('one/dist/esm/index')) {
     return 'one'
   }
 
@@ -38,6 +38,11 @@ export async function getVitePath(
 
   const sourceFile = join(process.cwd(), 'index.js')
   const resolved = await resolver(moduleName, sourceFile)
+
+  // TODO
+  if (resolved.endsWith('one/index.js')) {
+    return 'one'
+  }
 
   // figure out symlinks
   if (!resolved) {
