@@ -16,7 +16,7 @@ export function useZero<Q extends QueryDefs>(): Zero<Q> {
 const server = typeof window === 'undefined' ? 'http://localhost:0000' : `http://localhost:3000`
 
 const zero1 = new Zero({
-  logLevel: 'info',
+  logLevel: 'error',
   server,
   userID: 'anon',
   schemas: schema,

@@ -18,6 +18,11 @@ import type { VXS } from './vite/types'
 import { ScrollRestoration } from './views/ScrollRestoration'
 // import { SplashScreen } from './views/Splash'
 
+if (typeof window !== 'undefined') {
+  // @ts-ignore TODO: hard coded for demo app
+  window.__getReactRefreshIgnoredExports = () => ['feedCardQuery', 'feedCardReplyQuery', 'loader']
+}
+
 type RootProps = RenderAppProps &
   Omit<InnerProps, 'context'> & {
     mode?: VXS.RouteMode

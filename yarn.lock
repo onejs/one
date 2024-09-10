@@ -16060,6 +16060,7 @@ __metadata:
     rollup-plugin-node-externals: ^7.1.2
     url-parse: ^1.5.10
     vite: 6.0.0-alpha.18
+    vite-tsconfig-paths: ^5.0.1
     vxrn: 1.1.221-1725934521837-1725934641155-1725934748299
     ws: ^8.18.0
   peerDependencies:

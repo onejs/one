@@ -1,6 +1,7 @@
 import { dirname, resolve } from 'node:path'
 import { type InlineConfig, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import { getOptimizeDeps, isWebEnvironment } from 'vxrn'
+import tsconfigPaths from 'vite-tsconfig-paths'
 import { existsAsync } from '../utils/existsAsync'
 import { requireResolve } from '../utils/requireResolve'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
@@ -58,6 +59,10 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
 
   return [
+    ...(process.env.VXS_ADDITIONAL_TSCONFIG_PATHS
+      ? [tsconfigPaths({ projects: process.env.VXS_ADDITIONAL_TSCONFIG_PATHS.split(',') })]
+      : []),
+
     {
       name: 'one-zero',
       config() {
