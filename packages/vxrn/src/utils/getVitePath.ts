@@ -22,7 +22,7 @@ export async function getVitePath(
   if (moduleName === 'react/jsx-dev-runtime') {
     return 'react/jsx-dev-runtime'
   }
-  if (moduleName.includes('one/dist/esm/index')) {
+  if (moduleName.includes('one/dist/esm/index') || moduleName.endsWith('one/index.js')) {
     return 'one'
   }
 
