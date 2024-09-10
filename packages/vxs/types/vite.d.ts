@@ -6,5 +6,5 @@ export { makePluginWebOnly } from './vite/makePluginWebOnly';
 export { setCurrentRequestHeaders } from './vite/headers';
 export { build } from './vite/build';
 export { serve } from './vite/serve';
-export { vxs } from './vite/vxs';
+export { vxs, vxs as one } from './vite/vxs';
 //# sourceMappingURL=vite.d.ts.map
