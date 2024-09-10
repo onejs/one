@@ -1,3 +1,4 @@
+import { type Href, Link, Slot, usePathname } from 'one'
 import type { ReactNode } from 'react'
 import {
   createStyledContext,
@@ -10,7 +11,6 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { type Href, Link, Slot, usePathname } from 'one'
 import { Logo } from '../brand/Logo'
 import { useToggleTheme } from '../theme/ToggleThemeButton'
 import { HomeIcons } from './HomeIcons'
@@ -29,7 +29,7 @@ export function HomeLayout() {
 
 function HomeLayoutTouch() {
   return (
-    <YStack ov="hidden" mah="100vh" f={1}>
+    <YStack ov="hidden" mah="100%" f={1}>
       <XStack ai="center" jc="space-between" py="$1" px="$4" bbc="$borderColor" bbw={1}>
         <Logo />
         <ToggleThemeLink f={0} />
@@ -41,7 +41,22 @@ function HomeLayoutTouch() {
         </ScrollView>
       </YStack>
 
-      <XStack ai="center" jc="space-around" btw={1} btc="$borderColor" py="$1" gap="$1">
+      <XStack
+        bg="$color1"
+        $platform-web={{
+          position: 'fixed',
+        }}
+        zi={100}
+        b={0}
+        l={0}
+        r={0}
+        ai="center"
+        jc="space-around"
+        btw={1}
+        btc="$borderColor"
+        py="$1"
+        gap="$1"
+      >
         <NavLinks />
       </XStack>
     </YStack>
