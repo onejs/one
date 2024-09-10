@@ -1,5 +1,5 @@
 import { Paragraph, Text, XStack, YStack } from 'tamagui'
-import { Link } from 'vxs'
+import { Link } from 'one'
 import { Image } from '../ui/Image'
 import { Card } from '../ui/Card'
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button, ScrollView, SizableText, TextArea, XStack, YStack } from 'tamagui'
-import { route } from 'vxs'
+import { route } from 'one'
 import { FeedCard } from '~/features/feed/FeedCard'
 import type { ExpectedResult } from '~/features/helpers/param'
 import { uuid } from '~/features/helpers/uuid'

@@ -5,7 +5,7 @@ import './_layout.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { isWeb, TamaguiProvider } from 'tamagui'
-import { PageLoadProgressBar } from 'vxs'
+import { PageLoadProgressBar } from 'one'
 import { HomeLayout } from '~/features/home/HomeLayout'
 import { ZeroProvider } from '~/features/zero/client'
 import config from '../config/tamagui.config'

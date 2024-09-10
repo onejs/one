@@ -1,4 +1,4 @@
-import { onClientLoaderResolve } from 'vxs'
+import { onClientLoaderResolve } from 'one'
 
 onClientLoaderResolve(({ loaderData, loaderServerData }) => {
   // TODO

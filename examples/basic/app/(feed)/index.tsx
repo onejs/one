@@ -1,6 +1,6 @@
 import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
-import { Stack } from 'vxs'
+import { Stack } from 'one'
 import { FeedCard, feedCardQuery } from '~/features/feed/FeedCard'
 import { PageContainer } from '~/features/ui/PageContainer'
 import { zero } from '~/features/zero/client'

@@ -1,6 +1,6 @@
 import { desc, eq, sql } from 'drizzle-orm'
 import { isWeb } from 'tamagui'
-import { SafeAreaView, useLoader, type LoaderProps } from 'vxs'
+import { SafeAreaView, useLoader, type LoaderProps } from 'one'
 import { db } from '~/db/connection'
 import { follows, likes, posts, reposts, users } from '~/db/schema'
 import { getURL } from '~/features/helpers/getURL'

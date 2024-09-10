@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vxs dev",
-    "dev:clean": "vxs dev --clean",
-    "clean": "vxs clean",
-    "build:prod": "vxs build",
-    "serve": "vxs serve",
+    "dev": "one dev",
+    "dev:clean": "one dev --clean",
+    "clean": "one clean",
+    "build:prod": "one build",
+    "serve": "one serve",
     "db:start": "docker-compose up",
     "db:init": "yarn orm:generate && yarn orm:push && yarn orm:seed",
     "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
@@ -28,6 +28,7 @@
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
+    "one": "1.1.220",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.1",
@@ -38,8 +39,7 @@
     "react-native-web": "^0.19.12",
     "replicache": "link:replicache",
     "shared": "link:shared",
-    "tamagui": "^1.110.3",
-    "vxs": "1.1.220"
+    "tamagui": "^1.110.3"
   },
   "devDependencies": {
     "@faker-js/faker": "next",

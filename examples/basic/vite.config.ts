@@ -1,6 +1,6 @@
 import type { UserConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { vxs } from 'vxs/vite'
+import { one } from 'one/vite'
 
 export default {
   plugins: [
@@ -12,7 +12,7 @@ export default {
       ],
     }),
 
-    vxs({
+    one({
       app: {
         key: 'One',
       },
