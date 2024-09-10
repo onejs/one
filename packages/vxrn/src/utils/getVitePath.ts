@@ -40,6 +40,10 @@ export async function getVitePath(
   const resolved = await resolver(moduleName, sourceFile)
 
   // TODO
+  if (moduleName === 'one') {
+    // TODO hardcoded
+    return 'one'
+  }
   if (!resolved) {
     return 'one'
   }
