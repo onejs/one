@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { Schema } from 'zql/src/zql/query/schema.js'
 import type { Query, QueryResultRow, Smash } from 'zql/src/zql/query/query'
 import type { TypedView } from 'zql/src/zql/query/typed-view'
@@ -6,7 +6,7 @@ import { deepClone } from 'shared/src/deep-clone'
 import { curId } from './client'
 import { isWeb } from 'tamagui'
 
-export function useQuery<TSchema extends Schema, TReturn extends Array<QueryResultRow>>(
+export function useQueryOrig<TSchema extends Schema, TReturn extends Array<QueryResultRow>>(
   q: Query<TSchema, TReturn> | undefined,
   dependencies: readonly unknown[] = [],
   enabled = true
@@ -48,6 +48,47 @@ export function useQuery<TSchema extends Schema, TReturn extends Array<QueryResu
   }
 
   return snapshot || []
+}
+
+// A wrapper of the original useQuery to avoid flickering
+export function useQuery<TSchema extends Schema, TReturn extends Array<QueryResultRow>>(
+  q: Query<TSchema, TReturn> | undefined,
+  dependencies: readonly unknown[] = [],
+  enabled = true
+): Smash<TReturn> {
+  const result = useQueryOrig(q, dependencies, enabled)
+
+  // Do not need to avoid flickering on the server, not sure what will happen if we do this on server (TODO)
+  if (typeof window === 'undefined') return result
+
+  const [debouncedResult, setDebouncedResult] = useState(result)
+  const resultRef = useRef(debouncedResult)
+
+  const shouldUpdateImmediately = (() => {
+    // Update anyway if the previous result is nullish
+    if (!resultRef.current) return true
+
+    // If the result is an array, we need to make sure the new result has at least more items than the previous one to avoid flickering due to less items are
+    if (Array.isArray(resultRef.current)) {
+      if ((result?.length || 0) >= (resultRef.current?.length || 0)) return true
+    } else {
+      // Else, we just need to check if the new result is not nullish
+      return !!result
+    }
+  })()
+  if (shouldUpdateImmediately) {
+    resultRef.current = result
+  }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      resultRef.current = result
+      setDebouncedResult(result) // to trigger re-render
+    }, 500)
+    return () => clearTimeout(timeout)
+  }, [result])
+
+  return resultRef.current
 }
 
 let rootUID
