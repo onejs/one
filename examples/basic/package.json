@@ -37,8 +37,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.110.3",
-    "vxs": "1.1.221"
+    "tamagui": "^1.110.3"
   },
   "devDependencies": {
     "@faker-js/faker": "next",
