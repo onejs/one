@@ -1,6 +1,6 @@
 {
   "name": "example-basic",
-  "version": "1.1.221-1725934142477-1725934298079",
+  "version": "1.1.221-1725934521837",
   "private": true,
   "type": "module",
   "scripts": {
@@ -23,12 +23,12 @@
     "@tamagui/image-next": "^1.110.3",
     "@tamagui/lucide-icons": "^1.110.3",
     "@tamagui/vite-plugin": "^1.110.3",
-    "@vxrn/color-scheme": "1.1.221-1725934142477-1725934298079",
+    "@vxrn/color-scheme": "1.1.221-1725934521837",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
-    "one": "npm:vxs@1.1.221-1725934142477-1725934298079",
+    "one": "npm:vxs@1.1.221-1725934521837",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.1",
