@@ -40,7 +40,7 @@ export async function getVitePath(
   const resolved = await resolver(moduleName, sourceFile)
 
   // TODO
-  if (resolved.endsWith('one/index.js')) {
+  if (!resolved) {
     return 'one'
   }
 
