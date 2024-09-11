@@ -48,6 +48,7 @@
     "@manypkg/cli": "^0.19.1",
     "@types/react": "^18.2.24",
     "@types/react-native": "~0.70.6",
+    "@vitest/ui": "^2.0.5",
     "check-dependency-version-consistency": "^3.0.3",
     "esbuild-register": "^3.6.0",
     "npm-run-all": "^4.1.5",

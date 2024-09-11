@@ -7488,6 +7488,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vitest/ui@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "@vitest/ui@npm:2.0.5"
+  dependencies:
+    "@vitest/utils": "npm:2.0.5"
+    fast-glob: "npm:^3.3.2"
+    fflate: "npm:^0.8.2"
+    flatted: "npm:^3.3.1"
+    pathe: "npm:^1.1.2"
+    sirv: "npm:^2.0.4"
+    tinyrainbow: "npm:^1.2.0"
+  peerDependencies:
+    vitest: 2.0.5
+  checksum: 10/ef07017386d48a1da6871c6f164584a2786172243bdf61dda91b2773fc275743739fc1dd9098e56ec384e599f8e3059a5314cdcfb186380b73dfed11cff252d2
+  languageName: node
+  linkType: hard
+
 "@vitest/utils@npm:2.0.5":
   version: 2.0.5
   resolution: "@vitest/utils@npm:2.0.5"
@@ -11479,6 +11496,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fflate@npm:^0.8.2":
+  version: 0.8.2
+  resolution: "fflate@npm:0.8.2"
+  checksum: 10/2bd26ba6d235d428de793c6a0cd1aaa96a06269ebd4e21b46c8fd1bd136abc631acf27e188d47c3936db090bf3e1ede11d15ce9eae9bffdc4bfe1b9dc66ca9cb
+  languageName: node
+  linkType: hard
+
 "file-uri-to-path@npm:1.0.0":
   version: 1.0.0
   resolution: "file-uri-to-path@npm:1.0.0"
@@ -11622,6 +11646,13 @@ __metadata:
     micromatch: "npm:^4.0.4"
     resolve-dir: "npm:^1.0.1"
   checksum: 10/576716c77a0e8330b17ae9cba27d1fda8907c8cda7bf33a47f1999e16e089bfc6df4dd62933e0760f430736183c054348c34aa45dd882d49c8c098f55b89ee1d
+  languageName: node
+  linkType: hard
+
+"flatted@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "flatted@npm:3.3.1"
+  checksum: 10/7b8376061d5be6e0d3658bbab8bde587647f68797cf6bfeae9dea0e5137d9f27547ab92aaff3512dd9d1299086a6d61be98e9d48a56d17531b634f77faadbc49
   languageName: node
   linkType: hard
 
@@ -20553,6 +20584,7 @@ __metadata:
     "@manypkg/cli": "npm:^0.19.1"
     "@types/react": "npm:^18.2.24"
     "@types/react-native": "npm:~0.70.6"
+    "@vitest/ui": "npm:^2.0.5"
     check-dependency-version-consistency: "npm:^3.0.3"
     esbuild-register: "npm:^3.6.0"
     npm-run-all: "npm:^4.1.5"
@@ -20628,6 +20660,7 @@ __metadata:
     "@tamagui/build": "npm:^1.110.3"
     "@types/node": "npm:^22.1.0"
     "@types/react-dom": "npm:^18.2.25"
+    "@vitest/ui": "npm:^2.0.5"
     "@vxrn/universal-color-scheme": "npm:1.1.221"
     "@vxrn/use-isomorphic-layout-effect": "npm:1.1.221"
     babel-dead-code-elimination: "npm:^1.0.6"

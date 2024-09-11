@@ -7,12 +7,7 @@
   "main": "dist/cjs",
   "module": "dist/esm",
   "bin": "run.mjs",
-  "files": [
-    "src",
-    "types",
-    "dist",
-    "vendor"
-  ],
+  "files": ["src", "types", "dist", "vendor"],
   "scripts": {
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
@@ -20,7 +15,7 @@
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "test": "vitest"
+    "test": "tamagui-build && vitest --ui"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -108,6 +103,7 @@
     "@tamagui/build": "^1.110.3",
     "@types/node": "^22.1.0",
     "@types/react-dom": "^18.2.25",
+    "@vitest/ui": "^2.0.5",
     "depcheck": "^1.4.7",
     "react-native": "0.74.1",
     "rollup": "^4.21.0",

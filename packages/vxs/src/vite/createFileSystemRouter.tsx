@@ -154,7 +154,6 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
               const loaderServerHandler = options.loaders?.serverResolver
               if (loaderServerHandler) {
                 loaderServerData = (await loaderServerHandler(loaderData)) ?? null
-                console.log('loaderServerData', loaderServerData)
               }
 
               LoaderDataCache[route.file] = loaderData
@@ -446,7 +445,9 @@ const convertIncomingMessageToRequest = async (req: Connect.IncomingMessage): Pr
 
   return new Request(url, {
     method: req.method,
-    body: req.method === 'POST' ? await readStream(req) : null,
+    body: ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method || '')
+      ? await readStream(req)
+      : null,
     headers,
   })
 }
