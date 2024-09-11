@@ -57,6 +57,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   await ensureDir(cacheDir)
 
   const serverConfig = await getViteServerConfig(options)
+
   const viteServer = await createServer(serverConfig)
 
   // this fakes vite into thinking its loading files, so it hmrs in native mode despite not us never requesting the url
@@ -222,7 +223,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
 
       websocket: {
         open(peer) {
-          console.debug('[hmr] open', peer)
+          if (process.env.DEBUG) console.debug('[hmr] open', peer)
           addConnectedNativeClient()
         },
 
@@ -234,7 +235,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
         },
 
         close(peer, event) {
-          console.info('[hmr] close', peer, event)
+          if (process.env.DEBUG) console.info('[hmr] close', peer, event)
           removeConnectedNativeClient()
         },
 
@@ -288,7 +289,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
               }
 
               console.info(
-                ` ① · ${message.level === 'info' ? '' : ` [${message.level}]`}`,
+                ` ①  ${message.level === 'info' ? '' : ` [${message.level}]`}`,
                 ...message.data
               )
               return

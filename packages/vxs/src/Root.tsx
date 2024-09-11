@@ -10,7 +10,7 @@ import {
   type NavigationContainerProps,
 } from '@react-navigation/native'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
-import { PreloadLinks } from './PreloadLinks'
+import { PreloadLinks } from './views/PreloadLinks'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
@@ -73,6 +73,13 @@ export function Root(props: RootProps) {
     return contents
   }
 
+  let { loaderData } = props
+  // If loaderData is a zql QueryImpl we don't want to send it to the client,
+  // as it will be stringified into an empty object `{}` and mess up the client-side cache.
+  if (loaderData?.constructor?.name === 'QueryImpl') {
+    loaderData = undefined
+  }
+
   return (
     <html lang="en-US">
       <head>
@@ -96,7 +103,8 @@ export function Root(props: RootProps) {
         href="vxs-loader-data"
         dangerouslySetInnerHTML={{
           __html: `
-            globalThis['__vxrnLoaderData__'] = ${JSON.stringify(props.loaderData)};
+            globalThis['__vxrnLoaderServerData__'] = ${JSON.stringify(props.loaderServerData)};
+            globalThis['__vxrnLoaderData__'] = ${JSON.stringify(loaderData)};
             globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(props.loaderProps)};
             globalThis['__vxrnHydrateMode__'] = ${JSON.stringify(props.mode)};
         `,
@@ -184,13 +192,13 @@ function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: 
 //   Platform.OS === 'ios' &&
 //   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
 
-const INITIAL_METRICS =
-  process.env.TAMAGUI_TARGET === 'web'
-    ? {
-        frame: { x: 0, y: 0, width: 0, height: 0 },
-        insets: { top: 0, left: 0, right: 0, bottom: 0 },
-      }
-    : undefined
+// const INITIAL_METRICS =
+//   process.env.TAMAGUI_TARGET === 'web'
+//     ? {
+//         frame: { x: 0, y: 0, width: 0, height: 0 },
+//         insets: { top: 0, left: 0, right: 0, bottom: 0 },
+//       }
+//     : undefined
 
 function ContextNavigator({
   wrapper: ParentWrapper = Fragment,

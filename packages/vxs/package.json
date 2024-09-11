@@ -1,6 +1,6 @@
 {
   "name": "vxs",
-  "version": "1.1.212",
+  "version": "1.1.221",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -56,6 +56,7 @@
     }
   },
   "dependencies": {
+    "@azure/core-asynciterator-polyfill": "^1.0.2",
     "@babel/generator": "^7.25.4",
     "@babel/parser": "^7.25.4",
     "@babel/traverse": "^7.25.4",
@@ -66,11 +67,12 @@
     "@react-navigation/native": "~6.1.7",
     "@react-navigation/native-stack": "~6.9.13",
     "@react-navigation/routers": "~6.1.9",
-    "@vxrn/universal-color-scheme": "1.1.212",
-    "@vxrn/use-isomorphic-layout-effect": "1.1.212",
+    "@vxrn/universal-color-scheme": "1.1.221",
+    "@vxrn/use-isomorphic-layout-effect": "1.1.221",
     "babel-dead-code-elimination": "^1.0.6",
     "citty": "^0.1.6",
-    "create-vxrn": "1.1.211",
+    "core-js": "^3.38.1",
+    "create-vxrn": "1.1.221",
     "dotenv": "^16.4.5",
     "escape-string-regexp": "^5.0.0",
     "expo-linking": "~6.3.1",
@@ -91,13 +93,14 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.18",
-    "vxrn": "1.1.212"
+    "vxrn": "1.1.221",
+    "ws": "^8.18.0"
   },
   "peerDependencies": {
     "react-native": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.110.2",
+    "@tamagui/build": "^1.110.3",
     "@types/node": "^22.1.0",
     "@types/react-dom": "^18.2.25",
     "depcheck": "^1.4.7",

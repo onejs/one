@@ -4,13 +4,22 @@ import type { TextProps, GestureResponderEvent } from 'react-native';
 export declare namespace VXSRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
     }
+    export type Route<Path> = {
+        Params: InputRouteParams<Path>;
+        Props: {
+            params: InputRouteParams<Path>;
+        };
+        Loader: (props: {
+            params: InputRouteParams<Path>;
+        }) => any;
+    };
     type StaticRoutes = __routes extends {
         StaticRoutes: string;
     } ? __routes['StaticRoutes'] : string;
     type DynamicRoutes<T extends string> = __routes<T> extends {
         DynamicRoutes: any;
     } ? T extends __routes<infer _>['DynamicRoutes'] ? T : never : string;
-    type DynamicRouteTemplate = __routes extends {
+    export type DynamicRouteTemplate = __routes extends {
         DynamicRouteTemplate: string;
     } ? __routes['DynamicRouteTemplate'] : string;
     export type NavigationRef = NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>;
@@ -75,8 +84,8 @@ export declare namespace VXSRouter {
      * /no-params      -> {}
      */
     export type InputRouteParams<Path> = {
-        [Key in ParameterNames<Path> as Key extends `...${infer Name}` ? Name : Key]: Key extends `...${string}` ? (string | number)[] : string | number;
-    } & UnknownInputParams;
+        [Key in ParameterNames<Path> as Key extends `...${infer Name}` ? Name : Key]: Key extends `...${string}` ? string[] : string;
+    };
     type OutputRouteParams<Path> = {
         [Key in ParameterNames<Path> as Key extends `...${infer Name}` ? Name : Key]: Key extends `...${string}` ? string[] : string;
     } & UnknownOutputParams;
@@ -276,5 +285,8 @@ export declare namespace VXSRouter {
      */
     export function useSegments<T extends AbsoluteRoute | RouteSegments<AbsoluteRoute> | RelativePathString>(): T extends AbsoluteRoute ? RouteSegments<T> : T extends string ? string[] : T;
     export {};
+}
+export declare namespace One {
+    type Route<Path> = VXSRouter.Route<Path>;
 }
 //# sourceMappingURL=router.d.ts.map

@@ -4,7 +4,7 @@ import { router } from './imperative-api'
 import type { VXSRouter } from './interfaces/router'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 
-type SearchParams = Record<string, string | string[]>
+type SearchParams = VXSRouter.SearchParams
 
 export function useRootNavigationState() {
   return useStoreRootState()
@@ -97,7 +97,7 @@ export function usePathname(): string {
  *
  * @see `useParams`
  */
-export function useActiveParams<TParams extends SearchParams = SearchParams>(): Partial<TParams> {
+export function useActiveParams<TParams extends Object = SearchParams>(): Partial<TParams> {
   return useStoreRouteInfo().params as Partial<TParams>
 }
 
@@ -113,9 +113,12 @@ export const useGlobalSearchParams = useActiveParams
  *
  * To observe updates even when the invoking route is not focused, use `useActiveParams()`.
  */
-export function useParams<TParams extends SearchParams = SearchParams>(): Partial<TParams> {
+
+// TODO @nate: i removed Partial<TParams> for better types for demo
+export function useParams<TParams extends Object = SearchParams>(): TParams {
   const context = React.useContext(NavigationRouteContext)
   const params = context?.params ?? {}
+
   return Object.fromEntries(
     Object.entries(params).map(([key, value]) => {
       if (Array.isArray(value)) {
@@ -136,5 +139,5 @@ export function useParams<TParams extends SearchParams = SearchParams>(): Partia
         return [key, value]
       }
     })
-  ) as Partial<TParams>
+  ) as TParams
 }

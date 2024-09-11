@@ -124,7 +124,9 @@ ${new Error().stack
         const found =
           __getRequire('packages/vxs/dist/esm/index.js', _mod) ||
           // this is only for developing links module in ~/vxrn, can remove later
-          __getRequire('vxrn/packages/vxs/dist/esm/index.js', _mod)
+          __getRequire('vxrn/packages/vxs/dist/esm/index.js', _mod) ||
+          __getRequire('vxs/dist/esm/index.js')
+
         if (found) return found
       }
 
@@ -256,3 +258,7 @@ console.dirxml = () => {}
 console.profile = () => {}
 console.profileEnd = () => {}
 console.table = () => {}
+
+// ensure this exists
+global.$RefreshReg$ = () => {}
+global.$RefreshSig$ = () => (type) => type

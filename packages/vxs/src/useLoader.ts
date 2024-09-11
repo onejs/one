@@ -17,13 +17,6 @@ export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
-  // console.log('run loader', {
-  //   props: globalThis['__vxrnLoaderProps__'],
-  //   preloaded: globalThis['__vxrnLoaderData__'],
-  //   function: `${loader}`,
-  //   dotpath: globalThis['__vxrntodopath'],
-  // })
-
   // server side we just run the loader directly
   if (typeof window === 'undefined') {
     return useAsyncFn(
@@ -90,12 +83,29 @@ export function useLoader<
         try {
           const response = await (async () => {
             if (isNative) {
-              // On native, we need to fetch the loader code and eval it
-              const loaderJsCode = await fetch(
-                `${loaderJSUrl}&platform=ios` /* TODO: platform */
-              ).then((res) => res.text())
-              // biome-ignore lint/security/noGlobalEval: we can't use dynamic `import` on native so we need to fetch and `eval` the code
-              return eval(`() => { var exports = {}; ${loaderJsCode}; return exports; }`)()
+              const nativeLoaderJSUrl = `${loaderJSUrl}&platform=ios` /* TODO: platform */
+
+              try {
+                // On native, we need to fetch the loader code and eval it
+                const loaderJsCodeResp = await fetch(nativeLoaderJSUrl)
+                if (!loaderJsCodeResp.ok) {
+                  throw new Error(`Response not ok: ${loaderJsCodeResp.status}`)
+                }
+                const loaderJsCode = await loaderJsCodeResp.text()
+                // biome-ignore lint/security/noGlobalEval: we can't use dynamic `import` on native so we need to fetch and `eval` the code
+                const result = eval(
+                  `() => { var exports = {}; ${loaderJsCode}; return exports; }`
+                )()
+
+                if (typeof result.loader !== 'function') {
+                  throw new Error("Loader code isn't exporting a `loader` function")
+                }
+
+                return result
+              } catch (e) {
+                console.error(`Error fetching loader from URL: ${nativeLoaderJSUrl}, ${e}`)
+                return { loader: () => ({}) }
+              }
             }
 
             // On web, we can use import to dynamically load the loader
