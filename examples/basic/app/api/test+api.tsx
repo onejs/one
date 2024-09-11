@@ -1,5 +1,3 @@
-import { de } from '@faker-js/faker'
-
 // Helper function to get query parameter
 const getQueryParam = (url: URL, param: string) => url.searchParams.get(param)
 
