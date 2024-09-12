@@ -20,8 +20,6 @@ export function createHandleRequest(
     handleAPI?: (props: RequestHandlerProps) => Promise<any>
   }
 ) {
-  const { shouldIgnore, disableSSR } = options
-
   if (import.meta.env) {
     throw new Error(`No import.meta.env - Node 22 or greater required.`)
   }
@@ -57,10 +55,6 @@ export function createHandleRequest(
   const routesWithRegex = [...ssgRoutes, ...spaRoutes]
 
   return async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
-    if (shouldIgnore?.(request)) {
-      return null
-    }
-
     const urlString = request.url || ''
     const url = new URL(
       urlString || '',
