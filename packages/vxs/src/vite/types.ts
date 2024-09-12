@@ -28,16 +28,36 @@ export namespace VXS {
       key?: string
     }
 
+    web?: {
+      /**
+       * Choose the default strategy for pages to be rendered on the web.
+       *
+       * For sites that are mostly static, choose "ssg":
+       *   SSG stands for "server side generated", in this mode when you run `build`
+       *   your pages will all be fully rendered on the server once during the build,
+       *   outputting a static HTML page with the rendered page and loader data inlined.
+       *   This gives better performance for initial render, and better SEO.
+       *
+       *
+       * For apps that are mostly dynamic, choose "spa":
+       *   SPA stands for "single page app", in this mode when you run `build` your
+       *   pages will only render out an empty shell of HTML and will not attempt to
+       *   server render at all. Loaders will be run on the server side and the data will
+       *   be available to your app on initial render.
+       *
+       * @default 'ssg'
+       */
+      defaultRenderMode: 'ssg' | 'spa'
+
+      redirects?: Redirects
+    }
+
     deps?: FixDependencies
 
     loaders?: {
       serverResolver?: (loaded: any) => any
     }
 
-    redirects?: Redirects
-
-    shouldIgnore?: (req: Request) => boolean
-    disableSSR?: boolean
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>
 
     afterServerStart?:

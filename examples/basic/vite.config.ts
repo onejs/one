@@ -10,6 +10,10 @@ export default {
 
   plugins: [
     vxs({
+      web: {
+        defaultRenderMode: 'ssg',
+      },
+
       app: {
         key: 'One',
       },
