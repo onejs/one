@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Dimensions, StyleSheet, type ViewProps } from 'react-native'
+import { Dimensions } from 'react-native'
 import { NativeSafeAreaProvider } from './NativeSafeAreaProvider'
 import type { EdgeInsets, InsetChangedEvent, Metrics, Rect } from './SafeArea-types'
 
@@ -123,10 +123,11 @@ export type WithSafeAreaInsetsProps = {
 export function withSafeAreaInsets<T>(
   WrappedComponent: React.ComponentType<T & WithSafeAreaInsetsProps>
 ): React.ForwardRefExoticComponent<React.PropsWithoutRef<T> & React.RefAttributes<unknown>> {
-  return React.forwardRef((props: T, ref: React.Ref<unknown>) => {
+  return React.forwardRef((props, ref) => {
     const insets = useSafeAreaInsets()
+    // @ts-expect-error
     return <WrappedComponent {...props} insets={insets} ref={ref} />
-  })
+  }) as any
 }
 
 /**
