@@ -7,7 +7,12 @@
   "main": "dist/cjs",
   "module": "dist/esm",
   "bin": "run.mjs",
-  "files": ["src", "types", "dist", "vendor"],
+  "files": [
+    "src",
+    "types",
+    "dist",
+    "vendor"
+  ],
   "scripts": {
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
