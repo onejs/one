@@ -31,10 +31,11 @@ export function createHandleRequest(
     throw new Error(`No routes manifest`)
   }
 
-  const apiRoutesMap: Record<string, RouteInfo> = manifest.apiRoutes.reduce((acc, cur) => {
-    acc[cur.page] = { ...cur, compiledRegex: new RegExp(cur.namedRegex) }
-    return acc
-  }, {})
+  const apiRoutesMap: Record<string, RouteInfo & { compiledRegex: RegExp }> =
+    manifest.apiRoutes.reduce((acc, cur) => {
+      acc[cur.page] = { ...cur, compiledRegex: new RegExp(cur.namedRegex) }
+      return acc
+    }, {})
 
   // its really common for people to hit refresh a couple times even on accident
   // sending two ssr requests at once and causing slowdown.
@@ -76,7 +77,7 @@ export function createHandleRequest(
 
     if (handlers.handleAPI) {
       const apiRoute = Object.values(apiRoutesMap).find((route) => {
-        const regex = new RegExp(route.namedRegex)
+        const regex = route.compiledRegex
         return regex.test(pathname)
       })
       if (apiRoute) {

@@ -20,7 +20,7 @@ describe('Route Params Tests', () => {
         const match = yarnDevOutput.match(/Server running on (http:\/\/[^\s]+)/)
         if (match) {
           serverUrl = match[1]
-          console.log(`Server is running on ${serverUrl}`)
+          console.info(`Server is running on ${serverUrl}`)
         }
       }
     })
