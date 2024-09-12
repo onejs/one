@@ -31,8 +31,8 @@ export function createHandleRequest(
     throw new Error(`No routes manifest`)
   }
 
-  const apiRoutesMap = manifest.apiRoutes.reduce((acc, cur) => {
-    acc[cur.page] = cur
+  const apiRoutesMap: Record<string, RouteInfo> = manifest.apiRoutes.reduce((acc, cur) => {
+    acc[cur.page] = { ...cur, compiledRegex: new RegExp(cur.namedRegex) }
     return acc
   }, {})
 
@@ -75,9 +75,21 @@ export function createHandleRequest(
     }
 
     if (handlers.handleAPI) {
-      const apiRoute = apiRoutesMap[pathname]
+      const apiRoute = Object.values(apiRoutesMap).find((route) => {
+        const regex = new RegExp(route.namedRegex)
+        return regex.test(pathname)
+      })
       if (apiRoute) {
-        return await handlers.handleAPI({ request, route: apiRoute, url })
+        const params = getRouteParams(pathname, apiRoute)
+        return await handlers.handleAPI({
+          request,
+          route: apiRoute,
+          url,
+          loaderProps: {
+            path: pathname,
+            params,
+          },
+        })
       }
     }
 
@@ -192,4 +204,14 @@ function getLoaderParams(
     }
   }
   return params
+}
+
+// Add this helper function
+function getRouteParams(pathname: string, route: RouteInfo<string>) {
+  const regex = new RegExp(route.namedRegex)
+  const match = regex.exec(pathname)
+  if (!match) return {}
+  return Object.fromEntries(
+    Object.entries(route.routeKeys).map(([key, value]) => [value, match.groups?.[key]])
+  )
 }

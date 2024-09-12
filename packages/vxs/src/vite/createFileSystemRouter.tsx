@@ -291,8 +291,13 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
             return transformedJS
           },
 
-          async handleAPI({ request, route }) {
-            return resolveAPIRequest(() => runner.import(join('app', route.file)), request)
+          async handleAPI({ request, route, url, loaderProps }) {
+            const result = await resolveAPIRequest(
+              () => runner.import(join('app', route.file)),
+              request,
+              loaderProps?.params || {}
+            )
+            return result
           },
         })
       }
