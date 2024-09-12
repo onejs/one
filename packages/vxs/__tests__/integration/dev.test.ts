@@ -2,37 +2,8 @@ import fetch from 'node-fetch'
 import { spawn } from 'node:child_process'
 import * as path from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-const shell = require('shelljs')
-const util = require('node:util')
-const shellExec = util.promisify(shell.exec)
 
 const fixturePath = path.resolve(__dirname, '../../../../examples/basic')
-
-const runShellCommand = async (command, cwd) => {
-  try {
-    const result = await shellExec(command, { cwd, silent: false })
-
-    // Check if result is a string (stdout) or an object
-    if (typeof result === 'string') {
-      return result.trim()
-    }
-
-    const { stdout, stderr, code } = result
-
-    console.log({ stdout, stderr, code })
-
-    if (code !== 0) {
-      console.error('Stdout:', stdout)
-      console.error('Stderr:', stderr)
-      throw new Error(`\n${command}\nCommand failed with exit code ${code}\nStderr: ${stderr}`)
-    }
-    return stdout.trim()
-  } catch (error) {
-    console.error(`Error executing command: ${command}`)
-    console.error(error)
-    throw error
-  }
-}
 
 describe('Simple Run Tests', () => {
   let serverUrl
@@ -47,10 +18,9 @@ describe('Simple Run Tests', () => {
       yarnDevOutput += data.toString()
       if (yarnDevOutput.includes('Server running on http://')) {
         const match = yarnDevOutput.match(/Server running on (http:\/\/[^\s]+)/)
-        console.log({ match })
         if (match) {
           serverUrl = match[1]
-          console.log(`Server is running on ${serverUrl}`)
+          console.info(`Server is running on ${serverUrl}`)
         }
       }
     })

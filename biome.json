@@ -3,18 +3,6 @@
   "organizeImports": {
     "enabled": false
   },
-  "overrides": [
-    {
-      "include": ["./tests/**/*.ts"],
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noConsoleLog": "off"
-          }
-        }
-      }
-    }
-  ],
   "linter": {
     "enabled": true,
     "ignore": ["**/*/generated-new.ts", "**/*/generated-v2.ts", ".tamagui"],

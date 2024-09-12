@@ -112,7 +112,6 @@
     "depcheck": "^1.4.7",
     "react-native": "0.74.1",
     "rollup": "^4.21.0",
-    "shelljs": "^0.8.5",
     "tempy": "^3.1.0",
     "vitest": "^2.0.5"
   },
