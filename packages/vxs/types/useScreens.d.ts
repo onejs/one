@@ -5,15 +5,15 @@ export declare const Screen: <RouteName extends string>(_: import("@react-naviga
     key: string;
     index: number;
     routeNames: string[];
-    history?: unknown[];
+    history?: unknown[] | undefined;
     routes: (Readonly<{
         key: string;
         name: string;
-        path?: string;
+        path?: string | undefined;
     }> & Readonly<{
         params?: Readonly<object | undefined>;
     }> & {
-        state?: NavigationState | import("@react-navigation/routers").PartialState<NavigationState>;
+        state?: Readonly<any> | import("@react-navigation/routers").PartialState<Readonly<any>> | undefined;
     })[];
     type: string;
     stale: false;
@@ -44,6 +44,6 @@ export declare function useSortedScreens(order: ScreenProps[]): React.ReactNode[
 export declare function getQualifiedRouteComponent(value: RouteNode): React.ComponentType<any> | React.ForwardRefExoticComponent<Omit<any, "ref"> & React.RefAttributes<unknown>>;
 /** @returns a function which provides a screen id that matches the dynamic route name in params. */
 export declare function createGetIdForRoute(route: Pick<RouteNode, 'dynamic' | 'route' | 'contextKey' | 'children'>): ({ params }?: {
-    params?: Record<string, any>;
+    params?: Record<string, any> | undefined;
 }) => string;
 //# sourceMappingURL=useScreens.d.ts.map

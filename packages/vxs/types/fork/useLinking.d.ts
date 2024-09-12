@@ -1,7 +1,6 @@
-import { getStateFromPath as getStateFromPathDefault, type NavigationContainerRef, type ParamListBase } from '@react-navigation/core';
+import { type NavigationContainerRef, type ParamListBase } from '@react-navigation/core';
 import * as React from 'react';
 import type { LinkingOptions } from '@react-navigation/native';
-type ResultState = ReturnType<typeof getStateFromPathDefault>;
 /**
  * Run async function in series as it's called.
  */
@@ -10,7 +9,47 @@ type Options = LinkingOptions<ParamListBase> & {
     independent?: boolean;
 };
 export default function useLinking(ref: React.RefObject<NavigationContainerRef<ParamListBase>>, { independent, enabled, config, getStateFromPath, getPathFromState, getActionFromState, }: Options): {
-    getInitialState: () => PromiseLike<ResultState | undefined>;
+    getInitialState: () => PromiseLike<(Partial<Omit<Readonly<{
+        key: string;
+        index: number;
+        routeNames: string[];
+        history?: unknown[] | undefined;
+        routes: (Readonly<{
+            key: string;
+            name: string;
+            path?: string | undefined;
+        }> & Readonly<{
+            params?: Readonly<object | undefined>;
+        }> & {
+            state?: Readonly<any> | import("@react-navigation/routers").PartialState<Readonly<any>> | undefined;
+        })[];
+        type: string;
+        stale: false;
+    }>, "stale" | "routes">> & Readonly<{
+        stale?: true | undefined;
+        routes: import("@react-navigation/routers").PartialRoute<import("@react-navigation/routers").Route<string, object | undefined>>[];
+    }> & {
+        state?: (Partial<Omit<Readonly<{
+            key: string;
+            index: number;
+            routeNames: string[];
+            history?: unknown[] | undefined;
+            routes: (Readonly<{
+                key: string;
+                name: string;
+                path?: string | undefined;
+            }> & Readonly<{
+                params?: Readonly<object | undefined>;
+            }> & {
+                state?: Readonly<any> | import("@react-navigation/routers").PartialState<Readonly<any>> | undefined;
+            })[];
+            type: string;
+            stale: false;
+        }>, "stale" | "routes">> & Readonly<{
+            stale?: true | undefined;
+            routes: import("@react-navigation/routers").PartialRoute<import("@react-navigation/routers").Route<string, object | undefined>>[];
+        }> & any) | undefined;
+    }) | undefined>;
 };
 export {};
 //# sourceMappingURL=useLinking.d.ts.map

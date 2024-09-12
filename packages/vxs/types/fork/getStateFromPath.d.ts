@@ -45,14 +45,14 @@ export declare function getMatchableRouteConfigs<ParamList extends object>(optio
     configs: {
         isInitial: boolean;
         screen: string;
-        regex?: RegExp;
+        regex?: RegExp | undefined;
         path: string;
         pattern: string;
         routeNames: string[];
-        parse?: ParseConfig;
+        parse?: ParseConfig | undefined;
         hasChildren: boolean;
         userReadableName: string;
-        _route?: RouteNode;
+        _route?: RouteNode | undefined;
     }[];
     initialRoutes: InitialRouteConfig[];
 };

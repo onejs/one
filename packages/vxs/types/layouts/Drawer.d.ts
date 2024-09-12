@@ -1,8 +1,9 @@
+/// <reference types="react" />
 import { type DrawerNavigationEventMap, type DrawerNavigationOptions } from '@react-navigation/drawer';
 import type { DrawerNavigationState, ParamListBase } from '@react-navigation/native';
 export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/routers").DefaultRouterOptions<string> & {
-    id?: string;
-    children: React.ReactNode;
+    id?: string | undefined;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         drawerItemPress: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "drawerItemPress">;
         focus: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "focus">;
@@ -24,12 +25,12 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
         navigation: any;
     }) => DrawerNavigationOptions) | undefined;
 } & import("@react-navigation/routers").DefaultRouterOptions & {
-    backBehavior?: import("@react-navigation/routers/lib/typescript/src/TabRouter").BackBehavior;
+    backBehavior?: import("@react-navigation/routers/lib/typescript/src/TabRouter").BackBehavior | undefined;
 } & {
-    defaultStatus?: import("@react-navigation/routers").DrawerStatus;
+    defaultStatus?: import("@react-navigation/routers").DrawerStatus | undefined;
 } & import("@react-navigation/drawer/lib/typescript/src/types").DrawerNavigationConfig, "children" | "initialRouteName" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
-    id?: string;
-    children: React.ReactNode;
+    id?: string | undefined;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         drawerItemPress: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "drawerItemPress">;
         focus: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "focus">;
@@ -51,8 +52,8 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
         navigation: any;
     }) => DrawerNavigationOptions) | undefined;
 }, "children"> & Partial<Pick<Omit<import("@react-navigation/routers").DefaultRouterOptions<string> & {
-    id?: string;
-    children: React.ReactNode;
+    id?: string | undefined;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         drawerItemPress: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "drawerItemPress">;
         focus: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "focus">;
@@ -74,12 +75,12 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
         navigation: any;
     }) => DrawerNavigationOptions) | undefined;
 } & import("@react-navigation/routers").DefaultRouterOptions & {
-    backBehavior?: import("@react-navigation/routers/lib/typescript/src/TabRouter").BackBehavior;
+    backBehavior?: import("@react-navigation/routers/lib/typescript/src/TabRouter").BackBehavior | undefined;
 } & {
-    defaultStatus?: import("@react-navigation/routers").DrawerStatus;
+    defaultStatus?: import("@react-navigation/routers").DrawerStatus | undefined;
 } & import("@react-navigation/drawer/lib/typescript/src/types").DrawerNavigationConfig, "children" | "initialRouteName" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
-    id?: string;
-    children: React.ReactNode;
+    id?: string | undefined;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         drawerItemPress: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "drawerItemPress">;
         focus: import("@react-navigation/core").EventListenerCallback<DrawerNavigationEventMap & import("@react-navigation/core").EventMapCore<DrawerNavigationState<ParamListBase>>, "focus">;

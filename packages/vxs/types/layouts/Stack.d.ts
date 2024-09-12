@@ -1,8 +1,9 @@
+/// <reference types="react" />
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
 import { type NativeStackNavigationEventMap, type NativeStackNavigationOptions } from '@react-navigation/native-stack';
 export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/routers").DefaultRouterOptions<string> & {
-    id?: string;
-    children: React.ReactNode;
+    id?: string | undefined;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
         transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
@@ -26,8 +27,8 @@ export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<
         navigation: any;
     }) => NativeStackNavigationOptions) | undefined;
 } & import("@react-navigation/routers").StackRouterOptions, "children" | "initialRouteName" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
-    id?: string;
-    children: React.ReactNode;
+    id?: string | undefined;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
         transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
@@ -51,8 +52,8 @@ export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<
         navigation: any;
     }) => NativeStackNavigationOptions) | undefined;
 }, "children"> & Partial<Pick<Omit<import("@react-navigation/routers").DefaultRouterOptions<string> & {
-    id?: string;
-    children: React.ReactNode;
+    id?: string | undefined;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
         transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
@@ -76,8 +77,8 @@ export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<
         navigation: any;
     }) => NativeStackNavigationOptions) | undefined;
 } & import("@react-navigation/routers").StackRouterOptions, "children" | "initialRouteName" | "id" | "screenListeners" | "screenOptions"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
-    id?: string;
-    children: React.ReactNode;
+    id?: string | undefined;
+    children: import("react").ReactNode;
     screenListeners?: Partial<{
         transitionStart: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionStart">;
         transitionEnd: import("@react-navigation/core").EventListenerCallback<NativeStackNavigationEventMap & import("@react-navigation/core").EventMapCore<StackNavigationState<ParamListBase>>, "transitionEnd">;
