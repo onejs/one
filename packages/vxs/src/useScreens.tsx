@@ -185,7 +185,11 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
       if (loaded) {
         const Component = getPageExport(fromImport(loaded)) as React.ComponentType<any>
-        return <Component {...props} ref={ref} />
+        return (
+          // <Suspense fallback={null}>
+          <Component {...props} ref={ref} />
+          // </Suspense>
+        )
       }
 
       return null
@@ -194,7 +198,11 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     ScreenComponent = React.forwardRef((props, ref) => {
       const res = value.loadRoute()
       const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
-      return <Component {...props} ref={ref} />
+      return (
+        // <Suspense fallback={null}>
+        <Component {...props} ref={ref} />
+        // </Suspense>
+      )
     })
   }
 

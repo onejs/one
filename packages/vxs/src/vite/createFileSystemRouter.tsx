@@ -3,6 +3,7 @@ import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin } from 'vite'
 import { createServerModuleRunner } from 'vite'
 import { createHandleRequest } from '../handleRequest'
+import type { RenderAppProps } from '../types'
 import { isResponse } from '../utils/isResponse'
 import { isStatusRedirect } from '../utils/isStatus'
 import { promiseWithResolvers } from '../utils/promiseWithResolvers'
@@ -11,17 +12,12 @@ import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import type { VXS } from './types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
-import type { RenderAppProps } from '../types'
-import WebSocket from 'ws'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
   // const { optimizeDeps } = getOptimizeDeps('serve')
-
-  // make websockets work on server
-  globalThis['WebSocket'] ||= WebSocket as any
 
   return {
     name: `router-fs`,
@@ -144,23 +140,15 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
 
               // const entry = await server.ssrLoadModule(virtualEntryId)
               const entry = await runner.import(virtualEntryId)
+
               const render = entry.default.render as (props: RenderAppProps) => any
 
               globalThis['__vxrnLoaderData__'] = loaderData
               globalThis['__vxrnLoaderProps__'] = loaderProps
 
-              let loaderServerData = null
-
-              const loaderServerHandler = options.loaders?.serverResolver
-              if (loaderServerHandler) {
-                loaderServerData = (await loaderServerHandler(loaderData)) ?? null
-                console.log('loaderServerData', loaderServerData)
-              }
-
               LoaderDataCache[route.file] = loaderData
 
-              const html = render({
-                loaderServerData,
+              const html = await render({
                 loaderData,
                 loaderProps,
                 path: loaderProps?.path || '/',
@@ -305,9 +293,10 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
       return () => {
         server.middlewares.use(async (req, res, next) => {
           try {
-            if (options.redirects) {
+            const redirects = options.web?.redirects
+            if (redirects) {
               const url = new URL(req.url || '', `http://${req.headers.host}`)
-              for (const redirect of options.redirects) {
+              for (const redirect of redirects) {
                 const regexStr = `^${redirect.source.replace(/:\w+/g, '([^/]+)')}$`
                 const match = url.pathname.match(new RegExp(regexStr))
 

@@ -5,7 +5,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         protocol: "https:" | "http:";
         entries: {
             native: string;
-            web?: string | undefined;
+            web?: string;
             server: string;
         };
         packageJSON: import("pkg-types").PackageJson;
@@ -14,7 +14,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             reactNative: string;
         } | undefined;
         state: {
-            versionHash?: string | undefined;
+            versionHash?: string;
         };
         packageRootDir: string;
         cacheDir: string;
@@ -22,12 +22,12 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         root: string;
         port: number;
         hono?: {
-            compression?: boolean | undefined;
-            cacheHeaders?: "off" | undefined;
-        } | undefined;
-        https?: boolean | undefined;
-        afterBuild?: ((props: import("..").AfterBuildProps) => void | Promise<void>) | undefined;
-        afterServerStart?: ((options: VXRNOptions, app: import("hono").Hono<import("hono/types").BlankEnv, import("hono/types").BlankSchema, "/">) => void | Promise<void>) | undefined;
+            compression?: boolean;
+            cacheHeaders?: "off";
+        };
+        https?: boolean;
+        afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
+        afterServerStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
     };
     buildArgs: BuildArgs;
     clientOutput: any;

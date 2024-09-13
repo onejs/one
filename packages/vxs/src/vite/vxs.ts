@@ -1,16 +1,18 @@
 import { dirname, resolve } from 'node:path'
 import { type InlineConfig, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
+import tsconfigPaths from 'vite-tsconfig-paths'
 import { getOptimizeDeps, isWebEnvironment } from 'vxrn'
+import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
 import { requireResolve } from '../utils/requireResolve'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter } from './createFileSystemRouter'
 import { fixDependenciesPlugin } from './fixDependenciesPlugin'
+import { generateTypesForRoutes } from './generateTypesForRoutes'
 import { loadEnv } from './loadEnv'
 import type { VXS } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
-import { generateTypesForRoutes } from './generateTypesForRoutes'
 
 export function getUserVXSOptions(config: UserConfig) {
   const flatPlugins = [...(config.plugins || [])].flat(3)
@@ -58,14 +60,23 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
 
   return [
+    ...(process.env.VXS_ADDITIONAL_TSCONFIG_PATHS
+      ? [tsconfigPaths({ projects: process.env.VXS_ADDITIONAL_TSCONFIG_PATHS.split(',') })]
+      : []),
+
     {
       name: 'one-zero',
       config() {
+        if (!options.zero) {
+          return
+        }
+
         return {
           define: {
+            'process.env.ZERO_ENABLED': 'true',
+            TESTING: 'false',
             REPLICACHE_VERSION: '"15.2.1"',
             ZERO_VERSION: '"0.0.0"',
-            TESTING: 'false',
           },
         }
       },

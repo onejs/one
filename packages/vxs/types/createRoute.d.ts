@@ -19,7 +19,7 @@ declare const postIdRoute: {
 };
 export declare const route: {
     post: {
-        id: typeof postIdRoute;
+        $id: typeof postIdRoute;
     };
 };
 export {};

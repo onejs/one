@@ -33,6 +33,16 @@
       "import": "./dist/esm/vite.mjs",
       "require": "./dist/cjs/vite.js"
     },
+    "./zero": {
+      "types": "./types/zero.d.ts",
+      "import": "./dist/esm/zero.mjs",
+      "require": "./dist/cjs/zero.js"
+    },
+    "./serve": {
+      "types": "./types/serve.d.ts",
+      "import": "./dist/esm/serve.mjs",
+      "require": "./dist/cjs/serve.js"
+    },
     "./routes-manifest": {
       "types": "./types/routes-manifest.d.ts",
       "import": "./dist/esm/routes-manifest.mjs",
@@ -71,6 +81,7 @@
     "@react-navigation/native": "~6.1.7",
     "@react-navigation/native-stack": "~6.9.13",
     "@react-navigation/routers": "~6.1.9",
+    "@ungap/structured-clone": "^1.2.0",
     "@vxrn/universal-color-scheme": "1.1.221",
     "@vxrn/use-isomorphic-layout-effect": "1.1.221",
     "babel-dead-code-elimination": "^1.0.6",
@@ -97,8 +108,11 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "6.0.0-alpha.18",
+    "vite-tsconfig-paths": "^5.0.1",
     "vxrn": "1.1.221",
-    "ws": "^8.18.0"
+    "ws": "^8.18.0",
+    "xxhashjs": "^0.2.2",
+    "zql": "portal:/Users/n8/github/mono/packages/zql"
   },
   "peerDependencies": {
     "react-native": "*"
@@ -107,6 +121,7 @@
     "@tamagui/build": "^1.110.3",
     "@types/node": "^22.1.0",
     "@types/react-dom": "^18.2.25",
+    "@types/xxhashjs": "^0.2.4",
     "depcheck": "^1.4.7",
     "react-native": "0.74.1",
     "rollup": "^4.21.0"
