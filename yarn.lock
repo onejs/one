@@ -20511,7 +20511,6 @@ __metadata:
     "@manypkg/cli": "npm:^0.19.1"
     "@types/react": "npm:^18.2.24"
     "@types/react-native": "npm:~0.70.6"
-    "@vitest/ui": "npm:^2.0.5"
     check-dependency-version-consistency: "npm:^3.0.3"
     esbuild-register: "npm:^3.6.0"
     npm-run-all: "npm:^4.1.5"
