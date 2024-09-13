@@ -7,12 +7,7 @@
   "main": "dist/cjs",
   "module": "dist/esm",
   "bin": "run.mjs",
-  "files": [
-    "src",
-    "types",
-    "dist",
-    "vendor"
-  ],
+  "files": ["src", "types", "dist", "vendor"],
   "scripts": {
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
@@ -112,7 +107,6 @@
     "depcheck": "^1.4.7",
     "react-native": "0.74.1",
     "rollup": "^4.21.0",
-    "tempy": "^3.1.0",
     "vitest": "^2.0.5"
   },
   "publishConfig": {
