@@ -15,7 +15,7 @@ export const execPromise = (
     const [command, ...args] = cmd.split(' ')
 
     const child = spawn(command, args, {
-      stdio: process.env.DEBUG ? 'inherit' : 'pipe',
+      stdio: options?.quiet ? 'pipe' : 'inherit',
       shell: true,
       ...options,
     })

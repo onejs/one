@@ -43,10 +43,13 @@ export declare namespace VXS {
              *
              * @default 'ssg'
              */
-            defaultRenderMode?: 'ssg' | 'spa';
+            defaultRenderMode: 'ssg' | 'spa';
             redirects?: Redirects;
         };
         deps?: FixDependencies;
+        loaders?: {
+            serverResolver?: (loaded: any) => any;
+        };
         afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
         afterServerStart?: ((options: Options, server: Hono) => void | Promise<void>) | ((options: Options, server: Hono, buildInfo: AfterServerStartBuildInfo) => void | Promise<void>);
     };
