@@ -17,7 +17,11 @@ export function render(element: React.ReactNode) {
       } else {
         globalThis['__vxrnRoot'] = hydrateRoot(document.body, element, {
           onRecoverableError(...args) {
-            console.error(`[vxs] onRecoverableError`, ...args)
+            console.groupCollapsed(
+              `[vxs] Non-critical recoverable React error occurred, expand group to see details`
+            )
+            console.error(...args)
+            console.groupEnd()
           },
           // @ts-expect-error
           onUncaughtError(...args) {

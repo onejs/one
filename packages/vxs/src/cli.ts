@@ -1,6 +1,4 @@
 import { defineCommand, runMain } from 'citty'
-import { serve } from './vite/serve'
-import { build } from './vite/build'
 import { loadEnv } from './vite/loadEnv'
 import { loadUserVXSOptions } from './vite/vxs'
 // import packageJson from 'vxs/package.json' with { type: 'json' }
@@ -55,6 +53,7 @@ const buildCommand = defineCommand({
     },
   },
   async run({ args }) {
+    const { build } = await import('./vite/build')
     const { build: vxrnBuild } = await import('vxrn')
 
     process.on('uncaughtException', (err) => {
@@ -85,6 +84,7 @@ const serveCommand = defineCommand({
     },
   },
   async run({ args }) {
+    const { serve } = await import('./serve')
     const { serve: vxrnServe } = await import('vxrn')
 
     process.on('uncaughtException', (err) => {

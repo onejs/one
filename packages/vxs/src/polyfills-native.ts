@@ -3,6 +3,15 @@
 
 globalThis['global'] = globalThis
 
+// --------------- structuredClone -------------------
+
+import structuredClone from '@ungap/structured-clone'
+globalThis['structuredClone'] ||= structuredClone
+
+// --------------- structuredClone -------------------
+
+globalThis['requestAnimationFrame'] ||= setTimeout
+
 // --------------- Symbol.asyncIterator -------------------
 
 import '@azure/core-asynciterator-polyfill'

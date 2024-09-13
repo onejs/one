@@ -6,21 +6,51 @@ import type { RenderAppProps } from './types'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
-export function createApp(options: CreateAppProps): void {
+export function createApp(options: CreateAppProps) {
   if (import.meta.env.SSR) {
-    // @ts-expect-error
-    // biome-ignore lint/correctness/noVoidTypeReturn: this is a public api but ssr called only internally
     return {
       options,
       render: async (props: RenderAppProps) => {
-        await resolveClientLoader(props)
-        return await renderToString(<Root routes={options.routes} {...props} />, {
+        let html = await renderToString(<Root routes={options.routes} {...props} />, {
           preloads: props.preloads,
         })
+
+        // now we can grab and serialize in our zero queries
+        const serverData = globalThis['__vxrnServerData__']
+        const hasQueryData = Object.keys(serverData).length
+        if (hasQueryData) {
+          html = html.replace(`{ __vxrn__: 'post-render' }`, JSON.stringify(serverData))
+        }
+
+        return html
       },
     }
   }
 
-  // on client we just render
-  render(<Root isClient routes={options.routes} path={window.location.href} />)
+  if (process.env.ZERO_ENABLED) {
+    // to register before resolveClientLoader
+    import('./zero/useQuery')
+  }
+
+  // run their root layout before calling resolveClientLoader so they can register hook
+  const rootLayoutImport = options.routes['/app/_layout.tsx']?.()
+
+  return rootLayoutImport
+    .then(() => {
+      resolveClientLoader({
+        loaderData: globalThis['__vxrnLoaderData__'],
+        loaderServerData: globalThis['__vxrnLoaderServerData__'],
+        loaderProps: globalThis['__vxrnLoaderProps__'],
+      })
+        .then(() => {
+          // on client we just render
+          render(<Root isClient routes={options.routes} path={window.location.href} />)
+        })
+        .catch((err) => {
+          console.error(`Error running client loader resolver "onClientLoaderResolve":`, err)
+        })
+    })
+    .catch((err) => {
+      console.error(`Error importing root layout on client`, err)
+    })
 }

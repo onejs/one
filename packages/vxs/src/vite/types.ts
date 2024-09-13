@@ -20,6 +20,14 @@ export namespace VXS {
   }
 
   export type PluginOptions = {
+    /**
+     * Enabling zero does a couple very simple things:
+     *
+     *   - It makes zero hand of seamelessly from server to client without flicker
+     *
+     */
+    zero?: boolean
+
     app?: {
       /**
        * The uid of your native app, this will be used internally in vxs to call
@@ -47,16 +55,12 @@ export namespace VXS {
        *
        * @default 'ssg'
        */
-      defaultRenderMode: 'ssg' | 'spa'
+      defaultRenderMode?: 'ssg' | 'spa'
 
       redirects?: Redirects
     }
 
     deps?: FixDependencies
-
-    loaders?: {
-      serverResolver?: (loaded: any) => any
-    }
 
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>
 

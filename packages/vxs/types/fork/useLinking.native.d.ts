@@ -7,42 +7,42 @@ export default function useLinking(ref: React.RefObject<NavigationContainerRef<P
         key: string;
         index: number;
         routeNames: string[];
-        history?: unknown[] | undefined;
+        history?: unknown[];
         routes: (Readonly<{
             key: string;
             name: string;
-            path?: string | undefined;
+            path?: string;
         }> & Readonly<{
             params?: Readonly<object | undefined>;
         }> & {
-            state?: Readonly<any> | import("@react-navigation/routers").PartialState<Readonly<any>> | undefined;
+            state?: import("@react-navigation/routers").NavigationState | import("@react-navigation/routers").PartialState<import("@react-navigation/routers").NavigationState>;
         })[];
         type: string;
         stale: false;
     }>, "stale" | "routes">> & Readonly<{
-        stale?: true | undefined;
+        stale?: true;
         routes: import("@react-navigation/routers").PartialRoute<import("@react-navigation/routers").Route<string, object | undefined>>[];
     }> & {
-        state?: (Partial<Omit<Readonly<{
+        state?: Partial<Omit<Readonly<{
             key: string;
             index: number;
             routeNames: string[];
-            history?: unknown[] | undefined;
+            history?: unknown[];
             routes: (Readonly<{
                 key: string;
                 name: string;
-                path?: string | undefined;
+                path?: string;
             }> & Readonly<{
                 params?: Readonly<object | undefined>;
             }> & {
-                state?: Readonly<any> | import("@react-navigation/routers").PartialState<Readonly<any>> | undefined;
+                state?: import("@react-navigation/routers").NavigationState | import("@react-navigation/routers").PartialState<import("@react-navigation/routers").NavigationState>;
             })[];
             type: string;
             stale: false;
         }>, "stale" | "routes">> & Readonly<{
-            stale?: true | undefined;
+            stale?: true;
             routes: import("@react-navigation/routers").PartialRoute<import("@react-navigation/routers").Route<string, object | undefined>>[];
-        }> & any) | undefined;
+        }> & any;
     }) | undefined>;
 };
 export {};

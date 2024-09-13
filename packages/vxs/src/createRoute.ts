@@ -32,6 +32,6 @@ const postIdRoute = createRoute<'/post/[id]'>()
 
 export const route = getProxy() as {
   post: {
-    id: typeof postIdRoute
+    $id: typeof postIdRoute
   }
 }

@@ -18,6 +18,11 @@ import type { VXS } from './vite/types'
 import { ScrollRestoration } from './views/ScrollRestoration'
 // import { SplashScreen } from './views/Splash'
 
+if (typeof window !== 'undefined') {
+  // @ts-ignore TODO: hard coded for demo app
+  window.__getReactRefreshIgnoredExports = () => ['feedCardQuery', 'feedCardReplyQuery', 'loader']
+}
+
 type RootProps = RenderAppProps &
   Omit<InnerProps, 'context'> & {
     mode?: VXS.RouteMode
@@ -103,7 +108,7 @@ export function Root(props: RootProps) {
         href="vxs-loader-data"
         dangerouslySetInnerHTML={{
           __html: `
-            globalThis['__vxrnLoaderServerData__'] = ${JSON.stringify(props.loaderServerData)};
+            globalThis['__vxrnPostRenderData__'] = { __vxrn__: 'post-render' };
             globalThis['__vxrnLoaderData__'] = ${JSON.stringify(loaderData)};
             globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(props.loaderProps)};
             globalThis['__vxrnHydrateMode__'] = ${JSON.stringify(props.mode)};

@@ -2,7 +2,7 @@ export type { VXSRouter, One } from './interfaces/router'
 import type { VXSRouter } from './interfaces/router'
 
 export type Href = VXSRouter.Href
-export type LinkProps<T extends string | object> = VXSRouter.LinkProps<T>
+export type LinkProps<T extends string | object = string> = VXSRouter.LinkProps<T>
 
 export type { Endpoint } from './types'
 
