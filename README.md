@@ -1,22 +1,31 @@
 # vxrn
 
-```
-  ___  _    ______ _   _  ___  
- / _ \| |   | ___ \ | | |/ _ \ 
-/ /_\ \ |   | |_/ / |_| / /_\ \
-|  _  | |   |  __/|  _  |  _  |
-| | | | |___| |   | | | | | | |
-\_| |_|_____|_|   \_| |_|_| |_/                            
-```                                                                                                                                     
-
-
 [Documentation website](https://vxrn.dev)
 
 You can try the example apps:
 
-- `yarn dev:example-tamagui`
-- `yarn dev:example-router` (breaking)
+- `yarn dev:example-basic`
 
 ## Contributing
 
-[See the CONTRIBUTING.md](https://github.com/universal-future/vxrn/blob/main/CONTRIBUTING.md)
+Install:
+
+```
+yarn install
+```
+
+Run watch in a separate terminal:
+
+```
+yarn watch
+```
+
+And then you can run the examples using `yarn dev:example-*`:
+
+```
+yarn dev:example-basic
+```
+
+### VSCode Extensions
+
+For auto formatting install [Biome](https://marketplace.visualstudio.com/items?itemName=biomejs.biome).
