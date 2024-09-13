@@ -11,6 +11,10 @@
     "./studio2"
   ],
   "packageManager": "yarn@4.4.1",
+  "engines": {
+    "node": "20.17.0",
+    "npm": "10.8.3"
+  },
   "resolutionsComments": {
     "vite": "because vitepress brings along vite 5"
   },
