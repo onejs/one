@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import type { VXRNOptions } from '../types';
 /**
  * The main entry point for dev mode

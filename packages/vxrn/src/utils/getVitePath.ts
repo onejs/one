@@ -22,6 +22,9 @@ export async function getVitePath(
   if (moduleName === 'react/jsx-dev-runtime') {
     return 'react/jsx-dev-runtime'
   }
+  if (moduleName.includes('one/dist/esm/index')) {
+    return 'one'
+  }
 
   if (moduleName[0] === '.') {
     const rootAt = importer.indexOf(rootPath)
@@ -35,6 +38,15 @@ export async function getVitePath(
 
   const sourceFile = join(process.cwd(), 'index.js')
   const resolved = await resolver(moduleName, sourceFile)
+
+  // TODO
+  if (moduleName === 'one') {
+    // TODO hardcoded
+    return 'one'
+  }
+  if (!resolved) {
+    return 'one'
+  }
 
   // figure out symlinks
   if (!resolved) {

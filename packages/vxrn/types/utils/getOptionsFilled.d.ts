@@ -7,7 +7,7 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
     protocol: "https:" | "http:";
     entries: {
         native: string;
-        web?: string;
+        web?: string | undefined;
         server: string;
     };
     packageJSON: import("pkg-types").PackageJson;
@@ -16,7 +16,7 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
         reactNative: string;
     } | undefined;
     state: {
-        versionHash?: string;
+        versionHash?: string | undefined;
     };
     packageRootDir: string;
     cacheDir: string;
@@ -24,11 +24,11 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
     root: string;
     port: number;
     hono?: {
-        compression?: boolean;
-        cacheHeaders?: "off";
-    };
-    https?: boolean;
-    afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
-    afterServerStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
+        compression?: boolean | undefined;
+        cacheHeaders?: "off" | undefined;
+    } | undefined;
+    https?: boolean | undefined;
+    afterBuild?: ((props: import("..").AfterBuildProps) => void | Promise<void>) | undefined;
+    afterServerStart?: ((options: VXRNOptions, app: import("hono").Hono<import("hono/types").BlankEnv, import("hono/types").BlankSchema, "/">) => void | Promise<void>) | undefined;
 }>;
 //# sourceMappingURL=getOptionsFilled.d.ts.map

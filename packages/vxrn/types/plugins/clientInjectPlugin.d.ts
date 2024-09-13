@@ -18,9 +18,9 @@ export declare function getServerConfigPlugin(): {
         resolve: Required<import("vite").ResolveOptions> & {
             alias: import("vite").Alias[];
         };
-        plugins: readonly Plugin[];
+        plugins: readonly Plugin<any>[];
         css: import("vite").ResolvedCSSOptions;
-        esbuild: import("vite").ESBuildOptions | false;
+        esbuild: false | import("vite").ESBuildOptions;
         server: import("vite").ResolvedServerOptions;
         dev: import("vite").ResolvedDevEnvironmentOptions;
         builder: Required<import("vite").BuilderOptions>;
@@ -29,14 +29,14 @@ export declare function getServerConfigPlugin(): {
         ssr: import("vite").ResolvedSSROptions;
         assetsInclude: (file: string) => boolean;
         logger: import("vite").Logger;
-        createResolver: (options?: Partial<import("vite").InternalResolveOptions>) => import("vite").ResolveFn;
+        createResolver: (options?: Partial<import("vite").InternalResolveOptions> | undefined) => import("vite").ResolveFn;
         optimizeDeps: import("vite").DepOptimizationOptions;
         worker: import("vite").ResolvedWorkerOptions;
         appType: import("vite").AppType;
         experimental: import("vite").ExperimentalOptions;
         environments: Record<string, {
             resolve: Required<import("vite").ResolveOptions & {
-                alias?: import("vite").AliasOptions;
+                alias?: import("vite").AliasOptions | undefined;
             }>;
             nodeCompatible: boolean;
             webCompatible: boolean;
