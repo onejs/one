@@ -13,7 +13,7 @@ export type Screen =
 // `[page]` -> `:page`
 // `page` -> `page`
 function convertDynamicRouteToReactNavigation(segment: string): string {
-  // NOTE(EvanBacon): To support shared routes we preserve group segments.
+  // NOTE: To support shared routes we preserve group segments.
   if (segment === 'index') {
     return ''
   }
@@ -33,7 +33,7 @@ function convertDynamicRouteToReactNavigation(segment: string): string {
 
 function parseRouteSegments(segments: string): string {
   return (
-    // NOTE(EvanBacon): When there are nested routes without layouts
+    // NOTE: When there are nested routes without layouts
     // the node.route will be something like `app/home/index`
     // this needs to be split to ensure each segment is parsed correctly.
     segments
@@ -64,7 +64,7 @@ function convertRouteNodeToScreen(node: RouteNode, metaOnly: boolean): Screen {
   const screen: Screen = {
     path,
     screens,
-    // NOTE(EvanBacon): This is bad because it forces all Layout Routes
+    // NOTE: This is bad because it forces all Layout Routes
     // to be loaded into memory. We should move towards a system where
     // the initial route name is either loaded asynchronously in the Layout Route
     // or defined via a file system convention.

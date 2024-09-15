@@ -1,3 +1,4 @@
+import { getDefaultRenderMode } from './config'
 import {
   matchArrayGroupName,
   matchDeepDynamicRouteName,
@@ -111,9 +112,11 @@ function getDirectoryTree(contextModule: VXS.RouteContext, options: Options) {
       continue
     }
 
+    const type = meta.isLayout ? 'layout' : meta.renderMode || getDefaultRenderMode()
+
     let node: RouteNode = {
-      type: meta.isApi ? 'api' : meta.isLayout ? 'layout' : 'route',
-      routeType: meta.isSPA ? 'spa' : 'ssg',
+      type,
+
       loadRoute() {
         if (options.ignoreRequireErrors) {
           try {
@@ -184,7 +187,7 @@ function getDirectoryTree(contextModule: VXS.RouteContext, options: Options) {
           node = getLayoutNode(node, options)
           directory.layout[meta.specificity] = node
         }
-      } else if (meta.isApi) {
+      } else if (type === 'api') {
         const fileKey = `${route}+api`
         let nodes = directory.files.get(fileKey)
 
@@ -249,7 +252,6 @@ function getDirectoryTree(contextModule: VXS.RouteContext, options: Options) {
     rootDirectory.layout = [
       {
         type: 'layout',
-        routeType: 'ssg',
         loadRoute: () => ({
           default: (require('./views/Navigator') as typeof import('./views/Navigator'))
             .DefaultNavigator,
@@ -344,16 +346,22 @@ function getFileMeta(key: string, options: Options) {
   let route = removeSupportedExtensions(key)
   const filename = parts[parts.length - 1]
   const filenameWithoutExtensions = removeSupportedExtensions(filename)
-  const isLayout = filenameWithoutExtensions === '_layout'
-  const isApi = filename.match(/\+api\.(\w+\.)?[jt]sx?$/)
-  const isSPA = filename.match(/\+spa\.(\w+\.)?[jt]sx?$/)
+
+  const isLayout = filenameWithoutExtensions.startsWith('_layout')
+
+  const [_fullname, renderModeFound] = filename.match(/\+(api|ssg|spa)\.(\w+\.)?[jt]sx?$/) || []
+  const renderMode = renderModeFound as 'api' | 'ssg' | 'spa' | undefined
 
   if (filenameWithoutExtensions.startsWith('(') && filenameWithoutExtensions.endsWith(')')) {
     throw new Error(`Invalid route ./${key}. Routes cannot end with '(group)' syntax`)
   }
 
   // Nested routes cannot start with the '+' character, except for the '+not-found' route
-  if (!isApi && filename.startsWith('+') && filenameWithoutExtensions !== '+not-found') {
+  if (
+    renderMode !== 'api' &&
+    filename.startsWith('+') &&
+    filenameWithoutExtensions !== '+not-found'
+  ) {
     const renamedRoute = [...parts.slice(0, -1), filename.slice(1)].join('/')
     throw new Error(
       `Invalid route ./${key}. Route nodes cannot start with the '+' character. "Please rename to ${renamedRoute}"`
@@ -386,7 +394,7 @@ function getFileMeta(key: string, options: Options) {
       specificity = -1
     }
 
-    if (isApi && specificity !== 0) {
+    if (renderMode === 'api' && specificity !== 0) {
       throw new Error(
         `Api routes cannot have platform extensions. Please remove '.${platformExtension}' from './${key}'`
       )
@@ -399,8 +407,7 @@ function getFileMeta(key: string, options: Options) {
     route,
     specificity,
     isLayout,
-    isApi,
-    isSPA,
+    renderMode,
   }
 }
 
@@ -409,7 +416,7 @@ function getMostSpecific(routes: RouteNode[]) {
 
   if (!routes[0]) {
     throw new Error(
-      ` [vxs] The file ${route.contextKey} does not have a fallback sibling file without a platform extension.`
+      ` [vxs] The file ${route.contextKey} does not have a fallback sibling file without a platform extension in routes (${routes[0]}, ${routes.length}):\n${routes.map((r) => r.contextKey || 'NONE').join('\n')}.`
     )
   }
 
@@ -490,8 +497,7 @@ function appendSitemapRoute(directory: DirectoryNode) {
           return { default: () => null, getNavOptions: () => {} }
         },
         route: '_sitemap',
-        routeType: 'ssg',
-        type: 'route',
+        type: 'ssg',
         contextKey: 'router/build/views/Sitemap.js',
         generated: true,
         internal: true,
@@ -509,8 +515,7 @@ function appendNotFoundRoute(directory: DirectoryNode) {
         loadRoute() {
           return { default: () => null }
         },
-        type: 'route',
-        routeType: 'ssg',
+        type: 'ssg',
         route: '+not-found',
         contextKey: 'router/build/views/Unmatched.js',
         generated: true,
@@ -562,7 +567,7 @@ function crawlAndAppendInitialRoutesAndEntryFiles(
   options: Options,
   entryPoints: string[] = []
 ) {
-  if (node.type === 'route') {
+  if (node.type === 'spa' || node.type === 'ssg') {
     node.entryPoints = [...new Set([...entryPoints, node.contextKey])]
   } else if (node.type === 'layout') {
     if (!node.children) {

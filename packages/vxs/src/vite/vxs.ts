@@ -1,3 +1,4 @@
+import events from 'node:events'
 import { dirname, resolve } from 'node:path'
 import { type InlineConfig, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -13,6 +14,8 @@ import { loadEnv } from './loadEnv'
 import type { VXS } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
+
+events.setMaxListeners(1_000)
 
 export function getUserVXSOptions(config: UserConfig) {
   const flatPlugins = [...(config.plugins || [])].flat(3)
@@ -40,6 +43,8 @@ const userOptions = new WeakMap<any, VXS.PluginOptions>()
 export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   void loadEnv(process.cwd())
 
+  globalThis['__vxrnPluginConfig__'] = options
+
   // build is superset for now
   const { optimizeDeps } = getOptimizeDeps('build')
   const optimizeIds = optimizeDeps.include
@@ -60,9 +65,23 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
 
   return [
-    ...(process.env.VXS_ADDITIONAL_TSCONFIG_PATHS
-      ? [tsconfigPaths({ projects: process.env.VXS_ADDITIONAL_TSCONFIG_PATHS.split(',') })]
+    ...(process.env.VXS_TSCONFIG_PATHS
+      ? [tsconfigPaths({ projects: process.env.VXS_TSCONFIG_PATHS.split(',') })]
       : []),
+
+    {
+      name: 'vxs:init-config',
+
+      config() {
+        return {
+          define: {
+            ...(options.web?.defaultRenderMode && {
+              'process.env.VXS_DEFAULT_RENDER_MODE': JSON.stringify(options.web.defaultRenderMode),
+            }),
+          },
+        }
+      },
+    },
 
     {
       name: 'one-zero',

@@ -33,8 +33,7 @@ export async function build(props: AfterBuildProps) {
   const userOptions = getUserVXSOptions(props.webBuildConfig)
   const options = await getOptionsFilled(props.options)
   const toAbsolute = (p) => Path.resolve(options.root, p)
-
-  const manifest = getManifest(join(options.root, 'app'))!
+  const manifest = getManifest()!
   const { optimizeDeps } = getOptimizeDeps('build')
   const apiBuildConfig = mergeConfig(props.webBuildConfig, {
     configFile: false,
@@ -168,9 +167,7 @@ export async function build(props: AfterBuildProps) {
       return clientManifestKey.endsWith(route.file.slice(1))
     }
 
-    const ssgRoute = manifest.ssgRoutes.find(findMatchingRoute)
-    const spaRoute = manifest.spaRoutes.find(findMatchingRoute)
-    const foundRoute = ssgRoute || spaRoute
+    const foundRoute = manifest.pageRoutes.find(findMatchingRoute)
 
     if (!foundRoute) {
       if (clientManifestKey.startsWith('app')) {
@@ -286,7 +283,7 @@ export async function build(props: AfterBuildProps) {
         // importing resetState causes issues :/
         globalThis['__vxrnresetState']?.()
 
-        if (ssgRoute) {
+        if (foundRoute.type === 'ssg') {
           const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
           const loaderPartialPath = join(
             staticDir,

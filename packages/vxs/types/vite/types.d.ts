@@ -2,9 +2,10 @@ import type { Hono } from 'hono';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNOptions } from 'vxrn';
 export declare namespace VXS {
     type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
-    type RouteMode = 'ssg' | 'spa';
+    type RouteRenderMode = 'ssg' | 'spa';
+    type RouteType = 'ssg' | 'spa' | 'api' | 'layout';
     type RouteOptions = {
-        routeModes?: Record<string, VXS.RouteMode>;
+        routeModes?: Record<string, VXS.RouteRenderMode>;
     };
     type FixDependencies = {
         [key: string]: DepOptimize | DepPatch['patchFiles'];
@@ -43,13 +44,10 @@ export declare namespace VXS {
              *
              * @default 'ssg'
              */
-            defaultRenderMode: 'ssg' | 'spa';
+            defaultRenderMode?: RouteRenderMode;
             redirects?: Redirects;
         };
         deps?: FixDependencies;
-        loaders?: {
-            serverResolver?: (loaded: any) => any;
-        };
         afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
         afterServerStart?: ((options: Options, server: Hono) => void | Promise<void>) | ((options: Options, server: Hono, buildInfo: AfterServerStartBuildInfo) => void | Promise<void>);
     };

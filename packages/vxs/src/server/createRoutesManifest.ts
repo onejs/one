@@ -11,12 +11,12 @@ export type RouteInfo<TRegex = string> = {
   namedRegex: TRegex
   routeKeys: Record<string, string>
   layouts?: RouteNode[]
+  type: VXS.RouteType
 }
 
 export type RoutesManifest<TRegex = string> = {
   apiRoutes: RouteInfo<TRegex>[]
-  spaRoutes: RouteInfo<TRegex>[]
-  ssgRoutes: RouteInfo<TRegex>[]
+  pageRoutes: RouteInfo<TRegex>[]
   notFoundRoutes: RouteInfo<TRegex>[]
 }
 

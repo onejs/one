@@ -2,6 +2,7 @@ import React, { useContext, type ReactNode } from 'react'
 
 import { getContextKey } from './matchers'
 import type { ErrorBoundaryProps } from './views/Try'
+import type { VXS } from './vite/types'
 
 export type DynamicConvention = { name: string; deep: boolean; notFound?: boolean }
 
@@ -20,9 +21,7 @@ export type LoadedRoute = {
 
 export type RouteNode = {
   /** The type of RouteNode */
-  type: 'route' | 'api' | 'layout'
-  /** is type = 'route', the render type of that route */
-  routeType: 'ssg' | 'spa'
+  type: VXS.RouteType
   /** Load a route into memory. Returns the exports from a route. */
   loadRoute: () => Partial<LoadedRoute>
   /** Loaded initial route name. */

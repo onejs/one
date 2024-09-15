@@ -21,13 +21,13 @@ import { matchDynamicName } from '../matchers'
 import { sortRoutes } from '../sortRoutes'
 import { getQualifiedRouteComponent } from '../useScreens'
 import { assertIsReady } from '../utils/assertIsReady'
+import { dynamicImport } from '../utils/dynamicImport'
 import { removeSearch } from '../utils/removeSearch'
 import { shouldLinkExternally } from '../utils/url'
+import type { VXS } from '../vite/types'
 import { CACHE_KEY, CLIENT_BASE_URL } from './constants'
 import { getNormalizedStatePath, type UrlObject } from './getNormalizedStatePath'
 import { setLastAction } from './lastAction'
-import { dynamicImport } from '../utils/dynamicImport'
-import type { VXS } from '../vite/types'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null

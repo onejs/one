@@ -9,6 +9,7 @@
  * Based on https://github.com/vercel/next.js/blob/1df2686bc9964f1a86c444701fa5cbf178669833/packages/next/src/shared/lib/router/utils/route-regex.ts
  */
 import type { RouteNode } from '../Route';
+import type { VXS } from '../vite/types';
 export type VXSRouterServerManifestV1Route<TRegex = string> = {
     file: string;
     page: string;
@@ -16,11 +17,11 @@ export type VXSRouterServerManifestV1Route<TRegex = string> = {
     namedRegex: TRegex;
     generated?: boolean;
     layouts?: RouteNode[];
+    type: VXS.RouteType;
 };
 export type VXSRouterServerManifestV1<TRegex = string> = {
     apiRoutes: VXSRouterServerManifestV1Route<TRegex>[];
-    spaRoutes: VXSRouterServerManifestV1Route<TRegex>[];
-    ssgRoutes: VXSRouterServerManifestV1Route<TRegex>[];
+    pageRoutes: VXSRouterServerManifestV1Route<TRegex>[];
     notFoundRoutes: VXSRouterServerManifestV1Route<TRegex>[];
 };
 export interface Group {

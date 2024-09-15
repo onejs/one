@@ -111,8 +111,7 @@
     "vite-tsconfig-paths": "^5.0.1",
     "vxrn": "1.1.221",
     "ws": "^8.18.0",
-    "xxhashjs": "^0.2.2",
-    "zql": "portal:/Users/n8/github/mono/packages/zql"
+    "xxhashjs": "^0.2.2"
   },
   "peerDependencies": {
     "react-native": "*"

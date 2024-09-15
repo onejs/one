@@ -25,7 +25,7 @@ if (typeof window !== 'undefined') {
 
 type RootProps = RenderAppProps &
   Omit<InnerProps, 'context'> & {
-    mode?: VXS.RouteMode
+    mode?: VXS.RouteRenderMode
     isClient?: boolean
     routes: GlobbedRouteImports
     routeOptions?: VXS.RouteOptions

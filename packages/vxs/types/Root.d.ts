@@ -3,7 +3,7 @@ import type { GlobbedRouteImports, RenderAppProps } from './types';
 import { type NavigationContainerProps } from '@react-navigation/native';
 import type { VXS } from './vite/types';
 type RootProps = RenderAppProps & Omit<InnerProps, 'context'> & {
-    mode?: VXS.RouteMode;
+    mode?: VXS.RouteRenderMode;
     isClient?: boolean;
     routes: GlobbedRouteImports;
     routeOptions?: VXS.RouteOptions;

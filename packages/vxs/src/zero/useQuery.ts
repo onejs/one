@@ -1,5 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+// @ts-ignore
 import type { Query, QueryResultRow, Smash } from 'zql/src/zql/query/query'
+// @ts-ignore
 import type { Schema } from 'zql/src/zql/query/schema.js'
 import { onClientLoaderResolve } from '../clientLoaderResolver'
 import { subscribeToZeroQuery } from './subscribeToQuery'
@@ -9,13 +11,14 @@ import { getQueryKey } from './getQueryKey'
 let clientInitialData: Object | null = {}
 
 onClientLoaderResolve(() => {
+  // TODO remove global
   clientInitialData = globalThis['__vxrnPostRenderData__']
 })
 
-// ASTID => data
+// AST_ID => data
 const serverQueryData = {}
 
-// TODO
+// TODO remove global
 globalThis['__vxrnServerData__'] = serverQueryData
 
 const promises = new WeakMap()

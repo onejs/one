@@ -15,7 +15,7 @@ type RequestHandlerResponse = null | string | Response
 export function createHandleRequest(
   options: VXS.PluginOptions,
   handlers: {
-    handleSSR?: (props: RequestHandlerProps<{ routeType: 'ssg' | 'spa' }>) => Promise<any>
+    handleSSR?: (props: RequestHandlerProps) => Promise<any>
     handleLoader?: (props: RequestHandlerProps) => Promise<any>
     handleAPI?: (props: RequestHandlerProps) => Promise<any>
   }
@@ -24,7 +24,7 @@ export function createHandleRequest(
     throw new Error(`No import.meta.env - Node 22 or greater required.`)
   }
 
-  const manifest = getManifest('app')
+  const manifest = getManifest()
   if (!manifest) {
     throw new Error(`No routes manifest`)
   }
@@ -40,19 +40,10 @@ export function createHandleRequest(
   const activeRequests = {}
 
   // shouldn't be mapping back and forth...
-  const ssgRoutes = manifest.ssgRoutes.map((route) => ({
+  const pageRoutes = manifest.pageRoutes.map((route) => ({
     ...route,
-    routeType: 'ssg' as const,
     workingRegex: new RegExp(route.namedRegex),
   }))
-
-  const spaRoutes = manifest.spaRoutes.map((route) => ({
-    ...route,
-    routeType: 'spa' as const,
-    workingRegex: new RegExp(route.namedRegex),
-  }))
-
-  const routesWithRegex = [...ssgRoutes, ...spaRoutes]
 
   return async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
     const urlString = request.url || ''
@@ -86,7 +77,7 @@ export function createHandleRequest(
         const originalUrl = pathname.replace('_vxrn_loader.js', '')
         const finalUrl = new URL(originalUrl, url.origin)
 
-        for (const route of routesWithRegex) {
+        for (const route of pageRoutes) {
           if (!route.workingRegex.test(finalUrl.pathname)) {
             continue
           }
@@ -127,8 +118,7 @@ export function createHandleRequest(
         if (process.env.NODE_ENV === 'development') {
           console.error(`No matching route found!`, {
             originalUrl,
-            ssgRoutes: manifest.ssgRoutes,
-            spaRoutes: manifest.spaRoutes,
+            ssgRoutes: manifest.pageRoutes,
           })
         }
 
@@ -140,10 +130,12 @@ export function createHandleRequest(
 
     if (handlers.handleSSR) {
       const { promise, reject, resolve } = promiseWithResolvers()
+
+      // TODO timeout handler to clear activeRequests and log error
       activeRequests[pathname] = promise
 
       try {
-        for (const route of routesWithRegex) {
+        for (const route of pageRoutes) {
           if (!route.workingRegex.test(pathname)) {
             continue
           }

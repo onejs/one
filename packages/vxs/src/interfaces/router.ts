@@ -309,7 +309,7 @@ export namespace VXSRouter {
     /** Path to route to. */
     href: Href<T>
 
-    // TODO(EvanBacon): This may need to be extracted for React Native style support.
+    // TODO: This may need to be extracted for React Native style support.
     /** Forward props to child component. Useful for custom buttons. */
     asChild?: boolean
 
