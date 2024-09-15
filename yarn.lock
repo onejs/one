@@ -11285,6 +11285,7 @@ __metadata:
     dotenv: ^16.4.5
     drizzle-kit: ^0.24.2
     drizzle-orm: ^0.33.0
+    expo-modules-core: ^1.12.24
     postgres: ^3.4.4
     react: ^18.3.1
     react-native: 0.74.1
@@ -11514,6 +11515,15 @@ __metadata:
   dependencies:
     invariant: ^2.2.4
   checksum: 3b5345eb5b11325058541b22a17a18ea8610a7d605e2f791144cef7f69e9e81b77f22baabbade081d01a06d93df4234a5294eaa2517aa99c926a1b0869f6c0cc
+  languageName: node
+  linkType: hard
+
+"expo-modules-core@npm:^1.12.24":
+  version: 1.12.24
+  resolution: "expo-modules-core@npm:1.12.24"
+  dependencies:
+    invariant: ^2.2.4
+  checksum: 0bd35e9967b5aebb7ccdbd95d3a806fe009af4ec22f53d6856c121ff0390545b1bc15f65a943fc4707bd300c29f0eb7d66d0ddc2ecc177f22d3dbe8ae305d207
   languageName: node
   linkType: hard
 
