@@ -1,6 +1,6 @@
 {
   "name": "example-basic",
-  "version": "1.1.225",
+  "version": "1.1.226",
   "private": true,
   "type": "module",
   "scripts": {
@@ -21,7 +21,7 @@
     "@tamagui/image-next": "^1.111.1",
     "@tamagui/lucide-icons": "^1.111.1",
     "@tamagui/vite-plugin": "^1.111.1",
-    "@vxrn/color-scheme": "1.1.225",
+    "@vxrn/color-scheme": "1.1.226",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
@@ -35,7 +35,7 @@
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
     "tamagui": "^1.111.1",
-    "vxs": "1.1.225"
+    "vxs": "1.1.226"
   },
   "devDependencies": {
     "@faker-js/faker": "next",
