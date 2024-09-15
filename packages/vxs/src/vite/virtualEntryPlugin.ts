@@ -28,7 +28,7 @@ export function createVirtualEntry(options: { root: string }): Plugin {
     load(id) {
       if (id === resolvedVirtualEntryId) {
         return `
-import { createApp } from 'one'
+import { createApp } from 'vxs'
 
 // globbing ${appDirGlob}
 export default createApp({
@@ -39,7 +39,7 @@ export default createApp({
 
       if (id === resolvedVirtualEntryIdNative) {
         return `
-import { createApp } from 'one'
+import { createApp } from 'vxs'
 
 // globbing ${appDirGlob}
 export default createApp({

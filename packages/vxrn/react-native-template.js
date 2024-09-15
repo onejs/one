@@ -119,7 +119,7 @@ ${new Error().stack
     }
 
     try {
-      if (_mod === 'vxs' || _mod === 'one' || _mod.endsWith('one/dist/esm/index.mjs')) {
+      if (_mod === 'vxs' || _mod.endsWith('one/dist/esm/index.mjs')) {
         // TODO this should be passed in not hardcoded
         const found =
           __getRequire('packages/vxs/dist/esm/index.js', _mod) ||
