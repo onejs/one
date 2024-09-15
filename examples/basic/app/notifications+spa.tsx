@@ -1,5 +1,5 @@
 import { isWeb } from 'tamagui'
-import { SafeAreaView, useLoader, type LoaderProps } from 'vxs'
+import { type Href, SafeAreaView, useLoader, type LoaderProps } from 'vxs'
 import { NotificationCard } from '~/features/notifications/NotificationCard'
 import { PageContainer } from '~/features/ui/PageContainer'
 import { db } from '~/db/connection'
@@ -11,11 +11,11 @@ type Notification = {
   action: 'like' | 'follow' | 'repost'
   fromUser: {
     username: string
-    userLink: string
+    userLink: Href
     avatar: string
   }
   post: {
-    postLink: string
+    postLink: Href
     content: string
   } | null
   createdAt: string

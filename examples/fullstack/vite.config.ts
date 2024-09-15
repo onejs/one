@@ -57,16 +57,7 @@ export default {
   },
 
   plugins: [
-    vxs({
-      redirects: [
-        // eg:
-        // {
-        //   source: '/account/subscriptions',
-        //   destination: '/account/items',
-        //   permanent: false,
-        // },
-      ],
-    }),
+    vxs({}),
 
     removeReactNativeWebAnimatedPlugin(),
 
