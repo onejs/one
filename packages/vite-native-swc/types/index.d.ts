@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { type Output, type ReactConfig } from '@swc/core';
 import { type SourceMapPayload } from 'node:module';
 import type { PluginOption } from 'vite';

@@ -33,11 +33,6 @@
       "import": "./dist/esm/vite.mjs",
       "require": "./dist/cjs/vite.js"
     },
-    "./zero": {
-      "types": "./types/zero.d.ts",
-      "import": "./dist/esm/zero.mjs",
-      "require": "./dist/cjs/zero.js"
-    },
     "./serve": {
       "types": "./types/serve.d.ts",
       "import": "./dist/esm/serve.mjs",
