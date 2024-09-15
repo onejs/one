@@ -27,11 +27,6 @@ export function createApp(options: CreateAppProps) {
     }
   }
 
-  if (process.env.ZERO_ENABLED) {
-    // to register before resolveClientLoader
-    import('./zero/useQuery')
-  }
-
   // run their root layout before calling resolveClientLoader so they can register hook
   const rootLayoutImport = options.routes['/app/_layout.tsx']?.()
 
