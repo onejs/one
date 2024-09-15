@@ -39,7 +39,7 @@ const componentsIn = {
 
   a: ({ href = '', children, ...props }) => {
     return (
-      <Link className="link" href={href} asChild>
+      <Link className="link" href={href as any} asChild>
         {/* @ts-ignore */}
         <Paragraph
           tag="a"

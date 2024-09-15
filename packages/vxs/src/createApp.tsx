@@ -17,9 +17,11 @@ export function createApp(options: CreateAppProps) {
 
         // now we can grab and serialize in our zero queries
         const serverData = globalThis['__vxrnServerData__']
-        const hasQueryData = Object.keys(serverData).length
-        if (hasQueryData) {
-          html = html.replace(`{ __vxrn__: 'post-render' }`, JSON.stringify(serverData))
+        if (serverData) {
+          const hasQueryData = Object.keys(serverData).length
+          if (hasQueryData) {
+            html = html.replace(`{ __vxrn__: 'post-render' }`, JSON.stringify(serverData))
+          }
         }
 
         return html
