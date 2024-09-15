@@ -23,9 +23,6 @@ export async function getVitePath(
   if (moduleName === 'react/jsx-dev-runtime') {
     return 'react/jsx-dev-runtime'
   }
-  if (moduleName.includes('one/dist/esm/index')) {
-    return 'one'
-  }
 
   if (moduleName[0] === '.') {
     const rootAt = importer.indexOf(rootPath)
@@ -35,10 +32,6 @@ export async function getVitePath(
   if (moduleName === 'vxs') {
     // TODO hardcoded
     return 'vxs'
-  }
-  if (moduleName === 'one') {
-    // TODO hardcoded
-    return 'one'
   }
 
   const sourceFile = join(process.cwd(), 'index.js')
@@ -51,7 +44,7 @@ export async function getVitePath(
 
   // TODO
   if (!resolved) {
-    return 'one'
+    return 'vxs'
   }
 
   // figure out symlinks

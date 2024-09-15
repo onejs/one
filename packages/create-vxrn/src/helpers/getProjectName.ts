@@ -13,7 +13,7 @@ export const getProjectName = async (projectPath?: string) => {
   console.info()
 
   if (!projectPath) {
-    const defaultName = 'one'
+    const defaultName = 'hello-world'
     const res = await prompts({
       type: 'text',
       name: 'path',
