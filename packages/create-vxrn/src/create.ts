@@ -128,6 +128,15 @@ export async function create(args: { template?: string }) {
 
   console.info()
 
+  if ('preInstall' in template) {
+    await template.preInstall({
+      packageManager,
+      isFullClone: true,
+      projectName,
+      projectPath: resolvedProjectPath,
+    })
+  }
+
   try {
     console.info()
     console.info(ansis.green(`Installing with ${packageManager}...`))
