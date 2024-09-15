@@ -1,3 +1,4 @@
+// @ts-nocheck
 // drizzleToZero.ts
 
 import type { PgTableWithColumns, PgColumn } from 'drizzle-orm/pg-core'

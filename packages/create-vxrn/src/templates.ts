@@ -1,6 +1,6 @@
 import stepsBare from './steps/bare'
 import setupFullstack from './steps/fullstack'
-import setupBasic from './steps/vxs'
+import * as BasicTemplateSteps from './steps/vxs'
 
 export const templates = [
   {
@@ -14,7 +14,7 @@ export const templates = [
       dir: [`examples`, `basic`],
       branch: 'main',
     },
-    extraSteps: setupBasic,
+    ...BasicTemplateSteps,
   },
 
   {

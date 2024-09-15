@@ -333,7 +333,9 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
     async start() {
       server.listen(port, options.host)
 
-      console.info(`Server running on ${options.protocol}//${options.host}:${port}`)
+      const url = `${options.protocol}//${options.host}:${port}`
+
+      console.info(`Server running on ${url}`)
 
       server.once('listening', () => {
         // bridge socket between vite

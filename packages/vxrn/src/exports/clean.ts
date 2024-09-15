@@ -20,7 +20,7 @@ export const clean = async (rest: VXRNOptions) => {
   const options = await getOptionsFilled(rest)
   const { root } = options
 
-  console.info(` [vxrn] cleaning`)
+  console.info(`[vxrn] cleaning`)
   await Promise.all([
     rm(join(root, 'node_modules', '.vite'), {
       recursive: true,
