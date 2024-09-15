@@ -6,20 +6,20 @@ import { entryRoot } from '../utils/getReactNativeBundle'
 import { getVitePath } from '../utils/getVitePath'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
-import type { Plugin } from 'vite'
+import { createIdResolver, type ResolveFn, type Plugin } from 'vite'
 import { conditions } from './reactNativeCommonJsPlugin'
 import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
 
 export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
-  let resolver
+  let idResolver: ReturnType<typeof createIdResolver>
 
   return {
     name: 'vxrn:native-hmr-transform',
 
     // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
-    async handleHotUpdate({ read, modules, file }) {
-      if (!resolver) {
+    async handleHotUpdate({ read, modules, file, server }) {
+      if (!idResolver) {
         const rnConfig = getReactNativeResolvedConfig()
         if (!rnConfig) {
           // they are only running web app not native
@@ -32,7 +32,7 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
           mainFields: rnConfig.resolve.mainFields,
           extensions: rnConfig.resolve.extensions,
         }
-        resolver = rnConfig.createResolver(resolverConfig)
+        idResolver = createIdResolver(rnConfig, resolverConfig)
       }
 
       try {
@@ -76,7 +76,17 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
           const { n: importName, s: start } = specifier
 
           if (importName) {
-            const id = await getVitePath(entryRoot, file, importName, resolver)
+            const environment = server.environments.ios // TODO: android
+
+            // TODO: maybe we only need `resolverWithPlugins`?
+            const resolver: ResolveFn = idResolver.bind(null, environment)
+            const resolverWithPlugins: ResolveFn = async (id, importer) => {
+              // Need this since `idResolver` will not run through user plugins, but we might need plugins like `vite-tsconfig-paths` to work if they are used
+              const resolvedIdData = await environment.pluginContainer.resolveId(id, importer)
+              return resolvedIdData?.id
+            }
+
+            const id = await getVitePath(entryRoot, file, importName, resolver, resolverWithPlugins)
             if (!id) {
               console.warn('???')
               continue
