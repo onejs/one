@@ -18,16 +18,6 @@ export default function Layout() {
     <>
       {isWeb && (
         <>
-          <ToastViewport flexDirection="column-reverse" top="$2" left={0} right={0} />
-          <ToastViewport
-            multipleToasts
-            name="viewport-multiple"
-            flexDirection="column-reverse"
-            top="$2"
-            left={0}
-            right={0}
-          />
-
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
@@ -68,6 +58,20 @@ export default function Layout() {
       )}
 
       <Providers>
+        {isWeb && (
+          <>
+            <ToastViewport flexDirection="column-reverse" top="$2" left={0} right={0} />
+            <ToastViewport
+              multipleToasts
+              name="viewport-multiple"
+              flexDirection="column-reverse"
+              top="$2"
+              left={0}
+              right={0}
+            />
+          </>
+        )}
+
         {isWeb ? (
           <Slot />
         ) : (
