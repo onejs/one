@@ -19,7 +19,7 @@
     "inlineSourceMap": true,
     "preserveSymlinks": true,
     "jsx": "react-jsx",
-    "module": "ES2022",
+    "module": "esnext",
     "moduleResolution": "Bundler",
     "noEmit": false,
     "noEmitOnError": false,

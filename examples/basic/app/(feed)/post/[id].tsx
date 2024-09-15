@@ -74,7 +74,7 @@ export function PostPage() {
   const data = useLoader(loader)
 
   const navigation = useNavigation()
-  const params = useParams()
+  const params = useParams<any>()
 
   useEffect(() => {
     navigation.setOptions({ title: data?.content || `Post #${params.id}` })

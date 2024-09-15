@@ -1,5 +1,5 @@
 import { Paragraph, Text, XStack, YStack } from 'tamagui'
-import { Link } from 'vxs'
+import { type Href, Link } from 'vxs'
 import { Image } from '../ui/Image'
 import { Card } from '../ui/Card'
 
@@ -7,11 +7,11 @@ type NotificationItem = {
   action: 'like' | 'repost' | 'follow'
   fromUser: {
     username: string
-    userLink: string
+    userLink: Href
     avatar: string
   }
   post: {
-    postLink: string
+    postLink: Href
     content: string
   } | null
   createdAt: string
