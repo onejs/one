@@ -1,4 +1,3 @@
-import '../polyfills-server';
 import type { Hono } from 'hono';
 import type { VXS } from './types';
 import type { VXRNOptions } from 'vxrn';

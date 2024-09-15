@@ -14,8 +14,9 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
   const toAbsolute = (p) => Path.resolve(options.root || '.', p)
 
   // add redirects
-  if (options.redirects) {
-    for (const redirect of options.redirects) {
+  const redirects = options.web?.redirects
+  if (redirects) {
+    for (const redirect of redirects) {
       app.get(redirect.source, (context) => {
         const destinationUrl = redirect.destination.replace(/:\w+/g, (param) => {
           const paramName = param.substring(1)
