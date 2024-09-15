@@ -11,9 +11,7 @@ type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
 };
 type RequestHandlerResponse = null | string | Response;
 export declare function createHandleRequest(options: VXS.PluginOptions, handlers: {
-    handleSSR?: (props: RequestHandlerProps<{
-        routeType: 'ssg' | 'spa';
-    }>) => Promise<any>;
+    handleSSR?: (props: RequestHandlerProps) => Promise<any>;
     handleLoader?: (props: RequestHandlerProps) => Promise<any>;
     handleAPI?: (props: RequestHandlerProps) => Promise<any>;
 }): (request: Request) => Promise<RequestHandlerResponse>;

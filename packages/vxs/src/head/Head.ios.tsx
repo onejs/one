@@ -208,7 +208,7 @@ function useRegisterCurrentActivity(activity: UserActivity) {
 
   const cascadingActivity: UserActivity = React.useMemo(() => {
     // Get all nested activities together, then update the id to match the current pathname.
-    // This enables cases like `/user/[name]/post/[id]` to match all nesting, while still having a URL-specific ID, i.e. `/user/evanbacon/post/123`
+    // This enables cases like `/user/[name]/post/[id]` to match all nesting, while still having a URL-specific ID, i.e. `/user/post/123`
     const cascadingActivity = activities.has(cascadingId)
       ? {
           ...activities.get(cascadingId),

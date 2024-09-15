@@ -9,10 +9,12 @@ import type {
 export namespace VXS {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
 
-  export type RouteMode = 'ssg' | 'spa'
+  export type RouteRenderMode = 'ssg' | 'spa'
+
+  export type RouteType = 'ssg' | 'spa' | 'api' | 'layout'
 
   export type RouteOptions = {
-    routeModes?: Record<string, VXS.RouteMode>
+    routeModes?: Record<string, VXS.RouteRenderMode>
   }
 
   export type FixDependencies = {
@@ -55,7 +57,7 @@ export namespace VXS {
        *
        * @default 'ssg'
        */
-      defaultRenderMode?: 'ssg' | 'spa'
+      defaultRenderMode?: RouteRenderMode
 
       redirects?: Redirects
     }

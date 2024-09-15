@@ -9,12 +9,12 @@ export declare function createRoute<Path>(): {
     }) => any;
 };
 declare const postIdRoute: {
-    useParams: () => VXSRouter.InputRouteParams<"/post/[id]">;
-    useActiveParams: () => Partial<VXSRouter.InputRouteParams<"/post/[id]">>;
+    useParams: () => VXSRouter.InputRouteParams<"/feed/[id]">;
+    useActiveParams: () => Partial<VXSRouter.InputRouteParams<"/feed/[id]">>;
     createLoader: (a: (props: {
-        params: VXSRouter.InputRouteParams<"/post/[id]">;
+        params: VXSRouter.InputRouteParams<"/feed/[id]">;
     }) => any) => (props: {
-        params: VXSRouter.InputRouteParams<"/post/[id]">;
+        params: VXSRouter.InputRouteParams<"/feed/[id]">;
     }) => any;
 };
 export declare const route: {

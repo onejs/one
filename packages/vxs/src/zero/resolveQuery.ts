@@ -6,7 +6,10 @@ export async function resolveZeroQuery(query: Query): Promise<any> {
 
   // slow query warning
   const tm = setTimeout(() => {
-    console.warn(` Warning, query slow to resolve, ensure Zero server is running`, query)
+    console.warn(
+      ` Warning: query slow to resolve, ensure Zero server is running`,
+      JSON.stringify(query.ast, null, 2)
+    )
   }, 2000)
 
   return new Promise((res, rej) => {

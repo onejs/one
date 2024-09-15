@@ -128,7 +128,7 @@ export function getMatchableRouteConfigs<ParamList extends object>(options?: Opt
 
   const convertedWithInitial = converted.map((config) => ({
     ...config,
-    // TODO(EvanBacon): Probably a safer way to do this
+    // TODO: Probably a safer way to do this
     // Mark initial routes to give them potential priority over other routes that match.
     isInitial: resolvedInitialPatterns.includes(config.routeNames.join('/')),
   }))
@@ -145,10 +145,10 @@ export function getMatchableRouteConfigs<ParamList extends object>(options?: Opt
 function assertConfigDuplicates(configs: RouteConfig[]) {
   // Check for duplicate patterns in the config
   configs.reduce<Record<string, RouteConfig>>((acc, config) => {
-    // NOTE(EvanBacon): Uses the regex pattern as key to detect duplicate slugs.
+    // NOTE: Uses the regex pattern as key to detect duplicate slugs.
     const indexedKey = config.regex?.toString() ?? config.pattern
     const alpha = acc[indexedKey]
-    // NOTE(EvanBacon): Skips checking nodes that have children.
+    // NOTE: Skips checking nodes that have children.
     if (alpha && !alpha.hasChildren && !config.hasChildren) {
       const a = alpha.routeNames
       const b = config.routeNames
@@ -159,7 +159,7 @@ function assertConfigDuplicates(configs: RouteConfig[]) {
         a.length > b.length ? b.every((it, i) => a[i] === it) : a.every((it, i) => b[i] === it)
 
       if (!intersects) {
-        // NOTE(EvanBacon): Adds more context to the error message since we know about the
+        // NOTE: Adds more context to the error message since we know about the
         // file-based routing.
         const last = config.pattern.split('/').pop()
 
@@ -201,7 +201,7 @@ function sortConfigs(a: RouteConfig, b: RouteConfig): number {
   // So move it up
   if (
     a.pattern.startsWith(b.pattern) &&
-    // NOTE(EvanBacon): This is a hack to make sure that `*` is always at the end
+    // NOTE: This is a hack to make sure that `*` is always at the end
     b.screen !== 'index'
   ) {
     return -1
@@ -211,7 +211,7 @@ function sortConfigs(a: RouteConfig, b: RouteConfig): number {
     return 1
   }
 
-  // NOTE(EvanBacon): Here we append `index` if the screen was `index` so the length is the same
+  // NOTE: Here we append `index` if the screen was `index` so the length is the same
   // as a slug or wildcard when nested more than one level deep.
   // This is so we can compare the length of the pattern, e.g. `foo/*` > `foo` vs `*` < ``.
   const aParts = a.pattern
@@ -314,7 +314,7 @@ function getStateFromEmptyPathWithConfigs(
   // We need to add special handling of empty path so navigation to empty path also works
   // When handling empty path, we should only look at the root level config
 
-  // NOTE(EvanBacon): We only care about matching leaf nodes.
+  // NOTE: We only care about matching leaf nodes.
   const leafNodes = configs
     .filter((config) => !config.hasChildren)
     .map((value) => {
@@ -329,15 +329,15 @@ function getStateFromEmptyPathWithConfigs(
   const match =
     leafNodes.find(
       (config) =>
-        // NOTE(EvanBacon): Test leaf node index routes that either don't have a regex or match an empty string.
+        // NOTE: Test leaf node index routes that either don't have a regex or match an empty string.
         config.path === '' && (!config.regex || config.regex.test(''))
     ) ??
     leafNodes.find(
       (config) =>
-        // NOTE(EvanBacon): Test leaf node dynamic routes that match an empty string.
+        // NOTE: Test leaf node dynamic routes that match an empty string.
         config.path.startsWith(':') && config.regex!.test('')
     ) ??
-    // NOTE(EvanBacon): Test leaf node deep dynamic routes that match a slash.
+    // NOTE: Test leaf node deep dynamic routes that match a slash.
     // This should be done last to enable dynamic routes having a higher priority.
     leafNodes.find((config) => config.path.startsWith('*') && config.regex!.test('/'))
 
@@ -486,7 +486,7 @@ function matchAgainstConfigs(remaining: string, configs: RouteConfig[]): ParsedR
       }
     })
 
-    // TODO(EvanBacon): Maybe we should warn / assert if multiple slugs use the same param name.
+    // TODO: Maybe we should warn / assert if multiple slugs use the same param name.
     const combinedParams = routes.reduce<Record<string, any>>(
       (acc, r) => Object.assign(acc, r.params),
       {}
@@ -623,7 +623,7 @@ function formatRegexPattern(it: string): string {
   if (matchGroupName(it) != null) {
     // Groups are optional segments
     // this enables us to match `/bar` and `/(foo)/bar` for the same route
-    // NOTE(EvanBacon): Ignore this match in the regex to avoid capturing the group
+    // NOTE: Ignore this match in the regex to avoid capturing the group
     return `(?:${escape(it)}\\/)?`
   }
 

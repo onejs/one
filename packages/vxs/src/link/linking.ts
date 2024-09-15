@@ -30,7 +30,7 @@ export function getInitialURL(): Promise<string | null> | string {
     (async () => {
       const url = await Linking.getInitialURL()
 
-      // NOTE(EvanBacon): This could probably be wrapped with the development boundary
+      // NOTE: This could probably be wrapped with the development boundary
       // since Expo Go is mostly just used in development.
 
       // Expo Go is weird and requires the root path to be `/--/`
@@ -51,7 +51,7 @@ export function getInitialURL(): Promise<string | null> | string {
         }
       }
       // The path will be nullish in bare apps when the app is launched from the home screen.
-      // TODO(EvanBacon): define some policy around notifications.
+      // TODO: define some policy around notifications.
       return url ?? getRootURL()
     })(),
     new Promise<string>((resolve) =>

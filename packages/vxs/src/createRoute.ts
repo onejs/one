@@ -28,7 +28,7 @@ const getProxy = () =>
     }
   )
 
-const postIdRoute = createRoute<'/post/[id]'>()
+const postIdRoute = createRoute<'/feed/[id]'>()
 
 export const route = getProxy() as {
   post: {

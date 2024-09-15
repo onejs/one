@@ -127,7 +127,7 @@ export default function useLinking(
       return undefined
     }
 
-    // NOTE(EvanBacon): This is the important part.
+    // NOTE: This is the important part.
     const path = extractExpoPathFromURL(url)
 
     return path !== undefined ? getStateFromPathRef.current(path, configRef.current) : undefined
