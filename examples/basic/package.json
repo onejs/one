@@ -10,16 +10,17 @@
     "build:prod": "vxs build",
     "serve": "vxs serve",
     "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
+    "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
     "orm:push": "drizzle-kit push --config ./db/drizzle.config.ts",
     "orm:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
     "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
-    "@tamagui/config": "^1.110.5",
-    "@tamagui/image-next": "^1.110.5",
-    "@tamagui/lucide-icons": "^1.110.5",
-    "@tamagui/vite-plugin": "^1.110.5",
+    "@tamagui/config": "^1.111.1",
+    "@tamagui/image-next": "^1.111.1",
+    "@tamagui/lucide-icons": "^1.111.1",
+    "@tamagui/vite-plugin": "^1.111.1",
     "@vxrn/color-scheme": "1.1.225",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
@@ -33,7 +34,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.110.5",
+    "tamagui": "^1.111.1",
     "vxs": "1.1.225"
   },
   "devDependencies": {

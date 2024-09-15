@@ -9,8 +9,6 @@ if (!import.meta.dirname) {
   throw new Error(`Not on Node 22`)
 }
 
-const optimizeInterop = ['expo-splash-screen']
-
 export default {
   resolve: {
     alias: {
@@ -23,41 +21,35 @@ export default {
       '@tamagui/core',
       '@tamagui/web',
       '@tamagui/animations-moti',
+      '@tamagui/toast',
       'tamagui',
       '@tamagui/use-presence',
       'react-native-reanimated',
     ],
   },
 
-  optimizeDeps: {
-    include: [
-      ...optimizeInterop,
-      '@tamagui/animate-presence',
-      '@tamagui/presence-child',
-      'swr',
-      '@supabase/ssr',
-      '@tamagui/animations-moti',
-      '@tamagui/animations-react-native',
-      'is-buffer',
-      'extend',
-      'minimatch',
-      'gray-matter',
-      'hsluv',
-      'rehype-parse',
-      'refractor',
-      'glob',
-      'reading-time',
-      'unified',
-    ],
-    needsInterop: optimizeInterop,
-  },
-
-  build: {
-    cssTarget: 'safari15',
-  },
-
   plugins: [
-    vxs({}),
+    vxs({
+      web: {
+        defaultRenderMode: 'ssg',
+      },
+
+      // this is a simpler way to optimize deps on server
+      deps: {
+        swr: true,
+        '@supabase/ssr': true,
+        'is-buffer': true,
+        extend: true,
+        minimatch: true,
+        'gray-matter': true,
+        hsluv: true,
+        'rehype-parse': true,
+        refractor: true,
+        glob: true,
+        'reading-time': true,
+        unified: true,
+      },
+    }),
 
     removeReactNativeWebAnimatedPlugin(),
 
