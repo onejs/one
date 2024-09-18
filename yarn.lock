@@ -11285,7 +11285,7 @@ __metadata:
     dotenv: ^16.4.5
     drizzle-kit: ^0.24.2
     drizzle-orm: ^0.33.0
-    expo-modules-core: ^1.12.24
+    expo: ^51.0.32
     postgres: ^3.4.4
     react: ^18.3.1
     react-native: 0.74.1
@@ -11462,6 +11462,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-font@npm:~12.0.10":
+  version: 12.0.10
+  resolution: "expo-font@npm:12.0.10"
+  dependencies:
+    fontfaceobserver: ^2.1.0
+  peerDependencies:
+    expo: "*"
+  checksum: c8fdc046158d4c2d71d81fcd9ba115bc0e142bc0d637ae9b5fea04cd816c62c051f63e44685530109106565d29feca2035ef6123c56cf9c951d0a2775a8cd9a7
+  languageName: node
+  linkType: hard
+
 "expo-font@npm:~12.0.9":
   version: 12.0.9
   resolution: "expo-font@npm:12.0.9"
@@ -11518,7 +11529,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-modules-core@npm:^1.12.24":
+"expo-modules-core@npm:1.12.24":
   version: 1.12.24
   resolution: "expo-modules-core@npm:1.12.24"
   dependencies:
@@ -11544,6 +11555,31 @@ __metadata:
   version: 1.12.1
   resolution: "expo-status-bar@npm:1.12.1"
   checksum: 82f2e9096660cdb521b920662908b93e1909c2bbe776802c314dff6e0863300d19ba4b9e093825b2bdc094f333010df0b8ed11fcb330e4c29a16c2d55da0aa96
+  languageName: node
+  linkType: hard
+
+"expo@npm:^51.0.32":
+  version: 51.0.32
+  resolution: "expo@npm:51.0.32"
+  dependencies:
+    "@babel/runtime": ^7.20.0
+    "@expo/cli": 0.18.29
+    "@expo/config": 9.0.3
+    "@expo/config-plugins": 8.0.8
+    "@expo/metro-config": 0.18.11
+    "@expo/vector-icons": ^14.0.0
+    babel-preset-expo: ~11.0.14
+    expo-asset: ~10.0.10
+    expo-file-system: ~17.0.1
+    expo-font: ~12.0.10
+    expo-keep-awake: ~13.0.2
+    expo-modules-autolinking: 1.11.2
+    expo-modules-core: 1.12.24
+    fbemitter: ^3.0.0
+    whatwg-url-without-unicode: 8.0.0-3
+  bin:
+    expo: bin/cli
+  checksum: 5d15ab5b8d4f29484183bfa7c6e20e8be0725ca5e0a9ab20c0a6ce40b3a05f86a7bb7230c83c86528522241b83de73f2b4a7219a4daa363564f9860a26501454
   languageName: node
   linkType: hard
 
@@ -20728,6 +20764,7 @@ __metadata:
     citty: ^0.1.6
     crossws: ^0.2.4
     depcheck: ^1.4.7
+    dotenv: ^16.4.5
     es-module-lexer: ^1.3.0
     esbuild: ^0.23.1
     fast-glob: ^3.2.11

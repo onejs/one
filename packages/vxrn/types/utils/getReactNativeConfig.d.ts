@@ -1,6 +1,8 @@
 import { type InlineConfig, type Plugin, type UserConfig } from 'vite';
 import type { VXRNOptionsFilled } from './getOptionsFilled';
-export declare function getReactNativeConfig(options: VXRNOptionsFilled): Promise<{
+export declare function getReactNativeConfig(options: VXRNOptionsFilled, internal?: {
+    mode?: 'dev' | 'prod';
+}): Promise<{
     plugins: any[];
     appType: "custom";
     root: string;
@@ -20,6 +22,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled): Promis
     mode: string;
     define: {
         'process.env.NODE_ENV': string;
+        'process.env.SERVER_URL': string;
     };
     build: {
         ssr: false;

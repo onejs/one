@@ -17,7 +17,10 @@ export let entryRoot = ''
 
 const cache: Record<string, RollupCache> = {}
 
-export async function getReactNativeBundle(options: VXRNOptionsFilled) {
+export async function getReactNativeBundle(
+  options: VXRNOptionsFilled,
+  internal: { mode?: 'dev' | 'prod'; useCache?: boolean } = { mode: 'dev', useCache: true }
+) {
   entryRoot = options.root
 
   if (process.env.LOAD_TMP_BUNDLE) {
@@ -31,7 +34,11 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled) {
 
   const vendoredModulesMap = await prebuildReactNativeModules(
     options.cacheDir,
-    options.packageVersions
+    options.packageVersions,
+    {
+      // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
+      mode: internal.mode,
+    }
   )
 
   if (isBuildingNativeBundle) {
@@ -47,7 +54,7 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled) {
   )
 
   // build app
-  const nativeBuildConfig = await getReactNativeConfig(options)
+  const nativeBuildConfig = await getReactNativeConfig(options, internal)
 
   const builder = await createBuilder(nativeBuildConfig)
 
@@ -56,23 +63,25 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled) {
 
   const rollupCacheFile = join(options.cacheDir, `rn-rollup-cache-${environmentName}.json`)
 
-  // See: https://rollupjs.org/configuration-options/#cache
-  environment.config.build.rollupOptions.cache =
-    cache[environmentName] ||
-    (await (async () => {
-      // Try to load Rollup cache from disk
-      try {
-        if (await pathExists(rollupCacheFile)) {
-          const c = await FSExtra.readJSON(rollupCacheFile, { reviver: bigIntReviver })
-          return c
+  if (internal.useCache) {
+    // See: https://rollupjs.org/configuration-options/#cache
+    environment.config.build.rollupOptions.cache =
+      cache[environmentName] ||
+      (await (async () => {
+        // Try to load Rollup cache from disk
+        try {
+          if (await pathExists(rollupCacheFile)) {
+            const c = await FSExtra.readJSON(rollupCacheFile, { reviver: bigIntReviver })
+            return c
+          }
+        } catch (e) {
+          console.error(`Error loading Rollup cache from ${rollupCacheFile}: ${e}`)
         }
-      } catch (e) {
-        console.error(`Error loading Rollup cache from ${rollupCacheFile}: ${e}`)
-      }
 
-      return null
-    })()) ||
-    true /* to initially enable Rollup cache */
+        return null
+      })()) ||
+      true /* to initially enable Rollup cache */
+  }
 
   // We are using a forked version of the Vite internal function `buildEnvironment` (which is what `builder.build` calls) that will return the Rollup cache object with the build output, and also with some performance improvements.
   const buildOutput = await buildEnvironment(environment.config, environment)
@@ -81,6 +90,8 @@ export async function getReactNativeBundle(options: VXRNOptionsFilled) {
 
     // do not await cache write
     ;(async () => {
+      if (!internal.useCache) return
+
       try {
         await FSExtra.writeJSON(rollupCacheFile, buildOutput.cache, { replacer: bigIntReplacer })
       } catch (e) {
@@ -154,8 +165,7 @@ __require("${id}")
     // TEMP FIX for router tamagui thing since expo router 3 upgrade
     .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
 
-  const templateFile = resolveFile('vxrn/react-native-template.js')
-  const template = await readFile(templateFile, 'utf-8')
+  const template = await getReactNativeTemplate(internal.mode || 'dev')
 
   const specialRequireMap = vendoredModulesMap
     ? `
@@ -174,6 +184,16 @@ globalThis.__vxrnPrebuildSpecialRequireMap = {
   setIsBuildingNativeBundle(null)
 
   return out
+}
+
+/**
+ * Get `react-native-template.js` with some `process.env.*` replaced with static values.
+ */
+async function getReactNativeTemplate(mode: 'dev' | 'prod') {
+  const templateFile = resolveFile('vxrn/react-native-template.js')
+  const template = await readFile(templateFile, 'utf-8')
+
+  return template.replace(/process\.env\.__DEV__/g, mode === 'dev' ? 'true' : 'false')
 }
 
 function bigIntReplacer(_key: string, value: any): any {

@@ -11,7 +11,7 @@ globalThis['global'] = global
 global['react'] = {}
 global['exports'] = {}
 global['module'] = {}
-global['__DEV__'] = true
+global['__DEV__'] = process.env.__DEV__
 global['___modules___'] = {}
 global['___vxrnAbsoluteToRelative___'] = {}
 // to avoid it looking like browser...
@@ -207,11 +207,17 @@ ${new Error().stack
       console.error(`Module not found "${_mod}" imported by "${importer}"\n${getErrorDetails()}`)
       return {}
     } catch (err) {
-      console.error(
+      const errorMessage =
         `\n◆ ${_mod} "${err}"`.replace('Error: ', '').replaceAll('"', '') +
-          '\n' +
-          getErrorDetails(false)
-      )
+        '\n' +
+        getErrorDetails(false)
+
+      if (globalThis['no_console']) {
+        // If we are in production, do not suppress error as it will be hard to debug (currently console.error in production is not shown or being logged anywhere).
+        throw new Error(errorMessage)
+      }
+
+      console.error(errorMessage)
     }
   }
 }
@@ -223,11 +229,16 @@ globalThis.__vxrnReloadApp = () => {
   __getRequire(__specialRequireMap['react-native']).DevSettings.reload()
 }
 
+if (!globalThis['console']) {
+  globalThis['console'] = {}
+  globalThis['no_console'] = true // Probably running in production
+}
+
 // idk why
 globalThis.__vxrnTmpLogs = []
 ;['trace', 'info', 'warn', 'error', 'log', 'group', 'groupCollapsed', 'groupEnd', 'debug'].forEach(
   (level) => {
-    const og = globalThis['console'][level]
+    const og = globalThis['console'][level] || (() => {})
     globalThis['_ogConsole' + level] = og
     const ogConsole = og.bind(globalThis['console'])
     globalThis['console'][level] = (...data) => {

@@ -26,16 +26,21 @@ import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
 const IGNORE_ROLLUP_LOGS_RE =
   /vite-native-client\/dist\/esm\/client\.native\.js|node_modules\/\.vxrn\/react-native\.js|react-native-prebuilt\/vendor|vxs\/dist/
 
-export async function getReactNativeConfig(options: VXRNOptionsFilled) {
+export async function getReactNativeConfig(
+  options: VXRNOptionsFilled,
+  internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
+) {
   const { root, port } = options
   const { optimizeDeps } = getOptimizeDeps('build')
+
+  const { mode } = internal
 
   // build app
   let nativeBuildConfig = {
     plugins: [
       ...(globalThis.__vxrnAddNativePlugins || []),
 
-      nativeClientInjectPlugin(),
+      ...(mode === 'dev' ? [nativeClientInjectPlugin()] : []),
 
       // vite doesnt support importing from a directory but its so common in react native
       // so lets make it work, and node resolve theoretically fixes but you have to pass in moduleDirs
@@ -77,7 +82,10 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled) {
 
       nodeResolve(),
 
-      swapPrebuiltReactModules(options.cacheDir, options.packageVersions),
+      swapPrebuiltReactModules(options.cacheDir, options.packageVersions, {
+        // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
+        mode: internal.mode,
+      }),
 
       getBabelReanimatedPlugin(),
 
@@ -110,6 +118,7 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled) {
       viteNativeSWC({
         tsDecorators: true,
         mode: 'build',
+        production: mode === 'prod',
       }),
 
       {
@@ -147,10 +156,11 @@ export async function getReactNativeConfig(options: VXRNOptionsFilled) {
       extensions: nativeExtensions,
     },
 
-    mode: 'development',
+    mode: mode === 'dev' ? 'development' : 'production',
 
     define: {
-      'process.env.NODE_ENV': `"development"`,
+      'process.env.NODE_ENV': mode === 'dev' ? `"development"` : `"production"`,
+      'process.env.SERVER_URL': JSON.stringify(process.env.SERVER_URL),
     },
 
     build: {

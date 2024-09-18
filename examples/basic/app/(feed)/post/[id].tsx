@@ -38,11 +38,11 @@ export async function loader({ params }) {
       })
       .from(posts)
       .leftJoin(users, eq(users.id, posts.userId))
-      .where(eq(posts.id, Number(id)))
+      // .where(eq(posts.id, Number(id)))
       .limit(1)
 
     if (post.length === 0) {
-      throw new Error('Post not found')
+      throw new Error(`Post not found: ${id}`)
     }
 
     const repliesData = await db

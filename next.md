@@ -18,6 +18,7 @@ nice for demo:
 
 pokai:
 
+  - clear the Rollup cache after .env changed
   - log error on loading native: called `Option::unwrap()` on a `None` value
   - on load warning: Each child in a list should have a unique "key" prop.
     - i disabled the log via logbox.ignore for now

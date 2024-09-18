@@ -20,6 +20,8 @@ type FeedItem = {
 }
 
 export const FeedCard = (props: FeedItem) => {
+  if (!props.user) return null
+
   const content = (
     <Card tag="a">
       <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar} />

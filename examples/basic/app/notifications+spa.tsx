@@ -135,6 +135,8 @@ export async function loader({ path }: LoaderProps): Promise<NotificationsRespon
 
 export default function NotificationsPage() {
   const { notifications } = useLoader(loader)
+  if (!notifications) return null
+
   const feed = notifications.map((item, i) => {
     return <NotificationCard key={i} {...item} />
   })
