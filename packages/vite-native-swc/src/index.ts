@@ -1,4 +1,5 @@
 import {
+  type ModuleConfig,
   type Output,
   type ParserConfig,
   type ReactConfig,
@@ -44,6 +45,8 @@ type Options = {
 
   forceJSX?: boolean
   noHMR?: boolean
+
+  production?: boolean
 }
 
 const isWebContainer = globalThis.process?.versions?.webcontainer
@@ -144,7 +147,7 @@ export default (_options?: Options): PluginOption[] => {
         transform: {
           useDefineForClassFields: true,
           react: {
-            development: true,
+            development: !_options?.production,
             refresh: false,
             runtime: 'automatic',
           },
@@ -160,6 +163,7 @@ export default (_options?: Options): PluginOption[] => {
     plugins: _options?.plugins
       ? _options?.plugins.map((el): typeof el => [resolve(el[0]), el[1]])
       : undefined,
+    production: _options?.production,
   }
 
   return [
@@ -260,7 +264,7 @@ export async function swcTransform(_id: string, code: string, options: Options) 
 
   const result = await transformWithOptions(id, code, options, {
     refresh,
-    development: !options.forceJSX,
+    development: !options.forceJSX && !options.production,
     runtime: 'automatic',
     importSource: options.jsxImportSource,
   })
@@ -284,6 +288,10 @@ export async function swcTransform(_id: string, code: string, options: Options) 
   return { code: result.code }
 }
 
+const SHARED_MODULE_CONFIG = {
+  importInterop: 'none', // We want SWC to transform imports to require since there's no Rollup to handle them afterwards, but without adding any interop helpers that would break with our RN module system
+} satisfies Partial<ModuleConfig>
+
 export const transformWithOptions = async (
   id: string,
   code: string,
@@ -301,13 +309,14 @@ export const transformWithOptions = async (
       configFile: false,
       sourceMaps: shouldSourceMap(),
       module: {
+        ...SHARED_MODULE_CONFIG,
         type: 'nodenext',
       },
       ...(options.mode === 'serve-cjs' && {
         module: {
+          ...SHARED_MODULE_CONFIG,
           type: 'commonjs',
           strict: true,
-          importInterop: 'none', // We want SWC to transform imports to require since there's no Rollup to handle them afterwards, but without adding any interop helpers that would break with our RN module system
         },
       }),
       jsc: {
@@ -355,6 +364,16 @@ export function wrapSourceInRefreshRuntime(id: string, code: string, options: Op
   import '@vxrn/vite-native-client'
   `
       : ``
+
+  if (options.production) {
+    return `
+  ${prefixCode}
+
+  module.url = '${id}'
+
+  ${code}
+    `
+  }
 
   return `const RefreshRuntime = __cachedModules["react-refresh/cjs/react-refresh-runtime.development"];
 const prevRefreshReg = globalThis.$RefreshReg$;

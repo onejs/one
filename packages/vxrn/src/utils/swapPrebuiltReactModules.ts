@@ -9,10 +9,10 @@ import { resolveFile } from './resolveFile'
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
 
-const getPrebuilds = (cacheDir: string) => ({
-  reactJSX: join(cacheDir, 'react-jsx-runtime.js'),
-  react: join(cacheDir, 'react.js'),
-  reactNative: join(cacheDir, 'react-native.js'),
+const getPrebuilds = (cacheDir: string, mode) => ({
+  reactJSX: join(cacheDir, `react-jsx-runtime${mode === 'prod' ? '.production' : ''}.js`),
+  react: join(cacheDir, `react${mode === 'prod' ? '.production' : ''}.js`),
+  reactNative: join(cacheDir, `react-native${mode === 'prod' ? '.production' : ''}.js`),
 })
 
 const requireResolve = (inPath: string) => {
@@ -24,15 +24,17 @@ type PrebuildVersions = {
   reactNative: string
 }
 
-const getVendoredPrebuilds = (versions: PrebuildVersions) => {
+const getVendoredPrebuilds = (versions: PrebuildVersions, mode) => {
   try {
     return {
       reactJSX: requireResolve(
-        `@vxrn/react-native-prebuilt/vendor/react-jsx-runtime-${versions.react}`
+        `@vxrn/react-native-prebuilt/vendor/react-jsx-runtime-${versions.react}${mode === 'prod' ? '.production' : ''}`
       ),
-      react: requireResolve(`@vxrn/react-native-prebuilt/vendor/react-${versions.react}`),
+      react: requireResolve(
+        `@vxrn/react-native-prebuilt/vendor/react-${versions.react}${mode === 'prod' ? '.production' : ''}`
+      ),
       reactNative: requireResolve(
-        `@vxrn/react-native-prebuilt/vendor/react-native-${versions.reactNative}`
+        `@vxrn/react-native-prebuilt/vendor/react-native-${versions.reactNative}${mode === 'prod' ? '.production' : ''}`
       ),
     }
   } catch {
@@ -44,54 +46,84 @@ const allExist = async (paths: string[]) => {
   return (await Promise.all(paths.map((p) => FSExtra.pathExists(p)))).every(Boolean)
 }
 
-export async function prebuildReactNativeModules(cacheDir: string, versions?: PrebuildVersions) {
-  const prebuilds = getPrebuilds(cacheDir)
+export async function prebuildReactNativeModules(
+  cacheDir: string,
+  versions?: PrebuildVersions,
+  internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
+) {
+  const prebuilds = getPrebuilds(cacheDir, internal.mode)
 
   if (versions) {
-    const vendored = getVendoredPrebuilds(versions)
+    const vendored = getVendoredPrebuilds(versions, internal.mode)
     if (vendored && (await allExist(Object.values(vendored)))) {
       // already vendored
       return vendored
     }
   }
 
-  if (await allExist(Object.values(prebuilds))) {
+  if (
+    internal.mode !== 'prod' && // Do not use cached prebuilds while building for production, since the performance gain is little (build time is already slower anyway) and can avoid potential issues.
+    (await allExist(Object.values(prebuilds)))
+  ) {
     return
   }
 
-  console.info('\n ❶ Pre-building react-native (one time cost)...\n')
+  if (internal.mode !== 'prod') {
+    console.info('\n ❶ Pre-building react-native (one time cost)...\n')
+  } else {
+    console.info('\n ❶ Pre-building react-native for production...\n')
+  }
+
+  /** Some build option overrides depending on the mode (dev/prod). */
+  const buildOptions =
+    internal.mode === 'prod'
+      ? {
+          define: {
+            __DEV__: 'false',
+            'process.env.NODE_ENV': `"production"`,
+          },
+        }
+      : {}
 
   await Promise.all([
     buildReactNative({
       entryPoints: [resolveFile('react-native')],
       outfile: prebuilds.reactNative,
+      ...buildOptions,
     }),
     buildReact({
       entryPoints: [resolveFile('react')],
       outfile: prebuilds.react,
+      ...buildOptions,
     }),
     buildReactJSX({
-      entryPoints: [resolveFile('react/jsx-dev-runtime')],
+      entryPoints: [
+        internal.mode === 'dev'
+          ? resolveFile('react/jsx-dev-runtime')
+          : resolveFile('react/jsx-runtime'),
+      ],
       outfile: prebuilds.reactJSX,
+      ...buildOptions,
     }),
   ])
 }
 
 export async function swapPrebuiltReactModules(
   cacheDir: string,
-  versions?: PrebuildVersions
+  versions?: PrebuildVersions,
+  internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ): Promise<Plugin> {
-  let prebuilds = getPrebuilds(cacheDir)
+  let prebuilds = getPrebuilds(cacheDir, internal.mode)
 
   if (versions) {
-    const vendored = getVendoredPrebuilds(versions)
+    const vendored = getVendoredPrebuilds(versions, internal.mode)
     if (vendored && (await allExist(Object.values(vendored)))) {
       prebuilds = vendored
     }
   }
 
   let cached: null | Record<
-    'react-native' | 'react' | 'react/jsx-runtime' | 'react/jsx-dev-runtime',
+    'react-native' | 'react' | 'react/jsx-runtime' | 'react/jsx-dev-runtime' | 'react/jsx-runtime',
     {
       alias: string
       contents: string

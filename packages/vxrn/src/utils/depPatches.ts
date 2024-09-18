@@ -140,6 +140,31 @@ export const depPatches: DepPatch[] = [
     },
   },
 
+  // Older versions of the cli-config package will not look for `.cjs` files when loading the config. This isn't necessary for v14.x (which comes with RN 0.75). See: https://hackmd.io/@z/SJghMPN6C.
+  {
+    module: '@react-native-community/cli-config',
+    patchFiles: {
+      version: '^13',
+      'build/readConfigFromDisk.js': (contents) => {
+        assertString(contents)
+
+        return contents
+          .replace(
+            `['react-native.config.js']`,
+            `['react-native.config.js', 'react-native.config.cjs']`
+          )
+          .replace(
+            'searchPlaces,',
+            `searchPlaces, loaders: { '.cjs': _cosmiconfig().default.loadJs },`
+          )
+          .replace(
+            'stopDir: rootFolder,',
+            `stopDir: rootFolder, loaders: { '.cjs': _cosmiconfig().default.loadJs },`
+          )
+      },
+    },
+  },
+
   {
     module: '@react-native-masked-view/masked-view',
     patchFiles: {

@@ -48,10 +48,15 @@ export async function buildReactJSX(options: BuildOptions = {}) {
     const bundled = await readFile(options.outfile!, 'utf-8')
     const outCode = `
     const run = () => {
-      ${bundled.replace(
-        `module.exports = require_react_jsx_dev_runtime_development();`,
-        `return require_react_jsx_dev_runtime_development();`
-      )}
+      ${bundled
+        .replace(
+          `module.exports = require_react_jsx_dev_runtime_development();`,
+          `return require_react_jsx_dev_runtime_development();`
+        )
+        .replace(
+          `module.exports = require_react_jsx_runtime_production_min();`,
+          `return require_react_jsx_runtime_production_min();`
+        )}
     }
     const __mod__ = run()
     ${['jsx', 'jsxs', 'jsxDEV', 'Fragment']
@@ -96,10 +101,15 @@ export async function buildReact(options: BuildOptions = {}) {
     const bundled = await readFile(options.outfile!, 'utf-8')
     const outCode = `
     const run = () => {
-      ${bundled.replace(
-        `module.exports = require_react_development();`,
-        `return require_react_development();`
-      )}
+      ${bundled
+        .replace(
+          `module.exports = require_react_development();`,
+          `return require_react_development();`
+        )
+        .replace(
+          `module.exports = require_react_production_min();`,
+          `return require_react_production_min();`
+        )}
     }
     const __mod__ = run()
     ${RExports.map((n) => `export const ${n} = __mod__.${n}`).join('\n')}
