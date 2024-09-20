@@ -32,6 +32,13 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
     buildArgs: BuildArgs;
     clientOutput: any;
     serverOutput: [import("rollup").OutputChunk, ...(import("rollup").OutputChunk | import("rollup").OutputAsset)[]];
+    rollupRemoveUnusedImportsPlugin: {
+        name: string;
+        renderChunk(code: any): {
+            code: any;
+            map: null;
+        };
+    };
     serverResolve: {
         alias: {
             'react/jsx-runtime': string;
