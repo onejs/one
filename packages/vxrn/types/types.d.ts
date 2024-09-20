@@ -12,6 +12,7 @@ export type AfterBuildProps = {
     clientOutput: RollupOutputList;
     serverOutput: RollupOutputList;
     webBuildConfig: UserConfig;
+    serverBuildConfig: UserConfig;
     buildArgs?: BuildArgs;
     clientManifest: {
         [key: string]: ClientManifestEntry;

@@ -35,7 +35,7 @@ export async function build(props: AfterBuildProps) {
   const toAbsolute = (p) => Path.resolve(options.root, p)
   const manifest = getManifest()!
   const { optimizeDeps } = getOptimizeDeps('build')
-  const apiBuildConfig = mergeConfig(props.webBuildConfig, {
+  const apiBuildConfig = mergeConfig(props.serverBuildConfig, {
     configFile: false,
     appType: 'custom',
     optimizeDeps,
