@@ -6,7 +6,6 @@ import { webExtensions } from '../constants'
 export function getOptimizeDeps(mode: 'build' | 'serve') {
   const needsInterop = [
     '@vxrn/safe-area',
-    '@vxrn/vendor',
     '@vxrn/vendor/react-19-prod',
     '@vxrn/vendor/react-19',
     '@vxrn/vendor/react-dom-19',
