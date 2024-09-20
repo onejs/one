@@ -31,8 +31,12 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
   const handleRequest = createHandleRequest(
     {},
     {
-      async handleAPI({ route, request }) {
-        const apiFile = join(process.cwd(), 'dist/api', route.page + '.js')
+      async handleAPI({ route, request, loaderProps }) {
+        const apiFile = join(
+          process.cwd(),
+          'dist/api',
+          route.page.replace('[', '_').replace(']', '_') + '.js'
+        )
 
         isAPIRequest.set(request, true)
 
@@ -51,7 +55,8 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
     import('${apiFile}')\n\n`)
               return {}
             }),
-          request
+          request,
+          loaderProps?.params || {}
         )
       },
     }
@@ -111,7 +116,7 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
         )
       }
     } catch (err) {
-      console.error(` [vxs] Error handling request: ${err}`)
+      console.error(` [vxs] Error handling request: ${(err as any)['stack']}`)
     }
 
     await next()

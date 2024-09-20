@@ -16,6 +16,8 @@ import { getOptimizeDeps } from '../utils/getOptimizeDeps'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
 import { mergeUserConfig } from '../utils/mergeUserConfig'
 import { applyBuiltInPatches } from '../utils/patches'
+import { requireResolve } from '../utils/requireResolve'
+import { dirname, join } from 'node:path'
 
 const { existsSync } = FSExtra
 
@@ -146,6 +148,16 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     })
   )
 
+  // const serverExternals = new Set([
+  //   // 'tamagui',
+  //   'react',
+  //   'react-dom',
+  //   'react-dom/client',
+  //   'react-dom/server',
+  //   'react-dom/server.browser',
+  //   'react/jsx-runtime',
+  // ])
+
   let serverBuildConfig = mergeConfig(webBuildConfig, {
     plugins: [excludeAPIRoutesPlugin],
 
@@ -155,15 +167,15 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       ...webBuildConfig.define,
     },
 
-    builder: {
-      async buildApp(builder) {
-        // console.warn('building??????')
-        await builder.build(builder.environments.server)
-      },
-    },
+    // builder: {
+    //   async buildApp(builder) {
+    //     // console.warn('building??????')
+    //     await builder.build(builder.environments.server)
+    //   },
+    // },
 
     ssr: {
-      noExternal: optimizeDeps.include,
+      noExternal: true,
       optimizeDeps,
     },
 
@@ -173,11 +185,30 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       ssr: true,
       outDir: 'dist/server',
       rollupOptions: {
-        external: [],
+        // fixes some weird issues with optimizing tamagui and other packages
+        // external: (id) => {
+        //   if (serverExternals.has(id)) return true
+        //   return false
+        //   // return /^@tamagui/.test(id)
+        // },
         input: ['virtual:vxs-entry'],
+        // output: {
+        //   format: 'cjs', // Ensure the format is set to 'cjs'
+        //   entryFileNames: '[name].cjs', // Customize the output file extension
+        // },
       },
     },
   } satisfies UserConfig)
+
+  if (process.env.VXRN_TEST_REACT_19_PROD) {
+    serverBuildConfig.resolve.alias ||= {}
+    Object.assign(serverBuildConfig.resolve.alias, {
+      'react/jsx-runtime': requireResolve('@vxrn/vendor/react-jsx-prod-19'),
+      react: requireResolve('@vxrn/vendor/react-19-prod'),
+      'react-dom/server.browser': requireResolve('@vxrn/vendor/react-dom-server.browser-19'),
+      'react-dom': requireResolve('@vxrn/vendor/react-dom-19'),
+    })
+  }
 
   if (rerouteNoExternalConfig) {
     serverBuildConfig.ssr!.noExternal = true

@@ -11,6 +11,7 @@
     "./react-19-prod": "./react/cjs/react.production.js",
     "./react-jsx-dev-19": "./react/jsx-dev-runtime.js",
     "./react-jsx-19": "./react/jsx-runtime.js",
+    "./react-jsx-prod-19": "./react/cjs/react-jsx-dev-runtime.production.js",
     "./react-dom-19": "./react-dom/index.js",
     "./react-dom-client-19": "./react-dom/client.js",
     "./react-dom-test-utils-19": "./react-dom/test-utils.js",

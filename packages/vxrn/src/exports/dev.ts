@@ -316,7 +316,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   app.use(
     eventHandler(
       createProxyEventHandler({
-        target: `${options.protocol}//127.0.0.1:${vitePort}`,
+        target: `${options.protocol}//${options.host}:${vitePort}`,
         enableLogger: process.env.DEBUG?.startsWith('vxrn'),
       })
     )
@@ -340,7 +340,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
       server.once('listening', () => {
         // bridge socket between vite
         if (vitePort) {
-          socket = new WebSocket(`ws://127.0.0.1:${vitePort}/__vxrnhmr`, 'vite-hmr')
+          socket = new WebSocket(`ws://${options.host}:${vitePort}/__vxrnhmr`, 'vite-hmr')
 
           socket.on('message', (msg) => {
             const message = msg.toString()

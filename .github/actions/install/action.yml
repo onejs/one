@@ -5,7 +5,7 @@ runs:
   using: composite
   steps:
     - name: Setup Node.js 20.x
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 20.x
         registry-url: 'https://registry.npmjs.org'
@@ -14,9 +14,21 @@ runs:
       shell: bash
       run: npm i yarn -g
 
+    - name: Install npm
+      shell: bash
+      run: npm i -g npm@10.8.2
+
+    - name: Install corepack
+      shell: bash
+      run: corepack enable && corepack prepare yarn@4.4.1 --activate
+
     - name: Install Dependencies
       shell: bash
       run: yarn install
+
+    - name: Clean Build
+      shell: bash
+      run: yarn clean:build
 
     - name: Build
       shell: bash

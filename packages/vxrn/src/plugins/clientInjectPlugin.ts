@@ -32,7 +32,7 @@ export function nativeClientInjectPlugin(): Plugin {
         throw new Error(`Server config not resolved yet`)
       }
 
-      const resolvedServerHostname = '127.0.0.1'
+      const resolvedServerHostname = config.server.host || '127.0.0.1'
       const resolvedServerPort = config.server!.port! || 5173
       const devBase = config.base || '/'
 

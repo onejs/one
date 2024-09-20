@@ -280,8 +280,13 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
             return transformedJS
           },
 
-          async handleAPI({ request, route }) {
-            return resolveAPIRequest(() => runner.import(join('app', route.file)), request)
+          async handleAPI({ request, route, url, loaderProps }) {
+            const result = await resolveAPIRequest(
+              () => runner.import(join('app', route.file)),
+              request,
+              loaderProps?.params || {}
+            )
+            return result
           },
         })
       }
@@ -435,7 +440,9 @@ const convertIncomingMessageToRequest = async (req: Connect.IncomingMessage): Pr
 
   return new Request(url, {
     method: req.method,
-    body: req.method === 'POST' ? await readStream(req) : null,
+    body: ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method || '')
+      ? await readStream(req)
+      : null,
     headers,
   })
 }

@@ -78,12 +78,10 @@ export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig
     appType: import("vite").AppType;
     experimental: import("vite").ExperimentalOptions;
     environments: Record<string, {
-        resolve: Required<import("vite").ResolveOptions & {
-            alias?: import("vite").AliasOptions;
-        }>;
-        nodeCompatible: boolean;
+        define?: Record<string, any>;
+        resolve: Required<import("vite").ResolveOptions>;
+        consumer: "client" | "server";
         webCompatible: boolean;
-        injectInvalidationTimestamp: boolean;
         dev: import("vite").ResolvedDevEnvironmentOptions;
         build: import("vite").ResolvedBuildEnvironmentOptions;
     }>;
