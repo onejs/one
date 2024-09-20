@@ -17,7 +17,7 @@ export const serve = async (optionsIn: VXRNOptions) => {
     hostname: options.host,
   })
 
-  console.info(`Listening on http://${options.host}:${options.port}`)
+  console.info(`Server running on http://${options.host}:${options.port}`)
 
   if (options.afterServerStart) {
     await options.afterServerStart(options, app)

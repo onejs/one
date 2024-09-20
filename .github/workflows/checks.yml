@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install
         uses: ./.github/actions/install
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install
         uses: ./.github/actions/install
@@ -30,6 +30,8 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Build vxrn
+        run: cd packages/vxrn && yarn build
       - name: Test
         run: yarn test
 

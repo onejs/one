@@ -109,8 +109,50 @@ export async function build(props: AfterBuildProps) {
 
   console.info(`\n 🔨 build static routes\n`)
 
+  // because we are patching to react-19, and its near-impossible to get rollup to
+  // inline react-19 for us (its cjs and nested inside a vendor package, long story)
+  // instead we externalize all react/react-dom deps and patch require to redirect to
+  // out vendors:
+  // const react19Vendors = {
+  //   react: '@vxrn/vendor/react-19',
+  //   'react-dom': '@vxrn/vendor/react-dom-19',
+  //   'react-dom/client': '@vxrn/vendor/react-dom-client-19',
+  //   'react-dom/server.browser': '@vxrn/vendor/react-dom-server.browser-19',
+  //   'react/jsx-runtime': '@vxrn/vendor/react-jsx-prod-19',
+  // }
+
+  // const ogRequire = require
+  // globalThis['require'] = new Proxy(ogRequire, {
+  //   apply(target, thisArg, argArray) {
+  //     const [id] = argArray
+  //     if (id in react19Vendors) {
+  //       return ogRequire(react19Vendors[id])
+  //     }
+  //     return Reflect.apply(target, thisArg, argArray)
+  //   },
+  // })
+
   const entryServer = `${options.root}/dist/server/_virtual_vxs-entry.js`
-  const render = (await import(entryServer)).default.render as RenderApp
+  let render: RenderApp | null = null
+
+  try {
+    const serverImport = await import(entryServer)
+    render =
+      serverImport.default.render ||
+      // for an unknown reason this is necessary
+      serverImport.default.default?.render
+
+    if (typeof render !== 'function') {
+      console.error(`❌ Error: didnt find render function in entry`, serverImport)
+      process.exit(1)
+    }
+  } catch (err) {
+    console.error(`❌ Error importing the root entry:`)
+    console.error(`  This error happened in the built file: ${entryServer}`)
+    // @ts-expect-error
+    console.error(err['stack'])
+    process.exit(1)
+  }
 
   const staticDir = join(`dist/static`)
   const clientDir = join(`dist/client`)

@@ -78,11 +78,8 @@ export function withLayoutContext<
 > & {
   Screen: (props: ScreenProps<TOptions, State, EventMap>) => null
 } {
-  const Navigator = React.forwardRef(
-    (
-      { children: userDefinedChildren, ...props }: PickPartial<React.ComponentProps<T>, 'children'>,
-      ref
-    ) => {
+  const Navigator = React.forwardRef<unknown, React.ComponentProps<T>>(
+    ({ children: userDefinedChildren, ...props }, ref) => {
       const contextKey = useContextKey()
 
       const { screens } = useFilterScreenChildren(userDefinedChildren, {

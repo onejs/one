@@ -1,7 +1,11 @@
 import { isResponse } from '../utils/isResponse'
 import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './headers'
 
-export function resolveAPIRequest(asyncImport: () => Promise<any>, request: Request) {
+export function resolveAPIRequest(
+  asyncImport: () => Promise<any>,
+  request: Request,
+  params: Record<string, string>
+) {
   if (!asyncImport) return
 
   return new Promise((res, rej) => {
@@ -17,7 +21,7 @@ export function resolveAPIRequest(asyncImport: () => Promise<any>, request: Requ
           return
         }
 
-        let response = await handler(request)
+        let response = await handler(request, { params })
 
         const asyncHeaders = asyncHeadersCache.get(id)
 

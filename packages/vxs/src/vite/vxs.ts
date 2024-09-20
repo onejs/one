@@ -1,6 +1,12 @@
 import events from 'node:events'
 import { dirname, resolve } from 'node:path'
-import { type InlineConfig, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
+import {
+  type InlineConfig,
+  Plugin,
+  type PluginOption,
+  type UserConfig,
+  loadConfigFromFile,
+} from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { getOptimizeDeps, isWebEnvironment } from 'vxrn'
 import '../polyfills-server'
@@ -81,7 +87,7 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
           },
         }
       },
-    },
+    } satisfies Plugin,
 
     {
       name: 'one-zero',
@@ -99,7 +105,7 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
           },
         }
       },
-    },
+    } satisfies Plugin,
 
     /**
      * This is really the meat of vxs, where it handles requests:
@@ -129,7 +135,7 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
           },
         }
       },
-    },
+    } satisfies Plugin,
 
     {
       name: 'define-app-key',
@@ -144,10 +150,10 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
           },
         }
       },
-    },
+    } satisfies Plugin,
 
     {
-      name: 'use-react-18 for native',
+      name: 'use-react-18-for-native',
       enforce: 'pre',
 
       async config() {
@@ -158,7 +164,7 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
               'react-dom': requireResolve('vxs/react-dom-18'),
             },
           },
-        } satisfies InlineConfig
+        } satisfies UserConfig
 
         return {
           environments: {
@@ -168,10 +174,11 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
             android: {
               ...sharedNativeConfig,
             },
-          },
+            // this started erroring for no reason..
+          } as any,
         }
       },
-    },
+    } satisfies Plugin,
 
     {
       name: 'optimize-deps-load-web-extensions',
@@ -201,7 +208,7 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
           }
         }
       },
-    },
+    } satisfies Plugin,
 
     vitePluginSsrCss({
       entries: [virtualEntryId],
