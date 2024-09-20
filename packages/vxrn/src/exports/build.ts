@@ -168,6 +168,18 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     },
   }
 
+  const rollupRemoveUnusedImportsPlugin = {
+    name: 'remove-unused-imports',
+    renderChunk(code) {
+      // Use a simple regex or AST parser to remove unused imports
+      // Here, we use a regex to remove all imports, adapt as needed
+      return {
+        code: code.replace(/import\s+['"][^'"]+['"];\n/g, ''),
+        map: null,
+      }
+    },
+  }
+
   let serverBuildConfig = mergeConfig(webBuildConfig, {
     plugins: [excludeAPIRoutesPlugin],
 
@@ -197,6 +209,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       ssr: true,
       outDir: 'dist/server',
       rollupOptions: {
+        plugins: [rollupRemoveUnusedImportsPlugin],
         // fixes some weird issues with optimizing tamagui and other packages
         // external: (id) => {
         //   if (serverExternals.has(id)) return true
@@ -230,6 +243,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     buildArgs,
     clientOutput,
     serverOutput,
+    rollupRemoveUnusedImportsPlugin,
     serverResolve,
     serverBuildConfig,
     webBuildConfig,
