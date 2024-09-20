@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process'
 import * as path from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-const fixturePath = path.resolve(__dirname, '../../../../examples/test')
+const fixturePath = path.resolve(__dirname, '../../../examples/test')
 
 describe('Simple Run Tests', () => {
   let serverUrl
