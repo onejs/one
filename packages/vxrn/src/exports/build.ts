@@ -174,6 +174,16 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     //   },
     // },
 
+    resolve: {
+      alias: {
+        'react/jsx-runtime': requireResolve('@vxrn/vendor/react-jsx-19'),
+        react: requireResolve('@vxrn/vendor/react-19-prod'),
+        'react-dom/server.browser': requireResolve('@vxrn/vendor/react-dom-server.browser-19'),
+        'react-dom/client': requireResolve('@vxrn/vendor/react-dom-client-19'),
+        'react-dom': requireResolve('@vxrn/vendor/react-dom-19'),
+      },
+    },
+
     ssr: {
       noExternal: true,
       optimizeDeps,
@@ -200,16 +210,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     },
   } satisfies UserConfig)
 
-  if (process.env.VXRN_TEST_REACT_19_PROD) {
-    serverBuildConfig.resolve.alias ||= {}
-    Object.assign(serverBuildConfig.resolve.alias, {
-      'react/jsx-runtime': requireResolve('@vxrn/vendor/react-jsx-prod-19'),
-      react: requireResolve('@vxrn/vendor/react-19-prod'),
-      'react-dom/server.browser': requireResolve('@vxrn/vendor/react-dom-server.browser-19'),
-      'react-dom': requireResolve('@vxrn/vendor/react-dom-19'),
-    })
-  }
-
   if (rerouteNoExternalConfig) {
     serverBuildConfig.ssr!.noExternal = true
   }
@@ -228,6 +228,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     buildArgs,
     clientOutput,
     serverOutput,
+    serverBuildConfig,
     webBuildConfig,
     clientManifest,
   }

@@ -32,6 +32,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
     buildArgs: BuildArgs;
     clientOutput: any;
     serverOutput: [import("rollup").OutputChunk, ...(import("rollup").OutputChunk | import("rollup").OutputAsset)[]];
+    serverBuildConfig: Record<string, any>;
     webBuildConfig: Record<string, any>;
     clientManifest: any;
 }>;
