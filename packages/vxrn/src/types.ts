@@ -1,4 +1,3 @@
-import type { Options as FlowOptions } from '@vxrn/vite-flow'
 import type { Hono } from 'hono'
 import type { OutputAsset, OutputChunk } from 'rollup'
 import type { UserConfig } from 'vite'
@@ -11,6 +10,7 @@ export type AfterBuildProps = {
   options: VXRNOptions
   clientOutput: RollupOutputList
   serverOutput: RollupOutputList
+  serverResolve: Object
   webBuildConfig: UserConfig
   serverBuildConfig: UserConfig
   buildArgs?: BuildArgs

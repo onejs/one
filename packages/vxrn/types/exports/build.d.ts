@@ -32,6 +32,15 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
     buildArgs: BuildArgs;
     clientOutput: any;
     serverOutput: [import("rollup").OutputChunk, ...(import("rollup").OutputChunk | import("rollup").OutputAsset)[]];
+    serverResolve: {
+        alias: {
+            'react/jsx-runtime': string;
+            react: string;
+            'react-dom/server.browser': string;
+            'react-dom/client': string;
+            'react-dom': string;
+        };
+    };
     serverBuildConfig: Record<string, any>;
     webBuildConfig: Record<string, any>;
     clientManifest: any;

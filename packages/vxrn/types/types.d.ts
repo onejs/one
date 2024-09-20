@@ -11,6 +11,7 @@ export type AfterBuildProps = {
     options: VXRNOptions;
     clientOutput: RollupOutputList;
     serverOutput: RollupOutputList;
+    serverResolve: Object;
     webBuildConfig: UserConfig;
     serverBuildConfig: UserConfig;
     buildArgs?: BuildArgs;
