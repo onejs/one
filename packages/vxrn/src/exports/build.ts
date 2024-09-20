@@ -139,7 +139,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     clientOutput = output
   }
 
-  console.info(`\n 🔨 build server\n`)
+  const serverOptions = options.build?.server
+  const shouldOutputCJS =
+    typeof serverOptions !== 'object' ? false : serverOptions.outputFormat === 'cjs'
 
   // servers can get all the defines
   const processEnvDefines = Object.fromEntries(
@@ -147,16 +149,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       return [`process.env.${key}`, JSON.stringify(value)]
     })
   )
-
-  // const serverExternals = new Set([
-  //   // 'tamagui',
-  //   'react',
-  //   'react-dom',
-  //   'react-dom/client',
-  //   'react-dom/server',
-  //   'react-dom/server.browser',
-  //   'react/jsx-runtime',
-  // ])
 
   const serverResolve = {
     alias: {
@@ -216,11 +208,15 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         //   return false
         //   // return /^@tamagui/.test(id)
         // },
+
         input: ['virtual:vxs-entry'],
-        // output: {
-        //   format: 'cjs', // Ensure the format is set to 'cjs'
-        //   entryFileNames: '[name].cjs', // Customize the output file extension
-        // },
+
+        ...(shouldOutputCJS && {
+          output: {
+            format: 'cjs', // Ensure the format is set to 'cjs'
+            entryFileNames: '[name].cjs', // Customize the output file extension
+          },
+        }),
       },
     },
   } satisfies UserConfig)
@@ -229,14 +225,15 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     serverBuildConfig.ssr!.noExternal = true
   }
 
-  // if (process.env.VXRN_DISABLE_PROD_OPTIMIZATION) {
-  //   serverBuildConfig = mergeConfig(serverBuildConfig, disableOptimizationConfig)
-  // }
+  let serverOutput
+  let clientManifest
 
-  const { output: serverOutput } = (await viteBuild(serverBuildConfig)) as RollupOutput
-  const clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
-
-  console.info(`\n ✔️ vxrn build complete\n`)
+  if (serverOptions !== false) {
+    console.info(`\n 🔨 build server\n`)
+    const { output } = (await viteBuild(serverBuildConfig)) as RollupOutput
+    serverOutput = output
+    clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
+  }
 
   return {
     options,

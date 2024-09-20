@@ -47,6 +47,14 @@ export declare namespace VXS {
             defaultRenderMode?: RouteRenderMode;
             redirects?: Redirects;
         };
+        build?: {
+            server?: {
+                outputFormat?: 'cjs' | 'esm';
+            };
+            api?: {
+                outputFormat?: 'cjs' | 'esm';
+            };
+        };
         deps?: FixDependencies;
         afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
         afterServerStart?: ((options: Options, server: Hono) => void | Promise<void>) | ((options: Options, server: Hono, buildInfo: AfterServerStartBuildInfo) => void | Promise<void>);

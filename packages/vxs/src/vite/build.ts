@@ -1,5 +1,4 @@
 import FSExtra from 'fs-extra'
-import { resolve as importMetaResolve } from 'import-meta-resolve'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
 import Path, { join, relative } from 'node:path'
@@ -9,7 +8,7 @@ import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
 import {
   getOptimizeDeps,
   getOptionsFilled,
-  type AfterBuildProps,
+  build as vxrnBuild,
   type ClientManifestEntry,
 } from 'vxrn'
 import type { RouteInfo } from '../server/createRoutesManifest'
@@ -19,28 +18,44 @@ import { replaceLoader } from './replaceLoader'
 import type { VXS } from './types'
 import { getUserVXSOptions } from './vxs'
 
-export const resolveFile = (path: string) => {
-  try {
-    return importMetaResolve(path, import.meta.url).replace('file://', '')
-  } catch {
-    return require.resolve(path)
-  }
-}
-
 const { ensureDir, readFile, outputFile } = FSExtra
 
-export async function build(props: AfterBuildProps) {
-  const userOptions = getUserVXSOptions(props.webBuildConfig)
-  const options = await getOptionsFilled(props.options)
+process.on('uncaughtException', (err) => {
+  console.error(err?.message || err)
+})
+
+export async function build(args: {
+  step?: string
+  only?: string
+}) {
+  const userOptions = await getUserVXSOptions('build')
+  const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'esm'
+
+  const vxrnOutput = await vxrnBuild(
+    {
+      build: {
+        server: {
+          outputFormat: serverOutputFormat,
+        },
+      },
+    },
+    args
+  )
+
+  const options = await getOptionsFilled(vxrnOutput.options)
   const toAbsolute = (p) => Path.resolve(options.root, p)
   const manifest = getManifest()!
   const { optimizeDeps } = getOptimizeDeps('build')
 
-  const apiBuildConfig = mergeConfig(props.webBuildConfig, {
-    configFile: false,
-    appType: 'custom',
-    optimizeDeps,
-  } satisfies InlineConfig)
+  const apiBuildConfig = mergeConfig(
+    // feels like this should build off the *server* build config not web
+    vxrnOutput.webBuildConfig,
+    {
+      configFile: false,
+      appType: 'custom',
+      optimizeDeps,
+    } satisfies InlineConfig
+  )
 
   if (manifest.apiRoutes.length) {
     console.info(`\n 🔨 build api routes\n`)
@@ -58,12 +73,14 @@ export async function build(props: AfterBuildProps) {
       return entries
     }, {}) as Record<string, string>
 
+    const apiOutputFormat = userOptions?.build?.api?.outputFormat ?? 'esm'
+
     await viteBuild(
       mergeConfig(apiBuildConfig, {
         appType: 'custom',
         configFile: false,
 
-        resolve: props.serverResolve,
+        resolve: vxrnOutput.serverResolve,
 
         plugins: [
           nodeExternals({
@@ -81,7 +98,7 @@ export async function build(props: AfterBuildProps) {
           copyPublicDir: false,
           minify: false,
           rollupOptions: {
-            plugins: [props.rollupRemoveUnusedImportsPlugin],
+            plugins: [vxrnOutput.rollupRemoveUnusedImportsPlugin],
 
             treeshake: {
               moduleSideEffects: 'no-external',
@@ -96,9 +113,15 @@ export async function build(props: AfterBuildProps) {
             external: apiRouteExternalRegex,
             output: {
               entryFileNames: '[name]',
-              format: 'esm',
-              esModule: true,
               exports: 'auto',
+              ...(apiOutputFormat === 'esm'
+                ? {
+                    format: 'esm',
+                    esModule: true,
+                  }
+                : {
+                    format: 'cjs',
+                  }),
             },
           },
         },
@@ -141,7 +164,7 @@ export async function build(props: AfterBuildProps) {
   const clientDir = join(`dist/client`)
   await ensureDir(staticDir)
 
-  const outputEntries = [...props.serverOutput.entries()]
+  const outputEntries = [...vxrnOutput.serverOutput.entries()]
 
   for (const [index, output] of outputEntries) {
     if (output.type === 'asset') {
@@ -168,7 +191,7 @@ export async function build(props: AfterBuildProps) {
       // TODO hardcoded app
       .replace('app/', '/')
 
-    const onlyBuild = props.buildArgs?.only
+    const onlyBuild = vxrnOutput.buildArgs?.only
     if (onlyBuild) {
       if (!MicroMatch.contains(relativeId, onlyBuild)) {
         continue
@@ -177,7 +200,7 @@ export async function build(props: AfterBuildProps) {
 
     // gather the initial import.meta.glob js parts:
     const clientManifestKey =
-      Object.keys(props.clientManifest).find((key) => {
+      Object.keys(vxrnOutput.clientManifest).find((key) => {
         return id.endsWith(key)
       }) || ''
 
@@ -186,7 +209,7 @@ export async function build(props: AfterBuildProps) {
       continue
     }
 
-    const clientManifestEntry = props.clientManifest[clientManifestKey]
+    const clientManifestEntry = vxrnOutput.clientManifest[clientManifestKey]
 
     const findMatchingRoute = (route: RouteInfo<string>) => {
       return clientManifestKey.endsWith(route.file.slice(1))
@@ -212,9 +235,9 @@ export async function build(props: AfterBuildProps) {
           [
             ...(type === 'js' ? imports : css || []),
             ...imports.flatMap((name) => {
-              const found = props.clientManifest[name]
+              const found = vxrnOutput.clientManifest[name]
               if (!found) {
-                console.warn(`No found imports`, name, props.clientManifest)
+                console.warn(`No found imports`, name, vxrnOutput.clientManifest)
               }
               return collectImports(found, { type })
             }),
@@ -229,7 +252,7 @@ export async function build(props: AfterBuildProps) {
     if (!clientManifestEntry) {
       console.warn(
         `No client manifest entry found: ${clientManifestKey} in manifest ${JSON.stringify(
-          props.clientManifest,
+          vxrnOutput.clientManifest,
           null,
           2
         )}`
@@ -243,7 +266,7 @@ export async function build(props: AfterBuildProps) {
       foundRoute.layouts?.flatMap((layout) => {
         // TODO hardcoded app/
         const clientKey = `app${layout.contextKey.slice(1)}`
-        return props.clientManifest[clientKey]
+        return vxrnOutput.clientManifest[clientKey]
       }) ?? []
 
     const layoutImports = layoutEntries.flatMap((entry) => {
@@ -255,7 +278,7 @@ export async function build(props: AfterBuildProps) {
         // add the route entry js (like ./app/index.ts)
         clientManifestEntry.file,
         // add the virtual entry
-        props.clientManifest['virtual:vxs-entry'].file,
+        vxrnOutput.clientManifest['virtual:vxs-entry'].file,
         ...entryImports,
         ...layoutImports,
       ]),
@@ -388,7 +411,7 @@ ${JSON.stringify(params || null, null, 2)}`
   }, {}) satisfies Record<string, string>
 
   const buildInfo = {
-    ...props,
+    ...vxrnOutput,
     routeMap,
     builtRoutes,
   }

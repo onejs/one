@@ -29,6 +29,13 @@ export type ClientManifestEntry = {
     imports: string[];
     css?: string[];
 };
+export type VXRNBuildOptions = {
+    /**
+     * Control the output format of the server build
+     * @default esm
+     */
+    outputFormat?: 'cjs' | 'esm';
+};
 export type VXRNOptions = {
     /**
      * The entry points to your app. For web, it defaults to using your `root` to look for an index.html
@@ -39,6 +46,12 @@ export type VXRNOptions = {
     entries?: {
         native?: string;
         web?: string;
+    };
+    /**
+     * Settings only apply when running `vxrn build`
+     */
+    build?: {
+        server?: boolean | VXRNBuildOptions;
     };
     hono?: {
         compression?: boolean;
