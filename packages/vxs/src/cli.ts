@@ -47,23 +47,10 @@ const buildCommand = defineCommand({
       type: 'string',
       required: false,
     },
-    analyze: {
-      type: 'boolean',
-      required: false,
-    },
   },
   async run({ args }) {
     const { build } = await import('./vite/build')
-    const { build: vxrnBuild } = await import('vxrn')
-
-    process.on('uncaughtException', (err) => {
-      console.error(err?.message || err)
-    })
-
-    const outputInfo = await vxrnBuild({}, args)
-
-    await build(outputInfo)
-
+    await build(args)
     // TODO somewhere just before 1787f241b79 this stopped exiting, must have some hanging task
     process.exit(0)
   },
@@ -88,7 +75,7 @@ const serveCommand = defineCommand({
     const { serve: vxrnServe } = await import('vxrn')
 
     process.on('uncaughtException', (err) => {
-      console.error(err?.message || err)
+      console.error(`[vxs] Uncaught exception`, err?.stack || err)
     })
 
     const vxsOptions = await loadUserVXSOptions('serve')

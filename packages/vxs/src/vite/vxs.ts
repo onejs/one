@@ -1,12 +1,6 @@
 import events from 'node:events'
 import { dirname, resolve } from 'node:path'
-import {
-  type InlineConfig,
-  Plugin,
-  type PluginOption,
-  type UserConfig,
-  loadConfigFromFile,
-} from 'vite'
+import { type Plugin, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { getOptimizeDeps, isWebEnvironment } from 'vxrn'
 import '../polyfills-server'
@@ -23,13 +17,20 @@ import { vitePluginSsrCss } from './vitePluginSsrCss'
 
 events.setMaxListeners(1_000)
 
-export function getUserVXSOptions(config: UserConfig) {
-  const flatPlugins = [...(config.plugins || [])].flat(3)
-  const userOptionsPlugin = flatPlugins.find((x) => x && x['name'] === 'vxs-user-options')
-  return userOptions.get(userOptionsPlugin)
+let vxsOptions: VXS.PluginOptions | null = null
+
+export async function getUserVXSOptions(command?: 'serve' | 'build') {
+  if (!vxsOptions) {
+    if (!command) throw new Error(`Options not loaded and no command given`)
+    await loadUserVXSOptions(command)
+  }
+  if (!vxsOptions) {
+    throw new Error(`No vxs options loaded`)
+  }
+  return vxsOptions
 }
 
-export async function loadUserVXSOptions(command: 'serve') {
+export async function loadUserVXSOptions(command: 'serve' | 'build') {
   const found = await loadConfigFromFile({
     mode: 'prod',
     command,
@@ -37,16 +38,16 @@ export async function loadUserVXSOptions(command: 'serve') {
   if (!found) {
     throw new Error(`No config found`)
   }
-  const foundVxsConfig = getUserVXSOptions(found.config)
+  const foundVxsConfig = getUserVXSOptions()
   if (!foundVxsConfig) {
     throw new Error(`No VXS plugin added to config`)
   }
   return foundVxsConfig
 }
 
-const userOptions = new WeakMap<any, VXS.PluginOptions>()
-
 export function vxs(options: VXS.PluginOptions = {}): PluginOption {
+  vxsOptions = options
+
   void loadEnv(process.cwd())
 
   globalThis['__vxrnPluginConfig__'] = options
@@ -59,13 +60,6 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
     // https://stackoverflow.com/questions/6300183/sanitize-string-of-regex-characters-before-regexp-build
     `${optimizeIds.map((id) => id.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&')).join('|')}`
   )
-
-  // weird i know
-  const userOptionsPlugin = {
-    name: 'vxs-user-options',
-  }
-
-  userOptions.set(userOptionsPlugin, options)
 
   // TODO make this passed into vxrn through real API
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
@@ -117,8 +111,6 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
     clientTreeShakePlugin(),
 
     fixDependenciesPlugin(options.deps),
-
-    userOptionsPlugin,
 
     createVirtualEntry({
       ...options,

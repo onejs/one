@@ -62,6 +62,16 @@ export namespace VXS {
       redirects?: Redirects
     }
 
+    build?: {
+      server?: {
+        outputFormat?: 'cjs' | 'esm'
+      }
+
+      api?: {
+        outputFormat?: 'cjs' | 'esm'
+      }
+    }
+
     deps?: FixDependencies
 
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>

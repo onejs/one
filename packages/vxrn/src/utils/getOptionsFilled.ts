@@ -46,6 +46,12 @@ export async function getOptionsFilled(
   // no need to wait to write state
   void writeState(cacheDir, { versionHash })
 
+  if (typeof options.build?.server !== 'boolean' && !options.build?.server) {
+    // default building server to off
+    options.build ||= {}
+    options.build.server = false
+  }
+
   return {
     ...options,
     clean,

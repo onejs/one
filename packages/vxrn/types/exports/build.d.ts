@@ -21,6 +21,9 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         host: string;
         root: string;
         port: number;
+        build?: {
+            server?: boolean | import("..").VXRNBuildOptions;
+        };
         hono?: {
             compression?: boolean;
             cacheHeaders?: "off";
@@ -31,7 +34,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
     };
     buildArgs: BuildArgs;
     clientOutput: any;
-    serverOutput: [import("rollup").OutputChunk, ...(import("rollup").OutputChunk | import("rollup").OutputAsset)[]];
+    serverOutput: any;
     rollupRemoveUnusedImportsPlugin: {
         name: string;
         renderChunk(code: any): {

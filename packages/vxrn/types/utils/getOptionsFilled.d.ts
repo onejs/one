@@ -23,6 +23,9 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
     host: string;
     root: string;
     port: number;
+    build?: {
+        server?: boolean | import("..").VXRNBuildOptions;
+    };
     hono?: {
         compression?: boolean;
         cacheHeaders?: "off";
