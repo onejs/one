@@ -20893,7 +20893,6 @@ __metadata:
     fast-glob: "npm:^3.2.11"
     fs-extra: "npm:^11.2.0"
     hono: "npm:^4.5.8"
-    import-meta-resolve: "npm:^4.1.0"
     lightningcss: "npm:^1.26.0"
     micromatch: "npm:^4.0.7"
     nanoid: "npm:^3.3.7"
