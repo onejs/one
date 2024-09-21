@@ -1,0 +1,25 @@
+{
+  "name": "example-vercel",
+  "version": "1.1.232",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vxs dev",
+    "dev:clean": "vxs dev --clean",
+    "clean": "vxs clean",
+    "prod": "vxs build && vxs serve",
+    "build:prod": "vxs build",
+    "serve": "vxs serve"
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-native-web": "^0.19.12",
+    "vxs": "1.1.232"
+  },
+  "devDependencies": {
+    "vite": "6.0.0-alpha.18"
+  }
+}
