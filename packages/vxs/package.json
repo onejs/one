@@ -93,7 +93,6 @@
     "fast-glob": "^3.2.11",
     "fs-extra": "^11.2.0",
     "hono": "^4.5.8",
-    "import-meta-resolve": "^4.1.0",
     "lightningcss": "^1.26.0",
     "micromatch": "^4.0.7",
     "nanoid": "^3.3.7",
