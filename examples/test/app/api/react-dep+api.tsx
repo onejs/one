@@ -1,10 +1,9 @@
-import { createContext } from 'react'
-
-const x = createContext({})
+import { isResponse } from 'vxs'
 
 export default () => {
-  // x
-  x.Consumer
+  if (isResponse(global)) {
+    return null
+  }
 
   return {
     hello: 'world',

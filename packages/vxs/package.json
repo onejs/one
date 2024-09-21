@@ -3,6 +3,7 @@
   "version": "1.1.231",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
+  "sideEffects": false,
   "type": "module",
   "main": "dist/cjs",
   "module": "dist/esm",

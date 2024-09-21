@@ -188,6 +188,4 @@ const runTests = (environment: 'dev' | 'prod') => {
 
 // Run tests for both dev and prod environments
 runTests('dev')
-
-// TODO enable when prod builds work without needing react-19 override
-// runTests('prod')
+runTests('prod')

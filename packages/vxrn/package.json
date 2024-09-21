@@ -5,6 +5,7 @@
   "types": "./types/index.d.ts",
   "type": "module",
   "module": "dist",
+  "sideEffects": false,
   "files": [
     "src",
     "types",
