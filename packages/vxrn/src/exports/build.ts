@@ -202,6 +202,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       outDir: 'dist/server',
       rollupOptions: {
         plugins: [rollupRemoveUnusedImportsPlugin],
+        treeshake: true,
         // fixes some weird issues with optimizing tamagui and other packages
         // external: (id) => {
         //   if (serverExternals.has(id)) return true
