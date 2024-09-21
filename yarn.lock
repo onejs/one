@@ -11416,6 +11416,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"example-vercel@workspace:examples/vercel":
+  version: 0.0.0-use.local
+  resolution: "example-vercel@workspace:examples/vercel"
+  dependencies:
+    react: "npm:^18.3.1"
+    react-native-web: "npm:^0.19.12"
+    vite: "npm:6.0.0-alpha.18"
+    vxs: "npm:1.1.232"
+  languageName: unknown
+  linkType: soft
+
 "example-vxs-plain@workspace:examples/vxs-plain":
   version: 0.0.0-use.local
   resolution: "example-vxs-plain@workspace:examples/vxs-plain"
