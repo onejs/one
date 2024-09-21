@@ -14,7 +14,9 @@ nice for demo:
     - assets
     - symbolicator
 
-- get type generation working for routes
+  - web
+    - faster route matching for prod
+      - see npm radix3 or rou3
 
 pokai:
 

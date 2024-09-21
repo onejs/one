@@ -9,10 +9,12 @@ import { isResponse } from './utils/isResponse'
 import { isStatusRedirect } from './utils/isStatus'
 import { resolveAPIRequest } from './vite/resolveAPIRequest'
 import type { VXS } from './vite/types'
+import { RenderAppProps } from './types'
 
 export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hono) {
+  const root = options.root || vxrnOptions.root || '.'
   const isAPIRequest = new WeakMap<any, boolean>()
-  const toAbsolute = (p) => Path.resolve(options.root || '.', p)
+  const toAbsolute = (p: string) => Path.resolve(root, p)
 
   // add redirects
   const redirects = options.web?.redirects
@@ -27,6 +29,23 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
       })
     }
   }
+
+  const buildInfo = await FSExtra.readJSON(toAbsolute(`dist/buildInfo.json`))
+
+  if (!buildInfo) {
+    throw new Error(`No build info found, have you run build?`)
+  }
+
+  const { routeMap, builtRoutes } = buildInfo as VXS.BuildInfo
+
+  const routeToBuildInfo: Record<string, VXS.RouteBuildInfo> = {}
+  for (const route of builtRoutes) {
+    routeToBuildInfo[route.cleanPath] = route
+  }
+
+  const entryServer = `${root}/dist/server/_virtual_vxs-entry.js`
+  const entry = await import(entryServer)
+  const render = entry.default.render as (props: RenderAppProps) => any
 
   const handleRequest = createHandleRequest(
     {},
@@ -59,14 +78,55 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
           loaderProps?.params || {}
         )
       },
+
+      async handleSSR({ route, url, loaderProps }) {
+        if (route.type === 'ssr') {
+          const buildInfo = routeToBuildInfo[route.page]
+          if (!buildInfo) {
+            throw new Error(`No buildinfo found for ${url}, route: ${route.page}`)
+          }
+
+          try {
+            const exported = await import(buildInfo.serverJsPath)
+            const loaderData = await exported.loader?.(loaderProps)
+            const preloads = buildInfo.preloads
+
+            const headers = new Headers()
+            headers.set('content-type', 'text/html')
+
+            return new Response(
+              await render({
+                loaderData,
+                loaderProps,
+                path: loaderProps?.path || '/',
+                preloads,
+              }),
+              {
+                headers,
+              }
+            )
+          } catch (err) {
+            console.error(`[vxs] Error rendering SSR route ${route.page}
+
+  ${err?.['stack'] ?? err}
+
+  url: ${url}`)
+          }
+        }
+      },
     }
   )
-
-  const routeMap = await FSExtra.readJSON('dist/routeMap.json')
 
   // preload reading in all the files, for prod performance:
   const htmlFiles: Record<string, string> = {}
   for (const key in routeMap) {
+    const info = routeToBuildInfo[key]
+
+    if (info?.type === 'ssr') {
+      // we handle this on each request
+      continue
+    }
+
     htmlFiles[key] = await FSExtra.readFile(join('dist/client', routeMap[key]), 'utf-8')
   }
 
@@ -123,10 +183,6 @@ export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app:
   })
 
   if (options?.afterServerStart) {
-    await options?.afterServerStart?.(
-      options,
-      app,
-      JSON.parse(await FSExtra.readFile(toAbsolute(`dist/buildInfo.json`), 'utf-8'))
-    )
+    await options?.afterServerStart?.(options, app, buildInfo)
   }
 }

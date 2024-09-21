@@ -113,7 +113,9 @@ export function getServerManifest(route: RouteNode): VXSRouterServerManifestV1 {
   )
 
   const otherRoutes = uniqueBy(
-    flat.filter(([, route]) => route.type === 'spa' || route.type === 'ssg'),
+    flat.filter(
+      ([, route]) => route.type === 'spa' || route.type === 'ssg' || route.type === 'ssr'
+    ),
     ([path]) => path
   )
 
@@ -247,6 +249,7 @@ function getNamedRegex(route: string) {
           .split(',')
           .map((group) => group.trim())
           .filter(Boolean)
+
         if (groupName.length > 1) {
           const optionalSegment = `\\((?:${groupName.map(escapeStringRegexp).join('|')})\\)`
           // Make section optional

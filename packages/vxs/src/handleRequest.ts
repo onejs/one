@@ -134,7 +134,7 @@ export function createHandleRequest(
         if (process.env.NODE_ENV === 'development') {
           console.error(`No matching route found!`, {
             originalUrl,
-            ssgRoutes: manifest.pageRoutes,
+            routes: manifest.pageRoutes,
           })
         }
 

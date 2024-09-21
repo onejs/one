@@ -2,10 +2,10 @@ import type { Hono } from 'hono';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNOptions } from 'vxrn';
 export declare namespace VXS {
     type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
-    type RouteRenderMode = 'ssg' | 'spa';
-    type RouteType = 'ssg' | 'spa' | 'api' | 'layout';
+    type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
+    type RouteType = RouteRenderMode | 'api' | 'layout';
     type RouteOptions = {
-        routeModes?: Record<string, VXS.RouteRenderMode>;
+        routeModes?: Record<string, RouteRenderMode>;
     };
     type FixDependencies = {
         [key: string]: DepOptimize | DepPatch['patchFiles'];
@@ -57,7 +57,7 @@ export declare namespace VXS {
         };
         deps?: FixDependencies;
         afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
-        afterServerStart?: ((options: Options, server: Hono) => void | Promise<void>) | ((options: Options, server: Hono, buildInfo: AfterServerStartBuildInfo) => void | Promise<void>);
+        afterServerStart?: ((options: Options, server: Hono) => void | Promise<void>) | ((options: Options, server: Hono, buildInfo: BuildInfo) => void | Promise<void>);
     };
     interface RouteContext {
         keys(): string[];
@@ -72,15 +72,18 @@ export declare namespace VXS {
         permanent: boolean;
     };
     type Redirects = Redirect[];
-    type AfterServerStartBuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'>;
+    type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'>;
     type AfterBuildProps = VXRNAfterBuildProps & {
         routeMap: Record<string, string>;
         builtRoutes: RouteBuildInfo[];
     };
     type RouteBuildInfo = {
+        type: RouteType;
         path: string;
+        cleanPath: string;
         htmlPath: string;
         clientJsPath: string;
+        serverJsPath: string;
         params: Object;
         loaderData: any;
         preloads: string[];

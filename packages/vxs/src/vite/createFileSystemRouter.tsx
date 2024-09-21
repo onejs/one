@@ -120,18 +120,12 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
 
             try {
               const routeFile = join('app', route.file)
-              // importing directly causes issues :/
-              globalThis['__vxrnresetState']?.()
               runner.clearCache()
 
-              let exported = await runner.import(routeFile)
+              // importing directly causes issues :/
+              globalThis['__vxrnresetState']?.()
 
-              // const routeOptions: VXS.RouteOptions = {
-              //   routeModes: {
-              //     [route.page]: exported.mode,
-              //   },
-              // }
-
+              const exported = await runner.import(routeFile)
               const loaderData = await exported.loader?.(loaderProps)
 
               // TODO move to tamagui plugin, also esbuild was getting mad
