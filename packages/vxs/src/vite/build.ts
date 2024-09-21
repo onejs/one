@@ -292,15 +292,15 @@ export async function build(args: {
       // nested path pages need to reference root assets
       .map((path) => `/${path}`)
 
-    const jsPath = toAbsolute(join('dist/server', output.fileName))
+    const serverJsPath = toAbsolute(join('dist/server', output.fileName))
 
     let exported
     try {
-      exported = await import(jsPath)
+      exported = await import(serverJsPath)
     } catch (err) {
       console.error(`Error importing page (original error)`, err)
       // err cause not showing in vite or something
-      throw new Error(`Error importing page: ${jsPath}`, {
+      throw new Error(`Error importing page: ${serverJsPath}`, {
         cause: err,
       })
     }
@@ -314,7 +314,8 @@ export async function build(args: {
     }
 
     for (const params of paramsList) {
-      const path = getPathnameFromFilePath(relativeId.replace('+spa', ''), params)
+      const cleanId = relativeId.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
+      const path = getPathnameFromFilePath(cleanId, params)
       const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
       const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
@@ -324,55 +325,63 @@ export async function build(args: {
       try {
         console.info(`  ↦ route ${path}`)
 
-        loaderData = (await exported.loader?.({ path, params })) ?? null
+        // ssr, we basically skip at build-time and just compile it the js we need
+        if (foundRoute.type !== 'ssr') {
+          loaderData = (await exported.loader?.({ path, params })) ?? null
 
-        const loaderProps = { path, params }
-        globalThis['__vxrnLoaderProps__'] = loaderProps
-        // importing resetState causes issues :/
-        globalThis['__vxrnresetState']?.()
+          const loaderProps = { path, params }
+          globalThis['__vxrnLoaderProps__'] = loaderProps
+          // importing resetState causes issues :/
+          globalThis['__vxrnresetState']?.()
 
-        if (foundRoute.type === 'ssg') {
-          const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
-          const loaderPartialPath = join(
-            staticDir,
-            'assets',
-            path
-              .slice(1)
-              .replaceAll('/', '_')
-              // remove trailing _
-              .replace(/_$/, '') + `_vxrn_loader.js`
-          )
+          if (foundRoute.type === 'ssg') {
+            const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
+            const loaderPartialPath = join(
+              staticDir,
+              'assets',
+              path
+                .slice(1)
+                .replaceAll('/', '_')
+                // remove trailing _
+                .replace(/_$/, '') + `_vxrn_loader.js`
+            )
 
-          const code = await readFile(clientJsPath, 'utf-8')
+            const code = await readFile(clientJsPath, 'utf-8')
 
-          const withLoader = replaceLoader({
-            code,
-            loaderData,
-            loaderRegexName: '[a-z0-9_]+',
-          })
+            const withLoader = replaceLoader({
+              code,
+              loaderData,
+              loaderRegexName: '[a-z0-9_]+',
+            })
 
-          await Promise.all([
-            outputFile(htmlOutPath, html),
-            outputFile(loaderPartialPath, withLoader),
-          ])
-        } else {
-          // spa route
-          loaderData = {} // TODO not sure why i needed this
-          await outputFile(
-            htmlOutPath,
-            `<html><head>
-            <script>globalThis['global'] = globalThis</script>
-            <script>globalThis['__vxrnIsSPA'] = true</script>
-            ${preloads
-              .map((preload) => `   <script type="module" src="${preload}"></script>`)
-              .join('\n')}
-            ${allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')}
-          </head></html>`
-          )
+            await Promise.all([
+              outputFile(htmlOutPath, html),
+              outputFile(loaderPartialPath, withLoader),
+            ])
+          } else {
+            // spa route
+            loaderData = {} // TODO not sure why i needed this
+            await outputFile(
+              htmlOutPath,
+              `<html><head>
+              <script>globalThis['global'] = globalThis</script>
+              <script>globalThis['__vxrnIsSPA'] = true</script>
+              ${preloads
+                .map((preload) => `   <script type="module" src="${preload}"></script>`)
+                .join('\n')}
+              ${allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')}
+            </head></html>`
+            )
+          }
         }
 
+        const cleanPath = path === '/' ? path : removeTrailingSlash(path)
+
         builtRoutes.push({
+          type: foundRoute.type,
+          cleanPath,
           clientJsPath,
+          serverJsPath,
           htmlPath,
           loaderData,
           params,
@@ -405,28 +414,22 @@ ${JSON.stringify(params || null, null, 2)}`
   await FSExtra.rm(staticDir, { force: true, recursive: true })
 
   // write out the pathname => html map for the server
-  const routeMap = builtRoutes.reduce((acc, { path, htmlPath }) => {
-    acc[path === '/' ? path : removeTrailingSlash(path)] = htmlPath
+  const routeMap = builtRoutes.reduce((acc, { cleanPath, htmlPath }) => {
+    acc[cleanPath] = htmlPath
     return acc
   }, {}) satisfies Record<string, string>
 
+  const buildInfoForWriting = {
+    routeMap,
+    builtRoutes,
+  }
+
   const buildInfo = {
+    ...buildInfoForWriting,
     ...vxrnOutput,
-    routeMap,
-    builtRoutes,
   }
 
-  const buildInfoForWriting: VXS.AfterServerStartBuildInfo = {
-    routeMap,
-    builtRoutes,
-  }
-
-  await Promise.all([
-    FSExtra.writeJSON(toAbsolute(`dist/routeMap.json`), routeMap, {
-      spaces: 2,
-    }),
-    FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting),
-  ])
+  await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
 
   if (userOptions?.afterBuild) {
     await userOptions?.afterBuild?.(buildInfo)

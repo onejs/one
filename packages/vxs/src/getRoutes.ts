@@ -349,8 +349,8 @@ function getFileMeta(key: string, options: Options) {
 
   const isLayout = filenameWithoutExtensions.startsWith('_layout')
 
-  const [_fullname, renderModeFound] = filename.match(/\+(api|ssg|spa)\.(\w+\.)?[jt]sx?$/) || []
-  const renderMode = renderModeFound as 'api' | 'ssg' | 'spa' | undefined
+  const [_fullname, renderModeFound] = filename.match(/\+(api|ssg|ssr|spa)\.(\w+\.)?[jt]sx?$/) || []
+  const renderMode = renderModeFound as 'api' | VXS.RouteRenderMode | undefined
 
   if (filenameWithoutExtensions.startsWith('(') && filenameWithoutExtensions.endsWith(')')) {
     throw new Error(`Invalid route ./${key}. Routes cannot end with '(group)' syntax`)
@@ -567,7 +567,7 @@ function crawlAndAppendInitialRoutesAndEntryFiles(
   options: Options,
   entryPoints: string[] = []
 ) {
-  if (node.type === 'spa' || node.type === 'ssg') {
+  if (node.type === 'spa' || node.type === 'ssg' || node.type === 'ssr') {
     node.entryPoints = [...new Set([...entryPoints, node.contextKey])]
   } else if (node.type === 'layout') {
     if (!node.children) {

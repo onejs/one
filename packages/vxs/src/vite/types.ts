@@ -9,12 +9,12 @@ import type {
 export namespace VXS {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
 
-  export type RouteRenderMode = 'ssg' | 'spa'
+  export type RouteRenderMode = 'ssg' | 'spa' | 'ssr'
 
-  export type RouteType = 'ssg' | 'spa' | 'api' | 'layout'
+  export type RouteType = RouteRenderMode | 'api' | 'layout'
 
   export type RouteOptions = {
-    routeModes?: Record<string, VXS.RouteRenderMode>
+    routeModes?: Record<string, RouteRenderMode>
   }
 
   export type FixDependencies = {
@@ -78,11 +78,7 @@ export namespace VXS {
 
     afterServerStart?:
       | ((options: Options, server: Hono) => void | Promise<void>)
-      | ((
-          options: Options,
-          server: Hono,
-          buildInfo: AfterServerStartBuildInfo
-        ) => void | Promise<void>)
+      | ((options: Options, server: Hono, buildInfo: BuildInfo) => void | Promise<void>)
   }
 
   export interface RouteContext {
@@ -101,7 +97,7 @@ export namespace VXS {
 
   export type Redirects = Redirect[]
 
-  export type AfterServerStartBuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'>
+  export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'>
 
   export type AfterBuildProps = VXRNAfterBuildProps & {
     routeMap: Record<string, string>
@@ -109,9 +105,12 @@ export namespace VXS {
   }
 
   export type RouteBuildInfo = {
+    type: RouteType
     path: string
+    cleanPath: string
     htmlPath: string
     clientJsPath: string
+    serverJsPath: string
     params: Object
     loaderData: any
     preloads: string[]
