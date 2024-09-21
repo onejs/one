@@ -23,6 +23,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         port: number;
         build?: {
             server?: boolean | import("..").VXRNBuildOptions;
+            analyze?: boolean;
         };
         hono?: {
             compression?: boolean;
