@@ -72,20 +72,9 @@ const serveCommand = defineCommand({
   },
   async run({ args }) {
     const { serve } = await import('./serve')
-    const { serve: vxrnServe } = await import('vxrn')
-
-    process.on('uncaughtException', (err) => {
-      console.error(`[vxs] Uncaught exception`, err?.stack || err)
-    })
-
-    const vxsOptions = await loadUserVXSOptions('serve')
-
-    await vxrnServe({
+    await serve({
       port: args.port ? +args.port : undefined,
       host: args.host,
-      afterServerStart(options, app) {
-        serve(vxsOptions, options, app)
-      },
     })
   },
 })

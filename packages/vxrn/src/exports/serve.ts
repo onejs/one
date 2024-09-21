@@ -6,6 +6,8 @@ import { getOptionsFilled } from '../utils/getOptionsFilled'
 
 export const serve = async (optionsIn: VXRNOptions) => {
   const options = await getOptionsFilled(optionsIn, { mode: 'prod' })
+
+  // see this for more hono setup
   const app = await createProdServer(options)
 
   // strange prevents a cant listen on port issue

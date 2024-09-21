@@ -51,7 +51,16 @@ export type VXRNOptions = {
      * Settings only apply when running `vxrn build`
      */
     build?: {
+        /**
+         * Can disable web server side build
+         * @default true
+         */
         server?: boolean | VXRNBuildOptions;
+        /**
+         * When on, outputs a report.html file with client js bundle analysis
+         * @default false
+         */
+        analyze?: boolean;
     };
     hono?: {
         compression?: boolean;

@@ -5,13 +5,34 @@ import type { Hono } from 'hono'
 import Path, { join } from 'node:path'
 import type { VXRNOptions } from 'vxrn'
 import { createHandleRequest } from './handleRequest'
+import type { RenderAppProps } from './types'
 import { isResponse } from './utils/isResponse'
 import { isStatusRedirect } from './utils/isStatus'
 import { resolveAPIRequest } from './vite/resolveAPIRequest'
 import type { VXS } from './vite/types'
-import { RenderAppProps } from './types'
+import { loadUserVXSOptions } from './vite/vxs'
+import { serve as vxrnServe } from 'vxrn'
 
-export async function serve(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hono) {
+process.on('uncaughtException', (err) => {
+  console.error(`[vxs] Uncaught exception`, err?.stack || err)
+})
+
+export async function serve(args: { host?: string; port?: number }) {
+  const vxsOptions = await loadUserVXSOptions('serve')
+
+  await vxrnServe({
+    port: args.port ? +args.port : undefined,
+    host: args.host,
+    hono: {
+      compression: true,
+    },
+    afterServerStart(options, app) {
+      oneServe(vxsOptions, options, app)
+    },
+  })
+}
+
+async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hono) {
   const root = options.root || vxrnOptions.root || '.'
   const isAPIRequest = new WeakMap<any, boolean>()
   const toAbsolute = (p: string) => Path.resolve(root, p)

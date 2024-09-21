@@ -34,6 +34,7 @@ export async function build(args: {
   const vxrnOutput = await vxrnBuild(
     {
       build: {
+        analyze: true,
         server: {
           outputFormat: serverOutputFormat,
         },
@@ -435,7 +436,8 @@ ${JSON.stringify(params || null, null, 2)}`
     await userOptions?.afterBuild?.(buildInfo)
   }
 
-  console.info(`\n\n🩶 build complete\n\n`)
+  console.info(`\n\n  💛 build complete\n\n`)
+  console.info(`  report: ${join(options.root, 'dist', 'report.html')}\n\n`)
 }
 
 function removeTrailingSlash(path: string) {
