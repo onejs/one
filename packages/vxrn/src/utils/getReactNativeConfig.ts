@@ -66,7 +66,7 @@ export async function getReactNativeConfig(
               // fix for importing a directory
               // TODO this would probably want to support their configured extensions
               // TODO also platform-specific extensions
-              for (const ext of ['ts', 'tsx', 'js']) {
+              for (const ext of ['ts', 'tsx', 'mjs', 'js']) {
                 try {
                   const withExt = join(resolved, `index.${ext}`)
                   await stat(withExt)
@@ -125,7 +125,7 @@ export async function getReactNativeConfig(
       }),
 
       {
-        name: 'treat-js-files-as-jsx',
+        name: 'fix-expo',
         transform: {
           order: 'pre',
           async handler(code, id) {

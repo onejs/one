@@ -240,6 +240,25 @@ export const depPatches: DepPatch[] = [
     },
   },
 
+  {
+    module: 'vite',
+    patchFiles: {
+      version: '6.0.0-beta.1',
+
+      // vite is going nuts when i install outside the monorepo
+      // expo touches .expo/devices.json and for some strange reason vite
+      // treats any .json changing in the entire repo as a reason to reload the entire app?
+      'dist/node/chunks/dep-DXWVQosX.js': (contents) => {
+        assertString(contents)
+        // just disable it fully for now for some reason its always triggering for me
+        return contents.replace(
+          `// any tsconfig.json that's added in the workspace could be closer to a code file than a previously cached one`,
+          `return`
+        )
+      },
+    },
+  },
+
   // {
   //   module: 'react-native-reanimated',
   //   patchFiles: {

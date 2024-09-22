@@ -85,6 +85,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'nanoid',
     'swr',
     'swr/mutation',
+    'one',
     'one/zero',
     'one/headers',
     'one/server-render',

@@ -53,7 +53,7 @@
     "p-map": "^7.0.2",
     "patch-package": "^8.0.0",
     "turbo": "^2.1.0",
-    "typescript": "^5.2.2",
+    "typescript": "^5.6.2",
     "ultra-runner": "^3.10.5",
     "vitepress": "^1.1.4"
   }

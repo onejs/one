@@ -24,6 +24,8 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./types/index.d.ts",
+      "react-native-import": "./dist/esm/index.native.js",
+      "react-native": "./dist/cjs/index.native.js",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
     }

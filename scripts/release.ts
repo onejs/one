@@ -44,7 +44,7 @@ const curVersion = fs.readJSONSync('./packages/vxs/package.json').version
 
 const nextVersion = (() => {
   if (canary) {
-    return `${curVersion}-${Date.now()}`
+    return `${curVersion.replace(/(-\d+)+$/, '')}-${Date.now()}`
   }
 
   if (rePublish) {
