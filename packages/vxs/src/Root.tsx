@@ -10,12 +10,12 @@ import {
   type NavigationContainerProps,
 } from '@react-navigation/native'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
-import { PreloadLinks } from './views/PreloadLinks'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
-import type { VXS } from './vite/types'
+import { PreloadLinks } from './views/PreloadLinks'
 import { ScrollRestoration } from './views/ScrollRestoration'
+import type { VXS } from './vite/types'
 // import { SplashScreen } from './views/Splash'
 
 if (typeof window !== 'undefined') {
