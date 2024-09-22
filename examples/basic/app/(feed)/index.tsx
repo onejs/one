@@ -7,9 +7,7 @@ import { db } from '~/db/connection'
 import { posts, users, likes, replies, reposts } from '~/db/schema'
 import { eq, desc, sql } from 'drizzle-orm'
 import { getURL } from '~/helpers/getURL'
-// import { feedData } from '~/features/feed/data'
-
-const feedData = []
+import { feedData } from '~/features/feed/data'
 
 export async function loader({ path }: LoaderProps) {
   try {
@@ -56,8 +54,6 @@ export default () => <FeedPage />
 
 function FeedPage() {
   const { feed } = useLoader(loader)
-  if (!feed) return null
-
   return (
     <>
       <Stack.Screen
