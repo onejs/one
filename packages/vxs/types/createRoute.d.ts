@@ -18,9 +18,11 @@ declare const postIdRoute: {
     }) => any;
 };
 export declare const route: {
-    post: {
+    feed: {
         $id: typeof postIdRoute;
     };
+    notifications: {};
+    profile: {};
 };
 export {};
 //# sourceMappingURL=createRoute.d.ts.map

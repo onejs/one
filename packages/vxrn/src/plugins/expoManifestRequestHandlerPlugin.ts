@@ -34,7 +34,7 @@ export function expoManifestRequestHandlerPlugin(
         }
 
         const protocol = req.socket instanceof TLSSocket && req.socket.encrypted ? 'https' : 'http'
-        const host = `${req.headers['x-forwarded-host']}` || req.headers.host
+        const host = `${req.headers['x-forwarded-host']}` || req.headers.host || '127.0.0.1'
 
         // Try to dynamically import the internal Expo manifest handler from expo packages installed in the user's project.
         let ExpoGoManifestHandlerMiddleware

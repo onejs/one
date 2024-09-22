@@ -6,6 +6,7 @@ const getNativeExtensions = (platform: 'ios' | 'android') => {
     `.${platform}.tsx`,
     `.${platform}.ts`,
     `.${platform}.jsx`,
+    `.${platform}.mjs`,
     `.${platform}.js`,
     '.native.js',
     '.native.ts',
@@ -15,7 +16,6 @@ const getNativeExtensions = (platform: 'ios' | 'android') => {
     '.js',
     '.jsx',
     '.json',
-    '.mjs',
   ]
 }
 

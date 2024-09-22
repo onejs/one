@@ -28,6 +28,8 @@
     "./package.json": "./package.json",
     ".": {
       "types": "./types/index.d.ts",
+      "react-native-import": "./dist/esm/index.native.js",
+      "react-native": "./dist/cjs/index.native.js",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
     },
@@ -35,6 +37,13 @@
       "types": "./types/vite.d.ts",
       "import": "./dist/esm/vite.mjs",
       "require": "./dist/cjs/vite.js"
+    },
+    "./zero": {
+      "types": "./types/zero.d.ts",
+      "react-native-import": "./dist/esm/zero.native.js",
+      "react-native": "./dist/cjs/zero.native.js",
+      "import": "./dist/esm/zero.mjs",
+      "require": "./dist/cjs/zero.js"
     },
     "./serve": {
       "types": "./types/serve.d.ts",

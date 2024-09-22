@@ -31,7 +31,9 @@ const getProxy = () =>
 const postIdRoute = createRoute<'/feed/[id]'>()
 
 export const route = getProxy() as {
-  post: {
+  feed: {
     $id: typeof postIdRoute
   }
+  notifications: {}
+  profile: {}
 }

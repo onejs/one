@@ -1,0 +1,67 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "/Users/n8",
+    "outDir": "dist",
+    "paths": {
+      "~/*": ["./*"],
+      "btree": ["/Users/n8/github/mono/packages/btree/b+tree.ts"],
+      "datadog": ["/Users/n8/github/mono/packages/datadog/src/mod.ts"],
+      "datadog/src/*": ["/Users/n8/github/mono/packages/datadog/src/*"],
+      "replicache": ["/Users/n8/github/mono/packages/replicache/src/mod.ts"],
+      "replicache/src/*": ["/Users/n8/github/mono/packages/replicache/src/*"],
+      "shared/src/*": ["/Users/n8/github/mono/packages/shared/src/*"],
+      "zero-client": ["/Users/n8/github/mono/packages/zero-client/src/mod.ts"],
+      "zero-client/src/*": ["/Users/n8/github/mono/packages/zero-client/src/*"],
+      "zero-protocol": ["/Users/n8/github/mono/packages/zero-protocol/src/mod.ts"],
+      "zero-protocol/src/*": ["/Users/n8/github/mono/packages/zero-protocol/src/*"],
+      "zql": ["/Users/n8/github/mono/packages/zql/src/mod.ts"],
+      "zql/src/*": ["/Users/n8/github/mono/packages/zql/src/*"]
+    },
+    "importHelpers": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "preserveSymlinks": true,
+    "jsx": "react-jsx",
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "noEmit": false,
+    "noEmitOnError": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strictNullChecks": true,
+    "target": "es2020",
+    "types": [
+      "node",
+      "react",
+      "vite/client"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".expo",
+    "**/test",
+    "**/dist",
+    "**/types",
+    "**/__tests__"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  }
+}
