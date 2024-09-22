@@ -83060,15 +83060,14 @@ var require_react_native = __commonJS({
     }
   }
 });
-return require_react_native();
+const rn = require_react_native(); rn.AssetRegistry = require_registry(); return rn;
 /*! Bundled license information:
 
 react-is/cjs/react-is.development.js:
   (** @license React v17.0.2
    * react-is.development.js
    *
-   * Copyright (c) Facebook, Inc. and its affiliates.
-   *
+   * Copyright (c) Facebook, Inc. and its affiliates.   *
    * This source code is licensed under the MIT license found in the
    * LICENSE file in the root directory of this source tree.
    *)
@@ -83214,4 +83213,5 @@ export const processColor = RN.processColor
 export const requireNativeComponent = RN.requireNativeComponent
 export const RootTagContext = RN.RootTagContext
 export const unstable_enableLogBox = RN.unstable_enableLogBox
+export const AssetRegistry = RN.AssetRegistry
     

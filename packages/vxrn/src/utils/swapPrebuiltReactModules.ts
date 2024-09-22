@@ -1,7 +1,7 @@
 import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
 import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
-import { dirname, join, resolve } from 'node:path'
+import path, { dirname, join, resolve } from 'node:path'
 import type { Plugin } from 'vite'
 import { isBuildingNativeBundle } from './isBuildingNativeBundle'
 import { resolveFile } from './resolveFile'
@@ -191,6 +191,10 @@ export async function swapPrebuiltReactModules(
         const absolutePath = resolve(dirname(importer), id)
         const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
         if (nativePath === id) return
+        // Only comparing `nativePath === id` is not enough, because id can be a relative path while nativePath is an absolute path. We need to make sure things are not accidentally handled by this plugin so other plugins such as assets can work.
+        if (path.join(path.dirname(importer), id) === nativePath) {
+          return
+        }
 
         // // if exists can skip
         // if (await FSExtra.pathExists(absolutePath)) {

@@ -128,13 +128,13 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
           }
         }
 
-        if (cachedReactNativeBundle) {
+        if (cachedReactNativeBundle && !process.env.VXRN_DISABLE_CACHE) {
           return cachedReactNativeBundle
         }
 
         const builtBundle = await getReactNativeBundle(options)
         cachedReactNativeBundle = builtBundle
-        if (process.env.UNSTABLE_BUNDLE_CACHE) {
+        if (process.env.UNSTABLE_BUNDLE_CACHE && !!process.env.VXRN_DISABLE_CACHE) {
           // do not await cache write
           ;(async () => {
             try {
