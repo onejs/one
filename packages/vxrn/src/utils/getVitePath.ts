@@ -51,7 +51,7 @@ export async function getVitePath(
 
   // TODO
   if (!resolved) {
-    return 'one'
+    return 'vxs'
   }
 
   // figure out symlinks

@@ -9,14 +9,22 @@ import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
 
 export type ColorSchemeName = 'light' | 'dark'
 export type ColorSchemeSetting = ColorSchemeName | 'system'
-export type ColorSchemeListener = (current: ColorSchemeName) => void
+export type ColorSchemeListener = (
+  setting: ColorSchemeSetting,
+  current: ColorSchemeName
+) => void
+
+const listeners = new Set<ColorSchemeListener>()
+
+let currentSetting: ColorSchemeSetting = 'system'
+let currentName: ColorSchemeName = 'light'
 
 export function setColorScheme(next: ColorSchemeSetting) {
   update(next)
 }
 
 export function getColorScheme(): ColorSchemeName {
-  return colorScheme
+  return currentName
 }
 
 export function onColorSchemeChange(listener: ColorSchemeListener) {
@@ -30,16 +38,38 @@ export function useColorScheme() {
   const [state, setState] = useState(getColorScheme())
 
   useIsomorphicLayoutEffect(() => {
-    return onColorSchemeChange(setState)
+    return onColorSchemeChange((setting, val) => setState(val))
   }, [])
 
   return [state, setColorScheme] as const
+}
+
+let isListening = false
+function startWebMediaListener() {
+  if (isListening) return
+  isListening = true
+  getWebIsDarkMatcher()?.addEventListener('change', (val) => {
+    if (currentSetting === 'system') {
+      update(getSystemColorScheme())
+    }
+  })
+}
+
+if (process.env.TAMAGUI_TARGET === 'native') {
+  Appearance.addChangeListener((next) => {
+    if (currentSetting === 'system') {
+      if (next.colorScheme) {
+        update(next.colorScheme)
+      }
+    }
+  })
 }
 
 export function useColorSchemeSetting() {
   const [state, setState] = useState(getColorSchemeSetting())
 
   useIsomorphicLayoutEffect(() => {
+    startWebMediaListener()
     return onColorSchemeChange(() => setState(getColorSchemeSetting()))
   }, [])
 
@@ -49,14 +79,13 @@ export function useColorSchemeSetting() {
 // internals
 
 const getColorSchemeSetting = (): ColorSchemeSetting => {
-  if (isOverriden) {
-    return colorScheme
-  }
-  return 'system'
+  return currentSetting
 }
 
 const getWebIsDarkMatcher = () =>
-  typeof window !== 'undefined' ? window.matchMedia?.('(prefers-color-scheme: dark)') : null
+  typeof window !== 'undefined'
+    ? window.matchMedia?.('(prefers-color-scheme: dark)')
+    : null
 
 function getSystemColorScheme() {
   if (process.env.TAMAGUI_TARGET === 'native') {
@@ -65,36 +94,16 @@ function getSystemColorScheme() {
   return getWebIsDarkMatcher()?.matches ? 'dark' : 'light'
 }
 
-let isOverriden = false
-let colorScheme: ColorSchemeName = getSystemColorScheme()
-
-const listeners = new Set<ColorSchemeListener>()
-
 function update(setting: ColorSchemeSetting) {
-  if (setting === colorScheme) {
-    if (isOverriden) {
-      return
-    }
-  }
-  isOverriden = setting !== 'system'
+  if (setting === currentSetting) return
+
   const next = setting === 'system' ? getSystemColorScheme() : setting
-  colorScheme = next
+  currentSetting = setting
+  currentName = next
+
   if (process.env.TAMAGUI_TARGET === 'native') {
     Appearance.setColorScheme(next)
   }
-  listeners.forEach((l) => l(colorScheme))
-}
 
-if (process.env.TAMAGUI_TARGET === 'native') {
-  Appearance.addChangeListener((next) => {
-    if (isOverriden) return
-    if (next.colorScheme) {
-      update(next.colorScheme)
-    }
-  })
-} else {
-  getWebIsDarkMatcher()?.addEventListener('change', (val) => {
-    if (isOverriden) return
-    update(getSystemColorScheme())
-  })
+  listeners.forEach((l) => l(currentSetting, currentName))
 }

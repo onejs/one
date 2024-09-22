@@ -1,6 +1,6 @@
-import type { VXSRouter } from 'one'
+import type { VXSRouter } from 'vxs'
 
-declare module 'one' {
+declare module 'vxs' {
   export namespace VXSRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
       StaticRoutes: `/` | `/(authenticated)` | `/(authenticated)/feed` | `/(authenticated)/feed/` | `/(authenticated)/notifications` | `/(authenticated)/profile` | `/_sitemap` | `/feed` | `/feed/` | `/notifications` | `/profile`
