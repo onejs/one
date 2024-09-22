@@ -12,7 +12,9 @@
     "patches",
     "dist",
     "run.mjs",
-    "react-native-template.js"
+    "react-native-template.js",
+    "react-native-commands.cjs",
+    "expo-plugin.cjs"
   ],
   "publishConfig": {
     "access": "public"

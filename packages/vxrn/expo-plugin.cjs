@@ -1,4 +1,4 @@
-const { withXcodeProject } = require('expo/config-plugins')
+const { withXcodeProject } = require('@expo/config-plugins')
 
 const plugin = (config, options = {}) => {
   return withXcodeProject(config, async (config) => {
