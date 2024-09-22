@@ -75,6 +75,7 @@ export async function buildBundle(
   const options = await getOptionsFilled(optionsIn, { mode: dev ? 'dev' : 'prod' })
   let builtBundle = await getReactNativeBundle(options, {
     mode: dev ? 'dev' : 'prod',
+    assetsDest,
     useCache: false,
   })
 

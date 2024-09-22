@@ -18,6 +18,7 @@ import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 import { getBabelReanimatedPlugin } from '../plugins/babelReanimated'
 import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
+import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
@@ -28,7 +29,7 @@ const IGNORE_ROLLUP_LOGS_RE =
 
 export async function getReactNativeConfig(
   options: VXRNOptionsFilled,
-  internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
+  internal: { mode?: 'dev' | 'prod'; assetsDest?: string } = { mode: 'dev' }
 ) {
   const {
     root,
@@ -88,6 +89,12 @@ export async function getReactNativeConfig(
       swapPrebuiltReactModules(options.cacheDir, options.packageVersions, {
         // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
         mode: internal.mode,
+      }),
+
+      reactNativeDevAssetPlugin({
+        projectRoot: options.root,
+        mode: internal.mode,
+        assetsDest: internal.assetsDest,
       }),
 
       getBabelReanimatedPlugin(),

@@ -19,7 +19,10 @@ const cache: Record<string, RollupCache> = {}
 
 export async function getReactNativeBundle(
   options: VXRNOptionsFilled,
-  internal: { mode?: 'dev' | 'prod'; useCache?: boolean } = { mode: 'dev', useCache: true }
+  internal: { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean } = {
+    mode: 'dev',
+    useCache: true,
+  }
 ) {
   entryRoot = options.root
 
@@ -63,7 +66,7 @@ export async function getReactNativeBundle(
 
   const rollupCacheFile = join(options.cacheDir, `rn-rollup-cache-${environmentName}.json`)
 
-  if (internal.useCache) {
+  if (internal.useCache && !process.env.VXRN_DISABLE_CACHE) {
     // See: https://rollupjs.org/configuration-options/#cache
     environment.config.build.rollupOptions.cache =
       cache[environmentName] ||

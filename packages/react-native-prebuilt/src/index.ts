@@ -218,7 +218,9 @@ return mod
 };
 `
         )
-        .replace(`module.exports = require_react_native();`, `return require_react_native();`)}
+        .replace(`module.exports = require_react_native();`, `return require_react_native();`)
+        // Export `@react-native/assets-registry/registry`
+        .replace(`return require_react_native();`, `const rn = require_react_native(); rn.AssetRegistry = require_registry(); return rn;`)}
     }
     const RN = run()
     ${RNExportNames.map((n) => `export const ${n} = RN.${n}`).join('\n')}
@@ -308,6 +310,7 @@ const RNExportNames = [
   'requireNativeComponent',
   'RootTagContext',
   'unstable_enableLogBox',
+  'AssetRegistry', // Normally not exported by React Native, but with a hack we make @react-native/assets-registry/registry available here.
 ]
 
 const RExports = [

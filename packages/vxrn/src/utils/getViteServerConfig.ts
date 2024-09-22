@@ -3,6 +3,7 @@ import mkcert from 'vite-plugin-mkcert'
 import { webExtensions } from '../constants'
 import { getServerConfigPlugin } from '../plugins/clientInjectPlugin'
 import { expoManifestRequestHandlerPlugin } from '../plugins/expoManifestRequestHandlerPlugin'
+import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
 import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
@@ -59,6 +60,10 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
         expoManifestRequestHandlerPlugin({
           projectRoot: root,
           port: server.port,
+        }),
+
+        reactNativeDevAssetPlugin({
+          projectRoot: root,
         }),
 
         // TODO very hacky/arbitrary
