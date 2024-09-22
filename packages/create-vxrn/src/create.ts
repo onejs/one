@@ -154,12 +154,14 @@ export async function create(args: { template?: string }) {
     await FSExtra.move(envDefault, env)
   }
 
-  await template.extraSteps({
-    packageManager,
-    isFullClone: true,
-    projectName,
-    projectPath: resolvedProjectPath,
-  })
+  if ('extraSteps' in template) {
+    await template.extraSteps({
+      packageManager,
+      isFullClone: true,
+      projectName,
+      projectPath: resolvedProjectPath,
+    })
+  }
 
   console.info()
 }
