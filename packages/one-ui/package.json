@@ -25,8 +25,7 @@
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
     "tamagui": "^1.111.11",
-    "vxs": "1.1.234",
-    "zero-client": "portal:/Users/n8/github/mono/packages/zero-client"
+    "vxs": "1.1.234"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1",
