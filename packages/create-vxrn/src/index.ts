@@ -42,11 +42,13 @@ const main = defineCommand({
   async run({ args }) {
     if (args.info) {
       let template = await getTemplateInfo(args.template)
-      await template.extraSteps({
-        isFullClone: false,
-        projectName: path.basename(cwd()),
-        projectPath: cwd(),
-      })
+      if ('extraSteps' in template) {
+        await template.extraSteps({
+          isFullClone: false,
+          projectName: path.basename(cwd()),
+          projectPath: cwd(),
+        })
+      }
       return
     }
 
