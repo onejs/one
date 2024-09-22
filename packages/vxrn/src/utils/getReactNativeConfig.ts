@@ -30,7 +30,10 @@ export async function getReactNativeConfig(
   options: VXRNOptionsFilled,
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ) {
-  const { root, port } = options
+  const {
+    root,
+    server: { port },
+  } = options
   const { optimizeDeps } = getOptimizeDeps('build')
 
   const { mode } = internal

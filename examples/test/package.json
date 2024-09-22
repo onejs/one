@@ -42,6 +42,6 @@
   "devDependencies": {
     "@faker-js/faker": "next",
     "tsx": "^4.19.0",
-    "vite": "6.0.0-alpha.18"
+    "vite": "6.0.0-beta.1"
   }
 }

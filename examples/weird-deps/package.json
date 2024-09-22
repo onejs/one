@@ -25,6 +25,6 @@
     "vxs": "1.1.232"
   },
   "devDependencies": {
-    "vite": "6.0.0-alpha.18"
+    "vite": "6.0.0-beta.1"
   }
 }

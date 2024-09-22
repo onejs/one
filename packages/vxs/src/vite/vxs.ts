@@ -19,7 +19,7 @@ events.setMaxListeners(1_000)
 
 let vxsOptions: VXS.PluginOptions | null = null
 
-export async function getUserVXSOptions(command?: 'serve' | 'build') {
+async function getUserVXSOptions(command?: 'serve' | 'build') {
   if (!vxsOptions) {
     if (!command) throw new Error(`Options not loaded and no command given`)
     await loadUserVXSOptions(command)

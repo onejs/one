@@ -12,19 +12,27 @@ import { resolveAPIRequest } from './vite/resolveAPIRequest'
 import type { VXS } from './vite/types'
 import { loadUserVXSOptions } from './vite/vxs'
 import { serve as vxrnServe } from 'vxrn'
+import { removeUndefined } from './utils/removeUndefined'
 
 process.on('uncaughtException', (err) => {
   console.error(`[vxs] Uncaught exception`, err?.stack || err)
 })
 
-export async function serve(args: { host?: string; port?: number }) {
+export async function serve(args: VXRNOptions['server'] = {}) {
   const vxsOptions = await loadUserVXSOptions('serve')
 
-  await vxrnServe({
-    port: args.port ? +args.port : undefined,
-    host: args.host,
-    hono: {
-      compression: true,
+  return await vxrnServe({
+    server: {
+      // fallback to vxs plugin
+      ...vxsOptions.server,
+      // override with any flags given to cli
+      ...removeUndefined({
+        port: args.port ? +args.port : undefined,
+        host: args.host,
+        compression: args.compression,
+        platform: args.platform,
+        cacheHeaders: args.cacheHeaders,
+      }),
     },
     afterServerStart(options, app) {
       oneServe(vxsOptions, options, app)

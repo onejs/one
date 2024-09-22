@@ -1,3 +1,7 @@
+dist
+!dist/vercel.json
+!dist/package.json
+
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
@@ -8,7 +12,6 @@
 .turbo
 
 tmp
-dist
 node_modules
 
 *.tsbuildinfo
@@ -34,3 +37,4 @@ tsconfig.tsbuildinfo
 # generated code
 /ios
 /android
+.vercel

@@ -47,6 +47,7 @@ export declare namespace VXS {
             defaultRenderMode?: RouteRenderMode;
             redirects?: Redirects;
         };
+        server?: VXRNOptions['server'];
         build?: {
             server?: {
                 outputFormat?: 'cjs' | 'esm';

@@ -62,6 +62,8 @@ export namespace VXS {
       redirects?: Redirects
     }
 
+    server?: VXRNOptions['server']
+
     build?: {
       server?: {
         outputFormat?: 'cjs' | 'esm'

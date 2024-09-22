@@ -69,12 +69,24 @@ const serveCommand = defineCommand({
     port: {
       type: 'string',
     },
+    platform: {
+      type: 'string',
+    },
+    compression: {
+      type: 'boolean',
+    },
+    cacheHeaders: {
+      type: 'boolean',
+    },
   },
   async run({ args }) {
     const { serve } = await import('./serve')
     await serve({
       port: args.port ? +args.port : undefined,
       host: args.host,
+      cacheHeaders: args.cacheHeaders === false ? 'off' : undefined,
+      compression: args.compression,
+      platform: args.platform === 'vercel' ? 'vercel' : 'node',
     })
   },
 })

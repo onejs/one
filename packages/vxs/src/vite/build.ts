@@ -16,7 +16,7 @@ import type { RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 import type { VXS } from './types'
-import { getUserVXSOptions } from './vxs'
+import { loadUserVXSOptions } from './vxs'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -28,11 +28,12 @@ export async function build(args: {
   step?: string
   only?: string
 }) {
-  const userOptions = await getUserVXSOptions('build')
+  const userOptions = await loadUserVXSOptions('build')
   const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'esm'
 
   const vxrnOutput = await vxrnBuild(
     {
+      server: userOptions.server,
       build: {
         analyze: true,
         server: {
@@ -44,6 +45,7 @@ export async function build(args: {
   )
 
   const options = await getOptionsFilled(vxrnOutput.options)
+
   const toAbsolute = (p) => Path.resolve(options.root, p)
   const manifest = getManifest()!
   const { optimizeDeps } = getOptimizeDeps('build')
@@ -432,12 +434,29 @@ ${JSON.stringify(params || null, null, 2)}`
 
   await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
 
+  let postBuildLogs: string[] = []
+
+  if (options.server?.platform === 'vercel') {
+    await FSExtra.writeFile(
+      join(options.root, 'dist', 'index.js'),
+      `import { serve } from 'vxs/serve'
+const handler = await serve()
+export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
+    )
+    postBuildLogs.push(`wrote vercel entry to: ${join('.', 'dist', 'index.js')}`)
+    postBuildLogs.push(`point vercel outputDirectory to dist`)
+  }
+
   if (userOptions?.afterBuild) {
     await userOptions?.afterBuild?.(buildInfo)
   }
 
   console.info(`\n\n  💛 build complete\n\n`)
-  console.info(`  report: ${join(options.root, 'dist', 'report.html')}\n\n`)
+  console.info(`  · client build report: ${join('.', 'dist', 'report.html')}`)
+  postBuildLogs.forEach((log) => {
+    console.info(`  · ${log}`)
+  })
+  console.info(`\n\n`)
 }
 
 function removeTrailingSlash(path: string) {

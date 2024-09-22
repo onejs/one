@@ -41,7 +41,7 @@ const { ensureDir } = FSExtra
 
 export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   const options = await getOptionsFilled(optionsIn)
-  const { port, cacheDir } = options
+  const { cacheDir, server } = options
 
   if (options.clean) {
     await clean(optionsIn)
@@ -316,31 +316,31 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
   app.use(
     eventHandler(
       createProxyEventHandler({
-        target: `${options.protocol}//${options.host}:${vitePort}`,
+        target: `${server.protocol}//${server.host}:${vitePort}`,
         enableLogger: process.env.DEBUG?.startsWith('vxrn'),
       })
     )
   )
 
-  const server = nodeCreateServer(toNodeListener(app))
+  const nodeServer = nodeCreateServer(toNodeListener(app))
 
-  server.on('upgrade', handleUpgrade)
+  nodeServer.on('upgrade', handleUpgrade)
 
   return {
-    server,
+    server: nodeServer,
     viteServer,
 
     async start() {
-      server.listen(port, options.host)
+      nodeServer.listen(server.port, server.host)
 
-      const url = `${options.protocol}//${options.host}:${port}`
+      const url = `${server.protocol}//${server.host}:${server.port}`
 
       console.info(`Server running on ${url}`)
 
-      server.once('listening', () => {
+      nodeServer.once('listening', () => {
         // bridge socket between vite
         if (vitePort) {
-          socket = new WebSocket(`ws://${options.host}:${vitePort}/__vxrnhmr`, 'vite-hmr')
+          socket = new WebSocket(`ws://${server.host}:${vitePort}/__vxrnhmr`, 'vite-hmr')
 
           socket.on('message', (msg) => {
             const message = msg.toString()
@@ -362,7 +362,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
 
     stop: async () => {
       viteServer.watcher.removeAllListeners()
-      await Promise.all([server.close(), viteServer.close()])
+      await Promise.all([nodeServer.close(), viteServer.close()])
     },
   }
 }

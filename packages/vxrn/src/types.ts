@@ -41,6 +41,11 @@ export type VXRNBuildOptions = {
 
 export type VXRNOptions = {
   /**
+   * Root directory, your entries.native and entires.web will resolve relative to this
+   */
+  root?: string
+
+  /**
    * The entry points to your app. For web, it defaults to using your `root` to look for an index.html
    *
    * Defaults:
@@ -68,19 +73,17 @@ export type VXRNOptions = {
     analyze?: boolean
   }
 
-  hono?: {
+  server?: {
+    platform?: 'node' | 'vercel'
+    host?: string
+    port?: number
     compression?: boolean
     cacheHeaders?: 'off'
+    /**
+     * Uses mkcert to create a self-signed certificate
+     */
+    https?: boolean
   }
-
-  root?: string
-  host?: string
-  port?: number
-
-  /**
-   * Uses mkcert to create a self-signed certificate
-   */
-  https?: boolean
 
   /**
    * Whether to clean cache directories on startup
