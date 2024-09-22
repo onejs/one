@@ -30,6 +30,6 @@
   "devDependencies": {
     "@tauri-apps/cli": "^1",
     "tsx": "^4.19.0",
-    "vite": "6.0.0-alpha.18"
+    "vite": "6.0.0-beta.1"
   }
 }
