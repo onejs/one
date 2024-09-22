@@ -1,13 +1,12 @@
 {
   "name": "example-basic",
-  "version": "1.1.234",
+  "version": "1.1.227",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vxs dev",
     "dev:clean": "vxs dev --clean",
     "clean": "vxs clean",
-    "prod": "vxs build && vxs serve",
     "build:prod": "vxs build",
     "serve": "vxs serve",
     "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
@@ -16,21 +15,18 @@
     "orm:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
     "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts"
   },
-  "installConfig": {
-    "hoistingLimits": "workspaces"
-  },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
-    "@tamagui/config": "^1.111.11",
-    "@tamagui/image-next": "^1.111.11",
-    "@tamagui/lucide-icons": "^1.111.11",
-    "@tamagui/vite-plugin": "^1.111.11",
-    "@vxrn/color-scheme": "1.1.234",
+    "@tamagui/config": "^1.111.1",
+    "@tamagui/image-next": "^1.111.1",
+    "@tamagui/lucide-icons": "^1.111.1",
+    "@tamagui/vite-plugin": "^1.111.1",
+    "@vxrn/color-scheme": "1.1.227",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
-    "expo": "^51.0.32",
+    "expo-modules-core": "^1.12.24",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.1",
@@ -39,12 +35,12 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.111.11",
-    "vxs": "1.1.234"
+    "tamagui": "^1.111.1",
+    "vxs": "1.1.227"
   },
   "devDependencies": {
     "@faker-js/faker": "next",
     "tsx": "^4.19.0",
-    "vite": "6.0.0-beta.1"
+    "vite": "6.0.0-alpha.18"
   }
 }

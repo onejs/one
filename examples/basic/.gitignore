@@ -30,7 +30,3 @@ tsconfig.tsbuildinfo
 .env.production.local
 
 .expo
-
-# generated code
-/ios
-/android
