@@ -128,9 +128,7 @@ export async function applyDependencyPatches(
 
                     if (!hasLogged) {
                       hasLogged = true
-                      if (!process.env.VXRN_DEMO_MODE) {
-                        console.info(` 🩹 Patching ${patch.module}`)
-                      }
+                      console.info(` 🩹 Patching ${patch.module}`)
                     }
 
                     if (process.env.DEBUG) {

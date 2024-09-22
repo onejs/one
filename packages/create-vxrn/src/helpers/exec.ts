@@ -20,7 +20,7 @@ export const execPromise = (
       ...options,
     })
 
-    if (!options?.quiet) {
+    if (!options?.quiet || process.env.DEBUG) {
       child.stdout?.pipe(process.stdout)
       child.stderr?.pipe(process.stderr)
     }
@@ -45,6 +45,7 @@ export const execPromiseQuiet = (
     quiet?: boolean
   }
 ) => {
+  console.log('cmd', cmd)
   return execPromise(cmd, {
     ...options,
     quiet: true,

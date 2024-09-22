@@ -1,4 +1,4 @@
-import { copy, ensureDir, move, pathExists, remove } from 'fs-extra'
+import { copy, ensureDir, move, pathExists } from 'fs-extra'
 import { homedir } from 'node:os'
 import { join, sep } from 'node:path'
 import { rimraf } from 'rimraf'
@@ -7,22 +7,15 @@ import { execPromiseQuiet } from './exec'
 
 const home = homedir()
 const vxrnDir = join(home, '.vxrn')
-let targetGitDir = ''
 
 export const cloneStarter = async (
   template: (typeof templates)[number],
-  resolvedProjectPath: string,
-  projectName: string
+  resolvedProjectPath: string
 ) => {
-  targetGitDir = join(vxrnDir, 'vxrn', template.repo.url.split('/').at(-1)!)
-
-  if (!process.env.VXRN_DEMO_MODE) {
-    await setupVxrnDotDir(template)
-  }
-
-  const dir = process.env.VXRN_DEMO_MODE
-    ? join(home, 'vxrn', 'examples', 'basic')
-    : join(targetGitDir, ...template.repo.dir)
+  const dir = await setupVxrnDotDir(
+    template,
+    join(vxrnDir, 'vxrn', template.repo.url.split('/').at(-1)!)
+  )
 
   if (!(await pathExists(dir))) {
     console.error(`Missing template for ${template.value} in ${dir}`)
@@ -43,7 +36,11 @@ export const cloneStarter = async (
   }
 }
 
-async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = false) {
+async function setupVxrnDotDir(
+  template: (typeof templates)[number],
+  targetGitDir: string,
+  isRetry = false
+) {
   const branch = template.repo.branch
 
   await ensureDir(vxrnDir)
@@ -87,6 +84,13 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
       cwd: targetGitDir,
     })
     console.info()
+
+    const dir = join(targetGitDir, ...template.repo.dir)
+    if (!(await pathExists(dir))) {
+      throw new Error(`Re-clone...`)
+    }
+
+    return dir
   } catch (err: any) {
     if (isRetry) {
       console.info(
@@ -97,7 +101,7 @@ async function setupVxrnDotDir(template: (typeof templates)[number], isRetry = f
       )
       process.exit(1)
     }
-    await remove(targetGitDir)
-    await setupVxrnDotDir(template, true)
+    await rimraf(targetGitDir)
+    return await setupVxrnDotDir(template, targetGitDir, true)
   }
 }
