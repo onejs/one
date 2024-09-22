@@ -1924,13 +1924,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@badrap/valita@npm:^0.3.0":
-  version: 0.3.9
-  resolution: "@badrap/valita@npm:0.3.9"
-  checksum: 10/9da41d268beabd5917bd6128ae8967e9492eb8600694349bdb70763ab09699c85d31eb7cb52b5ce1dd515f9d874f640443b3fb81c2c47039571cf753a9334483
-  languageName: node
-  linkType: hard
-
 "@biomejs/biome@npm:^1.8.3":
   version: 1.9.1
   resolution: "@biomejs/biome@npm:1.9.1"
@@ -4688,29 +4681,6 @@ __metadata:
     mkdirp: "npm:^1.0.4"
     rimraf: "npm:^3.0.2"
   checksum: 10/b4f3775da4140f071075f4cfd96e47a57f3212385f9865196a4fae38f30a33a31f78b1937c83d56aea95ad0672bf200cd4d25487e32e8b4735d0b899b65e527f
-  languageName: node
-  linkType: hard
-
-"@rocicorp/lock@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@rocicorp/lock@npm:1.0.4"
-  dependencies:
-    "@rocicorp/resolver": "npm:^1.0.2"
-  checksum: 10/ef602eeb65301ad5c5a738ecddca1951218261fcc447af2a687a083b1fc39b194098a1132cc8f0e76bf0d55fc9ec71ae2e1a6b2293dbba75be45a9a2ba973c31
-  languageName: node
-  linkType: hard
-
-"@rocicorp/logger@npm:^5.2.2":
-  version: 5.2.2
-  resolution: "@rocicorp/logger@npm:5.2.2"
-  checksum: 10/6560b1c37d67c59080b09f1abb69be6a545b8dd8df79fa7bbeff3a916544c388e6c799bf1c0aea89507fe9d7e5448c1d78355855e4b26e1c4c9c227ce8d3025e
-  languageName: node
-  linkType: hard
-
-"@rocicorp/resolver@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@rocicorp/resolver@npm:1.0.2"
-  checksum: 10/99745bfa1fc0b2219687e0dbf41cdff74144e2917af16f60e036eede8229209acdeba865ab43e70878023cf148d8c1ea17f25427fd226488681460de6a4f90f9
   languageName: node
   linkType: hard
 
@@ -8299,7 +8269,6 @@ __metadata:
     tsx: "npm:^4.19.0"
     vite: "npm:6.0.0-alpha.18"
     vxs: "npm:1.1.234"
-    zero-client: "portal:/Users/n8/github/mono/packages/zero-client"
   languageName: unknown
   linkType: soft
 
@@ -23052,17 +23021,6 @@ __metadata:
   checksum: 10/563fbec88bce9716d1044bc98c96c329e1d7a7c503e6f1af68f1ff914adc3ba55ce953c871395e2efecad329f85f1632f51a99c362032940321ff80c42a6f74d
   languageName: node
   linkType: hard
-
-"zero-client@portal:/Users/n8/github/mono/packages/zero-client::locator=%40vxrn%2Fone-ui%40workspace%3Apackages%2Fone-ui":
-  version: 0.0.0-use.local
-  resolution: "zero-client@portal:/Users/n8/github/mono/packages/zero-client::locator=%40vxrn%2Fone-ui%40workspace%3Apackages%2Fone-ui"
-  dependencies:
-    "@badrap/valita": "npm:^0.3.0"
-    "@rocicorp/lock": "npm:^1.0.4"
-    "@rocicorp/logger": "npm:^5.2.2"
-    "@rocicorp/resolver": "npm:^1.0.2"
-  languageName: node
-  linkType: soft
 
 "zwitch@npm:^2.0.0, zwitch@npm:^2.0.4":
   version: 2.0.4
