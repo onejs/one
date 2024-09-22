@@ -9719,7 +9719,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.111.11"
     tsx: "npm:^4.19.0"
-    vite: "npm:6.0.0-alpha.18"
+    vite: "npm:6.0.0-beta.1"
     vxs: "npm:1.1.235"
   languageName: unknown
   linkType: soft
@@ -13519,7 +13519,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.111.1"
     tsx: "npm:^4.19.0"
-    vite: "npm:6.0.0-alpha.18"
+    vite: "npm:6.0.0-beta.1"
     vxs: "npm:1.1.235"
   languageName: unknown
   linkType: soft
@@ -13547,7 +13547,7 @@ __metadata:
     supabase: "npm:1.127.4"
     swr: "npm:^2.2.5"
     tamagui: "npm:^1.111.11"
-    vite: "npm:6.0.0-alpha.18"
+    vite: "npm:6.0.0-beta.1"
     vite-plugin-inspect: "npm:^0.8.7"
     vxs: "npm:1.1.235"
   languageName: unknown
@@ -19579,7 +19579,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.38, postcss@npm:^8.4.43, postcss@npm:^8.4.45, postcss@npm:^8.4.47, postcss@npm:~8.4.32":
+"postcss@npm:^8.4.43, postcss@npm:^8.4.45, postcss@npm:^8.4.47, postcss@npm:~8.4.32":
   version: 8.4.47
   resolution: "postcss@npm:8.4.47"
   dependencies:
@@ -20887,7 +20887,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.13.0, rollup@npm:^4.20.0, rollup@npm:^4.21.0":
+"rollup@npm:^4.20.0, rollup@npm:^4.21.0":
   version: 4.22.4
   resolution: "rollup@npm:4.22.4"
   dependencies:
@@ -23607,46 +23607,6 @@ __metadata:
     vite:
       optional: true
   checksum: 10/e3cf1a2b997747cec6af83c3f9acc057e7f452ef91c3f38a9e32eb2e6cc6c723f51026e38f5d114296fc499b10b36bb56d668d9613a7367f5ecf23adb78642d7
-  languageName: node
-  linkType: hard
-
-"vite@npm:6.0.0-alpha.18":
-  version: 6.0.0-alpha.18
-  resolution: "vite@npm:6.0.0-alpha.18"
-  dependencies:
-    esbuild: "npm:^0.21.3"
-    fsevents: "npm:~2.3.3"
-    postcss: "npm:^8.4.38"
-    rollup: "npm:^4.13.0"
-  peerDependencies:
-    "@types/node": ^18.0.0 || >=20.0.0
-    less: "*"
-    lightningcss: ^1.21.0
-    sass: "*"
-    stylus: "*"
-    sugarss: "*"
-    terser: ^5.4.0
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  peerDependenciesMeta:
-    "@types/node":
-      optional: true
-    less:
-      optional: true
-    lightningcss:
-      optional: true
-    sass:
-      optional: true
-    stylus:
-      optional: true
-    sugarss:
-      optional: true
-    terser:
-      optional: true
-  bin:
-    vite: bin/vite.js
-  checksum: 10/f0eaa49297cce64cfe87cc2b096cf2f9b48cee0a53666184a5f21341c6d0f82d787a3ac8be4630ddfad4d4cc3627e1b8d5636757de89c20fb13b7c0c70d49862
   languageName: node
   linkType: hard
 
