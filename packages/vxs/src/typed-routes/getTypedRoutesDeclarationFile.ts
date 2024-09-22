@@ -27,9 +27,9 @@ export function getTypedRoutesDeclarationFile(ctx: VXS.RouteContext) {
   )
 
   return `
-import type { VXSRouter } from 'one'
+import type { VXSRouter } from 'vxs'
 
-declare module 'one' {
+declare module 'vxs' {
   export namespace VXSRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
       StaticRoutes: ${setToUnionType(staticRoutes)}

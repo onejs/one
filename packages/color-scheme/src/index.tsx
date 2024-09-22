@@ -18,13 +18,6 @@ const getSetting = (): SchemeSetting =>
   (typeof localStorage !== 'undefined' && (localStorage.getItem(storageKey) as SchemeSetting)) ||
   'system'
 
-// on startup lets set from localstorage
-const setting = getSetting()
-
-if (setting !== 'system') {
-  setColorScheme(setting)
-}
-
 const SchemeContext = createContext<{
   setting: SchemeSetting
   scheme: 'light' | 'dark'
@@ -60,6 +53,9 @@ export function SchemeProvider({
 
   if (process.env.TAMAGUI_TARGET !== 'native') {
     useIsomorphicLayoutEffect(() => {
+      // on startup lets set from localstorage
+      setColorScheme(getSetting())
+
       const toAdd = getClassName(colorScheme)
       const { classList } = document.documentElement
       if (!classList.contains(toAdd)) {
