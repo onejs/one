@@ -7,19 +7,12 @@
   },
   "workspaces": [
     "./packages/*",
-    "./examples/*",
-    "./studio2"
+    "./examples/*"
   ],
   "packageManager": "yarn@4.4.1",
   "engines": {
     "node": "20.17.0",
     "npm": "10.8.3"
-  },
-  "resolutionsComments": {
-    "vite": "because vitepress brings along vite 5"
-  },
-  "resolutions": {
-    "vite": "6.0.0-beta.0"
   },
   "scripts": {
     "setup": "node -r esbuild-register ./scripts/setup.ts",

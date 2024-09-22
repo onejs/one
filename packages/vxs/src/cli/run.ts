@@ -9,10 +9,12 @@ export async function run(args: {
   const { dev } = await import('vxrn')
   const { start, stop } = await dev({
     clean: args.clean,
-    https: args.https,
     root: process.cwd(),
-    host: args.host,
-    port: args.port ? +args.port : undefined,
+    server: {
+      https: args.https,
+      host: args.host,
+      port: args.port ? +args.port : undefined,
+    },
     entries: {
       native: virtualEntryIdNative,
     },

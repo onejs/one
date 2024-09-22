@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "start": "node ./dist/index.js",
+    "dev:vercel": "vercel dev",
     "dev": "vxs dev",
     "dev:clean": "vxs dev --clean",
     "clean": "vxs clean",
@@ -11,15 +13,13 @@
     "build:prod": "vxs build",
     "serve": "vxs serve"
   },
-  "installConfig": {
-    "hoistingLimits": "workspaces"
-  },
   "dependencies": {
     "react": "^18.3.1",
     "react-native-web": "^0.19.12",
     "vxs": "1.1.232"
   },
   "devDependencies": {
-    "vite": "6.0.0-alpha.18"
+    "vercel": "^37.5.3",
+    "vite": "6.0.0-beta.1"
   }
 }

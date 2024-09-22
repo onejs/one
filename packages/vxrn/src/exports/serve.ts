@@ -1,8 +1,6 @@
-import { serve as honoServe } from '@hono/node-server'
-
 import type { VXRNOptions } from '../types'
-import { createProdServer } from './createServer'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
+import { createProdServer } from './createServer'
 
 export const serve = async (optionsIn: VXRNOptions) => {
   const options = await getOptionsFilled(optionsIn, { mode: 'prod' })
@@ -13,21 +11,17 @@ export const serve = async (optionsIn: VXRNOptions) => {
   // strange prevents a cant listen on port issue
   await new Promise((res) => setTimeout(res, 1))
 
-  const server = honoServe({
-    fetch: app.fetch,
-    port: options.port,
-    hostname: options.host,
-  })
+  const platform = options.server?.platform || 'node'
 
-  console.info(`Server running on http://${options.host}:${options.port}`)
+  switch (platform) {
+    case 'node': {
+      const { honoServeNode } = await import('../serve/node')
+      return honoServeNode(app, options)
+    }
 
-  if (options.afterServerStart) {
-    await options.afterServerStart(options, app)
+    case 'vercel': {
+      const { honoServeVercel } = await import('../serve/vercel')
+      return honoServeVercel(app, options)
+    }
   }
-
-  await new Promise<void>((res) => {
-    server.on('close', () => {
-      res()
-    })
-  })
 }

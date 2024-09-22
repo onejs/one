@@ -18,6 +18,19 @@ export const templates = [
   },
 
   {
+    title: `Empty Project (Vercel)`,
+    value: 'Vercel',
+    type: 'included-in-monorepo',
+    hidden: false,
+    repo: {
+      url: `https://github.com/universal-future/vxrn.git`,
+      sshFallback: `git@github.com:universal-future/vxrn.git`,
+      dir: [`examples`, `vercel`],
+      branch: 'main',
+    },
+  },
+
+  {
     title: `User & Auth`,
     value: 'fullstack',
     type: 'included-in-monorepo',

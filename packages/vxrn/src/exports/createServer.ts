@@ -6,8 +6,9 @@ import type { VXRNOptions } from '../types'
 
 export const createProdServer = async (options: VXRNOptions) => {
   const app = new Hono()
+  const serverOptions = options.server || {}
 
-  if (options.hono?.compression) {
+  if (serverOptions.compression) {
     app.use(compress())
   }
 
@@ -26,7 +27,7 @@ export const createProdServer = async (options: VXRNOptions) => {
     }
 
     // no cache let cdn do that shit
-    if (options.hono?.cacheHeaders !== 'off') {
+    if (serverOptions.cacheHeaders !== 'off') {
       if (!c.req.header('Cache-Control')) {
         c.header('Cache-Control', 'no-store')
         // safari was aggressively caching js for some reason despite no-store

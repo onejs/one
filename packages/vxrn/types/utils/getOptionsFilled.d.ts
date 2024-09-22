@@ -4,7 +4,16 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
     mode?: 'dev' | 'prod';
 }): Promise<{
     clean: boolean;
-    protocol: "https:" | "http:";
+    root: string;
+    server: {
+        port: number;
+        host: string;
+        protocol: "https:" | "http:";
+        platform?: "node" | "vercel";
+        compression?: boolean;
+        cacheHeaders?: "off";
+        https?: boolean;
+    };
     entries: {
         native: string;
         web?: string;
@@ -20,18 +29,10 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
     };
     packageRootDir: string;
     cacheDir: string;
-    host: string;
-    root: string;
-    port: number;
     build?: {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
     };
-    hono?: {
-        compression?: boolean;
-        cacheHeaders?: "off";
-    };
-    https?: boolean;
     afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
     afterServerStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
 }>;

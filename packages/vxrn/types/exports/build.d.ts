@@ -2,7 +2,16 @@ import type { BuildArgs, VXRNOptions } from '../types';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<{
     options: {
         clean: boolean;
-        protocol: "https:" | "http:";
+        root: string;
+        server: {
+            port: number;
+            host: string;
+            protocol: "https:" | "http:";
+            platform?: "node" | "vercel";
+            compression?: boolean;
+            cacheHeaders?: "off";
+            https?: boolean;
+        };
         entries: {
             native: string;
             web?: string;
@@ -18,18 +27,10 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         };
         packageRootDir: string;
         cacheDir: string;
-        host: string;
-        root: string;
-        port: number;
         build?: {
             server?: boolean | import("..").VXRNBuildOptions;
             analyze?: boolean;
         };
-        hono?: {
-            compression?: boolean;
-            cacheHeaders?: "off";
-        };
-        https?: boolean;
         afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
         afterServerStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
     };

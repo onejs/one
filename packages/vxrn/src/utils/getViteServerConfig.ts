@@ -10,7 +10,7 @@ import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled) {
-  const { root, host, https, port } = config
+  const { root, server } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
   const { config: userViteConfig } =
     (await loadConfigFromFile({
@@ -32,7 +32,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
       plugins: [
         getServerConfigPlugin(),
 
-        https ? mkcert() : null,
+        server.https ? mkcert() : null,
 
         // temp fix
         // avoid logging the optimizeDeps we add that aren't in the app:
@@ -58,7 +58,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
 
         expoManifestRequestHandlerPlugin({
           projectRoot: root,
-          port,
+          port: server.port,
         }),
 
         // TODO very hacky/arbitrary
@@ -95,7 +95,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
           path: '/__vxrnhmr',
         },
         cors: true,
-        host,
+        host: server.host,
       },
     } satisfies UserConfig
   ) satisfies InlineConfig

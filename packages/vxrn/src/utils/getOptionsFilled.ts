@@ -14,9 +14,10 @@ export async function getOptionsFilled(
   options: VXRNOptions,
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ) {
-  const { host = '127.0.0.1', root = process.cwd(), entries, https } = options
+  const { root = process.cwd(), server = {}, entries } = options
+  const { host = '127.0.0.1', https } = server
 
-  const defaultPort = options.port || (internal.mode === 'dev' ? 8081 : 3000)
+  const defaultPort = server.port || (internal.mode === 'dev' ? 8081 : 3000)
   const packageRootDir = join(require.resolve('vxrn'), '../..')
   const cacheDir = join(root, 'node_modules', '.vxrn')
 
@@ -55,7 +56,13 @@ export async function getOptionsFilled(
   return {
     ...options,
     clean,
-    protocol: https ? ('https:' as const) : ('http:' as const),
+    root,
+    server: {
+      ...options.server,
+      port,
+      host,
+      protocol: https ? ('https:' as const) : ('http:' as const),
+    },
     entries: {
       native: './src/entry-native.tsx',
       server: './src/entry-server.tsx',
@@ -66,9 +73,6 @@ export async function getOptionsFilled(
     state,
     packageRootDir,
     cacheDir,
-    host,
-    root,
-    port,
   }
 }
 

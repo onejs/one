@@ -33,9 +33,11 @@ const dev = defineCommand({
     const { start, stop } = await dev({
       clean: args.clean,
       root: process.cwd(),
-      https: args.https,
-      host: args.host,
-      port: args.port ? +args.port : undefined,
+      server: {
+        https: args.https,
+        host: args.host,
+        port: args.port ? +args.port : undefined,
+      },
     })
 
     const { closePromise } = await start()
