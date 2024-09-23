@@ -62,6 +62,10 @@ export function createHandleRequest(
       }
     }
 
+    if (pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
+      return null
+    }
+
     if (handlers.handleAPI) {
       const apiRoute = apiRoutesList.find((route) => {
         const regex = route.compiledRegex
@@ -82,7 +86,7 @@ export function createHandleRequest(
       }
     }
 
-    if (request.method !== 'GET' || pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
+    if (request.method !== 'GET') {
       return null
     }
 
@@ -165,6 +169,8 @@ export function createHandleRequest(
               params: getLoaderParams(url, route),
             },
           })
+
+          console.log('gogo', route, ssrResponse)
 
           resolve(ssrResponse)
           return ssrResponse

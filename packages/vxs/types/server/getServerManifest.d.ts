@@ -18,11 +18,11 @@ export type VXSRouterServerManifestV1Route<TRegex = string> = {
     generated?: boolean;
     layouts?: RouteNode[];
     type: VXS.RouteType;
+    isNotFound?: boolean;
 };
 export type VXSRouterServerManifestV1<TRegex = string> = {
     apiRoutes: VXSRouterServerManifestV1Route<TRegex>[];
     pageRoutes: VXSRouterServerManifestV1Route<TRegex>[];
-    notFoundRoutes: VXSRouterServerManifestV1Route<TRegex>[];
 };
 export interface Group {
     pos: number;

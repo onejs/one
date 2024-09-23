@@ -15,8 +15,8 @@ nice for demo:
     - symbolicator
 
   - web
-    - faster route matching for prod
-      - see npm radix3 or rou3
+    - faster route matching
+      - see handleRequest file, npm radix3 or rou3
 
 pokai:
 
@@ -46,6 +46,10 @@ should have some sprints with "challenges":
 ---
 
 # backlog
+
+- Sitemap is partially done
+
+- shouldnt export ErrorBoundary, but should make current RootErrorBoundary much better, rename it to ErrorBoundary, then export that
 
 - `Error building React Native bundle: Error ... EISDIR: illegal operation on a directory, read`
   - Happens with react-native-svg 15.6.0 where it has `elements.js` and `elements` directory at the same time

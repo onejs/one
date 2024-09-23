@@ -22,12 +22,12 @@ export type VXSRouterServerManifestV1Route<TRegex = string> = {
   generated?: boolean
   layouts?: RouteNode[]
   type: VXS.RouteType
+  isNotFound?: boolean
 }
 
 export type VXSRouterServerManifestV1<TRegex = string> = {
   apiRoutes: VXSRouterServerManifestV1Route<TRegex>[]
   pageRoutes: VXSRouterServerManifestV1Route<TRegex>[]
-  notFoundRoutes: VXSRouterServerManifestV1Route<TRegex>[]
 }
 
 export interface Group {
@@ -42,19 +42,7 @@ export interface RouteRegex {
 }
 
 function isNotFoundRoute(route: RouteNode) {
-  return route.dynamic && route.dynamic[route.dynamic.length - 1].notFound
-}
-
-function uniqueBy<T>(arr: T[], key: (item: T) => string): T[] {
-  const seen = new Set<string>()
-  return arr.filter((item) => {
-    const id = key(item)
-    if (seen.has(id)) {
-      return false
-    }
-    seen.add(id)
-    return true
-  })
+  return Boolean(route.dynamic && route.dynamic[route.dynamic.length - 1].notFound)
 }
 
 // Given a nested route tree, return a flattened array of all routes that can be matched.
@@ -107,44 +95,33 @@ export function getServerManifest(route: RouteNode): VXSRouterServerManifestV1 {
     pathToRoute[path] = route
   }
 
-  const apiRoutes = uniqueBy(
-    flat.filter(([, route]) => route.type === 'api'),
-    ([path]) => path
-  )
+  const apiRoutes: VXSRouterServerManifestV1Route[] = []
+  const pageRoutes: VXSRouterServerManifestV1Route[] = []
 
-  const otherRoutes = uniqueBy(
-    flat.filter(
-      ([, route]) => route.type === 'spa' || route.type === 'ssg' || route.type === 'ssr'
-    ),
-    ([path]) => path
-  )
+  for (const [path, node] of flat) {
+    if (node.type === 'api') {
+      apiRoutes.push(getGeneratedNamedRouteRegex(path, node))
+      continue
+    }
 
-  const pageRoutes = otherRoutes.filter(([, route]) => !isNotFoundRoute(route))
-  const notFoundRoutes = otherRoutes.filter(([, route]) => isNotFoundRoute(route))
+    pageRoutes.push(getGeneratedNamedRouteRegex(path, node))
+  }
 
   return {
-    apiRoutes: getMatchableManifestForPaths(
-      apiRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
-    ),
-    pageRoutes: getMatchableManifestForPaths(
-      pageRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
-    ),
-    notFoundRoutes: getMatchableManifestForPaths(
-      notFoundRoutes.map(([normalizedRoutePath, node]) => [normalizedRoutePath, node])
-    ),
+    apiRoutes,
+    pageRoutes,
   }
 }
 
-function getMatchableManifestForPaths(
-  paths: [string, RouteNode][]
-): VXSRouterServerManifestV1Route[] {
-  return paths.map(([path, node]) => {
-    const matcher: VXSRouterServerManifestV1Route = getNamedRouteRegex(path, node)
-    if (node.generated) {
-      matcher.generated = true
-    }
-    return matcher
-  })
+function getGeneratedNamedRouteRegex(
+  normalizedRoute: string,
+  node: RouteNode
+): VXSRouterServerManifestV1Route {
+  return {
+    ...getNamedRouteRegex(normalizedRoute, node),
+    generated: true,
+    isNotFound: isNotFoundRoute(node),
+  }
 }
 
 function getNamedRouteRegex(
