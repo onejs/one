@@ -1,6 +1,12 @@
 {
   "extends": "../../tsconfig.json",
-  "exclude": ["vitest.config.ts"],
+  "exclude": [
+    "vitest.config.ts",
+    "**/test",
+    "**/dist",
+    "**/types",
+    "**/__tests__"
+  ],
   "compilerOptions": {
     "composite": true,
   },
