@@ -1,6 +1,6 @@
 {
   "name": "vxrn",
-  "version": "1.1.238",
+  "version": "1.1.239",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -26,7 +26,9 @@
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
-  "bin": "run.mjs",
+  "bin": {
+    "vxrn": "run.mjs"
+  },
   "exports": {
     "./package.json": "./package.json",
     "./react-native-template.js": "./react-native-template.js",
@@ -47,11 +49,11 @@
     "@hono/node-server": "^1.12.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "@vxrn/react-native-prebuilt": "1.1.238",
-    "@vxrn/safe-area": "1.1.238",
-    "@vxrn/vendor": "1.1.238",
-    "@vxrn/vite-flow": "1.1.238",
-    "@vxrn/vite-native-swc": "1.1.238",
+    "@vxrn/react-native-prebuilt": "1.1.239",
+    "@vxrn/safe-area": "1.1.239",
+    "@vxrn/vendor": "1.1.239",
+    "@vxrn/vite-flow": "1.1.239",
+    "@vxrn/vite-native-swc": "1.1.239",
     "ansis": "^3.1.0",
     "citty": "^0.1.6",
     "crossws": "^0.2.4",
