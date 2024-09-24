@@ -17,7 +17,6 @@ export type RouteInfo<TRegex = string> = {
 export type RoutesManifest<TRegex = string> = {
   apiRoutes: RouteInfo<TRegex>[]
   pageRoutes: RouteInfo<TRegex>[]
-  notFoundRoutes: RouteInfo<TRegex>[]
 }
 
 function createMockModuleWithContext(map: string[] = []) {
