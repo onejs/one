@@ -17,7 +17,6 @@ import { getOptionsFilled } from '../utils/getOptionsFilled'
 import { mergeUserConfig } from '../utils/mergeUserConfig'
 import { applyBuiltInPatches } from '../utils/patches'
 import { requireResolve } from '../utils/requireResolve'
-import { dirname, join } from 'node:path'
 
 const { existsSync } = FSExtra
 

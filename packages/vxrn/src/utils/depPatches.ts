@@ -259,6 +259,20 @@ export const depPatches: DepPatch[] = [
     },
   },
 
+  {
+    module: '@hono/node-server',
+    patchFiles: {
+      'dist/serve-static.mjs': contents => {
+        assertString(contents)
+        return contents.replace(
+          `const chunksize = end - start + 1;`,
+          `if (isNaN(start) || isNaN(end)) console.log('nan start or end', start, end, range, parts)
+const chunksize = end - start + 1;`
+        )
+      }
+    }
+  }
+
   // {
   //   module: 'react-native-reanimated',
   //   patchFiles: {
