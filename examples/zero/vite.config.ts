@@ -1,21 +1,22 @@
-import { one } from 'one/vite'
 import type { UserConfig } from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
+import { vxs } from 'vxs/vite'
 
 export default {
-  plugins: [
-    one({
-      zero: true,
+  resolve: {
+    alias: {
+      '~': import.meta.dirname,
+    },
+  },
 
+  plugins: [
+    vxs({
       web: {
-        defaultRenderMode: 'spa',
+        defaultRenderMode: 'ssg',
       },
 
       app: {
         key: 'One',
       },
     }),
-
-    tsconfigPaths(),
   ],
 } satisfies UserConfig
