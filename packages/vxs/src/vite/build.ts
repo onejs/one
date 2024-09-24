@@ -494,6 +494,9 @@ function getPathnameFromFilePath(path: string, params = {}) {
           const found = params[part.slice(1, part.length - 1)]
           if (!found) {
             console.warn(`[vxs] Params doesn't fit route`, { path, params, part, fileName })
+            throw new Error(
+              `[vxs] Params doesn't fit route: ${path} with params:\n${JSON.stringify(params, null, 2)}\n`
+            )
           }
           return found
         }
