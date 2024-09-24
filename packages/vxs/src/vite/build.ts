@@ -473,28 +473,27 @@ async function moveAllFiles(src: string, dest: string) {
 
 function getPathnameFromFilePath(path: string, params = {}) {
   const dirname = Path.dirname(path).replace(/\([^\/]+\)/gi, '')
-
   const file = Path.basename(path)
-  const name = file.replace(/\.[^/.]+$/, '')
+  const fileName = file.replace(/\.[a-z]+$/, '')
 
   const nameWithParams = (() => {
-    if (name === 'index') {
+    if (fileName === 'index') {
       return '/'
     }
-    if (name.startsWith('[...')) {
-      const part = name.replace('[...', '').replace(']', '')
+    if (fileName.startsWith('[...')) {
+      const part = fileName.replace('[...', '').replace(']', '')
       if (!params[part]) {
-        console.warn(`couldn't resolve ${name} segment in path ${path}`)
+        console.warn(`couldn't resolve ${fileName} segment in path ${path}`)
       }
       return `/${params[part]}`
     }
-    return `/${name
+    return `/${fileName
       .split('/')
       .map((part) => {
         if (part[0] === '[') {
           const found = params[part.slice(1, part.length - 1)]
           if (!found) {
-            console.warn('not found', { params, part })
+            console.warn(`[vxs] Params doesn't fit route`, { path, params, part, fileName })
           }
           return found
         }
