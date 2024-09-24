@@ -413,6 +413,11 @@ export function preloadRoute(href: string) {
 }
 
 export async function linkTo(href: string, event?: string, options?: VXSRouter.LinkToOptions) {
+  if (href[0] === '#') {
+    // this is just linking to a section of the current page on web
+    return
+  }
+
   if (shouldLinkExternally(href)) {
     Linking.openURL(href)
     return
