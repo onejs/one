@@ -34,4 +34,14 @@ jobs:
         run: cd packages/vxrn && yarn build
       - name: Test
         run: yarn test
+      - name: Notify Discord on failure
+        if: failure()
+        run: |
+          echo "Tests failed, sending message to Discord..."
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d "$(echo '{}' | jq --arg content "🚨 Tests failed for commit [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) in [${{ github.repository }}](https://github.com/${{ github.repository }})." \
+              --arg url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+              '{ "embeds": [ { "title": $content, "url": $url, "color": 15158332 } ] }')" \
+            ${{ secrets.DISCORD_WEBHOOK_URL }}
 
