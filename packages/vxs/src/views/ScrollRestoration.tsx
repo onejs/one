@@ -6,6 +6,9 @@ const KEY = 'vxs-sr'
 
 const getState = () => JSON.parse(sessionStorage.getItem(KEY) || '{}')
 
+// prevent scroll to top on first load
+let isFirstLoad = true
+
 function restorePosition() {
   try {
     const positions = getState()
@@ -63,6 +66,11 @@ function configure(props: ScrollRestorationProps) {
   })
 
   const disposeOnRootState = subscribeToRootState((state) => {
+    if (isFirstLoad) {
+      isFirstLoad = false
+      return
+    }
+
     if (state.linkOptions?.scroll === false) {
       return
     }
