@@ -170,8 +170,6 @@ export function createHandleRequest(
             },
           })
 
-          console.log('gogo', route, ssrResponse)
-
           resolve(ssrResponse)
           return ssrResponse
         }

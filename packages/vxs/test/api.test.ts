@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process'
+import { ChildProcessWithoutNullStreams, spawn } from 'node:child_process'
 import * as path from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
@@ -7,7 +7,7 @@ const fixturePath = path.resolve(__dirname, '../../../examples/test')
 const runTests = (environment: 'dev' | 'prod') => {
   describe(`API Tests (${environment})`, () => {
     let serverUrl
-    let serverProcess
+    let serverProcess: ChildProcessWithoutNullStreams | null = null
 
     beforeAll(async () => {
       // Spawn the server process based on the environment
