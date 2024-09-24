@@ -13,7 +13,6 @@ export type RouteInfo<TRegex = string> = {
 export type RoutesManifest<TRegex = string> = {
     apiRoutes: RouteInfo<TRegex>[];
     pageRoutes: RouteInfo<TRegex>[];
-    notFoundRoutes: RouteInfo<TRegex>[];
 };
 export declare function createRoutesManifest(paths: string[], options: Options): RoutesManifest | null;
 //# sourceMappingURL=createRoutesManifest.d.ts.map
