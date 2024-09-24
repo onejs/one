@@ -1,21 +1,20 @@
 {
-  "name": "example-zero",
-  "version": "1.1.235",
+  "name": "example-basic",
+  "version": "1.1.234",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "one dev",
-    "dev:clean": "one dev --clean",
-    "clean": "one clean",
-    "build:prod": "one build",
-    "serve": "one serve",
-    "db:start": "docker-compose -f config/docker-compose.yml up",
-    "db:init": "yarn orm:generate && yarn orm:push && yarn orm:seed",
-    "db:destroy": "docker-compose -f config/docker-compose.yml down -v",
-    "orm:generate": "drizzle-kit generate --config ./features/db/drizzle.config.ts",
-    "orm:push": "drizzle-kit push --config ./features/db/drizzle.config.ts",
-    "orm:migrate": "dotenvx run -f .env -- tsx features/db/run-migrations.ts",
-    "orm:seed": "dotenvx run -f .env -- tsx features/db/seed.ts"
+    "dev": "vxs dev",
+    "dev:clean": "vxs dev --clean",
+    "clean": "vxs clean",
+    "prod": "vxs build && vxs serve",
+    "build:prod": "vxs build",
+    "serve": "vxs serve",
+    "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
+    "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
+    "orm:push": "drizzle-kit push --config ./db/drizzle.config.ts",
+    "orm:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
+    "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"
@@ -26,14 +25,12 @@
     "@tamagui/image-next": "^1.111.11",
     "@tamagui/lucide-icons": "^1.111.11",
     "@tamagui/vite-plugin": "^1.111.11",
-    "@vxrn/color-scheme": "1.1.235",
+    "@vxrn/color-scheme": "1.1.234",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
     "expo": "^51.0.32",
-    "expo-modules-core": "^1.12.24",
-    "one": "portal:/Users/n8/vxrn/packages/vxs",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.1",
@@ -43,10 +40,9 @@
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
     "tamagui": "^1.111.11",
-    "vxs": "1.1.235"
+    "vxs": "1.1.234"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
     "@faker-js/faker": "next",
     "tsx": "^4.19.0",
     "vite": "6.0.0-beta.1"
