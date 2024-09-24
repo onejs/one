@@ -5,7 +5,7 @@ import { preloadingLoader } from './router/router'
 import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 import { useActiveParams, useParams, usePathname } from './hooks'
 import { dynamicImport } from './utils/dynamicImport'
-import { getDevServerUrl } from './getDevServerUrl'
+import { getURL } from './getURL'
 import { useRouteNode } from './Route'
 import { resolveHref } from './link/href'
 
@@ -78,7 +78,7 @@ export function useLoader<
 
     if (!promises[currentPath]) {
       const getData = async () => {
-        const loaderJSUrl = `${getDevServerUrl() /* TODO: production? */}${currentPath}_vxrn_loader.js?${CACHE_KEY}`
+        const loaderJSUrl = `${getURL()}/assets${currentPath}_vxrn_loader.js?${CACHE_KEY}`
 
         try {
           const response = await (async () => {

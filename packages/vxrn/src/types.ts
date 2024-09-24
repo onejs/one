@@ -12,7 +12,6 @@ export type AfterBuildProps = {
   serverOutput: RollupOutputList
   serverResolve: Object
   webBuildConfig: UserConfig
-  rollupRemoveUnusedImportsPlugin: any
   serverBuildConfig: UserConfig
   buildArgs?: BuildArgs
   clientManifest: {
