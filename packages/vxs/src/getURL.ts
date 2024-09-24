@@ -1,5 +1,5 @@
 import { CLIENT_BASE_URL } from './router/constants'
 
-export function getDevServerUrl() {
+export function getURL() {
   return CLIENT_BASE_URL
 }

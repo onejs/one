@@ -195,7 +195,6 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
               transformedJS = replaceLoader({
                 code: transformedJS,
                 loaderData,
-                loaderProps,
               })
             }
 

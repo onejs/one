@@ -101,8 +101,6 @@ export async function build(args: {
           copyPublicDir: false,
           minify: false,
           rollupOptions: {
-            plugins: [vxrnOutput.rollupRemoveUnusedImportsPlugin],
-
             treeshake: {
               moduleSideEffects: 'no-external',
             },
@@ -152,7 +150,7 @@ export async function build(args: {
       serverImport.default.default?.render
 
     if (typeof render !== 'function') {
-      console.error(`❌ Error: didnt find render function in entry`, serverImport)
+      console.error(`❌ Error: didn't find render function in entry`, serverImport)
       process.exit(1)
     }
   } catch (err) {
@@ -264,7 +262,7 @@ export async function build(args: {
 
     const entryImports = collectImports(clientManifestEntry || {})
 
-    // TODO isnt this getting all layouts not just the ones for this route?
+    // TODO isn't this getting all layouts not just the ones for this route?
     const layoutEntries =
       foundRoute.layouts?.flatMap((layout) => {
         // TODO hardcoded app/
@@ -308,6 +306,17 @@ export async function build(args: {
       })
     }
 
+    if (foundRoute.type !== 'ssr' && !exported.generateStaticParams && relativeId.includes('[')) {
+      throw new Error(`[vxs] Error: Missing generateStaticParams
+
+  Routes of type ${foundRoute.type} that use dynamic path segments must export generateStaticParams so build can complete.
+
+  See docs on generateStaticParams:
+    https://onestack.dev/docs/routing-exports#generatestaticparams
+
+`)
+    }
+
     const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
 
     console.info(`\n [build] page ${relativeId} (with ${paramsList.length} routes)\n`)
@@ -318,27 +327,30 @@ export async function build(args: {
 
     for (const params of paramsList) {
       const cleanId = relativeId.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
-      const path = getPathnameFromFilePath(cleanId, params)
+      const path = getPathnameFromFilePath(cleanId, params, foundRoute.type === 'ssg')
       const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
       const clientJsPath = join(`dist/client`, clientManifestEntry.file)
       const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
 
-      let loaderData: any
+      let loaderData = {}
 
       try {
         console.info(`  ↦ route ${path}`)
 
         // ssr, we basically skip at build-time and just compile it the js we need
         if (foundRoute.type !== 'ssr') {
-          loaderData = (await exported.loader?.({ path, params })) ?? null
-
           const loaderProps = { path, params }
           globalThis['__vxrnLoaderProps__'] = loaderProps
           // importing resetState causes issues :/
           globalThis['__vxrnresetState']?.()
 
-          if (foundRoute.type === 'ssg') {
-            const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
+          if (exported.loader) {
+            loaderData = (await exported.loader?.({ path, params })) ?? null
+            const code = await readFile(clientJsPath, 'utf-8')
+            const withLoader = replaceLoader({
+              code,
+              loaderData,
+            })
             const loaderPartialPath = join(
               staticDir,
               'assets',
@@ -348,22 +360,16 @@ export async function build(args: {
                 // remove trailing _
                 .replace(/_$/, '') + `_vxrn_loader.js`
             )
+            await outputFile(loaderPartialPath, withLoader)
+          }
 
-            const code = await readFile(clientJsPath, 'utf-8')
+          if (foundRoute.type === 'ssg') {
+            const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
+            await outputFile(htmlOutPath, html)
+            continue
+          }
 
-            const withLoader = replaceLoader({
-              code,
-              loaderData,
-              loaderRegexName: '[a-z0-9_]+',
-            })
-
-            await Promise.all([
-              outputFile(htmlOutPath, html),
-              outputFile(loaderPartialPath, withLoader),
-            ])
-          } else {
-            // spa route
-            loaderData = {} // TODO not sure why i needed this
+          if (foundRoute.type === 'spa') {
             await outputFile(
               htmlOutPath,
               `<html><head>
@@ -471,7 +477,7 @@ async function moveAllFiles(src: string, dest: string) {
   }
 }
 
-function getPathnameFromFilePath(path: string, params = {}) {
+function getPathnameFromFilePath(path: string, params = {}, strict = false) {
   const dirname = Path.dirname(path).replace(/\([^\/]+\)/gi, '')
   const file = Path.basename(path)
   const fileName = file.replace(/\.[a-z]+$/, '')
@@ -493,10 +499,20 @@ function getPathnameFromFilePath(path: string, params = {}) {
         if (part[0] === '[') {
           const found = params[part.slice(1, part.length - 1)]
           if (!found) {
-            console.warn(`[vxs] Params doesn't fit route`, { path, params, part, fileName })
-            throw new Error(
-              `[vxs] Params doesn't fit route: ${path} with params:\n${JSON.stringify(params, null, 2)}\n`
-            )
+            if (strict) {
+              throw new Error(
+                `[vxs] Params doesn't fit route:
+                
+                - path: ${path} 
+                - part: ${part}
+                - fileName: ${fileName}
+                - params:
+  
+  ${JSON.stringify(params, null, 2)}`
+              )
+            }
+
+            return ':' + part.replace('[', '').replace(']', '')
           }
           return found
         }
