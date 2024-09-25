@@ -30,12 +30,6 @@ export function useLoader<
     )
   }
 
-  // only if it matches current route
-  const preloadedData =
-    preloadedProps?.path === window.location.pathname ? globalThis['__vxrnLoaderData__'] : undefined
-
-  const currentData = useRef(preloadedData)
-
   const isNative = process.env.TAMAGUI_TARGET === 'native'
   const routeNode = useRouteNode()
   const params = useParams()
@@ -49,6 +43,12 @@ export function useLoader<
     (isNative ? null : globalThis['__vxrntodopath']) || // @zetavg: not sure why we're using `globalThis['__vxrntodopath']` here, but this breaks native when switching between tabs where the value stays with the previous path, so ignoring this on native
     // TODO likely either not needed or needs proper path from server side
     (typeof window !== 'undefined' ? window.location?.pathname || pathName : '/')
+
+  // only if it matches current route
+  const preloadedData =
+    preloadedProps?.path === currentPath ? globalThis['__vxrnLoaderData__'] : undefined
+
+  const currentData = useRef(preloadedData)
 
   useEffect(() => {
     if (preloadedData) {
