@@ -2,7 +2,7 @@ import type { Plugin } from 'vite';
 type ReactNativeDevAssetPluginConfig = {
     projectRoot: string;
     /** The list file extensions to be treated as assets. Assets are recognized by their extension. */
-    assetExts?: string[];
+    assetExts: string[];
     /** Defaults to `'dev'`. */
     mode?: 'dev' | 'prod';
     /** Only needed while building the release bundle. */
