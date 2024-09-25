@@ -85,7 +85,6 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
   const entry = await import(entryServer)
 
   const render = entry.default.render as (props: RenderAppProps) => any
-
   const apiCJS = options.build?.api?.outputFormat !== 'esm'
 
   const handleRequest = createHandleRequest(
@@ -95,7 +94,6 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
         const apiFile = join(
           process.cwd(),
           'dist',
-          'api',
           route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
         )
 
