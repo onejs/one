@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
-import Path, { join, relative } from 'node:path'
+import Path, { basename, extname, join, relative } from 'node:path'
 import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
@@ -123,7 +123,16 @@ export async function build(args: {
                   }
                 : {
                     format: 'cjs',
-                    entryFileNames: '[name].cjs',
+                    // Use a function to strip the extension
+                    entryFileNames: (chunkInfo) => {
+                      const name = basename(chunkInfo.name, extname(chunkInfo.name))
+                      return `${name}.cjs`
+                    },
+                    chunkFileNames: (chunkInfo) => {
+                      const name = basename(chunkInfo.name, extname(chunkInfo.name))
+                      return `${name}-[hash].cjs`
+                    },
+                    assetFileNames: '[name]-[hash][extname]',
                   }),
             },
           },
