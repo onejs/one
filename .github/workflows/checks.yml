@@ -1,10 +1,15 @@
-name: Checks
+name: Checks and Tests
 
-on: [pull_request, push]
+on:
+  push:
+    branches: [main]  # Adjust this to your main branch name
+  pull_request:
+    branches: [main]  # Adjust this to your main branch name
 
 jobs:
   checks:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,6 +25,7 @@ jobs:
 
   tests:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,16 +38,22 @@ jobs:
 
       - name: Build vxrn
         run: cd packages/vxrn && yarn build
+
       - name: Test
         run: yarn test
+
+  notify:
+    needs: [checks, tests]
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
       - name: Notify Discord on failure
-        if: failure()
         run: |
-          echo "Tests failed, sending message to Discord..."
+          echo "Checks or tests failed, sending message to Discord..."
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d "$(echo '{}' | jq --arg content "🚨 Tests failed for commit [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) in [${{ github.repository }}](https://github.com/${{ github.repository }})." \
-              --arg url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
-              '{ "embeds": [ { "title": $content, "url": $url, "color": 15158332 } ] }')" \
+            -d '{
+              "content": "🚨 Checks or tests failed for commit `${{ github.sha }}` in [${{ github.repository }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}).\nSee the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})."
+            }' \
             ${{ secrets.DISCORD_WEBHOOK_URL }}
 
