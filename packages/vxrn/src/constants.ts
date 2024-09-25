@@ -1,5 +1,3 @@
-import ansis from 'ansis'
-
 export const DEFAULT_PORT = 8081
 
 const viteDefaultExtensions = [
