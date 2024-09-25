@@ -12,7 +12,7 @@ describe('Simple Build Tests', () => {
 
   it('should build api routes without including side effects', async () => {
     const sideEffectFreeApiRoute = await FSExtra.readFile(
-      path.join(fixturePath, 'dist', 'api', 'api', 'react-dep.js.cjs')
+      path.join(fixturePath, 'dist', 'api', 'react-dep.cjs')
     )
 
     expect(sideEffectFreeApiRoute.includes('function isResponse')).toBeTruthy()

@@ -1,3 +1,5 @@
+import { sharedFn } from '~/features/api/shared'
+
 // Helper function to get query parameter
 const getQueryParam = (url: URL, param: string) => url.searchParams.get(param)
 
@@ -8,6 +10,10 @@ let testItems = [
 ]
 
 export async function GET(request: Request) {
+  if (!sharedFn()) {
+    return null
+  }
+
   const url = new URL(request.url)
   const forceError = getQueryParam(url, 'forceError')
 
