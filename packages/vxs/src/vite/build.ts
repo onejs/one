@@ -31,6 +31,9 @@ export async function build(args: {
   const userOptions = await loadUserVXSOptions('build')
   const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'esm'
 
+  // TODO make this better, this ensures we get react 19
+  process.env.VXRN_REACT_19 = '1'
+
   const vxrnOutput = await vxrnBuild(
     {
       server: userOptions.server,
@@ -82,8 +85,6 @@ export async function build(args: {
       mergeConfig(apiBuildConfig, {
         appType: 'custom',
         configFile: false,
-
-        resolve: vxrnOutput.serverResolve,
 
         plugins: [
           nodeExternals({
