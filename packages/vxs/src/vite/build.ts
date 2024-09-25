@@ -338,6 +338,20 @@ export async function build(args: {
       try {
         console.info(`  ↦ route ${path}`)
 
+        const cleanPath = path === '/' ? path : removeTrailingSlash(path)
+
+        builtRoutes.push({
+          type: foundRoute.type,
+          cleanPath,
+          clientJsPath,
+          serverJsPath,
+          htmlPath,
+          loaderData,
+          params,
+          path,
+          preloads,
+        })
+
         // ssr, we basically skip at build-time and just compile it the js we need
         if (foundRoute.type !== 'ssr') {
           const loaderProps = { path, params }
@@ -384,20 +398,6 @@ export async function build(args: {
             )
           }
         }
-
-        const cleanPath = path === '/' ? path : removeTrailingSlash(path)
-
-        builtRoutes.push({
-          type: foundRoute.type,
-          cleanPath,
-          clientJsPath,
-          serverJsPath,
-          htmlPath,
-          loaderData,
-          params,
-          path,
-          preloads,
-        })
       } catch (err) {
         const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
 
