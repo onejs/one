@@ -16,6 +16,9 @@
     "db:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
     "db:seed": "dotenvx run -f .env -- tsx db/seed.ts"
   },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
     "@tamagui/config": "^1.112.0",

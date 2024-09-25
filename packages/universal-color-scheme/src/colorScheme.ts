@@ -9,10 +9,7 @@ import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
 
 export type ColorSchemeName = 'light' | 'dark'
 export type ColorSchemeSetting = ColorSchemeName | 'system'
-export type ColorSchemeListener = (
-  setting: ColorSchemeSetting,
-  current: ColorSchemeName
-) => void
+export type ColorSchemeListener = (setting: ColorSchemeSetting, current: ColorSchemeName) => void
 
 const listeners = new Set<ColorSchemeListener>()
 
@@ -48,7 +45,7 @@ let isListening = false
 function startWebMediaListener() {
   if (isListening) return
   isListening = true
-  getWebIsDarkMatcher()?.addEventListener('change', (val) => {
+  getWebIsDarkMatcher()?.addEventListener?.('change', (val) => {
     if (currentSetting === 'system') {
       update(getSystemColorScheme())
     }
@@ -83,9 +80,7 @@ const getColorSchemeSetting = (): ColorSchemeSetting => {
 }
 
 const getWebIsDarkMatcher = () =>
-  typeof window !== 'undefined'
-    ? window.matchMedia?.('(prefers-color-scheme: dark)')
-    : null
+  typeof window !== 'undefined' ? window.matchMedia?.('(prefers-color-scheme: dark)') : null
 
 function getSystemColorScheme() {
   if (process.env.TAMAGUI_TARGET === 'native') {

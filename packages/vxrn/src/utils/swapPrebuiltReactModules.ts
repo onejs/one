@@ -171,6 +171,11 @@ export async function swapPrebuiltReactModules(
         return `virtual:rn-internals:${id}`
       }
 
+      // We might have aliased `react-native` to `react-native-web` (see `'react-native': 'react-native-web'` in `utils/getBaseViteConfig.ts`) so we need to handle that case too.
+      if (id.startsWith('react-native-web/Libraries')) {
+        return `virtual:rn-internals:${id.replace(/^react-native-web/, 'react-native')}`
+      }
+
       if (id === 'react-native-web') {
         return prebuilds.reactNative
       }
