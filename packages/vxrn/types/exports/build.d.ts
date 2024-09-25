@@ -35,6 +35,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         afterServerStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
     };
     buildArgs: BuildArgs;
+    serverEntry: string;
     clientOutput: any;
     serverOutput: any;
     serverBuildConfig: Record<string, any>;

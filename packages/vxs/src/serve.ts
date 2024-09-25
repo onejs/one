@@ -11,7 +11,7 @@ import { isStatusRedirect } from './utils/isStatus'
 import { resolveAPIRequest } from './vite/resolveAPIRequest'
 import type { VXS } from './vite/types'
 import { loadUserVXSOptions } from './vite/vxs'
-import { serve as vxrnServe } from 'vxrn'
+import { getServerCJSSetting, getServerEntry, serve as vxrnServe } from 'vxrn'
 import { removeUndefined } from './utils/removeUndefined'
 
 process.on('uncaughtException', (err) => {
@@ -75,9 +75,18 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
     routeToBuildInfo[route.cleanPath] = route
   }
 
-  const entryServer = `${root}/dist/server/_virtual_vxs-entry.js`
+  const serverOptions = {
+    ...options,
+    root,
+  }
+
+  const entryServer = getServerEntry(serverOptions)
+  const serverCJS = getServerCJSSetting(serverOptions)
   const entry = await import(entryServer)
+
   const render = entry.default.render as (props: RenderAppProps) => any
+
+  const apiCJS = options.build?.api?.outputFormat !== 'esm'
 
   const handleRequest = createHandleRequest(
     {},
@@ -85,27 +94,31 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
       async handleAPI({ route, request, loaderProps }) {
         const apiFile = join(
           process.cwd(),
-          'dist/api',
-          route.page.replace('[', '_').replace(']', '_') + '.js'
+          'dist',
+          'api',
+          route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
         )
 
         isAPIRequest.set(request, true)
 
         return resolveAPIRequest(
-          () =>
-            import(apiFile).catch((err) => {
+          async () => {
+            try {
+              return await import(apiFile)
+            } catch (err) {
               console.error(`\n [vxs] Error importing API route at ${apiFile}:
-         
-    ${err}
+       
+  ${err}
 
-    If this is an import error, you can likely fix this by adding this dependency to
-    the "optimizeDeps.include" array in your vite.config.ts.
+  If this is an import error, you can likely fix this by adding this dependency to
+  the "optimizeDeps.include" array in your vite.config.ts.
 
-    🐞 For a better error message run "node" and enter:
-    
-    import('${apiFile}')\n\n`)
+  🐞 For a better error message run "node" and enter:
+  
+  import('${apiFile}')\n\n`)
               return {}
-            }),
+            }
+          },
           request,
           loaderProps?.params || {}
         )
