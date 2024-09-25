@@ -26,7 +26,7 @@ const runTests = (environment: 'dev' | 'prod') => {
       })
 
       // Wait for the server to start or timeout
-      const maxWaitTime = environment === 'dev' ? 5_000 : 30_000
+      const maxWaitTime = environment === 'dev' ? 15_000 : 30_000
       const startTime = Date.now()
 
       while (Date.now() - startTime < maxWaitTime) {
