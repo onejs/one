@@ -1,4 +1,4 @@
-import FSExtra from 'fs-extra'
+import { readFile, pathExists } from 'fs-extra'
 import { spawnSync } from 'node:child_process'
 import * as path from 'node:path'
 import { beforeAll, describe, expect, it } from 'vitest'
@@ -11,7 +11,7 @@ describe('Simple Build Tests', () => {
   })
 
   it('should build api routes without including side effects', async () => {
-    const sideEffectFreeApiRoute = await FSExtra.readFile(
+    const sideEffectFreeApiRoute = await readFile(
       path.join(fixturePath, 'dist', 'api', 'react-dep.cjs')
     )
 
@@ -19,5 +19,17 @@ describe('Simple Build Tests', () => {
 
     // if sideEffects is not set in package.json of vxs it will include all of react etc
     expect(!sideEffectFreeApiRoute.includes('useEffect')).toBeTruthy()
+  })
+
+  it('should generate the dynamic endpoint file', async () => {
+    const dynamicEndpointPath = path.join(
+      fixturePath,
+      'dist',
+      'api',
+      'test-params',
+      '_endpointId_.cjs'
+    )
+    const fileExists = await pathExists(dynamicEndpointPath)
+    expect(fileExists).toBeTruthy()
   })
 })
