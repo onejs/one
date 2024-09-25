@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
-import { weakKey } from './utils/weakKey'
-import { preloadingLoader } from './router/router'
-import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
-import { useActiveParams, useParams, usePathname } from './hooks'
-import { dynamicImport } from './utils/dynamicImport'
 import { getURL } from './getURL'
-import { useRouteNode } from './Route'
+import { useActiveParams, useParams } from './hooks'
 import { resolveHref } from './link/href'
+import { useRouteNode } from './Route'
+import { CACHE_KEY } from './router/constants'
+import { preloadingLoader } from './router/router'
+import type { LoaderProps } from './types'
+import { dynamicImport } from './utils/dynamicImport'
+import { weakKey } from './utils/weakKey'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -17,26 +18,33 @@ export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
+  const preloadedProps = globalThis['__vxrnLoaderProps__'] as LoaderProps | undefined
+
   // server side we just run the loader directly
   if (typeof window === 'undefined') {
     return useAsyncFn(
       loader,
-      globalThis['__vxrnLoaderProps__'] || {
+      preloadedProps || {
         params: useActiveParams(),
       }
     )
   }
 
-  const preloadedData = globalThis['__vxrnLoaderData__']
+  // only if it matches current route
+  const preloadedData =
+    preloadedProps?.path === window.location.pathname ? globalThis['__vxrnLoaderData__'] : undefined
+
   const currentData = useRef(preloadedData)
 
   const isNative = process.env.TAMAGUI_TARGET === 'native'
   const routeNode = useRouteNode()
   const params = useParams()
+
   // Cannot use usePathname() here since it will change every time the route changes,
   // but here here we want to get the current local pathname which renders this screen.
   const pathName =
     '/' + resolveHref({ pathname: routeNode?.route || '', params }).replace(/index$/, '')
+
   const currentPath =
     (isNative ? null : globalThis['__vxrntodopath']) || // @zetavg: not sure why we're using `globalThis['__vxrntodopath']` here, but this breaks native when switching between tabs where the value stays with the previous path, so ignoring this on native
     // TODO likely either not needed or needs proper path from server side
@@ -128,11 +136,6 @@ export function useLoader<
   }
 
   return currentData.current
-}
-
-export type LoaderProps<Params extends Object = Record<string, string>> = {
-  path: string
-  params: Params
 }
 
 const results = new Map()
