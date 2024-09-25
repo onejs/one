@@ -86,18 +86,21 @@ export const depPatches: DepPatch[] = [
       },
 
       // for prod builds we have to actually change the entries:
+
+      // to avoid terrible metro we have to eval :(
       'index.js': (contents) => {
         assertString(contents)
         return `
-if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/react-19')) } else {
+if (process.env.VXRN_REACT_19) { Object.assign(exports, eval("require('@vxrn/vendor/react-19')")) } else {
   ${contents}
 }`
       },
 
+      // to avoid terrible metro we have to eval :(
       'jsx-runtime.js': (contents) => {
         assertString(contents)
         return `
-if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/react-jsx-19')) } else {
+if (process.env.VXRN_REACT_19) { Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')")) } else {
   ${contents}
 }`
       },
@@ -113,7 +116,7 @@ if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/re
       'index.js': (contents) => {
         assertString(contents)
         return `
-if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/react-dom-19')) } else {
+if (process.env.VXRN_REACT_19) { Object.assign(exports, eval("require('@vxrn/vendor/react-dom-19')")) } else {
 ${contents}
 }`
       },
@@ -121,7 +124,7 @@ ${contents}
       'client.js': (contents) => {
         assertString(contents)
         return `
-if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/react-dom-client-19')) } else {
+if (process.env.VXRN_REACT_19) { Object.assign(exports, eval("require('@vxrn/vendor/react-dom-client-19')")) } else {
 ${contents}
 }`
       },
