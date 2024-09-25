@@ -26,9 +26,7 @@
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
-  "bin": {
-    "vxrn": "run.mjs"
-  },
+  "bin": "run.mjs",
   "exports": {
     "./package.json": "./package.json",
     "./react-native-template.js": "./react-native-template.js",

@@ -1,4 +1,4 @@
-import { Tabs } from 'one'
+import { Tabs } from 'vxs'
 import { HomeIcons } from '~/features/icons'
 import { useTheme } from 'tamagui'
 

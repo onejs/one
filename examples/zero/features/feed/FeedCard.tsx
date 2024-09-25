@@ -1,61 +1,95 @@
-import { Heart, Repeat, Reply } from '@tamagui/lucide-icons'
+import { Heart, MessageSquare, Repeat } from '@tamagui/lucide-icons'
+import { useQuery } from 'vxs/zero'
 import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
-import { Link } from 'vxs'
-import { Card } from '../ui/Card'
+import { Link } from '../routing/Link'
+import { Card, type CardProps } from '../ui/Card'
 import { Image } from '../ui/Image'
+import { type Param, zero, type ZeroResult } from '../zero/client'
 
-type FeedItem = {
-  id: number
-  content: string
-  createdAt: string
-  user: {
-    name: string
-    avatar: string
-  }
-  likesCount: number
-  repliesCount: number
-  repostsCount: number
+type FeedItemProps = {
+  id: Param<string>
   disableLink?: boolean
-  isReply?: boolean
 }
 
-export const FeedCard = (props: FeedItem) => {
-  if (!props.user) return null
+export const feedCardQuery = (id: Param<string>) => {
+  return zero.query.posts.where('id', id).related('replies').related('user')
+}
 
-  const content = (
-    <Card tag="a">
-      <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar} />
+export const FeedCard = (props: FeedItemProps) => {
+  const [post] = useQuery(feedCardQuery(props.id))
+
+  if (!post) {
+    return null
+  }
+
+  return (
+    <Link asChild passthrough={props.disableLink} href={`/feed/${props.id}`}>
+      <FeedCardContent post={post} disableLink={props.disableLink}>
+        <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
+          {post.replies ? <StatItem Icon={MessageSquare} count={post.replies.length} /> : null}
+          <StatItem Icon={Repeat} count={0} />
+          <StatItem Icon={Heart} count={0} />
+        </XStack>
+      </FeedCardContent>
+    </Link>
+  )
+}
+
+export const feedCardReplyQuery = (id: Param<string>) => {
+  return zero.query.replies.where('id', id).related('user')
+}
+
+export const FeedCardReply = (props: FeedItemProps) => {
+  const [post] = useQuery(feedCardReplyQuery(props.id))
+
+  if (!post) {
+    return null
+  }
+
+  return (
+    <Link asChild passthrough={props.disableLink} href={`/feed/${props.id}`}>
+      <FeedCardContent post={post} />
+    </Link>
+  )
+}
+
+type FeedCardRow = ZeroResult<typeof feedCardQuery>
+type FeedCardReplyRow = ZeroResult<typeof feedCardReplyQuery>
+
+type FeedCardContentProps = {
+  post: FeedCardRow | FeedCardReplyRow
+  children?: React.ReactNode
+}
+
+const FeedCardContent = ({ post, children, ...props }: CardProps & FeedCardContentProps) => {
+  const [user] = post.user
+
+  if (!user) {
+    return null
+  }
+
+  return (
+    <Card {...props}>
+      {!!user.avatar_url && <Image width={36} height={36} br={100} mt="$2" src={user.avatar_url} />}
       <YStack f={1} gap="$2">
         <Paragraph size="$5" fow="bold">
-          {props.user.name}
+          {user.username}
         </Paragraph>
 
         <Paragraph
+          cur="inherit"
           size="$4"
           whiteSpace="pre-wrap"
           $gtSm={{
             size: '$5',
           }}
         >
-          {props.content}
+          {post.content}
         </Paragraph>
-        {!props.isReply ? (
-          <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
-            <StatItem Icon={Reply} count={props.repliesCount} />
-            <StatItem Icon={Repeat} count={props.repostsCount} />
-            <StatItem Icon={Heart} count={props.likesCount} />
-          </XStack>
-        ) : null}
+
+        {children}
       </YStack>
     </Card>
-  )
-
-  return props.disableLink ? (
-    content
-  ) : (
-    <Link asChild href={`/post/${props.id}`}>
-      {content}
-    </Link>
   )
 }
 

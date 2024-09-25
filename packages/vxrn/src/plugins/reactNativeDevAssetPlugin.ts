@@ -151,35 +151,38 @@ export default asset;
       const defaultLogOptions = { timestamp: true }
 
       // Add a middleware to Vite's internal Connect server to handle asset requests from the React Native development app.
-      server.middlewares.use(async (req, res, next) => {
-        if (!req.url?.startsWith(`/${ASSET_DEST_DIR}/`)) {
-          return next()
-        }
 
-        // TODO: Better way to do this?
-        const url = new URL('http://example.com' + req.url)
-        const pathname = url.pathname // '/assets/src/assets/one-ball.png.'
-        const assetPath = './' + pathname.slice('/assets/'.length).replace(/\.*$/, '') // './src/assets/one-ball.png'
+      // note(nate): commenting out due to breaking web assets!
 
-        try {
-          const asset = await FSExtra.readFile(assetPath)
+      // server.middlewares.use(async (req, res, next) => {
+      //   if (!req.url?.startsWith(`/${ASSET_DEST_DIR}/`)) {
+      //     return next()
+      //   }
 
-          res.setHeader('content-type', 'image/png')
-          res.write(asset)
-          res.end()
-        } catch (e) {
-          logger.error(
-            colors.red(
-              `[vxrn] Failed to serve asset: ${assetPath}: ${e instanceof Error ? e.message : 'unknown error'}`
-            ),
-            defaultLogOptions
-          )
+      //   // TODO: Better way to do this?
+      //   const url = new URL('http://example.com' + req.url)
+      //   const pathname = url.pathname // '/assets/src/assets/one-ball.png.'
+      //   const assetPath = './' + pathname.slice('/assets/'.length).replace(/\.*$/, '') // './src/assets/one-ball.png'
 
-          res.statusCode =
-            e instanceof Error && (e as NodeJS.ErrnoException).code === 'ENOENT' ? 404 : 500
-          res.end()
-        }
-      })
+      //   try {
+      //     const asset = await FSExtra.readFile(assetPath)
+
+      //     res.setHeader('content-type', 'image/png')
+      //     res.write(asset)
+      //     res.end()
+      //   } catch (e) {
+      //     logger.error(
+      //       colors.red(
+      //         `[vxrn] Failed to serve asset: ${assetPath}: ${e instanceof Error ? e.message : 'unknown error'}`
+      //       ),
+      //       defaultLogOptions
+      //     )
+
+      //     res.statusCode =
+      //       e instanceof Error && (e as NodeJS.ErrnoException).code === 'ENOENT' ? 404 : 500
+      //     res.end()
+      //   }
+      // })
     },
   }
 }

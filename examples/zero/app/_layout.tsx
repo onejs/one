@@ -2,11 +2,9 @@ import '@tamagui/core/reset.css'
 import './_layout.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { TamaguiProvider } from 'tamagui'
-import { PageLoadProgressBar } from 'vxs'
-import { HomeLayout } from '~/features/home/HomeLayout'
-import '~/features/styles/base.css'
-import '~/features/styles/tamagui.css'
+import { PageLoadProgressBar, Slot } from 'vxs'
+import { isWeb, TamaguiProvider } from 'tamagui'
+import { ZeroProvider } from '~/features/zero/client'
 import config from '../config/tamagui.config'
 
 export default function Layout() {
@@ -14,11 +12,31 @@ export default function Layout() {
     <>
       <PageLoadProgressBar />
 
-      <SchemeProvider>
-        <TamaguiRootProvider>
-          <HomeLayout />
-        </TamaguiRootProvider>
-      </SchemeProvider>
+      {isWeb && (
+        <>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+          <style
+            // @ts-ignore
+            precedence="default"
+            key="tamagui-css"
+            // @ts-ignore
+            href="tamagui-css"
+          >
+            {config.getCSS()}
+          </style>
+        </>
+      )}
+
+      <ZeroProvider>
+        <SchemeProvider>
+          <TamaguiRootProvider>
+            <Slot />
+          </TamaguiRootProvider>
+        </SchemeProvider>
+      </ZeroProvider>
     </>
   )
 }
