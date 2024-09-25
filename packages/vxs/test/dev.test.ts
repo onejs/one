@@ -24,7 +24,7 @@ describe('Simple Run Tests', () => {
     })
 
     // Wait for the server to start or timeout
-    const maxWaitTime = 10000 // 30 seconds
+    const maxWaitTime = 30_000
     const startTime = Date.now()
 
     while (Date.now() - startTime < maxWaitTime) {
