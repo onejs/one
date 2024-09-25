@@ -70,7 +70,7 @@ export function globbedRoutesToRouteContext(
           ? loadRouteFunction
           : () => {
               const realPath = (globalThis['__vxrntodopath'] ?? window.location.pathname).trim()
-              const importUrl = `${CLIENT_BASE_URL}${removeSearch(
+              const importUrl = `${CLIENT_BASE_URL}/assets${removeSearch(
                 realPath
               )}_vxrn_loader.js?cache_key=${CACHE_KEY}`
               return dynamicImport(importUrl)

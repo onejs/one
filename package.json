@@ -15,6 +15,7 @@
     "npm": "10.8.3"
   },
   "scripts": {
+    "postinstall": "node -r esbuild-register ./scripts/setup-zero.ts",
     "setup": "node -r esbuild-register ./scripts/setup.ts",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -29,6 +30,7 @@
     "fix": "manypkg fix",
     "lint:fix": "ultra -r --no-pretty lint:fix",
     "lint": "ultra -r --no-pretty lint",
+    "dev:example-zero": "yarn workspace example-zero dev",
     "dev:example-basic": "yarn workspace example-basic dev",
     "dev:example-weird-deps": "yarn workspace example-weird-deps dev",
     "dev:example-fullstack": "yarn workspace example-fullstack dev",
@@ -41,6 +43,10 @@
     "vxs": "yarn workspace example-basic",
     "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t vxs-test . && docker run --rm vxs-test",
     "docker:build": "DOCKER_BUILDKIT=1 docker build --ssh default -t vxs-test ."
+  },
+  "zeroDeps": {
+    "zero-client": "/Users/n8/github/mono/packages/zero-client",
+    "zql": "/Users/n8/github/mono/packages/zql"
   },
   "dependencies": {
     "@biomejs/biome": "^1.8.3",

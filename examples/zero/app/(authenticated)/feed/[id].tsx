@@ -1,5 +1,5 @@
-import { route } from 'one'
-import { useQuery } from 'one/zero'
+import { route } from 'vxs'
+import { useQuery } from 'vxs/zero'
 import { useState } from 'react'
 import { Button, ScrollView, SizableText, TextArea, XStack, YStack } from 'tamagui'
 import { FeedCard, FeedCardReply } from '~/features/feed/FeedCard'

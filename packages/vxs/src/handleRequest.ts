@@ -56,6 +56,8 @@ export function createHandleRequest(
     )
     const { pathname, search } = url
 
+    console.log('incoming', pathname)
+
     if (process.env.NODE_ENV !== 'production') {
       if (activeRequests[pathname]) {
         return await activeRequests[pathname]
@@ -94,28 +96,13 @@ export function createHandleRequest(
       const isClientRequestingNewRoute = pathname.endsWith('_vxrn_loader.js')
 
       if (isClientRequestingNewRoute) {
-        const originalUrl = pathname.replace('_vxrn_loader.js', '')
+        const originalUrl = pathname.replace('_vxrn_loader.js', '').replace(/^\/assets/, '')
         const finalUrl = new URL(originalUrl, url.origin)
 
         for (const route of pageRoutes) {
           if (!route.workingRegex.test(finalUrl.pathname)) {
             continue
           }
-
-          // TODO i think SPA routes should preload loader data just like ssg rather than return null here
-          // if (route.routeType === 'spa') {
-          //   return new Response(
-          //     `
-          //     export default () => null
-          //     export const loader = () => null
-          //     `,
-          //     {
-          //       headers: {
-          //         'content-type': 'text/javascript',
-          //       },
-          //     }
-          //   )
-          // }
 
           const headers = new Headers()
           headers.set('Content-Type', 'text/javascript')

@@ -1,5 +1,5 @@
 import { isWeb, View } from 'tamagui'
-import { Slot, Stack } from 'one'
+import { Slot, Stack } from 'vxs'
 import { ToggleThemeButton } from '~/features/theme/ToggleThemeButton'
 
 export default function FeedLayout() {

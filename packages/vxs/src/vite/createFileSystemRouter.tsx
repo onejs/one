@@ -180,6 +180,8 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
           async handleLoader({ request, route, url, loaderProps }) {
             const routeFile = join('app', route.file)
 
+            console.log('loading', routeFile)
+
             // this will remove all loaders
             let transformedJS = (await server.transformRequest(routeFile))?.code
             if (!transformedJS) {

@@ -7,9 +7,7 @@
   "type": "module",
   "main": "dist/cjs",
   "module": "dist/esm",
-  "bin": {
-    "vxs": "run.mjs"
-  },
+  "bin": "run.mjs",
   "files": [
     "src",
     "types",
@@ -44,6 +42,11 @@
       "types": "./types/serve.d.ts",
       "import": "./dist/esm/serve.mjs",
       "require": "./dist/cjs/serve.js"
+    },
+    "./zero": {
+      "types": "./types/zero.d.ts",
+      "import": "./dist/esm/zero.mjs",
+      "require": "./dist/cjs/zero.js"
     },
     "./routes-manifest": {
       "types": "./types/routes-manifest.d.ts",

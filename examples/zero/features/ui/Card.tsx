@@ -1,4 +1,6 @@
-import { styled, XStack } from 'tamagui'
+import { type GetProps, styled, XStack } from 'tamagui'
+
+export type CardProps = GetProps<typeof Card>
 
 export const Card = styled(XStack, {
   ov: 'hidden',
@@ -7,6 +9,7 @@ export const Card = styled(XStack, {
   gap: '$4',
   bbw: 1,
   bbc: '$borderColor',
+  cur: 'pointer',
 
   hoverStyle: {
     bg: '$color2',
@@ -19,6 +22,8 @@ export const Card = styled(XStack, {
   variants: {
     disableLink: {
       true: {
+        cur: 'inherit',
+
         hoverStyle: {
           bg: 'transparent',
         },

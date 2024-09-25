@@ -86,7 +86,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'swr',
     'swr/mutation',
     'one',
-    'one/zero',
+    'vxs/zero',
     'one/headers',
     'one/server-render',
     'refractor/lang/tsx',

@@ -7,6 +7,14 @@ body {
   overflow-x: hidden;
 }
 
+:root {
+  --bodyBg: #fff;
+}
+
+:root.t_dark {
+  --bodyBg: #000;
+}
+
 body {
   margin: 0;
   position: relative;
@@ -20,4 +28,15 @@ a {
   text-decoration-color: var(--color025);
   text-underline-offset: 3px;
   transition: all ease-in 100ms;
+}
+
+a.is_Button, .text-decoration-none, a:has(div) {
+  text-decoration: none;
+  transition: none;
+}
+
+@media screen and (pointer: coarse) {
+  .home-layout-mouse {
+    opacity: 0;
+  }
 }
