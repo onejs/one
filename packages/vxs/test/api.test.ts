@@ -1,4 +1,4 @@
-import { ChildProcessWithoutNullStreams, spawn } from 'node:child_process'
+import { type ChildProcessWithoutNullStreams, spawn } from 'node:child_process'
 import * as path from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
@@ -13,7 +13,6 @@ const runTests = (environment: 'dev' | 'prod') => {
       // Spawn the server process based on the environment
       const command = environment === 'dev' ? 'dev' : 'prod'
       serverProcess = spawn('yarn', [command, '--host', 'localhost'], { cwd: fixturePath })
-
       let serverOutput = ''
       serverProcess.stdout.on('data', (data) => {
         console.info(data.toString())

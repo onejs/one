@@ -98,7 +98,7 @@ export async function build(args: {
 
         build: {
           emptyOutDir: false,
-          outDir: 'dist/api',
+          outDir: 'dist',
           copyPublicDir: false,
           minify: false,
           rollupOptions: {
@@ -123,16 +123,23 @@ export async function build(args: {
                   }
                 : {
                     format: 'cjs',
-                    // Use a function to strip the extension
+                    // Preserve folder structure and use .cjs extension
                     entryFileNames: (chunkInfo) => {
-                      const name = basename(chunkInfo.name, extname(chunkInfo.name))
-                      return `${name}.cjs`
+                      const name = chunkInfo.name.replace(/\.js$/, '.cjs')
+                      return name
                     },
                     chunkFileNames: (chunkInfo) => {
-                      const name = basename(chunkInfo.name, extname(chunkInfo.name))
-                      return `${name}-[hash].cjs`
+                      const dir = Path.dirname(chunkInfo.name)
+                      const name = Path.basename(chunkInfo.name, Path.extname(chunkInfo.name))
+                      return Path.join(dir, `${name}-[hash].cjs`)
                     },
-                    assetFileNames: '[name]-[hash][extname]',
+                    assetFileNames: (assetInfo) => {
+                      const name = assetInfo.name ?? ''
+                      const dir = Path.dirname(name)
+                      const baseName = Path.basename(name, Path.extname(name))
+                      const ext = Path.extname(name)
+                      return Path.join(dir, `${baseName}-[hash]${ext}`)
+                    },
                   }),
             },
           },
@@ -151,6 +158,7 @@ export async function build(args: {
   console.info(`\n 🔨 build static routes\n`)
 
   let render: RenderApp | null = null
+  // @ts-expect-error This works
   const entryServer = vxrnOutput.serverEntry
 
   try {
