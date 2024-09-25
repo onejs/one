@@ -79,6 +79,12 @@ export async function buildBundle(
     useCache: false,
   })
 
+  // Assuming we are not enabling this on native as it will break anyway.
+  builtBundle = builtBundle.replace(
+    /process\.env\.VXRN_REACT_19/g,
+    'false'
+  )
+
   if (!dev) {
     // TODO: There should be a legitimate way to do this.
     builtBundle = builtBundle.replace(

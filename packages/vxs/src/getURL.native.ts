@@ -1,9 +1,6 @@
 import getDevServer from 'react-native/Libraries/Core/Devtools/getDevServer'
 
-/**
- * TODO: This is also used in production to get the server URL. We should probably split this into two functions to avoid confusion.
- */
-export function getDevServerUrl() {
+export function getURL() {
   let url = process.env.SERVER_URL
 
   if (__DEV__) {
