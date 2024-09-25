@@ -1,6 +1,6 @@
 {
   "name": "example-basic",
-  "version": "1.1.244",
+  "version": "1.1.245",
   "private": true,
   "type": "module",
   "scripts": {
@@ -21,11 +21,11 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
-    "@tamagui/config": "^1.112.0",
-    "@tamagui/image-next": "^1.112.0",
-    "@tamagui/lucide-icons": "^1.112.0",
-    "@tamagui/vite-plugin": "^1.112.0",
-    "@vxrn/color-scheme": "1.1.244",
+    "@tamagui/config": "1.112.0-1727286694781",
+    "@tamagui/image-next": "1.112.0-1727286694781",
+    "@tamagui/lucide-icons": "1.112.0-1727286694781",
+    "@tamagui/vite-plugin": "1.112.0-1727286694781",
+    "@vxrn/color-scheme": "1.1.245",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
@@ -39,12 +39,12 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.112.0",
-    "vxs": "1.1.244"
+    "tamagui": "1.112.0-1727286694781",
+    "vxs": "1.1.245"
   },
   "devDependencies": {
     "@faker-js/faker": "next",
-    "@tamagui/vite-plugin": "^1.112.0",
+    "@tamagui/vite-plugin": "1.112.0-1727286694781",
     "tsx": "^4.19.0",
     "vite": "6.0.0-beta.1"
   }

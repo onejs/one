@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-swc",
-  "version": "1.1.244",
+  "version": "1.1.245",
   "types": "./types/index.d.ts",
   "type": "module",
   "main": "dist/cjs",
@@ -33,12 +33,12 @@
     "@babel/plugin-transform-react-jsx": "^7.25.2",
     "@babel/plugin-transform-regenerator": "^7.24.7",
     "@swc/core": "^1.7.14",
-    "@vxrn/vite-native-client": "1.1.244",
+    "@vxrn/vite-native-client": "1.1.245",
     "metro-react-native-babel-preset": "^0.77.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.112.0",
+    "@tamagui/build": "1.112.0-1727286694781",
     "react-native": "0.74.1"
   },
   "peerDependencies": {
