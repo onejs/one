@@ -96,7 +96,7 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
           process.cwd(),
           'dist',
           'api',
-          route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
+          route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.js.cjs' : '.js')
         )
 
         isAPIRequest.set(request, true)
