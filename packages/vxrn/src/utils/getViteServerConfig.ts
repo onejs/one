@@ -9,6 +9,7 @@ import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
+import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled) {
   const { root, server } = config
@@ -55,7 +56,10 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
           },
         },
 
-        reactNativeHMRPlugin(config),
+        reactNativeHMRPlugin({
+          ...config,
+          assetExts: DEFAULT_ASSET_EXTS,
+        }),
 
         expoManifestRequestHandlerPlugin({
           projectRoot: root,
@@ -64,6 +68,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
 
         reactNativeDevAssetPlugin({
           projectRoot: root,
+          assetExts: DEFAULT_ASSET_EXTS,
         }),
 
         // TODO very hacky/arbitrary

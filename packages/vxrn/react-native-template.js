@@ -47,6 +47,7 @@ function __getRequire(absPath, parent) {
     ___vxrnAbsoluteToRelative___[absPath] ||
     ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')] ||
     ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.ts')] ||
+    ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '')] ||
     absPath
 
   if (!__cachedModules[absPath]) {

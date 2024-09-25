@@ -5,52 +5,17 @@ import type { Plugin } from 'vite'
 import colors from 'picocolors'
 import { isNativeEnvironment } from '../utils/environmentUtils'
 
-/** See: https://github.com/facebook/metro/blob/v0.80.10/packages/metro-config/src/defaults/defaults.js#L18-L52 */
-const DEFAULT_ASSET_EXTS = [
-  // Image formats
-  'bmp',
-  'gif',
-  'jpg',
-  'jpeg',
-  'png',
-  'psd',
-  'svg',
-  'webp',
-  // Video formats
-  'm4v',
-  'mov',
-  'mp4',
-  'mpeg',
-  'mpg',
-  'webm',
-  // Audio formats
-  'aac',
-  'aiff',
-  'caf',
-  'm4a',
-  'mp3',
-  'wav',
-  // Document formats
-  'html',
-  'pdf',
-  'yaml',
-  'yml',
-  // Font formats
-  'otf',
-  'ttf',
-  // Archives (virtual files)
-  'zip',
-]
-
 const IMAGE_ASSET_EXTS = ['png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'psd', 'svg', 'tiff', 'ktx']
 const IMAGE_ASSET_EXTS_SET = new Set(IMAGE_ASSET_EXTS)
 
-const ASSET_DEST_DIR = 'assets' // TODO: `/assets` might be too common, consider using a more unique prefix.
+const ASSET_DEST_DIR = 'assets'
+/** `/assets` is too common and might conflict with web, using another path for dev server in development. */
+const DEV_ASSET_DEST_PATH = '__vxrn_dev_native_assets'
 
 type ReactNativeDevAssetPluginConfig = {
   projectRoot: string
   /** The list file extensions to be treated as assets. Assets are recognized by their extension. */
-  assetExts?: string[]
+  assetExts: string[]
   /** Defaults to `'dev'`. */
   mode?: 'dev' | 'prod'
   /** Only needed while building the release bundle. */
@@ -58,7 +23,7 @@ type ReactNativeDevAssetPluginConfig = {
 }
 
 export function reactNativeDevAssetPlugin(options: ReactNativeDevAssetPluginConfig): Plugin {
-  const { projectRoot, assetExts = DEFAULT_ASSET_EXTS } = options
+  const { projectRoot, assetExts } = options
 
   const assetExtsRegExp = new RegExp(`\\.(${assetExts.join('|')})$`)
   const isAssetFile = (id: string) => assetExtsRegExp.test(id)
@@ -85,7 +50,7 @@ export function reactNativeDevAssetPlugin(options: ReactNativeDevAssetPluginConf
       __packager_asset: true,
       fileSystemLocation: path.dirname(id),
       relativeFileSystemLocation: relativeAssetDir,
-      httpServerLocation: `/${ASSET_DEST_DIR}/${assetUrlPath.slice(0, -assetBasename.length)}`, // TODO: `/assets` might be too common, consider using a unique prefix.
+      httpServerLocation: `/${options.mode === 'dev' ? DEV_ASSET_DEST_PATH : ASSET_DEST_DIR}/${assetUrlPath.slice(0, -(assetBasename.length + 1) /* removing the `/filename.ext` at the end */)}`,
       scales: [1], // TODO
       name: assetName,
       type: assetExt,
@@ -98,12 +63,12 @@ export function reactNativeDevAssetPlugin(options: ReactNativeDevAssetPluginConf
     name: 'vxrn:react-native-dev-asset',
     enforce: 'pre',
 
-    resolveId(source, importer, options) {
-      if (!isNativeEnvironment(this.environment)) return
-      if (!isAssetFile(source)) return
+    // resolveId(source, importer, options) {
+    //   if (!isNativeEnvironment(this.environment)) return
+    //   if (!isAssetFile(source)) return
 
-      // TODO: May need to handle platform specific extensions here.
-    },
+    //   // TODO: May need to handle platform specific extensions here.
+    // },
 
     async load(id, _options) {
       if (!isNativeEnvironment(this.environment)) return
@@ -151,38 +116,36 @@ export default asset;
       const defaultLogOptions = { timestamp: true }
 
       // Add a middleware to Vite's internal Connect server to handle asset requests from the React Native development app.
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url?.startsWith(`/${DEV_ASSET_DEST_PATH}/`)) {
+          return next()
+        }
 
-      // note(nate): commenting out due to breaking web assets!
+        // TODO: Better way to do this?
+        const url = new URL('http://example.com' + req.url)
+        const pathname = url.pathname // '/assets/src/assets/one-ball.png.'
+        const assetPath =
+          './' + pathname.slice(`/${DEV_ASSET_DEST_PATH}/`.length).replace(/\.*$/, '') // './src/assets/one-ball.png'
 
-      // server.middlewares.use(async (req, res, next) => {
-      //   if (!req.url?.startsWith(`/${ASSET_DEST_DIR}/`)) {
-      //     return next()
-      //   }
+        try {
+          const asset = await FSExtra.readFile(assetPath)
 
-      //   // TODO: Better way to do this?
-      //   const url = new URL('http://example.com' + req.url)
-      //   const pathname = url.pathname // '/assets/src/assets/one-ball.png.'
-      //   const assetPath = './' + pathname.slice('/assets/'.length).replace(/\.*$/, '') // './src/assets/one-ball.png'
+          res.setHeader('content-type', 'image/png')
+          res.write(asset)
+          res.end()
+        } catch (e) {
+          logger.error(
+            colors.red(
+              `[vxrn] Failed to serve asset: ${assetPath}: ${e instanceof Error ? e.message : 'unknown error'}`
+            ),
+            defaultLogOptions
+          )
 
-      //   try {
-      //     const asset = await FSExtra.readFile(assetPath)
-
-      //     res.setHeader('content-type', 'image/png')
-      //     res.write(asset)
-      //     res.end()
-      //   } catch (e) {
-      //     logger.error(
-      //       colors.red(
-      //         `[vxrn] Failed to serve asset: ${assetPath}: ${e instanceof Error ? e.message : 'unknown error'}`
-      //       ),
-      //       defaultLogOptions
-      //     )
-
-      //     res.statusCode =
-      //       e instanceof Error && (e as NodeJS.ErrnoException).code === 'ENOENT' ? 404 : 500
-      //     res.end()
-      //   }
-      // })
+          res.statusCode =
+            e instanceof Error && (e as NodeJS.ErrnoException).code === 'ENOENT' ? 404 : 500
+          res.end()
+        }
+      })
     },
   }
 }

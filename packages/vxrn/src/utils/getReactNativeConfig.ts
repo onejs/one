@@ -19,6 +19,7 @@ import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 import { getBabelReanimatedPlugin } from '../plugins/babelReanimated'
 import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
+import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
@@ -95,6 +96,7 @@ export async function getReactNativeConfig(
         projectRoot: options.root,
         mode: internal.mode,
         assetsDest: internal.assetsDest,
+        assetExts: DEFAULT_ASSET_EXTS,
       }),
 
       getBabelReanimatedPlugin(),

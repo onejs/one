@@ -10,8 +10,14 @@ import { createIdResolver, type ResolveFn, type Plugin } from 'vite'
 import { conditions } from './reactNativeCommonJsPlugin'
 import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
 
-export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
+export function reactNativeHMRPlugin({
+  root,
+  assetExts,
+}: VXRNOptionsFilled & { assetExts: string[] }) {
   let idResolver: ReturnType<typeof createIdResolver>
+
+  const assetExtsRegExp = new RegExp(`\\.(${assetExts.join('|')})$`)
+  const isAssetFile = (id: string) => assetExtsRegExp.test(id)
 
   return {
     name: 'vxrn:native-hmr-transform',
@@ -47,6 +53,10 @@ export function reactNativeHMRPlugin({ root }: VXRNOptionsFilled) {
         if (!module) return
 
         const id = module?.url || file.replace(root, '')
+        if (isAssetFile(id)) {
+          // TODO: Handle asset updates.
+          return
+        }
 
         const code = await read()
 
