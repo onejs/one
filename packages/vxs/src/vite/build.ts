@@ -158,7 +158,6 @@ export async function build(args: {
   console.info(`\n 🔨 build static routes\n`)
 
   let render: RenderApp | null = null
-  // @ts-expect-error This works
   const entryServer = vxrnOutput.serverEntry
 
   try {
