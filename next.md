@@ -47,6 +47,8 @@ should have some sprints with "challenges":
 
 # backlog
 
+- probably need to bundle api routes by default? too many esm/cjs issues
+
 - Sitemap is partially done
 
 - shouldnt export ErrorBoundary, but should make current RootErrorBoundary much better, rename it to ErrorBoundary, then export that
