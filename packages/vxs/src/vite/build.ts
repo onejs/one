@@ -98,7 +98,7 @@ export async function build(args: {
 
         build: {
           emptyOutDir: false,
-          outDir: 'dist',
+          outDir: 'dist/api',
           copyPublicDir: false,
           minify: false,
           rollupOptions: {

@@ -94,6 +94,7 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
         const apiFile = join(
           process.cwd(),
           'dist',
+          'api',
           route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
         )
 
