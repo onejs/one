@@ -84,6 +84,23 @@ export const depPatches: DepPatch[] = [
 
         return JSON.stringify(pkg, null, 2)
       },
+
+      // for prod builds we have to actually change the entries:
+      'index.js': (contents) => {
+        assertString(contents)
+        return `
+if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/react-19')) } else {
+  ${contents}
+}`
+      },
+
+      'jsx-runtime.js': (contents) => {
+        assertString(contents)
+        return `
+if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/react-jsx-19')) } else {
+  ${contents}
+}`
+      },
     },
   },
 
@@ -91,6 +108,31 @@ export const depPatches: DepPatch[] = [
     module: 'react-dom',
     patchFiles: {
       version: '18.*',
+
+      // for prod builds we have to actually change the entries:
+      'index.js': (contents) => {
+        assertString(contents)
+        return `
+if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/react-dom-19')) } else {
+${contents}
+}`
+      },
+
+      'client.js': (contents) => {
+        assertString(contents)
+        return `
+if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/react-dom-client-19')) } else {
+${contents}
+}`
+      },
+
+      'server.browser.js': (contents) => {
+        assertString(contents)
+        return `
+if (process.env.VXRN_REACT_19) { Object.assign(exports, require('@vxrn/vendor/react-dom-server.browser-19')) } else {
+${contents}
+}`
+      },
 
       'client.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-dom-client-19')`,
 
@@ -262,16 +304,16 @@ export const depPatches: DepPatch[] = [
   {
     module: '@hono/node-server',
     patchFiles: {
-      'dist/serve-static.mjs': contents => {
+      'dist/serve-static.mjs': (contents) => {
         assertString(contents)
         return contents.replace(
           `const chunksize = end - start + 1;`,
           `if (isNaN(start) || isNaN(end)) console.log('nan start or end', start, end, range, parts)
 const chunksize = end - start + 1;`
         )
-      }
-    }
-  }
+      },
+    },
+  },
 
   // {
   //   module: 'react-native-reanimated',
