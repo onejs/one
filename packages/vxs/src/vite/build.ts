@@ -29,7 +29,7 @@ export async function build(args: {
   only?: string
 }) {
   const userOptions = await loadUserVXSOptions('build')
-  const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'esm'
+  const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'cjs'
 
   // TODO make this better, this ensures we get react 19
   process.env.VXRN_REACT_19 = '1'
@@ -79,7 +79,7 @@ export async function build(args: {
       return entries
     }, {}) as Record<string, string>
 
-    const apiOutputFormat = userOptions?.build?.api?.outputFormat ?? 'esm'
+    const apiOutputFormat = userOptions?.build?.api?.outputFormat ?? serverOutputFormat
 
     await viteBuild(
       mergeConfig(apiBuildConfig, {
@@ -123,6 +123,7 @@ export async function build(args: {
                   }
                 : {
                     format: 'cjs',
+                    entryFileNames: '[name].cjs',
                   }),
             },
           },
@@ -140,11 +141,12 @@ export async function build(args: {
 
   console.info(`\n 🔨 build static routes\n`)
 
-  const entryServer = `${options.root}/dist/server/_virtual_vxs-entry.js`
   let render: RenderApp | null = null
+  const entryServer = vxrnOutput.serverEntry
 
   try {
     const serverImport = await import(entryServer)
+
     render =
       serverImport.default.render ||
       // for an unknown reason this is necessary

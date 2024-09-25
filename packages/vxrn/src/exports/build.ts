@@ -14,9 +14,9 @@ import type { BuildArgs, VXRNOptions } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
 import { getOptionsFilled } from '../utils/getOptionsFilled'
+import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { mergeUserConfig } from '../utils/mergeUserConfig'
 import { applyBuiltInPatches } from '../utils/patches'
-import { requireResolve } from '../utils/requireResolve'
 
 const { existsSync } = FSExtra
 
@@ -139,8 +139,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   }
 
   const serverOptions = options.build?.server
-  const shouldOutputCJS =
-    typeof serverOptions !== 'object' ? false : serverOptions.outputFormat === 'cjs'
+
+  // default to cjs
+  const shouldOutputCJS = getServerCJSSetting(options)
 
   // servers can get all the defines
   const processEnvDefines = Object.fromEntries(
@@ -201,6 +202,8 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     serverBuildConfig.ssr!.noExternal = true
   }
 
+  const serverEntry = getServerEntry(options)
+
   let serverOutput
   let clientManifest
 
@@ -214,6 +217,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   return {
     options,
     buildArgs,
+    serverEntry,
     clientOutput,
     serverOutput,
     serverBuildConfig,
