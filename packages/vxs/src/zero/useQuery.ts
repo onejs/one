@@ -1,11 +1,7 @@
-import { useLayoutEffect, useRef, useState } from 'react'
-// @ts-ignore
-import type { Query, QueryResultRow, Smash } from 'zql/src/zql/query/query.js'
-// @ts-ignore
-import type { Schema } from 'zql/src/zql/query/schema.js'
+import { useRef } from 'react'
 import { getQueryKey } from './getQueryKey'
 import { resolveZeroQuery } from './resolveQuery'
-import { subscribeToZeroQuery } from './subscribeToQuery'
+import { useQuery as useQueryZero } from './useQueryZero'
 
 let clientInitialData: Object | null = globalThis['__vxrnPostRenderData__']
 
@@ -17,12 +13,12 @@ globalThis['__vxrnServerData__'] = serverQueryData
 
 const promises = new WeakMap()
 
-export function useQuery<TSchema extends Schema, TReturn extends Array<QueryResultRow>>(
-  query: Query<TSchema, TReturn> | undefined,
-  dependencies: readonly unknown[] = [],
-  enabled = true
-): Smash<TReturn> {
-  const [snapshot, setSnapshot] = useState<Smash<TReturn>>()
+/**
+ * This adds server handoff support to useQuery
+ */
+
+export const useQuery = ((query: any, enable = true) => {
+  const snapshot = useQueryZero(query, enable)
 
   const queryIdRef = useRef<string>()
   if (query && !queryIdRef.current) {
@@ -30,7 +26,9 @@ export function useQuery<TSchema extends Schema, TReturn extends Array<QueryResu
   }
   const queryId = queryIdRef.current || ''
 
-  // on server use suspense so we wait for it
+  /**
+   * on server use suspense so we wait for it
+   */
   if (process.env.TAMAGUI_TARGET !== 'native' && typeof window === 'undefined') {
     if (!query) return []
     const promise = promises.get(query)
@@ -58,17 +56,9 @@ export function useQuery<TSchema extends Schema, TReturn extends Array<QueryResu
     return []
   }
 
-  useLayoutEffect(() => {
-    if (!enabled || !query) return
-
-    return subscribeToZeroQuery(query, (val) => {
-      setSnapshot(structuredClone(val) as Smash<TReturn>)
-    })
-  }, dependencies)
-
   if (clientInitialData && !snapshot) {
     return clientInitialData[queryId] || []
   }
 
   return snapshot || []
-}
+}) as typeof useQueryZero

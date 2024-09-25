@@ -1,7 +1,6 @@
-// @ts-ignore
 import type { Query, QueryRowType } from 'zql/src/zql/query/query.js'
 
-type GenericQuery = Query<any, any, any>
+type GenericQuery = Query<any, any>
 
 // works with .expect or regular queries:
 
