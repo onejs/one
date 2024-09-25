@@ -14,12 +14,16 @@ export type Options = {
     platform?: string;
 };
 export type RenderApp = (props: RenderAppProps) => Promise<string>;
+export type LoaderProps<Params extends Object = Record<string, string>> = {
+    path: string;
+    params: Params;
+};
 export type RenderAppProps = {
     path: string;
     preloads?: string[];
     css?: string[];
     loaderServerData?: any;
     loaderData?: any;
-    loaderProps?: Object;
+    loaderProps?: LoaderProps;
 };
 //# sourceMappingURL=types.d.ts.map
