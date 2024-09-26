@@ -82,6 +82,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       clearScreen: false,
       configFile: false,
       optimizeDeps,
+      define: {
+        'process.env.VITE_ENVIRONMENT': '"client"',
+      },
     } satisfies InlineConfig
   )
 

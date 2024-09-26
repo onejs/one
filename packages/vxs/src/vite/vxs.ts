@@ -55,6 +55,20 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
               'process.env.VXS_SETUP_FILE': JSON.stringify(options.setupFile),
             }),
           },
+
+          environments: {
+            client: {
+              define: {
+                'process.env.VITE_ENVIRONMENT': '"client"',
+              },
+            },
+
+            ssr: {
+              define: {
+                'process.env.VITE_ENVIRONMENT': '"ssr"',
+              },
+            },
+          },
         }
       },
     } satisfies Plugin,
