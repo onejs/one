@@ -13,6 +13,8 @@ export const dedupe = [
   'react-native-web',
   '@tamagui/core',
   '@tamagui/web',
+  '@tamagui/react-native-web',
+  'tamagui',
   'react-native-reanimated',
   'expo-modules-core',
 ]

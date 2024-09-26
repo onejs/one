@@ -18,6 +18,12 @@ export declare namespace VXS {
          *
          */
         zero?: boolean;
+        /**
+         * Path to a js or ts file to import before the rest of your app runs
+         * One controls your root, but you may want to runs some JS before anything else
+         * Use this to give One the entrypoint to run
+         */
+        setupFile?: string;
         app?: {
             /**
              * The uid of your native app, this will be used internally in vxs to call

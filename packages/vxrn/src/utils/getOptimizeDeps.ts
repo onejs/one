@@ -102,6 +102,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@floating-ui/react',
     '@floating-ui/react-dom',
     '@tamagui/constants',
+    '@tamagui/react-native-web',
+    '@tamagui/button',
     '@tamagui/animate-presence',
     '@tamagui/presence-child',
     '@tamagui/config/v3',
