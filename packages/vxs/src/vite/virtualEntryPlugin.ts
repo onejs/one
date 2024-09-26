@@ -28,6 +28,10 @@ export function createVirtualEntry(options: { root: string }): Plugin {
     load(id) {
       if (id === resolvedVirtualEntryId) {
         return `
+if (process.env.VXS_SETUP_FILE) {
+  import(/* @vite-ignore */ process.env.VXS_SETUP_FILE)
+}
+        
 import { createApp } from 'vxs'
 
 // globbing ${appDirGlob}
@@ -39,6 +43,10 @@ export default createApp({
 
       if (id === resolvedVirtualEntryIdNative) {
         return `
+if (process.env.VXS_SETUP_FILE) {
+  import(/* @vite-ignore */ process.env.VXS_SETUP_FILE)
+}
+
 import { createApp } from 'vxs'
 
 // globbing ${appDirGlob}

@@ -17,34 +17,6 @@ import { vitePluginSsrCss } from './vitePluginSsrCss'
 
 events.setMaxListeners(1_000)
 
-let vxsOptions: VXS.PluginOptions | null = null
-
-async function getUserVXSOptions(command?: 'serve' | 'build') {
-  if (!vxsOptions) {
-    if (!command) throw new Error(`Options not loaded and no command given`)
-    await loadUserVXSOptions(command)
-  }
-  if (!vxsOptions) {
-    throw new Error(`No vxs options loaded`)
-  }
-  return vxsOptions
-}
-
-export async function loadUserVXSOptions(command: 'serve' | 'build') {
-  const found = await loadConfigFromFile({
-    mode: 'prod',
-    command,
-  })
-  if (!found) {
-    throw new Error(`No config found`)
-  }
-  const foundVxsConfig = getUserVXSOptions()
-  if (!foundVxsConfig) {
-    throw new Error(`No VXS plugin added to config`)
-  }
-  return foundVxsConfig
-}
-
 export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   vxsOptions = options
 
@@ -77,6 +49,10 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
           define: {
             ...(options.web?.defaultRenderMode && {
               'process.env.VXS_DEFAULT_RENDER_MODE': JSON.stringify(options.web.defaultRenderMode),
+            }),
+
+            ...(options.setupFile && {
+              'process.env.VXS_SETUP_FILE': JSON.stringify(options.setupFile),
             }),
           },
         }
@@ -206,4 +182,32 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       entries: [virtualEntryId],
     }),
   ]
+}
+
+let vxsOptions: VXS.PluginOptions | null = null
+
+async function getUserVXSOptions(command?: 'serve' | 'build') {
+  if (!vxsOptions) {
+    if (!command) throw new Error(`Options not loaded and no command given`)
+    await loadUserVXSOptions(command)
+  }
+  if (!vxsOptions) {
+    throw new Error(`No vxs options loaded`)
+  }
+  return vxsOptions
+}
+
+export async function loadUserVXSOptions(command: 'serve' | 'build') {
+  const found = await loadConfigFromFile({
+    mode: 'prod',
+    command,
+  })
+  if (!found) {
+    throw new Error(`No config found`)
+  }
+  const foundVxsConfig = getUserVXSOptions()
+  if (!foundVxsConfig) {
+    throw new Error(`No VXS plugin added to config`)
+  }
+  return foundVxsConfig
 }
