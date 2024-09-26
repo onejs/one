@@ -82,9 +82,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       clearScreen: false,
       configFile: false,
       optimizeDeps,
-      define: {
-        'process.env.VITE_ENVIRONMENT': '"client"',
-      },
     } satisfies InlineConfig
   )
 
@@ -120,6 +117,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
             })
           : null,
       ],
+
+      define: {
+        'process.env.VITE_ENVIRONMENT': '"client"',
+      },
 
       build: {
         ssrManifest: true,
@@ -158,6 +159,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     define: {
       'process.env.TAMAGUI_IS_SERVER': '"1"',
+      'process.env.VITE_ENVIRONMENT': '"server"',
       ...processEnvDefines,
       ...webBuildConfig.define,
     },
