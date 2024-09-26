@@ -299,7 +299,11 @@ export async function build(args: {
         for (const file in vxrnOutput.clientManifest) {
           if (file === needle) {
             const entry = vxrnOutput.clientManifest[file]
-            return [entry.file as string, ...(entry.imports as string[])]
+            return [
+              entry.file as string,
+              // getting 404s for preloading the imports as well?
+              // ...(entry.imports as string[])
+            ]
           }
         }
       }

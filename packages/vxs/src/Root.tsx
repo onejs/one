@@ -122,13 +122,8 @@ export function Root(props: RootProps) {
 function DevHead() {
   return (
     <>
-      <link
-        rel="stylesheet"
-        href="/@id/__x00__virtual:ssr-css.css"
-        // @ts-ignore
-        precedence="default"
-        data-ssr-css
-      />
+      <link rel="preload" href="/@id/__x00__virtual:ssr-css.css" as="style" />
+      <link rel="stylesheet" href="/@id/__x00__virtual:ssr-css.css" data-ssr-css />
       <script
         type="module"
         dangerouslySetInnerHTML={{
