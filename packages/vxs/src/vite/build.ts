@@ -498,12 +498,18 @@ export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
     await userOptions?.afterBuild?.(buildInfo)
   }
 
+  if (process.env.VXRN_ANALYZE_BUNDLE) {
+    postBuildLogs.push(`client build report: ${toAbsolute(`dist/report.html`)}`)
+  }
+
+  if (postBuildLogs.length) {
+    console.info(`\n\n`)
+    postBuildLogs.forEach((log) => {
+      console.info(`  · ${log}`)
+    })
+  }
+
   console.info(`\n\n  💛 build complete\n\n`)
-  console.info(`  · client build report: ${toAbsolute(`dist/report.html`)}`)
-  postBuildLogs.forEach((log) => {
-    console.info(`  · ${log}`)
-  })
-  console.info(`\n\n`)
 }
 
 function removeTrailingSlash(path: string) {
