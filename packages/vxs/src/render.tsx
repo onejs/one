@@ -9,6 +9,8 @@ export function render(element: React.ReactNode) {
     globalThis['__vxrnVersion']++
     globalThis['__vxrnRoot'].render(element)
   } else {
+    // const deferLoad = requestAnimationFrame || setImmediate
+    // deferLoad(() => {
     startTransition(() => {
       if (globalThis['__vxrnIsSPA']) {
         const root = createRoot(document.body)
@@ -33,5 +35,6 @@ export function render(element: React.ReactNode) {
         })
       }
     })
+    // })
   }
 }
