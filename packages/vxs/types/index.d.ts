@@ -2,7 +2,7 @@ export type { VXSRouter, One } from './interfaces/router';
 import type { VXSRouter } from './interfaces/router';
 export type Href = VXSRouter.Href;
 export type LinkProps<T extends string | object = string> = VXSRouter.LinkProps<T>;
-export type { Endpoint } from './types';
+export type { Endpoint, LoaderProps } from './types';
 export * from '@vxrn/universal-color-scheme';
 export { Root } from './Root';
 export { render } from './render';

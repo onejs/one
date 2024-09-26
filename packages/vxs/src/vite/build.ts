@@ -12,7 +12,7 @@ import {
   type ClientManifestEntry,
 } from 'vxrn'
 import type { RouteInfo } from '../server/createRoutesManifest'
-import type { RenderApp } from '../types'
+import type { LoaderProps, RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { replaceLoader } from './replaceLoader'
 import type { VXS } from './types'
@@ -293,8 +293,22 @@ export async function build(args: {
       return [entry.file, ...collectImports(entry)]
     })
 
+    const preloadSetupFilePreloads = (() => {
+      if (userOptions.setupFile) {
+        for (const file in vxrnOutput.clientManifest) {
+          if (file === userOptions.setupFile) {
+            const entry = vxrnOutput.clientManifest[file]
+            return [entry.file as string, ...(entry.imports as string[])]
+          }
+        }
+      }
+
+      return []
+    })()
+
     const preloads = [
       ...new Set([
+        ...preloadSetupFilePreloads,
         // add the route entry js (like ./app/index.ts)
         clientManifestEntry.file,
         // add the virtual entry
@@ -336,7 +350,10 @@ export async function build(args: {
 `)
     }
 
-    const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Object[]
+    const paramsList = ((await exported.generateStaticParams?.()) ?? [{}]) as Record<
+      string,
+      string
+    >[]
 
     console.info(`\n [build] page ${relativeId} (with ${paramsList.length} routes)\n`)
 
@@ -372,7 +389,7 @@ export async function build(args: {
 
         // ssr, we basically skip at build-time and just compile it the js we need
         if (foundRoute.type !== 'ssr') {
-          const loaderProps = { path, params }
+          const loaderProps: LoaderProps = { path, params }
           globalThis['__vxrnLoaderProps__'] = loaderProps
           // importing resetState causes issues :/
           globalThis['__vxrnresetState']?.()
