@@ -110,7 +110,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         excludeAPIRoutesPlugin,
         // if an error occurs (like can't find index.html, it seems to show an
         // error saying can't find report here instead, so a bit confusing)
-        buildArgs.analyze || options.build?.analyze
+        process.env.VXRN_ANALYZE_BUNDLE
           ? analyzer({
               analyzerMode: 'static',
               fileName: '../report',

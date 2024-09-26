@@ -477,7 +477,7 @@ export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
   }
 
   console.info(`\n\n  💛 build complete\n\n`)
-  console.info(`  · client build report: ${join('.', 'dist', 'report.html')}`)
+  console.info(`  · client build report: ${toAbsolute(`dist/report.html`)}`)
   postBuildLogs.forEach((log) => {
     console.info(`  · ${log}`)
   })
