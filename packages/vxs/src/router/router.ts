@@ -326,6 +326,9 @@ export function useVXSRouter() {
 }
 
 function syncStoreRootState() {
+  if (!navigationRef) {
+    throw new Error(`No navigationRef, possible duplicate VXS dep`)
+  }
   if (navigationRef.isReady()) {
     const currentState = navigationRef.getRootState() as unknown as VXSRouter.ResultState
     if (rootState !== currentState) {
