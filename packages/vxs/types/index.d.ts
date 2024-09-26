@@ -29,5 +29,5 @@ export { Head } from './head';
 export { withLayoutContext } from './layouts/withLayoutContext';
 export { useFocusEffect } from './useFocusEffect';
 export { useNavigation } from './useNavigation';
-export { type LoaderProps, useLoader } from './useLoader';
+export { useLoader } from './useLoader';
 //# sourceMappingURL=index.d.ts.map

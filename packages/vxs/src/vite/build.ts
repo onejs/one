@@ -295,8 +295,9 @@ export async function build(args: {
 
     const preloadSetupFilePreloads = (() => {
       if (userOptions.setupFile) {
+        const needle = userOptions.setupFile.replace(/^\.\//, '')
         for (const file in vxrnOutput.clientManifest) {
-          if (file === userOptions.setupFile) {
+          if (file === needle) {
             const entry = vxrnOutput.clientManifest[file]
             return [entry.file as string, ...(entry.imports as string[])]
           }
