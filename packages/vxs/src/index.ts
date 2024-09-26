@@ -20,7 +20,7 @@ export { Tabs } from './layouts/Tabs'
 export { SafeAreaView } from 'react-native-safe-area-context'
 export { Navigator, Slot } from './views/Navigator'
 export { ErrorBoundary } from './views/ErrorBoundary'
-export { Unmatched } from './views/Unmatched'
+// export { Unmatched } from './fallbackViews/Unmatched'
 export { ScrollRestoration } from './views/ScrollRestoration'
 export { PageLoadProgressBar } from './views/PageLoadProgressBar'
 

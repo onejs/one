@@ -8,6 +8,7 @@ import {
 } from './matchers'
 import type { DynamicConvention, RouteNode } from './Route'
 import { getPageExport } from './utils/getPageExport'
+import { requireResolve } from './utils/requireResolve'
 import type { VXS } from './vite/types'
 // import { Unmatched } from './views/Unmatched'
 
@@ -487,18 +488,21 @@ export function generateDynamic(path: string): DynamicConvention[] | null {
   return dynamic.length === 0 ? null : dynamic
 }
 
+// const resolve = (path) => new URL(path, import.meta.url).pathname
+
 function appendSitemapRoute(directory: DirectoryNode) {
   if (!directory.files.has('_sitemap')) {
     directory.files.set('_sitemap', [
       {
         loadRoute() {
+          console.warn(`Loading sitemap`)
           // const { Sitemap, getNavOptions } = require('./views/Sitemap')
           // return { default: Sitemap, getNavOptions }
           return { default: () => null, getNavOptions: () => {} }
         },
         route: '_sitemap',
         type: 'ssg',
-        contextKey: 'router/build/views/Sitemap.js',
+        contextKey: '',
         generated: true,
         internal: true,
         dynamic: null,
@@ -513,11 +517,12 @@ function appendNotFoundRoute(directory: DirectoryNode) {
     directory.files.set('+not-found', [
       {
         loadRoute() {
+          console.warn(`Loading not found`)
           return { default: () => null }
         },
         type: 'ssg',
         route: '+not-found',
-        contextKey: 'router/build/views/Unmatched.js',
+        contextKey: '',
         generated: true,
         internal: true,
         dynamic: [{ name: '+not-found', deep: true, notFound: true }],

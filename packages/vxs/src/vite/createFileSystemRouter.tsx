@@ -12,6 +12,7 @@ import { replaceLoader } from './replaceLoader'
 import { resolveAPIRequest } from './resolveAPIRequest'
 import type { VXS } from './types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
+import { Unmatched } from '../fallbackViews/Unmatched'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -125,7 +126,8 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
               // importing directly causes issues :/
               globalThis['__vxrnresetState']?.()
 
-              const exported = await runner.import(routeFile)
+              // its '' for now for unmatched
+              const exported = routeFile === '' ? {} : await runner.import(routeFile)
               const loaderData = await exported.loader?.(loaderProps)
 
               // TODO move to tamagui plugin, also esbuild was getting mad
@@ -179,8 +181,6 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
 
           async handleLoader({ request, route, url, loaderProps }) {
             const routeFile = join('app', route.file)
-
-            console.log('loading', routeFile)
 
             // this will remove all loaders
             let transformedJS = (await server.transformRequest(routeFile))?.code
