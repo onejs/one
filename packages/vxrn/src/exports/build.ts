@@ -128,6 +128,12 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         manifest: true,
         rollupOptions: {
           input: ['virtual:vxs-entry'],
+
+          // output: {
+          //   manualChunks: {
+          //     preload: ['\0vite/preload-helper.js'],
+          //   },
+          // },
         },
       },
     } satisfies UserConfig)

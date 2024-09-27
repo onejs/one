@@ -520,7 +520,7 @@ function appendNotFoundRoute(directory: DirectoryNode) {
           console.warn(`Loading not found`)
           return { default: () => null }
         },
-        type: 'ssg',
+        type: 'spa',
         route: '+not-found',
         contextKey: '',
         generated: true,
