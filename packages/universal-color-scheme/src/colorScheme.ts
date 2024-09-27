@@ -16,6 +16,18 @@ const listeners = new Set<ColorSchemeListener>()
 let currentSetting: ColorSchemeSetting = 'system'
 let currentName: ColorSchemeName = 'light'
 
+// only runs once a hook is used to ensure it SSRs safely
+let isListening = false
+function startWebMediaListener() {
+  if (isListening) return
+  isListening = true
+  getWebIsDarkMatcher()?.addEventListener?.('change', (val) => {
+    if (currentSetting === 'system') {
+      update(getSystemColorScheme())
+    }
+  })
+}
+
 export function setColorScheme(next: ColorSchemeSetting) {
   update(next)
 }
@@ -35,21 +47,11 @@ export function useColorScheme() {
   const [state, setState] = useState(getColorScheme())
 
   useIsomorphicLayoutEffect(() => {
+    startWebMediaListener()
     return onColorSchemeChange((setting, val) => setState(val))
   }, [])
 
   return [state, setColorScheme] as const
-}
-
-let isListening = false
-function startWebMediaListener() {
-  if (isListening) return
-  isListening = true
-  getWebIsDarkMatcher()?.addEventListener?.('change', (val) => {
-    if (currentSetting === 'system') {
-      update(getSystemColorScheme())
-    }
-  })
 }
 
 if (process.env.TAMAGUI_TARGET === 'native') {
