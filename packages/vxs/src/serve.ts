@@ -81,7 +81,6 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
   }
 
   const entryServer = getServerEntry(serverOptions)
-  const serverCJS = getServerCJSSetting(serverOptions)
   const entry = await import(entryServer)
 
   const render = entry.default.render as (props: RenderAppProps) => any
