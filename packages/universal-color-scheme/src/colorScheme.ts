@@ -3,9 +3,9 @@
 // but its common to want to have a way to force override the scheme
 // this implements a setColorScheme and getColorScheme that can override system
 
+import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
 import { useState } from 'react'
 import { Appearance } from 'react-native'
-import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
 
 export type ColorSchemeName = 'light' | 'dark'
 export type ColorSchemeSetting = ColorSchemeName | 'system'
@@ -90,15 +90,16 @@ function getSystemColorScheme() {
 }
 
 function update(setting: ColorSchemeSetting) {
-  if (setting === currentSetting) return
-
   const next = setting === 'system' ? getSystemColorScheme() : setting
-  currentSetting = setting
-  currentName = next
 
-  if (process.env.TAMAGUI_TARGET === 'native') {
-    Appearance.setColorScheme(next)
+  if (next !== currentName || currentSetting !== setting) {
+    currentSetting = setting
+    currentName = next
+
+    if (process.env.TAMAGUI_TARGET === 'native') {
+      Appearance.setColorScheme(next)
+    }
+
+    listeners.forEach((l) => l(currentSetting, currentName))
   }
-
-  listeners.forEach((l) => l(currentSetting, currentName))
 }
