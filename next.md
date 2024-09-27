@@ -47,6 +47,8 @@ should have some sprints with "challenges":
 
 # backlog
 
+- perf - in dev mode collectStyle is called a ton on each load
+
 - probably need to bundle api routes by default? too many esm/cjs issues
 
 - Sitemap is partially done

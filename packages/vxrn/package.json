@@ -65,7 +65,7 @@
     "h3-proxy": "^1.13.0",
     "hono": "^4.5.8",
     "import-meta-resolve": "^4.1.0",
-    "lightningcss": "^1.26.0",
+    "lightningcss": "^1.27.0",
     "picocolors": "^1.0.0",
     "pkg-types": "^1.0.3",
     "rollup": "^4.21.0",

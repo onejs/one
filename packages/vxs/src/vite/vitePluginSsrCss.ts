@@ -1,9 +1,9 @@
-import { transform } from 'lightningcss'
 import type { Plugin, ViteDevServer } from 'vite'
 
 // thanks to hi-ogawa https://github.com/hi-ogawa/vite-plugins/tree/main/packages/ssr-css
 
-const VIRTUAL_ENTRY = 'virtual:ssr-css.css'
+// safari insanely aggressive caching
+export const VIRTUAL_ENTRY = `virtual:ssr-css.css`
 
 export function vitePluginSsrCss(pluginOpts: { entries: string[] }): Plugin {
   let server: ViteDevServer
@@ -19,12 +19,14 @@ export function vitePluginSsrCss(pluginOpts: { entries: string[] }): Plugin {
 
       // invalidate virtual modules for each direct request
       server.middlewares.use(async (req, res, next) => {
-        if (req.url === virtualHref) {
+        if (req.url?.includes(virtualHref)) {
           invalidateModule(server, '\0' + VIRTUAL_ENTRY + '?direct')
 
           let code = await collectStyle(server, pluginOpts.entries)
 
           res.setHeader('Content-Type', 'text/css')
+          res.setHeader('Cache-Control', 'no-store')
+          res.setHeader('Vary', '*')
           res.write(code)
           res.end()
           return
@@ -106,6 +108,10 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
       const prefix = `/* [collectStyle] ${url} */`
 
       try {
+        console.log('code', code)
+
+        const { transform } = await import('lightningcss')
+
         const processed = transform({
           filename: 'code.css',
           code: Buffer.from(code),

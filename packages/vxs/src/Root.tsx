@@ -16,6 +16,7 @@ import { useInitializeVXSRouter } from './router/useInitializeVXSRouter'
 import { PreloadLinks } from './views/PreloadLinks'
 import { ScrollRestoration } from './views/ScrollRestoration'
 import type { VXS } from './vite/types'
+import { rand } from './utils/rand'
 // import { SplashScreen } from './views/Splash'
 
 if (typeof window !== 'undefined') {
@@ -119,11 +120,13 @@ export function Root(props: RootProps) {
   )
 }
 
+const ssrCSSID = `/@id/__x00__virtual:ssr-css.css?t=${rand()}`
+
 function DevHead() {
   return (
     <>
-      <link rel="preload" href="/@id/__x00__virtual:ssr-css.css" as="style" />
-      <link rel="stylesheet" href="/@id/__x00__virtual:ssr-css.css" data-ssr-css />
+      <link rel="preload" href={ssrCSSID} as="style" />
+      <link rel="stylesheet" href={ssrCSSID} data-ssr-css />
       <script
         type="module"
         dangerouslySetInnerHTML={{
