@@ -117,6 +117,32 @@ export function expoManifestRequestHandlerPlugin(
           return url.toString()
         }
 
+        manifestHandlerMiddleware._origGetManifestResponseAsync =
+          manifestHandlerMiddleware._getManifestResponseAsync
+
+        manifestHandlerMiddleware._getManifestResponseAsync = async (...args) => {
+          const results = await manifestHandlerMiddleware._origGetManifestResponseAsync(...args)
+
+          const parsedBody = JSON.parse(results.body)
+          if (!parsedBody.extra) {
+            parsedBody.extra = {}
+          }
+          if (!parsedBody.extra.expoClient) {
+            parsedBody.extra.expoClient = {}
+          }
+          // TODO: Using a static icon and splash for branding for now.
+          parsedBody.extra.expoClient.iconUrl = 'https://github.com/user-attachments/assets/6894506b-df81-417c-a4cd-9c125c7ba37f' // TODO: Host this icon somewhere.
+          parsedBody.extra.expoClient.splash = {
+            image: '__vxrn_unstable_internal/icon.png',
+            resizeMode: 'contain',
+            backgroundColor: '#ffffff',
+            imageUrl: 'https://github.com/user-attachments/assets/e816c207-e7d2-4c2e-8aa5-0d4cbaa622bf', // TODO: Host this image somewhere.
+          }
+          results.body = JSON.stringify(parsedBody)
+
+          return results
+        }
+
         // Handle the Expo manifest request.
         manifestHandlerMiddleware.handleRequestAsync(req, res, next)
       })
