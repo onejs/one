@@ -101,7 +101,7 @@
     "fast-glob": "^3.2.11",
     "fs-extra": "^11.2.0",
     "hono": "^4.5.8",
-    "lightningcss": "^1.26.0",
+    "lightningcss": "^1.27.0",
     "micromatch": "^4.0.7",
     "nanoid": "^3.3.7",
     "perfect-debounce": "^1.0.0",

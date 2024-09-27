@@ -15271,7 +15271,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lightningcss@npm:^1.26.0":
+"lightningcss@npm:^1.27.0":
   version: 1.27.0
   resolution: "lightningcss@npm:1.27.0"
   dependencies:
@@ -22315,7 +22315,7 @@ __metadata:
     h3-proxy: "npm:^1.13.0"
     hono: "npm:^4.5.8"
     import-meta-resolve: "npm:^4.1.0"
-    lightningcss: "npm:^1.26.0"
+    lightningcss: "npm:^1.27.0"
     picocolors: "npm:^1.0.0"
     pkg-types: "npm:^1.0.3"
     rollup: "npm:^4.21.0"
@@ -22365,7 +22365,7 @@ __metadata:
     fast-glob: "npm:^3.2.11"
     fs-extra: "npm:^11.2.0"
     hono: "npm:^4.5.8"
-    lightningcss: "npm:^1.26.0"
+    lightningcss: "npm:^1.27.0"
     micromatch: "npm:^4.0.7"
     nanoid: "npm:^3.3.7"
     perfect-debounce: "npm:^1.0.0"
