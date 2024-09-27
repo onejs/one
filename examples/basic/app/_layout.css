@@ -21,3 +21,11 @@ a {
   text-underline-offset: 3px;
   transition: all ease-in 100ms;
 }
+
+:root {
+  --bodyBg: #fff;
+}
+
+:root.t_dark {
+  --bodyBg: #000;
+}

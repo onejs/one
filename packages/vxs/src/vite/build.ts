@@ -344,10 +344,16 @@ export async function build(args: {
       })
     }
 
-    if (foundRoute.type !== 'ssr' && !exported.generateStaticParams && relativeId.includes('[')) {
+    if (
+      foundRoute.type !== 'ssr' &&
+      !foundRoute.page.includes('+not-found') &&
+      !foundRoute.page.includes('_sitemap') &&
+      !exported.generateStaticParams &&
+      relativeId.includes('[')
+    ) {
       throw new Error(`[vxs] Error: Missing generateStaticParams
 
-  Routes of type ${foundRoute.type} that use dynamic path segments must export generateStaticParams so build can complete.
+  Route ${foundRoute.page} of type ${foundRoute.type} must export generateStaticParams so build can complete.
 
   See docs on generateStaticParams:
     https://onestack.dev/docs/routing-exports#generatestaticparams
