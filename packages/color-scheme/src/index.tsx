@@ -112,6 +112,9 @@ export const MetaTheme = ({
       {/* maybe bug in safari or react */}
       <meta
         itemProp="__deopt"
+        // because the script below runs before render it actually ruins our nice ssr logic here
+        // instead we just avoid the warning its a single tag
+        suppressHydrationWarning
         id="vxrn-theme-color"
         name="theme-color"
         content={color ?? (colorScheme === 'dark' ? darkColor : lightColor)}
