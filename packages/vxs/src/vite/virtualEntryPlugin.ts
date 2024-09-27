@@ -1,4 +1,5 @@
 import type { Plugin } from 'vite'
+import { isNativeEnvironment } from 'vxrn'
 
 export const virtualEntryIdName = `vxs-entry`
 export const virtualEntryId = `virtual:${virtualEntryIdName}`
@@ -8,6 +9,12 @@ const resolvedVirtualEntryId = '\0' + virtualEntryId
 const virtualEntryIdNativeName = `${virtualEntryIdName}-native`
 export const virtualEntryIdNative = `virtual:${virtualEntryIdNativeName}`
 const resolvedVirtualEntryIdNative = '\0' + virtualEntryIdNativeName
+
+const USE_VXS_SETUP_FILE = `
+if (process.env.VXS_SETUP_FILE) {
+  import(/* @vite-ignore */ process.env.VXS_SETUP_FILE)
+}
+`
 
 export function createVirtualEntry(options: { root: string }): Plugin {
   const appDirGlob = `/${options.root}/**/*.tsx`
@@ -27,11 +34,12 @@ export function createVirtualEntry(options: { root: string }): Plugin {
 
     load(id) {
       if (id === resolvedVirtualEntryId) {
+        const prependCode = isNativeEnvironment(this.environment)
+          ? '' /* `import()` will not work on native */
+          : USE_VXS_SETUP_FILE
         return `
-if (process.env.VXS_SETUP_FILE) {
-  import(/* @vite-ignore */ process.env.VXS_SETUP_FILE)
-}
-        
+${prependCode}
+
 import { createApp } from 'vxs'
 
 // globbing ${appDirGlob}
@@ -42,10 +50,11 @@ export default createApp({
       }
 
       if (id === resolvedVirtualEntryIdNative) {
+        const prependCode = isNativeEnvironment(this.environment)
+          ? '' /* `import()` will not work on native */
+          : USE_VXS_SETUP_FILE
         return `
-if (process.env.VXS_SETUP_FILE) {
-  import(/* @vite-ignore */ process.env.VXS_SETUP_FILE)
-}
+${prependCode}
 
 import { createApp } from 'vxs'
 

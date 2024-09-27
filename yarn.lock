@@ -7510,6 +7510,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/qrcode-terminal@npm:^0":
+  version: 0.12.2
+  resolution: "@types/qrcode-terminal@npm:0.12.2"
+  checksum: 10/ffe217b12f12a260a6d1672f7a1b9d5943c837b6a8e8f7762654ec77a988bf60c516f3be87833b116129c2c8cb9b7890d53b8938cdfa66a5414cf3d458e8d235
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^18.2.25":
   version: 18.3.0
   resolution: "@types/react-dom@npm:18.3.0"
@@ -14133,6 +14140,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ip@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "ip@npm:2.0.1"
+  checksum: 10/d6dd154e1bc5e8725adfdd6fb92218635b9cbe6d873d051bd63b178f009777f751a5eea4c67021723a7056325fc3052f8b6599af0a2d56f042c93e684b4a0349
+  languageName: node
+  linkType: hard
+
 "ipaddr.js@npm:^1.9.0":
   version: 1.9.1
   resolution: "ipaddr.js@npm:1.9.1"
@@ -18318,6 +18332,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qrcode-terminal@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "qrcode-terminal@npm:0.12.0"
+  bin:
+    qrcode-terminal: ./bin/qrcode-terminal.js
+  checksum: 10/ebfcbdbded6797f2dc0bed08d4d119c207ccb6c1b0010115c37e346a1067a182c11117fe6018dd13a8fae918fa88158a549f81cc47579cc6feb50787656268af
+  languageName: node
+  linkType: hard
+
 "query-string@npm:^7.1.3":
   version: 7.1.3
   resolution: "query-string@npm:7.1.3"
@@ -22294,6 +22317,7 @@ __metadata:
     "@tamagui/build": "npm:1.112.0-1727286694781"
     "@types/find-node-modules": "npm:^2.1.2"
     "@types/node": "npm:^22.1.0"
+    "@types/qrcode-terminal": "npm:^0"
     "@types/ws": "npm:^8.5.10"
     "@vitejs/plugin-react-swc": "npm:^3.7.0"
     "@vxrn/react-native-prebuilt": "npm:1.1.259"
@@ -22315,9 +22339,11 @@ __metadata:
     h3-proxy: "npm:^1.13.0"
     hono: "npm:^4.5.8"
     import-meta-resolve: "npm:^4.1.0"
+    ip: "npm:^2.0.1"
     lightningcss: "npm:^1.27.0"
     picocolors: "npm:^1.0.0"
     pkg-types: "npm:^1.0.3"
+    qrcode-terminal: "npm:^0.12.0"
     rollup: "npm:^4.21.0"
     semver: "npm:^7.6.3"
     vite: "npm:6.0.0-beta.1"
