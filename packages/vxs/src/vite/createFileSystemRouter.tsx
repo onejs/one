@@ -1,7 +1,8 @@
 import { join } from 'node:path'
 import { debounce } from 'perfect-debounce'
-import type { Connect, Plugin } from 'vite'
+import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner } from 'vite'
+import type { ModuleRunner } from 'vite/module-runner'
 import { createHandleRequest } from '../handleRequest'
 import type { RenderAppProps } from '../types'
 import { isResponse } from '../utils/isResponse'
@@ -19,12 +20,187 @@ const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
   // const { optimizeDeps } = getOptimizeDeps('serve')
 
+  const preloads = ['/@vite/client', virtalEntryIdClient]
+
+  let runner: ModuleRunner
+  let server: ViteDevServer
+
+  let handleRequest = createRequestHandler()
+  // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
+  let renderPromise: Promise<void> | null = null
+
+  function createRequestHandler() {
+    return createHandleRequest(options, {
+      async handleSSR({ route, url, loaderProps }) {
+        console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
+
+        if (route.type === 'spa') {
+          // render just the layouts? route.layouts
+          return `<html><head>
+            <script>globalThis['global'] = globalThis</script>
+            <script>globalThis['__vxrnIsSPA'] = true</script>
+            <script type="module">
+              import { injectIntoGlobalHook } from "/@react-refresh";
+              injectIntoGlobalHook(window);
+              window.$RefreshReg$ = () => {};
+              window.$RefreshSig$ = () => (type) => type;
+            </script>
+            <script type="module" src="/@vite/client" async=""></script>
+            <script type="module" src="/@id/__x00__virtual:vxs-entry" async=""></script>
+          </head></html>`
+        }
+
+        if (renderPromise) {
+          await renderPromise
+        }
+
+        const { promise, resolve } = promiseWithResolvers<void>()
+        renderPromise = promise
+
+        try {
+          const routeFile = join('app', route.file)
+          runner.clearCache()
+
+          // importing directly causes issues :/
+          globalThis['__vxrnresetState']?.()
+
+          // its '' for now for unmatched
+          const exported = routeFile === '' ? {} : await runner.import(routeFile)
+          const loaderData = await exported.loader?.(loaderProps)
+
+          // TODO move to tamagui plugin, also esbuild was getting mad
+          // biome-ignore lint/security/noGlobalEval: <explanation>
+          eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
+
+          // const entry = await server.ssrLoadModule(virtualEntryId)
+          const entry = await runner.import(virtualEntryId)
+
+          const render = entry.default.render as (props: RenderAppProps) => any
+
+          globalThis['__vxrnLoaderData__'] = loaderData
+          globalThis['__vxrnLoaderProps__'] = loaderProps
+
+          LoaderDataCache[route.file] = loaderData
+
+          const html = await render({
+            loaderData,
+            loaderProps,
+            path: loaderProps?.path || '/',
+            preloads,
+          })
+
+          return html
+        } catch (err) {
+          const title = `Error rendering ${url.pathname} on server`
+          const message = err instanceof Error ? err.message : `${err}`
+          const stack = err instanceof Error ? err.stack : ''
+
+          console.error(`${title}\n ${message}\n\n${stack}\n`)
+
+          return `
+            <html>
+              <body style="background: #000; color: #fff; padding: 5%; font-family: monospace; line-height: 2rem;">
+                <h1 style="display: inline-flex; background: red; color: white; padding: 5px; margin: -5px;">${title}</h1>
+                <h2>${message}</h2>
+                ${
+                  stack
+                    ? `<pre style="font-size: 15px; line-height: 24px; white-space: pre;">
+                    ${stack}
+                </pre>`
+                    : ``
+                }
+              </body>
+            </html>
+          `
+        } finally {
+          resolve()
+        }
+      },
+
+      async handleLoader({ request, route, url, loaderProps }) {
+        const routeFile = join('app', route.file)
+
+        // this will remove all loaders
+        let transformedJS = (await server.transformRequest(routeFile))?.code
+        if (!transformedJS) {
+          throw new Error(`No transformed js returned`)
+        }
+
+        const exported = await runner.import(routeFile)
+
+        const loaderData = await exported.loader?.(loaderProps)
+
+        if (loaderData) {
+          // add loader back in!
+          transformedJS = replaceLoader({
+            code: transformedJS,
+            loaderData,
+          })
+        }
+
+        const platform = url.searchParams.get('platform')
+
+        if (platform === 'ios' || platform === 'android') {
+          // Need to transpile to CommonJS for React Native
+
+          const environment = server.environments[platform || '']
+          if (!environment) {
+            throw new Error(`[handleLoader] No Vite environment found for platform '${platform}'`)
+          }
+
+          // [3] Just use a simple function to return the loader data for now.
+          const nativeTransformedJS = `exports.loader = () => (${JSON.stringify(loaderData)});`
+
+          return nativeTransformedJS
+        }
+
+        return transformedJS
+      },
+
+      async handleAPI({ request, route, url, loaderProps }) {
+        const result = await resolveAPIRequest(
+          () => runner.import(join('app', route.file)),
+          request,
+          loaderProps?.params || {}
+        )
+        return result
+      },
+    })
+  }
+
   return {
     name: `router-fs`,
     enforce: 'post',
     apply: 'serve',
 
     async config(userConfig) {
+      if (handleRequest.manifest.pageRoutes) {
+        const routesAndLayouts = [
+          ...new Set(
+            handleRequest.manifest.pageRoutes.flatMap((route) => {
+              return [
+                join('app', route.file),
+                ...(route.layouts?.map((layout) => {
+                  return join('app', layout.contextKey)
+                }) || []),
+              ]
+            })
+          ),
+        ]
+
+        return {
+          optimizeDeps: {
+            /**
+             * This adds all our routes and layouts as entries which fixes initial load making
+             * optimizeDeps be triggered which causes hard refreshes (also on initial navigations)
+             *
+             * see: https://vitejs.dev/config/dep-optimization-options.html#optimizedeps-entries
+             * and: https://github.com/remix-run/remix/pull/9921
+             */
+            entries: routesAndLayouts,
+          },
+        }
+      }
       // if (USE_SERVER_ENV) {
       //   return {
       //     appType: 'custom',
@@ -64,16 +240,12 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
       // }
     },
 
-    configureServer(server) {
+    configureServer(serverIn) {
+      server = serverIn
       // change this to .server to test using the indepedently scoped env
-      const runner = createServerModuleRunner(
+      runner = createServerModuleRunner(
         USE_SERVER_ENV ? server.environments.server : server.environments.ssr
       )
-
-      // handle only one at a time in dev mode to avoid "Detected multiple renderers concurrently" errors
-      let renderPromise: Promise<void> | null = null
-
-      const preloads = ['/@vite/client', virtalEntryIdClient]
 
       const appDir = join(process.cwd(), 'app')
 
@@ -87,203 +259,6 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
       }, 100)
 
       server.watcher.addListener('all', fileWatcherChangeListener)
-
-      let handleRequest = createRequestHandler()
-
-      function createRequestHandler() {
-        return createHandleRequest(options, {
-          async handleSSR({ route, url, loaderProps }) {
-            console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
-
-            if (route.type === 'spa') {
-              // render just the layouts? route.layouts
-              return `<html><head>
-                <script>globalThis['global'] = globalThis</script>
-                <script>globalThis['__vxrnIsSPA'] = true</script>
-                <script type="module">
-                  import { injectIntoGlobalHook } from "/@react-refresh";
-                  injectIntoGlobalHook(window);
-                  window.$RefreshReg$ = () => {};
-                  window.$RefreshSig$ = () => (type) => type;
-                </script>
-                <script type="module" src="/@vite/client" async=""></script>
-                <script type="module" src="/@id/__x00__virtual:vxs-entry" async=""></script>
-              </head></html>`
-            }
-
-            if (renderPromise) {
-              await renderPromise
-            }
-
-            const { promise, resolve } = promiseWithResolvers<void>()
-            renderPromise = promise
-
-            try {
-              const routeFile = join('app', route.file)
-              runner.clearCache()
-
-              // importing directly causes issues :/
-              globalThis['__vxrnresetState']?.()
-
-              // its '' for now for unmatched
-              const exported = routeFile === '' ? {} : await runner.import(routeFile)
-              const loaderData = await exported.loader?.(loaderProps)
-
-              // TODO move to tamagui plugin, also esbuild was getting mad
-              // biome-ignore lint/security/noGlobalEval: <explanation>
-              eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
-
-              // const entry = await server.ssrLoadModule(virtualEntryId)
-              const entry = await runner.import(virtualEntryId)
-
-              const render = entry.default.render as (props: RenderAppProps) => any
-
-              globalThis['__vxrnLoaderData__'] = loaderData
-              globalThis['__vxrnLoaderProps__'] = loaderProps
-
-              LoaderDataCache[route.file] = loaderData
-
-              const html = await render({
-                loaderData,
-                loaderProps,
-                path: loaderProps?.path || '/',
-                preloads,
-              })
-
-              return html
-            } catch (err) {
-              const title = `Error rendering ${url.pathname} on server`
-              const message = err instanceof Error ? err.message : `${err}`
-              const stack = err instanceof Error ? err.stack : ''
-
-              console.error(`${title}\n ${message}\n\n${stack}\n`)
-
-              return `
-                <html>
-                  <body style="background: #000; color: #fff; padding: 5%; font-family: monospace; line-height: 2rem;">
-                    <h1 style="display: inline-flex; background: red; color: white; padding: 5px; margin: -5px;">${title}</h1>
-                    <h2>${message}</h2>
-                    ${
-                      stack
-                        ? `<pre style="font-size: 15px; line-height: 24px; white-space: pre;">
-                        ${stack}
-                    </pre>`
-                        : ``
-                    }
-                  </body>
-                </html>
-              `
-            } finally {
-              resolve()
-            }
-          },
-
-          async handleLoader({ request, route, url, loaderProps }) {
-            const routeFile = join('app', route.file)
-
-            // this will remove all loaders
-            let transformedJS = (await server.transformRequest(routeFile))?.code
-            if (!transformedJS) {
-              throw new Error(`No transformed js returned`)
-            }
-
-            const exported = await runner.import(routeFile)
-
-            const loaderData = await exported.loader?.(loaderProps)
-
-            if (loaderData) {
-              // add loader back in!
-              transformedJS = replaceLoader({
-                code: transformedJS,
-                loaderData,
-              })
-            }
-
-            const platform = url.searchParams.get('platform')
-
-            if (platform === 'ios' || platform === 'android') {
-              // Need to transpile to CommonJS for React Native
-
-              const environment = server.environments[platform || '']
-              if (!environment) {
-                throw new Error(
-                  `[handleLoader] No Vite environment found for platform '${platform}'`
-                )
-              }
-
-              // [1] Too complex and not working...
-              //
-              // const originalPluginContainer = environment.pluginContainer
-              // // For some reason we need to ignore some plugins, so we create a new EnvironmentPluginContainer with some plugins removed.
-              // // @ts-ignore we cannot import the `EnvironmentPluginContainer` class from Vite, instead this is a hacky way to create a new instance of the plugin container.
-              // const pluginContainer = new environment.pluginContainer.constructor(
-              //   originalPluginContainer.environment,
-              //   originalPluginContainer.plugins.filter((p) => {
-              //     if (p.name === 'vite:import-analysis') {
-              //       // If not skipped, it will throw "There is a new version of the pre-bundle for ..., a page reload is going to ask for it." error if `importerModule` is empty where `const importerModule = moduleGraph.getModuleById(importer);` since moduleGraph would be empty.
-              //       return false
-              //     }
-              //   }),
-              //   originalPluginContainer.watcher
-              // )
-              //
-              // const nativeTransformResult = await pluginContainer.transform(transformedJS, '')
-              // const nativeTransformedJS = nativeTransformResult.code
-
-              // [2] Still need to let `require` work.
-              //
-              // const nativeTransformResult = await swcTransform(routeFile, transformedJS, {
-              //   mode: 'serve-cjs',
-              //   noHMR: true,
-              // })
-              // let nativeTransformedJS = nativeTransformResult?.code || ''
-              //
-              // // Workaround "'import.meta' is currently unsupported" error
-              // let _removingBlock = false
-              // nativeTransformedJS = nativeTransformedJS
-              //   .split('\n')
-              //   .filter((line) => {
-              //     if (_removingBlock) {
-              //       if (!line.startsWith('    ')) {
-              //         _removingBlock = false
-              //       }
-              //       return false
-              //     }
-              //
-              //     if (line.startsWith('import.meta.hot')) {
-              //       return false
-              //     }
-              //     if (line.startsWith('window.$Refresh')) {
-              //       return false
-              //     }
-              //     if (line.startsWith('_reactrefresh.__hmr_import')) {
-              //       _removingBlock = true
-              //       return false
-              //     }
-              //
-              //     return true
-              //   })
-              //   .join('\n')
-
-              // [3] Just use a simple function to return the loader data for now.
-              const nativeTransformedJS = `exports.loader = () => (${JSON.stringify(loaderData)});`
-
-              return nativeTransformedJS
-            }
-
-            return transformedJS
-          },
-
-          async handleAPI({ request, route, url, loaderProps }) {
-            const result = await resolveAPIRequest(
-              () => runner.import(join('app', route.file)),
-              request,
-              loaderProps?.params || {}
-            )
-            return result
-          },
-        })
-      }
 
       // Instead of adding the middleware here, we return a function that Vite
       // will call after adding its own middlewares. We want our code to run after
@@ -318,7 +293,7 @@ export function createFileSystemRouter(options: VXS.PluginOptions): Plugin {
               }
             }
 
-            const reply = await handleRequest(await convertIncomingMessageToRequest(req))
+            const reply = await handleRequest.handler(await convertIncomingMessageToRequest(req))
 
             if (!reply) {
               return next()

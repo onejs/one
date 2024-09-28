@@ -182,7 +182,7 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
 
     try {
       const request = context.req.raw
-      const response = await handleRequest(request)
+      const response = await handleRequest.handler(request)
 
       if (response) {
         if (isResponse(response)) {

@@ -48,125 +48,128 @@ export function createHandleRequest(
     workingRegex: new RegExp(route.namedRegex),
   }))
 
-  return async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
-    const urlString = request.url || ''
-    const url = new URL(
-      urlString || '',
-      request.headers.get('host') ? `http://${request.headers.get('host')}` : ''
-    )
-    const { pathname, search } = url
+  return {
+    manifest,
+    handler: async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
+      const urlString = request.url || ''
+      const url = new URL(
+        urlString || '',
+        request.headers.get('host') ? `http://${request.headers.get('host')}` : ''
+      )
+      const { pathname, search } = url
 
-    if (process.env.NODE_ENV !== 'production') {
-      if (activeRequests[pathname]) {
-        return await activeRequests[pathname]
+      if (process.env.NODE_ENV !== 'production') {
+        if (activeRequests[pathname]) {
+          return await activeRequests[pathname]
+        }
       }
-    }
 
-    if (pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
-      return null
-    }
+      if (pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
+        return null
+      }
 
-    if (handlers.handleAPI) {
-      const apiRoute = apiRoutesList.find((route) => {
-        const regex = route.compiledRegex
-        return regex.test(pathname)
-      })
-
-      if (apiRoute) {
-        const params = getRouteParams(pathname, apiRoute)
-        return await handlers.handleAPI({
-          request,
-          route: apiRoute,
-          url,
-          loaderProps: {
-            path: pathname,
-            params,
-          },
+      if (handlers.handleAPI) {
+        const apiRoute = apiRoutesList.find((route) => {
+          const regex = route.compiledRegex
+          return regex.test(pathname)
         })
-      }
-    }
 
-    if (request.method !== 'GET') {
+        if (apiRoute) {
+          const params = getRouteParams(pathname, apiRoute)
+          return await handlers.handleAPI({
+            request,
+            route: apiRoute,
+            url,
+            loaderProps: {
+              path: pathname,
+              params,
+            },
+          })
+        }
+      }
+
+      if (request.method !== 'GET') {
+        return null
+      }
+
+      if (handlers.handleLoader) {
+        const isClientRequestingNewRoute = pathname.endsWith('_vxrn_loader.js')
+
+        if (isClientRequestingNewRoute) {
+          const originalUrl = pathname.replace('_vxrn_loader.js', '').replace(/^\/assets/, '')
+          const finalUrl = new URL(originalUrl, url.origin)
+
+          for (const route of pageRoutes) {
+            if (!route.workingRegex.test(finalUrl.pathname)) {
+              continue
+            }
+
+            const headers = new Headers()
+            headers.set('Content-Type', 'text/javascript')
+
+            const loaderResponse = await handlers.handleLoader({
+              request,
+              route,
+              url,
+              loaderProps: {
+                path: finalUrl.pathname,
+                params: getLoaderParams(finalUrl, route),
+              },
+            })
+
+            return new Response(loaderResponse, {
+              headers,
+            })
+          }
+
+          if (process.env.NODE_ENV === 'development') {
+            console.error(`No matching route found!`, {
+              originalUrl,
+              routes: manifest.pageRoutes,
+            })
+          }
+
+          // error no match!
+
+          return Response.error()
+        }
+      }
+
+      if (handlers.handleSSR) {
+        const { promise, reject, resolve } = promiseWithResolvers()
+
+        // TODO timeout handler to clear activeRequests and log error
+        activeRequests[pathname] = promise
+
+        try {
+          for (const route of pageRoutes) {
+            if (!route.workingRegex.test(pathname)) {
+              continue
+            }
+
+            const ssrResponse = await handlers.handleSSR({
+              request,
+              route,
+              url,
+              loaderProps: {
+                path: pathname + search,
+                params: getLoaderParams(url, route),
+              },
+            })
+
+            resolve(ssrResponse)
+            return ssrResponse
+          }
+        } catch (err) {
+          reject(err)
+          throw err
+        } finally {
+          delete activeRequests[pathname]
+        }
+      }
+
       return null
-    }
-
-    if (handlers.handleLoader) {
-      const isClientRequestingNewRoute = pathname.endsWith('_vxrn_loader.js')
-
-      if (isClientRequestingNewRoute) {
-        const originalUrl = pathname.replace('_vxrn_loader.js', '').replace(/^\/assets/, '')
-        const finalUrl = new URL(originalUrl, url.origin)
-
-        for (const route of pageRoutes) {
-          if (!route.workingRegex.test(finalUrl.pathname)) {
-            continue
-          }
-
-          const headers = new Headers()
-          headers.set('Content-Type', 'text/javascript')
-
-          const loaderResponse = await handlers.handleLoader({
-            request,
-            route,
-            url,
-            loaderProps: {
-              path: finalUrl.pathname,
-              params: getLoaderParams(finalUrl, route),
-            },
-          })
-
-          return new Response(loaderResponse, {
-            headers,
-          })
-        }
-
-        if (process.env.NODE_ENV === 'development') {
-          console.error(`No matching route found!`, {
-            originalUrl,
-            routes: manifest.pageRoutes,
-          })
-        }
-
-        // error no match!
-
-        return Response.error()
-      }
-    }
-
-    if (handlers.handleSSR) {
-      const { promise, reject, resolve } = promiseWithResolvers()
-
-      // TODO timeout handler to clear activeRequests and log error
-      activeRequests[pathname] = promise
-
-      try {
-        for (const route of pageRoutes) {
-          if (!route.workingRegex.test(pathname)) {
-            continue
-          }
-
-          const ssrResponse = await handlers.handleSSR({
-            request,
-            route,
-            url,
-            loaderProps: {
-              path: pathname + search,
-              params: getLoaderParams(url, route),
-            },
-          })
-
-          resolve(ssrResponse)
-          return ssrResponse
-        }
-      } catch (err) {
-        reject(err)
-        throw err
-      } finally {
-        delete activeRequests[pathname]
-      }
-    }
-
-    return null
+    },
   }
 }
 

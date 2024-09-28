@@ -1,6 +1,7 @@
 import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import type { InlineConfig } from 'vite'
 import { androidExtensions, iosExtensions, webExtensions } from '../constants'
+import { requireResolve } from './requireResolve'
 
 // essentially base web config not base everything
 
@@ -83,7 +84,7 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
 
     resolve: {
       alias: {
-        'react-native': 'react-native-web',
+        'react-native': requireResolve('react-native-web'),
         'react-native-safe-area-context': '@vxrn/safe-area',
       },
 
