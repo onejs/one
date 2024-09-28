@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/one-ui",
-  "version": "1.1.261",
+  "version": "1.1.262",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,7 @@
     "@tamagui/image-next": "^1.112.3",
     "@tamagui/lucide-icons": "^1.112.3",
     "@tamagui/vite-plugin": "^1.112.3",
-    "@vxrn/color-scheme": "1.1.261",
+    "@vxrn/color-scheme": "1.1.262",
     "react": "^18.3.1",
     "react-native": "0.74.1",
     "react-native-reanimated": "npm:react-native-reanimated@3.13.0-rc.1",
@@ -25,7 +25,7 @@
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
     "tamagui": "^1.112.3",
-    "vxs": "1.1.261"
+    "vxs": "1.1.262"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1",
