@@ -232,7 +232,7 @@ export async function build(args: {
     const clientManifestEntry = vxrnOutput.clientManifest[clientManifestKey]
 
     const findMatchingRoute = (route: RouteInfo<string>) => {
-      return clientManifestKey.endsWith(route.file.slice(1))
+      return route.file && clientManifestKey.endsWith(route.file.slice(1))
     }
 
     const foundRoute = manifest.pageRoutes.find(findMatchingRoute)
@@ -330,6 +330,10 @@ export async function build(args: {
       .flatMap((entry) => collectImports(entry, { type: 'css' }))
       // nested path pages need to reference root assets
       .map((path) => `/${path}`)
+
+    if (process.env.DEBUG) {
+      console.info('[vxs] building routes', { foundRoute, layoutEntries, allEntries, allCSS })
+    }
 
     const serverJsPath = toAbsolute(join('dist/server', output.fileName))
 
