@@ -4,7 +4,7 @@ import { ToggleThemeButton } from '~/features/theme/ToggleThemeButton'
 
 export default function FeedLayout() {
   return (
-    <>
+    <View>
       {isWeb ? (
         <Slot />
       ) : (
@@ -23,6 +23,6 @@ export default function FeedLayout() {
           <Stack.Screen name="post/[id]" options={{ title: 'Post' }} />
         </Stack>
       )}
-    </>
+    </View>
   )
 }

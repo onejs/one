@@ -21,9 +21,9 @@ export default {
     }),
 
     tamaguiPlugin({
+      optimize: true,
       components: ['tamagui'],
       config: './config/tamagui.config.ts',
-      optimize: true,
       outputCSS: './features/styles/tamagui.css',
     }),
   ],
