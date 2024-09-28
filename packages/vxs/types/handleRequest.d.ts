@@ -14,6 +14,9 @@ export declare function createHandleRequest(options: VXS.PluginOptions, handlers
     handleSSR?: (props: RequestHandlerProps) => Promise<any>;
     handleLoader?: (props: RequestHandlerProps) => Promise<any>;
     handleAPI?: (props: RequestHandlerProps) => Promise<any>;
-}): (request: Request) => Promise<RequestHandlerResponse>;
+}): {
+    manifest: import("./server/createRoutesManifest").RoutesManifest<string>;
+    handler: (request: Request) => Promise<RequestHandlerResponse>;
+};
 export {};
 //# sourceMappingURL=handleRequest.d.ts.map

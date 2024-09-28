@@ -27,7 +27,7 @@ const TamaguiRootProvider = ({ children }: { children: React.ReactNode }) => {
   const [scheme] = useColorScheme()
 
   return (
-    <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme}>
+    <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme} disableRootThemeClass>
       {children}
     </TamaguiProvider>
   )
