@@ -1,5 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
 import type { Schema } from 'zql/src/zql/query/schema.js'
+// @ts-ignore
 import type { Query, QueryType, Smash } from 'zql/src/zql/query/query.js'
 // @ts-ignore
 import type { TypedView } from 'zql/src/zql/query/typed-view.js'

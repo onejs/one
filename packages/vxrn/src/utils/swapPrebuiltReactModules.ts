@@ -172,8 +172,11 @@ export async function swapPrebuiltReactModules(
       }
 
       // We might have aliased `react-native` to `react-native-web` (see `'react-native': 'react-native-web'` in `utils/getBaseViteConfig.ts`) so we need to handle that case too.
-      if (id.startsWith('react-native-web/Libraries')) {
-        return `virtual:rn-internals:${id.replace(/^react-native-web/, 'react-native')}`
+      if (
+        id.startsWith('react-native-web/Libraries') ||
+        id.includes('react-native-web/dist/cjs/index.js/Libraries') // Possible after switched to CJS (Tamagui 1.112.3)
+      ) {
+        return `virtual:rn-internals:${id.replace(/^.*react-native-web(\/dist\/cjs\/index.js)?/, 'react-native')}`
       }
 
       if (id === 'react-native-web') {
