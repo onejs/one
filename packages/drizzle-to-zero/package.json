@@ -1,6 +1,6 @@
 {
   "name": "drizzle-to-zero",
-  "version": "1.1.264",
+  "version": "1.1.265",
   "sideEffects": false,
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
