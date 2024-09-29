@@ -56,9 +56,17 @@ export declare namespace VXS {
         server?: VXRNOptions['server'];
         build?: {
             server?: {
+                /**
+                 * Controls server build output module format
+                 * @default 'esm'
+                 */
                 outputFormat?: 'cjs' | 'esm';
             };
             api?: {
+                /**
+                 * Controls server build output module format
+                 * @default 'esm'
+                 */
                 outputFormat?: 'cjs' | 'esm';
             };
         };

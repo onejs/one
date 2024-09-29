@@ -29,7 +29,7 @@ export async function build(args: {
   only?: string
 }) {
   const userOptions = await loadUserVXSOptions('build')
-  const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'cjs'
+  const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'esm'
 
   // TODO make this better, this ensures we get react 19
   process.env.VXRN_REACT_19 = '1'

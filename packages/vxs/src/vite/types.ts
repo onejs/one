@@ -73,10 +73,18 @@ export namespace VXS {
 
     build?: {
       server?: {
+        /**
+         * Controls server build output module format
+         * @default 'esm'
+         */
         outputFormat?: 'cjs' | 'esm'
       }
 
       api?: {
+        /**
+         * Controls server build output module format
+         * @default 'esm'
+         */
         outputFormat?: 'cjs' | 'esm'
       }
     }
