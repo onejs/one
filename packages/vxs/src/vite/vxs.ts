@@ -37,9 +37,9 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
 
   return [
-    ...(process.env.VXS_TSCONFIG_PATHS
-      ? [tsconfigPaths({ projects: process.env.VXS_TSCONFIG_PATHS.split(',') })]
-      : []),
+    options.tsConfigPaths === false
+      ? null
+      : tsconfigPaths(typeof options.tsConfigPaths === 'object' ? options.tsConfigPaths : {}),
 
     {
       name: 'vxs:init-config',
