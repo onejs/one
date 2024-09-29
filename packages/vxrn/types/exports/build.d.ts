@@ -11,6 +11,8 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             compression?: boolean;
             cacheHeaders?: "off";
             https?: boolean;
+            beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
+            afterStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
         };
         entries: {
             native: string;
@@ -32,7 +34,6 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             analyze?: boolean;
         };
         afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
-        afterServerStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
     };
     buildArgs: BuildArgs;
     serverEntry: string;

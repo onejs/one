@@ -10,10 +10,6 @@ export async function honoServeVercel(app: Hono, options: VXRNOptionsFilled) {
   const PUT = handler
   const OPTIONS = handler
 
-  if (options.afterServerStart) {
-    await options.afterServerStart(options, app)
-  }
-
   return {
     handler,
     GET,
