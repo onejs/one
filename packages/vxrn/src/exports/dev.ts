@@ -336,7 +336,7 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
 
       const url = `${server.protocol}//${server.host}:${server.port}`
 
-      console.info(`Server running on ${url}`)
+      console.info(`\nServer running on \x1b[1m${url}\x1b[0m`)
 
       startUserInterface({ server })
 
