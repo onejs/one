@@ -84,12 +84,9 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
     `${optimizeIds.map((id) => id.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&')).join('|')}`
   )
 
-  // TODO make this passed into vxrn through real API
-  globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
-
   let tsConfigPathsPlugin: Plugin | null = null
 
-  return [
+  const devAndProdPlugins = [
     // proxy because you cant add a plugin inside a plugin
     new Proxy(
       {
@@ -112,6 +109,9 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
             pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}
           )
         },
+
+        configResolved() {},
+        resolveId() {},
       },
       {
         get(target, key, thisArg) {
@@ -176,6 +176,26 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       },
     } satisfies Plugin,
 
+    {
+      name: 'tamagui-react-19',
+      config() {
+        return {
+          define: {
+            // safe to set because it only affects web in tamagui, and vxs is always react 19
+            'process.env.TAMAGUI_REACT_19': '"1"',
+          },
+        }
+      },
+    } satisfies Plugin,
+  ] satisfies Plugin[]
+
+  // TODO make this passed into vxrn through real API
+  globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
+  globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
+
+  return [
+    ...devAndProdPlugins,
+
     /**
      * This is really the meat of vxs, where it handles requests:
      */
@@ -191,18 +211,6 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
       ...options,
       root: 'app',
     }),
-
-    {
-      name: 'tamagui-react-19',
-      config() {
-        return {
-          define: {
-            // safe to set because it only affects web in tamagui, and vxs is always react 19
-            'process.env.TAMAGUI_REACT_19': '"1"',
-          },
-        }
-      },
-    } satisfies Plugin,
 
     {
       name: 'define-app-key',

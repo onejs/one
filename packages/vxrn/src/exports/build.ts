@@ -79,6 +79,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       mode: 'production',
     }),
     {
+      plugins: globalThis.__vxrnAddWebPluginsProd,
       clearScreen: false,
       configFile: false,
       optimizeDeps,
