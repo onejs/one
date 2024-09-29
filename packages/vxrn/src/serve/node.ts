@@ -11,10 +11,6 @@ export async function honoServeNode(app: Hono, options: VXRNOptionsFilled) {
 
   console.info(`Server running on http://${options.server.host}:${options.server.port}`)
 
-  if (options.afterServerStart) {
-    await options.afterServerStart(options, app)
-  }
-
   await new Promise<void>((res) => {
     server.on('close', () => {
       res()

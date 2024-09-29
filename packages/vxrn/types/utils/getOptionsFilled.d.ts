@@ -13,6 +13,8 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
         compression?: boolean;
         cacheHeaders?: "off";
         https?: boolean;
+        beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
+        afterStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
     };
     entries: {
         native: string;
@@ -34,6 +36,5 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
         analyze?: boolean;
     };
     afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
-    afterServerStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
 }>;
 //# sourceMappingURL=getOptionsFilled.d.ts.map

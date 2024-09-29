@@ -74,13 +74,14 @@ export type VXRNOptions = {
          * Uses mkcert to create a self-signed certificate
          */
         https?: boolean;
+        beforeStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
+        afterStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
     };
     /**
      * Whether to clean cache directories on startup
      */
     clean?: boolean;
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
-    afterServerStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
 };
 export type HMRListener = (update: {
     file: string;

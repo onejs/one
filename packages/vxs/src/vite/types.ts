@@ -108,10 +108,6 @@ export namespace VXS {
     deps?: FixDependencies
 
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>
-
-    afterServerStart?:
-      | ((options: Options, server: Hono) => void | Promise<void>)
-      | ((options: Options, server: Hono, buildInfo: BuildInfo) => void | Promise<void>)
   }
 
   export interface RouteContext {

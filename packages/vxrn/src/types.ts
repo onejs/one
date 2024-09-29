@@ -81,6 +81,9 @@ export type VXRNOptions = {
      * Uses mkcert to create a self-signed certificate
      */
     https?: boolean
+
+    beforeStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>
+    afterStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>
   }
 
   /**
@@ -90,7 +93,6 @@ export type VXRNOptions = {
 
   // for hooking into things
   afterBuild?: (props: AfterBuildProps) => void | Promise<void>
-  afterServerStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>
 }
 
 export type HMRListener = (update: { file: string; contents: string }) => void

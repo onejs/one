@@ -4,15 +4,15 @@ import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
 import Path, { join } from 'node:path'
 import type { VXRNOptions } from 'vxrn'
+import { getServerEntry, serve as vxrnServe } from 'vxrn'
 import { createHandleRequest } from './handleRequest'
 import type { RenderAppProps } from './types'
 import { isResponse } from './utils/isResponse'
 import { isStatusRedirect } from './utils/isStatus'
+import { removeUndefined } from './utils/removeUndefined'
 import { resolveAPIRequest } from './vite/resolveAPIRequest'
 import type { VXS } from './vite/types'
 import { loadUserVXSOptions } from './vite/vxs'
-import { getServerCJSSetting, getServerEntry, serve as vxrnServe } from 'vxrn'
-import { removeUndefined } from './utils/removeUndefined'
 
 process.on('uncaughtException', (err) => {
   console.error(`[vxs] Uncaught exception`, err?.stack || err)
@@ -36,9 +36,11 @@ export async function serve(args: VXRNOptions['server'] = {}) {
         platform: args.platform,
         cacheHeaders: args.cacheHeaders,
       }),
-    },
-    afterServerStart(options, app) {
-      oneServe(vxsOptions, options, app)
+
+      async beforeStart(options, app) {
+        await vxsOptions.server?.beforeStart?.(options, app)
+        await oneServe(vxsOptions, options, app)
+      },
     },
   })
 }
