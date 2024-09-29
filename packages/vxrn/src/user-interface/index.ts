@@ -22,7 +22,16 @@ const COMMANDS = [
     label: 'open web',
     terminalLabel: '\x1b[1mo\x1b[0mpen \x1b[1mw\x1b[0meb',
     action: (ctx) => {
-      openBrowser(`http://${ctx.server.host}:${ctx.server.port}`)
+      nativeOpen(`http://${ctx.server.host}:${ctx.server.port}`)
+    },
+  },
+  {
+    keys: 'oe',
+    label: 'open editor',
+    terminalLabel: '\x1b[1mo\x1b[0mpen \x1b[1me\x1b[0mditor',
+    action: async (ctx) => {
+      const { defaultEditor } = await import('env-editor')
+      exec(`${defaultEditor().binary} .`)
     },
   },
   {
@@ -32,6 +41,13 @@ const COMMANDS = [
     action: (ctx) => {
       printNativeQrCodeAndInstructions(ctx)
     },
+  },
+
+  {
+    keys: '?',
+    label: 'open editor',
+    terminalLabel: ' show this menu',
+    action: async (ctx) => {},
   },
 ] satisfies Command[]
 
@@ -164,7 +180,7 @@ async function printNativeQrCodeAndInstructions(context: Context) {
   )
 }
 
-function openBrowser(url: string) {
+function nativeOpen(url: string) {
   const start =
     process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open'
 

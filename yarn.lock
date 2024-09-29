@@ -11312,6 +11312,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"env-editor@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "env-editor@npm:1.1.0"
+  checksum: 10/f1693c23c530240f13aec866b5d8d8d4729f3b281093e3b69585d820c1aa7ad0e5ebca6e49ce103d94c202a34837d5c0c2c8eedd9278a0a5c4943ddeb94f0fc7
+  languageName: node
+  linkType: hard
+
 "env-paths@npm:^2.2.0":
   version: 2.2.1
   resolution: "env-paths@npm:2.2.1"
@@ -22580,6 +22587,7 @@ __metadata:
     crossws: "npm:^0.2.4"
     depcheck: "npm:^1.4.7"
     dotenv: "npm:^16.4.5"
+    env-editor: "npm:^1.1.0"
     es-module-lexer: "npm:^1.3.0"
     esbuild: "npm:^0.23.1"
     fast-glob: "npm:^3.2.11"
