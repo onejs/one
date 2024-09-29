@@ -14,6 +14,7 @@ import { loadEnv } from './loadEnv'
 import type { VXS } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
+import { writeFile } from 'node:fs/promises'
 
 events.setMaxListeners(1_000)
 
@@ -21,6 +22,55 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   vxsOptions = options
 
   void loadEnv(process.cwd())
+
+  // ensure tsconfig
+  if (options.config?.ensureTSConfig !== false) {
+    void existsAsync('tsconfig.json').then((hasTsConfig) => {
+      if (!hasTsConfig) {
+        console.info(
+          `[vxs] adding default tsconfig.json. to disable set vxs/vite { config: { tsConfigPaths: false } }`
+        )
+        writeFile(
+          'tsconfig.json',
+          `{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "strict": true,
+    "rootDir": ".",
+    "module": "Preserve",
+    // allows react-native style imports without path extensions, for compat with platform-specific files
+    "moduleResolution": "Bundler",
+    "preserveSymlinks": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "noImplicitAny": false,
+    "types": [
+      "node",
+      "react",
+      "vite/client"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".expo",
+    "**/test",
+    "**/dist",
+    "**/types",
+    "**/__tests__"
+  ],
+}
+`
+        )
+      }
+    })
+  }
 
   globalThis['__vxrnPluginConfig__'] = options
 
@@ -37,9 +87,29 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
 
   return [
-    options.tsConfigPaths === false
-      ? null
-      : tsconfigPaths(typeof options.tsConfigPaths === 'object' ? options.tsConfigPaths : {}),
+    {
+      name: 'vxs:tsconfig-paths',
+      config(configIncoming) {
+        const pathsConfig = options.config?.tsConfigPaths
+        if (pathsConfig === false) {
+          return
+        }
+        if (
+          configIncoming.plugins
+            ?.flat()
+            .some((p) => p && (p as any)['name'] === 'vite-tsconfig-paths')
+        ) {
+          // already has it configured
+          return
+        }
+
+        if (Array.isArray(configIncoming.plugins)) {
+          configIncoming.plugins.push(
+            tsconfigPaths(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {})
+          )
+        }
+      },
+    },
 
     {
       name: 'vxs:init-config',
