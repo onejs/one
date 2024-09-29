@@ -3,12 +3,6 @@ import { vxs } from 'vxs/vite'
 import { tamaguiPlugin } from '@tamagui/vite-plugin'
 
 export default {
-  resolve: {
-    alias: {
-      '~': import.meta.dirname,
-    },
-  },
-
   plugins: [
     vxs({
       web: {

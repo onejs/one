@@ -1,7 +1,6 @@
-import { vxs } from 'vxs/vite'
-import type { UserConfig } from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
 import { tamaguiPlugin } from '@tamagui/vite-plugin'
+import type { UserConfig } from 'vite'
+import { vxs } from 'vxs/vite'
 
 export default {
   plugins: [
@@ -16,8 +15,6 @@ export default {
         key: 'One',
       },
     }),
-
-    tsconfigPaths() as any,
 
     tamaguiPlugin({
       components: ['tamagui'],
