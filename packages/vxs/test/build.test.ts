@@ -12,7 +12,7 @@ describe('Simple Build Tests', () => {
 
   it('should build api routes without including side effects', async () => {
     const sideEffectFreeApiRoute = await readFile(
-      path.join(fixturePath, 'dist', 'api', 'api', 'react-dep.cjs')
+      path.join(fixturePath, 'dist', 'api', 'api', 'react-dep.js')
     )
 
     expect(sideEffectFreeApiRoute.includes('function isResponse')).toBeTruthy()
@@ -28,7 +28,7 @@ describe('Simple Build Tests', () => {
       'api',
       'api',
       'test-params',
-      '_endpointId_.cjs'
+      '_endpointId_.js'
     )
     const fileExists = await pathExists(dynamicEndpointPath)
     expect(fileExists).toBeTruthy()

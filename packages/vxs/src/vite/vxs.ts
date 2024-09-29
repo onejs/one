@@ -40,6 +40,7 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
     },
     "strict": true,
     "rootDir": ".",
+    "noEmit": true,
     "module": "Preserve",
     // allows react-native style imports without path extensions, for compat with platform-specific files
     "moduleResolution": "Bundler",

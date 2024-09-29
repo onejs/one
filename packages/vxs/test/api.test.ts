@@ -12,7 +12,7 @@ const runTests = (environment: 'dev' | 'prod') => {
     beforeAll(async () => {
       // Spawn the server process based on the environment
       const command = environment === 'dev' ? 'dev' : 'prod'
-      serverProcess = spawn('yarn', [command, '--host', 'localhost'], { cwd: fixturePath })
+      serverProcess = spawn('yarn', [command, '--host', '127.0.0.1'], { cwd: fixturePath })
       let serverOutput = ''
       serverProcess.stdout.on('data', (data) => {
         console.info(data.toString())

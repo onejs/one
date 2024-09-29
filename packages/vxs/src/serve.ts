@@ -86,7 +86,7 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
   const entry = await import(entryServer)
 
   const render = entry.default.render as (props: RenderAppProps) => any
-  const apiCJS = options.build?.api?.outputFormat !== 'esm'
+  const apiCJS = options.build?.api?.outputFormat === 'cjs'
 
   const handleRequest = createHandleRequest(
     {},
@@ -226,8 +226,4 @@ async function oneServe(options: VXS.Options, vxrnOptions: VXRNOptions, app: Hon
 
     await next()
   })
-
-  if (options?.afterServerStart) {
-    await options?.afterServerStart?.(options, app, buildInfo)
-  }
 }
