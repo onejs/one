@@ -87,30 +87,44 @@ export function vxs(options: VXS.PluginOptions = {}): PluginOption {
   // TODO make this passed into vxrn through real API
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
 
-  return [
-    {
-      name: 'vxs:tsconfig-paths',
-      config(configIncoming) {
-        const pathsConfig = options.config?.tsConfigPaths
-        if (pathsConfig === false) {
-          return
-        }
-        if (
-          configIncoming.plugins
-            ?.flat()
-            .some((p) => p && (p as any)['name'] === 'vite-tsconfig-paths')
-        ) {
-          // already has it configured
-          return
-        }
+  let tsConfigPathsPlugin: Plugin | null = null
 
-        if (Array.isArray(configIncoming.plugins)) {
-          configIncoming.plugins.push(
-            tsconfigPaths(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {})
+  return [
+    // proxy because you cant add a plugin inside a plugin
+    new Proxy(
+      {
+        name: 'vxs:tsconfig-paths',
+        config(configIncoming) {
+          const pathsConfig = options.config?.tsConfigPaths
+          if (pathsConfig === false) {
+            return
+          }
+          if (
+            configIncoming.plugins
+              ?.flat()
+              .some((p) => p && (p as any)['name'] === 'vite-tsconfig-paths')
+          ) {
+            // already has it configured
+            return
+          }
+
+          tsConfigPathsPlugin = tsconfigPaths(
+            pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}
           )
-        }
+        },
       },
-    },
+      {
+        get(target, key, thisArg) {
+          if (key === 'config' || key === 'name') {
+            return Reflect.get(target, key, thisArg)
+          }
+
+          if (tsConfigPathsPlugin) {
+            return Reflect.get(tsConfigPathsPlugin, key, thisArg)
+          }
+        },
+      }
+    ),
 
     {
       name: 'vxs:init-config',

@@ -11,10 +11,6 @@ if (!import.meta.dirname) {
 
 export default {
   resolve: {
-    alias: {
-      '~': import.meta.dirname,
-    },
-
     dedupe: [
       'react',
       'react-dom',
