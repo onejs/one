@@ -1,36 +1,18 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDir": ".",
-    "outDir": "dist",
     "paths": {
       "~/*": ["./*"]
     },
-    "importHelpers": true,
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "downlevelIteration": true,
     "strict": true,
-    "esModuleInterop": true,
-    "inlineSourceMap": true,
-    "preserveSymlinks": true,
-    "jsx": "react-jsx",
+    "rootDir": ".",
     "module": "Preserve",
+    // allows react-native style imports without path extensions, for compat with platform-specific files
     "moduleResolution": "Bundler",
-    "noEmit": false,
-    "noEmitOnError": false,
-    "noImplicitAny": false,
-    "noImplicitReturns": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "preserveConstEnums": true,
-    "removeComments": false,
+    "preserveSymlinks": true,
     "skipLibCheck": true,
-    "sourceMap": false,
-    "strictNullChecks": true,
-    "target": "es2020",
+    "jsx": "react-jsx",
+    "noImplicitAny": false,
     "types": [
       "node",
       "react",
@@ -49,7 +31,4 @@
     "**/types",
     "**/__tests__"
   ],
-  "typeAcquisition": {
-    "enable": true
-  }
 }

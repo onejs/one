@@ -32,22 +32,26 @@ export namespace VXS {
     zero?: boolean
 
     /**
-     * VXS automatically adds vite-tsconfig-paths, set this to false to disable, or
-     * pass in an object to pass options down. If you add your own vite-tsconfig-paths
-     * we will avoid adding it again internally.
-     *
-     * See: https://github.com/aleclarson/vite-tsconfig-paths
-     *
-     * @default false
-     */
-    tsConfigPaths?: boolean | TSConfigPluginOptions
-
-    /**
      * Path to a js or ts file to import before the rest of your app runs
      * One controls your root, but you may want to runs some JS before anything else
      * Use this to give One the entrypoint to run
      */
     setupFile?: string
+
+    config?: {
+      ensureTSConfig?: false
+
+      /**
+       * VXS automatically adds vite-tsconfig-paths, set this to false to disable, or
+       * pass in an object to pass options down. If you add your own vite-tsconfig-paths
+       * we will avoid adding it again internally.
+       *
+       * See: https://github.com/aleclarson/vite-tsconfig-paths
+       *
+       * @default false
+       */
+      tsConfigPaths?: boolean | TSConfigPluginOptions
+    }
 
     app?: {
       /**
