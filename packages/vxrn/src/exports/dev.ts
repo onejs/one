@@ -14,8 +14,6 @@ import { createServer as nodeCreateServer } from 'node:http'
 import { join } from 'node:path'
 import { createServer } from 'vite'
 import { WebSocket } from 'ws'
-import ip from 'ip'
-import qrcode from 'qrcode-terminal'
 import type { VXRNOptions } from '../types'
 import { bindKeypressInput } from '../utils/bindKeypressInput'
 import {
@@ -28,6 +26,7 @@ import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { applyBuiltInPatches } from '../utils/patches'
 import { clean } from './clean'
+import { startUserInterface } from '../user-interface/index'
 
 const { ensureDir } = FSExtra
 
@@ -338,7 +337,8 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
       const url = `${server.protocol}//${server.host}:${server.port}`
 
       console.info(`Server running on ${url}`)
-      printNativeQrCodeAndInstructions({ port: server.port })
+
+      startUserInterface({ server })
 
       nodeServer.once('listening', () => {
         // bridge socket between vite
@@ -368,12 +368,4 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
       await Promise.all([nodeServer.close(), viteServer.close()])
     },
   }
-}
-
-async function printNativeQrCodeAndInstructions({ port }: { port: number }) {
-  qrcode.generate(`exp://${ip.address()}:${port}`, { small: true }, (code) => {
-    console.info(
-      `To open the app on your iPhone, install the Expo Go app and scan the QR code below with your iPhone camera:\n${code}`
-    )
-  })
 }
