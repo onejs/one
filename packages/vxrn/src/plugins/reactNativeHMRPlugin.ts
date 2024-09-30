@@ -74,6 +74,29 @@ export function reactNativeHMRPlugin({
         // we have to remove jsx before we can parse imports...
         source = (await transformForBuild(id, source))?.code || ''
 
+        const environment = server.environments.ios // TODO: android? How can we get the current environment here?
+
+        // TODO: This is a hacky way to make HMR route files work, since if we don't run through the `clientTreeShakePlugin`, the source code might include imports to server side stuff (typically used inside `loader` functions) that will break the HMR update. Ideally, we should go though all user plugins for HMR updates.
+        const clientTreeShakePlugin = environment.plugins.find(
+          (p) => p.name === 'vxrn:client-tree-shake'
+        )
+        if (clientTreeShakePlugin) {
+          let clientTreeShakePluginTransformFn = (clientTreeShakePlugin as any).transform
+          if (typeof clientTreeShakePluginTransformFn === 'function') {
+            try {
+              clientTreeShakePluginTransformFn = clientTreeShakePluginTransformFn.bind({
+                environment,
+              })
+              const result = await clientTreeShakePluginTransformFn(source, id, {})
+              if (result) {
+                source = result.code
+              }
+            } catch (e) {
+              console.warn(`vxrn:client-tree-shake failed on HMR: ${e}`)
+            }
+          }
+        }
+
         const importsMap = {}
 
         // parse imports of modules into ids:
