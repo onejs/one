@@ -1,4 +1,5 @@
 import type { RouteInfo } from './server/createRoutesManifest'
+import { isResponse } from './utils/isResponse'
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
 import { getManifest } from './vite/getManifest'
 import type { VXS } from './vite/types'
@@ -107,19 +108,28 @@ export function createHandleRequest(
             const headers = new Headers()
             headers.set('Content-Type', 'text/javascript')
 
-            const loaderResponse = await handlers.handleLoader({
-              request,
-              route,
-              url,
-              loaderProps: {
-                path: finalUrl.pathname,
-                params: getLoaderParams(finalUrl, route),
-              },
-            })
+            try {
+              const loaderResponse = await handlers.handleLoader({
+                request,
+                route,
+                url,
+                loaderProps: {
+                  path: finalUrl.pathname,
+                  params: getLoaderParams(finalUrl, route),
+                },
+              })
 
-            return new Response(loaderResponse, {
-              headers,
-            })
+              return new Response(loaderResponse, {
+                headers,
+              })
+            } catch (err) {
+              // allow throwing a response in a loader
+              if (isResponse(err)) {
+                return err
+              }
+
+              throw err
+            }
           }
 
           if (process.env.NODE_ENV === 'development') {

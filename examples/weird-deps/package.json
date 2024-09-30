@@ -13,14 +13,14 @@
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@sentry/react-native": "^5.30.0",
-    "@tamagui/config": "^1.112.3",
+    "@tamagui/config": "^1.112.8",
     "moti": "^0.29.0",
     "react": "^18.3.1",
     "react-native": "0.74.1",
     "react-native-reanimated": "npm:react-native-reanimated@3.13.0-rc.1",
     "react-native-svg": "15.2.0",
     "react-native-webview": "^13.11.1",
-    "tamagui": "^1.112.3",
+    "tamagui": "^1.112.8",
     "uuid": "9.0.0",
     "vxs": "1.1.265"
   },
