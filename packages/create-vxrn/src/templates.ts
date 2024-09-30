@@ -1,60 +1,60 @@
-import stepsBare from './steps/bare'
-import setupFullstack from './steps/fullstack'
+import * as FullstackSteps from './steps/fullstack'
 import * as BasicTemplateSteps from './steps/vxs'
 
 export const templates = [
   {
-    title: `Demo`,
-    value: 'Basic',
+    title: `Minimal`,
+    value: 'Minimal',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
       url: `https://github.com/universal-future/vxrn.git`,
       sshFallback: `git@github.com:universal-future/vxrn.git`,
-      dir: [`examples`, `basic`],
+      dir: [`examples`, `one-basic`],
       branch: 'main',
     },
     ...BasicTemplateSteps,
   },
 
   {
-    title: `Empty Project (Vercel)`,
-    value: 'Vercel',
+    title: `Recommended - Drizzle, Postgres, Tamagui, Biome`,
+    value: 'Recommended',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
       url: `https://github.com/universal-future/vxrn.git`,
       sshFallback: `git@github.com:universal-future/vxrn.git`,
-      dir: [`examples`, `vercel`],
+      dir: [`examples`, `one-basic`],
       branch: 'main',
     },
+    ...BasicTemplateSteps,
   },
 
   {
-    title: `User & Auth`,
-    value: 'fullstack',
+    title: `Fullstack - Recommended + Supabase Auth flows`,
+    value: 'Fullstack',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
       url: `https://github.com/universal-future/vxrn.git`,
       sshFallback: `git@github.com:universal-future/vxrn.git`,
-      dir: [`examples`, `fullstack`],
+      dir: [`examples`, `one-basic`],
       branch: 'main',
     },
-    extraSteps: setupFullstack,
+    ...FullstackSteps,
   },
 
-  {
-    title: `Bare`,
-    value: 'bare',
-    type: 'included-in-monorepo',
-    hidden: false,
-    repo: {
-      url: `https://github.com/universal-future/vxrn.git`,
-      sshFallback: `git@github.com:universal-future/vxrn.git`,
-      dir: [`examples`, `bare`],
-      branch: 'main',
-    },
-    extraSteps: stepsBare,
-  },
+  // {
+  //   title: `Bare`,
+  //   value: 'bare',
+  //   type: 'included-in-monorepo',
+  //   hidden: false,
+  //   repo: {
+  //     url: `https://github.com/universal-future/vxrn.git`,
+  //     sshFallback: `git@github.com:universal-future/vxrn.git`,
+  //     dir: [`examples`, `bare`],
+  //     branch: 'main',
+  //   },
+  //   extraSteps: stepsBare,
+  // },
 ] as const

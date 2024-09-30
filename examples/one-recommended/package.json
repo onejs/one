@@ -1,0 +1,55 @@
+{
+  "name": "example-recommended",
+  "version": "1.1.265",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vxs dev",
+    "dev:clean": "vxs dev --clean",
+    "clean": "vxs clean",
+    "build:prod": "vxs build",
+    "serve": "vxs serve",
+    "ios": "EXPO_NO_TELEMETRY=true expo run:ios",
+    "android": "EXPO_NO_TELEMETRY=true expo run:android",
+    "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
+    "db:init": "./features/db/init.sh && yarn db:generate && yarn db:push && yarn db:seed",
+    "db:generate": "drizzle-kit generate --config ./features/db/drizzle.config.ts",
+    "db:push": "drizzle-kit push --config ./features/db/drizzle.config.ts",
+    "db:migrate": "dotenvx run -f .env -- tsx ./features/db/run-migrations.ts",
+    "db:seed": "dotenvx run -f .env -- tsx ./features/db/seed.ts"
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.12.1",
+    "@tamagui/config": "^1.112.8",
+    "@tamagui/image-next": "^1.112.8",
+    "@tamagui/lucide-icons": "^1.112.8",
+    "@tamagui/vite-plugin": "^1.112.8",
+    "@vxrn/color-scheme": "1.1.265",
+    "better-sqlite3": "^11.2.1",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.24.2",
+    "drizzle-orm": "^0.33.0",
+    "expo": "~51.0.28",
+    "expo-modules-core": "^1.12.24",
+    "postgres": "^3.4.4",
+    "react": "^18.3.1",
+    "react-native": "0.74.1",
+    "react-native-reanimated": "~3.10.1",
+    "react-native-safe-area-context": "^4.10.1",
+    "react-native-screens": "3.31.1",
+    "react-native-svg": "15.2.0",
+    "react-native-web": "^0.19.12",
+    "tamagui": "^1.112.8",
+    "vxs": "1.1.265"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@faker-js/faker": "next",
+    "@tamagui/vite-plugin": "^1.112.8",
+    "tsx": "^4.19.0",
+    "vite": "6.0.0-beta.1"
+  }
+}
