@@ -22626,6 +22626,7 @@ __metadata:
     "@react-navigation/bottom-tabs": "npm:~6.5.8"
     "@react-navigation/core": "npm:6.4.17"
     "@react-navigation/drawer": "npm:~6.6.3"
+    "@react-navigation/elements": "npm:^1.3.30"
     "@react-navigation/native": "npm:~6.1.7"
     "@react-navigation/native-stack": "npm:~6.9.13"
     "@react-navigation/routers": "npm:~6.1.9"

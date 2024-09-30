@@ -9,6 +9,7 @@ import {
   type NavigationAction,
   type NavigationContainerProps,
 } from '@react-navigation/native'
+import { SafeAreaProviderCompat } from '@react-navigation/elements'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { ServerLocationContext } from './router/serverLocationContext'
@@ -195,14 +196,6 @@ function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: 
 //   Platform.OS === 'ios' &&
 //   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
 
-// const INITIAL_METRICS =
-//   process.env.TAMAGUI_TARGET === 'web'
-//     ? {
-//         frame: { x: 0, y: 0, width: 0, height: 0 },
-//         insets: { top: 0, left: 0, right: 0, bottom: 0 },
-//       }
-//     : undefined
-
 function ContextNavigator({
   wrapper: ParentWrapper = Fragment,
   context,
@@ -225,25 +218,12 @@ function ContextNavigator({
         {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
         <ScrollRestoration />
         {/* <GestureHandlerRootView> */}
-        {/* <SafeAreaProvider
-          // SSR
-          initialMetrics={INITIAL_METRICS}
-          style={{
-            // THIS DOESNT DO ANYTHING BECAUSE react-navigation has its own internal safe area it passes!
-            // in fact not even sure we want this here?
-            flex: 1,
-            maxHeight: '100%',
-            height: '100%',
-            maxWidth: '100%',
-            width: '100%',
-            backgroundColor: 'green',
-          }}
-        > */}
-        {children}
+        <SafeAreaProviderCompat>
+          {children}
 
-        {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-        {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-        {/* </SafeAreaProvider> */}
+          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+        </SafeAreaProviderCompat>
         {/* </GestureHandlerRootView> */}
       </ParentWrapper>
     )
