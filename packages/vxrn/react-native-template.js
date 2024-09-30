@@ -132,6 +132,14 @@ ${new Error().stack
           __getRequire('vxrn/packages/one/dist/esm/index.native.js', _mod)
 
         if (found) return found
+
+        // Try harder
+        const possibleId = Object.keys(___modules___).find((m) =>
+          /(vxs|one)\/dist\/esm\/index\.native\.js$/.test(m)
+        )
+        if (possibleId) {
+          return __getRequire(possibleId, _mod)
+        }
       }
 
       if (_mod.startsWith('node:') || nodeImports[_mod]) {

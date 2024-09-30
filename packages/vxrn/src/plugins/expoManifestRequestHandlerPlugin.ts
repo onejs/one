@@ -135,7 +135,7 @@ export function expoManifestRequestHandlerPlugin(
           parsedBody.extra.expoClient.splash = {
             image: '__vxrn_unstable_internal/icon.png',
             resizeMode: 'contain',
-            backgroundColor: '#ffffff',
+            backgroundColor: '#000000',
             imageUrl: 'https://github.com/user-attachments/assets/e816c207-e7d2-4c2e-8aa5-0d4cbaa622bf', // TODO: Host this image somewhere.
           }
           results.body = JSON.stringify(parsedBody)

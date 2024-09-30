@@ -4,7 +4,7 @@ import { ToggleThemeButton } from '~/features/theme/ToggleThemeButton'
 
 export default function FeedLayout() {
   return (
-    <View>
+    <View flex={1}>
       {isWeb ? (
         <Slot />
       ) : (
