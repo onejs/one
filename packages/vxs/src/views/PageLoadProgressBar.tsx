@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { View, type ViewProps } from 'react-native'
 import { router } from '../imperative-api'
 
-export type PageLoadProgressBarProps = {
+export type LoadProgressBarProps = {
   /** How long after a navigation to wait before showing the progress bar (in ms) */
   startDelay?: number
   /** How long after a navigation completes to wait before hiding the progress bar (in ms) */
@@ -21,14 +21,14 @@ export type PageLoadProgressBarProps = {
   children?: ViewProps['children']
 }
 
-export const PageLoadProgressBar = ({
+export const LoadProgressBar = ({
   startDelay = 500,
   finishDelay = 50,
   initialPercent = 20,
   updateInterval = 300,
   sporadicness = 3,
   ...props
-}: PageLoadProgressBarProps) => {
+}: LoadProgressBarProps) => {
   const [loaded, setLoaded] = useState(0) // 0 to 100
   const [width, setWidth] = useState(0)
 

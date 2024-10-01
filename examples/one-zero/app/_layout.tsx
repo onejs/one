@@ -2,7 +2,7 @@ import '@tamagui/core/reset.css'
 import './_layout.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { PageLoadProgressBar, Slot } from 'vxs'
+import { LoadProgressBar, Slot } from 'vxs'
 import { isWeb, TamaguiProvider } from 'tamagui'
 import { ZeroProvider } from '~/features/zero/client'
 import config from '../config/tamagui.config'
@@ -10,7 +10,7 @@ import config from '../config/tamagui.config'
 export default function Layout() {
   return (
     <>
-      <PageLoadProgressBar />
+      <LoadProgressBar />
 
       {isWeb && (
         <>

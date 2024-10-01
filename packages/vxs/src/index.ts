@@ -22,7 +22,7 @@ export { Navigator, Slot } from './views/Navigator'
 export { ErrorBoundary } from './views/ErrorBoundary'
 // export { Unmatched } from './fallbackViews/Unmatched'
 export { ScrollRestoration } from './views/ScrollRestoration'
-export { PageLoadProgressBar } from './views/PageLoadProgressBar'
+export { LoadProgressBar } from './views/LoadProgressBar'
 
 export { createApp } from './createApp'
 export { createRoute, route } from './createRoute'
