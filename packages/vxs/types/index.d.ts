@@ -12,7 +12,7 @@ export { SafeAreaView } from 'react-native-safe-area-context';
 export { Navigator, Slot } from './views/Navigator';
 export { ErrorBoundary } from './views/ErrorBoundary';
 export { ScrollRestoration } from './views/ScrollRestoration';
-export { PageLoadProgressBar } from './views/PageLoadProgressBar';
+export { LoadProgressBar } from './views/LoadProgressBar';
 export { createApp } from './createApp';
 export { createRoute, route } from './createRoute';
 export { onClientLoaderResolve } from './clientLoaderResolver';
