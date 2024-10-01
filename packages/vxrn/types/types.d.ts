@@ -34,6 +34,7 @@ export type VXRNBuildOptions = {
      */
     outputFormat?: 'cjs' | 'esm';
 };
+export type VXRNServePlatform = 'node' | 'vercel';
 export type VXRNOptions = {
     /**
      * Root directory, your entries.native and entires.web will resolve relative to this
@@ -65,7 +66,6 @@ export type VXRNOptions = {
         analyze?: boolean;
     };
     server?: {
-        platform?: 'node' | 'vercel';
         host?: string;
         port?: number;
         compression?: boolean;
@@ -74,6 +74,12 @@ export type VXRNOptions = {
          * Uses mkcert to create a self-signed certificate
          */
         https?: boolean;
+        /**
+         * Determines the Hono platform adapter
+         *   node: https://github.com/honojs/node-server
+         *   vercel: https://hono.dev/docs/getting-started/vercel
+         */
+        platform?: VXRNServePlatform;
         beforeStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
         afterStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
     };

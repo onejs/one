@@ -4,8 +4,8 @@ import { one } from 'one/vite'
 export default {
   plugins: [
     one({
-      server: {
-        platform: 'vercel',
+      web: {
+        deploy: 'vercel',
       },
     }),
   ],

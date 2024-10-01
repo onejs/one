@@ -10,10 +10,10 @@ export declare function fillOptions(options: VXRNOptions, internal?: {
         host: string;
         protocol: "https:" | "http:";
         url: string;
-        platform?: "node" | "vercel";
         compression?: boolean;
         cacheHeaders?: "off";
         https?: boolean;
+        platform?: import("..").VXRNServePlatform;
         beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
         afterStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
     };
@@ -46,10 +46,10 @@ export declare function getOptionsFilled(): {
         host: string;
         protocol: "https:" | "http:";
         url: string;
-        platform?: "node" | "vercel";
         compression?: boolean;
         cacheHeaders?: "off";
         https?: boolean;
+        platform?: import("..").VXRNServePlatform;
         beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
         afterStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
     };

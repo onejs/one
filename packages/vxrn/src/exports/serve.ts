@@ -1,8 +1,12 @@
-import type { VXRNOptions } from '../types'
+import type { VXRNOptions, VXRNServePlatform } from '../types'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { createProdServer } from './createServer'
 
-export const serve = async (optionsIn: VXRNOptions) => {
+export const serve = async (
+  optionsIn: VXRNOptions & {
+    platform?: VXRNServePlatform
+  }
+) => {
   const options = await fillOptions(optionsIn, { mode: 'prod' })
 
   // see this for more hono setup
@@ -15,7 +19,7 @@ export const serve = async (optionsIn: VXRNOptions) => {
   // strange prevents a cant listen on port issue
   await new Promise((res) => setTimeout(res, 1))
 
-  const platform = options.server?.platform || 'node'
+  const platform = optionsIn?.platform ?? options?.server?.platform ?? 'node'
 
   function afterServerStart() {
     if (options.server.afterStart) {
