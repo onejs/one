@@ -77,15 +77,23 @@ export function createHandleRequest(
 
         if (apiRoute) {
           const params = getRouteParams(pathname, apiRoute)
-          return await handlers.handleAPI({
-            request,
-            route: apiRoute,
-            url,
-            loaderProps: {
-              path: pathname,
-              params,
-            },
-          })
+
+          try {
+            return await handlers.handleAPI({
+              request,
+              route: apiRoute,
+              url,
+              loaderProps: {
+                path: pathname,
+                params,
+              },
+            })
+          } catch (err) {
+            if (isResponse(err)) {
+              return err
+            }
+            throw err
+          }
         }
       }
 

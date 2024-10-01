@@ -7,6 +7,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             port: number;
             host: string;
             protocol: "https:" | "http:";
+            url: string;
             platform?: "node" | "vercel";
             compression?: boolean;
             cacheHeaders?: "off";

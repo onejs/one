@@ -53,6 +53,8 @@ export async function getOptionsFilled(
     options.build.server = false
   }
 
+  const protocol = https ? ('https:' as const) : ('http:' as const)
+
   return {
     ...options,
     clean,
@@ -61,7 +63,8 @@ export async function getOptionsFilled(
       ...options.server,
       port,
       host,
-      protocol: https ? ('https:' as const) : ('http:' as const),
+      protocol,
+      url: `${protocol}//${host}:${port}`,
     },
     entries: {
       native: './src/entry-native.tsx',

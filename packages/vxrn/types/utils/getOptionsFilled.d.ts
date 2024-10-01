@@ -9,6 +9,7 @@ export declare function getOptionsFilled(options: VXRNOptions, internal?: {
         port: number;
         host: string;
         protocol: "https:" | "http:";
+        url: string;
         platform?: "node" | "vercel";
         compression?: boolean;
         cacheHeaders?: "off";

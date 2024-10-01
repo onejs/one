@@ -23,7 +23,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
     mode: string;
     define: {
         'process.env.NODE_ENV': string;
-        'process.env.SERVER_URL': string;
+        'process.env.ONE_SERVER_URL': string;
     };
     build: {
         ssr: false;
