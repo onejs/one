@@ -3,6 +3,19 @@ import { createTamagui } from '@tamagui/core'
 
 export const config = createTamagui({
   ...configOptions,
+  themes: {
+    ...configOptions.themes,
+    light: {
+      ...configOptions.themes.light,
+      background: 'white',
+      color: 'black',
+    },
+    dark: {
+      ...configOptions.themes.dark,
+      background: 'black',
+      color: 'white',
+    },
+  },
   media: {
     ...configOptions.media,
     xsTouch: {
