@@ -17,7 +17,7 @@ export { createApp } from './createApp';
 export { createRoute, route } from './createRoute';
 export { onClientLoaderResolve } from './clientLoaderResolver';
 export { isResponse } from './utils/isResponse';
-export { getURL } from './utils/getURL';
+export { getURL } from './getURL';
 export { redirect } from './utils/redirect';
 export { useLinkTo } from './link/useLinkTo';
 export { useRouter, useUnstableGlobalHref, usePathname, useNavigationContainerRef, useParams, useActiveParams, useSegments, useRootNavigationState, } from './hooks';

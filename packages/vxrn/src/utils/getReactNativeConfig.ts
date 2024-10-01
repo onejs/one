@@ -39,6 +39,7 @@ export async function getReactNativeConfig(
   const { optimizeDeps } = getOptimizeDeps('build')
 
   const { mode } = internal
+  const serverUrl = process.env.ONE_SERVER_URL || options.server.url
 
   // build app
   let nativeBuildConfig = {
@@ -172,7 +173,7 @@ export async function getReactNativeConfig(
 
     define: {
       'process.env.NODE_ENV': mode === 'dev' ? `"development"` : `"production"`,
-      'process.env.SERVER_URL': JSON.stringify(process.env.SERVER_URL),
+      'process.env.ONE_SERVER_URL': JSON.stringify(serverUrl),
     },
 
     build: {
