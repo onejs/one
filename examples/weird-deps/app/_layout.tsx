@@ -2,7 +2,7 @@ import '@tamagui/core/reset.css'
 import '../public/tamagui.css'
 
 import { TamaguiProvider } from '@tamagui/core'
-import { LoadProgressBar, Slot } from 'vxs'
+import { LoadProgressBar, Slot } from 'one'
 import config from '../tamagui.config'
 
 export default function Layout() {

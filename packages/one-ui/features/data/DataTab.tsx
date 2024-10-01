@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button, Input, ScrollView, SizableText, XStack, YStack } from 'tamagui'
-import { useQuery } from 'vxs/zero'
+import { useQuery } from 'one/zero'
 import { zero } from '../zero/client'
 
 export function DataTab() {

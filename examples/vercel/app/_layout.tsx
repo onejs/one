@@ -1,4 +1,4 @@
-import { Slot } from 'vxs'
+import { Slot } from 'one'
 import './_layout.css'
 
 export default function Layout() {

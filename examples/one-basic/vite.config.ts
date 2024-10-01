@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite'
-import { vxs } from 'vxs/vite'
+import { one } from 'one/vite'
 
 export default defineConfig({
   plugins: [
-    vxs({
+    one({
       web: {
         defaultRenderMode: 'ssg',
       },

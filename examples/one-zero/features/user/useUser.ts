@@ -1,4 +1,4 @@
-import { useQuery } from 'vxs/zero'
+import { useQuery } from 'one/zero'
 import { zero } from '~/features/zero/client'
 
 export const useUser = () => {

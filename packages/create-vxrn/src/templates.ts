@@ -1,5 +1,5 @@
 import * as FullstackSteps from './steps/fullstack'
-import * as BasicTemplateSteps from './steps/vxs'
+import * as BasicTemplateSteps from './steps/one'
 
 export const templates = [
   {

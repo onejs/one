@@ -1,6 +1,6 @@
 import path from 'node:path'
 import FSExtra from 'fs-extra'
-import { getOptionsFilled } from '../../utils/getOptionsFilled'
+import { fillOptions } from '../../utils/getOptionsFilled'
 import { getReactNativeBundle } from '../../utils/getReactNativeBundle'
 import { loadEnv } from '../../utils/loadEnv'
 
@@ -56,12 +56,12 @@ export async function buildBundle(
 
   let nativeEntry: string | undefined = undefined
 
-  // If there's an `app` directory, then we assume that the user is using VXS.
+  // If there's an `app` directory, then we assume that the user is using One.
   const appDir = path.join(root, 'app')
   if (FSExtra.existsSync(appDir) && FSExtra.statSync(appDir).isDirectory()) {
-    console.info('VXS project detected. Using VXS virtual entry.')
-    // TODO: Hardcoded for now to work with vxs. See `virtualEntryIdNative` in `packages/vxs/src/vite/virtualEntryPlugin.ts` and also `native: virtualEntryIdNative` in `packages/vxs/src/cli/run.ts`.
-    nativeEntry = 'virtual:vxs-entry-native'
+    console.info('One project detected. Using One virtual entry.')
+    // TODO: Hardcoded for now to work with one. See `virtualEntryIdNative` in `packages/one/src/vite/virtualEntryPlugin.ts` and also `native: virtualEntryIdNative` in `packages/one/src/cli/run.ts`.
+    nativeEntry = 'virtual:one-entry-native'
   }
 
   const optionsIn = {
@@ -72,7 +72,7 @@ export async function buildBundle(
     },
   }
 
-  const options = await getOptionsFilled(optionsIn, { mode: dev ? 'dev' : 'prod' })
+  const options = await fillOptions(optionsIn, { mode: dev ? 'dev' : 'prod' })
   let builtBundle = await getReactNativeBundle(options, {
     mode: dev ? 'dev' : 'prod',
     assetsDest,
@@ -80,10 +80,7 @@ export async function buildBundle(
   })
 
   // Assuming we are not enabling this on native as it will break anyway.
-  builtBundle = builtBundle.replace(
-    /process\.env\.VXRN_REACT_19/g,
-    'false'
-  )
+  builtBundle = builtBundle.replace(/process\.env\.VXRN_REACT_19/g, 'false')
 
   if (!dev) {
     // TODO: There should be a legitimate way to do this.

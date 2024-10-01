@@ -1,5 +1,5 @@
 import { H1 } from 'tamagui'
-import { useLoader } from 'vxs'
+import { useLoader } from 'one'
 import { HeadInfo } from '~/components/HeadInfo'
 
 export async function loader() {

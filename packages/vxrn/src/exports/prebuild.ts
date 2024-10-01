@@ -1,9 +1,9 @@
 import module from 'node:module'
-import { getOptionsFilled } from '../utils/getOptionsFilled'
+import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 
 export const prebuild = async ({ root }: { root: string }) => {
-  const options = await getOptionsFilled({ root })
+  const options = await fillOptions({ root })
 
   applyBuiltInPatches(options).catch((err) => {
     console.error(`\n 🥺 error applying built-in patches`, err)

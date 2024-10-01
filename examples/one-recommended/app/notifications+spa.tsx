@@ -1,5 +1,5 @@
 import { isWeb } from 'tamagui'
-import { type Href, SafeAreaView, useLoader, type LoaderProps, getURL } from 'vxs'
+import { type Href, SafeAreaView, useLoader, type LoaderProps, getURL } from 'one'
 import { NotificationCard } from '~/code/notifications/NotificationCard'
 import { PageContainer } from '~/code/ui/PageContainer'
 import { db } from '~/code/db/connection'

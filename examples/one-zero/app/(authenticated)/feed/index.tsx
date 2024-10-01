@@ -1,5 +1,5 @@
-import { Stack } from 'vxs'
-import { useQuery } from 'vxs/zero'
+import { Stack } from 'one'
+import { useQuery } from 'one/zero'
 import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
 import { FeedCard, feedCardQuery } from '~/features/feed/FeedCard'

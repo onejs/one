@@ -1,4 +1,4 @@
-import { type Href, Link, Slot, usePathname } from 'vxs'
+import { type Href, Link, Slot, usePathname } from 'one'
 import type { ReactNode } from 'react'
 import {
   createStyledContext,

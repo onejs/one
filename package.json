@@ -43,9 +43,9 @@
     "watch:js": "SKIP_TYPES=1 yarn watch:build",
     "watch:ts": "tsc -b -w --preserveWatchOutput tsconfig.build.json",
     "watch": "npm-run-all --parallel watch:ts watch:build",
-    "vxs": "yarn workspace example-basic",
-    "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t vxs-test . && docker run --rm vxs-test",
-    "docker:build": "DOCKER_BUILDKIT=1 docker build --ssh default -t vxs-test ."
+    "one": "yarn workspace example-basic",
+    "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t one-test . && docker run --rm one-test",
+    "docker:build": "DOCKER_BUILDKIT=1 docker build --ssh default -t one-test ."
   },
   "zeroDeps": {
     "zero-client": "/Users/n8/github/mono/packages/zero-client",

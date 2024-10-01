@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLoader } from 'vxs'
+import { useLoader } from 'one'
 
 export const loader = () => ({
   loader: 'works!',

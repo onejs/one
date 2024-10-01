@@ -1,5 +1,5 @@
-import type { Href, LinkProps } from 'vxs'
-import { Link as OneLink } from 'vxs'
+import type { Href, LinkProps } from 'one'
+import { Link as OneLink } from 'one'
 
 export const Link = ({
   passthrough,

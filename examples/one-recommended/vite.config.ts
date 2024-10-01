@@ -1,10 +1,10 @@
 import type { UserConfig } from 'vite'
-import { vxs } from 'vxs/vite'
+import { one } from 'one/vite'
 // import { tamaguiPlugin } from '@tamagui/vite-plugin'
 
 export default {
   plugins: [
-    vxs({
+    one({
       web: {
         defaultRenderMode: 'ssg',
       },

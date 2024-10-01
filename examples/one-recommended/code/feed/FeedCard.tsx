@@ -1,6 +1,6 @@
 import { Heart, Repeat, Reply } from '@tamagui/lucide-icons'
 import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
-import { Link } from 'vxs'
+import { Link } from 'one'
 import { Card } from '../ui/Card'
 import { Image } from '../ui/Image'
 

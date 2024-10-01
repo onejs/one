@@ -5,7 +5,7 @@ import '~/code/styles/tamagui.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
-import { LoadProgressBar } from 'vxs'
+import { LoadProgressBar } from 'one'
 import { HomeLayout } from '~/code/home/HomeLayout'
 import config from '../config/tamagui.config'
 

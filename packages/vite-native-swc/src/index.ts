@@ -80,7 +80,7 @@ const SWC_ENV = {
 }
 
 function getParser(id: string, forceJSX = false) {
-  if (id.endsWith('vxs-entry-native')) {
+  if (id.endsWith('one-entry-native')) {
     return parsers['.tsx']
   }
 

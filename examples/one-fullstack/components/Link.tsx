@@ -1,8 +1,8 @@
 import type { ViewProps } from 'react-native'
 import { Text } from 'tamagui'
-import { useLinkTo, type LinkProps as VXSLinkProps } from 'vxs'
+import { useLinkTo, type LinkProps as OneLinkProps } from 'one'
 
-export type LinkProps = ViewProps & VXSLinkProps
+export type LinkProps = ViewProps & OneLinkProps
 
 export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
   const linkProps = useLinkTo({ href: href as string, replace })

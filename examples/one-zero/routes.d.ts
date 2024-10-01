@@ -1,11 +1,31 @@
-import type { VXSRouter } from 'vxs'
+import type { OneRouter } from 'one'
 
-declare module 'vxs' {
-  export namespace VXSRouter {
+declare module 'one' {
+  export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
-      StaticRoutes: `/` | `/(authenticated)` | `/(authenticated)/feed` | `/(authenticated)/feed/` | `/(authenticated)/notifications` | `/(authenticated)/profile` | `/(feed)` | `/_sitemap` | `/feed` | `/feed/` | `/notifications` | `/profile`
-      DynamicRoutes: `/(authenticated)/feed/${VXSRouter.SingleRoutePart<T>}` | `/(feed)/post/${VXSRouter.SingleRoutePart<T>}` | `/feed/${VXSRouter.SingleRoutePart<T>}` | `/post/${VXSRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: `/(authenticated)/feed/[id]` | `/(feed)/post/[id]` | `/feed/[id]` | `/post/[id]`
+      StaticRoutes:
+        | `/`
+        | `/(authenticated)`
+        | `/(authenticated)/feed`
+        | `/(authenticated)/feed/`
+        | `/(authenticated)/notifications`
+        | `/(authenticated)/profile`
+        | `/(feed)`
+        | `/_sitemap`
+        | `/feed`
+        | `/feed/`
+        | `/notifications`
+        | `/profile`
+      DynamicRoutes:
+        | `/(authenticated)/feed/${OneRouter.SingleRoutePart<T>}`
+        | `/(feed)/post/${OneRouter.SingleRoutePart<T>}`
+        | `/feed/${OneRouter.SingleRoutePart<T>}`
+        | `/post/${OneRouter.SingleRoutePart<T>}`
+      DynamicRouteTemplate:
+        | `/(authenticated)/feed/[id]`
+        | `/(feed)/post/[id]`
+        | `/feed/[id]`
+        | `/post/[id]`
       IsTyped: true
     }
   }

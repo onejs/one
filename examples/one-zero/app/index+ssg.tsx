@@ -1,4 +1,4 @@
-import { useQuery } from 'vxs/zero'
+import { useQuery } from 'one/zero'
 import { Button, H1, XStack, YStack } from 'tamagui'
 import { Logo } from '~/features/brand/Logo'
 import { FeedCard, feedCardQuery } from '~/features/feed/FeedCard'

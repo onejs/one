@@ -1,5 +1,5 @@
 import { Text, View } from 'tamagui'
-import { useLoader } from 'vxs'
+import { useLoader } from 'one'
 
 let loadCount = 0
 

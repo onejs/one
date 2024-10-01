@@ -8,5 +8,5 @@ export const getServerCJSSetting = (options: ServerOptions) => {
 }
 
 export const getServerEntry = (options: ServerOptions) => {
-  return `${options.root}/dist/server/_virtual_vxs-entry.${getServerCJSSetting(options) ? 'c' : ''}js`
+  return `${options.root}/dist/server/_virtual_one-entry.${getServerCJSSetting(options) ? 'c' : ''}js`
 }

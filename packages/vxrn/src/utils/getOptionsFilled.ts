@@ -8,9 +8,11 @@ import { readState, writeState } from './state'
 
 const require = createRequire(import.meta.url)
 
-export type VXRNOptionsFilled = Awaited<ReturnType<typeof getOptionsFilled>>
+export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>
 
-export async function getOptionsFilled(
+let optionsFilled: VXRNOptionsFilled | null = null
+
+export async function fillOptions(
   options: VXRNOptions,
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ) {
@@ -55,7 +57,7 @@ export async function getOptionsFilled(
 
   const protocol = https ? ('https:' as const) : ('http:' as const)
 
-  return {
+  const final = {
     ...options,
     clean,
     root,
@@ -77,6 +79,14 @@ export async function getOptionsFilled(
     packageRootDir,
     cacheDir,
   }
+
+  optionsFilled = final
+
+  return final
+}
+
+export function getOptionsFilled() {
+  return optionsFilled
 }
 
 function hashString(str: string): string {

@@ -1,4 +1,4 @@
-import { isResponse } from 'vxs'
+import { isResponse } from 'one'
 import { sharedFn } from '~/features/api/shared'
 
 export default () => {

@@ -1,6 +1,6 @@
 import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
-import { Stack, useLoader, type LoaderProps, getURL } from 'vxs'
+import { Stack, useLoader, type LoaderProps, getURL } from 'one'
 import { FeedCard } from '~/code/feed/FeedCard'
 import { PageContainer } from '~/code/ui/PageContainer'
 import { db } from '~/code/db/connection'

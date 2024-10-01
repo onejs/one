@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { YStack } from 'tamagui'
-import { useLoader, useNavigation, useParams } from 'vxs'
+import { useLoader, useNavigation, useParams } from 'one'
 import { FeedCard } from '~/code/feed/FeedCard'
 import { PageContainer } from '~/code/ui/PageContainer'
 import { db } from '~/code/db/connection'
