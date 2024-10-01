@@ -42,7 +42,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   let tsConfigPathsPlugin: Plugin | null = null
 
   const vxrnOptions = getOptionsFilled()
-  if (!vxrnOptions) throw new Error(`Internal error, no options`)
 
   const devAndProdPlugins = [
     // proxy because you cant add a plugin inside a plugin
@@ -98,7 +97,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               'process.env.One_SETUP_FILE': JSON.stringify(options.setupFile),
             }),
 
-            'process.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
+            ...(vxrnOptions && {
+              'process.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
+            }),
           },
 
           environments: {
