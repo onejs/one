@@ -4,7 +4,7 @@ import '~/tamagui.css'
 import { HydrateTheme, UserThemeProvider, useUserTheme } from '@tamagui/one-theme'
 import { ToastProvider, ToastViewport } from '@tamagui/toast'
 import { isWeb, setupPopper, TamaguiProvider } from 'tamagui'
-import { PageLoadProgressBar, Slot, Stack } from 'vxs'
+import { LoadProgressBar, Slot, Stack } from 'vxs'
 import { HeadInfo } from '~/components/HeadInfo'
 import tamaConf from '~/config/tamagui.config'
 
@@ -47,7 +47,7 @@ export default function Layout() {
             }}
           />
 
-          <PageLoadProgressBar />
+          <LoadProgressBar />
 
           <meta name="robots" content="index,follow" />
 
