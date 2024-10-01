@@ -68,7 +68,7 @@ export type VXRNOptions = {
     server?: {
         host?: string;
         port?: number;
-        compression?: boolean;
+        compress?: boolean;
         cacheHeaders?: 'off';
         /**
          * Uses mkcert to create a self-signed certificate
