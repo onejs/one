@@ -8,10 +8,10 @@
   },
   "references": [
     {
-      "path": "examples/fullstack"
+      "path": "examples/one-recommended"
     },
     {
-      "path": "examples/basic"
+      "path": "examples/one-fullstack"
     },
     {
       "path": "examples/bare"
