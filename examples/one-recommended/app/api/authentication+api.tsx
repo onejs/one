@@ -11,8 +11,8 @@
 
 import { eq } from 'drizzle-orm'
 import { createHash, randomBytes, timingSafeEqual } from 'node:crypto'
-import { db } from '~/db/connection'
-import { users } from '~/db/schema'
+import { db } from '~/code/db/connection'
+import { users } from '~/code/db/schema'
 
 // Helper function to hash passwords
 const hashPassword = (password: string) => {
