@@ -495,7 +495,7 @@ function appendSitemapRoute(directory: DirectoryNode) {
     directory.files.set('_sitemap', [
       {
         loadRoute() {
-          console.warn(`Loading sitemap`)
+          // console.warn(`Loading sitemap`)
           // const { Sitemap, getNavOptions } = require('./views/Sitemap')
           // return { default: Sitemap, getNavOptions }
           return { default: () => null, getNavOptions: () => {} }
