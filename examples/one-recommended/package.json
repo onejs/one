@@ -8,6 +8,7 @@
     "dev:clean": "vxs dev --clean",
     "clean": "vxs clean",
     "build:prod": "vxs build",
+    "prebuild": "vxs prebuild",
     "serve": "vxs serve",
     "ios": "EXPO_NO_TELEMETRY=true expo run:ios",
     "android": "EXPO_NO_TELEMETRY=true expo run:android",

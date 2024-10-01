@@ -1,5 +1,6 @@
 import { defineCommand, runMain } from 'citty'
 import type { dev as devFn } from './exports/dev'
+import type { prebuild as prebuildFn } from './exports/prebuild'
 
 const dev = defineCommand({
   meta: {
@@ -132,6 +133,25 @@ const serve = defineCommand({
   },
 })
 
+const prebuild = defineCommand({
+  meta: {
+    name: 'prebuild',
+    version: '0.0.0',
+    description: 'Prebuild native iOS project', // TODO: Android
+  },
+  args: {},
+  async run() {
+    const imported = await import(
+      // @ts-expect-error
+      './exports/prebuild.mjs'
+    )
+    const prebuild = imported.prebuild as typeof prebuildFn
+    const root = process.cwd()
+
+    await prebuild({ root })
+  },
+})
+
 const clean = defineCommand({
   meta: {
     name: 'clean',
@@ -160,6 +180,7 @@ const main = defineCommand({
     dev,
     build,
     serve,
+    prebuild,
     clean,
   },
 })

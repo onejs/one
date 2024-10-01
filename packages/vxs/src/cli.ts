@@ -91,6 +91,19 @@ const serveCommand = defineCommand({
   },
 })
 
+const prebuild = defineCommand({
+  meta: {
+    name: 'prebuild',
+    version: '0.0.0',
+    description: 'Prebuild native iOS project', // TODO: Android
+  },
+  args: {},
+  async run({ args }) {
+    const { run } = await import('./cli/prebuild')
+    await run(args)
+  },
+})
+
 const clean = defineCommand({
   meta: {
     name: 'clean',
@@ -114,6 +127,11 @@ const main = defineCommand({
   },
   args: {},
   async run({ args }) {
+    if (['clean', 'prebuild'].includes(args._[0])) {
+      // IDK why we're getting into here after a subcommand has been run
+      return
+    }
+
     const { cliMain } = await import('./cli/main')
     await cliMain(args)
   },
@@ -121,6 +139,7 @@ const main = defineCommand({
     dev,
     clean,
     build: buildCommand,
+    prebuild,
     serve: serveCommand,
   },
 })
