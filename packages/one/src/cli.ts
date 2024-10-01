@@ -1,6 +1,5 @@
 import { defineCommand, runMain } from 'citty'
 import { loadEnv } from './vite/loadEnv'
-import { loadUserOneOptions } from './vite/one'
 // import packageJson from 'one/package.json' with { type: 'json' }
 
 void loadEnv(process.cwd())

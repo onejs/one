@@ -10,7 +10,7 @@ export declare function fillOptions(options: VXRNOptions, internal?: {
         host: string;
         protocol: "https:" | "http:";
         url: string;
-        compression?: boolean;
+        compress?: boolean;
         cacheHeaders?: "off";
         https?: boolean;
         platform?: import("..").VXRNServePlatform;
@@ -46,7 +46,7 @@ export declare function getOptionsFilled(): {
         host: string;
         protocol: "https:" | "http:";
         url: string;
-        compression?: boolean;
+        compress?: boolean;
         cacheHeaders?: "off";
         https?: boolean;
         platform?: import("..").VXRNServePlatform;

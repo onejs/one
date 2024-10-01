@@ -8,7 +8,7 @@ export const createProdServer = async (options: VXRNOptions) => {
   const app = new Hono()
   const serverOptions = options.server || {}
 
-  if (serverOptions.compression !== false) {
+  if (serverOptions.compress !== false) {
     app.use(compress())
   }
 
