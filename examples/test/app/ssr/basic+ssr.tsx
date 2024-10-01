@@ -16,7 +16,14 @@ export default function BasicSSR() {
   const data = useLoader(loader)
 
   return (
-    <View>
+    <View
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      height="100vh"
+      gap={16}
+    >
+      <Text>This is a basic SSR page</Text>
       <Text>
         {data.loadCount} - {data.date}
       </Text>
