@@ -30,7 +30,9 @@ export async function build(args: {
   process.env.VXRN_REACT_19 = '1'
 
   if (!process.env.ONE_SERVER_URL) {
-    console.warn(`⚠️ No ONE_SERVER_URL environment set, this can cause issues`)
+    console.warn(
+      `⚠️ No ONE_SERVER_URL environment set, set it in your .env to your target deploy URL`
+    )
   }
 
   const vxrnOutput = await vxrnBuild(
