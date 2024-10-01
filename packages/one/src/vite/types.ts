@@ -1,11 +1,12 @@
-import type { Hono } from 'hono'
+import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths'
 import type {
   DepOptimize,
   DepPatch,
   AfterBuildProps as VXRNAfterBuildProps,
+  VXRNBuildOptions,
   VXRNOptions,
+  VXRNServePlatform,
 } from 'vxrn'
-import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths'
 
 export namespace One {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
@@ -82,27 +83,41 @@ export namespace One {
        */
       defaultRenderMode?: RouteRenderMode
 
-      redirects?: Redirects
+      /**
+       * An array of redirect objects, works in development and production:
+       *
+       * @example
+       *
+       * [
+       *   {
+       *     source: '/vite',
+       *     destination: 'https://vxrn.dev',
+       *     permanent: true,
+       *   },
+       *   {
+       *     source: '/docs/components/:slug/:version',
+       *     destination: '/ui/:slug/:version',
+       *     permanent: true,
+       *   },
+       * ]
+       *
+       */
+      redirects?: Redirect[]
+
+      /**
+       * Can be one of "node" or "vercel", this will determine the Hono adapter and build to run
+       * properly in production for each platform.
+       *
+       * @default node
+       */
+      deploy?: VXRNServePlatform
     }
 
     server?: VXRNOptions['server']
 
     build?: {
-      server?: {
-        /**
-         * Controls server build output module format
-         * @default 'esm'
-         */
-        outputFormat?: 'cjs' | 'esm'
-      }
-
-      api?: {
-        /**
-         * Controls server build output module format
-         * @default 'esm'
-         */
-        outputFormat?: 'cjs' | 'esm'
-      }
+      server?: VXRNBuildOptions
+      api?: VXRNBuildOptions
     }
 
     deps?: FixDependencies
@@ -123,8 +138,6 @@ export namespace One {
     destination: string
     permanent: boolean
   }
-
-  export type Redirects = Redirect[]
 
   export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'>
 

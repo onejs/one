@@ -28,7 +28,7 @@ services:
       -c hot_standby_feedback=on
     volumes:
       - pgdata_upstream:/var/lib/postgresql/data
-      - ./features/db/init_upstream:/docker-entrypoint-initdb.d
+      - ./code/db/init_upstream:/docker-entrypoint-initdb.d
     
   postgres_replica:
     <<: *postgres-common
@@ -47,7 +47,7 @@ services:
       -c hot_standby_feedback=on
     volumes:
       - pgdata_sync:/var/lib/postgresql/data
-      - ./features/db/init_sync:/docker-entrypoint-initdb.d
+      - ./code/db/init_sync:/docker-entrypoint-initdb.d
 
 volumes:
   pgdata_sync:

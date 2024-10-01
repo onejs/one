@@ -1,11 +1,12 @@
 import type { UserConfig } from 'vite'
 import { one } from 'one/vite'
-// import { tamaguiPlugin } from '@tamagui/vite-plugin'
+import { tamaguiPlugin } from '@tamagui/vite-plugin'
 
 export default {
   plugins: [
     one({
       web: {
+        deploy: 'vercel',
         defaultRenderMode: 'ssg',
       },
 
@@ -14,11 +15,11 @@ export default {
       },
     }),
 
-    // tamaguiPlugin({
-    //   optimize: true,
-    //   components: ['tamagui'],
-    //   config: './config/tamagui.config.ts',
-    //   outputCSS: './features/styles/tamagui.css',
-    // }),
+    tamaguiPlugin({
+      optimize: true,
+      components: ['tamagui'],
+      config: './config/tamagui.config.ts',
+      outputCSS: './code/styles/tamagui.css',
+    }),
   ],
 } satisfies UserConfig

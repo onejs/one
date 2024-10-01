@@ -494,7 +494,9 @@ ${JSON.stringify(params || null, null, 2)}`
 
   let postBuildLogs: string[] = []
 
-  if (options.server?.platform === 'vercel') {
+  const platform = userOptions.web?.deploy ?? options.server?.platform
+
+  if (platform === 'vercel') {
     await FSExtra.writeFile(
       join(options.root, 'dist', 'index.js'),
       `import { serve } from 'one/serve'
