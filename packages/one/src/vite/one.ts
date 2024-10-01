@@ -18,6 +18,9 @@ import { vitePluginSsrCss } from './vitePluginSsrCss'
 
 events.setMaxListeners(1_000)
 
+// temporary for tamagui plugin compat
+globalThis.__vxrnEnableNativeEnv = true
+
 export function one(options: One.PluginOptions = {}): PluginOption {
   oneOptions = options
 
