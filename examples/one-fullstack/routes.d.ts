@@ -1,10 +1,12 @@
-import type { VXSRouter } from 'vxs'
+import type { OneRouter } from 'one'
 
-declare module 'vxs' {
-  export namespace VXSRouter {
+declare module 'one' {
+  export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
       StaticRoutes: `/` | `/(docs)` | `/_sitemap` | `/account` | `/admin` | `/login`
-      DynamicRoutes: `/(docs)/docs/${VXSRouter.SingleRoutePart<T>}` | `/docs/${VXSRouter.SingleRoutePart<T>}`
+      DynamicRoutes:
+        | `/(docs)/docs/${OneRouter.SingleRoutePart<T>}`
+        | `/docs/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: `/(docs)/docs/[slug]` | `/docs/[slug]`
       IsTyped: true
     }

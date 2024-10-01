@@ -1,7 +1,7 @@
 import { Repeat2 } from '@tamagui/lucide-icons'
 import { desc, eq, sql } from 'drizzle-orm'
 import { ScrollView, Text, XStack, YStack } from 'tamagui'
-import { type LoaderProps, useLoader, getURL } from 'vxs'
+import { type LoaderProps, useLoader, getURL } from 'one'
 import { db } from '~/features/db/connection'
 import { likes, posts, replies, reposts, users } from '~/features/db/schema'
 import { FeedCard } from '~/features/feed/FeedCard'

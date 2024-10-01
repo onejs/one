@@ -120,13 +120,13 @@ ${new Error().stack
     }
 
     try {
-      if (_mod === 'vxs' || _mod === 'one' || _mod.endsWith('one/dist/esm/index.mjs')) {
+      if (_mod === 'one' || _mod === 'one' || _mod.endsWith('one/dist/esm/index.mjs')) {
         // TODO this should be passed in not hardcoded
         const found =
-          __getRequire('packages/vxs/dist/esm/index.js', _mod) ||
+          __getRequire('packages/one/dist/esm/index.js', _mod) ||
           // this is only for developing links module in ~/vxrn, can remove later
-          __getRequire('vxrn/packages/vxs/dist/esm/index.js', _mod) ||
-          __getRequire('vxs/dist/esm/index.native.js') ||
+          __getRequire('vxrn/packages/one/dist/esm/index.js', _mod) ||
+          __getRequire('one/dist/esm/index.native.js') ||
           __getRequire('one/dist/esm/index.native.js') ||
           __getRequire('packages/one/dist/esm/index.native.js', _mod) ||
           __getRequire('vxrn/packages/one/dist/esm/index.native.js', _mod)
@@ -135,7 +135,7 @@ ${new Error().stack
 
         // Try harder
         const possibleId = Object.keys(___modules___).find((m) =>
-          /(vxs|one)\/dist\/esm\/index\.native\.js$/.test(m)
+          /(one|one)\/dist\/esm\/index\.native\.js$/.test(m)
         )
         if (possibleId) {
           return __getRequire(possibleId, _mod)

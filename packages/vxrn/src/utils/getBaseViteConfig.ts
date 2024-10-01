@@ -6,7 +6,7 @@ import { requireResolve } from './requireResolve'
 // essentially base web config not base everything
 
 export const dedupe = [
-  'vxs',
+  'one',
   '@vxrn/safe-area',
   'react',
   'react-dom',

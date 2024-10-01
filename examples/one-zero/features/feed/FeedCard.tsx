@@ -1,5 +1,5 @@
 import { Heart, MessageSquare, Repeat } from '@tamagui/lucide-icons'
-import { useQuery } from 'vxs/zero'
+import { useQuery } from 'one/zero'
 import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { Link } from '../routing/Link'
 import { Card, type CardProps } from '../ui/Card'

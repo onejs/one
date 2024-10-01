@@ -2,7 +2,7 @@ import '@tamagui/core/reset.css'
 import './_layout.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot } from 'vxs'
+import { LoadProgressBar, Slot } from 'one'
 import { isWeb, TamaguiProvider } from 'tamagui'
 import { ZeroProvider } from '~/features/zero/client'
 import config from '../config/tamagui.config'

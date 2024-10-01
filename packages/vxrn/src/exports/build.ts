@@ -13,7 +13,7 @@ import { analyzer } from 'vite-bundle-analyzer'
 import type { BuildArgs, VXRNOptions } from '../types'
 import { getBaseViteConfig } from '../utils/getBaseViteConfig'
 import { getOptimizeDeps } from '../utils/getOptimizeDeps'
-import { getOptionsFilled } from '../utils/getOptionsFilled'
+import { fillOptions } from '../utils/getOptionsFilled'
 import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { mergeUserConfig } from '../utils/mergeUserConfig'
 import { applyBuiltInPatches } from '../utils/patches'
@@ -45,7 +45,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   process.env.NODE_ENV = 'production'
 
   const [options, userViteConfig] = await Promise.all([
-    getOptionsFilled(optionsIn),
+    fillOptions(optionsIn),
     loadConfigFromFile({
       command: 'build',
       mode: 'prod',
@@ -128,7 +128,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         outDir: 'dist/client',
         manifest: true,
         rollupOptions: {
-          input: ['virtual:vxs-entry'],
+          input: ['virtual:one-entry'],
 
           // output: {
           //   manualChunks: {
@@ -198,7 +198,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         //   // return /^@tamagui/.test(id)
         // },
 
-        input: ['virtual:vxs-entry'],
+        input: ['virtual:one-entry'],
 
         ...(shouldOutputCJS && {
           output: {

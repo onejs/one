@@ -1,9 +1,9 @@
-import { vxs } from 'vxs/vite'
+import { one } from 'one/vite'
 import type { UserConfig } from 'vite'
 
 export default {
   plugins: [
-    vxs({
+    one({
       // app: {
       //   key: 'test',
       // },

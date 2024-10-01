@@ -1,5 +1,5 @@
 import { ScrollView, YStack, Text, SizableStack, XStack } from 'tamagui'
-import { getURL, type LoaderProps, useLoader } from 'vxs'
+import { getURL, type LoaderProps, useLoader } from 'one'
 import { FeedCard } from '~/code/feed/FeedCard'
 import { Image } from '~/code/ui/Image'
 import { PageContainer } from '~/code/ui/PageContainer'

@@ -10,7 +10,7 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { type Href, Link, Slot, usePathname } from 'vxs'
+import { type Href, Link, Slot, usePathname } from 'one'
 import { Logo } from '../brand/Logo'
 import { useToggleTheme } from '../theme/ToggleThemeButton'
 import { HomeIcons } from './HomeIcons'

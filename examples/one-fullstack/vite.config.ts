@@ -1,6 +1,6 @@
 import { tamaguiExtractPlugin } from '@tamagui/vite-plugin'
 import type { UserConfig } from 'vite'
-import { removeReactNativeWebAnimatedPlugin, vxs } from 'vxs/vite'
+import { removeReactNativeWebAnimatedPlugin, one } from 'one/vite'
 
 const PROD = process.env.NODE_ENV === 'production'
 
@@ -25,7 +25,7 @@ export default {
   },
 
   plugins: [
-    vxs({
+    one({
       web: {
         defaultRenderMode: 'ssg',
       },

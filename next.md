@@ -64,7 +64,7 @@ should have some sprints with "challenges":
   - Might be related to bug [40E4] in the VXRN Takeout Issue List
 
 - uniswap repo has to use commonjs plugin but its very tricky to configure
-  - ideally we get a lot better at automating this, documenting, and maybe make it just a configuration key in vxs plugin
+  - ideally we get a lot better at automating this, documenting, and maybe make it just a configuration key in one plugin
 
 - use dom
 
@@ -80,7 +80,7 @@ should have some sprints with "challenges":
   - bring back some form of useMetroSymbolication
 - safe-area-context should be configurable to leave it out entirely if you want
 
-- vxs should have more than just patches, but also config that is set per-node_module
+- one should have more than just patches, but also config that is set per-node_module
   - eg, react 19 sets: 'process.env.TAMAGUI_REACT_19': '"1"'
   - another cool idea: node_modules package.json sets "vite" field that can add these custom configs, so `tamagui` package can define that *for* react 19
 

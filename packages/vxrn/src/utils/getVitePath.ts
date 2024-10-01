@@ -32,9 +32,9 @@ export async function getVitePath(
     const base = join(dirname(importer.slice(rootAt)), moduleName)
     return base + '.js'
   }
-  if (moduleName === 'vxs') {
+  if (moduleName === 'one') {
     // TODO hardcoded
-    return 'vxs'
+    return 'one'
   }
   if (moduleName === 'one') {
     // TODO hardcoded
@@ -51,7 +51,7 @@ export async function getVitePath(
 
   // TODO
   if (!resolved) {
-    return 'vxs'
+    return 'one'
   }
 
   // figure out symlinks

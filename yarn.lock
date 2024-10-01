@@ -8629,6 +8629,7 @@ __metadata:
     "@tamagui/vite-plugin": "npm:^1.112.8"
     "@tauri-apps/cli": "npm:^1"
     "@vxrn/color-scheme": "npm:1.1.268"
+    one: "npm:1.1.268"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:react-native-reanimated@3.13.0-rc.1"
@@ -8639,7 +8640,6 @@ __metadata:
     tamagui: "npm:^1.112.8"
     tsx: "npm:^4.19.0"
     vite: "npm:6.0.0-beta.1"
-    vxs: "npm:1.1.268"
   languageName: unknown
   linkType: soft
 
@@ -12519,6 +12519,7 @@ __metadata:
     drizzle-orm: "npm:^0.33.0"
     expo: "npm:~51.0.28"
     expo-modules-core: "npm:^1.12.24"
+    one: "npm:1.1.268"
     postgres: "npm:^3.4.4"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
@@ -12530,7 +12531,6 @@ __metadata:
     tamagui: "npm:^1.112.8"
     tsx: "npm:^4.19.0"
     vite: "npm:6.0.0-beta.1"
-    vxs: "npm:1.1.268"
   languageName: unknown
   linkType: soft
 
@@ -12548,6 +12548,7 @@ __metadata:
     h3: "npm:1.11.1"
     jsonwebtoken: "npm:^9.0.2"
     mdx-bundler: "npm:^10.0.2"
+    one: "npm:1.1.268"
     postmark: "npm:^3.0.18"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -12559,7 +12560,6 @@ __metadata:
     tamagui: "npm:^1.112.8"
     vite: "npm:6.0.0-beta.1"
     vite-plugin-inspect: "npm:^0.8.7"
-    vxs: "npm:1.1.268"
   languageName: unknown
   linkType: soft
 
@@ -12581,6 +12581,7 @@ __metadata:
     drizzle-orm: "npm:^0.33.0"
     expo: "npm:~51.0.28"
     expo-modules-core: "npm:^1.12.24"
+    one: "npm:1.1.268"
     postgres: "npm:^3.4.4"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
@@ -12592,7 +12593,6 @@ __metadata:
     tamagui: "npm:^1.112.8"
     tsx: "npm:^4.19.0"
     vite: "npm:6.0.0-beta.1"
-    vxs: "npm:1.1.268"
   languageName: unknown
   linkType: soft
 
@@ -12611,6 +12611,7 @@ __metadata:
     dotenv: "npm:^16.4.5"
     drizzle-kit: "npm:^0.24.2"
     drizzle-orm: "npm:^0.33.0"
+    one: "npm:1.1.268"
     postgres: "npm:^3.4.4"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
@@ -12622,7 +12623,6 @@ __metadata:
     tamagui: "npm:^1.112.8"
     tsx: "npm:^4.19.0"
     vite: "npm:6.0.0-beta.1"
-    vxs: "npm:1.1.268"
   languageName: unknown
   linkType: soft
 
@@ -12630,11 +12630,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-vercel@workspace:examples/vercel"
   dependencies:
+    one: "npm:1.1.268"
     react: "npm:^18.3.1"
     react-native-web: "npm:^0.19.12"
     vercel: "npm:^37.5.3"
     vite: "npm:6.0.0-beta.1"
-    vxs: "npm:1.1.268"
   languageName: unknown
   linkType: soft
 
@@ -12646,6 +12646,7 @@ __metadata:
     "@sentry/react-native": "npm:^5.30.0"
     "@tamagui/config": "npm:^1.112.8"
     moti: "npm:^0.29.0"
+    one: "npm:1.1.268"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:react-native-reanimated@3.13.0-rc.1"
@@ -12654,7 +12655,6 @@ __metadata:
     tamagui: "npm:^1.112.8"
     uuid: "npm:9.0.0"
     vite: "npm:6.0.0-beta.1"
-    vxs: "npm:1.1.268"
   languageName: unknown
   linkType: soft
 
@@ -12676,6 +12676,7 @@ __metadata:
     drizzle-orm: "npm:^0.33.0"
     expo: "npm:^51.0.32"
     expo-modules-core: "npm:^1.12.24"
+    one: "npm:1.1.268"
     postgres: "npm:^3.4.4"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
@@ -12687,7 +12688,6 @@ __metadata:
     tamagui: "npm:^1.112.8"
     tsx: "npm:^4.19.0"
     vite: "npm:6.0.0-alpha.18"
-    vxs: "npm:1.1.268"
   languageName: unknown
   linkType: soft
 
@@ -17874,6 +17874,69 @@ __metadata:
   languageName: node
   linkType: hard
 
+"one@npm:1.1.268, one@workspace:packages/one":
+  version: 0.0.0-use.local
+  resolution: "one@workspace:packages/one"
+  dependencies:
+    "@azure/core-asynciterator-polyfill": "npm:^1.0.2"
+    "@babel/generator": "npm:^7.25.4"
+    "@babel/parser": "npm:^7.25.4"
+    "@babel/traverse": "npm:^7.25.4"
+    "@radix-ui/react-slot": "npm:^1.0.2"
+    "@react-navigation/bottom-tabs": "npm:~6.5.8"
+    "@react-navigation/core": "npm:6.4.17"
+    "@react-navigation/drawer": "npm:~6.6.3"
+    "@react-navigation/elements": "npm:^1.3.30"
+    "@react-navigation/native": "npm:~6.1.7"
+    "@react-navigation/native-stack": "npm:~6.9.13"
+    "@react-navigation/routers": "npm:~6.1.9"
+    "@tamagui/build": "npm:^1.112.8"
+    "@types/node": "npm:^22.1.0"
+    "@types/react-dom": "npm:^18.2.25"
+    "@types/url-parse": "npm:^1.4.11"
+    "@types/xxhashjs": "npm:^0.2.4"
+    "@ungap/structured-clone": "npm:^1.2.0"
+    "@vxrn/universal-color-scheme": "npm:1.1.268"
+    "@vxrn/use-isomorphic-layout-effect": "npm:1.1.268"
+    babel-dead-code-elimination: "npm:^1.0.6"
+    citty: "npm:^0.1.6"
+    core-js: "npm:^3.38.1"
+    create-vxrn: "npm:1.1.268"
+    depcheck: "npm:^1.4.7"
+    dotenv: "npm:^16.4.5"
+    escape-string-regexp: "npm:^5.0.0"
+    expo-linking: "npm:~6.3.1"
+    expo-modules-core: "npm:^1.12.24"
+    fast-deep-equal: "npm:^3.1.3"
+    fast-glob: "npm:^3.2.11"
+    fs-extra: "npm:^11.2.0"
+    hono: "npm:^4.5.8"
+    lightningcss: "npm:^1.27.0"
+    micromatch: "npm:^4.0.7"
+    nanoid: "npm:^3.3.7"
+    perfect-debounce: "npm:^1.0.0"
+    react: "npm:^18.2.0 || ^19.0.0"
+    react-dom: "npm:^18.3.1"
+    react-native: "npm:0.74.1"
+    react-native-gesture-handler: "npm:^2.18.1"
+    react-native-safe-area-context: "npm:^4.10.1"
+    react-native-screens: "npm:3.31.1"
+    rollup: "npm:^4.21.0"
+    rollup-plugin-node-externals: "npm:^7.1.2"
+    url-parse: "npm:^1.5.10"
+    vite: "npm:6.0.0-beta.1"
+    vite-tsconfig-paths: "npm:^5.0.1"
+    vitest: "npm:^2.1.1"
+    vxrn: "npm:1.1.268"
+    ws: "npm:^8.18.0"
+    xxhashjs: "npm:^0.2.2"
+  peerDependencies:
+    react-native: "*"
+  bin:
+    one: run.mjs
+  languageName: unknown
+  linkType: soft
+
 "onetime@npm:^2.0.0":
   version: 2.0.1
   resolution: "onetime@npm:2.0.1"
@@ -22824,69 +22887,6 @@ __metadata:
     ws: "npm:^8.7.0"
   bin:
     vxrn: run.mjs
-  languageName: unknown
-  linkType: soft
-
-"vxs@npm:1.1.268, vxs@workspace:packages/vxs":
-  version: 0.0.0-use.local
-  resolution: "vxs@workspace:packages/vxs"
-  dependencies:
-    "@azure/core-asynciterator-polyfill": "npm:^1.0.2"
-    "@babel/generator": "npm:^7.25.4"
-    "@babel/parser": "npm:^7.25.4"
-    "@babel/traverse": "npm:^7.25.4"
-    "@radix-ui/react-slot": "npm:^1.0.2"
-    "@react-navigation/bottom-tabs": "npm:~6.5.8"
-    "@react-navigation/core": "npm:6.4.17"
-    "@react-navigation/drawer": "npm:~6.6.3"
-    "@react-navigation/elements": "npm:^1.3.30"
-    "@react-navigation/native": "npm:~6.1.7"
-    "@react-navigation/native-stack": "npm:~6.9.13"
-    "@react-navigation/routers": "npm:~6.1.9"
-    "@tamagui/build": "npm:^1.112.8"
-    "@types/node": "npm:^22.1.0"
-    "@types/react-dom": "npm:^18.2.25"
-    "@types/url-parse": "npm:^1.4.11"
-    "@types/xxhashjs": "npm:^0.2.4"
-    "@ungap/structured-clone": "npm:^1.2.0"
-    "@vxrn/universal-color-scheme": "npm:1.1.268"
-    "@vxrn/use-isomorphic-layout-effect": "npm:1.1.268"
-    babel-dead-code-elimination: "npm:^1.0.6"
-    citty: "npm:^0.1.6"
-    core-js: "npm:^3.38.1"
-    create-vxrn: "npm:1.1.268"
-    depcheck: "npm:^1.4.7"
-    dotenv: "npm:^16.4.5"
-    escape-string-regexp: "npm:^5.0.0"
-    expo-linking: "npm:~6.3.1"
-    expo-modules-core: "npm:^1.12.24"
-    fast-deep-equal: "npm:^3.1.3"
-    fast-glob: "npm:^3.2.11"
-    fs-extra: "npm:^11.2.0"
-    hono: "npm:^4.5.8"
-    lightningcss: "npm:^1.27.0"
-    micromatch: "npm:^4.0.7"
-    nanoid: "npm:^3.3.7"
-    perfect-debounce: "npm:^1.0.0"
-    react: "npm:^18.2.0 || ^19.0.0"
-    react-dom: "npm:^18.3.1"
-    react-native: "npm:0.74.1"
-    react-native-gesture-handler: "npm:^2.18.1"
-    react-native-safe-area-context: "npm:^4.10.1"
-    react-native-screens: "npm:3.31.1"
-    rollup: "npm:^4.21.0"
-    rollup-plugin-node-externals: "npm:^7.1.2"
-    url-parse: "npm:^1.5.10"
-    vite: "npm:6.0.0-beta.1"
-    vite-tsconfig-paths: "npm:^5.0.1"
-    vitest: "npm:^2.1.1"
-    vxrn: "npm:1.1.268"
-    ws: "npm:^8.18.0"
-    xxhashjs: "npm:^0.2.2"
-  peerDependencies:
-    react-native: "*"
-  bin:
-    vxs: run.mjs
   languageName: unknown
   linkType: soft
 

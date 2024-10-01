@@ -1,9 +1,9 @@
 import type { UserConfig } from 'vite'
-import { vxs } from 'vxs/vite'
+import { one } from 'one/vite'
 
 export default {
   plugins: [
-    vxs({
+    one({
       server: {
         platform: 'vercel',
       },

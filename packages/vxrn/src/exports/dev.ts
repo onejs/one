@@ -15,18 +15,18 @@ import { join } from 'node:path'
 import { createServer } from 'vite'
 import { WebSocket } from 'ws'
 import type { VXRNOptions } from '../types'
+import { startUserInterface } from '../user-interface/index'
 import { bindKeypressInput } from '../utils/bindKeypressInput'
 import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
-import { getOptionsFilled } from '../utils/getOptionsFilled'
+import { fillOptions } from '../utils/getOptionsFilled'
 import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { applyBuiltInPatches } from '../utils/patches'
 import { clean } from './clean'
-import { startUserInterface } from '../user-interface/index'
 
 const { ensureDir } = FSExtra
 
@@ -41,7 +41,7 @@ const { ensureDir } = FSExtra
  */
 
 export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
-  const options = await getOptionsFilled(optionsIn)
+  const options = await fillOptions(optionsIn)
   const { cacheDir, server } = options
 
   if (options.clean) {

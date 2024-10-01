@@ -5,7 +5,7 @@ import './_layout.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
-import { LoadProgressBar, Slot } from 'vxs'
+import { LoadProgressBar, Slot } from 'one'
 import config from '../config/tamagui.config'
 
 export default function Layout() {

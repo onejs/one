@@ -1,9 +1,9 @@
 import type { VXRNOptions } from '../types'
-import { getOptionsFilled } from '../utils/getOptionsFilled'
+import { fillOptions } from '../utils/getOptionsFilled'
 import { createProdServer } from './createServer'
 
 export const serve = async (optionsIn: VXRNOptions) => {
-  const options = await getOptionsFilled(optionsIn, { mode: 'prod' })
+  const options = await fillOptions(optionsIn, { mode: 'prod' })
 
   // see this for more hono setup
   const app = await createProdServer(options)

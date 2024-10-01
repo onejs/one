@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigation } from 'vxs'
+import { useNavigation } from 'one'
 
 export const useSetNavigationOptions = (options: Object) => {
   const navigation = useNavigation()

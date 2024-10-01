@@ -8,7 +8,7 @@
     "dev": "vxrn dev",
     "dev:clean": "vxrn dev --clean",
     "clean": "vxrn clean",
-    "build:prod": "vxrn build",
+    "build:web": "vxrn build",
     "serve": "vxrn serve",
     "android": "react-native run-android",
     "ios": "react-native run-ios"

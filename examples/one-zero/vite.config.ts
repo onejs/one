@@ -1,10 +1,10 @@
 import { tamaguiPlugin } from '@tamagui/vite-plugin'
 import type { UserConfig } from 'vite'
-import { vxs } from 'vxs/vite'
+import { one } from 'one/vite'
 
 export default {
   plugins: [
-    vxs({
+    one({
       zero: true,
 
       web: {

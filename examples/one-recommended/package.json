@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vxs dev",
-    "dev:clean": "vxs dev --clean",
-    "clean": "vxs clean",
-    "build:prod": "vxs build",
-    "prebuild": "vxs prebuild",
-    "serve": "vxs serve",
+    "dev": "one dev",
+    "dev:clean": "one dev --clean",
+    "clean": "one clean",
+    "prebuild": "one prebuild",
+    "build:web": "one build",
+    "serve": "one serve",
     "ios": "EXPO_NO_TELEMETRY=true expo run:ios",
     "android": "EXPO_NO_TELEMETRY=true expo run:android",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
@@ -35,6 +35,7 @@
     "drizzle-orm": "^0.33.0",
     "expo": "~51.0.28",
     "expo-modules-core": "^1.12.24",
+    "one": "1.1.268",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.1",
@@ -43,8 +44,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.112.8",
-    "vxs": "1.1.268"
+    "tamagui": "^1.112.8"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",

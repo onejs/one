@@ -1,5 +1,5 @@
 import { Paragraph, Text, XStack, YStack } from 'tamagui'
-import { type Href, Link } from 'vxs'
+import { type Href, Link } from 'one'
 import { Image } from '../ui/Image'
 import { Card } from '../ui/Card'
 
