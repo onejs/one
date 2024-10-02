@@ -33,7 +33,6 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
     return createHandleRequest(options, {
       async handleSSR({ route, url, loaderProps }) {
         console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
-        console.info({ route, url })
 
         if (route.type === 'spa') {
           // render just the layouts? route.layouts

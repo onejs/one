@@ -42,10 +42,10 @@ const runTests = (environment: 'dev' | 'prod') => {
       //   expect(html).toContain('Custom 404: Page not found')
       // })
 
-      // it('should return 404 status for non-existent routes', async () => {
-      //   const response = await fetch(`${serverUrl}/not-found/non-existent-route`)
-      //   expect(response.status).toBe(404)
-      // })
+      it('should return 404 status for non-existent routes', async () => {
+        const response = await fetch(`${serverUrl}/not-found/non-existent-route`)
+        expect(response.status).toBe(404)
+      })
     })
   })
 }
