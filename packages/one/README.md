@@ -1,3 +1,3 @@
-This was forked from [Expo Router](https://github.com/expo/expo/tree/main/packages/expo-router) mostly to make all the features necessary to run an expo router app work.
+One is a new React Framework that makes Vite serve both native and web.
 
-For now it's mostly up to date with version 3 beta. No guarantees on updates.
+See: https://onestack.dev
