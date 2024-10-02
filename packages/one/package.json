@@ -8,7 +8,9 @@
   "license": "MIT",
   "main": "dist/cjs",
   "module": "dist/esm",
-  "bin": "run.mjs",
+  "bin": {
+    "one": "run.mjs"
+  },
   "files": [
     "src",
     "types",
