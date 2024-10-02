@@ -33,6 +33,7 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
     return createHandleRequest(options, {
       async handleSSR({ route, url, loaderProps }) {
         console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
+        console.info({ route, url })
 
         if (route.type === 'spa') {
           // render just the layouts? route.layouts
@@ -59,20 +60,17 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
 
         try {
           const routeFile = join('app', route.file)
+          console.log({ routeFile, url })
           runner.clearCache()
 
-          // importing directly causes issues :/
           globalThis['__vxrnresetState']?.()
 
-          // its '' for now for unmatched
           const exported = routeFile === '' ? {} : await runner.import(routeFile)
           const loaderData = await exported.loader?.(loaderProps)
 
-          // TODO move to tamagui plugin, also esbuild was getting mad
           // biome-ignore lint/security/noGlobalEval: <explanation>
           eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
-          // const entry = await server.ssrLoadModule(virtualEntryId)
           const entry = await runner.import(virtualEntryId)
 
           const render = entry.default.render as (props: RenderAppProps) => any
@@ -82,6 +80,8 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
 
           LoaderDataCache[route.file] = loaderData
 
+          const is404 = route.isNotFound || !exported.default
+
           const html = await render({
             loaderData,
             loaderProps,
@@ -89,8 +89,16 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
             preloads,
           })
 
+          if (is404) {
+            return new Response(html, {
+              status: 404,
+              headers: { 'Content-Type': 'text/html' },
+            })
+          }
+
           return html
         } catch (err) {
+          console.error(`Error in handleSSR:`, err)
           const title = `Error rendering ${url.pathname} on server`
           const message = err instanceof Error ? err.message : `${err}`
           const stack = err instanceof Error ? err.stack : ''
