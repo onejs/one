@@ -5,6 +5,8 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
+    globalSetup: './test/globalSetup.ts',
+    teardownTimeout: 500,
     poolOptions: {
       forks: {
         maxForks: 1,

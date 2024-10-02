@@ -11,7 +11,6 @@ body {
   margin: 0;
   position: relative;
   max-width: 100vw;
-  background-color: var(--bodyBg) !important;
 }
 
 a {

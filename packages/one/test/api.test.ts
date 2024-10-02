@@ -1,51 +1,13 @@
-import { type ChildProcessWithoutNullStreams, spawn } from 'node:child_process'
-import * as path from 'node:path'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-
-const fixturePath = path.resolve(__dirname, '../../../examples/test')
+import { describe, expect, it, beforeAll, inject } from 'vitest'
 
 const runTests = (environment: 'dev' | 'prod') => {
   describe(`API Tests (${environment})`, () => {
-    let serverUrl
-    let serverProcess: ChildProcessWithoutNullStreams | null = null
+    let serverUrl: string
 
-    beforeAll(async () => {
-      // Spawn the server process based on the environment
-      const command = environment === 'dev' ? 'dev' : 'prod'
-      serverProcess = spawn('yarn', [command, '--host', '127.0.0.1'], { cwd: fixturePath })
-      let serverOutput = ''
-      serverProcess.stdout.on('data', (data) => {
-        console.info(data.toString())
-        serverOutput += data.toString()
-        if (serverOutput.includes('Server running on http://')) {
-          const match = serverOutput.match(/Server running on (http:\/\/[^\s]+)/)
-          if (match) {
-            serverUrl = match[1]
-          }
-        }
-      })
-
-      // Wait for the server to start or timeout
-      const maxWaitTime = environment === 'dev' ? 15_000 : 30_000
-      const startTime = Date.now()
-
-      while (Date.now() - startTime < maxWaitTime) {
-        if (serverUrl) {
-          break
-        }
-        await new Promise((resolve) => setTimeout(resolve, 300))
-      }
-
-      if (!serverUrl) {
-        throw new Error('Server failed to start within the timeout period')
-      }
-    }, 60_000)
-
-    afterAll(() => {
-      // Kill the server process
-      if (serverProcess) {
-        serverProcess.kill()
-      }
+    beforeAll(() => {
+      const testInfo = inject('testInfo')
+      const port = environment === 'dev' ? testInfo.testDevPort : testInfo.testProdPort
+      serverUrl = `http://localhost:${port}`
     })
 
     describe('GET /api/test-params/[endpointId]', () => {
