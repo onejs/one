@@ -1,5 +1,5 @@
 import events from 'node:events'
-import { dirname, resolve } from 'node:path'
+import path, { dirname, resolve } from 'node:path'
 import { type Plugin, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { getOptimizeDeps, getOptionsFilled, isWebEnvironment } from 'vxrn'
@@ -149,6 +149,27 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             'process.env.TAMAGUI_REACT_19': '"1"',
           },
         }
+      },
+    } satisfies Plugin,
+
+    {
+      name: 'route-module-hmr-fix',
+      hotUpdate({ server, modules }) {
+        return modules.map((m) => {
+          const { id } = m
+          if (!id) return m
+
+          const relativePath = path.relative(server.config.root, id)
+          // Get the root dir from relativePath
+          const rootDir = relativePath.split(path.sep)[0]
+          if (rootDir === 'app') {
+            // If the file is a route, Vite might force a full-reload due to that file not being imported by any other modules (`!node.importers.size`) (see https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L440-L443, https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L427 and https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L557-L566)
+            // Here we trick Vite to skip that check.
+            m.acceptedHmrExports = new Set()
+          }
+
+          return m
+        })
       },
     } satisfies Plugin,
   ] satisfies Plugin[]

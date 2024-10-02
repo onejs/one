@@ -1,5 +1,5 @@
 // import '@vite/env'
-
+import getDevServer from 'react-native/Libraries/Core/Devtools/getDevServer'
 import type { InferCustomEventPayload } from './customEvent'
 import type { ErrorPayload, HMRPayload, Update } from './hmrPayload'
 import type { ModuleNamespace, ViteHotContext } from './hot'
@@ -26,9 +26,20 @@ const serverHost = __SERVER_HOST__
 const socketProtocol = __HMR_PROTOCOL__ || (importMetaUrl.protocol === 'https:' ? 'wss' : 'ws')
 const hmrPort = __HMR_PORT__ || 5173
 
-const socketHost = `${__HMR_HOSTNAME__ || importMetaUrl.hostname}:${
-  hmrPort || importMetaUrl.port
-}${__HMR_BASE__}`
+let rnDevServerHost: string | undefined
+try {
+  const { url: devServerUrl } = getDevServer() as { url: string }
+  const [, host] = devServerUrl.match(/:\/\/([^\/]+)/) || []
+  if (host) rnDevServerHost = host
+} catch (e) {
+  console.warn(`[vite-native-client] failed to get react-native dev server url: ${e}`)
+}
+
+const hmrHost =
+  rnDevServerHost ||
+  `${__HMR_HOSTNAME__ || importMetaUrl.hostname}:${hmrPort || importMetaUrl.port}`
+
+const socketHost = `${hmrHost}${__HMR_BASE__}`
 const directSocketHost = __HMR_DIRECT_TARGET__
 const base = __BASE__ || '/'
 const messageBuffer: string[] = []
@@ -349,7 +360,8 @@ async function fetchUpdate({ path, acceptedPath, timestamp, explicitImportRequir
 
       const scriptUrl =
         // re-route to our cjs endpoint
-        `http://${serverHost.replace('5173', '8081')}` + finalQuery
+        `http://${rnDevServerHost ? rnDevServerHost + '/' : serverHost.replace('5173', '8081')}` +
+        finalQuery
 
       console.info(`fetching update: ${scriptUrl}`)
 
