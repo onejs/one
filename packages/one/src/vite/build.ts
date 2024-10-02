@@ -97,7 +97,15 @@ export async function build(args: {
           ...processEnvDefines,
         },
 
+        ssr: {
+          noExternal: true,
+          // we patched them to switch to react 19
+          external: ['react', 'react-dom'],
+          optimizeDeps,
+        },
+
         build: {
+          ssr: true,
           emptyOutDir: false,
           outDir: 'dist/api',
           copyPublicDir: false,
