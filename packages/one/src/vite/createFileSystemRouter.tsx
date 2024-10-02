@@ -59,7 +59,6 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
 
         try {
           const routeFile = join('app', route.file)
-          console.log({ routeFile, url })
           runner.clearCache()
 
           globalThis['__vxrnresetState']?.()
