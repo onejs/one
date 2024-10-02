@@ -5,6 +5,7 @@
   "types": "./types/index.d.ts",
   "sideEffects": false,
   "type": "module",
+  "license": "MIT",
   "main": "dist/cjs",
   "module": "dist/esm",
   "bin": "run.mjs",
