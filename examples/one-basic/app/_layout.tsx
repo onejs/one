@@ -1,3 +1,5 @@
 import { Slot } from 'one'
 
-export default () => <Slot />
+export default function Layout() {
+  return <Slot />
+}
