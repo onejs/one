@@ -21,7 +21,7 @@
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "test": "vitest --run",
+    "test": "vitest --run --pool=forks",
     "test:watch": "vitest --watch"
   },
   "exports": {
@@ -129,6 +129,7 @@
     "@types/url-parse": "^1.4.11",
     "@types/xxhashjs": "^0.2.4",
     "depcheck": "^1.4.7",
+    "get-port": "^7.1.0",
     "react-native": "0.74.1",
     "rollup": "^4.21.0",
     "vitest": "^2.1.1"

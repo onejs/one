@@ -12,6 +12,7 @@ export type RouteInfo<TRegex = string> = {
   routeKeys: Record<string, string>
   layouts?: RouteNode[]
   type: One.RouteType
+  isNotFound?: boolean
 }
 
 export type RoutesManifest<TRegex = string> = {
