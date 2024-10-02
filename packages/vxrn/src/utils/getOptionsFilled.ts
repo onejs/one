@@ -17,7 +17,10 @@ export async function fillOptions(
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ) {
   const { root = process.cwd(), server = {}, entries } = options
-  const { host = '127.0.0.1', https } = server
+  const {
+    host = '0.0.0.0' /* TODO: Better default to 127.0.0.1 due to security reasons, and only dynamically change to 0.0.0.0 if the user is requesting an Expo QR code */,
+    https,
+  } = server
 
   const defaultPort = server.port || (internal.mode === 'dev' ? 8081 : 3000)
   const packageRootDir = join(require.resolve('vxrn'), '../..')
