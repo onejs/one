@@ -10,6 +10,7 @@ import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
+import { requireResolve } from './requireResolve'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled) {
   const { root, server } = config
@@ -82,6 +83,13 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
           },
         },
       ],
+
+      resolve: {
+        alias: {
+          // this is a relatively safe one as it should be 100% api surface compat that fixes ssr
+          'react-native-svg': requireResolve('@tamagui/react-native-svg'),
+        },
+      },
 
       ssr: {
         optimizeDeps,

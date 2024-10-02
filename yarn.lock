@@ -6682,6 +6682,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tamagui/react-native-svg@npm:^1.112.14":
+  version: 1.112.14
+  resolution: "@tamagui/react-native-svg@npm:1.112.14"
+  checksum: 10/7ebbffb19edf8ee2c2e0f4099453e4a8b061957deda56966914ce56932bcf6b658041dfbc16a346a6c5ae017f4701348f3f8e7d3380d5898c6f21c4efcc07134
+  languageName: node
+  linkType: hard
+
 "@tamagui/react-native-use-pressable@npm:1.112.13":
   version: 1.112.13
   resolution: "@tamagui/react-native-use-pressable@npm:1.112.13"
@@ -22885,6 +22892,7 @@ __metadata:
     "@hono/node-server": "npm:^1.12.1"
     "@rollup/plugin-node-resolve": "npm:^15.2.3"
     "@tamagui/build": "npm:^1.112.13"
+    "@tamagui/react-native-svg": "npm:^1.112.14"
     "@types/find-node-modules": "npm:^2.1.2"
     "@types/node": "npm:^22.1.0"
     "@types/qrcode-terminal": "npm:^0"
