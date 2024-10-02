@@ -17903,7 +17903,7 @@ __metadata:
     micromatch: "npm:^4.0.7"
     nanoid: "npm:^3.3.7"
     perfect-debounce: "npm:^1.0.0"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0 || ^19.0.0"
     react-dom: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-gesture-handler: "npm:^2.18.1"
