@@ -26,7 +26,7 @@ import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 // * Use of eval in "(...)/one/dist/esm/useLoader.native.js" is strongly discouraged as it poses security risks and may cause issues with minification.
 // (not an exhaustive list)
 const IGNORE_ROLLUP_LOGS_RE =
-  /vite-native-client\/dist\/esm\/client\.native\.js|node_modules\/\.vxrn\/react-native\.js|react-native-prebuilt\/vendor|one\/dist/
+  /vite-native-client\/dist\/esm\/client|node_modules\/\.vxrn\/react-native|react-native-prebuilt\/vendor|one\/dist/
 
 export async function getReactNativeConfig(
   options: VXRNOptionsFilled,

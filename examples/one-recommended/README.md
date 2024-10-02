@@ -1,3 +1,7 @@
+# One Project
+
+Welcome to One!
+
 ## Setup
 
 Set up your `.env` file first:
@@ -6,7 +10,7 @@ Set up your `.env` file first:
 cp .env.default .env
 ```
 
-Now you'll need to run a postgres database. We've included a docker-compose.yml
+Now you'll need to run a postgres database. We've included a `docker-compose.yml`
 that will set up everything for you, you'll want to set up docker first though:
 
 - On Mac, we highly recommend [OrbStack](https://orbstack.dev) as it's much faster and generally a drop-in replacement.
@@ -14,7 +18,7 @@ that will set up everything for you, you'll want to set up docker first though:
 
 Once you do install one of those and run it, you should be able to run:
 
-```
+```bash
 docker-compose up
 ```
 
@@ -30,16 +34,26 @@ yarn db:init
 
 You can now run your One app in development:
 
-```
+```bash
 yarn dev
 ```
 
 ## Production
 
-To build your app for production
+To build your app for production:
 
 ### Web
 
+```bash
+yarn build:web
 ```
-yarn build
+
+### iOS
+
+First, you'll need to generate the native code for your app:
+
+```bash
+yarn prebuild:native
 ```
+
+Afterward, follow the instructions printed in the terminal to build and upload your iOS app for distribution.
