@@ -121,6 +121,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
       define: {
         'process.env.VITE_ENVIRONMENT': '"client"',
+        ...(process.env.ONE_SERVER_URL && {
+          'process.env.ONE_SERVER_URL': JSON.stringify(process.env.ONE_SERVER_URL),
+        }),
       },
 
       build: {
