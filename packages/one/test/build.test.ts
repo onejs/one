@@ -1,14 +1,9 @@
 import { readFile, pathExists } from 'fs-extra'
-import { spawnSync } from 'node:child_process'
 import * as path from 'node:path'
-import { beforeAll, describe, expect, it } from 'vitest'
-
-const fixturePath = path.resolve(__dirname, '../../../examples/test')
+import { describe, expect, it, inject } from 'vitest'
 
 describe('Simple Build Tests', () => {
-  beforeAll(async () => {
-    spawnSync('yarn', ['build:web'], { cwd: fixturePath })
-  })
+  const fixturePath = inject('testInfo').testDir
 
   it('should build api routes without including side effects', async () => {
     const sideEffectFreeApiRoute = await readFile(

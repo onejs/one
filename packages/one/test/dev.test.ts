@@ -1,54 +1,13 @@
-import { spawn } from 'node:child_process'
-import * as path from 'node:path'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-
-const fixturePath = path.resolve(__dirname, '../../../examples/test')
+import { describe, expect, it, inject } from 'vitest'
 
 describe('Simple Run Tests', () => {
-  let serverUrl
-  let devProcess
+  const testInfo = inject('testInfo')
+  const serverUrl = `http://localhost:${testInfo.testDevPort}`
 
-  beforeAll(async () => {
-    // Spawn the dev server process
-    devProcess = spawn('yarn', ['dev'], { cwd: fixturePath })
-
-    let yarnDevOutput = ''
-    devProcess.stdout.on('data', (data) => {
-      yarnDevOutput += data.toString()
-      if (yarnDevOutput.includes('Server running on http://')) {
-        const match = yarnDevOutput.match(/Server running on (http:\/\/[^\s]+)/)
-        if (match) {
-          serverUrl = match[1]
-        }
-      }
-    })
-
-    // Wait for the server to start or timeout
-    const maxWaitTime = 30_000
-    const startTime = Date.now()
-
-    while (Date.now() - startTime < maxWaitTime) {
-      if (serverUrl) {
-        break
-      }
-      await new Promise((resolve) => setTimeout(resolve, 300))
-    }
-
-    if (!serverUrl) {
-      throw new Error('Server failed to start within the timeout period')
-    }
-  })
-
-  afterAll(() => {
-    // Kill the dev server process
-    if (devProcess) {
-      devProcess.kill()
-    }
-  })
-
-  it('should start the dev server', () => {
+  it('should have a valid server URL', () => {
     expect(serverUrl).toBeDefined()
-  }, 30_000)
+    expect(serverUrl).toContain('http://localhost')
+  })
 
   describe('GET /api/test', () => {
     it('should return test items', async () => {
@@ -188,4 +147,4 @@ describe('Simple Run Tests', () => {
       expect(data.error).toBe('Internal server error')
     })
   })
-}, 60_000)
+})
