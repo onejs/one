@@ -32,7 +32,7 @@ export async function serve(args: VXRNOptions['server'] = {}) {
       ...removeUndefined({
         port: args.port ? +args.port : undefined,
         host: args.host,
-        compression: args.compression,
+        compress: args.compress,
         platform: args.platform,
         cacheHeaders: args.cacheHeaders,
       }),

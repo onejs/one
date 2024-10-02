@@ -71,7 +71,7 @@ const serveCommand = defineCommand({
     platform: {
       type: 'string',
     },
-    compression: {
+    compress: {
       type: 'boolean',
     },
     cacheHeaders: {
@@ -84,7 +84,7 @@ const serveCommand = defineCommand({
       port: args.port ? +args.port : undefined,
       host: args.host,
       cacheHeaders: args.cacheHeaders === false ? 'off' : undefined,
-      compression: args.compression,
+      compress: args.compress,
       platform: args.platform === 'vercel' ? 'vercel' : 'node',
     })
   },
