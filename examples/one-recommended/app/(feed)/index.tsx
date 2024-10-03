@@ -6,7 +6,6 @@ import { PageContainer } from '~/code/ui/PageContainer'
 import { db } from '~/code/db/connection'
 import { posts, users, likes, replies, reposts } from '~/code/db/schema'
 import { eq, desc, sql } from 'drizzle-orm'
-import { feedData } from '~/code/feed/data'
 
 export async function loader({ path }: LoaderProps) {
   try {
@@ -42,7 +41,7 @@ export async function loader({ path }: LoaderProps) {
       .limit(limit)
       .offset(offset)
 
-    return { feed: [...feedData, ...feed] }
+    return { feed }
   } catch (error) {
     console.error(error)
     throw new Error(`Failed to fetch feed: ${(error as Error).message}`)
