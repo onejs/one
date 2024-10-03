@@ -22,7 +22,12 @@ const COMMANDS = [
     label: 'open web',
     terminalLabel: '\x1b[1mo\x1b[0mpen \x1b[1mw\x1b[0meb',
     action: (ctx) => {
-      nativeOpen(`http://${ctx.server.host}:${ctx.server.port}`)
+      const port = ctx.server.port
+      let host = ctx.server.host
+      if (host === '0.0.0.0') {
+        host = '127.0.0.1'
+      }
+      nativeOpen(`http://${host}:${port}`)
     },
   },
   {
