@@ -7,8 +7,8 @@ if (!DATABASE_URL || typeof DATABASE_URL !== 'string') {
 }
 
 export default defineConfig({
-  schema: './db/schema.ts',
-  out: './db/migrations',
+  schema: './code/db/schema.ts',
+  out: './code/db/migrations',
   dialect: 'postgresql', // 'postgresql' | 'mysql' | 'sqlite'
   dbCredentials: {
     url: DATABASE_URL as string, // Type assertion to ensure it's a string
