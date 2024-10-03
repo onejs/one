@@ -13,11 +13,11 @@
     "ios": "EXPO_NO_TELEMETRY=true expo run:ios",
     "android": "EXPO_NO_TELEMETRY=true expo run:android",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
-    "db:init": "./features/db/init.sh && yarn db:generate && yarn db:push && yarn db:seed",
-    "db:generate": "drizzle-kit generate --config ./features/db/drizzle.config.ts",
-    "db:push": "drizzle-kit push --config ./features/db/drizzle.config.ts",
-    "db:migrate": "dotenvx run -f .env -- tsx ./features/db/run-migrations.ts",
-    "db:seed": "dotenvx run -f .env -- tsx ./features/db/seed.ts"
+    "db:init": "./code/db/init.sh && yarn db:generate && yarn db:push && yarn db:seed",
+    "db:generate": "drizzle-kit generate --config ./code/db/drizzle.config.ts",
+    "db:push": "drizzle-kit push --config ./code/db/drizzle.config.ts",
+    "db:migrate": "dotenvx run -f .env -- tsx ./code/db/run-migrations.ts",
+    "db:seed": "dotenvx run -f .env -- tsx ./code/db/seed.ts"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"
