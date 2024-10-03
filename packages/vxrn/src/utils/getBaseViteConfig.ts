@@ -88,7 +88,10 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
       alias: {
         'react-native': requireResolve('react-native-web'),
         'react-native-safe-area-context': '@vxrn/safe-area',
+
+        // bundle size optimizations
         'query-string': requireResolve('@vxrn/query-string'),
+        'url-parse': requireResolve('@vxrn/url-parse'),
       },
 
       // TODO auto dedupe all include optimize deps?
