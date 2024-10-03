@@ -5,7 +5,10 @@
   "repository": {
     "url": "https://github.com/onejs/one"
   },
-  "workspaces": ["./packages/*", "./examples/*"],
+  "workspaces": [
+    "./packages/*",
+    "./examples/*"
+  ],
   "packageManager": "yarn@4.4.1",
   "engines": {
     "node": "20.17.0",
