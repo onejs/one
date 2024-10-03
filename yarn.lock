@@ -8617,6 +8617,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@vxrn/url-parse@npm:1.1.275, @vxrn/url-parse@workspace:packages/url-parse":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/url-parse@workspace:packages/url-parse"
+  dependencies:
+    "@tamagui/build": "npm:^1.112.13"
+    url-parse: "npm:^1.5.10"
+  languageName: unknown
+  linkType: soft
+
 "@vxrn/use-isomorphic-layout-effect@npm:1.1.275, @vxrn/use-isomorphic-layout-effect@workspace:packages/use-isomorphic-layout-effect":
   version: 0.0.0-use.local
   resolution: "@vxrn/use-isomorphic-layout-effect@workspace:packages/use-isomorphic-layout-effect"
@@ -22942,6 +22951,7 @@ __metadata:
     "@vxrn/query-string": "npm:1.1.275"
     "@vxrn/react-native-prebuilt": "npm:1.1.275"
     "@vxrn/safe-area": "npm:1.1.275"
+    "@vxrn/url-parse": "npm:1.1.275"
     "@vxrn/vendor": "npm:1.1.275"
     "@vxrn/vite-flow": "npm:1.1.275"
     "@vxrn/vite-native-swc": "npm:1.1.275"
