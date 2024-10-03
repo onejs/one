@@ -18,7 +18,7 @@ export async function installDependencies(
       command = 'pnpm install'
       break
     default:
-      command = 'npm install'
+      command = 'npm install --force'
       break
   }
 
