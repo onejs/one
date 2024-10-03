@@ -1,5 +1,5 @@
 import events from 'node:events'
-import path, { dirname, resolve } from 'node:path'
+import path, { dirname, join, resolve } from 'node:path'
 import { type Plugin, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { getOptimizeDeps, getOptionsFilled, isWebEnvironment } from 'vxrn'
@@ -85,6 +85,39 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         },
       }
     ),
+
+    {
+      name: 'one-slim-deps',
+      enforce: 'pre',
+
+      config() {
+        // const forkPath = dirname(requireResolve('one'))
+
+        return {
+          resolve: {
+            alias: {
+              tslib: requireResolve('@vxrn/tslib-lite'),
+            },
+
+            // [
+            //   {
+            //     find: /tslib/,
+            //     replacement: requireResolve('@vxrn/tslib-lite'),
+            //   },
+            //   // not working but would save ~30Kb stat
+            //   // {
+            //   //   find: /@react-navigation\/core.*\/getStateFromPath/,
+            //   //   replacement: join(forkPath, 'fork', 'getStateFromPath.mjs'),
+            //   // },
+            //   // {
+            //   //   find: /@react-navigation\/core.*\/getPathFromState/,
+            //   //   replacement: join(forkPath, 'fork', 'getPathFromState.mjs'),
+            //   // },
+            // ],
+          },
+        }
+      },
+    },
 
     {
       name: 'one:init-config',

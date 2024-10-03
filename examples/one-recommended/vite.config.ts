@@ -17,6 +17,7 @@ export default {
 
     tamaguiPlugin({
       optimize: true,
+      useReactNativeWebLite: true,
       components: ['tamagui'],
       config: './config/tamagui.config.ts',
       outputCSS: './code/styles/tamagui.css',
