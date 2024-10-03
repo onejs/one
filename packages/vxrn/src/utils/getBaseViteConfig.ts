@@ -12,6 +12,8 @@ export const dedupe = [
   'react-dom',
   'react-dom/client',
   'react-native-web',
+  '@react-navigation/core',
+  '@react-navigation/elements',
   '@tamagui/core',
   '@tamagui/web',
   '@tamagui/react-native-web',
@@ -86,6 +88,7 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
       alias: {
         'react-native': requireResolve('react-native-web'),
         'react-native-safe-area-context': '@vxrn/safe-area',
+        'query-string': requireResolve('@vxrn/query-string'),
       },
 
       // TODO auto dedupe all include optimize deps?

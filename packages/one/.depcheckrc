@@ -1,1 +1,1 @@
-ignores: ["expo-modules-core", "react-native-web", "zql", "@vxrn/react-native-prebuilt"]
+ignores: ["expo-modules-core", "react-native-web", "zql", "@vxrn/react-native-prebuilt", "one/package.json"]
