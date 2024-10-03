@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/color-scheme",
-  "version": "1.1.280",
+  "version": "1.1.281",
   "sideEffects": false,
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@tamagui/use-did-finish-ssr": "^1.112.13",
-    "@vxrn/universal-color-scheme": "1.1.280",
-    "@vxrn/use-isomorphic-layout-effect": "1.1.280"
+    "@vxrn/universal-color-scheme": "1.1.281",
+    "@vxrn/use-isomorphic-layout-effect": "1.1.281"
   },
   "devDependencies": {
     "@tamagui/build": "^1.112.13",
