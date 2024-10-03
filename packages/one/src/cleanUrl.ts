@@ -10,13 +10,13 @@ export function cleanUrl(path: string) {
   )
 }
 
-const clientSideCacheKey = typeof window !== 'undefined' ? `?${CACHE_KEY}` : ''
+const clientSideSearch = typeof window !== 'undefined' ? `?${CACHE_KEY}` : ''
 const clientSideURL = typeof window !== 'undefined' ? CLIENT_BASE_URL : ''
 
 export function getPreloadPath(currentPath: string) {
-  return `${clientSideURL}/assets/${cleanUrl(currentPath.slice(1))}_preload.js${clientSideCacheKey}`
+  return `${clientSideURL}/assets/${cleanUrl(currentPath.slice(1))}_preload.js${clientSideSearch}`
 }
 
 export function getLoaderPath(currentPath: string) {
-  return `${clientSideURL}/assets/${cleanUrl(currentPath.slice(1))}_vxrn_loader.js${clientSideCacheKey}`
+  return `${clientSideURL}/assets/${cleanUrl(currentPath.slice(1))}_vxrn_loader.js${clientSideSearch}`
 }
