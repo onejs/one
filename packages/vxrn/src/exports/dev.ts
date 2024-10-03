@@ -1,15 +1,6 @@
 import type { Peer } from 'crossws'
 import wsAdapter from 'crossws/adapters/node'
 import FSExtra from 'fs-extra'
-import {
-  createApp,
-  createRouter,
-  defineEventHandler,
-  eventHandler,
-  getQuery,
-  toNodeListener,
-} from 'h3'
-import { createProxyEventHandler } from 'h3-proxy'
 import { createServer as nodeCreateServer } from 'node:http'
 import { join } from 'node:path'
 import { createServer } from 'vite'
@@ -79,6 +70,11 @@ export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
 
   await viteServer.listen()
   const vitePort = viteServer.config.server.port
+
+  // Dynamic import h3 after `applyBuiltInPatches()` so we can always get the patch applied version
+  const { createApp, createRouter, defineEventHandler, eventHandler, getQuery, toNodeListener } =
+    await import('h3')
+  const { createProxyEventHandler } = await import('h3-proxy')
 
   const router = createRouter()
   const app = createApp({
