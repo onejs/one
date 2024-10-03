@@ -9,6 +9,7 @@ import { preloadingLoader } from './router/router'
 import type { LoaderProps } from './types'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
+import { getLoaderPath } from './cleanUrl'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -86,7 +87,7 @@ export function useLoader<
 
     if (!promises[currentPath]) {
       const getData = async () => {
-        const loaderJSUrl = `${getURL()}/assets${currentPath}_vxrn_loader.js?${CACHE_KEY}`
+        const loaderJSUrl = getLoaderPath(currentPath)
 
         try {
           const response = await (async () => {
