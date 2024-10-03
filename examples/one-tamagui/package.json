@@ -21,6 +21,7 @@
     "@tamagui/animations-moti": "^1.112.21",
     "@tamagui/colors": "^1.112.21",
     "@tamagui/image-next": "^1.112.21",
+    "@tamagui/lucide-icons": "^1.112.21",
     "@tamagui/react-native-media-driver": "^1.112.21",
     "@vxrn/color-scheme": "1.1.293",
     "expo": "~51.0.28",

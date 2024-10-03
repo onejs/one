@@ -12478,6 +12478,7 @@ __metadata:
     "@tamagui/animations-moti": "npm:^1.112.21"
     "@tamagui/colors": "npm:^1.112.21"
     "@tamagui/image-next": "npm:^1.112.21"
+    "@tamagui/lucide-icons": "npm:^1.112.21"
     "@tamagui/react-native-media-driver": "npm:^1.112.21"
     "@tamagui/vite-plugin": "npm:^1.112.21"
     "@vxrn/color-scheme": "npm:1.1.293"
