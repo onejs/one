@@ -1,6 +1,7 @@
 import { isWeb, View } from 'tamagui'
 import { Slot, Stack } from 'one'
 import { ToggleThemeButton } from '~/code/theme/ToggleThemeButton'
+import { Logo } from '~/code/brand/Logo'
 
 export default function FeedLayout() {
   return (
@@ -19,7 +20,15 @@ export default function FeedLayout() {
             },
           }}
         >
-          <Stack.Screen name="index" options={{ title: 'Feed' }} />
+          <Stack.Screen
+            name="index"
+            options={{
+              title: 'Feed',
+              headerLeft() {
+                return <Logo />
+              },
+            }}
+          />
           <Stack.Screen name="post/[id]" options={{ title: 'Post' }} />
         </Stack>
       )}
