@@ -18,9 +18,9 @@
     "hoistingLimits": "workspaces"
   },
   "dependencies": {
-    "@tamagui/animations-moti": "^1.112.18",
-    "@tamagui/image-next": "^1.112.18",
-    "@tamagui/react-native-media-driver": "^1.112.18",
+    "@tamagui/animations-moti": "^1.112.21",
+    "@tamagui/image-next": "^1.112.21",
+    "@tamagui/react-native-media-driver": "^1.112.21",
     "@vxrn/color-scheme": "1.1.292",
     "expo": "~51.0.28",
     "expo-modules-core": "^1.12.24",
@@ -31,11 +31,11 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.112.18"
+    "tamagui": "^1.112.21"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/vite-plugin": "^1.112.18",
+    "@tamagui/vite-plugin": "^1.112.21",
     "vite": "6.0.0-beta.1"
   }
 }

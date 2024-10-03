@@ -1,23 +1,6 @@
 import type { FillInFont, GenericFont } from '@tamagui/core'
 import { createFont, isWeb } from 'tamagui'
 
-const body = createMainFont(
-  {
-    weight: {
-      1: '400',
-      7: '600',
-    },
-  },
-  {
-    sizeSize: (size) => Math.round(size),
-    sizeLineHeight: (size) => Math.round(size * 1.1 + (size >= 12 ? 10 : 4)),
-  }
-)
-
-export const fonts = {
-  body,
-}
-
 const defaultSizes = {
   1: 11,
   2: 12,
@@ -37,6 +20,23 @@ const defaultSizes = {
   15: 114,
   16: 134,
 } as const
+
+const body = createMainFont(
+  {
+    weight: {
+      1: '400',
+      7: '600',
+    },
+  },
+  {
+    sizeSize: (size) => Math.round(size),
+    sizeLineHeight: (size) => Math.round(size * 1.1 + (size >= 12 ? 10 : 4)),
+  }
+)
+
+export const fonts = {
+  body,
+}
 
 function createMainFont<A extends GenericFont>(
   font: Partial<A> = {},
