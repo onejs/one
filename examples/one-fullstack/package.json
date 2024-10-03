@@ -1,6 +1,6 @@
 {
   "name": "example-fullstack",
-  "version": "1.1.289",
+  "version": "1.1.290",
   "type": "module",
   "private": true,
   "scripts": {
@@ -22,7 +22,7 @@
     "@tamagui/one-theme": "^1.112.17",
     "jsonwebtoken": "^9.0.2",
     "mdx-bundler": "^10.0.2",
-    "one": "1.1.289",
+    "one": "1.1.290",
     "postmark": "^3.0.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
