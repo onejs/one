@@ -9,6 +9,7 @@ import { nanoid } from 'nanoid/non-secure'
 import { Fragment, startTransition, useSyncExternalStore, type ComponentType } from 'react'
 import { Platform } from 'react-native'
 import type { RouteNode } from '../Route'
+import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 import type { State } from '../fork/getPathFromState'
 import { deepEqual, getPathDataFromState } from '../fork/getPathFromState'
 import { stripBaseUrl } from '../fork/getStateFromPath'
@@ -25,10 +26,8 @@ import { dynamicImport } from '../utils/dynamicImport'
 import { removeSearch } from '../utils/removeSearch'
 import { shouldLinkExternally } from '../utils/url'
 import type { One } from '../vite/types'
-import { CACHE_KEY, CLIENT_BASE_URL } from './constants'
 import { getNormalizedStatePath, type UrlObject } from './getNormalizedStatePath'
 import { setLastAction } from './lastAction'
-import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -410,6 +409,11 @@ function setupPreload(href: string) {
 }
 
 export function preloadRoute(href: string) {
+  if (process.env.TAMAGUI_TARGET === 'native') {
+    // not enabled for now
+    return
+  }
+
   setupPreload(href)
   if (typeof preloadingLoader[href] === 'function') {
     void preloadingLoader[href]()
