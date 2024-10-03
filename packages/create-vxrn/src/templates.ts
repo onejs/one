@@ -3,8 +3,8 @@ import * as BasicTemplateSteps from './steps/one'
 
 export const templates = [
   {
-    title: `Recommended - Tamagui`,
-    value: 'Recommended',
+    title: `Minimal Tamagui`,
+    value: 'Tamagui',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
