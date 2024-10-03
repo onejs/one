@@ -10,7 +10,7 @@ export function cleanUrl(path: string) {
   )
 }
 
-const clientSideSearch = typeof window !== 'undefined' ? `?${CACHE_KEY}` : ''
+const clientSideSearch = typeof window !== 'undefined' ? `?cache=${CACHE_KEY}` : ''
 const clientSideURL = typeof window !== 'undefined' ? CLIENT_BASE_URL : ''
 
 export function getPreloadPath(currentPath: string) {

@@ -105,7 +105,11 @@ export function createHandleRequest(
         const isClientRequestingNewRoute = pathname.endsWith('_vxrn_loader.js')
 
         if (isClientRequestingNewRoute) {
-          const originalUrl = pathname.replace('_vxrn_loader.js', '').replace(/^\/assets/, '')
+          const originalUrl = pathname
+            .replace('_vxrn_loader.js', '')
+            .replace(/^\/assets/, '')
+            .replace('_', '/')
+
           const finalUrl = new URL(originalUrl, url.origin)
 
           for (const route of pageRoutes) {
