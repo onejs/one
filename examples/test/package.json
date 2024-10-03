@@ -1,6 +1,6 @@
 {
   "name": "example-test",
-  "version": "1.1.288",
+  "version": "1.1.289",
   "private": true,
   "type": "module",
   "scripts": {
@@ -23,12 +23,12 @@
     "@tamagui/lucide-icons": "^1.112.17",
     "@tamagui/vite-plugin": "^1.112.17",
     "@vercel/og": "^0.6.3",
-    "@vxrn/color-scheme": "1.1.288",
+    "@vxrn/color-scheme": "1.1.289",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
-    "one": "1.1.288",
+    "one": "1.1.289",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.1",
