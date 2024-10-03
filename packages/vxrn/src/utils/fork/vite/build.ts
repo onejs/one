@@ -121,7 +121,11 @@ export async function buildEnvironment(
 
     // vxrn: filter out unnecessary plugin functions
     // plugins,
-    plugins: plugins.map((p) => {
+    plugins: plugins.flatMap((p) => {
+      if (p.name.endsWith('-web-only')) {
+        return null
+      }
+
       if (p.name === 'vite:reporter') {
         return {
           ...p,
