@@ -1,4 +1,6 @@
 import module from 'node:module'
+import path from 'node:path'
+import FSExtra from 'fs-extra'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 
@@ -21,6 +23,9 @@ export const prebuild = async ({ root }: { root: string }) => {
       '--skip-dependency-update',
       'react,react-native,expo',
     ])
+
+    // Remove the ios/.xcode.env.local file as it's causing problems `node: No such file or directory` during build
+    FSExtra.removeSync(path.join(root, 'ios', '.xcode.env.local'))
 
     console.info(
       'Run `open ios/*.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
