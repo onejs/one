@@ -4,7 +4,8 @@ import { run } from './run'
 
 async function getLatestVersion(packageName: string) {
   const require = createRequire(import.meta.url)
-  const packageJson = require('one/package.json')
+  const _confuseDepCheck = require
+  const packageJson = _confuseDepCheck('one/package.json')
   const currentVersion = packageJson.version
 
   try {

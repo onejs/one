@@ -48,6 +48,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@tamagui/react-native-svg": "^1.112.14",
     "@vitejs/plugin-react-swc": "^3.7.0",
+    "@vxrn/query-string": "1.1.274",
     "@vxrn/react-native-prebuilt": "1.1.274",
     "@vxrn/safe-area": "1.1.274",
     "@vxrn/vendor": "1.1.274",
