@@ -17,9 +17,9 @@ fi
 # Extract components from the DATABASE_URL
 DB_USER=$(echo $DATABASE_URL | sed -n 's|.*://\([^:]*\):.*@\([^:]*\).*|\1|p')
 DB_PASSWORD=$(echo $DATABASE_URL | sed -n 's|.*://[^:]*:\([^@]*\)@.*|\1|p')
-DB_HOST=$(echo $DATABASE_URL | sed -n 's|.*://[^@]*@\([^:]*\):.*|\1|p')
+DB_HOST=$(echo $DATABASE_URL | sed -n 's|.*://[^@]*@\([^:/]*\)[:/].*|\1|p')
 DB_PORT=$(echo $DATABASE_URL | sed -n 's|.*://[^@]*@[^:]*:\([^/]*\).*|\1|p')
-DB_NAME=$(echo $DATABASE_URL | sed -n 's|.*://[^@]*@[^:]*:[^/]*/*\(.*\)|\1|p')
+DB_NAME=$(echo $DATABASE_URL | sed -n 's|.*://[^@]*@[^:/]*[:0-9]*/\([^?]*\).*|\1|p')
 
 if [[ -z "$DB_USER" || -z "$DB_PASSWORD" || -z "$DB_NAME" ]]; then
   echo "Error parsing DATABASE_URL."
