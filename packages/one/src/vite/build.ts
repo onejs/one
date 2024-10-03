@@ -435,7 +435,7 @@ export async function build(args: {
               code,
               loaderData,
             })
-            const loaderPartialPath = join(staticDir, 'assets', getLoaderPath(path))
+            const loaderPartialPath = join(clientDir, 'assets', getLoaderPath(path))
             await outputFile(loaderPartialPath, withLoader)
           }
 
