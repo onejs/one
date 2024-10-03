@@ -8596,6 +8596,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@vxrn/tslib-lite@npm:1.1.290, @vxrn/tslib-lite@workspace:packages/tslib-lite":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/tslib-lite@workspace:packages/tslib-lite"
+  languageName: unknown
+  linkType: soft
+
 "@vxrn/universal-color-scheme@npm:1.1.290, @vxrn/universal-color-scheme@workspace:packages/universal-color-scheme":
   version: 0.0.0-use.local
   resolution: "@vxrn/universal-color-scheme@workspace:packages/universal-color-scheme"
@@ -17903,6 +17909,7 @@ __metadata:
     "@types/url-parse": "npm:^1.4.11"
     "@types/xxhashjs": "npm:^0.2.4"
     "@ungap/structured-clone": "npm:^1.2.0"
+    "@vxrn/tslib-lite": "npm:1.1.290"
     "@vxrn/universal-color-scheme": "npm:1.1.290"
     "@vxrn/use-isomorphic-layout-effect": "npm:1.1.290"
     babel-dead-code-elimination: "npm:^1.0.6"
