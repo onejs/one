@@ -1,8 +1,6 @@
 import ansis from 'ansis'
-import FSExtra from 'fs-extra'
 
 import type { ExtraSteps } from './types'
-import { exec } from '../helpers/exec'
 
 export const extraSteps: ExtraSteps = async ({ isFullClone, projectName, packageManager }) => {
   const useBun = packageManager === 'bun'
@@ -16,10 +14,6 @@ export const extraSteps: ExtraSteps = async ({ isFullClone, projectName, package
     )
   }
 
-  if (process.env.VXRN_DEMO_MODE) {
-    exec(`ln -s ../one/run.mjs node_modules/.bin/one`)
-  }
-
   console.info(`\nTo run: 
 
   ${ansis.green('cd')} ${projectName}
@@ -27,13 +21,5 @@ export const extraSteps: ExtraSteps = async ({ isFullClone, projectName, package
 }
 
 export const preInstall: ExtraSteps = async ({ projectName }) => {
-  if (process.env.VXRN_DEMO_MODE) {
-    // use one for one, lets us keep portal for developing in monorepo
-    const pkgpath = 'package.json'
-    const pkg = await FSExtra.readJSON(pkgpath)
-    pkg.dependencies.one = `npm:one@${pkg.version}`
-    await FSExtra.writeJSON(pkgpath, pkg, {
-      spaces: 2,
-    })
-  }
+  //
 }
