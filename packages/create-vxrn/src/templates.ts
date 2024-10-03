@@ -8,8 +8,8 @@ export const templates = [
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
-      url: `https://github.com/universal-future/one.git`,
-      sshFallback: `git@github.com:universal-future/one.git`,
+      url: `https://github.com/onejs/one.git`,
+      sshFallback: `git@github.com:onejs/one.git`,
       dir: [`examples`, `one-recommended`],
       branch: 'main',
     },
@@ -22,8 +22,8 @@ export const templates = [
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
-      url: `https://github.com/universal-future/one.git`,
-      sshFallback: `git@github.com:universal-future/one.git`,
+      url: `https://github.com/onejs/one.git`,
+      sshFallback: `git@github.com:onejs/one.git`,
       dir: [`examples`, `one-basic`],
       branch: 'main',
     },
@@ -36,8 +36,8 @@ export const templates = [
   //   type: 'included-in-monorepo',
   //   hidden: false,
   //   repo: {
-  //     url: `https://github.com/universal-future/one.git`,
-  //     sshFallback: `git@github.com:universal-future/one.git`,
+  //     url: `https://github.com/onejs/one.git`,
+  //     sshFallback: `git@github.com:onejs/one.git`,
   //     dir: [`examples`, `one-basic`],
   //     branch: 'main',
   //   },
@@ -50,8 +50,8 @@ export const templates = [
   //   type: 'included-in-monorepo',
   //   hidden: false,
   //   repo: {
-  //     url: `https://github.com/universal-future/one.git`,
-  //     sshFallback: `git@github.com:universal-future/one.git`,
+  //     url: `https://github.com/onejs/one.git`,
+  //     sshFallback: `git@github.com:onejs/one.git`,
   //     dir: [`examples`, `bare`],
   //     branch: 'main',
   //   },
