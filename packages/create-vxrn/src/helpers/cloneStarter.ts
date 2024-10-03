@@ -97,7 +97,7 @@ async function setupVxrnDotDir(
         `Error updating: ${err.message} ${isRetry ? `failing.\n${err.stack}` : 'trying from fresh.'}`
       )
       console.info(
-        `Please file an issue: https://github.com/universal-future/vxrn/issues/new?assignees=&labels=&template=bug_report.md&title=`
+        `Please file an issue: https://github.com/onejs/one/issues/new?assignees=&labels=&template=bug_report.md&title=`
       )
       process.exit(1)
     }
