@@ -7,6 +7,7 @@
     "dev": "one dev",
     "dev:clean": "one dev --clean",
     "clean": "one clean",
+    "prebuild:native": "one prebuild",
     "build:web": "one build",
     "serve": "one serve",
     "ios": "EXPO_NO_TELEMETRY=true expo run:ios",
