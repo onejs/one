@@ -45,7 +45,6 @@ export const execPromiseQuiet = (
     quiet?: boolean
   }
 ) => {
-  console.log('cmd', cmd)
   return execPromise(cmd, {
     ...options,
     quiet: true,
