@@ -6676,6 +6676,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tamagui/react-native-media-driver@npm:^1.112.18":
+  version: 1.112.20
+  resolution: "@tamagui/react-native-media-driver@npm:1.112.20"
+  dependencies:
+    "@tamagui/web": "npm:1.112.20"
+  peerDependencies:
+    react-native: "*"
+  checksum: 10/fd841476a1c24b9fbf5fa8f2b56ba8fa064b2da44069787c8b9284aadd8ef967238a083782864132c98333b45b3bc9504be87cbb22fc3a89c35d7e5404436800
+  languageName: node
+  linkType: hard
+
 "@tamagui/react-native-svg@npm:1.112.18, @tamagui/react-native-svg@npm:^1.112.18":
   version: 1.112.18
   resolution: "@tamagui/react-native-svg@npm:1.112.18"
@@ -12681,6 +12692,7 @@ __metadata:
     "@biomejs/biome": "npm:^1.8.3"
     "@tamagui/animations-moti": "npm:^1.112.18"
     "@tamagui/image-next": "npm:^1.112.18"
+    "@tamagui/react-native-media-driver": "npm:^1.112.18"
     "@tamagui/vite-plugin": "npm:^1.112.18"
     "@vxrn/color-scheme": "npm:1.1.292"
     expo: "npm:~51.0.28"

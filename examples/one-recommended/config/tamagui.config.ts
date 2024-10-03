@@ -3,13 +3,6 @@ import { createTamagui } from '@tamagui/core'
 
 export const config = createTamagui({
   ...configOptions,
-  media: {
-    ...configOptions.media,
-    xsTouch: {
-      maxWidth: configOptions.media.xs.maxWidth,
-      pointer: 'coarse',
-    },
-  },
   settings: {
     ...configOptions.settings,
     fastSchemeChange: true,

@@ -20,6 +20,7 @@
   "dependencies": {
     "@tamagui/animations-moti": "^1.112.18",
     "@tamagui/image-next": "^1.112.18",
+    "@tamagui/react-native-media-driver": "^1.112.18",
     "@vxrn/color-scheme": "1.1.292",
     "expo": "~51.0.28",
     "expo-modules-core": "^1.12.24",

@@ -1,5 +1,22 @@
 import type { FillInFont, GenericFont } from '@tamagui/core'
-import { createFont } from 'tamagui'
+import { createFont, isWeb } from 'tamagui'
+
+const body = createMainFont(
+  {
+    weight: {
+      1: '400',
+      7: '600',
+    },
+  },
+  {
+    sizeSize: (size) => Math.round(size),
+    sizeLineHeight: (size) => Math.round(size * 1.1 + (size >= 12 ? 10 : 4)),
+  }
+)
+
+export const fonts = {
+  body,
+}
 
 const defaultSizes = {
   1: 11,
@@ -39,11 +56,10 @@ function createMainFont<A extends GenericFont>(
     }).map(([k, v]) => [k, sizeSize(+v)])
   )
   return createFont({
-    family:
-      '-apple-system, Inter, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    lineHeight: Object.fromEntries(
-      Object.entries(size).map(([k, v]) => [k, sizeLineHeight(v)])
-    ),
+    family: isWeb
+      ? '-apple-system, Inter, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+      : 'System',
+    lineHeight: Object.fromEntries(Object.entries(size).map(([k, v]) => [k, sizeLineHeight(v)])),
     weight: {
       4: '300',
     },
@@ -53,89 +69,4 @@ function createMainFont<A extends GenericFont>(
     ...(font as any),
     size,
   })
-}
-
-const heading = createMainFont(
-  {
-    size: {
-      5: 13,
-      6: 15,
-      9: 32,
-      10: 48,
-    },
-    transform: {
-      6: 'uppercase',
-      7: 'none',
-    },
-    weight: {
-      6: '400',
-      7: '700',
-    },
-    color: {
-      6: '$colorFocus',
-      7: '$color',
-    },
-    letterSpacing: {
-      5: 2,
-      6: 1,
-      7: 0,
-      8: 0,
-      9: -1,
-      10: -1.5,
-      12: -2,
-      14: -3,
-      15: -4,
-    },
-    // for native
-    face: {
-      700: { normal: 'InterBold' },
-      800: { normal: 'InterBold' },
-      900: { normal: 'InterBold' },
-    },
-  },
-  { sizeLineHeight: (size) => Math.round(size * 1.1 + (size < 30 ? 10 : 5)) }
-)
-
-const body = createMainFont(
-  {
-    weight: {
-      1: '400',
-      7: '600',
-    },
-  },
-  {
-    sizeSize: (size) => Math.round(size),
-    sizeLineHeight: (size) => Math.round(size * 1.1 + (size >= 12 ? 10 : 4)),
-  }
-)
-
-const perfectlyNineties = createFont({
-  family: '"Perfectly Nineties", "Times New Roman", serif',
-  size: {
-    4: 18,
-    5: 24,
-    6: 30,
-    7: 38,
-    8: 48,
-    9: 58,
-    10: 68,
-  },
-  weight: {
-    0: '400',
-  },
-  letterSpacing: {
-    0: 0,
-  },
-})
-
-const mono = createFont({
-  ...body,
-  family: '"SF Mono", Consolas, monospace, monospace',
-})
-
-export const fonts = {
-  heading,
-  body,
-  mono,
-  perfectlyNineties,
 }
