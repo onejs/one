@@ -1,2 +1,2 @@
-export declare function cliMain(args?: any): Promise<void>;
+export declare function cliMain(args?: {}): Promise<void>;
 //# sourceMappingURL=main.d.ts.map
