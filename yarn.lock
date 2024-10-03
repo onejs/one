@@ -8420,7 +8420,7 @@ __metadata:
     "@tauri-apps/cli": "npm:^1"
     "@vxrn/color-scheme": "npm:1.1.293"
     one: "npm:1.1.293"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
     react-native-safe-area-context: "npm:^4.10.1"
@@ -12395,7 +12395,7 @@ __metadata:
     expo-modules-core: "npm:^1.12.24"
     one: "npm:1.1.293"
     postgres: "npm:^3.4.4"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
     react-native-safe-area-context: "npm:^4.10.1"
@@ -12424,7 +12424,7 @@ __metadata:
     mdx-bundler: "npm:^10.0.2"
     one: "npm:1.1.293"
     postmark: "npm:^3.0.18"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0"
     react-dom: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
@@ -12457,7 +12457,7 @@ __metadata:
     expo-modules-core: "npm:^1.12.24"
     one: "npm:1.1.293"
     postgres: "npm:^3.4.4"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
     react-native-safe-area-context: "npm:^4.10.1"
@@ -12485,7 +12485,7 @@ __metadata:
     expo: "npm:~51.0.28"
     expo-modules-core: "npm:^1.12.24"
     one: "npm:1.1.293"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
     react-native-screens: "npm:3.31.1"
@@ -12514,7 +12514,7 @@ __metadata:
     drizzle-orm: "npm:^0.33.0"
     one: "npm:1.1.293"
     postgres: "npm:^3.4.4"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
     react-native-safe-area-context: "npm:^4.10.1"
@@ -12532,7 +12532,7 @@ __metadata:
   resolution: "example-vercel@workspace:examples/vercel"
   dependencies:
     one: "npm:1.1.293"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0"
     react-native-web: "npm:^0.19.12"
     vercel: "npm:^37.5.3"
     vite: "npm:6.0.0-beta.1"
@@ -12548,7 +12548,7 @@ __metadata:
     "@tamagui/config": "npm:^1.112.21"
     moti: "npm:^0.29.0"
     one: "npm:1.1.293"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
     react-native-svg: "npm:15.2.0"
@@ -12579,7 +12579,7 @@ __metadata:
     expo-modules-core: "npm:^1.12.24"
     one: "npm:1.1.293"
     postgres: "npm:^3.4.4"
-    react: "npm:^18.3.1"
+    react: "npm:^18.2.0"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
     react-native-safe-area-context: "npm:^4.10.1"
@@ -19239,7 +19239,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.2.0 || ^19.0.0, react@npm:^18.3.1":
+"react@npm:^18.2.0, react@npm:^18.2.0 || ^19.0.0, react@npm:^18.3.1":
   version: 18.3.1
   resolution: "react@npm:18.3.1"
   dependencies:
