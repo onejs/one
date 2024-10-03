@@ -1,0 +1,41 @@
+{
+  "name": "example-tamagui",
+  "version": "1.1.292",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "one dev",
+    "dev:clean": "one dev --clean",
+    "clean": "one clean",
+    "prebuild:native": "one prebuild",
+    "build:web": "one build",
+    "serve": "one serve",
+    "ios": "EXPO_NO_TELEMETRY=true expo run:ios",
+    "android": "EXPO_NO_TELEMETRY=true expo run:android",
+    "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'"
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
+  "dependencies": {
+    "@tamagui/animations-moti": "^1.112.21",
+    "@tamagui/image-next": "^1.112.21",
+    "@tamagui/react-native-media-driver": "^1.112.21",
+    "@vxrn/color-scheme": "1.1.292",
+    "expo": "~51.0.28",
+    "expo-modules-core": "^1.12.24",
+    "one": "1.1.292",
+    "react": "^18.3.1",
+    "react-native": "0.74.1",
+    "react-native-reanimated": "~3.10.1",
+    "react-native-screens": "3.31.1",
+    "react-native-svg": "15.2.0",
+    "react-native-web": "^0.19.12",
+    "tamagui": "^1.112.21"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@tamagui/vite-plugin": "^1.112.21",
+    "vite": "6.0.0-beta.1"
+  }
+}

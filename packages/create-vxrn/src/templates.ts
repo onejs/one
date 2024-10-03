@@ -3,7 +3,21 @@ import * as BasicTemplateSteps from './steps/one'
 
 export const templates = [
   {
-    title: `Recommended - Drizzle, Postgres, Tamagui, Biome`,
+    title: `Minimal Tamagui`,
+    value: 'Tamagui',
+    type: 'included-in-monorepo',
+    hidden: false,
+    repo: {
+      url: `https://github.com/onejs/one.git`,
+      sshFallback: `git@github.com:onejs/one.git`,
+      dir: [`examples`, `one-tamagui`],
+      branch: 'main',
+    },
+    ...BasicTemplateSteps,
+  },
+
+  {
+    title: `Fullstack - Drizzle, Postgres, Tamagui, Biome`,
     value: 'Recommended',
     type: 'included-in-monorepo',
     hidden: false,

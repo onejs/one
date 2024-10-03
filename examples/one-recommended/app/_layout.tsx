@@ -4,7 +4,7 @@ import '~/code/styles/base.css'
 import '~/code/styles/tamagui.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { TamaguiProvider } from 'tamagui'
+import { isWeb, TamaguiProvider } from 'tamagui'
 import { LoadProgressBar } from 'one'
 import { HomeLayout } from '~/code/home/HomeLayout'
 import config from '../config/tamagui.config'
@@ -12,6 +12,15 @@ import config from '../config/tamagui.config'
 export default function Layout() {
   return (
     <>
+      {isWeb && (
+        <>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+          <link rel="icon" href="/favicon.svg" />
+        </>
+      )}
+
       <LoadProgressBar />
 
       <SchemeProvider>
