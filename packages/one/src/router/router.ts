@@ -413,6 +413,9 @@ export function preloadRoute(href: string) {
     // not enabled for now
     return
   }
+  if (process.env.NODE_ENV === 'development') {
+    return
+  }
 
   setupPreload(href)
   if (typeof preloadingLoader[href] === 'function') {
