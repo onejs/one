@@ -6,13 +6,13 @@ import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
 import { fillOptions, getOptimizeDeps, build as vxrnBuild, type ClientManifestEntry } from 'vxrn'
+import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { loadUserOneOptions } from './one'
 import { replaceLoader } from './replaceLoader'
 import type { One } from './types'
-import { cleanUrl, getLoaderPath, getPreloadPath } from '../cleanUrl'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 

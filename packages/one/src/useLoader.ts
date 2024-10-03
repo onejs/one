@@ -87,7 +87,8 @@ export function useLoader<
 
     if (!promises[currentPath]) {
       const getData = async () => {
-        const loaderJSUrl = getLoaderPath(currentPath)
+        // for native add a prefix to route around vite dev server being in front of ours
+        const loaderJSUrl = getLoaderPath(currentPath, true)
 
         try {
           const response = await (async () => {

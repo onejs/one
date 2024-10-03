@@ -1,8 +1,6 @@
 import { getLoaderPath } from './cleanUrl'
-import { CACHE_KEY, CLIENT_BASE_URL } from './router/constants'
 import type { GlobbedRouteImports } from './types'
 import { dynamicImport } from './utils/dynamicImport'
-import { removeSearch } from './utils/removeSearch'
 import type { One } from './vite/types'
 
 // essentially a development helper

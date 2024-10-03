@@ -1,3 +1,4 @@
+import { getPathFromLoaderPath } from './cleanUrl'
 import type { RouteInfo } from './server/createRoutesManifest'
 import { isResponse } from './utils/isResponse'
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
@@ -105,11 +106,7 @@ export function createHandleRequest(
         const isClientRequestingNewRoute = pathname.endsWith('_vxrn_loader.js')
 
         if (isClientRequestingNewRoute) {
-          const originalUrl = pathname
-            .replace('_vxrn_loader.js', '')
-            .replace(/^\/assets/, '')
-            .replace('_', '/')
-
+          const originalUrl = getPathFromLoaderPath(pathname)
           const finalUrl = new URL(originalUrl, url.origin)
 
           for (const route of pageRoutes) {
