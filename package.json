@@ -32,6 +32,7 @@
     "lint": "ultra -r --no-pretty lint",
     "dev:example-test": "yarn workspace example-test dev",
     "dev:example-zero": "yarn workspace example-zero dev",
+    "dev:example-tamagui": "yarn workspace example-tamagui dev",
     "dev:example-basic": "yarn workspace example-basic dev",
     "dev:example-recommended": "yarn workspace example-recommended dev",
     "dev:example-weird-deps": "yarn workspace example-weird-deps dev",
