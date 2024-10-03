@@ -12,6 +12,7 @@ import { getManifest } from './getManifest'
 import { loadUserOneOptions } from './one'
 import { replaceLoader } from './replaceLoader'
 import type { One } from './types'
+import { cleanUrl, getPreloadPath } from '../cleanUrl'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -399,9 +400,18 @@ export async function build(args: {
 
         const cleanPath = path === '/' ? path : removeTrailingSlash(path)
 
+        const preloadPath = getPreloadPath(path)
+
+        // todo await optimize
+        await FSExtra.writeFile(
+          join(clientDir, preloadPath),
+          preloads.map((preload) => `import "${preload}"`).join('\n')
+        )
+
         builtRoutes.push({
           type: foundRoute.type,
           cleanPath,
+          preloadPath,
           clientJsPath,
           serverJsPath,
           htmlPath,
@@ -425,15 +435,7 @@ export async function build(args: {
               code,
               loaderData,
             })
-            const loaderPartialPath = join(
-              staticDir,
-              'assets',
-              path
-                .slice(1)
-                .replaceAll('/', '_')
-                // remove trailing _
-                .replace(/_$/, '') + `_vxrn_loader.js`
-            )
+            const loaderPartialPath = join(staticDir, 'assets', cleanUrl(path.slice(1)))
             await outputFile(loaderPartialPath, withLoader)
           }
 

@@ -120,6 +120,7 @@ export declare namespace One {
     type RouteBuildInfo = {
         type: RouteType;
         path: string;
+        preloadPath: string;
         cleanPath: string;
         htmlPath: string;
         clientJsPath: string;

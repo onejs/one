@@ -28,6 +28,7 @@ import type { One } from '../vite/types'
 import { CACHE_KEY, CLIENT_BASE_URL } from './constants'
 import { getNormalizedStatePath, type UrlObject } from './getNormalizedStatePath'
 import { setLastAction } from './lastAction'
+import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -393,12 +394,14 @@ export const preloadingLoader = {}
 function setupPreload(href: string) {
   if (preloadingLoader[href]) return
   preloadingLoader[href] = async () => {
-    const loaderJSUrl = `${CLIENT_BASE_URL}/assets/${removeSearch(
-      href.slice(1).replaceAll('/', '_')
-    )}_vxrn_loader.js?${CACHE_KEY}`
-    const response = await dynamicImport(loaderJSUrl)
+    const [_preload, loader] = await Promise.all([
+      dynamicImport(getPreloadPath(href)),
+      dynamicImport(getLoaderPath(href)),
+    ])
+
     try {
-      return await response.loader()
+      const response = await loader
+      return await response.loader?.()
     } catch (err) {
       console.error(`Error preloading loader: ${err}`)
       return null
@@ -407,11 +410,9 @@ function setupPreload(href: string) {
 }
 
 export function preloadRoute(href: string) {
-  if (import.meta.env.PROD) {
-    setupPreload(href)
-    if (typeof preloadingLoader[href] === 'function') {
-      void preloadingLoader[href]()
-    }
+  setupPreload(href)
+  if (typeof preloadingLoader[href] === 'function') {
+    void preloadingLoader[href]()
   }
 }
 

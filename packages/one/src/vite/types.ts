@@ -149,6 +149,7 @@ export namespace One {
   export type RouteBuildInfo = {
     type: RouteType
     path: string
+    preloadPath: string
     cleanPath: string
     htmlPath: string
     clientJsPath: string

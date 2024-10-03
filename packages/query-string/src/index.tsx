@@ -19,7 +19,7 @@ export const parse = (queryString: string) => {
 }
 
 // Stringify an object to query string
-const stringify = (obj: Record<string, string | string[]>) => {
+export const stringify = (obj: Record<string, string | string[]>) => {
   const params = new URLSearchParams()
 
   Object.entries(obj).forEach(([key, value]) => {
