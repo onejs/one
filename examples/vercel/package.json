@@ -1,6 +1,6 @@
 {
   "name": "example-vercel",
-  "version": "1.1.274",
+  "version": "1.1.275",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "one": "1.1.274",
+    "one": "1.1.275",
     "react": "^18.3.1",
     "react-native-web": "^0.19.12"
   },
