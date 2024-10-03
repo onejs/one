@@ -1,6 +1,6 @@
 {
   "name": "example-tamagui",
-  "version": "1.1.292",
+  "version": "1.1.293",
   "private": true,
   "type": "module",
   "scripts": {
@@ -21,10 +21,10 @@
     "@tamagui/animations-moti": "^1.112.21",
     "@tamagui/image-next": "^1.112.21",
     "@tamagui/react-native-media-driver": "^1.112.21",
-    "@vxrn/color-scheme": "1.1.292",
+    "@vxrn/color-scheme": "1.1.293",
     "expo": "~51.0.28",
     "expo-modules-core": "^1.12.24",
-    "one": "1.1.292",
+    "one": "1.1.293",
     "react": "^18.3.1",
     "react-native": "0.74.1",
     "react-native-reanimated": "~3.10.1",
