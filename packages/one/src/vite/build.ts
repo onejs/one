@@ -12,7 +12,7 @@ import { getManifest } from './getManifest'
 import { loadUserOneOptions } from './one'
 import { replaceLoader } from './replaceLoader'
 import type { One } from './types'
-import { cleanUrl, getPreloadPath } from '../cleanUrl'
+import { cleanUrl, getLoaderPath, getPreloadPath } from '../cleanUrl'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -435,7 +435,7 @@ export async function build(args: {
               code,
               loaderData,
             })
-            const loaderPartialPath = join(staticDir, 'assets', cleanUrl(path.slice(1)))
+            const loaderPartialPath = join(staticDir, 'assets', getLoaderPath(path))
             await outputFile(loaderPartialPath, withLoader)
           }
 
