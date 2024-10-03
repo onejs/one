@@ -5957,7 +5957,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/colors@npm:1.112.21":
+"@tamagui/colors@npm:1.112.21, @tamagui/colors@npm:^1.112.21":
   version: 1.112.21
   resolution: "@tamagui/colors@npm:1.112.21"
   checksum: 10/839b51ea8293f0d3109d920a0d23cb37ece128d80cb4f3f6626ee91ca7d9bab037c632d5bc6ebdd6742cdad0ab78d64b12d2b21b5fb84d20777a22614eb5b7c0
@@ -12476,6 +12476,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:^1.8.3"
     "@tamagui/animations-moti": "npm:^1.112.21"
+    "@tamagui/colors": "npm:^1.112.21"
     "@tamagui/image-next": "npm:^1.112.21"
     "@tamagui/react-native-media-driver": "npm:^1.112.21"
     "@tamagui/vite-plugin": "npm:^1.112.21"
