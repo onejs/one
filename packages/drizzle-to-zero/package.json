@@ -33,7 +33,7 @@
     "drizzle-orm": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.112.17",
+    "@tamagui/build": "^1.112.18",
     "vitest": "^2.1.1"
   },
   "publishConfig": {
