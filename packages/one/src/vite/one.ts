@@ -100,9 +100,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               'process.env.One_SETUP_FILE': JSON.stringify(options.setupFile),
             }),
 
-            ...(vxrnOptions && {
-              'process.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
-            }),
+            ...(process.env.NODE_ENV !== 'production' &&
+              vxrnOptions && {
+                'process.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
+              }),
           },
 
           environments: {
