@@ -25,7 +25,11 @@ export const prebuild = async ({ root }: { root: string }) => {
     ])
 
     // Remove the ios/.xcode.env.local file as it's causing problems `node: No such file or directory` during build
-    FSExtra.removeSync(path.join(root, 'ios', '.xcode.env.local'))
+    try {
+      FSExtra.removeSync(path.join(root, 'ios', '.xcode.env.local'))
+    } catch (e) {
+      // ignore
+    }
 
     console.info(
       'Run `open ios/*.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
