@@ -4,12 +4,6 @@ Welcome to One!
 
 ## Setup
 
-Set up your `.env` file first:
-
-```bash
-cp .env.default .env
-```
-
 Now you'll need to run a postgres database. We've included a `docker-compose.yml`
 that will set up everything for you, you'll want to set up docker first though:
 
