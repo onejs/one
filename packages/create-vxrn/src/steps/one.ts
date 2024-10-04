@@ -1,6 +1,7 @@
 import ansis from 'ansis'
-
+import { join } from 'node:path'
 import type { ExtraSteps } from './types'
+import FSExtra from 'fs-extra'
 
 export const extraSteps: ExtraSteps = async ({ isFullClone, projectName, packageManager }) => {
   const useBun = packageManager === 'bun'
@@ -20,6 +21,8 @@ export const extraSteps: ExtraSteps = async ({ isFullClone, projectName, package
   ${ansis.green(runCommand('dev'))}\n`)
 }
 
-export const preInstall: ExtraSteps = async ({ projectName }) => {
-  //
+export const preInstall: ExtraSteps = async ({ projectName, packageManager, projectPath }) => {
+  if (packageManager === 'pnpm') {
+    await FSExtra.writeFile(join(projectPath, `.npmrc`), `node-linker=hoisted\n`)
+  }
 }

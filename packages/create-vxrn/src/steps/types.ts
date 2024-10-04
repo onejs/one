@@ -1,5 +1,5 @@
-export type ExtraSteps = (args: CreateTemplateProps) => Promise<void>
-export type PreInstall = (args: CreateTemplateProps) => Promise<void>
+export type ExtraSteps = (args: Required<CreateTemplateProps>) => Promise<void>
+export type PreInstall = (args: Required<CreateTemplateProps>) => Promise<void>
 
 export type CreateTemplateProps = {
   projectName: string
