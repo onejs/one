@@ -22,7 +22,7 @@ export function HeadInfo({
     return null
   }
 
-  const fullTitle = title?.includes('Tamagui') ? title : `${title} | Tamagui`
+  const fullTitle = title?.includes('One') ? title : `${title} | One`
 
   return (
     <>
