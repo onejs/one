@@ -7,6 +7,8 @@ import path from 'node:path'
 import { cwd } from 'node:process'
 import { getTemplateInfo } from './helpers/getTemplateInfo'
 import { create } from './create'
+import { fileURLToPath } from 'node:url'
+import { readFileSync } from 'node:fs'
 
 let projectPath = ''
 
@@ -67,8 +69,21 @@ const main = defineCommand({
 
 runMain(main)
 
+function getPackageVersion() {
+  let dirname
+  if (typeof __dirname !== 'undefined') {
+    // CommonJS
+    dirname = __dirname
+  } else {
+    // ESM
+    dirname = path.dirname(fileURLToPath(import.meta.url))
+  }
+  const packagePath = path.join(dirname, '..', '..', 'package.json')
+  const packageJson = JSON.parse(readFileSync(packagePath, 'utf-8'))
+  return packageJson.version
+}
+
 if (process.argv.includes('--version')) {
-  // TODO
-  // console.info(packageJson.version)
+  console.info(getPackageVersion())
   process.exit(0)
 }

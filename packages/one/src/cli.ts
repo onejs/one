@@ -1,13 +1,31 @@
 import { defineCommand, runMain } from 'citty'
 import { loadEnv } from './vite/loadEnv'
-// import packageJson from 'one/package.json' with { type: 'json' }
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+function getPackageVersion() {
+  let dirname
+  if (typeof __dirname !== 'undefined') {
+    // CommonJS
+    dirname = __dirname
+  } else {
+    // ESM
+    dirname = path.dirname(fileURLToPath(import.meta.url))
+  }
+  const packagePath = path.join(dirname, '..', '..', 'package.json')
+  const packageJson = JSON.parse(readFileSync(packagePath, 'utf-8'))
+  return packageJson.version
+}
+
+const version = getPackageVersion()
 
 void loadEnv(process.cwd())
 
 const dev = defineCommand({
   meta: {
     name: 'dev',
-    // version: packageJson.version,
+    version: version,
     description: 'Start the dev server',
   },
   args: {
@@ -33,7 +51,7 @@ const dev = defineCommand({
 const buildCommand = defineCommand({
   meta: {
     name: 'build',
-    version: '0.0.0',
+    version: version,
     description: 'Build your app',
   },
   args: {
@@ -58,7 +76,7 @@ const buildCommand = defineCommand({
 const serveCommand = defineCommand({
   meta: {
     name: 'serve',
-    version: '0.0.0',
+    version: version,
     description: 'Serve a built app for production',
   },
   args: {
@@ -93,7 +111,7 @@ const serveCommand = defineCommand({
 const prebuild = defineCommand({
   meta: {
     name: 'prebuild',
-    version: '0.0.0',
+    version: version,
     description: 'Prebuild native iOS project', // TODO: Android
   },
   args: {},
@@ -121,8 +139,8 @@ const clean = defineCommand({
 const main = defineCommand({
   meta: {
     name: 'main',
-    version: '0.0.0',
-    description: 'Welcome to vxrn',
+    version: version,
+    description: 'Welcome to One',
   },
   args: {},
   async run({ args }) {
