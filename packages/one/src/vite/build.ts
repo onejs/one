@@ -13,6 +13,7 @@ import { getManifest } from './getManifest'
 import { loadUserOneOptions } from './one'
 import { replaceLoader } from './replaceLoader'
 import type { One } from './types'
+import { labelProcess } from '../cli/label-process'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -24,6 +25,7 @@ export async function build(args: {
   step?: string
   only?: string
 }) {
+  labelProcess('build')
   const userOptions = await loadUserOneOptions('build')
   const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'esm'
 
