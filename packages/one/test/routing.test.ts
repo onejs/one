@@ -46,6 +46,18 @@ const runTests = (environment: 'dev' | 'prod') => {
         const response = await fetch(`${serverUrl}/not-found/non-existent-route`)
         expect(response.status).toBe(404)
       })
+
+      it('should render page from inside a group', async () => {
+        const response = await fetch(`${serverUrl}/about`)
+        const html = await response.text()
+        expect(html).toContain('About Our Company')
+      })
+
+      it('should render page from subdir when parent group name is the same', async () => {
+        const response = await fetch(`${serverUrl}/blog/my-first-post`)
+        const html = await response.text()
+        expect(html).toContain('My First Post')
+      })
     })
   })
 }

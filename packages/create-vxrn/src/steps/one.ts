@@ -25,4 +25,8 @@ export const preInstall: ExtraSteps = async ({ projectName, packageManager, proj
   if (packageManager === 'pnpm') {
     await FSExtra.writeFile(join(projectPath, `.npmrc`), `node-linker=hoisted\n`)
   }
+  if (packageManager === 'yarn') {
+    await FSExtra.writeFile(join(projectPath, 'yarn.lock'), '')
+    console.info(`Created empty yarn.lock file`)
+  }
 }
