@@ -4,21 +4,21 @@ Welcome to One!
 
 ## Setup
 
-Now you'll need to run a postgres database. We've included a `docker-compose.yml`
-that will set up everything for you, you'll want to set up docker first though:
+Now you'll need to run a postgres database. We've included a
+`docker-compose.yml` that will set up everything for you.
 
-- On Mac, we highly recommend [OrbStack](https://orbstack.dev) as it's much faster and generally a drop-in replacement.
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) works otherwise.
+You'll want to set up docker first:
 
-Once you do install one of those and run it, you should be able to run:
+- On Mac, we recommend [OrbStack](https://orbstack.dev) as it's faster.
+- Otherwise [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+Now run:
 
 ```bash
 docker-compose up
 ```
 
-And have your database come online.
-
-Ensure your `DATABASE_URL` set in a .env file and points to a running Postgres database and then run your database migrations and seeding:
+Set up your DB:
 
 ```bash
 yarn db:init
@@ -50,4 +50,5 @@ First, you'll need to generate the native code for your app:
 yarn prebuild:native
 ```
 
-Afterward, follow the instructions printed in the terminal to build and upload your iOS app for distribution.
+Afterward, follow the instructions printed in the terminal to build and upload
+your iOS app for distribution.
