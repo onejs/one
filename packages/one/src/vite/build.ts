@@ -90,6 +90,7 @@ export async function build(args: {
     }, {}) as Record<string, string>
 
     const apiOutputFormat = userOptions?.build?.api?.outputFormat ?? serverOutputFormat
+    const treeshake = userOptions?.build?.api?.treeshake
 
     await viteBuild(
       mergeConfig(apiBuildConfig, {
@@ -120,8 +121,8 @@ export async function build(args: {
           copyPublicDir: false,
           minify: false,
           rollupOptions: {
-            treeshake: {
-              moduleSideEffects: 'no-external',
+            treeshake: treeshake ?? {
+              moduleSideEffects: false,
             },
 
             plugins: [

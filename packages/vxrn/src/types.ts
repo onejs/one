@@ -1,5 +1,5 @@
 import type { Hono } from 'hono'
-import type { OutputAsset, OutputChunk } from 'rollup'
+import type { OutputAsset, OutputChunk, TreeshakingOptions, TreeshakingPreset } from 'rollup'
 import type { UserConfig } from 'vite'
 
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
@@ -29,12 +29,16 @@ export type ClientManifestEntry = {
   css?: string[]
 }
 
+export type RollupTreeshakeOptions = boolean | TreeshakingPreset | TreeshakingOptions
+
 export type VXRNBuildOptions = {
   /**
    * Control the output format of the server build
    * @default esm
    */
   outputFormat?: 'cjs' | 'esm'
+
+  treeshake?: RollupTreeshakeOptions
 }
 
 export type VXRNServePlatform = 'node' | 'vercel'
