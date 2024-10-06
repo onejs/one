@@ -47,6 +47,8 @@ should have some sprints with "challenges":
 
 # backlog
 
+- need a way ton configure the api + server etc during production builds
+
 - style tag to CSS, we could have a mode that takes style tags with precedense/key set and have a mode to optimize that to css
 
 - perf - in dev mode collectStyle is called a ton on each load

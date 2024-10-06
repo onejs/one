@@ -5,7 +5,13 @@ import Path, { join, relative } from 'node:path'
 import type { OutputAsset } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
-import { fillOptions, getOptimizeDeps, build as vxrnBuild, type ClientManifestEntry } from 'vxrn'
+import {
+  fillOptions,
+  getOptimizeDeps,
+  rollupRemoveUnusedImportsPlugin,
+  build as vxrnBuild,
+  type ClientManifestEntry,
+} from 'vxrn'
 import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
@@ -117,6 +123,12 @@ export async function build(args: {
             treeshake: {
               moduleSideEffects: 'no-external',
             },
+
+            plugins: [
+              // otherwise rollup is leaving commonjs-only top level imports...
+              apiOutputFormat === 'esm' ? rollupRemoveUnusedImportsPlugin : null,
+            ].filter(Boolean),
+
             // too many issues
             // treeshake: {
             //   moduleSideEffects: false,
