@@ -93,7 +93,7 @@ function SignIn() {
 
   if (!user)
     return (
-      <YStack mih="100vh" miw="100vw" ai="center" jc="center" p="$2">
+      <YStack mih="100%" miw="100%" ai="center" jc="center" p="$2">
         <YStack miw={300} maw={320} jc="space-between" p="$2" gap="$4">
           <YStack mb="$4">
             <LogoIcon />
