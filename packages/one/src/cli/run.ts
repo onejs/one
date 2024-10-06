@@ -1,4 +1,5 @@
 import { virtualEntryIdNative } from '../vite/virtualEntryPlugin'
+import { labelProcess } from './label-process'
 
 export async function run(args: {
   clean?: boolean
@@ -6,6 +7,7 @@ export async function run(args: {
   port?: string
   https?: boolean
 }) {
+  labelProcess('dev')
   const { dev } = await import('vxrn')
   const { start, stop } = await dev({
     clean: args.clean,

@@ -13,12 +13,14 @@ import { removeUndefined } from './utils/removeUndefined'
 import { resolveAPIRequest } from './vite/resolveAPIRequest'
 import type { One } from './vite/types'
 import { loadUserOneOptions } from './vite/one'
+import { labelProcess } from './cli/label-process'
 
 process.on('uncaughtException', (err) => {
   console.error(`[one] Uncaught exception`, err?.stack || err)
 })
 
 export async function serve(args: VXRNOptions['server'] = {}) {
+  labelProcess('serve')
   const oneOptions = await loadUserOneOptions('serve')
 
   // TODO make this better, this ensures we get react 19
