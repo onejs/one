@@ -12,10 +12,10 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@tamagui/config": "^1.113.1",
-    "@tamagui/image-next": "^1.113.1",
-    "@tamagui/lucide-icons": "^1.113.1",
-    "@tamagui/vite-plugin": "^1.113.1",
+    "@tamagui/config": "^1.113.2",
+    "@tamagui/image-next": "^1.113.2",
+    "@tamagui/lucide-icons": "^1.113.2",
+    "@tamagui/vite-plugin": "^1.113.2",
     "@vxrn/color-scheme": "1.1.298",
     "one": "1.1.298",
     "react": "^18.3.1",
@@ -25,7 +25,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.113.1"
+    "tamagui": "^1.113.2"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1",
