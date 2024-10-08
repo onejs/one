@@ -18,7 +18,6 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
     };
     resolve: {
         dedupe: string[];
-        extensions: string[];
     };
     mode: string;
     define: {
