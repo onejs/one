@@ -1,5 +1,4 @@
 import type { Provider } from '@supabase/supabase-js'
-import { LogoIcon } from '@tamagui/logo'
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 import { Button, Input, Paragraph, Separator, Spinner, XStack, YStack } from 'tamagui'
@@ -95,9 +94,7 @@ function SignIn() {
     return (
       <YStack mih="100%" miw="100%" ai="center" jc="center" p="$2">
         <YStack miw={300} maw={320} jc="space-between" p="$2" gap="$4">
-          <YStack mb="$4">
-            <LogoIcon />
-          </YStack>
+          <YStack mb="$4">{/* <LogoIcon /> */}</YStack>
 
           {Boolean(message.content) && (
             <>

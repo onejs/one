@@ -5,6 +5,7 @@ import { PageContainer } from '~/code/ui/PageContainer'
 import { db } from '~/code/db/connection'
 import { likes, reposts, users, posts, follows } from '~/code/db/schema'
 import { eq, desc, sql } from 'drizzle-orm'
+import { ScrollView } from 'react-native'
 
 type Notification = {
   action: 'like' | 'follow' | 'repost'
@@ -139,8 +140,8 @@ export default function NotificationsPage() {
   })
 
   return (
-    <>
+    <ScrollView>
       <PageContainer>{isWeb ? feed : <SafeAreaView>{feed}</SafeAreaView>}</PageContainer>
-    </>
+    </ScrollView>
   )
 }

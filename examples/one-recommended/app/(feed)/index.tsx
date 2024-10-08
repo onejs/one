@@ -1,12 +1,11 @@
+import { desc, eq, sql } from 'drizzle-orm'
+import { getURL, Stack, useLoader, type LoaderProps } from 'one'
 import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
-import { Stack, useLoader, type LoaderProps, getURL } from 'one'
+import { db } from '~/code/db/connection'
+import { likes, posts, replies, reposts, users } from '~/code/db/schema'
 import { FeedCard } from '~/code/feed/FeedCard'
 import { PageContainer } from '~/code/ui/PageContainer'
-import { db } from '~/code/db/connection'
-import { posts, users, likes, replies, reposts } from '~/code/db/schema'
-import { eq, desc, sql } from 'drizzle-orm'
-import { useEffect, useMemo } from 'react'
 
 export async function loader({ path }: LoaderProps) {
   try {
@@ -49,9 +48,7 @@ export async function loader({ path }: LoaderProps) {
   }
 }
 
-export default () => <FeedPage />
-
-function FeedPage() {
+export function FeedPage() {
   const { feed } = useLoader(loader)
 
   return (
@@ -65,9 +62,9 @@ function FeedPage() {
       <PageContainer>
         <ScrollView maxHeight="100%">
           <RefreshControl refreshing={false} />
-          {useMemo(() => {
-            return feed.map((item) => <FeedCard key={item.id} {...item} />)
-          }, [feed])}
+          {feed.map((item) => (
+            <FeedCard key={item.id} {...item} />
+          ))}
         </ScrollView>
       </PageContainer>
     </>
