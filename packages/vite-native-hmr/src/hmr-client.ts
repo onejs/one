@@ -46,10 +46,10 @@ class HMRClient {
 
     this.socket = new WebSocket(this.url)
 
-    console.info(' ⓵  [hmr] connecting...')
+    console.info('[hmr] connecting...')
 
     this.socket.onopen = () => {
-      console.info(' ⓵  [hmr] connected')
+      console.info('[hmr] connected')
     }
 
     this.socket.onclose = () => {
@@ -57,7 +57,7 @@ class HMRClient {
     }
 
     this.socket.onerror = (event) => {
-      console.error(' ⓵  [hmr] error', event)
+      console.error('[hmr] error', event)
     }
 
     this.socket.onmessage = (event) => {
@@ -65,7 +65,7 @@ class HMRClient {
         const data = JSON.parse(event.data.toString())
         this.processMessage(data)
       } catch (error) {
-        console.warn(' ⓵  [hmr] invalid message', error)
+        console.warn('[hmr] invalid message', error)
       }
     }
   }
@@ -82,19 +82,20 @@ class HMRClient {
     switch (message.action) {
       case 'building':
         this.app.LoadingView.showMessage('Rebuilding...', 'refresh')
-        console.info(' ⓵  [hmr] bundle rebuilding', {
+        console.info('[hmr] bundle rebuilding', {
           name: message.body?.name,
         })
         break
+      // biome-ignore lint/suspicious/noFallthroughSwitchClause: <explanation>
       case 'built':
-        console.info(' ⓵  [hmr] bundle rebuilt', {
+        console.info('[hmr] bundle rebuilt', {
           name: message.body?.name,
           time: message.body?.time,
         })
       // Fall through
       case 'sync':
         if (!message.body) {
-          console.warn(' ⓵  [hmr] message body is empty')
+          console.warn('[hmr] message body is empty')
           return
         }
 
@@ -108,7 +109,7 @@ class HMRClient {
 
         if (message.body.warnings?.length) {
           message.body.warnings.forEach((warning) => {
-            console.warn(' ⓵  [hmr] bundle contains warnings:', warning)
+            console.warn('[hmr] bundle contains warnings:', warning)
           })
         }
 
@@ -118,64 +119,68 @@ class HMRClient {
 
   applyUpdate(update: HMRMessageBody) {
     if (!module.hot) {
-      throw new Error(' ⓵  [hmr] hot Module Replacement is disabled.')
+      throw new Error('[hmr] hot Module Replacement is disabled.')
     }
 
     if (!this.upToDate(update.hash) && module.hot.status() === 'idle') {
-      console.info(' ⓵  [hmr] checking for updates on the server...')
+      console.info('[hmr] checking for updates on the server...')
       this.checkUpdates(update)
     }
   }
 
-  async checkUpdates(update: HMRMessageBody) {
+  checkUpdates(update: HMRMessageBody) {
     try {
       this.app.LoadingView.showMessage('Refreshing...', 'refresh')
-      const updatedModules = await module.hot?.check(false)
-      if (!updatedModules) {
-        console.warn(' ⓵  [hmr] cannot find update - full reload needed')
-        this.app.reload()
-        return
-      }
 
-      const renewedModules = await module.hot?.apply({
-        ignoreDeclined: true,
-        ignoreUnaccepted: false,
-        ignoreErrored: false,
-        onDeclined: (data) => {
-          // This module declined update, no need to do anything
-          console.warn(' ⓵  [hmr] ignored an update due to declined module', {
-            chain: data.chain,
+      module.hot?.check(false).then((updatedModules) => {
+        if (!updatedModules) {
+          console.warn('[hmr] cannot find update - full reload needed')
+          this.app.reload()
+          return
+        }
+
+        module.hot
+          ?.apply({
+            ignoreDeclined: true,
+            ignoreUnaccepted: false,
+            ignoreErrored: false,
+            onDeclined: (data) => {
+              // This module declined update, no need to do anything
+              console.warn('[hmr] ignored an update due to declined module', {
+                chain: data.chain,
+              })
+            },
           })
-        },
+          .then((renewedModules) => {
+            if (!this.upToDate()) {
+              this.checkUpdates(update)
+            }
+
+            // Double check to make sure all updated modules were accepted (renewed)
+            const unacceptedModules = updatedModules.filter((moduleId) => {
+              return renewedModules && renewedModules.indexOf(moduleId) < 0
+            })
+
+            if (unacceptedModules.length) {
+              console.warn('[hmr] not every module was accepted - full reload needed', {
+                unacceptedModules,
+              })
+              this.app.reload()
+            } else {
+              console.info('[hmr] renewed modules - app is up to date', {
+                renewedModules,
+              })
+              this.app.dismissErrors()
+            }
+          })
       })
-
-      if (!this.upToDate()) {
-        this.checkUpdates(update)
-      }
-
-      // Double check to make sure all updated modules were accepted (renewed)
-      const unacceptedModules = updatedModules.filter((moduleId) => {
-        return renewedModules && renewedModules.indexOf(moduleId) < 0
-      })
-
-      if (unacceptedModules.length) {
-        console.warn(' ⓵  [hmr] not every module was accepted - full reload needed', {
-          unacceptedModules,
-        })
-        this.app.reload()
-      } else {
-        console.info(' ⓵  [hmr] renewed modules - app is up to date', {
-          renewedModules,
-        })
-        this.app.dismissErrors()
-      }
     } catch (error) {
       if (module.hot?.status() === 'fail' || module.hot?.status() === 'abort') {
-        console.warn(' ⓵  [hmr] cannot check for update - full reload needed')
-        console.warn(' ⓵  [hmr]', error)
+        console.warn('[hmr] cannot check for update - full reload needed')
+        console.warn('[hmr]', error)
         this.app.reload()
       } else {
-        console.warn(' ⓵  [hmr] update check failed', { error })
+        console.warn('[hmr] update check failed', { error })
       }
     } finally {
       this.app.LoadingView.hide()

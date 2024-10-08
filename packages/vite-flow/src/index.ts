@@ -1,38 +1,20 @@
-import babel from '@babel/core'
-import { createRequire } from 'node:module'
 import type { FilterPattern, PluginOption } from 'vite'
 import { createFilter } from 'vite'
-
-const require = createRequire(import.meta.url)
+import { transformCommonJs, swcTransform } from '@vxrn/vite-native-swc'
+import { transformFlowBabel } from './transformFlowBabel'
 
 export async function transformFlow(
   input: string,
   { development = false }: { development?: boolean } = {}
 ) {
-  return await new Promise<string>((res, rej) => {
-    babel.transform(
-      input,
-      {
-        presets: [
-          [
-            require.resolve('metro-react-native-babel-preset'),
-            {
-              // To use the `@babel/plugin-transform-react-jsx` plugin for JSX.
-              useTransformReactJSXExperimental: true,
-            },
-          ],
-        ],
-        plugins: [
-          ['@babel/plugin-transform-react-jsx', { development }],
-          ['@babel/plugin-transform-private-methods', { loose: true }],
-        ],
-      },
-      (err: any, result) => {
-        if (!result || err) rej(err || 'no res')
-        res(result!.code!)
-      }
-    )
-  })
+  // const { default: removeFlowTypes } = await import('flow-remove-types')
+  // const stripped = removeFlowTypes(input).toString() as string
+  // this freezes, likely due to not transforming react-native somehow properly, but not sure exactly how
+  // const final = (await transformCommonJs('file.jsx', stripped))?.code
+
+  const final = await transformFlowBabel(input)
+
+  return final
 }
 
 export type Options = {
