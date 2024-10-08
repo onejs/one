@@ -3,7 +3,7 @@ import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import path, { dirname, join, resolve } from 'node:path'
 import type { Plugin } from 'vite'
-import { isBuildingNativeBundle } from './isBuildingNativeBundle'
+import { requireResolve } from './requireResolve'
 import { resolveFile } from './resolveFile'
 
 // we should just detect or whitelist and use flow to convert instead of this but i did a
@@ -14,10 +14,6 @@ const getPrebuilds = (cacheDir: string, mode) => ({
   react: join(cacheDir, `react${mode === 'prod' ? '.production' : ''}.js`),
   reactNative: join(cacheDir, `react-native${mode === 'prod' ? '.production' : ''}.js`),
 })
-
-const requireResolve = (inPath: string) => {
-  return import.meta.resolve(inPath, join(process.cwd(), 'index.js')).replace('file://', '')
-}
 
 type PrebuildVersions = {
   react: string
