@@ -27,7 +27,13 @@ export function getLoaderPath(
 ) {
   const baseURL = includeUrl ? getURL() : ''
   const devPath = process.env.NODE_ENV === 'development' ? '/_one' : ''
-  return `${baseURL}${devPath}/assets/${cleanUrl(currentPath.slice(1))}_vxrn_loader.js${clientSideSearch}`
+
+  const currentPathUrl = new URL(
+    currentPath,
+    'http://example.com' /* not important, just for `new URL()` to work */
+  )
+
+  return `${baseURL}${devPath}/assets/${cleanUrl(currentPathUrl.pathname.slice(1))}_vxrn_loader.js${getSearchParams(currentPathUrl.search)}`
 }
 
 export function getPathFromLoaderPath(loaderPath: string) {
@@ -35,4 +41,12 @@ export function getPathFromLoaderPath(loaderPath: string) {
     .replace('_vxrn_loader.js', '')
     .replace(/^(\/_one)?\/assets/, '')
     .replace('_', '/')
+}
+
+function getSearchParams(searchParams) {
+  if (!searchParams) {
+    return clientSideSearch
+  }
+
+  return `${searchParams}&${clientSideSearch.slice(1) /* remove the leading "?" */}`
 }
