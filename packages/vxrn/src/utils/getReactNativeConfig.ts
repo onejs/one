@@ -10,16 +10,15 @@ import {
   transformWithEsbuild,
   type UserConfig,
 } from 'vite'
-import { nativeExtensions } from '../constants'
+import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
+import { getBabelReanimatedPlugin } from '../plugins/babelReanimated'
+import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
+import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
 import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
-import { getBabelReanimatedPlugin } from '../plugins/babelReanimated'
-import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
-import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
-import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
@@ -166,7 +165,6 @@ export async function getReactNativeConfig(
 
     resolve: {
       dedupe,
-      extensions: nativeExtensions,
     },
 
     mode: mode === 'dev' ? 'development' : 'production',

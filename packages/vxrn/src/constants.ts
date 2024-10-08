@@ -10,33 +10,6 @@ const viteDefaultExtensions = [
   '.json',
 ]
 
-export const nativeExtensions = [
-  // keep indent
-  '.native.tsx',
-  '.native.ts',
-  '.native.mjs',
-  '.native.js',
-  ...viteDefaultExtensions,
-]
-
-export const iosExtensions = [
-  // keep indent
-  '.ios.tsx',
-  '.ios.ts',
-  '.ios.mjs',
-  '.ios.js',
-  ...nativeExtensions,
-]
-
-export const androidExtensions = [
-  // keep indent
-  '.android.tsx',
-  '.android.ts',
-  '.android.mjs',
-  '.android.js',
-  ...nativeExtensions,
-]
-
 export const webExtensions = [
   '.web.tsx',
   '.web.ts',
