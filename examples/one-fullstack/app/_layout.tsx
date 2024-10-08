@@ -2,7 +2,6 @@ import '~/app.css'
 import '~/tamagui.css'
 
 import { HydrateTheme, UserThemeProvider, useUserTheme } from '@tamagui/one-theme'
-import { ToastProvider, ToastViewport } from '@tamagui/toast'
 import { isWeb, setupPopper, TamaguiProvider } from 'tamagui'
 import { LoadProgressBar, Slot, Stack } from 'one'
 import { HeadInfo } from '~/components/HeadInfo'
@@ -58,20 +57,6 @@ export default function Layout() {
       )}
 
       <Providers>
-        {isWeb && (
-          <>
-            <ToastViewport flexDirection="column-reverse" top="$2" left={0} right={0} />
-            <ToastViewport
-              multipleToasts
-              name="viewport-multiple"
-              flexDirection="column-reverse"
-              top="$2"
-              left={0}
-              right={0}
-            />
-          </>
-        )}
-
         {isWeb ? (
           <Slot />
         ) : (
@@ -115,7 +100,7 @@ function TamaguiRootProvider(props: { children: any }) {
       defaultTheme={resolvedTheme}
       config={tamaConf}
     >
-      <ToastProvider swipeDirection="horizontal">{props.children}</ToastProvider>
+      {props.children}
     </TamaguiProvider>
   )
 }

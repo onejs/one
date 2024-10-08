@@ -24,6 +24,7 @@ export default function FeedLayout() {
             name="index"
             options={{
               title: 'Feed',
+              gestureEnabled: true,
               headerLeft() {
                 return <Logo />
               },

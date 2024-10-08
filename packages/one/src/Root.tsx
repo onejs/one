@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState, type FunctionComponent, type ReactNode }
 import type { GlobbedRouteImports, RenderAppProps } from './types'
 import { useViteRoutes } from './useViteRoutes'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
-// import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
+import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
   DarkTheme,
   DefaultTheme,
@@ -166,23 +166,27 @@ function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: 
 }
 
 // function getGestureHandlerRootView() {
-//   try {
-//     if (!_GestureHandlerRootView) {
-//       return React.Fragment
-//     }
+//   if (process.env.TAMAGUI_TARGET === 'native') {
+//     try {
+//       if (!_GestureHandlerRootView) {
+//         return Fragment
+//       }
 
-//     // eslint-disable-next-line no-inner-declarations
-//     function GestureHandler(props: any) {
-//       return <_GestureHandlerRootView style={{ flex: 1 }} {...props} />
+//       // eslint-disable-next-line no-inner-declarations
+//       function GestureHandler(props: any) {
+//         return <_GestureHandlerRootView style={{ flex: 1 }} {...props} />
+//       }
+//       if (process.env.NODE_ENV === 'development') {
+//         // @ts-expect-error
+//         GestureHandler.displayName = 'GestureHandlerRootView'
+//       }
+//       return GestureHandler
+//     } catch {
+//       return Fragment
 //     }
-//     if (process.env.NODE_ENV === 'development') {
-//       // @ts-expect-error
-//       GestureHandler.displayName = 'GestureHandlerRootView'
-//     }
-//     return GestureHandler
-//   } catch {
-//     return React.Fragment
 //   }
+
+//   return Fragment
 // }
 
 // const GestureHandlerRootView = getGestureHandlerRootView()
