@@ -10,14 +10,17 @@ export default function FeedLayout() {
         <Slot />
       ) : (
         <Stack
-          screenOptions={{
-            headerRight() {
-              return (
-                <View px="$2">
-                  <ToggleThemeButton />
-                </View>
-              )
-            },
+          screenOptions={({ route }) => {
+            return {
+              title: (route?.params as any)?.preloadTitle || undefined,
+              headerRight() {
+                return (
+                  <View px="$2">
+                    <ToggleThemeButton />
+                  </View>
+                )
+              },
+            }
           }}
         >
           <Stack.Screen
@@ -30,7 +33,7 @@ export default function FeedLayout() {
               },
             }}
           />
-          <Stack.Screen name="post/[id]" options={{ title: 'Post' }} />
+          <Stack.Screen name="post/[id]" />
         </Stack>
       )}
     </View>

@@ -53,7 +53,16 @@ export const FeedCard = (props: FeedItem) => {
   return props.disableLink ? (
     content
   ) : (
-    <Link asChild href={`/post/${props.id}`}>
+    <Link
+      asChild
+      href={{
+        pathname: `/post/[id]`,
+        params: {
+          id: props.id.toString(),
+          ...(typeof document === 'undefined' ? ({ preloadTitle: props.content } as any) : {}),
+        },
+      }}
+    >
       {content}
     </Link>
   )
