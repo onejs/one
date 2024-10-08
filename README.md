@@ -8,7 +8,7 @@ One is a powerful and versatile React framework designed to make full-stack deve
 - **File System Routing**: Use a familiar file-based routing approach.
 - **Flexible Routing Modes**: SSG, SSR, SPA, and API on a per-page basis.
 - **Zero Config**: Vite config optimized for React Native and web with ultra-fast builds.
-- **Integrated Loaders**: For client-side tree shaking.
+- **Integrated Loaders**: With client-side tree shaking.
 - **Preloaded JS**: Preloads all JS for the initial load and link hover for faster navigation.
 
 ## Getting Started
