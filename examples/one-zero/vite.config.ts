@@ -12,7 +12,7 @@ export default {
       },
 
       app: {
-        key: 'One',
+        key: 'one-example',
       },
     }),
 
