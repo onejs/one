@@ -405,6 +405,31 @@ if (module.hot) {
   `
 }
 
+export const transformCommonJs = async (id: string, code: string) => {
+  const parser = getParser(id)
+  if (!parser) return
+  return await transform(code, {
+    filename: id,
+    swcrc: false,
+    configFile: false,
+    module: {
+      type: 'commonjs',
+    },
+    sourceMaps: shouldSourceMap(),
+    jsc: {
+      target: 'es5',
+      parser,
+      transform: {
+        useDefineForClassFields: true,
+        react: {
+          development: true,
+          runtime: 'automatic',
+        },
+      },
+    },
+  })
+}
+
 export const transformForBuild = async (id: string, code: string) => {
   const parser = getParser(id)
   if (!parser) return

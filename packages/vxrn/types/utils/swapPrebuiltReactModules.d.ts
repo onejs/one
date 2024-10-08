@@ -5,11 +5,7 @@ type PrebuildVersions = {
 };
 export declare function prebuildReactNativeModules(cacheDir: string, versions?: PrebuildVersions, internal?: {
     mode?: 'dev' | 'prod';
-}): Promise<{
-    reactJSX: string;
-    react: string;
-    reactNative: string;
-} | undefined>;
+}): Promise<void>;
 export declare function swapPrebuiltReactModules(cacheDir: string, versions?: PrebuildVersions, internal?: {
     mode?: 'dev' | 'prod';
 }): Promise<Plugin>;

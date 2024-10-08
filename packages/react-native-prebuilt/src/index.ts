@@ -56,7 +56,9 @@ export async function buildReactJSX(options: BuildOptions = {}) {
         .replace(
           `module.exports = require_react_jsx_runtime_production_min();`,
           `return require_react_jsx_runtime_production_min();`
-        )}
+        )
+        .replace(`process.env.VXRN_REACT_19`, 'false')
+        .replace(`Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')"));`, ``)}
     }
     const __mod__ = run()
     ${['jsx', 'jsxs', 'jsxDEV', 'Fragment']
@@ -109,7 +111,9 @@ export async function buildReact(options: BuildOptions = {}) {
         .replace(
           `module.exports = require_react_production_min();`,
           `return require_react_production_min();`
-        )}
+        )
+        .replace(`process.env.VXRN_REACT_19`, 'false')
+        .replace(`Object.assign(exports, eval("require('@vxrn/vendor/react-19')"));`, ``)}
     }
     const __mod__ = run()
     ${RExports.map((n) => `export const ${n} = __mod__.${n}`).join('\n')}
@@ -220,7 +224,10 @@ return mod
         )
         .replace(`module.exports = require_react_native();`, `return require_react_native();`)
         // Export `@react-native/assets-registry/registry`
-        .replace(`return require_react_native();`, `const rn = require_react_native(); rn.AssetRegistry = require_registry(); return rn;`)}
+        .replace(
+          `return require_react_native();`,
+          `const rn = require_react_native(); rn.AssetRegistry = require_registry(); return rn;`
+        )}
     }
     const RN = run()
     ${RNExportNames.map((n) => `export const ${n} = RN.${n}`).join('\n')}

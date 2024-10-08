@@ -119,7 +119,7 @@ class DevServerClient {
   }
 }
 
-const client = new DevServerClient()
+export const client = new DevServerClient()
 
 export const setup = () => {}
 export const enable = () => {}
