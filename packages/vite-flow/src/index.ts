@@ -11,7 +11,6 @@ export async function transformFlow(
   input: string,
   { development = false }: { development?: boolean } = {}
 ) {
-  console.warn('??????'2)
   return await new Promise<string>((res, rej) => {
     babel.transform(
       input,
