@@ -46,7 +46,7 @@
     "@expo/config-plugins": "^8.0.8",
     "@hono/node-server": "^1.12.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@tamagui/react-native-svg": "^1.112.23",
+    "@tamagui/react-native-svg": "^1.112.25",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vxrn/query-string": "1.1.297",
     "@vxrn/react-native-prebuilt": "1.1.297",
@@ -83,7 +83,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.112.23",
+    "@tamagui/build": "^1.112.25",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",
     "@types/qrcode-terminal": "^0",

@@ -6,6 +6,7 @@ import { PageContainer } from '~/code/ui/PageContainer'
 import { db } from '~/code/db/connection'
 import { posts, users, likes, replies, reposts } from '~/code/db/schema'
 import { eq, desc, sql } from 'drizzle-orm'
+import { useEffect, useMemo } from 'react'
 
 export async function loader({ path }: LoaderProps) {
   try {
@@ -52,6 +53,7 @@ export default () => <FeedPage />
 
 function FeedPage() {
   const { feed } = useLoader(loader)
+
   return (
     <>
       <Stack.Screen
@@ -63,9 +65,9 @@ function FeedPage() {
       <PageContainer>
         <ScrollView maxHeight="100%">
           <RefreshControl refreshing={false} />
-          {feed.map((item) => (
-            <FeedCard key={item.id} {...item} />
-          ))}
+          {useMemo(() => {
+            return feed.map((item) => <FeedCard key={item.id} {...item} />)
+          }, [feed])}
         </ScrollView>
       </PageContainer>
     </>
