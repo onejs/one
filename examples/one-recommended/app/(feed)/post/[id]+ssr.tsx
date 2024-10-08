@@ -6,71 +6,16 @@ import { db } from '~/code/db/connection'
 import { likes, posts, replies, reposts, users } from '~/code/db/schema'
 import { FeedCard } from '~/code/feed/FeedCard'
 import { PageContainer } from '~/code/ui/PageContainer'
+import { feed, replies, users } from '~/code/data'
 
-export async function loader({ params }) {
-  const id = params.id
-
-  if (!id) {
-    throw new Error('Invalid post ID')
-  }
-
-  try {
-    const post = await db
-      .select({
-        id: posts.id,
-        content: posts.content,
-        createdAt: posts.createdAt,
-        user: {
-          name: users.username,
-          avatar: users.avatarUrl,
-        },
-        likesCount:
-          sql<number>`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
-            'likesCount'
-          ),
-        repliesCount:
-          sql<number>`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
-            'repliesCount'
-          ),
-        repostsCount:
-          sql<number>`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
-            'repostsCount'
-          ),
-      })
-      .from(posts)
-      .leftJoin(users, eq(users.id, posts.userId))
-      .where(eq(posts.id, Number(id)))
-      .limit(1)
-
-    if (post.length === 0) {
-      throw new Error('Post not found')
-    }
-
-    const repliesData = await db
-      .select({
-        id: replies.id,
-        content: replies.content,
-        createdAt: replies.createdAt,
-        user: {
-          name: users.username,
-          avatar: users.avatarUrl,
-        },
-      })
-      .from(replies)
-      .leftJoin(users, eq(users.id, replies.userId))
-      .where(eq(replies.postId, Number(id)))
-
-    return {
-      ...post[0],
-      replies: repliesData,
-    }
-  } catch (error) {
-    throw new Error(`Failed to fetch post: ${(error as Error).message}`)
-  }
-}
 
 export function PostPage() {
-  const data = useLoader(loader)
+  const postData =
+    feed.find((item) => item.id.toString() === (useParams() as any).id || '') || feed[0]
+  const data = {
+    ...postData,
+    replies: replies.filter((r) => r.postId === postData.id),
+  }
 
   const navigation = useNavigation()
   const params = useParams<any>()
@@ -95,7 +40,7 @@ export function PostPage() {
             borderColor="$borderColor"
           >
             {data.replies.map((reply) => (
-              <FeedCard key={reply.id} {...reply} disableLink isReply />
+              <FeedCard key={reply.id} {...(reply as any)} disableLink isReply />
             ))}
           </YStack>
         )}
