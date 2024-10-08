@@ -1,13 +1,10 @@
-/* eslint-disable no-console */
+import path from 'node:path'
 import * as proc from 'node:child_process'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
-import path from 'path'
-
 import fs, { writeJSON } from 'fs-extra'
 import pMap from 'p-map'
 import prompts from 'prompts'
-
 import { spawnify } from './spawnify'
 
 // avoid emitter error
