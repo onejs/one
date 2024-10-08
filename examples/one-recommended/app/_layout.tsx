@@ -1,11 +1,11 @@
 import '@tamagui/core/reset.css'
-import './_layout.css'
 import '~/code/styles/base.css'
 import '~/code/styles/tamagui.css'
+import './_layout.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { isWeb, TamaguiProvider } from 'tamagui'
 import { LoadProgressBar } from 'one'
+import { isWeb, TamaguiProvider } from 'tamagui'
 import { HomeLayout } from '~/code/home/HomeLayout'
 import config from '../config/tamagui.config'
 
