@@ -26,7 +26,7 @@ export const FeedCard = (props: FeedItem) => {
     <Card tag="a">
       <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar} />
       <YStack f={1} gap="$2">
-        <Paragraph size="$5" fow="bold">
+        <Paragraph debug="verbose" size="$5" fow="bold">
           {props.user.name}
         </Paragraph>
 

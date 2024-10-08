@@ -38,7 +38,7 @@
     "react-native": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.113.0",
+    "@tamagui/build": "^1.113.1",
     "react-native": "0.74.1"
   },
   "publishConfig": {

@@ -1,11 +1,11 @@
+import { eq, sql } from 'drizzle-orm'
+import { useLoader, useNavigation, useParams } from 'one'
 import { useEffect } from 'react'
 import { YStack } from 'tamagui'
-import { useLoader, useNavigation, useParams } from 'one'
+import { db } from '~/code/db/connection'
+import { likes, posts, replies, reposts, users } from '~/code/db/schema'
 import { FeedCard } from '~/code/feed/FeedCard'
 import { PageContainer } from '~/code/ui/PageContainer'
-import { db } from '~/code/db/connection'
-import { posts, users, likes, replies, reposts } from '~/code/db/schema'
-import { eq, sql } from 'drizzle-orm'
 
 export async function loader({ params }) {
   const id = params.id
@@ -67,8 +67,6 @@ export async function loader({ params }) {
     throw new Error(`Failed to fetch post: ${(error as Error).message}`)
   }
 }
-
-export default () => <PostPage />
 
 export function PostPage() {
   const data = useLoader(loader)
