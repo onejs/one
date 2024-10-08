@@ -62,6 +62,11 @@ if (process.env.TAMAGUI_TARGET === 'native') {
       }
     }
   })
+
+  const cur = Appearance.getColorScheme()
+  if (cur && currentSetting === 'system') {
+    currentName = cur
+  }
 }
 
 export function useColorSchemeSetting() {
