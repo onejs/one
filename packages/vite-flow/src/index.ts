@@ -1,11 +1,9 @@
+import babel from '@babel/core'
+import { createRequire } from 'node:module'
 import type { FilterPattern, PluginOption } from 'vite'
 import { createFilter } from 'vite'
-import babel from '@babel/core'
-import { join } from 'node:path'
 
-const requireResolve = (inPath: string) => {
-  return import.meta.resolve(inPath, join(process.cwd(), 'index.js')).replace('file://', '')
-}
+const require = createRequire(import.meta.url)
 
 export async function transformFlow(
   input: string,
@@ -17,7 +15,7 @@ export async function transformFlow(
       {
         presets: [
           [
-            requireResolve('metro-react-native-babel-preset'),
+            require.resolve('metro-react-native-babel-preset'),
             {
               // To use the `@babel/plugin-transform-react-jsx` plugin for JSX.
               useTransformReactJSXExperimental: true,
