@@ -1,23 +1,25 @@
 {
   "expo": {
-    "name": "one-example",
-    "slug": "one-example",
-    "sdkVersion": "51.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "plugins": [
-      "vxrn/expo-plugin"
-    ],
-    "icon": "./public/app-icon.png",
+    "name": "One Social Demo",
+    "slug": "one-social-demo",
+    "icon": "./assets/app-icon.png",
     "splash": {
-      "image": "./public/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "image": "./assets/splash.png",
+      "backgroundColor": "#000000",
+      "resizeMode": "contain"
+    },
+    "sdkVersion": "51.0.0",
+    "platforms": ["ios", "android"],
+    "plugins": ["vxrn/expo-plugin"],
+    "android": {
+      "package": "dev.onestack.demo.social"
     },
     "ios": {
-      "bundleIdentifier": "dev.onestack.example-basic"
+      "bundleIdentifier": "dev.onestack.demo.social",
+      "icon": "./assets/app-icon.png",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     }
   }
 }
