@@ -3,10 +3,9 @@ import { useLoader, useNavigation, useParams } from 'one'
 import { useEffect } from 'react'
 import { YStack } from 'tamagui'
 import { db } from '~/code/db/connection'
-import { likes, posts, replies, reposts, users } from '~/code/db/schema'
 import { FeedCard } from '~/code/feed/FeedCard'
 import { PageContainer } from '~/code/ui/PageContainer'
-import { feed, replies, users } from '~/code/data'
+import { feed, replies } from '~/code/data'
 
 
 export function PostPage() {
