@@ -1,7 +1,7 @@
-import { Paragraph, Text, XStack, YStack } from 'tamagui'
 import { type Href, Link } from 'one'
-import { Image } from '../ui/Image'
+import { Paragraph, Text, YStack } from 'tamagui'
 import { Card } from '../ui/Card'
+import { Image } from '../ui/Image'
 
 type NotificationItem = {
   action: 'like' | 'repost' | 'follow'

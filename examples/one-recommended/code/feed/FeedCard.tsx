@@ -19,6 +19,17 @@ type FeedItem = {
   isReply?: boolean
 }
 
+const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
+  return (
+    <XStack ai="center" jc="center" gap="$2">
+      <Icon color="$color10" size={14} />
+      <SizableText fow="700" color="$color10" userSelect="none">
+        {count}
+      </SizableText>
+    </XStack>
+  )
+}
+
 export const FeedCard = (props: FeedItem) => {
   if (!props.user) return null
 
@@ -65,16 +76,5 @@ export const FeedCard = (props: FeedItem) => {
     >
       {content}
     </Link>
-  )
-}
-
-const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
-  return (
-    <XStack ai="center" jc="center" gap="$2">
-      <Icon color="$color10" size={14} />
-      <SizableText fow="700" color="$color10" userSelect="none">
-        {count}
-      </SizableText>
-    </XStack>
   )
 }
