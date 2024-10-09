@@ -12360,6 +12360,8 @@ __metadata:
     one: "npm:1.1.299"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
+    react-native-safe-area-context: "npm:^4.10.1"
+    react-native-screens: "npm:3.31.1"
     react-native-web: "npm:^0.19.12"
     vite: "npm:6.0.0-beta.1"
   languageName: unknown
@@ -12444,6 +12446,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
+    react-native-safe-area-context: "npm:^4.10.1"
     react-native-screens: "npm:3.31.1"
     react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
