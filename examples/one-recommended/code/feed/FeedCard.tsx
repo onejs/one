@@ -7,14 +7,14 @@ import { Image } from '../ui/Image'
 type FeedItem = {
   id: number
   content: string
-  createdAt: string
+  createdAt: Date | null
   user: {
     name: string
-    avatar: string
-  }
-  likesCount: number
-  repliesCount: number
-  repostsCount: number
+    avatar: string | null
+  } | null
+  likesCount?: number
+  repliesCount?: number
+  repostsCount?: number
   disableLink?: boolean
   isReply?: boolean
 }
@@ -24,7 +24,7 @@ export const FeedCard = (props: FeedItem) => {
 
   const content = (
     <Card tag="a">
-      <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar} />
+      <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar || ''} />
       <YStack f={1} gap="$2">
         <Paragraph size="$5" fow="bold">
           {props.user.name}
@@ -41,9 +41,9 @@ export const FeedCard = (props: FeedItem) => {
         </Paragraph>
         {!props.isReply ? (
           <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
-            <StatItem Icon={Reply} count={props.repliesCount} />
-            <StatItem Icon={Repeat} count={props.repostsCount} />
-            <StatItem Icon={Heart} count={props.likesCount} />
+            <StatItem Icon={Reply} count={props.repliesCount || 0} />
+            <StatItem Icon={Repeat} count={props.repostsCount || 0} />
+            <StatItem Icon={Heart} count={props.likesCount || 0} />
           </XStack>
         ) : null}
       </YStack>
