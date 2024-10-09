@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "@tamagui/vite-plugin": "^1.113.2",
-    "h3": "1.11.1",
-    "supabase": "1.127.4"
+    "h3": "1.11.1"
   }
 }
