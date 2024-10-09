@@ -7366,6 +7366,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.59.4":
+  version: 5.59.4
+  resolution: "@tanstack/query-core@npm:5.59.4"
+  checksum: 10/176a1133378241ae62ee40252e5261c2c4119c49ee84e2063ac8634fd431c10616b6055d24850c8392ff43c6d56119a915210c284970b26b63759dced7873528
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.59.4":
+  version: 5.59.4
+  resolution: "@tanstack/react-query@npm:5.59.4"
+  dependencies:
+    "@tanstack/query-core": "npm:5.59.4"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 10/62e36081b7e7c8d4bd7e8a8d2014570e35f78c4aa54279828f3696f5da810db7476a01a4a24ce63c24935284f514e9a4a9ae992a96c6a549f0cbe1ff37f2c451
+  languageName: node
+  linkType: hard
+
 "@tauri-apps/cli-darwin-arm64@npm:1.6.2":
   version: 1.6.2
   resolution: "@tauri-apps/cli-darwin-arm64@npm:1.6.2"
@@ -11795,6 +11813,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-basic@workspace:examples/one-basic"
   dependencies:
+    "@tanstack/react-query": "npm:^5.59.4"
     expo: "npm:~51.0.28"
     one: "npm:1.1.311"
     react: "npm:^18.3.1"
