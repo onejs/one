@@ -1,34 +1,15 @@
+import { desc, eq, sql } from 'drizzle-orm'
+import { Href, type LoaderProps, SafeAreaView, getURL, useLoader } from 'one'
+import { ScrollView } from 'react-native'
 import { isWeb } from 'tamagui'
-import { type Href, SafeAreaView, useLoader, type LoaderProps, getURL } from 'one'
+import { db } from '~/code/db/connection'
+import { follows, likes, posts, reposts, users } from '~/code/db/schema'
 import { NotificationCard } from '~/code/notifications/NotificationCard'
 import { PageContainer } from '~/code/ui/PageContainer'
-import { db } from '~/code/db/connection'
-import { likes, reposts, users, posts, follows } from '~/code/db/schema'
-import { eq, desc, sql } from 'drizzle-orm'
-import { ScrollView } from 'react-native'
 
-type Notification = {
-  action: 'like' | 'follow' | 'repost'
-  fromUser: {
-    username: string
-    userLink: Href
-    avatar: string
-  }
-  post: {
-    postLink: Href
-    content: string
-  } | null
-  createdAt: string
-}
+type NotificationType = 'like' | 'follow' | 'repost'
 
-type NotificationsResponse = {
-  notifications: Notification[]
-  total: number
-  page: number
-  limit: number
-}
-
-export async function loader({ path }: LoaderProps): Promise<NotificationsResponse> {
+export async function loader({ path }: LoaderProps) {
   try {
     const url = new URL(getURL() + path)
     const page = Number(url.searchParams.get('page') || '1')
@@ -76,8 +57,8 @@ export async function loader({ path }: LoaderProps): Promise<NotificationsRespon
             userId: users.id,
             postId: posts.id,
             postContent: posts.content,
-            createdAt: sql`${reposts.createdAt} as created_at`,
-            actionType: sql`'repost'`.as('actionType'),
+            createdAt: sql<Date>`${reposts.createdAt} as created_at`,
+            actionType: sql<NotificationType>`'repost'`.as('actionType'),
           })
           .from(reposts)
           .leftJoin(users, eq(users.id, reposts.userId))
@@ -85,6 +66,7 @@ export async function loader({ path }: LoaderProps): Promise<NotificationsRespon
           .where(eq(posts.userId, USER_ID))
       )
       .union(
+        // @ts-expect-error TODO
         db
           .select({
             username: users.username,
@@ -92,8 +74,8 @@ export async function loader({ path }: LoaderProps): Promise<NotificationsRespon
             userId: users.id,
             postId: sql`NULL`.as('postId'),
             postContent: sql`NULL`.as('postContent'),
-            createdAt: sql`${follows.createdAt} as created_at`,
-            actionType: sql`'follow'`.as('actionType'),
+            createdAt: sql<Date>`${follows.createdAt} as created_at`,
+            actionType: sql<NotificationType>`'follow'`.as('actionType'),
           })
           .from(follows)
           .leftJoin(users, eq(users.id, follows.followerId))
@@ -105,20 +87,21 @@ export async function loader({ path }: LoaderProps): Promise<NotificationsRespon
 
     const notifications = await notificationsQuery
 
-    const formattedNotifications: Notification[] = notifications.map((notification) => ({
-      action: notification.actionType,
+    const formattedNotifications = notifications.map((notification) => ({
+      action: notification.actionType as NotificationType,
       fromUser: {
         username: notification.username,
-        userLink: `/profile/${notification.userId}`,
+        // TODO: Href helper function
+        userLink: `/profile/${notification.userId}` as Href,
         avatar: notification.avatar,
       },
       post: notification.postId
         ? {
-            postLink: `/post/${notification.postId}`,
+            postLink: `/post/${notification.postId}` as Href,
             content: notification.postContent,
           }
         : null,
-      createdAt: notification.createdAt,
+      createdAt: notification.createdAt as Date,
     }))
 
     return {

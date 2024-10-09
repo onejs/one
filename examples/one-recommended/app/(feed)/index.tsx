@@ -23,15 +23,16 @@ export async function loader({ path }: LoaderProps) {
           name: users.username,
           avatar: users.avatarUrl,
         },
-        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
-          'likesCount'
-        ),
+        likesCount:
+          sql<number>`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+            'likesCount'
+          ),
         repliesCount:
-          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+          sql<number>`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
             'repliesCount'
           ),
         repostsCount:
-          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+          sql<number>`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
             'repostsCount'
           ),
       })
@@ -62,7 +63,7 @@ export function FeedPage() {
       <PageContainer>
         <ScrollView maxHeight="100%">
           <RefreshControl refreshing={false} />
-          {feed.map((item) => (
+          {feed.slice(0, 1).map((item) => (
             <FeedCard key={item.id} {...item} />
           ))}
         </ScrollView>

@@ -1,16 +1,17 @@
-import { drizzle } from 'drizzle-orm/postgres-js'
+import { drizzle, type PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 import * as schema from './schema'
 
-let connection
-let db
+export let connection: postgres.Sql
 
-if (!global._db) {
-  connection = postgres(process.env.DATABASE_URL!)
-  db = drizzle(connection, { schema })
-  global._db = db
-} else {
-  db = global._db
-}
-
-export { db, connection }
+export const db = (() => {
+  let val: PostgresJsDatabase<typeof schema>
+  if (!global._db) {
+    connection = postgres(process.env.DATABASE_URL!)
+    val = drizzle(connection, { schema })
+    global._db = val
+  } else {
+    val = global._db
+  }
+  return val
+})()

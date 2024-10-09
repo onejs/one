@@ -24,15 +24,16 @@ export async function loader({ params }) {
           name: users.username,
           avatar: users.avatarUrl,
         },
-        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
-          'likesCount'
-        ),
+        likesCount:
+          sql<number>`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+            'likesCount'
+          ),
         repliesCount:
-          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+          sql<number>`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
             'repliesCount'
           ),
         repostsCount:
-          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+          sql<number>`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
             'repostsCount'
           ),
       })

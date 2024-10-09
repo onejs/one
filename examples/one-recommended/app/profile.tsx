@@ -38,20 +38,21 @@ export async function loader({ path }: LoaderProps) {
       .select({
         id: posts.id,
         content: posts.content,
-        createdAt: sql`${posts.createdAt} as created_at`,
+        createdAt: sql<Date>`${posts.createdAt} as created_at`,
         user: {
           name: users.username,
           avatar: users.avatarUrl,
         },
-        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
-          'likesCount'
-        ),
+        likesCount:
+          sql<number>`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+            'likesCount'
+          ),
         repliesCount:
-          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+          sql<number>`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
             'repliesCount'
           ),
         repostsCount:
-          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+          sql<number>`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
             'repostsCount'
           ),
         type: sql`'post'`.as('type'),
@@ -69,15 +70,16 @@ export async function loader({ path }: LoaderProps) {
           name: users.username,
           avatar: users.avatarUrl,
         },
-        likesCount: sql`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
-          'likesCount'
-        ),
+        likesCount:
+          sql<number>`(SELECT COUNT(*) FROM ${likes} WHERE ${likes.postId} = ${posts.id})`.as(
+            'likesCount'
+          ),
         repliesCount:
-          sql`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
+          sql<number>`(SELECT COUNT(*) FROM ${replies} WHERE ${replies.postId} = ${posts.id})`.as(
             'repliesCount'
           ),
         repostsCount:
-          sql`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
+          sql<number>`(SELECT COUNT(*) FROM ${reposts} WHERE ${reposts.postId} = ${posts.id})`.as(
             'repostsCount'
           ),
         type: sql`'repost'`.as('type'),
@@ -88,6 +90,7 @@ export async function loader({ path }: LoaderProps) {
       .where(eq(reposts.userId, USER_ID))
 
     const combinedFeedQuery = postsQuery
+      // @ts-ignore TODO
       .unionAll(repostsQuery)
       .orderBy(desc(sql`created_at`))
       .limit(limit)
@@ -124,7 +127,7 @@ export default function ProfilePage() {
             w={100}
             h={100}
             br={100}
-            src={userData.avatar}
+            src={userData.avatar || ''}
             bw={1}
             bc="$color1"
             shadowColor="rgba(0,0,0,0.5)"
