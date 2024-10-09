@@ -12,7 +12,7 @@
     "serve": "one serve",
     "ios": "EXPO_NO_TELEMETRY=true expo run:ios",
     "android": "EXPO_NO_TELEMETRY=true expo run:android",
-    "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'"
+    "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"
