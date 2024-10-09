@@ -9,9 +9,9 @@
     "clean": "one clean",
     "serve": "one serve --port 8081",
     "build:web": "one build",
-    "prod": "yarn build:web && yarn serve",
+    "prod": "$npm_execpath build:web && $npm_execpath serve",
     "serve:railway": "one serve --host 0.0.0.0",
-    "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'"
+    "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
     "@supabase/ssr": "0.4.0",
