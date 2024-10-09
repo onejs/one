@@ -2,6 +2,8 @@ export { build } from './exports/build'
 export { dev } from './exports/dev'
 export { serve } from './exports/serve'
 export { prebuild } from './exports/prebuild'
+export { runIos } from './exports/runIos'
+export { runAndroid } from './exports/runAndroid'
 export { clean } from './exports/clean'
 
 export { type VXRNOptionsFilled, getOptionsFilled, fillOptions } from './utils/getOptionsFilled'

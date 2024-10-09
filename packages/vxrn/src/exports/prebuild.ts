@@ -24,6 +24,18 @@ export const prebuild = async ({ root }: { root: string }) => {
       'react,react-native,expo',
     ])
 
+    try {
+      const packageJsonPath = path.join(root, 'package.json')
+      let packageJsonContents = await FSExtra.readFile(packageJsonPath, 'utf8')
+
+      packageJsonContents = packageJsonContents.replace(/expo run:ios/g, 'one run:ios')
+      packageJsonContents = packageJsonContents.replace(/expo run:android/g, 'one run:android')
+
+      await FSExtra.writeFile(packageJsonPath, packageJsonContents, 'utf8')
+    } catch (error) {
+      console.error('Error updating package.json', error)
+    }
+
     // Remove the ios/.xcode.env.local file as it's causing problems `node: No such file or directory` during build
     try {
       FSExtra.removeSync(path.join(root, 'ios', '.xcode.env.local'))

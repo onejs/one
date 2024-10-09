@@ -121,6 +121,30 @@ const prebuild = defineCommand({
   },
 })
 
+const runIos = defineCommand({
+  meta: {
+    name: 'run:ios',
+    version: version,
+  },
+  args: {},
+  async run({ args }) {
+    const { run } = await import('./cli/runIos')
+    await run(args)
+  },
+})
+
+const runAndroid = defineCommand({
+  meta: {
+    name: 'run:ios',
+    version: version,
+  },
+  args: {},
+  async run({ args }) {
+    const { run } = await import('./cli/runAndroid')
+    await run(args)
+  },
+})
+
 const clean = defineCommand({
   meta: {
     name: 'clean',
@@ -144,7 +168,7 @@ const main = defineCommand({
   },
   args: {},
   async run({ args }) {
-    if (['clean', 'prebuild'].includes(args._[0])) {
+    if (['clean', 'prebuild', 'run:ios', 'run:android'].includes(args._[0])) {
       // IDK why we're getting into here after a subcommand has been run
       return
     }
@@ -157,6 +181,8 @@ const main = defineCommand({
     clean,
     build: buildCommand,
     prebuild,
+    'run:ios': runIos,
+    'run:android': runAndroid,
     serve: serveCommand,
   },
 })

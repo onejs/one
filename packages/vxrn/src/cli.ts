@@ -1,6 +1,8 @@
 import { defineCommand, runMain } from 'citty'
 import type { dev as devFn } from './exports/dev'
 import type { prebuild as prebuildFn } from './exports/prebuild'
+import type { runIos as runIosFn } from './exports/runIos'
+import type { runAndroid as runAndroidFn } from './exports/runAndroid'
 
 const dev = defineCommand({
   meta: {
@@ -152,6 +154,42 @@ const prebuild = defineCommand({
   },
 })
 
+const runIos = defineCommand({
+  meta: {
+    name: 'run:ios',
+    version: '0.0.0',
+  },
+  args: {},
+  async run() {
+    const imported = await import(
+      // @ts-expect-error
+      './exports/runIos.mjs'
+    )
+    const runIos = imported.runIos as typeof runIosFn
+    const root = process.cwd()
+
+    await runIos({ root })
+  },
+})
+
+const runAndroid = defineCommand({
+  meta: {
+    name: 'run:android',
+    version: '0.0.0',
+  },
+  args: {},
+  async run() {
+    const imported = await import(
+      // @ts-expect-error
+      './exports/runAndroid.mjs'
+    )
+    const runAndroid = imported.runAndroid as typeof runAndroidFn
+    const root = process.cwd()
+
+    await runAndroid({ root })
+  },
+})
+
 const clean = defineCommand({
   meta: {
     name: 'clean',
@@ -181,6 +219,8 @@ const main = defineCommand({
     build,
     serve,
     prebuild,
+    runIos,
+    runAndroid,
     clean,
   },
 })
