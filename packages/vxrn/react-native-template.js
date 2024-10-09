@@ -244,19 +244,17 @@ if (!globalThis['console']) {
 
 // idk why
 globalThis.__vxrnTmpLogs = []
-;['trace', 'info', 'warn', 'error', 'log', 'group', 'groupCollapsed', 'groupEnd', 'debug'].forEach(
-  (level) => {
-    const og = globalThis['console'][level] || (() => {})
-    globalThis['_ogConsole' + level] = og
-    const ogConsole = og.bind(globalThis['console'])
-    globalThis['console'][level] = (...data) => {
-      if (globalThis.__vxrnTmpLogs) {
-        globalThis.__vxrnTmpLogs.push({ level, data })
-      }
-      return ogConsole(...data)
+;['trace', 'info', 'warn', 'error', 'log', 'group', 'groupCollapsed', 'debug'].forEach((level) => {
+  const og = globalThis['console'][level] || (() => {})
+  globalThis['_ogConsole' + level] = og
+  const ogConsole = og.bind(globalThis['console'])
+  globalThis['console'][level] = (...data) => {
+    if (globalThis.__vxrnTmpLogs) {
+      globalThis.__vxrnTmpLogs.push({ level, data })
     }
+    return ogConsole(...data)
   }
-)
+})
 
 console._isPolyfilled = true
 

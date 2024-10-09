@@ -74,7 +74,13 @@ class DevServerClient {
           JSON.stringify({
             type: 'client-log',
             level,
-            data: data.map((item: any) => (typeof item === 'string' ? item : JSON.stringify(item))),
+            data: data.map((item: any, index) => {
+              try {
+                return typeof item === 'string' ? item : JSON.stringify(item)
+              } catch (err) {
+                return `Error stringifying item at index ${index} - ${item} - ${err}`
+              }
+            }),
           })
         )
       } catch (err) {
@@ -109,6 +115,10 @@ class DevServerClient {
   }
 
   log(level: string, data: any[]) {
+    if (level === 'groupEnd') {
+      return
+    }
+
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       this.flushBuffer()
       this.send(level, data)
