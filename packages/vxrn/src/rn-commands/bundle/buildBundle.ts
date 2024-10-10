@@ -90,6 +90,13 @@ export async function buildBundle(
     )
   }
 
-  console.info(`Writing bundle to ${bundleOutput}`)
+  console.info(`Writing bundle to ${bundleOutput}...`)
   FSExtra.writeFileSync(bundleOutput, builtBundle, { encoding: 'utf8' })
+  console.info('Done.')
+
+  // Prevent the process not getting exited for some unknown reason.
+  // If the process is not exited, it might hang the native build process.
+  setTimeout(() => {
+    process.exit()
+  }, 1000)
 }
