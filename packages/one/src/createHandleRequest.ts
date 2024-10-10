@@ -110,6 +110,11 @@ export function createHandleRequest(
           const finalUrl = new URL(originalUrl, url.origin)
 
           for (const route of pageRoutes) {
+            if (route.file === '') {
+              // ignore not found route
+              // TODO improve/remove when not found is fixed
+              continue
+            }
             if (!route.workingRegex.test(finalUrl.pathname)) {
               continue
             }
@@ -136,6 +141,8 @@ export function createHandleRequest(
               if (isResponse(err)) {
                 return err
               }
+
+              console.error(`Error running loader: ${err}`)
 
               throw err
             }
