@@ -23,16 +23,16 @@ async function getLatestVersion(packageName: string) {
   }
 }
 
-export async function cliMain(args = {}) {
+export async function cliMain(args: { name?: string } = {}) {
   // async as the flow takes a minute anyway
   void getLatestVersion('one')
 
   if (existsSync('vite.config.ts')) {
     // Inside existing app, let's just run the damn thing
-    await run(args)
+    await run({})
     process.exit(0)
   }
 
   const { create } = await import('create-vxrn/create')
-  await create({})
+  await create(args)
 }
