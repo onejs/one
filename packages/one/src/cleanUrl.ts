@@ -40,7 +40,7 @@ export function getPathFromLoaderPath(loaderPath: string) {
   return loaderPath
     .replace('_vxrn_loader.js', '')
     .replace(/^(\/_one)?\/assets/, '')
-    .replace('_', '/')
+    .replaceAll(/_/g, '/')
 }
 
 function getSearchParams(searchParams) {

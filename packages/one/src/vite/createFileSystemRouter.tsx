@@ -18,8 +18,6 @@ import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
 export function createFileSystemRouter(options: One.PluginOptions): Plugin {
-  // const { optimizeDeps } = getOptimizeDeps('serve')
-
   const preloads = ['/@vite/client', virtalEntryIdClient]
 
   let runner: ModuleRunner
@@ -364,6 +362,7 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
             res.end()
             return
           } catch (error) {
+            console.error(`One routing error: ${error}`)
             // Forward the error to Vite
             next(error)
           }
