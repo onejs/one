@@ -16,7 +16,7 @@ export function replaceLoader({
       // make sure this ' ' is added in front,
       // minifiers will do `return"something"
       // but if its null then it becomes returnnull
-      ' ' + stringifiedData
+      ' ' + stringifiedData.replace(/\$/g, '$$$$')
     )
   })()
 
