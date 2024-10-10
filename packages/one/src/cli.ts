@@ -135,7 +135,7 @@ const runIos = defineCommand({
 
 const runAndroid = defineCommand({
   meta: {
-    name: 'run:ios',
+    name: 'run:android',
     version: version,
   },
   args: {},
@@ -160,30 +160,48 @@ const clean = defineCommand({
   },
 })
 
+const subCommands = {
+  dev,
+  clean,
+  build: buildCommand,
+  prebuild,
+  'run:ios': runIos,
+  'run:android': runAndroid,
+  serve: serveCommand,
+}
+
+// workaround for having sub-commands but also positional arg for naming in the create flow
+const subMain = defineCommand({
+  meta: {
+    name: 'main',
+    version: version,
+    description: 'Welcome to One',
+  },
+  subCommands,
+})
+
 const main = defineCommand({
   meta: {
     name: 'main',
     version: version,
     description: 'Welcome to One',
   },
-  args: {},
+  args: {
+    name: {
+      type: 'positional',
+      description: 'Folder name to place the app into',
+      required: false,
+    },
+  },
   async run({ args }) {
-    if (['clean', 'prebuild', 'run:ios', 'run:android'].includes(args._[0])) {
-      // IDK why we're getting into here after a subcommand has been run
+    if (subCommands[args.name]) {
+      // run sub command ourselves
+      runMain(subMain)
       return
     }
 
     const { cliMain } = await import('./cli/main')
     await cliMain(args)
-  },
-  subCommands: {
-    dev,
-    clean,
-    build: buildCommand,
-    prebuild,
-    'run:ios': runIos,
-    'run:android': runAndroid,
-    serve: serveCommand,
   },
 })
 

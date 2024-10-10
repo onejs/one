@@ -13,9 +13,7 @@ import { detectPackageManager, type PackageManagerName } from './helpers/detectP
 
 const { existsSync, readFileSync, writeFileSync } = FSExtra
 
-let projectPath = ''
-
-export async function create(args: { template?: string }) {
+export async function create(args: { template?: string; name?: string }) {
   const gitVersionString = Number.parseFloat(
     execSync(`git --version`).toString().replace(`git version `, '').trim()
   )
@@ -24,16 +22,20 @@ export async function create(args: { template?: string }) {
     process.exit(1)
   }
 
-  let projectName = ''
-  let resolvedProjectPath = ''
+  let projectName = args.name || ''
+  let resolvedProjectPath = path.resolve(process.cwd(), projectName)
 
   async function promptForName() {
-    projectPath = await getProjectName()
-    resolvedProjectPath = path.resolve(process.cwd(), projectPath)
-    projectName = path.basename(resolvedProjectPath)
+    projectName = await getProjectName()
+    resolvedProjectPath = path.resolve(process.cwd(), projectName)
   }
 
-  if (!projectPath) {
+  if (projectName) {
+    if (fs.existsSync(resolvedProjectPath)) {
+      console.error(`Error: folder already exists: ${resolvedProjectPath}`)
+      process.exit(1)
+    }
+  } else {
     await promptForName()
 
     while (fs.existsSync(resolvedProjectPath)) {
