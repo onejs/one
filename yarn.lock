@@ -12456,6 +12456,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"example-test-expo-camera@workspace:examples/test-expo-camera":
+  version: 0.0.0-use.local
+  resolution: "example-test-expo-camera@workspace:examples/test-expo-camera"
+  dependencies:
+    expo-camera: "npm:^15.0.16"
+    one: "npm:1.1.303"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.1"
+    react-native-web: "npm:^0.19.12"
+    vite: "npm:6.0.0-beta.1"
+  languageName: unknown
+  linkType: soft
+
 "example-test@workspace:examples/test":
   version: 0.0.0-use.local
   resolution: "example-test@workspace:examples/test"
@@ -12616,6 +12629,17 @@ __metadata:
     vxrn: "npm:1.1.303"
   languageName: unknown
   linkType: soft
+
+"expo-camera@npm:^15.0.16":
+  version: 15.0.16
+  resolution: "expo-camera@npm:15.0.16"
+  dependencies:
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    expo: "*"
+  checksum: 10/738d26d43d62746d97790d9f06bc69facc1c1ab5e7e17b5c5c9ddaab43c33c50c1952b685fc7da211421083c6f21e860986b5e23f3a154cf6cd686b8ca95b92b
+  languageName: node
+  linkType: hard
 
 "expo-constants@npm:~16.0.0":
   version: 16.0.2
