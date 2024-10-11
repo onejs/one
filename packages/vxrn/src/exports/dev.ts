@@ -131,7 +131,13 @@ export const dev = async (optionsIn: DevOptions) => {
           return cachedReactNativeBundle
         }
 
-        const builtBundle = await getReactNativeBundle(options)
+        let mode: 'dev' | 'prod' = 'dev' as const
+        if (process.env.NATIVE_PROD_MODE) {
+          console.info('`NATIVE_PROD_MODE` env is set, serving production bundle')
+          mode = 'prod'
+        }
+
+        const builtBundle = await getReactNativeBundle(options, { mode })
         cachedReactNativeBundle = builtBundle
         if (process.env.UNSTABLE_BUNDLE_CACHE && !!process.env.VXRN_DISABLE_CACHE) {
           // do not await cache write
