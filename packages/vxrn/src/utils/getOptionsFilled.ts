@@ -22,6 +22,12 @@ export async function fillOptions(
     https,
   } = server
 
+  const devMode = options.mode === 'production' ? false : internal.mode === 'dev'
+
+  if (!devMode) {
+    console.info(`❶ Running dev server in production mode`)
+  }
+
   const defaultPort = server.port || (internal.mode === 'dev' ? 8081 : 3000)
   const packageRootDir = join(require.resolve('vxrn'), '../..')
   const cacheDir = join(root, 'node_modules', '.vxrn')
@@ -62,6 +68,7 @@ export async function fillOptions(
 
   const final = {
     ...options,
+    mode: devMode ? ('development' as const) : ('production' as const),
     clean,
     root,
     server: {

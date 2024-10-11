@@ -22,6 +22,11 @@ const version = getPackageVersion()
 
 void loadEnv(process.cwd())
 
+const modes = {
+  development: 'development',
+  production: 'production',
+} as const
+
 const dev = defineCommand({
   meta: {
     name: 'dev',
@@ -41,10 +46,21 @@ const dev = defineCommand({
     https: {
       type: 'boolean',
     },
+    mode: {
+      type: 'string',
+      description:
+        'If set to "production" you can run the development server but serve the production bundle',
+    },
   },
-  async run({ args }) {
+  async run({ args: { clean, host, https, mode, port } }) {
     const { run } = await import('./cli/run')
-    await run(args)
+    await run({
+      clean,
+      host,
+      https,
+      mode: modes[mode],
+      port,
+    })
   },
 })
 

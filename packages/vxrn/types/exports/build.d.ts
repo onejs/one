@@ -1,6 +1,7 @@
 import type { BuildArgs, VXRNOptions } from '../types';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<{
     options: {
+        mode: "development" | "production";
         clean: boolean;
         root: string;
         server: {

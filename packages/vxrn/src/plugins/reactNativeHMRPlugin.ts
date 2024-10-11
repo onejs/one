@@ -13,6 +13,7 @@ import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
 export function reactNativeHMRPlugin({
   root,
   assetExts,
+  mode,
 }: VXRNOptionsFilled & { assetExts: string[] }) {
   let idResolver: ReturnType<typeof createIdResolver>
 
@@ -143,6 +144,7 @@ export function reactNativeHMRPlugin({
           (
             await swcTransform(id, source, {
               mode: 'serve-cjs',
+              production: mode === 'production',
             })
           )?.code || ''
 

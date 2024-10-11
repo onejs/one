@@ -8,9 +8,10 @@ import type { VXRNOptions } from '../types';
  *  - clientTreeShakePlugin handles loaders/transforms
  *
  */
-export declare const dev: (optionsIn: VXRNOptions & {
+export type DevOptions = VXRNOptions & {
     clean?: boolean;
-}) => Promise<{
+};
+export declare const dev: (optionsIn: DevOptions) => Promise<{
     server: import("http").Server<typeof import("http").IncomingMessage, typeof import("http").ServerResponse>;
     viteServer: import("vite").ViteDevServer;
     start(): Promise<{
