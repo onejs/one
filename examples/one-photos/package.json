@@ -10,8 +10,8 @@
     "prebuild:native": "one prebuild",
     "build:web": "one build",
     "serve": "one serve",
-    "ios": "EXPO_NO_TELEMETRY=true expo run:ios",
-    "android": "EXPO_NO_TELEMETRY=true expo run:android",
+    "ios": "EXPO_NO_TELEMETRY=true one run:ios",
+    "android": "EXPO_NO_TELEMETRY=true one run:android",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'"
   },
   "installConfig": {

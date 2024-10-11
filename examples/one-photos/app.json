@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "one-example",
-    "slug": "one-example",
+    "name": "one-photos-example",
+    "slug": "one-photos-example",
     "sdkVersion": "51.0.0",
     "platforms": [
       "ios",
@@ -17,7 +17,7 @@
       "backgroundColor": "#000000"
     },
     "ios": {
-      "bundleIdentifier": "dev.onestack.example-basic"
+      "bundleIdentifier": "dev.onestack.example-photos"
     }
   }
 }
