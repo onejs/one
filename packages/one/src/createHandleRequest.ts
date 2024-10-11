@@ -1,6 +1,7 @@
 import { getPathFromLoaderPath } from './cleanUrl'
 import { LOADER_JS_POSTFIX_REGEX, LOADER_JS_POSTFIX_UNCACHED } from './constants'
 import type { RouteInfo } from './server/createRoutesManifest'
+import type { LoaderProps } from './types'
 import { isResponse } from './utils/isResponse'
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
 import { getManifest } from './vite/getManifest'
@@ -10,7 +11,7 @@ type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
   request: Request
   route: RouteInfo<string> & RouteExtraProps
   url: URL
-  loaderProps?: { path: string; params: Record<string, any> }
+  loaderProps?: LoaderProps
 }
 
 type RequestHandlerResponse = null | string | Response
@@ -132,6 +133,7 @@ export function createHandleRequest(
                 url,
                 loaderProps: {
                   path: finalUrl.pathname,
+                  request: route.type === 'ssr' ? request : undefined,
                   params: getLoaderParams(finalUrl, route),
                 },
               })
@@ -223,6 +225,8 @@ function getRouteParams(pathname: string, route: RouteInfo<string>) {
   const match = regex.exec(pathname)
   if (!match) return {}
   return Object.fromEntries(
-    Object.entries(route.routeKeys).map(([key, value]) => [value, match.groups?.[key]])
+    Object.entries(route.routeKeys).map(([key, value]) => {
+      return [value, (match.groups?.[key] || '') as string]
+    })
   )
 }
