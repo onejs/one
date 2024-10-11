@@ -318,6 +318,14 @@ const chunksize = end - start + 1;`
     },
   },
 
+  {
+    module: 'expo-camera',
+    patchFiles: {
+      version: '<=16.0.0',
+      '**/*.js': ['jsx'],
+    },
+  },
+
   // {
   //   module: 'react-native-reanimated',
   //   patchFiles: {
