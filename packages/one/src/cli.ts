@@ -1,4 +1,5 @@
 import { defineCommand, runMain } from 'citty'
+import colors from 'picocolors'
 import { loadEnv } from './vite/loadEnv'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -21,6 +22,15 @@ function getPackageVersion() {
 const version = getPackageVersion()
 
 void loadEnv(process.cwd())
+
+if (path.sep !== '/') {
+  console.warn(
+    colors.bgYellow('WARNING: UNSUPPORTED OS') +
+      colors.yellow(
+        ' - It appears you’re using Windows, which is currently not supported. You may experience unexpected issues.'
+      )
+  )
+}
 
 const modes = {
   development: 'development',
