@@ -8425,7 +8425,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
-    react-native-safe-area-context: "npm:^4.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
@@ -12361,7 +12361,7 @@ __metadata:
     one: "npm:1.1.304"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
-    react-native-safe-area-context: "npm:^4.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-web: "npm:^0.19.12"
     vite: "npm:6.0.0-beta.1"
@@ -12419,7 +12419,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
-    react-native-safe-area-context: "npm:^4.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
@@ -12447,7 +12447,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
-    react-native-safe-area-context: "npm:^4.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
@@ -12460,10 +12460,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-test-expo-camera@workspace:examples/test-expo-camera"
   dependencies:
+    "@react-navigation/bottom-tabs": "npm:~6.5.8"
+    "@react-navigation/core": "npm:6.4.17"
+    "@react-navigation/drawer": "npm:~6.6.3"
+    "@react-navigation/elements": "npm:^1.3.30"
+    "@react-navigation/native": "npm:~6.1.7"
+    "@react-navigation/native-stack": "npm:~6.9.13"
+    "@react-navigation/routers": "npm:~6.1.9"
+    expo: "npm:~51.0.28"
     expo-camera: "npm:^15.0.16"
     one: "npm:1.1.304"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
+    react-native-reanimated: "npm:~3.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
+    react-native-screens: "npm:3.31.1"
+    react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
     vite: "npm:6.0.0-beta.1"
   languageName: unknown
@@ -12490,7 +12502,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-reanimated: "npm:~3.10.1"
-    react-native-safe-area-context: "npm:^4.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
@@ -12622,7 +12634,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "expo-blank-app@workspace:examples/expo-blank"
   dependencies:
-    expo: "npm:~51.0.17"
+    expo: "npm:~51.0.28"
     expo-status-bar: "npm:~1.12.1"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
@@ -12722,7 +12734,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "expo-reanimated-app@workspace:examples/expo-reanimated"
   dependencies:
-    expo: "npm:~51.0.17"
+    expo: "npm:~51.0.28"
     expo-status-bar: "npm:~1.12.1"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.1"
@@ -12738,7 +12750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo@npm:~51.0.17, expo@npm:~51.0.28":
+"expo@npm:~51.0.28":
   version: 51.0.35
   resolution: "expo@npm:51.0.35"
   dependencies:
@@ -17780,7 +17792,7 @@ __metadata:
     react-dom: "npm:^18.3.1"
     react-native: "npm:0.74.1"
     react-native-gesture-handler: "npm:^2.18.1"
-    react-native-safe-area-context: "npm:^4.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     rollup: "npm:^4.21.0"
     rollup-plugin-node-externals: "npm:^7.1.2"
@@ -18981,13 +18993,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-safe-area-context@npm:^4.10.1":
-  version: 4.11.0
-  resolution: "react-native-safe-area-context@npm:4.11.0"
+"react-native-safe-area-context@npm:4.10.5":
+  version: 4.10.5
+  resolution: "react-native-safe-area-context@npm:4.10.5"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10/f2e616ad3087ebf1ad34f90f4eadc2d6865d3d56bba83bcfb9d04020b4344d892e347b7f55dcd996c4d2edf21b589a5ce710a52e62a7bd86597ed34d130599b2
+  checksum: 10/0bc7b4cd442e7a5deb0470f3b915ec2cf6b54337ea527fc7f5bde4f4dd062d420cb2b40fb886df96853f01951cfcb69a35fb4f6f47561cef5e195d9d68c54c3c
   languageName: node
   linkType: hard
 

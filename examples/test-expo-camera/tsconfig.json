@@ -4,7 +4,9 @@
     "rootDir": ".",
     "outDir": "dist",
     "paths": {
-      "~/*": ["./*"]
+      "~/*": [
+        "./*"
+      ]
     },
     "importHelpers": true,
     "allowJs": false,
@@ -51,5 +53,6 @@
   ],
   "typeAcquisition": {
     "enable": true
-  }
+  },
+  "extends": "expo/tsconfig.base"
 }
