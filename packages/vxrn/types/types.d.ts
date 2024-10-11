@@ -43,6 +43,10 @@ export type VXRNOptions = {
      */
     root?: string;
     /**
+     * Whether to bundle for development or production
+     */
+    mode?: 'development' | 'production';
+    /**
      * The entry points to your app. For web, it defaults to using your `root` to look for an index.html
      *
      * Defaults:

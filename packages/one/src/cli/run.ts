@@ -6,10 +6,14 @@ export async function run(args: {
   host?: string
   port?: string
   https?: boolean
+  mode?: 'development' | 'production'
 }) {
   labelProcess('dev')
+
   const { dev } = await import('vxrn')
+
   const { start, stop } = await dev({
+    mode: args.mode,
     clean: args.clean,
     root: process.cwd(),
     server: {

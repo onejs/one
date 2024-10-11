@@ -260,7 +260,7 @@ export async function swcTransform(_id: string, code: string, options: Options) 
 
   // const refresh = !transformOptions?.ssr && !hmrDisabled
   // only change for now:
-  const refresh = options.noHMR ? false : !options.forceJSX
+  const refresh = options.production || options.noHMR ? false : !options.forceJSX
 
   const result = await transformWithOptions(id, code, options, {
     refresh,
@@ -354,7 +354,7 @@ export const transformWithOptions = async (
   return result
 }
 
-export function wrapSourceInRefreshRuntime(id: string, code: string, options: Options) {
+function wrapSourceInRefreshRuntime(id: string, code: string, options: Options) {
   const prefixCode =
     options.mode === 'build'
       ? `

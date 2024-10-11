@@ -31,7 +31,9 @@ const { ensureDir } = FSExtra
  *
  */
 
-export const dev = async (optionsIn: VXRNOptions & { clean?: boolean }) => {
+export type DevOptions = VXRNOptions & { clean?: boolean }
+
+export const dev = async (optionsIn: DevOptions) => {
   const options = await fillOptions(optionsIn)
   const { cacheDir, server } = options
 

@@ -3,6 +3,7 @@ export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>;
 export declare function fillOptions(options: VXRNOptions, internal?: {
     mode?: 'dev' | 'prod';
 }): Promise<{
+    mode: "development" | "production";
     clean: boolean;
     root: string;
     server: {
@@ -39,6 +40,7 @@ export declare function fillOptions(options: VXRNOptions, internal?: {
     afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
 }>;
 export declare function getOptionsFilled(): {
+    mode: "development" | "production";
     clean: boolean;
     root: string;
     server: {

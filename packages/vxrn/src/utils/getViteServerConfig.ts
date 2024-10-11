@@ -1,6 +1,7 @@
 import { loadConfigFromFile, mergeConfig, type InlineConfig, type UserConfig } from 'vite'
 import mkcert from 'vite-plugin-mkcert'
 import { webExtensions } from '../constants'
+import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getServerConfigPlugin } from '../plugins/clientInjectPlugin'
 import { expoManifestRequestHandlerPlugin } from '../plugins/expoManifestRequestHandlerPlugin'
 import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
@@ -9,22 +10,20 @@ import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
-import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
-import { requireResolve } from './requireResolve'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled) {
   const { root, server } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
   const { config: userViteConfig } =
     (await loadConfigFromFile({
-      mode: 'dev',
+      mode: config.mode === 'development' ? 'dev' : 'prod',
       command: 'serve',
     })) ?? {}
 
   // TODO: can we move most of this into `one` plugin:
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
-      mode: 'development',
+      mode: config.mode,
     }),
 
     {

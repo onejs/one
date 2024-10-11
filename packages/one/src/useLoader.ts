@@ -1,15 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
-import { getURL } from './getURL'
+import { getLoaderPath } from './cleanUrl'
 import { useActiveParams, useParams } from './hooks'
 import { resolveHref } from './link/href'
 import { useRouteNode } from './Route'
-import { CACHE_KEY } from './router/constants'
 import { preloadingLoader } from './router/router'
 import type { LoaderProps } from './types'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
-import { getLoaderPath } from './cleanUrl'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}

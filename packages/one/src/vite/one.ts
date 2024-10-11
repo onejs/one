@@ -1,5 +1,5 @@
 import events from 'node:events'
-import path, { dirname, join, resolve } from 'node:path'
+import path, { dirname, resolve } from 'node:path'
 import { type Plugin, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { getOptimizeDeps, getOptionsFilled, isWebEnvironment } from 'vxrn'
