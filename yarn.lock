@@ -5984,7 +5984,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/config@npm:^1.114.2":
+"@tamagui/config@npm:^1.112.21, @tamagui/config@npm:^1.114.2":
   version: 1.114.2
   resolution: "@tamagui/config@npm:1.114.2"
   dependencies:
@@ -6299,7 +6299,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/image-next@npm:^1.114.2":
+"@tamagui/image-next@npm:^1.112.21, @tamagui/image-next@npm:^1.114.2":
   version: 1.114.2
   resolution: "@tamagui/image-next@npm:1.114.2"
   dependencies:
@@ -6372,7 +6372,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/lucide-icons@npm:^1.114.2":
+"@tamagui/lucide-icons@npm:^1.112.21, @tamagui/lucide-icons@npm:^1.114.2":
   version: 1.114.2
   resolution: "@tamagui/lucide-icons@npm:1.114.2"
   dependencies:
@@ -7052,7 +7052,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/use-did-finish-ssr@npm:1.114.2, @tamagui/use-did-finish-ssr@npm:^1.114.2":
+"@tamagui/use-did-finish-ssr@npm:1.114.2, @tamagui/use-did-finish-ssr@npm:^1.112.21, @tamagui/use-did-finish-ssr@npm:^1.114.2":
   version: 1.114.2
   resolution: "@tamagui/use-did-finish-ssr@npm:1.114.2"
   peerDependencies:
@@ -7148,7 +7148,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/vite-plugin@npm:^1.114.2":
+"@tamagui/vite-plugin@npm:^1.112.21, @tamagui/vite-plugin@npm:^1.114.2":
   version: 1.114.2
   resolution: "@tamagui/vite-plugin@npm:1.114.2"
   dependencies:
@@ -8395,6 +8395,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vxrn/color-scheme@npm:1.1.295":
+  version: 1.1.295
+  resolution: "@vxrn/color-scheme@npm:1.1.295"
+  dependencies:
+    "@tamagui/use-did-finish-ssr": "npm:^1.112.21"
+    "@vxrn/universal-color-scheme": "npm:1.1.295"
+    "@vxrn/use-isomorphic-layout-effect": "npm:1.1.295"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/2e4df3dbd31f30767ffcbab519f9e5d945ee1c887418a101d7e0f3d759d7e511cb135351a36c9bfb5b5a92e3179f624bf53ca905d29fb7327fbb08ea2365e0d2
+  languageName: node
+  linkType: hard
+
 "@vxrn/color-scheme@npm:1.1.302, @vxrn/color-scheme@workspace:packages/color-scheme":
   version: 0.0.0-use.local
   resolution: "@vxrn/color-scheme@workspace:packages/color-scheme"
@@ -8479,6 +8493,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@vxrn/universal-color-scheme@npm:1.1.295":
+  version: 1.1.295
+  resolution: "@vxrn/universal-color-scheme@npm:1.1.295"
+  dependencies:
+    "@vxrn/use-isomorphic-layout-effect": "npm:1.1.295"
+    react: "npm:^18.2.0 || ^19.0.0"
+  peerDependencies:
+    react-native: "*"
+  checksum: 10/d4c9f55dd6750c8c1ac9a762d9b81ad0b7a450b4edc4f7acd4c0d194232a3b3463c76bc2406058e23058940d6535338d47a46ff7db9c0c3f1d9ad31c5e6b6069
+  languageName: node
+  linkType: hard
+
 "@vxrn/universal-color-scheme@npm:1.1.302, @vxrn/universal-color-scheme@workspace:packages/universal-color-scheme":
   version: 0.0.0-use.local
   resolution: "@vxrn/universal-color-scheme@workspace:packages/universal-color-scheme"
@@ -8500,6 +8526,15 @@ __metadata:
     url-parse: "npm:^1.5.10"
   languageName: unknown
   linkType: soft
+
+"@vxrn/use-isomorphic-layout-effect@npm:1.1.295":
+  version: 1.1.295
+  resolution: "@vxrn/use-isomorphic-layout-effect@npm:1.1.295"
+  dependencies:
+    react: "npm:^18.2.0 || ^19.0.0"
+  checksum: 10/b2660ace87c06e58b3a3b805e4e4c9007fde88776962ca9fc47a0f76443f43f3528a80afd9b93d2cfbb1de96e9750b02a084a98e2c4e198124d06cf240590223
+  languageName: node
+  linkType: hard
 
 "@vxrn/use-isomorphic-layout-effect@npm:1.1.302, @vxrn/use-isomorphic-layout-effect@workspace:packages/use-isomorphic-layout-effect":
   version: 0.0.0-use.local
@@ -12617,6 +12652,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"expo-camera@npm:~15.0.16":
+  version: 15.0.16
+  resolution: "expo-camera@npm:15.0.16"
+  dependencies:
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    expo: "*"
+  checksum: 10/738d26d43d62746d97790d9f06bc69facc1c1ab5e7e17b5c5c9ddaab43c33c50c1952b685fc7da211421083c6f21e860986b5e23f3a154cf6cd686b8ca95b92b
+  languageName: node
+  linkType: hard
+
 "expo-constants@npm:~16.0.0":
   version: 16.0.2
   resolution: "expo-constants@npm:16.0.2"
@@ -12626,6 +12672,15 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: 10/f2f8b15932ab2f805544fd96c6740d2354c6409706eee2664be1703c3480c7531a709112af811dc22f05c164c06501aec20f81617675e87b5a3b66ab5b8d7611
+  languageName: node
+  linkType: hard
+
+"expo-document-picker@npm:~12.0.2":
+  version: 12.0.2
+  resolution: "expo-document-picker@npm:12.0.2"
+  peerDependencies:
+    expo: "*"
+  checksum: 10/4eb929c6751ed6f82f2f521a4c8a9e10fdfe6f3e9fd44c4f18c6103db09a84697fb923993d3d658b6560ba20ffac276a166d59822575d70d4706057c0d0a291f
   languageName: node
   linkType: hard
 
@@ -12655,6 +12710,15 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: 10/e9f0b066355ba776a2e60f37add779a509636dce70c6f04d24c36b436f2b69a830c2a1fe1b53eae977f2d810e93231772ccadabdd4a19f5e27cf2af3df5e8e39
+  languageName: node
+  linkType: hard
+
+"expo-linear-gradient@npm:^13.0.2":
+  version: 13.0.2
+  resolution: "expo-linear-gradient@npm:13.0.2"
+  peerDependencies:
+    expo: "*"
+  checksum: 10/2e05592bd9b3f156f0c5912a5cc152e80e930495d049382e4deec3103601ccc90b2e7cb5c208b51aa9d60386c5b762d40cc74cb2d1256a4605012e03d27be72a
   languageName: node
   linkType: hard
 
@@ -14322,7 +14386,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"image-size@npm:^1.0.2":
+"image-size@npm:^1.0.2, image-size@npm:^1.1.1":
   version: 1.1.1
   resolution: "image-size@npm:1.1.1"
   dependencies:
@@ -17708,7 +17772,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"one@npm:1.1.302, one@workspace:packages/one":
+"one-photos@workspace:examples/one-photos":
+  version: 0.0.0-use.local
+  resolution: "one-photos@workspace:examples/one-photos"
+  dependencies:
+    "@biomejs/biome": "npm:^1.8.3"
+    "@dotenvx/dotenvx": "npm:^1.12.1"
+    "@faker-js/faker": "npm:next"
+    "@tamagui/config": "npm:^1.112.21"
+    "@tamagui/image-next": "npm:^1.112.21"
+    "@tamagui/lucide-icons": "npm:^1.112.21"
+    "@tamagui/vite-plugin": "npm:^1.112.21"
+    "@vxrn/color-scheme": "npm:1.1.295"
+    dotenv: "npm:^16.4.5"
+    expo: "npm:~51.0.28"
+    expo-camera: "npm:~15.0.16"
+    expo-document-picker: "npm:~12.0.2"
+    expo-linear-gradient: "npm:^13.0.2"
+    expo-modules-core: "npm:^1.12.24"
+    image-size: "npm:^1.1.1"
+    one: "npm:*"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.1"
+    react-native-reanimated: "npm:~3.10.1"
+    react-native-safe-area-context: "npm:^4.10.1"
+    react-native-screens: "npm:3.31.1"
+    react-native-svg: "npm:15.2.0"
+    react-native-web: "npm:^0.19.12"
+    tamagui: "npm:^1.112.21"
+    tsx: "npm:^4.19.0"
+    vite: "npm:6.0.0-beta.1"
+  languageName: unknown
+  linkType: soft
+
+"one@npm:*, one@npm:1.1.302, one@workspace:packages/one":
   version: 0.0.0-use.local
   resolution: "one@workspace:packages/one"
   dependencies:
@@ -20953,7 +21050,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tamagui@npm:^1.114.2":
+"tamagui@npm:^1.112.21, tamagui@npm:^1.114.2":
   version: 1.114.2
   resolution: "tamagui@npm:1.114.2"
   dependencies:
