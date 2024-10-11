@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "one-expo-camera",
+    "slug": "one-expo-camera",
+    "sdkVersion": "51.0.0",
+    "platforms": ["ios", "android"],
+    "plugins": [
+      "vxrn/expo-plugin",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ]
+    ],
+    "icon": "./public/app-icon.png",
+    "splash": {
+      "image": "./public/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "ios": {
+      "bundleIdentifier": "dev.onestack.expo-camera-basic"
+    }
+  }
+}
