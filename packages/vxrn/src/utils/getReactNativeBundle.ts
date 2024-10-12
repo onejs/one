@@ -7,8 +7,8 @@ import { buildEnvironment } from './fork/vite/build'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { getReactNativeConfig } from './getReactNativeConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
-import { resolveFile } from './resolveFile'
 import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
+import { requireResolve } from './requireResolve'
 
 const { pathExists } = FSExtra
 
@@ -193,7 +193,7 @@ globalThis.__vxrnPrebuildSpecialRequireMap = {
  * Get `react-native-template.js` with some `process.env.*` replaced with static values.
  */
 async function getReactNativeTemplate(mode: 'dev' | 'prod') {
-  const templateFile = resolveFile('vxrn/react-native-template.js')
+  const templateFile = requireResolve('vxrn/react-native-template.js')
   const template = await readFile(templateFile, 'utf-8')
 
   return template.replace(/process\.env\.__DEV__/g, mode === 'dev' ? 'true' : 'false')

@@ -108,42 +108,17 @@ export const dev = async (optionsIn: DevOptions) => {
   )
 
   let cachedReactNativeBundle: string | null = null
-  const reactNativeBundleCacheFile = join(
-    options.cacheDir,
-    `rn-cached-bundle-${'ios' /* TODO */}.js`
-  )
 
   // builds the dev initial bundle for react native
   const rnBundleHandler = defineEventHandler(async (e) => {
     try {
       const bundle = await (async () => {
-        if (!cachedReactNativeBundle && process.env.UNSTABLE_BUNDLE_CACHE) {
-          try {
-            if (await FSExtra.pathExists(reactNativeBundleCacheFile)) {
-              cachedReactNativeBundle = await FSExtra.readFile(reactNativeBundleCacheFile, 'utf-8')
-            }
-          } catch (e) {
-            console.error(`Error loading cache from ${reactNativeBundleCacheFile}: ${e}`)
-          }
-        }
-
         if (cachedReactNativeBundle && !process.env.VXRN_DISABLE_CACHE) {
           return cachedReactNativeBundle
         }
 
         const builtBundle = await getReactNativeBundle(options)
         cachedReactNativeBundle = builtBundle
-        if (process.env.UNSTABLE_BUNDLE_CACHE && !!process.env.VXRN_DISABLE_CACHE) {
-          // do not await cache write
-          ;(async () => {
-            try {
-              await FSExtra.writeFile(reactNativeBundleCacheFile, builtBundle)
-            } catch (e) {
-              console.error(`Error saving cache to ${reactNativeBundleCacheFile}: ${e}`)
-            }
-          })()
-        }
-
         return builtBundle
       })()
 
