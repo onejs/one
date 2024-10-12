@@ -6,9 +6,9 @@ type PrebuildVersions = {
 export declare function prebuildReactNativeModules(cacheDir: string, versions?: PrebuildVersions, internal?: {
     mode?: 'dev' | 'prod';
 }): Promise<{
-    reactJSX: string;
-    react: string;
-    reactNative: string;
+    reactJSX: any;
+    react: any;
+    reactNative: any;
 } | undefined>;
 export declare function swapPrebuiltReactModules(cacheDir: string, versions?: PrebuildVersions, internal?: {
     mode?: 'dev' | 'prod';

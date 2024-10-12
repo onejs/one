@@ -1,9 +1,9 @@
 import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-prebuilt'
+import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import path, { dirname, join, resolve } from 'node:path'
 import type { Plugin } from 'vite'
-import { requireResolve } from './requireResolve'
 
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
@@ -22,13 +22,13 @@ type PrebuildVersions = {
 const getVendoredPrebuilds = (versions: PrebuildVersions, mode) => {
   try {
     return {
-      reactJSX: requireResolve(
+      reactJSX: resolvePath(
         `@vxrn/react-native-prebuilt/vendor/react-jsx-runtime-${versions.react}${mode === 'prod' ? '.production' : ''}`
       ),
-      react: requireResolve(
+      react: resolvePath(
         `@vxrn/react-native-prebuilt/vendor/react-${versions.react}${mode === 'prod' ? '.production' : ''}`
       ),
-      reactNative: requireResolve(
+      reactNative: resolvePath(
         `@vxrn/react-native-prebuilt/vendor/react-native-${versions.reactNative}${mode === 'prod' ? '.production' : ''}`
       ),
     }
@@ -82,7 +82,7 @@ export async function prebuildReactNativeModules(
 
   await Promise.all([
     buildReactNative({
-      entryPoints: [requireResolve('react-native')],
+      entryPoints: [resolvePath('react-native')],
       outfile: prebuilds.reactNative,
       ...buildOptions,
     }).catch((err) => {
@@ -90,7 +90,7 @@ export async function prebuildReactNativeModules(
       throw err
     }),
     buildReact({
-      entryPoints: [requireResolve('react')],
+      entryPoints: [resolvePath('react')],
       outfile: prebuilds.react,
       ...buildOptions,
     }).catch((err) => {
@@ -100,8 +100,8 @@ export async function prebuildReactNativeModules(
     buildReactJSX({
       entryPoints: [
         internal.mode === 'dev'
-          ? requireResolve('react/jsx-dev-runtime')
-          : requireResolve('react/jsx-runtime'),
+          ? resolvePath('react/jsx-dev-runtime')
+          : resolvePath('react/jsx-runtime'),
       ],
       outfile: prebuilds.reactJSX,
       ...buildOptions,

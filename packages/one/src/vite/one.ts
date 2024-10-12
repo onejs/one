@@ -5,7 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { getOptimizeDeps, getOptionsFilled, isWebEnvironment } from 'vxrn'
 import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
-import { requireResolve } from '../utils/requireResolve'
+import { resolvePath } from '@vxrn/resolve'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter } from './createFileSystemRouter'
 import { ensureTSConfig } from './ensureTsConfig'
@@ -91,18 +91,18 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       enforce: 'pre',
 
       config() {
-        // const forkPath = dirname(requireResolve('one'))
+        // const forkPath = dirname(resolvePath('one'))
 
         return {
           resolve: {
             alias: {
-              tslib: requireResolve('@vxrn/tslib-lite'),
+              tslib: resolvePath('@vxrn/tslib-lite'),
             },
 
             // [
             //   {
             //     find: /tslib/,
-            //     replacement: requireResolve('@vxrn/tslib-lite'),
+            //     replacement: resolvePath('@vxrn/tslib-lite'),
             //   },
             //   // not working but would save ~30Kb stat
             //   // {
@@ -254,8 +254,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         const sharedNativeConfig = {
           resolve: {
             alias: {
-              react: requireResolve('one/react-18'),
-              'react-dom': requireResolve('one/react-dom-18'),
+              react: resolvePath('one/react-18'),
+              'react-dom': resolvePath('one/react-dom-18'),
             },
           },
         } satisfies UserConfig

@@ -8,7 +8,6 @@ import {
 } from './matchers'
 import type { DynamicConvention, RouteNode } from './Route'
 import { getPageExport } from './utils/getPageExport'
-import { requireResolve } from './utils/requireResolve'
 import type { One } from './vite/types'
 // import { Unmatched } from './views/Unmatched'
 
@@ -487,8 +486,6 @@ export function generateDynamic(path: string): DynamicConvention[] | null {
 
   return dynamic.length === 0 ? null : dynamic
 }
-
-// const resolve = (path) => new URL(path, import.meta.url).pathname
 
 function appendSitemapRoute(directory: DirectoryNode) {
   if (!directory.files.has('_sitemap')) {

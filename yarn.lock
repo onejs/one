@@ -8745,6 +8745,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@vxrn/resolve@npm:1.1.304, @vxrn/resolve@workspace:packages/resolve":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/resolve@workspace:packages/resolve"
+  dependencies:
+    "@tamagui/build": "npm:^1.114.2"
+  languageName: unknown
+  linkType: soft
+
 "@vxrn/safe-area@npm:1.1.304, @vxrn/safe-area@workspace:packages/safe-area":
   version: 0.0.0-use.local
   resolution: "@vxrn/safe-area@workspace:packages/safe-area"
@@ -18047,6 +18055,7 @@ __metadata:
     "@types/url-parse": "npm:^1.4.11"
     "@types/xxhashjs": "npm:^0.2.4"
     "@ungap/structured-clone": "npm:^1.2.0"
+    "@vxrn/resolve": "npm:1.1.304"
     "@vxrn/tslib-lite": "npm:1.1.304"
     "@vxrn/universal-color-scheme": "npm:1.1.304"
     "@vxrn/use-isomorphic-layout-effect": "npm:1.1.304"
@@ -23062,6 +23071,7 @@ __metadata:
     "@vitejs/plugin-react-swc": "npm:^3.7.0"
     "@vxrn/query-string": "npm:1.1.304"
     "@vxrn/react-native-prebuilt": "npm:1.1.304"
+    "@vxrn/resolve": "npm:1.1.304"
     "@vxrn/safe-area": "npm:1.1.304"
     "@vxrn/url-parse": "npm:1.1.304"
     "@vxrn/vendor": "npm:1.1.304"

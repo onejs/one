@@ -1,5 +1,5 @@
 {
-  "name": "@vxrn/url-parse",
+  "name": "@vxrn/resolve",
   "version": "1.1.304",
   "sideEffects": false,
   "source": "src/index.ts",
@@ -10,8 +10,6 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "react-native-import": "./dist/esm/index.native.js",
-      "react-native": "./dist/cjs/index.native.js",
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
@@ -29,9 +27,6 @@
     "lint:fix": "npx biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
-  },
-  "dependencies": {
-    "url-parse": "^1.5.10"
   },
   "devDependencies": {
     "@tamagui/build": "^1.114.2"
