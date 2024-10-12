@@ -50,6 +50,7 @@
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vxrn/query-string": "1.1.304",
     "@vxrn/react-native-prebuilt": "1.1.304",
+    "@vxrn/resolve": "1.1.304",
     "@vxrn/safe-area": "1.1.304",
     "@vxrn/url-parse": "1.1.304",
     "@vxrn/vendor": "1.1.304",

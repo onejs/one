@@ -89,6 +89,7 @@
     "@react-navigation/native-stack": "~6.9.13",
     "@react-navigation/routers": "~6.1.9",
     "@ungap/structured-clone": "^1.2.0",
+    "@vxrn/resolve": "1.1.304",
     "@vxrn/tslib-lite": "1.1.304",
     "@vxrn/universal-color-scheme": "1.1.304",
     "@vxrn/use-isomorphic-layout-effect": "1.1.304",

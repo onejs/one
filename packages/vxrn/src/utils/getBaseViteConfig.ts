@@ -1,7 +1,7 @@
 import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import type { InlineConfig } from 'vite'
 import { webExtensions } from '../constants'
-import { requireResolve } from './requireResolve'
+import { resolvePath } from '@vxrn/resolve'
 
 // essentially base web config not base everything
 
@@ -74,12 +74,12 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
 
     resolve: {
       alias: {
-        'react-native': requireResolve('react-native-web'),
+        'react-native': resolvePath('react-native-web'),
         'react-native-safe-area-context': '@vxrn/safe-area',
 
         // bundle size optimizations
-        'query-string': requireResolve('@vxrn/query-string'),
-        'url-parse': requireResolve('@vxrn/url-parse'),
+        'query-string': resolvePath('@vxrn/query-string'),
+        'url-parse': resolvePath('@vxrn/url-parse'),
       },
 
       // TODO auto dedupe all include optimize deps?
