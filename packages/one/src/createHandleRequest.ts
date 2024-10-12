@@ -22,7 +22,7 @@ export function createHandleRequest(
     handleAPI?: (props: RequestHandlerProps) => Promise<any>
   }
 ) {
-  if (import.meta.env) {
+  if (!import.meta.env) {
     throw new Error(`No import.meta.env - Node 22 or greater required.`)
   }
 
