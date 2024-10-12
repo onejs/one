@@ -3,8 +3,11 @@ import { readFile } from 'node:fs/promises'
 import { transformFlow } from '@vxrn/vite-flow'
 import { build, type BuildOptions } from 'esbuild'
 import FSExtra from 'fs-extra'
-import { resolve as importMetaResolve } from 'import-meta-resolve'
-import process from 'node:process'
+
+import { createRequire } from 'node:module'
+
+const requireResolve =
+  'url' in import.meta ? createRequire(import.meta.url).resolve : require.resolve
 
 const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 
@@ -18,18 +21,10 @@ export async function buildAll() {
   ])
 }
 
-const resolveFile = (path: string) => {
-  try {
-    return importMetaResolve(path, `file://${process.cwd()}`).replace('file://', '')
-  } catch (err) {
-    return require.resolve(path)
-  }
-}
-
 export async function buildReactJSX(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [resolveFile('react/jsx-dev-runtime')],
+    entryPoints: [requireResolve('react/jsx-dev-runtime')],
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -84,7 +79,7 @@ export async function buildReactJSX(options: BuildOptions = {}) {
 export async function buildReact(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [resolveFile('react')],
+    entryPoints: [requireResolve('react')],
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -126,7 +121,7 @@ export async function buildReact(options: BuildOptions = {}) {
 export async function buildReactNative(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [resolveFile('react-native')],
+    entryPoints: [requireResolve('react-native')],
     format: 'cjs',
     target: 'node20',
     // Note: JSX is actually being transformed by the "remove-flow" plugin defined underneath, not by esbuild. The following JSX options may not actually make a difference.
@@ -169,7 +164,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
             },
             async (input) => {
               return {
-                path: resolveFile('@vxrn/vite-native-hmr'),
+                path: requireResolve('@vxrn/vite-native-hmr'),
               }
             }
           )
