@@ -1,2 +1,2 @@
-export declare const resolveFile: (path: string) => string;
+export declare const requireResolve: NodeJS.RequireResolve;
 //# sourceMappingURL=resolveFile.d.ts.map

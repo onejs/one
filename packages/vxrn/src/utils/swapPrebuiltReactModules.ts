@@ -4,7 +4,6 @@ import { readFile } from 'node:fs/promises'
 import path, { dirname, join, resolve } from 'node:path'
 import type { Plugin } from 'vite'
 import { requireResolve } from './requireResolve'
-import { resolveFile } from './resolveFile'
 
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
@@ -83,23 +82,32 @@ export async function prebuildReactNativeModules(
 
   await Promise.all([
     buildReactNative({
-      entryPoints: [resolveFile('react-native')],
+      entryPoints: [requireResolve('react-native')],
       outfile: prebuilds.reactNative,
       ...buildOptions,
+    }).catch((err) => {
+      console.error(`Error pre-building react-native`)
+      throw err
     }),
     buildReact({
-      entryPoints: [resolveFile('react')],
+      entryPoints: [requireResolve('react')],
       outfile: prebuilds.react,
       ...buildOptions,
+    }).catch((err) => {
+      console.error(`Error pre-building react`)
+      throw err
     }),
     buildReactJSX({
       entryPoints: [
         internal.mode === 'dev'
-          ? resolveFile('react/jsx-dev-runtime')
-          : resolveFile('react/jsx-runtime'),
+          ? requireResolve('react/jsx-dev-runtime')
+          : requireResolve('react/jsx-runtime'),
       ],
       outfile: prebuilds.reactJSX,
       ...buildOptions,
+    }).catch((err) => {
+      console.error(`Error pre-building react/jsx-runtime`)
+      throw err
     }),
   ])
 }

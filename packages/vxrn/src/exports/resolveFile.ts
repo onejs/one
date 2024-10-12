@@ -1,9 +1,4 @@
-import { resolve as importMetaResolve } from 'import-meta-resolve'
+import { createRequire } from 'node:module'
 
-export const resolveFile = (path: string) => {
-  try {
-    return importMetaResolve(path, import.meta.url).replace('file://', '')
-  } catch {
-    return require.resolve(path)
-  }
-}
+export const requireResolve =
+  'url' in import.meta ? createRequire(import.meta.url).resolve : require.resolve
