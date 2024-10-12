@@ -68,7 +68,6 @@
     "h3": "1.11.1",
     "h3-proxy": "^1.13.0",
     "hono": "^4.5.8",
-    "import-meta-resolve": "^4.1.0",
     "ip": "^2.0.1",
     "lightningcss": "^1.27.0",
     "metro-react-native-babel-preset": "^0.77.0",
