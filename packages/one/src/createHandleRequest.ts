@@ -22,10 +22,6 @@ export function createHandleRequest(
     handleAPI?: (props: RequestHandlerProps) => Promise<any>
   }
 ) {
-  if (!import.meta.env) {
-    throw new Error(`No import.meta.env - Node 20 or greater required.`)
-  }
-
   const manifest = getManifest()
   if (!manifest) {
     throw new Error(`No routes manifest`)
