@@ -23,7 +23,7 @@ export function createHandleRequest(
   }
 ) {
   if (!import.meta.env) {
-    throw new Error(`No import.meta.env - Node 22 or greater required.`)
+    throw new Error(`No import.meta.env - Node 20 or greater required.`)
   }
 
   const manifest = getManifest()
