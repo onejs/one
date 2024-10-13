@@ -100,8 +100,8 @@ export async function buildReact(options: BuildOptions = {}) {
     const run = () => {
       ${bundled
         .replace(
-          `module.exports = require_react_development();`,
-          `return require_react_development();`
+          /module\.exports = require_react_development(\d*)\(\);/,
+          'return require_react_development$1();'
         )
         .replace(
           `module.exports = require_react_production_min();`,
