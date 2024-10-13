@@ -36,7 +36,7 @@ export async function fillOptions(
     getPort({
       port: defaultPort,
       portRange: [defaultPort, defaultPort + 100],
-      host: '127.0.0.1',
+      host,
     }),
     readState(cacheDir),
     readPackageJSON(),
