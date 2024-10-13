@@ -14,47 +14,15 @@ const getPrebuilds = (cacheDir: string, mode) => ({
   reactNative: join(cacheDir, `react-native${mode === 'prod' ? '.production' : ''}.js`),
 })
 
-type PrebuildVersions = {
-  react: string
-  reactNative: string
-}
-
-const getVendoredPrebuilds = (versions: PrebuildVersions, mode) => {
-  try {
-    return {
-      reactJSX: resolvePath(
-        `@vxrn/react-native-prebuilt/vendor/react-jsx-runtime-${versions.react}${mode === 'prod' ? '.production' : ''}`
-      ),
-      react: resolvePath(
-        `@vxrn/react-native-prebuilt/vendor/react-${versions.react}${mode === 'prod' ? '.production' : ''}`
-      ),
-      reactNative: resolvePath(
-        `@vxrn/react-native-prebuilt/vendor/react-native-${versions.reactNative}${mode === 'prod' ? '.production' : ''}`
-      ),
-    }
-  } catch {
-    return null
-  }
-}
-
 const allExist = async (paths: string[]) => {
   return (await Promise.all(paths.map((p) => FSExtra.pathExists(p)))).every(Boolean)
 }
 
 export async function prebuildReactNativeModules(
   cacheDir: string,
-  versions?: PrebuildVersions,
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ) {
   const prebuilds = getPrebuilds(cacheDir, internal.mode)
-
-  if (versions) {
-    const vendored = getVendoredPrebuilds(versions, internal.mode)
-    if (vendored && (await allExist(Object.values(vendored)))) {
-      // already vendored
-      return vendored
-    }
-  }
 
   if (
     internal.mode !== 'prod' && // Do not use cached prebuilds while building for production, since the performance gain is little (build time is already slower anyway) and can avoid potential issues.
@@ -114,17 +82,9 @@ export async function prebuildReactNativeModules(
 
 export async function swapPrebuiltReactModules(
   cacheDir: string,
-  versions?: PrebuildVersions,
   internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
 ): Promise<Plugin> {
   let prebuilds = getPrebuilds(cacheDir, internal.mode)
-
-  if (versions) {
-    const vendored = getVendoredPrebuilds(versions, internal.mode)
-    if (vendored && (await allExist(Object.values(vendored)))) {
-      prebuilds = vendored
-    }
-  }
 
   let cached: null | Record<
     'react-native' | 'react' | 'react/jsx-runtime' | 'react/jsx-dev-runtime' | 'react/jsx-runtime',

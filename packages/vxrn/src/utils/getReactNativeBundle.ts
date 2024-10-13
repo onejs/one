@@ -35,14 +35,10 @@ export async function getReactNativeBundle(
     }
   }
 
-  const vendoredModulesMap = await prebuildReactNativeModules(
-    options.cacheDir,
-    options.packageVersions,
-    {
-      // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
-      mode: internal.mode,
-    }
-  )
+  const vendoredModulesMap = await prebuildReactNativeModules(options.cacheDir, {
+    // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
+    mode: internal.mode,
+  })
 
   if (isBuildingNativeBundle) {
     const res = await isBuildingNativeBundle
