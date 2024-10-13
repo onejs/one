@@ -127,7 +127,7 @@
     "react-native": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.114.3",
+    "@tamagui/build": "^1.114.4",
     "@types/node": "^22.1.0",
     "@types/react-dom": "^18.2.25",
     "@types/url-parse": "^1.4.11",
