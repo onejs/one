@@ -100,12 +100,12 @@ export async function buildReact(options: BuildOptions = {}) {
     const run = () => {
       ${bundled
         .replace(
-          `module.exports = require_react_development();`,
-          `return require_react_development();`
+          /module\.exports = require_react_development(\d*)\(\);/,
+          'return require_react_development$1();'
         )
         .replace(
-          `module.exports = require_react_production_min();`,
-          `return require_react_production_min();`
+          /module\.exports = require_react_production_min(\d*)\(\);/,
+          'return require_react_production_min$1();'
         )
         .replace(`process.env.VXRN_REACT_19`, 'false')
         .replace(`Object.assign(exports, eval("require('@vxrn/vendor/react-19')"));`, ``)}
