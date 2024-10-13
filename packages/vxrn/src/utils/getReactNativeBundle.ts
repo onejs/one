@@ -35,7 +35,7 @@ export async function getReactNativeBundle(
     }
   }
 
-  const vendoredModulesMap = await prebuildReactNativeModules(options.cacheDir, {
+  await prebuildReactNativeModules(options.cacheDir, {
     // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
     mode: internal.mode,
   })
@@ -166,18 +166,7 @@ __require("${id}")
 
   const template = await getReactNativeTemplate(internal.mode || 'dev')
 
-  const specialRequireMap = vendoredModulesMap
-    ? `
-globalThis.__vxrnPrebuildSpecialRequireMap = {
-  'react-native': '${vendoredModulesMap.reactNative}',
-  react: '${vendoredModulesMap.react}',
-  'react/jsx-runtime': '${vendoredModulesMap.reactJSX}',
-  'react/jsx-dev-runtime': '${vendoredModulesMap.reactJSX}',
-}
-  `
-    : ``
-
-  const out = specialRequireMap + template + appCode
+  const out = template + appCode
 
   done(out)
   setIsBuildingNativeBundle(null)
