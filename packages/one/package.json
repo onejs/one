@@ -5,7 +5,7 @@
   "types": "./types/index.d.ts",
   "sideEffects": false,
   "type": "module",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "main": "dist/cjs",
   "module": "dist/esm",
   "bin": "run.mjs",
@@ -13,7 +13,8 @@
     "src",
     "types",
     "dist",
-    "vendor"
+    "vendor",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tamagui-build",
