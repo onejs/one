@@ -1,6 +1,6 @@
 import { Heart, Repeat, Reply } from '@tamagui/lucide-icons'
 import { Link } from 'one'
-import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
+import { Paragraph, SizableText, useDidFinishSSR, XStack, YStack } from 'tamagui'
 import { Card } from '../ui/Card'
 import { Image } from '../ui/Image'
 
@@ -31,6 +31,8 @@ const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
 }
 
 export const FeedCard = (props: FeedItem) => {
+  const isHydrated = useDidFinishSSR()
+
   if (!props.user) return null
 
   const content = (
@@ -70,7 +72,7 @@ export const FeedCard = (props: FeedItem) => {
         pathname: `/post/[id]`,
         params: {
           id: props.id.toString(),
-          ...(typeof document === 'undefined' ? ({ preloadTitle: props.content } as any) : {}),
+          ...(isHydrated ? ({ preloadTitle: props.content } as any) : {}),
         },
       }}
     >
