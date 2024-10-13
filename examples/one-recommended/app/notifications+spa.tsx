@@ -1,5 +1,5 @@
 import { desc, eq, sql } from 'drizzle-orm'
-import { Href, type LoaderProps, SafeAreaView, getURL, useLoader } from 'one'
+import { type Href, type LoaderProps, SafeAreaView, getURL, useLoader } from 'one'
 import { ScrollView } from 'react-native'
 import { isWeb } from 'tamagui'
 import { db } from '~/code/db/connection'
