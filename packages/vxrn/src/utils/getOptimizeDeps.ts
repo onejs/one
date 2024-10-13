@@ -45,6 +45,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
   const depsToOptimize = [
     ...needsInterop,
 
+    'react-native-svg',
+
     'lodash',
     'moti/author',
 

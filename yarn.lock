@@ -12685,6 +12685,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"example-react-native-svg@workspace:examples/test-react-native-svg":
+  version: 0.0.0-use.local
+  resolution: "example-react-native-svg@workspace:examples/test-react-native-svg"
+  dependencies:
+    expo: "npm:~51.0.28"
+    one: "npm:1.1.306"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.5"
+    react-native-safe-area-context: "npm:4.10.5"
+    react-native-screens: "npm:3.31.1"
+    react-native-svg: "npm:^15.7.1"
+    react-native-web: "npm:^0.19.12"
+    vite: "npm:6.0.0-beta.1"
+  languageName: unknown
+  linkType: soft
+
 "example-recommended@workspace:examples/one-recommended":
   version: 0.0.0-use.local
   resolution: "example-recommended@workspace:examples/one-recommended"
@@ -19319,6 +19335,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-svg@npm:^15.7.1":
+  version: 15.7.1
+  resolution: "react-native-svg@npm:15.7.1"
+  dependencies:
+    css-select: "npm:^5.1.0"
+    css-tree: "npm:^1.1.3"
+    warn-once: "npm:0.1.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/343d2603b0bd54d24303a09c37698612e208b83e449c92d108aaa6d7826a7ac39fe2bad0b439bff789a24d5f54280e3eb218202006658b8a7e117b2d1d8ccfeb
+  languageName: node
+  linkType: hard
+
 "react-native-web@npm:^0.19.12":
   version: 0.19.12
   resolution: "react-native-web@npm:0.19.12"
@@ -23124,7 +23154,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"warn-once@npm:^0.1.0":
+"warn-once@npm:0.1.1, warn-once@npm:^0.1.0":
   version: 0.1.1
   resolution: "warn-once@npm:0.1.1"
   checksum: 10/e6a5a1f5a8dba7744399743d3cfb571db4c3947897875d4962a7c5b1bf2195ab4518c838cb4cea652e71729f21bba2e98dc75686f5fccde0fabbd894e2ed0c0d
