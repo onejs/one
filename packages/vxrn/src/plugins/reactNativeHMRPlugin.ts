@@ -1,5 +1,6 @@
 import { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
 import { parse } from 'es-module-lexer'
+import FSExtra from 'fs-extra'
 import { connectedNativeClients } from '../utils/connectedNativeClients'
 import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
 import { entryRoot } from '../utils/getReactNativeBundle'
@@ -120,11 +121,21 @@ export function reactNativeHMRPlugin({
               return resolvedIdData?.id
             }
 
-            const id = await getVitePath(entryRoot, file, importName, resolver, resolverWithPlugins)
+            let id = await getVitePath(entryRoot, file, importName, resolver, resolverWithPlugins)
             if (!id) {
               console.warn('???')
               continue
             }
+
+            // It seems that it's not possible for Vite to use customized extensions for resolving imports from package.json entry (see: https://github.com/vitejs/vite/blob/v6.0.0-beta.2/packages/vite/src/node/plugins/resolve.ts#L1018),
+            // so we need to manually check if the file with `.native.js` extension exists, and use it if it does.
+            // @zetavg: We need to check how this is done during bundling, make sure it's consistent and probably merge the logic.
+            const nativePath = id.replace(/(.m?js)/, '.native.js')
+            try {
+              if (nativePath !== id && (await FSExtra.stat(nativePath)).isFile()) {
+                id = nativePath
+              }
+            } catch (e) {}
 
             importsMap[id] = id.replace(/^(\.\.\/)+/, '')
 
