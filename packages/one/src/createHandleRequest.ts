@@ -111,8 +111,13 @@ export function createHandleRequest(
               // TODO improve/remove when not found is fixed
               continue
             }
+
             if (!route.workingRegex.test(finalUrl.pathname)) {
               continue
+            }
+
+            if (process.env.NODE_ENV === 'development') {
+              console.info(` ❶ Running loader for route: ${finalUrl.pathname}`)
             }
 
             const headers = new Headers()
