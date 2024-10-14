@@ -1,5 +1,4 @@
 import babel from '@babel/core'
-import { createRequire } from 'node:module'
 
 export async function transformFlowBabel(
   input: string,
