@@ -11850,9 +11850,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-recommended-appstore@workspace:examples/one-recommended-appstore":
+"example-recommended-appstore@workspace:examples/one-testflight-demo":
   version: 0.0.0-use.local
-  resolution: "example-recommended-appstore@workspace:examples/one-recommended-appstore"
+  resolution: "example-recommended-appstore@workspace:examples/one-testflight-demo"
   dependencies:
     "@biomejs/biome": "npm:^1.8.3"
     "@dotenvx/dotenvx": "npm:^1.12.1"
