@@ -1,5 +1,6 @@
+import React from 'react'
 import { Text, View } from 'react-native'
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider, useQuery, React as rqReact } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
 
@@ -14,10 +15,11 @@ export default function Index() {
         minHeight: '100%',
       }}
     >
-      <Text>Hello world, from One</Text>
-      <QueryClientProvider client={queryClient}>
+      <Text>Hello world, from One. React version is {React.version}. react-query React version is {rqReact.version}</Text>
+      <Text>React version eq? {React === rqReact ? 'true' : 'false'}</Text>
+      {/* <QueryClientProvider client={queryClient}>
         <Example />
-      </QueryClientProvider>
+      </QueryClientProvider> */}
     </View>
   )
 }
