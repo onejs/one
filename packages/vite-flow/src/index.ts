@@ -1,6 +1,6 @@
 import type { FilterPattern, PluginOption } from 'vite'
 import { createFilter } from 'vite'
-import { transformCommonJs, swcTransform } from '@vxrn/vite-native-swc'
+// import { transformCommonJs, swcTransform } from '@vxrn/vite-native-swc'
 import { transformFlowBabel } from './transformFlowBabel'
 
 export async function transformFlow(
