@@ -23,12 +23,12 @@
     ".": {
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.cjs"
     }
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.114.4",
+    "@tamagui/build": "^1.115.0",
     "react-native": "0.74.5"
   },
   "peerDependencies": {

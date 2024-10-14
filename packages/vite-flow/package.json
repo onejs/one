@@ -23,7 +23,7 @@
     ".": {
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.cjs"
     }
   },
   "dependencies": {
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.114.4",
+    "@tamagui/build": "^1.115.0",
     "vite": "6.0.0-beta.1"
   },
   "publishConfig": {
