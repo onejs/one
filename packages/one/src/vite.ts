@@ -9,3 +9,4 @@ export { setCurrentRequestHeaders } from './vite/headers'
 
 export { build } from './vite/build'
 export { one } from './vite/one'
+export { resolvePath } from '@vxrn/resolve'
