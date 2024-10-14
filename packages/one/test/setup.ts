@@ -39,7 +39,7 @@ const waitForServer = (url: string, maxRetries = 30, retryInterval = 1000): Prom
 }
 
 export default async () => {
-  const fixtureDir = path.join(__dirname, '../../../examples/test')
+  const fixtureDir = path.join(__dirname, '../../../tests/test')
   console.info('Setting up tests 🛠️')
   console.info(`Using fixture directory: ${fixtureDir}`)
 
