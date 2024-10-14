@@ -18,6 +18,7 @@ import { PreloadLinks } from './views/PreloadLinks'
 import { ScrollRestoration } from './views/ScrollRestoration'
 import type { One } from './vite/types'
 import { rand } from './utils/rand'
+import { getURL } from './getURL'
 // import { SplashScreen } from './views/Splash'
 
 if (typeof window !== 'undefined') {
@@ -160,7 +161,7 @@ function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: 
   const location =
     typeof window !== 'undefined' && window.location
       ? new URL(path || window.location.href || '/', window.location.href)
-      : new URL(path || '/', 'http://localhost')
+      : new URL(path || '/', getURL())
 
   return <ContextNavigator {...props} location={location} context={context} wrapper={wrapper} />
 }
