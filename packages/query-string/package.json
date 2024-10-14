@@ -13,7 +13,7 @@
       "react-native": "./dist/cjs/index.native.js",
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.cjs"
     }
   },
   "files": [
@@ -33,7 +33,7 @@
     "query-string": "^9.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.114.4"
+    "@tamagui/build": "^1.115.0"
   },
   "publishConfig": {
     "access": "public"

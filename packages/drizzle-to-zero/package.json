@@ -13,7 +13,7 @@
       "react-native": "./dist/cjs/index.native.js",
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.cjs"
     }
   },
   "files": [
@@ -33,7 +33,7 @@
     "drizzle-orm": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.114.4",
+    "@tamagui/build": "^1.115.0",
     "vitest": "^2.1.1"
   },
   "publishConfig": {

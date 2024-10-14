@@ -20,24 +20,24 @@
     ".": {
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.cjs"
     },
     "./hmr-client": {
       "types": "./types/hmr-client.d.ts",
       "import": "./dist/esm/hmr-client.js",
-      "require": "./dist/cjs/hmr-client.js"
+      "require": "./dist/cjs/hmr-client.cjs"
     },
     "./hmr-vite": {
       "types": "./types/client.d.ts",
       "import": "./dist/esm/client.js",
-      "require": "./dist/cjs/client.js"
+      "require": "./dist/cjs/client.cjs"
     }
   },
   "dependencies": {
     "pretty-format": "^28.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.114.4",
+    "@tamagui/build": "^1.115.0",
     "react-native": "0.74.5"
   },
   "peerDependencies": {
