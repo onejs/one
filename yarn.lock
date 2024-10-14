@@ -12850,9 +12850,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-vercel@workspace:examples/vercel":
+"example-vercel@workspace:tests/vercel":
   version: 0.0.0-use.local
-  resolution: "example-vercel@workspace:examples/vercel"
+  resolution: "example-vercel@workspace:tests/vercel"
   dependencies:
     one: "npm:1.1.311"
     react: "npm:^18.3.1"
