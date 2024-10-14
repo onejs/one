@@ -1,9 +1,6 @@
-import { desc, eq, sql } from 'drizzle-orm'
-import { getURL, Stack, useLoader, type LoaderProps } from 'one'
+import { Stack } from 'one'
 import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
-import { db } from '~/code/db/connection'
-import { likes, posts, replies, reposts, users } from '~/code/db/schema'
 import { FeedCard } from '~/code/feed/FeedCard'
 import { PageContainer } from '~/code/ui/PageContainer'
 
