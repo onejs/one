@@ -12685,9 +12685,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-react-native-svg@workspace:examples/test-react-native-svg":
+"example-react-native-svg@workspace:tests/test-react-native-svg":
   version: 0.0.0-use.local
-  resolution: "example-react-native-svg@workspace:examples/test-react-native-svg"
+  resolution: "example-react-native-svg@workspace:tests/test-react-native-svg"
   dependencies:
     expo: "npm:~51.0.28"
     one: "npm:1.1.311"
@@ -12697,6 +12697,39 @@ __metadata:
     react-native-screens: "npm:3.31.1"
     react-native-svg: "npm:^15.7.1"
     react-native-web: "npm:^0.19.12"
+    vite: "npm:6.0.0-beta.1"
+  languageName: unknown
+  linkType: soft
+
+"example-recommended-appstore@workspace:examples/one-recommended-appstore":
+  version: 0.0.0-use.local
+  resolution: "example-recommended-appstore@workspace:examples/one-recommended-appstore"
+  dependencies:
+    "@biomejs/biome": "npm:^1.8.3"
+    "@dotenvx/dotenvx": "npm:^1.12.1"
+    "@faker-js/faker": "npm:next"
+    "@tamagui/config": "npm:^1.115.0"
+    "@tamagui/image-next": "npm:^1.115.0"
+    "@tamagui/lucide-icons": "npm:^1.115.0"
+    "@tamagui/vite-plugin": "npm:^1.115.0"
+    "@vxrn/color-scheme": "npm:1.1.311"
+    better-sqlite3: "npm:^11.2.1"
+    dotenv: "npm:^16.4.5"
+    drizzle-kit: "npm:^0.24.2"
+    drizzle-orm: "npm:^0.33.0"
+    expo: "npm:~51.0.28"
+    expo-modules-core: "npm:^1.12.24"
+    one: "npm:1.1.311"
+    postgres: "npm:^3.4.4"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.5"
+    react-native-reanimated: "npm:~3.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
+    react-native-screens: "npm:3.31.1"
+    react-native-svg: "npm:15.2.0"
+    react-native-web: "npm:^0.19.12"
+    tamagui: "npm:^1.115.0"
+    tsx: "npm:^4.19.0"
     vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
@@ -12761,9 +12794,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-test-expo-camera@workspace:examples/test-expo-camera":
+"example-test-expo-camera@workspace:tests/test-expo-camera":
   version: 0.0.0-use.local
-  resolution: "example-test-expo-camera@workspace:examples/test-expo-camera"
+  resolution: "example-test-expo-camera@workspace:tests/test-expo-camera"
   dependencies:
     "@react-navigation/bottom-tabs": "npm:~6.5.8"
     "@react-navigation/core": "npm:6.4.17"
@@ -12786,9 +12819,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-test@workspace:examples/test":
+"example-test@workspace:tests/test":
   version: 0.0.0-use.local
-  resolution: "example-test@workspace:examples/test"
+  resolution: "example-test@workspace:tests/test"
   dependencies:
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
@@ -12829,9 +12862,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-weird-deps@workspace:examples/weird-deps":
+"example-weird-deps@workspace:tests/weird-deps":
   version: 0.0.0-use.local
-  resolution: "example-weird-deps@workspace:examples/weird-deps"
+  resolution: "example-weird-deps@workspace:tests/weird-deps"
   dependencies:
     "@react-native-masked-view/masked-view": "npm:^0.3.1"
     "@sentry/react-native": "npm:^5.30.0"
@@ -13035,9 +13068,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-reanimated-app@workspace:examples/expo-reanimated":
+"expo-reanimated-app@workspace:tests/expo-reanimated":
   version: 0.0.0-use.local
-  resolution: "expo-reanimated-app@workspace:examples/expo-reanimated"
+  resolution: "expo-reanimated-app@workspace:tests/expo-reanimated"
   dependencies:
     expo: "npm:~51.0.28"
     expo-status-bar: "npm:~1.12.1"
