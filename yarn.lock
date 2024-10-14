@@ -11850,39 +11850,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-recommended-appstore@workspace:examples/one-testflight-demo":
-  version: 0.0.0-use.local
-  resolution: "example-recommended-appstore@workspace:examples/one-testflight-demo"
-  dependencies:
-    "@biomejs/biome": "npm:^1.8.3"
-    "@dotenvx/dotenvx": "npm:^1.12.1"
-    "@faker-js/faker": "npm:next"
-    "@tamagui/config": "npm:^1.115.0"
-    "@tamagui/image-next": "npm:^1.115.0"
-    "@tamagui/lucide-icons": "npm:^1.115.0"
-    "@tamagui/vite-plugin": "npm:^1.115.0"
-    "@vxrn/color-scheme": "npm:1.1.311"
-    better-sqlite3: "npm:^11.2.1"
-    dotenv: "npm:^16.4.5"
-    drizzle-kit: "npm:^0.24.2"
-    drizzle-orm: "npm:^0.33.0"
-    expo: "npm:~51.0.28"
-    expo-modules-core: "npm:^1.12.24"
-    one: "npm:1.1.311"
-    postgres: "npm:^3.4.4"
-    react: "npm:^18.3.1"
-    react-native: "npm:0.74.5"
-    react-native-reanimated: "npm:~3.10.1"
-    react-native-safe-area-context: "npm:4.10.5"
-    react-native-screens: "npm:3.31.1"
-    react-native-svg: "npm:15.2.0"
-    react-native-web: "npm:^0.19.12"
-    tamagui: "npm:^1.115.0"
-    tsx: "npm:^4.19.0"
-    vite: "npm:6.0.0-beta.1"
-  languageName: unknown
-  linkType: soft
-
 "example-recommended@workspace:examples/one-recommended":
   version: 0.0.0-use.local
   resolution: "example-recommended@workspace:examples/one-recommended"
@@ -11984,6 +11951,39 @@ __metadata:
     dotenv: "npm:^16.4.5"
     drizzle-kit: "npm:^0.24.2"
     drizzle-orm: "npm:^0.33.0"
+    one: "npm:1.1.311"
+    postgres: "npm:^3.4.4"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.5"
+    react-native-reanimated: "npm:~3.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
+    react-native-screens: "npm:3.31.1"
+    react-native-svg: "npm:15.2.0"
+    react-native-web: "npm:^0.19.12"
+    tamagui: "npm:^1.115.0"
+    tsx: "npm:^4.19.0"
+    vite: "npm:6.0.0-beta.1"
+  languageName: unknown
+  linkType: soft
+
+"example-testflight@workspace:examples/testflight":
+  version: 0.0.0-use.local
+  resolution: "example-testflight@workspace:examples/testflight"
+  dependencies:
+    "@biomejs/biome": "npm:^1.8.3"
+    "@dotenvx/dotenvx": "npm:^1.12.1"
+    "@faker-js/faker": "npm:next"
+    "@tamagui/config": "npm:^1.115.0"
+    "@tamagui/image-next": "npm:^1.115.0"
+    "@tamagui/lucide-icons": "npm:^1.115.0"
+    "@tamagui/vite-plugin": "npm:^1.115.0"
+    "@vxrn/color-scheme": "npm:1.1.311"
+    better-sqlite3: "npm:^11.2.1"
+    dotenv: "npm:^16.4.5"
+    drizzle-kit: "npm:^0.24.2"
+    drizzle-orm: "npm:^0.33.0"
+    expo: "npm:~51.0.28"
+    expo-modules-core: "npm:^1.12.24"
     one: "npm:1.1.311"
     postgres: "npm:^3.4.4"
     react: "npm:^18.3.1"
