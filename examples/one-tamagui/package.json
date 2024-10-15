@@ -18,6 +18,7 @@
     "hoistingLimits": "workspaces"
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "^0.3.1",
     "@tamagui/animations-moti": "^1.115.0",
     "@tamagui/colors": "^1.115.0",
     "@tamagui/image-next": "^1.115.0",
