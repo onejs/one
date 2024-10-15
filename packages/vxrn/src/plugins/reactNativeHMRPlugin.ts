@@ -7,9 +7,10 @@ import { entryRoot } from '../utils/getReactNativeBundle'
 import { getVitePath } from '../utils/getVitePath'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
-import { createIdResolver, type ResolveFn, type Plugin } from 'vite'
+import { createIdResolver, type ResolveFn, type Plugin, EnvironmentModuleGraph } from 'vite'
 import { conditions } from './reactNativeCommonJsPlugin'
 import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
+import { filterPluginsForNative } from '../utils/filterPluginsForNative'
 
 export function reactNativeHMRPlugin({
   root,
@@ -27,6 +28,8 @@ export function reactNativeHMRPlugin({
     // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
     async handleHotUpdate({ read, modules, file, server }) {
+      const environment = server.environments.ios // TODO: android? How can we get the current environment here?
+
       if (!idResolver) {
         const rnConfig = getReactNativeResolvedConfig()
         if (!rnConfig) {
@@ -74,9 +77,25 @@ export function reactNativeHMRPlugin({
         let source = code
 
         // we have to remove jsx before we can parse imports...
-        source = (await transformForBuild(id, source))?.code || ''
-
-        const environment = server.environments.ios // TODO: android? How can we get the current environment here?
+        try {
+          // We create a new plugin container to ensure some plugins are filtered out,
+          // since `pluginContainer.getSortedPlugins()` is using a cached that we
+          // can't access thus can't make sure the cached plugins are filtered.
+          const pluginContainerForTransform: typeof environment.pluginContainer = new (
+            environment.pluginContainer.constructor as any
+          )(
+            environment,
+            filterPluginsForNative(environment.plugins, { isNative: true }).filter(
+              (p) => p.name !== 'vite:import-analysis' /* will cause `ERR_OUTDATED_OPTIMIZED_DEP` error */
+            ),
+            server.watcher
+          )
+          const transformResult = await pluginContainerForTransform.transform(source, file)
+          source = transformResult.code
+        } catch (e) {
+          console.warn(`Error transforming source for HMR: ${e}. Retrying without plugins.`)
+          source = (await transformForBuild(id, source))?.code || ''
+        }
 
         // TODO: This is a hacky way to make HMR route files work, since if we don't run through the `clientTreeShakePlugin`, the source code might include imports to server side stuff (typically used inside `loader` functions) that will break the HMR update. Ideally, we should go though all user plugins for HMR updates.
         const clientTreeShakePlugin = environment.plugins.find((p) =>
@@ -111,8 +130,6 @@ export function reactNativeHMRPlugin({
           const { n: importName, s: start } = specifier
 
           if (importName) {
-            const environment = server.environments.ios // TODO: android
-
             // TODO: maybe we only need `resolverWithPlugins`?
             const resolver: ResolveFn = idResolver.bind(null, environment)
             const resolverWithPlugins: ResolveFn = async (id, importer) => {
