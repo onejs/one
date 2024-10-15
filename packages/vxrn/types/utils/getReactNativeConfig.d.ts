@@ -29,7 +29,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
         minify: false;
         commonjsOptions: {
             transformMixedEsModules: true;
-            ignore(id: string): id is "react/jsx-runtime" | "react/jsx-dev-runtime";
+            ignore(id: string): id is "react/jsx-dev-runtime" | "react/jsx-runtime";
         };
         rollupOptions: {
             input: string;
