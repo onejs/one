@@ -14,10 +14,10 @@
     "android": "EXPO_NO_TELEMETRY=true expo run:android",
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'",
     "db:init": "$npm_execpath db:generate && $npm_execpath db:push && $npm_execpath db:seed",
-    "db:generate": "drizzle-kit generate --config ./code/db/drizzle.config.ts",
-    "db:push": "drizzle-kit push --config ./code/db/drizzle.config.ts",
-    "db:migrate": "dotenvx run -f .env -- tsx ./code/db/run-migrations.ts",
-    "db:seed": "dotenvx run -f .env -- tsx ./code/db/seed.ts"
+    "db:generate": "drizzle-kit generate --config ./src/db/drizzle.config.ts",
+    "db:push": "drizzle-kit push --config ./src/db/drizzle.config.ts",
+    "db:migrate": "dotenvx run -f .env -- tsx ./src/db/run-migrations.ts",
+    "db:seed": "dotenvx run -f .env -- tsx ./src/db/seed.ts"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"
@@ -28,7 +28,6 @@
     "@tamagui/image-next": "^1.115.0",
     "@tamagui/lucide-icons": "^1.115.0",
     "@vxrn/color-scheme": "1.1.311",
-    "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",

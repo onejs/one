@@ -8,9 +8,6 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
-  "installConfig": {
-    "hoistingLimits": "workspaces"
-  },
   "dependencies": {
     "expo": "~51.0.28",
     "expo-status-bar": "~1.12.1",

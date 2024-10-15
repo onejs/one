@@ -14,7 +14,7 @@ services:
   postgres_primary:
     <<: *postgres-common
     ports:
-      - 6432:5432
+      - 6532:5432
     environment:
       POSTGRES_USER: user
       POSTGRES_DB: postgres
@@ -28,12 +28,12 @@ services:
       -c hot_standby_feedback=on
     volumes:
       - pgdata_upstream:/var/lib/postgresql/data
-      - ./code/db/init_upstream:/docker-entrypoint-initdb.d
+      - ./src/db/init_upstream:/docker-entrypoint-initdb.d
     
   postgres_replica:
     <<: *postgres-common
     ports:
-      - 6433:5432
+      - 6533:5432
     environment:
       POSTGRES_USER: user
       POSTGRES_DB: postgres
@@ -47,7 +47,7 @@ services:
       -c hot_standby_feedback=on
     volumes:
       - pgdata_sync:/var/lib/postgresql/data
-      - ./code/db/init_sync:/docker-entrypoint-initdb.d
+      - ./src/db/init_sync:/docker-entrypoint-initdb.d
 
 volumes:
   pgdata_sync:
