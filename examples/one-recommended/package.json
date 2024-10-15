@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "one dev",
+    "dev": "$npm_execpath db:check && $npm_execpath one dev",
     "dev:clean": "one dev --clean",
     "clean": "one clean",
     "prebuild:native": "one prebuild",
@@ -14,6 +14,7 @@
     "android": "EXPO_NO_TELEMETRY=true expo run:android",
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'",
     "db:init": "$npm_execpath db:generate && $npm_execpath db:push && $npm_execpath db:seed",
+    "db:check": "bash -c \"$npm_execpath db:push 2>&1 >/dev/null | grep ECONNREFUSED >/dev/null; if [ $? -eq 0 ]; then echo '\n\n❌ Note! Error running db:generate, you may need to set up your db. See README.md\n\n'; exit 1; fi\"",
     "db:generate": "drizzle-kit generate --config ./code/db/drizzle.config.ts",
     "db:push": "drizzle-kit push --config ./code/db/drizzle.config.ts",
     "db:migrate": "dotenvx run -f .env -- tsx ./code/db/run-migrations.ts",
