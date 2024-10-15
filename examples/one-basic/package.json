@@ -24,6 +24,7 @@
     "react-native-web": "^0.19.12"
   },
   "devDependencies": {
+    "@types/react": "^18.3.11",
     "vite": "6.0.0-beta.1"
   }
 }
