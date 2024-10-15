@@ -1,5 +1,5 @@
 import { Heart, Repeat, Reply } from '@tamagui/lucide-icons'
-import { Link } from 'one'
+import { Link, usePathname } from 'one'
 import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { Card } from '../ui/Card'
 import { Image } from '../ui/Image'
@@ -31,6 +31,8 @@ const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
 }
 
 export const FeedCard = (props: FeedItem) => {
+  const pathname = usePathname() as '/' | '/notifications' | '/profile' // Note: this is not ideal since the pathname will change based on the current (active) route. We need something like useLocalPathname(). Also link will break if the FeedCard is used outside of these routes while not `disableLink`.
+
   if (!props.user) return null
 
   const content = (
@@ -67,7 +69,7 @@ export const FeedCard = (props: FeedItem) => {
     <Link
       asChild
       href={{
-        pathname: `/post/[id]`,
+        pathname: `${pathname === '/' ? '' : pathname}/post/[id]`,
         params: {
           id: props.id.toString(),
           ...(typeof document === 'undefined' ? ({ preloadTitle: props.content } as any) : {}),
