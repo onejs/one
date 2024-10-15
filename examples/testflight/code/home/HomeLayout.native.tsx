@@ -14,7 +14,7 @@ export function HomeLayout() {
       }}
     >
       <Tabs.Screen
-        name="(feed)"
+        name="index"
         options={{
           title: 'Feed',
           tabBarIcon: ({ color }) => <HomeIcons.Home size={20} color={color} />,
