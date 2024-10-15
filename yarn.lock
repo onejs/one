@@ -16938,6 +16938,7 @@ __metadata:
     "@babel/parser": "npm:^7.25.4"
     "@babel/traverse": "npm:^7.25.4"
     "@radix-ui/react-slot": "npm:^1.0.2"
+    "@react-native-masked-view/masked-view": "npm:^0.3.1"
     "@react-navigation/bottom-tabs": "npm:~6.5.8"
     "@react-navigation/core": "npm:6.4.17"
     "@react-navigation/drawer": "npm:~6.6.3"
