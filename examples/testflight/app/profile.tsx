@@ -32,8 +32,8 @@ export default function ProfilePage() {
             pos="absolute"
             b="$4"
             l="$4"
-            w={100}
-            h={100}
+            width={100}
+            height={100}
             br={100}
             src={userData.avatar || ''}
             bw={1}
