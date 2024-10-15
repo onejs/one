@@ -1,6 +1,5 @@
 import { defineCommand, runMain } from 'citty'
 import colors from 'picocolors'
-import { loadEnv } from './vite/loadEnv'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -20,8 +19,6 @@ function getPackageVersion() {
 }
 
 const version = getPackageVersion()
-
-void loadEnv(process.cwd())
 
 if (path.sep !== '/') {
   console.warn(
