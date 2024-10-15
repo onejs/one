@@ -11888,6 +11888,7 @@ __metadata:
   resolution: "example-tamagui@workspace:examples/one-tamagui"
   dependencies:
     "@biomejs/biome": "npm:^1.8.3"
+    "@react-native-masked-view/masked-view": "npm:^0.3.1"
     "@tamagui/animations-moti": "npm:^1.115.0"
     "@tamagui/colors": "npm:^1.115.0"
     "@tamagui/image-next": "npm:^1.115.0"
