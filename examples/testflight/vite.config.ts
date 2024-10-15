@@ -18,8 +18,8 @@ export default {
     tamaguiPlugin({
       optimize: true,
       components: ['tamagui'],
-      config: './config/tamagui.config.ts',
-      outputCSS: './code/styles/tamagui.css',
+      config: './src/styles/tamagui.config.ts',
+      outputCSS: './src/styles/tamagui.css',
     }),
   ],
 } satisfies UserConfig

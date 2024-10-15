@@ -2,11 +2,10 @@ import { eq, sql } from 'drizzle-orm'
 import { useLoader, useNavigation, useParams } from 'one'
 import { useEffect } from 'react'
 import { YStack } from 'tamagui'
-import { db } from '~/code/db/connection'
-import { FeedCard } from '~/code/feed/FeedCard'
-import { PageContainer } from '~/code/ui/PageContainer'
-import { feed, replies } from '~/code/data'
-
+import { db } from '~/src/db/connection'
+import { FeedCard } from '~/src/feed/FeedCard'
+import { PageContainer } from '~/src/ui/PageContainer'
+import { feed, replies } from '~/src/data'
 
 export function PostPage() {
   const postData =

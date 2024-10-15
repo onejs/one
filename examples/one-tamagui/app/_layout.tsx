@@ -4,7 +4,7 @@ import './tamagui.css'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { isWeb, TamaguiProvider } from 'tamagui'
-import config from '~/config/tamagui/tamagui.config'
+import config from '~/src/tamagui/tamagui.config'
 
 export default function Layout() {
   return (

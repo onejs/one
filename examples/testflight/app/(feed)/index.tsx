@@ -1,10 +1,10 @@
 import { Stack } from 'one'
 import { RefreshControl } from 'react-native'
 import { ScrollView } from 'tamagui'
-import { FeedCard } from '~/code/feed/FeedCard'
-import { PageContainer } from '~/code/ui/PageContainer'
+import { FeedCard } from '~/src/feed/FeedCard'
+import { PageContainer } from '~/src/ui/PageContainer'
 
-import { feed as allFeed } from '~/code/data'
+import { feed as allFeed } from '~/src/data'
 
 const feed = allFeed.slice(0, 16)
 

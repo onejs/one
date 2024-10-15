@@ -1,13 +1,13 @@
 import '@tamagui/core/reset.css'
-import '~/code/styles/base.css'
-import '~/code/styles/tamagui.css'
+import '~/src/styles/base.css'
+import '~/src/styles/tamagui.css'
 import './_layout.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar } from 'one'
 import { isWeb, TamaguiProvider } from 'tamagui'
-import { HomeLayout } from '~/code/home/HomeLayout'
-import config from '../config/tamagui.config'
+import { HomeLayout } from '~/src/home/HomeLayout'
+import config from '~/src/styles/tamagui.config'
 
 export default function Layout() {
   return (

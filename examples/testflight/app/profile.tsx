@@ -1,14 +1,13 @@
 import { ScrollView, YStack, Text, SizableStack, XStack } from 'tamagui'
 import { getURL, type LoaderProps, useLoader } from 'one'
-import { FeedCard } from '~/code/feed/FeedCard'
-import { Image } from '~/code/ui/Image'
-import { PageContainer } from '~/code/ui/PageContainer'
+import { FeedCard } from '~/src/feed/FeedCard'
+import { Image } from '~/src/ui/Image'
+import { PageContainer } from '~/src/ui/PageContainer'
 import { Repeat2 } from '@tamagui/lucide-icons'
-import { db } from '~/code/db/connection'
-import { posts, reposts, users, likes, replies } from '~/code/db/schema'
+import { db } from '~/src/db/connection'
+import { posts, reposts, users, likes, replies } from '~/src/db/schema'
 import { eq, sql, desc } from 'drizzle-orm'
-import { profileFeed, userData } from '~/code/data'
-
+import { profileFeed, userData } from '~/src/data'
 
 export default function ProfilePage() {
   return (

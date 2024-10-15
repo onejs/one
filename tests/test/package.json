@@ -27,7 +27,6 @@
     "@tamagui/vite-plugin": "^1.115.0",
     "@vercel/og": "^0.6.3",
     "@vxrn/color-scheme": "1.1.311",
-    "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",

@@ -1,7 +1,7 @@
-import { isWeb, View } from 'tamagui'
 import { Slot, Stack } from 'one'
-import { ToggleThemeButton } from '~/code/theme/ToggleThemeButton'
-import { Logo } from '~/code/brand/Logo'
+import { isWeb, View } from 'tamagui'
+import { Logo } from '~/src/brand/Logo'
+import { ToggleThemeButton } from '~/src/theme/ToggleThemeButton'
 
 export default function FeedLayout() {
   return (
