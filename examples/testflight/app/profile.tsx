@@ -1,3 +1,5 @@
+import { useRef, type ElementRef } from 'react'
+import { useScrollToTop } from '@react-navigation/native'
 import { ScrollView, YStack, Text, SizableStack, XStack } from 'tamagui'
 import { getURL, type LoaderProps, useLoader } from 'one'
 import { FeedCard } from '~/code/feed/FeedCard'
@@ -11,9 +13,12 @@ import { profileFeed, userData } from '~/code/data'
 
 
 export default function ProfilePage() {
+  const scrollViewRef = useRef<ElementRef<typeof ScrollView>>(null)
+  useScrollToTop(scrollViewRef)
+
   return (
     <PageContainer>
-      <ScrollView>
+      <ScrollView ref={scrollViewRef}>
         <YStack pos="relative" w="100%" h={180} ov="hidden">
           <Image
             pos="absolute"
