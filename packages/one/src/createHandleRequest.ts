@@ -1,5 +1,5 @@
 import { getPathFromLoaderPath } from './cleanUrl'
-import { LOADER_JS_POSTFIX, LOADER_JS_POSTFIX_UNCACHED } from './constants'
+import { LOADER_JS_POSTFIX_REGEX, LOADER_JS_POSTFIX_UNCACHED } from './constants'
 import type { RouteInfo } from './server/createRoutesManifest'
 import { isResponse } from './utils/isResponse'
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
@@ -104,6 +104,7 @@ export function createHandleRequest(
 
         if (isClientRequestingNewRoute) {
           const originalUrl = getPathFromLoaderPath(pathname)
+
           const finalUrl = new URL(originalUrl, url.origin)
 
           for (const route of pageRoutes) {
@@ -207,6 +208,7 @@ function getLoaderParams(
 ) {
   const params: Record<string, string> = {}
   const match = new RegExp(config.workingRegex).exec(url.pathname)
+  console.log('getting loader params', url)
   if (match?.groups) {
     for (const [key, value] of Object.entries(match.groups)) {
       const namedKey = config.routeKeys[key]
