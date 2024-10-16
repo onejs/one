@@ -1,7 +1,7 @@
 import { isWebServer } from './constants'
 import type { One } from './vite/types'
 
-const CLIENT_RENDER_MODE = process.env.One_DEFAULT_RENDER_MODE as One.RouteRenderMode | undefined
+const CLIENT_RENDER_MODE = process.env.ONE_DEFAULT_RENDER_MODE as One.RouteRenderMode | undefined
 
 // works client or server
 export const getDefaultRenderMode = () => {
