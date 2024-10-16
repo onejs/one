@@ -1,6 +1,5 @@
-import { isNative } from './constants'
+import { isNative, LOADER_JS_POSTFIX, PRELOAD_JS_POSTFIX } from './constants'
 import { getURL } from './getURL'
-import { CACHE_KEY } from './router/constants'
 import { removeSearch } from './utils/removeSearch'
 
 function cleanUrl(path: string) {
@@ -13,11 +12,10 @@ function cleanUrl(path: string) {
 }
 
 const isClient = typeof window !== 'undefined'
-const clientSideSearch = isClient ? `?cache=${CACHE_KEY}` : ''
 const clientSideURL = isClient ? getURL() : ''
 
 export function getPreloadPath(currentPath: string) {
-  return `${clientSideURL}/assets/${cleanUrl(currentPath.slice(1))}_preload.js${clientSideSearch}`
+  return `${clientSideURL}/assets/${cleanUrl(currentPath.slice(1))}${PRELOAD_JS_POSTFIX}`
 }
 
 export function getLoaderPath(
@@ -33,20 +31,12 @@ export function getLoaderPath(
     'http://example.com' /* not important, just for `new URL()` to work */
   )
 
-  return `${baseURL}${devPath}/assets/${cleanUrl(currentPathUrl.pathname.slice(1))}_vxrn_loader.js${getSearchParams(currentPathUrl.search)}`
+  return `${baseURL}${devPath}/assets/${cleanUrl(currentPathUrl.pathname.slice(1))}${LOADER_JS_POSTFIX}${currentPathUrl.search}`
 }
 
 export function getPathFromLoaderPath(loaderPath: string) {
   return loaderPath
-    .replace('_vxrn_loader.js', '')
+    .replace(LOADER_JS_POSTFIX, '')
     .replace(/^(\/_one)?\/assets/, '')
     .replaceAll(/_/g, '/')
-}
-
-function getSearchParams(searchParams) {
-  if (!searchParams) {
-    return clientSideSearch
-  }
-
-  return `${searchParams}&${clientSideSearch.slice(1) /* remove the leading "?" */}`
 }

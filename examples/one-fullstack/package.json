@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@tamagui/vite-plugin": "^1.115.0",
+    "@types/react": "^18.3.11",
     "h3": "1.11.1"
   }
 }

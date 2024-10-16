@@ -10,7 +10,7 @@ const generate = BabelGenerate['default'] as any as typeof BabelGenerate
 
 export const clientTreeShakePlugin = (): Plugin => {
   return {
-    name: 'one:client-tree-shake',
+    name: 'one-client-tree-shake',
 
     enforce: 'pre',
 
