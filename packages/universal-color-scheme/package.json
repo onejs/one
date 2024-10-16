@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/universal-color-scheme",
-  "version": "1.1.311",
+  "version": "1.1.312",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -31,7 +31,7 @@
     }
   },
   "dependencies": {
-    "@vxrn/use-isomorphic-layout-effect": "1.1.311",
+    "@vxrn/use-isomorphic-layout-effect": "1.1.312",
     "react": "^18.2.0 || ^19.0.0"
   },
   "peerDependencies": {
