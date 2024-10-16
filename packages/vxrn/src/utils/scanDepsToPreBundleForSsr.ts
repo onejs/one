@@ -3,6 +3,8 @@ import path from 'node:path'
 import FSExtra from 'fs-extra'
 
 const EXCLUDE_LIST = new Set(['react-native'])
+/** Some packages that will fail to pre-bundle. */
+const DEPS_WILL_FAIL_TO_BUNDLE_LIST = new Set(['fsevents', 'lightningcss'])
 
 /**
  * Since:
@@ -65,6 +67,9 @@ export async function scanDepsToPreBundleForSsr(
         if (EXCLUDE_LIST.has(dep)) {
           return []
         }
+        if (!isRoot && DEPS_WILL_FAIL_TO_BUNDLE_LIST.has(dep)) {
+          throw new Error('DO_NOT_PRE_BUNDLE')
+        }
 
         proceededDeps.add(dep)
 
@@ -73,19 +78,26 @@ export async function scanDepsToPreBundleForSsr(
 
         const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
 
-        const subDepsToPreBundle = await scanDepsToPreBundleForSsr(depPkgJsonPath, {
-          parentDepNames: [...parentDepNames, dep],
-          pkgJsonContent: depPkgJson,
-          proceededDeps,
-        })
+        try {
+          const subDepsToPreBundle = await scanDepsToPreBundleForSsr(depPkgJsonPath, {
+            parentDepNames: [...parentDepNames, dep],
+            pkgJsonContent: depPkgJson,
+            proceededDeps,
+          })
 
-        const shouldPreBundle =
-          subDepsToPreBundle.length >
-            0 /* If this dep is depending on other deps that need pre-bundling, then also pre-bundle this dep */ ||
-          depPkgJson.dependencies?.react ||
-          depPkgJson.peerDependencies?.react
+          const shouldPreBundle =
+            subDepsToPreBundle.length >
+              0 /* If this dep is depending on other deps that need pre-bundling, then also pre-bundle this dep */ ||
+            depPkgJson.dependencies?.react ||
+            depPkgJson.peerDependencies?.react
 
-        return [...(shouldPreBundle ? [dep] : []), ...subDepsToPreBundle]
+          return [...(shouldPreBundle ? [dep] : []), ...subDepsToPreBundle]
+        } catch (e) {
+          if (e instanceof Error && e.message === 'DO_NOT_PRE_BUNDLE') {
+            return []
+          }
+          return [] // TODO: handle other errors
+        }
       })
     )
   ).flat()
