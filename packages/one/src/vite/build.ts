@@ -1,3 +1,4 @@
+import * as constants from '../constants'
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
@@ -509,6 +510,7 @@ ${JSON.stringify(params || null, null, 2)}`
   const buildInfoForWriting = {
     routeMap,
     builtRoutes,
+    constants: JSON.parse(JSON.stringify({ ...constants })),
   }
 
   const buildInfo = {

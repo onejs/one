@@ -112,7 +112,11 @@ export declare namespace One {
         destination: string;
         permanent: boolean;
     };
-    type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'>;
+    type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
+        constants: {
+            CACHE_KEY: string;
+        };
+    };
     type AfterBuildProps = VXRNAfterBuildProps & {
         routeMap: Record<string, string>;
         builtRoutes: RouteBuildInfo[];
