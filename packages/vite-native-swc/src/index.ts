@@ -175,6 +175,11 @@ export default (_options?: Options): PluginOption[] => {
         const config = {
           esbuild: false,
 
+          // We only serve bundles for React Native, so optimized deps will not be used anyway.
+          optimizeDeps: {
+            noDiscovery: true,
+          },
+
           build: {
             // idk why i need both..
             rollupOptions: {

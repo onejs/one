@@ -41,6 +41,7 @@ import { getHookHandler } from './plugins'
 import type { RollupPluginHooks } from './typeUtils'
 import { ROLLUP_HOOKS } from './constants'
 import { isNativeEnvironment } from '../../environmentUtils'
+import { filterPluginsForNative } from '../../filterPluginsForNative'
 
 /**
  * Build an App environment, or a App library (if libraryOptions is provided)
@@ -121,42 +122,7 @@ export async function buildEnvironment(
 
     // vxrn: filter out unnecessary plugin functions
     // plugins,
-    plugins: plugins.flatMap((p) => {
-      if (p.name.endsWith('-web-only')) {
-        return null
-      }
-
-      if (p.name === 'vite:reporter') {
-        return {
-          ...p,
-          // Printing out bundle details such as all the files that are included in the bundle and their sizes will cutter the terminal and also waste time.
-          writeBundle: undefined,
-        }
-      }
-
-      // Filter out unnecessary `renderChunk` hooks that are not needed for RN
-      if (isNative && p.renderChunk) {
-        if (
-          [
-            'vite:build-metadata', // Inserts asset and CSS related metadata which is not needed for RN (see: https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/plugins/metadata.ts#L10-L16)
-            'vite:worker', // See: https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/plugins/worker.ts#L383-L429
-            'vite:asset', // Seems not needed since with RN we have our own asset handling logic (see: https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/plugins/asset.ts#L214-L227)
-            'vite:css-post', // Seems not needed since we are not using CSS-in-JS for RN (see: https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/plugins/css.ts#L560-L830)
-            'vite:force-systemjs-wrap-complete', // Not needed since we are not using SystemJS (see: https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/plugins/completeSystemWrap.ts#L12-L21)
-            // 'vite:build-import-analysis',
-            'vite:esbuild-transpile', // Seems to be ok to remove.
-            'vite:reporter',
-          ].includes(p.name)
-        ) {
-          return {
-            ...p,
-            renderChunk: undefined,
-          }
-        }
-      }
-
-      return p
-    }),
+    plugins: filterPluginsForNative(plugins, { isNative }),
 
     external: options.rollupOptions?.external,
     onwarn(warning, warn) {
