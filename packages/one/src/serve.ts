@@ -2,17 +2,11 @@ import './polyfills-server'
 
 import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
-import Path, { join } from 'node:path'
+import { join } from 'node:path'
 import type { VXRNOptions } from 'vxrn'
 import { getServerEntry, loadEnv, serve as vxrnServe } from 'vxrn'
-import { labelProcess } from './cli/label-process'
-import { createHandleRequest } from './createHandleRequest'
 import type { RenderAppProps } from './types'
-import { isResponse } from './utils/isResponse'
-import { isStatusRedirect } from './utils/isStatus'
-import { removeUndefined } from './utils/removeUndefined'
-import { loadUserOneOptions } from './vite/one'
-import { resolveAPIRequest } from './vite/resolveAPIRequest'
+
 import type { One } from './vite/types'
 
 process.on('uncaughtException', (err) => {
@@ -20,6 +14,16 @@ process.on('uncaughtException', (err) => {
 })
 
 export async function serve(args: VXRNOptions['server'] = {}) {
+  const buildInfo = (await FSExtra.readJSON(`dist/buildInfo.json`)) as One.BuildInfo
+
+  // ensure cache key matches build
+  process.env.ONE_CACHE_KEY = buildInfo.constants.CACHE_KEY
+
+  // to avoid loading the CACHE_KEY before we set it use async imports:
+  const { labelProcess } = await import('./cli/label-process')
+  const { removeUndefined } = await import('./utils/removeUndefined')
+  const { loadUserOneOptions } = await import('./vite/one')
+
   labelProcess('serve')
   loadEnv('production')
 
@@ -43,16 +47,25 @@ export async function serve(args: VXRNOptions['server'] = {}) {
 
       async beforeStart(options, app) {
         await oneOptions.server?.beforeStart?.(options, app)
-        await oneServe(oneOptions, options, app)
+        await oneServe(oneOptions, options, buildInfo, app)
       },
     },
   })
 }
 
-async function oneServe(options: One.Options, vxrnOptions: VXRNOptions, app: Hono) {
-  const root = options.root || vxrnOptions.root || '.'
+async function oneServe(
+  options: One.PluginOptions,
+  vxrnOptions: VXRNOptions,
+  buildInfo: One.BuildInfo,
+  app: Hono
+) {
+  const { createHandleRequest } = await import('./createHandleRequest')
+  const { isResponse } = await import('./utils/isResponse')
+  const { isStatusRedirect } = await import('./utils/isStatus')
+  const { resolveAPIRequest } = await import('./vite/resolveAPIRequest')
+
   const isAPIRequest = new WeakMap<any, boolean>()
-  const toAbsolute = (p: string) => Path.resolve(root, p)
+  const root = vxrnOptions.root || '.'
 
   // add redirects
   const redirects = options.web?.redirects
@@ -67,8 +80,6 @@ async function oneServe(options: One.Options, vxrnOptions: VXRNOptions, app: Hon
       })
     }
   }
-
-  const buildInfo = await FSExtra.readJSON(toAbsolute(`dist/buildInfo.json`))
 
   if (!buildInfo) {
     throw new Error(`No build info found, have you run build?`)
@@ -132,7 +143,9 @@ async function oneServe(options: One.Options, vxrnOptions: VXRNOptions, app: Hon
         if (route.type === 'ssr') {
           const buildInfo = routeToBuildInfo[route.page]
           if (!buildInfo) {
-            throw new Error(`No buildinfo found for ${url}, route: ${route.page}`)
+            throw new Error(
+              `No buildinfo found for ${url}, route: ${route.page}, in keys: ${Object.keys(routeToBuildInfo)}`
+            )
           }
 
           try {

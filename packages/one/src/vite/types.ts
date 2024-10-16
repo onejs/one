@@ -139,7 +139,11 @@ export namespace One {
     permanent: boolean
   }
 
-  export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'>
+  export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
+    constants: {
+      CACHE_KEY: string
+    }
+  }
 
   export type AfterBuildProps = VXRNAfterBuildProps & {
     routeMap: Record<string, string>
