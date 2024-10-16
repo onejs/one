@@ -1,8 +1,8 @@
-import path from 'node:path'
 import FSExtra from 'fs-extra'
+import path from 'node:path'
+import { loadEnv } from '../../exports/loadEnv'
 import { fillOptions } from '../../utils/getOptionsFilled'
 import { getReactNativeBundle } from '../../utils/getReactNativeBundle'
-import { loadEnv } from '../../utils/loadEnv'
 
 export type BundleCommandArgs = {
   assetsDest?: string
@@ -52,7 +52,7 @@ export async function buildBundle(
     throw new Error(`Expected ctx.root to be a string, but got ${typeof root}`)
   }
 
-  await loadEnv(root)
+  loadEnv(dev ? 'development' : 'production', root)
 
   let nativeEntry: string | undefined = undefined
 

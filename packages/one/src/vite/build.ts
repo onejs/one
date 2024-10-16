@@ -13,13 +13,13 @@ import {
   type ClientManifestEntry,
 } from 'vxrn'
 import { getLoaderPath, getPreloadPath } from '../cleanUrl'
+import { labelProcess } from '../cli/label-process'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
 import { getManifest } from './getManifest'
 import { loadUserOneOptions } from './one'
 import { replaceLoader } from './replaceLoader'
 import type { One } from './types'
-import { labelProcess } from '../cli/label-process'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -32,6 +32,7 @@ export async function build(args: {
   only?: string
 }) {
   labelProcess('build')
+
   const userOptions = await loadUserOneOptions('build')
   const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'esm'
 

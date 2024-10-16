@@ -4,16 +4,16 @@ import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
 import Path, { join } from 'node:path'
 import type { VXRNOptions } from 'vxrn'
-import { getServerEntry, serve as vxrnServe } from 'vxrn'
+import { getServerEntry, loadEnv, serve as vxrnServe } from 'vxrn'
+import { labelProcess } from './cli/label-process'
 import { createHandleRequest } from './createHandleRequest'
 import type { RenderAppProps } from './types'
 import { isResponse } from './utils/isResponse'
 import { isStatusRedirect } from './utils/isStatus'
 import { removeUndefined } from './utils/removeUndefined'
+import { loadUserOneOptions } from './vite/one'
 import { resolveAPIRequest } from './vite/resolveAPIRequest'
 import type { One } from './vite/types'
-import { loadUserOneOptions } from './vite/one'
-import { labelProcess } from './cli/label-process'
 
 process.on('uncaughtException', (err) => {
   console.error(`[one] Uncaught exception`, err?.stack || err)
@@ -21,6 +21,8 @@ process.on('uncaughtException', (err) => {
 
 export async function serve(args: VXRNOptions['server'] = {}) {
   labelProcess('serve')
+  loadEnv('production')
+
   const oneOptions = await loadUserOneOptions('serve')
 
   // TODO make this better, this ensures we get react 19
