@@ -3,7 +3,7 @@ import events from 'node:events'
 import path, { dirname, resolve } from 'node:path'
 import { type Plugin, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { getOptimizeDeps, getOptionsFilled, isWebEnvironment } from 'vxrn'
+import { getOptimizeDeps, getOptionsFilled, isWebEnvironment, loadEnv } from 'vxrn'
 import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
@@ -12,7 +12,6 @@ import { createFileSystemRouter } from './createFileSystemRouter'
 import { ensureTSConfig } from './ensureTsConfig'
 import { fixDependenciesPlugin } from './fixDependenciesPlugin'
 import { generateTypesForRoutes } from './generateTypesForRoutes'
-import { loadEnv } from './loadEnv'
 import type { One } from './types'
 import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
 import { vitePluginSsrCss } from './vitePluginSsrCss'
@@ -24,8 +23,6 @@ globalThis.__vxrnEnableNativeEnv = true
 
 export function one(options: One.PluginOptions = {}): PluginOption {
   oneOptions = options
-
-  void loadEnv(process.cwd())
 
   // ensure tsconfig
   if (options.config?.ensureTSConfig !== false) {
@@ -47,7 +44,18 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
   const vxrnOptions = getOptionsFilled()
 
+  const { clientEnvDefine } = loadEnv(vxrnOptions?.mode ?? 'development')
+
   const devAndProdPlugins = [
+    {
+      name: 'one-define-env',
+      config() {
+        return {
+          define: clientEnvDefine,
+        }
+      },
+    },
+
     // proxy because you cant add a plugin inside a plugin
     new Proxy(
       {

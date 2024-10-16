@@ -99,7 +99,6 @@
     "citty": "^0.1.6",
     "core-js": "^3.38.1",
     "create-vxrn": "1.1.311",
-    "dotenv": "^16.4.5",
     "escape-string-regexp": "^5.0.0",
     "expo-linking": "~6.3.1",
     "expo-modules-core": "^1.12.24",
