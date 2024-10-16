@@ -10,9 +10,9 @@ const virtualEntryIdNativeName = `${virtualEntryIdName}-native`
 export const virtualEntryIdNative = `virtual:${virtualEntryIdNativeName}`
 const resolvedVirtualEntryIdNative = '\0' + virtualEntryIdNativeName
 
-const USE_One_SETUP_FILE = `
-if (process.env.One_SETUP_FILE) {
-  import(/* @vite-ignore */ process.env.One_SETUP_FILE)
+const USE_ONE_SETUP_FILE = `
+if (process.env.ONE_SETUP_FILE) {
+  import(/* @vite-ignore */ process.env.ONE_SETUP_FILE)
 }
 `
 
@@ -36,7 +36,7 @@ export function createVirtualEntry(options: { root: string }): Plugin {
       if (id === resolvedVirtualEntryId) {
         const prependCode = isNativeEnvironment(this.environment)
           ? '' /* `import()` will not work on native */
-          : USE_One_SETUP_FILE
+          : USE_ONE_SETUP_FILE
         return `
 ${prependCode}
 
@@ -52,7 +52,7 @@ export default createApp({
       if (id === resolvedVirtualEntryIdNative) {
         const prependCode = isNativeEnvironment(this.environment)
           ? '' /* `import()` will not work on native */
-          : USE_One_SETUP_FILE
+          : USE_ONE_SETUP_FILE
         return `
 ${prependCode}
 

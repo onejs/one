@@ -1,4 +1,5 @@
 import { getPathFromLoaderPath } from './cleanUrl'
+import { LOADER_JS_POSTFIX } from './constants'
 import type { RouteInfo } from './server/createRoutesManifest'
 import { isResponse } from './utils/isResponse'
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
@@ -99,7 +100,7 @@ export function createHandleRequest(
       }
 
       if (handlers.handleLoader) {
-        const isClientRequestingNewRoute = pathname.endsWith('_vxrn_loader.js')
+        const isClientRequestingNewRoute = pathname.endsWith(LOADER_JS_POSTFIX)
 
         if (isClientRequestingNewRoute) {
           const originalUrl = getPathFromLoaderPath(pathname)
