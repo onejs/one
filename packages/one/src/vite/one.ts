@@ -1,11 +1,12 @@
+import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
 import path, { dirname, resolve } from 'node:path'
 import { type Plugin, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { getOptimizeDeps, getOptionsFilled, isWebEnvironment } from 'vxrn'
+import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
-import { resolvePath } from '@vxrn/resolve'
 import { clientTreeShakePlugin } from './clientTreeShakePlugin'
 import { createFileSystemRouter } from './createFileSystemRouter'
 import { ensureTSConfig } from './ensureTsConfig'
@@ -126,16 +127,20 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         return {
           define: {
             ...(options.web?.defaultRenderMode && {
-              'process.env.One_DEFAULT_RENDER_MODE': JSON.stringify(options.web.defaultRenderMode),
+              'process.env.ONE_DEFAULT_RENDER_MODE': JSON.stringify(options.web.defaultRenderMode),
+              'import.meta.env.ONE_DEFAULT_RENDER_MODE': JSON.stringify(
+                options.web.defaultRenderMode
+              ),
             }),
 
             ...(options.setupFile && {
-              'process.env.One_SETUP_FILE': JSON.stringify(options.setupFile),
+              'process.env.ONE_SETUP_FILE': JSON.stringify(options.setupFile),
             }),
 
             ...(process.env.NODE_ENV !== 'production' &&
               vxrnOptions && {
                 'process.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
+                'import.meta.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
               }),
           },
 
@@ -143,12 +148,28 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             client: {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"client"',
+                'import.meta.env.VITE_ENVIRONMENT': '"client"',
               },
             },
 
             ssr: {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"ssr"',
+                'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
+              },
+            },
+
+            ios: {
+              define: {
+                'process.env.VITE_ENVIRONMENT': '"ios"',
+                'import.meta.env.VITE_ENVIRONMENT': '"ios"',
+              },
+            },
+
+            android: {
+              define: {
+                'process.env.VITE_ENVIRONMENT': '"android"',
+                'import.meta.env.VITE_ENVIRONMENT': '"android"',
               },
             },
           },
@@ -232,7 +253,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     }),
 
     {
-      name: 'define-app-key',
+      name: 'one-define-environment',
       config() {
         if (!options.app?.key) {
           return
@@ -240,14 +261,18 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
         return {
           define: {
-            'process.env.One_APP_NAME': JSON.stringify(options.app.key),
+            'process.env.ONE_APP_NAME': JSON.stringify(options.app.key),
+            'import.meta.env.ONE_APP_NAME': JSON.stringify(options.app.key),
+
+            'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
+            'import.meta.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
           },
         }
       },
     } satisfies Plugin,
 
     {
-      name: 'use-react-18-for-native',
+      name: 'one-use-react-18-for-native',
       enforce: 'pre',
 
       async config() {
@@ -275,7 +300,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin,
 
     {
-      name: 'optimize-deps-load-web-extensions',
+      name: 'one-optimize-deps-load-web-extensions',
       enforce: 'pre',
 
       applyToEnvironment(environment) {

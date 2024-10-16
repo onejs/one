@@ -12,7 +12,7 @@ export function vitePluginSsrCss(pluginOpts: { entries: string[] }): Plugin {
   const virtualHref = '/@id/__x00__' + VIRTUAL_ENTRY
 
   return {
-    name: `vite-plugin-ssr-css`,
+    name: `one-plugin-ssr-css`,
     apply: 'serve',
     configureServer(server_) {
       server = server_
