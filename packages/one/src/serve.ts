@@ -90,6 +90,15 @@ async function oneServe(
   const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
   for (const route of builtRoutes) {
     routeToBuildInfo[route.cleanPath] = route
+
+    // temp - make it back into brackets style
+    const bracketRoutePath = route.cleanPath
+      .split('/')
+      .map((part) => {
+        return part[0] === ':' ? `[${part.slice(1)}]` : part
+      })
+      .join('/')
+    routeToBuildInfo[bracketRoutePath] = route
   }
 
   const serverOptions = {
