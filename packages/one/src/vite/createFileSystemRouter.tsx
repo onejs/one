@@ -173,7 +173,7 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
   }
 
   return {
-    name: `router-fs`,
+    name: `one-router-fs`,
     enforce: 'post',
     apply: 'serve',
 
