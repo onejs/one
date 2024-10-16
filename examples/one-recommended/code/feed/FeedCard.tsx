@@ -31,7 +31,9 @@ const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
 }
 
 export const FeedCard = (props: FeedItem) => {
-  if (!props.user) return null
+  if (!props.user) {
+    return null
+  }
 
   const content = (
     <Card tag="a">
