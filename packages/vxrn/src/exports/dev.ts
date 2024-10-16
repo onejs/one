@@ -97,6 +97,16 @@ export const dev = async (optionsIn: DevOptions) => {
       const query = getQuery(e)
       if (typeof query.file === 'string') {
         const source = hotUpdateCache.get(query.file)
+
+        if (!source) {
+          console.warn(`No hot source found for`, query.file)
+          return new Response('', {
+            headers: {
+              'content-type': 'text/javascript',
+            },
+          })
+        }
+
         return new Response(source, {
           headers: {
             'content-type': 'text/javascript',

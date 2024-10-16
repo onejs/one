@@ -99,9 +99,7 @@ function setupWebSocket(protocol: string, hostAndPath: string, onCloseWithoutOpe
 
   // Listen for messages
   socket.addEventListener('message', ({ data }) => {
-    if (process.env.DEBUG) {
-      console.info(' 🤖 ' + data.type)
-    }
+    console.info(' ❶ hmr ', data)
     handleMessage(JSON.parse(data))
   })
 
@@ -332,10 +330,19 @@ function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function fetchUpdate({ path, acceptedPath, timestamp, explicitImportRequired }: Update) {
+async function fetchUpdate({
+  path: pathIn,
+  acceptedPath: acceptedPathIn,
+  timestamp,
+  explicitImportRequired,
+}: Update) {
+  const path = pathIn.replace('/@id', '')
+  const acceptedPath = acceptedPathIn.replace('/@id', '')
+
   const mod = hotModulesMap.get(path)
 
   if (!mod) {
+    console.info(` ❶ hmr - No module found`)
     // In a code-splitting project,
     // it is common that the hot-updating module is not loaded yet.
     // https://github.com/vitejs/vite/issues/721
@@ -363,7 +370,7 @@ async function fetchUpdate({ path, acceptedPath, timestamp, explicitImportRequir
         `http://${rnDevServerHost ? rnDevServerHost + '/' : serverHost.replace('5173', '8081')}` +
         finalQuery
 
-      console.info(`fetching update: ${scriptUrl}`)
+      console.info(` ❶ hmr fetching update: ${scriptUrl}`)
 
       const source = await fetch(scriptUrl).then((res) => res.text())
 
@@ -374,6 +381,10 @@ async function fetchUpdate({ path, acceptedPath, timestamp, explicitImportRequir
     } catch (e) {
       warnFailedFetch(e as any, acceptedPath)
     }
+  } else {
+    console.info(
+      ` ❶ hmr can't accept - isSelfUpdate ${isSelfUpdate} - callbacks: ${JSON.stringify(mod.callbacks)} - acceptedPath: ${acceptedPath}`
+    )
   }
 
   return () => {
@@ -452,6 +463,7 @@ globalThis['createHotContext'] = function createHotContext(ownerPath: string): V
       deps,
       fn: callback,
     })
+    console.info(` ❶ hmr - setting ${ownerPath}`)
     hotModulesMap.set(ownerPath, mod)
   }
 

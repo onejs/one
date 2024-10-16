@@ -91,7 +91,7 @@ export function useLoader<
         try {
           const response = await (async () => {
             if (isNative) {
-              const nativeLoaderJSUrl = `${loaderJSUrl}&platform=ios` /* TODO: platform */
+              const nativeLoaderJSUrl = `${loaderJSUrl}?platform=ios` /* TODO: platform */
 
               try {
                 // On native, we need to fetch the loader code and eval it

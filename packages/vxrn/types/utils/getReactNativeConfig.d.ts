@@ -44,7 +44,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
         };
     };
 }>;
-export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig, "worker" | "dev" | "plugins" | "css" | "assetsInclude" | "optimizeDeps" | "build" | "environments"> & {
+export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig, "worker" | "dev" | "build" | "plugins" | "css" | "assetsInclude" | "optimizeDeps" | "environments"> & {
     configFile: string | undefined;
     configFileDependencies: string[];
     inlineConfig: InlineConfig;

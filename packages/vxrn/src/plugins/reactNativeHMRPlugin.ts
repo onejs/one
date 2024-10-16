@@ -57,7 +57,11 @@ export function reactNativeHMRPlugin({
         const [module] = modules
         if (!module) return
 
-        const id = module?.url || file.replace(root, '')
+        let id = (module?.url || file.replace(root, '')).replace('/@id', '')
+        if (id[0] !== '/') {
+          id = `/${id}`
+        }
+
         if (isAssetFile(id)) {
           // TODO: Handle asset updates.
           return
@@ -86,7 +90,9 @@ export function reactNativeHMRPlugin({
           )(
             environment,
             filterPluginsForNative(environment.plugins, { isNative: true }).filter(
-              (p) => p.name !== 'vite:import-analysis' /* will cause `ERR_OUTDATED_OPTIMIZED_DEP` error */
+              (p) =>
+                p.name !==
+                'vite:import-analysis' /* will cause `ERR_OUTDATED_OPTIMIZED_DEP` error */
             ),
             server.watcher
           )
@@ -189,7 +195,7 @@ export function reactNativeHMRPlugin({
           return exports })({})`
 
         if (process.env.DEBUG) {
-          console.info(`Sending hot update`, hotUpdateSource)
+          console.info(`Sending hot update`, id, hotUpdateSource)
         }
 
         hotUpdateCache.set(id, hotUpdateSource)
