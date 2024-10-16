@@ -1,5 +1,5 @@
 import { getPathFromLoaderPath } from './cleanUrl'
-import { LOADER_JS_POSTFIX } from './constants'
+import { LOADER_JS_POSTFIX, LOADER_JS_POSTFIX_UNCACHED } from './constants'
 import type { RouteInfo } from './server/createRoutesManifest'
 import { isResponse } from './utils/isResponse'
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
@@ -100,7 +100,7 @@ export function createHandleRequest(
       }
 
       if (handlers.handleLoader) {
-        const isClientRequestingNewRoute = pathname.endsWith(LOADER_JS_POSTFIX)
+        const isClientRequestingNewRoute = pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)
 
         if (isClientRequestingNewRoute) {
           const originalUrl = getPathFromLoaderPath(pathname)

@@ -1,4 +1,9 @@
-import { isNative, LOADER_JS_POSTFIX, PRELOAD_JS_POSTFIX } from './constants'
+import {
+  isNative,
+  LOADER_JS_POSTFIX,
+  LOADER_JS_POSTFIX_UNCACHED,
+  PRELOAD_JS_POSTFIX,
+} from './constants'
 import { getURL } from './getURL'
 import { removeSearch } from './utils/removeSearch'
 
@@ -31,12 +36,13 @@ export function getLoaderPath(
     'http://example.com' /* not important, just for `new URL()` to work */
   )
 
-  return `${baseURL}${devPath}/assets/${cleanUrl(currentPathUrl.pathname.slice(1))}${LOADER_JS_POSTFIX}${currentPathUrl.search}`
+  return `${baseURL}${devPath}/assets/${cleanUrl(currentPathUrl.pathname.slice(1))}${LOADER_JS_POSTFIX}`
 }
 
 export function getPathFromLoaderPath(loaderPath: string) {
   return loaderPath
-    .replace(LOADER_JS_POSTFIX, '')
+    .replace(LOADER_JS_POSTFIX_UNCACHED, '')
+    .replace(/_\d+/, '')
     .replace(/^(\/_one)?\/assets/, '')
     .replaceAll(/_/g, '/')
 }
