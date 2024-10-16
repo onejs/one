@@ -1,7 +1,11 @@
 import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import type { InlineConfig } from 'vite'
+import FSExtra from 'fs-extra'
 import { webExtensions } from '../constants'
 import { resolvePath } from '@vxrn/resolve'
+import { scanDepsToPreBundleForSsr } from './scanDepsToPreBundleForSsr'
+import { getFileHash, lookupFile } from './utils'
+import path from 'node:path'
 
 // essentially base web config not base everything
 
@@ -22,12 +26,61 @@ export const dedupe = [
   'expo-modules-core',
 ]
 
-export function getBaseViteConfig({ mode }: { mode: 'development' | 'production' }): InlineConfig {
+export async function getBaseViteConfig({
+  mode,
+  root,
+  noCache,
+}: { mode: 'development' | 'production'; root: string; noCache?: boolean }): Promise<InlineConfig> {
+  const lockFile = await lookupFile(root, [
+    'yarn.lock',
+    'package-lock.json',
+    'pnpm-lock.yaml',
+    'bun.lockb',
+  ])
+  const lockFileHash = lockFile ? await getFileHash(lockFile) : undefined
+
+  const noExternalDepsForSsrCacheFilePath = path.join(
+    root,
+    'node_modules',
+    '.vxrn',
+    'deps-to-pre-bundle-for-ssr-cache.json'
+  )
+
+  let depsToPreBundleForSsr: string[] | undefined = undefined
+  if (lockFileHash && !noCache) {
+    try {
+      const { lockFileHash: cachedLockFileHash, depsToPreBundleForSsr: cachedDepsToPreBundle } =
+        await FSExtra.readJSON(noExternalDepsForSsrCacheFilePath)
+
+      if (lockFileHash === cachedLockFileHash && Array.isArray(cachedDepsToPreBundle)) {
+        depsToPreBundleForSsr = cachedDepsToPreBundle
+      }
+    } catch {}
+  }
+
+  if (!depsToPreBundleForSsr) {
+    depsToPreBundleForSsr = await scanDepsToPreBundleForSsr(`${root}/package.json`)
+
+    if (!noCache) {
+      // no need to wait for this
+      FSExtra.outputJSON(noExternalDepsForSsrCacheFilePath, {
+        lockFileHash,
+        depsToPreBundleForSsr,
+      })
+    }
+  }
+
   return {
     mode,
 
     // we load the config ourselves
     configFile: false,
+
+    ssr: {
+      optimizeDeps: {
+        include: depsToPreBundleForSsr,
+      },
+    },
 
     plugins: [
       {
