@@ -14,7 +14,7 @@ export type TestInfo = {
 
 const execAsync = promisify(exec)
 
-const waitForServer = (url: string, maxRetries = 30, retryInterval = 1000): Promise<void> => {
+const waitForServer = (url: string, { maxRetries = 30, retryInterval = 1000, getServerOutput = () => '' }): Promise<void> => {
   const startedAt = performance.now()
   return new Promise((resolve, reject) => {
     let retries = 0
@@ -29,7 +29,7 @@ const waitForServer = (url: string, maxRetries = 30, retryInterval = 1000): Prom
         }
       } catch (error) {
         if (retries >= maxRetries) {
-          reject(new Error(`Server at ${url} did not start within the expected time (timeout after waiting for ${Math.round(performance.now() - startedAt)}ms)`))
+          reject(new Error(`Server at ${url} did not start within the expected time (timeout after waiting for ${Math.round(performance.now() - startedAt)}ms).\nLogs:\n${getServerOutput()}`))
         } else {
           retries++
           setTimeout(checkServer, retryInterval)
@@ -86,6 +86,13 @@ export default async () => {
       cwd: fixtureDir,
       env: { ...process.env },
     })
+    let devServerOutput = ''
+    devServer.stdout?.on('data', (data) => {
+      devServerOutput += data.toString();
+    });
+    devServer.stderr?.on('data', (data) => {
+      devServerOutput += data.toString();
+    });
 
     // Start prod server
     console.info(`Starting a prod server on http://localhost:${prodPort}`)
@@ -96,11 +103,18 @@ export default async () => {
         ONE_SERVER_URL: `http://localhost:${prodPort}`,
       },
     })
+    let prodServerOutput = ''
+    prodServer.stdout?.on('data', (data) => {
+      prodServerOutput += data.toString();
+    });
+    prodServer.stderr?.on('data', (data) => {
+      prodServerOutput += data.toString();
+    });
 
     // Wait for both servers to be ready
     await Promise.all([
-      waitForServer(`http://localhost:${devPort}`),
-      waitForServer(`http://localhost:${prodPort}`),
+      waitForServer(`http://localhost:${devPort}`, { getServerOutput: () => devServerOutput }),
+      waitForServer(`http://localhost:${prodPort}`, { getServerOutput: () => prodServerOutput }),
     ])
 
     console.info('Both dev and prod servers are running.🎉 \n')
