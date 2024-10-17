@@ -131,14 +131,14 @@ async function oneServe(
               return await import(apiFile)
             } catch (err) {
               console.error(`\n [one] Error importing API route at ${apiFile}:
-       
+
   ${err}
 
   If this is an import error, you can likely fix this by adding this dependency to
   the "optimizeDeps.include" array in your vite.config.ts.
 
   🐞 For a better error message run "node" and enter:
-  
+
   import('${apiFile}')\n\n`)
               return {}
             }
@@ -216,6 +216,9 @@ async function oneServe(
         if (isResponse(response)) {
           if (isStatusRedirect(response.status)) {
             const location = `${response.headers.get('location') || ''}`
+            response.headers.forEach((value, key) => {
+              context.header(key, value)
+            })
             return context.redirect(location, response.status)
           }
 
