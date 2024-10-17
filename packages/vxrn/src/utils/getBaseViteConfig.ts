@@ -58,17 +58,17 @@ export async function getBaseViteConfig({
     } catch {}
   }
 
-  if (!depsToPreBundleForSsr) {
-    depsToPreBundleForSsr = await scanDepsToPreBundleForSsr(`${root}/package.json`)
+  // if (!depsToPreBundleForSsr) {
+  //   depsToPreBundleForSsr = await scanDepsToPreBundleForSsr(`${root}/package.json`)
 
-    if (!noCache) {
-      // no need to wait for this
-      FSExtra.outputJSON(noExternalDepsForSsrCacheFilePath, {
-        lockFileHash,
-        depsToPreBundleForSsr,
-      })
-    }
-  }
+  //   if (!noCache) {
+  //     // no need to wait for this
+  //     FSExtra.outputJSON(noExternalDepsForSsrCacheFilePath, {
+  //       lockFileHash,
+  //       depsToPreBundleForSsr,
+  //     })
+  //   }
+  // }
 
   return {
     mode,
@@ -78,7 +78,7 @@ export async function getBaseViteConfig({
 
     ssr: {
       optimizeDeps: {
-        include: depsToPreBundleForSsr,
+        // include: depsToPreBundleForSsr,
         exclude: ['fsevents', 'lightningcss'],
       },
     },
