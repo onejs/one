@@ -17010,6 +17010,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"onestack-example@workspace:examples/one-user-header-example":
+  version: 0.0.0-use.local
+  resolution: "onestack-example@workspace:examples/one-user-header-example"
+  dependencies:
+    expo: "npm:~51.0.28"
+    one: "npm:1.1.316"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.5"
+    react-native-safe-area-context: "npm:4.10.5"
+    react-native-screens: "npm:3.31.1"
+    react-native-web: "npm:^0.19.12"
+    vite: "npm:6.0.0-beta.1"
+  languageName: unknown
+  linkType: soft
+
 "onetime@npm:^2.0.0":
   version: 2.0.1
   resolution: "onetime@npm:2.0.1"
