@@ -37,8 +37,14 @@ jobs:
       - name: Build vxrn
         run: cd packages/vxrn && yarn build
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      # @zetavg: `yarn build:web` run by `packages/one/test/setup.ts` seems to not
+      # writing the output to `tests/test/dist` as expected even though it exits with 0
+      # and have a normal output. IDK why. So running it here also as a workaround.
+      # See: https://discord.com/channels/909986013848412191/1293586892201132143/1296556971113185382
+      - name: Build test app
+        run: |
+          cd tests/test
+          yarn build:web
 
       - name: Test
         run: yarn test
