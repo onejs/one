@@ -15,12 +15,14 @@ export type TestInfo = {
 const execAsync = promisify(exec)
 
 const waitForServer = (url: string, maxRetries = 30, retryInterval = 1000): Promise<void> => {
+  const startedAt = performance.now()
   return new Promise((resolve, reject) => {
     let retries = 0
     const checkServer = async () => {
       try {
         const response = await fetch(url)
         if (response.ok) {
+          console.info(`Server at ${url} is ready after ${Math.round(performance.now() - startedAt)}ms`)
           resolve()
         } else {
           throw new Error('Server not ready')
@@ -54,6 +56,7 @@ export default async () => {
   try {
     // Run prod build using spawn
     console.info('Starting a prod build.')
+    const prodBuildStartedAt = performance.now()
     buildProcess = spawn('yarn', ['build:web'], {
       cwd: fixtureDir,
       env: {
@@ -66,10 +69,10 @@ export default async () => {
     await new Promise<void>((resolve, reject) => {
       buildProcess!.on('exit', (code) => {
         if (code === 0) {
-          console.info('Prod build completed successfully.')
+          console.info(`Prod build completed successfully after ${Math.round(performance.now() - prodBuildStartedAt)}ms`)
           resolve()
         } else {
-          reject(new Error(`Build process exited with code ${code}`))
+          reject(new Error(`Build process exited with code ${code} after ${Math.round(performance.now() - prodBuildStartedAt)}ms`))
         }
       })
       buildProcess!.on('error', reject)
