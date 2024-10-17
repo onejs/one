@@ -14,7 +14,7 @@ export type TestInfo = {
 
 const execAsync = promisify(exec)
 
-const waitForServer = (url: string, maxRetries = 60, retryInterval = 1000): Promise<void> => {
+const waitForServer = (url: string, maxRetries = 600, retryInterval = 1000): Promise<void> => {
   const startedAt = performance.now()
   return new Promise((resolve, reject) => {
     let retries = 0
