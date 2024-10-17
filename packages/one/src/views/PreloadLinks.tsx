@@ -15,7 +15,7 @@ export function PreloadLinks() {
         (e) => {
           let target = e.target
           if (!(target instanceof HTMLElement)) return
-          target = target instanceof HTMLAnchorElement ? target : target.parentElement
+          target = target instanceof HTMLAnchorElement ? target : target.closest('a')
           if (!(target instanceof HTMLAnchorElement)) return
           const href = target.getAttribute('href')
           if (href?.[0] === '/' || href?.[0].startsWith(url)) {
