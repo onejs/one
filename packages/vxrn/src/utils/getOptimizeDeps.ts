@@ -82,8 +82,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'filter-obj',
     'scheduler',
     'warn-once',
-    'react-query',
-    '@tanstack/react-query',
     '@radix-ui/react-compose-refs',
     '@radix-ui/react-slot',
     'expo-splash-screen',
