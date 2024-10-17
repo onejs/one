@@ -22,10 +22,8 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
 
   // TODO: can we move most of this into `one` plugin:
   let serverConfig: UserConfig = mergeConfig(
-    await getBaseViteConfig({
+    getBaseViteConfig({
       mode: config.mode,
-      root,
-      noCache: config.clean,
     }),
 
     {

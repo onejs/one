@@ -75,10 +75,8 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   const { optimizeDeps } = getOptimizeDeps('build')
 
   let webBuildConfig = mergeConfig(
-    await getBaseViteConfig({
+    getBaseViteConfig({
       mode: 'production',
-      root: options.root,
-      noCache: true,
     }),
     {
       plugins: globalThis.__vxrnAddWebPluginsProd,
