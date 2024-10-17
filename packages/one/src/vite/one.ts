@@ -3,7 +3,13 @@ import events from 'node:events'
 import path, { dirname, resolve } from 'node:path'
 import { type Plugin, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { getOptimizeDeps, getOptionsFilled, isWebEnvironment, loadEnv } from 'vxrn'
+import {
+  autoPreBundleDepsForSsrPlugin,
+  getOptimizeDeps,
+  getOptionsFilled,
+  isWebEnvironment,
+  loadEnv,
+} from 'vxrn'
 import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
@@ -55,6 +61,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         }
       },
     },
+
+    ...(options.ssr?.disableAutoDepsPreBundling
+      ? []
+      : [
+          autoPreBundleDepsForSsrPlugin({
+            root: vxrnOptions?.root || process.cwd(),
+          }),
+        ]),
 
     // proxy because you cant add a plugin inside a plugin
     new Proxy(
@@ -265,10 +279,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         return {
           define: {
-            ...options.app?.key && {
+            ...(options.app?.key && {
               'process.env.ONE_APP_NAME': JSON.stringify(options.app.key),
               'import.meta.env.ONE_APP_NAME': JSON.stringify(options.app.key),
-            },
+            }),
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
             'import.meta.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),

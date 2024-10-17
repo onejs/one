@@ -123,6 +123,13 @@ export namespace One {
     deps?: FixDependencies
 
     afterBuild?: (props: AfterBuildProps) => void | Promise<void>
+
+    ssr?: {
+      /**
+       * Do not automatically scan for dependencies to pre-bundle for SSR.
+       */
+      disableAutoDepsPreBundling?: boolean
+    }
   }
 
   export interface RouteContext {
