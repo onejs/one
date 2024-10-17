@@ -42,6 +42,7 @@ export async function scanDepsToPreBundleForSsr(
     pkgJsonContent?: any
   } = {}
 ): Promise<string[]> {
+  console.log(`scan ${packageJsonPath}, parentDepNames: ${JSON.stringify(parentDepNames)}`)
   const isRoot = parentDepNames.length === 0
   const currentRoot = path.dirname(packageJsonPath)
 
