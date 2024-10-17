@@ -301,6 +301,16 @@ export const dev = async (optionsIn: DevOptions) => {
       createProxyEventHandler({
         target: `${server.protocol}//${server.host}:${vitePort}`,
         enableLogger: process.env.DEBUG?.startsWith('vxrn'),
+        configureProxyRequest(event) {
+          return {
+            fetchOptions: {
+              // h3 proxy is using `fetch` internally (https://github.com/unjs/h3/blob/v1.11.1/src/utils/proxy.ts#L84-L88) and by default it will follow redirects.
+              // This will cause unexpected behavior when the target server returns a 3xx response, which the client will not get the 3xx response but instead get the content of the redirected URL as proxied.
+              // See: https://github.com/onejs/one/issues/156#issuecomment-2412876573
+              redirect: 'manual',
+            },
+          }
+        },
       })
     )
   )
