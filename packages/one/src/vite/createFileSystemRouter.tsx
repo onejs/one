@@ -304,6 +304,18 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
             }
 
             if (typeof reply !== 'string' && isResponse(reply)) {
+              reply.headers.forEach((value, key) => {
+                if (key === 'set-cookie') {
+                  // for some reason it wasnt doing working without this?
+                  const cookies = value.split(', ')
+                  for (const cookie of cookies) {
+                    res.appendHeader('Set-Cookie', cookie)
+                  }
+                } else {
+                  res.setHeader(key, value)
+                }
+              })
+
               if (isStatusRedirect(reply.status)) {
                 const location = `${reply.headers.get('location') || ''}`
                 console.info(` ↦ Redirect ${location}`)
@@ -319,18 +331,6 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
 
               res.statusCode = reply.status
               res.statusMessage = reply.statusText
-
-              reply.headers.forEach((value, key) => {
-                if (key === 'set-cookie') {
-                  // for some reason it wasnt doing working without this?
-                  const cookies = value.split(', ')
-                  for (const cookie of cookies) {
-                    res.appendHeader('Set-Cookie', cookie)
-                  }
-                } else {
-                  res.setHeader(key, value)
-                }
-              })
 
               let outString = ''
 
