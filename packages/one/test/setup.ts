@@ -29,7 +29,7 @@ const waitForServer = (url: string, maxRetries = 600, retryInterval = 1000): Pro
         }
       } catch (error) {
         if (retries >= maxRetries) {
-          reject(new Error(`Server at ${url} did not start within the expected time`))
+          reject(new Error(`Server at ${url} did not start within the expected time (timeout after waiting for ${Math.round(performance.now() - startedAt)}ms)`))
         } else {
           retries++
           setTimeout(checkServer, retryInterval)
