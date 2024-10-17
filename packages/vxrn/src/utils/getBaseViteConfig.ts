@@ -79,7 +79,21 @@ export async function getBaseViteConfig({
     ssr: {
       optimizeDeps: {
         // include: depsToPreBundleForSsr,
-        exclude: ['fsevents', 'lightningcss'],
+        exclude: [
+          'fsevents',
+          '@swc/core',
+          'swc/core-darwin-arm64',
+          'swc/core-darwin-x64',
+          'swc/core-linux-arm-gnueabihf',
+          'swc/core-linux-arm64-gnu',
+          'swc/core-linux-arm64-musl',
+          'swc/core-linux-x64-gnu',
+          'swc/core-linux-x64-musl',
+          'swc/core-win32-arm64-msvc',
+          'swc/core-win32-ia32-msvc',
+          'swc/core-win32-x64-msvc',
+          'lightningcss',
+        ],
       },
     },
 
