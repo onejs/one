@@ -263,14 +263,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     {
       name: 'one-define-environment',
       config() {
-        if (!options.app?.key) {
-          return
-        }
-
         return {
           define: {
-            'process.env.ONE_APP_NAME': JSON.stringify(options.app.key),
-            'import.meta.env.ONE_APP_NAME': JSON.stringify(options.app.key),
+            ...options.app?.key && {
+              'process.env.ONE_APP_NAME': JSON.stringify(options.app.key),
+              'import.meta.env.ONE_APP_NAME': JSON.stringify(options.app.key),
+            },
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
             'import.meta.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
