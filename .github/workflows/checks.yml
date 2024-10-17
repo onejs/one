@@ -37,8 +37,8 @@ jobs:
       - name: Build vxrn
         run: cd packages/vxrn && yarn build
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
 
       - name: Test
         run: yarn test
