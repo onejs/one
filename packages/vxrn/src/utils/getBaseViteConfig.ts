@@ -79,6 +79,7 @@ export async function getBaseViteConfig({
     ssr: {
       optimizeDeps: {
         include: depsToPreBundleForSsr,
+        exclude: ['fsevents', 'lightningcss'],
       },
     },
 
