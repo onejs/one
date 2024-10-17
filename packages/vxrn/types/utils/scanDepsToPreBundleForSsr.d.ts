@@ -25,7 +25,7 @@
  */
 export declare function scanDepsToPreBundleForSsr(packageJsonPath: string, { parentDepNames, proceededDeps, pkgJsonContent, }?: {
     parentDepNames?: string[];
-    proceededDeps?: Set<string>;
+    proceededDeps?: Map<string, string[]>;
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
     pkgJsonContent?: any;
 }): Promise<string[]>;

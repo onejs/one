@@ -3,8 +3,6 @@ import path from 'node:path'
 import FSExtra from 'fs-extra'
 
 const EXCLUDE_LIST = new Set(['react-native'])
-/** Some packages that will fail to pre-bundle. */
-const DEPS_WILL_FAIL_TO_BUNDLE_LIST = new Set(['fsevents', 'lightningcss'])
 
 /**
  * Since:
@@ -35,11 +33,11 @@ export async function scanDepsToPreBundleForSsr(
   packageJsonPath: string,
   {
     parentDepNames = [],
-    proceededDeps = new Set<string>(),
+    proceededDeps = new Map(),
     pkgJsonContent,
   }: {
     parentDepNames?: string[]
-    proceededDeps?: Set<string>
+    proceededDeps?: Map<string, string[]>
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
     pkgJsonContent?: any
   } = {}
@@ -60,47 +58,40 @@ export async function scanDepsToPreBundleForSsr(
         if (parentDepNames.includes(dep)) {
           return []
         }
-        // skip already proceeded deps
-        if (proceededDeps.has(dep)) {
-          return []
+        const cachedResult = proceededDeps.get(dep)
+        if (cachedResult) {
+          return cachedResult
         }
         if (EXCLUDE_LIST.has(dep)) {
           return []
         }
-        if (!isRoot && DEPS_WILL_FAIL_TO_BUNDLE_LIST.has(dep)) {
-          throw new Error('DO_NOT_PRE_BUNDLE')
-        }
-
-        proceededDeps.add(dep)
 
         const depPkgJsonPath = await findDepPkgJsonPath(dep, currentRoot)
         if (!depPkgJsonPath) return []
 
         const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
 
-        try {
-          const subDepsToPreBundle = await scanDepsToPreBundleForSsr(depPkgJsonPath, {
-            parentDepNames: [...parentDepNames, dep],
-            pkgJsonContent: depPkgJson,
-            proceededDeps,
-          })
+        const subDepsToPreBundle = await scanDepsToPreBundleForSsr(depPkgJsonPath, {
+          parentDepNames: [...parentDepNames, dep],
+          pkgJsonContent: depPkgJson,
+          proceededDeps,
+        })
 
-          const shouldPreBundle =
-            subDepsToPreBundle.length >
-              0 /* If this dep is depending on other deps that need pre-bundling, then also pre-bundle this dep */ ||
-            depPkgJson.dependencies?.react ||
-            depPkgJson.peerDependencies?.react
+        const shouldPreBundle =
+          subDepsToPreBundle.length >
+            0 /* If this dep is depending on other deps that need pre-bundling, then also pre-bundle this dep */ ||
+          depPkgJson.dependencies?.react ||
+          (depPkgJson.peerDependencies?.react && !depPkgJson.peerDependenciesMeta?.react?.optional)
 
-          return [...(shouldPreBundle ? [dep] : []), ...subDepsToPreBundle]
-        } catch (e) {
-          if (e instanceof Error && e.message === 'DO_NOT_PRE_BUNDLE') {
-            return []
-          }
-          return [] // TODO: handle other errors
-        }
+        const result = [...(shouldPreBundle ? [dep] : []), ...subDepsToPreBundle]
+
+        proceededDeps.set(dep, result)
+        return result
       })
     )
-  ).flat()
+  )
+    .flat()
+    .filter((dep, index, arr) => arr.indexOf(dep) === index)
 }
 
 async function readPackageJsonSafe(packageJsonPath: string) {
