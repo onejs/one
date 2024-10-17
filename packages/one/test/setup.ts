@@ -82,7 +82,7 @@ export default async () => {
 
     // Start dev server
     console.info(`Starting a dev server on http://localhost:${devPort}`)
-    devServer = exec(`yarn dev --port ${devPort}`, {
+    devServer = exec(`yarn dev --port ${devPort} --clean`, {
       cwd: fixtureDir,
       env: { ...process.env },
     })
