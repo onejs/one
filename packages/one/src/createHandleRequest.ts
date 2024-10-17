@@ -208,7 +208,6 @@ function getLoaderParams(
 ) {
   const params: Record<string, string> = {}
   const match = new RegExp(config.workingRegex).exec(url.pathname)
-  console.log('getting loader params', url)
   if (match?.groups) {
     for (const [key, value] of Object.entries(match.groups)) {
       const namedKey = config.routeKeys[key]

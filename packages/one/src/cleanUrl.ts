@@ -2,7 +2,6 @@ import {
   isNative,
   LOADER_JS_POSTFIX,
   LOADER_JS_POSTFIX_REGEX,
-  LOADER_JS_POSTFIX_UNCACHED,
   PRELOAD_JS_POSTFIX,
 } from './constants'
 import { getURL } from './getURL'
