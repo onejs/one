@@ -15,5 +15,6 @@ export * from './utils/environmentUtils'
 export * from './utils/getServerEntry'
 
 export * from './plugins/rollupRemoveUnusedImports'
+export * from './plugins/autoPreBundleDepsForSsrPlugin'
 
 export * from './types'

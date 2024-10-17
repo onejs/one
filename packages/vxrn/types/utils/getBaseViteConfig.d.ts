@@ -1,8 +1,6 @@
 import type { InlineConfig } from 'vite';
 export declare const dedupe: string[];
-export declare function getBaseViteConfig({ mode, root, noCache, }: {
+export declare function getBaseViteConfig({ mode }: {
     mode: 'development' | 'production';
-    root: string;
-    noCache?: boolean;
-}): Promise<InlineConfig>;
+}): InlineConfig;
 //# sourceMappingURL=getBaseViteConfig.d.ts.map
