@@ -1,8 +1,17 @@
 import module from 'node:module'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
+import picocolors from 'picocolors'
 
 export async function expoRun({ root, platform }: { root: string; platform: 'ios' | 'android' }) {
+  if (platform !== 'ios') {
+    console.warn(
+      picocolors.yellow(
+        `🚧  The ${platform} platform is not supported yet, we're still working on it and you might encounter unexpected errors. Please try iOS first, if possible.`
+      )
+    )
+  }
+
   const options = await fillOptions({ root })
 
   applyBuiltInPatches(options).catch((err) => {
