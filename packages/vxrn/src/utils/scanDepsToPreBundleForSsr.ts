@@ -2,7 +2,40 @@ import { createRequire } from 'node:module'
 import path from 'node:path'
 import FSExtra from 'fs-extra'
 
-const EXCLUDE_LIST = new Set(['react-native'])
+/** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
+export const EXCLUDE_LIST = [
+  'fsevents',
+  '@swc/core',
+  '@swc/core-darwin-arm64',
+  '@swc/core-darwin-x64',
+  '@swc/core-linux-arm-gnueabihf',
+  '@swc/core-linux-arm64-gnu',
+  '@swc/core-linux-arm64-musl',
+  '@swc/core-linux-x64-gnu',
+  '@swc/core-linux-x64-musl',
+  '@swc/core-win32-arm64-msvc',
+  '@swc/core-win32-ia32-msvc',
+  '@swc/core-win32-x64-msvc',
+  'lightningcss',
+
+  '@react-native/virtualized-lists', // Unexpected "typeof" in `node_modules/@react-native/virtualized-lists/index.js`
+
+  // Native only, we don't expect SSR to use these packages.
+  // Also, some of these packages might attempt to import from react-native internals, which will break in SSR while react-native is aliased to react-native-web.
+  '@vxrn/react-native-prebuilt',
+  '@vxrn/vite-native-hmr',
+  '@vxrn/vite-native-swc',
+  '@vxrn/vite-native-client',
+]
+
+export const EXCLUDE_LIST_SET = new Set(EXCLUDE_LIST)
+
+export const INCLUDE_LIST = [
+  // ReferenceError: exports is not defined - at eval (.../node_modules/inline-style-prefixer/lib/createPrefixer.js:3:23)
+  'inline-style-prefixer',
+]
+
+export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST)
 
 /**
  * Since:
@@ -62,7 +95,7 @@ export async function scanDepsToPreBundleForSsr(
         if (cachedResult) {
           return cachedResult
         }
-        if (EXCLUDE_LIST.has(dep)) {
+        if (EXCLUDE_LIST_SET.has(dep)) {
           return []
         }
 
@@ -80,8 +113,13 @@ export async function scanDepsToPreBundleForSsr(
         const shouldPreBundle =
           subDepsToPreBundle.length >
             0 /* If this dep is depending on other deps that need pre-bundling, then also pre-bundle this dep */ ||
-          depPkgJson.dependencies?.react ||
-          (depPkgJson.peerDependencies?.react && !depPkgJson.peerDependenciesMeta?.react?.optional)
+          INCLUDE_LIST_SET.has(dep) /* If this dep is in the include list, then pre-bundle it */ ||
+          hasRequiredDep(depPkgJson, 'react') ||
+          hasRequiredDep(depPkgJson, 'react-native') ||
+          hasRequiredDep(depPkgJson, 'expo-modules-core') ||
+          // Expo deps are often ESM but without including file extensions in import paths, making it not able to run directly by Node.js, so we need to pre-bundle them.
+          dep.startsWith('@expo/') ||
+          dep.startsWith('expo-')
 
         const result = [...(shouldPreBundle ? [dep] : []), ...subDepsToPreBundle]
 
@@ -124,4 +162,16 @@ export async function findDepPkgJsonPath(dep, dependent) {
   )
 
   return undefined
+}
+
+/**
+ * Given the `package.json` content of a package and a dependency name, check if the package has the dependency as a required dependency:
+ * - If the dependency is in `dependencies`, it's a required dependency.
+ * - If the dependency is in `peerDependencies` and is not marked as optional, it's a required dependency.
+ */
+function hasRequiredDep(pkgJson: Record<string, Record<string, any> | undefined>, depName: string) {
+  return !!(
+    pkgJson.dependencies?.[depName] ||
+    (pkgJson.peerDependencies?.[depName] && !pkgJson.peerDependenciesMeta?.[depName]?.optional)
+  )
 }
