@@ -1,3 +1,8 @@
+/** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
+export declare const EXCLUDE_LIST: string[];
+export declare const EXCLUDE_LIST_SET: Set<string>;
+export declare const INCLUDE_LIST: string[];
+export declare const INCLUDE_LIST_SET: Set<string>;
 /**
  * Since:
  *

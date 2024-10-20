@@ -246,6 +246,27 @@ ${contents}
   },
 
   {
+    module: 'expo',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: 'expo-clipboard',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: '@expo/vector-icons',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
     module: '@sentry/react-native',
     patchFiles: {
       version: '>=5.6.0',
