@@ -1,7 +1,7 @@
 import path from 'node:path'
 import FSExtra from 'fs-extra'
 import type { Plugin } from 'vite'
-import { scanDepsToPreBundleForSsr } from '../utils/scanDepsToPreBundleForSsr'
+import { EXCLUDE_LIST, scanDepsToPreBundleForSsr } from '../utils/scanDepsToPreBundleForSsr'
 import { getFileHash, lookupFile } from '../utils/utils'
 
 export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
@@ -56,21 +56,7 @@ export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
           optimizeDeps: {
             include: depsToPreBundleForSsr,
             // Known packages that will fail to pre-bundle
-            exclude: [
-              'fsevents',
-              '@swc/core',
-              '@swc/core-darwin-arm64',
-              '@swc/core-darwin-x64',
-              '@swc/core-linux-arm-gnueabihf',
-              '@swc/core-linux-arm64-gnu',
-              '@swc/core-linux-arm64-musl',
-              '@swc/core-linux-x64-gnu',
-              '@swc/core-linux-x64-musl',
-              '@swc/core-win32-arm64-msvc',
-              '@swc/core-win32-ia32-msvc',
-              '@swc/core-win32-x64-msvc',
-              'lightningcss',
-            ],
+            exclude: EXCLUDE_LIST,
           },
           noExternal: depsToPreBundleForSsr,
         },
