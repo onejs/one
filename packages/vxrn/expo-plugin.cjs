@@ -14,7 +14,9 @@ const plugin = (config, options = {}) => {
     }
 
     const originalScript = JSON.parse(bundleReactNativeCodeAndImagesBuildPhase.shellScript)
-    const patchedScript = removeExpoDefaultsFromBundleReactNativeShellScript(originalScript)
+    let patchedScript = originalScript
+    patchedScript = removeExpoDefaultsFromBundleReactNativeShellScript(patchedScript)
+    patchedScript = addDepsPatchToBundleReactNativeShellScript(patchedScript)
     bundleReactNativeCodeAndImagesBuildPhase.shellScript = JSON.stringify(patchedScript)
 
     return config
@@ -47,6 +49,28 @@ function removeExpoDefaultsFromBundleReactNativeShellScript(input) {
 
   // Remove both sections from the input string
   return input.replace(cliPathRegex, '').replace(bundleCommandRegex, '')
+}
+
+/**
+ * Ensure patches are applied.
+ */
+function addDepsPatchToBundleReactNativeShellScript(input) {
+  if (input.includes('[vxrn/one] ensure patches are applied')) {
+    return input
+  }
+
+  return (
+    `
+# [vxrn/one] ensure patches are applied
+cd "$PROJECT_DIR"/..
+if [ -f node_modules/.bin/one ]; then
+  node_modules/.bin/one patch
+elif [ -f node_modules/.bin/vxrn ]; then
+  node_modules/.bin/vxrn patch
+fi
+cd -
+` + input
+  )
 }
 
 module.exports = plugin
