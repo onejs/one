@@ -190,6 +190,24 @@ const runAndroid = defineCommand({
   },
 })
 
+const patch = defineCommand({
+  meta: {
+    name: 'patch',
+    version: '0.0.0',
+    description: 'Apply package patches',
+  },
+  args: {},
+  async run() {
+    const { patch: vxrnPatch } = await import(
+      // @ts-expect-error
+      './exports/patch.mjs'
+    )
+    await vxrnPatch({
+      root: process.cwd(),
+    })
+  },
+})
+
 const clean = defineCommand({
   meta: {
     name: 'clean',
@@ -222,6 +240,7 @@ const main = defineCommand({
     runIos,
     runAndroid,
     clean,
+    patch,
   },
 })
 

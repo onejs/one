@@ -183,6 +183,19 @@ const clean = defineCommand({
   },
 })
 
+const patch = defineCommand({
+  meta: {
+    name: 'patch',
+    version: '0.0.0',
+    description: 'Apply package patches',
+  },
+  args: {},
+  async run({ args }) {
+    const { run } = await import('./cli/patch')
+    await run(args)
+  },
+})
+
 const subCommands = {
   dev,
   clean,
@@ -190,6 +203,7 @@ const subCommands = {
   prebuild,
   'run:ios': runIos,
   'run:android': runAndroid,
+  patch,
   serve: serveCommand,
 }
 
