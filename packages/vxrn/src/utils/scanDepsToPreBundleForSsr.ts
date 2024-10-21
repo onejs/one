@@ -26,6 +26,9 @@ export const EXCLUDE_LIST = [
   '@vxrn/vite-native-hmr',
   '@vxrn/vite-native-swc',
   '@vxrn/vite-native-client',
+
+  // CLI shouldn't be used in SSR runtime
+  '@tamagui/cli',
 ]
 
 export const EXCLUDE_LIST_SET = new Set(EXCLUDE_LIST)
@@ -81,7 +84,6 @@ export async function scanDepsToPreBundleForSsr(
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
   const deps = [
     ...Object.keys(pkgJson.dependencies || {}),
-    ...(isRoot ? Object.keys(pkgJson.devDependencies || {}) : []),
   ]
 
   return (
