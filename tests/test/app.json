@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "One Test App",
+    "slug": "one-test-app",
+    "icon": "./assets/app-icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#000000",
+      "resizeMode": "contain"
+    },
+    "sdkVersion": "51.0.0",
+    "platforms": ["ios", "android"],
+    "plugins": ["vxrn/expo-plugin"],
+    "android": {
+      "package": "dev.onestack.dev.test"
+    },
+    "ios": {
+      "bundleIdentifier": "dev.onestack.dev.test",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    }
+  }
+}

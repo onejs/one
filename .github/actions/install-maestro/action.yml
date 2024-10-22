@@ -1,0 +1,28 @@
+name: 'Install Maestro'
+description: 'Install Maestro'
+runs:
+  using: composite
+  steps:
+    - name: Install Maestro
+      shell: bash
+      run: |
+        retries=0
+        maestro_executable_path="$HOME/.maestro/bin/maestro"
+
+        # Loop until the maestro binary exists or retries exceed the limit
+        while [ ! -f "$maestro_executable_path" ]; do
+          if [ "$retries" -gt 5 ]; then
+            echo "Error: Reached max retry limit. Unable to install maestro."
+            exit 1
+          fi
+
+          echo "Maestro not found at $maestro_executable_path. Installing..."
+
+          # Run the installation command
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+
+          # Increment retries
+          retries=$((retries + 1))
+        done
+
+        echo "Maestro installed successfully!"
