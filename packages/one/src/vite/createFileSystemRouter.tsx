@@ -94,7 +94,7 @@ export function createFileSystemRouter(options: One.PluginOptions): Plugin {
 
           return html
         } catch (err) {
-          console.error(`Error in handleSSR:`, err)
+          console.error(`SSR error while loading file ${route.file} from URL ${url.href}\n`, err)
           const title = `Error rendering ${url.pathname} on server`
           const message = err instanceof Error ? err.message : `${err}`
           const stack = err instanceof Error ? err.stack : ''
