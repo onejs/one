@@ -16,8 +16,6 @@
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
-    "ios": {
-      "bundleIdentifier": "dev.onestack.example-basic"
-    }
+    "ios": {}
   }
 }
