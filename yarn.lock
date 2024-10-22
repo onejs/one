@@ -7940,13 +7940,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.24, @types/react@npm:^18.3.11":
+"@types/react@npm:*, @types/react@npm:^18.2.24":
   version: 18.3.12
   resolution: "@types/react@npm:18.3.12"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10/c9bbdfeacd5347d2240e0d2cb5336bc57dbc1b9ff557b6c4024b49df83419e4955553518169d3736039f1b62608e15b35762a6c03d49bd86e33add4b43b19033
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.3.11":
+  version: 18.3.11
+  resolution: "@types/react@npm:18.3.11"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10/a36f0707fdfe9fe19cbe5892bcdab0f042ecadb501ea4e1c39519943f3e74cffbd31e892d3860f5c87cf33f5f223552b246a552bed0087b95954f2cb39d5cf65
   languageName: node
   linkType: hard
 
@@ -10929,100 +10939,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"drizzle-orm@npm:*":
-  version: 0.35.3
-  resolution: "drizzle-orm@npm:0.35.3"
-  peerDependencies:
-    "@aws-sdk/client-rds-data": ">=3"
-    "@cloudflare/workers-types": ">=3"
-    "@electric-sql/pglite": ">=0.1.1"
-    "@libsql/client": ">=0.10.0"
-    "@libsql/client-wasm": ">=0.10.0"
-    "@neondatabase/serverless": ">=0.1"
-    "@op-engineering/op-sqlite": ">=2"
-    "@opentelemetry/api": ^1.4.1
-    "@planetscale/database": ">=1"
-    "@prisma/client": "*"
-    "@tidbcloud/serverless": "*"
-    "@types/better-sqlite3": "*"
-    "@types/pg": "*"
-    "@types/react": ">=18"
-    "@types/sql.js": "*"
-    "@vercel/postgres": ">=0.8.0"
-    "@xata.io/client": "*"
-    better-sqlite3: ">=7"
-    bun-types: "*"
-    expo-sqlite: ">=13.2.0"
-    knex: "*"
-    kysely: "*"
-    mysql2: ">=2"
-    pg: ">=8"
-    postgres: ">=3"
-    react: ">=18"
-    sql.js: ">=1"
-    sqlite3: ">=5"
-  peerDependenciesMeta:
-    "@aws-sdk/client-rds-data":
-      optional: true
-    "@cloudflare/workers-types":
-      optional: true
-    "@electric-sql/pglite":
-      optional: true
-    "@libsql/client":
-      optional: true
-    "@neondatabase/serverless":
-      optional: true
-    "@op-engineering/op-sqlite":
-      optional: true
-    "@opentelemetry/api":
-      optional: true
-    "@planetscale/database":
-      optional: true
-    "@prisma/client":
-      optional: true
-    "@tidbcloud/serverless":
-      optional: true
-    "@types/better-sqlite3":
-      optional: true
-    "@types/pg":
-      optional: true
-    "@types/react":
-      optional: true
-    "@types/sql.js":
-      optional: true
-    "@vercel/postgres":
-      optional: true
-    "@xata.io/client":
-      optional: true
-    better-sqlite3:
-      optional: true
-    bun-types:
-      optional: true
-    expo-sqlite:
-      optional: true
-    knex:
-      optional: true
-    kysely:
-      optional: true
-    mysql2:
-      optional: true
-    pg:
-      optional: true
-    postgres:
-      optional: true
-    prisma:
-      optional: true
-    react:
-      optional: true
-    sql.js:
-      optional: true
-    sqlite3:
-      optional: true
-  checksum: 10/d91b5bb85983508e838e12f75b5463ca87b4dad31e55026dfeeeba9153226d86eb7743b8cedc0a7c8e609e2930f4b7ffff426416c4a939dd0f0e6b6c581b39f0
-  languageName: node
-  linkType: hard
-
-"drizzle-orm@npm:^0.33.0":
+"drizzle-orm@npm:*, drizzle-orm@npm:^0.33.0":
   version: 0.33.0
   resolution: "drizzle-orm@npm:0.33.0"
   peerDependencies:
@@ -12180,37 +12097,6 @@ __metadata:
     react-native-screens: "npm:3.31.1"
     react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
-    vite: "npm:^6.0.0-beta.5"
-  languageName: unknown
-  linkType: soft
-
-"example-test@workspace:tests/test":
-  version: 0.0.0-use.local
-  resolution: "example-test@workspace:tests/test"
-  dependencies:
-    "@dotenvx/dotenvx": "npm:^1.12.1"
-    "@faker-js/faker": "npm:next"
-    "@tamagui/config": "npm:^1.116.7"
-    "@tamagui/image-next": "npm:^1.116.7"
-    "@tamagui/lucide-icons": "npm:^1.116.7"
-    "@tamagui/vite-plugin": "npm:^1.116.7"
-    "@vercel/og": "npm:^0.6.3"
-    "@vxrn/color-scheme": "npm:1.1.325"
-    better-sqlite3: "npm:^11.2.1"
-    dotenv: "npm:^16.4.5"
-    drizzle-kit: "npm:^0.24.2"
-    drizzle-orm: "npm:^0.33.0"
-    one: "npm:1.1.325"
-    postgres: "npm:^3.4.4"
-    react: "npm:^18.3.1"
-    react-native: "npm:0.74.5"
-    react-native-reanimated: "npm:~3.10.1"
-    react-native-safe-area-context: "npm:4.10.5"
-    react-native-screens: "npm:3.31.1"
-    react-native-svg: "npm:15.2.0"
-    react-native-web: "npm:^0.19.12"
-    tamagui: "npm:^1.116.7"
-    tsx: "npm:^4.19.0"
     vite: "npm:^6.0.0-beta.5"
   languageName: unknown
   linkType: soft
@@ -20546,6 +20432,38 @@ __metadata:
   checksum: 10/b398e37509e64665da233502911f3b32046656a569b1814e0c9944141f0484b3e4d13985faf5c8610dff2d27c2636dd30bab55cab3d8e14080ae273131fb5754
   languageName: node
   linkType: hard
+
+"test-app@workspace:tests/test":
+  version: 0.0.0-use.local
+  resolution: "test-app@workspace:tests/test"
+  dependencies:
+    "@dotenvx/dotenvx": "npm:^1.12.1"
+    "@faker-js/faker": "npm:next"
+    "@tamagui/config": "npm:^1.116.7"
+    "@tamagui/image-next": "npm:^1.116.7"
+    "@tamagui/lucide-icons": "npm:^1.116.7"
+    "@tamagui/vite-plugin": "npm:^1.116.7"
+    "@vercel/og": "npm:^0.6.3"
+    "@vxrn/color-scheme": "npm:1.1.325"
+    better-sqlite3: "npm:^11.2.1"
+    dotenv: "npm:^16.4.5"
+    drizzle-kit: "npm:^0.24.2"
+    drizzle-orm: "npm:^0.33.0"
+    expo: "npm:~51.0.28"
+    one: "npm:1.1.325"
+    postgres: "npm:^3.4.4"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.5"
+    react-native-reanimated: "npm:~3.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
+    react-native-screens: "npm:3.31.1"
+    react-native-svg: "npm:15.2.0"
+    react-native-web: "npm:^0.19.12"
+    tamagui: "npm:^1.116.7"
+    tsx: "npm:^4.19.0"
+    vite: "npm:^6.0.0-beta.5"
+  languageName: unknown
+  linkType: soft
 
 "test-exclude@npm:^6.0.0":
   version: 6.0.0
