@@ -30,3 +30,15 @@ tsconfig.tsbuildinfo
 .env.production.local
 
 .expo
+
+# generated code
+/build
+/ios
+/android
+
+# testing
+/xcodebuild.log
+/dev-server.pid
+/dev-server.log
+/maestro-screenshots
+/test-bundle-output
