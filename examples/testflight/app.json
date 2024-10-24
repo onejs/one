@@ -10,7 +10,17 @@
     },
     "sdkVersion": "51.0.0",
     "platforms": ["ios", "android"],
-    "plugins": ["vxrn/expo-plugin"],
+    "plugins": [
+      "vxrn/expo-plugin",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "14.0"
+          }
+        }
+      ]
+    ],
     "android": {
       "package": "dev.onestack.demo.social"
     },
