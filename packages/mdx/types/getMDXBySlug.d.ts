@@ -3,7 +3,7 @@ export declare const getMDXBySlug: (basePath: string, slug: string) => Promise<{
     frontmatter: Frontmatter;
     code: string;
 }>;
-export declare function getMDX(source: string): Promise<{
+export declare function getMDX(source: string, extraPlugins?: import('unified').Plugin[]): Promise<{
     code: string;
     frontmatter: {
         [key: string]: any;
