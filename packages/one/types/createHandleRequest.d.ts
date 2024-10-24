@@ -1,13 +1,11 @@
 import type { RouteInfo } from './server/createRoutesManifest';
+import type { LoaderProps } from './types';
 import type { One } from './vite/types';
 type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
     request: Request;
     route: RouteInfo<string> & RouteExtraProps;
     url: URL;
-    loaderProps?: {
-        path: string;
-        params: Record<string, any>;
-    };
+    loaderProps?: LoaderProps;
 };
 type RequestHandlerResponse = null | string | Response;
 export declare function createHandleRequest(options: One.PluginOptions, handlers: {

@@ -61,6 +61,10 @@ export async function loader({ path }) {
 }
 ```
 
+### request
+
+Only for [`ssr` type routes](/docs/routing-modes#ssr). This will pass the same [Web standard Request object](https://developer.mozilla.org/en-US/docs/Web/API/Request) as API routes.
+
 ## Accepted Return Types
 
 Most JavaScript values, including primitives and objects, will be converted to JSON.
