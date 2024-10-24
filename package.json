@@ -18,6 +18,7 @@
   },
   "scripts": {
     "postinstall": "node -r esbuild-register ./scripts/setup-zero.ts",
+    "hardlink": "node -r esbuild-register ./scripts/hardlink.ts",
     "setup": "node -r esbuild-register ./scripts/setup.ts",
     "site": "yarn workspace site dev",
     "site:build": "yarn workspace site build:web",
