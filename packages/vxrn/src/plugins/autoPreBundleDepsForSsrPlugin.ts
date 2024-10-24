@@ -4,7 +4,18 @@ import type { Plugin } from 'vite'
 import { EXCLUDE_LIST, scanDepsToPreBundleForSsr } from '../utils/scanDepsToPreBundleForSsr'
 import { getFileHash, lookupFile } from '../utils/utils'
 
-export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
+export function autoPreBundleDepsForSsrPlugin({
+  root,
+  disable,
+}: { root: string; disable?: boolean }) {
+  console.trace('start123')
+
+  if (disable) {
+    return {
+      name: 'vxrn:auto-pre-bundle-deps-for-ssr',
+    }
+  }
+
   return {
     name: 'vxrn:auto-pre-bundle-deps-for-ssr',
     enforce: 'pre',
