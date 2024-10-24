@@ -7,6 +7,7 @@ import {
   type ParamListBase,
   getActionFromState as getActionFromStateDefault,
   getStateFromPath as getStateFromPathDefault,
+  useNavigationIndependentTree,
 } from '@react-navigation/core'
 import type { LinkingOptions } from '@react-navigation/native'
 import * as React from 'react'
@@ -51,55 +52,52 @@ export default function useLinking(
     getActionFromState = getActionFromStateDefault,
   }: Options
 ) {
-  //   const independent = useNavigationIndependentTree();
+  const independent = useNavigationIndependentTree()
 
-  React.useEffect(
-    () => {
-      if (process.env.NODE_ENV === 'production') {
-        return undefined
+  React.useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      return undefined
+    }
+
+    if (independent) {
+      return
+    }
+
+    if (
+      // enabled !== false &&
+      linkingHandlers.length
+    ) {
+      console.error(
+        [
+          'Looks like you have configured linking in multiple places. This is likely an error since deep links should only be handled in one place to avoid conflicts. Make sure that:',
+          "- You don't have multiple NavigationContainers in the app each with 'linking' enabled",
+          '- Only a single instance of the root component is rendered',
+          Platform.OS === 'android'
+            ? "- You have set 'android:launchMode=singleTask' in the '<activity />' section of the 'AndroidManifest.xml' file to avoid launching multiple instances"
+            : '',
+        ]
+          .join('\n')
+          .trim()
+      )
+    }
+
+    const handler = Symbol()
+
+    // if (enabled !== false) {
+    linkingHandlers.push(handler)
+    // }
+
+    return () => {
+      const index = linkingHandlers.indexOf(handler)
+
+      if (index > -1) {
+        linkingHandlers.splice(index, 1)
       }
-
-      // if (independent) {
-      //   return undefined;
-      // }
-
-      if (
-        // enabled !== false &&
-        linkingHandlers.length
-      ) {
-        console.error(
-          [
-            'Looks like you have configured linking in multiple places. This is likely an error since deep links should only be handled in one place to avoid conflicts. Make sure that:',
-            "- You don't have multiple NavigationContainers in the app each with 'linking' enabled",
-            '- Only a single instance of the root component is rendered',
-            Platform.OS === 'android'
-              ? "- You have set 'android:launchMode=singleTask' in the '<activity />' section of the 'AndroidManifest.xml' file to avoid launching multiple instances"
-              : '',
-          ]
-            .join('\n')
-            .trim()
-        )
-      }
-
-      const handler = Symbol()
-
-      // if (enabled !== false) {
-      linkingHandlers.push(handler)
-      // }
-
-      return () => {
-        const index = linkingHandlers.indexOf(handler)
-
-        if (index > -1) {
-          linkingHandlers.splice(index, 1)
-        }
-      }
-    },
-    [
-      // enabled,
-      // independent
-    ]
-  )
+    }
+  }, [
+    // enabled,
+    independent,
+  ])
 
   // We store these options in ref to avoid re-creating getInitialState and re-subscribing listeners
   // This lets user avoid wrapping the items in `React.useCallback` or `React.useMemo`
