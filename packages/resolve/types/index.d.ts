@@ -1,2 +1,2 @@
-export declare const resolvePath: (path: string) => string;
+export declare const resolvePath: (path: string, from?: string) => string;
 //# sourceMappingURL=index.d.ts.map

@@ -22,7 +22,10 @@ export const dedupe = [
   'expo-modules-core',
 ]
 
-export function getBaseViteConfig({ mode }: { mode: 'development' | 'production' }): InlineConfig {
+export function getBaseViteConfig({
+  mode,
+  projectRoot,
+}: { mode: 'development' | 'production'; projectRoot: string }): InlineConfig {
   return {
     mode,
 
@@ -74,7 +77,7 @@ export function getBaseViteConfig({ mode }: { mode: 'development' | 'production'
 
     resolve: {
       alias: {
-        'react-native': resolvePath('react-native-web'),
+        'react-native': resolvePath('react-native-web', projectRoot),
         'react-native-safe-area-context': '@vxrn/safe-area',
 
         // bundle size optimizations

@@ -24,6 +24,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
   let serverConfig: UserConfig = mergeConfig(
     getBaseViteConfig({
       mode: config.mode,
+      projectRoot: root,
     }),
 
     {
