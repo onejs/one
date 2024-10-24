@@ -22,7 +22,7 @@
     "site": "yarn workspace site dev",
     "site:build": "yarn workspace site build:web",
     "site:prod": "yarn site:build && yarn site:serve",
-    "site:serve": "yarn workspace site serve",
+    "site:serve": "yarn workspace site serve --host 0.0.0.0 --port 3000",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
