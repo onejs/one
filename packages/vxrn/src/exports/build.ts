@@ -77,6 +77,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   let webBuildConfig = mergeConfig(
     getBaseViteConfig({
       mode: 'production',
+      projectRoot: options.root,
     }),
     {
       plugins: globalThis.__vxrnAddWebPluginsProd,
