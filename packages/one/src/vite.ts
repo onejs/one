@@ -4,6 +4,7 @@ export { createFileSystemRouter } from './vite/createFileSystemRouter'
 export { vitePluginSsrCss } from './vite/vitePluginSsrCss'
 export { removeReactNativeWebAnimatedPlugin } from './vite/removeReactNativeWebAnimatedPlugin'
 export { makePluginWebOnly } from './vite/makePluginWebOnly'
+export { resolvePath } from '@vxrn/resolve'
 
 export { setCurrentRequestHeaders } from './vite/headers'
 

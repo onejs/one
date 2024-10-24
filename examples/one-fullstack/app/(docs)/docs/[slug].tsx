@@ -1,12 +1,3 @@
-// import { getAllFrontmatter, getMDXBySlug } from '@tamagui/mdx'
-import { getMDXComponent } from 'mdx-bundler/client'
-import { useMemo } from 'react'
-import { H1 } from 'tamagui'
-import { useLoader } from 'one'
-import { HeadInfo } from '~/components/HeadInfo'
-import { SubTitle, nbspLastWord } from '~/components/SubTitle'
-import { components } from '~/features/mdx/MDXComponents'
-
 export async function generateStaticParams() {
   // const frontmatters = getAllFrontmatter('data/docs')
   // const paths = frontmatters.map(({ slug }) => ({

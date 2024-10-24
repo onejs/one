@@ -6,6 +6,7 @@
     "url": "https://github.com/onejs/one"
   },
   "workspaces": [
+    "./apps/*",
     "./packages/*",
     "./examples/*",
     "./tests/*"
@@ -18,11 +19,16 @@
   "scripts": {
     "postinstall": "node -r esbuild-register ./scripts/setup-zero.ts",
     "setup": "node -r esbuild-register ./scripts/setup.ts",
+    "site": "yarn workspace site dev",
+    "site:build": "yarn workspace site build:web",
+    "site:prod": "yarn site:build && yarn site:serve",
+    "site:serve": "yarn workspace site serve",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "turbo:run": "TURBO_TELEMETRY_DISABLED=1 turbo",
-    "build": "yarn turbo:run build --filter='*' --filter='!example/*'",
+    "build:js": "yarn build --no-cache --force -- --skip-types",
+    "build": "turbo run build --filter='*' --filter='!example/*'",
     "release": "node -r esbuild-register ./scripts/release.ts",
     "check": "turbo check",
     "clean:build": "yarn turbo:run clean:build",
