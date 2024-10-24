@@ -1,38 +1,40 @@
-// Forked from React Navigation in order to use a custom `useLinking` function.
-// https://github.com/react-navigation/react-navigation/blob/6.x/packages/native/src/NavigationContainer.tsx
+// Forked from React Navigation
+
 import {
   BaseNavigationContainer,
-  getActionFromState,
-  getPathFromState,
-  getStateFromPath,
+  DefaultTheme,
+  type DocumentTitleOptions,
+  LinkingContext,
+  type LinkingOptions,
+  LocaleDirContext,
+  type LocaleDirection,
   type NavigationContainerProps,
   type NavigationContainerRef,
   type ParamListBase,
-  validatePathConfig,
-} from '@react-navigation/core'
-import {
-  DefaultTheme,
-  ThemeProvider,
-  type DocumentTitleOptions,
-  type LinkingOptions,
-  LinkingContext,
   type Theme,
+  ThemeProvider,
+  getActionFromState,
+  getPathFromState,
+  getStateFromPath,
+  validatePathConfig,
 } from '@react-navigation/native'
-// import useBackButton from '@react-navigation/native/src/useBackButton'
-// import useDocumentTitle from '@react-navigation/native/src/useDocumentTitle'
-// import useThenable from '@react-navigation/native/src/useThenable'
 import * as React from 'react'
 
 import useLinking from './useLinking'
+import { I18nManager } from 'react-native'
+import { useBackButton } from './useBackButton'
+import { useDocumentTitle } from './useDocumentTitle'
+import { useThenable } from './useThenable'
 
-global.REACT_NAVIGATION_DEVTOOLS = new WeakMap()
+globalThis.REACT_NAVIGATION_DEVTOOLS = new WeakMap()
 
 type Props<ParamList extends object> = NavigationContainerProps & {
-  theme?: Theme
-  linking?: LinkingOptions<ParamList>
-  fallback?: React.ReactNode
+  direction?: LocaleDirection
   documentTitle?: DocumentTitleOptions
+  fallback?: React.ReactNode
+  linking?: LinkingOptions<ParamList>
   onReady?: () => void
+  theme?: Theme
 }
 
 /**
@@ -51,6 +53,7 @@ type Props<ParamList extends object> = NavigationContainerProps & {
  */
 function NavigationContainerInner(
   {
+    direction = I18nManager.getConstants().isRTL ? 'rtl' : 'ltr',
     theme = DefaultTheme,
     linking,
     fallback = null,
@@ -68,11 +71,10 @@ function NavigationContainerInner(
 
   const refContainer = React.useRef<NavigationContainerRef<ParamListBase>>(null)
 
-  // useBackButton(refContainer)
-  // useDocumentTitle(refContainer, documentTitle)
+  useBackButton(refContainer)
+  useDocumentTitle(refContainer, documentTitle)
 
   const { getInitialState } = useLinking(refContainer, {
-    independent: rest.independent,
     enabled: isLinkingEnabled,
     prefixes: [],
     ...linking,
@@ -97,19 +99,7 @@ function NavigationContainerInner(
     }
   })
 
-  if (cache.val === 0) {
-    cache.promise = new Promise<void>((res) => {
-      getInitialState().then((val) => {
-        cache.val = val
-        cache.done = true
-        res()
-      })
-    })
-  }
-  if (!cache.done) {
-    throw cache.promise
-  }
-  const initialState = cache.val!
+  const [isResolved, initialState] = useThenable(getInitialState)
 
   React.useImperativeHandle(ref, () => refContainer.current)
 
@@ -119,16 +109,23 @@ function NavigationContainerInner(
     onReady?.()
   }, [onReady])
 
+  if (!isResolved) {
+    return <ThemeProvider value={theme}>{fallback}</ThemeProvider>
+  }
+
   return (
-    <LinkingContext.Provider value={linkingContext}>
-      <ThemeProvider value={theme}>
-        <BaseNavigationContainer
-          {...rest}
-          initialState={rest.initialState == null ? initialState : rest.initialState}
-          ref={refContainer}
-        />
-      </ThemeProvider>
-    </LinkingContext.Provider>
+    <LocaleDirContext.Provider value={direction}>
+      <LinkingContext.Provider value={linkingContext}>
+        <ThemeProvider value={theme}>
+          <BaseNavigationContainer
+            {...rest}
+            theme={theme}
+            ref={refContainer}
+            initialState={initialState ?? rest.initialState}
+          />
+        </ThemeProvider>
+      </LinkingContext.Provider>
+    </LocaleDirContext.Provider>
   )
 }
 
