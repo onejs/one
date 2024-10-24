@@ -24,7 +24,7 @@ const REPO_NAME = 'one-js/one'
 
 export default function DocsLayout() {
   const { currentPath, next, previous, documentVersionPath } = useDocsMenu()
-  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/master/code/ooo/data${currentPath}${documentVersionPath}.mdx`
+  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/master/apps/site/data${currentPath}${documentVersionPath}.mdx`
   const isRaise = currentPath === '/docs/seed'
 
   if (isRaise) {
