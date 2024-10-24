@@ -8,7 +8,15 @@ export default function useLinking(ref: React.RefObject<NavigationContainerRef<P
         index: number;
         routeNames: string[];
         history?: unknown[];
-        routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
+        routes: (Readonly<{
+            key: string;
+            name: string;
+            path?: string;
+        }> & Readonly<{
+            params?: Readonly<object | undefined>;
+        }> & {
+            state?: import("@react-navigation/routers").NavigationState | import("@react-navigation/routers").PartialState<import("@react-navigation/routers").NavigationState>;
+        })[];
         type: string;
         stale: false;
     }>, "stale" | "routes">> & Readonly<{
@@ -20,7 +28,15 @@ export default function useLinking(ref: React.RefObject<NavigationContainerRef<P
             index: number;
             routeNames: string[];
             history?: unknown[];
-            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
+            routes: (Readonly<{
+                key: string;
+                name: string;
+                path?: string;
+            }> & Readonly<{
+                params?: Readonly<object | undefined>;
+            }> & {
+                state?: import("@react-navigation/routers").NavigationState | import("@react-navigation/routers").PartialState<import("@react-navigation/routers").NavigationState>;
+            })[];
             type: string;
             stale: false;
         }>, "stale" | "routes">> & Readonly<{
