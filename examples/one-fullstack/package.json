@@ -16,10 +16,10 @@
   "dependencies": {
     "@supabase/ssr": "0.4.0",
     "@supabase/supabase-js": "^2.44.4",
-    "@tamagui/image-next": "^1.115.0",
-    "@tamagui/lucide-icons": "^1.115.0",
-    "@tamagui/mdx": "^1.115.0",
-    "@tamagui/one-theme": "^1.115.0",
+    "@tamagui/image-next": "^1.116.4",
+    "@tamagui/lucide-icons": "^1.116.4",
+    "@tamagui/one-theme": "^1.116.4",
+    "@vxrn/mdx": "1.1.320",
     "jsonwebtoken": "^9.0.2",
     "mdx-bundler": "^10.0.2",
     "one": "1.1.320",
@@ -30,12 +30,12 @@
     "react-native-reanimated": "~3.10.1",
     "react-native-svg": "15.2.0",
     "swr": "^2.2.5",
-    "tamagui": "^1.115.0",
+    "tamagui": "^1.116.4",
     "vite": "6.0.0-beta.1",
     "vite-plugin-inspect": "^0.8.7"
   },
   "devDependencies": {
-    "@tamagui/vite-plugin": "^1.115.0",
+    "@tamagui/vite-plugin": "^1.116.4",
     "@types/react": "^18.3.11",
     "h3": "1.11.1"
   }

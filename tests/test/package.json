@@ -21,10 +21,10 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
-    "@tamagui/config": "^1.115.0",
-    "@tamagui/image-next": "^1.115.0",
-    "@tamagui/lucide-icons": "^1.115.0",
-    "@tamagui/vite-plugin": "^1.115.0",
+    "@tamagui/config": "^1.116.4",
+    "@tamagui/image-next": "^1.116.4",
+    "@tamagui/lucide-icons": "^1.116.4",
+    "@tamagui/vite-plugin": "^1.116.4",
     "@vercel/og": "^0.6.3",
     "@vxrn/color-scheme": "1.1.320",
     "better-sqlite3": "^11.2.1",
@@ -40,7 +40,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.115.0"
+    "tamagui": "^1.116.4"
   },
   "devDependencies": {
     "@faker-js/faker": "next",
