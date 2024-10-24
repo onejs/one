@@ -19,6 +19,7 @@
   "scripts": {
     "postinstall": "node -r esbuild-register ./scripts/setup-zero.ts",
     "hardlink": "node -r esbuild-register ./scripts/hardlink.ts",
+    "npxone": "node ./packages/create-vxrn/run.js",
     "setup": "node -r esbuild-register ./scripts/setup.ts",
     "site": "yarn workspace site dev",
     "site:build": "yarn workspace site build:web",
@@ -58,7 +59,7 @@
   "dependencies": {
     "@biomejs/biome": "^1.8.3",
     "@manypkg/cli": "^0.19.1",
-    "@types/react": "^18.2.24",
+    "@types/react": "^18.3.11",
     "@types/react-native": "~0.70.6",
     "check-dependency-version-consistency": "^3.0.3",
     "esbuild-register": "^3.6.0",
