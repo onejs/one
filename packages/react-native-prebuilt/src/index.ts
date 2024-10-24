@@ -163,9 +163,14 @@ export async function buildReactNative(options: BuildOptions = {}) {
               filter: /HMRClient/,
             },
             async (input) => {
-              return {
-                path: requireResolve('@vxrn/vite-native-hmr'),
+              const path = requireResolve('@vxrn/vite-native-hmr')
+              // While node may resolve to the CJS version, it seems that `.naive.js` file exts aren't working if we use that. This might cause problems since in `.cjs` files, `'react-native'` is being replaced with `'react-native-web'` and we need to use `.native.js`.
+              // So we try to use the ESM version which this way it seems that `.native.js` will be used.
+              const possibleEsmPath = path.replace('/cjs/index.cjs', '/esm/index.native.js')
+              if (FSExtra.pathExistsSync(possibleEsmPath)) {
+                return { path: possibleEsmPath }
               }
+              return { path }
             }
           )
 
