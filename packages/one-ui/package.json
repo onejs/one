@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/one-ui",
-  "version": "1.1.321",
+  "version": "1.1.322",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,8 +16,8 @@
     "@tamagui/image-next": "^1.116.4",
     "@tamagui/lucide-icons": "^1.116.4",
     "@tamagui/vite-plugin": "^1.116.4",
-    "@vxrn/color-scheme": "1.1.321",
-    "one": "1.1.321",
+    "@vxrn/color-scheme": "1.1.322",
+    "one": "1.1.322",
     "react": "^18.3.1",
     "react-native": "0.74.5",
     "react-native-reanimated": "~3.10.1",

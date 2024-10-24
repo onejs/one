@@ -1,6 +1,6 @@
 {
   "name": "expo-blank-app",
-  "version": "1.1.321",
+  "version": "1.1.322",
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "vxrn dev",
@@ -16,7 +16,7 @@
     "expo-status-bar": "~1.12.1",
     "react": "^18.3.1",
     "react-native": "0.74.5",
-    "vxrn": "1.1.321"
+    "vxrn": "1.1.322"
   },
   "private": true
 }
