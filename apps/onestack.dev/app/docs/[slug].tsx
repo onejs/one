@@ -18,7 +18,6 @@ export async function generateStaticParams() {
 
 export async function loader({ params }) {
   const { getMDXBySlug } = await import('@vxrn/mdx')
-  console.warn('getting', params)
   const { frontmatter, code } = await getMDXBySlug('data/docs', params.slug)
   return {
     frontmatter,
