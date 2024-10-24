@@ -14,7 +14,7 @@ RUN corepack enable
 RUN corepack prepare yarn@4.4.0 --activate
 RUN yarn install --immutable
 RUN yarn build:js
-RUN yarn dev:build:web
+RUN yarn site:build
 
 EXPOSE 3000
 
