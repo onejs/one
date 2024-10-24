@@ -35,11 +35,12 @@ export const getMDXBySlug = async (
   }
 }
 
-export async function getMDX(source: string) {
+export async function getMDX(source: string, extraPlugins?: import('unified').Plugin[]) {
   return await bundleMDX({
     source,
     mdxOptions(options) {
       const plugins = [
+        ...(extraPlugins || []),
         ...(options.rehypePlugins ?? []),
         rehypeMetaAttribute,
         rehypeHighlightCode,
