@@ -28,6 +28,8 @@ events.setMaxListeners(1_000)
 globalThis.__vxrnEnableNativeEnv = true
 
 export function one(options: One.PluginOptions = {}): PluginOption {
+  console.trace('??????????????')
+
   oneOptions = options
 
   // ensure tsconfig
@@ -52,6 +54,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
   const { clientEnvDefine } = loadEnv(vxrnOptions?.mode ?? 'development')
 
+  const disableDepsPreBundle = options.ssr?.disableAutoDepsPreBundling
+
+  console.log('wtf', !!disableDepsPreBundle)
+
   const devAndProdPlugins = [
     {
       name: 'one-define-env',
@@ -62,13 +68,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    ...(options.ssr?.disableAutoDepsPreBundling
-      ? []
-      : [
-          autoPreBundleDepsForSsrPlugin({
-            root: vxrnOptions?.root || process.cwd(),
-          }),
-        ]),
+    autoPreBundleDepsForSsrPlugin({
+      root: vxrnOptions?.root || process.cwd(),
+      disable: !!disableDepsPreBundle,
+    }),
 
     // proxy because you cant add a plugin inside a plugin
     new Proxy(
@@ -139,6 +142,15 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             // ],
           },
         }
+      },
+    },
+
+    {
+      name: 'one-react-native-web',
+      enforce: 'pre',
+
+      resolveId(id) {
+        console.log('resolve?', id)
       },
     },
 
@@ -250,6 +262,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     } satisfies Plugin,
   ] satisfies Plugin[]
+
+  console.trace('gogogogo')
 
   // TODO make this passed into vxrn through real API
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]

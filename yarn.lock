@@ -2068,14 +2068,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docsearch/css@npm:3.6.1, @docsearch/css@npm:^3.6.1":
+"@docsearch/css@npm:3.6.1":
   version: 3.6.1
   resolution: "@docsearch/css@npm:3.6.1"
   checksum: 10/9afddf93797d85519e18ba7b747a1dc7e2a7e46d5530180fbb890657bcf77039bd728e435a82b143363da6f05d4bb993a000963ac41491c60725874b55ccc696
   languageName: node
   linkType: hard
 
-"@docsearch/css@npm:3.6.2":
+"@docsearch/css@npm:3.6.2, @docsearch/css@npm:^3.6.1":
   version: 3.6.2
   resolution: "@docsearch/css@npm:3.6.2"
   checksum: 10/630a26b7a570cb8c04becad769d32be5371a37d0cde1f72114e4d37d4890ea228b6e04fa0ee4bc6f37653773ddaa9bab09ba887ccd2a95ed2b6d0ac43a48b7ac
@@ -7940,33 +7940,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
-  version: 18.3.6
-  resolution: "@types/react@npm:18.3.6"
-  dependencies:
-    "@types/prop-types": "npm:*"
-    csstype: "npm:^3.0.2"
-  checksum: 10/ba0d337244347ecbf921de174d9db9bb80b03d41ad3ae7aa65500b3339925852c97e501d7657b5cd629ffed9f7fe3820a63069847e7b8529e4d02934d0f182e9
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:^18.2.24":
+"@types/react@npm:*, @types/react@npm:^18.2.24, @types/react@npm:^18.3.11":
   version: 18.3.12
   resolution: "@types/react@npm:18.3.12"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10/c9bbdfeacd5347d2240e0d2cb5336bc57dbc1b9ff557b6c4024b49df83419e4955553518169d3736039f1b62608e15b35762a6c03d49bd86e33add4b43b19033
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:^18.3.11":
-  version: 18.3.11
-  resolution: "@types/react@npm:18.3.11"
-  dependencies:
-    "@types/prop-types": "npm:*"
-    csstype: "npm:^3.0.2"
-  checksum: 10/a36f0707fdfe9fe19cbe5892bcdab0f042ecadb501ea4e1c39519943f3e74cffbd31e892d3860f5c87cf33f5f223552b246a552bed0087b95954f2cb39d5cf65
   languageName: node
   linkType: hard
 
@@ -8753,7 +8733,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.0.1":
+"ajv@npm:^8.0.1, ajv@npm:^8.11.0":
   version: 8.17.1
   resolution: "ajv@npm:8.17.1"
   dependencies:
@@ -12235,9 +12215,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-testflight@workspace:examples/testflight":
+"example-testflight@workspace:apps/testflight":
   version: 0.0.0-use.local
-  resolution: "example-testflight@workspace:examples/testflight"
+  resolution: "example-testflight@workspace:apps/testflight"
   dependencies:
     "@biomejs/biome": "npm:^1.8.3"
     "@dotenvx/dotenvx": "npm:^1.12.1"
@@ -12252,11 +12232,13 @@ __metadata:
     drizzle-kit: "npm:^0.24.2"
     drizzle-orm: "npm:^0.33.0"
     expo: "npm:~51.0.28"
+    expo-build-properties: "npm:^0.12.5"
     expo-modules-core: "npm:^1.12.24"
     one: "npm:1.1.325"
     postgres: "npm:^3.4.4"
     react: "npm:^18.3.1"
     react-native: "npm:0.74.5"
+    react-native-bottom-tabs: "npm:0.0.12"
     react-native-reanimated: "npm:~3.10.1"
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
@@ -12367,6 +12349,18 @@ __metadata:
     vxrn: "npm:1.1.325"
   languageName: unknown
   linkType: soft
+
+"expo-build-properties@npm:^0.12.5":
+  version: 0.12.5
+  resolution: "expo-build-properties@npm:0.12.5"
+  dependencies:
+    ajv: "npm:^8.11.0"
+    semver: "npm:^7.6.0"
+  peerDependencies:
+    expo: "*"
+  checksum: 10/22a1c3fbe6ef00efe13976612766c665390df033d84203bb8d8133fec5d9291be333341119f35b4f5e60932b5829e9ac10c7aaa1a28cbfb5fa689b1b7917229a
+  languageName: node
+  linkType: hard
 
 "expo-camera@npm:^15.0.16":
   version: 15.0.16
@@ -18318,6 +18312,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-bottom-tabs@npm:0.0.12":
+  version: 0.0.12
+  resolution: "react-native-bottom-tabs@npm:0.0.12"
+  dependencies:
+    sf-symbols-typescript: "npm:^2.0.0"
+    use-latest-callback: "npm:^0.2.1"
+  peerDependencies:
+    "@react-navigation/native": ">=6"
+    react: "*"
+    react-native: "*"
+  peerDependenciesMeta:
+    "@react-navigation/native":
+      optional: true
+  checksum: 10/51cbc716a7efd6df10d516f58c120339fbb93da22daee984d7b97ab2d101c2232f29186e54558e193627c089e3bad2c6a5871f6c6af91cafc4a8d72dec248196
+  languageName: node
+  linkType: hard
+
 "react-native-gesture-handler@npm:^2.18.1":
   version: 2.19.0
   resolution: "react-native-gesture-handler@npm:2.19.0"
@@ -19554,6 +19565,13 @@ __metadata:
   version: 1.2.0
   resolution: "setprototypeof@npm:1.2.0"
   checksum: 10/fde1630422502fbbc19e6844346778f99d449986b2f9cdcceb8326730d2f3d9964dbcb03c02aaadaefffecd0f2c063315ebea8b3ad895914bf1afc1747fc172e
+  languageName: node
+  linkType: hard
+
+"sf-symbols-typescript@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "sf-symbols-typescript@npm:2.0.0"
+  checksum: 10/dde81c01265bdff16f527e1242af03793460c3c5f34ca6950ab1ca73a3bccd54ebabfcd56961658e72f94baac06ad620134a0bc03b0674dd543d4883c7d5e18f
   languageName: node
   linkType: hard
 
@@ -21007,7 +21025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.2.2":
+"typescript@npm:^5.2.2, typescript@npm:^5.5.2, typescript@npm:^5.6.2":
   version: 5.6.3
   resolution: "typescript@npm:5.6.3"
   bin:
@@ -21017,33 +21035,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.5.2, typescript@npm:^5.6.2":
-  version: 5.6.2
-  resolution: "typescript@npm:5.6.2"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10/f95365d4898f357823e93d334ecda9fcade54f009b397c7d05b7621cd9e865981033cf89ccde0f3e3a7b73b1fdbae18e92bc77db237b43e912f053fef0f9a53b
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.5.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
   version: 5.6.3
   resolution: "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10/00504c01ee42d470c23495426af07512e25e6546bce7e24572e72a9ca2e6b2e9bea63de4286c3cfea644874da1467dcfca23f4f98f7caf20f8b03c0213bb6837
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A^5.5.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
-  version: 5.6.2
-  resolution: "typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=8c6c40"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10/8bfc7ca0d9feca4c3fcbd6c70741abfcd714197d6448e68225ae71e462447d904d3bfba49759a8fbe4956d87f054e2d346833c8349c222daa594a2626d4e1be8
   languageName: node
   linkType: hard
 
