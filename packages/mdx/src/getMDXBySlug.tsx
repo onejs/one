@@ -10,9 +10,12 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 import { getHeadings } from './getHeadings'
 
+export type UnifiedPlugin = import('unified').Plugin[]
+
 export const getMDXBySlug = async (
   basePath: string,
-  slug: string
+  slug: string,
+  extraPlugins?: UnifiedPlugin
 ): Promise<{ frontmatter: Frontmatter; code: string }> => {
   let mdxPath = slug
 
@@ -24,7 +27,7 @@ export const getMDXBySlug = async (
 
   const filePath = path.join(basePath, `${mdxPath}.mdx`)
   const source = fs.readFileSync(filePath, 'utf8')
-  const { frontmatter, code } = await getMDX(source)
+  const { frontmatter, code } = await getMDX(source, extraPlugins)
   return {
     frontmatter: {
       ...frontmatter,
@@ -35,7 +38,7 @@ export const getMDXBySlug = async (
   }
 }
 
-export async function getMDX(source: string, extraPlugins?: import('unified').Plugin[]) {
+export async function getMDX(source: string, extraPlugins?: UnifiedPlugin) {
   return await bundleMDX({
     source,
     mdxOptions(options) {

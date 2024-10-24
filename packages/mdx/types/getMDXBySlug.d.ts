@@ -1,9 +1,10 @@
 import type { Frontmatter } from './types';
-export declare const getMDXBySlug: (basePath: string, slug: string) => Promise<{
+export type UnifiedPlugin = import('unified').Plugin[];
+export declare const getMDXBySlug: (basePath: string, slug: string, extraPlugins?: UnifiedPlugin) => Promise<{
     frontmatter: Frontmatter;
     code: string;
 }>;
-export declare function getMDX(source: string, extraPlugins?: import('unified').Plugin[]): Promise<{
+export declare function getMDX(source: string, extraPlugins?: UnifiedPlugin): Promise<{
     code: string;
     frontmatter: {
         [key: string]: any;
