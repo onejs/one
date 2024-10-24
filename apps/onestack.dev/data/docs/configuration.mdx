@@ -2,8 +2,9 @@
 title: Configuration
 ---
 
-One is a single Vite plugin and most of the configuration is done through the plugin in your `vite.config.ts`,
-it takes a single object with optional properties:
+One is a single Vite plugin exported from `one/vite`, most all configuration is done through the plugin in your `vite.config.ts`, which takes a single object with entirely optional properties:
+
+## `one`
 
 ```tsx fileName=vite.config.ts
 import type { UserConfig } from 'vite'
@@ -181,3 +182,21 @@ export default {
 ```
 
 Any transforms that are applied to specific files in node_modules will only be applied once. The original files will be stored alongside the transformed ones.
+
+## The Environment API
+
+One runs on Vite 6 and makes use of their [new Environment API](https://main.vitejs.dev/guide/api-environment).
+
+This makes our lives implementing React Native support as we can specify configuration for native environments separately. We do this by defining `ios` and `android` environments, respectively.
+
+For web, we use the default `client` and `ssr` environments, for client-side and server-side, respectively.
+
+What this means for you as a user is that you likely want to lean on using `environment` to configure as much as you can in your `vite.config.ts`. It may also mean that some plugins can cause issues by configuring things across all four environments when you really only want it for client-side, or not. We're working on some helpers to ease this.
+
+## Other Exports
+
+The `one/vite` import has a few other exports that may be useful.
+
+### `resolvePath`
+
+When you are setting an `alias` in Vite, it wants you to fully specify the import path. We use `resolvePath` to help with this, it's a bit like [`require.resolve`](https://nodejs.org/api/modules.html) that works in ESM or CJS. It's also similar to [`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve), except it returns an absolute path that Vite expects rather than a file path.
