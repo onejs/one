@@ -18,4 +18,4 @@ RUN yarn dev:build:web
 
 EXPOSE 3000
 
-CMD ["yarn", "docker:serve"]
+CMD ["yarn", "site:serve"]
