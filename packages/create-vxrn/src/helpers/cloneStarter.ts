@@ -3,7 +3,7 @@ import { homedir } from 'node:os'
 import { join, sep } from 'node:path'
 import { rimraf } from 'rimraf'
 import type { templates } from '../templates'
-import { execPromiseQuiet } from './exec'
+import { exec, execPromiseQuiet } from './exec'
 
 const home = homedir()
 const vxrnDir = join(home, '.vxrn')
@@ -26,9 +26,12 @@ export const cloneStarter = async (
 
   // reset git
   await rimraf(join(resolvedProjectPath, '.git'))
-  await execPromiseQuiet(`git init`, {
-    cwd: resolvedProjectPath,
-  })
+
+  if (!isInGitRepo()) {
+    await execPromiseQuiet(`git init`, {
+      cwd: resolvedProjectPath,
+    })
+  }
 
   const yarnLockDefault = join(resolvedProjectPath, 'yarn.lock.default')
   if (await pathExists(yarnLockDefault)) {
@@ -103,5 +106,14 @@ async function setupVxrnDotDir(
     }
     await rimraf(targetGitDir)
     return await setupVxrnDotDir(template, targetGitDir, true)
+  }
+}
+
+function isInGitRepo() {
+  try {
+    exec('git rev-parse --is-inside-work-tree', { stdio: 'ignore' })
+    return true
+  } catch (error) {
+    return false
   }
 }

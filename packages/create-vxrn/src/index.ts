@@ -54,12 +54,6 @@ const main = defineCommand({
       return
     }
 
-    console.info()
-    console.info(
-      ansis.bold(' Note: You may need to run "npm create vxrn@latest" to get the latest version!')
-    )
-    console.info()
-
     console.info() // this newline prevents the ascii art from breaking
     console.info(ansis.bold('Creating vxrn app...'))
 
