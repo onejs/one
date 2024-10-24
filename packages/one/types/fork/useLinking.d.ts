@@ -6,10 +6,8 @@ type ResultState = ReturnType<typeof getStateFromPathDefault>;
  * Run async function in series as it's called.
  */
 export declare const series: (cb: () => Promise<void>) => () => void;
-type Options = LinkingOptions<ParamListBase> & {
-    independent?: boolean;
-};
-export default function useLinking(ref: React.RefObject<NavigationContainerRef<ParamListBase>>, { independent, enabled, config, getStateFromPath, getPathFromState, getActionFromState, }: Options): {
+type Options = LinkingOptions<ParamListBase>;
+export default function useLinking(ref: React.RefObject<NavigationContainerRef<ParamListBase>>, { enabled, config, getStateFromPath, getPathFromState, getActionFromState, }: Options): {
     getInitialState: () => PromiseLike<ResultState | undefined>;
 };
 export {};
