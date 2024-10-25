@@ -118,6 +118,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
         },
         cors: true,
         host: server.host,
+        port: server.port,
       },
     } satisfies UserConfig
   ) satisfies InlineConfig
