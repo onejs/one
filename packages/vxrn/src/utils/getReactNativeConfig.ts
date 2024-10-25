@@ -134,10 +134,44 @@ export async function getReactNativeConfig(
         production: mode === 'prod',
       }),
 
-      typescript(),
+      {
+        name: 'one-node-module-typescript',
+
+        transform: {
+          order: 'pre',
+          async handler(code: string, id: string) {
+            if (!/\.tsx?$/.test(id)) return
+            if (!id.includes('node_modules')) {
+              return
+            }
+
+            // we need to keep fake objects for type exports
+            const typeExportsMatch = code.match(/^\s*export\s+type\s+([^\s]+)/gi)
+
+            let output =
+              (
+                await swcTransform(id, code, {
+                  mode: mode === 'dev' ? 'serve' : 'build',
+                })
+              )?.code || ''
+
+            // add back in export types as fake objects:
+
+            if (typeExportsMatch) {
+              for (const typeExport of Array.from(typeExportsMatch)) {
+                const fakeExport = `${typeExport.replace(' type ', ' const ')} = {};`
+                console.log('adding', fakeExport)
+                output += `\n${fakeExport}\n`
+              }
+            }
+
+            return output
+          },
+        },
+      },
 
       {
-        name: 'fix-node-module-transforms',
+        name: 'one-fix-expo-modules',
         transform: {
           order: 'pre',
           async handler(code, id) {
