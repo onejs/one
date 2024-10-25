@@ -160,7 +160,6 @@ export async function getReactNativeConfig(
             if (typeExportsMatch) {
               for (const typeExport of Array.from(typeExportsMatch)) {
                 const fakeExport = `${typeExport.replace(' type ', ' const ')} = {};`
-                console.log('adding', fakeExport)
                 output += `\n${fakeExport}\n`
               }
             }
