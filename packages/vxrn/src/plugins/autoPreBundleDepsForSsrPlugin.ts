@@ -3,12 +3,19 @@ import FSExtra from 'fs-extra'
 import type { Plugin } from 'vite'
 import { EXCLUDE_LIST, scanDepsToPreBundleForSsr } from '../utils/scanDepsToPreBundleForSsr'
 import { getFileHash, lookupFile } from '../utils/utils'
+import { createDebugger } from '../utils/createDebugger'
+
+const debug = createDebugger('vxrn:auto-pre-bundle-deps-for-ssr')
+const debugDetails = createDebugger(debug?.namespace, { onlyWhenFocused: true })
 
 export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
   return {
     name: 'vxrn:auto-pre-bundle-deps-for-ssr',
     enforce: 'pre',
     async config(_cfg, env) {
+      debug?.('Config hook called')
+      const startedAt = debug ? Date.now() : 0
+
       // Disable cache when building for production to prevent stale cache
       const noCache = env.command === 'build'
 
@@ -35,6 +42,7 @@ export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
 
           if (lockFileHash === cachedLockFileHash && Array.isArray(cachedDepsToPreBundle)) {
             depsToPreBundleForSsr = cachedDepsToPreBundle
+            debug?.(`Using cached scan results from ${noExternalDepsForSsrCacheFilePath}`)
           }
         } catch {}
       }
@@ -50,6 +58,17 @@ export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
           })
         }
       }
+
+      debug?.(`Scanning completed in ${Date.now() - startedAt}ms`)
+      debug?.(
+        `${depsToPreBundleForSsr.length} deps are discovered and will be pre-bundled for SSR.` +
+          (debugDetails
+            ? ''
+            : ` (Focus on this debug scope, "DEBUG=${debug.namespace}", to see more details.)`)
+      )
+      debugDetails?.(
+        `Deps discovered to be pre-bundled for SSR: ${depsToPreBundleForSsr.join(', ')}`
+      )
 
       return {
         ssr: {
