@@ -1,5 +1,6 @@
 import FSExtra from 'fs-extra'
 import { createServer, type ViteDevServer } from 'vite'
+import colors from 'picocolors'
 import type { VXRNOptions } from '../types'
 import { startUserInterface } from '../user-interface/index'
 import { bindKeypressInput } from '../utils/bindKeypressInput'
@@ -7,6 +8,7 @@ import { fillOptions } from '../utils/getOptionsFilled'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { applyBuiltInPatches } from '../utils/patches'
 import { clean } from './clean'
+import { printServerUrls } from '../utils/printServerUrls'
 
 const { ensureDir } = FSExtra
 
@@ -32,16 +34,6 @@ export const dev = async (optionsIn: DevOptions) => {
 
   let viteServer: ViteDevServer | null = null
 
-  const url = `${options.server.protocol}//${options.server.host}:${options.server.port}`
-
-  if (process.env.NODE_ENV === 'test') {
-    console.info(`\nServer running on ${url}`)
-  } else {
-    console.info(`\nServer running on \x1b[1m${url}\x1b[0m`)
-  }
-
-  startUserInterface({ server: options.server })
-
   return {
     viteServer,
 
@@ -62,6 +54,16 @@ export const dev = async (optionsIn: DevOptions) => {
       })
 
       await viteServer.listen()
+
+      console.info()
+      console.info(colors.bold('Server running on') + ' - ')
+      console.info()
+
+      if (viteServer.resolvedUrls) {
+        printServerUrls(viteServer.resolvedUrls, {}, viteServer.config.logger.info)
+      }
+
+      startUserInterface({ server: viteServer })
 
       return {
         closePromise: new Promise((res) => {

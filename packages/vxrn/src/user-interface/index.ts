@@ -1,12 +1,10 @@
 import ip from 'ip'
 import { exec } from 'node:child_process'
 import qrcode from 'qrcode-terminal'
+import type { ViteDevServer } from 'vite'
 
 type Context = {
-  server: {
-    port: number
-    host: string
-  }
+  server: ViteDevServer
 }
 
 type Command = {
@@ -22,12 +20,12 @@ const COMMANDS = [
     label: 'open web',
     terminalLabel: '\x1b[1mo\x1b[0mpen \x1b[1mw\x1b[0meb',
     action: (ctx) => {
-      const port = ctx.server.port
-      let host = ctx.server.host
-      if (host === '0.0.0.0') {
-        host = '127.0.0.1'
+      const url = ctx.server.resolvedUrls?.local[0]
+      if (!url) {
+        console.warn('Cannot get the local server URL.')
+        return
       }
-      nativeOpen(`http://${host}:${port}`)
+      nativeOpen(url)
     },
   },
   {
@@ -44,7 +42,14 @@ const COMMANDS = [
     label: 'show Expo Go QR code',
     terminalLabel: 'show Expo Go \x1b[1mQR\x1b[0m code',
     action: (ctx) => {
-      printNativeQrCodeAndInstructions(ctx)
+      const urls = ctx.server.resolvedUrls?.network
+      const url = urls?.[urls.length - 1]
+      if (!url) {
+        console.warn('Cannot get the local server URL.')
+        return
+      }
+
+      printNativeQrCodeAndInstructions(url)
     },
   },
 
@@ -173,16 +178,12 @@ function clearPrintedInfo() {
   lastPrintedInfo = ''
 }
 
-async function printNativeQrCodeAndInstructions(context: Context) {
-  qrcode.generate(
-    `exp://${ip.address() /* Get the actual IP address of the local network interface instead of getting the one the server is listening to */}:${context.server.port}`,
-    { small: true },
-    (code) => {
-      console.info(
-        `To open the app on your iPhone, install the Expo Go app and scan the QR code below with your iPhone camera:\n${code}`
-      )
-    }
-  )
+async function printNativeQrCodeAndInstructions(url: string) {
+  qrcode.generate(url.replace(/^https?/, 'exp'), { small: true }, (code) => {
+    console.info(
+      `To open the app on your iPhone, install the Expo Go app and scan the QR code below with your iPhone camera:\n${code}`
+    )
+  })
 }
 
 function nativeOpen(url: string) {
