@@ -46,6 +46,8 @@
     "@expo/config-plugins": "^8.0.8",
     "@hono/node-server": "^1.12.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-sucrase": "^5.0.2",
+    "@rollup/plugin-typescript": "^12.1.1",
     "@tamagui/react-native-svg": "^1.116.7",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vxrn/query-string": "1.1.325",

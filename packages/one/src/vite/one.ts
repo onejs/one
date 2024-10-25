@@ -109,6 +109,15 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       }
     ),
 
+    // {
+    //   name: 'one-auto-typescript',
+    //   enforce: 'pre',
+
+    //   transform(code, id) {
+    //     console.log('????', id)
+    //   },
+    // },
+
     {
       name: 'one-slim-deps',
       enforce: 'pre',

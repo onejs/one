@@ -1,5 +1,5 @@
 import nodeResolve from '@rollup/plugin-node-resolve'
-import viteNativeSWC from '@vxrn/vite-native-swc'
+import viteNativeSWC, { swcTransform } from '@vxrn/vite-native-swc'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
@@ -19,6 +19,7 @@ import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
+import typescript from '@rollup/plugin-typescript'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
@@ -133,14 +134,29 @@ export async function getReactNativeConfig(
         production: mode === 'prod',
       }),
 
+      typescript(),
+
       {
-        name: 'fix-expo',
+        name: 'fix-node-module-transforms',
         transform: {
           order: 'pre',
           async handler(code, id) {
+            if (!id.includes('node_modules')) {
+              return
+            }
+
+            // // typescript support
+            // doesnt work because if they dont use import type etc then rollup fails not seeing matching export
+            // if (/\.tsx?$/.test(id)) {
+            //   return await swcTransform(id, code, {
+            //     mode: mode === 'dev' ? 'serve' : 'build',
+            //   })
+            // }
+
             if (!id.includes('node_modules/expo-') && !id.includes('node_modules/@expo/')) {
               return null
             }
+
             // Use the exposed transform from vite, instead of directly
             // transforming with esbuild
             return transformWithEsbuild(code, id, {
