@@ -56,7 +56,7 @@ export const dev = async (optionsIn: DevOptions) => {
       await viteServer.listen()
 
       console.info()
-      console.info(colors.bold('Server running on') + ' - ')
+      console.info(colors.bold('Server running on') + ' ⪢')
       console.info()
 
       if (viteServer.resolvedUrls) {
