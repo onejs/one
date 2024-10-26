@@ -31,7 +31,7 @@
     "react-native-svg": "15.2.0",
     "swr": "^2.2.5",
     "tamagui": "^1.116.7",
-    "vite": "6.0.0-beta.1",
+    "vite": "^6.0.0-beta.5",
     "vite-plugin-inspect": "^0.8.7"
   },
   "devDependencies": {
