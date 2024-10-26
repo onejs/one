@@ -1,15 +1,20 @@
 import type { Plugin, ViteDevServer } from 'vite'
-import { WebSocket } from 'ws'
+import { WebSocketServer } from 'ws'
 import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
 import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
 import { getReactNativeBundle } from '../utils/getReactNativeBundle'
+import { hotUpdateCache } from '../utils/hotUpdateCache'
 
-// Cache for hot updates and RN bundle
-const hotUpdateCache = new Map<string, string>()
 let cachedReactNativeBundle: string | null = null
+
+type ClientMessage = {
+  type: 'client-log'
+  level: 'log' | 'error' | 'info' | 'debug' | 'warn'
+  data: string[]
+}
 
 export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Plugin {
   let hmrSocket: WebSocket | null = null
@@ -18,6 +23,57 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
     name: 'vite-plugin-react-native-server',
 
     configureServer(server: ViteDevServer) {
+      const hmrWSS = new WebSocketServer({ noServer: true })
+      const clientWSS = new WebSocketServer({ noServer: true })
+
+      hmrWSS.on('connection', (socket) => {
+        addConnectedNativeClient()
+
+        socket.on('message', (message) => {
+          if (message.toString().includes('ping')) {
+            socket.send('pong')
+          }
+        })
+
+        socket.on('close', () => {
+          removeConnectedNativeClient()
+        })
+
+        socket.on('error', (error) => {
+          console.error('[hmr] error', error)
+        })
+      })
+
+      clientWSS.on('connection', (socket) => {
+        socket.on('message', (messageRaw) => {
+          const message = JSON.parse(messageRaw.toString()) as any as ClientMessage
+
+          switch (message.type) {
+            case 'client-log': {
+              // TODO temp
+              if (
+                message.level === 'warn' &&
+                message.data[0]?.startsWith(
+                  'Sending `appearanceChanged` with no listeners registered.'
+                )
+              ) {
+                return
+              }
+
+              console.info(
+                ` ①  ${message.level === 'info' ? '' : ` [${message.level}]`}`,
+                ...message.data
+              )
+              return
+            }
+
+            default: {
+              console.warn(` ①  Unknown message type`, message)
+            }
+          }
+        })
+      })
+
       // Handle React Native endpoints
       server.middlewares.use('/file', async (req, res) => {
         const url = new URL(req.url!, `http://${req.headers.host}`)
@@ -73,41 +129,19 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
 
       // React Native HMR WebSocket
       server.httpServer?.on('upgrade', (req, socket, head) => {
-        if (req.url === '/__hmr') {
-          const ws = new WebSocket.Server({ noServer: true })
-
-          ws.on('connection', (socket) => {
-            addConnectedNativeClient()
-
-            socket.on('message', (message) => {
-              if (message.toString().includes('ping')) {
-                socket.send('pong')
-              }
-            })
-
-            socket.on('close', () => {
-              removeConnectedNativeClient()
-            })
-
-            socket.on('error', (error) => {
-              console.error('[hmr] error', error)
-            })
-          })
-
-          ws.handleUpgrade(req, socket, head, (ws) => {
-            ws.emit('connection', ws, req)
+        if (
+          req.url.startsWith(
+            '/__hmr'
+          ) /* TODO: handle '/__hmr?platform=ios' and android differently */
+        ) {
+          hmrWSS.handleUpgrade(req, socket, head, (ws) => {
+            hmrWSS.emit('connection', ws, req)
           })
         }
 
         if (req.url === '/__client') {
-          const ws = new WebSocket.Server({ noServer: true })
-
-          ws.on('connection', (socket) => {
-            // Client logging handler code...
-          })
-
-          ws.handleUpgrade(req, socket, head, (ws) => {
-            ws.emit('connection', ws, req)
+          clientWSS.handleUpgrade(req, socket, head, (ws) => {
+            clientWSS.emit('connection', ws, req)
           })
         }
       })
