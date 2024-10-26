@@ -100,133 +100,151 @@ function createRequire(importer, importsMap) {
   }
 
   return function require(_mod) {
-    const getErrorDetails = (withStack) => {
-      return `In importsMap:
+    const output = getRequire(importer, importsMap, _mod)
+
+    // some sort of compat with new Rollup commonjs transform
+    if (output && typeof output === 'object' && !('__require' in output)) {
+      return new Proxy(output, {
+        get(target, key) {
+          if (key === '__require') {
+            return () => output
+          }
+          return Reflect.get(target, key)
+        },
+      })
+    }
+
+    return output
+  }
+}
+
+function getRequire(importer, importsMap, _mod) {
+  const getErrorDetails = (withStack) => {
+    return `In importsMap:
 
 ${JSON.stringify(importsMap, null, 2)}
 
-  ${
-    withStack
-      ? `Stack:
+${
+  withStack
+    ? `Stack:
 
 ${new Error().stack
   .split('\n')
   .map((l) => `    ${l}`)
   .join('\n')}`
-      : ''
-  }
+    : ''
+}
 
 --------------`
-    }
+  }
 
-    try {
-      if (_mod === 'one' || _mod === 'one' || _mod.endsWith('one/dist/esm/index.mjs')) {
-        // TODO this should be passed in not hardcoded
-        const found =
-          __getRequire('packages/one/dist/esm/index.js', _mod) ||
-          // this is only for developing links module in ~/vxrn, can remove later
-          __getRequire('vxrn/packages/one/dist/esm/index.js', _mod) ||
-          __getRequire('one/dist/esm/index.native.js') ||
-          __getRequire('one/dist/esm/index.native.js') ||
-          __getRequire('packages/one/dist/esm/index.native.js', _mod) ||
-          __getRequire('vxrn/packages/one/dist/esm/index.native.js', _mod)
+  try {
+    if (_mod === 'one' || _mod === 'one' || _mod.endsWith('one/dist/esm/index.mjs')) {
+      // TODO this should be passed in not hardcoded
+      const found =
+        __getRequire('packages/one/dist/esm/index.js', _mod) ||
+        // this is only for developing links module in ~/vxrn, can remove later
+        __getRequire('vxrn/packages/one/dist/esm/index.js', _mod) ||
+        __getRequire('one/dist/esm/index.native.js') ||
+        __getRequire('one/dist/esm/index.native.js') ||
+        __getRequire('packages/one/dist/esm/index.native.js', _mod) ||
+        __getRequire('vxrn/packages/one/dist/esm/index.native.js', _mod)
 
-        if (found) return found
-
-        // Try harder
-        const possibleId = Object.keys(___modules___).find((m) =>
-          /(one|one)\/dist\/esm\/index\.native\.js$/.test(m)
-        )
-        if (possibleId) {
-          return __getRequire(possibleId, _mod)
-        }
-      }
-
-      if (_mod.startsWith('node:') || nodeImports[_mod]) {
-        console.warn(`Warning node import not supported: "${_mod}" from "${importer}"`)
-        return {}
-      }
-
-      // find via maps
-      let path = __specialRequireMap[_mod] || importsMap[_mod] || _mod
-      const found = __getRequire(path, _mod)
       if (found) return found
 
-      // quick and dirty relative()
-      if (importer && path[0] === '.') {
-        let currentDir = (() => {
-          const paths = importer.split('/')
-          return paths.slice(0, paths.length - 1) // remove last part to get dir
-        })()
-
-        const pathParts = path.split('/')
-        while (true) {
-          if (pathParts[0] !== '..') break
-          pathParts.shift()
-          currentDir.pop()
-        }
-        path = [...currentDir, ...pathParts]
-          // Prevent generating a path like this: `foo/./bar.js` when requiring `./bar.js` from `foo`.
-          .filter((p) => p !== '.')
-          .join('/')
+      // Try harder
+      const possibleId = Object.keys(___modules___).find((m) =>
+        /(one|one)\/dist\/esm\/index\.native\.js$/.test(m)
+      )
+      if (possibleId) {
+        return __getRequire(possibleId, _mod)
       }
-
-      // find our import.meta.glob which don't get the nice path addition, for now hardcode but this shouldnt be hard to fix properly:
-      const foundGlob = __getRequire(path.replace(/\.[jt]sx?$/, '.js'), _mod)
-      if (foundGlob) {
-        return foundGlob
-      }
-
-      // find internals loosely
-      try {
-        for (const [key, value] of Object.entries(__specialRequireMap)) {
-          if (_mod.endsWith(value)) {
-            const found = __getRequire(__specialRequireMap[key])
-            if (found) {
-              return found
-            }
-          }
-        }
-      } catch (err) {
-        console.info('error loose internal', err)
-      }
-
-      // find externals loosely
-      try {
-        for (const [key, value] of Object.entries(importsMap)) {
-          if (key.endsWith(_mod.replace(/(\.\.?\/)+/, ''))) {
-            const found = __getRequire(importsMap[key], key)
-            if (found) {
-              return found
-            }
-          }
-        }
-      } catch (err) {
-        console.info('error loose external', err)
-      }
-
-      // is this cruft
-      if (globalThis[path]) {
-        const output = globalThis[path]()
-        __cachedModules[_mod] = output
-        return output
-      }
-
-      console.error(`Module not found "${_mod}" imported by "${importer}"\n${getErrorDetails()}`)
-      return {}
-    } catch (err) {
-      const errorMessage =
-        `\n◆ ${_mod} "${err}"`.replace('Error: ', '').replaceAll('"', '') +
-        '\n' +
-        getErrorDetails(false)
-
-      if (globalThis['no_console']) {
-        // If we are in production, do not suppress error as it will be hard to debug (currently console.error in production is not shown or being logged anywhere).
-        throw new Error(errorMessage)
-      }
-
-      console.error(errorMessage)
     }
+
+    if (_mod.startsWith('node:') || nodeImports[_mod]) {
+      console.warn(`Warning node import not supported: "${_mod}" from "${importer}"`)
+      return {}
+    }
+
+    // find via maps
+    let path = __specialRequireMap[_mod] || importsMap[_mod] || _mod
+    const found = __getRequire(path, _mod)
+    if (found) return found
+
+    // quick and dirty relative()
+    if (importer && path[0] === '.') {
+      let currentDir = (() => {
+        const paths = importer.split('/')
+        return paths.slice(0, paths.length - 1) // remove last part to get dir
+      })()
+
+      const pathParts = path.split('/')
+      while (true) {
+        if (pathParts[0] !== '..') break
+        pathParts.shift()
+        currentDir.pop()
+      }
+      path = [...currentDir, ...pathParts]
+        // Prevent generating a path like this: `foo/./bar.js` when requiring `./bar.js` from `foo`.
+        .filter((p) => p !== '.')
+        .join('/')
+    }
+
+    // find our import.meta.glob which don't get the nice path addition, for now hardcode but this shouldnt be hard to fix properly:
+    const foundGlob = __getRequire(path.replace(/\.[jt]sx?$/, '.js'), _mod)
+    if (foundGlob) {
+      return foundGlob
+    }
+
+    // find internals loosely
+    try {
+      for (const [key, value] of Object.entries(__specialRequireMap)) {
+        if (_mod.endsWith(value)) {
+          const found = __getRequire(__specialRequireMap[key])
+          if (found) {
+            return found
+          }
+        }
+      }
+    } catch (err) {
+      console.info('error loose internal', err)
+    }
+
+    // find externals loosely
+    try {
+      for (const [key, value] of Object.entries(importsMap)) {
+        if (key.endsWith(_mod.replace(/(\.\.?\/)+/, ''))) {
+          const found = __getRequire(importsMap[key], key)
+          if (found) {
+            return found
+          }
+        }
+      }
+    } catch (err) {
+      console.info('error loose external', err)
+    }
+
+    // is this cruft
+    if (globalThis[path]) {
+      const output = globalThis[path]()
+      __cachedModules[_mod] = output
+      return output
+    }
+
+    console.error(`Module not found "${_mod}" imported by "${importer}"\n${getErrorDetails()}`)
+    return {}
+  } catch (err) {
+    const errorMessage =
+      `\n◆ ${_mod} "${err}"`.replace('Error: ', '').replaceAll('"', '') +
+      '\n' +
+      getErrorDetails(false)
+
+    if (globalThis['no_console']) {
+      // If we are in production, do not suppress error as it will be hard to debug (currently console.error in production is not shown or being logged anywhere).
+      throw new Error(errorMessage)
+    }
+
+    console.error(errorMessage)
   }
 }
 
