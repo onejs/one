@@ -1,5 +1,5 @@
-// import { NativeTabs as Tabs } from '../layouts/BottomTabs'
-import { Tabs } from 'one'
+import { NativeTabs as Tabs } from '../layouts/BottomTabs'
+// import { Tabs } from 'one'
 import { HomeIcons } from './HomeIcons'
 
 export function HomeLayout() {
