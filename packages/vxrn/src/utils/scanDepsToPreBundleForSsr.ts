@@ -82,9 +82,7 @@ export async function scanDepsToPreBundleForSsr(
   const currentRoot = path.dirname(packageJsonPath)
 
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
-  const deps = [
-    ...Object.keys(pkgJson.dependencies || {}),
-  ]
+  const deps = [...Object.keys(pkgJson.dependencies || {})]
 
   return (
     await Promise.all(

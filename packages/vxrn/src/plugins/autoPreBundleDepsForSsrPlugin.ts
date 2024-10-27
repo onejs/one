@@ -8,7 +8,18 @@ import { createDebugger } from '../utils/createDebugger'
 const debug = createDebugger('vxrn:auto-pre-bundle-deps-for-ssr')
 const debugDetails = createDebugger(debug?.namespace, { onlyWhenFocused: true })
 
-export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
+export function autoPreBundleDepsForSsrPlugin({
+  root,
+  disable,
+}: { root: string; disable?: boolean }) {
+  console.trace('start123')
+
+  if (disable) {
+    return {
+      name: 'vxrn:auto-pre-bundle-deps-for-ssr',
+    }
+  }
+
   return {
     name: 'vxrn:auto-pre-bundle-deps-for-ssr',
     enforce: 'pre',

@@ -187,11 +187,9 @@ Any transforms that are applied to specific files in node_modules will only be a
 
 One runs on Vite 6 and makes use of their [new Environment API](https://main.vitejs.dev/guide/api-environment).
 
-This makes our lives implementing React Native support as we can specify configuration for native environments separately. We do this by defining `ios` and `android` environments, respectively.
+This makes React Native support easier as we can specify configuration for each environment separately. We define `ios` and `android` environments, respectively. For web, we use the default `client` and `ssr` environments, for client-side and server-side, respectively.
 
-For web, we use the default `client` and `ssr` environments, for client-side and server-side, respectively.
-
-What this means for you as a user is that you likely want to lean on using `environment` to configure as much as you can in your `vite.config.ts`. It may also mean that some plugins can cause issues by configuring things across all four environments when you really only want it for client-side, or not. We're working on some helpers to ease this.
+What this means as a user is that you likely want to lean on using `environments` to configure as much as you can in your `vite.config.ts`. It may also mean that some plugins can cause issues by configuring things across all four environments when you really only want it for one. In those cases you'll want to likely wrap the plugin and check for `this.environment` inside functions like `resolveId`, `load`, and `transform`. We're working on a helper to make this easier.
 
 ## Other Exports
 
@@ -199,4 +197,6 @@ The `one/vite` import has a few other exports that may be useful.
 
 ### `resolvePath`
 
-When you are setting an `alias` in Vite, it wants you to fully specify the import path. We use `resolvePath` to help with this, it's a bit like [`require.resolve`](https://nodejs.org/api/modules.html) that works in ESM or CJS. It's also similar to [`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve), except it returns an absolute path that Vite expects rather than a file path.
+When you are setting an `alias` to re-route a node module to another one, Vite wants you to fully specify the import path rather than just passing the direct package name.
+
+You can use `resolvePath` to help with this. It's a bit like [`require.resolve`](https://nodejs.org/api/modules.html) that works in ESM or CJS. It's also similar to [`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve), except it returns an absolute path that Vite expects rather than a file path.
