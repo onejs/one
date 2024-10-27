@@ -2,6 +2,7 @@ import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import type { InlineConfig } from 'vite'
 import { webExtensions } from '../constants'
 import { resolvePath } from '@vxrn/resolve'
+import { dirname } from 'path'
 
 // essentially base web config not base everything
 
@@ -35,6 +36,7 @@ export function getBaseViteConfig({
     plugins: [
       {
         name: 'platform-specific-resolve',
+        enforce: 'pre',
         config() {
           return {
             ssr: {
@@ -52,6 +54,38 @@ export function getBaseViteConfig({
                   conditions: ['vxrn-web'],
                 },
               },
+            },
+          }
+        },
+      },
+
+      // this should be web only
+      // added to fix issues with node modules that import things like `react-native/Libraries/...`
+      {
+        name: 'one-resolve-react-native-web-only',
+        enforce: 'pre',
+
+        config() {
+          return {
+            resolve: {
+              alias: [
+                {
+                  find: /^react-native$/,
+                  replacement: resolvePath('react-native-web', process.cwd()),
+                },
+
+                {
+                  find: 'react-native/Libraries/Utilities/codegenNativeComponent',
+                  replacement: resolvePath('@tamagui/proxy-worm'),
+                },
+
+                {
+                  find: /^react-native\/(.*)$/,
+                  replacement:
+                    dirname(dirname(resolvePath('react-native-web', process.cwd()))) +
+                    '/vendor/react-native/$1.js',
+                },
+              ],
             },
           }
         },
@@ -81,8 +115,8 @@ export function getBaseViteConfig({
         'react-native-safe-area-context': '@vxrn/safe-area',
 
         // bundle size optimizations
-        'query-string': resolvePath('@vxrn/query-string'),
-        'url-parse': resolvePath('@vxrn/url-parse'),
+        'query-string': resolvePath('@vxrn/query-string', projectRoot),
+        'url-parse': resolvePath('@vxrn/url-parse', projectRoot),
       },
 
       // TODO auto dedupe all include optimize deps?

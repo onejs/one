@@ -48,7 +48,8 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
             console.warn = (...args: any[]) => {
               if (
                 typeof args[0] === 'string' &&
-                args[0].startsWith(`Failed to resolve dependency:`)
+                (args[0].startsWith(`Failed to resolve dependency:`) ||
+                  args[0].startsWith(`Cannot optimize dependency:`))
               ) {
                 return
               }

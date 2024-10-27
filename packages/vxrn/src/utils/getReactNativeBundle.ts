@@ -53,9 +53,15 @@ export async function getReactNativeBundle(
   )
 
   // build app
+
+  // TODO until vite supports alias per environment...
+  globalThis['__vxrnDisableWebPlugins'] = true
+
   const nativeBuildConfig = await getReactNativeConfig(options, internal)
 
   const builder = await createBuilder(nativeBuildConfig)
+
+  globalThis['__vxrnDisableWebPlugins'] = false
 
   const environmentName = 'ios' as const
   const environment = builder.environments[environmentName]

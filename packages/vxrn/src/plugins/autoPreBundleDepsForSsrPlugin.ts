@@ -5,7 +5,8 @@ import { EXCLUDE_LIST, scanDepsToPreBundleForSsr } from '../utils/scanDepsToPreB
 import { getFileHash, lookupFile } from '../utils/utils'
 import { createDebugger } from '../utils/createDebugger'
 
-const debug = createDebugger('vxrn:auto-pre-bundle-deps-for-ssr')
+const name = 'vxrn:auto-pre-bundle-deps-for-ssr-web-only'
+const debug = createDebugger(name)
 const debugDetails = createDebugger(debug?.namespace, { onlyWhenFocused: true })
 
 export function autoPreBundleDepsForSsrPlugin({
@@ -14,12 +15,12 @@ export function autoPreBundleDepsForSsrPlugin({
 }: { root: string; disable?: boolean }) {
   if (disable) {
     return {
-      name: 'vxrn:auto-pre-bundle-deps-for-ssr',
+      name,
     }
   }
 
   return {
-    name: 'vxrn:auto-pre-bundle-deps-for-ssr',
+    name,
     enforce: 'pre',
     async config(_cfg, env) {
       debug?.('Config hook called')

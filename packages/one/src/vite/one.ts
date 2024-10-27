@@ -113,54 +113,15 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       enforce: 'pre',
 
       config() {
-        // const forkPath = dirname(resolvePath('one'))
-
         return {
           resolve: {
             alias: {
               tslib: resolvePath('@vxrn/tslib-lite'),
             },
-
-            // [
-            //   {
-            //     find: /tslib/,
-            //     replacement: resolvePath('@vxrn/tslib-lite'),
-            //   },
-            //   // not working but would save ~30Kb stat
-            //   // {
-            //   //   find: /@react-navigation\/core.*\/getStateFromPath/,
-            //   //   replacement: join(forkPath, 'fork', 'getStateFromPath.mjs'),
-            //   // },
-            //   // {
-            //   //   find: /@react-navigation\/core.*\/getPathFromState/,
-            //   //   replacement: join(forkPath, 'fork', 'getPathFromState.mjs'),
-            //   // },
-            // ],
           },
         }
       },
     },
-
-    // {
-    //   name: 'one-react-native-web',
-    //   enforce: 'pre',
-
-    //   // @ts-ignore
-    //   webOnly: true,
-
-    //   config() {
-    //     return {
-    //       resolve: {
-    //         alias: [
-    //           {
-    //             find: /^react-native\/(.*)$/,
-    //             replacement: resolvePath('react-native-web'),
-    //           },
-    //         ],
-    //       },
-    //     }
-    //   },
-    // },
 
     {
       name: 'one:init-config',
@@ -238,7 +199,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin,
 
     {
-      name: 'tamagui-react-19',
+      name: 'tamagui-react-19-web-only',
       config() {
         return {
           define: {
@@ -340,7 +301,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin,
 
     {
-      name: 'one-optimize-deps-load-web-extensions',
+      name: 'one-optimize-deps-web-extensions-web-only',
       enforce: 'pre',
 
       applyToEnvironment(environment) {

@@ -19,6 +19,7 @@ import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
+import { resolvePath } from '@vxrn/resolve'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
@@ -46,6 +47,28 @@ export async function getReactNativeConfig(
       ...(globalThis.__vxrnAddNativePlugins || []),
 
       ...(mode === 'dev' ? [nativeClientInjectPlugin()] : []),
+
+      {
+        name: 'one-resolve-react-native',
+        enforce: 'pre',
+
+        config() {
+          return {
+            resolve: {
+              alias: [
+                {
+                  find: /^react-native$/,
+                  replacement: resolvePath('react-native', process.cwd()),
+                },
+                {
+                  find: /^react-native\/(.*)$/,
+                  replacement: '$1.js',
+                },
+              ],
+            },
+          }
+        },
+      },
 
       // vite doesnt support importing from a directory but its so common in react native
       // so lets make it work, and node resolve theoretically fixes but you have to pass in moduleDirs
@@ -267,12 +290,7 @@ export async function getReactNativeConfig(
     },
   } satisfies InlineConfig
 
-  // TODO
-  // if (options.nativeConfig) {
-  //   nativeBuildConfig = mergeConfig(nativeBuildConfig, options.nativeConfig) as any
-  // }
-
-  // // this fixes my swap-react-native plugin not being called pre 😳
+  // this fixes my swap-react-native plugin not being called pre 😳
   resolvedConfig = await resolveConfig(nativeBuildConfig, 'build')
 
   return nativeBuildConfig satisfies UserConfig
