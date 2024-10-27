@@ -1,5 +1,5 @@
 import nodeResolve from '@rollup/plugin-node-resolve'
-import viteNativeSWC from '@vxrn/vite-native-swc'
+import viteNativeSWC, { swcTransform } from '@vxrn/vite-native-swc'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
@@ -133,20 +133,65 @@ export async function getReactNativeConfig(
         production: mode === 'prod',
       }),
 
+      // TODO i think this probably should be a swc plugin (has to be wasm-rust unfortuantely)
+      // but luckily not too bad because its pretty simple: if export type, export let object
+      // and a basic check for if any other export exists that is already there
       {
-        name: 'fix-expo',
+        name: 'one-node-module-transforms',
+
         transform: {
           order: 'pre',
-          async handler(code, id) {
-            if (!id.includes('node_modules/expo-') && !id.includes('node_modules/@expo/')) {
-              return null
+          async handler(code: string, id: string) {
+            const isNodeModule = id.includes('node_modules')
+
+            // handles typescript
+            if (isNodeModule && /\.tsx?$/.test(id)) {
+              // we need to keep fake objects for type exports
+              const typeExportsMatch = code.match(/^\s*export\s+type\s+([^\s]+)/gi)
+
+              const output = await swcTransform(id, code, {
+                mode: mode === 'dev' ? 'serve' : 'build',
+              })
+
+              if (!output) return null
+
+              let codeOut = output.code
+
+              // add back in export types as fake objects:
+
+              if (typeExportsMatch) {
+                for (const typeExport of Array.from(typeExportsMatch)) {
+                  const [_export, _type, name] = typeExport.split(/\s+/)
+                  // basic sanity check it isn't exported already
+                  const alreadyExported = new RegExp(
+                    `export (const|let|class|function) ${name}\\s+`
+                  ).test(codeOut)
+
+                  if (!alreadyExported) {
+                    const fakeExport = `export let ${name} = {};`
+                    codeOut += `\n${fakeExport}\n`
+                  }
+                }
+              }
+
+              return {
+                code: codeOut,
+                map: output.map,
+              }
             }
-            // Use the exposed transform from vite, instead of directly
-            // transforming with esbuild
-            return transformWithEsbuild(code, id, {
-              loader: 'jsx',
-              jsx: 'automatic',
-            })
+
+            // handles expo modules
+            if (
+              isNodeModule &&
+              (id.includes('node_modules/expo-') || id.includes('node_modules/@expo/'))
+            ) {
+              // Use the exposed transform from vite, instead of directly
+              // transforming with esbuild
+              return transformWithEsbuild(code, id, {
+                loader: 'jsx',
+                jsx: 'automatic',
+              })
+            }
           },
         },
       },
