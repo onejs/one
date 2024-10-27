@@ -463,7 +463,6 @@ globalThis['createHotContext'] = function createHotContext(ownerPath: string): V
       deps,
       fn: callback,
     })
-    console.info(` ❶ hmr - setting ${ownerPath}`)
     hotModulesMap.set(ownerPath, mod)
   }
 
