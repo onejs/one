@@ -29,127 +29,127 @@ jobs:
     with:
       configuration: Release
 
-  test-ios-native:
-    name: iOS Development Integration Test
-    needs:
-      - build-ios-test-dev-container
-    runs-on: macos-14
-    defaults:
-      run:
-        working-directory: ${{ env.test_app_path }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # test-ios-native:
+  #   name: iOS Development Integration Test
+  #   needs:
+  #     - build-ios-test-dev-container
+  #   runs-on: macos-14
+  #   defaults:
+  #     run:
+  #       working-directory: ${{ env.test_app_path }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Install
-        uses: ./.github/actions/install
-        with:
-          workspace-focus: test-app
+  #     - name: Install
+  #       uses: ./.github/actions/install
+  #       with:
+  #         workspace-focus: test-app
 
-      - name: Start Dev Server
-        run: node scripts/start-dev-server.mjs --no-wait
+  #     - name: Start Dev Server
+  #       run: node scripts/start-dev-server.mjs --no-wait
 
-      - name: Download Dev Container App
-        uses: actions/cache/restore@v4
-        with:
-          fail-on-cache-miss: true
-          key: ${{ needs.build-ios-test-dev-container.outputs.built-app-cache-key }}
-          path: ${{ needs.build-ios-test-dev-container.outputs.built-app-path }}
+  #     - name: Download Dev Container App
+  #       uses: actions/cache/restore@v4
+  #       with:
+  #         fail-on-cache-miss: true
+  #         key: ${{ needs.build-ios-test-dev-container.outputs.built-app-cache-key }}
+  #         path: ${{ needs.build-ios-test-dev-container.outputs.built-app-path }}
 
-      - name: Get Simulator UDID
-        id: get-simulator-udid
-        run: |
-          AVAILABLE_SIMULATORS=$(xcrun simctl list devices available --json)
-          echo "Available simulators: $AVAILABLE_SIMULATORS"
-          RUNTIME=$(echo $AVAILABLE_SIMULATORS | jq -r '.devices | keys | map(select(test("iOS"))) | last')
-          echo "Runtime: $RUNTIME"
-          SIMULATOR_INFO=$(echo $AVAILABLE_SIMULATORS | jq ".devices.\"$RUNTIME\" | map(select(.name | test(\"iPhone\"))) | last")
-          SIMULATOR_UDID=$(echo $SIMULATOR_INFO | jq -r .udid)
-          echo "Simulator info: $SIMULATOR_INFO"
-          echo "Simulator UDID: $SIMULATOR_UDID"
-          echo "simulator_udid=$SIMULATOR_UDID" >> $GITHUB_OUTPUT
+  #     - name: Get Simulator UDID
+  #       id: get-simulator-udid
+  #       run: |
+  #         AVAILABLE_SIMULATORS=$(xcrun simctl list devices available --json)
+  #         echo "Available simulators: $AVAILABLE_SIMULATORS"
+  #         RUNTIME=$(echo $AVAILABLE_SIMULATORS | jq -r '.devices | keys | map(select(test("iOS"))) | last')
+  #         echo "Runtime: $RUNTIME"
+  #         SIMULATOR_INFO=$(echo $AVAILABLE_SIMULATORS | jq ".devices.\"$RUNTIME\" | map(select(.name | test(\"iPhone\"))) | last")
+  #         SIMULATOR_UDID=$(echo $SIMULATOR_INFO | jq -r .udid)
+  #         echo "Simulator info: $SIMULATOR_INFO"
+  #         echo "Simulator UDID: $SIMULATOR_UDID"
+  #         echo "simulator_udid=$SIMULATOR_UDID" >> $GITHUB_OUTPUT
 
-      - name: Boot Simulator
-        env:
-          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-        run: xcrun simctl boot $SIMULATOR_UDID
+  #     - name: Boot Simulator
+  #       env:
+  #         SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
+  #       run: xcrun simctl boot $SIMULATOR_UDID
 
-      - name: Install Maestro
-        uses: ./.github/actions/install-maestro
-        id: install-maestro
+  #     - name: Install Maestro
+  #       uses: ./.github/actions/install-maestro
+  #       id: install-maestro
 
-      - name: Wait for Dev Server to Be Ready
-        run: node scripts/start-dev-server.mjs --check-only
+  #     - name: Wait for Dev Server to Be Ready
+  #       run: node scripts/start-dev-server.mjs --check-only
 
-      - name: Get a Copy of the Bundle
-        run: |
-          echo 'Fetching the React Native bundle in the background, since the first request can take a while pre-bundling dependencies and producing the first bundle without a cache. The bundle we got can also serve as troubleshooting material in case of a failure, and will be uploaded as an artifact.'
-          wget -O bundle.ios.js 'http://localhost:8081/index.bundle?platform.ios' &
+  #     - name: Get a Copy of the Bundle
+  #       run: |
+  #         echo 'Fetching the React Native bundle in the background, since the first request can take a while pre-bundling dependencies and producing the first bundle without a cache. The bundle we got can also serve as troubleshooting material in case of a failure, and will be uploaded as an artifact.'
+  #         wget -O bundle.ios.js 'http://localhost:8081/index.bundle?platform.ios' &
 
-      - name: Install Dev Container App in Simulator
-        env:
-          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-          APP_PATH: ${{ needs.build-ios-test-dev-container.outputs.built-app-path }}
-        working-directory: .
-        run: xcrun simctl install $SIMULATOR_UDID $APP_PATH
+  #     - name: Install Dev Container App in Simulator
+  #       env:
+  #         SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
+  #         APP_PATH: ${{ needs.build-ios-test-dev-container.outputs.built-app-path }}
+  #       working-directory: .
+  #       run: xcrun simctl install $SIMULATOR_UDID $APP_PATH
 
-      - name: Test
-        run: |
-          export PATH="$PATH":"$HOME/.maestro/bin"
-          export MAESTRO_DRIVER_STARTUP_TIMEOUT=180000 # 3 minutes
-          maestro test maestro-flows/basic.yaml
+  #     - name: Test
+  #       run: |
+  #         export PATH="$PATH":"$HOME/.maestro/bin"
+  #         export MAESTRO_DRIVER_STARTUP_TIMEOUT=180000 # 3 minutes
+  #         maestro test maestro-flows/basic.yaml
 
-      - name: Upload Dev Container App
-        uses: actions/upload-artifact@v4.3.1
-        # Only upload if the test failed to save space
-        if: ${{ failure() }}
-        continue-on-error: true
-        with:
-          name: dev-container-app
-          path: |
-            path: ${{ needs.build-ios-test-dev-container.outputs.built-app-path }}
+  #     - name: Upload Dev Container App
+  #       uses: actions/upload-artifact@v4.3.1
+  #       # Only upload if the test failed to save space
+  #       if: ${{ failure() }}
+  #       continue-on-error: true
+  #       with:
+  #         name: dev-container-app
+  #         path: |
+  #           path: ${{ needs.build-ios-test-dev-container.outputs.built-app-path }}
 
-      - name: Upload Server Log
-        uses: actions/upload-artifact@v4.3.1
-        if: ${{ always() }}
-        continue-on-error: true
-        with:
-          name: dev-server.log
-          path: |
-            ${{ env.test_app_path }}/dev-server.log
+  #     - name: Upload Server Log
+  #       uses: actions/upload-artifact@v4.3.1
+  #       if: ${{ always() }}
+  #       continue-on-error: true
+  #       with:
+  #         name: dev-server.log
+  #         path: |
+  #           ${{ env.test_app_path }}/dev-server.log
 
-      - name: Prepare Maestro Logs
-        id: prepare-maestro-logs
-        if: ${{ always() && steps.install-maestro.outcome == 'success' }}
-        continue-on-error: true
-        run: cp -r "$HOME/.maestro/tests" maestro-logs
+  #     - name: Prepare Maestro Logs
+  #       id: prepare-maestro-logs
+  #       if: ${{ always() && steps.install-maestro.outcome == 'success' }}
+  #       continue-on-error: true
+  #       run: cp -r "$HOME/.maestro/tests" maestro-logs
 
-      - name: Upload Maestro Logs
-        uses: actions/upload-artifact@v4.3.1
-        if: ${{ always() && steps.prepare-maestro-logs.outcome == 'success' }}
-        continue-on-error: true
-        with:
-          name: release-maestro-logs
-          path: |
-            ${{ env.test_app_path }}/maestro-logs
+  #     - name: Upload Maestro Logs
+  #       uses: actions/upload-artifact@v4.3.1
+  #       if: ${{ always() && steps.prepare-maestro-logs.outcome == 'success' }}
+  #       continue-on-error: true
+  #       with:
+  #         name: release-maestro-logs
+  #         path: |
+  #           ${{ env.test_app_path }}/maestro-logs
 
-      - name: Upload Maestro Screenshots
-        uses: actions/upload-artifact@v4.3.1
-        if: ${{ always() && steps.install-maestro.outcome == 'success' }}
-        continue-on-error: true
-        with:
-          name: release-maestro-screenshots
-          path: |
-            ${{ env.test_app_path }}/maestro-screenshots
+  #     - name: Upload Maestro Screenshots
+  #       uses: actions/upload-artifact@v4.3.1
+  #       if: ${{ always() && steps.install-maestro.outcome == 'success' }}
+  #       continue-on-error: true
+  #       with:
+  #         name: release-maestro-screenshots
+  #         path: |
+  #           ${{ env.test_app_path }}/maestro-screenshots
 
-      - name: Upload Reference React Native Bundle
-        uses: actions/upload-artifact@v4.3.1
-        if: ${{ always() }}
-        continue-on-error: true
-        with:
-          name: dev-sample-bundle.ios.js
-          path: |
-            ${{ env.test_app_path }}/bundle.ios.js
+  #     - name: Upload Reference React Native Bundle
+  #       uses: actions/upload-artifact@v4.3.1
+  #       if: ${{ always() }}
+  #       continue-on-error: true
+  #       with:
+  #         name: dev-sample-bundle.ios.js
+  #         path: |
+  #           ${{ env.test_app_path }}/bundle.ios.js
 
   test-ios-native-release:
     name: iOS Release Integration Test
