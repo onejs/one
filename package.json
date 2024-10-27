@@ -39,6 +39,7 @@
     "fix": "manypkg fix",
     "lint:fix": "ultra -r --no-pretty lint:fix",
     "lint": "ultra -r --no-pretty lint",
+    "dev:app": "node -r esbuild-register ./scripts/dev.ts app",
     "dev:example": "node -r esbuild-register ./scripts/dev.ts example",
     "dev:test": "node -r esbuild-register ./scripts/dev.ts test",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",

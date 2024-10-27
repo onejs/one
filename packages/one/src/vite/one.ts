@@ -28,8 +28,6 @@ events.setMaxListeners(1_000)
 globalThis.__vxrnEnableNativeEnv = true
 
 export function one(options: One.PluginOptions = {}): PluginOption {
-  console.trace('??????????????')
-
   oneOptions = options
 
   // ensure tsconfig
@@ -55,8 +53,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const { clientEnvDefine } = loadEnv(vxrnOptions?.mode ?? 'development')
 
   const disableDepsPreBundle = options.ssr?.disableAutoDepsPreBundling
-
-  console.log('wtf', !!disableDepsPreBundle)
 
   const devAndProdPlugins = [
     {
@@ -145,14 +141,26 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    {
-      name: 'one-react-native-web',
-      enforce: 'pre',
+    // {
+    //   name: 'one-react-native-web',
+    //   enforce: 'pre',
 
-      resolveId(id) {
-        console.log('resolve?', id)
-      },
-    },
+    //   // @ts-ignore
+    //   webOnly: true,
+
+    //   config() {
+    //     return {
+    //       resolve: {
+    //         alias: [
+    //           {
+    //             find: /^react-native\/(.*)$/,
+    //             replacement: resolvePath('react-native-web'),
+    //           },
+    //         ],
+    //       },
+    //     }
+    //   },
+    // },
 
     {
       name: 'one:init-config',
@@ -262,8 +270,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     } satisfies Plugin,
   ] satisfies Plugin[]
-
-  console.trace('gogogogo')
 
   // TODO make this passed into vxrn through real API
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]

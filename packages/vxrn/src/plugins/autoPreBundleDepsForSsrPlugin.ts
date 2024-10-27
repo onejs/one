@@ -12,8 +12,6 @@ export function autoPreBundleDepsForSsrPlugin({
   root,
   disable,
 }: { root: string; disable?: boolean }) {
-  console.trace('start123')
-
   if (disable) {
     return {
       name: 'vxrn:auto-pre-bundle-deps-for-ssr',

@@ -1,5 +1,5 @@
 {
-  "name": "site",
+  "name": "app-site",
   "version": "1.1.325",
   "private": true,
   "sideEffects": false,
