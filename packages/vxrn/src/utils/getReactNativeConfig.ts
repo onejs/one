@@ -48,27 +48,28 @@ export async function getReactNativeConfig(
 
       ...(mode === 'dev' ? [nativeClientInjectPlugin()] : []),
 
-      {
-        name: 'one-resolve-react-native',
-        enforce: 'pre',
+      // tried this as well...
+      // {
+      //   name: 'one-resolve-react-native',
+      //   enforce: 'pre',
 
-        config() {
-          return {
-            resolve: {
-              alias: [
-                {
-                  find: /^react-native$/,
-                  replacement: resolvePath('react-native', process.cwd()),
-                },
-                {
-                  find: /^react-native\/(.*)$/,
-                  replacement: '$1.js',
-                },
-              ],
-            },
-          }
-        },
-      },
+      //   config() {
+      //     return {
+      //       resolve: {
+      //         alias: [
+      //           {
+      //             find: /^react-native$/,
+      //             replacement: resolvePath('react-native', process.cwd()),
+      //           },
+      //           {
+      //             find: /^react-native\/(.*)$/,
+      //             replacement: '$1.js',
+      //           },
+      //         ],
+      //       },
+      //     }
+      //   },
+      // },
 
       // vite doesnt support importing from a directory but its so common in react native
       // so lets make it work, and node resolve theoretically fixes but you have to pass in moduleDirs
