@@ -1,10 +1,11 @@
-import { NativeTabs } from '../layouts/BottomTabs'
+// import { NativeTabs as Tabs } from '../layouts/BottomTabs'
+import { Tabs } from 'one'
 import { HomeIcons } from './HomeIcons'
 
 export function HomeLayout() {
   return (
-    <NativeTabs>
-      <NativeTabs.Screen
+    <Tabs>
+      <Tabs.Screen
         name="index"
         options={{
           title: 'Feed',
@@ -12,7 +13,7 @@ export function HomeLayout() {
         }}
       />
 
-      <NativeTabs.Screen
+      <Tabs.Screen
         name="notifications"
         options={{
           title: 'Notifications',
@@ -20,13 +21,13 @@ export function HomeLayout() {
         }}
       />
 
-      <NativeTabs.Screen
+      <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => <HomeIcons.User size={20} color={color} />,
         }}
       />
-    </NativeTabs>
+    </Tabs>
   )
 }
