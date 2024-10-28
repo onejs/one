@@ -6,7 +6,6 @@ import { createServer } from 'vite'
 import { WebSocket } from 'ws'
 import type { VXRNOptions } from '../types'
 import { startUserInterface } from '../user-interface/index'
-import { bindKeypressInput } from '../utils/bindKeypressInput'
 import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
@@ -39,9 +38,6 @@ export const dev = async (optionsIn: DevOptions) => {
   if (options.clean) {
     await clean(optionsIn)
   }
-
-  // TODO move somewhere
-  bindKeypressInput()
 
   applyBuiltInPatches(options).catch((err) => {
     console.error(`\n 🥺 error applying built-in patches`, err)

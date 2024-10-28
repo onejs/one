@@ -17,10 +17,6 @@ global['___vxrnAbsoluteToRelative___'] = {}
 // to avoid it looking like browser...
 delete globalThis['window']
 
-// TODO fixing vite bringing along some preload-helper.js and this:
-// var e = new Event("vite:preloadError", {
-//   cancelable: true
-// });
 global['Event'] =
   global['Event'] ||
   function () {
