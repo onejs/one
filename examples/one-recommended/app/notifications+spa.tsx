@@ -1,5 +1,5 @@
 import { desc, eq, sql } from 'drizzle-orm'
-import { type Href, type LoaderProps, SafeAreaView, getURL, useLoader } from 'one'
+import { type Href, type LoaderProps, SafeAreaView, getURL, href, useLoader } from 'one'
 import { ScrollView } from 'react-native'
 import { isWeb } from 'tamagui'
 import { db } from '~/code/db/connection'
@@ -91,13 +91,12 @@ export async function loader({ path }: LoaderProps) {
       action: notification.actionType as NotificationType,
       fromUser: {
         username: notification.username,
-        // TODO: Href helper function
-        userLink: `/profile/${notification.userId}` as Href,
+        userLink: '/TODO' as Href,
         avatar: notification.avatar,
       },
       post: notification.postId
         ? {
-            postLink: `/post/${notification.postId}` as Href,
+            postLink: href(`/post/${notification.postId || 0}`),
             content: notification.postContent,
           }
         : null,
@@ -119,6 +118,7 @@ export async function loader({ path }: LoaderProps) {
 export default function NotificationsPage() {
   const { notifications } = useLoader(loader)
   const feed = notifications.map((item, i) => {
+    item.post?.postLink
     return <NotificationCard key={i} {...item} />
   })
 

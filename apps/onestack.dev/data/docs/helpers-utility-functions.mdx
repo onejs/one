@@ -29,3 +29,13 @@ For example, in dev-mode by default this would be a string of `http://127.0.0.1:
 ### isResponse
 
 One uses `Request`/`Response` type objects for API routes, but for some environments doing an `instanceof Response` can fail, `isResponse` takes any value and returns true if it is a Response-like object. Useful for API utility functions.
+
+### href
+
+A simple function allows for creating typed route strings. It's a type-level only check, at runtime it only validates that it is a string.
+
+```tsx
+import { href } from 'one'
+
+const postPageLink = href(`/post/hello-world`) // will type error if invalid Href
+```
