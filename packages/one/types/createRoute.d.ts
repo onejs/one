@@ -1,6 +1,6 @@
 import type { OneRouter } from './interfaces/router';
 export declare function createRoute<Path>(): {
-    useParams: () => OneRouter.InputRouteParams<Path>;
+    useParams: () => Partial<OneRouter.InputRouteParams<Path>>;
     useActiveParams: () => Partial<OneRouter.InputRouteParams<Path>>;
     createLoader: (a: (props: {
         params: OneRouter.InputRouteParams<Path>;
@@ -9,7 +9,7 @@ export declare function createRoute<Path>(): {
     }) => any;
 };
 declare const postIdRoute: {
-    useParams: () => OneRouter.InputRouteParams<"/feed/[id]">;
+    useParams: () => Partial<OneRouter.InputRouteParams<"/feed/[id]">>;
     useActiveParams: () => Partial<OneRouter.InputRouteParams<"/feed/[id]">>;
     createLoader: (a: (props: {
         params: OneRouter.InputRouteParams<"/feed/[id]">;
