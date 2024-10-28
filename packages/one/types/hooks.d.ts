@@ -57,6 +57,6 @@ export declare const useGlobalSearchParams: typeof useActiveParams;
  *
  * To observe updates even when the invoking route is not focused, use `useActiveParams()`.
  */
-export declare function useParams<TParams extends Object = SearchParams>(): TParams;
+export declare function useParams<TParams extends Object = SearchParams>(): Partial<TParams>;
 export {};
 //# sourceMappingURL=hooks.d.ts.map
