@@ -10,11 +10,7 @@ export const router: OneRouter.Router = {
   replace: store.replace,
   back: store.goBack,
   canGoBack: store.canGoBack,
-  setParams: (params) =>
-    store.setParams(
-      // TODO
-      params as any
-    ),
+  setParams: (params) => store.setParams(params),
   subscribe: store.subscribeToRootState,
   onLoadState: store.subscribeToLoadingState,
 }

@@ -18,7 +18,7 @@ export declare function navigate(url: OneRouter.Href, options?: OneRouter.LinkTo
 export declare function push(url: OneRouter.Href, options?: OneRouter.LinkToOptions): Promise<void>;
 export declare function dismiss(count?: number): void;
 export declare function replace(url: OneRouter.Href, options?: OneRouter.LinkToOptions): Promise<void>;
-export declare function setParams(params?: Record<string, string | number>): void | undefined;
+export declare function setParams(params?: OneRouter.InpurRouteParamsGeneric): void | undefined;
 export declare function dismissAll(): void;
 export declare function goBack(): void;
 export declare function canGoBack(): boolean;

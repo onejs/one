@@ -129,6 +129,8 @@ export declare namespace OneRouter {
     /***********************
      * One Exports *
      ***********************/
+    export type InputRouteParamsBlank = Record<string, string | undefined | null>;
+    export type InpurRouteParamsGeneric = InputRouteParamsBlank | InputRouteParams<any>;
     export type Router = {
         /** Go back in the history. */
         back: () => void;
@@ -147,7 +149,7 @@ export declare namespace OneRouter {
         /** If there's history that supports invoking the `dismiss` and `dismissAll` function. */
         canDismiss: () => boolean;
         /** Update the current route query params. */
-        setParams: <T = ''>(params?: T extends '' ? Record<string, string | undefined | null> : InputRouteParams<T>) => void;
+        setParams: <T = ''>(params?: T extends '' ? InputRouteParamsBlank : InputRouteParams<T>) => void;
         /** Subscribe to state updates from the router */
         subscribe: (listener: RootStateListener) => () => void;
         /** Subscribe to loading state updates */

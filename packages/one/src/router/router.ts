@@ -164,7 +164,7 @@ export function replace(url: OneRouter.Href, options?: OneRouter.LinkToOptions) 
   return linkTo(resolveHref(url), 'REPLACE', options)
 }
 
-export function setParams(params: Record<string, string | number> = {}) {
+export function setParams(params: OneRouter.InpurRouteParamsGeneric = {}) {
   assertIsReady(navigationRef)
   return navigationRef?.current?.setParams(
     // @ts-expect-error
