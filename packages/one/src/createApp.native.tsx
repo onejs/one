@@ -12,9 +12,6 @@ export function createApp(options: CreateAppProps): void {
 
   AppRegistry.registerComponent('main', () => App)
 
-  // TODO remove once we get a nice setup in tamagui repo for building native app and loading it
-  AppRegistry.registerComponent('tamaguikitchensink', () => App)
-
   if (process.env.ONE_APP_NAME) {
     AppRegistry.registerComponent(process.env.ONE_APP_NAME, () => App)
   }
