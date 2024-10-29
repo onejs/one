@@ -6,7 +6,6 @@ import { createServer } from 'vite'
 import { WebSocket } from 'ws'
 import type { VXRNOptions } from '../types'
 import { startUserInterface } from '../user-interface/index'
-import { bindKeypressInput } from '../utils/bindKeypressInput'
 import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
@@ -16,6 +15,7 @@ import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { applyBuiltInPatches } from '../utils/patches'
+import { bindKeypressInput } from '../utils/bindKeypressInput'
 import { clean } from './clean'
 
 const { ensureDir } = FSExtra
@@ -36,12 +36,11 @@ export const dev = async (optionsIn: DevOptions) => {
   const options = await fillOptions(optionsIn)
   const { cacheDir, server } = options
 
+  bindKeypressInput()
+
   if (options.clean) {
     await clean(optionsIn)
   }
-
-  // TODO move somewhere
-  bindKeypressInput()
 
   applyBuiltInPatches(options).catch((err) => {
     console.error(`\n 🥺 error applying built-in patches`, err)

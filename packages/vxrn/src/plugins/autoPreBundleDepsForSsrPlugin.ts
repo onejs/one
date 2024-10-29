@@ -3,11 +3,10 @@ import FSExtra from 'fs-extra'
 import type { Plugin } from 'vite'
 import { EXCLUDE_LIST, scanDepsToPreBundleForSsr } from '../utils/scanDepsToPreBundleForSsr'
 import { getFileHash, lookupFile } from '../utils/utils'
-import { createDebugger } from '../utils/createDebugger'
+import { createDebugger } from '@vxrn/debug'
 
-const name = 'vxrn:auto-pre-bundle-deps-for-ssr-web-only'
-const debug = createDebugger(name)
-const debugDetails = createDebugger(debug?.namespace, { onlyWhenFocused: true })
+const name = 'auto-pre-bundle-deps-for-ssr'
+const { debug, debugDetails } = createDebugger(name)
 
 export function autoPreBundleDepsForSsrPlugin({
   root,
@@ -20,7 +19,7 @@ export function autoPreBundleDepsForSsrPlugin({
   }
 
   return {
-    name,
+    name: `vxrn:${name}`,
     enforce: 'pre',
     async config(_cfg, env) {
       debug?.('Config hook called')

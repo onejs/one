@@ -114,8 +114,7 @@ export const useGlobalSearchParams = useActiveParams
  * To observe updates even when the invoking route is not focused, use `useActiveParams()`.
  */
 
-// TODO @nate: i removed Partial<TParams> for better types for demo
-export function useParams<TParams extends Object = SearchParams>(): TParams {
+export function useParams<TParams extends Object = SearchParams>(): Partial<TParams> {
   const context = React.useContext(NavigationRouteContext)
   const params = context?.params ?? {}
 
