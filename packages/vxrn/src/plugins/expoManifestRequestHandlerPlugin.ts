@@ -34,7 +34,7 @@ export function expoManifestRequestHandlerPlugin(
         }
 
         const protocol = req.socket instanceof TLSSocket && req.socket.encrypted ? 'https' : 'http'
-        const host = `${req.headers['x-forwarded-host']}` || req.headers.host || '127.0.0.1'
+        const host = `${req.headers['x-forwarded-host'] || req.headers.host || '127.0.0.1'}`
 
         // Try to dynamically import the internal Expo manifest handler from expo packages installed in the user's project.
         let ExpoGoManifestHandlerMiddleware
@@ -121,26 +121,46 @@ export function expoManifestRequestHandlerPlugin(
           manifestHandlerMiddleware._getManifestResponseAsync
 
         manifestHandlerMiddleware._getManifestResponseAsync = async (...args) => {
-          const results = await manifestHandlerMiddleware._origGetManifestResponseAsync(...args)
+          try {
+            const results = await manifestHandlerMiddleware._origGetManifestResponseAsync(...args)
 
-          const parsedBody = JSON.parse(results.body)
-          if (!parsedBody.extra) {
-            parsedBody.extra = {}
-          }
-          if (!parsedBody.extra.expoClient) {
-            parsedBody.extra.expoClient = {}
-          }
-          // TODO: Using a static icon and splash for branding for now.
-          parsedBody.extra.expoClient.iconUrl = 'https://github.com/user-attachments/assets/6894506b-df81-417c-a4cd-9c125c7ba37f' // TODO: Host this icon somewhere.
-          parsedBody.extra.expoClient.splash = {
-            image: '__vxrn_unstable_internal/icon.png',
-            resizeMode: 'contain',
-            backgroundColor: '#000000',
-            imageUrl: 'https://github.com/user-attachments/assets/e816c207-e7d2-4c2e-8aa5-0d4cbaa622bf', // TODO: Host this image somewhere.
-          }
-          results.body = JSON.stringify(parsedBody)
+            // Seems that results.body may have a leading and trailing string that is not JSON, so we need to extract the JSON from it.
+            const [, beforeBodyJson, bodyJson, afterBodyJson] =
+              results.body.match(/([^\{]*)(\{.*\})([^\}]*)/) || []
+            if (!bodyJson) {
+              throw new Error(`Unrecognized manifest response from expo: ${results.body}`)
+            }
 
-          return results
+            const parsedBody = JSON.parse(bodyJson)
+            if (!parsedBody.extra) {
+              parsedBody.extra = {}
+            }
+            if (!parsedBody.extra.expoClient) {
+              parsedBody.extra.expoClient = {}
+            }
+            // TODO: Using a static icon and splash for branding for now.
+            parsedBody.extra.expoClient.iconUrl =
+              'https://github.com/user-attachments/assets/6894506b-df81-417c-a4cd-9c125c7ba37f' // TODO: Host this icon somewhere.
+            parsedBody.extra.expoClient.splash = {
+              image: '__vxrn_unstable_internal/icon.png',
+              resizeMode: 'contain',
+              backgroundColor: '#000000',
+              imageUrl:
+                'https://github.com/user-attachments/assets/e816c207-e7d2-4c2e-8aa5-0d4cbaa622bf', // TODO: Host this image somewhere.
+            }
+            results.body = beforeBodyJson + JSON.stringify(parsedBody) + afterBodyJson
+
+            return results
+          } catch (e) {
+            if (e instanceof Error) {
+              e.message = `[vxrn:expo-manifest-request-handler] Failed to parse the Expo manifest response from expo: ${e.message}`
+              throw e
+            }
+
+            throw new Error(
+              `[vxrn:expo-manifest-request-handler] Failed to parse the Expo manifest response from expo: ${e}`
+            )
+          }
         }
 
         // Handle the Expo manifest request.

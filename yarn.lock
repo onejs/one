@@ -8461,7 +8461,7 @@ __metadata:
   resolution: "@vxrn/debug@workspace:packages/debug"
   dependencies:
     "@tamagui/build": "npm:^1.116.7"
-    "@vxrn/debug": "npm:1.1.325"
+    debug: "npm:^4.3.7"
   languageName: unknown
   linkType: soft
 
@@ -10370,7 +10370,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"crossws@npm:^0.2.2, crossws@npm:^0.2.4":
+"crossws@npm:^0.2.2":
   version: 0.2.4
   resolution: "crossws@npm:0.2.4"
   peerDependencies:
@@ -10544,7 +10544,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.0.0, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4, debug@npm:^4.3.6":
+"debug@npm:4, debug@npm:^4.0.0, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4, debug@npm:^4.3.6, debug@npm:^4.3.7":
   version: 4.3.7
   resolution: "debug@npm:4.3.7"
   dependencies:
@@ -13303,19 +13303,6 @@ __metadata:
     section-matter: "npm:^1.0.0"
     strip-bom-string: "npm:^1.0.0"
   checksum: 10/9a8f146a7a918d2524d5d60e0b4d45729f5bca54aa41247f971d9e4bc984943fda58159435763d463ec2abc8a0e238e807bd9b05e3a48f4a613a325c9dd5ad0c
-  languageName: node
-  linkType: hard
-
-"h3-proxy@npm:^1.13.0":
-  version: 1.13.0
-  resolution: "h3-proxy@npm:1.13.0"
-  dependencies:
-    consola: "npm:^3.2.3"
-    is-glob: "npm:^4.0.3"
-    micromatch: "npm:^4.0.5"
-  peerDependencies:
-    h3: ^1.6.0
-  checksum: 10/7525295ca03138b5f43ec420348ff838079198da1c68e870cc03218f19505f730cafddb7ba8ce7f9ca298fbb2a3d4419e2851c201dab8a45d2a1ddaf729ed68c
   languageName: node
   linkType: hard
 
@@ -16422,7 +16409,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.2, micromatch@npm:^4.0.4, micromatch@npm:^4.0.5, micromatch@npm:^4.0.7":
+"micromatch@npm:^4.0.2, micromatch@npm:^4.0.4, micromatch@npm:^4.0.7":
   version: 4.0.8
   resolution: "micromatch@npm:4.0.8"
   dependencies:
@@ -20914,7 +20901,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.2.2, typescript@npm:^5.5.2, typescript@npm:^5.6.2":
+"typescript@npm:^5.2.2":
   version: 5.6.3
   resolution: "typescript@npm:5.6.3"
   bin:
@@ -20924,13 +20911,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.5.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
+"typescript@npm:^5.5.2, typescript@npm:^5.6.2":
+  version: 5.6.2
+  resolution: "typescript@npm:5.6.2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/f95365d4898f357823e93d334ecda9fcade54f009b397c7d05b7621cd9e865981033cf89ccde0f3e3a7b73b1fdbae18e92bc77db237b43e912f053fef0f9a53b
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>":
   version: 5.6.3
   resolution: "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10/00504c01ee42d470c23495426af07512e25e6546bce7e24572e72a9ca2e6b2e9bea63de4286c3cfea644874da1467dcfca23f4f98f7caf20f8b03c0213bb6837
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.5.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
+  version: 5.6.2
+  resolution: "typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=8c6c40"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/8bfc7ca0d9feca4c3fcbd6c70741abfcd714197d6448e68225ae71e462447d904d3bfba49759a8fbe4956d87f054e2d346833c8349c222daa594a2626d4e1be8
   languageName: node
   linkType: hard
 
@@ -21870,7 +21877,6 @@ __metadata:
     "@vxrn/vite-flow": "npm:1.1.325"
     "@vxrn/vite-native-swc": "npm:1.1.325"
     citty: "npm:^0.1.6"
-    crossws: "npm:^0.2.4"
     depcheck: "npm:^1.4.7"
     env-editor: "npm:^1.1.0"
     es-module-lexer: "npm:^1.3.0"
@@ -21879,8 +21885,6 @@ __metadata:
     find-node-modules: "npm:^2.1.3"
     fs-extra: "npm:^11.2.0"
     get-port-please: "npm:^3.1.2"
-    h3: "npm:1.11.1"
-    h3-proxy: "npm:^1.13.0"
     hono: "npm:^4.5.8"
     ip: "npm:^2.0.1"
     lightningcss: "npm:^1.27.0"
