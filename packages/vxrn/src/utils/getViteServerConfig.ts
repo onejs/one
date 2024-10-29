@@ -10,6 +10,7 @@ import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
+import { createReactNativeDevServerPlugin } from '../plugins/reactNativeDevServer'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled) {
   const { root, server } = config
@@ -33,6 +34,8 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
       clearScreen: false,
       publicDir: 'public',
       plugins: [
+        createReactNativeDevServerPlugin(config),
+
         getServerConfigPlugin(),
 
         server.https ? mkcert() : null,
@@ -115,6 +118,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
         },
         cors: true,
         host: server.host,
+        port: server.port,
       },
     } satisfies UserConfig
   ) satisfies InlineConfig

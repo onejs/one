@@ -99,7 +99,9 @@ function setupWebSocket(protocol: string, hostAndPath: string, onCloseWithoutOpe
 
   // Listen for messages
   socket.addEventListener('message', ({ data }) => {
-    console.info(' ❶ hmr ', data)
+    if (process.env.DEBUG) {
+      console.info(' ❶ hmr ', data)
+    }
     handleMessage(JSON.parse(data))
   })
 
@@ -463,7 +465,6 @@ globalThis['createHotContext'] = function createHotContext(ownerPath: string): V
       deps,
       fn: callback,
     })
-    console.info(` ❶ hmr - setting ${ownerPath}`)
     hotModulesMap.set(ownerPath, mod)
   }
 

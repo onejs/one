@@ -1,8 +1,6 @@
+import type { ViteDevServer } from 'vite';
 type Context = {
-    server: {
-        port: number;
-        host: string;
-    };
+    server: ViteDevServer;
 };
 export declare function startUserInterface(context: Context): Promise<void>;
 export {};
