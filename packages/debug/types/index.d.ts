@@ -14,4 +14,4 @@ export declare function createDebugger(namespacePartial: string, options?: Debug
     debugDetails?: Debugger;
 };
 export {};
-//# sourceMappingURL=createDebugger.d.ts.map
+//# sourceMappingURL=index.d.ts.map
