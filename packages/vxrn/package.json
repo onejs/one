@@ -82,7 +82,6 @@
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@tamagui/build": "^1.116.7",
-    "@types/debug": "^4",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",
     "@types/qrcode-terminal": "^0",

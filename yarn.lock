@@ -8461,6 +8461,7 @@ __metadata:
   resolution: "@vxrn/debug@workspace:packages/debug"
   dependencies:
     "@tamagui/build": "npm:^1.116.7"
+    "@types/debug": "npm:^4"
     debug: "npm:^4.3.7"
   languageName: unknown
   linkType: soft
@@ -21861,7 +21862,6 @@ __metadata:
     "@rollup/plugin-node-resolve": "npm:^15.2.3"
     "@tamagui/build": "npm:^1.116.7"
     "@tamagui/react-native-svg": "npm:^1.116.7"
-    "@types/debug": "npm:^4"
     "@types/find-node-modules": "npm:^2.1.2"
     "@types/node": "npm:^22.1.0"
     "@types/qrcode-terminal": "npm:^0"
