@@ -1,10 +1,10 @@
 import debug from 'debug'
 
+type Debugger = debug.Debugger['log'] & { namespace: string }
+
 interface DebuggerOptions {
   onlyWhenFocused?: boolean | string
 }
-
-export type VxrnDebugScope = `vxrn:${string}`
 
 const DEBUG = process.env.DEBUG
 
@@ -13,10 +13,20 @@ const DEBUG = process.env.DEBUG
  * but some of its features are not supported yet to keeps things simple.
  */
 export function createDebugger(
-  namespace: VxrnDebugScope | undefined,
+  namespacePartial: string,
   options: DebuggerOptions = {}
-): (debug.Debugger['log'] & { namespace: VxrnDebugScope }) | undefined {
-  if (!namespace) return
+): { debug?: Debugger; debugDetails?: Debugger } {
+  return {
+    debug: createSingleDebugger(namespacePartial, options),
+    debugDetails: createSingleDebugger(namespacePartial, options),
+  }
+}
+
+function createSingleDebugger(
+  namespacePartial: string,
+  options: DebuggerOptions = {}
+): Debugger | undefined {
+  const namespace = `vxrn:${namespacePartial}`
 
   const log = debug(namespace)
   const { onlyWhenFocused } = options
