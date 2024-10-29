@@ -1,14 +1,14 @@
 import FSExtra from 'fs-extra'
-import { createServer, type ViteDevServer } from 'vite'
 import colors from 'picocolors'
+import { createServer, type ViteDevServer } from 'vite'
 import type { VXRNOptions } from '../types'
 import { startUserInterface } from '../user-interface/index'
 import { bindKeypressInput } from '../utils/bindKeypressInput'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { applyBuiltInPatches } from '../utils/patches'
-import { clean } from './clean'
 import { printServerUrls } from '../utils/printServerUrls'
+import { clean } from './clean'
 
 const { ensureDir } = FSExtra
 
@@ -18,11 +18,11 @@ export const dev = async (optionsIn: DevOptions) => {
   const options = await fillOptions(optionsIn)
   const { cacheDir } = options
 
+  bindKeypressInput()
+
   if (options.clean) {
     await clean(optionsIn)
   }
-
-  bindKeypressInput()
 
   applyBuiltInPatches(options).catch((err) => {
     console.error(`\n 🥺 error applying built-in patches`, err)

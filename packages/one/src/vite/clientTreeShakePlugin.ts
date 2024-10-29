@@ -79,7 +79,6 @@ export async function transformTreeShakeClient(code: string, id: string) {
     const codeOut =
       out.code +
       '\n\n' +
-      // TODO ideally put it back in same place as it was
       removedFunctions
         .map((key) => {
           if (key === 'loader') {

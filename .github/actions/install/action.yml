@@ -1,6 +1,10 @@
 name: 'Install'
-description: 'Install and pre-build'
-
+description: 'Install and build packages'
+inputs:
+  workspace-focus:
+    required: false
+    description: 'Only install and build a specific workspace (and its dependencies)'
+    type: string
 runs:
   using: composite
   steps:
@@ -22,14 +26,24 @@ runs:
       shell: bash
       run: corepack enable && corepack prepare yarn@4.4.1 --activate
 
+    - name: Cache node_modules
+      uses: actions/cache@v4
+      env:
+        cache-name: node_modules
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-
+
     - name: Install Dependencies
       shell: bash
-      run: yarn install
+      run: ${{ inputs.workspace-focus && format('yarn workspaces focus vxrn-monorepo {0}', inputs.workspace-focus) || 'yarn install'}}
 
     - name: Clean Build
       shell: bash
-      run: yarn clean:build
+      run: ${{ inputs.workspace-focus && format('yarn workspaces foreach -Rpt --from "{0}" run clean:build', inputs.workspace-focus) || 'yarn clean:build'}}
 
     - name: Build
       shell: bash
-      run: yarn build
+      run: ${{ inputs.workspace-focus && format('yarn workspaces foreach -Rpt --from "{0}" run build', inputs.workspace-focus) || 'yarn build'}}

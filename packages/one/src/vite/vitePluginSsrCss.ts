@@ -8,7 +8,6 @@ export const VIRTUAL_ENTRY = `virtual:ssr-css.css`
 export function vitePluginSsrCss(pluginOpts: { entries: string[] }): Plugin {
   let server: ViteDevServer
 
-  // TODO: base
   const virtualHref = '/@id/__x00__' + VIRTUAL_ENTRY
 
   return {

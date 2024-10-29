@@ -1,0 +1,40 @@
+{
+  "name": "@vxrn/debug",
+  "version": "1.1.325",
+  "sideEffects": false,
+  "source": "src/index.ts",
+  "type": "module",
+  "types": "./types/index.d.ts",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "types",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tamagui-build",
+    "watch": "tamagui-build --watch",
+    "lint": "npx biome check src",
+    "lint:fix": "npx biome check --apply-unsafe src",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build"
+  },
+  "dependencies": {
+    "debug": "^4.3.7"
+  },
+  "devDependencies": {
+    "@tamagui/build": "^1.116.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
