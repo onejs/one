@@ -15,6 +15,7 @@ import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { applyBuiltInPatches } from '../utils/patches'
+import { bindKeypressInput } from '../utils/bindKeypressInput'
 import { clean } from './clean'
 
 const { ensureDir } = FSExtra
@@ -34,6 +35,8 @@ export type DevOptions = VXRNOptions & { clean?: boolean }
 export const dev = async (optionsIn: DevOptions) => {
   const options = await fillOptions(optionsIn)
   const { cacheDir, server } = options
+
+  bindKeypressInput()
 
   if (options.clean) {
     await clean(optionsIn)
