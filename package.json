@@ -44,6 +44,8 @@
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
     "upgrade:tamagui:canary": "yarn up '*tamagui*'@canary '@tamagui/*'@canary",
     "test": "yarn turbo:run --concurrency=1 test",
+    "test:one": "yarn workspace one test",
+    "test:one:dev": "yarn workspace one test:dev",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
     "watch:js": "SKIP_TYPES=1 yarn watch:build",
     "watch:ts": "tsc -b -w --preserveWatchOutput tsconfig.build.json",
