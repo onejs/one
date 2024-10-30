@@ -7,4 +7,5 @@ export const CACHE_KEY = `${process.env.ONE_CACHE_KEY ?? Math.round(Math.random(
 export const LOADER_JS_POSTFIX_UNCACHED = `_vxrn_loader.js`
 export const LOADER_JS_POSTFIX_REGEX = new RegExp(`_\\d+${LOADER_JS_POSTFIX_UNCACHED}$`)
 export const LOADER_JS_POSTFIX = `_${CACHE_KEY}${LOADER_JS_POSTFIX_UNCACHED}`
+
 export const PRELOAD_JS_POSTFIX = `_${CACHE_KEY}_preload.js`

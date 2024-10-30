@@ -564,6 +564,7 @@ function getParamsWithConventionsCollapsed({
     const name = testNotFound(routeName)
       ? 'not-found'
       : (matchDeepDynamicRouteName(routeName) ?? routeName)
+
     delete processedParams[name]
   }
 

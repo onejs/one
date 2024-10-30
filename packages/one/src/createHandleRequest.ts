@@ -1,5 +1,5 @@
 import { getPathFromLoaderPath } from './cleanUrl'
-import { LOADER_JS_POSTFIX_REGEX, LOADER_JS_POSTFIX_UNCACHED } from './constants'
+import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
 import type { RouteInfo } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
 import { isResponse } from './utils/isResponse'

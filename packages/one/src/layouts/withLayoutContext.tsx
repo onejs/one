@@ -97,8 +97,9 @@ export function withLayoutContext<
 
       return (
         // @ts-expect-error
-        // biome-ignore lint/correctness/noChildrenProp: <explanation>
-        <Nav {...props} id={contextKey} ref={ref} children={sorted} />
+        <Nav {...props} id={contextKey} ref={ref}>
+          {sorted}
+        </Nav>
       )
     }
   )

@@ -1,14 +1,11 @@
 // Copyright © 2024 650 Industries.
-'use client'
-
 import { StackRouter, useNavigationBuilder, type RouterFactory } from '@react-navigation/native'
 import * as React from 'react'
-
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { useContextKey } from '../Route'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
 import { useSortedScreens } from '../useScreens'
 import { Screen } from './Screen'
-import { SafeAreaView } from 'react-native-safe-area-context'
 
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>
 

@@ -1,6 +1,11 @@
 import { beforeAll, describe, expect, it, inject } from 'vitest'
+import { ONLY_TEST_DEV } from './_constants'
 
 const runTests = (environment: 'dev' | 'prod') => {
+  if (ONLY_TEST_DEV && environment === 'prod') {
+    return
+  }
+
   describe(`Routing Tests (${environment})`, () => {
     let serverUrl: string
 
@@ -35,12 +40,12 @@ const runTests = (environment: 'dev' | 'prod') => {
         expect(response.status).toBe(200)
       })
 
-      // it('should handle not found routes', async () => {
-      //   const response = await fetch(`${serverUrl}/not-found/non-existent-route`)
-      //   const html = await response.text()
+      it('should handle not found routes', async () => {
+        const response = await fetch(`${serverUrl}/not-found/non-existent-route`)
+        const html = await response.text()
 
-      //   expect(html).toContain('Custom 404: Page not found')
-      // })
+        expect(html).toContain('Custom 404: Page not found')
+      })
 
       it('should return 404 status for non-existent routes', async () => {
         const response = await fetch(`${serverUrl}/not-found/non-existent-route`)

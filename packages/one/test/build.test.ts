@@ -1,8 +1,16 @@
 import { readFile, pathExists } from 'fs-extra'
 import * as path from 'node:path'
 import { describe, expect, it, inject } from 'vitest'
+import { ONLY_TEST_DEV } from './_constants'
 
 describe('Simple Build Tests', () => {
+  if (ONLY_TEST_DEV) {
+    it('should pass', () => {
+      expect(true).toBeTruthy()
+    })
+    return
+  }
+
   const fixturePath = inject('testInfo').testDir
 
   it('should build api routes without including side effects', async () => {
