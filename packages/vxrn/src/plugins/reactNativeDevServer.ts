@@ -1,4 +1,4 @@
-import type { Plugin, ViteDevServer } from 'vite'
+import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { WebSocketServer } from 'ws'
 import {
   addConnectedNativeClient,
@@ -7,8 +7,9 @@ import {
 import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
 import { getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
+import { URL } from 'node:url'
 
-let cachedReactNativeBundle: string | null = null
+let cachedReactNativeBundles: Record<string, string | undefined> = {}
 
 type ClientMessage = {
   type: 'client-log'
@@ -74,6 +75,11 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
         })
       })
 
+      const validPlatforms: Record<string, 'ios' | 'android' | undefined> = {
+        ios: 'ios',
+        android: 'android',
+      }
+
       // Handle React Native endpoints
       server.middlewares.use('/file', async (req, res) => {
         const url = new URL(req.url!, `http://${req.headers.host}`)
@@ -94,15 +100,24 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
       })
 
       // React Native bundle handler
-      const handleRNBundle = async (_req: any, res: any) => {
+      const handleRNBundle: Connect.NextHandleFunction = async (req, res) => {
+        const url = new URL(req.url!, `http://${req.headers.host}`)
+        const platformString = url.searchParams.get('platform') || ''
+        const platform = validPlatforms[platformString]
+
+        if (!platform) {
+          return
+        }
+
         try {
           const bundle = await (async () => {
-            if (cachedReactNativeBundle && !process.env.VXRN_DISABLE_CACHE) {
-              return cachedReactNativeBundle
+            const cached = cachedReactNativeBundles[platform]
+            if (cached && !process.env.VXRN_DISABLE_CACHE) {
+              return cached
             }
 
-            const builtBundle = await getReactNativeBundle(options)
-            cachedReactNativeBundle = builtBundle
+            const builtBundle = await getReactNativeBundle(options, platform)
+            cachedReactNativeBundles[platform] = builtBundle
             return builtBundle
           })()
 
@@ -154,7 +169,7 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
 
       // Clear bundle cache on file changes
       server.watcher.on('change', () => {
-        cachedReactNativeBundle = null
+        cachedReactNativeBundles = {}
       })
     },
   }

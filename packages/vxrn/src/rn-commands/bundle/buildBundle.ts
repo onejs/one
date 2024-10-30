@@ -13,7 +13,7 @@ export type BundleCommandArgs = {
   transformer?: string
   minify?: boolean
   config?: string
-  platform: string
+  platform: 'ios' | 'android'
   dev: boolean
   bundleOutput: string
   bundleEncoding?: 'utf8' | 'utf16le' | 'ascii'
@@ -73,7 +73,7 @@ export async function buildBundle(
   }
 
   const options = await fillOptions(optionsIn, { mode: dev ? 'dev' : 'prod' })
-  let builtBundle = await getReactNativeBundle(options, {
+  let builtBundle = await getReactNativeBundle(options, platform, {
     mode: dev ? 'dev' : 'prod',
     assetsDest,
     useCache: false,
