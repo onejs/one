@@ -1,0 +1,30 @@
+{
+  "name": "test-weird-deps",
+  "version": "1.1.327",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "one dev",
+    "dev:clean": "one dev --clean",
+    "clean": "one clean",
+    "build:web": "one build",
+    "serve": "one serve"
+  },
+  "dependencies": {
+    "@react-native-masked-view/masked-view": "^0.3.1",
+    "@sentry/react-native": "^5.30.0",
+    "@tamagui/config": "^1.116.7",
+    "moti": "^0.29.0",
+    "one": "1.1.327",
+    "react": "^18.3.1",
+    "react-native": "0.74.5",
+    "react-native-reanimated": "~3.10.1",
+    "react-native-svg": "15.2.0",
+    "react-native-webview": "^13.11.1",
+    "tamagui": "^1.116.7",
+    "uuid": "9.0.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0-beta.5"
+  }
+}

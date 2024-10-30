@@ -4,7 +4,7 @@ import type { VXRNOptions } from '../types';
  *
  * Note that much of the logic is being run by plugins:
  *
- *  - createFileSystemRouter does most of the fs-routes/request handling
+ *  - createFileSystemRouterPlugin does most of the fs-routes/request handling
  *  - clientTreeShakePlugin handles loaders/transforms
  *
  */

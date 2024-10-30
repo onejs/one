@@ -1,4 +1,4 @@
-import { virtualEntryIdNative } from '../vite/virtualEntryPlugin'
+import { virtualEntryIdNative } from '../vite/plugins/virtualEntryPlugin'
 import { labelProcess } from './label-process'
 
 export async function run(args: {
