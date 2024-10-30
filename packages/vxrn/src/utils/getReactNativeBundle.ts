@@ -19,6 +19,7 @@ const cache: Record<string, RollupCache> = {}
 
 export async function getReactNativeBundle(
   options: VXRNOptionsFilled,
+  platform: 'ios' | 'android',
   internal: { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean } = {
     mode: 'dev',
     useCache: true,
@@ -57,15 +58,14 @@ export async function getReactNativeBundle(
 
   const builder = await createBuilder(nativeBuildConfig)
 
-  const environmentName = 'ios' as const
-  const environment = builder.environments[environmentName]
+  const environment = builder.environments[platform]
 
-  const rollupCacheFile = join(options.cacheDir, `rn-rollup-cache-${environmentName}.json`)
+  const rollupCacheFile = join(options.cacheDir, `rn-rollup-cache-${platform}.json`)
 
   if (internal.useCache && !process.env.VXRN_DISABLE_CACHE) {
     // See: https://rollupjs.org/configuration-options/#cache
     environment.config.build.rollupOptions.cache =
-      cache[environmentName] ||
+      cache[platform] ||
       (await (async () => {
         // Try to load Rollup cache from disk
         try {
@@ -88,7 +88,7 @@ export async function getReactNativeBundle(
   if (currentCache) {
     // Do not cache some virtual modules that can dynamically change without an corresponding change in the source code to invalidate the cache.
     currentCache.modules = currentCache.modules.filter((m) => !m.id.endsWith('one-entry-native'))
-    cache[environmentName] = currentCache
+    cache[platform] = currentCache
 
     // do not await cache write
     ;(async () => {

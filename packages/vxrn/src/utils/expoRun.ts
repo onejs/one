@@ -7,7 +7,7 @@ export async function expoRun({ root, platform }: { root: string; platform: 'ios
   if (platform !== 'ios') {
     console.warn(
       picocolors.yellow(
-        `🚧  The ${platform} platform is not supported yet, we're still working on it and you might encounter unexpected errors. Please try iOS first, if possible.`
+        `🚧  The ${platform} platform is less tested and you might encounter unexpected errors. Let us know if anything breaks.`
       )
     )
   }
