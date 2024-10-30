@@ -1,4 +1,5 @@
 import { Text, View } from 'react-native'
+import { DomComponent } from '~/src/DomComponent'
 
 export default function Index() {
   return (
@@ -12,6 +13,8 @@ export default function Index() {
       }}
     >
       <Text>Hello world, from One</Text>
+
+      <DomComponent />
     </View>
   )
 }

@@ -1,7 +1,3 @@
-nice for demo:
-
-- react navigation 7 has animations between tabs
-
 1.0 ordered from most work to least:
 
   - native
@@ -15,37 +11,14 @@ nice for demo:
     - symbolicator
 
   - web
-    - faster route matching
+    - faster route matching, regex routers can be faster than trie
       - see handleRequest file, npm radix3 or rou3
-
-pokai:
-
-  - clear the Rollup cache after .env changed
-  - log error on loading native: called `Option::unwrap()` on a `None` value
-  - on load warning: Each child in a list should have a unique "key" prop.
-    - i disabled the log via logbox.ignore for now
-    - seems like it comes from lucide icons SVG, maybe from react-native-svg
-  - +ssr routes
-  - hmr adding route
-
-jon:
-  - lets add postgres + drizzle + real scheme/data for the basic demo app
-  - improve errors, RootErrorBoundary, etc
-  - test cli, improve cli visuals
-  - design polish
-
----
-
-should have some sprints with "challenges":
-
-- "never needing to restart the server challenge"
-- "use any dependency without config challenge"
-- "make error messages as clear as possible challenge"
-- "hot reload any file challenge"
 
 ---
 
 # backlog
+
+- react-native-web-lite proper release
 
 - need a way ton configure the api + server etc during production builds
 
@@ -76,8 +49,6 @@ should have some sprints with "challenges":
 
 - turn this back off VXRN_ENABLE_SOURCE_MAP:
   - https://github.com/swc-project/swc/issues/9416
-
-- for some reason rollup newer versions have syntax error on trying to load native bundle on basic starter
 
   - bring back some form of useMetroSymbolication
 - safe-area-context should be configurable to leave it out entirely if you want

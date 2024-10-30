@@ -10,17 +10,17 @@ import {
   isWebEnvironment,
   loadEnv,
 } from 'vxrn'
+import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
+import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
+import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
+import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
+import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
+import { createVirtualEntry, virtualEntryId } from './plugins/virtualEntryPlugin'
 import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
-import { clientTreeShakePlugin } from './clientTreeShakePlugin'
-import { createFileSystemRouter } from './createFileSystemRouter'
 import { ensureTSConfig } from './ensureTsConfig'
-import { fixDependenciesPlugin } from './fixDependenciesPlugin'
-import { generateTypesForRoutes } from './generateTypesForRoutes'
 import type { One } from './types'
-import { createVirtualEntry, virtualEntryId } from './virtualEntryPlugin'
-import { vitePluginSsrCss } from './vitePluginSsrCss'
 
 events.setMaxListeners(1_000)
 
@@ -261,9 +261,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     /**
      * This is really the meat of one, where it handles requests:
      */
-    createFileSystemRouter(options),
+    createFileSystemRouterPlugin(options),
 
-    generateTypesForRoutes(options),
+    generateFileSystemRouteTypesPlugin(options),
 
     clientTreeShakePlugin(),
 
@@ -349,7 +349,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     } satisfies Plugin,
 
-    vitePluginSsrCss({
+    SSRCSSPlugin({
       entries: [virtualEntryId],
     }),
   ]

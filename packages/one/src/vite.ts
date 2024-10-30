@@ -1,10 +1,11 @@
 // plugins
-export { clientTreeShakePlugin } from './vite/clientTreeShakePlugin'
-export { createFileSystemRouter } from './vite/createFileSystemRouter'
-export { vitePluginSsrCss } from './vite/vitePluginSsrCss'
-export { removeReactNativeWebAnimatedPlugin } from './vite/removeReactNativeWebAnimatedPlugin'
-export { makePluginWebOnly } from './vite/makePluginWebOnly'
 export { resolvePath } from '@vxrn/resolve'
+export { clientTreeShakePlugin } from './vite/plugins/clientTreeShakePlugin'
+export { removeReactNativeWebAnimatedPlugin } from './vite/plugins/removeReactNativeWebAnimatedPlugin'
+export { SSRCSSPlugin } from './vite/plugins/SSRCSSPlugin'
+export { createFileSystemRouterPlugin } from './vite/plugins/fileSystemRouterPlugin'
+
+export { makePluginWebOnly } from './vite/makePluginWebOnly'
 
 export { setCurrentRequestHeaders } from './vite/headers'
 

@@ -12007,22 +12007,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-react-native-svg@workspace:tests/test-react-native-svg":
-  version: 0.0.0-use.local
-  resolution: "example-react-native-svg@workspace:tests/test-react-native-svg"
-  dependencies:
-    expo: "npm:~51.0.28"
-    one: "npm:1.1.327"
-    react: "npm:^18.3.1"
-    react-native: "npm:0.74.5"
-    react-native-safe-area-context: "npm:4.10.5"
-    react-native-screens: "npm:3.31.1"
-    react-native-svg: "npm:^15.7.1"
-    react-native-web: "npm:^0.19.12"
-    vite: "npm:^6.0.0-beta.5"
-  languageName: unknown
-  linkType: soft
-
 "example-recommended@workspace:examples/one-recommended":
   version: 0.0.0-use.local
   resolution: "example-recommended@workspace:examples/one-recommended"
@@ -12086,31 +12070,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"example-test-expo-camera@workspace:tests/test-expo-camera":
-  version: 0.0.0-use.local
-  resolution: "example-test-expo-camera@workspace:tests/test-expo-camera"
-  dependencies:
-    "@react-navigation/bottom-tabs": "npm:~6.5.8"
-    "@react-navigation/core": "npm:6.4.17"
-    "@react-navigation/drawer": "npm:~6.6.3"
-    "@react-navigation/elements": "npm:^1.3.30"
-    "@react-navigation/native": "npm:~6.1.7"
-    "@react-navigation/native-stack": "npm:~6.9.13"
-    "@react-navigation/routers": "npm:~6.1.9"
-    expo: "npm:~51.0.28"
-    expo-camera: "npm:^15.0.16"
-    one: "npm:1.1.327"
-    react: "npm:^18.3.1"
-    react-native: "npm:0.74.5"
-    react-native-reanimated: "npm:~3.10.1"
-    react-native-safe-area-context: "npm:4.10.5"
-    react-native-screens: "npm:3.31.1"
-    react-native-svg: "npm:15.2.0"
-    react-native-web: "npm:^0.19.12"
-    vite: "npm:^6.0.0-beta.5"
-  languageName: unknown
-  linkType: soft
-
 "example-testflight@workspace:examples/testflight":
   version: 0.0.0-use.local
   resolution: "example-testflight@workspace:examples/testflight"
@@ -12140,26 +12099,6 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.116.7"
     tsx: "npm:^4.19.0"
-    vite: "npm:^6.0.0-beta.5"
-  languageName: unknown
-  linkType: soft
-
-"example-weird-deps@workspace:tests/weird-deps":
-  version: 0.0.0-use.local
-  resolution: "example-weird-deps@workspace:tests/weird-deps"
-  dependencies:
-    "@react-native-masked-view/masked-view": "npm:^0.3.1"
-    "@sentry/react-native": "npm:^5.30.0"
-    "@tamagui/config": "npm:^1.116.7"
-    moti: "npm:^0.29.0"
-    one: "npm:1.1.327"
-    react: "npm:^18.3.1"
-    react-native: "npm:0.74.5"
-    react-native-reanimated: "npm:~3.10.1"
-    react-native-svg: "npm:15.2.0"
-    react-native-webview: "npm:^13.11.1"
-    tamagui: "npm:^1.116.7"
-    uuid: "npm:9.0.0"
     vite: "npm:^6.0.0-beta.5"
   languageName: unknown
   linkType: soft
@@ -12244,17 +12183,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"expo-camera@npm:^15.0.16":
-  version: 15.0.16
-  resolution: "expo-camera@npm:15.0.16"
-  dependencies:
-    invariant: "npm:^2.2.4"
-  peerDependencies:
-    expo: "*"
-  checksum: 10/738d26d43d62746d97790d9f06bc69facc1c1ab5e7e17b5c5c9ddaab43c33c50c1952b685fc7da211421083c6f21e860986b5e23f3a154cf6cd686b8ca95b92b
-  languageName: node
-  linkType: hard
-
 "expo-constants@npm:~16.0.0":
   version: 16.0.2
   resolution: "expo-constants@npm:16.0.2"
@@ -12331,19 +12259,6 @@ __metadata:
   checksum: 10/81c09bfcf7233bfb5218a65c6648d29155cee595f313857eaf5518fc4645375bacc43f8a4836d93a400301d3a0aba976be980d98fa0dff02ce60095984640215
   languageName: node
   linkType: hard
-
-"expo-reanimated-app@workspace:tests/expo-reanimated":
-  version: 0.0.0-use.local
-  resolution: "expo-reanimated-app@workspace:tests/expo-reanimated"
-  dependencies:
-    expo: "npm:~51.0.28"
-    expo-status-bar: "npm:~1.12.1"
-    react: "npm:^18.3.1"
-    react-native: "npm:0.74.5"
-    react-native-reanimated: "npm:~3.10.1"
-    vxrn: "npm:1.1.327"
-  languageName: unknown
-  linkType: soft
 
 "expo-status-bar@npm:~1.12.1":
   version: 1.12.1
@@ -18252,20 +18167,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-svg@npm:^15.7.1":
-  version: 15.8.0
-  resolution: "react-native-svg@npm:15.8.0"
-  dependencies:
-    css-select: "npm:^5.1.0"
-    css-tree: "npm:^1.1.3"
-    warn-once: "npm:0.1.1"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 10/9a60d1f33539c41ca50b2c21e6d8909e52a3bdf67b29b9231c7ffe72120fc8cb6d7fca45723bd9219b993202ade2343c97c7e4f53de7ee2446279ac91426b096
-  languageName: node
-  linkType: hard
-
 "react-native-web@npm:^0.19.12":
   version: 0.19.12
   resolution: "react-native-web@npm:0.19.12"
@@ -20430,9 +20331,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"test-app@workspace:tests/test":
+"test-exclude@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "test-exclude@npm:6.0.0"
+  dependencies:
+    "@istanbuljs/schema": "npm:^0.1.2"
+    glob: "npm:^7.1.4"
+    minimatch: "npm:^3.0.4"
+  checksum: 10/8fccb2cb6c8fcb6bb4115394feb833f8b6cf4b9503ec2485c2c90febf435cac62abe882a0c5c51a37b9bbe70640cdd05acf5f45e486ac4583389f4b0855f69e5
+  languageName: node
+  linkType: hard
+
+"test-expo-reanimated@workspace:tests/test-expo-reanimated":
   version: 0.0.0-use.local
-  resolution: "test-app@workspace:tests/test"
+  resolution: "test-expo-reanimated@workspace:tests/test-expo-reanimated"
+  dependencies:
+    expo: "npm:~51.0.28"
+    expo-status-bar: "npm:~1.12.1"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.5"
+    react-native-reanimated: "npm:~3.10.1"
+    vxrn: "npm:1.1.327"
+  languageName: unknown
+  linkType: soft
+
+"test-test@workspace:tests/test":
+  version: 0.0.0-use.local
+  resolution: "test-test@workspace:tests/test"
   dependencies:
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
@@ -20462,16 +20387,41 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"test-exclude@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "test-exclude@npm:6.0.0"
+"test-use-dom@workspace:tests/test-use-dom":
+  version: 0.0.0-use.local
+  resolution: "test-use-dom@workspace:tests/test-use-dom"
   dependencies:
-    "@istanbuljs/schema": "npm:^0.1.2"
-    glob: "npm:^7.1.4"
-    minimatch: "npm:^3.0.4"
-  checksum: 10/8fccb2cb6c8fcb6bb4115394feb833f8b6cf4b9503ec2485c2c90febf435cac62abe882a0c5c51a37b9bbe70640cdd05acf5f45e486ac4583389f4b0855f69e5
-  languageName: node
-  linkType: hard
+    "@types/react": "npm:^18.3.11"
+    expo: "npm:~51.0.28"
+    one: "npm:1.1.327"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.5"
+    react-native-safe-area-context: "npm:4.10.5"
+    react-native-screens: "npm:3.31.1"
+    react-native-web: "npm:^0.19.12"
+    vite: "npm:^6.0.0-beta.5"
+  languageName: unknown
+  linkType: soft
+
+"test-weird-deps@workspace:tests/test-weird-deps":
+  version: 0.0.0-use.local
+  resolution: "test-weird-deps@workspace:tests/test-weird-deps"
+  dependencies:
+    "@react-native-masked-view/masked-view": "npm:^0.3.1"
+    "@sentry/react-native": "npm:^5.30.0"
+    "@tamagui/config": "npm:^1.116.7"
+    moti: "npm:^0.29.0"
+    one: "npm:1.1.327"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.5"
+    react-native-reanimated: "npm:~3.10.1"
+    react-native-svg: "npm:15.2.0"
+    react-native-webview: "npm:^13.11.1"
+    tamagui: "npm:^1.116.7"
+    uuid: "npm:9.0.0"
+    vite: "npm:^6.0.0-beta.5"
+  languageName: unknown
+  linkType: soft
 
 "text-table@npm:^0.2.0":
   version: 0.2.0
@@ -21919,7 +21869,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"warn-once@npm:0.1.1, warn-once@npm:^0.1.0":
+"warn-once@npm:^0.1.0":
   version: 0.1.1
   resolution: "warn-once@npm:0.1.1"
   checksum: 10/e6a5a1f5a8dba7744399743d3cfb571db4c3947897875d4962a7c5b1bf2195ab4518c838cb4cea652e71729f21bba2e98dc75686f5fccde0fabbd894e2ed0c0d
