@@ -1,5 +1,4 @@
 import { getActionFromState, type LinkingOptions } from '@react-navigation/native'
-
 import type { RouteNode } from './Route'
 import type { State } from './fork/getPathFromState'
 import { getReactNavigationConfig, type Screen } from './getReactNavigationConfig'
@@ -15,11 +14,11 @@ export function getNavigationConfig(
   return getReactNavigationConfig(routes, metaOnly)
 }
 
-export type ExpoLinkingOptions = LinkingOptions<object> & {
+export type OneLinkingOptions = LinkingOptions<object> & {
   getPathFromState?: typeof getPathFromState
 }
 
-export function getLinkingConfig(routes: RouteNode, metaOnly = true): ExpoLinkingOptions {
+export function getLinkingConfig(routes: RouteNode, metaOnly = true): OneLinkingOptions {
   return {
     prefixes: [],
     // @ts-expect-error

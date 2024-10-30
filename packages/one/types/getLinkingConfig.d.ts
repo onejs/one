@@ -6,9 +6,9 @@ export declare function getNavigationConfig(routes: RouteNode, metaOnly?: boolea
     initialRouteName?: string;
     screens: Record<string, Screen>;
 };
-export type ExpoLinkingOptions = LinkingOptions<object> & {
+export type OneLinkingOptions = LinkingOptions<object> & {
     getPathFromState?: typeof getPathFromState;
 };
-export declare function getLinkingConfig(routes: RouteNode, metaOnly?: boolean): ExpoLinkingOptions;
+export declare function getLinkingConfig(routes: RouteNode, metaOnly?: boolean): OneLinkingOptions;
 export declare const stateCache: Map<string, any>;
 //# sourceMappingURL=getLinkingConfig.d.ts.map

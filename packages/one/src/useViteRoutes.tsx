@@ -65,7 +65,7 @@ export function globbedRoutesToRouteContext(
     else if (shouldRewrite) {
       // for SSR support we rewrite these:
       routesSync[pathWithoutRelative] =
-        path.includes('_layout.') || path.includes('+spa')
+        path.includes('+not-found') || path.includes('_layout.') || path.includes('+spa')
           ? loadRouteFunction
           : () => {
               const realPath = (globalThis['__vxrntodopath'] ?? window.location.pathname).trim()

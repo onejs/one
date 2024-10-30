@@ -1,4 +1,4 @@
-import testSetup, { type TestInfo } from './setup'
+import testSetup, { type TestInfo } from './_setup'
 import type { GlobalSetupContext } from 'vitest/node'
 
 declare module 'vitest' {

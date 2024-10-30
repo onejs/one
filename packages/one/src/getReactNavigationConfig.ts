@@ -18,13 +18,17 @@ function convertDynamicRouteToReactNavigation(segment: string): string {
     return ''
   }
 
+  if (segment === '+not-found') {
+    return '*not-found'
+  }
+
   const rest = matchDeepDynamicRouteName(segment)
-  if (rest != null) {
+  if (typeof rest === 'string') {
     return '*' + rest
   }
-  const dynamicName = matchDynamicName(segment)
 
-  if (dynamicName != null) {
+  const dynamicName = matchDynamicName(segment)
+  if (typeof dynamicName === 'string') {
     return `:${dynamicName}`
   }
 
@@ -49,6 +53,7 @@ function parseRouteSegments(segments: string): string {
 
 function convertRouteNodeToScreen(node: RouteNode, metaOnly: boolean): Screen {
   const path = parseRouteSegments(node.route)
+
   if (!node.children.length) {
     if (!metaOnly) {
       return {
@@ -59,6 +64,7 @@ function convertRouteNodeToScreen(node: RouteNode, metaOnly: boolean): Screen {
     }
     return path
   }
+
   const screens = getReactNavigationScreensConfig(node.children, metaOnly)
 
   const screen: Screen = {
@@ -78,7 +84,7 @@ function convertRouteNodeToScreen(node: RouteNode, metaOnly: boolean): Screen {
   return screen
 }
 
-export function getReactNavigationScreensConfig(
+function getReactNavigationScreensConfig(
   nodes: RouteNode[],
   metaOnly: boolean
 ): Record<string, Screen> {

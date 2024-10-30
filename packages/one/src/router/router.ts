@@ -13,7 +13,7 @@ import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 import type { State } from '../fork/getPathFromState'
 import { deepEqual, getPathDataFromState } from '../fork/getPathFromState'
 import { stripBaseUrl } from '../fork/getStateFromPath'
-import { getLinkingConfig, type ExpoLinkingOptions } from '../getLinkingConfig'
+import { getLinkingConfig, type OneLinkingOptions } from '../getLinkingConfig'
 import { getRoutes } from '../getRoutes'
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
@@ -32,7 +32,7 @@ import { setLastAction } from './lastAction'
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
 export let rootComponent: ComponentType
-export let linking: ExpoLinkingOptions | undefined
+export let linking: OneLinkingOptions | undefined
 
 export let hasAttemptedToHideSplash = false
 export let initialState: OneRouter.ResultState | undefined

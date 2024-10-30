@@ -1,6 +1,11 @@
 import { describe, expect, it, beforeAll, inject } from 'vitest'
+import { ONLY_TEST_DEV } from './_constants'
 
 const runTests = (environment: 'dev' | 'prod') => {
+  if (ONLY_TEST_DEV && environment === 'prod') {
+    return
+  }
+
   describe(`API Tests (${environment})`, () => {
     let serverUrl: string
 

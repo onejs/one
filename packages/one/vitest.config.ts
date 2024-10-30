@@ -5,7 +5,8 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    globalSetup: './test/globalSetup.ts',
+    globalSetup: './test/_globalSetup.ts',
+    // reporters: ['hanging-process'],
     teardownTimeout: 500,
     poolOptions: {
       forks: {

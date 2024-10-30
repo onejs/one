@@ -1,13 +1,13 @@
 import { type NavigationContainerRefWithCurrent } from '@react-navigation/native';
 import { type ComponentType } from 'react';
 import type { RouteNode } from '../Route';
-import { type ExpoLinkingOptions } from '../getLinkingConfig';
+import { type OneLinkingOptions } from '../getLinkingConfig';
 import type { OneRouter } from '../interfaces/router';
 import type { One } from '../vite/types';
 import { type UrlObject } from './getNormalizedStatePath';
 export declare let routeNode: RouteNode | null;
 export declare let rootComponent: ComponentType;
-export declare let linking: ExpoLinkingOptions | undefined;
+export declare let linking: OneLinkingOptions | undefined;
 export declare let hasAttemptedToHideSplash: boolean;
 export declare let initialState: OneRouter.ResultState | undefined;
 export declare let rootState: OneRouter.ResultState | undefined;
@@ -34,7 +34,7 @@ export declare function snapshot(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
     rootComponent: ComponentType;
-    linking: ExpoLinkingOptions | undefined;
+    linking: OneLinkingOptions | undefined;
     hasAttemptedToHideSplash: boolean;
     initialState: OneRouter.ResultState | undefined;
     rootState: OneRouter.ResultState | undefined;
@@ -52,7 +52,7 @@ export declare function useOneRouter(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
     rootComponent: ComponentType;
-    linking: ExpoLinkingOptions | undefined;
+    linking: OneLinkingOptions | undefined;
     hasAttemptedToHideSplash: boolean;
     initialState: OneRouter.ResultState | undefined;
     rootState: OneRouter.ResultState | undefined;

@@ -148,6 +148,7 @@ function assertConfigDuplicates(configs: RouteConfig[]) {
     // NOTE: Uses the regex pattern as key to detect duplicate slugs.
     const indexedKey = config.regex?.toString() ?? config.pattern
     const alpha = acc[indexedKey]
+
     // NOTE: Skips checking nodes that have children.
     if (alpha && !alpha.hasChildren && !config.hasChildren) {
       const a = alpha.routeNames
@@ -169,6 +170,7 @@ function assertConfigDuplicates(configs: RouteConfig[]) {
             : last?.startsWith('*')
               ? 'dynamic-rest route'
               : 'route'
+
           throw new Error(
             `The ${routeType} pattern '${config.pattern || '/'}' resolves to both '${
               alpha.userReadableName
@@ -266,6 +268,7 @@ function sortConfigs(a: RouteConfig, b: RouteConfig): number {
 
     const aSlug = aParts[i].startsWith(':')
     const bSlug = bParts[i].startsWith(':')
+
     // if both are wildcard we compare next component
     if (aSlug && bSlug) {
       const aNotFound = aParts[i].match(/^[*]not-found$/)
