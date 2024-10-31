@@ -91,6 +91,7 @@
     "@react-navigation/native": "~6.1.7",
     "@react-navigation/native-stack": "~6.9.13",
     "@react-navigation/routers": "~6.1.9",
+    "@swc/core": "^1.7.14",
     "@ungap/structured-clone": "^1.2.0",
     "@vxrn/resolve": "1.1.327",
     "@vxrn/tslib-lite": "1.1.327",
