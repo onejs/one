@@ -152,10 +152,8 @@ export default function HomePage() {
 
           <PrettyTextBigger intro>
             One is a new React framework for web and{' '}
-            <Hint hintContents={<>One makes Vite fully support React Native.</>}>
-              native
-            </Hint>
-            , built on Vite. It&nbsp;simplifies things with{' '}
+            <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint>,
+            built on Vite. It&nbsp;simplifies things with{' '}
             <Hint tint="green" hintContents="Unified file system routes, web and native.">
               universal
             </Hint>
@@ -235,7 +233,7 @@ export default function HomePage() {
                   color: '$color10',
                 }}
               >
-                Local-focused
+                Data made easy
               </PrettyTextBiggest>
 
               <PrettyTextBigger style={{ textWrap: 'stable' }}>
@@ -243,16 +241,15 @@ export default function HomePage() {
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                With One and <a href="https://tamagui.dev">Tamagui</a>, we're
-                close&#x2026; but there's still <em>one</em> big pain point.{' '}
+                With One and <a href="https://tamagui.dev">Tamagui</a>, we're close&#x2026; but
+                there's still <em>one</em> big pain point.{' '}
                 <b>Let's&nbsp;talk&nbsp;about&nbsp;data</b>.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                Native apps feel better and are easier to write thanks to client-side
-                databases. Say&nbsp;bye&nbsp;to server boundaries, lose&nbsp;the glue
-                code, mutate instantly, and have things
-                Just&nbsp;Work™&nbsp;offline&#x2026;
+                Native apps feel better and are easier to write thanks to client-side databases.
+                Say&nbsp;bye&nbsp;to server boundaries, lose&nbsp;the glue code, mutate instantly,
+                and have things Just&nbsp;Work™&nbsp;offline&#x2026;
               </PrettyTextBigger>
 
               <PrettyTextBigger>
@@ -260,8 +257,8 @@ export default function HomePage() {
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                Well, web needs small bundles, and has limited storage. Add in sync,
-                caching, composition&#x2026; there's 0 great options.
+                Well, web needs small bundles, and has limited storage. Add in sync, caching,
+                composition&#x2026; there's 0 great options.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
@@ -271,24 +268,18 @@ export default function HomePage() {
                     Zero
                   </Link>
                 </b>{' '}
-                to include it as the default, ejectable solution to data. Zero solves for
-                all the above <Link href="/docs/data">and&nbsp;more</Link>. It even works
+                to include it as the default, ejectable solution to data. Zero solves for all the
+                above <Link href="/docs/data">and&nbsp;more</Link>. It even works
                 with&nbsp;Postgres.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
                 One{' '}
-                <View
-                  tag="span"
-                  dsp="inline-flex"
-                  m={-2}
-                  mr={5}
-                  $sm={{ scale: 0.9, y: 5 }}
-                >
+                <View tag="span" dsp="inline-flex" m={-2} mr={5} $sm={{ scale: 0.9, y: 5 }}>
                   <OneBall size={0.7} />
                 </View>{' '}
-                is working to make Zero great on server and client. Our proof of concept
-                has no flickers, waterfalls, or config.
+                is working to make Zero great on server and client. Our proof of concept has no
+                flickers, waterfalls, or config.
               </PrettyTextBigger>
 
               <PrettyTextBigger>We love it, and think you will too.</PrettyTextBigger>
@@ -359,8 +350,7 @@ export default function HomePage() {
                 </PrettyText>
 
                 <PrettyText o={0.8} cur="inherit" maw={400}>
-                  Check out our small sample app to see a One iOS app in motion. On
-                  Testflight.
+                  Check out our small sample app to see a One iOS app in motion. On Testflight.
                 </PrettyText>
               </YStack>
             </XStack>
@@ -385,14 +375,7 @@ export default function HomePage() {
 
 const InfoBoxes = () => {
   return (
-    <XStack
-      mx="$-8"
-      fw="wrap"
-      rowGap="$1"
-      columnGap="$5"
-      mb="$13"
-      $sm={{ fd: 'column', mx: 0 }}
-    >
+    <XStack mx="$-8" fw="wrap" rowGap="$1" columnGap="$5" mb="$13" $sm={{ fd: 'column', mx: 0 }}>
       <InfoCard title="Typed  FS Routing" Icon={FolderCheck}>
         Simple file-system routes with nested layouts and groups, fully typed.
       </InfoCard>
@@ -406,8 +389,7 @@ const InfoBoxes = () => {
         Build a website with React. Or a native app with React Native. Or both at once.
       </InfoCard>
       <InfoCard title="100% Vite" Icon={ViteIcon}>
-        That's right, no more Metro. One Vite plugin, one Vite server, one port - three
-        platforms.
+        That's right, no more Metro. One Vite plugin, one Vite server, one port - three platforms.
       </InfoCard>
       <InfoCard title="The future of data" Icon={Database}>
         Coming soon, an integration with{' '}
@@ -546,15 +528,7 @@ function Video() {
             />
           </YStack>
 
-          <View
-            pos="absolute"
-            top={0}
-            right={0}
-            bottom={0}
-            left={0}
-            ai="center"
-            jc="center"
-          >
+          <View pos="absolute" top={0} right={0} bottom={0} left={0} ai="center" jc="center">
             <Circle
               animation="bouncy"
               $group-card-hover={{
@@ -570,12 +544,7 @@ function Video() {
               shac="$shadowColorStrong"
               shar={10}
             >
-              <svg
-                style={{ marginTop: -10 }}
-                width="100%"
-                height="100%"
-                viewBox="0 0 100 100"
-              >
+              <svg style={{ marginTop: -10 }} width="100%" height="100%" viewBox="0 0 100 100">
                 <polygon
                   style={{ transform: 'translateY(6px)' }}
                   points="35,25 75,50 35,75"
