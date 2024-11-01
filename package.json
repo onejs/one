@@ -39,6 +39,7 @@
     "fix": "manypkg fix",
     "lint:fix": "ultra -r --no-pretty lint:fix",
     "lint": "ultra -r --no-pretty lint",
+    "sandbox": "yarn workspace test-sandbox dev",
     "dev:example": "node -r esbuild-register ./scripts/dev.ts example",
     "dev:test": "node -r esbuild-register ./scripts/dev.ts test",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
