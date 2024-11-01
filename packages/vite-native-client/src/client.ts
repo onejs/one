@@ -345,6 +345,10 @@ async function fetchUpdate({
 
   if (!mod) {
     console.info(` ❶ hmr - No module found`)
+    console.info(`    looked for ${path} in:`)
+    hotModulesMap.forEach((value, key) => {
+      console.info(`   - ${key}`)
+    })
     // In a code-splitting project,
     // it is common that the hot-updating module is not loaded yet.
     // https://github.com/vitejs/vite/issues/721

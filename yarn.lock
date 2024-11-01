@@ -17031,7 +17031,7 @@ __metadata:
     perfect-debounce: "npm:^1.0.0"
     picocolors: "npm:^1.0.0"
     react: "npm:>=18.0.0"
-    react-dom: "npm:^18.3.1"
+    react-dom: "npm:>=18.0.0"
     react-native: "npm:0.74.5"
     react-native-gesture-handler: "npm:^2.18.1"
     react-native-safe-area-context: "npm:4.10.5"
@@ -18055,7 +18055,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.2.0 || ^19.0.0, react-dom@npm:^18.3.1":
+"react-dom@npm:>=18.0.0, react-dom@npm:^18.2.0 || ^19.0.0, react-dom@npm:^18.3.1":
   version: 18.3.1
   resolution: "react-dom@npm:18.3.1"
   dependencies:
@@ -20353,6 +20353,28 @@ __metadata:
     react-native: "npm:0.74.5"
     react-native-reanimated: "npm:~3.10.1"
     vxrn: "npm:1.1.327"
+  languageName: unknown
+  linkType: soft
+
+"test-sandbox@workspace:tests/sandbox":
+  version: 0.0.0-use.local
+  resolution: "test-sandbox@workspace:tests/sandbox"
+  dependencies:
+    "@tamagui/config": "npm:^1.116.7"
+    "@tamagui/image-next": "npm:^1.116.7"
+    "@tamagui/lucide-icons": "npm:^1.116.7"
+    "@tamagui/vite-plugin": "npm:^1.116.7"
+    "@vxrn/color-scheme": "npm:1.1.327"
+    one: "npm:1.1.327"
+    react: "npm:^18.3.1"
+    react-native: "npm:0.74.5"
+    react-native-reanimated: "npm:~3.10.1"
+    react-native-safe-area-context: "npm:4.10.5"
+    react-native-screens: "npm:3.31.1"
+    react-native-svg: "npm:15.2.0"
+    react-native-web: "npm:^0.19.12"
+    react-native-webview: "npm:^13.11.1"
+    tamagui: "npm:^1.116.7"
   languageName: unknown
   linkType: soft
 
