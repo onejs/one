@@ -1,6 +1,7 @@
 import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
 import { compress } from 'hono/compress'
+import { dirname, join } from 'node:path'
 
 import type { VXRNOptions } from '../types'
 
@@ -27,6 +28,31 @@ export const createProdServer = async (options: VXRNOptions) => {
     }
 
     return response
+  })
+
+  app.notFound(async (c) => {
+    const path = c.req.path
+    let currentDir = dirname(path)
+
+    while (true) {
+      const response = await serveStatic({
+        root: './dist/client',
+        path: join(currentDir, '+not-found.html'),
+      })(c, async () => {})
+
+      if (response && response.body) {
+        c.status(404)
+        return c.body(response.body)
+      }
+
+      const nextDir = dirname(currentDir)
+      if (nextDir === currentDir) {
+        break
+      }
+      currentDir = nextDir
+    }
+
+    return c.text('404 Not Found', { status: 404 })
   })
 
   return app
