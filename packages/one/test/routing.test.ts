@@ -47,6 +47,20 @@ const runTests = (environment: 'dev' | 'prod') => {
         expect(html).toContain('Custom 404: Page not found')
       })
 
+      it('should handle deep not found routes', async () => {
+        const response = await fetch(`${serverUrl}/not-found/deep/non-existent-route`)
+        const html = await response.text()
+
+        expect(html).toContain('Custom Deep 404: Page not found')
+      })
+
+      it('should handle not found routes with fallback', async () => {
+        const response = await fetch(`${serverUrl}/not-found/fallback/non-existent-route`)
+        const html = await response.text()
+
+        expect(html).toContain('Custom 404: Page not found')
+      })
+
       it('should return 404 status for non-existent routes', async () => {
         const response = await fetch(`${serverUrl}/not-found/non-existent-route`)
         expect(response.status).toBe(404)
