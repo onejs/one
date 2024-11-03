@@ -3,7 +3,7 @@ env:
   # Relative path from the monorepo root to the app
   test_app_path: tests/test
   # Package name in the monorepo
-  test_app_package_name: test-app
+  test_app_package_name: test-test
   # Used for cache keys, must be unique among all workflows
   app_identifier: ios-test-app
   # Should match the name of "ios/<app_name>.xcworkspace"
