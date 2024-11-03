@@ -2,6 +2,7 @@ import ip from 'ip'
 import { exec } from 'node:child_process'
 import qrcode from 'qrcode-terminal'
 import type { ViteDevServer } from 'vite'
+import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
 
 type Context = {
   server: ViteDevServer
@@ -42,7 +43,7 @@ const COMMANDS = [
     label: 'show Expo Go QR code',
     terminalLabel: 'show Expo Go \x1b[1mQR\x1b[0m code',
     action: (ctx) => {
-      const urls = ctx.server.resolvedUrls?.network
+      const urls = filterViteServerResolvedUrls(ctx.server.resolvedUrls)?.network
       const url = urls?.[urls.length - 1]
       if (!url) {
         console.warn('Cannot get the local server URL.')

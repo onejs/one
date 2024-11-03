@@ -9,6 +9,7 @@ import { getViteServerConfig } from '../utils/getViteServerConfig'
 import { applyBuiltInPatches } from '../utils/patches'
 import { printServerUrls } from '../utils/printServerUrls'
 import { clean } from './clean'
+import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
 
 const { ensureDir } = FSExtra
 
@@ -59,8 +60,9 @@ export const dev = async (optionsIn: DevOptions) => {
       console.info(colors.bold('Server running on') + ' ⪢')
       console.info()
 
-      if (viteServer.resolvedUrls) {
-        printServerUrls(viteServer.resolvedUrls, {}, viteServer.config.logger.info)
+      const viteServerResolvedUrls = filterViteServerResolvedUrls(viteServer.resolvedUrls)
+      if (viteServerResolvedUrls) {
+        printServerUrls(viteServerResolvedUrls, {}, viteServer.config.logger.info)
       }
 
       startUserInterface({ server: viteServer })
