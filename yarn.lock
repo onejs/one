@@ -17031,7 +17031,7 @@ __metadata:
     perfect-debounce: "npm:^1.0.0"
     picocolors: "npm:^1.0.0"
     react: "npm:>=18.0.0"
-    react-dom: "npm:^18.3.1"
+    react-dom: "npm:>=18.0.0"
     react-native: "npm:0.74.5"
     react-native-gesture-handler: "npm:^2.18.1"
     react-native-safe-area-context: "npm:4.10.5"
@@ -18055,7 +18055,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.2.0 || ^19.0.0, react-dom@npm:^18.3.1":
+"react-dom@npm:>=18.0.0, react-dom@npm:^18.2.0 || ^19.0.0, react-dom@npm:^18.3.1":
   version: 18.3.1
   resolution: "react-dom@npm:18.3.1"
   dependencies:
