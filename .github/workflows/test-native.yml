@@ -87,7 +87,7 @@ jobs:
   #     - name: Get a Copy of the Bundle
   #       run: |
   #         echo 'Fetching the React Native bundle in the background, since the first request can take a while pre-bundling dependencies and producing the first bundle without a cache. The bundle we got can also serve as troubleshooting material in case of a failure, and will be uploaded as an artifact.'
-  #         wget -O bundle.ios.js 'http://localhost:8081/index.bundle?platform.ios' &
+  #         wget -O bundle.ios.js 'http://localhost:8081/index.bundle?platform=ios' &
 
   #     - name: Install Dev Container App in Simulator
   #       env:
