@@ -8509,7 +8509,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.116.7"
     tsx: "npm:^4.19.0"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
 
@@ -8612,7 +8612,7 @@ __metadata:
     "@tamagui/build": "npm:^1.116.7"
     flow-remove-types: "npm:^2.247.1"
     metro-react-native-babel-preset: "npm:^0.77.0"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
 
@@ -11974,7 +11974,7 @@ __metadata:
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-web: "npm:^0.19.12"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
 
@@ -12002,7 +12002,7 @@ __metadata:
     react-native-svg: "npm:15.2.0"
     swr: "npm:^2.2.5"
     tamagui: "npm:^1.116.7"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
     vite-plugin-inspect: "npm:^0.8.7"
   languageName: unknown
   linkType: soft
@@ -12037,7 +12037,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.116.7"
     tsx: "npm:^4.19.0"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
 
@@ -12066,7 +12066,7 @@ __metadata:
     react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.116.7"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
 
@@ -12099,7 +12099,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.116.7"
     tsx: "npm:^4.19.0"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
 
@@ -17039,7 +17039,7 @@ __metadata:
     rollup: "npm:^4.21.0"
     rollup-plugin-node-externals: "npm:^7.1.2"
     url-parse: "npm:^1.5.10"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
     vite-tsconfig-paths: "npm:^5.0.1"
     vitest: "npm:^2.1.1"
     vxrn: "npm:1.1.328"
@@ -17717,7 +17717,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.43, postcss@npm:^8.4.47, postcss@npm:~8.4.32":
+"postcss@npm:^8.4.43, postcss@npm:^8.4.45, postcss@npm:^8.4.47, postcss@npm:~8.4.32":
   version: 8.4.47
   resolution: "postcss@npm:8.4.47"
   dependencies:
@@ -18974,7 +18974,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.20.0, rollup@npm:^4.21.0, rollup@npm:^4.23.0":
+"rollup@npm:^4.20.0, rollup@npm:^4.21.0":
   version: 4.24.0
   resolution: "rollup@npm:4.24.0"
   dependencies:
@@ -20384,7 +20384,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.116.7"
     tsx: "npm:^4.19.0"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
 
@@ -20400,7 +20400,7 @@ __metadata:
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-web: "npm:^0.19.12"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
 
@@ -20420,7 +20420,7 @@ __metadata:
     react-native-webview: "npm:^13.11.1"
     tamagui: "npm:^1.116.7"
     uuid: "npm:9.0.0"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
   languageName: unknown
   linkType: soft
 
@@ -21565,6 +21565,49 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vite@npm:6.0.0-beta.1":
+  version: 6.0.0-beta.1
+  resolution: "vite@npm:6.0.0-beta.1"
+  dependencies:
+    esbuild: "npm:^0.21.3"
+    fsevents: "npm:~2.3.3"
+    postcss: "npm:^8.4.45"
+    rollup: "npm:^4.20.0"
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    sass-embedded: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    sass-embedded:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 10/b5c1ae5e00c74ace8a4680fafc5c8b12b63c92ab6924b1717f96f69fb971f04868111ebfeb6ff1c82e9c02450eafed9fc3a4d4bc788f9b7e5b5d03870508f7bd
+  languageName: node
+  linkType: hard
+
 "vite@npm:^5.0.0, vite@npm:^5.4.1":
   version: 5.4.7
   resolution: "vite@npm:5.4.7"
@@ -21605,54 +21648,6 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 10/3f27e870930ad83b51e009604c6b69ab090e69bb5bfe85007c7e4ec3326efae4e33ac799645926363f258595b3be3055cc1ebc5ee158cff4bacdf41adf4ef8ed
-  languageName: node
-  linkType: hard
-
-"vite@npm:^6.0.0-beta.1":
-  version: 6.0.0-beta.8
-  resolution: "vite@npm:6.0.0-beta.8"
-  dependencies:
-    esbuild: "npm:^0.24.0"
-    postcss: "npm:^8.4.47"
-    rollup: "npm:^4.23.0"
-  peerDependencies:
-    "@types/node": ^18.0.0 || >=20.0.0
-    jiti: ">=1.21.0"
-    less: "*"
-    lightningcss: ^1.21.0
-    sass: "*"
-    sass-embedded: "*"
-    stylus: "*"
-    sugarss: "*"
-    terser: ^5.16.0
-    tsx: ^4.8.1
-    yaml: ^2.4.2
-  peerDependenciesMeta:
-    "@types/node":
-      optional: true
-    jiti:
-      optional: true
-    less:
-      optional: true
-    lightningcss:
-      optional: true
-    sass:
-      optional: true
-    sass-embedded:
-      optional: true
-    stylus:
-      optional: true
-    sugarss:
-      optional: true
-    terser:
-      optional: true
-    tsx:
-      optional: true
-    yaml:
-      optional: true
-  bin:
-    vite: bin/vite.js
-  checksum: 10/bcf64cb821c060934caf05a7ee3a707845dc3a74818ea52c4db6d2167d6facafd3f0f44c8f54a878435d6c73725a79eafe405fa7ea1deea89e09678ef371e014
   languageName: node
   linkType: hard
 
@@ -21850,7 +21845,7 @@ __metadata:
     qrcode-terminal: "npm:^0.12.0"
     rollup: "npm:^4.21.0"
     semver: "npm:^7.6.3"
-    vite: "npm:^6.0.0-beta.1"
+    vite: "npm:6.0.0-beta.1"
     vite-bundle-analyzer: "npm:^0.9.4"
     vite-plugin-mkcert: "npm:^1.17.5"
     ws: "npm:^8.7.0"

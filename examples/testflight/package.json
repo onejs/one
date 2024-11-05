@@ -50,6 +50,6 @@
     "@faker-js/faker": "next",
     "@tamagui/vite-plugin": "^1.116.7",
     "tsx": "^4.19.0",
-    "vite": "^6.0.0-beta.1"
+    "vite": "6.0.0-beta.1"
   }
 }
