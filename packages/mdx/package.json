@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/mdx",
-  "version": "1.1.327",
+  "version": "1.1.328",
   "types": "./types/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",

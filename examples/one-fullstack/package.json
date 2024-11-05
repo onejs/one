@@ -1,6 +1,6 @@
 {
   "name": "example-fullstack",
-  "version": "1.1.327",
+  "version": "1.1.328",
   "type": "module",
   "private": true,
   "scripts": {
@@ -19,10 +19,10 @@
     "@tamagui/image-next": "^1.116.7",
     "@tamagui/lucide-icons": "^1.116.7",
     "@tamagui/one-theme": "^1.116.7",
-    "@vxrn/mdx": "1.1.327",
+    "@vxrn/mdx": "1.1.328",
     "jsonwebtoken": "^9.0.2",
     "mdx-bundler": "^10.0.2",
-    "one": "1.1.327",
+    "one": "1.1.328",
     "postmark": "^3.0.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
