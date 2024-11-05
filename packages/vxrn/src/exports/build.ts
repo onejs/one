@@ -184,7 +184,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     ssr: {
       noExternal: true,
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'expo-modules-core'],
       optimizeDeps,
     },
 
