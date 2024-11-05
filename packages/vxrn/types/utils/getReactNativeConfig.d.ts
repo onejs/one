@@ -81,7 +81,8 @@ export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig
         define?: Record<string, any>;
         resolve: Required<import("vite").ResolveOptions>;
         consumer: "client" | "server";
-        webCompatible: boolean;
+        keepProcessEnv?: boolean;
+        optimizeDeps: import("vite").DepOptimizationOptions;
         dev: import("vite").ResolvedDevEnvironmentOptions;
         build: import("vite").ResolvedBuildEnvironmentOptions;
     }>;
