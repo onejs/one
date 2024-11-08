@@ -68,12 +68,19 @@ export async function startUserInterface(context: Context) {
 }
 
 function printCommandsTable(context: Context) {
-  const commandsInfo = COMMANDS.map(getCommandInfoInTerminal).join('\n')
+  const longestKeyLength = COMMANDS.reduce((max, command) => Math.max(max, command.keys.length), 0)
+
+  const commandsInfo = COMMANDS.map((cmd) =>
+    getCommandInfoInTerminal(cmd, { longestKeyLength })
+  ).join('\n')
   console.info(`\n${commandsInfo}\n`)
 }
 
-function getCommandInfoInTerminal(command: { keys: string; terminalLabel: string }) {
-  return `\x1b[90m›\x1b[0m Press \x1b[1m${command.keys}\x1b[0m \x1b[90m│\x1b[0m ${command.terminalLabel}`
+function getCommandInfoInTerminal(
+  command: { keys: string; terminalLabel: string },
+  { longestKeyLength = 0 }: { longestKeyLength?: number } = {}
+) {
+  return `\x1b[90m›\x1b[0m Press \x1b[1m${longestKeyLength ? command.keys.padEnd(longestKeyLength, ' ') : command.keys}\x1b[0m \x1b[90m│\x1b[0m ${command.terminalLabel}`
 }
 
 function startInterceptingKeyStrokes(context: Context) {
