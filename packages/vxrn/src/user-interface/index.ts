@@ -57,7 +57,7 @@ const COMMANDS = [
   {
     keys: '?',
     label: 'open editor',
-    terminalLabel: ' show this menu',
+    terminalLabel: 'show this menu',
     action: async (ctx) => {},
   },
 ] satisfies Command[]
