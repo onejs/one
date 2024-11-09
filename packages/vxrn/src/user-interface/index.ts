@@ -32,8 +32,8 @@ const COMMANDS = [
   },
   {
     keys: 'oi',
-    label: 'open app iOS Simulator',
-    terminalLabel: '\x1b[1mo\x1b[0mpen app \x1b[1mi\x1b[0mOS Simulator',
+    label: 'open app in iOS Simulator',
+    terminalLabel: '\x1b[1mo\x1b[0mpen app in \x1b[1mi\x1b[0mOS Simulator',
     action: (ctx) => {
       openIos(ctx)
     },
