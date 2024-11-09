@@ -1,4 +1,5 @@
 import ip from 'ip'
+import module from 'node:module'
 import { exec } from 'node:child_process'
 import qrcode from 'qrcode-terminal'
 import type { ViteDevServer } from 'vite'
@@ -30,6 +31,15 @@ const COMMANDS = [
     },
   },
   {
+    keys: 'oi',
+    label: 'open app iOS Simulator',
+    terminalLabel: '\x1b[1mo\x1b[0mpen app \x1b[1mi\x1b[0mOS Simulator',
+    action: (ctx) => {
+      openIos(ctx)
+    },
+  },
+
+  {
     keys: 'oe',
     label: 'open editor',
     terminalLabel: '\x1b[1mo\x1b[0mpen \x1b[1me\x1b[0mditor',
@@ -38,15 +48,14 @@ const COMMANDS = [
       exec(`${defaultEditor().binary} .`)
     },
   },
+
   {
     keys: 'qr',
     label: 'show Expo Go QR code',
     terminalLabel: 'show Expo Go \x1b[1mQR\x1b[0m code',
     action: (ctx) => {
-      const urls = filterViteServerResolvedUrls(ctx.server.resolvedUrls)?.network
-      const url = urls?.[urls.length - 1]
+      const url = getExpoGoUrl(ctx)
       if (!url) {
-        console.warn('Cannot get the local server URL.')
         return
       }
 
@@ -187,7 +196,7 @@ function clearPrintedInfo() {
 }
 
 async function printNativeQrCodeAndInstructions(url: string) {
-  qrcode.generate(url.replace(/^https?/, 'exp'), { small: true }, (code) => {
+  qrcode.generate(url, { small: true }, (code) => {
     console.info(
       `To open the app on your iPhone, install the Expo Go app and scan the QR code below with your iPhone camera:\n${code}`
     )
@@ -199,4 +208,48 @@ function nativeOpen(url: string) {
     process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open'
 
   exec(`${start} ${url}`)
+}
+
+async function openIos(ctx: Context) {
+  const projectRoot = ctx.server.config.root
+  const port = ctx.server.config.server.port || 8081
+
+  try {
+    const require = module.createRequire(projectRoot)
+    const applePlatformManagerModuleImportPath = require.resolve(
+      '@expo/cli/build/src/start/platforms/ios/ApplePlatformManager.js',
+      {
+        paths: [projectRoot],
+      }
+    )
+    const applePlatformManagerModule = await import(applePlatformManagerModuleImportPath)
+    const PlatformManager = applePlatformManagerModule.default.ApplePlatformManager
+
+    // TODO: Support dev client
+    const platformManager = new PlatformManager(projectRoot, port, {
+      /** Expo Go URL. */
+      getExpoGoUrl: () => getExpoGoUrl(ctx),
+      /** Get the base URL for the dev server hosting this platform manager. */
+      getDevServerUrl: () => null,
+      /** Get redirect URL for native disambiguation. */
+      getRedirectUrl: () => null,
+      /** Dev Client */
+      getCustomRuntimeUrl: (props?: { scheme?: string }) => null,
+    })
+    await platformManager.openAsync({ runtime: 'expo' })
+  } catch (e) {
+    const stack = e instanceof Error ? e.stack : null
+    console.error(`Failed to open app in iOS Simulator: ${e}${stack ? `\n${stack}` : ''}`)
+  }
+}
+
+function getExpoGoUrl(ctx: Context) {
+  const urls = filterViteServerResolvedUrls(ctx.server.resolvedUrls)?.network
+  const url = urls?.[urls.length - 1]
+  if (!url) {
+    console.warn('Cannot get the local server URL.')
+    return
+  }
+
+  return url.replace(/^https?/, 'exp')
 }
