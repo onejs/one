@@ -72,11 +72,14 @@ One uses brackets to match against a single dynamic parameter: `./blog/[slug].ts
 One will match `./blog/[slug].tsx` to any `/blog/*` route, and pass in the parameters to the route as follows:
 
 ```tsx
+import { useParams } from 'one'
+
 export function loader({ params }) {
   // params.slug will be a string matching the URL parameter
 }
 
-export default function BlogPostPage({ params }) {
+export default function BlogPostPage() {
+  const params = useParams()
   // params.slug will be a string matching the URL parameter
 }
 ```
@@ -97,11 +100,14 @@ Much like JavaScript supports rest parameters, One supports rest parameter route
 In the case where a user navigates to `/catalog/a/b/c`, the `[...rest].tsx` route would receive a params prop as follows:
 
 ```tsx
+import { useParams } from 'one'
+
 export function loader({ params }) {
   // params.rest is an array ['a', 'b', 'c']
 }
 
 export default function BlogPostPage({ params }) {
+  const params = useParams()
   // params.rest is an array ['a', 'b', 'c']
 }
 ```
