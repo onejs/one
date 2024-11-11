@@ -1,6 +1,6 @@
 {
   "name": "test-sandbox",
-  "version": "1.1.328",
+  "version": "1.1.329",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,8 +16,8 @@
     "@tamagui/image-next": "^1.116.14",
     "@tamagui/lucide-icons": "^1.116.14",
     "@tamagui/vite-plugin": "^1.116.14",
-    "@vxrn/color-scheme": "1.1.328",
-    "one": "1.1.328",
+    "@vxrn/color-scheme": "1.1.329",
+    "one": "1.1.329",
     "react": "^18.3.1",
     "react-native": "0.74.5",
     "react-native-reanimated": "~3.10.1",

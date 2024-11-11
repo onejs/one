@@ -99,6 +99,7 @@ function createRequire(importer, importsMap) {
     const output = getRequire(importer, importsMap, _mod)
 
     // some sort of compat with new Rollup commonjs transform
+    // going from vite 6.0.0-beta.1 to beta.5 needed this
     if (output && typeof output === 'object' && !('__require' in output)) {
       return new Proxy(output, {
         get(target, key) {
@@ -115,10 +116,14 @@ function createRequire(importer, importsMap) {
 }
 
 function getRequire(importer, importsMap, _mod) {
+  const debugExtraDetail = `Cached modules list:${Object.keys(__cachedModules).join('\n  -')}`
+
   const getErrorDetails = (withStack) => {
     return `In importsMap:
 
 ${JSON.stringify(importsMap, null, 2)}
+
+${process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : ''}
 
 ${
   withStack
