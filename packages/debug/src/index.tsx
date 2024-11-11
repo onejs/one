@@ -9,7 +9,7 @@ interface DebuggerOptions {
 const DEBUG = process.env.DEBUG
 
 /**
- * This is like `createDebugger()` in the Vite source code ([see](https://github.com/vitejs/vite/blob/v6.0.0-beta.1/packages/vite/src/node/utils.ts#L163)),
+ * This is like `createDebugger()` in the Vite source code ([see](https://github.com/vitejs/vite/blob/v6.0.0-beta.2/packages/vite/src/node/utils.ts#L163)),
  * but some of its features are not supported yet to keeps things simple.
  */
 export function createDebugger(

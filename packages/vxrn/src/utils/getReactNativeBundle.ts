@@ -27,12 +27,11 @@ export async function getReactNativeBundle(
 ) {
   entryRoot = options.root
 
-  if (process.env.LOAD_TMP_BUNDLE) {
+  if (process.env.VXRN_LOAD_BUNDLE) {
     // for easier quick testing things:
-    const tmpBundle = join(process.cwd(), 'bundle.tmp.js')
-    if (await pathExists(tmpBundle)) {
-      console.info('⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️', tmpBundle)
-      return await readFile(tmpBundle, 'utf-8')
+    if (await pathExists(process.env.VXRN_LOAD_BUNDLE)) {
+      console.info('⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️', process.env.VXRN_LOAD_BUNDLE)
+      return await readFile(process.env.VXRN_LOAD_BUNDLE, 'utf-8')
     }
   }
 

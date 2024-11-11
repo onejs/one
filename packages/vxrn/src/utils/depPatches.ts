@@ -309,7 +309,7 @@ ${contents}
   {
     module: 'vite',
     patchFiles: {
-      version: '6.0.0-beta.1',
+      version: '6.0.0-beta.2',
 
       // vite is going nuts when i install outside the monorepo
       // expo touches .expo/devices.json and for some strange reason vite
