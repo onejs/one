@@ -16,15 +16,4 @@ It takes the following arguments:
 
 One comes with a serve command that is powered by [Hono](https://hono.dev).
 
-The compress flag is default on and uses [compress](https://hono.dev/docs/middleware/builtin/compress).
-
-If cacheHeaders is not set to false, it will set this by default:
-
-```tsx
-if (!c.req.header('Cache-Control')) {
-  c.header('Cache-Control', 'no-store')
-  c.header('Vary', '*')
-}
-```
-
-This is mostly because Safari can aggressively cache things, even with query strings. We highly recommend using a CDN for your static assets, but you can set this to false or use the plugin to [hook into `server.beforeStart`](/docs/configuration) and set your own `Cache-Control` headers.
+If you are only using SPA and SSG routes and aren't using loaders, you don't need to use `one serve` if you don't want to - you can statically serve the results of `dist/client` using any server you'd like.
