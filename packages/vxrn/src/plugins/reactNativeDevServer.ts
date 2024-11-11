@@ -5,11 +5,9 @@ import {
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
 import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
-import { getReactNativeBundle } from '../utils/getReactNativeBundle'
+import { clearCachedBundle, getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { URL } from 'node:url'
-
-let cachedReactNativeBundles: Record<string, string | undefined> = {}
 
 type ClientMessage = {
   type: 'client-log'
@@ -110,17 +108,7 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
         }
 
         try {
-          const bundle = await (async () => {
-            const cached = cachedReactNativeBundles[platform]
-            if (cached && !process.env.VXRN_DISABLE_CACHE) {
-              return cached
-            }
-
-            const builtBundle = await getReactNativeBundle(options, platform)
-            cachedReactNativeBundles[platform] = builtBundle
-            return builtBundle
-          })()
-
+          const bundle = await getReactNativeBundle(options, platform)
           res.writeHead(200, { 'Content-Type': 'text/javascript' })
           res.end(bundle)
         } catch (err) {
@@ -169,7 +157,7 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
 
       // Clear bundle cache on file changes
       server.watcher.on('change', () => {
-        cachedReactNativeBundles = {}
+        clearCachedBundle()
       })
     },
   }
