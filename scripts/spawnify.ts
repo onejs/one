@@ -8,6 +8,7 @@ export const spawnify = async (
   cmd: string,
   opts?: proc.SpawnOptionsWithoutStdio & {
     avoidLog?: boolean
+    allowFail?: boolean
   }
 ): Promise<string> => {
   console.info('>', cmd)
@@ -34,7 +35,11 @@ export const spawnify = async (
       errStr.push(`${out}`)
     })
     child.on('error', (err) => {
-      rej(err)
+      if (opts?.allowFail) {
+        res('Errored but allowing failure' + err)
+      } else {
+        rej(err)
+      }
     })
     child.on('close', (code) => {
       if (code === 0) {
