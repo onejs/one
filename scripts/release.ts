@@ -381,9 +381,11 @@ async function run() {
       async function finishAndCommit(cwd = process.cwd()) {
         if (!rePublish || reRun || finish) {
           await spawnify(`git add -A`, { cwd })
-          await spawnify(`git commit -m ${gitTag}`, { cwd })
+
+          await spawnify(`git commit -m ${gitTag}`, { cwd, allowFail: finish })
+
           if (!canary) {
-            await spawnify(`git tag ${gitTag}`, { cwd })
+            await spawnify(`git tag ${gitTag}`, { cwd, allowFail: finish })
           }
 
           if (!dirty) {
@@ -391,7 +393,7 @@ async function run() {
             await spawnify(`git pull --rebase origin HEAD`, { cwd })
           }
 
-          await spawnify(`git push origin head`, { cwd })
+          await spawnify(`git push origin head`, { cwd, allowFail: finish })
           if (!canary) {
             await spawnify(`git push origin ${gitTag}`, { cwd })
           }
