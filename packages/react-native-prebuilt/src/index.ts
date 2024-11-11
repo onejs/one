@@ -1,13 +1,8 @@
+import { resolvePath } from '@vxrn/resolve'
 import { readFile } from 'node:fs/promises'
-
-import { transformFlow } from '@vxrn/vite-flow'
+import { transformFlow, transformFlowFast } from '@vxrn/vite-flow'
 import { build, type BuildOptions } from 'esbuild'
 import FSExtra from 'fs-extra'
-
-import { createRequire } from 'node:module'
-
-const requireResolve =
-  'url' in import.meta ? createRequire(import.meta.url).resolve : require.resolve
 
 const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 
@@ -24,7 +19,6 @@ export async function buildAll() {
 export async function buildReactJSX(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [requireResolve('react/jsx-dev-runtime')],
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -79,7 +73,6 @@ export async function buildReactJSX(options: BuildOptions = {}) {
 export async function buildReact(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [requireResolve('react')],
     format: 'cjs',
     target: 'node16',
     jsx: 'transform',
@@ -121,7 +114,6 @@ export async function buildReact(options: BuildOptions = {}) {
 export async function buildReactNative(options: BuildOptions = {}) {
   return build({
     bundle: true,
-    entryPoints: [requireResolve('react-native')],
     format: 'cjs',
     target: 'node20',
     // Note: JSX is actually being transformed by the "remove-flow" plugin defined underneath, not by esbuild. The following JSX options may not actually make a difference.
@@ -163,7 +155,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
               filter: /HMRClient/,
             },
             async (input) => {
-              const path = requireResolve('@vxrn/vite-native-hmr')
+              const path = resolvePath('@vxrn/vite-native-hmr', process.cwd())
               // While node may resolve to the CJS version, it seems that `.naive.js` file exts aren't working if we use that. This might cause problems since in `.cjs` files, `'react-native'` is being replaced with `'react-native-web'` and we need to use `.native.js`.
               // So we try to use the ESM version which this way it seems that `.native.js` will be used.
               const possibleEsmPath = path.replace('/cjs/index.cjs', '/esm/index.native.js')
@@ -173,6 +165,8 @@ export async function buildReactNative(options: BuildOptions = {}) {
               return { path }
             }
           )
+
+          let numErrors = 0
 
           build.onLoad(
             {
@@ -186,11 +180,35 @@ export async function buildReactNative(options: BuildOptions = {}) {
               const code = await readFile(input.path, 'utf-8')
 
               // omg so ugly but no class support?
-              const outagain = await transformFlow(code, { development: true })
+              try {
+                try {
+                  const outagain = await transformFlow(code, { development: true })
 
-              return {
-                contents: outagain,
-                loader: 'jsx',
+                  return {
+                    contents: outagain,
+                    loader: 'jsx',
+                  }
+                } catch (err) {
+                  console.info(
+                    `metro babel flow transform failed, falling back to flow-remove-types`
+                  )
+
+                  numErrors++
+
+                  if (numErrors > 5) {
+                    console.error(`Something wrong`, err)
+                  }
+
+                  const outagain = await transformFlowFast(code)
+                  const out2 = await transformFlow(outagain, { development: true })
+
+                  return {
+                    contents: out2,
+                  }
+                }
+              } catch (err) {
+                console.error(`Error stripping flow from: ${input.path}`)
+                throw err
               }
             }
           )

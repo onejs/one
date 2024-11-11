@@ -1,20 +1,23 @@
+import { transformCommonJs } from '@vxrn/vite-native-swc'
 import type { FilterPattern, PluginOption } from 'vite'
 import { createFilter } from 'vite'
-// import { transformCommonJs, swcTransform } from '@vxrn/vite-native-swc'
 import { transformFlowBabel } from './transformFlowBabel'
 
 export async function transformFlow(
   input: string,
   { development = false }: { development?: boolean } = {}
 ) {
-  // const { default: removeFlowTypes } = await import('flow-remove-types')
-  // const stripped = removeFlowTypes(input).toString() as string
-  // this freezes, likely due to not transforming react-native somehow properly, but not sure exactly how
-  // const final = (await transformCommonJs('file.jsx', stripped))?.code
-
   const final = await transformFlowBabel(input)
-
   return final
+}
+
+export async function transformFlowFast(input: string) {
+  const { default: removeFlowTypes } = await import('flow-remove-types')
+  const stripped = removeFlowTypes(input).toString() as string
+
+  return stripped
+  // this freezes, likely due to not transforming react-native somehow properly, but not sure exactly how
+  // return (await transformCommonJs('file.jsx', stripped))?.code
 }
 
 export type Options = {

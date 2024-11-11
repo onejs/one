@@ -19,6 +19,7 @@
 # backlog
 
 - react-native-web-lite proper release
+- // TEMP FIX can likely go away
 
 - need a way ton configure the api + server etc during production builds
 

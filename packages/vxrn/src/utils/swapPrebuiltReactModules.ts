@@ -50,7 +50,7 @@ export async function prebuildReactNativeModules(
 
   await Promise.all([
     buildReactNative({
-      entryPoints: [resolvePath('react-native')],
+      entryPoints: [resolvePath('react-native', process.cwd())],
       outfile: prebuilds.reactNative,
       ...buildOptions,
     }).catch((err) => {
@@ -58,7 +58,7 @@ export async function prebuildReactNativeModules(
       throw err
     }),
     buildReact({
-      entryPoints: [resolvePath('react')],
+      entryPoints: [resolvePath('react', process.cwd())],
       outfile: prebuilds.react,
       ...buildOptions,
     }).catch((err) => {
@@ -68,8 +68,8 @@ export async function prebuildReactNativeModules(
     buildReactJSX({
       entryPoints: [
         internal.mode === 'dev'
-          ? resolvePath('react/jsx-dev-runtime')
-          : resolvePath('react/jsx-runtime'),
+          ? resolvePath('react/jsx-dev-runtime', process.cwd())
+          : resolvePath('react/jsx-runtime', process.cwd()),
       ],
       outfile: prebuilds.reactJSX,
       ...buildOptions,
