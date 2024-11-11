@@ -15,6 +15,12 @@ const { pathExists } = FSExtra
 // used for normalizing hot reloads
 export let entryRoot = ''
 
+let cachedReactNativeBundles: Record<string, string | undefined> = {}
+
+export function clearCachedBundle() {
+  cachedReactNativeBundles = {}
+}
+
 const cache: Record<string, RollupCache> = {}
 
 export async function getReactNativeBundle(
@@ -33,6 +39,11 @@ export async function getReactNativeBundle(
       console.info('⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️', process.env.VXRN_LOAD_BUNDLE)
       return await readFile(process.env.VXRN_LOAD_BUNDLE, 'utf-8')
     }
+  }
+
+  const cached = cachedReactNativeBundles[platform]
+  if (cached && !process.env.VXRN_DISABLE_CACHE) {
+    return cached
   }
 
   await prebuildReactNativeModules(options.cacheDir, {
@@ -170,6 +181,7 @@ __require("${id}")
 
   const out = template + appCode
 
+  cachedReactNativeBundles[platform] = out
   done(out)
   setIsBuildingNativeBundle(null)
 
