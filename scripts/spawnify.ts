@@ -42,7 +42,7 @@ export const spawnify = async (
       }
     })
     child.on('close', (code) => {
-      if (code === 0) {
+      if (code === 0 || opts?.allowFail) {
         res(outStr.join('\n'))
       } else {
         rej(errStr.join('\n'))
