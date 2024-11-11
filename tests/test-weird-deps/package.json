@@ -25,6 +25,6 @@
     "uuid": "9.0.0"
   },
   "devDependencies": {
-    "vite": "^6.0.0-beta.1"
+    "vite": "6.0.0-beta.1"
   }
 }
