@@ -204,23 +204,19 @@ export async function swapPrebuiltReactModules(
         const idOut = id.replace('virtual:rn-internals:', '')
         let out = `const ___val = __cachedModules["${idOut}"]
         const ___defaultVal = ___val ? ___val.default || ___val : ___val
-        export default ___defaultVal`
+        export default ___defaultVal
+        
 
-        // Some packages such as react-native-gesture-handler are importing from react-native internals with named imports.
-        // TODO: This is a workaround to handle it case by case.
-        if (id.includes('react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry')) {
-          out += '\nexport const customBubblingEventTypes = ___val.customBubblingEventTypes'
-          out += '\nexport const customDirectEventTypes = ___val.customDirectEventTypes'
+        // allow importing named exports of internals:
+        if (___defaultVal && typeof ___defaultVal === 'object') {
+          Object.keys(___defaultVal).forEach(key => {
+            if (key !== 'default') {
+              exports[key] = ___defaultVal[key]
+            }
+          })
         }
-        if (id.includes('react-native/Libraries/Pressability/PressabilityDebug')) {
-          out += '\nexport const PressabilityDebugView = ___val.PressabilityDebugView'
-        }
-        if (id.includes('react-native/Libraries/NativeComponent/NativeComponentRegistry')) {
-          out += '\nexport const setRuntimeConfigProvider = ___val.setRuntimeConfigProvider'
-          out += '\nexport const get = ___val.get'
-          out += '\nexport const getWithFallback_DEPRECATED = ___val.getWithFallback_DEPRECATED'
-          out += '\nexport const unstable_hasStaticViewConfig = ___val.unstable_hasStaticViewConfig'
-        }
+        
+        `
 
         return out
       }
