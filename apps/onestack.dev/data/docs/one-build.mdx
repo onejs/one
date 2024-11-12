@@ -18,7 +18,7 @@ npx one build ios
 
 ## Building for web
 
-When building One for web, the output will be a mostly static directory of HTML, CSS, and JavaScript. Internally, One runs a few different Vite production builds to output client, server, and API folders. This output is always in the `dist` directory. 
+When building One for web, the output will be a mostly static directory of HTML, CSS, and JavaScript. Internally, One runs a few different Vite production builds to output client, server, and API folders. This output is always in the `dist` directory.
 
 Ensure your `.env` file has a `ONE_SERVER_URL` set to your production URL, like:
 
@@ -52,6 +52,8 @@ If you are only using SPA and SSG routes and aren't using loaders, you can stati
 
 ## Building for native
 
-We don't have an end to end build command just yet, but we do easily slot into your existing Expo or plain React Native native app build process.
+We don't have an end-to-end build command yet, but One is designed to be easy to integrate into existing Expo or React Native build processes.
 
-Check out the [iOS Native Guide](/docs/guides-ios-native) for more information.
+If you're familiar with EAS, see how to [Build and Deliver Native Apps with EAS](/docs/guides-eas).
+
+Or check out the [iOS Native Guide](/docs/guides-ios-native) for instructions on building your iOS app with Xcode.
