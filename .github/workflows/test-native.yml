@@ -262,7 +262,7 @@ jobs:
         with:
           name: release-app
           path: |
-            path: ${{ needs.build-ios-test-app.outputs.built-app-path }}
+            ${{ needs.build-ios-test-app.outputs.built-app-path }}
 
       - name: Prepare Maestro Logs
         id: prepare-maestro-logs
