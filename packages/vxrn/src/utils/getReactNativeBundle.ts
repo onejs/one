@@ -193,9 +193,16 @@ __require("${id}")
  */
 async function getReactNativeTemplate(mode: 'dev' | 'prod') {
   const templateFile = resolvePath('vxrn/react-native-template.js')
-  const template = await readFile(templateFile, 'utf-8')
+  let template = await readFile(templateFile, 'utf-8')
 
-  return template.replace(/process\.env\.__DEV__/g, mode === 'dev' ? 'true' : 'false')
+  template = template.replace(/process\.env\.__DEV__/g, mode === 'dev' ? 'true' : 'false')
+
+  if (mode === 'prod') {
+    // `process` might not available in release runtime
+    template = template.replace(/process\.env\.DEBUG/g, 'undefined')
+  }
+
+  return template
 }
 
 function bigIntReplacer(_key: string, value: any): any {
