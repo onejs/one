@@ -83,9 +83,7 @@ export async function scanDepsToPreBundleForSsr(
   const currentRoot = path.dirname(packageJsonPath)
 
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
-  const deps = [
-    ...Object.keys(pkgJson.dependencies || {}),
-  ]
+  const deps = [...Object.keys(pkgJson.dependencies || {})]
 
   return (
     await Promise.all(
@@ -124,7 +122,51 @@ export async function scanDepsToPreBundleForSsr(
           dep.startsWith('@expo/') ||
           dep.startsWith('expo-')
 
-        const result = [...(shouldPreBundle ? [dep] : []), ...subDepsToPreBundle]
+        const result = [
+          ...(shouldPreBundle
+            ? (() => {
+                // Not working, and do we really need this?
+                // const definedExports = Object.keys(depPkgJson.exports || {})
+                //   .map((k) => k.replace(/^\.\/?/, ''))
+                //   .filter((k) => !!k && k !== 'package.json')
+                //   .map((k) => `${dep}/${k}`)
+                const definedExports = []
+
+                /**
+                 * A dirty workaround for packages that are using entry points that are not explicitly defined,
+                 * such as while using react-native-vector-icons, users will import Icon components like this: `import Icon from 'react-native-vector-icons/FontAwesome'`.
+                 */
+                const specialExports = (() => {
+                  switch (dep) {
+                    case 'react-native-vector-icons':
+                      return [
+                        'AntDesign',
+                        'Entypo',
+                        'EvilIcons',
+                        'Feather',
+                        'FontAwesome',
+                        'FontAwesome5',
+                        'FontAwesome5Pro',
+                        'Fontisto',
+                        'Foundation',
+                        'Ionicons',
+                        'MaterialCommunityIcons',
+                        'MaterialIcons',
+                        'Octicons',
+                        'SimpleLineIcons',
+                        'Zocial',
+                      ].map((n) => `${dep}/${n}`)
+
+                    default:
+                      return []
+                  }
+                })()
+
+                return [dep, ...definedExports, ...specialExports]
+              })()
+            : []),
+          ...subDepsToPreBundle,
+        ]
 
         proceededDeps.set(dep, result)
         return result
