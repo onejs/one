@@ -22,3 +22,8 @@ a {
   text-underline-offset: 3px;
   transition: all ease-in 100ms;
 }
+
+@font-face {
+  src: url('react-native-vector-icons/Fonts/Ionicons.ttf');
+  font-family: Ionicons;
+}
