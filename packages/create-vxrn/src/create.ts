@@ -100,6 +100,8 @@ export async function create(args: { template?: string; name?: string }) {
 
   // change root package.json's name to project name
   updatePackageJsonName(projectName, resolvedProjectPath)
+  // change root app.json's name to project name
+  updateAppJsonName(projectName, resolvedProjectPath)
 
   const packageManager: PackageManagerName = await (async () => {
     if ('packageManager' in template) {
@@ -174,5 +176,17 @@ function updatePackageJsonName(projectName: string, dir: string) {
     const content = readFileSync(packageJsonPath).toString()
     const contentWithUpdatedName = content.replace(/("name": ")(.*)(",)/, `$1${projectName}$3`)
     writeFileSync(packageJsonPath, contentWithUpdatedName)
+  }
+}
+
+function updateAppJsonName(projectName: string, dir: string) {
+  const appJsonPath = path.join(dir, 'app.json')
+  if (existsSync(appJsonPath)) {
+    const content = readFileSync(appJsonPath).toString()
+    const projectSlug = projectName.toLowerCase().replace(/\s/g, '-')
+    const contentWithUpdatedName = content
+      .replace(/("name": ")(.*)(",)/, `$1${projectName}$3`)
+      .replace(/("slug": ")(.*)(",)/, `$1${projectSlug}$3`)
+    writeFileSync(appJsonPath, contentWithUpdatedName)
   }
 }
