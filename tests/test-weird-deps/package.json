@@ -1,6 +1,6 @@
 {
   "name": "test-weird-deps",
-  "version": "1.1.330",
+  "version": "1.1.331",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,7 +15,7 @@
     "@sentry/react-native": "^5.30.0",
     "@tamagui/config": "^1.116.14",
     "moti": "^0.29.0",
-    "one": "1.1.330",
+    "one": "1.1.331",
     "react": "^18.3.1",
     "react-native": "0.74.5",
     "react-native-reanimated": "~3.10.1",
