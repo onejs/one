@@ -19,7 +19,7 @@ Out of the box, the One Vite plugin does the following:
 - Adds [vite-tsconfig-paths](https://github.com/aleclarson/vite-tsconfig-paths) plugin, unless it detects you've added it already
 - Loads `.env` file into `process.env` before running anything using [dotenv](https://www.npmjs.com/package/dotenv)
 - Adds a well-configured `tsconfig.json` if it doesn't exist
-- Configures native to resolve "react-native" (CJS) and "react-native-import" (ESM) exports field
+- Configures native to resolve "react-native" export field in package.json
 - Configures platform-specific extensions `web|native|ios|android` for extensions `ts|tsx|js|mjs`, eg `.ios.ts`
 - Adds a ssr-css plugin that enables perfect dev-mode CSS on first load, matching production
 - Configures a wide variety of optimizeDeps presets for React Native library compatibility
