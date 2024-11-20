@@ -30,8 +30,10 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "react-native-import": "./dist/esm/index.native.js",
-      "react-native": "./dist/cjs/index.native.js",
+      "react-native": {
+        "import": "./dist/esm/index.native.js",
+        "require": "./dist/cjs/index.native.js"
+      },
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
@@ -62,8 +64,10 @@
       "require": "./dist/cjs/server-render.js"
     },
     "./headers": {
-      "react-native-import": "./dist/esm/vite/headers.native.js",
-      "react-native": "./dist/cjs/vite/headers.native.js",
+      "react-native": {
+        "import": "./dist/esm/vite/headers.native.js",
+        "require": "./dist/cjs/vite/headers.native.js"
+      },
       "types": "./types/vite/headers.d.ts",
       "import": "./dist/esm/vite/headers.mjs",
       "require": "./dist/cjs/vite/headers.js"

@@ -18,7 +18,7 @@ const getNativeExtensions = (platform: 'ios' | 'android') => {
   ]
 }
 
-export const conditions = ['react-native-import', 'react-native']
+export const conditions = ['react-native', 'import', 'require']
 
 export function reactNativeCommonJsPlugin(options: {
   root: string
