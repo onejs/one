@@ -151,6 +151,7 @@ export async function getReactNativeConfig(
 
               const output = await swcTransform(id, code, {
                 mode: mode === 'dev' ? 'serve' : 'build',
+                noHMR: true, // We should not insert HMR runtime code at this stage, as we expect another plugin (e.g. vite:react-swc) to handle that. Inserting it here may cause error: `The symbol "RefreshRuntime" has already been declared`.
               })
 
               if (!output) return null
