@@ -218,6 +218,12 @@ ${contents}
   },
 
   {
+    module: 'react-native-vector-icons',
+    patchFiles: {
+      '**/*.js': ['jsx', 'flow'],
+    },
+  },
+  {
     module: 'react-native-webview',
     patchFiles: {
       '**/*.js': ['jsx'],
