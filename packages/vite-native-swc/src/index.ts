@@ -380,6 +380,11 @@ function wrapSourceInRefreshRuntime(id: string, code: string, options: Options) 
     `
   }
 
+  if (code.includes('RefreshRuntime = __cachedModules')) {
+    console.warn('[wrapSourceInRefreshRuntime] detected refresh runtime already in code, skipping')
+    return code
+  }
+
   return `const RefreshRuntime = __cachedModules["react-refresh/cjs/react-refresh-runtime.development"];
 const prevRefreshReg = globalThis.$RefreshReg$;
 const prevRefreshSig = globalThis.$RefreshSig$ || (() => {
