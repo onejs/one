@@ -1,16 +1,19 @@
 import { execSync } from 'node:child_process'
 
-const prefix = process.argv[2] // 'example' or 'test'
-const workspace = process.argv[3] // The workspace name (e.g., 'basic', 'fullstack')
+// Capture the arguments
+const [prefix, workspace, ...flags] = process.argv.slice(2) // Extract additional flags
 
 if (!prefix || !workspace) {
-  console.error('Usage: yarn dev:example <prefix> <workspace>')
-  console.error('Example: yarn dev:example example basic')
+  console.error('Usage: yarn dev:example <prefix> <workspace> [--flags]')
+  console.error('Example: yarn dev:example example basic --watch')
   process.exit(1)
 }
 
 try {
-  const command = `yarn workspace ${prefix}-${workspace} dev`
+  // Join the flags for passing to the yarn command
+  const flagsString = flags.join(' ')
+  const command = `yarn workspace ${prefix}-${workspace} dev ${flagsString}`
+
   console.info(`Running: ${command}`)
   execSync(command, { stdio: 'inherit' })
 } catch (error) {

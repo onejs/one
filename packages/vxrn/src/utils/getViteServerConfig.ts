@@ -87,14 +87,6 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
         },
       ],
 
-      // needs to be web-only
-      // resolve: {
-      //   alias: {
-      //     // this is a relatively safe one as it should be 100% api surface compat that fixes ssr
-      //     'react-native-svg': requireResolve('@tamagui/react-native-svg'),
-      //   },
-      // },
-
       ssr: {
         optimizeDeps,
       },

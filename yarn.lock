@@ -6025,7 +6025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/animations-css@npm:1.117.0":
+"@tamagui/animations-css@npm:1.117.0, @tamagui/animations-css@npm:^1.117.0":
   version: 1.117.0
   resolution: "@tamagui/animations-css@npm:1.117.0"
   dependencies:
@@ -7050,7 +7050,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/shorthands@npm:1.117.0":
+"@tamagui/shorthands@npm:1.117.0, @tamagui/shorthands@npm:^1.117.0":
   version: 1.117.0
   resolution: "@tamagui/shorthands@npm:1.117.0"
   checksum: 10/2bc1c5776fa7b80b3a8ae75da68a8f756ede7487cced1fa93329821a8dabe67d278b04cdab59e68dc6ec9111625096a88cf177b818e17e02bdcf8fb8f7ffde33
@@ -12035,11 +12035,13 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:^1.8.3"
     "@react-native-masked-view/masked-view": "npm:^0.3.1"
+    "@tamagui/animations-css": "npm:^1.117.0"
     "@tamagui/animations-moti": "npm:^1.117.0"
     "@tamagui/colors": "npm:^1.117.0"
     "@tamagui/image-next": "npm:^1.117.0"
     "@tamagui/lucide-icons": "npm:^1.117.0"
     "@tamagui/react-native-media-driver": "npm:^1.117.0"
+    "@tamagui/shorthands": "npm:^1.117.0"
     "@tamagui/vite-plugin": "npm:^1.117.0"
     "@types/react": "npm:^18.3.11"
     "@vxrn/color-scheme": "npm:1.1.333"
