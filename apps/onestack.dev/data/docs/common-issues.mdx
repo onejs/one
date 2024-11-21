@@ -62,6 +62,53 @@ import one from 'one/vite'
 
 You can also try using one of the commonjs plugins, either `vite-require` or `vite-plugin-commonjs`.
 
+### Common React Native package issues
+
+When using bundlers like Vite, Rollup, or esbuild, developers often encounter issues with React Native and Expo packages originally designed to work only for Metro. Metro’s tolerant nature allows certain practices that other bundlers may not support, such as:
+
+* Including Flow types in distributed `.js` files.
+* Including JSX syntax in `.js` files instead of `.jsx`.
+* Releasing packages as ESM-only without proper declarations in `package.json` (e.g., missing `"type": "module"`) or appropriate `.mjs` extensions.
+* Omitting import path extensions in distributed ESM, which can [prevent Node.js from running those modules correctly](https://nodejs.org/docs/latest-v20.x/api/esm.html#mandatory-file-extensions), and break SSR.
+
+These issues can break builds and require specific handling to make the packages compatible with non-Metro bundlers. Related error messages you might encounter includes:
+
+* `The JSX syntax extension is not currently enabled.`
+* `The esbuild loader for this file is currently set to "js" but it must be set to "jsx" to be able to parse JSX syntax.`
+* `SWC failed to transform file` following with a syntax error parsing something like `import type`.
+
+To workaround these issues, you can use the package patching feature of One to fix the packages that are causing problems. Here's an example:
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      // ...
+      deps: {
+        'react-native-vector-icons': {
+          '**/*.js': [
+            'jsx', // Transpile JSX in .js files
+            'flow', // Remove flow types
+          ],
+        },
+      },
+    }),
+  ],
+}
+```
+
+For more details, see the [`deps` section in Configuration](/docs/configuration#deps).
+
+<Notice>
+  We encourage you to [open an issue](https://github.com/onejs/one/issues/new) on our GitHub repository if you encounter similar issues, as your feedback helps us improve One's compatibility with React Native packages.
+
+  If you've resolved an issue with a patch, we'd love for you to share your patch configuration. Alternatively, feel free to reach out, and we'll gladly assist in finding a solution to get things working.
+</Notice>
+
+<Notice>
+  If appropriate, it's also nice to reach out to the maintainers of those packages to help improve their compatibility with non-Metro bundlers.
+</Notice>
+
 ### Application has not been registered
 
 One calls AppRegistry.registerComponent for you to set up your React Native entry component.
