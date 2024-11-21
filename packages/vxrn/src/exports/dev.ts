@@ -25,7 +25,7 @@ export const dev = async (optionsIn: DevOptions) => {
     await clean(optionsIn)
   }
 
-  applyBuiltInPatches(options).catch((err) => {
+  await applyBuiltInPatches(options).catch((err) => {
     console.error(`\n 🥺 error applying built-in patches`, err)
   })
 
