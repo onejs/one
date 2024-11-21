@@ -125,12 +125,32 @@ export async function scanDepsToPreBundleForSsr(
         const result = [
           ...(shouldPreBundle
             ? (() => {
-                // Not working, and do we really need this?
-                // const definedExports = Object.keys(depPkgJson.exports || {})
-                //   .map((k) => k.replace(/^\.\/?/, ''))
-                //   .filter((k) => !!k && k !== 'package.json')
-                //   .map((k) => `${dep}/${k}`)
-                const definedExports = []
+                const depPkgJsonExports = depPkgJson.exports || {}
+                // We take a more conservative approach to exclude potentially problematic exports entries. This might result in some valid exports entries being excluded, but it ensures that problematic ones are not included, thereby preventing issues.
+                const definedExports = Object.keys(depPkgJsonExports)
+                  .filter((k) => {
+                    const expData = depPkgJsonExports[k]
+                    const imp = typeof expData === 'string' ? expData : expData?.import
+                    if (typeof imp !== 'string') {
+                      // Skipping since it will cause error `No known conditions for "..." specifier in "..." package`.
+                      // Note that by doing this, nested exports will be skipped as well.
+                      return false
+                    }
+                    if (!imp.endsWith('.js')) {
+                      // Skipping since non-js exports cannot be pre-bundled.
+                      return false
+                    }
+
+                    // Only include exports that are named safely.
+                    // This is a conservative approach; we might have a better way to make the judgment.
+                    if (!k.match(/^(\.\/)?[a-zA-Z0-9-_]+$/)) {
+                      return false
+                    }
+
+                    return true
+                  })
+                  .map((k) => k.replace(/^\.\/?/, ''))
+                  .map((k) => `${dep}/${k}`)
 
                 /**
                  * A dirty workaround for packages that are using entry points that are not explicitly defined,
