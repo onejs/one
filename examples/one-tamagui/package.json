@@ -19,11 +19,13 @@
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.3.1",
+    "@tamagui/animations-css": "^1.117.0",
     "@tamagui/animations-moti": "^1.117.0",
     "@tamagui/colors": "^1.117.0",
     "@tamagui/image-next": "^1.117.0",
     "@tamagui/lucide-icons": "^1.117.0",
     "@tamagui/react-native-media-driver": "^1.117.0",
+    "@tamagui/shorthands": "^1.117.0",
     "@vxrn/color-scheme": "1.1.333",
     "expo": "~51.0.28",
     "expo-modules-core": "^1.12.24",
