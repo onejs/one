@@ -7,7 +7,7 @@ export type DevOptions = VXRNOptions & { clean?: boolean }
 export const patch = async (optionsIn: DevOptions) => {
   const options = await fillOptions(optionsIn)
 
-  applyBuiltInPatches(options).catch((err) => {
+  await applyBuiltInPatches(options).catch((err) => {
     console.error(`\n 🥺 error applying built-in patches`, err)
   })
 }
