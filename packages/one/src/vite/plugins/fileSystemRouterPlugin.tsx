@@ -97,7 +97,18 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           console.error(`SSR error while loading file ${route.file} from URL ${url.href}\n`, err)
           const title = `Error rendering ${url.pathname} on server`
           const message = err instanceof Error ? err.message : `${err}`
-          const stack = err instanceof Error ? err.stack : ''
+          const stack = err instanceof Error ? err.stack || '' : ''
+
+          const isDuplicateReactError =
+            /at (useEffect|useState|useReducer|useContext|useLayoutEffect)\s*\(.*?react\.development\.js/g.test(
+              stack
+            )
+          const subMessage = isDuplicateReactError
+            ? `
+            <h2>Duplicate React Error</h2>
+            <p style="font-size: 18px; line-height: 24px; max-width: 850px;">Note: These types of errors happen during SSR because One needs all dependencies that use React to be optimized. Find the dependency on the line after the react.development.js line below to find the failing dependenency. So long as that dependency has "react" as a sub-dependency, you can add it to your package.json and One will optimize it automatically. If it doesn't list it properly, you can fix this manually by changing your vite.config.ts One plugin to add "one({ deps: { depName: true })" so One optimizes depName.</p>
+          `
+            : ``
 
           console.error(`${title}\n ${message}\n\n${stack}\n`)
 
@@ -106,6 +117,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               <body style="background: #000; color: #fff; padding: 5%; font-family: monospace; line-height: 2rem;">
                 <h1 style="display: inline-flex; background: red; color: white; padding: 5px; margin: -5px;">${title}</h1>
                 <h2>${message}</h2>
+                ${subMessage}
                 ${
                   stack
                     ? `<pre style="font-size: 15px; line-height: 24px; white-space: pre;">

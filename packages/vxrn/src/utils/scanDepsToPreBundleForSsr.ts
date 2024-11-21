@@ -1,6 +1,5 @@
-import { createRequire } from 'node:module'
-import path from 'node:path'
 import FSExtra from 'fs-extra'
+import path from 'node:path'
 
 /** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
 export const EXCLUDE_LIST = [

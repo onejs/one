@@ -5,7 +5,7 @@ import { EXCLUDE_LIST, scanDepsToPreBundleForSsr } from '../utils/scanDepsToPreB
 import { getFileHash, lookupFile } from '../utils/utils'
 import { createDebugger } from '@vxrn/debug'
 
-const name = 'auto-pre-bundle-deps-for-ssr'
+const name = 'vxrn:auto-pre-bundle-deps-for-ssr'
 const { debug, debugDetails } = createDebugger(name)
 
 export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
