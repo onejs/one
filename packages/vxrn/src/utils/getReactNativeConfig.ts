@@ -276,6 +276,16 @@ export async function getReactNativeConfig(
   // // this fixes my swap-react-native plugin not being called pre 😳
   resolvedConfig = await resolveConfig(nativeBuildConfig, 'build')
 
+  // The `resolveConfig` function will load user's `vite.config.*` (by calling `loadConfigFromFile`).
+  // Here we do this to make user defined global constant replacements (https://vite.dev/config/shared-options#define) to take effect in RN.
+  // TODO: Ultimately, we should make all the user defined config options to take effect in RN.
+  if (resolvedConfig.define) {
+    nativeBuildConfig.define = {
+      ...nativeBuildConfig.define,
+      ...resolvedConfig.define,
+    }
+  }
+
   return nativeBuildConfig satisfies UserConfig
 }
 
