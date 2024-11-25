@@ -30,7 +30,7 @@ const yellowDark = {
   yellow10: 'hsl(54, 100%, 60.0%)',
   yellow11: 'hsl(54, 100%, 80.0%)',
   yellow12: 'hsl(54, 100%, 91.0%)',
-  yellow13: '#fff',
+  yellow13: '#D1CDC2',
 }
 
 const colorTokens = {
@@ -92,7 +92,7 @@ export const color = {
   black075: 'rgba(10,10,10,0.75)',
   black05: 'rgba(10,10,10,0.5)',
   black025: 'rgba(10,10,10,0.25)',
-  white1: '#fff',
+  white1: '#D1CDC2',
   white2: '#f8f8f8',
   white3: 'hsl(0, 0%, 96.3%)',
   white4: 'hsl(0, 0%, 94.1%)',

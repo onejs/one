@@ -31,6 +31,7 @@ import { Hint } from '~/components/Hint'
 import { Team } from '~/components/Team'
 import { PrettyText, PrettyTextBigger, PrettyTextBiggest } from '~/components/typography'
 import { OneBall, OneLogo } from '~/features/brand/Logo'
+import { Status } from '~/features/docs/Status'
 import { useClipboard } from '~/features/docs/useClipboard'
 import { ContainerSm } from '~/features/site/Containers'
 import { Footer } from '~/features/site/Footer'
@@ -42,11 +43,8 @@ import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
 const ButtonText = styled(Text, {
   lh: 0,
   animation: 'quickest',
-  color: '$color13',
+  color: '$color11',
   fontWeight: '600',
-  '$theme-dark': {
-    color: '$color6',
-  },
 })
 
 export default function HomePage() {
@@ -70,7 +68,7 @@ export default function HomePage() {
             mt={-5}
             $sm={{ scale: 0.75, mx: -32, my: -28 }}
           >
-            <OneLogo animate />
+            <OneLogo size={0.9} animate />
           </View>
 
           <View
@@ -92,7 +90,7 @@ export default function HomePage() {
               <Link href="/docs/introduction" asChild>
                 <Button
                   size="$5"
-                  bg="$color9"
+                  bg="$color2"
                   br="$10"
                   group
                   animation="quickest"
@@ -110,14 +108,6 @@ export default function HomePage() {
                       bc: '$color11',
                     },
                   }}
-                  $theme-dark={{
-                    hoverStyle: {
-                      bg: '$color10',
-                    },
-                    pressStyle: {
-                      bg: '$color9',
-                    },
-                  }}
                 >
                   <ButtonText $sm={{ dsp: 'none' }}>Get started</ButtonText>
                   <ButtonText $gtSm={{ dsp: 'none' }}>Docs</ButtonText>
@@ -131,8 +121,15 @@ export default function HomePage() {
               ai="center"
               y={-2}
               mr={-10}
+              gap="$2"
               $sm={{ jc: 'center' }}
             >
+              <View animation="quickest" y={3} mr={5} pe="auto">
+                <Link href="/docs/status">
+                  <Status cur="pointer" is="beta" />
+                </Link>
+              </View>
+
               <SocialLinksRow />
             </XStack>
           </View>
@@ -147,17 +144,17 @@ export default function HomePage() {
             scale={0.95}
             transformOrigin="left center"
           >
-            Creating websites and&nbsp;apps is simply too complex.
+            The simple way to build cross-platform apps and websites
           </PrettyTextBiggest>
 
           <PrettyTextBigger intro>
-            One is a new React framework for web and{' '}
-            <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint>,
-            built on Vite. It&nbsp;simplifies things with{' '}
+            One is&nbsp;a&nbsp;React&nbsp;framework for web and{' '}
+            <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint> that
+            lives in a single Vite plugin, featuring{' '}
             <Hint tint="green" hintContents="Unified file system routes, web and native.">
               universal
             </Hint>
-            , <Link href="/docs/routing">typed routing</Link> seamlessly across{' '}
+            , <Link href="/docs/routing">typed routing</Link> across{' '}
             <Hint tint="purple" hintContents="SSG - Rendered to HTML during build.">
               static
             </Hint>
@@ -169,11 +166,11 @@ export default function HomePage() {
             <Hint tint="pink" hintContents="SPA - No servers or build, just client-side.">
               client
             </Hint>{' '}
-            pages. Plus, an amazing new solution&nbsp;to&nbsp;data.
+            pages. One dramatically simplifies cross-platform development.
           </PrettyTextBigger>
 
           <XStack
-            my="$5"
+            my="$6"
             als="center"
             ai="center"
             jc="center"
@@ -182,21 +179,9 @@ export default function HomePage() {
             bw={0.5}
             bc="$color4"
             py={12}
+            bg="$color1"
           >
             <Corners />
-
-            <Text
-              $sm={{ dsp: 'none' }}
-              lh={0}
-              mr={10}
-              ff="$body"
-              ls={-0.25}
-              fontSize={24}
-              als="center"
-              // o={0.5}
-            >
-              Give it a run:
-            </Text>
 
             <CopyCommand />
           </XStack>
@@ -223,7 +208,6 @@ export default function HomePage() {
             >
               <PrettyTextBiggest
                 color="$color12"
-                mb={-10}
                 mt={15}
                 fontSize={80}
                 lineHeight={80}
@@ -233,7 +217,7 @@ export default function HomePage() {
                   color: '$color10',
                 }}
               >
-                Data made easy
+                Simplifying data
               </PrettyTextBiggest>
 
               <PrettyTextBigger style={{ textWrap: 'stable' }}>
@@ -247,7 +231,7 @@ export default function HomePage() {
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                Native apps feel better and are easier to write thanks to client-side databases.
+                Native apps feel better, and are easier to write thanks to client-side databases.
                 Say&nbsp;bye&nbsp;to server boundaries, lose&nbsp;the glue code, mutate instantly,
                 and have things Just&nbsp;Work™&nbsp;offline&#x2026;
               </PrettyTextBigger>
@@ -283,6 +267,7 @@ export default function HomePage() {
               </PrettyTextBigger>
 
               <PrettyTextBigger>We love it, and think you will too.</PrettyTextBigger>
+              <Spacer />
               <Spacer />
 
               <Link asChild href="/docs/data">
@@ -321,7 +306,7 @@ export default function HomePage() {
               bg="$color1"
               als="center"
               px="$4"
-              py="$4"
+              py="$5"
               br="$9"
               hoverStyle={{
                 y: -2,
@@ -337,6 +322,7 @@ export default function HomePage() {
                 <PrettyText
                   ff="$perfectlyNineties"
                   mb="$1"
+                  mt="$-2"
                   className="text-underline-none"
                   fontSize="$7"
                   lineHeight="$7"
@@ -557,7 +543,7 @@ function Video() {
         <Paragraph
           animation="quick"
           ff="$perfectlyNineties"
-          size="$7"
+          size="$6"
           ta="center"
           w={340}
           zi={2}
@@ -725,9 +711,9 @@ const Corners = () => (
     <span className="corner bottom-left"></span>
     <span className="corner bottom-right"></span>
 
-    <span className="triangle top-left"></span>
+    {/* <span className="triangle top-left"></span>
     <span className="triangle top-right"></span>
     <span className="triangle bottom-left"></span>
-    <span className="triangle bottom-right"></span>
+    <span className="triangle bottom-right"></span> */}
   </>
 )

@@ -21,8 +21,8 @@ export const PrettyTextBigger = styled(PrettyText, {
   color: '$color12',
 
   $gtSm: {
-    fontSize: 24,
-    lineHeight: 42,
+    fontSize: 23,
+    lineHeight: 38,
   },
 
   variants: {
@@ -47,8 +47,8 @@ export const PrettyTextBigger = styled(PrettyText, {
 export const PrettyTextBiggest = styled(PrettyText, {
   fontFamily: '$perfectlyNineties',
   textWrap: 'pretty',
-  fontSize: 100,
-  lineHeight: 110,
+  fontSize: 90,
+  lineHeight: 100,
   fontWeight: '500',
   color: '$color11',
   paddingBottom: 20,
