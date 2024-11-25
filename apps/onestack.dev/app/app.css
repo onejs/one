@@ -47,8 +47,7 @@ body {
   position: relative;
   max-width: 100vw;
   min-height: 100vh;
-  background-color: var(--bodyBg);
-  background-image: linear-gradient(var(--bodyBg), var(--colorDeep)) !important;
+  background: var(--bodyBg) !important;
 }
 
 a, [data-tint-link] {

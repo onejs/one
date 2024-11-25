@@ -7,20 +7,13 @@ import { PrettyText } from './typography'
 export const Team = () => {
   return (
     <YStack group containerType="normal" gap="$8" my="$4">
-      <PrettyText
-        ff="$perfectlyNineties"
-        fontSize="$7"
-        lineHeight="$7"
-        color="$color"
-        ta="center"
-      >
+      <PrettyText ff="$perfectlyNineties" fontSize="$7" lineHeight="$7" color="$color" ta="center">
         Team
       </PrettyText>
 
       <PrettyText maw={500} als="center">
-        Hello. We're the creators of <Link href="https://tamagui.dev">Tamagui</Link>. We
-        built One out of our experience at{' '}
-        <Link href="https://app.uniswap.org">Uniswap</Link> and creating{' '}
+        Hello. We're the creators of <Link href="https://tamagui.dev">Tamagui</Link>. We built One
+        out of our experience at <Link href="https://app.uniswap.org">Uniswap</Link> and creating{' '}
         <Link href="https://tamagui.dev/takeout">Takeout</Link>.
       </PrettyText>
 
@@ -50,12 +43,12 @@ export const Team = () => {
             githubHandle: 'zetavg',
             xHandle: 'zetavg',
           },
-          {
-            image: 'jon',
-            name: `Jon`,
-            xHandle: 'jshez',
-            githubHandle: 'jonsherrard',
-          },
+          // {
+          //   image: 'jon',
+          //   name: `Jon`,
+          //   xHandle: 'jshez',
+          //   githubHandle: 'jonsherrard',
+          // },
           // { image: 'dominic', name: `Dominic` },
         ].map(({ name, image, xHandle, githubHandle }) => {
           return (
@@ -101,13 +94,7 @@ export const Team = () => {
               />
 
               <YStack als="center" miw={100} mt={20} gap="$4">
-                <PrettyText
-                  userSelect="none"
-                  als="center"
-                  fontSize="$6"
-                  color="$color11"
-                  mt="$2"
-                >
+                <PrettyText userSelect="none" als="center" fontSize="$6" color="$color11" mt="$2">
                   {name}
                 </PrettyText>
 
