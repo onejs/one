@@ -6,7 +6,7 @@ import { themeTokenNumber } from '~/features/site/headerColors'
 export const LayoutDecorativeStripe = memo(() => {
   const pathname = usePathname()
   const isHome = pathname === '/'
-  const y = isHome ? -48 : -78
+  const y = isHome ? -61 : -85
 
   return (
     <YStack
@@ -32,7 +32,7 @@ export const LayoutDecorativeStripe = memo(() => {
     />
   )
 })
-const convex = getClipPath(0.15)[0]
+const convex = getClipPath(0.1)[0]
 const concave = getClipPath(0.1)[1]
 
 function getClipPath(amplitude = 0.15) {

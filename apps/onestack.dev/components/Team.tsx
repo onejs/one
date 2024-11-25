@@ -17,7 +17,7 @@ export const Team = () => {
         <Link href="https://tamagui.dev/takeout">Takeout</Link>.
       </PrettyText>
 
-      <View
+      {/* <View
         my="$4"
         fd="row"
         fw="wrap"
@@ -141,7 +141,7 @@ export const Team = () => {
             </YStack>
           )
         })}
-      </View>
+      </View> */}
     </YStack>
   )
 }
