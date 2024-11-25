@@ -38,6 +38,14 @@ const COMMANDS = [
       openIos(ctx)
     },
   },
+  {
+    keys: 'oa',
+    label: 'open app in Android Emulator',
+    terminalLabel: '\x1b[1mo\x1b[0mpen app in \x1b[1mA\x1b[0mndroid Emulator',
+    action: (ctx) => {
+      openAndroid(ctx)
+    },
+  },
 
   {
     keys: 'oe',
@@ -240,6 +248,39 @@ async function openIos(ctx: Context) {
   } catch (e) {
     const stack = e instanceof Error ? e.stack : null
     console.error(`Failed to open app in iOS Simulator: ${e}${stack ? `\n${stack}` : ''}`)
+  }
+}
+
+async function openAndroid(ctx: Context) {
+  const projectRoot = ctx.server.config.root
+  const port = ctx.server.config.server.port || 8081
+
+  try {
+    const require = module.createRequire(projectRoot)
+    const androidPlatformManagerModuleImportPath = require.resolve(
+      '@expo/cli/build/src/start/platforms/android/AndroidPlatformManager.js',
+      {
+        paths: [projectRoot],
+      }
+    )
+    const androidPlatformManagerModule = await import(androidPlatformManagerModuleImportPath)
+    const PlatformManager = androidPlatformManagerModule.default.AndroidPlatformManager
+
+    // TODO: Support dev client
+    const platformManager = new PlatformManager(projectRoot, port, {
+      /** Expo Go URL. */
+      getExpoGoUrl: () => getExpoGoUrl(ctx),
+      /** Get the base URL for the dev server hosting this platform manager. */
+      getDevServerUrl: () => null,
+      /** Get redirect URL for native disambiguation. */
+      getRedirectUrl: () => null,
+      /** Dev Client */
+      getCustomRuntimeUrl: (props?: { scheme?: string }) => null,
+    })
+    await platformManager.openAsync({ runtime: 'expo' })
+  } catch (e) {
+    const stack = e instanceof Error ? e.stack : null
+    console.error(`Failed to open app in Android Emulator: ${e}${stack ? `\n${stack}` : ''}`)
   }
 }
 
