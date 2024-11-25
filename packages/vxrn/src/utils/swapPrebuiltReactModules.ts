@@ -11,7 +11,11 @@ import type { Plugin } from 'vite'
 const getPrebuilds = (cacheDir: string, mode) => ({
   reactJSX: join(cacheDir, `react-jsx-runtime${mode === 'prod' ? '.production' : ''}.js`),
   react: join(cacheDir, `react${mode === 'prod' ? '.production' : ''}.js`),
-  reactNative: join(cacheDir, `react-native${mode === 'prod' ? '.production' : ''}.js`),
+  reactNativeIos: join(cacheDir, `react-native${mode === 'prod' ? '.production' : ''}.ios.js`),
+  reactNativeAndroid: join(
+    cacheDir,
+    `react-native${mode === 'prod' ? '.production' : ''}.android.js`
+  ),
 })
 
 const allExist = async (paths: string[]) => {
@@ -49,12 +53,26 @@ export async function prebuildReactNativeModules(
       : {}
 
   await Promise.all([
-    buildReactNative({
-      entryPoints: [resolvePath('react-native')],
-      outfile: prebuilds.reactNative,
-      ...buildOptions,
-    }).catch((err) => {
-      console.error(`Error pre-building react-native`)
+    buildReactNative(
+      {
+        entryPoints: [resolvePath('react-native')],
+        outfile: prebuilds.reactNativeIos,
+        ...buildOptions,
+      },
+      { platform: 'ios' }
+    ).catch((err) => {
+      console.error(`Error pre-building react-native for iOS`)
+      throw err
+    }),
+    buildReactNative(
+      {
+        entryPoints: [resolvePath('react-native')],
+        outfile: prebuilds.reactNativeAndroid,
+        ...buildOptions,
+      },
+      { platform: 'android' }
+    ).catch((err) => {
+      console.error(`Error pre-building react-native for Android`)
       throw err
     }),
     buildReact({
@@ -82,7 +100,7 @@ export async function prebuildReactNativeModules(
 
 export async function swapPrebuiltReactModules(
   cacheDir: string,
-  internal: { mode?: 'dev' | 'prod' } = { mode: 'dev' }
+  internal: { mode: 'dev' | 'prod'; platform: 'ios' | 'android' }
 ): Promise<Plugin> {
   let prebuilds = getPrebuilds(cacheDir, internal.mode)
 
@@ -94,6 +112,17 @@ export async function swapPrebuiltReactModules(
     }
   > = null
 
+  const rnPrebuilt = (() => {
+    switch (internal.platform) {
+      case 'ios':
+        return prebuilds.reactNativeIos
+      case 'android':
+        return prebuilds.reactNativeAndroid
+      default:
+        throw new Error(`Unsupported platform: ${internal.platform}`)
+    }
+  })()
+
   const getVirtualModules = async () => {
     if (cached) return cached
 
@@ -104,8 +133,8 @@ export async function swapPrebuiltReactModules(
 
     cached = {
       'react-native': {
-        alias: prebuilds.reactNative,
-        contents: await readFile(prebuilds.reactNative, 'utf-8'),
+        alias: rnPrebuilt,
+        contents: await readFile(rnPrebuilt, 'utf-8'),
       },
       react: {
         alias: prebuilds.react,
@@ -144,7 +173,7 @@ export async function swapPrebuiltReactModules(
       }
 
       if (id === 'react-native-web') {
-        return prebuilds.reactNative
+        return rnPrebuilt
       }
 
       for (const targetId in virtualModules) {
@@ -205,7 +234,7 @@ export async function swapPrebuiltReactModules(
         let out = `const ___val = __cachedModules["${idOut}"]
         const ___defaultVal = ___val ? ___val.default || ___val : ___val
         export default ___defaultVal
-        
+
 
         // allow importing named exports of internals:
         if (___defaultVal && typeof ___defaultVal === 'object') {
@@ -215,7 +244,7 @@ export async function swapPrebuiltReactModules(
             }
           })
         }
-        
+
         `
 
         return out

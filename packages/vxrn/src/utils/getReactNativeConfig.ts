@@ -29,7 +29,8 @@ const IGNORE_ROLLUP_LOGS_RE =
 
 export async function getReactNativeConfig(
   options: VXRNOptionsFilled,
-  internal: { mode?: 'dev' | 'prod'; assetsDest?: string } = { mode: 'dev' }
+  internal: { mode?: 'dev' | 'prod'; assetsDest?: string } = { mode: 'dev' },
+  platform: 'ios' | 'android'
 ) {
   const {
     root,
@@ -89,7 +90,8 @@ export async function getReactNativeConfig(
 
       swapPrebuiltReactModules(options.cacheDir, {
         // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
-        mode: internal.mode,
+        mode: internal.mode || 'dev',
+        platform,
       }),
 
       reactNativeDevAssetPlugin({
