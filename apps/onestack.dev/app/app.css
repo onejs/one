@@ -20,8 +20,8 @@ body {
   
   --colorDeepDark: hsl(40, 45.0%, 5%);
   --colorDeepLight: #fff;
-  --bodyBgLight: #fff;
-  --bodyBgDark: #000;
+  --bodyBgLight: #dfdacf;
+  --bodyBgDark: #31312d;
   --logoColorLight: #000;
   --logoColorDark: #fff;
   

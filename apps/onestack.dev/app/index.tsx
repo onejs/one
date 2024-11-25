@@ -124,12 +124,6 @@ export default function HomePage() {
               gap="$2"
               $sm={{ jc: 'center' }}
             >
-              <View animation="quickest" y={3} mr={5} pe="auto">
-                <Link href="/docs/status">
-                  <Status cur="pointer" is="beta" />
-                </Link>
-              </View>
-
               <SocialLinksRow />
             </XStack>
           </View>
@@ -138,19 +132,20 @@ export default function HomePage() {
         <View gap="$3">
           <PrettyTextBiggest
             color="$color13"
-            mt={10}
+            mt={30}
+            mr={-30}
             mb={-2}
             $sm={{ mt: 20, scale: 1 }}
             scale={0.95}
             transformOrigin="left center"
           >
-            The simple way to build cross-platform apps and websites
+            Easy, simple &&nbsp;fast cross&#8209;platform&nbsp;apps.
           </PrettyTextBiggest>
 
           <PrettyTextBigger intro>
             One is&nbsp;a&nbsp;React&nbsp;framework for web and{' '}
-            <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint> that
-            lives in a single Vite plugin, featuring{' '}
+            <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint> in a
+            single Vite plugin, featuring{' '}
             <Hint tint="green" hintContents="Unified file system routes, web and native.">
               universal
             </Hint>
@@ -166,7 +161,7 @@ export default function HomePage() {
             <Hint tint="pink" hintContents="SPA - No servers or build, just client-side.">
               client
             </Hint>{' '}
-            pages. One dramatically simplifies cross-platform development.
+            pages that dramatically improves cross&#8209;platform development.
           </PrettyTextBigger>
 
           <XStack
@@ -179,9 +174,23 @@ export default function HomePage() {
             bw={0.5}
             bc="$color4"
             py={12}
-            bg="$color1"
           >
             <Corners />
+
+            <View
+              pos="absolute"
+              t={-20}
+              r={-20}
+              rotate="5deg"
+              animation="quickest"
+              y={3}
+              mr={5}
+              pe="auto"
+            >
+              <Link href="/docs/status">
+                <Status cur="pointer" is="beta" />
+              </Link>
+            </View>
 
             <CopyCommand />
           </XStack>
@@ -210,30 +219,26 @@ export default function HomePage() {
                 color="$color12"
                 mt={15}
                 fontSize={80}
-                lineHeight={80}
+                lineHeight={85}
                 $md={{ size: '$10' }}
                 $sm={{ size: '$9' }}
                 $theme-dark={{
                   color: '$color10',
                 }}
               >
-                Simplifying data
+                A better way to data
               </PrettyTextBiggest>
 
               <PrettyTextBigger style={{ textWrap: 'stable' }}>
-                Simpler code, better results, cross-platform — that's&nbsp;the goal.
+                Simpler code, better UX, cross&#8209;platform - that's&nbsp;the ideal. With&nbsp;One
+                and <a href="https://tamagui.dev">Tamagui</a>, we're close&#x2026; but there's still{' '}
+                one big pain point. <b>Let's&nbsp;talk&nbsp;data</b>.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                With One and <a href="https://tamagui.dev">Tamagui</a>, we're close&#x2026; but
-                there's still <em>one</em> big pain point.{' '}
-                <b>Let's&nbsp;talk&nbsp;about&nbsp;data</b>.
-              </PrettyTextBigger>
-
-              <PrettyTextBigger>
-                Native apps feel better, and are easier to write thanks to client-side databases.
-                Say&nbsp;bye&nbsp;to server boundaries, lose&nbsp;the glue code, mutate instantly,
-                and have things Just&nbsp;Work™&nbsp;offline&#x2026;
+                Native apps feel better and are easier to write thanks to client-side databases.
+                Say&nbsp;goodbye&nbsp;to server boundaries, lose&nbsp;the glue code, mutate
+                instantly, and have things Just&nbsp;Work™&nbsp;offline&#x2026;
               </PrettyTextBigger>
 
               <PrettyTextBigger>
@@ -303,7 +308,6 @@ export default function HomePage() {
               jc="center"
               animation="medium"
               cur="pointer"
-              bg="$color1"
               als="center"
               px="$4"
               py="$5"
@@ -584,7 +588,7 @@ function Video() {
 const Separator = styled(View, {
   width: '100%',
   height: 1,
-  bc: '$color4',
+  bc: '$color6',
   borderStyle: 'dotted',
   bw: 0,
   bbw: 1,
