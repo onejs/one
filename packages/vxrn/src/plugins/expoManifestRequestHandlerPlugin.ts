@@ -138,6 +138,18 @@ export function expoManifestRequestHandlerPlugin(
             if (!parsedBody.extra.expoClient) {
               parsedBody.extra.expoClient = {}
             }
+
+            if (typeof parsedBody.extra.expoClient.hostUri === 'string') {
+              parsedBody.extra.expoClient.hostUri = parsedBody.extra.expoClient.hostUri.replace(
+                /^https?:\/\//,
+                ''
+              )
+            }
+            if (typeof parsedBody.extra.expoGo.debuggerHost === 'string') {
+              parsedBody.extra.expoGo.debuggerHost =
+                parsedBody.extra.expoGo.debuggerHost.replace(/^https?:\/\//, '')
+            }
+
             // TODO: Using a static icon and splash for branding for now.
             parsedBody.extra.expoClient.iconUrl =
               'https://github.com/user-attachments/assets/6894506b-df81-417c-a4cd-9c125c7ba37f' // TODO: Host this icon somewhere.
