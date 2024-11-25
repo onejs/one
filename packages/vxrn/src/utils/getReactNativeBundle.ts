@@ -64,7 +64,7 @@ export async function getReactNativeBundle(
   )
 
   // build app
-  const nativeBuildConfig = await getReactNativeConfig(options, internal)
+  const nativeBuildConfig = await getReactNativeConfig(options, internal, platform)
 
   const builder = await createBuilder(nativeBuildConfig)
 

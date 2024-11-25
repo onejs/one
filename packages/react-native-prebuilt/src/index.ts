@@ -118,7 +118,10 @@ export async function buildReact(options: BuildOptions = {}) {
   })
 }
 
-export async function buildReactNative(options: BuildOptions = {}) {
+export async function buildReactNative(
+  options: BuildOptions = {},
+  { platform }: { platform: 'ios' | 'android' },
+) {
   return build({
     bundle: true,
     entryPoints: [requireResolve('react-native')],
@@ -142,7 +145,7 @@ export async function buildReactNative(options: BuildOptions = {}) {
     },
     logLevel: 'warning',
     resolveExtensions: [
-      '.ios.js',
+      `.${platform}.js`,
       '.native.js',
       '.native.ts',
       '.native.tsx',
