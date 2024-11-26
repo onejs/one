@@ -353,6 +353,17 @@ const chunksize = end - start + 1;`
     },
   },
 
+  {
+    module: 'whatwg-url-without-unicode',
+    // https://github.com/onejs/one/issues/258
+    patchFiles: {
+      '**/*.js': (contents) =>
+        contents
+          ?.replace(/punycode\.ucs2\.decode/gm, '(punycode.ucs2decode || punycode.ucs2.decode)')
+          ?.replace(/punycode\.ucs2\.encode/gm, '(punycode.ucs2encode || punycode.ucs2.encode)'),
+    },
+  },
+
   // {
   //   module: 'react-native-reanimated',
   //   patchFiles: {
