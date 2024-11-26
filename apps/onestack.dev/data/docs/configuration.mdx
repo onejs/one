@@ -187,11 +187,9 @@ Any transforms that are applied to specific files in node_modules will only be a
 
 One runs on Vite 6 and makes use of their [new Environment API](https://main.vitejs.dev/guide/api-environment).
 
-This makes our lives implementing React Native support as we can specify configuration for native environments separately. We do this by defining `ios` and `android` environments, respectively.
+This it easier to target React Native, as you can specify configuration for iOS, Android and web separately. One defines `ios` and `android` environments, respectively. For web, we follow the Vite standard of having a `client` and `ssr` environments (for client-side and server-side bundles).
 
-For web, we use the default `client` and `ssr` environments, for client-side and server-side, respectively.
-
-What this means for you as a user is that you likely want to lean on using `environment` to configure as much as you can in your `vite.config.ts`. It may also mean that some plugins can cause issues by configuring things across all four environments when you really only want it for client-side, or not. We're working on some helpers to ease this.
+You'll want to lean on using the Environment API to configure as much as you can in your `vite.config.ts`. It may also mean that some plugins can cause issues by configuring things across all four environments when you really only want it for client-side, or not. We're working on some helpers to make this easier, but in general you can check for `this.environment.name` in plugin hooks (like `transform` and `load`) to conditionally exit early from their logic for environments where you don't want the plugin logic to run.
 
 ## Other Exports
 
