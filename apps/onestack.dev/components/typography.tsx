@@ -2,6 +2,7 @@ import { Paragraph, styled } from 'tamagui'
 
 export const PrettyText = styled(Paragraph, {
   textWrap: 'balanced' as any,
+  wordWrap: 'normal',
   color: '$color12',
   fontSize: '$6',
   lineHeight: '$7',

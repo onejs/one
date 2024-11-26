@@ -70,11 +70,11 @@ export const lightColors = {
   ...colorTokens.light.yellow,
   ...colorTokens.light.gray,
 
-  blue: 'hsla(210, 60%, 80%, 0.7)',
-  green: 'hsla(120, 60%, 80%, 0.8)',
-  red: 'hsla(0, 60%, 80%, 0.7)',
-  purple: 'hsla(270, 60%, 80%, 0.7)',
-  pink: 'hsla(330, 60%, 80%, 0.7)',
+  blue: 'hsla(210, 60%, 80%)',
+  green: 'hsla(120, 60%, 80%)',
+  red: 'hsla(0, 60%, 80%)',
+  purple: 'hsla(270, 60%, 80%)',
+  pink: 'hsla(330, 60%, 80%)',
 
   blueFg: 'hsl(210, 60%, 10%)',
   greenFg: 'hsl(120, 60%, 10%)',
