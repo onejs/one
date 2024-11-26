@@ -133,9 +133,7 @@ export default function HomePage() {
           <PrettyTextBiggest
             color="$color13"
             mt={30}
-            mr={-30}
             mb={-2}
-            $sm={{ mt: 20, scale: 1 }}
             scale={0.95}
             transformOrigin="left center"
           >
@@ -143,13 +141,13 @@ export default function HomePage() {
           </PrettyTextBiggest>
 
           <PrettyTextBigger intro>
-            One is&nbsp;a&nbsp;React&nbsp;framework for web and{' '}
+            One&nbsp;is&nbsp;a&nbsp;React framework for web and{' '}
             <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint> in a
-            single Vite plugin, featuring{' '}
+            single Vite plugin with{' '}
             <Hint tint="green" hintContents="Unified file system routes, web and native.">
-              universal
-            </Hint>
-            , <Link href="/docs/routing">typed routing</Link> across{' '}
+              universal,
+            </Hint>{' '}
+            <Link href="/docs/routing">typed file-system routes</Link> across{' '}
             <Hint tint="purple" hintContents="SSG - Rendered to HTML during build.">
               static
             </Hint>
@@ -161,7 +159,7 @@ export default function HomePage() {
             <Hint tint="pink" hintContents="SPA - No servers or build, just client-side.">
               client
             </Hint>{' '}
-            pages that dramatically improves cross&#8209;platform development.
+            pages, plus a smart new solution&nbsp;to&nbsp;data.
           </PrettyTextBigger>
 
           <XStack
