@@ -1,0 +1,50 @@
+{
+  "name": "onechat",
+  "version": "1.1.334",
+  "private": true,
+  "sideEffects": false,
+  "files": [],
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri dev",
+    "dev": "one dev --port 1421",
+    "dev:clean": "one dev --clean",
+    "subset-font-pn": "tsx ./helpers/subset-font.ts",
+    "build:web": "one build",
+    "serve": "one serve",
+    "serve:railway": "one serve --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@docsearch/react": "^3.6.1",
+    "@leeoniya/ufuzzy": "^1.0.14",
+    "@supabase/supabase-js": "^2.44.4",
+    "@tamagui/button": "^1.117.0",
+    "@tamagui/input": "^1.117.0",
+    "@tamagui/linear-gradient": "^1.117.0",
+    "@tamagui/lucide-icons": "^1.117.0",
+    "@tamagui/proxy-tabbable": "^1.117.0",
+    "@tamagui/react-native-web": "^1.117.0",
+    "@tamagui/themes": "^1.117.0",
+    "@tamagui/use-store": "^1.117.0",
+    "@vxrn/color-scheme": "1.1.334",
+    "@vxrn/mdx": "1.1.334",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "mdx-bundler": "^10.0.2",
+    "one": "1.1.334",
+    "postmark": "^3.0.18",
+    "react": ">=18.0.0",
+    "react-native": "0.74.1",
+    "tamagui": "^1.117.0"
+  },
+  "devDependencies": {
+    "@algolia/client-search": "^5.8.1",
+    "@tauri-apps/cli": "^1",
+    "gray-matter": "^4.0.3",
+    "marked": "^14.1.2",
+    "tsx": "^4.19.0",
+    "vite-tsconfig-paths": "^5.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
