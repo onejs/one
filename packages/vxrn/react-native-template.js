@@ -14,8 +14,6 @@ global['module'] = {}
 global['__DEV__'] = process.env.__DEV__
 global['___modules___'] = {}
 global['___vxrnAbsoluteToRelative___'] = {}
-// to avoid it looking like browser...
-delete globalThis['window']
 
 global['Event'] =
   global['Event'] ||
