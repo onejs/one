@@ -123,7 +123,7 @@ function getRequire(importer, importsMap, _mod) {
 
 ${JSON.stringify(importsMap, null, 2)}
 
-${process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : ''}
+${/* process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : '' // Will break Android: property 'process' doesn't exist */ ''}
 
 ${
   withStack
