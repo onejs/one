@@ -1,4 +1,4 @@
-const { withPlugins, withXcodeProject } = require('@expo/config-plugins')
+const { withPlugins, withXcodeProject, withAppBuildGradle } = require('@expo/config-plugins')
 
 const plugin = (config, options = {}) => {
   return withPlugins(config, [
@@ -22,6 +22,15 @@ const plugin = (config, options = {}) => {
         patchedScript = addDepsPatchToBundleReactNativeShellScript(patchedScript)
         bundleReactNativeCodeAndImagesBuildPhase.shellScript = JSON.stringify(patchedScript)
 
+        return config
+      },
+    ],
+    [
+      withAppBuildGradle,
+      async (config) => {
+        config.modResults.contents = removeExpoDefaultsFromAppBuildGradle(
+          config.modResults.contents
+        )
         return config
       },
     ],
@@ -55,6 +64,78 @@ function removeExpoDefaultsFromBundleReactNativeShellScript(input) {
   // Remove both sections from the input string
   return input.replace(cliPathRegex, '').replace(bundleCommandRegex, '')
 }
+
+/**
+ * Modify android/app/build.gradle to remove Expo defaults so it won't force the use of Expo CLI.
+ */
+function removeExpoDefaultsFromAppBuildGradle(appBuildGradleContents) {
+  const appBuildGradleContentLines = appBuildGradleContents.split('\n')
+  const reactBlockStartIndex = appBuildGradleContentLines.findIndex((l) => l.startsWith('react {'))
+  const reactBlockEndIndex =
+    appBuildGradleContentLines.slice(reactBlockStartIndex).findIndex((l) => l === '}') +
+    reactBlockStartIndex
+
+  if (reactBlockStartIndex === -1 || reactBlockEndIndex === -1) {
+    console.warn(
+      '[vxrn/expo-plugin] failed to patch Android app/build.gradle: react block not found'
+    )
+    return appBuildGradleContents
+  }
+
+  return [
+    ...appBuildGradleContentLines.slice(0, reactBlockStartIndex),
+    ANDROID_APP_BUILD_GRADLE_REACT_BLOCK,
+    ...appBuildGradleContentLines.slice(reactBlockEndIndex + 1),
+  ].join('\n')
+}
+
+const ANDROID_APP_BUILD_GRADLE_REACT_BLOCK = `
+react {
+    /* Folders */
+    //   The root of your project, i.e. where "package.json" lives. Default is '..'
+    // root = file("../")
+    //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
+    // reactNativeDir = file("../node_modules/react-native")
+    //   The folder where the react-native Codegen package is. Default is ../node_modules/@react-native/codegen
+    // codegenDir = file("../node_modules/@react-native/codegen")
+    //   The cli.js file which is the React Native CLI entrypoint. Default is ../node_modules/react-native/cli.js
+    // cliFile = file("../node_modules/react-native/cli.js")
+
+    /* Variants */
+    //   The list of variants to that are debuggable. For those we're going to
+    //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
+    //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
+    // debuggableVariants = ["liteDebug", "prodDebug"]
+
+    /* Bundling */
+    //   A list containing the node command and its flags. Default is just 'node'.
+    // nodeExecutableAndArgs = ["node"]
+    //
+    //   The command to run when bundling. By default is 'bundle'
+    // bundleCommand = "ram-bundle"
+    //
+    //   The path to the CLI configuration file. Default is empty.
+    // bundleConfig = file(../rn-cli.config.js)
+    //
+    //   The name of the generated asset file containing your JS bundle
+    // bundleAssetName = "MyApplication.android.bundle"
+    //
+    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
+    //   This is not actually used by VxRN, but we just need a path to an existing file to make gradle work.
+    entryFile = file(["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim())
+    //
+    //   A list of extra flags to pass to the 'bundle' commands.
+    //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
+    // extraPackagerArgs = []
+
+    /* Hermes Commands */
+    //   The hermes compiler command to run. By default it is 'hermesc'
+    // hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
+    //
+    //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
+    // hermesFlags = ["-O", "-output-source-map"]
+}
+`.trim()
 
 /**
  * Ensure patches are applied.
