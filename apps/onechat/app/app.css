@@ -50,6 +50,10 @@ body {
   background: var(--bodyBg) !important;
 }
 
+body > div {
+  min-height: 100vh !important;
+}
+
 a, [data-tint-link] {
   text-decoration: underline;
   text-decoration-thickness: 2px;
