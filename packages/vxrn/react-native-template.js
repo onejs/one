@@ -75,7 +75,7 @@ function __getRequire(absPath, parent) {
 }
 
 const __specialRequireMap = globalThis.__vxrnPrebuildSpecialRequireMap || {
-  'react-native': '.vxrn/react-native.js',
+  'react-native': `.vxrn/react-native.${__VXRN_PLATFORM__.toLowerCase()}.js`,
   react: '.vxrn/react.js',
   'react/jsx-runtime': '.vxrn/react-jsx-runtime.js',
   'react/jsx-dev-runtime': '.vxrn/react-jsx-runtime.js',

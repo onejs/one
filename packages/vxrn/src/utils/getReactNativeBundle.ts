@@ -177,7 +177,10 @@ __require("${id}")
     // TEMP FIX for router tamagui thing since expo router 3 upgrade
     .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
 
-  const template = await getReactNativeTemplate(internal.mode || 'dev')
+  const template = (await getReactNativeTemplate(internal.mode || 'dev')).replaceAll(
+    '__VXRN_PLATFORM__',
+    `"${platform}"`
+  )
 
   const out = template + appCode
 
