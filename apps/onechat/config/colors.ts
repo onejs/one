@@ -2,13 +2,13 @@ import { gray, grayDark } from '@tamagui/colors'
 import { objectFromEntries, objectKeys, postfixObjKeys } from '../helpers/typeHelpers'
 
 const yellow = {
-  yellow1: 'hsl(54, 24.0%, 95.5%)',
-  yellow2: 'hsl(54, 30%, 93.5%)',
-  yellow3: 'hsl(54, 40%, 88.9%)',
-  yellow4: 'hsl(54, 40%, 83.6%)',
-  yellow5: 'hsl(54, 47.9%, 78.0%)',
-  yellow6: 'hsl(54, 49.4%, 72.1%)',
-  yellow7: 'hsl(54, 50.4%, 65.0%)',
+  yellow1: 'hsl(54, 14.0%, 95.5%)',
+  yellow2: 'hsl(54, 20%, 93.5%)',
+  yellow3: 'hsl(54, 30%, 88.9%)',
+  yellow4: 'hsl(54, 30%, 83.6%)',
+  yellow5: 'hsl(54, 37.9%, 78.0%)',
+  yellow6: 'hsl(54, 39.4%, 72.1%)',
+  yellow7: 'hsl(54, 40.4%, 65.0%)',
   yellow8: 'hsl(54, 90%, 62%)',
   yellow9: 'hsl(54, 80%, 58.0%)',
   yellow10: 'hsl(54, 50%, 40%)',

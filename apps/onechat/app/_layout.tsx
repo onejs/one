@@ -38,10 +38,8 @@ const ThemeProvider = ({ children }) => {
   const [scheme] = useColorScheme()
 
   return (
-    <>
-      <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme}>
-        {children}
-      </TamaguiProvider>
-    </>
+    <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme}>
+      {children}
+    </TamaguiProvider>
   )
 }
