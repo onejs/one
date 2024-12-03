@@ -1,3 +1,4 @@
+import type React from 'react'
 import { Image, styled } from 'tamagui'
 import oneBallImage from './one-ball.png'
 
@@ -6,6 +7,6 @@ const LogoImage = styled(Image, {
   height: 30,
 })
 
-export function Logo() {
-  return <LogoImage src={oneBallImage} />
+export function Logo(props: React.ComponentProps<typeof LogoImage>) {
+  return <LogoImage {...props} src={oneBallImage} />
 }

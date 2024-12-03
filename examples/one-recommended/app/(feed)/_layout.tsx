@@ -29,7 +29,7 @@ export default function FeedLayout() {
               title: 'Feed',
               gestureEnabled: true,
               headerLeft() {
-                return <Logo />
+                return <Logo mr="$4" />
               },
             }}
           />
