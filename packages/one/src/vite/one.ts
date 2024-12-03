@@ -62,6 +62,27 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
+    {
+      name: 'one:alias-react-native-internals-web-only',
+
+      applyToEnvironment(environment) {
+        return isWebEnvironment(environment)
+      },
+
+      config() {
+        return {
+          resolve: {
+            alias: [
+              {
+                find: /react-native\/Libraries\/.*/,
+                replacement: resolvePath('@vxrn/rn-proxy'),
+              },
+            ],
+          },
+        }
+      },
+    },
+
     ...(options.ssr?.disableAutoDepsPreBundling
       ? []
       : [
@@ -320,7 +341,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin,
 
     {
-      name: 'one-optimize-deps-load-web-extensions',
+      name: 'one:optimize-deps-load-web-extensions-web-only',
       enforce: 'pre',
 
       applyToEnvironment(environment) {

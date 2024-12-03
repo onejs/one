@@ -123,7 +123,7 @@ function getRequire(importer, importsMap, _mod) {
 
 ${JSON.stringify(importsMap, null, 2)}
 
-${process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : ''}
+${globalThis.debugTamagui ? debugExtraDetail : ''}
 
 ${
   withStack
