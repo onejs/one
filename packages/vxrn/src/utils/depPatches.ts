@@ -223,6 +223,7 @@ ${contents}
       '**/*.js': ['jsx', 'flow'],
     },
   },
+
   {
     module: 'react-native-webview',
     patchFiles: {
@@ -253,6 +254,13 @@ ${contents}
 
   {
     module: 'expo',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: 'expo-image',
     patchFiles: {
       'build/**/*.js': ['jsx'],
     },
