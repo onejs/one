@@ -1,26 +1,31 @@
-const { withXcodeProject } = require('@expo/config-plugins')
+const { withPlugins, withXcodeProject } = require('@expo/config-plugins')
 
 const plugin = (config, options = {}) => {
-  return withXcodeProject(config, async (config) => {
-    const xcodeProject = config.modResults
+  return withPlugins(config, [
+    [
+      withXcodeProject,
+      async (config) => {
+        const xcodeProject = config.modResults
 
-    const bundleReactNativeCodeAndImagesBuildPhase = xcodeProject.buildPhaseObject(
-      'PBXShellScriptBuildPhase',
-      'Bundle React Native code and images'
-    )
+        const bundleReactNativeCodeAndImagesBuildPhase = xcodeProject.buildPhaseObject(
+          'PBXShellScriptBuildPhase',
+          'Bundle React Native code and images'
+        )
 
-    if (!bundleReactNativeCodeAndImagesBuildPhase) {
-      return config
-    }
+        if (!bundleReactNativeCodeAndImagesBuildPhase) {
+          return config
+        }
 
-    const originalScript = JSON.parse(bundleReactNativeCodeAndImagesBuildPhase.shellScript)
-    let patchedScript = originalScript
-    patchedScript = removeExpoDefaultsFromBundleReactNativeShellScript(patchedScript)
-    patchedScript = addDepsPatchToBundleReactNativeShellScript(patchedScript)
-    bundleReactNativeCodeAndImagesBuildPhase.shellScript = JSON.stringify(patchedScript)
+        const originalScript = JSON.parse(bundleReactNativeCodeAndImagesBuildPhase.shellScript)
+        let patchedScript = originalScript
+        patchedScript = removeExpoDefaultsFromBundleReactNativeShellScript(patchedScript)
+        patchedScript = addDepsPatchToBundleReactNativeShellScript(patchedScript)
+        bundleReactNativeCodeAndImagesBuildPhase.shellScript = JSON.stringify(patchedScript)
 
-    return config
-  })
+        return config
+      },
+    ],
+  ])
 }
 
 /**
