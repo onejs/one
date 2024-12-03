@@ -4,12 +4,16 @@ import FSExtra from 'fs-extra'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 
-export const prebuild = async ({ root }: { root: string }) => {
+export const prebuild = async ({
+  root,
+  platform,
+}: { root: string; platform?: 'ios' | 'android' }) => {
   const options = await fillOptions({ root })
 
   applyBuiltInPatches(options).catch((err) => {
     console.error(`\n 🥺 error applying built-in patches`, err)
   })
+
   try {
     // Import Expo from the user's project instead of from where vxrn is installed, since vxrn may be installed globally or at the root workspace.
     const require = module.createRequire(root)
@@ -18,8 +22,7 @@ export const prebuild = async ({ root }: { root: string }) => {
     })
     const expoPrebuild = (await import(importPath)).default.expoPrebuild
     await expoPrebuild([
-      '--platform',
-      'ios', // we only support iOS for now
+      ...(platform ? ['--platform', platform] : []),
       '--skip-dependency-update',
       'react,react-native,expo',
     ])
