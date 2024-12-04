@@ -20,11 +20,12 @@ import { SearchProvider } from '~/features/search/SearchProvider'
 import { ContainerDocs, ContainerSm } from '~/features/site/Containers'
 
 const GITHUB_URL = 'https://github.com'
-const REPO_NAME = 'one-js/one'
+const REPO_NAME = 'onejs/one'
+const BRANCH = 'main'
 
 export default function DocsLayout() {
   const { currentPath, next, previous, documentVersionPath } = useDocsMenu()
-  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/master/apps/site/data${currentPath}${documentVersionPath}.mdx`
+  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/${BRANCH}/apps/onestack.dev/data${currentPath}${documentVersionPath}.mdx`
   const isRaise = currentPath === '/docs/seed'
 
   if (isRaise) {
