@@ -46,9 +46,16 @@ export const prebuild = async ({
       // ignore
     }
 
-    console.info(
-      'Run `open ios/*.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
-    )
+    if (!platform || platform === 'ios') {
+      console.info(
+        'Run `open ios/*.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
+      )
+    }
+    if (!platform || platform === 'android') {
+      console.info(
+        '`cd android` then `./gradlew assembleRelease` or `./gradlew assembleDebug` to build the Android project. Afterwards, you can find the built APK at `android/app/build/outputs/apk/release/app-release.apk` or `android/app/build/outputs/apk/debug/app-debug.apk`.'
+      )
+    }
   } catch (e) {
     console.error(`Failed to prebuild native project: ${e}\nIs "expo" listed in your dependencies?`)
   }
