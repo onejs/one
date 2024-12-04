@@ -141,16 +141,21 @@ const prebuild = defineCommand({
     version: '0.0.0',
     description: 'Prebuild native iOS project', // TODO: Android
   },
-  args: {},
-  async run() {
+  args: {
+    platform: {
+      type: 'string',
+    },
+  },
+  async run({ args }) {
     const imported = await import(
       // @ts-expect-error
       './exports/prebuild.mjs'
     )
     const prebuild = imported.prebuild as typeof prebuildFn
     const root = process.cwd()
+    const { platform } = args
 
-    await prebuild({ root })
+    await prebuild({ root, platform })
   },
 })
 
