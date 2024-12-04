@@ -137,7 +137,11 @@ const prebuild = defineCommand({
     version: version,
     description: 'Prebuild native iOS project', // TODO: Android
   },
-  args: {},
+  args: {
+    platform: {
+      type: 'string',
+    },
+  },
   async run({ args }) {
     const { run } = await import('./cli/prebuild')
     await run(args)
