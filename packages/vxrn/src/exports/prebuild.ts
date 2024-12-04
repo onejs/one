@@ -7,7 +7,7 @@ import { applyBuiltInPatches } from '../utils/patches'
 export const prebuild = async ({
   root,
   platform,
-}: { root: string; platform?: 'ios' | 'android' }) => {
+}: { root: string; platform?: 'ios' | 'android' | string }) => {
   const options = await fillOptions({ root })
 
   applyBuiltInPatches(options).catch((err) => {
