@@ -39,12 +39,6 @@ jobs:
         with:
           workspace-focus: ${{ env.test_app_package_name }}
 
-      - name: Build
-        run: yarn build
-
-      - name: Build vxrn
-        run: cd packages/vxrn && yarn build
-
       - name: Test
         run: yarn test
 
