@@ -5,11 +5,6 @@ import { adjustPathname } from '../fork/extractPathFromURL'
 import getPathFromState from '../fork/getPathFromState'
 import getStateFromPath from '../fork/getStateFromPath'
 
-console.log('??')
-if (!globalThis.expo) {
-  globalThis.expo = {}
-}
-
 // @ts-ignore
 const isExpoGo = typeof expo !== 'undefined' && globalThis.expo?.modules?.ExpoGo
 
