@@ -6,18 +6,14 @@ title: Build and Deliver Native Apps with EAS
 
 Native apps built with One can be deployed using EAS. If you created your One app using one of our templates, it would already work with EAS out of the box. If not, refer to the "Setup Your One App for EAS" section below.
 
-After the initial EAS setup (`eas build:configure`), you will be able to run `eas build --platform ios` to build your app, and `eas submit --platform ios` to submit it to the App Store directly in your One project.
+After the initial EAS setup (`eas build:configure`), you will be able to run `eas build` to build your app, and `eas submit` to submit it to the App Store or Google Play directly in your One project.
 
 For more instructions, see the ["Create your first build" guide in the EAS documentation](https://docs.expo.dev/build/setup/).
 
 <Notice>
-  Note that One only supports EAS for iOS at this moment, thus `--platform ios` is used there.
-</Notice>
-
-<Notice>
   It's possible that you'll need to configure your app for distribution, such as setting an unused bundle identifier in `app.json` for your app. Generally, following the instructions you saw in the terminal and the [EAS documentation](https://docs.expo.dev/build/setup/) should be sufficient to resolve most issues.
   <br /><br />
-  A common type of error you'll probally see in a EAS build is:
+  A common type of error you'll probably see in an EAS build is:
 
   ```
   The engine "node" is incompatible with this module. Expected version "^20.15.0". Got "18.18.0"
