@@ -1,5 +1,6 @@
-import { schema } from '~/config/zero/schema'
-import { Zero } from '@rocicorp/zero'
+import { type Schema, schema } from '~/config/zero/schema'
+import { useQuery as useZeroQuery, useZero } from '@rocicorp/zero/react'
+import { type Query, type Smash, Zero } from '@rocicorp/zero'
 
 // const encodedJWT = Cookies.get("jwt");
 // const decodedJWT = encodedJWT && decodeJwt(encodedJWT);
@@ -14,3 +15,11 @@ export const zero = new Zero({
   // the schema. Switch to 'idb' for local-persistence.
   kvStore: 'mem',
 })
+
+export function useQuery<
+  QueryBuilder extends (z: Zero<Schema>) => Query<any>,
+  QueryResult extends ReturnType<QueryBuilder>,
+>(createQuery: QueryBuilder): QueryResult extends Query<any, infer Return> ? Smash<Return> : never {
+  const z = useZero<Schema>()
+  return useZeroQuery(createQuery(z)) as any
+}

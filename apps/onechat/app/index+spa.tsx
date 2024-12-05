@@ -13,6 +13,7 @@ import {
   YStack,
 } from 'tamagui'
 import { OneBall } from '~/features/brand/Logo'
+import { useQuery } from '~/features/zero/zero'
 
 export default function HomePage() {
   return (
@@ -164,6 +165,7 @@ const chats = [
     avatar: <Circle size={32} bg="red" mt={4}></Circle>,
   },
 ]
+
 const MainChatList = () => {
   return (
     <YStack ov="hidden" f={1}>
@@ -365,6 +367,12 @@ const Chat = ({ name, avatar, contents }: { name: string; avatar: any; contents:
 }
 
 const Sidebar = () => {
+  console.log('render me')
+
+  const servers = useQuery((z) => z.query.server)
+
+  console.log('servers', servers)
+
   return (
     <YStack brw={1} bc="$color4" ov="hidden" f={1} maw={250} miw={250} gap="$4" py="$3" px="$3">
       <XStack gap="$2">

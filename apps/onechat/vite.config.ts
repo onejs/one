@@ -34,8 +34,19 @@ export default {
     'process.env.TAMAGUI_SKIP_THEME_OPTIMIZATION': '"1"',
   },
 
+  optimizeDeps: {
+    include: ['@rocicorp/zero'],
+    esbuildOptions: {
+      target: 'esnext',
+    },
+  },
+
   plugins: [
-    one(),
+    one({
+      web: {
+        defaultRenderMode: 'spa',
+      },
+    }),
 
     tamaguiPlugin({
       optimize: true,

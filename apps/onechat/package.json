@@ -7,6 +7,9 @@
   "type": "module",
   "scripts": {
     "tauri": "tauri dev",
+    "zero": "zero-cache --schema-file ./config/zero/schema.ts",
+    "docker": "docker compose --env-file .env",
+    "docker:reset": "docker compose down; docker volume rm onechat_pgdata",
     "dev": "one dev --port 1421",
     "dev:clean": "one dev --clean",
     "subset-font-pn": "tsx ./helpers/subset-font.ts",
