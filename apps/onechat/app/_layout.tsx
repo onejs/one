@@ -3,10 +3,12 @@ import './fonts.css'
 import './syntax-highlight.css'
 import './tamagui.css'
 
+import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { TamaguiProvider, Theme } from 'tamagui'
-import config from '~/config/tamagui.config'
+import config from '~/config/tamagui/tamagui.config'
+import { zero } from '~/features/zero/zero'
 
 export default function Layout() {
   return (
@@ -23,13 +25,15 @@ export default function Layout() {
 
       <LoadProgressBar startDelay={1_000} />
 
-      <SchemeProvider>
-        <ThemeProvider>
-          <Theme name="yellow">
-            <Slot />
-          </Theme>
-        </ThemeProvider>
-      </SchemeProvider>
+      <ZeroProvider zero={zero}>
+        <SchemeProvider>
+          <ThemeProvider>
+            <Theme name="yellow">
+              <Slot />
+            </Theme>
+          </ThemeProvider>
+        </SchemeProvider>
+      </ZeroProvider>
     </>
   )
 }
