@@ -23,12 +23,12 @@ font-family: sans-serif;
 .DocSearch {
   --docsearch-primary-color: var(--colorPress);
   --docsearch-highlight-color: var(--color);
-  --docsearch-text-color: var(--colorHover);
+  --docsearch-text-color: var(--color);
   --docsearch-modal-background: var(--background);
   --docsearch-searchbox-shadow: none;
   --docsearch-searchbox-background: transparent;
   --docsearch-searchbox-focus-background: transparent;
-  --docsearch-hit-color: var(--colorHover);
+  --docsearch-hit-color: var(--color);
   --docsearch-muted-color: var(--colorFocus);
   --docsearch-logo-color: var(--colorPress);
   --docsearch-footer-background: transparent;
