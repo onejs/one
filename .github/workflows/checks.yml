@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+env:
+  # Package name in the monorepo
+  test_app_package_name: test-test
+
 jobs:
   checks:
     runs-on: ubuntu-latest
@@ -14,6 +18,8 @@ jobs:
 
       - name: Install
         uses: ./.github/actions/install
+        with:
+          workspace-focus: ${{ env.test_app_package_name }}
 
       - name: Check
         run: yarn check
@@ -30,6 +36,8 @@ jobs:
 
       - name: Install
         uses: ./.github/actions/install
+        with:
+          workspace-focus: ${{ env.test_app_package_name }}
 
       - name: Build
         run: yarn build
