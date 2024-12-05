@@ -14,8 +14,6 @@ global['module'] = {}
 global['__DEV__'] = process.env.__DEV__
 global['___modules___'] = {}
 global['___vxrnAbsoluteToRelative___'] = {}
-// to avoid it looking like browser...
-delete globalThis['window']
 
 global['Event'] =
   global['Event'] ||
@@ -77,7 +75,7 @@ function __getRequire(absPath, parent) {
 }
 
 const __specialRequireMap = globalThis.__vxrnPrebuildSpecialRequireMap || {
-  'react-native': '.vxrn/react-native.js',
+  'react-native': `.vxrn/react-native.${__VXRN_PLATFORM__.toLowerCase()}.js`,
   react: '.vxrn/react.js',
   'react/jsx-runtime': '.vxrn/react-jsx-runtime.js',
   'react/jsx-dev-runtime': '.vxrn/react-jsx-runtime.js',
@@ -123,7 +121,7 @@ function getRequire(importer, importsMap, _mod) {
 
 ${JSON.stringify(importsMap, null, 2)}
 
-${globalThis.debugTamagui ? debugExtraDetail : ''}
+${/* process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : '' // Will break Android: property 'process' doesn't exist */ ''}
 
 ${
   withStack

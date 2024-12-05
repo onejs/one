@@ -120,7 +120,7 @@ export async function buildReact(options: BuildOptions = {}) {
 
 export async function buildReactNative(
   options: BuildOptions = {},
-  { platform }: { platform: 'ios' | 'android' },
+  { platform }: { platform: 'ios' | 'android' }
 ) {
   return build({
     bundle: true,
@@ -229,11 +229,17 @@ return mod
         // Export `@react-native/assets-registry/registry`
         .replace(
           `return require_react_native();`,
-          `const rn = require_react_native(); rn.AssetRegistry = require_registry(); return rn;`
+          [
+            `const rn = require_react_native();`,
+            `rn.AssetRegistry = require_registry();`,
+            `require_ReactNative();`, // This is react-native/Libraries/Renderer/shims/ReactNative.js, we call it here to ensure shims are initialized since we won't lazy load React Native components. See the NOTE below.
+            `return rn;`,
+          ].join('\n')
         )}
     }
     const RN = run()
-    ${RNExportNames.map((n) => `export const ${n} = RN.${n}`).join('\n')}
+
+    ${RNExportNames.map((n) => `export const ${n} = RN.${n}`).join('\n') /* NOTE: React Native exports are designed to be lazy loaded (see: https://github.com/facebook/react-native/blob/v0.77.0-rc.0/packages/react-native/index.js#L106), but while doing so we're calling all the exported getters immediately and executing all the modules at once. */}
     `
     await FSExtra.writeFile(options.outfile!, outCode)
   })

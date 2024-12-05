@@ -4,12 +4,16 @@ import FSExtra from 'fs-extra'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 
-export const prebuild = async ({ root }: { root: string }) => {
+export const prebuild = async ({
+  root,
+  platform,
+}: { root: string; platform?: 'ios' | 'android' | string }) => {
   const options = await fillOptions({ root })
 
   applyBuiltInPatches(options).catch((err) => {
     console.error(`\n 🥺 error applying built-in patches`, err)
   })
+
   try {
     // Import Expo from the user's project instead of from where vxrn is installed, since vxrn may be installed globally or at the root workspace.
     const require = module.createRequire(root)
@@ -18,8 +22,7 @@ export const prebuild = async ({ root }: { root: string }) => {
     })
     const expoPrebuild = (await import(importPath)).default.expoPrebuild
     await expoPrebuild([
-      '--platform',
-      'ios', // we only support iOS for now
+      ...(platform ? ['--platform', platform] : []),
       '--skip-dependency-update',
       'react,react-native,expo',
     ])
@@ -43,9 +46,16 @@ export const prebuild = async ({ root }: { root: string }) => {
       // ignore
     }
 
-    console.info(
-      'Run `open ios/*.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
-    )
+    if (!platform || platform === 'ios') {
+      console.info(
+        'Run `open ios/*.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
+      )
+    }
+    if (!platform || platform === 'android') {
+      console.info(
+        '`cd android` then `./gradlew assembleRelease` or `./gradlew assembleDebug` to build the Android project. Afterwards, you can find the built APK at `android/app/build/outputs/apk/release/app-release.apk` or `android/app/build/outputs/apk/debug/app-debug.apk`.'
+      )
+    }
   } catch (e) {
     console.error(`Failed to prebuild native project: ${e}\nIs "expo" listed in your dependencies?`)
   }

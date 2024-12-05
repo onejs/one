@@ -1,5 +1,4 @@
 import '@tamagui/core/reset.css'
-import '../public/tamagui.css'
 
 import { TamaguiProvider } from '@tamagui/core'
 import { LoadProgressBar, Slot } from 'one'
