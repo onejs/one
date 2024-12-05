@@ -91,7 +91,7 @@ const themeBuilder = createThemeBuilder()
       template: 'base',
     },
   })
-// no need for componet themes for us
+// no need for component themes for us
 // .addComponentThemes(defaultComponentThemes, {
 //   avoidNestingWithin: ['alt1', 'alt2'],
 // })
