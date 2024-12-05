@@ -31,6 +31,7 @@ const plugin = (config, options = {}) => {
         config.modResults.contents = removeExpoDefaultsFromAppBuildGradle(
           config.modResults.contents
         )
+        config.modResults.contents = addDepsPatchToAppBuildGradle(config.modResults.contents)
         return config
       },
     ],
@@ -156,6 +157,41 @@ elif [ -f node_modules/.bin/vxrn ]; then
 fi
 cd -
 ` + input
+  )
+}
+
+/**
+ * Ensure patches are applied.
+ */
+function addDepsPatchToAppBuildGradle(input) {
+  if (input.includes('[vxrn/one] ensure patches are applied')) {
+    return input
+  }
+
+  return (
+    input +
+    '\n' +
+    `
+/**
+ * [vxrn/one] ensure patches are applied
+ */
+tasks.named("preBuild").configure {
+    doFirst {
+        def nodeModulesPath = project.file("../node_modules/.bin")
+        def oneExecutable = new File(nodeModulesPath, "one")
+        def vxrnExecutable = new File(nodeModulesPath, "vxrn")
+        if (oneExecutable.exists()) {
+            exec {
+                commandLine oneExecutable.absolutePath, "patch"
+            }
+        } else if (vxrnExecutable.exists()) {
+            exec {
+                commandLine vxrnExecutable.absolutePath, "patch"
+            }
+        }
+    }
+}
+`.trim()
   )
 }
 
