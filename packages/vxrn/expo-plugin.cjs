@@ -175,18 +175,12 @@ function addDepsPatchToAppBuildGradle(input) {
 /**
  * [vxrn/one] ensure patches are applied
  */
-tasks.named("preBuild").configure {
-    doFirst {
-        def nodeModulesPath = project.file("../node_modules/.bin")
-        def oneExecutable = new File(nodeModulesPath, "one")
-        def vxrnExecutable = new File(nodeModulesPath, "vxrn")
-        if (oneExecutable.exists()) {
+gradle.taskGraph.whenReady { taskGraph ->
+    tasks.named("createBundleReleaseJsAndAssets").configure {
+        doFirst {
+            def vxrnCli = new File(["node", "--print", "require.resolve('vxrn/package.json')"].execute(null, rootDir).text.trim()).getParentFile().getAbsolutePath() + "/run.mjs"
             exec {
-                commandLine oneExecutable.absolutePath, "patch"
-            }
-        } else if (vxrnExecutable.exists()) {
-            exec {
-                commandLine vxrnExecutable.absolutePath, "patch"
+                commandLine vxrnCli, "patch"
             }
         }
     }
