@@ -1,5 +1,5 @@
 import { gray, grayDark } from '@tamagui/colors'
-import { objectFromEntries, objectKeys, postfixObjKeys } from '../helpers/typeHelpers'
+import { objectFromEntries, objectKeys, postfixObjKeys } from '../../helpers/typeHelpers'
 
 const yellow = {
   yellow1: 'hsl(54, 14.0%, 95.5%)',

@@ -47,7 +47,7 @@ const Head = () => {
         </XStack>
       </YStack>
 
-      <H3 m={0} o={0.5} size="$2">
+      <H3 pe="none" m={0} o={0.5} size="$2">
         One
       </H3>
     </XStack>
