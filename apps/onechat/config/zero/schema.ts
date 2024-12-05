@@ -13,6 +13,7 @@ const userSchema = createTableSchema({
     email: { type: 'string' },
     displayName: { type: 'string' },
     avatar: { type: 'string' },
+    state: { type: 'json' },
     createdAt: { type: 'number' },
   },
   primaryKey: ['id'],

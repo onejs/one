@@ -23,9 +23,9 @@ services:
       -c hot_standby=on 
       -c hot_standby_feedback=on
     volumes:
-      - onechat_pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
       - ./config/postgres/:/docker-entrypoint-initdb.d
 
 volumes:
-  onechat_pgdata:
+  pgdata:
     driver: local
