@@ -18,9 +18,11 @@ CREATE TABLE "user" (
     "username" VARCHAR(200),
     "name" VARCHAR(200),
     "email" VARCHAR(200) NOT NULL UNIQUE,
-    "avatar" VARCHAR(255),
     "state" JSONB DEFAULT '{}',
-    "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    "updatedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "emailVerified" boolean not null default false,
+    "image" VARCHAR(255),
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create server table
@@ -30,15 +32,15 @@ CREATE TABLE "server" (
     "ownerId" VARCHAR REFERENCES "user"(id),
     "description" TEXT,
     "icon" VARCHAR(255),
-    "updatedAt" TIMESTAMP WITH TIME ZONE NULL,
-    "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    "updatedAt" TIMESTAMP NULL,
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create serverMember junction table (for many-to-many relationship between servers and users)
 CREATE TABLE "serverMember" (
     "serverId" VARCHAR REFERENCES "server"(id),
     "userId" VARCHAR REFERENCES "user"(id),
-    "joinedAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    "joinedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY ("serverId", "userId")
 );
 
@@ -49,8 +51,8 @@ CREATE TABLE "channel" (
     "name" VARCHAR(200) NOT NULL,
     "description" TEXT,
     "private" BOOLEAN DEFAULT FALSE,
-    "updatedAt" TIMESTAMP WITH TIME ZONE NULL,
-    "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    "updatedAt" TIMESTAMP NULL,
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create thread table
@@ -60,8 +62,8 @@ CREATE TABLE "thread" (
     "creatorId" VARCHAR REFERENCES "user"(id),
     "title" VARCHAR(200),
     "description" VARCHAR(200),
-    "updatedAt" TIMESTAMP WITH TIME ZONE NULL,
-    "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    "updatedAt" TIMESTAMP NULL,
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create message table
@@ -72,26 +74,12 @@ CREATE TABLE "message" (
     "threadId" VARCHAR REFERENCES "thread"(id) NULL,
     "senderId" VARCHAR REFERENCES "user"(id),
     "content" TEXT NOT NULL,
-    "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "editedAt" TIMESTAMP WITH TIME ZONE NULL,
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "editedAt" TIMESTAMP NULL,
     "deleted" BOOLEAN DEFAULT FALSE
 );
 
--- add better auth
-alter table
-    "user"
-add
-    column "emailVerified" boolean not null;
-
-alter table
-    "user"
-add
-    column "image" text;
-
-alter table
-    "user"
-add
-    column "updatedAt" timestamp not null;
+-- better-auth:
 
 create table "session" (
     "id" text not null primary key,
