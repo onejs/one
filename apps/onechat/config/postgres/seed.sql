@@ -1,5 +1,10 @@
 -- Drop existing tables if they exist
-DROP TABLE IF EXISTS "message", "thread", "channel", "serverMember", "server", "user";
+DROP TABLE IF EXISTS "message",
+"thread",
+"channel",
+"serverMember",
+"server",
+"user";
 
 CREATE DATABASE onechat;
 CREATE DATABASE onechat_cvr;
@@ -11,7 +16,7 @@ CREATE DATABASE onechat_cdb;
 CREATE TABLE "user" (
     "id" VARCHAR PRIMARY KEY,
     "username" VARCHAR(200) NOT NULL UNIQUE,
-    "displayName" VARCHAR(200),
+    "name" VARCHAR(200),
     "email" VARCHAR(200) NOT NULL UNIQUE,
     "avatar" VARCHAR(255),
     "state" JSONB DEFAULT '{}',
@@ -71,3 +76,55 @@ CREATE TABLE "message" (
     "editedAt" TIMESTAMP WITH TIME ZONE NULL,
     "deleted" BOOLEAN DEFAULT FALSE
 );
+
+-- add better auth
+alter table
+    "user"
+add
+    column "emailVerified" boolean not null;
+
+alter table
+    "user"
+add
+    column "image" text;
+
+alter table
+    "user"
+add
+    column "updatedAt" timestamp not null;
+
+create table "session" (
+    "id" text not null primary key,
+    "expiresAt" timestamp not null,
+    "token" text not null unique,
+    "createdAt" timestamp not null,
+    "updatedAt" timestamp not null,
+    "ipAddress" text,
+    "userAgent" text,
+    "userId" text not null references "user" ("id")
+);
+
+create table "account" (
+    "id" text not null primary key,
+    "accountId" text not null,
+    "providerId" text not null,
+    "userId" text not null references "user" ("id"),
+    "accessToken" text,
+    "refreshToken" text,
+    "idToken" text,
+    "accessTokenExpiresAt" timestamp,
+    "refreshTokenExpiresAt" timestamp,
+    "scope" text,
+    "password" text,
+    "createdAt" timestamp not null,
+    "updatedAt" timestamp not null
+);
+
+create table "verification" (
+    "id" text not null primary key,
+    "identifier" text not null,
+    "value" text not null,
+    "expiresAt" timestamp not null,
+    "createdAt" timestamp,
+    "updatedAt" timestamp
+)

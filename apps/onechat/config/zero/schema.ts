@@ -11,7 +11,7 @@ const userSchema = createTableSchema({
     id: { type: 'string' },
     username: { type: 'string' },
     email: { type: 'string' },
-    displayName: { type: 'string' },
+    name: { type: 'string' },
     avatar: { type: 'string' },
     state: { type: 'json' },
     createdAt: { type: 'number' },

@@ -5,5 +5,8 @@
     },
     "[javascript]": {
         "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[sql]": {
+        "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
     }
 }
