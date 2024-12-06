@@ -210,18 +210,33 @@ export async function buildReactNative(
           esbuildCommonJSFunction,
           `
 // replaced commonjs function to allow importing internals
-var __commonJS = (cb, mod) => function __require() {
-if (mod) return mod
-const path = __getOwnPropNames(cb)[0]
-const moduleFn = cb[path]
-mod = { exports: {} }
-moduleFn(mod.exports, mod)
-mod = mod.exports
+var __commonJS = function __commonJS(cb, mod) {
+    var path = __getOwnPropNames(cb)[0];
+    var modulePath = path.replace(/.*node_modules\\//, '').replace('.js', '');
 
-// this is our patch basically allowing importing the inner contents:
-globalThis['__cachedModules'][path.replace(/.*node_modules\\//, '').replace('.js', '')] = mod
+    var __require = function __require() {
+        if (mod) return mod;
 
-return mod
+        var cachedMod = globalThis["__cachedModules"][modulePath];
+        if (cachedMod) return cachedMod;
+
+        var moduleFn = cb[path];
+        mod = {
+            exports: {}
+        };
+        moduleFn(mod.exports, mod);
+        mod = mod.exports;
+        // this is one of our patches basically allowing importing the inner contents:
+        globalThis["__cachedModules"][modulePath] = mod;
+        return mod;
+    };
+
+    // this is another patch basically allowing importing the inner contents:
+    if (globalThis['__RN_INTERNAL_MODULE_REQUIRES_MAP__']) {
+        globalThis['__RN_INTERNAL_MODULE_REQUIRES_MAP__'][modulePath] = __require;
+    }
+
+    return __require;
 };
 `
         )
