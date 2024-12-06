@@ -231,7 +231,7 @@ export async function swapPrebuiltReactModules(
     async load(id) {
       if (id.startsWith('virtual:rn-internals')) {
         const idOut = id.replace('virtual:rn-internals:', '')
-        let out = `const ___val = __cachedModules["${idOut}"]
+        let out = `const ___val = __RN_INTERNAL_MODULE_REQUIRES_MAP__["${idOut}"]()
         const ___defaultVal = ___val ? ___val.default || ___val : ___val
         export default ___defaultVal
 
