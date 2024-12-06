@@ -34,7 +34,6 @@ const Head = () => {
   return (
     <XStack
       data-tauri-drag-region
-      bg="rgba(0,0,0,0.1)"
       br="$4"
       mx={2}
       ai="center"
@@ -67,8 +66,10 @@ const Main = () => {
   return (
     <YStack f={1}>
       <RecentThreads />
-      <MainChatList />
-      <MessageArea />
+      <YStack f={1} bg="$color1">
+        <MainChatList />
+        <MessageArea />
+      </YStack>
     </YStack>
   )
 }
@@ -376,6 +377,8 @@ const Chat = ({ name, avatar, contents }: { name: string; avatar: any; contents:
 
 const Sidebar = () => {
   const servers = useQuery((q) => q.server.orderBy('createdAt', 'desc'))
+  const users = useQuery((q) => q.user.orderBy('createdAt', 'desc'))
+  console.log('users', users)
 
   return (
     <YStack brw={1} bc="$color4" ov="hidden" f={1} maw={250} miw={250} gap="$4">
