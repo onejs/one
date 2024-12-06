@@ -240,7 +240,9 @@ return mod
     }
     const RN = run()
 
+    export const REACT_NATIVE_ESM_MANUAL_EXPORTS_START = 'REACT_NATIVE_ESM_MANUAL_EXPORTS_START';${/* NOTE: The `REACT_NATIVE_ESM_MANUAL_EXPORTS_*` vars here are used by other tools to replace exports in this section with a CJS `module.export` which supports dynamic loaded lazy exports, if CJS can be used - such as in a React Native bundle. */ ''}
     ${RNExportNames.map((n) => `export const ${n} = RN.${n}`).join('\n') /* NOTE: React Native exports are designed to be lazy loaded (see: https://github.com/facebook/react-native/blob/v0.77.0-rc.0/packages/react-native/index.js#L106), but while doing so we're calling all the exported getters immediately and executing all the modules at once. */}
+    export const REACT_NATIVE_ESM_MANUAL_EXPORTS_END = 'REACT_NATIVE_ESM_MANUAL_EXPORTS_END';
     `
     await FSExtra.writeFile(options.outfile!, outCode)
   })
