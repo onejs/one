@@ -15,7 +15,7 @@ CREATE DATABASE onechat_cdb;
 -- Create user table
 CREATE TABLE "user" (
     "id" VARCHAR PRIMARY KEY,
-    "username" VARCHAR(200) NOT NULL UNIQUE,
+    "username" VARCHAR(200),
     "name" VARCHAR(200),
     "email" VARCHAR(200) NOT NULL UNIQUE,
     "avatar" VARCHAR(255),
