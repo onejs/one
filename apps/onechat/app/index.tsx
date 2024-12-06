@@ -1,6 +1,7 @@
-import { Home, MessageCircle, Scroll, Search } from '@tamagui/lucide-icons'
+import { Home, MessageCircle, Plus, Scroll, Search } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import {
+  Button,
   Circle,
   H3,
   Input,
@@ -12,8 +13,9 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
+import { signIn } from '~/features/auth/authClient'
 import { OneBall } from '~/features/brand/Logo'
-import { useQuery } from '~/features/zero/zero'
+import { mutate, randomID, useQuery, zero } from '~/features/zero/zero'
 
 export default function HomePage() {
   return (
@@ -36,21 +38,27 @@ const Head = () => {
       br="$4"
       mx={2}
       ai="center"
-      jc="center"
+      jc="space-between"
       y={2}
       h={36}
+      pl={80}
+      pr={4}
       mb={4}
     >
-      <YStack pos="absolute" t={0} r={4} b={0} ai="center" jc="center">
-        <XStack ai="center" gap="$2">
-          <Search size={16} o={0.5} />
-          <Input w={250} placeholder="" size="$2" bw={0} />
-        </XStack>
-      </YStack>
+      <a target="_blank" href={window.location.origin + '/login-github'} rel="noreferrer">
+        <Button size="$2">Github</Button>
+      </a>
+
+      {/* <YStack pos="absolute" t={0} r={4} b={0} ai="center" jc="center"> */}
+      {/* </YStack> */}
 
       <H3 pe="none" m={0} o={0.5} size="$2">
         One
       </H3>
+      <XStack ai="center" gap="$2">
+        <Search size={16} o={0.5} />
+        <Input w={250} placeholder="" size="$2" bw={0} />
+      </XStack>
     </XStack>
   )
 }
@@ -367,38 +375,59 @@ const Chat = ({ name, avatar, contents }: { name: string; avatar: any; contents:
 }
 
 const Sidebar = () => {
-  console.log('render me')
-
-  const servers = useQuery((z) => z.query.server)
-
-  console.log('servers', servers)
+  const servers = useQuery((q) => q.server.orderBy('createdAt', 'desc'))
 
   return (
-    <YStack brw={1} bc="$color4" ov="hidden" f={1} maw={250} miw={250} gap="$4" py="$3" px="$3">
-      <XStack gap="$2">
-        <Circle size={42} bg="$color9" outlineColor="#fff" outlineWidth={2} outlineStyle="solid">
-          <OneBall size={1.5} />
-        </Circle>
-        <Circle size={42} bg="$color9" />
-        <Circle size={42} bg="$color9" />
-        <Circle size={42} bg="$color9" />
-        <Circle size={42} bg="$color9" />
-        <Circle size={42} bg="$color9" />
-        <Circle size={42} bg="$color9" />
-        <Circle size={42} bg="$color9" />
-        <Circle size={42} bg="$color9" />
+    <YStack brw={1} bc="$color4" ov="hidden" f={1} maw={250} miw={250} gap="$4">
+      <XStack>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <SidebarIndent fd="row" gap="$2" py="$3">
+            <Circle
+              size={42}
+              bg="$color9"
+              outlineColor="#fff"
+              outlineWidth={2}
+              outlineStyle="solid"
+            >
+              <OneBall size={1.5} />
+            </Circle>
+            {servers.map((server) => {
+              return <Circle key={server.id} size={42} bg={server.icon} />
+            })}
+            <Circle
+              onPress={() => {
+                mutate.server.insert({
+                  id: randomID(),
+                  createdAt: new Date().getTime(),
+                  description: '',
+                  icon: Math.random() > 0.5 ? 'red' : 'pink',
+                  name: 'Lorem',
+                  ownerId: '',
+                })
+              }}
+              size={42}
+              bg="$color9"
+            >
+              <Plus />
+            </Circle>
+          </SidebarIndent>
+        </ScrollView>
       </XStack>
 
-      <YStack gap="$1">
-        <RoomItem active name="General" />
-        <RoomItem name="Help" />
-        <RoomItem name="Proposals" />
-      </YStack>
+      <SidebarIndent>
+        <YStack gap="$1">
+          <RoomItem active name="General" />
+          <RoomItem name="Help" />
+          <RoomItem name="Proposals" />
+        </YStack>
+      </SidebarIndent>
 
-      <YStack gap="$1">
-        <RoomItem name={<SubTitle>Recently</SubTitle>} />
-        <RoomItem active name="🧵 Some Thread" />
-      </YStack>
+      <SidebarIndent>
+        <YStack gap="$1">
+          <RoomItem name={<SubTitle>Recently</SubTitle>} />
+          <RoomItem active name="🧵 Some Thread" />
+        </YStack>
+      </SidebarIndent>
 
       <YStack btw={1} bc="$color4" p="$3" pos="absolute" b={0} l={0} r={0}>
         <RoomItem name={<SubTitle>Recent Chats</SubTitle>} />
@@ -414,6 +443,10 @@ const Sidebar = () => {
     </YStack>
   )
 }
+
+const SidebarIndent = styled(YStack, {
+  px: '$3',
+})
 
 const SubTitle = (props) => {
   return (

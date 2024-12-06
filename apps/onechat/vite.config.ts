@@ -17,6 +17,10 @@ export default {
         find: '@tamagui/select',
         replacement: resolvePath('@tamagui/proxy-tabbable'),
       },
+      {
+        find: 'react-native-svg',
+        replacement: resolvePath('@tamagui/react-native-svg'),
+      },
       // {
       //   find: 'tslib',
       //   replacement: resolve('@tamagui/proxy-worm'),
@@ -45,6 +49,11 @@ export default {
     one({
       web: {
         defaultRenderMode: 'spa',
+      },
+
+      deps: {
+        'set-cookie-parser': true,
+        pg: true,
       },
     }),
 
