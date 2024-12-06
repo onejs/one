@@ -231,7 +231,7 @@ export async function swapPrebuiltReactModules(
     async load(id) {
       if (id.startsWith('virtual:rn-internals')) {
         const idOut = id.replace('virtual:rn-internals:', '')
-        let out = `const ___val = __RN_INTERNAL_MODULE_REQUIRES_MAP__["${idOut}"]()
+        let out = (id.includes('codegenNativeComponent') ? `const ___val = __RN_INTERNAL_MODULE_REQUIRES_MAP__["${idOut}"]()` : `const ___val = __cachedModules["${idOut}"]`) /* IDK why we can't use __RN_INTERNAL_MODULE_REQUIRES_MAP__ for all modules, if we do so the app will hang with a white screen (but won't crash) */ + `
         const ___defaultVal = ___val ? ___val.default || ___val : ___val
         export default ___defaultVal
 
