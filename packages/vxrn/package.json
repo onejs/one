@@ -32,6 +32,7 @@
     "./react-native-template.js": "./react-native-template.js",
     "./react-native-commands": "./react-native-commands.cjs",
     "./expo-plugin": "./expo-plugin.cjs",
+    "./expo-js-native-debugging-plugin": "./expo-js-native-debugging-plugin.cjs",
     ".": {
       "types": "./types/index.d.ts",
       "default": "./dist/index.mjs"
