@@ -142,6 +142,19 @@ export async function getReactNativeBundle(
           code = ''
         }
 
+        if (id.startsWith('.vxrn/react-native')) {
+          // Turn eager imports of RN back into dynamic lazy imports.
+          // We needed them eager so rollup won't be unhappy with missing exports, but now we need them lazy again to match the original RN behavior, which may avoid some issues. Such as:
+          // * react-native v0.76 with: Codegen didn't run for RNCSafeAreaView. This will be an error in the future. Make sure you are using @react-native/babel-preset when building your JavaScript code.
+          code = code.replace( // Step 1: Replace the whole `exports` block which contains `exports.REACT_NATIVE_ESM_MANUAL_EXPORTS_` with `module.exports = RN;`
+            /(^exports.+$\s)*(^exports\.REACT_NATIVE_ESM_MANUAL_EXPORTS_.+$\s)(^exports.+$\s)*/m,
+            'module.exports = RN;'
+          )
+          .replace( // Step 2: Remove other unnecessary `var thing = RN.thing;` lines
+            /^.*REACT_NATIVE_ESM_MANUAL_EXPORTS_START[\s\S]*REACT_NATIVE_ESM_MANUAL_EXPORTS_END.*$/m, ''
+          )
+        }
+
         return `
 // id: ${id}
 // name: ${outputModule.name}
@@ -176,16 +189,6 @@ __require("${id}")
   appCode = appCode
     // TEMP FIX for router tamagui thing since expo router 3 upgrade
     .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
-    // turn eager imports of RN back into lazy imports
-    // we needed them eager so rollup isnt unhappy with missing exports, now we need them lazy again
-    // so react native doesn't get unhappy on v76 with:
-    // Codegen didn't run for RNCSafeAreaView. This will be an error in the future. Make sure you are using @react-native/babel-preset when building your JavaScript code.
-    .replace(
-      RNEagerImports,
-      `
-module.exports = RN;
-  `
-    )
 
   const template = (await getReactNativeTemplate(internal.mode || 'dev')).replaceAll(
     '__VXRN_PLATFORM__',
@@ -200,162 +203,6 @@ module.exports = RN;
 
   return out
 }
-
-const RNEagerImports = `var registerCallableModule = RN.registerCallableModule;
-var AccessibilityInfo = RN.AccessibilityInfo;
-var ActivityIndicator = RN.ActivityIndicator;
-var Button = RN.Button;
-var DrawerLayoutAndroid = RN.DrawerLayoutAndroid;
-var FlatList = RN.FlatList;
-var Image = RN.Image;
-var ImageBackground = RN.ImageBackground;
-var InputAccessoryView = RN.InputAccessoryView;
-var KeyboardAvoidingView = RN.KeyboardAvoidingView;
-var Modal = RN.Modal;
-var Pressable = RN.Pressable;
-var RefreshControl = RN.RefreshControl;
-var SafeAreaView = RN.SafeAreaView;
-var ScrollView = RN.ScrollView;
-var SectionList = RN.SectionList;
-var StatusBar = RN.StatusBar;
-var Switch = RN.Switch;
-var Text = RN.Text;
-var TextInput = RN.TextInput;
-var Touchable = RN.Touchable;
-var TouchableHighlight = RN.TouchableHighlight;
-var TouchableNativeFeedback = RN.TouchableNativeFeedback;
-var TouchableOpacity = RN.TouchableOpacity;
-var TouchableWithoutFeedback = RN.TouchableWithoutFeedback;
-var View = RN.View;
-var VirtualizedList = RN.VirtualizedList;
-var VirtualizedSectionList = RN.VirtualizedSectionList;
-var ActionSheetIOS = RN.ActionSheetIOS;
-var Alert = RN.Alert;
-var Animated = RN.Animated;
-var Appearance = RN.Appearance;
-var AppRegistry = RN.AppRegistry;
-var AppState = RN.AppState;
-var BackHandler = RN.BackHandler;
-var DeviceInfo = RN.DeviceInfo;
-var DevSettings = RN.DevSettings;
-var Dimensions = RN.Dimensions;
-var Easing = RN.Easing;
-var findNodeHandle = RN.findNodeHandle;
-var I18nManager = RN.I18nManager;
-var InteractionManager = RN.InteractionManager;
-var Keyboard = RN.Keyboard;
-var LayoutAnimation = RN.LayoutAnimation;
-var Linking = RN.Linking;
-var LogBox = RN.LogBox;
-var NativeDialogManagerAndroid = RN.NativeDialogManagerAndroid;
-var NativeEventEmitter = RN.NativeEventEmitter;
-var Networking = RN.Networking;
-var PanResponder = RN.PanResponder;
-var PermissionsAndroid = RN.PermissionsAndroid;
-var PixelRatio = RN.PixelRatio;
-var Settings = RN.Settings;
-var Share = RN.Share;
-var StyleSheet = RN.StyleSheet;
-var Systrace = RN.Systrace;
-var ToastAndroid = RN.ToastAndroid;
-var TurboModuleRegistry = RN.TurboModuleRegistry;
-var UIManager = RN.UIManager;
-var unstable_batchedUpdates = RN.unstable_batchedUpdates;
-var useAnimatedValue = RN.useAnimatedValue;
-var useColorScheme = RN.useColorScheme;
-var useWindowDimensions = RN.useWindowDimensions;
-var UTFSequence = RN.UTFSequence;
-var Vibration = RN.Vibration;
-var YellowBox = RN.YellowBox;
-var DeviceEventEmitter = RN.DeviceEventEmitter;
-var DynamicColorIOS = RN.DynamicColorIOS;
-var NativeAppEventEmitter = RN.NativeAppEventEmitter;
-var NativeModules = RN.NativeModules;
-var Platform = RN.Platform;
-var PlatformColor = RN.PlatformColor;
-var processColor = RN.processColor;
-var requireNativeComponent = RN.requireNativeComponent;
-var RootTagContext = RN.RootTagContext;
-var unstable_enableLogBox = RN.unstable_enableLogBox;
-var AssetRegistry = RN.AssetRegistry;
-
-exports.AccessibilityInfo = AccessibilityInfo;
-exports.ActionSheetIOS = ActionSheetIOS;
-exports.ActivityIndicator = ActivityIndicator;
-exports.Alert = Alert;
-exports.Animated = Animated;
-exports.AppRegistry = AppRegistry;
-exports.AppState = AppState;
-exports.Appearance = Appearance;
-exports.AssetRegistry = AssetRegistry;
-exports.BackHandler = BackHandler;
-exports.Button = Button;
-exports.DevSettings = DevSettings;
-exports.DeviceEventEmitter = DeviceEventEmitter;
-exports.DeviceInfo = DeviceInfo;
-exports.Dimensions = Dimensions;
-exports.DrawerLayoutAndroid = DrawerLayoutAndroid;
-exports.DynamicColorIOS = DynamicColorIOS;
-exports.Easing = Easing;
-exports.FlatList = FlatList;
-exports.I18nManager = I18nManager;
-exports.Image = Image;
-exports.ImageBackground = ImageBackground;
-exports.InputAccessoryView = InputAccessoryView;
-exports.InteractionManager = InteractionManager;
-exports.Keyboard = Keyboard;
-exports.KeyboardAvoidingView = KeyboardAvoidingView;
-exports.LayoutAnimation = LayoutAnimation;
-exports.Linking = Linking;
-exports.LogBox = LogBox;
-exports.Modal = Modal;
-exports.NativeAppEventEmitter = NativeAppEventEmitter;
-exports.NativeDialogManagerAndroid = NativeDialogManagerAndroid;
-exports.NativeEventEmitter = NativeEventEmitter;
-exports.NativeModules = NativeModules;
-exports.Networking = Networking;
-exports.PanResponder = PanResponder;
-exports.PermissionsAndroid = PermissionsAndroid;
-exports.PixelRatio = PixelRatio;
-exports.Platform = Platform;
-exports.PlatformColor = PlatformColor;
-exports.Pressable = Pressable;
-exports.RefreshControl = RefreshControl;
-exports.RootTagContext = RootTagContext;
-exports.SafeAreaView = SafeAreaView;
-exports.ScrollView = ScrollView;
-exports.SectionList = SectionList;
-exports.Settings = Settings;
-exports.Share = Share;
-exports.StatusBar = StatusBar;
-exports.StyleSheet = StyleSheet;
-exports.Switch = Switch;
-exports.Systrace = Systrace;
-exports.Text = Text;
-exports.TextInput = TextInput;
-exports.ToastAndroid = ToastAndroid;
-exports.Touchable = Touchable;
-exports.TouchableHighlight = TouchableHighlight;
-exports.TouchableNativeFeedback = TouchableNativeFeedback;
-exports.TouchableOpacity = TouchableOpacity;
-exports.TouchableWithoutFeedback = TouchableWithoutFeedback;
-exports.TurboModuleRegistry = TurboModuleRegistry;
-exports.UIManager = UIManager;
-exports.UTFSequence = UTFSequence;
-exports.Vibration = Vibration;
-exports.View = View;
-exports.VirtualizedList = VirtualizedList;
-exports.VirtualizedSectionList = VirtualizedSectionList;
-exports.YellowBox = YellowBox;
-exports.findNodeHandle = findNodeHandle;
-exports.processColor = processColor;
-exports.registerCallableModule = registerCallableModule;
-exports.requireNativeComponent = requireNativeComponent;
-exports.unstable_batchedUpdates = unstable_batchedUpdates;
-exports.unstable_enableLogBox = unstable_enableLogBox;
-exports.useAnimatedValue = useAnimatedValue;
-exports.useColorScheme = useColorScheme;
-exports.useWindowDimensions = useWindowDimensions;`
 
 /**
  * Get `react-native-template.js` with some `process.env.*` replaced with static values.
