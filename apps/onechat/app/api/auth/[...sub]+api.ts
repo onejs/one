@@ -1,10 +1,12 @@
 import type { Endpoint } from 'one'
 import { auth } from '~/config/better-auth/auth'
 
-export const GET: Endpoint = (req) => {
-  return auth.handler(req)
+export const GET: Endpoint = async (req) => {
+  const res = await auth.handler(req)
+  return res
 }
 
-export const POST: Endpoint = (req) => {
-  return auth.handler(req)
+export const POST: Endpoint = async (req) => {
+  const res = await auth.handler(req)
+  return res
 }

@@ -1,4 +1,4 @@
-import { Home, MessageCircle, Plus, Scroll, Search } from '@tamagui/lucide-icons'
+import { Home, MessageCircle, Plus, Search } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import {
   Button,
@@ -13,9 +13,14 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { signIn } from '~/features/auth/authClient'
+import { authClient, useAuth } from '~/features/auth/authClient'
 import { OneBall } from '~/features/brand/Logo'
-import { mutate, randomID, useQuery, zero } from '~/features/zero/zero'
+import { mutate, randomID, useQuery } from '~/features/zero/zero'
+import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
+
+onOpenUrl((urls) => {
+  console.log('deep link:', urls)
+})
 
 export default function HomePage() {
   return (
@@ -31,6 +36,8 @@ export default function HomePage() {
 }
 
 const Head = () => {
+  const { user } = useAuth()
+
   return (
     <XStack
       data-tauri-drag-region
@@ -47,6 +54,18 @@ const Head = () => {
       <a target="_blank" href={window.location.origin + '/login-github'} rel="noreferrer">
         <Button size="$2">Github</Button>
       </a>
+
+      {user?.image && <img src={user.image} style={{ width: 32, height: 32 }} />}
+
+      {user && (
+        <Button
+          onPress={() => {
+            authClient.signOut()
+          }}
+        >
+          Sign out
+        </Button>
+      )}
 
       {/* <YStack pos="absolute" t={0} r={4} b={0} ai="center" jc="center"> */}
       {/* </YStack> */}
