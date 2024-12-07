@@ -3,9 +3,9 @@
  * It'll add files into the native code which provides a starting point for debugging the JavaScript bundle with native code.
  * Please consider this as an incomplete tool only for development purposes.
  *
- * To use this plugin, you need to add it (`vxrn/expo-js-native-debugging-plugin`) to the `plugins` array in your `app.json` file.
+ * To use this plugin, you need to add it (`vxrn/expo-js-native-debugging-plugin`) to the `plugins` array in your `app.json` file, and run prebuild. Then,
  *
- * For iOS, a `JsNativeDebugging` (`RCTJsNativeDebugging`) native module will be added to the project, under the Libraries group.
+ * * For iOS, a `JsNativeDebugging` (`RCTJsNativeDebugging`) native module will be added to the project, under the Libraries group.
  *
  * References:
  * * https://hackmd.io/@z/rn-use-native-modules-without-importing-react-native
@@ -45,6 +45,7 @@ const plugin = (config, options = {}) => {
 
 RCT_EXPORT_MODULE();
 
+// In JS: globalThis.nativeModuleProxy.JsNativeDebugging.log('message')
 RCT_EXPORT_METHOD(log:(NSString *)message)
 {
   NSLog(@"%@", message);
