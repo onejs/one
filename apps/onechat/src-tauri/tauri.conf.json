@@ -1,20 +1,27 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "asdasd",
+  "productName": "onechat",
   "version": "0.1.0",
-  "identifier": "com.asdasd.app",
+  "identifier": "com.onechat.app",
   "build": {
     "beforeDevCommand": "yarn dev",
     "devUrl": "http://localhost:1421",
     "beforeBuildCommand": "yarn build",
     "frontendDist": "../dist"
   },
+  "plugins": {
+    "deep-link": {
+      "desktop": {
+        "schemes": ["one-chat"]
+      }
+    }
+  },
   "app": {
     "withGlobalTauri": true,
     "macOSPrivateApi": true,
     "windows": [
       {
-        "title": "asdasd",
+        "title": "test",
         "width": 980,
         "hiddenTitle": true,
         "titleBarStyle": "Overlay",

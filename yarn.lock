@@ -8359,6 +8359,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tauri-apps/plugin-deep-link@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@tauri-apps/plugin-deep-link@npm:2.0.1"
+  dependencies:
+    "@tauri-apps/api": "npm:^2.0.0"
+  checksum: 10/00d99b9f0b6f0e964dec0e9408d9134039005ba9e3afcf77ab9f2500d31470266447e97594ee35e44b6d837e45087f0e96a7f3623cc2e50b6f05907511a7de19
+  languageName: node
+  linkType: hard
+
 "@tauri-apps/plugin-shell@npm:^2":
   version: 2.0.1
   resolution: "@tauri-apps/plugin-shell@npm:2.0.1"
@@ -18282,6 +18291,7 @@ __metadata:
     "@tamagui/use-store": "npm:^1.117.0"
     "@tauri-apps/api": "npm:^2"
     "@tauri-apps/cli": "npm:^2"
+    "@tauri-apps/plugin-deep-link": "npm:^2.0.1"
     "@tauri-apps/plugin-shell": "npm:^2"
     "@vxrn/color-scheme": "npm:1.1.336"
     "@vxrn/mdx": "npm:1.1.336"

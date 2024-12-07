@@ -8,5 +8,8 @@
     },
     "[sql]": {
         "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+    },
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
     }
 }

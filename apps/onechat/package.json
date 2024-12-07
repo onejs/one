@@ -6,7 +6,7 @@
   "files": [],
   "type": "module",
   "scripts": {
-    "tauri": "tauri dev",
+    "dev:tauri": "tauri dev",
     "zero": "zero-cache --schema-file ./config/zero/schema.ts",
     "docker": "docker compose --env-file .env",
     "data:reset": "docker compose down; docker volume rm onechat_pgdata; rm /tmp/onechat_replica.db",
@@ -31,6 +31,7 @@
     "@tamagui/themes": "^1.117.0",
     "@tamagui/use-store": "^1.117.0",
     "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-shell": "^2",
     "@vxrn/color-scheme": "1.1.336",
     "@vxrn/mdx": "1.1.336",
