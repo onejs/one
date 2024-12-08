@@ -12,6 +12,11 @@ export const auth = betterAuth({
       jwt: {
         expirationTime: '3y',
       },
+
+      jwks: {
+        // default
+        keyPairConfig: { alg: 'EdDSA', crv: 'Ed25519' },
+      },
     }),
 
     bearer(),

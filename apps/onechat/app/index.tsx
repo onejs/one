@@ -120,7 +120,7 @@ const FinishAuthInAppDialog = () => {
 const Head = () => {
   const { user } = useAuth()
 
-  authClient.$fetch('/jwks').then((x) => console.log(x.data))
+  authClient.$fetch('/jwks').then((x) => console.log(user, x.data))
 
   return (
     <XStack
