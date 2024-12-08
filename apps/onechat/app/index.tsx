@@ -1,4 +1,12 @@
-import { Home, MessageCircle, Plus, Search } from '@tamagui/lucide-icons'
+import {
+  MessageCircle,
+  Search,
+  Settings,
+  Settings2,
+  User,
+  User2,
+  UserCircle,
+} from '@tamagui/lucide-icons'
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
 import { useEffect, useState } from 'react'
 import {
@@ -11,18 +19,16 @@ import {
   ScrollView,
   Separator,
   SizableText,
-  Spacer,
   styled,
   XStack,
   YStack,
 } from 'tamagui'
 import { authClient, setAuthToken } from '~/features/auth/authClient'
-import { OneBall } from '~/features/brand/Logo'
-import { isTauri } from '~/features/tauri/constants'
-import { mutate, useQuery } from '~/features/zero/zero'
-import { randomID } from '~/features/zero/randomID'
-import { mutateUserState, updateUserState, useUserState } from '~/features/auth/useUserState'
 import { useAuth } from '~/features/auth/useAuth'
+import { OneBall } from '~/features/brand/Logo'
+import { Sidebar } from '~/features/sidebar/Sidebar'
+import { isTauri } from '~/features/tauri/constants'
+import loginGithub from './login-github'
 
 export default function HomePage() {
   useEffect(() => {
@@ -120,6 +126,8 @@ const FinishAuthInAppDialog = () => {
 const Head = () => {
   const { user } = useAuth()
 
+  authClient.$fetch('/jwks').then((x) => console.log(x.data))
+
   return (
     <XStack
       data-tauri-drag-region
@@ -133,41 +141,68 @@ const Head = () => {
       pr={4}
       mb={4}
     >
-      <a target="_blank" href={window.location.origin + '/login-github'} rel="noreferrer">
-        <Button size="$2">Github</Button>
-      </a>
-
-      {user?.image && <img src={user.image} style={{ width: 32, height: 32 }} />}
-
-      {user && (
-        <Button
-          onPress={() => {
-            authClient.signOut()
-          }}
-        >
-          Sign out
-        </Button>
-      )}
-
-      {/* <YStack pos="absolute" t={0} r={4} b={0} ai="center" jc="center"> */}
-      {/* </YStack> */}
-
       <H3 pe="none" m={0} o={0.5} size="$2">
-        One
+        One - #general
       </H3>
-      <XStack ai="center" gap="$2">
-        <Search size={16} o={0.5} />
-        <Input w={250} placeholder="" size="$2" bw={0} />
+
+      <XStack ai="center" gap="$1">
+        <XStack ai="center" gap="$2" mr="$4">
+          <Search size={16} o={0.5} />
+          <Input w={250} placeholder="" size="$2" bw={0} />
+        </XStack>
+
+        <ThreadButtonFrame>
+          <Settings2 o={0.5} size={20} />
+        </ThreadButtonFrame>
+
+        <UserButton />
       </XStack>
     </XStack>
   )
 }
 
+const UserButton = () => {
+  return (
+    <>
+      <a
+        target="_blank"
+        href={window.location.origin + '/login-github'}
+        rel="noreferrer"
+        onClick={(e) => {
+          if (isTauri) return
+          e.preventDefault()
+          loginGithub()
+        }}
+      >
+        <ThreadButtonFrame>
+          <UserCircle size={20} o={0.5} />
+        </ThreadButtonFrame>
+      </a>
+    </>
+  )
+}
+
+// <a target="_blank" href={window.location.origin + '/login-github'} rel="noreferrer">
+// <Button size="$2">Github</Button>
+// </a>
+
+// {user?.image && <img src={user.image} style={{ width: 32, height: 32 }} />}
+
+// {user && (
+// <Button
+//   onPress={() => {
+//     authClient.signOut()
+//   }}
+// >
+//   Sign out
+// </Button>
+// )}
+
 const Main = () => {
   return (
-    <YStack f={1}>
+    <YStack f={1} shadowColor="$shadowColor" shadowRadius={30} btlr="$3" ov="hidden">
       <RecentThreads />
-      <YStack f={1} bg="$color1">
+      <YStack f={1} bg="$background05">
         <MainChatList />
         <MessageArea />
       </YStack>
@@ -205,9 +240,9 @@ const RecentThreads = () => {
   return (
     <XStack pos="absolute" t={0} l={0} r={0} bg="$color1" elevation={4} zi={100}>
       <XStack p="$2" px="$3" ai="center" gap="$1">
-        <ThreadButtonFrame active>
-          <Home />
-        </ThreadButtonFrame>
+        {/* <ThreadButtonFrame active>
+          <Book size={18} />
+        </ThreadButtonFrame> */}
         <ChatThreadButton />
       </XStack>
 
@@ -225,7 +260,7 @@ const RecentThreads = () => {
 
 const ChatThreadButton = () => {
   return (
-    <ThreadButtonFrame>
+    <ThreadButtonFrame active>
       <MessageCircle size={20} />
 
       <SizableText userSelect="none" cur="default" f={1} ov="hidden">
@@ -472,123 +507,6 @@ const Chat = ({ name, avatar, contents }: { name: string; avatar: any; contents:
           {contents}
         </SizableText>
       </YStack>
-    </XStack>
-  )
-}
-
-const Sidebar = () => {
-  const servers = useQuery((q) => q.server.orderBy('createdAt', 'desc'))
-  const users = useQuery((q) => q.user.orderBy('createdAt', 'desc'))
-  const state = useUserState()
-  console.log('state', state, users)
-
-  return (
-    <YStack brw={1} bc="$color4" ov="hidden" f={1} maw={250} miw={250} gap="$4">
-      <Button
-        onPress={() => {
-          updateUserState({
-            ui: {
-              server: 'hello',
-            },
-          })
-        }}
-      >
-        hello
-      </Button>
-
-      <XStack>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <SidebarIndent fd="row" gap="$2" py="$3">
-            <Circle
-              size={42}
-              bg="$color9"
-              outlineColor="#fff"
-              outlineWidth={2}
-              outlineStyle="solid"
-            >
-              <OneBall size={1.5} />
-            </Circle>
-            {servers.map((server) => {
-              return <Circle key={server.id} size={42} bg={server.icon} />
-            })}
-            <Circle
-              onPress={() => {
-                mutate.server.insert({
-                  id: randomID(),
-                  createdAt: new Date().getTime(),
-                  description: '',
-                  icon: Math.random() > 0.5 ? 'red' : 'pink',
-                  name: 'Lorem',
-                  ownerId: '',
-                })
-              }}
-              size={42}
-              bg="$color9"
-            >
-              <Plus />
-            </Circle>
-          </SidebarIndent>
-        </ScrollView>
-      </XStack>
-
-      <SidebarIndent>
-        <YStack gap="$1">
-          <RoomItem active name="General" />
-          <RoomItem name="Help" />
-          <RoomItem name="Proposals" />
-        </YStack>
-      </SidebarIndent>
-
-      <SidebarIndent>
-        <YStack gap="$1">
-          <RoomItem name={<SubTitle>Recently</SubTitle>} />
-          <RoomItem active name="🧵 Some Thread" />
-        </YStack>
-      </SidebarIndent>
-
-      <YStack btw={1} bc="$color4" p="$3" pos="absolute" b={0} l={0} r={0}>
-        <RoomItem name={<SubTitle>Recent Chats</SubTitle>} />
-        <Spacer size="$2" />
-
-        <RoomItem name="Nate Wienert" />
-        <RoomItem name="Lorem ipsum" />
-        <RoomItem name="Huynh Nhi Cam" />
-        <RoomItem name="Someone Else" />
-        <RoomItem name="Joey" />
-        <RoomItem name="Mia" />
-      </YStack>
-    </YStack>
-  )
-}
-
-const SidebarIndent = styled(YStack, {
-  px: '$3',
-})
-
-const SubTitle = (props) => {
-  return (
-    <H3 o={0.2} size="$2">
-      {props.children}
-    </H3>
-  )
-}
-
-const RoomItem = (props: { name: any; active?: boolean }) => {
-  return (
-    <XStack
-      px="$2"
-      br="$4"
-      py="$1"
-      userSelect="none"
-      cur="default"
-      hoverStyle={{
-        bg: '$color2',
-      }}
-      {...(props.active && {
-        bg: '$color3',
-      })}
-    >
-      <SizableText cur="default">{props.name}</SizableText>
     </XStack>
   )
 }

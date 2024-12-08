@@ -28,9 +28,7 @@ export default function Layout() {
       <ZeroProvider zero={zero}>
         <SchemeProvider>
           <ThemeProvider>
-            <Theme name="yellow">
-              <Slot />
-            </Theme>
+            <Slot />
           </ThemeProvider>
         </SchemeProvider>
       </ZeroProvider>
