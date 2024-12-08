@@ -3,5 +3,17 @@
   "identifier": "default",
   "description": "Capability for the main window",
   "windows": ["main"],
-  "permissions": ["core:default", "shell:allow-open", "core:window:allow-start-dragging"]
+  "webviews": ["main"],
+  "remote": {
+    "urls": ["http://localhost:1421"]
+  },
+  "permissions": [
+    "core:default",
+    "shell:allow-open",
+    "core:window:allow-start-dragging",
+    "deep-link:allow-get-current",
+    "deep-link:allow-is-registered",
+    "deep-link:allow-register",
+    "deep-link:allow-unregister"
+  ]
 }

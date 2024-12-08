@@ -7,6 +7,8 @@
   "type": "module",
   "scripts": {
     "dev:tauri": "tauri dev",
+    "build:tauri": "tauri build --debug",
+    "auth:migrate": "npx @better-auth/cli migrate --config ./config/better-auth/auth.ts",
     "zero": "zero-cache --schema-file ./config/zero/schema.ts",
     "docker": "docker compose --env-file .env",
     "data:reset": "docker compose down; docker volume rm onechat_pgdata; rm /tmp/onechat_replica.db",

@@ -116,3 +116,10 @@ create table "verification" (
     "createdAt" timestamp,
     "updatedAt" timestamp
 )
+
+create table "jwks" (
+    "id" text NOT NULL,
+    "publicKey" text NOT NULL,
+    "privateKey" text NOT NULL,
+    "createdAt" timestamp without time zone NOT NULL
+)

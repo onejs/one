@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react'
 
 export const authClient = createAuthClient()
 
+globalThis['authClient'] = authClient
+
+authClient.getSession().then((x) => console.log(x))
+
 const empty = {
   session: undefined,
   user: undefined,
