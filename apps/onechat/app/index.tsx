@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import {
   Button,
   Circle,
+  Dialog,
+  H1,
   H3,
   Input,
   ScrollView,
@@ -13,46 +15,102 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { authClient, useAuth } from '~/features/auth/authClient'
+import { authClient, setAuthToken, useAuth } from '~/features/auth/authClient'
 import { OneBall } from '~/features/brand/Logo'
 import { mutate, randomID, useQuery } from '~/features/zero/zero'
 import { isRegistered, onOpenUrl } from '@tauri-apps/plugin-deep-link'
+import { isTauri } from '~/features/tauri/constants'
 
 export default function HomePage() {
-  const [x, setX] = useState<any>(null)
-
   useEffect(() => {
-    setTimeout(async () => {
-      try {
-        await isRegistered('one-chat')
-      } catch (err) {
-        setX(`${err}`)
-        return
-      }
-
-      setX(`???-`)
-    }, 1000)
-
     try {
-      onOpenUrl((urls) => {
-        setX(JSON.stringify(urls))
+      onOpenUrl(([urlString]) => {
+        const url = new URL(urlString)
+
+        switch (url.host) {
+          case 'finish-auth': {
+            const token = url.searchParams.get('token')
+
+            if (token) {
+              setAuthToken(token)
+            }
+
+            break
+          }
+        }
       })
     } catch (err) {
-      setX(`${err}`)
+      console.error(err)
     }
   }, [])
 
   return (
     <YStack h={0} f={1}>
       <Head />
-
-      <a href="one-chat://hello-world">hi?? {x}</a>
+      <Dialogs />
 
       <XStack h={0} ai="stretch" f={1}>
         <Sidebar />
         <Main />
       </XStack>
     </YStack>
+  )
+}
+
+const Dialogs = () => {
+  return (
+    <>
+      <FinishAuthInAppDialog />
+    </>
+  )
+}
+
+const FinishAuthInAppDialog = () => {
+  const auth = useAuth()
+  const token = auth.session?.token
+
+  if (isTauri) {
+    return null
+  }
+
+  return (
+    <>
+      <Dialog modal open={!!token}>
+        <Dialog.Portal>
+          <Dialog.Overlay
+            key="overlay"
+            animation="lazy"
+            enterStyle={{ opacity: 0 }}
+            exitStyle={{ opacity: 0 }}
+            bg="$background075"
+          />
+
+          <Dialog.Content
+            bordered
+            elevate
+            bg="$color2"
+            key="content"
+            animation={[
+              'medium',
+              {
+                opacity: {
+                  overshootClamping: true,
+                },
+              },
+            ]}
+            enterStyle={{ x: 0, y: -10, opacity: 0 }}
+            exitStyle={{ x: 0, y: 10, opacity: 0 }}
+            gap="$4"
+          >
+            <H1>...</H1>
+
+            <a href={`one-chat://finish-auth?token=${token}`}>
+              <Button>Finish Auth</Button>
+            </a>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog>
+    </>
   )
 }
 
