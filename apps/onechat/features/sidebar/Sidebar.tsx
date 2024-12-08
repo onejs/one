@@ -4,10 +4,11 @@ import { useUserState } from '~/features/auth/useUserState'
 import { OneBall } from '~/features/brand/Logo'
 import { randomID } from '~/features/zero/randomID'
 import { mutate, useQuery } from '~/features/zero/zero'
+import { useAuth } from '../auth/useAuth'
 
 export const Sidebar = () => {
   const servers = useQuery((q) => q.server.orderBy('createdAt', 'desc'))
-  const users = useQuery((q) => q.user.orderBy('createdAt', 'desc'))
+  const { user } = useAuth()
   const state = useUserState()
 
   return (
@@ -29,13 +30,18 @@ export const Sidebar = () => {
             })}
             <Circle
               onPress={() => {
+                if (!user) {
+                  alert('not signed in')
+                  return
+                }
+
                 mutate.server.insert({
                   id: randomID(),
                   createdAt: new Date().getTime(),
                   description: '',
                   icon: Math.random() > 0.5 ? 'red' : 'pink',
                   name: 'Lorem',
-                  ownerId: '',
+                  ownerId: user.id,
                 })
               }}
               size={42}
