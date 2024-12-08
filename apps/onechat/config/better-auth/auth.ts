@@ -1,10 +1,20 @@
 import { betterAuth } from 'better-auth'
 import { Pool } from 'pg'
+import { jwt, bearer } from 'better-auth/plugins'
 
 export const auth = betterAuth({
   database: new Pool({
     connectionString: process.env.ZERO_UPSTREAM_DB,
   }),
+
+  plugins: [
+    jwt({
+      jwt: {
+        expirationTime: '3y',
+      },
+    }),
+    bearer(),
+  ],
 
   socialProviders: {
     github: {

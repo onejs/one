@@ -53,6 +53,8 @@ export default {
 
       deps: {
         'set-cookie-parser': true,
+        'ipaddr.js': true,
+        'cross-fetch': true,
         pg: true,
       },
     }),

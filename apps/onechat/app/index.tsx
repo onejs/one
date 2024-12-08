@@ -1,5 +1,5 @@
 import { Home, MessageCircle, Plus, Search } from '@tamagui/lucide-icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Button,
   Circle,
@@ -16,16 +16,37 @@ import {
 import { authClient, useAuth } from '~/features/auth/authClient'
 import { OneBall } from '~/features/brand/Logo'
 import { mutate, randomID, useQuery } from '~/features/zero/zero'
-import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
-
-onOpenUrl((urls) => {
-  console.log('deep link:', urls)
-})
+import { isRegistered, onOpenUrl } from '@tauri-apps/plugin-deep-link'
 
 export default function HomePage() {
+  const [x, setX] = useState<any>(null)
+
+  useEffect(() => {
+    setTimeout(async () => {
+      try {
+        await isRegistered('one-chat')
+      } catch (err) {
+        setX(`${err}`)
+        return
+      }
+
+      setX(`???-`)
+    }, 1000)
+
+    try {
+      onOpenUrl((urls) => {
+        setX(JSON.stringify(urls))
+      })
+    } catch (err) {
+      setX(`${err}`)
+    }
+  }, [])
+
   return (
     <YStack h={0} f={1}>
       <Head />
+
+      <a href="one-chat://hello-world">hi?? {x}</a>
 
       <XStack h={0} ai="stretch" f={1}>
         <Sidebar />

@@ -6,8 +6,7 @@
   "build": {
     "beforeDevCommand": "yarn dev",
     "devUrl": "http://localhost:1421",
-    "beforeBuildCommand": "yarn build",
-    "frontendDist": "../dist"
+    "frontendDist": "../dev-prod"
   },
   "plugins": {
     "deep-link": {
@@ -30,7 +29,10 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": {
+        "default-src": "'self' one-chat: asset:",
+        "connect-src": "ipc: http://localhost:1421"
+      }
     }
   },
   "bundle": {
