@@ -13,6 +13,7 @@ export const auth = betterAuth({
         expirationTime: '3y',
       },
     }),
+
     bearer(),
   ],
 

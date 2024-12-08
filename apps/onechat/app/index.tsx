@@ -1,4 +1,5 @@
 import { Home, MessageCircle, Plus, Search } from '@tamagui/lucide-icons'
+import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
 import { useEffect, useState } from 'react'
 import {
   Button,
@@ -15,11 +16,13 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { authClient, setAuthToken, useAuth } from '~/features/auth/authClient'
+import { authClient, setAuthToken } from '~/features/auth/authClient'
 import { OneBall } from '~/features/brand/Logo'
-import { mutate, randomID, useQuery } from '~/features/zero/zero'
-import { isRegistered, onOpenUrl } from '@tauri-apps/plugin-deep-link'
 import { isTauri } from '~/features/tauri/constants'
+import { mutate, useQuery } from '~/features/zero/zero'
+import { randomID } from '~/features/zero/randomID'
+import { mutateUserState, updateUserState, useUserState } from '~/features/auth/useUserState'
+import { useAuth } from '~/features/auth/useAuth'
 
 export default function HomePage() {
   useEffect(() => {
@@ -476,10 +479,23 @@ const Chat = ({ name, avatar, contents }: { name: string; avatar: any; contents:
 const Sidebar = () => {
   const servers = useQuery((q) => q.server.orderBy('createdAt', 'desc'))
   const users = useQuery((q) => q.user.orderBy('createdAt', 'desc'))
-  console.log('users', users)
+  const state = useUserState()
+  console.log('state', state, users)
 
   return (
     <YStack brw={1} bc="$color4" ov="hidden" f={1} maw={250} miw={250} gap="$4">
+      <Button
+        onPress={() => {
+          updateUserState({
+            ui: {
+              server: 'hello',
+            },
+          })
+        }}
+      >
+        hello
+      </Button>
+
       <XStack>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <SidebarIndent fd="row" gap="$2" py="$3">
