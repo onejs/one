@@ -1,12 +1,4 @@
-import {
-  MessageCircle,
-  Search,
-  Settings,
-  Settings2,
-  User,
-  User2,
-  UserCircle,
-} from '@tamagui/lucide-icons'
+import { MessageCircle, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
 import { useEffect, useState } from 'react'
 import {
@@ -16,6 +8,7 @@ import {
   H1,
   H3,
   Input,
+  Paragraph,
   ScrollView,
   Separator,
   SizableText,
@@ -28,7 +21,7 @@ import { useAuth } from '~/features/auth/useAuth'
 import { OneBall } from '~/features/brand/Logo'
 import { Sidebar } from '~/features/sidebar/Sidebar'
 import { isTauri } from '~/features/tauri/constants'
-import loginGithub from './login-github'
+import { githubSignIn } from '~/features/auth/githubSignIn'
 
 export default function HomePage() {
   useEffect(() => {
@@ -111,10 +104,11 @@ const FinishAuthInAppDialog = () => {
             exitStyle={{ x: 0, y: 10, opacity: 0 }}
             gap="$4"
           >
-            <H1>...</H1>
+            <H3>Finish</H3>
+            <Paragraph>To authenticate in the native app:</Paragraph>
 
             <a href={`one-chat://finish-auth?token=${token}`}>
-              <Button>Finish Auth</Button>
+              <Button>Authenticate in Native App</Button>
             </a>
           </Dialog.Content>
         </Dialog.Portal>
@@ -171,7 +165,7 @@ const UserButton = () => {
         onClick={(e) => {
           if (isTauri) return
           e.preventDefault()
-          loginGithub()
+          githubSignIn()
         }}
       >
         <ThreadButtonFrame>

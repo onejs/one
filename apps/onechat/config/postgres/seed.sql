@@ -7,7 +7,9 @@ DROP TABLE IF EXISTS "message",
 "user";
 
 CREATE DATABASE onechat;
+
 CREATE DATABASE onechat_cvr;
+
 CREATE DATABASE onechat_cdb;
 
 \c onechat;
@@ -80,7 +82,6 @@ CREATE TABLE "message" (
 );
 
 -- better-auth:
-
 create table "session" (
     "id" text not null primary key,
     "expiresAt" timestamp not null,
@@ -109,17 +110,17 @@ create table "account" (
 );
 
 create table "verification" (
-    "id" text not null primary key,
-    "identifier" text not null,
-    "value" text not null,
-    "expiresAt" timestamp not null,
-    "createdAt" timestamp,
-    "updatedAt" timestamp
-)
+    id text NOT NULL PRIMARY KEY,
+    identifier text NOT NULL,
+    value text NOT NULL,
+    "expiresAt" timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone,
+    "updatedAt" timestamp without time zone
+);
 
 create table "jwks" (
-    "id" text NOT NULL,
+    "id" text NOT NULL PRIMARY KEY,
     "publicKey" text NOT NULL,
     "privateKey" text NOT NULL,
     "createdAt" timestamp without time zone NOT NULL
-)
+);
