@@ -25,30 +25,3 @@ export function useQuery<
   const z = useZero<Schema>()
   return useZeroQuery(createQuery(z.query)) as any
 }
-
-export const randomID = () => Math.random().toString(36).slice(2)
-
-// were using JSONB for UserState
-type UserState = {
-  ui: {
-    server?: string
-  }
-}
-
-export const useUserState = () => {
-  const user = useQuery((q) => q.user)[0]
-  const state = user.state as UserState
-  return [
-    state,
-    async (next: Partial<UserState>) => {
-      await mutate.user.update({
-        ...user,
-        // TODO deep merge
-        state: {
-          ...user.state,
-          ...next,
-        },
-      })
-    },
-  ] as const
-}
