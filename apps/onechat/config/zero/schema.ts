@@ -191,60 +191,60 @@ export type Thread = TableSchemaToRow<typeof threadSchema>
 export type User = TableSchemaToRow<typeof userSchema>
 export type ServerMember = TableSchemaToRow<typeof serverMemberSchema>
 
-export const authorization = defineAuthorization<AuthData, Schema>(schema, (query) => {
-  const allowIfLoggedIn = (authData: AuthData) => query.user.where('id', '=', authData.sub)
+// export const authorization = defineAuthorization<AuthData, Schema>(schema, (query) => {
+//   const allowIfLoggedIn = (authData: AuthData) => query.user.where('id', '=', authData.sub)
 
-  const allowIfMessageSender = (authData: AuthData, row: Message) => {
-    return query.message.where('id', row.id).where('senderId', '=', authData.sub)
-  }
+//   const allowIfMessageSender = (authData: AuthData, row: Message) => {
+//     return query.message.where('id', row.id).where('senderId', '=', authData.sub)
+//   }
 
-  const allowIfServerMember = (authData: AuthData, row: Server) => {
-    return query.serverMember.where('serverId', row.id).where('userId', '=', authData.sub)
-  }
+//   const allowIfServerMember = (authData: AuthData, row: Server) => {
+//     return query.serverMember.where('serverId', row.id).where('userId', '=', authData.sub)
+//   }
 
-  return {
-    user: {
-      row: {
-        insert: [],
-        update: [],
-        delete: [],
-      },
-    },
-    server: {
-      row: {
-        insert: [allowIfLoggedIn],
-        update: [allowIfServerMember],
-        delete: [allowIfServerMember],
-      },
-    },
-    serverMember: {
-      row: {
-        insert: [allowIfLoggedIn],
-        update: [allowIfLoggedIn],
-        delete: [allowIfLoggedIn],
-      },
-    },
-    channel: {
-      row: {
-        // Channel creation/modification requires server membership
-        insert: [allowIfLoggedIn],
-        update: [],
-        delete: [],
-      },
-    },
-    thread: {
-      row: {
-        insert: [allowIfLoggedIn],
-        update: [allowIfLoggedIn],
-        delete: [allowIfLoggedIn],
-      },
-    },
-    message: {
-      row: {
-        insert: [allowIfLoggedIn],
-        update: [allowIfMessageSender],
-        delete: [allowIfMessageSender],
-      },
-    },
-  }
-})
+//   return {
+//     user: {
+//       row: {
+//         insert: [],
+//         update: [],
+//         delete: [],
+//       },
+//     },
+//     server: {
+//       row: {
+//         insert: [allowIfLoggedIn],
+//         update: [allowIfServerMember],
+//         delete: [allowIfServerMember],
+//       },
+//     },
+//     serverMember: {
+//       row: {
+//         insert: [allowIfLoggedIn],
+//         update: [allowIfLoggedIn],
+//         delete: [allowIfLoggedIn],
+//       },
+//     },
+//     channel: {
+//       row: {
+//         // Channel creation/modification requires server membership
+//         insert: [allowIfLoggedIn],
+//         update: [],
+//         delete: [],
+//       },
+//     },
+//     thread: {
+//       row: {
+//         insert: [allowIfLoggedIn],
+//         update: [allowIfLoggedIn],
+//         delete: [allowIfLoggedIn],
+//       },
+//     },
+//     message: {
+//       row: {
+//         insert: [allowIfLoggedIn],
+//         update: [allowIfMessageSender],
+//         delete: [allowIfMessageSender],
+//       },
+//     },
+//   }
+// })
