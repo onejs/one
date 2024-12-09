@@ -1,11 +1,9 @@
-import { MessageCircle, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
-import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
-import { useEffect, useState } from 'react'
+import { MessageCircle, UserCircle } from '@tamagui/lucide-icons'
+import { useState } from 'react'
 import {
   Button,
   Circle,
   Dialog,
-  H1,
   H3,
   Input,
   Paragraph,
@@ -16,39 +14,17 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { authClient, setAuthToken } from '~/features/auth/authClient'
+import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
 import { OneBall } from '~/features/brand/Logo'
-import { Sidebar } from '~/features/sidebar/Sidebar'
 import { isTauri } from '~/features/tauri/constants'
-import { githubSignIn } from '~/features/auth/githubSignIn'
+import { Sidebar } from '~/interface/Sidebar'
+import { TopBar } from '~/interface/TopBar'
 
 export default function HomePage() {
-  useEffect(() => {
-    try {
-      onOpenUrl(([urlString]) => {
-        const url = new URL(urlString)
-
-        switch (url.host) {
-          case 'finish-auth': {
-            const token = url.searchParams.get('token')
-
-            if (token) {
-              setAuthToken(token)
-            }
-
-            break
-          }
-        }
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  }, [])
-
   return (
     <YStack h={0} f={1}>
-      <Head />
+      <TopBar />
       <Dialogs />
 
       <XStack h={0} ai="stretch" f={1}>
@@ -114,44 +90,6 @@ const FinishAuthInAppDialog = () => {
         </Dialog.Portal>
       </Dialog>
     </>
-  )
-}
-
-const Head = () => {
-  const { user } = useAuth()
-
-  authClient.$fetch('/jwks').then((x) => console.log(user, x.data))
-
-  return (
-    <XStack
-      data-tauri-drag-region
-      br="$4"
-      mx={2}
-      ai="center"
-      jc="space-between"
-      y={2}
-      h={36}
-      pl={80}
-      pr={4}
-      mb={4}
-    >
-      <H3 pe="none" m={0} o={0.5} size="$2">
-        One - #general
-      </H3>
-
-      <XStack ai="center" gap="$1">
-        <XStack ai="center" gap="$2" mr="$4">
-          <Search size={16} o={0.5} />
-          <Input w={250} placeholder="" size="$2" bw={0} />
-        </XStack>
-
-        <ThreadButtonFrame>
-          <Settings2 o={0.5} size={20} />
-        </ThreadButtonFrame>
-
-        <UserButton />
-      </XStack>
-    </XStack>
   )
 }
 

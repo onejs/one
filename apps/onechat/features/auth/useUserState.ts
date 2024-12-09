@@ -2,9 +2,7 @@ import { mutate, useQuery } from '~/features/zero/zero'
 
 // were using JSONB for UserState
 type UserState = {
-  ui: {
-    server?: string
-  }
+  activeServer?: string
 }
 
 // TODO
