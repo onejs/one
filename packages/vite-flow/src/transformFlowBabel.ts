@@ -8,6 +8,7 @@ export async function transformFlowBabel(
     babel.transform(
       input,
       {
+        filename: 'file.js', // this is required for @react-native/babel-plugin-codegen to work.
         presets: [
           [
             'module:metro-react-native-babel-preset',
@@ -19,6 +20,8 @@ export async function transformFlowBabel(
           ],
         ],
         plugins: [
+          ['babel-plugin-syntax-hermes-parser'], // This parser is required for the `@babel/plugin-transform-react-jsx` plugin to work.
+          ['@react-native/babel-plugin-codegen'], // Transforms thing like `export default (codegenNativeComponent<NativeProps>('DebuggingOverlay'));` into `export default NativeComponentRegistry.get(nativeComponentName, () => __INTERNAL_VIEW_CONFIG);`, we need to do this here since Flow types are required to generate that `__INTERNAL_VIEW_CONFIG`. Without this we'll get warnings/errors like "Codegen didn't run for DebuggingOverlay".
           ['@babel/plugin-transform-react-jsx', { development }],
           ['@babel/plugin-transform-private-methods', { loose: true }],
         ],
