@@ -1,24 +1,8 @@
 {
   "name": "@vxrn/react-native-prebuilt",
-  "type": "module",
   "version": "1.1.371",
-  "types": "./types/index.d.ts",
-  "main": "dist/cjs",
-  "module": "dist/esm",
   "license": "MIT",
-  "files": [
-    "dist",
-    "vendor",
-    "src",
-    "types"
-  ],
-  "scripts": {
-    "prebuild": "node -r esbuild-register ./prebuild-react-native.ts",
-    "build": "tamagui-build",
-    "watch": "tamagui-build --watch",
-    "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
-  },
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -29,6 +13,22 @@
     "./vendor/react-native-0.74.1": "./vendor/react-native-0.74.1/index.js",
     "./vendor/react-18.3.1": "./vendor/react-18.3.1/index.js",
     "./vendor/react-jsx-runtime-18.3.1": "./vendor/react-jsx-runtime-18.3.1/index.js"
+  },
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "types": "./types/index.d.ts",
+  "files": [
+    "dist",
+    "vendor",
+    "src",
+    "types"
+  ],
+  "scripts": {
+    "prebuild": "node -r esbuild-register ./prebuild-react-native.ts",
+    "build": "tamagui-build",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build",
+    "watch": "tamagui-build --watch"
   },
   "dependencies": {
     "@vxrn/utils": "workspace:^",
@@ -42,7 +42,7 @@
     "@tamagui/build": "^1.120.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-native": "0.74.5"
+    "react-native": "0.76.4"
   },
   "peerDependencies": {
     "react": "*",

@@ -2,13 +2,14 @@
   "expo": {
     "name": "One Test App",
     "slug": "one-test-app",
+    "newArchEnabled": true,
     "icon": "./assets/app-icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "backgroundColor": "#000000",
       "resizeMode": "contain"
     },
-    "sdkVersion": "51.0.0",
+    "sdkVersion": "52.0.0",
     "platforms": ["ios", "android"],
     "plugins": ["vxrn/expo-plugin"],
     "android": {

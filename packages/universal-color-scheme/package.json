@@ -1,25 +1,8 @@
 {
   "name": "@vxrn/universal-color-scheme",
   "version": "1.1.371",
-  "source": "src/index.ts",
-  "types": "./types/index.d.ts",
-  "type": "module",
-  "main": "dist/cjs",
-  "module": "dist/esm",
   "sideEffects": false,
-  "files": [
-    "src",
-    "types",
-    "dist",
-    "vendor"
-  ],
-  "scripts": {
-    "build": "tamagui-build",
-    "watch": "tamagui-build --watch",
-    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
-    "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
-  },
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -32,16 +15,33 @@
       "require": "./dist/cjs/index.js"
     }
   },
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "source": "src/index.ts",
+  "types": "./types/index.d.ts",
+  "files": [
+    "src",
+    "types",
+    "dist",
+    "vendor"
+  ],
+  "scripts": {
+    "build": "tamagui-build",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build",
+    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
+    "watch": "tamagui-build --watch"
+  },
   "dependencies": {
     "@vxrn/use-isomorphic-layout-effect": "workspace:^",
     "react": "^18.3.1"
   },
-  "peerDependencies": {
-    "react-native": "*"
-  },
   "devDependencies": {
     "@tamagui/build": "^1.120.2",
-    "react-native": "0.74.5"
+    "react-native": "0.76.4"
+  },
+  "peerDependencies": {
+    "react-native": "*"
   },
   "publishConfig": {
     "access": "public"
