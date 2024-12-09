@@ -1,11 +1,7 @@
-import { type Schema, schema } from '~/config/zero/schema'
-import { useQuery as useZeroQuery, useZero } from '@rocicorp/zero/react'
 import { type Query, type Smash, Zero } from '@rocicorp/zero'
-import { createEmitter, Emitter } from '~/helpers/emitter'
-
-// const encodedJWT = Cookies.get("jwt");
-// const decodedJWT = encodedJWT && decodeJwt(encodedJWT);
-// const userID = decodedJWT?.sub ? (decodedJWT.sub as string) : "anon";
+import { useZero, useQuery as useZeroQuery } from '@rocicorp/zero/react'
+import { type Schema, schema } from '~/config/zero/schema'
+import { createEmitter } from '~/helpers/emitter'
 
 export let zero = createZero()
 

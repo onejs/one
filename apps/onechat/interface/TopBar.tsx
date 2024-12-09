@@ -1,11 +1,13 @@
-import { Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
+import { ChevronLeft, Search, Settings2, UserCircle, Users } from '@tamagui/lucide-icons'
+import { memo } from 'react'
 import { Button, H3, Input, styled, XStack } from 'tamagui'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
+import { updateUserState, useUserState } from '~/features/auth/useUserState'
 import { isTauri } from '~/features/tauri/constants'
 
-export const TopBar = () => {
-  const { user, session, token } = useAuth()
+export const TopBar = memo(() => {
+  const { user, session, jwtToken } = useAuth()
 
   return (
     <XStack
@@ -36,7 +38,7 @@ export const TopBar = () => {
 
         <UserButton />
 
-        {!isTauri && token && (
+        {!isTauri && jwtToken && (
           <a href={`one-chat://finish-auth?token=${session?.token}`}>
             <Button size="$2">Open native app</Button>
           </a>
@@ -44,27 +46,50 @@ export const TopBar = () => {
       </XStack>
     </XStack>
   )
-}
+})
 
 const UserButton = () => {
   const { user, loggedIn } = useAuth()
-
-  console.log('user', user)
+  const userState = useUserState()
 
   return (
     <>
       <a
         target="_blank"
-        href={loggedIn ? '' : window.location.origin + '/login-github'}
+        {...(!loggedIn &&
+          !userState?.showSidePanel && {
+            href: window.location.origin + '/login-github',
+          })}
         rel="noreferrer"
+        // biome-ignore lint/a11y/useValidAnchor: <explanation>
         onClick={(e) => {
-          if (isTauri || loggedIn) return
-          e.preventDefault()
-          githubSignIn()
+          if (userState?.showSidePanel) {
+            e.preventDefault()
+            updateUserState({
+              showSidePanel: undefined,
+            })
+            return
+          }
+
+          if (loggedIn) {
+            e.preventDefault()
+            updateUserState({
+              showSidePanel: 'user',
+            })
+            return
+          }
+
+          if (!isTauri) {
+            e.preventDefault()
+            githubSignIn()
+            return
+          }
         }}
       >
         <ThreadButtonFrame circular>
-          {user?.image ? (
+          {userState?.showSidePanel === 'user' ? (
+            <ChevronLeft size={20} o={0.5} />
+          ) : user?.image ? (
             <img style={{ width: 20, height: 20, borderRadius: 100 }} src={user.image} />
           ) : (
             <UserCircle size={20} o={0.5} />

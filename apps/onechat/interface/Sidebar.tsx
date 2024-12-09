@@ -1,23 +1,22 @@
 import { Plus } from '@tamagui/lucide-icons'
+import { memo, useState } from 'react'
 import { Circle, H3, ScrollView, SizableText, Spacer, styled, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
 import { OneBall } from '~/features/brand/Logo'
 import { randomID } from '~/features/zero/randomID'
-import { mutate, useQuery } from '~/features/zero/zero'
+import { useServer, useServerChannels, useServerQuery } from '~/features/zero/useServer'
+import { mutate, useQuery, zero } from '~/features/zero/zero'
+import { ListItem } from './ListItem'
+import { Menu } from '@tauri-apps/api/menu'
+import { Channel } from '~/config/zero/schema'
 
-export const Sidebar = () => {
+export const Sidebar = memo(() => {
   return (
     <YStack ov="hidden" f={1} maw={250} miw={250} gap="$4">
       <SidebarServersRow />
 
-      <>
-        <YStack>
-          <RoomItem active name="General" />
-          <RoomItem name="Help" />
-          <RoomItem name="Proposals" />
-        </YStack>
-      </>
+      <SidebarServerRoomsList />
 
       <>
         <YStack>
@@ -38,6 +37,84 @@ export const Sidebar = () => {
         <RoomItem name="Mia" />
       </YStack>
     </YStack>
+  )
+})
+
+const SidebarServerRoomsList = () => {
+  const server = useServer()
+  const channels = useServerChannels() || []
+
+  return (
+    <YStack>
+      {channels.map((channel) => {
+        return <ChannelListItem key={channel.id} channel={channel} />
+      })}
+
+      <ListItem
+        onPress={() => {
+          if (!server) {
+            alert('no server')
+            return
+          }
+
+          mutate.channel.insert({
+            id: randomID(),
+            createdAt: new Date().getTime(),
+            description: '',
+            name: 'Hello',
+            private: false,
+            serverId: server.id,
+          })
+        }}
+      >
+        Create Channel
+      </ListItem>
+    </YStack>
+  )
+}
+
+const ChannelListItem = ({ channel }: { channel: Channel }) => {
+  const [editing, setEditing] = useState(false)
+
+  return (
+    <div
+      key={channel.id}
+      onDoubleClick={() => {
+        setEditing(!editing)
+      }}
+      onContextMenu={async (e) => {
+        e.preventDefault()
+        const menu = Menu.new({
+          items: [
+            {
+              id: 'ctx_option1',
+              text: 'Delete',
+              action() {
+                mutate.channel.delete({
+                  id: channel.id,
+                })
+              },
+            },
+          ],
+        })
+
+        const menuInstance = await menu
+        menuInstance.popup()
+      }}
+    >
+      <ListItem
+        editing={editing}
+        onEditComplete={(next) => {
+          setEditing(false)
+          mutate.channel.update({
+            ...channel,
+            name: next,
+          })
+        }}
+      >
+        {channel.name}
+      </ListItem>
+    </div>
   )
 }
 

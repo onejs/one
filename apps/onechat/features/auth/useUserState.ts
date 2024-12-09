@@ -3,6 +3,7 @@ import { mutate, useQuery } from '~/features/zero/zero'
 // were using JSONB for UserState
 type UserState = {
   activeServer?: string
+  showSidePanel?: 'user' | 'settings'
 }
 
 // TODO
