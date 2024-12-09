@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "one": "workspace:^",
-    "react-native": "0.74.5"
+    "react-native": "0.76.4"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.5.38",
