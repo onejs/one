@@ -119,7 +119,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         return {
           resolve: {
             alias: {
-              tslib: resolvePath('@vxrn/tslib-lite'),
+              tslib: resolvePath('@vxrn/tslib-lite', process.cwd()),
             },
 
             // [
@@ -299,8 +299,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         const sharedNativeConfig = {
           resolve: {
             alias: {
-              react: resolvePath('one/react-18'),
-              'react-dom': resolvePath('one/react-dom-18'),
+              react: resolvePath('one/react-18', process.cwd()),
+              'react-dom': resolvePath('one/react-dom-18', process.cwd()),
             },
           },
         } satisfies UserConfig
