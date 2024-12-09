@@ -4,18 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "android": "one run:android",
+    "build:web": "one build",
+    "clean": "one clean",
     "dev": "one dev",
     "dev:clean": "one dev --clean",
-    "clean": "one clean",
-    "prebuild:native": "one prebuild",
-    "build:web": "one build",
-    "serve": "one serve",
     "ios": "one run:ios",
-    "android": "one run:android",
+    "prebuild:native": "one prebuild",
+    "serve": "one serve",
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
-  },
-  "installConfig": {
-    "hoistingLimits": "workspaces"
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.3.1",
@@ -27,15 +24,15 @@
     "@tamagui/react-native-media-driver": "^1.120.2",
     "@tamagui/shorthands": "^1.120.2",
     "@vxrn/color-scheme": "workspace:*",
-    "expo": "~51.0.28",
+    "expo": "~52.0.17",
     "expo-modules-core": "^1.12.24",
     "one": "workspace:*",
     "react": "^18.3.1",
-    "react-native": "0.74.5",
-    "react-native-reanimated": "~3.10.1",
+    "react-native": "0.76.4",
+    "react-native-reanimated": "~3.16.5",
     "react-native-safe-area-context": "4.10.5",
-    "react-native-screens": "3.31.1",
-    "react-native-svg": "15.2.0",
+    "react-native-screens": "4.4.0-rc.1",
+    "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
     "tamagui": "^1.120.2"
   },
@@ -44,5 +41,8 @@
     "@tamagui/vite-plugin": "^1.120.2",
     "@types/react": "^18.3.11",
     "vite": "^6.0.3"
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
   }
 }

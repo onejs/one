@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:web": "one build",
+    "clean": "one clean",
     "dev": "one dev",
     "dev:clean": "one dev --clean",
-    "clean": "one clean",
-    "build:web": "one build",
     "serve": "one serve"
   },
   "dependencies": {
@@ -21,8 +21,8 @@
     "one": "workspace:*",
     "react": "^18.3.1",
     "react-native": "0.74.5",
-    "react-native-reanimated": "~3.10.1",
-    "react-native-svg": "15.2.0",
+    "react-native-reanimated": "~3.16.5",
+    "react-native-svg": "15.8.0",
     "react-native-webview": "^13.11.1",
     "tamagui": "^1.120.2",
     "uuid": "9.0.0"
