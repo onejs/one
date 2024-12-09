@@ -2,6 +2,7 @@
   "expo": {
     "name": "One Test App",
     "slug": "one-test-app",
+    "newArchEnabled": true,
     "icon": "./assets/app-icon.png",
     "splash": {
       "image": "./assets/splash.png",
