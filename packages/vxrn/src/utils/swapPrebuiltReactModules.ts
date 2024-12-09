@@ -231,7 +231,21 @@ export async function swapPrebuiltReactModules(
     async load(id) {
       if (id.startsWith('virtual:rn-internals')) {
         const idOut = id.replace('virtual:rn-internals:', '')
-        let out = (id.includes('codegenNativeComponent') ? `const ___val = __RN_INTERNAL_MODULE_REQUIRES_MAP__["${idOut}"]()` : `const ___val = __cachedModules["${idOut}"]`) /* IDK why we can't use __RN_INTERNAL_MODULE_REQUIRES_MAP__ for all modules, if we do so the app will hang with a white screen (but won't crash) */ + `
+
+        let out = ''
+
+        if (id.includes('ReactFabric')) {
+          // A workaround for some internal modules being loaded when they shouldn't be.
+          // See: https://github.com/onejs/one/pull/283#issuecomment-2527356510
+          out += `const ___val = __cachedModules["${idOut}"] /* This module shouldn't be loaded if not already been loaded internally. */`
+        } else {
+          // Normal case, this will dynamically load the module if not already loaded.
+          out += `const ___val = __RN_INTERNAL_MODULE_REQUIRES_MAP__["${idOut}"]()`
+        }
+
+        out += '\n'
+
+        out += `
         const ___defaultVal = ___val ? ___val.default || ___val : ___val
         export default ___defaultVal
 
@@ -244,7 +258,6 @@ export async function swapPrebuiltReactModules(
             }
           })
         }
-
         `
 
         return out
