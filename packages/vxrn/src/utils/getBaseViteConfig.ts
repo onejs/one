@@ -78,11 +78,11 @@ export function getBaseViteConfig({
     resolve: {
       alias: {
         'react-native': resolvePath('react-native-web', projectRoot),
-        'react-native-safe-area-context': '@vxrn/safe-area',
+        'react-native-safe-area-context': resolvePath('@vxrn/safe-area', projectRoot),
 
         // bundle size optimizations
-        'query-string': resolvePath('@vxrn/query-string'),
-        'url-parse': resolvePath('@vxrn/url-parse'),
+        'query-string': resolvePath('@vxrn/query-string', projectRoot),
+        'url-parse': resolvePath('@vxrn/url-parse', projectRoot),
       },
 
       // TODO auto dedupe all include optimize deps?

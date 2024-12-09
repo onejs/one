@@ -30,6 +30,8 @@ globalThis['__cachedModules'] = {
   // },
 }
 
+globalThis['__RN_INTERNAL_MODULE_REQUIRES_MAP__'] = {}
+
 function printError(err) {
   return `${err instanceof Error ? `${err.message}\n${err.stack}` : err}`
 }
