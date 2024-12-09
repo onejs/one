@@ -1,11 +1,12 @@
 import { MessageCircle, UserCircle } from '@tamagui/lucide-icons'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import {
   Button,
   Circle,
   Dialog,
   H3,
   Input,
+  ListItem,
   Paragraph,
   ScrollView,
   Separator,
@@ -14,16 +15,22 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
+import { authClient } from '~/features/auth/authClient'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
+import { useUserState } from '~/features/auth/useUserState'
 import { OneBall } from '~/features/brand/Logo'
 import { isTauri } from '~/features/tauri/constants'
 import { Sidebar } from '~/interface/Sidebar'
 import { TopBar } from '~/interface/TopBar'
 
+const hiddenPanelWidth = 300
+
 export default function HomePage() {
+  const userState = useUserState()
+
   return (
-    <YStack h={0} f={1}>
+    <YStack h={0} f={1} x={userState?.showSidePanel ? -hiddenPanelWidth : 0} animation="quicker">
       <TopBar />
       <Dialogs />
 
@@ -31,6 +38,32 @@ export default function HomePage() {
         <Sidebar />
         <Main />
       </XStack>
+
+      <RightSideHiddenPanel />
+    </YStack>
+  )
+}
+
+const RightSideHiddenPanel = () => {
+  return (
+    <YStack
+      h="100%"
+      data-tauri-drag-region
+      pos="absolute"
+      t={0}
+      r={-hiddenPanelWidth}
+      w={hiddenPanelWidth}
+      p="$4"
+      gap="$4"
+    >
+      <H3>Account</H3>
+      <ListItem
+        onPress={() => {
+          authClient.signOut()
+        }}
+      >
+        Logout
+      </ListItem>
     </YStack>
   )
 }
@@ -126,7 +159,7 @@ const UserButton = () => {
 // </Button>
 // )}
 
-const Main = () => {
+const Main = memo(() => {
   return (
     <YStack f={1} shadowColor="$shadowColor" shadowRadius={30} btlr="$3" ov="hidden">
       <RecentThreads />
@@ -136,7 +169,7 @@ const Main = () => {
       </YStack>
     </YStack>
   )
-}
+})
 
 const ThreadButtonFrame = styled(XStack, {
   ai: 'center',

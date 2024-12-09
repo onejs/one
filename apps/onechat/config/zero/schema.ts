@@ -1,9 +1,4 @@
-import {
-  createSchema,
-  createTableSchema,
-  defineAuthorization,
-  type TableSchemaToRow,
-} from '@rocicorp/zero'
+import { createSchema, createTableSchema, type TableSchemaToRow } from '@rocicorp/zero'
 
 const userSchema = createTableSchema({
   tableName: 'user',
@@ -38,6 +33,13 @@ const serverSchema = createTableSchema({
       dest: {
         schema: () => userSchema,
         field: 'id',
+      },
+    },
+    channels: {
+      source: 'id',
+      dest: {
+        schema: () => channelSchema,
+        field: 'serverId',
       },
     },
   },
@@ -80,15 +82,7 @@ const channelSchema = createTableSchema({
     createdAt: { type: 'number' },
   },
   primaryKey: ['id'],
-  relationships: {
-    server: {
-      source: 'serverId',
-      dest: {
-        schema: () => serverSchema,
-        field: 'id',
-      },
-    },
-  },
+  relationships: {},
 })
 
 const threadSchema = createTableSchema({
