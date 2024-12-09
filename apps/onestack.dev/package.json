@@ -31,7 +31,7 @@
     "mdx-bundler": "^10.0.2",
     "one": "1.1.336",
     "postmark": "^3.0.18",
-    "react": ">=18.0.0",
+    "react": "^18",
     "react-native": "0.74.1",
     "tamagui": "^1.117.0"
   },
