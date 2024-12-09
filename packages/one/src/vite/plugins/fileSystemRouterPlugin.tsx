@@ -142,6 +142,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           throw new Error(`No transformed js returned`)
         }
 
+        // if (!transformedJS.includes('loader')) {
+        //   return `console.log("hi")`
+        // }
+
         const exported = await runner.import(routeFile)
 
         const loaderData = await exported.loader?.(loaderProps)

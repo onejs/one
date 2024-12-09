@@ -10,7 +10,7 @@ const empty = {
 export const useAuth = () => {
   const [clientVersion, setClientVersion] = useState(0)
   const [state, setState] = useState<{ session: Session | null; user: User | null }>(empty)
-  const [token, setToken] = useState<string | null>(null)
+  const [jwtToken, setToken] = useState<string | null>(null)
 
   useAuthClientInstanceEmitter(() => {
     setClientVersion(Math.random())
@@ -48,7 +48,7 @@ export const useAuth = () => {
 
   return {
     ...state,
-    token,
+    jwtToken,
     loggedIn: !!state.user,
   }
 }

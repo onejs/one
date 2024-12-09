@@ -1,11 +1,11 @@
 import { Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
-import { H3, Input, styled, XStack } from 'tamagui'
+import { Button, H3, Input, styled, XStack } from 'tamagui'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
 import { isTauri } from '~/features/tauri/constants'
 
 export const TopBar = () => {
-  const { user } = useAuth()
+  const { user, session, token } = useAuth()
 
   return (
     <XStack
@@ -35,6 +35,12 @@ export const TopBar = () => {
         </ThreadButtonFrame>
 
         <UserButton />
+
+        {!isTauri && token && (
+          <a href={`one-chat://finish-auth?token=${session?.token}`}>
+            <Button size="$2">Open native app</Button>
+          </a>
+        )}
       </XStack>
     </XStack>
   )
@@ -42,6 +48,8 @@ export const TopBar = () => {
 
 const UserButton = () => {
   const { user, loggedIn } = useAuth()
+
+  console.log('user', user)
 
   return (
     <>

@@ -25,11 +25,11 @@ function createZero({ auth, userID = 'anon' }: { auth?: string; userID?: string 
 
 // TODO add userID
 export function setZeroAuth(jwtSecret: string) {
-  console.warn('setting zero auth', jwtSecret)
-  zero = createZero({
-    auth: jwtSecret,
-  })
-  emitter.trigger(zero)
+  // slowing down
+  // zero = createZero({
+  //   auth: jwtSecret,
+  // })
+  // emitter.trigger(zero)
 }
 
 export const mutate = zero.mutate

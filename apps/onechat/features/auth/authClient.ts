@@ -1,19 +1,30 @@
 import { createAuthClient } from 'better-auth/client'
-import { createEmitter, Emitter } from '~/helpers/emitter'
+import { createEmitter } from '~/helpers/emitter'
 
-export let authClient = createAuthClient()
+const TOKEN_KEY = 'TOKEN_KEY'
+
+const existingToken = typeof localStorage !== 'undefined' ? localStorage.getItem(TOKEN_KEY) : ''
+
+export let authClient = existingToken
+  ? createAuthClientWithToken(existingToken)
+  : createAuthClient()
 
 export const [emitter, useAuthClientInstanceEmitter] = createEmitter<typeof authClient>()
 
 globalThis['authClient'] = authClient
 
-export const setAuthToken = (token: string) => {
-  authClient = createAuthClient({
+function createAuthClientWithToken(token: string) {
+  return createAuthClient({
     fetchOptions: {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     },
   })
+}
+
+export const setAuthToken = (token: string) => {
+  localStorage.setItem(TOKEN_KEY, token)
+  authClient = createAuthClientWithToken(token)
   emitter.trigger(authClient)
 }

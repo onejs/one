@@ -1,4 +1,6 @@
-import type { Query, QueryRowType } from 'zql/src/zql/query/query.js'
+// import type { Query, QueryRowType } from 'zql/src/zql/query/query.js'
+type Query<a, b> = any
+type QueryRowType<a> = any
 
 type GenericQuery = Query<any, any>
 
