@@ -16,7 +16,6 @@ const useAuthPassJWTSecretToZeroEffect = () => {
 
   useEffect(() => {
     if (token) {
-      console.warn('setting zero auth')
       setZeroAuth(token)
     }
   }, [token])

@@ -36,11 +36,7 @@ export default function HomePage() {
 }
 
 const Dialogs = () => {
-  return (
-    <>
-      <FinishAuthInAppDialog />
-    </>
-  )
+  return <>{/* <FinishAuthInAppDialog /> */}</>
 }
 
 const FinishAuthInAppDialog = () => {
