@@ -1,9 +1,9 @@
 import { createAuthClient } from 'better-auth/client'
-import { Listeners } from '~/helpers/disposable'
+import { createEmitter, Emitter } from '~/helpers/emitter'
 
 export let authClient = createAuthClient()
 
-export const authClientChange = new Listeners<typeof authClient>()
+export const [emitter, useAuthClientInstanceEmitter] = createEmitter<typeof authClient>()
 
 globalThis['authClient'] = authClient
 
@@ -15,5 +15,5 @@ export const setAuthToken = (token: string) => {
       },
     },
   })
-  authClientChange.trigger(authClient)
+  emitter.trigger(authClient)
 }

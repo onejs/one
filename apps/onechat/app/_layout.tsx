@@ -6,9 +6,11 @@ import './tamagui.css'
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
-import { TamaguiProvider, Theme } from 'tamagui'
+import { useState } from 'react'
+import { TamaguiProvider } from 'tamagui'
 import config from '~/config/tamagui/tamagui.config'
-import { zero } from '~/features/zero/zero'
+import { AuthEffects } from '~/features/auth/AuthEffects'
+import { useZeroInstanceEmitter, zero } from '~/features/zero/zero'
 
 export default function Layout() {
   return (
@@ -25,15 +27,27 @@ export default function Layout() {
 
       <LoadProgressBar startDelay={1_000} />
 
-      <ZeroProvider zero={zero}>
+      <AuthEffects />
+
+      <DataProvider>
         <SchemeProvider>
           <ThemeProvider>
             <Slot />
           </ThemeProvider>
         </SchemeProvider>
-      </ZeroProvider>
+      </DataProvider>
     </>
   )
+}
+
+const DataProvider = ({ children }) => {
+  const [instance, setInstance] = useState(zero)
+
+  useZeroInstanceEmitter((next) => {
+    setInstance(next)
+  })
+
+  return <ZeroProvider zero={instance}>{children}</ZeroProvider>
 }
 
 const ThemeProvider = ({ children }) => {

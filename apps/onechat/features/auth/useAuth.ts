@@ -1,31 +1,54 @@
 import type { Session, User } from 'better-auth'
-import { useState, useEffect } from 'react'
-import { authClientChange, authClient } from './authClient'
+import { useEffect, useState } from 'react'
+import { authClient, useAuthClientInstanceEmitter } from './authClient'
 
 const empty = {
-  session: undefined,
-  user: undefined,
+  session: null,
+  user: null,
 }
 
 export const useAuth = () => {
   const [clientVersion, setClientVersion] = useState(0)
-  const [state, setState] = useState<{ session?: Session; user?: User }>(empty)
+  const [state, setState] = useState<{ session: Session | null; user: User | null }>(empty)
+  const [token, setToken] = useState<string | null>(null)
+
+  useAuthClientInstanceEmitter(() => {
+    setClientVersion(Math.random())
+  })
 
   useEffect(() => {
-    // change client
-    const dispose = authClientChange.listen(() => {
-      setClientVersion(Math.random())
+    const setTokenFromJWKS = ({ keys }: { keys: { kid: string }[] }) => {
+      if (keys[0]) {
+        setToken(keys[0].kid)
+      }
+    }
+
+    authClient.$fetch('/jwks').then(async ({ data }) => {
+      if ((data as any).keys.length) {
+        setTokenFromJWKS(data as any)
+        return
+      }
+
+      // if no token, create one and then set
+      // just calling this should generate a token
+      // @ts-expect-error TODO need to figure out this type
+      await authClient.token()
+      const { data: data2 } = await authClient.$fetch('/jwks')
+      if ((data2 as any).keys.length) {
+        setTokenFromJWKS(data2 as any)
+        return
+      }
+      return
     })
 
-    const dispose2 = authClient.useSession.subscribe((value) => {
+    return authClient.useSession.subscribe((value) => {
       setState(value.data || empty)
     })
-
-    return () => {
-      dispose()
-      dispose2()
-    }
   }, [clientVersion])
 
-  return state
+  return {
+    ...state,
+    token,
+    loggedIn: !!state.user,
+  }
 }
