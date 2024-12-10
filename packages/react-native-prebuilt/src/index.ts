@@ -169,7 +169,7 @@ export async function buildReactNative(
 
           build.onLoad(
             {
-              filter: /.*.js/,
+              filter: /.*\.js$/,
             },
             async (input) => {
               if (!input.path.includes('react-native') && !input.path.includes(`vite-native-hmr`)) {
