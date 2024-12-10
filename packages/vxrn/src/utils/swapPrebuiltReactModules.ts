@@ -162,7 +162,7 @@ export async function swapPrebuiltReactModules(
     async resolveId(id, importer = '') {
       if (id.startsWith('react-native/')) {
         if (id === 'react-native/package.json') {
-          return id
+          return
         }
         return `virtual:rn-internals:${id}`
       }
