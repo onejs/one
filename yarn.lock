@@ -18341,6 +18341,7 @@ __metadata:
     pg: "npm:^8.13.1"
     postmark: "npm:^3.0.18"
     react: "npm:^18"
+    react-hotkeys-hook: "npm:^4.6.1"
     react-native: "npm:0.74.1"
     tamagui: "npm:^1.120.1"
     tsx: "npm:^4.19.0"
@@ -19591,6 +19592,16 @@ __metadata:
   peerDependencies:
     react: ">=17.0.0"
   checksum: 10/1dc433319341ec3dca84513c4197ef4f4c8232604d35f83546a8abfb41d9591f934b66aaaa4dc3dc8b1b65f488705a2a48ae6c1d9792660119a9cdedeab4ca8f
+  languageName: node
+  linkType: hard
+
+"react-hotkeys-hook@npm:^4.6.1":
+  version: 4.6.1
+  resolution: "react-hotkeys-hook@npm:4.6.1"
+  peerDependencies:
+    react: ">=16.8.1"
+    react-dom: ">=16.8.1"
+  checksum: 10/fc7449c72899c1adcb67d4d3d5130411a6ea26a9dc862f1599d2542201b57612b0add169ad0037a2de9e5a5db588c308a32f421ad47221f44eb88ab01018e750
   languageName: node
   linkType: hard
 
