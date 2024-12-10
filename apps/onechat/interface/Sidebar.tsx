@@ -16,7 +16,12 @@ import type { Channel } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
 import { randomID } from '~/features/zero/randomID'
-import { useCurrentServer, useServerChannels, useUserServers } from '~/features/zero/useServer'
+import {
+  useCurrentServer,
+  useCurrentServerMembership,
+  useServerChannels,
+  useUserServers,
+} from '~/features/zero/useServer'
 import { mutate } from '~/features/zero/zero'
 import { ListItem } from './ListItem'
 
@@ -65,9 +70,19 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 
+const welcomeMessageChannel: Channel = {
+  createdAt: 0,
+  description: '',
+  id: '0',
+  name: 'Welcome',
+  private: false,
+  serverId: '',
+}
+
 const SidebarServerChannelsList = () => {
   const server = useCurrentServer()
   const channels = useServerChannels() || []
+  const serverMembership = useCurrentServerMembership()
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -106,6 +121,8 @@ const SidebarServerChannelsList = () => {
   return (
     <YStack>
       <YStack pos="relative">
+        {!serverMembership?.hasClosedWelcome && <ChannelListItem channel={welcomeMessageChannel} />}
+
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -118,8 +135,6 @@ const SidebarServerChannelsList = () => {
             })}
             <DragOverlay
               style={{
-                // position: 'absolute',
-                // background: 'red',
                 zIndex: 1000,
               }}
             >
@@ -197,16 +212,19 @@ const ChannelListItemSortable = ({ channel }: { channel: Channel }) => {
 const ChannelListItem = forwardRef(
   ({ channel, ...rest }: XStackProps & { channel: Channel }, ref: any) => {
     const [editing, setEditing] = useState(false)
-    const userState = useUserState()
+    const [userState, derivedUserState] = useUserState()
 
     return (
       <ListItem
         ref={ref}
         editing={editing}
-        active={userState?.activeChannel === channel.id}
+        active={derivedUserState?.activeChannel === channel.id}
         onPress={() => {
           updateUserState({
-            activeChannel: channel.id,
+            activeChannels: {
+              ...userState.activeChannels,
+              [userState.activeServer!]: channel.id,
+            },
           })
         }}
         onEditCancel={() => {
@@ -233,7 +251,7 @@ const ChannelListItem = forwardRef(
 
 const SidebarServersRow = () => {
   const servers = useUserServers()
-  const userState = useUserState()
+  const [userState] = useUserState()
   const { user } = useAuth()
 
   return (
