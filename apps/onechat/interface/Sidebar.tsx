@@ -1,15 +1,25 @@
 import { Plus } from '@tamagui/lucide-icons'
-import { memo, useState } from 'react'
-import { Circle, H3, ScrollView, SizableText, Spacer, styled, XStack, YStack } from 'tamagui'
+import { Menu } from '@tauri-apps/api/menu'
+import { forwardRef, memo, useState } from 'react'
+import {
+  Circle,
+  H3,
+  ScrollView,
+  SizableText,
+  Spacer,
+  styled,
+  XStack,
+  XStackProps,
+  YStack,
+} from 'tamagui'
+import { Channel } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
 import { OneBall } from '~/features/brand/Logo'
 import { randomID } from '~/features/zero/randomID'
-import { useCurrentServer, useServerChannels, useServerQuery } from '~/features/zero/useServer'
-import { mutate, useQuery, zero } from '~/features/zero/zero'
+import { useCurrentServer, useServerChannels } from '~/features/zero/useServer'
+import { mutate, useQuery } from '~/features/zero/zero'
 import { ListItem } from './ListItem'
-import { Menu } from '@tauri-apps/api/menu'
-import { Channel } from '~/config/zero/schema'
 
 export const Sidebar = memo(() => {
   return (
@@ -40,15 +50,70 @@ export const Sidebar = memo(() => {
   )
 })
 
+import {
+  closestCenter,
+  DndContext,
+  DragOverlay,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
+
 const SidebarServerRoomsList = () => {
   const server = useCurrentServer()
   const channels = useServerChannels() || []
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  )
+
+  function handleDragEnd(event) {
+    setDragging(null)
+
+    const { active, over } = event
+
+    if (active.id !== over.id) {
+      // setItems((items) => {
+      //   const oldIndex = items.indexOf(active.id);
+      //   const newIndex = items.indexOf(over.id);
+      //   return arrayMove(items, oldIndex, newIndex);
+      // });
+    }
+  }
+
+  const [dragging, setDragging] = useState(null)
+
+  function handleDragStart(event) {
+    const { active } = event
+    setDragging(active)
+  }
 
   return (
     <YStack>
-      {channels.map((channel) => {
-        return <ChannelListItem key={channel.id} channel={channel} />
-      })}
+      <YStack pos="relative">
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext items={channels} strategy={verticalListSortingStrategy}>
+            {channels.map((channel) => {
+              return <ChannelListItemSortable key={channel.id} channel={channel} />
+            })}
+            <DragOverlay>{dragging ? <DraggedChannel channel={dragging} /> : null}</DragOverlay>
+          </SortableContext>
+        </DndContext>
+      </YStack>
 
       <ListItem
         onPress={() => {
@@ -73,16 +138,24 @@ const SidebarServerRoomsList = () => {
   )
 }
 
-const ChannelListItem = ({ channel }: { channel: Channel }) => {
-  const [editing, setEditing] = useState(false)
-  const userState = useUserState()
+const DraggedChannel = ({ channel }: { channel: Channel }) => {
+  return <ChannelListItem channel={channel} />
+}
+
+const ChannelListItemSortable = ({ channel }: { channel: Channel }) => {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: channel.id,
+  })
 
   return (
-    <div
-      key={channel.id}
-      onDoubleClick={() => {
-        setEditing(!editing)
-      }}
+    <ChannelListItem
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+      {...transform}
+      channel={channel}
+      transition={transition}
+      // @ts-expect-error
       onContextMenu={async (e) => {
         e.preventDefault()
         const menu = Menu.new({
@@ -98,18 +171,32 @@ const ChannelListItem = ({ channel }: { channel: Channel }) => {
             },
           ],
         })
-
         const menuInstance = await menu
         menuInstance.popup()
       }}
     >
+      {channel.name}
+    </ChannelListItem>
+  )
+}
+
+const ChannelListItem = forwardRef(
+  ({ channel, ...rest }: XStackProps & { channel: Channel }, ref: any) => {
+    const [editing, setEditing] = useState(false)
+    const userState = useUserState()
+
+    return (
       <ListItem
+        ref={ref}
         editing={editing}
         active={userState?.activeChannel === channel.id}
         onPress={() => {
           updateUserState({
             activeChannel: channel.id,
           })
+        }}
+        onEditCancel={() => {
+          setEditing(false)
         }}
         onEditComplete={(next) => {
           setEditing(false)
@@ -118,12 +205,17 @@ const ChannelListItem = ({ channel }: { channel: Channel }) => {
             name: next,
           })
         }}
+        // @ts-expect-error
+        onDoubleClick={() => {
+          setEditing(!editing)
+        }}
+        {...rest}
       >
         {channel.name}
       </ListItem>
-    </div>
-  )
-}
+    )
+  }
+)
 
 const SidebarServersRow = () => {
   const servers = useQuery((q) => q.server.orderBy('createdAt', 'desc'))
