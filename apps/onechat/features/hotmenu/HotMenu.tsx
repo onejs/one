@@ -3,8 +3,9 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import { Button } from '~/interface/Button'
 import { updateUserState, useUserState } from '../auth/useUserState'
 import { Dialog, Input } from 'tamagui'
+import { forwardRef } from 'react'
 
-export const HotMenu = () => {
+export const HotMenu = forwardRef((props, ref) => {
   const userState = useUserState()
   const showHotMenu = !!userState?.showHotMenu
 
@@ -31,6 +32,7 @@ export const HotMenu = () => {
   return (
     <>
       <Button
+        ref={ref}
         onPress={() => {
           toggleHotMenu()
         }}
@@ -80,4 +82,4 @@ export const HotMenu = () => {
       </Dialog>
     </>
   )
-}
+})

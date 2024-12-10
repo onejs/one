@@ -6,7 +6,6 @@ import {
   Dialog,
   H3,
   Input,
-  ListItem,
   Paragraph,
   ScrollView,
   Separator,
@@ -26,7 +25,9 @@ import { randomID } from '~/features/zero/randomID'
 import { useCurrentChannel, useCurrentMessages, useCurrentServer } from '~/features/zero/useServer'
 import { mutate } from '~/features/zero/zero'
 import { Avatar } from '~/interface/Avatar'
+import { ListItem } from '~/interface/ListItem'
 import { Sidebar } from '~/interface/Sidebar'
+import { ThemeToggleListItem } from '~/interface/ThemeToggleListItem'
 import { TopBar } from '~/interface/TopBar'
 
 const hiddenPanelWidth = 300
@@ -50,6 +51,35 @@ export default function HomePage() {
 }
 
 const RightSideHiddenPanel = () => {
+  const userState = useUserState()
+
+  if (userState?.showSidePanel === 'settings') {
+    return <RightSideSettings />
+  }
+
+  return <RightSideAccount />
+}
+
+const RightSideSettings = () => {
+  return (
+    <YStack
+      h="100%"
+      data-tauri-drag-region
+      pos="absolute"
+      t={0}
+      r={-hiddenPanelWidth}
+      w={hiddenPanelWidth}
+      p="$4"
+      gap="$4"
+    >
+      <H3>Settings</H3>
+
+      <ThemeToggleListItem />
+    </YStack>
+  )
+}
+
+const RightSideAccount = () => {
   return (
     <YStack
       h="100%"
@@ -281,17 +311,15 @@ const MainChatList = () => {
   const messages = useCurrentMessages() || []
   const { user } = useAuth()
 
-  if (!user) {
-    return null
-  }
-
   return (
     <YStack ov="hidden" f={1}>
       <ScrollView>
         <YStack p="$4" pt="$10">
-          {messages.map((message) => {
-            return <MessageItem key={message.id} message={message} user={user as any} />
-          })}
+          {user
+            ? messages.map((message) => {
+                return <MessageItem key={message.id} message={message} user={user as any} />
+              })
+            : null}
         </YStack>
       </ScrollView>
     </YStack>
