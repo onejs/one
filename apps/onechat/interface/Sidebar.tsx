@@ -5,7 +5,7 @@ import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
 import { OneBall } from '~/features/brand/Logo'
 import { randomID } from '~/features/zero/randomID'
-import { useServer, useServerChannels, useServerQuery } from '~/features/zero/useServer'
+import { useCurrentServer, useServerChannels, useServerQuery } from '~/features/zero/useServer'
 import { mutate, useQuery, zero } from '~/features/zero/zero'
 import { ListItem } from './ListItem'
 import { Menu } from '@tauri-apps/api/menu'
@@ -41,7 +41,7 @@ export const Sidebar = memo(() => {
 })
 
 const SidebarServerRoomsList = () => {
-  const server = useServer()
+  const server = useCurrentServer()
   const channels = useServerChannels() || []
 
   return (
@@ -75,6 +75,7 @@ const SidebarServerRoomsList = () => {
 
 const ChannelListItem = ({ channel }: { channel: Channel }) => {
   const [editing, setEditing] = useState(false)
+  const userState = useUserState()
 
   return (
     <div
@@ -104,6 +105,12 @@ const ChannelListItem = ({ channel }: { channel: Channel }) => {
     >
       <ListItem
         editing={editing}
+        active={userState?.activeChannel === channel.id}
+        onPress={() => {
+          updateUserState({
+            activeChannel: channel.id,
+          })
+        }}
         onEditComplete={(next) => {
           setEditing(false)
           mutate.channel.update({

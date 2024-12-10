@@ -5,6 +5,7 @@ import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
 import { isTauri } from '~/features/tauri/constants'
+import { Avatar } from './Avatar'
 
 export const TopBar = memo(() => {
   const { user, session, jwtToken } = useAuth()
@@ -90,7 +91,7 @@ const UserButton = () => {
           {userState?.showSidePanel === 'user' ? (
             <ChevronLeft size={20} o={0.5} />
           ) : user?.image ? (
-            <img style={{ width: 20, height: 20, borderRadius: 100 }} src={user.image} />
+            <Avatar image={user.image} />
           ) : (
             <UserCircle size={20} o={0.5} />
           )}
