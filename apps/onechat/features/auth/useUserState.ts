@@ -2,6 +2,7 @@ import { mutate, useQuery } from '~/features/zero/zero'
 
 // were using JSONB for UserState
 type UserState = {
+  serversSort?: string[]
   activeServer?: string
   activeChannel?: string
   showSidePanel?: 'user' | 'settings'

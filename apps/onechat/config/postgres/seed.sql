@@ -42,6 +42,7 @@ CREATE TABLE "server" (
 CREATE TABLE "serverMember" (
     "serverId" VARCHAR REFERENCES "server"(id),
     "userId" VARCHAR REFERENCES "user"(id),
+    "hasClosedWelcome" BOOLEAN DEFAULT FALSE,
     "joinedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY ("serverId", "userId")
 );

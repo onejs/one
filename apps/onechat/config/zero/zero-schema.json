@@ -1,0 +1,305 @@
+{
+  "permissions": {},
+  "schema": {
+    "version": 1,
+    "tables": {
+      "channel": {
+        "tableName": "channel",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": false
+          },
+          "description": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          },
+          "private": {
+            "type": "boolean",
+            "optional": false
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "chats": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "channelId"
+            ],
+            "destSchema": "message"
+          },
+          "threads": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "channelId"
+            ],
+            "destSchema": "thread"
+          }
+        }
+      },
+      "message": {
+        "tableName": "message",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelId": {
+            "type": "string",
+            "optional": false
+          },
+          "content": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": false
+          },
+          "deleted": {
+            "type": "boolean",
+            "optional": true
+          },
+          "editedAt": {
+            "type": "number",
+            "optional": true
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "senderId": {
+            "type": "string",
+            "optional": false
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          },
+          "threadId": {
+            "type": "string",
+            "optional": true
+          }
+        },
+        "relationships": {
+          "sender": {
+            "sourceField": [
+              "senderId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "user"
+          }
+        }
+      },
+      "server": {
+        "tableName": "server",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": false
+          },
+          "description": {
+            "type": "string",
+            "optional": false
+          },
+          "icon": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          },
+          "ownerId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "channels": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "serverId"
+            ],
+            "destSchema": "channel"
+          },
+          "owner": {
+            "sourceField": [
+              "ownerId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "user"
+          }
+        }
+      },
+      "serverMember": {
+        "tableName": "serverMember",
+        "primaryKey": [
+          "serverId",
+          "userId"
+        ],
+        "columns": {
+          "hasClosedWelcome": {
+            "type": "boolean",
+            "optional": false
+          },
+          "joinedAt": {
+            "type": "number",
+            "optional": false
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          },
+          "userId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "server": {
+            "sourceField": [
+              "serverId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "server"
+          },
+          "user": {
+            "sourceField": [
+              "userId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "user"
+          }
+        }
+      },
+      "thread": {
+        "tableName": "thread",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelId": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": false
+          },
+          "creatorId": {
+            "type": "string",
+            "optional": false
+          },
+          "description": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "title": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "chats": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "channelId"
+            ],
+            "destSchema": "message"
+          },
+          "creator": {
+            "sourceField": [
+              "creatorId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "user"
+          }
+        }
+      },
+      "user": {
+        "tableName": "user",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": false
+          },
+          "email": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "image": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          },
+          "state": {
+            "type": "json",
+            "optional": false
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": false
+          },
+          "username": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      }
+    }
+  }
+}
