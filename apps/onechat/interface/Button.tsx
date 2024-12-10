@@ -1,4 +1,12 @@
-import { SizableText, type SizeTokens, styled, XStack, type XStackProps } from 'tamagui'
+import { forwardRef } from 'react'
+import {
+  SizableText,
+  type SizeTokens,
+  styled,
+  type TamaguiElement,
+  XStack,
+  type XStackProps,
+} from 'tamagui'
 
 const ButtonFrame = styled(XStack, {
   ai: 'center',
@@ -36,12 +44,14 @@ const ButtonFrame = styled(XStack, {
   } as const,
 })
 
-export const Button = ({ size, children, ...rest }: XStackProps & { size?: SizeTokens }) => {
-  return (
-    <ButtonFrame {...rest}>
-      <SizableText fontSize={size} lineHeight={size}>
-        {children}
-      </SizableText>
-    </ButtonFrame>
-  )
-}
+export const Button = forwardRef<TamaguiElement, XStackProps & { size?: SizeTokens }>(
+  ({ size, children, ...rest }, ref) => {
+    return (
+      <ButtonFrame ref={ref} {...rest}>
+        <SizableText fontSize={size} lineHeight={size}>
+          {children}
+        </SizableText>
+      </ButtonFrame>
+    )
+  }
+)

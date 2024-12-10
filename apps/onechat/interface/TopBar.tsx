@@ -1,5 +1,5 @@
 import { ChevronLeft, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
-import { memo } from 'react'
+import { memo, useRef } from 'react'
 import { H3, Input, TooltipSimple, XStack } from 'tamagui'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
@@ -9,6 +9,7 @@ import { isTauri } from '~/features/tauri/constants'
 import { useCurrentChannel, useCurrentServer } from '~/features/zero/useServer'
 import { Avatar } from './Avatar'
 import { Button } from './Button'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 export const TopBar = memo(() => {
   const { user, session, jwtToken } = useAuth()
@@ -40,10 +41,7 @@ export const TopBar = memo(() => {
       </XStack>
 
       <XStack ai="center" gap="$1">
-        <XStack ai="center" gap="$2" mr="$4">
-          <Search size={16} o={0.5} />
-          <Input w={250} placeholder="" size="$2" bw={0} />
-        </XStack>
+        <TopBarSearch />
 
         <Button
           onPress={() => {
@@ -111,7 +109,7 @@ const UserButton = () => {
           }
         }}
       >
-        <Button circular>
+        <Button>
           {userState?.showSidePanel === 'user' ? (
             <ChevronLeft size={20} o={0.5} />
           ) : user?.image ? (
@@ -122,5 +120,20 @@ const UserButton = () => {
         </Button>
       </a>
     </>
+  )
+}
+
+const TopBarSearch = () => {
+  const inputRef = useRef<Input>(null)
+
+  useHotkeys('meta+f', () => {
+    inputRef.current?.focus()
+  })
+
+  return (
+    <XStack ai="center" gap="$2" mr="$4">
+      <Search size={16} o={0.5} />
+      <Input ref={inputRef} w={250} placeholder="" size="$2" bw={0} />
+    </XStack>
   )
 }
