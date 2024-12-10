@@ -9,10 +9,10 @@ import {
   Spacer,
   styled,
   XStack,
-  XStackProps,
+  type XStackProps,
   YStack,
 } from 'tamagui'
-import { Channel } from '~/config/zero/schema'
+import type { Channel } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
 import { OneBall } from '~/features/brand/Logo'
@@ -70,7 +70,14 @@ const SidebarServerRoomsList = () => {
   const server = useCurrentServer()
   const channels = useServerChannels() || []
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: 100,
+        distance: {
+          y: 8,
+        },
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
@@ -110,7 +117,15 @@ const SidebarServerRoomsList = () => {
             {channels.map((channel) => {
               return <ChannelListItemSortable key={channel.id} channel={channel} />
             })}
-            <DragOverlay>{dragging ? <DraggedChannel channel={dragging} /> : null}</DragOverlay>
+            <DragOverlay
+              style={{
+                // position: 'absolute',
+                // background: 'red',
+                zIndex: 1000,
+              }}
+            >
+              {dragging ? <DraggedChannel channel={dragging} /> : null}
+            </DragOverlay>
           </SortableContext>
         </DndContext>
       </YStack>

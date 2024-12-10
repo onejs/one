@@ -5,6 +5,7 @@ type UserState = {
   activeServer?: string
   activeChannel?: string
   showSidePanel?: 'user' | 'settings'
+  showHotMenu?: boolean
 }
 
 // TODO

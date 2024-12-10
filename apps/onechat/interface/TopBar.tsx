@@ -1,14 +1,19 @@
-import { ChevronLeft, Search, Settings2, UserCircle, Users } from '@tamagui/lucide-icons'
+import { ChevronLeft, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
 import { memo } from 'react'
-import { Button, H3, Input, styled, XStack } from 'tamagui'
+import { H3, Input, XStack } from 'tamagui'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
+import { HotMenu } from '~/features/hotmenu/HotMenu'
 import { isTauri } from '~/features/tauri/constants'
+import { useCurrentChannel, useCurrentServer } from '~/features/zero/useServer'
 import { Avatar } from './Avatar'
+import { Button } from './Button'
 
 export const TopBar = memo(() => {
   const { user, session, jwtToken } = useAuth()
+  const server = useCurrentServer()
+  const channel = useCurrentChannel()
 
   return (
     <XStack
@@ -19,13 +24,17 @@ export const TopBar = memo(() => {
       jc="space-between"
       y={2}
       h={36}
-      pl={80}
+      pl={72}
       pr={4}
       mb={4}
     >
-      <H3 pe="none" m={0} o={0.5} size="$2">
-        One - #general
-      </H3>
+      <XStack gap="$2">
+        <HotMenu />
+
+        <H3 userSelect="none" pe="none" m={0} o={0.5} size="$2">
+          {server?.name || '-'} - #{channel?.name || '-'}
+        </H3>
+      </XStack>
 
       <XStack ai="center" gap="$1">
         <XStack ai="center" gap="$2" mr="$4">
@@ -33,15 +42,15 @@ export const TopBar = memo(() => {
           <Input w={250} placeholder="" size="$2" bw={0} />
         </XStack>
 
-        <ThreadButtonFrame>
+        <Button>
           <Settings2 o={0.5} size={20} />
-        </ThreadButtonFrame>
+        </Button>
 
         <UserButton />
 
         {!isTauri && jwtToken && (
           <a href={`one-chat://finish-auth?token=${session?.token}`}>
-            <Button size="$2">Open native app</Button>
+            <Button>Open native app</Button>
           </a>
         )}
       </XStack>
@@ -87,7 +96,7 @@ const UserButton = () => {
           }
         }}
       >
-        <ThreadButtonFrame circular>
+        <Button circular>
           {userState?.showSidePanel === 'user' ? (
             <ChevronLeft size={20} o={0.5} />
           ) : user?.image ? (
@@ -95,41 +104,8 @@ const UserButton = () => {
           ) : (
             <UserCircle size={20} o={0.5} />
           )}
-        </ThreadButtonFrame>
+        </Button>
       </a>
     </>
   )
 }
-
-const ThreadButtonFrame = styled(XStack, {
-  ai: 'center',
-  gap: '$2',
-  py: '$1.5',
-  px: '$2.5',
-  br: '$4',
-  hoverStyle: {
-    bg: '$color3',
-  },
-
-  variants: {
-    active: {
-      true: {
-        bg: '$color3',
-      },
-    },
-
-    size: {
-      large: {
-        py: '$3',
-        px: '$4',
-      },
-    },
-
-    circular: {
-      true: {
-        borderRadius: 100,
-        overflow: 'hidden',
-      },
-    },
-  } as const,
-})

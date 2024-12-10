@@ -239,8 +239,8 @@ const ChatThreadButton = () => {
 const ThreadButton = () => {
   return (
     <ThreadButtonFrame>
-      <Circle size={32} bg="$color9">
-        <OneBall size={1} />
+      <Circle size={26} bg="$color9">
+        <OneBall size={0.8} />
       </Circle>
 
       <SizableText userSelect="none" cur="default" f={1} ov="hidden">
