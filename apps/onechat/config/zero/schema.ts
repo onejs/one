@@ -82,7 +82,22 @@ const channelSchema = createTableSchema({
     createdAt: { type: 'number' },
   },
   primaryKey: ['id'],
-  relationships: {},
+  relationships: {
+    chats: {
+      source: 'id',
+      dest: {
+        schema: () => messageSchema,
+        field: 'channelId',
+      },
+    },
+    threads: {
+      source: 'id',
+      dest: {
+        schema: () => threadSchema,
+        field: 'channelId',
+      },
+    },
+  },
 })
 
 const threadSchema = createTableSchema({
@@ -97,18 +112,18 @@ const threadSchema = createTableSchema({
   },
   primaryKey: ['id'],
   relationships: {
-    channel: {
-      source: 'channelId',
-      dest: {
-        schema: () => channelSchema,
-        field: 'id',
-      },
-    },
     creator: {
       source: 'creatorId',
       dest: {
         schema: () => userSchema,
         field: 'id',
+      },
+    },
+    chats: {
+      source: 'id',
+      dest: {
+        schema: () => messageSchema,
+        field: 'channelId',
       },
     },
   },
@@ -120,36 +135,15 @@ const messageSchema = createTableSchema({
     id: { type: 'string' },
     serverId: { type: 'string' },
     channelId: { type: 'string' },
-    threadId: { type: 'string' },
+    threadId: { type: 'string', optional: true },
     senderId: { type: 'string' },
     content: { type: 'string' },
     createdAt: { type: 'number' },
-    editedAt: { type: 'number' },
-    deleted: { type: 'boolean' },
+    editedAt: { type: 'number', optional: true },
+    deleted: { type: 'boolean', optional: true },
   },
   primaryKey: ['id'],
   relationships: {
-    server: {
-      source: 'serverId',
-      dest: {
-        schema: () => serverSchema,
-        field: 'id',
-      },
-    },
-    channel: {
-      source: 'channelId',
-      dest: {
-        schema: () => channelSchema,
-        field: 'id',
-      },
-    },
-    thread: {
-      source: 'threadId',
-      dest: {
-        schema: () => threadSchema,
-        field: 'id',
-      },
-    },
     sender: {
       source: 'senderId',
       dest: {

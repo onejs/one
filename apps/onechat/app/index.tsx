@@ -1,5 +1,5 @@
-import { MessageCircle, UserCircle } from '@tamagui/lucide-icons'
-import { memo, useState } from 'react'
+import { MessageCircle, Scroll, UserCircle } from '@tamagui/lucide-icons'
+import { memo, useRef, useState } from 'react'
 import {
   Button,
   Circle,
@@ -15,12 +15,17 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
+import { Message, User } from '~/config/zero/schema'
 import { authClient } from '~/features/auth/authClient'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
 import { useUserState } from '~/features/auth/useUserState'
 import { OneBall } from '~/features/brand/Logo'
 import { isTauri } from '~/features/tauri/constants'
+import { randomID } from '~/features/zero/randomID'
+import { useCurrentChannel, useCurrentMessages, useCurrentServer } from '~/features/zero/useServer'
+import { mutate, useQuery } from '~/features/zero/zero'
+import { Avatar } from '~/interface/Avatar'
 import { Sidebar } from '~/interface/Sidebar'
 import { TopBar } from '~/interface/TopBar'
 
@@ -246,132 +251,147 @@ const ThreadButton = () => {
 }
 
 const MessageArea = () => {
+  const inputRef = useRef<Input>(null)
+  const channel = useCurrentChannel()
+  const server = useCurrentServer()
+  const { user } = useAuth()
+
   return (
     <YStack btw={1} bc="$color4" p="$2">
-      <Input />
+      <Input
+        ref={inputRef}
+        onSubmitEditing={(e) => {
+          inputRef.current?.clear()
+          mutate.message.insert({
+            id: randomID(),
+            channelId: channel.id,
+            content: e.nativeEvent.text,
+            createdAt: new Date().getTime(),
+            deleted: false,
+            senderId: user!.id,
+            serverId: server.id,
+          })
+        }}
+      />
     </YStack>
   )
 }
 
-const chats = [
-  ...new Array(50).fill({
-    name: 'natew',
-    contents: 'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
-    avatar: (
-      <Circle size={32} bg="$color9" mt={4}>
-        <OneBall size={1.3} />
-      </Circle>
-    ),
-  }),
-
-  {
-    name: 'test',
-    contents:
-      'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
-    avatar: <Circle size={32} bg="red" mt={4}></Circle>,
-  },
-]
-
 const MainChatList = () => {
+  const messages = useCurrentMessages() || []
+  const { user } = useAuth()
+
+  if (!user) {
+    return null
+  }
+
   return (
     <YStack ov="hidden" f={1}>
       <ScrollView>
         <YStack p="$4" pt="$10">
-          <CollapsedChats>
-            <Chat
-              {...{
-                name: 'test',
-                contents:
-                  'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
-                avatar: <Circle size={32} bg="red" mt={4}></Circle>,
-              }}
-            />
-
-            <Chat
-              {...{
-                name: 'natew',
-                contents:
-                  'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
-                avatar: (
-                  <Circle size={32} bg="$color9" mt={4}>
-                    <OneBall size={1.3} />
-                  </Circle>
-                ),
-              }}
-            />
-          </CollapsedChats>
-
-          <ThreadRow title="Android bug" description="JDK version 9.0 bug building app container" />
-
-          <DateSeparator />
-
-          <CollapsedChats>
-            <Chat
-              {...{
-                name: 'test',
-                contents:
-                  'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
-                avatar: <Circle size={32} bg="red" mt={4}></Circle>,
-              }}
-            />
-
-            <Chat
-              {...{
-                name: 'natew',
-                contents:
-                  'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
-                avatar: (
-                  <Circle size={32} bg="$color9" mt={4}>
-                    <OneBall size={1.3} />
-                  </Circle>
-                ),
-              }}
-            />
-          </CollapsedChats>
-
-          <ThreadRow
-            title="Supertokens Support"
-            description="Requesting official support for supertokens."
-          />
-
-          <CollapsedChats>
-            <Chat
-              {...{
-                name: 'test',
-                contents:
-                  'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
-                avatar: <Circle size={32} bg="red" mt={4}></Circle>,
-              }}
-            />
-
-            <Chat
-              {...{
-                name: 'natew',
-                contents:
-                  'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
-                avatar: (
-                  <Circle size={32} bg="$color9" mt={4}>
-                    <OneBall size={1.3} />
-                  </Circle>
-                ),
-              }}
-            />
-          </CollapsedChats>
-
-          <DateSeparator />
-
-          <ThreadRow title="Some Thread" />
-
-          <ThreadRow title="Some Thread" />
-
-          {/* {chats.map((chat, i) => {
-            return <Chat key={i} {...chat} />
-          })} */}
+          {messages.map((message) => {
+            return <MessageItem key={message.id} message={message} user={user as any} />
+          })}
         </YStack>
       </ScrollView>
     </YStack>
   )
 }
+
+// <ScrollView>
+//         <YStack p="$4" pt="$10">
+//           <CollapsedChats>
+//             <Chat
+//               {...{
+//                 name: 'test',
+//                 contents:
+//                   'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
+//                 avatar: <Circle size={32} bg="red" mt={4}></Circle>,
+//               }}
+//             />
+
+//             <Chat
+//               {...{
+//                 name: 'natew',
+//                 contents:
+//                   'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
+//                 avatar: (
+//                   <Circle size={32} bg="$color9" mt={4}>
+//                     <OneBall size={1.3} />
+//                   </Circle>
+//                 ),
+//               }}
+//             />
+//           </CollapsedChats>
+
+//           <ThreadRow title="Android bug" description="JDK version 9.0 bug building app container" />
+
+//           <DateSeparator />
+
+//           <CollapsedChats>
+//             <Chat
+//               {...{
+//                 name: 'test',
+//                 contents:
+//                   'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
+//                 avatar: <Circle size={32} bg="red" mt={4}></Circle>,
+//               }}
+//             />
+
+//             <Chat
+//               {...{
+//                 name: 'natew',
+//                 contents:
+//                   'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
+//                 avatar: (
+//                   <Circle size={32} bg="$color9" mt={4}>
+//                     <OneBall size={1.3} />
+//                   </Circle>
+//                 ),
+//               }}
+//             />
+//           </CollapsedChats>
+
+//           <ThreadRow
+//             title="Supertokens Support"
+//             description="Requesting official support for supertokens."
+//           />
+
+//           <CollapsedChats>
+//             <Chat
+//               {...{
+//                 name: 'test',
+//                 contents:
+//                   'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa. Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
+//                 avatar: <Circle size={32} bg="red" mt={4}></Circle>,
+//               }}
+//             />
+
+//             <Chat
+//               {...{
+//                 name: 'natew',
+//                 contents:
+//                   'Irure sunt eu do quis voluptate do nulla deserunt proident laborum culpa.',
+//                 avatar: (
+//                   <Circle size={32} bg="$color9" mt={4}>
+//                     <OneBall size={1.3} />
+//                   </Circle>
+//                 ),
+//               }}
+//             />
+//           </CollapsedChats>
+
+//           <DateSeparator />
+
+//           <ThreadRow title="Some Thread" />
+
+//           <ThreadRow title="Some Thread" />
+
+//           {/* {chats.map((chat, i) => {
+//             return <Chat key={i} {...chat} />
+//           })} */}
+//         </YStack>
+//       </ScrollView>
 
 const DateSeparator = () => {
   return (
@@ -455,17 +475,17 @@ const CollapsedChats = (props) => {
   )
 }
 
-const Chat = ({ name, avatar, contents }: { name: string; avatar: any; contents: string }) => {
+const MessageItem = ({ message, user }: { message: Message; user: User }) => {
   return (
     <XStack f={1} gap="$3" p="$2">
-      {avatar}
+      <Avatar image={user.image} />
       <YStack f={1} gap="$1">
         <SizableText mb={-4} fow="bold">
-          {name}
+          {user.username || user.name}
         </SizableText>
 
         <SizableText f={1} ov="hidden">
-          {contents}
+          {message.content}
         </SizableText>
       </YStack>
     </XStack>
