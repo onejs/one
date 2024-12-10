@@ -1,6 +1,6 @@
 {
   "name": "example-bare",
-  "version": "1.1.338",
+  "version": "1.1.340",
   "private": true,
   "main": "index.js",
   "type": "module",
@@ -30,7 +30,7 @@
     "babel-jest": "^29.6.3",
     "react-test-renderer": "18.2.0",
     "typescript": "^5.7.2",
-    "vxrn": "1.1.338"
+    "vxrn": "1.1.340"
   },
   "engines": {
     "node": ">=18"

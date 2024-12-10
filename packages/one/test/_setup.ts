@@ -73,6 +73,13 @@ export default async () => {
           ONE_SERVER_URL: `http://localhost:${prodPort}`,
         },
       })
+      let buildProcessOutput = ''
+      buildProcess.stdout?.on('data', (data) => {
+        buildProcessOutput += data.toString()
+      })
+      buildProcess.stderr?.on('data', (data) => {
+        buildProcessOutput += data.toString()
+      })
 
       // Wait for build process to complete
       await new Promise<void>((resolve, reject) => {
@@ -85,7 +92,7 @@ export default async () => {
           } else {
             reject(
               new Error(
-                `Build process exited with code ${code} after ${Math.round(performance.now() - prodBuildStartedAt)}ms`
+                `Build process exited with code ${code} after ${Math.round(performance.now() - prodBuildStartedAt)}ms.\nLogs:\n${buildProcessOutput}`
               )
             )
           }

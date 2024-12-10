@@ -162,7 +162,7 @@ export async function swapPrebuiltReactModules(
     async resolveId(id, importer = '') {
       if (id.startsWith('react-native/')) {
         if (id === 'react-native/package.json') {
-          return id
+          return
         }
         return `virtual:rn-internals:${id}`
       }
@@ -251,8 +251,11 @@ export async function swapPrebuiltReactModules(
         out += `
         const ___defaultVal = ___val ? ___val.default || ___val : ___val
         export default ___defaultVal
+        `
 
+        out += getReactNativeInternalModuleExports(idOut).map(exportName => `export const ${exportName} = ___val.${exportName} || ___defaultVal.${exportName}`).join('\n')
 
+        out += `
         // allow importing named exports of internals:
         if (___defaultVal && typeof ___defaultVal === 'object') {
           Object.keys(___defaultVal).forEach(key => {
@@ -271,4 +274,31 @@ export async function swapPrebuiltReactModules(
       }
     },
   } satisfies Plugin
+}
+
+/**
+ * Given a React Native internal module path, return the list of export names that are exported from the module, excluding the default export.
+ */
+function getReactNativeInternalModuleExports(
+  /**
+   * Example: `react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry`.
+   */
+  modulePath: string
+): string[] {
+  return KNOWN_REACT_NATIVE_INTERNAL_MODULE_EXPORTS[modulePath] || []
+}
+
+// TODO: We can use `es-module-lexer` to parse from source code instead of hardcoding these.
+const KNOWN_REACT_NATIVE_INTERNAL_MODULE_EXPORTS = {
+  'react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry': [
+    'customBubblingEventTypes',
+    'customDirectEventTypes',
+    'register',
+    'get',
+  ],
+  'react-native/Libraries/Pressability/PressabilityDebug': [
+    'PressabilityDebugView',
+    'isEnabled',
+    'setEnabled',
+  ]
 }
