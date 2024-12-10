@@ -4,7 +4,8 @@ import { mutate, useQuery } from '~/features/zero/zero'
 type UserState = {
   serversSort?: string[]
   activeServer?: string
-  activeChannel?: string
+  // serverId to channelId
+  activeChannels?: Record<string, string>
   showSidePanel?: 'user' | 'settings'
   showHotMenu?: boolean
 }
@@ -13,10 +14,14 @@ type UserState = {
 let currentUser = null as any
 
 export const useUserState = () => {
-  const user = useQuery((q) => q.user)[0]
-  const state = (user?.state ?? null) as UserState | null
+  const user = useQuery((q) => q.user)[0][0]
+  const state = (user?.state ?? {}) as UserState
   currentUser = user
-  return state
+  state.activeChannels ||= {}
+  return [
+    state,
+    state ? { activeChannel: state.activeChannels[state.activeServer || ''], user } : null,
+  ] as const
 }
 
 export const updateUserState = async (next: Partial<UserState>) => {

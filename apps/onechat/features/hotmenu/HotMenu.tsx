@@ -6,7 +6,7 @@ import { Dialog, Input, type TamaguiElement } from 'tamagui'
 import { forwardRef } from 'react'
 
 export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
-  const userState = useUserState()
+  const [userState] = useUserState()
   const showHotMenu = !!userState?.showHotMenu
 
   function toggleHotMenu() {

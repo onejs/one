@@ -33,7 +33,7 @@ import { TopBar } from '~/interface/TopBar'
 const hiddenPanelWidth = 300
 
 export default function HomePage() {
-  const userState = useUserState()
+  const [userState] = useUserState()
 
   return (
     <YStack h={0} f={1} x={userState?.showSidePanel ? -hiddenPanelWidth : 0} animation="quicker">
@@ -51,7 +51,7 @@ export default function HomePage() {
 }
 
 const RightSideHiddenPanel = () => {
-  const userState = useUserState()
+  const [userState] = useUserState()
 
   if (userState?.showSidePanel === 'settings') {
     return <RightSideSettings />

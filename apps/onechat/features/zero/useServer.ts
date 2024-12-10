@@ -4,8 +4,17 @@ import { useQuery } from './zero'
 export const useServersQuery = () => useQuery((q) => q.server)
 
 export const useCurrentServer = () => {
-  const userState = useUserState()
-  return useQuery((q) => q.server.where('id', userState?.activeServer || ''))[0]
+  const [userState] = useUserState()
+  return useQuery((q) => q.server.where('id', userState?.activeServer || ''))[0][0]
+}
+
+export const useCurrentServerMembership = () => {
+  const [userState] = useUserState()
+  return useQuery((q) =>
+    q.serverMember
+      .where('userId', userState?.activeServer || '')
+      .where('serverId', userState?.userId || '')
+  )[0][0]
 }
 
 export const useUserServers = () => {
@@ -16,7 +25,7 @@ export const useUserServers = () => {
 }
 
 export const useServerChannels = () => {
-  const userState = useUserState()
+  const [userState] = useUserState()
   return (
     useQuery((q) =>
       q.server
@@ -28,17 +37,17 @@ export const useServerChannels = () => {
 }
 
 export const useCurrentChannel = () => {
-  const userState = useUserState()
+  const [userState, derivedUserState] = useUserState()
   return useQuery((q) =>
     q.server
       .where('id', userState?.activeServer || '')
       .orderBy('createdAt', 'desc')
-      .related('channels', (q) => q.where('id', userState?.activeChannel || ''))
+      .related('channels', (q) => q.where('id', derivedUserState?.activeChannel || ''))
   )[0][0]?.channels?.[0]
 }
 
 export const useCurrentMessages = () => {
-  const userState = useUserState()
+  const [userState, derivedUserState] = useUserState()
   return (
     useQuery((q) =>
       q.server
@@ -46,7 +55,7 @@ export const useCurrentMessages = () => {
         .orderBy('createdAt', 'desc')
         .related('channels', (q) =>
           q
-            .where('id', userState?.activeChannel || '')
+            .where('id', derivedUserState?.activeChannel || '')
             .related('chats', (q) => q.orderBy('createdAt', 'asc'))
         )
     )[0][0]?.channels?.[0]?.chats || []
