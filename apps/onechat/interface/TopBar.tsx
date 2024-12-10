@@ -15,7 +15,7 @@ export const TopBar = memo(() => {
   const { user, session, jwtToken } = useAuth()
   const server = useCurrentServer()
   const channel = useCurrentChannel()
-  const userState = useUserState()
+  const [userState] = useUserState()
 
   return (
     <XStack
@@ -73,7 +73,7 @@ export const TopBar = memo(() => {
 
 const UserButton = () => {
   const { user, loggedIn } = useAuth()
-  const userState = useUserState()
+  const [userState] = useUserState()
 
   return (
     <>
