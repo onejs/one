@@ -1,3 +1,4 @@
+import module from 'node:module'
 import { fileURLToPath } from 'node:url'
 
 const resolver =
@@ -7,6 +8,17 @@ const resolver =
       ? (path: string, from?: string) => new URL(path, import.meta.url).pathname
       : require.resolve
 
+const resolverV2 = (path, from) => {
+  const require = module.createRequire(from)
+  const importPath = require.resolve(path, { paths: [from] })
+  return importPath
+}
+
 export const resolvePath = (path: string, from?: string): string => {
-  return resolver(path, from)
+  // We might be able to use resolverV2 directly, but here we'll still try to use the original implementation first in case there're any issues with the new one.
+  try {
+    return resolver(path, from)
+  } catch (e) {
+    return resolverV2(path, from)
+  }
 }
