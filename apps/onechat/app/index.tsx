@@ -1,4 +1,4 @@
-import { MessageCircle, Scroll, UserCircle } from '@tamagui/lucide-icons'
+import { MessageCircle, UserCircle } from '@tamagui/lucide-icons'
 import { memo, useRef, useState } from 'react'
 import {
   Button,
@@ -15,7 +15,7 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { Message, User } from '~/config/zero/schema'
+import type { Message, User } from '~/config/zero/schema'
 import { authClient } from '~/features/auth/authClient'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
@@ -24,7 +24,7 @@ import { OneBall } from '~/features/brand/Logo'
 import { isTauri } from '~/features/tauri/constants'
 import { randomID } from '~/features/zero/randomID'
 import { useCurrentChannel, useCurrentMessages, useCurrentServer } from '~/features/zero/useServer'
-import { mutate, useQuery } from '~/features/zero/zero'
+import { mutate } from '~/features/zero/zero'
 import { Avatar } from '~/interface/Avatar'
 import { Sidebar } from '~/interface/Sidebar'
 import { TopBar } from '~/interface/TopBar'
