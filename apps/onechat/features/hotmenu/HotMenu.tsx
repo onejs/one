@@ -2,10 +2,10 @@ import { Slash } from '@tamagui/lucide-icons'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Button } from '~/interface/Button'
 import { updateUserState, useUserState } from '../auth/useUserState'
-import { Dialog, Input } from 'tamagui'
+import { Dialog, Input, type TamaguiElement } from 'tamagui'
 import { forwardRef } from 'react'
 
-export const HotMenu = forwardRef((props, ref) => {
+export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
   const userState = useUserState()
   const showHotMenu = !!userState?.showHotMenu
 
@@ -48,6 +48,9 @@ export const HotMenu = forwardRef((props, ref) => {
             enterStyle={{ opacity: 0 }}
             exitStyle={{ opacity: 0 }}
             bg="$background075"
+            onPress={() => {
+              toggleHotMenu()
+            }}
           />
 
           <Dialog.Content

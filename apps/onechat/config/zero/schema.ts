@@ -1,46 +1,50 @@
-import { createSchema, createTableSchema, type TableSchemaToRow } from '@rocicorp/zero'
+import { createSchema, createTableSchema, definePermissions, type Row } from '@rocicorp/zero'
 
 const userSchema = createTableSchema({
   tableName: 'user',
   columns: {
-    id: { type: 'string' },
-    username: { type: 'string' },
-    email: { type: 'string' },
-    name: { type: 'string' },
-    image: { type: 'string' },
-    state: { type: 'json' },
-    updatedAt: { type: 'number' },
-    createdAt: { type: 'number' },
+    id: 'string',
+    username: 'string',
+    email: 'string',
+    name: 'string',
+    image: 'string',
+    state: 'json',
+    updatedAt: 'number',
+    createdAt: 'number',
   },
   primaryKey: ['id'],
-  relationships: {},
+  relationships: {
+    servers: [
+      {
+        sourceField: 'id',
+        destField: 'userId',
+        destSchema: () => serverMemberSchema,
+      },
+      {
+        sourceField: 'serverId',
+        destField: 'id',
+        destSchema: () => serverSchema,
+      },
+    ],
+  },
 })
 
 const serverSchema = createTableSchema({
   tableName: 'server',
   columns: {
-    id: { type: 'string' },
-    name: { type: 'string' },
-    ownerId: { type: 'string' },
-    description: { type: 'string' },
-    icon: { type: 'string' },
-    createdAt: { type: 'number' },
+    id: 'string',
+    name: 'string',
+    ownerId: 'string',
+    description: 'string',
+    icon: 'string',
+    createdAt: 'number',
   },
   primaryKey: ['id'],
   relationships: {
-    owner: {
-      source: 'ownerId',
-      dest: {
-        schema: () => userSchema,
-        field: 'id',
-      },
-    },
     channels: {
-      source: 'id',
-      dest: {
-        schema: () => channelSchema,
-        field: 'serverId',
-      },
+      sourceField: 'id',
+      destField: 'serverId',
+      destSchema: () => channelSchema,
     },
   },
 })
@@ -48,54 +52,35 @@ const serverSchema = createTableSchema({
 const serverMemberSchema = createTableSchema({
   tableName: 'serverMember',
   columns: {
-    serverId: { type: 'string' },
-    userId: { type: 'string' },
-    joinedAt: { type: 'number' },
+    serverId: 'string',
+    userId: 'string',
+    joinedAt: 'number',
+    hasClosedWelcome: { type: 'boolean' },
   },
   primaryKey: ['serverId', 'userId'],
-  relationships: {
-    server: {
-      source: 'serverId',
-      dest: {
-        schema: () => serverSchema,
-        field: 'id',
-      },
-    },
-    user: {
-      source: 'userId',
-      dest: {
-        schema: () => userSchema,
-        field: 'id',
-      },
-    },
-  },
 })
 
 const channelSchema = createTableSchema({
   tableName: 'channel',
   columns: {
-    id: { type: 'string' },
-    serverId: { type: 'string' },
-    name: { type: 'string' },
-    description: { type: 'string' },
+    id: 'string',
+    serverId: 'string',
+    name: 'string',
+    description: 'string',
     private: { type: 'boolean' },
-    createdAt: { type: 'number' },
+    createdAt: 'number',
   },
   primaryKey: ['id'],
   relationships: {
     chats: {
-      source: 'id',
-      dest: {
-        schema: () => messageSchema,
-        field: 'channelId',
-      },
+      sourceField: 'id',
+      destField: 'channelId',
+      destSchema: () => messageSchema,
     },
     threads: {
-      source: 'id',
-      dest: {
-        schema: () => threadSchema,
-        field: 'channelId',
-      },
+      sourceField: 'id',
+      destField: 'channelId',
+      destSchema: () => threadSchema,
     },
   },
 })
@@ -103,28 +88,19 @@ const channelSchema = createTableSchema({
 const threadSchema = createTableSchema({
   tableName: 'thread',
   columns: {
-    id: { type: 'string' },
-    channelId: { type: 'string' },
-    creatorId: { type: 'string' },
-    title: { type: 'string' },
-    description: { type: 'string' },
-    createdAt: { type: 'number' },
+    id: 'string',
+    channelId: 'string',
+    creatorId: 'string',
+    title: 'string',
+    description: 'string',
+    createdAt: 'number',
   },
   primaryKey: ['id'],
   relationships: {
-    creator: {
-      source: 'creatorId',
-      dest: {
-        schema: () => userSchema,
-        field: 'id',
-      },
-    },
     chats: {
-      source: 'id',
-      dest: {
-        schema: () => messageSchema,
-        field: 'channelId',
-      },
+      sourceField: 'id',
+      destField: 'channelId',
+      destSchema: () => messageSchema,
     },
   },
 })
@@ -132,26 +108,18 @@ const threadSchema = createTableSchema({
 const messageSchema = createTableSchema({
   tableName: 'message',
   columns: {
-    id: { type: 'string' },
-    serverId: { type: 'string' },
-    channelId: { type: 'string' },
+    id: 'string',
+    serverId: 'string',
+    channelId: 'string',
     threadId: { type: 'string', optional: true },
-    senderId: { type: 'string' },
-    content: { type: 'string' },
-    createdAt: { type: 'number' },
+    senderId: 'string',
+    content: 'string',
+    createdAt: 'number',
     editedAt: { type: 'number', optional: true },
     deleted: { type: 'boolean', optional: true },
   },
   primaryKey: ['id'],
-  relationships: {
-    sender: {
-      source: 'senderId',
-      dest: {
-        schema: () => userSchema,
-        field: 'id',
-      },
-    },
-  },
+  relationships: {},
 })
 
 export const schema = createSchema({
@@ -166,18 +134,65 @@ export const schema = createSchema({
   },
 })
 
+export type Schema = typeof schema
+export type Message = Row<typeof messageSchema>
+export type Server = Row<typeof serverSchema>
+export type Channel = Row<typeof channelSchema>
+export type Thread = Row<typeof threadSchema>
+export type User = Row<typeof userSchema>
+export type ServerMember = Row<typeof serverMemberSchema>
+
 // The contents of your decoded JWT.
 type AuthData = {
   sub: string
 }
 
-export type Schema = typeof schema
-export type Message = TableSchemaToRow<typeof messageSchema>
-export type Server = TableSchemaToRow<typeof serverSchema>
-export type Channel = TableSchemaToRow<typeof channelSchema>
-export type Thread = TableSchemaToRow<typeof threadSchema>
-export type User = TableSchemaToRow<typeof userSchema>
-export type ServerMember = TableSchemaToRow<typeof serverMemberSchema>
+export const permissions = definePermissions<AuthData, Schema>(schema, () => {
+  // const allowIfLoggedIn = (
+  //   authData: AuthData,
+  //   { cmpLit }: ExpressionBuilder<TableSchema>
+  // ) => cmpLit(authData.sub, "IS NOT", null);
+
+  // const allowIfMessageSender = (
+  //   authData: AuthData,
+  //   { cmp }: ExpressionBuilder<typeof messageSchema>
+  // ) => cmp("senderID", "=", authData.sub ?? "");
+
+  return {
+    // Nobody can write to the medium or user tables -- they are populated
+    // and fixed by seed.sql
+    // medium: {
+    //   row: {
+    //     insert: [],
+    //     update: {
+    //       preMutation: [],
+    //     },
+    //     delete: [],
+    //   },
+    // },
+    // user: {
+    //   row: {
+    //     insert: [],
+    //     update: {
+    //       preMutation: [],
+    //     },
+    //     delete: [],
+    //   },
+    // },
+    // message: {
+    //   row: {
+    //     // anyone can insert
+    //     insert: undefined,
+    //     // only sender can edit their own messages
+    //     update: {
+    //       preMutation: [allowIfMessageSender],
+    //     },
+    //     // must be logged in to delete
+    //     delete: [allowIfLoggedIn],
+    //   },
+    // },
+  }
+})
 
 // export const authorization = defineAuthorization<AuthData, Schema>(schema, (query) => {
 //   const allowIfLoggedIn = (authData: AuthData) => query.user.where('id', '=', authData.sub)

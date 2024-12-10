@@ -15,10 +15,9 @@ import {
 import type { Channel } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
-import { OneBall } from '~/features/brand/Logo'
 import { randomID } from '~/features/zero/randomID'
-import { useCurrentServer, useServerChannels } from '~/features/zero/useServer'
-import { mutate, useQuery } from '~/features/zero/zero'
+import { useCurrentServer, useServerChannels, useUserServers } from '~/features/zero/useServer'
+import { mutate } from '~/features/zero/zero'
 import { ListItem } from './ListItem'
 
 export const Sidebar = memo(() => {
@@ -26,14 +25,14 @@ export const Sidebar = memo(() => {
     <YStack ov="hidden" f={1} maw={250} miw={250} gap="$4">
       <SidebarServersRow />
 
-      <SidebarServerRoomsList />
+      <SidebarServerChannelsList />
 
-      <>
+      {/* <>
         <YStack>
           <SubTitle>Recently</SubTitle>
           <RoomItem active name="🧵 Some Thread" />
         </YStack>
-      </>
+      </> */}
 
       <YStack btw={1} bc="$background025" py="$2" pos="absolute" b={0} l={0} r={0}>
         <SubTitle>Recent Chats</SubTitle>
@@ -66,7 +65,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 
-const SidebarServerRoomsList = () => {
+const SidebarServerChannelsList = () => {
   const server = useCurrentServer()
   const channels = useServerChannels() || []
   const sensors = useSensors(
@@ -233,7 +232,7 @@ const ChannelListItem = forwardRef(
 )
 
 const SidebarServersRow = () => {
-  const servers = useQuery((q) => q.server.orderBy('createdAt', 'desc'))
+  const servers = useUserServers()
   const userState = useUserState()
   const { user } = useAuth()
 
@@ -241,10 +240,6 @@ const SidebarServersRow = () => {
     <XStack>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <SidebarIndent fd="row" gap="$2" py="$3">
-          <CircleIconFrame size={42} bg="$color9">
-            <OneBall size={1.5} />
-          </CircleIconFrame>
-
           {servers.map((server) => {
             return (
               <CircleIconFrame
@@ -268,14 +263,25 @@ const SidebarServersRow = () => {
                 return
               }
 
+              const serverId = randomID()
+
               mutate.server.insert({
-                id: randomID(),
+                id: serverId,
                 createdAt: new Date().getTime(),
                 description: '',
                 icon: Math.random() > 0.5 ? 'red' : 'pink',
                 name: 'Lorem',
                 ownerId: user.id,
               })
+
+              mutate.serverMember.insert({
+                hasClosedWelcome: false,
+                joinedAt: new Date().getTime(),
+                serverId,
+                userId: user.id,
+              })
+
+              console.log('inserting', serverId)
             }}
             size={42}
             bg="$color9"
