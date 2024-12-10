@@ -1,6 +1,6 @@
 import { ChevronLeft, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
 import { memo } from 'react'
-import { H3, Input, XStack } from 'tamagui'
+import { H3, Input, TooltipSimple, XStack } from 'tamagui'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
@@ -14,6 +14,7 @@ export const TopBar = memo(() => {
   const { user, session, jwtToken } = useAuth()
   const server = useCurrentServer()
   const channel = useCurrentChannel()
+  const userState = useUserState()
 
   return (
     <XStack
@@ -23,15 +24,17 @@ export const TopBar = memo(() => {
       ai="center"
       jc="space-between"
       y={2}
-      h={36}
+      h={34}
       pl={72}
       pr={4}
       mb={4}
     >
       <XStack gap="$2">
-        <HotMenu />
+        <TooltipSimple label="Menu">
+          <HotMenu />
+        </TooltipSimple>
 
-        <H3 userSelect="none" pe="none" m={0} o={0.5} size="$2">
+        <H3 cur="default" userSelect="none" pe="none" m={0} o={0.5} size="$2">
           {server?.name || '-'} - #{channel?.name || '-'}
         </H3>
       </XStack>
@@ -42,7 +45,19 @@ export const TopBar = memo(() => {
           <Input w={250} placeholder="" size="$2" bw={0} />
         </XStack>
 
-        <Button>
+        <Button
+          onPress={() => {
+            if (userState?.showSidePanel === 'settings') {
+              updateUserState({
+                showSidePanel: undefined,
+              })
+            } else {
+              updateUserState({
+                showSidePanel: 'settings',
+              })
+            }
+          }}
+        >
           <Settings2 o={0.5} size={20} />
         </Button>
 
@@ -73,7 +88,7 @@ const UserButton = () => {
         rel="noreferrer"
         // biome-ignore lint/a11y/useValidAnchor: <explanation>
         onClick={(e) => {
-          if (userState?.showSidePanel) {
+          if (userState?.showSidePanel === 'user') {
             e.preventDefault()
             updateUserState({
               showSidePanel: undefined,
