@@ -11,7 +11,7 @@ import { useState } from 'react'
 import { TamaguiProvider, YStack } from 'tamagui'
 import config from '~/config/tamagui/tamagui.config'
 import { AuthEffects } from '~/features/auth/AuthEffects'
-import { useZeroInstanceEmitter, zero } from '~/features/zero/zero'
+import { useZeroInstanceEmitter, zero } from '~/features/state/zero'
 
 export default function Layout() {
   return (
