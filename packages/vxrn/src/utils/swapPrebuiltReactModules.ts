@@ -290,6 +290,12 @@ function getReactNativeInternalModuleExports(
 
 // TODO: We can use `es-module-lexer` to parse from source code instead of hardcoding these.
 const KNOWN_REACT_NATIVE_INTERNAL_MODULE_EXPORTS = {
+  'react-native/Libraries/NativeComponent/NativeComponentRegistry': [
+    'setRuntimeConfigProvider',
+    'get',
+    'getWithFallback_DEPRECATED',
+    'unstable_hasStaticViewConfig',
+  ],
   'react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry': [
     'customBubblingEventTypes',
     'customDirectEventTypes',
