@@ -1,27 +1,10 @@
-import { Plus } from '@tamagui/lucide-icons'
 import { Menu } from '@tauri-apps/api/menu'
-import { forwardRef, memo, useState } from 'react'
-import {
-  Circle,
-  H3,
-  ScrollView,
-  SizableText,
-  Spacer,
-  styled,
-  XStack,
-  type XStackProps,
-  YStack,
-} from 'tamagui'
+import { forwardRef, memo, useEffect, useState } from 'react'
+import { H3, SizableText, Spacer, XStack, type XStackProps, YStack } from 'tamagui'
 import type { Channel } from '~/config/zero/schema'
-import { useAuth } from '~/features/auth/useAuth'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
 import { randomID } from '~/features/zero/randomID'
-import {
-  useCurrentServer,
-  useCurrentServerMembership,
-  useServerChannels,
-  useUserServers,
-} from '~/features/zero/useServer'
+import { useCurrentServer, useServerChannels, useServersQuery } from '~/features/zero/useServer'
 import { mutate } from '~/features/zero/zero'
 import { ListItem } from './ListItem'
 
@@ -69,20 +52,11 @@ import {
   useSortable,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
-
-const welcomeMessageChannel: Channel = {
-  createdAt: 0,
-  description: '',
-  id: '0',
-  name: 'Welcome',
-  private: false,
-  serverId: '',
-}
+import { SidebarServersRow } from './SidebarServersRow'
 
 const SidebarServerChannelsList = () => {
   const server = useCurrentServer()
   const channels = useServerChannels() || []
-  const serverMembership = useCurrentServerMembership()
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -96,6 +70,21 @@ const SidebarServerChannelsList = () => {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   )
+  const [{ activeServer, activeChannels }] = useUserState()
+
+  // ensure theres always a selected channel
+  useEffect(() => {
+    if (!server) return
+    if (!activeServer) return
+    if (!channels[0]) return
+    if (activeChannels[server.id]) return
+    updateUserState({
+      activeChannels: {
+        ...activeChannels,
+        [server.id]: channels[0].id,
+      },
+    })
+  }, [channels, server, activeServer])
 
   function handleDragEnd(event) {
     setDragging(null)
@@ -121,8 +110,6 @@ const SidebarServerChannelsList = () => {
   return (
     <YStack>
       <YStack pos="relative">
-        {!serverMembership?.hasClosedWelcome && <ChannelListItem channel={welcomeMessageChannel} />}
-
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -248,85 +235,6 @@ const ChannelListItem = forwardRef(
     )
   }
 )
-
-const SidebarServersRow = () => {
-  const servers = useUserServers()
-  const [userState] = useUserState()
-  const { user } = useAuth()
-
-  return (
-    <XStack>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <SidebarIndent fd="row" gap="$2" py="$3">
-          {servers.map((server) => {
-            return (
-              <CircleIconFrame
-                onPress={() => {
-                  updateUserState({
-                    activeServer: server.id,
-                  })
-                }}
-                key={server.id}
-                size={42}
-                bg={server.icon}
-                active={userState?.activeServer === server.id}
-              />
-            )
-          })}
-
-          <Circle
-            onPress={() => {
-              if (!user) {
-                alert('not signed in')
-                return
-              }
-
-              const serverId = randomID()
-
-              mutate.server.insert({
-                id: serverId,
-                createdAt: new Date().getTime(),
-                description: '',
-                icon: Math.random() > 0.5 ? 'red' : 'pink',
-                name: 'Lorem',
-                ownerId: user.id,
-              })
-
-              mutate.serverMember.insert({
-                hasClosedWelcome: false,
-                joinedAt: new Date().getTime(),
-                serverId,
-                userId: user.id,
-              })
-
-              console.log('inserting', serverId)
-            }}
-            size={42}
-            bg="$color9"
-          >
-            <Plus />
-          </Circle>
-        </SidebarIndent>
-      </ScrollView>
-    </XStack>
-  )
-}
-
-const CircleIconFrame = styled(Circle, {
-  variants: {
-    active: {
-      true: {
-        outlineColor: '#fff',
-        outlineWidth: 2,
-        outlineStyle: 'solid',
-      },
-    },
-  } as const,
-})
-
-const SidebarIndent = styled(YStack, {
-  px: '$3',
-})
 
 const SubTitle = (props) => {
   return (
