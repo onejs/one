@@ -1,5 +1,8 @@
 1.0 ordered from most work to least:
 
+  - react-native-safe-area-context
+    - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
+
   - native
     - large test suite + supports 1000 most popular dependencies
     - better hmr

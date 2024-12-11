@@ -199,7 +199,7 @@ const Main = memo(() => {
     <YStack f={1} shadowColor="$shadowColor" shadowRadius={30} btlr="$3" ov="hidden">
       <RecentThreads />
       <YStack f={1} bg="$background05">
-        <MainChatList />
+        <MainMessagesList />
         <MessageArea />
       </YStack>
     </YStack>
@@ -285,12 +285,21 @@ const MessageArea = () => {
   const channel = useCurrentChannel()
   const server = useCurrentServer()
   const { user } = useAuth()
+  const disabled = !user
 
   return (
     <YStack btw={1} bc="$color4" p="$2">
       <Input
         ref={inputRef}
+        disabled={disabled}
+        placeholder={disabled ? 'Sign in to chat...' : ''}
+        pe={disabled ? 'none' : 'auto'}
         onSubmitEditing={(e) => {
+          if (!user) {
+            console.error('no user')
+            return
+          }
+
           inputRef.current?.clear()
           mutate.message.insert({
             id: randomID(),
@@ -307,7 +316,7 @@ const MessageArea = () => {
   )
 }
 
-const MainChatList = () => {
+const MainMessagesList = () => {
   const messages = useCurrentMessages() || []
   const { user } = useAuth()
 

@@ -3,11 +3,12 @@ import './fonts.css'
 import './syntax-highlight.css'
 import './tamagui.css'
 
+import { ToastProvider, ToastViewport, useToastState, Toast } from '@tamagui/toast'
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { useState } from 'react'
-import { TamaguiProvider } from 'tamagui'
+import { TamaguiProvider, YStack } from 'tamagui'
 import config from '~/config/tamagui/tamagui.config'
 import { AuthEffects } from '~/features/auth/AuthEffects'
 import { useZeroInstanceEmitter, zero } from '~/features/zero/zero'
@@ -32,11 +33,42 @@ export default function Layout() {
       <DataProvider>
         <SchemeProvider>
           <ThemeProvider>
-            <Slot />
+            <ToastProvider swipeDirection="horizontal">
+              <Slot />
+              <ToastDisplay />
+              <ToastViewport flexDirection="column-reverse" top={0} left={0} right={0} mx="auto" />
+            </ToastProvider>
           </ThemeProvider>
         </SchemeProvider>
       </DataProvider>
     </>
+  )
+}
+
+const ToastDisplay = () => {
+  const currentToast = useToastState()
+
+  if (!currentToast || currentToast.isHandledNatively) {
+    return null
+  }
+
+  return (
+    <Toast
+      key={currentToast.id}
+      duration={currentToast.duration}
+      enterStyle={{ opacity: 0, scale: 0.5, y: -25 }}
+      exitStyle={{ opacity: 0, scale: 1, y: -20 }}
+      y={0}
+      opacity={1}
+      scale={1}
+      animation="100ms"
+      viewportName={currentToast.viewportName}
+    >
+      <YStack>
+        <Toast.Title>{currentToast.title}</Toast.Title>
+        {!!currentToast.message && <Toast.Description>{currentToast.message}</Toast.Description>}
+      </YStack>
+    </Toast>
   )
 }
 
