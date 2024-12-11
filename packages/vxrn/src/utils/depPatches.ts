@@ -360,6 +360,12 @@ const chunksize = end - start + 1;`
       '**/*.js': ['jsx'],
     },
   },
+  {
+    module: 'expo-blur',
+    patchFiles: {
+      '**/*.js': ['jsx'],
+    },
+  },
 
   {
     module: 'whatwg-url-without-unicode',
