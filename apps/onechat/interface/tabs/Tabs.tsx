@@ -14,7 +14,13 @@ function TabsComponent({
   tabs,
   children,
   initialTab,
-}: { tabs: { label: any; value: string }[]; children: any; initialTab: string }) {
+  onValueChange,
+}: {
+  tabs: { label: any; value: string }[]
+  children: any
+  initialTab: string
+  onValueChange?: (value: string) => void
+}) {
   const [selected, setSelected] = useState<string>(initialTab)
 
   const [tabState, setTabState] = useState<{
@@ -65,7 +71,10 @@ function TabsComponent({
       br="$4"
       value={selected}
       onPress={(e) => e.stopPropagation()}
-      onValueChange={setSelected}
+      onValueChange={(val) => {
+        onValueChange?.(val)
+        setSelected(val)
+      }}
       group
       f={1}
     >
@@ -119,11 +128,13 @@ function TabsComponent({
           </XStack>
         </YStack>
 
-        <AnimatePresence exitBeforeEnter custom={{ direction }} initial={false}>
+        {/* <AnimatePresence exitBeforeEnter custom={{ direction }} initial={false}>
           <AnimatedYStack f={1} key={selected}>
-            {children}
+            
           </AnimatedYStack>
-        </AnimatePresence>
+        </AnimatePresence> */}
+
+        {children}
       </YStack>
     </TamaguiTabs>
   )
