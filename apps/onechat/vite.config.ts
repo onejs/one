@@ -52,6 +52,7 @@ export default {
       },
 
       deps: {
+        'fast-xml-parser': true,
         'set-cookie-parser': true,
         'ipaddr.js': true,
         'cross-fetch': true,

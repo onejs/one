@@ -1,4 +1,13 @@
-import { MessageCircle, Reply, Smile, UserCircle } from '@tamagui/lucide-icons'
+import {
+  IndentIncrease,
+  MessageCircle,
+  MessageCircleCode,
+  MoreVertical,
+  Reply,
+  ReplyAll,
+  Smile,
+  UserCircle,
+} from '@tamagui/lucide-icons'
 import { memo, useEffect, useRef, useState } from 'react'
 import {
   Button,
@@ -12,6 +21,7 @@ import {
   SizableText,
   styled,
   TamaguiElement,
+  TooltipSimple,
   XGroup,
   XStack,
   YStack,
@@ -575,17 +585,32 @@ const MessageItem = ({
         $group-message-hover={{ o: 1 }}
       >
         <XGroup bg="$color2">
-          <Button chromeless size="$3">
-            <Smile size={16} />
+          <Button chromeless size="$2.5">
+            🙏
           </Button>
-          <Button chromeless size="$3">
-            <Smile size={16} />
+          <Button chromeless size="$2.5">
+            🥺
           </Button>
-          <Button chromeless size="$3">
-            <Smile size={16} />
+          <Button chromeless size="$2.5">
+            😊
           </Button>
-          <Button chromeless size="$3">
-            <Reply size={16} />
+
+          <Separator my="$2" vertical />
+
+          <TooltipSimple label="Create Thread">
+            <Button chromeless size="$2.5" br={0}>
+              <IndentIncrease size={16} />
+            </Button>
+          </TooltipSimple>
+
+          <TooltipSimple label="Quote Reply">
+            <Button chromeless size="$2.5" br={0}>
+              <Reply size={16} />
+            </Button>
+          </TooltipSimple>
+
+          <Button chromeless size="$2.5">
+            <MoreVertical size={16} />
           </Button>
         </XGroup>
       </XStack>
