@@ -9,11 +9,9 @@ export const useCurrentServer = () => {
 }
 
 export const useCurrentServerMembership = () => {
-  const [userState] = useUserState()
+  const [userState, { user }] = useUserState()
   return useQuery((q) =>
-    q.serverMember
-      .where('userId', userState?.activeServer || '')
-      .where('serverId', userState?.userId || '')
+    q.serverMember.where('userId', userState?.activeServer || '').where('serverId', user?.id || '')
   )[0][0]
 }
 
@@ -26,6 +24,7 @@ export const useUserServers = () => {
 
 export const useServerChannels = () => {
   const [userState] = useUserState()
+  console.log('wtf', userState?.activeServer)
   return (
     useQuery((q) =>
       q.server

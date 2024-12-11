@@ -1,12 +1,28 @@
+import {
+  closestCenter,
+  DndContext,
+  DragOverlay,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
 import { Menu } from '@tauri-apps/api/menu'
 import { forwardRef, memo, useEffect, useState } from 'react'
 import { H3, SizableText, Spacer, XStack, type XStackProps, YStack } from 'tamagui'
 import type { Channel } from '~/config/zero/schema'
 import { updateUserState, useUserState } from '~/features/auth/useUserState'
 import { randomID } from '~/features/zero/randomID'
-import { useCurrentServer, useServerChannels, useServersQuery } from '~/features/zero/useServer'
+import { useCurrentServer, useServerChannels } from '~/features/zero/useServer'
 import { mutate } from '~/features/zero/zero'
 import { ListItem } from './ListItem'
+import { SidebarServersRow } from './SidebarServersRow'
 
 export const Sidebar = memo(() => {
   return (
@@ -36,23 +52,6 @@ export const Sidebar = memo(() => {
     </YStack>
   )
 })
-
-import {
-  closestCenter,
-  DndContext,
-  DragOverlay,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core'
-import {
-  SortableContext,
-  sortableKeyboardCoordinates,
-  useSortable,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
-import { SidebarServersRow } from './SidebarServersRow'
 
 const SidebarServerChannelsList = () => {
   const server = useCurrentServer()

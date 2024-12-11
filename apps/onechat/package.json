@@ -11,6 +11,7 @@
     "auth:migrate": "npx @better-auth/cli migrate --config ./config/better-auth/auth.ts",
     "zero": "yarn zero:build-schema && zero-cache --schema-file ./config/zero/zero-schema.json",
     "zero:build-schema": "cd ./config/zero && zero-build-schema -p './schema.ts'",
+    "docker:start:clean": "yarn data:reset; yarn docker up",
     "docker": "docker compose --env-file .env",
     "data:reset": "docker compose down; docker volume rm onechat_pgdata; rm /tmp/onechat_replica.db",
     "dev": "one dev --port 1421",

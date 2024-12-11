@@ -12,8 +12,6 @@ export const SidebarServersRow = () => {
   const [{ activeServer, activeChannels }] = useUserState()
   const { user } = useAuth()
 
-  console.log('gogg', activeServer, activeChannels)
-
   return (
     <XStack>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -70,8 +68,6 @@ export const SidebarServersRow = () => {
               updateUserState({
                 activeServer: serverId,
               })
-
-              console.log('inserting', serverId)
             }}
             size={42}
             bg="$color9"
