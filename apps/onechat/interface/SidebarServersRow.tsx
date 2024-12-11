@@ -1,11 +1,11 @@
 import { Plus } from '@tamagui/lucide-icons'
-import { useEffect } from 'react'
 import { Circle, ScrollView, styled, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/features/auth/useAuth'
-import { updateUserState, useUserState } from '~/features/state/useUserState'
 import { randomID } from '~/features/state/randomID'
 import { useUserServers } from '~/features/state/useServer'
+import { updateUserState, useUserState } from '~/features/state/useUserState'
 import { mutate } from '~/features/state/zero'
+import { confirmDialog } from './Dialogs'
 
 export const SidebarServersRow = () => {
   const servers = useUserServers()
@@ -34,40 +34,47 @@ export const SidebarServersRow = () => {
 
           <Circle
             onPress={async () => {
-              if (!user) {
-                console.error('not signed in')
-                return
+              if (
+                await confirmDialog({
+                  title: 'test',
+                  description: 'ok',
+                })
+              ) {
+                if (!user) {
+                  console.error('not signed in')
+                  return
+                }
+
+                const serverId = randomID()
+
+                await mutate.server.insert({
+                  id: serverId,
+                  createdAt: new Date().getTime(),
+                  description: '',
+                  icon: Math.random() > 0.5 ? 'red' : 'pink',
+                  name: 'Lorem',
+                  ownerId: user.id,
+                })
+
+                await mutate.serverMember.insert({
+                  joinedAt: new Date().getTime(),
+                  serverId,
+                  userId: user.id,
+                })
+
+                await mutate.channel.insert({
+                  id: randomID(),
+                  createdAt: new Date().getTime(),
+                  description: '',
+                  name: 'Welcome',
+                  private: false,
+                  serverId,
+                })
+
+                updateUserState({
+                  activeServer: serverId,
+                })
               }
-
-              const serverId = randomID()
-
-              await mutate.server.insert({
-                id: serverId,
-                createdAt: new Date().getTime(),
-                description: '',
-                icon: Math.random() > 0.5 ? 'red' : 'pink',
-                name: 'Lorem',
-                ownerId: user.id,
-              })
-
-              await mutate.serverMember.insert({
-                joinedAt: new Date().getTime(),
-                serverId,
-                userId: user.id,
-              })
-
-              await mutate.channel.insert({
-                id: randomID(),
-                createdAt: new Date().getTime(),
-                description: '',
-                name: 'Welcome',
-                private: false,
-                serverId,
-              })
-
-              updateUserState({
-                activeServer: serverId,
-              })
             }}
             size={42}
             bg="$color9"
