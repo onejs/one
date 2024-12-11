@@ -5,12 +5,15 @@ export const ListItem = forwardRef<
   TamaguiElement,
   XStackProps & {
     icon?: any
+    iconAfter?: boolean
     editing?: boolean
     onEditComplete?: (value: string) => void
     onEditCancel?: () => void
     active?: boolean
   }
->(({ active, editing, onEditComplete, onEditCancel, children, icon, ...rest }, ref) => {
+>(({ active, editing, onEditComplete, onEditCancel, children, icon, iconAfter, ...rest }, ref) => {
+  const iconElement = icon ? createElement(icon, { size: 18, opacity: 0.5 }) : null
+
   return (
     <XStack
       ref={ref}
@@ -31,7 +34,7 @@ export const ListItem = forwardRef<
       })}
       {...rest}
     >
-      {icon ? createElement(icon, { size: 18, opacity: 0.5 }) : null}
+      {iconAfter ? null : iconElement}
       {editing ? (
         <Input
           size="$3"
@@ -56,6 +59,7 @@ export const ListItem = forwardRef<
           {children}
         </SizableText>
       )}
+      {iconAfter ? iconElement : null}
     </XStack>
   )
 })

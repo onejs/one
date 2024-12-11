@@ -35,7 +35,15 @@ export const TopBar = memo(() => {
           <HotMenu />
         </TooltipSimple>
 
-        <H3 cur="default" userSelect="none" pe="none" m={0} o={0.5} size="$2">
+        <H3
+          data-tauri-drag-region
+          cur="default"
+          userSelect="none"
+          pe="none"
+          m={0}
+          o={0.6}
+          size="$2"
+        >
           {server?.name || '-'} - #{channel?.name || '-'}
         </H3>
       </XStack>

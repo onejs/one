@@ -23,6 +23,7 @@ import { useCurrentServer, useServerChannels } from '~/features/state/useServer'
 import { mutate } from '~/features/state/zero'
 import { ListItem } from './ListItem'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { Plus } from '@tamagui/lucide-icons'
 
 export const SidebarServerChannelsList = () => {
   const server = useCurrentServer()
@@ -104,6 +105,8 @@ export const SidebarServerChannelsList = () => {
       </YStack>
 
       <ListItem
+        icon={Plus}
+        iconAfter
         onPress={() => {
           if (!server) {
             alert('no server')
@@ -120,7 +123,7 @@ export const SidebarServerChannelsList = () => {
           })
         }}
       >
-        Create Channel
+        New Channel
       </ListItem>
     </YStack>
   )
