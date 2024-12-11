@@ -19,6 +19,12 @@ body {
   overflow: hidden;
 }
 
+div {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
 :root {
   color-scheme: light dark;
   
