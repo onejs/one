@@ -8,7 +8,7 @@ const userSchema = createTableSchema({
     email: 'string',
     name: 'string',
     image: 'string',
-    state: 'json',
+    state: 'string',
     updatedAt: 'number',
     createdAt: 'number',
   },
