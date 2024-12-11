@@ -24,7 +24,6 @@ export const useUserServers = () => {
 
 export const useServerChannels = () => {
   const [userState] = useUserState()
-  console.log('wtf', userState?.activeServer)
   return (
     useQuery((q) =>
       q.server
