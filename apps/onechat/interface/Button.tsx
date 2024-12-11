@@ -9,16 +9,31 @@ import {
 } from 'tamagui'
 
 const ButtonFrame = styled(XStack, {
+  tag: 'button',
+  focusable: true,
+  role: 'button',
+  tabIndex: -1,
+
+  bw: 0,
   ai: 'center',
   gap: '$2',
   py: '$1.5',
   px: '$2.5',
   br: '$4',
+  bg: 'transparent',
+
   hoverStyle: {
     bg: '$background05',
   },
+
   pressStyle: {
     bg: '$background025',
+  },
+
+  focusVisibleStyle: {
+    outlineWidth: 2,
+    outlineColor: 'red',
+    outlineStyle: 'solid',
   },
 
   variants: {

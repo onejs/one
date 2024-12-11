@@ -12,7 +12,7 @@ import { TamaguiProvider, YStack } from 'tamagui'
 import config from '~/config/tamagui/tamagui.config'
 import { AuthEffects } from '~/features/auth/AuthEffects'
 import { useZeroInstanceEmitter, zero } from '~/features/state/zero'
-import { Dialogs } from '~/interface/Dialogs'
+import { Dialogs } from '~/interface/dialogs/Dialogs'
 
 export default function Layout() {
   return (
