@@ -5,7 +5,7 @@ import { randomID } from '~/features/state/randomID'
 import { useUserServers } from '~/features/state/useServer'
 import { updateUserState, useUserState } from '~/features/state/useUserState'
 import { mutate } from '~/features/state/zero'
-import { confirmDialog } from './Dialogs'
+import { dialogCreateServer } from './dialogs/DialogCreateServer'
 
 export const SidebarServersRow = () => {
   const servers = useUserServers()
@@ -34,12 +34,7 @@ export const SidebarServersRow = () => {
 
           <Circle
             onPress={async () => {
-              if (
-                await confirmDialog({
-                  title: 'test',
-                  description: 'ok',
-                })
-              ) {
+              if (await dialogCreateServer()) {
                 if (!user) {
                   console.error('not signed in')
                   return
