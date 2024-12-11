@@ -1,5 +1,5 @@
 import type { User } from '~/config/zero/schema'
-import { mutate, useQuery } from '~/features/zero/zero'
+import { mutate, useQuery } from '~/features/state/zero'
 
 // were using JSONB for UserState
 type UserState = {

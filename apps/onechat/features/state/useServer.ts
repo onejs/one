@@ -1,4 +1,4 @@
-import { useUserState } from '../auth/useUserState'
+import { useUserState } from './useUserState'
 import { useQuery } from './zero'
 
 export const useServersQuery = () => useQuery((q) => q.server)
