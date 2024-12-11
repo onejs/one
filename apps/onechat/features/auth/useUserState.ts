@@ -5,7 +5,7 @@ type UserState = {
   serversSort?: string[]
   activeServer?: string
   // serverId to channelId
-  activeChannels?: Record<string, string>
+  activeChannels: Record<string, string>
   showSidePanel?: 'user' | 'settings'
   showHotMenu?: boolean
 }
