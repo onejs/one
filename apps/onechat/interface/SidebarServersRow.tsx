@@ -2,10 +2,10 @@ import { Plus } from '@tamagui/lucide-icons'
 import { useEffect } from 'react'
 import { Circle, ScrollView, styled, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/features/auth/useAuth'
-import { updateUserState, useUserState } from '~/features/auth/useUserState'
-import { randomID } from '~/features/zero/randomID'
-import { useUserServers } from '~/features/zero/useServer'
-import { mutate } from '~/features/zero/zero'
+import { updateUserState, useUserState } from '~/features/state/useUserState'
+import { randomID } from '~/features/state/randomID'
+import { useUserServers } from '~/features/state/useServer'
+import { mutate } from '~/features/state/zero'
 
 export const SidebarServersRow = () => {
   const servers = useUserServers()

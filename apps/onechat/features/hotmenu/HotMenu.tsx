@@ -1,7 +1,7 @@
 import { Slash } from '@tamagui/lucide-icons'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Button } from '~/interface/Button'
-import { updateUserState, useUserState } from '../auth/useUserState'
+import { updateUserState, useUserState } from '../state/useUserState'
 import { Dialog, Input, type TamaguiElement } from 'tamagui'
 import { forwardRef } from 'react'
 
