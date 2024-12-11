@@ -55,7 +55,6 @@ const serverMemberSchema = createTableSchema({
     serverId: 'string',
     userId: 'string',
     joinedAt: 'number',
-    hasClosedWelcome: { type: 'boolean' },
   },
   primaryKey: ['serverId', 'userId'],
 })
