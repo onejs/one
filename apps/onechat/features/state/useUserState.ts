@@ -9,6 +9,13 @@ type UserState = {
   activeChannels: Record<string, string>
   showSidePanel?: 'user' | 'settings'
   showHotMenu?: boolean
+  channelState?: ChannelState
+}
+
+type ChannelState = {
+  [server_and_channel_id: string]: {
+    focusedMessage: string
+  }
 }
 
 // TODO
