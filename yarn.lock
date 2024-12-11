@@ -8362,6 +8362,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tamagui/toast@npm:^1.120.1":
+  version: 1.120.1
+  resolution: "@tamagui/toast@npm:1.120.1"
+  dependencies:
+    "@tamagui/animate-presence": "npm:1.120.1"
+    "@tamagui/compose-refs": "npm:1.120.1"
+    "@tamagui/constants": "npm:1.120.1"
+    "@tamagui/core": "npm:1.120.1"
+    "@tamagui/create-context": "npm:1.120.1"
+    "@tamagui/dismissable": "npm:1.120.1"
+    "@tamagui/helpers": "npm:1.120.1"
+    "@tamagui/polyfill-dev": "npm:1.120.1"
+    "@tamagui/portal": "npm:1.120.1"
+    "@tamagui/stacks": "npm:1.120.1"
+    "@tamagui/start-transition": "npm:1.120.1"
+    "@tamagui/text": "npm:1.120.1"
+    "@tamagui/use-controllable-state": "npm:1.120.1"
+    "@tamagui/visually-hidden": "npm:1.120.1"
+  peerDependencies:
+    react: "*"
+  checksum: 10/21cfd6004f1782569584cec28e5817b3abf85ef13e0a977594e7e81302bae64b6e6ed12364b03663609d62ff005fe297b5421c46b7807126fab483ff02dd6c37
+  languageName: node
+  linkType: hard
+
 "@tamagui/toggle-group@npm:1.120.1":
   version: 1.120.1
   resolution: "@tamagui/toggle-group@npm:1.120.1"
@@ -18828,6 +18852,7 @@ __metadata:
     "@tamagui/proxy-tabbable": "npm:^1.120.1"
     "@tamagui/react-native-web": "npm:^1.120.1"
     "@tamagui/themes": "npm:^1.120.1"
+    "@tamagui/toast": "npm:^1.120.1"
     "@tamagui/use-store": "npm:^1.120.1"
     "@tauri-apps/api": "npm:^2"
     "@tauri-apps/cli": "npm:^2"
