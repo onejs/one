@@ -48,7 +48,7 @@ export const Button = forwardRef<TamaguiElement, XStackProps & { size?: SizeToke
   ({ size, children, ...rest }, ref) => {
     return (
       <ButtonFrame ref={ref} {...rest}>
-        <SizableText fontSize={size} lineHeight={size}>
+        <SizableText cursor="default" userSelect="none" fontSize={size} lineHeight={size}>
           {children}
         </SizableText>
       </ButtonFrame>

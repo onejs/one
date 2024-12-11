@@ -3,8 +3,8 @@ import './fonts.css'
 import './syntax-highlight.css'
 import './tamagui.css'
 
-import { ToastProvider, ToastViewport, useToastState, Toast } from '@tamagui/toast'
 import { ZeroProvider } from '@rocicorp/zero/react'
+import { Toast, ToastProvider, ToastViewport, useToastState } from '@tamagui/toast'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { useState } from 'react'
@@ -12,6 +12,7 @@ import { TamaguiProvider, YStack } from 'tamagui'
 import config from '~/config/tamagui/tamagui.config'
 import { AuthEffects } from '~/features/auth/AuthEffects'
 import { useZeroInstanceEmitter, zero } from '~/features/state/zero'
+import { Dialogs } from '~/interface/Dialogs'
 
 export default function Layout() {
   return (
@@ -35,6 +36,7 @@ export default function Layout() {
           <ThemeProvider>
             <ToastProvider swipeDirection="horizontal">
               <Slot />
+              <Dialogs />
               <ToastDisplay />
               <ToastViewport flexDirection="column-reverse" top={0} left={0} right={0} mx="auto" />
             </ToastProvider>
