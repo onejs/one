@@ -1,3 +1,4 @@
+import type { User } from '~/config/zero/schema'
 import { mutate, useQuery } from '~/features/zero/zero'
 
 // were using JSONB for UserState
@@ -11,30 +12,45 @@ type UserState = {
 }
 
 // TODO
-let currentUser = null as any
+let currentUser = null as User | null
+
+const getUserState = () => {
+  const stateString = (currentUser?.state ?? '{}') as string
+  return JSON.parse(stateString) as UserState
+}
 
 export const useUserState = () => {
   const user = useQuery((q) => q.user)[0][0]
-  const state = (user?.state ?? {}) as UserState
   currentUser = user
-  state.activeChannels ||= {}
+  const state = getUserState()
+  const activeChannels = state.activeChannels || {}
+
   return [
-    state,
-    state ? { activeChannel: state.activeChannels[state.activeServer || ''], user } : null,
+    {
+      ...state,
+      activeChannels,
+    },
+    { activeChannel: activeChannels[state.activeServer || ''], user },
   ] as const
 }
 
 export const updateUserState = async (next: Partial<UserState>) => {
+  if (!currentUser) {
+    console.error(`No user`)
+    return
+  }
+
   const state = {
-    ...currentUser.state,
+    ...getUserState(),
     ...next,
   }
 
-  console.warn('mutating', state)
-
-  await mutate.user.update({
+  const nextUser = {
     ...currentUser,
-    // TODO deep merge
-    state,
-  })
+    state: JSON.stringify(state),
+  }
+
+  console.warn('mutating', nextUser)
+
+  await mutate.user.update(nextUser)
 }
