@@ -1,24 +1,12 @@
-import * as dotenv from 'dotenv'
 import pg from 'pg'
 import * as unicodeEmoji from 'unicode-emoji'
 
 const randomID = () => Math.random().toString(36).slice(2)
 
-dotenv.config()
-
-type Reaction = {
-  code: string
-  createdAt: number
-  id: string
-  image: string
-  updatedAt: number
-}
-
-if (!process.env.ZERO_UPSTREAM_DB) {
-  throw new Error(`Needs connection string`)
-}
-
-const connectionString = process.env.ZERO_UPSTREAM_DB.replace('127.0.0.1', 'onechat_postgres')
+const connectionString = `postgresql://user:password@127.0.0.1/onechat`.replace(
+  '127.0.0.1',
+  'onechat_postgres'
+)
 
 console.info(`Connecting to: ${connectionString}`)
 
