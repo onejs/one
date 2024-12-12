@@ -32,6 +32,14 @@ globalThis['__cachedModules'] = {
 
 globalThis['__RN_INTERNAL_MODULE_REQUIRES_MAP__'] = {}
 
+if (typeof process === 'undefined') {
+  globalThis['process'] = {
+    env: {},
+  }
+}
+
+process.env.EXPO_OS = __VXRN_PLATFORM__
+
 function printError(err) {
   return `${err instanceof Error ? `${err.message}\n${err.stack}` : err}`
 }
