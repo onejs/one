@@ -14,7 +14,6 @@ CREATE DATABASE onechat_cdb;
 
 \c onechat;
 
--- Create user table
 CREATE TABLE "user" (
     "id" VARCHAR PRIMARY KEY,
     "username" VARCHAR(200),
@@ -28,7 +27,6 @@ CREATE TABLE "user" (
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create server table
 CREATE TABLE "server" (
     "id" VARCHAR PRIMARY KEY,
     "name" VARCHAR(200) NOT NULL,
@@ -39,7 +37,6 @@ CREATE TABLE "server" (
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create serverMember junction table (for many-to-many relationship between servers and users)
 CREATE TABLE "serverMember" (
     "serverId" VARCHAR REFERENCES "server"(id),
     "userId" VARCHAR REFERENCES "user"(id),
@@ -48,7 +45,6 @@ CREATE TABLE "serverMember" (
     PRIMARY KEY ("serverId", "userId")
 );
 
--- Create channel table
 CREATE TABLE "channel" (
     "id" VARCHAR PRIMARY KEY,
     "serverId" VARCHAR REFERENCES "server"(id),
@@ -59,7 +55,6 @@ CREATE TABLE "channel" (
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create thread table
 CREATE TABLE "thread" (
     "id" VARCHAR PRIMARY KEY,
     "channelId" VARCHAR REFERENCES "channel"(id),
@@ -70,7 +65,6 @@ CREATE TABLE "thread" (
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create message table
 CREATE TABLE "message" (
     "id" VARCHAR PRIMARY KEY,
     "serverId" VARCHAR REFERENCES "server"(id),
@@ -79,36 +73,54 @@ CREATE TABLE "message" (
     "senderId" VARCHAR REFERENCES "user"(id),
     "content" TEXT NOT NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    "editedAt" TIMESTAMP NULL,
+    "updatedAt" TIMESTAMP NULL,
     "deleted" BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE "reaction" (
+    "id" VARCHAR PRIMARY KEY,
+    "code" VARCHAR,
+    "image" VARCHAR,
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP NULL
+);
+
+CREATE TABLE "messageReaction" (
+    "messageId" VARCHAR REFERENCES "message"(id),
+    "userId" VARCHAR REFERENCES "user"(id),
+    "reactionId" VARCHAR REFERENCES "reaction"(id),
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP NULL,
+    PRIMARY KEY ("messageId", "userId", "reactionId")
+);
+
 -- better-auth:
+
 create table "session" (
-    "id" text not null primary key,
-    "expiresAt" timestamp not null,
-    "token" text not null unique,
-    "createdAt" timestamp not null,
-    "updatedAt" timestamp not null,
+    id text NOT NULL PRIMARY KEY,
+    "expiresAt" timestamp without time zone NOT NULL,
+    token text NOT NULL,
+    "createdAt" timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone NOT NULL,
     "ipAddress" text,
     "userAgent" text,
-    "userId" text not null references "user" ("id")
+    "userId" text NOT NULL references "user"(id)
 );
 
 create table "account" (
-    "id" text not null primary key,
-    "accountId" text not null,
-    "providerId" text not null,
-    "userId" text not null references "user" ("id"),
+    id text NOT NULL PRIMARY KEY,
+    "accountId" text NOT NULL,
+    "providerId" text NOT NULL,
+    "userId" text NOT NULL references "user"(id),
     "accessToken" text,
     "refreshToken" text,
     "idToken" text,
-    "accessTokenExpiresAt" timestamp,
-    "refreshTokenExpiresAt" timestamp,
-    "scope" text,
-    "password" text,
-    "createdAt" timestamp not null,
-    "updatedAt" timestamp not null
+    "accessTokenExpiresAt" timestamp without time zone,
+    "refreshTokenExpiresAt" timestamp without time zone,
+    scope text,
+    password text,
+    "createdAt" timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone NOT NULL
 );
 
 create table "verification" (
