@@ -3,13 +3,18 @@ import FSExtra from 'fs-extra'
 import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
+import { promisify } from 'node:util'
+import { fileURLToPath } from 'node:url'
 import { cloneStarter } from './helpers/cloneStarter'
 import { getProjectName } from './helpers/getProjectName'
 import { getTemplateInfo } from './helpers/getTemplateInfo'
 import { installDependencies } from './helpers/installDependencies'
 import { validateNpmName } from './helpers/validateNpmPackage'
 import prompts from 'prompts'
-import { detectPackageManager, type PackageManagerName } from './helpers/detectPackageManager'
+import {
+  detectPackageManager,
+  type PackageManagerName,
+} from './helpers/detectPackageManager'
 
 const { existsSync, readFileSync, writeFileSync } = FSExtra
 
@@ -98,8 +103,44 @@ export async function create(args: { template?: string; name?: string }) {
   console.info()
   console.info()
 
+  const packageJson = await (async () => {
+    const errorMessages: string[] = []
+
+    try {
+      const dirname =
+        typeof __dirname !== 'undefined'
+          ? __dirname
+          : path.dirname(fileURLToPath(import.meta.url))
+
+      // Test the paths to ensure they exist
+      const possiblePaths = [
+        path.join(dirname, '..', 'package.json'),
+        path.join(dirname, '..', '..', 'package.json'),
+        path.join(dirname, '..', '..', '..', 'package.json'),
+      ]
+
+      const readFile = promisify(fs.readFile)
+
+      for (const p of possiblePaths) {
+        try {
+          const data = JSON.parse((await readFile(p)) as any)
+          return data
+        } catch (e) {
+          if (e instanceof Error) errorMessages.push(e.message)
+        }
+      }
+
+      throw new Error('package.json not found in any of the expected locations.')
+    } catch (e) {
+      console.error('Failed to load package.json:', errorMessages.join('\n'))
+      throw e
+    }
+  })()
+
   // change root package.json's name to project name
   updatePackageJsonName(projectName, resolvedProjectPath)
+  // replace `"workspace:^"` with the actual version
+  updatePackageJsonVersions(packageJson.version, resolvedProjectPath)
   // change root app.json's name to project name
   updateAppJsonName(projectName, resolvedProjectPath)
 
@@ -174,8 +215,24 @@ function updatePackageJsonName(projectName: string, dir: string) {
   const packageJsonPath = path.join(dir, 'package.json')
   if (existsSync(packageJsonPath)) {
     const content = readFileSync(packageJsonPath).toString()
-    const contentWithUpdatedName = content.replace(/("name": ")(.*)(",)/, `$1${projectName}$3`)
+    const contentWithUpdatedName = content.replace(
+      /("name": ")(.*)(",)/,
+      `$1${projectName}$3`
+    )
     writeFileSync(packageJsonPath, contentWithUpdatedName)
+  }
+}
+
+function updatePackageJsonVersions(version: string, dir: string) {
+  const packageJsonPath = path.join(dir, 'package.json')
+  if (existsSync(packageJsonPath)) {
+    const content = readFileSync(packageJsonPath).toString()
+    // https://yarnpkg.com/features/workspaces#cross-references
+    const contentWithUpdatedVersions = content
+      .replace(/"workspace:\^"/gm, `"^${version}"`)
+      .replace(/"workspace:~"/gm, `"~${version}"`)
+      .replace(/"workspace:\*"/gm, `"${version}"`)
+    writeFileSync(packageJsonPath, contentWithUpdatedVersions)
   }
 }
 
