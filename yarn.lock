@@ -8951,7 +8951,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/helpers-icon@npm:1.120.1":
+"@tamagui/helpers-icon@npm:1.120.1, @tamagui/helpers-icon@npm:^1.120.1":
   version: 1.120.1
   resolution: "@tamagui/helpers-icon@npm:1.120.1"
   dependencies:
@@ -20200,6 +20200,7 @@ __metadata:
     "@rocicorp/zero": "npm:0.8.2024121204"
     "@supabase/supabase-js": "npm:^2.44.4"
     "@tamagui/button": "npm:^1.120.1"
+    "@tamagui/helpers-icon": "npm:^1.120.1"
     "@tamagui/input": "npm:^1.120.1"
     "@tamagui/linear-gradient": "npm:^1.120.1"
     "@tamagui/lucide-icons": "npm:^1.120.1"
