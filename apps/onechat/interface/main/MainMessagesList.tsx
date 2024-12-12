@@ -2,6 +2,7 @@ import { IndentIncrease, MoreVertical, Reply } from '@tamagui/lucide-icons'
 import { useEffect, useRef } from 'react'
 import {
   Button,
+  ButtonProps,
   ScrollView,
   Separator,
   SizableText,
@@ -11,9 +12,11 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import type { Message, User } from '~/config/zero/schema'
+import type { Message, Reaction, User } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { useCurrentMessages } from '~/features/state/queries/useServer'
+import { randomID } from '~/features/state/randomID'
+import { mutate } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'
 
 export const MainMessagesList = () => {
@@ -51,6 +54,30 @@ export const MainMessagesList = () => {
   )
 }
 
+const topReactions: Reaction[] = [
+  {
+    code: '👍',
+    createdAt: new Date().getTime(),
+    id: randomID(),
+    image: '',
+    updatedAt: new Date().getTime(),
+  },
+  {
+    code: '🥺',
+    createdAt: new Date().getTime(),
+    id: randomID(),
+    image: '',
+    updatedAt: new Date().getTime(),
+  },
+  {
+    code: '🔥',
+    createdAt: new Date().getTime(),
+    id: randomID(),
+    image: '',
+    updatedAt: new Date().getTime(),
+  },
+]
+
 const MessageItem = ({
   message,
   user,
@@ -78,15 +105,9 @@ const MessageItem = ({
         $group-message-hover={{ o: 1 }}
       >
         <XGroup bg="$color2">
-          <Button chromeless size="$2.5">
-            🙏
-          </Button>
-          <Button chromeless size="$2.5">
-            🥺
-          </Button>
-          <Button chromeless size="$2.5">
-            😊
-          </Button>
+          {topReactions.map((reaction) => {
+            return <ReactionButton key={reaction.id} message={message} reaction={reaction} />
+          })}
 
           <Separator my="$2" vertical />
 
@@ -122,5 +143,25 @@ const MessageItem = ({
         </SizableText>
       </YStack>
     </XStack>
+  )
+}
+
+const ReactionButton = ({
+  reaction,
+  ...rest
+}: ButtonProps & { message: Message; reaction: Reaction }) => {
+  return (
+    <Button
+      chromeless
+      size="$2.5"
+      {...rest}
+      onPress={() => {
+        mutate.reaction.insert({
+          // TODO
+        })
+      }}
+    >
+      {reaction.code}
+    </Button>
   )
 }
