@@ -16,13 +16,15 @@ import type { Message, Reaction, User } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { useCurrentMessages } from '~/features/state/queries/useServer'
 import { randomID } from '~/features/state/randomID'
-import { mutate } from '~/features/state/zero'
+import { mutate, useQuery, zero } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'
 
 export const MainMessagesList = () => {
   const messages = useCurrentMessages() || []
   const { user } = useAuth()
   const scrollViewRef = useRef<TamaguiElement>(null)
+
+  useSeedTopReactions()
 
   useEffect(() => {
     if (scrollViewRef.current instanceof HTMLElement) {
@@ -54,7 +56,7 @@ export const MainMessagesList = () => {
   )
 }
 
-const topReactions: Reaction[] = [
+const defaultTopReactions: Reaction[] = [
   {
     code: '👍',
     createdAt: new Date().getTime(),
@@ -78,11 +80,39 @@ const topReactions: Reaction[] = [
   },
 ]
 
+// TEMP seed top reactions
+function useSeedTopReactions() {
+  const [topReactions, { type }] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
+
+  useEffect(() => {
+    if (type !== 'complete') return
+    if (topReactions.length < 3) {
+      for (const reaction of defaultTopReactions) {
+        mutate.reaction.insert(reaction)
+      }
+    }
+  }, [type, topReactions])
+}
+
 const MessageItem = ({
   message,
   user,
   hideUser,
-}: { message: Message; user: User; hideUser?: boolean }) => {
+}: { message: Message & { reactions: Reaction[] }; user: User; hideUser?: boolean }) => {
+  const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
+
+  // reaction.id => count
+  const reactionCounts: Record<string, number> = {}
+
+  console.log('message.reactions', message.reactions)
+
+  for (const reaction of message.reactions) {
+    if (reaction.id) {
+      reactionCounts[reaction.id] ||= 0
+      reactionCounts[reaction.id]++
+    }
+  }
+
   return (
     <XStack
       f={1}
@@ -141,6 +171,23 @@ const MessageItem = ({
         <SizableText f={1} ov="hidden">
           {message.content}
         </SizableText>
+
+        <XStack>
+          {Object.entries(reactionCounts).map(([id, count]) => {
+            const reaction = message.reactions.find((x) => x.id === id)
+            if (!reaction) {
+              return null
+            }
+            return (
+              <ReactionButton
+                key={reaction.id}
+                count={count}
+                message={message}
+                reaction={reaction}
+              />
+            )
+          })}
+        </XStack>
       </YStack>
     </XStack>
   )
@@ -148,19 +195,47 @@ const MessageItem = ({
 
 const ReactionButton = ({
   reaction,
+  message,
+  count,
   ...rest
-}: ButtonProps & { message: Message; reaction: Reaction }) => {
+}: ButtonProps & { count: number; message: Message; reaction: Pick<Reaction, 'id' | 'code'> }) => {
+  const { user } = useAuth()
+
   return (
     <Button
       chromeless
       size="$2.5"
       {...rest}
       onPress={() => {
-        mutate.reaction.insert({
-          // TODO
+        if (!user) {
+          return
+        }
+
+        mutate.messageReaction.insert({
+          createdAt: new Date().getTime(),
+          messageId: message.id,
+          reactionId: reaction.id,
+          userId: user.id,
         })
       }}
     >
+      {typeof count === 'number' && (
+        <SizableText
+          pos="absolute"
+          t={-5}
+          br="$10"
+          r={-5}
+          bg="$color5"
+          w={20}
+          h={20}
+          size="$1"
+          lh={20}
+          ai="center"
+          jc="center"
+        >
+          {count}
+        </SizableText>
+      )}
       {reaction.code}
     </Button>
   )
