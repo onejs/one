@@ -151,8 +151,7 @@ const reactionSchema = createTableSchema({
   primaryKey: ['id'],
   columns: {
     id: 'string',
-    code: { type: 'string', optional: true },
-    image: { type: 'string', optional: true },
+    value: 'string',
     createdAt: 'number',
     updatedAt: { type: 'number', optional: true },
   },

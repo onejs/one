@@ -79,11 +79,13 @@ CREATE TABLE "message" (
 
 CREATE TABLE "reaction" (
     "id" VARCHAR PRIMARY KEY,
-    "code" VARCHAR,
-    "image" VARCHAR,
+    "value" VARCHAR UNIQUE,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NULL
 );
+
+CREATE UNIQUE INDEX idx_unique_image ON "reaction" ("image")
+WHERE "code" IS NULL;
 
 CREATE TABLE "messageReaction" (
     "messageId" VARCHAR REFERENCES "message"(id),
