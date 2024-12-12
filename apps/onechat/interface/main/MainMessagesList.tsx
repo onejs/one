@@ -2,7 +2,7 @@ import { IndentIncrease, MoreVertical, Reply } from '@tamagui/lucide-icons'
 import { useEffect, useRef } from 'react'
 import {
   Button,
-  ButtonProps,
+  type ButtonProps,
   ScrollView,
   Separator,
   SizableText,
@@ -15,16 +15,13 @@ import {
 import type { Message, Reaction, User } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { useCurrentMessages } from '~/features/state/queries/useServer'
-import { randomID } from '~/features/state/randomID'
-import { mutate, useQuery, zero } from '~/features/state/zero'
+import { mutate, useQuery } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'
 
 export const MainMessagesList = () => {
   const messages = useCurrentMessages() || []
   const { user } = useAuth()
   const scrollViewRef = useRef<TamaguiElement>(null)
-
-  useSeedTopReactions()
 
   useEffect(() => {
     if (scrollViewRef.current instanceof HTMLElement) {
@@ -54,44 +51,6 @@ export const MainMessagesList = () => {
       </ScrollView>
     </YStack>
   )
-}
-
-const defaultTopReactions: Reaction[] = [
-  {
-    code: '👍',
-    createdAt: new Date().getTime(),
-    id: randomID(),
-    image: '',
-    updatedAt: new Date().getTime(),
-  },
-  {
-    code: '🥺',
-    createdAt: new Date().getTime(),
-    id: randomID(),
-    image: '',
-    updatedAt: new Date().getTime(),
-  },
-  {
-    code: '🔥',
-    createdAt: new Date().getTime(),
-    id: randomID(),
-    image: '',
-    updatedAt: new Date().getTime(),
-  },
-]
-
-// TEMP seed top reactions
-function useSeedTopReactions() {
-  const [topReactions, { type }] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
-
-  useEffect(() => {
-    if (type !== 'complete') return
-    if (topReactions.length < 3) {
-      for (const reaction of defaultTopReactions) {
-        mutate.reaction.insert(reaction)
-      }
-    }
-  }, [type, topReactions])
 }
 
 const MessageItem = ({
@@ -198,7 +157,7 @@ const ReactionButton = ({
   message,
   count,
   ...rest
-}: ButtonProps & { count: number; message: Message; reaction: Pick<Reaction, 'id' | 'code'> }) => {
+}: ButtonProps & { count: number; message: Message; reaction: Pick<Reaction, 'id' | 'value'> }) => {
   const { user } = useAuth()
 
   return (
@@ -236,7 +195,7 @@ const ReactionButton = ({
           {count}
         </SizableText>
       )}
-      {reaction.code}
+      {reaction.value}
     </Button>
   )
 }

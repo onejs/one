@@ -20215,7 +20215,8 @@ __metadata:
     react-hotkeys-hook: "npm:^4.6.1"
     react-native: "npm:0.74.1"
     tamagui: "npm:^1.120.1"
-    tsx: "npm:^4.19.0"
+    tsx: "npm:^4.19.2"
+    unicode-emoji: "npm:^2.6.0"
     vite-tsconfig-paths: "npm:^5.0.1"
   languageName: unknown
   linkType: soft
@@ -24230,7 +24231,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.19.1":
+"tsx@npm:^4.19.1, tsx@npm:^4.19.2":
   version: 4.19.2
   resolution: "tsx@npm:4.19.2"
   dependencies:
@@ -24589,6 +24590,13 @@ __metadata:
   version: 2.0.1
   resolution: "unicode-canonical-property-names-ecmascript@npm:2.0.1"
   checksum: 10/3c3dabdb1d22aef4904399f9e810d0b71c0b12b3815169d96fac97e56d5642840c6071cf709adcace2252bc6bb80242396c2ec74b37224eb015c5f7aca40bad7
+  languageName: node
+  linkType: hard
+
+"unicode-emoji@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "unicode-emoji@npm:2.6.0"
+  checksum: 10/4677a42cc6ca96bf4022e0abd4281ade7bc78628fe7a21ccbe6b4aabe0c7dd707b6f29171076adb3af5e2c3f7ee9228ed3f6586f972adc1c5c9b49c02799c226
   languageName: node
   linkType: hard
 

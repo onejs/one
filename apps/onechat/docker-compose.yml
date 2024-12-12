@@ -26,6 +26,17 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./config/postgres/:/docker-entrypoint-initdb.d
 
+  seeder:
+    image: oven/bun:latest
+    depends_on:
+      - onechat_postgres
+    volumes:
+      - ./config/postgres/:/app
+    working_dir: /app
+    environment:
+      - ZERO_UPSTREAM_DB=${ZERO_UPSTREAM_DB}
+    command: bun run seed.ts
+
 volumes:
   pgdata:
     driver: local
