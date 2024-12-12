@@ -8,4 +8,8 @@ export type DialogCreateServerType = {
   type: 'create-server'
 }
 
-export type DialogType = DialogConfirmType | DialogCreateServerType
+export type DialogAddFriend = {
+  type: 'add-friend'
+}
+
+export type DialogType = DialogConfirmType | DialogCreateServerType | DialogAddFriend
