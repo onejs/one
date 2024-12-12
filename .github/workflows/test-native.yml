@@ -181,9 +181,6 @@ jobs:
           key: ${{ needs.build-ios-test-app.outputs.built-app-cache-key }}
           path: ${{ needs.build-ios-test-app.outputs.built-app-path }}
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
-
       - name: Get Simulator UDID
         id: get-simulator-udid
         run: |
