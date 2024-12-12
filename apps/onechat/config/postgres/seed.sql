@@ -57,6 +57,7 @@ CREATE TABLE "channel" (
 CREATE TABLE "thread" (
     "id" VARCHAR PRIMARY KEY,
     "channelId" VARCHAR REFERENCES "channel"(id),
+    "messageId" VARCHAR REFERENCES "message"(id),
     "creatorId" VARCHAR REFERENCES "user"(id),
     "title" VARCHAR(200),
     "description" VARCHAR(200),

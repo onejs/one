@@ -13,7 +13,7 @@ import {
 } from 'tamagui'
 import type { Message, User } from '~/config/zero/schema'
 import { authClient } from '~/features/auth/authClient'
-import { OneBall } from '~/features/brand/Logo'
+import { OneBall } from '~/interface/brand/Logo'
 import { useUserState } from '~/features/state/queries/useUserState'
 import { Avatar } from '~/interface/Avatar'
 import { ListItem } from '~/interface/ListItem'

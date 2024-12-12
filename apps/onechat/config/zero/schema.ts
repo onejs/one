@@ -1,4 +1,10 @@
-import { createSchema, createTableSchema, definePermissions, type Row } from '@rocicorp/zero'
+import {
+  createSchema,
+  createTableSchema,
+  definePermissions,
+  TableSchema,
+  type Row,
+} from '@rocicorp/zero'
 
 const userSchema = createTableSchema({
   tableName: 'user',
@@ -90,6 +96,7 @@ const threadSchema = createTableSchema({
     id: 'string',
     channelId: 'string',
     creatorId: 'string',
+    messageId: 'string',
     title: 'string',
     description: 'string',
     createdAt: 'number',
@@ -104,7 +111,7 @@ const threadSchema = createTableSchema({
   },
 })
 
-const messageSchema = createTableSchema({
+const messageSchema = {
   tableName: 'message',
   primaryKey: ['id'],
   columns: {
@@ -119,6 +126,12 @@ const messageSchema = createTableSchema({
     deleted: { type: 'boolean', optional: true },
   },
   relationships: {
+    thread: {
+      sourceField: 'id',
+      destField: 'messageId',
+      destSchema: () => threadSchema,
+    },
+
     reactions: [
       {
         sourceField: 'id',
@@ -132,7 +145,7 @@ const messageSchema = createTableSchema({
       },
     ],
   },
-})
+} as const
 
 const messageReactionSchema = createTableSchema({
   tableName: 'messageReaction',

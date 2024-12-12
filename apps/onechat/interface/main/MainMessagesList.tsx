@@ -12,13 +12,16 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import type { Message, Reaction, User } from '~/config/zero/schema'
+import type { Channel, Message, Reaction, Thread, User } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
-import { useCurrentMessages } from '~/features/state/queries/useServer'
+import { useCurrentChannel, useCurrentMessages } from '~/features/state/queries/useServer'
+import { currentUser } from '~/features/state/queries/useUserState'
+import { randomID } from '~/features/state/randomID'
 import { mutate, useQuery } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'
 
 export const MainMessagesList = () => {
+  const channel = useCurrentChannel()
   const messages = useCurrentMessages() || []
   const { user } = useAuth()
   const scrollViewRef = useRef<TamaguiElement>(null)
@@ -40,6 +43,7 @@ export const MainMessagesList = () => {
                 return (
                   <MessageItem
                     hideUser={lastMessage?.senderId === message.senderId}
+                    channel={channel}
                     key={message.id}
                     message={message}
                     user={user as any}
@@ -55,9 +59,15 @@ export const MainMessagesList = () => {
 
 const MessageItem = ({
   message,
+  channel,
   user,
   hideUser,
-}: { message: Message & { reactions: Reaction[] }; user: User; hideUser?: boolean }) => {
+}: {
+  message: Message & { reactions: Reaction[]; thread: Thread[] }
+  channel: Channel
+  user: User
+  hideUser?: boolean
+}) => {
   const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
 
   // reaction.id => count
@@ -99,7 +109,27 @@ const MessageItem = ({
           <Separator my="$2" vertical />
 
           <TooltipSimple label="Create Thread">
-            <Button chromeless size="$2.5" br={0}>
+            <Button
+              onPress={() => {
+                if (!currentUser) {
+                  console.error(`no user`)
+                  return
+                }
+
+                mutate.thread.insert({
+                  id: randomID(),
+                  channelId: channel.id,
+                  messageId: message.id,
+                  createdAt: new Date().getTime(),
+                  creatorId: currentUser.id,
+                  description: '',
+                  title: '',
+                })
+              }}
+              chromeless
+              size="$2.5"
+              br={0}
+            >
               <IndentIncrease size={16} />
             </Button>
           </TooltipSimple>
@@ -117,6 +147,8 @@ const MessageItem = ({
       </XStack>
 
       <XStack w={32}>{!hideUser && <Avatar image={user.image} />}</XStack>
+
+      {message.thread[0] && <SizableText>HAS A THREASD</SizableText>}
 
       <YStack f={1} gap="$1">
         {!hideUser && (
@@ -155,7 +187,11 @@ const ReactionButton = ({
   message,
   count,
   ...rest
-}: ButtonProps & { count: number; message: Message; reaction: Pick<Reaction, 'id' | 'value'> }) => {
+}: ButtonProps & {
+  count?: number
+  message: Message
+  reaction: Pick<Reaction, 'id' | 'value'>
+}) => {
   const { user } = useAuth()
 
   return (

@@ -2,7 +2,6 @@ import type React from 'react'
 import { type DragEvent, useEffect, useRef, useState } from 'react'
 import {
   Button,
-  Circle,
   Dialog,
   Input,
   Paragraph,
@@ -12,12 +11,12 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
+import { insertServer } from '~/features/state/actions/mutateServer'
 import { createEmitter } from '~/helpers/emitter'
+import { Avatar } from '../Avatar'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
 import { DialogContent, dialogEmitter, DialogOverlay, useDialogEmitter } from './shared'
-import { insertServer } from '~/features/state/actions/insertServer'
-import { Avatar } from '../Avatar'
 
 const [dialogCreateServerEmitter] = createEmitter<boolean>()
 
