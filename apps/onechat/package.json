@@ -46,7 +46,7 @@
     "postmark": "^3.0.18",
     "react": "^18",
     "react-hotkeys-hook": "^4.6.1",
-    "react-native": "0.74.1",
+    "react-native": "0.76.4",
     "tamagui": "^1.120.1"
   },
   "devDependencies": {
