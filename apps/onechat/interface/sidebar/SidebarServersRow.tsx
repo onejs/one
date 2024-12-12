@@ -3,8 +3,8 @@ import { Circle, ScrollView, styled, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/features/auth/useAuth'
 import { useUserServers } from '~/features/state/queries/useServer'
 import { updateUserState, useUserState } from '~/features/state/queries/useUserState'
-import { Avatar } from './Avatar'
-import { dialogCreateServer } from './dialogs/DialogCreateServer'
+import { Avatar } from '../Avatar'
+import { dialogCreateServer } from '../dialogs/DialogCreateServer'
 
 export const SidebarServersRow = () => {
   const servers = useUserServers()

@@ -1,6 +1,6 @@
 import { Slash } from '@tamagui/lucide-icons'
 import { useHotkeys } from 'react-hotkeys-hook'
-import { Button } from '~/interface/Button'
+import { ButtonSimple } from '~/interface/ButtonSimple'
 import { updateUserState, useUserState } from '../state/queries/useUserState'
 import { Dialog, Input, type TamaguiElement } from 'tamagui'
 import { forwardRef } from 'react'
@@ -31,14 +31,14 @@ export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
 
   return (
     <>
-      <Button
+      <ButtonSimple
         ref={ref}
         onPress={() => {
           toggleHotMenu()
         }}
       >
         <Slash size={12} />
-      </Button>
+      </ButtonSimple>
 
       <Dialog modal open={showHotMenu}>
         <Dialog.Portal>

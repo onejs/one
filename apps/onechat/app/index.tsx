@@ -1,26 +1,11 @@
-import {
-  IndentIncrease,
-  MessageCircle,
-  MessageCircleCode,
-  MoreVertical,
-  Reply,
-  ReplyAll,
-  Smile,
-  UserCircle,
-} from '@tamagui/lucide-icons'
-import { memo, useEffect, useRef, useState } from 'react'
+import { IndentIncrease, MoreVertical, Reply } from '@tamagui/lucide-icons'
+import { useState } from 'react'
 import {
   Button,
   Circle,
-  Dialog,
   H3,
-  Input,
-  Paragraph,
-  ScrollView,
   Separator,
   SizableText,
-  styled,
-  TamaguiElement,
   TooltipSimple,
   XGroup,
   XStack,
@@ -28,22 +13,13 @@ import {
 } from 'tamagui'
 import type { Message, User } from '~/config/zero/schema'
 import { authClient } from '~/features/auth/authClient'
-import { githubSignIn } from '~/features/auth/githubSignIn'
-import { useAuth } from '~/features/auth/useAuth'
-import { useUserState } from '~/features/state/queries/useUserState'
 import { OneBall } from '~/features/brand/Logo'
-import { isTauri } from '~/features/tauri/constants'
-import { randomID } from '~/features/state/randomID'
-import {
-  useCurrentChannel,
-  useCurrentMessages,
-  useCurrentServer,
-} from '~/features/state/queries/useServer'
-import { mutate } from '~/features/state/zero'
+import { useUserState } from '~/features/state/queries/useUserState'
 import { Avatar } from '~/interface/Avatar'
 import { ListItem } from '~/interface/ListItem'
-import { Sidebar } from '~/interface/Sidebar'
-import { ThemeToggleListItem } from '~/interface/ThemeToggleListItem'
+import { Main } from '~/interface/main/Main'
+import { ThemeToggleListItem } from '~/interface/settings/ThemeToggleListItem'
+import { Sidebar } from '~/interface/sidebar/Sidebar'
 import { TopBar } from '~/interface/TopBar'
 
 const hiddenPanelWidth = 300
@@ -54,7 +30,6 @@ export default function HomePage() {
   return (
     <YStack h={0} f={1} x={userState?.showSidePanel ? -hiddenPanelWidth : 0} animation="quicker">
       <TopBar />
-      <Dialogs />
 
       <XStack h={0} ai="stretch" f={1}>
         <Sidebar />
@@ -119,81 +94,6 @@ const RightSideAccount = () => {
   )
 }
 
-const Dialogs = () => {
-  return <>{/* <FinishAuthInAppDialog /> */}</>
-}
-
-const FinishAuthInAppDialog = () => {
-  const auth = useAuth()
-  const token = auth.session?.token
-
-  if (isTauri) {
-    return null
-  }
-
-  return (
-    <>
-      <Dialog modal open={!!token}>
-        <Dialog.Portal>
-          <Dialog.Overlay
-            key="overlay"
-            animation="lazy"
-            enterStyle={{ opacity: 0 }}
-            exitStyle={{ opacity: 0 }}
-            bg="$background075"
-          />
-
-          <Dialog.Content
-            bordered
-            elevate
-            bg="$color2"
-            key="content"
-            animation={[
-              'medium',
-              {
-                opacity: {
-                  overshootClamping: true,
-                },
-              },
-            ]}
-            enterStyle={{ x: 0, y: -10, opacity: 0 }}
-            exitStyle={{ x: 0, y: 10, opacity: 0 }}
-            gap="$4"
-          >
-            <H3>Finish</H3>
-            <Paragraph>To authenticate in the native app:</Paragraph>
-
-            <a href={`one-chat://finish-auth?token=${token}`}>
-              <Button>Authenticate in Native App</Button>
-            </a>
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog>
-    </>
-  )
-}
-
-const UserButton = () => {
-  return (
-    <>
-      <a
-        target="_blank"
-        href={window.location.origin + '/login-github'}
-        rel="noreferrer"
-        onClick={(e) => {
-          if (isTauri) return
-          e.preventDefault()
-          githubSignIn()
-        }}
-      >
-        <ThreadButtonFrame>
-          <UserCircle size={20} o={0.5} />
-        </ThreadButtonFrame>
-      </a>
-    </>
-  )
-}
-
 // <a target="_blank" href={window.location.origin + '/login-github'} rel="noreferrer">
 // <Button size="$2">Github</Button>
 // </a>
@@ -209,181 +109,6 @@ const UserButton = () => {
 //   Sign out
 // </Button>
 // )}
-
-const Main = memo(() => {
-  return (
-    <YStack f={1} shadowColor="$shadowColor" shadowRadius={30} btlr="$3" ov="hidden">
-      <RecentThreads />
-      <YStack f={1} bg="$background05">
-        <MainMessagesList />
-        <MessageArea />
-      </YStack>
-    </YStack>
-  )
-})
-
-const ThreadButtonFrame = styled(XStack, {
-  ai: 'center',
-  gap: '$2',
-  py: '$1.5',
-  px: '$2.5',
-  br: '$4',
-  hoverStyle: {
-    bg: '$color3',
-  },
-
-  variants: {
-    active: {
-      true: {
-        bg: '$color3',
-      },
-    },
-
-    size: {
-      large: {
-        py: '$3',
-        px: '$4',
-      },
-    },
-  } as const,
-})
-
-const RecentThreads = () => {
-  return (
-    <XStack pos="absolute" t={0} l={0} r={0} bg="$color1" elevation={4} zi={100}>
-      <XStack p="$2" px="$3" ai="center" gap="$1">
-        {/* <ThreadButtonFrame active>
-          <Book size={18} />
-        </ThreadButtonFrame> */}
-        <ChatThreadButton />
-      </XStack>
-
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} ml={-20}>
-        <XStack p="$2" px="$3" ai="center" gap="$1">
-          <ThreadButton />
-          <ThreadButton />
-          <ThreadButton />
-          <ThreadButton />
-        </XStack>
-      </ScrollView>
-    </XStack>
-  )
-}
-
-const ChatThreadButton = () => {
-  return (
-    <ThreadButtonFrame active>
-      <MessageCircle size={20} />
-
-      <SizableText userSelect="none" cur="default" f={1} ov="hidden">
-        Chat
-      </SizableText>
-    </ThreadButtonFrame>
-  )
-}
-
-const ThreadButton = () => {
-  return (
-    <ThreadButtonFrame>
-      <Circle size={26} bg="$color9">
-        <OneBall size={0.8} />
-      </Circle>
-
-      <SizableText userSelect="none" cur="default" f={1} ov="hidden">
-        Some Thread
-      </SizableText>
-    </ThreadButtonFrame>
-  )
-}
-
-const MessageArea = () => {
-  const inputRef = useRef<Input>(null)
-  const channel = useCurrentChannel()
-  const server = useCurrentServer()
-  const { user } = useAuth()
-  const disabled = !user
-
-  // on channel change, focus input
-  useEffect(() => {
-    inputRef.current?.focus()
-  }, [channel])
-
-  return (
-    <YStack btw={1} bc="$color4" p="$2">
-      <Input
-        ref={inputRef}
-        disabled={disabled}
-        placeholder={disabled ? 'Sign in to chat...' : ''}
-        pe={disabled ? 'none' : 'auto'}
-        onKeyPress={(e) => {
-          const key = e.nativeEvent.key
-          console.log('type', key)
-
-          switch (key) {
-            case 'ArrowUp': {
-            }
-          }
-        }}
-        onSubmitEditing={(e) => {
-          if (!user) {
-            console.error('no user')
-            return
-          }
-
-          inputRef.current?.clear()
-          mutate.message.insert({
-            id: randomID(),
-            channelId: channel.id,
-            content: e.nativeEvent.text,
-            createdAt: new Date().getTime(),
-            deleted: false,
-            senderId: user!.id,
-            serverId: server.id,
-          })
-
-          setTimeout(() => {
-            inputRef.current?.focus()
-          }, 40)
-        }}
-      />
-    </YStack>
-  )
-}
-
-const MainMessagesList = () => {
-  const messages = useCurrentMessages() || []
-  const { user } = useAuth()
-  const scrollViewRef = useRef<TamaguiElement>(null)
-
-  useEffect(() => {
-    if (scrollViewRef.current instanceof HTMLElement) {
-      scrollViewRef.current.scrollTop = 100_000
-    }
-  }, [messages])
-
-  return (
-    <YStack ov="hidden" f={1}>
-      <YStack f={100} />
-      <ScrollView ref={scrollViewRef as any}>
-        <YStack pt="$10">
-          {user
-            ? messages.map((message, index) => {
-                const lastMessage = messages[index - 1]
-                return (
-                  <MessageItem
-                    hideUser={lastMessage?.senderId === message.senderId}
-                    key={message.id}
-                    message={message}
-                    user={user as any}
-                  />
-                )
-              })
-            : null}
-        </YStack>
-      </ScrollView>
-    </YStack>
-  )
-}
 
 // <ScrollView>
 //         <YStack p="$4" pt="$10">
@@ -480,158 +205,84 @@ const MainMessagesList = () => {
 //         </YStack>
 //       </ScrollView>
 
-const DateSeparator = () => {
-  return (
-    <XStack gap="$6" ai="center" jc="center">
-      <Separator bc="rgba(0,0,0,0.1)" />
-      <SizableText>Dec 2nd, 2024</SizableText>
-      <Separator bc="rgba(0,0,0,0.1)" />
-    </XStack>
-  )
-}
+// const DateSeparator = () => {
+//   return (
+//     <XStack gap="$6" ai="center" jc="center">
+//       <Separator bc="rgba(0,0,0,0.1)" />
+//       <SizableText>Dec 2nd, 2024</SizableText>
+//       <Separator bc="rgba(0,0,0,0.1)" />
+//     </XStack>
+//   )
+// }
 
-const ThreadRow = (props: { title: string; description?: string }) => {
-  return (
-    <ThreadButtonFrame size="large">
-      <YStack>
-        <XStack ai="center" jc="center" gap="$2">
-          <Circle size={32} bg="$color9">
-            <OneBall size={1} />
-          </Circle>
+// const ThreadRow = (props: { title: string; description?: string }) => {
+//   return (
+//     <ThreadButtonFrame size="large">
+//       <YStack>
+//         <XStack ai="center" jc="center" gap="$2">
+//           <Circle size={32} bg="$color9">
+//             <OneBall size={1} />
+//           </Circle>
 
-          <SizableText size="$5" userSelect="none" cur="default" f={1} ov="hidden">
-            {props.title}
-          </SizableText>
-        </XStack>
+//           <SizableText size="$5" userSelect="none" cur="default" f={1} ov="hidden">
+//             {props.title}
+//           </SizableText>
+//         </XStack>
 
-        {!!props.description && <SizableText o={0.7}>{props.description}</SizableText>}
-      </YStack>
-    </ThreadButtonFrame>
-  )
-}
+//         {!!props.description && <SizableText o={0.7}>{props.description}</SizableText>}
+//       </YStack>
+//     </ThreadButtonFrame>
+//   )
+// }
 
-const CollapsedChats = (props) => {
-  const [collapsed, setCollapsed] = useState(true)
+// const CollapsedChats = (props) => {
+//   const [collapsed, setCollapsed] = useState(true)
 
-  if (collapsed) {
-    return (
-      <YStack
-        p="$3"
-        br="$4"
-        gap="$2"
-        hoverStyle={{
-          bg: '$color3',
-        }}
-        onPress={() => {
-          setCollapsed(!collapsed)
-        }}
-      >
-        <XStack ai="center" gap="$6">
-          {/* <Separator bc="rgba(0,0,0,0.1)" /> */}
-          <SizableText style={{ fontWeight: '500' }} size="$4">
-            25 messages
-          </SizableText>
-          {/* <Separator bc="rgba(0,0,0,0.1)" /> */}
-        </XStack>
+//   if (collapsed) {
+//     return (
+//       <YStack
+//         p="$3"
+//         br="$4"
+//         gap="$2"
+//         hoverStyle={{
+//           bg: '$color3',
+//         }}
+//         onPress={() => {
+//           setCollapsed(!collapsed)
+//         }}
+//       >
+//         <XStack ai="center" gap="$6">
+//           {/* <Separator bc="rgba(0,0,0,0.1)" /> */}
+//           <SizableText style={{ fontWeight: '500' }} size="$4">
+//             25 messages
+//           </SizableText>
+//           {/* <Separator bc="rgba(0,0,0,0.1)" /> */}
+//         </XStack>
 
-        <XStack>
-          <XStack ai="center" gap="$2">
-            <Circle size={16} bg="$color9" mt={4}>
-              <OneBall size={0.7} />
-            </Circle>
-            <SizableText size="$3">natew</SizableText>
-          </XStack>
+//         <XStack>
+//           <XStack ai="center" gap="$2">
+//             <Circle size={16} bg="$color9" mt={4}>
+//               <OneBall size={0.7} />
+//             </Circle>
+//             <SizableText size="$3">natew</SizableText>
+//           </XStack>
 
-          <SizableText size="$3">
-            {' '}
-            and 3 others talked about supertokens, auth, and the next release.
-          </SizableText>
-        </XStack>
-      </YStack>
-    )
-  }
+//           <SizableText size="$3">
+//             {' '}
+//             and 3 others talked about supertokens, auth, and the next release.
+//           </SizableText>
+//         </XStack>
+//       </YStack>
+//     )
+//   }
 
-  return (
-    <YStack
-      onPress={() => {
-        setCollapsed(!collapsed)
-      }}
-    >
-      {props.children}
-    </YStack>
-  )
-}
-
-const MessageItem = ({
-  message,
-  user,
-  hideUser,
-}: { message: Message; user: User; hideUser?: boolean }) => {
-  return (
-    <XStack
-      f={1}
-      gap="$3"
-      py={hideUser ? '$1.5' : '$2.5'}
-      px="$4"
-      group="message"
-      hoverStyle={{
-        bg: '$background025',
-      }}
-    >
-      <XStack
-        pos="absolute"
-        t={-8}
-        r={8}
-        o={0}
-        elevation="$0.5"
-        br="$4"
-        zi={1000}
-        $group-message-hover={{ o: 1 }}
-      >
-        <XGroup bg="$color2">
-          <Button chromeless size="$2.5">
-            🙏
-          </Button>
-          <Button chromeless size="$2.5">
-            🥺
-          </Button>
-          <Button chromeless size="$2.5">
-            😊
-          </Button>
-
-          <Separator my="$2" vertical />
-
-          <TooltipSimple label="Create Thread">
-            <Button chromeless size="$2.5" br={0}>
-              <IndentIncrease size={16} />
-            </Button>
-          </TooltipSimple>
-
-          <TooltipSimple label="Quote Reply">
-            <Button chromeless size="$2.5" br={0}>
-              <Reply size={16} />
-            </Button>
-          </TooltipSimple>
-
-          <Button chromeless size="$2.5">
-            <MoreVertical size={16} />
-          </Button>
-        </XGroup>
-      </XStack>
-
-      <XStack w={32}>{!hideUser && <Avatar image={user.image} />}</XStack>
-
-      <YStack f={1} gap="$1">
-        {!hideUser && (
-          <SizableText o={0.5} mb={-4} fow="bold">
-            {user.username || user.name}
-          </SizableText>
-        )}
-
-        <SizableText f={1} ov="hidden">
-          {message.content}
-        </SizableText>
-      </YStack>
-    </XStack>
-  )
-}
+//   return (
+//     <YStack
+//       onPress={() => {
+//         setCollapsed(!collapsed)
+//       }}
+//     >
+//       {props.children}
+//     </YStack>
+//   )
+// }

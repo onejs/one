@@ -1,5 +1,6 @@
 import { forwardRef } from 'react'
 import {
+  type GetProps,
   SizableText,
   type SizeTokens,
   styled,
@@ -59,13 +60,19 @@ const ButtonFrame = styled(XStack, {
   } as const,
 })
 
-export const Button = forwardRef<TamaguiElement, XStackProps & { size?: SizeTokens }>(
+type ButtonFrameProps = GetProps<typeof ButtonFrame>
+
+export const ButtonSimple = forwardRef<TamaguiElement, ButtonFrameProps & { size?: SizeTokens }>(
   ({ size, children, ...rest }, ref) => {
     return (
       <ButtonFrame ref={ref} {...rest}>
-        <SizableText cursor="default" userSelect="none" fontSize={size} lineHeight={size}>
-          {children}
-        </SizableText>
+        {typeof children !== 'string' ? (
+          children
+        ) : (
+          <SizableText cursor="default" userSelect="none" fontSize={size} lineHeight={size}>
+            {children}
+          </SizableText>
+        )}
       </ButtonFrame>
     )
   }

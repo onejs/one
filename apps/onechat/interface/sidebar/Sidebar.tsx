@@ -18,7 +18,7 @@ export const Sidebar = memo(() => {
       </> */}
 
       <YStack btw={1} bc="$background025" py="$2" pos="absolute" b={0} l={0} r={0}>
-        <SubTitle>Recent Chats</SubTitle>
+        <SubTitle>Friends</SubTitle>
         <Spacer size="$2" />
 
         <RoomItem name="Nate Wienert" />

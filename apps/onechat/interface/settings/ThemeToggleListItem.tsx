@@ -3,7 +3,7 @@ import { Moon, Sun, SunMoon } from '@tamagui/lucide-icons'
 import { useSchemeSetting } from '@vxrn/color-scheme'
 import { Appearance } from 'react-native'
 import { isWeb } from 'tamagui'
-import { ListItem } from './ListItem'
+import { ListItem } from '../ListItem'
 import { useLayoutEffect } from 'react'
 
 const schemeSettings = ['light', 'dark', 'system'] as const

@@ -21,13 +21,14 @@ import { updateUserState, useUserState } from '~/features/state/queries/useUserS
 import { randomID } from '~/features/state/randomID'
 import { useCurrentServer, useServerChannels } from '~/features/state/queries/useServer'
 import { mutate } from '~/features/state/zero'
-import { ListItem } from './ListItem'
+import { ListItem } from '../ListItem'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Plus } from '@tamagui/lucide-icons'
 
 export const SidebarServerChannelsList = () => {
   const server = useCurrentServer()
   const channels = useServerChannels()
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -80,6 +81,8 @@ export const SidebarServerChannelsList = () => {
     setDragging(active)
   }
 
+  const [showTempChannel, setShowTempChannel] = useState(false)
+
   return (
     <YStack>
       <YStack pos="relative">
@@ -102,25 +105,44 @@ export const SidebarServerChannelsList = () => {
             </DragOverlay>
           </SortableContext>
         </DndContext>
+
+        {showTempChannel && (
+          <ChannelListItem
+            inserting
+            onInsert={(name) => {
+              if (!server) {
+                alert('no server')
+                return
+              }
+              const id = randomID()
+              mutate.channel.insert({
+                id,
+                createdAt: new Date().getTime(),
+                description: '',
+                name,
+                private: false,
+                serverId: server.id,
+              })
+              updateUserState({
+                activeChannels: {
+                  ...activeChannels,
+                  [activeServer!]: id,
+                },
+              })
+              setShowTempChannel(false)
+            }}
+            onInsertCancel={() => {
+              setShowTempChannel(false)
+            }}
+          />
+        )}
       </YStack>
 
       <ListItem
         icon={Plus}
         iconAfter
         onPress={() => {
-          if (!server) {
-            alert('no server')
-            return
-          }
-
-          mutate.channel.insert({
-            id: randomID(),
-            createdAt: new Date().getTime(),
-            description: '',
-            name: 'Hello',
-            private: false,
-            serverId: server.id,
-          })
+          setShowTempChannel(true)
         }}
       >
         New Channel
@@ -172,16 +194,33 @@ const ChannelListItemSortable = ({ channel }: { channel: Channel }) => {
 }
 
 const ChannelListItem = forwardRef(
-  ({ channel, ...rest }: XStackProps & { channel: Channel }, ref: any) => {
+  (
+    {
+      channel,
+      inserting,
+      onInsert,
+      onInsertCancel,
+      ...rest
+    }: XStackProps & {
+      channel?: Channel
+      inserting?: boolean
+      onInsert?: (name: string) => void
+      onInsertCancel?: () => void
+    },
+    ref: any
+  ) => {
     const [editing, setEditing] = useState(false)
     const [userState, derivedUserState] = useUserState()
 
     return (
       <ListItem
         ref={ref}
-        editing={editing}
-        active={derivedUserState?.activeChannel === channel.id}
+        editing={editing || inserting}
+        active={derivedUserState?.activeChannel === channel?.id}
         onPress={() => {
+          if (inserting || !channel) {
+            return
+          }
           updateUserState({
             activeChannels: {
               ...userState.activeChannels,
@@ -190,22 +229,33 @@ const ChannelListItem = forwardRef(
           })
         }}
         onEditCancel={() => {
-          setEditing(false)
+          if (inserting) {
+            onInsertCancel?.()
+          } else {
+            setEditing(false)
+          }
         }}
         onEditComplete={(next) => {
-          setEditing(false)
-          mutate.channel.update({
-            ...channel,
-            name: next,
-          })
+          if (inserting || !channel) {
+            onInsert?.(next)
+          } else {
+            setEditing(false)
+            mutate.channel.update({
+              ...channel,
+              name: next,
+            })
+          }
         }}
         // @ts-expect-error
         onDoubleClick={() => {
+          if (inserting || !channel) {
+            return
+          }
           setEditing(!editing)
         }}
         {...rest}
       >
-        {channel.name}
+        {channel?.name}
       </ListItem>
     )
   }
