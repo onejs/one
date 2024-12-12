@@ -8,7 +8,7 @@ import { HotMenu } from '~/features/hotmenu/HotMenu'
 import { isTauri } from '~/features/tauri/constants'
 import { useCurrentChannel, useCurrentServer } from '~/features/state/queries/useServer'
 import { Avatar } from './Avatar'
-import { Button } from './Button'
+import { ButtonSimple } from './ButtonSimple'
 import { useHotkeys } from 'react-hotkeys-hook'
 
 export const TopBar = memo(() => {
@@ -51,7 +51,7 @@ export const TopBar = memo(() => {
       <XStack ai="center" gap="$1">
         <TopBarSearch />
 
-        <Button
+        <ButtonSimple
           onPress={() => {
             if (userState?.showSidePanel === 'settings') {
               updateUserState({
@@ -65,13 +65,13 @@ export const TopBar = memo(() => {
           }}
         >
           <Settings2 o={0.5} size={20} />
-        </Button>
+        </ButtonSimple>
 
         <UserButton />
 
         {!isTauri && jwtToken && (
           <a href={`one-chat://finish-auth?token=${session?.token}`}>
-            <Button>Open native app</Button>
+            <ButtonSimple>Open native app</ButtonSimple>
           </a>
         )}
       </XStack>
@@ -117,7 +117,7 @@ const UserButton = () => {
           }
         }}
       >
-        <Button>
+        <ButtonSimple>
           {userState?.showSidePanel === 'user' ? (
             <ChevronLeft size={20} o={0.5} />
           ) : user?.image ? (
@@ -125,7 +125,7 @@ const UserButton = () => {
           ) : (
             <UserCircle size={20} o={0.5} />
           )}
-        </Button>
+        </ButtonSimple>
       </a>
     </>
   )
