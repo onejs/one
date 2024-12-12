@@ -17,6 +17,7 @@ type ChannelsState = {
 }
 
 type ChannelState = {
+  mainView?: 'thread' | 'chat'
   focusedMessageId?: string
   openedThreadId?: string
 }
