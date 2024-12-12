@@ -233,3 +233,6 @@ jobs:
           name: xcodebuild-${{ inputs.configuration }}.log
           path: |
             ${{ env.test_app_path }}/xcodebuild.log
+
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
