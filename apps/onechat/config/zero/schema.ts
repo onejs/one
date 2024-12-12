@@ -71,7 +71,7 @@ const channelSchema = createTableSchema({
   },
   primaryKey: ['id'],
   relationships: {
-    chats: {
+    messages: {
       sourceField: 'id',
       destField: 'channelId',
       destSchema: () => messageSchema,
@@ -96,7 +96,7 @@ const threadSchema = createTableSchema({
   },
   primaryKey: ['id'],
   relationships: {
-    chats: {
+    messages: {
       sourceField: 'id',
       destField: 'channelId',
       destSchema: () => messageSchema,
@@ -153,7 +153,7 @@ const reactionSchema = createTableSchema({
     id: 'string',
     code: { type: 'string', optional: true },
     image: { type: 'string', optional: true },
-    createdAt: 'string',
+    createdAt: 'number',
     updatedAt: { type: 'number', optional: true },
   },
 })

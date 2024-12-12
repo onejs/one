@@ -54,8 +54,8 @@ export const useCurrentMessages = () => {
         .related('channels', (q) =>
           q
             .where('id', derivedUserState?.activeChannel || '')
-            .related('chats', (q) => q.orderBy('createdAt', 'asc'))
+            .related('messages', (q) => q.orderBy('createdAt', 'asc').related('reactions'))
         )
-    )[0][0]?.channels?.[0]?.chats || []
+    )[0][0]?.channels?.[0]?.messages || []
   )
 }
