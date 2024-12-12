@@ -190,7 +190,11 @@ class HMRClient {
 
 export const loadHMRClient = () => {
   const { DevSettings, Platform } = require('react-native')
-  const LoadingView = require('react-native/Libraries/Utilities/LoadingView')
+  // const LoadingView = require('react-native/Libraries/Utilities/LoadingView')
+  const LoadingView = {
+    showMessage: () => {},
+    hide: () => {},
+  }
 
   const reload = () => DevSettings.reload()
   const dismissErrors = () => {
