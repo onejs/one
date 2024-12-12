@@ -202,7 +202,16 @@ jobs:
             -derivedDataPath \
             build | tee xcodebuild.log | xcpretty
 
-      - name: Save Built App
+      - name: Upload Built App
+        uses: actions/upload-artifact@v4.3.1
+        if: ${{ !steps.pre-check-previous-build.outputs.cache-hit && !steps.check-previous-build.outputs.cache-hit }}
+        continue-on-error: true
+        with:
+          name: built-app # TODO: dynamic name?
+          path: |
+            ${{ steps.get-built-app-path.outputs.built_app_path }}
+
+      - name: Cache Built App
         uses: actions/cache/save@v4
         if: ${{ !steps.pre-check-previous-build.outputs.cache-hit && !steps.check-previous-build.outputs.cache-hit }}
         with:
