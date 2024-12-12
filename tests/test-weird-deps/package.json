@@ -17,7 +17,7 @@
     "expo": "~51.0.28",
     "expo-image": "~1.13.0",
     "moti": "^0.29.0",
-    "one": "1.1.341",
+    "one": "workspace:*",
     "react": "^18.3.1",
     "react-native": "0.74.5",
     "react-native-reanimated": "~3.10.1",

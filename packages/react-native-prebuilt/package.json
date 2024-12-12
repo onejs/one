@@ -31,8 +31,8 @@
     "./vendor/react-jsx-runtime-18.3.1": "./vendor/react-jsx-runtime-18.3.1/index.js"
   },
   "dependencies": {
-    "@vxrn/vite-flow": "1.1.341",
-    "@vxrn/vite-native-hmr": "1.1.341",
+    "@vxrn/vite-flow": "workspace:*",
+    "@vxrn/vite-native-hmr": "workspace:*",
     "esbuild": "^0.24.0",
     "fs-extra": "^11.2.0",
     "import-meta-resolve": "^4.1.0"

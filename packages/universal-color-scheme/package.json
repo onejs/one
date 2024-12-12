@@ -33,7 +33,7 @@
     }
   },
   "dependencies": {
-    "@vxrn/use-isomorphic-layout-effect": "1.1.341",
+    "@vxrn/use-isomorphic-layout-effect": "workspace:*",
     "react": "^18"
   },
   "peerDependencies": {
