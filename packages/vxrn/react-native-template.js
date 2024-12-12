@@ -15,6 +15,8 @@ global['__DEV__'] = process.env.__DEV__
 global['___modules___'] = {}
 global['___vxrnAbsoluteToRelative___'] = {}
 
+global.__FUSEBOX_HAS_FULL_CONSOLE_SUPPORT__ = false
+
 global['Event'] =
   global['Event'] ||
   function () {
