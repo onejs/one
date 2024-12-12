@@ -1,7 +1,7 @@
 import { MessageCircle } from '@tamagui/lucide-icons'
 import { memo } from 'react'
 import { Circle, ScrollView, SizableText, XStack, YStack } from 'tamagui'
-import { OneBall } from '~/features/brand/Logo'
+import { OneBall } from '~/interface/brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
 import { MainMessageArea } from './MainMessageArea'
 import { MainMessagesList } from './MainMessagesList'
