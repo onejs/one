@@ -1,7 +1,6 @@
 import type { User } from '~/config/zero/schema'
 import { mutate, useQuery } from '~/features/state/zero'
 
-// were using JSONB for UserState
 type UserState = {
   serversSort?: string[]
   activeServer?: string
@@ -22,23 +21,18 @@ type ChannelState = {
 export let currentUser = null as User | null
 
 const getUserState = () => {
-  const stateString = (currentUser?.state ?? '{}') as string
-  return JSON.parse(stateString) as UserState
+  return {
+    activeChannels: {},
+    ...(currentUser?.state ?? {}),
+  } as UserState
 }
 
 export const useUserState = () => {
   const user = useQuery((q) => q.user)[0][0]
   currentUser = user
   const state = getUserState()
-  const activeChannels = state.activeChannels || {}
 
-  return [
-    {
-      ...state,
-      activeChannels,
-    },
-    { activeChannel: activeChannels[state.activeServer || ''], user },
-  ] as const
+  return [state, { activeChannel: state.activeChannels[state.activeServer || ''], user }] as const
 }
 
 export const updateUserState = async (next: Partial<UserState>) => {
@@ -47,14 +41,12 @@ export const updateUserState = async (next: Partial<UserState>) => {
     return
   }
 
-  const state = {
-    ...getUserState(),
-    ...next,
-  }
-
   const nextUser = {
     ...currentUser,
-    state: JSON.stringify(state),
+    state: {
+      ...getUserState(),
+      ...next,
+    },
   }
 
   console.warn('mutating', nextUser)

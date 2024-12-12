@@ -19,8 +19,7 @@ CREATE TABLE "user" (
     "username" VARCHAR(200),
     "name" VARCHAR(200),
     "email" VARCHAR(200) NOT NULL UNIQUE,
-    -- "state" JSONB DEFAULT '{}',
-    "state" TEXT,
+    "state" JSONB DEFAULT '{}',
     "updatedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "emailVerified" boolean not null default false,
     "image" VARCHAR(255),
@@ -83,9 +82,6 @@ CREATE TABLE "reaction" (
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NULL
 );
-
-CREATE UNIQUE INDEX idx_unique_image ON "reaction" ("image")
-WHERE "code" IS NULL;
 
 CREATE TABLE "messageReaction" (
     "messageId" VARCHAR REFERENCES "message"(id),

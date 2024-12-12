@@ -6887,9 +6887,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rocicorp/zero@npm:0.8.2024121002":
-  version: 0.8.2024121002
-  resolution: "@rocicorp/zero@npm:0.8.2024121002"
+"@rocicorp/zero@npm:0.8.2024121204":
+  version: 0.8.2024121204
+  resolution: "@rocicorp/zero@npm:0.8.2024121204"
   dependencies:
     "@badrap/valita": "npm:0.3.11"
     "@databases/escape-identifier": "npm:^1.0.3"
@@ -6908,6 +6908,7 @@ __metadata:
     "@rocicorp/resolver": "npm:^1.0.2"
     "@rocicorp/zero-sqlite3": "npm:^1.0.4"
     chalk-template: "npm:^1.1.0"
+    chokidar: "npm:^4.0.1"
     command-line-args: "npm:^6.0.1"
     command-line-usage: "npm:^7.0.3"
     compare-utf8: "npm:^0.1.1"
@@ -6935,7 +6936,8 @@ __metadata:
   bin:
     zero-build-schema: out/zero/src/build-schema.js
     zero-cache: out/zero/src/cli.js
-  checksum: 10/292383ece6c30a07afa27f8caed78af05184bf5341ab07ea723cf77dfc0c94e0df0d24122bec0530ac6f27368a5f3b5d21bbd04fb01582094c58116aee56120a
+    zero-cache-dev: out/zero/src/zero-cache-dev.js
+  checksum: 10/1a5b7483cf8f95a517b13bfa301e76453de09da47f9e4bce78ea67d230869cedeeb4e6e8fd1ecf377f36fae9bd6387e397a06c26e4f7a2fda8eb3010975c1be6
   languageName: node
   linkType: hard
 
@@ -12523,6 +12525,15 @@ __metadata:
     fsevents:
       optional: true
   checksum: 10/c327fb07704443f8d15f7b4a7ce93b2f0bc0e6cea07ec28a7570aa22cd51fcf0379df589403976ea956c369f25aa82d84561947e227cd925902e1751371658df
+  languageName: node
+  linkType: hard
+
+"chokidar@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "chokidar@npm:4.0.1"
+  dependencies:
+    readdirp: "npm:^4.0.1"
+  checksum: 10/62749d2173a60cc5632d6c6e0b7024f33aadce47b06d02e55ad03c7b8daaaf2fc85d4296c047473d04387fd992dab9384cc5263c70a3dc3018b7ebecfb5b5217
   languageName: node
   linkType: hard
 
@@ -20186,7 +20197,7 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@leeoniya/ufuzzy": "npm:^1.0.14"
-    "@rocicorp/zero": "npm:0.8.2024121002"
+    "@rocicorp/zero": "npm:0.8.2024121204"
     "@supabase/supabase-js": "npm:^2.44.4"
     "@tamagui/button": "npm:^1.120.1"
     "@tamagui/input": "npm:^1.120.1"
@@ -21882,6 +21893,13 @@ __metadata:
   dependencies:
     picomatch: "npm:^2.2.1"
   checksum: 10/196b30ef6ccf9b6e18c4e1724b7334f72a093d011a99f3b5920470f0b3406a51770867b3e1ae9711f227ef7a7065982f6ee2ce316746b2cb42c88efe44297fe7
+  languageName: node
+  linkType: hard
+
+"readdirp@npm:^4.0.1":
+  version: 4.0.2
+  resolution: "readdirp@npm:4.0.2"
+  checksum: 10/4ef93103307c7d5e42e78ecf201db58c984c4d66882a27c956250478b49c2444b1ff6aea8ce0f5e4157b2c07ce2fe870ad16c92ebd7c6ff30391ded6e42b9873
   languageName: node
   linkType: hard
 

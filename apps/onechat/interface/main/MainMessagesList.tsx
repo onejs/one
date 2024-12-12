@@ -63,8 +63,6 @@ const MessageItem = ({
   // reaction.id => count
   const reactionCounts: Record<string, number> = {}
 
-  console.log('message.reactions', message.reactions)
-
   for (const reaction of message.reactions) {
     if (reaction.id) {
       reactionCounts[reaction.id] ||= 0

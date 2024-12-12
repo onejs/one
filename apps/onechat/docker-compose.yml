@@ -35,7 +35,7 @@ services:
     working_dir: /app
     environment:
       - ZERO_UPSTREAM_DB=${ZERO_UPSTREAM_DB}
-    command: bun run seed.ts
+    command: sh -c "bun install && bun run seed.ts"
 
 volumes:
   pgdata:
