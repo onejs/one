@@ -1,10 +1,9 @@
 import { Plus } from '@tamagui/lucide-icons'
 import { Circle, ScrollView, styled, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/features/auth/useAuth'
-import { randomID } from '~/features/state/randomID'
-import { useUserServers } from '~/features/state/useServer'
-import { updateUserState, useUserState } from '~/features/state/useUserState'
-import { mutate } from '~/features/state/zero'
+import { useUserServers } from '~/features/state/queries/useServer'
+import { updateUserState, useUserState } from '~/features/state/queries/useUserState'
+import { Avatar } from './Avatar'
 import { dialogCreateServer } from './dialogs/DialogCreateServer'
 
 export const SidebarServersRow = () => {
@@ -18,16 +17,16 @@ export const SidebarServersRow = () => {
         <SidebarIndent fd="row" gap="$2" py="$3">
           {servers.map((server) => {
             return (
-              <CircleIconFrame
+              <Avatar
+                key={server.id}
                 onPress={() => {
                   updateUserState({
                     activeServer: server.id,
                   })
                 }}
-                key={server.id}
                 size={42}
-                bg={server.icon}
                 active={activeServer === server.id}
+                image={server.icon}
               />
             )
           })}
@@ -35,40 +34,7 @@ export const SidebarServersRow = () => {
           <Circle
             onPress={async () => {
               if (await dialogCreateServer()) {
-                if (!user) {
-                  console.error('not signed in')
-                  return
-                }
-
-                const serverId = randomID()
-
-                await mutate.server.insert({
-                  id: serverId,
-                  createdAt: new Date().getTime(),
-                  description: '',
-                  icon: Math.random() > 0.5 ? 'red' : 'pink',
-                  name: 'Lorem',
-                  ownerId: user.id,
-                })
-
-                await mutate.serverMember.insert({
-                  joinedAt: new Date().getTime(),
-                  serverId,
-                  userId: user.id,
-                })
-
-                await mutate.channel.insert({
-                  id: randomID(),
-                  createdAt: new Date().getTime(),
-                  description: '',
-                  name: 'Welcome',
-                  private: false,
-                  serverId,
-                })
-
-                updateUserState({
-                  activeServer: serverId,
-                })
+                console.info('created')
               }
             }}
             size={42}
@@ -81,18 +47,6 @@ export const SidebarServersRow = () => {
     </XStack>
   )
 }
-
-const CircleIconFrame = styled(Circle, {
-  variants: {
-    active: {
-      true: {
-        outlineColor: '#fff',
-        outlineWidth: 2,
-        outlineStyle: 'solid',
-      },
-    },
-  } as const,
-})
 
 const SidebarIndent = styled(YStack, {
   px: '$3',

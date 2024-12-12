@@ -23,9 +23,15 @@ export const useAuth = () => {
       }
     }
 
-    authClient.$fetch('/jwks').then(async ({ data }) => {
-      if ((data as any).keys.length) {
-        setTokenFromJWKS(data as any)
+    authClient.$fetch('/jwks').then(async (props) => {
+      const data = props.data as any
+
+      if (!data?.keys) {
+        return
+      }
+
+      if (data.keys.length) {
+        setTokenFromJWKS(data)
         return
       }
 

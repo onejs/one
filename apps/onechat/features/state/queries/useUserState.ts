@@ -19,7 +19,7 @@ type ChannelState = {
 }
 
 // TODO
-let currentUser = null as User | null
+export let currentUser = null as User | null
 
 const getUserState = () => {
   const stateString = (currentUser?.state ?? '{}') as string

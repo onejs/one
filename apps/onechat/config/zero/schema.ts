@@ -2,6 +2,7 @@ import { createSchema, createTableSchema, definePermissions, type Row } from '@r
 
 const userSchema = createTableSchema({
   tableName: 'user',
+  primaryKey: ['id'],
   columns: {
     id: 'string',
     username: 'string',
@@ -12,7 +13,6 @@ const userSchema = createTableSchema({
     updatedAt: 'number',
     createdAt: 'number',
   },
-  primaryKey: ['id'],
   relationships: {
     servers: [
       {
@@ -31,6 +31,7 @@ const userSchema = createTableSchema({
 
 const serverSchema = createTableSchema({
   tableName: 'server',
+  primaryKey: ['id'],
   columns: {
     id: 'string',
     name: 'string',
@@ -39,7 +40,6 @@ const serverSchema = createTableSchema({
     icon: 'string',
     createdAt: 'number',
   },
-  primaryKey: ['id'],
   relationships: {
     channels: {
       sourceField: 'id',
@@ -51,12 +51,12 @@ const serverSchema = createTableSchema({
 
 const serverMemberSchema = createTableSchema({
   tableName: 'serverMember',
+  primaryKey: ['serverId', 'userId'],
   columns: {
     serverId: 'string',
     userId: 'string',
     joinedAt: 'number',
   },
-  primaryKey: ['serverId', 'userId'],
 })
 
 const channelSchema = createTableSchema({
@@ -106,6 +106,7 @@ const threadSchema = createTableSchema({
 
 const messageSchema = createTableSchema({
   tableName: 'message',
+  primaryKey: ['id'],
   columns: {
     id: 'string',
     serverId: 'string',
@@ -114,11 +115,47 @@ const messageSchema = createTableSchema({
     senderId: 'string',
     content: 'string',
     createdAt: 'number',
-    editedAt: { type: 'number', optional: true },
+    updatedAt: { type: 'number', optional: true },
     deleted: { type: 'boolean', optional: true },
   },
+  relationships: {
+    reactions: [
+      {
+        sourceField: 'id',
+        destField: 'userId',
+        destSchema: () => messageReactionSchema,
+      },
+      {
+        sourceField: 'messageId',
+        destField: 'id',
+        destSchema: () => reactionSchema,
+      },
+    ],
+  },
+})
+
+const messageReactionSchema = createTableSchema({
+  tableName: 'messageReaction',
+  primaryKey: ['messageId', 'userId', 'reactionId'],
+  columns: {
+    messageId: 'string',
+    userId: 'string',
+    reactionId: 'string',
+    createdAt: 'number',
+    updatedAt: { type: 'number', optional: true },
+  },
+})
+
+const reactionSchema = createTableSchema({
+  tableName: 'reaction',
   primaryKey: ['id'],
-  relationships: {},
+  columns: {
+    id: 'string',
+    code: { type: 'string', optional: true },
+    image: { type: 'string', optional: true },
+    createdAt: 'string',
+    updatedAt: { type: 'number', optional: true },
+  },
 })
 
 export const schema = createSchema({
@@ -130,6 +167,8 @@ export const schema = createSchema({
     channel: channelSchema,
     thread: threadSchema,
     message: messageSchema,
+    messageReaction: messageReactionSchema,
+    reaction: reactionSchema,
   },
 })
 
@@ -140,6 +179,8 @@ export type Channel = Row<typeof channelSchema>
 export type Thread = Row<typeof threadSchema>
 export type User = Row<typeof userSchema>
 export type ServerMember = Row<typeof serverMemberSchema>
+export type MessageReaction = Row<typeof messageReactionSchema>
+export type Reaction = Row<typeof reactionSchema>
 
 // The contents of your decoded JWT.
 type AuthData = {

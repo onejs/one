@@ -30,11 +30,15 @@ import type { Message, User } from '~/config/zero/schema'
 import { authClient } from '~/features/auth/authClient'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
-import { useUserState } from '~/features/state/useUserState'
+import { useUserState } from '~/features/state/queries/useUserState'
 import { OneBall } from '~/features/brand/Logo'
 import { isTauri } from '~/features/tauri/constants'
 import { randomID } from '~/features/state/randomID'
-import { useCurrentChannel, useCurrentMessages, useCurrentServer } from '~/features/state/useServer'
+import {
+  useCurrentChannel,
+  useCurrentMessages,
+  useCurrentServer,
+} from '~/features/state/queries/useServer'
 import { mutate } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'
 import { ListItem } from '~/interface/ListItem'
