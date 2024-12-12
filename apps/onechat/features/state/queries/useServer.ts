@@ -1,5 +1,5 @@
-import { useUserState } from './useUserState'
 import { useQuery } from '../zero'
+import { useUserState } from './useUserState'
 
 export const useServersQuery = () => useQuery((q) => q.server)
 
@@ -44,7 +44,7 @@ export const useCurrentChannel = () => {
   )[0][0]?.channels?.[0]
 }
 
-export const useCurrentMessages = () => {
+export const useCurrentChannelMessages = () => {
   const [userState, derivedUserState] = useUserState()
   return (
     useQuery((q) =>
@@ -52,11 +52,14 @@ export const useCurrentMessages = () => {
         .where('id', userState?.activeServer || '')
         .orderBy('createdAt', 'desc')
         .related('channels', (q) =>
-          q
-            .where('id', derivedUserState?.activeChannel || '')
-            .related('messages', (q) =>
-              q.orderBy('createdAt', 'asc').related('reactions').related('thread')
-            )
+          q.where('id', derivedUserState?.activeChannel || '').related('messages', (q) =>
+            q
+              .orderBy('createdAt', 'asc')
+              // dont get threaded messages
+              .where('isThreadReply', false)
+              .related('reactions')
+              .related('thread')
+          )
         )
     )[0][0]?.channels?.[0]?.messages || []
   )
