@@ -1,5 +1,5 @@
 import { MessageInput } from '../messages/MessageInput'
 
-export const MainMessageArea = () => {
+export const MainMessageInput = () => {
   return <MessageInput />
 }

@@ -39,7 +39,7 @@ CREATE TABLE "server" (
 CREATE TABLE "serverMember" (
     "serverId" VARCHAR REFERENCES "server"(id),
     "userId" VARCHAR REFERENCES "user"(id),
-    "hasClosedWelcome" BOOLEAN DEFAULT FALSE,
+    "hasClosedWelcome" BOOLEAN DEFAULT FALSE NOT NULL,
     "joinedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY ("serverId", "userId")
 );
@@ -49,7 +49,7 @@ CREATE TABLE "channel" (
     "serverId" VARCHAR REFERENCES "server"(id),
     "name" VARCHAR(200) NOT NULL,
     "description" TEXT,
-    "private" BOOLEAN DEFAULT FALSE,
+    "private" BOOLEAN DEFAULT FALSE NOT NULL,
     "updatedAt" TIMESTAMP NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -72,9 +72,10 @@ CREATE TABLE "message" (
     "threadId" VARCHAR REFERENCES "thread"(id) NULL,
     "senderId" VARCHAR REFERENCES "user"(id),
     "content" TEXT NOT NULL,
+    "isThreadReply" BOOLEAN DEFAULT FALSE NOT NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NULL,
-    "deleted" BOOLEAN DEFAULT FALSE
+    "deleted" BOOLEAN DEFAULT FALSE NOT NULL
 );
 
 ALTER TABLE "thread" ADD CONSTRAINT "fk_thread_message" FOREIGN KEY ("messageId") REFERENCES "message" ("id");

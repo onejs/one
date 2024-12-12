@@ -29,7 +29,7 @@ export const MessageItem = ({
 }) => {
   const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
   const [thread] = message.thread || []
-  const hasThread = !!thread as boolean
+  const isThread = !!thread as boolean
 
   // reaction.id => count
   const reactionCounts: Record<string, number> = {}
@@ -54,7 +54,7 @@ export const MessageItem = ({
       hoverStyle={{
         bg: '$background025',
       }}
-      {...(hasThread && {
+      {...(isThread && {
         borderColor: '$green5',
       })}
     >
@@ -75,7 +75,7 @@ export const MessageItem = ({
 
           <Separator my="$2" vertical />
 
-          {!hasThread && (
+          {!isThread && (
             <TooltipSimple label="Create Thread">
               <Button
                 onPress={() => {
@@ -99,6 +99,7 @@ export const MessageItem = ({
                   mutate.message.update({
                     id: message.id,
                     threadId,
+                    isThreadReply: false,
                   })
                 }}
                 chromeless

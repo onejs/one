@@ -119,6 +119,7 @@ const messageSchema = {
     serverId: 'string',
     channelId: 'string',
     threadId: { type: 'string', optional: true },
+    isThreadReply: 'boolean',
     senderId: 'string',
     content: 'string',
     createdAt: 'number',

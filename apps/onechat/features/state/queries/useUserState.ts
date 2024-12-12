@@ -54,7 +54,7 @@ export const useUserCurrentChannelState = () => {
   return activeChannelState || {}
 }
 
-export const useUserOpenThread = () => {
+export const useCurrentThread = () => {
   const [_, { activeThread }] = useUserState()
   const [thread] = useQuery((q) =>
     q.thread
