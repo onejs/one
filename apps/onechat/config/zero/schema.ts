@@ -122,11 +122,11 @@ const messageSchema = createTableSchema({
     reactions: [
       {
         sourceField: 'id',
-        destField: 'userId',
+        destField: 'messageId',
         destSchema: () => messageReactionSchema,
       },
       {
-        sourceField: 'messageId',
+        sourceField: 'reactionId',
         destField: 'id',
         destSchema: () => reactionSchema,
       },
