@@ -53,6 +53,11 @@ jobs:
           echo "Built app path: $BUILT_APP_PATH"
           echo "built_app_path=$BUILT_APP_PATH" >> $GITHUB_OUTPUT
 
+      - name: Ensure Build Number
+        run: |
+          # Avoids the error: "The application's Info.plist does not contain a valid CFBundleVersion" when installing the app.
+          jq '.expo.ios.buildNumber //= "1"' app.json > app.json.tmp && mv app.json.tmp app.json
+
       - name: Caculate Pre-Build Hash
         id: caculate-pre-build-hash
         env:
