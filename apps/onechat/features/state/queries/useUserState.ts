@@ -49,21 +49,6 @@ export const useUserState = () => {
   return [state, getDerivedUserState()] as const
 }
 
-export const useUserCurrentChannelState = () => {
-  const [_, { activeChannelState }] = useUserState()
-  return activeChannelState || {}
-}
-
-export const useCurrentThread = () => {
-  const [_, { activeThread }] = useUserState()
-  const [thread] = useQuery((q) =>
-    q.thread
-      .where('id', activeThread?.openedThreadId || '')
-      .related('messages', (q) => q.orderBy('createdAt', 'asc').related('reactions'))
-  )
-  return thread[0]
-}
-
 export const updateUserState = async (next: Partial<UserState>) => {
   if (!currentUser) {
     console.error(`No user`)
@@ -80,6 +65,23 @@ export const updateUserState = async (next: Partial<UserState>) => {
   await mutate.user.update(nextUser)
 }
 
+// helpers
+
+export const useUserCurrentChannelState = () => {
+  const [_, { activeChannelState }] = useUserState()
+  return activeChannelState || {}
+}
+
+export const useCurrentThread = () => {
+  const [_, { activeThread }] = useUserState()
+  const [thread] = useQuery((q) =>
+    q.thread
+      .where('id', activeThread?.openedThreadId || '')
+      .related('messages', (q) => q.orderBy('createdAt', 'asc').related('reactions'))
+  )
+  return thread[0]
+}
+
 export const updateUserCurrentChannel = async (next: Partial<ChannelState>) => {
   if (!currentUser) {
     console.error(`No user`)
@@ -92,5 +94,11 @@ export const updateUserCurrentChannel = async (next: Partial<ChannelState>) => {
     channelState: {
       [currentChannelId]: next,
     },
+  })
+}
+
+export const updateUserOpenThread = async (thread: { id: string }) => {
+  updateUserCurrentChannel({
+    openedThreadId: thread.id,
   })
 }
