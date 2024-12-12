@@ -55,6 +55,7 @@
     "react-hotkeys-hook": "^4.6.1",
     "react-native": "0.74.1",
     "tamagui": "^1.120.1",
+    "ts-deepmerge": "^7.0.2",
     "unicode-emoji": "^2.6.0"
   },
   "devDependencies": {

@@ -15,7 +15,7 @@ import {
 import type { Channel, Message, Reaction, Thread, User } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { useCurrentChannel, useCurrentMessages } from '~/features/state/queries/useServer'
-import { currentUser } from '~/features/state/queries/useUserState'
+import { currentUser, updateUserCurrentChannel } from '~/features/state/queries/useUserState'
 import { randomID } from '~/features/state/randomID'
 import { mutate, useQuery } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'
@@ -69,6 +69,8 @@ const MessageItem = ({
   hideUser?: boolean
 }) => {
   const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
+  const [thread] = message.thread || []
+  const hasThread = !!thread as boolean
 
   // reaction.id => count
   const reactionCounts: Record<string, number> = {}
@@ -87,9 +89,15 @@ const MessageItem = ({
       py={hideUser ? '$1.5' : '$2.5'}
       px="$4"
       group="message"
+      borderTopWidth={2}
+      borderBottomWidth={2}
+      borderColor="transparent"
       hoverStyle={{
         bg: '$background025',
       }}
+      {...(hasThread && {
+        borderColor: '$green5',
+      })}
     >
       <XStack
         pos="absolute"
@@ -108,31 +116,33 @@ const MessageItem = ({
 
           <Separator my="$2" vertical />
 
-          <TooltipSimple label="Create Thread">
-            <Button
-              onPress={() => {
-                if (!currentUser) {
-                  console.error(`no user`)
-                  return
-                }
+          {!hasThread && (
+            <TooltipSimple label="Create Thread">
+              <Button
+                onPress={() => {
+                  if (!currentUser) {
+                    console.error(`no user`)
+                    return
+                  }
 
-                mutate.thread.insert({
-                  id: randomID(),
-                  channelId: channel.id,
-                  messageId: message.id,
-                  createdAt: new Date().getTime(),
-                  creatorId: currentUser.id,
-                  description: '',
-                  title: '',
-                })
-              }}
-              chromeless
-              size="$2.5"
-              br={0}
-            >
-              <IndentIncrease size={16} />
-            </Button>
-          </TooltipSimple>
+                  mutate.thread.insert({
+                    id: randomID(),
+                    channelId: channel.id,
+                    messageId: message.id,
+                    createdAt: new Date().getTime(),
+                    creatorId: currentUser.id,
+                    description: '',
+                    title: '',
+                  })
+                }}
+                chromeless
+                size="$2.5"
+                br={0}
+              >
+                <IndentIncrease size={16} />
+              </Button>
+            </TooltipSimple>
+          )}
 
           <TooltipSimple label="Quote Reply">
             <Button chromeless size="$2.5" br={0}>
@@ -148,8 +158,6 @@ const MessageItem = ({
 
       <XStack w={32}>{!hideUser && <Avatar image={user.image} />}</XStack>
 
-      {message.thread[0] && <SizableText>HAS A THREASD</SizableText>}
-
       <YStack f={1} gap="$1">
         {!hideUser && (
           <SizableText o={0.5} mb={-4} fow="bold">
@@ -160,6 +168,32 @@ const MessageItem = ({
         <SizableText f={1} ov="hidden">
           {message.content}
         </SizableText>
+
+        {thread && (
+          <YStack>
+            <XStack
+              bg="$color2"
+              als="flex-start"
+              px="$2"
+              br="$8"
+              ai="center"
+              gap="$2"
+              hoverStyle={{
+                bg: '$color5',
+              }}
+              onPress={() => {
+                updateUserCurrentChannel({
+                  openedThreadId: thread.id,
+                })
+              }}
+            >
+              <IndentIncrease o={0.5} size={16} />
+              <SizableText cur="default" o={0.5} size="$3">
+                This is a thread
+              </SizableText>
+            </XStack>
+          </YStack>
+        )}
 
         <XStack>
           {Object.entries(reactionCounts).map(([id, count]) => {

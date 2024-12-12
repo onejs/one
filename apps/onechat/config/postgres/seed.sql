@@ -57,7 +57,7 @@ CREATE TABLE "channel" (
 CREATE TABLE "thread" (
     "id" VARCHAR PRIMARY KEY,
     "channelId" VARCHAR REFERENCES "channel"(id),
-    "messageId" VARCHAR REFERENCES "message"(id),
+    "messageId" VARCHAR,
     "creatorId" VARCHAR REFERENCES "user"(id),
     "title" VARCHAR(200),
     "description" VARCHAR(200),
@@ -76,6 +76,8 @@ CREATE TABLE "message" (
     "updatedAt" TIMESTAMP NULL,
     "deleted" BOOLEAN DEFAULT FALSE
 );
+
+ALTER TABLE "thread" ADD CONSTRAINT "fk_thread_message" FOREIGN KEY ("messageId") REFERENCES "message" ("id");
 
 CREATE TABLE "reaction" (
     "id" VARCHAR PRIMARY KEY,
