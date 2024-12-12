@@ -1,12 +1,12 @@
 import { ChevronLeft, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
 import { memo, useRef } from 'react'
-import { H3, Input, TooltipSimple, XStack } from 'tamagui'
+import { H1, H3, Input, TooltipSimple, XStack } from 'tamagui'
 import { githubSignIn } from '~/features/auth/githubSignIn'
 import { useAuth } from '~/features/auth/useAuth'
-import { updateUserState, useUserState } from '~/features/state/useUserState'
+import { updateUserState, useUserState } from '~/features/state/queries/useUserState'
 import { HotMenu } from '~/features/hotmenu/HotMenu'
 import { isTauri } from '~/features/tauri/constants'
-import { useCurrentChannel, useCurrentServer } from '~/features/state/useServer'
+import { useCurrentChannel, useCurrentServer } from '~/features/state/queries/useServer'
 import { Avatar } from './Avatar'
 import { Button } from './Button'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -35,7 +35,7 @@ export const TopBar = memo(() => {
           <HotMenu />
         </TooltipSimple>
 
-        <H3
+        <H1
           data-tauri-drag-region
           cur="default"
           userSelect="none"
@@ -45,7 +45,7 @@ export const TopBar = memo(() => {
           size="$2"
         >
           {server?.name || '-'} - #{channel?.name || '-'}
-        </H3>
+        </H1>
       </XStack>
 
       <XStack ai="center" gap="$1">
@@ -82,15 +82,15 @@ export const TopBar = memo(() => {
 const UserButton = () => {
   const { user, loggedIn } = useAuth()
   const [userState] = useUserState()
+  const shouldLink = !loggedIn && !userState?.showSidePanel
 
   return (
     <>
       <a
         target="_blank"
-        {...(!loggedIn &&
-          !userState?.showSidePanel && {
-            href: window.location.origin + '/login-github',
-          })}
+        {...(shouldLink && {
+          href: window.location.origin + '/login-github',
+        })}
         rel="noreferrer"
         // biome-ignore lint/a11y/useValidAnchor: <explanation>
         onClick={(e) => {

@@ -1,5 +1,5 @@
 import { useUserState } from './useUserState'
-import { useQuery } from './zero'
+import { useQuery } from '../zero'
 
 export const useServersQuery = () => useQuery((q) => q.server)
 

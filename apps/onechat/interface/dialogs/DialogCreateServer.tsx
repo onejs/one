@@ -1,4 +1,5 @@
-import React, { DragEvent, useState } from 'react'
+import type React from 'react'
+import { type DragEvent, useEffect, useRef, useState } from 'react'
 import {
   Button,
   Circle,
@@ -7,7 +8,7 @@ import {
   Paragraph,
   Progress,
   ScrollView,
-  TabsContentProps,
+  type TabsContentProps,
   XStack,
   YStack,
 } from 'tamagui'
@@ -15,6 +16,8 @@ import { createEmitter } from '~/helpers/emitter'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
 import { DialogContent, dialogEmitter, DialogOverlay, useDialogEmitter } from './shared'
+import { insertServer } from '~/features/state/actions/insertServer'
+import { Avatar } from '../Avatar'
 
 const [dialogCreateServerEmitter] = createEmitter<boolean>()
 
@@ -31,6 +34,9 @@ export const dialogCreateServer = async () => {
   })
 }
 
+const success = () => dialogCreateServerEmitter.trigger(true)
+const cancel = () => dialogCreateServerEmitter.trigger(false)
+
 export const DialogCreateServer = () => {
   const [show, setShow] = useState(false)
   const [tab, setTab] = useState('create')
@@ -40,6 +46,7 @@ export const DialogCreateServer = () => {
       setShow(true)
     } else {
       setShow(false)
+      cancel()
     }
   })
 
@@ -50,6 +57,7 @@ export const DialogCreateServer = () => {
           key="overlay"
           onPress={() => {
             setShow(false)
+            cancel()
           }}
         />
 
@@ -63,13 +71,8 @@ export const DialogCreateServer = () => {
             ]}
           >
             <YStack pos="relative" f={1} w="100%">
-              <AlwaysVisibleTabContent active={tab} value="create">
-                <DialogCreateServerContent setShow={setShow} />
-              </AlwaysVisibleTabContent>
-
-              <AlwaysVisibleTabContent active={tab} value="join">
-                <DialogJoinServerContent setShow={setShow} />
-              </AlwaysVisibleTabContent>
+              <DialogCreateServerContent value="create" active={tab} setShow={setShow} />
+              <DialogJoinServerContent value="join" active={tab} setShow={setShow} />
             </YStack>
           </Tabs>
         </DialogContent>
@@ -78,7 +81,13 @@ export const DialogCreateServer = () => {
   )
 }
 
-const AlwaysVisibleTabContent = ({ active, ...props }: TabsContentProps & { active: string }) => {
+type TabContentPaneProps = TabsContentProps & {
+  active: string
+  value: string
+  setShow: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const AlwaysVisibleTabContent = ({ active, setShow, ...props }: TabContentPaneProps) => {
   return (
     <Tabs.Content
       forceMount
@@ -98,22 +107,28 @@ const AlwaysVisibleTabContent = ({ active, ...props }: TabsContentProps & { acti
   )
 }
 
-type ContentProps = {
-  setShow: React.Dispatch<React.SetStateAction<boolean>>
-}
+const DialogCreateServerContent = (props: TabContentPaneProps) => {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const isActive = props.active === props.value
+  const [image, setImage] = useState('')
 
-const DialogCreateServerContent = (props: ContentProps) => {
+  useEffect(() => {
+    if (isActive) {
+      inputRef.current?.focus()
+    }
+  }, [isActive])
+
   return (
-    <>
+    <AlwaysVisibleTabContent {...props}>
       <YStack f={1}>
         <ScrollView m="$-1">
           <YStack py="$4" gap="$2" px="$1">
-            <LabeledRow label="Name" htmlFor="name">
-              <Input f={1} id="name" />
+            <LabeledRow label="Name" htmlFor="server-name">
+              <Input ref={inputRef as any} f={1} id="server-name" />
             </LabeledRow>
 
             <LabeledRow label="Image" htmlFor="image">
-              <ImageUpload />
+              <ImageUpload onChangeImage={setImage} />
             </LabeledRow>
           </YStack>
         </ScrollView>
@@ -124,6 +139,7 @@ const DialogCreateServerContent = (props: ContentProps) => {
           <Button
             onPress={() => {
               props.setShow(false)
+              cancel()
             }}
           >
             Cancel
@@ -131,15 +147,20 @@ const DialogCreateServerContent = (props: ContentProps) => {
         </Dialog.Close>
 
         <Button
-          theme="active"
+          theme="blue"
           onPress={() => {
+            insertServer({
+              name: inputRef.current?.value || 'Untitled',
+              icon: image,
+            })
             props.setShow(false)
+            success()
           }}
         >
           Accept
         </Button>
       </XStack>
-    </>
+    </AlwaysVisibleTabContent>
   )
 }
 
@@ -148,10 +169,11 @@ interface UploadResponse {
   error?: string
 }
 
-const ImageUpload = () => {
+const ImageUpload = ({ onChangeImage }: { onChangeImage: (cb: string) => void }) => {
   const [uploadUrl, setUploadUrl] = useState('')
   const [progress, setProgress] = useState(0)
   const [errorMessage, setErrorMessage] = useState('')
+  const [dropping, setDropping] = useState(false)
   const endpoint = `/api/image/upload`
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -189,6 +211,7 @@ const ImageUpload = () => {
         if (response.url) {
           setProgress(0)
           setUploadUrl(response.url)
+          onChangeImage(response.url)
         } else {
           setErrorMessage('Upload failed: ' + (response.error || 'No error message provided.'))
         }
@@ -204,32 +227,34 @@ const ImageUpload = () => {
     xhr.send(formData)
   }
 
-  const handleDrop = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault()
-    event.stopPropagation()
-    const file = event.dataTransfer.files[0]
-    if (file) handleUpload(file)
-  }
-
-  const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault() // Necessary to allow drop
-    event.stopPropagation()
-  }
-
   return (
     <YStack
       gap="$4"
       // @ts-expect-error
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
+      onDrop={(event: DragEvent<HTMLDivElement>) => {
+        event.preventDefault()
+        event.stopPropagation()
+        setDropping(false)
+        const file = event.dataTransfer.files[0]
+        if (file) handleUpload(file)
+      }}
+      onDragOver={(e) => {
+        setDropping(true)
+        e.preventDefault()
+        e.stopPropagation()
+      }}
+      onDragLeave={() => {
+        setDropping(false)
+      }}
+      {...(dropping && {
+        bg: '$color4',
+      })}
     >
-      <Circle size={100} bg="$color5" ov="hidden">
-        {uploadUrl && <img src={uploadUrl} width="100%" height="100%" />}
-      </Circle>
+      <Avatar size={100} image={uploadUrl} />
 
       <form action={endpoint} method="post" encType="multipart/form-data">
         <YStack>
-          <input type="file" id="file" name="file" onChange={handleFileChange} required />
+          <input type="file" id="file" name="file" onChange={handleFileChange} />
 
           {!!(progress && progress !== 100) && (
             <Progress mt="$2" value={progress} bg="$color2">
@@ -244,12 +269,12 @@ const ImageUpload = () => {
   )
 }
 
-const DialogJoinServerContent = (props: ContentProps) => {
+const DialogJoinServerContent = (props: TabContentPaneProps) => {
   return (
-    <>
+    <AlwaysVisibleTabContent {...props}>
       <YStack gap="$2">
         <Input size="$5" autoFocus />
       </YStack>
-    </>
+    </AlwaysVisibleTabContent>
   )
 }
