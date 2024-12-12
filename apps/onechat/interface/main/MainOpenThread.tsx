@@ -14,6 +14,10 @@ export const MainOpenThread = () => {
   return (
     <YStack bg="$color1" elevation="$4" pos="absolute" t={0} r={0} b={0} w="80%" zi={1000}>
       <ButtonClose
+        pos="absolute"
+        zi={1000}
+        t={10}
+        l={-20}
         onPress={() => {
           updateUserCurrentChannel({
             openedThreadId: undefined,
