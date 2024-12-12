@@ -5,6 +5,7 @@ import { OneBall } from '~/interface/brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
 import { MainMessageArea } from './MainMessageArea'
 import { MainMessagesList } from './MainMessagesList'
+import { MainOpenThread } from './MainOpenThread'
 
 export const Main = memo(() => {
   return (
@@ -13,6 +14,7 @@ export const Main = memo(() => {
       <YStack f={1} bg="$background05">
         <MainMessagesList />
         <MainMessageArea />
+        <MainOpenThread />
       </YStack>
     </YStack>
   )

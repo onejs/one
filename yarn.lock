@@ -20226,6 +20226,7 @@ __metadata:
     react-hotkeys-hook: "npm:^4.6.1"
     react-native: "npm:0.74.1"
     tamagui: "npm:^1.120.1"
+    ts-deepmerge: "npm:^7.0.2"
     tsx: "npm:^4.19.2"
     unicode-emoji: "npm:^2.6.0"
     vite-tsconfig-paths: "npm:^5.0.1"
@@ -24188,6 +24189,13 @@ __metadata:
   version: 2.2.0
   resolution: "trough@npm:2.2.0"
   checksum: 10/999c1cb3db6ec63e1663f911146a90125065da37f66ba342b031d53edb22a62f56c1f934bbc61a55b2b29dd74207544cfd78875b414665c1ffadcd9a9a009eeb
+  languageName: node
+  linkType: hard
+
+"ts-deepmerge@npm:^7.0.2":
+  version: 7.0.2
+  resolution: "ts-deepmerge@npm:7.0.2"
+  checksum: 10/0ce920301a3a488fbe8ce57fc9a105b675f90fc5e231d9705d27768bcf1f2cdee9337a5de2dec92dbcfff1180000b0c63d8f4f0fb3caa5eec8247a558dd0803f
   languageName: node
   linkType: hard
 
