@@ -1,18 +1,17 @@
-import { H2, YStack } from 'tamagui'
+import { YStack } from 'tamagui'
+import { updateUserCurrentChannel, useUserOpenThread } from '~/features/state/queries/useUserState'
 import { ButtonClose } from '../ButtonClose'
-import {
-  updateUserCurrentChannel,
-  updateUserState,
-  useUserCurrentChannelState,
-  useUserState,
-} from '~/features/state/queries/useUserState'
+import { MessagesList } from '../messages/MessagesList'
+import { MessageInput } from '../messages/MessageInput'
 
 export const MainOpenThread = () => {
-  const { openedThreadId } = useUserCurrentChannelState()
+  const thread = useUserOpenThread()
 
-  if (!openedThreadId) {
+  if (!thread) {
     return null
   }
+
+  console.log('thread', thread)
 
   return (
     <YStack bg="$color1" elevation="$4" pos="absolute" t={0} r={0} b={0} w="80%" zi={1000}>
@@ -23,7 +22,8 @@ export const MainOpenThread = () => {
           })
         }}
       />
-      <H2>Open thred</H2>
+      <MessagesList messages={thread?.messages || []} />
+      <MessageInput />
     </YStack>
   )
 }

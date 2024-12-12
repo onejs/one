@@ -33,20 +33,35 @@ const getUserState = () => {
 
 const getDerivedUserState = () => {
   const state = getUserState()
-  return { activeChannel: state.activeChannels[state.activeServer || ''], user: currentUser }
+  const activeChannel = state.activeChannels[state.activeServer || '']
+  return {
+    activeChannel,
+    activeChannelState: state.channelState?.[activeChannel],
+    activeThread: state.channelState?.[activeChannel],
+    user: currentUser,
+  }
 }
 
 export const useUserState = () => {
   const user = useQuery((q) => q.user)[0][0]
   currentUser = user
   const state = getUserState()
-
   return [state, getDerivedUserState()] as const
 }
 
-export const useUserCurrentChannelState = (): ChannelState => {
-  const [{ channelState }, { activeChannel }] = useUserState()
-  return channelState?.[activeChannel] || {}
+export const useUserCurrentChannelState = () => {
+  const [_, { activeChannelState }] = useUserState()
+  return activeChannelState || {}
+}
+
+export const useUserOpenThread = () => {
+  const [_, { activeThread }] = useUserState()
+  const [thread] = useQuery((q) =>
+    q.thread
+      .where('id', activeThread?.openedThreadId || '')
+      .related('messages', (q) => q.orderBy('createdAt', 'asc').related('reactions'))
+  )
+  return thread[0]
 }
 
 export const updateUserState = async (next: Partial<UserState>) => {

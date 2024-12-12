@@ -105,7 +105,7 @@ const threadSchema = createTableSchema({
   relationships: {
     messages: {
       sourceField: 'id',
-      destField: 'channelId',
+      destField: 'threadId',
       destSchema: () => messageSchema,
     },
   },
@@ -193,6 +193,8 @@ export type User = Row<typeof userSchema>
 export type ServerMember = Row<typeof serverMemberSchema>
 export type MessageReaction = Row<typeof messageReactionSchema>
 export type Reaction = Row<typeof reactionSchema>
+
+export type MessageWithRelations = Message & { reactions: Reaction[]; thread?: Thread[] }
 
 // The contents of your decoded JWT.
 type AuthData = {
