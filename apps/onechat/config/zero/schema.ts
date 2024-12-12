@@ -196,6 +196,7 @@ export type MessageReaction = Row<typeof messageReactionSchema>
 export type Reaction = Row<typeof reactionSchema>
 
 export type MessageWithRelations = Message & { reactions: Reaction[]; thread?: Thread[] }
+export type ThreadWithRelations = Thread & { messages: Message[] }
 
 // The contents of your decoded JWT.
 type AuthData = {

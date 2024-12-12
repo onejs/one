@@ -24,7 +24,7 @@ const ButtonFrame = styled(XStack, {
   bg: 'transparent',
 
   hoverStyle: {
-    bg: '$background05',
+    bg: '$color4',
   },
 
   pressStyle: {

@@ -11,7 +11,11 @@ import {
 } from 'tamagui'
 import type { Channel, Message, MessageWithRelations, Reaction, User } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
-import { currentUser, updateUserCurrentChannel } from '~/features/state/queries/useUserState'
+import {
+  currentUser,
+  updateUserCurrentChannel,
+  updateUserOpenThread,
+} from '~/features/state/queries/useUserState'
 import { randomID } from '~/features/state/randomID'
 import { mutate, useQuery } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'
@@ -41,6 +45,10 @@ export const MessageItem = ({
     }
   }
 
+  const openThread = () => {
+    updateUserOpenThread(thread)
+  }
+
   return (
     <XStack
       f={1}
@@ -56,6 +64,10 @@ export const MessageItem = ({
       }}
       {...(isThread && {
         borderColor: '$green5',
+
+        onDoubleClick: () => {
+          openThread()
+        },
       })}
     >
       <XStack
@@ -149,9 +161,7 @@ export const MessageItem = ({
                 bg: '$color5',
               }}
               onPress={() => {
-                updateUserCurrentChannel({
-                  openedThreadId: thread.id,
-                })
+                openThread()
               }}
             >
               <IndentIncrease o={0.5} size={16} />
