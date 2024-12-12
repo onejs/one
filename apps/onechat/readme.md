@@ -1,8 +1,14 @@
-todo:
+to run:
 
-- chat area
-- threads
-- create flows
-- search
-- auth/user
-- settings
+```sh
+yarn
+cd apps/onechat
+```
+
+then run Docker and then in three separate tabs:
+
+```
+yarn docker:start:clean
+yarn zero
+yarn dev
+```
