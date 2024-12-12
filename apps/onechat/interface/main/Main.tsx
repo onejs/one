@@ -3,7 +3,7 @@ import { memo } from 'react'
 import { Circle, ScrollView, SizableText, XStack, YStack } from 'tamagui'
 import { OneBall } from '~/interface/brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
-import { MainMessageArea } from './MainMessageArea'
+import { MainMessageInput } from './MainMessageInput'
 import { MainMessagesList } from './MainMessagesList'
 import { MainOpenThread } from './MainOpenThread'
 
@@ -13,7 +13,7 @@ export const Main = memo(() => {
       <RecentThreads />
       <YStack f={1} bg="$background05">
         <MainMessagesList />
-        <MainMessageArea />
+        <MainMessageInput />
         <MainOpenThread />
       </YStack>
     </YStack>
