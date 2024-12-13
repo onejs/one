@@ -1,3 +1,4 @@
+import { useAuth } from '~/features/auth/useAuth'
 import { useQuery } from '../zero'
 import { useUserState } from './useUserState'
 
@@ -16,9 +17,14 @@ export const useCurrentServerMembership = () => {
 }
 
 export const useUserServers = () => {
+  const { user } = useAuth()
   return (
-    useQuery((q) => q.user.limit(1).orderBy('createdAt', 'desc').related('servers'))[0][0]
-      ?.servers || []
+    useQuery((q) =>
+      q.user
+        .limit(1)
+        .where('id', user?.id || '')
+        .related('servers')
+    )[0][0]?.servers || []
   )
 }
 

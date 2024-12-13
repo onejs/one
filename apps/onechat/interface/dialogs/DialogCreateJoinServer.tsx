@@ -8,6 +8,7 @@ import {
   Progress,
   ScrollView,
   type TabsContentProps,
+  TooltipSimple,
   XStack,
   YStack,
 } from 'tamagui'
@@ -17,32 +18,48 @@ import { Avatar } from '../Avatar'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
 import { DialogContent, dialogEmitter, DialogOverlay, useDialogEmitter } from './shared'
+import { mutate, useQuery } from '~/features/state/zero'
+import { Row } from '../Row'
+import { useAuth } from '~/features/auth/useAuth'
+import { Check, DoorOpen } from '@tamagui/lucide-icons'
 
-const [dialogCreateServerEmitter] = createEmitter<boolean>()
+const [emitter] = createEmitter<boolean>()
 
 export const dialogCreateServer = async () => {
   dialogEmitter.trigger({
     type: 'create-server',
   })
-
   return new Promise((res) => {
-    const dispose = dialogCreateServerEmitter.listen((val) => {
+    const dispose = emitter.listen((val) => {
       dispose()
       res(val)
     })
   })
 }
 
-const success = () => dialogCreateServerEmitter.trigger(true)
-const cancel = () => dialogCreateServerEmitter.trigger(false)
+export const dialogJoinServer = async () => {
+  dialogEmitter.trigger({
+    type: 'join-server',
+  })
+  return new Promise((res) => {
+    const dispose = emitter.listen((val) => {
+      dispose()
+      res(val)
+    })
+  })
+}
 
-export const DialogCreateServer = () => {
+const success = () => emitter.trigger(true)
+const cancel = () => emitter.trigger(false)
+
+export const DialogCreateJoinServer = () => {
   const [show, setShow] = useState(false)
   const [tab, setTab] = useState('create')
 
   useDialogEmitter((next) => {
-    if (next.type === 'create-server') {
+    if (next.type === 'create-server' || next.type === 'join-server') {
       setShow(true)
+      setTab(next.type === 'create-server' ? 'create' : 'join')
     } else {
       setShow(false)
       cancel()
@@ -62,7 +79,7 @@ export const DialogCreateServer = () => {
 
         <DialogContent key="content">
           <Tabs
-            initialTab="create"
+            initialTab={tab}
             onValueChange={setTab}
             tabs={[
               { label: 'Create', value: 'create' },
@@ -107,9 +124,10 @@ const AlwaysVisibleTabContent = ({ active, setShow, ...props }: TabContentPanePr
 }
 
 const DialogCreateServerContent = (props: TabContentPaneProps) => {
-  const inputRef = useRef<HTMLInputElement>(null)
   const isActive = props.active === props.value
   const [image, setImage] = useState('')
+
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (isActive) {
@@ -156,7 +174,7 @@ const DialogCreateServerContent = (props: TabContentPaneProps) => {
             success()
           }}
         >
-          Accept
+          Create
         </Button>
       </XStack>
     </AlwaysVisibleTabContent>
@@ -269,10 +287,60 @@ const ImageUpload = ({ onChangeImage }: { onChangeImage: (cb: string) => void })
 }
 
 const DialogJoinServerContent = (props: TabContentPaneProps) => {
+  const isActive = props.active === props.value
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [search, setSearch] = useState('')
+  const { user } = useAuth()
+
+  const [foundServers] = useQuery((q) =>
+    q.server
+      .where('name', 'ILIKE', `%${search}%`)
+      .limit(!search ? 0 : 10)
+      .related('members', (q) => q.limit(1).where('id', user?.id || ''))
+  )
+
+  useEffect(() => {
+    if (isActive) {
+      setTimeout(() => {
+        inputRef.current?.focus()
+      }, 40)
+    }
+  }, [isActive])
+
   return (
     <AlwaysVisibleTabContent {...props}>
       <YStack gap="$2">
-        <Input size="$5" autoFocus />
+        <Input ref={inputRef as any} size="$5" onChangeText={setSearch} />
+
+        {foundServers.map((server) => {
+          const isJoined = !!server.members[0]
+
+          return (
+            <Row key={server.id}>
+              <Avatar image={server.icon} />
+              <Row.Text>{server.name}</Row.Text>
+              <XStack f={1} />
+              <TooltipSimple label="Join server">
+                <Row.Button
+                  onPress={() => {
+                    if (!user) return
+
+                    if (isJoined) {
+                      // TODO
+                    } else {
+                      mutate.serverMember.insert({
+                        userId: user.id,
+                        joinedAt: new Date().getTime(),
+                        serverId: server.id,
+                      })
+                    }
+                  }}
+                  icon={isJoined ? Check : DoorOpen}
+                />
+              </TooltipSimple>
+            </Row>
+          )
+        })}
       </YStack>
     </AlwaysVisibleTabContent>
   )

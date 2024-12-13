@@ -1,12 +1,6 @@
-import {
-  createSchema,
-  createTableSchema,
-  definePermissions,
-  TableSchema,
-  type Row,
-} from '@rocicorp/zero'
+import { createSchema, createTableSchema, definePermissions, type Row } from '@rocicorp/zero'
 
-const userSchema = createTableSchema({
+const userSchema = {
   tableName: 'user',
   primaryKey: ['id'],
   columns: {
@@ -32,10 +26,34 @@ const userSchema = createTableSchema({
         destSchema: () => serverSchema,
       },
     ],
+
+    friends: [
+      {
+        sourceField: 'id',
+        destField: 'requestingId',
+        destSchema: () => friendshipSchema,
+      },
+      {
+        sourceField: 'acceptingId',
+        destField: 'id',
+        destSchema: () => userSchema,
+      },
+    ],
+  },
+} as const
+
+const friendshipSchema = createTableSchema({
+  tableName: 'friendship',
+  primaryKey: ['requestingId', 'acceptingId'],
+  columns: {
+    requestingId: 'string',
+    acceptingId: 'string',
+    accepted: 'boolean',
+    createdAt: 'number',
   },
 })
 
-const serverSchema = createTableSchema({
+const serverSchema = {
   tableName: 'server',
   primaryKey: ['id'],
   columns: {
@@ -52,8 +70,21 @@ const serverSchema = createTableSchema({
       destField: 'serverId',
       destSchema: () => channelSchema,
     },
+
+    members: [
+      {
+        sourceField: 'id',
+        destField: 'serverId',
+        destSchema: () => serverMemberSchema,
+      },
+      {
+        sourceField: 'userId',
+        destField: 'id',
+        destSchema: () => userSchema,
+      },
+    ],
   },
-})
+} as const
 
 const serverMemberSchema = createTableSchema({
   tableName: 'serverMember',
@@ -175,6 +206,7 @@ export const schema = createSchema({
   version: 1,
   tables: {
     user: userSchema,
+    friendship: friendshipSchema,
     server: serverSchema,
     serverMember: serverMemberSchema,
     channel: channelSchema,
