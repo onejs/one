@@ -32,7 +32,7 @@ export const SidebarServerChannelsList = () => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        delay: 100,
+        delay: 250,
         distance: {
           y: 8,
         },

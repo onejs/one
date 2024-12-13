@@ -8,7 +8,6 @@ import {
   Progress,
   ScrollView,
   type TabsContentProps,
-  TooltipSimple,
   XStack,
   YStack,
 } from 'tamagui'
@@ -18,10 +17,7 @@ import { Avatar } from '../Avatar'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
 import { DialogContent, dialogEmitter, DialogOverlay, useDialogEmitter } from './shared'
-import { mutate, useQuery } from '~/features/state/zero'
-import { Row } from '../Row'
-import { useAuth } from '~/features/auth/useAuth'
-import { Check, DoorOpen } from '@tamagui/lucide-icons'
+import { DialogJoinServerContent } from './DialogJoinServerContent'
 
 const [emitter] = createEmitter<boolean>()
 
@@ -97,13 +93,13 @@ export const DialogCreateJoinServer = () => {
   )
 }
 
-type TabContentPaneProps = TabsContentProps & {
+export type TabContentPaneProps = TabsContentProps & {
   active: string
   value: string
   setShow: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AlwaysVisibleTabContent = ({ active, setShow, ...props }: TabContentPaneProps) => {
+export const AlwaysVisibleTabContent = ({ active, setShow, ...props }: TabContentPaneProps) => {
   return (
     <Tabs.Content
       forceMount
@@ -283,65 +279,5 @@ const ImageUpload = ({ onChangeImage }: { onChangeImage: (cb: string) => void })
         </YStack>
       </form>
     </YStack>
-  )
-}
-
-const DialogJoinServerContent = (props: TabContentPaneProps) => {
-  const isActive = props.active === props.value
-  const inputRef = useRef<HTMLInputElement>(null)
-  const [search, setSearch] = useState('')
-  const { user } = useAuth()
-
-  const [foundServers] = useQuery((q) =>
-    q.server
-      .where('name', 'ILIKE', `%${search}%`)
-      .limit(!search ? 0 : 10)
-      .related('members', (q) => q.limit(1).where('id', user?.id || ''))
-  )
-
-  useEffect(() => {
-    if (isActive) {
-      setTimeout(() => {
-        inputRef.current?.focus()
-      }, 40)
-    }
-  }, [isActive])
-
-  return (
-    <AlwaysVisibleTabContent {...props}>
-      <YStack gap="$2">
-        <Input ref={inputRef as any} size="$5" onChangeText={setSearch} />
-
-        {foundServers.map((server) => {
-          const isJoined = !!server.members[0]
-
-          return (
-            <Row key={server.id}>
-              <Avatar image={server.icon} />
-              <Row.Text>{server.name}</Row.Text>
-              <XStack f={1} />
-              <TooltipSimple label="Join server">
-                <Row.Button
-                  onPress={() => {
-                    if (!user) return
-
-                    if (isJoined) {
-                      // TODO
-                    } else {
-                      mutate.serverMember.insert({
-                        userId: user.id,
-                        joinedAt: new Date().getTime(),
-                        serverId: server.id,
-                      })
-                    }
-                  }}
-                  icon={isJoined ? Check : DoorOpen}
-                />
-              </TooltipSimple>
-            </Row>
-          )
-        })}
-      </YStack>
-    </AlwaysVisibleTabContent>
   )
 }
