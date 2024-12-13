@@ -11,16 +11,6 @@ const requireResolve =
 
 const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 
-export async function buildAll() {
-  console.info(`Prebuilding React Native (one time cost...)`)
-  await Promise.all([
-    //
-    buildReactJSX(),
-    buildReact(),
-    buildReactNative(),
-  ])
-}
-
 export async function buildReactJSX(options: BuildOptions = {}) {
   return build({
     bundle: true,
@@ -179,7 +169,7 @@ export async function buildReactNative(
 
           build.onLoad(
             {
-              filter: /.*.js/,
+              filter: /.*\.js$/,
             },
             async (input) => {
               if (!input.path.includes('react-native') && !input.path.includes(`vite-native-hmr`)) {
@@ -210,18 +200,33 @@ export async function buildReactNative(
           esbuildCommonJSFunction,
           `
 // replaced commonjs function to allow importing internals
-var __commonJS = (cb, mod) => function __require() {
-if (mod) return mod
-const path = __getOwnPropNames(cb)[0]
-const moduleFn = cb[path]
-mod = { exports: {} }
-moduleFn(mod.exports, mod)
-mod = mod.exports
+var __commonJS = function __commonJS(cb, mod) {
+    var path = __getOwnPropNames(cb)[0];
+    var modulePath = path.replace(/.*node_modules\\//, '').replace('.js', '');
 
-// this is our patch basically allowing importing the inner contents:
-globalThis['__cachedModules'][path.replace(/.*node_modules\\//, '').replace('.js', '')] = mod
+    var __require = function __require() {
+        if (mod) return mod;
 
-return mod
+        var cachedMod = globalThis["__cachedModules"][modulePath];
+        if (cachedMod) return cachedMod;
+
+        var moduleFn = cb[path];
+        mod = {
+            exports: {}
+        };
+        moduleFn(mod.exports, mod);
+        mod = mod.exports;
+        // this is one of our patches basically allowing importing the inner contents:
+        globalThis["__cachedModules"][modulePath] = mod;
+        return mod;
+    };
+
+    // this is another patch basically allowing importing the inner contents:
+    if (globalThis['__RN_INTERNAL_MODULE_REQUIRES_MAP__']) {
+        globalThis['__RN_INTERNAL_MODULE_REQUIRES_MAP__'][modulePath] = __require;
+    }
+
+    return __require;
 };
 `
         )
@@ -233,13 +238,16 @@ return mod
             `const rn = require_react_native();`,
             `rn.AssetRegistry = require_registry();`,
             `require_ReactNative();`, // This is react-native/Libraries/Renderer/shims/ReactNative.js, we call it here to ensure shims are initialized since we won't lazy load React Native components. See the NOTE below.
+            `if (typeof require_InitializeCore === 'function') { require_InitializeCore(); }`, // Since we're accessing the RefreshRuntime directly via `__cachedModules` directly in the RN bundle, we need to ensure it's loaded in time. Note that calling `require_react_refresh_runtime_development()`, `require_setUpReactRefresh()` or `require_setUpDeveloperTools()` directly won't work.
             `return rn;`,
           ].join('\n')
         )}
     }
     const RN = run()
 
+    export const REACT_NATIVE_ESM_MANUAL_EXPORTS_START = 'REACT_NATIVE_ESM_MANUAL_EXPORTS_START';${/* NOTE: The `REACT_NATIVE_ESM_MANUAL_EXPORTS_*` vars here are used by other tools to replace exports in this section with a CJS `module.export` which supports dynamic loaded lazy exports, if CJS can be used - such as in a React Native bundle. */ ''}
     ${RNExportNames.map((n) => `export const ${n} = RN.${n}`).join('\n') /* NOTE: React Native exports are designed to be lazy loaded (see: https://github.com/facebook/react-native/blob/v0.77.0-rc.0/packages/react-native/index.js#L106), but while doing so we're calling all the exported getters immediately and executing all the modules at once. */}
+    export const REACT_NATIVE_ESM_MANUAL_EXPORTS_END = 'REACT_NATIVE_ESM_MANUAL_EXPORTS_END';
     `
     await FSExtra.writeFile(options.outfile!, outCode)
   })

@@ -62,36 +62,36 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    (() => {
-      const virtualId = '\0one:virtual-rn-internals-codegen'
+    // (() => {
+    //   const virtualId = '\0one:virtual-rn-internals-codegen'
 
-      return {
-        name: 'one:alias-react-native-internals-web-only',
-        enforce: 'pre',
+    //   return {
+    //     name: 'one:alias-react-native-internals-web-only',
+    //     enforce: 'pre',
 
-        config() {
-          return {
-            resolve: {
-              alias: [
-                {
-                  find: /react-native\/Libraries\/Utilities\/codegenNativeComponent/,
-                  replacement: virtualId,
-                },
-              ],
-            },
-          }
-        },
+    //     config() {
+    //       return {
+    //         resolve: {
+    //           alias: [
+    //             {
+    //               find: /react-native\/Libraries\/Utilities\/codegenNativeComponent/,
+    //               replacement: virtualId,
+    //             },
+    //           ],
+    //         },
+    //       }
+    //     },
 
-        resolveId(id, importer) {
-          console.log('this isnt getting the virtual module :/', id, importer)
-          if (id === virtualId) {
-            if (isWebEnvironment(this.environment)) {
-              return resolvePath('@vxrn/rn-proxy')
-            }
-          }
-        },
-      }
-    })(),
+    //     resolveId(id, importer) {
+    //       console.log('this isnt getting the virtual module :/', id, importer)
+    //       if (id === virtualId) {
+    //         if (isWebEnvironment(this.environment)) {
+    //           return resolvePath('@vxrn/rn-proxy')
+    //         }
+    //       }
+    //     },
+    //   }
+    // })(),
 
     ...(options.ssr?.disableAutoDepsPreBundling
       ? []
@@ -150,7 +150,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         return {
           resolve: {
             alias: {
-              tslib: resolvePath('@vxrn/tslib-lite'),
+              tslib: resolvePath('@vxrn/tslib-lite', process.cwd()),
             },
 
             // [
@@ -330,8 +330,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         const sharedNativeConfig = {
           resolve: {
             alias: {
-              react: resolvePath('one/react-18'),
-              'react-dom': resolvePath('one/react-dom-18'),
+              react: resolvePath('one/react-18', process.cwd()),
+              'react-dom': resolvePath('one/react-dom-18', process.cwd()),
             },
           },
         } satisfies UserConfig

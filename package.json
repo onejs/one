@@ -21,7 +21,7 @@
     "hardlink": "node -r esbuild-register ./scripts/hardlink.ts",
     "npxone": "node ./packages/create-vxrn/run.js",
     "setup": "node -r esbuild-register ./scripts/setup.ts",
-    "chat": "yarn workspace onechat tauri",
+    "chat": "yarn workspace onechat dev:tauri",
     "site": "yarn workspace site dev",
     "site:build": "yarn workspace site build:web",
     "site:prod": "yarn site:build && yarn site:serve",
@@ -71,7 +71,7 @@
     "p-map": "^7.0.2",
     "patch-package": "^8.0.0",
     "turbo": "^2.1.0",
-    "typescript": "^5.6.2",
+    "typescript": "^5.7.2",
     "ultra-runner": "^3.10.5",
     "vitepress": "^1.1.4"
   }

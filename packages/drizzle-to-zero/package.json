@@ -1,6 +1,6 @@
 {
   "name": "drizzle-to-zero",
-  "version": "1.1.335",
+  "version": "1.1.341",
   "sideEffects": false,
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
@@ -35,7 +35,7 @@
     "drizzle-orm": "*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.117.0",
+    "@tamagui/build": "^1.120.1",
     "vitest": "^2.1.1"
   },
   "publishConfig": {

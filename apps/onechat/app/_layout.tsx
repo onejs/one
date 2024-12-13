@@ -4,11 +4,15 @@ import './syntax-highlight.css'
 import './tamagui.css'
 
 import { ZeroProvider } from '@rocicorp/zero/react'
+import { Toast, ToastProvider, ToastViewport, useToastState } from '@tamagui/toast'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
-import { TamaguiProvider, Theme } from 'tamagui'
+import { useState } from 'react'
+import { TamaguiProvider, YStack } from 'tamagui'
 import config from '~/config/tamagui/tamagui.config'
-import { zero } from '~/features/zero/zero'
+import { AuthEffects } from '~/features/auth/AuthEffects'
+import { useZeroInstanceEmitter, zero } from '~/features/state/zero'
+import { Dialogs } from '~/interface/dialogs/Dialogs'
 
 export default function Layout() {
   return (
@@ -25,17 +29,59 @@ export default function Layout() {
 
       <LoadProgressBar startDelay={1_000} />
 
-      <ZeroProvider zero={zero}>
+      <AuthEffects />
+
+      <DataProvider>
         <SchemeProvider>
           <ThemeProvider>
-            <Theme name="yellow">
+            <ToastProvider swipeDirection="horizontal">
               <Slot />
-            </Theme>
+              <Dialogs />
+              <ToastDisplay />
+              <ToastViewport flexDirection="column-reverse" top={0} left={0} right={0} mx="auto" />
+            </ToastProvider>
           </ThemeProvider>
         </SchemeProvider>
-      </ZeroProvider>
+      </DataProvider>
     </>
   )
+}
+
+const ToastDisplay = () => {
+  const currentToast = useToastState()
+
+  if (!currentToast || currentToast.isHandledNatively) {
+    return null
+  }
+
+  return (
+    <Toast
+      key={currentToast.id}
+      duration={currentToast.duration}
+      enterStyle={{ opacity: 0, scale: 0.5, y: -25 }}
+      exitStyle={{ opacity: 0, scale: 1, y: -20 }}
+      y={0}
+      opacity={1}
+      scale={1}
+      animation="100ms"
+      viewportName={currentToast.viewportName}
+    >
+      <YStack>
+        <Toast.Title>{currentToast.title}</Toast.Title>
+        {!!currentToast.message && <Toast.Description>{currentToast.message}</Toast.Description>}
+      </YStack>
+    </Toast>
+  )
+}
+
+const DataProvider = ({ children }) => {
+  const [instance, setInstance] = useState(zero)
+
+  useZeroInstanceEmitter((next) => {
+    setInstance(next)
+  })
+
+  return <ZeroProvider zero={instance}>{children}</ZeroProvider>
 }
 
 const ThemeProvider = ({ children }) => {

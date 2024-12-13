@@ -142,6 +142,19 @@ export async function getReactNativeBundle(
           code = ''
         }
 
+        if (id.startsWith('.vxrn/react-native')) {
+          // Turn eager imports of RN back into dynamic lazy imports.
+          // We needed them eager so rollup won't be unhappy with missing exports, but now we need them lazy again to match the original RN behavior, which may avoid some issues. Such as:
+          // * react-native v0.76 with: Codegen didn't run for RNCSafeAreaView. This will be an error in the future. Make sure you are using @react-native/babel-preset when building your JavaScript code.
+          code = code.replace( // Step 1: Replace the whole `exports` block which contains `exports.REACT_NATIVE_ESM_MANUAL_EXPORTS_` with `module.exports = RN;`
+            /(^exports.+$\s)*(^exports\.REACT_NATIVE_ESM_MANUAL_EXPORTS_.+$\s)(^exports.+$\s)*/m,
+            'module.exports = RN;'
+          )
+          .replace( // Step 2: Remove other unnecessary `var thing = RN.thing;` lines
+            /^.*REACT_NATIVE_ESM_MANUAL_EXPORTS_START[\s\S]*REACT_NATIVE_ESM_MANUAL_EXPORTS_END.*$/m, ''
+          )
+        }
+
         return `
 // id: ${id}
 // name: ${outputModule.name}

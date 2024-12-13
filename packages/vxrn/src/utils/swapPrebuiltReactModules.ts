@@ -161,6 +161,9 @@ export async function swapPrebuiltReactModules(
 
     async resolveId(id, importer = '') {
       if (id.startsWith('react-native/')) {
+        if (id === 'react-native/package.json') {
+          return
+        }
         return `virtual:rn-internals:${id}`
       }
 
@@ -231,11 +234,28 @@ export async function swapPrebuiltReactModules(
     async load(id) {
       if (id.startsWith('virtual:rn-internals')) {
         const idOut = id.replace('virtual:rn-internals:', '')
-        let out = `const ___val = __cachedModules["${idOut}"]
+
+        let out = ''
+
+        if (id.includes('ReactFabric')) {
+          // A workaround for some internal modules being loaded when they shouldn't be.
+          // See: https://github.com/onejs/one/pull/283#issuecomment-2527356510
+          out += `const ___val = __cachedModules["${idOut}"] /* This module shouldn't be loaded if not already been loaded internally. */`
+        } else {
+          // Normal case, this will dynamically load the module if not already loaded.
+          out += `const ___val = __RN_INTERNAL_MODULE_REQUIRES_MAP__["${idOut}"]()`
+        }
+
+        out += '\n'
+
+        out += `
         const ___defaultVal = ___val ? ___val.default || ___val : ___val
         export default ___defaultVal
+        `
 
+        out += getReactNativeInternalModuleExports(idOut).map(exportName => `export const ${exportName} = ___val.${exportName} || ___defaultVal.${exportName}`).join('\n')
 
+        out += `
         // allow importing named exports of internals:
         if (___defaultVal && typeof ___defaultVal === 'object') {
           Object.keys(___defaultVal).forEach(key => {
@@ -244,7 +264,6 @@ export async function swapPrebuiltReactModules(
             }
           })
         }
-
         `
 
         return out
@@ -255,4 +274,37 @@ export async function swapPrebuiltReactModules(
       }
     },
   } satisfies Plugin
+}
+
+/**
+ * Given a React Native internal module path, return the list of export names that are exported from the module, excluding the default export.
+ */
+function getReactNativeInternalModuleExports(
+  /**
+   * Example: `react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry`.
+   */
+  modulePath: string
+): string[] {
+  return KNOWN_REACT_NATIVE_INTERNAL_MODULE_EXPORTS[modulePath] || []
+}
+
+// TODO: We can use `es-module-lexer` to parse from source code instead of hardcoding these.
+const KNOWN_REACT_NATIVE_INTERNAL_MODULE_EXPORTS = {
+  'react-native/Libraries/NativeComponent/NativeComponentRegistry': [
+    'setRuntimeConfigProvider',
+    'get',
+    'getWithFallback_DEPRECATED',
+    'unstable_hasStaticViewConfig',
+  ],
+  'react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry': [
+    'customBubblingEventTypes',
+    'customDirectEventTypes',
+    'register',
+    'get',
+  ],
+  'react-native/Libraries/Pressability/PressabilityDebug': [
+    'PressabilityDebugView',
+    'isEnabled',
+    'setEnabled',
+  ]
 }

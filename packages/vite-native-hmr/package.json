@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-hmr",
-  "version": "1.1.335",
+  "version": "1.1.341",
   "types": "./types/index.d.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
@@ -37,7 +37,7 @@
     "pretty-format": "^28.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.117.0",
+    "@tamagui/build": "^1.120.1",
     "react-native": "0.74.5"
   },
   "peerDependencies": {

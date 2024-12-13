@@ -23,15 +23,6 @@ const hashPassword = (password: string) => {
   return `${salt}:${hash}`
 }
 
-// Helper function to verify passwords
-const verifyPassword = (password: string, storedHash: string) => {
-  const [salt, originalHash] = storedHash.split(':')
-  const hash = createHash('sha256')
-    .update(password + salt)
-    .digest('hex')
-  return timingSafeEqual(Buffer.from(hash), Buffer.from(originalHash))
-}
-
 // Helper function to get session from cookies
 const getSession = (request: Request) => {
   const cookie = request.headers.get('Cookie')

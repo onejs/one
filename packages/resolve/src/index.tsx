@@ -1,22 +1,24 @@
-import { fileURLToPath } from 'node:url'
 import module from 'node:module'
+import { fileURLToPath } from 'node:url'
 
 const resolver =
   'resolve' in import.meta
-    ? (path: string) => fileURLToPath(import.meta.resolve(path))
+    ? (path: string, from?: string) => fileURLToPath(import.meta.resolve(path, from))
     : 'url' in import.meta
-      ? (path: string) => new URL(path, import.meta.url).pathname
+      ? (path: string, from?: string) => new URL(path, import.meta.url).pathname
       : require.resolve
 
-export const resolvePath = (path: string, from?: string): string => {
-  if (from) {
-    return resolveFrom(path, from)
-  }
-
-  return resolver(path)
+const resolverV2 = (path, from) => {
+  const require = module.createRequire(from)
+  const importPath = require.resolve(path, { paths: [from] })
+  return importPath
 }
 
-function resolveFrom(path: string, from: string): string {
-  const require = module.createRequire(from)
-  return require.resolve(path, { paths: [from] })
+export const resolvePath = (path: string, from?: string): string => {
+  // We might be able to use resolverV2 directly, but here we'll still try to use the original implementation first in case there're any issues with the new one.
+  try {
+    return resolver(path, from)
+  } catch (e) {
+    return resolverV2(path, from)
+  }
 }
