@@ -5,10 +5,13 @@ import { updateUserState, useUserState } from '../../features/state/queries/useU
 import { Dialog, Input, SizableText, XStack, YStack, type TamaguiElement } from 'tamagui'
 import { forwardRef } from 'react'
 import { useHotMenuItems } from '~/features/state/queries/useHotMenu'
+import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
+import { Row } from '../Row'
 
 export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
   const [userState] = useUserState()
   const showHotMenu = !!userState?.showHotMenu
+  const items = useHotMenuItems()
 
   function toggleHotMenu() {
     updateUserState({
@@ -73,56 +76,61 @@ export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
             w="80%"
             h="80%"
           >
-            <Input
-              onKeyPress={(key) => {
-                if (key.nativeEvent.key === 'Escape') {
-                  toggleHotMenu()
-                }
+            <SearchableList
+              items={items}
+              onSelectItem={(item) => {
+                toggleHotMenu()
+                item.action()
               }}
-              size="$6"
-            />
+            >
+              <SearchableInput
+                onKeyPress={(key) => {
+                  if (key.nativeEvent.key === 'Escape') {
+                    toggleHotMenu()
+                  }
+                }}
+                size="$6"
+              />
 
-            <HotMenuItems />
+              {items.map((item, index) => {
+                const { Icon } = item
+
+                return (
+                  <SearchableListItem key={item.name} index={index}>
+                    {(active, itemProps) => {
+                      return (
+                        <Row
+                          active={active}
+                          ai="center"
+                          px="$4"
+                          py="$4"
+                          gap="$4"
+                          hoverStyle={{
+                            bg: '$color3',
+                          }}
+                          onPress={() => {
+                            item.action()
+                            updateUserState({
+                              showHotMenu: false,
+                            })
+                          }}
+                          {...itemProps}
+                        >
+                          <Icon size={28} />
+
+                          <SizableText cur="default" size="$6">
+                            {item.name}
+                          </SizableText>
+                        </Row>
+                      )
+                    }}
+                  </SearchableListItem>
+                )
+              })}
+            </SearchableList>
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog>
     </>
   )
 })
-
-const HotMenuItems = () => {
-  const items = useHotMenuItems()
-
-  return (
-    <>
-      {items.map((item) => {
-        const { Icon } = item
-
-        return (
-          <XStack
-            key={item.name}
-            ai="center"
-            px="$4"
-            py="$4"
-            gap="$4"
-            hoverStyle={{
-              bg: '$color3',
-            }}
-            onPress={() => {
-              item.action()
-              updateUserState({
-                showHotMenu: false,
-              })
-            }}
-          >
-            <Icon size={28} />
-
-            <SizableText cur="default" size="$6">
-              {item.name}
-            </SizableText>
-          </XStack>
-        )
-      })}
-    </>
-  )
-}
