@@ -14,19 +14,21 @@ const pool = new pg.Pool({
   connectionString,
 })
 
-const emojis = unicodeEmoji.getEmojis().map((e) => e.emoji)
+const emojis = unicodeEmoji.getEmojis()
+
+const toKeyword = (description: string) => description.split(' ').join('_')
 
 async function insertReactions() {
   const client = await connectWithRetry()
   try {
     await client.query('BEGIN')
     const insertText = `
-      INSERT INTO reaction(id, value, "createdAt", "updatedAt") 
-        VALUES ($1, $2, DEFAULT, DEFAULT)
+      INSERT INTO reaction(id, value, keyword, "createdAt", "updatedAt") 
+        VALUES ($1, $2, $3, DEFAULT, DEFAULT)
         ON CONFLICT DO NOTHING;
       `
     for (let emoji of emojis) {
-      const values = [randomID(), emoji]
+      const values = [randomID(), emoji.emoji, toKeyword(emoji.description)]
       await client.query(insertText, values)
     }
     await client.query('COMMIT')

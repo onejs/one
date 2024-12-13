@@ -197,6 +197,7 @@ const reactionSchema = createTableSchema({
   columns: {
     id: 'string',
     value: 'string',
+    keyword: 'string',
     createdAt: 'number',
     updatedAt: { type: 'number', optional: true },
   },

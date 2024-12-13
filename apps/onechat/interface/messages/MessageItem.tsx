@@ -1,4 +1,4 @@
-import { IndentIncrease, MoreVertical, Reply } from '@tamagui/lucide-icons'
+import { IndentIncrease, MoreVertical, Reply, Smile, SmilePlus } from '@tamagui/lucide-icons'
 import {
   Button,
   type ButtonProps,
@@ -19,6 +19,7 @@ import {
 import { randomID } from '~/features/state/randomID'
 import { mutate, useQuery } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'
+import { AddReactionButton } from './AddReactionButton'
 
 export const MessageItem = ({
   message,
@@ -84,6 +85,8 @@ export const MessageItem = ({
           {topReactions.map((reaction) => {
             return <ReactionButton key={reaction.id} message={message} reaction={reaction} />
           })}
+
+          <AddReactionButton />
 
           <Separator my="$2" vertical />
 

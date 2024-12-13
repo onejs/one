@@ -94,6 +94,7 @@ ADD
 CREATE TABLE "reaction" (
     "id" VARCHAR PRIMARY KEY,
     "value" VARCHAR UNIQUE,
+    "keyword" VARCHAR UNIQUE,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NULL
 );
