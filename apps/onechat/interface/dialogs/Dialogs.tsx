@@ -1,12 +1,12 @@
 import { DialogAddFriend } from './DialogAddFriend'
 import { DialogConfirm } from './DialogConfirm'
-import { DialogCreateServer } from './DialogCreateServer'
+import { DialogCreateJoinServer } from './DialogCreateJoinServer'
 
 export const Dialogs = () => {
   return (
     <>
       <DialogConfirm />
-      <DialogCreateServer />
+      <DialogCreateJoinServer />
       <DialogAddFriend />
     </>
   )
