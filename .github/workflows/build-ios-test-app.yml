@@ -189,13 +189,13 @@ jobs:
       - name: Build
         if: ${{ !steps.pre-check-previous-build.outputs.cache-hit && !steps.check-previous-build.outputs.cache-hit }}
         run: |
+          set -o pipefail
           xcrun xcodebuild -scheme '${{ env.app_name }}' \
             -workspace 'ios/${{ env.app_name }}.xcworkspace' \
             -configuration ${{ inputs.configuration }} \
             -sdk 'iphonesimulator' \
             -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath \
-            build | tee xcodebuild.log | xcpretty
+            -derivedDataPath build | tee xcodebuild.log | xcpretty
 
       - name: Save Built App
         uses: actions/cache/save@v4
