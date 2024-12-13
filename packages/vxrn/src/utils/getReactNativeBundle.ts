@@ -130,6 +130,8 @@ export async function getReactNativeBundle(
       if (outputModule.type == 'chunk') {
         const importsMap = {}
         for (const imp of outputModule.imports) {
+          console.log('improts is', imp)
+
           const relativePath = relative(dirname(id), imp)
           importsMap[relativePath[0] === '.' ? relativePath : './' + relativePath] = imp.replace(
             /.*node_modules\//,
