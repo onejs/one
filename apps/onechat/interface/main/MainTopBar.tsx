@@ -1,8 +1,10 @@
-import { IndentIncrease, MessageCircle } from '@tamagui/lucide-icons'
+import { IndentIncrease, MessageCircle, Settings } from '@tamagui/lucide-icons'
 import {
   Button,
-  ButtonProps,
+  type ButtonProps,
   Circle,
+  H4,
+  Popover,
   ScrollView,
   SizableText,
   TooltipSimple,
@@ -18,6 +20,7 @@ import {
 } from '~/features/state/queries/useUserState'
 import { OneBall } from '../brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
+import { PopoverContent } from '../Popover'
 
 export const mainTopBarHeight = 45
 
@@ -34,19 +37,43 @@ export const MainTopBar = () => {
       bg="$color1"
       elevation={4}
       zi={100_000}
+      py="$2"
+      px="$2"
     >
-      <XStack p="$2" px="$3" ai="center" gap="$1">
+      <XStack ai="center" gap="$1">
         <ChannelViewToggle />
       </XStack>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} ml={-20}>
-        <XStack p="$2" px="$3" ai="center" gap="$1">
+      <ScrollView my="$-2" f={2} horizontal showsHorizontalScrollIndicator={false}>
+        <XStack p="$2" ai="center" gap="$1">
           {threads.map((thread) => {
             return <ThreadButton key={thread.id} thread={thread} />
           })}
         </XStack>
       </ScrollView>
+
+      <XStack ai="center">
+        <ChannelSettingsButton />
+      </XStack>
     </XStack>
+  )
+}
+
+const ChannelSettingsButton = () => {
+  return (
+    <Popover allowFlip stayInFrame={{ padding: 10 }}>
+      <Popover.Trigger>
+        <TooltipSimple label="Channel Settings">
+          <Button chromeless size="$2.5" scaleIcon={1.3}>
+            <Settings size={18} o={0.5} />
+          </Button>
+        </TooltipSimple>
+      </Popover.Trigger>
+
+      <PopoverContent miw={300} mih={400} p="$3">
+        <H4>Channel Settings</H4>
+      </PopoverContent>
+    </Popover>
   )
 }
 
@@ -55,18 +82,23 @@ const ChannelViewToggle = () => {
   const view = channelState.mainView
 
   const activeStyle: ButtonProps = {
+    bg: '$color2',
+  }
+
+  const inactiveStyle: ButtonProps = {
     bg: 'transparent',
+    size: '$2.5',
+    scaleIcon: 1.3,
+    borderWidth: 0,
+    borderRadius: 0,
   }
 
   return (
     <XGroup overflow="hidden" borderWidth={1} borderColor="$borderColor">
       <TooltipSimple label="Chat view">
         <Button
-          size="$2.5"
-          scaleIcon={1.5}
+          {...inactiveStyle}
           icon={MessageCircle}
-          borderWidth={0}
-          borderRadius={0}
           {...(view !== 'thread' && activeStyle)}
           onPress={() => {
             updateUserCurrentChannel({
@@ -77,11 +109,8 @@ const ChannelViewToggle = () => {
       </TooltipSimple>
       <TooltipSimple label="Thread view">
         <Button
-          size="$2.5"
-          scaleIcon={1.5}
+          {...inactiveStyle}
           icon={IndentIncrease}
-          borderWidth={0}
-          borderRadius={0}
           {...(view === 'thread' && activeStyle)}
           onPress={() => {
             updateUserCurrentChannel({

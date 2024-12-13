@@ -3,6 +3,7 @@ import { Button, Popover, ScrollView, TooltipSimple, XStack } from 'tamagui'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
 import { useQuery } from '~/features/state/zero'
 import { ButtonSimple } from '../ButtonSimple'
+import { PopoverContent } from '../Popover'
 
 export const AddReactionButton = () => {
   const [reactions] = useQuery((q) => q.reaction.orderBy('keyword', 'desc'))
@@ -23,26 +24,7 @@ export const AddReactionButton = () => {
         </TooltipSimple>
       </Popover.Trigger>
 
-      <Popover.Content
-        width={300}
-        borderWidth={1}
-        height={300}
-        borderColor="$borderColor"
-        enterStyle={{ y: -10, opacity: 0 }}
-        exitStyle={{ y: -10, opacity: 0 }}
-        elevate
-        animation={[
-          'quick',
-          {
-            opacity: {
-              overshootClamping: true,
-            },
-          },
-        ]}
-        padding={0}
-      >
-        <Popover.Arrow size="$4" />
-
+      <PopoverContent width={300} height={300}>
         <SearchableList onSelectItem={() => {}} items={reactions}>
           <XStack p="$2" w="100%">
             <SearchableInput size="$4" f={1} />
@@ -66,7 +48,7 @@ export const AddReactionButton = () => {
             </XStack>
           </ScrollView>
         </SearchableList>
-      </Popover.Content>
+      </PopoverContent>
     </Popover>
   )
 }
