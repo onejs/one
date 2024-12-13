@@ -52,7 +52,7 @@ npm install one@latest --save-exact
 This ensures consistent behavior across different environments and deployments.
 
 If using pnpm or a package manager that symlinks dependencies, you'll want to disable that setting.
-One has (just a few) patches that fix dependencies. In part this is to enable switching between React 19 on web and React 18 on native, in part this is because the React Native ecosystem has many, many weirdly published packages - think JSX or Flowtype published in `.js` files, or non-standard legacy babel experimental transforms, etc. We are working with package authors to improve this, but we've found patches to be both simpler and require less mysterious behavior/slowdowns than the alternative - making Vite handle everything internally with magic.
+One has (just a few) patches that fix dependencies. In part this is to enable switching between React 19 on web and React 18 on native, in part this is because the React Native ecosystem has many, many weirdly published packages - think JSX or Flowtype published in `.js` files, or non-standard legacy babel experimental transforms, etc. We are working with package authors to improve this, but we've found patches to be both simpler and require less mysterious behavior/slowdowns than the alternative of making Vite handle everything internally.
 
 ### Vite Config
 
@@ -72,7 +72,46 @@ export default {
 
 ### TSConfig
 
-One will create a TSConfig for you when you first start the dev server, with some defaults that work well. Of course you can create your own if you'd prefer.
+One will create a TSConfig for you when you first start the dev server, with some defaults that work well. Of course you can create your own if you'd prefer. The default looks like this:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./*"
+      ]
+    },
+    "strict": true,
+    "rootDir": ".",
+    "noEmit": true,
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "preserveSymlinks": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "noImplicitAny": false,
+    "types": [
+      "node",
+      "react",
+      "vite/client"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".expo",
+    "**/test",
+    "**/dist",
+    "**/types",
+    "**/__tests__"
+  ]
+}
+```
 
 ### File System Routes
 
