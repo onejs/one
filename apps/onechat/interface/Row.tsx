@@ -8,6 +8,14 @@ const RowComponent = styled(XStack, {
   hoverStyle: {
     bg: '$color3',
   },
+
+  variants: {
+    active: {
+      true: {
+        bg: '$color3',
+      },
+    },
+  } as const,
 })
 
 const RowText = styled(SizableText, {
