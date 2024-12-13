@@ -37,15 +37,15 @@ export function getBaseViteConfig({
         name: 'platform-specific-resolve',
         config() {
           return {
-            ssr: {
-              resolve: {
-                extensions: webExtensions,
-                conditions: ['vxrn-web'],
-                externalConditions: ['vxrn-web'],
-              },
-            },
-
             environments: {
+              ssr: {
+                resolve: {
+                  extensions: webExtensions,
+                  conditions: ['vxrn-web'],
+                  externalConditions: ['vxrn-web'],
+                },
+              },
+
               client: {
                 resolve: {
                   extensions: webExtensions,

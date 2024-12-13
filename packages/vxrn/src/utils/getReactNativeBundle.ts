@@ -3,12 +3,13 @@ import { readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
 import type { RollupCache } from 'rollup'
 import { createBuilder } from 'vite'
-import { buildEnvironment } from './fork/vite/build'
+// import { buildEnvironment } from './fork/vite/build'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { getReactNativeConfig } from './getReactNativeConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
 import { resolvePath } from '@vxrn/resolve'
+import { filterPluginsForNative } from './filterPluginsForNative'
 
 const { pathExists } = FSExtra
 
@@ -66,6 +67,8 @@ export async function getReactNativeBundle(
   // build app
   const nativeBuildConfig = await getReactNativeConfig(options, internal, platform)
 
+  nativeBuildConfig.plugins = filterPluginsForNative(nativeBuildConfig.plugins, { isNative: true })
+
   const builder = await createBuilder(nativeBuildConfig)
 
   const environment = builder.environments[platform]
@@ -93,24 +96,26 @@ export async function getReactNativeBundle(
   }
 
   // We are using a forked version of the Vite internal function `buildEnvironment` (which is what `builder.build` calls) that will return the Rollup cache object with the build output, and also with some performance improvements.
-  const buildOutput = await buildEnvironment(environment.config, environment)
-  const { cache: currentCache } = buildOutput
-  if (currentCache) {
-    // Do not cache some virtual modules that can dynamically change without an corresponding change in the source code to invalidate the cache.
-    currentCache.modules = currentCache.modules.filter((m) => !m.id.endsWith('one-entry-native'))
-    cache[platform] = currentCache
+  const buildOutput = await builder.build(environment)
 
-    // do not await cache write
-    ;(async () => {
-      if (!internal.useCache) return
+  // disable cache for new vite version
+  // const { cache: currentCache } = buildOutput
+  // if (currentCache) {
+  //   // Do not cache some virtual modules that can dynamically change without an corresponding change in the source code to invalidate the cache.
+  //   currentCache.modules = currentCache.modules.filter((m) => !m.id.endsWith('one-entry-native'))
+  //   cache[platform] = currentCache
 
-      try {
-        await FSExtra.writeJSON(rollupCacheFile, currentCache, { replacer: bigIntReplacer })
-      } catch (e) {
-        console.error(`Error saving Rollup cache to ${rollupCacheFile}: ${e}`)
-      }
-    })()
-  }
+  //   // do not await cache write
+  //   ;(async () => {
+  //     if (!internal.useCache) return
+
+  //     try {
+  //       await FSExtra.writeJSON(rollupCacheFile, currentCache, { replacer: bigIntReplacer })
+  //     } catch (e) {
+  //       console.error(`Error saving Rollup cache to ${rollupCacheFile}: ${e}`)
+  //     }
+  //   })()
+  // }
 
   if (!('output' in buildOutput)) {
     throw `❌`
@@ -146,13 +151,17 @@ export async function getReactNativeBundle(
           // Turn eager imports of RN back into dynamic lazy imports.
           // We needed them eager so rollup won't be unhappy with missing exports, but now we need them lazy again to match the original RN behavior, which may avoid some issues. Such as:
           // * react-native v0.76 with: Codegen didn't run for RNCSafeAreaView. This will be an error in the future. Make sure you are using @react-native/babel-preset when building your JavaScript code.
-          code = code.replace( // Step 1: Replace the whole `exports` block which contains `exports.REACT_NATIVE_ESM_MANUAL_EXPORTS_` with `module.exports = RN;`
-            /(^exports.+$\s)*(^exports\.REACT_NATIVE_ESM_MANUAL_EXPORTS_.+$\s)(^exports.+$\s)*/m,
-            'module.exports = RN;'
-          )
-          .replace( // Step 2: Remove other unnecessary `var thing = RN.thing;` lines
-            /^.*REACT_NATIVE_ESM_MANUAL_EXPORTS_START[\s\S]*REACT_NATIVE_ESM_MANUAL_EXPORTS_END.*$/m, ''
-          )
+          code = code
+            .replace(
+              // Step 1: Replace the whole `exports` block which contains `exports.REACT_NATIVE_ESM_MANUAL_EXPORTS_` with `module.exports = RN;`
+              /(^exports.+$\s)*(^exports\.REACT_NATIVE_ESM_MANUAL_EXPORTS_.+$\s)(^exports.+$\s)*/m,
+              'module.exports = RN;'
+            )
+            .replace(
+              // Step 2: Remove other unnecessary `var thing = RN.thing;` lines
+              /^.*REACT_NATIVE_ESM_MANUAL_EXPORTS_START[\s\S]*REACT_NATIVE_ESM_MANUAL_EXPORTS_END.*$/m,
+              ''
+            )
         }
 
         return `

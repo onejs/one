@@ -1,7 +1,7 @@
 import type { Plugin, UserConfig } from 'vite';
 export declare function getServerConfigPlugin(): {
     name: string;
-    configResolved(this: void, conf: Readonly<Omit<UserConfig, "plugins" | "css" | "assetsInclude" | "optimizeDeps" | "worker" | "build" | "dev" | "environments"> & {
+    configResolved(this: void, conf: Readonly<Omit<UserConfig, "plugins" | "css" | "json" | "assetsInclude" | "optimizeDeps" | "worker" | "build" | "dev" | "environments" | "server" | "preview"> & {
         configFile: string | undefined;
         configFileDependencies: string[];
         inlineConfig: import("vite").InlineConfig;
@@ -20,10 +20,11 @@ export declare function getServerConfigPlugin(): {
         };
         plugins: readonly Plugin[];
         css: import("vite").ResolvedCSSOptions;
+        json: Required<import("vite").JsonOptions>;
         esbuild: import("vite").ESBuildOptions | false;
         server: import("vite").ResolvedServerOptions;
         dev: import("vite").ResolvedDevEnvironmentOptions;
-        builder: Required<import("vite").BuilderOptions>;
+        builder: Required<import("vite").BuilderOptions> | undefined;
         build: import("vite").ResolvedBuildOptions;
         preview: import("vite").ResolvedPreviewOptions;
         ssr: import("vite").ResolvedSSROptions;
@@ -38,7 +39,8 @@ export declare function getServerConfigPlugin(): {
             define?: Record<string, any>;
             resolve: Required<import("vite").ResolveOptions>;
             consumer: "client" | "server";
-            webCompatible: boolean;
+            keepProcessEnv?: boolean;
+            optimizeDeps: import("vite").DepOptimizationOptions;
             dev: import("vite").ResolvedDevEnvironmentOptions;
             build: import("vite").ResolvedBuildEnvironmentOptions;
         }>;

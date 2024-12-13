@@ -268,7 +268,8 @@ export async function buildEnvironment(
           // We should remove the explicit 'client' hcek here.
           // Or maybe `inlineDynamicImports` should be an environment option?
           (environment.name !== 'client' &&
-            environment.options.webCompatible &&
+            // vxrn - removed this vite 6 no longer uses (we need to re-sync this file with vite 6 latest)
+            // environment.options.webCompatible &&
             (typeof input === 'string' || Object.keys(input).length === 1)),
         ...output,
       }
