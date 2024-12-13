@@ -4,7 +4,7 @@ import { useAuth } from '~/features/auth/useAuth'
 import { useUserServers } from '~/features/state/queries/useServer'
 import { updateUserState, useUserState } from '~/features/state/queries/useUserState'
 import { Avatar } from '../Avatar'
-import { dialogCreateServer } from '../dialogs/DialogCreateServer'
+import { dialogCreateServer } from '../dialogs/DialogCreateJoinServer'
 
 export const SidebarServersRow = () => {
   const servers = useUserServers()

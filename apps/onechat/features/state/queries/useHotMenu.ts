@@ -1,8 +1,9 @@
 // want this to be contextual based on current screen state
 
-import { UserPlus } from '@tamagui/lucide-icons'
+import { Server, UserPlus } from '@tamagui/lucide-icons'
 import type { IconProps } from '@tamagui/helpers-icon'
 import { dialogAddFriend } from '~/interface/dialogs/DialogAddFriend'
+import { dialogJoinServer } from '~/interface/dialogs/DialogCreateJoinServer'
 
 type HotMenuItem = {
   name: string
@@ -20,6 +21,14 @@ const globalMenuItems: HotMenuItem[] = [
     Icon: UserPlus,
     action() {
       dialogAddFriend()
+    },
+  },
+
+  {
+    name: 'Join server',
+    Icon: Server,
+    action() {
+      dialogJoinServer()
     },
   },
 ]
