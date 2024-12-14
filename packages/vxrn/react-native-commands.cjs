@@ -100,6 +100,11 @@ const bundleCommand = {
         'Custom resolver options of the form key=value. URL-encoded. May be specified multiple times.',
       parse: (val, previous = []) => previous.concat([val]),
     },
+
+    {
+      name: '--config-cmd',
+      description: 'This is not actually in use, but it is needed for the compatibility with React Native v0.76 since it is passed during the build process of native apps (see: https://github.com/facebook/react-native/blob/v0.76.0/packages/react-native/scripts/react-native-xcode.sh#L142-L149).',
+    },
   ],
 }
 
