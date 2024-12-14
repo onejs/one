@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Input, ScrollView, SizableText, XStack, YStack } from 'tamagui'
-import { useQuery } from 'one/zero'
-import { zero } from '../zero/client'
+// import { useQuery } from 'one/zero'
+// import { zero } from '../zero/client'
 
 export function DataTab() {
   const [tab, setTab] = useState('')
@@ -41,7 +41,7 @@ export function DataTab() {
 }
 
 const ExploreTable = ({ name }: { name: string }) => {
-  const rows = useQuery(zero.query[name.toLowerCase()])
+  const rows = [] //useQuery(zero.query[name.toLowerCase()])
   const headings = Object.keys(rows[0] || {})
 
   return (

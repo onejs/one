@@ -56,15 +56,14 @@
     "react-hotkeys-hook": "^4.6.1",
     "react-native": "0.74.1",
     "tamagui": "^1.120.1",
-    "ts-deepmerge": "^7.0.2",
-    "unicode-emoji": "^2.6.0"
+    "ts-deepmerge": "^7.0.2"
   },
   "devDependencies": {
-    "@algolia/client-search": "^5.8.1",
     "@tauri-apps/cli": "^2",
     "gray-matter": "^4.0.3",
     "marked": "^14.1.2",
     "tsx": "^4.19.2",
+    "unicode-emoji": "^2.6.0",
     "vite-tsconfig-paths": "^5.0.1"
   },
   "publishConfig": {
