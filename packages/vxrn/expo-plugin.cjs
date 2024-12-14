@@ -19,6 +19,7 @@ const plugin = (config, options = {}) => {
         const originalScript = JSON.parse(bundleReactNativeCodeAndImagesBuildPhase.shellScript)
         let patchedScript = originalScript
         patchedScript = removeExpoDefaultsFromBundleReactNativeShellScript(patchedScript)
+        patchedScript = addSetCliPathToBundleReactNativeShellScript(patchedScript)
         patchedScript = addDepsPatchToBundleReactNativeShellScript(patchedScript)
         bundleReactNativeCodeAndImagesBuildPhase.shellScript = JSON.stringify(patchedScript)
 
@@ -137,6 +138,22 @@ react {
     hermesFlags = ["-O"]
 }
 `.trim()
+
+/**
+ * TODO: Add a comment explaining what this does.
+ */
+function addSetCliPathToBundleReactNativeShellScript(input) {
+  if (input.includes('CLI_PATH="')) {
+    return input
+  }
+
+  const codeToAdd = `
+# [vxrn/one] React Native now defaults CLI_PATH to scripts/bundle.js, which loads the bundle command directly from @react-native/community-cli-plugin, we need to set it back to the main CLI endpoint so the override of the bundle command in react-native.config.cjs can take effect
+export CLI_PATH="$("$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
+`.trim()
+
+  return input.replace(/^`"\$NODE_BINARY"/m, codeToAdd + '\n\n' + '`"$NODE_BINARY"')
+}
 
 /**
  * Ensure patches are applied.
