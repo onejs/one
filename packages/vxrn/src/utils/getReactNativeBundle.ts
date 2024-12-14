@@ -75,27 +75,29 @@ export async function getReactNativeBundle(
 
   const rollupCacheFile = join(options.cacheDir, `rn-rollup-cache-${platform}.json`)
 
-  if (internal.useCache && !process.env.VXRN_DISABLE_CACHE) {
-    // See: https://rollupjs.org/configuration-options/#cache
-    environment.config.build.rollupOptions.cache =
-      cache[platform] ||
-      (await (async () => {
-        // Try to load Rollup cache from disk
-        try {
-          if (await pathExists(rollupCacheFile)) {
-            const c = await FSExtra.readJSON(rollupCacheFile, { reviver: bigIntReviver })
-            return c
-          }
-        } catch (e) {
-          console.error(`Error loading Rollup cache from ${rollupCacheFile}: ${e}`)
-        }
+  // if (internal.useCache && !process.env.VXRN_DISABLE_CACHE) {
+  //   // See: https://rollupjs.org/configuration-options/#cache
+  //   environment.config.build.rollupOptions.cache =
+  //     cache[platform] ||
+  //     (await (async () => {
+  //       // Try to load Rollup cache from disk
+  //       try {
+  //         if (await pathExists(rollupCacheFile)) {
+  //           const c = await FSExtra.readJSON(rollupCacheFile, { reviver: bigIntReviver })
+  //           return c
+  //         }
+  //       } catch (e) {
+  //         console.error(`Error loading Rollup cache from ${rollupCacheFile}: ${e}`)
+  //       }
 
-        return null
-      })()) ||
-      true /* to initially enable Rollup cache */
-  }
+  //       return null
+  //     })()) ||
+  //     true /* to initially enable Rollup cache */
+  // }
 
   // We are using a forked version of the Vite internal function `buildEnvironment` (which is what `builder.build` calls) that will return the Rollup cache object with the build output, and also with some performance improvements.
+  // disabled due to differences in vite 6 stable upgrade
+
   const buildOutput = await builder.build(environment)
 
   // disable cache for new vite version
@@ -120,6 +122,11 @@ export async function getReactNativeBundle(
   if (!('output' in buildOutput)) {
     throw `❌`
   }
+
+  console.log(
+    'huh',
+    buildOutput.output.map((x) => [x.fileName, x.name, x.type])
+  )
 
   let appCode = buildOutput.output
     // entry last

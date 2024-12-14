@@ -16,6 +16,9 @@
     "node": "20.17.0",
     "npm": "10.8.3"
   },
+  "resolutions": {
+    "vite": "6.0.0-beta.7"
+  },
   "scripts": {
     "postinstall": "node -r esbuild-register ./scripts/setup-zero.ts",
     "hardlink": "node -r esbuild-register ./scripts/hardlink.ts",
