@@ -100,6 +100,11 @@ const bundleCommand = {
         'Custom resolver options of the form key=value. URL-encoded. May be specified multiple times.',
       parse: (val, previous = []) => previous.concat([val]),
     },
+
+    {
+      name: '--config-cmd',
+      description: 'Not used', // TODO: add comment about why this is here
+    },
   ],
 }
 
