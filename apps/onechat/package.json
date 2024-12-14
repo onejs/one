@@ -19,6 +19,7 @@
     "dev:clean": "one dev --clean",
     "subset-font-pn": "tsx ./helpers/subset-font.ts",
     "build:web": "one build",
+    "build:icon": "tauri icon ./src-tauri/icons/icon.png",
     "serve": "one serve",
     "serve:railway": "one serve --host 0.0.0.0"
   },
