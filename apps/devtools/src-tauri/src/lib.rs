@@ -1,20 +1,6 @@
 use tauri::{Manager, Window};
 use window_vibrancy::*;
 
-#[tauri::command]
-fn set_vibrancy(window: Window, is_dark_mode: bool) {
-    #[cfg(target_os = "macos")]
-    {
-        let material = if is_dark_mode {
-            NSVisualEffectMaterial::UltraDark
-        } else {
-            NSVisualEffectMaterial::UnderWindowBackground
-        };
-
-        apply_vibrancy(&window, material, None, None).expect("Failed to apply vibrancy");
-    }
-}
-
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let builder = tauri::Builder::default();
@@ -38,7 +24,7 @@ pub fn run() {
 
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![set_vibrancy])
+        .invoke_handler(tauri::generate_handler![])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

@@ -1,9 +1,25 @@
 import { Globe, Smartphone } from '@tamagui/lucide-icons'
+import { useEffect, useState } from 'react'
 import { styled, Tabs, Text, View, XStack, YStack } from 'tamagui'
 import { DataTab } from '~/features/data/DataTab'
 import { RovingTabs } from '~/features/ui/RovingTabs'
+import { startServer } from '@vxrn/devtools'
+
+const ipc = startServer()
 
 export function HomePage() {
+  const [devTools, setDevTools] = useState<{ id: string; name: string }[]>([])
+
+  useEffect(() => {
+    ipc.onMessage((message) => {
+      if (message.type === 'add-devtool') {
+        setDevTools((prev) => [...prev, { id: message.id, name: message.name }])
+      }
+    })
+  }, [])
+
+  console.info('devTools', devTools)
+
   return (
     <YStack data-tauri-drag-region f={1}>
       <RovingTabs
@@ -12,8 +28,8 @@ export function HomePage() {
           { label: 'Home', value: 'one' },
           { label: 'Logs', value: 'logs' },
           { label: 'REPL', value: 'repl' },
-          { label: 'Data', value: 'data' },
-          { label: 'Dev', value: 'dev' },
+          // { label: 'Data', value: 'data' },
+          // { label: 'Dev', value: 'dev' },
         ]}
       >
         <Tabs.Content f={1} data-tauri-drag-region value="one">

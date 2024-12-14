@@ -22,6 +22,8 @@
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-shell": "^2",
     "@vxrn/color-scheme": "1.1.341",
+    "@vxrn/devtools": "1.1.341",
+    "node-ipc": "^12.0.0",
     "one": "1.1.341",
     "react": "^18.3.1",
     "react-hotkeys-hook": "^4.6.1",

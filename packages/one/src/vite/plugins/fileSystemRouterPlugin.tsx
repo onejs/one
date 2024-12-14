@@ -13,6 +13,10 @@ import { replaceLoader } from '../../vite/replaceLoader'
 import { resolveAPIRequest } from '../../vite/resolveAPIRequest'
 import type { One } from '../../vite/types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
+import { startClient } from '@vxrn/devtools'
+
+let devToolsClient: ReturnType<typeof startClient> | null = null
+const defaultId = `${Math.random()}`
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -28,7 +32,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   let renderPromise: Promise<void> | null = null
 
   function createRequestHandler() {
-    return createHandleRequest(options, {
+    const handler = createHandleRequest(options, {
       async handleSSR({ route, url, loaderProps }) {
         console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
 
@@ -186,6 +190,20 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         return result
       },
     })
+
+    const devToolsRoute = handler.manifest.pageRoutes.find((x) => x.page === '_devtools')
+
+    if (devToolsRoute) {
+      devToolsClient ||= startClient()
+
+      devToolsClient.sendMessage({
+        type: 'add-devtool',
+        id: options.app?.key ?? defaultId,
+        name: options.app?.key ?? 'Untitled',
+      })
+    }
+
+    return handler
   }
 
   return {
