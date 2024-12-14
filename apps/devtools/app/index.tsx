@@ -41,7 +41,7 @@ const ActionCard = ({ name, Icon }: { name: string; Icon?: any }) => {
     <Card data-tauri-drag-region>
       {Icon && <Icon size={38} />}
 
-      <Text userSelect="none" fontSize={14} ta="center" cur="inherit">
+      <Text userSelect="none" fontSize={18} ta="center" cur="inherit">
         {name}
       </Text>
     </Card>
@@ -55,7 +55,7 @@ const Card = styled(View, {
   jc: 'center',
   w: '30%',
   f: 1,
-  bg: '$color2',
+  bg: '$background025',
   p: '$6',
   br: '$4',
   mih: 150,

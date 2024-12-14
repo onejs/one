@@ -169,8 +169,7 @@ function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
   return (
     <YStack
       pos="absolute"
-      bg="$color5"
-      o={0.7}
+      bg="$color8"
       br="$4"
       animation="quickest"
       enterStyle={{
@@ -180,8 +179,7 @@ function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
         o: 0,
       }}
       {...(active && {
-        bg: '$color8',
-        o: 0.6,
+        bg: '$color10',
       })}
       {...props}
     />

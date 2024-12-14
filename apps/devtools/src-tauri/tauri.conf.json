@@ -1,47 +1,42 @@
 {
-  "$schema": "../../../node_modules/@tauri-apps/cli/schema.json",
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "onedevtools",
+  "version": "0.1.0",
+  "identifier": "com.onedevtools.app",
   "build": {
     "beforeDevCommand": "yarn dev",
-    "beforeBuildCommand": "yarn build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../dist",
-    "withGlobalTauri": true
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dev-prod"
   },
-  "package": {
-    "productName": "one-ui",
-    "version": "0.1.0"
-  },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
+  "plugins": {
+    "deep-link": {
+      "desktop": {
+        "schemes": ["one-dev"]
       }
-    },
+    }
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "macOSPrivateApi": true,
     "windows": [
       {
-        "title": "one-ui",
-        "width": 800,
-        "height": 600,
+        "title": "test",
+        "width": 780,
         "hiddenTitle": true,
-        "titleBarStyle": "Overlay"
+        "titleBarStyle": "Overlay",
+        "transparent": true,
+        "height": 620
       }
     ],
     "security": {
-      "csp": null
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "com.one-ui.app",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ]
+      "csp": {
+        "default-src": "'self' one-dev: asset:",
+        "connect-src": "ipc: http://localhost:1420"
+      }
     }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all"
   }
 }
