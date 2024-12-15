@@ -1,4 +1,4 @@
-export const AppTab = () => {
+export const DataTab = () => {
   return (
     <>
       {/* biome-ignore lint/a11y/useIframeTitle: <explanation> */}

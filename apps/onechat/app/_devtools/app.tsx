@@ -1,10 +1,5 @@
-import type { TableSchema } from '@rocicorp/zero'
-import { Button, H4, ScrollView, XStack, YStack } from 'tamagui'
-import { type Schema, schema } from '~/config/zero/schema'
-import { mutate, resolve, useQuery, zero } from '~/features/state/zero'
-import { proxy, useSnapshot } from 'valtio'
-import { ChevronLeft } from '@tamagui/lucide-icons'
-import { Table } from '~/interface/devtools/Table'
+import { Button, YStack } from 'tamagui'
+import { mutate, resolve, zero } from '~/features/state/zero'
 
 // const globalState = proxy({
 //   activeTable: '',
