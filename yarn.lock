@@ -4646,13 +4646,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@leeoniya/ufuzzy@npm:^1.0.14":
-  version: 1.0.14
-  resolution: "@leeoniya/ufuzzy@npm:1.0.14"
-  checksum: 10/852b580a8eaaf92e2d448f5b720e3c53e4bea22187bf5e8459256677c47183321b47b8384982e15751f42da7e77a216fd86c80e6185677d8270adeab4a4fb771
-  languageName: node
-  linkType: hard
-
 "@levischuck/tiny-cbor@npm:^0.2.2":
   version: 0.2.2
   resolution: "@levischuck/tiny-cbor@npm:0.2.2"
@@ -15623,6 +15616,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"flexsearch@npm:^0.7.43":
+  version: 0.7.43
+  resolution: "flexsearch@npm:0.7.43"
+  checksum: 10/79c0bceee435bd40fd0a0d8ba72f1bd07f622374a73bd3ceb874f7c7dd9a0fe9863b5c66a4037c2fa534e726f718d010ac99377d1924e347823b51ce641180e5
+  languageName: node
+  linkType: hard
+
 "flow-enums-runtime@npm:^0.0.6":
   version: 0.0.6
   resolution: "flow-enums-runtime@npm:0.0.6"
@@ -20263,7 +20263,6 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:^0.27.0"
-    "@leeoniya/ufuzzy": "npm:^1.0.14"
     "@rocicorp/zero": "npm:^0.8.2024121204"
     "@supabase/supabase-js": "npm:^2.44.4"
     "@tamagui/button": "npm:^1.120.1"
@@ -20285,6 +20284,7 @@ __metadata:
     "@vxrn/mdx": "npm:1.1.342"
     better-auth: "npm:^1.0.10"
     body-scroll-lock: "npm:^4.0.0-beta.0"
+    flexsearch: "npm:^0.7.43"
     gray-matter: "npm:^4.0.3"
     marked: "npm:^14.1.2"
     mdx-bundler: "npm:^10.0.2"
@@ -23190,7 +23190,6 @@ __metadata:
   dependencies:
     "@algolia/client-search": "npm:^5.8.1"
     "@docsearch/react": "npm:^3.6.1"
-    "@leeoniya/ufuzzy": "npm:^1.0.14"
     "@supabase/supabase-js": "npm:^2.44.4"
     "@tamagui/button": "npm:^1.120.1"
     "@tamagui/input": "npm:^1.120.1"
