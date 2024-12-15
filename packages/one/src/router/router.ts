@@ -57,6 +57,7 @@ export function initialize(
   initialLocation?: URL
 ) {
   cleanUpState()
+
   routeNode = getRoutes(context, {
     ignoreEntryPoints: true,
     platform: Platform.OS,

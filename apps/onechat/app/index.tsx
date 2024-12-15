@@ -1,21 +1,6 @@
-import { IndentIncrease, MoreVertical, Reply } from '@tamagui/lucide-icons'
-import { useState } from 'react'
-import {
-  Button,
-  Circle,
-  H3,
-  Separator,
-  SizableText,
-  TooltipSimple,
-  XGroup,
-  XStack,
-  YStack,
-} from 'tamagui'
-import type { Message, User } from '~/config/zero/schema'
+import { H3, XStack, YStack } from 'tamagui'
 import { authClient } from '~/features/auth/authClient'
-import { OneBall } from '~/interface/brand/Logo'
 import { useUserState } from '~/features/state/queries/useUserState'
-import { Avatar } from '~/interface/Avatar'
 import { ListItem } from '~/interface/ListItem'
 import { Main } from '~/interface/main/Main'
 import { ThemeToggleListItem } from '~/interface/settings/ThemeToggleListItem'
