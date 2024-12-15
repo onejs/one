@@ -8,7 +8,7 @@ export const AppTab = () => {
           height: '100%',
           width: '100%',
         }}
-        src="http://localhost:1421/_devtools"
+        src="http://localhost:1421/_devtools/app"
       />
     </>
   )
