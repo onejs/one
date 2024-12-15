@@ -1,24 +1,23 @@
-import { Fragment, useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
-import type { GlobbedRouteImports, RenderAppProps } from './types'
-import { useViteRoutes } from './useViteRoutes'
-import { RootErrorBoundary } from './views/RootErrorBoundary'
-import { GestureHandlerRootView as _GestureHandlerRootView } from 'react-native-gesture-handler'
+import { SafeAreaProviderCompat } from '@react-navigation/elements'
 import {
   DarkTheme,
   DefaultTheme,
   type NavigationAction,
   type NavigationContainerProps,
 } from '@react-navigation/native'
-import { SafeAreaProviderCompat } from '@react-navigation/elements'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
+import { Fragment, useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
+import { getURL } from './getURL'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
+import type { GlobbedRouteImports, RenderAppProps } from './types'
+import { useViteRoutes } from './useViteRoutes'
+import { rand } from './utils/rand'
 import { PreloadLinks } from './views/PreloadLinks'
+import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollRestoration } from './views/ScrollRestoration'
 import type { One } from './vite/types'
-import { rand } from './utils/rand'
-import { getURL } from './getURL'
 // import { SplashScreen } from './views/Splash'
 
 if (typeof window !== 'undefined') {
@@ -54,19 +53,83 @@ type InnerProps = {
 }
 
 export function Root(props: RootProps) {
+  const {
+    path,
+    routes,
+    routeOptions,
+    wrapper: ParentWrapper = Fragment,
+    isClient,
+    css,
+    navigationContainerProps,
+    loaderProps,
+    mode,
+  } = props
+
   // ⚠️ <StrictMode> breaks routing!
+  const context = useViteRoutes(routes, routeOptions, globalThis['__vxrnVersion'])
+  const location =
+    typeof window !== 'undefined' && window.location
+      ? new URL(path || window.location.href || '/', window.location.href)
+      : new URL(path || '/', getURL())
+
+  const store = useInitializeOneRouter(context, location)
+  const [colorScheme] = useColorScheme()
+
+  // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
+
+  /*
+   * Due to static rendering we need to wrap these top level views in second wrapper
+   * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
+   * is a HTML document, we need to ensure its inside the <body>
+   */
+  const wrapper = (children: any) => {
+    return (
+      <ParentWrapper>
+        {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
+        <ScrollRestoration />
+        {/* <GestureHandlerRootView> */}
+        <SafeAreaProviderCompat>
+          {children}
+
+          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+        </SafeAreaProviderCompat>
+        {/* </GestureHandlerRootView> */}
+      </ParentWrapper>
+    )
+  }
+
+  const Component = store.rootComponent
+
+  if (!Component) {
+    throw new Error(`No root component found`)
+  }
 
   const contents = (
     // <StrictMode>
     <RootErrorBoundary>
       {/* for some reason warning if no key here */}
-      <Contents key="contents" {...props} />
+      <UpstreamNavigationContainer
+        ref={store.navigationRef}
+        initialState={store.initialState}
+        linking={store.linking}
+        onUnhandledAction={onUnhandledAction}
+        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+        documentTitle={{
+          enabled: false,
+        }}
+        {...navigationContainerProps}
+      >
+        <ServerLocationContext.Provider value={location}>
+          {wrapper(<Component />)}
+        </ServerLocationContext.Provider>
+      </UpstreamNavigationContainer>
       <PreloadLinks key="preload-links" />
     </RootErrorBoundary>
     // </StrictMode>
   )
 
-  if (props.isClient) {
+  if (isClient) {
     if (globalThis['__vxrnHydrateMode__'] === 'spa') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [show, setShow] = useState(false)
@@ -99,7 +162,7 @@ export function Root(props: RootProps) {
           }}
         />
 
-        {props.css?.map((file) => {
+        {css?.map((file) => {
           return <link key={file} rel="stylesheet" href={file} />
         })}
       </head>
@@ -113,8 +176,8 @@ export function Root(props: RootProps) {
           __html: `
             globalThis['__vxrnPostRenderData__'] = { __vxrn__: 'post-render' };
             globalThis['__vxrnLoaderData__'] = ${JSON.stringify(loaderData)};
-            globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(props.loaderProps)};
-            globalThis['__vxrnHydrateMode__'] = ${JSON.stringify(props.mode)};
+            globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(loaderProps)};
+            globalThis['__vxrnHydrateMode__'] = ${JSON.stringify(mode)};
         `,
         }}
       />
@@ -154,18 +217,6 @@ window.$RefreshSig$ = () => (type) => type;`,
   )
 }
 
-function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: RootProps) {
-  const context = useViteRoutes(routes, routeOptions, globalThis['__vxrnVersion'])
-
-  // TODO can probably remove since we handle this above
-  const location =
-    typeof window !== 'undefined' && window.location
-      ? new URL(path || window.location.href || '/', window.location.href)
-      : new URL(path || '/', getURL())
-
-  return <ContextNavigator {...props} location={location} context={context} wrapper={wrapper} />
-}
-
 // function getGestureHandlerRootView() {
 //   if (process.env.TAMAGUI_TARGET === 'native') {
 //     try {
@@ -200,64 +251,6 @@ function Contents({ routes, path, wrapper = Fragment, routeOptions, ...props }: 
 // const hasViewControllerBasedStatusBarAppearance =
 //   Platform.OS === 'ios' &&
 //   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
-
-function ContextNavigator({
-  wrapper: ParentWrapper = Fragment,
-  context,
-  location: initialLocation,
-  navigationContainerProps,
-}: InnerProps) {
-  const store = useInitializeOneRouter(context, initialLocation)
-  const [colorScheme] = useColorScheme()
-
-  // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
-
-  /*
-   * Due to static rendering we need to wrap these top level views in second wrapper
-   * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
-   * is a HTML document, we need to ensure its inside the <body>
-   */
-  const wrapper = (children: any) => {
-    return (
-      <ParentWrapper>
-        {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
-        <ScrollRestoration />
-        {/* <GestureHandlerRootView> */}
-        <SafeAreaProviderCompat>
-          {children}
-
-          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-        </SafeAreaProviderCompat>
-        {/* </GestureHandlerRootView> */}
-      </ParentWrapper>
-    )
-  }
-
-  const Component = store.rootComponent
-
-  if (!Component) {
-    throw new Error(`No root component found`)
-  }
-
-  return (
-    <UpstreamNavigationContainer
-      ref={store.navigationRef}
-      initialState={store.initialState}
-      linking={store.linking}
-      onUnhandledAction={onUnhandledAction}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-      documentTitle={{
-        enabled: false,
-      }}
-      {...navigationContainerProps}
-    >
-      <ServerLocationContext.Provider value={initialLocation}>
-        {wrapper(<Component />)}
-      </ServerLocationContext.Provider>
-    </UpstreamNavigationContainer>
-  )
-}
 
 let onUnhandledAction: (action: NavigationAction) => void
 

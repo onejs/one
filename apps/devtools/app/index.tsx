@@ -1,5 +1,6 @@
 import { Globe, Smartphone } from '@tamagui/lucide-icons'
 import { styled, Tabs, Text, View, XStack, YStack } from 'tamagui'
+import { AppTab } from '~/features/app/AppTab'
 import { DataTab } from '~/features/data/DataTab'
 import { RovingTabs } from '~/features/ui/RovingTabs'
 
@@ -10,10 +11,10 @@ export function HomePage() {
         initialTab="one"
         tabs={[
           { label: 'Home', value: 'one' },
+          { label: 'App', value: 'app' },
           { label: 'Logs', value: 'logs' },
           { label: 'REPL', value: 'repl' },
           { label: 'Data', value: 'data' },
-          { label: 'Dev', value: 'dev' },
         ]}
       >
         <Tabs.Content f={1} data-tauri-drag-region value="one">
@@ -26,6 +27,10 @@ export function HomePage() {
             <ActionCard name="Build iOS" />
             <ActionCard name="Build Android" />
           </XStack>
+        </Tabs.Content>
+
+        <Tabs.Content f={1} value="app">
+          <AppTab />
         </Tabs.Content>
 
         <Tabs.Content f={1} value="data">

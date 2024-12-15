@@ -1,6 +1,4 @@
-import { getLoaderPath } from './cleanUrl'
 import type { GlobbedRouteImports } from './types'
-import { dynamicImport } from './utils/dynamicImport'
 import type { One } from './vite/types'
 
 // essentially a development helper
@@ -51,7 +49,6 @@ export function globbedRoutesToRouteContext(
     }
     const loadRouteFunction = paths[path]
     const pathWithoutRelative = path.replace('/app/', './')
-    const shouldRewrite = typeof window !== 'undefined' && window.location && !import.meta.env.PROD
 
     const originalPath = pathWithoutRelative.slice(1).replace(/\.[jt]sx?$/, '')
     if (options?.routeModes?.[originalPath] === 'spa') {
@@ -60,18 +57,6 @@ export function globbedRoutesToRouteContext(
       loadedRoutes[pathWithoutRelative] = () => {
         return null
       }
-    }
-    // TODO this entire conditional seems like it can go away
-    else if (shouldRewrite) {
-      // for SSR support we rewrite these:
-      routesSync[pathWithoutRelative] =
-        path.includes('+not-found') || path.includes('_layout.') || path.includes('+spa')
-          ? loadRouteFunction
-          : () => {
-              const realPath = (globalThis['__vxrntodopath'] ?? window.location.pathname).trim()
-              const importUrl = getLoaderPath(realPath)
-              return dynamicImport(importUrl)
-            }
     } else {
       routesSync[pathWithoutRelative] = loadRouteFunction
     }
@@ -81,12 +66,15 @@ export function globbedRoutesToRouteContext(
 
   function resolve(id: string) {
     clearTimeout(clears[id])
+
     if (loadedRoutes[id]) {
       return loadedRoutes[id]
     }
+
     if (typeof routesSync[id] !== 'function') {
       return routesSync[id]
     }
+
     if (!promises[id]) {
       promises[id] = routesSync[id]()
         .then((val: any) => {

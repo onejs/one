@@ -6,7 +6,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import {
   Route,
   useRouteNode,
@@ -14,12 +14,11 @@ import {
   type LoadedRoute,
   type RouteNode,
 } from './Route'
-import One_ROUTER_IMPORT_MODE from './import-mode'
 import { sortRoutesWithInitial } from './sortRoutes'
+import { getPageExport } from './utils/getPageExport'
 import { EmptyRoute } from './views/EmptyRoute'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { Try } from './views/Try'
-import { getPageExport } from './utils/getPageExport'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -157,54 +156,55 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   let ScreenComponent: React.ForwardRefExoticComponent<React.RefAttributes<unknown>>
 
-  if (One_ROUTER_IMPORT_MODE === 'lazy') {
-    ScreenComponent = React.forwardRef((props, ref) => {
-      // for native avoid suspense for now
-      const [loaded, setLoaded] = useState<any>(null)
+  // if (One_ROUTER_IMPORT_MODE === 'lazy') {
+  //   ScreenComponent = React.forwardRef((props, ref) => {
+  //     // for native avoid suspense for now
+  //     const [loaded, setLoaded] = useState<any>(null)
 
-      useEffect(() => {
-        try {
-          const found = value.loadRoute()
-          if (found) {
-            setLoaded(found)
-          }
-        } catch (err) {
-          if (err instanceof Promise) {
-            err
-              .then((res) => {
-                setLoaded(res)
-              })
-              .catch((err) => {
-                console.error(`Error loading route`, err)
-              })
-          } else {
-            setLoaded(err as any)
-          }
-        }
-      }, [])
+  //     useEffect(() => {
+  //       try {
+  //         const found = value.loadRoute()
+  //         if (found) {
+  //           setLoaded(found)
+  //         }
+  //       } catch (err) {
+  //         if (err instanceof Promise) {
+  //           err
+  //             .then((res) => {
+  //               setLoaded(res)
+  //             })
+  //             .catch((err) => {
+  //               console.error(`Error loading route`, err)
+  //             })
+  //         } else {
+  //           setLoaded(err as any)
+  //         }
+  //       }
+  //     }, [])
 
-      if (loaded) {
-        const Component = getPageExport(fromImport(loaded)) as React.ComponentType<any>
-        return (
-          // <Suspense fallback={null}>
-          <Component {...props} ref={ref} />
-          // </Suspense>
-        )
-      }
+  //     if (loaded) {
+  //       const Component = getPageExport(fromImport(loaded)) as React.ComponentType<any>
+  //       return (
+  //         // <Suspense fallback={null}>
+  //         <Component {...props} ref={ref} />
+  //         // </Suspense>
+  //       )
+  //     }
 
-      return null
-    })
-  } else {
-    ScreenComponent = React.forwardRef((props, ref) => {
-      const res = value.loadRoute()
-      const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
-      return (
-        // <Suspense fallback={null}>
-        <Component {...props} ref={ref} />
-        // </Suspense>
-      )
-    })
-  }
+  //     return null
+  //   })
+  // } else {
+  ScreenComponent = React.forwardRef((props, ref) => {
+    const res = value.loadRoute()
+    const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
+
+    return (
+      // <Suspense fallback={null}>
+      <Component {...props} ref={ref} />
+      // </Suspense>
+    )
+  })
+  // }
 
   const wrapSuspense = (children: any) => {
     if (process.env.TAMAGUI_TARGET === 'native') {
@@ -328,7 +328,11 @@ function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenPr
 
         return output
       }}
-      getComponent={() => getQualifiedRouteComponent(route)}
+      getComponent={() => {
+        // log here to see which route is rendered
+        // console.log('getting', route, getQualifiedRouteComponent(route))
+        return getQualifiedRouteComponent(route)
+      }}
     />
   )
 }
