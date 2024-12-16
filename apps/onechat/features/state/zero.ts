@@ -44,3 +44,19 @@ export function useQuery<
   const z = useZero<Schema>()
   return useZeroQuery(createQuery(z.query)) as any
 }
+
+export async function resolve<Q extends Query<any>>(
+  query: Q
+): Promise<Q extends Query<any, infer Return> ? QueryResult<Return>[0] : never> {
+  const view = query.materialize()
+  return new Promise((res) => {
+    const dispose = view.addListener((data) => {
+      if (Array.isArray(data) ? data.length : !!data) {
+        res(data as any)
+        setTimeout(() => {
+          dispose()
+        })
+      }
+    })
+  })
+}

@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@docsearch/react": "^3.6.1",
-    "@leeoniya/ufuzzy": "^1.0.14",
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/button": "^1.120.1",
     "@tamagui/input": "^1.120.1",

@@ -30,7 +30,6 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@docsearch/react": "^3.6.1",
     "@floating-ui/react": "^0.27.0",
-    "@leeoniya/ufuzzy": "^1.0.14",
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/button": "^1.120.1",
     "@tamagui/helpers-icon": "^1.120.1",
@@ -42,6 +41,7 @@
     "@tamagui/themes": "^1.120.1",
     "@tamagui/toast": "^1.120.1",
     "@tamagui/use-store": "^1.120.1",
+    "@tanstack/react-table": "^8.20.6",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-shell": "^2",
@@ -49,6 +49,7 @@
     "@vxrn/mdx": "1.1.342",
     "better-auth": "^1.0.10",
     "body-scroll-lock": "^4.0.0-beta.0",
+    "flexsearch": "^0.7.43",
     "mdx-bundler": "^10.0.2",
     "one": "1.1.342",
     "pg": "^8.13.1",
@@ -57,7 +58,8 @@
     "react-hotkeys-hook": "^4.6.1",
     "react-native": "0.74.1",
     "tamagui": "^1.120.1",
-    "ts-deepmerge": "^7.0.2"
+    "ts-deepmerge": "^7.0.2",
+    "valtio": "^2.1.2"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
