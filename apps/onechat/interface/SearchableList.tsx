@@ -104,6 +104,10 @@ export const SearchableInput = forwardRef<Input, InputProps>((props: InputProps,
     <input
       {...refProps}
       {...(inputProps as any)}
+      onChange={(e) => {
+        props.onChangeText?.(e.target.value)
+        props.onChange?.(e as any)
+      }}
       style={{
         ...(inputStyle as any),
         borderWidth: 0,

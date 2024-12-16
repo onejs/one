@@ -6,7 +6,7 @@ import { mutate, useQuery } from '~/features/state/zero'
 import { Avatar } from '../Avatar'
 import { Row } from '../Row'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
-import { type TabContentPaneProps, AlwaysVisibleTabContent } from './DialogCreateJoinServer'
+import type { TabContentPaneProps } from './DialogCreateJoinServer'
 
 export const DialogJoinServerContent = (props: TabContentPaneProps) => {
   const isActive = props.active === props.value

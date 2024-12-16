@@ -11,10 +11,10 @@ export function HomePage() {
         initialTab="one"
         tabs={[
           { label: 'Home', value: 'one' },
+          { label: 'Data', value: 'data' },
           { label: 'App', value: 'app' },
           { label: 'Logs', value: 'logs' },
           { label: 'REPL', value: 'repl' },
-          { label: 'Data', value: 'data' },
         ]}
       >
         <Tabs.Content f={1} data-tauri-drag-region value="one">
@@ -29,12 +29,12 @@ export function HomePage() {
           </XStack>
         </Tabs.Content>
 
-        <Tabs.Content f={1} value="app">
-          <AppTab />
-        </Tabs.Content>
-
         <Tabs.Content f={1} value="data">
           <DataTab />
+        </Tabs.Content>
+
+        <Tabs.Content f={1} value="app">
+          <AppTab />
         </Tabs.Content>
       </RovingTabs>
     </YStack>

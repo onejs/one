@@ -1,17 +1,18 @@
 import { Slash } from '@tamagui/lucide-icons'
+import { forwardRef, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { Dialog, SizableText, useDebounceValue, type TamaguiElement } from 'tamagui'
+import { useHotMenuItems } from '~/features/state/queries/useHotMenu'
 import { ButtonSimple } from '~/interface/ButtonSimple'
 import { updateUserState, useUserState } from '../../features/state/queries/useUserState'
-import { Dialog, Input, SizableText, XStack, YStack, type TamaguiElement } from 'tamagui'
-import { forwardRef } from 'react'
-import { useHotMenuItems } from '~/features/state/queries/useHotMenu'
-import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
 import { Row } from '../Row'
+import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
 
 export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
   const [userState] = useUserState()
   const showHotMenu = !!userState?.showHotMenu
-  const items = useHotMenuItems()
+  const [search, setSearch] = useState('')
+  const items = useHotMenuItems(search)
 
   function toggleHotMenu() {
     updateUserState({
@@ -84,12 +85,15 @@ export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
               }}
             >
               <SearchableInput
+                size="$6"
+                onChangeText={(text) => {
+                  setSearch(text)
+                }}
                 onKeyPress={(key) => {
                   if (key.nativeEvent.key === 'Escape') {
                     toggleHotMenu()
                   }
                 }}
-                size="$6"
               />
 
               {items.map((item, index) => {

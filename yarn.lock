@@ -4514,13 +4514,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@leeoniya/ufuzzy@npm:^1.0.14":
-  version: 1.0.14
-  resolution: "@leeoniya/ufuzzy@npm:1.0.14"
-  checksum: 10/852b580a8eaaf92e2d448f5b720e3c53e4bea22187bf5e8459256677c47183321b47b8384982e15751f42da7e77a216fd86c80e6185677d8270adeab4a4fb771
-  languageName: node
-  linkType: hard
-
 "@levischuck/tiny-cbor@npm:^0.2.2":
   version: 0.2.2
   resolution: "@levischuck/tiny-cbor@npm:0.2.2"
@@ -9449,6 +9442,25 @@ __metadata:
     react: "*"
     react-dom: "*"
   checksum: 10/2314eda7c74b2e8ae5f14e045b948d4450e1ceb19ea7e7c50ea86577fc999f4498fa2529b682eff3ca85dec528bf1ae6b0d6b0586c1f2a20aee8ed7b43c335c4
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-table@npm:^8.20.6":
+  version: 8.20.6
+  resolution: "@tanstack/react-table@npm:8.20.6"
+  dependencies:
+    "@tanstack/table-core": "npm:8.20.5"
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 10/7ff2daf480bf2135ed072152cd8bc3f8ac342ca333831fd1b28603a8a8da0a858609d2fca18804f83ab62bbcf28041d5b98a0f2b7b283ec7229f99a57047a49f
+  languageName: node
+  linkType: hard
+
+"@tanstack/table-core@npm:8.20.5":
+  version: 8.20.5
+  resolution: "@tanstack/table-core@npm:8.20.5"
+  checksum: 10/5408237920d5796951e925278edbbe76f71006627a4e3da248a810970256f75d973538fe7ae75a32155d4a25a95abc4fffaea337b5120f7940d7e664dc9da87f
   languageName: node
   linkType: hard
 
@@ -14689,6 +14701,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"flexsearch@npm:^0.7.43":
+  version: 0.7.43
+  resolution: "flexsearch@npm:0.7.43"
+  checksum: 10/79c0bceee435bd40fd0a0d8ba72f1bd07f622374a73bd3ceb874f7c7dd9a0fe9863b5c66a4037c2fa534e726f718d010ac99377d1924e347823b51ce641180e5
+  languageName: node
+  linkType: hard
+
 "flow-enums-runtime@npm:^0.0.6":
   version: 0.0.6
   resolution: "flow-enums-runtime@npm:0.0.6"
@@ -19209,7 +19228,6 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:^0.27.0"
-    "@leeoniya/ufuzzy": "npm:^1.0.14"
     "@supabase/supabase-js": "npm:^2.44.4"
     "@tamagui/button": "npm:^1.120.1"
     "@tamagui/helpers-icon": "npm:^1.120.1"
@@ -19221,6 +19239,7 @@ __metadata:
     "@tamagui/themes": "npm:^1.120.1"
     "@tamagui/toast": "npm:^1.120.1"
     "@tamagui/use-store": "npm:^1.120.1"
+    "@tanstack/react-table": "npm:^8.20.6"
     "@tauri-apps/api": "npm:^2"
     "@tauri-apps/cli": "npm:^2"
     "@tauri-apps/plugin-deep-link": "npm:^2.0.1"
@@ -19229,6 +19248,7 @@ __metadata:
     "@vxrn/mdx": "npm:1.1.342"
     better-auth: "npm:^1.0.10"
     body-scroll-lock: "npm:^4.0.0-beta.0"
+    flexsearch: "npm:^0.7.43"
     gray-matter: "npm:^4.0.3"
     marked: "npm:^14.1.2"
     mdx-bundler: "npm:^10.0.2"
@@ -19242,6 +19262,7 @@ __metadata:
     ts-deepmerge: "npm:^7.0.2"
     tsx: "npm:^4.19.2"
     unicode-emoji: "npm:^2.6.0"
+    valtio: "npm:^2.1.2"
     vite-tsconfig-paths: "npm:^5.0.1"
   languageName: unknown
   linkType: soft
@@ -20222,6 +20243,13 @@ __metadata:
   version: 6.5.0
   resolution: "property-information@npm:6.5.0"
   checksum: 10/fced94f3a09bf651ad1824d1bdc8980428e3e480e6d01e98df6babe2cc9d45a1c52eee9a7736d2006958f9b394eb5964dedd37e23038086ddc143fc2fd5e426c
+  languageName: node
+  linkType: hard
+
+"proxy-compare@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "proxy-compare@npm:3.0.1"
+  checksum: 10/fa9ae15adc53577054405254da64cecb2b76ab30024c424f14e4556a165f6693773ee2eb73667e6d4be11244fa0581c235720165cc32e7ff77ed7156c4f88379
   languageName: node
   linkType: hard
 
@@ -21933,7 +21961,6 @@ __metadata:
   dependencies:
     "@algolia/client-search": "npm:^5.8.1"
     "@docsearch/react": "npm:^3.6.1"
-    "@leeoniya/ufuzzy": "npm:^1.0.14"
     "@supabase/supabase-js": "npm:^2.44.4"
     "@tamagui/button": "npm:^1.120.1"
     "@tamagui/input": "npm:^1.120.1"
@@ -23936,6 +23963,23 @@ __metadata:
   dependencies:
     builtins: "npm:^1.0.3"
   checksum: 10/6f89bcc91bb0d46e3c756eec2fd33887eeb76c85d20e5d3e452b69fe3ffbd37062704a4e8422735ea82d69fd963451b4f85501a4dc856f384138411ec42608fa
+  languageName: node
+  linkType: hard
+
+"valtio@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "valtio@npm:2.1.2"
+  dependencies:
+    proxy-compare: "npm:^3.0.0"
+  peerDependencies:
+    "@types/react": ">=18.0.0"
+    react: ">=18.0.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    react:
+      optional: true
+  checksum: 10/9783bad994f5b93973a11d51cfc74abdf255c02213aff137f90b4ddf4a88cf523769aee3c778d92d4f5e4644c073eb28b64a01155c39733c48dba634f4a7f7b0
   languageName: node
   linkType: hard
 

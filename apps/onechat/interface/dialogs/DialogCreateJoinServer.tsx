@@ -1,16 +1,6 @@
 import type React from 'react'
 import { type DragEvent, useEffect, useRef, useState } from 'react'
-import {
-  Button,
-  Dialog,
-  Input,
-  Paragraph,
-  Progress,
-  ScrollView,
-  type TabsContentProps,
-  XStack,
-  YStack,
-} from 'tamagui'
+import { Button, Dialog, Input, Paragraph, Progress, ScrollView, XStack, YStack } from 'tamagui'
 import { insertServer } from '~/features/state/actions/mutateServer'
 import { createEmitter } from '~/helpers/emitter'
 import { Avatar } from '../Avatar'
@@ -18,6 +8,8 @@ import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
 import { DialogContent, dialogEmitter, DialogOverlay, useDialogEmitter } from './shared'
 import { DialogJoinServerContent } from './DialogJoinServerContent'
+import { AlwaysVisibleTabContent } from './AlwaysVisibleTabContent'
+import type { TabContentPaneProps } from './types'
 
 const [emitter] = createEmitter<boolean>()
 
@@ -90,32 +82,6 @@ export const DialogCreateJoinServer = () => {
         </DialogContent>
       </Dialog.Portal>
     </Dialog>
-  )
-}
-
-export type TabContentPaneProps = TabsContentProps & {
-  active: string
-  value: string
-  setShow: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export const AlwaysVisibleTabContent = ({ active, setShow, ...props }: TabContentPaneProps) => {
-  return (
-    <Tabs.Content
-      forceMount
-      pos="absolute"
-      t={0}
-      l={0}
-      r={0}
-      b={0}
-      o={0}
-      pe="none"
-      {...(active === props.value && {
-        o: 1,
-        pe: 'auto',
-      })}
-      {...props}
-    />
   )
 }
 

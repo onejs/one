@@ -1,3 +1,5 @@
+import type { TabsContentProps } from 'tamagui'
+
 export type DialogConfirmType = {
   type: 'confirm'
   title: string
@@ -21,3 +23,9 @@ export type DialogType =
   | DialogCreateServerType
   | DialogJoinServerType
   | DialogAddFriend
+
+export type TabContentPaneProps = TabsContentProps & {
+  active: string
+  value: string
+  setShow: React.Dispatch<React.SetStateAction<boolean>>
+}
