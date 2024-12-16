@@ -25,7 +25,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
         'process.env.ONE_SERVER_URL': string;
     };
     build: {
-        ssr: false;
+        ssr: true;
         minify: false;
         commonjsOptions: {
             transformMixedEsModules: true;
@@ -66,7 +66,7 @@ export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig
     esbuild: import("vite").ESBuildOptions | false;
     server: import("vite").ResolvedServerOptions;
     dev: import("vite").ResolvedDevEnvironmentOptions;
-    builder: Required<import("vite").BuilderOptions>;
+    builder: Required<import("vite").BuilderOptions> | undefined;
     build: import("vite").ResolvedBuildOptions;
     preview: import("vite").ResolvedPreviewOptions;
     ssr: import("vite").ResolvedSSROptions;
@@ -82,6 +82,7 @@ export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig
         resolve: Required<import("vite").ResolveOptions>;
         consumer: "client" | "server";
         webCompatible: boolean;
+        optimizeDeps: import("vite").DepOptimizationOptions;
         dev: import("vite").ResolvedDevEnvironmentOptions;
         build: import("vite").ResolvedBuildEnvironmentOptions;
     }>;

@@ -10,7 +10,7 @@ const { debug, debugDetails } = createDebugger(name)
 
 export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
   return {
-    name: `vxrn:${name}`,
+    name,
     enforce: 'pre',
     async config(_cfg, env) {
       debug?.('Config hook called')

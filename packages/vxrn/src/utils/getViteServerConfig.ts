@@ -93,12 +93,10 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
 
       environments: {
         client: {
-          dev: {
-            optimizeDeps: {
-              include: ['react-native-screens'],
-              esbuildOptions: {
-                resolveExtensions: webExtensions,
-              },
+          optimizeDeps: {
+            include: ['react-native-screens'],
+            esbuildOptions: {
+              resolveExtensions: webExtensions,
             },
           },
         },

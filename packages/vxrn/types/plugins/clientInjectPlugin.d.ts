@@ -23,7 +23,7 @@ export declare function getServerConfigPlugin(): {
         esbuild: import("vite").ESBuildOptions | false;
         server: import("vite").ResolvedServerOptions;
         dev: import("vite").ResolvedDevEnvironmentOptions;
-        builder: Required<import("vite").BuilderOptions>;
+        builder: Required<import("vite").BuilderOptions> | undefined;
         build: import("vite").ResolvedBuildOptions;
         preview: import("vite").ResolvedPreviewOptions;
         ssr: import("vite").ResolvedSSROptions;
@@ -39,6 +39,7 @@ export declare function getServerConfigPlugin(): {
             resolve: Required<import("vite").ResolveOptions>;
             consumer: "client" | "server";
             webCompatible: boolean;
+            optimizeDeps: import("vite").DepOptimizationOptions;
             dev: import("vite").ResolvedDevEnvironmentOptions;
             build: import("vite").ResolvedBuildEnvironmentOptions;
         }>;

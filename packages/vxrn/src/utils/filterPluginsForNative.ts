@@ -9,6 +9,10 @@ export function filterPluginsForNative(
 ): Plugin[] {
   return plugins
     .flatMap((p) => {
+      if (!p.name) {
+        return p
+      }
+
       if (p.name.endsWith('-web-only')) {
         return null
       }

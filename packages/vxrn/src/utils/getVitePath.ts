@@ -1,4 +1,4 @@
-import { dirname, join, relative } from 'node:path'
+import { dirname, join } from 'node:path'
 
 import FSExtra from 'fs-extra'
 
