@@ -86,6 +86,26 @@ export async function getReactNativeConfig(
         },
       } satisfies Plugin,
 
+      {
+        name: 'one:native-no-external',
+        enforce: 'pre',
+        config() {
+          const noExternalsEnvConfig = {
+            consumer: 'server',
+            resolve: {
+              noExternal: true,
+            },
+          } as const
+
+          return {
+            environments: {
+              ios: noExternalsEnvConfig,
+              android: noExternalsEnvConfig,
+            },
+          }
+        },
+      } satisfies Plugin,
+
       nodeResolve(),
 
       swapPrebuiltReactModules(options.cacheDir, {
@@ -223,7 +243,7 @@ export async function getReactNativeConfig(
     },
 
     build: {
-      ssr: false,
+      ssr: true,
       minify: false,
       commonjsOptions: {
         transformMixedEsModules: true,

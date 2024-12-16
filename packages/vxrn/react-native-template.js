@@ -100,16 +100,16 @@ function createRequire(importer, importsMap) {
 
     // this adds a hacky compat with new Rollup commonjs transform
     // going from vite 6.0.0-beta.1 to beta.5 needed this
-    // if (output && typeof output === 'object' && !('__require' in output)) {
-    //   return new Proxy(output, {
-    //     get(target, key) {
-    //       if (key === '__require') {
-    //         return () => output
-    //       }
-    //       return Reflect.get(target, key)
-    //     },
-    //   })
-    // }
+    if (output && typeof output === 'object' && !('__require' in output)) {
+      return new Proxy(output, {
+        get(target, key) {
+          if (key === '__require') {
+            return () => output
+          }
+          return Reflect.get(target, key)
+        },
+      })
+    }
 
     return output
   }

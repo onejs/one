@@ -198,7 +198,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     const res = value.loadRoute()
     const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
 
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development' && process.env.DEBUG === 'one') {
       console.groupCollapsed(`Render ${props.key}`)
       console.info(`res`, res)
       console.info(`value`, value)
