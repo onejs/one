@@ -62,37 +62,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    // (() => {
-    //   const virtualId = '\0one:virtual-rn-internals-codegen'
-
-    //   return {
-    //     name: 'one:alias-react-native-internals-web-only',
-    //     enforce: 'pre',
-
-    //     config() {
-    //       return {
-    //         resolve: {
-    //           alias: [
-    //             {
-    //               find: /react-native\/Libraries\/Utilities\/codegenNativeComponent/,
-    //               replacement: virtualId,
-    //             },
-    //           ],
-    //         },
-    //       }
-    //     },
-
-    //     resolveId(id, importer) {
-    //       console.log('this isnt getting the virtual module :/', id, importer)
-    //       if (id === virtualId) {
-    //         if (isWebEnvironment(this.environment)) {
-    //           return resolvePath('@vxrn/rn-proxy')
-    //         }
-    //       }
-    //     },
-    //   }
-    // })(),
-
     ...(options.ssr?.disableAutoDepsPreBundling
       ? []
       : [

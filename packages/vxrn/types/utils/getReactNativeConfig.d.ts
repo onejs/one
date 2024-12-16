@@ -44,7 +44,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
         };
     };
 }>;
-export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig, "plugins" | "css" | "assetsInclude" | "optimizeDeps" | "worker" | "build" | "dev" | "environments"> & {
+export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig, "plugins" | "css" | "json" | "assetsInclude" | "optimizeDeps" | "worker" | "build" | "dev" | "environments" | "server" | "preview"> & {
     configFile: string | undefined;
     configFileDependencies: string[];
     inlineConfig: InlineConfig;
@@ -63,6 +63,7 @@ export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig
     };
     plugins: readonly Plugin[];
     css: import("vite").ResolvedCSSOptions;
+    json: Required<import("vite").JsonOptions>;
     esbuild: import("vite").ESBuildOptions | false;
     server: import("vite").ResolvedServerOptions;
     dev: import("vite").ResolvedDevEnvironmentOptions;
@@ -81,7 +82,7 @@ export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig
         define?: Record<string, any>;
         resolve: Required<import("vite").ResolveOptions>;
         consumer: "client" | "server";
-        webCompatible: boolean;
+        keepProcessEnv?: boolean;
         optimizeDeps: import("vite").DepOptimizationOptions;
         dev: import("vite").ResolvedDevEnvironmentOptions;
         build: import("vite").ResolvedBuildEnvironmentOptions;
