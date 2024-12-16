@@ -3,6 +3,7 @@ import { rm } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { VXRNOptions } from '../types'
 import { fillOptions } from '../utils/getOptionsFilled'
+import { getSSRExternalsCachePath } from '../plugins/autoPreBundleDepsForSsrPlugin'
 
 /**
  * The main entry point for dev mode
@@ -19,7 +20,9 @@ export const clean = async (rest: VXRNOptions) => {
   const { root } = options
 
   console.info(`[vxrn] cleaning`)
+
   await Promise.all([
+    rm(getSSRExternalsCachePath(root)).catch(throwIfNotMissingError),
     rm(join(root, 'node_modules', '.vite'), {
       recursive: true,
       force: true,
