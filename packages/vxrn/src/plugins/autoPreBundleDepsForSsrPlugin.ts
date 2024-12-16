@@ -8,7 +8,13 @@ import { createDebugger } from '@vxrn/debug'
 const name = 'vxrn:auto-pre-bundle-deps-for-ssr'
 const { debug, debugDetails } = createDebugger(name)
 
+export const getSSRExternalsCachePath = (root: string) => {
+  return path.join(root, 'node_modules', '.vxrn', 'deps-to-pre-bundle-for-ssr-cache.json')
+}
+
 export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
+  const noExternalDepsForSsrCacheFilePath = getSSRExternalsCachePath(root)
+
   return {
     name,
     enforce: 'pre',
@@ -26,13 +32,6 @@ export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
         'bun.lockb',
       ])
       const lockFileHash = lockFile ? await getFileHash(lockFile) : undefined
-
-      const noExternalDepsForSsrCacheFilePath = path.join(
-        root,
-        'node_modules',
-        '.vxrn',
-        'deps-to-pre-bundle-for-ssr-cache.json'
-      )
 
       let depsToPreBundleForSsr: string[] | undefined = undefined
       if (lockFileHash && !noCache) {

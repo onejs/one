@@ -78,7 +78,6 @@ export async function scanDepsToPreBundleForSsr(
     pkgJsonContent?: any
   } = {}
 ): Promise<string[]> {
-  const isRoot = parentDepNames.length === 0
   const currentRoot = path.dirname(packageJsonPath)
 
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
@@ -181,7 +180,16 @@ export async function scanDepsToPreBundleForSsr(
                   }
                 })()
 
-                return [dep, ...definedExports, ...specialExports]
+                const hasMainExport = Boolean(
+                  depPkgJson['main'] || depPkgJson['module'] || definedExports['.']
+                )
+
+                const exports = [...definedExports, ...specialExports]
+                if (hasMainExport) {
+                  exports.unshift(dep)
+                }
+
+                return exports
               })()
             : []),
           ...subDepsToPreBundle,

@@ -1,3 +1,4 @@
+export declare const getSSRExternalsCachePath: (root: string) => string;
 export declare function autoPreBundleDepsForSsrPlugin({ root }: {
     root: string;
 }): {
