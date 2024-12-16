@@ -375,12 +375,14 @@ export async function build(args: {
       })
     }
 
+    const isDynamic = !!Object.keys(foundRoute.routeKeys).length
+
     if (
       foundRoute.type !== 'ssr' &&
+      isDynamic &&
       !foundRoute.page.includes('+not-found') &&
       !foundRoute.page.includes('_sitemap') &&
-      !exported.generateStaticParams &&
-      relativeId.includes('[')
+      !exported.generateStaticParams
     ) {
       throw new Error(`[one] Error: Missing generateStaticParams
 
