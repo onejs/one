@@ -49,6 +49,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   let tsConfigPathsPlugin: Plugin | null = null
 
   const vxrnOptions = getOptionsFilled()
+  const root = vxrnOptions?.root || process.cwd()
 
   const { clientEnvDefine } = loadEnv(vxrnOptions?.mode ?? 'development')
 
@@ -66,7 +67,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       ? []
       : [
           autoPreBundleDepsForSsrPlugin({
-            root: vxrnOptions?.root || process.cwd(),
+            root,
           }),
         ]),
 
