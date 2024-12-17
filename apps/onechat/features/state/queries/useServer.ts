@@ -16,6 +16,23 @@ export const useCurrentServerMembership = () => {
   )[0][0]
 }
 
+export const useUser = () => {
+  const { user } = useAuth()
+  return useQuery((q) => q.user.where('id', user?.id || '').limit(1))[0][0]
+}
+
+export const useFriends = () => {
+  const { user } = useAuth()
+  return (
+    useQuery((q) =>
+      q.user
+        .where('id', user?.id || '')
+        .limit(1)
+        .related('friends')
+    )[0][0]?.friends || []
+  )
+}
+
 export const useUserServers = () => {
   const { user } = useAuth()
   return (
