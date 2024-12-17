@@ -23,7 +23,7 @@ import { useCurrentServer, useServerChannels } from '~/features/state/queries/us
 import { mutate } from '~/features/state/zero'
 import { ListItem } from '../ListItem'
 import { useHotkeys } from 'react-hotkeys-hook'
-import { Plus } from '@tamagui/lucide-icons'
+import { Lock, Plus } from '@tamagui/lucide-icons'
 
 export const SidebarServerChannelsList = () => {
   const server = useCurrentServer()
@@ -256,6 +256,12 @@ const ChannelListItem = forwardRef(
         {...rest}
       >
         {channel?.name}
+
+        {channel?.private && (
+          <YStack pos="absolute" t={0} r={0} b={0} ai="center" jc="center" o={0.5} px="$3">
+            <Lock size={16} />
+          </YStack>
+        )}
       </ListItem>
     )
   }

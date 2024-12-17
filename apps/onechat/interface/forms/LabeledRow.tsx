@@ -12,7 +12,7 @@ export const LabeledRow = ({
         {label}
       </Label>
 
-      {children}
+      <XStack ai="center">{children}</XStack>
     </XStack>
   )
 }
