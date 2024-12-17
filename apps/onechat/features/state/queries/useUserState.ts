@@ -25,7 +25,7 @@ type ChannelState = {
 // TODO
 export let currentUser = null as User | null
 
-const getUserState = () => {
+const getJustUserState = () => {
   return {
     activeChannels: {},
     ...(currentUser?.state ?? {}),
@@ -33,7 +33,7 @@ const getUserState = () => {
 }
 
 const getDerivedUserState = () => {
-  const state = getUserState()
+  const state = getJustUserState()
   const activeChannel = state.activeChannels[state.activeServer || '']
   return {
     activeChannel,
@@ -43,11 +43,15 @@ const getDerivedUserState = () => {
   }
 }
 
+export const getUserState = () => {
+  const state = getJustUserState()
+  return [state, getDerivedUserState()] as const
+}
+
 export const useUserState = () => {
   const user = useQuery((q) => q.user)[0][0]
   currentUser = user
-  const state = getUserState()
-  return [state, getDerivedUserState()] as const
+  return getUserState()
 }
 
 export const updateUserState = async (next: Partial<UserState>) => {
@@ -58,7 +62,7 @@ export const updateUserState = async (next: Partial<UserState>) => {
 
   const nextUser = {
     ...currentUser,
-    state: merge(getUserState(), next),
+    state: merge(getJustUserState(), next),
   }
 
   console.warn('mutating', nextUser)

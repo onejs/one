@@ -8,7 +8,7 @@ import type { DialogConfirmType } from './types'
 const [dialogConfirmEmitter] = createEmitter<boolean>()
 
 export const dialogConfirm = async (props: Omit<DialogConfirmType, 'type'>) => {
-  dialogEmitter.trigger({
+  dialogEmitter.emit({
     type: 'confirm',
     ...props,
   })
@@ -49,7 +49,7 @@ export const DialogConfirm = () => {
             <Dialog.Close asChild>
               <ButtonSimple
                 onPress={() => {
-                  dialogConfirmEmitter.trigger(false)
+                  dialogConfirmEmitter.emit(false)
                   setState(null)
                 }}
               >
@@ -59,7 +59,7 @@ export const DialogConfirm = () => {
 
             <ButtonSimple
               onPress={() => {
-                dialogConfirmEmitter.trigger(true)
+                dialogConfirmEmitter.emit(true)
                 setState(null)
               }}
             >

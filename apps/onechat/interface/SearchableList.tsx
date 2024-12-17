@@ -51,7 +51,7 @@ export function SearchableList<A>({
     activeIndex,
     onNavigate: (index) => {
       setActiveIndex(index)
-      activeIndexEmitter.trigger(index)
+      activeIndexEmitter.emit(index)
     },
   })
 
