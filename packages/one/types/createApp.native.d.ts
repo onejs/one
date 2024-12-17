@@ -1,4 +1,5 @@
 import './polyfills-mobile';
+import './setup';
 export type CreateAppProps = {
     routes: Record<string, () => Promise<unknown>>;
 };
