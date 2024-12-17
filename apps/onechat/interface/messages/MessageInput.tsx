@@ -5,6 +5,7 @@ import { useCurrentChannel, useCurrentServer } from '~/features/state/queries/us
 import { useCurrentThread } from '~/features/state/queries/useUserState'
 import { randomID } from '~/features/state/randomID'
 import { mutate } from '~/features/state/zero'
+import { messagesListEmitter } from './MessagesList'
 
 export const MessageInput = () => {
   const inputRef = useRef<Input>(null)
@@ -28,10 +29,21 @@ export const MessageInput = () => {
         pe={disabled ? 'none' : 'auto'}
         onKeyPress={(e) => {
           const key = e.nativeEvent.key
-          console.log('type', key)
-
           switch (key) {
             case 'ArrowUp': {
+              messagesListEmitter.emit({
+                type: 'move',
+                value: 'up',
+              })
+              break
+            }
+
+            case 'ArrowDown': {
+              messagesListEmitter.emit({
+                type: 'move',
+                value: 'down',
+              })
+              break
             }
           }
         }}
@@ -41,13 +53,19 @@ export const MessageInput = () => {
             return
           }
 
+          const content = e.nativeEvent.text
+
+          if (!content) {
+            return
+          }
+
           inputRef.current?.clear()
           mutate.message.insert({
             id: randomID(),
             channelId: channel.id,
             threadId: thread?.id,
             isThreadReply: !!thread,
-            content: e.nativeEvent.text,
+            content,
             createdAt: new Date().getTime(),
             deleted: false,
             senderId: user!.id,

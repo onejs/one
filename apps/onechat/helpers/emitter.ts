@@ -10,7 +10,7 @@ export class Emitter<T> {
     }
   }
 
-  trigger<T>(next: T) {
+  emit<T>(next: T) {
     this.disposables.forEach((cb) => cb(next))
   }
 }
@@ -18,10 +18,10 @@ export class Emitter<T> {
 export function createEmitter<T>() {
   const listenable = new Emitter<T>()
 
-  const useListener = (cb: (cb: T) => void) => {
+  const useListener = (cb: (cb: T) => void, args?: any[]) => {
     useEffect(() => {
       return listenable.listen(cb)
-    }, [])
+    }, args ?? [])
   }
 
   return [listenable, useListener] as const

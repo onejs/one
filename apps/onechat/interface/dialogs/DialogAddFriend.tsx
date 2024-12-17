@@ -13,7 +13,7 @@ import { dialogConfirm } from './DialogConfirm'
 const [dialogCreateServerEmitter] = createEmitter<boolean>()
 
 export const dialogAddFriend = async () => {
-  dialogEmitter.trigger({
+  dialogEmitter.emit({
     type: 'add-friend',
   })
 
@@ -25,8 +25,8 @@ export const dialogAddFriend = async () => {
   })
 }
 
-const success = () => dialogCreateServerEmitter.trigger(true)
-const cancel = () => dialogCreateServerEmitter.trigger(false)
+const success = () => dialogCreateServerEmitter.emit(true)
+const cancel = () => dialogCreateServerEmitter.emit(false)
 
 export const DialogAddFriend = () => {
   const [show, setShow] = useState(false)

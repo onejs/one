@@ -14,7 +14,7 @@ import type { TabContentPaneProps } from './types'
 const [emitter] = createEmitter<boolean>()
 
 export const dialogCreateServer = async () => {
-  dialogEmitter.trigger({
+  dialogEmitter.emit({
     type: 'create-server',
   })
   return new Promise((res) => {
@@ -26,7 +26,7 @@ export const dialogCreateServer = async () => {
 }
 
 export const dialogJoinServer = async () => {
-  dialogEmitter.trigger({
+  dialogEmitter.emit({
     type: 'join-server',
   })
   return new Promise((res) => {
@@ -37,8 +37,8 @@ export const dialogJoinServer = async () => {
   })
 }
 
-const success = () => emitter.trigger(true)
-const cancel = () => emitter.trigger(false)
+const success = () => emitter.emit(true)
+const cancel = () => emitter.emit(false)
 
 export const DialogCreateJoinServer = () => {
   const [show, setShow] = useState(false)
