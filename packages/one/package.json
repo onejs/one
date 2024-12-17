@@ -91,10 +91,10 @@
   },
   "dependencies": {
     "@azure/core-asynciterator-polyfill": "^1.0.2",
-    "@babel/generator": "^7.25.4",
-    "@babel/parser": "^7.25.4",
+    "@babel/generator": "^7.26.3",
+    "@babel/parser": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
-    "@babel/traverse": "^7.25.4",
+    "@babel/traverse": "^7.26.4",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@react-navigation/bottom-tabs": "~6.5.8",
