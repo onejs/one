@@ -1,32 +1,32 @@
 import { UserCheck, UserPlus, UserX } from '@tamagui/lucide-icons'
 import { useEffect, useRef, useState } from 'react'
-import { Button, Dialog, Input, SizableText, TooltipSimple, XStack, YStack } from 'tamagui'
-import { Friendship, User } from '~/config/zero/schema'
+import { Dialog, Input, TooltipSimple, XStack, YStack } from 'tamagui'
+import type { Friendship, User } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { mutate, useQuery } from '~/features/state/zero'
 import { createEmitter } from '~/helpers/emitter'
 import { Avatar } from '../Avatar'
-import { DialogContent, dialogEmitter, DialogOverlay, useDialogEmitter } from './shared'
 import { Row } from '../Row'
 import { dialogConfirm } from './DialogConfirm'
+import { DialogContent, dialogEmit, DialogOverlay, useDialogEmit } from './shared'
 
-const [dialogCreateServerEmitter] = createEmitter<boolean>()
+const [emit, listen] = createEmitter<boolean>()
 
 export const dialogAddFriend = async () => {
-  dialogEmitter.emit({
+  dialogEmit({
     type: 'add-friend',
   })
 
   return new Promise((res) => {
-    const dispose = dialogCreateServerEmitter.listen((val) => {
+    const dispose = listen((val) => {
       dispose()
       res(val)
     })
   })
 }
 
-const success = () => dialogCreateServerEmitter.emit(true)
-const cancel = () => dialogCreateServerEmitter.emit(false)
+const success = () => emit(true)
+const cancel = () => emit(false)
 
 export const DialogAddFriend = () => {
   const [show, setShow] = useState(false)
@@ -36,7 +36,7 @@ export const DialogAddFriend = () => {
     q.user.where('username', 'ILIKE', `%${search}%`).limit(!search ? 0 : 10)
   )
 
-  useDialogEmitter((next) => {
+  useDialogEmit((next) => {
     if (next.type === 'add-friend') {
       setShow(true)
     } else {

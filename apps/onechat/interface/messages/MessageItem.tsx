@@ -1,4 +1,5 @@
 import { IndentIncrease, MoreVertical, Reply } from '@tamagui/lucide-icons'
+import { memo } from 'react'
 import {
   Button,
   type ButtonProps,
@@ -20,7 +21,6 @@ import { randomID } from '~/features/state/randomID'
 import { mutate, useQuery } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'
 import { AddReactionButton } from './AddReactionButton'
-import { memo } from 'react'
 
 export const MessageItem = memo(
   ({
@@ -42,7 +42,7 @@ export const MessageItem = memo(
     }
 
     const channelState = useUserCurrentChannelState()
-    const isFocused = channelState.focusedMessageId === message.id
+    const isFocused = !disableEvents && channelState.focusedMessageId === message.id
 
     return (
       <XStack

@@ -5,7 +5,7 @@ import { createEmitter } from '~/helpers/emitter'
 
 export let zero = createZero()
 
-export const [emitter, useZeroInstanceEmitter] = createEmitter<typeof zero>()
+export const [zeroEmit, useZeroEmit] = createEmitter<typeof zero>()
 
 function createZero({ auth, userID = 'anon' }: { auth?: string; userID?: string } = {}) {
   return new Zero({

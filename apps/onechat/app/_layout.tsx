@@ -11,7 +11,7 @@ import { useState } from 'react'
 import { TamaguiProvider, YStack } from 'tamagui'
 import config from '~/config/tamagui/tamagui.config'
 import { AuthEffects } from '~/features/auth/AuthEffects'
-import { useZeroInstanceEmitter, zero } from '~/features/state/zero'
+import { useZeroEmit, zero } from '~/features/state/zero'
 import { Dialogs } from '~/interface/dialogs/Dialogs'
 import { ToastDisplay } from '~/interface/Toast'
 
@@ -51,7 +51,7 @@ export default function Layout() {
 const DataProvider = ({ children }) => {
   const [instance, setInstance] = useState(zero)
 
-  useZeroInstanceEmitter((next) => {
+  useZeroEmit((next) => {
     setInstance(next)
   })
 

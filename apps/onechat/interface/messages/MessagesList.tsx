@@ -4,20 +4,16 @@ import { VList, type VListHandle } from 'virtua'
 import type { MessageWithRelations } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { useCurrentChannel } from '~/features/state/queries/useServer'
-import { MessageItem } from './MessageItem'
+import { getUserState, updateUserCurrentChannel } from '~/features/state/queries/useUserState'
 import { createEmitter } from '~/helpers/emitter'
-import {
-  getUserState,
-  updateUserCurrentChannel,
-  useUserState,
-} from '~/features/state/queries/useUserState'
+import { MessageItem } from './MessageItem'
 
 type MessagesListActions = {
   type: 'move'
   value: 'up' | 'down'
 }
 
-export const [messagesListEmitter, useEmitter] = createEmitter<MessagesListActions>()
+export const [messagesListEmit, _, useEmitter] = createEmitter<MessagesListActions>()
 
 export const MessagesList = memo(
   ({ messages, disableEvents }: { messages: MessageWithRelations[]; disableEvents?: boolean }) => {
@@ -30,8 +26,6 @@ export const MessagesList = memo(
 
     useEmitter(
       (action) => {
-        console.warn('re-create me')
-
         if (disableEvents) {
           return
         }
@@ -86,6 +80,10 @@ export const MessagesList = memo(
 
       ref.current.scrollToIndex(messages.length - 1, { align: 'end' })
     }, [messages.length])
+
+    if (!messages.length) {
+      return null
+    }
 
     return (
       <YStack ov="hidden" f={1}>

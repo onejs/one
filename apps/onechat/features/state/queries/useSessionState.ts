@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import { proxy, useSnapshot } from 'valtio'
-import { createEmitter } from '~/helpers/emitter'
 
 type SessionState = {}
 
