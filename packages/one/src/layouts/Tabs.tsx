@@ -13,8 +13,10 @@ import { withLayoutContext } from './withLayoutContext'
 // This is the only way to access the navigator.
 const BottomTabNavigator = createBottomTabNavigator().Navigator
 
+type BottomTabNavigationOptionsWithHref = BottomTabNavigationOptions & { href?: OneRouter.Href | null }
+
 export const Tabs = withLayoutContext<
-  BottomTabNavigationOptions & { href?: OneRouter.Href | null },
+  BottomTabNavigationOptionsWithHref,
   typeof BottomTabNavigator,
   TabNavigationState<ParamListBase>,
   BottomTabNavigationEventMap
