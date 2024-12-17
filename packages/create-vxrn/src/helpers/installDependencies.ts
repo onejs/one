@@ -23,6 +23,10 @@ export async function installDependencies(
   }
 
   try {
+    if (packageManager === 'yarn') {
+      // ensure using new yarn
+      await execPromise(`yarn set version berry`)
+    }
     await execPromise(command, options)
     console.info(`${packageManager} install completed successfully.`)
   } catch (error) {
