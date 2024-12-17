@@ -20,6 +20,7 @@ import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
 import { ensureTSConfig } from './ensureTsConfig'
+import babel from 'vite-plugin-babel'
 import type { One } from './types'
 
 events.setMaxListeners(1_000)
@@ -252,12 +253,46 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin,
   ] satisfies Plugin[]
 
+  // react compiler
+  const compiler = options.react?.compiler
+  if (compiler) {
+    const babelPlugin = babel({
+      exclude: compiler === true ? /node_modules/ : undefined,
+      babelConfig: {
+        plugins: ['babel-plugin-react-compiler'],
+      },
+    }) as any as Plugin
+
+    devAndProdPlugins.push(
+      // @ts-expect-error
+      babelPlugin
+    )
+  }
+
+  // react scan
+  const scan = options.react?.scan
+
   // TODO make this passed into vxrn through real API
   globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
   return [
     ...devAndProdPlugins,
+
+    {
+      name: `one:react-scan`,
+      config() {
+        return {
+          environments: {
+            client: {
+              define: {
+                'process.env.ONE_ENABLE_REACT_SCAN': JSON.stringify(`${!!scan}`),
+              },
+            },
+          },
+        }
+      },
+    },
 
     /**
      * This is really the meat of one, where it handles requests:
