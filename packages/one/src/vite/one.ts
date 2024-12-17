@@ -52,12 +52,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const vxrnOptions = getOptionsFilled()
   const root = vxrnOptions?.root || process.cwd()
 
-  const { clientEnvDefine } = loadEnv(vxrnOptions?.mode ?? 'development')
-
   const devAndProdPlugins: Plugin[] = [
     {
       name: 'one-define-env',
-      config() {
+      async config() {
+        const { clientEnvDefine } = await loadEnv(vxrnOptions?.mode ?? 'development')
         return {
           define: clientEnvDefine,
         }
