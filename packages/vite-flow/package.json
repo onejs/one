@@ -27,8 +27,8 @@
     }
   },
   "dependencies": {
-    "@babel/core": "^7.21.8",
-    "@babel/plugin-transform-private-methods": "^7.24.7",
+    "@babel/core": "^7.26.0",
+    "@babel/plugin-transform-private-methods": "^7.25.9",
     "flow-remove-types": "^2.247.1",
     "metro-react-native-babel-preset": "^0.77.0"
   },
