@@ -217,7 +217,8 @@ function walkConfigItems(
 ) {
   // NOTE: Fill in current route using state that was passed as params.
   if (!route.state && isInvalidParams(route.params)) {
-    route.state = createFakeState(route.params)
+    // FIXME: This is a hack to make things work since the `route` object is immutable on react-navigation v7 (`TypeError: Cannot add property state, object is not extensible`), and seems that things are working. But we might want to do a proper migration for these forked code.
+    // route.state = createFakeState(route.params)
   }
 
   let pattern: string | null = null
@@ -264,7 +265,8 @@ function walkConfigItems(
     }
 
     if (!route.state && isInvalidParams(route.params)) {
-      route.state = createFakeState(route.params)
+      // FIXME: This is a hack to make things work since the `route` object is immutable on react-navigation v7, and seems that things are working. But we might want to do a proper migration for these forked code.
+      // route.state = createFakeState(route.params)
     }
 
     // If there is no `screens` property or no nested state, we return pattern
@@ -327,7 +329,10 @@ function walkConfigItems(
         routeName: route.name,
       })
     }
-    Object.assign(focusedParams, collectedParams)
+    focusedParams = {
+      ...focusedParams,
+      ...collectedParams,
+    }
   }
 
   return {
@@ -362,7 +367,8 @@ function getPathFromResolvedState(
     // NOTE: Fill in current route using state that was passed as params.
     // if (isInvalidParams(route.params)) {
     if (!route.state && isInvalidParams(route.params)) {
-      route.state = createFakeState(route.params)
+      // FIXME: This is a hack to make things work since the `route` object is immutable on react-navigation v7, and seems that things are working. But we might want to do a proper migration for these forked code.
+      // route.state = createFakeState(route.params)
     }
 
     const {
