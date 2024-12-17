@@ -11,6 +11,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             url: string;
             compress?: boolean;
             cacheHeaders?: "off";
+            loadEnv?: boolean;
             https?: boolean;
             platform?: import("..").VXRNServePlatform;
             beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;

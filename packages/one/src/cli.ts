@@ -118,6 +118,9 @@ const serveCommand = defineCommand({
     cacheHeaders: {
       type: 'boolean',
     },
+    loadEnv: {
+      type: 'boolean',
+    },
   },
   async run({ args }) {
     const { serve } = await import('./serve')
@@ -127,6 +130,7 @@ const serveCommand = defineCommand({
       cacheHeaders: args.cacheHeaders === false ? 'off' : undefined,
       compress: args.compress,
       platform: args.platform === 'vercel' ? 'vercel' : 'node',
+      loadEnv: !!args.loadEnv,
     })
   },
 })

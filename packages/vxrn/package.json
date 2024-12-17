@@ -40,6 +40,10 @@
     "./serve": {
       "types": "./types/exports/serve.d.ts",
       "default": "./dist/exports/serve.mjs"
+    },
+    "./loadEnv": {
+      "types": "./types/exports/loadEnv.d.ts",
+      "default": "./dist/exports/loadEnv.mjs"
     }
   },
   "dependencies": {

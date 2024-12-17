@@ -1,6 +1,5 @@
-import { loadEnv as loadEnvVite } from 'vite'
-
-export function loadEnv(mode: 'production' | 'development', root = process.cwd()) {
+export async function loadEnv(mode: 'production' | 'development', root = process.cwd()) {
+  const { loadEnv: loadEnvVite } = await import('vite')
   const serverEnv = loadEnvVite(mode, root, '')
   const clientEnv = loadEnvVite(mode, root, ['VITE', 'ONE_PUBLIC'])
 
