@@ -1,13 +1,14 @@
 import { UserCheck, UserPlus, UserX } from '@tamagui/lucide-icons'
 import { useEffect, useRef, useState } from 'react'
 import { Button, Dialog, Input, SizableText, TooltipSimple, XStack, YStack } from 'tamagui'
-import { User } from '~/config/zero/schema'
+import { Friendship, User } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { mutate, useQuery } from '~/features/state/zero'
 import { createEmitter } from '~/helpers/emitter'
 import { Avatar } from '../Avatar'
 import { DialogContent, dialogEmitter, DialogOverlay, useDialogEmitter } from './shared'
 import { Row } from '../Row'
+import { dialogConfirm } from './DialogConfirm'
 
 const [dialogCreateServerEmitter] = createEmitter<boolean>()
 
@@ -85,6 +86,17 @@ export const useFriendship = (userA: { id: string }, userB?: { id: string } | nu
   return [friendship, status] as const
 }
 
+const removeFriendship = async (friendship: Friendship) => {
+  await Promise.all([
+    mutate.friendship.delete(friendship),
+    // delete the opposite one too
+    mutate.friendship.delete({
+      requestingId: friendship.acceptingId,
+      acceptingId: friendship.requestingId,
+    }),
+  ])
+}
+
 const UserRow = ({ user }: { user: User }) => {
   const { user: currentUser } = useAuth()
   const [friendship, status] = useFriendship(user, currentUser)
@@ -101,10 +113,29 @@ const UserRow = ({ user }: { user: User }) => {
       >
         <Row.Button
           icon={friendRequestIcons[status]}
-          onPress={() => {
+          theme={status === 'requested' ? 'yellow' : status === 'accepted' ? 'green' : null}
+          onPress={async () => {
             if (!currentUser) return
 
-            if (friendship) return
+            if (friendship) {
+              if (friendship.accepted) {
+                // confirm delete if already accepted
+                if (
+                  await dialogConfirm({
+                    title: `Remove friend?`,
+                    description: '',
+                  })
+                ) {
+                  removeFriendship(friendship)
+                } else {
+                  return
+                }
+              }
+
+              // if not already accepted just toggle immediately
+              removeFriendship(friendship)
+              return
+            }
 
             mutate.friendship.insert({
               accepted: false,
