@@ -217,7 +217,8 @@ function walkConfigItems(
 ) {
   // NOTE: Fill in current route using state that was passed as params.
   if (!route.state && isInvalidParams(route.params)) {
-    route.state = createFakeState(route.params)
+    console.log('why')
+    // route.state = createFakeState(route.params)
   }
 
   let pattern: string | null = null
@@ -264,7 +265,8 @@ function walkConfigItems(
     }
 
     if (!route.state && isInvalidParams(route.params)) {
-      route.state = createFakeState(route.params)
+      console.log('why')
+      // route.state = createFakeState(route.params)
     }
 
     // If there is no `screens` property or no nested state, we return pattern
@@ -327,7 +329,10 @@ function walkConfigItems(
         routeName: route.name,
       })
     }
-    Object.assign(focusedParams, collectedParams)
+    focusedParams = {
+      ...focusedParams,
+      ...collectedParams,
+    }
   }
 
   return {
@@ -362,7 +367,8 @@ function getPathFromResolvedState(
     // NOTE: Fill in current route using state that was passed as params.
     // if (isInvalidParams(route.params)) {
     if (!route.state && isInvalidParams(route.params)) {
-      route.state = createFakeState(route.params)
+      console.log('why')
+      // route.state = createFakeState(route.params)
     }
 
     const {
