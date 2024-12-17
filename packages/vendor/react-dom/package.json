@@ -1,6 +1,6 @@
 {
   "name": "react-dom",
-  "version": "19.0.0-rc-fb9a90fa48-20240614",
+  "version": "19.0.0",
   "description": "React package for working with the DOM.",
   "main": "index.js",
   "repository": {
@@ -17,10 +17,10 @@
   },
   "homepage": "https://react.dev/",
   "dependencies": {
-    "scheduler": "0.25.0-rc-fb9a90fa48-20240614"
+    "scheduler": "^0.25.0"
   },
   "peerDependencies": {
-    "react": "19.0.0-rc-fb9a90fa48-20240614"
+    "react": "^19.0.0"
   },
   "files": [
     "LICENSE",

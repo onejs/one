@@ -11,23 +11,6 @@
 "use strict";
 "production" !== process.env.NODE_ENV &&
   (function () {
-    function error(format) {
-      for (
-        var _len2 = arguments.length,
-          args = Array(1 < _len2 ? _len2 - 1 : 0),
-          _key2 = 1;
-        _key2 < _len2;
-        _key2++
-      )
-        args[_key2 - 1] = arguments[_key2];
-      _len2 = format;
-      _key2 = Error("react-stack-top-frame");
-      ReactSharedInternalsServer.getCurrentStack &&
-        ((_key2 = ReactSharedInternalsServer.getCurrentStack(_key2)),
-        "" !== _key2 && ((_len2 += "%s"), (args = args.concat([_key2]))));
-      args.unshift(_len2);
-      Function.prototype.apply.call(console.error, console, args);
-    }
     function getComponentNameFromType(type) {
       if (null == type) return null;
       if ("function" === typeof type)
@@ -52,7 +35,7 @@
       if ("object" === typeof type)
         switch (
           ("number" === typeof type.tag &&
-            error(
+            console.error(
               "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
             ),
           type.$$typeof)
@@ -94,20 +77,22 @@
       } catch (e) {
         JSCompiler_inline_result = !0;
       }
-      if (JSCompiler_inline_result)
-        return (
-          (JSCompiler_inline_result =
-            ("function" === typeof Symbol &&
-              Symbol.toStringTag &&
-              value[Symbol.toStringTag]) ||
-            value.constructor.name ||
-            "Object"),
-          error(
-            "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-            JSCompiler_inline_result
-          ),
-          testStringCoercion(value)
+      if (JSCompiler_inline_result) {
+        JSCompiler_inline_result = console;
+        var JSCompiler_temp_const = JSCompiler_inline_result.error;
+        var JSCompiler_inline_result$jscomp$0 =
+          ("function" === typeof Symbol &&
+            Symbol.toStringTag &&
+            value[Symbol.toStringTag]) ||
+          value.constructor.name ||
+          "Object";
+        JSCompiler_temp_const.call(
+          JSCompiler_inline_result,
+          "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
+          JSCompiler_inline_result$jscomp$0
         );
+        return testStringCoercion(value);
+      }
     }
     function disabledLog() {}
     function disableLogs() {
@@ -152,7 +137,7 @@
         });
       }
       0 > disabledDepth &&
-        error(
+        console.error(
           "disabledDepth fell below zero. This is a bug in React. Please file an issue."
         );
     }
@@ -163,8 +148,14 @@
         } catch (x) {
           var match = x.stack.trim().match(/\n( *(at )?)/);
           prefix = (match && match[1]) || "";
+          suffix =
+            -1 < x.stack.indexOf("\n    at")
+              ? " (<anonymous>)"
+              : -1 < x.stack.indexOf("@")
+                ? "@unknown:0:0"
+                : "";
         }
-      return "\n" + prefix + name;
+      return "\n" + prefix + name + suffix;
     }
     function describeNativeComponentFrame(fn, construct) {
       if (!fn || reentry) return "";
@@ -177,64 +168,64 @@
       previousDispatcher = ReactSharedInternalsServer.H;
       ReactSharedInternalsServer.H = null;
       disableLogs();
-      var RunInRootFrame = {
-        DetermineComponentFrameRoot: function () {
-          try {
-            if (construct) {
-              var Fake = function () {
-                throw Error();
-              };
-              Object.defineProperty(Fake.prototype, "props", {
-                set: function () {
+      try {
+        var RunInRootFrame = {
+          DetermineComponentFrameRoot: function () {
+            try {
+              if (construct) {
+                var Fake = function () {
                   throw Error();
+                };
+                Object.defineProperty(Fake.prototype, "props", {
+                  set: function () {
+                    throw Error();
+                  }
+                });
+                if ("object" === typeof Reflect && Reflect.construct) {
+                  try {
+                    Reflect.construct(Fake, []);
+                  } catch (x) {
+                    var control = x;
+                  }
+                  Reflect.construct(fn, [], Fake);
+                } else {
+                  try {
+                    Fake.call();
+                  } catch (x$0) {
+                    control = x$0;
+                  }
+                  fn.call(Fake.prototype);
                 }
-              });
-              if ("object" === typeof Reflect && Reflect.construct) {
-                try {
-                  Reflect.construct(Fake, []);
-                } catch (x) {
-                  var control = x;
-                }
-                Reflect.construct(fn, [], Fake);
               } else {
                 try {
-                  Fake.call();
-                } catch (x$0) {
-                  control = x$0;
+                  throw Error();
+                } catch (x$1) {
+                  control = x$1;
                 }
-                fn.call(Fake.prototype);
+                (Fake = fn()) &&
+                  "function" === typeof Fake.catch &&
+                  Fake.catch(function () {});
               }
-            } else {
-              try {
-                throw Error();
-              } catch (x$1) {
-                control = x$1;
-              }
-              (Fake = fn()) &&
-                "function" === typeof Fake.catch &&
-                Fake.catch(function () {});
+            } catch (sample) {
+              if (sample && control && "string" === typeof sample.stack)
+                return [sample.stack, control.stack];
             }
-          } catch (sample) {
-            if (sample && control && "string" === typeof sample.stack)
-              return [sample.stack, control.stack];
+            return [null, null];
           }
-          return [null, null];
-        }
-      };
-      RunInRootFrame.DetermineComponentFrameRoot.displayName =
-        "DetermineComponentFrameRoot";
-      var namePropDescriptor = Object.getOwnPropertyDescriptor(
-        RunInRootFrame.DetermineComponentFrameRoot,
-        "name"
-      );
-      namePropDescriptor &&
-        namePropDescriptor.configurable &&
-        Object.defineProperty(
+        };
+        RunInRootFrame.DetermineComponentFrameRoot.displayName =
+          "DetermineComponentFrameRoot";
+        var namePropDescriptor = Object.getOwnPropertyDescriptor(
           RunInRootFrame.DetermineComponentFrameRoot,
-          "name",
-          { value: "DetermineComponentFrameRoot" }
+          "name"
         );
-      try {
+        namePropDescriptor &&
+          namePropDescriptor.configurable &&
+          Object.defineProperty(
+            RunInRootFrame.DetermineComponentFrameRoot,
+            "name",
+            { value: "DetermineComponentFrameRoot" }
+          );
         var _RunInRootFrame$Deter =
             RunInRootFrame.DetermineComponentFrameRoot(),
           sampleStack = _RunInRootFrame$Deter[0],
@@ -243,54 +234,58 @@
           var sampleLines = sampleStack.split("\n"),
             controlLines = controlStack.split("\n");
           for (
-            sampleStack = _RunInRootFrame$Deter = 0;
-            _RunInRootFrame$Deter < sampleLines.length &&
-            !sampleLines[_RunInRootFrame$Deter].includes(
+            _RunInRootFrame$Deter = namePropDescriptor = 0;
+            namePropDescriptor < sampleLines.length &&
+            !sampleLines[namePropDescriptor].includes(
+              "DetermineComponentFrameRoot"
+            );
+
+          )
+            namePropDescriptor++;
+          for (
+            ;
+            _RunInRootFrame$Deter < controlLines.length &&
+            !controlLines[_RunInRootFrame$Deter].includes(
               "DetermineComponentFrameRoot"
             );
 
           )
             _RunInRootFrame$Deter++;
-          for (
-            ;
-            sampleStack < controlLines.length &&
-            !controlLines[sampleStack].includes("DetermineComponentFrameRoot");
-
-          )
-            sampleStack++;
           if (
-            _RunInRootFrame$Deter === sampleLines.length ||
-            sampleStack === controlLines.length
+            namePropDescriptor === sampleLines.length ||
+            _RunInRootFrame$Deter === controlLines.length
           )
             for (
-              _RunInRootFrame$Deter = sampleLines.length - 1,
-                sampleStack = controlLines.length - 1;
-              1 <= _RunInRootFrame$Deter &&
-              0 <= sampleStack &&
-              sampleLines[_RunInRootFrame$Deter] !== controlLines[sampleStack];
+              namePropDescriptor = sampleLines.length - 1,
+                _RunInRootFrame$Deter = controlLines.length - 1;
+              1 <= namePropDescriptor &&
+              0 <= _RunInRootFrame$Deter &&
+              sampleLines[namePropDescriptor] !==
+                controlLines[_RunInRootFrame$Deter];
 
             )
-              sampleStack--;
+              _RunInRootFrame$Deter--;
           for (
             ;
-            1 <= _RunInRootFrame$Deter && 0 <= sampleStack;
-            _RunInRootFrame$Deter--, sampleStack--
+            1 <= namePropDescriptor && 0 <= _RunInRootFrame$Deter;
+            namePropDescriptor--, _RunInRootFrame$Deter--
           )
             if (
-              sampleLines[_RunInRootFrame$Deter] !== controlLines[sampleStack]
+              sampleLines[namePropDescriptor] !==
+              controlLines[_RunInRootFrame$Deter]
             ) {
-              if (1 !== _RunInRootFrame$Deter || 1 !== sampleStack) {
+              if (1 !== namePropDescriptor || 1 !== _RunInRootFrame$Deter) {
                 do
                   if (
-                    (_RunInRootFrame$Deter--,
-                    sampleStack--,
-                    0 > sampleStack ||
-                      sampleLines[_RunInRootFrame$Deter] !==
-                        controlLines[sampleStack])
+                    (namePropDescriptor--,
+                    _RunInRootFrame$Deter--,
+                    0 > _RunInRootFrame$Deter ||
+                      sampleLines[namePropDescriptor] !==
+                        controlLines[_RunInRootFrame$Deter])
                   ) {
                     var _frame =
                       "\n" +
-                      sampleLines[_RunInRootFrame$Deter].replace(
+                      sampleLines[namePropDescriptor].replace(
                         " at new ",
                         " at "
                       );
@@ -301,7 +296,7 @@
                       componentFrameCache.set(fn, _frame);
                     return _frame;
                   }
-                while (1 <= _RunInRootFrame$Deter && 0 <= sampleStack);
+                while (1 <= namePropDescriptor && 0 <= _RunInRootFrame$Deter);
               }
               break;
             }
@@ -353,13 +348,6 @@
       var dispatcher = ReactSharedInternalsServer.A;
       return null === dispatcher ? null : dispatcher.getOwner();
     }
-    function hasValidRef(config) {
-      if (hasOwnProperty.call(config, "ref")) {
-        var getter = Object.getOwnPropertyDescriptor(config, "ref").get;
-        if (getter && getter.isReactWarning) return !1;
-      }
-      return void 0 !== config.ref;
-    }
     function hasValidKey(config) {
       if (hasOwnProperty.call(config, "key")) {
         var getter = Object.getOwnPropertyDescriptor(config, "key").get;
@@ -371,7 +359,7 @@
       function warnAboutAccessingKey() {
         specialPropKeyWarningShown ||
           ((specialPropKeyWarningShown = !0),
-          error(
+          console.error(
             "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
             displayName
           ));
@@ -386,14 +374,14 @@
       var componentName = getComponentNameFromType(this.type);
       didWarnAboutElementRef[componentName] ||
         ((didWarnAboutElementRef[componentName] = !0),
-        error(
+        console.error(
           "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
         ));
       componentName = this.props.ref;
       return void 0 !== componentName ? componentName : null;
     }
-    function ReactElement(type, key, _ref, self, source, owner, props) {
-      _ref = props.ref;
+    function ReactElement(type, key, self, source, owner, props) {
+      self = props.ref;
       type = {
         $$typeof: REACT_ELEMENT_TYPE,
         type: type,
@@ -401,7 +389,7 @@
         props: props,
         _owner: owner
       };
-      null !== (void 0 !== _ref ? _ref : null)
+      null !== (void 0 !== self ? self : null)
         ? Object.defineProperty(type, "ref", {
             enumerable: !1,
             get: elementRefGetterWithDeprecationWarning
@@ -462,7 +450,7 @@
                 validateChildKeys(children[isStaticChildren], type);
               Object.freeze && Object.freeze(children);
             } else
-              error(
+              console.error(
                 "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
               );
           else validateChildKeys(children, type);
@@ -479,14 +467,16 @@
         null === type
           ? (isStaticChildren = "null")
           : isArrayImpl(type)
-          ? (isStaticChildren = "array")
-          : void 0 !== type && type.$$typeof === REACT_ELEMENT_TYPE
-          ? ((isStaticChildren =
-              "<" + (getComponentNameFromType(type.type) || "Unknown") + " />"),
-            (children =
-              " Did you accidentally export a JSX literal instead of a component?"))
-          : (isStaticChildren = typeof type);
-        error(
+            ? (isStaticChildren = "array")
+            : void 0 !== type && type.$$typeof === REACT_ELEMENT_TYPE
+              ? ((isStaticChildren =
+                  "<" +
+                  (getComponentNameFromType(type.type) || "Unknown") +
+                  " />"),
+                (children =
+                  " Did you accidentally export a JSX literal instead of a component?"))
+              : (isStaticChildren = typeof type);
+        console.error(
           "React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s",
           isStaticChildren,
           children
@@ -504,7 +494,7 @@
         didWarnAboutKeySpread[children + isStaticChildren] ||
           ((keys =
             0 < keys.length ? "{" + keys.join(": ..., ") + ": ...}" : "{}"),
-          error(
+          console.error(
             'A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />',
             isStaticChildren,
             children,
@@ -518,27 +508,19 @@
         (checkKeyStringCoercion(maybeKey), (children = "" + maybeKey));
       hasValidKey(config) &&
         (checkKeyStringCoercion(config.key), (children = "" + config.key));
-      hasValidRef(config);
       if ("key" in config) {
         maybeKey = {};
         for (var propName in config)
           "key" !== propName && (maybeKey[propName] = config[propName]);
       } else maybeKey = config;
       children &&
-        ((config =
+        defineKeyPropWarningGetter(
+          maybeKey,
           "function" === typeof type
             ? type.displayName || type.name || "Unknown"
-            : type),
-        children && defineKeyPropWarningGetter(maybeKey, config));
-      return ReactElement(
-        type,
-        children,
-        null,
-        self,
-        source,
-        getOwner(),
-        maybeKey
-      );
+            : type
+        );
+      return ReactElement(type, children, self, source, getOwner(), maybeKey);
     }
     function validateChildKeys(node, parentType) {
       if (
@@ -601,7 +583,7 @@
           prevGetCurrentStack && (stack += prevGetCurrentStack() || "");
           return stack;
         };
-        error(
+        console.error(
           'Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information.',
           parentType,
           childOwner
@@ -637,14 +619,14 @@
       REACT_LAZY_TYPE = Symbol.for("react.lazy"),
       REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen"),
       MAYBE_ITERATOR_SYMBOL = Symbol.iterator,
+      REACT_CLIENT_REFERENCE$2 = Symbol.for("react.client.reference"),
       ReactSharedInternalsServer =
         React.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
     if (!ReactSharedInternalsServer)
       throw Error(
         'The "react" package in this environment is not configured correctly. The "react-server" condition must be enabled in any environment that runs React Server Components.'
       );
-    var REACT_CLIENT_REFERENCE$2 = Symbol.for("react.client.reference"),
-      hasOwnProperty = Object.prototype.hasOwnProperty,
+    var hasOwnProperty = Object.prototype.hasOwnProperty,
       assign = Object.assign,
       REACT_CLIENT_REFERENCE$1 = Symbol.for("react.client.reference"),
       isArrayImpl = Array.isArray,
@@ -658,6 +640,7 @@
       prevGroupEnd;
     disabledLog.__reactDisabledLog = !0;
     var prefix,
+      suffix,
       reentry = !1;
     var componentFrameCache = new (
       "function" === typeof WeakMap ? WeakMap : Map

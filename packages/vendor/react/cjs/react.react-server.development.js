@@ -11,36 +11,6 @@
 "use strict";
 "production" !== process.env.NODE_ENV &&
   (function () {
-    function warn(format) {
-      for (
-        var _len = arguments.length,
-          args = Array(1 < _len ? _len - 1 : 0),
-          _key = 1;
-        _key < _len;
-        _key++
-      )
-        args[_key - 1] = arguments[_key];
-      printWarning("warn", format, args, Error("react-stack-top-frame"));
-    }
-    function error$jscomp$0(format) {
-      for (
-        var _len2 = arguments.length,
-          args = Array(1 < _len2 ? _len2 - 1 : 0),
-          _key2 = 1;
-        _key2 < _len2;
-        _key2++
-      )
-        args[_key2 - 1] = arguments[_key2];
-      printWarning("error", format, args, Error("react-stack-top-frame"));
-    }
-    function printWarning(level, format, args, currentStack) {
-      ReactSharedInternals.getCurrentStack &&
-        ((currentStack = ReactSharedInternals.getCurrentStack(currentStack)),
-        "" !== currentStack &&
-          ((format += "%s"), (args = args.concat([currentStack]))));
-      args.unshift(format);
-      Function.prototype.apply.call(console[level], console, args);
-    }
     function getIteratorFn(maybeIterable) {
       if (null === maybeIterable || "object" !== typeof maybeIterable)
         return null;
@@ -59,20 +29,22 @@
       } catch (e) {
         JSCompiler_inline_result = !0;
       }
-      if (JSCompiler_inline_result)
-        return (
-          (JSCompiler_inline_result =
-            ("function" === typeof Symbol &&
-              Symbol.toStringTag &&
-              value[Symbol.toStringTag]) ||
-            value.constructor.name ||
-            "Object"),
-          error$jscomp$0(
-            "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-            JSCompiler_inline_result
-          ),
-          testStringCoercion(value)
+      if (JSCompiler_inline_result) {
+        JSCompiler_inline_result = console;
+        var JSCompiler_temp_const = JSCompiler_inline_result.error;
+        var JSCompiler_inline_result$jscomp$0 =
+          ("function" === typeof Symbol &&
+            Symbol.toStringTag &&
+            value[Symbol.toStringTag]) ||
+          value.constructor.name ||
+          "Object";
+        JSCompiler_temp_const.call(
+          JSCompiler_inline_result,
+          "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
+          JSCompiler_inline_result$jscomp$0
         );
+        return testStringCoercion(value);
+      }
     }
     function getComponentNameFromType(type) {
       if (null == type) return null;
@@ -98,7 +70,7 @@
       if ("object" === typeof type)
         switch (
           ("number" === typeof type.tag &&
-            error$jscomp$0(
+            console.error(
               "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
             ),
           type.$$typeof)
@@ -194,7 +166,7 @@
         });
       }
       0 > disabledDepth &&
-        error$jscomp$0(
+        console.error(
           "disabledDepth fell below zero. This is a bug in React. Please file an issue."
         );
     }
@@ -205,8 +177,14 @@
         } catch (x) {
           var match = x.stack.trim().match(/\n( *(at )?)/);
           prefix = (match && match[1]) || "";
+          suffix =
+            -1 < x.stack.indexOf("\n    at")
+              ? " (<anonymous>)"
+              : -1 < x.stack.indexOf("@")
+                ? "@unknown:0:0"
+                : "";
         }
-      return "\n" + prefix + name;
+      return "\n" + prefix + name + suffix;
     }
     function describeNativeComponentFrame(fn, construct) {
       if (!fn || reentry) return "";
@@ -219,64 +197,64 @@
       previousDispatcher = ReactSharedInternals.H;
       ReactSharedInternals.H = null;
       disableLogs();
-      var RunInRootFrame = {
-        DetermineComponentFrameRoot: function () {
-          try {
-            if (construct) {
-              var Fake = function () {
-                throw Error();
-              };
-              Object.defineProperty(Fake.prototype, "props", {
-                set: function () {
+      try {
+        var RunInRootFrame = {
+          DetermineComponentFrameRoot: function () {
+            try {
+              if (construct) {
+                var Fake = function () {
                   throw Error();
+                };
+                Object.defineProperty(Fake.prototype, "props", {
+                  set: function () {
+                    throw Error();
+                  }
+                });
+                if ("object" === typeof Reflect && Reflect.construct) {
+                  try {
+                    Reflect.construct(Fake, []);
+                  } catch (x) {
+                    var control = x;
+                  }
+                  Reflect.construct(fn, [], Fake);
+                } else {
+                  try {
+                    Fake.call();
+                  } catch (x$0) {
+                    control = x$0;
+                  }
+                  fn.call(Fake.prototype);
                 }
-              });
-              if ("object" === typeof Reflect && Reflect.construct) {
-                try {
-                  Reflect.construct(Fake, []);
-                } catch (x) {
-                  var control = x;
-                }
-                Reflect.construct(fn, [], Fake);
               } else {
                 try {
-                  Fake.call();
-                } catch (x$0) {
-                  control = x$0;
+                  throw Error();
+                } catch (x$1) {
+                  control = x$1;
                 }
-                fn.call(Fake.prototype);
+                (Fake = fn()) &&
+                  "function" === typeof Fake.catch &&
+                  Fake.catch(function () {});
               }
-            } else {
-              try {
-                throw Error();
-              } catch (x$1) {
-                control = x$1;
-              }
-              (Fake = fn()) &&
-                "function" === typeof Fake.catch &&
-                Fake.catch(function () {});
+            } catch (sample) {
+              if (sample && control && "string" === typeof sample.stack)
+                return [sample.stack, control.stack];
             }
-          } catch (sample) {
-            if (sample && control && "string" === typeof sample.stack)
-              return [sample.stack, control.stack];
+            return [null, null];
           }
-          return [null, null];
-        }
-      };
-      RunInRootFrame.DetermineComponentFrameRoot.displayName =
-        "DetermineComponentFrameRoot";
-      var namePropDescriptor = Object.getOwnPropertyDescriptor(
-        RunInRootFrame.DetermineComponentFrameRoot,
-        "name"
-      );
-      namePropDescriptor &&
-        namePropDescriptor.configurable &&
-        Object.defineProperty(
+        };
+        RunInRootFrame.DetermineComponentFrameRoot.displayName =
+          "DetermineComponentFrameRoot";
+        var namePropDescriptor = Object.getOwnPropertyDescriptor(
           RunInRootFrame.DetermineComponentFrameRoot,
-          "name",
-          { value: "DetermineComponentFrameRoot" }
+          "name"
         );
-      try {
+        namePropDescriptor &&
+          namePropDescriptor.configurable &&
+          Object.defineProperty(
+            RunInRootFrame.DetermineComponentFrameRoot,
+            "name",
+            { value: "DetermineComponentFrameRoot" }
+          );
         var _RunInRootFrame$Deter =
             RunInRootFrame.DetermineComponentFrameRoot(),
           sampleStack = _RunInRootFrame$Deter[0],
@@ -285,54 +263,58 @@
           var sampleLines = sampleStack.split("\n"),
             controlLines = controlStack.split("\n");
           for (
-            sampleStack = _RunInRootFrame$Deter = 0;
-            _RunInRootFrame$Deter < sampleLines.length &&
-            !sampleLines[_RunInRootFrame$Deter].includes(
+            _RunInRootFrame$Deter = namePropDescriptor = 0;
+            namePropDescriptor < sampleLines.length &&
+            !sampleLines[namePropDescriptor].includes(
+              "DetermineComponentFrameRoot"
+            );
+
+          )
+            namePropDescriptor++;
+          for (
+            ;
+            _RunInRootFrame$Deter < controlLines.length &&
+            !controlLines[_RunInRootFrame$Deter].includes(
               "DetermineComponentFrameRoot"
             );
 
           )
             _RunInRootFrame$Deter++;
-          for (
-            ;
-            sampleStack < controlLines.length &&
-            !controlLines[sampleStack].includes("DetermineComponentFrameRoot");
-
-          )
-            sampleStack++;
           if (
-            _RunInRootFrame$Deter === sampleLines.length ||
-            sampleStack === controlLines.length
+            namePropDescriptor === sampleLines.length ||
+            _RunInRootFrame$Deter === controlLines.length
           )
             for (
-              _RunInRootFrame$Deter = sampleLines.length - 1,
-                sampleStack = controlLines.length - 1;
-              1 <= _RunInRootFrame$Deter &&
-              0 <= sampleStack &&
-              sampleLines[_RunInRootFrame$Deter] !== controlLines[sampleStack];
+              namePropDescriptor = sampleLines.length - 1,
+                _RunInRootFrame$Deter = controlLines.length - 1;
+              1 <= namePropDescriptor &&
+              0 <= _RunInRootFrame$Deter &&
+              sampleLines[namePropDescriptor] !==
+                controlLines[_RunInRootFrame$Deter];
 
             )
-              sampleStack--;
+              _RunInRootFrame$Deter--;
           for (
             ;
-            1 <= _RunInRootFrame$Deter && 0 <= sampleStack;
-            _RunInRootFrame$Deter--, sampleStack--
+            1 <= namePropDescriptor && 0 <= _RunInRootFrame$Deter;
+            namePropDescriptor--, _RunInRootFrame$Deter--
           )
             if (
-              sampleLines[_RunInRootFrame$Deter] !== controlLines[sampleStack]
+              sampleLines[namePropDescriptor] !==
+              controlLines[_RunInRootFrame$Deter]
             ) {
-              if (1 !== _RunInRootFrame$Deter || 1 !== sampleStack) {
+              if (1 !== namePropDescriptor || 1 !== _RunInRootFrame$Deter) {
                 do
                   if (
-                    (_RunInRootFrame$Deter--,
-                    sampleStack--,
-                    0 > sampleStack ||
-                      sampleLines[_RunInRootFrame$Deter] !==
-                        controlLines[sampleStack])
+                    (namePropDescriptor--,
+                    _RunInRootFrame$Deter--,
+                    0 > _RunInRootFrame$Deter ||
+                      sampleLines[namePropDescriptor] !==
+                        controlLines[_RunInRootFrame$Deter])
                   ) {
                     var _frame =
                       "\n" +
-                      sampleLines[_RunInRootFrame$Deter].replace(
+                      sampleLines[namePropDescriptor].replace(
                         " at new ",
                         " at "
                       );
@@ -343,7 +325,7 @@
                       componentFrameCache.set(fn, _frame);
                     return _frame;
                   }
-                while (1 <= _RunInRootFrame$Deter && 0 <= sampleStack);
+                while (1 <= namePropDescriptor && 0 <= _RunInRootFrame$Deter);
               }
               break;
             }
@@ -395,13 +377,6 @@
       var dispatcher = ReactSharedInternals.A;
       return null === dispatcher ? null : dispatcher.getOwner();
     }
-    function hasValidRef(config) {
-      if (hasOwnProperty.call(config, "ref")) {
-        var getter = Object.getOwnPropertyDescriptor(config, "ref").get;
-        if (getter && getter.isReactWarning) return !1;
-      }
-      return void 0 !== config.ref;
-    }
     function hasValidKey(config) {
       if (hasOwnProperty.call(config, "key")) {
         var getter = Object.getOwnPropertyDescriptor(config, "key").get;
@@ -413,7 +388,7 @@
       function warnAboutAccessingKey() {
         specialPropKeyWarningShown ||
           ((specialPropKeyWarningShown = !0),
-          error$jscomp$0(
+          console.error(
             "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
             displayName
           ));
@@ -428,14 +403,14 @@
       var componentName = getComponentNameFromType(this.type);
       didWarnAboutElementRef[componentName] ||
         ((didWarnAboutElementRef[componentName] = !0),
-        error$jscomp$0(
+        console.error(
           "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
         ));
       componentName = this.props.ref;
       return void 0 !== componentName ? componentName : null;
     }
-    function ReactElement(type, key, _ref, self, source, owner, props) {
-      _ref = props.ref;
+    function ReactElement(type, key, self, source, owner, props) {
+      self = props.ref;
       type = {
         $$typeof: REACT_ELEMENT_TYPE,
         type: type,
@@ -443,7 +418,7 @@
         props: props,
         _owner: owner
       };
-      null !== (void 0 !== _ref ? _ref : null)
+      null !== (void 0 !== self ? self : null)
         ? Object.defineProperty(type, "ref", {
             enumerable: !1,
             get: elementRefGetterWithDeprecationWarning
@@ -469,7 +444,6 @@
       newKey = ReactElement(
         oldElement.type,
         newKey,
-        null,
         void 0,
         void 0,
         oldElement._owner,
@@ -534,7 +508,7 @@
           prevGetCurrentStack && (stack += prevGetCurrentStack() || "");
           return stack;
         };
-        error$jscomp$0(
+        console.error(
           'Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information.',
           parentType,
           childOwner
@@ -693,7 +667,7 @@
         for (
           i === children.entries &&
             (didWarnAboutMaps ||
-              warn(
+              console.warn(
                 "Using Maps as children is not supported. Use an array of keyed ReactElements instead."
               ),
             (didWarnAboutMaps = !0)),
@@ -743,7 +717,7 @@
     function resolveDispatcher() {
       var dispatcher = ReactSharedInternals.H;
       null === dispatcher &&
-        error$jscomp$0(
+        console.error(
           "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem."
         );
       return dispatcher;
@@ -769,12 +743,12 @@
         return (
           (ctor = payload._result),
           void 0 === ctor &&
-            error$jscomp$0(
+            console.error(
               "lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))\n\nDid you accidentally put curly braces around the import?",
               ctor
             ),
           "default" in ctor ||
-            error$jscomp$0(
+            console.error(
               "lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))",
               ctor
             ),
@@ -819,6 +793,7 @@
       prevGroupEnd;
     disabledLog.__reactDisabledLog = !0;
     var prefix,
+      suffix,
       reentry = !1;
     var componentFrameCache = new (
       "function" === typeof WeakMap ? WeakMap : Map
@@ -906,12 +881,9 @@
           fnMap = dispatcher;
           fnMap.s = 1;
           return (fnMap.v = result);
-        } catch (error$2) {
+        } catch (error) {
           throw (
-            ((result = dispatcher),
-            (result.s = 2),
-            (result.v = error$2),
-            error$2)
+            ((result = dispatcher), (result.s = 2), (result.v = error), error)
           );
         }
       };
@@ -926,33 +898,42 @@
       var props = assign({}, element.props),
         key = element.key,
         owner = element._owner;
-      if (null != config)
-        for (propName in (hasValidRef(config) && (owner = getOwner()),
+      if (null != config) {
+        var JSCompiler_inline_result;
+        a: {
+          if (
+            hasOwnProperty.call(config, "ref") &&
+            (JSCompiler_inline_result = Object.getOwnPropertyDescriptor(
+              config,
+              "ref"
+            ).get) &&
+            JSCompiler_inline_result.isReactWarning
+          ) {
+            JSCompiler_inline_result = !1;
+            break a;
+          }
+          JSCompiler_inline_result = void 0 !== config.ref;
+        }
+        JSCompiler_inline_result && (owner = getOwner());
         hasValidKey(config) &&
-          (checkKeyStringCoercion(config.key), (key = "" + config.key)),
-        config))
+          (checkKeyStringCoercion(config.key), (key = "" + config.key));
+        for (propName in config)
           !hasOwnProperty.call(config, propName) ||
             "key" === propName ||
             "__self" === propName ||
             "__source" === propName ||
             ("ref" === propName && void 0 === config.ref) ||
             (props[propName] = config[propName]);
+      }
       var propName = arguments.length - 2;
       if (1 === propName) props.children = children;
       else if (1 < propName) {
-        for (var childArray = Array(propName), i = 0; i < propName; i++)
-          childArray[i] = arguments[i + 2];
-        props.children = childArray;
+        JSCompiler_inline_result = Array(propName);
+        for (var i = 0; i < propName; i++)
+          JSCompiler_inline_result[i] = arguments[i + 2];
+        props.children = JSCompiler_inline_result;
       }
-      props = ReactElement(
-        element.type,
-        key,
-        null,
-        void 0,
-        void 0,
-        owner,
-        props
-      );
+      props = ReactElement(element.type, key, void 0, void 0, owner, props);
       for (key = 2; key < arguments.length; key++)
         validateChildKeys(arguments[key], props.type);
       return props;
@@ -976,19 +957,20 @@
           isArrayImpl(type)
             ? (typeString = "array")
             : void 0 !== type && type.$$typeof === REACT_ELEMENT_TYPE
-            ? ((typeString =
-                "<" +
-                (getComponentNameFromType(type.type) || "Unknown") +
-                " />"),
-              (i =
-                " Did you accidentally export a JSX literal instead of a component?"))
-            : (typeString = typeof type);
-        error$jscomp$0(
+              ? ((typeString =
+                  "<" +
+                  (getComponentNameFromType(type.type) || "Unknown") +
+                  " />"),
+                (i =
+                  " Did you accidentally export a JSX literal instead of a component?"))
+              : (typeString = typeof type);
+        console.error(
           "React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s",
           typeString,
           i
         );
       }
+      var propName;
       i = {};
       typeString = null;
       if (null != config)
@@ -996,10 +978,9 @@
           !("__self" in config) ||
           "key" in config ||
           ((didWarnAboutOldJSXRuntime = !0),
-          warn(
+          console.warn(
             "Your app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform"
           )),
-        hasValidRef(config),
         hasValidKey(config) &&
           (checkKeyStringCoercion(config.key), (typeString = "" + config.key)),
         config))
@@ -1023,22 +1004,14 @@
       if (type && type.defaultProps)
         for (propName in ((childrenLength = type.defaultProps), childrenLength))
           void 0 === i[propName] && (i[propName] = childrenLength[propName]);
-      if (typeString) {
-        var propName =
+      typeString &&
+        defineKeyPropWarningGetter(
+          i,
           "function" === typeof type
             ? type.displayName || type.name || "Unknown"
-            : type;
-        typeString && defineKeyPropWarningGetter(i, propName);
-      }
-      return ReactElement(
-        type,
-        typeString,
-        null,
-        void 0,
-        void 0,
-        getOwner(),
-        i
-      );
+            : type
+        );
+      return ReactElement(type, typeString, void 0, void 0, getOwner(), i);
     };
     exports.createRef = function () {
       var refObject = { current: null };
@@ -1047,25 +1020,25 @@
     };
     exports.forwardRef = function (render) {
       null != render && render.$$typeof === REACT_MEMO_TYPE
-        ? error$jscomp$0(
+        ? console.error(
             "forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...))."
           )
         : "function" !== typeof render
-        ? error$jscomp$0(
-            "forwardRef requires a render function but was given %s.",
-            null === render ? "null" : typeof render
-          )
-        : 0 !== render.length &&
-          2 !== render.length &&
-          error$jscomp$0(
-            "forwardRef render functions accept exactly two parameters: props and ref. %s",
-            1 === render.length
-              ? "Did you forget to use the ref parameter?"
-              : "Any additional parameter will be undefined."
-          );
+          ? console.error(
+              "forwardRef requires a render function but was given %s.",
+              null === render ? "null" : typeof render
+            )
+          : 0 !== render.length &&
+            2 !== render.length &&
+            console.error(
+              "forwardRef render functions accept exactly two parameters: props and ref. %s",
+              1 === render.length
+                ? "Did you forget to use the ref parameter?"
+                : "Any additional parameter will be undefined."
+            );
       null != render &&
         null != render.defaultProps &&
-        error$jscomp$0(
+        console.error(
           "forwardRef render functions do not support defaultProps. Did you accidentally pass a React component?"
         );
       var elementType = { $$typeof: REACT_FORWARD_REF_TYPE, render: render },
@@ -1096,7 +1069,7 @@
     };
     exports.memo = function (type, compare) {
       isValidElementType(type) ||
-        error$jscomp$0(
+        console.error(
           "memo: The first argument must be a component. Instead received: %s",
           null === type ? "null" : typeof type
         );
@@ -1137,5 +1110,5 @@
     exports.useMemo = function (create, deps) {
       return resolveDispatcher().useMemo(create, deps);
     };
-    exports.version = "19.0.0-rc-fb9a90fa48-20240614";
+    exports.version = "19.0.0";
   })();

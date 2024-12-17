@@ -4,7 +4,7 @@
   "keywords": [
     "react"
   ],
-  "version": "19.0.0-rc-fb9a90fa48-20240614",
+  "version": "19.0.0",
   "homepage": "https://react.dev/",
   "bugs": "https://github.com/facebook/react/issues",
   "license": "MIT",
