@@ -10,17 +10,17 @@ import {
   isWebEnvironment,
   loadEnv,
 } from 'vxrn'
-import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
-import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
-import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
-import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
-import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
-import { createVirtualEntry, virtualEntryId } from './plugins/virtualEntryPlugin'
 import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
 import { ensureTSConfig } from './ensureTsConfig'
-import babel from 'vite-plugin-babel'
+import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
+import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
+import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
+import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
+import { createReactCompilerPlugin } from './plugins/reactCompilerPlugin'
+import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
+import { createVirtualEntry, virtualEntryId } from './plugins/virtualEntryPlugin'
 import type { One } from './types'
 
 events.setMaxListeners(1_000)
@@ -54,7 +54,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
   const { clientEnvDefine } = loadEnv(vxrnOptions?.mode ?? 'development')
 
-  const devAndProdPlugins = [
+  const devAndProdPlugins: Plugin[] = [
     {
       name: 'one-define-env',
       config() {
@@ -256,17 +256,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // react compiler
   const compiler = options.react?.compiler
   if (compiler) {
-    const babelPlugin = babel({
-      exclude: compiler === true ? /node_modules|vendor/ : undefined,
-      babelConfig: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
-    }) as any as Plugin
-
-    devAndProdPlugins.push(
-      // @ts-expect-error
-      babelPlugin
-    )
+    devAndProdPlugins.push(createReactCompilerPlugin())
   }
 
   // react scan
@@ -284,9 +274,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         return {
           environments: {
+            // only in client
             client: {
               define: {
-                'process.env.ONE_ENABLE_REACT_SCAN': JSON.stringify(`${!!scan}`),
+                'process.env.ONE_ENABLE_REACT_SCAN': JSON.stringify(
+                  typeof scan === 'boolean' ? `${scan}` : scan
+                ),
               },
             },
           },

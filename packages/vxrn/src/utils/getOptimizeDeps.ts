@@ -8,6 +8,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@vxrn/safe-area',
     '@vxrn/vendor/react-19-prod',
     '@vxrn/vendor/react-19',
+    '@vxrn/vendor/react-19-compiler-runtime',
     '@vxrn/vendor/react-dom-19',
     '@vxrn/vendor/react-dom-client-19',
     '@vxrn/vendor/react-dom-server.browser-19',

@@ -8,6 +8,7 @@
   "exports": {
     "./package.json": "./package.json",
     "./react-19": "./react/index.js",
+    "./react-19-compiler-runtime": "./react/compiler-runtime.js",
     "./react-19-prod": "./react/cjs/react.production.js",
     "./react-jsx-dev-19": "./react/jsx-dev-runtime.js",
     "./react-jsx-19": "./react/jsx-runtime.js",

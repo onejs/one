@@ -47,6 +47,7 @@ export const depPatches: DepPatch[] = [
     patchFiles: {
       version: '18.*',
 
+      'compiler-runtime.js': `module.exports = require('@vxrn/vendor/react-19-compiler-runtime');`,
       'index.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-19');`,
       'jsx-dev-runtime.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-jsx-dev-19');`,
       'jsx-runtime.vxrn-web.js': `module.exports = require('@vxrn/vendor/react-jsx-19');`,
@@ -75,6 +76,10 @@ export const depPatches: DepPatch[] = [
         pkg.exports['./jsx-runtime'] = {
           'vxrn-web': './jsx-runtime.vxrn-web.js',
           default: './jsx-runtime.js',
+        }
+
+        pkg.exports['./compiler-runtime'] = {
+          default: './compiler-runtime.js',
         }
 
         pkg.exports['./jsx-dev-runtime'] = {

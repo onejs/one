@@ -20,7 +20,19 @@ export declare namespace One {
         zero?: boolean;
         react?: {
             compiler?: boolean;
-            scan?: boolean;
+            scan?: boolean | {
+                enabled?: boolean;
+                includeChildren?: boolean;
+                playSound?: boolean;
+                log?: boolean;
+                showToolbar?: boolean;
+                renderCountThreshold?: number;
+                resetCountTimeout?: number;
+                maxRenders?: number;
+                report?: boolean;
+                alwaysShowLabels?: boolean;
+                animationSpeed?: 'slow' | 'fast' | 'off';
+            };
         };
         /**
          * Path to a js or ts file to import before the rest of your app runs
