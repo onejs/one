@@ -38,8 +38,6 @@ export function createVirtualEntry(options: { root: string }): Plugin {
           ? '' /* `import()` will not work on native */
           : USE_ONE_SETUP_FILE
         return `
-import 'one/setup'
-
 ${prependCode}
 
 import { createApp } from 'one'
@@ -56,8 +54,6 @@ export default createApp({
           ? '' /* `import()` will not work on native */
           : USE_ONE_SETUP_FILE
         return `
-import 'one/setup'
-
 ${prependCode}
 
 import { createApp } from 'one'

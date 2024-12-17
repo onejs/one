@@ -1,3 +1,4 @@
+import './setup';
 import type { RenderAppProps } from './types';
 export type CreateAppProps = {
     routes: Record<string, () => Promise<unknown>>;

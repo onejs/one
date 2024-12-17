@@ -1,3 +1,5 @@
+export { createApp } from './createApp'
+
 export type { OneRouter, One } from './interfaces/router'
 import type { OneRouter } from './interfaces/router'
 
@@ -12,7 +14,6 @@ export { createRoute, route } from './createRoute'
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // internals
-export { createApp } from './createApp'
 export { render } from './render'
 export { Root } from './Root'
 export * as routerStore from './router/router'
