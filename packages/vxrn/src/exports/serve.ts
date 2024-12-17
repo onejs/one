@@ -16,10 +16,6 @@ export const serve = async (
   // see this for more hono setup
   const app = await createProdServer(options)
 
-  if (options.server.beforeStart) {
-    await options.server.beforeStart(options, app)
-  }
-
   // strange prevents a cant listen on port issue
   await new Promise((res) => setTimeout(res, 1))
 
@@ -44,6 +40,11 @@ export const serve = async (
       const { honoServeVercel } = await import('../serve/vercel')
       afterServerStart()
       return honoServeVercel(app, options)
+    }
+
+    case 'cloudflare': {
+      afterServerStart()
+      return app
     }
   }
 }

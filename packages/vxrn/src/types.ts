@@ -1,4 +1,3 @@
-import type { Hono } from 'hono'
 import type { OutputAsset, OutputChunk, TreeshakingOptions, TreeshakingPreset } from 'rollup'
 import type { UserConfig } from 'vite'
 
@@ -41,7 +40,7 @@ export type VXRNBuildOptions = {
   treeshake?: RollupTreeshakeOptions
 }
 
-export type VXRNServePlatform = 'node' | 'vercel'
+export type VXRNServePlatform = 'node' | 'vercel' | 'cloudflare'
 
 export type VXRNOptions = {
   /**
@@ -100,18 +99,12 @@ export type VXRNOptions = {
      *   vercel: https://hono.dev/docs/getting-started/vercel
      */
     platform?: VXRNServePlatform
-
-    beforeStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>
-    afterStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>
   }
 
   /**
    * Whether to clean cache directories on startup
    */
   clean?: boolean
-
-  // for hooking into things
-  afterBuild?: (props: AfterBuildProps) => void | Promise<void>
 }
 
 export type HMRListener = (update: { file: string; contents: string }) => void

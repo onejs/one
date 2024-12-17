@@ -58,15 +58,7 @@ export default {
 
       server: {
         // Configures production server to be compatible
-        platform: 'node' | 'vercel' // defaults to node
-        
-        // Runs after the production web server starts
-        // (options: VXRNOptions, app: Hono) => void | Promise<void>
-        afterStart() {},
-        
-        // Runs before the production web server starts
-        // (options: VXRNOptions, app: Hono) => void | Promise<void>
-        beforeStart() {},
+        platform: 'node' | 'vercel' | 'cloudflare' // defaults to node
       },
 
       // The deps configuration is a powerful way to apply patches to node_modules
