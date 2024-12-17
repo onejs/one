@@ -1,3 +1,5 @@
+import './setup'
+
 import { Root } from './Root'
 import { resolveClientLoader } from './clientLoaderResolver'
 import { render } from './render'
