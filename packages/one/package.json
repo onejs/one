@@ -91,6 +91,7 @@
   },
   "dependencies": {
     "@azure/core-asynciterator-polyfill": "^1.0.2",
+    "@babel/core": "^7.0.0",
     "@babel/generator": "^7.26.3",
     "@babel/parser": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
