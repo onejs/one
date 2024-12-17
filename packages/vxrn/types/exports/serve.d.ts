@@ -1,7 +1,6 @@
 import type { VXRNOptions, VXRNServePlatform } from '../types';
-export { createProdServer } from './createServer';
-export { loadEnv } from '../exports/loadEnv';
 export * from '../utils/getServerEntry';
+export { createProdServer } from './createServer';
 export declare const serve: (optionsIn: VXRNOptions & {
     platform?: VXRNServePlatform;
 }) => Promise<void | {
