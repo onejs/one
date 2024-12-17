@@ -4,9 +4,8 @@ import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
 import { join } from 'node:path'
 import type { VXRNOptions } from 'vxrn'
-import { getServerEntry, loadEnv, serve as vxrnServe } from 'vxrn'
+import { getServerEntry, loadEnv, serve as vxrnServe } from 'vxrn/serve'
 import type { RenderAppProps } from './types'
-
 import type { One } from './vite/types'
 
 process.on('uncaughtException', (err) => {

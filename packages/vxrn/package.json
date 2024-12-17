@@ -38,8 +38,8 @@
       "default": "./dist/index.mjs"
     },
     "./serve": {
-      "types": "./types/exports/createServer.d.ts",
-      "default": "./dist/exports/createServer.mjs"
+      "types": "./types/exports/serve.d.ts",
+      "default": "./dist/exports/serve.mjs"
     }
   },
   "dependencies": {
