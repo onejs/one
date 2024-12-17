@@ -4,7 +4,7 @@ import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
 import { join } from 'node:path'
 import type { VXRNOptions } from 'vxrn'
-import { getServerEntry, serve as vxrnServe } from 'vxrn/serve'
+import { getServerEntry, loadEnv, serve as vxrnServe } from 'vxrn/serve'
 import type { RenderAppProps } from './types'
 import type { One } from './vite/types'
 
@@ -16,7 +16,7 @@ export async function serve(args: VXRNOptions['server'] = {}) {
   const buildInfo = (await FSExtra.readJSON(`dist/buildInfo.json`)) as One.BuildInfo
 
   // ensure cache key matches build
-  process.env.ONE_CACHE_KEY = buildInfo.constants.CACHE_KEY
+  process.env.ONE_CACHE_KEY ||= buildInfo.constants.CACHE_KEY
 
   // to avoid loading the CACHE_KEY before we set it use async imports:
   const { labelProcess } = await import('./cli/label-process')
@@ -24,6 +24,10 @@ export async function serve(args: VXRNOptions['server'] = {}) {
   const { loadUserOneOptions } = await import('./vite/one')
 
   labelProcess('serve')
+
+  if (args.loadEnv) {
+    await loadEnv('production')
+  }
 
   const oneOptions = await loadUserOneOptions('serve')
 

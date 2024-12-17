@@ -13,6 +13,7 @@ export declare function fillOptions(options: VXRNOptions, internal?: {
         url: string;
         compress?: boolean;
         cacheHeaders?: "off";
+        loadEnv?: boolean;
         https?: boolean;
         platform?: import("..").VXRNServePlatform;
         beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
@@ -50,6 +51,7 @@ export declare function getOptionsFilled(): {
         url: string;
         compress?: boolean;
         cacheHeaders?: "off";
+        loadEnv?: boolean;
         https?: boolean;
         platform?: import("..").VXRNServePlatform;
         beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
