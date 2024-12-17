@@ -30,7 +30,7 @@ type ContextType = {
 
 const Context = createContext<null | ContextType>(null)
 
-const [activeIndexEmitter, useActiveIndex] = createEmitter<number>()
+const [activeIndexEmit, _, useActiveIndex] = createEmitter<number>()
 
 export function SearchableList<A>({
   items,
@@ -50,8 +50,10 @@ export function SearchableList<A>({
     listRef,
     activeIndex,
     onNavigate: (index) => {
-      setActiveIndex(index)
-      activeIndexEmitter.emit(index)
+      if (typeof index === 'number') {
+        setActiveIndex(index)
+        activeIndexEmit(index)
+      }
     },
   })
 
