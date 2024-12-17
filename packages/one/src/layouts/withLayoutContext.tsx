@@ -71,7 +71,8 @@ export function withLayoutContext<
   Nav: T,
   processor?: (
     options: ScreenProps<TOptions, State, EventMap>[]
-  ) => ScreenProps<TOptions, State, EventMap>[]
+  ) => ScreenProps<TOptions, State, EventMap>[],
+  options?: { props: any }
 ): React.ForwardRefExoticComponent<
   React.PropsWithoutRef<PickPartial<React.ComponentProps<T>, 'children'>> &
     React.RefAttributes<unknown>
@@ -96,8 +97,8 @@ export function withLayoutContext<
       }
 
       return (
-        // @ts-expect-error
-        <Nav {...props} id={contextKey} ref={ref}>
+        // //@ts-expect-error
+        <Nav {...props} {...options?.props} id={contextKey} ref={ref}>
           {sorted}
         </Nav>
       )
