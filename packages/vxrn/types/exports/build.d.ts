@@ -14,8 +14,6 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             loadEnv?: boolean;
             https?: boolean;
             platform?: import("..").VXRNServePlatform;
-            beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
-            afterStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
         };
         entries: {
             native: string;
@@ -36,7 +34,6 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             server?: boolean | import("..").VXRNBuildOptions;
             analyze?: boolean;
         };
-        afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
     };
     buildArgs: BuildArgs;
     serverEntry: string;

@@ -21,7 +21,12 @@ export async function serve(args: VXRNOptions['server'] = {}) {
   // to avoid loading the CACHE_KEY before we set it use async imports:
   const { labelProcess } = await import('./cli/label-process')
   const { removeUndefined } = await import('./utils/removeUndefined')
-  const { loadUserOneOptions } = await import('./vite/one')
+
+  const vxrnOptions = buildInfo.vxrnOptions
+
+  if (!vxrnOptions) {
+    throw new Error(`Invalid build, missing vxrnOptions. This is an One bug, please file an issue.`)
+  }
 
   labelProcess('serve')
 
@@ -29,15 +34,13 @@ export async function serve(args: VXRNOptions['server'] = {}) {
     await loadEnv('production')
   }
 
-  const oneOptions = await loadUserOneOptions('serve')
-
   // TODO make this better, this ensures we get react 19
   process.env.VXRN_REACT_19 = '1'
 
   return await vxrnServe({
     server: {
       // fallback to one plugin
-      ...oneOptions.server,
+      ...vxrnOptions.server,
       // override with any flags given to cli
       ...removeUndefined({
         port: args.port ? +args.port : undefined,
@@ -48,8 +51,7 @@ export async function serve(args: VXRNOptions['server'] = {}) {
       }),
 
       async beforeStart(options, app) {
-        await oneOptions.server?.beforeStart?.(options, app)
-        await oneServe(oneOptions, options, buildInfo, app)
+        await oneServe(vxrnOptions, options, buildInfo, app)
       },
     },
   })

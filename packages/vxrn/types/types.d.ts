@@ -1,4 +1,3 @@
-import type { Hono } from 'hono';
 import type { OutputAsset, OutputChunk, TreeshakingOptions, TreeshakingPreset } from 'rollup';
 import type { UserConfig } from 'vite';
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
@@ -36,7 +35,7 @@ export type VXRNBuildOptions = {
     outputFormat?: 'cjs' | 'esm';
     treeshake?: RollupTreeshakeOptions;
 };
-export type VXRNServePlatform = 'node' | 'vercel';
+export type VXRNServePlatform = 'node' | 'vercel' | 'cloudflare';
 export type VXRNOptions = {
     /**
      * Root directory, your entries.native and entires.web will resolve relative to this
@@ -87,14 +86,11 @@ export type VXRNOptions = {
          *   vercel: https://hono.dev/docs/getting-started/vercel
          */
         platform?: VXRNServePlatform;
-        beforeStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
-        afterStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>;
     };
     /**
      * Whether to clean cache directories on startup
      */
     clean?: boolean;
-    afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
 };
 export type HMRListener = (update: {
     file: string;

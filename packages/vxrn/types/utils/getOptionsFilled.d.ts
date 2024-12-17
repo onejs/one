@@ -16,8 +16,6 @@ export declare function fillOptions(options: VXRNOptions, internal?: {
         loadEnv?: boolean;
         https?: boolean;
         platform?: import("..").VXRNServePlatform;
-        beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
-        afterStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
     };
     entries: {
         native: string;
@@ -38,7 +36,6 @@ export declare function fillOptions(options: VXRNOptions, internal?: {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
     };
-    afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
 }>;
 export declare function getOptionsFilled(): {
     mode: "development" | "production";
@@ -54,8 +51,6 @@ export declare function getOptionsFilled(): {
         loadEnv?: boolean;
         https?: boolean;
         platform?: import("..").VXRNServePlatform;
-        beforeStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
-        afterStart?: (options: VXRNOptions, app: import("hono").Hono) => void | Promise<void>;
     };
     entries: {
         native: string;
@@ -76,6 +71,5 @@ export declare function getOptionsFilled(): {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
     };
-    afterBuild?: (props: import("..").AfterBuildProps) => void | Promise<void>;
 } | null;
 //# sourceMappingURL=getOptionsFilled.d.ts.map

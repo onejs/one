@@ -114,7 +114,6 @@ export declare namespace One {
             api?: VXRNBuildOptions;
         };
         deps?: FixDependencies;
-        afterBuild?: (props: AfterBuildProps) => void | Promise<void>;
         ssr?: {
             /**
              * Do not automatically scan for dependencies to pre-bundle for SSR.
@@ -135,6 +134,7 @@ export declare namespace One {
         permanent: boolean;
     };
     type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
+        vxrnOptions?: VXRNOptions;
         constants: {
             CACHE_KEY: string;
         };
@@ -144,7 +144,7 @@ export declare namespace One {
         builtRoutes: RouteBuildInfo[];
     };
     type RouteBuildInfo = {
-        type: RouteType;
+        type: One.RouteType;
         path: string;
         preloadPath: string;
         cleanPath: string;

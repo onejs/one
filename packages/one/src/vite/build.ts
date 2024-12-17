@@ -34,8 +34,8 @@ export async function build(args: {
 }) {
   labelProcess('build')
 
-  const userOptions = await loadUserOneOptions('build')
-  const serverOutputFormat = userOptions.build?.server?.outputFormat ?? 'esm'
+  const vxrnOptions = await loadUserOneOptions('build')
+  const serverOutputFormat = vxrnOptions.build?.server?.outputFormat ?? 'esm'
 
   // TODO make this better, this ensures we get react 19
   process.env.VXRN_REACT_19 = '1'
@@ -48,7 +48,7 @@ export async function build(args: {
 
   const vxrnOutput = await vxrnBuild(
     {
-      server: userOptions.server,
+      server: vxrnOptions.server,
       build: {
         analyze: true,
         server: {
@@ -91,8 +91,8 @@ export async function build(args: {
       return entries
     }, {}) as Record<string, string>
 
-    const apiOutputFormat = userOptions?.build?.api?.outputFormat ?? serverOutputFormat
-    const treeshake = userOptions?.build?.api?.treeshake
+    const apiOutputFormat = vxrnOptions?.build?.api?.outputFormat ?? serverOutputFormat
+    const treeshake = vxrnOptions?.build?.api?.treeshake
 
     await viteBuild(
       mergeConfig(apiBuildConfig, {
@@ -321,8 +321,8 @@ export async function build(args: {
     })
 
     const preloadSetupFilePreloads = (() => {
-      if (userOptions.setupFile) {
-        const needle = userOptions.setupFile.replace(/^\.\//, '')
+      if (vxrnOptions.setupFile) {
+        const needle = vxrnOptions.setupFile.replace(/^\.\//, '')
         for (const file in vxrnOutput.clientManifest) {
           if (file === needle) {
             const entry = vxrnOutput.clientManifest[file]
@@ -510,6 +510,7 @@ ${JSON.stringify(params || null, null, 2)}`
   }, {}) satisfies Record<string, string>
 
   const buildInfoForWriting = {
+    vxrnOptions,
     routeMap,
     builtRoutes,
     constants: JSON.parse(JSON.stringify({ ...constants })),
@@ -524,22 +525,38 @@ ${JSON.stringify(params || null, null, 2)}`
 
   let postBuildLogs: string[] = []
 
-  const platform = userOptions.web?.deploy ?? options.server?.platform
+  const platform = vxrnOptions.web?.deploy ?? options.server?.platform
 
-  if (platform === 'vercel') {
-    await FSExtra.writeFile(
-      join(options.root, 'dist', 'index.js'),
-      `import { serve } from 'one/serve'
+  switch (platform) {
+    case 'vercel': {
+      await FSExtra.writeFile(
+        join(options.root, 'dist', 'index.js'),
+        `import { serve } from 'one/serve'
 const handler = await serve()
 export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
-    )
+      )
 
-    postBuildLogs.push(`wrote vercel entry to: ${join('.', 'dist', 'index.js')}`)
-    postBuildLogs.push(`point vercel outputDirectory to dist`)
+      postBuildLogs.push(`wrote vercel entry to: ${join('.', 'dist', 'index.js')}`)
+      postBuildLogs.push(`point vercel outputDirectory to dist`)
+
+      break
+    }
+
+    case 'cloudflare': {
+      await FSExtra.writeFile(
+        join(options.root, 'dist', 'worker.js'),
+        `import { serve } from 'one/serve'
+const handler = await serve()
+
+export default {
+  async fetch(request: Request) {
+    return await 
   }
+}`
+      )
 
-  if (userOptions?.afterBuild) {
-    await userOptions?.afterBuild?.(buildInfo)
+      break
+    }
   }
 
   if (process.env.VXRN_ANALYZE_BUNDLE) {
