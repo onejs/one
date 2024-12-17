@@ -12,7 +12,7 @@ import {
   XStack,
 } from 'tamagui'
 import type { ThreadWithRelations } from '~/config/zero/schema'
-import { useCurrentChannelThreads } from '~/features/state/queries/useServer'
+import { useCurrentChannel, useCurrentChannelThreads } from '~/features/state/queries/useServer'
 import {
   updateUserCurrentChannel,
   updateUserOpenThread,
@@ -21,6 +21,9 @@ import {
 import { OneBall } from '../brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
 import { PopoverContent } from '../Popover'
+import { LabeledRow } from '../forms/LabeledRow'
+import { Checkbox } from '../Checkbox'
+import { mutate } from '~/features/state/zero'
 
 export const mainTopBarHeight = 45
 
@@ -60,6 +63,12 @@ export const MainTopBar = () => {
 }
 
 const ChannelSettingsButton = () => {
+  const channel = useCurrentChannel()
+
+  if (!channel) {
+    return null
+  }
+
   return (
     <Popover allowFlip stayInFrame={{ padding: 10 }}>
       <Popover.Trigger>
@@ -72,6 +81,20 @@ const ChannelSettingsButton = () => {
 
       <PopoverContent miw={300} mih={400} p="$3">
         <H4>Channel Settings</H4>
+
+        <LabeledRow htmlFor="private" label="Private">
+          <Checkbox
+            checked={channel.private}
+            onCheckedChange={(val) => {
+              mutate.channel.update({
+                ...channel,
+                private: !!val,
+              })
+            }}
+            id="private"
+            name="private"
+          />
+        </LabeledRow>
       </PopoverContent>
     </Popover>
   )
@@ -134,7 +157,7 @@ const ThreadButton = ({ thread }: { thread: ThreadWithRelations }) => {
         <OneBall size={0.8} />
       </Circle>
 
-      <SizableText userSelect="none" cur="default" f={1} ov="hidden">
+      <SizableText maw="100%" ellipse userSelect="none" cur="default" f={1} ov="hidden">
         {thread.messages[0]?.content}
       </SizableText>
     </ButtonSimple>
