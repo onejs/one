@@ -49,7 +49,7 @@ export default {
     one({
       react: {
         compiler: true,
-        // scan: true,
+        scan: true,
       },
 
       web: {

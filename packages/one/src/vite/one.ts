@@ -256,7 +256,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // react compiler
   const compiler = options.react?.compiler
   if (compiler) {
-    devAndProdPlugins.push(createReactCompilerPlugin())
+    devAndProdPlugins.push(createReactCompilerPlugin(root))
   }
 
   // react scan

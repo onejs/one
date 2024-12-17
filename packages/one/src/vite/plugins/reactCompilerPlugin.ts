@@ -1,9 +1,8 @@
 import babel from '@babel/core'
-import fs from 'node:fs'
-import { extname } from 'node:path'
+import { relative } from 'node:path'
 import type { Plugin } from 'vite'
 
-export const createReactCompilerPlugin = (): Plugin => {
+export const createReactCompilerPlugin = (root: string): Plugin => {
   const babelConfig = {
     babelrc: false,
     configFile: false,
@@ -17,11 +16,17 @@ export const createReactCompilerPlugin = (): Plugin => {
     name: `one:react-compiler`,
     enforce: 'pre',
 
-    async transform(code, id) {
+    async transform(codeIn, id) {
       const shouldTransform = filter.test(id)
       if (!shouldTransform) return
-      const result = await babel.transformAsync(code, { filename: id, ...babelConfig })
-      return { code: result?.code ?? '', map: result?.map }
+      const result = await babel.transformAsync(codeIn, { filename: id, ...babelConfig })
+      const code = result?.code ?? ''
+
+      if (code.includes(`react/compiler-runtime`)) {
+        console.info(` 🪄 ${relative(root, id)}`)
+      }
+
+      return { code, map: result?.map }
     },
 
     // this is only useful for deps optimization but in general we just want app
