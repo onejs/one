@@ -47,6 +47,11 @@ export default {
 
   plugins: [
     one({
+      react: {
+        compiler: true,
+        scan: true,
+      },
+
       web: {
         defaultRenderMode: 'spa',
       },
