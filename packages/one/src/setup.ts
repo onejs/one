@@ -1,11 +1,15 @@
 import { scan } from 'react-scan'
 
-if (process.env.ONE_ENABLE_REACT_SCAN === 'true') {
-  scan({
-    enabled: true,
-    log: true,
-    showToolbar: true,
-  })
+if (process.env.ONE_ENABLE_REACT_SCAN) {
+  const val = JSON.parse(process.env.ONE_ENABLE_REACT_SCAN)
+  scan(
+    val === true
+      ? {
+          enabled: true,
+          showToolbar: false,
+        }
+      : val
+  )
 }
 
 // fixes bad import error in expo-modules-core

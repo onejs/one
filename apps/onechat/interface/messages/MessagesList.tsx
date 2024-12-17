@@ -50,6 +50,7 @@ export const MessagesList = ({ messages }: { messages: MessageWithRelations[] })
         }}
       >
         {(index) => {
+          console.warn('render', index)
           const message = messages[index]
           const lastMessage = messages[index - 1]
 
