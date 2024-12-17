@@ -533,6 +533,7 @@ ${JSON.stringify(params || null, null, 2)}`
 const handler = await serve()
 export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
     )
+
     postBuildLogs.push(`wrote vercel entry to: ${join('.', 'dist', 'index.js')}`)
     postBuildLogs.push(`point vercel outputDirectory to dist`)
   }
