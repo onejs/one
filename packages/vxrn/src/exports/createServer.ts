@@ -2,7 +2,6 @@ import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
 import { compress } from 'hono/compress'
 import { dirname, join } from 'node:path'
-
 import type { VXRNOptions } from '../types'
 
 export const createProdServer = async (options: VXRNOptions) => {

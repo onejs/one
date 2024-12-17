@@ -4,7 +4,7 @@ import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
 import { join } from 'node:path'
 import type { VXRNOptions } from 'vxrn'
-import { getServerEntry, loadEnv, serve as vxrnServe } from 'vxrn/serve'
+import { getServerEntry, serve as vxrnServe } from 'vxrn/serve'
 import type { RenderAppProps } from './types'
 import type { One } from './vite/types'
 
@@ -24,7 +24,6 @@ export async function serve(args: VXRNOptions['server'] = {}) {
   const { loadUserOneOptions } = await import('./vite/one')
 
   labelProcess('serve')
-  loadEnv('production')
 
   const oneOptions = await loadUserOneOptions('serve')
 
