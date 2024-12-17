@@ -26,5 +26,5 @@ function createAuthClientWithToken(token: string) {
 export const setAuthToken = (token: string) => {
   localStorage.setItem(TOKEN_KEY, token)
   authClient = createAuthClientWithToken(token)
-  emitter.trigger(authClient)
+  emitter.emit(authClient)
 }

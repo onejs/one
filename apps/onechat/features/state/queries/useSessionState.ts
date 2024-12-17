@@ -1,21 +1,17 @@
 import { useState } from 'react'
+import { proxy, useSnapshot } from 'valtio'
 import { createEmitter } from '~/helpers/emitter'
 
 type SessionState = {}
 
-const sessionState: SessionState = {}
-
-const [emitter, useEmitter] = createEmitter<SessionState>()
+const sessionState = proxy<SessionState>({})
 
 export const useSessionState = () => {
-  const [state, setState] = useState(sessionState)
-
-  useEmitter(setState)
-
-  return state
+  return useSnapshot(sessionState)
 }
 
 export const updateSessionState = (next: Partial<SessionState>) => {
-  Object.assign(sessionState, next)
-  emitter.trigger(sessionState)
+  for (const key in next) {
+    sessionState[key] = next[key]
+  }
 }
