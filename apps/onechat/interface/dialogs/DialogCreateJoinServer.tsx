@@ -6,19 +6,19 @@ import { createEmitter } from '~/helpers/emitter'
 import { Avatar } from '../Avatar'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
-import { DialogContent, dialogEmitter, DialogOverlay, useDialogEmitter } from './shared'
-import { DialogJoinServerContent } from './DialogJoinServerContent'
 import { AlwaysVisibleTabContent } from './AlwaysVisibleTabContent'
+import { DialogJoinServerContent } from './DialogJoinServerContent'
+import { DialogContent, dialogEmit, DialogOverlay, useDialogEmit } from './shared'
 import type { TabContentPaneProps } from './types'
 
-const [emitter] = createEmitter<boolean>()
+const [emit, listen] = createEmitter<boolean>()
 
 export const dialogCreateServer = async () => {
-  dialogEmitter.emit({
+  dialogEmit({
     type: 'create-server',
   })
   return new Promise((res) => {
-    const dispose = emitter.listen((val) => {
+    const dispose = listen((val) => {
       dispose()
       res(val)
     })
@@ -26,25 +26,25 @@ export const dialogCreateServer = async () => {
 }
 
 export const dialogJoinServer = async () => {
-  dialogEmitter.emit({
+  dialogEmit({
     type: 'join-server',
   })
   return new Promise((res) => {
-    const dispose = emitter.listen((val) => {
+    const dispose = listen((val) => {
       dispose()
       res(val)
     })
   })
 }
 
-const success = () => emitter.emit(true)
-const cancel = () => emitter.emit(false)
+const success = () => emit(true)
+const cancel = () => emit(false)
 
 export const DialogCreateJoinServer = () => {
   const [show, setShow] = useState(false)
   const [tab, setTab] = useState('create')
 
-  useDialogEmitter((next) => {
+  useDialogEmit((next) => {
     if (next.type === 'create-server' || next.type === 'join-server') {
       setShow(true)
       setTab(next.type === 'create-server' ? 'create' : 'join')

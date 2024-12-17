@@ -5,7 +5,7 @@ import { useCurrentChannel, useCurrentServer } from '~/features/state/queries/us
 import { useCurrentThread } from '~/features/state/queries/useUserState'
 import { randomID } from '~/features/state/randomID'
 import { mutate } from '~/features/state/zero'
-import { messagesListEmitter } from './MessagesList'
+import { messagesListEmit } from './MessagesList'
 
 export const MessageInput = () => {
   const inputRef = useRef<Input>(null)
@@ -31,7 +31,7 @@ export const MessageInput = () => {
           const key = e.nativeEvent.key
           switch (key) {
             case 'ArrowUp': {
-              messagesListEmitter.emit({
+              messagesListEmit({
                 type: 'move',
                 value: 'up',
               })
@@ -39,7 +39,7 @@ export const MessageInput = () => {
             }
 
             case 'ArrowDown': {
-              messagesListEmitter.emit({
+              messagesListEmit({
                 type: 'move',
                 value: 'down',
               })
