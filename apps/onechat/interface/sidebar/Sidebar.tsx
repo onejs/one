@@ -2,6 +2,8 @@ import { memo } from 'react'
 import { H3, SizableText, Spacer, XStack, YStack } from 'tamagui'
 import { SidebarServersRow } from './SidebarServersRow'
 import { SidebarServerChannelsList } from './SidebarServerChannelsList'
+import { useQuery } from '~/features/state/zero'
+import { useFriends } from '~/features/state/queries/useServer'
 
 export const Sidebar = memo(() => {
   return (
@@ -18,19 +20,26 @@ export const Sidebar = memo(() => {
       </> */}
 
       <YStack btw={1} bc="$background025" py="$2" pos="absolute" b={0} l={0} r={0}>
-        <SubTitle>Friends</SubTitle>
-        <Spacer size="$2" />
-
-        <RoomItem name="Nate Wienert" />
-        <RoomItem name="Lorem ipsum" />
-        <RoomItem name="Huynh Nhi Cam" />
-        <RoomItem name="Someone Else" />
-        <RoomItem name="Joey" />
-        <RoomItem name="Mia" />
+        <SidebarQuickList />
       </YStack>
     </YStack>
   )
 })
+
+const SidebarQuickList = () => {
+  const friends = useFriends()
+
+  return (
+    <>
+      <SubTitle>Friends</SubTitle>
+      <Spacer size="$2" />
+
+      {friends.map((friend) => {
+        return <RoomItem key={friend.id} name={friend.username || friend.name} />
+      })}
+    </>
+  )
+}
 
 const SubTitle = (props) => {
   return (
