@@ -1,13 +1,19 @@
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Input, YStack } from 'tamagui'
 import { useAuth } from '~/features/auth/useAuth'
 import { useCurrentChannel, useCurrentServer } from '~/features/state/queries/useServer'
-import { useCurrentThread } from '~/features/state/queries/useUserState'
+import {
+  getDerivedUserState,
+  updateUserCurrentChannel,
+  useCurrentThread,
+} from '~/features/state/queries/useUserState'
 import { randomID } from '~/features/state/randomID'
 import { mutate } from '~/features/state/zero'
 import { messagesListEmit } from './MessagesList'
 
-export const MessageInput = () => {
+let mainInputRef: Input | null = null
+
+export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   const inputRef = useRef<Input>(null)
   const channel = useCurrentChannel()
   const server = useCurrentServer()
@@ -17,8 +23,12 @@ export const MessageInput = () => {
 
   // on channel change, focus input
   useEffect(() => {
+    if (!inThread) {
+      mainInputRef = inputRef.current
+    }
+
     inputRef.current?.focus()
-  }, [channel])
+  }, [channel, inThread])
 
   return (
     <YStack btw={1} bc="$color4" p="$2">
@@ -43,6 +53,28 @@ export const MessageInput = () => {
                 type: 'move',
                 value: 'down',
               })
+              break
+            }
+
+            case 'Enter': {
+              messagesListEmit({
+                type: 'select',
+              })
+              break
+            }
+
+            case 'Escape': {
+              inputRef.current?.blur()
+
+              if (getDerivedUserState().activeThread) {
+                updateUserCurrentChannel({
+                  openedThreadId: undefined,
+                })
+
+                if (mainInputRef) {
+                  mainInputRef.focus()
+                }
+              }
               break
             }
           }
