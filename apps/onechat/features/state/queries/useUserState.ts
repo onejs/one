@@ -32,7 +32,7 @@ const getJustUserState = () => {
   } as UserState
 }
 
-const getDerivedUserState = () => {
+export const getDerivedUserState = () => {
   const state = getJustUserState()
   const activeChannel = state.activeChannels[state.activeServer || '']
   return {

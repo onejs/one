@@ -35,7 +35,7 @@ export const MainOpenThread = () => {
         }}
       />
       <MessagesList messages={thread?.messages || []} />
-      <MessageInput />
+      <MessageInput inThread />
     </YStack>
   )
 }

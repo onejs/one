@@ -4,14 +4,22 @@ import { VList, type VListHandle } from 'virtua'
 import type { MessageWithRelations } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import { useCurrentChannel } from '~/features/state/queries/useServer'
-import { getUserState, updateUserCurrentChannel } from '~/features/state/queries/useUserState'
+import {
+  getUserState,
+  updateUserCurrentChannel,
+  updateUserOpenThread,
+} from '~/features/state/queries/useUserState'
 import { createEmitter } from '~/helpers/emitter'
 import { MessageItem } from './MessageItem'
 
-type MessagesListActions = {
-  type: 'move'
-  value: 'up' | 'down'
-}
+type MessagesListActions =
+  | {
+      type: 'move'
+      value: 'up' | 'down'
+    }
+  | {
+      type: 'select'
+    }
 
 export const [messagesListEmit, _, useEmitter] = createEmitter<MessagesListActions>()
 
@@ -33,12 +41,14 @@ export const MessagesList = memo(
         const [_, { activeChannelState }] = getUserState()
         if (!activeChannelState) return
         const { focusedMessageId } = activeChannelState
+        const focusedMessage = focusedMessageId ? messages[lastIndex.current] : null
 
         const move = (index: number) => {
           lastIndex.current = index
           updateUserCurrentChannel({
             focusedMessageId: messages[index].id,
           })
+          ref.current?.scrollToIndex(index, { align: 'nearest' })
         }
 
         switch (action.type) {
@@ -61,6 +71,15 @@ export const MessagesList = memo(
                 // at bottom
               } else {
                 move(lastIndex.current + 1)
+              }
+            }
+            break
+          }
+
+          case 'select': {
+            if (focusedMessage) {
+              if (focusedMessage.thread) {
+                updateUserOpenThread(focusedMessage.thread[0])
               }
             }
             break
