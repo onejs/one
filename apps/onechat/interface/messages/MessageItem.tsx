@@ -1,4 +1,4 @@
-import { IndentIncrease, MoreVertical, Reply, Smile, SmilePlus } from '@tamagui/lucide-icons'
+import { IndentIncrease, MoreVertical, Reply } from '@tamagui/lucide-icons'
 import {
   Button,
   type ButtonProps,
@@ -11,11 +11,7 @@ import {
 } from 'tamagui'
 import type { Channel, Message, MessageWithRelations, Reaction, User } from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
-import {
-  currentUser,
-  updateUserCurrentChannel,
-  updateUserOpenThread,
-} from '~/features/state/queries/useUserState'
+import { currentUser, updateUserOpenThread } from '~/features/state/queries/useUserState'
 import { randomID } from '~/features/state/randomID'
 import { mutate, useQuery } from '~/features/state/zero'
 import { Avatar } from '~/interface/Avatar'

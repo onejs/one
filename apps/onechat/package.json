@@ -60,7 +60,8 @@
     "react-native": "0.74.1",
     "tamagui": "^1.120.1",
     "ts-deepmerge": "^7.0.2",
-    "valtio": "^2.1.2"
+    "valtio": "^2.1.2",
+    "virtua": "^0.39.2"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",

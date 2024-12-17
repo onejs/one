@@ -18,6 +18,10 @@ export declare namespace One {
          *
          */
         zero?: boolean;
+        react?: {
+            compiler?: boolean;
+            scan?: boolean;
+        };
         /**
          * Path to a js or ts file to import before the rest of your app runs
          * One controls your root, but you may want to runs some JS before anything else

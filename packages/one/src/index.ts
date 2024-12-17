@@ -1,5 +1,3 @@
-import './setup'
-
 export type { OneRouter, One } from './interfaces/router'
 import type { OneRouter } from './interfaces/router'
 

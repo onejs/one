@@ -257,7 +257,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const compiler = options.react?.compiler
   if (compiler) {
     const babelPlugin = babel({
-      exclude: compiler === true ? /node_modules/ : undefined,
+      exclude: compiler === true ? /node_modules|vendor/ : undefined,
       babelConfig: {
         plugins: ['babel-plugin-react-compiler'],
       },
