@@ -34,3 +34,5 @@ tsconfig.tsbuildinfo
 # generated code
 /ios
 /android
+
+tamagui.css
