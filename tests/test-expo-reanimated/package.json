@@ -13,7 +13,7 @@
     "expo-status-bar": "~1.12.1",
     "react": "^18.3.1",
     "react-native": "0.76.4",
-    "react-native-reanimated": "~3.10.1",
+    "react-native-reanimated": "~3.16.5",
     "vxrn": "1.1.347"
   },
   "private": true
