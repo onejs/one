@@ -18,7 +18,7 @@ export declare class Try extends React.Component<{
     static getDerivedStateFromError(error: Error): {
         error: Error;
     };
-    retry: () => Promise<void>;
-    render(): string | number | boolean | Iterable<React.ReactNode> | import("react/jsx-runtime").JSX.Element | null | undefined;
+    retry: () => any;
+    render(): any;
 }
 //# sourceMappingURL=Try.d.ts.map

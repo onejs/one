@@ -1,6 +1,6 @@
 export declare function promiseWithResolvers<T>(): {
     resolve: any;
     reject: any;
-    promise: Promise<T>;
+    promise: any;
 };
 //# sourceMappingURL=promiseWithResolvers.d.ts.map

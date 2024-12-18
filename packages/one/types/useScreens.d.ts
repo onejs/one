@@ -1,23 +1,18 @@
 import type { EventMapBase, NavigationState, ParamListBase, RouteProp, ScreenListeners } from '@react-navigation/native';
 import React from 'react';
 import { type RouteNode } from './Route';
-export declare const Screen: <RouteName extends string>(_: import("@react-navigation/core").RouteConfig<ParamListBase, RouteName, Readonly<{
+export declare const Screen: <RouteName extends string | number | symbol>(_: import("@react-navigation/core").RouteConfig<Record<string, object | undefined>, RouteName, Readonly<{
     key: string;
     index: number;
-    routeNames: string[];
+    routeNames: Extract<keyof ParamList, string>[];
     history?: unknown[];
-    routes: (Readonly<{
-        key: string;
-        name: string;
-        path?: string;
-    }> & Readonly<{
-        params?: Readonly<object | undefined>;
-    }> & {
-        state?: NavigationState | import("@react-navigation/routers").PartialState<NavigationState>;
-    })[];
+    routes: any[];
     type: string;
     stale: false;
-}>, {}, EventMapBase>) => null, Group: React.ComponentType<import("@react-navigation/core").RouteGroupConfig<ParamListBase, {}>>;
+}>, {}, Record<string, {
+    data?: any;
+    canPreventDefault?: boolean;
+}>>) => null, Group: React.ComponentType<import("@react-navigation/core").RouteGroupConfig<Record<string, object | undefined>, {}>>;
 export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>, State extends NavigationState = NavigationState, EventMap extends EventMapBase = EventMapBase> = {
     /** Name is required when used inside a Layout component. */
     name?: string;
@@ -41,9 +36,9 @@ export type ScreenProps<TOptions extends Record<string, any> = Record<string, an
  */
 export declare function useSortedScreens(order: ScreenProps[]): React.ReactNode[];
 /** Wrap the component with various enhancements and add access to child routes. */
-export declare function getQualifiedRouteComponent(value: RouteNode): React.ComponentType<any> | React.ForwardRefExoticComponent<Omit<any, "ref"> & React.RefAttributes<unknown>>;
+export declare function getQualifiedRouteComponent(value: RouteNode): any;
 /** @returns a function which provides a screen id that matches the dynamic route name in params. */
 export declare function createGetIdForRoute(route: Pick<RouteNode, 'dynamic' | 'route' | 'contextKey' | 'children'>): ({ params }?: {
     params?: Record<string, any>;
-}) => string;
+}) => any;
 //# sourceMappingURL=useScreens.d.ts.map

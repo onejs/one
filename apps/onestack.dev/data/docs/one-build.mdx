@@ -26,7 +26,7 @@ Ensure your `.env` file has a `ONE_SERVER_URL` set to your production URL, like:
 ONE_SERVER_URL=https://onestack.dev
 ```
 
-We provide a production server based on Hono with `one serve` that handles loaders, SSR, and API routes for you. You can choose a deploy target for that server, for now we support `node` and `vercel`. This can be chosen via your Vite configuration:
+We provide a production server based on Hono with `one serve` that handles loaders, SSR, and API routes for you. You can choose a deploy target for that server, for now we support `node` and `vercel` (in beta). This can be chosen via your Vite configuration:
 
 ```tsx fileName=vite.config.ts
 import { one } from 'one/vite'
@@ -42,11 +42,7 @@ export default {
 }
 ```
 
-The CLI will print instructions on how to deploy to the respective platform you choose after you run `npx one build`. You can choose the platform on serve instead, after a successful build:
-
-```bash
-npx one serve --platform vercel
-```
+The CLI will print instructions on how to deploy to the respective platform you choose after you run `npx one build`.
 
 If you are only using SPA and SSG routes and aren't using loaders, you can statically serve the results of `dist/client` using any server you'd like.
 

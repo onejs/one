@@ -1,12 +1,7 @@
 import type { NavigationState } from '@react-navigation/core';
-type HistoryRecord = {
-    id: string;
-    state: NavigationState;
-    path: string;
-};
 export default function createMemoryHistory(): {
     readonly index: number;
-    get(index: number): HistoryRecord;
+    get(index: number): any;
     backIndex({ path }: {
         path: string;
     }): number;
@@ -18,8 +13,7 @@ export default function createMemoryHistory(): {
         path: string;
         state: NavigationState;
     }): void;
-    go(n: number): Promise<void> | undefined;
-    listen(listener: () => void): () => void;
+    go(n: number): any;
+    listen(listener: () => void): () => any;
 };
-export {};
 //# sourceMappingURL=createMemoryHistory.d.ts.map

@@ -1,2 +1,2 @@
-export declare function globDir(cwd: string): string[];
+export declare function globDir(cwd: string): any;
 //# sourceMappingURL=globDir.d.ts.map

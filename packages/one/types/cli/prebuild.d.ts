@@ -1,4 +1,4 @@
 export declare function run(args: {
     platform?: string;
-}): Promise<void>;
+}): any;
 //# sourceMappingURL=prebuild.d.ts.map

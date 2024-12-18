@@ -1,2 +1,2 @@
-export declare const existsAsync: (file: string) => Promise<unknown>;
+export declare const existsAsync: (file: string) => any;
 //# sourceMappingURL=existsAsync.d.ts.map

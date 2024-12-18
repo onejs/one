@@ -1,18 +1,16 @@
 import type { PathConfigMap } from '@react-navigation/core';
-import type { RouteNode } from '../Route';
 import type { OneRouter } from '../interfaces/router';
 type Options<ParamList extends object> = {
     initialRouteName?: string;
     screens: PathConfigMap<ParamList>;
 };
-type ParseConfig = Record<string, (value: string) => any>;
 type InitialRouteConfig = {
     initialRouteName: string;
     parentScreens: string[];
 };
 export declare function getUrlWithReactNavigationConcessions(path: string, baseUrl?: string | undefined): {
     nonstandardPathname: string;
-    inputPathnameWithoutHash: string;
+    inputPathnameWithoutHash: any;
     url: null;
 } | {
     nonstandardPathname: string;
@@ -42,20 +40,9 @@ export declare function getUrlWithReactNavigationConcessions(path: string, baseU
  */
 export default function getStateFromPath<ParamList extends object>(path: string, options?: Options<ParamList>): OneRouter.ResultState | undefined;
 export declare function getMatchableRouteConfigs<ParamList extends object>(options?: Options<ParamList>): {
-    configs: {
-        isInitial: boolean;
-        screen: string;
-        regex?: RegExp;
-        path: string;
-        pattern: string;
-        routeNames: string[];
-        parse?: ParseConfig;
-        hasChildren: boolean;
-        userReadableName: string;
-        _route?: RouteNode;
-    }[];
+    configs: any;
     initialRoutes: InitialRouteConfig[];
 };
-export declare function stripBaseUrl(path: string, baseUrl?: string | undefined): string;
+export declare function stripBaseUrl(path: string, baseUrl?: string | undefined): any;
 export {};
 //# sourceMappingURL=getStateFromPath.d.ts.map

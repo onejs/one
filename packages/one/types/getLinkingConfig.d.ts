@@ -10,5 +10,5 @@ export type OneLinkingOptions = LinkingOptions<object> & {
     getPathFromState?: typeof getPathFromState;
 };
 export declare function getLinkingConfig(routes: RouteNode, metaOnly?: boolean): OneLinkingOptions;
-export declare const stateCache: Map<string, any>;
+export declare const stateCache: any;
 //# sourceMappingURL=getLinkingConfig.d.ts.map

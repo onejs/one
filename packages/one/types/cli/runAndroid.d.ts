@@ -1,2 +1,2 @@
-export declare function run(args: {}): Promise<void>;
+export declare function run(args: {}): any;
 //# sourceMappingURL=runAndroid.d.ts.map

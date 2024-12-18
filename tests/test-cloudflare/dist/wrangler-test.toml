@@ -1,0 +1,4 @@
+
+assets = { directory = "client" }
+compatibility_date = "2024-12-05"
+compatibility_flags = ['nodejs_compat_v2']

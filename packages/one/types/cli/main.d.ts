@@ -1,4 +1,4 @@
 export declare function cliMain(args?: {
     name?: string;
-}): Promise<void>;
+}): any;
 //# sourceMappingURL=main.d.ts.map
