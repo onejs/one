@@ -10,7 +10,14 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import type { Channel, Message, MessageWithRelations, Reaction, User } from '~/config/zero/schema'
+import type {
+  Channel,
+  Message,
+  MessageWithRelations,
+  Reaction,
+  Thread,
+  User,
+} from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import {
   currentUser,
@@ -25,21 +32,22 @@ import { AddReactionButton } from './AddReactionButton'
 export const MessageItem = memo(
   ({
     message,
-    user,
     hideUser,
     disableEvents,
     channel,
   }: {
     message: MessageWithRelations
     channel: Channel
-    user: User
     disableEvents?: boolean
     hideUser?: boolean
   }) => {
-    const [thread] = message.thread || []
+    const thread = (message.thread || [])[0] as Thread | undefined
+    const sender = (message.sender || [])[0] as User | undefined
 
     const openThread = () => {
-      updateUserOpenThread(thread)
+      if (thread) {
+        updateUserOpenThread(thread)
+      }
     }
 
     const channelState = useUserCurrentChannelState()
@@ -49,7 +57,7 @@ export const MessageItem = memo(
       <XStack
         f={1}
         gap="$3"
-        py={hideUser ? '$1.5' : '$2.5'}
+        py={hideUser ? '$1' : '$2'}
         px="$4"
         group="message"
         borderTopWidth={2}
@@ -61,7 +69,7 @@ export const MessageItem = memo(
         {...(isFocused && {
           backgroundColor: '$color4',
         })}
-        {...(message.thread && {
+        {...(thread && {
           borderColor: '$green5',
 
           onDoubleClick: () => {
@@ -71,12 +79,12 @@ export const MessageItem = memo(
       >
         <MessageActionBar channel={channel} message={message} />
 
-        <XStack w={32}>{!hideUser && <Avatar image={user.image} />}</XStack>
+        <XStack w={32}>{sender && !hideUser && <Avatar image={sender.image} />}</XStack>
 
         <YStack f={1} gap="$1">
-          {!hideUser && (
+          {sender && !hideUser && (
             <SizableText o={0.5} mb={-4} fow="bold">
-              {user.username || user.name}
+              {sender.username || sender.name}
             </SizableText>
           )}
 

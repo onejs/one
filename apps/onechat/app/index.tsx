@@ -1,5 +1,6 @@
 import { H3, XStack, YStack } from 'tamagui'
 import { authClient } from '~/features/auth/authClient'
+import { DevTools } from '~/features/dev/DevTools'
 import { useUserState } from '~/features/state/queries/useUserState'
 import { ListItem } from '~/interface/ListItem'
 import { Main } from '~/interface/main/Main'
@@ -51,6 +52,8 @@ const RightSideSettings = () => {
       <H3>Settings</H3>
 
       <ThemeToggleListItem />
+
+      <DevTools />
     </YStack>
   )
 }

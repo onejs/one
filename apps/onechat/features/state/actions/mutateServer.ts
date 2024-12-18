@@ -10,6 +10,7 @@ export const insertServer = async (server: Partial<Server>) => {
   }
 
   const serverId = randomID()
+  const channelId = randomID()
 
   await mutate.server.insert({
     id: serverId,
@@ -18,6 +19,7 @@ export const insertServer = async (server: Partial<Server>) => {
     icon: Math.random() > 0.5 ? 'red' : 'pink',
     name: 'Lorem',
     ownerId: currentUser.id,
+    channelSort: [channelId],
     ...server,
   })
 
@@ -28,7 +30,7 @@ export const insertServer = async (server: Partial<Server>) => {
   })
 
   await mutate.channel.insert({
-    id: randomID(),
+    id: channelId,
     createdAt: new Date().getTime(),
     description: '',
     name: 'Welcome',

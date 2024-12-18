@@ -60,6 +60,7 @@ const serverSchema = {
     id: 'string',
     name: 'string',
     ownerId: 'string',
+    channelSort: 'json',
     description: 'string',
     icon: 'string',
     createdAt: 'number',
@@ -121,7 +122,7 @@ const channelSchema = createTableSchema({
   },
 })
 
-const threadSchema = createTableSchema({
+const threadSchema = {
   tableName: 'thread',
   columns: {
     id: 'string',
@@ -140,7 +141,7 @@ const threadSchema = createTableSchema({
       destSchema: () => messageSchema,
     },
   },
-})
+} as const
 
 const messageSchema = {
   tableName: 'message',
@@ -162,6 +163,12 @@ const messageSchema = {
       sourceField: 'id',
       destField: 'messageId',
       destSchema: () => threadSchema,
+    },
+
+    sender: {
+      sourceField: 'senderId',
+      destField: 'id',
+      destSchema: () => userSchema,
     },
 
     reactions: [
@@ -229,7 +236,12 @@ export type MessageReaction = Row<typeof messageReactionSchema>
 export type Reaction = Row<typeof reactionSchema>
 export type Friendship = Row<typeof friendshipSchema>
 
-export type MessageWithRelations = Message & { reactions: Reaction[]; thread?: Thread[] }
+export type MessageWithRelations = Message & {
+  reactions: Reaction[]
+  thread?: Thread[]
+  sender: User[]
+}
+
 export type ThreadWithRelations = Thread & { messages: Message[] }
 
 // The contents of your decoded JWT.

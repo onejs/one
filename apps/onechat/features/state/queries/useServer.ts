@@ -103,6 +103,7 @@ export const useCurrentChannelMessages = () => {
               )
               .related('reactions')
               .related('thread')
+              .related('sender')
           )
         )
     )[0][0]?.channels?.[0]?.messages || []
