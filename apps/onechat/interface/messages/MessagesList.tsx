@@ -34,13 +34,10 @@ export const MessagesList = memo(
 
     useEmitter(
       (action) => {
-        if (disableEvents) {
-          return
-        }
+        if (disableEvents) return
 
         const [_, { activeChannelState }] = getUserState()
-        if (!activeChannelState) return
-        const { focusedMessageId } = activeChannelState
+        const { focusedMessageId } = activeChannelState || {}
         const focusedMessage = focusedMessageId ? messages[lastIndex.current] : null
 
         const move = (index: number) => {
