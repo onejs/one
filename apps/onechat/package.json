@@ -44,6 +44,7 @@
     "@tanstack/react-table": "^8.20.6",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-deep-link": "^2.0.1",
+    "@tauri-apps/plugin-fs": "^2.2.0",
     "@tauri-apps/plugin-shell": "^2",
     "@vxrn/color-scheme": "1.1.345-1734464750388",
     "@vxrn/mdx": "1.1.345-1734464750388",

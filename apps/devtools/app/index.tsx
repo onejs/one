@@ -1,10 +1,32 @@
 import { Globe, Smartphone } from '@tamagui/lucide-icons'
+import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
+import { useEffect } from 'react'
 import { styled, Tabs, Text, View, XStack, YStack } from 'tamagui'
 import { AppTab } from '~/features/app/AppTab'
 import { DataTab } from '~/features/data/DataTab'
 import { RovingTabs } from '~/features/ui/RovingTabs'
 
 export function HomePage() {
+  // this is one way we could communicate between the node cli and the devtools
+  useEffect(() => {
+    try {
+      onOpenUrl(([urlString]) => {
+        const url = new URL(urlString)
+
+        switch (url.host) {
+          case 'open-app': {
+            const port = url.searchParams.get('port')
+            console.warn('got message to open app port', port)
+
+            break
+          }
+        }
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }, [])
+
   return (
     <YStack data-tauri-drag-region f={1}>
       <RovingTabs

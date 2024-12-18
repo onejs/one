@@ -10675,6 +10675,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tauri-apps/plugin-fs@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@tauri-apps/plugin-fs@npm:2.2.0"
+  dependencies:
+    "@tauri-apps/api": "npm:^2.0.0"
+  checksum: 10/3ad2d23ec5847246af4f0f251b19dc5538d02642587c1c6662d8bb92cd988bde519d8aea6778b2faeb74e19267780418f8e291c5d2779f4249e6b08492269411
+  languageName: node
+  linkType: hard
+
 "@tauri-apps/plugin-shell@npm:^2":
   version: 2.0.1
   resolution: "@tauri-apps/plugin-shell@npm:2.0.1"
@@ -20773,6 +20782,7 @@ __metadata:
     "@tauri-apps/api": "npm:^2"
     "@tauri-apps/cli": "npm:^2"
     "@tauri-apps/plugin-deep-link": "npm:^2.0.1"
+    "@tauri-apps/plugin-fs": "npm:^2.2.0"
     "@tauri-apps/plugin-shell": "npm:^2"
     "@vxrn/color-scheme": "npm:1.1.345-1734464750388"
     "@vxrn/mdx": "npm:1.1.345-1734464750388"

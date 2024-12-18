@@ -24,8 +24,10 @@ import { mutate } from '~/features/state/zero'
 import { ListItem } from '../ListItem'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Lock, Plus } from '@tamagui/lucide-icons'
+import { useAuth } from '~/features/auth/useAuth'
 
 export const SidebarServerChannelsList = () => {
+  const { user } = useAuth()
   const server = useCurrentServer()
   const channels = useServerChannels()
 
@@ -138,15 +140,17 @@ export const SidebarServerChannelsList = () => {
         )}
       </YStack>
 
-      <ListItem
-        icon={Plus}
-        iconAfter
-        onPress={() => {
-          setShowTempChannel(true)
-        }}
-      >
-        New Channel
-      </ListItem>
+      {user && (
+        <ListItem
+          icon={Plus}
+          iconAfter
+          onPress={() => {
+            setShowTempChannel(true)
+          }}
+        >
+          New Channel
+        </ListItem>
+      )}
     </YStack>
   )
 }

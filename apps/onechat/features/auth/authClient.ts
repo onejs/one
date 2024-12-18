@@ -9,7 +9,7 @@ export let authClient = existingToken
   ? createAuthClientWithToken(existingToken)
   : createAuthClient()
 
-export const [emitter, useAuthClientInstanceEmitter] = createEmitter<typeof authClient>()
+export const [emit, _, useAuthClientInstanceEmitter] = createEmitter<typeof authClient>()
 
 globalThis['authClient'] = authClient
 
@@ -26,5 +26,5 @@ function createAuthClientWithToken(token: string) {
 export const setAuthToken = (token: string) => {
   localStorage.setItem(TOKEN_KEY, token)
   authClient = createAuthClientWithToken(token)
-  emitter.emit(authClient)
+  emit(authClient)
 }

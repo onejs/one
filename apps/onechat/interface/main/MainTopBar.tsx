@@ -1,15 +1,18 @@
 import { IndentIncrease, MessageCircle, Settings } from '@tamagui/lucide-icons'
+import { useState } from 'react'
 import {
   Button,
   type ButtonProps,
   Circle,
   H4,
+  H5,
   Popover,
   ScrollView,
   SizableText,
   TooltipSimple,
   XGroup,
   XStack,
+  YStack,
 } from 'tamagui'
 import type { ThreadWithRelations } from '~/config/zero/schema'
 import { useCurrentChannel, useCurrentChannelThreads } from '~/features/state/queries/useServer'
@@ -18,12 +21,14 @@ import {
   updateUserOpenThread,
   useUserCurrentChannelState,
 } from '~/features/state/queries/useUserState'
+import { mutate } from '~/features/state/zero'
 import { OneBall } from '../brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
-import { PopoverContent } from '../Popover'
-import { LabeledRow } from '../forms/LabeledRow'
 import { Checkbox } from '../Checkbox'
-import { mutate } from '~/features/state/zero'
+import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
+import { LabeledRow } from '../forms/LabeledRow'
+import { PopoverContent } from '../Popover'
+import { Tabs } from '../tabs/Tabs'
 
 export const mainTopBarHeight = 45
 
@@ -64,6 +69,7 @@ export const MainTopBar = () => {
 
 const ChannelSettingsButton = () => {
   const channel = useCurrentChannel()
+  const [tab, setTab] = useState('settings')
 
   if (!channel) {
     return null
@@ -72,31 +78,71 @@ const ChannelSettingsButton = () => {
   return (
     <Popover allowFlip stayInFrame={{ padding: 10 }}>
       <Popover.Trigger>
-        <TooltipSimple label="Channel Settings">
+        <TooltipSimple label="Channel settings">
           <Button chromeless size="$2.5" scaleIcon={1.3}>
             <Settings size={18} o={0.5} />
           </Button>
         </TooltipSimple>
       </Popover.Trigger>
 
-      <PopoverContent miw={300} mih={400} p="$3">
-        <H4>Channel Settings</H4>
+      <PopoverContent miw={400} mih="calc(80vh)" p="$3">
+        <H4>{channel.name}</H4>
 
-        <LabeledRow htmlFor="private" label="Private">
-          <Checkbox
-            checked={channel.private}
-            onCheckedChange={(val) => {
-              mutate.channel.update({
-                ...channel,
-                private: !!val,
-              })
-            }}
-            id="private"
-            name="private"
-          />
-        </LabeledRow>
+        <Tabs
+          initialTab="settings"
+          onValueChange={setTab}
+          tabs={[
+            { label: 'Settings', value: 'settings' },
+            { label: 'Members', value: 'members' },
+          ]}
+        >
+          <YStack pos="relative" f={1} w="100%">
+            <AlwaysVisibleTabContent active={tab} value="settings">
+              <ChannelSettings />
+            </AlwaysVisibleTabContent>
+
+            <AlwaysVisibleTabContent active={tab} value="members">
+              <ChannelMembers />
+            </AlwaysVisibleTabContent>
+          </YStack>
+        </Tabs>
       </PopoverContent>
     </Popover>
+  )
+}
+
+const ChannelMembers = () => {
+  // this will be for setting access based on roles
+  return (
+    <YStack>
+      <H5>Members</H5>
+    </YStack>
+  )
+}
+
+const ChannelSettings = () => {
+  const channel = useCurrentChannel()
+
+  if (!channel) {
+    return null
+  }
+
+  return (
+    <>
+      <LabeledRow htmlFor="private" label="Private">
+        <Checkbox
+          checked={channel.private}
+          onCheckedChange={(val) => {
+            mutate.channel.update({
+              ...channel,
+              private: !!val,
+            })
+          }}
+          id="private"
+          name="private"
+        />
+      </LabeledRow>
+    </>
   )
 }
 

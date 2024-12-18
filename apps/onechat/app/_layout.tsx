@@ -4,16 +4,17 @@ import './syntax-highlight.css'
 import './tamagui.css'
 
 import { ZeroProvider } from '@rocicorp/zero/react'
-import { Toast, ToastProvider, ToastViewport, useToastState } from '@tamagui/toast'
+import { ToastProvider, ToastViewport } from '@tamagui/toast'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { useState } from 'react'
-import { TamaguiProvider, YStack } from 'tamagui'
+import { TamaguiProvider } from 'tamagui'
 import config from '~/config/tamagui/tamagui.config'
 import { AuthEffects } from '~/features/auth/AuthEffects'
 import { useZeroEmit, zero } from '~/features/state/zero'
 import { Dialogs } from '~/interface/dialogs/Dialogs'
 import { ToastDisplay } from '~/interface/Toast'
+import { DragDropFile } from '~/interface/upload/DragDropFile'
 
 export default function Layout() {
   return (
@@ -32,18 +33,26 @@ export default function Layout() {
 
       <AuthEffects />
 
-      <DataProvider>
-        <SchemeProvider>
-          <ThemeProvider>
-            <ToastProvider swipeDirection="horizontal">
-              <Slot />
-              <Dialogs />
-              <ToastDisplay />
-              <ToastViewport flexDirection="column-reverse" top={0} left={0} right={0} mx="auto" />
-            </ToastProvider>
-          </ThemeProvider>
-        </SchemeProvider>
-      </DataProvider>
+      <DragDropFile>
+        <DataProvider>
+          <SchemeProvider>
+            <ThemeProvider>
+              <ToastProvider swipeDirection="horizontal">
+                <Slot />
+                <Dialogs />
+                <ToastDisplay />
+                <ToastViewport
+                  flexDirection="column-reverse"
+                  top={0}
+                  left={0}
+                  right={0}
+                  mx="auto"
+                />
+              </ToastProvider>
+            </ThemeProvider>
+          </SchemeProvider>
+        </DataProvider>
+      </DragDropFile>
     </>
   )
 }
