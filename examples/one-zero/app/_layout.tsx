@@ -7,12 +7,12 @@ import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { useState } from 'react'
 import { TamaguiProvider } from 'tamagui'
-import config from '~/config/tamagui/tamagui.config'
-import { AuthEffects } from '~/features/auth/AuthEffects'
-import { useZeroEmit, zero } from '~/features/state/zero'
-import { Dialogs } from '~/interface/dialogs/Dialogs'
-import { ToastDisplay } from '~/interface/Toast'
-import { DragDropFile } from '~/interface/upload/DragDropFile'
+import config from '~/src/tamagui/tamagui.config'
+import { AuthEffects } from '~/src/better-auth/AuthEffects'
+import { useZeroEmit, zero } from '~/src/state/zero'
+import { Dialogs } from '~/src/interface/dialogs/Dialogs'
+import { ToastDisplay } from '~/src/interface/Toast'
+import { DragDropFile } from '~/src/interface/upload/DragDropFile'
 
 export default function Layout() {
   return (

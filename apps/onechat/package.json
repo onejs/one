@@ -20,8 +20,7 @@
     "subset-font-pn": "tsx ./helpers/subset-font.ts",
     "build:web": "one build",
     "build:icon": "tauri icon ./src-tauri/icons/icon.png",
-    "serve": "one serve",
-    "serve:railway": "one serve --host 0.0.0.0"
+    "serve": "one serve"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.709.0",
@@ -30,31 +29,22 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@docsearch/react": "^3.6.1",
     "@floating-ui/react": "^0.27.0",
-    "@supabase/supabase-js": "^2.44.4",
-    "@tamagui/button": "^1.120.1",
     "@tamagui/helpers-icon": "^1.120.1",
-    "@tamagui/input": "^1.120.1",
     "@tamagui/linear-gradient": "^1.120.1",
     "@tamagui/lucide-icons": "^1.120.1",
     "@tamagui/proxy-tabbable": "^1.120.1",
-    "@tamagui/react-native-web": "^1.120.1",
     "@tamagui/themes": "^1.120.1",
     "@tamagui/toast": "^1.120.1",
-    "@tamagui/use-store": "^1.120.1",
     "@tanstack/react-table": "^8.20.6",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-fs": "^2.2.0",
     "@tauri-apps/plugin-shell": "^2",
     "@vxrn/color-scheme": "1.1.345-1734464750388",
-    "@vxrn/mdx": "1.1.345-1734464750388",
     "better-auth": "^1.0.10",
-    "body-scroll-lock": "^4.0.0-beta.0",
     "flexsearch": "^0.7.43",
-    "mdx-bundler": "^10.0.2",
     "one": "1.1.345-1734464750388",
     "pg": "^8.13.1",
-    "postmark": "^3.0.18",
     "react": "^18",
     "react-hotkeys-hook": "^4.6.1",
     "react-native": "0.74.1",
@@ -65,11 +55,8 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
-    "gray-matter": "^4.0.3",
-    "marked": "^14.1.2",
     "tsx": "^4.19.2",
-    "unicode-emoji": "^2.6.0",
-    "vite-tsconfig-paths": "^5.0.1"
+    "unicode-emoji": "^2.6.0"
   },
   "publishConfig": {
     "access": "public"

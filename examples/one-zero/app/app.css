@@ -1,0 +1,109 @@
+/* bring back nested draggable behavior */
+/* https://github.com/tauri-apps/tauri/pull/9860 */
+*[data-tauri-drag-region] { app-region: unset; }
+
+/* fix safari adjusting some random font sizes bigger */
+@media screen and (max-device-width: 480px){
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  background: transparent;
+}
+
+body {
+  overflow: hidden;
+}
+
+div {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+:root {
+  color-scheme: light dark;
+  
+  --colorDeepDark: hsl(40, 45.0%, 5%);
+  --colorDeepLight: #fff;
+  --bodyBgLight: #f0eee9;
+  --bodyBgDark: #3a3830;
+  --logoColorLight: #000;
+  --logoColorDark: #fff;
+  
+  --colorDeep: light-dark(var(--colorDeepLight), var(--colorDeepDark));
+  --bodyBg: light-dark(var(--bodyBgLight), var(--bodyBgDark));
+  --logoColor: light-dark(var(--logoColorLight), var(--logoColorDark));
+}
+
+:root.t_dark {
+  --colorDeep: var(--colorDeepDark);
+  --bodyBg: var(--bodyBgDark);
+  --logoColor: var(--logoColorDark);
+}
+
+:root.t_light {
+  --colorDeep: var(--colorDeepLight);
+  --bodyBg: var(--bodyBgLight);
+  --logoColor: var(--logoColorLight);
+}
+
+body {
+  margin: 0;
+  position: relative;
+  max-width: 100vw;
+  min-height: 100vh;
+  /* background: var(--bodyBg) !important; */
+}
+
+body > div {
+  min-height: 100vh !important;
+}
+
+a, [data-tint-link] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--color05);
+  text-underline-offset: 4px;
+  transition: all ease-in 100ms;
+}
+
+a:hover {
+  text-decoration-color: var(--color10);
+}
+
+.t_dark a {
+  text-decoration-color: var(--color025);
+}
+
+.t_dark a:hover {
+  text-decoration-color: var(--color05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+:root [role=heading] {
+  text-wrap: pretty;
+}
+
+.pretty-text {
+  text-wrap: balance;
+}
+
+.text-underline-none {
+  text-decoration-thickness: 0px !important;
+}
+
+a.is_Button, .text-underline-none {
+  text-decoration: none;
+}
