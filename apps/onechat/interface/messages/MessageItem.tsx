@@ -10,7 +10,14 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import type { Channel, Message, MessageWithRelations, Reaction, User } from '~/config/zero/schema'
+import type {
+  Channel,
+  Message,
+  MessageWithRelations,
+  Reaction,
+  Thread,
+  User,
+} from '~/config/zero/schema'
 import { useAuth } from '~/features/auth/useAuth'
 import {
   currentUser,
@@ -36,10 +43,12 @@ export const MessageItem = memo(
     disableEvents?: boolean
     hideUser?: boolean
   }) => {
-    const [thread] = message.thread || []
+    const thread = (message.thread || [])[0] as Thread | undefined
 
     const openThread = () => {
-      updateUserOpenThread(thread)
+      if (thread) {
+        updateUserOpenThread(thread)
+      }
     }
 
     const channelState = useUserCurrentChannelState()
@@ -49,7 +58,7 @@ export const MessageItem = memo(
       <XStack
         f={1}
         gap="$3"
-        py={hideUser ? '$1.5' : '$2.5'}
+        py={hideUser ? '$1' : '$2'}
         px="$4"
         group="message"
         borderTopWidth={2}
@@ -61,7 +70,7 @@ export const MessageItem = memo(
         {...(isFocused && {
           backgroundColor: '$color4',
         })}
-        {...(message.thread && {
+        {...(thread && {
           borderColor: '$green5',
 
           onDoubleClick: () => {

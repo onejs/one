@@ -175,7 +175,7 @@ const DraggedChannel = ({ channel }: { channel: Channel }) => {
 }
 
 const ChannelListItemSortable = ({ channel }: { channel: Channel }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: channel.id,
   })
 
@@ -186,6 +186,7 @@ const ChannelListItemSortable = ({ channel }: { channel: Channel }) => {
       {...listeners}
       {...transform}
       channel={channel}
+      opacity={isDragging ? 0 : 1}
       transition={transition}
       // @ts-expect-error
       onContextMenu={async (e) => {
