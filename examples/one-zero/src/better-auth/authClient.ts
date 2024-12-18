@@ -11,8 +11,6 @@ export let authClient = existingToken
 
 export const [emit, _, useAuthClientInstanceEmitter] = createEmitter<typeof authClient>()
 
-globalThis['authClient'] = authClient
-
 function createAuthClientWithToken(token: string) {
   return createAuthClient({
     fetchOptions: {

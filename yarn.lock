@@ -21885,6 +21885,7 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:^0.27.0"
+    "@rocicorp/zero": "npm:^0.8.2024121204"
     "@tamagui/helpers-icon": "npm:^1.120.1"
     "@tamagui/linear-gradient": "npm:^1.120.1"
     "@tamagui/lucide-icons": "npm:^1.120.1"
