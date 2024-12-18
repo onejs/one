@@ -34,8 +34,8 @@ export async function build(args: {
 }) {
   labelProcess('build')
 
-  const vxrnOptions = await loadUserOneOptions('build')
-  const serverOutputFormat = vxrnOptions.build?.server?.outputFormat ?? 'esm'
+  const oneOptions = await loadUserOneOptions('build')
+  const serverOutputFormat = oneOptions.build?.server?.outputFormat ?? 'esm'
 
   // TODO make this better, this ensures we get react 19
   process.env.VXRN_REACT_19 = '1'
@@ -48,7 +48,7 @@ export async function build(args: {
 
   const vxrnOutput = await vxrnBuild(
     {
-      server: vxrnOptions.server,
+      server: oneOptions.server,
       build: {
         analyze: true,
         server: {
@@ -91,8 +91,8 @@ export async function build(args: {
       return entries
     }, {}) as Record<string, string>
 
-    const apiOutputFormat = vxrnOptions?.build?.api?.outputFormat ?? serverOutputFormat
-    const treeshake = vxrnOptions?.build?.api?.treeshake
+    const apiOutputFormat = oneOptions?.build?.api?.outputFormat ?? serverOutputFormat
+    const treeshake = oneOptions?.build?.api?.treeshake
 
     await viteBuild(
       mergeConfig(apiBuildConfig, {
@@ -321,8 +321,8 @@ export async function build(args: {
     })
 
     const preloadSetupFilePreloads = (() => {
-      if (vxrnOptions.setupFile) {
-        const needle = vxrnOptions.setupFile.replace(/^\.\//, '')
+      if (oneOptions.setupFile) {
+        const needle = oneOptions.setupFile.replace(/^\.\//, '')
         for (const file in vxrnOutput.clientManifest) {
           if (file === needle) {
             const entry = vxrnOutput.clientManifest[file]
@@ -510,22 +510,17 @@ ${JSON.stringify(params || null, null, 2)}`
   }, {}) satisfies Record<string, string>
 
   const buildInfoForWriting = {
-    vxrnOptions,
+    oneOptions,
     routeMap,
     builtRoutes,
     constants: JSON.parse(JSON.stringify({ ...constants })),
-  }
-
-  const buildInfo = {
-    ...buildInfoForWriting,
-    ...vxrnOutput,
   }
 
   await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
 
   let postBuildLogs: string[] = []
 
-  const platform = vxrnOptions.web?.deploy ?? options.server?.platform
+  const platform = oneOptions.web?.deploy ?? options.server?.platform
 
   switch (platform) {
     case 'vercel': {
@@ -545,14 +540,22 @@ export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
     case 'cloudflare': {
       await FSExtra.writeFile(
         join(options.root, 'dist', 'worker.js'),
-        `import { serve } from 'one/serve'
-const handler = await serve()
+        `import { serve } from 'one/serve-worker'
+
+const buildInfo = ${JSON.stringify(buildInfoForWriting)}
+
+const handler = await serve(buildInfo)
 
 export default {
-  async fetch(request: Request) {
-    return await 
-  }
+  fetch: handler.fetch,
 }`
+      )
+
+      await FSExtra.writeFile(
+        join(options.root, 'dist', 'wrangler.toml'),
+        `assets = { directory = "client" }
+compatibility_date = "2024-12-05"
+`
       )
 
       break

@@ -58,7 +58,8 @@ export default {
 
       server: {
         // Configures production server to be compatible
-        platform: 'node' | 'vercel' | 'cloudflare' // defaults to node
+        // defaults to node, vercel and cloudflare are in alpha
+        platform: 'node' | 'vercel' | 'cloudflare'
       },
 
       // The deps configuration is a powerful way to apply patches to node_modules

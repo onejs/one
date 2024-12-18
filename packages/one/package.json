@@ -51,6 +51,11 @@
       "import": "./dist/esm/serve.mjs",
       "require": "./dist/cjs/serve.js"
     },
+    "./serve-worker": {
+      "types": "./types/serve-worker.d.ts",
+      "import": "./dist/esm/serve-worker.mjs",
+      "require": "./dist/cjs/serve-worker.js"
+    },
     "./setup": {
       "types": "./types/setup.d.ts",
       "import": "./dist/esm/setup.mjs",
@@ -155,7 +160,7 @@
     "get-port": "^7.1.0",
     "react-native": "0.74.5",
     "rollup": "^4.21.0",
-    "vitest": "^2.1.1"
+    "vitest": "^2.1.8"
   },
   "publishConfig": {
     "access": "public"

@@ -164,7 +164,7 @@ export namespace One {
   }
 
   export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
-    vxrnOptions?: VXRNOptions
+    oneOptions?: PluginOptions
     constants: {
       CACHE_KEY: string
     }

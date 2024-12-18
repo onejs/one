@@ -134,7 +134,7 @@ export declare namespace One {
         permanent: boolean;
     };
     type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
-        vxrnOptions?: VXRNOptions;
+        oneOptions?: PluginOptions;
         constants: {
             CACHE_KEY: string;
         };
