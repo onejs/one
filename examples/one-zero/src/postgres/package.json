@@ -1,5 +1,5 @@
 {
-  "name": "onechat-seed",
+  "name": "seed",
   "dependencies": {
     "pg": "^8.13.1",
     "unicode-emoji": "^2.6.0"

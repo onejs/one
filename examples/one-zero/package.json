@@ -10,7 +10,7 @@
     "build:icon": "tauri icon ./src-tauri/icons/icon.png",
     "build:tauri": "tauri build --debug",
     "build:web": "one build",
-    "data:reset": "docker compose down; docker volume rm onechat_pgdata; rm /tmp/onechat_replica.db",
+    "data:reset": "docker compose down; docker volume rm pgdata; rm /tmp/onezero_replica.db",
     "dev:clean": "one dev --clean",
     "dev:tauri": "tauri dev",
     "dev": "one dev --port 1421",

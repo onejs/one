@@ -6,13 +6,13 @@ DROP TABLE IF EXISTS "message",
 "server",
 "user";
 
-CREATE DATABASE onechat;
+CREATE DATABASE onezero;
 
-CREATE DATABASE onechat_cvr;
+CREATE DATABASE onezero_cvr;
 
-CREATE DATABASE onechat_cdb;
+CREATE DATABASE onezero_cdb;
 
-\c onechat;
+\c onezero;
 
 CREATE TABLE "user" (
     "id" VARCHAR PRIMARY KEY,
@@ -23,54 +23,6 @@ CREATE TABLE "user" (
     "updatedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "emailVerified" boolean not null default false,
     "image" VARCHAR(255),
-    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE "friendship" (
-    "requestingId" VARCHAR REFERENCES "user"(id),
-    "acceptingId" VARCHAR REFERENCES "user"(id),
-    "accepted" BOOLEAN not null default false,
-    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY ("requestingId", "acceptingId")
-);
-
-CREATE TABLE "server" (
-    "id" VARCHAR PRIMARY KEY,
-    "name" VARCHAR(200) NOT NULL,
-    "ownerId" VARCHAR REFERENCES "user"(id),
-    "description" TEXT,
-    "channelSort" JSONB DEFAULT '{}',
-    "icon" VARCHAR(255),
-    "updatedAt" TIMESTAMP NULL,
-    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE "serverMember" (
-    "serverId" VARCHAR REFERENCES "server"(id),
-    "userId" VARCHAR REFERENCES "user"(id),
-    "hasClosedWelcome" BOOLEAN DEFAULT FALSE NOT NULL,
-    "joinedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY ("serverId", "userId")
-);
-
-CREATE TABLE "channel" (
-    "id" VARCHAR PRIMARY KEY,
-    "serverId" VARCHAR REFERENCES "server"(id),
-    "name" VARCHAR(200) NOT NULL,
-    "description" TEXT,
-    "private" BOOLEAN DEFAULT FALSE NOT NULL,
-    "updatedAt" TIMESTAMP NULL,
-    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE "thread" (
-    "id" VARCHAR PRIMARY KEY,
-    "channelId" VARCHAR REFERENCES "channel"(id),
-    "messageId" VARCHAR,
-    "creatorId" VARCHAR REFERENCES "user"(id),
-    "title" VARCHAR(200),
-    "description" VARCHAR(200),
-    "updatedAt" TIMESTAMP NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -175,7 +127,7 @@ VALUES
         'testuser@example.com',
         '{}',
         true,
-        'https://one1.dev/onechatimages/uploads/np424wtl8z-avatar.png',
+        'https://one1.dev/onezeroimages/uploads/np424wtl8z-avatar.png',
         CURRENT_TIMESTAMP,
         CURRENT_TIMESTAMP
     );
@@ -197,7 +149,7 @@ VALUES
         'Test Server',
         'test-user-id',
         'This is a test server.',
-        'https://one1.dev/onechatimages/uploads/np424wtl8z-avatar.png',
+        'https://one1.dev/onezeroimages/uploads/np424wtl8z-avatar.png',
         CURRENT_TIMESTAMP,
         CURRENT_TIMESTAMP
     );

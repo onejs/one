@@ -1,9 +1,8 @@
 import { createAnimations } from '@tamagui/animations-css'
+import { fonts, themes, tokens } from '@tamagui/config/v3'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { shorthands } from '@tamagui/shorthands/v2'
 import { createTamagui } from 'tamagui'
-import { fonts } from './fonts'
-import { themes, tokens } from '@tamagui/config/v3'
 
 const smoothBezier = 'cubic-bezier(0.215, 0.610, 0.355, 1.000)'
 

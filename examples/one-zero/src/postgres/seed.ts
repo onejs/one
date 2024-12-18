@@ -1,11 +1,12 @@
 import pg from 'pg'
-import * as unicodeEmoji from 'unicode-emoji'
 
-const randomID = () => Math.random().toString(36).slice(2)
+/**
+ * This is an example file that you can use to seed your DB using TypeScript
+ */
 
-const connectionString = `postgresql://user:password@127.0.0.1/onechat`.replace(
+const connectionString = `postgresql://user:password@127.0.0.1/postgres`.replace(
   '127.0.0.1',
-  'onechat_postgres'
+  'postgres'
 )
 
 console.info(`Connecting to: ${connectionString}`)
@@ -14,23 +15,13 @@ const pool = new pg.Pool({
   connectionString,
 })
 
-const emojis = unicodeEmoji.getEmojis()
-
-const toKeyword = (description: string) => description.split(' ').join('_')
-
 async function insertReactions() {
   const client = await connectWithRetry()
   try {
     await client.query('BEGIN')
-    const insertText = `
-      INSERT INTO reaction(id, value, keyword, "createdAt", "updatedAt") 
-        VALUES ($1, $2, $3, DEFAULT, DEFAULT)
-        ON CONFLICT DO NOTHING;
-      `
-    for (let emoji of emojis) {
-      const values = [randomID(), emoji.emoji, toKeyword(emoji.description)]
-      await client.query(insertText, values)
-    }
+
+    // use client to insert data here
+
     await client.query('COMMIT')
   } catch (e) {
     await client.query('ROLLBACK')
@@ -50,13 +41,14 @@ const connectWithRetry = async () => {
   }
 }
 
-connectWithRetry()
-insertReactions()
-  .then(() => {
-    console.info('Reactions have been seeded')
-    process.exit(0)
-  })
-  .catch((err) => {
-    console.error('Error seeding reactions:', err)
-    process.exit(1)
-  })
+connectWithRetry().then(() => {
+  insertReactions()
+    .then(() => {
+      console.info('Reactions have been seeded')
+      process.exit(0)
+    })
+    .catch((err) => {
+      console.error('Error seeding reactions:', err)
+      process.exit(1)
+    })
+})
