@@ -60,6 +60,7 @@ const serverSchema = {
     id: 'string',
     name: 'string',
     ownerId: 'string',
+    channelSort: 'json',
     description: 'string',
     icon: 'string',
     createdAt: 'number',

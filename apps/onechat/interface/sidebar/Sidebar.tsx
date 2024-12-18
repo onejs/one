@@ -12,13 +12,6 @@ export const Sidebar = memo(() => {
 
       <SidebarServerChannelsList />
 
-      {/* <>
-        <YStack>
-          <SubTitle>Recently</SubTitle>
-          <RoomItem active name="🧵 Some Thread" />
-        </YStack>
-      </> */}
-
       <YStack btw={1} bc="$background025" py="$2" pos="absolute" b={0} l={0} r={0}>
         <SidebarQuickList />
       </YStack>

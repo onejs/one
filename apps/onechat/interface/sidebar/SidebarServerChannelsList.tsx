@@ -8,6 +8,7 @@ import {
   useSensors,
 } from '@dnd-kit/core'
 import {
+  arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
   useSortable,
@@ -26,10 +27,20 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import { Lock, Plus } from '@tamagui/lucide-icons'
 import { useAuth } from '~/features/auth/useAuth'
 
+// TODO organize/enforce
+// id order
+type ServerChannelSort = string[]
+
 export const SidebarServerChannelsList = () => {
   const { user } = useAuth()
   const server = useCurrentServer()
   const channels = useServerChannels()
+  const channelSort: ServerChannelSort =
+    Array.isArray(server?.channelSort) && server.channelSort.length
+      ? server.channelSort
+      : channels?.map((x) => x.id)
+
+  const channelsSorted = channelSort.map((id) => channels.find((x) => x.id === id)!).filter(Boolean)
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -62,26 +73,7 @@ export const SidebarServerChannelsList = () => {
     })
   }, [channels, server, activeServer])
 
-  function handleDragEnd(event) {
-    setDragging(null)
-
-    const { active, over } = event
-
-    if (active.id !== over.id) {
-      // setItems((items) => {
-      //   const oldIndex = items.indexOf(active.id);
-      //   const newIndex = items.indexOf(over.id);
-      //   return arrayMove(items, oldIndex, newIndex);
-      // });
-    }
-  }
-
-  const [dragging, setDragging] = useState(null)
-
-  function handleDragStart(event) {
-    const { active } = event
-    setDragging(active)
-  }
+  const [dragging, setDragging] = useState<Channel | null>(null)
 
   const [showTempChannel, setShowTempChannel] = useState(false)
 
@@ -91,11 +83,28 @@ export const SidebarServerChannelsList = () => {
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
-          onDragStart={handleDragStart}
-          onDragEnd={handleDragEnd}
+          onDragStart={(event) => {
+            const { active } = event
+            setDragging(channels.find((x) => x.id === `${active.id}`) || null)
+          }}
+          onDragEnd={(event) => {
+            if (!server) return
+            setDragging(null)
+            const { active, over } = event
+
+            if (over && active.id !== over.id) {
+              const oldIndex = channelSort.indexOf(`${active.id}`)
+              const newIndex = channelSort.indexOf(`${over.id}`)
+              const nextChannelSort = arrayMove(channelSort, oldIndex, newIndex)
+              mutate.server.update({
+                id: server.id,
+                channelSort: nextChannelSort,
+              })
+            }
+          }}
         >
-          <SortableContext items={channels} strategy={verticalListSortingStrategy}>
-            {channels.map((channel) => {
+          <SortableContext items={channelsSorted} strategy={verticalListSortingStrategy}>
+            {channelsSorted.map((channel) => {
               return <ChannelListItemSortable key={channel.id} channel={channel} />
             })}
             <DragOverlay
@@ -125,6 +134,12 @@ export const SidebarServerChannelsList = () => {
                 private: false,
                 serverId: server.id,
               })
+
+              mutate.server.update({
+                id: server.id,
+                channelSort: [...channelSort, id],
+              })
+
               updateUserState({
                 activeChannels: {
                   ...activeChannels,
@@ -220,6 +235,7 @@ const ChannelListItem = forwardRef(
       <ListItem
         ref={ref}
         editing={editing || inserting}
+        editingValue={channel?.name ?? ''}
         active={derivedUserState?.activeChannel === channel?.id}
         onPress={() => {
           if (inserting || !channel) {
