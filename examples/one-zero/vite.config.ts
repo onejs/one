@@ -4,7 +4,7 @@ import type { UserConfig } from 'vite'
 
 export default {
   optimizeDeps: {
-    include: ['@rocicorp/zero'],
+    include: ['@rocicorp/zero', 'pg'],
     esbuildOptions: {
       target: 'esnext',
     },
@@ -21,16 +21,14 @@ export default {
         'set-cookie-parser': true,
         'ipaddr.js': true,
         'cross-fetch': true,
-        pg: true,
+        pg: 'interop',
       },
     }),
 
     tamaguiPlugin({
-      optimize: true,
-      disableServerOptimization: process.env.NODE_ENV === 'development',
-      useReactNativeWebLite: true,
+      optimize: process.env.NODE_ENV === 'production',
       components: ['tamagui'],
-      config: './config/tamagui/tamagui.config.ts',
+      config: './src/tamagui/tamagui.config.ts',
       outputCSS: './app/tamagui.css',
     }),
   ],

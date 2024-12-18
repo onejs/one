@@ -1,18 +1,10 @@
--- Drop existing tables if they exist
-DROP TABLE IF EXISTS "message",
-"thread",
-"channel",
-"serverMember",
-"server",
-"user";
-
 CREATE DATABASE onezero;
-
 CREATE DATABASE onezero_cvr;
-
 CREATE DATABASE onezero_cdb;
 
 \c onezero;
+
+-- example tables:
 
 CREATE TABLE "user" (
     "id" VARCHAR PRIMARY KEY,
@@ -28,40 +20,14 @@ CREATE TABLE "user" (
 
 CREATE TABLE "message" (
     "id" VARCHAR PRIMARY KEY,
-    "serverId" VARCHAR REFERENCES "server"(id),
-    "channelId" VARCHAR REFERENCES "channel"(id),
-    "threadId" VARCHAR REFERENCES "thread"(id) NULL,
     "senderId" VARCHAR REFERENCES "user"(id),
     "content" TEXT NOT NULL,
-    "isThreadReply" BOOLEAN DEFAULT FALSE NOT NULL,
-    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP NULL,
-    "deleted" BOOLEAN DEFAULT FALSE NOT NULL
-);
-
-ALTER TABLE
-    "thread"
-ADD
-    CONSTRAINT "fk_thread_message" FOREIGN KEY ("messageId") REFERENCES "message" ("id");
-
-CREATE TABLE "reaction" (
-    "id" VARCHAR PRIMARY KEY,
-    "value" VARCHAR UNIQUE,
-    "keyword" VARCHAR UNIQUE,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NULL
 );
 
-CREATE TABLE "messageReaction" (
-    "messageId" VARCHAR REFERENCES "message"(id),
-    "userId" VARCHAR REFERENCES "user"(id),
-    "reactionId" VARCHAR REFERENCES "reaction"(id),
-    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP NULL,
-    PRIMARY KEY ("messageId", "userId", "reactionId")
-);
+-- better-auth tables:
 
--- better-auth:
 create table "session" (
     id text NOT NULL PRIMARY KEY,
     "expiresAt" timestamp without time zone NOT NULL,
@@ -104,72 +70,3 @@ create table "jwks" (
     "privateKey" text NOT NULL,
     "createdAt" timestamp without time zone NOT NULL
 );
-
---- seed data:
--- test user
-INSERT INTO
-    "user" (
-        "id",
-        "username",
-        "name",
-        "email",
-        "state",
-        "emailVerified",
-        "image",
-        "createdAt",
-        "updatedAt"
-    )
-VALUES
-    (
-        'test-user-id',
-        'testuser',
-        'Test User',
-        'testuser@example.com',
-        '{}',
-        true,
-        'https://one1.dev/onezeroimages/uploads/np424wtl8z-avatar.png',
-        CURRENT_TIMESTAMP,
-        CURRENT_TIMESTAMP
-    );
-
--- test server
-INSERT INTO
-    "server" (
-        "id",
-        "name",
-        "ownerId",
-        "description",
-        "icon",
-        "createdAt",
-        "updatedAt"
-    )
-VALUES
-    (
-        'test-server-id',
-        'Test Server',
-        'test-user-id',
-        'This is a test server.',
-        'https://one1.dev/onezeroimages/uploads/np424wtl8z-avatar.png',
-        CURRENT_TIMESTAMP,
-        CURRENT_TIMESTAMP
-    );
-
--- Insert a default channel for the server
-INSERT INTO "channel" ("id", "serverId", "name", "description", "private", "createdAt", "updatedAt")
-VALUES ('test-channel-id', 'test-server-id', 'general', 'This is a default channel.', false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
--- Add the user to the server
-INSERT INTO
-    "serverMember" (
-        "serverId",
-        "userId",
-        "hasClosedWelcome",
-        "joinedAt"
-    )
-VALUES
-    (
-        'test-server-id',
-        'test-user-id',
-        false,
-        CURRENT_TIMESTAMP
-    );

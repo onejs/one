@@ -6,22 +6,23 @@
   "files": [],
   "type": "module",
   "scripts": {
-    "auth:migrate": "npx @better-auth/cli migrate --config ./config/better-auth/auth.ts",
+    "auth:migrate": "npx @better-auth/cli migrate --config ./src/better-auth/auth.ts",
     "build:icon": "tauri icon ./src-tauri/icons/icon.png",
     "build:tauri": "tauri build --debug",
     "build:web": "one build",
-    "data:reset": "docker compose down; docker volume rm pgdata; rm /tmp/onezero_replica.db",
+    "data:reset": "docker compose down; docker volume rm one-zero_pgdata; rm /tmp/onezero_replica.db",
     "dev:clean": "one dev --clean",
     "dev:tauri": "tauri dev",
     "dev": "one dev --port 1421",
     "docker:start:clean": "yarn data:reset; yarn docker up",
     "docker": "docker compose --env-file .env",
-    "seed": "tsx ./config/postgres/seed.ts",
+    "seed": "tsx ./src/postgres/seed.ts",
     "serve": "one serve",
-    "zero:build-schema": "cd ./config/zero && zero-build-schema -p './schema.ts'",
-    "zero": "yarn zero:build-schema && zero-cache --schema-file ./config/zero/zero-schema.json"
+    "zero:build-schema": "cd ./src/zero && zero-build-schema -p './schema.ts'",
+    "zero": "yarn zero:build-schema && zero-cache --schema-file ./src/zero/zero-schema.json"
   },
   "dependencies": {
+    "@rocicorp/zero": "^0.8.2024121204",
     "@tamagui/linear-gradient": "^1.120.1",
     "@tamagui/lucide-icons": "^1.120.1",
     "@tamagui/themes": "^1.120.1",

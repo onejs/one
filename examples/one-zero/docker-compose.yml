@@ -24,14 +24,14 @@ services:
       -c hot_standby_feedback=on
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./config/postgres/:/docker-entrypoint-initdb.d
+      - ./src/postgres/:/docker-entrypoint-initdb.d
 
   seeder:
     image: oven/bun:latest
     depends_on:
       - postgres
     volumes:
-      - ./config/postgres/:/app
+      - ./src/postgres/:/app
     working_dir: /app
     environment:
       - ZERO_UPSTREAM_DB=${ZERO_UPSTREAM_DB}

@@ -1,9 +1,9 @@
 import { betterAuth } from 'better-auth'
-import { Pool } from 'pg'
-import { jwt, bearer } from 'better-auth/plugins'
+import { bearer, jwt } from 'better-auth/plugins'
+import * as PG from 'pg'
 
 export const auth = betterAuth({
-  database: new Pool({
+  database: new PG.Pool({
     connectionString: process.env.ZERO_UPSTREAM_DB,
   }),
 

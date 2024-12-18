@@ -44,11 +44,11 @@ const connectWithRetry = async () => {
 connectWithRetry().then(() => {
   insertReactions()
     .then(() => {
-      console.info('Reactions have been seeded')
+      console.info('Seeding complete')
       process.exit(0)
     })
     .catch((err) => {
-      console.error('Error seeding reactions:', err)
+      console.error('Error seeding:', err)
       process.exit(1)
     })
 })

@@ -1,4 +1,4 @@
-import { createSchema, type Row } from '@rocicorp/zero'
+import { createSchema, definePermissions, type Row } from '@rocicorp/zero'
 
 const userSchema = {
   tableName: 'user',
@@ -45,3 +45,7 @@ export const schema = createSchema({
 export type Schema = typeof schema
 export type Message = Row<typeof messageSchema>
 export type User = Row<typeof userSchema>
+
+export const permissions = definePermissions(schema, () => {
+  return {}
+})

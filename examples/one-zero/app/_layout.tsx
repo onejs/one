@@ -7,12 +7,11 @@ import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { useState } from 'react'
 import { TamaguiProvider } from 'tamagui'
-import config from '~/src/tamagui/tamagui.config'
 import { AuthEffects } from '~/src/better-auth/AuthEffects'
-import { useZeroEmit, zero } from '~/src/state/zero'
-import { Dialogs } from '~/src/interface/dialogs/Dialogs'
 import { ToastDisplay } from '~/src/interface/Toast'
 import { DragDropFile } from '~/src/interface/upload/DragDropFile'
+import { useZeroEmit, zero } from '~/src/state/zero'
+import config from '~/src/tamagui/tamagui.config'
 
 export default function Layout() {
   return (
@@ -37,7 +36,6 @@ export default function Layout() {
             <ThemeProvider>
               <ToastProvider swipeDirection="horizontal">
                 <Slot />
-                <Dialogs />
                 <ToastDisplay />
                 <ToastViewport
                   flexDirection="column-reverse"

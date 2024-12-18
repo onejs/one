@@ -5280,12 +5280,12 @@ __metadata:
   linkType: hard
 
 "@grpc/grpc-js@npm:^1.7.1":
-  version: 1.12.4
-  resolution: "@grpc/grpc-js@npm:1.12.4"
+  version: 1.12.5
+  resolution: "@grpc/grpc-js@npm:1.12.5"
   dependencies:
     "@grpc/proto-loader": "npm:^0.7.13"
     "@js-sdsl/ordered-map": "npm:^4.4.2"
-  checksum: 10/b4cb9390e4b2c26cbdd831837513029f0e885de17cfc54f3518e9c49184e5d1978b3d1d2ea3022238bf58c22436a778af62521d59d9e898b133452ea8b2b4db0
+  checksum: 10/4f8ead236dcab4d94e15e62d65ad2d93732d37f5cc52ffafe67ae00f69eae4a4c97d6d34a1b9eac9f30206468f2d15302ea6649afcba1d38929afa9d1e7c12d5
   languageName: node
   linkType: hard
 
@@ -6505,6 +6505,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@opentelemetry/context-async-hooks@npm:1.30.0":
+  version: 1.30.0
+  resolution: "@opentelemetry/context-async-hooks@npm:1.30.0"
+  peerDependencies:
+    "@opentelemetry/api": ">=1.0.0 <1.10.0"
+  checksum: 10/0d9a4c2eeeceff55b8267123fa3d36f7659afb71e41a09f4d9980c66178d0dbbfb12a3f995d04a7eae80e8a381a9436801b4f9be845aaca0b44e7ea2eff43478
+  languageName: node
+  linkType: hard
+
 "@opentelemetry/core@npm:1.29.0":
   version: 1.29.0
   resolution: "@opentelemetry/core@npm:1.29.0"
@@ -6513,6 +6522,17 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ">=1.0.0 <1.10.0"
   checksum: 10/eb62dce11cb0cb637acfb3582ad25e48766d9fb37b6b70e57f3c60521c7680a85431a0853c50d98cc8e807e5e3c2fddda314623d879e932bf1a5f629344b39ce
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/core@npm:1.30.0":
+  version: 1.30.0
+  resolution: "@opentelemetry/core@npm:1.30.0"
+  dependencies:
+    "@opentelemetry/semantic-conventions": "npm:1.28.0"
+  peerDependencies:
+    "@opentelemetry/api": ">=1.0.0 <1.10.0"
+  checksum: 10/6984b7a2ce32a7de0c29fa9a3b03eed0bae730ba61706668939cad6331b168614f6102b5088f71daf4b41686ea31b3082349a850d3da4ff7e48934882be2c0df
   languageName: node
   linkType: hard
 
@@ -6693,6 +6713,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@opentelemetry/propagator-b3@npm:1.30.0":
+  version: 1.30.0
+  resolution: "@opentelemetry/propagator-b3@npm:1.30.0"
+  dependencies:
+    "@opentelemetry/core": "npm:1.30.0"
+  peerDependencies:
+    "@opentelemetry/api": ">=1.0.0 <1.10.0"
+  checksum: 10/4788ebb579bb635d02cb9b3e469cc8cfecb683852d35977af6012c1976a4308d37fb0df86aba5f75fd459c504e28262f62c9c729589e75f4f75e396671888330
+  languageName: node
+  linkType: hard
+
 "@opentelemetry/propagator-jaeger@npm:1.29.0":
   version: 1.29.0
   resolution: "@opentelemetry/propagator-jaeger@npm:1.29.0"
@@ -6701,6 +6732,17 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ">=1.0.0 <1.10.0"
   checksum: 10/75849bcfaa60823cc8b2bb10a4094ef7d933d998c84977f8319930ed7fdba37aba5906ba56f5ed96f28e07bb2cf5e185b7340993c06a36135a1de25de945df74
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/propagator-jaeger@npm:1.30.0":
+  version: 1.30.0
+  resolution: "@opentelemetry/propagator-jaeger@npm:1.30.0"
+  dependencies:
+    "@opentelemetry/core": "npm:1.30.0"
+  peerDependencies:
+    "@opentelemetry/api": ">=1.0.0 <1.10.0"
+  checksum: 10/716f25f506087068d529fa03b9d70f4ff1d3d0ee945e9386e073950e8afebd55b787c35e217022a6694841a299039b08376405f69ac6d212e10559810afd24d1
   languageName: node
   linkType: hard
 
@@ -6713,6 +6755,18 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ">=1.0.0 <1.10.0"
   checksum: 10/677b9e3478a380e93383a223a01ccade21dde7381924a4f859b2309ea82e79da9e7257338791a5b2699f763b0c198ec7e0ed6a12f03e467f5e0d8287757f0f66
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/resources@npm:1.30.0":
+  version: 1.30.0
+  resolution: "@opentelemetry/resources@npm:1.30.0"
+  dependencies:
+    "@opentelemetry/core": "npm:1.30.0"
+    "@opentelemetry/semantic-conventions": "npm:1.28.0"
+  peerDependencies:
+    "@opentelemetry/api": ">=1.0.0 <1.10.0"
+  checksum: 10/c9f9bac18b09ff6ad5bcb127de11a8dbd46a39154ac2659ab1c9f94781a9e4fd41d7989d44fc09627f489c903ad9476e8b1d2d958eb9293e05f3a00840760b17
   languageName: node
   linkType: hard
 
@@ -6780,7 +6834,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/sdk-trace-node@npm:1.29.0, @opentelemetry/sdk-trace-node@npm:^1.29.0":
+"@opentelemetry/sdk-trace-base@npm:1.30.0":
+  version: 1.30.0
+  resolution: "@opentelemetry/sdk-trace-base@npm:1.30.0"
+  dependencies:
+    "@opentelemetry/core": "npm:1.30.0"
+    "@opentelemetry/resources": "npm:1.30.0"
+    "@opentelemetry/semantic-conventions": "npm:1.28.0"
+  peerDependencies:
+    "@opentelemetry/api": ">=1.0.0 <1.10.0"
+  checksum: 10/2e926c0cf29b6319a263fd7a1dbf157170e75b7ab329b11b1990130dd1591cea4590d67c6208ef7d63bf5742e4ab5811d64672804568438f2e751dbe1ac98958
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/sdk-trace-node@npm:1.29.0":
   version: 1.29.0
   resolution: "@opentelemetry/sdk-trace-node@npm:1.29.0"
   dependencies:
@@ -6793,6 +6860,22 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ">=1.0.0 <1.10.0"
   checksum: 10/4af09076649bdfbd1b3b12a8d0f9fd9569cb8e821f449a9096aa64253970ab57188d93eb7fcb108c9067e8e7deadf79cdd5146939493d35795e0e66fb9d64aae
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/sdk-trace-node@npm:^1.29.0":
+  version: 1.30.0
+  resolution: "@opentelemetry/sdk-trace-node@npm:1.30.0"
+  dependencies:
+    "@opentelemetry/context-async-hooks": "npm:1.30.0"
+    "@opentelemetry/core": "npm:1.30.0"
+    "@opentelemetry/propagator-b3": "npm:1.30.0"
+    "@opentelemetry/propagator-jaeger": "npm:1.30.0"
+    "@opentelemetry/sdk-trace-base": "npm:1.30.0"
+    semver: "npm:^7.5.2"
+  peerDependencies:
+    "@opentelemetry/api": ">=1.0.0 <1.10.0"
+  checksum: 10/bb070ec0b259b8fb4c8058e078476766d40a0b5e0cc819b9ebb8ecd9deedf4d46ec60bf6b4f28be37d1565350dd9e318e4f20c6d3e45d51c815cc89ce2afe45d
   languageName: node
   linkType: hard
 
@@ -21695,6 +21778,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"one-zero@workspace:examples/one-zero":
+  version: 0.0.0-use.local
+  resolution: "one-zero@workspace:examples/one-zero"
+  dependencies:
+    "@rocicorp/zero": "npm:^0.8.2024121204"
+    "@tamagui/linear-gradient": "npm:^1.120.1"
+    "@tamagui/lucide-icons": "npm:^1.120.1"
+    "@tamagui/themes": "npm:^1.120.1"
+    "@tamagui/toast": "npm:^1.120.1"
+    "@tauri-apps/api": "npm:^2"
+    "@tauri-apps/cli": "npm:^2"
+    "@tauri-apps/plugin-deep-link": "npm:^2.0.1"
+    "@tauri-apps/plugin-fs": "npm:^2.2.0"
+    "@tauri-apps/plugin-shell": "npm:^2"
+    "@vxrn/color-scheme": "npm:1.1.345-1734464750388"
+    better-auth: "npm:^1.0.10"
+    one: "npm:1.1.345-1734464750388"
+    pg: "npm:^8.13.1"
+    react: "npm:^18"
+    react-native: "npm:0.74.1"
+    tamagui: "npm:^1.120.1"
+    tsx: "npm:^4.19.2"
+  languageName: unknown
+  linkType: soft
+
 "one@npm:1.1.345-1734464750388, one@workspace:packages/one":
   version: 0.0.0-use.local
   resolution: "one@workspace:packages/one"
@@ -21777,18 +21885,12 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:^0.27.0"
-    "@rocicorp/zero": "npm:^0.8.2024121204"
-    "@supabase/supabase-js": "npm:^2.44.4"
-    "@tamagui/button": "npm:^1.120.1"
     "@tamagui/helpers-icon": "npm:^1.120.1"
-    "@tamagui/input": "npm:^1.120.1"
     "@tamagui/linear-gradient": "npm:^1.120.1"
     "@tamagui/lucide-icons": "npm:^1.120.1"
     "@tamagui/proxy-tabbable": "npm:^1.120.1"
-    "@tamagui/react-native-web": "npm:^1.120.1"
     "@tamagui/themes": "npm:^1.120.1"
     "@tamagui/toast": "npm:^1.120.1"
-    "@tamagui/use-store": "npm:^1.120.1"
     "@tanstack/react-table": "npm:^8.20.6"
     "@tauri-apps/api": "npm:^2"
     "@tauri-apps/cli": "npm:^2"
@@ -21796,16 +21898,10 @@ __metadata:
     "@tauri-apps/plugin-fs": "npm:^2.2.0"
     "@tauri-apps/plugin-shell": "npm:^2"
     "@vxrn/color-scheme": "npm:1.1.345-1734464750388"
-    "@vxrn/mdx": "npm:1.1.345-1734464750388"
     better-auth: "npm:^1.0.10"
-    body-scroll-lock: "npm:^4.0.0-beta.0"
     flexsearch: "npm:^0.7.43"
-    gray-matter: "npm:^4.0.3"
-    marked: "npm:^14.1.2"
-    mdx-bundler: "npm:^10.0.2"
     one: "npm:1.1.345-1734464750388"
     pg: "npm:^8.13.1"
-    postmark: "npm:^3.0.18"
     react: "npm:^18"
     react-hotkeys-hook: "npm:^4.6.1"
     react-native: "npm:0.74.1"
@@ -21815,7 +21911,6 @@ __metadata:
     unicode-emoji: "npm:^2.6.0"
     valtio: "npm:^2.1.2"
     virtua: "npm:^0.39.2"
-    vite-tsconfig-paths: "npm:^5.0.1"
   languageName: unknown
   linkType: soft
 
