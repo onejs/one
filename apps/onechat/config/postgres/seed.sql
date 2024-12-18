@@ -39,6 +39,7 @@ CREATE TABLE "server" (
     "name" VARCHAR(200) NOT NULL,
     "ownerId" VARCHAR REFERENCES "user"(id),
     "description" TEXT,
+    "channelSort" JSONB DEFAULT '{}',
     "icon" VARCHAR(255),
     "updatedAt" TIMESTAMP NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP

@@ -1,9 +1,8 @@
 import { memo } from 'react'
 import { H3, SizableText, Spacer, XStack, YStack } from 'tamagui'
-import { SidebarServersRow } from './SidebarServersRow'
-import { SidebarServerChannelsList } from './SidebarServerChannelsList'
-import { useQuery } from '~/features/state/zero'
 import { useFriends } from '~/features/state/queries/useServer'
+import { SidebarServerChannelsList } from './SidebarServerChannelsList'
+import { SidebarServersRow } from './SidebarServersRow'
 
 export const Sidebar = memo(() => {
   return (
@@ -11,13 +10,6 @@ export const Sidebar = memo(() => {
       <SidebarServersRow />
 
       <SidebarServerChannelsList />
-
-      {/* <>
-        <YStack>
-          <SubTitle>Recently</SubTitle>
-          <RoomItem active name="🧵 Some Thread" />
-        </YStack>
-      </> */}
 
       <YStack btw={1} bc="$background025" py="$2" pos="absolute" b={0} l={0} r={0}>
         <SidebarQuickList />

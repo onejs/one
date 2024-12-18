@@ -130,7 +130,6 @@ export const MessagesList = memo(
                   channel={channel}
                   key={message.id}
                   message={message}
-                  user={user as any}
                   disableEvents={disableEvents}
                 />
               )

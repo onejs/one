@@ -82,7 +82,9 @@ export const useCurrentThread = () => {
   const [thread] = useQuery((q) =>
     q.thread
       .where('id', activeThread?.openedThreadId || '')
-      .related('messages', (q) => q.orderBy('createdAt', 'asc').related('reactions'))
+      .related('messages', (q) =>
+        q.orderBy('createdAt', 'asc').related('reactions').related('sender')
+      )
   )
   return thread[0]
 }

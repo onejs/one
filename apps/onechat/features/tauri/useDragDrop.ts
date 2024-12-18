@@ -1,6 +1,7 @@
 import { getCurrentWebview } from '@tauri-apps/api/webview'
 import { exists, readFile } from '@tauri-apps/plugin-fs'
 import { useEffect } from 'react'
+import { isTauri } from './constants'
 
 export type DropFile = {
   path: string
@@ -22,6 +23,10 @@ export type DragDropEvent =
     }
 
 export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
+  if (!isTauri) {
+    return
+  }
+
   useEffect(() => {
     let unlisten: Function | null = null
 
