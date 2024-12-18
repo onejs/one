@@ -52,6 +52,7 @@ export const TopBar = memo(() => {
         <TopBarSearch />
 
         <ButtonSimple
+          tooltip="Server settings"
           onPress={() => {
             if (userState?.showSidePanel === 'settings') {
               updateUserState({

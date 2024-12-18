@@ -28,6 +28,7 @@ export const MessageItem = memo(
     user,
     hideUser,
     disableEvents,
+    channel,
   }: {
     message: MessageWithRelations
     channel: Channel
@@ -68,7 +69,7 @@ export const MessageItem = memo(
           },
         })}
       >
-        <MessageActionBar message={message} />
+        <MessageActionBar channel={channel} message={message} />
 
         <XStack w={32}>{!hideUser && <Avatar image={user.image} />}</XStack>
 
@@ -114,7 +115,10 @@ export const MessageItem = memo(
   }
 )
 
-const MessageActionBar = ({ message }: { message: MessageWithRelations }) => {
+const MessageActionBar = ({
+  message,
+  channel,
+}: { message: MessageWithRelations; channel: Channel }) => {
   const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
 
   return (
@@ -137,7 +141,7 @@ const MessageActionBar = ({ message }: { message: MessageWithRelations }) => {
 
         <Separator my="$2" vertical />
 
-        {!message.thread && (
+        {!message.thread?.[0] && (
           <TooltipSimple label="Create Thread">
             <Button
               onPress={() => {
@@ -162,6 +166,10 @@ const MessageActionBar = ({ message }: { message: MessageWithRelations }) => {
                   id: message.id,
                   threadId,
                   isThreadReply: false,
+                })
+
+                updateUserOpenThread({
+                  id: threadId,
                 })
               }}
               chromeless

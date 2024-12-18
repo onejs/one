@@ -5,6 +5,7 @@ import {
   type SizeTokens,
   styled,
   type TamaguiElement,
+  TooltipSimple,
   XStack,
   type XStackProps,
 } from 'tamagui'
@@ -60,11 +61,13 @@ const ButtonFrame = styled(XStack, {
   } as const,
 })
 
-type ButtonFrameProps = GetProps<typeof ButtonFrame>
+type ButtonFrameProps = GetProps<typeof ButtonFrame> & {
+  tooltip?: string
+}
 
 export const ButtonSimple = forwardRef<TamaguiElement, ButtonFrameProps & { size?: SizeTokens }>(
-  ({ size, children, ...rest }, ref) => {
-    return (
+  ({ size, children, tooltip, ...rest }, ref) => {
+    let contents = (
       <ButtonFrame ref={ref} {...rest}>
         {typeof children !== 'string' ? (
           children
@@ -75,5 +78,11 @@ export const ButtonSimple = forwardRef<TamaguiElement, ButtonFrameProps & { size
         )}
       </ButtonFrame>
     )
+
+    if (tooltip) {
+      contents = <TooltipSimple label={tooltip}>{contents}</TooltipSimple>
+    }
+
+    return contents
   }
 )

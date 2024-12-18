@@ -1,6 +1,10 @@
 import { Tabs } from 'tamagui'
+import type { TabContentPaneProps } from './types'
 
-export const AlwaysVisibleTabContent = ({ active, setShow, ...props }: TabContentPaneProps) => {
+export const AlwaysVisibleTabContent = ({
+  active,
+  ...props
+}: Omit<TabContentPaneProps, 'setShow'>) => {
   return (
     <Tabs.Content
       forceMount
