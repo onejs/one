@@ -68,6 +68,7 @@ function TabsComponent({
       activationMode="manual"
       orientation="horizontal"
       size="$4"
+      width="100%"
       br="$4"
       value={selected}
       onPress={(e) => e.stopPropagation()}
