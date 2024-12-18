@@ -1,4 +1,4 @@
 export declare const renderToString: (app: React.ReactElement, options: {
     preloads?: string[];
-}) => unknown;
+}) => Promise<string>;
 //# sourceMappingURL=server-render.d.ts.map

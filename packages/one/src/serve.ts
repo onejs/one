@@ -12,9 +12,10 @@ process.on('uncaughtException', (err) => {
 
 export async function serve(args: VXRNOptions['server'] = {}) {
   const buildInfo = (await FSExtra.readJSON(`dist/buildInfo.json`)) as One.BuildInfo
+  const { oneOptions } = buildInfo
 
   setupBuildInfo(buildInfo)
-  ensureExists(buildInfo.oneOptions)
+  ensureExists(oneOptions)
 
   // to avoid loading the CACHE_KEY before we set it use async imports:
   const { labelProcess } = await import('./cli/label-process')
@@ -34,7 +35,7 @@ export async function serve(args: VXRNOptions['server'] = {}) {
   return await vxrnServe({
     server: {
       // fallback to one plugin
-      ...buildInfo.oneOptions.server,
+      ...oneOptions.server,
       // override with any flags given to cli
       ...removeUndefined({
         port: args.port ? +args.port : undefined,
@@ -46,7 +47,7 @@ export async function serve(args: VXRNOptions['server'] = {}) {
     },
 
     async beforeStart(options, app) {
-      await oneServe(buildInfo.oneOptions, options, buildInfo, app)
+      await oneServe(oneOptions, options, buildInfo, app)
     },
   })
 }

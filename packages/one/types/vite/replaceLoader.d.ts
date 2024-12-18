@@ -1,5 +1,5 @@
 export declare function replaceLoader({ code, loaderData, }: {
     code: string;
     loaderData: Object;
-}): any;
+}): string;
 //# sourceMappingURL=replaceLoader.d.ts.map

@@ -1,6 +1,6 @@
-export declare function extractExpoPathFromURL(url?: string): any;
+export declare function extractExpoPathFromURL(url?: string): string;
 export declare function adjustPathname(url: {
     hostname?: string | null;
     pathname: string;
-}): any;
+}): string;
 //# sourceMappingURL=extractPathFromURL.d.ts.map

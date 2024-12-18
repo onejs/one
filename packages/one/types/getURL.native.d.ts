@@ -1,2 +1,2 @@
-export declare function getURL(): any;
+export declare function getURL(): string;
 //# sourceMappingURL=getURL.native.d.ts.map

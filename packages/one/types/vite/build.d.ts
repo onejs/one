@@ -1,5 +1,5 @@
 export declare function build(args: {
     step?: string;
     only?: string;
-}): any;
+}): Promise<void>;
 //# sourceMappingURL=build.d.ts.map

@@ -1,14 +1,14 @@
-import { type ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import type { OneRouter } from './interfaces/router';
 type SearchParams = OneRouter.SearchParams;
-export declare function useRootNavigationState(): any;
+export declare function useRootNavigationState(): OneRouter.ResultState;
 export declare function useRouteInfo(): import("./router/getNormalizedStatePath").UrlObject;
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
 export declare function useNavigationContainerRef(): OneRouter.NavigationRef;
 export declare function Frozen({ on, children }: {
     on?: boolean;
     children: ReactNode;
-}): any;
+}): string | number | boolean | Iterable<React.ReactNode> | import("react/jsx-runtime").JSX.Element | null | undefined;
 export declare function useRouter(): OneRouter.Router;
 /**
  * @private

@@ -1,2 +1,2 @@
-export declare function generateRouteTypes(outFile: string): any;
+export declare function generateRouteTypes(outFile: string): Promise<void>;
 //# sourceMappingURL=generateRouteTypes.d.ts.map

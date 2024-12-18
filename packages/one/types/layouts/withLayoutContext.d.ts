@@ -7,7 +7,7 @@ export declare function useFilterScreenChildren(children: React.ReactNode, { isC
     /** Used for sending developer hints */
     contextKey?: string;
 }): {
-    screens: any;
+    screens: any[] | null | undefined;
     children: any[];
 };
 /** Return a navigator that automatically injects matched routes and renders nothing when there are no children. Return type with children prop optional */
