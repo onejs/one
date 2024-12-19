@@ -279,7 +279,7 @@ async function run() {
         async ({ name, cwd }) => {
           const publishOptions = [canary && `--tag canary`].filter(Boolean).join(' ')
 
-          const absolutePath = `/tmp/${name}-package.tmp.tgz`
+          const absolutePath = `/tmp/${name.replace('/', '_')}-package.tmp.tgz`
           await spawnify(`yarn pack --out ${absolutePath}`, {
             cwd,
             avoidLog: true,

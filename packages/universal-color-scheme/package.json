@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/universal-color-scheme",
-  "version": "1.1.351",
+  "version": "1.1.353",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
