@@ -1,4 +1,30 @@
-import { createSchema, createTableSchema, definePermissions, type Row } from '@rocicorp/zero'
+import {
+  createSchema,
+  createTableSchema,
+  definePermissions,
+  type Row,
+  column,
+} from '@rocicorp/zero'
+
+export type UserState = {
+  serversSort?: string[]
+  activeServer?: string
+  // serverId to channelId
+  activeChannels: Record<string, string>
+  showSidePanel?: 'user' | 'settings'
+  showHotMenu?: boolean
+  channelState?: ChannelsState
+}
+
+export type ChannelsState = {
+  [server_and_channel_id: string]: ChannelState
+}
+
+export type ChannelState = {
+  mainView?: 'thread' | 'chat'
+  focusedMessageId?: string
+  openedThreadId?: string
+}
 
 const userSchema = {
   tableName: 'user',
@@ -9,7 +35,7 @@ const userSchema = {
     email: 'string',
     name: 'string',
     image: 'string',
-    state: 'json',
+    state: column.json<UserState>(),
     updatedAt: 'number',
     createdAt: 'number',
   },

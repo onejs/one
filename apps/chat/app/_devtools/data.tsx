@@ -3,7 +3,7 @@ import { ChevronLeft } from '@tamagui/lucide-icons'
 import { Button, H4, XStack, YStack } from 'tamagui'
 import { proxy, useSnapshot } from 'valtio'
 import { type Schema, schema } from '~/zero/schema'
-import { useQuery } from '~/state/zero'
+import { useQuery } from '~/zero/zero'
 import { Table } from '~/interface/devtools/Table'
 
 const globalState = proxy({
