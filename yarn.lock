@@ -21783,10 +21783,12 @@ __metadata:
   resolution: "one-zero@workspace:examples/one-zero"
   dependencies:
     "@rocicorp/zero": "npm:^0.8.2024121204"
+    "@tamagui/config": "npm:^1.120.2"
     "@tamagui/linear-gradient": "npm:^1.120.2"
     "@tamagui/lucide-icons": "npm:^1.120.2"
     "@tamagui/themes": "npm:^1.120.2"
     "@tamagui/toast": "npm:^1.120.2"
+    "@tamagui/vite-plugin": "npm:^1.120.2"
     "@tauri-apps/api": "npm:^2"
     "@tauri-apps/cli": "npm:^2"
     "@tauri-apps/plugin-deep-link": "npm:^2.0.1"

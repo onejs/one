@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@rocicorp/zero": "^0.8.2024121204",
+    "@tamagui/config": "^1.120.2",
     "@tamagui/linear-gradient": "^1.120.2",
     "@tamagui/lucide-icons": "^1.120.2",
     "@tamagui/themes": "^1.120.2",
@@ -43,6 +44,7 @@
     "tamagui": "^1.120.2"
   },
   "devDependencies": {
+    "@tamagui/vite-plugin": "^1.120.2",
     "@tauri-apps/cli": "^2",
     "tsx": "^4.19.2"
   },
