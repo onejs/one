@@ -1,3 +1,7 @@
+‼️ Note: Zero native not working yet
+
+There's a recent bug with top-level await happening that we are looking into fixing.
+
 # Install
 
 Install packages with yarn:
