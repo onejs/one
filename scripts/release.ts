@@ -258,76 +258,6 @@ async function run() {
       }
     }
 
-    if (!finish && !skipPublish && !rePublish) {
-      const erroredPackages: { name: string }[] = []
-
-      // publish with tag
-
-      await pMap(
-        packageJsons,
-        async (pkg) => {
-          const { cwd, name } = pkg
-
-          console.info(`Publish ${name}`)
-
-          // check if already published first as its way faster for re-runs
-          let versionsOut = ''
-          try {
-            versionsOut = await spawnify(`npm view ${name} versions --json`, {
-              avoidLog: true,
-            })
-            const allVersions = JSON.parse(versionsOut.trim().replaceAll(`\n`, ''))
-            const latest = allVersions[allVersions.length - 1]
-
-            if (latest === nextVersion) {
-              console.info(`Already published, skipping`)
-              return
-            }
-          } catch (err) {
-            if (`${err}`.includes(`404`)) {
-              // fails if never published before, ok
-            } else {
-              if (`${err}`.includes(`Unexpected token`)) {
-                console.info(`Bad JSON? ${versionsOut}`)
-              }
-              throw err
-            }
-          }
-
-          try {
-            await spawnify(`yarn pack --out package.tmp.tgz`, {
-              cwd,
-              avoidLog: true,
-            })
-
-            const publishCommand = [
-              'npm publish',
-              'package.tmp.tgz', // produced by `yarn pack`
-              '--tag prepub --access public',
-            ].filter(Boolean).join(' ')
-
-            await spawnify(publishCommand, {
-              cwd,
-              avoidLog: true,
-            })
-            console.info(` 📢 pre-published ${name}`)
-          } catch (err: any) {
-            // @ts-ignore
-            if (err.includes(`403`)) {
-              console.info('Already published, skipping')
-              return
-            }
-            console.info(`Error publishing!`, `${err}`)
-          }
-        },
-        {
-          concurrency: 5,
-        }
-      )
-
-      console.info(`✅ Published under dist-tag "prepub" (${erroredPackages.length} errors)\n`)
-    }
-
     if (!finish && !skipPublish) {
       if (confirmFinalPublish) {
         const { confirmed } = await prompts({
@@ -343,50 +273,36 @@ async function run() {
     }
 
     if (!finish) {
-      if (rePublish) {
-        // if all successful, re-tag as latest
-        await pMap(
-          packageJsons,
-          async ({ name, cwd }) => {
-            const publishOptions = [canary && `--tag canary`].filter(Boolean).join(' ')
+      // if all successful, re-tag as latest
+      await pMap(
+        packageJsons,
+        async ({ name, cwd }) => {
+          const publishOptions = [canary && `--tag canary`].filter(Boolean).join(' ')
 
-            await spawnify(`yarn pack --out package.tmp.tgz`, {
-              cwd,
-              avoidLog: true,
-            })
+          const absolutePath = `/tmp/${name}-package.tmp.tgz`
+          await spawnify(`yarn pack --out ${absolutePath}`, {
+            cwd,
+            avoidLog: true,
+          })
 
-            const publishCommand = [
-              'npm publish',
-              'package.tmp.tgz', // produced by `yarn pack`
-              publishOptions,
-            ].filter(Boolean).join(' ')
+          const publishCommand = [
+            'npm publish',
+            absolutePath, // produced by `yarn pack`
+            publishOptions,
+          ]
+            .filter(Boolean)
+            .join(' ')
 
-            console.info(`Publishing ${name}: ${publishCommand}`)
+          console.info(`Publishing ${name}: ${publishCommand}`)
 
-            await spawnify(publishCommand, {
-              cwd,
-            }).catch((err) => console.error(err))
-          },
-          {
-            concurrency: 15,
-          }
-        )
-      } else {
-        const distTag = canary ? 'canary' : 'latest'
-
-        // if all successful, re-tag as latest (try and be fast)
-        await pMap(
-          packageJsons,
-          async ({ name, cwd }) => {
-            await spawnify(`yarn npm tag add ${name}@${version} ${distTag}`, {
-              cwd,
-            }).catch((err) => console.error(err))
-          },
-          {
-            concurrency: 20,
-          }
-        )
-      }
+          await spawnify(publishCommand, {
+            cwd,
+          }).catch((err) => console.error(err))
+        },
+        {
+          concurrency: 15,
+        }
+      )
 
       console.info(`✅ Published\n`)
     }
