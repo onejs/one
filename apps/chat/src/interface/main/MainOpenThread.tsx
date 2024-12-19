@@ -20,7 +20,7 @@ export const MainOpenThread = () => {
       t={0}
       r={0}
       b={0}
-      w="80%"
+      w="70%"
       zi={1000}
     >
       <ButtonClose
