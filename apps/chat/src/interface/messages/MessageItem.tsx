@@ -17,6 +17,7 @@ import { randomID } from '~/helpers/randomID'
 import { mutate, useQuery } from '~/zero/zero'
 import { Avatar } from '~/interface/Avatar'
 import { AddReactionButton } from './AddReactionButton'
+import MDEditor from '@uiw/react-md-editor'
 
 export const MessageItem = memo(
   ({
@@ -78,7 +79,10 @@ export const MessageItem = memo(
           )}
 
           <SizableText f={1} ov="hidden">
-            {message.content}
+            <MDEditor.Markdown
+              source={message.content}
+              style={{ whiteSpace: 'pre-wrap', background: 'transparent', borderWidth: 0 }}
+            />
           </SizableText>
 
           {thread && (
