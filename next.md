@@ -7,10 +7,6 @@
     - large test suite + supports 1000 most popular dependencies
     - better hmr
     - better rebuild module caching
-    - complete website / docs
-    - build to production
-    - android
-    - assets
     - symbolicator
 
   - web
@@ -22,8 +18,6 @@
 # backlog
 
 - react-native-web-lite proper release
-
-- // TEMP FIX can likely go away
 
 - need a way ton configure the api + server etc during production builds
 
@@ -62,11 +56,7 @@
   - eg, react 19 sets: 'process.env.TAMAGUI_REACT_19': '"1"'
   - another cool idea: node_modules package.json sets "vite" field that can add these custom configs, so `tamagui` package can define that *for* react 19
 
-- docs section for tamagui, note one-theme
-
 - an easy way to disable swc transform for a node_module using `deps`
-
-- @ethersproject/hash property "atob" doesnt exist
 
 - TODO this would probably want to support their configured extensions
 
