@@ -9,5 +9,7 @@ ignores:
   # These Babel deps are actually being used (src/vite/plugins/reactCompilerPlugin.ts), but will be reported as unused by depcheck so we need to ignore them
   - "@babel/preset-typescript"
   - "babel-plugin-react-compiler"
+  # this is used dependend on by react-native-screens and errors vite during scan if not here
+  - "react-native-reanimated"
   # FIXME: react-scan is temporarily disabled, remove this line when it's re-enabled
   - "react-scan"

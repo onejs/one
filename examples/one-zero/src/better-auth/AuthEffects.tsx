@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { setAuthToken } from './authClient'
 import { useAuth } from './useAuth'
 import { setZeroAuth } from '../state/zero'
+import { isTauri } from '../tauri/constants'
 
 export const AuthEffects = () => {
   useAuthPassTokenToTauriEffect()
@@ -12,16 +13,18 @@ export const AuthEffects = () => {
 }
 
 const useAuthPassJWTSecretToZeroEffect = () => {
-  const { token } = useAuth()
+  const { jwtToken } = useAuth()
 
   useEffect(() => {
-    if (token) {
-      setZeroAuth(token)
+    if (jwtToken) {
+      setZeroAuth(jwtToken)
     }
-  }, [token])
+  }, [jwtToken])
 }
 
 const useAuthPassTokenToTauriEffect = () => {
+  if (!isTauri) return
+
   useEffect(() => {
     try {
       onOpenUrl(([urlString]) => {
