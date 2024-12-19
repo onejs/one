@@ -6,6 +6,7 @@ import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from 
 import { randomID } from '~/helpers/randomID'
 import { mutate } from '~/zero/zero'
 import { messagesListEmit } from './MessagesList'
+import { Editor } from '~/editor/Editor'
 
 let mainInputRef: Input | null = null
 
@@ -28,13 +29,9 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
 
   return (
     <YStack btw={1} bc="$color4" p="$2">
-      <Input
-        ref={inputRef}
-        disabled={disabled}
-        placeholder={disabled ? 'Sign in to chat...' : ''}
-        pe={disabled ? 'none' : 'auto'}
-        onKeyPress={(e) => {
-          const key = e.nativeEvent.key
+      <Editor
+        onKeyDown={(e) => {
+          const key = e.key
           switch (key) {
             case 'ArrowUp': {
               messagesListEmit({
@@ -75,14 +72,11 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             }
           }
         }}
-        onSubmitEditing={(e) => {
+        onSubmit={(content) => {
           if (!user) {
             console.error('no user')
             return
           }
-
-          const content = e.nativeEvent.text
-
           if (!content) {
             return
           }
@@ -100,10 +94,22 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             serverId: server.id,
           })
 
-          setTimeout(() => {
-            inputRef.current?.focus()
-          }, 40)
+          // setTimeout(() => {
+          //   inputRef.current?.focus()
+          // }, 40)
         }}
+      />
+    </YStack>
+  )
+
+  return (
+    <YStack btw={1} bc="$color4" p="$2">
+      <Input
+        ref={inputRef}
+        disabled={disabled}
+        placeholder={disabled ? 'Sign in to chat...' : ''}
+        pe={disabled ? 'none' : 'auto'}
+        onSubmitEditing={(e) => {}}
       />
     </YStack>
   )
