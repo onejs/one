@@ -46,6 +46,12 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
   const depsToOptimize = [
     ...needsInterop,
 
+    'fast-xml-parser',
+    'set-cookie-parser',
+    'ipaddr.js',
+    'cross-fetch',
+    'pg',
+    '@rocicorp/zero',
     'react-scan',
     'react-native-svg',
     'react-native-screens',
@@ -170,6 +176,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
       needsInterop,
       // TODO this should go away! native doesnt want this
       esbuildOptions: {
+        target: 'esnext',
         resolveExtensions: webExtensions,
       },
     } satisfies UserConfig['optimizeDeps'],

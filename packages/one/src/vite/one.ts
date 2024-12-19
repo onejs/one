@@ -201,24 +201,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin,
 
     {
-      name: 'one-zero',
-      config() {
-        if (!options.zero) {
-          return
-        }
-
-        return {
-          define: {
-            'process.env.ZERO_ENABLED': 'true',
-            TESTING: 'false',
-            REPLICACHE_VERSION: '"15.2.1"',
-            ZERO_VERSION: '"0.0.0"',
-          },
-        }
-      },
-    } satisfies Plugin,
-
-    {
       name: 'tamagui-react-19',
       config() {
         return {
