@@ -224,7 +224,7 @@ async function run() {
             const nextDeps = next[field]
             if (!nextDeps) continue
             for (const depName in nextDeps) {
-              if (nextDeps[depName].startsWith('workspace:')) {
+              if (!nextDeps[depName].startsWith('workspace:')) {
                 if (allPackageJsons.some((p) => p.name === depName)) {
                   nextDeps[depName] = version
                 }
