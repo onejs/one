@@ -1,30 +1,35 @@
 import { createAuthClient } from 'better-auth/client'
 import { createEmitter } from '~/helpers/emitter'
 
-const TOKEN_KEY = 'TOKEN_KEY'
+const keys = {
+  token: 'TOKEN_KEY',
+  session: 'SESSION_KEY',
+}
 
-const existingToken = typeof localStorage !== 'undefined' ? localStorage.getItem(TOKEN_KEY) : ''
+const existingSession =
+  typeof localStorage !== 'undefined' ? localStorage.getItem(keys.session) : ''
 
-export let authClient = existingToken
-  ? createAuthClientWithToken(existingToken)
+export let authClient = existingSession
+  ? createAuthClientWithSession(existingSession)
   : createAuthClient()
 
-export const [emit, _, useAuthClientInstanceEmitter] = createEmitter<typeof authClient>()
+export const [emit, _, useRefreshAuthClient] = createEmitter<number>()
 
 globalThis['authClient'] = authClient
 
-function createAuthClientWithToken(token: string) {
+function createAuthClientWithSession(session: string) {
   return createAuthClient({
     fetchOptions: {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${session}`,
       },
     },
   })
 }
 
-export const setAuthToken = (token: string) => {
-  localStorage.setItem(TOKEN_KEY, token)
-  authClient = createAuthClientWithToken(token)
-  emit(authClient)
+export const setAuth = ({ token, session }: { token: string; session: string }) => {
+  localStorage.setItem(keys.token, token)
+  localStorage.setItem(keys.session, session)
+  authClient = createAuthClientWithSession(session)
+  emit(Math.random())
 }
