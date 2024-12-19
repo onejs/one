@@ -2,7 +2,7 @@ import path from 'node:path'
 import * as proc from 'node:child_process'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
-import fs, { writeJSON } from 'fs-extra'
+import fs, { ensureDir, writeJSON } from 'fs-extra'
 import pMap from 'p-map'
 import prompts from 'prompts'
 import { spawnify } from './spawnify'
@@ -273,13 +273,16 @@ async function run() {
     }
 
     if (!finish) {
+      const tmpDir = `/tmp/one-publish`
+      await ensureDir(tmpDir)
+
       // if all successful, re-tag as latest
       await pMap(
         packageJsons,
         async ({ name, cwd }) => {
           const publishOptions = [canary && `--tag canary`].filter(Boolean).join(' ')
 
-          const absolutePath = `/tmp/${name.replace('/', '_')}-package.tmp.tgz`
+          const absolutePath = `${tmpDir}/${name.replace('/', '_')}-package.tmp.tgz`
           await spawnify(`yarn pack --out ${absolutePath}`, {
             cwd,
             avoidLog: true,
@@ -296,7 +299,7 @@ async function run() {
           console.info(`Publishing ${name}: ${publishCommand}`)
 
           await spawnify(publishCommand, {
-            cwd,
+            cwd: tmpDir,
           }).catch((err) => console.error(err))
         },
         {
