@@ -23,10 +23,10 @@
   },
   "dependencies": {
     "@rocicorp/zero": "^0.8.2024121204",
-    "@tamagui/linear-gradient": "^1.120.1",
-    "@tamagui/lucide-icons": "^1.120.1",
-    "@tamagui/themes": "^1.120.1",
-    "@tamagui/toast": "^1.120.1",
+    "@tamagui/linear-gradient": "^1.120.2",
+    "@tamagui/lucide-icons": "^1.120.2",
+    "@tamagui/themes": "^1.120.2",
+    "@tamagui/toast": "^1.120.2",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-fs": "^2.2.0",
@@ -37,7 +37,7 @@
     "pg": "^8.13.1",
     "react": "^18",
     "react-native": "0.74.1",
-    "tamagui": "^1.120.1"
+    "tamagui": "^1.120.2"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
