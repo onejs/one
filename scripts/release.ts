@@ -295,7 +295,7 @@ async function run() {
           }
 
           try {
-            await spawnify(`npm publish --tag prepub --access public`, {
+            await spawnify(`yarn npm publish --tag prepub`, {
               cwd,
               avoidLog: true,
             })
@@ -356,7 +356,7 @@ async function run() {
         await pMap(
           packageJsons,
           async ({ name, cwd }) => {
-            await spawnify(`npm dist-tag add ${name}@${version} ${distTag}`, {
+            await spawnify(`yarn npm tag add ${name}@${version} ${distTag}`, {
               cwd,
             }).catch((err) => console.error(err))
           },
