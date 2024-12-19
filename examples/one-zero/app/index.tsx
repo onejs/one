@@ -5,10 +5,11 @@ import { useAuth } from '~/src/better-auth/useAuth'
 import { Avatar } from '~/src/interface/Avatar'
 import { randomID } from '~/src/state/randomID'
 import { mutate, useQuery } from '~/src/state/zero'
+import { isTauri } from '~/src/tauri/constants'
 
 export default function HomePage() {
   const [messages] = useQuery((q) => q.message.orderBy('createdAt', 'desc'))
-  const { user } = useAuth()
+  const { user, jwtToken, session } = useAuth()
   const [text, setText] = useState('')
 
   return (
@@ -19,6 +20,12 @@ export default function HomePage() {
         <XStack ai="center" gap="$4">
           <Avatar image={user.image || ''} />
           <SizableText>{user.name}</SizableText>
+
+          {!isTauri && jwtToken && (
+            <a href={`one-chat://finish-auth?token=${session?.token}`}>
+              <Button>Login in Tauri</Button>
+            </a>
+          )}
         </XStack>
       ) : (
         <Button onPress={githubSignIn}>Login with Github</Button>

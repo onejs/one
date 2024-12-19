@@ -21794,6 +21794,7 @@ __metadata:
     "@tauri-apps/plugin-shell": "npm:^2"
     "@vxrn/color-scheme": "npm:1.1.345-1734464750388"
     better-auth: "npm:^1.0.10"
+    expo: "npm:~51.0.28"
     one: "npm:1.1.345-1734464750388"
     pg: "npm:^8.13.1"
     react: "npm:^18"
