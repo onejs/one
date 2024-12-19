@@ -41,6 +41,7 @@
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-fs": "^2.2.0",
     "@tauri-apps/plugin-shell": "^2",
+    "@uiw/react-md-editor": "^4.0.5",
     "@vxrn/color-scheme": "1.1.349",
     "better-auth": "1.0.10",
     "flexsearch": "^0.7.43",
