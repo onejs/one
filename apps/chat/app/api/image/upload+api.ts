@@ -1,6 +1,6 @@
 import { S3Client } from '@aws-sdk/client-s3'
 import { Upload } from '@aws-sdk/lib-storage'
-import { randomID } from '~/state/randomID'
+import { randomID } from '~/helpers/randomID'
 
 // TODO: upload folder based on user or server
 

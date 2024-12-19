@@ -1,13 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { Input, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/useAuth'
-import { useCurrentChannel, useCurrentServer } from '~/state/queries/useServer'
-import {
-  getDerivedUserState,
-  updateUserCurrentChannel,
-  useCurrentThread,
-} from '~/state/queries/useUserState'
-import { randomID } from '~/state/randomID'
+import { useCurrentChannel, useCurrentServer } from '~/state/server'
+import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
+import { randomID } from '~/helpers/randomID'
 import { mutate } from '~/state/zero'
 import { messagesListEmit } from './MessagesList'
 

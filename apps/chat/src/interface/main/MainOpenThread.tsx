@@ -1,5 +1,5 @@
 import { YStack } from 'tamagui'
-import { updateUserCurrentChannel, useCurrentThread } from '~/state/queries/useUserState'
+import { updateUserCurrentChannel, useCurrentThread } from '~/state/user'
 import { ButtonClose } from '../ButtonClose'
 import { MessagesList } from '../messages/MessagesList'
 import { MessageInput } from '../messages/MessageInput'

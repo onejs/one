@@ -1,7 +1,7 @@
 import { H3, XStack, YStack } from 'tamagui'
 import { authClient } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
-import { useUserState } from '~/state/queries/useUserState'
+import { useUserState } from '~/state/user'
 import { ListItem } from '~/interface/ListItem'
 import { Main } from '~/interface/main/Main'
 import { ThemeToggleListItem } from '~/interface/settings/ThemeToggleListItem'

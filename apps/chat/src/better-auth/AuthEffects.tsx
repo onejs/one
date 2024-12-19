@@ -12,13 +12,13 @@ export const AuthEffects = () => {
 }
 
 const useAuthPassJWTSecretToZeroEffect = () => {
-  const { token } = useAuth()
+  const { jwtToken } = useAuth()
 
   useEffect(() => {
-    if (token) {
-      setZeroAuth(token)
+    if (jwtToken) {
+      setZeroAuth(jwtToken)
     }
-  }, [token])
+  }, [jwtToken])
 }
 
 const useAuthPassTokenToTauriEffect = () => {

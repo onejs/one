@@ -15,12 +15,12 @@ import {
   YStack,
 } from 'tamagui'
 import type { ThreadWithRelations } from '~/zero/schema'
-import { useCurrentChannel, useCurrentChannelThreads } from '~/state/queries/useServer'
+import { useCurrentChannel, useCurrentChannelThreads } from '~/state/server'
 import {
   updateUserCurrentChannel,
   updateUserOpenThread,
   useUserCurrentChannelState,
-} from '~/state/queries/useUserState'
+} from '~/state/user'
 import { mutate } from '~/state/zero'
 import { OneBall } from '../brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'

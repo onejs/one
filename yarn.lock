@@ -8150,9 +8150,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rocicorp/zero@npm:^0.8.2024121204":
-  version: 0.8.2024121204
-  resolution: "@rocicorp/zero@npm:0.8.2024121204"
+"@rocicorp/zero@npm:^0.9.2024121900":
+  version: 0.9.2024121900
+  resolution: "@rocicorp/zero@npm:0.9.2024121900"
   dependencies:
     "@badrap/valita": "npm:0.3.11"
     "@databases/escape-identifier": "npm:^1.0.3"
@@ -8170,6 +8170,7 @@ __metadata:
     "@rocicorp/logger": "npm:^5.3.0"
     "@rocicorp/resolver": "npm:^1.0.2"
     "@rocicorp/zero-sqlite3": "npm:^1.0.4"
+    chalk: "npm:^5.3.0"
     chalk-template: "npm:^1.1.0"
     chokidar: "npm:^4.0.1"
     command-line-args: "npm:^6.0.1"
@@ -8200,7 +8201,7 @@ __metadata:
     zero-build-schema: out/zero/src/build-schema.js
     zero-cache: out/zero/src/cli.js
     zero-cache-dev: out/zero/src/zero-cache-dev.js
-  checksum: 10/1a5b7483cf8f95a517b13bfa301e76453de09da47f9e4bce78ea67d230869cedeeb4e6e8fd1ecf377f36fae9bd6387e397a06c26e4f7a2fda8eb3010975c1be6
+  checksum: 10/fa508e92ecda9a5ceddb5526f3d616e1a19be726206ebaab6e0c78af839d25eb9d1c257925f64786b6023bd9a1bcd57d5bfd4ae1dafb52b7ab354b7475459503
   languageName: node
   linkType: hard
 
@@ -13752,6 +13753,13 @@ __metadata:
   version: 5.3.0
   resolution: "chalk@npm:5.3.0"
   checksum: 10/6373caaab21bd64c405bfc4bd9672b145647fc9482657b5ea1d549b3b2765054e9d3d928870cdf764fb4aad67555f5061538ff247b8310f110c5c888d92397ea
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^5.3.0":
+  version: 5.4.0
+  resolution: "chalk@npm:5.4.0"
+  checksum: 10/daf2bd8ac206a117be37026c4d128c05507488877c3d30f08c3976850bed75ec15a14ea007811c564764033b92585f339828bd97adb964fae0f012ff863f334a
   languageName: node
   linkType: hard
 
@@ -21782,7 +21790,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "one-zero@workspace:examples/one-zero"
   dependencies:
-    "@rocicorp/zero": "npm:^0.8.2024121204"
+    "@rocicorp/zero": "npm:^0.9.2024121900"
     "@tamagui/config": "npm:^1.120.2"
     "@tamagui/linear-gradient": "npm:^1.120.2"
     "@tamagui/lucide-icons": "npm:^1.120.2"
@@ -21888,7 +21896,7 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:^0.27.0"
-    "@rocicorp/zero": "npm:^0.8.2024121204"
+    "@rocicorp/zero": "npm:^0.9.2024121900"
     "@tamagui/helpers-icon": "npm:^1.120.2"
     "@tamagui/linear-gradient": "npm:^1.120.2"
     "@tamagui/lucide-icons": "npm:^1.120.2"
