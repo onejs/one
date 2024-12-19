@@ -1,7 +1,7 @@
+import { AppRegistry, LogBox } from 'react-native' // This should be the first import as it might set up global variables that are needed for the other imports
 import './polyfills-mobile'
 import './setup'
 import { Root } from './Root'
-import { AppRegistry, LogBox } from 'react-native'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
