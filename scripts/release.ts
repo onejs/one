@@ -224,9 +224,10 @@ async function run() {
             const nextDeps = next[field]
             if (!nextDeps) continue
             for (const depName in nextDeps) {
-              if (nextDeps[depName].startsWith('workspace:')) continue // Skip if the version is a `workspace:` reference (https://yarnpkg.com/features/workspaces#cross-references)
-              if (allPackageJsons.some((p) => p.name === depName)) {
-                nextDeps[depName] = version
+              if (nextDeps[depName].startsWith('workspace:')) {
+                if (allPackageJsons.some((p) => p.name === depName)) {
+                  nextDeps[depName] = version
+                }
               }
             }
           }

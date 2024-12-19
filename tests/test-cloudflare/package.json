@@ -1,6 +1,6 @@
 {
   "name": "test-cloudflare",
-  "version": "1.1.348",
+  "version": "1.1.349",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "test-failing": "vitest --run"
   },
   "dependencies": {
-    "one": "workspace:*",
+    "one": "1.1.349",
     "react-native": "0.74.5"
   },
   "devDependencies": {
