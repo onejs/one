@@ -94,11 +94,17 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
       environments: {
         client: {
           optimizeDeps: {
-            include: ['react-native-screens'],
+            include: ['react-native-screens', '@rocicorp/zero'],
             esbuildOptions: {
               resolveExtensions: webExtensions,
             },
           },
+        },
+      },
+
+      optimizeDeps: {
+        esbuildOptions: {
+          target: 'esnext',
         },
       },
 
@@ -129,8 +135,6 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
     // console.debug('user config in:', JSON.stringify(userViteConfig, null, 2), `\n----\n`)
     console.debug('merged config:', JSON.stringify(serverConfig, null, 2), `\n----\n`)
   }
-
-  console.log(JSON.stringify(serverConfig, null, 2))
 
   return serverConfig
 }
