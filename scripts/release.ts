@@ -208,34 +208,34 @@ async function run() {
       }
     }
 
-    // if (!skipVersion && !finish) {
-    //   await Promise.all(
-    //     allPackageJsons.map(async ({ json, path }) => {
-    //       const next = { ...json }
+    if (!skipVersion && !finish) {
+      await Promise.all(
+        allPackageJsons.map(async ({ json, path }) => {
+          const next = { ...json }
 
-    //       next.version = version
+          next.version = version
 
-    //       for (const field of [
-    //         'dependencies',
-    //         'devDependencies',
-    //         'optionalDependencies',
-    //         'peerDependencies',
-    //       ]) {
-    //         const nextDeps = next[field]
-    //         if (!nextDeps) continue
-    //         for (const depName in nextDeps) {
-    //           if (nextDeps[depName].startsWith('workspace:')) {
-    //             if (allPackageJsons.some((p) => p.name === depName)) {
-    //               nextDeps[depName] = version
-    //             }
-    //           }
-    //         }
-    //       }
+          for (const field of [
+            'dependencies',
+            'devDependencies',
+            'optionalDependencies',
+            'peerDependencies',
+          ]) {
+            const nextDeps = next[field]
+            if (!nextDeps) continue
+            for (const depName in nextDeps) {
+              if (nextDeps[depName].startsWith('workspace:')) {
+                if (allPackageJsons.some((p) => p.name === depName)) {
+                  nextDeps[depName] = version
+                }
+              }
+            }
+          }
 
-    //       await writeJSON(path, next, { spaces: 2 })
-    //     })
-    //   )
-    // }
+          await writeJSON(path, next, { spaces: 2 })
+        })
+      )
+    }
 
     if (!finish && dryRun) {
       console.info(`Dry run, exiting before publish`)
