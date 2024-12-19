@@ -21876,9 +21876,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"onechat@workspace:apps/onechat":
+"onechat@workspace:apps/chat":
   version: 0.0.0-use.local
-  resolution: "onechat@workspace:apps/onechat"
+  resolution: "onechat@workspace:apps/chat"
   dependencies:
     "@aws-sdk/client-s3": "npm:^3.709.0"
     "@aws-sdk/lib-storage": "npm:^3.709.0"
