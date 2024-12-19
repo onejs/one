@@ -12,6 +12,9 @@ docs/.vitepress/cache
 !.yarn/sdks
 !.yarn/versions
 
+# temporary packed packages for release, created by scripts/release.ts
+package.tmp.tgz
+
 .turbo
 
 .ultra.cache.json

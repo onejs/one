@@ -11,7 +11,7 @@
     "./examples/*",
     "./tests/*"
   ],
-  "packageManager": "yarn@4.4.1",
+  "packageManager": "yarn@4.5.3",
   "engines": {
     "node": "20.17.0",
     "npm": "10.8.3"

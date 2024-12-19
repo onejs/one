@@ -224,7 +224,7 @@ async function run() {
             const nextDeps = next[field]
             if (!nextDeps) continue
             for (const depName in nextDeps) {
-              if (nextDeps[depName].startsWith('workspace:')) {
+              if (!nextDeps[depName].startsWith('workspace:')) {
                 if (allPackageJsons.some((p) => p.name === depName)) {
                   nextDeps[depName] = version
                 }
@@ -295,7 +295,18 @@ async function run() {
           }
 
           try {
-            await spawnify(`npm publish --tag prepub --access public`, {
+            await spawnify(`yarn pack --out package.tmp.tgz`, {
+              cwd,
+              avoidLog: true,
+            })
+
+            const publishCommand = [
+              'npm publish',
+              'package.tmp.tgz', // produced by `yarn pack`
+              '--tag prepub --access public',
+            ].filter(Boolean).join(' ')
+
+            await spawnify(publishCommand, {
               cwd,
               avoidLog: true,
             })
@@ -337,11 +348,22 @@ async function run() {
         await pMap(
           packageJsons,
           async ({ name, cwd }) => {
-            const tag = canary ? ` --tag canary` : ''
+            const publishOptions = [canary && `--tag canary`].filter(Boolean).join(' ')
 
-            console.info(`Publishing ${name}${tag}`)
+            await spawnify(`yarn pack --out package.tmp.tgz`, {
+              cwd,
+              avoidLog: true,
+            })
 
-            await spawnify(`npm publish${tag}`, {
+            const publishCommand = [
+              'npm publish',
+              'package.tmp.tgz', // produced by `yarn pack`
+              publishOptions,
+            ].filter(Boolean).join(' ')
+
+            console.info(`Publishing ${name}: ${publishCommand}`)
+
+            await spawnify(publishCommand, {
               cwd,
             }).catch((err) => console.error(err))
           },
@@ -356,7 +378,7 @@ async function run() {
         await pMap(
           packageJsons,
           async ({ name, cwd }) => {
-            await spawnify(`npm dist-tag add ${name}@${version} ${distTag}`, {
+            await spawnify(`yarn npm tag add ${name}@${version} ${distTag}`, {
               cwd,
             }).catch((err) => console.error(err))
           },
