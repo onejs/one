@@ -1,10 +1,10 @@
 import { Slash } from '@tamagui/lucide-icons'
 import { forwardRef, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
-import { Dialog, SizableText, useDebounceValue, type TamaguiElement } from 'tamagui'
-import { useHotMenuItems } from '~/state/queries/useHotMenu'
+import { Dialog, SizableText, type TamaguiElement } from 'tamagui'
 import { ButtonSimple } from '~/interface/ButtonSimple'
-import { updateUserState, useUserState } from '~/state/queries/useUserState'
+import { useHotMenuItems } from '~/state/hotMenu'
+import { updateUserState, useUserState } from '~/state/user'
 import { Row } from '../Row'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
 

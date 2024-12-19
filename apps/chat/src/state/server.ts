@@ -1,6 +1,6 @@
 import { useAuth } from '~/better-auth/useAuth'
-import { useQuery } from '../zero'
-import { useUserState } from './useUserState'
+import { useQuery } from './zero'
+import { useUserState } from './user'
 
 export const useServersQuery = () => useQuery((q) => q.server)
 

@@ -1,7 +1,7 @@
 import type { Server } from '~/zero/schema'
-import { currentUser, updateUserState } from '../queries/useUserState'
-import { randomID } from '../randomID'
-import { mutate } from '../zero'
+import { currentUser, updateUserState } from './user'
+import { randomID } from '../helpers/randomID'
+import { mutate } from './zero'
 
 export const insertServer = async (server: Partial<Server>) => {
   if (!currentUser) {

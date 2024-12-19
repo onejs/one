@@ -1,7 +1,7 @@
 import { type Query, type QueryType, type Smash, Zero } from '@rocicorp/zero'
 import { useZero, useQuery as useZeroQuery } from '@rocicorp/zero/react'
-import { type Schema, schema } from '~/zero/schema'
 import { createEmitter } from '~/helpers/emitter'
+import { type Schema, schema } from '~/zero/schema'
 
 export let zero = createZero()
 
@@ -19,13 +19,12 @@ function createZero({ auth, userID = 'anon' }: { auth?: string; userID?: string 
   })
 }
 
-// TODO add userID
 export function setZeroAuth(jwtSecret: string) {
-  // slowing down
+  // disabling for now
   // zero = createZero({
   //   auth: jwtSecret,
   // })
-  // emitter.trigger(zero)
+  // zeroEmit(zero)
 }
 
 export const mutate = zero.mutate

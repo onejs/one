@@ -1,6 +1,6 @@
-import { useCurrentChannelMessages } from '~/state/queries/useServer'
+import { useCurrentChannelMessages } from '~/state/server'
 import { MessagesList } from '../messages/MessagesList'
-import { useCurrentThread } from '~/state/queries/useUserState'
+import { useCurrentThread } from '~/state/user'
 
 export const MainMessagesList = () => {
   const messages = useCurrentChannelMessages() || []

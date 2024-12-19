@@ -3,12 +3,8 @@ import { YStack } from 'tamagui'
 import { VList, type VListHandle } from 'virtua'
 import type { MessageWithRelations } from '~/zero/schema'
 import { useAuth } from '~/better-auth/useAuth'
-import { useCurrentChannel } from '~/state/queries/useServer'
-import {
-  getUserState,
-  updateUserCurrentChannel,
-  updateUserOpenThread,
-} from '~/state/queries/useUserState'
+import { useCurrentChannel } from '~/state/server'
+import { getUserState, updateUserCurrentChannel, updateUserOpenThread } from '~/state/user'
 import { createEmitter } from '~/helpers/emitter'
 import { MessageItem } from './MessageItem'
 

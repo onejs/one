@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button, Dialog, Input, ScrollView, XStack, YStack } from 'tamagui'
-import { insertServer } from '~/state/actions/mutateServer'
+import { insertServer } from '~/state/mutateServer'
 import { createEmitter } from '~/helpers/emitter'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
