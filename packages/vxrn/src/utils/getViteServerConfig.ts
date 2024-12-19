@@ -130,5 +130,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled) {
     console.debug('merged config:', JSON.stringify(serverConfig, null, 2), `\n----\n`)
   }
 
+  console.log(JSON.stringify(serverConfig, null, 2))
+
   return serverConfig
 }

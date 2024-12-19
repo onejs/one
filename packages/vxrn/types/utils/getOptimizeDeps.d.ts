@@ -6,6 +6,7 @@ export declare function getOptimizeDeps(mode: 'build' | 'serve'): {
         exclude: string[];
         needsInterop: string[];
         esbuildOptions: {
+            target: string;
             resolveExtensions: string[];
         };
     };

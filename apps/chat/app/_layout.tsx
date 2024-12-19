@@ -1,5 +1,6 @@
-import './app.css'
-import './tamagui.css'
+import './_layout.css'
+import '~/editor/markdown.css'
+import '~/tamagui/tamagui.css'
 
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { ToastProvider, ToastViewport } from '@tamagui/toast'
