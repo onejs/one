@@ -21809,6 +21809,7 @@ __metadata:
     pg: "npm:^8.13.1"
     react: "npm:^18"
     react-native: "npm:0.74.1"
+    react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.120.2"
     tsx: "npm:^4.19.2"
   languageName: unknown

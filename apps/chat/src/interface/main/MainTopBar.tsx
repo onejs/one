@@ -21,7 +21,7 @@ import {
   updateUserOpenThread,
   useUserCurrentChannelState,
 } from '~/state/user'
-import { mutate } from '~/state/zero'
+import { mutate } from '~/zero/zero'
 import { OneBall } from '../brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
 import { Checkbox } from '../Checkbox'

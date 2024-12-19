@@ -2,7 +2,7 @@ import { Button, YStack } from 'tamagui'
 import type { Message } from '~/zero/schema'
 import { useCurrentChannel } from '~/state/server'
 import { randomID } from '~/helpers/randomID'
-import { mutate, resolve, zero } from '~/state/zero'
+import { mutate, resolve, zero } from '~/zero/zero'
 import { getRandomItem } from '~/helpers/getRandomItem'
 import { toast } from '~/interface/Toast'
 

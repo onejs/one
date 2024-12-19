@@ -1,26 +1,6 @@
 import { merge } from 'ts-deepmerge'
-import type { User } from '~/zero/schema'
-import { mutate, useQuery } from '~/state/zero'
-
-type UserState = {
-  serversSort?: string[]
-  activeServer?: string
-  // serverId to channelId
-  activeChannels: Record<string, string>
-  showSidePanel?: 'user' | 'settings'
-  showHotMenu?: boolean
-  channelState?: ChannelsState
-}
-
-type ChannelsState = {
-  [server_and_channel_id: string]: ChannelState
-}
-
-type ChannelState = {
-  mainView?: 'thread' | 'chat'
-  focusedMessageId?: string
-  openedThreadId?: string
-}
+import type { User, UserState } from '~/zero/schema'
+import { mutate, useQuery } from '~/zero/zero'
 
 // TODO
 export let currentUser = null as User | null
@@ -29,7 +9,7 @@ const getJustUserState = () => {
   return {
     activeChannels: {},
     ...(currentUser?.state ?? {}),
-  } as UserState
+  }
 }
 
 export const getDerivedUserState = () => {
@@ -62,7 +42,7 @@ export const updateUserState = async (next: Partial<UserState>) => {
 
   const nextUser = {
     ...currentUser,
-    state: merge(getJustUserState(), next),
+    state: merge(getJustUserState(), next) as UserState,
   }
 
   console.warn('mutating', nextUser)

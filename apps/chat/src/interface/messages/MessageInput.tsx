@@ -4,7 +4,7 @@ import { useAuth } from '~/better-auth/useAuth'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
 import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
 import { randomID } from '~/helpers/randomID'
-import { mutate } from '~/state/zero'
+import { mutate } from '~/zero/zero'
 import { messagesListEmit } from './MessagesList'
 
 let mainInputRef: Input | null = null
