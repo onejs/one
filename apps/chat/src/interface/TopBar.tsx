@@ -1,22 +1,24 @@
 import { ChevronLeft, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
 import { memo, useRef } from 'react'
-import { H1, H3, Input, TooltipSimple, XStack } from 'tamagui'
+import { useHotkeys } from 'react-hotkeys-hook'
+import { H1, Input, TooltipSimple, XStack } from 'tamagui'
 import { githubSignIn } from '~/better-auth/githubSignIn'
 import { useAuth } from '~/better-auth/useAuth'
-import { updateUserState, useUserState } from '~/state/user'
 import { HotMenu } from '~/interface/hotmenu/HotMenu'
-import { isTauri } from '~/tauri/constants'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
+import { updateUserState, useUserState } from '~/state/user'
+import { isTauri } from '~/tauri/constants'
 import { Avatar } from './Avatar'
 import { ButtonSimple } from './ButtonSimple'
-import { useHotkeys } from 'react-hotkeys-hook'
 
 export const TopBar = memo(() => {
-  const { user, session, jwtToken } = useAuth()
+  const { session, jwtToken } = useAuth()
 
   const server = useCurrentServer()
   const channel = useCurrentChannel()
   const [userState] = useUserState()
+
+  const authTauriDeepLink = `one-chat://finish-auth?session=${session?.token || ''}&token=${jwtToken}`
 
   return (
     <XStack
@@ -72,7 +74,7 @@ export const TopBar = memo(() => {
         <UserButton />
 
         {!isTauri && jwtToken && (
-          <a href={`one-chat://finish-auth?token=${session?.token}`}>
+          <a href={authTauriDeepLink}>
             <ButtonSimple>Open native app</ButtonSimple>
           </a>
         )}

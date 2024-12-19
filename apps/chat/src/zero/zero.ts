@@ -19,10 +19,9 @@ function createZero({ auth, userID = 'anon' }: { auth?: string; userID?: string 
   })
 }
 
-export function setZeroAuth(jwtSecret: string) {
-  // disabling for now
+export function setZeroAuth(jwtToken: string) {
   // zero = createZero({
-  //   auth: jwtSecret,
+  //   auth: jwtToken,
   // })
   // zeroEmit(zero)
 }

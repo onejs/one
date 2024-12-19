@@ -1,10 +1,11 @@
-import { invoke } from '@tauri-apps/api/core'
 import { Moon, Sun, SunMoon } from '@tamagui/lucide-icons'
+import { invoke } from '@tauri-apps/api/core'
 import { useSchemeSetting } from '@vxrn/color-scheme'
+import { useLayoutEffect } from 'react'
 import { Appearance } from 'react-native'
 import { isWeb } from 'tamagui'
+import { isTauri } from '~/tauri/constants'
 import { ListItem } from '../ListItem'
-import { useLayoutEffect } from 'react'
 
 const schemeSettings = ['light', 'dark', 'system'] as const
 
@@ -44,6 +45,7 @@ export function useToggleTheme() {
 }
 
 const setDarkModeTauri = async (isDarkMode: boolean) => {
+  if (!isTauri) return
   try {
     await invoke('set_vibrancy', { isDarkMode })
   } catch (e) {
