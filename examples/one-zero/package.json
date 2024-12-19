@@ -1,0 +1,52 @@
+{
+  "name": "one-zero",
+  "version": "1.1.345-1734464750388",
+  "private": true,
+  "sideEffects": false,
+  "files": [],
+  "type": "module",
+  "scripts": {
+    "build:icon": "tauri icon ./src-tauri/icons/icon.png",
+    "build:tauri": "tauri build --debug",
+    "build:web": "one build",
+    "data:reset": "docker compose down; docker volume rm one-zero_pgdata; rm /tmp/onezero_replica.db",
+    "dev": "one dev --port 1421",
+    "dev:clean": "one dev --clean",
+    "dev:tauri": "tauri dev",
+    "dev:ios": "one run:ios",
+    "dev:android": "one run:android",
+    "docker": "docker compose --env-file .env",
+    "docker:start:clean": "yarn data:reset; yarn docker up",
+    "migrate:auth": "npx @better-auth/cli migrate --config ./src/better-auth/auth.ts",
+    "seed": "tsx ./src/postgres/seed.ts",
+    "serve": "one serve",
+    "zero": "yarn zero:build-schema && zero-cache --schema-file ./src/zero/zero-schema.json",
+    "zero:build-schema": "cd ./src/zero && zero-build-schema -p './schema.ts'"
+  },
+  "dependencies": {
+    "@rocicorp/zero": "^0.8.2024121204",
+    "@tamagui/linear-gradient": "^1.120.2",
+    "@tamagui/lucide-icons": "^1.120.2",
+    "@tamagui/themes": "^1.120.2",
+    "@tamagui/toast": "^1.120.2",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-deep-link": "^2.0.1",
+    "@tauri-apps/plugin-fs": "^2.2.0",
+    "@tauri-apps/plugin-shell": "^2",
+    "@vxrn/color-scheme": "1.1.345-1734464750388",
+    "better-auth": "^1.0.10",
+    "expo": "~51.0.28",
+    "one": "1.1.345-1734464750388",
+    "pg": "^8.13.1",
+    "react": "^18",
+    "react-native": "0.74.1",
+    "tamagui": "^1.120.2"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "tsx": "^4.19.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

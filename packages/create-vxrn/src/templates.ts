@@ -3,28 +3,14 @@ import * as BasicTemplateSteps from './steps/one'
 
 export const templates = [
   {
-    title: `Minimal Tamagui`,
-    value: 'Tamagui',
+    title: `One + Zero`,
+    value: 'one-zero',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
       url: `https://github.com/onejs/one.git`,
       sshFallback: `git@github.com:onejs/one.git`,
-      dir: [`examples`, `one-tamagui`],
-      branch: 'main',
-    },
-    ...BasicTemplateSteps,
-  },
-
-  {
-    title: `Fullstack - Drizzle, Postgres, Tamagui, Biome`,
-    value: 'Recommended',
-    type: 'included-in-monorepo',
-    hidden: false,
-    repo: {
-      url: `https://github.com/onejs/one.git`,
-      sshFallback: `git@github.com:onejs/one.git`,
-      dir: [`examples`, `one-recommended`],
+      dir: [`examples`, `one-zero`],
       branch: 'main',
     },
     ...BasicTemplateSteps,
@@ -39,6 +25,34 @@ export const templates = [
       url: `https://github.com/onejs/one.git`,
       sshFallback: `git@github.com:onejs/one.git`,
       dir: [`examples`, `one-basic`],
+      branch: 'main',
+    },
+    ...BasicTemplateSteps,
+  },
+
+  {
+    title: `Minimal Tamagui`,
+    value: 'Tamagui',
+    type: 'included-in-monorepo',
+    hidden: false,
+    repo: {
+      url: `https://github.com/onejs/one.git`,
+      sshFallback: `git@github.com:onejs/one.git`,
+      dir: [`examples`, `one-tamagui`],
+      branch: 'main',
+    },
+    ...BasicTemplateSteps,
+  },
+
+  {
+    title: `Fullstack Traditional - Drizzle, Postgres, Tamagui`,
+    value: 'Recommended',
+    type: 'included-in-monorepo',
+    hidden: false,
+    repo: {
+      url: `https://github.com/onejs/one.git`,
+      sshFallback: `git@github.com:onejs/one.git`,
+      dir: [`examples`, `one-recommended`],
       branch: 'main',
     },
     ...BasicTemplateSteps,

@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.120.1",
+    "@tamagui/build": "^1.120.2",
     "vite": "^6.0.3"
   },
   "publishConfig": {

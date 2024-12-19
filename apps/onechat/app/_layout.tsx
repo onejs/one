@@ -1,6 +1,4 @@
 import './app.css'
-import './fonts.css'
-import './syntax-highlight.css'
 import './tamagui.css'
 
 import { ZeroProvider } from '@rocicorp/zero/react'
