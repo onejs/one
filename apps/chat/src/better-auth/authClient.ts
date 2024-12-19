@@ -5,6 +5,8 @@ const TOKEN_KEY = 'TOKEN_KEY'
 
 const existingToken = typeof localStorage !== 'undefined' ? localStorage.getItem(TOKEN_KEY) : ''
 
+console.log('existingToken', existingToken)
+
 export let authClient = existingToken
   ? createAuthClientWithToken(existingToken)
   : createAuthClient()

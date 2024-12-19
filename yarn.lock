@@ -13231,7 +13231,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"better-auth@npm:^1.0.10":
+"better-auth@npm:1.0.10":
   version: 1.0.10
   resolution: "better-auth@npm:1.0.10"
   dependencies:
@@ -21795,7 +21795,7 @@ __metadata:
     "@tauri-apps/plugin-fs": "npm:^2.2.0"
     "@tauri-apps/plugin-shell": "npm:^2"
     "@vxrn/color-scheme": "npm:1.1.346"
-    better-auth: "npm:^1.0.10"
+    better-auth: "npm:1.0.10"
     expo: "npm:~51.0.28"
     one: "npm:1.1.346"
     pg: "npm:^8.13.1"
@@ -21902,7 +21902,7 @@ __metadata:
     "@tauri-apps/plugin-fs": "npm:^2.2.0"
     "@tauri-apps/plugin-shell": "npm:^2"
     "@vxrn/color-scheme": "npm:1.1.346"
-    better-auth: "npm:^1.0.10"
+    better-auth: "npm:1.0.10"
     flexsearch: "npm:^0.7.43"
     one: "npm:1.1.346"
     pg: "npm:^8.13.1"
@@ -28160,14 +28160,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.22.3":
+"zod@npm:^3.22.3, zod@npm:^3.22.5":
   version: 3.24.1
   resolution: "zod@npm:3.24.1"
   checksum: 10/54e25956495dec22acb9399c168c6ba657ff279801a7fcd0530c414d867f1dcca279335e160af9b138dd70c332e17d548be4bc4d2f7eaf627dead50d914fec27
   languageName: node
   linkType: hard
 
-"zod@npm:^3.22.5, zod@npm:^3.23.8":
+"zod@npm:^3.23.8":
   version: 3.23.8
   resolution: "zod@npm:3.23.8"
   checksum: 10/846fd73e1af0def79c19d510ea9e4a795544a67d5b34b7e1c4d0425bf6bfd1c719446d94cdfa1721c1987d891321d61f779e8236fde517dc0e524aa851a6eff1

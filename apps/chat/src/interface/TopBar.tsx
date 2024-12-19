@@ -13,6 +13,7 @@ import { useHotkeys } from 'react-hotkeys-hook'
 
 export const TopBar = memo(() => {
   const { user, session, jwtToken } = useAuth()
+
   const server = useCurrentServer()
   const channel = useCurrentChannel()
   const [userState] = useUserState()
