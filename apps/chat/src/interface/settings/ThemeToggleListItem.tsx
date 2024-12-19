@@ -17,7 +17,7 @@ export function ThemeToggleListItem() {
 
   return (
     <ListItem onPress={onPress} icon={Icon}>
-      {setting[0].toUpperCase()}
+      Theme: {setting[0].toUpperCase()}
       {setting.slice(1)}
     </ListItem>
   )
@@ -45,7 +45,6 @@ export function useToggleTheme() {
 
 const setDarkModeTauri = async (isDarkMode: boolean) => {
   try {
-    console.log('invoking')
     await invoke('set_vibrancy', { isDarkMode })
   } catch (e) {
     console.error('Error applying vibrancy:', e)

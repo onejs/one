@@ -1,14 +1,11 @@
-import { H3, XStack, YStack } from 'tamagui'
-import { authClient } from '~/better-auth/authClient'
-import { DevTools } from '~/dev/DevTools'
-import { useUserState } from '~/state/user'
-import { ListItem } from '~/interface/ListItem'
+import { XStack, YStack } from 'tamagui'
 import { Main } from '~/interface/main/Main'
-import { ThemeToggleListItem } from '~/interface/settings/ThemeToggleListItem'
+import { AccountSettingsPane } from '~/interface/settings/AccountSettingsPane'
+import { hiddenPanelWidth } from '~/interface/settings/constants'
+import { ServerSettingsPane } from '~/interface/settings/ServerSettingsPane'
 import { Sidebar } from '~/interface/sidebar/Sidebar'
 import { TopBar } from '~/interface/TopBar'
-
-const hiddenPanelWidth = 300
+import { useUserState } from '~/state/user'
 
 export default function HomePage() {
   const [userState] = useUserState()
@@ -31,55 +28,10 @@ const RightSideHiddenPanel = () => {
   const [userState] = useUserState()
 
   if (userState?.showSidePanel === 'settings') {
-    return <RightSideSettings />
+    return <ServerSettingsPane />
   }
 
-  return <RightSideAccount />
-}
-
-const RightSideSettings = () => {
-  return (
-    <YStack
-      h="100%"
-      data-tauri-drag-region
-      pos="absolute"
-      t={0}
-      r={-hiddenPanelWidth}
-      w={hiddenPanelWidth}
-      p="$4"
-      gap="$4"
-    >
-      <H3>Settings</H3>
-
-      <ThemeToggleListItem />
-
-      <DevTools />
-    </YStack>
-  )
-}
-
-const RightSideAccount = () => {
-  return (
-    <YStack
-      h="100%"
-      data-tauri-drag-region
-      pos="absolute"
-      t={0}
-      r={-hiddenPanelWidth}
-      w={hiddenPanelWidth}
-      p="$4"
-      gap="$4"
-    >
-      <H3>Account</H3>
-      <ListItem
-        onPress={() => {
-          authClient.signOut()
-        }}
-      >
-        Logout
-      </ListItem>
-    </YStack>
-  )
+  return <AccountSettingsPane />
 }
 
 // <a target="_blank" href={window.location.origin + '/login-github'} rel="noreferrer">

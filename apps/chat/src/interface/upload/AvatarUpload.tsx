@@ -8,7 +8,10 @@ interface UploadResponse {
   error?: string
 }
 
-export const AvatarUpload = ({ onChangeImage }: { onChangeImage: (cb: string) => void }) => {
+export const AvatarUpload = ({
+  defaultImage,
+  onChangeImage,
+}: { defaultImage?: string; onChangeImage: (cb: string) => void }) => {
   const [uploadUrl, setUploadUrl] = useState('')
   const [progress, setProgress] = useState(0)
   const [errorMessage, setErrorMessage] = useState('')
@@ -89,7 +92,7 @@ export const AvatarUpload = ({ onChangeImage }: { onChangeImage: (cb: string) =>
         bg: '$color4',
       })}
     >
-      <Avatar size={100} image={uploadUrl} />
+      <Avatar size={100} image={uploadUrl || defaultImage} />
 
       <form action={endpoint} method="post" encType="multipart/form-data">
         <YStack>

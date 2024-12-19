@@ -87,7 +87,6 @@ export const DialogCreateJoinServer = () => {
 const DialogCreateServerContent = (props: TabContentPaneProps) => {
   const isActive = props.active === props.value
   const [image, setImage] = useState('')
-
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
