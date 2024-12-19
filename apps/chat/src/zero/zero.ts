@@ -19,11 +19,12 @@ function createZero({ auth, userID = 'anon' }: { auth?: string; userID?: string 
   })
 }
 
-export function setZeroAuth(jwtToken: string) {
-  // zero = createZero({
-  //   auth: jwtToken,
-  // })
-  // zeroEmit(zero)
+export function setZeroAuth({ jwtToken, userID }: { jwtToken: string; userID: string }) {
+  zero = createZero({
+    auth: jwtToken,
+    userID,
+  })
+  zeroEmit(zero)
 }
 
 export const mutate = zero.mutate
