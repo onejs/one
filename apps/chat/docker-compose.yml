@@ -23,7 +23,7 @@ services:
       -c hot_standby=on 
       -c hot_standby_feedback=on
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
       - ./src/postgres/:/docker-entrypoint-initdb.d
 
   seeder:
@@ -38,5 +38,5 @@ services:
     command: sh -c "bun install && bun run seed.ts"
 
 volumes:
-  postgres_data:
+  pgdata:
     driver: local
