@@ -295,7 +295,18 @@ async function run() {
           }
 
           try {
-            await spawnify(`yarn npm publish --tag prepub`, {
+            await spawnify(`yarn pack --out package.tmp.tgz`, {
+              cwd,
+              avoidLog: true,
+            })
+
+            const publishCommand = [
+              'npm publish',
+              'package.tmp.tgz', // produced by `yarn pack`
+              '--tag prepub --access public',
+            ].filter(Boolean).join(' ')
+
+            await spawnify(publishCommand, {
               cwd,
               avoidLog: true,
             })
@@ -337,11 +348,22 @@ async function run() {
         await pMap(
           packageJsons,
           async ({ name, cwd }) => {
-            const tag = canary ? ` --tag canary` : ''
+            const publishOptions = [canary && `--tag canary`].filter(Boolean).join(' ')
 
-            console.info(`Publishing ${name}${tag}`)
+            await spawnify(`yarn pack --out package.tmp.tgz`, {
+              cwd,
+              avoidLog: true,
+            })
 
-            await spawnify(`npm publish${tag}`, {
+            const publishCommand = [
+              'npm publish',
+              'package.tmp.tgz', // produced by `yarn pack`
+              publishOptions,
+            ].filter(Boolean).join(' ')
+
+            console.info(`Publishing ${name}: ${publishCommand}`)
+
+            await spawnify(publishCommand, {
               cwd,
             }).catch((err) => console.error(err))
           },
