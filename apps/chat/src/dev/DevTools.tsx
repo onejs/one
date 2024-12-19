@@ -4,7 +4,7 @@ import { useCurrentChannel } from '~/state/server'
 import { randomID } from '~/helpers/randomID'
 import { mutate, resolve, zero } from '~/zero/zero'
 import { getRandomItem } from '~/helpers/getRandomItem'
-import { toast } from '~/interface/Toast'
+import { showToast } from '~/interface/Toast'
 
 export const DevTools = () => {
   const channel = useCurrentChannel()
@@ -29,7 +29,7 @@ export const DevTools = () => {
       <Button
         onPress={async () => {
           if (!channel) {
-            toast('No channel!')
+            showToast('No channel!')
             return
           }
 
