@@ -6,6 +6,7 @@ import {
   useListNavigation,
   useRole,
 } from '@floating-ui/react'
+import { createEmitter } from '@vxrn/emitter'
 import { createContext, forwardRef, useContext, useMemo, useRef, useState } from 'react'
 import {
   type Input,
@@ -15,7 +16,6 @@ import {
   useGet,
   usePropsAndStyle,
 } from 'tamagui'
-import { createEmitter } from '~/helpers/emitter'
 
 type ContextType = {
   getItemProps: (index: number) => any
@@ -30,7 +30,7 @@ type ContextType = {
 
 const Context = createContext<null | ContextType>(null)
 
-const [activeIndexEmit, _, useActiveIndex] = createEmitter<number>()
+const emitter = createEmitter<number>()
 
 export function SearchableList<A>({
   items,
@@ -52,7 +52,7 @@ export function SearchableList<A>({
     onNavigate: (index) => {
       if (typeof index === 'number') {
         setActiveIndex(index)
-        activeIndexEmit(index)
+        emitter.emit(index)
       }
     },
   })
@@ -128,7 +128,7 @@ export const SearchableListItem = ({
   const context = useContext(Context)
   const [active, setActive] = useState(false)
 
-  useActiveIndex((cur) => {
+  emitter.use((cur) => {
     setActive(index === cur)
   })
 

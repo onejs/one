@@ -2,14 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "rootDir": ".",
-    "outDir": "dist",
-    "paths": {
-      "~/*": [
-        "./src/*"
-      ]
-    },
     "importHelpers": true,
     "allowJs": false,
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": false,
@@ -34,9 +29,9 @@
     "strictNullChecks": true,
     "target": "es2020",
     "types": [
+      "vite/client",
       "node",
-      "react",
-      "vite/client"
+      "react"
     ],
     "lib": [
       "dom",
@@ -44,7 +39,6 @@
     ]
   },
   "exclude": [
-    "node_modules",
     "**/test",
     "**/dist",
     "**/types",

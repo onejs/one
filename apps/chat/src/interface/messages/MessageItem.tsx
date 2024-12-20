@@ -11,7 +11,7 @@ import {
   YStack,
 } from 'tamagui'
 import type { Channel, Message, MessageWithRelations, Reaction, Thread, User } from '~/zero/schema'
-import { useAuth } from '~/better-auth/useAuth'
+import { useAuth } from '~/better-auth/authClient'
 import { currentUser, updateUserOpenThread, useUserCurrentChannelState } from '~/state/user'
 import { randomID } from '~/helpers/randomID'
 import { mutate, useQuery } from '~/zero/zero'

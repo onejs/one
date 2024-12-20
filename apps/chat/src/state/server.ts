@@ -1,4 +1,4 @@
-import { useAuth } from '~/better-auth/useAuth'
+import { useAuth } from '~/better-auth/authClient'
 import { useQuery } from '../zero/zero'
 import { useUserState } from './user'
 

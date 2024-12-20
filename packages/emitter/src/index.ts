@@ -13,20 +13,14 @@ export class Emitter<T> {
   emit = <T>(next: T) => {
     this.disposables.forEach((cb) => cb(next))
   }
+
+  use = (cb: (cb: T) => void, args?: any[]) => {
+    useEffect(() => {
+      return this.listen(cb)
+    }, args ?? [])
+  }
 }
 
 export function createEmitter<T>() {
-  const listenable = new Emitter<T>()
-
-  const useListener = (cb: (cb: T) => void, args?: any[]) => {
-    useEffect(() => {
-      return listenable.listen(cb)
-    }, args ?? [])
-  }
-
-  return [
-    listenable.emit as (next: T) => void,
-    listenable.listen as (disposable: (cb: T) => void) => () => void,
-    useListener,
-  ] as const
+  return new Emitter<T>()
 }

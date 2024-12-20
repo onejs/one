@@ -35,7 +35,7 @@
     "@tauri-apps/plugin-fs": "^2.2.0",
     "@tauri-apps/plugin-shell": "^2",
     "@vxrn/color-scheme": "workspace:*",
-    "better-auth": "1.0.10",
+    "better-auth": "1.0.23-beta.3",
     "expo": "~51.0.28",
     "one": "workspace:*",
     "pg": "^8.13.1",

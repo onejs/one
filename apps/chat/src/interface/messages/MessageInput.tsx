@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { Input, YStack } from 'tamagui'
-import { useAuth } from '~/better-auth/useAuth'
+import { useAuth } from '~/better-auth/authClient'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
 import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
 import { randomID } from '~/helpers/randomID'
 import { mutate } from '~/zero/zero'
-import { messagesListEmit } from './MessagesList'
+import { messagesListEmitter } from './MessagesList'
 import { Editor } from '~/editor/Editor'
 
 let mainInputRef: Input | null = null
@@ -34,7 +34,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
           const key = e.key
           switch (key) {
             case 'ArrowUp': {
-              messagesListEmit({
+              messagesListEmitter.emit({
                 type: 'move',
                 value: 'up',
               })
@@ -42,7 +42,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             }
 
             case 'ArrowDown': {
-              messagesListEmit({
+              messagesListEmitter.emit({
                 type: 'move',
                 value: 'down',
               })
@@ -50,7 +50,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             }
 
             case 'Enter': {
-              messagesListEmit({
+              messagesListEmitter.emit({
                 type: 'select',
               })
               break

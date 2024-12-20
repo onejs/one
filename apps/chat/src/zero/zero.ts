@@ -1,11 +1,13 @@
 import { type Query, type QueryType, type Smash, Zero } from '@rocicorp/zero'
 import { useZero, useQuery as useZeroQuery } from '@rocicorp/zero/react'
-import { createEmitter } from '~/helpers/emitter'
+import { createEmitter } from '@vxrn/emitter'
 import { type Schema, schema } from '~/zero/schema'
 
 export let zero = createZero()
 
-export const [zeroEmit, useZeroEmit] = createEmitter<typeof zero>()
+export const zeroEmitter = createEmitter<typeof zero>()
+export const zeroEmit = zeroEmitter.emit
+export const useZeroEmit = zeroEmitter.use
 
 function createZero({ auth, userID = 'anon' }: { auth?: string; userID?: string } = {}) {
   return new Zero({
