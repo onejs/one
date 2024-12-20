@@ -1,7 +1,12 @@
 import { useState } from 'react'
+import { isWeb } from 'tamagui'
 import { type DragDropEvent, useDragDrop } from '~/tauri/useDragDrop'
 
 export const DragDropFile = (props: { children: any }) => {
+  if (!isWeb) {
+    return props.children
+  }
+
   const [state, setState] = useState<DragDropEvent | null>(null)
 
   useDragDrop((event) => {

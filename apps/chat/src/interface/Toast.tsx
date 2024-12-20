@@ -1,3 +1,4 @@
+import { ToastProvider as TamaguiToastProvider, ToastViewport } from '@tamagui/toast'
 import { Toast, useToastController, useToastState } from '@tamagui/toast'
 import { YStack } from 'tamagui'
 
@@ -14,7 +15,17 @@ export const hideToast = () => {
   controller.hide()
 }
 
-export const ToastDisplay = () => {
+export const ToastProvider = ({ children }: { children: any }) => {
+  return (
+    <TamaguiToastProvider swipeDirection="horizontal">
+      <ToastDisplay />
+      <ToastViewport flexDirection="column-reverse" top={0} left={0} right={0} mx="auto" />
+      {children}
+    </TamaguiToastProvider>
+  )
+}
+
+const ToastDisplay = () => {
   const currentToast = useToastState()
 
   controller = useToastController()
