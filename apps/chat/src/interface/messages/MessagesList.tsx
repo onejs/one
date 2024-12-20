@@ -2,10 +2,10 @@ import { memo, useEffect, useLayoutEffect, useRef } from 'react'
 import { YStack } from 'tamagui'
 import { VList, type VListHandle } from 'virtua'
 import type { MessageWithRelations } from '~/zero/schema'
-import { useAuth } from '~/better-auth/useAuth'
+import { useAuth } from '~/better-auth/authClient'
 import { useCurrentChannel } from '~/state/server'
 import { getUserState, updateUserCurrentChannel, updateUserOpenThread } from '~/state/user'
-import { createEmitter } from '~/helpers/emitter'
+import { createEmitter } from '@vxrn/emitter'
 import { MessageItem } from './MessageItem'
 
 type MessagesListActions =
@@ -17,7 +17,7 @@ type MessagesListActions =
       type: 'select'
     }
 
-export const [messagesListEmit, _, useEmitter] = createEmitter<MessagesListActions>()
+export const messagesListEmitter = createEmitter<MessagesListActions>()
 
 export const MessagesList = memo(
   ({ messages, disableEvents }: { messages: MessageWithRelations[]; disableEvents?: boolean }) => {
@@ -28,7 +28,7 @@ export const MessagesList = memo(
     const isPrepend = useRef(false)
     const lastIndex = useRef(0)
 
-    useEmitter(
+    messagesListEmitter.use(
       (action) => {
         if (disableEvents) return
 

@@ -25,7 +25,7 @@ import { mutate } from '~/zero/zero'
 import { ListItem } from '../ListItem'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Lock, Plus } from '@tamagui/lucide-icons'
-import { useAuth } from '~/better-auth/useAuth'
+import { useAuth } from '~/better-auth/authClient'
 
 // TODO organize/enforce
 // id order

@@ -2,8 +2,7 @@ import { ChevronLeft, Search, Settings2, UserCircle } from '@tamagui/lucide-icon
 import { memo, useRef } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { H1, Input, TooltipSimple, XStack } from 'tamagui'
-import { githubSignIn } from '~/better-auth/githubSignIn'
-import { useAuth } from '~/better-auth/useAuth'
+import { authClient, useAuth } from '~/better-auth/authClient'
 import { HotMenu } from '~/interface/hotmenu/HotMenu'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
 import { updateUserState, useUserState } from '~/state/user'
@@ -116,7 +115,9 @@ const UserButton = () => {
 
           if (!isTauri) {
             e.preventDefault()
-            githubSignIn()
+            authClient.signIn.social({
+              provider: 'github',
+            })
             return
           }
         }}

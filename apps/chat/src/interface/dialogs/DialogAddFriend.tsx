@@ -1,16 +1,16 @@
 import { UserCheck, UserPlus, UserX } from '@tamagui/lucide-icons'
+import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useRef, useState } from 'react'
 import { Dialog, Input, TooltipSimple, XStack, YStack } from 'tamagui'
+import { useAuth } from '~/better-auth/authClient'
 import type { Friendship, User } from '~/zero/schema'
-import { useAuth } from '~/better-auth/useAuth'
 import { mutate, useQuery } from '~/zero/zero'
-import { createEmitter } from '~/helpers/emitter'
 import { Avatar } from '../Avatar'
 import { Row } from '../Row'
 import { dialogConfirm } from './DialogConfirm'
 import { DialogContent, dialogEmit, DialogOverlay, useDialogEmit } from './shared'
 
-const [emit, listen] = createEmitter<boolean>()
+const emitter = createEmitter<boolean>()
 
 export const dialogAddFriend = async () => {
   dialogEmit({
@@ -18,15 +18,15 @@ export const dialogAddFriend = async () => {
   })
 
   return new Promise((res) => {
-    const dispose = listen((val) => {
+    const dispose = emitter.listen((val) => {
       dispose()
       res(val)
     })
   })
 }
 
-const success = () => emit(true)
-const cancel = () => emit(false)
+const success = () => emitter.emit(true)
+const cancel = () => emitter.emit(false)
 
 export const DialogAddFriend = () => {
   const [show, setShow] = useState(false)

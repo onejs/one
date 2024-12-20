@@ -1,7 +1,7 @@
 import { Check, DoorOpen } from '@tamagui/lucide-icons'
 import { useEffect, useRef, useState } from 'react'
 import { TooltipSimple, XStack, YStack } from 'tamagui'
-import { useAuth } from '~/better-auth/useAuth'
+import { useAuth } from '~/better-auth/authClient'
 import { mutate, useQuery } from '~/zero/zero'
 import { Avatar } from '../Avatar'
 import { Row } from '../Row'

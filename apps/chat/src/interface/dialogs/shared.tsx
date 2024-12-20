@@ -1,8 +1,10 @@
-import { createEmitter } from '~/helpers/emitter'
+import { createEmitter } from '@vxrn/emitter'
 import type { DialogType } from './types'
 import { Dialog, styled } from 'tamagui'
 
-export const [dialogEmit, dialogListen, useDialogEmit] = createEmitter<DialogType>()
+export const dialogEmitter = createEmitter<DialogType>()
+export const dialogEmit = dialogEmitter.emit
+export const useDialogEmit = dialogEmitter.use
 
 export const DialogOverlay = styled(Dialog.Overlay, {
   // @ts-ignore
