@@ -55,7 +55,7 @@ logFilters:
     level: discard
 `
     )
-    await execPromise(`yarn set version latest`)
+    await execPromise(`yarn set version stable`)
     await FSExtra.writeFile(join(projectPath, 'yarn.lock'), '')
     console.info(`Set up yarn for latest version`)
   }
