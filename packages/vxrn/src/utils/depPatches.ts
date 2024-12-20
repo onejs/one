@@ -388,10 +388,24 @@ const chunksize = end - start + 1;`
     patchFiles: {
       version: '^0.9.0',
       'out/chunk-3L5FRWGX.js': (contents) => {
-        return contents?.replace('var { create64, h32, h64 } = await xxhash();', 'let h64; xxhash().then(val => { h64 = val.h64 })')
-      }
-    }
+        return contents?.replace(
+          `import xxhash from "xxhash-wasm";
+var { create64, h32, h64 } = await xxhash();`,
+          `function h64(str) {
+  let i = str.length
+  let hash1 = 5381
+  let hash2 = 52711
+  while (i--) {
+    const char = str.charCodeAt(i)
+    hash1 = (hash1 * 33) ^ char
+    hash2 = (hash2 * 33) ^ char
   }
+  return BigInt((hash1 >>> 0) * 4096 + (hash2 >>> 0))
+}`
+        )
+      },
+    },
+  },
 
   // {
   //   module: 'react-native-reanimated',
