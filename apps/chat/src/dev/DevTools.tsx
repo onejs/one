@@ -5,7 +5,7 @@ import { randomID } from '~/helpers/randomID'
 import { mutate, zero } from '~/zero/zero'
 import { resolve } from '~/zero/resolve'
 import { getRandomItem } from '~/helpers/getRandomItem'
-import { showToast } from '~/interface/Toast'
+import { showToast } from '~/interface/toast/Toast'
 
 export const DevTools = () => {
   const channel = useCurrentChannel()

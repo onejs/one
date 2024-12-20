@@ -1,9 +1,7 @@
 import { ToastProvider as TamaguiToastProvider, ToastViewport } from '@tamagui/toast'
 import { Toast, useToastController, useToastState } from '@tamagui/toast'
 import { YStack } from 'tamagui'
-
-type ToastController = ReturnType<typeof useToastController>
-type ToastShowOptions = ToastController['show'] extends (a: any, b: infer B) => any ? B : never
+import type { ToastController, ToastShowOptions } from './types'
 
 let controller: ToastController = null as any
 

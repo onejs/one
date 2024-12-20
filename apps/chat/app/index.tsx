@@ -1,4 +1,4 @@
-import { isWeb, Text, XStack, YStack } from 'tamagui'
+import { XStack, YStack } from 'tamagui'
 import { Main } from '~/interface/main/Main'
 import { AccountSettingsPane } from '~/interface/settings/AccountSettingsPane'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
@@ -8,10 +8,6 @@ import { TopBar } from '~/interface/TopBar'
 import { useUserState } from '~/state/user'
 
 export default function HomePage() {
-  if (!isWeb) {
-    return <Text>hello world</Text>
-  }
-
   const [userState] = useUserState()
 
   return (
