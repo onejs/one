@@ -5,7 +5,7 @@
   "windows": ["main"],
   "webviews": ["main"],
   "remote": {
-    "urls": ["http://localhost:1421"]
+    "urls": ["http://localhost:8081"]
   },
   "permissions": [
     "core:default",

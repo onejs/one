@@ -10,7 +10,7 @@
     "build:tauri": "tauri build --debug",
     "build:web": "one build",
     "data:reset": "docker compose down --volumes; rm /tmp/onezero_replica.db",
-    "dev": "one dev --port 1421",
+    "dev": "one dev",
     "dev:clean": "one dev --clean",
     "dev:tauri": "tauri dev",
     "dev:ios": "one run:ios",
