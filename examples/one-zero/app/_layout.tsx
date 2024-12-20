@@ -1,17 +1,15 @@
-import './_layout.css'
 import '~/tamagui/tamagui.css'
+import './_layout.css'
 
 import { ZeroProvider } from '@rocicorp/zero/react'
-import { ToastProvider, ToastViewport } from '@tamagui/toast'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { useState } from 'react'
 import { isWeb, TamaguiProvider } from 'tamagui'
 import { AuthEffects } from '~/better-auth/AuthEffects'
-import { ToastDisplay } from '~/interface/Toast'
 import { DragDropFile } from '~/interface/upload/DragDropFile'
-import { useZeroEmit, zero } from '~/zero/zero'
 import config from '~/tamagui/tamagui.config'
+import { useZeroEmit, zero } from '~/zero/zero'
 
 export default function Layout() {
   return (
@@ -38,17 +36,7 @@ export default function Layout() {
         <DataProvider>
           <SchemeProvider>
             <ThemeProvider>
-              <ToastProvider swipeDirection="horizontal">
-                <Slot />
-                <ToastDisplay />
-                <ToastViewport
-                  flexDirection="column-reverse"
-                  top={0}
-                  left={0}
-                  right={0}
-                  mx="auto"
-                />
-              </ToastProvider>
+              <Slot />
             </ThemeProvider>
           </SchemeProvider>
         </DataProvider>

@@ -7,6 +7,7 @@
       "~/*": ["./src/*"]
     },
     "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "module": "Preserve",
     "moduleResolution": "Bundler",

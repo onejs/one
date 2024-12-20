@@ -6,7 +6,7 @@ import { useCurrentServer } from '~/state/server'
 import type { Server } from '~/zero/schema'
 import { mutate } from '~/zero/zero'
 import { LabeledRow } from '../forms/LabeledRow'
-import { showToast } from '../Toast'
+import { showToast } from '../toast/Toast'
 import { AvatarUpload } from '../upload/AvatarUpload'
 
 export const ServerSettingsPane = () => {
