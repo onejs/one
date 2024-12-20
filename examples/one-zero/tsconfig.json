@@ -7,6 +7,9 @@
       "~/*": ["./src/*"]
     },
     "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
     "strict": true,
     "jsx": "react-jsx",
     "noImplicitReturns": false,

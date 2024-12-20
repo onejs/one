@@ -1,6 +1,6 @@
 import FSExtra from 'fs-extra'
 import colors from 'picocolors'
-import { createServer, type ViteDevServer } from 'vite'
+import { createServer, loadConfigFromFile, type ViteDevServer } from 'vite'
 import type { VXRNOptions } from '../types'
 import { startUserInterface } from '../user-interface/index'
 import { bindKeypressInput } from '../utils/bindKeypressInput'
@@ -10,13 +10,33 @@ import { applyBuiltInPatches } from '../utils/patches'
 import { printServerUrls } from '../utils/printServerUrls'
 import { clean } from './clean'
 import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
+import { removeUndefined } from '../utils/removeUndefined'
 
 const { ensureDir } = FSExtra
 
 export type DevOptions = VXRNOptions & { clean?: boolean }
 
 export const dev = async (optionsIn: DevOptions) => {
-  const options = await fillOptions(optionsIn)
+  const { config } =
+    (await loadConfigFromFile({
+      mode: 'dev',
+      command: 'serve',
+    })) ?? {}
+
+  // use one server config as defaults
+  // this is a bit hacky for now passing it in like this
+  const oneServerConfig = config?.plugins?.find(
+    (x) => Array.isArray(x) && x[0]?.['name'] === 'one:config'
+  )?.[0]?.['__get']?.server
+
+  const options = await fillOptions({
+    ...optionsIn,
+    server: {
+      ...(oneServerConfig || {}),
+      ...removeUndefined(optionsIn.server || {}),
+    },
+  })
+
   const { cacheDir } = options
 
   bindKeypressInput()
@@ -31,7 +51,7 @@ export const dev = async (optionsIn: DevOptions) => {
 
   await ensureDir(cacheDir)
 
-  const serverConfig = await getViteServerConfig(options)
+  const serverConfig = await getViteServerConfig(options, config)
 
   let viteServer: ViteDevServer | null = null
 

@@ -12,14 +12,9 @@ import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
 import { createReactNativeDevServerPlugin } from '../plugins/reactNativeDevServer'
 
-export async function getViteServerConfig(config: VXRNOptionsFilled) {
+export async function getViteServerConfig(config: VXRNOptionsFilled, userViteConfig?: UserConfig) {
   const { root, server } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
-  const { config: userViteConfig } =
-    (await loadConfigFromFile({
-      mode: config.mode === 'development' ? 'dev' : 'prod',
-      command: 'serve',
-    })) ?? {}
 
   // TODO: can we move most of this into `one` plugin:
   let serverConfig: UserConfig = mergeConfig(

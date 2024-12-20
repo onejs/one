@@ -3,7 +3,11 @@ import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 import picocolors from 'picocolors'
 
-export async function expoRun({ root, platform }: { root: string; platform: 'ios' | 'android' }) {
+export async function expoRun({
+  root,
+  platform,
+  port,
+}: { root: string; platform: 'ios' | 'android'; port?: number }) {
   if (platform !== 'ios') {
     console.warn(
       picocolors.yellow(
@@ -28,7 +32,11 @@ export async function expoRun({ root, platform }: { root: string; platform: 'ios
       `expoRun${platform.charAt(0).toUpperCase() + platform.slice(1)}`
     ]
     await expoRun([
-      '--no-bundler', // Do not start the Metro bundler automatically
+      // Do not start the Metro bundler automatically
+      `--no-bundler`,
+      // CommandError: --port and --no-bundler are mutually exclusive arguments
+      // `--port`,
+      // `${port || 8081}`,
     ])
   } catch (e) {
     console.error(`Failed to run native project: ${e}\nIs "expo" listed in your dependencies?`)
