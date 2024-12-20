@@ -6,7 +6,7 @@ import { SidebarServersRow } from './SidebarServersRow'
 
 export const Sidebar = memo(() => {
   return (
-    <YStack ov="hidden" f={1} maw={250} miw={250} gap="$4">
+    <YStack ov="hidden" f={10} mih={200} maw={250} miw={250} gap="$4">
       <SidebarServersRow />
 
       <SidebarServerChannelsList />
@@ -33,7 +33,7 @@ const SidebarQuickList = () => {
   )
 }
 
-const SubTitle = (props) => {
+const SubTitle = (props: { children: any }) => {
   return (
     <H3 cur="default" userSelect="none" px="$2.5" py="$1.5" o={0.4} size="$2">
       {props.children}

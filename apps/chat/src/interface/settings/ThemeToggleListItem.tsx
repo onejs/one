@@ -5,7 +5,7 @@ import { useLayoutEffect } from 'react'
 import { Appearance } from 'react-native'
 import { isWeb } from 'tamagui'
 import { isTauri } from '~/tauri/constants'
-import { ListItem } from '../ListItem'
+import { ListItem } from '../lists/ListItem'
 
 const schemeSettings = ['light', 'dark', 'system'] as const
 

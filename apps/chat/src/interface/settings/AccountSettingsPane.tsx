@@ -1,6 +1,6 @@
 import { H3, YStack } from 'tamagui'
 import { authClient } from '~/better-auth/authClient'
-import { ListItem } from '~/interface/ListItem'
+import { ListItem } from '~/interface/lists/ListItem'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
 import { ThemeToggleListItem } from './ThemeToggleListItem'
 
