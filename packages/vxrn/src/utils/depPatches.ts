@@ -383,6 +383,16 @@ const chunksize = end - start + 1;`
     },
   },
 
+  {
+    module: '@rocicorp/zero',
+    patchFiles: {
+      version: '^0.9.0',
+      'out/chunk-3L5FRWGX.js': (contents) => {
+        return contents?.replace('var { create64, h32, h64 } = await xxhash();', 'let h64; xxhash().then(val => { h64 = val.h64 })')
+      }
+    }
+  }
+
   // {
   //   module: 'react-native-reanimated',
   //   patchFiles: {
