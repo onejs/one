@@ -22024,6 +22024,7 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/emitter": "workspace:*"
     better-auth: "npm:1.0.23-beta.3"
+    expo: "npm:~51.0.28"
     flexsearch: "npm:^0.7.43"
     one: "workspace:*"
     pg: "npm:^8.13.1"

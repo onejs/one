@@ -5,6 +5,10 @@ import type { UserConfig } from 'vite'
 export default {
   plugins: [
     one({
+      server: {
+        port: 1421,
+      },
+
       react: {
         compiler: true,
         scan: true,

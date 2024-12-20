@@ -54,6 +54,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
   const devAndProdPlugins: Plugin[] = [
     {
+      name: 'one:config',
+      // @ts-ignore
+      __get: options,
+    },
+
+    {
       name: 'one-define-env',
       async config() {
         const { clientEnvDefine } = await loadEnv(vxrnOptions?.mode ?? 'development')
