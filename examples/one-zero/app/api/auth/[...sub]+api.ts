@@ -1,21 +1,10 @@
 import type { Endpoint } from 'one'
-import { auth } from '~/src/better-auth/auth'
-import { prettyPrintResponse } from '~/src/helpers/prettyPrintResponse'
+import { auth } from '~/better-auth/auth'
 
 export const GET: Endpoint = async (req) => {
-  const res = await auth.handler(req)
-  if (process.env.DEBUG) {
-    console.info('AUTH GET', req.url)
-    prettyPrintResponse(res)
-  }
-  return res
+  return await auth.handler(req)
 }
 
 export const POST: Endpoint = async (req) => {
-  const res = await auth.handler(req)
-  if (process.env.DEBUG) {
-    console.info('AUTH POST', req.url)
-    prettyPrintResponse(res)
-  }
-  return res
+  return await auth.handler(req)
 }
