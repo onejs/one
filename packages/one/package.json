@@ -160,7 +160,7 @@
     "depcheck": "^1.4.7",
     "get-port": "^7.1.0",
     "react-native": "0.74.5",
-    "rollup": "4.28.1",
+    "rollup": "^4",
     "vitest": "^2.1.8"
   },
   "publishConfig": {
