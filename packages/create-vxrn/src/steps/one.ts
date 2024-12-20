@@ -1,7 +1,8 @@
 import ansis from 'ansis'
-import { join } from 'node:path'
-import type { ExtraSteps } from './types'
 import FSExtra from 'fs-extra'
+import { join } from 'node:path'
+import { execPromise } from '../helpers/exec'
+import type { ExtraSteps } from './types'
 
 export const extraSteps: ExtraSteps = async ({ isFullClone, projectName, packageManager }) => {
   const useBun = packageManager === 'bun'
@@ -22,11 +23,40 @@ export const extraSteps: ExtraSteps = async ({ isFullClone, projectName, package
 }
 
 export const preInstall: ExtraSteps = async ({ projectName, packageManager, projectPath }) => {
+  const envExample = join(projectPath, '.env.example')
+
+  if (FSExtra.existsSync(envExample)) {
+    await FSExtra.move(envExample, join(projectPath, '.env'))
+    console.info(`Moved .env.example to .env`)
+  }
+
   if (packageManager === 'pnpm') {
     await FSExtra.writeFile(join(projectPath, `.npmrc`), `node-linker=hoisted\n`)
+    console.info(`Set configuration to avoid symlinked node modules`)
   }
+
   if (packageManager === 'yarn') {
+    await FSExtra.writeFile(
+      join(projectPath, '.yarnrc.yml'),
+      `
+compressionLevel: mixed
+enableGlobalCache: false
+enableTelemetry: false
+nodeLinker: node-modules
+
+logFilters:
+  - code: YN0002
+    level: discard
+  - code: YN0060
+    level: discard
+  - code: YN0006
+    level: discard
+  - code: YN0076
+    level: discard
+`
+    )
+    await execPromise(`yarn set version latest`)
     await FSExtra.writeFile(join(projectPath, 'yarn.lock'), '')
-    console.info(`Created empty yarn.lock file`)
+    console.info(`Set up yarn for latest version`)
   }
 }

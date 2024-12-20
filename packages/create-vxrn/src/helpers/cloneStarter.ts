@@ -32,11 +32,6 @@ export const cloneStarter = async (
       cwd: resolvedProjectPath,
     })
   }
-
-  const yarnLockDefault = join(resolvedProjectPath, 'yarn.lock.default')
-  if (await pathExists(yarnLockDefault)) {
-    await move(yarnLockDefault, join(resolvedProjectPath, 'yarn.lock'))
-  }
 }
 
 async function setupVxrnDotDir(
