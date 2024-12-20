@@ -12201,8 +12201,8 @@ __metadata:
   resolution: "@vxrn/react-native-prebuilt@workspace:packages/react-native-prebuilt"
   dependencies:
     "@tamagui/build": "npm:^1.120.2"
-    "@vxrn/vite-flow": "npm:1.1.364"
-    "@vxrn/vite-native-hmr": "npm:1.1.364"
+    "@vxrn/vite-flow": "npm:1.1.365"
+    "@vxrn/vite-native-hmr": "npm:1.1.365"
     esbuild: "npm:^0.24.0"
     fs-extra: "npm:^11.2.0"
     import-meta-resolve: "npm:^4.1.0"
@@ -12282,7 +12282,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-flow@npm:1.1.364, @vxrn/vite-flow@workspace:*, @vxrn/vite-flow@workspace:packages/vite-flow":
+"@vxrn/vite-flow@npm:1.1.365, @vxrn/vite-flow@workspace:*, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
   dependencies:
@@ -12308,7 +12308,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vite-native-hmr@npm:1.1.364, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
+"@vxrn/vite-native-hmr@npm:1.1.365, @vxrn/vite-native-hmr@workspace:packages/vite-native-hmr":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-hmr@workspace:packages/vite-native-hmr"
   dependencies:
