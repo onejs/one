@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/color-scheme",
-  "version": "1.1.364",
+  "version": "1.1.365",
   "sideEffects": false,
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
