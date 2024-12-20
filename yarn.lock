@@ -21995,7 +21995,7 @@ __metadata:
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-scan: "npm:^0.0.48"
-    rollup: "npm:^4.21.0"
+    rollup: "npm:4.28.1"
     rollup-plugin-node-externals: "npm:^7.1.2"
     url-parse: "npm:^1.5.10"
     vite: "npm:^6.0.3"
@@ -24707,7 +24707,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.20.0, rollup@npm:^4.21.0, rollup@npm:^4.23.0":
+"rollup@npm:4.28.1, rollup@npm:^4.20.0, rollup@npm:^4.23.0":
   version: 4.28.1
   resolution: "rollup@npm:4.28.1"
   dependencies:
@@ -27927,7 +27927,7 @@ __metadata:
     picocolors: "npm:^1.0.0"
     pkg-types: "npm:^1.0.3"
     qrcode-terminal: "npm:^0.12.0"
-    rollup: "npm:^4.21.0"
+    rollup: "npm:4.28.1"
     semver: "npm:^7.6.3"
     vite: "npm:^6.0.3"
     vite-bundle-analyzer: "npm:^0.9.4"
