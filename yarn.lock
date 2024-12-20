@@ -13297,6 +13297,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"burnt@npm:^0.12.2":
+  version: 0.12.2
+  resolution: "burnt@npm:0.12.2"
+  dependencies:
+    sf-symbols-typescript: "npm:^1.0.0"
+    sonner: "npm:^0.3.5"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10/8ecaaa22f6e365640ba247aabfb56311eca4f7199cb07519dffd4fe9fd30d173b5cd9ab4e1ecede1e538d613c5eb9820eb752ba0ac220a468b046ed2d5c060f6
+  languageName: node
+  linkType: hard
+
 "bytes@npm:3.0.0":
   version: 3.0.0
   resolution: "bytes@npm:3.0.0"
@@ -22024,6 +22038,7 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/emitter": "workspace:*"
     better-auth: "npm:1.0.23-beta.3"
+    burnt: "npm:^0.12.2"
     expo: "npm:~51.0.28"
     flexsearch: "npm:^0.7.43"
     one: "workspace:*"
@@ -25093,6 +25108,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sf-symbols-typescript@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "sf-symbols-typescript@npm:1.0.0"
+  checksum: 10/008ddfcadceb33ec29fb182104516234cc3f771254619696918481744bc28be51070f226859e4dfc2faf5f094dd8ca13e0364b2bb3d22e8cf044ce37f749df0b
+  languageName: node
+  linkType: hard
+
 "shallow-clone@npm:^3.0.0":
   version: 3.0.1
   resolution: "shallow-clone@npm:3.0.1"
@@ -25389,6 +25411,16 @@ __metadata:
   dependencies:
     atomic-sleep: "npm:^1.0.0"
   checksum: 10/385ef7fb5ea5976c1d2a1fef0b6df8df6b7caba8696d2d67f689d60c05e3ea2d536752ce7e1c69b9fad844635f1036d07c446f8e8149f5c6a80e0040a455b310
+  languageName: node
+  linkType: hard
+
+"sonner@npm:^0.3.5":
+  version: 0.3.5
+  resolution: "sonner@npm:0.3.5"
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 10/ad42c64bf372b5659c07ed0ce615487f6b8ccb5c4a0eb69d113dd00da34a43129c17bf7cbf9ab0e7354910282a0030064f42e7443013d3d9dc9b06b7f4c5af53
   languageName: node
   linkType: hard
 

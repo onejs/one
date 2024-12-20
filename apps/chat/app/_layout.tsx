@@ -7,7 +7,7 @@ import { ToastProvider, ToastViewport } from '@tamagui/toast'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { useState } from 'react'
-import { TamaguiProvider } from 'tamagui'
+import { isWeb, TamaguiProvider } from 'tamagui'
 import config from '~/tamagui/tamagui.config'
 import { AuthEffects } from '~/better-auth/AuthEffects'
 import { useZeroEmit, zero } from '~/zero/zero'
@@ -18,15 +18,19 @@ import { DragDropFile } from '~/interface/upload/DragDropFile'
 export default function Layout() {
   return (
     <>
-      <meta charSet="utf-8" />
-      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      <meta property="og:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-      <link rel="icon" href="/favicon.svg" />
+      {isWeb && (
+        <>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta property="og:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+          <link rel="icon" href="/favicon.svg" />
+        </>
+      )}
 
       <LoadProgressBar startDelay={1_000} />
 
