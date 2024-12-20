@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { type DragDropEvent, useDragDrop } from '~/src/tauri/useDragDrop'
+import { type DragDropEvent, useDragDrop } from '~/tauri/useDragDrop'
 
 export const DragDropFile = (props: { children: any }) => {
   const [state, setState] = useState<DragDropEvent | null>(null)

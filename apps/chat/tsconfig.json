@@ -4,44 +4,18 @@
     "rootDir": ".",
     "outDir": "dist",
     "paths": {
-      "~/*": [
-        "./src/*"
-      ]
+      "~/*": ["./src/*"]
     },
-    "importHelpers": true,
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "declaration": false,
-    "downlevelIteration": true,
     "strict": true,
-    "esModuleInterop": true,
-    "inlineSourceMap": true,
-    "preserveSymlinks": true,
     "jsx": "react-jsx",
-    "module": "Preserve",
-    "moduleResolution": "Bundler",
-    "noEmit": false,
-    "noEmitOnError": false,
-    "noImplicitAny": false,
     "noImplicitReturns": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "preserveConstEnums": true,
-    "removeComments": false,
     "skipLibCheck": true,
-    "sourceMap": false,
-    "strictNullChecks": true,
-    "target": "es2020",
-    "types": [
-      "node",
-      "react",
-      "vite/client"
-    ],
-    "lib": [
-      "dom",
-      "esnext"
-    ]
+    "types": ["node", "react", "vite/client"],
+    "lib": ["dom", "esnext"]
   },
   "exclude": [
     "node_modules",

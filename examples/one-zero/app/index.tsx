@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { Button, H1, H3, Input, Paragraph, SizableText, XStack, YStack } from 'tamagui'
-import { githubSignIn } from '~/src/better-auth/githubSignIn'
-import { useAuth } from '~/src/better-auth/useAuth'
-import { Avatar } from '~/src/interface/Avatar'
-import { randomID } from '~/src/state/randomID'
-import { mutate, useQuery } from '~/src/state/zero'
-import { isTauri } from '~/src/tauri/constants'
+import { authClient, useAuth } from '~/better-auth/authClient'
+import { Avatar } from '~/interface/Avatar'
+import { isTauri } from '~/tauri/constants'
+import { randomID } from '~/zero/randomID'
+import { mutate, useQuery } from '~/zero/zero'
 
 export default function HomePage() {
   const [messages] = useQuery((q) => q.message.orderBy('createdAt', 'desc'))
@@ -28,7 +27,15 @@ export default function HomePage() {
           )}
         </XStack>
       ) : (
-        <Button onPress={githubSignIn}>Login with Github</Button>
+        <Button
+          onPress={() => {
+            authClient.signIn.social({
+              provider: 'github',
+            })
+          }}
+        >
+          Login with Github
+        </Button>
       )}
 
       <YStack w="100%" gap="$4" p="$4" bc="$color2" bw={1} br="$4">
@@ -36,9 +43,13 @@ export default function HomePage() {
 
         <Button
           onPress={() => {
+            if (!user) {
+              alert('no user')
+            }
+
             mutate.message.insert({
               id: randomID(),
-              senderId: randomID(),
+              senderId: user.id,
               content: text,
               createdAt: new Date().getTime(),
             })

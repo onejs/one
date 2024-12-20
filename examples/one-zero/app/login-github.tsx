@@ -1,6 +1,6 @@
 import { Home } from '@tamagui/lucide-icons'
 import { useEffect } from 'react'
-import { githubSignIn } from '~/src/better-auth/githubSignIn'
+import { githubSignIn } from '~/better-auth/githubSignIn'
 
 export default function () {
   useEffect(() => {

@@ -1,9 +1,8 @@
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
 import { useEffect } from 'react'
-import { setAuthToken } from './authClient'
-import { useAuth } from './useAuth'
-import { setZeroAuth } from '../state/zero'
+import { setZeroAuth } from '../zero/zero'
 import { isTauri } from '../tauri/constants'
+import { setAuthClientToken, useAuth } from './authClient'
 
 export const AuthEffects = () => {
   useAuthPassTokenToTauriEffect()
@@ -35,7 +34,7 @@ const useAuthPassTokenToTauriEffect = () => {
             const token = url.searchParams.get('token')
 
             if (token) {
-              setAuthToken(token)
+              setAuthClientToken(token)
             }
 
             break

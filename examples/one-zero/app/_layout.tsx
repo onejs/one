@@ -1,5 +1,5 @@
-import './app.css'
-import './tamagui.css'
+import './_layout.css'
+import '~/tamagui/tamagui.css'
 
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { ToastProvider, ToastViewport } from '@tamagui/toast'
@@ -7,11 +7,11 @@ import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { useState } from 'react'
 import { isWeb, TamaguiProvider } from 'tamagui'
-import { AuthEffects } from '~/src/better-auth/AuthEffects'
-import { ToastDisplay } from '~/src/interface/Toast'
-import { DragDropFile } from '~/src/interface/upload/DragDropFile'
-import { useZeroEmit, zero } from '~/src/state/zero'
-import config from '~/src/tamagui/tamagui.config'
+import { AuthEffects } from '~/better-auth/AuthEffects'
+import { ToastDisplay } from '~/interface/Toast'
+import { DragDropFile } from '~/interface/upload/DragDropFile'
+import { useZeroEmit, zero } from '~/zero/zero'
+import config from '~/tamagui/tamagui.config'
 
 export default function Layout() {
   return (
@@ -57,7 +57,7 @@ export default function Layout() {
   )
 }
 
-const DataProvider = ({ children }) => {
+const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [instance, setInstance] = useState(zero)
 
   useZeroEmit((next) => {
@@ -67,7 +67,7 @@ const DataProvider = ({ children }) => {
   return <ZeroProvider zero={instance}>{children}</ZeroProvider>
 }
 
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [scheme] = useColorScheme()
 
   return (

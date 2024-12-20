@@ -11985,7 +11985,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vxrn/better-auth@workspace:packages/better-auth":
+"@vxrn/better-auth@workspace:*, @vxrn/better-auth@workspace:packages/better-auth":
   version: 0.0.0-use.local
   resolution: "@vxrn/better-auth@workspace:packages/better-auth"
   dependencies:
@@ -21908,7 +21908,9 @@ __metadata:
     "@tauri-apps/plugin-deep-link": "npm:^2.0.1"
     "@tauri-apps/plugin-fs": "npm:^2.2.0"
     "@tauri-apps/plugin-shell": "npm:^2"
+    "@vxrn/better-auth": "workspace:*"
     "@vxrn/color-scheme": "workspace:*"
+    "@vxrn/emitter": "workspace:*"
     better-auth: "npm:1.0.23-beta.3"
     expo: "npm:~51.0.28"
     one: "workspace:*"

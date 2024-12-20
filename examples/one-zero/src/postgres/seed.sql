@@ -14,7 +14,7 @@ CREATE TABLE "user" (
     "state" JSONB DEFAULT '{}',
     "updatedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "emailVerified" boolean not null default false,
-    "image" VARCHAR(255),
+    "image" TEXT,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

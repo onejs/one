@@ -14,7 +14,7 @@ export default {
       optimize: process.env.NODE_ENV === 'production',
       components: ['tamagui'],
       config: './src/tamagui/tamagui.config.ts',
-      outputCSS: './app/tamagui.css',
+      outputCSS: './src/tamagui/tamagui.css',
     }),
   ],
 } satisfies UserConfig
