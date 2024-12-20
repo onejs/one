@@ -242,10 +242,18 @@ ${contents}
       'dist/es/shared/node-entry.js': (contents) => {
         assertString(contents)
         // fixes problem with @sentry/react-native 5.5.0 using setimmediate polyfill causing error
-        return contents.replace(
+        contents = contents.replace(
           `return this.exportNamesByVariable.get(variable)[0];`,
           `return this.exportNamesByVariable.get(variable)?.[0];`
         )
+
+        // fix https://github.com/rollup/rollup/issues/5770
+        contents = contents.replace(
+          `this.expressionsToBeDeoptimized = EMPTY_ARRAY;`,
+          `this.expressionsToBeDeoptimized = [];`
+        )
+
+        return contents
       },
     },
   },
