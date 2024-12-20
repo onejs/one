@@ -116,6 +116,11 @@ function createRequire(importer, importsMap) {
 }
 
 function getRequire(importer, importsMap, _mod) {
+  if (_mod.endsWith('.css')) {
+    console.warn(`Ignoring css import: ${_mod}`)
+    return {}
+  }
+
   const debugExtraDetail = `Cached modules list:${Object.keys(__cachedModules).join('\n  -')}`
 
   const getErrorDetails = (withStack) => {
