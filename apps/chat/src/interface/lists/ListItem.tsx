@@ -69,10 +69,12 @@ export const ListItem = forwardRef<
               onEditComplete?.(e.nativeEvent.text)
             }}
           />
-        ) : (
+        ) : typeof children === 'string' ? (
           <SizableText fow="500" cur="default">
             {children}
           </SizableText>
+        ) : (
+          children
         )}
         {iconAfter ? iconElement : null}
       </XStack>

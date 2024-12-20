@@ -58,7 +58,7 @@ export const SidebarServerChannelsList = () => {
             if (!server) return
             mutate.server.update({
               id: server.id,
-              channelSort: sorted.map((i) => i.d),
+              channelSort: sorted.map((i) => i.id),
             })
           }}
         />
