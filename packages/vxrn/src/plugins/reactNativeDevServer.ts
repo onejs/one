@@ -112,7 +112,8 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
           res.writeHead(200, { 'Content-Type': 'text/javascript' })
           res.end(bundle)
         } catch (err) {
-          console.error(` Error building React Native bundle: ${err}`)
+          console.error(` Error building React Native bundle`)
+          console.error(err)
           console.error(
             `\n\n  Note, some errors may happen due to a stale Vite cache, you may want to try re-running with the "--clean" flag`
           )
