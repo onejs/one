@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, H3, Input, YStack } from 'tamagui'
+import { Button, Circle, H3, H4, Input, SizableText, XStack, YStack } from 'tamagui'
 import { DevTools } from '~/dev/DevTools'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
 import { useCurrentServer } from '~/state/server'
@@ -8,9 +8,15 @@ import { mutate } from '~/zero/zero'
 import { LabeledRow } from '../forms/LabeledRow'
 import { showToast } from '../toast/Toast'
 import { AvatarUpload } from '../upload/AvatarUpload'
+import { Tabs } from '../tabs/Tabs'
+import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
+import { Avatar } from '../Avatar'
+import { SortableList } from '../lists/SortableList'
+import { ListItem } from '../lists/ListItem'
 
 export const ServerSettingsPane = () => {
   const server = useCurrentServer()
+  const [tab, setTab] = useState('settings')
 
   return (
     <YStack
@@ -23,11 +29,61 @@ export const ServerSettingsPane = () => {
       p="$4"
       gap="$4"
     >
-      <H3 userSelect="none">Server Settings</H3>
+      <XStack pe="none" ai="center" gap="$2">
+        <Avatar size={28} image={server.icon} />
+        <H3 userSelect="none">{server?.name}</H3>
+      </XStack>
 
-      {server && <EditServer server={server} />}
+      {server && (
+        <Tabs
+          data-tauri-drag-region
+          initialTab="settings"
+          onValueChange={setTab}
+          tabs={[
+            { label: 'Settings', value: 'settings' },
+            { label: 'Permissions', value: 'permissions' },
+          ]}
+        >
+          <YStack pos="relative" f={1} w="100%">
+            <AlwaysVisibleTabContent active={tab} value="settings">
+              <EditServer server={server} />
+            </AlwaysVisibleTabContent>
 
-      <DevTools />
+            <AlwaysVisibleTabContent active={tab} value="permissions">
+              <EditServerPermissions server={server} />
+            </AlwaysVisibleTabContent>
+          </YStack>
+        </Tabs>
+      )}
+    </YStack>
+  )
+}
+
+const EditServerPermissions = ({ server }: { server: Server }) => {
+  // const roles = useCurrentServerRoles()
+  const roles = [{ id: '0', name: 'Team', color: 'red' }]
+
+  return (
+    <YStack data-tauri-drag-region f={1}>
+      <SortableList
+        items={roles}
+        renderItem={(item) => (
+          <ListItem key={item.id}>
+            <Circle size={24} bg={item.color} />
+            <SizableText>{item.name}</SizableText>
+
+            <XStack f={1} />
+
+            <XStack als="flex-end">
+              <SizableText>3 members</SizableText>
+            </XStack>
+          </ListItem>
+        )}
+        renderDraggingItem={(item) => <ListItem key={item.id}></ListItem>}
+        onSort={(sorted) => {
+          //
+        }}
+      />
     </YStack>
   )
 }
@@ -64,6 +120,8 @@ const EditServer = ({ server }: { server: Server }) => {
       >
         Save
       </Button>
+
+      <DevTools />
     </>
   )
 }

@@ -15,6 +15,7 @@ function TabsComponent({
   children,
   initialTab,
   onValueChange,
+  ...rest
 }: {
   tabs: { label: any; value: string }[]
   children: any
@@ -78,6 +79,7 @@ function TabsComponent({
       }}
       group
       f={1}
+      {...rest}
     >
       <YStack w="100%">
         <YStack br="$5">

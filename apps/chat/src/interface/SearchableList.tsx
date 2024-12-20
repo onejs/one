@@ -36,7 +36,7 @@ export function SearchableList<A>({
   items,
   children,
   onSelectItem,
-}: { items: A[]; onSelectItem: (item: A) => void; children: any }) {
+}: { items: readonly A[] | A[]; onSelectItem: (item: A) => void; children: any }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(0)
   const { refs, context } = useFloating({
     open: true,

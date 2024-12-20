@@ -53,6 +53,16 @@ CREATE TABLE "serverMember" (
     PRIMARY KEY ("serverId", "userId")
 );
 
+CREATE TABLE "role" (
+    "id" VARCHAR PRIMARY KEY,
+    "serverId" VARCHAR REFERENCES "server"(id),
+    "creatorId" VARCHAR REFERENCES "user"(id),
+    "name" VARCHAR(200) NOT NULL,
+    "permissions" JSONB DEFAULT '{}',
+    "updatedAt" TIMESTAMP NULL,
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE "channel" (
     "id" VARCHAR PRIMARY KEY,
     "serverId" VARCHAR REFERENCES "server"(id),
