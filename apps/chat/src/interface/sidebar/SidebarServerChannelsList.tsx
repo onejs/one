@@ -1,31 +1,17 @@
-import {
-  closestCenter,
-  DndContext,
-  DragOverlay,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core'
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  useSortable,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
+import { useSortable } from '@dnd-kit/sortable'
+import { Lock, Plus } from '@tamagui/lucide-icons'
 import { Menu } from '@tauri-apps/api/menu'
 import { forwardRef, useEffect, useState } from 'react'
 import { type XStackProps, YStack } from 'tamagui'
-import type { Channel } from '~/zero/schema'
-import { updateUserState, useUserState } from '~/state/user'
+import { useAuth } from '~/better-auth/authClient'
 import { randomID } from '~/helpers/randomID'
 import { useCurrentServer, useServerChannels } from '~/state/server'
+import { updateUserState, useUserState } from '~/state/user'
+import type { Channel } from '~/zero/schema'
 import { mutate } from '~/zero/zero'
-import { ListItem } from '../ListItem'
-import { useHotkeys } from 'react-hotkeys-hook'
-import { Lock, Plus } from '@tamagui/lucide-icons'
-import { useAuth } from '~/better-auth/authClient'
+import { ListItem } from '../lists/ListItem'
+import { SortableList } from '../lists/SortableList'
+import { useChannelsHotkeys } from './useChannelsHotkeys'
 
 // TODO organize/enforce
 // id order
@@ -41,20 +27,6 @@ export const SidebarServerChannelsList = () => {
       : channels?.map((x) => x.id)
 
   const channelsSorted = channelSort.map((id) => channels.find((x) => x.id === id)!).filter(Boolean)
-
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        delay: 250,
-        distance: {
-          y: 8,
-        },
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  )
   const [{ activeServer, activeChannels }, { activeChannel }] = useUserState()
 
   useChannelsHotkeys()
@@ -73,49 +45,23 @@ export const SidebarServerChannelsList = () => {
     })
   }, [channels, server, activeServer])
 
-  const [dragging, setDragging] = useState<Channel | null>(null)
-
   const [showTempChannel, setShowTempChannel] = useState(false)
 
   return (
     <YStack>
       <YStack pos="relative">
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragStart={(event) => {
-            const { active } = event
-            setDragging(channels.find((x) => x.id === `${active.id}`) || null)
-          }}
-          onDragEnd={(event) => {
+        <SortableList
+          items={channelsSorted}
+          renderItem={(channel) => <ChannelListItemSortable key={channel.id} channel={channel} />}
+          renderDraggingItem={(channel) => <DraggedChannel channel={channel} />}
+          onSort={(sorted) => {
             if (!server) return
-            setDragging(null)
-            const { active, over } = event
-
-            if (over && active.id !== over.id) {
-              const oldIndex = channelSort.indexOf(`${active.id}`)
-              const newIndex = channelSort.indexOf(`${over.id}`)
-              const nextChannelSort = arrayMove(channelSort, oldIndex, newIndex)
-              mutate.server.update({
-                id: server.id,
-                channelSort: nextChannelSort,
-              })
-            }
+            mutate.server.update({
+              id: server.id,
+              channelSort: sorted.map((i) => i.d),
+            })
           }}
-        >
-          <SortableContext items={channelsSorted} strategy={verticalListSortingStrategy}>
-            {channelsSorted.map((channel) => {
-              return <ChannelListItemSortable key={channel.id} channel={channel} />
-            })}
-            <DragOverlay
-              style={{
-                zIndex: 1000,
-              }}
-            >
-              {dragging ? <DraggedChannel channel={dragging} /> : null}
-            </DragOverlay>
-          </SortableContext>
-        </DndContext>
+        />
 
         {showTempChannel && (
           <ChannelListItem
@@ -287,39 +233,3 @@ const ChannelListItem = forwardRef(
     )
   }
 )
-
-const useChannelsHotkeys = () => {
-  const channels = useServerChannels()
-  const [{ activeServer, activeChannels }, { activeChannel }] = useUserState()
-
-  useHotkeys('meta+]', () => {
-    if (!activeServer) return
-
-    const index = channels.findIndex((x) => x.id === activeChannel)
-    const next = index + 1
-
-    if (channels.length > next) {
-      updateUserState({
-        activeChannels: {
-          ...activeChannels,
-          [activeServer]: channels[index + 1].id,
-        },
-      })
-    }
-  })
-
-  useHotkeys('meta+[', () => {
-    if (!activeServer) return
-
-    const index = channels.findIndex((x) => x.id === activeChannel)
-
-    if (index > 0) {
-      updateUserState({
-        activeChannels: {
-          ...activeChannels,
-          [activeServer]: channels[index - 1].id,
-        },
-      })
-    }
-  })
-}
