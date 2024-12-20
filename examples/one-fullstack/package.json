@@ -1,6 +1,6 @@
 {
   "name": "example-fullstack",
-  "version": "1.1.362",
+  "version": "1.1.363",
   "type": "module",
   "private": true,
   "scripts": {
