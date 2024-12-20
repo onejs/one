@@ -5,7 +5,7 @@
   "identifier": "com.onechat.app",
   "build": {
     "beforeDevCommand": "yarn dev",
-    "devUrl": "http://localhost:1421",
+    "devUrl": "http://localhost:8081",
     "frontendDist": "./dev-prod"
   },
   "plugins": {
@@ -31,7 +31,7 @@
     "security": {
       "csp": {
         "default-src": "'self' one-chat: asset:",
-        "connect-src": "ipc: http://localhost:1421"
+        "connect-src": "ipc: http://localhost:8081"
       }
     }
   },
