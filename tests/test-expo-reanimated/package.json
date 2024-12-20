@@ -1,6 +1,6 @@
 {
   "name": "test-expo-reanimated",
-  "version": "1.1.359",
+  "version": "1.1.360",
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "vxrn dev",

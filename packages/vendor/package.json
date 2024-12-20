@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vendor",
-  "version": "1.1.359",
+  "version": "1.1.360",
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
