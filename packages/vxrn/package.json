@@ -1,33 +1,8 @@
 {
   "name": "vxrn",
   "version": "1.1.371",
-  "source": "src/index.ts",
-  "types": "./types/index.d.ts",
-  "type": "module",
-  "module": "dist",
   "sideEffects": false,
-  "files": [
-    "src",
-    "types",
-    "patches",
-    "dist",
-    "run.mjs",
-    "expo-js-native-debugging-plugin.cjs",
-    "react-native-template.js",
-    "react-native-commands.cjs",
-    "expo-plugin.cjs"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "build": "tamagui-build",
-    "watch": "yarn build --watch",
-    "check": "yarn depcheck",
-    "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
-  },
-  "bin": "run.mjs",
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     "./react-native-template.js": "./react-native-template.js",
@@ -47,10 +22,34 @@
       "default": "./dist/exports/loadEnv.mjs"
     }
   },
+  "module": "dist",
+  "source": "src/index.ts",
+  "types": "./types/index.d.ts",
+  "bin": "run.mjs",
+  "files": [
+    "src",
+    "types",
+    "patches",
+    "dist",
+    "run.mjs",
+    "expo-js-native-debugging-plugin.cjs",
+    "react-native-template.js",
+    "react-native-commands.cjs",
+    "expo-plugin.cjs"
+  ],
+  "scripts": {
+    "build": "tamagui-build",
+    "check": "yarn depcheck",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build",
+    "watch": "yarn build --watch"
+  },
   "dependencies": {
     "@babel/core": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
     "@expo/config-plugins": "^8.0.8",
     "@hono/node-server": "^1.12.1",
+    "@react-native/babel-plugin-codegen": "^0.76.5",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@tamagui/react-native-svg": "^1.120.2",
     "@vitejs/plugin-react-swc": "^3.7.0",
@@ -92,5 +91,8 @@
     "@types/qrcode-terminal": "^0",
     "@types/ws": "^8.5.10",
     "depcheck": "^1.4.7"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

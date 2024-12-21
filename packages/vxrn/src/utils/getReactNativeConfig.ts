@@ -1,5 +1,7 @@
 import nodeResolve from '@rollup/plugin-node-resolve'
+import babel from '@babel/core'
 import viteNativeSWC, { swcTransform } from '@vxrn/vite-native-swc'
+import { createDebugger } from '@vxrn/debug'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
@@ -26,6 +28,11 @@ import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 // (not an exhaustive list)
 const IGNORE_ROLLUP_LOGS_RE =
   /vite-native-client\/dist\/esm\/client|node_modules\/\.vxrn\/react-native|react-native-prebuilt\/vendor|one\/dist/
+
+const NATIVE_COMPONENT_RE = /NativeComponent\.[jt]sx?$/
+const SPEC_FILE_RE = /[\/\\]specs?[\/\\]/
+
+const { debug: reactNativeCodegenDebug } = createDebugger('vxrn:react-native-codegen')
 
 export async function getReactNativeConfig(
   options: VXRNOptionsFilled,
@@ -168,17 +175,56 @@ export async function getReactNativeConfig(
 
             // handles typescript
             if (isNodeModule && /\.tsx?$/.test(id)) {
+              let codeOut: string | null | undefined
+              let sourceMap: any
+
               // we need to keep fake objects for type exports
               const typeExportsMatch = code.match(/^\s*export\s+type\s+([^\s]+)/gi)
 
-              const output = await swcTransform(id, code, {
-                mode: mode === 'dev' ? 'serve' : 'build',
-                noHMR: true, // We should not insert HMR runtime code at this stage, as we expect another plugin (e.g. vite:react-swc) to handle that. Inserting it here may cause error: `The symbol "RefreshRuntime" has already been declared`.
-              })
+              // Codegen specification files need to go through the react-native codegen babel plugin.
+              // See:
+              // * https://reactnative.dev/docs/fabric-native-components-introduction#1-define-specification-for-codegen
+              // * https://reactnative.dev/docs/turbo-native-modules-introduction#1-declare-typed-specification
+              if (NATIVE_COMPONENT_RE.test(id) || SPEC_FILE_RE.test(id)) {
+                try {
+                  const output = await babel.transform(code, {
+                    configFile: false,
+                    presets: ['@babel/preset-typescript'],
+                    plugins: ['@react-native/babel-plugin-codegen'],
+                    sourceMaps: true,
+                    filename: id,
+                  })
 
-              if (!output) return null
+                  codeOut = output?.code
+                  sourceMap = output?.map
 
-              let codeOut = output.code
+                  if (reactNativeCodegenDebug) {
+                    if (codeOut) {
+                      reactNativeCodegenDebug(`File transformed with codegen: ${id}`)
+                    } else {
+                      reactNativeCodegenDebug(`File NOT transformed with codegen: ${id}`)
+                    }
+                  }
+                } catch (e) {
+                  console.error(
+                    '[react-native-codegen] Failed to transform NativeComponent file:',
+                    id,
+                    e
+                  )
+                }
+              }
+
+              if (!codeOut) {
+                const output = await swcTransform(id, code, {
+                  mode: mode === 'dev' ? 'serve' : 'build',
+                  noHMR: true, // We should not insert HMR runtime code at this stage, as we expect another plugin (e.g. vite:react-swc) to handle that. Inserting it here may cause error: `The symbol "RefreshRuntime" has already been declared`.
+                })
+
+                codeOut = output?.code
+                sourceMap = output?.map
+              }
+
+              if (!codeOut) return null
 
               // add back in export types as fake objects:
 
@@ -202,7 +248,7 @@ export async function getReactNativeConfig(
 
               return {
                 code: codeOut,
-                map: output.map,
+                map: sourceMap,
               }
             }
 
