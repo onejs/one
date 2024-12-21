@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { createElement, forwardRef, isValidElement } from 'react'
 import {
   type GetProps,
   SizableText,
@@ -7,7 +7,6 @@ import {
   type TamaguiElement,
   TooltipSimple,
   XStack,
-  type XStackProps,
 } from 'tamagui'
 
 const ButtonFrame = styled(XStack, {
@@ -63,12 +62,21 @@ const ButtonFrame = styled(XStack, {
 
 type ButtonFrameProps = GetProps<typeof ButtonFrame> & {
   tooltip?: string
+  icon?: any
+  iconAfter?: boolean
 }
 
 export const ButtonSimple = forwardRef<TamaguiElement, ButtonFrameProps & { size?: SizeTokens }>(
-  ({ size, children, tooltip, ...rest }, ref) => {
+  ({ size, children, tooltip, icon, iconAfter, ...rest }, ref) => {
+    const iconElement = icon
+      ? isValidElement(icon)
+        ? icon
+        : createElement(icon, { size: 18, opacity: 0.5 })
+      : null
+
     let contents = (
       <ButtonFrame ref={ref} {...rest}>
+        {iconAfter ? null : iconElement}
         {typeof children !== 'string' ? (
           children
         ) : (
@@ -76,6 +84,7 @@ export const ButtonSimple = forwardRef<TamaguiElement, ButtonFrameProps & { size
             {children}
           </SizableText>
         )}
+        {iconAfter ? iconElement : null}
       </ButtonFrame>
     )
 
