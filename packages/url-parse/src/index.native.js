@@ -1,4 +1,0 @@
-import qs from 'query-string';
-export * from 'query-string';
-export default qs;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXgubmF0aXZlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiaW5kZXgubmF0aXZlLnRzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsTUFBTSxjQUFjLENBQUE7QUFFN0IsY0FBYyxjQUFjLENBQUE7QUFFNUIsZUFBZSxFQUFFLENBQUEifQ==
