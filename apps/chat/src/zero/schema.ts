@@ -26,6 +26,8 @@ export type ChannelState = {
   openedThreadId?: string
 }
 
+export type RolePermissions = {}
+
 const userSchema = {
   tableName: 'user',
   primaryKey: ['id'],
@@ -67,6 +69,60 @@ const userSchema = {
     ],
   },
 } as const
+
+const roleSchema = {
+  tableName: 'role',
+  primaryKey: ['id'],
+  columns: {
+    id: 'string',
+    name: 'string',
+    color: 'string',
+    serverId: 'string',
+    creatorId: 'string',
+    permissions: column.json<RolePermissions>(),
+    updatedAt: 'number',
+    createdAt: 'number',
+  },
+
+  relationships: {
+    members: [
+      {
+        sourceField: 'id',
+        destField: 'roleId',
+        destSchema: () => userRoleSchema,
+      },
+      {
+        sourceField: 'userId',
+        destField: 'id',
+        destSchema: () => userSchema,
+      },
+    ],
+  },
+} as const
+
+const userRoleSchema = createTableSchema({
+  tableName: 'userRole',
+  primaryKey: ['serverId', 'userId', 'roleId'],
+  columns: {
+    serverId: 'string',
+    userId: 'string',
+    roleId: 'string',
+    granterId: 'string',
+    createdAt: 'number',
+  },
+})
+
+const channelRoleSchema = createTableSchema({
+  tableName: 'channelRole',
+  primaryKey: ['serverId', 'channelId', 'roleId'],
+  columns: {
+    serverId: 'string',
+    channelId: 'string',
+    roleId: 'string',
+    granterId: 'string',
+    createdAt: 'number',
+  },
+})
 
 const friendshipSchema = createTableSchema({
   tableName: 'friendship',
@@ -110,6 +166,12 @@ const serverSchema = {
         destSchema: () => userSchema,
       },
     ],
+
+    roles: {
+      sourceField: 'id',
+      destField: 'serverId',
+      destSchema: () => roleSchema,
+    },
   },
 } as const
 
@@ -140,11 +202,25 @@ const channelSchema = createTableSchema({
       destField: 'channelId',
       destSchema: () => messageSchema,
     },
+
     threads: {
       sourceField: 'id',
       destField: 'channelId',
       destSchema: () => threadSchema,
     },
+
+    roles: [
+      {
+        sourceField: 'id',
+        destField: 'channelId',
+        destSchema: () => channelRoleSchema,
+      },
+      {
+        sourceField: 'roleId',
+        destField: 'id',
+        destSchema: () => roleSchema,
+      },
+    ],
   },
 })
 
@@ -248,6 +324,9 @@ export const schema = createSchema({
     message: messageSchema,
     messageReaction: messageReactionSchema,
     reaction: reactionSchema,
+    role: roleSchema,
+    userRole: userRoleSchema,
+    channelRole: channelRoleSchema,
   },
 })
 
@@ -261,6 +340,9 @@ export type ServerMember = Row<typeof serverMemberSchema>
 export type MessageReaction = Row<typeof messageReactionSchema>
 export type Reaction = Row<typeof reactionSchema>
 export type Friendship = Row<typeof friendshipSchema>
+export type Role = Row<typeof roleSchema>
+export type UserRole = Row<typeof userRoleSchema>
+export type ChannelRole = Row<typeof channelRoleSchema>
 
 export type MessageWithRelations = Message & {
   reactions: Reaction[]

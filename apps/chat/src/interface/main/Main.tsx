@@ -7,7 +7,17 @@ import { MainTopBar, mainTopBarHeight } from './MainTopBar'
 
 export const Main = memo(() => {
   return (
-    <YStack f={1} shadowColor="$shadowColor" shadowRadius={30} btlr="$3" ov="hidden">
+    <YStack
+      f={1}
+      shadowColor="$shadowColor"
+      shadowRadius={3}
+      shadowOffset={{ height: 2, width: 0 }}
+      btlr="$2"
+      ov="hidden"
+      bw={0.5}
+      bs="solid"
+      bc="$color7"
+    >
       <MainTopBar />
       <YStack mt={mainTopBarHeight} pos="relative" f={1} bg="$background05">
         <MainMessagesList />

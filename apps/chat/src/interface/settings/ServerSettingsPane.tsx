@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Button, Circle, H3, H4, Input, SizableText, XStack, YStack } from 'tamagui'
 import { DevTools } from '~/dev/DevTools'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
-import { useCurrentServer } from '~/state/server'
+import { useCurrentServer, useCurrentServerRoles } from '~/state/server'
 import type { Server } from '~/zero/schema'
 import { mutate } from '~/zero/zero'
 import { LabeledRow } from '../forms/LabeledRow'
@@ -17,6 +17,10 @@ import { ListItem } from '../lists/ListItem'
 export const ServerSettingsPane = () => {
   const server = useCurrentServer()
   const [tab, setTab] = useState('settings')
+
+  if (!server) {
+    return null
+  }
 
   return (
     <YStack
@@ -46,11 +50,11 @@ export const ServerSettingsPane = () => {
         >
           <YStack pos="relative" f={1} w="100%">
             <AlwaysVisibleTabContent active={tab} value="settings">
-              <EditServer server={server} />
+              <SettingsServer server={server} />
             </AlwaysVisibleTabContent>
 
             <AlwaysVisibleTabContent active={tab} value="permissions">
-              <EditServerPermissions server={server} />
+              <SettingsServerPermissions server={server} />
             </AlwaysVisibleTabContent>
           </YStack>
         </Tabs>
@@ -59,9 +63,8 @@ export const ServerSettingsPane = () => {
   )
 }
 
-const EditServerPermissions = ({ server }: { server: Server }) => {
-  // const roles = useCurrentServerRoles()
-  const roles = [{ id: '0', name: 'Team', color: 'red' }]
+const SettingsServerPermissions = ({ server }: { server: Server }) => {
+  const roles = useCurrentServerRoles() || []
 
   return (
     <YStack data-tauri-drag-region f={1}>
@@ -88,7 +91,7 @@ const EditServerPermissions = ({ server }: { server: Server }) => {
   )
 }
 
-const EditServer = ({ server }: { server: Server }) => {
+const SettingsServer = ({ server }: { server: Server }) => {
   const [image, setImage] = useState(server.icon)
   const [name, setName] = useState(server.name)
 

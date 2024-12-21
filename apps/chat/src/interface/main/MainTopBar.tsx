@@ -43,7 +43,7 @@ export const MainTopBar = () => {
       l={0}
       r={0}
       bg="$color1"
-      elevation={4}
+      elevation={1}
       zi={100_000}
       py="$2"
       px="$2"

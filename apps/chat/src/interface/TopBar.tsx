@@ -1,7 +1,7 @@
-import { ChevronLeft, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
+import { ChevronLeft, ChevronRight, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
 import { memo, useRef } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
-import { H1, Input, TooltipSimple, XStack } from 'tamagui'
+import { Button, H1, Input, TooltipSimple, XStack, YStack } from 'tamagui'
 import { authClient, useAuth } from '~/better-auth/authClient'
 import { HotMenu } from '~/interface/hotmenu/HotMenu'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
@@ -53,24 +53,47 @@ export const TopBar = memo(() => {
       <XStack ai="center" gap="$1">
         <TopBarSearch />
 
-        <ButtonSimple
-          tooltip="Server settings"
-          onPress={() => {
-            if (userState?.showSidePanel === 'settings') {
-              updateUserState({
-                showSidePanel: undefined,
-              })
-            } else {
-              updateUserState({
-                showSidePanel: 'settings',
-              })
-            }
-          }}
-        >
-          <Settings2 o={0.5} size={20} />
-        </ButtonSimple>
+        <XStack ai="center">
+          {!!userState?.showSidePanel && (
+            <YStack fullscreen ai="center" jc="center" zi={100}>
+              <ButtonSimple
+                onPress={() => {
+                  updateUserState({
+                    showSidePanel: undefined,
+                  })
+                }}
+              >
+                <ChevronRight size={20} o={0.5} />
+              </ButtonSimple>
+            </YStack>
+          )}
 
-        <UserButton />
+          <XStack
+            ai="center"
+            {...(userState?.showSidePanel && {
+              opacity: 0,
+            })}
+          >
+            <ButtonSimple
+              tooltip="Server settings"
+              onPress={() => {
+                if (userState?.showSidePanel === 'settings') {
+                  updateUserState({
+                    showSidePanel: undefined,
+                  })
+                } else {
+                  updateUserState({
+                    showSidePanel: 'settings',
+                  })
+                }
+              }}
+            >
+              <Settings2 o={0.5} size={20} />
+            </ButtonSimple>
+
+            <UserButton />
+          </XStack>
+        </XStack>
 
         {!isTauri && jwtToken && (
           <a href={authTauriDeepLink}>
@@ -123,13 +146,7 @@ const UserButton = () => {
         }}
       >
         <ButtonSimple>
-          {userState?.showSidePanel === 'user' ? (
-            <ChevronLeft size={20} o={0.5} />
-          ) : user?.image ? (
-            <Avatar image={user.image} />
-          ) : (
-            <UserCircle size={20} o={0.5} />
-          )}
+          {user?.image ? <Avatar image={user.image} /> : <UserCircle size={20} o={0.5} />}
         </ButtonSimple>
       </a>
     </>

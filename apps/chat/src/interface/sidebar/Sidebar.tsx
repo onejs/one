@@ -6,7 +6,7 @@ import { SidebarServersRow } from './SidebarServersRow'
 
 export const Sidebar = memo(() => {
   return (
-    <YStack ov="hidden" f={10} mih={200} maw={250} miw={250} gap="$4">
+    <YStack ov="hidden" f={10} mih={200} maw={250} miw={250} gap="$2">
       <SidebarServersRow />
 
       <SidebarServerChannelsList />

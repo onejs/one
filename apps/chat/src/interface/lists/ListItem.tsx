@@ -1,18 +1,18 @@
-import { createElement, forwardRef } from 'react'
-import { Input, SizableText, type TamaguiElement, XStack, type XStackProps } from 'tamagui'
+import { createElement, forwardRef, isValidElement } from 'react'
+import { Input, SizableText, type TamaguiElement, XStack, type XStackProps, YStack } from 'tamagui'
 
-export const ListItem = forwardRef<
-  TamaguiElement,
-  XStackProps & {
-    icon?: any
-    iconAfter?: boolean
-    editing?: boolean
-    editingValue?: string
-    onEditComplete?: (value: string) => void
-    onEditCancel?: () => void
-    active?: boolean
-  }
->(
+export type ListItemProps = XStackProps & {
+  icon?: any
+  iconAfter?: boolean
+  editing?: boolean
+  editingValue?: string
+  onEditComplete?: (value: string) => void
+  onEditCancel?: () => void
+  active?: boolean
+  disableHover?: boolean
+}
+
+export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
   (
     {
       active,
@@ -23,11 +23,16 @@ export const ListItem = forwardRef<
       children,
       icon,
       iconAfter,
+      disableHover,
       ...rest
     },
     ref
   ) => {
-    const iconElement = icon ? createElement(icon, { size: 18, opacity: 0.5 }) : null
+    const iconElement = icon
+      ? isValidElement(icon)
+        ? icon
+        : createElement(icon, { size: 18, opacity: 0.5 })
+      : null
 
     return (
       <XStack
@@ -38,9 +43,11 @@ export const ListItem = forwardRef<
         userSelect="none"
         gap="$3"
         cur="default"
-        hoverStyle={{
-          bg: '$background025',
-        }}
+        {...(!disableHover && {
+          hoverStyle: {
+            bg: '$background025',
+          },
+        })}
         {...(active && {
           bg: '$background05',
           hoverStyle: {
@@ -76,7 +83,11 @@ export const ListItem = forwardRef<
         ) : (
           children
         )}
-        {iconAfter ? iconElement : null}
+        {iconAfter ? (
+          <YStack pos="absolute" t={0} r={0} b={0} ai="center" jc="center" px="$3">
+            {iconElement}
+          </YStack>
+        ) : null}
       </XStack>
     )
   }

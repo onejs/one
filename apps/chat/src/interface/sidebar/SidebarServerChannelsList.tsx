@@ -12,6 +12,8 @@ import { mutate } from '~/zero/zero'
 import { ListItem } from '../lists/ListItem'
 import { SortableList } from '../lists/SortableList'
 import { useChannelsHotkeys } from './useChannelsHotkeys'
+import { ListTitle } from '../lists/ListTitle'
+import { ButtonSimple } from '../ButtonSimple'
 
 // TODO organize/enforce
 // id order
@@ -50,6 +52,23 @@ export const SidebarServerChannelsList = () => {
   return (
     <YStack>
       <YStack pos="relative">
+        {user && (
+          <ListTitle
+            icon={
+              <ButtonSimple
+                onPress={() => {
+                  setShowTempChannel(true)
+                }}
+              >
+                <Plus size={16} o={0.5} />
+              </ButtonSimple>
+            }
+            iconAfter
+          >
+            Channels
+          </ListTitle>
+        )}
+
         <SortableList
           items={channelsSorted}
           renderItem={(channel) => <ChannelListItemSortable key={channel.id} channel={channel} />}
@@ -100,18 +119,6 @@ export const SidebarServerChannelsList = () => {
           />
         )}
       </YStack>
-
-      {user && (
-        <ListItem
-          icon={Plus}
-          iconAfter
-          onPress={() => {
-            setShowTempChannel(true)
-          }}
-        >
-          New Channel
-        </ListItem>
-      )}
     </YStack>
   )
 }
@@ -182,6 +189,8 @@ const ChannelListItem = forwardRef(
       <ListItem
         ref={ref}
         editing={editing || inserting}
+        icon={channel?.private ? <Lock o={0.5} size={16} /> : null}
+        iconAfter
         editingValue={channel?.name ?? ''}
         active={derivedUserState?.activeChannel === channel?.id}
         onPress={() => {
@@ -222,13 +231,7 @@ const ChannelListItem = forwardRef(
         }}
         {...rest}
       >
-        {channel?.name}
-
-        {channel?.private && (
-          <YStack pos="absolute" t={0} r={0} b={0} ai="center" jc="center" o={0.5} px="$3">
-            <Lock size={16} />
-          </YStack>
-        )}
+        {channel?.name || ''}
       </ListItem>
     )
   }
