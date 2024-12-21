@@ -1,7 +1,7 @@
 import { Plus } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useState } from 'react'
-import { Button, Circle, H3, Input, SizableText, XStack, YStack } from 'tamagui'
+import { Button, Circle, H2, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
 import { randomID } from '~/helpers/randomID'
@@ -18,6 +18,7 @@ import { SortableList } from '../lists/SortableList'
 import { Tabs } from '../tabs/Tabs'
 import { showToast } from '../toast/Toast'
 import { AvatarUpload } from '../upload/AvatarUpload'
+import { Switch } from '../forms/Switch'
 
 const actionEmitter = createEmitter<'create-role'>()
 
@@ -90,6 +91,7 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
   const { user } = useAuth()
   const roles = useCurrentServerRoles() || []
   const [showTempRole, setShowTempRole] = useState(false)
+  const [selected, setSelected] = useState<Role | null>(null)
 
   actionEmitter.use((action) => {
     if (action == 'create-role') {
@@ -99,35 +101,69 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
 
   return (
     <YStack data-tauri-drag-region f={1}>
-      <SortableList
-        items={roles}
-        renderItem={(role) => <RoleListItem key={role.id} role={role} />}
-        renderDraggingItem={(role) => <RoleListItem key={role.id} role={role} />}
-        onSort={(sorted) => {
-          //
-        }}
-      />
-
-      {showTempRole && (
-        <RoleListItem
-          defaultEditing
-          onEditComplete={(name) => {
-            const id = randomID()
-            setShowTempRole(false)
-            mutate.role.insert({
-              id,
-              color: 'gray',
-              createdAt: new Date().getTime(),
-              creatorId: user?.id || '',
-              name,
-              permissions: {},
-              serverId: server.id,
-              updatedAt: new Date().getTime(),
-            })
+      <YStack f={1}>
+        <SortableList
+          items={roles}
+          renderItem={(role) => (
+            <RoleListItem
+              active={selected?.id === role.id}
+              editingValue={role.name}
+              onPress={() => {
+                setSelected(role)
+              }}
+              key={role.id}
+              role={role}
+            />
+          )}
+          renderDraggingItem={(role) => <RoleListItem key={role.id} role={role} />}
+          onSort={(sorted) => {
+            //
           }}
-          onEditCancel={() => setShowTempRole(false)}
         />
-      )}
+
+        {showTempRole && (
+          <RoleListItem
+            defaultEditing
+            onEditComplete={(name) => {
+              const id = randomID()
+              setShowTempRole(false)
+              mutate.role.insert({
+                id,
+                color: 'gray',
+                createdAt: new Date().getTime(),
+                creatorId: user?.id || '',
+                name,
+                permissions: {},
+                serverId: server.id,
+                updatedAt: new Date().getTime(),
+              })
+            }}
+            onEditCancel={() => setShowTempRole(false)}
+          />
+        )}
+      </YStack>
+
+      <Sheet animation="bouncy" open={!!selected}>
+        <Sheet.Frame br="$6" elevation="$4" p="$4">
+          <H5 o={0.5}>{selected?.name}</H5>
+
+          <LabeledRow
+            htmlFor="manage-server"
+            label="Manage Server"
+            description="Allow user to change server settings."
+          >
+            <Switch size="$3" id="manage-server" />
+          </LabeledRow>
+
+          <LabeledRow
+            htmlFor="edit-channels"
+            label="Edit Channels"
+            description="Allow user to change channel names, add and remove."
+          >
+            <Switch size="$3" id="edit-channels" />
+          </LabeledRow>
+        </Sheet.Frame>
+      </Sheet>
     </YStack>
   )
 }
