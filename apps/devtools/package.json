@@ -1,6 +1,6 @@
 {
   "name": "devtools",
-  "version": "1.1.367",
+  "version": "1.1.368",
   "private": true,
   "type": "module",
   "scripts": {
@@ -21,8 +21,8 @@
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-shell": "^2",
-    "@vxrn/color-scheme": "1.1.367",
-    "one": "1.1.367",
+    "@vxrn/color-scheme": "1.1.368",
+    "one": "1.1.368",
     "react": "^18.3.1",
     "react-hotkeys-hook": "^4.6.1",
     "react-native": "0.74.5",

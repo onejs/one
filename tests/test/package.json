@@ -1,6 +1,6 @@
 {
   "name": "test-test",
-  "version": "1.1.367",
+  "version": "1.1.368",
   "private": true,
   "type": "module",
   "installConfig": {
@@ -26,13 +26,13 @@
     "@tamagui/lucide-icons": "^1.120.2",
     "@tamagui/vite-plugin": "^1.120.2",
     "@vercel/og": "^0.6.3",
-    "@vxrn/color-scheme": "1.1.367",
+    "@vxrn/color-scheme": "1.1.368",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
     "expo": "~51.0.28",
-    "one": "1.1.367",
+    "one": "1.1.368",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-native": "0.74.5",
