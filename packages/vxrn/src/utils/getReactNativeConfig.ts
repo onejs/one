@@ -185,6 +185,9 @@ export async function getReactNativeConfig(
               if (typeExportsMatch) {
                 for (const typeExport of Array.from(typeExportsMatch)) {
                   const [_export, _type, name] = typeExport.split(/\s+/)
+                  // FIXME: support `export { ... } from '...'`
+                  if (name.startsWith('{')) continue
+
                   // basic sanity check it isn't exported already
                   const alreadyExported = new RegExp(
                     `export (const|let|class|function) ${name}\\s+`
