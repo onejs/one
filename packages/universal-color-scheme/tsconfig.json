@@ -1,7 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "composite": true,
+    "composite": true
   },
-  "references": []
+  "references": [
+    {
+      "path": "../use-isomorphic-layout-effect"
+    }
+  ]
 }

@@ -4,6 +4,14 @@
     "composite": true
   },
   "references": [
-    
+    {
+      "path": "../utils"
+    },
+    {
+      "path": "../vite-flow"
+    },
+    {
+      "path": "../vite-native-hmr"
+    }
   ]
 }

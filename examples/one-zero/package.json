@@ -34,15 +34,15 @@
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-fs": "^2.2.0",
     "@tauri-apps/plugin-shell": "^2",
-    "@vxrn/better-auth": "workspace:*",
-    "@vxrn/color-scheme": "workspace:*",
-    "@vxrn/emitter": "workspace:*",
+    "@vxrn/better-auth": "1.1.367",
+    "@vxrn/color-scheme": "1.1.367",
+    "@vxrn/emitter": "1.1.367",
     "better-auth": "1.0.23-beta.3",
     "expo": "~51.0.28",
-    "one": "workspace:*",
+    "one": "1.1.367",
     "pg": "^8.13.1",
-    "react": "^18",
-    "react-native": "0.74.1",
+    "react": "^18.3.1",
+    "react-native": "0.74.5",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
     "tamagui": "^1.120.2"
@@ -50,7 +50,7 @@
   "devDependencies": {
     "@tamagui/vite-plugin": "^1.120.2",
     "@tauri-apps/cli": "^2",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.0"
   },
   "publishConfig": {
     "access": "public"

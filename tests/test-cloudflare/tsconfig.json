@@ -56,5 +56,10 @@
   "typeAcquisition": {
     "enable": true
   },
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "references": [
+    {
+      "path": "../../packages/one"
+    }
+  ]
 }

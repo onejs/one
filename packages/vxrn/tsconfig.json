@@ -1,8 +1,32 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": { 
+  "compilerOptions": {
     "composite": true
   },
   "references": [
+    {
+      "path": "../debug"
+    },
+    {
+      "path": "../query-string"
+    },
+    {
+      "path": "../react-native-prebuilt"
+    },
+    {
+      "path": "../resolve"
+    },
+    {
+      "path": "../safe-area"
+    },
+    {
+      "path": "../url-parse"
+    },
+    {
+      "path": "../vite-flow"
+    },
+    {
+      "path": "../vite-native-swc"
+    }
   ]
 }
