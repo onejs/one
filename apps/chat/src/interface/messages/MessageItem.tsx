@@ -1,4 +1,5 @@
 import { IndentIncrease, MoreVertical, Reply } from '@tamagui/lucide-icons'
+import MDEditor from '@uiw/react-md-editor'
 import { memo } from 'react'
 import {
   Button,
@@ -10,14 +11,13 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import type { Channel, Message, MessageWithRelations, Reaction, Thread, User } from '~/zero/schema'
 import { useAuth } from '~/better-auth/authClient'
-import { currentUser, updateUserOpenThread, useUserCurrentChannelState } from '~/state/user'
 import { randomID } from '~/helpers/randomID'
-import { mutate, useQuery } from '~/zero/zero'
 import { Avatar } from '~/interface/Avatar'
+import { getCurrentUser, updateUserOpenThread, useUserCurrentChannelState } from '~/state/user'
+import type { Channel, Message, MessageWithRelations, Reaction, Thread, User } from '~/zero/schema'
+import { mutate, useQuery } from '~/zero/zero'
 import { AddReactionButton } from './AddReactionButton'
-import MDEditor from '@uiw/react-md-editor'
 
 export const MessageItem = memo(
   ({
@@ -146,6 +146,7 @@ const MessageActionBar = ({
           <TooltipSimple label="Create Thread">
             <Button
               onPress={() => {
+                const currentUser = getCurrentUser()
                 if (!currentUser) {
                   console.error(`no user`)
                   return

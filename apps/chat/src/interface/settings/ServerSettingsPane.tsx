@@ -1,21 +1,23 @@
+import { Plus } from '@tamagui/lucide-icons'
+import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useState } from 'react'
-import { Button, Circle, H1, H3, H4, Input, SizableText, XStack, YStack } from 'tamagui'
+import { Button, Circle, H3, Input, SizableText, XStack, YStack } from 'tamagui'
+import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
+import { randomID } from '~/helpers/randomID'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
 import { useCurrentServer, useCurrentServerRoles } from '~/state/server'
 import type { Role, Server } from '~/zero/schema'
 import { mutate } from '~/zero/zero'
+import { Avatar } from '../Avatar'
+import { ButtonSimple } from '../ButtonSimple'
+import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
 import { LabeledRow } from '../forms/LabeledRow'
+import { EditableListItem, type EditableListItemProps } from '../lists/EditableListItem'
+import { SortableList } from '../lists/SortableList'
+import { Tabs } from '../tabs/Tabs'
 import { showToast } from '../toast/Toast'
 import { AvatarUpload } from '../upload/AvatarUpload'
-import { Tabs } from '../tabs/Tabs'
-import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
-import { Avatar } from '../Avatar'
-import { SortableList } from '../lists/SortableList'
-import { ListItem } from '../lists/ListItem'
-import { ButtonSimple } from '../ButtonSimple'
-import { Plus } from '@tamagui/lucide-icons'
-import { createEmitter } from '@vxrn/emitter'
 
 const actionEmitter = createEmitter<'create-role'>()
 
@@ -85,6 +87,7 @@ export const ServerSettingsPane = () => {
 }
 
 const SettingsServerPermissions = ({ server }: { server: Server }) => {
+  const { user } = useAuth()
   const roles = useCurrentServerRoles() || []
   const [showTempRole, setShowTempRole] = useState(false)
 
@@ -105,23 +108,39 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
         }}
       />
 
-      {showTempRole && <RoleListItem />}
+      {showTempRole && (
+        <RoleListItem
+          defaultEditing
+          onEditComplete={(name) => {
+            const id = randomID()
+            setShowTempRole(false)
+            mutate.role.insert({
+              id,
+              color: 'gray',
+              createdAt: new Date().getTime(),
+              creatorId: user?.id || '',
+              name,
+              permissions: {},
+              serverId: server.id,
+              updatedAt: new Date().getTime(),
+            })
+          }}
+          onEditCancel={() => setShowTempRole(false)}
+        />
+      )}
     </YStack>
   )
 }
 
-const RoleListItem = ({ role }: { role?: Role }) => {
+const RoleListItem = ({ role, ...rest }: Omit<EditableListItemProps, 'role'> & { role?: Role }) => {
   return (
-    <ListItem>
-      <Circle size={24} bg={role?.color || 'gray'} />
-      <SizableText>{role?.name || ''}</SizableText>
-
-      <XStack f={1} />
-
-      <XStack als="flex-end">
-        <SizableText>3 members</SizableText>
-      </XStack>
-    </ListItem>
+    <EditableListItem
+      icon={<Circle size={24} bg={role?.color || 'gray'} />}
+      after={<SizableText>3 members</SizableText>}
+      {...rest}
+    >
+      {role?.name || ''}
+    </EditableListItem>
   )
 }
 

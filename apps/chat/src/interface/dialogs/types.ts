@@ -18,11 +18,16 @@ export type DialogAddFriend = {
   type: 'add-friend'
 }
 
+export type DialogSignup = {
+  type: 'signup'
+}
+
 export type DialogType =
   | DialogConfirmType
   | DialogCreateServerType
   | DialogJoinServerType
   | DialogAddFriend
+  | DialogSignup
 
 export type TabContentPaneProps = TabsContentProps & {
   active: string

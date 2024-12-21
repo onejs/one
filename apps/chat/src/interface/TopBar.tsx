@@ -1,14 +1,15 @@
-import { ChevronLeft, ChevronRight, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
+import { ChevronRight, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
 import { memo, useRef } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
-import { Button, H1, Input, TooltipSimple, XStack, YStack } from 'tamagui'
-import { authClient, useAuth } from '~/better-auth/authClient'
+import { H1, Input, TooltipSimple, XStack, YStack } from 'tamagui'
+import { useAuth } from '~/better-auth/authClient'
 import { HotMenu } from '~/interface/hotmenu/HotMenu'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
 import { updateUserState, useUserState } from '~/state/user'
 import { isTauri } from '~/tauri/constants'
 import { Avatar } from './Avatar'
 import { ButtonSimple } from './ButtonSimple'
+import { ensureSignedUp } from './dialogs/DialogSignup'
 
 export const TopBar = memo(() => {
   const { session, jwtToken } = useAuth()
@@ -107,27 +108,11 @@ export const TopBar = memo(() => {
 
 const UserButton = () => {
   const { user, loggedIn } = useAuth()
-  const [userState] = useUserState()
-  const shouldLink = !loggedIn && !userState?.showSidePanel
 
   return (
     <>
-      <a
-        target="_blank"
-        {...(shouldLink && {
-          href: window.location.origin + '/login-github',
-        })}
-        rel="noreferrer"
-        // biome-ignore lint/a11y/useValidAnchor: <explanation>
-        onClick={(e) => {
-          if (userState?.showSidePanel === 'user') {
-            e.preventDefault()
-            updateUserState({
-              showSidePanel: undefined,
-            })
-            return
-          }
-
+      <ButtonSimple
+        onPress={(e) => {
           if (loggedIn) {
             e.preventDefault()
             updateUserState({
@@ -136,19 +121,11 @@ const UserButton = () => {
             return
           }
 
-          if (!isTauri) {
-            e.preventDefault()
-            authClient.signIn.social({
-              provider: 'github',
-            })
-            return
-          }
+          ensureSignedUp()
         }}
       >
-        <ButtonSimple>
-          {user?.image ? <Avatar image={user.image} /> : <UserCircle size={20} o={0.5} />}
-        </ButtonSimple>
-      </a>
+        {user?.image ? <Avatar size={20} image={user.image} /> : <UserCircle size={20} o={0.5} />}
+      </ButtonSimple>
     </>
   )
 }
