@@ -1,9 +1,11 @@
 import type { Server } from '~/zero/schema'
-import { currentUser, updateUserState } from './user'
 import { randomID } from '../helpers/randomID'
 import { mutate } from '../zero/zero'
+import { getCurrentUser, updateUserState } from './user'
 
 export const insertServer = async (server: Partial<Server>) => {
+  const currentUser = getCurrentUser()
+
   if (!currentUser) {
     console.error('not signed in')
     return

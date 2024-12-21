@@ -1,9 +1,13 @@
 import { merge } from 'ts-deepmerge'
-import type { User, UserState } from '~/zero/schema'
+import { useAuth } from '~/better-auth/authClient'
+import { ensureSignedUp } from '~/interface/dialogs/DialogSignup'
+import type { ChannelState, User, UserState } from '~/zero/schema'
 import { mutate, useQuery } from '~/zero/zero'
 
 // TODO
-export let currentUser = null as User | null
+let currentUser = null as User | null
+
+export const getCurrentUser = () => currentUser
 
 const getJustUserState = () => {
   return {
@@ -30,13 +34,20 @@ export const getUserState = () => {
 
 export const useUserState = () => {
   const user = useQuery((q) => q.user)[0][0]
-  currentUser = user
+  const { loggedIn } = useAuth()
+  if (loggedIn) {
+    // TODO
+    currentUser = user
+  }
   return getUserState()
 }
 
 export const updateUserState = async (next: Partial<UserState>) => {
   if (!currentUser) {
-    console.error(`No user`)
+    await ensureSignedUp()
+    if (!currentUser) {
+      console.warn(`No user`)
+    }
     return
   }
 

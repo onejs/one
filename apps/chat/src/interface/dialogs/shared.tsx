@@ -12,7 +12,7 @@ export const DialogOverlay = styled(Dialog.Overlay, {
   animation: 'quickest',
   enterStyle: { opacity: 0 },
   exitStyle: { opacity: 0 },
-  bg: '$background075',
+  bg: '$shadowColor',
 })
 
 export const DialogContent = styled(Dialog.Content, {

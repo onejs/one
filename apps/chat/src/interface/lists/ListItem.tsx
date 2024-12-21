@@ -10,6 +10,8 @@ export type ListItemProps = XStackProps & {
   onEditCancel?: () => void
   active?: boolean
   disableHover?: boolean
+  after?: any
+  before?: any
 }
 
 export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
@@ -24,6 +26,8 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
       icon,
       iconAfter,
       disableHover,
+      after,
+      before,
       ...rest
     },
     ref
@@ -56,6 +60,7 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
         })}
         {...rest}
       >
+        {before}
         {iconAfter ? null : iconElement}
         {editing ? (
           <Input
@@ -83,11 +88,20 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
         ) : (
           children
         )}
-        {iconAfter ? (
-          <YStack pos="absolute" t={0} r={0} b={0} ai="center" jc="center" px="$3">
-            {iconElement}
-          </YStack>
-        ) : null}
+        {typeof after !== 'undefined' && (
+          <>
+            <XStack f={1} />
+
+            <XStack ai="center" als="flex-end">
+              {after}
+              {iconAfter ? (
+                <YStack pos="absolute" t={0} r={0} b={0} ai="center" jc="center" px="$3">
+                  {iconElement}
+                </YStack>
+              ) : null}
+            </XStack>
+          </>
+        )}
       </XStack>
     )
   }
