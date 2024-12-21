@@ -3,7 +3,8 @@ import { YStack } from 'tamagui'
 import { MainMessageInput } from './MainMessageInput'
 import { MainMessagesList } from './MainMessagesList'
 import { MainOpenThread } from './MainOpenThread'
-import { MainTopBar, mainTopBarHeight } from './MainTopBar'
+import { MainTopBar } from './MainTopBar'
+import { mainTopBarHeight } from './constants'
 
 export const Main = memo(() => {
   return (

@@ -1,1 +1,1 @@
-export const hiddenPanelWidth = 400
+export const hiddenPanelWidth = 500

@@ -14,6 +14,7 @@ import { SortableList } from '../lists/SortableList'
 import { useChannelsHotkeys } from './useChannelsHotkeys'
 import { ListTitle } from '../lists/ListTitle'
 import { ButtonSimple } from '../ButtonSimple'
+import { EditableListItem, type EditableListItemProps } from '../lists/EditableListItem'
 
 // TODO organize/enforce
 // id order
@@ -84,8 +85,8 @@ export const SidebarServerChannelsList = () => {
 
         {showTempChannel && (
           <ChannelListItem
-            inserting
-            onInsert={(name) => {
+            defaultEditing
+            onEditComplete={(name) => {
               if (!server) {
                 alert('no server')
                 return
@@ -113,7 +114,7 @@ export const SidebarServerChannelsList = () => {
               })
               setShowTempChannel(false)
             }}
-            onInsertCancel={() => {
+            onEditCancel={() => {
               setShowTempChannel(false)
             }}
           />
@@ -170,33 +171,24 @@ const ChannelListItem = forwardRef(
   (
     {
       channel,
-      inserting,
-      onInsert,
-      onInsertCancel,
+      onEditComplete,
       ...rest
-    }: XStackProps & {
+    }: EditableListItemProps & {
       channel?: Channel
-      inserting?: boolean
-      onInsert?: (name: string) => void
-      onInsertCancel?: () => void
     },
     ref: any
   ) => {
-    const [editing, setEditing] = useState(false)
     const [userState, derivedUserState] = useUserState()
 
     return (
-      <ListItem
+      <EditableListItem
         ref={ref}
-        editing={editing || inserting}
         icon={channel?.private ? <Lock o={0.5} size={16} /> : null}
         iconAfter
         editingValue={channel?.name ?? ''}
         active={derivedUserState?.activeChannel === channel?.id}
         onPress={() => {
-          if (inserting || !channel) {
-            return
-          }
+          if (!channel) return
           updateUserState({
             activeChannels: {
               ...userState.activeChannels,
@@ -204,35 +196,20 @@ const ChannelListItem = forwardRef(
             },
           })
         }}
-        onEditCancel={() => {
-          if (inserting) {
-            onInsertCancel?.()
-          } else {
-            setEditing(false)
-          }
-        }}
         onEditComplete={(next) => {
-          if (inserting || !channel) {
-            onInsert?.(next)
+          if (!channel || onEditComplete) {
+            onEditComplete?.(next)
           } else {
-            setEditing(false)
             mutate.channel.update({
               ...channel,
               name: next,
             })
           }
         }}
-        // @ts-expect-error
-        onDoubleClick={() => {
-          if (inserting || !channel) {
-            return
-          }
-          setEditing(!editing)
-        }}
         {...rest}
       >
         {channel?.name || ''}
-      </ListItem>
+      </EditableListItem>
     )
   }
 )

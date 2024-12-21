@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export class Emitter<T> {
+export class Emitter<const T> {
   private disposables = new Set<(cb: any) => void>()
 
   listen = (disposable: (cb: T) => void) => {
@@ -10,7 +10,7 @@ export class Emitter<T> {
     }
   }
 
-  emit = <T>(next: T) => {
+  emit = (next: T) => {
     this.disposables.forEach((cb) => cb(next))
   }
 

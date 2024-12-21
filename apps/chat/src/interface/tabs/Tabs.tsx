@@ -170,7 +170,7 @@ function Tab({
       onInteraction={onInteraction}
     >
       <XStack gap="$1.5" ai="center" jc="center">
-        <SizableText y={-0.5} size="$5" fow="500">
+        <SizableText y={-0.5} size="$4" fow="500">
           {label}
         </SizableText>
       </XStack>
