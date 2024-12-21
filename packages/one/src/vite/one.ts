@@ -22,6 +22,7 @@ import { createReactCompilerPlugin } from './plugins/reactCompilerPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { createVirtualEntry, virtualEntryId } from './plugins/virtualEntryPlugin'
 import type { One } from './types'
+import { barrel } from 'vite-plugin-barrel'
 
 events.setMaxListeners(1_000)
 
@@ -58,6 +59,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       // @ts-ignore
       __get: options,
     },
+
+    barrel({
+      packages: ['@tamagui/lucide-icons', '@mui/material', '@mui/icons-material'],
+    }) as any,
 
     {
       name: 'one-define-env',
