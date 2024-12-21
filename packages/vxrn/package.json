@@ -14,7 +14,8 @@
     "run.mjs",
     "react-native-template.js",
     "react-native-commands.cjs",
-    "expo-plugin.cjs"
+    "expo-plugin.cjs",
+    "expo-js-native-debugging-plugin.cjs"
   ],
   "publishConfig": {
     "access": "public"
