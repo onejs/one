@@ -26,7 +26,7 @@ function createSingleDebugger(
   namespacePartial: string,
   options: DebuggerOptions = {}
 ): Debugger | undefined {
-  const namespace = `vxrn:${namespacePartial}`
+  const namespace = namespacePartial.includes(':') ? namespacePartial : `vxrn:${namespacePartial}`
 
   const log = debug(namespace)
   const { onlyWhenFocused } = options
