@@ -24,8 +24,7 @@
     "jsx": "react-jsx",
     "module": "Preserve",
     "moduleResolution": "Bundler",
-    "noEmit": false,
-    "noEmitOnError": false,
+    "noEmit": true,
     "noImplicitAny": false,
     "noImplicitReturns": false,
     "noUnusedLocals": false,
@@ -54,5 +53,115 @@
   ],
   "typeAcquisition": {
     "enable": true
-  }
+  },
+  "references": [
+    {
+      "path": "apps/chat"
+    },
+    {
+      "path": "apps/devtools"
+    },
+    {
+      "path": "apps/onestack.dev"
+    },
+    {
+      "path": "packages/better-auth"
+    },
+    {
+      "path": "packages/color-scheme"
+    },
+    {
+      "path": "packages/create-vxrn"
+    },
+    {
+      "path": "packages/debug"
+    },
+    {
+      "path": "packages/drizzle-to-zero"
+    },
+    {
+      "path": "packages/emitter"
+    },
+    {
+      "path": "packages/mdx"
+    },
+    {
+      "path": "packages/one"
+    },
+    {
+      "path": "packages/query-string"
+    },
+    {
+      "path": "packages/react-native-prebuilt"
+    },
+    {
+      "path": "packages/resolve"
+    },
+    {
+      "path": "packages/safe-area"
+    },
+    {
+      "path": "packages/universal-color-scheme"
+    },
+    {
+      "path": "packages/url-parse"
+    },
+    {
+      "path": "packages/use-isomorphic-layout-effect"
+    },
+    {
+      "path": "packages/utils"
+    },
+    {
+      "path": "packages/vite-flow"
+    },
+    {
+      "path": "packages/vite-native-client"
+    },
+    {
+      "path": "packages/vite-native-hmr"
+    },
+    {
+      "path": "packages/vite-native-swc"
+    },
+    {
+      "path": "packages/vxrn"
+    },
+    {
+      "path": "examples/bare"
+    },
+    {
+      "path": "examples/one-basic"
+    },
+    {
+      "path": "examples/one-fullstack"
+    },
+    {
+      "path": "examples/one-recommended"
+    },
+    {
+      "path": "examples/one-tamagui"
+    },
+    {
+      "path": "examples/one-zero"
+    },
+    {
+      "path": "examples/testflight"
+    },
+    {
+      "path": "tests/sandbox"
+    },
+    {
+      "path": "tests/test-cloudflare"
+    },
+    {
+      "path": "tests/test-use-dom"
+    },
+    {
+      "path": "tests/test-weird-deps"
+    },
+    {
+      "path": "tests/test"
+    }
+  ]
 }

@@ -38,7 +38,9 @@
     "clean:build": "yarn turbo:run clean:build",
     "clean:ts": "tsc -b --clean tsconfig.json",
     "clean": "yarn turbo:run clean:build",
-    "fix": "manypkg fix",
+    "fix": "yarn fix:packages && yarn fix:references",
+    "fix:packages": "manypkg fix",
+    "fix:references": "update-ts-references",
     "lint:fix": "ultra -r --no-pretty lint:fix",
     "lint": "ultra -r --no-pretty lint",
     "sandbox": "yarn workspace test-sandbox dev",
@@ -74,6 +76,7 @@
     "turbo": "^2.1.0",
     "typescript": "^5.7.2",
     "ultra-runner": "^3.10.5",
+    "update-ts-references": "^3.4.0",
     "vitepress": "^1.1.4"
   }
 }

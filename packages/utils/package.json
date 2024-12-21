@@ -1,34 +1,34 @@
 {
-  "name": "@vxrn/better-auth",
+  "name": "@vxrn/utils",
   "version": "1.1.367",
   "sideEffects": false,
+  "type": "module",
   "types": "./src/index.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "react-native": {
+        "import": "./dist/esm/index.native.js",
+        "require": "./dist/cjs/index.native.js"
+      },
       "types": "./src/index.ts",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.cjs"
     }
   },
   "files": [
     "src",
-    "types",
     "dist"
   ],
   "scripts": {
     "build": "tamagui-build --skip-types",
     "watch": "tamagui-build --skip-types --watch",
-    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
+    "lint": "npx biome check src",
+    "lint:fix": "npx biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
-  },
-  "dependencies": {
-    "@vxrn/emitter": "1.1.367",
-    "better-auth": "1.0.23-beta.3",
-    "react": "^18.3.1"
   },
   "devDependencies": {
     "@tamagui/build": "^1.120.2"

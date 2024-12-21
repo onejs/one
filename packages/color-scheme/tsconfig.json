@@ -1,7 +1,14 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "composite": true,
+    "composite": true
   },
-  "references": []
+  "references": [
+    {
+      "path": "../universal-color-scheme"
+    },
+    {
+      "path": "../use-isomorphic-layout-effect"
+    }
+  ]
 }

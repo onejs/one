@@ -4,7 +4,9 @@
     "rootDir": ".",
     "outDir": "dist",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": [
+        "./src/*"
+      ]
     },
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
@@ -18,8 +20,15 @@
     "noUnusedParameters": false,
     "preserveConstEnums": true,
     "skipLibCheck": true,
-    "types": ["node", "react", "vite/client"],
-    "lib": ["dom", "esnext"]
+    "types": [
+      "node",
+      "react",
+      "vite/client"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ]
   },
   "exclude": [
     "node_modules",
@@ -30,5 +39,19 @@
   ],
   "typeAcquisition": {
     "enable": true
-  }
+  },
+  "references": [
+    {
+      "path": "../../packages/better-auth"
+    },
+    {
+      "path": "../../packages/color-scheme"
+    },
+    {
+      "path": "../../packages/emitter"
+    },
+    {
+      "path": "../../packages/one"
+    }
+  ]
 }

@@ -52,5 +52,16 @@
   ],
   "typeAcquisition": {
     "enable": true
-  }
+  },
+  "references": [
+    {
+      "path": "../../packages/color-scheme"
+    },
+    {
+      "path": "../../packages/mdx"
+    },
+    {
+      "path": "../../packages/one"
+    }
+  ]
 }

@@ -4,6 +4,8 @@
     "composite": true
   },
   "references": [
-    
+    {
+      "path": "../vite-native-client"
+    }
   ]
 }

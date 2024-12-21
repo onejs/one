@@ -4,7 +4,9 @@
     "rootDir": ".",
     "outDir": "dist",
     "paths": {
-      "~/*": ["./*"]
+      "~/*": [
+        "./*"
+      ]
     },
     "importHelpers": true,
     "allowJs": false,
@@ -51,5 +53,13 @@
   ],
   "typeAcquisition": {
     "enable": true
-  }
+  },
+  "references": [
+    {
+      "path": "../../packages/color-scheme"
+    },
+    {
+      "path": "../../packages/one"
+    }
+  ]
 }
