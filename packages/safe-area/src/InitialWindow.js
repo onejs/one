@@ -1,0 +1,6 @@
+export const initialWindowMetrics = null;
+/**
+ * @deprecated
+ */
+export const initialWindowSafeAreaInsets = null;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSW5pdGlhbFdpbmRvdy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkluaXRpYWxXaW5kb3cudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUEsTUFBTSxDQUFDLE1BQU0sb0JBQW9CLEdBQW1CLElBQUksQ0FBQTtBQUV4RDs7R0FFRztBQUNILE1BQU0sQ0FBQyxNQUFNLDJCQUEyQixHQUFzQixJQUFJLENBQUEifQ==
