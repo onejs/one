@@ -248,7 +248,7 @@ ${contents}
         )
 
         // fix https://github.com/rollup/rollup/issues/5770
-        contents = contents.replace(
+        contents = contents.replaceAll(
           `this.expressionsToBeDeoptimized = EMPTY_ARRAY;`,
           `this.expressionsToBeDeoptimized = [];`
         )
