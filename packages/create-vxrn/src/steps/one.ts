@@ -23,21 +23,22 @@ export const extraSteps: ExtraSteps = async ({ isFullClone, projectName, package
 }
 
 export const preInstall: ExtraSteps = async ({ projectName, packageManager, projectPath }) => {
-  const envExample = join(projectPath, '.env.example')
+  const path = projectPath || projectName
+  const envExample = join(path, '.env.example')
 
   if (FSExtra.existsSync(envExample)) {
-    await FSExtra.move(envExample, join(projectPath, '.env'))
+    await FSExtra.move(envExample, join(path, '.env'))
     console.info(`Moved .env.example to .env`)
   }
 
   if (packageManager === 'pnpm') {
-    await FSExtra.writeFile(join(projectPath, `.npmrc`), `node-linker=hoisted\n`)
+    await FSExtra.writeFile(join(path, `.npmrc`), `node-linker=hoisted\n`)
     console.info(`Set configuration to avoid symlinked node modules`)
   }
 
   if (packageManager === 'yarn') {
     await FSExtra.writeFile(
-      join(projectPath, '.yarnrc.yml'),
+      join(path, '.yarnrc.yml'),
       `
 compressionLevel: mixed
 enableGlobalCache: false
@@ -56,7 +57,7 @@ logFilters:
 `
     )
     await execPromise(`yarn set version stable`)
-    await FSExtra.writeFile(join(projectPath, 'yarn.lock'), '')
+    await FSExtra.writeFile(join(path, 'yarn.lock'), '')
     console.info(`Set up yarn for latest version`)
   }
 }

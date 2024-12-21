@@ -48,6 +48,7 @@ export async function buildReactJSX(options: BuildOptions = {}) {
         { find: `process.env.VXRN_REACT_19`, replace: 'false', optional: true },
         {
           find: `Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')"));`,
+          optional: true,
           replace: ``,
         },
       ])}
@@ -114,6 +115,7 @@ export async function buildReact(options: BuildOptions = {}) {
         },
         {
           find: `Object.assign(exports, eval("require('@vxrn/vendor/react-19')"));`,
+          optional: true,
           replace: ``,
         },
       ])}
