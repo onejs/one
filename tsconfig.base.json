@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "rootDir": ".",
+    "outDir": "dist",
     "paths": {
       "vxrn": [
         "packages/vxrn"

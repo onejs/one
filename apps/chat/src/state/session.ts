@@ -1,6 +1,6 @@
 import { proxy, useSnapshot } from 'valtio'
 
-type SessionState = {}
+type SessionState = Record<string, any>
 
 const sessionState = proxy<SessionState>({})
 

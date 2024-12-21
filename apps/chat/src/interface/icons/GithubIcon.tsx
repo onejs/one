@@ -1,4 +1,6 @@
-export const GithubIcon = (props) => (
+import type { SVGProps } from 'react'
+
+export const GithubIcon = (props: SVGProps<any>) => (
   <svg
     width="30"
     height="30"

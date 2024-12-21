@@ -1,4 +1,6 @@
-export function ExternalIcon(props) {
+import type { SVGProps } from 'react'
+
+export function ExternalIcon(props: SVGProps<any>) {
   return (
     <svg
       style={{ opacity: 0.4 }}

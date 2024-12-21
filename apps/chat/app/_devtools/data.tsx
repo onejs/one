@@ -81,6 +81,7 @@ const TableButton = ({ name, tableSchema }: { name: string; tableSchema: TableSc
 
 const TableDataExplorer = () => {
   const state = useState()
+  // @ts-expect-error
   const [data] = useQuery((q) => q[state.activeTable].limit(10))
 
   return (

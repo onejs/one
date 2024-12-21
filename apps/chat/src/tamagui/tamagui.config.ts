@@ -23,14 +23,6 @@ const cssTransitions = {
 
 const animations = createAnimations(cssTransitions)
 
-const selectionStyles = (theme) =>
-  theme.color5
-    ? {
-        backgroundColor: theme.color5,
-        color: theme.color11,
-      }
-    : null
-
 const media = createMedia({
   xl: { maxWidth: 1450 },
   lg: { maxWidth: 1180 },
@@ -51,7 +43,13 @@ export const config = createTamagui({
   media,
   tokens,
   fonts,
-  selectionStyles,
+  selectionStyles: (theme) =>
+    theme.color5
+      ? {
+          backgroundColor: theme.color5,
+          color: theme.color11,
+        }
+      : null,
   shorthands,
   settings: {
     mediaQueryDefaultActive: {

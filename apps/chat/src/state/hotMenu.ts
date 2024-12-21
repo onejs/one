@@ -21,7 +21,7 @@ export const useHotMenuItems = (search: string) => {
   }
   const results = index.search(search)
   return results.map((id) => {
-    return globalMenuItems[id]
+    return globalMenuItems[id as number]
   })
 }
 

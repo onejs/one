@@ -345,12 +345,12 @@ export type UserRole = Row<typeof userRoleSchema>
 export type ChannelRole = Row<typeof channelRoleSchema>
 
 export type MessageWithRelations = Message & {
-  reactions: Reaction[]
-  thread?: Thread[]
-  sender: User[]
+  reactions: readonly Reaction[]
+  thread?: readonly Thread[]
+  sender: readonly User[]
 }
 
-export type ThreadWithRelations = Thread & { messages: Message[] }
+export type ThreadWithRelations = Thread & { messages: readonly Message[] }
 
 // The contents of your decoded JWT.
 type AuthData = {
