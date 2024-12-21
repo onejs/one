@@ -1,4 +1,4 @@
-import { defineCommand, runMain } from 'citty'
+import { defineCommand, runMain, showUsage } from 'citty'
 import colors from 'picocolors'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -139,11 +139,12 @@ const prebuild = defineCommand({
   meta: {
     name: 'prebuild',
     version: version,
-    description: 'Prebuild native iOS project', // TODO: Android
+    description: 'Prebuild native project',
   },
   args: {
     platform: {
       type: 'string',
+      description: 'ios or android',
     },
   },
   async run({ args }) {
@@ -250,4 +251,15 @@ const main = defineCommand({
   },
 })
 
-runMain(main)
+// workaround for help with our workaround for sub-command + positional arg
+
+const helpIndex = process.argv.indexOf('--help')
+if (helpIndex > 0) {
+  const subCommandName = process.argv[helpIndex - 1]
+  const subCommand = subCommands[subCommandName]
+  if (subCommand) {
+    showUsage(subCommand)
+  }
+} else {
+  runMain(main)
+}
