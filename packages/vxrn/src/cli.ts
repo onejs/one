@@ -23,6 +23,10 @@ const dev = defineCommand({
     https: {
       type: 'boolean',
     },
+    'debug-bundle': {
+      type: 'boolean',
+      description: `Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.`,
+    },
   },
   async run({ args }) {
     const imported = await import(
@@ -36,6 +40,7 @@ const dev = defineCommand({
     const { start, stop } = await dev({
       clean: args.clean,
       root: process.cwd(),
+      debugBundle: !!args['debug-bundle'],
       server: {
         https: args.https,
         host: args.host,

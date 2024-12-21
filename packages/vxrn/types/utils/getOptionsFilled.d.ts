@@ -3,6 +3,10 @@ export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>;
 export declare function fillOptions(options: VXRNOptions, internal?: {
     mode?: 'dev' | 'prod';
 }): Promise<{
+    debugBundlePaths: {
+        ios: string;
+        android: string;
+    };
     mode: "development" | "production";
     clean: boolean;
     root: string;
@@ -36,8 +40,13 @@ export declare function fillOptions(options: VXRNOptions, internal?: {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
     };
+    debugBundle?: boolean;
 }>;
 export declare function getOptionsFilled(): {
+    debugBundlePaths: {
+        ios: string;
+        android: string;
+    };
     mode: "development" | "production";
     clean: boolean;
     root: string;
@@ -71,5 +80,6 @@ export declare function getOptionsFilled(): {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
     };
+    debugBundle?: boolean;
 } | null;
 //# sourceMappingURL=getOptionsFilled.d.ts.map
