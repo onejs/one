@@ -45,7 +45,7 @@ export async function buildReactJSX(options: BuildOptions = {}) {
               find: `module.exports = require_react_jsx_dev_runtime_development();`,
               replace: `return require_react_jsx_dev_runtime_development();`,
             },
-        { find: `process.env.VXRN_REACT_19`, replace: 'false' },
+        { find: `process.env.VXRN_REACT_19`, replace: 'false', optional: true },
         {
           find: `Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')"));`,
           replace: ``,
@@ -109,6 +109,7 @@ export async function buildReact(options: BuildOptions = {}) {
             },
         {
           find: `process.env.VXRN_REACT_19`,
+          optional: true,
           replace: 'false',
         },
         {
