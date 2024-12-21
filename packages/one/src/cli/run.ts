@@ -7,6 +7,7 @@ export async function run(args: {
   port?: string
   https?: boolean
   mode?: 'development' | 'production'
+  debugBundle?: boolean
 }) {
   labelProcess('dev')
 
@@ -16,6 +17,7 @@ export async function run(args: {
     mode: args.mode,
     clean: args.clean,
     root: process.cwd(),
+    debugBundle: args.debugBundle,
     server: {
       https: args.https,
       host: args.host,

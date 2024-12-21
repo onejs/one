@@ -8,6 +8,8 @@ import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
 import { clearCachedBundle, getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { URL } from 'node:url'
+import { existsSync } from 'node:fs'
+import { readFile, writeFile } from 'node:fs/promises'
 
 type ClientMessage = {
   type: 'client-log'
@@ -108,7 +110,26 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
         }
 
         try {
-          const bundle = await getReactNativeBundle(options, platform)
+          const bundle = await (async () => {
+            if (options.debugBundle) {
+              const path = options.debugBundlePaths[platform]
+              if (existsSync(path)) {
+                console.info(`  !!! - serving debug bundle from`, path)
+                return await readFile(path, 'utf-8')
+              }
+            }
+
+            const outBundle = await getReactNativeBundle(options, platform)
+
+            if (options.debugBundle) {
+              const path = options.debugBundlePaths[platform]
+              console.info(`  !!! - writing debug bundle to`, path)
+              await writeFile(path, outBundle)
+            }
+
+            return outBundle
+          })()
+
           res.writeHead(200, { 'Content-Type': 'text/javascript' })
           res.end(bundle)
         } catch (err) {

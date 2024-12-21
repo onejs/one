@@ -91,6 +91,10 @@ export type VXRNOptions = {
      * Whether to clean cache directories on startup
      */
     clean?: boolean;
+    /**
+     * Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.
+     */
+    debugBundle?: boolean;
 };
 export type HMRListener = (update: {
     file: string;

@@ -5,6 +5,7 @@ import { join } from 'node:path'
 import { readPackageJSON } from 'pkg-types'
 import type { VXRNOptions } from '../types'
 import { readState, writeState } from './state'
+import { tmpdir } from 'node:os'
 
 const require = createRequire(import.meta.url)
 
@@ -65,9 +66,14 @@ export async function fillOptions(
   }
 
   const protocol = https ? ('https:' as const) : ('http:' as const)
+  const bundleId = Math.round(Math.random() * 100_000)
 
   const final = {
     ...options,
+    debugBundlePaths: {
+      ios: join(tmpdir(), `bundle-${bundleId}-ios.js`),
+      android: join(tmpdir(), `bundle-${bundleId}-android.js`),
+    },
     mode: devMode ? ('development' as const) : ('production' as const),
     clean,
     root,
