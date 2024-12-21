@@ -1,6 +1,6 @@
 {
   "name": "example-basic",
-  "version": "1.1.367",
+  "version": "1.1.368",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "expo": "~51.0.28",
-    "one": "1.1.367",
+    "one": "1.1.368",
     "react": "^18.3.1",
     "react-native": "0.74.5",
     "react-native-reanimated": "~3.10.1",
