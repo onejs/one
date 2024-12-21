@@ -58,6 +58,7 @@ CREATE TABLE "role" (
     "serverId" VARCHAR REFERENCES "server"(id),
     "creatorId" VARCHAR REFERENCES "user"(id),
     "name" VARCHAR(200) NOT NULL,
+    "color" VARCHAR(200) NOT NULL,
     "permissions" JSONB DEFAULT '{}',
     "updatedAt" TIMESTAMP NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -71,6 +72,24 @@ CREATE TABLE "channel" (
     "private" BOOLEAN DEFAULT FALSE NOT NULL,
     "updatedAt" TIMESTAMP NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE "userRole" (
+    "serverId" VARCHAR REFERENCES "server"(id),
+    "userId" VARCHAR REFERENCES "user"(id),
+    "roleId" VARCHAR REFERENCES "role"(id),
+    "granterId" VARCHAR REFERENCES "user"(id),
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY ("serverId", "userId", "roleId")
+);
+
+CREATE TABLE "channelRole" (
+    "serverId" VARCHAR REFERENCES "server"(id),
+    "channelId" VARCHAR REFERENCES "channel"(id),
+    "roleId" VARCHAR REFERENCES "role"(id),
+    "granterId" VARCHAR REFERENCES "user"(id),
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY ("serverId", "channelId", "roleId")
 );
 
 CREATE TABLE "thread" (

@@ -9,6 +9,12 @@ export const useCurrentServer = () => {
   return useQuery((q) => q.server.where('id', userState?.activeServer || ''))[0][0]
 }
 
+export const useCurrentServerRoles = () => {
+  const [userState] = useUserState()
+  return useQuery((q) => q.server.where('id', userState?.activeServer || '').related('roles'))[0][0]
+    ?.roles
+}
+
 export const useCurrentServerMembership = () => {
   const [userState, { user }] = useUserState()
   return useQuery((q) =>

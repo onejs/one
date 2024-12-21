@@ -18,8 +18,7 @@ export function ThemeToggleListItem() {
 
   return (
     <ListItem onPress={onPress} icon={Icon}>
-      Theme: {setting[0].toUpperCase()}
-      {setting.slice(1)}
+      {`Theme: ${setting[0].toUpperCase()}${setting.slice(1)}`}
     </ListItem>
   )
 }
