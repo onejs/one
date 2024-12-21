@@ -20,7 +20,10 @@ type MessagesListActions =
 export const messagesListEmitter = createEmitter<MessagesListActions>()
 
 export const MessagesList = memo(
-  ({ messages, disableEvents }: { messages: MessageWithRelations[]; disableEvents?: boolean }) => {
+  ({
+    messages,
+    disableEvents,
+  }: { messages: readonly MessageWithRelations[]; disableEvents?: boolean }) => {
     const channel = useCurrentChannel()
     const { user } = useAuth()
     const shouldStickToBottom = useRef(true)

@@ -43,6 +43,7 @@ export const DevTools = () => {
               createdAt: new Date().getTime() - index * 60 * 1000,
               deleted: false,
               id: randomID(),
+              // @ts-expect-error
               senderId: getRandomItem(users)!.id,
               serverId: channel.serverId,
               isThreadReply: false,

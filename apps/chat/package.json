@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
+    "@types/pg": "^8.11.10",
     "tsx": "^4.19.0",
     "unicode-emoji": "^2.6.0"
   },

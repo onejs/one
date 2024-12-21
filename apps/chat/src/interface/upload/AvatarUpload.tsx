@@ -23,7 +23,7 @@ export const AvatarUpload = ({
         const file = event.dataTransfer.files[0]
         if (file) handleUpload(file)
       }}
-      onDragOver={(e) => {
+      onDragOver={(e: any) => {
         setDropping(true)
         e.preventDefault()
         e.stopPropagation()

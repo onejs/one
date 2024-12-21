@@ -8,6 +8,15 @@
   },
   "references": [
     {
+      "path": "packages/one"
+    },
+    {
+      "path": "packages/create-vxrn"
+    },
+    {
+      "path": "apps/chat"
+    },
+    {
       "path": "examples/one-recommended"
     },
     {
