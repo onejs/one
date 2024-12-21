@@ -108,10 +108,11 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
 
       try {
         const { transform } = await import('lightningcss')
-
+        const buffer = Buffer.from(code)
+        const codeOut = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
         const processed = transform({
           filename: 'code.css',
-          code: Buffer.from(code),
+          code: codeOut,
           ...server.config.css.lightningcss,
         }).code.toString()
 

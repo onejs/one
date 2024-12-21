@@ -24,7 +24,10 @@ export async function lookupFile(dir: string, fileNames: string[]): Promise<stri
 }
 
 export function getHash(text: Buffer | string, length = 8): string {
-  const h = createHash('sha256').update(text).digest('hex').substring(0, length)
+  const h = createHash('sha256')
+    .update(text as any)
+    .digest('hex')
+    .substring(0, length)
   if (length <= 64) return h
   return h.padEnd(length, '_')
 }
