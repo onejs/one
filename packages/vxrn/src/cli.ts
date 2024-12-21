@@ -139,11 +139,12 @@ const prebuild = defineCommand({
   meta: {
     name: 'prebuild',
     version: '0.0.0',
-    description: 'Prebuild native iOS project', // TODO: Android
+    description: 'Prebuild native project',
   },
   args: {
     platform: {
       type: 'string',
+      description: 'ios or android',
     },
   },
   async run({ args }) {
