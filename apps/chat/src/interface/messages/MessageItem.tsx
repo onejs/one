@@ -152,25 +152,25 @@ const MessageActionBar = ({
                   return
                 }
 
-                const threadId = randomID()
+                const threadID = randomID()
 
                 mutate.thread.insert({
-                  id: threadId,
-                  channelId: channel.id,
-                  messageId: message.id,
-                  creatorId: currentUser.id,
+                  id: threadID,
+                  channelID: channel.id,
+                  messageID: message.id,
+                  creatorID: currentUser.id,
                   description: '',
                   title: '',
                 })
 
                 mutate.message.update({
                   id: message.id,
-                  threadId,
+                  threadID,
                   isThreadReply: false,
                 })
 
                 updateUserOpenThread({
-                  id: threadId,
+                  id: threadID,
                 })
               }}
               chromeless
@@ -244,9 +244,9 @@ const ReactionButton = ({
         }
 
         mutate.messageReaction.insert({
-          messageId: message.id,
-          reactionId: reaction.id,
-          userId: user.id,
+          messageID: message.id,
+          reactionID: reaction.id,
+          creatorID: user.id,
         })
       }}
     >

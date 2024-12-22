@@ -18,7 +18,7 @@ export const useCurrentServerRoles = () => {
 export const useCurrentServerMembership = () => {
   const [userState, { user }] = useUserState()
   return useQuery((q) =>
-    q.serverMember.where('userId', userState?.activeServer || '').where('serverId', user?.id || '')
+    q.serverMember.where('userID', userState?.activeServer || '').where('serverID', user?.id || '')
   )[0][0]
 }
 

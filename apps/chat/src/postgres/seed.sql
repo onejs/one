@@ -27,17 +27,17 @@ CREATE TABLE "user" (
 );
 
 CREATE TABLE "friendship" (
-    "requestingId" VARCHAR REFERENCES "user"(id),
-    "acceptingId" VARCHAR REFERENCES "user"(id),
+    "requestingID" VARCHAR REFERENCES "user"(id),
+    "acceptingID" VARCHAR REFERENCES "user"(id),
     "accepted" BOOLEAN not null default false,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY ("requestingId", "acceptingId")
+    PRIMARY KEY ("requestingID", "acceptingID")
 );
 
 CREATE TABLE "server" (
     "id" VARCHAR PRIMARY KEY,
     "name" VARCHAR(200) NOT NULL,
-    "ownerId" VARCHAR REFERENCES "user"(id),
+    "creatorID" VARCHAR REFERENCES "user"(id),
     "description" TEXT,
     "channelSort" JSONB DEFAULT '{}',
     "icon" VARCHAR(255),
@@ -46,17 +46,17 @@ CREATE TABLE "server" (
 );
 
 CREATE TABLE "serverMember" (
-    "serverId" VARCHAR REFERENCES "server"(id),
-    "userId" VARCHAR REFERENCES "user"(id),
+    "serverID" VARCHAR REFERENCES "server"(id),
+    "userID" VARCHAR REFERENCES "user"(id),
     "hasClosedWelcome" BOOLEAN DEFAULT FALSE NOT NULL,
     "joinedAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY ("serverId", "userId")
+    PRIMARY KEY ("serverID", "userID")
 );
 
 CREATE TABLE "role" (
     "id" VARCHAR PRIMARY KEY,
-    "serverId" VARCHAR REFERENCES "server"(id),
-    "creatorId" VARCHAR REFERENCES "user"(id),
+    "serverID" VARCHAR REFERENCES "server"(id),
+    "creatorID" VARCHAR REFERENCES "user"(id),
     "name" VARCHAR(200) NOT NULL,
     "color" VARCHAR(200) NOT NULL,
     "canAdmin" BOOLEAN DEFAULT FALSE NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE "role" (
 
 CREATE TABLE "channel" (
     "id" VARCHAR PRIMARY KEY,
-    "serverId" VARCHAR REFERENCES "server"(id),
+    "serverID" VARCHAR REFERENCES "server"(id),
     "name" VARCHAR(200) NOT NULL,
     "description" TEXT,
     "private" BOOLEAN DEFAULT FALSE NOT NULL,
@@ -77,28 +77,28 @@ CREATE TABLE "channel" (
 );
 
 CREATE TABLE "userRole" (
-    "serverId" VARCHAR REFERENCES "server"(id),
-    "userId" VARCHAR REFERENCES "user"(id),
-    "roleId" VARCHAR REFERENCES "role"(id),
-    "granterId" VARCHAR REFERENCES "user"(id),
+    "serverID" VARCHAR REFERENCES "server"(id),
+    "userID" VARCHAR REFERENCES "user"(id),
+    "roleID" VARCHAR REFERENCES "role"(id),
+    "granterID" VARCHAR REFERENCES "user"(id),
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY ("serverId", "userId", "roleId")
+    PRIMARY KEY ("serverID", "userID", "roleID")
 );
 
 CREATE TABLE "channelRole" (
-    "serverId" VARCHAR REFERENCES "server"(id),
-    "channelId" VARCHAR REFERENCES "channel"(id),
-    "roleId" VARCHAR REFERENCES "role"(id),
-    "granterId" VARCHAR REFERENCES "user"(id),
+    "channelID" VARCHAR REFERENCES "channel"(id),
+    "serverID" VARCHAR REFERENCES "server"(id),
+    "roleID" VARCHAR REFERENCES "role"(id),
+    "granterID" VARCHAR REFERENCES "user"(id),
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY ("serverId", "channelId", "roleId")
+    PRIMARY KEY ("serverID", "channelID", "roleID")
 );
 
 CREATE TABLE "thread" (
     "id" VARCHAR PRIMARY KEY,
-    "channelId" VARCHAR REFERENCES "channel"(id),
-    "messageId" VARCHAR,
-    "creatorId" VARCHAR REFERENCES "user"(id),
+    "channelID" VARCHAR REFERENCES "channel"(id),
+    "messageID" VARCHAR,
+    "creatorID" VARCHAR REFERENCES "user"(id),
     "title" VARCHAR(200),
     "description" VARCHAR(200),
     "updatedAt" TIMESTAMP NULL,
@@ -107,10 +107,10 @@ CREATE TABLE "thread" (
 
 CREATE TABLE "message" (
     "id" VARCHAR PRIMARY KEY,
-    "serverId" VARCHAR REFERENCES "server"(id),
-    "channelId" VARCHAR REFERENCES "channel"(id),
-    "threadId" VARCHAR REFERENCES "thread"(id) NULL,
-    "senderId" VARCHAR REFERENCES "user"(id),
+    "serverID" VARCHAR REFERENCES "server"(id),
+    "channelID" VARCHAR REFERENCES "channel"(id),
+    "threadID" VARCHAR REFERENCES "thread"(id) NULL,
+    "creatorID" VARCHAR REFERENCES "user"(id),
     "content" TEXT NOT NULL,
     "isThreadReply" BOOLEAN DEFAULT FALSE NOT NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -121,7 +121,7 @@ CREATE TABLE "message" (
 ALTER TABLE
     "thread"
 ADD
-    CONSTRAINT "fk_thread_message" FOREIGN KEY ("messageId") REFERENCES "message" ("id");
+    CONSTRAINT "fk_thread_message" FOREIGN KEY ("messageID") REFERENCES "message" ("id");
 
 CREATE TABLE "reaction" (
     "id" VARCHAR PRIMARY KEY,
@@ -132,12 +132,12 @@ CREATE TABLE "reaction" (
 );
 
 CREATE TABLE "messageReaction" (
-    "messageId" VARCHAR REFERENCES "message"(id),
-    "userId" VARCHAR REFERENCES "user"(id),
-    "reactionId" VARCHAR REFERENCES "reaction"(id),
+    "messageID" VARCHAR REFERENCES "message"(id),
+    "creatorID" VARCHAR REFERENCES "user"(id),
+    "reactionID" VARCHAR REFERENCES "reaction"(id),
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NULL,
-    PRIMARY KEY ("messageId", "userId", "reactionId")
+    PRIMARY KEY ("messageID", "creatorID", "reactionID")
 );
 
 -- better-auth:
@@ -216,7 +216,7 @@ INSERT INTO
     "server" (
         "id",
         "name",
-        "ownerId",
+        "creatorID",
         "description",
         "icon",
         "createdAt",
@@ -234,14 +234,14 @@ VALUES
     );
 
 -- Insert a default channel for the server
-INSERT INTO "channel" ("id", "serverId", "name", "description", "private", "createdAt", "updatedAt")
+INSERT INTO "channel" ("id", "serverID", "name", "description", "private", "createdAt", "updatedAt")
 VALUES ('test-channel-id', 'test-server-id', 'general', 'This is a default channel.', false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Add the user to the server
 INSERT INTO
     "serverMember" (
-        "serverId",
-        "userId",
+        "serverID",
+        "userID",
         "hasClosedWelcome",
         "joinedAt"
     )

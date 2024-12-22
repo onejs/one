@@ -84,13 +84,13 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
           inputRef.current?.clear()
           mutate.message.insert({
             id: randomID(),
-            channelId: channel.id,
-            threadId: thread?.id,
+            channelID: channel.id,
+            threadID: thread?.id,
             isThreadReply: !!thread,
             content,
             deleted: false,
-            senderId: user!.id,
-            serverId: server.id,
+            creatorID: user!.id,
+            serverID: server.id,
           })
 
           // setTimeout(() => {
