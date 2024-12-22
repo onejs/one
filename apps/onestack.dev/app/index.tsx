@@ -244,8 +244,8 @@ export default function HomePage() {
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                Well, web needs small bundles, and has limited storage. Add in sync, caching,
-                composition&#x2026; there's 0 great options.
+                Well, web needs small bundles, and has limited storage. Add in syncing, caching,
+                joins&#x2026; well, there's zero great options.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
@@ -255,9 +255,8 @@ export default function HomePage() {
                     Zero
                   </Link>
                 </b>{' '}
-                to include it as the default, ejectable solution to data. Zero solves for all the
-                above <Link href="/docs/data">and&nbsp;more</Link>. It even works
-                with&nbsp;Postgres.
+                to include it as our recommended solution to data. Zero solves for all the above{' '}
+                <Link href="/docs/data">and&nbsp;more</Link>. It even works with&nbsp;Postgres.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
@@ -380,11 +379,11 @@ const InfoBoxes = () => {
         That's right, no more Metro. One Vite plugin, one Vite server, one port - three platforms.
       </InfoCard>
       <InfoCard title="The future of data" Icon={Database}>
-        Coming soon, an integration with{' '}
+        Alpha, first-class integration with{' '}
         <a target="_blank" href="https://zerosync.dev" rel="noreferrer">
           ZeroSync
         </a>{' '}
-        that will delight.
+        that makes data delightful.
       </InfoCard>
     </XStack>
   )
