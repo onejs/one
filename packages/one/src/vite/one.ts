@@ -23,6 +23,13 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { createVirtualEntry, virtualEntryId } from './plugins/virtualEntryPlugin'
 import type { One } from './types'
 
+/**
+ * This needs a big refactor!
+ * I guess these plugins are all being loaded by native??
+ * At least the react compiler plugin is applying to native, so the entire premise of some things
+ * here are wrong. we can probably refactor and merge all the stuff
+ */
+
 events.setMaxListeners(1_000)
 
 // temporary for tamagui plugin compat

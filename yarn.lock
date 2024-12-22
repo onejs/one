@@ -22084,6 +22084,7 @@ __metadata:
     perfect-debounce: "npm:^1.0.0"
     picocolors: "npm:^1.0.0"
     react: "npm:^18.3.1"
+    react-compiler-runtime: "npm:^19.0.0-beta-201e55d-20241215"
     react-dom: "npm:^18.3.1"
     react-native: "npm:0.74.5"
     react-native-gesture-handler: "npm:^2.18.1"
@@ -23503,6 +23504,15 @@ __metadata:
   bin:
     rc: ./cli.js
   checksum: 10/5c4d72ae7eec44357171585938c85ce066da8ca79146b5635baf3d55d74584c92575fa4e2c9eac03efbed3b46a0b2e7c30634c012b4b4fa40d654353d3c163eb
+  languageName: node
+  linkType: hard
+
+"react-compiler-runtime@npm:^19.0.0-beta-201e55d-20241215":
+  version: 19.0.0-beta-df7b47d-20241124
+  resolution: "react-compiler-runtime@npm:19.0.0-beta-df7b47d-20241124"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/f216527d10db120d45cfb2de2a5d2581b2a1db405c5aff7982bb183fbf290fae86b73df19c56647b5f333c030cfa8daabb60f1260e1bd8c6a32d923088bbb94c
   languageName: node
   linkType: hard
 
