@@ -8,6 +8,7 @@ import { Row } from '../Row'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
 import { AlwaysVisibleTabContent } from './AlwaysVisibleTabContent'
 import type { TabContentPaneProps } from './types'
+import { dialogConfirm } from './actions'
 
 export const DialogJoinServerContent = (props: TabContentPaneProps) => {
   const isActive = props.active === props.value
@@ -31,14 +32,14 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
   }, [isActive])
 
   return (
-    <AlwaysVisibleTabContent {...props}>
+    <AlwaysVisibleTabContent gap="$3" {...props}>
       <SearchableList
         onSelectItem={(item) => {
           // TODO
         }}
         items={foundServers}
       >
-        <SearchableInput mb="$1" ref={inputRef as any} size="$6" onChangeText={setSearch} />
+        <SearchableInput mb="$1" ref={inputRef as any} size="$4" onChangeText={setSearch} />
 
         <ScrollView>
           <YStack gap="$2">
@@ -55,10 +56,23 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
                         <XStack f={1} />
                         <TooltipSimple label={isJoined ? 'Joined!' : 'Join server'}>
                           <Row.Button
-                            onPress={() => {
+                            onPress={async (e) => {
                               if (!user) return
 
                               if (isJoined) {
+                                e.preventDefault()
+
+                                if (
+                                  await dialogConfirm({
+                                    title: `Leave server?`,
+                                    description: `Are you sure you want to leave ${server.name}?`,
+                                  })
+                                ) {
+                                  mutate.serverMember.delete({
+                                    userID: user.id,
+                                    serverID: server.id,
+                                  })
+                                }
                                 // TODO
                               } else {
                                 mutate.serverMember.insert({

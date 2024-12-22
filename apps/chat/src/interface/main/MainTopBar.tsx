@@ -9,7 +9,7 @@ import {
   XGroup,
   XStack,
 } from 'tamagui'
-import { useCurrentChannelThreads } from '~/state/server'
+import { useCurrentChannel, useCurrentChannelThreads } from '~/state/server'
 import {
   updateUserCurrentChannel,
   updateUserOpenThread,
@@ -58,7 +58,8 @@ export const MainTopBar = () => {
 
 const ChannelViewToggle = () => {
   const channelState = useUserCurrentChannelState()
-  const view = channelState.mainView
+  const channel = useCurrentChannel()
+  const view = channelState?.mainView
 
   const activeStyle: ButtonProps = {
     bg: '$color2',
@@ -76,6 +77,10 @@ const ChannelViewToggle = () => {
     <XGroup overflow="hidden" borderWidth={1} borderColor="$borderColor">
       <TooltipSimple label="Chat view">
         <Button
+          disabled={!channel}
+          disabledStyle={{
+            o: 0.5,
+          }}
           {...inactiveStyle}
           icon={MessageCircle}
           {...(view !== 'thread' && activeStyle)}
@@ -89,6 +94,10 @@ const ChannelViewToggle = () => {
       <TooltipSimple label="Thread view">
         <Button
           {...inactiveStyle}
+          disabled={!channel}
+          disabledStyle={{
+            o: 0.5,
+          }}
           icon={IndentIncrease}
           {...(view === 'thread' && activeStyle)}
           onPress={() => {

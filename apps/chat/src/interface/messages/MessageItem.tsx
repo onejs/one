@@ -1,23 +1,13 @@
-import { IndentIncrease, MoreVertical, Reply } from '@tamagui/lucide-icons'
+import { IndentIncrease } from '@tamagui/lucide-icons'
 import MDEditor from '@uiw/react-md-editor'
 import { memo } from 'react'
-import {
-  Button,
-  type ButtonProps,
-  Separator,
-  SizableText,
-  TooltipSimple,
-  XGroup,
-  XStack,
-  YStack,
-} from 'tamagui'
-import { useAuth } from '~/better-auth/authClient'
-import { randomID } from '~/helpers/randomID'
+import { SizableText, XStack, YStack } from 'tamagui'
 import { Avatar } from '~/interface/Avatar'
-import { getCurrentUser, updateUserOpenThread, useUserCurrentChannelState } from '~/state/user'
-import type { Channel, Message, MessageWithRelations, Reaction, Thread, User } from '~/zero/schema'
-import { mutate, useQuery } from '~/zero/zero'
-import { AddReactionButton } from './AddReactionButton'
+import { updateUserOpenThread, useUserCurrentChannelState } from '~/state/user'
+import type { Channel, MessageWithRelations, Thread, User } from '~/zero/schema'
+import { MessageActionBar } from './MessageActionBar'
+import { MessageReactions } from './MessageReactions'
+import { messageHover } from './constants'
 
 export const MessageItem = memo(
   ({
@@ -41,7 +31,7 @@ export const MessageItem = memo(
     }
 
     const channelState = useUserCurrentChannelState()
-    const isFocused = !disableEvents && channelState.focusedMessageId === message.id
+    const isFocused = !disableEvents && channelState?.focusedMessageId === message.id
 
     return (
       <XStack
@@ -53,6 +43,12 @@ export const MessageItem = memo(
         borderTopWidth={2}
         borderBottomWidth={2}
         borderColor="transparent"
+        onMouseEnter={() => {
+          messageHover.emit(message.id)
+        }}
+        onMouseLeave={() => {
+          messageHover.emit(message.id)
+        }}
         hoverStyle={{
           bg: '$background025',
         }}
@@ -61,7 +57,6 @@ export const MessageItem = memo(
         })}
         {...(thread && {
           borderColor: '$green5',
-
           onDoubleClick: () => {
             openThread()
           },
@@ -115,159 +110,3 @@ export const MessageItem = memo(
     )
   }
 )
-
-const MessageActionBar = ({
-  message,
-  channel,
-}: { message: MessageWithRelations; channel: Channel }) => {
-  const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
-
-  return (
-    <XStack
-      pos="absolute"
-      t={-8}
-      r={8}
-      o={0}
-      elevation="$0.5"
-      br="$4"
-      zi={1000}
-      $group-message-hover={{ o: 1 }}
-    >
-      <XGroup bg="$color2">
-        {topReactions.map((reaction) => {
-          return <ReactionButton key={reaction.id} message={message} reaction={reaction} />
-        })}
-
-        <AddReactionButton />
-
-        <Separator my="$2" vertical />
-
-        {!message.thread?.[0] && (
-          <TooltipSimple label="Create Thread">
-            <Button
-              onPress={() => {
-                const currentUser = getCurrentUser()
-                if (!currentUser) {
-                  console.error(`no user`)
-                  return
-                }
-
-                const threadID = randomID()
-
-                mutate.thread.insert({
-                  id: threadID,
-                  channelID: channel.id,
-                  messageID: message.id,
-                  creatorID: currentUser.id,
-                  description: '',
-                  title: '',
-                })
-
-                mutate.message.update({
-                  id: message.id,
-                  threadID,
-                  isThreadReply: false,
-                })
-
-                updateUserOpenThread({
-                  id: threadID,
-                })
-              }}
-              chromeless
-              size="$2.5"
-              br={0}
-            >
-              <IndentIncrease size={16} />
-            </Button>
-          </TooltipSimple>
-        )}
-
-        <TooltipSimple label="Quote Reply">
-          <Button chromeless size="$2.5" br={0}>
-            <Reply size={16} />
-          </Button>
-        </TooltipSimple>
-
-        <Button chromeless size="$2.5">
-          <MoreVertical size={16} />
-        </Button>
-      </XGroup>
-    </XStack>
-  )
-}
-
-const MessageReactions = ({ message }: { message: MessageWithRelations }) => {
-  // reaction.id => count
-  const reactionCounts: Record<string, number> = {}
-  for (const reaction of message.reactions) {
-    if (reaction.id) {
-      reactionCounts[reaction.id] ||= 0
-      reactionCounts[reaction.id]++
-    }
-  }
-
-  return (
-    <XStack>
-      {Object.entries(reactionCounts).map(([id, count]) => {
-        const reaction = message.reactions.find((x) => x.id === id)
-        if (!reaction) {
-          return null
-        }
-        return (
-          <ReactionButton key={reaction.id} count={count} message={message} reaction={reaction} />
-        )
-      })}
-    </XStack>
-  )
-}
-
-const ReactionButton = ({
-  reaction,
-  message,
-  count,
-  ...rest
-}: ButtonProps & {
-  count?: number
-  message: Message
-  reaction: Pick<Reaction, 'id' | 'value'>
-}) => {
-  const { user } = useAuth()
-
-  return (
-    <Button
-      chromeless
-      size="$2.5"
-      {...rest}
-      onPress={() => {
-        if (!user) {
-          return
-        }
-
-        mutate.messageReaction.insert({
-          messageID: message.id,
-          reactionID: reaction.id,
-          creatorID: user.id,
-        })
-      }}
-    >
-      {typeof count === 'number' && (
-        <SizableText
-          pos="absolute"
-          t={-5}
-          br="$10"
-          r={-5}
-          bg="$color5"
-          w={20}
-          h={20}
-          size="$1"
-          lh={20}
-          ai="center"
-          jc="center"
-        >
-          {count}
-        </SizableText>
-      )}
-      {reaction.value}
-    </Button>
-  )
-}

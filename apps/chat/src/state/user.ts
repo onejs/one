@@ -65,7 +65,7 @@ export const updateUserState = async (next: Partial<UserState>) => {
 
 export const useUserCurrentChannelState = () => {
   const [_, { activeChannelState }] = useUserState()
-  return activeChannelState || {}
+  return activeChannelState
 }
 
 export const useCurrentThread = () => {
