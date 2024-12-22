@@ -45,6 +45,10 @@ body > div {
 }
 
 a {
+  text-decoration: none;
+}
+
+p a {
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 2px;

@@ -12,13 +12,16 @@ export const AuthEffects = () => {
 }
 
 const useAuthPassJWTSecretToZeroEffect = () => {
-  const { jwtToken } = useAuth()
+  const { jwtToken, user } = useAuth()
 
   useEffect(() => {
-    if (jwtToken) {
-      setZeroAuth(jwtToken)
+    if (user && jwtToken) {
+      setZeroAuth({
+        jwtToken,
+        userID: user.id,
+      })
     }
-  }, [jwtToken])
+  }, [user, jwtToken])
 }
 
 const useAuthPassTokenToTauriEffect = () => {
@@ -32,9 +35,13 @@ const useAuthPassTokenToTauriEffect = () => {
         switch (url.host) {
           case 'finish-auth': {
             const token = url.searchParams.get('token')
+            const session = url.searchParams.get('session')
 
-            if (token) {
-              setAuthClientToken(token)
+            if (token && session) {
+              setAuthClientToken({
+                token,
+                session,
+              })
             }
 
             break

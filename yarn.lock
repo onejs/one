@@ -7525,7 +7525,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rocicorp/zero@npm:^0.9.2024121900":
+"@rocicorp/zero@npm:0.9.2024121900":
   version: 0.9.2024121900
   resolution: "@rocicorp/zero@npm:0.9.2024121900"
   dependencies:
@@ -22014,7 +22014,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "one-zero@workspace:examples/one-zero"
   dependencies:
-    "@rocicorp/zero": "npm:^0.9.2024121900"
+    "@rocicorp/zero": "npm:0.9.2024121900"
     "@tamagui/config": "npm:^1.120.2"
     "@tamagui/linear-gradient": "npm:^1.120.2"
     "@tamagui/lucide-icons": "npm:^1.120.2"
@@ -22125,7 +22125,7 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:^0.27.0"
-    "@rocicorp/zero": "npm:^0.9.2024121900"
+    "@rocicorp/zero": "npm:0.9.2024121900"
     "@tamagui/helpers-icon": "npm:^1.120.2"
     "@tamagui/linear-gradient": "npm:^1.120.2"
     "@tamagui/lucide-icons": "npm:^1.120.2"
