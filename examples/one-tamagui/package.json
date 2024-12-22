@@ -43,6 +43,6 @@
     "@biomejs/biome": "^1.8.3",
     "@tamagui/vite-plugin": "^1.120.2",
     "@types/react": "^18.3.11",
-    "vite": "^6.0.3"
+    "vite": "^6.0.5"
   }
 }
