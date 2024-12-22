@@ -8,20 +8,35 @@ interface StorageKeys {
   session: string
 }
 
-interface AuthClientConfig {
-  options?: ClientOptions
+interface ExtraConfig {
   storageKeys?: StorageKeys
 }
 
-export function createBetterAuthClient(config: AuthClientConfig = {}) {
+/**
+ *
+ * This is a very early package to lightly abstract better-auth/client to work well with:
+ *  - React and React Native
+ *  - jwt tokens
+ *
+ *  1. Stores the session and jwt configuration locally and restores from it if existing
+ *  2. Provides a useAuth hook that automatically fetches jwt token for you
+ *
+ * @param options better-auth/client createAuthClient optinos
+ * @param extraConfig for setting localStorage keys
+ * @returns
+ */
+export function createBetterAuthClient(
+  options: ClientOptions = {},
+  { storageKeys }: ExtraConfig = {}
+) {
   const keys = {
-    token: config.storageKeys?.token ?? 'TOKEN_KEY',
-    session: config.storageKeys?.session ?? 'SESSION_KEY',
+    token: storageKeys?.token ?? 'TOKEN_KEY',
+    session: storageKeys?.session ?? 'SESSION_KEY',
   }
 
   const createAuthClientWithSession = (session: string) => {
     return createAuthClient({
-      ...config.options,
+      ...options,
       fetchOptions: {
         headers: {
           Authorization: `Bearer ${session}`,
@@ -33,7 +48,9 @@ export function createBetterAuthClient(config: AuthClientConfig = {}) {
   let authClient = (() => {
     const existingSession =
       typeof localStorage !== 'undefined' ? localStorage.getItem(keys.session) : ''
-    return existingSession ? createAuthClientWithSession(existingSession) : createAuthClient()
+    return existingSession
+      ? createAuthClientWithSession(existingSession)
+      : createAuthClient(options)
   })()
 
   const authClientVersion = createEmitter<number>()

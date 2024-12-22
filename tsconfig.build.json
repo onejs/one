@@ -23,6 +23,9 @@
       "path": "examples/one-fullstack"
     },
     {
+      "path": "examples/one-zero"
+    },
+    {
       "path": "examples/bare"
     }
   ]

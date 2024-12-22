@@ -7,7 +7,7 @@ import { DevTools } from '~/dev/DevTools'
 import { randomID } from '~/helpers/randomID'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
 import { useCurrentServer, useCurrentServerRoles } from '~/state/server'
-import type { Role, Server } from '~/zero/schema'
+import type { Role, RoleWithRelations, Server, User } from '~/zero/schema'
 import { mutate } from '~/zero/zero'
 import { Avatar } from '../Avatar'
 import { ButtonSimple } from '../ButtonSimple'
@@ -165,11 +165,14 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
   )
 }
 
-const RoleListItem = ({ role, ...rest }: Omit<EditableListItemProps, 'role'> & { role?: Role }) => {
+const RoleListItem = ({
+  role,
+  ...rest
+}: Omit<EditableListItemProps, 'role'> & { role?: RoleWithRelations }) => {
   return (
     <EditableListItem
       icon={<Circle size={24} bg={role?.color || 'gray'} />}
-      after={<SizableText>3 members</SizableText>}
+      after={<SizableText>{role?.members?.length} members</SizableText>}
       {...rest}
     >
       {role?.name || ''}

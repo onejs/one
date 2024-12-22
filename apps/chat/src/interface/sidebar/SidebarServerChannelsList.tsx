@@ -23,7 +23,6 @@ type ServerChannelSort = string[]
 export const SidebarServerChannelsList = () => {
   const { user } = useAuth()
   const server = useCurrentServer()
-  console.log('server', server)
   const channels = useServerChannels()
   const channelSort: ServerChannelSort =
     Array.isArray(server?.channelSort) && server.channelSort.length

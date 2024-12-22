@@ -30,6 +30,8 @@ export default function HomePage() {
           <Avatar image={user.image || ''} />
           <SizableText>{user.name}</SizableText>
 
+          <Button onPress={() => authClient.signOut()}>Logout</Button>
+
           {isWeb && !isTauri && jwtToken && (
             <a href={`one-chat://finish-auth?token=${session?.token}`}>
               <Button>Login in Tauri</Button>

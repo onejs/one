@@ -346,6 +346,8 @@ export type Role = Row<typeof roleSchema>
 export type UserRole = Row<typeof userRoleSchema>
 export type ChannelRole = Row<typeof channelRoleSchema>
 
+export type RoleWithRelations = Role & { members: readonly User[] }
+
 export type MessageWithRelations = Message & {
   reactions: readonly Reaction[]
   thread?: readonly Thread[]
