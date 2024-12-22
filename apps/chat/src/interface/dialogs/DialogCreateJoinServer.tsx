@@ -26,7 +26,21 @@ export const DialogCreateJoinServer = () => {
   })
 
   return (
-    <Dialog modal open={show}>
+    <Dialog modal onOpenChange={setShow} open={show}>
+      <Dialog.Adapt platform="touch" when="sm">
+        <Dialog.Sheet animation="medium" zIndex={200000} modal dismissOnSnapToBottom>
+          <Dialog.Sheet.Overlay
+            animation="quick"
+            enterStyle={{ opacity: 0 }}
+            exitStyle={{ opacity: 0 }}
+          />
+          <Dialog.Sheet.Handle />
+          <Dialog.Sheet.Frame padding="$4" gap="$4">
+            <Dialog.Adapt.Contents />
+          </Dialog.Sheet.Frame>
+        </Dialog.Sheet>
+      </Dialog.Adapt>
+
       <Dialog.Portal>
         <DialogOverlay
           key="overlay"
@@ -73,7 +87,7 @@ const DialogCreateServerContent = (props: TabContentPaneProps) => {
         <ScrollView m="$-1">
           <YStack py="$4" gap="$2" px="$1">
             <LabeledRow label="Name" htmlFor="server-name">
-              <Input ref={inputRef as any} f={1} id="server-name" />
+              <Input miw={150} ref={inputRef as any} f={1} id="server-name" />
             </LabeledRow>
 
             <LabeledRow label="Image" htmlFor="image">

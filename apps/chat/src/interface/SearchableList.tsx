@@ -9,9 +9,10 @@ import {
 import { createEmitter } from '@vxrn/emitter'
 import { createContext, forwardRef, useContext, useMemo, useRef, useState } from 'react'
 import {
-  type Input,
+  Input,
   InputFrame,
   type InputProps,
+  isWeb,
   useComposedRefs,
   useGet,
   usePropsAndStyle,
@@ -37,6 +38,11 @@ export function SearchableList<A>({
   children,
   onSelectItem,
 }: { items: readonly A[] | A[]; onSelectItem: (item: A) => void; children: any }) {
+  if (!isWeb) {
+    // TODO
+    return children
+  }
+
   const [activeIndex, setActiveIndex] = useState<number | null>(0)
   const { refs, context } = useFloating({
     open: true,
@@ -93,6 +99,11 @@ export function SearchableList<A>({
 }
 
 export const SearchableInput = forwardRef<Input, InputProps>((props: InputProps, ref) => {
+  if (!isWeb) {
+    // TODO
+    return <Input {...props} />
+  }
+
   const context = useContext(Context)
   const combinedRef = useComposedRefs(ref, context?.refs.setReference as any)
   const [inputProps, inputStyle] = usePropsAndStyle(props, {
@@ -125,12 +136,18 @@ export const SearchableListItem = ({
   children: (active: boolean, itemProps: Record<string, any>) => JSX.Element
   index: number
 }) => {
-  const context = useContext(Context)
   const [active, setActive] = useState(false)
 
   emitter.use((cur) => {
     setActive(index === cur)
   })
+
+  if (!isWeb) {
+    // TODO
+    return children(active, {})
+  }
+
+  const context = useContext(Context)
 
   return children(active, context?.getItemProps(index))
 }

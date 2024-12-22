@@ -50,5 +50,6 @@
     {
       "path": "../../packages/one"
     }
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }
