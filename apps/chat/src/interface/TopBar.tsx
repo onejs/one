@@ -9,7 +9,7 @@ import { updateUserState, useUserState } from '~/state/user'
 import { isTauri } from '~/tauri/constants'
 import { Avatar } from './Avatar'
 import { ButtonSimple } from './ButtonSimple'
-import { ensureSignedUp } from './dialogs/DialogSignup'
+import { ensureSignedUp } from './dialogs/actions'
 
 export const TopBar = memo(() => {
   const { session, jwtToken } = useAuth()

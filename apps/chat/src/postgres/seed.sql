@@ -59,7 +59,9 @@ CREATE TABLE "role" (
     "creatorId" VARCHAR REFERENCES "user"(id),
     "name" VARCHAR(200) NOT NULL,
     "color" VARCHAR(200) NOT NULL,
-    "permissions" JSONB DEFAULT '{}',
+    "canAdmin" BOOLEAN DEFAULT FALSE NOT NULL,
+    "canEditServer" BOOLEAN DEFAULT FALSE NOT NULL,
+    "canEditChannel" BOOLEAN DEFAULT FALSE NOT NULL,
     "updatedAt" TIMESTAMP NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

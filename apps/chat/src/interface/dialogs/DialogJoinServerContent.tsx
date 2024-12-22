@@ -1,6 +1,6 @@
 import { Check, DoorOpen } from '@tamagui/lucide-icons'
 import { useEffect, useRef, useState } from 'react'
-import { TooltipSimple, XStack, YStack } from 'tamagui'
+import { ScrollView, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { mutate, useQuery } from '~/zero/zero'
 import { Avatar } from '../Avatar'
@@ -32,52 +32,53 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
 
   return (
     <AlwaysVisibleTabContent {...props}>
-      <YStack gap="$2">
-        <SearchableList
-          onSelectItem={(item) => {
-            // TODO
-          }}
-          items={foundServers}
-        >
-          <SearchableInput ref={inputRef as any} size="$5" onChangeText={setSearch} />
+      <SearchableList
+        onSelectItem={(item) => {
+          // TODO
+        }}
+        items={foundServers}
+      >
+        <SearchableInput mb="$1" ref={inputRef as any} size="$6" onChangeText={setSearch} />
 
-          {foundServers.map((server, index) => {
-            const isJoined = !!server.members[0]
+        <ScrollView>
+          <YStack gap="$2">
+            {foundServers.map((server, index) => {
+              const isJoined = !!server.members[0]
 
-            return (
-              <SearchableListItem index={index} key={server.id}>
-                {(active, itemProps) => {
-                  return (
-                    <Row active={active} {...itemProps}>
-                      <Avatar image={server.icon} />
-                      <Row.Text>{server.name}</Row.Text>
-                      <XStack f={1} />
-                      <TooltipSimple label={isJoined ? 'Joined!' : 'Join server'}>
-                        <Row.Button
-                          onPress={() => {
-                            if (!user) return
+              return (
+                <SearchableListItem index={index} key={server.id}>
+                  {(active, itemProps) => {
+                    return (
+                      <Row active={active} {...itemProps}>
+                        <Avatar image={server.icon} />
+                        <Row.Text>{server.name}</Row.Text>
+                        <XStack f={1} />
+                        <TooltipSimple label={isJoined ? 'Joined!' : 'Join server'}>
+                          <Row.Button
+                            onPress={() => {
+                              if (!user) return
 
-                            if (isJoined) {
-                              // TODO
-                            } else {
-                              mutate.serverMember.insert({
-                                userId: user.id,
-                                joinedAt: new Date().getTime(),
-                                serverId: server.id,
-                              })
-                            }
-                          }}
-                          icon={isJoined ? Check : DoorOpen}
-                        />
-                      </TooltipSimple>
-                    </Row>
-                  )
-                }}
-              </SearchableListItem>
-            )
-          })}
-        </SearchableList>
-      </YStack>
+                              if (isJoined) {
+                                // TODO
+                              } else {
+                                mutate.serverMember.insert({
+                                  userId: user.id,
+                                  serverId: server.id,
+                                })
+                              }
+                            }}
+                            icon={isJoined ? Check : DoorOpen}
+                          />
+                        </TooltipSimple>
+                      </Row>
+                    )
+                  }}
+                </SearchableListItem>
+              )
+            })}
+          </YStack>
+        </ScrollView>
+      </SearchableList>
     </AlwaysVisibleTabContent>
   )
 }

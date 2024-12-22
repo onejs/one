@@ -4,18 +4,17 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import { Dialog, SizableText, type TamaguiElement } from 'tamagui'
 import { ButtonSimple } from '~/interface/ButtonSimple'
 import { useHotMenuItems } from '~/state/hotMenu'
-import { updateUserState, useUserState } from '~/state/user'
+import { updateSessionState, useSessionState } from '~/state/session'
 import { Row } from '../Row'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
 
 export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
-  const [userState] = useUserState()
-  const showHotMenu = !!userState?.showHotMenu
+  const { showHotMenu } = useSessionState()
   const [search, setSearch] = useState('')
   const items = useHotMenuItems(search)
 
   function toggleHotMenu() {
-    updateUserState({
+    updateSessionState({
       showHotMenu: !showHotMenu,
     })
   }
@@ -114,7 +113,7 @@ export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
                           }}
                           onPress={() => {
                             item.action()
-                            updateUserState({
+                            updateSessionState({
                               showHotMenu: false,
                             })
                           }}

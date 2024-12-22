@@ -4,7 +4,7 @@ import { useAuth } from '~/better-auth/authClient'
 import { useUserServers } from '~/state/server'
 import { updateUserState, useUserState } from '~/state/user'
 import { Avatar } from '../Avatar'
-import { dialogCreateServer } from '../dialogs/DialogCreateJoinServer'
+import { dialogCreateServer } from '../dialogs/actions'
 
 export const SidebarServersRow = () => {
   const servers = useUserServers()

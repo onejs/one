@@ -19,6 +19,15 @@ export class Emitter<const T> {
       return this.listen(cb)
     }, args ?? [])
   }
+
+  nextValue = () => {
+    return new Promise<T>((res) => {
+      const dispose = this.listen((val) => {
+        dispose()
+        res(val)
+      })
+    })
+  }
 }
 
 export function createEmitter<T>() {

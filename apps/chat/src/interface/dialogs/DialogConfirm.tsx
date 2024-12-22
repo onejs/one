@@ -1,25 +1,9 @@
 import { useState } from 'react'
 import { Dialog, H3, Paragraph, XStack, YStack } from 'tamagui'
-import { createEmitter } from '@vxrn/emitter'
 import { ButtonSimple } from '../ButtonSimple'
-import { DialogContent, dialogEmit, DialogOverlay, useDialogEmit } from './shared'
+import { confirmEmitter } from './actions'
+import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
 import type { DialogConfirmType } from './types'
-
-const emitter = createEmitter<boolean>()
-
-export const dialogConfirm = async (props: Omit<DialogConfirmType, 'type'>) => {
-  dialogEmit({
-    type: 'confirm',
-    ...props,
-  })
-
-  return new Promise((res) => {
-    const dispose = emitter.listen((val) => {
-      dispose()
-      res(val)
-    })
-  })
-}
 
 export const DialogConfirm = () => {
   const [state, setState] = useState<DialogConfirmType | null>(null)
@@ -49,7 +33,7 @@ export const DialogConfirm = () => {
             <Dialog.Close asChild>
               <ButtonSimple
                 onPress={() => {
-                  emitter.emit(false)
+                  confirmEmitter.emit(false)
                   setState(null)
                 }}
               >
@@ -59,7 +43,7 @@ export const DialogConfirm = () => {
 
             <ButtonSimple
               onPress={() => {
-                emitter.emit(true)
+                confirmEmitter.emit(true)
                 setState(null)
               }}
             >
