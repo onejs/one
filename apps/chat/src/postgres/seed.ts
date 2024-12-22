@@ -44,19 +44,20 @@ const connectWithRetry = async () => {
   try {
     return await pool.connect()
   } catch (err) {
-    console.error(`Failed to connect to the database.\n${err}\nRetrying in 5 seconds...`)
-    await new Promise((res) => setTimeout(res, 5000))
+    console.error(`Failed to connect to the database.\n${err}\nRetrying in 8 seconds...`)
+    await new Promise((res) => setTimeout(res, 8000))
     return await pool.connect()
   }
 }
 
-connectWithRetry()
-insertReactions()
-  .then(() => {
-    console.info('Reactions have been seeded')
-    process.exit(0)
-  })
-  .catch((err) => {
-    console.error('Error seeding reactions:', err)
-    process.exit(1)
-  })
+connectWithRetry().then(() => {
+  insertReactions()
+    .then(() => {
+      console.info('Reactions have been seeded')
+      process.exit(0)
+    })
+    .catch((err) => {
+      console.error('Error seeding reactions:', err)
+      process.exit(1)
+    })
+})

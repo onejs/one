@@ -1,5 +1,4 @@
 import { UserCheck, UserPlus, UserX } from '@tamagui/lucide-icons'
-import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useRef, useState } from 'react'
 import { Dialog, Input, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
@@ -7,26 +6,11 @@ import type { Friendship, User } from '~/zero/schema'
 import { mutate, useQuery } from '~/zero/zero'
 import { Avatar } from '../Avatar'
 import { Row } from '../Row'
-import { dialogConfirm } from './DialogConfirm'
-import { DialogContent, dialogEmit, DialogOverlay, useDialogEmit } from './shared'
+import { addFriendEmitter, dialogConfirm } from './actions'
+import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
 
-const emitter = createEmitter<boolean>()
-
-export const dialogAddFriend = async () => {
-  dialogEmit({
-    type: 'add-friend',
-  })
-
-  return new Promise((res) => {
-    const dispose = emitter.listen((val) => {
-      dispose()
-      res(val)
-    })
-  })
-}
-
-const success = () => emitter.emit(true)
-const cancel = () => emitter.emit(false)
+const success = () => addFriendEmitter.emit(true)
+const cancel = () => addFriendEmitter.emit(false)
 
 export const DialogAddFriend = () => {
   const [show, setShow] = useState(false)
@@ -141,13 +125,11 @@ const UserRow = ({ user }: { user: User }) => {
               accepted: false,
               acceptingId: currentUser.id,
               requestingId: user.id,
-              createdAt: new Date().getTime(),
             })
             mutate.friendship.insert({
               accepted: false,
               acceptingId: user.id,
               requestingId: currentUser.id,
-              createdAt: new Date().getTime(),
             })
           }}
         ></Row.Button>

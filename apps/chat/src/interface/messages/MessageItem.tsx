@@ -158,7 +158,6 @@ const MessageActionBar = ({
                   id: threadId,
                   channelId: channel.id,
                   messageId: message.id,
-                  createdAt: new Date().getTime(),
                   creatorId: currentUser.id,
                   description: '',
                   title: '',
@@ -245,7 +244,6 @@ const ReactionButton = ({
         }
 
         mutate.messageReaction.insert({
-          createdAt: new Date().getTime(),
           messageId: message.id,
           reactionId: reaction.id,
           userId: user.id,

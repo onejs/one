@@ -130,12 +130,9 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
               mutate.role.insert({
                 id,
                 color: 'gray',
-                createdAt: new Date().getTime(),
                 creatorId: user?.id || '',
                 name,
-                permissions: {},
                 serverId: server.id,
-                updatedAt: new Date().getTime(),
               })
             }}
             onEditCancel={() => setShowTempRole(false)}

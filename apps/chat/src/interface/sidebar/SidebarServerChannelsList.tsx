@@ -94,7 +94,6 @@ export const SidebarServerChannelsList = () => {
               const id = randomID()
               mutate.channel.insert({
                 id,
-                createdAt: new Date().getTime(),
                 description: '',
                 name,
                 private: false,

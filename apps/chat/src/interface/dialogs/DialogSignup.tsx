@@ -1,35 +1,11 @@
-import { createEmitter } from '@vxrn/emitter'
 import { useState } from 'react'
 import { Button, Dialog, H3, XStack, YStack } from 'tamagui'
 import { authClient, useAuth } from '~/better-auth/authClient'
-import { getCurrentUser } from '~/state/user'
 import { isTauri } from '~/tauri/constants'
 import { ButtonSimple } from '../ButtonSimple'
 import { GithubIcon } from '../icons/GithubIcon'
-import { DialogContent, dialogEmit, DialogOverlay, useDialogEmit } from './shared'
-
-const isSignedUpEmitter = createEmitter<boolean>()
-
-export const dialogSignup = async () => {
-  dialogEmit({
-    type: 'signup',
-  })
-
-  return new Promise((res) => {
-    const dispose = isSignedUpEmitter.listen((val) => {
-      dispose()
-      res(val)
-    })
-  })
-}
-
-export const ensureSignedUp = async () => {
-  if (getCurrentUser()) {
-    return getCurrentUser()
-  }
-  await dialogSignup()
-  return getCurrentUser()
-}
+import { isSignedUpEmitter } from './actions'
+import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
 
 export const DialogSignUp = () => {
   const { loggedIn } = useAuth()

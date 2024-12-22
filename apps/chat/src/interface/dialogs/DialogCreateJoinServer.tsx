@@ -1,40 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button, Dialog, Input, ScrollView, XStack, YStack } from 'tamagui'
 import { insertServer } from '~/state/mutateServer'
-import { createEmitter } from '@vxrn/emitter'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
 import { AvatarUpload } from '../upload/AvatarUpload'
+import { serverDialogEmitter } from './actions'
 import { AlwaysVisibleTabContent } from './AlwaysVisibleTabContent'
 import { DialogJoinServerContent } from './DialogJoinServerContent'
-import { DialogContent, dialogEmit, DialogOverlay, useDialogEmit } from './shared'
+import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
 import type { TabContentPaneProps } from './types'
-
-const serverDialogEmitter = createEmitter<boolean>()
-
-export const dialogCreateServer = async () => {
-  dialogEmit({
-    type: 'create-server',
-  })
-  return new Promise((res) => {
-    const dispose = serverDialogEmitter.listen((val) => {
-      dispose()
-      res(val)
-    })
-  })
-}
-
-export const dialogJoinServer = async () => {
-  dialogEmit({
-    type: 'join-server',
-  })
-  return new Promise((res) => {
-    const dispose = serverDialogEmitter.listen((val) => {
-      dispose()
-      res(val)
-    })
-  })
-}
 
 const success = () => serverDialogEmitter.emit(true)
 const cancel = () => serverDialogEmitter.emit(false)
