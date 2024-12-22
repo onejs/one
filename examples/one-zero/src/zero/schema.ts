@@ -46,6 +46,7 @@ export type Schema = typeof schema
 export type Message = Row<typeof messageSchema>
 export type User = Row<typeof userSchema>
 
+// @ts-ignore
 export const permissions = definePermissions(schema, () => {
   return {}
 })
