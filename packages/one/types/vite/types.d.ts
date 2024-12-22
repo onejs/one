@@ -1,16 +1,30 @@
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
 export declare namespace One {
-    type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
-    type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
-    type RouteType = RouteRenderMode | 'api' | 'layout';
-    type RouteOptions = {
+    export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
+    export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
+    export type RouteType = RouteRenderMode | 'api' | 'layout';
+    export type RouteOptions = {
         routeModes?: Record<string, RouteRenderMode>;
     };
-    type FixDependencies = {
+    export type FixDependencies = {
         [key: string]: DepOptimize | DepPatch['patchFiles'];
     };
-    type PluginOptions = {
+    export type ReactScanOptions = {
+        enabled?: boolean;
+        includeChildren?: boolean;
+        playSound?: boolean;
+        log?: boolean;
+        showToolbar?: boolean;
+        renderCountThreshold?: number;
+        resetCountTimeout?: number;
+        maxRenders?: number;
+        report?: boolean;
+        alwaysShowLabels?: boolean;
+        animationSpeed?: 'slow' | 'fast' | 'off';
+    };
+    type PluginPlatformTarget = 'native' | 'web';
+    export type PluginOptions = {
         /**
          * Enabling zero does a couple very simple things:
          *
@@ -19,20 +33,10 @@ export declare namespace One {
          */
         zero?: boolean;
         react?: {
-            compiler?: boolean;
-            scan?: boolean | {
-                enabled?: boolean;
-                includeChildren?: boolean;
-                playSound?: boolean;
-                log?: boolean;
-                showToolbar?: boolean;
-                renderCountThreshold?: number;
-                resetCountTimeout?: number;
-                maxRenders?: number;
-                report?: boolean;
-                alwaysShowLabels?: boolean;
-                animationSpeed?: 'slow' | 'fast' | 'off';
-            };
+            compiler?: boolean | PluginPlatformTarget;
+            scan?: boolean | PluginPlatformTarget | (Record<PluginPlatformTarget, ReactScanOptions> & {
+                options?: ReactScanOptions;
+            });
         };
         /**
          * Path to a js or ts file to import before the rest of your app runs
@@ -121,29 +125,29 @@ export declare namespace One {
             disableAutoDepsPreBundling?: boolean;
         };
     };
-    interface RouteContext {
+    export interface RouteContext {
         keys(): string[];
         (id: string): any;
         <T>(id: string): T;
         resolve(id: string): string;
         id: string;
     }
-    type Redirect = {
+    export type Redirect = {
         source: string;
         destination: string;
         permanent: boolean;
     };
-    type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
+    export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
         oneOptions?: PluginOptions;
         constants: {
             CACHE_KEY: string;
         };
     };
-    type AfterBuildProps = VXRNAfterBuildProps & {
+    export type AfterBuildProps = VXRNAfterBuildProps & {
         routeMap: Record<string, string>;
         builtRoutes: RouteBuildInfo[];
     };
-    type RouteBuildInfo = {
+    export type RouteBuildInfo = {
         type: One.RouteType;
         path: string;
         preloadPath: string;
@@ -155,5 +159,6 @@ export declare namespace One {
         loaderData: any;
         preloads: string[];
     };
+    export {};
 }
 //# sourceMappingURL=types.d.ts.map

@@ -17,6 +17,11 @@ export const EXCLUDE_LIST = [
   '@swc/core-win32-x64-msvc',
   'lightningcss',
 
+  // not used by web anyway
+  // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
+  // /lib/module/Platform/Platform.web.js:132:20
+  '@shopify/react-native-skia',
+
   '@react-native/virtualized-lists', // Unexpected "typeof" in `node_modules/@react-native/virtualized-lists/index.js`
 
   // Native only, we don't expect SSR to use these packages.
