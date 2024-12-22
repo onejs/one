@@ -1,10 +1,9 @@
 // want this to be contextual based on current screen state
 
-import { Server, UserPlus } from '@tamagui/lucide-icons'
 import type { IconProps } from '@tamagui/helpers-icon'
-import { dialogAddFriend } from '~/interface/dialogs/DialogAddFriend'
-import { dialogJoinServer } from '~/interface/dialogs/DialogCreateJoinServer'
+import { Server, UserPlus } from '@tamagui/lucide-icons'
 import FlexSearch from 'flexsearch'
+import { dialogAddFriend, dialogJoinServer } from '~/interface/dialogs/actions'
 
 type HotMenuItem = {
   id: number

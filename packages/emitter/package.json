@@ -3,25 +3,24 @@
   "version": "1.1.368",
   "sideEffects": false,
   "source": "src/index.ts",
-  "types": "./types/index.d.ts",
+  "types": "./src/index.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./types/index.d.ts",
+      "types": "./src/index.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
     }
   },
   "files": [
     "src",
-    "types",
     "dist"
   ],
   "scripts": {
-    "build": "tamagui-build",
-    "watch": "tamagui-build --watch",
+    "build": "tamagui-build --skip-types",
+    "watch": "tamagui-build --skip-types --watch",
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"

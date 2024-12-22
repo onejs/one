@@ -88,7 +88,6 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             threadId: thread?.id,
             isThreadReply: !!thread,
             content,
-            createdAt: new Date().getTime(),
             deleted: false,
             senderId: user!.id,
             serverId: server.id,
