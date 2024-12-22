@@ -1,9 +1,55 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "importHelpers": true,
+    "allowJs": false,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "preserveSymlinks": true,
+    "jsx": "react-jsx",
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "noEmitOnError": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strictNullChecks": true,
+    "target": "es2020",
+    "types": [
+      "vite/client",
+      "node",
+      "react"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ]
   },
-  "references": [{
-    "path": "../emitter"
-  }]
+  "exclude": [
+    "**/test",
+    "**/dist",
+    "**/types",
+    "**/__tests__"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  },
+  "references": [
+    {
+      "path": "../emitter"
+    }
+  ]
 }

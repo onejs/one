@@ -12084,7 +12084,7 @@ __metadata:
     "@tamagui/build": "npm:^1.120.2"
     flow-remove-types: "npm:^2.247.1"
     metro-react-native-babel-preset: "npm:^0.77.0"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -14823,7 +14823,7 @@ __metadata:
     react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.120.2"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -16081,7 +16081,7 @@ __metadata:
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-web: "npm:^0.19.12"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -16109,7 +16109,7 @@ __metadata:
     react-native-svg: "npm:15.2.0"
     swr: "npm:^2.2.5"
     tamagui: "npm:^1.120.2"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
     vite-plugin-inspect: "npm:^0.8.7"
   languageName: unknown
   linkType: soft
@@ -16144,7 +16144,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.120.2"
     tsx: "npm:^4.19.0"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -16175,7 +16175,7 @@ __metadata:
     react-native-svg: "npm:15.2.0"
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.120.2"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -16208,7 +16208,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.120.2"
     tsx: "npm:^4.19.0"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -22104,7 +22104,7 @@ __metadata:
     rollup: "npm:^4.29.1"
     rollup-plugin-node-externals: "npm:^7.1.2"
     url-parse: "npm:^1.5.10"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
     vite-tsconfig-paths: "npm:^5.0.1"
     vitest: "npm:^2.1.8"
     vxrn: "npm:1.1.369"
@@ -26346,7 +26346,7 @@ __metadata:
     "@cloudflare/workers-types": "npm:^4.20241216.0"
     one: "npm:1.1.369"
     react-native: "npm:0.74.5"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
     vitest: "npm:^2.1.8"
     wrangler: "npm:^3.97.0"
   languageName: unknown
@@ -26426,7 +26426,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.120.2"
     tsx: "npm:^4.19.0"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -26442,7 +26442,7 @@ __metadata:
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-web: "npm:^0.19.12"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -26465,7 +26465,7 @@ __metadata:
     react-native-webview: "npm:^13.11.1"
     tamagui: "npm:^1.120.2"
     uuid: "npm:9.0.0"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -27857,58 +27857,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.0.3":
-  version: 6.0.3
-  resolution: "vite@npm:6.0.3"
-  dependencies:
-    esbuild: "npm:^0.24.0"
-    fsevents: "npm:~2.3.3"
-    postcss: "npm:^8.4.49"
-    rollup: "npm:^4.23.0"
-  peerDependencies:
-    "@types/node": ^18.0.0 || ^20.0.0 || >=22.0.0
-    jiti: ">=1.21.0"
-    less: "*"
-    lightningcss: ^1.21.0
-    sass: "*"
-    sass-embedded: "*"
-    stylus: "*"
-    sugarss: "*"
-    terser: ^5.16.0
-    tsx: ^4.8.1
-    yaml: ^2.4.2
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  peerDependenciesMeta:
-    "@types/node":
-      optional: true
-    jiti:
-      optional: true
-    less:
-      optional: true
-    lightningcss:
-      optional: true
-    sass:
-      optional: true
-    sass-embedded:
-      optional: true
-    stylus:
-      optional: true
-    sugarss:
-      optional: true
-    terser:
-      optional: true
-    tsx:
-      optional: true
-    yaml:
-      optional: true
-  bin:
-    vite: bin/vite.js
-  checksum: 10/eca0949b8cbc887e78977515d8fc22eaa2d03425d60a0a422f2db1da9d26bd1b431b2815a273c798e8e3fe176a99e105c3d87b0ba615ca19b8bf19e0334d807a
-  languageName: node
-  linkType: hard
-
 "vite@npm:^6.0.5":
   version: 6.0.5
   resolution: "vite@npm:6.0.5"
@@ -28156,7 +28104,7 @@ __metadata:
     qrcode-terminal: "npm:^0.12.0"
     rollup: "npm:^4.29.1"
     semver: "npm:^7.6.3"
-    vite: "npm:^6.0.3"
+    vite: "npm:^6.0.5"
     vite-bundle-analyzer: "npm:^0.9.4"
     vite-plugin-mkcert: "npm:^1.17.5"
     ws: "npm:^8.18.0"

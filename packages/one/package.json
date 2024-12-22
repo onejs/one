@@ -142,7 +142,7 @@
     "react-scan": "^0.0.48",
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
-    "vite": "^6.0.3",
+    "vite": "^6.0.5",
     "vite-tsconfig-paths": "^5.0.1",
     "vxrn": "1.1.369",
     "ws": "^8.18.0",
