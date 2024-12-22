@@ -9,7 +9,7 @@ export const LabeledRow = ({
 }: XStackProps & { htmlFor: string; label: string; description?: string }) => {
   return (
     <YStack py="$2" bbw={1} bc="$color3">
-      <XStack w="100%" gap="$1" {...rest}>
+      <XStack w="100%" gap="$1" $sm={{ fd: 'column' }} {...rest}>
         <Label my={-3} pressStyle={{ o: 0.6 }} f={100} size="$5" fow="600" htmlFor={htmlFor}>
           {label}
         </Label>
