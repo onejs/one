@@ -184,6 +184,8 @@ ${
 // run entry
 const __require = createRequire(":root:", {})
 __require("react-native")
+__require("react")
+console.log("is this here?", __require("react").__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE)
 __require("${id}")
 `
     : ''

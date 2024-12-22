@@ -18,8 +18,6 @@ export function createApp(options: CreateAppProps): void {
       contents = (
         <ReactScan options={JSON.parse(process.env.ONE_ENABLE_REACT_SCAN)}>{contents}</ReactScan>
       )
-    } else {
-      console.warn(`React Scan disabled`)
     }
 
     return contents

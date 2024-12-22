@@ -6,8 +6,8 @@ export default {
   plugins: [
     one({
       react: {
-        // compiler: true,
-        // scan: true,
+        compiler: true,
+        scan: true,
       },
 
       web: {

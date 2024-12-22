@@ -1,12 +1,13 @@
 # Setup
 
-Install the repo deps:
+At the root of this repo install and build:
 
 ```sh
 yarn
+yarn build
 ```
 
-Move config:
+In this folder set up env:
 
 ```sh
 cp .env.example .env
