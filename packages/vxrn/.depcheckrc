@@ -1,1 +1,15 @@
-ignores: ["@vxrn/safe-area", "@biomejs/biome", "vxrn", "@expo/cli", "@vxrn/vendor", "react", "expo", "@tamagui/react-native-svg", "@vxrn/query-string", "@vxrn/url-parse", "metro-react-native-babel-preset"]
+ignores:
+  - "@vxrn/safe-area"
+  - "@biomejs/biome"
+  - "vxrn"
+  - "@expo/cli"
+  - "@vxrn/vendor"
+  - "react"
+  - "expo"
+  - "@tamagui/react-native-svg"
+  - "@vxrn/query-string"
+  - "@vxrn/url-parse"
+  - "metro-react-native-babel-preset"
+  # Babel preset and plugins, which aren't directly imported in the code but referenced by their names
+  - "@babel/preset-typescript"
+  - "@react-native/babel-plugin-codegen"
