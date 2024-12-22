@@ -18,8 +18,8 @@ const yellow = {
 }
 
 const yellowDark = {
-  yellow1: 'hsl(54, 10%, 10.5%)',
-  yellow2: 'hsl(54, 10%, 12.7%)',
+  yellow1: 'hsl(54, 10%, 6.5%)',
+  yellow2: 'hsl(54, 10%, 10.7%)',
   yellow3: 'hsl(54, 10%, 14.7%)',
   yellow4: 'hsl(54, 20%, 16.4%)',
   yellow5: 'hsl(54, 20%, 18.1%)',

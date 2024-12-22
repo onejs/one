@@ -26,33 +26,6 @@ const BRANCH = 'main'
 export default function DocsLayout() {
   const { currentPath, next, previous, documentVersionPath } = useDocsMenu()
   const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/${BRANCH}/apps/onestack.dev/data${currentPath}${documentVersionPath}.mdx`
-  const isRaise = currentPath === '/docs/seed'
-
-  if (isRaise) {
-    return (
-      <SearchProvider>
-        <TopNav />
-
-        <ContainerSm x={-100} $md={{ x: 0 }}>
-          <XStack ai="center" w="100%" jc="space-between" $md={{ dsp: 'none' }}>
-            <Link href="/">
-              <OneLogo size={1} />
-            </Link>
-          </XStack>
-          <Spacer size="$4" />
-
-          <H2 mb="$4">Seed</H2>
-
-          <Slot />
-          <Spacer size="$10" />
-          <Spacer size="$10" />
-          <Spacer size="$10" />
-          <Spacer size="$10" />
-          <Spacer size="$10" />
-        </ContainerSm>
-      </SearchProvider>
-    )
-  }
 
   return (
     <SearchProvider>
@@ -87,14 +60,7 @@ export default function DocsLayout() {
             width: 245,
           }}
         >
-          <YStack
-            $md={{ dsp: 'none' }}
-            mt={40}
-            h={65}
-            maxWidth="fit-content"
-            ml="auto"
-            zi={100_000}
-          >
+          <YStack $md={{ dsp: 'none' }} mt={28} h={65} maxWidth="fit-content" zi={100_000} ml="$3">
             <Link href="/">
               <OneLogo size={0.55} />
             </Link>

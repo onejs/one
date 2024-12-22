@@ -35,7 +35,11 @@ export default {
   },
 
   plugins: [
-    one(),
+    one({
+      react: {
+        compiler: true,
+      },
+    }),
 
     tamaguiPlugin({
       optimize: true,

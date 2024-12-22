@@ -6,9 +6,23 @@ export const docsRoutes = [
       { title: 'Configuration', route: '/docs/configuration' },
       { title: 'Environment', route: '/docs/environment' },
       { title: 'Features', route: '/docs/features' },
-      { title: 'Guides', route: '/docs/guides' },
       { title: 'Status', route: '/docs/status' },
       { title: 'FAQ', route: '/docs/faq' },
+    ],
+  },
+
+  {
+    title: 'Guides',
+    pages: [
+      { title: 'MDX for web', route: '/docs/guides-mdx' },
+      { title: 'Light and Dark mode', route: '/docs/guides-dark-mode' },
+      { title: 'Tamagui', route: '/docs/guides-tamagui' },
+      { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
+      { title: 'Ship with EAS', route: '/docs/guides-eas' },
+      {
+        title: 'Migrate from CRA',
+        route: '/docs/guides-migrating-create-react-app-cra-to-vite-with-one',
+      },
     ],
   },
 

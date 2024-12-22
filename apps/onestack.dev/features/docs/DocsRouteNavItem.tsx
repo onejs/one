@@ -77,8 +77,9 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
           lh="$5"
           cursor="pointer"
           userSelect="none"
+          col="$color12"
           opacity={active ? 1 : 0.65}
-          ta={inMenu ? 'left' : 'right'}
+          // ta={inMenu ? 'left' : 'right'}
           w="100%"
           hoverStyle={{
             o: 0.85,
@@ -107,14 +108,7 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
         {pending ? (
           <>
             <XStack flex={1} />
-            <SizableText
-              theme="alt2"
-              size="$1"
-              px="$2"
-              py="$1"
-              bg="$background"
-              borderRadius="$3"
-            >
+            <SizableText theme="alt2" size="$1" px="$2" py="$1" bg="$background" borderRadius="$3">
               WIP
             </SizableText>
           </>

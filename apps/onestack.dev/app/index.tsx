@@ -130,13 +130,7 @@ export default function HomePage() {
         </XStack>
 
         <View gap="$3">
-          <PrettyTextBiggest
-            color="$color13"
-            mt={30}
-            mb={-2}
-            scale={0.95}
-            transformOrigin="left center"
-          >
+          <PrettyTextBiggest color="$color13" mt={30} mb={-2} transformOrigin="left center">
             Easy, simple &&nbsp;fast cross&#8209;platform&nbsp;apps.
           </PrettyTextBiggest>
 
@@ -201,10 +195,6 @@ export default function HomePage() {
             <View
               id="zero"
               contain="paint layout"
-              background="linear-gradient(var(--color7), var(--color6))"
-              $theme-dark={{
-                background: 'linear-gradient(var(--color3), var(--color1))',
-              }}
               className="local-shadows tinted"
               br="$10"
               px="$5"
@@ -214,29 +204,24 @@ export default function HomePage() {
               $gtSm={{ px: '$9', py: '$8', pb: '$5', mx: '$0' }}
             >
               <PrettyTextBiggest
-                color="$color12"
+                color="$color11"
                 mt={15}
-                fontSize={80}
-                lineHeight={85}
                 $md={{ size: '$10' }}
                 $sm={{ size: '$9' }}
-                $theme-dark={{
-                  color: '$color10',
-                }}
               >
-                A better way to data
+                Rethinking read&nbsp;&&nbsp;write
               </PrettyTextBiggest>
 
               <PrettyTextBigger style={{ textWrap: 'stable' }}>
                 Simpler code, better UX, cross&#8209;platform - that's&nbsp;the ideal. With&nbsp;One
-                and <a href="https://tamagui.dev">Tamagui</a>, we're close&#x2026; but there's still{' '}
-                one big pain point. <b>Let's&nbsp;talk&nbsp;data</b>.
+                (and <a href="https://tamagui.dev">Tamagui</a>), we're close&#x2026; but there's
+                still one huge pain point. <b>Let's&nbsp;talk about&nbsp;data</b>.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                Native apps feel better and are easier to write thanks to client-side databases.
-                Say&nbsp;goodbye&nbsp;to server boundaries, lose&nbsp;the glue code, mutate
-                instantly, and have things Just&nbsp;Work™&nbsp;offline&#x2026;
+                Native apps feel better and are easier to write thanks to having client-side
+                databases. You can say&nbsp;goodbye&nbsp;to server boundaries, lose&nbsp;the glue
+                code, mutate instantly, and things Just&nbsp;Work™&nbsp;offline&#x2026;
               </PrettyTextBigger>
 
               <PrettyTextBigger>
@@ -403,14 +388,16 @@ const InfoCard = ({ title, Icon, children }) => {
       $sm={{ w: '100%', mb: '$2' }}
     >
       <YStack fullscreen o={0.25}>
-        <Corners />
+        {/* <Corners /> */}
       </YStack>
       <YStack gap="$2" p="$4">
         <Icon als="flex-end" mb={-20} o={0.1} size={28} />
         <H5 size="$7" color="$color13" mt={-10}>
           {title}
         </H5>
-        <PrettyText color="$color12">{children}</PrettyText>
+        <PrettyText size="$5" color="$color12">
+          {children}
+        </PrettyText>
       </YStack>
     </YStack>
   )

@@ -17,6 +17,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react',
     'react/jsx-runtime',
     'react/jsx-dev-runtime',
+    'react/compiler-runtime',
     'react-dom',
     'react-dom/server',
     'react-dom/client',
