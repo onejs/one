@@ -9,21 +9,19 @@ import { AlwaysVisibleTabContent } from './AlwaysVisibleTabContent'
 import { DialogJoinServerContent } from './DialogJoinServerContent'
 import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
 import type { TabContentPaneProps } from './types'
+import { debugUseState } from '~/helpers/debug'
 
 const success = () => serverDialogEmitter.emit(true)
 const cancel = () => serverDialogEmitter.emit(false)
 
 export const DialogCreateJoinServer = () => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = debugUseState(useState(false))
   const [tab, setTab] = useState('create')
 
   useDialogEmit((next) => {
     if (next.type === 'create-server' || next.type === 'join-server') {
       setShow(true)
       setTab(next.type === 'create-server' ? 'create' : 'join')
-    } else {
-      setShow(false)
-      cancel()
     }
   })
 
@@ -43,8 +41,8 @@ export const DialogCreateJoinServer = () => {
             initialTab={tab}
             onValueChange={setTab}
             tabs={[
-              { label: 'Create', value: 'create' },
-              { label: 'Join', value: 'join' },
+              { label: 'Create Server', value: 'create' },
+              { label: 'Join Server', value: 'join' },
             ]}
           >
             <YStack pos="relative" f={1} w="100%">

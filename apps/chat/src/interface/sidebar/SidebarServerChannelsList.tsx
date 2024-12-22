@@ -53,7 +53,7 @@ export const SidebarServerChannelsList = () => {
   return (
     <YStack>
       <YStack pos="relative">
-        {user && (
+        {server && user && (
           <ListTitle
             icon={
               <ButtonSimple

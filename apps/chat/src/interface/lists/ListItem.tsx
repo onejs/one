@@ -2,6 +2,7 @@ import { createElement, forwardRef, isValidElement } from 'react'
 import { Input, SizableText, type TamaguiElement, XStack, type XStackProps, YStack } from 'tamagui'
 
 export type ListItemProps = XStackProps & {
+  size?: 'large'
   icon?: any
   iconAfter?: boolean
   editing?: boolean
@@ -28,14 +29,16 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
       disableHover,
       after,
       before,
+      size,
       ...rest
     },
     ref
   ) => {
+    const iconSize = size === 'large' ? 20 : 18
     const iconElement = icon
       ? isValidElement(icon)
         ? icon
-        : createElement(icon, { size: 18, opacity: 0.5 })
+        : createElement(icon, { size: iconSize, opacity: 0.5 })
       : null
 
     return (
@@ -46,6 +49,7 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
         ai="center"
         userSelect="none"
         gap="$3"
+        miw="100%"
         cur="default"
         {...(!disableHover && {
           hoverStyle: {
@@ -57,6 +61,10 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
           hoverStyle: {
             bg: '$background05',
           },
+        })}
+        {...(size === 'large' && {
+          px: '$3.5',
+          py: '$2',
         })}
         {...rest}
       >
@@ -82,7 +90,7 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
             }}
           />
         ) : typeof children === 'string' ? (
-          <SizableText fow="500" cur="default">
+          <SizableText color="$color" fow="500" cur="default">
             {children}
           </SizableText>
         ) : (

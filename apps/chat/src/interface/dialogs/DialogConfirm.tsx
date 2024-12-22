@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Dialog, H3, Paragraph, XStack, YStack } from 'tamagui'
+import { Button, Dialog, H3, Paragraph, XStack, YStack } from 'tamagui'
 import { ButtonSimple } from '../ButtonSimple'
 import { confirmEmitter } from './actions'
 import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
@@ -23,7 +23,7 @@ export const DialogConfirm = () => {
           }}
         />
 
-        <DialogContent>
+        <DialogContent mih={150}>
           <YStack f={1}>
             <H3>{state?.title}</H3>
             <Paragraph>{state?.description}</Paragraph>
@@ -31,24 +31,25 @@ export const DialogConfirm = () => {
 
           <XStack jc="flex-end" gap="$2">
             <Dialog.Close asChild>
-              <ButtonSimple
+              <Button
                 onPress={() => {
                   confirmEmitter.emit(false)
                   setState(null)
                 }}
               >
                 Cancel
-              </ButtonSimple>
+              </Button>
             </Dialog.Close>
 
-            <ButtonSimple
+            <Button
+              theme="blue"
               onPress={() => {
                 confirmEmitter.emit(true)
                 setState(null)
               }}
             >
               Accept
-            </ButtonSimple>
+            </Button>
           </XStack>
         </DialogContent>
       </Dialog.Portal>

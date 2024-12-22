@@ -52,8 +52,8 @@ export const DialogSignUp = () => {
                   }
                 }}
               >
-                <Button size="$6" icon={GithubIcon}>
-                  Github
+                <Button size="$5" scaleIcon={1.5} icon={GithubIcon}>
+                  Login with Github
                 </Button>
               </a>
             </YStack>
