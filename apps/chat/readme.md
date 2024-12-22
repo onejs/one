@@ -1,11 +1,20 @@
-to run:
+# Setup
+
+Install the repo deps:
 
 ```sh
 yarn
-cd apps/onechat
 ```
 
-then run Docker and then in three separate tabs:
+Move config:
+
+```sh
+cp .env.example .env
+```
+
+Start your [Docker app](https://orbstack.dev).
+
+Then, in three separate tabs run:
 
 ```
 yarn docker:start:clean
