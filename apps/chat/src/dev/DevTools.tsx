@@ -38,16 +38,16 @@ export const DevTools = () => {
 
           const messages = new Array(100).fill(0).map((_, index) => {
             return {
-              channelId: channel.id,
+              channelID: channel.id,
               content: `Lorem ipsum dolo`,
               createdAt: new Date().getTime() - index * 60 * 1000,
               deleted: false,
               id: randomID(),
               // @ts-expect-error
-              senderId: getRandomItem(users)!.id,
-              serverId: channel.serverId,
+              creatorID: getRandomItem(users)!.id,
+              serverID: channel.serverID,
               isThreadReply: false,
-              threadId: null,
+              threadID: null,
               updatedAt: null,
             } satisfies Message
           })

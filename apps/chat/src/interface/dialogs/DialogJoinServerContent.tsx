@@ -62,8 +62,8 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
                                 // TODO
                               } else {
                                 mutate.serverMember.insert({
-                                  userId: user.id,
-                                  serverId: server.id,
+                                  userID: user.id,
+                                  serverID: server.id,
                                 })
                               }
                             }}
