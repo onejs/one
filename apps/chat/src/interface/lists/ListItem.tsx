@@ -88,11 +88,11 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
         ) : (
           children
         )}
-        {typeof after !== 'undefined' && (
+        {(iconAfter || after) && (
           <>
             <XStack f={1} />
 
-            <XStack ai="center" als="flex-end">
+            <XStack ai="center" als="flex-end" h="100%">
               {after}
               {iconAfter ? (
                 <YStack pos="absolute" t={0} r={0} b={0} ai="center" jc="center" px="$3">

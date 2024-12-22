@@ -12,7 +12,7 @@ import {
 export type UserState = {
   serversSort?: string[]
   activeServer?: string
-  // serverId to channelId
+  // serverID to channelID
   activeChannels: Record<string, string>
   showSidePanel?: 'user' | 'settings'
   channelState?: ChannelsState
@@ -45,11 +45,11 @@ const userSchema = {
     servers: [
       {
         sourceField: 'id',
-        destField: 'userId',
+        destField: 'userID',
         destSchema: () => serverMemberSchema,
       },
       {
-        sourceField: 'serverId',
+        sourceField: 'serverID',
         destField: 'id',
         destSchema: () => serverSchema,
       },
@@ -58,11 +58,11 @@ const userSchema = {
     friends: [
       {
         sourceField: 'id',
-        destField: 'requestingId',
+        destField: 'requestingID',
         destSchema: () => friendshipSchema,
       },
       {
-        sourceField: 'acceptingId',
+        sourceField: 'acceptingID',
         destField: 'id',
         destSchema: () => userSchema,
       },
@@ -77,8 +77,8 @@ const roleSchema = {
     id: 'string',
     name: 'string',
     color: 'string',
-    serverId: 'string',
-    creatorId: 'string',
+    serverID: 'string',
+    creatorID: 'string',
     canAdmin: { type: 'boolean', optional: true },
     canEditChannel: { type: 'boolean', optional: true },
     canEditServer: { type: 'boolean', optional: true },
@@ -90,11 +90,11 @@ const roleSchema = {
     members: [
       {
         sourceField: 'id',
-        destField: 'roleId',
+        destField: 'roleID',
         destSchema: () => userRoleSchema,
       },
       {
-        sourceField: 'userId',
+        sourceField: 'userID',
         destField: 'id',
         destSchema: () => userSchema,
       },
@@ -104,34 +104,34 @@ const roleSchema = {
 
 const userRoleSchema = createTableSchema({
   tableName: 'userRole',
-  primaryKey: ['serverId', 'userId', 'roleId'],
+  primaryKey: ['serverID', 'userID', 'roleID'],
   columns: {
-    serverId: 'string',
-    userId: 'string',
-    roleId: 'string',
-    granterId: 'string',
+    serverID: 'string',
+    userID: 'string',
+    roleID: 'string',
+    granterID: 'string',
     createdAt: { type: 'number', optional: true },
   },
 })
 
 const channelRoleSchema = createTableSchema({
   tableName: 'channelRole',
-  primaryKey: ['serverId', 'channelId', 'roleId'],
+  primaryKey: ['serverID', 'channelID', 'roleID'],
   columns: {
-    serverId: 'string',
-    channelId: 'string',
-    roleId: 'string',
-    granterId: 'string',
+    serverID: 'string',
+    channelID: 'string',
+    roleID: 'string',
+    granterID: 'string',
     createdAt: { type: 'number', optional: true },
   },
 })
 
 const friendshipSchema = createTableSchema({
   tableName: 'friendship',
-  primaryKey: ['requestingId', 'acceptingId'],
+  primaryKey: ['requestingID', 'acceptingID'],
   columns: {
-    requestingId: 'string',
-    acceptingId: 'string',
+    requestingID: 'string',
+    acceptingID: 'string',
     accepted: 'boolean',
     createdAt: { type: 'number', optional: true },
   },
@@ -143,7 +143,7 @@ const serverSchema = {
   columns: {
     id: 'string',
     name: 'string',
-    ownerId: 'string',
+    creatorID: 'string',
     channelSort: 'json',
     description: 'string',
     icon: 'string',
@@ -152,18 +152,18 @@ const serverSchema = {
   relationships: {
     channels: {
       sourceField: 'id',
-      destField: 'serverId',
+      destField: 'serverID',
       destSchema: () => channelSchema,
     },
 
     members: [
       {
         sourceField: 'id',
-        destField: 'serverId',
+        destField: 'serverID',
         destSchema: () => serverMemberSchema,
       },
       {
-        sourceField: 'userId',
+        sourceField: 'userID',
         destField: 'id',
         destSchema: () => userSchema,
       },
@@ -171,7 +171,7 @@ const serverSchema = {
 
     roles: {
       sourceField: 'id',
-      destField: 'serverId',
+      destField: 'serverID',
       destSchema: () => roleSchema,
     },
   },
@@ -179,10 +179,10 @@ const serverSchema = {
 
 const serverMemberSchema = createTableSchema({
   tableName: 'serverMember',
-  primaryKey: ['serverId', 'userId'],
+  primaryKey: ['serverID', 'userID'],
   columns: {
-    serverId: 'string',
-    userId: 'string',
+    serverID: 'string',
+    userID: 'string',
     joinedAt: { type: 'number', optional: true },
   },
 })
@@ -191,7 +191,7 @@ const channelSchema = createTableSchema({
   tableName: 'channel',
   columns: {
     id: 'string',
-    serverId: 'string',
+    serverID: 'string',
     name: 'string',
     description: 'string',
     private: { type: 'boolean' },
@@ -201,24 +201,24 @@ const channelSchema = createTableSchema({
   relationships: {
     messages: {
       sourceField: 'id',
-      destField: 'channelId',
+      destField: 'channelID',
       destSchema: () => messageSchema,
     },
 
     threads: {
       sourceField: 'id',
-      destField: 'channelId',
+      destField: 'channelID',
       destSchema: () => threadSchema,
     },
 
     roles: [
       {
         sourceField: 'id',
-        destField: 'channelId',
+        destField: 'channelID',
         destSchema: () => channelRoleSchema,
       },
       {
-        sourceField: 'roleId',
+        sourceField: 'roleID',
         destField: 'id',
         destSchema: () => roleSchema,
       },
@@ -230,9 +230,9 @@ const threadSchema = {
   tableName: 'thread',
   columns: {
     id: 'string',
-    channelId: 'string',
-    creatorId: 'string',
-    messageId: 'string',
+    channelID: 'string',
+    creatorID: 'string',
+    messageID: 'string',
     title: 'string',
     description: 'string',
     createdAt: { type: 'number', optional: true },
@@ -241,7 +241,7 @@ const threadSchema = {
   relationships: {
     messages: {
       sourceField: 'id',
-      destField: 'threadId',
+      destField: 'threadID',
       destSchema: () => messageSchema,
     },
   },
@@ -252,11 +252,11 @@ const messageSchema = {
   primaryKey: ['id'],
   columns: {
     id: 'string',
-    serverId: 'string',
-    channelId: 'string',
-    threadId: { type: 'string', optional: true },
+    serverID: 'string',
+    channelID: 'string',
+    threadID: { type: 'string', optional: true },
     isThreadReply: 'boolean',
-    senderId: 'string',
+    creatorID: 'string',
     content: 'string',
     createdAt: { type: 'number', optional: true },
     updatedAt: { type: 'number', optional: true },
@@ -265,12 +265,12 @@ const messageSchema = {
   relationships: {
     thread: {
       sourceField: 'id',
-      destField: 'messageId',
+      destField: 'messageID',
       destSchema: () => threadSchema,
     },
 
     sender: {
-      sourceField: 'senderId',
+      sourceField: 'creatorID',
       destField: 'id',
       destSchema: () => userSchema,
     },
@@ -278,11 +278,11 @@ const messageSchema = {
     reactions: [
       {
         sourceField: 'id',
-        destField: 'messageId',
+        destField: 'messageID',
         destSchema: () => messageReactionSchema,
       },
       {
-        sourceField: 'reactionId',
+        sourceField: 'reactionID',
         destField: 'id',
         destSchema: () => reactionSchema,
       },
@@ -292,11 +292,11 @@ const messageSchema = {
 
 const messageReactionSchema = createTableSchema({
   tableName: 'messageReaction',
-  primaryKey: ['messageId', 'userId', 'reactionId'],
+  primaryKey: ['messageID', 'creatorID', 'reactionID'],
   columns: {
-    messageId: 'string',
-    userId: 'string',
-    reactionId: 'string',
+    messageID: 'string',
+    creatorID: 'string',
+    reactionID: 'string',
     createdAt: { type: 'number', optional: true },
     updatedAt: { type: 'number', optional: true },
   },
@@ -362,18 +362,29 @@ type AuthData = {
 
 export const permissions = definePermissions<AuthData, Schema>(schema, () => {
   const userIsLoggedIn = (authData: AuthData, { cmpLit }: ExpressionBuilder<TableSchema>) => {
-    console.log('??', authData)
+    console.log('??', JSON.stringify(authData))
     return cmpLit(authData.sub, 'IS NOT', null)
   }
+
+  // const loggedInUserIsCreator = (
+  //   authData: AuthData,
+  //   eb: ExpressionBuilder<typeof commentSchema | typeof emojiSchema | typeof issueSchema>
+  // ) => eb.and(userIsLoggedIn(authData, eb), eb.cmp('creatorID', '=', authData.sub))
 
   return {
     user: {
       // Only the authentication system can write to the user table.
       row: {
         insert: NOBODY_CAN,
-        update: {
-          preMutation: NOBODY_CAN,
-        },
+        // update: {
+        //   preMutation: [
+        //     // logged in user is user
+        //     // TODO should move to a separate userState table likely
+        //     (ad, eb) => {
+        //       return eb.and(userIsLoggedIn(ad, eb), eb.cmp('id', ad.id))
+        //     },
+        //   ],
+        // },
         delete: NOBODY_CAN,
       },
     },
@@ -384,7 +395,7 @@ export const permissions = definePermissions<AuthData, Schema>(schema, () => {
         update: {
           preMutation: [
             (ad, eb) => {
-              console.log('check', ad)
+              console.log('check', JSON.stringify(ad))
               return eb.exists('roles', (q) =>
                 q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
               )

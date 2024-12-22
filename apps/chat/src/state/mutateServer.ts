@@ -6,52 +6,52 @@ import { updateUserState } from './user'
 
 export const insertServer = async (server: Partial<Server>) => {
   const currentUser = await ensureSignedUp()
-  const serverId = randomID()
-  const channelId = randomID()
-  const roleId = randomID()
+  const serverID = randomID()
+  const channelID = randomID()
+  const roleID = randomID()
 
   await zero.mutateBatch((tx) => {
     tx.server.insert({
-      id: serverId,
+      id: serverID,
       description: '',
       icon: Math.random() > 0.5 ? 'red' : 'pink',
       name: 'Lorem',
-      ownerId: currentUser.id,
-      channelSort: [channelId],
+      creatorID: currentUser.id,
+      channelSort: [channelID],
       ...server,
     })
 
     tx.role.insert({
-      id: roleId,
+      id: roleID,
       color: '#ccc',
-      creatorId: currentUser.id,
+      creatorID: currentUser.id,
       name: 'Admin',
       canAdmin: true,
-      serverId,
+      serverID,
     })
 
     tx.userRole.insert({
-      granterId: currentUser.id,
-      roleId,
-      serverId,
-      userId: currentUser.id,
+      granterID: currentUser.id,
+      roleID,
+      serverID,
+      userID: currentUser.id,
     })
 
     tx.serverMember.insert({
-      serverId,
-      userId: currentUser.id,
+      serverID,
+      userID: currentUser.id,
     })
 
     tx.channel.insert({
-      id: channelId,
+      id: channelID,
       description: '',
       name: 'Welcome',
       private: false,
-      serverId,
+      serverID,
     })
   })
 
   updateUserState({
-    activeServer: serverId,
+    activeServer: serverID,
   })
 }

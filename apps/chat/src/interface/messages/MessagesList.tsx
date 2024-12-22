@@ -125,7 +125,7 @@ export const MessagesList = memo(
 
               return (
                 <MessageItem
-                  hideUser={lastMessage?.senderId === message.senderId}
+                  hideUser={lastMessage?.creatorID === message.creatorID}
                   channel={channel}
                   key={message.id}
                   message={message}
