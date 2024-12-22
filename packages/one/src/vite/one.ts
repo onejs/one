@@ -392,7 +392,7 @@ export async function loadUserOneOptions(command: 'serve' | 'build') {
   if (!found) {
     throw new Error(`No config found in ${process.cwd()}. Is this the correct directory?`)
   }
-  const foundOptions = getUserOneOptions()
+  const foundOptions = getUserOneOptions(command)
   if (!foundOptions) {
     throw new Error(`No One plugin found in this vite.config`)
   }
