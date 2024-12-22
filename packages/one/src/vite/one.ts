@@ -270,6 +270,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         define: {
           'process.env.ONE_ENABLE_REACT_SCAN': stringify({
             enabled: true,
+            animationSpeed: 'slow',
             showToolbar: false,
           }),
         },

@@ -21,6 +21,11 @@ export const createReactCompilerPlugin = (root: string): Plugin => {
       if (!shouldTransform) return
       const env = this.environment.name
       const target = env === 'ios' || env === 'android' ? '18' : '19'
+
+      if (codeIn.startsWith('// disable-compiler')) {
+        return
+      }
+
       const result = await babel.transformAsync(codeIn, { filename: id, ...getBabelConfig(target) })
       const code = result?.code ?? ''
 
