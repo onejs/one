@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     # needs: release
 
+    permissions:
+          id-token: "write"
+          contents: "write"
+          packages: "write"
+          pull-requests: "read"
+
     steps:
       - uses: marvinpinto/action-automatic-releases@latest
         with:
