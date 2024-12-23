@@ -1,7 +1,7 @@
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
 import path, { dirname, resolve } from 'node:path'
-import { type Plugin, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
+import { type Plugin, type PluginOption, type UserConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import {
   autoPreBundleDepsForSsrPlugin,
@@ -14,6 +14,7 @@ import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
 import { ensureTSConfig } from './ensureTsConfig'
+import { setOneOptions } from './loadConfig'
 import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
@@ -36,7 +37,7 @@ events.setMaxListeners(1_000)
 globalThis.__vxrnEnableNativeEnv = true
 
 export function one(options: One.PluginOptions = {}): PluginOption {
-  oneOptions = options
+  setOneOptions(options)
 
   // ensure tsconfig
   if (options.config?.ensureTSConfig !== false) {
@@ -429,32 +430,4 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       entries: [virtualEntryId],
     }),
   ]
-}
-
-let oneOptions: One.PluginOptions | null = null
-
-async function getUserOneOptions(command?: 'serve' | 'build') {
-  if (!oneOptions) {
-    if (!command) throw new Error(`Options not loaded and no command given`)
-    await loadUserOneOptions(command)
-  }
-  if (!oneOptions) {
-    throw new Error(`No One options were loaded`)
-  }
-  return oneOptions
-}
-
-export async function loadUserOneOptions(command: 'serve' | 'build') {
-  const found = await loadConfigFromFile({
-    mode: 'prod',
-    command,
-  })
-  if (!found) {
-    throw new Error(`No config found in ${process.cwd()}. Is this the correct directory?`)
-  }
-  const foundOptions = getUserOneOptions(command)
-  if (!foundOptions) {
-    throw new Error(`No One plugin found in this vite.config`)
-  }
-  return foundOptions
 }
