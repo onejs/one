@@ -2,21 +2,17 @@ import { loadConfigFromFile } from 'vite'
 import '../polyfills-server'
 import type { One } from './types'
 
-let oneOptions: One.PluginOptions | null = null
+// globalThis, otherwise we get issues with duplicates due to however vite calls loadConfigFromFile
 
 export function setOneOptions(next: One.PluginOptions) {
-  oneOptions = next
+  globalThis.__oneOptions = next
 }
 
 async function getUserOneOptions(command?: 'serve' | 'build') {
-  if (!oneOptions) {
-    if (!command) throw new Error(`Options not loaded and no command given`)
-    await loadUserOneOptions(command)
+  if (!globalThis.__oneOptions) {
+    throw new Error(`One not loaded properly, is the one() plugin in your vite.config.ts?`)
   }
-  if (!oneOptions) {
-    throw new Error(`No One options were loaded`)
-  }
-  return oneOptions
+  return globalThis.__oneOptions
 }
 
 export async function loadUserOneOptions(command: 'serve' | 'build') {
