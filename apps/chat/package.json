@@ -6,6 +6,7 @@
   "files": [],
   "type": "module",
   "scripts": {
+    "backend": "yarn data:reset; yarn docker up",
     "build:web": "one build",
     "build:icon": "tauri icon ./src-tauri/icons/icon.png",
     "build:tauri": "tauri build --debug",
@@ -15,7 +16,6 @@
     "dev:tauri": "tauri dev",
     "dev:ios": "one run:ios",
     "dev:android": "one run:android",
-    "docker:start:clean": "yarn data:reset; yarn docker up",
     "docker": "docker compose --env-file .env",
     "migrate:auth": "npx @better-auth/cli migrate --config ./src/better-auth/auth.ts",
     "seed": "tsx ./src/postgres/seed.ts",

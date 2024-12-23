@@ -6,9 +6,9 @@ services:
     restart: always
     healthcheck:
       test: 'pg_isready -U user --dbname=postgres'
-      interval: 10s
+      interval: 1s
       timeout: 5s
-      retries: 5
+      retries: 10
     ports:
       - 5432:5432
     environment:
@@ -29,13 +29,37 @@ services:
   seeder:
     image: oven/bun:latest
     depends_on:
-      - onechat_postgres
+      onechat_postgres:
+        condition: service_healthy
     volumes:
       - ./src/postgres/:/app
     working_dir: /app
-    environment:
-      - ZERO_UPSTREAM_DB=${ZERO_UPSTREAM_DB}
+    env_file:
+      - .env
     command: sh -c "bun install && bun run seed.ts"
+
+  zero:
+    image: node:alpine
+    depends_on:
+      onechat_postgres:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      # avoid node_modules we need to build native sqlite bindings
+      - /app/src/zero/node_modules
+    working_dir: /app/src/zero
+    env_file:
+      - .env
+    environment:
+      - ZERO_AUTH_JWKS_URL=http://host.docker.internal:8081/api/auth/jwks
+      - ZERO_UPSTREAM_DB=${DOCKER_UPSTREAM_DB}
+      - ZERO_CVR_DB=${DOCKER_CVR_DB}
+      - ZERO_CHANGE_DB=${DOCKER_CHANGE_DB}
+    ports:
+      - "4848:4848"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: sh -c "npm install && npx zero-cache"
 
 volumes:
   pgdata:
