@@ -31,8 +31,6 @@ export const SidebarServerChannelsList = () => {
   const channelsSorted = channelSort.map((id) => channels.find((x) => x.id === id)!).filter(Boolean)
   const [{ activeServer, activeChannels }, { activeChannel }] = useUserState()
 
-  console.log(channels)
-
   useChannelsHotkeys()
 
   // ensure theres always a selected channel
