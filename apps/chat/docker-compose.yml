@@ -1,5 +1,5 @@
 services:
-  onechat_postgres:
+  pgdb:
     image: postgres:16.2-alpine
     shm_size: 1g
     user: postgres
@@ -29,7 +29,7 @@ services:
   seeder:
     image: oven/bun:latest
     depends_on:
-      onechat_postgres:
+      pgdb:
         condition: service_healthy
     volumes:
       - ./src/postgres/:/app
@@ -41,12 +41,11 @@ services:
   zero:
     image: node:alpine
     depends_on:
-      onechat_postgres:
+      pgdb:
         condition: service_healthy
     volumes:
       - .:/app
-      # avoid node_modules we need to build native sqlite bindings
-      - /app/src/zero/node_modules
+      - zero_node_modules:/app/src/zero/node_modules
     working_dir: /app/src/zero
     env_file:
       - .env
@@ -61,6 +60,28 @@ services:
       - "host.docker.internal:host-gateway"
     command: sh -c "npm install && npx zero-cache"
 
+  # almost working, but needs to expose 0.0.0.0 i think and not picking it up
+  # app:
+  #   image: oven/bun:latest
+  #   depends_on:
+  #     - zero
+  #   volumes:
+  #     - .:/app
+  #     # avoid node_modules
+  #     - app_node_modules:/app/node_modules
+  #   working_dir: /app
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - VITE_PUBLIC_ZERO_SERVER=http://zero:4848
+  #   ports:
+  #     - "8081:8081"
+  #   command: sh -c "bun install && bun run dev"
+
 volumes:
   pgdata:
+    driver: local
+  app_node_modules:
+    driver: local
+  zero_node_modules:
     driver: local

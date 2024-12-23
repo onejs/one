@@ -10,6 +10,10 @@ export default {
         // scan: true,
       },
 
+      // server: {
+      //   host: '0.0.0.0',
+      // },
+
       web: {
         defaultRenderMode: 'spa',
       },
