@@ -38,7 +38,7 @@
     "clean:build": "yarn turbo:run clean:build",
     "clean:ts": "tsc -b --clean tsconfig.json",
     "clean": "yarn turbo:run clean:build",
-    "fix": "yarn fix:packages && yarn fix:references",
+    "fix": "yarn fix:packages",
     "fix:packages": "manypkg fix",
     "fix:references": "update-ts-references",
     "lint:fix": "ultra -r --no-pretty lint:fix",
