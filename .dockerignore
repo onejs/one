@@ -1,0 +1,7 @@
+node_modules
+ios
+android
+dist
+.git
+.turbo
+.yarn/cache

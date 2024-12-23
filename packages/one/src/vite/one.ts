@@ -36,7 +36,11 @@ events.setMaxListeners(1_000)
 // temporary for tamagui plugin compat
 globalThis.__vxrnEnableNativeEnv = true
 
+let cachedConfig: PluginOption | null = null
+
 export function one(options: One.PluginOptions = {}): PluginOption {
+  if (cachedConfig) return cachedConfig
+
   setOneOptions(options)
 
   // ensure tsconfig
@@ -333,7 +337,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
-  return [
+  cachedConfig = [
     ...devAndProdPlugins,
     ...nativeWebDevAndProdPlugsin,
 
@@ -430,4 +434,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       entries: [virtualEntryId],
     }),
   ]
+
+  return cachedConfig
 }
