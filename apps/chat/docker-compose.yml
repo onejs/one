@@ -38,27 +38,27 @@ services:
       - .env
     command: sh -c "bun install && bun run seed.ts"
 
-  zero:
-    image: node:alpine
-    depends_on:
-      pgdb:
-        condition: service_healthy
-    volumes:
-      - .:/app
-      - zero_node_modules:/app/src/zero/node_modules
-    working_dir: /app/src/zero
-    env_file:
-      - .env
-    environment:
-      - ZERO_AUTH_JWKS_URL=http://host.docker.internal:8081/api/auth/jwks
-      - ZERO_UPSTREAM_DB=${DOCKER_UPSTREAM_DB}
-      - ZERO_CVR_DB=${DOCKER_CVR_DB}
-      - ZERO_CHANGE_DB=${DOCKER_CHANGE_DB}
-    ports:
-      - "4848:4848"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    command: sh -c "npm install && npx zero-cache"
+  # zero:
+  #   image: node:alpine
+  #   depends_on:
+  #     pgdb:
+  #       condition: service_healthy
+  #   volumes:
+  #     - .:/app
+  #     - zero_node_modules:/app/src/zero/node_modules
+  #   working_dir: /app/src/zero
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - ZERO_AUTH_JWKS_URL=http://host.docker.internal:8081/api/auth/jwks
+  #     - ZERO_UPSTREAM_DB=${DOCKER_UPSTREAM_DB}
+  #     - ZERO_CVR_DB=${DOCKER_CVR_DB}
+  #     - ZERO_CHANGE_DB=${DOCKER_CHANGE_DB}
+  #   ports:
+  #     - "4848:4848"
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   command: sh -c "npm install && npx zero-cache"
 
   # almost working, but needs to expose 0.0.0.0 i think and not picking it up
   # app:

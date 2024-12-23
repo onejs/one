@@ -7507,9 +7507,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rocicorp/zero@npm:0.9.2024121900":
-  version: 0.9.2024121900
-  resolution: "@rocicorp/zero@npm:0.9.2024121900"
+"@rocicorp/zero@npm:^0.9.2024122100":
+  version: 0.9.2024122100
+  resolution: "@rocicorp/zero@npm:0.9.2024122100"
   dependencies:
     "@badrap/valita": "npm:0.3.11"
     "@databases/escape-identifier": "npm:^1.0.3"
@@ -7537,6 +7537,7 @@ __metadata:
     eventemitter3: "npm:^5.0.1"
     fastify: "npm:^5.0.0"
     jose: "npm:^5.9.3"
+    js-xxhash: "npm:^4.0.0"
     json-custom-numbers: "npm:^3.1.1"
     lodash.kebabcase: "npm:^4.1.1"
     lodash.merge: "npm:^4.6.2"
@@ -7553,12 +7554,11 @@ __metadata:
     tsx: "npm:^4.19.1"
     url-pattern: "npm:^1.0.3"
     ws: "npm:^8.18.0"
-    xxhash-wasm: "npm:^1.1.0"
   bin:
     zero-build-schema: out/zero/src/build-schema.js
     zero-cache: out/zero/src/cli.js
     zero-cache-dev: out/zero/src/zero-cache-dev.js
-  checksum: 10/fa508e92ecda9a5ceddb5526f3d616e1a19be726206ebaab6e0c78af839d25eb9d1c257925f64786b6023bd9a1bcd57d5bfd4ae1dafb52b7ab354b7475459503
+  checksum: 10/3e7c008b61682851462c46a4e1bb7c6825d14ae6af52c483adec91e6e77ceb0cb5fe80f99a5792e80bef90e968ebc53248dc0968e84b2f2229cc520919ba70ad
   languageName: node
   linkType: hard
 
@@ -19148,6 +19148,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-xxhash@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "js-xxhash@npm:4.0.0"
+  checksum: 10/361888ea061f67242a22ba944d3df510269c5ed41bdc6374c5e41c44f94605916fb706d5feb692b5382640726a8bc65d216e1a2c6132508c14228cd7e59c6a75
+  languageName: node
+  linkType: hard
+
 "js-yaml@npm:^3.13.1, js-yaml@npm:^3.14.1, js-yaml@npm:^3.6.1":
   version: 3.14.1
   resolution: "js-yaml@npm:3.14.1"
@@ -22001,7 +22008,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "one-zero@workspace:examples/one-zero"
   dependencies:
-    "@rocicorp/zero": "npm:0.9.2024121900"
+    "@rocicorp/zero": "npm:^0.9.2024122100"
     "@tamagui/config": "npm:^1.120.2"
     "@tamagui/linear-gradient": "npm:^1.120.2"
     "@tamagui/lucide-icons": "npm:^1.120.2"
@@ -22118,7 +22125,7 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:^0.27.0"
-    "@rocicorp/zero": "npm:0.9.2024121900"
+    "@rocicorp/zero": "npm:^0.9.2024122100"
     "@shopify/react-native-skia": "npm:^1.7.6"
     "@tamagui/config": "npm:^1.120.2"
     "@tamagui/helpers-icon": "npm:^1.120.2"
@@ -28493,7 +28500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xxhash-wasm@npm:^1.0.1, xxhash-wasm@npm:^1.1.0":
+"xxhash-wasm@npm:^1.0.1":
   version: 1.1.0
   resolution: "xxhash-wasm@npm:1.1.0"
   checksum: 10/cad149dabda4ec4ce7c2edd98815c4cc21eadab72f631c832af110066867850fb86b9430499707358d3e23cafe6d71d0a5c16be8f1864f213e4cd1aa74bd9556

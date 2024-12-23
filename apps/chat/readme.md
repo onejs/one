@@ -19,5 +19,6 @@ Then, in separate tabs run:
 
 ```
 yarn backend
+yarn zero
 yarn dev
 ```

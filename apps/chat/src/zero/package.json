@@ -1,6 +1,6 @@
 {
   "name": "onechat-zero",
   "dependencies": {
-    "@rocicorp/zero": "0.9.2024121900"
+    "@rocicorp/zero": "0.9.2024122100"
   }
 }
