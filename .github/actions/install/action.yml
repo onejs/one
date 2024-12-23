@@ -32,7 +32,7 @@ runs:
         cache-name: node_modules
       with:
         path: '**/node_modules'
-        key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('yarn.lock') }}
+        key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('package.json') }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}
         restore-keys: |
           ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-
 
