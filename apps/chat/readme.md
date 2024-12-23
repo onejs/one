@@ -13,12 +13,11 @@ In this folder set up env:
 cp .env.example .env
 ```
 
-Start your [Docker app](https://orbstack.dev).
+Start [Docker](https://orbstack.dev).
 
-Then, in three separate tabs run:
+Then, in separate tabs run:
 
 ```
-yarn docker:start:clean
-yarn zero
+yarn backend
 yarn dev
 ```

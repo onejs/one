@@ -3,10 +3,7 @@ import * as unicodeEmoji from 'unicode-emoji'
 
 const randomID = () => Math.random().toString(36).slice(2)
 
-const connectionString = `postgresql://user:password@127.0.0.1/onechat`.replace(
-  '127.0.0.1',
-  'onechat_postgres'
-)
+const connectionString = process.env.DOCKER_UPSTREAM_DB
 
 console.info(`Connecting to: ${connectionString}`)
 
