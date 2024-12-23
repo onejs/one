@@ -94,6 +94,36 @@ export async function getReactNativeConfig(
       } satisfies Plugin,
 
       {
+        name: 'native-special-case-resolver',
+        enforce: 'pre',
+
+        /**
+         * WORKAROUND: Since currently RN is considered as a "server" environment,
+         * and [in such environment](https://github.com/vitejs/vite/blob/v6.0.5/packages/vite/src/node/plugins/resolve.ts#L385-L389), Node.js built-in modules such as `buffer` are [forced to be externalized](https://github.com/vitejs/vite/blob/v6.0.5/packages/vite/src/node/plugins/resolve.ts#L420),
+         * even if there are available packages that can be resolved.
+         *
+         * But we also need RN to be a "server" environment so that other Node.js built-in modules we actually want to ignore [are externalized](https://github.com/vitejs/vite/blob/v6.0.5/packages/vite/src/node/plugins/resolve.ts#L428-L449) but not [polyfilled](https://github.com/vitejs/vite/blob/v6.0.5/packages/vite/src/node/plugins/resolve.ts#L462-L464), since currently we didn't filter out API routes in the RN bundle.
+         *
+         * Either doing one of the following can make this workaroud go away:
+         *
+         * 1. Filter out API routes in the RN bundle, so that we don't actually need to worry about Node.js built-ins used in the API routes not being externalized and ignored.
+         * 2. Make Vite support a new environment type that is not a "server" nor a "client" (browser).
+         */
+        async resolveId(id, importer) {
+          // Only run this plugin for iOS and Android bundles
+          if (this.environment.name !== 'ios' && this.environment.name !== 'android') {
+            return
+          }
+
+          switch (id) {
+            case 'buffer': {
+              return join(root, 'node_modules', 'buffer', 'index.js')
+            }
+          }
+        },
+      } satisfies Plugin,
+
+      {
         name: 'one:native-no-external',
         enforce: 'pre',
         config() {
