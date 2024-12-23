@@ -1,7 +1,7 @@
 import { ensureSignedUp } from '~/interface/dialogs/actions'
 import type { Server } from '~/zero/schema'
 import { randomID } from '../helpers/randomID'
-import { mutate, zero } from '../zero/zero'
+import { zero } from '../zero/zero'
 import { updateUserState } from './user'
 
 export const insertServer = async (server: Partial<Server>) => {
@@ -21,6 +21,7 @@ export const insertServer = async (server: Partial<Server>) => {
       ...server,
     })
 
+    console.warn('insert role', roleID)
     tx.role.insert({
       id: roleID,
       color: '#ccc',
@@ -30,6 +31,7 @@ export const insertServer = async (server: Partial<Server>) => {
       serverID,
     })
 
+    console.warn('insert user role for', currentUser.id)
     tx.userRole.insert({
       granterID: currentUser.id,
       roleID,

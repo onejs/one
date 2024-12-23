@@ -2,13 +2,13 @@ import { Check, DoorOpen } from '@tamagui/lucide-icons'
 import { useEffect, useRef, useState } from 'react'
 import { ScrollView, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { mutate, useQuery } from '~/zero/zero'
+import { useQuery, zero } from '~/zero/zero'
 import { Avatar } from '../Avatar'
 import { Row } from '../Row'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
+import { dialogConfirm } from './actions'
 import { AlwaysVisibleTabContent } from './AlwaysVisibleTabContent'
 import type { TabContentPaneProps } from './types'
-import { dialogConfirm } from './actions'
 
 export const DialogJoinServerContent = (props: TabContentPaneProps) => {
   const isActive = props.active === props.value
@@ -68,14 +68,14 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
                                     description: `Are you sure you want to leave ${server.name}?`,
                                   })
                                 ) {
-                                  mutate.serverMember.delete({
+                                  zero.mutate.serverMember.delete({
                                     userID: user.id,
                                     serverID: server.id,
                                   })
                                 }
                                 // TODO
                               } else {
-                                mutate.serverMember.insert({
+                                zero.mutate.serverMember.insert({
                                   userID: user.id,
                                   serverID: server.id,
                                 })

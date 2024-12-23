@@ -364,7 +364,6 @@ type AuthData = {
 
 export const permissions = definePermissions<AuthData, Schema>(schema, () => {
   const userIsLoggedIn = (authData: AuthData, { cmpLit }: ExpressionBuilder<TableSchema>) => {
-    console.log('??', JSON.stringify(authData))
     return cmpLit(authData.sub, 'IS NOT', null)
   }
 
@@ -397,7 +396,6 @@ export const permissions = definePermissions<AuthData, Schema>(schema, () => {
         update: {
           preMutation: [
             (ad, eb) => {
-              console.log('check', JSON.stringify(ad))
               return eb.exists('roles', (q) =>
                 q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
               )

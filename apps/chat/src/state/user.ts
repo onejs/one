@@ -2,7 +2,7 @@ import { merge } from 'ts-deepmerge'
 import { useAuth } from '~/better-auth/authClient'
 import { ensureSignedUp } from '~/interface/dialogs/actions'
 import type { ChannelState, User, UserState } from '~/zero/schema'
-import { mutate, useQuery } from '~/zero/zero'
+import { useQuery, zero } from '~/zero/zero'
 
 // TODO
 let currentUser = null as User | null
@@ -33,8 +33,8 @@ export const getUserState = () => {
 }
 
 export const useUserState = () => {
-  const user = useQuery((q) => q.user)[0][0]
-  const { loggedIn } = useAuth()
+  const { user: authUser, loggedIn } = useAuth()
+  const user = useQuery((q) => q.user.where('id', authUser?.id || ''))[0][0]
   if (loggedIn) {
     // TODO
     currentUser = user
@@ -58,7 +58,7 @@ export const updateUserState = async (next: Partial<UserState>) => {
 
   console.warn('mutating', nextUser)
 
-  await mutate.user.update(nextUser)
+  await zero.mutate.user.update(nextUser)
 }
 
 // helpers

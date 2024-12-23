@@ -1,11 +1,11 @@
 import { Button, YStack } from 'tamagui'
-import type { Message } from '~/zero/schema'
-import { useCurrentChannel } from '~/state/server'
-import { randomID } from '~/helpers/randomID'
-import { mutate, zero } from '~/zero/zero'
-import { resolve } from '~/zero/resolve'
 import { getRandomItem } from '~/helpers/getRandomItem'
+import { randomID } from '~/helpers/randomID'
 import { showToast } from '~/interface/toast/Toast'
+import { useCurrentChannel } from '~/state/server'
+import { resolve } from '~/zero/resolve'
+import type { Message } from '~/zero/schema'
+import { zero } from '~/zero/zero'
 
 export const DevTools = () => {
   const channel = useCurrentChannel()
@@ -16,7 +16,7 @@ export const DevTools = () => {
         onPress={async () => {
           const friendships = await resolve(zero.query.friendship)
           for (const friendship of friendships) {
-            await mutate.friendship.update({
+            await zero.mutate.friendship.update({
               ...friendship,
               accepted: true,
             })

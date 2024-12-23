@@ -1,7 +1,7 @@
 import { Button, SizableText, XStack, type ButtonProps } from 'tamagui'
-import type { Message, MessageWithRelations, Reaction } from '~/zero/schema'
-import { mutate } from '~/zero/zero'
 import { useAuth } from '~/better-auth/authClient'
+import type { Message, MessageWithRelations, Reaction } from '~/zero/schema'
+import { zero } from '~/zero/zero'
 
 export const MessageReactions = ({ message }: { message: MessageWithRelations }) => {
   const reactionCounts: Record<string, number> = {}
@@ -49,7 +49,7 @@ export const ReactionButton = ({
           return
         }
 
-        mutate.messageReaction.insert({
+        zero.mutate.messageReaction.insert({
           messageID: message.id,
           reactionID: reaction.id,
           creatorID: user.id,
