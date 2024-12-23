@@ -133,7 +133,7 @@
     "nanoid": "^3.3.7",
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
-    "react": "^18.3.1",
+    "react": "^18",
     "react-compiler-runtime": "^19.0.0-beta-201e55d-20241215",
     "react-dom": "^18.3.1",
     "react-native-gesture-handler": "^2.18.1",
