@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Dialog, Input, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import type { Friendship, User } from '~/zero/schema'
-import { mutate, useQuery } from '~/zero/zero'
+import { useQuery, zero } from '~/zero/zero'
 import { Avatar } from '../Avatar'
 import { Row } from '../Row'
 import { addFriendEmitter, dialogConfirm } from './actions'
@@ -72,9 +72,9 @@ export const useFriendship = (userA: { id: string }, userB?: { id: string } | nu
 
 const removeFriendship = async (friendship: Friendship) => {
   await Promise.all([
-    mutate.friendship.delete(friendship),
+    zero.mutate.friendship.delete(friendship),
     // delete the opposite one too
-    mutate.friendship.delete({
+    zero.mutate.friendship.delete({
       requestingID: friendship.acceptingID,
       acceptingID: friendship.requestingID,
     }),
@@ -121,12 +121,12 @@ const UserRow = ({ user }: { user: User }) => {
               return
             }
 
-            mutate.friendship.insert({
+            zero.mutate.friendship.insert({
               accepted: false,
               acceptingID: currentUser.id,
               requestingID: user.id,
             })
-            mutate.friendship.insert({
+            zero.mutate.friendship.insert({
               accepted: false,
               acceptingID: user.id,
               requestingID: currentUser.id,

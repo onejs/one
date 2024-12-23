@@ -1,24 +1,23 @@
 import { Plus } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useState } from 'react'
-import { Button, Circle, H2, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
+import { Button, Circle, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
 import { randomID } from '~/helpers/randomID'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
 import { useCurrentServer, useCurrentServerRoles } from '~/state/server'
-import type { Role, RoleWithRelations, Server, User } from '~/zero/schema'
-import { mutate } from '~/zero/zero'
+import type { Role, RoleWithRelations, Server } from '~/zero/schema'
+import { useQuery, zero } from '~/zero/zero'
 import { Avatar } from '../Avatar'
 import { ButtonSimple } from '../ButtonSimple'
 import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
 import { LabeledRow } from '../forms/LabeledRow'
+import { Switch } from '../forms/Switch'
 import { EditableListItem, type EditableListItemProps } from '../lists/EditableListItem'
 import { SortableList } from '../lists/SortableList'
 import { Tabs } from '../tabs/Tabs'
-import { showToast } from '../toast/Toast'
 import { AvatarUpload } from '../upload/AvatarUpload'
-import { Switch } from '../forms/Switch'
 
 const actionEmitter = createEmitter<'create-role'>()
 
@@ -88,7 +87,10 @@ export const ServerSettingsPane = () => {
 }
 
 const SettingsServerPermissions = ({ server }: { server: Server }) => {
-  const { user } = useAuth()
+  const { user, jwtToken } = useAuth()
+
+  console.log('jwtToken', jwtToken, useQuery((q) => q.user)[0])
+
   const roles = useCurrentServerRoles() || []
   const [showTempRole, setShowTempRole] = useState(false)
   const [selected, setSelected] = useState<Role | null>(null)
@@ -127,7 +129,7 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
             onEditComplete={(name) => {
               const id = randomID()
               setShowTempRole(false)
-              mutate.role.insert({
+              zero.mutate.role.insert({
                 id,
                 color: 'gray',
                 creatorID: user?.id || '',
@@ -192,7 +194,7 @@ const SettingsServer = ({ server }: { server: Server }) => {
   return (
     <>
       <LabeledRow label="Name" htmlFor="server-name">
-        <Input defaultValue={server.name} f={1} id="server-name" />
+        <Input onChangeText={setName} defaultValue={server.name} f={1} id="server-name" />
       </LabeledRow>
 
       <LabeledRow label="Image" htmlFor="image">
@@ -202,12 +204,13 @@ const SettingsServer = ({ server }: { server: Server }) => {
       <Button
         theme="blue"
         onPress={() => {
-          mutate.server.update({
+          console.warn('updating', name)
+          zero.mutate.server.update({
             id: server.id,
             name,
             icon: image,
           })
-          showToast('Saved')
+          // showToast('Saved')
         }}
       >
         Save

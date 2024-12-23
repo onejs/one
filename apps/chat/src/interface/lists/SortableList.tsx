@@ -56,6 +56,7 @@ export function SortableList<A extends { id: UniqueIdentifier }>({
           const oldIndex = items.findIndex((x) => x.id === (`${active.id}` as any))
           const newIndex = items.findIndex((x) => x.id === (`${over.id}` as any))
           const nextChannelSort = arrayMove(items as any, oldIndex, newIndex)
+          console.log('sort is now', nextChannelSort)
           onSort?.(nextChannelSort as any)
         }
       }}

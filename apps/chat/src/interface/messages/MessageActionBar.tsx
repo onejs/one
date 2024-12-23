@@ -1,14 +1,14 @@
 import { IndentIncrease, Reply } from '@tamagui/lucide-icons'
+import { useState } from 'react'
 import { Button, Separator, TooltipSimple, XGroup, XStack } from 'tamagui'
 import { randomID } from '~/helpers/randomID'
 import { getCurrentUser, updateUserOpenThread } from '~/state/user'
 import type { Channel, MessageWithRelations } from '~/zero/schema'
-import { mutate, useQuery } from '~/zero/zero'
+import { useQuery, zero } from '~/zero/zero'
 import { AddReactionButton } from './AddReactionButton'
 import { MessageMoreMenu } from './MessageMoreMenu'
 import { ReactionButton } from './MessageReactions'
 import { messageActionBarStickOpen, messageHover } from './constants'
-import { useState } from 'react'
 
 export const MessageActionBar = ({
   message,
@@ -65,7 +65,7 @@ export const MessageActionBar = ({
 
                 const threadID = randomID()
 
-                mutate.thread.insert({
+                zero.mutate.thread.insert({
                   id: threadID,
                   channelID: channel.id,
                   messageID: message.id,
@@ -74,7 +74,7 @@ export const MessageActionBar = ({
                   title: '',
                 })
 
-                mutate.message.update({
+                zero.mutate.message.update({
                   id: message.id,
                   threadID,
                   isThreadReply: false,

@@ -26,8 +26,6 @@ export function setZeroAuth({ jwtToken, userID }: { jwtToken: string; userID: st
   zeroEmitter.emit(zero)
 }
 
-export const mutate = zero.mutate
-
 export type QueryResult<TReturn extends QueryType> = [
   Smash<TReturn>,
   {
