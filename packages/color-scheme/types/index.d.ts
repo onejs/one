@@ -2,6 +2,7 @@ import { type ColorSchemeName } from '@vxrn/universal-color-scheme';
 export type Scheme = 'light' | 'dark';
 export type SchemeSetting = 'system' | 'light' | 'dark';
 export { getColorScheme, onColorSchemeChange } from '@vxrn/universal-color-scheme';
+export declare const clearColorSchemeSetting: () => void;
 export declare const useColorScheme: () => readonly ["light" | "dark", typeof setSchemeSetting];
 export declare function useSchemeSetting(): readonly [{
     setting: SchemeSetting;

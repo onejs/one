@@ -14,6 +14,10 @@ export { getColorScheme, onColorSchemeChange } from '@vxrn/universal-color-schem
 
 const storageKey = 'vxrn-scheme'
 
+export const clearColorSchemeSetting = () => {
+  setSchemeSetting('system')
+}
+
 const getSetting = (): SchemeSetting =>
   (typeof localStorage !== 'undefined' && (localStorage.getItem(storageKey) as SchemeSetting)) ||
   'system'
