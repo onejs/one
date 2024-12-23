@@ -30,7 +30,7 @@
     "babel-jest": "^29.6.3",
     "react-test-renderer": "18.2.0",
     "typescript": "^5.7.2",
-    "vxrn": "1.1.371"
+    "vxrn": "workspace:^"
   },
   "engines": {
     "node": ">=18"

@@ -1,4 +1,4 @@
-import { loadUserOneOptions } from '../vite/one'
+import { loadUserOneOptions } from '../vite/loadConfig'
 
 export async function run(args: {}) {
   const { runIos } = await import('vxrn')

@@ -1,4 +1,3 @@
-import * as constants from '../constants'
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
@@ -15,10 +14,11 @@ import {
 } from 'vxrn'
 import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 import { labelProcess } from '../cli/label-process'
+import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
 import { getManifest } from './getManifest'
-import { loadUserOneOptions } from './one'
+import { loadUserOneOptions } from './loadConfig'
 import { replaceLoader } from './replaceLoader'
 import type { One } from './types'
 
