@@ -23,6 +23,11 @@ export function setZeroAuth({ jwtToken, userID }: { jwtToken: string; userID: st
     auth: jwtToken,
     userID,
   })
+
+  // zero.query.server.preload()
+  // zero.query.channel.preload()
+  // zero.query.user.preload()
+
   zeroEmitter.emit(zero)
 }
 
