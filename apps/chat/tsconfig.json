@@ -40,16 +40,5 @@
   "typeAcquisition": {
     "enable": true
   },
-  "references": [
-    {
-      "path": "../../packages/color-scheme"
-    },
-    {
-      "path": "../../packages/emitter"
-    },
-    {
-      "path": "../../packages/one"
-    }
-  ],
   "extends": "expo/tsconfig.base"
 }
