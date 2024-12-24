@@ -17,6 +17,7 @@
     "npm": "10.8.3"
   },
   "scripts": {
+    "profile": "node -r esbuild-register ./scripts/yarn-profile.ts",
     "postinstall": "node -r esbuild-register ./scripts/setup-zero.ts",
     "hardlink": "node -r esbuild-register ./scripts/hardlink.ts",
     "npxone": "node ./packages/create-vxrn/run.js",
@@ -58,6 +59,16 @@
     "one": "yarn workspace example-basic",
     "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t one-test . && docker run --rm one-test",
     "docker:build": "DOCKER_BUILDKIT=1 docker build --ssh default -t one-test ."
+  },
+  "profile": {
+    "//": "run 'yarn profile x' to toggle it on/off",
+    "react-19": {
+      "applied": false,
+      "resolutions": {
+        "react": "19.0.0-rc-fb9a90fa48-20240614",
+        "react-dom": "19.0.0-rc-fb9a90fa48-20240614"
+      }
+    }
   },
   "zeroDeps": {
     "zero-client": "/Users/n8/github/mono/packages/zero-client",
