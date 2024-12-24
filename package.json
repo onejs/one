@@ -19,7 +19,6 @@
   "scripts": {
     "profile": "node -r esbuild-register ./scripts/yarn-profile.ts",
     "postinstall": "node -r esbuild-register ./scripts/setup-zero.ts",
-    "hardlink": "node -r esbuild-register ./scripts/hardlink.ts",
     "npxone": "node ./packages/create-vxrn/run.js",
     "setup": "node -r esbuild-register ./scripts/setup.ts",
     "chat": "yarn workspace onechat dev:tauri",
