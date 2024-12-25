@@ -218,6 +218,20 @@ export async function getReactNativeConfig(
           },
         },
       },
+
+      {
+        // FIXME: This is a workaround to "tree-shake" things that will cause problems away before we have Rollup tree-shaking configured properly (https://github.com/onejs/one/pull/340).
+        name: 'vxrn:manual-tree-shake',
+        enforce: 'post',
+        async renderChunk(code, chunk, options, meta) {
+          if (chunk.name.endsWith('packages/one/dist/esm/createApp.native')) {
+            // What we want to do here is to "tree-shake" `require('react-scan/native')` away if it's value is not assigned to anything (i.e. not used).
+            // However, `react-scan/native` will be wrapped with a "commonjs-es-import" virtual module by the `@rollup/plugin-commonjs` plugin (Vite built-in) so that import won't have `react-scan/native` in it's name. The only thing for sure is that it's path will contain `_virtual`.
+            // As in `createApp.native` the only "side-effect modules" we are currently using are './polyfills-mobile' and './setup', which won't be wrapped with a virtual module, this won't remove unintended things for now.
+            return { code: code.replace(/^require\(.+_virtual.+\);/gm, '') }
+          }
+        },
+      } satisfies Plugin,
     ].filter(Boolean),
 
     appType: 'custom',
