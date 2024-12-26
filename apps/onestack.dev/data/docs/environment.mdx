@@ -8,7 +8,7 @@ This page covers anything One does during development and in production that mod
 
 #### Loading .env files and process.env
 
-One sets and handle environment variables for in a few ways.
+One handles environment variables for you in a few ways.
 
 First, it handles loading `.env` files during development and in production. In order to ease compatibility with ESM and CJS, One makes your loaded environment variables (from `.env` and from `process.env`) automatically be defined onto both `import.meta.env` and `process.env`.
 
