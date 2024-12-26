@@ -1,5 +1,6 @@
 import { parse } from 'es-module-lexer'
 import { mergeConfig, type Plugin, type UserConfig } from 'vite'
+import { isNativeEnvironment } from '../utils/environmentUtils'
 
 /**
  * Get the list of platform-specific extensions for a given platform.
@@ -68,17 +69,9 @@ export function reactNativeCommonJsPlugin(options: {
   port: number
   mode: 'build' | 'serve'
 }): Plugin {
-  let resolver
-
   return {
     name: 'native',
     enforce: 'pre',
-
-    async configResolved(config) {
-      resolver = config.createResolver({
-        conditions,
-      })
-    },
 
     config: async () => {
       const sharedNativeConfig = {
@@ -120,6 +113,10 @@ export function reactNativeCommonJsPlugin(options: {
               {
                 name: `force-export-all`,
                 async transform(code, id) {
+                  if (!isNativeEnvironment(this.environment)) {
+                    return
+                  }
+
                   if (id.includes('?commonjs')) {
                     return
                   }
