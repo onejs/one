@@ -18,3 +18,5 @@ export type Frontmatter = {
   package?: string
   demoName?: string
 }
+
+export type UnifiedPlugin = import('unified').Plugin[]
