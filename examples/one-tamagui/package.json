@@ -25,7 +25,7 @@
     "@tamagui/shorthands": "^1.120.2",
     "@vxrn/color-scheme": "workspace:^",
     "expo": "~52.0.17",
-    "expo-modules-core": "^1.12.24",
+    "expo-modules-core": "2.1.2",
     "one": "workspace:^",
     "react": "^18.3.1",
     "react-native": "0.76.4",
