@@ -177,7 +177,6 @@ ${
 const __require = createRequire(":root:", {})
 __require("react-native")
 __require("react")
-console.log("is this here?", __require("react").__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE)
 __require("${id}")
 `
     : ''
@@ -224,18 +223,4 @@ async function getReactNativeTemplate(mode: 'dev' | 'prod') {
   }
 
   return template
-}
-
-function bigIntReplacer(_key: string, value: any): any {
-  if (typeof value === 'bigint') {
-    return '__BigInt__:' + value.toString() + 'n'
-  }
-  return value
-}
-
-function bigIntReviver(_key: string, value: any): any {
-  if (typeof value === 'string' && /^__BigInt__:\d+n$/.test(value)) {
-    return BigInt(value.slice(11, -1))
-  }
-  return value
 }
