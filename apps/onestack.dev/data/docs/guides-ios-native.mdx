@@ -130,6 +130,20 @@ If you're using [Expo Prebuild](https://docs.expo.dev/workflow/prebuild), you sh
 }
 ```
 
+### iOS Project Setup
+
+<Notice>
+  This isn't necessary if you're using Expo Prebuild, as `vxrn/expo-plugin` already takes care of this.
+</Notice>
+
+In the "Bundle React Native code and images" phase, add this line before `"$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'"`:
+
+```bash
+export CLI_PATH="$("$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
+```
+
+![](https://hackmd.io/_uploads/BkuNCGoHJe.png)
+
 
 ## Troubleshooting
 
