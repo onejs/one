@@ -264,6 +264,9 @@ export async function getReactNativeConfig(
                   // FIXME: support `export { ... } from '...'`
                   if (name.startsWith('{')) continue
 
+                  // FIXME: support `export type Type<T> = ...`
+                  if (name.includes('<')) continue
+
                   // basic sanity check it isn't exported already
                   const alreadyExported = new RegExp(
                     `export (const|let|class|function) ${name}\\s+`
