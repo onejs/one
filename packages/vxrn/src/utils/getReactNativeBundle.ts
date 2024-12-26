@@ -34,14 +34,6 @@ export async function getReactNativeBundle(
 ) {
   entryRoot = options.root
 
-  if (process.env.VXRN_LOAD_BUNDLE) {
-    // for easier quick testing things:
-    if (await pathExists(process.env.VXRN_LOAD_BUNDLE)) {
-      console.info('⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️', process.env.VXRN_LOAD_BUNDLE)
-      return await readFile(process.env.VXRN_LOAD_BUNDLE, 'utf-8')
-    }
-  }
-
   const cached = cachedReactNativeBundles[platform]
   if (cached && !process.env.VXRN_DISABLE_CACHE) {
     return cached
