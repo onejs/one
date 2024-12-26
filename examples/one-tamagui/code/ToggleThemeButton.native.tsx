@@ -5,8 +5,6 @@ import { isWeb, View } from 'tamagui'
 
 const schemeSettings = ['light', 'dark', 'system'] as const
 
-console.warn('should be native only')
-
 export function ToggleThemeButton() {
   const { onPress, Icon } = useToggleTheme()
 
