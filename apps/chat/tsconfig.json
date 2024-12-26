@@ -20,6 +20,7 @@
     "noUnusedParameters": false,
     "preserveConstEnums": true,
     "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "types": [
       "node",
       "react",
@@ -31,7 +32,7 @@
     ]
   },
   "exclude": [
-    "node_modules",
+    "**/node_modules",
     "**/test",
     "**/dist",
     "**/types",
@@ -39,6 +40,5 @@
   ],
   "typeAcquisition": {
     "enable": true
-  },
-  "extends": "expo/tsconfig.base"
+  }
 }

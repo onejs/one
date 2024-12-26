@@ -4,6 +4,7 @@ import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import path, { dirname, join, resolve } from 'node:path'
 import type { Plugin } from 'vite'
+import { isNativeEnvironment } from './environmentUtils'
 
 // we should just detect or whitelist and use flow to convert instead of this but i did a
 // few things to the prebuilts to make them work, we may need to account for
@@ -160,6 +161,10 @@ export async function swapPrebuiltReactModules(
     enforce: 'pre',
 
     async resolveId(id, importer = '') {
+      if (!isNativeEnvironment(this.environment)) {
+        return
+      }
+
       if (id.startsWith('react-native/')) {
         if (id === 'react-native/package.json') {
           return
@@ -253,7 +258,12 @@ export async function swapPrebuiltReactModules(
         export default ___defaultVal
         `
 
-        out += getReactNativeInternalModuleExports(idOut).map(exportName => `export const ${exportName} = ___val.${exportName} || ___defaultVal.${exportName}`).join('\n')
+        out += getReactNativeInternalModuleExports(idOut)
+          .map(
+            (exportName) =>
+              `export const ${exportName} = ___val.${exportName} || ___defaultVal.${exportName}`
+          )
+          .join('\n')
 
         out += `
         // allow importing named exports of internals:
@@ -306,5 +316,5 @@ const KNOWN_REACT_NATIVE_INTERNAL_MODULE_EXPORTS = {
     'PressabilityDebugView',
     'isEnabled',
     'setEnabled',
-  ]
+  ],
 }

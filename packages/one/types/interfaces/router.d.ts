@@ -1,6 +1,6 @@
 import type { NavigationContainerRefWithCurrent, NavigationState, PartialState } from '@react-navigation/core';
 import type { ReactNode } from 'react';
-import type { TextProps, GestureResponderEvent } from 'react-native';
+import type { TextProps, GestureResponderEvent, PressableProps } from 'react-native';
 export declare namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
     }
@@ -209,7 +209,7 @@ export declare namespace OneRouter {
          */
         download?: string;
     }
-    export interface LinkProps<T extends string | object> extends Omit<TextProps, 'href'>, WebAnchorProps {
+    export interface LinkProps<T extends string | object> extends Omit<TextProps, 'href' | 'disabled' | 'onLongPress' | 'onPressIn' | 'onPressOut'>, Pick<PressableProps, 'disabled' | 'onLongPress' | 'onPressIn' | 'onPressOut'>, WebAnchorProps {
         /** Path to route to. */
         href: Href<T>;
         /** Forward props to child component. Useful for custom buttons. */

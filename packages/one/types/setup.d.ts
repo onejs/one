@@ -1,2 +1,2 @@
-import 'expo-modules-core/build/createWebModule';
+import 'expo-modules-core/src/web/index.web.ts';
 //# sourceMappingURL=setup.d.ts.map

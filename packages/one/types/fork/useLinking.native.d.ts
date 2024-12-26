@@ -26,7 +26,7 @@ export default function useLinking(ref: React.RefObject<NavigationContainerRef<P
         }>, "stale" | "routes">> & Readonly<{
             stale?: true;
             routes: import("@react-navigation/routers").PartialRoute<import("@react-navigation/routers").Route<string, object | undefined>>[];
-        }> & any;
+        }> & /*elided*/ any;
     }) | undefined>;
 };
 export {};
