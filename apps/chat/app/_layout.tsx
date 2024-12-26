@@ -16,7 +16,7 @@ import { isTauri } from '~/tauri/constants'
 
 export default function Layout() {
   useLayoutEffect(() => {
-    if (!isTauri) {
+    if (isWeb && !isTauri) {
       document.documentElement.classList.add('not_tauri')
     }
   }, [isTauri])
