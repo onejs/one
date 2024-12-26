@@ -4,6 +4,7 @@ import { exec } from 'node:child_process'
 import qrcode from 'qrcode-terminal'
 import type { ViteDevServer } from 'vite'
 import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
+import { openReactNativeDevTools } from '../plugins/reactNativeDevServer'
 
 type Context = {
   server: ViteDevServer
@@ -70,6 +71,16 @@ const COMMANDS = [
       printNativeQrCodeAndInstructions(url)
     },
   },
+
+  // TODO this would need to be per-platform
+  // {
+  //   keys: 'dt',
+  //   label: 'open React Native DevTools',
+  //   terminalLabel: 'open React Native \x1b[1mDe\x1b[0mvTools',
+  //   action: (ctx) => {
+  //     openReactNativeDevTools()
+  //   },
+  // },
 
   {
     keys: '?',

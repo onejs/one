@@ -175,8 +175,8 @@ ${
     ? `
 // run entry
 const __require = createRequire(":root:", {})
-__require("react-native")
-__require("react")
+globalThis.ReactNative = __require("react-native")
+globalThis.React = __require("react")
 __require("${id}")
 `
     : ''
