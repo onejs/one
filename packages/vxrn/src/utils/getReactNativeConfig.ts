@@ -117,7 +117,7 @@ export async function getReactNativeConfig(
 
           switch (id) {
             case 'buffer': {
-              return join(root, 'node_modules', 'buffer', 'index.js')
+              return findModulePath(join('buffer', 'index.js'), root)
             }
           }
         },
@@ -418,5 +418,31 @@ function warnAboutSuppressingLogsOnce() {
     didWarnSuppressingLogs = true
     // honestly they are harmdless so no need to warn, but it would be nice to do it once ever and then save that we did to disk
     // console.warn(` [vxrn] Suppressing mostly harmless logs, enable with DEBUG=vxrn`)
+  }
+}
+
+/**
+ * Recursively search for a path in node_modules directories until file system root is reached.
+ */
+async function findModulePath(
+  modulePath: string,
+  currentDir: string,
+  triedPaths?: Array<string>
+): Promise<string | null> {
+  const currentModulePath = join(currentDir, 'node_modules', modulePath)
+
+  try {
+    await stat(currentModulePath)
+    return currentModulePath
+  } catch {
+    const parentDir = dirname(currentDir)
+
+    if (parentDir === currentDir) {
+      throw new Error(
+        `Could not find module in any of these paths: ${triedPaths?.join(', ')}`
+      )
+    }
+
+    return findModulePath(modulePath, parentDir, [...(triedPaths || []), currentModulePath])
   }
 }
