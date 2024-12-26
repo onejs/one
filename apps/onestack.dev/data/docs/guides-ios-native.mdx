@@ -136,10 +136,13 @@ If you're using [Expo Prebuild](https://docs.expo.dev/workflow/prebuild), you sh
   This isn't necessary if you're using Expo Prebuild, as `vxrn/expo-plugin` already takes care of this.
 </Notice>
 
-In the "Bundle React Native code and images" phase, add this line before `"$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'"`:
+In the "Bundle React Native code and images" phase, make the following change in the shell script:
 
 ```bash
+# ⬇️ Add this line directly above the line that calls react-native-xcode.sh
 export CLI_PATH="$("$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
+
+`"$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'"`
 ```
 
 ![](https://hackmd.io/_uploads/BkuNCGoHJe.png)
