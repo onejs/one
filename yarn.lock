@@ -7649,7 +7649,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native/dev-middleware@npm:0.76.5":
+"@react-native/dev-middleware@npm:0.76.5, @react-native/dev-middleware@npm:^0.76.5":
   version: 0.76.5
   resolution: "@react-native/dev-middleware@npm:0.76.5"
   dependencies:
@@ -22741,6 +22741,7 @@ __metadata:
     "@babel/traverse": "npm:^7.26.4"
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@react-native-masked-view/masked-view": "npm:^0.3.1"
+    "@react-native/dev-middleware": "npm:^0.76.5"
     "@react-navigation/bottom-tabs": "npm:~7"
     "@react-navigation/core": "npm:~7"
     "@react-navigation/drawer": "npm:~7"
