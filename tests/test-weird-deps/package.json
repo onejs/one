@@ -14,7 +14,7 @@
     "@lexical/react": "^0.21.0",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@sentry/react-native": "^5.30.0",
-    "@tamagui/config": "^1.120.2",
+    "@tamagui/config": "^1.121.2",
     "expo": "~52.0.17",
     "expo-image": "~1.13.0",
     "moti": "^0.29.0",
@@ -24,7 +24,7 @@
     "react-native-reanimated": "~3.16.5",
     "react-native-svg": "15.8.0",
     "react-native-webview": "^13.11.1",
-    "tamagui": "^1.120.2",
+    "tamagui": "^1.121.2",
     "uuid": "9.0.0"
   },
   "devDependencies": {

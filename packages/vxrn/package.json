@@ -51,7 +51,7 @@
     "@hono/node-server": "^1.12.1",
     "@react-native/babel-plugin-codegen": "^0.76.5",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@tamagui/react-native-svg": "^1.120.2",
+    "@tamagui/react-native-svg": "^1.121.2",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vxrn/debug": "workspace:^",
     "@vxrn/query-string": "workspace:^",
@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.120.2",
+    "@tamagui/build": "^1.121.2",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",
     "@types/qrcode-terminal": "^0",
