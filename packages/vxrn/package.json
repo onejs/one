@@ -50,6 +50,7 @@
     "@expo/config-plugins": "^8.0.8",
     "@hono/node-server": "^1.12.1",
     "@react-native/babel-plugin-codegen": "^0.76.5",
+    "@react-native/dev-middleware": "^0.76.5",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@tamagui/react-native-svg": "^1.121.2",
     "@vitejs/plugin-react-swc": "^3.7.0",
