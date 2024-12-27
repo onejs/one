@@ -1,7 +1,7 @@
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
 import path, { dirname, resolve } from 'node:path'
-import { type Plugin, type PluginOption, type UserConfig } from 'vite'
+import type { Plugin, PluginOption, UserConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import {
   autoPreBundleDepsForSsrPlugin,
@@ -23,7 +23,7 @@ import { createReactCompilerPlugin } from './plugins/reactCompilerPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { createVirtualEntry, virtualEntryId } from './plugins/virtualEntryPlugin'
 import type { One } from './types'
-import { barrel } from 'vite-plugin-barrel'
+// import { barrel } from 'vite-plugin-barrel'
 
 /**
  * This needs a big refactor!
@@ -72,9 +72,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       __get: options,
     },
 
-    barrel({
-      packages: ['@tamagui/lucide-icons', '@mui/material', '@mui/icons-material'],
-    }) as any,
+    // stopped working on new version
+    // barrel({
+    //   packages: ['@tamagui/lucide-icons', '@mui/material', '@mui/icons-material'],
+    //   // experimental: {
+    //   //   integration: 'plugin-react-swc',
+    //   // },
+    // }) as any,
 
     {
       name: 'one-define-env',
