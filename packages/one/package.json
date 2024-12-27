@@ -103,7 +103,6 @@
     "@babel/traverse": "^7.26.4",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-native-masked-view/masked-view": "^0.3.1",
-    "@react-native/dev-middleware": "^0.76.5",
     "@react-navigation/bottom-tabs": "~7",
     "@react-navigation/core": "~7",
     "@react-navigation/drawer": "~7",
