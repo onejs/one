@@ -1,5 +1,5 @@
 import { type DragEvent, useState } from 'react'
-import { Paragraph, Progress, YStack } from 'tamagui'
+import { isWeb, Paragraph, Progress, YStack } from 'tamagui'
 import { Avatar } from '../Avatar'
 import { uploadImageEndpoint, useUploadImage } from './uploadImage'
 
@@ -23,7 +23,7 @@ export const AvatarUpload = ({
         const file = event.dataTransfer.files[0]
         if (file) handleUpload(file)
       }}
-      onDragOver={(e) => {
+      onDragOver={(e: any) => {
         setDropping(true)
         e.preventDefault()
         e.stopPropagation()
@@ -37,19 +37,21 @@ export const AvatarUpload = ({
     >
       <Avatar size={100} image={uploadUrl || defaultImage || ''} />
 
-      <form action={uploadImageEndpoint} method="post" encType="multipart/form-data">
-        <YStack>
-          <input type="file" id="file" name="file" onChange={handleFileChange} />
+      {isWeb && (
+        <form action={uploadImageEndpoint} method="post" encType="multipart/form-data">
+          <YStack>
+            <input type="file" id="file" name="file" onChange={handleFileChange} />
 
-          {!!(progress && progress !== 100) && (
-            <Progress mt="$2" value={progress} bg="$color2">
-              <Progress.Indicator bc="$color7" animation="bouncy" />
-            </Progress>
-          )}
+            {!!(progress && progress !== 100) && (
+              <Progress mt="$2" value={progress} bg="$color2">
+                <Progress.Indicator bc="$color7" animation="bouncy" />
+              </Progress>
+            )}
 
-          {!!errorMessage && <Paragraph theme="red">{errorMessage}</Paragraph>}
-        </YStack>
-      </form>
+            {!!errorMessage && <Paragraph theme="red">{errorMessage}</Paragraph>}
+          </YStack>
+        </form>
+      )}
     </YStack>
   )
 }

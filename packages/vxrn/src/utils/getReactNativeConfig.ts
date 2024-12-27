@@ -1,5 +1,7 @@
 import nodeResolve from '@rollup/plugin-node-resolve'
+import babel from '@babel/core'
 import viteNativeSWC, { swcTransform } from '@vxrn/vite-native-swc'
+import { createDebugger } from '@vxrn/debug'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
@@ -26,6 +28,11 @@ import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 // (not an exhaustive list)
 const IGNORE_ROLLUP_LOGS_RE =
   /vite-native-client\/dist\/esm\/client|node_modules\/\.vxrn\/react-native|react-native-prebuilt\/vendor|one\/dist/
+
+const NATIVE_COMPONENT_RE = /NativeComponent\.[jt]sx?$/
+const SPEC_FILE_RE = /[\/\\]specs?[\/\\]/
+
+const { debug: reactNativeCodegenDebug } = createDebugger('vxrn:react-native-codegen')
 
 export async function getReactNativeConfig(
   options: VXRNOptionsFilled,
@@ -82,6 +89,36 @@ export async function getReactNativeConfig(
             }
           } catch {
             // not a dir keep going
+          }
+        },
+      } satisfies Plugin,
+
+      {
+        name: 'native-special-case-resolver',
+        enforce: 'pre',
+
+        /**
+         * WORKAROUND: Since currently RN is considered as a "server" environment,
+         * and [in such environment](https://github.com/vitejs/vite/blob/v6.0.5/packages/vite/src/node/plugins/resolve.ts#L385-L389), Node.js built-in modules such as `buffer` are [forced to be externalized](https://github.com/vitejs/vite/blob/v6.0.5/packages/vite/src/node/plugins/resolve.ts#L420),
+         * even if there are available packages that can be resolved.
+         *
+         * But we also need RN to be a "server" environment so that other Node.js built-in modules we actually want to ignore [are externalized](https://github.com/vitejs/vite/blob/v6.0.5/packages/vite/src/node/plugins/resolve.ts#L428-L449) but not [polyfilled](https://github.com/vitejs/vite/blob/v6.0.5/packages/vite/src/node/plugins/resolve.ts#L462-L464), since currently we didn't filter out API routes in the RN bundle.
+         *
+         * Either doing one of the following can make this workaroud go away:
+         *
+         * 1. Filter out API routes in the RN bundle, so that we don't actually need to worry about Node.js built-ins used in the API routes not being externalized and ignored.
+         * 2. Make Vite support a new environment type that is not a "server" nor a "client" (browser).
+         */
+        async resolveId(id, importer) {
+          // Only run this plugin for iOS and Android bundles
+          if (this.environment.name !== 'ios' && this.environment.name !== 'android') {
+            return
+          }
+
+          switch (id) {
+            case 'buffer': {
+              return findModulePath(join('buffer', 'index.js'), root)
+            }
           }
         },
       } satisfies Plugin,
@@ -168,23 +205,68 @@ export async function getReactNativeConfig(
 
             // handles typescript
             if (isNodeModule && /\.tsx?$/.test(id)) {
+              let codeOut: string | null | undefined
+              let sourceMap: any
+
               // we need to keep fake objects for type exports
               const typeExportsMatch = code.match(/^\s*export\s+type\s+([^\s]+)/gi)
 
-              const output = await swcTransform(id, code, {
-                mode: mode === 'dev' ? 'serve' : 'build',
-                noHMR: true, // We should not insert HMR runtime code at this stage, as we expect another plugin (e.g. vite:react-swc) to handle that. Inserting it here may cause error: `The symbol "RefreshRuntime" has already been declared`.
-              })
+              // Codegen specification files need to go through the react-native codegen babel plugin.
+              // See:
+              // * https://reactnative.dev/docs/fabric-native-components-introduction#1-define-specification-for-codegen
+              // * https://reactnative.dev/docs/turbo-native-modules-introduction#1-declare-typed-specification
+              if (NATIVE_COMPONENT_RE.test(id) || SPEC_FILE_RE.test(id)) {
+                try {
+                  const output = await babel.transform(code, {
+                    configFile: false,
+                    presets: ['@babel/preset-typescript'],
+                    plugins: ['@react-native/babel-plugin-codegen'],
+                    sourceMaps: true,
+                    filename: id,
+                  })
 
-              if (!output) return null
+                  codeOut = output?.code
+                  sourceMap = output?.map
 
-              let codeOut = output.code
+                  if (reactNativeCodegenDebug) {
+                    if (codeOut) {
+                      reactNativeCodegenDebug(`File transformed with codegen: ${id}`)
+                    } else {
+                      reactNativeCodegenDebug(`File NOT transformed with codegen: ${id}`)
+                    }
+                  }
+                } catch (e) {
+                  console.error(
+                    '[react-native-codegen] Failed to transform NativeComponent file:',
+                    id,
+                    e
+                  )
+                }
+              }
+
+              if (!codeOut) {
+                const output = await swcTransform(id, code, {
+                  mode: mode === 'dev' ? 'serve' : 'build',
+                  noHMR: true, // We should not insert HMR runtime code at this stage, as we expect another plugin (e.g. vite:react-swc) to handle that. Inserting it here may cause error: `The symbol "RefreshRuntime" has already been declared`.
+                })
+
+                codeOut = output?.code
+                sourceMap = output?.map
+              }
+
+              if (!codeOut) return null
 
               // add back in export types as fake objects:
 
               if (typeExportsMatch) {
                 for (const typeExport of Array.from(typeExportsMatch)) {
                   const [_export, _type, name] = typeExport.split(/\s+/)
+                  // FIXME: support `export { ... } from '...'`
+                  if (name.startsWith('{')) continue
+
+                  // FIXME: support `export type Type<T> = ...`
+                  if (name.includes('<')) continue
+
                   // basic sanity check it isn't exported already
                   const alreadyExported = new RegExp(
                     `export (const|let|class|function) ${name}\\s+`
@@ -199,7 +281,7 @@ export async function getReactNativeConfig(
 
               return {
                 code: codeOut,
-                map: output.map,
+                map: sourceMap,
               }
             }
 
@@ -218,6 +300,20 @@ export async function getReactNativeConfig(
           },
         },
       },
+
+      {
+        // FIXME: This is a workaround to "tree-shake" things that will cause problems away before we have Rollup tree-shaking configured properly (https://github.com/onejs/one/pull/340).
+        name: 'vxrn:manual-tree-shake',
+        enforce: 'post',
+        async renderChunk(code, chunk, options, meta) {
+          if (chunk.name.endsWith('packages/one/dist/esm/createApp.native')) {
+            // What we want to do here is to "tree-shake" `require('react-scan/native')` away if it's value is not assigned to anything (i.e. not used).
+            // However, `react-scan/native` will be wrapped with a "commonjs-es-import" virtual module by the `@rollup/plugin-commonjs` plugin (Vite built-in) so that import won't have `react-scan/native` in it's name. The only thing for sure is that it's path will contain `_virtual`.
+            // As in `createApp.native` the only "side-effect modules" we are currently using are './polyfills-mobile' and './setup', which won't be wrapped with a virtual module, this won't remove unintended things for now.
+            return { code: code.replace(/^require\(.+_virtual.+\);/gm, '') }
+          }
+        },
+      } satisfies Plugin,
     ].filter(Boolean),
 
     appType: 'custom',
@@ -322,5 +418,31 @@ function warnAboutSuppressingLogsOnce() {
     didWarnSuppressingLogs = true
     // honestly they are harmdless so no need to warn, but it would be nice to do it once ever and then save that we did to disk
     // console.warn(` [vxrn] Suppressing mostly harmless logs, enable with DEBUG=vxrn`)
+  }
+}
+
+/**
+ * Recursively search for a path in node_modules directories until file system root is reached.
+ */
+async function findModulePath(
+  modulePath: string,
+  currentDir: string,
+  triedPaths?: Array<string>
+): Promise<string | null> {
+  const currentModulePath = join(currentDir, 'node_modules', modulePath)
+
+  try {
+    await stat(currentModulePath)
+    return currentModulePath
+  } catch {
+    const parentDir = dirname(currentDir)
+
+    if (parentDir === currentDir) {
+      throw new Error(
+        `Could not find module in any of these paths: ${triedPaths?.join(', ')}`
+      )
+    }
+
+    return findModulePath(modulePath, parentDir, [...(triedPaths || []), currentModulePath])
   }
 }

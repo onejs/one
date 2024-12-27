@@ -20,7 +20,10 @@ type MessagesListActions =
 export const messagesListEmitter = createEmitter<MessagesListActions>()
 
 export const MessagesList = memo(
-  ({ messages, disableEvents }: { messages: MessageWithRelations[]; disableEvents?: boolean }) => {
+  ({
+    messages,
+    disableEvents,
+  }: { messages: readonly MessageWithRelations[]; disableEvents?: boolean }) => {
     const channel = useCurrentChannel()
     const { user } = useAuth()
     const shouldStickToBottom = useRef(true)
@@ -122,7 +125,7 @@ export const MessagesList = memo(
 
               return (
                 <MessageItem
-                  hideUser={lastMessage?.senderId === message.senderId}
+                  hideUser={lastMessage?.creatorID === message.creatorID}
                   channel={channel}
                   key={message.id}
                   message={message}

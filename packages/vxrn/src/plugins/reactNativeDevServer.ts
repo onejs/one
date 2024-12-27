@@ -8,11 +8,27 @@ import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
 import { clearCachedBundle, getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { URL } from 'node:url'
+import { existsSync } from 'node:fs'
+import { readFile, writeFile } from 'node:fs/promises'
+import { createDevMiddleware } from '@react-native/dev-middleware'
 
 type ClientMessage = {
   type: 'client-log'
   level: 'log' | 'error' | 'info' | 'debug' | 'warn'
   data: string[]
+}
+
+let reactNativeDevToolsUrl = ''
+
+export function openReactNativeDevTools() {
+  if (!reactNativeDevToolsUrl) {
+    console.error(`Server not running`)
+    return
+  }
+  // TODO not fully figured out would need to see how the pass things to open or find better api
+  // fetch(reactNativeDevToolsUrl, {
+  //   method: 'POST',
+  // })
 }
 
 export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Plugin {
@@ -24,6 +40,47 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
     configureServer(server: ViteDevServer) {
       const hmrWSS = new WebSocketServer({ noServer: true })
       const clientWSS = new WebSocketServer({ noServer: true })
+
+      const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
+      reactNativeDevToolsUrl = `http://${options.server.host}:${options.server.port}`
+      const { middleware, websocketEndpoints } = createDevMiddleware({
+        projectRoot: options.root,
+        serverBaseUrl: reactNativeDevToolsUrl,
+        logger: console,
+      })
+
+      server.middlewares.use(middleware)
+
+      // link up sockets
+      server.httpServer?.on('upgrade', (req, socket, head) => {
+        // devtools sockets
+        for (const endpoint of devToolsSocketEndpoints) {
+          if (req.url.startsWith(endpoint)) {
+            const wss = websocketEndpoints[endpoint]
+            wss.handleUpgrade(req, socket, head, (ws) => {
+              wss.emit('connection', ws, req)
+            })
+          }
+        }
+
+        // hmr socket
+        if (
+          req.url.startsWith(
+            '/__hmr'
+          ) /* TODO: handle '/__hmr?platform=ios' and android differently */
+        ) {
+          hmrWSS.handleUpgrade(req, socket, head, (ws) => {
+            hmrWSS.emit('connection', ws, req)
+          })
+        }
+
+        // client socket
+        if (req.url === '/__client') {
+          clientWSS.handleUpgrade(req, socket, head, (ws) => {
+            clientWSS.emit('connection', ws, req)
+          })
+        }
+      })
 
       hmrWSS.on('connection', (socket) => {
         addConnectedNativeClient()
@@ -108,7 +165,26 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
         }
 
         try {
-          const bundle = await getReactNativeBundle(options, platform)
+          const bundle = await (async () => {
+            if (options.debugBundle) {
+              const path = options.debugBundlePaths[platform]
+              if (existsSync(path)) {
+                console.info(`  !!! - serving debug bundle from`, path)
+                return await readFile(path, 'utf-8')
+              }
+            }
+
+            const outBundle = await getReactNativeBundle(options, platform)
+
+            if (options.debugBundle) {
+              const path = options.debugBundlePaths[platform]
+              console.info(`  !!! - writing debug bundle to`, path)
+              await writeFile(path, outBundle)
+            }
+
+            return outBundle
+          })()
+
           res.writeHead(200, { 'Content-Type': 'text/javascript' })
           res.end(bundle)
         } catch (err) {
@@ -129,25 +205,6 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
       server.middlewares.use('/status', (_req, res) => {
         res.writeHead(200, { 'Content-Type': 'text/plain' })
         res.end('packager-status:running')
-      })
-
-      // React Native HMR WebSocket
-      server.httpServer?.on('upgrade', (req, socket, head) => {
-        if (
-          req.url.startsWith(
-            '/__hmr'
-          ) /* TODO: handle '/__hmr?platform=ios' and android differently */
-        ) {
-          hmrWSS.handleUpgrade(req, socket, head, (ws) => {
-            hmrWSS.emit('connection', ws, req)
-          })
-        }
-
-        if (req.url === '/__client') {
-          clientWSS.handleUpgrade(req, socket, head, (ws) => {
-            clientWSS.emit('connection', ws, req)
-          })
-        }
       })
 
       // Symbolicate endpoint

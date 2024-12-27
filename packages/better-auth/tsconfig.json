@@ -16,7 +16,7 @@
     "jsx": "react-jsx",
     "module": "Preserve",
     "moduleResolution": "Bundler",
-    "noEmit": false,
+    "noEmit": true,
     "noEmitOnError": false,
     "noImplicitAny": false,
     "noImplicitReturns": false,
@@ -46,5 +46,10 @@
   ],
   "typeAcquisition": {
     "enable": true
-  }
+  },
+  "references": [
+    {
+      "path": "../emitter"
+    }
+  ]
 }

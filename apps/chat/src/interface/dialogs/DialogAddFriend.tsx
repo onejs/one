@@ -1,32 +1,16 @@
 import { UserCheck, UserPlus, UserX } from '@tamagui/lucide-icons'
-import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useRef, useState } from 'react'
 import { Dialog, Input, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import type { Friendship, User } from '~/zero/schema'
-import { mutate, useQuery } from '~/zero/zero'
+import { useQuery, zero } from '~/zero/zero'
 import { Avatar } from '../Avatar'
 import { Row } from '../Row'
-import { dialogConfirm } from './DialogConfirm'
-import { DialogContent, dialogEmit, DialogOverlay, useDialogEmit } from './shared'
+import { addFriendEmitter, dialogConfirm } from './actions'
+import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
 
-const emitter = createEmitter<boolean>()
-
-export const dialogAddFriend = async () => {
-  dialogEmit({
-    type: 'add-friend',
-  })
-
-  return new Promise((res) => {
-    const dispose = emitter.listen((val) => {
-      dispose()
-      res(val)
-    })
-  })
-}
-
-const success = () => emitter.emit(true)
-const cancel = () => emitter.emit(false)
+const success = () => addFriendEmitter.emit(true)
+const cancel = () => addFriendEmitter.emit(false)
 
 export const DialogAddFriend = () => {
   const [show, setShow] = useState(false)
@@ -79,7 +63,7 @@ type FriendshipStatus = 'not-friend' | 'requested' | 'accepted'
 
 export const useFriendship = (userA: { id: string }, userB?: { id: string } | null) => {
   const [friendships] = useQuery((q) =>
-    q.friendship.where('requestingId', userA.id).where('acceptingId', userB?.id || '')
+    q.friendship.where('requestingID', userA.id).where('acceptingID', userB?.id || '')
   )
   const [friendship] = friendships
   const status = !friendship ? 'not-friend' : !friendship.accepted ? 'requested' : 'accepted'
@@ -88,11 +72,11 @@ export const useFriendship = (userA: { id: string }, userB?: { id: string } | nu
 
 const removeFriendship = async (friendship: Friendship) => {
   await Promise.all([
-    mutate.friendship.delete(friendship),
+    zero.mutate.friendship.delete(friendship),
     // delete the opposite one too
-    mutate.friendship.delete({
-      requestingId: friendship.acceptingId,
-      acceptingId: friendship.requestingId,
+    zero.mutate.friendship.delete({
+      requestingID: friendship.acceptingID,
+      acceptingID: friendship.requestingID,
     }),
   ])
 }
@@ -137,17 +121,15 @@ const UserRow = ({ user }: { user: User }) => {
               return
             }
 
-            mutate.friendship.insert({
+            zero.mutate.friendship.insert({
               accepted: false,
-              acceptingId: currentUser.id,
-              requestingId: user.id,
-              createdAt: new Date().getTime(),
+              acceptingID: currentUser.id,
+              requestingID: user.id,
             })
-            mutate.friendship.insert({
+            zero.mutate.friendship.insert({
               accepted: false,
-              acceptingId: user.id,
-              requestingId: currentUser.id,
-              createdAt: new Date().getTime(),
+              acceptingID: user.id,
+              requestingID: currentUser.id,
             })
           }}
         ></Row.Button>

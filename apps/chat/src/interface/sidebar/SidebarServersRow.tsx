@@ -1,15 +1,13 @@
 import { Plus } from '@tamagui/lucide-icons'
 import { Circle, ScrollView, styled, XStack, YStack } from 'tamagui'
-import { useAuth } from '~/better-auth/authClient'
 import { useUserServers } from '~/state/server'
 import { updateUserState, useUserState } from '~/state/user'
 import { Avatar } from '../Avatar'
-import { dialogCreateServer } from '../dialogs/DialogCreateJoinServer'
+import { dialogCreateServer } from '../dialogs/actions'
 
 export const SidebarServersRow = () => {
   const servers = useUserServers()
   const [{ activeServer, activeChannels }] = useUserState()
-  const { user } = useAuth()
 
   return (
     <XStack>

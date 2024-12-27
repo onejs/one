@@ -1,9 +1,13 @@
 import { merge } from 'ts-deepmerge'
-import type { User, UserState } from '~/zero/schema'
-import { mutate, useQuery } from '~/zero/zero'
+import { useAuth } from '~/better-auth/authClient'
+import { ensureSignedUp } from '~/interface/dialogs/actions'
+import type { ChannelState, User, UserState } from '~/zero/schema'
+import { useQuery, zero } from '~/zero/zero'
 
 // TODO
-export let currentUser = null as User | null
+let currentUser = null as User | null
+
+export const getCurrentUser = () => currentUser
 
 const getJustUserState = () => {
   return {
@@ -29,14 +33,21 @@ export const getUserState = () => {
 }
 
 export const useUserState = () => {
-  const user = useQuery((q) => q.user)[0][0]
-  currentUser = user
+  const { user: authUser, loggedIn } = useAuth()
+  const user = useQuery((q) => q.user.where('id', authUser?.id || ''))[0][0]
+  if (loggedIn) {
+    // TODO
+    currentUser = user
+  }
   return getUserState()
 }
 
 export const updateUserState = async (next: Partial<UserState>) => {
   if (!currentUser) {
-    console.error(`No user`)
+    await ensureSignedUp()
+    if (!currentUser) {
+      console.warn(`No user`)
+    }
     return
   }
 
@@ -47,14 +58,14 @@ export const updateUserState = async (next: Partial<UserState>) => {
 
   console.warn('mutating', nextUser)
 
-  await mutate.user.update(nextUser)
+  await zero.mutate.user.update(nextUser)
 }
 
 // helpers
 
 export const useUserCurrentChannelState = () => {
   const [_, { activeChannelState }] = useUserState()
-  return activeChannelState || {}
+  return activeChannelState
 }
 
 export const useCurrentThread = () => {

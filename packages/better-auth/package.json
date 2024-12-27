@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/better-auth",
-  "version": "1.1.366",
+  "version": "1.1.371",
   "sideEffects": false,
   "types": "./src/index.ts",
   "main": "dist/cjs",
@@ -26,12 +26,12 @@
     "clean:build": "tamagui-build clean:build"
   },
   "dependencies": {
-    "@vxrn/emitter": "workspace:*",
-    "better-auth": "^1.0.23-beta.3",
-    "react": "^18"
+    "@vxrn/emitter": "workspace:^",
+    "better-auth": "1.0.23-beta.3",
+    "react": "^18.3.1"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.120.2"
+    "@tamagui/build": "^1.121.2"
   },
   "publishConfig": {
     "access": "public"

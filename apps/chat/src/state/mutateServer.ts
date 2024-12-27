@@ -1,44 +1,59 @@
+import { ensureSignedUp } from '~/interface/dialogs/actions'
 import type { Server } from '~/zero/schema'
-import { currentUser, updateUserState } from './user'
 import { randomID } from '../helpers/randomID'
-import { mutate } from '../zero/zero'
+import { zero } from '../zero/zero'
+import { updateUserState } from './user'
 
 export const insertServer = async (server: Partial<Server>) => {
-  if (!currentUser) {
-    console.error('not signed in')
-    return
-  }
+  const currentUser = await ensureSignedUp()
+  const serverID = randomID()
+  const channelID = randomID()
+  const roleID = randomID()
 
-  const serverId = randomID()
-  const channelId = randomID()
+  await zero.mutateBatch((tx) => {
+    tx.server.insert({
+      id: serverID,
+      description: '',
+      icon: Math.random() > 0.5 ? 'red' : 'pink',
+      name: 'Lorem',
+      creatorID: currentUser.id,
+      channelSort: [channelID],
+      ...server,
+    })
 
-  await mutate.server.insert({
-    id: serverId,
-    createdAt: new Date().getTime(),
-    description: '',
-    icon: Math.random() > 0.5 ? 'red' : 'pink',
-    name: 'Lorem',
-    ownerId: currentUser.id,
-    channelSort: [channelId],
-    ...server,
-  })
+    console.warn('insert role', roleID)
+    tx.role.insert({
+      id: roleID,
+      color: '#ccc',
+      creatorID: currentUser.id,
+      name: 'Admin',
+      canAdmin: true,
+      serverID,
+    })
 
-  await mutate.serverMember.insert({
-    joinedAt: new Date().getTime(),
-    serverId,
-    userId: currentUser.id,
-  })
+    console.warn('insert user role for', currentUser.id)
+    tx.userRole.insert({
+      granterID: currentUser.id,
+      roleID,
+      serverID,
+      userID: currentUser.id,
+    })
 
-  await mutate.channel.insert({
-    id: channelId,
-    createdAt: new Date().getTime(),
-    description: '',
-    name: 'Welcome',
-    private: false,
-    serverId,
+    tx.serverMember.insert({
+      serverID,
+      userID: currentUser.id,
+    })
+
+    tx.channel.insert({
+      id: channelID,
+      description: '',
+      name: 'Welcome',
+      private: false,
+      serverID,
+    })
   })
 
   updateUserState({
-    activeServer: serverId,
+    activeServer: serverID,
   })
 }

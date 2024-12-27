@@ -1,0 +1,763 @@
+{
+  "permissions": {
+    "user": {
+      "row": {
+        "insert": [],
+        "update": {},
+        "delete": []
+      }
+    },
+    "server": {
+      "row": {
+        "insert": [
+          [
+            "allow",
+            {
+              "type": "simple",
+              "left": {
+                "type": "static",
+                "anchor": "authData",
+                "field": "sub"
+              },
+              "right": {
+                "type": "literal",
+                "value": null
+              },
+              "op": "IS NOT"
+            }
+          ]
+        ],
+        "update": {
+          "preMutation": [
+            [
+              "allow",
+              {
+                "type": "correlatedSubquery",
+                "related": {
+                  "system": "permissions",
+                  "correlation": {
+                    "parentField": [
+                      "id"
+                    ],
+                    "childField": [
+                      "serverID"
+                    ]
+                  },
+                  "subquery": {
+                    "table": "role",
+                    "alias": "zsubq_roles",
+                    "where": {
+                      "type": "and",
+                      "conditions": [
+                        {
+                          "type": "simple",
+                          "left": {
+                            "type": "column",
+                            "name": "canAdmin"
+                          },
+                          "right": {
+                            "type": "literal",
+                            "value": true
+                          },
+                          "op": "="
+                        },
+                        {
+                          "type": "correlatedSubquery",
+                          "related": {
+                            "system": "permissions",
+                            "correlation": {
+                              "parentField": [
+                                "id"
+                              ],
+                              "childField": [
+                                "roleID"
+                              ]
+                            },
+                            "subquery": {
+                              "table": "userRole",
+                              "alias": "zsubq_members",
+                              "orderBy": [
+                                [
+                                  "serverID",
+                                  "asc"
+                                ],
+                                [
+                                  "userID",
+                                  "asc"
+                                ],
+                                [
+                                  "roleID",
+                                  "asc"
+                                ]
+                              ],
+                              "where": {
+                                "type": "correlatedSubquery",
+                                "related": {
+                                  "system": "permissions",
+                                  "correlation": {
+                                    "parentField": [
+                                      "userID"
+                                    ],
+                                    "childField": [
+                                      "id"
+                                    ]
+                                  },
+                                  "subquery": {
+                                    "table": "user",
+                                    "alias": "zsubq_members",
+                                    "where": {
+                                      "type": "simple",
+                                      "left": {
+                                        "type": "column",
+                                        "name": "id"
+                                      },
+                                      "right": {
+                                        "type": "static",
+                                        "anchor": "authData",
+                                        "field": "id"
+                                      },
+                                      "op": "="
+                                    },
+                                    "orderBy": [
+                                      [
+                                        "id",
+                                        "asc"
+                                      ]
+                                    ]
+                                  }
+                                },
+                                "op": "EXISTS"
+                              }
+                            }
+                          },
+                          "op": "EXISTS"
+                        }
+                      ]
+                    },
+                    "orderBy": [
+                      [
+                        "id",
+                        "asc"
+                      ]
+                    ]
+                  }
+                },
+                "op": "EXISTS"
+              }
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "schema": {
+    "version": 1,
+    "tables": {
+      "channel": {
+        "tableName": "channel",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "description": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          },
+          "private": {
+            "type": "boolean",
+            "optional": false
+          },
+          "serverID": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "messages": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "channelID"
+            ],
+            "destSchema": "message"
+          },
+          "roles": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "channelID"
+              ],
+              "destSchema": "channelRole"
+            },
+            {
+              "sourceField": [
+                "roleID"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "role"
+            }
+          ],
+          "threads": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "channelID"
+            ],
+            "destSchema": "thread"
+          }
+        }
+      },
+      "channelRole": {
+        "tableName": "channelRole",
+        "primaryKey": [
+          "serverID",
+          "channelID",
+          "roleID"
+        ],
+        "columns": {
+          "channelID": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "granterID": {
+            "type": "string",
+            "optional": false
+          },
+          "roleID": {
+            "type": "string",
+            "optional": false
+          },
+          "serverID": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      },
+      "friendship": {
+        "tableName": "friendship",
+        "primaryKey": [
+          "requestingID",
+          "acceptingID"
+        ],
+        "columns": {
+          "accepted": {
+            "type": "boolean",
+            "optional": false
+          },
+          "acceptingID": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "requestingID": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      },
+      "message": {
+        "tableName": "message",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelID": {
+            "type": "string",
+            "optional": false
+          },
+          "content": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorID": {
+            "type": "string",
+            "optional": false
+          },
+          "deleted": {
+            "type": "boolean",
+            "optional": true
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "isThreadReply": {
+            "type": "boolean",
+            "optional": false
+          },
+          "serverID": {
+            "type": "string",
+            "optional": false
+          },
+          "threadID": {
+            "type": "string",
+            "optional": true
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          }
+        },
+        "relationships": {
+          "reactions": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "messageID"
+              ],
+              "destSchema": "messageReaction"
+            },
+            {
+              "sourceField": [
+                "reactionID"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "reaction"
+            }
+          ],
+          "sender": {
+            "sourceField": [
+              "creatorID"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "user"
+          },
+          "thread": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "messageID"
+            ],
+            "destSchema": "thread"
+          }
+        }
+      },
+      "messageReaction": {
+        "tableName": "messageReaction",
+        "primaryKey": [
+          "messageID",
+          "creatorID",
+          "reactionID"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorID": {
+            "type": "string",
+            "optional": false
+          },
+          "messageID": {
+            "type": "string",
+            "optional": false
+          },
+          "reactionID": {
+            "type": "string",
+            "optional": false
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          }
+        },
+        "relationships": {}
+      },
+      "reaction": {
+        "tableName": "reaction",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "keyword": {
+            "type": "string",
+            "optional": false
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          },
+          "value": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      },
+      "role": {
+        "tableName": "role",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "canAdmin": {
+            "type": "boolean",
+            "optional": true
+          },
+          "canEditChannel": {
+            "type": "boolean",
+            "optional": true
+          },
+          "canEditServer": {
+            "type": "boolean",
+            "optional": true
+          },
+          "color": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorID": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          },
+          "serverID": {
+            "type": "string",
+            "optional": false
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          }
+        },
+        "relationships": {
+          "members": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "roleID"
+              ],
+              "destSchema": "userRole"
+            },
+            {
+              "sourceField": [
+                "userID"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "user"
+            }
+          ]
+        }
+      },
+      "server": {
+        "tableName": "server",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelSort": {
+            "type": "json",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorID": {
+            "type": "string",
+            "optional": false
+          },
+          "description": {
+            "type": "string",
+            "optional": false
+          },
+          "icon": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "channels": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "serverID"
+            ],
+            "destSchema": "channel"
+          },
+          "members": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "serverID"
+              ],
+              "destSchema": "serverMember"
+            },
+            {
+              "sourceField": [
+                "userID"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "user"
+            }
+          ],
+          "roles": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "serverID"
+            ],
+            "destSchema": "role"
+          }
+        }
+      },
+      "serverMember": {
+        "tableName": "serverMember",
+        "primaryKey": [
+          "serverID",
+          "userID"
+        ],
+        "columns": {
+          "joinedAt": {
+            "type": "number",
+            "optional": true
+          },
+          "serverID": {
+            "type": "string",
+            "optional": false
+          },
+          "userID": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      },
+      "thread": {
+        "tableName": "thread",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelID": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorID": {
+            "type": "string",
+            "optional": false
+          },
+          "description": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "messageID": {
+            "type": "string",
+            "optional": false
+          },
+          "title": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "messages": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "threadID"
+            ],
+            "destSchema": "message"
+          }
+        }
+      },
+      "user": {
+        "tableName": "user",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "email": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "image": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          },
+          "state": {
+            "type": "json",
+            "optional": false
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          },
+          "username": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "friends": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "requestingID"
+              ],
+              "destSchema": "friendship"
+            },
+            {
+              "sourceField": [
+                "acceptingID"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "user"
+            }
+          ],
+          "servers": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "userID"
+              ],
+              "destSchema": "serverMember"
+            },
+            {
+              "sourceField": [
+                "serverID"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "server"
+            }
+          ]
+        }
+      },
+      "userRole": {
+        "tableName": "userRole",
+        "primaryKey": [
+          "serverID",
+          "userID",
+          "roleID"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "granterID": {
+            "type": "string",
+            "optional": false
+          },
+          "roleID": {
+            "type": "string",
+            "optional": false
+          },
+          "serverID": {
+            "type": "string",
+            "optional": false
+          },
+          "userID": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      }
+    }
+  }
+}

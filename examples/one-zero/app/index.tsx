@@ -4,7 +4,7 @@ import { authClient, useAuth } from '~/better-auth/authClient'
 import { Avatar } from '~/interface/Avatar'
 import { isTauri } from '~/tauri/constants'
 import { randomID } from '~/zero/randomID'
-import { mutate, useQuery } from '~/zero/zero'
+import { useQuery, zero } from '~/zero/zero'
 
 export default function HomePage() {
   const [messages] = useQuery((q) => q.message.orderBy('createdAt', 'desc'))
@@ -29,6 +29,8 @@ export default function HomePage() {
         <XStack ai="center" gap="$4">
           <Avatar image={user.image || ''} />
           <SizableText>{user.name}</SizableText>
+
+          <Button onPress={() => authClient.signOut()}>Logout</Button>
 
           {isWeb && !isTauri && jwtToken && (
             <a href={`one-chat://finish-auth?token=${session?.token}`}>
@@ -58,7 +60,7 @@ export default function HomePage() {
 
             if (!existing) {
               // for now just insert some random user!
-              await mutate.user.insert({
+              await zero.mutate.user.insert({
                 id: userId,
                 email: '',
                 image: '',
@@ -70,7 +72,7 @@ export default function HomePage() {
               })
             }
 
-            mutate.message.insert({
+            zero.mutate.message.insert({
               id: randomID(),
               senderId: userId,
               content: text,

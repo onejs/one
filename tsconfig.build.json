@@ -8,10 +8,22 @@
   },
   "references": [
     {
+      "path": "packages/one"
+    },
+    {
+      "path": "packages/create-vxrn"
+    },
+    {
+      "path": "apps/chat"
+    },
+    {
       "path": "examples/one-recommended"
     },
     {
       "path": "examples/one-fullstack"
+    },
+    {
+      "path": "examples/one-zero"
     },
     {
       "path": "examples/bare"

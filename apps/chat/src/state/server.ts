@@ -11,14 +11,17 @@ export const useCurrentServer = () => {
 
 export const useCurrentServerRoles = () => {
   const [userState] = useUserState()
-  return useQuery((q) => q.server.where('id', userState?.activeServer || '').related('roles'))[0][0]
-    ?.roles
+  return useQuery((q) =>
+    q.server
+      .where('id', userState?.activeServer || '')
+      .related('roles', (r) => r.related('members'))
+  )[0][0]?.roles
 }
 
 export const useCurrentServerMembership = () => {
   const [userState, { user }] = useUserState()
   return useQuery((q) =>
-    q.serverMember.where('userId', userState?.activeServer || '').where('serverId', user?.id || '')
+    q.serverMember.where('userID', userState?.activeServer || '').where('serverID', user?.id || '')
   )[0][0]
 }
 

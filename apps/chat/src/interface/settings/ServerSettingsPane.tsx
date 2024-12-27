@@ -1,21 +1,23 @@
-import { useEffect, useState } from 'react'
-import { Button, Circle, H1, H3, H4, Input, SizableText, XStack, YStack } from 'tamagui'
-import { DevTools } from '~/dev/DevTools'
-import { hiddenPanelWidth } from '~/interface/settings/constants'
-import { useCurrentServer, useCurrentServerRoles } from '~/state/server'
-import type { Role, Server } from '~/zero/schema'
-import { mutate } from '~/zero/zero'
-import { LabeledRow } from '../forms/LabeledRow'
-import { showToast } from '../toast/Toast'
-import { AvatarUpload } from '../upload/AvatarUpload'
-import { Tabs } from '../tabs/Tabs'
-import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
-import { Avatar } from '../Avatar'
-import { SortableList } from '../lists/SortableList'
-import { ListItem } from '../lists/ListItem'
-import { ButtonSimple } from '../ButtonSimple'
 import { Plus } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
+import { useEffect, useState } from 'react'
+import { Button, Circle, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
+import { useAuth } from '~/better-auth/authClient'
+import { DevTools } from '~/dev/DevTools'
+import { randomID } from '~/helpers/randomID'
+import { hiddenPanelWidth } from '~/interface/settings/constants'
+import { useCurrentServer, useCurrentServerRoles } from '~/state/server'
+import type { Role, RoleWithRelations, Server } from '~/zero/schema'
+import { useQuery, zero } from '~/zero/zero'
+import { Avatar } from '../Avatar'
+import { ButtonSimple } from '../ButtonSimple'
+import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
+import { LabeledRow } from '../forms/LabeledRow'
+import { Switch } from '../forms/Switch'
+import { EditableListItem, type EditableListItemProps } from '../lists/EditableListItem'
+import { SortableList } from '../lists/SortableList'
+import { Tabs } from '../tabs/Tabs'
+import { AvatarUpload } from '../upload/AvatarUpload'
 
 const actionEmitter = createEmitter<'create-role'>()
 
@@ -85,8 +87,13 @@ export const ServerSettingsPane = () => {
 }
 
 const SettingsServerPermissions = ({ server }: { server: Server }) => {
+  const { user, jwtToken } = useAuth()
+
+  console.log('jwtToken', jwtToken, useQuery((q) => q.user)[0])
+
   const roles = useCurrentServerRoles() || []
   const [showTempRole, setShowTempRole] = useState(false)
+  const [selected, setSelected] = useState<Role | null>(null)
 
   actionEmitter.use((action) => {
     if (action == 'create-role') {
@@ -96,32 +103,82 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
 
   return (
     <YStack data-tauri-drag-region f={1}>
-      <SortableList
-        items={roles}
-        renderItem={(role) => <RoleListItem key={role.id} role={role} />}
-        renderDraggingItem={(role) => <RoleListItem key={role.id} role={role} />}
-        onSort={(sorted) => {
-          //
-        }}
-      />
+      <YStack f={1}>
+        <SortableList
+          items={roles}
+          renderItem={(role) => (
+            <RoleListItem
+              active={selected?.id === role.id}
+              editingValue={role.name}
+              onPress={() => {
+                setSelected(role)
+              }}
+              key={role.id}
+              role={role}
+            />
+          )}
+          renderDraggingItem={(role) => <RoleListItem key={role.id} role={role} />}
+          onSort={(sorted) => {
+            //
+          }}
+        />
 
-      {showTempRole && <RoleListItem />}
+        {showTempRole && (
+          <RoleListItem
+            defaultEditing
+            onEditComplete={(name) => {
+              const id = randomID()
+              setShowTempRole(false)
+              zero.mutate.role.insert({
+                id,
+                color: 'gray',
+                creatorID: user?.id || '',
+                name,
+                serverID: server.id,
+              })
+            }}
+            onEditCancel={() => setShowTempRole(false)}
+          />
+        )}
+      </YStack>
+
+      <Sheet animation="bouncy" open={!!selected}>
+        <Sheet.Frame br="$6" elevation="$4" p="$4">
+          <H5 o={0.5}>{selected?.name}</H5>
+
+          <LabeledRow
+            htmlFor="manage-server"
+            label="Manage Server"
+            description="Allow user to change server settings."
+          >
+            <Switch size="$3" id="manage-server" />
+          </LabeledRow>
+
+          <LabeledRow
+            htmlFor="edit-channels"
+            label="Edit Channels"
+            description="Allow user to change channel names, add and remove."
+          >
+            <Switch size="$3" id="edit-channels" />
+          </LabeledRow>
+        </Sheet.Frame>
+      </Sheet>
     </YStack>
   )
 }
 
-const RoleListItem = ({ role }: { role?: Role }) => {
+const RoleListItem = ({
+  role,
+  ...rest
+}: Omit<EditableListItemProps, 'role'> & { role?: RoleWithRelations }) => {
   return (
-    <ListItem>
-      <Circle size={24} bg={role?.color || 'gray'} />
-      <SizableText>{role?.name || ''}</SizableText>
-
-      <XStack f={1} />
-
-      <XStack als="flex-end">
-        <SizableText>3 members</SizableText>
-      </XStack>
-    </ListItem>
+    <EditableListItem
+      icon={<Circle size={24} bg={role?.color || 'gray'} />}
+      after={<SizableText>{role?.members?.length} members</SizableText>}
+      {...rest}
+    >
+      {role?.name || ''}
+    </EditableListItem>
   )
 }
 
@@ -137,7 +194,7 @@ const SettingsServer = ({ server }: { server: Server }) => {
   return (
     <>
       <LabeledRow label="Name" htmlFor="server-name">
-        <Input defaultValue={server.name} f={1} id="server-name" />
+        <Input onChangeText={setName} defaultValue={server.name} f={1} id="server-name" />
       </LabeledRow>
 
       <LabeledRow label="Image" htmlFor="image">
@@ -147,12 +204,13 @@ const SettingsServer = ({ server }: { server: Server }) => {
       <Button
         theme="blue"
         onPress={() => {
-          mutate.server.update({
+          console.warn('updating', name)
+          zero.mutate.server.update({
             id: server.id,
             name,
             icon: image,
           })
-          showToast('Saved')
+          // showToast('Saved')
         }}
       >
         Save

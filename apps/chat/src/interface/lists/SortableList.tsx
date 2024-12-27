@@ -55,12 +55,13 @@ export function SortableList<A extends { id: UniqueIdentifier }>({
         if (over && active.id !== over.id) {
           const oldIndex = items.findIndex((x) => x.id === (`${active.id}` as any))
           const newIndex = items.findIndex((x) => x.id === (`${over.id}` as any))
-          const nextChannelSort = arrayMove(items, oldIndex, newIndex)
-          onSort?.(nextChannelSort)
+          const nextChannelSort = arrayMove(items as any, oldIndex, newIndex)
+          console.log('sort is now', nextChannelSort)
+          onSort?.(nextChannelSort as any)
         }
       }}
     >
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
+      <SortableContext items={items as any} strategy={verticalListSortingStrategy}>
         {items.map((item) => renderItem(item))}
 
         <DragOverlay

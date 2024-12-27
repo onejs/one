@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "exclude": [
     "vitest.config.ts",
     "**/test",
@@ -8,7 +8,23 @@
     "**/__tests__"
   ],
   "compilerOptions": {
-    "composite": true,
+    "composite": true
   },
-  "references": []
+  "references": [
+    {
+      "path": "../create-vxrn"
+    },
+    {
+      "path": "../resolve"
+    },
+    {
+      "path": "../universal-color-scheme"
+    },
+    {
+      "path": "../use-isomorphic-layout-effect"
+    },
+    {
+      "path": "../vxrn"
+    }
+  ]
 }

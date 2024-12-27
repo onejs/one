@@ -1,5 +1,3 @@
-import { loadUserOneOptions } from '../vite/one'
-
 export async function run(args: {}) {
   const { runAndroid } = await import('vxrn')
 

@@ -18,10 +18,10 @@ body {
 :root {
   color-scheme: light dark;
   
-  --colorDeepDark: hsl(40, 45.0%, 5%);
+  --colorDeepDark: hsl(44, 28%, 8%);
   --colorDeepLight: #fff;
   --bodyBgLight: #f0eee9;
-  --bodyBgDark: #3a3830;
+  --bodyBgDark: #151413;
   --logoColorLight: #000;
   --logoColorDark: #fff;
   
@@ -179,10 +179,9 @@ h1 + h2 {
 
 .t_dark .local-shadows {
   box-shadow:
-    0 0 0 7px color-mix(in srgb, var(--color10) 8%, transparent),
-    0 0 100px #000,
-    inset 0 0 200px var(--yellow1),
-    inset 0 0 100px var(--yellow1);
+    0 0 0 7px color-mix(in srgb, var(--color1) 50%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--color5) 8%, transparent),
+    0 0 200px color-mix(in srgb, var(--color1) 80%, transparent);
 }
 
 :root:root .is_Paragraph {

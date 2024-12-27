@@ -23,6 +23,7 @@ export const Table = ({ data }: { data: Record<string, any>[] }) => {
 
   const table = useReactTable({
     data,
+    // @ts-expect-error
     columns,
     getCoreRowModel: getCoreRowModel(),
   })

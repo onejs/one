@@ -1,22 +1,22 @@
 {
   "name": "example-bare",
-  "version": "1.1.366",
+  "version": "1.1.371",
   "private": true,
-  "main": "index.js",
   "type": "module",
+  "main": "index.js",
   "scripts": {
+    "android": "react-native run-android",
+    "build:web": "vxrn build",
+    "clean": "vxrn clean",
     "dev": "vxrn dev",
     "dev:clean": "vxrn dev --clean",
-    "clean": "vxrn clean",
-    "build:web": "vxrn build",
-    "serve": "vxrn serve",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios"
+    "ios": "react-native run-ios",
+    "serve": "vxrn serve"
   },
   "dependencies": {
     "expo-constants": "~16.0.0",
     "react": "^18.3.1",
-    "react-native": "0.74.5"
+    "react-native": "0.76.4"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
@@ -25,12 +25,12 @@
     "@react-native/babel-preset": "0.73.19",
     "@react-native/metro-config": "0.73.3",
     "@react-native/typescript-config": "0.73.1",
-    "@types/react": "^18.2.24",
+    "@types/react": "^18.3.11",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "react-test-renderer": "18.2.0",
     "typescript": "^5.7.2",
-    "vxrn": "workspace:*"
+    "vxrn": "workspace:^"
   },
   "engines": {
     "node": ">=18"

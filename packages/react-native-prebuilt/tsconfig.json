@@ -1,9 +1,17 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "composite": true
   },
   "references": [
-    
+    {
+      "path": "../utils"
+    },
+    {
+      "path": "../vite-flow"
+    },
+    {
+      "path": "../vite-native-hmr"
+    }
   ]
 }

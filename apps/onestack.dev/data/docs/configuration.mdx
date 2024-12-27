@@ -62,6 +62,15 @@ export default {
         platform: 'node' | 'vercel' | 'cloudflare'
       },
 
+      react: {
+        // enable the new react compiler
+        compiler: true,
+
+        // react-scan support
+        // native is experimental, web is better supported
+        scan: true | 'web' | 'native',
+      },
+
       // The deps configuration is a powerful way to apply patches to node_modules
       // to configure patching and optimizeDeps for server-side.
       // we found the React Native and general node module package ecosystem to not always
@@ -120,6 +129,18 @@ This mode is likely the least useful, as it means that you must make a full trip
 ### redirects
 
 You can apply server-level redirects. One serves your app with Hono in production, and so the redirect pattern is simple: your `source` will be passed to `Hono.app.get(source)`. Any matching path segments that start with `:` will be replaced into the matching segments in `destination`. And the redirect will send a response type of `301` if permanent is true, otherwise it will be `302`.
+
+## react
+
+<Status cur="pointer" is="beta" />
+
+Enables the new [React Compiler](https://react.dev/learn/react-compiler) for both native and web. Will slow down compilation as it uses Babel, but will improve app performance and reduce the need to write memoization.
+
+### scan
+
+<Status cur="pointer" is="beta" />
+
+Enables [React Scan](https://react-scan.com). Helps you re-rendering and other performance issues. You can enable it for only web or native, and also pass in options per-plaform from here.
 
 ## deps
 

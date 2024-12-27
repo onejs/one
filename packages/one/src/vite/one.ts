@@ -1,7 +1,7 @@
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
 import path, { dirname, resolve } from 'node:path'
-import { type Plugin, type PluginOption, type UserConfig, loadConfigFromFile } from 'vite'
+import { type Plugin, type PluginOption, type UserConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import {
   autoPreBundleDepsForSsrPlugin,
@@ -14,6 +14,7 @@ import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
 import { ensureTSConfig } from './ensureTsConfig'
+import { setOneOptions } from './loadConfig'
 import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
@@ -24,13 +25,24 @@ import { createVirtualEntry, virtualEntryId } from './plugins/virtualEntryPlugin
 import type { One } from './types'
 import { barrel } from 'vite-plugin-barrel'
 
+/**
+ * This needs a big refactor!
+ * I guess these plugins are all being loaded by native??
+ * At least the react compiler plugin is applying to native, so the entire premise of some things
+ * here are wrong. we can probably refactor and merge all the stuff
+ */
+
 events.setMaxListeners(1_000)
 
 // temporary for tamagui plugin compat
 globalThis.__vxrnEnableNativeEnv = true
 
+let cachedConfig: PluginOption | null = null
+
 export function one(options: One.PluginOptions = {}): PluginOption {
-  oneOptions = options
+  if (cachedConfig) return cachedConfig
+
+  setOneOptions(options)
 
   // ensure tsconfig
   if (options.config?.ensureTSConfig !== false) {
@@ -254,30 +266,85 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // react scan
   const scan = options.react?.scan
 
-  // TODO make this passed into vxrn through real API
-  globalThis.__vxrnAddNativePlugins = [clientTreeShakePlugin()]
-  globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
+  // do it here because it gets called a few times
+  const reactScanConfig = ((): UserConfig => {
+    const stringify = (obj: Object) => JSON.stringify(JSON.stringify(obj))
 
-  return [
-    ...devAndProdPlugins,
+    const configs = {
+      disabled: {
+        define: {
+          'process.env.ONE_ENABLE_REACT_SCAN': 'false',
+        },
+      },
+      enabled: {
+        define: {
+          'process.env.ONE_ENABLE_REACT_SCAN': stringify({
+            enabled: true,
+            animationSpeed: 'slow',
+            showToolbar: false,
+          }),
+        },
+      },
+    } satisfies Record<string, UserConfig>
 
+    const getConfigFor = (platform: 'ios' | 'android' | 'client'): UserConfig => {
+      if (!scan) {
+        return configs.disabled
+      }
+      if (scan === true) {
+        return configs.enabled
+      }
+      if (typeof scan === 'string') {
+        if (scan === 'native' && platform === 'client') {
+          return configs.disabled
+        }
+        if (scan === 'web' && platform !== 'client') {
+          return configs.disabled
+        }
+        return configs.enabled
+      }
+
+      const defaultConfig = scan.options || configs.enabled
+      const perPlatformConfig =
+        platform === 'ios' || platform === 'android' ? scan.native : scan.web
+
+      return {
+        define: {
+          'process.env.ONE_ENABLE_REACT_SCAN': stringify({
+            ...defaultConfig,
+            ...perPlatformConfig,
+          }),
+        },
+      }
+    }
+
+    return {
+      environments: {
+        client: getConfigFor('client'),
+        ios: getConfigFor('ios'),
+        android: getConfigFor('android'),
+      },
+    }
+  })()
+
+  // TODO move to single config and through environments
+  const nativeWebDevAndProdPlugsin: Plugin[] = [
+    clientTreeShakePlugin(),
     {
       name: `one:react-scan`,
       config() {
-        return {
-          environments: {
-            // only in client
-            client: {
-              define: {
-                'process.env.ONE_ENABLE_REACT_SCAN': JSON.stringify(
-                  typeof scan === 'boolean' ? `${scan}` : scan
-                ),
-              },
-            },
-          },
-        }
+        return reactScanConfig
       },
     },
+  ]
+
+  // TODO make this passed into vxrn through real API
+  globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin
+  globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
+
+  cachedConfig = [
+    ...devAndProdPlugins,
+    ...nativeWebDevAndProdPlugsin,
 
     /**
      * This is really the meat of one, where it handles requests:
@@ -285,8 +352,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     createFileSystemRouterPlugin(options),
 
     generateFileSystemRouteTypesPlugin(options),
-
-    clientTreeShakePlugin(),
 
     fixDependenciesPlugin(options.deps),
 
@@ -374,32 +439,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       entries: [virtualEntryId],
     }),
   ]
-}
 
-let oneOptions: One.PluginOptions | null = null
-
-async function getUserOneOptions(command?: 'serve' | 'build') {
-  if (!oneOptions) {
-    if (!command) throw new Error(`Options not loaded and no command given`)
-    await loadUserOneOptions(command)
-  }
-  if (!oneOptions) {
-    throw new Error(`No One options were loaded`)
-  }
-  return oneOptions
-}
-
-export async function loadUserOneOptions(command: 'serve' | 'build') {
-  const found = await loadConfigFromFile({
-    mode: 'prod',
-    command,
-  })
-  if (!found) {
-    throw new Error(`No config found in ${process.cwd()}. Is this the correct directory?`)
-  }
-  const foundOptions = getUserOneOptions()
-  if (!foundOptions) {
-    throw new Error(`No One plugin found in this vite.config`)
-  }
-  return foundOptions
+  return cachedConfig
 }

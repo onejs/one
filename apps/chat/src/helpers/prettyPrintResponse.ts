@@ -11,6 +11,7 @@ export async function prettyPrintResponse(responseIn: Response) {
   const headersMap = response.headers
   // @ts-ignore
   for (const [key, value] of headersMap.entries()) {
+    // @ts-expect-error
     responseDetails.headers[key] = value
   }
 

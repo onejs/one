@@ -352,7 +352,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
               if (reply.body) {
                 if (reply.body.locked) {
-                  console.warn(`Body is locked??`)
+                  console.warn(`Body is locked??`, req.url)
+                  res.write(``)
+                  res.end()
+                  return
                 }
               }
 

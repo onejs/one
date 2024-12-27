@@ -1,4 +1,3 @@
-import * as constants from '../constants'
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
@@ -15,10 +14,11 @@ import {
 } from 'vxrn'
 import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 import { labelProcess } from '../cli/label-process'
+import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
 import { getManifest } from './getManifest'
-import { loadUserOneOptions } from './one'
+import { loadUserOneOptions } from './loadConfig'
 import { replaceLoader } from './replaceLoader'
 import type { One } from './types'
 
@@ -527,7 +527,7 @@ ${JSON.stringify(params || null, null, 2)}`
       await FSExtra.writeFile(
         join(options.root, 'dist', 'index.js'),
         `import { serve } from 'one/serve'
-const handler = await serve()
+export const handler = await serve()
 export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
       )
 

@@ -2,9 +2,9 @@ import { Settings } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, H4, H5, Popover, TooltipSimple, YStack } from 'tamagui'
 import { useCurrentChannel } from '~/state/server'
-import { mutate } from '~/zero/zero'
-import { Checkbox } from '../Checkbox'
+import { zero } from '~/zero/zero'
 import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
+import { Checkbox } from '../forms/Checkbox'
 import { LabeledRow } from '../forms/LabeledRow'
 import { PopoverContent } from '../Popover'
 import { Tabs } from '../tabs/Tabs'
@@ -89,7 +89,7 @@ const ChannelSettings = () => {
         <Checkbox
           checked={channel.private}
           onCheckedChange={(val) => {
-            mutate.channel.update({
+            zero.mutate.channel.update({
               ...channel,
               private: !!val,
             })

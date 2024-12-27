@@ -1,17 +1,17 @@
 import { Component } from 'react'
 
 export class ErrorBoundary extends Component<any> {
-  constructor(props) {
+  constructor(props: any) {
     super(props)
     this.state.noMessage = props.noMessage
   }
   state = { hasError: false, noMessage: false }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: any) {
     return { hasError: true }
   }
 
-  componentDidCatch(error, errorInfo) {}
+  // componentDidCatch(error, errorInfo) {}
 
   render() {
     if (this.state.hasError) {

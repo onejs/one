@@ -23,6 +23,22 @@ export namespace One {
     [key: string]: DepOptimize | DepPatch['patchFiles']
   }
 
+  export type ReactScanOptions = {
+    enabled?: boolean
+    includeChildren?: boolean
+    playSound?: boolean
+    log?: boolean
+    showToolbar?: boolean
+    renderCountThreshold?: number
+    resetCountTimeout?: number
+    maxRenders?: number
+    report?: boolean
+    alwaysShowLabels?: boolean
+    animationSpeed?: 'slow' | 'fast' | 'off'
+  }
+
+  type PluginPlatformTarget = 'native' | 'web'
+
   export type PluginOptions = {
     /**
      * Enabling zero does a couple very simple things:
@@ -33,22 +49,13 @@ export namespace One {
     zero?: boolean
 
     react?: {
-      compiler?: boolean
+      compiler?: boolean | PluginPlatformTarget
       scan?:
         | boolean
-        | {
-            enabled?: boolean
-            includeChildren?: boolean
-            playSound?: boolean
-            log?: boolean
-            showToolbar?: boolean
-            renderCountThreshold?: number
-            resetCountTimeout?: number
-            maxRenders?: number
-            report?: boolean
-            alwaysShowLabels?: boolean
-            animationSpeed?: 'slow' | 'fast' | 'off'
-          }
+        | PluginPlatformTarget
+        | (Record<PluginPlatformTarget, ReactScanOptions> & {
+            options?: ReactScanOptions
+          })
     }
 
     /**

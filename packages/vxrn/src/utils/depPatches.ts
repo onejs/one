@@ -236,27 +236,27 @@ ${contents}
     },
   },
 
-  {
-    module: 'rollup',
-    patchFiles: {
-      'dist/es/shared/node-entry.js': (contents) => {
-        assertString(contents)
-        // fixes problem with @sentry/react-native 5.5.0 using setimmediate polyfill causing error
-        contents = contents.replace(
-          `return this.exportNamesByVariable.get(variable)[0];`,
-          `return this.exportNamesByVariable.get(variable)?.[0];`
-        )
+  // {
+  //   module: 'rollup',
+  //   patchFiles: {
+  //     'dist/es/shared/node-entry.js': (contents) => {
+  //       assertString(contents)
+  //       // fixes problem with @sentry/react-native 5.5.0 using setimmediate polyfill causing error
+  //       contents = contents.replace(
+  //         `return this.exportNamesByVariable.get(variable)[0];`,
+  //         `return this.exportNamesByVariable.get(variable)?.[0];`
+  //       )
 
-        // fix https://github.com/rollup/rollup/issues/5770
-        contents = contents.replaceAll(
-          `this.expressionsToBeDeoptimized = EMPTY_ARRAY;`,
-          `this.expressionsToBeDeoptimized = [];`
-        )
+  //       // fix https://github.com/rollup/rollup/issues/5770
+  //       contents = contents.replaceAll(
+  //         `this.expressionsToBeDeoptimized = EMPTY_ARRAY;`,
+  //         `this.expressionsToBeDeoptimized = [];`
+  //       )
 
-        return contents
-      },
-    },
-  },
+  //       return contents
+  //     },
+  //   },
+  // },
 
   {
     module: '@react-native/assets-registry',

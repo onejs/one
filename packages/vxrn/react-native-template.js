@@ -15,6 +15,9 @@ global['__DEV__'] = process.env.__DEV__
 global['___modules___'] = {}
 global['___vxrnAbsoluteToRelative___'] = {}
 
+// Prevents the `HMRClient.unstable_notifyFuseboxConsoleEnabled is not a function (it is undefined)` error
+global.__FUSEBOX_HAS_FULL_CONSOLE_SUPPORT__ = false
+
 global['Event'] =
   global['Event'] ||
   function () {
@@ -31,6 +34,14 @@ globalThis['__cachedModules'] = {
 }
 
 globalThis['__RN_INTERNAL_MODULE_REQUIRES_MAP__'] = {}
+
+if (typeof process === 'undefined') {
+  globalThis['process'] = {
+    env: {},
+  }
+}
+
+process.env.EXPO_OS = __VXRN_PLATFORM__
 
 function printError(err) {
   return `${err instanceof Error ? `${err.message}\n${err.stack}` : err}`
@@ -120,8 +131,6 @@ function getRequire(importer, importsMap, _mod) {
     console.warn(`Ignoring css import: ${_mod}`)
     return {}
   }
-
-  const debugExtraDetail = `Cached modules list:${Object.keys(__cachedModules).join('\n  -')}`
 
   const getErrorDetails = (withStack) => {
     return `In importsMap:

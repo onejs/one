@@ -1,11 +1,12 @@
 import { Check, DoorOpen } from '@tamagui/lucide-icons'
 import { useEffect, useRef, useState } from 'react'
-import { TooltipSimple, XStack, YStack } from 'tamagui'
+import { ScrollView, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { mutate, useQuery } from '~/zero/zero'
+import { useQuery, zero } from '~/zero/zero'
 import { Avatar } from '../Avatar'
 import { Row } from '../Row'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
+import { dialogConfirm } from './actions'
 import { AlwaysVisibleTabContent } from './AlwaysVisibleTabContent'
 import type { TabContentPaneProps } from './types'
 
@@ -31,53 +32,67 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
   }, [isActive])
 
   return (
-    <AlwaysVisibleTabContent {...props}>
-      <YStack gap="$2">
-        <SearchableList
-          onSelectItem={(item) => {
-            // TODO
-          }}
-          items={foundServers}
-        >
-          <SearchableInput ref={inputRef as any} size="$5" onChangeText={setSearch} />
+    <AlwaysVisibleTabContent gap="$3" {...props}>
+      <SearchableList
+        onSelectItem={(item) => {
+          // TODO
+        }}
+        items={foundServers}
+      >
+        <SearchableInput mb="$1" ref={inputRef as any} size="$4" onChangeText={setSearch} />
 
-          {foundServers.map((server, index) => {
-            const isJoined = !!server.members[0]
+        <ScrollView>
+          <YStack gap="$2">
+            {foundServers.map((server, index) => {
+              const isJoined = !!server.members[0]
 
-            return (
-              <SearchableListItem index={index} key={server.id}>
-                {(active, itemProps) => {
-                  return (
-                    <Row active={active} {...itemProps}>
-                      <Avatar image={server.icon} />
-                      <Row.Text>{server.name}</Row.Text>
-                      <XStack f={1} />
-                      <TooltipSimple label={isJoined ? 'Joined!' : 'Join server'}>
-                        <Row.Button
-                          onPress={() => {
-                            if (!user) return
+              return (
+                <SearchableListItem index={index} key={server.id}>
+                  {(active, itemProps) => {
+                    return (
+                      <Row active={active} {...itemProps}>
+                        <Avatar image={server.icon} />
+                        <Row.Text>{server.name}</Row.Text>
+                        <XStack f={1} />
+                        <TooltipSimple label={isJoined ? 'Joined!' : 'Join server'}>
+                          <Row.Button
+                            onPress={async (e) => {
+                              if (!user) return
 
-                            if (isJoined) {
-                              // TODO
-                            } else {
-                              mutate.serverMember.insert({
-                                userId: user.id,
-                                joinedAt: new Date().getTime(),
-                                serverId: server.id,
-                              })
-                            }
-                          }}
-                          icon={isJoined ? Check : DoorOpen}
-                        />
-                      </TooltipSimple>
-                    </Row>
-                  )
-                }}
-              </SearchableListItem>
-            )
-          })}
-        </SearchableList>
-      </YStack>
+                              if (isJoined) {
+                                e.preventDefault()
+
+                                if (
+                                  await dialogConfirm({
+                                    title: `Leave server?`,
+                                    description: `Are you sure you want to leave ${server.name}?`,
+                                  })
+                                ) {
+                                  zero.mutate.serverMember.delete({
+                                    userID: user.id,
+                                    serverID: server.id,
+                                  })
+                                }
+                                // TODO
+                              } else {
+                                zero.mutate.serverMember.insert({
+                                  userID: user.id,
+                                  serverID: server.id,
+                                })
+                              }
+                            }}
+                            icon={isJoined ? Check : DoorOpen}
+                          />
+                        </TooltipSimple>
+                      </Row>
+                    )
+                  }}
+                </SearchableListItem>
+              )
+            })}
+          </YStack>
+        </ScrollView>
+      </SearchableList>
     </AlwaysVisibleTabContent>
   )
 }

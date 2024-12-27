@@ -1,35 +1,7 @@
-import { createAnimations } from '@tamagui/animations-css'
-import { fonts, themes, tokens } from '@tamagui/config/v3'
+import { fonts, themes, tokens, animations } from '@tamagui/config/v3'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { shorthands } from '@tamagui/shorthands/v2'
 import { createTamagui } from 'tamagui'
-
-const smoothBezier = 'cubic-bezier(0.215, 0.610, 0.355, 1.000)'
-
-const cssTransitions = {
-  '75ms': 'ease-in 75ms',
-  '100ms': 'ease-in 100ms',
-  '200ms': 'ease-in 200ms',
-  bouncy: 'ease-in 200ms',
-  superBouncy: 'ease-in 500ms',
-  lazy: 'ease-in 1000ms',
-  medium: 'ease-in 300ms',
-  slow: 'ease-in 500ms',
-  quick: `${smoothBezier} 500ms`,
-  quicker: `${smoothBezier} 350ms`,
-  quickest: `${smoothBezier} 200ms`,
-  tooltip: 'ease-in 400ms',
-}
-
-const animations = createAnimations(cssTransitions)
-
-const selectionStyles = (theme) =>
-  theme.color5
-    ? {
-        backgroundColor: theme.color5,
-        color: theme.color11,
-      }
-    : null
 
 const media = createMedia({
   xl: { maxWidth: 1450 },
@@ -51,7 +23,13 @@ export const config = createTamagui({
   media,
   tokens,
   fonts,
-  selectionStyles,
+  selectionStyles: (theme) =>
+    theme.color5
+      ? {
+          backgroundColor: theme.color5,
+          color: theme.color11,
+        }
+      : null,
   shorthands,
   settings: {
     mediaQueryDefaultActive: {

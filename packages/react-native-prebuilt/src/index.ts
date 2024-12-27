@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises'
-
+import { mustReplace } from '@vxrn/utils'
 import { transformFlow } from '@vxrn/vite-flow'
 import { build, type BuildOptions } from 'esbuild'
 import FSExtra from 'fs-extra'
@@ -12,6 +12,8 @@ const requireResolve =
 const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
 
 export async function buildReactJSX(options: BuildOptions = {}) {
+  const isProd = options.define?.['__DEV__'] === 'false'
+
   return build({
     bundle: true,
     entryPoints: [requireResolve('react/jsx-dev-runtime')],
@@ -33,17 +35,23 @@ export async function buildReactJSX(options: BuildOptions = {}) {
     const bundled = await readFile(options.outfile!, 'utf-8')
     const outCode = `
     const run = () => {
-      ${bundled
-        .replace(
-          `module.exports = require_react_jsx_dev_runtime_development();`,
-          `return require_react_jsx_dev_runtime_development();`
-        )
-        .replace(
-          `module.exports = require_react_jsx_runtime_production_min();`,
-          `return require_react_jsx_runtime_production_min();`
-        )
-        .replace(`process.env.VXRN_REACT_19`, 'false')
-        .replace(`Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')"));`, ``)}
+      ${mustReplace(bundled, [
+        isProd
+          ? {
+              find: `module.exports = require_react_jsx_runtime_production_min();`,
+              replace: `return require_react_jsx_runtime_production_min();`,
+            }
+          : {
+              find: `module.exports = require_react_jsx_dev_runtime_development();`,
+              replace: `return require_react_jsx_dev_runtime_development();`,
+            },
+        { find: `process.env.VXRN_REACT_19`, replace: 'false', optional: true },
+        {
+          find: `Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')"));`,
+          optional: true,
+          replace: ``,
+        },
+      ])}
     }
     const __mod__ = run()
     ${['jsx', 'jsxs', 'jsxDEV', 'Fragment']
@@ -67,6 +75,8 @@ export async function buildReactJSX(options: BuildOptions = {}) {
 }
 
 export async function buildReact(options: BuildOptions = {}) {
+  const isProd = options.define?.['__DEV__'] === 'false'
+
   return build({
     bundle: true,
     entryPoints: [requireResolve('react')],
@@ -88,17 +98,27 @@ export async function buildReact(options: BuildOptions = {}) {
     const bundled = await readFile(options.outfile!, 'utf-8')
     const outCode = `
     const run = () => {
-      ${bundled
-        .replace(
-          /module\.exports = require_react_development(\d*)\(\);/,
-          'return require_react_development$1();'
-        )
-        .replace(
-          /module\.exports = require_react_production_min(\d*)\(\);/,
-          'return require_react_production_min$1();'
-        )
-        .replace(`process.env.VXRN_REACT_19`, 'false')
-        .replace(`Object.assign(exports, eval("require('@vxrn/vendor/react-19')"));`, ``)}
+      ${mustReplace(bundled, [
+        isProd
+          ? {
+              find: /module\.exports = require_react_production_min(\d*)\(\);/,
+              replace: 'return require_react_production_min$1();',
+            }
+          : {
+              find: /module\.exports = require_react_development(\d*)\(\);/,
+              replace: 'return require_react_development$1();',
+            },
+        {
+          find: `process.env.VXRN_REACT_19`,
+          optional: true,
+          replace: 'false',
+        },
+        {
+          find: `Object.assign(exports, eval("require('@vxrn/vendor/react-19')"));`,
+          optional: true,
+          replace: ``,
+        },
+      ])}
     }
     const __mod__ = run()
     ${RExports.map((n) => `export const ${n} = __mod__.${n}`).join('\n')}
@@ -195,10 +215,10 @@ export async function buildReactNative(
     const bundled = await readFile(options.outfile!, 'utf-8')
     const outCode = `
     const run = () => {
-      ${bundled
-        .replace(
-          esbuildCommonJSFunction,
-          `
+      ${mustReplace(bundled, [
+        {
+          find: esbuildCommonJSFunction,
+          replace: `
 // replaced commonjs function to allow importing internals
 var __commonJS = function __commonJS(cb, mod) {
     var path = __getOwnPropNames(cb)[0];
@@ -228,20 +248,24 @@ var __commonJS = function __commonJS(cb, mod) {
 
     return __require;
 };
-`
-        )
-        .replace(`module.exports = require_react_native();`, `return require_react_native();`)
+`,
+        },
+        {
+          find: `module.exports = require_react_native();`,
+          replace: `return require_react_native();`,
+        },
         // Export `@react-native/assets-registry/registry`
-        .replace(
-          `return require_react_native();`,
-          [
+        {
+          find: `return require_react_native();`,
+          replace: [
             `const rn = require_react_native();`,
             `rn.AssetRegistry = require_registry();`,
             `require_ReactNative();`, // This is react-native/Libraries/Renderer/shims/ReactNative.js, we call it here to ensure shims are initialized since we won't lazy load React Native components. See the NOTE below.
             `if (typeof require_InitializeCore === 'function') { require_InitializeCore(); }`, // Since we're accessing the RefreshRuntime directly via `__cachedModules` directly in the RN bundle, we need to ensure it's loaded in time. Note that calling `require_react_refresh_runtime_development()`, `require_setUpReactRefresh()` or `require_setUpDeveloperTools()` directly won't work.
             `return rn;`,
-          ].join('\n')
-        )}
+          ].join('\n'),
+        },
+      ])}
     }
     const RN = run()
 

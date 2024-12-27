@@ -17,8 +17,8 @@
     "npm": "10.8.3"
   },
   "scripts": {
+    "profile": "node -r esbuild-register ./scripts/yarn-profile.ts",
     "postinstall": "node -r esbuild-register ./scripts/setup-zero.ts",
-    "hardlink": "node -r esbuild-register ./scripts/hardlink.ts",
     "npxone": "node ./packages/create-vxrn/run.js",
     "setup": "node -r esbuild-register ./scripts/setup.ts",
     "chat": "yarn workspace onechat dev:tauri",
@@ -38,7 +38,9 @@
     "clean:build": "yarn turbo:run clean:build",
     "clean:ts": "tsc -b --clean tsconfig.json",
     "clean": "yarn turbo:run clean:build",
-    "fix": "manypkg fix",
+    "fix": "yarn fix:packages",
+    "fix:packages": "manypkg fix",
+    "fix:references": "update-ts-references",
     "lint:fix": "ultra -r --no-pretty lint:fix",
     "lint": "ultra -r --no-pretty lint",
     "sandbox": "yarn workspace test-sandbox dev",
@@ -57,6 +59,16 @@
     "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t one-test . && docker run --rm one-test",
     "docker:build": "DOCKER_BUILDKIT=1 docker build --ssh default -t one-test ."
   },
+  "profile": {
+    "//": "run 'yarn profile x' to toggle it on/off",
+    "react-19": {
+      "applied": false,
+      "resolutions": {
+        "react": "19.0.0-rc-fb9a90fa48-20240614",
+        "react-dom": "19.0.0-rc-fb9a90fa48-20240614"
+      }
+    }
+  },
   "zeroDeps": {
     "zero-client": "/Users/n8/github/mono/packages/zero-client",
     "zql": "/Users/n8/github/mono/packages/zql"
@@ -74,6 +86,7 @@
     "turbo": "^2.1.0",
     "typescript": "^5.7.2",
     "ultra-runner": "^3.10.5",
+    "update-ts-references": "^3.4.0",
     "vitepress": "^1.1.4"
   }
 }

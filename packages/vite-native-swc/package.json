@@ -1,23 +1,7 @@
 {
   "name": "@vxrn/vite-native-swc",
-  "version": "1.1.366",
-  "types": "./types/index.d.ts",
+  "version": "1.1.371",
   "type": "module",
-  "main": "dist/cjs",
-  "module": "dist/esm",
-  "files": [
-    "src",
-    "types",
-    "dist"
-  ],
-  "scripts": {
-    "build": "tamagui-build",
-    "watch": "tamagui-build --watch",
-    "lint": "../../node_modules/.bin/biome check src",
-    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
-    "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
-  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -26,6 +10,22 @@
       "require": "./dist/cjs/index.js"
     }
   },
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "types": "./types/index.d.ts",
+  "files": [
+    "src",
+    "types",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tamagui-build",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build",
+    "lint": "../../node_modules/.bin/biome check src",
+    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
+    "watch": "tamagui-build --watch"
+  },
   "dependencies": {
     "@babel/core": "^7.26.0",
     "@babel/plugin-transform-destructuring": "^7.25.9",
@@ -33,13 +33,13 @@
     "@babel/plugin-transform-react-jsx": "^7.25.9",
     "@babel/plugin-transform-regenerator": "^7.25.9",
     "@swc/core": "^1.7.14",
-    "@vxrn/vite-native-client": "workspace:*",
+    "@vxrn/vite-native-client": "workspace:^",
     "metro-react-native-babel-preset": "^0.77.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.120.2",
-    "react-native": "0.74.5"
+    "@tamagui/build": "^1.121.2",
+    "react-native": "0.76.4"
   },
   "peerDependencies": {
     "react-native": "*"

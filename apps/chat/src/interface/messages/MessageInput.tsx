@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { Input, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
+import { Editor } from '~/editor/Editor'
+import { randomID } from '~/helpers/randomID'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
 import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
-import { randomID } from '~/helpers/randomID'
-import { mutate } from '~/zero/zero'
+import { zero } from '~/zero/zero'
 import { messagesListEmitter } from './MessagesList'
-import { Editor } from '~/editor/Editor'
 
 let mainInputRef: Input | null = null
 
@@ -82,16 +82,15 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
           }
 
           inputRef.current?.clear()
-          mutate.message.insert({
+          zero.mutate.message.insert({
             id: randomID(),
-            channelId: channel.id,
-            threadId: thread?.id,
+            channelID: channel.id,
+            threadID: thread?.id,
             isThreadReply: !!thread,
             content,
-            createdAt: new Date().getTime(),
             deleted: false,
-            senderId: user!.id,
-            serverId: server.id,
+            creatorID: user!.id,
+            serverID: server.id,
           })
 
           // setTimeout(() => {

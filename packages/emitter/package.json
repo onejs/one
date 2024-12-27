@@ -1,36 +1,35 @@
 {
   "name": "@vxrn/emitter",
-  "version": "1.1.366",
+  "version": "1.1.371",
   "sideEffects": false,
   "source": "src/index.ts",
-  "types": "./types/index.d.ts",
+  "types": "./src/index.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./types/index.d.ts",
+      "types": "./src/index.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
     }
   },
   "files": [
     "src",
-    "types",
     "dist"
   ],
   "scripts": {
-    "build": "tamagui-build",
-    "watch": "tamagui-build --watch",
+    "build": "tamagui-build --skip-types",
+    "watch": "tamagui-build --skip-types --watch",
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
   "dependencies": {
-    "react": "^18"
+    "react": "^18.3.1"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.120.2"
+    "@tamagui/build": "^1.121.2"
   },
   "publishConfig": {
     "access": "public"

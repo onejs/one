@@ -34,14 +34,6 @@ export async function getReactNativeBundle(
 ) {
   entryRoot = options.root
 
-  if (process.env.VXRN_LOAD_BUNDLE) {
-    // for easier quick testing things:
-    if (await pathExists(process.env.VXRN_LOAD_BUNDLE)) {
-      console.info('⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ returning temp bundle ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️', process.env.VXRN_LOAD_BUNDLE)
-      return await readFile(process.env.VXRN_LOAD_BUNDLE, 'utf-8')
-    }
-  }
-
   const cached = cachedReactNativeBundles[platform]
   if (cached && !process.env.VXRN_DISABLE_CACHE) {
     return cached
@@ -183,7 +175,8 @@ ${
     ? `
 // run entry
 const __require = createRequire(":root:", {})
-__require("react-native")
+globalThis.ReactNative = __require("react-native")
+globalThis.React = __require("react")
 __require("${id}")
 `
     : ''
@@ -230,18 +223,4 @@ async function getReactNativeTemplate(mode: 'dev' | 'prod') {
   }
 
   return template
-}
-
-function bigIntReplacer(_key: string, value: any): any {
-  if (typeof value === 'bigint') {
-    return '__BigInt__:' + value.toString() + 'n'
-  }
-  return value
-}
-
-function bigIntReviver(_key: string, value: any): any {
-  if (typeof value === 'string' && /^__BigInt__:\d+n$/.test(value)) {
-    return BigInt(value.slice(11, -1))
-  }
-  return value
 }

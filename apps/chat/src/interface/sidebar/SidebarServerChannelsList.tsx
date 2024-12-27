@@ -2,19 +2,18 @@ import { useSortable } from '@dnd-kit/sortable'
 import { Lock, Plus } from '@tamagui/lucide-icons'
 import { Menu } from '@tauri-apps/api/menu'
 import { forwardRef, useEffect, useState } from 'react'
-import { type XStackProps, YStack } from 'tamagui'
+import { YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { randomID } from '~/helpers/randomID'
 import { useCurrentServer, useServerChannels } from '~/state/server'
 import { updateUserState, useUserState } from '~/state/user'
 import type { Channel } from '~/zero/schema'
-import { mutate } from '~/zero/zero'
-import { ListItem } from '../lists/ListItem'
-import { SortableList } from '../lists/SortableList'
-import { useChannelsHotkeys } from './useChannelsHotkeys'
-import { ListTitle } from '../lists/ListTitle'
+import { zero } from '~/zero/zero'
 import { ButtonSimple } from '../ButtonSimple'
 import { EditableListItem, type EditableListItemProps } from '../lists/EditableListItem'
+import { ListTitle } from '../lists/ListTitle'
+import { SortableList } from '../lists/SortableList'
+import { useChannelsHotkeys } from './useChannelsHotkeys'
 
 // TODO organize/enforce
 // id order
@@ -53,7 +52,7 @@ export const SidebarServerChannelsList = () => {
   return (
     <YStack>
       <YStack pos="relative">
-        {user && (
+        {server && user && (
           <ListTitle
             icon={
               <ButtonSimple
@@ -75,8 +74,14 @@ export const SidebarServerChannelsList = () => {
           renderItem={(channel) => <ChannelListItemSortable key={channel.id} channel={channel} />}
           renderDraggingItem={(channel) => <DraggedChannel channel={channel} />}
           onSort={(sorted) => {
+            console.warn(
+              'sort',
+              server,
+              sorted.map((i) => i.id),
+              performance.now()
+            )
             if (!server) return
-            mutate.server.update({
+            zero.mutate.server.update({
               id: server.id,
               channelSort: sorted.map((i) => i.id),
             })
@@ -92,16 +97,15 @@ export const SidebarServerChannelsList = () => {
                 return
               }
               const id = randomID()
-              mutate.channel.insert({
+              zero.mutate.channel.insert({
                 id,
-                createdAt: new Date().getTime(),
                 description: '',
                 name,
                 private: false,
-                serverId: server.id,
+                serverID: server.id,
               })
 
-              mutate.server.update({
+              zero.mutate.server.update({
                 id: server.id,
                 channelSort: [...channelSort, id],
               })
@@ -151,7 +155,7 @@ const ChannelListItemSortable = ({ channel }: { channel: Channel }) => {
               id: 'ctx_option1',
               text: 'Delete',
               action() {
-                mutate.channel.delete({
+                zero.mutate.channel.delete({
                   id: channel.id,
                 })
               },
@@ -200,7 +204,7 @@ const ChannelListItem = forwardRef(
           if (!channel || onEditComplete) {
             onEditComplete?.(next)
           } else {
-            mutate.channel.update({
+            zero.mutate.channel.update({
               ...channel,
               name: next,
             })

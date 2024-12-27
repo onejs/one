@@ -1,6 +1,10 @@
 import type { BuildArgs, VXRNOptions } from '../types';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<{
     options: {
+        debugBundlePaths: {
+            ios: string;
+            android: string;
+        };
         mode: "development" | "production";
         clean: boolean;
         root: string;
@@ -34,6 +38,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             server?: boolean | import("..").VXRNBuildOptions;
             analyze?: boolean;
         };
+        debugBundle?: boolean;
     };
     buildArgs: BuildArgs;
     serverEntry: string;

@@ -45,5 +45,10 @@
   ],
   "typeAcquisition": {
     "enable": true
-  }
+  },
+  "references": [
+    {
+      "path": "../../packages/vxrn"
+    }
+  ]
 }

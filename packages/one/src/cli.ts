@@ -1,4 +1,4 @@
-import { defineCommand, runMain } from 'citty'
+import { defineCommand, runMain, showUsage } from 'citty'
 import colors from 'picocolors'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -58,15 +58,17 @@ const dev = defineCommand({
       description:
         'If set to "production" you can run the development server but serve the production bundle',
     },
+    'debug-bundle': {
+      type: 'boolean',
+      description: `Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.`,
+    },
   },
-  async run({ args: { clean, host, https, mode, port } }) {
+  async run({ args }) {
     const { run } = await import('./cli/run')
     await run({
-      clean,
-      host,
-      https,
-      mode: modes[mode],
-      port,
+      ...args,
+      debugBundle: !!args['debug-bundle'],
+      mode: modes[args.mode],
     })
   },
 })
@@ -139,11 +141,12 @@ const prebuild = defineCommand({
   meta: {
     name: 'prebuild',
     version: version,
-    description: 'Prebuild native iOS project', // TODO: Android
+    description: 'Prebuild native project',
   },
   args: {
     platform: {
       type: 'string',
+      description: 'ios or android',
     },
   },
   async run({ args }) {
@@ -250,4 +253,15 @@ const main = defineCommand({
   },
 })
 
-runMain(main)
+// workaround for help with our workaround for sub-command + positional arg
+
+const helpIndex = process.argv.indexOf('--help')
+if (helpIndex > 0) {
+  const subCommandName = process.argv[helpIndex - 1]
+  const subCommand = subCommands[subCommandName]
+  if (subCommand) {
+    showUsage(subCommand)
+  }
+} else {
+  runMain(main)
+}

@@ -8,15 +8,7 @@ export default function useLinking(ref: React.RefObject<NavigationContainerRef<P
         index: number;
         routeNames: string[];
         history?: unknown[];
-        routes: (Readonly<{
-            key: string;
-            name: string;
-            path?: string;
-        }> & Readonly<{
-            params?: Readonly<object | undefined>;
-        }> & {
-            state?: import("@react-navigation/routers").NavigationState | import("@react-navigation/routers").PartialState<import("@react-navigation/routers").NavigationState>;
-        })[];
+        routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
         type: string;
         stale: false;
     }>, "stale" | "routes">> & Readonly<{
@@ -28,21 +20,13 @@ export default function useLinking(ref: React.RefObject<NavigationContainerRef<P
             index: number;
             routeNames: string[];
             history?: unknown[];
-            routes: (Readonly<{
-                key: string;
-                name: string;
-                path?: string;
-            }> & Readonly<{
-                params?: Readonly<object | undefined>;
-            }> & {
-                state?: import("@react-navigation/routers").NavigationState | import("@react-navigation/routers").PartialState<import("@react-navigation/routers").NavigationState>;
-            })[];
+            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
             type: string;
             stale: false;
         }>, "stale" | "routes">> & Readonly<{
             stale?: true;
             routes: import("@react-navigation/routers").PartialRoute<import("@react-navigation/routers").Route<string, object | undefined>>[];
-        }> & any;
+        }> & /*elided*/ any;
     }) | undefined>;
 };
 export {};

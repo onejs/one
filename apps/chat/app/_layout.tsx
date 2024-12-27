@@ -5,15 +5,22 @@ import '~/tamagui/tamagui.css'
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
-import { useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { isWeb, TamaguiProvider } from 'tamagui'
 import config from '~/tamagui/tamagui.config'
 import { AuthEffects } from '~/better-auth/AuthEffects'
-import { useZeroEmit, zero } from '~/zero/zero'
+import { setZeroAuth, useZeroEmit, zero } from '~/zero/zero'
 import { Dialogs } from '~/interface/dialogs/Dialogs'
 import { DragDropFile } from '~/interface/upload/DragDropFile'
+import { isTauri } from '~/tauri/constants'
 
 export default function Layout() {
+  useLayoutEffect(() => {
+    if (isWeb && !isTauri) {
+      document.documentElement.classList.add('not_tauri')
+    }
+  }, [isTauri])
+
   return (
     <>
       {isWeb && (
