@@ -26,6 +26,12 @@ export type DepPatch = {
 
 class Bail extends Error {}
 
+export function bailIfUnchanged(obj1: any, obj2: any) {
+  if (JSON.stringify(obj1) === JSON.stringify(obj2)) {
+    throw new Bail()
+  }
+}
+
 export function bailIfExists(haystack: string, needle: string) {
   if (haystack.includes(needle)) {
     throw new Bail()

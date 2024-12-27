@@ -1,5 +1,5 @@
 import { assertString } from './assert'
-import { type DepPatch, bailIfExists } from './patches'
+import { type DepPatch, bailIfExists, bailIfUnchanged } from './patches'
 
 export const depPatches: DepPatch[] = [
   {
@@ -54,7 +54,6 @@ export const depPatches: DepPatch[] = [
 
       'package.json': (contents) => {
         assertString(contents)
-        bailIfExists(contents, 'index.vxrn-web.js')
 
         const pkg = JSON.parse(contents)
 
@@ -62,6 +61,8 @@ export const depPatches: DepPatch[] = [
           // already on 19 no need to patch!
           return
         }
+
+        const existingExports = { ...pkg.exports }
 
         if (!pkg.exports['.']) {
           throw new Error(`Expected a version of React that has package.json exports defined`)
@@ -86,6 +87,8 @@ export const depPatches: DepPatch[] = [
           'vxrn-web': './jsx-dev-runtime.vxrn-web.js',
           default: './jsx-dev-runtime.js',
         }
+
+        bailIfUnchanged(existingExports, pkg.exports)
 
         return JSON.stringify(pkg, null, 2)
       },
@@ -152,7 +155,6 @@ ${contents}
 
       'package.json': (contents) => {
         assertString(contents)
-        bailIfExists(contents, 'index.vxrn-web.js')
 
         const pkg = JSON.parse(contents)
 
@@ -160,6 +162,8 @@ ${contents}
           // already on 19 no need to patch!
           return
         }
+
+        const existingExports = { ...pkg.exports }
 
         if (!pkg.exports['.']) {
           throw new Error(`Expected a version of React that has package.json exports defined`)
@@ -184,6 +188,8 @@ ${contents}
           'vxrn-web': './test-utils.vxrn-web.js',
           default: './test-utils.js',
         }
+
+        bailIfUnchanged(existingExports, pkg.exports)
 
         return JSON.stringify(pkg, null, 2)
       },
