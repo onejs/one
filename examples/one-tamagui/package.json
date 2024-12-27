@@ -41,8 +41,5 @@
     "@tamagui/vite-plugin": "^1.121.2",
     "@types/react": "^18.3.11",
     "vite": "^6.0.6"
-  },
-  "installConfig": {
-    "hoistingLimits": "workspaces"
   }
 }
