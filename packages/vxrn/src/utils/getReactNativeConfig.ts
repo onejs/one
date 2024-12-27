@@ -208,14 +208,14 @@ export async function getReactNativeConfig(
               let codeOut: string | null | undefined
               let sourceMap: any
 
-              // we need to keep fake objects for type exports
-              const typeExportsMatch = code.match(/^\s*export\s+type\s+([^\s]+)/gi)
-
               // Codegen specification files need to go through the react-native codegen babel plugin.
               // See:
               // * https://reactnative.dev/docs/fabric-native-components-introduction#1-define-specification-for-codegen
               // * https://reactnative.dev/docs/turbo-native-modules-introduction#1-declare-typed-specification
               if (NATIVE_COMPONENT_RE.test(id) || SPEC_FILE_RE.test(id)) {
+                reactNativeCodegenDebug?.(
+                  `Using babel on file (@react-native/babel-plugin-codegen): ${id}`
+                )
                 try {
                   const output = await babel.transform(code, {
                     configFile: false,
@@ -258,6 +258,8 @@ export async function getReactNativeConfig(
 
               // add back in export types as fake objects:
 
+              // we need to keep fake objects for type exports
+              const typeExportsMatch = code.match(/^\s*export\s+type\s+([^\s]+)/gi)
               if (typeExportsMatch) {
                 for (const typeExport of Array.from(typeExportsMatch)) {
                   const [_export, _type, name] = typeExport.split(/\s+/)
@@ -438,9 +440,7 @@ async function findModulePath(
     const parentDir = dirname(currentDir)
 
     if (parentDir === currentDir) {
-      throw new Error(
-        `Could not find module in any of these paths: ${triedPaths?.join(', ')}`
-      )
+      throw new Error(`Could not find module in any of these paths: ${triedPaths?.join(', ')}`)
     }
 
     return findModulePath(modulePath, parentDir, [...(triedPaths || []), currentModulePath])
