@@ -1,4 +1,5 @@
 import babel from '@babel/core'
+import { resolvePath } from '@vxrn/resolve'
 
 export async function transformFlowBabel(
   input: string,
@@ -11,7 +12,7 @@ export async function transformFlowBabel(
         filename: 'file.js', // this is required for @react-native/babel-plugin-codegen to work.
         presets: [
           [
-            'module:metro-react-native-babel-preset',
+            resolvePath('metro-react-native-babel-preset'),
             {
               // To use the `@babel/plugin-transform-react-jsx` plugin for JSX.
               useTransformReactJSXExperimental: true,
