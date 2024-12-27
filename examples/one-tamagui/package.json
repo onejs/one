@@ -15,7 +15,6 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
-    "@react-native-masked-view/masked-view": "^0.3.1",
     "@tamagui/animations-css": "^1.121.2",
     "@tamagui/animations-moti": "^1.121.2",
     "@tamagui/colors": "^1.121.2",

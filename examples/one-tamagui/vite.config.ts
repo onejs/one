@@ -17,7 +17,7 @@ export default {
     }),
 
     tamaguiPlugin({
-      optimize: true,
+      optimize: process.env.NODE_ENV === 'production',
       components: ['tamagui'],
       config: './config/tamagui/tamagui.config.ts',
       outputCSS: './app/tamagui.css',
