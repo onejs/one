@@ -2,7 +2,7 @@ import { AppRegistry, LogBox } from 'react-native' // This should be the first i
 import './polyfills-mobile'
 import './setup'
 import { Root } from './Root'
-import { ReactScan } from 'react-scan/native'
+// import { ReactScan } from 'react-scan/native'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
@@ -13,12 +13,12 @@ export function createApp(options: CreateAppProps): void {
   const App = () => {
     let contents = <Root isClient routes={options.routes} path="/" />
 
-    if (process.env.ONE_ENABLE_REACT_SCAN) {
-      console.warn(`React Scan enabled with options: ${process.env.ONE_ENABLE_REACT_SCAN}`)
-      contents = (
-        <ReactScan options={JSON.parse(process.env.ONE_ENABLE_REACT_SCAN)}>{contents}</ReactScan>
-      )
-    }
+    // if (process.env.ONE_ENABLE_REACT_SCAN) {
+    //   console.warn(`React Scan enabled with options: ${process.env.ONE_ENABLE_REACT_SCAN}`)
+    //   contents = (
+    //     <ReactScan options={JSON.parse(process.env.ONE_ENABLE_REACT_SCAN)}>{contents}</ReactScan>
+    //   )
+    // }
 
     return contents
   }
