@@ -205,12 +205,12 @@ jobs:
 
       - name: Patch Packages
         run: |
-          node_modules/.bin/one patch
+          yarn one patch
 
       # Prebuild and pod install because we need hermesc which is installed by pod install
       - name: Prebuild
         run: |
-          node_modules/.bin/expo prebuild --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
+          yarn expo prebuild --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
       - name: Cache Pods
         uses: actions/cache@v4
         env:
@@ -227,7 +227,7 @@ jobs:
       - name: Bundle React Native code and images
         run: |
           mkdir test-bundle-output
-          node_modules/.bin/react-native bundle --platform ios --dev false --bundle-output test-bundle-output/main.tmp.jsbundle --assets-dest test-bundle-output
+          yarn react-native bundle --platform ios --dev false --bundle-output test-bundle-output/main.tmp.jsbundle --assets-dest test-bundle-output
           ios/Pods/hermes-engine/destroot/bin/hermesc -emit-binary -max-diagnostic-width=80 -O -output-source-map -out test-bundle-output/main.jsbundle test-bundle-output/main.tmp.jsbundle
 
       - name: Replace JS Bundle and Assets in App
