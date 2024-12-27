@@ -5,6 +5,10 @@ import { tamaguiPlugin } from '@tamagui/vite-plugin'
 export default {
   plugins: [
     one({
+      react: {
+        compiler: true,
+      },
+
       web: {
         defaultRenderMode: 'ssg',
       },
