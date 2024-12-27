@@ -33,7 +33,7 @@
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
-    "@vxrn/use-isomorphic-layout-effect": "workspace:^",
+    "@vxrn/use-isomorphic-layout-effect": "workspace:*",
     "react": "^18.3.1"
   },
   "devDependencies": {

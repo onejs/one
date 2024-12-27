@@ -12,7 +12,7 @@
     "test-failing": "vitest --run"
   },
   "dependencies": {
-    "one": "workspace:^",
+    "one": "workspace:*",
     "react-native": "0.76.4"
   },
   "devDependencies": {

@@ -31,9 +31,9 @@
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
-    "@vxrn/utils": "workspace:^",
-    "@vxrn/vite-flow": "workspace:^",
-    "@vxrn/vite-native-hmr": "workspace:^",
+    "@vxrn/utils": "workspace:*",
+    "@vxrn/vite-flow": "workspace:*",
+    "@vxrn/vite-native-hmr": "workspace:*",
     "esbuild": "0.24.0",
     "fs-extra": "^11.2.0",
     "import-meta-resolve": "^4.1.0"
