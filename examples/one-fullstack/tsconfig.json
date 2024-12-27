@@ -51,13 +51,5 @@
   ],
   "typeAcquisition": {
     "enable": true
-  },
-  "references": [
-    {
-      "path": "../../packages/mdx"
-    },
-    {
-      "path": "../../packages/one"
-    }
-  ]
+  }
 }
