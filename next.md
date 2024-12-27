@@ -17,6 +17,8 @@
 
 # backlog
 
+- Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
+
 - hot reload vite.config changes
 
 - react-native-web-lite proper release
