@@ -8,7 +8,7 @@ const resolver =
       ? (path: string, from?: string) => new URL(path, import.meta.url).pathname
       : require.resolve
 
-const resolverV2 = (path, from) => {
+const resolverV2 = (path: string, from = process.cwd()) => {
   const require = module.createRequire(from)
   const importPath = require.resolve(path, { paths: [from] })
   return importPath
