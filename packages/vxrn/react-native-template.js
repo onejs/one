@@ -132,8 +132,6 @@ function getRequire(importer, importsMap, _mod) {
     return {}
   }
 
-  const debugExtraDetail = `Cached modules list:${Object.keys(__cachedModules).join('\n  -')}`
-
   const getErrorDetails = (withStack) => {
     return `In importsMap:
 
