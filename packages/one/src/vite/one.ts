@@ -382,34 +382,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin,
 
     {
-      name: 'one-use-react-18-for-native',
-      enforce: 'pre',
-
-      async config() {
-        const sharedNativeConfig = {
-          resolve: {
-            alias: {
-              react: resolvePath('one/react-18', process.cwd()),
-              'react-dom': resolvePath('one/react-dom-18', process.cwd()),
-            },
-          },
-        } satisfies UserConfig
-
-        return {
-          environments: {
-            ios: {
-              ...sharedNativeConfig,
-            },
-            android: {
-              ...sharedNativeConfig,
-            },
-            // this started erroring for no reason..
-          } as any,
-        }
-      },
-    } satisfies Plugin,
-
-    {
       name: 'one:optimize-deps-load-web-extensions-web-only',
       enforce: 'pre',
 

@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "expo-constants": "~16.0.0",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-native": "0.76.4"
   },
   "devDependencies": {

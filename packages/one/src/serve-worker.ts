@@ -8,9 +8,6 @@ export async function serve(buildInfo: One.BuildInfo) {
   setupBuildInfo(buildInfo)
   ensureExists(buildInfo.oneOptions)
 
-  // TODO make this better, this ensures we get react 19
-  process.env.VXRN_REACT_19 = '1'
-
   const app = await createProdServer(buildInfo.oneOptions)
 
   await oneServe(buildInfo.oneOptions, buildInfo.oneOptions, buildInfo, app, false)

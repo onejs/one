@@ -5,6 +5,7 @@ import { build, type BuildOptions } from 'esbuild'
 import FSExtra from 'fs-extra'
 
 import { createRequire } from 'node:module'
+import { basename, join } from 'node:path'
 
 const requireResolve =
   'url' in import.meta ? createRequire(import.meta.url).resolve : require.resolve
@@ -45,7 +46,6 @@ export async function buildReactJSX(options: BuildOptions = {}) {
               find: `module.exports = require_react_jsx_dev_runtime_development();`,
               replace: `return require_react_jsx_dev_runtime_development();`,
             },
-        { find: `process.env.VXRN_REACT_19`, replace: 'false', optional: true },
         {
           find: `Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')"));`,
           optional: true,
@@ -108,11 +108,6 @@ export async function buildReact(options: BuildOptions = {}) {
               find: /module\.exports = require_react_development(\d*)\(\);/,
               replace: 'return require_react_development$1();',
             },
-        {
-          find: `process.env.VXRN_REACT_19`,
-          optional: true,
-          replace: 'false',
-        },
         {
           find: `Object.assign(exports, eval("require('@vxrn/vendor/react-19')"));`,
           optional: true,
@@ -194,6 +189,25 @@ export async function buildReactNative(
             async (input) => {
               if (!input.path.includes('react-native') && !input.path.includes(`vite-native-hmr`)) {
                 return
+              }
+
+              if (input.path.includes('Libraries/Renderer/implementations')) {
+                const filename = basename(input.path)
+                const swapped = join(
+                  import.meta.dirname,
+                  '..',
+                  'vendor',
+                  'react-native-19',
+                  'Libraries',
+                  'Renderer',
+                  'implementations',
+                  filename
+                )
+                // swap out react 19 implementation
+                return {
+                  contents: await readFile(swapped, 'utf-8'),
+                  loader: 'js',
+                }
               }
 
               const code = await readFile(input.path, 'utf-8')

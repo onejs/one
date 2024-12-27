@@ -29,9 +29,6 @@ export async function serve(args: VXRNOptions['server'] = {}) {
     await loadEnv('production')
   }
 
-  // TODO make this better, this ensures we get react 19
-  process.env.VXRN_REACT_19 = '1'
-
   return await vxrnServe({
     server: {
       // fallback to one plugin

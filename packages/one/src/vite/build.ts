@@ -37,9 +37,6 @@ export async function build(args: {
   const oneOptions = await loadUserOneOptions('build')
   const serverOutputFormat = oneOptions.build?.server?.outputFormat ?? 'esm'
 
-  // TODO make this better, this ensures we get react 19
-  process.env.VXRN_REACT_19 = '1'
-
   if (!process.env.ONE_SERVER_URL) {
     console.warn(
       `⚠️ No ONE_SERVER_URL environment set, set it in your .env to your target deploy URL`

@@ -76,7 +76,6 @@
   "dependencies": {
     "@biomejs/biome": "^1.8.3",
     "@manypkg/cli": "^0.19.1",
-    "@types/react": "^18.3.11",
     "@types/react-native": "~0.70.6",
     "check-dependency-version-consistency": "^3.0.3",
     "esbuild-register": "^3.6.0",
