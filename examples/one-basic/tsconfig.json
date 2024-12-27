@@ -32,10 +32,5 @@
     "**/dist",
     "**/types",
     "**/__tests__"
-  ],
-  "references": [
-    {
-      "path": "../../packages/one"
-    }
   ]
 }

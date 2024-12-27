@@ -32,13 +32,5 @@
     "**/dist",
     "**/types",
     "**/__tests__"
-  ],
-  "references": [
-    {
-      "path": "../../packages/color-scheme"
-    },
-    {
-      "path": "../../packages/one"
-    }
   ]
 }
