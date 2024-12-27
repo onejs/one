@@ -1,4 +1,4 @@
-import { Tabs } from 'one'
+import { NativeTabs } from '~/code/ui/BottomTabs'
 import { HomeIcons } from './HomeIcons'
 import { useTheme } from 'tamagui'
 
@@ -6,14 +6,14 @@ export function HomeLayout() {
   const theme = useTheme()
 
   return (
-    <Tabs
+    <NativeTabs
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: theme.accentColor.val,
         tabBarInactiveTintColor: theme.gray9.val,
       }}
     >
-      <Tabs.Screen
+      <NativeTabs.Screen
         name="index"
         options={{
           title: 'Feed',
@@ -21,7 +21,7 @@ export function HomeLayout() {
         }}
       />
 
-      <Tabs.Screen
+      <NativeTabs.Screen
         name="notifications"
         options={{
           title: 'Notifications',
@@ -29,13 +29,13 @@ export function HomeLayout() {
         }}
       />
 
-      <Tabs.Screen
+      <NativeTabs.Screen
         name="profile"
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => <HomeIcons.User size={20} color={color} />,
         }}
       />
-    </Tabs>
+    </NativeTabs>
   )
 }

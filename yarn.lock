@@ -12668,7 +12668,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.0.0, ajv@npm:^8.0.1, ajv@npm:^8.12.0":
+"ajv@npm:^8.0.0, ajv@npm:^8.0.1, ajv@npm:^8.11.0, ajv@npm:^8.12.0":
   version: 8.17.1
   resolution: "ajv@npm:8.17.1"
   dependencies:
@@ -16738,11 +16738,13 @@ __metadata:
     drizzle-kit: "npm:^0.24.2"
     drizzle-orm: "npm:^0.33.0"
     expo: "npm:~52.0.17"
+    expo-build-properties: "npm:^0.13.1"
     expo-modules-core: "npm:2.1.2"
     one: "workspace:^"
     postgres: "npm:^3.4.4"
     react: "npm:^18.3.1"
     react-native: "npm:0.76.4"
+    react-native-bottom-tabs: "npm:^0.7.8"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:4.4.0-rc.1"
@@ -16850,6 +16852,18 @@ __metadata:
     vxrn: "workspace:^"
   languageName: unknown
   linkType: soft
+
+"expo-build-properties@npm:^0.13.1":
+  version: 0.13.1
+  resolution: "expo-build-properties@npm:0.13.1"
+  dependencies:
+    ajv: "npm:^8.11.0"
+    semver: "npm:^7.6.0"
+  peerDependencies:
+    expo: "*"
+  checksum: 10/5376a821e0ac7fa5eebdf84a7ddd293cd7cdbbcc7e0b4f7307d2d02102ce1ac076d93128f2a59dce735e04f2fab7280172268992a53edc67d8a3fd5653a27f8a
+  languageName: node
+  linkType: hard
 
 "expo-constants@npm:~16.0.0":
   version: 16.0.2
@@ -24302,6 +24316,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-bottom-tabs@npm:^0.7.8":
+  version: 0.7.8
+  resolution: "react-native-bottom-tabs@npm:0.7.8"
+  dependencies:
+    sf-symbols-typescript: "npm:^2.0.0"
+    use-latest-callback: "npm:^0.2.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/0d52227c6b40df4943eb472dda2f4690d878909ff0642a3fb469da531ca1c024c58767901fe1f1dbcd26aab84065e62a322adbd86e2a5c3675b32f3e7113ec87
+  languageName: node
+  linkType: hard
+
 "react-native-drawer-layout@npm:^4.1.1":
   version: 4.1.1
   resolution: "react-native-drawer-layout@npm:4.1.1"
@@ -25964,6 +25991,13 @@ __metadata:
   version: 1.0.0
   resolution: "sf-symbols-typescript@npm:1.0.0"
   checksum: 10/008ddfcadceb33ec29fb182104516234cc3f771254619696918481744bc28be51070f226859e4dfc2faf5f094dd8ca13e0364b2bb3d22e8cf044ce37f749df0b
+  languageName: node
+  linkType: hard
+
+"sf-symbols-typescript@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "sf-symbols-typescript@npm:2.0.0"
+  checksum: 10/dde81c01265bdff16f527e1242af03793460c3c5f34ca6950ab1ca73a3bccd54ebabfcd56961658e72f94baac06ad620134a0bc03b0674dd543d4883c7d5e18f
   languageName: node
   linkType: hard
 

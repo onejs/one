@@ -22,6 +22,9 @@ export const EXCLUDE_LIST = [
   // /lib/module/Platform/Platform.web.js:132:20
   '@shopify/react-native-skia',
 
+  // web breaks trying to scan deps
+  'react-native-bottom-tabs',
+
   '@react-native/virtualized-lists', // Unexpected "typeof" in `node_modules/@react-native/virtualized-lists/index.js`
 
   // Native only, we don't expect SSR to use these packages.

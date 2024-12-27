@@ -1,5 +1,7 @@
 1.0 ordered from most work to least:
 
+  - rn lazy imports
+  
   - react-native-safe-area-context
     - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
 

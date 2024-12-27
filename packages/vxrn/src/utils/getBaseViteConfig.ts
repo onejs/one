@@ -2,6 +2,7 @@ import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import type { InlineConfig } from 'vite'
 import { webExtensions } from '../constants'
 import { resolvePath } from '@vxrn/resolve'
+import { dirname } from 'node:path'
 
 // essentially base web config not base everything
 
@@ -35,6 +36,7 @@ export function getBaseViteConfig({
     plugins: [
       {
         name: 'platform-specific-resolve',
+        enforce: 'pre',
         config() {
           return {
             environments: {
