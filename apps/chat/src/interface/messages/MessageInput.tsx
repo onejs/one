@@ -2,17 +2,17 @@ import type { RefMDEditor } from '@uiw/react-md-editor'
 import { useEffect, useRef } from 'react'
 import { Input, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { Editor } from '~/editor/Editor'
+import { Editor, type EditorRef } from '~/editor/Editor'
 import { randomID } from '~/helpers/randomID'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
 import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
 import { zero } from '~/zero/zero'
 import { messagesListEmitter } from './MessagesList'
 
-let mainInputRef: RefMDEditor | null = null
+let mainInputRef: EditorRef | null = null
 
 export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
-  const inputRef = useRef<RefMDEditor>(null)
+  const inputRef = useRef<EditorRef>(null)
   const channel = useCurrentChannel()
   const server = useCurrentServer()
   const thread = useCurrentThread()
@@ -73,7 +73,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             }
 
             case 'Escape': {
-              inputRef.current?.blur()
+              inputRef.current?.textarea?.blur()
 
               if (getDerivedUserState().activeThread) {
                 updateUserCurrentChannel({
@@ -97,7 +97,8 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             return
           }
 
-          inputRef.current?.clear()
+          inputRef.current?.cl
+
           zero.mutate.message.insert({
             id: randomID(),
             channelID: channel.id,

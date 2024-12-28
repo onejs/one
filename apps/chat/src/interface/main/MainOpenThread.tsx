@@ -30,6 +30,7 @@ export const MainOpenThread = () => {
         ? {}
         : {
             opacity: 0,
+            pe: 'none',
             x: 7,
           })}
     >

@@ -19,12 +19,17 @@ export const MessageActionBar = ({
 }) => {
   const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
   const [show, setShow] = useState(false)
-
-  messageHover.use((val) => {
-    setShow(val === message.id)
-  })
-
   const stickOpen = messageActionBarStickOpen.useValue()
+
+  messageHover.use(
+    (val) => {
+      if (stickOpen) {
+        return
+      }
+      setShow(val === message.id)
+    },
+    [stickOpen]
+  )
 
   if (!show) {
     return
