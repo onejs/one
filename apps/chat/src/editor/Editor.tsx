@@ -1,5 +1,5 @@
 import MDEditor, { type RefMDEditor } from '@uiw/react-md-editor'
-import { forwardRef, useState } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 export type EditorProps = {
   initialValue?: string
@@ -7,8 +7,11 @@ export type EditorProps = {
   onSubmit?: (text: string) => void
 }
 
-export const Editor = forwardRef<RefMDEditor, EditorProps>(
+export type EditorRef = RefMDEditor & { clear?: () => void }
+
+export const Editor = forwardRef<EditorRef, EditorProps>(
   ({ onSubmit, onKeyDown, initialValue }, ref) => {
+    const editorRef = useRef<RefMDEditor>(null)
     const [value, setValue] = useState(initialValue || '')
     const hasNewLines = value.includes('\n')
 
@@ -17,10 +20,19 @@ export const Editor = forwardRef<RefMDEditor, EditorProps>(
       setValue('')
     }
 
+    useImperativeHandle(ref, () => {
+      return {
+        ...editorRef.current,
+        clear() {
+          setValue('')
+        },
+      }
+    })
+
     return (
       <div className="container">
         <MDEditor
-          ref={ref}
+          ref={editorRef}
           preview="edit"
           height="100%"
           minHeight={50}

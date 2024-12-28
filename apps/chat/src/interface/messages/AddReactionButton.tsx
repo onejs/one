@@ -4,17 +4,35 @@ import { SearchableInput, SearchableList, SearchableListItem } from '../Searchab
 import { useQuery } from '~/zero/zero'
 import { ButtonSimple } from '../ButtonSimple'
 import { PopoverContent } from '../Popover'
+import { useEffect, useState } from 'react'
+import { messageActionBarStickOpen } from './constants'
+import { experimental_VGrid as VGrid } from 'virtua'
 
 export const AddReactionButton = () => {
   const [reactions] = useQuery((q) => q.reaction.orderBy('keyword', 'desc'))
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (open) {
+      messageActionBarStickOpen.emit(true)
+      return () => {
+        messageActionBarStickOpen.emit(false)
+      }
+    }
+  }, [open])
+
+  const columns = 8
+  const rows = Math.ceil(reactions.length / columns)
 
   return (
     <Popover
+      open={open}
       offset={{
         mainAxis: 5,
       }}
       allowFlip
       placement="bottom-start"
+      onOpenChange={setOpen}
     >
       <Popover.Trigger>
         <TooltipSimple label="Add reaction">
@@ -25,29 +43,37 @@ export const AddReactionButton = () => {
       </Popover.Trigger>
 
       <PopoverContent width={300} height={300}>
-        <SearchableList onSelectItem={() => {}} items={reactions}>
-          <XStack p="$2" w="100%">
-            <SearchableInput size="$4" f={1} />
-          </XStack>
+        {open && (
+          <SearchableList onSelectItem={() => {}} items={reactions}>
+            <XStack p="$2" w="100%">
+              <SearchableInput size="$4" f={1} />
+            </XStack>
 
-          <ScrollView f={1}>
-            <XStack fw="wrap" ai="center">
-              {reactions.map((reaction, index) => {
+            <VGrid
+              style={{ flex: 1, maxWidth: '100%' }}
+              row={rows}
+              col={columns}
+              cellWidth={30}
+              cellHeight={30}
+            >
+              {({ rowIndex, colIndex }) => {
+                const index = rowIndex * columns + colIndex
+                const reaction = reactions[index]
                 return (
-                  <SearchableListItem key={reaction.id} index={index}>
+                  <SearchableListItem index={index}>
                     {(active, itemProps) => {
                       return (
                         <ButtonSimple active={active} {...itemProps}>
-                          {reaction.value}
+                          {reaction?.value}
                         </ButtonSimple>
                       )
                     }}
                   </SearchableListItem>
                 )
-              })}
-            </XStack>
-          </ScrollView>
-        </SearchableList>
+              }}
+            </VGrid>
+          </SearchableList>
+        )}
       </PopoverContent>
     </Popover>
   )
