@@ -56,6 +56,7 @@
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vxrn/debug": "workspace:^",
     "@vxrn/query-string": "workspace:^",
+    "@vxrn/utils": "workspace:^",
     "@vxrn/react-native-prebuilt": "workspace:^",
     "@vxrn/resolve": "workspace:^",
     "@vxrn/safe-area": "workspace:^",

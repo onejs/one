@@ -3,6 +3,8 @@ import path from 'node:path'
 import FSExtra from 'fs-extra'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
+import { detectPackageManager, PackageManagerName } from '@vxrn/utils'
+import { error, log } from 'node:console'
 /*
 This code block is partially copied from meta owned repos.
 Copyright (c) Facebook, Inc. and its affiliates.
@@ -131,8 +133,23 @@ export const prebuild = async ({
       let packageJsonContents = await FSExtra.readFile(packageJsonPath, 'utf8')
       let { devDependencies } = JSON.parse(packageJsonContents)
       if (!devDependencies['@react-native-community/template']) {
+        const installCommand: `${PackageManagerName} ${'add' | 'install'} ${'-D'} ${'@react-native-community/template'}` =
+          await (async () => {
+            const found = await detectPackageManager()
+            switch (true) {
+              case found.bun:
+                return `bun add -D @react-native-community/template`
+              case found.pnpm:
+                return `pnpm install -D @react-native-community/template`
+              case found.yarn:
+                return `yarn add -D @react-native-community/template`
+              default:
+                return `npm install -D @react-native-community/template`
+            }
+          })()
         throw new Error(
-          '"@react-native-community/template" is not found in package.json, please install "@react-native-community/template" as dev dependency'
+          '"@react-native-community/template" is not found in package.json, please install "@react-native-community/template" as dev dependency:\n' +
+            `\`${installCommand}\``
         )
       }
     } catch (error) {
