@@ -6,15 +6,8 @@ import { webExtensions } from '../constants'
 export function getOptimizeDeps(mode: 'build' | 'serve') {
   const needsInterop = [
     '@vxrn/safe-area',
-    '@vxrn/vendor/react-19-prod',
-    '@vxrn/vendor/react-19',
-    '@vxrn/vendor/react-19-compiler-runtime',
-    '@vxrn/vendor/react-dom-19',
-    '@vxrn/vendor/react-dom-client-19',
-    '@vxrn/vendor/react-dom-server.browser-19',
-    '@vxrn/vendor/react-jsx-19',
-    '@vxrn/vendor/react-jsx-dev-19',
     'react',
+    'react-is',
     'react/jsx-runtime',
     'react/jsx-dev-runtime',
     'react/compiler-runtime',
@@ -28,7 +21,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'query-string',
     'escape-string-regexp',
     'use-latest-callback',
-    'react-is',
     'fast-deep-equal',
     '@supabase/auth-helpers-react',
     'core-js',
@@ -47,6 +39,9 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
   const depsToOptimize = [
     ...needsInterop,
+
+    // for react-native react 19 swap
+    'scheduler',
 
     'fast-xml-parser',
     'set-cookie-parser',
@@ -91,7 +86,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'decode-uri-component',
     'split-on-first',
     'filter-obj',
-    'scheduler',
     'warn-once',
     '@radix-ui/react-compose-refs',
     '@radix-ui/react-slot',

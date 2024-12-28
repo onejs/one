@@ -10,7 +10,7 @@ import { basename, join } from 'node:path'
 const requireResolve =
   'url' in import.meta ? createRequire(import.meta.url).resolve : require.resolve
 
-const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime']
+const external = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'react-is', 'scheduler']
 
 export async function buildReactJSX(options: BuildOptions = {}) {
   const isProd = options.define?.['__DEV__'] === 'false'
@@ -46,11 +46,6 @@ export async function buildReactJSX(options: BuildOptions = {}) {
               find: `module.exports = require_react_jsx_dev_runtime_development();`,
               replace: `return require_react_jsx_dev_runtime_development();`,
             },
-        {
-          find: `Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')"));`,
-          optional: true,
-          replace: ``,
-        },
       ])}
     }
     const __mod__ = run()
@@ -108,11 +103,6 @@ export async function buildReact(options: BuildOptions = {}) {
               find: /module\.exports = require_react_development(\d*)\(\);/,
               replace: 'return require_react_development$1();',
             },
-        {
-          find: `Object.assign(exports, eval("require('@vxrn/vendor/react-19')"));`,
-          optional: true,
-          replace: ``,
-        },
       ])}
     }
     const __mod__ = run()
@@ -187,6 +177,41 @@ export async function buildReactNative(
               filter: /.*\.js$/,
             },
             async (input) => {
+              console.log('okok', input.path)
+              // if (input.path.includes('react-is')) {
+              //   const swapped = join(
+              //     import.meta.dirname,
+              //     '..',
+              //     'vendor',
+              //     'react-is',
+              //     'react-is.development.js'
+              //   )
+              //   // swap out react 19 implementation
+              //   return {
+              //     contents: await readFile(swapped, 'utf-8'),
+              //     loader: 'js',
+              //   }
+              // }
+
+              // if (input.path.includes('scheduler')) {
+              //   const filename = basename(input.path)
+              //   const swapped = join(
+              //     import.meta.dirname,
+              //     '..',
+              //     'vendor',
+              //     'scheduler',
+              //     // TODO actually switch dev and prod
+              //     filename === 'index.native.js'
+              //       ? 'scheduler.native.development.js'
+              //       : 'scheduler.native.production.js'
+              //   )
+              //   // swap out react 19 implementation
+              //   return {
+              //     contents: await readFile(swapped, 'utf-8'),
+              //     loader: 'js',
+              //   }
+              // }
+
               if (!input.path.includes('react-native') && !input.path.includes(`vite-native-hmr`)) {
                 return
               }
@@ -197,7 +222,7 @@ export async function buildReactNative(
                   import.meta.dirname,
                   '..',
                   'vendor',
-                  'react-native-19',
+                  'react-native',
                   'Libraries',
                   'Renderer',
                   'implementations',

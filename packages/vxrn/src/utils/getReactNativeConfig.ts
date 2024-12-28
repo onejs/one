@@ -21,6 +21,7 @@ import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
+import { resolvePath } from '@vxrn/resolve'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
@@ -54,6 +55,21 @@ export async function getReactNativeConfig(
       ...(globalThis.__vxrnAddNativePlugins || []),
 
       ...(mode === 'dev' ? [nativeClientInjectPlugin()] : []),
+
+      {
+        name: `one:react-native-react-19`,
+        config() {
+          return {
+            resolve: {
+              alias: {
+                // mode === 'dev'
+                'react-is': resolvePath('@vxrn/react-native-prebuilt/react-is-development'),
+                scheduler: resolvePath('@vxrn/react-native-prebuilt/scheduler-development'),
+              },
+            },
+          }
+        },
+      } satisfies Plugin,
 
       // vite doesnt support importing from a directory but its so common in react native
       // so lets make it work, and node resolve theoretically fixes but you have to pass in moduleDirs

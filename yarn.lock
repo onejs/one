@@ -12490,12 +12490,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vxrn/vendor@workspace:*, @vxrn/vendor@workspace:packages/vendor":
-  version: 0.0.0-use.local
-  resolution: "@vxrn/vendor@workspace:packages/vendor"
-  languageName: unknown
-  linkType: soft
-
 "@vxrn/vite-flow@workspace:*, @vxrn/vite-flow@workspace:packages/vite-flow":
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-flow@workspace:packages/vite-flow"
@@ -28699,7 +28693,6 @@ __metadata:
     "@vxrn/resolve": "workspace:*"
     "@vxrn/safe-area": "workspace:*"
     "@vxrn/url-parse": "workspace:*"
-    "@vxrn/vendor": "workspace:*"
     "@vxrn/vite-flow": "workspace:*"
     "@vxrn/vite-native-swc": "workspace:*"
     citty: "npm:^0.1.6"

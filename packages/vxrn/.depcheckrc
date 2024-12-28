@@ -3,7 +3,6 @@ ignores:
   - "@biomejs/biome"
   - "vxrn"
   - "@expo/cli"
-  - "@vxrn/vendor"
   - "react"
   - "expo"
   - "@tamagui/react-native-svg"

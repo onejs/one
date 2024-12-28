@@ -5,6 +5,10 @@
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
+    "./react-is-development": "./vendor/react-is/react-is.development.js",
+    "./react-is-production": "./vendor/react-is/react-is.production.js",
+    "./scheduler-development": "./vendor/scheduler/scheduler.native.development.js",
+    "./scheduler-production": "./vendor/scheduler/scheduler.native.production.js",
     ".": {
       "types": "./types/index.d.ts",
       "import": "./dist/index.mjs"
