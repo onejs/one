@@ -148,6 +148,12 @@ const prebuild = defineCommand({
       type: 'string',
       description: 'ios or android',
     },
+
+    expo: {
+      type: 'boolean',
+      description: 'expo or non-expo folders',
+      default: true,
+    },
   },
   async run({ args }) {
     const { run } = await import('./cli/prebuild')
