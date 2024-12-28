@@ -4,7 +4,12 @@ import { VList, type VListHandle } from 'virtua'
 import type { MessageWithRelations } from '~/zero/schema'
 import { useAuth } from '~/better-auth/authClient'
 import { useCurrentChannel } from '~/state/server'
-import { getUserState, updateUserCurrentChannel, updateUserOpenThread } from '~/state/user'
+import {
+  getUserState,
+  updateUserCurrentChannel,
+  updateUserOpenThread,
+  updateUserSetEditingMessage,
+} from '~/state/user'
 import { createEmitter } from '@vxrn/emitter'
 import { MessageItem } from './MessageItem'
 
@@ -76,6 +81,8 @@ export const MessagesList = memo(
             if (focusedMessage) {
               if (focusedMessage.thread) {
                 updateUserOpenThread(focusedMessage.thread[0])
+              } else {
+                updateUserSetEditingMessage(focusedMessage.id)
               }
             }
             break

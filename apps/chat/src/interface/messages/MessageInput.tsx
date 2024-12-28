@@ -1,3 +1,4 @@
+import type { RefMDEditor } from '@uiw/react-md-editor'
 import { useEffect, useRef } from 'react'
 import { Input, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
@@ -8,10 +9,10 @@ import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from 
 import { zero } from '~/zero/zero'
 import { messagesListEmitter } from './MessagesList'
 
-let mainInputRef: Input | null = null
+let mainInputRef: RefMDEditor | null = null
 
 export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
-  const inputRef = useRef<Input>(null)
+  const inputRef = useRef<RefMDEditor>(null)
   const channel = useCurrentChannel()
   const server = useCurrentServer()
   const thread = useCurrentThread()
@@ -21,15 +22,30 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   // on channel change, focus input
   useEffect(() => {
     if (!inThread) {
-      mainInputRef = inputRef.current
-    }
+      if (!mainInputRef) {
+        setTimeout(() => {
+          mainInputRef = inputRef.current
+          mainInputRef?.textarea?.focus()
+        })
+      }
+    } else {
+      setTimeout(() => {
+        inputRef.current?.textarea?.focus()
+      })
 
-    inputRef.current?.focus()
+      return () => {
+        // focus events cause layout shifts which can make animations bad
+        setTimeout(() => {
+          mainInputRef?.textarea?.focus()
+        }, 50)
+      }
+    }
   }, [channel, inThread])
 
   return (
     <YStack btw={1} bc="$color4" p="$2">
       <Editor
+        ref={inputRef}
         onKeyDown={(e) => {
           const key = e.key
           switch (key) {
@@ -65,7 +81,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
                 })
 
                 if (mainInputRef) {
-                  mainInputRef.focus()
+                  mainInputRef.textarea?.focus()
                 }
               }
               break
@@ -97,18 +113,6 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
           //   inputRef.current?.focus()
           // }, 40)
         }}
-      />
-    </YStack>
-  )
-
-  return (
-    <YStack btw={1} bc="$color4" p="$2">
-      <Input
-        ref={inputRef}
-        disabled={disabled}
-        placeholder={disabled ? 'Sign in to chat...' : ''}
-        pe={disabled ? 'none' : 'auto'}
-        onSubmitEditing={(e) => {}}
       />
     </YStack>
   )

@@ -100,3 +100,9 @@ export const updateUserOpenThread = async (thread: { id: string }) => {
     openedThreadId: thread.id,
   })
 }
+
+export const updateUserSetEditingMessage = async (id?: string) => {
+  updateUserCurrentChannel({
+    editingMessageId: id,
+  })
+}
