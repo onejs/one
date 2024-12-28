@@ -27,9 +27,11 @@ export const ensureSignedUp = async () => {
 
 export const confirmEmitter = createEmitter<boolean>()
 
-export const dialogConfirm = async (props: Omit<DialogConfirmType, 'type'>) => {
+export const dialogConfirm = async (props: Partial<Omit<DialogConfirmType, 'type'>>) => {
   dialogEmit({
     type: 'confirm',
+    title: `Are you sure?`,
+    description: '',
     ...props,
   })
   return confirmEmitter.nextValue()

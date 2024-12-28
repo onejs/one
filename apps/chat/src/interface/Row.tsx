@@ -1,4 +1,4 @@
-import { Button, SizableText, styled, withStaticProperties, XStack } from 'tamagui'
+import { Button, SizableText, styled, withStaticProperties, XStack, type GetProps } from 'tamagui'
 
 const RowComponent = styled(XStack, {
   gap: '$4',
@@ -33,3 +33,5 @@ export const Row = withStaticProperties(RowComponent, {
   Text: RowText,
   Button: RowButton,
 })
+
+export type RowProps = GetProps<typeof Row>

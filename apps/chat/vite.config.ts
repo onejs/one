@@ -6,7 +6,7 @@ export default {
   plugins: [
     one({
       react: {
-        // compiler: true,
+        compiler: true,
         // scan: true,
       },
 

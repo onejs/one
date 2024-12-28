@@ -28,7 +28,7 @@ export class Emitter<const T> {
     return state
   }
 
-  nextValue = () => {
+  nextValue = (): Promise<T> => {
     return new Promise<T>((res) => {
       const dispose = this.listen((val) => {
         dispose()

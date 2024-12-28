@@ -3,7 +3,7 @@ import * as unicodeEmoji from 'unicode-emoji'
 
 const randomID = () => Math.random().toString(36).slice(2)
 
-const connectionString = process.env.DOCKER_UPSTREAM_DB
+const connectionString = process.env.ZERO_UPSTREAM_DB.replace('127.0.0.1', 'pgdb')
 
 console.info(`Connecting to: ${connectionString}`)
 
