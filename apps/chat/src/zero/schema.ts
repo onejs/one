@@ -223,6 +223,12 @@ const channelSchema = createTableSchema({
         destSchema: () => roleSchema,
       },
     ],
+
+    server: {
+      sourceField: 'serverID',
+      destField: 'id',
+      destSchema: () => serverSchema,
+    },
   },
 })
 
@@ -346,6 +352,10 @@ export type Role = Row<typeof roleSchema>
 export type UserRole = Row<typeof userRoleSchema>
 export type ChannelRole = Row<typeof channelRoleSchema>
 
+const rolePermissionsKeys = ['canAdmin', 'canEditChannel', 'canEditServer'] satisfies (keyof Role)[]
+
+export type RolePermissionsKeys = (typeof rolePermissionsKeys)[0]
+
 export type RoleWithRelations = Role & { members: readonly User[] }
 
 export type MessageWithRelations = Message & {
@@ -372,6 +382,17 @@ export const permissions = definePermissions<AuthData, Schema>(schema, () => {
   //   eb: ExpressionBuilder<typeof commentSchema | typeof emojiSchema | typeof issueSchema>
   // ) => eb.and(userIsLoggedIn(authData, eb), eb.cmp('creatorID', '=', authData.sub))
 
+  const channelRowUserHasPermissions = (
+    ad: AuthData,
+    eb: ExpressionBuilder<typeof channelSchema>
+  ) => {
+    return eb.exists('server', (server) => {
+      return server.whereExists('roles', (q) =>
+        q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
+      )
+    })
+  }
+
   return {
     user: {
       // Only the authentication system can write to the user table.
@@ -396,8 +417,13 @@ export const permissions = definePermissions<AuthData, Schema>(schema, () => {
         update: {
           preMutation: [
             (ad, eb) => {
-              return eb.exists('roles', (q) =>
-                q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
+              return eb.or(
+                eb.exists('roles', (q) =>
+                  q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
+                ),
+                eb.exists('roles', (q) =>
+                  q.where('canEditServer', true).whereExists('members', (q) => q.where('id', ad.id))
+                )
               )
             },
           ],
@@ -405,14 +431,13 @@ export const permissions = definePermissions<AuthData, Schema>(schema, () => {
       },
     },
 
-    // channel: {
-    //   row: {
-    //     insert: [
-    //       (authData, { exists }) => {
-    //         return cmp()
-    //       }
-    //     ]
-    //   }
-    // }
+    channel: {
+      row: {
+        insert: [channelRowUserHasPermissions],
+        update: {
+          preMutation: [channelRowUserHasPermissions],
+        },
+      },
+    },
   }
 })

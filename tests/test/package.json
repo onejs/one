@@ -33,8 +33,8 @@
     "tamagui": "^1.121.3"
   },
   "devDependencies": {
-    "get-port-please": "^3.1.2",
     "@react-native-community/cli": "latest",
+    "get-port-please": "^3.1.2",
     "tsx": "^4.19.0",
     "vite": "^6.0.6",
     "vitest": "^2.1.8"
