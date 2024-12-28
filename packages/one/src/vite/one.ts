@@ -23,7 +23,7 @@ import { createReactCompilerPlugin } from './plugins/reactCompilerPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { createVirtualEntry, virtualEntryId } from './plugins/virtualEntryPlugin'
 import type { One } from './types'
-// import { barrel } from 'vite-plugin-barrel'
+import { barrel } from 'vite-plugin-barrel'
 
 /**
  * This needs a big refactor!
@@ -69,12 +69,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     },
 
     // stopped working on new version
-    // barrel({
-    //   packages: ['@tamagui/lucide-icons', '@mui/material', '@mui/icons-material'],
-    //   // experimental: {
-    //   //   integration: 'plugin-react-swc',
-    //   // },
-    // }) as any,
+    barrel({
+      packages: ['@tamagui/lucide-icons', '@mui/material', '@mui/icons-material'],
+      // experimental: {
+      //   integration: 'plugin-react-swc',
+      // },
+    }) as any,
 
     {
       name: 'one-define-env',
