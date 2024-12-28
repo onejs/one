@@ -16,6 +16,8 @@ export type UserState = {
   activeChannels: Record<string, string>
   showSidePanel?: 'user' | 'settings'
   channelState?: ChannelsState
+  // array so we can occasionally cull oldest, only need to remember a few
+  messageEdits?: [{ id: string; content: string }]
 }
 
 export type ChannelsState = {
@@ -25,6 +27,7 @@ export type ChannelsState = {
 export type ChannelState = {
   mainView?: 'thread' | 'chat'
   focusedMessageId?: string
+  editingMessageId?: string
   openedThreadId?: string
 }
 

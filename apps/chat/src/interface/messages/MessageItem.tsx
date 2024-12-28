@@ -3,11 +3,18 @@ import MDEditor from '@uiw/react-md-editor'
 import { memo } from 'react'
 import { SizableText, XStack, YStack } from 'tamagui'
 import { Avatar } from '~/interface/Avatar'
-import { updateUserOpenThread, useUserCurrentChannelState } from '~/state/user'
+import {
+  updateUserOpenThread,
+  updateUserSetEditingMessage,
+  useUserCurrentChannelState,
+  useUserState,
+} from '~/state/user'
 import type { Channel, MessageWithRelations, Thread, User } from '~/zero/schema'
 import { MessageActionBar } from './MessageActionBar'
 import { MessageReactions } from './MessageReactions'
 import { messageHover } from './constants'
+import { Editor } from '~/editor/Editor'
+import { zero } from '~/zero/zero'
 
 export const MessageItem = memo(
   ({
@@ -31,7 +38,9 @@ export const MessageItem = memo(
     }
 
     const channelState = useUserCurrentChannelState()
+    const [userState] = useUserState()
     const isFocused = !disableEvents && channelState?.focusedMessageId === message.id
+    const isEditing = channelState?.editingMessageId === message.id
 
     return (
       <XStack
@@ -74,10 +83,31 @@ export const MessageItem = memo(
           )}
 
           <SizableText f={1} ov="hidden">
-            <MDEditor.Markdown
-              source={message.content}
-              style={{ whiteSpace: 'pre-wrap', background: 'transparent', borderWidth: 0 }}
-            />
+            {isEditing ? (
+              <Editor
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') {
+                    updateUserSetEditingMessage(undefined)
+                  }
+                }}
+                onSubmit={(content) => {
+                  updateUserSetEditingMessage(undefined)
+                  zero.mutate.message.update({
+                    id: message.id,
+                    content,
+                  })
+                }}
+                initialValue={
+                  userState.messageEdits?.find((x) => x.id === message.id)?.content ??
+                  message.content
+                }
+              />
+            ) : (
+              <MDEditor.Markdown
+                source={message.content}
+                style={{ whiteSpace: 'pre-wrap', background: 'transparent', borderWidth: 0 }}
+              />
+            )}
           </SizableText>
 
           {thread && (
