@@ -1,5 +1,5 @@
-import type { Logger, ResolvedServerUrls } from 'vite'
 import colors from 'picocolors'
+import type { Logger, ResolvedServerUrls } from 'vite'
 
 export function printServerUrls(
   urls: ResolvedServerUrls,
