@@ -1,4 +1,4 @@
-import { virtualEntryIdNative } from '../vite/plugins/virtualEntryPlugin'
+import { virtualEntryIdNative } from '../vite/plugins/virtualEntryConstants'
 import { labelProcess } from './label-process'
 
 export async function run(args: {
@@ -8,16 +8,18 @@ export async function run(args: {
   https?: boolean
   mode?: 'development' | 'production'
   debugBundle?: boolean
+  debug?: string
 }) {
   labelProcess('dev')
 
-  const { dev } = await import('vxrn')
+  const { dev } = await import('vxrn/dev')
 
   const { start, stop } = await dev({
     mode: args.mode,
     clean: args.clean,
     root: process.cwd(),
     debugBundle: args.debugBundle,
+    debug: args.debug,
     server: {
       https: args.https,
       host: args.host,

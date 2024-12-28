@@ -95,6 +95,10 @@ export type VXRNOptions = {
      * Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.
      */
     debugBundle?: boolean;
+    /**
+     * Pass debug options to Vite
+     */
+    debug?: string;
 };
 export type HMRListener = (update: {
     file: string;

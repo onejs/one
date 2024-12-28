@@ -13,6 +13,14 @@
       "types": "./types/index.d.ts",
       "default": "./dist/index.mjs"
     },
+    "./dev": {
+      "types": "./types/exports/dev.d.ts",
+      "default": "./dist/exports/dev.mjs"
+    },
+    "./build": {
+      "types": "./types/exports/build.d.ts",
+      "default": "./dist/exports/build.mjs"
+    },
     "./serve": {
       "types": "./types/exports/serve.d.ts",
       "default": "./dist/exports/serve.mjs"

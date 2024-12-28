@@ -187,7 +187,7 @@ const ChannelListItem = forwardRef(
     return (
       <EditableListItem
         ref={ref}
-        icon={channel?.private ? <Lock o={0.5} size={16} /> : null}
+        icon={channel?.private ? <Lock mx="$2.5" o={0.5} size={12} /> : null}
         iconAfter
         editingValue={channel?.name ?? ''}
         active={derivedUserState?.activeChannel === channel?.id}

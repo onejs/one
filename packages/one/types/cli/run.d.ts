@@ -5,5 +5,6 @@ export declare function run(args: {
     https?: boolean;
     mode?: 'development' | 'production';
     debugBundle?: boolean;
+    debug?: string;
 }): Promise<void>;
 //# sourceMappingURL=run.d.ts.map

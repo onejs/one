@@ -1,14 +1,11 @@
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from 'vxrn'
-
-export const virtualEntryIdName = `one-entry`
-export const virtualEntryId = `virtual:${virtualEntryIdName}`
-export const virtalEntryIdClient = `/@id/__x00__virtual:${virtualEntryIdName}`
-const resolvedVirtualEntryId = '\0' + virtualEntryId
-
-const virtualEntryIdNativeName = `${virtualEntryIdName}-native`
-export const virtualEntryIdNative = `virtual:${virtualEntryIdNativeName}`
-const resolvedVirtualEntryIdNative = '\0' + virtualEntryIdNativeName
+import {
+  resolvedVirtualEntryId,
+  resolvedVirtualEntryIdNative,
+  virtualEntryId,
+  virtualEntryIdNative,
+} from './virtualEntryConstants'
 
 const USE_ONE_SETUP_FILE = `
 if (process.env.ONE_SETUP_FILE) {

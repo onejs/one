@@ -1,11 +1,11 @@
 import { getPort } from 'get-port-please'
 import { createHash } from 'node:crypto'
 import { createRequire } from 'node:module'
+import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { readPackageJSON } from 'pkg-types'
 import type { VXRNOptions } from '../types'
 import { readState, writeState } from './state'
-import { tmpdir } from 'node:os'
 
 const require = createRequire(import.meta.url)
 
