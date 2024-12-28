@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { isWeb } from 'tamagui'
 import { type DragDropEvent, useDragDrop } from '~/tauri/useDragDrop'
 
@@ -9,12 +9,17 @@ export const DragDropFile = (props: { children: any }) => {
 
   const [state, setState] = useState<DragDropEvent | null>(null)
 
-  useDragDrop((event) => {
-    setState(event)
-  })
+  const { createElement } = useDragDrop(
+    useCallback(
+      (event) => {
+        setState(event)
+      },
+      [setState]
+    )
+  )
 
-  return (
-    <div id="drag-drop-root" style={{ display: 'contents' }}>
+  return createElement(
+    <>
       <div
         style={{
           width: '100%',
@@ -22,10 +27,13 @@ export const DragDropFile = (props: { children: any }) => {
           zIndex: 100_000,
           position: 'absolute',
           pointerEvents: 'none',
-          background: !state || state.type === 'cancel' ? 'transparent' : 'rgba(0,0,0,0.5)',
+          background:
+            !state || state.type === 'cancel' || state.type === 'drop'
+              ? 'transparent'
+              : 'rgba(0,0,0,0.5)',
         }}
       />
       {props.children}
-    </div>
+    </>
   )
 }
