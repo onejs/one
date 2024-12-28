@@ -1,6 +1,6 @@
 {
   "name": "test-sandbox",
-  "version": "1.1.371",
+  "version": "1.1.374",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,12 +12,12 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@tamagui/config": "^1.121.2",
-    "@tamagui/image-next": "^1.121.2",
-    "@tamagui/lucide-icons": "^1.121.2",
-    "@tamagui/vite-plugin": "^1.121.2",
-    "@vxrn/color-scheme": "workspace:^",
-    "one": "workspace:^",
+    "@tamagui/config": "^1.121.3",
+    "@tamagui/image-next": "^1.121.3",
+    "@tamagui/lucide-icons": "^1.121.3",
+    "@tamagui/vite-plugin": "^1.121.3",
+    "@vxrn/color-scheme": "workspace:*",
+    "one": "workspace:*",
     "react": "^19.0.0",
     "react-native": "0.76.4",
     "react-native-reanimated": "~3.16.5",
@@ -26,6 +26,6 @@
     "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
     "react-native-webview": "^13.11.1",
-    "tamagui": "^1.121.2"
+    "tamagui": "^1.121.3"
   }
 }

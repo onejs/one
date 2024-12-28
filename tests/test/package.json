@@ -1,35 +1,27 @@
 {
   "name": "test-test",
-  "version": "1.1.371",
+  "version": "1.1.374",
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "vitest --run",
+    "test:watch": "vitest",
     "build:web": "one build",
     "clean": "one clean",
     "dev": "one dev",
     "dev:clean": "one dev --clean",
-    "orm:generate": "drizzle-kit generate --config ./db/drizzle.config.ts",
-    "orm:migrate": "dotenvx run -f .env -- tsx db/run-migrations.ts",
-    "orm:push": "drizzle-kit push --config ./db/drizzle.config.ts",
-    "orm:seed": "dotenvx run -f .env -- tsx db/seed.ts",
     "prod": "one build && one serve",
     "serve": "one serve",
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.12.1",
-    "@tamagui/config": "^1.121.2",
-    "@tamagui/image-next": "^1.121.2",
-    "@tamagui/lucide-icons": "^1.121.2",
-    "@tamagui/vite-plugin": "^1.121.2",
-    "@vercel/og": "^0.6.3",
-    "@vxrn/color-scheme": "workspace:^",
-    "better-sqlite3": "^11.2.1",
-    "dotenv": "^16.4.5",
-    "drizzle-kit": "^0.24.2",
-    "drizzle-orm": "^0.33.0",
+    "@tamagui/config": "^1.121.3",
+    "@tamagui/image-next": "^1.121.3",
+    "@tamagui/lucide-icons": "^1.121.3",
+    "@tamagui/vite-plugin": "^1.121.3",
+    "@vxrn/color-scheme": "workspace:*",
     "expo": "~52.0.17",
-    "one": "workspace:^",
+    "one": "workspace:*",
     "postgres": "^3.4.4",
     "react": "^19.0.0",
     "react-native": "0.76.4",
@@ -38,12 +30,13 @@
     "react-native-screens": "4.4.0-rc.1",
     "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.121.2"
+    "tamagui": "^1.121.3"
   },
   "devDependencies": {
-    "@faker-js/faker": "next",
     "@react-native-community/cli": "latest",
+    "get-port-please": "^3.1.2",
     "tsx": "^4.19.0",
-    "vite": "^6.0.6"
+    "vite": "^6.0.6",
+    "vitest": "^2.1.8"
   }
 }

@@ -1,5 +1,5 @@
 import { assertString } from './assert'
-import { type DepPatch, bailIfExists } from './patches'
+import { type DepPatch, bailIfExists, bailIfUnchanged } from './patches'
 
 export const depPatches: DepPatch[] = [
   {

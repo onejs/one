@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/universal-color-scheme",
-  "version": "1.1.371",
+  "version": "1.1.374",
   "sideEffects": false,
   "type": "module",
   "exports": {
@@ -33,11 +33,11 @@
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
-    "@vxrn/use-isomorphic-layout-effect": "workspace:^",
+    "@vxrn/use-isomorphic-layout-effect": "workspace:*",
     "react": "^19.0.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.2",
+    "@tamagui/build": "^1.121.3",
     "react-native": "0.76.4"
   },
   "peerDependencies": {

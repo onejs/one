@@ -4,14 +4,6 @@ import { one } from 'one/vite'
 export default {
   plugins: [
     one({
-      web: {
-        defaultRenderMode: 'ssg',
-      },
-
-      app: {
-        key: 'one-example',
-      },
-
       config: {
         tsConfigPaths: {
           // On CI, the mono-repo may be partially installed and built.
