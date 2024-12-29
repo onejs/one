@@ -1,5 +1,6 @@
 import type React from 'react'
 import { useState } from 'react'
+import { getFileType, type FileType } from './helpers'
 
 interface UploadResponse {
   url?: string
@@ -12,6 +13,7 @@ export type FileUpload = {
   name: string
   progress: number
   file: File
+  type: FileType
   // uploaded url
   url?: string
   // data-uri string
@@ -76,6 +78,7 @@ export const useUploadImages = ({
   const handleUpload = (files: File[]) => {
     const newUploads = files.map((file) => ({
       name: file.name,
+      type: getFileType(file.name),
       file,
       progress: 0,
       status: 'uploading' as const,

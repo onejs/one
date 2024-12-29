@@ -3,8 +3,9 @@ import { exists, readFile } from '@tauri-apps/plugin-fs'
 import { createEmitter } from '@vxrn/emitter'
 import { useCallback, useEffect, useState } from 'react'
 import { isWeb } from 'tamagui'
-import { useUploadImages, type FileUpload } from './uploadImage'
 import { isTauri } from '~/tauri/constants'
+import { getFileType, isImageFile } from './helpers'
+import { useUploadImages, type FileUpload } from './uploadImage'
 
 export const attachmentEmitter = createEmitter<FileUpload[]>()
 
@@ -44,6 +45,7 @@ export const DragDropFile = (props: { children: any }) => {
             }
             return {
               file: new File([contents], name),
+              type: getFileType(name),
               name,
               progress: 0,
               status: 'uploading' as const,
@@ -244,28 +246,6 @@ async function fileLikeToDataURI(
 ) {
   const contents = 'contents' in file ? file.contents : new Uint8Array(await file.arrayBuffer())
   return arrayBufferToDataURL(contents, getFileType(file.name))
-}
-
-export function isImageFile(filename: string): boolean {
-  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp']
-  return imageExtensions.some((ext) => filename.toLowerCase().endsWith(ext))
-}
-
-function getFileType(filename: string): string {
-  const ext = filename.toLowerCase().split('.').pop()
-  switch (ext) {
-    case 'jpg':
-    case 'jpeg':
-      return 'image/jpeg'
-    case 'png':
-      return 'image/png'
-    case 'gif':
-      return 'image/gif'
-    case 'webp':
-      return 'image/webp'
-    default:
-      return 'application/octet-stream'
-  }
 }
 
 function arrayBufferToDataURL(buffer: Uint8Array, mimeType: string): string {

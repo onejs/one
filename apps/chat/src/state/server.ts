@@ -121,6 +121,7 @@ export const useCurrentChannelMessages = () => {
               .related('reactions')
               .related('thread')
               .related('sender')
+              .related('attachments')
           )
         )
     )[0][0]?.channels?.[0]?.messages || []

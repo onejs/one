@@ -1,19 +1,21 @@
-import type { RefMDEditor } from '@uiw/react-md-editor'
-import { startTransition, useEffect, useRef, useState } from 'react'
-import { Input, YStack, XStack, Progress, Button } from 'tamagui'
 import { Image } from '@tamagui/image-next'
+import { X } from '@tamagui/lucide-icons'
+import { useEffect, useRef, useState } from 'react'
+import { Button, Progress, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { Editor, type EditorRef } from '~/editor/Editor'
 import { randomID } from '~/helpers/randomID'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
 import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
 import { zero } from '~/zero'
-import { messagesListEmitter } from './MessagesList'
 import { attachmentEmitter } from '../upload/DragDropFile'
 import type { FileUpload } from '../upload/uploadImage'
-import { X } from '@tamagui/lucide-icons'
+import { messagesListEmitter } from './MessagesList'
+import { createEmitter } from '@vxrn/emitter'
 
 let mainInputRef: EditorRef | null = null
+
+export const messageInputEmitter = createEmitter<{ type: 'submit' }>()
 
 export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   const inputRef = useRef<EditorRef>(null)
@@ -21,7 +23,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   const server = useCurrentServer()
   const thread = useCurrentThread()
   const { user } = useAuth()
-  const disabled = !user
+  const disabled = !user || !channel
 
   // on channel change, focus input
   useEffect(() => {
@@ -32,22 +34,31 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
           mainInputRef?.textarea?.focus()
         })
       }
-    } else {
-      setTimeout(() => {
-        inputRef.current?.textarea?.focus()
-      })
+    }
 
-      return () => {
-        // focus events cause layout shifts which can make animations bad
-        setTimeout(() => {
-          mainInputRef?.textarea?.focus()
-        }, 50)
-      }
+    setTimeout(() => {
+      inputRef.current?.textarea?.focus()
+    })
+
+    return () => {
+      // focus events cause layout shifts which can make animations bad
+      setTimeout(() => {
+        mainInputRef?.textarea?.focus()
+      }, 50)
     }
   }, [channel, inThread])
 
   return (
-    <YStack btw={1} bc="$color4" p="$2" gap="$2">
+    <YStack
+      btw={1}
+      bc="$color4"
+      p="$2"
+      gap="$2"
+      {...(disabled && {
+        opacity: 0.5,
+        pointerEvents: 'none',
+      })}
+    >
       <Editor
         ref={inputRef}
         onKeyDown={(e) => {
@@ -92,9 +103,9 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             }
           }
         }}
-        onSubmit={(content) => {
-          if (!user) {
-            console.error('no user')
+        onSubmit={async (content) => {
+          if (!user || !channel) {
+            console.warn('missing', { user, channel })
             return
           }
           if (!content) {
@@ -103,16 +114,36 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
 
           inputRef.current?.clear?.()
 
-          zero.mutate.message.insert({
-            id: randomID(),
-            channelID: channel.id,
-            threadID: thread?.id,
-            isThreadReply: !!thread,
-            content,
-            deleted: false,
-            creatorID: user!.id,
-            serverID: server.id,
+          await zero.mutateBatch((tx) => {
+            const messageID = randomID()
+
+            tx.message.insert({
+              id: messageID,
+              channelID: channel.id,
+              threadID: thread?.id,
+              isThreadReply: !!thread,
+              content,
+              deleted: false,
+              creatorID: user!.id,
+              serverID: server.id,
+            })
+
+            const attachments = attachmentEmitter.value
+            if (attachments) {
+              for (const attachment of attachments) {
+                tx.attachment.insert({
+                  id: randomID(),
+                  type: attachment.type,
+                  userID: user.id,
+                  channelID: channel.id,
+                  url: attachment.url,
+                  messageID,
+                })
+              }
+            }
           })
+
+          messageInputEmitter.emit({ type: 'submit' })
 
           setTimeout(() => {
             inputRef.current?.textarea?.focus()
@@ -131,6 +162,12 @@ const MessageInputAttachments = () => {
   attachmentEmitter.use((value) => {
     console.warn('got attachment', value)
     setAttachments(value)
+  })
+
+  messageInputEmitter.use((value) => {
+    if (value.type === 'submit') {
+      setAttachments([])
+    }
   })
 
   return (
