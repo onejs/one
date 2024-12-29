@@ -117,6 +117,8 @@ export const SearchableInput = forwardRef<Input, InputProps>((props: InputProps,
     ref: combinedRef as any,
   })
 
+  // WHY input? because `refProps` from floatingUI i think it passes some props the tamagui native input doesn't
+  // we should see why input-next doesn't work and get it to work
   return (
     <input
       {...refProps}

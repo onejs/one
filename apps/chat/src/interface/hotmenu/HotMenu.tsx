@@ -88,7 +88,8 @@ export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
                 onChangeText={(text) => {
                   setSearch(text)
                 }}
-                onKeyPress={(key) => {
+                // @ts-expect-error
+                onKeyUp={(key) => {
                   if (key.nativeEvent.key === 'Escape') {
                     toggleHotMenu()
                   }
