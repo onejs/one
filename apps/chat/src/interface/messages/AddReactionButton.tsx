@@ -1,7 +1,7 @@
 import { SmilePlus } from '@tamagui/lucide-icons'
 import { Button, Popover, ScrollView, TooltipSimple, XStack } from 'tamagui'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
-import { useQuery } from '~/zero/zero'
+import { useQuery } from '~/zero'
 import { ButtonSimple } from '../ButtonSimple'
 import { PopoverContent } from '../Popover'
 import { useEffect, useState } from 'react'

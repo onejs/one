@@ -1,11 +1,11 @@
 import { EyeOff, MoreVertical, Pencil, Pin, Reply, Trash } from '@tamagui/lucide-icons'
 import { forwardRef, useRef } from 'react'
 import { Button, Popover, Separator, type ButtonProps } from 'tamagui'
-import type { MessageWithRelations } from '~/zero/schema'
+import { updateUserSetEditingMessage } from '~/state/user'
+import type { MessageWithRelations } from '~/zero'
 import { PopoverContent } from '../Popover'
 import { ListItem } from '../lists/ListItem'
 import { messageActionBarStickOpen } from './constants'
-import { updateUserSetEditingMessage } from '~/state/user'
 
 export const MessageMoreMenu = forwardRef(
   ({ message, ...rest }: ButtonProps & { message: MessageWithRelations }, ref) => {

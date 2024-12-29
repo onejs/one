@@ -1,5 +1,5 @@
 import { ensureSignedUp } from '~/interface/dialogs/actions'
-import type { Server } from '~/zero/schema'
+import type { Server } from '~/zero'
 import { randomID } from '../helpers/randomID'
 import { zero } from '../zero/zero'
 import { updateUserState } from './user'

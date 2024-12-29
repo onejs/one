@@ -4,8 +4,7 @@ import { randomID } from '~/helpers/randomID'
 import { showToast } from '~/interface/toast/Toast'
 import { useCurrentChannel } from '~/state/server'
 import { resolve } from '~/zero/resolve'
-import type { Message } from '~/zero/schema'
-import { zero } from '~/zero/zero'
+import { zero, type Message } from '~/zero'
 
 export const DevTools = () => {
   const channel = useCurrentChannel()

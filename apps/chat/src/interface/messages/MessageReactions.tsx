@@ -1,7 +1,7 @@
 import { Button, SizableText, XStack, type ButtonProps } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import type { Message, MessageWithRelations, Reaction } from '~/zero/schema'
-import { zero } from '~/zero/zero'
+import type { Message, MessageWithRelations, Reaction } from '~/zero'
+import { zero } from '~/zero'
 
 export const MessageReactions = ({ message }: { message: MessageWithRelations }) => {
   const reactionCounts: Record<string, number> = {}

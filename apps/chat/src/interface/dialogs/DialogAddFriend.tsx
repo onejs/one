@@ -1,14 +1,9 @@
-import { UserCheck, UserPlus, UserX } from '@tamagui/lucide-icons'
 import { useEffect, useRef, useState } from 'react'
-import { Dialog, Input, TooltipSimple, XStack, YStack } from 'tamagui'
-import { useAuth } from '~/better-auth/authClient'
-import type { Friendship, User } from '~/zero/schema'
-import { useQuery, zero } from '~/zero/zero'
-import { Avatar } from '../Avatar'
-import { Row } from '../Row'
-import { addFriendEmitter, dialogConfirm } from './actions'
-import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
+import { Dialog, Input, YStack } from 'tamagui'
+import { useQuery } from '~/zero'
 import { UserRowFriendable } from '../users/UserRow'
+import { addFriendEmitter } from './actions'
+import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
 
 const success = () => addFriendEmitter.emit(true)
 const cancel = () => addFriendEmitter.emit(false)

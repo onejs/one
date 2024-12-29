@@ -91,6 +91,7 @@ export const TopBar = memo(() => {
             })}
           >
             <ButtonSimple
+              disabled={!server}
               tooltip="Server settings"
               onPress={() => {
                 if (userState?.showSidePanel === 'settings') {

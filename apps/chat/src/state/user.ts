@@ -1,8 +1,8 @@
 import { merge } from 'ts-deepmerge'
 import { useAuth } from '~/better-auth/authClient'
 import { ensureSignedUp } from '~/interface/dialogs/actions'
-import type { ChannelState, User, UserState } from '~/zero/schema'
-import { useQuery, zero } from '~/zero/zero'
+import type { ChannelState, UserState } from '~/zero/types'
+import { useQuery, type User, zero } from '~/zero'
 
 // TODO
 let currentUser = null as User | null

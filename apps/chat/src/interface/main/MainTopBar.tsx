@@ -15,7 +15,7 @@ import {
   updateUserOpenThread,
   useUserCurrentChannelState,
 } from '~/state/user'
-import type { ThreadWithRelations } from '~/zero/schema'
+import type { ThreadWithRelations } from '~/zero'
 import { OneBall } from '../brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
 import { ChannelSettingsPopover } from '../channel/ChannelSettingsPopover'

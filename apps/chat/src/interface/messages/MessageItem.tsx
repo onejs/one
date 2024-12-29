@@ -2,6 +2,7 @@ import { IndentIncrease } from '@tamagui/lucide-icons'
 import MDEditor from '@uiw/react-md-editor'
 import { memo } from 'react'
 import { SizableText, XStack, YStack } from 'tamagui'
+import { Editor } from '~/editor/Editor'
 import { Avatar } from '~/interface/Avatar'
 import {
   updateUserOpenThread,
@@ -9,12 +10,11 @@ import {
   useUserCurrentChannelState,
   useUserState,
 } from '~/state/user'
-import type { Channel, MessageWithRelations, Thread, User } from '~/zero/schema'
+import type { Channel, MessageWithRelations, Thread, User } from '~/zero'
+import { zero } from '~/zero'
 import { MessageActionBar } from './MessageActionBar'
 import { MessageReactions } from './MessageReactions'
 import { messageHover } from './constants'
-import { Editor } from '~/editor/Editor'
-import { zero } from '~/zero/zero'
 
 export const MessageItem = memo(
   ({

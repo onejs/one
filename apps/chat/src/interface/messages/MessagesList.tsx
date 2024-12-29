@@ -1,7 +1,7 @@
+import { createEmitter } from '@vxrn/emitter'
 import { memo, useEffect, useLayoutEffect, useRef } from 'react'
 import { YStack } from 'tamagui'
 import { VList, type VListHandle } from 'virtua'
-import type { MessageWithRelations } from '~/zero/schema'
 import { useAuth } from '~/better-auth/authClient'
 import { useCurrentChannel } from '~/state/server'
 import {
@@ -10,7 +10,7 @@ import {
   updateUserOpenThread,
   updateUserSetEditingMessage,
 } from '~/state/user'
-import { createEmitter } from '@vxrn/emitter'
+import type { MessageWithRelations } from '~/zero'
 import { MessageItem } from './MessageItem'
 
 type MessagesListActions =
