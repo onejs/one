@@ -1,32 +1,44 @@
-// want this to be contextual based on current screen state
-
 import type { IconProps } from '@tamagui/helpers-icon'
-import { Server, UserPlus } from '@tamagui/lucide-icons'
+import { Server, User, UserPlus } from '@tamagui/lucide-icons'
 import FlexSearch from 'flexsearch'
-import { dialogAddFriend, dialogJoinServer } from '~/interface/dialogs/actions'
+import { useMemo } from 'react'
+import { useAuth } from '~/better-auth/authClient'
+import { dialogAddFriend, dialogJoinServer, dialogSignup } from '~/interface/dialogs/actions'
 
 type HotMenuItem = {
-  id: number
   name: string
   Icon: React.NamedExoticComponent<IconProps>
   action: () => void
 }
 
-const index = new FlexSearch.Index()
-
 export const useHotMenuItems = (search: string) => {
-  if (!search) {
-    return globalMenuItems
-  }
-  const results = index.search(search)
-  return results.map((id) => {
-    return globalMenuItems[id as number]
-  })
+  const { loggedIn } = useAuth()
+
+  const items = useMemo(() => {
+    return loggedIn ? globalMenuItems : globalLoggedOutItems
+  }, [loggedIn])
+
+  const index = useMemo(() => {
+    const _ = new FlexSearch.Index()
+    for (const [idx, item] of items.entries()) {
+      _.add(idx, item.name)
+    }
+    return _
+  }, [items])
+
+  return useMemo(() => {
+    if (!search) {
+      return items
+    }
+    const results = index.search(search)
+    return results.map((index) => {
+      return items[index as number]
+    })
+  }, [search, index, items])
 }
 
 const globalMenuItems: HotMenuItem[] = [
   {
-    id: 0,
     name: 'Add friend',
     Icon: UserPlus,
     action() {
@@ -35,7 +47,6 @@ const globalMenuItems: HotMenuItem[] = [
   },
 
   {
-    id: 1,
     name: 'Join server',
     Icon: Server,
     action() {
@@ -44,6 +55,14 @@ const globalMenuItems: HotMenuItem[] = [
   },
 ]
 
-for (const item of globalMenuItems) {
-  index.add(item.id, item.name)
-}
+const globalLoggedOutItems: HotMenuItem[] = [
+  {
+    name: 'Login',
+    Icon: User,
+    action() {
+      dialogSignup()
+    },
+  },
+
+  ...globalMenuItems,
+]

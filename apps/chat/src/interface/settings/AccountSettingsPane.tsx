@@ -3,6 +3,7 @@ import { authClient } from '~/better-auth/authClient'
 import { ListItem } from '~/interface/lists/ListItem'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
 import { ThemeToggleListItem } from './ThemeToggleListItem'
+import { updateUserState } from '~/state/user'
 
 export const AccountSettingsPane = () => {
   return (
@@ -23,6 +24,9 @@ export const AccountSettingsPane = () => {
       <ListItem
         onPress={() => {
           authClient.signOut()
+          updateUserState({
+            showSidePanel: undefined,
+          })
         }}
       >
         Logout

@@ -22,12 +22,17 @@ export type DialogSignup = {
   type: 'signup'
 }
 
+export type DialogRedirectToTauri = {
+  type: 'redirect-to-tauri'
+}
+
 export type DialogType =
   | DialogConfirmType
   | DialogCreateServerType
   | DialogJoinServerType
   | DialogAddFriend
   | DialogSignup
+  | DialogRedirectToTauri
 
 export type TabContentPaneProps = TabsContentProps & {
   active: string

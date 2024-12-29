@@ -70,6 +70,12 @@ const userSchema = {
         destSchema: () => userSchema,
       },
     ],
+
+    attachments: {
+      sourceField: 'id',
+      destField: 'userID',
+      destSchema: () => attachmentsSchema,
+    },
   },
 } as const
 
@@ -313,6 +319,12 @@ const messageSchema = {
         destSchema: () => reactionSchema,
       },
     ],
+
+    attachments: {
+      sourceField: 'id',
+      destField: 'messageID',
+      destSchema: () => attachmentsSchema,
+    },
   },
 } as const
 
