@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 export class Emitter<const T> {
   private disposables = new Set<(cb: any) => void>()
 
+  value?: T
+
   constructor(public defaultValue?: T) {}
 
   listen = (disposable: (cb: T) => void) => {
@@ -13,6 +15,7 @@ export class Emitter<const T> {
   }
 
   emit = (next: T) => {
+    this.value = next
     this.disposables.forEach((cb) => cb(next))
   }
 

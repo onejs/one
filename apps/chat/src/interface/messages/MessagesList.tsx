@@ -1,11 +1,16 @@
+import { createEmitter } from '@vxrn/emitter'
 import { memo, useEffect, useLayoutEffect, useRef } from 'react'
 import { YStack } from 'tamagui'
 import { VList, type VListHandle } from 'virtua'
-import type { MessageWithRelations } from '~/zero/schema'
 import { useAuth } from '~/better-auth/authClient'
 import { useCurrentChannel } from '~/state/server'
-import { getUserState, updateUserCurrentChannel, updateUserOpenThread } from '~/state/user'
-import { createEmitter } from '@vxrn/emitter'
+import {
+  getUserState,
+  updateUserCurrentChannel,
+  updateUserOpenThread,
+  updateUserSetEditingMessage,
+} from '~/state/user'
+import type { MessageWithRelations } from '~/zero'
 import { MessageItem } from './MessageItem'
 
 type MessagesListActions =
@@ -76,6 +81,8 @@ export const MessagesList = memo(
             if (focusedMessage) {
               if (focusedMessage.thread) {
                 updateUserOpenThread(focusedMessage.thread[0])
+              } else {
+                updateUserSetEditingMessage(focusedMessage.id)
               }
             }
             break
@@ -104,6 +111,7 @@ export const MessagesList = memo(
             count={messages.length}
             reverse
             shift={isPrepend.current}
+            overscan={10}
             style={{
               flex: 1,
             }}

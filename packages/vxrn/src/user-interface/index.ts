@@ -1,10 +1,8 @@
-import ip from 'ip'
-import module from 'node:module'
 import { exec } from 'node:child_process'
+import module from 'node:module'
 import qrcode from 'qrcode-terminal'
 import type { ViteDevServer } from 'vite'
 import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
-import { openReactNativeDevTools } from '../plugins/reactNativeDevServer'
 
 type Context = {
   server: ViteDevServer

@@ -1,6 +1,7 @@
 import { DialogAddFriend } from './DialogAddFriend'
 import { DialogConfirm } from './DialogConfirm'
 import { DialogCreateJoinServer } from './DialogCreateJoinServer'
+import { DialogRedirectToTauri } from './DialogRedirectToTauri'
 import { DialogSignUp } from './DialogSignup'
 
 export const Dialogs = () => {
@@ -10,6 +11,7 @@ export const Dialogs = () => {
       <DialogCreateJoinServer />
       <DialogAddFriend />
       <DialogSignUp />
+      <DialogRedirectToTauri />
     </>
   )
 }

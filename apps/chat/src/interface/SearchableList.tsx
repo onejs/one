@@ -19,6 +19,7 @@ import {
 } from 'tamagui'
 
 type ContextType = {
+  items: any[] | readonly any[]
   getItemProps: (index: number) => any
   getReferenceProps: (userProps?: React.HTMLProps<Element>) => Record<string, unknown>
   refs: {
@@ -33,11 +34,13 @@ const Context = createContext<null | ContextType>(null)
 
 const emitter = createEmitter<number>()
 
-export function SearchableList<A>({
-  items,
-  children,
-  onSelectItem,
-}: { items: readonly A[] | A[]; onSelectItem: (item: A) => void; children: any }) {
+export type SearchableListProps<A = any> = {
+  items: readonly A[] | A[]
+  onSelectItem: (item: A) => void
+  children: any
+}
+
+export function SearchableList<A>({ items, children, onSelectItem }: SearchableListProps<A>) {
   if (!isWeb) {
     // TODO
     return children
@@ -71,6 +74,7 @@ export function SearchableList<A>({
 
   const contextValue = useMemo((): ContextType => {
     return {
+      items,
       refs,
       getReferenceProps(props) {
         return getReferenceProps({
@@ -113,6 +117,8 @@ export const SearchableInput = forwardRef<Input, InputProps>((props: InputProps,
     ref: combinedRef as any,
   })
 
+  // WHY input? because `refProps` from floatingUI i think it passes some props the tamagui native input doesn't
+  // we should see why input-next doesn't work and get it to work
   return (
     <input
       {...refProps}

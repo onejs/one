@@ -7,8 +7,8 @@ import { useAuth } from '~/better-auth/authClient'
 import { randomID } from '~/helpers/randomID'
 import { useCurrentServer, useServerChannels } from '~/state/server'
 import { updateUserState, useUserState } from '~/state/user'
-import type { Channel } from '~/zero/schema'
-import { zero } from '~/zero/zero'
+import type { Channel } from '~/zero'
+import { zero } from '~/zero'
 import { ButtonSimple } from '../ButtonSimple'
 import { EditableListItem, type EditableListItemProps } from '../lists/EditableListItem'
 import { ListTitle } from '../lists/ListTitle'
@@ -187,7 +187,7 @@ const ChannelListItem = forwardRef(
     return (
       <EditableListItem
         ref={ref}
-        icon={channel?.private ? <Lock o={0.5} size={16} /> : null}
+        icon={channel?.private ? <Lock mx="$2.5" o={0.5} size={12} /> : null}
         iconAfter
         editingValue={channel?.name ?? ''}
         active={derivedUserState?.activeChannel === channel?.id}

@@ -13,14 +13,14 @@ import {
   type ClientManifestEntry,
 } from 'vxrn'
 import { getLoaderPath, getPreloadPath } from '../cleanUrl'
-import { labelProcess } from '../cli/label-process'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
-import { getManifest } from './getManifest'
-import { loadUserOneOptions } from './loadConfig'
-import { replaceLoader } from './replaceLoader'
-import type { One } from './types'
+import { getManifest } from '../vite/getManifest'
+import { loadUserOneOptions } from '../vite/loadConfig'
+import { replaceLoader } from '../vite/replaceLoader'
+import type { One } from '../vite/types'
+import { labelProcess } from './label-process'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 

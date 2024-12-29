@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Button, Separator, TooltipSimple, XGroup, XStack } from 'tamagui'
 import { randomID } from '~/helpers/randomID'
 import { getCurrentUser, updateUserOpenThread } from '~/state/user'
-import type { Channel, MessageWithRelations } from '~/zero/schema'
-import { useQuery, zero } from '~/zero/zero'
+import type { Channel, MessageWithRelations } from '~/zero'
+import { useQuery, zero } from '~/zero'
 import { AddReactionButton } from './AddReactionButton'
 import { MessageMoreMenu } from './MessageMoreMenu'
 import { ReactionButton } from './MessageReactions'
@@ -19,12 +19,17 @@ export const MessageActionBar = ({
 }) => {
   const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
   const [show, setShow] = useState(false)
-
-  messageHover.use((val) => {
-    setShow(val === message.id)
-  })
-
   const stickOpen = messageActionBarStickOpen.useValue()
+
+  messageHover.use(
+    (val) => {
+      if (stickOpen) {
+        return
+      }
+      setShow(val === message.id)
+    },
+    [stickOpen]
+  )
 
   if (!show) {
     return

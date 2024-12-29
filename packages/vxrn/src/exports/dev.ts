@@ -1,22 +1,31 @@
 import FSExtra from 'fs-extra'
 import colors from 'picocolors'
-import { createServer, loadConfigFromFile, type ViteDevServer } from 'vite'
 import type { VXRNOptions } from '../types'
-import { startUserInterface } from '../user-interface/index'
-import { bindKeypressInput } from '../utils/bindKeypressInput'
-import { fillOptions } from '../utils/getOptionsFilled'
-import { getViteServerConfig } from '../utils/getViteServerConfig'
-import { applyBuiltInPatches } from '../utils/patches'
-import { printServerUrls } from '../utils/printServerUrls'
-import { clean } from './clean'
-import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
-import { removeUndefined } from '../utils/removeUndefined'
+import type { ViteDevServer } from 'vite'
 
 const { ensureDir } = FSExtra
 
-export type DevOptions = VXRNOptions & { clean?: boolean }
+export type DevOptions = VXRNOptions & {
+  clean?: boolean
+}
 
 export const dev = async (optionsIn: DevOptions) => {
+  if (typeof optionsIn.debug === 'string') {
+    process.env.DEBUG ||= !optionsIn.debug ? `vite` : `vite:${optionsIn.debug}`
+  }
+
+  // import vite only after setting process.env.DEBUG
+  const { startUserInterface } = await import('../user-interface/index')
+  const { bindKeypressInput } = await import('../utils/bindKeypressInput')
+  const { fillOptions } = await import('../utils/getOptionsFilled')
+  const { getViteServerConfig } = await import('../utils/getViteServerConfig')
+  const { applyBuiltInPatches } = await import('../utils/patches')
+  const { printServerUrls } = await import('../utils/printServerUrls')
+  const { clean } = await import('./clean')
+  const { filterViteServerResolvedUrls } = await import('../utils/filterViteServerResolvedUrls')
+  const { removeUndefined } = await import('../utils/removeUndefined')
+  const { createServer, loadConfigFromFile } = await import('vite')
+
   const { config } =
     (await loadConfigFromFile({
       mode: 'dev',

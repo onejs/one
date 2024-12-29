@@ -12,7 +12,7 @@ import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
 import { resolveAPIRequest } from '../../vite/resolveAPIRequest'
 import type { One } from '../../vite/types'
-import { virtalEntryIdClient, virtualEntryId } from './virtualEntryPlugin'
+import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV

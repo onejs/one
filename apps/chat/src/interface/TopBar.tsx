@@ -1,5 +1,5 @@
 import { ChevronRight, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
-import { memo, useRef } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { H1, Input, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
@@ -9,16 +9,31 @@ import { updateUserState, useUserState } from '~/state/user'
 import { isTauri } from '~/tauri/constants'
 import { Avatar } from './Avatar'
 import { ButtonSimple } from './ButtonSimple'
-import { ensureSignedUp } from './dialogs/actions'
+import { dialogRedirectToTauri, ensureSignedUp } from './dialogs/actions'
+import {
+  setShouldRedirectBackToTauri,
+  shouldRedirectBackToTauri,
+  useTauriAuthDeepLink,
+} from '~/tauri/authFlowHelpers'
 
 export const TopBar = memo(() => {
-  const { session, jwtToken } = useAuth()
+  const { jwtToken } = useAuth()
+  const tauriDeepLink = useTauriAuthDeepLink()
 
   const server = useCurrentServer()
   const channel = useCurrentChannel()
   const [userState] = useUserState()
 
-  const authTauriDeepLink = `one-chat://finish-auth?session=${session?.token || ''}&token=${jwtToken}`
+  useEffect(() => {
+    if (shouldRedirectBackToTauri()) {
+      // idk why this settimeout fixes it not showing, hook not registered int ime
+      // but it seems it should be based on my logs...
+      setTimeout(() => {
+        setShouldRedirectBackToTauri(false)
+        dialogRedirectToTauri()
+      })
+    }
+  }, [jwtToken])
 
   return (
     <XStack
@@ -76,6 +91,7 @@ export const TopBar = memo(() => {
             })}
           >
             <ButtonSimple
+              disabled={!server}
               tooltip="Server settings"
               onPress={() => {
                 if (userState?.showSidePanel === 'settings') {
@@ -97,7 +113,7 @@ export const TopBar = memo(() => {
         </XStack>
 
         {!isTauri && jwtToken && (
-          <a href={authTauriDeepLink}>
+          <a href={tauriDeepLink}>
             <ButtonSimple>Open native app</ButtonSimple>
           </a>
         )}

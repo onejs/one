@@ -6,7 +6,7 @@ export default {
   plugins: [
     one({
       react: {
-        compiler: true,
+        compiler: process.env.NODE_ENV === 'production',
         // scan: true,
       },
 
@@ -20,8 +20,7 @@ export default {
     }),
 
     tamaguiPlugin({
-      optimize: true,
-      disableServerOptimization: process.env.NODE_ENV === 'development',
+      optimize: process.env.NODE_ENV === 'production',
       components: ['tamagui'],
       config: './src/tamagui/tamagui.config.ts',
       outputCSS: './src/tamagui/tamagui.css',

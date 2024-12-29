@@ -1,15 +1,19 @@
 import { EyeOff, MoreVertical, Pencil, Pin, Reply, Trash } from '@tamagui/lucide-icons'
-import { forwardRef } from 'react'
+import { forwardRef, useRef } from 'react'
 import { Button, Popover, Separator, type ButtonProps } from 'tamagui'
-import type { MessageWithRelations } from '~/zero/schema'
+import { updateUserSetEditingMessage } from '~/state/user'
+import type { MessageWithRelations } from '~/zero'
 import { PopoverContent } from '../Popover'
 import { ListItem } from '../lists/ListItem'
 import { messageActionBarStickOpen } from './constants'
 
 export const MessageMoreMenu = forwardRef(
   ({ message, ...rest }: ButtonProps & { message: MessageWithRelations }, ref) => {
+    const popoverRef = useRef<Popover>(null)
+
     return (
       <Popover
+        ref={popoverRef}
         allowFlip
         stayInFrame={{ padding: 10 }}
         onOpenChange={(open) => {
@@ -26,7 +30,14 @@ export const MessageMoreMenu = forwardRef(
           <ListItem size="large" icon={Reply}>
             Reply
           </ListItem>
-          <ListItem size="large" icon={Pencil}>
+          <ListItem
+            size="large"
+            icon={Pencil}
+            onPress={() => {
+              updateUserSetEditingMessage(message.id)
+              popoverRef.current?.close()
+            }}
+          >
             Edit
           </ListItem>
           <ListItem size="large" theme="red" icon={Trash}>

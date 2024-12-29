@@ -3,6 +3,12 @@ import { getCurrentUser } from '~/state/user'
 import { dialogEmit } from './shared'
 import type { DialogConfirmType } from './types'
 
+export const dialogRedirectToTauri = async () => {
+  dialogEmit({
+    type: 'redirect-to-tauri',
+  })
+}
+
 export const isSignedUpEmitter = createEmitter<boolean>()
 
 export const dialogSignup = async () => {

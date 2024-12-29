@@ -7,21 +7,32 @@ import { MessageInput } from '../messages/MessageInput'
 export const MainOpenThread = () => {
   const thread = useCurrentThread()
 
-  if (!thread) {
-    return null
-  }
-
   return (
     <YStack
       bg="$color2"
       shadowColor="$shadowColor"
       shadowRadius={10}
+      animation={[
+        'quicker',
+        {
+          opacity: {
+            overshootClamping: true,
+          },
+        },
+      ]}
       pos="absolute"
       t={0}
       r={0}
       b={0}
       w="70%"
       zi={1000}
+      {...(thread
+        ? {}
+        : {
+            opacity: 0,
+            pe: 'none',
+            x: 7,
+          })}
     >
       <ButtonClose
         pos="absolute"
@@ -34,8 +45,12 @@ export const MainOpenThread = () => {
           })
         }}
       />
-      <MessagesList messages={thread?.messages || []} />
-      <MessageInput inThread />
+      {thread && (
+        <>
+          <MessagesList messages={thread?.messages || []} />
+          <MessageInput inThread />
+        </>
+      )}
     </YStack>
   )
 }
