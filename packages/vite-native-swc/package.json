@@ -32,7 +32,7 @@
     "@babel/plugin-transform-private-methods": "^7.25.9",
     "@babel/plugin-transform-react-jsx": "^7.25.9",
     "@babel/plugin-transform-regenerator": "^7.25.9",
-    "@swc/core": "^1.7.14",
+    "@swc/core": "1.6.7",
     "@vxrn/vite-native-client": "workspace:*",
     "metro-react-native-babel-preset": "^0.77.0"
   },
