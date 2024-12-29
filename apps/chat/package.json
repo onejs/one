@@ -22,7 +22,7 @@
     "seed": "tsx ./src/postgres/seed.ts",
     "serve": "one serve",
     "zero": "yarn zero:build-schema && zero-cache --schema-file ./src/zero/zero-schema.json",
-    "zero:build-schema": "cd ./src/zero && zero-build-schema -p './schema.ts'",
+    "zero:build-schema": "cd ./src/zero && zero-build-schema -p './schema-build.ts'",
     "android": "expo run:android",
     "ios": "expo run:ios"
   },

@@ -1,7 +1,7 @@
 import { type Query, type QueryType, type Smash, Zero } from '@rocicorp/zero'
 import { useZero, useQuery as useZeroQuery } from '@rocicorp/zero/react'
 import { createEmitter } from '@vxrn/emitter'
-import { type Schema, schema } from '~/zero/schema'
+import { type Schema, schema } from './schema'
 
 export let zero = createZero()
 

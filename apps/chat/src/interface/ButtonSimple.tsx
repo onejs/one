@@ -67,7 +67,7 @@ type ButtonFrameProps = GetProps<typeof ButtonFrame> & {
 }
 
 export const ButtonSimple = forwardRef<TamaguiElement, ButtonFrameProps & { size?: SizeTokens }>(
-  ({ size, children, tooltip, icon, iconAfter, ...rest }, ref) => {
+  ({ size, children, tooltip, icon, iconAfter, disabled, ...rest }, ref) => {
     const iconElement = icon
       ? isValidElement(icon)
         ? icon
@@ -75,7 +75,15 @@ export const ButtonSimple = forwardRef<TamaguiElement, ButtonFrameProps & { size
       : null
 
     let contents = (
-      <ButtonFrame ref={ref} {...rest}>
+      <ButtonFrame
+        ref={ref}
+        disabled={disabled}
+        {...(disabled && {
+          opacity: 0.1,
+          pointerEvents: 'none',
+        })}
+        {...rest}
+      >
         {iconAfter ? null : iconElement}
         {typeof children !== 'string' ? (
           children

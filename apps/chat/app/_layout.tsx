@@ -12,7 +12,7 @@ import { Dialogs } from '~/interface/dialogs/Dialogs'
 import { DragDropFile } from '~/interface/upload/DragDropFile'
 import config from '~/tamagui/tamagui.config'
 import { isTauri } from '~/tauri/constants'
-import { useZeroEmit, zero } from '~/zero/zero'
+import { useZeroEmit, zero } from '~/zero'
 
 export default function Layout() {
   useLayoutEffect(() => {
