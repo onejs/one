@@ -1,17 +1,21 @@
-import { Image } from '@tamagui/image-next'
-import { X } from '@tamagui/lucide-icons'
+import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useRef, useState } from 'react'
-import { Button, Progress, XStack, YStack } from 'tamagui'
+import { Progress, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { Editor, type EditorRef } from '~/editor/Editor'
 import { randomID } from '~/helpers/randomID'
 import { useCurrentChannel, useCurrentServer } from '~/state/server'
-import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
-import { zero } from '~/zero'
+import {
+  getCurrentUser,
+  getDerivedUserState,
+  updateUserCurrentChannel,
+  useCurrentThread,
+} from '~/state/user'
+import { type Attachment, zero } from '~/zero'
+import { AttachmentItem } from '../attachments/AttachmentItem'
 import { attachmentEmitter } from '../upload/DragDropFile'
 import type { FileUpload } from '../upload/uploadImage'
 import { messagesListEmitter } from './MessagesList'
-import { createEmitter } from '@vxrn/emitter'
 
 let mainInputRef: EditorRef | null = null
 
@@ -156,57 +160,53 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   )
 }
 
-const MessageInputAttachments = () => {
-  const [attachments, setAttachments] = useState<FileUpload[]>([])
+const fileUploadToAttachment = (upload: FileUpload): Attachment => {
+  return {
+    channelID: null,
+    messageID: null,
+    userID: getCurrentUser()?.id || `no-user`,
+    createdAt: null,
+    data: null,
+    id: upload.name || randomID(),
+    url: upload.url || upload.preview || null,
+    type: upload.type,
+  }
+}
 
-  attachmentEmitter.use((value) => {
-    console.warn('got attachment', value)
-    setAttachments(value)
+const MessageInputAttachments = () => {
+  const [uploads, setUploads] = useState<FileUpload[]>([])
+
+  attachmentEmitter.use((uploads) => {
+    setUploads(uploads)
   })
 
   messageInputEmitter.use((value) => {
     if (value.type === 'submit') {
-      setAttachments([])
+      setUploads([])
     }
   })
 
   return (
     <XStack gap="$2">
-      {attachments.map((attachment) => {
-        const url = attachment.url || attachment.preview
-        const size = 50
+      {uploads.map((upload) => {
+        const attachment = fileUploadToAttachment(upload)
+        const size = 60
 
         return (
-          <YStack key={attachment.name} gap="$1" w={size} h={size}>
-            {url && (
-              <YStack pos="relative">
-                <Button
-                  circular
-                  icon={X}
-                  size="$1"
-                  pos="absolute"
-                  t={-2}
-                  r={-2}
-                  zi={10}
-                  onPress={() => {
-                    setAttachments((prev) => {
-                      return prev.filter((_) => _.name !== attachment.name)
-                    })
-                  }}
-                />
-                <Image
-                  src={url}
-                  br="$6"
-                  ov="hidden"
-                  bw={1}
-                  bc="$color3"
-                  width={size}
-                  height={size}
-                  objectFit="contain"
-                />
-              </YStack>
+          <YStack key={attachment.id} gap="$1" w={size} h={size}>
+            {attachment.url && (
+              <AttachmentItem
+                attachment={attachment}
+                size={size}
+                editable
+                onDelete={() => {
+                  setUploads((prev) => {
+                    return prev.filter((_) => _.name !== upload.name)
+                  })
+                }}
+              ></AttachmentItem>
             )}
-            {attachment.progress !== 100 && (
+            {upload.progress !== 100 && (
               <Progress
                 pos="absolute"
                 b={0}
@@ -216,7 +216,7 @@ const MessageInputAttachments = () => {
                 miw={size}
                 h={5}
                 zi={100}
-                value={attachment.progress}
+                value={upload.progress}
                 bg="$color2"
               >
                 <Progress.Indicator h={5} bc="$color7" animation="bouncy" />
