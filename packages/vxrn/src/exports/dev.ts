@@ -10,8 +10,8 @@ export type DevOptions = VXRNOptions & {
 }
 
 export const dev = async (optionsIn: DevOptions) => {
-  if (optionsIn.debug) {
-    process.env.DEBUG ||= `vite:${optionsIn.debug}`
+  if (typeof optionsIn.debug === 'string') {
+    process.env.DEBUG ||= !optionsIn.debug ? `vite` : `vite:${optionsIn.debug}`
   }
 
   // import vite only after setting process.env.DEBUG

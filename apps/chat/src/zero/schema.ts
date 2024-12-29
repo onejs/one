@@ -73,6 +73,23 @@ const userSchema = {
   },
 } as const
 
+const attachmentsSchema = {
+  tableName: 'attachment',
+  columns: {
+    id: 'string',
+    userID: 'string',
+    // attached to a specific message
+    messageID: { type: 'string', optional: true },
+    // if authoring a message in a channel
+    channelID: { type: 'string', optional: true },
+    type: 'string',
+    data: { type: 'string', optional: true },
+    url: { type: 'string', optional: true },
+    createdAt: { type: 'number', optional: true },
+  },
+  primaryKey: ['id'],
+} as const
+
 const roleSchema = {
   tableName: 'role',
   primaryKey: ['id'],
@@ -327,6 +344,7 @@ export const schema = createSchema({
   version: 1,
   tables: {
     user: userSchema,
+    attachment: attachmentsSchema,
     friendship: friendshipSchema,
     server: serverSchema,
     serverMember: serverMemberSchema,
@@ -342,6 +360,7 @@ export const schema = createSchema({
 })
 
 export type Schema = typeof schema
+export type Attachment = Row<typeof attachmentsSchema>
 export type Message = Row<typeof messageSchema>
 export type Server = Row<typeof serverSchema>
 export type Channel = Row<typeof channelSchema>

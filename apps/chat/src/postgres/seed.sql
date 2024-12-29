@@ -118,6 +118,17 @@ CREATE TABLE "message" (
     "deleted" BOOLEAN DEFAULT FALSE NOT NULL
 );
 
+CREATE TABLE "attachment" (
+    "id" VARCHAR PRIMARY KEY,
+    "userID" VARCHAR REFERENCES "user"(id),
+    "messageID" VARCHAR REFERENCES "message"(id) NULL,
+    "channelID" VARCHAR REFERENCES "channel"(id) NULL,
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "data" TEXT,
+    "url" VARCHAR,
+    "type" VARCHAR NOT NULL
+);
+
 ALTER TABLE
     "thread"
 ADD
