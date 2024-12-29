@@ -111,6 +111,7 @@ export const MessagesList = memo(
             count={messages.length}
             reverse
             shift={isPrepend.current}
+            overscan={10}
             style={{
               flex: 1,
             }}

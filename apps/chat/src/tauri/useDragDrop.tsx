@@ -2,10 +2,17 @@ import { getCurrentWebview } from '@tauri-apps/api/webview'
 import { exists, readFile } from '@tauri-apps/plugin-fs'
 import { useEffect, useState } from 'react'
 import { isTauri } from './constants'
+import { Image, type ImageProps } from 'tamagui'
 
 export type DropFile = {
-  path: string
+  name: string
   contents: Uint8Array<ArrayBufferLike>
+  preview?: string
+}
+
+export type DropEvent = {
+  type: 'drop'
+  files: DropFile[]
 }
 
 export type DragDropEvent =
@@ -14,10 +21,7 @@ export type DragDropEvent =
       x: number
       y: number
     }
-  | {
-      type: 'drop'
-      files: DropFile[]
-    }
+  | DropEvent
   | {
       type: 'cancel'
     }
@@ -40,12 +44,14 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
             const paths = event.payload.paths
             const files = (
               await Promise.all(
-                paths.flatMap(async (path) => {
-                  if (await exists(path)) {
+                paths.flatMap(async (name) => {
+                  if (await exists(name)) {
+                    const contents = await readFile(name)
                     return [
                       {
-                        path,
-                        contents: await readFile(path),
+                        name,
+                        contents,
+                        preview: await fileLikeToDataURI({ name, contents }),
                       } satisfies DropFile,
                     ]
                   }
@@ -116,10 +122,10 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
 
           for (const item of Array.from(e.dataTransfer!.files)) {
             try {
-              const contents = new Uint8Array(await item.arrayBuffer())
               files.push({
-                path: item.name,
-                contents,
+                name: item.name,
+                contents: new Uint8Array(await item.arrayBuffer()),
+                preview: await fileLikeToDataURI(item),
               })
             } catch (err) {
               console.error('Failed to read dropped file:', err)
@@ -156,4 +162,45 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
       )
     },
   }
+}
+
+async function fileLikeToDataURI(
+  file: File | { name: string; contents: Uint8Array<ArrayBufferLike> }
+) {
+  const contents = 'contents' in file ? file.contents : new Uint8Array(await file.arrayBuffer())
+  return arrayBufferToDataURL(contents, getFileType(file.name))
+}
+
+export function isImageFile(filename: string): boolean {
+  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp']
+  return imageExtensions.some((ext) => filename.toLowerCase().endsWith(ext))
+}
+
+function getFileType(filename: string): string {
+  const ext = filename.toLowerCase().split('.').pop()
+  switch (ext) {
+    case 'jpg':
+    case 'jpeg':
+      return 'image/jpeg'
+    case 'png':
+      return 'image/png'
+    case 'gif':
+      return 'image/gif'
+    case 'webp':
+      return 'image/webp'
+    default:
+      return 'application/octet-stream'
+  }
+}
+
+function arrayBufferToDataURL(buffer: Uint8Array, mimeType: string): string {
+  const chunkSize = 65536
+  let base64 = ''
+
+  for (let i = 0; i < buffer.length; i += chunkSize) {
+    const chunk = buffer.subarray(i, i + chunkSize)
+    base64 += String.fromCharCode(...chunk)
+  }
+
+  return `data:${mimeType};base64,${btoa(base64)}`
 }

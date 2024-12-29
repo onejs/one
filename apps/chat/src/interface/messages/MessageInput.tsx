@@ -1,6 +1,6 @@
 import type { RefMDEditor } from '@uiw/react-md-editor'
-import { useEffect, useRef } from 'react'
-import { Input, YStack } from 'tamagui'
+import { startTransition, useEffect, useRef, useState } from 'react'
+import { Input, YStack, XStack, Image, Progress } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { Editor, type EditorRef } from '~/editor/Editor'
 import { randomID } from '~/helpers/randomID'
@@ -8,6 +8,8 @@ import { useCurrentChannel, useCurrentServer } from '~/state/server'
 import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
 import { zero } from '~/zero/zero'
 import { messagesListEmitter } from './MessagesList'
+import { attachmentEmitter } from '../upload/DragDropFile'
+import type { FileUpload } from '../upload/uploadImage'
 
 let mainInputRef: EditorRef | null = null
 
@@ -97,7 +99,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             return
           }
 
-          inputRef.current?.cl
+          inputRef.current?.clear?.()
 
           zero.mutate.message.insert({
             id: randomID(),
@@ -110,11 +112,50 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             serverID: server.id,
           })
 
-          // setTimeout(() => {
-          //   inputRef.current?.focus()
-          // }, 40)
+          setTimeout(() => {
+            inputRef.current?.textarea?.focus()
+          }, 40)
         }}
       />
+
+      <MessageInputAttachments />
     </YStack>
+  )
+}
+
+const MessageInputAttachments = () => {
+  const [attachments, setAttachments] = useState<FileUpload[]>([])
+
+  attachmentEmitter.use((value) => {
+    startTransition(() => {
+      console.warn('got attachment', value)
+      setAttachments(value)
+    })
+  })
+
+  return (
+    <XStack gap="$2">
+      {attachments.map((attachment) => {
+        const url = attachment.url || attachment.preview
+
+        return (
+          <YStack key={attachment.name} gap="$1">
+            {url && (
+              <Image
+                source={{ uri: attachment.url }}
+                width={100}
+                height={100}
+                objectFit="contain"
+              />
+            )}
+            {attachment.progress !== 100 && (
+              <Progress mt="$2" value={attachment.progress} bg="$color2">
+                <Progress.Indicator bc="$color7" animation="bouncy" />
+              </Progress>
+            )}
+          </YStack>
+        )
+      })}
+    </XStack>
   )
 }

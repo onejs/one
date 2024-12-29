@@ -8,6 +8,18 @@ interface UploadResponse {
 
 export const uploadImageEndpoint = '/api/image/upload'
 
+export type FileUpload = {
+  name: string
+  progress: number
+  file: File
+  // uploaded url
+  url?: string
+  // data-uri string
+  preview?: string
+  error?: string
+  status: 'uploading' | 'complete' | 'error'
+}
+
 export function uploadImageData(
   fileData: File | Blob,
   onProgress: (percent: number) => void
@@ -47,55 +59,86 @@ export function uploadImageData(
   })
 }
 
-export async function uploadImage(
-  imageUrl: string,
-  onProgress: (percent: number) => void
-): Promise<UploadResponse> {
-  const response = await fetch(imageUrl)
-  if (!response.ok) {
-    throw new Error(`Failed to fetch image from ${imageUrl}: ${response.statusText}`)
-  }
-  const blob = await response.blob()
-  return uploadImageData(blob, onProgress)
-}
-
-export const useUploadImage = ({ onChangeImage }: { onChangeImage?: (cb: string) => void }) => {
-  const [uploadUrl, setUploadUrl] = useState('')
-  const [progress, setProgress] = useState(0)
-  const [errorMessage, setErrorMessage] = useState('')
+export const useUploadImages = ({
+  onChange,
+}: {
+  onChange?: (uploads: FileUpload[]) => void
+}) => {
+  const [uploads, setUploads] = useState<FileUpload[]>([])
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (file) {
-      handleUpload(file)
+    const files = Array.from(event.target.files || [])
+    if (files.length) {
+      handleUpload(files)
     }
   }
 
-  const handleUpload = (file: File) => {
-    setErrorMessage('')
-    setProgress(10)
+  const handleUpload = (files: File[]) => {
+    const newUploads = files.map((file) => ({
+      name: file.name,
+      file,
+      progress: 0,
+      status: 'uploading' as const,
+    }))
 
-    uploadImageData(file, (p) => setProgress(p))
-      .then((response) => {
+    setUploads((prev) => {
+      const next = [...prev, ...newUploads]
+      onChange?.(next)
+      return next
+    })
+
+    const uploadPromises = newUploads.map(async (upload) => {
+      try {
+        const response = await uploadImageData(upload.file, (progress) => {
+          setUploads((prev) => {
+            const next = prev.map((u) =>
+              u.name === upload.name ? { ...u, progress, status: 'uploading' as const } : u
+            )
+            onChange?.(next)
+            return next
+          })
+        })
+
         if (response.url) {
-          setUploadUrl(response.url)
-          onChangeImage?.(response.url)
-          setProgress(0)
+          setUploads((prev) => {
+            const next = prev.map((u) =>
+              u.name === upload.name ? { ...u, url: response.url, status: 'complete' as const } : u
+            )
+            onChange?.(next)
+            return next
+          })
         } else {
-          setErrorMessage('Upload failed: ' + (response.error || 'No error message provided.'))
+          setUploads((prev) => {
+            const next = prev.map((u) =>
+              u.name === upload.name ? { ...u, error: response.error, status: 'error' as const } : u
+            )
+            onChange?.(next)
+            return next
+          })
         }
-      })
-      .catch((err) => {
-        setErrorMessage(err.message)
-      })
+      } catch (err) {
+        setUploads((prev) => {
+          const next = prev.map((u) =>
+            u.name === upload.name
+              ? {
+                  ...u,
+                  error: err instanceof Error ? err.message : `${err}`,
+                  status: 'error' as const,
+                }
+              : u
+          )
+          onChange?.(next)
+          return next
+        })
+      }
+    })
+
+    return uploadPromises
   }
 
   return {
+    uploads,
     handleUpload,
     handleFileChange,
-    progress,
-    errorMessage,
-    setErrorMessage,
-    uploadUrl,
   }
 }
