@@ -61,55 +61,56 @@ export async function getReactNativeBundle(
 
   nativeBuildConfig.plugins = filterPluginsForNative(nativeBuildConfig.plugins, { isNative: true })
 
+  // instrument plugins:
+  const buildStats: Record<string, number> = {}
+  if (process.env.ONE_DEBUG_BUILD_PERF) {
+    nativeBuildConfig.plugins = nativeBuildConfig.plugins.map((plugin) => {
+      return new Proxy(plugin, {
+        get(target, key) {
+          const value = Reflect.get(target, key)
+          // wrap with instrumentation
+          if (typeof value === 'function') {
+            return function (this, ...args) {
+              const name = `${plugin.name}:${key as any}`
+              const start = performance.now()
+              const logEnd = () => {
+                buildStats[name] ||= 0
+                buildStats[name] += performance.now() - start
+              }
+              const out = value.call(this, ...args)
+              if (out instanceof Promise) {
+                return out
+                  .then((val) => {
+                    logEnd()
+                    return val
+                  })
+                  .catch((err) => {
+                    logEnd()
+                    throw err
+                  })
+              }
+              logEnd()
+              return out
+            }
+          }
+          return value
+        },
+      })
+    })
+  }
+
   const builder = await createBuilder(nativeBuildConfig)
 
   const environment = builder.environments[platform]
-
-  const rollupCacheFile = join(options.cacheDir, `rn-rollup-cache-${platform}.json`)
-
-  // if (internal.useCache && !process.env.VXRN_DISABLE_CACHE) {
-  //   // See: https://rollupjs.org/configuration-options/#cache
-  //   environment.config.build.rollupOptions.cache =
-  //     cache[platform] ||
-  //     (await (async () => {
-  //       // Try to load Rollup cache from disk
-  //       try {
-  //         if (await pathExists(rollupCacheFile)) {
-  //           const c = await FSExtra.readJSON(rollupCacheFile, { reviver: bigIntReviver })
-  //           return c
-  //         }
-  //       } catch (e) {
-  //         console.error(`Error loading Rollup cache from ${rollupCacheFile}: ${e}`)
-  //       }
-
-  //       return null
-  //     })()) ||
-  //     true /* to initially enable Rollup cache */
-  // }
 
   // We are using a forked version of the Vite internal function `buildEnvironment` (which is what `builder.build` calls) that will return the Rollup cache object with the build output, and also with some performance improvements.
   // disabled due to differences in vite 6 stable upgrade
 
   const buildOutput = await builder.build(environment)
 
-  // disable cache for new vite version
-  // const { cache: currentCache } = buildOutput
-  // if (currentCache) {
-  //   // Do not cache some virtual modules that can dynamically change without an corresponding change in the source code to invalidate the cache.
-  //   currentCache.modules = currentCache.modules.filter((m) => !m.id.endsWith('one-entry-native'))
-  //   cache[platform] = currentCache
-
-  //   // do not await cache write
-  //   ;(async () => {
-  //     if (!internal.useCache) return
-
-  //     try {
-  //       await FSExtra.writeJSON(rollupCacheFile, currentCache, { replacer: bigIntReplacer })
-  //     } catch (e) {
-  //       console.error(`Error saving Rollup cache to ${rollupCacheFile}: ${e}`)
-  //     }
-  //   })()
-  // }
+  if (process.env.ONE_DEBUG_BUILD_PERF) {
+    console.info(JSON.stringify(buildStats, null, 2))
+  }
 
   if (!('output' in buildOutput)) {
     throw `❌`

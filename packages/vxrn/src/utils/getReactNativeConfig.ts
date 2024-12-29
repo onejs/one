@@ -58,40 +58,40 @@ export async function getReactNativeConfig(
       // vite doesnt support importing from a directory but its so common in react native
       // so lets make it work, and node resolve theoretically fixes but you have to pass in moduleDirs
       // but we need this to work anywhere including in normal source files
-      {
-        name: 'node-dir-imports',
-        enforce: 'pre',
+      // {
+      //   name: 'node-dir-imports',
+      //   enforce: 'pre',
 
-        async resolveId(importee, importer) {
-          if (!importer || !importee.startsWith('./')) {
-            return null
-          }
-          // let nodeResolve handle node_modules
-          if (importer?.includes('node_modules')) {
-            return
-          }
-          try {
-            const resolved = join(dirname(importer), importee)
-            if ((await stat(resolved)).isDirectory()) {
-              // fix for importing a directory
-              // TODO this would probably want to support their configured extensions
-              // TODO also platform-specific extensions
-              for (const ext of ['ts', 'tsx', 'mjs', 'js']) {
-                try {
-                  const withExt = join(resolved, `index.${ext}`)
-                  await stat(withExt)
-                  // its a match
-                  return withExt
-                } catch {
-                  // keep going
-                }
-              }
-            }
-          } catch {
-            // not a dir keep going
-          }
-        },
-      } satisfies Plugin,
+      //   async resolveId(importee, importer) {
+      //     if (!importer || !importee.startsWith('./')) {
+      //       return null
+      //     }
+      //     // let nodeResolve handle node_modules
+      //     if (importer?.includes('node_modules')) {
+      //       return
+      //     }
+      //     try {
+      //       const resolved = join(dirname(importer), importee)
+      //       if ((await stat(resolved)).isDirectory()) {
+      //         // fix for importing a directory
+      //         // TODO this would probably want to support their configured extensions
+      //         // TODO also platform-specific extensions
+      //         for (const ext of ['ts', 'tsx', 'mjs', 'js']) {
+      //           try {
+      //             const withExt = join(resolved, `index.${ext}`)
+      //             await stat(withExt)
+      //             // its a match
+      //             return withExt
+      //           } catch {
+      //             // keep going
+      //           }
+      //         }
+      //       }
+      //     } catch {
+      //       // not a dir keep going
+      //     }
+      //   },
+      // } satisfies Plugin,
 
       {
         name: 'native-special-case-resolver',
@@ -145,7 +145,7 @@ export async function getReactNativeConfig(
 
       nodeResolve(),
 
-      swapPrebuiltReactModules(options.cacheDir, {
+      await swapPrebuiltReactModules(options.cacheDir, {
         // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
         mode: internal.mode || 'dev',
         platform,
