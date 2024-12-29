@@ -15,7 +15,7 @@ import { zero } from '~/zero'
 import { MessageActionBar } from './MessageActionBar'
 import { MessageReactions } from './MessageReactions'
 import { messageHover } from './constants'
-import { Image } from '@tamagui/image-next'
+import { AttachmentItem } from '../attachments/AttachmentItem'
 
 export const MessageItem = memo(
   ({
@@ -39,7 +39,9 @@ export const MessageItem = memo(
     }
 
     const channelState = useUserCurrentChannelState()
-    const [userState] = useUserState()
+    const [userState, { user }] = useUserState()
+
+    const isMyMessage = sender?.id === user?.id
     const isFocused = !disableEvents && channelState?.focusedMessageId === message.id
     const isEditing = channelState?.editingMessageId === message.id
 
@@ -112,13 +114,20 @@ export const MessageItem = memo(
           </SizableText>
 
           {!!message.attachments?.length && (
-            <XStack gap="$4">
+            <XStack gap="$4" py="$2">
               {message.attachments.map((attachment) => {
-                if (!attachment.url) {
-                  return null
-                }
-
-                return <Image key={attachment.id} src={attachment.url} width={50} height={50} />
+                return (
+                  <AttachmentItem
+                    editable={isMyMessage}
+                    key={attachment.id}
+                    attachment={attachment}
+                    onDelete={() => {
+                      zero.mutate.attachment.delete({
+                        id: attachment.id,
+                      })
+                    }}
+                  />
+                )
               })}
             </XStack>
           )}
