@@ -1,6 +1,7 @@
 import type { RefMDEditor } from '@uiw/react-md-editor'
 import { startTransition, useEffect, useRef, useState } from 'react'
-import { Input, YStack, XStack, Image, Progress } from 'tamagui'
+import { Input, YStack, XStack, Progress, Button } from 'tamagui'
+import { Image } from '@tamagui/image-next'
 import { useAuth } from '~/better-auth/authClient'
 import { Editor, type EditorRef } from '~/editor/Editor'
 import { randomID } from '~/helpers/randomID'
@@ -10,6 +11,7 @@ import { zero } from '~/zero/zero'
 import { messagesListEmitter } from './MessagesList'
 import { attachmentEmitter } from '../upload/DragDropFile'
 import type { FileUpload } from '../upload/uploadImage'
+import { X } from '@tamagui/lucide-icons'
 
 let mainInputRef: EditorRef | null = null
 
@@ -45,7 +47,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   }, [channel, inThread])
 
   return (
-    <YStack btw={1} bc="$color4" p="$2">
+    <YStack btw={1} bc="$color4" p="$2" gap="$2">
       <Editor
         ref={inputRef}
         onKeyDown={(e) => {
@@ -127,30 +129,60 @@ const MessageInputAttachments = () => {
   const [attachments, setAttachments] = useState<FileUpload[]>([])
 
   attachmentEmitter.use((value) => {
-    startTransition(() => {
-      console.warn('got attachment', value)
-      setAttachments(value)
-    })
+    console.warn('got attachment', value)
+    setAttachments(value)
   })
 
   return (
     <XStack gap="$2">
       {attachments.map((attachment) => {
         const url = attachment.url || attachment.preview
+        const size = 50
 
         return (
-          <YStack key={attachment.name} gap="$1">
+          <YStack key={attachment.name} gap="$1" w={size} h={size}>
             {url && (
-              <Image
-                source={{ uri: attachment.url }}
-                width={100}
-                height={100}
-                objectFit="contain"
-              />
+              <YStack pos="relative">
+                <Button
+                  circular
+                  icon={X}
+                  size="$1"
+                  pos="absolute"
+                  t={-2}
+                  r={-2}
+                  zi={10}
+                  onPress={() => {
+                    setAttachments((prev) => {
+                      return prev.filter((_) => _.name !== attachment.name)
+                    })
+                  }}
+                />
+                <Image
+                  src={url}
+                  br="$6"
+                  ov="hidden"
+                  bw={1}
+                  bc="$color3"
+                  width={size}
+                  height={size}
+                  objectFit="contain"
+                />
+              </YStack>
             )}
             {attachment.progress !== 100 && (
-              <Progress mt="$2" value={attachment.progress} bg="$color2">
-                <Progress.Indicator bc="$color7" animation="bouncy" />
+              <Progress
+                pos="absolute"
+                b={0}
+                l={0}
+                r={0}
+                w={size}
+                miw={size}
+                h={5}
+                zi={100}
+                value={attachment.progress}
+                bg="$color2"
+              >
+                <Progress.Indicator h={5} bc="$color7" animation="bouncy" />
               </Progress>
             )}
           </YStack>

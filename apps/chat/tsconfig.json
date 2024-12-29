@@ -9,7 +9,9 @@
       ]
     },
     "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": true,
+    // i want this for nice type import auto complete
+    // but then it checks node_modules for this an errors
+    "verbatimModuleSyntax": false,
     "downlevelIteration": true,
     "esModuleInterop": true,
     "module": "Preserve",
