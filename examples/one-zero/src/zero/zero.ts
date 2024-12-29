@@ -34,7 +34,7 @@ export type QueryResult<TReturn extends QueryType> = [
 ]
 
 export function useQuery<
-  QueryBuilder extends (z: Zero<Schema>['query']) => Query<any>,
+  QueryBuilder extends (z: Zero<Schema>['query']) => Query<any, any>,
   Q extends ReturnType<QueryBuilder>,
 >(createQuery: QueryBuilder): Q extends Query<any, infer Return> ? QueryResult<Return> : never {
   const z = useZero<Schema>()
