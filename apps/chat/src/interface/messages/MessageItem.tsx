@@ -15,6 +15,7 @@ import { zero } from '~/zero'
 import { MessageActionBar } from './MessageActionBar'
 import { MessageReactions } from './MessageReactions'
 import { messageHover } from './constants'
+import { Image } from '@tamagui/image-next'
 
 export const MessageItem = memo(
   ({
@@ -109,6 +110,18 @@ export const MessageItem = memo(
               />
             )}
           </SizableText>
+
+          {!!message.attachments?.length && (
+            <XStack gap="$4">
+              {message.attachments.map((attachment) => {
+                if (!attachment.url) {
+                  return null
+                }
+
+                return <Image key={attachment.id} src={attachment.url} width={50} height={50} />
+              })}
+            </XStack>
+          )}
 
           {thread && (
             <YStack>

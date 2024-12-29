@@ -343,6 +343,7 @@ export type MessageWithRelations = Message & {
   reactions: readonly Reaction[]
   thread?: readonly Thread[]
   sender: readonly User[]
+  attachments: readonly Attachment[]
 }
 export type ThreadWithRelations = Thread & { messages: readonly Message[] }
 export type RoleWithRelations = Role & { members: readonly User[] }
