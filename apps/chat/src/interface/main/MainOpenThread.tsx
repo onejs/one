@@ -1,6 +1,6 @@
-import { Configuration, YStack } from 'tamagui'
+import { YStack } from 'tamagui'
 import { updateUserCurrentChannel, useCurrentThread } from '~/state/user'
-import { animationsCSS } from '~/tamagui/animations.css'
+import { AnimationDriver } from '../animations/AnimationDriver'
 import { ButtonClose } from '../ButtonClose'
 import { MessageInput } from '../messages/MessageInput'
 import { MessagesList } from '../messages/MessagesList'
@@ -9,7 +9,7 @@ export const MainOpenThread = () => {
   const thread = useCurrentThread()
 
   return (
-    <Configuration animationDriver={animationsCSS}>
+    <AnimationDriver name="css">
       <YStack
         bg="$color2"
         shadowColor="$shadowColor"
@@ -57,6 +57,6 @@ export const MainOpenThread = () => {
           </>
         )}
       </YStack>
-    </Configuration>
+    </AnimationDriver>
   )
 }

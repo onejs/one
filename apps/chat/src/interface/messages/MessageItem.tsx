@@ -31,8 +31,7 @@ export const MessageItem = memo(
     disableEvents?: boolean
     hideUser?: boolean
   }) => {
-    const thread = (message.thread || [])[0] as Thread | undefined
-    const sender = (message.sender || [])[0] as User | undefined
+    const { thread, sender } = message
 
     const openThread = () => {
       if (thread) {
@@ -63,8 +62,9 @@ export const MessageItem = memo(
         py={hideUser ? '$1' : '$2'}
         px="$4"
         group="message"
-        borderTopWidth={2}
-        borderBottomWidth={2}
+        marginTop={-0.5}
+        borderTopWidth={0.5}
+        borderBottomWidth={0.5}
         borderColor="transparent"
         onMouseEnter={() => {
           messageHover.emit(message.id)
@@ -79,7 +79,11 @@ export const MessageItem = memo(
           backgroundColor: '$color4',
         })}
         {...(thread && {
-          borderColor: '$green5',
+          backgroundColor: '$green2',
+          borderColor: '$green3',
+          hoverStyle: {
+            backgroundColor: '$green1',
+          },
           onDoubleClick: () => {
             openThread()
           },
@@ -131,7 +135,7 @@ export const MessageItem = memo(
             )}
           </SizableText>
 
-          {!!message.attachments?.length && (
+          {!message.thread && !!message.attachments?.length && (
             <XStack gap="$4" py="$4">
               {message.attachments.map((attachment) => {
                 return (

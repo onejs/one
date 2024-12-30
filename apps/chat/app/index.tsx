@@ -1,4 +1,5 @@
 import { XStack, YStack } from 'tamagui'
+import { AnimationDriver } from '~/interface/animations/AnimationDriver'
 import { Main } from '~/interface/main/Main'
 import { AccountSettingsPane } from '~/interface/settings/AccountSettingsPane'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
@@ -8,10 +9,8 @@ import { TopBar } from '~/interface/TopBar'
 import { useUserState } from '~/state/user'
 
 export default function HomePage() {
-  const [userState] = useUserState()
-
   return (
-    <YStack h={0} f={1} x={userState?.showSidePanel ? -hiddenPanelWidth : 0} animation="quicker">
+    <AppFrame>
       <TopBar />
 
       <XStack h={0} ai="stretch" f={1}>
@@ -20,7 +19,19 @@ export default function HomePage() {
       </XStack>
 
       <RightSideHiddenPanel />
-    </YStack>
+    </AppFrame>
+  )
+}
+
+const AppFrame = ({ children }: { children: any }) => {
+  const [userState] = useUserState()
+
+  return (
+    <AnimationDriver name="css">
+      <YStack h={0} f={1} x={userState?.showSidePanel ? -hiddenPanelWidth : 0} animation="quicker">
+        <AnimationDriver name="spring">{children}</AnimationDriver>
+      </YStack>
+    </AnimationDriver>
   )
 }
 

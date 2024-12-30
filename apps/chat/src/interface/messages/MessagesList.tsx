@@ -80,7 +80,7 @@ export const MessagesList = memo(
           case 'select': {
             if (focusedMessage) {
               if (focusedMessage.thread) {
-                updateUserOpenThread(focusedMessage.thread[0])
+                updateUserOpenThread(focusedMessage.thread)
               } else {
                 updateUserSetEditingMessage(focusedMessage.id)
               }

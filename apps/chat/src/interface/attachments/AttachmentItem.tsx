@@ -51,7 +51,9 @@ export const AttachmentItem = ({
           t={-2}
           r={-2}
           zi={10}
-          onPress={async () => {
+          onPress={async (e) => {
+            e.stopPropagation()
+
             if (
               await dialogConfirm({
                 title: `Delete attachment?`,

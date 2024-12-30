@@ -341,8 +341,8 @@ export type RolePermissionsKeys = (typeof rolePermissionsKeys)[0]
 
 export type MessageWithRelations = Message & {
   reactions: readonly Reaction[]
-  thread?: readonly Thread[]
-  sender: readonly User[]
+  thread?: Thread
+  sender?: User
   attachments: readonly Attachment[]
 }
 export type ThreadWithRelations = Thread & { messages: readonly Message[] }

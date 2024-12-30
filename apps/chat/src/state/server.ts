@@ -113,14 +113,14 @@ export const useCurrentChannelMessages = () => {
               .orderBy('createdAt', 'asc')
               // dont get threaded messages
               .where('isThreadReply', false)
-              .where(({ not, exists, cmp }) =>
+              .where(({ exists, cmp }) =>
                 activeChannelState?.mainView === 'thread'
                   ? exists('thread')
                   : cmp('isThreadReply', false)
               )
               .related('reactions')
-              .related('thread')
-              .related('sender')
+              .related('thread', (q) => q.one())
+              .related('sender', (q) => q.one())
               .related('attachments')
           )
         )

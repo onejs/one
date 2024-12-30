@@ -71,11 +71,13 @@ export const useUserCurrentChannelState = () => {
 export const useCurrentThread = () => {
   const [_, { activeThread }] = useUserState()
   const [thread] = useQuery((q) =>
-    q.thread
-      .where('id', activeThread?.openedThreadId || '')
-      .related('messages', (q) =>
-        q.orderBy('createdAt', 'asc').related('reactions').related('sender').related('attachments')
-      )
+    q.thread.where('id', activeThread?.openedThreadId || '').related('messages', (q) =>
+      q
+        .orderBy('createdAt', 'asc')
+        .related('reactions')
+        .related('sender', (q) => q.one())
+        .related('attachments')
+    )
   )
   return thread[0]
 }

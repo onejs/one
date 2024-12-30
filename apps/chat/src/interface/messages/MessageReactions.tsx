@@ -31,11 +31,13 @@ export const ReactionButton = ({
   reaction,
   message,
   count,
+  active,
   ...rest
 }: ButtonProps & {
   count?: number
   message: Message
   reaction: Pick<Reaction, 'id' | 'value'>
+  active?: boolean
 }) => {
   const { user } = useAuth()
 
@@ -55,6 +57,9 @@ export const ReactionButton = ({
           creatorID: user.id,
         })
       }}
+      {...(active && {
+        bg: '$color2',
+      })}
     >
       {typeof count === 'number' && (
         <SizableText
