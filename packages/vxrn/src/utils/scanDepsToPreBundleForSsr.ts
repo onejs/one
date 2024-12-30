@@ -17,6 +17,9 @@ export const EXCLUDE_LIST = [
   '@swc/core-win32-x64-msvc',
   'lightningcss',
 
+  // not ever to be used in app
+  '@expo/cli',
+
   // not used by web anyway
   // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
   // /lib/module/Platform/Platform.web.js:132:20
