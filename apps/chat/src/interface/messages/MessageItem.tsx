@@ -16,6 +16,7 @@ import { MessageActionBar } from './MessageActionBar'
 import { MessageReactions } from './MessageReactions'
 import { messageHover } from './constants'
 import { AttachmentItem } from '../attachments/AttachmentItem'
+import { galleryEmitter } from '../gallery/Gallery'
 
 export const MessageItem = memo(
   ({
@@ -114,7 +115,7 @@ export const MessageItem = memo(
           </SizableText>
 
           {!!message.attachments?.length && (
-            <XStack gap="$4" py="$2">
+            <XStack gap="$4" py="$4">
               {message.attachments.map((attachment) => {
                 return (
                   <AttachmentItem
@@ -124,6 +125,12 @@ export const MessageItem = memo(
                     onDelete={() => {
                       zero.mutate.attachment.delete({
                         id: attachment.id,
+                      })
+                    }}
+                    onPress={() => {
+                      galleryEmitter.emit({
+                        items: message.attachments,
+                        firstItem: attachment.id,
                       })
                     }}
                   />

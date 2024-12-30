@@ -1,6 +1,6 @@
 import { Image } from '@tamagui/image-next'
 import { X } from '@tamagui/lucide-icons'
-import { Button, YStack } from 'tamagui'
+import { Button, YStack, type YStackProps } from 'tamagui'
 import type { Attachment } from '~/zero'
 import { dialogConfirm } from '../dialogs/actions'
 
@@ -9,27 +9,39 @@ export const AttachmentItem = ({
   size = 200,
   onDelete,
   attachment,
-}: { size?: number; editable?: boolean; attachment: Attachment; onDelete?: () => void }) => {
+  rounded,
+  onPress,
+}: {
+  rounded?: boolean
+  size?: number
+  editable?: boolean
+  attachment: Attachment
+  onDelete?: () => void
+  onPress?: YStackProps['onPress']
+}) => {
   const content = (() => {
     if (attachment.url) {
-      return (
-        <Image
-          src={attachment.url}
-          br="$6"
-          ov="hidden"
-          bw={1}
-          bc="$color3"
-          width={size}
-          height={size}
-          objectFit="contain"
-        />
-      )
+      return <Image src={attachment.url} width={size} height={size} objectFit="contain" />
     }
     return null
   })()
 
   return (
-    <YStack pos="relative">
+    <YStack
+      onPress={onPress}
+      pos="relative"
+      p={size * 0.025}
+      m={size * -0.025}
+      br={size * 0.1}
+      {...(onPress && {
+        hoverStyle: {
+          bg: 'rgba(0,0,0,0.05)',
+        },
+        pressStyle: {
+          bg: 'rgba(0,0,0,0.075)',
+        },
+      })}
+    >
       {!!editable && (
         <Button
           circular
@@ -50,7 +62,17 @@ export const AttachmentItem = ({
           }}
         />
       )}
-      {content}
+
+      <YStack
+        {...(rounded && {
+          br: rounded ? size * 0.33 : 0,
+          ov: 'hidden',
+          bw: Math.round(size * 0.015),
+          bc: '$color3',
+        })}
+      >
+        {content}
+      </YStack>
     </YStack>
   )
 }

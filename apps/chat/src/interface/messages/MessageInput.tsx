@@ -199,6 +199,7 @@ const MessageInputAttachments = () => {
                 attachment={attachment}
                 size={size}
                 editable
+                rounded
                 onDelete={() => {
                   setUploads((prev) => {
                     return prev.filter((_) => _.name !== upload.name)
