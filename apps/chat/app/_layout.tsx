@@ -13,6 +13,7 @@ import { DragDropFile } from '~/interface/upload/DragDropFile'
 import config from '~/tamagui/tamagui.config'
 import { isTauri } from '~/tauri/constants'
 import { useZeroEmit, zero } from '~/zero'
+import { Gallery } from '~/interface/gallery/Gallery'
 
 export default function Layout() {
   useLayoutEffect(() => {
@@ -47,6 +48,7 @@ export default function Layout() {
             <ThemeProvider>
               <Slot />
               <Dialogs />
+              <Gallery />
             </ThemeProvider>
           </SchemeProvider>
         </DataProvider>
