@@ -298,7 +298,10 @@ function getReactNativeInternalModuleExports(
   return KNOWN_REACT_NATIVE_INTERNAL_MODULE_EXPORTS[modulePath] || []
 }
 
-// TODO: We can use `es-module-lexer` to parse from source code instead of hardcoding these.
+/**
+ * TODO: We can use `es-module-lexer` to parse from source code instead of hardcoding these.
+ * Keywords: `"..." is not exported by "virtual:rn-internals:react-native/..."`
+ */
 const KNOWN_REACT_NATIVE_INTERNAL_MODULE_EXPORTS = {
   'react-native/Libraries/NativeComponent/NativeComponentRegistry': [
     'setRuntimeConfigProvider',
@@ -316,5 +319,14 @@ const KNOWN_REACT_NATIVE_INTERNAL_MODULE_EXPORTS = {
     'PressabilityDebugView',
     'isEnabled',
     'setEnabled',
+  ],
+  'react-native/Libraries/Utilities/PolyfillFunctions': [
+    'polyfillObjectProperty',
+    'polyfillGlobal',
+  ],
+  'react-native/Libraries/Image/resolveAssetSource': [
+    'pickScale',
+    'setCustomSourceTransformer',
+    'addCustomSourceTransformer',
   ],
 }
