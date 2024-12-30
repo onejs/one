@@ -2,7 +2,7 @@ import { AnimatePresence } from '@tamagui/animate-presence'
 import { Image } from '@tamagui/image-next'
 import { ChevronLeft, ChevronRight, X } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useWindowDimensions } from 'react-native'
 import { Button, type ButtonProps, styled, XStack, YStack } from 'tamagui'
 import type { Attachment } from '~/zero'
@@ -26,12 +26,12 @@ const GalleryItem = styled(YStack, {
     going: {
       ':number': (going) => ({
         enterStyle: {
-          x: going > 0 ? 1000 : -1000,
+          x: going === 0 ? 0 : going > 0 ? 1000 : -1000,
           opacity: 0,
         },
         exitStyle: {
           zIndex: 0,
-          x: going < 0 ? 1000 : -1000,
+          x: going === 0 ? 0 : going < 0 ? 1000 : -1000,
           opacity: 0,
         },
       }),
@@ -48,6 +48,14 @@ export const Gallery = () => {
   const paginate = (going: number) => {
     setPage([page + going, going])
   }
+
+  const firstItem = galleryItems?.firstItem
+
+  useEffect(() => {
+    if (firstItem) {
+      setPage([items.findIndex((x) => x.id === firstItem), 0])
+    }
+  }, [firstItem])
 
   return (
     <XStack

@@ -1,6 +1,6 @@
 import { IndentIncrease } from '@tamagui/lucide-icons'
 import MDEditor from '@uiw/react-md-editor'
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { SizableText, XStack, YStack } from 'tamagui'
 import { Editor } from '~/editor/Editor'
 import { Avatar } from '~/interface/Avatar'
@@ -17,6 +17,7 @@ import { MessageReactions } from './MessageReactions'
 import { messageHover } from './constants'
 import { AttachmentItem } from '../attachments/AttachmentItem'
 import { galleryEmitter } from '../gallery/Gallery'
+import { messageReplyEmitter } from './emitters'
 
 export const MessageItem = memo(
   ({
@@ -45,6 +46,15 @@ export const MessageItem = memo(
     const isMyMessage = sender?.id === user?.id
     const isFocused = !disableEvents && channelState?.focusedMessageId === message.id
     const isEditing = channelState?.editingMessageId === message.id
+    const [isReplying, setIsReplying] = useState(false)
+
+    messageReplyEmitter.use((value) => {
+      if (value.type === 'reply') {
+        setIsReplying(value.messageId === message.id)
+      } else {
+        setIsReplying(false)
+      }
+    })
 
     return (
       <XStack
@@ -72,6 +82,13 @@ export const MessageItem = memo(
           borderColor: '$green5',
           onDoubleClick: () => {
             openThread()
+          },
+        })}
+        {...(isReplying && {
+          backgroundColor: '$blue5',
+          borderColor: '$blue7',
+          hoverStyle: {
+            backgroundColor: '$blue5',
           },
         })}
       >

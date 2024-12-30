@@ -48,7 +48,7 @@ export const TopBar = memo(() => {
       pr={4}
       mb={4}
     >
-      <XStack gap="$2">
+      <XStack pe="box-none" gap="$2">
         <TooltipSimple label="Menu">
           <HotMenu />
         </TooltipSimple>
