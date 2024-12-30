@@ -18,7 +18,11 @@
       "require": "./dist/cjs/index.cjs"
     }
   },
-  "files": ["src", "dist", "types"],
+  "files": [
+    "src",
+    "dist",
+    "types"
+  ],
   "scripts": {
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
