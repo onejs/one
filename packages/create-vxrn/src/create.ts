@@ -134,7 +134,7 @@ export async function create(args: { template?: string; name?: string }) {
 
   // change root package.json's name to project name
   updatePackageJsonName(projectName, resolvedProjectPath)
-  // replace `"workspace:^"` with the actual version
+  // replace `"workspace:*"` with the actual version
   updatePackageJsonVersions(packageJson.version, resolvedProjectPath)
   // change root app.json's name to project name
   updateAppJsonName(projectName, resolvedProjectPath)
