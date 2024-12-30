@@ -197,6 +197,7 @@ const MessageInputAttachments = () => {
   messageInputEmitter.use((value) => {
     if (value.type === 'submit') {
       setUploads([])
+      attachmentEmitter.emit([])
     }
   })
 

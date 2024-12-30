@@ -1,15 +1,17 @@
 import { SmilePlus } from '@tamagui/lucide-icons'
 import { Button, Popover, ScrollView, TooltipSimple, XStack } from 'tamagui'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
-import { useQuery } from '~/zero'
+import { type Message, useQuery } from '~/zero'
 import { ButtonSimple } from '../ButtonSimple'
 import { PopoverContent } from '../Popover'
 import { useEffect, useState } from 'react'
 import { messageActionBarStickOpen } from './constants'
 import { experimental_VGrid as VGrid } from 'virtua'
+import { ReactionButton } from './MessageReactions'
 
-export const AddReactionButton = () => {
-  const [reactions] = useQuery((q) => q.reaction.orderBy('keyword', 'desc'))
+export const AddReactionButton = ({ message }: { message: Message }) => {
+  const [allReactions] = useQuery((q) => q.reaction.orderBy('keyword', 'desc'))
+  const [reactions, setReactions] = useState(allReactions)
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -28,7 +30,10 @@ export const AddReactionButton = () => {
     <Popover
       open={open}
       offset={{
-        mainAxis: 5,
+        mainAxis: 8,
+      }}
+      stayInFrame={{
+        padding: 10,
       }}
       allowFlip
       placement="bottom-start"
@@ -44,7 +49,14 @@ export const AddReactionButton = () => {
 
       <PopoverContent width={300} height={300}>
         {open && (
-          <SearchableList onSelectItem={() => {}} items={reactions}>
+          <SearchableList
+            searchKey="value"
+            onSelectItem={() => {
+              console.warn('selected')
+            }}
+            items={reactions}
+            onSearch={setReactions}
+          >
             <XStack p="$2" w="100%">
               <SearchableInput size="$4" f={1} />
             </XStack>
@@ -63,9 +75,12 @@ export const AddReactionButton = () => {
                   <SearchableListItem index={index}>
                     {(active, itemProps) => {
                       return (
-                        <ButtonSimple active={active} {...itemProps}>
-                          {reaction?.value}
-                        </ButtonSimple>
+                        <ReactionButton
+                          message={message}
+                          reaction={reaction}
+                          active={active}
+                          {...itemProps}
+                        />
                       )
                     }}
                   </SearchableListItem>

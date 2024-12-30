@@ -27,7 +27,10 @@ export default function Layout() {
   if (isWeb) {
     useEffect(() => {
       window.addEventListener('error', (e) => {
-        showToast(e.message)
+        // filter known ok errors
+        if (!/measurement is not an Object/.test(e.message)) {
+          showToast(e.message)
+        }
       })
     }, [])
   }
@@ -52,19 +55,19 @@ export default function Layout() {
 
       <AuthEffects />
 
-      <ToastProvider>
-        <DragDropFile>
-          <DataProvider>
-            <SchemeProvider>
-              <ThemeProvider>
+      <ThemeProvider>
+        <ToastProvider>
+          <DragDropFile>
+            <DataProvider>
+              <SchemeProvider>
                 <Slot />
                 <Dialogs />
                 <Gallery />
-              </ThemeProvider>
-            </SchemeProvider>
-          </DataProvider>
-        </DragDropFile>
-      </ToastProvider>
+              </SchemeProvider>
+            </DataProvider>
+          </DragDropFile>
+        </ToastProvider>
+      </ThemeProvider>
     </>
   )
 }

@@ -17,8 +17,10 @@ import {
   useGet,
   usePropsAndStyle,
 } from 'tamagui'
+import { createFuzzy } from '~/helpers/fuzzy'
 
 type ContextType = {
+  setSearch: (next: string) => void
   items: any[] | readonly any[]
   getItemProps: (index: number) => any
   getReferenceProps: (userProps?: React.HTMLProps<Element>) => Record<string, unknown>
@@ -36,11 +38,19 @@ const emitter = createEmitter<number>()
 
 export type SearchableListProps<A = any> = {
   items: readonly A[] | A[]
+  searchKey?: keyof A
+  onSearch?: (items: A[]) => void
   onSelectItem: (item: A) => void
   children: any
 }
 
-export function SearchableList<A>({ items, children, onSelectItem }: SearchableListProps<A>) {
+export function SearchableList<A>({
+  items,
+  searchKey,
+  children,
+  onSelectItem,
+  onSearch,
+}: SearchableListProps<A>) {
   if (!isWeb) {
     // TODO
     return children
@@ -70,12 +80,19 @@ export function SearchableList<A>({ items, children, onSelectItem }: SearchableL
   const dismiss = useDismiss(context)
   const { getReferenceProps, getItemProps } = useInteractions([role, dismiss, listNavigation])
 
+  const fuzzy = useMemo(() => createFuzzy(items, searchKey as any), [items])
+
   const getActiveIndex = useGet(activeIndex)
 
   const contextValue = useMemo((): ContextType => {
     return {
       items,
       refs,
+      setSearch(val) {
+        if (onSearch) {
+          onSearch(fuzzy.search(val))
+        }
+      },
       getReferenceProps(props) {
         return getReferenceProps({
           ...props,
@@ -97,7 +114,7 @@ export function SearchableList<A>({ items, children, onSelectItem }: SearchableL
         })
       },
     }
-  }, [items, getReferenceProps, refs, getItemProps])
+  }, [onSearch, items, getReferenceProps, refs, getItemProps])
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>
 }
@@ -124,6 +141,7 @@ export const SearchableInput = forwardRef<Input, InputProps>((props: InputProps,
       {...refProps}
       {...(inputProps as any)}
       onChange={(e) => {
+        context?.setSearch(e.target.value)
         props.onChangeText?.(e.target.value)
         props.onChange?.(e as any)
       }}

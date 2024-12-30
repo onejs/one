@@ -224,16 +224,15 @@ const ServerRolePermissionsPaneMembers = ({ role }: { role: RoleWithRelations })
   }
 
   return (
-    <SearchableList items={serverMembers} onSelectItem={(item) => {}}>
-      <SearchableInput
-        size="$4"
-        mb="$3"
-        placeholder="Filter..."
-        onChangeText={(text) => {
-          // setSearch(text)
-        }}
-        onKeyPress={(key) => {}}
-      />
+    <SearchableList
+      onSearch={() => {
+        console.warn('todo')
+      }}
+      searchKey="name"
+      items={serverMembers}
+      onSelectItem={(item) => {}}
+    >
+      <SearchableInput size="$4" mb="$3" placeholder="Filter..." onKeyPress={(key) => {}} />
 
       {serverMembers.map((user, index) => {
         return (

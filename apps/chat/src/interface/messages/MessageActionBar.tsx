@@ -9,6 +9,7 @@ import { AddReactionButton } from './AddReactionButton'
 import { MessageMoreMenu } from './MessageMoreMenu'
 import { ReactionButton } from './MessageReactions'
 import { messageActionBarStickOpen, messageHover } from './constants'
+import { messageReplyEmitter } from './emitters'
 
 export const MessageActionBar = ({
   message,
@@ -54,11 +55,11 @@ export const MessageActionBar = ({
           return <ReactionButton key={reaction.id} message={message} reaction={reaction} />
         })}
 
-        <AddReactionButton />
+        <AddReactionButton message={message} />
 
         <Separator my="$2" vertical />
 
-        {!message.thread?.[0] && (
+        {!message.thread && (
           <TooltipSimple label="Create Thread">
             <Button
               onPress={() => {
@@ -98,8 +99,18 @@ export const MessageActionBar = ({
           </TooltipSimple>
         )}
 
-        <TooltipSimple label="Quote Reply">
-          <Button chromeless size="$2.5" br={0}>
+        <TooltipSimple label="Reply">
+          <Button
+            chromeless
+            size="$2.5"
+            br={0}
+            onPress={() => {
+              messageReplyEmitter.emit({
+                type: 'reply',
+                messageId: message.id,
+              })
+            }}
+          >
             <Reply size={16} />
           </Button>
         </TooltipSimple>
