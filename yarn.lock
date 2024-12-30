@@ -5076,7 +5076,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/code-signing-certificates@npm:^0.0.5":
+"@expo/code-signing-certificates@npm:0.0.5, @expo/code-signing-certificates@npm:^0.0.5":
   version: 0.0.5
   resolution: "@expo/code-signing-certificates@npm:0.0.5"
   dependencies:
@@ -12872,6 +12872,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"arg@npm:4.1.0":
+  version: 4.1.0
+  resolution: "arg@npm:4.1.0"
+  checksum: 10/dc0e1ea7f0adee7871c456bd57f06fb9f8c2ccd91fd0537c73b66f3fa0c9697ccdfc25b358a417a3ab263c062aac0ef2df3a5523433861fe6277cb2ff769a9bc
+  languageName: node
+  linkType: hard
+
 "arg@npm:^5.0.2":
   version: 5.0.2
   resolution: "arg@npm:5.0.2"
@@ -16866,6 +16873,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-eas-client@npm:~0.13.0":
+  version: 0.13.1
+  resolution: "expo-eas-client@npm:0.13.1"
+  checksum: 10/6a908200ce1926f5c47c5eea6038042a20b88d6e69f51586e96e1ebd79adf3b0ecbf6a323b73680f10a38f87e89690b1e4b26f04a098910d59a576b80dc0d343
+  languageName: node
+  linkType: hard
+
 "expo-file-system@npm:~18.0.6":
   version: 18.0.6
   resolution: "expo-file-system@npm:18.0.6"
@@ -16899,6 +16913,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-json-utils@npm:~0.14.0":
+  version: 0.14.0
+  resolution: "expo-json-utils@npm:0.14.0"
+  checksum: 10/96fbfbe5cbef75dc742982b27eb55ca2e00c488fabc0877e01b707ab12ddf349cf9cda6e7f5459982bb24be5374ce6889ae628eb3041f1367d3672ba561900c9
+  languageName: node
+  linkType: hard
+
 "expo-keep-awake@npm:~14.0.1":
   version: 14.0.1
   resolution: "expo-keep-awake@npm:14.0.1"
@@ -16916,6 +16937,18 @@ __metadata:
     expo-constants: "npm:~16.0.0"
     invariant: "npm:^2.2.4"
   checksum: 10/07ee4417ae6e58351797b805bd88215ceb6f89ec16c99e305db6d826925da1d1620e3baaa733a5c8848663dc2b3c39b6d375b381cf590a603a98eb671fef105d
+  languageName: node
+  linkType: hard
+
+"expo-manifests@npm:~0.15.0":
+  version: 0.15.4
+  resolution: "expo-manifests@npm:0.15.4"
+  dependencies:
+    "@expo/config": "npm:~10.0.4"
+    expo-json-utils: "npm:~0.14.0"
+  peerDependencies:
+    expo: "*"
+  checksum: 10/aed4e1277cd52d4a20ff853c84d431b7ec9f45cea57e28bd765e3a9278099a8633dc28d1d244bec6bd43e1bb5d6c244747645bef6362088f379c13900e9122f0
   languageName: node
   linkType: hard
 
@@ -16950,6 +16983,49 @@ __metadata:
   version: 1.12.1
   resolution: "expo-status-bar@npm:1.12.1"
   checksum: 10/49dd71578c877068e0efd8d511f54f512e8d9929549345c618af9b017067113f8a6e21fec4b4b736e364cf21aa14456b0336db16661c0f5d982b1660917610c5
+  languageName: node
+  linkType: hard
+
+"expo-structured-headers@npm:^4.0.0, expo-structured-headers@npm:~4.0.0":
+  version: 4.0.0
+  resolution: "expo-structured-headers@npm:4.0.0"
+  checksum: 10/1a98dded51678155606f92af27d5fab6afe35d342ee961ad9bf669f66126b6ff3d321100b684ef0cf1552470682ab4e52ed93ef53d2d5a28299611ddfbf25417
+  languageName: node
+  linkType: hard
+
+"expo-updates-interface@npm:~1.0.0":
+  version: 1.0.0
+  resolution: "expo-updates-interface@npm:1.0.0"
+  peerDependencies:
+    expo: "*"
+  checksum: 10/d22fa90eff9d6c6d96c1a4323dc3ac8329ef42fbc0fd21442cead135c46da54e1fa402eceda41bdfdb206da6fe98e28576a7243de7d209ea5d6c45785edf2939
+  languageName: node
+  linkType: hard
+
+"expo-updates@npm:~0.26.10":
+  version: 0.26.10
+  resolution: "expo-updates@npm:0.26.10"
+  dependencies:
+    "@expo/code-signing-certificates": "npm:0.0.5"
+    "@expo/config": "npm:~10.0.4"
+    "@expo/config-plugins": "npm:~9.0.10"
+    "@expo/spawn-async": "npm:^1.7.2"
+    arg: "npm:4.1.0"
+    chalk: "npm:^4.1.2"
+    expo-eas-client: "npm:~0.13.0"
+    expo-manifests: "npm:~0.15.0"
+    expo-structured-headers: "npm:~4.0.0"
+    expo-updates-interface: "npm:~1.0.0"
+    fast-glob: "npm:^3.3.2"
+    fbemitter: "npm:^3.0.0"
+    ignore: "npm:^5.3.1"
+    resolve-from: "npm:^5.0.0"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+  bin:
+    expo-updates: bin/cli.js
+  checksum: 10/061ccfa5ac3b1756fead7d57e6439ba813369d1514f488411945b3b0eea0981951895c4aa298c67f32c8b51c16c5ebe3dee4fa87023dee12b73b4a7f009a4a69
   languageName: node
   linkType: hard
 
@@ -18801,7 +18877,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ignore@npm:^5.1.8, ignore@npm:^5.2.0, ignore@npm:^5.2.4, ignore@npm:^5.3.0":
+"ignore@npm:^5.1.8, ignore@npm:^5.2.0, ignore@npm:^5.2.4, ignore@npm:^5.3.0, ignore@npm:^5.3.1":
   version: 5.3.2
   resolution: "ignore@npm:5.3.2"
   checksum: 10/cceb6a457000f8f6a50e1196429750d782afce5680dd878aa4221bd79972d68b3a55b4b1458fc682be978f4d3c6a249046aa0880637367216444ab7b014cfc98
@@ -27122,6 +27198,8 @@ __metadata:
     "@tamagui/config": "npm:^1.121.3"
     expo: "npm:~52.0.17"
     expo-image: "npm:~1.13.0"
+    expo-structured-headers: "npm:^4.0.0"
+    expo-updates: "npm:~0.26.10"
     moti: "npm:^0.29.0"
     one: "workspace:*"
     react: "npm:^18.3.1"
