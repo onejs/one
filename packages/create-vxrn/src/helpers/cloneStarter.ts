@@ -72,8 +72,19 @@ async function setupVxrnDotDir(
   }
 
   if (isInSubDir) {
-    const cmd = `git sparse-checkout set ${template.repo.dir.join(sep) ?? '.'}`
-    await execPromiseQuiet(cmd, { cwd: targetGitDir })
+    try {
+      const cmd = `git sparse-checkout set ${template.repo.dir.join(sep) ?? '.'}`
+      await execPromiseQuiet(cmd, { cwd: targetGitDir })
+    } catch (err) {
+      if (`${err}`.includes(`code 128`)) {
+        console.warn(`⚠️ Note: you need to be sure you can git clone from Github, your SSH key isn't valid.
+      
+  - See: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+
+`)
+      }
+      throw err
+    }
   }
 
   try {
