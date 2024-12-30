@@ -4,9 +4,9 @@ import './_layout.css'
 
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot } from 'one'
+import { LoadProgressBar, Slot, useColorSchemeSetting } from 'one'
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { isWeb, TamaguiProvider } from 'tamagui'
+import { isWeb, TamaguiProvider, Theme } from 'tamagui'
 import { AuthEffects } from '~/better-auth/AuthEffects'
 import { Dialogs } from '~/interface/dialogs/Dialogs'
 import { DragDropFile } from '~/interface/upload/DragDropFile'
@@ -83,7 +83,7 @@ const DataProvider = ({ children }: { children: any }) => {
 }
 
 const ThemeProvider = ({ children }: { children: any }) => {
-  const [scheme] = useColorScheme()
+  const [scheme, setting] = useColorScheme()
 
   return (
     <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme}>

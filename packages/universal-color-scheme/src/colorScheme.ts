@@ -4,7 +4,7 @@
 // this implements a setColorScheme and getColorScheme that can override system
 
 import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { Appearance } from 'react-native'
 
 export type ColorSchemeName = 'light' | 'dark'
@@ -21,11 +21,14 @@ let isListening = false
 function startWebMediaListener() {
   if (isListening) return
   isListening = true
-  getWebIsDarkMatcher()?.addEventListener?.('change', (val) => {
+  const matcher = getWebIsDarkMatcher()
+  const commit = () => {
     if (currentSetting === 'system') {
       update(getSystemColorScheme())
     }
-  })
+  }
+  commit()
+  matcher?.addEventListener?.('change', commit)
 }
 
 export function setColorScheme(next: ColorSchemeSetting) {
@@ -38,6 +41,8 @@ export function getColorScheme(): ColorSchemeName {
 
 export function onColorSchemeChange(listener: ColorSchemeListener) {
   listeners.add(listener)
+  // they can change in between render and the effect, so always trigger it once
+  listener(currentSetting, currentName)
   return () => {
     listeners.delete(listener)
   }
@@ -47,8 +52,15 @@ export function useColorScheme() {
   const [state, setState] = useState(getColorScheme())
 
   useIsomorphicLayoutEffect(() => {
+    const dispose = onColorSchemeChange((setting, val) => {
+      setState(val)
+    })
+
     startWebMediaListener()
-    return onColorSchemeChange((setting, val) => setState(val))
+
+    return () => {
+      dispose()
+    }
   }, [])
 
   return [state, setColorScheme] as const
@@ -73,8 +85,11 @@ export function useColorSchemeSetting() {
   const [state, setState] = useState(getColorSchemeSetting())
 
   useIsomorphicLayoutEffect(() => {
+    const dispose = onColorSchemeChange(() => {
+      setState(getColorSchemeSetting())
+    })
     startWebMediaListener()
-    return onColorSchemeChange(() => setState(getColorSchemeSetting()))
+    return dispose
   }, [])
 
   return [state, setColorScheme] as const
