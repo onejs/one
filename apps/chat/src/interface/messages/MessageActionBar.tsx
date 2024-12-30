@@ -1,7 +1,7 @@
 import { IndentIncrease, Reply } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, Separator, TooltipSimple, XGroup, XStack } from 'tamagui'
-import { randomID } from '~/helpers/randomID'
+import { randomId } from '~/helpers/randomId'
 import { getCurrentUser, updateUserOpenThread } from '~/state/user'
 import type { Channel, MessageWithRelations } from '~/zero'
 import { useQuery, zero } from '~/zero'
@@ -52,6 +52,7 @@ export const MessageActionBar = ({
     >
       <XGroup bg="$color2">
         {topReactions.map((reaction) => {
+          if (!reaction) return null
           return <ReactionButton key={reaction.id} message={message} reaction={reaction} />
         })}
 
@@ -69,25 +70,25 @@ export const MessageActionBar = ({
                   return
                 }
 
-                const threadID = randomID()
+                const threadId = randomId()
 
                 zero.mutate.thread.insert({
-                  id: threadID,
-                  channelID: channel.id,
-                  messageID: message.id,
-                  creatorID: currentUser.id,
+                  id: threadId,
+                  channelId: channel.id,
+                  messageId: message.id,
+                  creatorId: currentUser.id,
                   description: '',
                   title: '',
                 })
 
                 zero.mutate.message.update({
                   id: message.id,
-                  threadID,
+                  threadId,
                   isThreadReply: false,
                 })
 
                 updateUserOpenThread({
-                  id: threadID,
+                  id: threadId,
                 })
               }}
               chromeless

@@ -4,8 +4,9 @@ import { Menu } from '@tauri-apps/api/menu'
 import { forwardRef, useEffect, useState } from 'react'
 import { YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { randomID } from '~/helpers/randomID'
-import { useCurrentServer, useServerChannels } from '~/state/server'
+import { randomId } from '~/helpers/randomId'
+import { useServerChannels } from '~/state/useQuery'
+import { useCurrentServer } from '~/state/server/useCurrentServer'
 import { updateUserState, useUserState } from '~/state/user'
 import type { Channel } from '~/zero'
 import { zero } from '~/zero'
@@ -96,13 +97,13 @@ export const SidebarServerChannelsList = () => {
                 alert('no server')
                 return
               }
-              const id = randomID()
+              const id = randomId()
               zero.mutate.channel.insert({
                 id,
                 description: '',
                 name,
                 private: false,
-                serverID: server.id,
+                serverId: server.id,
               })
 
               zero.mutate.server.update({

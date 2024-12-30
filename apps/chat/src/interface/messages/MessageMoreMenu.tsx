@@ -2,11 +2,12 @@ import { EyeOff, MoreVertical, Pencil, Pin, Reply, Trash } from '@tamagui/lucide
 import { forwardRef, useRef } from 'react'
 import { Button, Popover, Separator, type ButtonProps } from 'tamagui'
 import { updateUserSetEditingMessage } from '~/state/user'
-import type { MessageWithRelations } from '~/zero'
+import { zero, type MessageWithRelations } from '~/zero'
 import { PopoverContent } from '../Popover'
 import { ListItem } from '../lists/ListItem'
 import { messageActionBarStickOpen } from './constants'
 import { messageReplyEmitter } from './emitters'
+import { dialogConfirm } from '~/interface/dialogs/actions'
 
 export const MessageMoreMenu = forwardRef(
   ({ message, ...rest }: ButtonProps & { message: MessageWithRelations }, ref) => {
@@ -51,7 +52,25 @@ export const MessageMoreMenu = forwardRef(
           >
             Edit
           </ListItem>
-          <ListItem size="large" theme="red" icon={Trash}>
+
+          <ListItem
+            size="large"
+            theme="red"
+            icon={Trash}
+            onPress={async () => {
+              if (
+                !(await dialogConfirm({
+                  title: `Are you sure you want to delete this message?`,
+                }))
+              ) {
+                return
+              }
+              await zero.mutate.message.update({
+                id: message.id,
+                deleted: true,
+              })
+            }}
+          >
             Delete
           </ListItem>
 

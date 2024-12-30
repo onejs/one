@@ -1,8 +1,8 @@
 import { Button, YStack } from 'tamagui'
 import { getRandomItem } from '~/helpers/getRandomItem'
-import { randomID } from '~/helpers/randomID'
+import { randomId } from '~/helpers/randomId'
 import { showToast } from '~/interface/toast/Toast'
-import { useCurrentChannel } from '~/state/server'
+import { useCurrentChannel } from '~/state/useQuery'
 import { resolve } from '~/zero/resolve'
 import { zero, type Message } from '~/zero'
 
@@ -37,16 +37,17 @@ export const DevTools = () => {
 
           const messages = new Array(100).fill(0).map((_, index) => {
             return {
-              channelID: channel.id,
+              channelId: channel.id,
               content: `Lorem ipsum dolo`,
               createdAt: new Date().getTime() - index * 60 * 1000,
               deleted: false,
-              id: randomID(),
+              id: randomId(),
               // @ts-expect-error
-              creatorID: getRandomItem(users)!.id,
-              serverID: channel.serverID,
+              creatorId: getRandomItem(users)!.id,
+              serverId: channel.serverId,
               isThreadReply: false,
-              threadID: null,
+              threadId: null,
+              replyingToId: null,
               updatedAt: null,
             } satisfies Message
           })

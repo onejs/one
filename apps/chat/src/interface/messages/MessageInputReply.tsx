@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Button, SizableText, XStack } from 'tamagui'
 import { useQuery } from '~/zero'
 import { Avatar } from '../Avatar'
-import { showToast } from '../toast/Toast'
 import { messageInputEmitter, messageReplyEmitter } from './emitters'
+import { UserInline } from '~/interface/users/UserInline'
 
 export const MessageInputReply = () => {
   const [replyId, setReplyId] = useState('')
@@ -45,10 +45,7 @@ export const MessageInputReply = () => {
       <SizableText size="$3">Replying to</SizableText>
 
       <XStack gap="$2">
-        <Avatar size={24} image={sender.image} />
-        <SizableText size="$3" fow="500">
-          {sender.name || sender.username}
-        </SizableText>
+        <UserInline user={message.sender} />
       </XStack>
     </XStack>
   )

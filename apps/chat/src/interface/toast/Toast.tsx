@@ -4,10 +4,22 @@ import { YStack } from 'tamagui'
 import type { ToastController, ToastShowOptions } from './types'
 import { useState } from 'react'
 
-let controller: ToastController = null as any
+export type ToastType = 'error' | 'warn' | 'info'
 
-export const showToast = (title: string, options?: ToastShowOptions) => {
+let controller: ToastController = null as any
+let toastType: ToastType = 'info'
+
+export const showToast = (
+  title: string,
+  {
+    type = 'info',
+    ...options
+  }: ToastShowOptions & {
+    type?: ToastType
+  } = {}
+) => {
   controller.show(title, options)
+  toastType = type
 }
 
 export const hideToast = () => {
@@ -50,7 +62,8 @@ const ToastDisplay = () => {
       animation="slow"
       viewportName={currentToast?.viewportName}
       themeInverse
-      bg="$color12"
+      bg="$color10"
+      theme={toastType === 'error' ? 'red' : toastType === 'warn' ? 'yellow' : null}
     >
       <YStack>
         <Toast.Title color="$color1">{currentToast?.title ?? ''}</Toast.Title>

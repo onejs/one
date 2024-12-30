@@ -1,12 +1,13 @@
 import { YStack } from 'tamagui'
-import { updateUserCurrentChannel, useCurrentThread } from '~/state/user'
+import { updateUserCurrentChannel } from '~/state/user'
 import { AnimationDriver } from '../animations/AnimationDriver'
 import { ButtonClose } from '../ButtonClose'
 import { MessageInput } from '../messages/MessageInput'
 import { MessagesList } from '../messages/MessagesList'
+import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThreadWithMessages'
 
 export const MainOpenThread = () => {
-  const thread = useCurrentThread()
+  const thread = useCurrentThreadWithMessages()
 
   return (
     <AnimationDriver name="css">
