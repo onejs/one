@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react'
 import { Button, Circle, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
-import { randomID } from '~/helpers/randomID'
+import { randomId } from '~/helpers/randomId'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
-import { useCurrentServer, useCurrentServerMembers, useCurrentServerRoles } from '~/state/server'
+import { useCurrentServerMembers, useCurrentServerRoles } from '~/state/useQuery'
+import { useCurrentServer } from '~/state/server/useCurrentServer'
 import type { RolePermissionsKeys, RoleWithRelations, Server } from '~/zero'
 import { zero } from '~/zero'
 import { Avatar } from '../Avatar'
@@ -130,14 +131,14 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
           <RoleListItem
             defaultEditing
             onEditComplete={(name) => {
-              const id = randomID()
+              const id = randomId()
               setShowTempRole(false)
               zero.mutate.role.insert({
                 id,
                 color: 'gray',
-                creatorID: user?.id || '',
+                creatorId: user?.id || '',
                 name,
-                serverID: server.id,
+                serverId: server.id,
               })
             }}
             onEditCancel={() => setShowTempRole(false)}
@@ -262,19 +263,19 @@ const ServerRolePermissionsPaneMembers = ({ role }: { role: RoleWithRelations })
                           }
 
                           await zero.mutate.userRole.delete({
-                            roleID: role.id,
-                            serverID: role.serverID,
-                            userID: user.id,
+                            roleId: role.id,
+                            serverId: role.serverId,
+                            userId: user.id,
                           })
                           return
                         }
 
                         // not member
                         await zero.mutate.userRole.insert({
-                          roleID: role.id,
-                          serverID: role.serverID,
-                          userID: user.id,
-                          granterID: currentUser.id,
+                          roleId: role.id,
+                          serverId: role.serverId,
+                          userId: user.id,
+                          granterId: currentUser.id,
                         })
                       }}
                       size="$3"

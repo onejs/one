@@ -2,14 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { Progress, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { Editor, type EditorRef } from '~/editor/Editor'
-import { randomID } from '~/helpers/randomID'
-import { useCurrentChannel, useCurrentServer } from '~/state/server'
-import {
-  getCurrentUser,
-  getDerivedUserState,
-  updateUserCurrentChannel,
-  useCurrentThread,
-} from '~/state/user'
+import { randomId } from '~/helpers/randomId'
+import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThreadWithMessages'
+import { useCurrentServer } from '~/state/server/useCurrentServer'
+import { useCurrentChannel } from '~/state/useQuery'
+import { getCurrentUser, getDerivedUserState, updateUserCurrentChannel } from '~/state/user'
 import { type Attachment, zero } from '~/zero'
 import { AttachmentItem } from '../attachments/AttachmentItem'
 import { attachmentEmitter } from '../upload/DragDropFile'
@@ -17,6 +14,7 @@ import type { FileUpload } from '../upload/uploadImage'
 import { messageInputEmitter, messageReplyEmitter } from './emitters'
 import { MessageInputReply } from './MessageInputReply'
 import { messagesListEmitter } from './MessagesList'
+import { handleKeyboardEscape } from '~/keyboard/handleKeyboardEscape'
 
 let mainInputRef: EditorRef | null = null
 
@@ -24,7 +22,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   const inputRef = useRef<EditorRef>(null)
   const channel = useCurrentChannel()
   const server = useCurrentServer()
-  const thread = useCurrentThread()
+  const thread = useCurrentThreadWithMessages()
   const { user } = useAuth()
   const disabled = !user || !channel
 
@@ -101,8 +99,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             }
 
             case 'Escape': {
-              if (messageReplyEmitter.value?.type === 'reply') {
-                messageReplyEmitter.emit({ type: 'cancel' })
+              if (handleKeyboardEscape()) {
                 return
               }
 
@@ -133,35 +130,40 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
           inputRef.current?.clear?.()
 
           await zero.mutateBatch((tx) => {
-            const messageID = randomID()
+            const messageId = randomId()
+
+            const messageState = messageReplyEmitter.value
+            const replyingToId = messageState?.type === 'reply' ? messageState.messageId : null
 
             tx.message.insert({
-              id: messageID,
-              channelID: channel.id,
-              threadID: thread?.id,
+              id: messageId,
+              channelId: channel.id,
+              threadId: thread?.id,
               isThreadReply: !!thread,
+              replyingToId,
               content,
               deleted: false,
-              creatorID: user!.id,
-              serverID: server.id,
+              creatorId: user!.id,
+              serverId: server.id,
             })
 
             const attachments = attachmentEmitter.value
             if (attachments) {
               for (const attachment of attachments) {
                 tx.attachment.insert({
-                  id: randomID(),
+                  id: randomId(),
                   type: attachment.type,
-                  userID: user.id,
-                  channelID: channel.id,
+                  userId: user.id,
+                  channelId: channel.id,
                   url: attachment.url,
-                  messageID,
+                  messageId,
                 })
               }
             }
           })
 
           messageInputEmitter.emit({ type: 'submit' })
+          messageReplyEmitter.emit({ type: 'cancel' })
 
           setTimeout(() => {
             inputRef.current?.textarea?.focus()
@@ -176,12 +178,12 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
 
 const fileUploadToAttachment = (upload: FileUpload): Attachment => {
   return {
-    channelID: null,
-    messageID: null,
-    userID: getCurrentUser()?.id || `no-user`,
+    channelId: null,
+    messageId: null,
+    userId: getCurrentUser()?.id || `no-user`,
     createdAt: null,
     data: null,
-    id: upload.name || randomID(),
+    id: upload.name || randomId(),
     url: upload.url || upload.preview || null,
     type: upload.type,
   }

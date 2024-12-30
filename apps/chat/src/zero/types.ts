@@ -5,7 +5,7 @@ export type AuthData = {
 export type UserState = {
   serversSort?: string[]
   activeServer?: string
-  // serverID to channelID
+  // serverId to channelId
   activeChannels: Record<string, string>
   showSidePanel?: 'user' | 'settings'
   channelState?: ChannelsState

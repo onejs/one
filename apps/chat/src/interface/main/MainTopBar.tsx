@@ -9,11 +9,10 @@ import {
   XGroup,
   XStack,
 } from 'tamagui'
-import { useCurrentChannel, useCurrentChannelThreads } from '~/state/server'
+import { useCurrentChannel, useCurrentChannelThreads } from '~/state/useQuery'
 import {
   updateUserCurrentChannel,
   updateUserOpenThread,
-  useCurrentThread,
   useUserCurrentChannelState,
 } from '~/state/user'
 import type { ThreadWithRelations } from '~/zero'
@@ -21,6 +20,7 @@ import { OneBall } from '../brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
 import { ChannelSettingsPopover } from '../channel/ChannelSettingsPopover'
 import { mainTopBarHeight } from './constants'
+import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThreadWithMessages'
 
 export const MainTopBar = () => {
   const threads = useCurrentChannelThreads()
@@ -113,7 +113,7 @@ const ChannelViewToggle = () => {
 }
 
 const ThreadButton = ({ thread }: { thread: ThreadWithRelations }) => {
-  const currentThread = useCurrentThread()
+  const currentThread = useCurrentThreadWithMessages()
   const isOpen = currentThread?.id === thread.id
 
   return (

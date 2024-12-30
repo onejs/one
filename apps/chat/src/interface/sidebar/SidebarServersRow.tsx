@@ -1,6 +1,6 @@
 import { Plus } from '@tamagui/lucide-icons'
 import { Circle, ScrollView, styled, XStack, YStack } from 'tamagui'
-import { useUserServers } from '~/state/server'
+import { useUserServers } from '~/state/useQuery'
 import { updateUserState, useUserState } from '~/state/user'
 import { Avatar } from '../Avatar'
 import { dialogCreateServer } from '../dialogs/actions'

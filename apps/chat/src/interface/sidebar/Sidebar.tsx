@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { H3, SizableText, Spacer, XStack, YStack } from 'tamagui'
-import { useFriends } from '~/state/server'
+import { useFriends } from '~/state/useQuery'
 import { SidebarServerChannelsList } from './SidebarServerChannelsList'
 import { SidebarServersRow } from './SidebarServersRow'
 

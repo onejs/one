@@ -52,9 +52,9 @@ export const ReactionButton = ({
         }
 
         zero.mutate.messageReaction.insert({
-          messageID: message.id,
-          reactionID: reaction.id,
-          creatorID: user.id,
+          messageId: message.id,
+          reactionId: reaction.id,
+          creatorId: user.id,
         })
       }}
       {...(active && {

@@ -1,1 +1,1 @@
-export const randomID = () => Math.random().toString(36).slice(2)
+export const randomId = () => Math.random().toString(36).slice(2)

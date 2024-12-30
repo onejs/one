@@ -1,7 +1,7 @@
 import { Settings } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, H4, H5, Popover, TooltipSimple, YStack } from 'tamagui'
-import { useCurrentChannel } from '~/state/server'
+import { useCurrentChannel } from '~/state/useQuery'
 import { zero } from '~/zero'
 import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
 import { Checkbox } from '../forms/Checkbox'

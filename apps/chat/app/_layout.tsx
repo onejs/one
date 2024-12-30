@@ -4,19 +4,22 @@ import './_layout.css'
 
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot, useColorSchemeSetting } from 'one'
+import { LoadProgressBar, Slot } from 'one'
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { isWeb, TamaguiProvider, Theme } from 'tamagui'
+import { isWeb, TamaguiProvider } from 'tamagui'
 import { AuthEffects } from '~/better-auth/AuthEffects'
 import { Dialogs } from '~/interface/dialogs/Dialogs'
+import { Gallery } from '~/interface/gallery/Gallery'
+import { showToast, ToastProvider } from '~/interface/toast/Toast'
 import { DragDropFile } from '~/interface/upload/DragDropFile'
 import config from '~/tamagui/tamagui.config'
 import { isTauri } from '~/tauri/constants'
 import { useZeroEmit, zero } from '~/zero'
-import { Gallery } from '~/interface/gallery/Gallery'
-import { showToast, ToastProvider } from '~/interface/toast/Toast'
+import { useGlobalHotKeys } from '~/keyboard/useGlobalHotKeys'
 
 export default function Layout() {
+  useGlobalHotKeys()
+
   useLayoutEffect(() => {
     if (isWeb && !isTauri) {
       document.documentElement.classList.add('not_tauri')
@@ -27,9 +30,12 @@ export default function Layout() {
   if (isWeb) {
     useEffect(() => {
       window.addEventListener('error', (e) => {
+        const msg = e.message.trim()
+        if (!msg) return
         // filter known ok errors
-        if (!/measurement is not an Object/.test(e.message)) {
-          showToast(e.message)
+        if (!/(measurement is not an Object)|(ResizeObserver loop)/.test(msg)) {
+          console.error(`msg`, msg)
+          showToast(`Error: ${msg}`)
         }
       })
     }, [])

@@ -69,15 +69,15 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
                                   })
                                 ) {
                                   zero.mutate.serverMember.delete({
-                                    userID: user.id,
-                                    serverID: server.id,
+                                    userId: user.id,
+                                    serverId: server.id,
                                   })
                                 }
                                 // TODO
                               } else {
                                 zero.mutate.serverMember.insert({
-                                  userID: user.id,
-                                  serverID: server.id,
+                                  userId: user.id,
+                                  serverId: server.id,
                                 })
                               }
                             }}

@@ -2,7 +2,6 @@ import type { IconProps } from '@tamagui/helpers-icon'
 import { Server, User, UserPlus } from '@tamagui/lucide-icons'
 import { useMemo } from 'react'
 import { useAuth } from '~/better-auth/authClient'
-import { createFuzzy } from '~/helpers/fuzzy'
 import { dialogAddFriend, dialogJoinServer, dialogSignup } from '~/interface/dialogs/actions'
 
 type HotMenuItem = {
