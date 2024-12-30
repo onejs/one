@@ -1,10 +1,11 @@
-export async function run(args: { platform?: string }) {
+export async function run(args: { platform?: string; expo: boolean }) {
   const { prebuild } = await import('vxrn')
 
-  const { platform } = args
+  const { platform, expo } = args
 
   await prebuild({
     root: process.cwd(),
     platform,
+    expo,
   })
 }

@@ -151,6 +151,11 @@ const prebuild = defineCommand({
       type: 'string',
       description: 'ios or android',
     },
+    expo: {
+      type: 'boolean',
+      description: 'expo or non-expo folders',
+      default: true,
+    },
   },
   async run({ args }) {
     const imported = await import(
@@ -159,9 +164,9 @@ const prebuild = defineCommand({
     )
     const prebuild = imported.prebuild as typeof prebuildFn
     const root = process.cwd()
-    const { platform } = args
+    const { platform, expo } = args
 
-    await prebuild({ root, platform })
+    await prebuild({ root, platform, expo })
   },
 })
 

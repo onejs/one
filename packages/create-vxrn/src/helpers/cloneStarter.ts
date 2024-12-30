@@ -3,7 +3,7 @@ import { homedir } from 'node:os'
 import { join, sep } from 'node:path'
 import { rimraf } from 'rimraf'
 import type { templates } from '../templates'
-import { exec, execPromiseQuiet } from './exec'
+import { exec, execPromiseQuiet } from '@vxrn/utils'
 
 const home = homedir()
 const vxrnDir = join(home, '.vxrn')
