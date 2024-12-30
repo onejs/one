@@ -1,8 +1,8 @@
 import { merge } from 'ts-deepmerge'
 import { useAuth } from '~/better-auth/authClient'
 import { ensureSignedUp } from '~/interface/dialogs/actions'
-import type { ChannelState, User, UserState } from '~/zero/schema'
-import { useQuery, zero } from '~/zero/zero'
+import type { ChannelState, UserState } from '~/zero/types'
+import { useQuery, type User, zero } from '~/zero'
 
 // TODO
 let currentUser = null as User | null
@@ -68,18 +68,6 @@ export const useUserCurrentChannelState = () => {
   return activeChannelState
 }
 
-export const useCurrentThread = () => {
-  const [_, { activeThread }] = useUserState()
-  const [thread] = useQuery((q) =>
-    q.thread
-      .where('id', activeThread?.openedThreadId || '')
-      .related('messages', (q) =>
-        q.orderBy('createdAt', 'asc').related('reactions').related('sender')
-      )
-  )
-  return thread[0]
-}
-
 export const updateUserCurrentChannel = async (next: Partial<ChannelState>) => {
   if (!currentUser) {
     console.error(`No user`)
@@ -98,5 +86,11 @@ export const updateUserCurrentChannel = async (next: Partial<ChannelState>) => {
 export const updateUserOpenThread = async (thread: { id: string }) => {
   updateUserCurrentChannel({
     openedThreadId: thread.id,
+  })
+}
+
+export const updateUserSetEditingMessage = async (id?: string) => {
+  updateUserCurrentChannel({
+    editingMessageId: id,
   })
 }

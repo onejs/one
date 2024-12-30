@@ -3,6 +3,12 @@ import { getCurrentUser } from '~/state/user'
 import { dialogEmit } from './shared'
 import type { DialogConfirmType } from './types'
 
+export const dialogRedirectToTauri = async () => {
+  dialogEmit({
+    type: 'redirect-to-tauri',
+  })
+}
+
 export const isSignedUpEmitter = createEmitter<boolean>()
 
 export const dialogSignup = async () => {
@@ -27,9 +33,11 @@ export const ensureSignedUp = async () => {
 
 export const confirmEmitter = createEmitter<boolean>()
 
-export const dialogConfirm = async (props: Omit<DialogConfirmType, 'type'>) => {
+export const dialogConfirm = async (props: Partial<Omit<DialogConfirmType, 'type'>>) => {
   dialogEmit({
     type: 'confirm',
+    title: `Are you sure?`,
+    description: '',
     ...props,
   })
   return confirmEmitter.nextValue()

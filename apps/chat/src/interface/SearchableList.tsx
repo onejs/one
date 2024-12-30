@@ -17,8 +17,11 @@ import {
   useGet,
   usePropsAndStyle,
 } from 'tamagui'
+import { createFuzzy } from '~/helpers/fuzzy'
 
 type ContextType = {
+  setSearch: (next: string) => void
+  items: any[] | readonly any[]
   getItemProps: (index: number) => any
   getReferenceProps: (userProps?: React.HTMLProps<Element>) => Record<string, unknown>
   refs: {
@@ -33,11 +36,21 @@ const Context = createContext<null | ContextType>(null)
 
 const emitter = createEmitter<number>()
 
+export type SearchableListProps<A = any> = {
+  items: readonly A[] | A[]
+  searchKey?: keyof A
+  onSearch?: (items: A[]) => void
+  onSelectItem: (item: A) => void
+  children: any
+}
+
 export function SearchableList<A>({
   items,
+  searchKey,
   children,
   onSelectItem,
-}: { items: readonly A[] | A[]; onSelectItem: (item: A) => void; children: any }) {
+  onSearch,
+}: SearchableListProps<A>) {
   if (!isWeb) {
     // TODO
     return children
@@ -67,11 +80,19 @@ export function SearchableList<A>({
   const dismiss = useDismiss(context)
   const { getReferenceProps, getItemProps } = useInteractions([role, dismiss, listNavigation])
 
+  const fuzzy = useMemo(() => createFuzzy(items, searchKey as any), [items])
+
   const getActiveIndex = useGet(activeIndex)
 
   const contextValue = useMemo((): ContextType => {
     return {
+      items,
       refs,
+      setSearch(val) {
+        if (onSearch) {
+          onSearch(fuzzy.search(val))
+        }
+      },
       getReferenceProps(props) {
         return getReferenceProps({
           ...props,
@@ -93,7 +114,7 @@ export function SearchableList<A>({
         })
       },
     }
-  }, [items, getReferenceProps, refs, getItemProps])
+  }, [onSearch, items, getReferenceProps, refs, getItemProps])
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>
 }
@@ -113,11 +134,14 @@ export const SearchableInput = forwardRef<Input, InputProps>((props: InputProps,
     ref: combinedRef as any,
   })
 
+  // WHY input? because `refProps` from floatingUI i think it passes some props the tamagui native input doesn't
+  // we should see why input-next doesn't work and get it to work
   return (
     <input
       {...refProps}
       {...(inputProps as any)}
       onChange={(e) => {
+        context?.setSearch(e.target.value)
         props.onChangeText?.(e.target.value)
         props.onChange?.(e as any)
       }}

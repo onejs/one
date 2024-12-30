@@ -1,5 +1,5 @@
 import { useHotkeys } from 'react-hotkeys-hook'
-import { useServerChannels } from '~/state/server'
+import { useServerChannels } from '~/state/useQuery'
 import { updateUserState, useUserState } from '~/state/user'
 
 export const useChannelsHotkeys = () => {

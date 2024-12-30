@@ -20,8 +20,6 @@
 
 # backlog
 
-- hot reload vite.config changes
-
 - react-native-web-lite proper release
 
 - need a way ton configure the api + server etc during production builds

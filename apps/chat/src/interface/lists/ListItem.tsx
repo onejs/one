@@ -88,6 +88,13 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
             onSubmitEditing={(e) => {
               onEditComplete?.(e.nativeEvent.text)
             }}
+            onBlur={(e) => {
+              // TODO nativeEvent is wrong in tamagui here
+              const val = (e.target as any)['value']
+              if (!val) {
+                onEditCancel?.()
+              }
+            }}
           />
         ) : typeof children === 'string' ? (
           <SizableText color="$color" fow="500" cur="default">
@@ -103,7 +110,7 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
             <XStack ai="center" als="flex-end" h="100%">
               {after}
               {iconAfter ? (
-                <YStack pos="absolute" t={0} r={0} b={0} ai="center" jc="center" px="$3">
+                <YStack pos="absolute" t={0} r={0} b={0} ai="center" jc="center">
                   {iconElement}
                 </YStack>
               ) : null}

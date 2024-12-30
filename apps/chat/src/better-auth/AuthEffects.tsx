@@ -18,7 +18,7 @@ const useAuthPassJWTSecretToZeroEffect = () => {
     if (user && jwtToken) {
       setZeroAuth({
         jwtToken,
-        userID: user.id,
+        userId: user.id,
       })
     }
   }, [user, jwtToken])

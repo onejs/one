@@ -2,12 +2,11 @@ import { useAuth } from '~/better-auth/authClient'
 import { useQuery } from '../zero/zero'
 import { useUserState } from './user'
 
-export const useServersQuery = () => useQuery((q) => q.server)[0]
+// this isnt the ultimate organization probably
+// waiting until this gets bigger and finding patterns
+// for now just throwing a lot of useQuery into here
 
-export const useCurrentServer = () => {
-  const [userState] = useUserState()
-  return useQuery((q) => q.server.where('id', userState?.activeServer || ''))[0][0]
-}
+export const useServersQuery = () => useQuery((q) => q.server)[0]
 
 export const useCurrentServerRoles = () => {
   const [userState] = useUserState()
@@ -18,10 +17,18 @@ export const useCurrentServerRoles = () => {
   )[0][0]?.roles
 }
 
+export const useCurrentServerMembers = () => {
+  const [userState] = useUserState()
+  return (
+    useQuery((q) => q.server.where('id', userState?.activeServer || '').related('members'))[0][0]
+      ?.members || []
+  )
+}
+
 export const useCurrentServerMembership = () => {
   const [userState, { user }] = useUserState()
   return useQuery((q) =>
-    q.serverMember.where('userID', userState?.activeServer || '').where('serverID', user?.id || '')
+    q.serverMember.where('userId', userState?.activeServer || '').where('serverId', user?.id || '')
   )[0][0]
 }
 
@@ -89,32 +96,5 @@ export const useCurrentChannelThreads = () => {
             .related('messages', (q) => q.limit(1).orderBy('createdAt', 'asc'))
         )
     )[0]?.[0]?.threads || []
-  )
-}
-
-export const useCurrentChannelMessages = () => {
-  const [userState, { activeChannel, activeChannelState }] = useUserState()
-  return (
-    useQuery((q) =>
-      q.server
-        .where('id', userState?.activeServer || '')
-        .orderBy('createdAt', 'desc')
-        .related('channels', (q) =>
-          q.where('id', activeChannel || '').related('messages', (q) =>
-            q
-              .orderBy('createdAt', 'asc')
-              // dont get threaded messages
-              .where('isThreadReply', false)
-              .where(({ not, exists, cmp }) =>
-                activeChannelState?.mainView === 'thread'
-                  ? exists('thread')
-                  : cmp('isThreadReply', false)
-              )
-              .related('reactions')
-              .related('thread')
-              .related('sender')
-          )
-        )
-    )[0][0]?.channels?.[0]?.messages || []
   )
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button, Dialog, Input, ScrollView, XStack, YStack } from 'tamagui'
-import { insertServer } from '~/state/mutateServer'
+import { mutateInsertServer } from '~/state/server/mutateInsertServer'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
 import { AvatarUpload } from '../upload/AvatarUpload'
@@ -112,7 +112,7 @@ const DialogCreateServerContent = (props: TabContentPaneProps) => {
         <Button
           theme="blue"
           onPress={() => {
-            insertServer({
+            mutateInsertServer({
               name: inputRef.current?.value || 'Untitled',
               icon: image,
             })

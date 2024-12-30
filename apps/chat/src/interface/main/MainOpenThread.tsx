@@ -1,41 +1,63 @@
 import { YStack } from 'tamagui'
-import { updateUserCurrentChannel, useCurrentThread } from '~/state/user'
+import { updateUserCurrentChannel } from '~/state/user'
+import { AnimationDriver } from '../animations/AnimationDriver'
 import { ButtonClose } from '../ButtonClose'
-import { MessagesList } from '../messages/MessagesList'
 import { MessageInput } from '../messages/MessageInput'
+import { MessagesList } from '../messages/MessagesList'
+import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThreadWithMessages'
 
 export const MainOpenThread = () => {
-  const thread = useCurrentThread()
-
-  if (!thread) {
-    return null
-  }
+  const thread = useCurrentThreadWithMessages()
 
   return (
-    <YStack
-      bg="$color2"
-      shadowColor="$shadowColor"
-      shadowRadius={10}
-      pos="absolute"
-      t={0}
-      r={0}
-      b={0}
-      w="70%"
-      zi={1000}
-    >
-      <ButtonClose
+    <AnimationDriver name="css">
+      <YStack
+        bg="$color2"
+        shadowColor="$shadowColor"
+        shadowRadius={10}
+        animation={[
+          'quickest',
+          {
+            opacity: {
+              overshootClamping: true,
+            },
+          },
+        ]}
         pos="absolute"
+        t={0}
+        r={0}
+        b={0}
+        w="70%"
         zi={1000}
-        t={10}
-        l={-20}
-        onPress={() => {
-          updateUserCurrentChannel({
-            openedThreadId: undefined,
-          })
-        }}
-      />
-      <MessagesList messages={thread?.messages || []} />
-      <MessageInput inThread />
-    </YStack>
+        {...(thread
+          ? {
+              opacity: 1,
+              x: 0,
+            }
+          : {
+              opacity: 0,
+              pe: 'none',
+              x: 7,
+            })}
+      >
+        <ButtonClose
+          pos="absolute"
+          zi={1000}
+          t={10}
+          l={-20}
+          onPress={() => {
+            updateUserCurrentChannel({
+              openedThreadId: undefined,
+            })
+          }}
+        />
+        {thread && (
+          <>
+            <MessagesList messages={thread?.messages || []} />
+            <MessageInput inThread />
+          </>
+        )}
+      </YStack>
+    </AnimationDriver>
   )
 }

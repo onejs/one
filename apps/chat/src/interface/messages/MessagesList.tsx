@@ -1,12 +1,18 @@
+import { createEmitter } from '@vxrn/emitter'
 import { memo, useEffect, useLayoutEffect, useRef } from 'react'
 import { YStack } from 'tamagui'
 import { VList, type VListHandle } from 'virtua'
-import type { MessageWithRelations } from '~/zero/schema'
 import { useAuth } from '~/better-auth/authClient'
-import { useCurrentChannel } from '~/state/server'
-import { getUserState, updateUserCurrentChannel, updateUserOpenThread } from '~/state/user'
-import { createEmitter } from '@vxrn/emitter'
-import { MessageItem } from './MessageItem'
+import { useCurrentChannel } from '~/state/useQuery'
+import {
+  getUserState,
+  updateUserCurrentChannel,
+  updateUserOpenThread,
+  updateUserSetEditingMessage,
+} from '~/state/user'
+import type { MessageWithRelations } from '~/zero'
+import { MessageItem, messageItemEmitter } from './MessageItem'
+import { router } from 'one'
 
 type MessagesListActions =
   | {
@@ -75,7 +81,9 @@ export const MessagesList = memo(
           case 'select': {
             if (focusedMessage) {
               if (focusedMessage.thread) {
-                updateUserOpenThread(focusedMessage.thread[0])
+                updateUserOpenThread(focusedMessage.thread)
+              } else {
+                updateUserSetEditingMessage(focusedMessage.id)
               }
             }
             break
@@ -96,6 +104,27 @@ export const MessagesList = memo(
       ref.current.scrollToIndex(messages.length - 1, { align: 'end' })
     }, [messages.length])
 
+    useEffect(() => {
+      router.subscribe((state) => {
+        if (!ref.current) return
+
+        const [route] = state.routes
+        // @ts-expect-error TODO
+        const messageId = route.params?.message
+        if (messageId) {
+          messageItemEmitter.emit({
+            type: 'highlight',
+            id: messageId,
+          })
+
+          const messageIndex = messages.findIndex((x) => x.id === messageId)
+          if (messageIndex >= 0) {
+            ref.current.scrollToIndex(messageIndex)
+          }
+        }
+      })
+    }, [messages])
+
     return (
       <YStack ov="hidden" f={10}>
         {!!messages.length && (
@@ -104,6 +133,7 @@ export const MessagesList = memo(
             count={messages.length}
             reverse
             shift={isPrepend.current}
+            overscan={10}
             style={{
               flex: 1,
             }}
@@ -125,7 +155,7 @@ export const MessagesList = memo(
 
               return (
                 <MessageItem
-                  hideUser={lastMessage?.creatorID === message.creatorID}
+                  hideUser={lastMessage?.creatorId === message.creatorId && !message.replyingTo}
                   channel={channel}
                   key={message.id}
                   message={message}

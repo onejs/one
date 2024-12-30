@@ -39,6 +39,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             analyze?: boolean;
         };
         debugBundle?: boolean;
+        debug?: string;
     };
     buildArgs: BuildArgs;
     serverEntry: string;

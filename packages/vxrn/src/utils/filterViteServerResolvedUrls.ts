@@ -1,5 +1,5 @@
-import type { ResolvedServerUrls } from 'vite'
 import ip from 'ip'
+import type { ResolvedServerUrls } from 'vite'
 
 /**
  * Filter out non-useful URLs from Vite server resolved URLs.
