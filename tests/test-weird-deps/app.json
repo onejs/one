@@ -1,5 +1,17 @@
 {
   "ios": {
     "bundleIdentifier": "com.natew.test-weird-deps"
-  }
+  },
+  "extra": {
+    "eas": {
+      "projectId": "dcc9e1cc-57fa-49d9-8f92-ff4177a16f5b"
+    }
+  },
+  "runtimeVersion": {
+    "policy": "appVersion"
+  },
+  "updates": {
+    "url": "https://u.expo.dev/dcc9e1cc-57fa-49d9-8f92-ff4177a16f5b"
+  },
+  "android": {}
 }
