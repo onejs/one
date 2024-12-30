@@ -6,6 +6,7 @@ import type { MessageWithRelations } from '~/zero'
 import { PopoverContent } from '../Popover'
 import { ListItem } from '../lists/ListItem'
 import { messageActionBarStickOpen } from './constants'
+import { messageReplyEmitter } from './emitters'
 
 export const MessageMoreMenu = forwardRef(
   ({ message, ...rest }: ButtonProps & { message: MessageWithRelations }, ref) => {
@@ -27,7 +28,17 @@ export const MessageMoreMenu = forwardRef(
         </Popover.Trigger>
 
         <PopoverContent ov="hidden" miw={200}>
-          <ListItem size="large" icon={Reply}>
+          <ListItem
+            size="large"
+            icon={Reply}
+            onPress={() => {
+              messageReplyEmitter.emit({
+                type: 'reply',
+                messageId: message.id,
+              })
+              popoverRef.current?.close()
+            }}
+          >
             Reply
           </ListItem>
           <ListItem

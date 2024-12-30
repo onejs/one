@@ -1,4 +1,3 @@
-import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useRef, useState } from 'react'
 import { Progress, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
@@ -15,11 +14,11 @@ import { type Attachment, zero } from '~/zero'
 import { AttachmentItem } from '../attachments/AttachmentItem'
 import { attachmentEmitter } from '../upload/DragDropFile'
 import type { FileUpload } from '../upload/uploadImage'
+import { messageInputEmitter, messageReplyEmitter } from './emitters'
+import { MessageInputReply } from './MessageInputReply'
 import { messagesListEmitter } from './MessagesList'
 
 let mainInputRef: EditorRef | null = null
-
-export const messageInputEmitter = createEmitter<{ type: 'submit' }>()
 
 export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   const inputRef = useRef<EditorRef>(null)
@@ -52,6 +51,14 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
     }
   }, [channel, inThread])
 
+  messageInputEmitter.use((value) => {
+    if (value.type === 'focus') {
+      setTimeout(() => {
+        mainInputRef?.textarea?.focus()
+      })
+    }
+  })
+
   return (
     <YStack
       btw={1}
@@ -63,6 +70,8 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
         pointerEvents: 'none',
       })}
     >
+      <MessageInputReply />
+
       <Editor
         ref={inputRef}
         onKeyDown={(e) => {
@@ -92,6 +101,11 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             }
 
             case 'Escape': {
+              if (messageReplyEmitter.value?.type === 'reply') {
+                messageReplyEmitter.emit({ type: 'cancel' })
+                return
+              }
+
               inputRef.current?.textarea?.blur()
 
               if (getDerivedUserState().activeThread) {

@@ -5,7 +5,7 @@ import './_layout.css'
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { isWeb, TamaguiProvider } from 'tamagui'
 import { AuthEffects } from '~/better-auth/AuthEffects'
 import { Dialogs } from '~/interface/dialogs/Dialogs'
@@ -14,6 +14,7 @@ import config from '~/tamagui/tamagui.config'
 import { isTauri } from '~/tauri/constants'
 import { useZeroEmit, zero } from '~/zero'
 import { Gallery } from '~/interface/gallery/Gallery'
+import { showToast, ToastProvider } from '~/interface/toast/Toast'
 
 export default function Layout() {
   useLayoutEffect(() => {
@@ -21,6 +22,15 @@ export default function Layout() {
       document.documentElement.classList.add('not_tauri')
     }
   }, [isTauri])
+
+  // if web, send errors to showToast
+  if (isWeb) {
+    useEffect(() => {
+      window.addEventListener('error', (e) => {
+        showToast(e.message)
+      })
+    }, [])
+  }
 
   return (
     <>
@@ -42,17 +52,19 @@ export default function Layout() {
 
       <AuthEffects />
 
-      <DragDropFile>
-        <DataProvider>
-          <SchemeProvider>
-            <ThemeProvider>
-              <Slot />
-              <Dialogs />
-              <Gallery />
-            </ThemeProvider>
-          </SchemeProvider>
-        </DataProvider>
-      </DragDropFile>
+      <ToastProvider>
+        <DragDropFile>
+          <DataProvider>
+            <SchemeProvider>
+              <ThemeProvider>
+                <Slot />
+                <Dialogs />
+                <Gallery />
+              </ThemeProvider>
+            </SchemeProvider>
+          </DataProvider>
+        </DragDropFile>
+      </ToastProvider>
     </>
   )
 }
