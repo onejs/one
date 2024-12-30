@@ -1,7 +1,7 @@
 import ansis from 'ansis'
 import FSExtra from 'fs-extra'
 import { join } from 'node:path'
-import { execPromise } from '../helpers/exec'
+import { execPromise } from '@vxrn/utils'
 import type { ExtraSteps } from './types'
 
 export const extraSteps: ExtraSteps = async ({ isFullClone, projectName, packageManager }) => {

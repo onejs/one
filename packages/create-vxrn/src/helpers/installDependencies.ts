@@ -1,4 +1,4 @@
-import { execPromise } from './exec'
+import { execPromise } from '@vxrn/utils'
 
 export async function installDependencies(
   projectRoot: string,
