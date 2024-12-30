@@ -13,6 +13,7 @@ import { useCurrentChannel, useCurrentChannelThreads } from '~/state/server'
 import {
   updateUserCurrentChannel,
   updateUserOpenThread,
+  useCurrentThread,
   useUserCurrentChannelState,
 } from '~/state/user'
 import type { ThreadWithRelations } from '~/zero'
@@ -112,17 +113,17 @@ const ChannelViewToggle = () => {
 }
 
 const ThreadButton = ({ thread }: { thread: ThreadWithRelations }) => {
+  const currentThread = useCurrentThread()
+  const isOpen = currentThread?.id === thread.id
+
   return (
     <ButtonSimple
+      active={isOpen}
       onPress={() => {
         updateUserOpenThread(thread)
       }}
     >
-      <Circle size={26} bg="$color9">
-        <OneBall size={0.8} />
-      </Circle>
-
-      <SizableText maw="100%" ellipse userSelect="none" cur="default" f={1} ov="hidden">
+      <SizableText size="$3" maw="100%" ellipse userSelect="none" cur="default" f={1} ov="hidden">
         {thread.messages[0]?.content}
       </SizableText>
     </ButtonSimple>
