@@ -12,10 +12,6 @@ export type Options = {
   preserveApiRoutes?: boolean
   ignoreRequireErrors?: boolean
   ignoreEntryPoints?: boolean
-  /* Used to simplify testing for toEqual() comparison */
-  internal_stripLoadRoute?: boolean
-  /* Used to simplify by skipping the generated routes */
-  skipGenerated?: boolean
   importMode?: string
   platformRoutes?: boolean
   platform?: string

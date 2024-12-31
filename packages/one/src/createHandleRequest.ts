@@ -1,10 +1,12 @@
 import { getPathFromLoaderPath } from './cleanUrl'
 import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
+import { RouteNode } from './Route'
 import type { RouteInfo } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
 import { isResponse } from './utils/isResponse'
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
 import { getManifest } from './vite/getManifest'
+import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
 import type { One } from './vite/types'
 
 type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
@@ -22,6 +24,7 @@ export function createHandleRequest(
     handleSSR?: (props: RequestHandlerProps) => Promise<any>
     handleLoader?: (props: RequestHandlerProps) => Promise<any>
     handleAPI?: (props: RequestHandlerProps) => Promise<any>
+    loadMiddleware?: (route: RouteNode) => Promise<any>
   }
 ) {
   const manifest = getManifest()
@@ -37,16 +40,32 @@ export function createHandleRequest(
 
   const apiRoutesList = Object.values(apiRoutesMap)
 
-  // its really common for people to hit refresh a couple times even on accident
-  // sending two ssr requests at once and causing slowdown.
-  // use this to avoid
-  const activeRequests = {}
-
   // shouldn't be mapping back and forth...
   const pageRoutes = manifest.pageRoutes.map((route) => ({
     ...route,
     workingRegex: new RegExp(route.namedRegex),
   }))
+
+  async function runMiddlewares(request: Request, route: RouteInfo) {
+    console.log('run', route.middlewares)
+    if (route.middlewares?.length) {
+      const loader = handlers.loadMiddleware
+      if (!loader) {
+        throw new Error(`No middleware handler configured`)
+      }
+      for (const middleware of route.middlewares) {
+        const exported = (await loader(middleware))?.default
+        if (!exported) {
+          console.warn(`No export from middleware: ${middleware.contextKey}`)
+        }
+        const response = exported(request)
+        if (response) {
+          return response
+        }
+      }
+    }
+    return null
+  }
 
   return {
     manifest,
@@ -58,39 +77,47 @@ export function createHandleRequest(
       )
       const { pathname, search } = url
 
-      if (process.env.NODE_ENV !== 'production') {
-        if (activeRequests[pathname]) {
-          return await activeRequests[pathname]
-        }
-      }
-
       if (pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
         return null
       }
 
       if (handlers.handleAPI) {
         const apiRoute = apiRoutesList.find((route) => {
-          const regex = route.compiledRegex
-          return regex.test(pathname)
+          return route.compiledRegex.test(pathname)
         })
 
         if (apiRoute) {
           const params = getRouteParams(pathname, apiRoute)
 
           try {
-            return await handlers.handleAPI({
+            return resolveAPIEndpoint(
+              await handlers.handleAPI({
+                request,
+                route: apiRoute,
+                url,
+                loaderProps: {
+                  path: pathname,
+                  params,
+                },
+              }),
               request,
-              route: apiRoute,
-              url,
-              loaderProps: {
-                path: pathname,
-                params,
-              },
-            })
+              params || {}
+            )
           } catch (err) {
             if (isResponse(err)) {
               return err
             }
+
+            if (process.env.NODE_ENV === 'development') {
+              console.error(`\n [one] Error importing API route at ${pathname}:
+
+                ${err}
+              
+                If this is an import error, you can likely fix this by adding this dependency to
+                the "optimizeDeps.include" array in your vite.config.ts.
+              `)
+            }
+
             throw err
           }
         }
@@ -119,38 +146,45 @@ export function createHandleRequest(
               continue
             }
 
+            const middlewareResponse = await runMiddlewares(request, route)
+            if (middlewareResponse) {
+              return middlewareResponse
+            }
+
             if (process.env.NODE_ENV === 'development') {
               console.info(` ❶ Running loader for route: ${finalUrl.pathname}`)
             }
 
-            const headers = new Headers()
-            headers.set('Content-Type', 'text/javascript')
+            return await resolveResponse(async () => {
+              const headers = new Headers()
+              headers.set('Content-Type', 'text/javascript')
 
-            try {
-              const loaderResponse = await handlers.handleLoader({
-                request,
-                route,
-                url,
-                loaderProps: {
-                  path: finalUrl.pathname,
-                  request: route.type === 'ssr' ? request : undefined,
-                  params: getLoaderParams(finalUrl, route),
-                },
-              })
+              try {
+                const loaderResponse = await handlers.handleLoader!({
+                  request,
+                  route,
+                  url,
+                  loaderProps: {
+                    path: finalUrl.pathname,
+                    request: route.type === 'ssr' ? request : undefined,
+                    params: getLoaderParams(finalUrl, route),
+                  },
+                })
 
-              return new Response(loaderResponse, {
-                headers,
-              })
-            } catch (err) {
-              // allow throwing a response in a loader
-              if (isResponse(err)) {
-                return err
+                return new Response(loaderResponse, {
+                  headers,
+                })
+              } catch (err) {
+                // allow throwing a response in a loader
+                if (isResponse(err)) {
+                  return err
+                }
+
+                console.error(`Error running loader: ${err}`)
+
+                throw err
               }
-
-              console.error(`Error running loader: ${err}`)
-
-              throw err
-            }
+            })
           }
 
           if (process.env.NODE_ENV === 'development') {
@@ -167,18 +201,18 @@ export function createHandleRequest(
       }
 
       if (handlers.handleSSR) {
-        const { promise, reject, resolve } = promiseWithResolvers()
+        for (const route of pageRoutes) {
+          if (!route.workingRegex.test(pathname)) {
+            continue
+          }
 
-        // TODO timeout handler to clear activeRequests and log error
-        activeRequests[pathname] = promise
+          const middlewareResponse = await runMiddlewares(request, route)
+          if (middlewareResponse) {
+            return middlewareResponse
+          }
 
-        try {
-          for (const route of pageRoutes) {
-            if (!route.workingRegex.test(pathname)) {
-              continue
-            }
-
-            const ssrResponse = await handlers.handleSSR({
+          return await resolveResponse(async () => {
+            return await handlers.handleSSR!({
               request,
               route,
               url,
@@ -187,15 +221,7 @@ export function createHandleRequest(
                 params: getLoaderParams(url, route),
               },
             })
-
-            resolve(ssrResponse)
-            return ssrResponse
-          }
-        } catch (err) {
-          reject(err)
-          throw err
-        } finally {
-          delete activeRequests[pathname]
+          })
         }
       }
 

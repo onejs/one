@@ -1,3 +1,4 @@
+import { RouteNode } from './Route';
 import type { RouteInfo } from './server/createRoutesManifest';
 import type { LoaderProps } from './types';
 import type { One } from './vite/types';
@@ -12,6 +13,7 @@ export declare function createHandleRequest(options: One.PluginOptions, handlers
     handleSSR?: (props: RequestHandlerProps) => Promise<any>;
     handleLoader?: (props: RequestHandlerProps) => Promise<any>;
     handleAPI?: (props: RequestHandlerProps) => Promise<any>;
+    loadMiddleware?: (route: RouteNode) => Promise<any>;
 }): {
     manifest: import("./server/createRoutesManifest").RoutesManifest<string>;
     handler: (request: Request) => Promise<RequestHandlerResponse>;

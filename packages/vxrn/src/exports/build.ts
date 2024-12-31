@@ -175,13 +175,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       ...webBuildConfig.define,
     },
 
-    // builder: {
-    //   async buildApp(builder) {
-    //     // console.warn('building??????')
-    //     await builder.build(builder.environments.server)
-    //   },
-    // },
-
     ssr: {
       noExternal: true,
       external: ['react', 'react-dom', 'expo-modules-core'],

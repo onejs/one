@@ -21,12 +21,14 @@ export type OneRouterServerManifestV1Route<TRegex = string> = {
   namedRegex: TRegex
   generated?: boolean
   layouts?: RouteNode[]
+  middlewares?: RouteNode[]
   type: One.RouteType
   isNotFound?: boolean
 }
 
 export type OneRouterServerManifestV1<TRegex = string> = {
   apiRoutes: OneRouterServerManifestV1Route<TRegex>[]
+  middlewareRoutes: OneRouterServerManifestV1Route<TRegex>[]
   pageRoutes: OneRouterServerManifestV1Route<TRegex>[]
 }
 
@@ -96,6 +98,7 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
   }
 
   const apiRoutes: OneRouterServerManifestV1Route[] = []
+  const middlewareRoutes: OneRouterServerManifestV1Route[] = []
   const pageRoutes: OneRouterServerManifestV1Route[] = []
 
   for (const [path, node] of flat) {
@@ -103,12 +106,16 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
       apiRoutes.push(getGeneratedNamedRouteRegex(path, node))
       continue
     }
-
+    if (node.type === 'middleware') {
+      apiRoutes.push(getGeneratedNamedRouteRegex(path, node))
+      continue
+    }
     pageRoutes.push(getGeneratedNamedRouteRegex(path, node))
   }
 
   return {
     apiRoutes,
+    middlewareRoutes,
     pageRoutes,
   }
 }
@@ -136,6 +143,7 @@ function getNamedRouteRegex(
     namedRegex: result.namedRegex,
     routeKeys: result.routeKeys,
     layouts: node.layouts,
+    middlewares: node.middlewares,
   }
 }
 

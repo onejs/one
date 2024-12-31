@@ -15,7 +15,6 @@ export async function oneServe(
   const { createHandleRequest } = await import('../createHandleRequest')
   const { isResponse } = await import('../utils/isResponse')
   const { isStatusRedirect } = await import('../utils/isStatus')
-  const { resolveAPIRequest } = await import('../vite/resolveAPIRequest')
 
   const isAPIRequest = new WeakMap<any, boolean>()
   const root = vxrnOptions.root || '.'
@@ -68,37 +67,25 @@ export async function oneServe(
   const handleRequest = createHandleRequest(
     {},
     {
-      async handleAPI({ route, request, loaderProps }) {
+      async handleAPI({ route }) {
         const apiFile = join(
           process.cwd(),
           'dist',
           'api',
           route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
         )
+        return await import(apiFile)
+      },
 
-        isAPIRequest.set(request, true)
-
-        return resolveAPIRequest(
-          async () => {
-            try {
-              return await import(apiFile)
-            } catch (err) {
-              console.error(`\n [one] Error importing API route at ${apiFile}:
-
-  ${err}
-
-  If this is an import error, you can likely fix this by adding this dependency to
-  the "optimizeDeps.include" array in your vite.config.ts.
-
-  🐞 For a better error message run "node" and enter:
-
-  import('${apiFile}')\n\n`)
-              return {}
-            }
-          },
-          request,
-          loaderProps?.params || {}
+      async loadMiddleware(route) {
+        console.warn('load middleware')
+        const middlewareFile = join(
+          process.cwd(),
+          'dist',
+          'middleware',
+          route.contextKey.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
         )
+        return await import(middlewareFile)
       },
 
       async handleSSR({ route, url, loaderProps }) {
@@ -163,12 +150,15 @@ export async function oneServe(
     // serve our generated html files
     const html = htmlFiles[context.req.path]
     if (html) {
+      console.warn('wtff bro', routeToBuildInfo[context.req.path])
       return context.html(html)
     }
 
     try {
       const request = context.req.raw
       const response = await handleRequest.handler(request)
+
+      console.log('??', response)
 
       if (response) {
         if (isResponse(response)) {

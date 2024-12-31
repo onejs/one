@@ -7,7 +7,7 @@ export { createFileSystemRouterPlugin } from './vite/plugins/fileSystemRouterPlu
 
 export { makePluginWebOnly } from './vite/makePluginWebOnly'
 
-export { setCurrentRequestHeaders } from './vite/headers'
+export { setResponseHeaders } from './vite/server'
 
 export { build } from './cli/build'
 export { one } from './vite/one'

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "vitest --run",
+    "test": "vitest --run --reporter=dot --color=false",
     "test:watch": "vitest",
     "build:web": "one build",
     "clean": "one clean",
@@ -33,6 +33,7 @@
     "tamagui": "^1.121.3"
   },
   "devDependencies": {
+    "@vxrn/utils": "workspace:*",
     "@react-native-community/cli": "latest",
     "get-port-please": "^3.1.2",
     "tsx": "^4.19.0",

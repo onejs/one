@@ -16,10 +16,6 @@ export type Options = {
   preserveApiRoutes?: boolean
   ignoreRequireErrors?: boolean
   ignoreEntryPoints?: boolean
-  /* Used to simplify testing for toEqual() comparison */
-  internal_stripLoadRoute?: boolean
-  /* Used to simplify by skipping the generated routes */
-  skipGenerated?: boolean
   importMode?: 'sync'
   platformRoutes?: boolean
   platform?: string
@@ -27,6 +23,7 @@ export type Options = {
 
 type DirectoryNode = {
   layout?: RouteNode[]
+  middleware?: RouteNode
   files: Map<string, RouteNode[]>
   subdirectories: Map<string, DirectoryNode>
 }
@@ -63,16 +60,6 @@ export function getRoutes(
   }
 
   return rootNode
-}
-
-export function getExactRoutes(
-  contextModule: One.RouteContext,
-  options: Options = {}
-): RouteNode | null {
-  return getRoutes(contextModule, {
-    ...options,
-    skipGenerated: true,
-  })
 }
 
 /**
@@ -112,7 +99,11 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
       continue
     }
 
-    const type = meta.isLayout ? 'layout' : meta.renderMode || getDefaultRenderMode()
+    const type = meta.isMiddleware
+      ? 'middleware'
+      : meta.isLayout
+        ? 'layout'
+        : meta.renderMode || getDefaultRenderMode()
 
     let node: RouteNode = {
       type,
@@ -128,6 +119,7 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
           return contextModule(filePath)
         }
       },
+
       contextKey: filePath,
       route: '', // This is overwritten during hoisting based upon the _layout
       dynamic: null,
@@ -187,6 +179,8 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
           node = getLayoutNode(node, options)
           directory.layout[meta.specificity] = node
         }
+      } else if (meta.isMiddleware) {
+        directory.middleware = node
       } else if (type === 'api') {
         const fileKey = `${route}+api`
         let nodes = directory.files.get(fileKey)
@@ -246,7 +240,6 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
 
   /**
    * If there are no top-level _layout, add a default _layout
-   * While this is a generated route, it will still be generated even if skipGenerated is true.
    */
   if (!rootDirectory.layout) {
     rootDirectory.layout = [
@@ -267,12 +260,11 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
   }
 
   // Only include the sitemap if there are routes.
-  if (!options.skipGenerated) {
-    if (hasRoutes) {
-      appendSitemapRoute(rootDirectory)
-    }
-    appendNotFoundRoute(rootDirectory)
+  if (hasRoutes) {
+    appendSitemapRoute(rootDirectory)
   }
+  appendNotFoundRoute(rootDirectory)
+
   return rootDirectory
 }
 
@@ -285,7 +277,8 @@ function flattenDirectoryTreeToRoutes(
   /* The nearest _layout file in the directory tree */
   layout?: RouteNode,
   /* Route names are relative to their layout */
-  pathToRemove = ''
+  pathToRemove = '',
+  parentMiddlewares?: RouteNode[]
 ) {
   /**
    * This directory has a _layout file so it becomes the new target for hoisting routes.
@@ -297,10 +290,6 @@ function flattenDirectoryTreeToRoutes(
     // Add the new layout as a child of its parent
     if (previousLayout) {
       previousLayout.children.push(layout)
-    }
-
-    if (options.internal_stripLoadRoute) {
-      delete (layout as any).loadRoute
     }
 
     // `route` is the absolute pathname. We need to make this relative to the last _layout
@@ -315,6 +304,10 @@ function flattenDirectoryTreeToRoutes(
   // This should never occur as there will always be a root layout, but it makes the type system happy
   if (!layout) throw new Error('One Internal Error: No nearest layout')
 
+  const middlewares = directory.middleware
+    ? [...(parentMiddlewares || []), directory.middleware]
+    : parentMiddlewares
+
   for (const routes of directory.files.values()) {
     // TODO(Platform Routes): We need to pick the most specific layout and ensure that all routes have a non-platform route.
     const routeNode = getMostSpecific(routes)
@@ -322,17 +315,14 @@ function flattenDirectoryTreeToRoutes(
     // `route` is the absolute pathname. We need to make this relative to the nearest layout
     routeNode.route = routeNode.route.replace(pathToRemove, '')
     routeNode.dynamic = generateDynamic(routeNode.route)
-
-    if (options.internal_stripLoadRoute) {
-      delete (routeNode as any).loadRoute
-    }
+    routeNode.middlewares = middlewares
 
     layout.children.push(routeNode)
   }
 
   // Recursively flatten the subdirectories
   for (const child of directory.subdirectories.values()) {
-    flattenDirectoryTreeToRoutes(child, options, layout, pathToRemove)
+    flattenDirectoryTreeToRoutes(child, options, layout, pathToRemove, middlewares)
   }
 
   return layout
@@ -348,6 +338,7 @@ function getFileMeta(key: string, options: Options) {
   const filenameWithoutExtensions = removeSupportedExtensions(filename)
 
   const isLayout = filenameWithoutExtensions.startsWith('_layout')
+  const isMiddleware = filenameWithoutExtensions.startsWith('_middleware')
 
   const [_fullname, renderModeFound] = filename.match(/\+(api|ssg|ssr|spa)\.(\w+\.)?[jt]sx?$/) || []
   const renderMode = renderModeFound as 'api' | One.RouteRenderMode | undefined
@@ -407,6 +398,7 @@ function getFileMeta(key: string, options: Options) {
     route,
     specificity,
     isLayout,
+    isMiddleware,
     renderMode,
   }
 }
@@ -591,19 +583,17 @@ function crawlAndAppendInitialRoutesAndEntryFiles(
     })
     let initialRouteName = childMatchingGroup?.route
     // We may strip loadRoute during testing
-    if (!options.internal_stripLoadRoute) {
-      const loaded = node.loadRoute()
-      if (loaded?.unstable_settings) {
-        // Allow unstable_settings={ initialRouteName: '...' } to override the default initial route name.
-        initialRouteName = loaded.unstable_settings.initialRouteName ?? initialRouteName
+    const loaded = node.loadRoute()
+    if (loaded?.unstable_settings) {
+      // Allow unstable_settings={ initialRouteName: '...' } to override the default initial route name.
+      initialRouteName = loaded.unstable_settings.initialRouteName ?? initialRouteName
 
-        if (groupName) {
-          // Allow unstable_settings={ 'custom': { initialRouteName: '...' } } to override the less specific initial route name.
-          const groupSpecificInitialRouteName =
-            loaded.unstable_settings?.[groupName]?.initialRouteName
+      if (groupName) {
+        // Allow unstable_settings={ 'custom': { initialRouteName: '...' } } to override the less specific initial route name.
+        const groupSpecificInitialRouteName =
+          loaded.unstable_settings?.[groupName]?.initialRouteName
 
-          initialRouteName = groupSpecificInitialRouteName ?? initialRouteName
-        }
+        initialRouteName = groupSpecificInitialRouteName ?? initialRouteName
       }
     }
 

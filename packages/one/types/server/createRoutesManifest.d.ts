@@ -8,6 +8,7 @@ export type RouteInfo<TRegex = string> = {
     namedRegex: TRegex;
     routeKeys: Record<string, string>;
     layouts?: RouteNode[];
+    middlewares?: RouteNode[];
     type: One.RouteType;
     isNotFound?: boolean;
 };

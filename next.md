@@ -11,6 +11,8 @@
     - symbolicator
 
   - web
+    - not found routes
+      - see TODO improve/remove when not found is fixed
     - vercel and cloudflare deploy options working/documented
       - vercel using build output api
     - faster route matching, regex routers can be faster than trie

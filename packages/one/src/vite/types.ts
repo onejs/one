@@ -13,7 +13,7 @@ export namespace One {
 
   export type RouteRenderMode = 'ssg' | 'spa' | 'ssr'
 
-  export type RouteType = RouteRenderMode | 'api' | 'layout'
+  export type RouteType = RouteRenderMode | 'api' | 'layout' | 'middleware'
 
   export type RouteOptions = {
     routeModes?: Record<string, RouteRenderMode>

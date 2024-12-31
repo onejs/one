@@ -10,7 +10,7 @@ import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
 import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
-import { resolveAPIRequest } from '../../vite/resolveAPIRequest'
+import { resolveAPIEndpoint } from '../resolveResponse'
 import type { One } from '../../vite/types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
@@ -142,12 +142,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           throw new Error(`No transformed js returned`)
         }
 
-        // if (!transformedJS.includes('loader')) {
-        //   return `console.log("hi")`
-        // }
-
         const exported = await runner.import(routeFile)
-
         const loaderData = await exported.loader?.(loaderProps)
 
         if (loaderData) {
@@ -177,13 +172,13 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         return transformedJS
       },
 
-      async handleAPI({ request, route, url, loaderProps }) {
-        const result = await resolveAPIRequest(
-          () => runner.import(join('app', route.file)),
-          request,
-          loaderProps?.params || {}
-        )
-        return result
+      async handleAPI({ route }) {
+        return await runner.import(join('app', route.file))
+      },
+
+      async loadMiddleware(route) {
+        console.log('load', route)
+        return await runner.import(join('app', route.contextKey))
       },
     })
   }
