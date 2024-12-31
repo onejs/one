@@ -41,6 +41,7 @@ export declare function fillOptions(options: VXRNOptions, internal?: {
         analyze?: boolean;
     };
     debugBundle?: boolean;
+    debug?: string;
 }>;
 export declare function getOptionsFilled(): {
     debugBundlePaths: {
@@ -81,5 +82,6 @@ export declare function getOptionsFilled(): {
         analyze?: boolean;
     };
     debugBundle?: boolean;
+    debug?: string;
 } | null;
 //# sourceMappingURL=getOptionsFilled.d.ts.map

@@ -37,9 +37,6 @@ export default function DocsLayout() {
         $gtMd={{
           flexDirection: 'row',
         }}
-        $gtLg={{
-          l: -50,
-        }}
         maw={1250}
         zi={100}
       >

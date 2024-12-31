@@ -1,35 +1,77 @@
-import { useEffect, useRef } from 'react'
-import { Input, YStack } from 'tamagui'
+import { useEffect, useRef, useState } from 'react'
+import { Progress, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { Editor } from '~/editor/Editor'
-import { randomID } from '~/helpers/randomID'
-import { useCurrentChannel, useCurrentServer } from '~/state/server'
-import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
-import { zero } from '~/zero/zero'
+import { Editor, type EditorRef } from '~/editor/Editor'
+import { randomId } from '~/helpers/randomId'
+import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThreadWithMessages'
+import { useCurrentServer } from '~/state/server/useCurrentServer'
+import { useCurrentChannel } from '~/state/useQuery'
+import { getCurrentUser, getDerivedUserState, updateUserCurrentChannel } from '~/state/user'
+import { type Attachment, zero } from '~/zero'
+import { AttachmentItem } from '../attachments/AttachmentItem'
+import { attachmentEmitter } from '../upload/DragDropFile'
+import type { FileUpload } from '../upload/uploadImage'
+import { messageInputEmitter, messageReplyEmitter } from './emitters'
+import { MessageInputReply } from './MessageInputReply'
 import { messagesListEmitter } from './MessagesList'
+import { handleKeyboardEscape } from '~/keyboard/handleKeyboardEscape'
 
-let mainInputRef: Input | null = null
+let mainInputRef: EditorRef | null = null
 
 export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
-  const inputRef = useRef<Input>(null)
+  const inputRef = useRef<EditorRef>(null)
   const channel = useCurrentChannel()
   const server = useCurrentServer()
-  const thread = useCurrentThread()
+  const thread = useCurrentThreadWithMessages()
   const { user } = useAuth()
-  const disabled = !user
+  const disabled = !user || !channel
 
   // on channel change, focus input
   useEffect(() => {
     if (!inThread) {
-      mainInputRef = inputRef.current
+      if (!mainInputRef) {
+        setTimeout(() => {
+          mainInputRef = inputRef.current
+          mainInputRef?.textarea?.focus()
+        })
+      }
     }
 
-    inputRef.current?.focus()
+    setTimeout(() => {
+      inputRef.current?.textarea?.focus()
+    })
+
+    return () => {
+      // focus events cause layout shifts which can make animations bad
+      setTimeout(() => {
+        mainInputRef?.textarea?.focus()
+      }, 50)
+    }
   }, [channel, inThread])
 
+  messageInputEmitter.use((value) => {
+    if (value.type === 'focus') {
+      setTimeout(() => {
+        mainInputRef?.textarea?.focus()
+      })
+    }
+  })
+
   return (
-    <YStack btw={1} bc="$color4" p="$2">
+    <YStack
+      btw={1}
+      bc="$color4"
+      p="$2"
+      gap="$2"
+      {...(disabled && {
+        opacity: 0.5,
+        pointerEvents: 'none',
+      })}
+    >
+      <MessageInputReply />
+
       <Editor
+        ref={inputRef}
         onKeyDown={(e) => {
           const key = e.key
           switch (key) {
@@ -57,7 +99,11 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             }
 
             case 'Escape': {
-              inputRef.current?.blur()
+              if (handleKeyboardEscape()) {
+                return
+              }
+
+              inputRef.current?.textarea?.blur()
 
               if (getDerivedUserState().activeThread) {
                 updateUserCurrentChannel({
@@ -65,51 +111,138 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
                 })
 
                 if (mainInputRef) {
-                  mainInputRef.focus()
+                  mainInputRef.textarea?.focus()
                 }
               }
               break
             }
           }
         }}
-        onSubmit={(content) => {
-          if (!user) {
-            console.error('no user')
+        onSubmit={async (content) => {
+          if (!user || !channel) {
+            console.warn('missing', { user, channel })
             return
           }
           if (!content) {
             return
           }
 
-          inputRef.current?.clear()
-          zero.mutate.message.insert({
-            id: randomID(),
-            channelID: channel.id,
-            threadID: thread?.id,
-            isThreadReply: !!thread,
-            content,
-            deleted: false,
-            creatorID: user!.id,
-            serverID: server.id,
+          inputRef.current?.clear?.()
+
+          await zero.mutateBatch((tx) => {
+            const messageId = randomId()
+
+            const messageState = messageReplyEmitter.value
+            const replyingToId = messageState?.type === 'reply' ? messageState.messageId : null
+
+            tx.message.insert({
+              id: messageId,
+              channelId: channel.id,
+              threadId: thread?.id,
+              isThreadReply: !!thread,
+              replyingToId,
+              content,
+              deleted: false,
+              creatorId: user!.id,
+              serverId: server.id,
+            })
+
+            const attachments = attachmentEmitter.value
+            if (attachments) {
+              for (const attachment of attachments) {
+                tx.attachment.insert({
+                  id: randomId(),
+                  type: attachment.type,
+                  userId: user.id,
+                  channelId: channel.id,
+                  url: attachment.url,
+                  messageId,
+                })
+              }
+            }
           })
 
-          // setTimeout(() => {
-          //   inputRef.current?.focus()
-          // }, 40)
+          messageInputEmitter.emit({ type: 'submit' })
+          messageReplyEmitter.emit({ type: 'cancel' })
+
+          setTimeout(() => {
+            inputRef.current?.textarea?.focus()
+          }, 40)
         }}
       />
+
+      <MessageInputAttachments />
     </YStack>
   )
+}
+
+const fileUploadToAttachment = (upload: FileUpload): Attachment => {
+  return {
+    channelId: null,
+    messageId: null,
+    userId: getCurrentUser()?.id || `no-user`,
+    createdAt: null,
+    data: null,
+    id: upload.name || randomId(),
+    url: upload.url || upload.preview || null,
+    type: upload.type,
+  }
+}
+
+const MessageInputAttachments = () => {
+  const [uploads, setUploads] = useState<FileUpload[]>([])
+
+  attachmentEmitter.use((uploads) => {
+    setUploads(uploads)
+  })
+
+  messageInputEmitter.use((value) => {
+    if (value.type === 'submit') {
+      setUploads([])
+      attachmentEmitter.emit([])
+    }
+  })
 
   return (
-    <YStack btw={1} bc="$color4" p="$2">
-      <Input
-        ref={inputRef}
-        disabled={disabled}
-        placeholder={disabled ? 'Sign in to chat...' : ''}
-        pe={disabled ? 'none' : 'auto'}
-        onSubmitEditing={(e) => {}}
-      />
-    </YStack>
+    <XStack gap="$2">
+      {uploads.map((upload) => {
+        const attachment = fileUploadToAttachment(upload)
+        const size = 60
+
+        return (
+          <YStack key={attachment.id} gap="$1" w={size} h={size}>
+            {attachment.url && (
+              <AttachmentItem
+                attachment={attachment}
+                size={size}
+                editable
+                rounded
+                onDelete={() => {
+                  setUploads((prev) => {
+                    return prev.filter((_) => _.name !== upload.name)
+                  })
+                }}
+              ></AttachmentItem>
+            )}
+            {upload.progress !== 100 && (
+              <Progress
+                pos="absolute"
+                b={0}
+                l={0}
+                r={0}
+                w={size}
+                miw={size}
+                h={5}
+                zi={100}
+                value={upload.progress}
+                bg="$color2"
+              >
+                <Progress.Indicator h={5} bc="$color7" animation="bouncy" />
+              </Progress>
+            )}
+          </YStack>
+        )
+      })}
+    </XStack>
   )
 }

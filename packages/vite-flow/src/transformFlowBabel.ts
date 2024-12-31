@@ -1,9 +1,20 @@
 import babel from '@babel/core'
+import { resolvePath } from '@vxrn/resolve'
 
 export async function transformFlowBabel(
   input: string,
   { development = false }: { development?: boolean } = {}
 ) {
+  let metroPresetPath = 'module:metro-react-native-babel-preset'
+
+  try {
+    // the above doesn't work in some monorepos so lets try resolving it specifically ourselves
+    // has to be relative to this package as it is installed below it
+    metroPresetPath = resolvePath('metro-react-native-babel-preset', resolvePath('@vxrn/vite-flow'))
+  } catch (err) {
+    // fallback to original
+  }
+
   return await new Promise<string>((res, rej) => {
     babel.transform(
       input,
@@ -11,7 +22,7 @@ export async function transformFlowBabel(
         filename: 'file.js', // this is required for @react-native/babel-plugin-codegen to work.
         presets: [
           [
-            'module:metro-react-native-babel-preset',
+            metroPresetPath,
             {
               // To use the `@babel/plugin-transform-react-jsx` plugin for JSX.
               useTransformReactJSXExperimental: true,

@@ -9,17 +9,18 @@ import {
   XGroup,
   XStack,
 } from 'tamagui'
-import { useCurrentChannel, useCurrentChannelThreads } from '~/state/server'
+import { useCurrentChannel, useCurrentChannelThreads } from '~/state/useQuery'
 import {
   updateUserCurrentChannel,
   updateUserOpenThread,
   useUserCurrentChannelState,
 } from '~/state/user'
-import type { ThreadWithRelations } from '~/zero/schema'
+import type { ThreadWithRelations } from '~/zero'
 import { OneBall } from '../brand/Logo'
 import { ButtonSimple } from '../ButtonSimple'
 import { ChannelSettingsPopover } from '../channel/ChannelSettingsPopover'
 import { mainTopBarHeight } from './constants'
+import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThreadWithMessages'
 
 export const MainTopBar = () => {
   const threads = useCurrentChannelThreads()
@@ -112,17 +113,17 @@ const ChannelViewToggle = () => {
 }
 
 const ThreadButton = ({ thread }: { thread: ThreadWithRelations }) => {
+  const currentThread = useCurrentThreadWithMessages()
+  const isOpen = currentThread?.id === thread.id
+
   return (
     <ButtonSimple
+      active={isOpen}
       onPress={() => {
         updateUserOpenThread(thread)
       }}
     >
-      <Circle size={26} bg="$color9">
-        <OneBall size={0.8} />
-      </Circle>
-
-      <SizableText maw="100%" ellipse userSelect="none" cur="default" f={1} ov="hidden">
+      <SizableText size="$3" maw="100%" ellipse userSelect="none" cur="default" f={1} ov="hidden">
         {thread.messages[0]?.content}
       </SizableText>
     </ButtonSimple>

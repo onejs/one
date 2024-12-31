@@ -2,7 +2,7 @@ import { Check, DoorOpen } from '@tamagui/lucide-icons'
 import { useEffect, useRef, useState } from 'react'
 import { ScrollView, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { useQuery, zero } from '~/zero/zero'
+import { useQuery, zero } from '~/zero'
 import { Avatar } from '../Avatar'
 import { Row } from '../Row'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
@@ -69,15 +69,15 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
                                   })
                                 ) {
                                   zero.mutate.serverMember.delete({
-                                    userID: user.id,
-                                    serverID: server.id,
+                                    userId: user.id,
+                                    serverId: server.id,
                                   })
                                 }
                                 // TODO
                               } else {
                                 zero.mutate.serverMember.insert({
-                                  userID: user.id,
-                                  serverID: server.id,
+                                  userId: user.id,
+                                  serverId: server.id,
                                 })
                               }
                             }}

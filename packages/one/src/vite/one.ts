@@ -21,7 +21,8 @@ import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
 import { createReactCompilerPlugin } from './plugins/reactCompilerPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
-import { createVirtualEntry, virtualEntryId } from './plugins/virtualEntryPlugin'
+import { createVirtualEntry } from './plugins/virtualEntryPlugin'
+import { virtualEntryId } from './plugins/virtualEntryConstants'
 import type { One } from './types'
 // import { barrel } from 'vite-plugin-barrel'
 
@@ -37,11 +38,7 @@ events.setMaxListeners(1_000)
 // temporary for tamagui plugin compat
 globalThis.__vxrnEnableNativeEnv = true
 
-let cachedConfig: PluginOption | null = null
-
 export function one(options: One.PluginOptions = {}): PluginOption {
-  if (cachedConfig) return cachedConfig
-
   setOneOptions(options)
 
   // ensure tsconfig
@@ -144,10 +141,25 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         // const forkPath = dirname(resolvePath('one'))
 
+        let tslibLitePath = ''
+
+        try {
+          // temp fix for seeing
+          // Could not read from file: modules/@vxrn/resolve/dist/esm/@vxrn/tslib-lite
+          tslibLitePath = resolvePath('@vxrn/tslib-lite', process.cwd())
+        } catch (err) {
+          console.info(`Can't find tslib-lite, falling back to tslib`)
+          if (process.env.DEBUG) {
+            console.error(err)
+          }
+        }
+
         return {
           resolve: {
             alias: {
-              tslib: resolvePath('@vxrn/tslib-lite', process.cwd()),
+              ...(tslibLitePath && {
+                tslib: tslibLitePath,
+              }),
             },
 
             // [
@@ -199,6 +211,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"client"',
                 'import.meta.env.VITE_ENVIRONMENT': '"client"',
+                'process.env.EXPO_OS': '"web"',
               },
             },
 
@@ -206,6 +219,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"ssr"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
+                'process.env.EXPO_OS': '"web"',
               },
             },
 
@@ -213,6 +227,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"ios"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ios"',
+                'process.env.EXPO_OS': '"ios"',
               },
             },
 
@@ -220,6 +235,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"android"',
                 'import.meta.env.VITE_ENVIRONMENT': '"android"',
+                'process.env.EXPO_OS': '"android"',
               },
             },
           },
@@ -346,7 +362,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
-  cachedConfig = [
+  return [
     ...devAndProdPlugins,
     ...nativeWebDevAndProdPlugsin,
 
@@ -443,6 +459,4 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       entries: [virtualEntryId],
     }),
   ]
-
-  return cachedConfig
 }

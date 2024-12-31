@@ -62,6 +62,10 @@ const dev = defineCommand({
       type: 'boolean',
       description: `Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.`,
     },
+    debug: {
+      type: 'string',
+      description: `Pass debug args to Vite`,
+    },
   },
   async run({ args }) {
     const { run } = await import('./cli/run')
@@ -91,7 +95,7 @@ const buildCommand = defineCommand({
     },
   },
   async run({ args }) {
-    const { build } = await import('./vite/build')
+    const { build } = await import('./cli/build')
     await build(args)
     // TODO somewhere just before 1787f241b79 this stopped exiting, must have some hanging task
     process.exit(0)
@@ -147,6 +151,12 @@ const prebuild = defineCommand({
     platform: {
       type: 'string',
       description: 'ios or android',
+    },
+
+    expo: {
+      type: 'boolean',
+      description: 'expo or non-expo folders',
+      default: true,
     },
   },
   async run({ args }) {

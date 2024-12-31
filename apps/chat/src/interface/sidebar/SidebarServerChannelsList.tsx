@@ -4,11 +4,12 @@ import { Menu } from '@tauri-apps/api/menu'
 import { forwardRef, useEffect, useState } from 'react'
 import { YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { randomID } from '~/helpers/randomID'
-import { useCurrentServer, useServerChannels } from '~/state/server'
+import { randomId } from '~/helpers/randomId'
+import { useServerChannels } from '~/state/useQuery'
+import { useCurrentServer } from '~/state/server/useCurrentServer'
 import { updateUserState, useUserState } from '~/state/user'
-import type { Channel } from '~/zero/schema'
-import { zero } from '~/zero/zero'
+import type { Channel } from '~/zero'
+import { zero } from '~/zero'
 import { ButtonSimple } from '../ButtonSimple'
 import { EditableListItem, type EditableListItemProps } from '../lists/EditableListItem'
 import { ListTitle } from '../lists/ListTitle'
@@ -96,13 +97,13 @@ export const SidebarServerChannelsList = () => {
                 alert('no server')
                 return
               }
-              const id = randomID()
+              const id = randomId()
               zero.mutate.channel.insert({
                 id,
                 description: '',
                 name,
                 private: false,
-                serverID: server.id,
+                serverId: server.id,
               })
 
               zero.mutate.server.update({
@@ -187,7 +188,7 @@ const ChannelListItem = forwardRef(
     return (
       <EditableListItem
         ref={ref}
-        icon={channel?.private ? <Lock o={0.5} size={16} /> : null}
+        icon={channel?.private ? <Lock mx="$2.5" o={0.5} size={12} /> : null}
         iconAfter
         editingValue={channel?.name ?? ''}
         active={derivedUserState?.activeChannel === channel?.id}

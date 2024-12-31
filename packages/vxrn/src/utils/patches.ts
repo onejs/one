@@ -1,13 +1,13 @@
 import { transformFlow } from '@vxrn/vite-flow'
+import { swcTransform } from '@vxrn/vite-native-swc'
 import findNodeModules from 'find-node-modules'
 import FSExtra from 'fs-extra'
 import { join } from 'node:path'
+import semver from 'semver'
+import type { UserConfig } from 'vite'
 import { depPatches } from './depPatches'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { globDir } from './globDir'
-import { swcTransform } from '@vxrn/vite-native-swc'
-import semver from 'semver'
-import type { UserConfig } from 'vite'
 import { deepMergeOptimizeDeps } from './mergeUserConfig'
 
 type Strategies = 'swc' | 'flow' | 'jsx'
@@ -25,6 +25,12 @@ export type DepPatch = {
 }
 
 class Bail extends Error {}
+
+export function bailIfUnchanged(obj1: any, obj2: any) {
+  if (JSON.stringify(obj1) === JSON.stringify(obj2)) {
+    throw new Bail()
+  }
+}
 
 export function bailIfExists(haystack: string, needle: string) {
   if (haystack.includes(needle)) {

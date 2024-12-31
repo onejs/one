@@ -1,6 +1,6 @@
 import { S3Client } from '@aws-sdk/client-s3'
 import { Upload } from '@aws-sdk/lib-storage'
-import { randomID } from '~/helpers/randomID'
+import { randomId } from '~/helpers/randomId'
 
 // TODO: upload folder based on user or server
 
@@ -33,7 +33,7 @@ export default async function handler(req: Request) {
 
   const uploadParams = {
     Bucket: bucket,
-    Key: `${folder}/${randomID()}-${file.name}`,
+    Key: `${folder}/${randomId()}-${file.name}`,
     Body: fileStream,
     ContentType: file.type,
   }

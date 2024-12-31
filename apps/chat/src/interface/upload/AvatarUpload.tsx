@@ -1,16 +1,28 @@
 import { type DragEvent, useState } from 'react'
 import { isWeb, Paragraph, Progress, YStack } from 'tamagui'
 import { Avatar } from '../Avatar'
-import { uploadImageEndpoint, useUploadImage } from './uploadImage'
+import { uploadImageEndpoint, useUploadImages, type FileUpload } from './uploadImage'
 
 export const AvatarUpload = ({
   defaultImage,
   onChangeImage,
-}: { defaultImage?: string; onChangeImage: (cb: string) => void }) => {
-  const { errorMessage, handleUpload, progress, handleFileChange, uploadUrl } = useUploadImage({
-    onChangeImage,
+}: {
+  defaultImage?: string
+  onChangeImage: (url: string) => void
+}) => {
+  const { uploads, handleUpload, handleFileChange } = useUploadImages({
+    onChange: (uploads) => {
+      if (uploads[0].url) {
+        onChangeImage(uploads[0].url)
+      }
+    },
   })
   const [dropping, setDropping] = useState(false)
+
+  const latestUpload = uploads[uploads.length - 1]
+  const uploadUrl = latestUpload?.url
+  const progress = latestUpload?.progress
+  const errorMessage = latestUpload?.error
 
   return (
     <YStack
@@ -21,7 +33,7 @@ export const AvatarUpload = ({
         event.stopPropagation()
         setDropping(false)
         const file = event.dataTransfer.files[0]
-        if (file) handleUpload(file)
+        if (file) handleUpload([file])
       }}
       onDragOver={(e: any) => {
         setDropping(true)

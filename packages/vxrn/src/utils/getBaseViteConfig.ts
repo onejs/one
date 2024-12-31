@@ -31,7 +31,8 @@ export function getBaseViteConfig({
     mode,
 
     // we load the config ourselves
-    configFile: false,
+    // if you disable this is disables auto-reloading config changes
+    // configFile: false,
 
     plugins: [
       {

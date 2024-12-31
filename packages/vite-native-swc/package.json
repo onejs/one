@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-swc",
-  "version": "1.1.371",
+  "version": "1.1.377",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -33,12 +33,12 @@
     "@babel/plugin-transform-react-jsx": "^7.25.9",
     "@babel/plugin-transform-regenerator": "^7.25.9",
     "@swc/core": "^1.7.14",
-    "@vxrn/vite-native-client": "workspace:^",
+    "@vxrn/vite-native-client": "workspace:*",
     "metro-react-native-babel-preset": "^0.77.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.121.2",
+    "@tamagui/build": "^1.121.4",
     "react-native": "^0.76.5"
   },
   "peerDependencies": {

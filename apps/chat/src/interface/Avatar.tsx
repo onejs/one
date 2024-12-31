@@ -9,6 +9,22 @@ const SelectableCircle = styled(Circle, {
         outlineStyle: 'solid',
       },
     },
+
+    pressable: {
+      true: {
+        hoverStyle: {
+          outlineColor: '$color10',
+          outlineWidth: 2,
+          outlineStyle: 'solid',
+        },
+
+        pressStyle: {
+          outlineColor: '$color8',
+          outlineWidth: 2,
+          outlineStyle: 'solid',
+        },
+      },
+    },
   } as const,
 })
 
@@ -19,7 +35,14 @@ export const Avatar = ({
   ...rest
 }: CircleProps & { image: string; size?: number; active?: boolean }) => {
   return (
-    <SelectableCircle active={active} size={size} bg="$color5" ov="hidden" {...rest}>
+    <SelectableCircle
+      active={active}
+      pressable={!!rest.onPress && !active}
+      size={size}
+      bg="$color5"
+      ov="hidden"
+      {...rest}
+    >
       {image && <Image src={image} width={size} height={size} />}
     </SelectableCircle>
   )

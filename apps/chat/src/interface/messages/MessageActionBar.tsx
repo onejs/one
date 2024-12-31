@@ -1,14 +1,15 @@
 import { IndentIncrease, Reply } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, Separator, TooltipSimple, XGroup, XStack } from 'tamagui'
-import { randomID } from '~/helpers/randomID'
+import { randomId } from '~/helpers/randomId'
 import { getCurrentUser, updateUserOpenThread } from '~/state/user'
-import type { Channel, MessageWithRelations } from '~/zero/schema'
-import { useQuery, zero } from '~/zero/zero'
+import type { Channel, MessageWithRelations } from '~/zero'
+import { useQuery, zero } from '~/zero'
 import { AddReactionButton } from './AddReactionButton'
 import { MessageMoreMenu } from './MessageMoreMenu'
 import { ReactionButton } from './MessageReactions'
 import { messageActionBarStickOpen, messageHover } from './constants'
+import { messageReplyEmitter } from './emitters'
 
 export const MessageActionBar = ({
   message,
@@ -19,12 +20,17 @@ export const MessageActionBar = ({
 }) => {
   const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
   const [show, setShow] = useState(false)
-
-  messageHover.use((val) => {
-    setShow(val === message.id)
-  })
-
   const stickOpen = messageActionBarStickOpen.useValue()
+
+  messageHover.use(
+    (val) => {
+      if (stickOpen) {
+        return
+      }
+      setShow(val === message.id)
+    },
+    [stickOpen]
+  )
 
   if (!show) {
     return
@@ -46,14 +52,15 @@ export const MessageActionBar = ({
     >
       <XGroup bg="$color2">
         {topReactions.map((reaction) => {
+          if (!reaction) return null
           return <ReactionButton key={reaction.id} message={message} reaction={reaction} />
         })}
 
-        <AddReactionButton />
+        <AddReactionButton message={message} />
 
         <Separator my="$2" vertical />
 
-        {!message.thread?.[0] && (
+        {!message.thread && (
           <TooltipSimple label="Create Thread">
             <Button
               onPress={() => {
@@ -63,25 +70,25 @@ export const MessageActionBar = ({
                   return
                 }
 
-                const threadID = randomID()
+                const threadId = randomId()
 
                 zero.mutate.thread.insert({
-                  id: threadID,
-                  channelID: channel.id,
-                  messageID: message.id,
-                  creatorID: currentUser.id,
+                  id: threadId,
+                  channelId: channel.id,
+                  messageId: message.id,
+                  creatorId: currentUser.id,
                   description: '',
                   title: '',
                 })
 
                 zero.mutate.message.update({
                   id: message.id,
-                  threadID,
+                  threadId,
                   isThreadReply: false,
                 })
 
                 updateUserOpenThread({
-                  id: threadID,
+                  id: threadId,
                 })
               }}
               chromeless
@@ -93,8 +100,18 @@ export const MessageActionBar = ({
           </TooltipSimple>
         )}
 
-        <TooltipSimple label="Quote Reply">
-          <Button chromeless size="$2.5" br={0}>
+        <TooltipSimple label="Reply">
+          <Button
+            chromeless
+            size="$2.5"
+            br={0}
+            onPress={() => {
+              messageReplyEmitter.emit({
+                type: 'reply',
+                messageId: message.id,
+              })
+            }}
+          >
             <Reply size={16} />
           </Button>
         </TooltipSimple>

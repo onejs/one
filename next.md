@@ -6,20 +6,21 @@
     - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
 
   - native
+    - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
     - large test suite + supports 1000 most popular dependencies
     - better hmr
     - better rebuild module caching
     - symbolicator
 
   - web
+    - vercel and cloudflare deploy options working/documented
+      - vercel using build output api
     - faster route matching, regex routers can be faster than trie
       - see handleRequest file, npm radix3 or rou3
 
 ---
 
 # backlog
-
-- hot reload vite.config changes
 
 - react-native-web-lite proper release
 

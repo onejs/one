@@ -1,23 +1,27 @@
-import { Plus } from '@tamagui/lucide-icons'
+import { Plus, Trash } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useState } from 'react'
 import { Button, Circle, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
-import { randomID } from '~/helpers/randomID'
+import { randomId } from '~/helpers/randomId'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
-import { useCurrentServer, useCurrentServerRoles } from '~/state/server'
-import type { Role, RoleWithRelations, Server } from '~/zero/schema'
-import { useQuery, zero } from '~/zero/zero'
+import { useCurrentServerMembers, useCurrentServerRoles } from '~/state/useQuery'
+import { useCurrentServer } from '~/state/server/useCurrentServer'
+import type { RolePermissionsKeys, RoleWithRelations, Server } from '~/zero'
+import { zero } from '~/zero'
 import { Avatar } from '../Avatar'
 import { ButtonSimple } from '../ButtonSimple'
+import { dialogConfirm } from '../dialogs/actions'
 import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Switch } from '../forms/Switch'
 import { EditableListItem, type EditableListItemProps } from '../lists/EditableListItem'
 import { SortableList } from '../lists/SortableList'
+import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
 import { Tabs } from '../tabs/Tabs'
 import { AvatarUpload } from '../upload/AvatarUpload'
+import { UserRow } from '../users/UserRow'
 
 const actionEmitter = createEmitter<'create-role'>()
 
@@ -87,13 +91,13 @@ export const ServerSettingsPane = () => {
 }
 
 const SettingsServerPermissions = ({ server }: { server: Server }) => {
-  const { user, jwtToken } = useAuth()
-
-  console.log('jwtToken', jwtToken, useQuery((q) => q.user)[0])
+  const { user } = useAuth()
 
   const roles = useCurrentServerRoles() || []
+
   const [showTempRole, setShowTempRole] = useState(false)
-  const [selected, setSelected] = useState<Role | null>(null)
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const selected = selectedId ? roles.find((x) => x.id === selectedId) : null
 
   actionEmitter.use((action) => {
     if (action == 'create-role') {
@@ -111,7 +115,7 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
               active={selected?.id === role.id}
               editingValue={role.name}
               onPress={() => {
-                setSelected(role)
+                setSelectedId(role.id)
               }}
               key={role.id}
               role={role}
@@ -127,14 +131,14 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
           <RoleListItem
             defaultEditing
             onEditComplete={(name) => {
-              const id = randomID()
+              const id = randomId()
               setShowTempRole(false)
               zero.mutate.role.insert({
                 id,
                 color: 'gray',
-                creatorID: user?.id || '',
+                creatorId: user?.id || '',
                 name,
-                serverID: server.id,
+                serverId: server.id,
               })
             }}
             onEditCancel={() => setShowTempRole(false)}
@@ -143,27 +147,201 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
       </YStack>
 
       <Sheet animation="bouncy" open={!!selected}>
-        <Sheet.Frame br="$6" elevation="$4" p="$4">
-          <H5 o={0.5}>{selected?.name}</H5>
-
-          <LabeledRow
-            htmlFor="manage-server"
-            label="Manage Server"
-            description="Allow user to change server settings."
-          >
-            <Switch size="$3" id="manage-server" />
-          </LabeledRow>
-
-          <LabeledRow
-            htmlFor="edit-channels"
-            label="Edit Channels"
-            description="Allow user to change channel names, add and remove."
-          >
-            <Switch size="$3" id="edit-channels" />
-          </LabeledRow>
+        <Sheet.Frame bg="$color2" br="$6" elevation="$4" p="$4">
+          {selected && <ServerRolePermissionsPane role={selected} />}
         </Sheet.Frame>
       </Sheet>
     </YStack>
+  )
+}
+
+type RolePaneTabs = 'abilities' | 'members'
+
+const ServerRolePermissionsPane = ({ role }: { role: RoleWithRelations }) => {
+  const [tab, setTab] = useState<RolePaneTabs>('abilities')
+
+  return (
+    <>
+      <H5 size="$2" o={0.5} mb="$3">
+        Role: {role?.name}
+      </H5>
+
+      <Tabs
+        initialTab="abilities"
+        // @ts-expect-error
+        onValueChange={setTab}
+        tabs={[
+          { label: 'Abilities', value: 'abilities' },
+          { label: 'Members', value: 'members' },
+        ]}
+      >
+        <YStack pos="relative" f={1} w="100%">
+          <AlwaysVisibleTabContent active={tab} value="abilities">
+            <RoleSettingSwitch
+              label="Admin"
+              description="Allows all actions on a server."
+              permissionsKey="canAdmin"
+              role={role}
+              requireConfirmation
+            />
+
+            <YStack
+              {...(role.canAdmin && {
+                o: 0.35,
+                pe: 'none',
+              })}
+            >
+              <RoleSettingSwitch
+                label="Manage Server"
+                description="Allow user to change server settings."
+                permissionsKey="canEditServer"
+                role={role}
+              />
+
+              <RoleSettingSwitch
+                label="Edit Channels"
+                description="Allow user to change channel names, add and remove."
+                permissionsKey="canEditChannel"
+                role={role}
+              />
+            </YStack>
+          </AlwaysVisibleTabContent>
+
+          <AlwaysVisibleTabContent active={tab} value="members">
+            <ServerRolePermissionsPaneMembers role={role} />
+          </AlwaysVisibleTabContent>
+        </YStack>
+      </Tabs>
+    </>
+  )
+}
+
+const ServerRolePermissionsPaneMembers = ({ role }: { role: RoleWithRelations }) => {
+  const { user: currentUser } = useAuth()
+  const serverMembers = useCurrentServerMembers()
+  const members: Record<string, boolean> = {}
+  for (const member of role.members) {
+    members[member.id] = true
+  }
+
+  return (
+    <SearchableList
+      onSearch={() => {
+        console.warn('todo')
+      }}
+      searchKey="name"
+      items={serverMembers}
+      onSelectItem={(item) => {}}
+    >
+      <SearchableInput size="$4" mb="$3" placeholder="Filter..." onKeyPress={(key) => {}} />
+
+      {serverMembers.map((user, index) => {
+        return (
+          <SearchableListItem key={user.name} index={index}>
+            {(active, itemProps) => {
+              const isMember = members[user.id]
+
+              return (
+                <UserRow
+                  active={active}
+                  user={user}
+                  rowProps={itemProps}
+                  action={
+                    <Button
+                      onPress={async () => {
+                        if (!currentUser) {
+                          throw new Error(`sign in`)
+                        }
+
+                        if (isMember) {
+                          if (
+                            !(await dialogConfirm({
+                              title: `Remove user from role ${role.name}?`,
+                            }))
+                          ) {
+                            return
+                          }
+
+                          await zero.mutate.userRole.delete({
+                            roleId: role.id,
+                            serverId: role.serverId,
+                            userId: user.id,
+                          })
+                          return
+                        }
+
+                        // not member
+                        await zero.mutate.userRole.insert({
+                          roleId: role.id,
+                          serverId: role.serverId,
+                          userId: user.id,
+                          granterId: currentUser.id,
+                        })
+                      }}
+                      size="$3"
+                      circular
+                      {...(isMember
+                        ? {
+                            theme: 'red',
+                            icon: Trash,
+                          }
+                        : {
+                            theme: 'gray',
+                            icon: Plus,
+                          })}
+                    ></Button>
+                  }
+                />
+              )
+            }}
+          </SearchableListItem>
+        )
+      })}
+    </SearchableList>
+  )
+}
+
+const RoleSettingSwitch = ({
+  role,
+  label,
+  description,
+  permissionsKey,
+  requireConfirmation,
+}: {
+  role: RoleWithRelations
+  label: string
+  description: string
+  permissionsKey: RolePermissionsKeys
+  requireConfirmation?: boolean
+}) => {
+  const id = label.toLowerCase().replace(/\s+/g, '-')
+  const value = !!role[permissionsKey]
+
+  return (
+    <LabeledRow htmlFor={id} label={label} description={description}>
+      <Switch
+        checked={value}
+        size="$3"
+        id={id}
+        onCheckedChange={async (val) => {
+          if (requireConfirmation) {
+            if (
+              !(await dialogConfirm({
+                title: `Change admin setting?`,
+                description: `This setting changes sensitive permissions, are you sure.`,
+              }))
+            ) {
+              return
+            }
+          }
+
+          zero.mutate.role.update({
+            id: role.id,
+            [permissionsKey]: val,
+          })
+        }}
+      />
+    </LabeledRow>
   )
 }
 
