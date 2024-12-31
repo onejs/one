@@ -3,7 +3,7 @@ import { memo, useEffect, useLayoutEffect, useRef } from 'react'
 import { YStack } from 'tamagui'
 import { VList, type VListHandle } from 'virtua'
 import { useAuth } from '~/better-auth/authClient'
-import { useCurrentChannel } from '~/state/useQuery'
+import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import {
   getUserState,
   updateUserCurrentChannel,

@@ -1,5 +1,6 @@
 TODO:
 
+- [ ] routing url (server, channel, message)
 - [ ] jobs patterns (search index)
 - [ ] migrations / backend orm
 - [ ] zero schema sync with migrations/schema/orm
