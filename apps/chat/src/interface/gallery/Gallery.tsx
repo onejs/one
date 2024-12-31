@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, X } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useState } from 'react'
 import { useWindowDimensions } from 'react-native'
-import { Button, type ButtonProps, styled, XStack, YStack } from 'tamagui'
+import { Button, type ButtonProps, styled, useDebounceValue, XStack, YStack } from 'tamagui'
 import type { Attachment } from '~/zero'
 
 export const galleryEmitter = createEmitter<{
@@ -45,9 +45,31 @@ export const Gallery = () => {
   const dimensions = useWindowDimensions()
   const items = galleryItems?.items || []
   const images = items.map((i) => i.url)
+  const [lastImages, setLastImages] = useState(images)
+  const hidden = !items.length
+  const src = images[page] || lastImages[page]
   const paginate = (going: number) => {
     setPage([page + going, going])
   }
+
+  if (images.length && lastImages !== images) {
+    setLastImages(images)
+  }
+
+  const [fullyHidden, setFullyHidden] = useState(true)
+  if (!hidden && fullyHidden) {
+    setFullyHidden(false)
+  }
+  useEffect(() => {
+    if (hidden) {
+      const tm = setTimeout(() => {
+        setFullyHidden(true)
+      }, 500)
+      return () => {
+        clearTimeout(tm)
+      }
+    }
+  }, [hidden])
 
   const firstItem = galleryItems?.firstItem
 
@@ -67,15 +89,13 @@ export const Gallery = () => {
       pos="absolute"
       inset={0}
       zi={100_000}
-      {...(!items.length
+      {...(hidden
         ? {
             opacity: 0,
-            y: 10,
             pointerEvents: 'none',
           }
         : {
             opacity: 1,
-            y: 0,
           })}
     >
       {items && (
@@ -95,12 +115,16 @@ export const Gallery = () => {
 
           <AnimatePresence initial={false} custom={{ going }}>
             <GalleryItem key={page} animation="quick" going={going}>
-              <Image
-                objectFit="contain"
-                src={images[page] || ''}
-                width={dimensions.width - 20}
-                height={dimensions.height - 20}
-              />
+              {!!src && !fullyHidden && (
+                <YStack animation="quick" {...(hidden ? { o: 0, y: 10 } : { o: 1, y: 0 })}>
+                  <Image
+                    objectFit="contain"
+                    src={src}
+                    width={dimensions.width - 20}
+                    height={dimensions.height - 20}
+                  />
+                </YStack>
+              )}
             </GalleryItem>
           </AnimatePresence>
 
