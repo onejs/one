@@ -33,7 +33,11 @@ export default function Layout() {
         const msg = e.message.trim()
         if (!msg) return
         // filter known ok errors
-        if (!/(measurement is not an Object)|(ResizeObserver loop)/.test(msg)) {
+        if (
+          !/(measurement is not an Object)|(ResizeObserver loop|Cannot use \'in\' operator)/.test(
+            msg
+          )
+        ) {
           console.error(`msg`, msg)
           showToast(`Error: ${msg}`)
         }

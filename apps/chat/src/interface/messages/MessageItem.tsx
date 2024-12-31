@@ -212,7 +212,7 @@ export const MessageItem = memo(
                 >
                   <IndentIncrease o={0.5} size={16} />
                   <SizableText cur="default" o={0.5} size="$3">
-                    This is a thread
+                    thread with 2 replies
                   </SizableText>
                 </XStack>
               </YStack>

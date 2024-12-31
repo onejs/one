@@ -19,7 +19,7 @@ const ButtonFrame = styled(XStack, {
   ai: 'center',
   gap: '$2',
   py: '$1.5',
-  px: '$2.5',
+  px: '$2',
   br: '$4',
   bg: 'transparent',
 
@@ -64,14 +64,15 @@ type ButtonFrameProps = GetProps<typeof ButtonFrame> & {
   tooltip?: string
   icon?: any
   iconAfter?: boolean
+  scaleIcon?: number
 }
 
 export const ButtonSimple = forwardRef<TamaguiElement, ButtonFrameProps & { size?: SizeTokens }>(
-  ({ size, children, tooltip, icon, iconAfter, disabled, ...rest }, ref) => {
+  ({ size, children, tooltip, icon, iconAfter, disabled, scaleIcon = 1, ...rest }, ref) => {
     const iconElement = icon
       ? isValidElement(icon)
         ? icon
-        : createElement(icon, { size: 18, opacity: 0.5 })
+        : createElement(icon, { size: 18 * scaleIcon, opacity: 0.5 })
       : null
 
     let contents = (

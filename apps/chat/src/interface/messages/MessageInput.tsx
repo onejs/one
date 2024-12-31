@@ -3,10 +3,15 @@ import { Progress, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { Editor, type EditorRef } from '~/editor/Editor'
 import { randomId } from '~/helpers/randomId'
-import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThreadWithMessages'
+import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
 import { useCurrentServer } from '~/state/server/useCurrentServer'
 import { useCurrentChannel } from '~/state/useQuery'
-import { getCurrentUser, getDerivedUserState, updateUserCurrentChannel } from '~/state/user'
+import {
+  closeCurrentThread,
+  getCurrentUser,
+  getDerivedUserState,
+  updateUserCurrentChannel,
+} from '~/state/user'
 import { type Attachment, zero } from '~/zero'
 import { AttachmentItem } from '../attachments/AttachmentItem'
 import { attachmentEmitter } from '../upload/DragDropFile'
@@ -106,9 +111,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
               inputRef.current?.textarea?.blur()
 
               if (getDerivedUserState().activeThread) {
-                updateUserCurrentChannel({
-                  openedThreadId: undefined,
-                })
+                closeCurrentThread()
 
                 if (mainInputRef) {
                   mainInputRef.textarea?.focus()

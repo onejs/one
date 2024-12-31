@@ -60,45 +60,43 @@ export const MessageActionBar = ({
 
         <Separator my="$2" vertical />
 
-        {!message.thread && (
-          <TooltipSimple label="Create Thread">
-            <Button
-              onPress={() => {
-                const currentUser = getCurrentUser()
-                if (!currentUser) {
-                  console.error(`no user`)
-                  return
-                }
+        <TooltipSimple label={message.thread ? 'Open Thread' : 'Create Thread'}>
+          <Button
+            onPress={() => {
+              const currentUser = getCurrentUser()
+              if (!currentUser) {
+                console.error(`no user`)
+                return
+              }
 
-                const threadId = randomId()
+              const threadId = randomId()
 
-                zero.mutate.thread.insert({
-                  id: threadId,
-                  channelId: channel.id,
-                  messageId: message.id,
-                  creatorId: currentUser.id,
-                  description: '',
-                  title: '',
-                })
+              zero.mutate.thread.insert({
+                id: threadId,
+                channelId: channel.id,
+                messageId: message.id,
+                creatorId: currentUser.id,
+                description: '',
+                title: '',
+              })
 
-                zero.mutate.message.update({
-                  id: message.id,
-                  threadId,
-                  isThreadReply: false,
-                })
+              zero.mutate.message.update({
+                id: message.id,
+                threadId,
+                isThreadReply: false,
+              })
 
-                updateUserOpenThread({
-                  id: threadId,
-                })
-              }}
-              chromeless
-              size="$2.5"
-              br={0}
-            >
-              <IndentIncrease size={16} />
-            </Button>
-          </TooltipSimple>
-        )}
+              updateUserOpenThread({
+                id: threadId,
+              })
+            }}
+            chromeless
+            size="$2.5"
+            br={0}
+          >
+            <IndentIncrease size={16} />
+          </Button>
+        </TooltipSimple>
 
         <TooltipSimple label="Reply">
           <Button

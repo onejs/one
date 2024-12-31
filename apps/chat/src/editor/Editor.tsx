@@ -1,5 +1,5 @@
 import MDEditor, { type RefMDEditor } from '@uiw/react-md-editor'
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 
 export type EditorProps = {
   initialValue?: string
@@ -35,7 +35,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
           ref={editorRef}
           preview="edit"
           height="100%"
-          minHeight={50}
+          minHeight={38}
           hideToolbar
           visibleDragbar={false}
           toolbarBottom

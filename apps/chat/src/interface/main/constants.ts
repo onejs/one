@@ -1,1 +1,1 @@
-export const mainTopBarHeight = 45
+export const mainTopBarHeight = 40

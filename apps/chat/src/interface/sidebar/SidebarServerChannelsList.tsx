@@ -2,7 +2,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { Lock, Plus } from '@tamagui/lucide-icons'
 import { Menu } from '@tauri-apps/api/menu'
 import { forwardRef, useEffect, useState } from 'react'
-import { YStack } from 'tamagui'
+import { SizableText, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { randomId } from '~/helpers/randomId'
 import { useServerChannels } from '~/state/useQuery'
@@ -190,6 +190,11 @@ const ChannelListItem = forwardRef(
         ref={ref}
         icon={channel?.private ? <Lock mx="$2.5" o={0.5} size={12} /> : null}
         iconAfter
+        before={
+          <SizableText size="$2" mr={-5} o={0.3}>
+            #
+          </SizableText>
+        }
         editingValue={channel?.name ?? ''}
         active={derivedUserState?.activeChannel === channel?.id}
         onPress={() => {
@@ -213,7 +218,7 @@ const ChannelListItem = forwardRef(
         }}
         {...rest}
       >
-        {channel?.name || ''}
+        {`${channel?.name || ''}`}
       </EditableListItem>
     )
   }

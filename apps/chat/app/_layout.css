@@ -30,7 +30,7 @@ div {
 }
 
 :root.not_tauri {
-  --bodyBgLight: #fff;
+  --bodyBgLight: #eee;
   --bodyBgDark: #111;
   --bodyBg: light-dark(var(--bodyBgLight), var(--bodyBgDark));
 }

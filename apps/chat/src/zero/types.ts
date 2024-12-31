@@ -22,4 +22,5 @@ export type ChannelState = {
   focusedMessageId?: string
   editingMessageId?: string
   openedThreadId?: string
+  maximized?: boolean
 }

@@ -83,6 +83,13 @@ export const updateUserCurrentChannel = async (next: Partial<ChannelState>) => {
   })
 }
 
+export const closeCurrentThread = () => {
+  updateUserCurrentChannel({
+    openedThreadId: undefined,
+    maximized: false,
+  })
+}
+
 export const updateUserOpenThread = async (thread: { id: string }) => {
   updateUserCurrentChannel({
     openedThreadId: thread.id,
