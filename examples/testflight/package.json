@@ -20,6 +20,7 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
+    "@bottom-tabs/react-navigation": "^0.7.8",
     "@dotenvx/dotenvx": "^1.12.1",
     "@tamagui/config": "^1.121.4",
     "@tamagui/image-next": "^1.121.4",

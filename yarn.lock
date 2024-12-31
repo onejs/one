@@ -3475,6 +3475,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bottom-tabs/react-navigation@npm:^0.7.8":
+  version: 0.7.8
+  resolution: "@bottom-tabs/react-navigation@npm:0.7.8"
+  dependencies:
+    color: "npm:^4.2.3"
+  peerDependencies:
+    "@react-navigation/native": ">=7"
+    react: "*"
+    react-native: "*"
+    react-native-bottom-tabs: "*"
+  checksum: 10/c7433d069ef7ca7c5be4b950b1fa300d178567fc9fbdf5b56b0e93b520366c2a3fac9646cfd3d152801c5a08c001eede8fe2aad2eec52ca828f5368f62a2cf5c
+  languageName: node
+  linkType: hard
+
 "@changesets/types@npm:^4.0.1":
   version: 4.1.0
   resolution: "@changesets/types@npm:4.1.0"
@@ -16607,6 +16621,7 @@ __metadata:
   resolution: "example-testflight@workspace:examples/testflight"
   dependencies:
     "@biomejs/biome": "npm:^1.8.3"
+    "@bottom-tabs/react-navigation": "npm:^0.7.8"
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
     "@react-native-community/cli": "npm:15.1.3"
