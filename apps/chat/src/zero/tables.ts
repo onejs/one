@@ -110,8 +110,8 @@ export const userRole = createTableSchema({
   },
 })
 
-export const channelRole = createTableSchema({
-  tableName: 'channelRole',
+export const channelPermission = {
+  tableName: 'channelPermission',
   primaryKey: ['serverId', 'channelId', 'roleId'],
   columns: {
     serverId: 'string',
@@ -120,7 +120,15 @@ export const channelRole = createTableSchema({
     granterId: 'string',
     createdAt: { type: 'number', optional: true },
   },
-})
+
+  relationships: {
+    role: {
+      sourceField: 'roleId',
+      destField: 'id',
+      destSchema: () => role,
+    },
+  },
+} as const
 
 export const friendship = createTableSchema({
   tableName: 'friendship',
@@ -211,7 +219,7 @@ export const channel = createTableSchema({
       {
         sourceField: 'id',
         destField: 'channelId',
-        destSchema: () => channelRole,
+        destSchema: () => channelPermission,
       },
       {
         sourceField: 'roleId',
@@ -224,6 +232,12 @@ export const channel = createTableSchema({
       sourceField: 'serverId',
       destField: 'id',
       destSchema: () => server,
+    },
+
+    permissions: {
+      sourceField: 'id',
+      destField: 'channelId',
+      destSchema: () => channelPermission,
     },
   },
 })
@@ -342,7 +356,7 @@ export type Reaction = Row<typeof reaction>
 export type Friendship = Row<typeof friendship>
 export type Role = Row<typeof role>
 export type UserRole = Row<typeof userRole>
-export type ChannelRole = Row<typeof channelRole>
+export type ChannelPermission = Row<typeof channelPermission>
 
 const rolePermissionsKeys = ['canAdmin', 'canEditChannel', 'canEditServer'] satisfies (keyof Role)[]
 export type RolePermissionsKeys = (typeof rolePermissionsKeys)[0]

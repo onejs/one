@@ -5,7 +5,7 @@ import { Editor, type EditorRef } from '~/editor/Editor'
 import { randomId } from '~/helpers/randomId'
 import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
 import { useCurrentServer } from '~/state/server/useCurrentServer'
-import { useCurrentChannel } from '~/state/useQuery'
+import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import {
   closeCurrentThread,
   getCurrentUser,

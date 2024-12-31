@@ -22,6 +22,9 @@ export const showToast = (
   toastType = type
 }
 
+// @ts-expect-error
+globalThis['showToast'] = showToast
+
 export const hideToast = () => {
   controller.hide()
 }
@@ -38,7 +41,7 @@ export const ToastProvider = ({ children }: { children: any }) => {
 
 const ToastDisplay = () => {
   const currentToast = useToastState()
-  const nextDuration = currentToast?.duration || 1000
+  const nextDuration = currentToast?.duration || 3000
   const [duration, setDuration] = useState(nextDuration)
   if (duration !== nextDuration) {
     setDuration(nextDuration)
@@ -50,16 +53,20 @@ const ToastDisplay = () => {
     return null
   }
 
+  if (!currentToast) {
+    return null
+  }
+
   return (
     <Toast
       key={currentToast?.id}
       duration={duration}
-      enterStyle={{ opacity: 0, scale: 0.5, y: 0 }}
+      enterStyle={{ opacity: 0, scale: 1, y: 0 }}
       exitStyle={{ opacity: 0, scale: 1, y: 0 }}
-      y={10}
+      y={8}
       opacity={1}
       scale={1}
-      animation="slow"
+      animation="bouncy"
       viewportName={currentToast?.viewportName}
       themeInverse
       bg="$color10"

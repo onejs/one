@@ -1,13 +1,17 @@
-import { Settings } from '@tamagui/lucide-icons'
+import { Check, Plus, Settings, X } from '@tamagui/lucide-icons'
 import { useState } from 'react'
-import { Button, H4, H5, Popover, TooltipSimple, YStack } from 'tamagui'
-import { useCurrentChannel } from '~/state/useQuery'
-import { zero } from '~/zero'
+import { Button, Circle, H4, H5, Popover, TooltipSimple, XStack, YStack } from 'tamagui'
+import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
+import { Role, zero } from '~/zero'
 import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
 import { Checkbox } from '../forms/Checkbox'
 import { LabeledRow } from '../forms/LabeledRow'
 import { PopoverContent } from '../Popover'
 import { Tabs } from '../tabs/Tabs'
+import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
+import { useCurrentChannelPermissions } from '../../state/channel/useCurrentChannelPermissions'
+import { Row } from '../Row'
+import { useCurrentServerRoles } from '../../state/server/useCurrentServerRoles'
 
 export const ChannelSettingsPopover = () => {
   const channel = useCurrentChannel()
@@ -68,10 +72,52 @@ const ChannelMembers = () => {
 }
 
 const ChannelPermissions = () => {
+  const permissions = useCurrentChannelPermissions()
+  const roles = useCurrentServerRoles() || []
+
+  const added = new Set<string>()
+  const rolesWithPermission: (Role & { hasPermission?: boolean })[] = []
+
+  for (const permission of permissions || []) {
+    if (permission.role) {
+      added.add(permission.roleId)
+      rolesWithPermission.push({
+        ...permission.role,
+        hasPermission: true,
+      })
+    }
+  }
+  for (const role of roles) {
+    if (!added.has(role.id)) {
+      rolesWithPermission.push(role)
+    }
+  }
+
   // this will be for setting access based on roles
   return (
     <YStack>
-      <H5>Permissions</H5>
+      <SearchableList items={permissions || []} onSelectItem={() => {}} onSearch={() => {}}>
+        <YStack gap="$3">
+          <SearchableInput size="$4" />
+
+          {rolesWithPermission.map((item, index) => {
+            return (
+              <SearchableListItem key={index} index={index}>
+                {(active, index) => {
+                  return (
+                    <Row active={active}>
+                      <Circle size={24} bg="$color4" />
+                      <Row.Text>{item.name}</Row.Text>
+                      <XStack f={1} />
+                      <Row.Button icon={item.hasPermission ? X : Plus}></Row.Button>
+                    </Row>
+                  )
+                }}
+              </SearchableListItem>
+            )
+          })}
+        </YStack>
+      </SearchableList>
     </YStack>
   )
 }

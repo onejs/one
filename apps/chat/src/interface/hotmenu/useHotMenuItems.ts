@@ -1,8 +1,13 @@
 import type { IconProps } from '@tamagui/helpers-icon'
-import { Server, User, UserPlus } from '@tamagui/lucide-icons'
+import { HousePlus, Server, User, UserPlus } from '@tamagui/lucide-icons'
 import { useMemo } from 'react'
 import { useAuth } from '~/better-auth/authClient'
-import { dialogAddFriend, dialogJoinServer, dialogSignup } from '~/interface/dialogs/actions'
+import {
+  dialogAddFriend,
+  dialogCreateServer,
+  dialogJoinServer,
+  dialogSignup,
+} from '~/interface/dialogs/actions'
 
 type HotMenuItem = {
   name: string
@@ -34,6 +39,14 @@ const globalMenuItems: HotMenuItem[] = [
     Icon: Server,
     action() {
       dialogJoinServer()
+    },
+  },
+
+  {
+    name: 'Create server',
+    Icon: HousePlus,
+    action() {
+      dialogCreateServer()
     },
   },
 ]

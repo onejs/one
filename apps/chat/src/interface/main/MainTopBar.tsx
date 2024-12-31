@@ -18,7 +18,8 @@ import {
   YStack,
 } from 'tamagui'
 import { useCurrentThread, useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
-import { useCurrentChannel, useCurrentChannelThreads } from '~/state/useQuery'
+import { useCurrentChannelThreads } from '~/state/channel/useCurrentChannelThreads'
+import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import {
   closeCurrentThread,
   updateUserCurrentChannel,
@@ -53,22 +54,20 @@ export const MainTopBar = () => {
       py="$2"
       px="$2"
     >
-      <XStack>
-        <XStack ai="center" gap="$1">
-          <ChannelViewToggle />
-        </XStack>
+      <XStack ai="center" gap="$1">
+        <ChannelViewToggle />
+      </XStack>
 
-        <ScrollView my="$-2" f={2} horizontal showsHorizontalScrollIndicator={false}>
-          <XStack p="$2" ai="center" gap="$1">
-            {threads.map((thread) => {
-              return <ThreadButton key={thread.id} thread={thread} />
-            })}
-          </XStack>
-        </ScrollView>
-
-        <XStack ai="center">
-          <ChannelSettingsPopover />
+      <ScrollView my="$-2" f={2} horizontal showsHorizontalScrollIndicator={false}>
+        <XStack p="$2" ai="center" gap="$1">
+          {threads.map((thread) => {
+            return <ThreadButton key={thread.id} thread={thread} />
+          })}
         </XStack>
+      </ScrollView>
+
+      <XStack ai="center">
+        <ChannelSettingsPopover />
       </XStack>
 
       <AnimationDriver name="css">
