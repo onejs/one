@@ -30,6 +30,7 @@ export function SortableList<A extends { id: UniqueIdentifier }>({
     useSensor(PointerSensor, {
       activationConstraint: {
         delay: 250,
+        tolerance: 1,
         distance: {
           y: 8,
         },
@@ -50,27 +51,20 @@ export function SortableList<A extends { id: UniqueIdentifier }>({
         onDragStart?.({ id: `${active.id}` })
       }}
       onDragEnd={(event) => {
-        setDragging(null)
         const { active, over } = event
         if (over && active.id !== over.id) {
           const oldIndex = items.findIndex((x) => x.id === (`${active.id}` as any))
           const newIndex = items.findIndex((x) => x.id === (`${over.id}` as any))
           const nextChannelSort = arrayMove(items as any, oldIndex, newIndex)
-          console.log('sort is now', nextChannelSort)
           onSort?.(nextChannelSort as any)
         }
+        setDragging(null)
       }}
     >
       <SortableContext items={items as any} strategy={verticalListSortingStrategy}>
         {items.map((item) => renderItem(item))}
 
-        <DragOverlay
-          style={{
-            zIndex: 1000,
-          }}
-        >
-          {dragging ? renderDraggingItem(dragging) : null}
-        </DragOverlay>
+        <DragOverlay zIndex={1000}>{dragging ? renderDraggingItem(dragging) : null}</DragOverlay>
       </SortableContext>
     </DndContext>
   )
