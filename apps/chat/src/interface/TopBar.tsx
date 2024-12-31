@@ -1,4 +1,4 @@
-import { ChevronRight, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
+import { ChevronLeft, ChevronRight, Search, Settings2, UserCircle } from '@tamagui/lucide-icons'
 import { memo, useEffect, useRef, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { H1, Input, TooltipSimple, XStack, YStack } from 'tamagui'
@@ -16,6 +16,7 @@ import {
   shouldRedirectBackToTauri,
   useTauriAuthDeepLink,
 } from '~/tauri/authFlowHelpers'
+import { XGroup } from 'tamagui'
 
 export const TopBar = memo(() => {
   const { jwtToken } = useAuth()
@@ -44,15 +45,24 @@ export const TopBar = memo(() => {
       ai="center"
       jc="space-between"
       y={2}
-      h={34}
+      h={30}
       pl={72}
       pr={4}
       mb={4}
     >
-      <XStack pe="box-none" gap="$2">
-        <TooltipSimple label="Menu">
-          <HotMenu />
-        </TooltipSimple>
+      <XStack pe="box-none" gap="$3" ai="center">
+        <XStack ai="center" gap="$2">
+          <TooltipSimple label="Menu">
+            <HotMenu />
+          </TooltipSimple>
+
+          {isTauri && (
+            <XGroup>
+              <ButtonSimple scaleIcon={0.9} icon={ChevronLeft}></ButtonSimple>
+              <ButtonSimple scaleIcon={0.9} icon={ChevronRight}></ButtonSimple>
+            </XGroup>
+          )}
+        </XStack>
 
         <H1
           data-tauri-drag-region
@@ -157,7 +167,7 @@ const TopBarSearch = () => {
   return (
     <XStack ai="center" gap="$2" mr="$4">
       <Search size={16} o={0.5} />
-      <Input ref={inputRef} w={250} placeholder="" size="$2" bw={0} />
+      <Input ref={inputRef} w={250} placeholder="" size="$2" h={26} bw={0} />
     </XStack>
   )
 }

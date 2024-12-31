@@ -100,6 +100,7 @@ CREATE TABLE "thread" (
     "messageId" VARCHAR,
     "creatorId" VARCHAR REFERENCES "user"(id),
     "title" VARCHAR(200),
+    "deleted" BOOLEAN DEFAULT FALSE NOT NULL
     "description" VARCHAR(200),
     "updatedAt" TIMESTAMP NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP

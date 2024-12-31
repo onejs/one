@@ -15,3 +15,9 @@ export const useCurrentThreadWithMessages = () => {
   )
   return thread[0]
 }
+
+export const useCurrentThread = () => {
+  const [_, { activeThread }] = useUserState()
+  const [thread] = useQuery((q) => q.thread.where('id', activeThread?.openedThreadId || ''))
+  return thread[0]
+}

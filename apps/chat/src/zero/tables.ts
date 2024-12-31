@@ -236,6 +236,7 @@ export const thread = {
     creatorId: 'string',
     messageId: 'string',
     title: 'string',
+    deleted: 'boolean',
     description: 'string',
     createdAt: { type: 'number', optional: true },
   },
