@@ -167,6 +167,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
 
           messageInputEmitter.emit({ type: 'submit' })
           messageReplyEmitter.emit({ type: 'cancel' })
+          messagesListEmitter.emit({ type: 'scroll-to-bottom' })
 
           setTimeout(() => {
             inputRef.current?.textarea?.focus()

@@ -22,6 +22,9 @@ type MessagesListActions =
   | {
       type: 'select'
     }
+  | {
+      type: 'scroll-to-bottom'
+    }
 
 export const messagesListEmitter = createEmitter<MessagesListActions>()
 
@@ -35,7 +38,7 @@ export const MessagesList = memo(
     const shouldStickToBottom = useRef(true)
     const ref = useRef<VListHandle>(null)
     const isPrepend = useRef(false)
-    const lastIndex = useRef(0)
+    const lastMovedIndex = useRef(0)
 
     messagesListEmitter.use(
       (action) => {
@@ -43,10 +46,10 @@ export const MessagesList = memo(
 
         const [_, { activeChannelState }] = getUserState()
         const { focusedMessageId } = activeChannelState || {}
-        const focusedMessage = focusedMessageId ? messages[lastIndex.current] : null
+        const focusedMessage = focusedMessageId ? messages[lastMovedIndex.current] : null
 
         const move = (index: number) => {
-          lastIndex.current = index
+          lastMovedIndex.current = index
           updateUserCurrentChannel({
             focusedMessageId: messages[index].id,
           })
@@ -63,16 +66,16 @@ export const MessagesList = memo(
             const { value } = action
 
             if (value === 'up') {
-              if (!focusedMessageId || lastIndex.current === 0) {
+              if (!focusedMessageId || lastMovedIndex.current === 0) {
                 move(messages.length - 1)
               } else {
-                move(lastIndex.current - 1)
+                move(lastMovedIndex.current - 1)
               }
             } else {
-              if (lastIndex.current === messages.length - 1) {
+              if (lastMovedIndex.current === messages.length - 1) {
                 // at bottom
               } else {
-                move(lastIndex.current + 1)
+                move(lastMovedIndex.current + 1)
               }
             }
             break
@@ -86,6 +89,16 @@ export const MessagesList = memo(
                 updateUserSetEditingMessage(focusedMessage.id)
               }
             }
+            break
+          }
+
+          case 'scroll-to-bottom': {
+            const lastIndex = messages.length - 1
+            setTimeout(() => {
+              ref.current?.scrollToIndex(lastIndex, {
+                smooth: true,
+              })
+            }, 150)
             break
           }
         }

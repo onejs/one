@@ -1,8 +1,8 @@
-// @ts-nocheck
 // drizzleToZero.ts
 
 import type { PgTableWithColumns, PgColumn } from 'drizzle-orm/pg-core'
 import type { Relation, Relations } from 'drizzle-orm'
+import { objectEntries } from './types'
 
 // Adjusted DrizzleColumnType to match actual possible values
 type DrizzleColumnType = 'PgText' | 'PgVarchar' | 'PgDoublePrecision'
@@ -13,11 +13,9 @@ interface ZeroColumn {
 }
 
 interface ZeroRelationship {
-  source: string
-  dest: {
-    field: string
-    schema: () => ZeroSchemaTable<any, any>
-  }
+  sourceField: string
+  destField: string
+  destSchema: () => ZeroSchemaTable<any, any>
 }
 
 interface ZeroSchemaTable<
@@ -38,6 +36,21 @@ type ZeroSchema<
     ZeroTableColumns<T[K]['columns']>,
     ZeroTableRelationships<R[K] extends Relations<any, infer Rel> ? Rel : undefined>
   >
+}
+
+type ZeroTableRelationships<R extends Record<string, Relation<any>> | undefined> = R extends Record<
+  string,
+  Relation<any>
+>
+  ? {
+      [K in keyof R]: MapRelationToZero<R[K]>
+    }
+  : {}
+
+type MapRelationToZero<R extends Relation<any>> = {
+  sourceField: string
+  destField: string
+  destSchema: () => ZeroSchemaTable<any, any>
 }
 
 type ZeroTableColumns<Columns extends Record<string, PgColumn<any, any, any>>> = {
@@ -62,23 +75,6 @@ type DrizzleToZeroTypeMap = {
   PgDoublePrecision: 'number'
 }
 
-type ZeroTableRelationships<R extends Record<string, Relation<any>> | undefined> = R extends Record<
-  string,
-  Relation<any>
->
-  ? {
-      [K in keyof R]: MapRelationToZero<R[K]>
-    }
-  : {}
-
-type MapRelationToZero<R extends Relation<any>> = {
-  source: string
-  dest: {
-    field: string
-    schema: () => ZeroSchemaTable<any, any>
-  }
-}
-
 type GetPrimaryKeyColumns<Columns extends Record<string, PgColumn<any, any, any>>> = Extract<
   {
     [K in keyof Columns]: Columns[K] extends PgColumn<infer ColumnProps, any, any>
@@ -96,21 +92,16 @@ const drizzleToZeroTypeMap: DrizzleToZeroTypeMap = {
   PgDoublePrecision: 'number',
 }
 
-// Helper function to get typed entries
-function typedEntries<T>(obj: T): [keyof T & string, T[keyof T]][] {
-  return Object.entries(obj) as [keyof T & string, T[keyof T]][]
-}
-
 // Function to convert Drizzle schema to Zero schema
 export function drizzleToZeroSchema<
-  T extends Record<string, PgTableWithColumns<any>>,
-  R extends { [K in keyof T]?: Relations<any, any> },
->(drizzleSchema: T, relations: R): ZeroSchema<T, R> {
-  const zeroSchema = {} as ZeroSchema<T, R>
+  Schema extends Record<string, PgTableWithColumns<any>>,
+  R extends { [K in keyof Schema]?: Relations<any, any> },
+>(drizzleSchema: Schema, relations: R): ZeroSchema<Schema, R> {
+  const zeroSchema = {} as ZeroSchema<Schema, R>
 
   // Convert table definitions
-  for (const [tableName, table] of typedEntries(drizzleSchema)) {
-    type TableColumns = ZeroTableColumns<typeof table.columns>
+  for (const [tableName, table] of objectEntries(drizzleSchema)) {
+    type TableColumns = ZeroTableColumns<typeof table>
     type TableRelations = R[typeof tableName] extends Relations<any, infer Rel> ? Rel : undefined
 
     type ZeroTableRel = ZeroTableRelationships<TableRelations>
@@ -119,12 +110,11 @@ export function drizzleToZeroSchema<
     const columns = {} as TableColumns
 
     // Build primaryKey
-    type PrimaryKeys = GetPrimaryKeyColumns<typeof table.columns>
+    type PrimaryKeys = GetPrimaryKeyColumns<typeof table>
     const primaryKey = [] as PrimaryKeys[]
 
-    for (const columnName of Object.keys(table.columns) as (keyof typeof table.columns &
-      string)[]) {
-      const columnIn = table.columns[columnName]
+    for (const columnName of Object.keys(table)) {
+      const columnIn = table[columnName]
       const column = columnIn as PgColumn<any, any, any>
       const drizzleType = getDrizzleColumnType(column)
       const zeroType = drizzleToZeroTypeMap[drizzleType]
@@ -133,6 +123,7 @@ export function drizzleToZeroSchema<
         throw new Error(`Unsupported Drizzle type: ${drizzleType}`)
       }
 
+      // @ts-expect-error
       columns[columnName] = { type: zeroType } as ZeroColumnFromPgColumn<typeof column>
 
       if (isPrimaryKey(column)) {
@@ -151,7 +142,8 @@ export function drizzleToZeroSchema<
   }
 
   // Convert relationships separately
-  for (const [tableName, relationDef] of typedEntries(relations)) {
+  for (const [tableName, relationDef] of objectEntries(relations)) {
+    // @ts-expect-error
     const zeroTable = zeroSchema[tableName]
 
     if (!zeroTable) {
@@ -159,12 +151,16 @@ export function drizzleToZeroSchema<
     }
 
     if (!relationDef || !relationDef.config) continue
+    if (typeof tableName !== 'string') continue
 
     // Create helpers
+
     const helpers = createTableRelationsHelpers(tableName)
 
     // Get relations
-    const relationsConfig = relationDef.config(helpers)
+    const relationsConfig = relationDef.config(helpers as any)
+
+    console.log('wtf', relationsConfig)
 
     type TableRelations = typeof relationsConfig
 
@@ -172,13 +168,16 @@ export function drizzleToZeroSchema<
 
     const relationships = zeroTable.relationships as unknown as ZeroTableRel
 
-    for (const [relationName, relation] of typedEntries(relationsConfig)) {
+    for (const [relationName, relation] of objectEntries(relationsConfig)) {
+      if (!relation.config) {
+        console.warn('no config')
+        continue
+      }
+
       relationships[relationName] = {
-        source: relation.fields[0],
-        dest: {
-          field: relation.references[0],
-          schema: () => zeroSchema[relation.referencedTableName as keyof T],
-        },
+        sourceField: relation.config.fields[0],
+        destField: relation.config.references[0],
+        destSchema: () => zeroSchema[relation.referencedTableName],
       } as ZeroRelationship
     }
   }
@@ -201,12 +200,19 @@ function isPrimaryKey(column: PgColumn<any, any, any>): boolean {
 // Implement createTableRelationsHelpers
 function createTableRelationsHelpers<TTableName extends string>(tableName: TTableName) {
   return {
-    one: (referencedTable: any, config?: any) => ({
+    one: (
+      referencedTable: any,
+      config?: {
+        relationName: string
+        fields: PgColumn[]
+        references: PgColumn[]
+      }
+    ) => ({
       sourceTable: tableName,
       referencedTable,
       config,
-      isNullable: false,
       withFieldName: function (fieldName: string) {
+        // @ts-expect-error
         this.fieldName = fieldName
         return this
       },
@@ -216,6 +222,7 @@ function createTableRelationsHelpers<TTableName extends string>(tableName: TTabl
       referencedTable,
       config,
       withFieldName: function (fieldName: string) {
+        // @ts-expect-error
         this.fieldName = fieldName
         return this
       },

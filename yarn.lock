@@ -11371,6 +11371,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/aws-lambda@npm:8.10.146":
+  version: 8.10.146
+  resolution: "@types/aws-lambda@npm:8.10.146"
+  checksum: 10/2b923ecc77ef9eb47d91627d351700b17d9d9fe22a7c9a9e99335a02cf2c6291d54fcd2c969dce48753335b5d0fd36b2cfcde3b201a2e6ad5500a9517383fbdb
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.1.14":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
@@ -13098,6 +13105,13 @@ __metadata:
     "@fastify/error": "npm:^4.0.0"
     fastq: "npm:^1.17.1"
   checksum: 10/4bc7c0ac1b9e3a814db4bc5b89fd6a38b082614677d9a4e2d2b9c11bc830deac81dd0e5bdae4ba31b1e165c19de9f2772564fd3b840b3bfa5048f757bb6a4eda
+  languageName: node
+  linkType: hard
+
+"aws4fetch@npm:^1.0.18":
+  version: 1.0.20
+  resolution: "aws4fetch@npm:1.0.20"
+  checksum: 10/1329dd5913224c9a4fcb276633a2677baafe8224c3e4b99083309b30af4b114b33a73b6674369419f1978b83e905c4fff61d4af175c24450707c3cf027bb86da
   languageName: node
   linkType: hard
 
@@ -19743,6 +19757,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jose@npm:5.2.3":
+  version: 5.2.3
+  resolution: "jose@npm:5.2.3"
+  checksum: 10/33056092ed6c1539eee6c0c75bd3664a39c639e02f21ec5cb32ddd231b9345f239e7bffe3f4741c903c711e237ceafb816ed634bd9cd5e4fb61b5a1f067e2c40
+  languageName: node
+  linkType: hard
+
+"jose@npm:^4.15.4":
+  version: 4.15.9
+  resolution: "jose@npm:4.15.9"
+  checksum: 10/256234b6f85cdc080b1331f2d475bd58c8ccf459cb20f70ac5e4200b271bce10002b1c2f8e5b96dd975d83065ae5a586d52cdf89d28471d56de5d297992f9905
+  languageName: node
+  linkType: hard
+
 "jose@npm:^5.9.3, jose@npm:^5.9.6":
   version: 5.9.6
   resolution: "jose@npm:5.9.6"
@@ -22638,6 +22666,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"object-hash@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "object-hash@npm:2.2.0"
+  checksum: 10/dee06b6271bf5769ae5f1a7386fdd52c1f18aae9fcb0b8d4bb1232f2d743d06cb5b662be42378b60a1c11829f96f3f86834a16bbaa57a085763295fff8b93e27
+  languageName: node
+  linkType: hard
+
 "object-inspect@npm:^1.13.1":
   version: 1.13.2
   resolution: "object-inspect@npm:1.13.2"
@@ -22689,6 +22724,13 @@ __metadata:
   version: 1.1.4
   resolution: "ohash@npm:1.1.4"
   checksum: 10/b11445234e59c9c2b00f357f8f00b6ba00e14c84fc0a232cdc14eb1d80066479b09d27af0201631e84b7a15ba7c4a1939f4cc47f2030e9bf83c9e8afc3ff7dfd
+  languageName: node
+  linkType: hard
+
+"oidc-token-hash@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "oidc-token-hash@npm:5.0.3"
+  checksum: 10/35fa19aea9ff2c509029ec569d74b778c8a215b92bd5e6e9bc4ebbd7ab035f44304ff02430a6397c3fb7c1d15ebfa467807ca0bcd31d06ba610b47798287d303
   languageName: node
   linkType: hard
 
@@ -22873,6 +22915,7 @@ __metadata:
     "@tauri-apps/plugin-deep-link": "npm:^2.0.1"
     "@tauri-apps/plugin-fs": "npm:^2.2.0"
     "@tauri-apps/plugin-shell": "npm:^2"
+    "@types/aws-lambda": "npm:8.10.146"
     "@types/pg": "npm:^8.11.10"
     "@uiw/react-md-editor": "npm:^4.0.5"
     "@vxrn/color-scheme": "workspace:*"
@@ -22890,6 +22933,7 @@ __metadata:
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:4.4.0"
     react-native-svg: "npm:15.8.0"
+    sst: "npm:^3.4.46"
     tamagui: "npm:^1.121.3"
     ts-deepmerge: "npm:^7.0.2"
     tsx: "npm:^4.19.0"
@@ -22965,6 +23009,18 @@ __metadata:
     is-docker: "npm:^2.1.1"
     is-wsl: "npm:^2.2.0"
   checksum: 10/acd81a1d19879c818acb3af2d2e8e9d81d17b5367561e623248133deb7dd3aefaed527531df2677d3e6aaf0199f84df57b6b2262babff8bf46ea0029aac536c9
+  languageName: node
+  linkType: hard
+
+"openid-client@npm:5.6.4":
+  version: 5.6.4
+  resolution: "openid-client@npm:5.6.4"
+  dependencies:
+    jose: "npm:^4.15.4"
+    lru-cache: "npm:^6.0.0"
+    object-hash: "npm:^2.2.0"
+    oidc-token-hash: "npm:^5.0.3"
+  checksum: 10/ab9b1ec59be68f13b10c4e4eb1979e204d211701b139c2363e58faeb4bb0b67e26782fd2080d7488bb3e7e2ebc3c2aac43cff7284c3da3723cfe4f9b29852c24
   languageName: node
   linkType: hard
 
@@ -26482,6 +26538,78 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sst-darwin-arm64@npm:3.4.46":
+  version: 3.4.46
+  resolution: "sst-darwin-arm64@npm:3.4.46"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"sst-darwin-x64@npm:3.4.46":
+  version: 3.4.46
+  resolution: "sst-darwin-x64@npm:3.4.46"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"sst-linux-arm64@npm:3.4.46":
+  version: 3.4.46
+  resolution: "sst-linux-arm64@npm:3.4.46"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"sst-linux-x64@npm:3.4.46":
+  version: 3.4.46
+  resolution: "sst-linux-x64@npm:3.4.46"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"sst-linux-x86@npm:3.4.46":
+  version: 3.4.46
+  resolution: "sst-linux-x86@npm:3.4.46"
+  conditions: os=linux & cpu=x86
+  languageName: node
+  linkType: hard
+
+"sst@npm:^3.4.46":
+  version: 3.4.46
+  resolution: "sst@npm:3.4.46"
+  dependencies:
+    aws4fetch: "npm:^1.0.18"
+    jose: "npm:5.2.3"
+    openid-client: "npm:5.6.4"
+    sst-darwin-arm64: "npm:3.4.46"
+    sst-darwin-x64: "npm:3.4.46"
+    sst-linux-arm64: "npm:3.4.46"
+    sst-linux-x64: "npm:3.4.46"
+    sst-linux-x86: "npm:3.4.46"
+  peerDependencies:
+    hono: 4.x
+    valibot: 0.30.x
+  dependenciesMeta:
+    sst-darwin-arm64:
+      optional: true
+    sst-darwin-x64:
+      optional: true
+    sst-linux-arm64:
+      optional: true
+    sst-linux-x64:
+      optional: true
+    sst-linux-x86:
+      optional: true
+  peerDependenciesMeta:
+    hono:
+      optional: true
+    valibot:
+      optional: true
+  bin:
+    sst: bin/sst.mjs
+  checksum: 10/b52cd377487232fb4c7a82d690e5227ca218d5e110d59eeb1beec9e002987656dbfb118fbf59d95f36b6a14c73cef76b99c517f7960c0e60142c0c470bbcde64
+  languageName: node
+  linkType: hard
+
 "stack-utils@npm:^2.0.3":
   version: 2.0.6
   resolution: "stack-utils@npm:2.0.6"
@@ -28729,6 +28857,7 @@ __metadata:
     npm-run-all: "npm:^4.1.5"
     p-map: "npm:^7.0.2"
     patch-package: "npm:^8.0.0"
+    sst: "npm:^3.4.46"
     turbo: "npm:^2.1.0"
     typescript: "npm:^5.7.2"
     ultra-runner: "npm:^3.10.5"
