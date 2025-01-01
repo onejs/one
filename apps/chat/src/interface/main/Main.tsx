@@ -3,7 +3,7 @@ import { YStack } from 'tamagui'
 import { MainMessageInput } from './MainMessageInput'
 import { MainMessagesList } from './MainMessagesList'
 import { MainOpenThread } from './MainOpenThread'
-import { MainTopBar } from './MainTopBar'
+import { ChannelTopBar } from '../channel/ChannelTopBar'
 import { mainTopBarHeight } from './constants'
 
 export const Main = memo(() => {
@@ -19,7 +19,7 @@ export const Main = memo(() => {
       bs="solid"
       bc="$color7"
     >
-      <MainTopBar />
+      <ChannelTopBar />
       <YStack mt={mainTopBarHeight} pos="relative" f={1} bg="$background05">
         <MainMessagesList />
         <MainMessageInput />

@@ -2,13 +2,15 @@ import { EyeOff, MoreVertical, Pencil, Pin, Reply, Trash } from '@tamagui/lucide
 import { forwardRef } from 'react'
 import { Button, type ButtonProps } from 'tamagui'
 import { dialogConfirm } from '~/interface/dialogs/actions'
-import { updateUserSetEditingMessage } from '~/state/user'
+import { getCurrentUser, updateUserSetEditingMessage } from '~/state/user'
 import { zero, type MessageWithRelations } from '~/zero'
 import { Menu } from '../menu/Menu'
 import { messageActionBarStickOpen } from './constants'
 import { messageReplyEmitter } from './emitters'
+import { randomId } from '../../helpers/randomId'
+import { showToast } from '../toast/Toast'
 
-export const MessageMoreMenu = forwardRef(
+export const MessageItemMenu = forwardRef(
   ({ message, ...rest }: ButtonProps & { message: MessageWithRelations }, ref) => {
     return (
       <Menu
@@ -68,6 +70,17 @@ export const MessageMoreMenu = forwardRef(
             id: 'pin',
             icon: Pin,
             children: 'Pin',
+            onPress: async () => {
+              await zero.mutate.pin.insert({
+                id: randomId(),
+                channelId: message.channelId,
+                messageId: message.id,
+                creatorId: getCurrentUser()!.id,
+                serverId: message.serverId,
+              })
+
+              showToast(`Pinned!`)
+            },
           },
           {
             id: 'unread',

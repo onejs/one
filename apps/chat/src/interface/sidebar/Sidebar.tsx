@@ -7,6 +7,7 @@ import { ListTitle } from '../lists/ListTitle'
 import { ButtonSimple } from '../ButtonSimple'
 import { Plus } from '@tamagui/lucide-icons'
 import { dialogAddFriend } from '../dialogs/actions'
+import { ListItem } from '../lists/ListItem'
 
 export const Sidebar = memo(() => {
   return (
@@ -45,40 +46,12 @@ const SidebarQuickList = () => {
       <Spacer size="$2" />
 
       {friends.map((friend) => {
-        return <RoomItem key={friend.id} name={friend.username || friend.name} />
+        return (
+          <ListItem key={friend.id} onPress={() => {}}>
+            {friend.username || friend.name}
+          </ListItem>
+        )
       })}
     </>
-  )
-}
-
-const SubTitle = (props: { children: any }) => {
-  return (
-    <H3 cur="default" userSelect="none" px="$2.5" py="$1.5" o={0.4} size="$2">
-      {props.children}
-    </H3>
-  )
-}
-
-const RoomItem = (props: { name: any; active?: boolean }) => {
-  return (
-    <XStack
-      px="$2.5"
-      py="$1.5"
-      userSelect="none"
-      cur="default"
-      hoverStyle={{
-        bg: '$background025',
-      }}
-      {...(props.active && {
-        bg: '$background05',
-        hoverStyle: {
-          bg: '$background05',
-        },
-      })}
-    >
-      <SizableText fow="500" cur="default">
-        {props.name}
-      </SizableText>
-    </XStack>
   )
 }

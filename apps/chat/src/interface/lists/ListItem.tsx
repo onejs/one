@@ -91,7 +91,7 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
             onBlur={(e) => {
               // TODO nativeEvent is wrong in tamagui here
               const val = (e.target as any)['value']
-              if (!val) {
+              if (!val || val === children) {
                 onEditCancel?.()
               }
             }}

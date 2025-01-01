@@ -120,6 +120,15 @@ CREATE TABLE "message" (
     "deleted" BOOLEAN DEFAULT FALSE NOT NULL
 );
 
+CREATE TABLE "pin" (
+    "id" VARCHAR PRIMARY KEY,
+    "channelId" VARCHAR REFERENCES "channel"(id),
+    "serverId" VARCHAR REFERENCES "server"(id),
+    "messageId" VARCHAR REFERENCES "message"(id),
+    "creatorId" VARCHAR REFERENCES "user"(id),
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE "attachment" (
     "id" VARCHAR PRIMARY KEY,
     "userId" VARCHAR REFERENCES "user"(id),
