@@ -5,11 +5,9 @@ interface ZeroColumn {
     type: ZeroColumnType;
 }
 interface ZeroRelationship {
-    source: string;
-    dest: {
-        field: string;
-        schema: () => ZeroSchemaTable<any, any>;
-    };
+    sourceField: string;
+    destField: string;
+    destSchema: () => ZeroSchemaTable<any, any>;
 }
 interface ZeroSchemaTable<TColumns extends Record<string, ZeroColumn>, TRelationships extends Record<string, ZeroRelationship>> {
     tableName: string;
@@ -22,6 +20,14 @@ type ZeroSchema<T extends Record<string, PgTableWithColumns<any>>, R extends {
 }> = {
     [K in keyof T]: ZeroSchemaTable<ZeroTableColumns<T[K]['columns']>, ZeroTableRelationships<R[K] extends Relations<any, infer Rel> ? Rel : undefined>>;
 };
+type ZeroTableRelationships<R extends Record<string, Relation<any>> | undefined> = R extends Record<string, Relation<any>> ? {
+    [K in keyof R]: MapRelationToZero<R[K]>;
+} : {};
+type MapRelationToZero<R extends Relation<any>> = {
+    sourceField: string;
+    destField: string;
+    destSchema: () => ZeroSchemaTable<any, any>;
+};
 type ZeroTableColumns<Columns extends Record<string, PgColumn<any, any, any>>> = {
     [K in keyof Columns]: ZeroColumnFromPgColumn<Columns[K]>;
 };
@@ -33,18 +39,8 @@ type DrizzleToZeroTypeMap = {
     PgVarchar: 'string';
     PgDoublePrecision: 'number';
 };
-type ZeroTableRelationships<R extends Record<string, Relation<any>> | undefined> = R extends Record<string, Relation<any>> ? {
-    [K in keyof R]: MapRelationToZero<R[K]>;
-} : {};
-type MapRelationToZero<R extends Relation<any>> = {
-    source: string;
-    dest: {
-        field: string;
-        schema: () => ZeroSchemaTable<any, any>;
-    };
-};
-export declare function drizzleToZeroSchema<T extends Record<string, PgTableWithColumns<any>>, R extends {
-    [K in keyof T]?: Relations<any, any>;
-}>(drizzleSchema: T, relations: R): ZeroSchema<T, R>;
+export declare function drizzleToZeroSchema<Schema extends Record<string, PgTableWithColumns<any>>, R extends {
+    [K in keyof Schema]?: Relations<any, any>;
+}>(drizzleSchema: Schema, relations: R): ZeroSchema<Schema, R>;
 export {};
 //# sourceMappingURL=drizzleToZero.d.ts.map

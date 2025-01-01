@@ -40,6 +40,25 @@ export default {
         ],
       },
 
+      /**
+      * Path to a js or ts file to import before the rest of your app runs
+      * One controls your root, but you may want to runs some JS before anything else
+      * Use this to give One the entrypoint to run
+      */
+      setupFile: './setup.ts',
+
+      optimization: {
+        /**
+        * Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel/tree/master).
+        * Optimizes barrel export files to speed up your build, you must list the packages that have
+        * barrel exports. Especially useful for icon packs.
+        * 
+        * @default ['@tamagui/lucide-icons']
+        * @type boolean | string[]
+        */
+        barrel: ['my-icon-package']
+      },
+
       // all native-specific config nests in app:
       app: {
         // One will set up your React Native app to run via AppRegistry.registerComponent(app.key)

@@ -58,6 +58,17 @@ export namespace One {
           })
     }
 
+    optimization?: {
+      /**
+       * Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel/tree/master).
+       * Optimizes barrel export files to speed up your build, you must list the packages that have
+       * barrel exports. Especially useful for icon packs.
+       *
+       * @default ['@tamagui/lucide-icons']
+       */
+      barrel?: boolean | string[]
+    }
+
     /**
      * Path to a js or ts file to import before the rest of your app runs
      * One controls your root, but you may want to runs some JS before anything else
