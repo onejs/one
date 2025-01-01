@@ -47,10 +47,10 @@
   ],
   "scripts": {
     "build": "tamagui-build",
-    "check": "yarn depcheck",
+    "watch": "yarn build --watch",
+    "check": "depcheck",
     "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build",
-    "watch": "yarn build --watch"
+    "clean:build": "tamagui-build clean:build"
   },
   "dependencies": {
     "@babel/core": "^7.26.0",
