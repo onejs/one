@@ -1,8 +1,19 @@
-import { Check, Plus, Settings, X } from '@tamagui/lucide-icons'
+import { Check, Lock, Plus, Settings, X } from '@tamagui/lucide-icons'
 import { useState } from 'react'
-import { Button, Circle, H4, H5, Popover, TooltipSimple, XStack, YStack } from 'tamagui'
+import {
+  Button,
+  Circle,
+  H4,
+  H5,
+  Popover,
+  SizableText,
+  styled,
+  TooltipSimple,
+  XStack,
+  YStack,
+} from 'tamagui'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
-import { Role, zero } from '~/zero'
+import { type Role, zero } from '~/zero'
 import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
 import { Checkbox } from '../forms/Checkbox'
 import { LabeledRow } from '../forms/LabeledRow'
@@ -12,6 +23,10 @@ import { SearchableInput, SearchableList, SearchableListItem } from '../Searchab
 import { useCurrentChannelPermissions } from '../../state/channel/useCurrentChannelPermissions'
 import { Row } from '../Row'
 import { useCurrentServerRoles } from '../../state/server/useCurrentServerRoles'
+import { useAuth } from '../../better-auth/authClient'
+import { useCurrentServer } from '../../state/server/useCurrentServer'
+import { randomId } from '../../helpers/randomId'
+import { Switch } from '../forms/Switch'
 
 export const ChannelSettingsPopover = () => {
   const channel = useCurrentChannel()
@@ -31,8 +46,13 @@ export const ChannelSettingsPopover = () => {
         </TooltipSimple>
       </Popover.Trigger>
 
-      <PopoverContent miw={600} mih="calc(80vh)" p="$3">
-        <H4>{channel.name}</H4>
+      <PopoverContent miw={600} mih="calc(80vh)" p="$3" gap="$3">
+        <XStack w="100%" jc="center" ai="center" gap="$2">
+          <SizableText size="$3" o={0.3}>
+            #
+          </SizableText>
+          <H4 size="$5">{channel.name}</H4>
+        </XStack>
 
         <Tabs
           initialTab="settings"
@@ -74,16 +94,17 @@ const ChannelMembers = () => {
 const ChannelPermissions = () => {
   const permissions = useCurrentChannelPermissions()
   const roles = useCurrentServerRoles() || []
-
   const added = new Set<string>()
-  const rolesWithPermission: (Role & { hasPermission?: boolean })[] = []
+  const rolesWithPermission: (Role & { permissionId?: string })[] = []
+  const channel = useCurrentChannel()
+  const { user } = useAuth()
 
   for (const permission of permissions || []) {
     if (permission.role) {
       added.add(permission.roleId)
       rolesWithPermission.push({
         ...permission.role,
-        hasPermission: true,
+        permissionId: permission.id,
       })
     }
   }
@@ -100,16 +121,50 @@ const ChannelPermissions = () => {
         <YStack gap="$3">
           <SearchableInput size="$4" />
 
-          {rolesWithPermission.map((item, index) => {
+          {rolesWithPermission.map((role, index) => {
             return (
               <SearchableListItem key={index} index={index}>
                 {(active, index) => {
+                  const granted = !!role.permissionId
                   return (
                     <Row active={active}>
                       <Circle size={24} bg="$color4" />
-                      <Row.Text>{item.name}</Row.Text>
+                      <Row.Text o={granted ? 1 : 0.5}>{role.name}</Row.Text>
                       <XStack f={1} />
-                      <Row.Button icon={item.hasPermission ? X : Plus}></Row.Button>
+                      <Row.Button
+                        onPress={() => {
+                          if (!user || !channel) return
+
+                          if (role.permissionId) {
+                            zero.mutate.channelPermission.delete({
+                              id: role.permissionId,
+                            })
+                          } else {
+                            zero.mutate.channelPermission.insert({
+                              id: randomId(),
+                              channelId: channel.id,
+                              granterId: user.id,
+                              roleId: role.id,
+                              serverId: channel.serverId,
+                            })
+                          }
+                        }}
+                        circular={false}
+                        icon={granted ? null : Plus}
+                      >
+                        {granted ? '' : 'Grant'}
+
+                        {granted && (
+                          <YStack group="icon" fullscreen>
+                            <HoverShowIcon>
+                              <X size={18} />
+                            </HoverShowIcon>
+                            <HoverHideIcon>
+                              <Check size={18} />
+                            </HoverHideIcon>
+                          </YStack>
+                        )}
+                      </Row.Button>
                     </Row>
                   )
                 }}
@@ -122,6 +177,32 @@ const ChannelPermissions = () => {
   )
 }
 
+const HoverHideIcon = styled(YStack, {
+  animation: 'quick',
+  o: 1,
+  y: 0,
+  fullscreen: true,
+  ai: 'center',
+  jc: 'center',
+  '$group-icon-hover': {
+    y: 5,
+    o: 0,
+  },
+})
+
+const HoverShowIcon = styled(YStack, {
+  animation: 'quick',
+  y: 5,
+  o: 0,
+  fullscreen: true,
+  ai: 'center',
+  jc: 'center',
+  '$group-icon-hover': {
+    y: 0,
+    o: 1,
+  },
+})
+
 const ChannelSettings = () => {
   const channel = useCurrentChannel()
 
@@ -131,8 +212,9 @@ const ChannelSettings = () => {
 
   return (
     <>
-      <LabeledRow htmlFor="private" label="Private">
-        <Checkbox
+      <LabeledRow icon={Lock} htmlFor="private" label="Private">
+        <Switch
+          size="$3"
           checked={channel.private}
           onCheckedChange={(val) => {
             zero.mutate.channel.update({

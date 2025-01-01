@@ -147,7 +147,7 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
         )}
       </YStack>
 
-      <Sheet animation="bouncy" open={!!selected}>
+      <Sheet animation="quickest" open={!!selected}>
         <Sheet.Frame bg="$color2" br="$6" elevation="$4" p="$4">
           {selected && <ServerRolePermissionsPane role={selected} />}
         </Sheet.Frame>

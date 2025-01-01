@@ -76,6 +76,7 @@ export const MessageActionBar = ({
                 channelId: channel.id,
                 messageId: message.id,
                 creatorId: currentUser.id,
+                deleted: false,
                 description: '',
                 title: '',
               })

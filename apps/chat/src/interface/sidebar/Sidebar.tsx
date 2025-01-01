@@ -3,6 +3,10 @@ import { H3, SizableText, Spacer, XStack, YStack } from 'tamagui'
 import { useFriends } from '~/state/useQuery'
 import { SidebarServerChannelsList } from './SidebarServerChannelsList'
 import { SidebarServersRow } from './SidebarServersRow'
+import { ListTitle } from '../lists/ListTitle'
+import { ButtonSimple } from '../ButtonSimple'
+import { Plus } from '@tamagui/lucide-icons'
+import { dialogAddFriend } from '../dialogs/actions'
 
 export const Sidebar = memo(() => {
   return (
@@ -11,7 +15,7 @@ export const Sidebar = memo(() => {
 
       <SidebarServerChannelsList />
 
-      <YStack btw={1} bc="$background025" py="$2" pos="absolute" b={0} l={0} r={0}>
+      <YStack btw={1} bc="$background025" py="$2" mt="auto" mah={200}>
         <SidebarQuickList />
       </YStack>
     </YStack>
@@ -23,7 +27,21 @@ const SidebarQuickList = () => {
 
   return (
     <>
-      <SubTitle>Friends</SubTitle>
+      <ListTitle
+        icon={
+          <ButtonSimple
+            tooltip="Add friend"
+            onPress={() => {
+              dialogAddFriend()
+            }}
+          >
+            <Plus size={16} o={0.5} />
+          </ButtonSimple>
+        }
+        iconAfter
+      >
+        Friends
+      </ListTitle>
       <Spacer size="$2" />
 
       {friends.map((friend) => {
