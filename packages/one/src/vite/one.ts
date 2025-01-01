@@ -61,6 +61,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
   const vxrnOptions = getOptionsFilled()
   const root = vxrnOptions?.root || process.cwd()
+  const barrelOption = options.optimization?.barrel
 
   const devAndProdPlugins: Plugin[] = [
     {
@@ -69,13 +70,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       __get: options,
     },
 
-    // stopped working on new version
-    barrel({
-      packages: ['@tamagui/lucide-icons', '@mui/material', '@mui/icons-material'],
-      // experimental: {
-      //   integration: 'plugin-react-swc',
-      // },
-    }) as any,
+    barrelOption === false
+      ? null
+      : (barrel({
+          packages: Array.isArray(barrelOption) ? barrelOption : ['@tamagui/lucide-icons'],
+        }) as any),
 
     {
       name: 'one-define-env',
