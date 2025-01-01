@@ -13,8 +13,6 @@ export function filterPluginsForNative(
         return p
       }
 
-      console.log('p.name', p.name)
-
       if (p.name.endsWith('-web-only')) {
         return null
       }
