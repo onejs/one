@@ -1,9 +1,9 @@
 {
   "name": "@vxrn/utils",
-  "version": "1.1.374",
+  "version": "1.1.377",
   "sideEffects": false,
   "type": "module",
-  "types": "./src/index.ts",
+  "types": "./types/index.d.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
   "exports": {
@@ -13,18 +13,19 @@
         "import": "./dist/esm/index.native.js",
         "require": "./dist/cjs/index.native.js"
       },
-      "types": "./src/index.ts",
+      "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
     }
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
-    "build": "tamagui-build --skip-types",
-    "watch": "tamagui-build --skip-types --watch",
+    "build": "tamagui-build",
+    "watch": "tamagui-build --watch",
     "lint": "npx biome check src",
     "lint:fix": "npx biome check --apply-unsafe src",
     "clean": "tamagui-build clean",

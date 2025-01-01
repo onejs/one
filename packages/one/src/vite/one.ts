@@ -141,10 +141,25 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         // const forkPath = dirname(resolvePath('one'))
 
+        let tslibLitePath = ''
+
+        try {
+          // temp fix for seeing
+          // Could not read from file: modules/@vxrn/resolve/dist/esm/@vxrn/tslib-lite
+          tslibLitePath = resolvePath('@vxrn/tslib-lite', process.cwd())
+        } catch (err) {
+          console.info(`Can't find tslib-lite, falling back to tslib`)
+          if (process.env.DEBUG) {
+            console.error(err)
+          }
+        }
+
         return {
           resolve: {
             alias: {
-              tslib: resolvePath('@vxrn/tslib-lite', process.cwd()),
+              ...(tslibLitePath && {
+                tslib: tslibLitePath,
+              }),
             },
 
             // [

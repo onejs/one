@@ -2,10 +2,11 @@ import { useSortable } from '@dnd-kit/sortable'
 import { Lock, Plus } from '@tamagui/lucide-icons'
 import { Menu } from '@tauri-apps/api/menu'
 import { forwardRef, useEffect, useState } from 'react'
-import { YStack } from 'tamagui'
+import { SizableText, USE_NATIVE_PORTAL, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { randomID } from '~/helpers/randomID'
-import { useCurrentServer, useServerChannels } from '~/state/server'
+import { randomId } from '~/helpers/randomId'
+import { useServerChannels } from '~/state/server/useServerChannels'
+import { useCurrentServer } from '~/state/server/useCurrentServer'
 import { updateUserState, useUserState } from '~/state/user'
 import type { Channel } from '~/zero'
 import { zero } from '~/zero'
@@ -14,6 +15,7 @@ import { EditableListItem, type EditableListItemProps } from '../lists/EditableL
 import { ListTitle } from '../lists/ListTitle'
 import { SortableList } from '../lists/SortableList'
 import { useChannelsHotkeys } from './useChannelsHotkeys'
+import { useDraggable } from '@dnd-kit/core'
 
 // TODO organize/enforce
 // id order
@@ -28,7 +30,13 @@ export const SidebarServerChannelsList = () => {
       ? server.channelSort
       : channels?.map((x) => x.id)
 
-  const channelsSorted = channelSort.map((id) => channels.find((x) => x.id === id)!).filter(Boolean)
+  // TODO zero causes a jump
+  const [newSort, setNewSort] = useState<null | string[]>(null)
+
+  const channelsSorted = (newSort || channelSort)
+    .map((id) => channels.find((x) => x.id === id)!)
+    .filter(Boolean)
+
   const [{ activeServer, activeChannels }, { activeChannel }] = useUserState()
 
   useChannelsHotkeys()
@@ -72,18 +80,16 @@ export const SidebarServerChannelsList = () => {
         <SortableList
           items={channelsSorted}
           renderItem={(channel) => <ChannelListItemSortable key={channel.id} channel={channel} />}
-          renderDraggingItem={(channel) => <DraggedChannel channel={channel} />}
+          renderDraggingItem={(channel) => <ChannelListItem channel={channel} />}
           onSort={(sorted) => {
-            console.warn(
-              'sort',
-              server,
-              sorted.map((i) => i.id),
-              performance.now()
-            )
             if (!server) return
+            setNewSort(sorted.map((i) => i.id))
             zero.mutate.server.update({
               id: server.id,
               channelSort: sorted.map((i) => i.id),
+            })
+            setTimeout(() => {
+              setNewSort(null)
             })
           }}
         />
@@ -96,13 +102,13 @@ export const SidebarServerChannelsList = () => {
                 alert('no server')
                 return
               }
-              const id = randomID()
+              const id = randomId()
               zero.mutate.channel.insert({
                 id,
                 description: '',
                 name,
                 private: false,
-                serverID: server.id,
+                serverId: server.id,
               })
 
               zero.mutate.server.update({
@@ -126,10 +132,6 @@ export const SidebarServerChannelsList = () => {
       </YStack>
     </YStack>
   )
-}
-
-const DraggedChannel = ({ channel }: { channel: Channel }) => {
-  return <ChannelListItem channel={channel} />
 }
 
 const ChannelListItemSortable = ({ channel }: { channel: Channel }) => {
@@ -189,6 +191,11 @@ const ChannelListItem = forwardRef(
         ref={ref}
         icon={channel?.private ? <Lock mx="$2.5" o={0.5} size={12} /> : null}
         iconAfter
+        before={
+          <SizableText size="$2" mr={-5} o={0.3}>
+            #
+          </SizableText>
+        }
         editingValue={channel?.name ?? ''}
         active={derivedUserState?.activeChannel === channel?.id}
         onPress={() => {
@@ -212,7 +219,7 @@ const ChannelListItem = forwardRef(
         }}
         {...rest}
       >
-        {channel?.name || ''}
+        {`${channel?.name || ''}`}
       </EditableListItem>
     )
   }

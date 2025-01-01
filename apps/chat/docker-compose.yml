@@ -38,6 +38,20 @@ services:
       - .env
     command: sh -c "bun install && bun run seed.ts"
 
+  search:
+    image: typesense/typesense:27.1
+    ports:
+      - 8108:8108
+    volumes:
+      - search:/data
+    env_file:
+      - .env
+    command: 
+        - '--data-dir'
+        - '/data'
+        - '--api-key=${TYPESENSE_API_KEY}'
+        - '--enable-cors'
+
   # zero:
   #   image: node:alpine
   #   depends_on:
@@ -79,6 +93,8 @@ services:
   #   command: sh -c "bun install && bun run dev"
 
 volumes:
+  search:
+    driver: local
   pgdata:
     driver: local
   app_node_modules:

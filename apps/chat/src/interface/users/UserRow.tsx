@@ -27,7 +27,7 @@ type FriendshipStatus = 'not-friend' | 'requested' | 'accepted'
 
 export const useFriendship = (userA: { id: string }, userB?: { id: string } | null) => {
   const [friendships] = useQuery((q) =>
-    q.friendship.where('requestingID', userA.id).where('acceptingID', userB?.id || '')
+    q.friendship.where('requestingId', userA.id).where('acceptingId', userB?.id || '')
   )
   const [friendship] = friendships
   const status = !friendship ? 'not-friend' : !friendship.accepted ? 'requested' : 'accepted'
@@ -39,8 +39,8 @@ const removeFriendship = async (friendship: Friendship) => {
     zero.mutate.friendship.delete(friendship),
     // delete the opposite one too
     zero.mutate.friendship.delete({
-      requestingID: friendship.acceptingID,
-      acceptingID: friendship.requestingID,
+      requestingId: friendship.acceptingId,
+      acceptingId: friendship.requestingId,
     }),
   ])
 }
@@ -86,13 +86,13 @@ export const UserRowFriendable = ({ user }: { user: User }) => {
 
               zero.mutate.friendship.insert({
                 accepted: false,
-                acceptingID: currentUser.id,
-                requestingID: user.id,
+                acceptingId: currentUser.id,
+                requestingId: user.id,
               })
               zero.mutate.friendship.insert({
                 accepted: false,
-                acceptingID: user.id,
-                requestingID: currentUser.id,
+                acceptingId: user.id,
+                requestingId: currentUser.id,
               })
             }}
           ></Row.Button>

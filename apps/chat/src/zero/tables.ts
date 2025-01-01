@@ -18,11 +18,11 @@ export const user = {
     servers: [
       {
         sourceField: 'id',
-        destField: 'userID',
+        destField: 'userId',
         destSchema: () => serverMember,
       },
       {
-        sourceField: 'serverID',
+        sourceField: 'serverId',
         destField: 'id',
         destSchema: () => server,
       },
@@ -31,11 +31,11 @@ export const user = {
     friends: [
       {
         sourceField: 'id',
-        destField: 'requestingID',
+        destField: 'requestingId',
         destSchema: () => friendship,
       },
       {
-        sourceField: 'acceptingID',
+        sourceField: 'acceptingId',
         destField: 'id',
         destSchema: () => user,
       },
@@ -43,7 +43,7 @@ export const user = {
 
     attachments: {
       sourceField: 'id',
-      destField: 'userID',
+      destField: 'userId',
       destSchema: () => attachment,
     },
   },
@@ -53,11 +53,11 @@ export const attachment = {
   tableName: 'attachment',
   columns: {
     id: 'string',
-    userID: 'string',
+    userId: 'string',
     // attached to a specific message
-    messageID: { type: 'string', optional: true },
+    messageId: { type: 'string', optional: true },
     // if authoring a message in a channel
-    channelID: { type: 'string', optional: true },
+    channelId: { type: 'string', optional: true },
     type: 'string',
     data: { type: 'string', optional: true },
     url: { type: 'string', optional: true },
@@ -73,8 +73,8 @@ export const role = {
     id: 'string',
     name: 'string',
     color: 'string',
-    serverID: 'string',
-    creatorID: 'string',
+    serverId: 'string',
+    creatorId: 'string',
     canAdmin: { type: 'boolean', optional: true },
     canEditChannel: { type: 'boolean', optional: true },
     canEditServer: { type: 'boolean', optional: true },
@@ -86,11 +86,11 @@ export const role = {
     members: [
       {
         sourceField: 'id',
-        destField: 'roleID',
+        destField: 'roleId',
         destSchema: () => userRole,
       },
       {
-        sourceField: 'userID',
+        sourceField: 'userId',
         destField: 'id',
         destSchema: () => user,
       },
@@ -100,34 +100,64 @@ export const role = {
 
 export const userRole = createTableSchema({
   tableName: 'userRole',
-  primaryKey: ['serverID', 'userID', 'roleID'],
+  primaryKey: ['serverId', 'userId', 'roleId'],
   columns: {
-    serverID: 'string',
-    userID: 'string',
-    roleID: 'string',
-    granterID: 'string',
+    serverId: 'string',
+    userId: 'string',
+    roleId: 'string',
+    granterId: 'string',
     createdAt: { type: 'number', optional: true },
   },
 })
 
-export const channelRole = createTableSchema({
-  tableName: 'channelRole',
-  primaryKey: ['serverID', 'channelID', 'roleID'],
+export const channelPermission = {
+  tableName: 'channelPermission',
+  primaryKey: ['id'],
   columns: {
-    serverID: 'string',
-    channelID: 'string',
-    roleID: 'string',
-    granterID: 'string',
+    id: 'string',
+    serverId: 'string',
+    channelId: 'string',
+    roleId: 'string',
+    granterId: 'string',
     createdAt: { type: 'number', optional: true },
   },
-})
+
+  relationships: {
+    role: {
+      sourceField: 'roleId',
+      destField: 'id',
+      destSchema: () => role,
+    },
+  },
+} as const
+
+export const pin = {
+  tableName: 'pin',
+  primaryKey: ['id'],
+  columns: {
+    id: 'string',
+    serverId: 'string',
+    channelId: 'string',
+    messageId: 'string',
+    creatorId: 'string',
+    createdAt: { type: 'number', optional: true },
+  },
+
+  relationships: {
+    message: {
+      sourceField: 'messageId',
+      destField: 'id',
+      destSchema: () => message,
+    },
+  },
+} as const
 
 export const friendship = createTableSchema({
   tableName: 'friendship',
-  primaryKey: ['requestingID', 'acceptingID'],
+  primaryKey: ['requestingId', 'acceptingId'],
   columns: {
-    requestingID: 'string',
-    acceptingID: 'string',
+    requestingId: 'string',
+    acceptingId: 'string',
     accepted: 'boolean',
     createdAt: { type: 'number', optional: true },
   },
@@ -139,7 +169,7 @@ export const server = {
   columns: {
     id: 'string',
     name: 'string',
-    creatorID: 'string',
+    creatorId: 'string',
     channelSort: 'json',
     description: 'string',
     icon: 'string',
@@ -148,18 +178,18 @@ export const server = {
   relationships: {
     channels: {
       sourceField: 'id',
-      destField: 'serverID',
+      destField: 'serverId',
       destSchema: () => channel,
     },
 
     members: [
       {
         sourceField: 'id',
-        destField: 'serverID',
+        destField: 'serverId',
         destSchema: () => serverMember,
       },
       {
-        sourceField: 'userID',
+        sourceField: 'userId',
         destField: 'id',
         destSchema: () => user,
       },
@@ -167,7 +197,7 @@ export const server = {
 
     roles: {
       sourceField: 'id',
-      destField: 'serverID',
+      destField: 'serverId',
       destSchema: () => role,
     },
   },
@@ -175,19 +205,19 @@ export const server = {
 
 export const serverMember = createTableSchema({
   tableName: 'serverMember',
-  primaryKey: ['serverID', 'userID'],
+  primaryKey: ['serverId', 'userId'],
   columns: {
-    serverID: 'string',
-    userID: 'string',
+    serverId: 'string',
+    userId: 'string',
     joinedAt: { type: 'number', optional: true },
   },
 })
 
-export const channel = createTableSchema({
+export const channel = {
   tableName: 'channel',
   columns: {
     id: 'string',
-    serverID: 'string',
+    serverId: 'string',
     name: 'string',
     description: 'string',
     private: { type: 'boolean' },
@@ -197,45 +227,58 @@ export const channel = createTableSchema({
   relationships: {
     messages: {
       sourceField: 'id',
-      destField: 'channelID',
+      destField: 'channelId',
       destSchema: () => message,
     },
 
     threads: {
       sourceField: 'id',
-      destField: 'channelID',
+      destField: 'channelId',
       destSchema: () => thread,
+    },
+
+    pins: {
+      sourceField: 'id',
+      destField: 'channelId',
+      destSchema: () => pin,
     },
 
     roles: [
       {
         sourceField: 'id',
-        destField: 'channelID',
-        destSchema: () => channelRole,
+        destField: 'channelId',
+        destSchema: () => channelPermission,
       },
       {
-        sourceField: 'roleID',
+        sourceField: 'roleId',
         destField: 'id',
         destSchema: () => role,
       },
     ],
 
     server: {
-      sourceField: 'serverID',
+      sourceField: 'serverId',
       destField: 'id',
       destSchema: () => server,
     },
+
+    permissions: {
+      sourceField: 'id',
+      destField: 'channelId',
+      destSchema: () => channelPermission,
+    },
   },
-})
+} as const
 
 export const thread = {
   tableName: 'thread',
   columns: {
     id: 'string',
-    channelID: 'string',
-    creatorID: 'string',
-    messageID: 'string',
+    channelId: 'string',
+    creatorId: 'string',
+    messageId: 'string',
     title: 'string',
+    deleted: 'boolean',
     description: 'string',
     createdAt: { type: 'number', optional: true },
   },
@@ -243,7 +286,7 @@ export const thread = {
   relationships: {
     messages: {
       sourceField: 'id',
-      destField: 'threadID',
+      destField: 'threadId',
       destSchema: () => message,
     },
   },
@@ -254,11 +297,12 @@ export const message = {
   primaryKey: ['id'],
   columns: {
     id: 'string',
-    serverID: 'string',
-    channelID: 'string',
-    threadID: { type: 'string', optional: true },
+    serverId: 'string',
+    channelId: 'string',
+    threadId: { type: 'string', optional: true },
     isThreadReply: 'boolean',
-    creatorID: 'string',
+    creatorId: 'string',
+    replyingToId: { type: 'string', optional: true },
     content: 'string',
     createdAt: { type: 'number', optional: true },
     updatedAt: { type: 'number', optional: true },
@@ -267,12 +311,24 @@ export const message = {
   relationships: {
     thread: {
       sourceField: 'id',
-      destField: 'messageID',
+      destField: 'messageId',
       destSchema: () => thread,
     },
 
+    channel: {
+      sourceField: 'channelId',
+      destField: 'id',
+      destSchema: () => channel,
+    },
+
+    replyingTo: {
+      sourceField: 'replyingToId',
+      destField: 'id',
+      destSchema: () => message,
+    },
+
     sender: {
-      sourceField: 'creatorID',
+      sourceField: 'creatorId',
       destField: 'id',
       destSchema: () => user,
     },
@@ -280,11 +336,11 @@ export const message = {
     reactions: [
       {
         sourceField: 'id',
-        destField: 'messageID',
+        destField: 'messageId',
         destSchema: () => messageReaction,
       },
       {
-        sourceField: 'reactionID',
+        sourceField: 'reactionId',
         destField: 'id',
         destSchema: () => reaction,
       },
@@ -292,7 +348,7 @@ export const message = {
 
     attachments: {
       sourceField: 'id',
-      destField: 'messageID',
+      destField: 'messageId',
       destSchema: () => attachment,
     },
   },
@@ -300,11 +356,11 @@ export const message = {
 
 export const messageReaction = createTableSchema({
   tableName: 'messageReaction',
-  primaryKey: ['messageID', 'creatorID', 'reactionID'],
+  primaryKey: ['messageId', 'creatorId', 'reactionId'],
   columns: {
-    messageID: 'string',
-    creatorID: 'string',
-    reactionID: 'string',
+    messageId: 'string',
+    creatorId: 'string',
+    reactionId: 'string',
     createdAt: { type: 'number', optional: true },
     updatedAt: { type: 'number', optional: true },
   },
@@ -334,15 +390,17 @@ export type Reaction = Row<typeof reaction>
 export type Friendship = Row<typeof friendship>
 export type Role = Row<typeof role>
 export type UserRole = Row<typeof userRole>
-export type ChannelRole = Row<typeof channelRole>
+export type ChannelPermission = Row<typeof channelPermission>
 
 const rolePermissionsKeys = ['canAdmin', 'canEditChannel', 'canEditServer'] satisfies (keyof Role)[]
 export type RolePermissionsKeys = (typeof rolePermissionsKeys)[0]
 
 export type MessageWithRelations = Message & {
+  channel?: Channel
   reactions: readonly Reaction[]
-  thread?: readonly Thread[]
-  sender: readonly User[]
+  thread?: Thread
+  sender?: User
+  replyingTo?: Message & { sender?: User }
   attachments: readonly Attachment[]
 }
 export type ThreadWithRelations = Thread & { messages: readonly Message[] }

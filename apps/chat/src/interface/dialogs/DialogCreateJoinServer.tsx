@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button, Dialog, Input, ScrollView, XStack, YStack } from 'tamagui'
-import { insertServer } from '~/state/mutateServer'
+import { mutateInsertServer } from '~/state/server/mutateInsertServer'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Tabs } from '../tabs/Tabs'
 import { AvatarUpload } from '../upload/AvatarUpload'
@@ -87,7 +87,7 @@ const DialogCreateServerContent = (props: TabContentPaneProps) => {
         <ScrollView m="$-1">
           <YStack py="$4" gap="$2" px="$1">
             <LabeledRow label="Name" htmlFor="server-name">
-              <Input miw={150} ref={inputRef as any} f={1} id="server-name" />
+              <Input autoComplete="off" miw={300} ref={inputRef as any} f={2} id="server-name" />
             </LabeledRow>
 
             <LabeledRow label="Image" htmlFor="image">
@@ -112,7 +112,7 @@ const DialogCreateServerContent = (props: TabContentPaneProps) => {
         <Button
           theme="blue"
           onPress={() => {
-            insertServer({
+            mutateInsertServer({
               name: inputRef.current?.value || 'Untitled',
               icon: image,
             })

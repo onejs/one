@@ -1,10 +1,10 @@
-import { useCurrentChannelMessages } from '~/state/server'
+import { useCurrentChannelMessages } from '~/state/message/useCurrentChannelMessages'
 import { MessagesList } from '../messages/MessagesList'
-import { useCurrentThread } from '~/state/user'
+import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
 
 export const MainMessagesList = () => {
   const messages = useCurrentChannelMessages() || []
-  const hasOpenThread = !!useCurrentThread()
+  const hasOpenThread = !!useCurrentThreadWithMessages()
 
   return <MessagesList disableEvents={hasOpenThread} messages={messages} />
 }

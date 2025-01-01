@@ -1,6 +1,6 @@
 {
   "name": "drizzle-to-zero",
-  "version": "1.1.374",
+  "version": "1.1.377",
   "sideEffects": false,
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
@@ -26,6 +26,7 @@
   "scripts": {
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
+    "test": "vitest --run",
     "lint": "npx biome check src",
     "lint:fix": "npx biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
