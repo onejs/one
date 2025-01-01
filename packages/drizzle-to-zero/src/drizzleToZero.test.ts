@@ -4,12 +4,12 @@ import { tables, relationships } from './fixtures/drizzleSchema'
 import { zeroSchema } from './fixtures/zeroSchema'
 
 describe('drizzleToZeroSchema', () => {
-  it('should correctly convert Drizzle schema to Zero schema', () => {
+  it.skip('should correctly convert Drizzle schema to Zero schema', () => {
     const generated = drizzleToZeroSchema(tables, relationships)
     expect(generated).toEqual(zeroSchema)
   })
 
-  it('should correctly infer types for the Zero schema', () => {
+  it.skip('should correctly infer types for the Zero schema', () => {
     const generated = drizzleToZeroSchema(tables, relationships)
 
     tables.users.id

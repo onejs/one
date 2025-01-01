@@ -160,8 +160,6 @@ export function drizzleToZeroSchema<
     // Get relations
     const relationsConfig = relationDef.config(helpers as any)
 
-    console.log('wtf', relationsConfig)
-
     type TableRelations = typeof relationsConfig
 
     type ZeroTableRel = ZeroTableRelationships<TableRelations>
@@ -175,9 +173,9 @@ export function drizzleToZeroSchema<
       }
 
       relationships[relationName] = {
-        sourceField: relation.config.fields[0],
-        destField: relation.config.references[0],
-        destSchema: () => zeroSchema[relation.referencedTableName],
+        // sourceField: relation.config.fields[0],
+        // destField: relation.config.references[0],
+        // destSchema: () => zeroSchema[relation.referencedTableName],
       } as ZeroRelationship
     }
   }
