@@ -38,7 +38,9 @@ export const DevTools = () => {
           const messages = new Array(100).fill(0).map((_, index) => {
             return {
               channelId: channel.id,
-              content: `Lorem ipsum dolo`,
+              content: new Array(Math.round(Math.random() * 10))
+                .fill(`Lorem ipsum dolo`)
+                .join(', '),
               createdAt: new Date().getTime() - index * 60 * 1000,
               deleted: false,
               id: randomId(),

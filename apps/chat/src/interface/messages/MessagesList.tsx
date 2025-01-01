@@ -162,7 +162,7 @@ export const MessagesList = memo(
               const message = messages[index]
               const lastMessage = messages[index - 1]
 
-              if (!message || !user) {
+              if (!message || !user || !channel) {
                 return <></>
               }
 

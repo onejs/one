@@ -112,8 +112,9 @@ export const userRole = createTableSchema({
 
 export const channelPermission = {
   tableName: 'channelPermission',
-  primaryKey: ['serverId', 'channelId', 'roleId'],
+  primaryKey: ['id'],
   columns: {
+    id: 'string',
     serverId: 'string',
     channelId: 'string',
     roleId: 'string',

@@ -86,12 +86,12 @@ CREATE TABLE "userRole" (
 );
 
 CREATE TABLE "channelPermission" (
+    "id" VARCHAR PRIMARY KEY,
     "channelId" VARCHAR REFERENCES "channel"(id),
     "serverId" VARCHAR REFERENCES "server"(id),
     "roleId" VARCHAR REFERENCES "role"(id),
     "granterId" VARCHAR REFERENCES "user"(id),
-    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY ("serverId", "channelId", "roleId")
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "thread" (
