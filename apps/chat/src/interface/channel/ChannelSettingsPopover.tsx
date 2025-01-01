@@ -12,12 +12,12 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
+import { useAuth } from '~/better-auth/authClient'
+import { randomId } from '~/helpers/randomId'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
+import { useCurrentChannelPermissions } from '~/state/channel/useCurrentChannelPermissions'
+import { useCurrentServerRoles } from '~/state/server/useCurrentServerRoles'
 import { type Role, zero } from '~/zero'
-import { useAuth } from '../../better-auth/authClient'
-import { randomId } from '../../helpers/randomId'
-import { useCurrentChannelPermissions } from '../../state/channel/useCurrentChannelPermissions'
-import { useCurrentServerRoles } from '../../state/server/useCurrentServerRoles'
 import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Switch } from '../forms/Switch'
