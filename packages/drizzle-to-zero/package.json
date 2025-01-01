@@ -26,7 +26,6 @@
   "scripts": {
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
-    "test": "vitest --run",
     "lint": "npx biome check src",
     "lint:fix": "npx biome check --apply-unsafe src",
     "clean": "tamagui-build clean",
