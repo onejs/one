@@ -296,7 +296,9 @@ global.performance = {
 }
 
 global.ErrorUtils = {
+  // mocked
   setGlobalHandler: () => {},
+  getGlobalHandler: () => () => {},
   reportFatalError: (err) => {
     // biome-ignore lint/suspicious/noConsoleLog: <explanation>
     console.log('err' + err['message'] + err['stack'])
