@@ -1,5 +1,5 @@
 import { Plus } from '@tamagui/lucide-icons'
-import { Circle, ScrollView, styled, XStack, YStack } from 'tamagui'
+import { Circle, ScrollView, styled, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useUserServers } from '~/state/useQuery'
 import { updateUserState, useUserState } from '~/state/user'
 import { Avatar } from '../Avatar'
@@ -15,17 +15,18 @@ export const SidebarServersRow = () => {
         <SidebarIndent fd="row" gap="$2" py="$3">
           {servers.map((server) => {
             return (
-              <Avatar
-                key={server.id}
-                onPress={() => {
-                  updateUserState({
-                    activeServer: server.id,
-                  })
-                }}
-                size={42}
-                active={activeServer === server.id}
-                image={server.icon}
-              />
+              <TooltipSimple key={server.id} label={server.name}>
+                <Avatar
+                  onPress={() => {
+                    updateUserState({
+                      activeServer: server.id,
+                    })
+                  }}
+                  size={42}
+                  active={activeServer === server.id}
+                  image={server.icon}
+                />
+              </TooltipSimple>
             )
           })}
 

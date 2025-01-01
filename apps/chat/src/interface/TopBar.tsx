@@ -125,7 +125,7 @@ export const TopBar = memo(() => {
 
         {!isTauri && jwtToken && (
           <a href={tauriDeepLink}>
-            <ButtonSimple>Open native app</ButtonSimple>
+            <ButtonSimple>Open app</ButtonSimple>
           </a>
         )}
       </XStack>

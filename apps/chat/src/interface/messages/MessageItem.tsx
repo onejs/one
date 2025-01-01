@@ -39,10 +39,8 @@ export const MessageItem = memo(
     message,
     hideUser,
     disableEvents,
-    channel,
   }: {
     message: MessageWithRelations
-    channel: Channel
     disableEvents?: boolean
     hideUser?: boolean
   }) => {
@@ -86,7 +84,7 @@ export const MessageItem = memo(
 
     return (
       <YStack
-        f={1}
+        w="100%"
         gap="$2"
         py={hideUser ? '$1' : '$2'}
         px="$4"
@@ -128,7 +126,7 @@ export const MessageItem = memo(
         <MessageItemReplyingTo message={message} />
 
         <XStack gap="$3">
-          <MessageActionBar channel={channel} message={message} />
+          <MessageActionBar message={message} />
 
           <XStack w={avatarGutterWidth}>
             {sender && !hideUser && <Avatar image={sender.image} />}

@@ -169,7 +169,6 @@ export const MessagesList = memo(
               return (
                 <MessageItem
                   hideUser={lastMessage?.creatorId === message.creatorId && !message.replyingTo}
-                  channel={channel}
                   key={message.id}
                   message={message}
                   disableEvents={disableEvents}

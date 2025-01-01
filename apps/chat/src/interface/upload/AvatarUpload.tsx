@@ -1,7 +1,8 @@
-import { type DragEvent, useState } from 'react'
-import { isWeb, Paragraph, Progress, YStack } from 'tamagui'
+import { Image } from '@tamagui/lucide-icons'
+import { useState, type DragEvent } from 'react'
+import { Button, isWeb, Paragraph, Progress, XStack, YStack } from 'tamagui'
 import { Avatar } from '../Avatar'
-import { uploadImageEndpoint, useUploadImages, type FileUpload } from './uploadImage'
+import { uploadImageEndpoint, useUploadImages } from './uploadImage'
 
 export const AvatarUpload = ({
   defaultImage,
@@ -25,8 +26,9 @@ export const AvatarUpload = ({
   const errorMessage = latestUpload?.error
 
   return (
-    <YStack
+    <XStack
       gap="$4"
+      ai="center"
       // @ts-expect-error
       onDrop={(event: DragEvent<HTMLDivElement>) => {
         event.preventDefault()
@@ -47,12 +49,28 @@ export const AvatarUpload = ({
         bg: '$color4',
       })}
     >
-      <Avatar size={100} image={uploadUrl || defaultImage || ''} />
+      <Avatar size={80} image={uploadUrl || defaultImage || ''} />
 
       {isWeb && (
-        <form action={uploadImageEndpoint} method="post" encType="multipart/form-data">
+        <form
+          style={{ display: 'contents' }}
+          action={uploadImageEndpoint}
+          method="post"
+          encType="multipart/form-data"
+        >
           <YStack>
-            <input type="file" id="file" name="file" onChange={handleFileChange} />
+            <label htmlFor="file">
+              <input
+                style={{ display: 'none' }}
+                type="file"
+                id="file"
+                name="file"
+                onChange={handleFileChange}
+              />
+              <Button size="$3" tag="span" icon={Image}>
+                Pick
+              </Button>
+            </label>
 
             {!!(progress && progress !== 100) && (
               <Progress mt="$2" value={progress} bg="$color2">
@@ -64,6 +82,6 @@ export const AvatarUpload = ({
           </YStack>
         </form>
       )}
-    </YStack>
+    </XStack>
   )
 }

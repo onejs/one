@@ -131,6 +131,27 @@ export const channelPermission = {
   },
 } as const
 
+export const pin = {
+  tableName: 'pin',
+  primaryKey: ['id'],
+  columns: {
+    id: 'string',
+    serverId: 'string',
+    channelId: 'string',
+    messageId: 'string',
+    creatorId: 'string',
+    createdAt: { type: 'number', optional: true },
+  },
+
+  relationships: {
+    message: {
+      sourceField: 'messageId',
+      destField: 'id',
+      destSchema: () => message,
+    },
+  },
+} as const
+
 export const friendship = createTableSchema({
   tableName: 'friendship',
   primaryKey: ['requestingId', 'acceptingId'],
@@ -192,7 +213,7 @@ export const serverMember = createTableSchema({
   },
 })
 
-export const channel = createTableSchema({
+export const channel = {
   tableName: 'channel',
   columns: {
     id: 'string',
@@ -214,6 +235,12 @@ export const channel = createTableSchema({
       sourceField: 'id',
       destField: 'channelId',
       destSchema: () => thread,
+    },
+
+    pins: {
+      sourceField: 'id',
+      destField: 'channelId',
+      destSchema: () => pin,
     },
 
     roles: [
@@ -241,7 +268,7 @@ export const channel = createTableSchema({
       destSchema: () => channelPermission,
     },
   },
-})
+} as const
 
 export const thread = {
   tableName: 'thread',
@@ -286,6 +313,12 @@ export const message = {
       sourceField: 'id',
       destField: 'messageId',
       destSchema: () => thread,
+    },
+
+    channel: {
+      sourceField: 'channelId',
+      destField: 'id',
+      destSchema: () => channel,
     },
 
     replyingTo: {
@@ -363,6 +396,7 @@ const rolePermissionsKeys = ['canAdmin', 'canEditChannel', 'canEditServer'] sati
 export type RolePermissionsKeys = (typeof rolePermissionsKeys)[0]
 
 export type MessageWithRelations = Message & {
+  channel?: Channel
   reactions: readonly Reaction[]
   thread?: Thread
   sender?: User

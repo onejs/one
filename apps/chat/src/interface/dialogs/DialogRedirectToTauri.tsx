@@ -35,7 +35,7 @@ export const DialogRedirectToTauri = () => {
                   size="$5"
                   icon={Lock}
                 >
-                  Open native app
+                  Open app
                 </Button>
               </a>
             </YStack>

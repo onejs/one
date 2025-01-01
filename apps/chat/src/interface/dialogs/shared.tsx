@@ -17,7 +17,7 @@ export const DialogOverlay = styled(Dialog.Overlay, {
 
 export const DialogContent = styled(Dialog.Content, {
   animation: [
-    'quickest',
+    'quicker',
     {
       opacity: {
         overshootClamping: true,
@@ -32,8 +32,10 @@ export const DialogContent = styled(Dialog.Content, {
   miw: 200,
   maw: 500,
   mih: 400,
+  opacity: 1,
+  y: 0,
   mah: 'max-content',
-  enterStyle: { x: 0, y: -10, opacity: 0 },
-  exitStyle: { x: 0, y: 10, opacity: 0 },
+  enterStyle: { x: 0, y: -5, opacity: 0 },
+  exitStyle: { x: 0, y: 5, opacity: 0 },
   gap: '$4',
 })

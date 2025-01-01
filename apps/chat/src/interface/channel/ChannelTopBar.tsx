@@ -9,17 +9,17 @@ import {
 } from '@tamagui/lucide-icons'
 import {
   Button,
-  type ButtonProps,
   ScrollView,
   SizableText,
   TooltipSimple,
   XGroup,
   XStack,
   YStack,
+  type ButtonProps,
 } from 'tamagui'
-import { useCurrentThread, useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
-import { useCurrentChannelThreads } from '~/state/channel/useCurrentChannelThreads'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
+import { useCurrentChannelThreads } from '~/state/channel/useCurrentChannelThreads'
+import { useCurrentThread, useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
 import {
   closeCurrentThread,
   updateUserCurrentChannel,
@@ -29,13 +29,13 @@ import {
 import { zero, type ThreadWithRelations } from '~/zero'
 import { AnimationDriver } from '../animations/AnimationDriver'
 import { ButtonSimple } from '../ButtonSimple'
-import { ChannelSettingsPopover } from '../channel/ChannelSettingsPopover'
-import { mainTopBarHeight } from './constants'
-import { ButtonClose } from '../ButtonClose'
 import { dialogConfirm } from '../dialogs/actions'
+import { mainTopBarHeight } from '../main/constants'
 import { showToast } from '../toast/Toast'
+import { ChannelPinsPopover } from './ChannelPinsPopover'
+import { ChannelSettingsPopover } from './ChannelSettingsPopover'
 
-export const MainTopBar = () => {
+export const ChannelTopBar = () => {
   const threads = useCurrentChannelThreads()
   const openThread = useCurrentThread()
   const channelState = useUserCurrentChannelState()
@@ -51,6 +51,7 @@ export const MainTopBar = () => {
       bg="$color1"
       elevation={1}
       zi={100_000}
+      gap="$4"
       py="$2"
       px="$2"
     >
@@ -58,15 +59,19 @@ export const MainTopBar = () => {
         <ChannelViewToggle />
       </XStack>
 
-      <ScrollView my="$-2" f={2} horizontal showsHorizontalScrollIndicator={false}>
-        <XStack p="$2" ai="center" gap="$1">
-          {threads.map((thread) => {
-            return <ThreadButton key={thread.id} thread={thread} />
-          })}
-        </XStack>
-      </ScrollView>
+      <XStack f={10} ai="center">
+        <IndentIncrease size={14} o={0.5} />
+        <ScrollView my="$-2" f={2} horizontal showsHorizontalScrollIndicator={false}>
+          <XStack p="$2" ai="center" gap="$1">
+            {threads.map((thread) => {
+              return <ThreadButton key={thread.id} thread={thread} />
+            })}
+          </XStack>
+        </ScrollView>
+      </XStack>
 
-      <XStack ai="center">
+      <XStack ai="center" gap="$1">
+        <ChannelPinsPopover />
         <ChannelSettingsPopover />
       </XStack>
 
@@ -258,6 +263,7 @@ const ThreadButton = ({ thread }: { thread: ThreadWithRelations }) => {
   return (
     <ButtonSimple
       active={isOpen}
+      maw={200}
       onPress={() => {
         updateUserOpenThread(thread)
       }}

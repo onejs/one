@@ -6,17 +6,15 @@ import { getCurrentUser, updateUserOpenThread } from '~/state/user'
 import type { Channel, MessageWithRelations } from '~/zero'
 import { useQuery, zero } from '~/zero'
 import { AddReactionButton } from './AddReactionButton'
-import { MessageMoreMenu } from './MessageMoreMenu'
+import { MessageItemMenu } from './MessageItemMenu'
 import { ReactionButton } from './MessageReactions'
 import { messageActionBarStickOpen, messageHover } from './constants'
 import { messageReplyEmitter } from './emitters'
 
 export const MessageActionBar = ({
   message,
-  channel,
 }: {
   message: MessageWithRelations
-  channel: Channel
 }) => {
   const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
   const [show, setShow] = useState(false)
@@ -73,7 +71,7 @@ export const MessageActionBar = ({
 
               zero.mutate.thread.insert({
                 id: threadId,
-                channelId: channel.id,
+                channelId: message.channelId,
                 messageId: message.id,
                 creatorId: currentUser.id,
                 deleted: false,
@@ -115,7 +113,7 @@ export const MessageActionBar = ({
           </Button>
         </TooltipSimple>
 
-        <MessageMoreMenu message={message} />
+        <MessageItemMenu message={message} />
       </XGroup>
     </XStack>
   )

@@ -34,7 +34,9 @@ export const LabeledRow = ({
 
         <XStack f={1} />
 
-        <XStack ai="center">{children}</XStack>
+        <XStack miw={300} ai="center">
+          {children}
+        </XStack>
       </XStack>
 
       {!!description && <Paragraph theme="alt1">{description}</Paragraph>}
