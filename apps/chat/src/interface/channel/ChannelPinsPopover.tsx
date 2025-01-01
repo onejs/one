@@ -9,8 +9,6 @@ import { MessageItem } from '../messages/MessageItem'
 export const ChannelPinsPopover = () => {
   const pins = useCurrentChannelPins()
 
-  console.log('pins', pins)
-
   return (
     <Popover allowFlip stayInFrame={{ padding: 10 }}>
       <Popover.Trigger>
