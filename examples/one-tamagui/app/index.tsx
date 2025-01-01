@@ -1,7 +1,7 @@
 import { Image } from '@tamagui/image-next'
 import { Text, YStack } from 'tamagui'
-import { ToggleThemeButton } from '~/code/ToggleThemeButton'
-import oneBall from '~/public/app-icon.png'
+import { ToggleThemeButton } from '~/interface/ToggleThemeButton'
+import oneBall from '../public/app-icon.png'
 
 export function HomePage() {
   return (
