@@ -57,32 +57,4 @@ export const templates = [
     },
     ...BasicTemplateSteps,
   },
-
-  // {
-  //   title: `Fullstack - Recommended + Supabase Auth flows`,
-  //   value: 'Fullstack',
-  //   type: 'included-in-monorepo',
-  //   hidden: false,
-  //   repo: {
-  //     url: `https://github.com/onejs/one.git`,
-  //     sshFallback: `git@github.com:onejs/one.git`,
-  //     dir: [`examples`, `one-basic`],
-  //     branch: 'main',
-  //   },
-  //   ...FullstackSteps,
-  // },
-
-  // {
-  //   title: `Bare`,
-  //   value: 'bare',
-  //   type: 'included-in-monorepo',
-  //   hidden: false,
-  //   repo: {
-  //     url: `https://github.com/onejs/one.git`,
-  //     sshFallback: `git@github.com:onejs/one.git`,
-  //     dir: [`examples`, `bare`],
-  //     branch: 'main',
-  //   },
-  //   extraSteps: stepsBare,
-  // },
 ] as const
