@@ -21,7 +21,7 @@
     "dist"
   ],
   "scripts": {
-    "strip-chat": "dotenv -- node ./run.mjs ../../apps/chat /tmp/chat --overwrite",
+    "strip-chat": "dotenv -- node --max-old-space-size=24576 ./run.mjs ../../apps/chat /tmp/chat --overwrite",
     "build": "tamagui-build --skip-native",
     "watch": "yarn build --watch",
     "check": "depcheck",
