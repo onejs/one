@@ -3,9 +3,14 @@
 export default $config({
   app(input) {
     return {
-      name: 'aws-zero',
-      removal: input?.stage === 'production' ? 'retain' : 'remove',
+      name: 'chat',
       home: 'aws',
+      removal: input?.stage === 'production' ? 'retain' : 'remove',
+      providers: {
+        aws: {
+          profile: input.stage === 'production' ? 'tamagui-production' : 'tamagui-dev',
+        },
+      },
     }
   },
   async run() {

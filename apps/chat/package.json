@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "sso": "aws sso login --sso-session=tamagui",
+    "sst:deploy:production": "sst deploy --stage production",
     "backend": "yarn docker up",
     "backend:clean": "docker compose down --volumes; rm /tmp/onechat_replica.db || true",
     "backend:run-clean": "yarn backend:clean; yarn backend",
