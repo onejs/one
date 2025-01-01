@@ -1,5 +1,6 @@
 TODO:
 
+- https://www.youtube.com/watch?v=POlZS8PcyZw&t=1118s
 - [ ] routing url (server, channel, message)
 - [ ] jobs patterns (search index)
 - [ ] migrations / backend orm
