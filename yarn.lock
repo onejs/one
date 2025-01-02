@@ -11821,6 +11821,7 @@ __metadata:
     "@tamagui/build": "npm:^1.121.3"
     ai: "npm:^4.0.22"
     citty: "npm:^0.1.6"
+    depcheck: "npm:^1.4.7"
     dotenv: "npm:^16.4.5"
     fs-extra: "npm:^11.2.0"
     vitest: "npm:^2.1.8"
