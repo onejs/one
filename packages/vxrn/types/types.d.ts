@@ -1,6 +1,8 @@
+import type { Hono } from 'hono';
 import type { OutputAsset, OutputChunk, TreeshakingOptions, TreeshakingPreset } from 'rollup';
 import type { UserConfig } from 'vite';
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
+export type Mode = 'dev' | 'prod';
 export type BuildArgs = {
     step?: string;
     only?: string;
@@ -74,7 +76,10 @@ export type VXRNOptions = {
         host?: string;
         port?: number;
         compress?: boolean;
-        cacheHeaders?: 'off';
+        /**
+         * Whether to run the Vite logic to load .env files before running the server
+         * @default false
+         */
         loadEnv?: boolean;
         /**
          * Uses mkcert to create a self-signed certificate
@@ -104,5 +109,16 @@ export type HMRListener = (update: {
     file: string;
     contents: string;
 }) => void;
+type VXRNServeOptionsBase = VXRNOptions['server'] & {
+    platform?: VXRNServePlatform;
+};
+export type VXRNServeOptionsFilled = Required<VXRNServeOptionsBase> & {
+    url: string;
+    protocol: string;
+};
+export type VXRNServeOptions = VXRNServeOptionsBase & {
+    beforeRegisterRoutes?: (options: VXRNServeOptionsFilled, app: Hono) => void | Promise<void>;
+    afterRegisterRoutes?: (options: VXRNServeOptionsFilled, app: Hono) => void | Promise<void>;
+};
 export {};
 //# sourceMappingURL=types.d.ts.map

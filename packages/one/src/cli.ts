@@ -121,9 +121,6 @@ const serveCommand = defineCommand({
     compress: {
       type: 'boolean',
     },
-    cacheHeaders: {
-      type: 'boolean',
-    },
     loadEnv: {
       type: 'boolean',
     },
@@ -133,7 +130,6 @@ const serveCommand = defineCommand({
     await serve({
       port: args.port ? +args.port : undefined,
       host: args.host,
-      cacheHeaders: args.cacheHeaders === false ? 'off' : undefined,
       compress: args.compress,
       platform: args.platform === 'vercel' ? 'vercel' : 'node',
       loadEnv: !!args.loadEnv,

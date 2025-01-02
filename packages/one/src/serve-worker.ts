@@ -11,9 +11,11 @@ export async function serve(buildInfo: One.BuildInfo) {
   // TODO make this better, this ensures we get react 19
   process.env.VXRN_REACT_19 = '1'
 
-  const app = await createProdServer(buildInfo.oneOptions)
+  const serverOptions = buildInfo.oneOptions.server || {}
 
-  await oneServe(buildInfo.oneOptions, buildInfo.oneOptions, buildInfo, app, false)
+  const app = await createProdServer(serverOptions)
+
+  await oneServe(buildInfo.oneOptions, buildInfo, app, false)
 
   return app
 }

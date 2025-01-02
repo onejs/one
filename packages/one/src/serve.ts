@@ -33,21 +33,20 @@ export async function serve(args: VXRNOptions['server'] = {}) {
   process.env.VXRN_REACT_19 = '1'
 
   return await vxrnServe({
-    server: {
-      // fallback to one plugin
-      ...oneOptions.server,
-      // override with any flags given to cli
-      ...removeUndefined({
-        port: args.port ? +args.port : undefined,
-        host: args.host,
-        compress: args.compress,
-        platform: args.platform,
-        cacheHeaders: args.cacheHeaders,
-      }),
-    },
+    // fallback to one plugin
+    ...oneOptions.server,
+    // override with any flags given to cli
+    ...removeUndefined({
+      port: args.port ? +args.port : undefined,
+      host: args.host,
+      compress: args.compress,
+      platform: args.platform,
+    }),
 
-    async beforeStart(options, app) {
-      await oneServe(oneOptions, options, buildInfo, app)
+    async beforeRegisterRoutes(options, app) {},
+
+    async afterRegisterRoutes(options, app) {
+      await oneServe(oneOptions, buildInfo, app)
     },
   })
 }

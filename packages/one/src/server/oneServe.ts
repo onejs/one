@@ -1,13 +1,11 @@
 import type { Hono } from 'hono'
 import { join } from 'node:path'
-import type { VXRNOptions } from 'vxrn'
 import { getServerEntry } from 'vxrn/serve'
 import type { RenderAppProps } from '../types'
 import type { One } from '../vite/types'
 
 export async function oneServe(
   oneOptions: One.PluginOptions,
-  vxrnOptions: VXRNOptions,
   buildInfo: One.BuildInfo,
   app: Hono,
   serveStatic = true
@@ -17,7 +15,6 @@ export async function oneServe(
   const { isStatusRedirect } = await import('../utils/isStatus')
 
   const isAPIRequest = new WeakMap<any, boolean>()
-  const root = vxrnOptions.root || '.'
 
   // add redirects
   const redirects = oneOptions.web?.redirects
@@ -55,7 +52,7 @@ export async function oneServe(
 
   const serverOptions = {
     ...oneOptions,
-    root,
+    root: '.',
   }
 
   const entryServer = getServerEntry(serverOptions)
