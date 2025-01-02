@@ -86,11 +86,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    ...(options.ssr?.disableAutoDepsPreBundling
+    ...(options.ssr?.disableAutoDepsPreBundling === true
       ? []
       : [
           autoPreBundleDepsForSsrPlugin({
             root,
+            exclude: Array.isArray(options.ssr?.disableAutoDepsPreBundling)
+              ? options.ssr?.disableAutoDepsPreBundling
+              : undefined,
           }),
         ]),
 

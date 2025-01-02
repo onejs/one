@@ -1,17 +1,7 @@
+import type { Plugin } from 'vite';
 export declare const getSSRExternalsCachePath: (root: string) => string;
-export declare function autoPreBundleDepsForSsrPlugin({ root }: {
+export declare function autoPreBundleDepsForSsrPlugin({ root, exclude, }: {
     root: string;
-}): {
-    name: string;
-    enforce: "pre";
-    config(this: void, _cfg: import("vite").UserConfig, env: import("vite").ConfigEnv): Promise<{
-        ssr: {
-            optimizeDeps: {
-                include: string[];
-                exclude: string[];
-            };
-            noExternal: string[];
-        };
-    }>;
-};
+    exclude?: string[];
+}): Plugin;
 //# sourceMappingURL=autoPreBundleDepsForSsrPlugin.d.ts.map

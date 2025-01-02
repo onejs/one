@@ -12,7 +12,10 @@ export const getSSRExternalsCachePath = (root: string) => {
   return path.join(root, 'node_modules', '.vxrn', 'deps-to-pre-bundle-for-ssr-cache.json')
 }
 
-export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
+export function autoPreBundleDepsForSsrPlugin({
+  root,
+  exclude,
+}: { root: string; exclude?: string[] }): Plugin {
   const noExternalDepsForSsrCacheFilePath = getSSRExternalsCachePath(root)
 
   return {
@@ -65,6 +68,14 @@ export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
             ? ''
             : ` (Focus on this debug scope, "DEBUG=${debug.namespace}", to see more details.)`)
       )
+
+      if (exclude) {
+        debug?.(
+          `Excluding user specified deps ${JSON.stringify(exclude)} from pre-bundling for SSR.`
+        )
+        depsToPreBundleForSsr = depsToPreBundleForSsr.filter((dep) => !exclude.includes(dep))
+      }
+
       debugDetails?.(
         `Deps discovered to be pre-bundled for SSR: ${depsToPreBundleForSsr.join(', ')}`
       )
@@ -73,8 +84,7 @@ export function autoPreBundleDepsForSsrPlugin({ root }: { root: string }) {
         ssr: {
           optimizeDeps: {
             include: depsToPreBundleForSsr,
-            // Known packages that will fail to pre-bundle
-            exclude: EXCLUDE_LIST,
+            exclude: exclude ? [...exclude, ...EXCLUDE_LIST] : EXCLUDE_LIST,
           },
           noExternal: depsToPreBundleForSsr,
         },
