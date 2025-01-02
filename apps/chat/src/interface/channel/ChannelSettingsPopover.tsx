@@ -13,7 +13,7 @@ import {
   YStack,
 } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { randomId } from '~/helpers/randomId.native'
+import { randomId } from '~/helpers/randomId'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { useCurrentChannelPermissions } from '~/state/channel/useCurrentChannelPermissions'
 import { useCurrentServerRoles } from '~/state/server/useCurrentServerRoles'

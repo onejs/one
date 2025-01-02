@@ -1,6 +1,6 @@
 import { ensureSignedUp } from '~/interface/dialogs/actions'
 import type { Server } from '~/zero'
-import { randomId } from '~/helpers/randomId.native'
+import { randomId } from '~/helpers/randomId'
 import { zero } from '~/zero/zero'
 import { updateUserState } from '~/state/user'
 

@@ -1,6 +1,6 @@
 import { Button, YStack } from 'tamagui'
 import { getRandomItem } from '~/helpers/getRandomItem'
-import { randomId } from '~/helpers/randomId.native'
+import { randomId } from '~/helpers/randomId'
 import { showToast } from '~/interface/toast/Toast'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { resolve } from '~/zero/resolve'
