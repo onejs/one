@@ -14,6 +14,7 @@ export type RouteInfo<TRegex = string> = {
 };
 export type RoutesManifest<TRegex = string> = {
     apiRoutes: RouteInfo<TRegex>[];
+    middlewareRoutes: RouteInfo<TRegex>[];
     pageRoutes: RouteInfo<TRegex>[];
 };
 export declare function createRoutesManifest(paths: string[], options: Options): RoutesManifest | null;

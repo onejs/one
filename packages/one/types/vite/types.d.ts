@@ -3,7 +3,7 @@ import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXR
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
-    export type RouteType = RouteRenderMode | 'api' | 'layout' | 'middleware';
+    export type RouteType = RouteRenderMode | 'api' | 'layout';
     export type RouteOptions = {
         routeModes?: Record<string, RouteRenderMode>;
     };
@@ -160,6 +160,7 @@ export declare namespace One {
     export type RouteBuildInfo = {
         type: One.RouteType;
         path: string;
+        middlewares: string[];
         preloadPath: string;
         cleanPath: string;
         htmlPath: string;

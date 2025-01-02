@@ -99,11 +99,7 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
       continue
     }
 
-    const type = meta.isMiddleware
-      ? 'middleware'
-      : meta.isLayout
-        ? 'layout'
-        : meta.renderMode || getDefaultRenderMode()
+    const type = meta.isLayout ? 'layout' : meta.renderMode || getDefaultRenderMode()
 
     let node: RouteNode = {
       type,

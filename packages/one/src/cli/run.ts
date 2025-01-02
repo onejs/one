@@ -21,7 +21,6 @@ export async function run(args: {
     debugBundle: args.debugBundle,
     debug: args.debug,
     server: {
-      https: args.https,
       host: args.host,
       port: args.port ? +args.port : undefined,
     },

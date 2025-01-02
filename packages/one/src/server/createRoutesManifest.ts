@@ -18,6 +18,7 @@ export type RouteInfo<TRegex = string> = {
 
 export type RoutesManifest<TRegex = string> = {
   apiRoutes: RouteInfo<TRegex>[]
+  middlewareRoutes: RouteInfo<TRegex>[]
   pageRoutes: RouteInfo<TRegex>[]
 }
 

@@ -1,8 +1,8 @@
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
-import Path, { join, relative } from 'node:path'
-import type { OutputAsset } from 'rollup'
+import Path, { join, relative, resolve } from 'node:path'
+import type { OutputAsset, RollupOutput } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
 import {
@@ -75,26 +75,24 @@ export async function build(args: {
     } satisfies InlineConfig
   )
 
-  if (manifest.apiRoutes.length) {
-    console.info(`\n 🔨 build api routes\n`)
+  const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
+  const processEnvDefines = Object.fromEntries(
+    Object.entries(process.env).map(([key, value]) => {
+      return [`process.env.${key}`, JSON.stringify(value)]
+    })
+  )
 
-    const processEnvDefines = Object.fromEntries(
-      Object.entries(process.env).map(([key, value]) => {
-        return [`process.env.${key}`, JSON.stringify(value)]
-      })
-    )
-
-    const apiRouteExternalRegex = buildRegexExcludingDeps(optimizeDeps.include)
-
-    const apiEntryPoints = manifest.apiRoutes.reduce((entries, { page, file }) => {
+  async function buildCustomRoutes(subFolder: string, routes: RouteInfo<string>[]) {
+    const input = routes.reduce((entries, { page, file }) => {
       entries[page.slice(1) + '.js'] = join('app', file)
       return entries
     }, {}) as Record<string, string>
 
-    const apiOutputFormat = oneOptions?.build?.api?.outputFormat ?? serverOutputFormat
+    // TODO this is specific to API but used for middelwares too now
+    const outputFormat = oneOptions?.build?.api?.outputFormat ?? serverOutputFormat
     const treeshake = oneOptions?.build?.api?.treeshake
 
-    await viteBuild(
+    const output = await viteBuild(
       mergeConfig(apiBuildConfig, {
         appType: 'custom',
         configFile: false,
@@ -119,7 +117,7 @@ export async function build(args: {
         build: {
           ssr: true,
           emptyOutDir: false,
-          outDir: 'dist/api',
+          outDir: `dist/${subFolder}`,
           copyPublicDir: false,
           minify: false,
           rollupOptions: {
@@ -129,7 +127,7 @@ export async function build(args: {
 
             plugins: [
               // otherwise rollup is leaving commonjs-only top level imports...
-              apiOutputFormat === 'esm' ? rollupRemoveUnusedImportsPlugin : null,
+              outputFormat === 'esm' ? rollupRemoveUnusedImportsPlugin : null,
             ].filter(Boolean),
 
             // too many issues
@@ -138,12 +136,12 @@ export async function build(args: {
             // },
             // prevents it from shaking out the exports
             preserveEntrySignatures: 'strict',
-            input: apiEntryPoints,
-            external: apiRouteExternalRegex,
+            input: input,
+            external: externalRegex,
             output: {
               entryFileNames: '[name]',
               exports: 'auto',
-              ...(apiOutputFormat === 'esm'
+              ...(outputFormat === 'esm'
                 ? {
                     format: 'esm',
                     esModule: true,
@@ -173,6 +171,29 @@ export async function build(args: {
         },
       } satisfies InlineConfig)
     )
+
+    return output as RollupOutput
+  }
+
+  if (manifest.apiRoutes.length) {
+    console.info(`\n 🔨 build api routes\n`)
+    await buildCustomRoutes('api', manifest.apiRoutes)
+  }
+
+  const middlewares: Record<string, string> = {}
+
+  if (manifest.middlewareRoutes.length) {
+    console.info(`\n 🔨 build middlewares\n`)
+    const middlewareBuildInfo = await buildCustomRoutes('middlewares', manifest.middlewareRoutes)
+
+    for (const middleware of manifest.middlewareRoutes) {
+      const absoluteRoot = resolve(process.cwd(), options.root)
+      const fullPath = join(absoluteRoot, 'app', middleware.file)
+      const outChunks = middlewareBuildInfo.output.filter((x) => x.type === 'chunk')
+      const chunk = outChunks.find((x) => x.facadeModuleId === fullPath)
+      if (!chunk) throw new Error(`internal err finding middleware`)
+      middlewares[middleware.file] = resolve(absoluteRoot, 'dist', 'middlewares', chunk.fileName)
+    }
   }
 
   // for the require Sitemap in getRoutes
@@ -429,6 +450,7 @@ export async function build(args: {
 
         builtRoutes.push({
           type: foundRoute.type,
+          middlewares: (foundRoute.middlewares || []).map((x) => x.contextKey),
           cleanPath,
           preloadPath,
           clientJsPath,
@@ -504,14 +526,18 @@ ${JSON.stringify(params || null, null, 2)}`
   await FSExtra.rm(staticDir, { force: true, recursive: true })
 
   // write out the pathname => html map for the server
-  const routeMap = builtRoutes.reduce((acc, { cleanPath, htmlPath }) => {
-    acc[cleanPath] = htmlPath
-    return acc
-  }, {}) satisfies Record<string, string>
+  const routeMap: Record<string, string> = {}
+  const middlewareMap: Record<string, string[]> = {}
+
+  for (const route of builtRoutes) {
+    routeMap[route.cleanPath] = route.htmlPath
+    middlewareMap[route.cleanPath] = route.middlewares
+  }
 
   const buildInfoForWriting = {
     oneOptions,
     routeMap,
+    middlewareMap,
     builtRoutes,
     constants: JSON.parse(JSON.stringify({ ...constants })),
   }

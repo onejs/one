@@ -82,10 +82,6 @@ export type VXRNOptions = {
          */
         loadEnv?: boolean;
         /**
-         * Uses mkcert to create a self-signed certificate
-         */
-        https?: boolean;
-        /**
          * Determines the Hono platform adapter
          *   node: https://github.com/honojs/node-server
          *   vercel: https://hono.dev/docs/getting-started/vercel

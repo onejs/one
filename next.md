@@ -18,6 +18,8 @@
     - faster route matching, regex routers can be faster than trie
       - see handleRequest file, npm radix3 or rou3
 
+  - we should remove port/host from the plugin config since vite wants to handle that config and it forces us to load the plugins twice on startup
+
 ---
 
 # backlog

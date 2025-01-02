@@ -101,15 +101,23 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
   const middlewareRoutes: OneRouterServerManifestV1Route[] = []
   const pageRoutes: OneRouterServerManifestV1Route[] = []
 
+  const addedMiddlewares: Record<string, boolean> = {}
+
   for (const [path, node] of flat) {
     if (node.type === 'api') {
       apiRoutes.push(getGeneratedNamedRouteRegex(path, node))
       continue
     }
-    if (node.type === 'middleware') {
-      apiRoutes.push(getGeneratedNamedRouteRegex(path, node))
-      continue
+
+    if (node.middlewares?.length) {
+      for (const middleware of node.middlewares) {
+        if (!addedMiddlewares[middleware.contextKey]) {
+          addedMiddlewares[middleware.contextKey] = true
+          middlewareRoutes.push(getGeneratedNamedRouteRegex(path, middleware))
+        }
+      }
     }
+
     pageRoutes.push(getGeneratedNamedRouteRegex(path, node))
   }
 
