@@ -1,7 +1,7 @@
 import { defineCommand, runMain } from 'citty'
 import { default as FSExtra } from 'fs-extra'
 import { readFileSync } from 'node:fs'
-import path, { dirname, relative } from 'node:path'
+import path, { dirname, extname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { generateText } from 'ai'
 import { google } from '@ai-sdk/google'
@@ -44,7 +44,12 @@ const main = defineCommand({
       recursive: true,
       filter: (srcIn) => {
         const src = relative(relative(process.cwd(), args.target), srcIn)
-        return !src.includes('node_modules') && !src.startsWith('dist') && !src.startsWith('.expo')
+        return (
+          !src.endsWith('.DS_Store') &&
+          !src.includes('node_modules') &&
+          !src.startsWith('dist') &&
+          !src.startsWith('.expo')
+        )
       },
     })
 
@@ -58,32 +63,64 @@ const main = defineCommand({
       return text
     }
 
-    return
-
     const codebase = await processCodebase(args.destination)
+
+    const out = await llm(`
+You are a bot that helps distill codebases down from the full codebase into a starter kit for a software developer to use.
+
+Below is a description of the codebase, with an index of the files, and then the contents of the code-like files.
+
+Each section is separated with "---". At the end, the developer will give you a prompt to take action on.
+
+- Do NOT add any new code, your only job is to remove code
+- Do NOT modify existing functions, simply remove them
+- Do NOT make refactors, just removals
+
+---
+      
+${codebase}
+
+---
+
+Developer prompt:
+
+Lets keep the interface elements and the chat-related screens, and leave just the general structure.
+We want to keep the infrastructure, postgres, docker, etc. Keep the general structure, tamagui, layouts.
+But remove the chat-specific interfaces so we can use this starter to build a different type of app.
+
+---
+
+To start, first write a plan on what you will remove here in plain english (5 sentences or so).
+Then, add a "---" and create a new Index.
+Then, add a "---" and then add the files.
+
+---
+
+`)
 
     console.log('wtf', codebase)
 
-    async function buildIndex(
-      rootDir: string,
-      indentLevel = 0
-    ): Promise<{ name: string; summary: string; indent: number }[]> {
+    type Entry = { name: string; summary: string; indent: number; type: 'file' | 'folder' }
+
+    async function buildIndex(rootDir: string, indentLevel = 0): Promise<Entry[]> {
       const items = await FSExtra.readdir(rootDir, { withFileTypes: true })
-      const index: { name: string; summary: string; indent: number }[] = []
+      const index: Entry[] = []
 
       for (const item of items) {
-        if (item.isDirectory()) {
+        const type = item.isDirectory() ? 'folder' : 'file'
+        const entry = {
+          name: item.name,
+          summary: '',
+          indent: indentLevel,
+          type,
+        } satisfies Entry
+
+        index.push(entry)
+
+        if (type === 'folder') {
           const dirPath = path.join(rootDir, item.name)
           const readmePath = path.join(dirPath, 'README.md')
 
-          // Add the directory to the index
-          index.push({
-            name: item.name,
-            summary: '',
-            indent: indentLevel,
-          })
-
-          // Check for README.md and summarize it
           if (await FSExtra.pathExists(readmePath)) {
             console.info(`Found readme at`, readmePath)
             const readmeContent = await FSExtra.readFile(readmePath, 'utf8')
@@ -93,7 +130,6 @@ const main = defineCommand({
             index[index.length - 1].summary = summary
           }
 
-          // Recursively process subdirectories
           const subIndex = await buildIndex(dirPath, indentLevel + 1)
           index.push(...subIndex)
         }
@@ -109,11 +145,12 @@ const main = defineCommand({
       const index = await buildIndex(rootDir)
 
       output += '## Index\n\n'
-      for (const { name, summary, indent } of index) {
+      for (const { name, summary, indent, type } of index) {
         const indentStr = '  '.repeat(indent) // 2 spaces per indent level
-        output += `${indentStr}- **${name}**: ${summary}\n`
+        output += `${indentStr}- ${type === 'folder' ? '📁' : '📋'} ${name}: ${summary}\n`
       }
       output += '\n---\n\n'
+      output += `## Files\n\n`
 
       async function processDirectory(dirPath: string) {
         const items = await FSExtra.readdir(dirPath, { withFileTypes: true })
@@ -124,10 +161,13 @@ const main = defineCommand({
           if (item.isDirectory()) {
             await processDirectory(itemPath)
           } else if (item.isFile() && item.name !== 'README.md') {
-            const fileContent = '' //tmp comment out to avoid huge  //await FSExtra.readFile(itemPath, 'utf8')
-            const relativePath = path.relative(rootDir, itemPath)
-            const ext = path.extname(item.name).slice(1)
-            output += `\`\`\`${ext} fileName=${relativePath}\n${fileContent}\n\`\`\`\n\n`
+            const extension = extname(item.name)
+            if (['.ts', '.tsx', '.js', '.css'].includes(extension)) {
+              const fileContent = await FSExtra.readFile(itemPath, 'utf8')
+              const relativePath = path.relative(rootDir, itemPath)
+              const ext = path.extname(item.name).slice(1)
+              output += `\`\`\`${ext} fileName=${relativePath}\n${fileContent}\n\`\`\`\n\n`
+            }
           }
         }
       }
