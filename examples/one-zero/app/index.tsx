@@ -3,7 +3,7 @@ import { Button, H1, H3, Input, isWeb, Paragraph, SizableText, XStack, YStack } 
 import { authClient, useAuth } from '~/better-auth/authClient'
 import { Avatar } from '~/interface/Avatar'
 import { isTauri } from '~/tauri/constants'
-import { randomID } from '~/zero/randomID'
+import { randomID } from '~/zero/randomId'
 import { useQuery, zero } from '~/zero/zero'
 
 export default function HomePage() {
