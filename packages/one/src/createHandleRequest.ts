@@ -4,12 +4,13 @@ import type { Middleware, MiddlewareContext } from './createMiddleware'
 import type { RouteNode } from './Route'
 import type { RouteInfo, RouteInfoCompiled } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
+import { getHonoPath } from './utils/getHonoPath'
 import { isResponse } from './utils/isResponse'
 import { getManifest } from './vite/getManifest'
 import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
 
 export type RequestHandlers = {
-  handleSSR?: (props: RequestHandlerProps) => Promise<any>
+  handlePage?: (props: RequestHandlerProps) => Promise<any>
   handleLoader?: (props: RequestHandlerProps) => Promise<any>
   handleAPI?: (props: RequestHandlerProps) => Promise<any>
   loadMiddleware?: (route: RouteNode) => Promise<any>
@@ -155,7 +156,7 @@ export async function resolveLoaderRoute(
   })
 }
 
-export async function resolveSSRRoute(
+export async function resolvePageRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,
@@ -164,7 +165,7 @@ export async function resolveSSRRoute(
   const { pathname, search } = url
   return resolveResponse(async () => {
     return await runMiddlewares(handlers, request, route, async () => {
-      return await handlers.handleSSR!({
+      return await handlers.handlePage!({
         request,
         route,
         url,
@@ -189,6 +190,7 @@ function compileRouteRegex(route: RouteInfo): RouteInfoCompiled {
   return {
     ...route,
     compiledRegex: new RegExp(route.namedRegex),
+    honoPath: getHonoPath(route.page),
   }
 }
 
@@ -268,12 +270,12 @@ export function createHandleRequest(handlers: RequestHandlers) {
         }
       }
 
-      if (handlers.handleSSR) {
+      if (handlers.handlePage) {
         for (const route of compiledManifest.pageRoutes) {
           if (!route.compiledRegex.test(pathname)) {
             continue
           }
-          return resolveSSRRoute(handlers, request, url, route)
+          return resolvePageRoute(handlers, request, url, route)
         }
       }
 

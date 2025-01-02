@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
-import Path, { join, relative, resolve } from 'node:path'
+import Path, { join, relative, resolve, sep } from 'node:path'
 import type { OutputAsset, RollupOutput } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
@@ -16,11 +16,13 @@ import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
+import { getHonoPath } from '../utils/getHonoPath'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 import { replaceLoader } from '../vite/replaceLoader'
 import type { One } from '../vite/types'
 import { labelProcess } from './label-process'
+import { toAbsolute } from '../utils/toAbsolute'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -63,7 +65,6 @@ export async function build(args: {
 
   const options = await fillOptions(vxrnOutput.options)
 
-  const toAbsolute = (p) => Path.resolve(options.root, p)
   const { optimizeDeps } = getOptimizeDeps('build')
 
   const apiBuildConfig = mergeConfig(
@@ -193,12 +194,7 @@ export async function build(args: {
       const outChunks = middlewareBuildInfo.output.filter((x) => x.type === 'chunk')
       const chunk = outChunks.find((x) => x.facadeModuleId === fullPath)
       if (!chunk) throw new Error(`internal err finding middleware`)
-      builtMiddlewares[middleware.file] = resolve(
-        absoluteRoot,
-        'dist',
-        'middlewares',
-        chunk.fileName
-      )
+      builtMiddlewares[middleware.file] = join('dist', 'middlewares', chunk.fileName)
     }
   }
 
@@ -384,11 +380,11 @@ export async function build(args: {
       console.info('[one] building routes', { foundRoute, layoutEntries, allEntries, allCSS })
     }
 
-    const serverJsPath = toAbsolute(join('dist/server', output.fileName))
+    const serverJsPath = join('dist/server', output.fileName)
 
     let exported
     try {
-      exported = await import(serverJsPath)
+      exported = await import(toAbsolute(serverJsPath))
     } catch (err) {
       console.error(`Error importing page (original error)`, err)
       // err cause not showing in vite or something
@@ -455,6 +451,7 @@ export async function build(args: {
 
         builtRoutes.push({
           type: foundRoute.type,
+          routeFile: foundRoute.file,
           middlewares,
           cleanPath,
           preloadPath,
@@ -530,44 +527,43 @@ ${JSON.stringify(params || null, null, 2)}`
   await moveAllFiles(staticDir, clientDir)
   await FSExtra.rm(staticDir, { force: true, recursive: true })
 
-  // write out the pathname => html map for the server
+  // write out the static paths (pathname => html) for the server
   const routeMap: Record<string, string> = {}
-  const middlewareMap: Record<string, string[]> = {}
-
   for (const route of builtRoutes) {
-    routeMap[route.cleanPath] = route.htmlPath
-    middlewareMap[route.cleanPath] = route.middlewares
+    if (!route.cleanPath.includes('*')) {
+      routeMap[route.cleanPath] = route.htmlPath
+    }
   }
 
   const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
   for (const route of builtRoutes) {
     routeToBuildInfo[route.cleanPath] = route
-    // temp - make it back into brackets style
-    const bracketRoutePath = route.cleanPath
-      .split('/')
-      .map((part) => {
-        return part[0] === ':' ? `[${part.slice(1)}]` : part
-      })
-      .join('/')
-    routeToBuildInfo[bracketRoutePath] = route
   }
 
-  // layouts are huge due to keeping all children, not needed after build, TODO would be clean it up in manifst
-  function removeLayouts(route: RouteInfo) {
-    const { layouts, ...rest } = route
-    return rest
+  function createBuildManifestRoute(route: RouteInfo) {
+    // remove layouts, they are huge due to keeping all children, not needed after build
+    // TODO would be clean it up in manifst
+    const { layouts, ...built } = route
+
+    // swap out for the built middleware path
+    const buildInfo = builtRoutes.find((x) => x.routeFile === route.file)
+    if (built.middlewares && buildInfo?.middlewares) {
+      for (const [index, mw] of built.middlewares.entries()) {
+        mw.contextKey = buildInfo.middlewares[index]
+      }
+    }
+
+    return built
   }
 
   const buildInfoForWriting: One.BuildInfo = {
     oneOptions,
     routeToBuildInfo,
     manifest: {
-      pageRoutes: manifest.pageRoutes.map(removeLayouts),
-      apiRoutes: manifest.apiRoutes.map(removeLayouts),
+      pageRoutes: manifest.pageRoutes.map(createBuildManifestRoute),
+      apiRoutes: manifest.apiRoutes.map(createBuildManifestRoute),
     },
     routeMap,
-    middlewareMap,
-    builtRoutes,
     constants: JSON.parse(JSON.stringify({ ...constants })) as any,
   }
 
@@ -648,6 +644,19 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
   const file = Path.basename(path)
   const fileName = file.replace(/\.[a-z]+$/, '')
 
+  function paramsError(part: string) {
+    throw new Error(
+      `[one] Params doesn't fit route:
+      
+      - path: ${path} 
+      - part: ${part}
+      - fileName: ${fileName}
+      - params:
+
+${JSON.stringify(params, null, 2)}`
+    )
+  }
+
   const nameWithParams = (() => {
     if (fileName === 'index') {
       return '/'
@@ -655,7 +664,10 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
     if (fileName.startsWith('[...')) {
       const part = fileName.replace('[...', '').replace(']', '')
       if (!params[part]) {
-        console.warn(`couldn't resolve ${fileName} segment in path ${path}`)
+        if (strict) {
+          throw paramsError(part)
+        }
+        return `/*`
       }
       return `/${params[part]}`
     }
@@ -666,16 +678,7 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
           const found = params[part.slice(1, part.length - 1)]
           if (!found) {
             if (strict) {
-              throw new Error(
-                `[one] Params doesn't fit route:
-                
-                - path: ${path} 
-                - part: ${part}
-                - fileName: ${fileName}
-                - params:
-  
-  ${JSON.stringify(params, null, 2)}`
-              )
+              throw paramsError(part)
             }
 
             return ':' + part.replace('[', '').replace(']', '')
@@ -687,7 +690,8 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
       .join('/')}`
   })()
 
-  return `${dirname}${nameWithParams}`.replace(/\/\/+/gi, '/')
+  // hono path will convert +not-found etc too
+  return getHonoPath(`${dirname}${nameWithParams}`.replace(/\/\/+/gi, '/'))
 }
 
 function escapeRegex(string: string) {

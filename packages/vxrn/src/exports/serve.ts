@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { RegExpRouter } from 'hono/router/reg-exp-router'
 import type { VXRNServeOptions } from '../types'
 import { createProdServer } from './createServer'
 
@@ -10,7 +11,9 @@ export const serve = async (optionsIn: VXRNServeOptions) => {
   const { getServerOptionsFilled } = await import('../utils/getServerOptionsFilled')
   const options = await getServerOptionsFilled(optionsIn, 'prod')
 
-  const app = new Hono()
+  const app = new Hono({
+    router: new RegExpRouter(),
+  })
 
   if (optionsIn.beforeRegisterRoutes) {
     await optionsIn.beforeRegisterRoutes(options, app)

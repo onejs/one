@@ -14,6 +14,7 @@ export type RouteInfo<TRegex = string> = {
 };
 export type RouteInfoCompiled = RouteInfo & {
     compiledRegex: RegExp;
+    honoPath: string;
 };
 export type RoutesManifest<TRegex = string> = {
     apiRoutes: RouteInfo<TRegex>[];

@@ -2,7 +2,7 @@ import type { RouteNode } from './Route';
 import type { RouteInfo, RouteInfoCompiled } from './server/createRoutesManifest';
 import type { LoaderProps } from './types';
 export type RequestHandlers = {
-    handleSSR?: (props: RequestHandlerProps) => Promise<any>;
+    handlePage?: (props: RequestHandlerProps) => Promise<any>;
     handleLoader?: (props: RequestHandlerProps) => Promise<any>;
     handleAPI?: (props: RequestHandlerProps) => Promise<any>;
     loadMiddleware?: (route: RouteNode) => Promise<any>;
@@ -16,7 +16,7 @@ type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
 type RequestHandlerResponse = null | string | Response;
 export declare function resolveAPIRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoCompiled): Promise<Response>;
 export declare function resolveLoaderRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoCompiled): Promise<Response>;
-export declare function resolveSSRRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoCompiled): Promise<Response>;
+export declare function resolvePageRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoCompiled): Promise<Response>;
 export declare function getURLfromRequestURL(request: Request): URL;
 export declare function compileManifest(manifest: {
     pageRoutes: RouteInfo[];

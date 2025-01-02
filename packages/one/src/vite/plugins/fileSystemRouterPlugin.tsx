@@ -28,7 +28,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
   function createRequestHandler() {
     return createHandleRequest({
-      async handleSSR({ route, url, loaderProps }) {
+      async handlePage({ route, url, loaderProps }) {
         console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
 
         if (route.type === 'spa') {

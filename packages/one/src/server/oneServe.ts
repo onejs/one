@@ -1,13 +1,15 @@
 import type { Hono, MiddlewareHandler } from 'hono'
+import type { BlankEnv } from 'hono/types'
 import { join } from 'node:path'
 import { getServerEntry } from 'vxrn/serve'
-import type { RenderAppProps } from '../types'
-import type { One } from '../vite/types'
-import type { BlankEnv } from 'hono/types'
-import type { RouteInfoCompiled } from './createRoutesManifest'
-import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
-import { LOADER_JS_POSTFIX_REGEX_STRING, LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import { getPathFromLoaderPath } from '../cleanUrl'
+import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
+import type { RenderAppProps } from '../types'
+import { toAbsolute } from '../utils/toAbsolute'
+import type { One } from '../vite/types'
+import type { RouteInfoCompiled } from './createRoutesManifest'
+import { readFile } from 'fs-extra'
 
 export async function oneServe(
   oneOptions: One.PluginOptions,
@@ -15,7 +17,7 @@ export async function oneServe(
   app: Hono,
   serveStatic = true
 ) {
-  const { resolveAPIRoute, resolveLoaderRoute, resolveSSRRoute } = await import(
+  const { resolveAPIRoute, resolveLoaderRoute, resolvePageRoute } = await import(
     '../createHandleRequest'
   )
   const { isResponse } = await import('../utils/isResponse')
@@ -41,7 +43,7 @@ export async function oneServe(
     throw new Error(`No build info found, have you run build?`)
   }
 
-  const { routeMap, routeToBuildInfo } = buildInfo as One.BuildInfo
+  const { routeToBuildInfo, routeMap } = buildInfo as One.BuildInfo
 
   const serverOptions = {
     ...oneOptions,
@@ -66,16 +68,10 @@ export async function oneServe(
     },
 
     async loadMiddleware(route) {
-      const middlewareFile = join(
-        process.cwd(),
-        'dist',
-        'middleware',
-        route.contextKey.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
-      )
-      return await import(middlewareFile)
+      return await import(toAbsolute(route.contextKey))
     },
 
-    async handleSSR({ route, url, loaderProps }) {
+    async handlePage({ route, url, loaderProps }) {
       if (route.type === 'ssr') {
         const buildInfo = routeToBuildInfo[route.page]
         if (!buildInfo) {
@@ -110,6 +106,11 @@ ${err?.['stack'] ?? err}
 
 url: ${url}`)
         }
+      } else {
+        const html = await readFile(routeMap[route['honoPath']], 'utf-8')
+        const headers = new Headers()
+        headers.set('content-type', 'text/html')
+        return new Response(html, { headers })
       }
     },
   }
@@ -132,8 +133,10 @@ url: ${url}`)
             case 'api': {
               return resolveAPIRoute(requestHandlers, request, url, route)
             }
+            case 'ssg':
+            case 'spa':
             case 'ssr': {
-              return resolveSSRRoute(requestHandlers, request, url, route)
+              return resolvePageRoute(requestHandlers, request, url, route)
             }
           }
         })()
@@ -186,14 +189,14 @@ url: ${url}`)
   const compiledManifest = compileManifest(buildInfo.manifest)
 
   for (const route of compiledManifest.pageRoutes) {
-    app.get(route.namedRegex, createHonoHandler(route))
+    app.get(route.honoPath, createHonoHandler(route))
   }
 
   for (const route of compiledManifest.apiRoutes) {
-    app.get(route.namedRegex, createHonoHandler(route))
-    app.put(route.namedRegex, createHonoHandler(route))
-    app.post(route.namedRegex, createHonoHandler(route))
-    app.delete(route.namedRegex, createHonoHandler(route))
-    app.patch(route.namedRegex, createHonoHandler(route))
+    app.get(route.honoPath, createHonoHandler(route))
+    app.put(route.honoPath, createHonoHandler(route))
+    app.post(route.honoPath, createHonoHandler(route))
+    app.delete(route.honoPath, createHonoHandler(route))
+    app.patch(route.honoPath, createHonoHandler(route))
   }
 }

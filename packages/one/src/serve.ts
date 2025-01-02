@@ -43,10 +43,10 @@ export async function serve(args: VXRNOptions['server'] = {}) {
       platform: args.platform,
     }),
 
-    async beforeRegisterRoutes(options, app) {},
-
-    async afterRegisterRoutes(options, app) {
+    async beforeRegisterRoutes(options, app) {
       await oneServe(oneOptions, buildInfo, app)
     },
+
+    async afterRegisterRoutes(options, app) {},
   })
 }

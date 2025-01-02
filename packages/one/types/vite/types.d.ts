@@ -155,17 +155,16 @@ export declare namespace One {
         oneOptions?: PluginOptions;
         routeToBuildInfo: Record<string, One.RouteBuildInfo>;
         routeMap: Record<string, string>;
-        middlewareMap: Record<string, string[]>;
         manifest: {
             pageRoutes: RouteInfo[];
             apiRoutes: RouteInfo[];
         };
-        builtRoutes: RouteBuildInfo[];
     };
     export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo;
     export type RouteBuildInfo = {
         type: One.RouteType;
         path: string;
+        routeFile: string;
         middlewares: string[];
         preloadPath: string;
         cleanPath: string;
