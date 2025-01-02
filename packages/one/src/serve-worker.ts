@@ -3,6 +3,7 @@ import { oneServe } from './server/oneServe'
 import type { One } from './vite/types'
 import { setupBuildInfo } from './server/setupBuildOptions'
 import { ensureExists } from './utils/ensureExists'
+import { Hono } from 'hono'
 
 export async function serve(buildInfo: One.BuildInfo) {
   setupBuildInfo(buildInfo)
@@ -13,7 +14,9 @@ export async function serve(buildInfo: One.BuildInfo) {
 
   const serverOptions = buildInfo.oneOptions.server || {}
 
-  const app = await createProdServer(serverOptions)
+  const app = new Hono()
+
+  await createProdServer(app, serverOptions)
 
   await oneServe(buildInfo.oneOptions, buildInfo, app, false)
 
