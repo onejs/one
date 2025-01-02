@@ -15,7 +15,7 @@ export const PopoverContent = ({
       exitStyle={{ y: -10, opacity: 0 }}
       elevation="$5"
       animation={[
-        'quick',
+        'quicker',
         {
           opacity: {
             overshootClamping: true,

@@ -119,6 +119,9 @@ export async function getReactNativeConfig(
             case 'buffer': {
               return findModulePath(join('buffer', 'index.js'), root)
             }
+            case 'punycode': {
+              return findModulePath(join('punycode', 'punycode.es6.js'), root)
+            }
           }
         },
       } satisfies Plugin,

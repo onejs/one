@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react'
 import { Button, Circle, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
-import { randomID } from '~/helpers/randomID'
+import { randomId } from '~/helpers/randomId'
 import { hiddenPanelWidth } from '~/interface/settings/constants'
-import { useCurrentServer, useCurrentServerMembers, useCurrentServerRoles } from '~/state/server'
+import { useCurrentServerRoles } from '~/state/server/useCurrentServerRoles'
+import { useCurrentServerMembers } from '~/state/server/useCurrentServerMembers'
+import { useCurrentServer } from '~/state/server/useCurrentServer'
 import type { RolePermissionsKeys, RoleWithRelations, Server } from '~/zero'
 import { zero } from '~/zero'
 import { Avatar } from '../Avatar'
@@ -130,14 +132,14 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
           <RoleListItem
             defaultEditing
             onEditComplete={(name) => {
-              const id = randomID()
+              const id = randomId()
               setShowTempRole(false)
               zero.mutate.role.insert({
                 id,
                 color: 'gray',
-                creatorID: user?.id || '',
+                creatorId: user?.id || '',
                 name,
-                serverID: server.id,
+                serverId: server.id,
               })
             }}
             onEditCancel={() => setShowTempRole(false)}
@@ -145,7 +147,7 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
         )}
       </YStack>
 
-      <Sheet animation="bouncy" open={!!selected}>
+      <Sheet animation="quickest" open={!!selected}>
         <Sheet.Frame bg="$color2" br="$6" elevation="$4" p="$4">
           {selected && <ServerRolePermissionsPane role={selected} />}
         </Sheet.Frame>
@@ -224,16 +226,15 @@ const ServerRolePermissionsPaneMembers = ({ role }: { role: RoleWithRelations })
   }
 
   return (
-    <SearchableList items={serverMembers} onSelectItem={(item) => {}}>
-      <SearchableInput
-        size="$4"
-        mb="$3"
-        placeholder="Filter..."
-        onChangeText={(text) => {
-          // setSearch(text)
-        }}
-        onKeyPress={(key) => {}}
-      />
+    <SearchableList
+      onSearch={() => {
+        console.warn('todo')
+      }}
+      searchKey="name"
+      items={serverMembers}
+      onSelectItem={(item) => {}}
+    >
+      <SearchableInput size="$4" mb="$3" placeholder="Filter..." onKeyPress={(key) => {}} />
 
       {serverMembers.map((user, index) => {
         return (
@@ -263,19 +264,19 @@ const ServerRolePermissionsPaneMembers = ({ role }: { role: RoleWithRelations })
                           }
 
                           await zero.mutate.userRole.delete({
-                            roleID: role.id,
-                            serverID: role.serverID,
-                            userID: user.id,
+                            roleId: role.id,
+                            serverId: role.serverId,
+                            userId: user.id,
                           })
                           return
                         }
 
                         // not member
                         await zero.mutate.userRole.insert({
-                          roleID: role.id,
-                          serverID: role.serverID,
-                          userID: user.id,
-                          granterID: currentUser.id,
+                          roleId: role.id,
+                          serverId: role.serverId,
+                          userId: user.id,
+                          granterId: currentUser.id,
                         })
                       }}
                       size="$3"

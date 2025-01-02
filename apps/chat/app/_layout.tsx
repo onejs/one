@@ -5,21 +5,45 @@ import './_layout.css'
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { isWeb, TamaguiProvider } from 'tamagui'
 import { AuthEffects } from '~/better-auth/AuthEffects'
 import { Dialogs } from '~/interface/dialogs/Dialogs'
+import { Gallery } from '~/interface/gallery/Gallery'
+import { showToast, ToastProvider } from '~/interface/toast/Toast'
 import { DragDropFile } from '~/interface/upload/DragDropFile'
 import config from '~/tamagui/tamagui.config'
 import { isTauri } from '~/tauri/constants'
 import { useZeroEmit, zero } from '~/zero'
+import { useGlobalHotKeys } from '~/keyboard/useGlobalHotKeys'
 
 export default function Layout() {
+  useGlobalHotKeys()
+
   useLayoutEffect(() => {
     if (isWeb && !isTauri) {
       document.documentElement.classList.add('not_tauri')
     }
   }, [isTauri])
+
+  // if web, send errors to showToast
+  if (isWeb) {
+    useEffect(() => {
+      window.addEventListener('error', (e) => {
+        const msg = e.message.trim()
+        if (!msg) return
+        // filter known ok errors
+        if (
+          !/(measurement is not an Object)|(ResizeObserver loop|Cannot use \'in\' operator)/.test(
+            msg
+          )
+        ) {
+          console.error(`msg`, msg)
+          showToast(`Error: ${msg}`)
+        }
+      })
+    }, [])
+  }
 
   return (
     <>
@@ -41,16 +65,19 @@ export default function Layout() {
 
       <AuthEffects />
 
-      <DragDropFile>
-        <DataProvider>
-          <SchemeProvider>
-            <ThemeProvider>
-              <Slot />
-              <Dialogs />
-            </ThemeProvider>
-          </SchemeProvider>
-        </DataProvider>
-      </DragDropFile>
+      <ThemeProvider>
+        <ToastProvider>
+          <DragDropFile>
+            <DataProvider>
+              <SchemeProvider>
+                <Slot />
+                <Dialogs />
+                <Gallery />
+              </SchemeProvider>
+            </DataProvider>
+          </DragDropFile>
+        </ToastProvider>
+      </ThemeProvider>
     </>
   )
 }
@@ -66,7 +93,7 @@ const DataProvider = ({ children }: { children: any }) => {
 }
 
 const ThemeProvider = ({ children }: { children: any }) => {
-  const [scheme] = useColorScheme()
+  const [scheme, setting] = useColorScheme()
 
   return (
     <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme}>

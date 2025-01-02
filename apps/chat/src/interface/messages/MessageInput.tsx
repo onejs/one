@@ -1,27 +1,33 @@
-import { Image } from '@tamagui/image-next'
-import { X } from '@tamagui/lucide-icons'
 import { useEffect, useRef, useState } from 'react'
-import { Button, Progress, XStack, YStack } from 'tamagui'
+import { Progress, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { Editor, type EditorRef } from '~/editor/Editor'
-import { randomID } from '~/helpers/randomID'
-import { useCurrentChannel, useCurrentServer } from '~/state/server'
-import { getDerivedUserState, updateUserCurrentChannel, useCurrentThread } from '~/state/user'
-import { zero } from '~/zero'
+import { randomId } from '~/helpers/randomId'
+import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
+import { useCurrentServer } from '~/state/server/useCurrentServer'
+import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
+import {
+  closeCurrentThread,
+  getCurrentUser,
+  getDerivedUserState,
+  updateUserCurrentChannel,
+} from '~/state/user'
+import { type Attachment, zero } from '~/zero'
+import { AttachmentItem } from '../attachments/AttachmentItem'
 import { attachmentEmitter } from '../upload/DragDropFile'
 import type { FileUpload } from '../upload/uploadImage'
+import { messageInputEmitter, messageReplyEmitter } from './emitters'
+import { MessageInputReply } from './MessageInputReply'
 import { messagesListEmitter } from './MessagesList'
-import { createEmitter } from '@vxrn/emitter'
+import { handleKeyboardEscape } from '~/keyboard/handleKeyboardEscape'
 
 let mainInputRef: EditorRef | null = null
-
-export const messageInputEmitter = createEmitter<{ type: 'submit' }>()
 
 export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   const inputRef = useRef<EditorRef>(null)
   const channel = useCurrentChannel()
   const server = useCurrentServer()
-  const thread = useCurrentThread()
+  const thread = useCurrentThreadWithMessages()
   const { user } = useAuth()
   const disabled = !user || !channel
 
@@ -48,6 +54,14 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
     }
   }, [channel, inThread])
 
+  messageInputEmitter.use((value) => {
+    if (value.type === 'focus') {
+      setTimeout(() => {
+        mainInputRef?.textarea?.focus()
+      })
+    }
+  })
+
   return (
     <YStack
       btw={1}
@@ -59,6 +73,8 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
         pointerEvents: 'none',
       })}
     >
+      <MessageInputReply />
+
       <Editor
         ref={inputRef}
         onKeyDown={(e) => {
@@ -88,12 +104,14 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
             }
 
             case 'Escape': {
+              if (handleKeyboardEscape()) {
+                return
+              }
+
               inputRef.current?.textarea?.blur()
 
               if (getDerivedUserState().activeThread) {
-                updateUserCurrentChannel({
-                  openedThreadId: undefined,
-                })
+                closeCurrentThread()
 
                 if (mainInputRef) {
                   mainInputRef.textarea?.focus()
@@ -115,35 +133,41 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
           inputRef.current?.clear?.()
 
           await zero.mutateBatch((tx) => {
-            const messageID = randomID()
+            const messageId = randomId()
+
+            const messageState = messageReplyEmitter.value
+            const replyingToId = messageState?.type === 'reply' ? messageState.messageId : null
 
             tx.message.insert({
-              id: messageID,
-              channelID: channel.id,
-              threadID: thread?.id,
+              id: messageId,
+              channelId: channel.id,
+              threadId: thread?.id,
               isThreadReply: !!thread,
+              replyingToId,
               content,
               deleted: false,
-              creatorID: user!.id,
-              serverID: server.id,
+              creatorId: user!.id,
+              serverId: server.id,
             })
 
             const attachments = attachmentEmitter.value
             if (attachments) {
               for (const attachment of attachments) {
                 tx.attachment.insert({
-                  id: randomID(),
+                  id: randomId(),
                   type: attachment.type,
-                  userID: user.id,
-                  channelID: channel.id,
+                  userId: user.id,
+                  channelId: channel.id,
                   url: attachment.url,
-                  messageID,
+                  messageId,
                 })
               }
             }
           })
 
           messageInputEmitter.emit({ type: 'submit' })
+          messageReplyEmitter.emit({ type: 'cancel' })
+          messagesListEmitter.emit({ type: 'scroll-to-bottom' })
 
           setTimeout(() => {
             inputRef.current?.textarea?.focus()
@@ -156,57 +180,55 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   )
 }
 
-const MessageInputAttachments = () => {
-  const [attachments, setAttachments] = useState<FileUpload[]>([])
+const fileUploadToAttachment = (upload: FileUpload): Attachment => {
+  return {
+    channelId: null,
+    messageId: null,
+    userId: getCurrentUser()?.id || `no-user`,
+    createdAt: null,
+    data: null,
+    id: upload.name || randomId(),
+    url: upload.url || upload.preview || null,
+    type: upload.type,
+  }
+}
 
-  attachmentEmitter.use((value) => {
-    console.warn('got attachment', value)
-    setAttachments(value)
+const MessageInputAttachments = () => {
+  const [uploads, setUploads] = useState<FileUpload[]>([])
+
+  attachmentEmitter.use((uploads) => {
+    setUploads(uploads)
   })
 
   messageInputEmitter.use((value) => {
     if (value.type === 'submit') {
-      setAttachments([])
+      setUploads([])
+      attachmentEmitter.emit([])
     }
   })
 
   return (
     <XStack gap="$2">
-      {attachments.map((attachment) => {
-        const url = attachment.url || attachment.preview
-        const size = 50
+      {uploads.map((upload) => {
+        const attachment = fileUploadToAttachment(upload)
+        const size = 60
 
         return (
-          <YStack key={attachment.name} gap="$1" w={size} h={size}>
-            {url && (
-              <YStack pos="relative">
-                <Button
-                  circular
-                  icon={X}
-                  size="$1"
-                  pos="absolute"
-                  t={-2}
-                  r={-2}
-                  zi={10}
-                  onPress={() => {
-                    setAttachments((prev) => {
-                      return prev.filter((_) => _.name !== attachment.name)
-                    })
-                  }}
-                />
-                <Image
-                  src={url}
-                  br="$6"
-                  ov="hidden"
-                  bw={1}
-                  bc="$color3"
-                  width={size}
-                  height={size}
-                  objectFit="contain"
-                />
-              </YStack>
+          <YStack key={attachment.id} gap="$1" w={size} h={size}>
+            {attachment.url && (
+              <AttachmentItem
+                attachment={attachment}
+                size={size}
+                editable
+                rounded
+                onDelete={() => {
+                  setUploads((prev) => {
+                    return prev.filter((_) => _.name !== upload.name)
+                  })
+                }}
+              ></AttachmentItem>
             )}
-            {attachment.progress !== 100 && (
+            {upload.progress !== 100 && (
               <Progress
                 pos="absolute"
                 b={0}
@@ -216,7 +238,7 @@ const MessageInputAttachments = () => {
                 miw={size}
                 h={5}
                 zi={100}
-                value={attachment.progress}
+                value={upload.progress}
                 bg="$color2"
               >
                 <Progress.Indicator h={5} bc="$color7" animation="bouncy" />

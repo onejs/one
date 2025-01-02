@@ -1,7 +1,8 @@
-import { fonts, themes, tokens, animations } from '@tamagui/config/v3'
+import { fonts, themes, tokens } from '@tamagui/config/v3'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { shorthands } from '@tamagui/shorthands/v2'
 import { createTamagui } from 'tamagui'
+import { animations } from './animations'
 
 const media = createMedia({
   xl: { maxWidth: 1450 },
@@ -55,7 +56,7 @@ declare module 'tamagui' {
   interface TamaguiCustomConfig extends Conf {}
 
   interface TypeOverride {
-    groupNames(): 'message'
+    groupNames(): 'message' | 'icon'
   }
 }
 

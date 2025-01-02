@@ -1,5 +1,5 @@
 import FSExtra from 'fs-extra'
-import path from 'node:path'
+import path, { dirname, extname, join, sep } from 'node:path'
 
 /** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
 export const EXCLUDE_LIST = [
@@ -17,6 +17,10 @@ export const EXCLUDE_LIST = [
   '@swc/core-win32-x64-msvc',
   'lightningcss',
 
+  // not ever to be used in app
+  '@expo/cli',
+  'expo-structured-headers',
+
   // not used by web anyway
   // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
   // /lib/module/Platform/Platform.web.js:132:20
@@ -30,6 +34,8 @@ export const EXCLUDE_LIST = [
   '@vxrn/vite-native-hmr',
   '@vxrn/vite-native-swc',
   '@vxrn/vite-native-client',
+  'react-native-ios-utilities',
+  'react-native-ios-modal',
 
   // CLI shouldn't be used in SSR runtime
   '@tamagui/cli',
@@ -125,80 +131,83 @@ export async function scanDepsToPreBundleForSsr(
           dep.startsWith('@expo/') ||
           dep.startsWith('expo-')
 
-        const result = [
-          ...(shouldPreBundle
-            ? (() => {
-                const depPkgJsonExports = depPkgJson.exports || {}
-                // We take a more conservative approach to exclude potentially problematic exports entries. This might result in some valid exports entries being excluded, but it ensures that problematic ones are not included, thereby preventing issues.
-                const definedExports = Object.keys(depPkgJsonExports)
-                  .filter((k) => {
-                    const expData = depPkgJsonExports[k]
-                    const imp = typeof expData === 'string' ? expData : expData?.import
-                    if (typeof imp !== 'string') {
-                      // Skipping since it will cause error `No known conditions for "..." specifier in "..." package`.
-                      // Note that by doing this, nested exports will be skipped as well.
-                      return false
-                    }
-                    if (!imp.endsWith('.js')) {
-                      // Skipping since non-js exports cannot be pre-bundled.
-                      return false
-                    }
+        const depsToPreBundle = await (async () => {
+          if (!shouldPreBundle) {
+            return []
+          }
 
-                    // Only include exports that are named safely.
-                    // This is a conservative approach; we might have a better way to make the judgment.
-                    if (!k.match(/^(\.\/)?[a-zA-Z0-9-_]+$/)) {
-                      return false
-                    }
+          const depPkgJsonExports = depPkgJson.exports || {}
+          // We take a more conservative approach to exclude potentially problematic exports entries. This might result in some valid exports entries being excluded, but it ensures that problematic ones are not included, thereby preventing issues.
+          const definedExports = Object.keys(depPkgJsonExports)
+            .filter((k) => {
+              const expData = depPkgJsonExports[k]
+              const imp = typeof expData === 'string' ? expData : expData?.import
+              if (typeof imp !== 'string') {
+                // Skipping since it will cause error `No known conditions for "..." specifier in "..." package`.
+                // Note that by doing this, nested exports will be skipped as well.
+                return false
+              }
+              if (!imp.endsWith('.js')) {
+                // Skipping since non-js exports cannot be pre-bundled.
+                return false
+              }
 
-                    return true
-                  })
-                  .map((k) => k.replace(/^\.\/?/, ''))
-                  .map((k) => `${dep}/${k}`)
+              // Only include exports that are named safely.
+              // This is a conservative approach; we might have a better way to make the judgment.
+              if (!k.match(/^(\.\/)?[a-zA-Z0-9-_]+$/)) {
+                return false
+              }
 
-                /**
-                 * A dirty workaround for packages that are using entry points that are not explicitly defined,
-                 * such as while using react-native-vector-icons, users will import Icon components like this: `import Icon from 'react-native-vector-icons/FontAwesome'`.
-                 */
-                const specialExports = (() => {
-                  switch (dep) {
-                    case 'react-native-vector-icons':
-                      return [
-                        'AntDesign',
-                        'Entypo',
-                        'EvilIcons',
-                        'Feather',
-                        'FontAwesome',
-                        'FontAwesome5',
-                        'FontAwesome5Pro',
-                        'Fontisto',
-                        'Foundation',
-                        'Ionicons',
-                        'MaterialCommunityIcons',
-                        'MaterialIcons',
-                        'Octicons',
-                        'SimpleLineIcons',
-                        'Zocial',
-                      ].map((n) => `${dep}/${n}`)
+              // make sure it
 
-                    default:
-                      return []
-                  }
-                })()
+              return true
+            })
+            .map((k) => k.replace(/^\.\/?/, ''))
+            .map((k) => `${dep}/${k}`)
 
-                const hasMainExport = Boolean(
-                  depPkgJson['main'] || depPkgJson['module'] || definedExports['.']
-                )
+          /**
+           * A dirty workaround for packages that are using entry points that are not explicitly defined,
+           * such as while using react-native-vector-icons, users will import Icon components like this: `import Icon from 'react-native-vector-icons/FontAwesome'`.
+           */
+          const specialExports = (() => {
+            switch (dep) {
+              case 'react-native-vector-icons':
+                return [
+                  'AntDesign',
+                  'Entypo',
+                  'EvilIcons',
+                  'Feather',
+                  'FontAwesome',
+                  'FontAwesome5',
+                  'FontAwesome5Pro',
+                  'Fontisto',
+                  'Foundation',
+                  'Ionicons',
+                  'MaterialCommunityIcons',
+                  'MaterialIcons',
+                  'Octicons',
+                  'SimpleLineIcons',
+                  'Zocial',
+                ].map((n) => `${dep}/${n}`)
 
-                const exports = [...definedExports, ...specialExports]
-                if (hasMainExport) {
-                  exports.unshift(dep)
-                }
+              default:
+                return []
+            }
+          })()
 
-                return exports
-              })()
-            : []),
-          ...subDepsToPreBundle,
-        ]
+          const mainExport = depPkgJson['main'] || depPkgJson['module'] || definedExports['.']
+
+          const exports = [...definedExports, ...specialExports]
+          if (mainExport) {
+            if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
+              exports.unshift(dep)
+            }
+          }
+
+          return exports
+        })()
+
+        const result = [...depsToPreBundle, ...subDepsToPreBundle]
 
         proceededDeps.set(dep, result)
         return result
@@ -207,6 +216,19 @@ export async function scanDepsToPreBundleForSsr(
   )
     .flat()
     .filter((dep, index, arr) => arr.indexOf(dep) === index)
+}
+
+// vite will fail if there's a main export but it actually doesn't exist
+// this ensures we actually check using an algorithm similar to node/vite
+// probably can find a better one that matches their more accurately
+async function checkIfExportExists(pathIn: string) {
+  const paths = [pathIn, ...(extname(pathIn) ? [] : [pathIn + '.js', pathIn + sep + 'index.js'])]
+  for (const path of paths) {
+    if (await FSExtra.pathExists(path)) {
+      return true
+    }
+  }
+  return false
 }
 
 async function readPackageJsonSafe(packageJsonPath: string) {

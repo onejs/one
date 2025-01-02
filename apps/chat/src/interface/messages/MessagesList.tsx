@@ -3,7 +3,7 @@ import { memo, useEffect, useLayoutEffect, useRef } from 'react'
 import { YStack } from 'tamagui'
 import { VList, type VListHandle } from 'virtua'
 import { useAuth } from '~/better-auth/authClient'
-import { useCurrentChannel } from '~/state/server'
+import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import {
   getUserState,
   updateUserCurrentChannel,
@@ -11,7 +11,8 @@ import {
   updateUserSetEditingMessage,
 } from '~/state/user'
 import type { MessageWithRelations } from '~/zero'
-import { MessageItem } from './MessageItem'
+import { MessageItem, messageItemEmitter } from './MessageItem'
+import { router } from 'one'
 
 type MessagesListActions =
   | {
@@ -20,6 +21,9 @@ type MessagesListActions =
     }
   | {
       type: 'select'
+    }
+  | {
+      type: 'scroll-to-bottom'
     }
 
 export const messagesListEmitter = createEmitter<MessagesListActions>()
@@ -34,7 +38,7 @@ export const MessagesList = memo(
     const shouldStickToBottom = useRef(true)
     const ref = useRef<VListHandle>(null)
     const isPrepend = useRef(false)
-    const lastIndex = useRef(0)
+    const lastMovedIndex = useRef(0)
 
     messagesListEmitter.use(
       (action) => {
@@ -42,10 +46,10 @@ export const MessagesList = memo(
 
         const [_, { activeChannelState }] = getUserState()
         const { focusedMessageId } = activeChannelState || {}
-        const focusedMessage = focusedMessageId ? messages[lastIndex.current] : null
+        const focusedMessage = focusedMessageId ? messages[lastMovedIndex.current] : null
 
         const move = (index: number) => {
-          lastIndex.current = index
+          lastMovedIndex.current = index
           updateUserCurrentChannel({
             focusedMessageId: messages[index].id,
           })
@@ -62,16 +66,16 @@ export const MessagesList = memo(
             const { value } = action
 
             if (value === 'up') {
-              if (!focusedMessageId || lastIndex.current === 0) {
+              if (!focusedMessageId || lastMovedIndex.current === 0) {
                 move(messages.length - 1)
               } else {
-                move(lastIndex.current - 1)
+                move(lastMovedIndex.current - 1)
               }
             } else {
-              if (lastIndex.current === messages.length - 1) {
+              if (lastMovedIndex.current === messages.length - 1) {
                 // at bottom
               } else {
-                move(lastIndex.current + 1)
+                move(lastMovedIndex.current + 1)
               }
             }
             break
@@ -80,11 +84,21 @@ export const MessagesList = memo(
           case 'select': {
             if (focusedMessage) {
               if (focusedMessage.thread) {
-                updateUserOpenThread(focusedMessage.thread[0])
+                updateUserOpenThread(focusedMessage.thread)
               } else {
                 updateUserSetEditingMessage(focusedMessage.id)
               }
             }
+            break
+          }
+
+          case 'scroll-to-bottom': {
+            const lastIndex = messages.length - 1
+            setTimeout(() => {
+              ref.current?.scrollToIndex(lastIndex, {
+                smooth: true,
+              })
+            }, 150)
             break
           }
         }
@@ -102,6 +116,27 @@ export const MessagesList = memo(
 
       ref.current.scrollToIndex(messages.length - 1, { align: 'end' })
     }, [messages.length])
+
+    useEffect(() => {
+      router.subscribe((state) => {
+        if (!ref.current) return
+
+        const [route] = state.routes
+        // @ts-expect-error TODO
+        const messageId = route.params?.message
+        if (messageId) {
+          messageItemEmitter.emit({
+            type: 'highlight',
+            id: messageId,
+          })
+
+          const messageIndex = messages.findIndex((x) => x.id === messageId)
+          if (messageIndex >= 0) {
+            ref.current.scrollToIndex(messageIndex)
+          }
+        }
+      })
+    }, [messages])
 
     return (
       <YStack ov="hidden" f={10}>
@@ -127,14 +162,13 @@ export const MessagesList = memo(
               const message = messages[index]
               const lastMessage = messages[index - 1]
 
-              if (!message || !user) {
+              if (!message || !user || !channel) {
                 return <></>
               }
 
               return (
                 <MessageItem
-                  hideUser={lastMessage?.creatorID === message.creatorID}
-                  channel={channel}
+                  hideUser={lastMessage?.creatorId === message.creatorId && !message.replyingTo}
                   key={message.id}
                   message={message}
                   disableEvents={disableEvents}

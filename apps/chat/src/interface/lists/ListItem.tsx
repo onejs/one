@@ -45,7 +45,7 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
       <XStack
         ref={ref}
         px="$2.5"
-        py="$1.5"
+        py="$2"
         ai="center"
         userSelect="none"
         gap="$3"
@@ -87,6 +87,13 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
             }}
             onSubmitEditing={(e) => {
               onEditComplete?.(e.nativeEvent.text)
+            }}
+            onBlur={(e) => {
+              // TODO nativeEvent is wrong in tamagui here
+              const val = (e.target as any)['value']
+              if (!val || val === children) {
+                onEditCancel?.()
+              }
             }}
           />
         ) : typeof children === 'string' ? (

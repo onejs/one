@@ -8,9 +8,9 @@ export let zero = createZero()
 const zeroEmitter = createEmitter<typeof zero>()
 export const useZeroEmit = zeroEmitter.use
 
-function createZero({ auth, userID = 'anon' }: { auth?: string; userID?: string } = {}) {
+function createZero({ auth, userId = 'anon' }: { auth?: string; userId?: string } = {}) {
   return new Zero({
-    userID,
+    userID: userId,
     auth,
     server: import.meta.env.VITE_PUBLIC_ZERO_SERVER,
     schema,
@@ -18,10 +18,10 @@ function createZero({ auth, userID = 'anon' }: { auth?: string; userID?: string 
   })
 }
 
-export function setZeroAuth({ jwtToken, userID }: { jwtToken: string; userID: string }) {
+export function setZeroAuth({ jwtToken, userId }: { jwtToken: string; userId: string }) {
   zero = createZero({
     auth: jwtToken,
-    userID,
+    userId,
   })
 
   // zero.query.server.preload()
@@ -39,7 +39,7 @@ export type QueryResult<TReturn extends QueryType> = [
 ]
 
 export function useQuery<
-  QueryBuilder extends (z: Zero<Schema>['query']) => Query<any>,
+  QueryBuilder extends (z: Zero<Schema>['query']) => Query<any, any>,
   Q extends ReturnType<QueryBuilder>,
 >(createQuery: QueryBuilder): Q extends Query<any, infer Return> ? QueryResult<Return> : never {
   const z = useZero<Schema>()

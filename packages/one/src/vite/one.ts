@@ -24,7 +24,7 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import type { One } from './types'
-// import { barrel } from 'vite-plugin-barrel'
+import { barrel } from 'vite-plugin-barrel'
 
 /**
  * This needs a big refactor!
@@ -61,6 +61,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
   const vxrnOptions = getOptionsFilled()
   const root = vxrnOptions?.root || process.cwd()
+  const barrelOption = options.optimization?.barrel
 
   const devAndProdPlugins: Plugin[] = [
     {
@@ -69,13 +70,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       __get: options,
     },
 
-    // stopped working on new version
-    // barrel({
-    //   packages: ['@tamagui/lucide-icons', '@mui/material', '@mui/icons-material'],
-    //   // experimental: {
-    //   //   integration: 'plugin-react-swc',
-    //   // },
-    // }) as any,
+    barrelOption === false
+      ? null
+      : (barrel({
+          packages: Array.isArray(barrelOption) ? barrelOption : ['@tamagui/lucide-icons'],
+        }) as any),
 
     {
       name: 'one-define-env',
@@ -87,11 +86,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    ...(options.ssr?.disableAutoDepsPreBundling
+    ...(options.ssr?.disableAutoDepsPreBundling === true
       ? []
       : [
           autoPreBundleDepsForSsrPlugin({
             root,
+            exclude: Array.isArray(options.ssr?.disableAutoDepsPreBundling)
+              ? options.ssr?.disableAutoDepsPreBundling
+              : undefined,
           }),
         ]),
 
@@ -141,10 +143,25 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         // const forkPath = dirname(resolvePath('one'))
 
+        let tslibLitePath = ''
+
+        try {
+          // temp fix for seeing
+          // Could not read from file: modules/@vxrn/resolve/dist/esm/@vxrn/tslib-lite
+          tslibLitePath = resolvePath('@vxrn/tslib-lite', process.cwd())
+        } catch (err) {
+          console.info(`Can't find tslib-lite, falling back to tslib`)
+          if (process.env.DEBUG) {
+            console.error(err)
+          }
+        }
+
         return {
           resolve: {
             alias: {
-              tslib: resolvePath('@vxrn/tslib-lite', process.cwd()),
+              ...(tslibLitePath && {
+                tslib: tslibLitePath,
+              }),
             },
 
             // [

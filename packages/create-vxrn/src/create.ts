@@ -11,10 +11,7 @@ import { getTemplateInfo } from './helpers/getTemplateInfo'
 import { installDependencies } from './helpers/installDependencies'
 import { validateNpmName } from './helpers/validateNpmPackage'
 import prompts from 'prompts'
-import {
-  detectPackageManager,
-  type PackageManagerName,
-} from './helpers/detectPackageManager'
+import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
 
 const { existsSync, readFileSync, writeFileSync } = FSExtra
 
@@ -23,7 +20,7 @@ export async function create(args: { template?: string; name?: string }) {
     execSync(`git --version`).toString().replace(`git version `, '').trim()
   )
   if (gitVersionString < 2.27) {
-    console.error(`\n\n ⚠️ vxrn can't install: Git version must be >= 2.27\n\n`)
+    console.error(`\n\n ! vxrn can't install: Git version must be >= 2.27\n\n`)
     process.exit(1)
   }
 
@@ -46,7 +43,7 @@ export async function create(args: { template?: string; name?: string }) {
     while (fs.existsSync(resolvedProjectPath)) {
       console.info()
       console.info(
-        ansis.yellow('⚠️'),
+        ansis.yellow('!'),
         `The folder ${ansis.underline(
           ansis.blueBright(projectName)
         )} already exists, lets try another name`
@@ -108,9 +105,7 @@ export async function create(args: { template?: string; name?: string }) {
 
     try {
       const dirname =
-        typeof __dirname !== 'undefined'
-          ? __dirname
-          : path.dirname(fileURLToPath(import.meta.url))
+        typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
 
       // Test the paths to ensure they exist
       const possiblePaths = [
@@ -139,7 +134,7 @@ export async function create(args: { template?: string; name?: string }) {
 
   // change root package.json's name to project name
   updatePackageJsonName(projectName, resolvedProjectPath)
-  // replace `"workspace:^"` with the actual version
+  // replace `"workspace:*"` with the actual version
   updatePackageJsonVersions(packageJson.version, resolvedProjectPath)
   // change root app.json's name to project name
   updateAppJsonName(projectName, resolvedProjectPath)
@@ -215,10 +210,7 @@ function updatePackageJsonName(projectName: string, dir: string) {
   const packageJsonPath = path.join(dir, 'package.json')
   if (existsSync(packageJsonPath)) {
     const content = readFileSync(packageJsonPath).toString()
-    const contentWithUpdatedName = content.replace(
-      /("name": ")(.*)(",)/,
-      `$1${projectName}$3`
-    )
+    const contentWithUpdatedName = content.replace(/("name": ")(.*)(",)/, `$1${projectName}$3`)
     writeFileSync(packageJsonPath, contentWithUpdatedName)
   }
 }

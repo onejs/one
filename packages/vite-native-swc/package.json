@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-swc",
-  "version": "1.1.374",
+  "version": "1.1.381",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -32,7 +32,7 @@
     "@babel/plugin-transform-private-methods": "^7.25.9",
     "@babel/plugin-transform-react-jsx": "^7.25.9",
     "@babel/plugin-transform-regenerator": "^7.25.9",
-    "@swc/core": "^1.10.3",
+    "@swc/core": "^1.10.4",
     "@vxrn/vite-native-client": "workspace:*",
     "metro-react-native-babel-preset": "^0.77.0",
     "oxc-transform": "^0.44.0"

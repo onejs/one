@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "vxrn"
   text: "Vite ↔ React Native"
-  tagline: Beta - Vite plugins to serve React Native apps with hot reloading. Serve web and native apps at once.
+  tagline: Vite plugins to serve React Native apps with hot reloading. Serve web and native apps at once (beta).
   image:
     src: /vite-react-native.svg
     alt: Vite

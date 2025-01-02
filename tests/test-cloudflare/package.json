@@ -1,6 +1,6 @@
 {
   "name": "test-cloudflare",
-  "version": "1.1.374",
+  "version": "1.1.381",
   "private": true,
   "type": "module",
   "scripts": {
