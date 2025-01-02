@@ -1,7 +1,7 @@
 import { createMiddleware } from 'one'
 
 export default createMiddleware(async ({ request, next }) => {
-  if (request.url.endsWith(`?test-middleware`)) {
+  if (request.url.includes(`test-middleware`)) {
     return Response.json({ middleware: 'works' })
   }
 

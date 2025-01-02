@@ -9,8 +9,10 @@ let prodServerPort = 3112
 
 beforeAll(async () => {
   // run production build:
-  console.info(`Building web`)
-  await execPromise(`yarn build:web`)
+  if (!process.env.SKIP_BUILD) {
+    console.info(`Building web`)
+    await execPromise(`yarn build:web`)
+  }
 
   // Start the dev server
   console.info(`Starting dev server on port ${devServerPort}...`)
