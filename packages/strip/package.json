@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/strip",
-  "version": "1.1.379",
+  "version": "1.1.381",
   "license": "BSD-3-Clause",
   "sideEffects": false,
   "type": "module",
@@ -24,13 +24,10 @@
     "strip-chat": "dotenv -- node ./run.mjs ../../apps/chat /tmp/chat --overwrite",
     "build": "tamagui-build --skip-native",
     "watch": "yarn build --watch",
-    "check": "depcheck",
+    "check": "yarn depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
-    "test": "vitest --run --pool=forks",
-    "test:dev": "TEST_ONLY=dev yarn test",
-    "test:watch": "vitest --watch"
+    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.0.12",
@@ -41,6 +38,7 @@
   },
   "devDependencies": {
     "@tamagui/build": "^1.121.3",
+    "depcheck": "^1.4.7",
     "vitest": "^2.1.8"
   },
   "publishConfig": {
