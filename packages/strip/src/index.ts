@@ -91,14 +91,19 @@ But remove the chat-specific interfaces so we can use this starter to build a di
 ---
 
 To start, first write a plan on what you will remove here in plain english (5 sentences or so).
-Then, add a "---" and create a new Index.
+
+Then, add a "---" and create a new Index. Leave out the summary after ":".
+
 Then, add a "---" and then add the files.
+
+  - If the file isn't changed, don't output it at all.
+  - If the file needs changes, output the file contents in full.
 
 ---
 
 `)
 
-    console.log('wtf', codebase)
+    console.log('wtf', out)
 
     type Entry = { name: string; summary: string; indent: number; type: 'file' | 'folder' }
 
@@ -147,7 +152,7 @@ Then, add a "---" and then add the files.
       output += '## Index\n\n'
       for (const { name, summary, indent, type } of index) {
         const indentStr = '  '.repeat(indent) // 2 spaces per indent level
-        output += `${indentStr}- ${type === 'folder' ? '📁' : '📋'} ${name}: ${summary}\n`
+        output += `${indentStr}- ${type === 'folder' ? '📁' : '📋'} ${name}${summary ? `: ${summary}` : ``}\n`
       }
       output += '\n---\n\n'
       output += `## Files\n\n`
