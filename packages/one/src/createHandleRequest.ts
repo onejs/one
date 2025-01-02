@@ -227,8 +227,8 @@ export function createHandleRequest(
             continue
           }
 
-          return await runMiddlewares(request, route, () => {
-            return resolveResponse(async () => {
+          return resolveResponse(async () => {
+            return await runMiddlewares(request, route, async () => {
               return await handlers.handleSSR!({
                 request,
                 route,

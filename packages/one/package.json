@@ -55,8 +55,8 @@
     },
     "./server": {
       "react-native": {
-        "import": "./dist/esm/vite/server.native.js",
-        "require": "./dist/cjs/vite/server.native.js"
+        "import": "./server.js",
+        "require": "./server.js"
       },
       "types": "./types/vite/server.d.ts",
       "import": "./dist/esm/vite/server.mjs",

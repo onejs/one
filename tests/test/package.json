@@ -8,8 +8,8 @@
     "test:watch": "vitest",
     "build:web": "one build",
     "clean": "one clean",
-    "dev": "one dev",
-    "dev:clean": "one dev --clean",
+    "dev": "one dev --port 3111",
+    "dev:clean": "yarn dev --clean",
     "prod": "one build && one serve",
     "serve": "one serve",
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"

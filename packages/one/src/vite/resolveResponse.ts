@@ -7,7 +7,8 @@ export function resolveResponse(getResponse: () => Promise<Response>) {
     requestAsyncLocalStore.run(id, async () => {
       try {
         const response = await getResponse()
-        res(await getResponseWithAddedHeaders(response, id))
+        const modifiedResponse = await getResponseWithAddedHeaders(response, id)
+        res(modifiedResponse)
       } catch (err) {
         // allow throwing a response
         if (isResponse(err)) {

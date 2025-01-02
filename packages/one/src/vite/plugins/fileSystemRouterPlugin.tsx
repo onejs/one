@@ -10,7 +10,6 @@ import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
 import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
-import { resolveAPIEndpoint } from '../resolveResponse'
 import type { One } from '../../vite/types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
@@ -177,7 +176,6 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       },
 
       async loadMiddleware(route) {
-        console.log('load', route)
         return await runner.import(join('app', route.contextKey))
       },
     })

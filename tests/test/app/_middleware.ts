@@ -7,7 +7,9 @@ export default createMiddleware(async ({ request, next }) => {
 
   const response = await next()
 
-  console.warn('response', response)
+  if (!response) {
+    return Response.json({ notFound: true })
+  }
 
   return response
 })
