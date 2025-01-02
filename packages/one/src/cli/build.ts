@@ -35,6 +35,8 @@ export async function build(args: {
   labelProcess('build')
 
   const oneOptions = await loadUserOneOptions('build')
+  const manifest = getManifest()!
+
   const serverOutputFormat = oneOptions.build?.server?.outputFormat ?? 'esm'
 
   // TODO make this better, this ensures we get react 19
@@ -62,7 +64,6 @@ export async function build(args: {
   const options = await fillOptions(vxrnOutput.options)
 
   const toAbsolute = (p) => Path.resolve(options.root, p)
-  const manifest = getManifest()!
   const { optimizeDeps } = getOptimizeDeps('build')
 
   const apiBuildConfig = mergeConfig(
@@ -180,7 +181,7 @@ export async function build(args: {
     await buildCustomRoutes('api', manifest.apiRoutes)
   }
 
-  const middlewares: Record<string, string> = {}
+  const builtMiddlewares: Record<string, string> = {}
 
   if (manifest.middlewareRoutes.length) {
     console.info(`\n 🔨 build middlewares\n`)
@@ -192,7 +193,12 @@ export async function build(args: {
       const outChunks = middlewareBuildInfo.output.filter((x) => x.type === 'chunk')
       const chunk = outChunks.find((x) => x.facadeModuleId === fullPath)
       if (!chunk) throw new Error(`internal err finding middleware`)
-      middlewares[middleware.file] = resolve(absoluteRoot, 'dist', 'middlewares', chunk.fileName)
+      builtMiddlewares[middleware.file] = resolve(
+        absoluteRoot,
+        'dist',
+        'middlewares',
+        chunk.fileName
+      )
     }
   }
 
@@ -279,19 +285,14 @@ export async function build(args: {
 
     const clientManifestEntry = vxrnOutput.clientManifest[clientManifestKey]
 
-    const findMatchingRoute = (route: RouteInfo<string>) => {
-      return route.file && clientManifestKey.endsWith(route.file.slice(1))
-    }
-
-    const foundRoute = manifest.pageRoutes.find(findMatchingRoute)
+    const foundRoute = manifest.pageRoutes.find((route: RouteInfo<string>) => {
+      return route.file && clientManifestKey.replace(/^app/, '') === route.file.slice(1)
+    })
 
     if (!foundRoute) {
-      if (clientManifestKey.startsWith('app')) {
-        console.error(` No html route found!`, { id, clientManifestKey })
-        console.error(` In manifest`, manifest)
-        process.exit(1)
-      }
-      continue
+      console.error(` No html route found!`, { id, clientManifestKey })
+      console.error(` In manifest`, manifest)
+      process.exit(1)
     }
 
     function collectImports(
@@ -448,9 +449,13 @@ export async function build(args: {
           preloads.map((preload) => `import "${preload}"`).join('\n')
         )
 
+        const middlewares = (foundRoute.middlewares || []).map(
+          (x) => builtMiddlewares[x.contextKey]
+        )
+
         builtRoutes.push({
           type: foundRoute.type,
-          middlewares: (foundRoute.middlewares || []).map((x) => x.contextKey),
+          middlewares,
           cleanPath,
           preloadPath,
           clientJsPath,
@@ -534,8 +539,22 @@ ${JSON.stringify(params || null, null, 2)}`
     middlewareMap[route.cleanPath] = route.middlewares
   }
 
+  const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
+  for (const route of builtRoutes) {
+    routeToBuildInfo[route.cleanPath] = route
+    // temp - make it back into brackets style
+    const bracketRoutePath = route.cleanPath
+      .split('/')
+      .map((part) => {
+        return part[0] === ':' ? `[${part.slice(1)}]` : part
+      })
+      .join('/')
+    routeToBuildInfo[bracketRoutePath] = route
+  }
+
   const buildInfoForWriting = {
     oneOptions,
+    routeToBuildInfo,
     routeMap,
     middlewareMap,
     builtRoutes,

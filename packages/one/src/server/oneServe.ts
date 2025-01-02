@@ -34,21 +34,7 @@ export async function oneServe(
     throw new Error(`No build info found, have you run build?`)
   }
 
-  const { routeMap, builtRoutes } = buildInfo as One.BuildInfo
-
-  const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
-  for (const route of builtRoutes) {
-    routeToBuildInfo[route.cleanPath] = route
-
-    // temp - make it back into brackets style
-    const bracketRoutePath = route.cleanPath
-      .split('/')
-      .map((part) => {
-        return part[0] === ':' ? `[${part.slice(1)}]` : part
-      })
-      .join('/')
-    routeToBuildInfo[bracketRoutePath] = route
-  }
+  const { routeMap, routeToBuildInfo } = buildInfo as One.BuildInfo
 
   const serverOptions = {
     ...oneOptions,
@@ -144,18 +130,9 @@ export async function oneServe(
   }
 
   app.use(async (context, next) => {
-    // serve our generated html files
-    const html = htmlFiles[context.req.path]
-    if (html) {
-      console.warn('wtff bro', routeToBuildInfo[context.req.path])
-      return context.html(html)
-    }
-
     try {
       const request = context.req.raw
       const response = await handleRequest.handler(request)
-
-      console.log('??', response)
 
       if (response) {
         if (isResponse(response)) {

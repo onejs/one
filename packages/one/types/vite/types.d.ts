@@ -147,14 +147,16 @@ export declare namespace One {
         destination: string;
         permanent: boolean;
     };
-    export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
+    export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes' | 'routeToBuildInfo'> & {
         oneOptions?: PluginOptions;
         constants: {
             CACHE_KEY: string;
         };
     };
     export type AfterBuildProps = VXRNAfterBuildProps & {
+        routeToBuildInfo: Record<string, One.RouteBuildInfo>;
         routeMap: Record<string, string>;
+        manifestMap: Record<string, string[]>;
         builtRoutes: RouteBuildInfo[];
     };
     export type RouteBuildInfo = {
