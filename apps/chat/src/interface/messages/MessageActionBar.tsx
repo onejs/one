@@ -6,17 +6,15 @@ import { getCurrentUser, updateUserOpenThread } from '~/state/user'
 import type { Channel, MessageWithRelations } from '~/zero'
 import { useQuery, zero } from '~/zero'
 import { AddReactionButton } from './AddReactionButton'
-import { MessageMoreMenu } from './MessageMoreMenu'
+import { MessageItemMenu } from './MessageItemMenu'
 import { ReactionButton } from './MessageReactions'
 import { messageActionBarStickOpen, messageHover } from './constants'
 import { messageReplyEmitter } from './emitters'
 
 export const MessageActionBar = ({
   message,
-  channel,
 }: {
   message: MessageWithRelations
-  channel: Channel
 }) => {
   const [topReactions] = useQuery((q) => q.reaction.limit(3).orderBy('createdAt', 'desc'))
   const [show, setShow] = useState(false)
@@ -60,45 +58,44 @@ export const MessageActionBar = ({
 
         <Separator my="$2" vertical />
 
-        {!message.thread && (
-          <TooltipSimple label="Create Thread">
-            <Button
-              onPress={() => {
-                const currentUser = getCurrentUser()
-                if (!currentUser) {
-                  console.error(`no user`)
-                  return
-                }
+        <TooltipSimple label={message.thread ? 'Open Thread' : 'Create Thread'}>
+          <Button
+            onPress={() => {
+              const currentUser = getCurrentUser()
+              if (!currentUser) {
+                console.error(`no user`)
+                return
+              }
 
-                const threadId = randomId()
+              const threadId = randomId()
 
-                zero.mutate.thread.insert({
-                  id: threadId,
-                  channelId: channel.id,
-                  messageId: message.id,
-                  creatorId: currentUser.id,
-                  description: '',
-                  title: '',
-                })
+              zero.mutate.thread.insert({
+                id: threadId,
+                channelId: message.channelId,
+                messageId: message.id,
+                creatorId: currentUser.id,
+                deleted: false,
+                description: '',
+                title: '',
+              })
 
-                zero.mutate.message.update({
-                  id: message.id,
-                  threadId,
-                  isThreadReply: false,
-                })
+              zero.mutate.message.update({
+                id: message.id,
+                threadId,
+                isThreadReply: false,
+              })
 
-                updateUserOpenThread({
-                  id: threadId,
-                })
-              }}
-              chromeless
-              size="$2.5"
-              br={0}
-            >
-              <IndentIncrease size={16} />
-            </Button>
-          </TooltipSimple>
-        )}
+              updateUserOpenThread({
+                id: threadId,
+              })
+            }}
+            chromeless
+            size="$2.5"
+            br={0}
+          >
+            <IndentIncrease size={16} />
+          </Button>
+        </TooltipSimple>
 
         <TooltipSimple label="Reply">
           <Button
@@ -116,7 +113,7 @@ export const MessageActionBar = ({
           </Button>
         </TooltipSimple>
 
-        <MessageMoreMenu message={message} />
+        <MessageItemMenu message={message} />
       </XGroup>
     </XStack>
   )

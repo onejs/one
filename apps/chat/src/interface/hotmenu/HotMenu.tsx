@@ -10,12 +10,7 @@ import { SearchableInput, SearchableList, SearchableListItem } from '../Searchab
 
 export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
   const { showHotMenu } = useSessionState()
-  const allItems = useHotMenuItems()
-  const [items, setItems] = useState(allItems)
-
-  useEffect(() => {
-    setItems(allItems)
-  }, [allItems])
+  const items = useHotMenuItems()
 
   function toggleHotMenu() {
     updateSessionState({
@@ -83,7 +78,6 @@ export const HotMenu = forwardRef<TamaguiElement, any>((props, ref) => {
             <SearchableList
               items={items}
               searchKey="name"
-              onSearch={setItems}
               onSelectItem={(item) => {
                 toggleHotMenu()
                 item.action()

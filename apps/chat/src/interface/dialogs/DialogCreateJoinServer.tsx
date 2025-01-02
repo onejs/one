@@ -87,7 +87,7 @@ const DialogCreateServerContent = (props: TabContentPaneProps) => {
         <ScrollView m="$-1">
           <YStack py="$4" gap="$2" px="$1">
             <LabeledRow label="Name" htmlFor="server-name">
-              <Input miw={150} ref={inputRef as any} f={1} id="server-name" />
+              <Input autoComplete="off" miw={300} ref={inputRef as any} f={2} id="server-name" />
             </LabeledRow>
 
             <LabeledRow label="Image" htmlFor="image">

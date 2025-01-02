@@ -56,7 +56,7 @@ declare module 'tamagui' {
   interface TamaguiCustomConfig extends Conf {}
 
   interface TypeOverride {
-    groupNames(): 'message'
+    groupNames(): 'message' | 'icon'
   }
 }
 
