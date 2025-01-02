@@ -1,4 +1,4 @@
-import { RouteNode } from './Route';
+import type { RouteNode } from './Route';
 import type { RouteInfo } from './server/createRoutesManifest';
 import type { LoaderProps } from './types';
 import type { One } from './vite/types';

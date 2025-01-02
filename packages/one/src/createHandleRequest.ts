@@ -1,10 +1,10 @@
 import { getPathFromLoaderPath } from './cleanUrl'
 import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
-import { RouteNode } from './Route'
+import type { Middleware, MiddlewareContext } from './createMiddleware'
+import type { RouteNode } from './Route'
 import type { RouteInfo } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
 import { isResponse } from './utils/isResponse'
-import { promiseWithResolvers } from './utils/promiseWithResolvers'
 import { getManifest } from './vite/getManifest'
 import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
 import type { One } from './vite/types'
@@ -46,25 +46,53 @@ export function createHandleRequest(
     workingRegex: new RegExp(route.namedRegex),
   }))
 
-  async function runMiddlewares(request: Request, route: RouteInfo) {
-    console.log('run', route.middlewares)
-    if (route.middlewares?.length) {
-      const loader = handlers.loadMiddleware
-      if (!loader) {
-        throw new Error(`No middleware handler configured`)
-      }
-      for (const middleware of route.middlewares) {
-        const exported = (await loader(middleware))?.default
-        if (!exported) {
-          console.warn(`No export from middleware: ${middleware.contextKey}`)
-        }
-        const response = exported(request)
-        if (response) {
-          return response
-        }
-      }
+  async function runMiddlewares(
+    request: Request,
+    route: RouteInfo,
+    getResponse: () => Promise<Response>
+  ): Promise<Response> {
+    const middlewares = route.middlewares
+    if (!middlewares?.length) {
+      return await getResponse()
     }
-    return null
+
+    const context: MiddlewareContext = {}
+
+    const loader = handlers.loadMiddleware
+    if (!loader) {
+      throw new Error(`No middleware handler configured`)
+    }
+
+    async function dispatch(index: number): Promise<Response> {
+      const middlewareModule = middlewares![index]
+
+      // no more middlewares, finish
+      if (!middlewareModule) {
+        return await getResponse()
+      }
+
+      const exported = (await loader!(middlewareModule))?.default as Middleware | undefined
+      if (!exported) {
+        throw new Error(`No valid export found in middleware: ${middlewareModule.contextKey}`)
+      }
+
+      // go to next middlware
+      const next = async () => {
+        return dispatch(index + 1)
+      }
+
+      // run middlewares, if response returned, exit early
+      const response = await exported({ request, next, context })
+      if (response) {
+        return response
+      }
+
+      // If the middleware returns null/void, keep going
+      return dispatch(index + 1)
+    }
+
+    // Start with the first middleware (index 0).
+    return dispatch(0)
   }
 
   return {
@@ -146,44 +174,37 @@ export function createHandleRequest(
               continue
             }
 
-            const middlewareResponse = await runMiddlewares(request, route)
-            if (middlewareResponse) {
-              return middlewareResponse
-            }
+            return await runMiddlewares(request, route, async () => {
+              return await resolveResponse(async () => {
+                const headers = new Headers()
+                headers.set('Content-Type', 'text/javascript')
 
-            if (process.env.NODE_ENV === 'development') {
-              console.info(` ❶ Running loader for route: ${finalUrl.pathname}`)
-            }
+                try {
+                  const loaderResponse = await handlers.handleLoader!({
+                    request,
+                    route,
+                    url,
+                    loaderProps: {
+                      path: finalUrl.pathname,
+                      request: route.type === 'ssr' ? request : undefined,
+                      params: getLoaderParams(finalUrl, route),
+                    },
+                  })
 
-            return await resolveResponse(async () => {
-              const headers = new Headers()
-              headers.set('Content-Type', 'text/javascript')
+                  return new Response(loaderResponse, {
+                    headers,
+                  })
+                } catch (err) {
+                  // allow throwing a response in a loader
+                  if (isResponse(err)) {
+                    return err
+                  }
 
-              try {
-                const loaderResponse = await handlers.handleLoader!({
-                  request,
-                  route,
-                  url,
-                  loaderProps: {
-                    path: finalUrl.pathname,
-                    request: route.type === 'ssr' ? request : undefined,
-                    params: getLoaderParams(finalUrl, route),
-                  },
-                })
+                  console.error(`Error running loader: ${err}`)
 
-                return new Response(loaderResponse, {
-                  headers,
-                })
-              } catch (err) {
-                // allow throwing a response in a loader
-                if (isResponse(err)) {
-                  return err
+                  throw err
                 }
-
-                console.error(`Error running loader: ${err}`)
-
-                throw err
-              }
+              })
             })
           }
 
@@ -206,20 +227,17 @@ export function createHandleRequest(
             continue
           }
 
-          const middlewareResponse = await runMiddlewares(request, route)
-          if (middlewareResponse) {
-            return middlewareResponse
-          }
-
-          return await resolveResponse(async () => {
-            return await handlers.handleSSR!({
-              request,
-              route,
-              url,
-              loaderProps: {
-                path: pathname + search,
-                params: getLoaderParams(url, route),
-              },
+          return await runMiddlewares(request, route, () => {
+            return resolveResponse(async () => {
+              return await handlers.handleSSR!({
+                request,
+                route,
+                url,
+                loaderProps: {
+                  path: pathname + search,
+                  params: getLoaderParams(url, route),
+                },
+              })
             })
           })
         }
