@@ -111,24 +111,6 @@ export async function oneServe(
     }
   )
 
-  // preload reading in all the files, for prod performance:
-  const htmlFiles: Record<string, string> = {}
-
-  if (serveStatic) {
-    const { readFile } = await import('node:fs/promises')
-
-    for (const key in routeMap) {
-      const info = routeToBuildInfo[key]
-
-      if (info?.type === 'ssr') {
-        // we handle this on each request
-        continue
-      }
-
-      htmlFiles[key] = await readFile(join('dist/client', routeMap[key]), 'utf-8')
-    }
-  }
-
   app.use(async (context, next) => {
     try {
       const request = context.req.raw

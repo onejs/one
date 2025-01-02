@@ -16,6 +16,10 @@ export type RouteInfo<TRegex = string> = {
   isNotFound?: boolean
 }
 
+export type RouteInfoWithRegex = RouteInfo & {
+  compiledRegex: RegExp
+}
+
 export type RoutesManifest<TRegex = string> = {
   apiRoutes: RouteInfo<TRegex>[]
   middlewareRoutes: RouteInfo<TRegex>[]
