@@ -9,7 +9,7 @@ import type { RenderAppProps } from '../types'
 import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
-import { readFile } from 'fs-extra'
+import { default as FSExtra } from 'fs-extra'
 
 export async function oneServe(
   oneOptions: One.PluginOptions,
@@ -107,10 +107,16 @@ ${err?.['stack'] ?? err}
 url: ${url}`)
         }
       } else {
-        const html = await readFile(routeMap[route['honoPath']], 'utf-8')
-        const headers = new Headers()
-        headers.set('content-type', 'text/html')
-        return new Response(html, { headers })
+        const htmlPath = routeMap[route['honoPath']]
+        if (htmlPath) {
+          const html = await FSExtra.readFile(
+            join('dist/client', routeMap[route['honoPath']]),
+            'utf-8'
+          )
+          const headers = new Headers()
+          headers.set('content-type', 'text/html')
+          return new Response(html, { headers })
+        }
       }
     },
   }
@@ -121,7 +127,7 @@ url: ${url}`)
         const request = context.req.raw
         const url = getURLfromRequestURL(request)
 
-        const response = (() => {
+        const response = await (() => {
           // where to put this best? can likely be after some of the switch?
           if (url.pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
             const originalUrl = getPathFromLoaderPath(url.pathname)
@@ -168,21 +174,13 @@ url: ${url}`)
             return response as Response
           }
 
-          return context.json(
-            response,
-            200,
-            isAPIRequest.get(request)
-              ? {
-                  'Cache-Control': 'no-store',
-                }
-              : undefined
-          )
+          return response
         }
       } catch (err) {
         console.error(` [one] Error handling request: ${(err as any)['stack']}`)
       }
 
-      await next()
+      return await next()
     }
   }
 

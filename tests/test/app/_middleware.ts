@@ -7,7 +7,7 @@ export default createMiddleware(async ({ request, next }) => {
 
   const response = await next()
 
-  if (!response) {
+  if (!response && request.url.endsWith('/missing')) {
     return Response.json({ notFound: true })
   }
 
