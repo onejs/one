@@ -2,7 +2,7 @@ import type { RouteNode } from './Route';
 import type { RouteInfo, RouteInfoWithRegex } from './server/createRoutesManifest';
 import type { LoaderProps } from './types';
 import type { One } from './vite/types';
-type RequestHandlers = {
+export type RequestHandlers = {
     handleSSR?: (props: RequestHandlerProps) => Promise<any>;
     handleLoader?: (props: RequestHandlerProps) => Promise<any>;
     handleAPI?: (props: RequestHandlerProps) => Promise<any>;
@@ -15,7 +15,9 @@ type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
     loaderProps?: LoaderProps;
 };
 type RequestHandlerResponse = null | string | Response;
+export declare function resolveAPIRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoWithRegex): Promise<Response>;
 export declare function resolveLoaderRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoWithRegex): Promise<Response>;
+export declare function resolveSSRRoute(handlers: RequestHandlers, request: Request, url: URL, route: RouteInfoWithRegex): Promise<Response>;
 export declare function createHandleRequest(options: One.PluginOptions, handlers: RequestHandlers): {
     manifest: import("./server/createRoutesManifest").RoutesManifest<string>;
     handler: (request: Request) => Promise<RequestHandlerResponse>;

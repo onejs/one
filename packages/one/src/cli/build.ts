@@ -555,6 +555,7 @@ ${JSON.stringify(params || null, null, 2)}`
   const buildInfoForWriting = {
     oneOptions,
     routeToBuildInfo,
+    manifest,
     routeMap,
     middlewareMap,
     builtRoutes,

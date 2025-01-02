@@ -9,7 +9,7 @@ import { getManifest } from './vite/getManifest'
 import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
 import type { One } from './vite/types'
 
-type RequestHandlers = {
+export type RequestHandlers = {
   handleSSR?: (props: RequestHandlerProps) => Promise<any>
   handleLoader?: (props: RequestHandlerProps) => Promise<any>
   handleAPI?: (props: RequestHandlerProps) => Promise<any>
@@ -74,7 +74,7 @@ async function runMiddlewares(
   return dispatch(0)
 }
 
-async function resolveAPIRoute(
+export async function resolveAPIRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,
@@ -156,7 +156,7 @@ export async function resolveLoaderRoute(
   })
 }
 
-async function resolveSSRRoute(
+export async function resolveSSRRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,

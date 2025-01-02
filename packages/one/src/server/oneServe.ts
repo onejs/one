@@ -1,8 +1,11 @@
-import type { Hono } from 'hono'
+import type { Hono, MiddlewareHandler } from 'hono'
 import { join } from 'node:path'
 import { getServerEntry } from 'vxrn/serve'
 import type { RenderAppProps } from '../types'
 import type { One } from '../vite/types'
+import type { BlankEnv } from 'hono/types'
+import type { RouteInfoWithRegex } from './createRoutesManifest'
+import type { RequestHandlers } from '../createHandleRequest'
 
 export async function oneServe(
   oneOptions: One.PluginOptions,
@@ -10,7 +13,9 @@ export async function oneServe(
   app: Hono,
   serveStatic = true
 ) {
-  const { createHandleRequest } = await import('../createHandleRequest')
+  const { resolveAPIRoute, resolveLoaderRoute, resolveSSRRoute } = await import(
+    '../createHandleRequest'
+  )
   const { isResponse } = await import('../utils/isResponse')
   const { isStatusRedirect } = await import('../utils/isStatus')
 
@@ -47,116 +52,118 @@ export async function oneServe(
   const render = entry.default.render as (props: RenderAppProps) => any
   const apiCJS = oneOptions.build?.api?.outputFormat === 'cjs'
 
-  const handleRequest = createHandleRequest(
-    {},
-    {
-      async handleAPI({ route }) {
-        const apiFile = join(
-          process.cwd(),
-          'dist',
-          'api',
-          route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
-        )
-        return await import(apiFile)
-      },
+  const requestHandlers: RequestHandlers = {
+    async handleAPI({ route }) {
+      const apiFile = join(
+        process.cwd(),
+        'dist',
+        'api',
+        route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
+      )
+      return await import(apiFile)
+    },
 
-      async loadMiddleware(route) {
-        console.warn('load middleware')
-        const middlewareFile = join(
-          process.cwd(),
-          'dist',
-          'middleware',
-          route.contextKey.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
-        )
-        return await import(middlewareFile)
-      },
+    async loadMiddleware(route) {
+      const middlewareFile = join(
+        process.cwd(),
+        'dist',
+        'middleware',
+        route.contextKey.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
+      )
+      return await import(middlewareFile)
+    },
 
-      async handleSSR({ route, url, loaderProps }) {
-        if (route.type === 'ssr') {
-          const buildInfo = routeToBuildInfo[route.page]
-          if (!buildInfo) {
-            throw new Error(
-              `No buildinfo found for ${url}, route: ${route.page}, in keys: ${Object.keys(routeToBuildInfo)}`
-            )
-          }
-
-          try {
-            const exported = await import(buildInfo.serverJsPath)
-            const loaderData = await exported.loader?.(loaderProps)
-            const preloads = buildInfo.preloads
-
-            const headers = new Headers()
-            headers.set('content-type', 'text/html')
-
-            return new Response(
-              await render({
-                loaderData,
-                loaderProps,
-                path: loaderProps?.path || '/',
-                preloads,
-              }),
-              {
-                headers,
-              }
-            )
-          } catch (err) {
-            console.error(`[one] Error rendering SSR route ${route.page}
-
-  ${err?.['stack'] ?? err}
-
-  url: ${url}`)
-          }
+    async handleSSR({ route, url, loaderProps }) {
+      if (route.type === 'ssr') {
+        const buildInfo = routeToBuildInfo[route.page]
+        if (!buildInfo) {
+          throw new Error(
+            `No buildinfo found for ${url}, route: ${route.page}, in keys: ${Object.keys(routeToBuildInfo)}`
+          )
         }
-      },
-    }
-  )
 
-  app.use(async (context, next) => {
-    try {
-      const request = context.req.raw
-      const response = await handleRequest.handler(request)
+        try {
+          const exported = await import(buildInfo.serverJsPath)
+          const loaderData = await exported.loader?.(loaderProps)
+          const preloads = buildInfo.preloads
 
-      if (response) {
-        if (isResponse(response)) {
-          if (isStatusRedirect(response.status)) {
-            const location = `${response.headers.get('location') || ''}`
-            response.headers.forEach((value, key) => {
-              context.header(key, value)
-            })
-            return context.redirect(location, response.status)
-          }
+          const headers = new Headers()
+          headers.set('content-type', 'text/html')
 
-          if (isAPIRequest.get(request)) {
-            try {
-              // don't cache api requests by default
-              response.headers.set('Cache-Control', 'no-store')
-            } catch (err) {
-              console.info(
-                `Error udpating cache header on api route "${
-                  context.req.path
-                }" to no-store, it is ${response.headers.get('cache-control')}, continue`,
-                err
-              )
+          return new Response(
+            await render({
+              loaderData,
+              loaderProps,
+              path: loaderProps?.path || '/',
+              preloads,
+            }),
+            {
+              headers,
             }
+          )
+        } catch (err) {
+          console.error(`[one] Error rendering SSR route ${route.page}
+
+${err?.['stack'] ?? err}
+
+url: ${url}`)
+        }
+      }
+    },
+  }
+
+  function createHonoHandler(route: RouteInfoWithRegex): MiddlewareHandler<BlankEnv, never, {}> {
+    return async (context, next) => {
+      try {
+        const request = context.req.raw
+
+        // todo
+        const response = Response.json({})
+
+        if (response) {
+          if (isResponse(response)) {
+            if (isStatusRedirect(response.status)) {
+              const location = `${response.headers.get('location') || ''}`
+              response.headers.forEach((value, key) => {
+                context.header(key, value)
+              })
+              return context.redirect(location, response.status)
+            }
+
+            if (isAPIRequest.get(request)) {
+              try {
+                // don't cache api requests by default
+                response.headers.set('Cache-Control', 'no-store')
+              } catch (err) {
+                console.info(
+                  `Error udpating cache header on api route "${
+                    context.req.path
+                  }" to no-store, it is ${response.headers.get('cache-control')}, continue`,
+                  err
+                )
+              }
+            }
+
+            return response as Response
           }
 
-          return response as Response
+          return context.json(
+            response,
+            200,
+            isAPIRequest.get(request)
+              ? {
+                  'Cache-Control': 'no-store',
+                }
+              : undefined
+          )
         }
-
-        return context.json(
-          response,
-          200,
-          isAPIRequest.get(request)
-            ? {
-                'Cache-Control': 'no-store',
-              }
-            : undefined
-        )
+      } catch (err) {
+        console.error(` [one] Error handling request: ${(err as any)['stack']}`)
       }
-    } catch (err) {
-      console.error(` [one] Error handling request: ${(err as any)['stack']}`)
-    }
 
-    await next()
-  })
+      await next()
+    }
+  }
+
+  // for (const route of )
 }
