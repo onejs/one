@@ -130,9 +130,9 @@ export declare namespace One {
         deps?: FixDependencies;
         ssr?: {
             /**
-             * Do not automatically scan for dependencies to pre-bundle for SSR.
+             * Do not pre-bundle specific dependencies for SSR, or disable the automatic scan for dependencies to pre-bundle entirely.
              */
-            disableAutoDepsPreBundling?: boolean;
+            disableAutoDepsPreBundling?: boolean | string[];
         };
     };
     export interface RouteContext {
