@@ -552,14 +552,23 @@ ${JSON.stringify(params || null, null, 2)}`
     routeToBuildInfo[bracketRoutePath] = route
   }
 
-  const buildInfoForWriting = {
+  // layouts are huge due to keeping all children, not needed after build, TODO would be clean it up in manifst
+  function removeLayouts(route: RouteInfo) {
+    const { layouts, ...rest } = route
+    return rest
+  }
+
+  const buildInfoForWriting: One.BuildInfo = {
     oneOptions,
     routeToBuildInfo,
-    manifest,
+    manifest: {
+      pageRoutes: manifest.pageRoutes.map(removeLayouts),
+      apiRoutes: manifest.apiRoutes.map(removeLayouts),
+    },
     routeMap,
     middlewareMap,
     builtRoutes,
-    constants: JSON.parse(JSON.stringify({ ...constants })),
+    constants: JSON.parse(JSON.stringify({ ...constants })) as any,
   }
 
   await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)

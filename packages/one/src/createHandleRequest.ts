@@ -2,7 +2,7 @@ import { getPathFromLoaderPath } from './cleanUrl'
 import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
 import type { Middleware, MiddlewareContext } from './createMiddleware'
 import type { RouteNode } from './Route'
-import type { RouteInfo, RouteInfoWithRegex } from './server/createRoutesManifest'
+import type { RouteInfo, RouteInfoCompiled } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
 import { isResponse } from './utils/isResponse'
 import { getManifest } from './vite/getManifest'
@@ -78,7 +78,7 @@ export async function resolveAPIRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,
-  route: RouteInfoWithRegex
+  route: RouteInfoCompiled
 ) {
   const { pathname } = url
   const params = getRouteParams(pathname, route)
@@ -120,7 +120,7 @@ export async function resolveLoaderRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,
-  route: RouteInfoWithRegex
+  route: RouteInfoCompiled
 ) {
   return await runMiddlewares(handlers, request, route, async () => {
     return await resolveResponse(async () => {
@@ -160,7 +160,7 @@ export async function resolveSSRRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,
-  route: RouteInfoWithRegex
+  route: RouteInfoCompiled
 ) {
   const { pathname, search } = url
   return resolveResponse(async () => {
@@ -178,35 +178,43 @@ export async function resolveSSRRoute(
   })
 }
 
+export function getURLfromRequestURL(request: Request) {
+  const urlString = request.url || ''
+  return new URL(
+    urlString || '',
+    request.headers.get('host') ? `http://${request.headers.get('host')}` : ''
+  )
+}
+
+function compileRouteRegex(route: RouteInfo): RouteInfoCompiled {
+  return {
+    ...route,
+    compiledRegex: new RegExp(route.namedRegex),
+  }
+}
+
+export function compileManifest(manifest: { pageRoutes: RouteInfo[]; apiRoutes: RouteInfo[] }): {
+  pageRoutes: RouteInfoCompiled[]
+  apiRoutes: RouteInfoCompiled[]
+} {
+  return {
+    pageRoutes: manifest.pageRoutes.map(compileRouteRegex),
+    apiRoutes: manifest.apiRoutes.map(compileRouteRegex),
+  }
+}
+
 // in dev mode we do it more simply:
-export function createHandleRequest(options: One.PluginOptions, handlers: RequestHandlers) {
+export function createHandleRequest(handlers: RequestHandlers) {
   const manifest = getManifest()
   if (!manifest) {
     throw new Error(`No routes manifest`)
   }
-
-  const apiRoutesMap: Record<string, RouteInfo & { compiledRegex: RegExp }> =
-    manifest.apiRoutes.reduce((acc, cur) => {
-      acc[cur.page] = { ...cur, compiledRegex: new RegExp(cur.namedRegex) }
-      return acc
-    }, {})
-
-  const apiRoutesList = Object.values(apiRoutesMap)
-
-  // shouldn't be mapping back and forth...
-  const pageRoutes = manifest.pageRoutes.map((route) => ({
-    ...route,
-    compiledRegex: new RegExp(route.namedRegex),
-  }))
+  const compiledManifest = compileManifest(manifest)
 
   return {
     manifest,
     handler: async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
-      const urlString = request.url || ''
-      const url = new URL(
-        urlString || '',
-        request.headers.get('host') ? `http://${request.headers.get('host')}` : ''
-      )
+      const url = getURLfromRequestURL(request)
       const { pathname, search } = url
 
       if (pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
@@ -214,7 +222,7 @@ export function createHandleRequest(options: One.PluginOptions, handlers: Reques
       }
 
       if (handlers.handleAPI) {
-        const apiRoute = apiRoutesList.find((route) => {
+        const apiRoute = compiledManifest.apiRoutes.find((route) => {
           return route.compiledRegex.test(pathname)
         })
         if (apiRoute) {
@@ -232,7 +240,7 @@ export function createHandleRequest(options: One.PluginOptions, handlers: Reques
         if (isClientRequestingNewRoute) {
           const originalUrl = getPathFromLoaderPath(pathname)
 
-          for (const route of pageRoutes) {
+          for (const route of compiledManifest.pageRoutes) {
             if (route.file === '') {
               // ignore not found route
               // TODO improve/remove when not found is fixed
@@ -262,7 +270,7 @@ export function createHandleRequest(options: One.PluginOptions, handlers: Reques
       }
 
       if (handlers.handleSSR) {
-        for (const route of pageRoutes) {
+        for (const route of compiledManifest.pageRoutes) {
           if (!route.compiledRegex.test(pathname)) {
             continue
           }

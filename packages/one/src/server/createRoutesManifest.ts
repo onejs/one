@@ -16,7 +16,7 @@ export type RouteInfo<TRegex = string> = {
   isNotFound?: boolean
 }
 
-export type RouteInfoWithRegex = RouteInfo & {
+export type RouteInfoCompiled = RouteInfo & {
   compiledRegex: RegExp
 }
 

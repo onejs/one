@@ -4,8 +4,8 @@ import { getServerEntry } from 'vxrn/serve'
 import type { RenderAppProps } from '../types'
 import type { One } from '../vite/types'
 import type { BlankEnv } from 'hono/types'
-import type { RouteInfoWithRegex } from './createRoutesManifest'
-import type { RequestHandlers } from '../createHandleRequest'
+import type { RouteInfoCompiled } from './createRoutesManifest'
+import { compileManifest, type RequestHandlers } from '../createHandleRequest'
 
 export async function oneServe(
   oneOptions: One.PluginOptions,
@@ -112,7 +112,7 @@ url: ${url}`)
     },
   }
 
-  function createHonoHandler(route: RouteInfoWithRegex): MiddlewareHandler<BlankEnv, never, {}> {
+  function createHonoHandler(route: RouteInfoCompiled): MiddlewareHandler<BlankEnv, never, {}> {
     return async (context, next) => {
       try {
         const request = context.req.raw
@@ -165,5 +165,13 @@ url: ${url}`)
     }
   }
 
-  // for (const route of )
+  const compiledManifest = compileManifest(buildInfo.manifest)
+
+  for (const route of compiledManifest.pageRoutes) {
+    app.get(route.namedRegex, createHonoHandler(route))
+  }
+
+  for (const route of compiledManifest.apiRoutes) {
+    app.get(route.namedRegex, createHonoHandler(route))
+  }
 }

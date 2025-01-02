@@ -27,7 +27,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   let renderPromise: Promise<void> | null = null
 
   function createRequestHandler() {
-    return createHandleRequest(options, {
+    return createHandleRequest({
       async handleSSR({ route, url, loaderProps }) {
         console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
 

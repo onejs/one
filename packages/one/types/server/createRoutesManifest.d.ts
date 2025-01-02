@@ -12,7 +12,7 @@ export type RouteInfo<TRegex = string> = {
     type: One.RouteType;
     isNotFound?: boolean;
 };
-export type RouteInfoWithRegex = RouteInfo & {
+export type RouteInfoCompiled = RouteInfo & {
     compiledRegex: RegExp;
 };
 export type RoutesManifest<TRegex = string> = {
