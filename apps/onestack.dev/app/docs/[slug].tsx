@@ -56,6 +56,7 @@ export function DocCorePage() {
             <H1
               mb="$4"
               mt="$2"
+              size="$10"
               $platform-web={{
                 textWrap: 'balance',
               }}
