@@ -5,7 +5,9 @@ import type { RenderAppProps } from '../types'
 import type { One } from '../vite/types'
 import type { BlankEnv } from 'hono/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
-import { compileManifest, type RequestHandlers } from '../createHandleRequest'
+import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
+import { LOADER_JS_POSTFIX_REGEX_STRING, LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import { getPathFromLoaderPath } from '../cleanUrl'
 
 export async function oneServe(
   oneOptions: One.PluginOptions,
@@ -116,9 +118,25 @@ url: ${url}`)
     return async (context, next) => {
       try {
         const request = context.req.raw
+        const url = getURLfromRequestURL(request)
 
-        // todo
-        const response = Response.json({})
+        const response = (() => {
+          // where to put this best? can likely be after some of the switch?
+          if (url.pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
+            const originalUrl = getPathFromLoaderPath(url.pathname)
+            const finalUrl = new URL(originalUrl, url.origin)
+            return resolveLoaderRoute(requestHandlers, request, finalUrl, route)
+          }
+
+          switch (route.type) {
+            case 'api': {
+              return resolveAPIRoute(requestHandlers, request, url, route)
+            }
+            case 'ssr': {
+              return resolveSSRRoute(requestHandlers, request, url, route)
+            }
+          }
+        })()
 
         if (response) {
           if (isResponse(response)) {
@@ -173,5 +191,9 @@ url: ${url}`)
 
   for (const route of compiledManifest.apiRoutes) {
     app.get(route.namedRegex, createHonoHandler(route))
+    app.put(route.namedRegex, createHonoHandler(route))
+    app.post(route.namedRegex, createHonoHandler(route))
+    app.delete(route.namedRegex, createHonoHandler(route))
+    app.patch(route.namedRegex, createHonoHandler(route))
   }
 }

@@ -7,7 +7,6 @@ import type { LoaderProps } from './types'
 import { isResponse } from './utils/isResponse'
 import { getManifest } from './vite/getManifest'
 import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
-import type { One } from './vite/types'
 
 export type RequestHandlers = {
   handleSSR?: (props: RequestHandlerProps) => Promise<any>
