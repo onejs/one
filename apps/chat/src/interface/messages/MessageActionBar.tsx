@@ -1,7 +1,7 @@
 import { IndentIncrease, Reply } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, Separator, TooltipSimple, XGroup, XStack } from 'tamagui'
-import { randomId } from '~/helpers/randomId'
+import { randomId } from '~/helpers/randomId.native'
 import { getCurrentUser, updateUserOpenThread } from '~/state/user'
 import type { Channel, MessageWithRelations } from '~/zero'
 import { useQuery, zero } from '~/zero'

@@ -7,7 +7,7 @@ import { zero, type MessageWithRelations } from '~/zero'
 import { Menu } from '../menu/Menu'
 import { messageActionBarStickOpen } from './constants'
 import { messageReplyEmitter } from './emitters'
-import { randomId } from '../../helpers/randomId'
+import { randomId } from '../../helpers/randomId.native'
 import { showToast } from '../toast/Toast'
 
 export const MessageItemMenu = forwardRef(
