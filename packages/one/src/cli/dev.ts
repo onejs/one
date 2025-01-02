@@ -1,7 +1,7 @@
 import { virtualEntryIdNative } from '../vite/plugins/virtualEntryConstants'
 import { labelProcess } from './label-process'
 
-export async function run(args: {
+export async function dev(args: {
   clean?: boolean
   host?: string
   port?: string

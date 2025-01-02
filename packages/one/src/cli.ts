@@ -68,8 +68,8 @@ const dev = defineCommand({
     },
   },
   async run({ args }) {
-    const { run } = await import('./cli/run')
-    await run({
+    const { dev } = await import('./cli/dev')
+    await dev({
       ...args,
       debugBundle: !!args['debug-bundle'],
       mode: modes[args.mode],
