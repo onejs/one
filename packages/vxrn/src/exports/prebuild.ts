@@ -1,8 +1,9 @@
 import path from 'node:path'
 import FSExtra from 'fs-extra'
+import { resolvePath } from '@vxrn/resolve'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
-import { detectPackageManager, PackageManagerName } from '@vxrn/utils'
+import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
 import { generateForPlatform } from './prebuildWithoutExpo'
 
 export const prebuild = async ({
@@ -21,9 +22,7 @@ export const prebuild = async ({
   if (expo) {
     try {
       // Import Expo from the user's project instead of from where vxrn is installed, since vxrn may be installed globally or at the root workspace.
-      const importPath = require.resolve('@expo/cli/build/src/prebuild/index.js', {
-        paths: [root],
-      })
+      const importPath = resolvePath('@expo/cli/build/src/prebuild/index.js', root)
       const expoPrebuild = (await import(importPath)).default.expoPrebuild
       await expoPrebuild([
         ...(platform ? ['--platform', platform] : []),
