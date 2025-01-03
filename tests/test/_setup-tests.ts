@@ -16,7 +16,7 @@ beforeAll(async () => {
 
   // Start the dev server
   console.info(`Starting dev server on port ${devServerPort}...`)
-  devServer = spawn('yarn', ['dev'], {
+  devServer = spawn('yarn', ['dev', '--port', devServerPort.toString()], {
     stdio: 'pipe',
     env: process.env,
   })

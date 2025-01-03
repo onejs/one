@@ -8,7 +8,7 @@
     "test:watch": "vitest",
     "build:web": "one build",
     "clean": "one clean",
-    "dev": "one dev --port 3111",
+    "dev": "one dev",
     "dev:clean": "yarn dev --clean",
     "prod": "one build && one serve",
     "serve": "one serve",

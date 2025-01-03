@@ -691,7 +691,7 @@ ${JSON.stringify(params, null, 2)}`
   })()
 
   // hono path will convert +not-found etc too
-  return getHonoPath(`${dirname}${nameWithParams}`.replace(/\/\/+/gi, '/'))
+  return `${dirname}${nameWithParams}`.replace(/\/\/+/gi, '/')
 }
 
 function escapeRegex(string: string) {
