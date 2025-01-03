@@ -53,14 +53,14 @@
       "import": "./dist/esm/server-render.mjs",
       "require": "./dist/cjs/server-render.js"
     },
-    "./headers": {
+    "./server": {
       "react-native": {
-        "import": "./dist/esm/vite/headers.native.js",
-        "require": "./dist/cjs/vite/headers.native.js"
+        "import": "./server.js",
+        "require": "./server.js"
       },
-      "types": "./types/vite/headers.d.ts",
-      "import": "./dist/esm/vite/headers.mjs",
-      "require": "./dist/cjs/vite/headers.js"
+      "types": "./types/vite/server.d.ts",
+      "import": "./dist/esm/vite/server.mjs",
+      "require": "./dist/cjs/vite/server.js"
     },
     "./react-18": {
       "require": "./vendor/react/cjs/react.development.js",

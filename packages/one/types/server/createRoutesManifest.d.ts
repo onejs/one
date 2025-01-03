@@ -8,11 +8,17 @@ export type RouteInfo<TRegex = string> = {
     namedRegex: TRegex;
     routeKeys: Record<string, string>;
     layouts?: RouteNode[];
+    middlewares?: RouteNode[];
     type: One.RouteType;
     isNotFound?: boolean;
 };
+export type RouteInfoCompiled = RouteInfo & {
+    compiledRegex: RegExp;
+    honoPath: string;
+};
 export type RoutesManifest<TRegex = string> = {
     apiRoutes: RouteInfo<TRegex>[];
+    middlewareRoutes: RouteInfo<TRegex>[];
     pageRoutes: RouteInfo<TRegex>[];
 };
 export declare function createRoutesManifest(paths: string[], options: Options): RoutesManifest | null;
