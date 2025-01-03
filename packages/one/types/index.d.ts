@@ -7,6 +7,7 @@ export type { Endpoint, LoaderProps } from './types';
 export { router } from './imperative-api';
 export { createRoute, route } from './createRoute';
 export { onClientLoaderResolve } from './clientLoaderResolver';
+export { createMiddleware, type Middleware } from './createMiddleware';
 export { render } from './render';
 export { Root } from './Root';
 export * as routerStore from './router/router';

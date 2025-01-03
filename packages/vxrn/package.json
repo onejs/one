@@ -1,6 +1,6 @@
 {
   "name": "vxrn",
-  "version": "1.1.379",
+  "version": "1.1.383",
   "sideEffects": false,
   "type": "module",
   "exports": {
@@ -48,7 +48,7 @@
   "scripts": {
     "build": "tamagui-build",
     "watch": "yarn build --watch",
-    "check": "depcheck",
+    "check": "yarn depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
@@ -90,7 +90,6 @@
     "semver": "^7.6.3",
     "vite": "^6.0.6",
     "vite-bundle-analyzer": "^0.9.4",
-    "vite-plugin-mkcert": "^1.17.5",
     "ws": "^8.18.0"
   },
   "devDependencies": {

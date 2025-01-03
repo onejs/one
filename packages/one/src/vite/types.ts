@@ -7,6 +7,7 @@ import type {
   VXRNOptions,
   VXRNServePlatform,
 } from 'vxrn'
+import type { RouteInfo } from '../server/createRoutesManifest'
 
 export namespace One {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
@@ -161,9 +162,9 @@ export namespace One {
 
     ssr?: {
       /**
-       * Do not automatically scan for dependencies to pre-bundle for SSR.
+       * Do not pre-bundle specific dependencies for SSR, or disable the automatic scan for dependencies to pre-bundle entirely.
        */
-      disableAutoDepsPreBundling?: boolean
+      disableAutoDepsPreBundling?: boolean | string[]
     }
   }
 
@@ -181,21 +182,26 @@ export namespace One {
     permanent: boolean
   }
 
-  export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
-    oneOptions?: PluginOptions
+  export type BuildInfo = {
     constants: {
       CACHE_KEY: string
     }
+    oneOptions?: PluginOptions
+    routeToBuildInfo: Record<string, One.RouteBuildInfo>
+    routeMap: Record<string, string>
+    manifest: {
+      pageRoutes: RouteInfo[]
+      apiRoutes: RouteInfo[]
+    }
   }
 
-  export type AfterBuildProps = VXRNAfterBuildProps & {
-    routeMap: Record<string, string>
-    builtRoutes: RouteBuildInfo[]
-  }
+  export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo
 
   export type RouteBuildInfo = {
     type: One.RouteType
     path: string
+    routeFile: string
+    middlewares: string[]
     preloadPath: string
     cleanPath: string
     htmlPath: string

@@ -1,24 +1,29 @@
-import type { Hono } from 'hono'
-import { join } from 'node:path'
-import type { VXRNOptions } from 'vxrn'
+import type { Hono, MiddlewareHandler } from 'hono'
+import type { BlankEnv } from 'hono/types'
+import { extname, join } from 'node:path'
 import { getServerEntry } from 'vxrn/serve'
+import { getPathFromLoaderPath } from '../cleanUrl'
+import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
+import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
+import type { RouteInfoCompiled } from './createRoutesManifest'
+import { default as FSExtra } from 'fs-extra'
 
 export async function oneServe(
   oneOptions: One.PluginOptions,
-  vxrnOptions: VXRNOptions,
   buildInfo: One.BuildInfo,
   app: Hono,
   serveStatic = true
 ) {
-  const { createHandleRequest } = await import('../createHandleRequest')
+  const { resolveAPIRoute, resolveLoaderRoute, resolvePageRoute } = await import(
+    '../createHandleRequest'
+  )
   const { isResponse } = await import('../utils/isResponse')
   const { isStatusRedirect } = await import('../utils/isStatus')
-  const { resolveAPIRequest } = await import('../vite/resolveAPIRequest')
 
   const isAPIRequest = new WeakMap<any, boolean>()
-  const root = vxrnOptions.root || '.'
 
   // add redirects
   const redirects = oneOptions.web?.redirects
@@ -38,25 +43,11 @@ export async function oneServe(
     throw new Error(`No build info found, have you run build?`)
   }
 
-  const { routeMap, builtRoutes } = buildInfo as One.BuildInfo
-
-  const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
-  for (const route of builtRoutes) {
-    routeToBuildInfo[route.cleanPath] = route
-
-    // temp - make it back into brackets style
-    const bracketRoutePath = route.cleanPath
-      .split('/')
-      .map((part) => {
-        return part[0] === ':' ? `[${part.slice(1)}]` : part
-      })
-      .join('/')
-    routeToBuildInfo[bracketRoutePath] = route
-  }
+  const { routeToBuildInfo, routeMap } = buildInfo as One.BuildInfo
 
   const serverOptions = {
     ...oneOptions,
-    root,
+    root: '.',
   }
 
   const entryServer = getServerEntry(serverOptions)
@@ -65,152 +56,152 @@ export async function oneServe(
   const render = entry.default.render as (props: RenderAppProps) => any
   const apiCJS = oneOptions.build?.api?.outputFormat === 'cjs'
 
-  const handleRequest = createHandleRequest(
-    {},
-    {
-      async handleAPI({ route, request, loaderProps }) {
-        const apiFile = join(
-          process.cwd(),
-          'dist',
-          'api',
-          route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
-        )
+  const requestHandlers: RequestHandlers = {
+    async handleAPI({ route }) {
+      const apiFile = join(
+        process.cwd(),
+        'dist',
+        'api',
+        route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
+      )
+      return await import(apiFile)
+    },
 
-        isAPIRequest.set(request, true)
+    async loadMiddleware(route) {
+      return await import(toAbsolute(route.contextKey))
+    },
 
-        return resolveAPIRequest(
-          async () => {
-            try {
-              return await import(apiFile)
-            } catch (err) {
-              console.error(`\n [one] Error importing API route at ${apiFile}:
+    async handlePage({ route, url, loaderProps }) {
+      const buildInfo = routeToBuildInfo[route.file]
 
-  ${err}
-
-  If this is an import error, you can likely fix this by adding this dependency to
-  the "optimizeDeps.include" array in your vite.config.ts.
-
-  🐞 For a better error message run "node" and enter:
-
-  import('${apiFile}')\n\n`)
-              return {}
-            }
-          },
-          request,
-          loaderProps?.params || {}
-        )
-      },
-
-      async handleSSR({ route, url, loaderProps }) {
-        if (route.type === 'ssr') {
-          const buildInfo = routeToBuildInfo[route.page]
-          if (!buildInfo) {
-            throw new Error(
-              `No buildinfo found for ${url}, route: ${route.page}, in keys: ${Object.keys(routeToBuildInfo)}`
-            )
-          }
-
-          try {
-            const exported = await import(buildInfo.serverJsPath)
-            const loaderData = await exported.loader?.(loaderProps)
-            const preloads = buildInfo.preloads
-
-            const headers = new Headers()
-            headers.set('content-type', 'text/html')
-
-            return new Response(
-              await render({
-                loaderData,
-                loaderProps,
-                path: loaderProps?.path || '/',
-                preloads,
-              }),
-              {
-                headers,
-              }
-            )
-          } catch (err) {
-            console.error(`[one] Error rendering SSR route ${route.page}
-
-  ${err?.['stack'] ?? err}
-
-  url: ${url}`)
-          }
+      if (route.type === 'ssr') {
+        if (!buildInfo) {
+          throw new Error(
+            `No buildinfo found for ${url}, route: ${route.page}, in keys: ${Object.keys(routeToBuildInfo)}`
+          )
         }
-      },
-    }
-  )
 
-  // preload reading in all the files, for prod performance:
-  const htmlFiles: Record<string, string> = {}
+        try {
+          const exported = await import(toAbsolute(buildInfo.serverJsPath))
+          const loaderData = await exported.loader?.(loaderProps)
+          const preloads = buildInfo.preloads
 
-  if (serveStatic) {
-    const { readFile } = await import('node:fs/promises')
+          const headers = new Headers()
+          headers.set('content-type', 'text/html')
 
-    for (const key in routeMap) {
-      const info = routeToBuildInfo[key]
+          const rendered = await render({
+            loaderData,
+            loaderProps,
+            path: loaderProps?.path || '/',
+            preloads,
+          })
 
-      if (info?.type === 'ssr') {
-        // we handle this on each request
-        continue
+          return new Response(rendered, {
+            headers,
+            status: route.isNotFound ? 404 : 200,
+          })
+        } catch (err) {
+          console.error(`[one] Error rendering SSR route ${route.page}
+
+${err?.['stack'] ?? err}
+
+url: ${url}`)
+        }
+      } else {
+        const htmlPath = routeMap[url.pathname] || routeMap[buildInfo.cleanPath]
+
+        if (htmlPath) {
+          const html = await FSExtra.readFile(join('dist/client', htmlPath), 'utf-8')
+          const headers = new Headers()
+          headers.set('content-type', 'text/html')
+          return new Response(html, { headers, status: route.isNotFound ? 404 : 200 })
+        }
+      }
+    },
+  }
+
+  function createHonoHandler(route: RouteInfoCompiled): MiddlewareHandler<BlankEnv, never, {}> {
+    return async (context, next) => {
+      // assets we ignore
+      if (extname(context.req.path)) {
+        return await next()
       }
 
-      htmlFiles[key] = await readFile(join('dist/client', routeMap[key]), 'utf-8')
+      try {
+        const request = context.req.raw
+        const url = getURLfromRequestURL(request)
+
+        const response = await (() => {
+          // where to put this best? can likely be after some of the switch?
+          if (url.pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
+            const originalUrl = getPathFromLoaderPath(url.pathname)
+            const finalUrl = new URL(originalUrl, url.origin)
+            return resolveLoaderRoute(requestHandlers, request, finalUrl, route)
+          }
+
+          switch (route.type) {
+            case 'api': {
+              return resolveAPIRoute(requestHandlers, request, url, route)
+            }
+            case 'ssg':
+            case 'spa':
+            case 'ssr': {
+              return resolvePageRoute(requestHandlers, request, url, route)
+            }
+          }
+        })()
+
+        if (response) {
+          if (isResponse(response)) {
+            // const cloned = response.clone()
+
+            if (isStatusRedirect(response.status)) {
+              const location = `${response.headers.get('location') || ''}`
+              response.headers.forEach((value, key) => {
+                context.header(key, value)
+              })
+              return context.redirect(location, response.status)
+            }
+
+            if (isAPIRequest.get(request)) {
+              try {
+                // don't cache api requests by default
+                response.headers.set('Cache-Control', 'no-store')
+                return response
+              } catch (err) {
+                console.info(
+                  `Error udpating cache header on api route "${
+                    context.req.path
+                  }" to no-store, it is ${response.headers.get('cache-control')}, continue`,
+                  err
+                )
+              }
+            }
+
+            return response as Response
+          }
+
+          return await next()
+        }
+      } catch (err) {
+        console.error(` [one] Error handling request: ${(err as any)['stack']}`)
+      }
+
+      return await next()
     }
   }
 
-  app.use(async (context, next) => {
-    // serve our generated html files
-    const html = htmlFiles[context.req.path]
-    if (html) {
-      return context.html(html)
-    }
+  const compiledManifest = compileManifest(buildInfo.manifest)
 
-    try {
-      const request = context.req.raw
-      const response = await handleRequest.handler(request)
+  for (const route of compiledManifest.apiRoutes) {
+    app.get(route.honoPath, createHonoHandler(route))
+    app.put(route.honoPath, createHonoHandler(route))
+    app.post(route.honoPath, createHonoHandler(route))
+    app.delete(route.honoPath, createHonoHandler(route))
+    app.patch(route.honoPath, createHonoHandler(route))
+  }
 
-      if (response) {
-        if (isResponse(response)) {
-          if (isStatusRedirect(response.status)) {
-            const location = `${response.headers.get('location') || ''}`
-            response.headers.forEach((value, key) => {
-              context.header(key, value)
-            })
-            return context.redirect(location, response.status)
-          }
-
-          if (isAPIRequest.get(request)) {
-            try {
-              // don't cache api requests by default
-              response.headers.set('Cache-Control', 'no-store')
-            } catch (err) {
-              console.info(
-                `Error udpating cache header on api route "${
-                  context.req.path
-                }" to no-store, it is ${response.headers.get('cache-control')}, continue`,
-                err
-              )
-            }
-          }
-
-          return response as Response
-        }
-
-        return context.json(
-          response,
-          200,
-          isAPIRequest.get(request)
-            ? {
-                'Cache-Control': 'no-store',
-              }
-            : undefined
-        )
-      }
-    } catch (err) {
-      console.error(` [one] Error handling request: ${(err as any)['stack']}`)
-    }
-
-    await next()
-  })
+  for (const route of compiledManifest.pageRoutes) {
+    app.get(route.honoPath, createHonoHandler(route))
+  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "1.1.379",
+  "version": "1.1.383",
   "license": "BSD-3-Clause",
   "sideEffects": [
     "setup.mjs",
@@ -53,14 +53,14 @@
       "import": "./dist/esm/server-render.mjs",
       "require": "./dist/cjs/server-render.js"
     },
-    "./headers": {
+    "./server": {
       "react-native": {
-        "import": "./dist/esm/vite/headers.native.js",
-        "require": "./dist/cjs/vite/headers.native.js"
+        "import": "./server.js",
+        "require": "./server.js"
       },
-      "types": "./types/vite/headers.d.ts",
-      "import": "./dist/esm/vite/headers.mjs",
-      "require": "./dist/cjs/vite/headers.js"
+      "types": "./types/vite/server.d.ts",
+      "import": "./dist/esm/vite/server.mjs",
+      "require": "./dist/cjs/vite/server.js"
     },
     "./react-18": {
       "require": "./vendor/react/cjs/react.development.js",
@@ -85,12 +85,13 @@
   ],
   "scripts": {
     "build": "tamagui-build",
-    "check": "depcheck",
+    "check": "yarn depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
     "test": "vitest --run --pool=forks",
     "test:dev": "TEST_ONLY=dev yarn test",
+    "test:prod": "TEST_ONLY=prod yarn test",
     "test:watch": "vitest --watch",
     "watch": "tamagui-build --watch"
   },
@@ -144,7 +145,7 @@
     "rollup-plugin-node-externals": "^7.1.2",
     "url-parse": "^1.5.10",
     "vite": "^6.0.6",
-    "vite-plugin-barrel": "^0.4.0",
+    "vite-plugin-barrel": "^0.4.1",
     "vite-tsconfig-paths": "^5.0.1",
     "vxrn": "workspace:*",
     "ws": "^8.18.0",
