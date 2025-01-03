@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-swc",
-  "version": "1.1.382",
+  "version": "1.1.383",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
