@@ -286,9 +286,8 @@ export async function build(args: {
     })
 
     if (!foundRoute) {
-      console.error(` No html route found!`, { id, clientManifestKey })
-      console.error(` In manifest`, manifest)
-      process.exit(1)
+      // should probably error?
+      continue
     }
 
     function collectImports(
