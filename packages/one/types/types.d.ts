@@ -7,8 +7,6 @@ export type Options = {
     preserveApiRoutes?: boolean;
     ignoreRequireErrors?: boolean;
     ignoreEntryPoints?: boolean;
-    internal_stripLoadRoute?: boolean;
-    skipGenerated?: boolean;
     importMode?: string;
     platformRoutes?: boolean;
     platform?: string;

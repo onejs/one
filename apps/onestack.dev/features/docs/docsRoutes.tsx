@@ -44,6 +44,7 @@ export const docsRoutes = [
       { title: 'Navigation', route: '/docs/routing-navigation' },
       { title: 'Layouts', route: '/docs/routing-layouts' },
       { title: 'Loaders', route: '/docs/routing-loader' },
+      { title: 'Middlewares', route: '/docs/routing-middlewares' },
     ],
   },
 

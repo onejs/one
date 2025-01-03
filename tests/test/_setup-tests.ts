@@ -1,36 +1,50 @@
-import { beforeAll, afterAll } from 'vitest'
-import { spawn } from 'node:child_process'
-import { getPort } from 'get-port-please'
+import { execPromise } from '@vxrn/utils'
+import { type ChildProcessWithoutNullStreams, spawn } from 'node:child_process'
+import { afterAll, beforeAll } from 'vitest'
 
-let devServer: any = null
-let devServerPort: number
+let devServer: ChildProcessWithoutNullStreams | null = null
+let prodServer: ChildProcessWithoutNullStreams | null = null
+let devServerPort = 3111
+let prodServerPort = 3112
 
 beforeAll(async () => {
-  // Get a random available port
-  devServerPort = await getPort()
+  // run production build:
+  if (!process.env.SKIP_BUILD) {
+    console.info(`Building web`)
+    await execPromise(`yarn build:web`)
+  }
 
   // Start the dev server
   console.info(`Starting dev server on port ${devServerPort}...`)
-  devServer = spawn('yarn', ['dev', '--port', devServerPort.toString()], {
+  devServer = spawn('yarn', ['dev'], {
     stdio: 'pipe',
-    env: {
-      ...process.env,
-      PORT: devServerPort.toString(),
-    },
+    env: process.env,
   })
 
+  // Start the prod server
+  console.info(`Starting prod server on port ${prodServerPort}...`)
+  prodServer = spawn('yarn', ['serve', '--port', prodServerPort.toString()], {
+    stdio: 'pipe',
+    env: process.env,
+  })
+
+  await startServerAndWaitToFinish(devServer, devServerPort)
+  await startServerAndWaitToFinish(prodServer, prodServerPort)
+})
+
+async function startServerAndWaitToFinish(server: ChildProcessWithoutNullStreams, port: number) {
   // Collect server output
   let serverOutput = ''
-  devServer.stdout?.on('data', (data) => {
+  server.stdout?.on('data', (data) => {
     serverOutput += data.toString()
   })
-  devServer.stderr?.on('data', (data) => {
+  server.stderr?.on('data', (data) => {
     serverOutput += data.toString()
   })
 
   // Wait for server to be ready
   try {
-    await waitForServer(`http://localhost:${devServerPort}`, {
+    await waitForServer(`http://localhost:${port}`, {
       getServerOutput: () => serverOutput,
     })
     console.info('Dev server is ready')
@@ -38,11 +52,15 @@ beforeAll(async () => {
     console.error('Failed to start dev server:', error)
     throw error
   }
-})
+}
 
 afterAll(() => {
   if (devServer) {
     devServer.kill()
+    console.info('Dev server stopped')
+  }
+  if (prodServer) {
+    prodServer.kill()
     console.info('Dev server stopped')
   }
 })

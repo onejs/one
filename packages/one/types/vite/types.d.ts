@@ -1,5 +1,6 @@
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
+import type { RouteInfo } from '../server/createRoutesManifest';
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
@@ -147,19 +148,24 @@ export declare namespace One {
         destination: string;
         permanent: boolean;
     };
-    export type BuildInfo = Pick<AfterBuildProps, 'routeMap' | 'builtRoutes'> & {
-        oneOptions?: PluginOptions;
+    export type BuildInfo = {
         constants: {
             CACHE_KEY: string;
         };
-    };
-    export type AfterBuildProps = VXRNAfterBuildProps & {
+        oneOptions?: PluginOptions;
+        routeToBuildInfo: Record<string, One.RouteBuildInfo>;
         routeMap: Record<string, string>;
-        builtRoutes: RouteBuildInfo[];
+        manifest: {
+            pageRoutes: RouteInfo[];
+            apiRoutes: RouteInfo[];
+        };
     };
+    export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo;
     export type RouteBuildInfo = {
         type: One.RouteType;
         path: string;
+        routeFile: string;
+        middlewares: string[];
         preloadPath: string;
         cleanPath: string;
         htmlPath: string;

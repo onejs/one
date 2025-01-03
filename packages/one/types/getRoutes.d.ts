@@ -5,8 +5,6 @@ export type Options = {
     preserveApiRoutes?: boolean;
     ignoreRequireErrors?: boolean;
     ignoreEntryPoints?: boolean;
-    internal_stripLoadRoute?: boolean;
-    skipGenerated?: boolean;
     importMode?: 'sync';
     platformRoutes?: boolean;
     platform?: string;
@@ -24,7 +22,6 @@ export type Options = {
  *      - If multiple routes have the same name, the most specific route is used
  */
 export declare function getRoutes(contextModule: One.RouteContext, options?: Options): RouteNode | null;
-export declare function getExactRoutes(contextModule: One.RouteContext, options?: Options): RouteNode | null;
 export declare function getIgnoreList(options?: Options): RegExp[];
 /**
  * Generates a set of strings which have the router array syntax extrapolated.

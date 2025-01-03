@@ -17,11 +17,13 @@ export type OneRouterServerManifestV1Route<TRegex = string> = {
     namedRegex: TRegex;
     generated?: boolean;
     layouts?: RouteNode[];
+    middlewares?: RouteNode[];
     type: One.RouteType;
     isNotFound?: boolean;
 };
 export type OneRouterServerManifestV1<TRegex = string> = {
     apiRoutes: OneRouterServerManifestV1Route<TRegex>[];
+    middlewareRoutes: OneRouterServerManifestV1Route<TRegex>[];
     pageRoutes: OneRouterServerManifestV1Route<TRegex>[];
 };
 export interface Group {

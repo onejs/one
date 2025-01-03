@@ -1,0 +1,49 @@
+---
+title: Middlewares
+---
+
+<Status is="developing" />
+
+Place a `_middleware.ts` file anywhere inside your `app` directory to create a middleware.
+
+Here's an example:
+
+<RouteTree
+  routes={[
+    { name: '_layout.tsx', description: 'Wraps all files in this directory and below' },
+    { name: 'index.tsx', description: 'Matches "/"' },
+    { name: '_middleware.ts', description: 'Middleware for all "/" routes' },
+    { name: 'blog', children: [
+      { name: 'index.tsx', description: 'Matches "/blog"' },
+      { name: '_middleware.ts', description: 'Middleware for all "/blog" routes' },
+    ] },
+  ]}
+/>
+
+Middlewares can be nested and will run from top to bottom on matching routes.
+
+```tsx fileName=app/_middleware.ts
+import { createMiddleware } from 'one'
+
+export default createMiddleware(async ({ request, next }) => {
+  if (request.url.includes(`test-middleware`)) {
+    return Response.json({ middleware: 'works' })
+  }
+
+  const response = await next()
+
+  if (!response && request.url.endsWith('/missing')) {
+    return Response.json({ notFound: true })
+  }
+
+  return response
+})
+```
+
+The `createMiddleware` function is a simple helper for types. Middlewares receive one argument, an object with three properties:
+
+- `request` is a [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request) for the current request.
+- `next` is a function that returns a promise.
+- `context` is an Object which you can mutate to pass data between middlewares.
+
+The `next` function will run the rest of the middlewares and then the current route, and will return the final Response. This lets you run some logic after the full route has been processed, and before it returns the final response.

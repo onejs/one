@@ -8,17 +8,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
         mode: "development" | "production";
         clean: boolean;
         root: string;
-        server: {
-            port: number;
-            host: string;
-            protocol: "https:" | "http:";
-            url: string;
-            compress?: boolean;
-            cacheHeaders?: "off";
-            loadEnv?: boolean;
-            https?: boolean;
-            platform?: import("..").VXRNServePlatform;
-        };
+        server: import("..").VXRNServeOptionsFilled;
         entries: {
             native: string;
             web?: string;

@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 
 type ServerOptions = Pick<VXRNOptionsFilled, 'build' | 'root'>
@@ -8,5 +9,8 @@ export const getServerCJSSetting = (options: ServerOptions) => {
 }
 
 export const getServerEntry = (options: ServerOptions) => {
-  return `${options.root}/dist/server/_virtual_one-entry.${getServerCJSSetting(options) ? 'c' : ''}js`
+  return resolve(
+    process.cwd(),
+    `${options.root}/dist/server/_virtual_one-entry.${getServerCJSSetting(options) ? 'c' : ''}js`
+  )
 }

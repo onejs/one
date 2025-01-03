@@ -42,6 +42,8 @@ export type RouteNode = {
   entryPoints?: string[]
   /** Parent layouts */
   layouts?: RouteNode[]
+  /** Parent middlewares */
+  middlewares?: RouteNode[]
 }
 
 const CurrentRouteContext = React.createContext<RouteNode | null>(null)

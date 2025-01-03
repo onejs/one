@@ -10,7 +10,7 @@ Here's an example:
   routes={[
     { name: '_layout.tsx', description: 'Wraps all files in this directory and below' },
     { name: 'index.tsx', description: 'Matches "/"' },
-    { name: 'blog.tsx', children: [
+    { name: 'blog', children: [
       { name: 'index.tsx', description: 'Matches "/blog"' },
       { name: '[slug].tsx', description: 'Matches a single sub-path of "/blog", like "/blog/hello"' },
       { name: '[...rest].tsx', description: 'Matches all sub-paths, like "/blog/hello/world"' }

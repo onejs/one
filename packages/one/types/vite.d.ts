@@ -4,7 +4,7 @@ export { removeReactNativeWebAnimatedPlugin } from './vite/plugins/removeReactNa
 export { SSRCSSPlugin } from './vite/plugins/SSRCSSPlugin';
 export { createFileSystemRouterPlugin } from './vite/plugins/fileSystemRouterPlugin';
 export { makePluginWebOnly } from './vite/makePluginWebOnly';
-export { setCurrentRequestHeaders } from './vite/headers';
+export { setResponseHeaders } from './vite/server';
 export { build } from './cli/build';
 export { one } from './vite/one';
 //# sourceMappingURL=vite.d.ts.map

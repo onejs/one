@@ -16,7 +16,7 @@ globalThis['__vxrnasyncHeadersCache'] ||= asyncHeadersCache
 
 // TODO move this to `RequestContext.setHeaders()`
 
-export async function setCurrentRequestHeaders(cb: (headers: Headers) => void) {
+export async function setResponseHeaders(cb: (headers: Headers) => void) {
   const id = requestAsyncLocalStore.getStore()
 
   if (!id) {

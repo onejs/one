@@ -20,9 +20,6 @@ const dev = defineCommand({
     port: {
       type: 'string',
     },
-    https: {
-      type: 'boolean',
-    },
     'debug-bundle': {
       type: 'boolean',
       description: `Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.`,
@@ -42,7 +39,6 @@ const dev = defineCommand({
       root: process.cwd(),
       debugBundle: !!args['debug-bundle'],
       server: {
-        https: args.https,
         host: args.host,
         port: args.port ? +args.port : undefined,
       },

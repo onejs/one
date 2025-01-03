@@ -4,7 +4,7 @@ import type { OneRouter } from '../interfaces/router';
 type BottomTabNavigationOptionsWithHref = BottomTabNavigationOptions & {
     href?: OneRouter.Href | null;
 };
-export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "initialRouteName" | "children" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_getStateForRouteNamesChange"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
+export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "initialRouteName" | "children" | "screenOptions" | "id" | "layout" | "screenListeners" | "screenLayout" | "UNSTABLE_getStateForRouteNamesChange"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
         state: TabNavigationState<ParamListBase>;
@@ -48,7 +48,7 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<i
     UNSTABLE_getStateForRouteNamesChange?: (state: import("@react-navigation/routers").NavigationState) => import("@react-navigation/routers").PartialState<import("@react-navigation/routers").NavigationState> | undefined;
 } & {
     id?: undefined;
-}, "children"> & Partial<Pick<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "initialRouteName" | "children" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_getStateForRouteNamesChange"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
+}, "children"> & Partial<Pick<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "initialRouteName" | "children" | "screenOptions" | "id" | "layout" | "screenListeners" | "screenLayout" | "UNSTABLE_getStateForRouteNamesChange"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
         state: TabNavigationState<ParamListBase>;

@@ -41,6 +41,8 @@ export type RouteNode = {
     entryPoints?: string[];
     /** Parent layouts */
     layouts?: RouteNode[];
+    /** Parent middlewares */
+    middlewares?: RouteNode[];
 };
 /** Return the RouteNode at the current contextual boundary. */
 export declare function useRouteNode(): RouteNode | null;

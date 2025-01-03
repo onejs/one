@@ -48,6 +48,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
   const depsToOptimize = [
     ...needsInterop,
 
+    'one/server',
+
     'fast-xml-parser',
     'set-cookie-parser',
     'ipaddr.js',
@@ -80,7 +82,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'one/server-render',
     'styleq',
     'fbjs',
-    'one/headers',
     '@vxrn/universal-color-scheme',
     '@vxrn/color-scheme',
     'requires-port',
@@ -101,7 +102,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'swr/mutation',
     'one',
     'one/zero',
-    'one/headers',
     'one/server-render',
     'refractor/lang/tsx',
     'invariant',

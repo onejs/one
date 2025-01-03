@@ -13,6 +13,9 @@ export { router } from './imperative-api'
 export { createRoute, route } from './createRoute'
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
+// middleware
+export { createMiddleware, type Middleware } from './createMiddleware'
+
 // internals
 export { render } from './render'
 export { Root } from './Root'

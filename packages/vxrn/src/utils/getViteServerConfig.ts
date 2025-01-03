@@ -1,16 +1,15 @@
-import { loadConfigFromFile, mergeConfig, type InlineConfig, type UserConfig } from 'vite'
-import mkcert from 'vite-plugin-mkcert'
+import { mergeConfig, type InlineConfig, type UserConfig } from 'vite'
 import { webExtensions } from '../constants'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getServerConfigPlugin } from '../plugins/clientInjectPlugin'
 import { expoManifestRequestHandlerPlugin } from '../plugins/expoManifestRequestHandlerPlugin'
 import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
+import { createReactNativeDevServerPlugin } from '../plugins/reactNativeDevServer'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
 import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
-import { createReactNativeDevServerPlugin } from '../plugins/reactNativeDevServer'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled, userViteConfig?: UserConfig) {
   const { root, server } = config
@@ -32,8 +31,6 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
         createReactNativeDevServerPlugin(config),
 
         getServerConfigPlugin(),
-
-        server.https ? mkcert() : null,
 
         // temp fix
         // avoid logging the optimizeDeps we add that aren't in the app:

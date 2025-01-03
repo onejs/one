@@ -62,6 +62,7 @@ export function initialize(
     ignoreEntryPoints: true,
     platform: Platform.OS,
   })
+
   rootComponent = routeNode ? getQualifiedRouteComponent(routeNode) : Fragment
 
   if (!routeNode && process.env.NODE_ENV === 'production') {
