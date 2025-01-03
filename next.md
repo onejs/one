@@ -35,17 +35,26 @@
 
 ---
 
+2.0:
+
+  - react 19
+  - use dom with RSC bridge
+  - native tabs and sheet
+  - react-native-web-lite proper release
+
+---
+
 # backlog
 
-- prebuild react native shouldn't have hardcoded exports list
+- nuqs-like type safe search
 
-- react-native-web-lite proper release
+- prebuild react native shouldn't have hardcoded exports list
 
 - style tag to CSS, we could have a mode that takes style tags with precedense/key set and have a mode to optimize that to css
 
 - perf - in dev mode collectStyle is called a ton on each load
 
-- Sitemap is partially done
+- Sitemap
 
 - shouldnt export ErrorBoundary, but should make current RootErrorBoundary much better, rename it to ErrorBoundary, then export that
 
@@ -57,8 +66,6 @@
 
 - uniswap repo has to use commonjs plugin but its very tricky to configure
   - ideally we get a lot better at automating this, documenting, and maybe make it just a configuration key in one plugin
-
-- use dom
 
 - turn this back off VXRN_ENABLE_SOURCE_MAP:
   - https://github.com/swc-project/swc/issues/9416
