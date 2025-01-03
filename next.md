@@ -1,26 +1,45 @@
-1.0 ordered from most work to least:
+1.0:
 
-  - react-native-safe-area-context
-    - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
+  - tests
+    - goal for 20+ deps covered on native + web (ssr) (see weird-deps for some)
+    - native tests that run in `yarn test`
+
+  - etc
+    - enable StrictMode
+    - headless tabs (no style included)
+      - headless everything really
+    - react-native-safe-area-context
+      - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
 
   - native
-    - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
-    - large test suite + supports 1000 most popular dependencies
     - better hmr
-    - better rebuild module caching
     - symbolicator
+    - restore GestureHandlerRootView
+    - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
+    - better rebuild module caching
 
   - web
     - vercel and cloudflare deploy options working/documented
       - vercel using build output api
 
+  - packages
+    - react-scan update and native re-enable
+
+  - build
+    - way to configure the api + server config during production builds
+    - worker threads, 3x+ build speed with paralellizing
+
+  - cleanup
+    - get rid of most patching in favor of plugins that are smart
+    - codebase needs a few passes cleaning up things (__vxrn globals, structure)
+
 ---
 
 # backlog
 
-- react-native-web-lite proper release
+- prebuild react native shouldn't have hardcoded exports list
 
-- need a way ton configure the api + server etc during production builds
+- react-native-web-lite proper release
 
 - style tag to CSS, we could have a mode that takes style tags with precedense/key set and have a mode to optimize that to css
 
@@ -40,10 +59,6 @@
   - ideally we get a lot better at automating this, documenting, and maybe make it just a configuration key in one plugin
 
 - use dom
-
-- prebuild react native shouldn't have hardcoded exports list
-
-- add test to weird-deps so we know no regressions
 
 - turn this back off VXRN_ENABLE_SOURCE_MAP:
   - https://github.com/swc-project/swc/issues/9416
