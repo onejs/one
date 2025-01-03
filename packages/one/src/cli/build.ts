@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
-import Path, { join, relative, resolve, sep } from 'node:path'
+import Path, { join, relative, resolve } from 'node:path'
 import type { OutputAsset, RollupOutput } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
@@ -16,13 +16,12 @@ import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
-import { getHonoPath } from '../utils/getHonoPath'
+import { toAbsolute } from '../utils/toAbsolute'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 import { replaceLoader } from '../vite/replaceLoader'
 import type { One } from '../vite/types'
 import { labelProcess } from './label-process'
-import { toAbsolute } from '../utils/toAbsolute'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -536,7 +535,7 @@ ${JSON.stringify(params || null, null, 2)}`
 
   const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
   for (const route of builtRoutes) {
-    routeToBuildInfo[route.cleanPath] = route
+    routeToBuildInfo[route.routeFile] = route
   }
 
   function createBuildManifestRoute(route: RouteInfo) {

@@ -72,9 +72,9 @@ export async function oneServe(
     },
 
     async handlePage({ route, url, loaderProps }) {
-      if (route.type === 'ssr') {
-        const buildInfo = routeToBuildInfo[route.page]
+      const buildInfo = routeToBuildInfo[route.file]
 
+      if (route.type === 'ssr') {
         if (!buildInfo) {
           throw new Error(
             `No buildinfo found for ${url}, route: ${route.page}, in keys: ${Object.keys(routeToBuildInfo)}`
@@ -108,12 +108,10 @@ ${err?.['stack'] ?? err}
 url: ${url}`)
         }
       } else {
-        const htmlPath = routeMap[route['honoPath']]
+        const htmlPath = routeMap[url.pathname] || routeMap[buildInfo.cleanPath]
+
         if (htmlPath) {
-          const html = await FSExtra.readFile(
-            join('dist/client', routeMap[route['honoPath']]),
-            'utf-8'
-          )
+          const html = await FSExtra.readFile(join('dist/client', htmlPath), 'utf-8')
           const headers = new Headers()
           headers.set('content-type', 'text/html')
           return new Response(html, { headers, status: route.isNotFound ? 404 : 200 })
@@ -204,7 +202,6 @@ url: ${url}`)
   }
 
   for (const route of compiledManifest.pageRoutes) {
-    console.log('add', route.honoPath)
     app.get(route.honoPath, createHonoHandler(route))
   }
 }
