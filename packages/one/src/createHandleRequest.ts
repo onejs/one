@@ -32,6 +32,7 @@ async function runMiddlewares(
   getResponse: () => Promise<Response>
 ): Promise<Response> {
   const middlewares = route.middlewares
+
   if (!middlewares?.length) {
     return await getResponse()
   }
@@ -163,8 +164,9 @@ export async function resolvePageRoute(
   route: RouteInfoCompiled
 ) {
   const { pathname, search } = url
+
   return resolveResponse(async () => {
-    return await runMiddlewares(handlers, request, route, async () => {
+    const resolved = await runMiddlewares(handlers, request, route, async () => {
       return await handlers.handlePage!({
         request,
         route,
@@ -175,6 +177,7 @@ export async function resolvePageRoute(
         },
       })
     })
+    return resolved
   })
 }
 

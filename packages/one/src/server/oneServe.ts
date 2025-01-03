@@ -1,6 +1,6 @@
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
-import { join } from 'node:path'
+import { extname, join } from 'node:path'
 import { getServerEntry } from 'vxrn/serve'
 import { getPathFromLoaderPath } from '../cleanUrl'
 import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
@@ -123,6 +123,11 @@ url: ${url}`)
 
   function createHonoHandler(route: RouteInfoCompiled): MiddlewareHandler<BlankEnv, never, {}> {
     return async (context, next) => {
+      // assets we ignore
+      if (extname(context.req.path)) {
+        return await next()
+      }
+
       try {
         const request = context.req.raw
         const url = getURLfromRequestURL(request)
@@ -149,6 +154,8 @@ url: ${url}`)
 
         if (response) {
           if (isResponse(response)) {
+            // const cloned = response.clone()
+
             if (isStatusRedirect(response.status)) {
               const location = `${response.headers.get('location') || ''}`
               response.headers.forEach((value, key) => {
@@ -161,6 +168,7 @@ url: ${url}`)
               try {
                 // don't cache api requests by default
                 response.headers.set('Cache-Control', 'no-store')
+                return response
               } catch (err) {
                 console.info(
                   `Error udpating cache header on api route "${
@@ -174,7 +182,7 @@ url: ${url}`)
             return response as Response
           }
 
-          return response
+          return await next()
         }
       } catch (err) {
         console.error(` [one] Error handling request: ${(err as any)['stack']}`)
