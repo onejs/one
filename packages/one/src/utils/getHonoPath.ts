@@ -11,5 +11,7 @@ export function getHonoPath(page: string) {
       .replace('+not-found', '*')
       // /index => /
       .replace(/\/index$/, '/')
+      // remove trailing /
+      .replace(/\/$/, '')
   )
 }

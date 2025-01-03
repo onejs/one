@@ -140,6 +140,8 @@ url: ${url}`)
             return resolveLoaderRoute(requestHandlers, request, finalUrl, route)
           }
 
+          console.log('resolve', route)
+
           switch (route.type) {
             case 'api': {
               return resolveAPIRoute(requestHandlers, request, url, route)
