@@ -1,6 +1,14 @@
 import { describe, expect, it, inject } from 'vitest'
+import { ONLY_TEST_PROD } from './_constants'
 
 describe('Simple Run Tests', () => {
+  if (ONLY_TEST_PROD) {
+    it('should pass', () => {
+      expect(true).toBeTruthy()
+    })
+    return
+  }
+
   const testInfo = inject('testInfo')
   const serverUrl = `http://localhost:${testInfo.testDevPort}`
 

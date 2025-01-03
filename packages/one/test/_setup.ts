@@ -1,7 +1,7 @@
 import getPort from 'get-port'
 import { exec, spawn, type ChildProcess } from 'node:child_process'
 import * as path from 'node:path'
-import { ONLY_TEST_DEV } from './_constants'
+import { ONLY_TEST_DEV, ONLY_TEST_PROD } from './_constants'
 
 export type TestInfo = {
   testDir: string
@@ -105,18 +105,21 @@ export default async () => {
     // No need to kill the build process here, as it should have completed
 
     // Start dev server
-    console.info(`Starting a dev server on http://localhost:${devPort}`)
-    devServer = exec(`yarn dev --port ${devPort}`, {
-      cwd: fixtureDir,
-      env: { ...process.env },
-    })
     let devServerOutput = ''
-    devServer.stdout?.on('data', (data) => {
-      devServerOutput += data.toString()
-    })
-    devServer.stderr?.on('data', (data) => {
-      devServerOutput += data.toString()
-    })
+
+    if (!ONLY_TEST_PROD) {
+      console.info(`Starting a dev server on http://localhost:${devPort}`)
+      devServer = exec(`yarn dev --port ${devPort}`, {
+        cwd: fixtureDir,
+        env: { ...process.env },
+      })
+      devServer.stdout?.on('data', (data) => {
+        devServerOutput += data.toString()
+      })
+      devServer.stderr?.on('data', (data) => {
+        devServerOutput += data.toString()
+      })
+    }
 
     // Start prod server
     let prodServerOutput = ''
@@ -140,7 +143,9 @@ export default async () => {
 
     // Wait for both servers to be ready
     await Promise.all([
-      waitForServer(`http://localhost:${devPort}`, { getServerOutput: () => devServerOutput }),
+      ONLY_TEST_PROD
+        ? null
+        : waitForServer(`http://localhost:${devPort}`, { getServerOutput: () => devServerOutput }),
       ONLY_TEST_DEV
         ? null
         : waitForServer(`http://localhost:${prodPort}`, {

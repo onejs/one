@@ -74,6 +74,7 @@ export async function oneServe(
     async handlePage({ route, url, loaderProps }) {
       if (route.type === 'ssr') {
         const buildInfo = routeToBuildInfo[route.page]
+
         if (!buildInfo) {
           throw new Error(
             `No buildinfo found for ${url}, route: ${route.page}, in keys: ${Object.keys(routeToBuildInfo)}`
@@ -81,24 +82,24 @@ export async function oneServe(
         }
 
         try {
-          const exported = await import(buildInfo.serverJsPath)
+          const exported = await import(toAbsolute(buildInfo.serverJsPath))
           const loaderData = await exported.loader?.(loaderProps)
           const preloads = buildInfo.preloads
 
           const headers = new Headers()
           headers.set('content-type', 'text/html')
 
-          return new Response(
-            await render({
-              loaderData,
-              loaderProps,
-              path: loaderProps?.path || '/',
-              preloads,
-            }),
-            {
-              headers,
-            }
-          )
+          const rendered = await render({
+            loaderData,
+            loaderProps,
+            path: loaderProps?.path || '/',
+            preloads,
+          })
+
+          return new Response(rendered, {
+            headers,
+            status: route.isNotFound ? 404 : 200,
+          })
         } catch (err) {
           console.error(`[one] Error rendering SSR route ${route.page}
 
@@ -115,7 +116,7 @@ url: ${url}`)
           )
           const headers = new Headers()
           headers.set('content-type', 'text/html')
-          return new Response(html, { headers })
+          return new Response(html, { headers, status: route.isNotFound ? 404 : 200 })
         }
       }
     },
@@ -139,8 +140,6 @@ url: ${url}`)
             const finalUrl = new URL(originalUrl, url.origin)
             return resolveLoaderRoute(requestHandlers, request, finalUrl, route)
           }
-
-          console.log('resolve', route)
 
           switch (route.type) {
             case 'api': {
@@ -196,15 +195,16 @@ url: ${url}`)
 
   const compiledManifest = compileManifest(buildInfo.manifest)
 
-  for (const route of compiledManifest.pageRoutes) {
-    app.get(route.honoPath, createHonoHandler(route))
-  }
-
   for (const route of compiledManifest.apiRoutes) {
     app.get(route.honoPath, createHonoHandler(route))
     app.put(route.honoPath, createHonoHandler(route))
     app.post(route.honoPath, createHonoHandler(route))
     app.delete(route.honoPath, createHonoHandler(route))
     app.patch(route.honoPath, createHonoHandler(route))
+  }
+
+  for (const route of compiledManifest.pageRoutes) {
+    console.log('add', route.honoPath)
+    app.get(route.honoPath, createHonoHandler(route))
   }
 }

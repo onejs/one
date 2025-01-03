@@ -91,6 +91,7 @@
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
     "test": "vitest --run --pool=forks",
     "test:dev": "TEST_ONLY=dev yarn test",
+    "test:prod": "TEST_ONLY=prod yarn test",
     "test:watch": "vitest --watch",
     "watch": "tamagui-build --watch"
   },

@@ -86,15 +86,16 @@ export async function resolveAPIRoute(
 
   try {
     return resolveAPIEndpoint(
-      await handlers.handleAPI!({
-        request,
-        route,
-        url,
-        loaderProps: {
-          path: pathname,
-          params,
-        },
-      }),
+      () =>
+        handlers.handleAPI!({
+          request,
+          route,
+          url,
+          loaderProps: {
+            path: pathname,
+            params,
+          },
+        }),
       request,
       params || {}
     )
