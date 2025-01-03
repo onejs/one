@@ -13,7 +13,7 @@
   },
   "module": "dist",
   "source": "src/index.ts",
-  "types": "./types/index.d.ts",
+  "types": "./src/index.ts",
   "bin": "run.mjs",
   "files": [
     "src",
@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "strip-chat": "dotenv -- node ./run.mjs ../../apps/chat /tmp/chat --overwrite",
-    "build": "tamagui-build --skip-native",
+    "build": "tamagui-build --skip-types --skip-native",
     "watch": "yarn build --watch",
     "check": "yarn depcheck",
     "clean": "tamagui-build clean",
