@@ -11,14 +11,8 @@
     - symbolicator
 
   - web
-    - not found routes
-      - see TODO improve/remove when not found is fixed
     - vercel and cloudflare deploy options working/documented
       - vercel using build output api
-    - faster route matching, regex routers can be faster than trie
-      - see handleRequest file, npm radix3 or rou3
-
-  - we should remove port/host from the plugin config since vite wants to handle that config and it forces us to load the plugins twice on startup
 
 ---
 
@@ -31,8 +25,6 @@
 - style tag to CSS, we could have a mode that takes style tags with precedense/key set and have a mode to optimize that to css
 
 - perf - in dev mode collectStyle is called a ton on each load
-
-- probably need to bundle api routes by default? too many esm/cjs issues
 
 - Sitemap is partially done
 
@@ -71,9 +63,3 @@
   - hits /_vxrn/load/pathname.js for ssg at least
   - in dev mode handleRequest just runs handleLoader
   - in build mode generates the json
-
-- Better SWC config in vite-native-swc to fit Hermes better. Maybe we can see what's included in [`@react-native/babel-preset`](https://github.com/facebook/react-native/tree/main/packages/react-native-babel-preset) and try to match that.
-
-post launch projects:
-
-- turning the entire one/tamagui.dev splash + blog into either a template or "engine"

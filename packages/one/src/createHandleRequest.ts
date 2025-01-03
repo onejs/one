@@ -248,7 +248,6 @@ export function createHandleRequest(handlers: RequestHandlers) {
           for (const route of compiledManifest.pageRoutes) {
             if (route.file === '') {
               // ignore not found route
-              // TODO improve/remove when not found is fixed
               continue
             }
 
