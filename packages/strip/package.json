@@ -24,7 +24,6 @@
     "strip-chat": "dotenv -- node ./run.mjs ../../apps/chat /tmp/chat --overwrite",
     "build": "tamagui-build --skip-types --skip-native",
     "watch": "yarn build --watch",
-    "check": "yarn depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src"
