@@ -11,11 +11,11 @@ Here's an example:
 <RouteTree
   routes={[
     { name: '_layout.tsx', description: 'Wraps all files in this directory and below' },
-    { name: 'index.tsx', description: 'Matches "/"' },
     { name: '_middleware.ts', description: 'Middleware for all "/" routes' },
+    { name: 'index.tsx', description: 'Matches "/"' },
     { name: 'blog', children: [
-      { name: 'index.tsx', description: 'Matches "/blog"' },
       { name: '_middleware.ts', description: 'Middleware for all "/blog" routes' },
+      { name: 'index.tsx', description: 'Matches "/blog"' },
     ] },
   ]}
 />
