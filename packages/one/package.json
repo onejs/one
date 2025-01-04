@@ -159,7 +159,7 @@
     "@types/xxhashjs": "^0.2.4",
     "depcheck": "^1.4.7",
     "get-port": "^7.1.0",
-    "react-native": "0.76.4",
+    "react-native": "^0.76.5",
     "rollup": "^4.29.1",
     "vitest": "^2.1.8"
   },
