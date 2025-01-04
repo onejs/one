@@ -502,7 +502,6 @@ function appendNotFoundRoute(directory: DirectoryNode) {
     directory.files.set('+not-found', [
       {
         loadRoute() {
-          // console.info(`Loading not found`)
           return { default: () => null }
         },
         type: 'spa',
