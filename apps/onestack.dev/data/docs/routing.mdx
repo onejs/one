@@ -112,6 +112,21 @@ export default function BlogPostPage() {
 }
 ```
 
+### Not found routes
+
+To have a custom 404 page, you can create a `+not-found.tsx` route in any folder. It will act as the same as a `[...rest].tsx` route in that it will catch all sub-routes for that folder.
+
+Simply export a React component (default or named) from your not found page and it will render with a 404 status code.
+
+<RouteTree
+  routes={[
+    { name: 'catalog.tsx', children: [
+      { name: 'index.tsx', description: `Matches "/catalog"` },
+      { name: '+not-found.tsx', description: `Matches all non-matching sub-paths of "/catalog" with a 404 status code` }
+    ] },
+  ]}
+/>
+
 ## Routing Modes
 
 You can choose a rendering strategy on a per-page basis using a filename suffix. For more on these modes, [see the next documentation page, Routing Modes](/docs/routing-modes).
