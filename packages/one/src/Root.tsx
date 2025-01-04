@@ -13,7 +13,6 @@ import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import type { GlobbedRouteImports, RenderAppProps } from './types'
 import { useViteRoutes } from './useViteRoutes'
-import { rand } from './utils/rand'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollRestoration } from './views/ScrollRestoration'
@@ -27,7 +26,6 @@ if (typeof window !== 'undefined') {
 
 type RootProps = RenderAppProps &
   Omit<InnerProps, 'context'> & {
-    mode?: One.RouteRenderMode
     isClient?: boolean
     routes: GlobbedRouteImports
     routeOptions?: One.RouteOptions
@@ -59,10 +57,7 @@ export function Root(props: RootProps) {
     routeOptions,
     wrapper: ParentWrapper = Fragment,
     isClient,
-    css,
     navigationContainerProps,
-    loaderProps,
-    mode,
   } = props
 
   // ⚠️ <StrictMode> breaks routing!
@@ -144,77 +139,7 @@ export function Root(props: RootProps) {
     return contents
   }
 
-  let { loaderData } = props
-  // If loaderData is a zql QueryImpl we don't want to send it to the client,
-  // as it will be stringified into an empty object `{}` and mess up the client-side cache.
-  if (loaderData?.constructor?.name === 'QueryImpl') {
-    loaderData = undefined
-  }
-
-  return (
-    <html lang="en-US">
-      <head>
-        {process.env.NODE_ENV === 'development' ? <DevHead /> : null}
-
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `globalThis['global'] = globalThis`,
-          }}
-        />
-
-        {css?.map((file) => {
-          return <link key={file} rel="stylesheet" href={file} />
-        })}
-      </head>
-      <body>{contents}</body>
-      {/* could this just be loaded via the same loader.js? as a preload? i think so... */}
-      <script
-        async
-        // @ts-ignore
-        href="one-loader-data"
-        dangerouslySetInnerHTML={{
-          __html: `
-            globalThis['__vxrnPostRenderData__'] = { __vxrn__: 'post-render' };
-            globalThis['__vxrnLoaderData__'] = ${JSON.stringify(loaderData)};
-            globalThis['__vxrnLoaderProps__'] = ${JSON.stringify(loaderProps)};
-            globalThis['__vxrnHydrateMode__'] = ${JSON.stringify(mode)};
-        `,
-        }}
-      />
-    </html>
-  )
-}
-
-const ssrCSSID = `/@id/__x00__virtual:ssr-css.css?t=${rand()}`
-
-function DevHead() {
-  return (
-    <>
-      <link rel="preload" href={ssrCSSID} as="style" />
-      <link rel="stylesheet" href={ssrCSSID} data-ssr-css />
-      <script
-        type="module"
-        dangerouslySetInnerHTML={{
-          __html: `import { createHotContext } from "/@vite/client";
-        const hot = createHotContext("/__clear_ssr_css");
-        hot.on("vite:afterUpdate", () => {
-          document
-            .querySelectorAll("[data-ssr-css]")
-            .forEach(node => node.remove());
-        });`,
-        }}
-      />
-      <script
-        type="module"
-        dangerouslySetInnerHTML={{
-          __html: `import { injectIntoGlobalHook } from "/@react-refresh";
-injectIntoGlobalHook(window);
-window.$RefreshReg$ = () => {};
-window.$RefreshSig$ = () => (type) => type;`,
-        }}
-      />
-    </>
-  )
+  return contents
 }
 
 // function getGestureHandlerRootView() {

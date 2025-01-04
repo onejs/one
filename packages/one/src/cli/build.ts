@@ -481,7 +481,14 @@ export async function build(args: {
           }
 
           if (foundRoute.type === 'ssg') {
-            const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
+            const html = await render({
+              path,
+              preloads,
+              loaderProps,
+              loaderData,
+              css: allCSS,
+              mode: 'ssg',
+            })
             await outputFile(htmlOutPath, html)
             continue
           }

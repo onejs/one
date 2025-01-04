@@ -129,12 +129,6 @@ function NavigationContainerInner(
   )
 }
 
-const cache = {
-  done: false,
-  promise: null as any,
-  val: 0 as any,
-}
-
 const NavigationContainer = React.forwardRef(NavigationContainerInner) as <
   RootParamList extends object = ReactNavigation.RootParamList,
 >(

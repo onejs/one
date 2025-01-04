@@ -78,6 +78,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           const is404 = route.isNotFound || !exported.default
 
           const html = await render({
+            mode: route.type === 'ssg' ? 'ssg' : route.type === 'ssr' ? 'ssr' : 'spa',
             loaderData,
             loaderProps,
             path: loaderProps?.path || '/',

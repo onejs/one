@@ -3,7 +3,6 @@ import { type FunctionComponent, type ReactNode } from 'react';
 import type { GlobbedRouteImports, RenderAppProps } from './types';
 import type { One } from './vite/types';
 type RootProps = RenderAppProps & Omit<InnerProps, 'context'> & {
-    mode?: One.RouteRenderMode;
     isClient?: boolean;
     routes: GlobbedRouteImports;
     routeOptions?: One.RouteOptions;

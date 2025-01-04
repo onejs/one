@@ -25,7 +25,7 @@
     "moti": "^0.29.0",
     "one": "workspace:*",
     "react": "^18.3.1",
-    "react-native": "0.76.4",
+    "react-native": "^0.76.5",
     "react-native-reanimated": "~3.16.5",
     "react-native-svg": "15.8.0",
     "react-native-webview": "^13.11.1",

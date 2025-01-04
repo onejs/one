@@ -11,7 +11,7 @@ LogBox.ignoreLogs([/Sending .* with no listeners registered/])
 
 export function createApp(options: CreateAppProps): void {
   const App = () => {
-    let contents = <Root isClient routes={options.routes} path="/" />
+    let contents = <Root mode="spa" isClient routes={options.routes} path="/" />
 
     // if (process.env.ONE_ENABLE_REACT_SCAN) {
     //   console.warn(`React Scan enabled with options: ${process.env.ONE_ENABLE_REACT_SCAN}`)

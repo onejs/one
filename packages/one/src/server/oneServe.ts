@@ -90,6 +90,7 @@ export async function oneServe(
           headers.set('content-type', 'text/html')
 
           const rendered = await render({
+            mode: route.type,
             loaderData,
             loaderProps,
             path: loaderProps?.path || '/',
