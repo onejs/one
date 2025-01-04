@@ -231,3 +231,20 @@ The `one/vite` import has a few other exports that may be useful.
 ### `resolvePath`
 
 When you are setting an `alias` in Vite, it wants you to fully specify the import path. We use `resolvePath` to help with this, it's a bit like [`require.resolve`](https://nodejs.org/api/modules.html) that works in ESM or CJS. It's also similar to [`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve), except it returns an absolute path that Vite expects rather than a file path.
+
+## Default Configuration
+
+One sets up some default configuration out of the box, including a variety of plugins and settings that make React Native and the ecosystem of packages that are popular "just work."
+
+On the base Vite config, we detect if you have a PostCSS config file (js, ts, or json). If so, we use that. If not, we set:
+
+```tsx
+{
+  transformer: 'lightningcss',
+  lightningcss: {
+    targets: {
+      safari: (15 << 16) | (2 << 8),
+    },
+  },
+}
+```
