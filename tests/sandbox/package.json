@@ -12,10 +12,10 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@tamagui/config": "^1.121.3",
-    "@tamagui/image-next": "^1.121.3",
-    "@tamagui/lucide-icons": "^1.121.3",
-    "@tamagui/vite-plugin": "^1.121.3",
+    "@tamagui/config": "^1.121.6",
+    "@tamagui/image-next": "^1.121.6",
+    "@tamagui/lucide-icons": "^1.121.6",
+    "@tamagui/vite-plugin": "^1.121.6",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
     "react": "^18.3.1",
@@ -26,6 +26,6 @@
     "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
     "react-native-webview": "^13.11.1",
-    "tamagui": "^1.121.3"
+    "tamagui": "^1.121.6"
   }
 }
