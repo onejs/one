@@ -33,7 +33,7 @@ export function createSchemaTypes<Schema extends Record<string, any>>(_tables: S
   type RelationsCol<A extends string> = `${A}Relations`
 
   type TableRelations<Row, R extends Relations> = R extends Relations<any, infer X>
-    ? {
+    ? Row & {
         [RK in keyof X]: X[RK] extends One ? Row | undefined : Row[] | undefined
       }
     : never
