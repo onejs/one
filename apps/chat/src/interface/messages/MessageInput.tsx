@@ -12,7 +12,7 @@ import {
   getDerivedUserState,
   updateUserCurrentChannel,
 } from '~/state/user'
-import { type Attachment, zero } from '~/zero'
+import type { Attachment } from '~/db/types'
 import { AttachmentItem } from '../attachments/AttachmentItem'
 import { attachmentEmitter } from '../upload/DragDropFile'
 import type { FileUpload } from '../upload/uploadImage'
@@ -20,6 +20,7 @@ import { messageInputEmitter, messageReplyEmitter } from './emitters'
 import { MessageInputReply } from './MessageInputReply'
 import { messagesListEmitter } from './MessagesList'
 import { handleKeyboardEscape } from '~/keyboard/handleKeyboardEscape'
+import { zero } from '~/zero'
 
 let mainInputRef: EditorRef | null = null
 

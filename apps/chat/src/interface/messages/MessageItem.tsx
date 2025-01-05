@@ -1,8 +1,10 @@
 import { IndentIncrease, Reply } from '@tamagui/lucide-icons'
 import MDEditor from '@uiw/react-md-editor'
+import { createEmitter } from '@vxrn/emitter'
 import { router } from 'one'
 import { memo, useState } from 'react'
 import { SizableText, XStack, YStack } from 'tamagui'
+import type { MessageWithRelations } from '~/db/types'
 import { Editor } from '~/editor/Editor'
 import { Avatar } from '~/interface/Avatar'
 import { UserInline } from '~/interface/users/UserInline'
@@ -12,7 +14,6 @@ import {
   useUserCurrentChannelState,
   useUserState,
 } from '~/state/user'
-import type { Channel, MessageWithRelations } from '~/zero'
 import { zero } from '~/zero'
 import { AttachmentItem } from '../attachments/AttachmentItem'
 import { galleryEmitter } from '../gallery/Gallery'
@@ -20,7 +21,6 @@ import { MessageActionBar } from './MessageActionBar'
 import { MessageReactions } from './MessageReactions'
 import { messageHover } from './constants'
 import { messageReplyEmitter } from './emitters'
-import { createEmitter } from '@vxrn/emitter'
 
 const avatarGutterWidth = 32
 
@@ -169,7 +169,7 @@ export const MessageItem = memo(
 
             {!message.thread && !!message.attachments?.length && (
               <XStack gap="$4" py="$4">
-                {message.attachments.map((attachment) => {
+                {message.attachments?.map((attachment) => {
                   return (
                     <AttachmentItem
                       editable={isMyMessage}

@@ -5,10 +5,13 @@ import { zero } from '~/zero'
 
 export const MessageReactions = ({ message }: { message: MessageWithRelations }) => {
   const reactionCounts: Record<string, number> = {}
-  for (const reaction of message.reactions) {
-    if (reaction.id) {
-      reactionCounts[reaction.id] ||= 0
-      reactionCounts[reaction.id]++
+
+  if (message.reactions) {
+    for (const reaction of message.reactions) {
+      if (reaction.id) {
+        reactionCounts[reaction.id] ||= 0
+        reactionCounts[reaction.id]++
+      }
     }
   }
 
