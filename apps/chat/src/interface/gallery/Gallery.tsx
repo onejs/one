@@ -4,8 +4,8 @@ import { ChevronLeft, ChevronRight, X } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useState } from 'react'
 import { useWindowDimensions } from 'react-native'
-import { Button, type ButtonProps, styled, useDebounceValue, XStack, YStack } from 'tamagui'
-import type { Attachment } from '~/zero'
+import { Button, type ButtonProps, styled, XStack, YStack } from 'tamagui'
+import type { Attachment } from '~/db/schemaTypes'
 
 export const galleryEmitter = createEmitter<{
   items: readonly Attachment[]

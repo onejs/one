@@ -1,12 +1,12 @@
 import { SmilePlus } from '@tamagui/lucide-icons'
-import { Button, Popover, ScrollView, TooltipSimple, XStack } from 'tamagui'
-import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
-import { type Message, useQuery } from '~/zero'
-import { ButtonSimple } from '../ButtonSimple'
-import { PopoverContent } from '../Popover'
 import { useEffect, useState } from 'react'
-import { messageActionBarStickOpen } from './constants'
+import { Button, Popover, TooltipSimple, XStack } from 'tamagui'
 import { experimental_VGrid as VGrid } from 'virtua'
+import type { Message } from '~/db/schemaTypes'
+import { useQuery } from '~/zero'
+import { PopoverContent } from '../Popover'
+import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
+import { messageActionBarStickOpen } from './constants'
 import { ReactionButton } from './MessageReactions'
 
 export const AddReactionButton = ({ message }: { message: Message }) => {

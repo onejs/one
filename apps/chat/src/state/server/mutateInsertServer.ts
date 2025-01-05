@@ -1,10 +1,10 @@
 import { ensureSignedUp } from '~/interface/dialogs/actions'
-import type { Server } from '~/zero'
+import type { Tables } from '~/zero'
 import { randomId } from '~/helpers/randomId'
 import { zero } from '~/zero/zero'
 import { updateUserState } from '~/state/user'
 
-export const mutateInsertServer = async (server: Partial<Server>) => {
+export const mutateInsertServer = async (server: Partial<Tables['server']>) => {
   const currentUser = await ensureSignedUp()
   const serverId = randomId()
   const channelId = randomId()
