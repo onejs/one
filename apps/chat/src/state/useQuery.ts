@@ -15,15 +15,14 @@ export const useUser = () => {
 export const useFriends = () => {
   const { user } = useAuth()
   return (
-    useQuery(
-      (q) =>
-        q.user
-          .where('id', user?.id || '')
-          .limit(1)
-          .whereExists('friendshipsAccepted', (q) => q.where('accepted', true))
-          .whereExists('friendshipsRequested', (q) => q.where('accepted', true))
-      // .related('friendships', (q) => q.one())
-    )[0][0]?.friendships || []
+    useQuery((q) =>
+      q.user
+        .where('id', user?.id || '')
+        .limit(1)
+        .whereExists('friendshipsAccepted', (q) => q.where('accepted', true))
+        .whereExists('friendshipsRequested', (q) => q.where('accepted', true))
+        .related('friends')
+    )[0][0]?.friends || []
   )
 }
 

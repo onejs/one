@@ -1,7 +1,5 @@
-import { relations } from 'drizzle-orm'
-import { sql } from 'drizzle-orm'
+import { relations, sql } from 'drizzle-orm'
 import * as _ from 'drizzle-orm/pg-core'
-import { account, session } from './privateSchema'
 
 export type ChannelsState = {
   [server_and_channel_id: string]: ChannelState
@@ -41,14 +39,13 @@ export const user = _.pgTable('user', {
 export const userRelations = relations(user, ({ many }) => ({
   friendshipsRequested: many(friendship, { relationName: 'requestingUser' }),
   friendshipsAccepted: many(friendship, { relationName: 'acceptingUser' }),
-  serverMemberships: many(serverMember),
+  friends: many(user, { relationName: 'friends' }),
+  servers: many(server, { relationName: 'serverMembership' }),
   rolesCreated: many(role, { relationName: 'creator' }),
   userRoles: many(userRole),
   messages: many(message),
   pins: many(pin),
   attachments: many(attachment),
-  sessions: many(session),
-  accounts: many(account),
 }))
 
 export const friendship = _.pgTable(
@@ -77,6 +74,11 @@ export const friendshipRelations = relations(friendship, ({ one }) => ({
     references: [user.id],
     relationName: 'acceptingUser',
   }),
+  friend: one(user, {
+    fields: [friendship.acceptingId],
+    references: [user.id],
+    relationName: 'friends',
+  }),
 }))
 
 export const server = _.pgTable('server', {
@@ -98,7 +100,7 @@ export const serverRelations = relations(server, ({ one, many }) => ({
     references: [user.id],
     relationName: 'creator',
   }),
-  members: many(serverMember),
+  members: many(user, { relationName: 'serverMembership' }),
   channels: many(channel),
   roles: many(role),
 }))
@@ -126,6 +128,7 @@ export const serverMemberRelations = relations(serverMember, ({ one }) => ({
   user: one(user, {
     fields: [serverMember.userId],
     references: [user.id],
+    relationName: 'serverMembership',
   }),
 }))
 
@@ -179,7 +182,7 @@ export const channelRelations = relations(channel, ({ one, many }) => ({
   threads: many(thread),
   messages: many(message),
   pins: many(pin),
-  channelPermissions: many(channelPermission),
+  permissions: many(channelPermission, { relationName: 'channelPermissions' }),
 }))
 
 export const userRole = _.pgTable(
@@ -244,6 +247,7 @@ export const channelPermissionRelations = relations(channelPermission, ({ one })
   channel: one(channel, {
     fields: [channelPermission.channelId],
     references: [channel.id],
+    relationName: 'channelPermissions',
   }),
   server: one(server, {
     fields: [channelPermission.serverId],
@@ -320,7 +324,7 @@ export const messageRelations = relations(message, ({ one, many }) => ({
     fields: [message.threadId],
     references: [thread.id],
   }),
-  creator: one(user, {
+  sender: one(user, {
     fields: [message.creatorId],
     references: [user.id],
   }),

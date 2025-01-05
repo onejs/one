@@ -1,5 +1,5 @@
 import { useUserState } from '~/state/user'
-import { Message, useQuery } from '~/zero'
+import { useQuery } from '~/zero'
 import { queryMessageItemRelations } from './queryMessageItemRelations'
 
 export const useCurrentChannelMessages = () => {

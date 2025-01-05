@@ -221,8 +221,10 @@ const ServerRolePermissionsPaneMembers = ({ role }: { role: RoleWithRelations })
   const { user: currentUser } = useAuth()
   const serverMembers = useCurrentServerMembers()
   const members: Record<string, boolean> = {}
-  for (const member of role.members) {
-    members[member.id] = true
+  if (role.members) {
+    for (const member of role.members) {
+      members[member.id] = true
+    }
   }
 
   return (
