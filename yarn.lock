@@ -3129,10 +3129,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@drizzle-team/brocli@npm:^0.10.1":
-  version: 0.10.1
-  resolution: "@drizzle-team/brocli@npm:0.10.1"
-  checksum: 10/4f14ca31b2fe3561cbf8e71e119fb6d7f78123f63b404ee631bbae2fc756eaf3eded222f30e70d92203ec0679b6ae8685183dbff9e9e8547e70fdcf608a66013
+"@drizzle-team/brocli@npm:^0.10.2":
+  version: 0.10.2
+  resolution: "@drizzle-team/brocli@npm:0.10.2"
+  checksum: 10/c8d664fac9b075406ba7ddb17ab4aaf5aae6c99e371adc30a4d7972061aa9863f10e61584ab795da3a8471fdb46d234bb095133c05dfc113cd94b4ee97884e05
   languageName: node
   linkType: hard
 
@@ -14432,29 +14432,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"drizzle-kit@npm:^0.24.2":
-  version: 0.24.2
-  resolution: "drizzle-kit@npm:0.24.2"
+"drizzle-kit@npm:^0.30.1":
+  version: 0.30.1
+  resolution: "drizzle-kit@npm:0.30.1"
   dependencies:
-    "@drizzle-team/brocli": "npm:^0.10.1"
+    "@drizzle-team/brocli": "npm:^0.10.2"
     "@esbuild-kit/esm-loader": "npm:^2.5.5"
     esbuild: "npm:^0.19.7"
     esbuild-register: "npm:^3.5.0"
   bin:
     drizzle-kit: bin.cjs
-  checksum: 10/92d26383b70e6e63c87b6e738da10d3daa63115853cd3cba62e8ec2658c5717aaa363adc04efe723762347dbc33d6de2b92f6b3335710b779efd32dcdfc8e7b5
+  checksum: 10/6b93d3a00ce812c060d5659052e6f7f6f626a46fea299bf649e30234b694f22ed9464616ff3831768837d0f03f5d6e813c5c2bdd465aa99002a27bb2578bc1e8
   languageName: node
   linkType: hard
 
-"drizzle-orm@npm:^0.33.0":
-  version: 0.33.0
-  resolution: "drizzle-orm@npm:0.33.0"
+"drizzle-orm@npm:^0.38.3":
+  version: 0.38.3
+  resolution: "drizzle-orm@npm:0.38.3"
   peerDependencies:
     "@aws-sdk/client-rds-data": ">=3"
-    "@cloudflare/workers-types": ">=3"
-    "@electric-sql/pglite": ">=0.1.1"
-    "@libsql/client": "*"
-    "@neondatabase/serverless": ">=0.1"
+    "@cloudflare/workers-types": ">=4"
+    "@electric-sql/pglite": ">=0.2.0"
+    "@libsql/client": ">=0.10.0"
+    "@libsql/client-wasm": ">=0.10.0"
+    "@neondatabase/serverless": ">=0.10.0"
     "@op-engineering/op-sqlite": ">=2"
     "@opentelemetry/api": ^1.4.1
     "@planetscale/database": ">=1"
@@ -14468,7 +14469,7 @@ __metadata:
     "@xata.io/client": "*"
     better-sqlite3: ">=7"
     bun-types: "*"
-    expo-sqlite: ">=13.2.0"
+    expo-sqlite: ">=14.0.0"
     knex: "*"
     kysely: "*"
     mysql2: ">=2"
@@ -14485,6 +14486,8 @@ __metadata:
     "@electric-sql/pglite":
       optional: true
     "@libsql/client":
+      optional: true
+    "@libsql/client-wasm":
       optional: true
     "@neondatabase/serverless":
       optional: true
@@ -14534,7 +14537,7 @@ __metadata:
       optional: true
     sqlite3:
       optional: true
-  checksum: 10/71ec56b559d0c97d8844b3351958faf39c208996989f26f133fce1e94f121c4be5cf2cfbf47f26ea9062ff2c0d3d60ea5665da41f4a40de1c8f68bfc764353d5
+  checksum: 10/58bf6326eb8a55e463ebc7883effe29516e918f6400cf98e88fe92c87a8b682bf5ab4383f625b931d8c5b1ef5856ce445d84f037402ef8cb47081fdcbeeed250
   languageName: node
   linkType: hard
 
@@ -14543,10 +14546,20 @@ __metadata:
   resolution: "drizzle-to-zero@workspace:packages/drizzle-to-zero"
   dependencies:
     "@tamagui/build": "npm:^1.121.6"
-    drizzle-orm: "npm:^0.33.0"
+    drizzle-orm: "npm:^0.38.3"
     vitest: "npm:^2.1.8"
   languageName: unknown
   linkType: soft
+
+"drizzle-zero@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "drizzle-zero@npm:0.1.1"
+  peerDependencies:
+    "@rocicorp/zero": ">=0.8.2024121204"
+    drizzle-orm: ">=0.36.0"
+  checksum: 10/f733ce64e46e9ef8145625e595a2780d43f515a086fe2204e85d00afc6446a09d86eb0bb04067b03ea6f522f5c16d97cbe857828752a8d70b36bc79b48c9c84d
+  languageName: node
+  linkType: hard
 
 "dunder-proto@npm:^1.0.0, dunder-proto@npm:^1.0.1":
   version: 1.0.1
@@ -15694,8 +15707,8 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     better-sqlite3: "npm:^11.2.1"
     dotenv: "npm:^16.4.5"
-    drizzle-kit: "npm:^0.24.2"
-    drizzle-orm: "npm:^0.33.0"
+    drizzle-kit: "npm:^0.30.1"
+    drizzle-orm: "npm:^0.38.3"
     expo: "npm:~52.0.17"
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
@@ -15781,8 +15794,8 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     better-sqlite3: "npm:^11.2.1"
     dotenv: "npm:^16.4.5"
-    drizzle-kit: "npm:^0.24.2"
-    drizzle-orm: "npm:^0.33.0"
+    drizzle-kit: "npm:^0.30.1"
+    drizzle-orm: "npm:^0.38.3"
     expo: "npm:~52.0.17"
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
@@ -21808,6 +21821,9 @@ __metadata:
     "@vxrn/emitter": "workspace:*"
     better-auth: "npm:1.0.23-beta.3"
     burnt: "npm:^0.12.2"
+    drizzle-kit: "npm:^0.30.1"
+    drizzle-orm: "npm:^0.38.3"
+    drizzle-zero: "npm:^0.1.1"
     expo: "npm:~52.0.17"
     flexsearch: "npm:^0.7.43"
     one: "workspace:*"
