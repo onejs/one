@@ -1,4 +1,4 @@
-import { createSchema } from '@rocicorp/zero'
+import { createSchema, createTableSchema, Row } from '@rocicorp/zero'
 import type { PgTable } from 'drizzle-orm/pg-core'
 import { createZeroSchema } from 'drizzle-zero'
 import * as drizzleSchema from '~/db/publicSchema'
@@ -26,6 +26,7 @@ export const schema = createSchema(
 )
 
 export type Schema = typeof schema
+export type Tables = Schema['tables']
 
 function allColumns<T extends PgTable>(table: T): Record<keyof T['_']['columns'], true> {
   const columns = table._.columns

@@ -148,8 +148,7 @@ export const roleRelations = relations(role, ({ one, many }) => ({
     references: [user.id],
     relationName: 'creator',
   }),
-  userRoles: many(userRole),
-  channelPermissions: many(channelPermission),
+  members: many(user),
 }))
 
 export const channel = pgTable('channel', {
