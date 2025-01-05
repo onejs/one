@@ -202,9 +202,7 @@ export const userRole = _.pgTable(
       .references(() => user.id),
     createdAt: _.timestamp('createdAt').default(sql`CURRENT_TIMESTAMP`),
   },
-  (table) => ({
-    pk: _.primaryKey({ columns: [table.serverId, table.userId, table.roleId] }),
-  })
+  (table) => [_.primaryKey({ columns: [table.serverId, table.userId, table.roleId] })]
 )
 
 export const userRoleRelations = relations(userRole, ({ one }) => ({
