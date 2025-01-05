@@ -82,8 +82,6 @@ export const server = pgTable('server', {
   createdAt: timestamp('createdAt').default(sql`CURRENT_TIMESTAMP`),
 })
 
-const x = server._.columns.updatedAt
-
 export const serverRelations = relations(server, ({ one, many }) => ({
   creator: one(user, {
     fields: [server.creatorId],
