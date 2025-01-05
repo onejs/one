@@ -9,8 +9,30 @@ import {
   varchar,
   type AnyPgColumn,
 } from 'drizzle-orm/pg-core'
-import type { UserState } from './types'
 import { account, session } from './privateSchema'
+
+export type ChannelsState = {
+  [server_and_channel_id: string]: ChannelState
+}
+
+export type ChannelState = {
+  mainView?: 'thread' | 'chat'
+  focusedMessageId?: string
+  editingMessageId?: string
+  openedThreadId?: string
+  maximized?: boolean
+}
+
+export type UserState = {
+  serversSort?: string[]
+  activeServer?: string
+  // serverId to channelId
+  activeChannels: Record<string, string>
+  showSidePanel?: 'user' | 'settings'
+  channelState?: ChannelsState
+  // array so we can occasionally cull oldest, only need to remember a few
+  messageEdits?: [{ id: string; content: string }]
+}
 
 export const user = pgTable('user', {
   id: varchar('id').primaryKey(),
@@ -27,14 +49,12 @@ export const user = pgTable('user', {
 export const userRelations = relations(user, ({ many }) => ({
   friendshipsRequested: many(friendship, { relationName: 'requestingUser' }),
   friendshipsAccepted: many(friendship, { relationName: 'acceptingUser' }),
-  serversCreated: many(server, { relationName: 'creator' }),
   serverMemberships: many(serverMember),
   rolesCreated: many(role, { relationName: 'creator' }),
   userRoles: many(userRole),
   messages: many(message),
   pins: many(pin),
   attachments: many(attachment),
-  messageReactions: many(messageReaction),
   sessions: many(session),
   accounts: many(account),
 }))
@@ -51,9 +71,7 @@ export const friendship = pgTable(
     accepted: boolean('accepted').notNull().default(false),
     createdAt: timestamp('createdAt').default(sql`CURRENT_TIMESTAMP`),
   },
-  (table) => ({
-    pk: primaryKey({ columns: [table.requestingId, table.acceptingId] }),
-  })
+  (table) => [primaryKey({ columns: [table.requestingId, table.acceptingId] })]
 )
 
 export const friendshipRelations = relations(friendship, ({ one }) => ({
@@ -105,9 +123,7 @@ export const serverMember = pgTable(
     hasClosedWelcome: boolean('hasClosedWelcome').notNull().default(false),
     joinedAt: timestamp('joinedAt').default(sql`CURRENT_TIMESTAMP`),
   },
-  (table) => ({
-    pk: primaryKey({ columns: [table.serverId, table.userId] }),
-  })
+  (table) => [primaryKey({ columns: [table.serverId, table.userId] })]
 )
 
 export const serverMemberRelations = relations(serverMember, ({ one }) => ({
@@ -416,9 +432,7 @@ export const messageReaction = pgTable(
     createdAt: timestamp('createdAt').default(sql`CURRENT_TIMESTAMP`),
     updatedAt: timestamp('updatedAt'),
   },
-  (table) => ({
-    pk: primaryKey({ columns: [table.messageId, table.creatorId, table.reactionId] }),
-  })
+  (table) => [primaryKey({ columns: [table.messageId, table.creatorId, table.reactionId] })]
 )
 
 export const messageReactionRelations = relations(messageReaction, ({ one }) => ({

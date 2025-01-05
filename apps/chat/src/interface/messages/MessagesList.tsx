@@ -10,7 +10,7 @@ import {
   updateUserOpenThread,
   updateUserSetEditingMessage,
 } from '~/state/user'
-import type { MessageWithRelations } from '~/db/schemaTypes'
+import type { MessageWithRelations } from '~/db/types'
 import { MessageItem, messageItemEmitter } from './MessageItem'
 import { router } from 'one'
 

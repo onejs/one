@@ -1,6 +1,6 @@
 import { SizableText, XStack } from 'tamagui'
+import type { User } from '~/db/types'
 import { Avatar } from '~/interface/Avatar'
-import type { User } from '~/zero'
 
 const avatarSizes = {
   small: 18,

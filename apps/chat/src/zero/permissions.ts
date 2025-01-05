@@ -4,8 +4,11 @@ import {
   NOBODY_CAN,
   type TableSchema,
 } from '@rocicorp/zero'
-import { type Schema, schema, Tables } from './schema'
-import type { AuthData } from '~/db/types'
+import { type Schema, schema, type Tables } from './schema'
+
+export type AuthData = {
+  id: string
+}
 
 // type PermissionQuery<Condition = any> = (ad: AuthData, eb: ExpressionBuilder<any>) => Condition
 

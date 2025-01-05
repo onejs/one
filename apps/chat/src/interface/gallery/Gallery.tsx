@@ -5,7 +5,7 @@ import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useState } from 'react'
 import { useWindowDimensions } from 'react-native'
 import { Button, type ButtonProps, styled, XStack, YStack } from 'tamagui'
-import type { Attachment } from '~/db/schemaTypes'
+import type { Attachment } from '~/db/types'
 
 export const galleryEmitter = createEmitter<{
   items: readonly Attachment[]
