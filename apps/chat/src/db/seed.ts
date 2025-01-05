@@ -1,15 +1,7 @@
 import { drizzle } from 'drizzle-orm/node-postgres'
 import pg from 'pg'
-import {
-  user,
-  server,
-  channel,
-  serverMember,
-  type User,
-  type Server,
-  type Channel,
-  type ServerMember,
-} from './schema'
+import { user, server, channel, serverMember } from './publicSchema'
+import type { User, Server, Channel, ServerMember } from './schemaTypes'
 
 const connectionString = process.env.ZERO_UPSTREAM_DB.replace('127.0.0.1', 'pgdb')
 
@@ -29,7 +21,9 @@ async function insertSeedData() {
       username: 'testuser',
       name: 'Test User',
       email: 'testuser@example.com',
-      state: {},
+      state: {
+        activeChannels: {},
+      },
       emailVerified: true,
       image: 'https://one1.dev/onechatimages/uploads/np424wtl8z-avatar.png',
       createdAt: new Date(),
