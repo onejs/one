@@ -23,7 +23,7 @@
     "docker": "docker compose --env-file .env",
     "ios": "expo run:ios",
     "migrate:auth": "npx @better-auth/cli migrate --config ./src/better-auth/auth.ts",
-    "seed": "tsx ./src/postgres/seed.ts",
+    "seed": "tsx ./src/db/seed.ts",
     "serve": "one serve",
     "zero": "yarn zero:build-schema && zero-cache --schema-file ./src/zero/zero-schema.json",
     "zero:build-schema": "cd ./src/zero && zero-build-schema -p './schema-build.ts'"
