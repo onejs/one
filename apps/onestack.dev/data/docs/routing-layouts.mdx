@@ -150,3 +150,9 @@ You'll notice we are matching the `name` to the file names names of the sub-rout
 
 This will get you a nice Stack-inside-Tabs pattern that is common on native apps, all with just two layouts and a few routes.
 
+
+## Limitations
+
+As of today layouts have don't support loaders. This is on our radar, please [chime in](https://github.com/onejs/one/discussions/376) if this is helpful for you.
+
+Also note that `useParams` won't work in layouts, as they are never nested inside a route. Instead, you can use `useActiveParams`.
