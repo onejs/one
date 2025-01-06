@@ -1,17 +1,14 @@
-import FSExtra, { ensureFile } from 'fs-extra'
+import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
 import { dirname, join, relative } from 'node:path'
-import type { RollupCache } from 'rollup'
 import { createBuilder } from 'vite'
 // import { buildEnvironment } from './fork/vite/build'
+import { resolvePath } from '@vxrn/resolve'
+import { filterPluginsForNative } from './filterPluginsForNative'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { getReactNativeConfig } from './getReactNativeConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
-import { resolvePath } from '@vxrn/resolve'
-import { filterPluginsForNative } from './filterPluginsForNative'
-
-const { pathExists } = FSExtra
 
 // used for normalizing hot reloads
 export let entryRoot = ''
@@ -21,8 +18,6 @@ let cachedReactNativeBundles: Record<string, string | undefined> = {}
 export function clearCachedBundle() {
   cachedReactNativeBundles = {}
 }
-
-const cache: Record<string, RollupCache> = {}
 
 export async function getReactNativeBundle(
   options: VXRNOptionsFilled,
