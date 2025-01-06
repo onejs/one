@@ -25,10 +25,42 @@ export function openReactNativeDevTools() {
     console.error(`Server not running`)
     return
   }
-  // TODO not fully figured out would need to see how the pass things to open or find better api
-  // fetch(reactNativeDevToolsUrl, {
-  //   method: 'POST',
-  // })
+
+  const url = new URL('/open-debugger', reactNativeDevToolsUrl)
+
+  // TODO: Seems to need these if multiple devices are connected, but haven't figured out how to pass these yet
+  // Currently will just launch DevTools for most recently connected device
+  // url.searchParams.set('appId', );
+  // url.searchParams.set('device', );
+  // url.searchParams.set('target', );
+
+  // The `/open-debugger` endpoint may not respond, so we don't wait for it and will ignore timeout errors
+  ;(async () => {
+    const response = await fetch(url, {
+      method: 'POST',
+      signal: AbortSignal.timeout(3000),
+    }).catch((error) => {
+      if (error.name === 'TimeoutError') {
+        return null
+      }
+
+      throw error
+    })
+
+    if (!response) {
+      // This is common for now, so don't log it
+      // console.info(`No response received from the React Native DevTools.`)
+    } else if (response.ok === false) {
+      const responseText = await response.text()
+
+      if (responseText.includes('Unable to find debugger target')) {
+        // Will already print "No compatible apps connected. React Native DevTools can only be used with the Hermes engine.", so no need to warn again
+        return
+      }
+
+      console.warn(`Failed to open React Native DevTools, ${url} returns ${response.status}: ${responseText}.`)
+    }
+  })()
 }
 
 export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Plugin {
