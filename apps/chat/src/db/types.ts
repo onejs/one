@@ -15,6 +15,10 @@ type ExtractRelations<T> = {
   [K in keyof T]: T[K] extends Relations ? T[K] : never
 }
 
+type DrizzleRowToZeroRow<R extends Record<string, any>> = {
+  [Key in keyof R]: R[Key] extends Date | null | undefined ? number | null | undefined : R[Key]
+}
+
 // Extract only the tables from the schema
 type SchemaTables = ExtractTables<typeof schema>
 
@@ -23,7 +27,7 @@ export function createSchemaTypes<Schema extends Record<string, any>>(_tables: S
   type ExtractedRelations = ExtractRelations<Schema>
 
   type InsertTypes = {
-    [K in keyof Tables]: InferInsertModel<Tables[K]>
+    [K in keyof Tables]: DrizzleRowToZeroRow<InferInsertModel<Tables[K]>>
   }
 
   type SelectTypes = {
@@ -49,14 +53,9 @@ export function createSchemaTypes<Schema extends Record<string, any>>(_tables: S
   return {
     Insert: {} as InsertTypes,
     Select: {} as SelectTypes,
-    Relations: {} as RelationTypes,
+    WithRelations: {} as RelationTypes,
   }
 }
-
-// Create schema types using only the tables (excluding relations)
-type x2 = (typeof schema)['messageRelations']
-const xxxxx = typeof schema['messageRelations']
-type xxx = ExtractRelations<typeof schema>
 
 const schemaTypes = createSchemaTypes<typeof schema>(schema as SchemaTables)
 
@@ -64,40 +63,40 @@ export type Schema = typeof schemaTypes
 
 // Example type exports
 export type User = Schema['Insert']['user']
-export type UserWithRelations = Schema['Relations']['user']
+export type UserWithRelations = Schema['WithRelations']['user']
 
 export type Attachment = Schema['Insert']['attachment']
-export type AttachmentWithRelations = Schema['Relations']['attachment']
+export type AttachmentWithRelations = Schema['WithRelations']['attachment']
 
 export type Message = Schema['Insert']['message']
-export type MessageWithRelations = Schema['Relations']['message']
+export type MessageWithRelations = Schema['WithRelations']['message']
 
 export type Server = Schema['Insert']['server']
-export type ServerWithRelations = Schema['Relations']['server']
+export type ServerWithRelations = Schema['WithRelations']['server']
 
 export type Channel = Schema['Insert']['channel']
-export type ChannelWithRelations = Schema['Relations']['channel']
+export type ChannelWithRelations = Schema['WithRelations']['channel']
 
 export type Thread = Schema['Insert']['thread']
-export type ThreadWithRelations = Schema['Relations']['thread']
+export type ThreadWithRelations = Schema['WithRelations']['thread']
 
 export type ServerMember = Schema['Insert']['serverMember']
-export type ServerMemberWithRelations = Schema['Relations']['serverMember']
+export type ServerMemberWithRelations = Schema['WithRelations']['serverMember']
 
 export type MessageReaction = Schema['Insert']['messageReaction']
-export type MessageReactionWithRelations = Schema['Relations']['messageReaction']
+export type MessageReactionWithRelations = Schema['WithRelations']['messageReaction']
 
 export type Reaction = Schema['Insert']['reaction']
-export type ReactionWithRelations = Schema['Relations']['reaction']
+export type ReactionWithRelations = Schema['WithRelations']['reaction']
 
 export type Friendship = Schema['Insert']['friendship']
-export type FriendshipWithRelations = Schema['Relations']['friendship']
+export type FriendshipWithRelations = Schema['WithRelations']['friendship']
 
 export type Role = Schema['Insert']['role']
-export type RoleWithRelations = Schema['Relations']['role']
+export type RoleWithRelations = Schema['WithRelations']['role']
 
 export type UserRole = Schema['Insert']['userRole']
-export type UserRoleWithRelations = Schema['Relations']['userRole']
+export type UserRoleWithRelations = Schema['WithRelations']['userRole']
 
 export type ChannelPermission = Schema['Insert']['channelPermission']
-export type ChannelPermissionWithRelations = Schema['Relations']['channelPermission']
+export type ChannelPermissionWithRelations = Schema['WithRelations']['channelPermission']

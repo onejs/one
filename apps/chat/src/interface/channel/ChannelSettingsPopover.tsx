@@ -13,6 +13,7 @@ import {
   YStack,
 } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
+import type { Role } from '~/db/types'
 import { randomId } from '~/helpers/randomId'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { useCurrentChannelPermissions } from '~/state/channel/useCurrentChannelPermissions'
@@ -25,7 +26,6 @@ import { PopoverContent } from '../Popover'
 import { Row } from '../Row'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
 import { Tabs } from '../tabs/Tabs'
-import type { Role } from '~/db/types'
 
 export const ChannelSettingsPopover = () => {
   const channel = useCurrentChannel()

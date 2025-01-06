@@ -1,9 +1,8 @@
 import { createSchema, createTableSchema, Row } from '@rocicorp/zero'
+import { getTableColumns } from 'drizzle-orm'
 import type { PgTable } from 'drizzle-orm/pg-core'
 import { createZeroSchema } from 'drizzle-zero'
 import * as drizzleSchema from '~/db/publicSchema'
-
-const x = drizzleSchema.server._.columns.updatedAt
 
 export const schema = createSchema(
   createZeroSchema(drizzleSchema, {
@@ -30,16 +29,14 @@ export const schema = createSchema(
 export type Schema = typeof schema
 export type Tables = Schema['tables']
 
-type s = Tables['server']['columns']['createdAt']
-
+/**
+ * Maps all columns of a Drizzle schema table to `true`.
+ */
 function allColumns<T extends PgTable>(table: T): Record<keyof T['_']['columns'], true> {
-  const columns = table._.columns
+  const columns = getTableColumns(table)
   const result = {} as Record<keyof T['_']['columns'], true>
-
   for (const columnName in columns) {
-    // @ts-expect-error - We know the column names are valid
     result[columnName] = true
   }
-
   return result
 }
