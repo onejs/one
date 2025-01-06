@@ -52,9 +52,6 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
         $sm={{
           py: '$1.5',
         }}
-        {...(isActive && {
-          bg: 'color-mix(in srgb, var(--color8) 10%, transparent 50%)' as any,
-        })}
         {...(inMenu && {
           jc: 'flex-start',
         })}
@@ -66,10 +63,10 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
             pos="absolute"
             t={0}
             b={0}
-            r={0}
+            l={0}
             br="$2"
-            w={3}
-            bg={active ? '$color' : '$backgroundHover'}
+            w={2}
+            bg={active ? '$color10' : '$backgroundHover'}
           />
         )}
         <SizableText
@@ -108,7 +105,7 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
         {pending ? (
           <>
             <XStack flex={1} />
-            <SizableText theme="alt2" size="$1" px="$2" py="$1" bg="$background" borderRadius="$3">
+            <SizableText size="$1" px="$2" py="$1" bg="$background" borderRadius="$3">
               WIP
             </SizableText>
           </>
