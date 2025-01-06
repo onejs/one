@@ -318,6 +318,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Record<string, UserConfig>
 
     const getConfigFor = (platform: 'ios' | 'android' | 'client'): UserConfig => {
+      if (process.env.NODE_ENV === 'production') {
+        return configs.disabled
+      }
       if (!scan) {
         return configs.disabled
       }
