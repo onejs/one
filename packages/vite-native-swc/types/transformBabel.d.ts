@@ -1,6 +1,9 @@
 import babel from '@babel/core';
 type BabelPlugins = babel.TransformOptions['plugins'];
-export type GetBabelConfig = (id: string, code: string) => boolean | BabelPlugins;
+export type GetBabelConfig = (id: string, code: string) => boolean | {
+    plugins: Exclude<BabelPlugins, null | undefined>;
+    excludeDefaultPlugins?: boolean;
+};
 type BabelPluginGlobalOptions = {
     disableReanimated: boolean;
 };

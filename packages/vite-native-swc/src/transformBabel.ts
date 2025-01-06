@@ -2,7 +2,15 @@ import babel from '@babel/core'
 
 type BabelPlugins = babel.TransformOptions['plugins']
 
-export type GetBabelConfig = (id: string, code: string) => boolean | BabelPlugins
+export type GetBabelConfig = (
+  id: string,
+  code: string
+) =>
+  | boolean
+  | {
+      plugins: Exclude<BabelPlugins, null | undefined>
+      excludeDefaultPlugins?: boolean
+    }
 
 type BabelPluginGlobalOptions = {
   disableReanimated: boolean
@@ -35,11 +43,17 @@ function getBabelPlugins(
   development: boolean
 ): BabelPlugins {
   const userPlugins = getUserPlugins?.(id, code)
-  if (userPlugins) {
+  if (typeof userPlugins !== 'undefined') {
     if (userPlugins === true) {
       return getDefaultBabelPlugins(id, code, development, true)
     }
-    return userPlugins
+    if (userPlugins === false) {
+      return null
+    }
+    if (userPlugins.excludeDefaultPlugins) {
+      return userPlugins.plugins
+    }
+    return [getDefaultBabelPlugins(id, code, development), ...userPlugins.plugins]
   }
   return getDefaultBabelPlugins(id, code, development)
 }
