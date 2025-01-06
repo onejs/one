@@ -17,6 +17,7 @@ import {
   YStack,
   type ButtonProps,
 } from 'tamagui'
+import type { ThreadWithRelations } from '~/db/types'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { useCurrentChannelThreads } from '~/state/channel/useCurrentChannelThreads'
 import { useCurrentThread, useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
@@ -26,7 +27,7 @@ import {
   updateUserOpenThread,
   useUserCurrentChannelState,
 } from '~/state/user'
-import { zero, type ThreadWithRelations } from '~/zero'
+import { zero } from '~/zero'
 import { AnimationDriver } from '../animations/AnimationDriver'
 import { ButtonSimple } from '../ButtonSimple'
 import { dialogConfirm } from '../dialogs/actions'

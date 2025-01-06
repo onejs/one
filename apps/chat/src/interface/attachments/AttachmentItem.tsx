@@ -1,7 +1,7 @@
 import { Image } from '@tamagui/image-next'
 import { X } from '@tamagui/lucide-icons'
 import { Button, YStack, type YStackProps } from 'tamagui'
-import type { Attachment } from '~/zero'
+import type { Attachment } from '~/db/types'
 import { dialogConfirm } from '../dialogs/actions'
 
 export const AttachmentItem = ({

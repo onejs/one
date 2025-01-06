@@ -17,7 +17,7 @@ import { randomId } from '~/helpers/randomId'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { useCurrentChannelPermissions } from '~/state/channel/useCurrentChannelPermissions'
 import { useCurrentServerRoles } from '~/state/server/useCurrentServerRoles'
-import { type Role, zero } from '~/zero'
+import { zero } from '~/zero'
 import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
 import { LabeledRow } from '../forms/LabeledRow'
 import { Switch } from '../forms/Switch'
@@ -25,6 +25,7 @@ import { PopoverContent } from '../Popover'
 import { Row } from '../Row'
 import { SearchableInput, SearchableList, SearchableListItem } from '../SearchableList'
 import { Tabs } from '../tabs/Tabs'
+import type { Role } from '~/db/types'
 
 export const ChannelSettingsPopover = () => {
   const channel = useCurrentChannel()

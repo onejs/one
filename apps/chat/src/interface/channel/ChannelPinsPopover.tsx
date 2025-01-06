@@ -1,10 +1,10 @@
 import { Pin } from '@tamagui/lucide-icons'
-import { ListItem, Popover } from 'tamagui'
+import { Popover } from 'tamagui'
+import { useCurrentChannelPins } from '../../state/channel/useCurrentChannelPins'
 import { closeCurrentThread } from '../../state/user'
 import { ButtonSimple } from '../ButtonSimple'
-import { PopoverContent } from '../Popover'
-import { useCurrentChannelPins } from '../../state/channel/useCurrentChannelPins'
 import { MessageItem } from '../messages/MessageItem'
+import { PopoverContent } from '../Popover'
 
 export const ChannelPinsPopover = () => {
   const pins = useCurrentChannelPins()

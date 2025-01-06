@@ -1,7 +1,7 @@
 import { drizzle } from 'drizzle-orm/node-postgres'
 import pg from 'pg'
-import { user, server, channel, serverMember } from './publicSchema'
-import type { User, Server, Channel, ServerMember } from './schemaTypes'
+import { channel, server, serverMember, user } from './publicSchema'
+import type { Channel, Server, ServerMember, User } from './types'
 
 const connectionString = process.env.ZERO_UPSTREAM_DB.replace('127.0.0.1', 'pgdb')
 
