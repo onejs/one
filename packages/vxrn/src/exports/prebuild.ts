@@ -123,52 +123,55 @@ export const prebuild = async ({
     )
   }
 
+  // huh... i needed this, then i didnt, for no apparent reason
   // automatically fix build scripts for monorepos
-  const reactNativeRoot = resolvePath('react-native', root)
-  // in a monorepo if react-native is at root and current app is at apps/app
-  // then this value will be "../..", if not it will be ""
-  const monorepoRelativeRoot = relative(root, reactNativeRoot)
-    .split(sep)
-    .filter((x) => x === '..')
-    .join(sep)
+  // const reactNativeRoot = resolvePath('react-native', root)
+  // // in a monorepo if react-native is at root and current app is at apps/app
+  // // then this value will be "../..", if not it will be ""
+  // const monorepoRelativeRoot = relative(root, reactNativeRoot)
+  //   .split(sep)
+  //   .filter((x) => x === '..')
+  //   .join(sep)
 
-  if (monorepoRelativeRoot) {
-    if (existsSync('ios')) {
-      const projectName = findXcworkspaceName('ios')?.replace('.xcworkspace', '')
-      if (projectName) {
-        await replaceInUTF8File(
-          `ios/${projectName}.xcodeproj/project.pbxproj`,
-          '../node_modules/react-native/scripts/',
-          `${monorepoRelativeRoot}/../node_modules/react-native/scripts/`
-        )
-      }
-    }
+  // if (monorepoRelativeRoot) {
+  //   if (existsSync('ios')) {
+  //     const projectName = findXcworkspaceName('ios')?.replace('.xcworkspace', '')
+  //     if (projectName) {
+  //       // note: this is for older react-native, needs testing
+  //       await replaceInUTF8File(
+  //         `ios/${projectName}.xcodeproj/project.pbxproj`,
+  //         '../node_modules/react-native/scripts/',
+  //         `${monorepoRelativeRoot}/../node_modules/react-native/scripts/`
+  //       )
+  //       await replaceInUTF8File(
+  //         `ios/Pods/Pods.xcodeproj/project.pbxproj`,
+  //         `RCT_SCRIPT_POD_INSTALLATION_ROOT/../../../node_modules/react-native`,
+  //         `RCT_SCRIPT_POD_INSTALLATION_ROOT/${monorepoRelativeRoot}/../../../node_modules/react-native`
+  //       )
+  //     }
+  //   }
 
-    if (existsSync('android')) {
-      await replaceInUTF8File(
-        'android/app/build.gradle',
-        '../../node_modules/',
-        `${monorepoRelativeRoot}/../../node_modules/`
-      )
-      await replaceInUTF8File(
-        'android/settings.gradle',
-        '../node_modules/',
-        `${monorepoRelativeRoot}/../node_modules/`
-      )
-    }
-  }
+  //   if (existsSync('android')) {
+  //     // TODO test this, leaving commented out since its likely not working
+  //     // await replaceInUTF8File(
+  //     //   'android/app/build.gradle',
+  //     //   '../../node_modules/',
+  //     //   `${monorepoRelativeRoot}/../../node_modules/`
+  //     // )
+  //     // await replaceInUTF8File(
+  //     //   'android/settings.gradle',
+  //     //   '../node_modules/',
+  //     //   `${monorepoRelativeRoot}/../node_modules/`
+  //     // )
+  //   }
+
+  //   console.info(`Note: detected monorepo and build adjusted scripts.`)
+  // }
 }
 
-export async function replaceInUTF8File(
-  filePath: string,
-  projectName: string,
-  templateName: string
-) {
+export async function replaceInUTF8File(filePath: string, findThis: string, replaceWith: string) {
   const fileContent = await FSExtra.readFile(filePath, 'utf8')
-  const replacedFileContent = fileContent
-    .replace(new RegExp(templateName, 'g'), projectName)
-    .replace(new RegExp(templateName.toLowerCase(), 'g'), projectName.toLowerCase())
-
+  const replacedFileContent = fileContent.replace(findThis, replaceWith)
   if (fileContent !== replacedFileContent) {
     await FSExtra.writeFile(filePath, replacedFileContent, 'utf8')
   }

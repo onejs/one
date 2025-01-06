@@ -33,18 +33,24 @@ export async function buildReactJSX(options: BuildOptions = {}) {
   }).then(async () => {
     // manual force exports
     const bundled = await readFile(options.outfile!, 'utf-8')
+
     const outCode = `
     const run = () => {
       ${mustReplace(bundled, [
-        isProd
-          ? {
-              find: `module.exports = require_react_jsx_runtime_production_min();`,
-              replace: `return require_react_jsx_runtime_production_min();`,
-            }
-          : {
-              find: `module.exports = require_react_jsx_dev_runtime_development();`,
-              replace: `return require_react_jsx_dev_runtime_development();`,
-            },
+        ...(isProd
+          ? [
+              {
+                // react 18 and 19 (18 has _min)
+                find: /module\.exports = require_react_jsx_runtime_production([a-z_]*)\(\);/,
+                replace: `return require_react_jsx_runtime_production$1();`,
+              },
+            ]
+          : [
+              {
+                find: `module.exports = require_react_jsx_dev_runtime_development();`,
+                replace: `return require_react_jsx_dev_runtime_development();`,
+              },
+            ]),
         { find: `process.env.VXRN_REACT_19`, replace: 'false', optional: true },
         {
           find: `Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')"));`,
@@ -101,11 +107,11 @@ export async function buildReact(options: BuildOptions = {}) {
       ${mustReplace(bundled, [
         isProd
           ? {
-              find: /module\.exports = require_react_production_min(\d*)\(\);/,
-              replace: 'return require_react_production_min$1();',
+              find: /module\.exports = require_react_production([a-z_]*)\(\);/,
+              replace: 'return require_react_production$1();',
             }
           : {
-              find: /module\.exports = require_react_development(\d*)\(\);/,
+              find: /module\.exports = require_react_development([a-z_]*)\(\);/,
               replace: 'return require_react_development$1();',
             },
         {

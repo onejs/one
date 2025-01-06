@@ -231,10 +231,15 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     const old = await FSExtra.readFile(serverEntry, 'utf-8')
     await FSExtra.writeFile(
       serverEntry,
-      old.replace(
-        `import { hydrate as hydrate$1, unmountComponentAtNode, render as render$1 } from "react-dom";`,
-        ''
-      )
+      old
+        .replace(
+          `import { hydrate as hydrate$1, unmountComponentAtNode, render as render$1 } from "react-dom";`,
+          ''
+        )
+        .replace(
+          `import ReactDOM__default, { render as render$2, unmountComponentAtNode as unmountComponentAtNode$1, hydrate as hydrate$1 } from "react-dom";`,
+          'import ReactDOM__default from "react-dom";'
+        )
     )
   }
 
