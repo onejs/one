@@ -93,85 +93,85 @@ export async function build(args: {
     const outputFormat = oneOptions?.build?.api?.outputFormat ?? serverOutputFormat
     const treeshake = oneOptions?.build?.api?.treeshake
 
-    const output = await viteBuild(
-      mergeConfig(apiBuildConfig, {
-        appType: 'custom',
-        configFile: false,
+    const mergedConfig = mergeConfig(apiBuildConfig, {
+      appType: 'custom',
+      configFile: false,
 
-        plugins: [
-          nodeExternals({
-            exclude: optimizeDeps.include,
-          }) as any,
-        ],
+      plugins: [
+        nodeExternals({
+          exclude: optimizeDeps.include,
+        }) as any,
+      ],
 
-        define: {
-          ...processEnvDefines,
-        },
+      define: {
+        ...processEnvDefines,
+      },
 
-        ssr: {
-          noExternal: true,
-          // we patched them to switch to react 19
-          external: ['react', 'react-dom'],
-          optimizeDeps,
-        },
+      ssr: {
+        noExternal: true,
+        // we patched them to switch to react 19
+        external: ['react', 'react-dom'],
+        optimizeDeps,
+      },
 
-        build: {
-          ssr: true,
-          emptyOutDir: false,
-          outDir: `dist/${subFolder}`,
-          copyPublicDir: false,
-          minify: false,
-          rollupOptions: {
-            treeshake: treeshake ?? {
-              moduleSideEffects: false,
-            },
+      build: {
+        ssr: true,
+        emptyOutDir: false,
+        outDir: `dist/${subFolder}`,
+        copyPublicDir: false,
+        minify: false,
+        rollupOptions: {
+          treeshake: treeshake ?? {
+            moduleSideEffects: false,
+          },
 
-            plugins: [
-              // otherwise rollup is leaving commonjs-only top level imports...
-              outputFormat === 'esm' ? rollupRemoveUnusedImportsPlugin : null,
-            ].filter(Boolean),
+          plugins: [
+            // otherwise rollup is leaving commonjs-only top level imports...
+            outputFormat === 'esm' ? rollupRemoveUnusedImportsPlugin : null,
+          ].filter(Boolean),
 
-            // too many issues
-            // treeshake: {
-            //   moduleSideEffects: false,
-            // },
-            // prevents it from shaking out the exports
-            preserveEntrySignatures: 'strict',
-            input: input,
-            external: externalRegex,
-            output: {
-              entryFileNames: '[name]',
-              exports: 'auto',
-              ...(outputFormat === 'esm'
-                ? {
-                    format: 'esm',
-                    esModule: true,
-                  }
-                : {
-                    format: 'cjs',
-                    // Preserve folder structure and use .cjs extension
-                    entryFileNames: (chunkInfo) => {
-                      const name = chunkInfo.name.replace(/\.js$/, '.cjs')
-                      return name
-                    },
-                    chunkFileNames: (chunkInfo) => {
-                      const dir = Path.dirname(chunkInfo.name)
-                      const name = Path.basename(chunkInfo.name, Path.extname(chunkInfo.name))
-                      return Path.join(dir, `${name}-[hash].cjs`)
-                    },
-                    assetFileNames: (assetInfo) => {
-                      const name = assetInfo.name ?? ''
-                      const dir = Path.dirname(name)
-                      const baseName = Path.basename(name, Path.extname(name))
-                      const ext = Path.extname(name)
-                      return Path.join(dir, `${baseName}-[hash]${ext}`)
-                    },
-                  }),
-            },
+          // too many issues
+          // treeshake: {
+          //   moduleSideEffects: false,
+          // },
+          // prevents it from shaking out the exports
+          preserveEntrySignatures: 'strict',
+          input: input,
+          external: externalRegex,
+          output: {
+            entryFileNames: '[name]',
+            exports: 'auto',
+            ...(outputFormat === 'esm'
+              ? {
+                  format: 'esm',
+                  esModule: true,
+                }
+              : {
+                  format: 'cjs',
+                  // Preserve folder structure and use .cjs extension
+                  entryFileNames: (chunkInfo) => {
+                    const name = chunkInfo.name.replace(/\.js$/, '.cjs')
+                    return name
+                  },
+                  chunkFileNames: (chunkInfo) => {
+                    const dir = Path.dirname(chunkInfo.name)
+                    const name = Path.basename(chunkInfo.name, Path.extname(chunkInfo.name))
+                    return Path.join(dir, `${name}-[hash].cjs`)
+                  },
+                  assetFileNames: (assetInfo) => {
+                    const name = assetInfo.name ?? ''
+                    const dir = Path.dirname(name)
+                    const baseName = Path.basename(name, Path.extname(name))
+                    const ext = Path.extname(name)
+                    return Path.join(dir, `${baseName}-[hash]${ext}`)
+                  },
+                }),
           },
         },
-      } satisfies InlineConfig)
-    )
+      },
+    } satisfies InlineConfig)
+
+    const output = await viteBuild(mergedConfig)
 
     return output as RollupOutput
   }

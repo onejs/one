@@ -1,8 +1,7 @@
-// FIXME: This will break the release build of the React Native app.
-import { scan } from 'react-scan'
-
 if (process.env.ONE_ENABLE_REACT_SCAN) {
-  scan(JSON.parse(process.env.ONE_ENABLE_REACT_SCAN))
+  import('react-scan').then(({ scan }) => {
+    scan(JSON.parse(`${process.env.ONE_ENABLE_REACT_SCAN}`))
+  })
 }
 
 // fixes bad import error in expo-modules-core
