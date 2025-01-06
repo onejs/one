@@ -55,9 +55,10 @@ export async function prebuildReactNativeModules(
 
   let enableExperimentalReactNativeWithReact19Support = false
   const reactPackageJsonPath = resolvePath('react/package.json')
-  const reactPackageJson = await import(reactPackageJsonPath, { assert: { type: 'json' } })
+  const reactPackageJsonContents = await readFile(reactPackageJsonPath, 'utf8')
+  const reactPackageJson = JSON.parse(reactPackageJsonContents)
 
-  const reactVersion = reactPackageJson?.default?.version
+  const reactVersion = reactPackageJson?.version
   if (reactVersion?.startsWith('19')) {
     console.info(`🧪 React ${reactVersion} detected. Enabling experimental React 19 support for React Native.`)
     enableExperimentalReactNativeWithReact19Support = true
