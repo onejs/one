@@ -296,6 +296,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // react scan
   const scan = options.react?.scan
 
+  const reactScanPlugin = {
+    name: `one:react-scan`,
+    config() {
+      return reactScanConfig
+    },
+  }
+  devAndProdPlugins.push(reactScanPlugin)
+
   // do it here because it gets called a few times
   const reactScanConfig = ((): UserConfig => {
     const stringify = (obj: Object) => JSON.stringify(JSON.stringify(obj))
@@ -303,7 +311,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     const configs = {
       disabled: {
         define: {
-          'process.env.ONE_ENABLE_REACT_SCAN': 'false',
+          'process.env.ONE_ENABLE_REACT_SCAN': '""',
         },
       },
       enabled: {
@@ -361,15 +369,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   })()
 
   // TODO move to single config and through environments
-  const nativeWebDevAndProdPlugsin: Plugin[] = [
-    clientTreeShakePlugin(),
-    {
-      name: `one:react-scan`,
-      config() {
-        return reactScanConfig
-      },
-    },
-  ]
+  const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin(), reactScanPlugin]
 
   // TODO make this passed into vxrn through real API
   globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin

@@ -284,9 +284,8 @@ ${contents}
       'src/winter/runtime.native.ts': (contents) => {
         assertString(contents)
 
-        return contents
-          .replace(
-            `
+        return contents.replace(
+          `
 // https://encoding.spec.whatwg.org/#textdecoder
 install('TextDecoder', () => require('./TextDecoder').TextDecoder);
 // https://url.spec.whatwg.org/#url
@@ -294,7 +293,7 @@ install('URL', () => require('./url').URL);
 // https://url.spec.whatwg.org/#urlsearchparams
 install('URLSearchParams', () => require('./url').URLSearchParams);
             `.trim(),
-            `
+          `
 import { TextDecoder } from './TextDecoder';
 import { URL } from './url';
 import { URLSearchParams } from './url';
@@ -305,8 +304,8 @@ install('TextDecoder', () => TextDecoder);
 install('URL', () => URL);
 // https://url.spec.whatwg.org/#urlsearchparams
 install('URLSearchParams', () => URLSearchParams);
-            `.trim(),
-          )
+            `.trim()
+        )
       },
     },
   },
