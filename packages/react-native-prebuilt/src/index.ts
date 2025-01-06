@@ -400,7 +400,8 @@ const RExports = [
   'PureComponent',
   'StrictMode',
   'Suspense',
-  '__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED',
+  '__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED', // For React 18
+  '__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE', // For React 19
   'cloneElement',
   'createContext',
   'createElement',
@@ -428,4 +429,11 @@ const RExports = [
   'useSyncExternalStore',
   'useTransition',
   'version',
+  // Added in React 19
+  'act',
+  'cache',
+  'unstable_useCacheRefresh',
+  'use',
+  'useActionState',
+  'useOptimistic',
 ]
