@@ -38,6 +38,9 @@
 
 2.0:
 
+  - router.redirect directly in layout (server-side)
+    - for auth-guard (see tests/test/auth-guard)
+    - requires server-side integration logic
   - react 19
   - use dom with RSC bridge
   - native tabs and sheet
