@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@vxrn/use-isomorphic-layout-effect": "workspace:*",
-    "react": "^18.3.1"
+    "react": "^19.0.0"
   },
   "devDependencies": {
     "@tamagui/build": "^1.121.6",
