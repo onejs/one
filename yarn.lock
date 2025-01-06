@@ -24866,6 +24866,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"server-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "server-only@npm:0.0.1"
+  checksum: 10/c432348956641ea3f460af8dc3765f3a1bdbcf7a1e0205b0756d868e6e6fe8934cdee6bff68401a1dd49ba4a831c75916517a877446d54b334f7de36fa273e53
+  languageName: node
+  linkType: hard
+
 "set-blocking@npm:^2.0.0":
   version: 2.0.0
   resolution: "set-blocking@npm:2.0.0"
@@ -26255,6 +26262,7 @@ __metadata:
     react-native-screens: "npm:4.4.0"
     react-native-svg: "npm:15.8.0"
     react-native-web: "npm:^0.19.12"
+    server-only: "npm:^0.0.1"
     tamagui: "npm:^1.121.6"
     tsx: "npm:^4.19.0"
     vite: "npm:^6.0.6"
