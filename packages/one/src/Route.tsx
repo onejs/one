@@ -1,4 +1,4 @@
-import React, { useContext, type ReactNode } from 'react'
+import React, { createContext, useContext, type ReactNode } from 'react'
 
 import { getContextKey } from './matchers'
 import type { ErrorBoundaryProps } from './views/Try'
@@ -46,6 +46,8 @@ export type RouteNode = {
   middlewares?: RouteNode[]
 }
 
+export const RouteParamsContext = createContext<Record<string, string | undefined> | undefined>({})
+
 const CurrentRouteContext = React.createContext<RouteNode | null>(null)
 
 if (process.env.NODE_ENV !== 'production') {
@@ -66,6 +68,18 @@ export function useContextKey(): string {
 }
 
 /** Provides the matching routes and filename to the children. */
-export function Route({ children, node }: { children: ReactNode; node: RouteNode }) {
-  return <CurrentRouteContext.Provider value={node}>{children}</CurrentRouteContext.Provider>
+export function Route({
+  children,
+  node,
+  route,
+}: {
+  children: ReactNode
+  node: RouteNode
+  route?: { params?: Record<string, string | undefined> }
+}) {
+  return (
+    <RouteParamsContext.Provider value={route?.params}>
+      <CurrentRouteContext.Provider value={node}>{children}</CurrentRouteContext.Provider>
+    </RouteParamsContext.Provider>
+  )
 }
