@@ -4,6 +4,14 @@ type BabelPlugins = babel.TransformOptions['plugins']
 
 export type GetBabelConfig = (id: string, code: string) => boolean | BabelPlugins
 
+type BabelPluginGlobalOptions = {
+  disableReanimated: boolean
+}
+
+const userOptions: BabelPluginGlobalOptions = {
+  disableReanimated: true,
+}
+
 export async function transformWithBabelIfNeeded(
   getUserPlugins: GetBabelConfig | undefined,
   id: string,
@@ -14,6 +22,10 @@ export async function transformWithBabelIfNeeded(
   if (babelPlugins) {
     return await transformBabel(babelPlugins, code, id, development)
   }
+}
+
+export function configureBabelPlugin(opts: Partial<BabelPluginGlobalOptions>) {
+  Object.assign(userOptions, opts)
 }
 
 function getBabelPlugins(
@@ -66,7 +78,7 @@ const getDefaultBabelPlugins = (id: string, code: string, development: boolean, 
     plugins = getBasePlugins(development)
   }
 
-  if (shouldBabelReanimated(id, code)) {
+  if (!userOptions.disableReanimated && shouldBabelReanimated(id, code)) {
     plugins.push('react-native-reanimated/plugin')
   }
 

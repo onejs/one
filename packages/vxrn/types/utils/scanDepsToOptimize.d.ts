@@ -32,11 +32,11 @@ export declare const INCLUDE_LIST_SET: Set<string>;
  * [^2]: https://github.com/vitejs/vite/issues/9710#issuecomment-1217775350
  * [^3]: https://vite.dev/guide/dep-pre-bundling.html
  */
-export declare function scanDepsToPreBundleForSsr(packageJsonPath: string, { parentDepNames, proceededDeps, pkgJsonContent, }?: {
+export declare function scanDepsToOptimize(packageJsonPath: string, { parentDepNames, proceededDeps, pkgJsonContent, }?: {
     parentDepNames?: string[];
     proceededDeps?: Map<string, string[]>;
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
     pkgJsonContent?: any;
 }): Promise<ScanDepsResult>;
 export declare function findDepPkgJsonPath(dep: any, dependent: any): Promise<string | undefined>;
-//# sourceMappingURL=scanDepsToPreBundleForSsr.d.ts.map
+//# sourceMappingURL=scanDepsToOptimize.d.ts.map

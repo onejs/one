@@ -13,7 +13,6 @@ import {
   type UserConfig,
 } from 'vite'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
-import { getBabelReanimatedPlugin } from '../plugins/babelReanimated'
 import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
@@ -160,8 +159,6 @@ export async function getReactNativeConfig(
         assetsDest: internal.assetsDest,
         assetExts: DEFAULT_ASSET_EXTS,
       }),
-
-      getBabelReanimatedPlugin(),
 
       reactNativeCommonJsPlugin({
         root,

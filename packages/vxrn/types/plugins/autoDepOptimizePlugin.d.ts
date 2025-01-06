@@ -4,4 +4,4 @@ export declare function autoDepOptimizePlugin({ root, exclude, }: {
     root: string;
     exclude?: string[];
 }): Plugin;
-//# sourceMappingURL=autoPreBundleDepsForSsrPlugin.d.ts.map
+//# sourceMappingURL=autoDepOptimizePlugin.d.ts.map

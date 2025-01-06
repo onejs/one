@@ -11,7 +11,7 @@ import { extname } from 'node:path'
 import type { PluginOption, UserConfig } from 'vite'
 import { type GetBabelConfig, transformWithBabelIfNeeded } from './transformBabel'
 
-export type { GetBabelConfig } from './transformBabel'
+export { configureBabelPlugin, type GetBabelConfig } from './transformBabel'
 
 // this file is a mess lol
 // partially because it was forked from vite's react native swc plugin, we can remove most Options

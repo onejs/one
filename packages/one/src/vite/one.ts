@@ -5,7 +5,7 @@ import type { Plugin, PluginOption, UserConfig } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import {
-  autoPreBundleDepsForSsrPlugin,
+  autoDepOptimizePlugin,
   getOptimizeDeps,
   getOptionsFilled,
   isWebEnvironment,
@@ -97,7 +97,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...(options.ssr?.disableAutoDepsPreBundling === true
       ? []
       : [
-          autoPreBundleDepsForSsrPlugin({
+          autoDepOptimizePlugin({
             root,
             exclude: Array.isArray(options.ssr?.disableAutoDepsPreBundling)
               ? options.ssr?.disableAutoDepsPreBundling

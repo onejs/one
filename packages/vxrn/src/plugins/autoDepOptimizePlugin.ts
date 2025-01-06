@@ -1,22 +1,24 @@
-import path from 'node:path'
-import FSExtra from 'fs-extra'
-import type { Plugin } from 'vite'
-import { EXCLUDE_LIST, scanDepsToPreBundleForSsr } from '../utils/scanDepsToPreBundleForSsr'
-import { getFileHash, lookupFile } from '../utils/utils'
 import { createDebugger } from '@vxrn/debug'
+import { configureBabelPlugin } from '@vxrn/vite-native-swc'
+import FSExtra from 'fs-extra'
+import path from 'node:path'
+import type { Plugin } from 'vite'
+import { EXCLUDE_LIST, type ScanDepsResult, scanDepsToOptimize } from '../utils/scanDepsToOptimize'
+import { getFileHash, lookupFile } from '../utils/utils'
 
 const name = 'vxrn:auto-pre-bundle-deps-for-ssr'
+
 const { debug, debugDetails } = createDebugger(name)
 
 export const getSSRExternalsCachePath = (root: string) => {
   return path.join(root, 'node_modules', '.vxrn', 'deps-to-pre-bundle-for-ssr-cache.json')
 }
 
-export function autoPreBundleDepsForSsrPlugin({
+export function autoDepOptimizePlugin({
   root,
   exclude,
 }: { root: string; exclude?: string[] }): Plugin {
-  const noExternalDepsForSsrCacheFilePath = getSSRExternalsCachePath(root)
+  const cacheFilePath = getSSRExternalsCachePath(root)
 
   return {
     name,
@@ -36,34 +38,39 @@ export function autoPreBundleDepsForSsrPlugin({
       ])
       const lockFileHash = lockFile ? await getFileHash(lockFile) : undefined
 
-      let depsToPreBundleForSsr: string[] | undefined = undefined
+      let value: ScanDepsResult | undefined = undefined
       if (lockFileHash && !noCache) {
         try {
           const { lockFileHash: cachedLockFileHash, depsToPreBundleForSsr: cachedDepsToPreBundle } =
-            await FSExtra.readJSON(noExternalDepsForSsrCacheFilePath)
+            await FSExtra.readJSON(cacheFilePath)
 
-          if (lockFileHash === cachedLockFileHash && Array.isArray(cachedDepsToPreBundle)) {
-            depsToPreBundleForSsr = cachedDepsToPreBundle
-            debug?.(`Using cached scan results from ${noExternalDepsForSsrCacheFilePath}`)
+          if (
+            lockFileHash === cachedLockFileHash &&
+            !!cachedDepsToPreBundle &&
+            'hasReanimated' in cachedDepsToPreBundle &&
+            'prebundleDeps' in cachedDepsToPreBundle
+          ) {
+            value = cachedDepsToPreBundle
+            debug?.(`Using cached scan results from ${cacheFilePath}`)
           }
         } catch {}
       }
 
-      if (!depsToPreBundleForSsr) {
-        depsToPreBundleForSsr = await scanDepsToPreBundleForSsr(`${root}/package.json`)
+      if (!value) {
+        value = await scanDepsToOptimize(`${root}/package.json`)
 
         if (!noCache) {
           // no need to wait for this
-          FSExtra.outputJSON(noExternalDepsForSsrCacheFilePath, {
+          FSExtra.outputJSON(cacheFilePath, {
             lockFileHash,
-            depsToPreBundleForSsr,
+            depsToPreBundleForSsr: value,
           })
         }
       }
 
       debug?.(`Scanning completed in ${Date.now() - startedAt}ms`)
       debug?.(
-        `${depsToPreBundleForSsr.length} deps are discovered and will be pre-bundled for SSR.` +
+        `${value.prebundleDeps.length} deps are discovered and will be pre-bundled for SSR.` +
           (debugDetails
             ? ''
             : ` (Focus on this debug scope, "DEBUG=${debug.namespace}", to see more details.)`)
@@ -73,20 +80,24 @@ export function autoPreBundleDepsForSsrPlugin({
         debug?.(
           `Excluding user specified deps ${JSON.stringify(exclude)} from pre-bundling for SSR.`
         )
-        depsToPreBundleForSsr = depsToPreBundleForSsr.filter((dep) => !exclude.includes(dep))
+        value.prebundleDeps = value.prebundleDeps.filter((dep) => !exclude.includes(dep))
       }
 
-      debugDetails?.(
-        `Deps discovered to be pre-bundled for SSR: ${depsToPreBundleForSsr.join(', ')}`
-      )
+      debugDetails?.(`Deps discovered to be pre-bundled for SSR: ${value.prebundleDeps.join(', ')}`)
+
+      if (value.hasReanimated) {
+        configureBabelPlugin({
+          disableReanimated: false,
+        })
+      }
 
       return {
         ssr: {
           optimizeDeps: {
-            include: depsToPreBundleForSsr,
+            include: value.prebundleDeps,
             exclude: exclude ? [...exclude, ...EXCLUDE_LIST] : EXCLUDE_LIST,
           },
-          noExternal: depsToPreBundleForSsr,
+          noExternal: value.prebundleDeps,
         },
       }
     },
