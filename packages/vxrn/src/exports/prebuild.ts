@@ -1,10 +1,11 @@
-import path from 'node:path'
+import path, { relative, sep } from 'node:path'
 import FSExtra from 'fs-extra'
 import { resolvePath } from '@vxrn/resolve'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
 import { generateForPlatform } from './prebuildWithoutExpo'
+import { existsSync } from 'node:fs'
 
 export const prebuild = async ({
   root,
@@ -51,6 +52,7 @@ export const prebuild = async ({
         `Failed to prebuild native project: ${e}\nIs "expo" listed in your dependencies?`
       )
     }
+
     if (!platform || platform === 'ios') {
       console.info(
         'Run `open ios/*.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
@@ -120,4 +122,65 @@ export const prebuild = async ({
       '`cd android` then `./gradlew assembleRelease` or `./gradlew assembleDebug` to build the Android project. Afterwards, you can find the built APK at `android/app/build/outputs/apk/release/app-release.apk` or `android/app/build/outputs/apk/debug/app-debug.apk`.'
     )
   }
+
+  // automatically fix build scripts for monorepos
+  const reactNativeRoot = resolvePath('react-native', root)
+  // in a monorepo if react-native is at root and current app is at apps/app
+  // then this value will be "../..", if not it will be ""
+  const monorepoRelativeRoot = relative(root, reactNativeRoot)
+    .split(sep)
+    .filter((x) => x === '..')
+    .join(sep)
+
+  if (monorepoRelativeRoot) {
+    if (existsSync('ios')) {
+      const projectName = findXcworkspaceName('ios')?.replace('.xcworkspace', '')
+      if (projectName) {
+        await replaceInUTF8File(
+          `ios/${projectName}.xcodeproj/project.pbxproj`,
+          '../node_modules/react-native/scripts/',
+          `${monorepoRelativeRoot}/../node_modules/react-native/scripts/`
+        )
+      }
+    }
+
+    if (existsSync('android')) {
+      await replaceInUTF8File(
+        'android/app/build.gradle',
+        '../../node_modules/',
+        `${monorepoRelativeRoot}/../../node_modules/`
+      )
+      await replaceInUTF8File(
+        'android/settings.gradle',
+        '../node_modules/',
+        `${monorepoRelativeRoot}/../node_modules/`
+      )
+    }
+  }
+}
+
+export async function replaceInUTF8File(
+  filePath: string,
+  projectName: string,
+  templateName: string
+) {
+  const fileContent = await FSExtra.readFile(filePath, 'utf8')
+  const replacedFileContent = fileContent
+    .replace(new RegExp(templateName, 'g'), projectName)
+    .replace(new RegExp(templateName.toLowerCase(), 'g'), projectName.toLowerCase())
+
+  if (fileContent !== replacedFileContent) {
+    await FSExtra.writeFile(filePath, replacedFileContent, 'utf8')
+  }
+}
+
+// Function to find the name of the .xcworkspace
+function findXcworkspaceName(directory: string): string | null {
+  const files = FSExtra.readdirSync(directory)
+  for (const file of files) {
+    if (file.endsWith('.xcworkspace')) {
+      return file
+    }
+  }
+  return null
 }
