@@ -1,7 +1,3 @@
-‼️ Note: Zero native not working yet
-
-There's a recent bug with top-level await happening that we are looking into fixing.
-
 # Install
 
 Install packages with yarn:
@@ -39,6 +35,8 @@ yarn docker:start:clean
 ```
 
 ## Tauri
+
+If you'd like to build a desktop app you may want to use Tauri. You can remove it if you don't need it.
 
 Getting Tauri to handle auth in a sane way takes a bit of work, but we've set up most of it here for you. If you're using OAuth, you don't want to force your users to login via the Tauri window, as they will lack all saved credentials and be forced to memorize their password / not use passkeys, etc.
 
