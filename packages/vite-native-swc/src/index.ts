@@ -9,9 +9,12 @@ import {
 import { type SourceMapPayload, createRequire } from 'node:module'
 import { extname } from 'node:path'
 import type { PluginOption, UserConfig } from 'vite'
-import { transformGenerators } from './transformBabel'
+import { type GetBabelConfig, transformWithBabelIfNeeded } from './transformBabel'
+
+export type { GetBabelConfig } from './transformBabel'
 
 // this file is a mess lol
+// partially because it was forked from vite's react native swc plugin, we can remove most Options
 
 // TODO we arent reading .env early enough to just put this in parent scope
 function shouldSourceMap() {
@@ -23,11 +26,6 @@ const resolve = createRequire(
   typeof __filename !== 'undefined' ? __filename : import.meta.url
 ).resolve
 const refreshContentRE = /\$Refresh(?:Reg|Sig)\$\(/
-
-type BabelPlugins = babel.PluginItem[]
-type BabelOptions = boolean | BabelPlugins | 'default'
-
-export type VXRNBabelConfig = BabelOptions | ((id: string, code: string) => BabelOptions)
 
 type Options = {
   mode: 'serve' | 'serve-cjs' | 'build'
@@ -54,82 +52,30 @@ type Options = {
   production?: boolean
 
   /**
-   * Allows configuring babel:
+   * Allows configuring babel on a per-file basis. By default, One uses SWC for most files in
+   * order to speed up compilation. But it falls back to babel for some files - namely:
    *
-   *   You can pass one of:
+   *  - if it detects a `react-native-reanimated` symbol, it adds `react-native-reanimated/plugin`
+   *  -
    *
-   *   - 'default' = babel runs only on files
-   *   - true = babel runs on every file
+   * (id: string, code: string) => boolean | babel.PluginItem[]
+   *
+   *   Based on the return value:
+   *
+   *   - true = use default settings
    *   - false = babel never runs
    *   - babel.PluginItem[] = [babel plugin config](https://babeljs.io/docs/plugins)
    *
    *   Or you can pass a function that returns any of the above:
    *
-   *   - (id: string, code: string) => 'default' | boolean | babel.PluginItem[]
+   *   -
    */
-  babel?: VXRNBabelConfig
+  babel?: GetBabelConfig
 }
 
-const isWebContainer = globalThis.process?.versions?.webcontainer
-
-const parsers: Record<string, ParserConfig> = {
-  '.tsx': { syntax: 'typescript', tsx: true, decorators: true },
-  '.ts': { syntax: 'typescript', tsx: false, decorators: true },
-  '.jsx': { syntax: 'ecmascript', jsx: true },
-  '.js': { syntax: 'ecmascript' },
-  // JSX is required to trigger fast refresh transformations, even if MDX already transforms it
-  '.mdx': { syntax: 'ecmascript', jsx: true },
-}
-
-const SWC_ENV = {
-  targets: {
-    node: '4',
-  },
-  include: [],
-  // this breaks the uniswap app for any file with a ...spread
-  exclude: [
-    'transform-spread',
-    'transform-destructuring',
-    'transform-object-rest-spread',
-    // `transform-async-to-generator` is relying on `transform-destructuring`.
-    // If we exclude `transform-destructuring` but not `transform-async-to-generator`, the SWC binary will panic
-    // with error: `called `Option::unwrap()` on a `None` value`.
-    // See: https://github.com/swc-project/swc/blob/v1.7.14/crates/swc_ecma_compat_es2015/src/generator.rs#L703-L705
-    'transform-async-to-generator',
-    'transform-regenerator', // Similar to above
-  ],
-}
-
-function getParser(id: string, forceJSX = false) {
-  if (id.endsWith('one-entry-native')) {
-    return parsers['.tsx']
-  }
-
-  const extension = extname(id)
-  let parser: ParserConfig = !extension ? parsers['.js'] : parsers[extension]
-
-  // compat
-  if (extension === '.js') {
-    if (forceJSX) {
-      parser = parsers['.jsx']
-    }
-
-    if (id.includes('expo-modules-core')) {
-      parser = parsers['.jsx']
-    }
-  }
-
-  return parser
-}
-
-export default (_options?: Options): PluginOption[] => {
-  const hasTransformed = {}
-
-  const asyncGeneratorRegex = /(async \*|async function\*|for await)/
-
+export default (optionsIn?: Options): PluginOption[] => {
   const transformWithoutGenerators = async (code: string, id: string) => {
     const parser = getParser(id)
-    hasTransformed[id] = true
     return await transform(code, {
       filename: id,
       swcrc: false,
@@ -150,42 +96,17 @@ export default (_options?: Options): PluginOption[] => {
     })
   }
 
-  const transformWithGenerators = async (code: string, id: string) => {
-    if (process.env.VXRN_USE_BABEL_FOR_GENERATORS) {
-      return await transformGenerators(code)
-    }
-
-    const parser = getParser(id)
-    hasTransformed[id] = true
-    return await transform(code, {
-      filename: id,
-      swcrc: false,
-      configFile: false,
-      sourceMaps: shouldSourceMap(),
-      jsc: {
-        parser,
-        target: 'es5',
-        transform: {
-          useDefineForClassFields: true,
-          react: {
-            development: !_options?.production,
-            refresh: false,
-            runtime: 'automatic',
-          },
-        },
-      },
-    })
-  }
-
   const options = {
-    mode: _options?.mode ?? 'serve',
-    jsxImportSource: _options?.jsxImportSource ?? 'react',
-    tsDecorators: _options?.tsDecorators,
-    plugins: _options?.plugins
-      ? _options?.plugins.map((el): typeof el => [resolve(el[0]), el[1]])
+    mode: optionsIn?.mode ?? 'serve',
+    jsxImportSource: optionsIn?.jsxImportSource ?? 'react',
+    tsDecorators: optionsIn?.tsDecorators,
+    plugins: optionsIn?.plugins
+      ? optionsIn?.plugins.map((el): typeof el => [resolve(el[0]), el[1]])
       : undefined,
-    production: _options?.production,
+    production: optionsIn?.production,
   }
+
+  const development = optionsIn?.production ? false : options.mode === 'serve'
 
   return [
     {
@@ -213,13 +134,14 @@ export default (_options?: Options): PluginOption[] => {
                   },
 
                   async transform(code, id) {
-                    // cant actually do this! we should prebuild using swc probably
-                    // if (id.includes('react-native-prebuilt')) {
-                    //   return
-                    // }
-
-                    if (asyncGeneratorRegex.test(code)) {
-                      return await transformWithGenerators(code, id)
+                    const babelOut = await transformWithBabelIfNeeded(
+                      optionsIn?.babel,
+                      id,
+                      code,
+                      development
+                    )
+                    if (babelOut) {
+                      return babelOut
                     }
 
                     try {
@@ -230,7 +152,13 @@ export default (_options?: Options): PluginOption[] => {
                       if (process.env.DEBUG === 'vxrn') {
                         console.error(`${err}`)
                       }
-                      return await transformWithGenerators(code, id)
+                      return await transformWithBabelIfNeeded(
+                        // force default transforms
+                        () => true,
+                        id,
+                        code,
+                        development
+                      )
                     }
                   },
                 },
@@ -262,18 +190,17 @@ export default (_options?: Options): PluginOption[] => {
         }
       },
 
-      async transform(code, _id, transformOptions) {
-        if (hasTransformed[_id]) return
-        if (_id.includes(`virtual:`)) {
+      async transform(code, id, transformOptions) {
+        if (id.includes(`virtual:`)) {
           return
         }
 
-        if (asyncGeneratorRegex.test(code)) {
-          return await transformWithGenerators(code, _id)
+        const babelOut = await transformWithBabelIfNeeded(optionsIn?.babel, id, code, development)
+        if (babelOut) {
+          return babelOut
         }
 
-        const out = await swcTransform(_id, code, options)
-        hasTransformed[_id] = true
+        const out = await swcTransform(id, code, options)
         return out
       },
     },
@@ -436,31 +363,6 @@ if (module.hot) {
   `
 }
 
-export const transformCommonJs = async (id: string, code: string) => {
-  const parser = getParser(id)
-  if (!parser) return
-  return await transform(code, {
-    filename: id,
-    swcrc: false,
-    configFile: false,
-    module: {
-      type: 'commonjs',
-    },
-    sourceMaps: shouldSourceMap(),
-    jsc: {
-      target: 'es5',
-      parser,
-      transform: {
-        useDefineForClassFields: true,
-        react: {
-          development: true,
-          runtime: 'automatic',
-        },
-      },
-    },
-  })
-}
-
 export const transformForBuild = async (id: string, code: string) => {
   const parser = getParser(id)
   if (!parser) return
@@ -481,4 +383,56 @@ export const transformForBuild = async (id: string, code: string) => {
       },
     },
   })
+}
+
+const isWebContainer = globalThis.process?.versions?.webcontainer
+
+const parsers: Record<string, ParserConfig> = {
+  '.tsx': { syntax: 'typescript', tsx: true, decorators: true },
+  '.ts': { syntax: 'typescript', tsx: false, decorators: true },
+  '.jsx': { syntax: 'ecmascript', jsx: true },
+  '.js': { syntax: 'ecmascript' },
+  // JSX is required to trigger fast refresh transformations, even if MDX already transforms it
+  '.mdx': { syntax: 'ecmascript', jsx: true },
+}
+
+const SWC_ENV = {
+  targets: {
+    node: '4',
+  },
+  include: [],
+  // this breaks the uniswap app for any file with a ...spread
+  exclude: [
+    'transform-spread',
+    'transform-destructuring',
+    'transform-object-rest-spread',
+    // `transform-async-to-generator` is relying on `transform-destructuring`.
+    // If we exclude `transform-destructuring` but not `transform-async-to-generator`, the SWC binary will panic
+    // with error: `called `Option::unwrap()` on a `None` value`.
+    // See: https://github.com/swc-project/swc/blob/v1.7.14/crates/swc_ecma_compat_es2015/src/generator.rs#L703-L705
+    'transform-async-to-generator',
+    'transform-regenerator', // Similar to above
+  ],
+}
+
+function getParser(id: string, forceJSX = false) {
+  if (id.endsWith('one-entry-native')) {
+    return parsers['.tsx']
+  }
+
+  const extension = extname(id)
+  let parser: ParserConfig = !extension ? parsers['.js'] : parsers[extension]
+
+  // compat
+  if (extension === '.js') {
+    if (forceJSX) {
+      parser = parsers['.jsx']
+    }
+
+    if (id.includes('expo-modules-core')) {
+      parser = parsers['.jsx']
+    }
+  }
+
+  return parser
 }

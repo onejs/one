@@ -1,55 +1,10 @@
 import FSExtra from 'fs-extra'
 import path, { dirname, extname, join, sep } from 'node:path'
 
-/** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
-export const EXCLUDE_LIST = [
-  'fsevents',
-  '@swc/core',
-  '@swc/core-darwin-arm64',
-  '@swc/core-darwin-x64',
-  '@swc/core-linux-arm-gnueabihf',
-  '@swc/core-linux-arm64-gnu',
-  '@swc/core-linux-arm64-musl',
-  '@swc/core-linux-x64-gnu',
-  '@swc/core-linux-x64-musl',
-  '@swc/core-win32-arm64-msvc',
-  '@swc/core-win32-ia32-msvc',
-  '@swc/core-win32-x64-msvc',
-  'lightningcss',
-
-  // not ever to be used in app
-  '@expo/cli',
-  'expo-structured-headers',
-
-  // not used by web anyway
-  // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
-  // /lib/module/Platform/Platform.web.js:132:20
-  '@shopify/react-native-skia',
-
-  '@react-native/virtualized-lists', // Unexpected "typeof" in `node_modules/@react-native/virtualized-lists/index.js`
-
-  // Native only, we don't expect SSR to use these packages.
-  // Also, some of these packages might attempt to import from react-native internals, which will break in SSR while react-native is aliased to react-native-web.
-  '@vxrn/react-native-prebuilt',
-  '@vxrn/vite-native-hmr',
-  '@vxrn/vite-native-swc',
-  '@vxrn/vite-native-client',
-  'react-native-ios-utilities',
-  'react-native-ios-modal',
-
-  // CLI shouldn't be used in SSR runtime
-  '@tamagui/cli',
-]
-
-export const EXCLUDE_LIST_SET = new Set(EXCLUDE_LIST)
-
-export const INCLUDE_LIST = [
-  // ReferenceError: exports is not defined - at eval (.../node_modules/inline-style-prefixer/lib/createPrefixer.js:3:23)
-  'inline-style-prefixer',
-  'react-native-vector-icons',
-]
-
-export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST)
+export type ScanDepsResult = {
+  prebundleDeps: string;
+  hasReanimated: boolean
+}
 
 /**
  * Since:
@@ -88,134 +43,150 @@ export async function scanDepsToPreBundleForSsr(
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
     pkgJsonContent?: any
   } = {}
-): Promise<string[]> {
+): ScanDepsResult {
+  console.info(`[one] Scanning for deps to automatically include in optimizeDeps...`)
+
   const currentRoot = path.dirname(packageJsonPath)
 
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
   const deps = [...Object.keys(pkgJson.dependencies || {})]
 
-  return (
-    await Promise.all(
-      deps.map(async (dep) => {
-        // skip circular deps
-        if (parentDepNames.includes(dep)) {
+  let hasReanimated = false
+
+  const prebundleDeps = (await Promise.all(
+    deps.map(async (dep): Promise<string[]> => {
+      // skip circular deps
+      if (parentDepNames.includes(dep)) {
+        return []
+      }
+      const cachedResult = proceededDeps.get(dep)
+      if (cachedResult) {
+        return cachedResult
+      }
+      if (EXCLUDE_LIST_SET.has(dep)) {
+        return []
+      }
+
+      const depPkgJsonPath = await findDepPkgJsonPath(dep, currentRoot)
+      if (!depPkgJsonPath) return []
+
+      const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
+
+      if (depPkgJson.dependencies?['react-native-reanimated']) {
+        hasReanimated = true
+      }
+
+      const subDeps = await scanDepsToPreBundleForSsr(depPkgJsonPath, {
+        parentDepNames: [...parentDepNames, dep],
+        pkgJsonContent: depPkgJson,
+        proceededDeps,
+      })
+
+      if (subDeps.hasReanimated) {
+        hasReanimated = true
+      }
+
+      const shouldPreBundle =
+        subDeps.prebundleDeps.length >
+          0 /* If this dep is depending on other deps that need pre-bundling, then also pre-bundle this dep */ ||
+        INCLUDE_LIST_SET.has(dep) /* If this dep is in the include list, then pre-bundle it */ ||
+        hasRequiredDep(depPkgJson, 'react') ||
+        hasRequiredDep(depPkgJson, 'react-native') ||
+        hasRequiredDep(depPkgJson, 'expo-modules-core') ||
+        // Expo deps are often ESM but without including file extensions in import paths, making it not able to run directly by Node.js, so we need to pre-bundle them.
+        dep.startsWith('@expo/') ||
+        dep.startsWith('expo-')
+
+      const depsToPreBundle = await (async () => {
+        if (!shouldPreBundle) {
           return []
         }
-        const cachedResult = proceededDeps.get(dep)
-        if (cachedResult) {
-          return cachedResult
-        }
-        if (EXCLUDE_LIST_SET.has(dep)) {
-          return []
-        }
 
-        const depPkgJsonPath = await findDepPkgJsonPath(dep, currentRoot)
-        if (!depPkgJsonPath) return []
-
-        const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
-
-        const subDepsToPreBundle = await scanDepsToPreBundleForSsr(depPkgJsonPath, {
-          parentDepNames: [...parentDepNames, dep],
-          pkgJsonContent: depPkgJson,
-          proceededDeps,
-        })
-
-        const shouldPreBundle =
-          subDepsToPreBundle.length >
-            0 /* If this dep is depending on other deps that need pre-bundling, then also pre-bundle this dep */ ||
-          INCLUDE_LIST_SET.has(dep) /* If this dep is in the include list, then pre-bundle it */ ||
-          hasRequiredDep(depPkgJson, 'react') ||
-          hasRequiredDep(depPkgJson, 'react-native') ||
-          hasRequiredDep(depPkgJson, 'expo-modules-core') ||
-          // Expo deps are often ESM but without including file extensions in import paths, making it not able to run directly by Node.js, so we need to pre-bundle them.
-          dep.startsWith('@expo/') ||
-          dep.startsWith('expo-')
-
-        const depsToPreBundle = await (async () => {
-          if (!shouldPreBundle) {
-            return []
-          }
-
-          const depPkgJsonExports = depPkgJson.exports || {}
-          // We take a more conservative approach to exclude potentially problematic exports entries. This might result in some valid exports entries being excluded, but it ensures that problematic ones are not included, thereby preventing issues.
-          const definedExports = Object.keys(depPkgJsonExports)
-            .filter((k) => {
-              const expData = depPkgJsonExports[k]
-              const imp = typeof expData === 'string' ? expData : expData?.import
-              if (typeof imp !== 'string') {
-                // Skipping since it will cause error `No known conditions for "..." specifier in "..." package`.
-                // Note that by doing this, nested exports will be skipped as well.
-                return false
-              }
-              if (!imp.endsWith('.js')) {
-                // Skipping since non-js exports cannot be pre-bundled.
-                return false
-              }
-
-              // Only include exports that are named safely.
-              // This is a conservative approach; we might have a better way to make the judgment.
-              if (!k.match(/^(\.\/)?[a-zA-Z0-9-_]+$/)) {
-                return false
-              }
-
-              // make sure it
-
-              return true
-            })
-            .map((k) => k.replace(/^\.\/?/, ''))
-            .map((k) => `${dep}/${k}`)
-
-          /**
-           * A dirty workaround for packages that are using entry points that are not explicitly defined,
-           * such as while using react-native-vector-icons, users will import Icon components like this: `import Icon from 'react-native-vector-icons/FontAwesome'`.
-           */
-          const specialExports = (() => {
-            switch (dep) {
-              case 'react-native-vector-icons':
-                return [
-                  'AntDesign',
-                  'Entypo',
-                  'EvilIcons',
-                  'Feather',
-                  'FontAwesome',
-                  'FontAwesome5',
-                  'FontAwesome5Pro',
-                  'Fontisto',
-                  'Foundation',
-                  'Ionicons',
-                  'MaterialCommunityIcons',
-                  'MaterialIcons',
-                  'Octicons',
-                  'SimpleLineIcons',
-                  'Zocial',
-                ].map((n) => `${dep}/${n}`)
-
-              default:
-                return []
+        const depPkgJsonExports = depPkgJson.exports || {}
+        // We take a more conservative approach to exclude potentially problematic exports entries. This might result in some valid exports entries being excluded, but it ensures that problematic ones are not included, thereby preventing issues.
+        const definedExports = Object.keys(depPkgJsonExports)
+          .filter((k) => {
+            const expData = depPkgJsonExports[k]
+            const imp = typeof expData === 'string' ? expData : expData?.import
+            if (typeof imp !== 'string') {
+              // Skipping since it will cause error `No known conditions for "..." specifier in "..." package`.
+              // Note that by doing this, nested exports will be skipped as well.
+              return false
             }
-          })()
-
-          const mainExport = depPkgJson['main'] || depPkgJson['module'] || definedExports['.']
-
-          const exports = [...definedExports, ...specialExports]
-          if (mainExport) {
-            if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
-              exports.unshift(dep)
+            if (!imp.endsWith('.js')) {
+              // Skipping since non-js exports cannot be pre-bundled.
+              return false
             }
-          }
 
-          return exports
+            // Only include exports that are named safely.
+            // This is a conservative approach; we might have a better way to make the judgment.
+            if (!k.match(/^(\.\/)?[a-zA-Z0-9-_]+$/)) {
+              return false
+            }
+
+            // make sure it
+
+            return true
+          })
+          .map((k) => k.replace(/^\.\/?/, ''))
+          .map((k) => `${dep}/${k}`)
+
+        /**
+         * A dirty workaround for packages that are using entry points that are not explicitly defined,
+         * such as while using react-native-vector-icons, users will import Icon components like this: `import Icon from 'react-native-vector-icons/FontAwesome'`.
+         */
+        const specialExports = (() => {
+          switch (dep) {
+            case 'react-native-vector-icons':
+              return [
+                'AntDesign',
+                'Entypo',
+                'EvilIcons',
+                'Feather',
+                'FontAwesome',
+                'FontAwesome5',
+                'FontAwesome5Pro',
+                'Fontisto',
+                'Foundation',
+                'Ionicons',
+                'MaterialCommunityIcons',
+                'MaterialIcons',
+                'Octicons',
+                'SimpleLineIcons',
+                'Zocial',
+              ].map((n) => `${dep}/${n}`)
+
+            default:
+              return []
+          }
         })()
 
-        const result = [...depsToPreBundle, ...subDepsToPreBundle]
+        const mainExport = depPkgJson['main'] || depPkgJson['module'] || definedExports['.']
 
-        proceededDeps.set(dep, result)
-        return result
-      })
-    )
+        const exports = [...definedExports, ...specialExports]
+        if (mainExport) {
+          if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
+            exports.unshift(dep)
+          }
+        }
+
+        return exports
+      })()
+
+      const result = [...depsToPreBundle, ...subDepsToPreBundle]
+
+      proceededDeps.set(dep, result)
+      return result
+    })
   )
-    .flat()
-    .filter((dep, index, arr) => arr.indexOf(dep) === index)
+)
+  .flat()
+  .filter((dep, index, arr) => arr.indexOf(dep) === index)
+
+  return {
+    prebundleDeps,
+    hasReanimated,
+  }
 }
 
 // vite will fail if there's a main export but it actually doesn't exist
@@ -274,3 +245,53 @@ function hasRequiredDep(pkgJson: Record<string, Record<string, any> | undefined>
     (pkgJson.peerDependencies?.[depName] && !pkgJson.peerDependenciesMeta?.[depName]?.optional)
   )
 }
+
+/** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
+export const EXCLUDE_LIST = [
+  'fsevents',
+  '@swc/core',
+  '@swc/core-darwin-arm64',
+  '@swc/core-darwin-x64',
+  '@swc/core-linux-arm-gnueabihf',
+  '@swc/core-linux-arm64-gnu',
+  '@swc/core-linux-arm64-musl',
+  '@swc/core-linux-x64-gnu',
+  '@swc/core-linux-x64-musl',
+  '@swc/core-win32-arm64-msvc',
+  '@swc/core-win32-ia32-msvc',
+  '@swc/core-win32-x64-msvc',
+  'lightningcss',
+
+  // not ever to be used in app
+  '@expo/cli',
+  'expo-structured-headers',
+
+  // not used by web anyway
+  // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
+  // /lib/module/Platform/Platform.web.js:132:20
+  '@shopify/react-native-skia',
+
+  '@react-native/virtualized-lists', // Unexpected "typeof" in `node_modules/@react-native/virtualized-lists/index.js`
+
+  // Native only, we don't expect SSR to use these packages.
+  // Also, some of these packages might attempt to import from react-native internals, which will break in SSR while react-native is aliased to react-native-web.
+  '@vxrn/react-native-prebuilt',
+  '@vxrn/vite-native-hmr',
+  '@vxrn/vite-native-swc',
+  '@vxrn/vite-native-client',
+  'react-native-ios-utilities',
+  'react-native-ios-modal',
+
+  // CLI shouldn't be used in SSR runtime
+  '@tamagui/cli',
+]
+
+export const EXCLUDE_LIST_SET = new Set(EXCLUDE_LIST)
+
+export const INCLUDE_LIST = [
+  // ReferenceError: exports is not defined - at eval (.../node_modules/inline-style-prefixer/lib/createPrefixer.js:3:23)
+  'inline-style-prefixer',
+  'react-native-vector-icons',
+]
+
+export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST)
