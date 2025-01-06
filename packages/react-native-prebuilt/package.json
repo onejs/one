@@ -12,7 +12,11 @@
     },
     "./vendor/react-native-0.74.1": "./vendor/react-native-0.74.1/index.js",
     "./vendor/react-18.3.1": "./vendor/react-18.3.1/index.js",
-    "./vendor/react-jsx-runtime-18.3.1": "./vendor/react-jsx-runtime-18.3.1/index.js"
+    "./vendor/react-jsx-runtime-18.3.1": "./vendor/react-jsx-runtime-18.3.1/index.js",
+    "./vendor/rn-react-19-support/ReactFabric-dev.js": "./vendor/rn-react-19-support/ReactFabric-dev.js",
+    "./vendor/rn-react-19-support/ReactFabric-prod.js": "./vendor/rn-react-19-support/ReactFabric-prod.js",
+    "./vendor/rn-react-19-support/ReactNativeRenderer-dev.js": "./vendor/rn-react-19-support/ReactNativeRenderer-dev.js",
+    "./vendor/rn-react-19-support/ReactNativeRenderer-prod.js": "./vendor/rn-react-19-support/ReactNativeRenderer-prod.js"
   },
   "main": "dist/cjs",
   "module": "dist/esm",

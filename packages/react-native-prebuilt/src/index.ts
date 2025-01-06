@@ -130,7 +130,13 @@ export async function buildReact(options: BuildOptions = {}) {
 
 export async function buildReactNative(
   options: BuildOptions = {},
-  { platform }: { platform: 'ios' | 'android' }
+  {
+    platform,
+    enableExperimentalReactNativeWithReact19Support = false,
+  }: {
+    platform: 'ios' | 'android'
+    enableExperimentalReactNativeWithReact19Support?: boolean
+  }
 ) {
   return build({
     bundle: true,
@@ -194,6 +200,31 @@ export async function buildReactNative(
             async (input) => {
               if (!input.path.includes('react-native') && !input.path.includes(`vite-native-hmr`)) {
                 return
+              }
+
+              if (enableExperimentalReactNativeWithReact19Support) {
+                // Patch React Native to support React 19 during prebuild
+                if (input.path.includes('Libraries/Renderer/implementations/ReactFabric')) {
+                  const reactFabricRendererPath = requireResolve(
+                    `@vxrn/react-native-prebuilt/vendor/rn-react-19-support/ReactFabric-${input.path.endsWith('-dev.js') ? 'dev' : 'prod'}.js`
+                  )
+
+                  return {
+                    contents: await readFile(reactFabricRendererPath, 'utf-8'),
+                    loader: 'js',
+                  }
+                }
+
+                if (input.path.includes('Libraries/Renderer/implementations/ReactNativeRenderer')) {
+                  const reactNativeRendererPath = requireResolve(
+                    `@vxrn/react-native-prebuilt/vendor/rn-react-19-support/ReactNativeRenderer-${input.path.endsWith('-dev.js') ? 'dev' : 'prod'}.js`
+                  )
+
+                  return {
+                    contents: await readFile(reactNativeRendererPath, 'utf-8'),
+                    loader: 'js',
+                  }
+                }
               }
 
               const code = await readFile(input.path, 'utf-8')
