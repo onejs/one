@@ -8,6 +8,7 @@ import type {
   VXRNServePlatform,
 } from 'vxrn'
 import type { RouteInfo } from '../server/createRoutesManifest'
+import type { VXRNBabelConfig } from '@vxrn/vite-native-swc'
 
 export namespace One {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
@@ -78,6 +79,8 @@ export namespace One {
     setupFile?: string
 
     config?: {
+      babel?: VXRNBabelConfig
+
       ensureTSConfig?: false
 
       /**

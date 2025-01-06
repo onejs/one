@@ -21728,6 +21728,7 @@ __metadata:
     "@vxrn/tslib-lite": "workspace:*"
     "@vxrn/universal-color-scheme": "workspace:*"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
+    "@vxrn/vite-native-swc": "workspace:*"
     babel-dead-code-elimination: "npm:^1.0.6"
     babel-plugin-react-compiler: "npm:^19.0.0-beta-201e55d-20241215"
     citty: "npm:^0.1.6"

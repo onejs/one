@@ -21,6 +21,9 @@
       "path": "../universal-color-scheme"
     },
     {
+      "path": "../vite-native-swc"
+    },
+    {
       "path": "../use-isomorphic-layout-effect"
     },
     {

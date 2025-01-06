@@ -24,6 +24,11 @@ const resolve = createRequire(
 ).resolve
 const refreshContentRE = /\$Refresh(?:Reg|Sig)\$\(/
 
+type BabelPlugins = babel.PluginItem[]
+type BabelOptions = boolean | BabelPlugins | 'default'
+
+export type VXRNBabelConfig = BabelOptions | ((id: string, code: string) => BabelOptions)
+
 type Options = {
   mode: 'serve' | 'serve-cjs' | 'build'
 
@@ -47,6 +52,22 @@ type Options = {
   noHMR?: boolean
 
   production?: boolean
+
+  /**
+   * Allows configuring babel:
+   *
+   *   You can pass one of:
+   *
+   *   - 'default' = babel runs only on files
+   *   - true = babel runs on every file
+   *   - false = babel never runs
+   *   - babel.PluginItem[] = [babel plugin config](https://babeljs.io/docs/plugins)
+   *
+   *   Or you can pass a function that returns any of the above:
+   *
+   *   - (id: string, code: string) => 'default' | boolean | babel.PluginItem[]
+   */
+  babel?: VXRNBabelConfig
 }
 
 const isWebContainer = globalThis.process?.versions?.webcontainer
