@@ -64,25 +64,6 @@ const main: ExtraSteps = async ({ isFullClone, projectName }) => {
     }
   }
 
-  // Inside vxrn's monorepo some paths are changed to root's node-modules, when generating a new project these should be changed.
-
-  await replaceNameInUTF8File(
-    'android/app/build.gradle',
-    '../../node_modules/',
-    '../../../../node_modules/'
-  )
-  await replaceNameInUTF8File(
-    'android/settings.gradle',
-    '../node_modules/',
-    '../../../node_modules/'
-  )
-
-  await replaceNameInUTF8File(
-    `ios/${projectName}.xcodeproj/project.pbxproj`,
-    '../node_modules/react-native/scripts/',
-    '../../../node_modules/react-native/scripts/'
-  )
-
   if (isFullClone) {
     console.info(`
 ${ansis.green.bold('Done!')} Created a new project under ./${ansis.greenBright(projectName)} visit your project:

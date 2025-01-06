@@ -3,6 +3,7 @@ import { Text, YStack } from 'tamagui'
 import { Link } from 'one'
 import { ToggleThemeButton } from '~/interface/ToggleThemeButton'
 import oneBall from '../public/app-icon.png'
+import { version } from 'react'
 
 export function HomePage() {
   return (
@@ -13,21 +14,25 @@ export function HomePage() {
 
       <Image src={oneBall} width={128} height={128} />
 
-      <YStack gap="$2.5">
-        <Text fontSize="$5" textAlign="center" color="$gray11">
-          Edit <Text>app/index.tsx</Text> to change this screen and then come back to see
-          your edits.
+      <YStack ai="center" gap="$6">
+        <Text fontSize="$5" lineHeight="$5" textAlign="center" color="$gray11">
+          Edit <Text>app/index.tsx</Text> to change this screen and then come back to see your
+          edits.
         </Text>
-        <Text fontSize="$5" textAlign="center" color="$gray11">
+        <Text fontSize="$5" lineHeight="$5" textAlign="center" color="$gray11">
           Read{' '}
           <Link href="https://onestack.dev/docs/introduction">
             <Text color="$yellow10">the docs</Text>
           </Link>{' '}
           to discover what to do next.
         </Text>
-      </YStack>
 
-      <ToggleThemeButton />
+        <Text fontSize="$5" lineHeight="$5" textAlign="center" color="$gray11">
+          React version: {version}
+        </Text>
+
+        <ToggleThemeButton />
+      </YStack>
     </YStack>
   )
 }
