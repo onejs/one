@@ -11509,7 +11509,7 @@ __metadata:
     "@tamagui/build": "npm:^1.121.6"
     "@vxrn/emitter": "workspace:*"
     better-auth: "npm:1.0.23-beta.3"
-    react: "npm:^19.0.0"
+    react: "npm:^18.3.1 || ^19.0.0"
   languageName: unknown
   linkType: soft
 
@@ -11521,7 +11521,7 @@ __metadata:
     "@tamagui/use-did-finish-ssr": "npm:^1.121.6"
     "@vxrn/universal-color-scheme": "workspace:*"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
-    react: "npm:^19.0.0"
+    react: "npm:^18.3.1 || ^19.0.0"
     react-native: "npm:^0.76.5"
   peerDependencies:
     react: "*"
@@ -11544,7 +11544,7 @@ __metadata:
   resolution: "@vxrn/emitter@workspace:packages/emitter"
   dependencies:
     "@tamagui/build": "npm:^1.121.6"
-    react: "npm:^19.0.0"
+    react: "npm:^18.3.1 || ^19.0.0"
   languageName: unknown
   linkType: soft
 
@@ -11591,8 +11591,8 @@ __metadata:
     esbuild: "npm:0.24.0"
     fs-extra: "npm:^11.2.0"
     import-meta-resolve: "npm:^4.1.0"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
+    react: "npm:^18.3.1 || ^19.0.0"
+    react-dom: "npm:^18.3.1 || ^19.0.0"
     react-native: "npm:^0.76.5"
   peerDependencies:
     react: "*"
@@ -11653,7 +11653,7 @@ __metadata:
   dependencies:
     "@tamagui/build": "npm:^1.121.6"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
-    react: "npm:^19.0.0"
+    react: "npm:^18.3.1 || ^19.0.0"
     react-native: "npm:^0.76.5"
   peerDependencies:
     react-native: "*"
@@ -11674,7 +11674,7 @@ __metadata:
   resolution: "@vxrn/use-isomorphic-layout-effect@workspace:packages/use-isomorphic-layout-effect"
   dependencies:
     "@tamagui/build": "npm:^1.121.6"
-    react: "npm:^19.0.0"
+    react: "npm:^18.3.1 || ^19.0.0"
   languageName: unknown
   linkType: soft
 
@@ -21747,9 +21747,9 @@ __metadata:
     nanoid: "npm:^3.3.7"
     perfect-debounce: "npm:^1.0.0"
     picocolors: "npm:^1.0.0"
-    react: "npm:^19.0.0"
+    react: "npm:^18.3.1 || ^19.0.0"
     react-compiler-runtime: "npm:^19.0.0-beta-201e55d-20241215"
-    react-dom: "npm:^19.0.0"
+    react-dom: "npm:^18.3.1 || ^19.0.0"
     react-native: "npm:^0.76.5"
     react-native-gesture-handler: "npm:^2.18.1"
     react-native-reanimated: "npm:~3.16.5"
@@ -23275,7 +23275,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^19.0.0":
+"react-dom@npm:^18.3.1 || ^19.0.0":
   version: 19.0.0
   resolution: "react-dom@npm:19.0.0"
   dependencies:
@@ -23681,7 +23681,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^19.0.0":
+"react@npm:^18.3.1 || ^19.0.0, react@npm:^19.0.0":
   version: 19.0.0
   resolution: "react@npm:19.0.0"
   checksum: 10/2490969c503f644703c88990d20e4011fa6119ddeca451e9de48f6d7ab058d670d2852a5fcd3aa3cd90a923ab2815d532637bd4a814add402ae5c0d4f129ee71
