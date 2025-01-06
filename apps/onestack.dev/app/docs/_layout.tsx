@@ -54,10 +54,10 @@ export default function DocsLayout() {
             position: 'fixed' as any,
             top: 0,
             bottom: 0,
-            width: 245,
+            width: 225,
           }}
         >
-          <YStack $md={{ dsp: 'none' }} mt={28} h={65} maxWidth="fit-content" zi={100_000} ml="$3">
+          <YStack $md={{ dsp: 'none' }} mt={28} h={65} maxWidth="fit-content" zi={100_000} ml="$4">
             <Link href="/">
               <OneLogo size={0.55} />
             </Link>

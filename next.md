@@ -13,6 +13,7 @@
 
   - native
     - better hmr
+    - better caching
     - symbolicator
     - restore GestureHandlerRootView
     - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
@@ -45,6 +46,9 @@
 ---
 
 # backlog
+
+- proper babel config option:
+  - allow config option on one plugin like: `transformWithBabel(id, code): string[] | babelConfig | boolean` where string[] can be a list of plugins to use for that specific file
 
 - nuqs-like type safe search
 
