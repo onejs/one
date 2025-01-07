@@ -1,0 +1,46 @@
+{
+  "name": "@vxrn/strip",
+  "version": "1.1.385",
+  "license": "BSD-3-Clause",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/esm/index.mjs"
+    }
+  },
+  "module": "dist",
+  "source": "src/index.ts",
+  "types": "./src/index.ts",
+  "bin": "run.mjs",
+  "files": [
+    "src",
+    "types",
+    "dist"
+  ],
+  "scripts": {
+    "strip-chat": "dotenv -- node ./run.mjs ../../apps/chat /tmp/chat --overwrite",
+    "build": "tamagui-build --skip-types --skip-native",
+    "watch": "yarn build --watch",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build",
+    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^1.0.12",
+    "ai": "^4.0.22",
+    "citty": "^0.1.6",
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "@tamagui/build": "^1.121.6",
+    "depcheck": "^1.4.7",
+    "vitest": "^2.1.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
