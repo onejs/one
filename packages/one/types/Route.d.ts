@@ -41,13 +41,19 @@ export type RouteNode = {
     entryPoints?: string[];
     /** Parent layouts */
     layouts?: RouteNode[];
+    /** Parent middlewares */
+    middlewares?: RouteNode[];
 };
+export declare const RouteParamsContext: React.Context<Record<string, string | undefined> | undefined>;
 /** Return the RouteNode at the current contextual boundary. */
 export declare function useRouteNode(): RouteNode | null;
 export declare function useContextKey(): string;
 /** Provides the matching routes and filename to the children. */
-export declare function Route({ children, node }: {
+export declare function Route({ children, node, route, }: {
     children: ReactNode;
     node: RouteNode;
+    route?: {
+        params?: Record<string, string | undefined>;
+    };
 }): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=Route.d.ts.map

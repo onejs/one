@@ -1,38 +1,66 @@
-1.0 ordered from most work to least:
+1.0:
 
-  - rn lazy imports
-  
-  - react-native-safe-area-context
-    - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
+  - tests
+    - goal for 20+ deps covered on native + web (ssr) (see weird-deps for some)
+    - native tests that run in `yarn test`
+
+  - etc
+    - enable StrictMode
+    - headless tabs (no style included)
+      - headless everything really
+    - react-native-safe-area-context
+      - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
 
   - native
-    - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
-    - large test suite + supports 1000 most popular dependencies
     - better hmr
-    - better rebuild module caching
+    - better caching
     - symbolicator
+    - restore GestureHandlerRootView
+    - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
+    - better rebuild module caching
+    - would be nice to get native bottom tabs and native sheet as options
 
   - web
     - vercel and cloudflare deploy options working/documented
       - vercel using build output api
-    - faster route matching, regex routers can be faster than trie
-      - see handleRequest file, npm radix3 or rou3
+
+  - build
+    - way to configure the api + server config during production builds
+
+  - cleanup
+    - codebase needs a few passes cleaning up things (__vxrn globals, structure)
+
+---
+
+2.0:
+
+  - get rid of most patching in favor of plugins that are smart
+  - worker threads, 3x+ build speed with paralellizing
+  - react-scan update and native re-enable
+  - router.redirect directly in layout (server-side)
+    - for auth-guard (see tests/test/auth-guard)
+    - requires server-side integration logic
+  - react 19
+  - use dom with RSC bridge
+  - native tabs and sheet
+  - react-native-web-lite proper release
 
 ---
 
 # backlog
 
-- react-native-web-lite proper release
+- proper babel config option:
+  - allow config option on one plugin like: `transformWithBabel(id, code): string[] | babelConfig | boolean` where string[] can be a list of plugins to use for that specific file
 
-- need a way ton configure the api + server etc during production builds
+- nuqs-like type safe search
+
+- prebuild react native shouldn't have hardcoded exports list
 
 - style tag to CSS, we could have a mode that takes style tags with precedense/key set and have a mode to optimize that to css
 
 - perf - in dev mode collectStyle is called a ton on each load
 
-- probably need to bundle api routes by default? too many esm/cjs issues
-
-- Sitemap is partially done
+- Sitemap
 
 - shouldnt export ErrorBoundary, but should make current RootErrorBoundary much better, rename it to ErrorBoundary, then export that
 
@@ -44,12 +72,6 @@
 
 - uniswap repo has to use commonjs plugin but its very tricky to configure
   - ideally we get a lot better at automating this, documenting, and maybe make it just a configuration key in one plugin
-
-- use dom
-
-- prebuild react native shouldn't have hardcoded exports list
-
-- add test to weird-deps so we know no regressions
 
 - turn this back off VXRN_ENABLE_SOURCE_MAP:
   - https://github.com/swc-project/swc/issues/9416
@@ -69,9 +91,3 @@
   - hits /_vxrn/load/pathname.js for ssg at least
   - in dev mode handleRequest just runs handleLoader
   - in build mode generates the json
-
-- Better SWC config in vite-native-swc to fit Hermes better. Maybe we can see what's included in [`@react-native/babel-preset`](https://github.com/facebook/react-native/tree/main/packages/react-native-babel-preset) and try to match that.
-
-post launch projects:
-
-- turning the entire one/tamagui.dev splash + blog into either a template or "engine"

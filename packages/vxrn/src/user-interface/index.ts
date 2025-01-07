@@ -3,6 +3,7 @@ import module from 'node:module'
 import qrcode from 'qrcode-terminal'
 import type { ViteDevServer } from 'vite'
 import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
+import { openReactNativeDevTools } from '../plugins/reactNativeDevServer'
 
 type Context = {
   server: ViteDevServer
@@ -71,14 +72,14 @@ const COMMANDS = [
   },
 
   // TODO this would need to be per-platform
-  // {
-  //   keys: 'dt',
-  //   label: 'open React Native DevTools',
-  //   terminalLabel: 'open React Native \x1b[1mDe\x1b[0mvTools',
-  //   action: (ctx) => {
-  //     openReactNativeDevTools()
-  //   },
-  // },
+  {
+    keys: 'dt',
+    label: 'open React Native DevTools',
+    terminalLabel: 'open React Native \x1b[1mD\x1b[0mev\x1b[1mT\x1b[0mools',
+    action: (ctx) => {
+      openReactNativeDevTools()
+    },
+  },
 
   {
     keys: '?',

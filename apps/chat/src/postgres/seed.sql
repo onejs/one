@@ -85,13 +85,13 @@ CREATE TABLE "userRole" (
     PRIMARY KEY ("serverId", "userId", "roleId")
 );
 
-CREATE TABLE "channelRole" (
+CREATE TABLE "channelPermission" (
+    "id" VARCHAR PRIMARY KEY,
     "channelId" VARCHAR REFERENCES "channel"(id),
     "serverId" VARCHAR REFERENCES "server"(id),
     "roleId" VARCHAR REFERENCES "role"(id),
     "granterId" VARCHAR REFERENCES "user"(id),
-    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY ("serverId", "channelId", "roleId")
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "thread" (
@@ -100,6 +100,7 @@ CREATE TABLE "thread" (
     "messageId" VARCHAR,
     "creatorId" VARCHAR REFERENCES "user"(id),
     "title" VARCHAR(200),
+    "deleted" BOOLEAN DEFAULT FALSE NOT NULL,
     "description" VARCHAR(200),
     "updatedAt" TIMESTAMP NULL,
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -117,6 +118,15 @@ CREATE TABLE "message" (
     "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NULL,
     "deleted" BOOLEAN DEFAULT FALSE NOT NULL
+);
+
+CREATE TABLE "pin" (
+    "id" VARCHAR PRIMARY KEY,
+    "channelId" VARCHAR REFERENCES "channel"(id),
+    "serverId" VARCHAR REFERENCES "server"(id),
+    "messageId" VARCHAR REFERENCES "message"(id),
+    "creatorId" VARCHAR REFERENCES "user"(id),
+    "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "attachment" (

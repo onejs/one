@@ -1,8 +1,8 @@
 import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
-import Path, { join, relative } from 'node:path'
-import type { OutputAsset } from 'rollup'
+import Path, { join, relative, resolve } from 'node:path'
+import type { OutputAsset, RollupOutput } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
 import {
@@ -16,6 +16,7 @@ import { getLoaderPath, getPreloadPath } from '../cleanUrl'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
+import { toAbsolute } from '../utils/toAbsolute'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 import { replaceLoader } from '../vite/replaceLoader'
@@ -35,6 +36,8 @@ export async function build(args: {
   labelProcess('build')
 
   const oneOptions = await loadUserOneOptions('build')
+  const manifest = getManifest()!
+
   const serverOutputFormat = oneOptions.build?.server?.outputFormat ?? 'esm'
 
   // TODO make this better, this ensures we get react 19
@@ -61,8 +64,6 @@ export async function build(args: {
 
   const options = await fillOptions(vxrnOutput.options)
 
-  const toAbsolute = (p) => Path.resolve(options.root, p)
-  const manifest = getManifest()!
   const { optimizeDeps } = getOptimizeDeps('build')
 
   const apiBuildConfig = mergeConfig(
@@ -75,104 +76,125 @@ export async function build(args: {
     } satisfies InlineConfig
   )
 
-  if (manifest.apiRoutes.length) {
-    console.info(`\n 🔨 build api routes\n`)
+  const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
+  const processEnvDefines = Object.fromEntries(
+    Object.entries(process.env).map(([key, value]) => {
+      return [`process.env.${key}`, JSON.stringify(value)]
+    })
+  )
 
-    const processEnvDefines = Object.fromEntries(
-      Object.entries(process.env).map(([key, value]) => {
-        return [`process.env.${key}`, JSON.stringify(value)]
-      })
-    )
-
-    const apiRouteExternalRegex = buildRegexExcludingDeps(optimizeDeps.include)
-
-    const apiEntryPoints = manifest.apiRoutes.reduce((entries, { page, file }) => {
+  async function buildCustomRoutes(subFolder: string, routes: RouteInfo<string>[]) {
+    const input = routes.reduce((entries, { page, file }) => {
       entries[page.slice(1) + '.js'] = join('app', file)
       return entries
     }, {}) as Record<string, string>
 
-    const apiOutputFormat = oneOptions?.build?.api?.outputFormat ?? serverOutputFormat
+    // TODO this is specific to API but used for middelwares too now
+    const outputFormat = oneOptions?.build?.api?.outputFormat ?? serverOutputFormat
     const treeshake = oneOptions?.build?.api?.treeshake
 
-    await viteBuild(
-      mergeConfig(apiBuildConfig, {
-        appType: 'custom',
-        configFile: false,
+    const mergedConfig = mergeConfig(apiBuildConfig, {
+      appType: 'custom',
+      configFile: false,
 
-        plugins: [
-          nodeExternals({
-            exclude: optimizeDeps.include,
-          }) as any,
-        ],
+      plugins: [
+        nodeExternals({
+          exclude: optimizeDeps.include,
+        }) as any,
+      ],
 
-        define: {
-          ...processEnvDefines,
-        },
+      define: {
+        ...processEnvDefines,
+      },
 
-        ssr: {
-          noExternal: true,
-          // we patched them to switch to react 19
-          external: ['react', 'react-dom'],
-          optimizeDeps,
-        },
+      ssr: {
+        noExternal: true,
+        // we patched them to switch to react 19
+        external: ['react', 'react-dom'],
+        optimizeDeps,
+      },
 
-        build: {
-          ssr: true,
-          emptyOutDir: false,
-          outDir: 'dist/api',
-          copyPublicDir: false,
-          minify: false,
-          rollupOptions: {
-            treeshake: treeshake ?? {
-              moduleSideEffects: false,
-            },
+      build: {
+        ssr: true,
+        emptyOutDir: false,
+        outDir: `dist/${subFolder}`,
+        copyPublicDir: false,
+        minify: false,
+        rollupOptions: {
+          treeshake: treeshake ?? {
+            moduleSideEffects: false,
+          },
 
-            plugins: [
-              // otherwise rollup is leaving commonjs-only top level imports...
-              apiOutputFormat === 'esm' ? rollupRemoveUnusedImportsPlugin : null,
-            ].filter(Boolean),
+          plugins: [
+            // otherwise rollup is leaving commonjs-only top level imports...
+            outputFormat === 'esm' ? rollupRemoveUnusedImportsPlugin : null,
+          ].filter(Boolean),
 
-            // too many issues
-            // treeshake: {
-            //   moduleSideEffects: false,
-            // },
-            // prevents it from shaking out the exports
-            preserveEntrySignatures: 'strict',
-            input: apiEntryPoints,
-            external: apiRouteExternalRegex,
-            output: {
-              entryFileNames: '[name]',
-              exports: 'auto',
-              ...(apiOutputFormat === 'esm'
-                ? {
-                    format: 'esm',
-                    esModule: true,
-                  }
-                : {
-                    format: 'cjs',
-                    // Preserve folder structure and use .cjs extension
-                    entryFileNames: (chunkInfo) => {
-                      const name = chunkInfo.name.replace(/\.js$/, '.cjs')
-                      return name
-                    },
-                    chunkFileNames: (chunkInfo) => {
-                      const dir = Path.dirname(chunkInfo.name)
-                      const name = Path.basename(chunkInfo.name, Path.extname(chunkInfo.name))
-                      return Path.join(dir, `${name}-[hash].cjs`)
-                    },
-                    assetFileNames: (assetInfo) => {
-                      const name = assetInfo.name ?? ''
-                      const dir = Path.dirname(name)
-                      const baseName = Path.basename(name, Path.extname(name))
-                      const ext = Path.extname(name)
-                      return Path.join(dir, `${baseName}-[hash]${ext}`)
-                    },
-                  }),
-            },
+          // too many issues
+          // treeshake: {
+          //   moduleSideEffects: false,
+          // },
+          // prevents it from shaking out the exports
+          preserveEntrySignatures: 'strict',
+          input: input,
+          external: externalRegex,
+          output: {
+            entryFileNames: '[name]',
+            exports: 'auto',
+            ...(outputFormat === 'esm'
+              ? {
+                  format: 'esm',
+                  esModule: true,
+                }
+              : {
+                  format: 'cjs',
+                  // Preserve folder structure and use .cjs extension
+                  entryFileNames: (chunkInfo) => {
+                    const name = chunkInfo.name.replace(/\.js$/, '.cjs')
+                    return name
+                  },
+                  chunkFileNames: (chunkInfo) => {
+                    const dir = Path.dirname(chunkInfo.name)
+                    const name = Path.basename(chunkInfo.name, Path.extname(chunkInfo.name))
+                    return Path.join(dir, `${name}-[hash].cjs`)
+                  },
+                  assetFileNames: (assetInfo) => {
+                    const name = assetInfo.name ?? ''
+                    const dir = Path.dirname(name)
+                    const baseName = Path.basename(name, Path.extname(name))
+                    const ext = Path.extname(name)
+                    return Path.join(dir, `${baseName}-[hash]${ext}`)
+                  },
+                }),
           },
         },
-      } satisfies InlineConfig)
-    )
+      },
+    } satisfies InlineConfig)
+
+    const output = await viteBuild(mergedConfig)
+
+    return output as RollupOutput
+  }
+
+  if (manifest.apiRoutes.length) {
+    console.info(`\n 🔨 build api routes\n`)
+    await buildCustomRoutes('api', manifest.apiRoutes)
+  }
+
+  const builtMiddlewares: Record<string, string> = {}
+
+  if (manifest.middlewareRoutes.length) {
+    console.info(`\n 🔨 build middlewares\n`)
+    const middlewareBuildInfo = await buildCustomRoutes('middlewares', manifest.middlewareRoutes)
+
+    for (const middleware of manifest.middlewareRoutes) {
+      const absoluteRoot = resolve(process.cwd(), options.root)
+      const fullPath = join(absoluteRoot, 'app', middleware.file)
+      const outChunks = middlewareBuildInfo.output.filter((x) => x.type === 'chunk')
+      const chunk = outChunks.find((x) => x.facadeModuleId === fullPath)
+      if (!chunk) throw new Error(`internal err finding middleware`)
+      builtMiddlewares[middleware.file] = join('dist', 'middlewares', chunk.fileName)
+    }
   }
 
   // for the require Sitemap in getRoutes
@@ -258,18 +280,12 @@ export async function build(args: {
 
     const clientManifestEntry = vxrnOutput.clientManifest[clientManifestKey]
 
-    const findMatchingRoute = (route: RouteInfo<string>) => {
-      return route.file && clientManifestKey.endsWith(route.file.slice(1))
-    }
-
-    const foundRoute = manifest.pageRoutes.find(findMatchingRoute)
+    const foundRoute = manifest.pageRoutes.find((route: RouteInfo<string>) => {
+      return route.file && clientManifestKey.replace(/^app/, '') === route.file.slice(1)
+    })
 
     if (!foundRoute) {
-      if (clientManifestKey.startsWith('app')) {
-        console.error(` No html route found!`, { id, clientManifestKey })
-        console.error(` In manifest`, manifest)
-        process.exit(1)
-      }
+      // should probably error?
       continue
     }
 
@@ -362,11 +378,11 @@ export async function build(args: {
       console.info('[one] building routes', { foundRoute, layoutEntries, allEntries, allCSS })
     }
 
-    const serverJsPath = toAbsolute(join('dist/server', output.fileName))
+    const serverJsPath = join('dist/server', output.fileName)
 
     let exported
     try {
-      exported = await import(serverJsPath)
+      exported = await import(toAbsolute(serverJsPath))
     } catch (err) {
       console.error(`Error importing page (original error)`, err)
       // err cause not showing in vite or something
@@ -427,8 +443,14 @@ export async function build(args: {
           preloads.map((preload) => `import "${preload}"`).join('\n')
         )
 
+        const middlewares = (foundRoute.middlewares || []).map(
+          (x) => builtMiddlewares[x.contextKey]
+        )
+
         builtRoutes.push({
           type: foundRoute.type,
+          routeFile: foundRoute.file,
+          middlewares,
           cleanPath,
           preloadPath,
           clientJsPath,
@@ -459,7 +481,14 @@ export async function build(args: {
           }
 
           if (foundRoute.type === 'ssg') {
-            const html = await render({ path, preloads, loaderProps, loaderData, css: allCSS })
+            const html = await render({
+              path,
+              preloads,
+              loaderProps,
+              loaderData,
+              css: allCSS,
+              mode: 'ssg',
+            })
             await outputFile(htmlOutPath, html)
             continue
           }
@@ -503,17 +532,44 @@ ${JSON.stringify(params || null, null, 2)}`
   await moveAllFiles(staticDir, clientDir)
   await FSExtra.rm(staticDir, { force: true, recursive: true })
 
-  // write out the pathname => html map for the server
-  const routeMap = builtRoutes.reduce((acc, { cleanPath, htmlPath }) => {
-    acc[cleanPath] = htmlPath
-    return acc
-  }, {}) satisfies Record<string, string>
+  // write out the static paths (pathname => html) for the server
+  const routeMap: Record<string, string> = {}
+  for (const route of builtRoutes) {
+    if (!route.cleanPath.includes('*')) {
+      routeMap[route.cleanPath] = route.htmlPath
+    }
+  }
 
-  const buildInfoForWriting = {
+  const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
+  for (const route of builtRoutes) {
+    routeToBuildInfo[route.routeFile] = route
+  }
+
+  function createBuildManifestRoute(route: RouteInfo) {
+    // remove layouts, they are huge due to keeping all children, not needed after build
+    // TODO would be clean it up in manifst
+    const { layouts, ...built } = route
+
+    // swap out for the built middleware path
+    const buildInfo = builtRoutes.find((x) => x.routeFile === route.file)
+    if (built.middlewares && buildInfo?.middlewares) {
+      for (const [index, mw] of built.middlewares.entries()) {
+        mw.contextKey = buildInfo.middlewares[index]
+      }
+    }
+
+    return built
+  }
+
+  const buildInfoForWriting: One.BuildInfo = {
     oneOptions,
+    routeToBuildInfo,
+    manifest: {
+      pageRoutes: manifest.pageRoutes.map(createBuildManifestRoute),
+      apiRoutes: manifest.apiRoutes.map(createBuildManifestRoute),
+    },
     routeMap,
-    builtRoutes,
-    constants: JSON.parse(JSON.stringify({ ...constants })),
+    constants: JSON.parse(JSON.stringify({ ...constants })) as any,
   }
 
   await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
@@ -593,6 +649,19 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
   const file = Path.basename(path)
   const fileName = file.replace(/\.[a-z]+$/, '')
 
+  function paramsError(part: string) {
+    throw new Error(
+      `[one] Params doesn't fit route:
+      
+      - path: ${path} 
+      - part: ${part}
+      - fileName: ${fileName}
+      - params:
+
+${JSON.stringify(params, null, 2)}`
+    )
+  }
+
   const nameWithParams = (() => {
     if (fileName === 'index') {
       return '/'
@@ -600,7 +669,10 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
     if (fileName.startsWith('[...')) {
       const part = fileName.replace('[...', '').replace(']', '')
       if (!params[part]) {
-        console.warn(`couldn't resolve ${fileName} segment in path ${path}`)
+        if (strict) {
+          throw paramsError(part)
+        }
+        return `/*`
       }
       return `/${params[part]}`
     }
@@ -611,16 +683,7 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
           const found = params[part.slice(1, part.length - 1)]
           if (!found) {
             if (strict) {
-              throw new Error(
-                `[one] Params doesn't fit route:
-                
-                - path: ${path} 
-                - part: ${part}
-                - fileName: ${fileName}
-                - params:
-  
-  ${JSON.stringify(params, null, 2)}`
-              )
+              throw paramsError(part)
             }
 
             return ':' + part.replace('[', '').replace(']', '')
@@ -632,6 +695,7 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
       .join('/')}`
   })()
 
+  // hono path will convert +not-found etc too
   return `${dirname}${nameWithParams}`.replace(/\/\/+/gi, '/')
 }
 

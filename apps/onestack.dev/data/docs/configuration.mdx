@@ -40,6 +40,25 @@ export default {
         ],
       },
 
+      /**
+      * Path to a js or ts file to import before the rest of your app runs
+      * One controls your root, but you may want to runs some JS before anything else
+      * Use this to give One the entrypoint to run
+      */
+      setupFile: './setup.ts',
+
+      optimization: {
+        /**
+        * Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel/tree/master).
+        * Optimizes barrel export files to speed up your build, you must list the packages that have
+        * barrel exports. Especially useful for icon packs.
+        * 
+        * @default ['@tamagui/lucide-icons']
+        * @type boolean | string[]
+        */
+        barrel: ['my-icon-package']
+      },
+
       // all native-specific config nests in app:
       app: {
         // One will set up your React Native app to run via AppRegistry.registerComponent(app.key)
@@ -205,6 +224,19 @@ This makes it easier to target React Native, as you can specify configuration fo
 
 You'll want to lean on using the Environment API to configure as much as you can in your `vite.config.ts`. It may also mean that some plugins can cause issues by configuring things across all four environments when you really only want it for client-side, or not. We're working on some helpers to make this easier, but in general you can check for `this.environment.name` in plugin hooks (like `transform` and `load`) to conditionally exit early from their logic for environments where you don't want the plugin logic to run.
 
+One assumes the following environments:
+
+- `client`: Web client-side (matching Vite default)
+- `ssr`: Web server-side (matching Vite default)
+- `ios`: iOS
+- `android`: Android
+
+We set up platform-specific extensions based on the environment:
+
+- client/ssr: `.web.(js|ts|tsx|mjs)`
+- ios: `.(ios|native).(js|ts|tsx|mjs)`
+- android: `.(android|native).(js|ts|tsx|mjs)`
+
 ## Other Exports
 
 The `one/vite` import has a few other exports that may be useful.
@@ -212,3 +244,40 @@ The `one/vite` import has a few other exports that may be useful.
 ### `resolvePath`
 
 When you are setting an `alias` in Vite, it wants you to fully specify the import path. We use `resolvePath` to help with this, it's a bit like [`require.resolve`](https://nodejs.org/api/modules.html) that works in ESM or CJS. It's also similar to [`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve), except it returns an absolute path that Vite expects rather than a file path.
+
+## Default Configuration
+
+One sets up some default configuration out of the box, including a variety of plugins and settings that make React Native and the ecosystem of packages that are popular "just work".
+
+Some base configuration we set:
+
+- `publicDir` to `"public"`
+- `clearScreen` to `false` so we can output the quick actions
+
+We set up `defines`:
+
+- `__DEV__` to true in development mode, or false otherwise
+- `process.env.NODE_ENV`
+
+We set up `alias` based on environment:
+
+- `react-native` => `react-native-web` for web environments
+
+We also detect if you have a PostCSS config file (js, ts, or json) and set the `css` config:
+
+```tsx
+{
+  css: postCSSConfigPath ?
+    {
+      postcss: postCSSConfigPath
+    } : 
+    {
+      transformer: 'lightningcss',
+      lightningcss: {
+        targets: {
+          safari: (15 << 16) | (2 << 8),
+        },
+      },
+    }
+}
+```

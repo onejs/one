@@ -1,10 +1,12 @@
 import module from 'node:module'
 import path from 'node:path'
 import FSExtra from 'fs-extra'
+
 /*
 This code block is partially copied from meta owned repos.
 Copyright (c) Facebook, Inc. and its affiliates.
 */
+
 export const generateForPlatform = async (
   root: string,
   platform: 'ios' | 'android',
@@ -32,7 +34,8 @@ export const generateForPlatform = async (
       .replace(/helloworld/g, appName.toLowerCase())
     const srcPath = absoluteSrc
     const destPath = path.resolve(dest, relativeFilePath)
-    console.log('copying', '"' + srcPath + '"', 'to', '"' + destPath + '"')
+
+    console.info('copying', '"' + srcPath + '"', 'to', '"' + destPath + '"')
 
     const replacements: Record<string, string> = {
       'Hello App Display Name': displayName || appName,

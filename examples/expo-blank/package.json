@@ -1,6 +1,6 @@
 {
   "name": "expo-blank-app",
-  "version": "1.1.377",
+  "version": "1.1.388",
   "private": true,
   "main": "expo/AppEntry.js",
   "scripts": {
@@ -12,11 +12,8 @@
   "dependencies": {
     "expo": "~52.0.17",
     "expo-status-bar": "~1.12.1",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-native": "^0.76.5",
     "vxrn": "workspace:*"
-  },
-  "installConfig": {
-    "hoistingLimits": "workspaces"
   }
 }

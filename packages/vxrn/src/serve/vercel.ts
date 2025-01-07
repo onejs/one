@@ -1,8 +1,8 @@
 import type { Hono } from 'hono'
 import { handle } from 'hono/vercel'
-import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
+import type { VXRNServeOptions } from '../types'
 
-export async function honoServeVercel(app: Hono, options: VXRNOptionsFilled) {
+export async function honoServeVercel(app: Hono, options: VXRNServeOptions) {
   const handler = handle(app)
   const GET = handler
   const POST = handler

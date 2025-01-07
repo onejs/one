@@ -37,6 +37,8 @@ export const EXCLUDE_LIST = [
   '@vxrn/vite-native-hmr',
   '@vxrn/vite-native-swc',
   '@vxrn/vite-native-client',
+  'react-native-ios-utilities',
+  'react-native-ios-modal',
 
   // CLI shouldn't be used in SSR runtime
   '@tamagui/cli',

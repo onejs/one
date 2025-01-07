@@ -1,33 +1,35 @@
-import type { Hono } from 'hono'
-import type { VXRNOptions, VXRNServePlatform } from '../types'
+import { Hono } from 'hono'
+import { RegExpRouter } from 'hono/router/reg-exp-router'
+import type { VXRNServeOptions } from '../types'
 import { createProdServer } from './createServer'
 
 export { loadEnv } from '../exports/loadEnv'
 export * from '../utils/getServerEntry'
 export { createProdServer } from './createServer'
 
-export const serve = async (
-  optionsIn: VXRNOptions & {
-    platform?: VXRNServePlatform
-    beforeStart?: (options: VXRNOptions, app: Hono) => void | Promise<void>
+export const serve = async (optionsIn: VXRNServeOptions) => {
+  const { getServerOptionsFilled } = await import('../utils/getServerOptionsFilled')
+  const options = await getServerOptionsFilled(optionsIn, 'prod')
+
+  const app = new Hono({
+    router: new RegExpRouter(),
+  })
+
+  if (optionsIn.beforeRegisterRoutes) {
+    await optionsIn.beforeRegisterRoutes(options, app)
   }
-) => {
-  const { fillOptions } = await import('../utils/getOptionsFilled')
-  const options = await fillOptions(optionsIn, { mode: 'prod' })
 
   // see this for more hono setup
-  const app = await createProdServer(options)
+  await createProdServer(app, options)
 
-  if (optionsIn.beforeStart) {
-    await optionsIn.beforeStart(options, app)
+  if (optionsIn.afterRegisterRoutes) {
+    await optionsIn.afterRegisterRoutes(options, app)
   }
 
   // strange prevents a cant listen on port issue
   await new Promise((res) => setTimeout(res, 1))
 
-  const platform = optionsIn?.platform ?? options?.server?.platform ?? 'node'
-
-  switch (platform) {
+  switch (options.platform) {
     case 'node': {
       const { honoServeNode } = await import('../serve/node')
       return honoServeNode(app, options)

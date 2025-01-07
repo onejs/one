@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import { createRequire } from 'node:module'
-import { run } from './run'
+import { dev } from './dev'
 
 async function getLatestVersion(packageName: string) {
   const require = createRequire(import.meta.url)
@@ -29,7 +29,7 @@ export async function cliMain(args: { name?: string } = {}) {
 
   if (existsSync('vite.config.ts')) {
     // Inside existing app, let's just run the damn thing
-    await run({})
+    await dev({})
     process.exit(0)
   }
 

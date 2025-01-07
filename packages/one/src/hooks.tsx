@@ -1,7 +1,7 @@
-import { NavigationRouteContext } from '@react-navigation/native'
 import React, { createContext, type ReactNode } from 'react'
 import { router } from './imperative-api'
 import type { OneRouter } from './interfaces/router'
+import { RouteParamsContext } from './Route'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 
 type SearchParams = OneRouter.SearchParams
@@ -115,8 +115,7 @@ export const useGlobalSearchParams = useActiveParams
  */
 
 export function useParams<TParams extends Object = SearchParams>(): Partial<TParams> {
-  const context = React.useContext(NavigationRouteContext)
-  const params = context?.params ?? {}
+  const params = React.useContext(RouteParamsContext) ?? {}
 
   return Object.fromEntries(
     Object.entries(params).map(([key, value]) => {

@@ -2,7 +2,8 @@ import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import type { InlineConfig } from 'vite'
 import { webExtensions } from '../constants'
 import { resolvePath } from '@vxrn/resolve'
-import { dirname } from 'node:path'
+import FSExtra from 'fs-extra'
+import { join } from 'node:path'
 
 // essentially base web config not base everything
 
@@ -23,10 +24,26 @@ export const dedupe = [
   'expo-modules-core',
 ]
 
-export function getBaseViteConfig({
+export async function getBaseViteConfig({
   mode,
   projectRoot,
-}: { mode: 'development' | 'production'; projectRoot: string }): InlineConfig {
+}: { mode: 'development' | 'production'; projectRoot: string }): Promise<InlineConfig> {
+  const postCSSPaths = [
+    join(projectRoot, 'postcss.config.js'),
+    join(projectRoot, 'postcss.config.ts'),
+    join(projectRoot, 'postcss.config.json'),
+  ]
+
+  const postCSSConfigPath = (
+    await Promise.all(
+      postCSSPaths.map(async (x) => {
+        if (await FSExtra.pathExists(x)) {
+          return x
+        }
+      })
+    )
+  ).find((x) => typeof x === 'string')
+
   return {
     mode,
 
@@ -64,14 +81,18 @@ export function getBaseViteConfig({
     ],
 
     // TODO make this documented / configurable through the plugins
-    css: {
-      transformer: 'lightningcss',
-      lightningcss: {
-        targets: {
-          safari: (15 << 16) | (2 << 8),
+    css: postCSSConfigPath
+      ? {
+          postcss: postCSSConfigPath,
+        }
+      : {
+          transformer: 'lightningcss',
+          lightningcss: {
+            targets: {
+              safari: (15 << 16) | (2 << 8),
+            },
+          },
         },
-      },
-    },
 
     define: {
       __DEV__: `${mode === 'development'}`,
