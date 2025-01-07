@@ -256,6 +256,15 @@ install('URLSearchParams', () => URLSearchParams);
     },
   },
 
+  // not working because importing a type without `import type`
+  // want to get a better smart / generic solution for all expo packages at least
+  // {
+  //   module: 'expo-video',
+  //   patchFiles: {
+  //     'build/**/*.js': ['jsx'],
+  //   },
+  // },
+
   {
     module: 'expo-clipboard',
     patchFiles: {
