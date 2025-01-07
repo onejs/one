@@ -33,7 +33,14 @@ export const preInstall: ExtraSteps = async ({ projectName, packageManager, proj
 
   if (packageManager === 'pnpm') {
     await FSExtra.writeFile(join(path, `.npmrc`), `node-linker=hoisted\n`)
-    console.info(`Set configuration to avoid symlinked node modules`)
+    console.info(`Set up .npmrc to avoid symlinked node_modules
+
+Note! 👋
+
+If you are working in a monorepo, you need to move the .npmrc with the node-linker
+configuration to the root of the monorepo rather than here.
+
+`)
   }
 
   if (packageManager === 'yarn') {
