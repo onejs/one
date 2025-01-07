@@ -5,7 +5,9 @@ import { createDebugger } from '@vxrn/debug'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
+  createLogger,
   type InlineConfig,
+  Logger,
   type Plugin,
   resolveConfig,
   type ResolvedConfig,
@@ -47,6 +49,32 @@ export async function getReactNativeConfig(
 
   const { mode } = internal
   const serverUrl = process.env.ONE_SERVER_URL || options.server.url
+
+  const defaultLogger = createLogger()
+
+  let disableLogging = false
+  const customLogger = {
+    ...defaultLogger,
+    info(msg, options) {
+      if (disableLogging) {
+        if (msg.includes(`built in`)) {
+          disableLogging = false
+          defaultLogger.info(msg, options)
+        }
+        return
+      }
+      // this is a super noisy and large log on most react native apps
+      // actually slows down compile-time significantly
+      if (msg.includes('modules transformed.')) {
+        disableLogging = true
+        // safeguard, re-enable after a beat
+        setTimeout(() => {
+          disableLogging = false
+        }, 1000)
+      }
+      defaultLogger.info(msg, options)
+    },
+  } satisfies Logger
 
   // build app
   let nativeBuildConfig = {
@@ -324,6 +352,9 @@ export async function getReactNativeConfig(
     appType: 'custom',
     root,
     clearScreen: false,
+
+    // the huge logs actually add quite a bit of time to build
+    customLogger,
 
     optimizeDeps: {
       ...optimizeDeps,
