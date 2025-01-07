@@ -296,6 +296,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // react scan
   const scan = options.react?.scan
 
+  const reactScanPlugin = {
+    name: `one:react-scan`,
+    config() {
+      return reactScanConfig
+    },
+  }
+  devAndProdPlugins.push(reactScanPlugin)
+
   // do it here because it gets called a few times
   const reactScanConfig = ((): UserConfig => {
     const stringify = (obj: Object) => JSON.stringify(JSON.stringify(obj))
@@ -303,7 +311,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     const configs = {
       disabled: {
         define: {
-          'process.env.ONE_ENABLE_REACT_SCAN': 'false',
+          'process.env.ONE_ENABLE_REACT_SCAN': '""',
         },
       },
       enabled: {
@@ -318,6 +326,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Record<string, UserConfig>
 
     const getConfigFor = (platform: 'ios' | 'android' | 'client'): UserConfig => {
+      if (process.env.NODE_ENV === 'production') {
+        return configs.disabled
+      }
       if (!scan) {
         return configs.disabled
       }
@@ -358,15 +369,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   })()
 
   // TODO move to single config and through environments
-  const nativeWebDevAndProdPlugsin: Plugin[] = [
-    clientTreeShakePlugin(),
-    {
-      name: `one:react-scan`,
-      config() {
-        return reactScanConfig
-      },
-    },
-  ]
+  const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin(), reactScanPlugin]
 
   // TODO make this passed into vxrn through real API
   globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin
@@ -403,34 +406,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
             'import.meta.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
           },
-        }
-      },
-    } satisfies Plugin,
-
-    {
-      name: 'one-use-react-18-for-native',
-      enforce: 'pre',
-
-      async config() {
-        const sharedNativeConfig = {
-          resolve: {
-            alias: {
-              react: resolvePath('one/react-18', process.cwd()),
-              'react-dom': resolvePath('one/react-dom-18', process.cwd()),
-            },
-          },
-        } satisfies UserConfig
-
-        return {
-          environments: {
-            ios: {
-              ...sharedNativeConfig,
-            },
-            android: {
-              ...sharedNativeConfig,
-            },
-            // this started erroring for no reason..
-          } as any,
         }
       },
     } satisfies Plugin,

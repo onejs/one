@@ -44,6 +44,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
   process.env.NODE_ENV = 'production'
 
+  // TODO WHY ISNT THIS BEING SHAKEN FROM dist/server/_virtual_one-entry.js
+  // @ts-ignore
+  process.env.ONE_ENABLE_REACT_SCAN = ''
+
   const [options, userViteConfig] = await Promise.all([
     fillOptions(optionsIn),
     loadConfigFromFile({
@@ -166,7 +170,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   )
 
   let serverBuildConfig = mergeConfig(webBuildConfig, {
-    plugins: [excludeAPIRoutesPlugin],
+    plugins: [excludeAPIRoutesPlugin, ...globalThis.__vxrnAddWebPluginsProd],
 
     define: {
       'process.env.TAMAGUI_IS_SERVER': '"1"',
@@ -218,9 +222,25 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   if (serverOptions !== false) {
     console.info(`\n 🔨 build server\n`)
+
     const { output } = (await viteBuild(serverBuildConfig)) as RollupOutput
     serverOutput = output
     clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
+
+    // temp fix - react native web is importing non-existent react 19 apis
+    const old = await FSExtra.readFile(serverEntry, 'utf-8')
+    await FSExtra.writeFile(
+      serverEntry,
+      old
+        .replace(
+          `import { hydrate as hydrate$1, unmountComponentAtNode, render as render$1 } from "react-dom";`,
+          ''
+        )
+        .replace(
+          `import ReactDOM__default, { render as render$2, unmountComponentAtNode as unmountComponentAtNode$1, hydrate as hydrate$1 } from "react-dom";`,
+          'import ReactDOM__default from "react-dom";'
+        )
+    )
   }
 
   return {

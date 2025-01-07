@@ -1,5 +1,6 @@
 import { execPromise } from '@vxrn/utils'
 import { type ChildProcessWithoutNullStreams, spawn } from 'node:child_process'
+import net from 'node:net'
 import { afterAll, beforeAll } from 'vitest'
 
 let devServer: ChildProcessWithoutNullStreams | null = null
@@ -8,11 +9,16 @@ let devServerPort = 3111
 let prodServerPort = 3112
 
 beforeAll(async () => {
+  await failIfPortInUse(devServerPort)
+  await failIfPortInUse(prodServerPort)
+
   // run production build:
+  const buildStartedAt = performance.now()
   if (!process.env.SKIP_BUILD) {
     console.info(`Building web`)
     await execPromise(`yarn build:web`)
   }
+  console.info(`Build finished after ${Math.round(performance.now() - buildStartedAt)}ms`)
 
   // Start the dev server
   console.info(`Starting dev server on port ${devServerPort}...`)
@@ -28,11 +34,18 @@ beforeAll(async () => {
     env: process.env,
   })
 
-  await startServerAndWaitToFinish(devServer, devServerPort)
-  await startServerAndWaitToFinish(prodServer, prodServerPort)
-})
+  await setupServerAndWaitUntilReady(devServer, devServerPort)
+  await setupServerAndWaitUntilReady(prodServer, prodServerPort)
+}, 120000)
 
-async function startServerAndWaitToFinish(server: ChildProcessWithoutNullStreams, port: number) {
+/**
+ * Setup logging, etc. for the server process and wait until it's ready.
+ */
+async function setupServerAndWaitUntilReady(
+  server: ChildProcessWithoutNullStreams,
+  port: number,
+  { timeout = 30000 }: { timeout?: number } = {}
+) {
   // Collect server output
   let serverOutput = ''
   server.stdout?.on('data', (data) => {
@@ -43,13 +56,15 @@ async function startServerAndWaitToFinish(server: ChildProcessWithoutNullStreams
   })
 
   // Wait for server to be ready
+  const retryInterval = 1000
   try {
     await waitForServer(`http://localhost:${port}`, {
       getServerOutput: () => serverOutput,
+      maxRetries: timeout / retryInterval,
     })
-    console.info('Dev server is ready')
+    console.info(`Server is ready on ${port}`)
   } catch (error) {
-    console.error('Failed to start dev server:', error)
+    console.error(`Failed to start server on ${port}:`, error)
     throw error
   }
 }
@@ -61,7 +76,7 @@ afterAll(() => {
   }
   if (prodServer) {
     prodServer.kill()
-    console.info('Dev server stopped')
+    console.info('Prod server stopped')
   }
 })
 
@@ -97,5 +112,79 @@ const waitForServer = (
       }
     }
     checkServer()
+  })
+}
+
+const failIfPortInUse = async (port: number) => {
+  let isInUse = false
+  try {
+    if ((await isPortInUse(port)) || (await checkAgainIsPortInUse(port))) {
+      isInUse = true
+    }
+  } catch (e) {
+    console.error(`Failed to check if port ${port} is in use:`, e)
+    throw e
+  }
+
+  if (isInUse) {
+    throw new Error(
+      `Port ${port} is already in use, please check if other processes are listening on this port (lsof -i:${port}) and stop them, as they might interfere with the tests`
+    )
+  }
+}
+
+const isPortInUse = (port) => {
+  return new Promise((resolve, reject) => {
+    const server = net.createServer()
+
+    server.once('error', (err) => {
+      if (err instanceof Error && (err as any).code === 'EADDRINUSE') {
+        resolve(true) // Port is in use
+      } else {
+        reject(err) // Some other error
+      }
+    })
+
+    server.once('listening', () => {
+      server.close()
+      resolve(false) // Port is not in use
+    })
+
+    server.listen(port)
+  })
+}
+
+/**
+ * `isPortInUse` is not safe since if a port can be bound to a server, it's still possible that a server is already running and accepting connections on that port.
+ */
+const checkAgainIsPortInUse = (port) => {
+  return new Promise((resolve) => {
+    const client = new net.Socket()
+
+    client.setTimeout(1000)
+
+    client.once('error', (err) => {
+      if (err instanceof Error && (err as any).code === 'ECONNREFUSED') {
+        // Port is not in use
+        resolve(false)
+      } else {
+        // Port is in use or another error occurred
+        resolve(true)
+      }
+    })
+
+    client.once('connect', () => {
+      // Port is in use
+      client.destroy() // Close the connection
+      resolve(true)
+    })
+
+    client.once('timeout', () => {
+      // Port is in use but unresponsive
+      client.destroy()
+      resolve(true)
+    })
+
+    client.connect(port, '127.0.0.1') // Try to connect to localhost
   })
 }

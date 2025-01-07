@@ -1,6 +1,6 @@
 {
   "name": "example-bare",
-  "version": "1.1.385",
+  "version": "1.1.389",
   "private": true,
   "type": "module",
   "main": "index.js",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "expo-constants": "~16.0.0",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-native": "^0.76.5"
   },
   "devDependencies": {
