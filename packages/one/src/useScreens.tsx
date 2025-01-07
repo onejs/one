@@ -53,13 +53,15 @@ export type ScreenProps<
 function getSortedChildren(
   children: RouteNode[],
   order?: ScreenProps[],
-  initialRouteName?: string
+  initialRouteName?: string,
+  options?: { onlyMatching?: boolean }
 ): { route: RouteNode; props: Partial<ScreenProps> }[] {
   if (!order?.length) {
     return children
       .sort(sortRoutesWithInitial(initialRouteName))
       .map((route) => ({ route, props: {} }))
   }
+
   const entries = [...children]
 
   const ordered = order
@@ -99,9 +101,13 @@ function getSortedChildren(
   }[]
 
   // Add any remaining children
-  ordered.push(
-    ...entries.sort(sortRoutesWithInitial(initialRouteName)).map((route) => ({ route, props: {} }))
-  )
+  if (!options?.onlyMatching) {
+    ordered.push(
+      ...entries
+        .sort(sortRoutesWithInitial(initialRouteName))
+        .map((route) => ({ route, props: {} }))
+    )
+  }
 
   return ordered
 }
@@ -109,12 +115,15 @@ function getSortedChildren(
 /**
  * @returns React Navigation screens sorted by the `route` property.
  */
-export function useSortedScreens(order: ScreenProps[]): React.ReactNode[] {
+export function useSortedScreens(
+  order: ScreenProps[],
+  options?: { onlyMatching?: boolean }
+): React.ReactNode[] {
   const node = useRouteNode()
 
   const sortedScreens = React.useMemo(() => {
     const sorted = node?.children?.length
-      ? getSortedChildren(node.children, order, node.initialRouteName)
+      ? getSortedChildren(node.children, order, node.initialRouteName, options)
       : []
 
     return sorted.map((value) => routeToScreen(value.route, value.props))
