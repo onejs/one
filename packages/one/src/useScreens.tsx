@@ -6,7 +6,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { Suspense, useEffect } from 'react'
+import React, { forwardRef, Suspense, useEffect, useMemo } from 'react'
 import {
   Route,
   useRouteNode,
@@ -19,6 +19,7 @@ import { getPageExport } from './utils/getPageExport'
 import { EmptyRoute } from './views/EmptyRoute'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { Try } from './views/Try'
+import { useConstant } from './utils/useConstant'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -144,6 +145,25 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
   return { default: getPageExport(component) }
 }
 
+/**
+ * To enable custom <html> and other html-like stuff in the root _layout
+ * we are doing some fancy stuff, namely, just capturing the root layout return
+ * value and deep-mapping over it.
+ *
+ * On server, we filter it out and hoist it to the parent root html in createApp
+ *
+ * On client, we just filter it out completely as in One we don't hydrate html
+ */
+function filterOutSpecialHTMLElements(inels: any) {
+  // TODO
+  // problem: i think we actually do want to control <head /> on client.........
+  // otherwise reacts hoisting logic only works server-side, but thats no bueno
+  // we want style tags and other tags hoisted client side too :/
+
+  // this means we need to redo `createApp` likely
+  return inels
+}
+
 // TODO: Maybe there's a more React-y way to do this?
 // Without this store, the process enters a recursive loop.
 const qualifiedStore = new WeakMap<RouteNode, React.ComponentType<any>>()
@@ -154,52 +174,27 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     return qualifiedStore.get(value)!
   }
 
-  let ScreenComponent: React.ForwardRefExoticComponent<React.RefAttributes<unknown>>
+  let ScreenComponent: React.ForwardRefExoticComponent<{ segment: string; key?: string }>
 
-  // if (One_ROUTER_IMPORT_MODE === 'lazy') {
-  //   ScreenComponent = React.forwardRef((props, ref) => {
-  //     // for native avoid suspense for now
-  //     const [loaded, setLoaded] = useState<any>(null)
-
-  //     useEffect(() => {
-  //       try {
-  //         const found = value.loadRoute()
-  //         if (found) {
-  //           setLoaded(found)
-  //         }
-  //       } catch (err) {
-  //         if (err instanceof Promise) {
-  //           err
-  //             .then((res) => {
-  //               setLoaded(res)
-  //             })
-  //             .catch((err) => {
-  //               console.error(`Error loading route`, err)
-  //             })
-  //         } else {
-  //           setLoaded(err as any)
-  //         }
-  //       }
-  //     }, [])
-
-  //     if (loaded) {
-  //       const Component = getPageExport(fromImport(loaded)) as React.ComponentType<any>
-  //       return (
-  //         // <Suspense fallback={null}>
-  //         <Component {...props} ref={ref} />
-  //         // </Suspense>
-  //       )
-  //     }
-
-  //     return null
-  //   })
-  // } else {
   ScreenComponent = React.forwardRef((props, ref) => {
     const res = value.loadRoute()
-    const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
+    const Component = useConstant(() => {
+      const BaseComponent = getPageExport(fromImport(res)) as React.ComponentType<any>
+
+      // root layout do special html handling
+      if (props.segment === '') {
+        return forwardRef((props, ref) => {
+          // @ts-ignore
+          const out = BaseComponent(props, ref)
+          return filterOutSpecialHTMLElements(out)
+        })
+      }
+
+      return BaseComponent
+    })
 
     if (process.env.NODE_ENV === 'development' && process.env.DEBUG === 'one') {
-      console.groupCollapsed(`Render ${props.key}`)
+      console.groupCollapsed(`Render ${props.key} ${props.segment}`)
       console.info(`res`, res)
       console.info(`value`, value)
       console.info(`fromImport`, fromImport(res))
@@ -213,7 +208,6 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       // </Suspense>
     )
   })
-  // }
 
   const wrapSuspense = (children: any) => {
     if (process.env.TAMAGUI_TARGET === 'native') {
