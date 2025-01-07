@@ -1,102 +1,55 @@
-import type { InferInsertModel, InferSelectModel, One, Relation, Relations } from 'drizzle-orm'
-import type { PgTable } from 'drizzle-orm/pg-core'
-import * as schema from './publicSchema'
+import type { Row, TableSchema } from '@rocicorp/zero'
+import type { Tables } from '~/zero'
 
-export type { UserState, ChannelState } from './publicSchema'
+export type { ChannelState, UserState } from './publicSchema'
 
 const rolePermissionsKeys = ['canAdmin', 'canEditChannel', 'canEditServer'] satisfies (keyof Role)[]
-export type RolePermissionsKeys = (typeof rolePermissionsKeys)[0]
 
-type ExtractTables<T> = {
-  [K in keyof T]: T[K] extends PgTable ? T[K] : never
-}
-
-type ExtractRelations<T> = {
-  [K in keyof T]: T[K] extends Relations ? T[K] : never
-}
-
-type DrizzleRowToZeroRow<R extends Record<string, any>> = {
-  [Key in keyof R]: R[Key] extends Date | null | undefined ? number | null | undefined : R[Key]
-}
-
-// Extract only the tables from the schema
-type SchemaTables = ExtractTables<typeof schema>
-
-export function createSchemaTypes<Schema extends Record<string, any>>(_tables: Schema) {
-  type Tables = ExtractTables<Schema>
-  type ExtractedRelations = ExtractRelations<Schema>
-
-  type InsertTypes = {
-    [K in keyof Tables]: DrizzleRowToZeroRow<InferInsertModel<Tables[K]>>
-  }
-
-  type SelectTypes = {
-    [K in keyof Tables]: InferSelectModel<Tables[K]>
-  }
-
-  type RelationsCol<A extends string> = `${A}Relations`
-
-  type TableRelations<Row, R extends Relations> = R extends Relations<any, infer X>
-    ? Row & {
-        [RK in keyof X]: X[RK] extends One ? Row | undefined : Row[] | undefined
-      }
+type RowWithRelations<
+  Tables extends Record<string, TableSchema>,
+  TableName extends keyof Tables,
+  Table extends Tables[TableName] = Tables[TableName],
+> = Row<Table> & {
+  [RelationTableName in keyof Table['relationships']]?: RelationTableName extends keyof Tables
+    ? Row<Tables[RelationTableName]>
     : never
-
-  type RelationTypes = {
-    [K in keyof Tables]: K extends string
-      ? RelationsCol<K> extends keyof ExtractedRelations
-        ? TableRelations<SelectTypes[K], ExtractedRelations[RelationsCol<K>]>
-        : never
-      : never
-  }
-
-  return {
-    Insert: {} as InsertTypes,
-    Select: {} as SelectTypes,
-    WithRelations: {} as RelationTypes,
-  }
 }
 
-const schemaTypes = createSchemaTypes<typeof schema>(schema as SchemaTables)
+export type User = Row<Tables['user']>
+export type UserWithRelations = RowWithRelations<Tables, 'user'>
 
-export type Schema = typeof schemaTypes
+export type Attachment = Row<Tables['attachment']>
+export type AttachmentWithRelations = RowWithRelations<Tables, 'attachment'>
 
-// Example type exports
-export type User = Schema['Insert']['user']
-export type UserWithRelations = Schema['WithRelations']['user']
+export type Message = Row<Tables['message']>
+export type MessageWithRelations = RowWithRelations<Tables, 'message'>
 
-export type Attachment = Schema['Insert']['attachment']
-export type AttachmentWithRelations = Schema['WithRelations']['attachment']
+export type Server = Row<Tables['server']>
+export type ServerWithRelations = RowWithRelations<Tables, 'server'>
 
-export type Message = Schema['Insert']['message']
-export type MessageWithRelations = Schema['WithRelations']['message']
+export type Channel = Row<Tables['channel']>
+export type ChannelWithRelations = RowWithRelations<Tables, 'channel'>
 
-export type Server = Schema['Insert']['server']
-export type ServerWithRelations = Schema['WithRelations']['server']
+export type Thread = Row<Tables['thread']>
+export type ThreadWithRelations = RowWithRelations<Tables, 'thread'>
 
-export type Channel = Schema['Insert']['channel']
-export type ChannelWithRelations = Schema['WithRelations']['channel']
+export type ServerMember = Row<Tables['serverMember']>
+export type ServerMemberWithRelations = RowWithRelations<Tables, 'serverMember'>
 
-export type Thread = Schema['Insert']['thread']
-export type ThreadWithRelations = Schema['WithRelations']['thread']
+export type MessageReaction = Row<Tables['messageReaction']>
+export type MessageReactionWithRelations = RowWithRelations<Tables, 'messageReaction'>
 
-export type ServerMember = Schema['Insert']['serverMember']
-export type ServerMemberWithRelations = Schema['WithRelations']['serverMember']
+export type Reaction = Row<Tables['reaction']>
+export type ReactionWithRelations = RowWithRelations<Tables, 'reaction'>
 
-export type MessageReaction = Schema['Insert']['messageReaction']
-export type MessageReactionWithRelations = Schema['WithRelations']['messageReaction']
+export type Friendship = Row<Tables['friendship']>
+export type FriendshipWithRelations = RowWithRelations<Tables, 'friendship'>
 
-export type Reaction = Schema['Insert']['reaction']
-export type ReactionWithRelations = Schema['WithRelations']['reaction']
+export type Role = Row<Tables['role']>
+export type RoleWithRelations = RowWithRelations<Tables, 'role'>
 
-export type Friendship = Schema['Insert']['friendship']
-export type FriendshipWithRelations = Schema['WithRelations']['friendship']
+export type UserRole = Row<Tables['userRole']>
+export type UserRoleWithRelations = RowWithRelations<Tables, 'userRole'>
 
-export type Role = Schema['Insert']['role']
-export type RoleWithRelations = Schema['WithRelations']['role']
-
-export type UserRole = Schema['Insert']['userRole']
-export type UserRoleWithRelations = Schema['WithRelations']['userRole']
-
-export type ChannelPermission = Schema['Insert']['channelPermission']
-export type ChannelPermissionWithRelations = Schema['WithRelations']['channelPermission']
+export type ChannelPermission = Row<Tables['channelPermission']>
+export type ChannelPermissionWithRelations = RowWithRelations<Tables, 'channelPermission'>

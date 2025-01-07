@@ -14551,13 +14551,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"drizzle-zero@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "drizzle-zero@npm:0.1.2"
+"drizzle-zero@npm:^0.1.8":
+  version: 0.1.8
+  resolution: "drizzle-zero@npm:0.1.8"
   peerDependencies:
     "@rocicorp/zero": ">=0.8.2024121204"
     drizzle-orm: ">=0.36.0"
-  checksum: 10/4d2aa4602c3005b355a9b27dfb53418bad4ef69ab027c00a7c73fbeeab51e1136e1c659a7f363cb1e3922ef8b90bf0e06f4bfc257235a357eec4c345706d2128
+  checksum: 10/8b2b8baea359d7b2b54821a8fe6137adfd5759f8217a09f73958ee522ac29d9c34b242b48e6b6ddae073811acf761567f807e63341afe106a28f85160e520bea
   languageName: node
   linkType: hard
 
@@ -21823,7 +21823,7 @@ __metadata:
     burnt: "npm:^0.12.2"
     drizzle-kit: "npm:^0.30.1"
     drizzle-orm: "npm:^0.38.3"
-    drizzle-zero: "npm:^0.1.2"
+    drizzle-zero: "npm:^0.1.8"
     expo: "npm:~52.0.17"
     flexsearch: "npm:^0.7.43"
     one: "workspace:*"
