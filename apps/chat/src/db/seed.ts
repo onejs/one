@@ -1,7 +1,6 @@
 import { drizzle } from 'drizzle-orm/node-postgres'
 import pg from 'pg'
 import { channel, server, serverMember, user } from './publicSchema'
-import type { Channel, Server, ServerMember, User } from './types'
 
 const connectionString = process.env.ZERO_UPSTREAM_DB.replace('127.0.0.1', 'pgdb')
 
@@ -16,7 +15,7 @@ const db = drizzle(pool)
 async function insertSeedData() {
   try {
     // Seed the test user
-    const testUser: User = {
+    const testUser = {
       id: 'test-user-id',
       username: 'testuser',
       name: 'Test User',
@@ -32,7 +31,7 @@ async function insertSeedData() {
     await db.insert(user).values(testUser).onConflictDoNothing()
 
     // Seed the test server
-    const testServer: Server = {
+    const testServer = {
       id: 'test-server-id',
       name: 'Test Server',
       creatorId: 'test-user-id',
@@ -45,7 +44,7 @@ async function insertSeedData() {
     await db.insert(server).values(testServer).onConflictDoNothing()
 
     // Seed the default channel for the server
-    const testChannel: Channel = {
+    const testChannel = {
       id: 'test-channel-id',
       serverId: 'test-server-id',
       name: 'general',
@@ -57,7 +56,7 @@ async function insertSeedData() {
     await db.insert(channel).values(testChannel).onConflictDoNothing()
 
     // Add the user to the server
-    const testServerMember: ServerMember = {
+    const testServerMember = {
       serverId: 'test-server-id',
       userId: 'test-user-id',
       hasClosedWelcome: false,

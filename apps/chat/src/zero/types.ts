@@ -1,7 +1,6 @@
 import type { Row, TableSchema } from '@rocicorp/zero'
 import type { Tables } from '~/zero'
-
-export type { ChannelState, UserState } from './publicSchema'
+export type { ChannelState, UserState } from '~/db/publicSchema'
 
 const rolePermissionsKeys = ['canAdmin', 'canEditChannel', 'canEditServer'] satisfies (keyof Role)[]
 

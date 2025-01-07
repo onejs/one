@@ -17,7 +17,7 @@ import {
   YStack,
   type ButtonProps,
 } from 'tamagui'
-import type { ThreadWithRelations } from '~/db/types'
+import type { ThreadWithRelations } from '~/zero/types'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { useCurrentChannelThreads } from '~/state/channel/useCurrentChannelThreads'
 import { useCurrentThread, useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'

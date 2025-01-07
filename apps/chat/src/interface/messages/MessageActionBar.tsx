@@ -1,7 +1,7 @@
 import { IndentIncrease, Reply } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, Separator, TooltipSimple, XGroup, XStack } from 'tamagui'
-import type { MessageWithRelations } from '~/db/types'
+import type { MessageWithRelations } from '~/zero/types'
 import { randomId } from '~/helpers/randomId'
 import { getCurrentUser, updateUserOpenThread } from '~/state/user'
 import { useQuery, zero } from '~/zero'

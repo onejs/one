@@ -1,5 +1,5 @@
 import { Button, YStack } from 'tamagui'
-import type { Message } from '~/db/types'
+import type { Message } from '~/zero/types'
 import { getRandomItem } from '~/helpers/getRandomItem'
 import { randomId } from '~/helpers/randomId'
 import { showToast } from '~/interface/toast/Toast'

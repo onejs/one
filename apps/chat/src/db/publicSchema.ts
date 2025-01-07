@@ -88,8 +88,8 @@ export const server = _.pgTable('server', {
     .notNull()
     .references(() => user.id),
   description: _.varchar('description'),
-  channelSort: _.jsonb('channelSort').default(sql`'{}'::jsonb`),
-  icon: _.varchar('icon', { length: 255 }),
+  channelSort: _.jsonb('channelSort').$type<string[]>().default(sql`'{}'::jsonb`),
+  icon: _.varchar('icon', { length: 255 }).notNull(),
   updatedAt: _.timestamp('updatedAt'),
   createdAt: _.timestamp('createdAt').default(sql`CURRENT_TIMESTAMP`),
 })

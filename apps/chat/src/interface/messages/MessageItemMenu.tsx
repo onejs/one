@@ -1,7 +1,7 @@
 import { EyeOff, MoreVertical, Pencil, Pin, Reply, Trash } from '@tamagui/lucide-icons'
 import { forwardRef } from 'react'
 import { Button, type ButtonProps } from 'tamagui'
-import type { MessageWithRelations } from '~/db/types'
+import type { MessageWithRelations } from '~/zero/types'
 import { dialogConfirm } from '~/interface/dialogs/actions'
 import { getCurrentUser, updateUserSetEditingMessage } from '~/state/user'
 import { zero } from '~/zero'

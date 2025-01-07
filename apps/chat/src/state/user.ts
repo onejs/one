@@ -1,6 +1,6 @@
 import { merge } from 'ts-deepmerge'
 import { useAuth } from '~/better-auth/authClient'
-import type { ChannelState, User, UserState } from '~/db/types'
+import type { ChannelState, User, UserState } from '~/zero/types'
 import { ensureSignedUp } from '~/interface/dialogs/actions'
 import { useQuery, zero } from '~/zero'
 

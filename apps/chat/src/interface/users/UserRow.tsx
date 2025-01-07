@@ -1,7 +1,7 @@
 import { UserCheck, UserPlus, UserX } from '@tamagui/lucide-icons'
 import { TooltipSimple, XStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import type { Friendship, User } from '~/db/types'
+import type { Friendship, User } from '~/zero/types'
 import { useQuery, zero } from '~/zero'
 import { Avatar } from '../Avatar'
 import { Row, type RowProps } from '../Row'

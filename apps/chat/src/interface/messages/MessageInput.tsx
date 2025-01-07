@@ -12,7 +12,7 @@ import {
   getDerivedUserState,
   updateUserCurrentChannel,
 } from '~/state/user'
-import type { Attachment } from '~/db/types'
+import type { Attachment } from '~/zero/types'
 import { AttachmentItem } from '../attachments/AttachmentItem'
 import { attachmentEmitter } from '../upload/DragDropFile'
 import type { FileUpload } from '../upload/uploadImage'
