@@ -21,9 +21,6 @@ export const EXCLUDE_LIST = [
   '@expo/cli',
   'expo-structured-headers',
 
-  // avoid errors due to mixing typescript into plain js files
-  'expo-video',
-
   // not used by web anyway
   // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
   // /lib/module/Platform/Platform.web.js:132:20
