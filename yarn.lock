@@ -2811,6 +2811,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bottom-tabs/react-navigation@npm:^0.7.8":
+  version: 0.7.8
+  resolution: "@bottom-tabs/react-navigation@npm:0.7.8"
+  dependencies:
+    color: "npm:^4.2.3"
+  peerDependencies:
+    "@react-navigation/native": ">=7"
+    react: "*"
+    react-native: "*"
+    react-native-bottom-tabs: "*"
+  checksum: 10/c7433d069ef7ca7c5be4b950b1fa300d178567fc9fbdf5b56b0e93b520366c2a3fac9646cfd3d152801c5a08c001eede8fe2aad2eec52ca828f5368f62a2cf5c
+  languageName: node
+  linkType: hard
+
 "@changesets/types@npm:^4.0.1":
   version: 4.1.0
   resolution: "@changesets/types@npm:4.1.0"
@@ -11914,7 +11928,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.0.0, ajv@npm:^8.0.1, ajv@npm:^8.12.0":
+"ajv@npm:^8.0.0, ajv@npm:^8.0.1, ajv@npm:^8.11.0, ajv@npm:^8.12.0":
   version: 8.17.1
   resolution: "ajv@npm:8.17.1"
   dependencies:
@@ -15772,6 +15786,7 @@ __metadata:
   resolution: "example-testflight@workspace:examples/testflight"
   dependencies:
     "@biomejs/biome": "npm:^1.8.3"
+    "@bottom-tabs/react-navigation": "npm:^0.7.8"
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
     "@react-native-community/cli": "npm:15.1.3"
@@ -15785,11 +15800,13 @@ __metadata:
     drizzle-kit: "npm:^0.24.2"
     drizzle-orm: "npm:^0.33.0"
     expo: "npm:~52.0.17"
+    expo-build-properties: "npm:^0.13.1"
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
     postgres: "npm:^3.4.4"
     react: "npm:^19.0.0"
     react-native: "npm:^0.76.5"
+    react-native-bottom-tabs: "npm:^0.7.8"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:4.4.0"
@@ -15897,6 +15914,18 @@ __metadata:
     vxrn: "workspace:*"
   languageName: unknown
   linkType: soft
+
+"expo-build-properties@npm:^0.13.1":
+  version: 0.13.1
+  resolution: "expo-build-properties@npm:0.13.1"
+  dependencies:
+    ajv: "npm:^8.11.0"
+    semver: "npm:^7.6.0"
+  peerDependencies:
+    expo: "*"
+  checksum: 10/5376a821e0ac7fa5eebdf84a7ddd293cd7cdbbcc7e0b4f7307d2d02102ce1ac076d93128f2a59dce735e04f2fab7280172268992a53edc67d8a3fd5653a27f8a
+  languageName: node
+  linkType: hard
 
 "expo-constants@npm:~16.0.0":
   version: 16.0.2
@@ -23359,6 +23388,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-bottom-tabs@npm:^0.7.8":
+  version: 0.7.8
+  resolution: "react-native-bottom-tabs@npm:0.7.8"
+  dependencies:
+    sf-symbols-typescript: "npm:^2.0.0"
+    use-latest-callback: "npm:^0.2.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/0d52227c6b40df4943eb472dda2f4690d878909ff0642a3fb469da531ca1c024c58767901fe1f1dbcd26aab84065e62a322adbd86e2a5c3675b32f3e7113ec87
+  languageName: node
+  linkType: hard
+
 "react-native-drawer-layout@npm:^4.1.1":
   version: 4.1.1
   resolution: "react-native-drawer-layout@npm:4.1.1"
@@ -23679,6 +23721,15 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 10/39473e43f64eec92da35db9d4411f3887b368038670787d49dd23172eb3a29953eb13767d1bfa34cbe2665b6e25632cad146e362e8910ce33755d343537763ae
+  languageName: node
+  linkType: hard
+
+"react@npm:^18.3.1":
+  version: 18.3.1
+  resolution: "react@npm:18.3.1"
+  dependencies:
+    loose-envify: "npm:^1.1.0"
+  checksum: 10/261137d3f3993eaa2368a83110466fc0e558bc2c7f7ae7ca52d94f03aac945f45146bd85e5f481044db1758a1dbb57879e2fcdd33924e2dde1bdc550ce73f7bf
   languageName: node
   linkType: hard
 
@@ -24953,6 +25004,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sf-symbols-typescript@npm:^2.0.0":
+  version: 2.1.0
+  resolution: "sf-symbols-typescript@npm:2.1.0"
+  checksum: 10/1fe80afa6a8275bf0665a5ed30fc82b25abd706162235cf77d9422c9cf707aee9bac0e7f3a3effd2177963751e8da9b76e43f1be814660b3a9c18de11274be39
+  languageName: node
+  linkType: hard
+
 "shallow-clone@npm:^3.0.0":
   version: 3.0.1
   resolution: "shallow-clone@npm:3.0.1"
@@ -26215,6 +26273,19 @@ __metadata:
   checksum: 10/8fccb2cb6c8fcb6bb4115394feb833f8b6cf4b9503ec2485c2c90febf435cac62abe882a0c5c51a37b9bbe70640cdd05acf5f45e486ac4583389f4b0855f69e5
   languageName: node
   linkType: hard
+
+"test-expo-reanimated@workspace:tests/test-expo-reanimated":
+  version: 0.0.0-use.local
+  resolution: "test-expo-reanimated@workspace:tests/test-expo-reanimated"
+  dependencies:
+    expo: "npm:~52.0.17"
+    expo-status-bar: "npm:~1.12.1"
+    react: "npm:^18.3.1"
+    react-native: "npm:^0.76.5"
+    react-native-reanimated: "npm:~3.16.5"
+    vxrn: "workspace:^"
+  languageName: unknown
+  linkType: soft
 
 "test-sandbox@workspace:tests/sandbox":
   version: 0.0.0-use.local
@@ -27769,7 +27840,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"vxrn@workspace:*, vxrn@workspace:packages/vxrn":
+"vxrn@workspace:*, vxrn@workspace:^, vxrn@workspace:packages/vxrn":
   version: 0.0.0-use.local
   resolution: "vxrn@workspace:packages/vxrn"
   dependencies:

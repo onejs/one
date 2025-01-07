@@ -1,9 +1,5 @@
 import { type BottomTabNavigationEventMap, type BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native';
-import type { OneRouter } from '../interfaces/router';
-type BottomTabNavigationOptionsWithHref = BottomTabNavigationOptions & {
-    href?: OneRouter.Href | null;
-};
 export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/bottom-tabs").BottomTabNavigatorProps, "initialRouteName" | "children" | "screenOptions" | "id" | "layout" | "screenListeners" | "screenLayout" | "UNSTABLE_getStateForRouteNamesChange"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
@@ -93,7 +89,7 @@ export declare const Tabs: import("react").ForwardRefExoticComponent<Omit<Omit<i
 } & {
     id?: undefined;
 }, "children">> & import("react").RefAttributes<unknown>> & {
-    Screen: (props: import("../useScreens").ScreenProps<BottomTabNavigationOptionsWithHref, TabNavigationState<ParamListBase>, BottomTabNavigationEventMap>) => null;
+    Screen: typeof import("../views/Screen").Screen;
 };
 export default Tabs;
 //# sourceMappingURL=Tabs.d.ts.map

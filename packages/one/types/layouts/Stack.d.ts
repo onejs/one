@@ -89,7 +89,7 @@ export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<
 } & {
     id?: undefined;
 }, "children">> & import("react").RefAttributes<unknown>> & {
-    Screen: (props: import("../useScreens").ScreenProps<NativeStackNavigationOptions, StackNavigationState<ParamListBase>, NativeStackNavigationEventMap>) => null;
+    Screen: typeof import("../views/Screen").Screen;
 };
 export default Stack;
 //# sourceMappingURL=Stack.d.ts.map

@@ -54,6 +54,7 @@ export async function getBaseViteConfig({
     plugins: [
       {
         name: 'platform-specific-resolve',
+        enforce: 'pre',
         config() {
           return {
             environments: {

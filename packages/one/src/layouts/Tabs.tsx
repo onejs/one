@@ -16,6 +16,9 @@ const TabBar = ({ state, ...restProps }: BottomTabBarProps) => {
   /**
    * With React Navigation v7, spacial routes such as +not-found and _sitemap are being added to `state.routes`, but we don't want them to be shown in the tab bar.
    */
+
+  // TODO due to adding onlyMatching, we can remove this now i think (need to make sure)
+
   const filteredRoutes = state.routes.filter(
     (r) => r.name !== '+not-found' && !r.name.startsWith('_sitemap')
   )
@@ -43,40 +46,44 @@ export const Tabs = withLayoutContext<
   typeof BottomTabNavigator,
   TabNavigationState<ParamListBase>,
   BottomTabNavigationEventMap
->(BottomTabNavigator, (screens) => {
-  // Support the `href` shortcut prop.
-  return screens.map((screen) => {
-    if (typeof screen.options !== 'function' && screen.options?.href !== undefined) {
-      const { href, ...options } = screen.options
-      if (options.tabBarButton) {
-        throw new Error('Cannot use `href` and `tabBarButton` together.')
-      }
-      return {
-        ...screen,
-        options: {
-          ...options,
-          tabBarButton: (props) => {
-            if (href == null) {
-              return null
-            }
-            const children =
-              Platform.OS === 'web' ? props.children : <Pressable>{props.children}</Pressable>
-            return (
-              <Link
-                {...props}
-                style={[{ display: 'flex' }, props.style]}
-                href={href}
-                asChild={Platform.OS !== 'web'}
-                // biome-ignore lint/correctness/noChildrenProp: <explanation>
-                children={children}
-              />
-            )
+>(
+  BottomTabNavigator,
+  (screens) => {
+    // Support the `href` shortcut prop.
+    return screens.map((screen) => {
+      if (typeof screen.options !== 'function' && screen.options?.href !== undefined) {
+        const { href, ...options } = screen.options
+        if (options.tabBarButton) {
+          throw new Error('Cannot use `href` and `tabBarButton` together.')
+        }
+        return {
+          ...screen,
+          options: {
+            ...options,
+            tabBarButton: (props) => {
+              if (href == null) {
+                return null
+              }
+              const children =
+                Platform.OS === 'web' ? props.children : <Pressable>{props.children}</Pressable>
+              return (
+                <Link
+                  {...props}
+                  style={[{ display: 'flex' }, props.style]}
+                  href={href}
+                  asChild={Platform.OS !== 'web'}
+                  // biome-ignore lint/correctness/noChildrenProp: <explanation>
+                  children={children}
+                />
+              )
+            },
           },
-        },
+        }
       }
-    }
-    return screen
-  })
-}, { props: { tabBar: TabBar } })
+      return screen
+    })
+  },
+  { props: { tabBar: TabBar } }
+)
 
 export default Tabs

@@ -13,11 +13,13 @@
     "platforms": ["ios", "android"],
     "plugins": [
       "vxrn/expo-plugin",
+      "react-native-bottom-tabs",
       [
         "expo-build-properties",
         {
           "ios": {
-            "deploymentTarget": "14.0"
+            "deploymentTarget": "15.1",
+            "useFrameworks": "static"
           }
         }
       ]
