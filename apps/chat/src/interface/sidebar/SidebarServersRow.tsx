@@ -16,16 +16,20 @@ export const SidebarServersRow = () => {
           {servers.map((server) => {
             return (
               <TooltipSimple key={server.id} label={server.name}>
-                <Avatar
-                  onPress={() => {
-                    updateUserState({
-                      activeServer: server.id,
-                    })
-                  }}
-                  size={42}
-                  active={activeServer === server.id}
-                  image={server.icon}
-                />
+                {server.icon ? (
+                  <Avatar
+                    onPress={() => {
+                      updateUserState({
+                        activeServer: server.id,
+                      })
+                    }}
+                    size={42}
+                    active={activeServer === server.id}
+                    image={server.icon}
+                  />
+                ) : (
+                  <Circle size={42} bg="$color5" />
+                )}
               </TooltipSimple>
             )
           })}

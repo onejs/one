@@ -15,7 +15,7 @@ export const UserRow = ({
 }: { user: User; action?: any; rowProps?: RowProps; active?: boolean }) => {
   return (
     <Row active={active} {...rowProps}>
-      <Avatar image={user.image} />
+      {!!user.image && <Avatar image={user.image} />}
       <Row.Text>{user.username || user.name}</Row.Text>
       <XStack f={1} />
       {action}

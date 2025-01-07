@@ -32,7 +32,7 @@ export const user = _.pgTable('user', {
   state: _.jsonb('state').$type<UserState>().default(sql`'{}'::jsonb`),
   updatedAt: _.timestamp('updatedAt').default(sql`CURRENT_TIMESTAMP`),
   emailVerified: _.boolean('emailVerified').notNull().default(false),
-  image: _.varchar('image'),
+  image: _.varchar('image').notNull(),
   createdAt: _.timestamp('createdAt').default(sql`CURRENT_TIMESTAMP`),
 })
 
