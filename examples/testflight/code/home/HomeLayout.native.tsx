@@ -1,6 +1,5 @@
-import { NativeTabs } from '~/code/ui/BottomTabs'
-import { HomeIcons } from './HomeIcons'
 import { useTheme } from 'tamagui'
+import { NativeTabs } from '~/code/ui/BottomTabs.native'
 
 export function HomeLayout() {
   const theme = useTheme()
@@ -17,7 +16,7 @@ export function HomeLayout() {
         name="index"
         options={{
           title: 'Feed',
-          tabBarIcon: ({ color }) => <HomeIcons.Home size={20} color={color} />,
+          tabBarIcon: () => ({ sfSymbol: 'person' }),
         }}
       />
 
@@ -25,7 +24,7 @@ export function HomeLayout() {
         name="notifications"
         options={{
           title: 'Notifications',
-          tabBarIcon: ({ color }) => <HomeIcons.Notifications size={20} color={color} />,
+          tabBarIcon: () => ({ sfSymbol: 'person' }),
         }}
       />
 
@@ -33,7 +32,7 @@ export function HomeLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <HomeIcons.User size={20} color={color} />,
+          tabBarIcon: () => ({ sfSymbol: 'person' }),
         }}
       />
     </NativeTabs>
