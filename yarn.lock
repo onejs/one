@@ -11594,6 +11594,7 @@ __metadata:
     react: "npm:^18.3.1 || ^19.0.0"
     react-dom: "npm:^18.3.1 || ^19.0.0"
     react-native: "npm:^0.76.5"
+    tsx: "npm:^4.19.0"
   peerDependencies:
     react: "*"
     react-dom: "*"
@@ -16075,6 +16076,17 @@ __metadata:
   bin:
     expo-updates: bin/cli.js
   checksum: 10/061ccfa5ac3b1756fead7d57e6439ba813369d1514f488411945b3b0eea0981951895c4aa298c67f32c8b51c16c5ebe3dee4fa87023dee12b73b4a7f009a4a69
+  languageName: node
+  linkType: hard
+
+"expo-video@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "expo-video@npm:2.0.3"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10/df425995b8e914a6ddcb1819ba7af6d8e39dae724d3a9de0a5e5531df1b22ff07975196dfcd5b30070fdd5d84cc0712658588f2113e440f19e0c9da3eb8a2fbb
   languageName: node
   linkType: hard
 
@@ -26249,6 +26261,7 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/utils": "workspace:*"
     expo: "npm:~52.0.17"
+    expo-video: "npm:^2.0.3"
     get-port-please: "npm:^3.1.2"
     one: "workspace:*"
     postgres: "npm:^3.4.4"
@@ -27754,11 +27767,11 @@ __metadata:
     "@types/react": "npm:^18.3.11"
     "@types/react-native": "npm:^0.73.0"
     check-dependency-version-consistency: "npm:^3.0.3"
-    esbuild-register: "npm:^3.6.0"
     npm-run-all: "npm:^4.1.5"
     p-map: "npm:^7.0.2"
     patch-package: "npm:^8.0.0"
     sst: "npm:^3.4.46"
+    tsx: "npm:^4.19.0"
     turbo: "npm:^2.1.0"
     typescript: "npm:^5.7.2"
     ultra-runner: "npm:^3.10.5"
