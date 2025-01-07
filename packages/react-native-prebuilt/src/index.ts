@@ -318,7 +318,7 @@ const esbuildCommonJSFunction = `var __commonJS = (cb, mod) => function __requir
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };`
 
-const RNExportNames = [
+export const RNExportNames = [
   'registerCallableModule',
   'AccessibilityInfo',
   'ActivityIndicator',
@@ -398,7 +398,7 @@ const RNExportNames = [
   'AssetRegistry', // Normally not exported by React Native, but with a hack we make @react-native/assets-registry/registry available here.
 ]
 
-const RExports = [
+export const RExports = [
   'Children',
   'Component',
   'Fragment',
