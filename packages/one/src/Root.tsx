@@ -17,6 +17,7 @@ import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollRestoration } from './views/ScrollRestoration'
 import type { One } from './vite/types'
+import { getServerContext } from './utils/serverContext'
 // import { SplashScreen } from './views/Splash'
 
 if (typeof window !== 'undefined') {
@@ -125,7 +126,7 @@ export function Root(props: RootProps) {
   )
 
   if (isClient) {
-    if (globalThis['__vxrnHydrateMode__'] === 'spa') {
+    if (getServerContext()?.mode === 'spa') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [show, setShow] = useState(false)
 

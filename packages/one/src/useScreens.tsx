@@ -6,7 +6,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { forwardRef, Suspense, useEffect, useMemo } from 'react'
+import React, { forwardRef, Suspense, useEffect, useId, useMemo } from 'react'
 import {
   Route,
   useRouteNode,
@@ -20,6 +20,7 @@ import { EmptyRoute } from './views/EmptyRoute'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { Try } from './views/Try'
 import { useConstant } from './utils/useConstant'
+import { getServerContext, ServerContextScript } from './utils/serverContext'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -154,6 +155,41 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
   return { default: getPageExport(component) }
 }
 
+// replacing Vites since we control the root
+function DevHead({ ssrID }: { ssrID: string }) {
+  if (process.env.NODE_ENV === 'development') {
+    return (
+      <>
+        <link rel="preload" href={ssrID} as="style" />
+        <link rel="stylesheet" href={ssrID} data-ssr-css />
+        <script
+          type="module"
+          dangerouslySetInnerHTML={{
+            __html: `import { createHotContext } from "/@vite/client";
+  const hot = createHotContext("/__clear_ssr_css");
+  hot.on("vite:afterUpdate", () => {
+    document
+      .querySelectorAll("[data-ssr-css]")
+      .forEach(node => node.remove());
+  });`,
+          }}
+        />
+        <script
+          type="module"
+          dangerouslySetInnerHTML={{
+            __html: `import { injectIntoGlobalHook } from "/@react-refresh";
+  injectIntoGlobalHook(window);
+  window.$RefreshReg$ = () => {};
+  window.$RefreshSig$ = () => (type) => type;`,
+          }}
+        />
+      </>
+    )
+  }
+
+  return null
+}
+
 /**
  * To enable custom <html> and other html-like stuff in the root _layout
  * we are doing some fancy stuff, namely, just capturing the root layout return
@@ -177,6 +213,16 @@ function filterOutSpecialHTMLElements(inels: any) {
 // Without this store, the process enters a recursive loop.
 const qualifiedStore = new WeakMap<RouteNode, React.ComponentType<any>>()
 
+// function ServerOnly<Tag extends string>(props: { tag }) {
+//   const id = useId()
+
+//   if (import.meta.env.SSR) {
+//     return props.children()
+//   }
+
+//   const
+// }
+
 /** Wrap the component with various enhancements and add access to child routes. */
 export function getQualifiedRouteComponent(value: RouteNode) {
   if (value && qualifiedStore.has(value)) {
@@ -195,7 +241,36 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         return forwardRef((props, ref) => {
           // @ts-ignore
           const out = BaseComponent(props, ref)
-          return filterOutSpecialHTMLElements(out)
+          // return filterOutSpecialHTMLElements(out)
+
+          const id = useId()
+
+          const serverContext = getServerContext()
+
+          return (
+            <html lang="en-US">
+              <head>
+                {process.env.NODE_ENV === 'development' ? (
+                  <DevHead ssrID={`/@id/__x00__virtual:ssr-css.css?t=${id}`} />
+                ) : null}
+
+                <script
+                  dangerouslySetInnerHTML={{
+                    __html: `globalThis['global'] = globalThis`,
+                  }}
+                />
+
+                {serverContext?.css?.map((file) => {
+                  return <link key={file} rel="stylesheet" href={file} />
+                })}
+              </head>
+
+              <body>{out}</body>
+
+              {/* could this just be loaded via the same loader.js? as a preload? i think so... */}
+              <ServerContextScript />
+            </html>
+          )
         })
       }
 
