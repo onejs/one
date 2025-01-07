@@ -24,6 +24,11 @@ export function mergeUserConfig(
   if (userViteConfig) {
     serverConfig = mergeConfig(serverConfig, userViteConfig) as any
 
+    // vite doesnt overwrite user css option?
+    if (userViteConfig.css) {
+      serverConfig.css = userViteConfig.css
+    }
+
     if (serverConfig.ssr?.noExternal && !Array.isArray(serverConfig.ssr?.noExternal)) {
       throw new Error(`ssr.noExternal must be array`)
     }

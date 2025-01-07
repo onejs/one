@@ -1,7 +1,7 @@
-import type { VXRNOptions } from '../types';
+import type { Mode, VXRNOptions } from '../types';
 export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>;
-export declare function fillOptions(options: VXRNOptions, internal?: {
-    mode?: 'dev' | 'prod';
+export declare function fillOptions(options: VXRNOptions, { mode }?: {
+    mode?: Mode;
 }): Promise<{
     debugBundlePaths: {
         ios: string;
@@ -10,17 +10,7 @@ export declare function fillOptions(options: VXRNOptions, internal?: {
     mode: "development" | "production";
     clean: boolean;
     root: string;
-    server: {
-        port: number;
-        host: string;
-        protocol: "https:" | "http:";
-        url: string;
-        compress?: boolean;
-        cacheHeaders?: "off";
-        loadEnv?: boolean;
-        https?: boolean;
-        platform?: import("..").VXRNServePlatform;
-    };
+    server: import("..").VXRNServeOptionsFilled;
     entries: {
         native: string;
         web?: string;
@@ -51,17 +41,7 @@ export declare function getOptionsFilled(): {
     mode: "development" | "production";
     clean: boolean;
     root: string;
-    server: {
-        port: number;
-        host: string;
-        protocol: "https:" | "http:";
-        url: string;
-        compress?: boolean;
-        cacheHeaders?: "off";
-        loadEnv?: boolean;
-        https?: boolean;
-        platform?: import("..").VXRNServePlatform;
-    };
+    server: import("..").VXRNServeOptionsFilled;
     entries: {
         native: string;
         web?: string;

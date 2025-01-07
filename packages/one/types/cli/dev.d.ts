@@ -1,4 +1,4 @@
-export declare function run(args: {
+export declare function dev(args: {
     clean?: boolean;
     host?: string;
     port?: string;
@@ -7,4 +7,4 @@ export declare function run(args: {
     debugBundle?: boolean;
     debug?: string;
 }): Promise<void>;
-//# sourceMappingURL=run.d.ts.map
+//# sourceMappingURL=dev.d.ts.map

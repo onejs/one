@@ -265,7 +265,11 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       ref: any
     ) => {
       const loadable = getLoadable(props, ref)
-      return <Route node={value}>{loadable}</Route>
+      return (
+        <Route route={route} node={value}>
+          {loadable}
+        </Route>
+      )
     }
   )
 

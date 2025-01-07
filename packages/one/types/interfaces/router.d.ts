@@ -255,7 +255,6 @@ export declare namespace OneRouter {
      * @see \`useActiveParams\`
      */
     export function useParams<TParams extends AllRoutes | UnknownOutputParams = UnknownOutputParams>(): TParams extends AllRoutes ? SearchParams<TParams> : TParams;
-    export function useSearchParams<TParams extends AllRoutes | UnknownOutputParams = UnknownOutputParams>(): TParams extends AllRoutes ? SearchParams<TParams> : TParams;
     /**
      * Get the globally selected query parameters, including dynamic path segments. This function will update even when the route is not focused.
      * Useful for analytics or other background operations that don't draw to the screen.

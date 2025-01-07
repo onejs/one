@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/url-parse",
-  "version": "1.1.381",
+  "version": "1.1.388",
   "sideEffects": false,
   "type": "module",
   "types": "./src/index.ts",
@@ -34,7 +34,7 @@
     "url-parse": "^1.5.10"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.3"
+    "@tamagui/build": "^1.121.6"
   },
   "publishConfig": {
     "access": "public"

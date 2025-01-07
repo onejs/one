@@ -31,7 +31,8 @@ export function fixDependenciesPlugin(options?: One.FixDependencies): Plugin {
     },
 
     async configResolved(config) {
-      if (patches.length) {
+      if (!hasApplied && patches.length) {
+        hasApplied = true
         await applyDependencyPatches(patches, config)
       }
     },

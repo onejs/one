@@ -19,3 +19,5 @@ export * from './plugins/rollupRemoveUnusedImports'
 export * from './plugins/autoPreBundleDepsForSsrPlugin'
 
 export * from './types'
+
+export { prebuildReactNativeModules } from './utils/swapPrebuiltReactModules'

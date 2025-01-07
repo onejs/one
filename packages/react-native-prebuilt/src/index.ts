@@ -33,18 +33,24 @@ export async function buildReactJSX(options: BuildOptions = {}) {
   }).then(async () => {
     // manual force exports
     const bundled = await readFile(options.outfile!, 'utf-8')
+
     const outCode = `
     const run = () => {
       ${mustReplace(bundled, [
-        isProd
-          ? {
-              find: `module.exports = require_react_jsx_runtime_production_min();`,
-              replace: `return require_react_jsx_runtime_production_min();`,
-            }
-          : {
-              find: `module.exports = require_react_jsx_dev_runtime_development();`,
-              replace: `return require_react_jsx_dev_runtime_development();`,
-            },
+        ...(isProd
+          ? [
+              {
+                // react 18 and 19 (18 has _min)
+                find: /module\.exports = require_react_jsx_runtime_production([a-z_]*)\(\);/,
+                replace: `return require_react_jsx_runtime_production$1();`,
+              },
+            ]
+          : [
+              {
+                find: `module.exports = require_react_jsx_dev_runtime_development();`,
+                replace: `return require_react_jsx_dev_runtime_development();`,
+              },
+            ]),
         { find: `process.env.VXRN_REACT_19`, replace: 'false', optional: true },
         {
           find: `Object.assign(exports, eval("require('@vxrn/vendor/react-jsx-19')"));`,
@@ -101,11 +107,11 @@ export async function buildReact(options: BuildOptions = {}) {
       ${mustReplace(bundled, [
         isProd
           ? {
-              find: /module\.exports = require_react_production_min(\d*)\(\);/,
-              replace: 'return require_react_production_min$1();',
+              find: /module\.exports = require_react_production([a-z_]*)\(\);/,
+              replace: 'return require_react_production$1();',
             }
           : {
-              find: /module\.exports = require_react_development(\d*)\(\);/,
+              find: /module\.exports = require_react_development([a-z_]*)\(\);/,
               replace: 'return require_react_development$1();',
             },
         {
@@ -130,7 +136,13 @@ export async function buildReact(options: BuildOptions = {}) {
 
 export async function buildReactNative(
   options: BuildOptions = {},
-  { platform }: { platform: 'ios' | 'android' }
+  {
+    platform,
+    enableExperimentalReactNativeWithReact19Support = false,
+  }: {
+    platform: 'ios' | 'android'
+    enableExperimentalReactNativeWithReact19Support?: boolean
+  }
 ) {
   return build({
     bundle: true,
@@ -194,6 +206,31 @@ export async function buildReactNative(
             async (input) => {
               if (!input.path.includes('react-native') && !input.path.includes(`vite-native-hmr`)) {
                 return
+              }
+
+              if (enableExperimentalReactNativeWithReact19Support) {
+                // Patch React Native to support React 19 during prebuild
+                if (input.path.includes('Libraries/Renderer/implementations/ReactFabric')) {
+                  const reactFabricRendererPath = requireResolve(
+                    `@vxrn/react-native-prebuilt/vendor/rn-react-19-support/ReactFabric-${input.path.endsWith('-dev.js') ? 'dev' : 'prod'}.js`
+                  )
+
+                  return {
+                    contents: await readFile(reactFabricRendererPath, 'utf-8'),
+                    loader: 'js',
+                  }
+                }
+
+                if (input.path.includes('Libraries/Renderer/implementations/ReactNativeRenderer')) {
+                  const reactNativeRendererPath = requireResolve(
+                    `@vxrn/react-native-prebuilt/vendor/rn-react-19-support/ReactNativeRenderer-${input.path.endsWith('-dev.js') ? 'dev' : 'prod'}.js`
+                  )
+
+                  return {
+                    contents: await readFile(reactNativeRendererPath, 'utf-8'),
+                    loader: 'js',
+                  }
+                }
               }
 
               const code = await readFile(input.path, 'utf-8')
@@ -369,7 +406,8 @@ const RExports = [
   'PureComponent',
   'StrictMode',
   'Suspense',
-  '__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED',
+  '__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED', // For React 18
+  '__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE', // For React 19
   'cloneElement',
   'createContext',
   'createElement',
@@ -397,4 +435,11 @@ const RExports = [
   'useSyncExternalStore',
   'useTransition',
   'version',
+  // Added in React 19
+  'act',
+  'cache',
+  'unstable_useCacheRefresh',
+  'use',
+  'useActionState',
+  'useOptimistic',
 ]

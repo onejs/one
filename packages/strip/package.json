@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/strip",
-  "version": "1.1.381",
+  "version": "1.1.388",
   "license": "BSD-3-Clause",
   "sideEffects": false,
   "type": "module",
@@ -13,7 +13,7 @@
   },
   "module": "dist",
   "source": "src/index.ts",
-  "types": "./types/index.d.ts",
+  "types": "./src/index.ts",
   "bin": "run.mjs",
   "files": [
     "src",
@@ -22,9 +22,8 @@
   ],
   "scripts": {
     "strip-chat": "dotenv -- node ./run.mjs ../../apps/chat /tmp/chat --overwrite",
-    "build": "tamagui-build --skip-native",
+    "build": "tamagui-build --skip-types --skip-native",
     "watch": "yarn build --watch",
-    "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src"
@@ -37,7 +36,7 @@
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.3",
+    "@tamagui/build": "^1.121.6",
     "depcheck": "^1.4.7",
     "vitest": "^2.1.8"
   },

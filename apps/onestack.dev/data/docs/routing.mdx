@@ -2,7 +2,7 @@
 title: Routing
 ---
 
-The `app` directory is where One handles universal file system routing. Every file you create in it will be turned into a route, except for files named `_layout`. One only supports file system routes at this time, but we have a [discussion](https://github.com/onejs/one/discussions/108) for those who want to help us figure out a configuration-based approach.
+The `app` directory is where One handles universal file system routing. Every file you create in it will be turned into a route, except for files named `_layout` or `_middleware`. One only supports file system routes at this time, but we have a [discussion](https://github.com/onejs/one/discussions/108) for those who want to help us figure out a configuration-based approach.
 
 Here's an example:
 
@@ -10,7 +10,7 @@ Here's an example:
   routes={[
     { name: '_layout.tsx', description: 'Wraps all files in this directory and below' },
     { name: 'index.tsx', description: 'Matches "/"' },
-    { name: 'blog.tsx', children: [
+    { name: 'blog', children: [
       { name: 'index.tsx', description: 'Matches "/blog"' },
       { name: '[slug].tsx', description: 'Matches a single sub-path of "/blog", like "/blog/hello"' },
       { name: '[...rest].tsx', description: 'Matches all sub-paths, like "/blog/hello/world"' }
@@ -111,6 +111,21 @@ export default function BlogPostPage() {
   // params.rest is an array ['a', 'b', 'c']
 }
 ```
+
+### Not found routes
+
+To have a custom 404 page, you can create a `+not-found.tsx` route in any folder. It will act as the same as a `[...rest].tsx` route in that it will catch all sub-routes for that folder.
+
+Simply export a React component (default or named) from your not found page and it will render with a 404 status code.
+
+<RouteTree
+  routes={[
+    { name: 'catalog.tsx', children: [
+      { name: 'index.tsx', description: `Matches "/catalog"` },
+      { name: '+not-found.tsx', description: `Matches all non-matching sub-paths of "/catalog" with a 404 status code` }
+    ] },
+  ]}
+/>
 
 ## Routing Modes
 

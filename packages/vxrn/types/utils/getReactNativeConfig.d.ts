@@ -1,4 +1,4 @@
-import { type InlineConfig, type Plugin, type UserConfig } from 'vite';
+import { type InlineConfig, Logger, type Plugin, type UserConfig } from 'vite';
 import type { VXRNOptionsFilled } from './getOptionsFilled';
 export declare function getReactNativeConfig(options: VXRNOptionsFilled, internal: {
     mode?: "dev" | "prod";
@@ -8,6 +8,15 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
     appType: "custom";
     root: string;
     clearScreen: false;
+    customLogger: {
+        info(msg: string, options: import("vite").LogOptions | undefined): void;
+        warn(msg: string, options?: import("vite").LogOptions): void;
+        warnOnce(msg: string, options?: import("vite").LogOptions): void;
+        error(msg: string, options?: import("vite").LogErrorOptions): void;
+        clearScreen(type: import("vite").LogType): void;
+        hasErrorLogged(error: Error | import("rollup").RollupError): boolean;
+        hasWarned: boolean;
+    };
     optimizeDeps: {
         esbuildOptions: {
             jsx: "automatic";
@@ -44,7 +53,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
         };
     };
 }>;
-export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig, "plugins" | "css" | "json" | "assetsInclude" | "optimizeDeps" | "worker" | "build" | "dev" | "environments" | "server" | "preview"> & {
+export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig, "dev" | "server" | "build" | "plugins" | "css" | "json" | "assetsInclude" | "optimizeDeps" | "worker" | "environments" | "preview"> & {
     configFile: string | undefined;
     configFileDependencies: string[];
     inlineConfig: InlineConfig;
@@ -72,7 +81,7 @@ export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig
     preview: import("vite").ResolvedPreviewOptions;
     ssr: import("vite").ResolvedSSROptions;
     assetsInclude: (file: string) => boolean;
-    logger: import("vite").Logger;
+    logger: Logger;
     createResolver: (options?: Partial<import("vite").InternalResolveOptions>) => import("vite").ResolveFn;
     optimizeDeps: import("vite").DepOptimizationOptions;
     worker: import("vite").ResolvedWorkerOptions;
