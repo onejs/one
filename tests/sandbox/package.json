@@ -6,10 +6,12 @@
   "scripts": {
     "build:web": "one build",
     "clean": "one clean",
+    "ios": "expo run:ios",
     "dev": "one dev",
     "dev:clean": "one dev --clean",
     "prod": "one build && one serve",
-    "serve": "one serve"
+    "serve": "one serve",
+    "android": "expo run:android"
   },
   "dependencies": {
     "@tamagui/config": "^1.121.6",
@@ -25,7 +27,10 @@
     "react-native-screens": "4.4.0",
     "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
-    "react-native-webview": "^13.11.1",
+    "react-native-webview": "^13.12.5",
     "tamagui": "^1.121.6"
+  },
+  "devDependencies": {
+    "expo": "~52.0.17"
   }
 }
