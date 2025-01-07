@@ -6334,6 +6334,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@passionfroot/prisma-generator-zero@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@passionfroot/prisma-generator-zero@npm:0.0.4"
+  dependencies:
+    "@prisma/generator-helper": "npm:^5.20.0"
+  bin:
+    prisma-generator-zero: dist/generator.js
+  checksum: 10/a8414903ec8e491989a54d4da263c9ec53d76bcfba19ab75f4f1350db74c0e22eff14c8619a96f002e4fcde1a1fec132baab6695167752ed236bf850fdea809e
+  languageName: node
+  linkType: hard
+
 "@peculiar/asn1-android@npm:^2.3.10":
   version: 2.3.13
   resolution: "@peculiar/asn1-android@npm:2.3.13"
@@ -6421,6 +6432,80 @@ __metadata:
   peerDependencies:
     preact: 10.x
   checksum: 10/d8af1e2c6a73c926921e1a0d408ba2671b7996da1cd1cc9c539e8408c84b23d97e52891f51b023337538a767da30176eecbca53c3f8ae242a9444df6027fafe7
+  languageName: node
+  linkType: hard
+
+"@prisma/client@npm:6.2.0":
+  version: 6.2.0
+  resolution: "@prisma/client@npm:6.2.0"
+  peerDependencies:
+    prisma: "*"
+  peerDependenciesMeta:
+    prisma:
+      optional: true
+  checksum: 10/4e29ff1d1ded820502c714b143efadd58e37534f7e7b37ed2739785a6b6e7c200469ae5af834f704999a4ba60ab334b3eebcd51db0ecdc74d35356747570e3f3
+  languageName: node
+  linkType: hard
+
+"@prisma/debug@npm:5.22.0":
+  version: 5.22.0
+  resolution: "@prisma/debug@npm:5.22.0"
+  checksum: 10/e4c425fde57f83c1a3df44d3f9088684a3e1d764022d2378f981209e57b7f421bc773d7f4fc23daa3936aa3e3772fa99fef81d2f2ec9673269f06efe822e3b53
+  languageName: node
+  linkType: hard
+
+"@prisma/debug@npm:6.2.0":
+  version: 6.2.0
+  resolution: "@prisma/debug@npm:6.2.0"
+  checksum: 10/e772642a7f63f7320b8f6dc5649c0ddbf5b08d769f23e1370411c2091b8d90d4209aaf2c1da323b9fc20bdf6c1036644058581d34ba020ac91b71975e0fad3a7
+  languageName: node
+  linkType: hard
+
+"@prisma/engines-version@npm:6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69":
+  version: 6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69
+  resolution: "@prisma/engines-version@npm:6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69"
+  checksum: 10/20b8426f737a0de67b78aa686b12164cf97f365b59522ab531f8ed141a28485cdbfe5dae316bc9ec94103642b7f57b674beac402e5f3fbcffb05096b3526f43e
+  languageName: node
+  linkType: hard
+
+"@prisma/engines@npm:6.2.0":
+  version: 6.2.0
+  resolution: "@prisma/engines@npm:6.2.0"
+  dependencies:
+    "@prisma/debug": "npm:6.2.0"
+    "@prisma/engines-version": "npm:6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69"
+    "@prisma/fetch-engine": "npm:6.2.0"
+    "@prisma/get-platform": "npm:6.2.0"
+  checksum: 10/9f252f36f7debbe3cfc749f2bb951e1c568b2bcd34f6ac06aab3c2a0c44822174d69ab31cd52b5385c33165bb356846d1e06a506350f2e1c90957d7434f01c5c
+  languageName: node
+  linkType: hard
+
+"@prisma/fetch-engine@npm:6.2.0":
+  version: 6.2.0
+  resolution: "@prisma/fetch-engine@npm:6.2.0"
+  dependencies:
+    "@prisma/debug": "npm:6.2.0"
+    "@prisma/engines-version": "npm:6.2.0-14.4123509d24aa4dede1e864b46351bf2790323b69"
+    "@prisma/get-platform": "npm:6.2.0"
+  checksum: 10/528a9e6273f237db919709adbc00be4dd606e74a017c015c02b845ed72a9b7a76a91ede6279f8055582d0131b2c0bd02cb1a862aaf528798f88601e372c75aa5
+  languageName: node
+  linkType: hard
+
+"@prisma/generator-helper@npm:^5.20.0":
+  version: 5.22.0
+  resolution: "@prisma/generator-helper@npm:5.22.0"
+  dependencies:
+    "@prisma/debug": "npm:5.22.0"
+  checksum: 10/ac7296f1ef5f0e23343259272e307d9ed9015541aa83defb70430451512ba04cd3ec1f4ca9e86aa75ffa4e94fab9d9684ea510b083f29e570b2872fdaf51f521
+  languageName: node
+  linkType: hard
+
+"@prisma/get-platform@npm:6.2.0":
+  version: 6.2.0
+  resolution: "@prisma/get-platform@npm:6.2.0"
+  dependencies:
+    "@prisma/debug": "npm:6.2.0"
+  checksum: 10/e2b7a7cc229e9456c9d4c662b51d94ec35fd68218c7b48abb694c954785d39156c00eb321d6d806b1312eb711535dd10562ee2f07037739a6818fdec35e0bfd1
   languageName: node
   linkType: hard
 
@@ -16827,7 +16912,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@npm:^2.3.2, fsevents@npm:~2.3.2, fsevents@npm:~2.3.3":
+"fsevents@npm:2.3.3, fsevents@npm:^2.3.2, fsevents@npm:~2.3.2, fsevents@npm:~2.3.3":
   version: 2.3.3
   resolution: "fsevents@npm:2.3.3"
   dependencies:
@@ -16846,7 +16931,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@npm%3A^2.3.2#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.2#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.3#optional!builtin<compat/fsevents>":
+"fsevents@patch:fsevents@npm%3A2.3.3#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A^2.3.2#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.2#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.3#optional!builtin<compat/fsevents>":
   version: 2.3.3
   resolution: "fsevents@patch:fsevents@npm%3A2.3.3#optional!builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"
   dependencies:
@@ -21826,6 +21911,8 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:^0.27.0"
+    "@passionfroot/prisma-generator-zero": "npm:^0.0.4"
+    "@prisma/client": "npm:6.2.0"
     "@react-native-community/cli": "npm:15.1.3"
     "@rocicorp/zero": "npm:^0.9.2024122100"
     "@shopify/react-native-skia": "npm:^1.7.6"
@@ -21858,6 +21945,7 @@ __metadata:
     flexsearch: "npm:^0.7.43"
     one: "workspace:*"
     pg: "npm:^8.13.1"
+    prisma: "npm:^6.2.0"
     react: "npm:^19.0.0"
     react-hotkeys-hook: "npm:^4.6.1"
     react-native: "npm:^0.76.5"
@@ -23016,6 +23104,21 @@ __metadata:
   version: 1.0.42
   resolution: "printable-characters@npm:1.0.42"
   checksum: 10/5fd9f44f2b24c9d875a97642a72be27f53aaac7f0f8f2792f969f3082e4516878db21cfa999f827606b002a890e6afeac0e0cc8dcb0d2d7965252975e634c6b2
+  languageName: node
+  linkType: hard
+
+"prisma@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "prisma@npm:6.2.0"
+  dependencies:
+    "@prisma/engines": "npm:6.2.0"
+    fsevents: "npm:2.3.3"
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    prisma: build/index.js
+  checksum: 10/b0a75bc0d9c5fbd723ba3c766227abe485799b2292c51181791f0419ab2db8ead8286f3f08232cf3c19366782c4e6b9f93973331db0b55842aeae7fff2796a97
   languageName: node
   linkType: hard
 
