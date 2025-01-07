@@ -28,7 +28,7 @@
     "react-native": "^0.76.5",
     "react-native-reanimated": "~3.16.5",
     "react-native-svg": "15.8.0",
-    "react-native-webview": "^13.11.1",
+    "react-native-webview": "^13.12.5",
     "tamagui": "^1.121.6",
     "uuid": "9.0.0"
   },

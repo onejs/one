@@ -70,7 +70,7 @@ export async function getReactNativeConfig(
         // safeguard, re-enable after a beat
         setTimeout(() => {
           disableLogging = false
-        }, 1000)
+        }, 2000)
       }
       defaultLogger.info(msg, options)
     },

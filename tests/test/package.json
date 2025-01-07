@@ -8,11 +8,13 @@
     "test:watch": "vitest",
     "build:web": "one build",
     "clean": "one clean",
+    "ios": "expo run:ios",
     "dev": "one dev",
     "dev:clean": "yarn dev --clean",
     "prod": "one build && one serve",
     "serve": "one serve",
-    "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
+    "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'",
+    "android": "expo run:android"
   },
   "dependencies": {
     "@tamagui/config": "^1.121.6",
