@@ -18,26 +18,28 @@
     - restore GestureHandlerRootView
     - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
     - better rebuild module caching
+    - would be nice to get native bottom tabs and native sheet as options
 
   - web
     - vercel and cloudflare deploy options working/documented
       - vercel using build output api
 
-  - packages
-    - react-scan update and native re-enable
-
   - build
     - way to configure the api + server config during production builds
-    - worker threads, 3x+ build speed with paralellizing
 
   - cleanup
-    - get rid of most patching in favor of plugins that are smart
     - codebase needs a few passes cleaning up things (__vxrn globals, structure)
 
 ---
 
 2.0:
 
+  - get rid of most patching in favor of plugins that are smart
+  - worker threads, 3x+ build speed with paralellizing
+  - react-scan update and native re-enable
+  - router.redirect directly in layout (server-side)
+    - for auth-guard (see tests/test/auth-guard)
+    - requires server-side integration logic
   - react 19
   - use dom with RSC bridge
   - native tabs and sheet

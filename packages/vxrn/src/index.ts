@@ -19,3 +19,5 @@ export * from './plugins/rollupRemoveUnusedImports'
 export * from './plugins/autoDepOptimizePlugin'
 
 export * from './types'
+
+export { prebuildReactNativeModules } from './utils/swapPrebuiltReactModules'

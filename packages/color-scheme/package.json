@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/color-scheme",
-  "version": "1.1.385",
+  "version": "1.1.389",
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@tamagui/build": "^1.121.6",
-    "react": "^18.3.1",
+    "react": "^18.3.1 || ^19.0.0",
     "react-native": "^0.76.5"
   },
   "peerDependencies": {

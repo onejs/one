@@ -53,6 +53,17 @@ export async function prebuildReactNativeModules(
         }
       : {}
 
+  let enableExperimentalReactNativeWithReact19Support = false
+  const reactPackageJsonPath = resolvePath('react/package.json')
+  const reactPackageJsonContents = await readFile(reactPackageJsonPath, 'utf8')
+  const reactPackageJson = JSON.parse(reactPackageJsonContents)
+
+  const reactVersion = reactPackageJson?.version
+  if (reactVersion?.startsWith('19')) {
+    console.info(`🧪 React ${reactVersion} detected. Enabling experimental React 19 support for React Native.`)
+    enableExperimentalReactNativeWithReact19Support = true
+  }
+
   await Promise.all([
     buildReactNative(
       {
@@ -60,7 +71,7 @@ export async function prebuildReactNativeModules(
         outfile: prebuilds.reactNativeIos,
         ...buildOptions,
       },
-      { platform: 'ios' }
+      { platform: 'ios', enableExperimentalReactNativeWithReact19Support }
     ).catch((err) => {
       console.error(`Error pre-building react-native for iOS`)
       throw err
@@ -71,7 +82,7 @@ export async function prebuildReactNativeModules(
         outfile: prebuilds.reactNativeAndroid,
         ...buildOptions,
       },
-      { platform: 'android' }
+      { platform: 'android', enableExperimentalReactNativeWithReact19Support }
     ).catch((err) => {
       console.error(`Error pre-building react-native for Android`)
       throw err

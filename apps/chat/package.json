@@ -1,6 +1,6 @@
 {
   "name": "onechat",
-  "version": "1.1.385",
+  "version": "1.1.389",
   "private": true,
   "sideEffects": false,
   "files": [],
@@ -57,7 +57,7 @@
     "flexsearch": "^0.7.43",
     "one": "workspace:*",
     "pg": "^8.13.1",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-hotkeys-hook": "^4.6.1",
     "react-native": "^0.76.5",
     "react-native-reanimated": "~3.16.5",

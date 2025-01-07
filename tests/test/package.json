@@ -1,6 +1,6 @@
 {
   "name": "test-test",
-  "version": "1.1.385",
+  "version": "1.1.389",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,11 +8,13 @@
     "test:watch": "vitest",
     "build:web": "one build",
     "clean": "one clean",
+    "ios": "expo run:ios",
     "dev": "one dev",
     "dev:clean": "yarn dev --clean",
     "prod": "one build && one serve",
     "serve": "one serve",
-    "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
+    "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'",
+    "android": "expo run:android"
   },
   "dependencies": {
     "@tamagui/config": "^1.121.6",
@@ -23,7 +25,7 @@
     "expo": "~52.0.17",
     "one": "workspace:*",
     "postgres": "^3.4.4",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-native": "^0.76.5",
     "react-native-reanimated": "~3.16.5",
     "react-native-safe-area-context": "4.10.5",
