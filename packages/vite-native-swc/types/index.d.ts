@@ -1,8 +1,8 @@
 import { type Output, type ReactConfig } from '@swc/core';
 import { type SourceMapPayload } from 'node:module';
 import type { PluginOption } from 'vite';
-import { type GetBabelConfig } from './transformBabel';
-export { configureBabelPlugin, type GetBabelConfig } from './transformBabel';
+import { type TransformBabelOptions } from './transformBabel';
+export type { GetBabelConfig } from './transformBabel';
 type Options = {
     mode: 'serve' | 'serve-cjs' | 'build';
     /**
@@ -42,10 +42,9 @@ type Options = {
      *
      *   -
      */
-    babel?: GetBabelConfig;
+    babel?: TransformBabelOptions;
 };
-declare const _default: (optionsIn?: Options) => PluginOption[];
-export default _default;
+export declare function createOneFileTransformerPlugin(optionsIn?: Options): PluginOption[];
 export declare function swcTransform(_id: string, code: string, options: Options): Promise<Output | {
     code: string;
     map: SourceMapPayload;

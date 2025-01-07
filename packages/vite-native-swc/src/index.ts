@@ -9,12 +9,15 @@ import {
 import { type SourceMapPayload, createRequire } from 'node:module'
 import { extname } from 'node:path'
 import type { PluginOption, UserConfig } from 'vite'
-import { type GetBabelConfig, transformWithBabelIfNeeded } from './transformBabel'
+import { type TransformBabelOptions, transformWithBabelIfNeeded } from './transformBabel'
 
-export { configureBabelPlugin, type GetBabelConfig } from './transformBabel'
+export type { GetBabelConfig } from './transformBabel'
 
 // this file is a mess lol
 // partially because it was forked from vite's react native swc plugin, we can remove most Options
+
+// TODO make react compiler work through vxrn not one
+// make native load this plugin
 
 // TODO we arent reading .env early enough to just put this in parent scope
 function shouldSourceMap() {
@@ -70,10 +73,10 @@ type Options = {
    *
    *   -
    */
-  babel?: GetBabelConfig
+  babel?: TransformBabelOptions
 }
 
-export default (optionsIn?: Options): PluginOption[] => {
+export function createOneFileTransformerPlugin(optionsIn?: Options): PluginOption[] {
   const transformWithoutGenerators = async (code: string, id: string) => {
     const parser = getParser(id)
     return await transform(code, {
@@ -110,7 +113,7 @@ export default (optionsIn?: Options): PluginOption[] => {
 
   return [
     {
-      name: 'vite:react-swc',
+      name: 'one:file-transformer',
       enforce: 'pre',
 
       config: () => {
@@ -134,12 +137,12 @@ export default (optionsIn?: Options): PluginOption[] => {
                   },
 
                   async transform(code, id) {
-                    const babelOut = await transformWithBabelIfNeeded(
-                      optionsIn?.babel,
+                    const babelOut = await transformWithBabelIfNeeded({
                       id,
                       code,
-                      development
-                    )
+                      development,
+                      ...optionsIn?.babel,
+                    })
                     if (babelOut) {
                       return babelOut
                     }
@@ -152,13 +155,14 @@ export default (optionsIn?: Options): PluginOption[] => {
                       if (process.env.DEBUG === 'vxrn') {
                         console.error(`${err}`)
                       }
-                      return await transformWithBabelIfNeeded(
+                      return await transformWithBabelIfNeeded({
+                        ...optionsIn?.babel,
                         // force default transforms
-                        () => true,
+                        getUserPlugins: () => true,
                         id,
                         code,
-                        development
-                      )
+                        development,
+                      })
                     }
                   },
                 },
@@ -195,7 +199,13 @@ export default (optionsIn?: Options): PluginOption[] => {
           return
         }
 
-        const babelOut = await transformWithBabelIfNeeded(optionsIn?.babel, id, code, development)
+        const babelOut = await transformWithBabelIfNeeded({
+          ...optionsIn?.babel,
+          id,
+          code,
+          development,
+        })
+
         if (babelOut) {
           return babelOut
         }

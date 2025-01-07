@@ -85,20 +85,22 @@ export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST)
  * [^3]: https://vite.dev/guide/dep-pre-bundling.html
  */
 
+const rootOptions = {}
+
 export async function scanDepsToOptimize(
   packageJsonPath: string,
-  {
-    parentDepNames = [],
-    proceededDeps = new Map(),
-    pkgJsonContent,
-  }: {
+  options: {
     parentDepNames?: string[]
     proceededDeps?: Map<string, string[]>
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
     pkgJsonContent?: any
-  } = {}
+  } = rootOptions
 ): Promise<ScanDepsResult> {
-  console.info(`[one] Scanning for deps to automatically include in optimizeDeps...`)
+  const { parentDepNames = [], proceededDeps = new Map(), pkgJsonContent } = options
+
+  if (options === rootOptions) {
+    console.info(`[one] Scanning for deps to automatically include in optimizeDeps...`)
+  }
 
   const currentRoot = path.dirname(packageJsonPath)
 

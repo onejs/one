@@ -1,13 +1,13 @@
-import nodeResolve from '@rollup/plugin-node-resolve'
 import babel from '@babel/core'
-import viteNativeSWC, { swcTransform } from '@vxrn/vite-native-swc'
+import nodeResolve from '@rollup/plugin-node-resolve'
 import { createDebugger } from '@vxrn/debug'
+import { swcTransform } from '@vxrn/vite-native-swc'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
   createLogger,
   type InlineConfig,
-  Logger,
+  type Logger,
   type Plugin,
   resolveConfig,
   type ResolvedConfig,
@@ -213,12 +213,6 @@ export async function getReactNativeConfig(
           },
         },
       },
-
-      viteNativeSWC({
-        tsDecorators: true,
-        mode: 'build',
-        production: mode === 'prod',
-      }),
 
       // TODO i think this probably should be a swc plugin (has to be wasm-rust unfortuantely)
       // but luckily not too bad because its pretty simple: if export type, export let object

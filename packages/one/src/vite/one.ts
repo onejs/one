@@ -20,7 +20,6 @@ import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
-import { createReactCompilerPlugin } from './plugins/reactCompilerPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
@@ -286,12 +285,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     } satisfies Plugin,
   ] satisfies Plugin[]
-
-  // react compiler
-  const compiler = options.react?.compiler
-  if (compiler) {
-    devAndProdPlugins.push(createReactCompilerPlugin(root))
-  }
 
   // react scan
   const scan = options.react?.scan

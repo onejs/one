@@ -1,5 +1,4 @@
 import { createDebugger } from '@vxrn/debug'
-import { configureBabelPlugin } from '@vxrn/vite-native-swc'
 import FSExtra from 'fs-extra'
 import path from 'node:path'
 import type { Plugin } from 'vite'
@@ -85,11 +84,12 @@ export function autoDepOptimizePlugin({
 
       debugDetails?.(`Deps discovered to be pre-bundled for SSR: ${value.prebundleDeps.join(', ')}`)
 
-      if (value.hasReanimated) {
-        configureBabelPlugin({
-          disableReanimated: false,
-        })
-      }
+      // TODO
+      // if (value.hasReanimated) {
+      //   configureBabelPlugin({
+      //     disableReanimated: false,
+      //   })
+      // }
 
       return {
         ssr: {
