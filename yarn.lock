@@ -23724,15 +23724,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.3.1":
-  version: 18.3.1
-  resolution: "react@npm:18.3.1"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10/261137d3f3993eaa2368a83110466fc0e558bc2c7f7ae7ca52d94f03aac945f45146bd85e5f481044db1758a1dbb57879e2fcdd33924e2dde1bdc550ce73f7bf
-  languageName: node
-  linkType: hard
-
 "react@npm:^18.3.1 || ^19.0.0, react@npm:^19.0.0":
   version: 19.0.0
   resolution: "react@npm:19.0.0"
@@ -26274,19 +26265,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"test-expo-reanimated@workspace:tests/test-expo-reanimated":
-  version: 0.0.0-use.local
-  resolution: "test-expo-reanimated@workspace:tests/test-expo-reanimated"
-  dependencies:
-    expo: "npm:~52.0.17"
-    expo-status-bar: "npm:~1.12.1"
-    react: "npm:^18.3.1"
-    react-native: "npm:^0.76.5"
-    react-native-reanimated: "npm:~3.16.5"
-    vxrn: "workspace:^"
-  languageName: unknown
-  linkType: soft
-
 "test-sandbox@workspace:tests/sandbox":
   version: 0.0.0-use.local
   resolution: "test-sandbox@workspace:tests/sandbox"
@@ -27840,7 +27818,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"vxrn@workspace:*, vxrn@workspace:^, vxrn@workspace:packages/vxrn":
+"vxrn@workspace:*, vxrn@workspace:packages/vxrn":
   version: 0.0.0-use.local
   resolution: "vxrn@workspace:packages/vxrn"
   dependencies:
