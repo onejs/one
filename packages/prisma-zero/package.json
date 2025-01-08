@@ -1,0 +1,38 @@
+{
+  "name": "@vxrn/prisma-zero",
+  "version": "0.0.4",
+  "description": "A Prisma generator for generating Zero schema with ease",
+  "main": "dist",
+  "bin": "dist/generator.js",
+  "scripts": {
+    "test": "vitest",
+    "build": "tamagui-build --skip-native",
+    "watch": "yarn build --watch",
+    "lint": "biome check src",
+    "lint:fix": "biome check --write src",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "keywords": [
+    "zero",
+    "schema",
+    "prisma",
+    "generator"
+  ],
+  "author": "Passionfroot GmbH",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/generator-helper": "^5.20.0"
+  },
+  "devDependencies": {
+    "@tamagui/build": "^1.121.6",
+    "vitest": "^2.1.8"
+  }
+}
