@@ -8,7 +8,7 @@ import type {
   VXRNServePlatform,
 } from 'vxrn'
 import type { RouteInfo } from '../server/createRoutesManifest'
-import type { GetBabelConfig } from '@vxrn/vite-native-swc'
+import type { GetBabelConfig } from '@vxrn/compiler'
 
 export namespace One {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions

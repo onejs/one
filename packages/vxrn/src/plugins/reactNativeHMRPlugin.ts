@@ -1,4 +1,4 @@
-import { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
+import { swcTransform, transformForBuild } from '@vxrn/compiler'
 import { parse } from 'es-module-lexer'
 import FSExtra from 'fs-extra'
 import { connectedNativeClients } from '../utils/connectedNativeClients'

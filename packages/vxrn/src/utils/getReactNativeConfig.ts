@@ -1,7 +1,7 @@
 import babel from '@babel/core'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import { createDebugger } from '@vxrn/debug'
-import { swcTransform } from '@vxrn/vite-native-swc'
+import { swcTransform } from '@vxrn/compiler'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {

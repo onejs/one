@@ -1,6 +1,7 @@
 import { relative } from 'node:path'
 import type { Plugin } from 'vite'
 import babel from '@babel/core'
+import { configuration } from './configure'
 
 type BabelPlugins = babel.TransformOptions['plugins']
 
@@ -25,14 +26,6 @@ export type GetBabelConfig = (
       plugins: Exclude<BabelPlugins, null | undefined>
       excludeDefaultPlugins?: boolean
     }
-
-type BabelPluginGlobalOptions = {
-  disableReanimated: boolean
-}
-
-const userOptions: BabelPluginGlobalOptions = {
-  disableReanimated: true,
-}
 
 export async function transformWithBabelIfNeeded(props: TransformBabelProps) {
   const babelPlugins = getBabelPlugins(props)
@@ -96,7 +89,7 @@ const getDefaultBabelPlugins = (id: string, code: string, development: boolean, 
     plugins = getBasePlugins(development)
   }
 
-  if (!userOptions.disableReanimated && shouldBabelReanimated(id, code)) {
+  if (!configuration.disableReanimated && shouldBabelReanimated(id, code)) {
     plugins.push('react-native-reanimated/plugin')
   }
 

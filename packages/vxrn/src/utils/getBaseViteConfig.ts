@@ -3,7 +3,7 @@ import { webExtensions } from '../constants'
 import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
 import { join } from 'node:path'
-import { createOneFileTransformerPlugin } from '@vxrn/vite-native-swc'
+import { createVXRNCompilerPlugin } from '@vxrn/compiler'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 
 // essentially base web config not base everything
@@ -80,7 +80,7 @@ export async function getBaseViteConfig(
         },
       },
 
-      createOneFileTransformerPlugin({
+      createVXRNCompilerPlugin({
         mode: run,
       }),
     ],
