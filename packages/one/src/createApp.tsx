@@ -87,11 +87,7 @@ export function createApp(options: CreateAppProps) {
 
   return rootLayoutImport
     .then(() => {
-      resolveClientLoader({
-        loaderData: globalThis['__vxrnLoaderData__'],
-        loaderServerData: globalThis['__vxrnLoaderServerData__'],
-        loaderProps: globalThis['__vxrnLoaderProps__'],
-      })
+      resolveClientLoader(getServerContext() || {})
         .then(() => {
           // on client we just render
           render(<Root isClient routes={options.routes} path={window.location.href} />)

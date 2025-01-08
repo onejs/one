@@ -21,9 +21,10 @@ import { RootErrorBoundary } from '../views/RootErrorBoundary'
 import { Try } from '../views/Try'
 import { useConstant } from '../utils/useConstant'
 import { getServerContext, ServerContextScript } from '../utils/serverContext'
-import { filterRootHTML } from './hoistHTML'
+import { filterRootHTML } from './filterRootHTML'
 import { SafeAreaProviderCompat } from '@react-navigation/elements'
 import { DevHead } from '../vite/DevHead'
+import { isWebClient, isWebServer } from '../constants'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -181,15 +182,12 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         return forwardRef((props, ref) => {
           // @ts-expect-error
           const out = BaseComponent(props, ref)
-          const [children, hoisted] = filterRootHTML(out)
-          const html = hoisted?.[0]
-          const head = hoisted?.[1]
-          const body = hoisted?.[2]
+          const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
           const { children: headChildren, ...headProps } = head?.props || {}
 
-          return (
-            <html lang="en-US" {...html?.props}>
-              <head {...headProps}>
+          const contents = (
+            <>
+              <head key="head" {...headProps}>
                 <DevHead />
                 <script
                   dangerouslySetInnerHTML={{
@@ -202,9 +200,42 @@ export function getQualifiedRouteComponent(value: RouteNode) {
                 <ServerContextScript />
                 {headChildren}
               </head>
-              <body {...body?.props}>
+              <body key="body" suppressHydrationWarning {...bodyProps}>
                 <SafeAreaProviderCompat>{children}</SafeAreaProviderCompat>
               </body>
+            </>
+          )
+
+          if (isWebClient) {
+            // we can't hydate on client as html, so we need to work around for now:
+            // see: https://github.com/facebook/react/issues/32017
+            // manually sync htmlProps for now
+            useEffect(() => {
+              if (!htmlProps) return
+              const htmlElement = document.documentElement
+              if (htmlElement.tagName !== 'HTML') return
+              for (const key in htmlProps) {
+                const val = htmlProps[key]
+                if (typeof val !== 'string') {
+                  if (process.env.NODE_ENV === 'development') {
+                    console.warn(
+                      ` Warning: Can't pass non-string props to <html> due to a limitation in React 19. See: https://github.com/facebook/react/issues/32017`
+                    )
+                  }
+                  continue
+                }
+                htmlElement.setAttribute(key, val)
+              }
+            }, [htmlProps])
+
+            return contents
+          }
+
+          return (
+            // tamagui and libraries can add className on hydration to have ssr safe styling
+            // so supress hydration warnings here
+            <html lang="en-US" {...htmlProps}>
+              {contents}
             </html>
           )
         })

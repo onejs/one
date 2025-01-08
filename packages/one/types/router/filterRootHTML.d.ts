@@ -16,4 +16,4 @@ export type FoundRootHTML = {
  */
 export declare function filterRootHTML(el: React.ReactNode): FoundRootHTML;
 export {};
-//# sourceMappingURL=hoistHTML.d.ts.map
+//# sourceMappingURL=filterRootHTML.d.ts.map
