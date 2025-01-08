@@ -7,16 +7,12 @@ import { render } from './render'
 import { renderToString } from './server-render'
 import type { RenderAppProps } from './types'
 // @ts-ignore
-import { useCallback, useId, useState } from 'react'
 import ReactDOMServer from 'react-dom/server.browser'
-import { type FoundHTML, HoistHTMLContext } from './router/hoistHTML'
 import {
   getServerContext,
   SERVER_CONTEXT_POST_RENDER_STRING,
-  ServerContextScript,
   setServerContext,
 } from './utils/serverContext'
-import { DevHead } from './vite/DevHead'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
@@ -37,8 +33,6 @@ export function createApp(options: CreateAppProps) {
 
         const App = () => {
           return <Root routes={options.routes} {...props} />
-          // const id = useId()
-          // const [hoisted, setHoisted] = useState<FoundHTML | null>(null)
         }
 
         AppRegistry.registerComponent('App', () => App)
