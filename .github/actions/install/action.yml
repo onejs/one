@@ -40,6 +40,10 @@ runs:
       shell: bash
       run: ${{ inputs.workspace-focus && format('yarn workspaces focus vxrn-monorepo {0}', inputs.workspace-focus) || 'yarn install'}}
 
+    - name: Install playwright
+      shell: bash
+      run: npx playwright install
+
     - name: Clean Build
       shell: bash
       run: ${{ inputs.workspace-focus && format('yarn workspaces foreach -Rpt --from "{0}" run clean:build', inputs.workspace-focus) || 'yarn clean:build'}}

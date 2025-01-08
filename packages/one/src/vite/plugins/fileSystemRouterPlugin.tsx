@@ -198,9 +198,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           ...new Set(
             handleRequest.manifest.pageRoutes.flatMap((route) => {
               return [
-                join('app', route.file),
-                ...(route.layouts?.map((layout) => {
-                  return join('app', layout.contextKey)
+                join('./app', route.file),
+                ...(route.layouts?.flatMap((layout) => {
+                  if (!layout.contextKey) return []
+                  return [join('./app', layout.contextKey)]
                 }) || []),
               ]
             })

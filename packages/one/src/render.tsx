@@ -10,7 +10,7 @@ export function render(element: React.ReactNode) {
     globalThis['__vxrnRoot'].render(element)
   } else {
     startTransition(() => {
-      const rootElement = document.documentElement
+      const rootElement = document as any
       if (globalThis['__vxrnIsSPA']) {
         const root = createRoot(rootElement)
         globalThis['__vxrnRoot'] = root

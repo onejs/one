@@ -211,37 +211,10 @@ export function getQualifiedRouteComponent(value: RouteNode) {
             </>
           )
 
-          if (isWebClient) {
-            // we can't hydate on client as html, so we need to work around for now:
-            // see: https://github.com/facebook/react/issues/32017
-            // manually sync htmlProps for now
-            useEffect(() => {
-              if (!htmlProps) return
-              const htmlElement = document.documentElement
-              if (htmlElement.tagName !== 'HTML') return
-              for (const key in htmlProps) {
-                const val = htmlProps[key]
-                if (typeof val !== 'string') {
-                  if (process.env.NODE_ENV === 'development') {
-                    console.warn(
-                      ` Warning: Can't pass non-string props to <html> due to a limitation in React 19. See: https://github.com/facebook/react/issues/32017`
-                    )
-                  }
-                  continue
-                }
-                if (htmlElement.getAttribute(key) !== val) {
-                  htmlElement.setAttribute(key, val)
-                }
-              }
-            }, [htmlProps])
-
-            return contents
-          }
-
           return (
             // tamagui and libraries can add className on hydration to have ssr safe styling
             // so supress hydration warnings here
-            <html lang="en-US" {...htmlProps}>
+            <html suppressHydrationWarning lang="en-US" {...htmlProps}>
               {contents}
             </html>
           )

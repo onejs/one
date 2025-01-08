@@ -1,14 +1,16 @@
-import { type Browser, type BrowserContext, webkit } from 'playwright'
+import { type Browser, type BrowserContext, chromium } from 'playwright'
 import { afterAll, beforeAll, expect, test } from 'vitest'
 
 const serverUrl = process.env.ONE_SERVER_URL || 'http://localhost:8081'
-console.info(`Testing: ${serverUrl}`)
+const isDebug = !!process.env.DEBUG
+
+console.info(`Testing: ${serverUrl} with debug mode: ${isDebug}`)
 
 let browser: Browser
 let context: BrowserContext
 
 beforeAll(async () => {
-  browser = await webkit.launch()
+  browser = await chromium.launch({ headless: !isDebug })
   context = await browser.newContext()
 })
 
@@ -32,15 +34,28 @@ test('homepage loads with no error logs', async () => {
   await page.close()
 })
 
-test('clicking "Get Started" link navigates without reloading to /docs', async () => {
+test('clicking "Get Started" link navigates without reloading to docs', async () => {
   const page = await context.newPage()
 
   await page.goto(serverUrl)
-  const [response] = await Promise.all([page.waitForNavigation(), page.click('text=Get Started')])
 
-  console.warn('response', response)
+  // log out item we find with Get Started text:
+  const getStartedLink = await page.$('a[href="/docs/introduction"]')
 
-  expect(response.url()).toBe(`${serverUrl}/docs`)
+  expect(getStartedLink).toBeTruthy()
+
+  let loadEventFired = false
+  page.on('load', () => {
+    loadEventFired = true
+  })
+
+  await getStartedLink!.click()
+
+  // Wait for a short period to ensure any navigation completes
+  await page.waitForTimeout(1000)
+
+  expect(loadEventFired).toBe(false)
+  expect(page.url()).toBe(`${serverUrl}/docs/introduction`)
 
   await page.close()
 })
