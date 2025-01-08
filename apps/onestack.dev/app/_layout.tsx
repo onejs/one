@@ -14,7 +14,7 @@ import { headerColors } from '~/features/site/headerColors'
 
 export default function Layout() {
   return (
-    <html lang="ab">
+    <html lang="en-US">
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
