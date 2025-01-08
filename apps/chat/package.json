@@ -76,12 +76,12 @@
     "virtua": "^0.39.2"
   },
   "devDependencies": {
-    "@passionfroot/prisma-generator-zero": "^0.0.4",
     "@react-native-community/cli": "15.1.3",
     "@tamagui/vite-plugin": "^1.121.6",
     "@tauri-apps/cli": "^2",
     "@types/aws-lambda": "8.10.146",
     "@types/pg": "^8.11.10",
+    "@vxrn/prisma-zero": "workspace:*",
     "drizzle-kit": "^0.30.1",
     "prisma": "^6.2.0",
     "sst": "^3.4.46",

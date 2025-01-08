@@ -3,7 +3,7 @@ generator client {
 }
 
 generator zero {
-  provider       = "prisma-generator-zero"
+  provider       = "prisma-zero"
 }
 
 datasource db {
@@ -262,8 +262,7 @@ model MessageReaction {
   @@id([messageId, creatorId, reactionId])
 }
 
-// @private
-
+/// @tag("private")
 model Session {
   id        String   @id @db.VarChar
   expiresAt DateTime
@@ -278,6 +277,7 @@ model Session {
   user User @relation(fields: [userId], references: [id])
 }
 
+/// @tag("private")
 model Account {
   id                    String    @id @db.VarChar
   accountId             String    @db.VarChar
@@ -297,6 +297,7 @@ model Account {
   user User @relation(fields: [userId], references: [id])
 }
 
+/// @tag("private")
 model Verification {
   id         String    @id @db.VarChar
   identifier String    @db.VarChar
@@ -306,6 +307,7 @@ model Verification {
   updatedAt  DateTime?
 }
 
+/// @tag("private")
 model Jwks {
   id         String   @id @db.VarChar
   publicKey  String   @db.VarChar

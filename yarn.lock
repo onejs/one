@@ -6334,17 +6334,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@passionfroot/prisma-generator-zero@npm:^0.0.4":
-  version: 0.0.4
-  resolution: "@passionfroot/prisma-generator-zero@npm:0.0.4"
-  dependencies:
-    "@prisma/generator-helper": "npm:^5.20.0"
-  bin:
-    prisma-generator-zero: dist/generator.js
-  checksum: 10/a8414903ec8e491989a54d4da263c9ec53d76bcfba19ab75f4f1350db74c0e22eff14c8619a96f002e4fcde1a1fec132baab6695167752ed236bf850fdea809e
-  languageName: node
-  linkType: hard
-
 "@peculiar/asn1-android@npm:^2.3.10":
   version: 2.3.13
   resolution: "@peculiar/asn1-android@npm:2.3.13"
@@ -11667,6 +11656,18 @@ __metadata:
     shiki: "npm:1.3.0"
     unified: "npm:^10.1.2"
     unist-util-visit: "npm:^2.0.3"
+  languageName: unknown
+  linkType: soft
+
+"@vxrn/prisma-zero@workspace:*, @vxrn/prisma-zero@workspace:packages/prisma-zero":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/prisma-zero@workspace:packages/prisma-zero"
+  dependencies:
+    "@prisma/generator-helper": "npm:^5.20.0"
+    "@tamagui/build": "npm:^1.121.6"
+    vitest: "npm:^2.1.8"
+  bin:
+    prisma-zero: dist/generator.js
   languageName: unknown
   linkType: soft
 
@@ -21911,7 +21912,6 @@ __metadata:
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:^0.27.0"
-    "@passionfroot/prisma-generator-zero": "npm:^0.0.4"
     "@prisma/client": "npm:6.2.0"
     "@react-native-community/cli": "npm:15.1.3"
     "@rocicorp/zero": "npm:^0.9.2024122100"
@@ -21936,6 +21936,7 @@ __metadata:
     "@uiw/react-md-editor": "npm:^4.0.5"
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/emitter": "workspace:*"
+    "@vxrn/prisma-zero": "workspace:*"
     better-auth: "npm:1.0.23-beta.3"
     burnt: "npm:^0.12.2"
     drizzle-kit: "npm:^0.30.1"
