@@ -14,7 +14,7 @@ describe('Middleware', () => {
   test('root middleware doesnt intercept', async () => {
     const res = await fetchThing('/', 'text')
     expect(res).includes(`<html`)
-    expect(res).includes(`Welcome to VXS`)
+    expect(res).includes(`Welcome to One`)
   })
 
   test('root middleware intercept and return new response', async () => {
