@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it, inject } from 'vitest'
-import { ONLY_TEST_DEV, ONLY_TEST_PROD } from './_constants'
+import { ONLY_TEST_DEV, ONLY_TEST_PROD } from '../../../packages/one/test/_constants'
 
 const runTests = (environment: 'dev' | 'prod') => {
   if (ONLY_TEST_DEV && environment === 'prod') {

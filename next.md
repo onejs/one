@@ -48,6 +48,9 @@
 
 # backlog
 
+- fix `sub middleware intercepts` test
+  - fix TODO intercept not working
+
 - proper babel config option:
   - allow config option on one plugin like: `transformWithBabel(id, code): string[] | babelConfig | boolean` where string[] can be a list of plugins to use for that specific file
 

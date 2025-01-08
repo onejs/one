@@ -1,5 +1,5 @@
 import { describe, expect, it, inject } from 'vitest'
-import { ONLY_TEST_PROD } from './_constants'
+import { ONLY_TEST_PROD } from '../../../packages/one/test/_constants'
 
 describe('Simple Run Tests', () => {
   if (ONLY_TEST_PROD) {

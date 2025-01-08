@@ -89,10 +89,6 @@
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
     "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
-    "test": "vitest --run --pool=forks",
-    "test:dev": "TEST_ONLY=dev yarn test",
-    "test:prod": "TEST_ONLY=prod yarn test",
-    "test:watch": "vitest --watch",
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
@@ -157,12 +153,10 @@
     "@types/react-dom": "^18.2.25",
     "@types/url-parse": "^1.4.11",
     "@types/xxhashjs": "^0.2.4",
-    "@vxrn/test": "workspace:*",
     "depcheck": "^1.4.7",
     "get-port": "^7.1.0",
     "react-native": "^0.76.5",
-    "rollup": "^4.29.1",
-    "vitest": "^2.1.8"
+    "rollup": "^4.29.1"
   },
   "peerDependencies": {
     "react-native": "*"

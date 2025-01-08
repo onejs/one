@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "vitest --run --reporter=dot --color=false",
-    "test:watch": "vitest",
+    "test:dev": "TEST_ONLY=dev vitest --run --reporter=dot --color=false",
+    "test:prod": "TEST_ONLY=prod vitest --run --reporter=dot --color=false",
+    "test": "yarn test:dev && yarn test:prod",
     "build:web": "one build",
     "clean": "one clean",
     "ios": "expo run:ios",
