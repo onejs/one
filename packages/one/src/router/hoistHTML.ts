@@ -1,4 +1,4 @@
-import { cloneElement, createContext, useContext } from 'react'
+import { cloneElement } from 'react'
 
 // stores [html, head, body]
 // for html and body just the tag itself no children
@@ -8,8 +8,6 @@ export type FoundHTML = [
   React.ReactElement | null,
   React.ReactElement | null,
 ]
-
-export const HoistHTMLContext = createContext<((props: FoundHTML) => void) | null>(null)
 
 /**
  * To enable custom <html> and other html-like stuff in the root _layout

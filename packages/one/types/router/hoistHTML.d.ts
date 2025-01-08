@@ -3,7 +3,6 @@ export type FoundHTML = [
     React.ReactElement | null,
     React.ReactElement | null
 ];
-export declare const HoistHTMLContext: import("react").Context<((props: FoundHTML) => void) | null>;
 /**
  * To enable custom <html> and other html-like stuff in the root _layout
  * we are doing some fancy stuff, namely, just capturing the root layout return
