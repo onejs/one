@@ -177,13 +177,18 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       const BaseComponent = getPageExport(fromImport(res)) as React.ComponentType<any>
       const serverContext = getServerContext()
 
-      // root layout do special html handling
+      // root layout do special html handling only
       if (props.segment === '') {
         return forwardRef((props, ref) => {
           // @ts-expect-error
           const out = BaseComponent(props, ref)
           const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
           const { children: headChildren, ...headProps } = head?.props || {}
+
+          if (process.env.TAMAGUI_TARGET === 'native') {
+            // on native we just ignore all html/body/head
+            return children
+          }
 
           const contents = (
             <>

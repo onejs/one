@@ -3,6 +3,9 @@ import { VIRTUAL_SSR_CSS_HREF } from '../constants'
 
 // replacing Vites since we control the root
 export function DevHead() {
+  if (process.env.TAMAGUI_TARGET === 'native') {
+    return null
+  }
   if (process.env.NODE_ENV === 'development') {
     const id = useId()
     return (
