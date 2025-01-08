@@ -42,41 +42,55 @@ function mapPrismaTypeToZeroType(field: DMMF.Field): string {
   return output
 }
 
-function generateRelationships(model: DMMF.Model, dmmf: DMMF.Document) {
+function generateRelationships(model: DMMF.Model, dmmf: DMMF.Document): string {
   const relationships: string[] = []
 
-  model.fields
+  // Group relationships by relationName
+  const relations = model.fields
     .filter((field) => field.relationName)
-    .forEach((field) => {
-      const relName = field.name
-      let sourceField: string
-      let destField: string
-
-      if (field.isList) {
-        // For "many" side relationships, we need to find the matching field in the target model
-        // that references back to this model
-        const targetModel = dmmf.datamodel.models.find((m) => m.name === field.type)
-        const backReference = targetModel?.fields.find(
-          (f) => f.relationName === field.relationName && f.type === model.name
-        )
-        sourceField = 'id'
-        destField = backReference?.relationFromFields?.[0] || 'id'
-      } else {
-        // For "one" side relationships, use the foreign key
-        sourceField = field.relationFromFields?.[0] || 'id'
-        destField = field.relationToFields?.[0] || 'id'
+    .reduce<Record<string, DMMF.Field[]>>((acc, field) => {
+      if (!acc[field.relationName!]) {
+        acc[field.relationName!] = []
       }
+      acc[field.relationName!].push(field)
+      return acc
+    }, {})
 
-      const destModel = field.type
+  for (const relName in relations) {
+    const fields = relations[relName]
+    const firstField = fields[0]
+    const isManyToMany = fields.length > 1
 
-      relationships.push(`    ${relName}: {
-      sourceField: "${sourceField}",
-      destField: "${destField}",
-      destSchema: () => ${destModel}Schema,
-    }`)
-    })
+    if (isManyToMany) {
+      // Many-to-many relationship
+      relationships.push(`    ${firstField.name}: [`)
+      fields.forEach((field, index) => {
+        const sourceField = field.relationFromFields?.[0] || 'id'
+        const destField = field.relationToFields?.[0] || 'id'
+        const destModel = field.type
 
-  return relationships.join(',\n')
+        relationships.push(`      {`)
+        relationships.push(`        sourceField: "${sourceField}",`)
+        relationships.push(`        destField: "${destField}",`)
+        relationships.push(`        destSchema: () => ${destModel}Schema,`)
+        relationships.push(`      }${index === fields.length - 1 ? '' : ','}`)
+      })
+      relationships.push(`    ],`)
+    } else {
+      // One-to-many or many-to-one relationship
+      const sourceField = firstField.relationFromFields?.[0] || 'id'
+      const destField = firstField.relationToFields?.[0] || 'id'
+      const destModel = firstField.type
+
+      relationships.push(`    ${firstField.name}: {`)
+      relationships.push(`      sourceField: "${sourceField}",`)
+      relationships.push(`      destField: "${destField}",`)
+      relationships.push(`      destSchema: () => ${destModel}Schema,`)
+      relationships.push(`    },`)
+    }
+  }
+
+  return relationships.join('\n')
 }
 
 function getTableName(model: DMMF.Model) {
