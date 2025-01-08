@@ -1,5 +1,8 @@
 1.0:
 
+  - root layout doesnt HMR
+  - hmr native tamagui example gives:
+    Error: [vite] cannot find entry point module 'virtual:one-entry'.
   - react-native-safe-area-context
     - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
   - restore GestureHandlerRootView
