@@ -9,6 +9,7 @@
     - goal for 20+ deps covered on native + web (ssr) (see weird-deps for some)
     - native tests that run in `yarn test`
     - add loader tests (SPA, SSR pages)
+    - disabled javascript ensure styles are all right (currently onestack.dev atually is missing some)
 
   - native
     - better hmr
