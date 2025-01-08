@@ -1,7 +1,7 @@
-import { type Options } from '../getRoutes';
-import type { RouteNode } from '../Route';
+import { type Options } from '../router/getRoutes';
+import type { RouteNode } from '../router/Route';
 import type { One } from '../vite/types';
-export { type Options } from '../getRoutes';
+export { type Options } from '../router/getRoutes';
 export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;

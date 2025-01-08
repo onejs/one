@@ -11,7 +11,10 @@
     "dev:clean": "one dev --clean",
     "serve": "one serve",
     "serve:railway": "one serve --host 0.0.0.0",
-    "subset-font-pn": "tsx ./helpers/subset-font.ts"
+    "subset-font-pn": "tsx ./helpers/subset-font.ts",
+    "test": "yarn test:dev && yarn test:prod",
+    "test:dev": "TEST_ONLY=dev vitest run --mode dev",
+    "test:prod": "TEST_ONLY=prod vitest run --mode prod"
   },
   "dependencies": {
     "@docsearch/react": "^3.6.1",
@@ -36,10 +39,13 @@
   },
   "devDependencies": {
     "@algolia/client-search": "^5.8.1",
+    "@vxrn/test": "workspace:*",
     "gray-matter": "^4.0.3",
     "marked": "^14.1.2",
+    "playwright": "^1.49.1",
     "tsx": "^4.19.0",
-    "vite-tsconfig-paths": "^5.0.1"
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.1.8"
   },
   "publishConfig": {
     "access": "public"

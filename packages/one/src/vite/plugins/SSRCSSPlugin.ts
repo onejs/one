@@ -1,14 +1,10 @@
 import type { Plugin, ViteDevServer } from 'vite'
+import { VIRTUAL_SSR_CSS_ENTRY, VIRTUAL_SSR_CSS_HREF } from '../../constants'
 
 // thanks to hi-ogawa https://github.com/hi-ogawa/vite-plugins/tree/main/packages/ssr-css
 
-// safari insanely aggressive caching
-export const VIRTUAL_ENTRY = `virtual:ssr-css.css`
-
 export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
   let server: ViteDevServer
-
-  const virtualHref = '/@id/__x00__' + VIRTUAL_ENTRY
 
   return {
     name: `one-plugin-ssr-css`,
@@ -18,8 +14,8 @@ export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
 
       // invalidate virtual modules for each direct request
       server.middlewares.use(async (req, res, next) => {
-        if (req.url?.includes(virtualHref)) {
-          invalidateModule(server, '\0' + VIRTUAL_ENTRY + '?direct')
+        if (req.url?.includes(VIRTUAL_SSR_CSS_HREF)) {
+          invalidateModule(server, '\0' + VIRTUAL_SSR_CSS_ENTRY + '?direct')
 
           let code = await collectStyle(server, pluginOpts.entries)
 
@@ -37,11 +33,11 @@ export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
     // virtual module
     // (use `startsWith` since Vite adds `?direct` for raw css request)
     resolveId(source, _importer, _options) {
-      return source.startsWith(VIRTUAL_ENTRY) ? '\0' + source : undefined
+      return source.startsWith(VIRTUAL_SSR_CSS_ENTRY) ? '\0' + source : undefined
     },
 
     async load(id, _options) {
-      if (id.startsWith('\0' + VIRTUAL_ENTRY)) {
+      if (id.startsWith('\0' + VIRTUAL_SSR_CSS_ENTRY)) {
         const url = new URL(id.slice(1), 'https://test.local')
         let code = await collectStyle(server, pluginOpts.entries)
         if (!url.searchParams.has('direct')) {
@@ -62,7 +58,7 @@ export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
             injectTo: 'head',
             attrs: {
               rel: 'stylesheet',
-              href: virtualHref,
+              href: VIRTUAL_SSR_CSS_HREF,
               'data-ssr-css': true,
             },
           },

@@ -1,15 +1,14 @@
 import getPort from 'get-port'
 import { exec, spawn, type ChildProcess } from 'node:child_process'
-import * as path from 'node:path'
-import { ONLY_TEST_DEV, ONLY_TEST_PROD } from './_constants'
+import { ONLY_TEST_DEV, ONLY_TEST_PROD } from './constants'
 
 export type TestInfo = {
-  testDir: string
   testProdPort: number
   testDevPort: number
-  devServerPid: number
-  prodServerPid: number
-  buildPid: number // Add this line
+  devServerPid?: number
+  prodServerPid?: number
+  buildPid: number | null
+  testDir: string
 }
 
 const waitForServer = (
@@ -47,11 +46,8 @@ const waitForServer = (
   })
 }
 
-export default async () => {
-  const fixtureDir = path.join(__dirname, '../../../tests/test')
-
+export async function setupTestServers(): Promise<TestInfo> {
   console.info('Setting up tests 🛠️')
-  console.info(`Using fixture directory: ${fixtureDir}`)
 
   let prodServer: ChildProcess | null = null
   let devServer: ChildProcess | null = null
@@ -62,12 +58,12 @@ export default async () => {
   const devPort = await getPort()
 
   try {
-    if (!ONLY_TEST_DEV) {
+    if (!ONLY_TEST_DEV && !process.env.SKIP_BUILD) {
       // Run prod build using spawn
       console.info('Starting a prod build.')
       const prodBuildStartedAt = performance.now()
       buildProcess = spawn('yarn', ['build:web'], {
-        cwd: fixtureDir,
+        cwd: process.cwd(),
         env: {
           ...process.env,
           ONE_SERVER_URL: `http://localhost:${prodPort}`,
@@ -110,7 +106,7 @@ export default async () => {
     if (!ONLY_TEST_PROD) {
       console.info(`Starting a dev server on http://localhost:${devPort}`)
       devServer = exec(`yarn dev --port ${devPort}`, {
-        cwd: fixtureDir,
+        cwd: process.cwd(),
         env: { ...process.env },
       })
       devServer.stdout?.on('data', (data) => {
@@ -127,7 +123,7 @@ export default async () => {
     if (!ONLY_TEST_DEV) {
       console.info(`Starting a prod server on http://localhost:${prodPort}`)
       prodServer = exec(`yarn serve --port ${prodPort}`, {
-        cwd: fixtureDir,
+        cwd: process.cwd(),
         env: {
           ...process.env,
           ONE_SERVER_URL: `http://localhost:${prodPort}`,
@@ -155,17 +151,14 @@ export default async () => {
 
     console.info('Servers are running.🎉 \n')
 
-    // Attach information to globalThis
-    const testInfo = {
-      testDir: fixtureDir,
+    return {
       testProdPort: prodPort,
       testDevPort: devPort,
       devServerPid: devServer?.pid,
       prodServerPid: prodServer?.pid,
-      buildPid: null, // Set to null as the build process should have completed
+      buildPid: null,
+      testDir: process.cwd(),
     }
-
-    return testInfo
   } catch (error) {
     devServer?.kill()
     prodServer?.kill()

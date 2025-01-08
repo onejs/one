@@ -1,5 +1,5 @@
 import type { PathConfigMap } from '@react-navigation/core';
-import type { RouteNode } from '../Route';
+import type { RouteNode } from '../router/Route';
 import type { OneRouter } from '../interfaces/router';
 type Options<ParamList extends object> = {
     initialRouteName?: string;

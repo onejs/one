@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import { writeFile } from 'node:fs/promises'
 import { dirname } from 'node:path'
-import { globbedRoutesToRouteContext } from '../useViteRoutes'
+import { globbedRoutesToRouteContext } from '../router/useViteRoutes'
 import { globDir } from '../utils/globDir'
 import { getTypedRoutesDeclarationFile } from './getTypedRoutesDeclarationFile'
 

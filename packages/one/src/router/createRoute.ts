@@ -1,5 +1,5 @@
-import { useActiveParams, useParams, usePathname } from './hooks'
-import type { OneRouter } from './interfaces/router'
+import { useActiveParams, useParams, usePathname } from '../hooks'
+import type { OneRouter } from '../interfaces/router'
 
 export function createRoute<Path>() {
   type Route = OneRouter.Route<Path>

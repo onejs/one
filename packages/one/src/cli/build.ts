@@ -12,7 +12,7 @@ import {
   build as vxrnBuild,
   type ClientManifestEntry,
 } from 'vxrn'
-import { getLoaderPath, getPreloadPath } from '../cleanUrl'
+import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'

@@ -11609,7 +11609,6 @@ __metadata:
     react-dom: "npm:^18.3.1 || ^19.0.0"
     react-native: "npm:^0.76.5"
     tsx: "npm:^4.19.0"
-    vitest: "npm:^2.1.8"
   peerDependencies:
     react: "*"
     react-dom: "*"
@@ -11654,6 +11653,17 @@ __metadata:
     vitest: "npm:^2.1.8"
   bin:
     strip: run.mjs
+  languageName: unknown
+  linkType: soft
+
+"@vxrn/test@workspace:*, @vxrn/test@workspace:packages/test":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/test@workspace:packages/test"
+  dependencies:
+    "@vxrn/utils": "workspace:*"
+    get-port: "npm:^7.1.0"
+    react: "npm:^18.3.1 || ^19.0.0"
+    vitest: "npm:^2.1.8"
   languageName: unknown
   linkType: soft
 
@@ -21771,7 +21781,6 @@ __metadata:
     fast-deep-equal: "npm:^3.1.3"
     fast-glob: "npm:^3.2.11"
     fs-extra: "npm:^11.2.0"
-    get-port: "npm:^7.1.0"
     hono: "npm:^4.5.8"
     lightningcss: "npm:^1.27.0"
     micromatch: "npm:^4.0.7"
@@ -21793,7 +21802,6 @@ __metadata:
     vite: "npm:^6.0.6"
     vite-plugin-barrel: "npm:^0.4.1"
     vite-tsconfig-paths: "npm:^5.0.1"
-    vitest: "npm:^2.1.8"
     vxrn: "workspace:*"
     ws: "npm:^8.18.0"
     xxhashjs: "npm:^0.2.2"
@@ -22694,7 +22702,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright@npm:^1.49.0":
+"playwright@npm:^1.49.0, playwright@npm:^1.49.1":
   version: 1.49.1
   resolution: "playwright@npm:1.49.1"
   dependencies:
@@ -25219,17 +25227,20 @@ __metadata:
     "@tamagui/use-store": "npm:^1.121.6"
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/mdx": "workspace:*"
+    "@vxrn/test": "workspace:*"
     body-scroll-lock: "npm:^4.0.0-beta.0"
     gray-matter: "npm:^4.0.3"
     marked: "npm:^14.1.2"
     mdx-bundler: "npm:^10.0.2"
     one: "workspace:*"
+    playwright: "npm:^1.49.1"
     postmark: "npm:^3.0.18"
     react: "npm:^19.0.0"
     react-native: "npm:^0.76.5"
     tamagui: "npm:^1.121.6"
     tsx: "npm:^4.19.0"
     vite-tsconfig-paths: "npm:^5.0.1"
+    vitest: "npm:^2.1.8"
   languageName: unknown
   linkType: soft
 
@@ -26303,6 +26314,7 @@ __metadata:
     expo: "npm:~52.0.17"
     get-port-please: "npm:^3.1.2"
     one: "workspace:*"
+    playwright: "npm:^1.49.1"
     postgres: "npm:^3.4.4"
     react: "npm:^19.0.0"
     react-native: "npm:^0.76.5"

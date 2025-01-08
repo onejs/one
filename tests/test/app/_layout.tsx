@@ -10,7 +10,10 @@ import config from '../config/tamagui.config'
 
 export default function Layout() {
   return (
-    <>
+    <html lang="ab">
+      <meta id="test-meta" />
+      <title>test title</title>
+
       <LoadProgressBar />
 
       <SchemeProvider>
@@ -18,7 +21,7 @@ export default function Layout() {
           <Slot />
         </TamaguiRootProvider>
       </SchemeProvider>
-    </>
+    </html>
   )
 }
 

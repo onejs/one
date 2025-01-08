@@ -1,21 +1,20 @@
 1.0:
 
+  - react-native-safe-area-context
+    - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
+  - restore GestureHandlerRootView
+  - enable StrictMode
+
   - tests
     - goal for 20+ deps covered on native + web (ssr) (see weird-deps for some)
     - native tests that run in `yarn test`
-
-  - etc
-    - enable StrictMode
-    - headless tabs (no style included)
-      - headless everything really
-    - react-native-safe-area-context
-      - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
+    - add loader tests (SPA, SSR pages)
+    - disabled javascript ensure styles are all right (currently onestack.dev atually is missing some)
 
   - native
     - better hmr
     - better caching
     - symbolicator
-    - restore GestureHandlerRootView
     - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
     - better rebuild module caching
     - would be nice to get native bottom tabs and native sheet as options
@@ -29,25 +28,30 @@
 
   - cleanup
     - codebase needs a few passes cleaning up things (__vxrn globals, structure)
+    - error logs on build:web `../../node_modules/expo-modules-core/src/NativeModule.ts (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.`
 
 ---
 
 2.0:
 
+  - headless tabs (no style included), headless everything really
+  - allow customizing react navigatio Theme
+  - layouts can be ssg, while pages can be spa
   - get rid of most patching in favor of plugins that are smart
   - worker threads, 3x+ build speed with paralellizing
   - react-scan update and native re-enable
   - router.redirect directly in layout (server-side)
     - for auth-guard (see tests/test/auth-guard)
     - requires server-side integration logic
-  - react 19
   - use dom with RSC bridge
-  - native tabs and sheet
   - react-native-web-lite proper release
 
 ---
 
 # backlog
+
+- fix `sub middleware intercepts` test
+  - fix TODO intercept not working
 
 - proper babel config option:
   - allow config option on one plugin like: `transformWithBabel(id, code): string[] | babelConfig | boolean` where string[] can be a list of plugins to use for that specific file

@@ -2,8 +2,9 @@ import { useRef } from 'react'
 import { getQueryKey } from './getQueryKey'
 import { resolveZeroQuery } from './resolveQuery'
 import { useQuery as useQueryZero } from './useQueryZero'
+import { getServerContext } from '../utils/serverContext'
 
-let clientInitialData: Object | null = globalThis['__vxrnPostRenderData__']
+let clientInitialData: Object | null = getServerContext()?.postRenderData
 
 // AST_ID => data
 const serverQueryData = {}

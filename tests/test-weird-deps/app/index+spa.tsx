@@ -1,3 +1,4 @@
+import { View } from 'react-native'
 import * as BadDeps from '../src/bad-deps'
 console.info('BadDeps', BadDeps)
 

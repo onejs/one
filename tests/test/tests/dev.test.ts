@@ -1,5 +1,5 @@
-import { describe, expect, it, inject } from 'vitest'
-import { ONLY_TEST_PROD } from './_constants'
+import { ONLY_TEST_PROD } from '@vxrn/test'
+import { describe, expect, inject, it } from 'vitest'
 
 describe('Simple Run Tests', () => {
   if (ONLY_TEST_PROD) {
@@ -9,8 +9,7 @@ describe('Simple Run Tests', () => {
     return
   }
 
-  const testInfo = inject('testInfo')
-  const serverUrl = `http://localhost:${testInfo.testDevPort}`
+  const serverUrl = process.env.ONE_SERVER_URL
 
   it('should have a valid server URL', () => {
     expect(serverUrl).toBeDefined()
