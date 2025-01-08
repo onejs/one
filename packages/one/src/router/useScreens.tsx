@@ -1,4 +1,5 @@
 import { createNavigatorFactory } from '@react-navigation/core'
+import { SafeAreaProviderCompat } from '@react-navigation/elements'
 import type {
   EventMapBase,
   NavigationState,
@@ -6,7 +7,15 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { forwardRef, Suspense, useEffect, useId, useMemo } from 'react'
+import React, { forwardRef, Suspense, useEffect } from 'react'
+import { getPageExport } from '../utils/getPageExport'
+import { getServerContext, ServerContextScript } from '../utils/serverContext'
+import { useConstant } from '../utils/useConstant'
+import { EmptyRoute } from '../views/EmptyRoute'
+import { RootErrorBoundary } from '../views/RootErrorBoundary'
+import { Try } from '../views/Try'
+import { DevHead } from '../vite/DevHead'
+import { filterRootHTML } from './filterRootHTML'
 import {
   Route,
   useRouteNode,
@@ -15,16 +24,6 @@ import {
   type RouteNode,
 } from './Route'
 import { sortRoutesWithInitial } from './sortRoutes'
-import { getPageExport } from '../utils/getPageExport'
-import { EmptyRoute } from '../views/EmptyRoute'
-import { RootErrorBoundary } from '../views/RootErrorBoundary'
-import { Try } from '../views/Try'
-import { useConstant } from '../utils/useConstant'
-import { getServerContext, ServerContextScript } from '../utils/serverContext'
-import { filterRootHTML } from './filterRootHTML'
-import { SafeAreaProviderCompat } from '@react-navigation/elements'
-import { DevHead } from '../vite/DevHead'
-import { isWebClient, isWebServer } from '../constants'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.

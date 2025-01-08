@@ -1,4 +1,3 @@
-import { useId } from 'react'
 import { VIRTUAL_SSR_CSS_HREF } from '../constants'
 
 // replacing Vites since we control the root
@@ -7,7 +6,6 @@ export function DevHead() {
     return null
   }
   if (process.env.NODE_ENV === 'development') {
-    const id = useId()
     return (
       <>
         <link rel="preload" href={VIRTUAL_SSR_CSS_HREF} as="style" />
