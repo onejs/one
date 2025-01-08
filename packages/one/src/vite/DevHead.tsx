@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { VIRTUAL_SSR_CSS_HREF } from '../constants'
 
 // replacing Vites since we control the root
 export function DevHead() {
@@ -6,8 +7,8 @@ export function DevHead() {
     const id = useId()
     return (
       <>
-        <link rel="preload" href={id} as="style" />
-        <link rel="stylesheet" href={id} data-ssr-css />
+        <link rel="preload" href={VIRTUAL_SSR_CSS_HREF} as="style" />
+        <link rel="stylesheet" href={VIRTUAL_SSR_CSS_HREF} data-ssr-css />
         <script
           type="module"
           dangerouslySetInnerHTML={{
