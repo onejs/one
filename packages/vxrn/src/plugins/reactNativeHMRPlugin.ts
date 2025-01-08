@@ -178,6 +178,7 @@ export function reactNativeHMRPlugin({
           (
             await transformSWC(id, source, {
               mode: 'serve-cjs',
+              environment: 'ios',
               production: mode === 'production',
             })
           )?.code || ''

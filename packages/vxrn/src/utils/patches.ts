@@ -163,6 +163,7 @@ export async function applyDependencyPatches(
                           (
                             await transformSWC(fullPath, contents, {
                               mode: 'build',
+                              environment: 'ios',
                               forceJSX: strategy === 'jsx',
                             })
                           )?.code || contents

@@ -4,8 +4,8 @@
  */
 import type { PluginOption } from 'vite';
 import type { Options } from './types';
+export * from './configure';
 export * from './transformBabel';
 export * from './transformSWC';
-export * from './configure';
-export declare function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[];
+export declare function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOption[];
 //# sourceMappingURL=index.d.ts.map

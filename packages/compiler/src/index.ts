@@ -4,28 +4,36 @@
  */
 
 import { readFileSync } from 'node:fs'
-import { resolvePath } from '@vxrn/utils'
+import { join } from 'node:path'
 import type { PluginOption, UserConfig } from 'vite'
 import { transformWithBabelIfNeeded } from './transformBabel'
 import { transformSWC } from './transformSWC'
-import type { Options } from './types'
-import { join } from 'node:path'
+import type { Environment, Options } from './types'
 
+export * from './configure'
 export * from './transformBabel'
 export * from './transformSWC'
-export * from './configure'
 
-export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
-  const getOptions = (environment: string) => {
+export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOption[] {
+  const getOptions = (environment: Environment) => {
     return {
-      jsxImportSource: 'react',
+      environment,
       mode: 'serve',
       noHMR: environment === 'ssr',
       ...optionsIn,
-      plugins: optionsIn?.plugins
-        ? optionsIn?.plugins.map((el): typeof el => [resolvePath(el[0]), el[1]])
-        : undefined,
     } satisfies Options
+  }
+
+  const envNames = {
+    ios: true,
+    android: true,
+    client: true,
+    ssr: true,
+  }
+
+  function getEnvName(name: string) {
+    if (!envNames[name]) throw new Error(`Invalid env: ${name}`)
+    return name as Environment
   }
 
   const runtimePublicPath = '/@react-refresh'
@@ -64,7 +72,7 @@ export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
                     handler(options) {},
                   },
                   async transform(code, id) {
-                    const options = getOptions(this.environment.name)
+                    const options = getOptions(getEnvName(this.environment.name))
                     const babelOut = await transformWithBabelIfNeeded({
                       id,
                       code,
@@ -110,7 +118,7 @@ export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
           return
         }
 
-        const options = getOptions(this.environment.name)
+        const options = getOptions(getEnvName(this.environment.name))
 
         const babelOut = await transformWithBabelIfNeeded({
           ...optionsIn?.babel,
