@@ -1,6 +1,6 @@
 /**
  * This file is copied from the react-navigation repo:
- * https://github.com/react-navigation/react-navigation/blob/%40react-navigation/core%407.3.1/packages/core/src/validatePathConfig.tsx
+ * https://github.com/react-navigation/react-navigation/blob/%40react-navigation/core%407.1.2/packages/core/src/getPathFromState.tsx
  *
  * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
  * All modifications except formatting should be marked with `// @modified` comment.
@@ -9,7 +9,6 @@
 import type { NavigationState, PartialState, Route } from '@react-navigation/routers'
 import * as queryString from 'query-string'
 
-import { getPatternParts, type PatternPart } from './getPatternParts'
 import type { PathConfig, PathConfigMap } from './types'
 import { validatePathConfig } from './validatePathConfig'
 
@@ -21,10 +20,10 @@ type Options<ParamList extends {}> = {
 
 type State = NavigationState | Omit<PartialState<NavigationState>, 'stale'>
 
-type StringifyConfig = Record<string, (value: unknown) => string>
+type StringifyConfig = Record<string, (value: any) => string>
 
 type ConfigItem = {
-  parts?: PatternPart[]
+  pattern?: string
   stringify?: StringifyConfig
   screens?: Record<string, ConfigItem>
 }
@@ -92,9 +91,7 @@ export function getPathFromState<ParamList extends {}>(
   options?: Options<ParamList>
 ): string {
   if (state == null) {
-    throw Error(
-      `Got '${String(state)}' for the navigation state. You must pass a valid state object.`
-    )
+    throw Error("Got 'undefined' for the navigation state. You must pass a valid state object.")
   }
 
   if (options) {
@@ -106,7 +103,7 @@ export function getPathFromState<ParamList extends {}>(
   let path = '/'
   let current: State | undefined = state
 
-  const allParams: Record<string, string> = {}
+  const allParams: Record<string, any> = {}
 
   while (current) {
     let index = typeof current.index === 'number' ? current.index : 0
@@ -114,12 +111,11 @@ export function getPathFromState<ParamList extends {}>(
       state?: State
     }
 
-    let parts: PatternPart[] | undefined
+    let pattern: string | undefined
 
-    let focusedParams: Record<string, string> | undefined
-    let currentOptions = configs
-
+    let focusedParams: Record<string, any> | undefined
     const focusedRoute = getActiveRoute(state)
+    let currentOptions = configs
 
     // Keep all the route names that appeared during going deeper in config in case the pattern is resolved to undefined
     const nestedRouteNames = []
@@ -127,7 +123,7 @@ export function getPathFromState<ParamList extends {}>(
     let hasNext = true
 
     while (route.name in currentOptions && hasNext) {
-      parts = currentOptions[route.name].parts
+      pattern = currentOptions[route.name].pattern
 
       nestedRouteNames.push(route.name)
 
@@ -141,7 +137,7 @@ export function getPathFromState<ParamList extends {}>(
           ])
         )
 
-        if (parts?.length) {
+        if (pattern) {
           Object.assign(allParams, currentParams)
         }
 
@@ -150,15 +146,17 @@ export function getPathFromState<ParamList extends {}>(
           // We save it here since it's been stringified already
           focusedParams = { ...currentParams }
 
-          parts
+          pattern
+            ?.split('/')
+            .filter((p) => p.startsWith(':'))
             // eslint-disable-next-line no-loop-func
-            ?.forEach(({ param }) => {
-              if (param) {
-                // Remove the params present in the pattern since we'll only use the rest for query string
-                if (focusedParams) {
-                  // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-                  delete focusedParams[param]
-                }
+            .forEach((p) => {
+              const name = getParamName(p)
+
+              // Remove the params present in the pattern since we'll only use the rest for query string
+              if (focusedParams) {
+                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+                delete focusedParams[name]
               }
             })
         }
@@ -185,21 +183,28 @@ export function getPathFromState<ParamList extends {}>(
       }
     }
 
+    if (pattern === undefined) {
+      pattern = nestedRouteNames.join('/')
+    }
+
     if (currentOptions[route.name] !== undefined) {
-      path += parts
-        ?.map(({ segment, param, optional }) => {
+      path += pattern
+        .split('/')
+        .map((p) => {
+          const name = getParamName(p)
+
           // We don't know what to show for wildcard patterns
           // Showing the route name seems ok, though whatever we show here will be incorrect
           // Since the page doesn't actually exist
-          if (segment === '*') {
+          if (p === '*') {
             return route.name
           }
 
           // If the path has a pattern for a param, put the param in the path
-          if (param) {
-            const value = allParams[param]
+          if (p.startsWith(':')) {
+            const value = allParams[name]
 
-            if (value === undefined && optional) {
+            if (value === undefined && p.endsWith('?')) {
               // Optional params without value assigned in route.params should be ignored
               return ''
             }
@@ -211,17 +216,15 @@ export function getPathFromState<ParamList extends {}>(
             )
           }
 
-          return encodeURIComponent(segment)
+          return encodeURIComponent(p)
         })
         .join('/')
     } else {
       path += encodeURIComponent(route.name)
     }
 
-    if (!focusedParams && focusedRoute.params) {
-      focusedParams = Object.fromEntries(
-        Object.entries(focusedRoute.params).map(([key, value]) => [key, String(value)])
-      )
+    if (!focusedParams) {
+      focusedParams = focusedRoute.params
     }
 
     if (route.state) {
@@ -244,37 +247,35 @@ export function getPathFromState<ParamList extends {}>(
     current = route.state
   }
 
-  // Include the root path if specified
-  if (options?.path) {
-    path = `${options.path}/${path}`
-  }
-
   // Remove multiple as well as trailing slashes
   path = path.replace(/\/+/g, '/')
   path = path.length > 1 ? path.replace(/\/$/, '') : path
 
-  // If path doesn't start with a slash, add it
-  // This makes sure that history.pushState will update the path correctly instead of appending
-  if (!path.startsWith('/')) {
-    path = `/${path}`
+  // Include the root path if specified
+  if (options?.path) {
+    path = joinPaths(options.path, path)
   }
 
   return path
 }
 
+const getParamName = (pattern: string) => pattern.replace(/^:/, '').replace(/\?$/, '')
+
+const joinPaths = (...paths: string[]): string =>
+  ([] as string[])
+    .concat(...paths.map((p) => p.split('/')))
+    .filter(Boolean)
+    .join('/')
+
 const createConfigItem = (
   config: PathConfig<object> | string,
-  parentParts?: PatternPart[]
+  parentPattern?: string
 ): ConfigItem => {
   if (typeof config === 'string') {
     // If a string is specified as the value of the key(e.g. Foo: '/path'), use it as the pattern
-    const parts = getPatternParts(config)
+    const pattern = parentPattern ? joinPaths(parentPattern, config) : config
 
-    if (parentParts) {
-      return { parts: [...parentParts, ...parts] }
-    }
-
-    return { parts }
+    return { pattern }
   }
 
   if (config.exact && config.path === undefined) {
@@ -285,17 +286,14 @@ const createConfigItem = (
 
   // If an object is specified as the value (e.g. Foo: { ... }),
   // It can have `path` property and `screens` prop which has nested configs
-  const parts =
-    config.exact !== true
-      ? [...(parentParts || []), ...(config.path ? getPatternParts(config.path) : [])]
-      : config.path
-        ? getPatternParts(config.path)
-        : undefined
+  const pattern =
+    config.exact !== true ? joinPaths(parentPattern || '', config.path || '') : config.path || ''
 
-  const screens = config.screens ? createNormalizedConfigs(config.screens, parts) : undefined
+  const screens = config.screens ? createNormalizedConfigs(config.screens, pattern) : undefined
 
   return {
-    parts,
+    // Normalize pattern to remove any leading, trailing slashes, duplicate slashes etc.
+    pattern: pattern?.split('/').filter(Boolean).join('/'),
     stringify: config.stringify,
     screens,
   }
@@ -303,11 +301,11 @@ const createConfigItem = (
 
 const createNormalizedConfigs = (
   options: PathConfigMap<object>,
-  parts?: PatternPart[]
+  pattern?: string
 ): Record<string, ConfigItem> =>
   Object.fromEntries(
     Object.entries(options).map(([name, c]) => {
-      const result = createConfigItem(c, parts)
+      const result = createConfigItem(c, pattern)
 
       return [name, result]
     })
