@@ -11543,6 +11543,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@vxrn/compiler@workspace:*, @vxrn/compiler@workspace:packages/compiler":
+  version: 0.0.0-use.local
+  resolution: "@vxrn/compiler@workspace:packages/compiler"
+  dependencies:
+    "@babel/core": "npm:^7.26.0"
+    "@babel/plugin-transform-destructuring": "npm:^7.25.9"
+    "@babel/plugin-transform-private-methods": "npm:^7.25.9"
+    "@babel/plugin-transform-react-jsx": "npm:^7.25.9"
+    "@babel/plugin-transform-regenerator": "npm:^7.25.9"
+    "@biomejs/biome": "npm:^1.8.3"
+    "@swc/core": "npm:^1.10.4"
+    "@tamagui/build": "npm:^1.121.6"
+    "@vxrn/utils": "workspace:*"
+    "@vxrn/vite-native-client": "workspace:*"
+    metro-react-native-babel-preset: "npm:^0.77.0"
+    react-native: "npm:^0.76.5"
+  peerDependencies:
+    react-native: "*"
+  languageName: unknown
+  linkType: soft
+
 "@vxrn/debug@workspace:*, @vxrn/debug@workspace:packages/debug":
   version: 0.0.0-use.local
   resolution: "@vxrn/debug@workspace:packages/debug"
@@ -11709,6 +11730,8 @@ __metadata:
   resolution: "@vxrn/utils@workspace:packages/utils"
   dependencies:
     "@tamagui/build": "npm:^1.121.6"
+    "@vxrn/debug": "workspace:*"
+    "@vxrn/resolve": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -11753,26 +11776,6 @@ __metadata:
   dependencies:
     "@tamagui/build": "npm:^1.121.6"
     pretty-format: "npm:^28.1.0"
-    react-native: "npm:^0.76.5"
-  peerDependencies:
-    react-native: "*"
-  languageName: unknown
-  linkType: soft
-
-"@vxrn/vite-native-swc@workspace:*, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
-  version: 0.0.0-use.local
-  resolution: "@vxrn/vite-native-swc@workspace:packages/vite-native-swc"
-  dependencies:
-    "@babel/core": "npm:^7.26.0"
-    "@babel/plugin-transform-destructuring": "npm:^7.25.9"
-    "@babel/plugin-transform-private-methods": "npm:^7.25.9"
-    "@babel/plugin-transform-react-jsx": "npm:^7.25.9"
-    "@babel/plugin-transform-regenerator": "npm:^7.25.9"
-    "@biomejs/biome": "npm:^1.8.3"
-    "@swc/core": "npm:^1.10.4"
-    "@tamagui/build": "npm:^1.121.6"
-    "@vxrn/vite-native-client": "workspace:*"
-    metro-react-native-babel-preset: "npm:^0.77.0"
     react-native: "npm:^0.76.5"
   peerDependencies:
     react-native: "*"
@@ -21765,11 +21768,11 @@ __metadata:
     "@types/url-parse": "npm:^1.4.11"
     "@types/xxhashjs": "npm:^0.2.4"
     "@ungap/structured-clone": "npm:^1.2.0"
+    "@vxrn/compiler": "workspace:*"
     "@vxrn/resolve": "workspace:*"
     "@vxrn/tslib-lite": "workspace:*"
     "@vxrn/universal-color-scheme": "workspace:*"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
-    "@vxrn/vite-native-swc": "workspace:*"
     babel-dead-code-elimination: "npm:^1.0.6"
     babel-plugin-react-compiler: "npm:^19.0.0-beta-201e55d-20241215"
     citty: "npm:^0.1.6"
@@ -27852,6 +27855,7 @@ __metadata:
     "@types/qrcode-terminal": "npm:^0"
     "@types/ws": "npm:^8.5.10"
     "@vitejs/plugin-react-swc": "npm:^3.7.0"
+    "@vxrn/compiler": "workspace:*"
     "@vxrn/debug": "workspace:*"
     "@vxrn/query-string": "workspace:*"
     "@vxrn/react-native-prebuilt": "workspace:*"
@@ -27861,7 +27865,6 @@ __metadata:
     "@vxrn/utils": "workspace:*"
     "@vxrn/vendor": "workspace:*"
     "@vxrn/vite-flow": "workspace:*"
-    "@vxrn/vite-native-swc": "workspace:*"
     citty: "npm:^0.1.6"
     depcheck: "npm:^1.4.7"
     env-editor: "npm:^1.1.0"

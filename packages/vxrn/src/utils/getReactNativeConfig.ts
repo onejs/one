@@ -1,7 +1,7 @@
 import babel from '@babel/core'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import { createDebugger } from '@vxrn/debug'
-import { swcTransform } from '@vxrn/compiler'
+import { transformSWC } from '@vxrn/compiler'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
@@ -267,7 +267,7 @@ export async function getReactNativeConfig(
               }
 
               if (!codeOut) {
-                const output = await swcTransform(id, code, {
+                const output = await transformSWC(id, code, {
                   mode: mode === 'dev' ? 'serve' : 'build',
                   noHMR: true, // We should not insert HMR runtime code at this stage, as we expect another plugin (e.g. vite:react-swc) to handle that. Inserting it here may cause error: `The symbol "RefreshRuntime" has already been declared`.
                 })

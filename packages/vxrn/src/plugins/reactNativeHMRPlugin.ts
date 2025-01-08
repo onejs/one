@@ -1,4 +1,4 @@
-import { swcTransform, transformForBuild } from '@vxrn/compiler'
+import { transformSWC, transformSWCStripJSX } from '@vxrn/compiler'
 import { parse } from 'es-module-lexer'
 import FSExtra from 'fs-extra'
 import { connectedNativeClients } from '../utils/connectedNativeClients'
@@ -100,7 +100,7 @@ export function reactNativeHMRPlugin({
           source = transformResult.code
         } catch (e) {
           console.warn(`Error transforming source for HMR: ${e}. Retrying without plugins.`)
-          source = (await transformForBuild(id, source))?.code || ''
+          source = (await transformSWCStripJSX(id, source))?.code || ''
         }
 
         // TODO: This is a hacky way to make HMR route files work, since if we don't run through the `clientTreeShakePlugin`, the source code might include imports to server side stuff (typically used inside `loader` functions) that will break the HMR update. Ideally, we should go though all user plugins for HMR updates.
@@ -176,7 +176,7 @@ export function reactNativeHMRPlugin({
         // then we have to convert to commonjs..
         source =
           (
-            await swcTransform(id, source, {
+            await transformSWC(id, source, {
               mode: 'serve-cjs',
               production: mode === 'production',
             })

@@ -9,6 +9,7 @@ import {
 import type { SourceMapPayload } from 'node:module'
 import { extname } from 'node:path'
 import type { Options } from './types'
+import { debug } from './constants'
 
 const SHARED_MODULE_CONFIG = {
   importInterop: 'none',
@@ -42,7 +43,7 @@ export function shouldSourceMap() {
   return process.env.VXRN_ENABLE_SOURCE_MAP === '1'
 }
 
-export async function swcTransform(_id: string, code: string, options: Options) {
+export async function transformSWC(_id: string, code: string, options: Options) {
   const id = _id.split('?')[0].replace(process.cwd(), '')
 
   const refresh = options.production || options.noHMR ? false : !options.forceJSX
@@ -110,6 +111,8 @@ const transformWithOptions = async (
       },
       ...(options.forceJSX ? {} : { env: SWC_ENV }),
     } satisfies SWCOptions
+
+    debug?.(`transformSWC ${id} using ${parser}`)
 
     result = await transform(code, transformOptions)
   } catch (e: any) {
@@ -196,4 +199,25 @@ function getParser(id: string, forceJSX = false) {
   }
 
   return parser
+}
+export const transformSWCStripJSX = async (id: string, code: string) => {
+  const parser = getParser(id)
+  if (!parser) return
+  return await transform(code, {
+    filename: id,
+    swcrc: false,
+    configFile: false,
+    sourceMaps: shouldSourceMap(),
+    jsc: {
+      target: 'es2019',
+      parser,
+      transform: {
+        useDefineForClassFields: true,
+        react: {
+          development: true,
+          runtime: 'automatic',
+        },
+      },
+    },
+  })
 }

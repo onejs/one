@@ -1,29 +1,25 @@
-import { createRequire } from 'node:module'
+import { resolvePath } from '@vxrn/utils'
 import type { PluginOption, UserConfig } from 'vite'
 import { transformWithBabelIfNeeded } from './transformBabel'
-import { swcTransform } from './transformSWC'
+import { transformSWC } from './transformSWC'
 import type { Options } from './types'
 
 export * from './transformBabel'
 export * from './transformSWC'
 export * from './configure'
 
-const resolve = createRequire(
-  typeof __filename !== 'undefined' ? __filename : import.meta.url
-).resolve
-
 export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
-  const options = {
-    mode: optionsIn?.mode ?? 'serve',
-    jsxImportSource: optionsIn?.jsxImportSource ?? 'react',
-    tsDecorators: optionsIn?.tsDecorators,
-    plugins: optionsIn?.plugins
-      ? optionsIn?.plugins.map((el): typeof el => [resolve(el[0]), el[1]])
-      : undefined,
-    production: optionsIn?.production,
+  const getOptions = (environment: string) => {
+    return {
+      jsxImportSource: 'react',
+      mode: 'serve',
+      noHMR: environment === 'ssr',
+      ...optionsIn,
+      plugins: optionsIn?.plugins
+        ? optionsIn?.plugins.map((el): typeof el => [resolvePath(el[0]), el[1]])
+        : undefined,
+    } satisfies Options
   }
-
-  const development = optionsIn?.production ? false : options.mode === 'serve'
 
   return [
     {
@@ -46,10 +42,11 @@ export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
                     handler(options) {},
                   },
                   async transform(code, id) {
+                    const options = getOptions(this.environment.name)
                     const babelOut = await transformWithBabelIfNeeded({
                       id,
                       code,
-                      development,
+                      development: !options.production,
                       ...optionsIn?.babel,
                     })
 
@@ -58,7 +55,7 @@ export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
                     }
 
                     try {
-                      return await swcTransform(id, code, options)
+                      return await transformSWC(id, code, options)
                     } catch (err) {
                       if (process.env.DEBUG === 'vxrn') {
                         console.error(`${err}`)
@@ -68,7 +65,7 @@ export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
                         getUserPlugins: () => true,
                         id,
                         code,
-                        development,
+                        development: !options.production,
                       })
                     }
                   },
@@ -86,33 +83,25 @@ export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
         }
       },
 
-      configResolved(config) {
-        const mdxIndex = config.plugins.findIndex((p) => p.name === '@mdx-js/rollup')
-        if (
-          mdxIndex !== -1 &&
-          mdxIndex > config.plugins.findIndex((p) => p.name === 'vite:react-swc')
-        ) {
-          throw new Error('[vite:react-swc] The MDX plugin should be placed before this plugin')
-        }
-      },
-
       async transform(code, id) {
         if (id.includes(`virtual:`)) {
           return
         }
 
+        const options = getOptions(this.environment.name)
+
         const babelOut = await transformWithBabelIfNeeded({
           ...optionsIn?.babel,
           id,
           code,
-          development,
+          development: !options.production,
         })
 
         if (babelOut) {
           return babelOut
         }
 
-        const out = await swcTransform(id, code, options)
+        const out = await transformSWC(id, code, options)
         return out
       },
     },

@@ -2,6 +2,7 @@ import { relative } from 'node:path'
 import type { Plugin } from 'vite'
 import babel from '@babel/core'
 import { configuration } from './configure'
+import { debug } from './constants'
 
 type BabelPlugins = babel.TransformOptions['plugins']
 
@@ -29,7 +30,8 @@ export type GetBabelConfig = (
 
 export async function transformWithBabelIfNeeded(props: TransformBabelProps) {
   const babelPlugins = getBabelPlugins(props)
-  if (babelPlugins) {
+  if (babelPlugins?.length) {
+    debug?.(`transformBabel: ${props.id}`)
     return await transformBabel(props, babelPlugins)
   }
 }
@@ -67,7 +69,7 @@ async function transformBabel(
     babel.transform(
       code,
       {
-        filename: 'code.js',
+        filename: id,
         compact: false,
         minified: false,
         presets: ['@babel/preset-typescript'],

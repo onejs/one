@@ -1,5 +1,5 @@
 import { transformFlow } from '@vxrn/vite-flow'
-import { swcTransform } from '@vxrn/compiler'
+import { transformSWC } from '@vxrn/compiler'
 import findNodeModules from 'find-node-modules'
 import FSExtra from 'fs-extra'
 import { join } from 'node:path'
@@ -161,7 +161,7 @@ export async function applyDependencyPatches(
                       if (strategy === 'swc' || strategy === 'jsx') {
                         contents =
                           (
-                            await swcTransform(fullPath, contents, {
+                            await transformSWC(fullPath, contents, {
                               mode: 'build',
                               forceJSX: strategy === 'jsx',
                             })
