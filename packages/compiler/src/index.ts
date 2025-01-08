@@ -1,8 +1,15 @@
+/**
+ * Adapted from https://github.com/vitejs/vite-plugin-react-swc/blob/main/src/index.ts
+ * to work on both native and web, and with reanimated and other babel fallbacks
+ */
+
+import { readFileSync } from 'node:fs'
 import { resolvePath } from '@vxrn/utils'
 import type { PluginOption, UserConfig } from 'vite'
 import { transformWithBabelIfNeeded } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Options } from './types'
+import { join } from 'node:path'
 
 export * from './transformBabel'
 export * from './transformSWC'
@@ -21,7 +28,20 @@ export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
     } satisfies Options
   }
 
+  const runtimePublicPath = '/@react-refresh'
+
   return [
+    {
+      name: 'one:compiler-resolve-refresh-runtime',
+      apply: 'serve',
+      enforce: 'pre', // Run before Vite default resolve to avoid syscalls
+      resolveId: (id) => (id === runtimePublicPath ? id : undefined),
+      load: (id) =>
+        id === runtimePublicPath
+          ? readFileSync(join(__dirname, 'refresh-runtime.js'), 'utf-8')
+          : undefined,
+    },
+
     {
       name: 'one:compiler',
       enforce: 'pre',
@@ -32,11 +52,13 @@ export function createVXRNCompilerPlugin(optionsIn?: Options): PluginOption[] {
           optimizeDeps: {
             noDiscovery: true,
           },
+
+          // for native:
           build: {
             rollupOptions: {
               plugins: [
                 {
-                  name: `swc-react-native-transform`,
+                  name: `one:compiler-react-native`,
                   options: {
                     order: 'pre',
                     handler(options) {},
