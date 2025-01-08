@@ -26315,6 +26315,7 @@ __metadata:
     expo: "npm:~52.0.17"
     get-port-please: "npm:^3.1.2"
     one: "workspace:*"
+    playwright: "npm:^1.49.1"
     postgres: "npm:^3.4.4"
     react: "npm:^19.0.0"
     react-native: "npm:^0.76.5"
