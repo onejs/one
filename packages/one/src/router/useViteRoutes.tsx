@@ -1,5 +1,5 @@
-import type { GlobbedRouteImports } from './types'
-import type { One } from './vite/types'
+import type { GlobbedRouteImports } from '../types'
+import type { One } from '../vite/types'
 
 // essentially a development helper
 

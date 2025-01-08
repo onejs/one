@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
-import { getLoaderPath } from './cleanUrl'
+import { getLoaderPath } from './utils/cleanUrl'
 import { useActiveParams, useParams } from './hooks'
 import { resolveHref } from './link/href'
-import { useRouteNode } from './Route'
+import { useRouteNode } from './router/Route'
 import { preloadingLoader } from './router/router'
 import type { LoaderProps } from './types'
 import { dynamicImport } from './utils/dynamicImport'

@@ -4,8 +4,8 @@ import type { OneRouter } from './interfaces/router';
 export type Href = OneRouter.Href;
 export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<T>;
 export type { Endpoint, LoaderProps } from './types';
-export { router } from './imperative-api';
-export { createRoute, route } from './createRoute';
+export { router } from './router/imperative-api';
+export { createRoute, route } from './router/createRoute';
 export { onClientLoaderResolve } from './clientLoaderResolver';
 export { createMiddleware, type Middleware } from './createMiddleware';
 export { render } from './render';
@@ -31,6 +31,6 @@ export { redirect } from './utils/redirect';
 export { href } from './href';
 export * from '@vxrn/universal-color-scheme';
 export { useFocusEffect } from './useFocusEffect';
-export { useNavigation } from './useNavigation';
+export { useNavigation } from './router/useNavigation';
 export { useLoader } from './useLoader';
 //# sourceMappingURL=index.d.ts.map

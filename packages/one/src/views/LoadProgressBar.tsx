@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { View, type ViewProps } from 'react-native'
-import { router } from '../imperative-api'
+import { router } from '../router/imperative-api'
 
 export type LoadProgressBarProps = {
   /** How long after a navigation to wait before showing the progress bar (in ms) */

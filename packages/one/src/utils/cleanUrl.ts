@@ -3,9 +3,9 @@ import {
   LOADER_JS_POSTFIX,
   LOADER_JS_POSTFIX_REGEX,
   PRELOAD_JS_POSTFIX,
-} from './constants'
-import { getURL } from './getURL'
-import { removeSearch } from './utils/removeSearch'
+} from '../constants'
+import { getURL } from '../getURL'
+import { removeSearch } from './removeSearch'
 
 function cleanUrl(path: string) {
   return (

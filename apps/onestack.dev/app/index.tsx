@@ -129,19 +129,19 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View gap="$3">
-          <PrettyTextBiggest color="$color13" mt={30} mb={-2} transformOrigin="left center">
+        <View gap="$4">
+          <PrettyTextBiggest color="$color13" mt={30} mb={-10} transformOrigin="left center">
             Easy, simple &&nbsp;fast cross&#8209;platform&nbsp;apps.
           </PrettyTextBiggest>
 
           <PrettyTextBigger intro>
             One&nbsp;is&nbsp;a&nbsp;React framework for web and{' '}
             <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint> in a
-            single Vite plugin with{' '}
+            single Vite plugin. Featuring&nbsp;
             <Hint tint="green" hintContents="Unified file system routes, web and native.">
               universal,
             </Hint>{' '}
-            <Link href="/docs/routing">typed file-system routes</Link> across{' '}
+            typed <Link href="/docs/routing">file-system routes</Link> across{' '}
             <Hint tint="purple" hintContents="SSG - Rendered to HTML during build.">
               static
             </Hint>
@@ -572,7 +572,7 @@ function Video() {
 const Separator = styled(View, {
   width: '100%',
   height: 1,
-  bc: '$color6',
+  bc: '$color2',
   borderStyle: 'dotted',
   bw: 0,
   bbw: 1,

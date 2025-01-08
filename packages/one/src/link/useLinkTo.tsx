@@ -3,7 +3,7 @@ import { Platform, type GestureResponderEvent } from 'react-native'
 
 import { appendBaseUrl } from '../fork/getPathFromState'
 import { useOneRouter } from '../router/router'
-import { stripGroupSegmentsFromPath } from '../matchers'
+import { stripGroupSegmentsFromPath } from '../router/matchers'
 
 function eventShouldPreventDefault(
   e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent

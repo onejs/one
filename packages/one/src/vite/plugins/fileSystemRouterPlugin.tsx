@@ -12,6 +12,7 @@ import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
 import type { One } from '../../vite/types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
+import { setServerContext } from '../../utils/serverContext'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -29,7 +30,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   function createRequestHandler() {
     return createHandleRequest({
       async handlePage({ route, url, loaderProps }) {
-        console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
+        console.info(
+          ` ⓵  [${route.type}] ${url} resolved to ${route.isNotFound ? '‼️ 404 not found' : route.file}`
+        )
 
         if (route.type === 'spa') {
           // render just the layouts? route.layouts
@@ -70,8 +73,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
           const render = entry.default.render as (props: RenderAppProps) => any
 
-          globalThis['__vxrnLoaderData__'] = loaderData
-          globalThis['__vxrnLoaderProps__'] = loaderProps
+          setServerContext({
+            loaderData,
+            loaderProps,
+          })
 
           LoaderDataCache[route.file] = loaderData
 
@@ -193,9 +198,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           ...new Set(
             handleRequest.manifest.pageRoutes.flatMap((route) => {
               return [
-                join('app', route.file),
-                ...(route.layouts?.map((layout) => {
-                  return join('app', layout.contextKey)
+                join('./app', route.file),
+                ...(route.layouts?.flatMap((layout) => {
+                  if (!layout.contextKey) return []
+                  return [join('./app', layout.contextKey)]
                 }) || []),
               ]
             })

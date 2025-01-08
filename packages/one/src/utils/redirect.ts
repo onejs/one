@@ -1,5 +1,5 @@
 import { getURL } from '../getURL'
-import { router } from '../imperative-api'
+import { router } from '../router/imperative-api'
 
 export const redirect = (path: string, status?: number) => {
   if (process.env.VITE_ENVIRONMENT === 'client') {

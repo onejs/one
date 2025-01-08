@@ -1,5 +1,5 @@
 import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
-import { useNavigation } from '../useNavigation'
+import { useNavigation } from '../router/useNavigation'
 
 export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>> = {
   /**

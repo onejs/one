@@ -1,5 +1,4 @@
 import type { Plugin, ViteDevServer } from 'vite';
-export declare const VIRTUAL_ENTRY = "virtual:ssr-css.css";
 export declare function SSRCSSPlugin(pluginOpts: {
     entries: string[];
 }): Plugin;

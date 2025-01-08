@@ -1,8 +1,9 @@
 import { type NavigationContainerProps } from '@react-navigation/native';
 import { type FunctionComponent, type ReactNode } from 'react';
-import type { GlobbedRouteImports, RenderAppProps } from './types';
+import type { GlobbedRouteImports } from './types';
 import type { One } from './vite/types';
-type RootProps = RenderAppProps & Omit<InnerProps, 'context'> & {
+type RootProps = Omit<InnerProps, 'context'> & {
+    path: string;
     isClient?: boolean;
     routes: GlobbedRouteImports;
     routeOptions?: One.RouteOptions;

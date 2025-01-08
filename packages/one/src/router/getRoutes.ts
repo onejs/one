@@ -1,4 +1,4 @@
-import { getDefaultRenderMode } from './config'
+import { getDefaultRenderMode } from '../config'
 import {
   matchArrayGroupName,
   matchDeepDynamicRouteName,
@@ -7,8 +7,8 @@ import {
   removeSupportedExtensions,
 } from './matchers'
 import type { DynamicConvention, RouteNode } from './Route'
-import { getPageExport } from './utils/getPageExport'
-import type { One } from './vite/types'
+import { getPageExport } from '../utils/getPageExport'
+import type { One } from '../vite/types'
 // import { Unmatched } from './views/Unmatched'
 
 export type Options = {
@@ -242,7 +242,7 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
       {
         type: 'layout',
         loadRoute: () => ({
-          default: (require('./views/Navigator') as typeof import('./views/Navigator'))
+          default: (require('../views/Navigator') as typeof import('../views/Navigator'))
             .DefaultNavigator,
         }),
         // Generate a fake file name for the directory
@@ -481,7 +481,7 @@ function appendSitemapRoute(directory: DirectoryNode) {
       {
         loadRoute() {
           // console.warn(`Loading sitemap`)
-          // const { Sitemap, getNavOptions } = require('./views/Sitemap')
+          // const { Sitemap, getNavOptions } = require('../views/Sitemap')
           // return { default: Sitemap, getNavOptions }
           return { default: () => null, getNavOptions: () => {} }
         },

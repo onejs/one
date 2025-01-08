@@ -1,7 +1,7 @@
 import { type NavigationContainerRefWithCurrent } from '@react-navigation/native';
 import { type ComponentType } from 'react';
-import type { RouteNode } from '../Route';
-import { type OneLinkingOptions } from '../getLinkingConfig';
+import type { RouteNode } from './Route';
+import { type OneLinkingOptions } from './getLinkingConfig';
 import type { OneRouter } from '../interfaces/router';
 import type { One } from '../vite/types';
 import { type UrlObject } from './getNormalizedStatePath';

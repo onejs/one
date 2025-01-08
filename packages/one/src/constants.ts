@@ -10,3 +10,7 @@ export const LOADER_JS_POSTFIX_REGEX = new RegExp(LOADER_JS_POSTFIX_REGEX_STRING
 export const LOADER_JS_POSTFIX = `_${CACHE_KEY}${LOADER_JS_POSTFIX_UNCACHED}`
 
 export const PRELOAD_JS_POSTFIX = `_${CACHE_KEY}_preload.js`
+
+// safari insanely aggressive caching
+export const VIRTUAL_SSR_CSS_ENTRY = `virtual:ssr-css.css`
+export const VIRTUAL_SSR_CSS_HREF = `/@id/__x00__${VIRTUAL_SSR_CSS_ENTRY}`

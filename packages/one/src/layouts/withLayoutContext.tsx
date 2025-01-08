@@ -1,8 +1,8 @@
 import type { EventMapBase, NavigationState } from '@react-navigation/native'
 import React from 'react'
-import { useContextKey } from '../Route'
+import { useContextKey } from '../router/Route'
 import type { PickPartial } from '../types'
-import { useSortedScreens, type ScreenProps } from '../useScreens'
+import { useSortedScreens, type ScreenProps } from '../router/useScreens'
 import { Screen } from '../views/Screen'
 import { withStaticProperties } from '../utils/withStaticProperties'
 

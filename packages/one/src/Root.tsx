@@ -1,4 +1,3 @@
-import { SafeAreaProviderCompat } from '@react-navigation/elements'
 import {
   DarkTheme,
   DefaultTheme,
@@ -6,13 +5,14 @@ import {
   type NavigationContainerProps,
 } from '@react-navigation/native'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
-import { Fragment, useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
+import { useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
 import UpstreamNavigationContainer from './fork/NavigationContainer'
 import { getURL } from './getURL'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
-import type { GlobbedRouteImports, RenderAppProps } from './types'
-import { useViteRoutes } from './useViteRoutes'
+import { useViteRoutes } from './router/useViteRoutes'
+import type { GlobbedRouteImports } from './types'
+import { getServerContext } from './utils/serverContext'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollRestoration } from './views/ScrollRestoration'
@@ -24,12 +24,12 @@ if (typeof window !== 'undefined') {
   window.__getReactRefreshIgnoredExports = () => ['feedCardQuery', 'feedCardReplyQuery', 'loader']
 }
 
-type RootProps = RenderAppProps &
-  Omit<InnerProps, 'context'> & {
-    isClient?: boolean
-    routes: GlobbedRouteImports
-    routeOptions?: One.RouteOptions
-  }
+type RootProps = Omit<InnerProps, 'context'> & {
+  path: string
+  isClient?: boolean
+  routes: GlobbedRouteImports
+  routeOptions?: One.RouteOptions
+}
 
 type InnerProps = {
   context: One.RouteContext
@@ -51,14 +51,7 @@ type InnerProps = {
 }
 
 export function Root(props: RootProps) {
-  const {
-    path,
-    routes,
-    routeOptions,
-    wrapper: ParentWrapper = Fragment,
-    isClient,
-    navigationContainerProps,
-  } = props
+  const { path, routes, routeOptions, isClient, navigationContainerProps } = props
 
   // ⚠️ <StrictMode> breaks routing!
   const context = useViteRoutes(routes, routeOptions, globalThis['__vxrnVersion'])
@@ -71,28 +64,6 @@ export function Root(props: RootProps) {
   const [colorScheme] = useColorScheme()
 
   // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
-
-  /*
-   * Due to static rendering we need to wrap these top level views in second wrapper
-   * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
-   * is a HTML document, we need to ensure its inside the <body>
-   */
-  const wrapper = (children: any) => {
-    return (
-      <ParentWrapper>
-        {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
-        <ScrollRestoration />
-        {/* <GestureHandlerRootView> */}
-        <SafeAreaProviderCompat>
-          {children}
-
-          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-        </SafeAreaProviderCompat>
-        {/* </GestureHandlerRootView> */}
-      </ParentWrapper>
-    )
-  }
 
   const Component = store.rootComponent
 
@@ -116,7 +87,21 @@ export function Root(props: RootProps) {
         {...navigationContainerProps}
       >
         <ServerLocationContext.Provider value={location}>
-          {wrapper(<Component />)}
+          {/* <GestureHandlerRootView> */}
+          {/*
+           * Due to static rendering we need to wrap these top level views in second wrapper
+           * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
+           * is a HTML document, we need to ensure its inside the <body>
+           */}
+          <>
+            {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
+            <ScrollRestoration />
+            <Component />
+
+            {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+          </>
+          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+          {/* </GestureHandlerRootView> */}
         </ServerLocationContext.Provider>
       </UpstreamNavigationContainer>
       <PreloadLinks key="preload-links" />
@@ -125,7 +110,7 @@ export function Root(props: RootProps) {
   )
 
   if (isClient) {
-    if (globalThis['__vxrnHydrateMode__'] === 'spa') {
+    if (getServerContext()?.mode === 'spa') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [show, setShow] = useState(false)
 

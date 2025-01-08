@@ -8,7 +8,7 @@
  *
  * Based on https://github.com/vercel/next.js/blob/1df2686bc9964f1a86c444701fa5cbf178669833/packages/next/src/shared/lib/router/utils/route-regex.ts
  */
-import type { RouteNode } from '../Route';
+import type { RouteNode } from '../router/Route';
 import type { One } from '../vite/types';
 export type OneRouterServerManifestV1Route<TRegex = string> = {
     file: string;

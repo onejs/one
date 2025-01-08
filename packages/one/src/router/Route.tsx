@@ -1,8 +1,8 @@
 import React, { createContext, useContext, type ReactNode } from 'react'
 
 import { getContextKey } from './matchers'
-import type { ErrorBoundaryProps } from './views/Try'
-import type { One } from './vite/types'
+import type { ErrorBoundaryProps } from '../views/Try'
+import type { One } from '../vite/types'
 
 export type DynamicConvention = { name: string; deep: boolean; notFound?: boolean }
 

@@ -13,20 +13,18 @@ import { useZeroEmit, zero } from '~/zero/zero'
 
 export default function Layout() {
   return (
-    <>
-      {isWeb && (
-        <>
-          <meta charSet="utf-8" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta property="og:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="630" />
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-          <link rel="icon" href="/favicon.svg" />
-        </>
-      )}
+    <html lang="en-US">
+      <head>
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta property="og:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <link rel="icon" href="/favicon.svg" />
+      </head>
 
       <LoadProgressBar startDelay={1_000} />
 
@@ -41,7 +39,7 @@ export default function Layout() {
           </SchemeProvider>
         </DataProvider>
       </DragDropFile>
-    </>
+    </html>
   )
 }
 
