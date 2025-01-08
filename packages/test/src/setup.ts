@@ -1,7 +1,7 @@
-import testSetup, { type TestInfo } from './_setup'
+import { setupTestServers, type TestInfo } from './setupTest'
 import type { GlobalSetupContext } from 'vitest/node'
 
-declare module 'vitest' {
+declare module 'vitest/node' {
   interface ProvidedContext {
     testInfo: TestInfo
   }
@@ -10,7 +10,8 @@ declare module 'vitest' {
 let testInfo: TestInfo | null = null
 
 export async function setup({ provide }: GlobalSetupContext) {
-  testInfo = await testSetup()
+  testInfo = await setupTestServers()
+  process.env.ONE_SERVER_URL = `http://localhost:${testInfo.devServerPid ? testInfo.testDevPort : testInfo.testProdPort}`
   provide('testInfo', testInfo)
 }
 
@@ -43,6 +44,4 @@ export const teardown = async () => {
       console.error(`Failed to kill build process (PID: ${testInfo.buildPid}):`, error)
     }
   }
-
-  return
 }

@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    setupFiles: ['./_setup-tests.ts'],
+    setupFiles: ['./tests/_setup.ts'],
     // Ensure tests run sequentially
     poolOptions: {
       threads: {

@@ -1,3 +1,5 @@
+// TODO migrate to @vxrn/test/setup
+
 import { execPromise } from '@vxrn/utils'
 import { type ChildProcessWithoutNullStreams, spawn } from 'node:child_process'
 import net from 'node:net'
