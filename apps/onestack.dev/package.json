@@ -6,7 +6,7 @@
   "type": "module",
   "files": [],
   "scripts": {
-    "zuild:web": "one build",
+    "build:web": "one build",
     "dev": "one dev",
     "dev:clean": "one dev --clean",
     "serve": "one serve",
