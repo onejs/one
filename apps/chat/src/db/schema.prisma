@@ -3,7 +3,7 @@ generator client {
 }
 
 generator zero {
-  provider       = "prisma-zero"
+  provider = "prisma-zero"
 }
 
 datasource db {
@@ -12,7 +12,7 @@ datasource db {
 }
 
 model User {
-  id            String   @id
+  id            String   @id @db.VarChar
   username      String?  @db.VarChar(200)
   name          String?  @db.VarChar(200)
   email         String   @unique @db.VarChar(200)
@@ -22,26 +22,16 @@ model User {
   image         String?
   createdAt     DateTime @default(now())
 
-  // relations
-  friendshipsRequested Friendship[]        @relation("requestingUser")
-  friendshipsAccepted  Friendship[]        @relation("acceptingUser")
-  serversCreated       Server[]            @relation("creator")
-  serverMemberships    ServerMember[]
-  rolesCreated         Role[]              @relation("creator")
-  messages             Message[]
-  pins                 Pin[]
+  // relationships
+  friendshipsRequested Friendship[]      @relation("requestingUser")
+  friendshipsAccepted  Friendship[]      @relation("acceptingUser")
   attachments          Attachment[]
-  messageReactions     MessageReaction[]
-  sessions             Session[]
-  accounts             Account[]
-  roleId               String?             @db.VarChar
-  ChannelPermission    ChannelPermission[]
-  Thread               Thread[]
-  Role                 Role?               @relation(fields: [roleId], references: [id])
+  servers              ServerMember[]
   UserRole             UserRole[]
-  roles                Role[]              @relation("UserRole")
-
-  granter UserRole[] @relation("UserRoleGranter")
+  Message              Message[]
+  MessageReaction      MessageReaction[]
+  Session              Session[]
+  Account              Account[]
 }
 
 model Friendship {
@@ -50,7 +40,7 @@ model Friendship {
   accepted     Boolean  @default(false)
   createdAt    DateTime @default(now())
 
-  // relations
+  // relationships
   requestingUser User @relation("requestingUser", fields: [requestingId], references: [id])
   acceptingUser  User @relation("acceptingUser", fields: [acceptingId], references: [id])
 
@@ -58,33 +48,28 @@ model Friendship {
 }
 
 model Server {
-  id          String    @id @db.VarChar
-  name        String    @db.VarChar(200)
-  creatorId   String    @db.VarChar
+  id          String   @id @db.VarChar
+  name        String   @db.VarChar(200)
+  creatorId   String   @db.VarChar
   description String?
-  channelSort Json?     @default("{}")
-  icon        String?   @db.VarChar(255)
-  updatedAt   DateTime?
-  createdAt   DateTime  @default(now())
+  channelSort Json?    @default("{}")
+  icon        String?  @db.VarChar(255)
+  createdAt   DateTime @default(now())
 
-  // relations
-  creator           User                @relation("creator", fields: [creatorId], references: [id])
-  members           ServerMember[]
-  channels          Channel[]
-  roles             Role[]
-  UserRole          UserRole[]
-  ChannelPermission ChannelPermission[]
-  Message           Message[]
-  Pin               Pin[]
+  // relationships
+  members  ServerMember[]
+  roles    Role[]
+  channels Channel[]
+  UserRole UserRole[]
+  Message  Message[]
 }
 
 model ServerMember {
-  serverId         String   @db.VarChar
-  userId           String   @db.VarChar
-  hasClosedWelcome Boolean  @default(false)
-  joinedAt         DateTime @default(now())
+  serverId String   @db.VarChar
+  userId   String   @db.VarChar
+  joinedAt DateTime @default(now())
 
-  // relations
+  // relationships
   server Server @relation(fields: [serverId], references: [id])
   user   User   @relation(fields: [userId], references: [id])
 
@@ -92,42 +77,18 @@ model ServerMember {
 }
 
 model Role {
-  id             String    @id @db.VarChar
-  serverId       String    @db.VarChar
-  creatorId      String    @db.VarChar
-  name           String    @db.VarChar(200)
-  color          String    @db.VarChar(200)
-  canAdmin       Boolean   @default(false)
-  canEditServer  Boolean   @default(false)
-  canEditChannel Boolean   @default(false)
-  updatedAt      DateTime?
-  createdAt      DateTime  @default(now())
+  id             String   @id @db.VarChar
+  serverId       String   @db.VarChar
+  name           String   @db.VarChar(200)
+  color          String   @db.VarChar(200)
+  canAdmin       Boolean  @default(false)
+  canEditServer  Boolean  @default(false)
+  canEditChannel Boolean  @default(false)
+  createdAt      DateTime @default(now())
 
-  // relations
-  server            Server              @relation(fields: [serverId], references: [id])
-  creator           User                @relation("creator", fields: [creatorId], references: [id])
-  members           User[]              @relation("UserRole")
-  UserRole          UserRole[]
-  ChannelPermission ChannelPermission[]
-  User              User[]
-}
-
-model Channel {
-  id          String    @id @db.VarChar
-  serverId    String    @db.VarChar
-  name        String    @db.VarChar(200)
-  description String?
-  private     Boolean   @default(false)
-  updatedAt   DateTime?
-  createdAt   DateTime  @default(now())
-
-  // relations
-  server             Server              @relation(fields: [serverId], references: [id])
-  threads            Thread[]
-  messages           Message[]
-  pins               Pin[]
-  channelPermissions ChannelPermission[]
-  Attachment         Attachment[]
+  // relationships
+  server  Server     @relation(fields: [serverId], references: [id])
+  members UserRole[]
 }
 
 model UserRole {
@@ -137,45 +98,42 @@ model UserRole {
   granterId String   @db.VarChar
   createdAt DateTime @default(now())
 
-  // relations
-  server  Server @relation(fields: [serverId], references: [id])
-  role    Role   @relation(fields: [roleId], references: [id])
-  granter User   @relation("UserRoleGranter", fields: [granterId], references: [id])
-  User    User   @relation(fields: [userId], references: [id])
+  // relationships
+  server Server @relation(fields: [serverId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+  role   Role   @relation(fields: [roleId], references: [id])
 
   @@id([serverId, userId, roleId])
 }
 
-model ChannelPermission {
-  id        String   @id @db.VarChar
-  channelId String   @db.VarChar
-  serverId  String   @db.VarChar
-  roleId    String   @db.VarChar
-  granterId String   @db.VarChar
-  createdAt DateTime @default(now())
+model Channel {
+  id          String   @id @db.VarChar
+  serverId    String   @db.VarChar
+  name        String   @db.VarChar(200)
+  description String?
+  private     Boolean  @default(false)
+  createdAt   DateTime @default(now())
 
-  // relations
-  channel Channel @relation(fields: [channelId], references: [id])
-  server  Server  @relation(fields: [serverId], references: [id])
-  role    Role    @relation(fields: [roleId], references: [id])
-  granter User    @relation(fields: [granterId], references: [id])
+  // relationships
+  server  Server    @relation(fields: [serverId], references: [id])
+  threads Thread[]
+  pins    Pin[]
+  Message Message[]
 }
 
 model Thread {
-  id          String    @id @db.VarChar
-  channelId   String    @db.VarChar
-  messageId   String?   @db.VarChar
-  creatorId   String    @db.VarChar
-  title       String?   @db.VarChar(200)
-  deleted     Boolean   @default(false)
-  description String?   @db.VarChar(200)
-  updatedAt   DateTime?
-  createdAt   DateTime  @default(now())
+  id          String   @id @db.VarChar
+  channelId   String   @db.VarChar
+  messageId   String?
+  creatorId   String   @db.VarChar
+  title       String?  @db.VarChar(200)
+  deleted     Boolean  @default(false)
+  description String?  @db.VarChar(200)
+  createdAt   DateTime @default(now())
 
-  // relations
-  channel  Channel   @relation(fields: [channelId], references: [id])
-  creator  User      @relation(fields: [creatorId], references: [id])
-  messages Message[]
+  // relationships
+  channel Channel   @relation(fields: [channelId], references: [id])
+  Message Message[]
 }
 
 model Message {
@@ -191,18 +149,15 @@ model Message {
   updatedAt     DateTime?
   deleted       Boolean   @default(false)
 
-  // relations
-  server      Server            @relation(fields: [serverId], references: [id])
-  channel     Channel           @relation(fields: [channelId], references: [id])
-  thread      Thread?           @relation(fields: [threadId], references: [id])
-  creator     User              @relation(fields: [creatorId], references: [id])
-  replyingTo  Message?          @relation("MessageReplies", fields: [replyingToId], references: [id])
-  pins        Pin[]
-  attachments Attachment[]
-  reactions   MessageReaction[]
-  messageId   String?           @db.VarChar
-
-  Message Message[] @relation("MessageReplies")
+  // relationships
+  server          Server            @relation(fields: [serverId], references: [id])
+  channel         Channel           @relation(fields: [channelId], references: [id])
+  thread          Thread?           @relation(fields: [threadId], references: [id])
+  creator         User              @relation(fields: [creatorId], references: [id])
+  replyingTo      Message?          @relation("MessageReplies", fields: [replyingToId], references: [id])
+  replies         Message[]         @relation("MessageReplies")
+  pins            Pin[]
+  MessageReaction MessageReaction[]
 }
 
 model Pin {
@@ -213,11 +168,9 @@ model Pin {
   creatorId String   @db.VarChar
   createdAt DateTime @default(now())
 
-  // relations
+  // relationships
   channel Channel @relation(fields: [channelId], references: [id])
-  server  Server  @relation(fields: [serverId], references: [id])
-  message Message @relation(fields: [messageId], references: [id])
-  creator User    @relation(fields: [creatorId], references: [id])
+  Message Message @relation(fields: [messageId], references: [id])
 }
 
 model Attachment {
@@ -225,15 +178,13 @@ model Attachment {
   userId    String   @db.VarChar
   messageId String?  @db.VarChar
   channelId String?  @db.VarChar
-  createdAt DateTime @default(now())
+  type      String   @db.VarChar
   data      String?
   url       String?
-  type      String
+  createdAt DateTime @default(now())
 
-  // relations
-  user    User     @relation(fields: [userId], references: [id])
-  message Message? @relation(fields: [messageId], references: [id])
-  channel Channel? @relation(fields: [channelId], references: [id])
+  // relationships
+  user User @relation(fields: [userId], references: [id])
 }
 
 model Reaction {
@@ -243,7 +194,7 @@ model Reaction {
   createdAt DateTime  @default(now())
   updatedAt DateTime?
 
-  // relations
+  // relationships
   messageReactions MessageReaction[]
 }
 
@@ -254,7 +205,7 @@ model MessageReaction {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime?
 
-  // relations
+  // relationships
   message  Message  @relation(fields: [messageId], references: [id])
   creator  User     @relation(fields: [creatorId], references: [id])
   reaction Reaction @relation(fields: [reactionId], references: [id])
@@ -273,7 +224,7 @@ model Session {
   userAgent String?  @db.VarChar
   userId    String   @db.VarChar
 
-  // relations
+  // relationships
   user User @relation(fields: [userId], references: [id])
 }
 
@@ -293,7 +244,7 @@ model Account {
   createdAt             DateTime
   updatedAt             DateTime
 
-  // relations
+  // relationships
   user User @relation(fields: [userId], references: [id])
 }
 

@@ -2,631 +2,548 @@
 
 import { createSchema, type Row, column } from '@rocicorp/zero'
 
-const { enumeration } = column;
+const { enumeration } = column
 
 // Define schemas
 
 const UserSchema = {
-  tableName: "User",
+  tableName: 'User',
   columns: {
-    id: "string",
-    username: { type: "string", optional: true },
-    name: { type: "string", optional: true },
-    email: "string",
-    state: { type: "json", optional: true },
-    updatedAt: "number",
-    emailVerified: "boolean",
-    image: { type: "string", optional: true },
-    createdAt: "number",
-    roleId: { type: "string", optional: true },
+    id: 'string',
+    username: { type: 'string', optional: true },
+    name: { type: 'string', optional: true },
+    email: 'string',
+    state: { type: 'json', optional: true },
+    updatedAt: 'number',
+    emailVerified: 'boolean',
+    image: { type: 'string', optional: true },
+    createdAt: 'number',
   },
   relationships: {
     friendshipsRequested: {
-      sourceField: "id",
-      destField: "requestingId",
+      sourceField: 'id',
+      destField: 'requestingId',
       destSchema: () => FriendshipSchema,
     },
     friendshipsAccepted: {
-      sourceField: "id",
-      destField: "acceptingId",
+      sourceField: 'id',
+      destField: 'acceptingId',
       destSchema: () => FriendshipSchema,
     },
-    serversCreated: {
-      sourceField: "id",
-      destField: "creatorId",
-      destSchema: () => ServerSchema,
-    },
-    serverMemberships: {
-      sourceField: "id",
-      destField: "userId",
-      destSchema: () => ServerMemberSchema,
-    },
-    rolesCreated: {
-      sourceField: "id",
-      destField: "creatorId",
-      destSchema: () => RoleSchema,
-    },
-    messages: {
-      sourceField: "id",
-      destField: "creatorId",
-      destSchema: () => MessageSchema,
-    },
-    pins: {
-      sourceField: "id",
-      destField: "creatorId",
-      destSchema: () => PinSchema,
-    },
     attachments: {
-      sourceField: "id",
-      destField: "userId",
+      sourceField: 'id',
+      destField: 'userId',
       destSchema: () => AttachmentSchema,
     },
-    messageReactions: {
-      sourceField: "id",
-      destField: "creatorId",
-      destSchema: () => MessageReactionSchema,
-    },
-    sessions: {
-      sourceField: "id",
-      destField: "userId",
-      destSchema: () => SessionSchema,
-    },
-    accounts: {
-      sourceField: "id",
-      destField: "userId",
-      destSchema: () => AccountSchema,
-    },
-    ChannelPermission: {
-      sourceField: "id",
-      destField: "granterId",
-      destSchema: () => ChannelPermissionSchema,
-    },
-    Thread: {
-      sourceField: "id",
-      destField: "creatorId",
-      destSchema: () => ThreadSchema,
-    },
-    Role: {
-      sourceField: "roleId",
-      destField: "id",
-      destSchema: () => RoleSchema,
+    servers: {
+      sourceField: 'id',
+      destField: 'userId',
+      destSchema: () => ServerMemberSchema,
     },
     UserRole: {
-      sourceField: "id",
-      destField: "userId",
+      sourceField: 'id',
+      destField: 'userId',
       destSchema: () => UserRoleSchema,
     },
-    roles: {
-      sourceField: "id",
-      destField: "id",
-      destSchema: () => RoleSchema,
+    Message: {
+      sourceField: 'id',
+      destField: 'creatorId',
+      destSchema: () => MessageSchema,
     },
-    granter: {
-      sourceField: "id",
-      destField: "granterId",
-      destSchema: () => UserRoleSchema,
-    }
+    MessageReaction: {
+      sourceField: 'id',
+      destField: 'creatorId',
+      destSchema: () => MessageReactionSchema,
+    },
+    Session: {
+      sourceField: 'id',
+      destField: 'userId',
+      destSchema: () => SessionSchema,
+    },
+    Account: {
+      sourceField: 'id',
+      destField: 'userId',
+      destSchema: () => AccountSchema,
+    },
   },
-  primaryKey: "id",
-} as const;
+  primaryKey: 'id',
+} as const
 
 const FriendshipSchema = {
-  tableName: "Friendship",
+  tableName: 'Friendship',
   columns: {
-    requestingId: "string",
-    acceptingId: "string",
-    accepted: "boolean",
-    createdAt: "number",
+    requestingId: 'string',
+    acceptingId: 'string',
+    accepted: 'boolean',
+    createdAt: 'number',
   },
   relationships: {
     requestingUser: {
-      sourceField: "requestingId",
-      destField: "id",
+      sourceField: 'requestingId',
+      destField: 'id',
       destSchema: () => UserSchema,
     },
     acceptingUser: {
-      sourceField: "acceptingId",
-      destField: "id",
+      sourceField: 'acceptingId',
+      destField: 'id',
       destSchema: () => UserSchema,
-    }
+    },
   },
-  primaryKey: ["requestingId","acceptingId"],
-} as const;
+  primaryKey: ['requestingId', 'acceptingId'],
+} as const
 
 const ServerSchema = {
-  tableName: "Server",
+  tableName: 'Server',
   columns: {
-    id: "string",
-    name: "string",
-    creatorId: "string",
-    description: { type: "string", optional: true },
-    channelSort: { type: "json", optional: true },
-    icon: { type: "string", optional: true },
-    updatedAt: { type: "number", optional: true },
-    createdAt: "number",
+    id: 'string',
+    name: 'string',
+    creatorId: 'string',
+    description: { type: 'string', optional: true },
+    channelSort: { type: 'json', optional: true },
+    icon: { type: 'string', optional: true },
+    createdAt: 'number',
   },
   relationships: {
-    creator: {
-      sourceField: "creatorId",
-      destField: "id",
-      destSchema: () => UserSchema,
-    },
     members: {
-      sourceField: "id",
-      destField: "serverId",
+      sourceField: 'id',
+      destField: 'serverId',
       destSchema: () => ServerMemberSchema,
     },
-    channels: {
-      sourceField: "id",
-      destField: "serverId",
-      destSchema: () => ChannelSchema,
-    },
     roles: {
-      sourceField: "id",
-      destField: "serverId",
+      sourceField: 'id',
+      destField: 'serverId',
       destSchema: () => RoleSchema,
     },
+    channels: {
+      sourceField: 'id',
+      destField: 'serverId',
+      destSchema: () => ChannelSchema,
+    },
     UserRole: {
-      sourceField: "id",
-      destField: "serverId",
+      sourceField: 'id',
+      destField: 'serverId',
       destSchema: () => UserRoleSchema,
     },
-    ChannelPermission: {
-      sourceField: "id",
-      destField: "serverId",
-      destSchema: () => ChannelPermissionSchema,
-    },
     Message: {
-      sourceField: "id",
-      destField: "serverId",
+      sourceField: 'id',
+      destField: 'serverId',
       destSchema: () => MessageSchema,
     },
-    Pin: {
-      sourceField: "id",
-      destField: "serverId",
-      destSchema: () => PinSchema,
-    }
   },
-  primaryKey: "id",
-} as const;
+  primaryKey: 'id',
+} as const
 
 const ServerMemberSchema = {
-  tableName: "ServerMember",
+  tableName: 'ServerMember',
   columns: {
-    serverId: "string",
-    userId: "string",
-    hasClosedWelcome: "boolean",
-    joinedAt: "number",
+    serverId: 'string',
+    userId: 'string',
+    joinedAt: 'number',
   },
   relationships: {
     server: {
-      sourceField: "serverId",
-      destField: "id",
+      sourceField: 'serverId',
+      destField: 'id',
       destSchema: () => ServerSchema,
     },
     user: {
-      sourceField: "userId",
-      destField: "id",
+      sourceField: 'userId',
+      destField: 'id',
       destSchema: () => UserSchema,
-    }
+    },
   },
-  primaryKey: ["serverId","userId"],
-} as const;
+  primaryKey: ['serverId', 'userId'],
+} as const
 
 const RoleSchema = {
-  tableName: "Role",
+  tableName: 'Role',
   columns: {
-    id: "string",
-    serverId: "string",
-    creatorId: "string",
-    name: "string",
-    color: "string",
-    canAdmin: "boolean",
-    canEditServer: "boolean",
-    canEditChannel: "boolean",
-    updatedAt: { type: "number", optional: true },
-    createdAt: "number",
+    id: 'string',
+    serverId: 'string',
+    name: 'string',
+    color: 'string',
+    canAdmin: 'boolean',
+    canEditServer: 'boolean',
+    canEditChannel: 'boolean',
+    createdAt: 'number',
   },
   relationships: {
     server: {
-      sourceField: "serverId",
-      destField: "id",
+      sourceField: 'serverId',
+      destField: 'id',
       destSchema: () => ServerSchema,
     },
-    creator: {
-      sourceField: "creatorId",
-      destField: "id",
-      destSchema: () => UserSchema,
-    },
     members: {
-      sourceField: "id",
-      destField: "id",
-      destSchema: () => UserSchema,
-    },
-    UserRole: {
-      sourceField: "id",
-      destField: "roleId",
+      sourceField: 'id',
+      destField: 'roleId',
       destSchema: () => UserRoleSchema,
     },
-    ChannelPermission: {
-      sourceField: "id",
-      destField: "roleId",
-      destSchema: () => ChannelPermissionSchema,
-    },
-    User: {
-      sourceField: "id",
-      destField: "roleId",
-      destSchema: () => UserSchema,
-    }
   },
-  primaryKey: "id",
-} as const;
+  primaryKey: 'id',
+} as const
 
-const ChannelSchema = {
-  tableName: "Channel",
+const UserRoleSchema = {
+  tableName: 'UserRole',
   columns: {
-    id: "string",
-    serverId: "string",
-    name: "string",
-    description: { type: "string", optional: true },
-    private: "boolean",
-    updatedAt: { type: "number", optional: true },
-    createdAt: "number",
+    serverId: 'string',
+    userId: 'string',
+    roleId: 'string',
+    granterId: 'string',
+    createdAt: 'number',
   },
   relationships: {
     server: {
-      sourceField: "serverId",
-      destField: "id",
+      sourceField: 'serverId',
+      destField: 'id',
+      destSchema: () => ServerSchema,
+    },
+    user: {
+      sourceField: 'userId',
+      destField: 'id',
+      destSchema: () => UserSchema,
+    },
+    role: {
+      sourceField: 'roleId',
+      destField: 'id',
+      destSchema: () => RoleSchema,
+    },
+  },
+  primaryKey: ['serverId', 'userId', 'roleId'],
+} as const
+
+const ChannelSchema = {
+  tableName: 'Channel',
+  columns: {
+    id: 'string',
+    serverId: 'string',
+    name: 'string',
+    description: { type: 'string', optional: true },
+    private: 'boolean',
+    createdAt: 'number',
+  },
+  relationships: {
+    server: {
+      sourceField: 'serverId',
+      destField: 'id',
       destSchema: () => ServerSchema,
     },
     threads: {
-      sourceField: "id",
-      destField: "channelId",
+      sourceField: 'id',
+      destField: 'channelId',
       destSchema: () => ThreadSchema,
     },
-    messages: {
-      sourceField: "id",
-      destField: "channelId",
-      destSchema: () => MessageSchema,
-    },
     pins: {
-      sourceField: "id",
-      destField: "channelId",
+      sourceField: 'id',
+      destField: 'channelId',
       destSchema: () => PinSchema,
     },
-    channelPermissions: {
-      sourceField: "id",
-      destField: "channelId",
-      destSchema: () => ChannelPermissionSchema,
+    Message: {
+      sourceField: 'id',
+      destField: 'channelId',
+      destSchema: () => MessageSchema,
     },
-    Attachment: {
-      sourceField: "id",
-      destField: "channelId",
-      destSchema: () => AttachmentSchema,
-    }
   },
-  primaryKey: "id",
-} as const;
-
-const UserRoleSchema = {
-  tableName: "UserRole",
-  columns: {
-    serverId: "string",
-    userId: "string",
-    roleId: "string",
-    granterId: "string",
-    createdAt: "number",
-  },
-  relationships: {
-    server: {
-      sourceField: "serverId",
-      destField: "id",
-      destSchema: () => ServerSchema,
-    },
-    role: {
-      sourceField: "roleId",
-      destField: "id",
-      destSchema: () => RoleSchema,
-    },
-    granter: {
-      sourceField: "granterId",
-      destField: "id",
-      destSchema: () => UserSchema,
-    },
-    User: {
-      sourceField: "userId",
-      destField: "id",
-      destSchema: () => UserSchema,
-    }
-  },
-  primaryKey: ["serverId","userId","roleId"],
-} as const;
-
-const ChannelPermissionSchema = {
-  tableName: "ChannelPermission",
-  columns: {
-    id: "string",
-    channelId: "string",
-    serverId: "string",
-    roleId: "string",
-    granterId: "string",
-    createdAt: "number",
-  },
-  relationships: {
-    channel: {
-      sourceField: "channelId",
-      destField: "id",
-      destSchema: () => ChannelSchema,
-    },
-    server: {
-      sourceField: "serverId",
-      destField: "id",
-      destSchema: () => ServerSchema,
-    },
-    role: {
-      sourceField: "roleId",
-      destField: "id",
-      destSchema: () => RoleSchema,
-    },
-    granter: {
-      sourceField: "granterId",
-      destField: "id",
-      destSchema: () => UserSchema,
-    }
-  },
-  primaryKey: "id",
-} as const;
+  primaryKey: 'id',
+} as const
 
 const ThreadSchema = {
-  tableName: "Thread",
+  tableName: 'Thread',
   columns: {
-    id: "string",
-    channelId: "string",
-    messageId: { type: "string", optional: true },
-    creatorId: "string",
-    title: { type: "string", optional: true },
-    deleted: "boolean",
-    description: { type: "string", optional: true },
-    updatedAt: { type: "number", optional: true },
-    createdAt: "number",
+    id: 'string',
+    channelId: 'string',
+    messageId: { type: 'string', optional: true },
+    creatorId: 'string',
+    title: { type: 'string', optional: true },
+    deleted: 'boolean',
+    description: { type: 'string', optional: true },
+    createdAt: 'number',
   },
   relationships: {
     channel: {
-      sourceField: "channelId",
-      destField: "id",
+      sourceField: 'channelId',
+      destField: 'id',
       destSchema: () => ChannelSchema,
     },
-    creator: {
-      sourceField: "creatorId",
-      destField: "id",
-      destSchema: () => UserSchema,
-    },
-    messages: {
-      sourceField: "id",
-      destField: "threadId",
+    Message: {
+      sourceField: 'id',
+      destField: 'threadId',
       destSchema: () => MessageSchema,
-    }
+    },
   },
-  primaryKey: "id",
-} as const;
+  primaryKey: 'id',
+} as const
 
 const MessageSchema = {
-  tableName: "Message",
+  tableName: 'Message',
   columns: {
-    id: "string",
-    serverId: "string",
-    channelId: "string",
-    replyingToId: { type: "string", optional: true },
-    threadId: { type: "string", optional: true },
-    creatorId: "string",
-    content: "string",
-    isThreadReply: "boolean",
-    createdAt: "number",
-    updatedAt: { type: "number", optional: true },
-    deleted: "boolean",
-    messageId: { type: "string", optional: true },
+    id: 'string',
+    serverId: 'string',
+    channelId: 'string',
+    replyingToId: { type: 'string', optional: true },
+    threadId: { type: 'string', optional: true },
+    creatorId: 'string',
+    content: 'string',
+    isThreadReply: 'boolean',
+    createdAt: 'number',
+    updatedAt: { type: 'number', optional: true },
+    deleted: 'boolean',
   },
   relationships: {
     server: {
-      sourceField: "serverId",
-      destField: "id",
+      sourceField: 'serverId',
+      destField: 'id',
       destSchema: () => ServerSchema,
     },
     channel: {
-      sourceField: "channelId",
-      destField: "id",
+      sourceField: 'channelId',
+      destField: 'id',
       destSchema: () => ChannelSchema,
     },
     thread: {
-      sourceField: "threadId",
-      destField: "id",
+      sourceField: 'threadId',
+      destField: 'id',
       destSchema: () => ThreadSchema,
     },
     creator: {
-      sourceField: "creatorId",
-      destField: "id",
+      sourceField: 'creatorId',
+      destField: 'id',
       destSchema: () => UserSchema,
     },
     replyingTo: {
-      sourceField: "replyingToId",
-      destField: "id",
+      sourceField: 'replyingToId',
+      destField: 'id',
+      destSchema: () => MessageSchema,
+    },
+    replies: {
+      sourceField: 'id',
+      destField: 'replyingToId',
       destSchema: () => MessageSchema,
     },
     pins: {
-      sourceField: "id",
-      destField: "messageId",
+      sourceField: 'id',
+      destField: 'messageId',
       destSchema: () => PinSchema,
     },
-    attachments: {
-      sourceField: "id",
-      destField: "messageId",
-      destSchema: () => AttachmentSchema,
-    },
-    reactions: {
-      sourceField: "id",
-      destField: "messageId",
+    MessageReaction: {
+      sourceField: 'id',
+      destField: 'messageId',
       destSchema: () => MessageReactionSchema,
     },
-    Message: {
-      sourceField: "id",
-      destField: "replyingToId",
-      destSchema: () => MessageSchema,
-    }
   },
-  primaryKey: "id",
-} as const;
+  primaryKey: 'id',
+} as const
 
 const PinSchema = {
-  tableName: "Pin",
+  tableName: 'Pin',
   columns: {
-    id: "string",
-    channelId: "string",
-    serverId: "string",
-    messageId: "string",
-    creatorId: "string",
-    createdAt: "number",
+    id: 'string',
+    channelId: 'string',
+    serverId: 'string',
+    messageId: 'string',
+    creatorId: 'string',
+    createdAt: 'number',
   },
   relationships: {
     channel: {
-      sourceField: "channelId",
-      destField: "id",
+      sourceField: 'channelId',
+      destField: 'id',
       destSchema: () => ChannelSchema,
     },
-    server: {
-      sourceField: "serverId",
-      destField: "id",
-      destSchema: () => ServerSchema,
-    },
-    message: {
-      sourceField: "messageId",
-      destField: "id",
+    Message: {
+      sourceField: 'messageId',
+      destField: 'id',
       destSchema: () => MessageSchema,
     },
-    creator: {
-      sourceField: "creatorId",
-      destField: "id",
-      destSchema: () => UserSchema,
-    }
   },
-  primaryKey: "id",
-} as const;
+  primaryKey: 'id',
+} as const
 
 const AttachmentSchema = {
-  tableName: "Attachment",
+  tableName: 'Attachment',
   columns: {
-    id: "string",
-    userId: "string",
-    messageId: { type: "string", optional: true },
-    channelId: { type: "string", optional: true },
-    createdAt: "number",
-    data: { type: "string", optional: true },
-    url: { type: "string", optional: true },
-    type: "string",
+    id: 'string',
+    userId: 'string',
+    messageId: { type: 'string', optional: true },
+    channelId: { type: 'string', optional: true },
+    type: 'string',
+    data: { type: 'string', optional: true },
+    url: { type: 'string', optional: true },
+    createdAt: 'number',
   },
   relationships: {
     user: {
-      sourceField: "userId",
-      destField: "id",
+      sourceField: 'userId',
+      destField: 'id',
       destSchema: () => UserSchema,
     },
-    message: {
-      sourceField: "messageId",
-      destField: "id",
-      destSchema: () => MessageSchema,
-    },
-    channel: {
-      sourceField: "channelId",
-      destField: "id",
-      destSchema: () => ChannelSchema,
-    }
   },
-  primaryKey: "id",
-} as const;
+  primaryKey: 'id',
+} as const
 
 const ReactionSchema = {
-  tableName: "Reaction",
+  tableName: 'Reaction',
   columns: {
-    id: "string",
-    value: "string",
-    keyword: "string",
-    createdAt: "number",
-    updatedAt: { type: "number", optional: true },
+    id: 'string',
+    value: 'string',
+    keyword: 'string',
+    createdAt: 'number',
+    updatedAt: { type: 'number', optional: true },
   },
   relationships: {
     messageReactions: {
-      sourceField: "id",
-      destField: "reactionId",
+      sourceField: 'id',
+      destField: 'reactionId',
       destSchema: () => MessageReactionSchema,
-    }
+    },
   },
-  primaryKey: "id",
-} as const;
+  primaryKey: 'id',
+} as const
 
 const MessageReactionSchema = {
-  tableName: "MessageReaction",
+  tableName: 'MessageReaction',
   columns: {
-    messageId: "string",
-    creatorId: "string",
-    reactionId: "string",
-    createdAt: "number",
-    updatedAt: { type: "number", optional: true },
+    messageId: 'string',
+    creatorId: 'string',
+    reactionId: 'string',
+    createdAt: 'number',
+    updatedAt: { type: 'number', optional: true },
   },
   relationships: {
     message: {
-      sourceField: "messageId",
-      destField: "id",
+      sourceField: 'messageId',
+      destField: 'id',
       destSchema: () => MessageSchema,
     },
     creator: {
-      sourceField: "creatorId",
-      destField: "id",
+      sourceField: 'creatorId',
+      destField: 'id',
       destSchema: () => UserSchema,
     },
     reaction: {
-      sourceField: "reactionId",
-      destField: "id",
+      sourceField: 'reactionId',
+      destField: 'id',
       destSchema: () => ReactionSchema,
-    }
+    },
   },
-  primaryKey: ["messageId","creatorId","reactionId"],
-} as const;
+  primaryKey: ['messageId', 'creatorId', 'reactionId'],
+} as const
+
+const SessionSchema = {
+  tableName: 'Session',
+  columns: {
+    id: 'string',
+    expiresAt: 'number',
+    token: 'string',
+    createdAt: 'number',
+    updatedAt: 'number',
+    ipAddress: { type: 'string', optional: true },
+    userAgent: { type: 'string', optional: true },
+    userId: 'string',
+  },
+  relationships: {
+    user: {
+      sourceField: 'userId',
+      destField: 'id',
+      destSchema: () => UserSchema,
+    },
+  },
+  primaryKey: 'id',
+} as const
+
+const AccountSchema = {
+  tableName: 'Account',
+  columns: {
+    id: 'string',
+    accountId: 'string',
+    providerId: 'string',
+    userId: 'string',
+    accessToken: { type: 'string', optional: true },
+    refreshToken: { type: 'string', optional: true },
+    idToken: { type: 'string', optional: true },
+    accessTokenExpiresAt: { type: 'number', optional: true },
+    refreshTokenExpiresAt: { type: 'number', optional: true },
+    scope: { type: 'string', optional: true },
+    password: { type: 'string', optional: true },
+    createdAt: 'number',
+    updatedAt: 'number',
+  },
+  relationships: {
+    user: {
+      sourceField: 'userId',
+      destField: 'id',
+      destSchema: () => UserSchema,
+    },
+  },
+  primaryKey: 'id',
+} as const
+
+const VerificationSchema = {
+  tableName: 'Verification',
+  columns: {
+    id: 'string',
+    identifier: 'string',
+    value: 'string',
+    expiresAt: 'number',
+    createdAt: { type: 'number', optional: true },
+    updatedAt: { type: 'number', optional: true },
+  },
+  primaryKey: 'id',
+} as const
+
+const JwksSchema = {
+  tableName: 'Jwks',
+  columns: {
+    id: 'string',
+    publicKey: 'string',
+    privateKey: 'string',
+    createdAt: 'number',
+  },
+  primaryKey: 'id',
+} as const
 
 // Define schema
 
 export const schema = createSchema({
-  version: 1,
+  version: 2,
   tables: {
     User: UserSchema,
     Friendship: FriendshipSchema,
     Server: ServerSchema,
     ServerMember: ServerMemberSchema,
     Role: RoleSchema,
-    Channel: ChannelSchema,
     UserRole: UserRoleSchema,
-    ChannelPermission: ChannelPermissionSchema,
+    Channel: ChannelSchema,
     Thread: ThreadSchema,
     Message: MessageSchema,
     Pin: PinSchema,
     Attachment: AttachmentSchema,
     Reaction: ReactionSchema,
     MessageReaction: MessageReactionSchema,
+    Session: SessionSchema,
+    Account: AccountSchema,
+    Verification: VerificationSchema,
+    Jwks: JwksSchema,
   },
-});
+})
 
 // Define types
-export type Schema = typeof schema;
-export type User = Row<typeof UserSchema>;
-export type Friendship = Row<typeof FriendshipSchema>;
-export type Server = Row<typeof ServerSchema>;
-export type ServerMember = Row<typeof ServerMemberSchema>;
-export type Role = Row<typeof RoleSchema>;
-export type Channel = Row<typeof ChannelSchema>;
-export type UserRole = Row<typeof UserRoleSchema>;
-export type ChannelPermission = Row<typeof ChannelPermissionSchema>;
-export type Thread = Row<typeof ThreadSchema>;
-export type Message = Row<typeof MessageSchema>;
-export type Pin = Row<typeof PinSchema>;
-export type Attachment = Row<typeof AttachmentSchema>;
-export type Reaction = Row<typeof ReactionSchema>;
-export type MessageReaction = Row<typeof MessageReactionSchema>;
-// Schema hash: c17c113c5c959a61eb96fa72a0bf1da2bac322b5464982bd870039f31eb698ae
+export type Schema = typeof schema
+export type User = Row<typeof UserSchema>
+export type Friendship = Row<typeof FriendshipSchema>
+export type Server = Row<typeof ServerSchema>
+export type ServerMember = Row<typeof ServerMemberSchema>
+export type Role = Row<typeof RoleSchema>
+export type UserRole = Row<typeof UserRoleSchema>
+export type Channel = Row<typeof ChannelSchema>
+export type Thread = Row<typeof ThreadSchema>
+export type Message = Row<typeof MessageSchema>
+export type Pin = Row<typeof PinSchema>
+export type Attachment = Row<typeof AttachmentSchema>
+export type Reaction = Row<typeof ReactionSchema>
+export type MessageReaction = Row<typeof MessageReactionSchema>
+export type Session = Row<typeof SessionSchema>
+export type Account = Row<typeof AccountSchema>
+export type Verification = Row<typeof VerificationSchema>
+export type Jwks = Row<typeof JwksSchema>
+
+// Schema hash: d7a954ed8060791e3003e287b7a6538f1699dd9dbe8316f0e0db1087520e5ceb
