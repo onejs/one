@@ -1,9 +1,13 @@
-import { cloneElement, createContext, useContext, useEffect, useState } from 'react'
+import { cloneElement, createContext, useContext } from 'react'
 
 // stores [html, head, body]
 // for html and body just the tag itself no children
 // for head it contains the inner children as well
-type FoundHTML = [React.ReactNode, React.ReactNode, React.ReactNode]
+export type FoundHTML = [
+  React.ReactElement | null,
+  React.ReactElement | null,
+  React.ReactElement | null,
+]
 
 export const HoistHTMLContext = createContext<((props: FoundHTML) => void) | null>(null)
 
@@ -18,36 +22,7 @@ export const HoistHTMLContext = createContext<((props: FoundHTML) => void) | nul
  */
 
 export function useFilteredAndHoistedRootHTML(rootEl: React.ReactNode) {
-  const hoistHTML = useContext(HoistHTMLContext)
-  if (!hoistHTML) {
-    throw new Error(`‼️ 01`)
-  }
-
-  const [filteredChildren, rootElements] = filterRootElements(rootEl)
-  const rootElementsKey = rootElements.map(hashElements).join('')
-
-  console.log('got', { filteredChildren, rootElements, rootElementsKey })
-
-  useEffect(() => {
-    hoistHTML(rootElements)
-  }, [rootElementsKey])
-
-  return filteredChildren
-}
-
-// quick and dirty uid based on react elements (recursive)
-function hashElements(el: React.ReactNode) {
-  if (!el || typeof el !== 'object') return ''
-  if (Array.isArray(el)) return el.map(hashElements).join('')
-  const element = el as React.ReactElement
-  const type = typeof element.type === 'string' ? element.type : ''
-  const props = element.props
-    ? Object.keys(element.props)
-        .sort()
-        .map((key) => key + hashElements((element.props as any)[key]))
-        .join('')
-    : ''
-  return type + props
+  return filterRootElements(rootEl)
 }
 
 // recursively loop over elements, find:
@@ -57,9 +32,9 @@ function hashElements(el: React.ReactNode) {
 // removes html, body, head and leaves the rest
 // returns [theReaminingElements, [html, head, body]]
 function filterRootElements(el: React.ReactNode): [React.ReactNode, FoundHTML] {
-  let html: React.ReactNode = null
-  let head: React.ReactNode = null
-  let body: React.ReactNode = null
+  let html: React.ReactElement | null = null
+  let head: React.ReactElement | null = null
+  let body: React.ReactElement | null = null
   const remainingElements: React.ReactNode[] = []
 
   function traverse(element: React.ReactNode) {
@@ -78,10 +53,13 @@ function filterRootElements(el: React.ReactNode): [React.ReactNode, FoundHTML] {
 
     if (type === 'html') {
       html = cloneElement(reactElement, { ...props, children: null })
+      const children = reactElement.props.children
+      if (children) traverse(children)
     } else if (type === 'head') {
       head = reactElement
     } else if (type === 'body') {
       body = cloneElement(reactElement, { ...props, children: null })
+      traverse(reactElement.props.children)
     } else {
       remainingElements.push(
         cloneElement(reactElement, {

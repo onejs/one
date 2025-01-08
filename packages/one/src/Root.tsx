@@ -25,12 +25,12 @@ if (typeof window !== 'undefined') {
   window.__getReactRefreshIgnoredExports = () => ['feedCardQuery', 'feedCardReplyQuery', 'loader']
 }
 
-type RootProps = RenderAppProps &
-  Omit<InnerProps, 'context'> & {
-    isClient?: boolean
-    routes: GlobbedRouteImports
-    routeOptions?: One.RouteOptions
-  }
+type RootProps = Omit<InnerProps, 'context'> & {
+  path: string
+  isClient?: boolean
+  routes: GlobbedRouteImports
+  routeOptions?: One.RouteOptions
+}
 
 type InnerProps = {
   context: One.RouteContext
@@ -52,14 +52,7 @@ type InnerProps = {
 }
 
 export function Root(props: RootProps) {
-  const {
-    path,
-    routes,
-    routeOptions,
-    wrapper: ParentWrapper = Fragment,
-    isClient,
-    navigationContainerProps,
-  } = props
+  const { path, routes, routeOptions, isClient, navigationContainerProps } = props
 
   // ⚠️ <StrictMode> breaks routing!
   const context = useViteRoutes(routes, routeOptions, globalThis['__vxrnVersion'])
@@ -80,18 +73,17 @@ export function Root(props: RootProps) {
    */
   const wrapper = (children: any) => {
     return (
-      <ParentWrapper>
+      <>
         {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
         <ScrollRestoration />
         {/* <GestureHandlerRootView> */}
-        <SafeAreaProviderCompat>
-          {children}
 
-          {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-        </SafeAreaProviderCompat>
+        {children}
+
+        {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+        {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
         {/* </GestureHandlerRootView> */}
-      </ParentWrapper>
+      </>
     )
   }
 

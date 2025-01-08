@@ -6,18 +6,17 @@ import { resolveClientLoader } from './clientLoaderResolver'
 import { render } from './render'
 import { renderToString } from './server-render'
 import type { RenderAppProps } from './types'
-import { rand } from './utils/rand'
 // @ts-ignore
+import { useCallback, useId, useState } from 'react'
 import ReactDOMServer from 'react-dom/server.browser'
+import { type FoundHTML, HoistHTMLContext } from './router/hoistHTML'
 import {
   getServerContext,
   SERVER_CONTEXT_POST_RENDER_STRING,
   ServerContextScript,
   setServerContext,
 } from './utils/serverContext'
-import { useId, useMemo } from 'react'
 import { DevHead } from './vite/DevHead'
-import { HoistHTMLContext } from './router/hoistHTML'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
@@ -33,33 +32,9 @@ export function createApp(options: CreateAppProps) {
         })
 
         const App = () => {
-          const id = useId()
-
-          return (
-            <HoistHTMLContext.Provider
-              value={useMemo(() => {
-                return (value) => {
-                  console.warn('should hoist', value)
-                }
-              }, [])}
-            >
-              <html lang="en-US">
-                <head>
-                  <DevHead ssrID={id} />
-                  <script
-                    dangerouslySetInnerHTML={{
-                      __html: `globalThis['global'] = globalThis`,
-                    }}
-                  />
-                  {css?.map((file) => {
-                    return <link key={file} rel="stylesheet" href={file} />
-                  })}
-                  <ServerContextScript />
-                </head>
-                <Root routes={options.routes} {...props} />
-              </html>
-            </HoistHTMLContext.Provider>
-          )
+          return <Root routes={options.routes} {...props} />
+          // const id = useId()
+          // const [hoisted, setHoisted] = useState<FoundHTML | null>(null)
         }
 
         AppRegistry.registerComponent('App', () => App)
@@ -121,7 +96,7 @@ export function createApp(options: CreateAppProps) {
       })
         .then(() => {
           // on client we just render
-          render(<Root mode="spa" isClient routes={options.routes} path={window.location.href} />)
+          render(<Root isClient routes={options.routes} path={window.location.href} />)
         })
         .catch((err) => {
           console.error(`Error running client loader resolver "onClientLoaderResolve":`, err)

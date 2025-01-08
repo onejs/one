@@ -1,4 +1,8 @@
-type FoundHTML = [React.ReactNode, React.ReactNode, React.ReactNode];
+export type FoundHTML = [
+    React.ReactElement | null,
+    React.ReactElement | null,
+    React.ReactElement | null
+];
 export declare const HoistHTMLContext: import("react").Context<((props: FoundHTML) => void) | null>;
 /**
  * To enable custom <html> and other html-like stuff in the root _layout
@@ -9,6 +13,5 @@ export declare const HoistHTMLContext: import("react").Context<((props: FoundHTM
  *
  * On client, we just filter it out completely as in One we don't hydrate html
  */
-export declare function useFilteredAndHoistedRootHTML(rootEl: React.ReactNode): import("react").ReactNode;
-export {};
+export declare function useFilteredAndHoistedRootHTML(rootEl: React.ReactNode): [import("react").ReactNode, FoundHTML];
 //# sourceMappingURL=hoistHTML.d.ts.map

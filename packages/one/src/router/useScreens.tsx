@@ -22,6 +22,8 @@ import { Try } from '../views/Try'
 import { useConstant } from '../utils/useConstant'
 import { getServerContext, ServerContextScript } from '../utils/serverContext'
 import { useFilteredAndHoistedRootHTML } from './hoistHTML'
+import { SafeAreaProviderCompat } from '@react-navigation/elements'
+import { DevHead } from '../vite/DevHead'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -172,13 +174,40 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     const res = value.loadRoute()
     const Component = useConstant(() => {
       const BaseComponent = getPageExport(fromImport(res)) as React.ComponentType<any>
+      const serverContext = getServerContext()
 
       // root layout do special html handling
       if (props.segment === '') {
         return forwardRef((props, ref) => {
           // @ts-expect-error
           const out = BaseComponent(props, ref)
-          return useFilteredAndHoistedRootHTML(out)
+          const [children, hoisted] = useFilteredAndHoistedRootHTML(out)
+
+          const html = hoisted?.[0]
+          const head = hoisted?.[1]
+          const body = hoisted?.[2]
+          const { children: headChildren, ...headProps } = head?.props || {}
+
+          return (
+            <html lang="en-US" {...html?.props}>
+              <head {...headProps}>
+                <DevHead />
+                <script
+                  dangerouslySetInnerHTML={{
+                    __html: `globalThis['global'] = globalThis`,
+                  }}
+                />
+                {serverContext?.css?.map((file) => {
+                  return <link key={file} rel="stylesheet" href={file} />
+                })}
+                <ServerContextScript />
+                {headChildren}
+              </head>
+              <body {...body?.props}>
+                <SafeAreaProviderCompat>{children}</SafeAreaProviderCompat>
+              </body>
+            </html>
+          )
         })
       }
 

@@ -1,10 +1,13 @@
+import { useId } from 'react'
+
 // replacing Vites since we control the root
-export function DevHead({ ssrID }: { ssrID: string }) {
+export function DevHead() {
   if (process.env.NODE_ENV === 'development') {
+    const id = useId()
     return (
       <>
-        <link rel="preload" href={ssrID} as="style" />
-        <link rel="stylesheet" href={ssrID} data-ssr-css />
+        <link rel="preload" href={id} as="style" />
+        <link rel="stylesheet" href={id} data-ssr-css />
         <script
           type="module"
           dangerouslySetInnerHTML={{

@@ -20,10 +20,10 @@ import {
 } from '@react-navigation/native'
 import * as React from 'react'
 
-import useLinking from './useLinking'
 import { I18nManager } from 'react-native'
 import { useBackButton } from './useBackButton'
 import { useDocumentTitle } from './useDocumentTitle'
+import useLinking from './useLinking'
 import { useThenable } from './useThenable'
 
 globalThis.REACT_NAVIGATION_DEVTOOLS = new WeakMap()
@@ -116,14 +116,12 @@ function NavigationContainerInner(
   return (
     <LocaleDirContext.Provider value={direction}>
       <LinkingContext.Provider value={linkingContext}>
-        <ThemeProvider value={theme}>
-          <BaseNavigationContainer
-            {...rest}
-            theme={theme}
-            ref={refContainer}
-            initialState={initialState ?? rest.initialState}
-          />
-        </ThemeProvider>
+        <BaseNavigationContainer
+          {...rest}
+          theme={theme}
+          ref={refContainer}
+          initialState={initialState ?? rest.initialState}
+        />
       </LinkingContext.Provider>
     </LocaleDirContext.Provider>
   )
