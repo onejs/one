@@ -9,7 +9,7 @@ describe(`Routing Tests`, () => {
       const response = await fetch(serverUrl)
       const html = await response.text()
 
-      expect(html).toContain('Welcome to VXS')
+      expect(html).toContain('Welcome to One')
     })
 
     it('should return 200 status for the home page', async () => {
