@@ -6,19 +6,28 @@
  * All modifications except formatting should be marked with `// @modified` comment.
  */
 
-import type { NavigationState, PartialState, Route } from '@react-navigation/routers'
-import * as queryString from 'query-string'
+// @modified - start
+import {
+  type ConfigItemMods,
+  getPathWithConventionsCollapsed,
+  appendBaseUrl,
+  type AdditionalOptions,
+} from './getPathFromState-mods'
+// @modified - end
 
-import type { PathConfig, PathConfigMap } from './types'
+import type { NavigationState, PartialState, Route } from '@react-navigation/routers'
+// import * as queryString from 'query-string' // @modified: not used
+
+import type { PathConfig, PathConfigMap } from '@react-navigation/core' // @modified: import from package instead of relative code
 import { validatePathConfig } from './validatePathConfig'
 
 type Options<ParamList extends {}> = {
   path?: string
   initialRouteName?: string
   screens: PathConfigMap<ParamList>
-}
+} & AdditionalOptions // @modified: add `AdditionalOptions`
 
-type State = NavigationState | Omit<PartialState<NavigationState>, 'stale'>
+export type State = NavigationState | Omit<PartialState<NavigationState>, 'stale'> // @modified: add export
 
 type StringifyConfig = Record<string, (value: any) => string>
 
@@ -26,7 +35,7 @@ type ConfigItem = {
   pattern?: string
   stringify?: StringifyConfig
   screens?: Record<string, ConfigItem>
-}
+} & ConfigItemMods // @modified: union `ConfigItemMods` for modifications
 
 const getActiveRoute = (state: State): { name: string; params?: object } => {
   const route =
@@ -57,6 +66,7 @@ const getNormalizedConfigs = (options?: Options<{}>) => {
   return normalizedConfigs
 }
 
+// @modified - start: extract an underlying `getPathDataFromState` function so we can get both the path and the params
 /**
  * Utility to serialize a navigation state object to a path string.
  *
@@ -90,6 +100,15 @@ export function getPathFromState<ParamList extends {}>(
   state: State,
   options?: Options<ParamList>
 ): string {
+  return getPathDataFromState(state, options).path
+}
+
+export function getPathDataFromState<ParamList extends {}>(
+  state: State,
+  options?: Options<ParamList>
+) {
+  // @modified - end
+
   if (state == null) {
     throw Error("Got 'undefined' for the navigation state. You must pass a valid state object.")
   }
@@ -113,12 +132,12 @@ export function getPathFromState<ParamList extends {}>(
 
     let pattern: string | undefined
 
-    let focusedParams: Record<string, any> | undefined
+    let focusedParams: Record<string, any> | undefined // @modified: value change to any type
     const focusedRoute = getActiveRoute(state)
     let currentOptions = configs
 
     // Keep all the route names that appeared during going deeper in config in case the pattern is resolved to undefined
-    const nestedRouteNames = []
+    const nestedRouteNames: string[] = [] // @modified: add type annotation
 
     let hasNext = true
 
@@ -130,16 +149,47 @@ export function getPathFromState<ParamList extends {}>(
       if (route.params) {
         const stringify = currentOptions[route.name]?.stringify
 
+        // @modified - start
+
+        // const currentParams = Object.fromEntries(
+        //   Object.entries(route.params).map(([key, value]) => [
+        //     key,
+        //     stringify?.[key] ? stringify[key](value) : String(value),
+        //   ])
+        // )
+
+        // Better handle array params
         const currentParams = Object.fromEntries(
-          Object.entries(route.params).map(([key, value]) => [
-            key,
-            stringify?.[key] ? stringify[key](value) : String(value),
-          ])
+          Object.entries(route.params!).flatMap(([key, value]) => {
+            if (key === 'screen' || key === 'params') {
+              return []
+            }
+
+            return [
+              [
+                key,
+                stringify?.[key]
+                  ? stringify[key](value)
+                  : Array.isArray(value)
+                    ? value.map(String)
+                    : String(value),
+              ],
+            ]
+          })
         )
 
-        if (pattern) {
-          Object.assign(allParams, currentParams)
-        }
+        // @modified - end
+
+        // @modified - start
+
+        // if (pattern) {
+        //   Object.assign(allParams, currentParams)
+        // }
+
+        // Always assign params, as non pattern routes may still have query params
+        Object.assign(allParams, currentParams)
+
+        // @modified - end
 
         if (focusedRoute === route) {
           // If this is the focused route, keep the params for later use
@@ -164,7 +214,28 @@ export function getPathFromState<ParamList extends {}>(
 
       // If there is no `screens` property or no nested state, we return pattern
       if (!currentOptions[route.name].screens || route.state === undefined) {
-        hasNext = false
+        // @modified - start
+
+        // hasNext = false
+
+        // One can end up in some configs that React Navigation doesn't seem to support
+        // We can get around this by providing a fake state
+        const screens = currentOptions[route.name].screens
+        const screen =
+          route.params && 'screen' in route.params
+            ? route.params.screen?.toString()
+            : screens
+              ? Object.keys(screens)[0]
+              : undefined
+
+        if (screen && screens && currentOptions[route.name].screens?.[screen]) {
+          route = { ...screens[screen], name: screen, key: screen }
+          currentOptions = screens
+        } else {
+          hasNext = false
+        }
+
+        // @modified - end
       } else {
         index =
           typeof route.state.index === 'number' ? route.state.index : route.state.routes.length - 1
@@ -183,45 +254,57 @@ export function getPathFromState<ParamList extends {}>(
       }
     }
 
-    if (pattern === undefined) {
-      pattern = nestedRouteNames.join('/')
-    }
-
+    // @modified - start
     if (currentOptions[route.name] !== undefined) {
-      path += pattern
-        .split('/')
-        .map((p) => {
-          const name = getParamName(p)
+      // path += pattern
+      //   .split('/')
+      //   .map((p) => {
+      //     const name = getParamName(p)
 
-          // We don't know what to show for wildcard patterns
-          // Showing the route name seems ok, though whatever we show here will be incorrect
-          // Since the page doesn't actually exist
-          if (p === '*') {
-            return route.name
-          }
+      //     // We don't know what to show for wildcard patterns
+      //     // Showing the route name seems ok, though whatever we show here will be incorrect
+      //     // Since the page doesn't actually exist
+      //     if (p === '*') {
+      //       return route.name
+      //     }
 
-          // If the path has a pattern for a param, put the param in the path
-          if (p.startsWith(':')) {
-            const value = allParams[name]
+      //     // If the path has a pattern for a param, put the param in the path
+      //     if (p.startsWith(':')) {
+      //       const value = allParams[name]
 
-            if (value === undefined && p.endsWith('?')) {
-              // Optional params without value assigned in route.params should be ignored
-              return ''
-            }
+      //       if (value === undefined && p.endsWith('?')) {
+      //         // Optional params without value assigned in route.params should be ignored
+      //         return ''
+      //       }
 
-            // Valid characters according to
-            // https://datatracker.ietf.org/doc/html/rfc3986#section-3.3 (see pchar definition)
-            return String(value).replace(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]/g, (char) =>
-              encodeURIComponent(char)
-            )
-          }
+      //       // Valid characters according to
+      //       // https://datatracker.ietf.org/doc/html/rfc3986#section-3.3 (see pchar definition)
+      //       return String(value).replace(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]/g, (char) =>
+      //         encodeURIComponent(char)
+      //       )
+      //     }
 
-          return encodeURIComponent(p)
-        })
-        .join('/')
-    } else {
+      //     return encodeURIComponent(p)
+      //   })
+      //   .join('/')
+
+      if (pattern === undefined) {
+        pattern = nestedRouteNames.join('/')
+      }
+
+      path += getPathWithConventionsCollapsed({
+        ...options,
+        pattern,
+        route,
+        params: allParams,
+        initialRouteName: configs[route.name]?.initialRouteName,
+      })
+
+      // } else {
+    } else if (!route.name.startsWith('+')) {
       path += encodeURIComponent(route.name)
     }
+    // @modified - end
 
     if (!focusedParams) {
       focusedParams = focusedRoute.params
@@ -237,7 +320,14 @@ export function getPathFromState<ParamList extends {}>(
         }
       }
 
-      const query = queryString.stringify(focusedParams, { sort: false })
+      // @modified - start
+      delete focusedParams['#']
+      // @modified - end
+
+      // @modified - start
+      // const query = queryString.stringify(focusedParams, { sort: false })
+      const query = new URLSearchParams(focusedParams).toString()
+      // @modified - end
 
       if (query) {
         path += `?${query}`
@@ -256,7 +346,20 @@ export function getPathFromState<ParamList extends {}>(
     path = joinPaths(options.path, path)
   }
 
-  return path
+  // @modified - start
+  path = appendBaseUrl(path)
+  // @modified - end
+
+  // @modified - start
+  if (allParams['#']) {
+    path += `#${allParams['#']}`
+  }
+  // @modified - end
+
+  // @modified - start
+  // return path
+  return { path, params: allParams }
+  // @modified - end
 }
 
 const getParamName = (pattern: string) => pattern.replace(/^:/, '').replace(/\?$/, '')
@@ -310,3 +413,7 @@ const createNormalizedConfigs = (
       return [name, result]
     })
   )
+
+// @modified - start
+export default getPathFromState
+// @modified - end

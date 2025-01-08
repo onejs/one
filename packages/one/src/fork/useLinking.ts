@@ -24,7 +24,7 @@ import createMemoryHistory from './createMemoryHistory'
 import { ServerLocationContext } from '../router/serverLocationContext'
 /* End of fork */
 import type { LinkingOptions } from '@react-navigation/native'
-import { appendBaseUrl } from './getPathFromState'
+import { appendBaseUrl } from './getPathFromState-mods'
 
 type ResultState = ReturnType<typeof getStateFromPathDefault>
 
