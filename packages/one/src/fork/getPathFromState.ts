@@ -1,35 +1,33 @@
-import { validatePathConfig, type PathConfig, type PathConfigMap } from '@react-navigation/core'
+/**
+ * This file is copied from the react-navigation repo:
+ * https://github.com/react-navigation/react-navigation/blob/%40react-navigation/core%407.3.1/packages/core/src/validatePathConfig.tsx
+ *
+ * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
+ * All modifications except formatting should be marked with `// @modified` comment.
+ */
+
 import type { NavigationState, PartialState, Route } from '@react-navigation/routers'
+import * as queryString from 'query-string'
 
-import {
-  matchDeepDynamicRouteName,
-  matchDynamicName,
-  matchGroupName,
-  testNotFound,
-} from '../router/matchers'
+import { getPatternParts, type PatternPart } from './getPatternParts'
+import type { PathConfig, PathConfigMap } from './types'
+import { validatePathConfig } from './validatePathConfig'
 
-type Options<ParamList extends object> = {
+type Options<ParamList extends {}> = {
+  path?: string
   initialRouteName?: string
   screens: PathConfigMap<ParamList>
 }
 
-export type State = NavigationState | Omit<PartialState<NavigationState>, 'stale'>
+type State = NavigationState | Omit<PartialState<NavigationState>, 'stale'>
 
-type StringifyConfig = Record<string, (value: any) => string>
+type StringifyConfig = Record<string, (value: unknown) => string>
 
 type ConfigItem = {
-  pattern?: string
+  parts?: PatternPart[]
   stringify?: StringifyConfig
   screens?: Record<string, ConfigItem>
-  // Used as fallback for groups
-  initialRouteName?: string
 }
-
-type CustomRoute = Route<string> & {
-  state?: State
-}
-
-const DEFAULT_SCREENS: PathConfigMap<object> = {}
 
 const getActiveRoute = (state: State): { name: string; params?: object } => {
   const route =
@@ -41,42 +39,23 @@ const getActiveRoute = (state: State): { name: string; params?: object } => {
     return getActiveRoute(route.state)
   }
 
-  if (route && isInvalidParams(route.params)) {
-    return getActiveRoute(createFakeState(route.params))
-  }
-
   return route
 }
 
-function createFakeState(params: StateAsParams) {
-  return {
-    stale: false,
-    type: 'UNKNOWN',
-    key: 'UNKNOWN',
-    index: 0,
-    routeNames: [],
-    routes: [
-      {
-        key: 'UNKNOWN',
-        name: params.screen,
-        params: params.params,
-        path: params.path,
-      },
-    ],
-  }
-}
+const cachedNormalizedConfigs = new WeakMap<PathConfigMap<{}>, Record<string, ConfigItem>>()
 
-function segmentMatchesConvention(segment: string): boolean {
-  return (
-    segment === 'index' ||
-    matchDynamicName(segment) != null ||
-    matchGroupName(segment) != null ||
-    matchDeepDynamicRouteName(segment) != null
-  )
-}
+const getNormalizedConfigs = (options?: Options<{}>) => {
+  if (!options?.screens) return {}
 
-function encodeURIComponentPreservingBrackets(str: string) {
-  return encodeURIComponent(str).replace(/%5B/g, '[').replace(/%5D/g, ']')
+  const cached = cachedNormalizedConfigs.get(options?.screens)
+
+  if (cached) return cached
+
+  const normalizedConfigs = createNormalizedConfigs(options.screens)
+
+  cachedNormalizedConfigs.set(options.screens, normalizedConfigs)
+
+  return normalizedConfigs
 }
 
 /**
@@ -108,529 +87,194 @@ function encodeURIComponentPreservingBrackets(str: string) {
  * @param options Extra options to fine-tune how to serialize the path.
  * @returns Path representing the state, e.g. /foo/bar?count=42.
  */
-export default function getPathFromState<ParamList extends object>(
+export function getPathFromState<ParamList extends {}>(
   state: State,
-  _options?: Options<ParamList> & {
-    preserveGroups?: boolean
-    preserveDynamicRoutes?: boolean
-  }
+  options?: Options<ParamList>
 ): string {
-  return getPathDataFromState(state, _options).path
-}
-
-export function getPathDataFromState<ParamList extends object>(
-  state: State,
-  _options: Options<ParamList> & {
-    preserveGroups?: boolean
-    preserveDynamicRoutes?: boolean
-  } = { screens: DEFAULT_SCREENS }
-) {
   if (state == null) {
-    throw Error("Got 'undefined' for the navigation state. You must pass a valid state object.")
-  }
-
-  const { preserveGroups, preserveDynamicRoutes, ...options } = _options
-
-  validatePathConfig(options)
-
-  // One disallows usage without a linking config.
-  if (Object.is(options.screens, DEFAULT_SCREENS)) {
-    throw Error("You must pass a 'screens' object to 'getPathFromState' to generate a path.")
-  }
-
-  return getPathFromResolvedState(
-    state,
-    // Create a normalized configs object which will be easier to use
-    createNormalizedConfigs(options.screens),
-    { preserveGroups, preserveDynamicRoutes }
-  )
-}
-
-function processParamsWithUserSettings(configItem: ConfigItem, params: Record<string, any>) {
-  const stringify = configItem?.stringify
-
-  return Object.fromEntries(
-    Object.entries(params).map(([key, value]) => [
-      key,
-      // TODO: Strip nullish values here.
-      stringify?.[key]
-        ? stringify[key](value)
-        : // Preserve rest params
-          Array.isArray(value)
-          ? value
-          : String(value),
-    ])
-  )
-}
-
-export function deepEqual(a: any, b: any) {
-  if (a === b) {
-    return true
-  }
-
-  if (Array.isArray(a) && Array.isArray(b)) {
-    if (a.length !== b.length) {
-      return false
-    }
-
-    for (let i = 0; i < a.length; i++) {
-      if (!deepEqual(a[i], b[i])) {
-        return false
-      }
-    }
-
-    return true
-  }
-
-  if (typeof a === 'object' && typeof b === 'object') {
-    const keysA = Object.keys(a)
-    const keysB = Object.keys(b)
-
-    if (keysA.length !== keysB.length) {
-      return false
-    }
-
-    for (const key of keysA) {
-      if (!deepEqual(a[key], b[key])) {
-        return false
-      }
-    }
-
-    return true
-  }
-
-  return false
-}
-
-function walkConfigItems(
-  route: CustomRoute,
-  focusedRoute: {
-    name: string
-    params?: object
-  },
-  configs: Record<string, ConfigItem>,
-  {
-    preserveDynamicRoutes,
-  }: {
-    preserveDynamicRoutes?: boolean
-  }
-) {
-  // NOTE: Fill in current route using state that was passed as params.
-  if (!route.state && isInvalidParams(route.params)) {
-    // FIXME: This is a hack to make things work since the `route` object is immutable on react-navigation v7 (`TypeError: Cannot add property state, object is not extensible`), and seems that things are working. But we might want to do a proper migration for these forked code.
-    // route.state = createFakeState(route.params)
-  }
-
-  let pattern: string | null = null
-  let focusedParams: Record<string, any> | undefined
-  let hash: string | undefined
-
-  const collectedParams: Record<string, any> = {}
-
-  while (route.name in configs) {
-    const configItem = configs[route.name]
-    const inputPattern = configItem.pattern
-
-    if (inputPattern == null) {
-      // This should never happen in One.
-      throw new Error('Unexpected: No pattern found for route ' + route.name)
-    }
-    pattern = inputPattern
-
-    if (route.params) {
-      if (route.params['#']) {
-        hash = route.params['#']
-        delete route.params['#']
-      }
-
-      const params = processParamsWithUserSettings(configItem, route.params)
-
-      if (pattern !== undefined && pattern !== null) {
-        Object.assign(collectedParams, params)
-      }
-
-      if (deepEqual(focusedRoute, route)) {
-        if (preserveDynamicRoutes) {
-          focusedParams = params
-        } else {
-          // If this is the focused route, keep the params for later use
-          // We save it here since it's been stringified already
-          focusedParams = getParamsWithConventionsCollapsed({
-            params,
-            pattern,
-            routeName: route.name,
-          })
-        }
-      }
-    }
-
-    if (!route.state && isInvalidParams(route.params)) {
-      // FIXME: This is a hack to make things work since the `route` object is immutable on react-navigation v7, and seems that things are working. But we might want to do a proper migration for these forked code.
-      // route.state = createFakeState(route.params)
-    }
-
-    // If there is no `screens` property or no nested state, we return pattern
-    if (!configItem.screens || route.state === undefined) {
-      if (
-        configItem.initialRouteName &&
-        configItem.screens &&
-        configItem.initialRouteName in configItem.screens &&
-        configItem.screens[configItem.initialRouteName]?.pattern
-      ) {
-        const initialRouteConfig = configItem.screens[configItem.initialRouteName]
-
-        // NOTE: Big hack to support initial route changes in tab bars.
-        pattern = initialRouteConfig.pattern!
-        if (focusedParams) {
-          if (!preserveDynamicRoutes) {
-            // If this is the focused route, keep the params for later use
-            // We save it here since it's been stringified already
-            focusedParams = getParamsWithConventionsCollapsed({
-              params: focusedParams,
-              pattern,
-              routeName: route.name,
-            })
-          }
-        }
-      }
-      break
-    }
-
-    const index = route.state.index ?? route.state.routes.length - 1
-
-    const nextRoute = route.state.routes[index]
-    const nestedScreens = configItem.screens
-
-    // if there is config for next route name, we go deeper
-    if (nestedScreens && nextRoute.name in nestedScreens) {
-      route = nextRoute as CustomRoute
-      configs = nestedScreens
-    } else {
-      // If not, there is no sense in going deeper in config
-      break
-    }
-  }
-
-  if (pattern == null) {
-    throw new Error(
-      `No pattern found for route "${route.name}". Options are: ${Object.keys(configs).join(', ')}.`
+    throw Error(
+      `Got '${String(state)}' for the navigation state. You must pass a valid state object.`
     )
   }
 
-  if (pattern && !focusedParams && focusedRoute.params) {
-    if (preserveDynamicRoutes) {
-      focusedParams = focusedRoute.params
-    } else {
-      // If this is the focused route, keep the params for later use
-      // We save it here since it's been stringified already
-      focusedParams = getParamsWithConventionsCollapsed({
-        params: focusedRoute.params,
-        pattern,
-        routeName: route.name,
-      })
-    }
-    focusedParams = {
-      ...focusedParams,
-      ...collectedParams,
-    }
+  if (options) {
+    validatePathConfig(options)
   }
 
-  return {
-    pattern,
-    nextRoute: route,
-    focusedParams,
-    hash,
-    params: collectedParams,
-  }
-}
+  const configs = getNormalizedConfigs(options)
 
-function getPathFromResolvedState(
-  state: State,
-  configs: Record<string, ConfigItem>,
-  {
-    preserveGroups,
-    preserveDynamicRoutes,
-  }: { preserveGroups?: boolean; preserveDynamicRoutes?: boolean }
-) {
-  let path = ''
-  let current: State = state
-  let hash: string | undefined
+  let path = '/'
+  let current: State | undefined = state
 
-  const allParams: Record<string, any> = {}
+  const allParams: Record<string, string> = {}
 
   while (current) {
-    path += '/'
-
-    // Make mutable copies to ensure we don't leak state outside of the function.
-    const route = current.routes[current.index ?? 0] as CustomRoute
-
-    // NOTE: Fill in current route using state that was passed as params.
-    // if (isInvalidParams(route.params)) {
-    if (!route.state && isInvalidParams(route.params)) {
-      // FIXME: This is a hack to make things work since the `route` object is immutable on react-navigation v7, and seems that things are working. But we might want to do a proper migration for these forked code.
-      // route.state = createFakeState(route.params)
+    let index = typeof current.index === 'number' ? current.index : 0
+    let route = current.routes[index] as Route<string> & {
+      state?: State
     }
 
-    const {
-      pattern,
-      params,
-      nextRoute,
-      focusedParams,
-      hash: $hash,
-    } = walkConfigItems(route, getActiveRoute(current), { ...configs }, { preserveDynamicRoutes })
+    let parts: PatternPart[] | undefined
 
-    if ($hash) {
-      hash = $hash
-    }
+    let focusedParams: Record<string, string> | undefined
+    let currentOptions = configs
 
-    Object.assign(allParams, params)
+    const focusedRoute = getActiveRoute(state)
 
-    path += getPathWithConventionsCollapsed({
-      pattern,
-      routePath: nextRoute.path,
-      params: allParams,
-      initialRouteName: configs[nextRoute.name]?.initialRouteName,
-      preserveGroups,
-      preserveDynamicRoutes,
-    })
+    // Keep all the route names that appeared during going deeper in config in case the pattern is resolved to undefined
+    const nestedRouteNames = []
 
-    if (
-      nextRoute.state &&
-      // NOTE: The upstream implementation allows for sending in synthetic states (states that weren't generated by `getStateFromPath`)
-      // and any invalid routes will simply be ignored.
-      // Because of this, we need to check if the next route is valid before continuing, otherwise our more strict
-      // implementation will throw an error.
-      configs[nextRoute.state.routes?.[nextRoute.state?.index ?? 0]?.name]
-    ) {
-      // Continue looping with the next state if available.
-      current = nextRoute.state
-    } else {
-      // Finished crawling state.
+    let hasNext = true
 
-      // Check for query params before exiting.
-      if (
-        focusedParams &&
-        // note: using [...route] is returning an array which shouldn't go on search, this is just
-        // an initial hacky test to work around this as we dont want to pass that to search
-        !Array.isArray(focusedParams)
-      ) {
-        for (const param in focusedParams) {
-          // TODO: This is not good. We shouldn't squat strings named "undefined".
-          if (focusedParams[param] === 'undefined') {
-            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-            delete focusedParams[param]
-          }
+    while (route.name in currentOptions && hasNext) {
+      parts = currentOptions[route.name].parts
+
+      nestedRouteNames.push(route.name)
+
+      if (route.params) {
+        const stringify = currentOptions[route.name]?.stringify
+
+        const currentParams = Object.fromEntries(
+          Object.entries(route.params).map(([key, value]) => [
+            key,
+            stringify?.[key] ? stringify[key](value) : String(value),
+          ])
+        )
+
+        if (parts?.length) {
+          Object.assign(allParams, currentParams)
         }
 
-        const query = new URLSearchParams(focusedParams).toString()
-        if (query) {
-          path += `?${query}`
+        if (focusedRoute === route) {
+          // If this is the focused route, keep the params for later use
+          // We save it here since it's been stringified already
+          focusedParams = { ...currentParams }
+
+          parts
+            // eslint-disable-next-line no-loop-func
+            ?.forEach(({ param }) => {
+              if (param) {
+                // Remove the params present in the pattern since we'll only use the rest for query string
+                if (focusedParams) {
+                  // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+                  delete focusedParams[param]
+                }
+              }
+            })
         }
       }
-      break
-    }
-  }
 
-  if (hash) {
-    allParams['#'] = hash
-    path += `#${hash}`
-  }
-
-  const params = decodeParams(allParams)
-
-  return { path: appendBaseUrl(basicSanitizePath(path)), params }
-}
-
-function decodeParams(params: Record<string, string>) {
-  const parsed: Record<string, any> = {}
-
-  for (const [key, value] of Object.entries(params)) {
-    try {
-      if (Array.isArray(value)) {
-        parsed[key] = value.map((v) => decodeURIComponent(v))
+      // If there is no `screens` property or no nested state, we return pattern
+      if (!currentOptions[route.name].screens || route.state === undefined) {
+        hasNext = false
       } else {
-        parsed[key] = decodeURIComponent(value)
+        index =
+          typeof route.state.index === 'number' ? route.state.index : route.state.routes.length - 1
+
+        const nextRoute = route.state.routes[index]
+        const nestedConfig = currentOptions[route.name].screens
+
+        // if there is config for next route name, we go deeper
+        if (nestedConfig && nextRoute.name in nestedConfig) {
+          route = nextRoute as Route<string> & { state?: State }
+          currentOptions = nestedConfig
+        } else {
+          // If not, there is no sense in going deeper in config
+          hasNext = false
+        }
       }
-    } catch {
-      parsed[key] = value
     }
-  }
 
-  return parsed
-}
-
-function getPathWithConventionsCollapsed({
-  pattern,
-  routePath,
-  params,
-  preserveGroups,
-  preserveDynamicRoutes,
-  initialRouteName,
-}: {
-  pattern: string
-  routePath?: string
-  params: Record<string, any>
-  preserveGroups?: boolean
-  preserveDynamicRoutes?: boolean
-  initialRouteName?: string
-}) {
-  const segments = pattern.split('/')
-  return segments
-    .map((p, i) => {
-      const name = getParamName(p)
-
-      // We don't know what to show for wildcard patterns
-      // Showing the route name seems ok, though whatever we show here will be incorrect
-      // Since the page doesn't actually exist
-      if (p.startsWith('*')) {
-        if (preserveDynamicRoutes) {
-          if (name === 'not-found') {
-            return '+not-found'
+    if (currentOptions[route.name] !== undefined) {
+      path += parts
+        ?.map(({ segment, param, optional }) => {
+          // We don't know what to show for wildcard patterns
+          // Showing the route name seems ok, though whatever we show here will be incorrect
+          // Since the page doesn't actually exist
+          if (segment === '*') {
+            return route.name
           }
-          return `[...${name}]`
-        }
-        if (params[name]) {
-          if (Array.isArray(params[name])) {
-            return params[name].join('/')
-          }
-          return params[name]
-        }
-        if (i === 0) {
-          // This can occur when a wildcard matches all routes and the given path was `/`.
-          return routePath
-        }
-        // remove existing segments from route.path and return it
-        // this is used for nested wildcard routes. Without this, the path would add
-        // all nested segments to the beginning of the wildcard route.
-        return routePath
-          ?.split('/')
-          .slice(i + 1)
-          .join('/')
-      }
 
-      // If the path has a pattern for a param, put the param in the path
-      if (p.startsWith(':')) {
-        if (preserveDynamicRoutes) {
-          return `[${name}]`
-        }
-        // Optional params without value assigned in route.params should be ignored
-        return params[name]
-      }
+          // If the path has a pattern for a param, put the param in the path
+          if (param) {
+            const value = allParams[param]
 
-      if (!preserveGroups && matchGroupName(p) != null) {
-        // When the last part is a group it could be a shared URL
-        // if the route has an initialRouteName defined, then we should
-        // use that as the component path as we can assume it will be shown.
-        if (segments.length - 1 === i) {
-          if (initialRouteName) {
-            // Return an empty string if the init route is ambiguous.
-            if (segmentMatchesConvention(initialRouteName)) {
+            if (value === undefined && optional) {
+              // Optional params without value assigned in route.params should be ignored
               return ''
             }
-            return encodeURIComponentPreservingBrackets(initialRouteName)
+
+            // Valid characters according to
+            // https://datatracker.ietf.org/doc/html/rfc3986#section-3.3 (see pchar definition)
+            return String(value).replace(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]/g, (char) =>
+              encodeURIComponent(char)
+            )
           }
+
+          return encodeURIComponent(segment)
+        })
+        .join('/')
+    } else {
+      path += encodeURIComponent(route.name)
+    }
+
+    if (!focusedParams && focusedRoute.params) {
+      focusedParams = Object.fromEntries(
+        Object.entries(focusedRoute.params).map(([key, value]) => [key, String(value)])
+      )
+    }
+
+    if (route.state) {
+      path += '/'
+    } else if (focusedParams) {
+      for (const param in focusedParams) {
+        if (focusedParams[param] === 'undefined') {
+          // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+          delete focusedParams[param]
         }
-        return ''
       }
-      // Preserve dynamic syntax for rehydration
-      return encodeURIComponentPreservingBrackets(p)
-    })
-    .map((v) => v ?? '')
-    .join('/')
-}
 
-/** Given a set of query params and a pattern with possible conventions, collapse the conventions and return the remaining params. */
-function getParamsWithConventionsCollapsed({
-  pattern,
-  routeName,
-  params,
-}: {
-  pattern: string
-  /** Route name is required for matching the wildcard route. This is specific to One. */
-  routeName: string
-  params: object
-}): Record<string, string> {
-  const processedParams: Record<string, string> = { ...params }
+      const query = queryString.stringify(focusedParams, { sort: false })
 
-  // Remove the params present in the pattern since we'll only use the rest for query string
+      if (query) {
+        path += `?${query}`
+      }
+    }
 
-  const segments = pattern.split('/')
-
-  // Dynamic Routes
-  segments
-    .filter((segment) => segment.startsWith(':'))
-    .forEach((segment) => {
-      const name = getParamName(segment)
-      delete processedParams[name]
-    })
-
-  // Deep Dynamic Routes
-  if (segments.some((segment) => segment.startsWith('*'))) {
-    // NOTE: Drop the param name matching the wildcard route name -- this is specific to One.
-    const name = testNotFound(routeName)
-      ? 'not-found'
-      : (matchDeepDynamicRouteName(routeName) ?? routeName)
-
-    delete processedParams[name]
+    current = route.state
   }
 
-  return processedParams
-}
-
-// Remove multiple as well as trailing slashes
-function basicSanitizePath(path: string) {
-  // Remove duplicate slashes like `foo//bar` -> `foo/bar`
-  const simplifiedPath = path.replace(/\/+/g, '/')
-  if (simplifiedPath.length <= 1) {
-    return simplifiedPath
-  }
-  // Remove trailing slash like `foo/bar/` -> `foo/bar`
-  return simplifiedPath.replace(/\/$/, '')
-}
-
-type StateAsParams = {
-  initial: boolean
-  path?: string
-  screen: string
-  params: Record<string, any>
-}
-
-// TODO: Make StackRouter not do this...
-// Detect if the params came from StackRouter using `params` to pass around internal state.
-function isInvalidParams(params?: Record<string, any>): params is StateAsParams {
-  if (!params) {
-    return false
+  // Include the root path if specified
+  if (options?.path) {
+    path = `${options.path}/${path}`
   }
 
-  if ('params' in params && typeof params.params === 'object' && !!params.params) {
-    return true
+  // Remove multiple as well as trailing slashes
+  path = path.replace(/\/+/g, '/')
+  path = path.length > 1 ? path.replace(/\/$/, '') : path
+
+  // If path doesn't start with a slash, add it
+  // This makes sure that history.pushState will update the path correctly instead of appending
+  if (!path.startsWith('/')) {
+    path = `/${path}`
   }
 
-  return (
-    'initial' in params &&
-    typeof params.initial === 'boolean' &&
-    // "path" in params &&
-    'screen' in params
-  )
+  return path
 }
-
-const getParamName = (pattern: string) => pattern.replace(/^[:*]/, '').replace(/\?$/, '')
-
-const joinPaths = (...paths: string[]): string =>
-  ([] as string[])
-    .concat(...paths.map((p) => p.split('/')))
-    .filter(Boolean)
-    .join('/')
 
 const createConfigItem = (
   config: PathConfig<object> | string,
-  parentPattern?: string
+  parentParts?: PatternPart[]
 ): ConfigItem => {
   if (typeof config === 'string') {
     // If a string is specified as the value of the key(e.g. Foo: '/path'), use it as the pattern
-    const pattern = parentPattern ? joinPaths(parentPattern, config) : config
+    const parts = getPatternParts(config)
 
-    return { pattern }
+    if (parentParts) {
+      return { parts: [...parentParts, ...parts] }
+    }
+
+    return { parts }
   }
 
   if (config.exact && config.path === undefined) {
@@ -641,36 +285,30 @@ const createConfigItem = (
 
   // If an object is specified as the value (e.g. Foo: { ... }),
   // It can have `path` property and `screens` prop which has nested configs
-  const pattern =
-    config.exact !== true ? joinPaths(parentPattern || '', config.path || '') : config.path || ''
+  const parts =
+    config.exact !== true
+      ? [...(parentParts || []), ...(config.path ? getPatternParts(config.path) : [])]
+      : config.path
+        ? getPatternParts(config.path)
+        : undefined
 
-  const screens = config.screens ? createNormalizedConfigs(config.screens, pattern) : undefined
+  const screens = config.screens ? createNormalizedConfigs(config.screens, parts) : undefined
 
   return {
-    // Normalize pattern to remove any leading, trailing slashes, duplicate slashes etc.
-    pattern: pattern?.split('/').filter(Boolean).join('/'),
+    parts,
     stringify: config.stringify,
     screens,
-    initialRouteName: config.initialRouteName,
   }
 }
 
 const createNormalizedConfigs = (
   options: PathConfigMap<object>,
-  pattern?: string
+  parts?: PatternPart[]
 ): Record<string, ConfigItem> =>
   Object.fromEntries(
-    Object.entries(options).map(([name, c]) => [name, createConfigItem(c, pattern)])
-  )
+    Object.entries(options).map(([name, c]) => {
+      const result = createConfigItem(c, parts)
 
-export function appendBaseUrl(
-  path: string,
-  baseUrl: string | undefined = process.env.EXPO_BASE_URL
-) {
-  if (process.env.NODE_ENV !== 'development') {
-    if (baseUrl) {
-      return `/${baseUrl.replace(/^\/+/, '').replace(/\/$/, '')}${path}`
-    }
-  }
-  return path
-}
+      return [name, result]
+    })
+  )
