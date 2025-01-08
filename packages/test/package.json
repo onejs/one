@@ -5,7 +5,8 @@
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
-    "./setup": "./src/setup.ts"
+    "./setup": "./src/setup.ts",
+    ".": "./src/index.ts"
   },
   "dependencies": {
     "react": "^18.3.1 || ^19.0.0"

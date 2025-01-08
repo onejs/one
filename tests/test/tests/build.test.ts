@@ -1,7 +1,7 @@
 import { readFile, pathExists } from 'fs-extra'
 import * as path from 'node:path'
 import { describe, expect, it, inject } from 'vitest'
-import { ONLY_TEST_DEV } from '../../../packages/one/test/_constants'
+import { ONLY_TEST_DEV } from '@vxrn/test'
 
 describe('Simple Build Tests', () => {
   if (ONLY_TEST_DEV) {

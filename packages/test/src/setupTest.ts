@@ -1,8 +1,6 @@
 import getPort from 'get-port'
 import { exec, spawn, type ChildProcess } from 'node:child_process'
-
-export const ONLY_TEST_DEV = process.env.TEST_ONLY === 'dev'
-export const ONLY_TEST_PROD = process.env.TEST_ONLY === 'prod'
+import { ONLY_TEST_DEV, ONLY_TEST_PROD } from './constants'
 
 export type TestInfo = {
   testProdPort: number
