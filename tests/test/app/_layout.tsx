@@ -4,32 +4,24 @@ import '~/features/styles/tamagui.css'
 import './_layout.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Stack } from 'one'
 import { TamaguiProvider } from 'tamagui'
+import { LoadProgressBar, Slot } from 'one'
 import config from '../config/tamagui.config'
 
 export default function Layout() {
   return (
-    <>
+    <html lang="ab">
+      <meta id="test-meta" />
+      <title>test title</title>
+
       <LoadProgressBar />
 
       <SchemeProvider>
         <TamaguiRootProvider>
-          <Stack>
-            <Stack.Screen name="index" />
-            <Stack.Screen
-              name="sheet"
-              options={{
-                presentation: 'formSheet',
-                gestureDirection: 'vertical',
-                animation: 'slide_from_bottom',
-                headerShown: false,
-              }}
-            />
-          </Stack>
+          <Slot />
         </TamaguiRootProvider>
       </SchemeProvider>
-    </>
+    </html>
   )
 }
 

@@ -1,4 +1,4 @@
-import type { RouteNode } from './Route';
+import type { RouteNode } from './router/Route';
 import type { RouteInfo, RouteInfoCompiled } from './server/createRoutesManifest';
 import type { LoaderProps } from './types';
 export type RequestHandlers = {
