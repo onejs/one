@@ -11609,7 +11609,6 @@ __metadata:
     react-dom: "npm:^18.3.1 || ^19.0.0"
     react-native: "npm:^0.76.5"
     tsx: "npm:^4.19.0"
-    vitest: "npm:^2.1.8"
   peerDependencies:
     react: "*"
     react-dom: "*"

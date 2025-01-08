@@ -12,8 +12,12 @@ import ReactDOMServer from 'react-dom/server.browser'
 import {
   getServerContext,
   SERVER_CONTEXT_POST_RENDER_STRING,
+  ServerContextScript,
   setServerContext,
 } from './utils/serverContext'
+import { useId, useMemo } from 'react'
+import { DevHead } from './vite/DevHead'
+import { HoistHTMLContext } from './router/hoistHTML'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
@@ -29,7 +33,33 @@ export function createApp(options: CreateAppProps) {
         })
 
         const App = () => {
-          return <Root routes={options.routes} {...props} />
+          const id = useId()
+
+          return (
+            <HoistHTMLContext.Provider
+              value={useMemo(() => {
+                return (value) => {
+                  console.warn('should hoist', value)
+                }
+              }, [])}
+            >
+              <html lang="en-US">
+                <head>
+                  <DevHead ssrID={id} />
+                  <script
+                    dangerouslySetInnerHTML={{
+                      __html: `globalThis['global'] = globalThis`,
+                    }}
+                  />
+                  {css?.map((file) => {
+                    return <link key={file} rel="stylesheet" href={file} />
+                  })}
+                  <ServerContextScript />
+                </head>
+                <Root routes={options.routes} {...props} />
+              </html>
+            </HoistHTMLContext.Provider>
+          )
         }
 
         AppRegistry.registerComponent('App', () => App)

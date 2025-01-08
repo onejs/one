@@ -15,12 +15,13 @@ import {
   type RouteNode,
 } from './Route'
 import { sortRoutesWithInitial } from './sortRoutes'
-import { getPageExport } from './utils/getPageExport'
-import { EmptyRoute } from './views/EmptyRoute'
-import { RootErrorBoundary } from './views/RootErrorBoundary'
-import { Try } from './views/Try'
-import { useConstant } from './utils/useConstant'
-import { getServerContext, ServerContextScript } from './utils/serverContext'
+import { getPageExport } from '../utils/getPageExport'
+import { EmptyRoute } from '../views/EmptyRoute'
+import { RootErrorBoundary } from '../views/RootErrorBoundary'
+import { Try } from '../views/Try'
+import { useConstant } from '../utils/useConstant'
+import { getServerContext, ServerContextScript } from '../utils/serverContext'
+import { useFilteredAndHoistedRootHTML } from './hoistHTML'
 
 // `@react-navigation/core` does not expose the Screen or Group components directly, so we have to
 // do this hack.
@@ -155,73 +156,9 @@ function fromImport({ ErrorBoundary, ...component }: LoadedRoute) {
   return { default: getPageExport(component) }
 }
 
-// replacing Vites since we control the root
-function DevHead({ ssrID }: { ssrID: string }) {
-  if (process.env.NODE_ENV === 'development') {
-    return (
-      <>
-        <link rel="preload" href={ssrID} as="style" />
-        <link rel="stylesheet" href={ssrID} data-ssr-css />
-        <script
-          type="module"
-          dangerouslySetInnerHTML={{
-            __html: `import { createHotContext } from "/@vite/client";
-  const hot = createHotContext("/__clear_ssr_css");
-  hot.on("vite:afterUpdate", () => {
-    document
-      .querySelectorAll("[data-ssr-css]")
-      .forEach(node => node.remove());
-  });`,
-          }}
-        />
-        <script
-          type="module"
-          dangerouslySetInnerHTML={{
-            __html: `import { injectIntoGlobalHook } from "/@react-refresh";
-  injectIntoGlobalHook(window);
-  window.$RefreshReg$ = () => {};
-  window.$RefreshSig$ = () => (type) => type;`,
-          }}
-        />
-      </>
-    )
-  }
-
-  return null
-}
-
-/**
- * To enable custom <html> and other html-like stuff in the root _layout
- * we are doing some fancy stuff, namely, just capturing the root layout return
- * value and deep-mapping over it.
- *
- * On server, we filter it out and hoist it to the parent root html in createApp
- *
- * On client, we just filter it out completely as in One we don't hydrate html
- */
-function filterOutSpecialHTMLElements(inels: any) {
-  // TODO
-  // problem: i think we actually do want to control <head /> on client.........
-  // otherwise reacts hoisting logic only works server-side, but thats no bueno
-  // we want style tags and other tags hoisted client side too :/
-
-  // this means we need to redo `createApp` likely
-  return inels
-}
-
 // TODO: Maybe there's a more React-y way to do this?
 // Without this store, the process enters a recursive loop.
 const qualifiedStore = new WeakMap<RouteNode, React.ComponentType<any>>()
-
-// function ServerOnly<Tag extends string>(props: { tag }) {
-//   const id = useId()
-
-//   if (import.meta.env.SSR) {
-//     return props.children()
-//   }
-
-//   const
-// }
 
 /** Wrap the component with various enhancements and add access to child routes. */
 export function getQualifiedRouteComponent(value: RouteNode) {
@@ -239,38 +176,9 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       // root layout do special html handling
       if (props.segment === '') {
         return forwardRef((props, ref) => {
-          // @ts-ignore
+          // @ts-expect-error
           const out = BaseComponent(props, ref)
-          // return filterOutSpecialHTMLElements(out)
-
-          const id = useId()
-
-          const serverContext = getServerContext()
-
-          return (
-            <html lang="en-US">
-              <head>
-                {process.env.NODE_ENV === 'development' ? (
-                  <DevHead ssrID={`/@id/__x00__virtual:ssr-css.css?t=${id}`} />
-                ) : null}
-
-                <script
-                  dangerouslySetInnerHTML={{
-                    __html: `globalThis['global'] = globalThis`,
-                  }}
-                />
-
-                {serverContext?.css?.map((file) => {
-                  return <link key={file} rel="stylesheet" href={file} />
-                })}
-              </head>
-
-              <body>{out}</body>
-
-              {/* could this just be loaded via the same loader.js? as a preload? i think so... */}
-              <ServerContextScript />
-            </html>
-          )
+          return useFilteredAndHoistedRootHTML(out)
         })
       }
 

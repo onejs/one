@@ -30,7 +30,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   function createRequestHandler() {
     return createHandleRequest({
       async handlePage({ route, url, loaderProps }) {
-        console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
+        console.info(
+          ` ⓵  [${route.type}] ${url} resolved to ${route.isNotFound ? '‼️ 404 not found' : route.file}`
+        )
 
         if (route.type === 'spa') {
           // render just the layouts? route.layouts

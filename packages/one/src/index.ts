@@ -9,8 +9,8 @@ export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<
 export type { Endpoint, LoaderProps } from './types'
 
 // base
-export { router } from './imperative-api'
-export { createRoute, route } from './createRoute'
+export { router } from './router/imperative-api'
+export { createRoute, route } from './router/createRoute'
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // middleware
@@ -66,5 +66,5 @@ export * from '@vxrn/universal-color-scheme'
 
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'
-export { useNavigation } from './useNavigation'
+export { useNavigation } from './router/useNavigation'
 export { useLoader } from './useLoader'

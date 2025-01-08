@@ -34,15 +34,14 @@
 
 2.0:
 
+  - layouts can be ssg, while pages can be spa
   - get rid of most patching in favor of plugins that are smart
   - worker threads, 3x+ build speed with paralellizing
   - react-scan update and native re-enable
   - router.redirect directly in layout (server-side)
     - for auth-guard (see tests/test/auth-guard)
     - requires server-side integration logic
-  - react 19
   - use dom with RSC bridge
-  - native tabs and sheet
   - react-native-web-lite proper release
 
 ---

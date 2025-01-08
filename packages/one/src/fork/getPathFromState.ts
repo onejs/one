@@ -6,7 +6,7 @@ import {
   matchDynamicName,
   matchGroupName,
   testNotFound,
-} from '../matchers'
+} from '../router/matchers'
 
 type Options<ParamList extends object> = {
   initialRouteName?: string

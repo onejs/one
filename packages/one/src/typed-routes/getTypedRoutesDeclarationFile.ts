@@ -1,6 +1,6 @@
-import { getRoutes } from '../getRoutes'
-import { isTypedRoute, removeSupportedExtensions } from '../matchers'
-import type { RouteNode } from '../Route'
+import { getRoutes } from '../router/getRoutes'
+import { isTypedRoute, removeSupportedExtensions } from '../router/matchers'
+import type { RouteNode } from '../router/Route'
 import type { One } from '../vite/types'
 
 // /[...param1]/ - Match [...param1]
