@@ -52,6 +52,8 @@ test('clicking "Get Started" link navigates without reloading to docs', async ()
 
   await getStartedLink!.click()
 
+  await new Promise((res) => setTimeout(res, 500))
+
   // expect(loadEventFired).toBe(false)
   expect(page.url()).toBe(`${serverUrl}/docs/introduction`)
 

@@ -5,4 +5,6 @@ export declare function buildReactNative(options: BuildOptions | undefined, { pl
     platform: 'ios' | 'android';
     enableExperimentalReactNativeWithReact19Support?: boolean;
 }): Promise<void>;
+export declare const RNExportNames: string[];
+export declare const RExports: string[];
 //# sourceMappingURL=index.d.ts.map
