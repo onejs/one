@@ -25,9 +25,13 @@ export function createApp(options: CreateAppProps) {
     return {
       options,
       render: async (props: RenderAppProps) => {
-        let { loaderData, loaderProps, css, mode } = props
+        let { loaderData, loaderProps, css, mode, loaderServerData } = props
 
         setServerContext({
+          postRenderData: loaderServerData,
+          loaderData,
+          loaderProps,
+          mode,
           css,
         })
 

@@ -21,7 +21,7 @@ import { RootErrorBoundary } from '../views/RootErrorBoundary'
 import { Try } from '../views/Try'
 import { useConstant } from '../utils/useConstant'
 import { getServerContext, ServerContextScript } from '../utils/serverContext'
-import { useFilteredAndHoistedRootHTML } from './hoistHTML'
+import { filterRootHTML } from './hoistHTML'
 import { SafeAreaProviderCompat } from '@react-navigation/elements'
 import { DevHead } from '../vite/DevHead'
 
@@ -181,8 +181,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         return forwardRef((props, ref) => {
           // @ts-expect-error
           const out = BaseComponent(props, ref)
-          const [children, hoisted] = useFilteredAndHoistedRootHTML(out)
-
+          const [children, hoisted] = filterRootHTML(out)
           const html = hoisted?.[0]
           const head = hoisted?.[1]
           const body = hoisted?.[2]

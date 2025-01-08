@@ -44,7 +44,7 @@ export function ServerContextScript() {
       href={SERVER_CONTEXT_KEY}
       dangerouslySetInnerHTML={{
         __html: `
-            globalThis[${SERVER_CONTEXT_KEY}] = ${JSON.stringify(context)};
+            globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify(context)};
         `,
       }}
     />

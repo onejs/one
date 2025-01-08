@@ -13,5 +13,5 @@ export declare const HoistHTMLContext: import("react").Context<((props: FoundHTM
  *
  * On client, we just filter it out completely as in One we don't hydrate html
  */
-export declare function useFilteredAndHoistedRootHTML(rootEl: React.ReactNode): [import("react").ReactNode, FoundHTML];
+export declare function filterRootHTML(el: React.ReactNode): [React.ReactNode, FoundHTML];
 //# sourceMappingURL=hoistHTML.d.ts.map

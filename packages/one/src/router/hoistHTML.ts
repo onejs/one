@@ -21,17 +21,13 @@ export const HoistHTMLContext = createContext<((props: FoundHTML) => void) | nul
  * On client, we just filter it out completely as in One we don't hydrate html
  */
 
-export function useFilteredAndHoistedRootHTML(rootEl: React.ReactNode) {
-  return filterRootElements(rootEl)
-}
-
 // recursively loop over elements, find:
 //  1. html tag, get the props (no children)
 //  2. body tag, get the props (no children)
 //  3. head tag, get the props (include children)
 // removes html, body, head and leaves the rest
 // returns [theReaminingElements, [html, head, body]]
-function filterRootElements(el: React.ReactNode): [React.ReactNode, FoundHTML] {
+export function filterRootHTML(el: React.ReactNode): [React.ReactNode, FoundHTML] {
   let html: React.ReactElement | null = null
   let head: React.ReactElement | null = null
   let body: React.ReactElement | null = null
