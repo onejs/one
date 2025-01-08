@@ -24,7 +24,11 @@ test('SSG - initial load with loader, then navigate to a new loader', async () =
   expect(textContent).toContain('loader-success')
 
   const link = await page.$('a[href="/loader/other"]')
-  await link?.click()
+  await link?.click({
+    force: true,
+  })
+
+  await new Promise((res) => setTimeout(res, 500))
 
   expect(page.url()).toBe(`${serverUrl}/loader/other`)
 

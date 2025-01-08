@@ -8,6 +8,7 @@ export type TestInfo = {
   devServerPid?: number
   prodServerPid?: number
   buildPid: number | null
+  testDir: string
 }
 
 const waitForServer = (
@@ -57,7 +58,7 @@ export async function setupTestServers(): Promise<TestInfo> {
   const devPort = await getPort()
 
   try {
-    if (!ONLY_TEST_DEV) {
+    if (!ONLY_TEST_DEV && !process.env.SKIP_BUILD) {
       // Run prod build using spawn
       console.info('Starting a prod build.')
       const prodBuildStartedAt = performance.now()
@@ -156,6 +157,7 @@ export async function setupTestServers(): Promise<TestInfo> {
       devServerPid: devServer?.pid,
       prodServerPid: prodServer?.pid,
       buildPid: null,
+      testDir: process.cwd(),
     }
   } catch (error) {
     devServer?.kill()

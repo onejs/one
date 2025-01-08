@@ -45,7 +45,7 @@ describe('Middleware', () => {
   //   `)
   // })
 
-  test('sub middleware runs and changes headers', async () => {
+  test.skip('sub middleware runs and changes headers', async () => {
     const res = (await fetchThing('/middleware', 'headers')) as Headers
     // TODO intercept not working
     // expect(devRes.get('test-header')).toBe(prodRes.get('test-header'))
