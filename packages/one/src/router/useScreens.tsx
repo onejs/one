@@ -229,7 +229,9 @@ export function getQualifiedRouteComponent(value: RouteNode) {
                   }
                   continue
                 }
-                htmlElement.setAttribute(key, val)
+                if (htmlElement.getAttribute(key) !== val) {
+                  htmlElement.setAttribute(key, val)
+                }
               }
             }, [htmlProps])
 
