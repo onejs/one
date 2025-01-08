@@ -1,4 +1,4 @@
-import { cloneElement } from 'react'
+import { cloneElement, isValidElement } from 'react'
 
 type Props = Record<string, any>
 
@@ -51,6 +51,20 @@ export function filterRootHTML(el: React.ReactNode): FoundRootHTML {
       bodyProps = restProps
       return children
     }
+
+    if (process.env.TAMAGUI_TARGET === 'native') {
+      if (
+        isValidElement(element) &&
+        typeof element.type === 'string' &&
+        element.type.toLowerCase() === element.type
+      ) {
+        // filter out things like <meta /> etc on native
+        // because it could just be thown in <html> or a fragment to be hoisted on web
+        return null
+      }
+    }
+
+    return element
   }
 
   const children =
