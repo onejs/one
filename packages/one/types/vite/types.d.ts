@@ -1,7 +1,7 @@
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
 import type { RouteInfo } from '../server/createRoutesManifest';
-import type { GetBabelConfig } from '@vxrn/vite-native-swc';
+import type { GetBabelConfig } from '@vxrn/compiler';
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';

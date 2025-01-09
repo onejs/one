@@ -5,6 +5,12 @@ import { debug, runtimePublicPath } from './constants'
 import type { Options } from './types'
 
 export async function transformSWC(_id: string, code: string, options: Options) {
+  console.trace('go2', _id)
+
+  if (_id.includes('.vite')) {
+    return
+  }
+
   const id = _id.split('?')[0]
 
   if (id === runtimePublicPath) {
@@ -64,16 +70,18 @@ export async function transformSWC(_id: string, code: string, options: Options) 
     }
   })()
 
+  const finalOptions = {
+    filename: id,
+    swcrc: false,
+    configFile: false,
+    ...transformOptions,
+  }
+
   let result: Output = await (async () => {
     try {
-      debug?.(`transformSWC ${id} using ${parser}`)
+      debug?.(`transformSWC ${id} using options:\n${JSON.stringify(finalOptions, null, 2)}`)
 
-      return await transform(code, {
-        filename: id,
-        swcrc: false,
-        configFile: false,
-        ...transformOptions,
-      })
+      return await transform(code, finalOptions)
     } catch (e: any) {
       const message: string = e.message
       const fileStartIndex = message.indexOf('╭─[')
@@ -109,15 +117,21 @@ const SWC_ENV = {
   targets: {
     node: '4',
   },
+  // debug: true,
   include: [],
+  // this breaks the uniswap app for any file with a ...spread
   exclude: [
     'transform-spread',
     'transform-destructuring',
     'transform-object-rest-spread',
+    // `transform-async-to-generator` is relying on `transform-destructuring`.
+    // If we exclude `transform-destructuring` but not `transform-async-to-generator`, the SWC binary will panic
+    // with error: `called `Option::unwrap()` on a `None` value`.
+    // See: https://github.com/swc-project/swc/blob/v1.7.14/crates/swc_ecma_compat_es2015/src/generator.rs#L703-L705
     'transform-async-to-generator',
-    'transform-regenerator',
+    'transform-regenerator', // Similar to above
   ],
-}
+} satisfies SWCOptions['env']
 
 const parsers: Record<string, ParserConfig> = {
   '.tsx': { syntax: 'typescript', tsx: true, decorators: true },

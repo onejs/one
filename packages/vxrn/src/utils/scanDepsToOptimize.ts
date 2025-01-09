@@ -99,7 +99,7 @@ export async function scanDepsToOptimize(
   const { parentDepNames = [], proceededDeps = new Map(), pkgJsonContent } = options
 
   if (options === rootOptions) {
-    console.info(`[one] Scanning for deps to automatically include in optimizeDeps...`)
+    console.trace(`[one] Scanning for deps to automatically include in optimizeDeps...`)
   }
 
   const currentRoot = path.dirname(packageJsonPath)

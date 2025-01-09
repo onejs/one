@@ -1,7 +1,7 @@
 import babel from '@babel/core'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import { createDebugger } from '@vxrn/debug'
-import { transformSWC } from '@vxrn/compiler'
+import { createVXRNCompilerPlugin, transformSWC } from '@vxrn/compiler'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
@@ -213,6 +213,11 @@ export async function getReactNativeConfig(
           },
         },
       },
+
+      createVXRNCompilerPlugin({
+        mode: 'build',
+        environment: 'ios',
+      }),
 
       // TODO i think this probably should be a swc plugin (has to be wasm-rust unfortuantely)
       // but luckily not too bad because its pretty simple: if export type, export let object

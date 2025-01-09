@@ -1,3 +1,4 @@
+import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
 import path, { dirname, resolve } from 'node:path'
@@ -97,6 +98,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       ? []
       : [
           autoDepOptimizePlugin({
+            onScannedDeps({ hasReanimated }) {
+              if (!hasReanimated) {
+                configureVXRNCompilerPlugin({
+                  disableReanimated: true,
+                })
+              }
+            },
             root,
             exclude: Array.isArray(options.ssr?.disableAutoDepsPreBundling)
               ? options.ssr?.disableAutoDepsPreBundling

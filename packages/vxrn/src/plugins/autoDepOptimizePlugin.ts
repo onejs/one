@@ -1,7 +1,7 @@
 import { createDebugger } from '@vxrn/debug'
 import FSExtra from 'fs-extra'
 import path from 'node:path'
-import type { Plugin } from 'vite'
+import type { ConfigEnv, Plugin } from 'vite'
 import { EXCLUDE_LIST, type ScanDepsResult, scanDepsToOptimize } from '../utils/scanDepsToOptimize'
 import { getFileHash, lookupFile } from '../utils/utils'
 
@@ -19,9 +19,9 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
   return {
     name,
     enforce: 'pre',
-    async config(_cfg, env) {
+    config(_cfg, env) {
       debug?.('Config hook called')
-      return await getScannedOptimizeDepsConfig({ ...props, command: env.command })
+      return getScannedOptimizeDepsConfig({ ...props, mode: env.mode })
     },
   } satisfies Plugin
 }
@@ -30,9 +30,9 @@ export const getSSRExternalsCachePath = (root: string) => {
   return path.join(root, 'node_modules', '.vxrn', 'deps-to-pre-bundle-for-ssr-cache.json')
 }
 
-type FindDepsOptionsByCommand = FindDepsOptions & { command: 'build' | 'serve' }
+type FindDepsOptionsByMode = FindDepsOptions & { mode: string }
 
-export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByCommand) {
+export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode) {
   const result = await findDepsToOptimize(props)
 
   props.onScannedDeps?.(result)
@@ -48,12 +48,12 @@ export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByComma
   }
 }
 
-export async function findDepsToOptimize({ root, command, exclude }: FindDepsOptionsByCommand) {
+export async function findDepsToOptimize({ root, mode, exclude }: FindDepsOptionsByMode) {
   const cacheFilePath = getSSRExternalsCachePath(root)
   const startedAt = debug ? Date.now() : 0
 
   // Disable cache when building for production to prevent stale cache
-  const noCache = command === 'build'
+  const noCache = mode === 'production'
 
   const lockFile = await lookupFile(root, [
     'yarn.lock',
@@ -79,7 +79,9 @@ export async function findDepsToOptimize({ root, command, exclude }: FindDepsOpt
         value = cachedDepsToPreBundle
         debug?.(`Using cached scan results from ${cacheFilePath}`)
       }
-    } catch {}
+    } catch (err) {
+      debug?.(`${err}`)
+    }
   }
 
   if (!value) {

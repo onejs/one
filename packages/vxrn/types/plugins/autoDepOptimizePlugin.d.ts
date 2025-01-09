@@ -7,10 +7,10 @@ type FindDepsOptions = {
 };
 export declare function autoDepOptimizePlugin(props: FindDepsOptions): Plugin;
 export declare const getSSRExternalsCachePath: (root: string) => string;
-type FindDepsOptionsByCommand = FindDepsOptions & {
-    command: 'build' | 'serve';
+type FindDepsOptionsByMode = FindDepsOptions & {
+    mode: string;
 };
-export declare function getScannedOptimizeDepsConfig(props: FindDepsOptionsByCommand): Promise<{
+export declare function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode): Promise<{
     ssr: {
         optimizeDeps: {
             include: string[];
@@ -19,6 +19,6 @@ export declare function getScannedOptimizeDepsConfig(props: FindDepsOptionsByCom
         noExternal: string[];
     };
 }>;
-export declare function findDepsToOptimize({ root, command, exclude }: FindDepsOptionsByCommand): Promise<ScanDepsResult>;
+export declare function findDepsToOptimize({ root, mode, exclude }: FindDepsOptionsByMode): Promise<ScanDepsResult>;
 export {};
 //# sourceMappingURL=autoDepOptimizePlugin.d.ts.map
