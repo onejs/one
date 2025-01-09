@@ -248,7 +248,8 @@ export default function HomePage() {
                 <View tag="span" dsp="inline-flex" m={-2} mr={5} $sm={{ scale: 0.9, y: 5 }}>
                   <OneBall size={0.7} />
                 </View>{' '}
-                is working to make Zero and other sync engines work great on server and client.
+                is working to make Zero and other sync engines to make them work great on server and
+                client.
               </PrettyTextBigger>
 
               <Spacer />
