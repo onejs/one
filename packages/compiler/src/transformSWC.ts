@@ -124,10 +124,6 @@ export async function transformSWC(
     }
   })()
 
-  if (_id.includes('@floating-ui')) {
-    console.log('WTF', _id, result.code)
-  }
-
   const hasRefresh = refreshContentRE.test(result.code)
 
   if (!result || (!refresh && !hasRefresh)) {

@@ -6,10 +6,10 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { PluginOption, UserConfig } from 'vite'
+import { runtimePublicPath } from './constants'
 import { transformWithBabelIfNeeded } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, Options } from './types'
-import { runtimePublicPath } from './constants'
 
 export * from './configure'
 export * from './transformBabel'
