@@ -7,7 +7,7 @@ export default function HooksTestingPage() {
   return (
     <View>
       <Text>This is page-1</Text>
-      <Text>`usePathname()`: {pathname}</Text>
+      <Text id="page-usePathname">Page `usePathname()`: {pathname}</Text>
     </View>
   )
 }

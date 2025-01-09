@@ -10,6 +10,9 @@ export default function HooksTestingIndexPage() {
       <Link href="/hooks/contents/page-2">
         <Text>Go to page-2</Text>
       </Link>
+      <Link href="/hooks">
+        <Text>Go to index</Text>
+      </Link>
     </View>
   )
 }
