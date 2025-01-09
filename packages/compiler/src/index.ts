@@ -80,7 +80,8 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
                     })
 
                     if (babelOut) {
-                      code = babelOut
+                      console.warn('returning babel out', id)
+                      return babelOut
                     }
 
                     try {
@@ -127,7 +128,8 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
         })
 
         if (babelOut) {
-          code = babelOut
+          console.warn('returning babel out', id)
+          return babelOut
         }
 
         const out = await transformSWC(id, code, options)

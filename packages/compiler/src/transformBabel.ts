@@ -2,7 +2,7 @@ import { relative } from 'node:path'
 import type { Plugin } from 'vite'
 import babel from '@babel/core'
 import { configuration } from './configure'
-import { debug } from './constants'
+import { asyncGeneratorRegex, debug } from './constants'
 
 type BabelPlugins = babel.TransformOptions['plugins']
 
@@ -196,11 +196,10 @@ export const createReactCompilerPlugin = (root: string): Plugin => {
  * ----- generators ------
  */
 
-const asyncGeneratorRegex = /(async \*|async function\*|for await)/
-
 function shouldBabelGenerators(id: string, code: string) {
-  console.log('testing it')
-  return asyncGeneratorRegex.test(code)
+  if (process.env.VXRN_USE_BABEL_FOR_GENERATORS) {
+    return asyncGeneratorRegex.test(code)
+  }
 }
 
 /**

@@ -1,7 +1,7 @@
 import { transform, type Output, type ParserConfig, type Options as SWCOptions } from '@swc/core'
 import type { SourceMapPayload } from 'node:module'
 import { extname } from 'node:path'
-import { debug, runtimePublicPath } from './constants'
+import { asyncGeneratorRegex, debug, runtimePublicPath } from './constants'
 import type { Options } from './types'
 
 export async function transformSWC(_id: string, code: string, options: Options) {
@@ -45,6 +45,36 @@ export async function transformSWC(_id: string, code: string, options: Options) 
       }
     }
 
+    const shouldTransformGenerators =
+      !process.env.VXRN_USE_BABEL_FOR_GENERATORS && asyncGeneratorRegex.test(code)
+
+    const opts: SWCOptions = shouldTransformGenerators
+      ? {
+          jsc: {
+            parser,
+            target: 'es5',
+            transform: {
+              useDefineForClassFields: true,
+              react: {
+                development: !options?.production,
+                refresh: false,
+                runtime: 'automatic',
+              },
+            },
+          },
+        }
+      : {
+          ...(!options.forceJSX && { env: SWC_ENV }),
+          jsc: {
+            ...(options.forceJSX && { target: 'esnext' }),
+            parser,
+            transform: {
+              useDefineForClassFields: true,
+              react: reactConfig,
+            },
+          },
+        }
+
     return {
       sourceMaps: shouldSourceMap(),
       module: {
@@ -58,15 +88,7 @@ export async function transformSWC(_id: string, code: string, options: Options) 
           strict: true,
         },
       }),
-      jsc: {
-        parser,
-        transform: {
-          useDefineForClassFields: true,
-          react: reactConfig,
-        },
-        ...(options.forceJSX ? { target: 'esnext' } : {}),
-      },
-      ...(options.forceJSX ? {} : { env: SWC_ENV }),
+      ...opts,
     }
   })()
 
@@ -96,8 +118,8 @@ export async function transformSWC(_id: string, code: string, options: Options) 
     }
   })()
 
-  if (_id.includes('@floating-ui/core/dist/floating-ui.core.mjs')) {
-    console.log('WTF', result.code)
+  if (_id.includes('@floating-ui')) {
+    console.log('WTF', _id, result.code)
   }
 
   const hasRefresh = refreshContentRE.test(result.code)
