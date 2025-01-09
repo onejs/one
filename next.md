@@ -30,6 +30,7 @@
     - way to configure the api + server config during production builds
 
   - cleanup
+    - TODO: hard coded for demo app (also find other TODOs in general)
     - codebase needs a few passes cleaning up things (__vxrn globals, structure)
     - error logs on build:web `../../node_modules/expo-modules-core/src/NativeModule.ts (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.`
 
