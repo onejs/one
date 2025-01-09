@@ -5,7 +5,7 @@ export default function HooksTestingLayout() {
   const pathname = usePathname()
   return (
     <View>
-      <Text>Layout `usePathname()`: {pathname}</Text>
+      <Text id="layout-usePathname">Layout `usePathname()`: {pathname}</Text>
       <Slot />
 
       <Link href="/hooks/contents/page-1">
