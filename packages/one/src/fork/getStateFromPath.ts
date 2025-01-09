@@ -16,10 +16,12 @@ import type { PathConfigMap } from '@react-navigation/core' // @modified
 import { validatePathConfig } from './validatePathConfig'
 import {
   type AdditionalRouteConfig,
+  appendIsInitial,
   createConfigItemAdditionalProperties,
   decodeURIComponentSafe,
   formatRegexPattern,
   getParamValue,
+  getRouteConfigSorter,
   getUrlWithReactNavigationConcessions,
   matchForEmptyPath,
   parseQueryParamsExtended,
@@ -44,7 +46,8 @@ export type RouteConfig = {
   parse?: ParseConfig
 } & AdditionalRouteConfig // @modified: union with AdditionalRouteConfig
 
-type InitialRouteConfig = {
+// @modified: add export
+export type InitialRouteConfig = {
   initialRouteName: string
   parentScreens: string[]
 }
@@ -210,14 +213,16 @@ function getConfigResources<ParamList extends {}>(options: Options<ParamList> | 
   return resources
 }
 
-function prepareConfigResources(options?: Options<{}>) {
+// @modified: add previousSegments parameter
+function prepareConfigResources(options?: Options<{}>, previousSegments?: string[]) {
   if (options) {
     validatePathConfig(options)
   }
 
   const initialRoutes = getInitialRoutes(options)
 
-  const configs = getNormalizedConfigs(initialRoutes, options?.screens)
+  // @modified: pass previousSegments
+  const configs = getNormalizedConfigs(initialRoutes, options?.screens, previousSegments)
 
   checkForDuplicatedConfigs(configs)
 
@@ -245,65 +250,74 @@ function getInitialRoutes(options?: Options<{}>) {
 
 function getNormalizedConfigs(
   initialRoutes: InitialRouteConfig[],
-  screens: PathConfigMap<object> = {}
+  screens: PathConfigMap<object> = {},
+  // @modified - start
+  previousSegments?: string[]
+  // @modified - end
 ) {
   // Create a normalized configs array which will be easier to use
-  return ([] as RouteConfig[])
-    .concat(
-      ...Object.keys(screens).map((key) =>
-        createNormalizedConfigs(key, screens as PathConfigMap<object>, [], initialRoutes, [])
+  return (
+    ([] as RouteConfig[])
+      .concat(
+        ...Object.keys(screens).map((key) =>
+          createNormalizedConfigs(key, screens as PathConfigMap<object>, [], initialRoutes, [])
+        )
       )
-    )
-    .sort((a, b) => {
-      // Sort config so that:
-      // - the most exhaustive ones are always at the beginning
-      // - patterns with wildcard are always at the end
+    /* @modified - start */
+      // .sort((a, b) => {
+      //   // Sort config so that:
+      //   // - the most exhaustive ones are always at the beginning
+      //   // - patterns with wildcard are always at the end
 
-      // If 2 patterns are same, move the one with less route names up
-      // This is an error state, so it's only useful for consistent error messages
-      if (a.pattern === b.pattern) {
-        return b.routeNames.join('>').localeCompare(a.routeNames.join('>'))
-      }
+      //   // If 2 patterns are same, move the one with less route names up
+      //   // This is an error state, so it's only useful for consistent error messages
+      //   if (a.pattern === b.pattern) {
+      //     return b.routeNames.join('>').localeCompare(a.routeNames.join('>'))
+      //   }
 
-      // If one of the patterns starts with the other, it's more exhaustive
-      // So move it up
-      if (a.pattern.startsWith(b.pattern)) {
-        return -1
-      }
+      //   // If one of the patterns starts with the other, it's more exhaustive
+      //   // So move it up
+      //   if (a.pattern.startsWith(b.pattern)) {
+      //     return -1
+      //   }
 
-      if (b.pattern.startsWith(a.pattern)) {
-        return 1
-      }
+      //   if (b.pattern.startsWith(a.pattern)) {
+      //     return 1
+      //   }
 
-      const aParts = a.pattern.split('/')
-      const bParts = b.pattern.split('/')
+      //   const aParts = a.pattern.split('/')
+      //   const bParts = b.pattern.split('/')
 
-      for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
-        // if b is longer, b get higher priority
-        if (aParts[i] == null) {
-          return 1
-        }
-        // if a is longer, a get higher priority
-        if (bParts[i] == null) {
-          return -1
-        }
-        const aWildCard = aParts[i] === '*' || aParts[i].startsWith(':')
-        const bWildCard = bParts[i] === '*' || bParts[i].startsWith(':')
-        // if both are wildcard we compare next component
-        if (aWildCard && bWildCard) {
-          continue
-        }
-        // if only a is wild card, b get higher priority
-        if (aWildCard) {
-          return 1
-        }
-        // if only b is wild card, a get higher priority
-        if (bWildCard) {
-          return -1
-        }
-      }
-      return bParts.length - aParts.length
-    })
+      //   for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+      //     // if b is longer, b get higher priority
+      //     if (aParts[i] == null) {
+      //       return 1
+      //     }
+      //     // if a is longer, a get higher priority
+      //     if (bParts[i] == null) {
+      //       return -1
+      //     }
+      //     const aWildCard = aParts[i] === '*' || aParts[i].startsWith(':')
+      //     const bWildCard = bParts[i] === '*' || bParts[i].startsWith(':')
+      //     // if both are wildcard we compare next component
+      //     if (aWildCard && bWildCard) {
+      //       continue
+      //     }
+      //     // if only a is wild card, b get higher priority
+      //     if (aWildCard) {
+      //       return 1
+      //     }
+      //     // if only b is wild card, a get higher priority
+      //     if (bWildCard) {
+      //       return -1
+      //     }
+      //   }
+      //   return bParts.length - aParts.length
+      // })
+      .map(appendIsInitial(initialRoutes))
+      .sort(getRouteConfigSorter(previousSegments))
+    /* @modified - end */
+  )
 }
 
 function checkForDuplicatedConfigs(configs: RouteConfig[]) {
