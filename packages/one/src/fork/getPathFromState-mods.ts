@@ -7,6 +7,7 @@
 import type { Route } from '@react-navigation/core'
 
 import { matchDeepDynamicRouteName, matchDynamicName, matchGroupName } from '../router/matchers'
+import { getParamName } from './_shared'
 
 export type AdditionalOptions = {
   preserveDynamicRoutes?: boolean
@@ -33,12 +34,12 @@ export function getPathWithConventionsCollapsed({
   params: Record<string, any>
   initialRouteName?: string
 }) {
-  const segments = pattern.split('/');
-
+  const segments = pattern.split('/')
   return segments
     .map((p, i) => {
       const name = getParamName(p)
 
+      // We don't know what to show for wildcard patterns
       // Showing the route name seems ok, though whatever we show here will be incorrect
       // Since the page doesn't actually exist
       if (p.startsWith('*')) {
@@ -61,11 +62,21 @@ export function getPathWithConventionsCollapsed({
           return ''
         }
 
+        if (i === 0) {
+          // This can occur when a wildcard matches all routes and the given path was `/`.
+          return route
+        }
+
         if (p === '*not-found') {
           return ''
         }
-
+        // remove existing segments from route.path and return it
+        // this is used for nested wildcard routes. Without this, the path would add
+        // all nested segments to the beginning of the wildcard route.
         return route.name
+          ?.split('/')
+          .slice(i + 1)
+          .join('/')
       }
 
       // If the path has a pattern for a param, put the param in the path
@@ -79,6 +90,7 @@ export function getPathWithConventionsCollapsed({
           return
         }
 
+        // return params[name]
         return (shouldEncodeURISegment ? encodeURISegment(value) : value) ?? 'undefined'
       }
 
@@ -92,21 +104,24 @@ export function getPathWithConventionsCollapsed({
             if (segmentMatchesConvention(initialRouteName)) {
               return ''
             }
+
             return shouldEncodeURISegment
-              ? encodeURISegment(initialRouteName, { preserveBrackets: true })
+              ? encodeURIComponentPreservingBrackets(initialRouteName)
               : initialRouteName
           }
         }
         return ''
       }
-      // Preserve dynamic syntax for rehydration
-      return shouldEncodeURISegment ? encodeURISegment(p, { preserveBrackets: true }) : p
+
+      return shouldEncodeURISegment ? encodeURIComponentPreservingBrackets(p) : p
     })
     .map((v) => v ?? '')
     .join('/')
 }
 
-export const getParamName = (pattern: string) => pattern.replace(/^[:*]/, '').replace(/\?$/, '')
+function encodeURIComponentPreservingBrackets(str: string) {
+  return encodeURIComponent(str).replace(/%5B/g, '[').replace(/%5D/g, ']')
+}
 
 export function appendBaseUrl(
   path: string,
