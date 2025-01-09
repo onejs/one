@@ -20,7 +20,6 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
     return {
       environment,
       mode: 'serve',
-      noHMR: environment === 'ssr',
       ...optionsIn,
     } satisfies Options
   }
@@ -45,7 +44,7 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
       resolveId: (id) => (id === runtimePublicPath ? id : undefined),
       load: (id) =>
         id === runtimePublicPath
-          ? readFileSync(join(__dirname, 'refresh-runtime.js'), 'utf-8')
+          ? readFileSync(join(import.meta.dirname, 'refresh-runtime.js'), 'utf-8')
           : undefined,
     },
 

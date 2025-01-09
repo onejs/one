@@ -5,12 +5,18 @@ import { debug, runtimePublicPath } from './constants'
 import type { Options } from './types'
 
 export async function transformSWC(_id: string, code: string, options: Options) {
-  const id = _id.split('?')[0].replace(process.cwd(), '')
+  const id = _id.split('?')[0]
+
+  if (id === runtimePublicPath) {
+    return
+  }
 
   const parser = getParser(id, options.forceJSX)
   if (!parser) return
 
-  const refresh = options.production || options.noHMR ? false : !options.forceJSX
+  const refresh =
+    options.environment === 'ssr' || options.production || options.noHMR ? false : !options.forceJSX
+
   const reactConfig = {
     refresh,
     development: !options.forceJSX && !options.production,
@@ -34,6 +40,7 @@ export async function transformSWC(_id: string, code: string, options: Options) 
     }
 
     return {
+      sourceMaps: shouldSourceMap(),
       module: {
         importInterop: 'none',
         type: 'nodenext',
@@ -65,7 +72,6 @@ export async function transformSWC(_id: string, code: string, options: Options) 
         filename: id,
         swcrc: false,
         configFile: false,
-        sourceMaps: shouldSourceMap(),
         ...transformOptions,
       })
     } catch (e: any) {
@@ -90,11 +96,11 @@ export async function transformSWC(_id: string, code: string, options: Options) 
 
   wrapSourceInRefreshRuntime(id, result, options, hasRefresh)
 
-  if (result.map) {
-    const sourceMap: SourceMapPayload = JSON.parse(result.map)
-    sourceMap.mappings = ';;;;;;;;' + sourceMap.mappings
-    return { code: result.code, map: sourceMap }
-  }
+  // if (result.map) {
+  //   const sourceMap: SourceMapPayload = JSON.parse(result.map)
+  //   sourceMap.mappings = ';;;;;;;;' + sourceMap.mappings
+  //   return { code: result.code, map: sourceMap }
+  // }
 
   return { code: result.code }
 }
