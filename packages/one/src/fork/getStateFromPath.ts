@@ -7,12 +7,24 @@
  */
 
 import type { InitialState, NavigationState, PartialState } from '@react-navigation/routers'
+// biome-ignore lint/suspicious/noShadowRestrictedNames: ignore from forked code // @modified
 import escape from 'escape-string-regexp'
-import * as queryString from 'query-string'
+// import * as queryString from 'query-string'
 
 import { findFocusedRoute } from './findFocusedRoute'
-import type { PathConfigMap } from './types'
+import type { PathConfigMap } from '@react-navigation/core' // @modified
 import { validatePathConfig } from './validatePathConfig'
+import {
+  type AdditionalRouteConfig,
+  createConfigItemAdditionalProperties,
+  decodeURIComponentSafe,
+  formatRegexPattern,
+  getParamValue,
+  getUrlWithReactNavigationConcessions,
+  matchForEmptyPath,
+  parseQueryParamsExtended,
+  populateParams,
+} from './getStateFromPath-mods'
 
 type Options<ParamList extends {}> = {
   path?: string
@@ -22,14 +34,15 @@ type Options<ParamList extends {}> = {
 
 type ParseConfig = Record<string, (value: string) => any>
 
-type RouteConfig = {
+// @modified: add export
+export type RouteConfig = {
   screen: string
   regex?: RegExp
   path: string
   pattern: string
   routeNames: string[]
   parse?: ParseConfig
-}
+} & AdditionalRouteConfig // @modified: union with AdditionalRouteConfig
 
 type InitialRouteConfig = {
   initialRouteName: string
@@ -40,7 +53,8 @@ type ResultState = PartialState<NavigationState> & {
   state?: ResultState
 }
 
-type ParsedRoute = {
+// @modified: add export
+export type ParsedRoute = {
   name: string
   path?: string
   params?: Record<string, any> | undefined
@@ -81,7 +95,11 @@ export function getStateFromPath<ParamList extends {}>(
 
   const screens = options?.screens
 
-  let remaining = path
+  // @modified - start
+  const pathData = getUrlWithReactNavigationConcessions(path)
+  // @modified - end
+
+  let remaining = pathData.nonstandardPathname // @modified: use `pathData.nonstandardPathname` instead of `path`
     .replace(/\/+/g, '/') // Replace multiple slash (//) with single ones
     .replace(/^\//, '') // Remove extra leading slash
     .replace(/\?.*$/, '') // Remove query params which we will handle later
@@ -115,7 +133,10 @@ export function getStateFromPath<ParamList extends {}>(
       })
 
     if (routes.length) {
-      return createNestedStateObject(path, routes, initialRoutes)
+      // @modified - start
+      // return createNestedStateObject(path, routes, initialRoutes)
+      return createNestedStateObject(pathData, routes, initialRoutes, [], pathData.url.hash)
+      // @modified - end
     }
 
     return undefined
@@ -124,18 +145,21 @@ export function getStateFromPath<ParamList extends {}>(
   if (remaining === '/') {
     // We need to add special handling of empty path so navigation to empty path also works
     // When handling empty path, we should only look at the root level config
-    const match = configs.find(
-      (config) =>
-        config.path === '' &&
-        config.routeNames.every(
-          // Make sure that none of the parent configs have a non-empty path defined
-          (name) => !configs.find((c) => c.screen === name)?.path
-        )
-    )
+    // @modified - start
+    // const match = configs.find(
+    //   (config) =>
+    //     config.path === '' &&
+    //     config.routeNames.every(
+    //       // Make sure that none of the parent configs have a non-empty path defined
+    //       (name) => !configs.find((c) => c.screen === name)?.path
+    //     )
+    // )
+    const match = matchForEmptyPath(configWithRegexes)
+    // @modified - end
 
     if (match) {
       return createNestedStateObject(
-        path,
+        pathData, // @modified: pass pathData instead of path
         match.routeNames.map((name) => ({ name })),
         initialRoutes,
         configs
@@ -154,7 +178,8 @@ export function getStateFromPath<ParamList extends {}>(
 
   if (routes !== undefined) {
     // This will always be empty if full path matched
-    current = createNestedStateObject(path, routes, initialRoutes, configs)
+    // @modified: pass pathData instead of path
+    current = createNestedStateObject(pathData, routes, initialRoutes, configs)
     remaining = remainingPath
     result = current
   }
@@ -314,7 +339,12 @@ function getConfigsWithRegexes(configs: RouteConfig[]) {
   return configs.map((c) => ({
     ...c,
     // Add `$` to the regex to make sure it matches till end of the path and not just beginning
-    regex: c.regex ? new RegExp(c.regex.source + '$') : undefined,
+    // @modified - start
+    // regex: c.regex ? new RegExp(c.regex.source + '$') : undefined,
+    regex: c.pattern
+      ? new RegExp(`^(${c.pattern.split('/').map(formatRegexPattern).join('')})$`)
+      : undefined,
+    // @modified - end
   }))
 }
 
@@ -327,6 +357,10 @@ const joinPaths = (...paths: string[]): string =>
 const matchAgainstConfigs = (remaining: string, configs: RouteConfig[]) => {
   let routes: ParsedRoute[] | undefined
   let remainingPath = remaining
+
+  // @modified - start
+  const allParams = Object.create(null)
+  // @modified - end
 
   // Go through all configs, and see if the next path segment matches our regex
   for (const config of configs) {
@@ -350,7 +384,8 @@ const matchAgainstConfigs = (remaining: string, configs: RouteConfig[]) => {
           // Path parameter so increment position for the segment
           acc.pos += 1
 
-          const decodedParamSegment = decodeURIComponent(
+          const decodedParamSegment = decodeURIComponentSafe(
+            // @modified: use decodeURIComponent**Safe**
             // The param segments appear every second item starting from 2 in the regex match result
             match![(acc.pos + 1) * 2]
               // Remove trailing slash
@@ -395,11 +430,14 @@ const matchAgainstConfigs = (remaining: string, configs: RouteConfig[]) => {
             // Get the real index of the path parameter in the matched path
             // by offsetting by the number of segments in the initial pattern
             const offset = numInitialSegments ? numInitialSegments - 1 : 0
-            const value = matchedParams[p]?.[index + offset]
+            // @modified - start
+            // const value = matchedParams[p]?.[index + offset]
+            const value = getParamValue(p, matchedParams[p]?.[index + offset])
+            // @modified - end
 
             if (value) {
               const key = p.replace(/^:/, '').replace(/\?$/, '')
-              acc[key] = routeConfig?.parse?.[key] ? routeConfig.parse[key](value) : value
+              acc[key] = routeConfig?.parse?.[key] ? routeConfig.parse[key](value as any) : value
             }
 
             return acc
@@ -418,6 +456,10 @@ const matchAgainstConfigs = (remaining: string, configs: RouteConfig[]) => {
     }
   }
 
+  // @modified - start
+  populateParams(routes, allParams)
+  // @modified - end
+
   return { routes, remainingPath }
 }
 
@@ -435,7 +477,6 @@ const createNormalizedConfigs = (
 
   parentScreens.push(screen)
 
-  // @ts-expect-error: we can't strongly typecheck this for now
   const config = routeConfig[screen]
 
   if (typeof config === 'string') {
@@ -461,7 +502,12 @@ const createNormalizedConfigs = (
           ? joinPaths(parentPattern || '', config.path || '')
           : config.path || ''
 
-      configs.push(createConfigItem(screen, routeNames, pattern!, config.path, config.parse))
+      // @modified - start
+      // configs.push(createConfigItem(screen, routeNames, pattern!, config.path, config.parse))
+      configs.push(
+        createConfigItem(screen, routeNames, pattern!, config.path, config.parse, config)
+      )
+      // @modified - end
     }
 
     if (config.screens) {
@@ -498,7 +544,10 @@ const createConfigItem = (
   routeNames: string[],
   pattern: string,
   path: string,
-  parse?: ParseConfig
+  parse: ParseConfig | undefined = undefined,
+  // @modified - start
+  config: Record<string, any> = {}
+  // @modified - end
 ): RouteConfig => {
   // Normalize pattern to remove any leading, trailing slashes, duplicate slashes etc.
   pattern = pattern.split('/').filter(Boolean).join('/')
@@ -526,6 +575,9 @@ const createConfigItem = (
     // The routeNames array is mutated, so copy it to keep the current state
     routeNames: [...routeNames],
     parse,
+    // @modified - start
+    ...createConfigItemAdditionalProperties(screen, pattern, routeNames, config),
+    // @modified - end
   }
 }
 
@@ -578,17 +630,20 @@ const createStateObject = (
         index: 1,
         routes: [{ name: initialRoute }, route],
       }
+      // biome-ignore lint/style/noUselessElse: not changing forked code
     } else {
       return {
         routes: [route],
       }
     }
+    // biome-ignore lint/style/noUselessElse: not changing forked code
   } else {
     if (initialRoute) {
       return {
         index: 1,
         routes: [{ name: initialRoute }, { ...route, state: { routes: [] } }],
       }
+      // biome-ignore lint/style/noUselessElse: not changing forked code
     } else {
       return {
         routes: [{ ...route, state: { routes: [] } }],
@@ -598,10 +653,14 @@ const createStateObject = (
 }
 
 const createNestedStateObject = (
-  path: string,
+  // @modified - start
+  // path: string,
+  { path, ...restPathData }: ReturnType<typeof getUrlWithReactNavigationConcessions>,
+  // @modified - end
   routes: ParsedRoute[],
   initialRoutes: InitialRouteConfig[],
-  flatConfig?: RouteConfig[]
+  flatConfig?: RouteConfig[],
+  hash?: string // @modified: added
 ) => {
   let route = routes.shift() as ParsedRoute
   const parentScreens: string[] = []
@@ -635,12 +694,23 @@ const createNestedStateObject = (
   }
 
   route = findFocusedRoute(state) as ParsedRoute
-  route.path = path
+  // @modified - start
+  // route.path = path
+  route.path = restPathData.pathWithoutGroups
+  // @modified - end
 
-  const params = parseQueryParams(
+  // @modified - start
+  // const params = parseQueryParams(
+  //   path,
+  //   flatConfig ? findParseConfigForRoute(route.name, flatConfig) : undefined
+  // )
+  const params = parseQueryParamsExtended(
     path,
-    flatConfig ? findParseConfigForRoute(route.name, flatConfig) : undefined
+    route,
+    flatConfig ? findParseConfigForRoute(route.name, flatConfig) : undefined,
+    hash
   )
+  // @modified - end
 
   if (params) {
     route.params = { ...route.params, ...params }
@@ -649,17 +719,18 @@ const createNestedStateObject = (
   return state
 }
 
-const parseQueryParams = (path: string, parseConfig?: Record<string, (value: string) => any>) => {
-  const query = path.split('?')[1]
-  const params = queryString.parse(query)
+// @modified: commenting out unused code
+// const parseQueryParams = (path: string, parseConfig?: Record<string, (value: string) => any>) => {
+//   const query = path.split('?')[1]
+//   const params = queryString.parse(query)
 
-  if (parseConfig) {
-    Object.keys(params).forEach((name) => {
-      if (Object.hasOwnProperty.call(parseConfig, name) && typeof params[name] === 'string') {
-        params[name] = parseConfig[name](params[name] as string)
-      }
-    })
-  }
+//   if (parseConfig) {
+//     Object.keys(params).forEach((name) => {
+//       if (Object.hasOwnProperty.call(parseConfig, name) && typeof params[name] === 'string') {
+//         params[name] = parseConfig[name](params[name] as string)
+//       }
+//     })
+//   }
 
-  return Object.keys(params).length ? params : undefined
-}
+//   return Object.keys(params).length ? params : undefined
+// }
