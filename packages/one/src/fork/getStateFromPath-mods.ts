@@ -291,15 +291,6 @@ export function decodeURIComponentSafe(str: string) {
   }
 }
 
-export function getParamValue(p: string, value: string) {
-  if (p.startsWith('*')) {
-    const values = value.split('/').filter((v) => v !== '')
-    return values.length === 0 && p.endsWith('?') ? undefined : values
-  }
-
-  return value
-}
-
 /**
  * In One, the params are available at all levels of the routing config
  */

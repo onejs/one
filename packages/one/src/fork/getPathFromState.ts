@@ -13,6 +13,7 @@ import {
   appendBaseUrl,
   type AdditionalOptions,
 } from './getPathFromState-mods'
+import * as sharedModUtils from './_shared'
 // @modified - end
 
 import type { NavigationState, PartialState, Route } from '@react-navigation/routers'
@@ -198,10 +199,10 @@ export function getPathDataFromState<ParamList extends {}>(
 
           pattern
             ?.split('/')
-            .filter((p) => p.startsWith(':'))
+            .filter((p) => sharedModUtils.isDynamicPart(p)) // @modified
             // eslint-disable-next-line no-loop-func
             .forEach((p) => {
-              const name = getParamName(p)
+              const name = sharedModUtils.getParamName(p) // @modified: use our customized `getParamName`
 
               // Remove the params present in the pattern since we'll only use the rest for query string
               if (focusedParams) {

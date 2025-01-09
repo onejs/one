@@ -47,7 +47,6 @@ export declare function appendIsInitial(initialRoutes: InitialRouteConfig[]): (c
 export declare function getRouteConfigSorter(previousSegments?: string[]): (a: RouteConfig, b: RouteConfig) => number;
 export declare function formatRegexPattern(it: string): string;
 export declare function decodeURIComponentSafe(str: string): string;
-export declare function getParamValue(p: string, value: string): string | string[] | undefined;
 /**
  * In One, the params are available at all levels of the routing config
  */
