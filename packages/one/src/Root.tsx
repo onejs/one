@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/native'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
 import { useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
-import UpstreamNavigationContainer from './fork/NavigationContainer'
+import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
@@ -21,7 +21,11 @@ import type { One } from './vite/types'
 
 if (typeof window !== 'undefined') {
   // @ts-ignore TODO: hard coded for demo app
-  window.__getReactRefreshIgnoredExports = () => ['feedCardQuery', 'feedCardReplyQuery', 'loader']
+  window.__getReactRefreshIgnoredExports = () => [
+    'feedCardQuery',
+    'feedCardReplyQuery',
+    'loader',
+  ]
 }
 
 type RootProps = Omit<InnerProps, 'context'> & {
