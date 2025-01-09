@@ -5,10 +5,14 @@ import './_layout.css'
 
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
-import { LoadProgressBar, Slot } from 'one'
+import { LoadProgressBar, Slot, useServerHeadInsertion } from 'one'
 import config from '../config/tamagui.config'
 
 export default function Layout() {
+  useServerHeadInsertion(() => {
+    return <style id="test-style">hi</style>
+  })
+
   return (
     <html lang="ab">
       <meta id="test-meta" />

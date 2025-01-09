@@ -22,6 +22,7 @@ export { Link } from './link/Link';
 export { Redirect } from './link/Redirect';
 export { Head } from './head';
 export { useLinkTo } from './link/useLinkTo';
+export { useServerHeadInsertion, type ServerHeadInsertionCallback } from './useServerHeadInsertion';
 export { useRouter, useUnstableGlobalHref, usePathname, useNavigationContainerRef, useParams, useActiveParams, useSegments, useRootNavigationState, } from './hooks';
 export { useLocalSearchParams, useGlobalSearchParams, } from './hooks';
 export { withLayoutContext } from './layouts/withLayoutContext';
