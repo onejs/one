@@ -91,6 +91,8 @@ const getDefaultBabelPlugins = (id: string, code: string, development: boolean, 
     plugins = getBasePlugins(development)
   }
 
+  console.log('shoudl?', configuration.disableReanimated, id, shouldBabelReanimated(id, code))
+
   if (!configuration.disableReanimated && shouldBabelReanimated(id, code)) {
     plugins.push('react-native-reanimated/plugin')
   }

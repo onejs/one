@@ -99,11 +99,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       : [
           autoDepOptimizePlugin({
             onScannedDeps({ hasReanimated }) {
-              if (!hasReanimated) {
-                configureVXRNCompilerPlugin({
-                  disableReanimated: true,
-                })
-              }
+              configureVXRNCompilerPlugin({
+                disableReanimated: !hasReanimated,
+              })
             },
             root,
             exclude: Array.isArray(options.ssr?.disableAutoDepsPreBundling)

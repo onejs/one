@@ -4,9 +4,11 @@ import { extname } from 'node:path'
 import { asyncGeneratorRegex, debug, runtimePublicPath } from './constants'
 import type { Options } from './types'
 
-export async function transformSWC(_id: string, code: string, options: Options) {
-  console.trace('go2', _id)
-
+export async function transformSWC(
+  _id: string,
+  code: string,
+  options: Options & { es5?: boolean }
+) {
   if (_id.includes('.vite')) {
     return
   }
@@ -18,7 +20,11 @@ export async function transformSWC(_id: string, code: string, options: Options) 
   }
 
   const parser = getParser(id, options.forceJSX)
-  if (!parser) return
+
+  if (!parser) {
+    console.warn(`unsupported file, ignore`, id)
+    return
+  }
 
   const refresh =
     options.environment === 'ssr' || options.production || options.noHMR ? false : !options.forceJSX
@@ -45,10 +51,10 @@ export async function transformSWC(_id: string, code: string, options: Options) 
       }
     }
 
-    const shouldTransformGenerators =
-      !process.env.VXRN_USE_BABEL_FOR_GENERATORS && asyncGeneratorRegex.test(code)
+    const shouldEs5Transform =
+      options.es5 || (!process.env.VXRN_USE_BABEL_FOR_GENERATORS && asyncGeneratorRegex.test(code))
 
-    const opts: SWCOptions = shouldTransformGenerators
+    const opts: SWCOptions = shouldEs5Transform
       ? {
           jsc: {
             parser,
@@ -165,6 +171,7 @@ const parsers: Record<string, ParserConfig> = {
   '.ts': { syntax: 'typescript', tsx: false, decorators: true },
   '.jsx': { syntax: 'ecmascript', jsx: true },
   '.js': { syntax: 'ecmascript' },
+  '.mjs': { syntax: 'ecmascript' },
   '.mdx': { syntax: 'ecmascript', jsx: true },
 }
 
@@ -308,6 +315,7 @@ function getParser(id: string, forceJSX = false) {
 
   return parser
 }
+
 export const transformSWCStripJSX = async (id: string, code: string) => {
   const parser = getParser(id)
   if (!parser) return

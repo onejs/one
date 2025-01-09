@@ -58,51 +58,6 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
           optimizeDeps: {
             noDiscovery: true,
           },
-
-          // for native:
-          build: {
-            rollupOptions: {
-              plugins: [
-                {
-                  name: `one:compiler-react-native`,
-                  options: {
-                    order: 'pre',
-                    handler(options) {},
-                  },
-                  async transform(code, id) {
-                    console.warn('????????????????????????????????????', id)
-                    const options = getOptions(getEnvName(this.environment.name))
-                    const babelOut = await transformWithBabelIfNeeded({
-                      id,
-                      code,
-                      development: !options.production,
-                      ...optionsIn?.babel,
-                    })
-
-                    if (babelOut) {
-                      console.warn('returning babel out', id)
-                      return babelOut
-                    }
-
-                    try {
-                      return await transformSWC(id, code, options)
-                    } catch (err) {
-                      if (process.env.DEBUG === 'vxrn') {
-                        console.error(`${err}`)
-                      }
-                      return await transformWithBabelIfNeeded({
-                        ...optionsIn?.babel,
-                        getUserPlugins: () => true,
-                        id,
-                        code,
-                        development: !options.production,
-                      })
-                    }
-                  },
-                },
-              ],
-            },
-          },
         } satisfies UserConfig
 
         return {
@@ -129,10 +84,11 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
 
         if (babelOut) {
           console.warn('returning babel out', id)
-          return babelOut
+          code = babelOut
         }
 
-        const out = await transformSWC(id, code, options)
+        const out = await transformSWC(id, code, { ...options, es5: true })
+
         return out
       },
     },
