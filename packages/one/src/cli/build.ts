@@ -1,4 +1,4 @@
-import FSExtra from 'fs-extra'
+import FSExtra, { writeJSON } from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
 import Path, { join, relative, resolve } from 'node:path'
@@ -22,6 +22,8 @@ import { loadUserOneOptions } from '../vite/loadConfig'
 import { replaceLoader } from '../vite/replaceLoader'
 import type { One } from '../vite/types'
 import { labelProcess } from './label-process'
+import { compileManifest } from '../createHandleRequest'
+import { createServerlessFunction } from '../vercel/build/generate/createServerlessFunction'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -580,6 +582,53 @@ ${JSON.stringify(params || null, null, 2)}`
 
   switch (platform) {
     case 'vercel': {
+
+      const compiledManifest = compileManifest(buildInfoForWriting.manifest)
+
+      for (const route of compiledManifest.apiRoutes) {
+
+        const filePath = route.file
+        const { pageConfig, default: Component } = await import(filePath);
+        // pageConfig.strategy
+        switch (route.type) {
+          case "ssg":
+            // return createStaticFile(Component, filePath);
+            break;
+          case "spa":
+            // return createPrerender(Component, filePath, pageConfig);
+            break;
+          case "ssr":
+            await createServerlessFunction(Component, filePath);
+            break;
+          case "api":
+          case "layout":
+            // return createEdgeFunction(Component, filePath);
+            break;
+          default:
+            // return;
+        }
+        
+
+        // await writeJSON(".vercel/output/config.json", {
+        //   // ...(require(process.cwd() + "/vercel.config.js").default),
+        //   ...{
+        //     version: 3,
+        //     routes: getTransformedRoutes({
+        //        cleanUrls: true
+        //     }).routes,
+        //   },
+        // });
+        // app.get(route.honoPath, createHonoHandler(route))
+        // app.put(route.honoPath, createHonoHandler(route))
+        // app.post(route.honoPath, createHonoHandler(route))
+        // app.delete(route.honoPath, createHonoHandler(route))
+        // app.patch(route.honoPath, createHonoHandler(route))
+      }
+
+      // for (const route of compiledManifest.pageRoutes) {
+      //   app.get(route.honoPath, createHonoHandler(route))
+      // }
+
       await FSExtra.writeFile(
         join(options.root, 'dist', 'index.js'),
         `import { serve } from 'one/serve'

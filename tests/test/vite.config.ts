@@ -4,6 +4,9 @@ import { one } from 'one/vite'
 export default {
   plugins: [
     one({
+      server: {
+        platform: 'vercel'
+      },
       config: {
         tsConfigPaths: {
           // On CI, the mono-repo may be partially installed and built.

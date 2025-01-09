@@ -194,15 +194,17 @@ url: ${url}`)
 
   const compiledManifest = compileManifest(buildInfo.manifest)
 
-  for (const route of compiledManifest.apiRoutes) {
-    app.get(route.honoPath, createHonoHandler(route))
-    app.put(route.honoPath, createHonoHandler(route))
-    app.post(route.honoPath, createHonoHandler(route))
-    app.delete(route.honoPath, createHonoHandler(route))
-    app.patch(route.honoPath, createHonoHandler(route))
-  }
-
-  for (const route of compiledManifest.pageRoutes) {
-    app.get(route.honoPath, createHonoHandler(route))
+  if (buildInfo.oneOptions?.server?.platform !== 'vercel') {
+    for (const route of compiledManifest.apiRoutes) {
+      app.get(route.honoPath, createHonoHandler(route))
+      app.put(route.honoPath, createHonoHandler(route))
+      app.post(route.honoPath, createHonoHandler(route))
+      app.delete(route.honoPath, createHonoHandler(route))
+      app.patch(route.honoPath, createHonoHandler(route))
+    }
+  
+    for (const route of compiledManifest.pageRoutes) {
+      app.get(route.honoPath, createHonoHandler(route))
+    }
   }
 }
