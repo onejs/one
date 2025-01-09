@@ -4,7 +4,7 @@ title: Routing Modes
 
 A unique feature of One is the ability to seamlessly route across a variety of route modes. What this means in plain english, is that you can choose whether each individual page within your routes uses one of a few strategies, such as rendering statically at build time, or rendering on-demand at request time.
 
-One supports the following routing modes, which are explain in detail below: `api`, `spa`, `ssr`, and `ssg`.
+One supports the following routing modes, which are explained in detail below: `api`, `spa`, `ssr`, and `ssg`.
 
 You can set your global routing mode with the One vite plugin. The default is `ssg`.
 
@@ -35,7 +35,7 @@ Note that render modes mostly only apply to the web. On native, everything is es
 
 ### SSG (the default)
 
-When you don't add a `+` suffix to your route, it will default to an "SSG" route, unless you set the [`web.defaultRenderMode` configuration](/docs/configuration#defaultrendermode) otherwise. An example of a SSG route would be something like `app/blog.tsx` if you haven't changed the defaultRenderMode, or `app/blog+ssg.tsx` if you have.
+When you don't add a `+` suffix to your route, it will default to an "SSG" route, unless you set the [`web.defaultRenderMode` configuration](/docs/configuration#defaultrendermode) otherwise. An example of a SSG route would be something like `app/blog.tsx` if you haven't changed the defaultRenderMode, or if you have `app/blog+ssg.tsx`.
 
 SSG Stands for "[Server Side Generated](https://www.smashingmagazine.com/2020/07/differences-static-generated-sites-server-side-rendered-apps/)", it's a strategy for web where you pre-render the entire HTML and CSS of a page at build-time fully on the server (or in CI) so that you can serve the page quickly from something like a CDN, without running any JavaScript at the time of request.
 
