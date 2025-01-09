@@ -18,6 +18,5 @@ export declare function getPathWithConventionsCollapsed({ pattern, route, params
     params: Record<string, any>;
     initialRouteName?: string;
 }): string;
-export declare const getParamName: (pattern: string) => string;
 export declare function appendBaseUrl(path: string, baseUrl?: string | undefined): string;
 //# sourceMappingURL=getPathFromState-mods.d.ts.map
