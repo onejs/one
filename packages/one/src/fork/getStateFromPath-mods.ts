@@ -6,7 +6,7 @@
 
 import escape_ from 'escape-string-regexp'
 import { matchGroupName, stripGroupSegmentsFromPath } from '../router/matchers'
-import type { RouteConfig, ParsedRoute } from './getStateFromPath'
+import type { RouteConfig, ParsedRoute, InitialRouteConfig } from './getStateFromPath'
 
 export type AdditionalRouteConfig = {
   type: 'static' | 'dynamic' | 'layout'
@@ -81,6 +81,182 @@ export function matchForEmptyPath(configs: RouteConfig[]) {
     leafNodes.find((config) => config.path.startsWith('*') && config.regex!.test('/'))
 
   return match
+}
+
+export function appendIsInitial(initialRoutes: InitialRouteConfig[]) {
+  const resolvedInitialPatterns = initialRoutes.map((route) =>
+    joinPaths(...route.parentScreens, route.initialRouteName)
+  )
+
+  return (config: RouteConfig) => {
+    // TODO: Probably a safer way to do this
+    // Mark initial routes to give them potential priority over other routes that match.
+    config.isInitial = resolvedInitialPatterns.includes(config.routeNames.join('/'))
+    return config
+  }
+}
+
+const joinPaths = (...paths: string[]): string =>
+  ([] as string[])
+    .concat(...paths.map((p) => p.split('/')))
+    .filter(Boolean)
+    .join('/')
+
+export function getRouteConfigSorter(previousSegments: string[] = []) {
+  return function sortConfigs(a: RouteConfig, b: RouteConfig) {
+    // Sort config so that:
+    // - the most exhaustive ones are always at the beginning
+    // - patterns with wildcard are always at the end
+
+    // If 2 patterns are same, move the one with less route names up
+    // This is an error state, so it's only useful for consistent error messages
+    if (a.pattern === b.pattern) {
+      return b.routeNames.join('>').localeCompare(a.routeNames.join('>'))
+    }
+
+    /*
+     * If one of the patterns starts with the other, it is earlier in the config sorting.
+     * However, configs are a mix of route configs and layout configs
+     * e.g There will be a config for `/(group)`, but maybe there isn't a `/(group)/index.tsx`
+     *
+     * This is because you can navigate to a directory and its navigator will determine the route
+     * These routes should be later in the config sorting, as their patterns are very open
+     * and will prevent routes from being matched
+     *
+     * Therefore before we compare segment parts, we force these layout configs later in the sorting
+     *
+     * NOTE: Is this a feature we want? I'm unsure if this is a gimmick or a feature.
+     */
+    if (a.pattern.startsWith(b.pattern) && !b.isIndex) {
+      return -1
+    }
+
+    if (b.pattern.startsWith(a.pattern) && !a.isIndex) {
+      return 1
+    }
+
+    /*
+     * Static routes should always be higher than dynamic and layout routes.
+     */
+    if (a.type === 'static' && b.type !== 'static') {
+      return -1
+    }
+    if (a.type !== 'static' && b.type === 'static') {
+      return 1
+    }
+
+    /*
+     * If both are static/dynamic or a layout file, then we check group similarity
+     */
+    const similarToPreviousA = previousSegments.filter((value, index) => {
+      return value === a.expandedRouteNames[index] && value.startsWith('(') && value.endsWith(')')
+    })
+
+    const similarToPreviousB = previousSegments.filter((value, index) => {
+      return value === b.expandedRouteNames[index] && value.startsWith('(') && value.endsWith(')')
+    })
+
+    if (
+      (similarToPreviousA.length > 0 || similarToPreviousB.length > 0) &&
+      similarToPreviousA.length !== similarToPreviousB.length
+    ) {
+      // One matches more than the other, so pick the one that matches more
+      return similarToPreviousB.length - similarToPreviousA.length
+    }
+
+    /*
+     * If there is not difference in similarity, then each non-group segment is compared against each other
+     */
+    for (let i = 0; i < Math.max(a.parts.length, b.parts.length); i++) {
+      // if b is longer, b get higher priority
+      if (a.parts[i] == null) {
+        return 1
+      }
+      // if a is longer, a get higher priority
+      if (b.parts[i] == null) {
+        return -1
+      }
+
+      const aWildCard = a.parts[i].startsWith('*')
+      const bWildCard = b.parts[i].startsWith('*')
+      // if both are wildcard we compare next component
+      if (aWildCard && bWildCard) {
+        const aNotFound = a.parts[i].match(/^[*]not-found$/)
+        const bNotFound = b.parts[i].match(/^[*]not-found$/)
+
+        if (aNotFound && bNotFound) {
+          continue
+        }
+        if (aNotFound) {
+          return 1
+        }
+        if (bNotFound) {
+          return -1
+        }
+        continue
+      }
+      // if only a is wild card, b get higher priority
+      if (aWildCard) {
+        return 1
+      }
+      // if only b is wild card, a get higher priority
+      if (bWildCard) {
+        return -1
+      }
+
+      const aSlug = a.parts[i].startsWith(':')
+      const bSlug = b.parts[i].startsWith(':')
+      // if both are wildcard we compare next component
+      if (aSlug && bSlug) {
+        const aNotFound = a.parts[i].match(/^[*]not-found$/)
+        const bNotFound = b.parts[i].match(/^[*]not-found$/)
+
+        if (aNotFound && bNotFound) {
+          continue
+        }
+        if (aNotFound) {
+          return 1
+        }
+        if (bNotFound) {
+          return -1
+        }
+
+        continue
+      }
+      // if only a is wild card, b get higher priority
+      if (aSlug) {
+        return 1
+      }
+      // if only b is wild card, a get higher priority
+      if (bSlug) {
+        return -1
+      }
+    }
+
+    /*
+     * Both configs are identical in specificity and segments count/type
+     * Try and sort by initial instead.
+     *
+     * TODO: We don't differentiate between the default initialRoute and group specific default routes
+     *
+     * const unstable_settings = {
+     *   "group": {
+     *     initialRouteName: "article"
+     *  }
+     * }
+     *
+     * "article" will be ranked higher because its an initialRoute for a group - even if not your not currently in
+     * that group. The current work around is to ways provide initialRouteName for all groups
+     */
+    if (a.isInitial && !b.isInitial) {
+      return -1
+    }
+    if (!a.isInitial && b.isInitial) {
+      return 1
+    }
+
+    return b.parts.length - a.parts.length
+  }
 }
 
 export function formatRegexPattern(it: string): string {
@@ -183,11 +359,11 @@ export function parseQueryParamsExtended(
   parseConfig?: Record<string, (value: string) => any>,
   hash?: string
 ) {
-  const searchParams = new URL(path, 'https://phony.example').searchParams;
-  const params: Record<string, string | string[]> = Object.create(null);
+  const searchParams = new URL(path, 'https://phony.example').searchParams
+  const params: Record<string, string | string[]> = Object.create(null)
 
   if (hash) {
-    params['#'] = hash.slice(1);
+    params['#'] = hash.slice(1)
   }
 
   for (const name of searchParams.keys()) {
@@ -195,23 +371,26 @@ export function parseQueryParamsExtended(
       if (process.env.NODE_ENV !== 'production') {
         console.warn(
           `Route '/${route.name}' with param '${name}' was specified both in the path and as a param, removing from path`
-        );
+        )
       }
     } else {
       const values = parseConfig?.hasOwnProperty(name)
         ? searchParams.getAll(name).map((value) => parseConfig[name](value))
-        : searchParams.getAll(name);
+        : searchParams.getAll(name)
 
       // searchParams.getAll returns an array.
       // if we only have a single value, and its not an array param, we need to extract the value
-      params[name] = values.length === 1 ? values[0] : values;
+      params[name] = values.length === 1 ? values[0] : values
     }
   }
 
-  return Object.keys(params).length ? params : undefined;
+  return Object.keys(params).length ? params : undefined
 }
 
-export function stripBaseUrl(path: string, baseUrl: string | undefined = process.env.EXPO_BASE_URL) {
+export function stripBaseUrl(
+  path: string,
+  baseUrl: string | undefined = process.env.EXPO_BASE_URL
+) {
   if (process.env.NODE_ENV !== 'development') {
     if (baseUrl) {
       return path.replace(/^\/+/g, '/').replace(new RegExp(`^\\/?${escape(baseUrl)}`, 'g'), '')
