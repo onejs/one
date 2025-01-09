@@ -1,4 +1,4 @@
-import { stripBaseUrl } from '../fork/getStateFromPath'
+import { stripBaseUrl } from '../fork/getStateFromPath-mods'
 
 type SearchParams = Record<string, string | string[]>
 
