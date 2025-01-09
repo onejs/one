@@ -94,7 +94,7 @@ export function withLayoutContext<
       }
 
       return (
-        <Nav {...props} {...options?.props} id={contextKey} ref={ref}>
+        <Nav {...options?.props} {...props} id={contextKey} ref={ref}>
           {sorted}
         </Nav>
       )
