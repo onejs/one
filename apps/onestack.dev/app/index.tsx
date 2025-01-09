@@ -240,8 +240,7 @@ export default function HomePage() {
                     Zero
                   </Link>
                 </b>{' '}
-                to include it as our recommended solution to data. Zero solves for all the above{' '}
-                <Link href="/docs/data">and&nbsp;more</Link>. It even works with&nbsp;Postgres.
+                to include it as our recommended solution to data. Zero solves for all the above.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
@@ -249,28 +248,10 @@ export default function HomePage() {
                 <View tag="span" dsp="inline-flex" m={-2} mr={5} $sm={{ scale: 0.9, y: 5 }}>
                   <OneBall size={0.7} />
                 </View>{' '}
-                is working to make Zero great on server and client. Our proof of concept has no
-                flickers, waterfalls, or config.
+                is working to make Zero and other sync engines work great on server and client.
               </PrettyTextBigger>
 
-              <PrettyTextBigger>We love it, and think you will too.</PrettyTextBigger>
               <Spacer />
-              <Spacer />
-
-              <Link asChild href="/docs/data">
-                <Button
-                  o={0.7}
-                  hoverStyle={{
-                    o: 0.5,
-                  }}
-                  tag="a"
-                  pos="absolute"
-                  b="$9"
-                  r="$9"
-                >
-                  <ButtonText $theme-dark={{ color: '$color10' }}>Read More</ButtonText>
-                </Button>
-              </Link>
             </View>
           </YStack>
 
@@ -364,7 +345,7 @@ const InfoBoxes = () => {
         That's right, no more Metro. One Vite plugin, one Vite server, one port - three platforms.
       </InfoCard>
       <InfoCard title="The future of data" Icon={Database}>
-        Alpha, first-class integration with{' '}
+        Integration with{' '}
         <a target="_blank" href="https://zerosync.dev" rel="noreferrer">
           ZeroSync
         </a>{' '}
