@@ -22,7 +22,6 @@ export async function transformSWC(
   const parser = getParser(id, options.forceJSX)
 
   if (!parser) {
-    console.warn(`unsupported file, ignore`, id)
     return
   }
 
@@ -168,6 +167,7 @@ const parsers: Record<string, ParserConfig> = {
   '.jsx': { syntax: 'ecmascript', jsx: true },
   '.js': { syntax: 'ecmascript' },
   '.mjs': { syntax: 'ecmascript' },
+  '.cjs': { syntax: 'ecmascript' },
   '.mdx': { syntax: 'ecmascript', jsx: true },
 }
 

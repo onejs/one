@@ -68,7 +68,8 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
         }
       },
 
-      async transform(code, id) {
+      async transform(code, _id) {
+        const id = _id.split('?')[0]
         if (id.includes(`virtual:`)) {
           return
         }
@@ -83,7 +84,6 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
         })
 
         if (babelOut) {
-          console.warn('returning babel out', id)
           code = babelOut
         }
 
