@@ -1,3 +1,5 @@
+import { SERVER_CONTEXT_KEY } from '../constants'
+
 type ServerContext = {
   css?: string[]
   postRenderData?: any
@@ -9,7 +11,7 @@ type ServerContext = {
 type MaybeServerContext = null | ServerContext
 
 export const SERVER_CONTEXT_POST_RENDER_STRING = `_one_post_render_data_`
-const SERVER_CONTEXT_KEY = '__one_server_context__'
+
 const isClient = typeof document !== 'undefined'
 
 let serverContext: MaybeServerContext = globalThis[SERVER_CONTEXT_KEY] || null

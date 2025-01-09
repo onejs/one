@@ -3,16 +3,17 @@ import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
+import { SPA_HEADER_ELEMENTS } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
 import type { RenderAppProps } from '../../types'
 import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
+import { setServerContext } from '../../utils/serverContext'
 import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
 import type { One } from '../../vite/types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
-import { setServerContext } from '../../utils/serverContext'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -37,8 +38,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         if (route.type === 'spa') {
           // render just the layouts? route.layouts
           return `<html><head>
-            <script>globalThis['global'] = globalThis</script>
-            <script>globalThis['__vxrnIsSPA'] = true</script>
+            ${SPA_HEADER_ELEMENTS}
             <script type="module">
               import { injectIntoGlobalHook } from "/@react-refresh";
               injectIntoGlobalHook(window);

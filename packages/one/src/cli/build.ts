@@ -12,10 +12,10 @@ import {
   build as vxrnBuild,
   type ClientManifestEntry,
 } from 'vxrn'
-import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
+import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
@@ -497,8 +497,7 @@ export async function build(args: {
             await outputFile(
               htmlOutPath,
               `<html><head>
-              <script>globalThis['global'] = globalThis</script>
-              <script>globalThis['__vxrnIsSPA'] = true</script>
+              ${constants.SPA_HEADER_ELEMENTS}
               ${preloads
                 .map((preload) => `   <script type="module" src="${preload}"></script>`)
                 .join('\n')}

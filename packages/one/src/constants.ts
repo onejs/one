@@ -14,3 +14,11 @@ export const PRELOAD_JS_POSTFIX = `_${CACHE_KEY}_preload.js`
 // safari insanely aggressive caching
 export const VIRTUAL_SSR_CSS_ENTRY = `virtual:ssr-css.css`
 export const VIRTUAL_SSR_CSS_HREF = `/@id/__x00__${VIRTUAL_SSR_CSS_ENTRY}`
+
+export const SERVER_CONTEXT_KEY = '__one_server_context__'
+
+export const SPA_HEADER_ELEMENTS = `
+  <script>globalThis['global'] = globalThis</script>
+  <script>globalThis['__vxrnIsSPA'] = true</script>
+  <script>globalThis["${SERVER_CONTEXT_KEY}"] = {}</script>
+`
