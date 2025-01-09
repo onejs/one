@@ -57,7 +57,11 @@ export function reactNativeHMRPlugin({
         const [module] = modules
         if (!module) return
 
-        let id = (module?.url || file.replace(root, '')).replace('/@id', '')
+        const fullId = module?.url || file
+
+        console.trace('HOT UPDATE', file, fullId, module?.url)
+
+        let id = fullId.replace(root, '').replace('/@id', '')
         if (id[0] !== '/') {
           id = `/${id}`
         }
@@ -96,7 +100,13 @@ export function reactNativeHMRPlugin({
             ),
             server.watcher
           )
-          const transformResult = await pluginContainerForTransform.transform(source, file)
+
+          const transformResult = await pluginContainerForTransform.transform(
+            // TODO this is hacky
+            '//!disable-react-refresh\n' + source,
+            file
+          )
+
           source = transformResult.code
         } catch (e) {
           console.warn(`Error transforming source for HMR: ${e}. Retrying without plugins.`)
@@ -129,6 +139,8 @@ export function reactNativeHMRPlugin({
         // parse imports of modules into ids:
         // eg `import x from '@tamagui/core'` => `import x from '/me/node_modules/@tamagui/core/index.js'`
         const [imports] = parse(source)
+
+        console.log('parse imports')
 
         let accumulatedSliceOffset = 0
 
@@ -173,10 +185,12 @@ export function reactNativeHMRPlugin({
           }
         }
 
+        console.log('now now', fullId)
+
         // then we have to convert to commonjs..
         source =
           (
-            await transformSWC(id, source, {
+            await transformSWC(file, source, {
               mode: 'serve-cjs',
               environment: 'ios',
               production: mode === 'production',
@@ -198,6 +212,8 @@ export function reactNativeHMRPlugin({
         if (process.env.DEBUG) {
           console.info(`Sending hot update`, id, hotUpdateSource)
         }
+
+        console.log('hotUpdateSource', hotUpdateSource)
 
         hotUpdateCache.set(id, hotUpdateSource)
       } catch (err) {

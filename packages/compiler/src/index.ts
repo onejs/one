@@ -74,20 +74,27 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
           return
         }
 
+        const shouldSimpleTransform = code.startsWith(`//!disable-react-refresh`)
         const options = getOptions(getEnvName(this.environment.name))
 
-        const babelOut = await transformWithBabelIfNeeded({
-          ...optionsIn?.babel,
-          id,
-          code,
-          development: !options.production,
-        })
+        if (!shouldSimpleTransform) {
+          const babelOut = await transformWithBabelIfNeeded({
+            ...optionsIn?.babel,
+            id,
+            code,
+            development: !options.production,
+          })
 
-        if (babelOut) {
-          code = babelOut
+          if (babelOut) {
+            code = babelOut
+          }
         }
 
-        const out = await transformSWC(id, code, { ...options, es5: true })
+        const out = await transformSWC(id, code, {
+          ...options,
+          es5: true,
+          noHMR: shouldSimpleTransform,
+        })
 
         return out
       },

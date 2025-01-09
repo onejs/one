@@ -9,7 +9,7 @@ export function HomePage() {
   return (
     <YStack bg="$color1" mih="100%" gap="$4" px="$4" ai="center" jc="center" f={1}>
       <Text fontSize="$8" textAlign="center">
-        Hello, One
+        Hello, One.!112222222222
       </Text>
 
       <Image src={oneBall} width={128} height={128} />

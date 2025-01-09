@@ -4,16 +4,12 @@ import { extname } from 'node:path'
 import { asyncGeneratorRegex, debug, runtimePublicPath } from './constants'
 import type { Options } from './types'
 
-export async function transformSWC(
-  _id: string,
-  code: string,
-  options: Options & { es5?: boolean }
-) {
-  if (_id.includes('.vite')) {
+export async function transformSWC(id: string, code: string, options: Options & { es5?: boolean }) {
+  if (id.includes('.vite')) {
     return
   }
 
-  const id = _id.split('?')[0]
+  id = id.split('?')[0]
 
   if (id === runtimePublicPath) {
     return
@@ -62,7 +58,7 @@ export async function transformSWC(
               useDefineForClassFields: true,
               react: {
                 development: !options?.production,
-                refresh: false,
+                refresh,
                 runtime: 'automatic',
               },
             },
@@ -123,13 +119,13 @@ export async function transformSWC(
     }
   })()
 
-  const hasRefresh = refreshContentRE.test(result.code)
+  const shouldHMR = refreshContentRE.test(result.code)
 
-  if (!result || (!refresh && !hasRefresh)) {
+  if (!result || options.noHMR || (!refresh && !shouldHMR)) {
     return result
   }
 
-  wrapSourceInRefreshRuntime(id, result, options, hasRefresh)
+  wrapSourceInRefreshRuntime(id, result, options, shouldHMR)
 
   // TODO bring back?
   // if (result.map) {
@@ -181,15 +177,15 @@ function wrapSourceInRefreshRuntime(
   id: string,
   result: Output,
   options: Options,
-  hasRefresh: boolean
+  shouldHMR: boolean
 ) {
   if (options.environment === 'client' || options.environment === 'ssr') {
-    return wrapSourceInRefreshRuntimeWeb(id, result, hasRefresh)
+    return wrapSourceInRefreshRuntimeWeb(id, result, shouldHMR)
   }
-  return wrapSourceInRefreshRuntimeNative(id, result, options, hasRefresh)
+  return wrapSourceInRefreshRuntimeNative(id, result, options, shouldHMR)
 }
 
-function wrapSourceInRefreshRuntimeWeb(id: string, result: Output, hasRefresh: boolean) {
+function wrapSourceInRefreshRuntimeWeb(id: string, result: Output, shouldHMR: boolean) {
   const sourceMap: SourceMapPayload = JSON.parse(result.map!)
   sourceMap.mappings = ';;' + sourceMap.mappings
 
@@ -197,7 +193,7 @@ function wrapSourceInRefreshRuntimeWeb(id: string, result: Output, hasRefresh: b
 
 ${result.code}`
 
-  if (hasRefresh) {
+  if (shouldHMR) {
     sourceMap.mappings = ';;;;;;' + sourceMap.mappings
     result.code = `if (!window.$RefreshReg$) throw new Error("React refresh preamble was not loaded. Something is wrong.");
 const prevRefreshReg = window.$RefreshReg$;
@@ -228,8 +224,12 @@ function wrapSourceInRefreshRuntimeNative(
   id: string,
   result: Output,
   options: Options,
-  hasRefresh: boolean
+  shouldHMR: boolean
 ) {
+  if (id.endsWith('/app/index.tsx')) {
+    console.trace('....', id)
+  }
+
   const prefixCode =
     options.mode === 'build'
       ? `
@@ -247,15 +247,7 @@ ${result.code}
 `
   }
 
-  // can probably remove havent seen this
-  if (result.code.includes('RefreshRuntime = __cachedModules')) {
-    console.warn(
-      '‼️ [wrapSourceInRefreshRuntime] detected refresh runtime already in code, skipping'
-    )
-    return result.code
-  }
-
-  if (hasRefresh) {
+  if (shouldHMR) {
     result.code = `const RefreshRuntime = __cachedModules["react-refresh/cjs/react-refresh-runtime.development"];
   const prevRefreshReg = globalThis.$RefreshReg$;
   const prevRefreshSig = globalThis.$RefreshSig$ || (() => {
@@ -328,6 +320,7 @@ export const transformSWCStripJSX = async (id: string, code: string) => {
         react: {
           development: true,
           runtime: 'automatic',
+          refresh: false,
         },
       },
     },
