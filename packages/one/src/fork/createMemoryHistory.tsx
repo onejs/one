@@ -1,9 +1,15 @@
+/**
+ * This file is copied from the react-navigation repo:
+ * https://github.com/react-navigation/react-navigation/blob/%40react-navigation/core%407.1.2/packages/native/src/createMemoryHistory.tsx
+ *
+ * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
+ * All modifications except formatting should be marked with `// @modified` comment.
+ *
+ * No modifications currently, copied only in order to use a custom `useLinking` function.
+ */
+
 import type { NavigationState } from '@react-navigation/core'
 import { nanoid } from 'nanoid/non-secure'
-
-// forked from @react-navigation/native/src/createMemoryHistory.tsx
-// NOTE there was a change we made for search params, but we've fixed it upstream
-// we can revert this back to the react-navigation one if we want
 
 type HistoryRecord = {
   // Unique identifier for this record to match it with window.history.state
@@ -14,7 +20,7 @@ type HistoryRecord = {
   path: string
 }
 
-export default function createMemoryHistory() {
+export function createMemoryHistory() {
   let index = 0
   let items: HistoryRecord[] = []
 
@@ -91,12 +97,7 @@ export default function createMemoryHistory() {
       // Need to keep the hash part of the path if there was no previous history entry
       // or the previous history entry had the same path
       let pathWithHash = path
-
-      // NOTE: this was the wrong fix
-      // if (window.location.search) {
-      //   console.log('replacing!')
-      //   pathWithHash = pathWithHash + window.location.search
-      // }
+      const hash = pathWithHash.includes('#') ? '' : location.hash
 
       if (!items.length || items.findIndex((item) => item.id === id) < 0) {
         // There are two scenarios for creating an array with only one history record:
@@ -105,12 +106,13 @@ export default function createMemoryHistory() {
         //   the page when navigating forward in history.
         // - This is the first time any state modifications are done
         //   So we need to push the entry as there's nothing to replace
-        pathWithHash = pathWithHash + location.hash
+
+        pathWithHash = pathWithHash + hash
         items = [{ path: pathWithHash, state, id }]
         index = 0
       } else {
         if (items[index].path === path) {
-          pathWithHash = pathWithHash + location.hash
+          pathWithHash = pathWithHash + hash
         }
         items[index] = { path, state, id }
       }
