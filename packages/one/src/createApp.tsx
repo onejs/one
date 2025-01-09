@@ -13,6 +13,9 @@ import {
   SERVER_CONTEXT_POST_RENDER_STRING,
   setServerContext,
 } from './utils/serverContext'
+import { cloneElement, useId } from 'react'
+import { ensureExists } from './utils/ensureExists'
+import { getServerHeadInsertions } from './useServerHeadInsertion'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
@@ -31,8 +34,18 @@ export function createApp(options: CreateAppProps) {
           css,
         })
 
+        let renderId: string | undefined
+
         const App = () => {
-          return <Root routes={options.routes} {...props} />
+          return (
+            <Root
+              onRenderId={(id) => {
+                renderId = id
+              }}
+              routes={options.routes}
+              {...props}
+            />
+          )
         }
 
         AppRegistry.registerComponent('App', () => App)
@@ -48,11 +61,29 @@ export function createApp(options: CreateAppProps) {
         })
 
         try {
+          const extraHeadElements: React.ReactElement[] = []
+
           const styleTag = Application.getStyleElement({ nonce: process.env.ONE_NONCE })
           if (styleTag) {
-            const rnwStyleHTML = ReactDOMServer.renderToStaticMarkup(styleTag)
-            if (rnwStyleHTML) {
-              html = html.replace(`</head>`, `${rnwStyleHTML}</head>`)
+            extraHeadElements.push(styleTag)
+          }
+
+          ensureExists(renderId)
+          const insertions = getServerHeadInsertions(renderId)
+          if (insertions) {
+            for (const insertion of insertions) {
+              const out = insertion()
+              if (out) {
+                extraHeadElements.push(out)
+              }
+            }
+          }
+
+          if (extraHeadElements.length) {
+            const extraHeadHTML = ReactDOMServer.renderToStaticMarkup(<>{extraHeadElements}</>)
+
+            if (extraHeadHTML) {
+              html = html.replace(`</head>`, `${extraHeadHTML}</head>`)
             }
           }
         } catch (err) {

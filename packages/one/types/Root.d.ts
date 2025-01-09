@@ -3,6 +3,7 @@ import { type FunctionComponent, type ReactNode } from 'react';
 import type { GlobbedRouteImports } from './types';
 import type { One } from './vite/types';
 type RootProps = Omit<InnerProps, 'context'> & {
+    onRenderId?: (id: string) => void;
     path: string;
     isClient?: boolean;
     routes: GlobbedRouteImports;

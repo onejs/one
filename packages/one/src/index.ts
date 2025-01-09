@@ -38,6 +38,7 @@ export { Head } from './head'
 
 // hooks
 export { useLinkTo } from './link/useLinkTo'
+export { useServerHeadInsertion, type ServerHeadInsertionCallback } from './useServerHeadInsertion'
 export {
   useRouter,
   useUnstableGlobalHref,

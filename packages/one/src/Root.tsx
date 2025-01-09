@@ -5,7 +5,7 @@ import {
   type NavigationContainerProps,
 } from '@react-navigation/native'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
-import { useEffect, useState, type FunctionComponent, type ReactNode } from 'react'
+import { useEffect, useId, useState, type FunctionComponent, type ReactNode } from 'react'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
 import { ServerLocationContext } from './router/serverLocationContext'
@@ -17,18 +17,16 @@ import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollRestoration } from './views/ScrollRestoration'
 import type { One } from './vite/types'
+import { ServerRenderID } from './useServerHeadInsertion'
 // import { SplashScreen } from './views/Splash'
 
 if (typeof window !== 'undefined') {
   // @ts-ignore TODO: hard coded for demo app
-  window.__getReactRefreshIgnoredExports = () => [
-    'feedCardQuery',
-    'feedCardReplyQuery',
-    'loader',
-  ]
+  window.__getReactRefreshIgnoredExports = () => ['feedCardQuery', 'feedCardReplyQuery', 'loader']
 }
 
 type RootProps = Omit<InnerProps, 'context'> & {
+  onRenderId?: (id: string) => void
   path: string
   isClient?: boolean
   routes: GlobbedRouteImports
@@ -55,7 +53,7 @@ type InnerProps = {
 }
 
 export function Root(props: RootProps) {
-  const { path, routes, routeOptions, isClient, navigationContainerProps } = props
+  const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } = props
 
   // ⚠️ <StrictMode> breaks routing!
   const context = useViteRoutes(routes, routeOptions, globalThis['__vxrnVersion'])
@@ -75,41 +73,47 @@ export function Root(props: RootProps) {
     throw new Error(`No root component found`)
   }
 
+  const id = useId()
+
+  onRenderId?.(id)
+
   const contents = (
     // <StrictMode>
-    <RootErrorBoundary>
-      {/* for some reason warning if no key here */}
-      <UpstreamNavigationContainer
-        ref={store.navigationRef}
-        initialState={store.initialState}
-        linking={store.linking}
-        onUnhandledAction={onUnhandledAction}
-        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-        documentTitle={{
-          enabled: false,
-        }}
-        {...navigationContainerProps}
-      >
-        <ServerLocationContext.Provider value={location}>
-          {/* <GestureHandlerRootView> */}
-          {/*
-           * Due to static rendering we need to wrap these top level views in second wrapper
-           * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
-           * is a HTML document, we need to ensure its inside the <body>
-           */}
-          <>
-            {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
-            <ScrollRestoration />
-            <Component />
+    <ServerRenderID.Provider value={id}>
+      <RootErrorBoundary>
+        {/* for some reason warning if no key here */}
+        <UpstreamNavigationContainer
+          ref={store.navigationRef}
+          initialState={store.initialState}
+          linking={store.linking}
+          onUnhandledAction={onUnhandledAction}
+          theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+          documentTitle={{
+            enabled: false,
+          }}
+          {...navigationContainerProps}
+        >
+          <ServerLocationContext.Provider value={location}>
+            {/* <GestureHandlerRootView> */}
+            {/*
+             * Due to static rendering we need to wrap these top level views in second wrapper
+             * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
+             * is a HTML document, we need to ensure its inside the <body>
+             */}
+            <>
+              {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
+              <ScrollRestoration />
+              <Component />
 
-            {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-          </>
-          {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-          {/* </GestureHandlerRootView> */}
-        </ServerLocationContext.Provider>
-      </UpstreamNavigationContainer>
-      <PreloadLinks key="preload-links" />
-    </RootErrorBoundary>
+              {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+            </>
+            {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+            {/* </GestureHandlerRootView> */}
+          </ServerLocationContext.Provider>
+        </UpstreamNavigationContainer>
+        <PreloadLinks key="preload-links" />
+      </RootErrorBoundary>
+    </ServerRenderID.Provider>
     // </StrictMode>
   )
 
