@@ -105,7 +105,7 @@ export async function setupTestServers(): Promise<TestInfo> {
 
     if (!ONLY_TEST_PROD) {
       console.info(`Starting a dev server on http://localhost:${devPort}`)
-      devServer = exec(`yarn dev --port ${devPort}`, {
+      devServer = exec(`yarn dev --clean --port ${devPort}`, {
         cwd: process.cwd(),
         env: { ...process.env },
       })
