@@ -60,11 +60,6 @@ export const docsRoutes = [
   },
 
   {
-    title: 'Data',
-    pages: [{ title: 'Introduction', route: '/docs/data' }],
-  },
-
-  {
     title: 'Components',
     pages: [
       { title: 'Link', route: '/docs/components-Link' },
