@@ -20,13 +20,13 @@ import {
   createConfigItemAdditionalProperties,
   decodeURIComponentSafe,
   formatRegexPattern,
-  getParamValue,
   getRouteConfigSorter,
   getUrlWithReactNavigationConcessions,
   matchForEmptyPath,
   parseQueryParamsExtended,
   populateParams,
 } from './getStateFromPath-mods'
+import { getParamValue, isDynamicPart, replacePart } from './_shared'
 
 type Options<ParamList extends {}> = {
   path?: string
@@ -263,7 +263,7 @@ function getNormalizedConfigs(
           createNormalizedConfigs(key, screens as PathConfigMap<object>, [], initialRoutes, [])
         )
       )
-    /* @modified - start */
+      /* @modified - start */
       // .sort((a, b) => {
       //   // Sort config so that:
       //   // - the most exhaustive ones are always at the beginning
@@ -391,7 +391,7 @@ const matchAgainstConfigs = (remaining: string, configs: RouteConfig[]) => {
         matchedParams: Record<string, Record<string, string>> // The extracted params
       }>(
         (acc, p, index) => {
-          if (!p.startsWith(':')) {
+          if (!isDynamicPart(p) /* @modified */) {
             return acc
           }
 
@@ -437,7 +437,7 @@ const matchAgainstConfigs = (remaining: string, configs: RouteConfig[]) => {
         const params = normalizedPath
           ?.split('/')
           .reduce<Record<string, unknown>>((acc, p, index) => {
-            if (!p.startsWith(':')) {
+            if (!isDynamicPart(p) /* @modified */) {
               return acc
             }
 
@@ -450,7 +450,10 @@ const matchAgainstConfigs = (remaining: string, configs: RouteConfig[]) => {
             // @modified - end
 
             if (value) {
-              const key = p.replace(/^:/, '').replace(/\?$/, '')
+              // @modified - start
+              // const key = p.replace(/^:/, '').replace(/\?$/, '')
+              const key = replacePart(p)
+              // @modified - end
               acc[key] = routeConfig?.parse?.[key] ? routeConfig.parse[key](value as any) : value
             }
 
