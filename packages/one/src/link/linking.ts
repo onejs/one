@@ -2,8 +2,8 @@ import * as Linking from 'expo-linking'
 import { Platform } from 'react-native'
 
 import { adjustPathname } from '../fork/extractPathFromURL'
-import getPathFromState from '../fork/getPathFromState'
-import getStateFromPath from '../fork/getStateFromPath'
+import { getPathFromState } from '../fork/getPathFromState'
+import { getStateFromPath } from '../fork/getStateFromPath'
 
 // @ts-ignore
 const isExpoGo = typeof expo !== 'undefined' && globalThis.expo?.modules?.ExpoGo
