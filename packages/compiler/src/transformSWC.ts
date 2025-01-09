@@ -77,7 +77,7 @@ export async function transformSWC(_id: string, code: string, options: Options) 
     ...transformOptions,
   }
 
-  let result: Output = await (async () => {
+  const result: Output = await (async () => {
     try {
       debug?.(`transformSWC ${id} using options:\n${JSON.stringify(finalOptions, null, 2)}`)
 
@@ -96,6 +96,10 @@ export async function transformSWC(_id: string, code: string, options: Options) 
     }
   })()
 
+  if (_id.includes('@floating-ui/core/dist/floating-ui.core.mjs')) {
+    console.log('WTF', result.code)
+  }
+
   const hasRefresh = refreshContentRE.test(result.code)
 
   if (!result || (!refresh && !hasRefresh)) {
@@ -104,6 +108,7 @@ export async function transformSWC(_id: string, code: string, options: Options) 
 
   wrapSourceInRefreshRuntime(id, result, options, hasRefresh)
 
+  // TODO bring back?
   // if (result.map) {
   //   const sourceMap: SourceMapPayload = JSON.parse(result.map)
   //   sourceMap.mappings = ';;;;;;;;' + sourceMap.mappings

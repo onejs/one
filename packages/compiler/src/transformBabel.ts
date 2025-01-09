@@ -199,6 +199,7 @@ export const createReactCompilerPlugin = (root: string): Plugin => {
 const asyncGeneratorRegex = /(async \*|async function\*|for await)/
 
 function shouldBabelGenerators(id: string, code: string) {
+  console.log('testing it')
   return asyncGeneratorRegex.test(code)
 }
 

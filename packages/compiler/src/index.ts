@@ -70,6 +70,7 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
                     handler(options) {},
                   },
                   async transform(code, id) {
+                    console.warn('????????????????????????????????????', id)
                     const options = getOptions(getEnvName(this.environment.name))
                     const babelOut = await transformWithBabelIfNeeded({
                       id,
