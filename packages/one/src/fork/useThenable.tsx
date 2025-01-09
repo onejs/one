@@ -1,4 +1,10 @@
-// No change just vendored to avoid import issue with RR7
+/**
+ * This file is copied from the react-navigation repo:
+ * https://github.com/react-navigation/react-navigation/blob/%40react-navigation/core%407.1.2/packages/native/src/useThenable.tsx
+ *
+ * No changes are made except of formatting.
+ */
+
 import * as React from 'react'
 
 export function useThenable<T>(create: () => PromiseLike<T>) {
