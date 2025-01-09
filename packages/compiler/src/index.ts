@@ -9,6 +9,7 @@ import type { PluginOption, UserConfig } from 'vite'
 import { transformWithBabelIfNeeded } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, Options } from './types'
+import { runtimePublicPath } from './constants'
 
 export * from './configure'
 export * from './transformBabel'
@@ -35,8 +36,6 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
     if (!envNames[name]) throw new Error(`Invalid env: ${name}`)
     return name as Environment
   }
-
-  const runtimePublicPath = '/@react-refresh'
 
   return [
     {

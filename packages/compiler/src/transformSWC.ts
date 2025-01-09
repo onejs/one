@@ -1,7 +1,7 @@
 import { transform, type Output, type ParserConfig, type Options as SWCOptions } from '@swc/core'
 import type { SourceMapPayload } from 'node:module'
 import { extname } from 'node:path'
-import { debug } from './constants'
+import { debug, runtimePublicPath } from './constants'
 import type { Options } from './types'
 
 export async function transformSWC(_id: string, code: string, options: Options) {
@@ -69,23 +69,26 @@ export async function transformSWC(_id: string, code: string, options: Options) 
         ...transformOptions,
       })
     } catch (e: any) {
-      console.info(
-        `SWC failed to transform file, but sometimes this is fine so continuing... Please report: ${id} ${e.message}`
-      )
-
-      return { code }
+      const message: string = e.message
+      const fileStartIndex = message.indexOf('╭─[')
+      if (fileStartIndex !== -1) {
+        const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
+        if (match) {
+          e.line = match[1]
+          e.column = match[2]
+        }
+      }
+      throw e
     }
   })()
 
-  if (!result) {
-    return
-  }
+  const hasRefresh = refreshContentRE.test(result.code)
 
-  if (!refresh || !refreshContentRE.test(result.code)) {
+  if (!result || (!refresh && !hasRefresh)) {
     return result
   }
 
-  result.code = wrapSourceInRefreshRuntime(id, result.code, options)
+  wrapSourceInRefreshRuntime(id, result, options, hasRefresh)
 
   if (result.map) {
     const sourceMap: SourceMapPayload = JSON.parse(result.map)
@@ -124,7 +127,59 @@ function shouldSourceMap() {
   return process.env.VXRN_ENABLE_SOURCE_MAP === '1'
 }
 
-function wrapSourceInRefreshRuntime(id: string, code: string, options: Options) {
+function wrapSourceInRefreshRuntime(
+  id: string,
+  result: Output,
+  options: Options,
+  hasRefresh: boolean
+) {
+  if (options.environment === 'client' || options.environment === 'ssr') {
+    return wrapSourceInRefreshRuntimeWeb(id, result, hasRefresh)
+  }
+  return wrapSourceInRefreshRuntimeNative(id, result, options, hasRefresh)
+}
+
+function wrapSourceInRefreshRuntimeWeb(id: string, result: Output, hasRefresh: boolean) {
+  const sourceMap: SourceMapPayload = JSON.parse(result.map!)
+  sourceMap.mappings = ';;' + sourceMap.mappings
+
+  result.code = `import * as RefreshRuntime from "${runtimePublicPath}";
+
+${result.code}`
+
+  if (hasRefresh) {
+    sourceMap.mappings = ';;;;;;' + sourceMap.mappings
+    result.code = `if (!window.$RefreshReg$) throw new Error("React refresh preamble was not loaded. Something is wrong.");
+const prevRefreshReg = window.$RefreshReg$;
+const prevRefreshSig = window.$RefreshSig$;
+window.$RefreshReg$ = RefreshRuntime.getRefreshReg("${id}");
+window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+
+${result.code}
+
+window.$RefreshReg$ = prevRefreshReg;
+window.$RefreshSig$ = prevRefreshSig;
+`
+  }
+
+  result.code += `
+RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+  RefreshRuntime.registerExportsForReactRefresh("${id}", currentExports);
+  import.meta.hot.accept((nextExports) => {
+    if (!nextExports) return;
+    const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("${id}", currentExports, nextExports);
+    if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+  });
+});
+`
+}
+
+function wrapSourceInRefreshRuntimeNative(
+  id: string,
+  result: Output,
+  options: Options,
+  hasRefresh: boolean
+) {
   const prefixCode =
     options.mode === 'build'
       ? `
@@ -136,46 +191,54 @@ function wrapSourceInRefreshRuntime(id: string, code: string, options: Options) 
 
   if (options.production) {
     return `
-  ${prefixCode}
-
-  module.url = '${id}'
-
-  ${code}
-    `
+${prefixCode}
+module.url = '${id}'
+${result.code}
+`
   }
 
-  if (code.includes('RefreshRuntime = __cachedModules')) {
-    console.warn('[wrapSourceInRefreshRuntime] detected refresh runtime already in code, skipping')
-    return code
+  // can probably remove havent seen this
+  if (result.code.includes('RefreshRuntime = __cachedModules')) {
+    console.warn(
+      '‼️ [wrapSourceInRefreshRuntime] detected refresh runtime already in code, skipping'
+    )
+    return result.code
   }
 
-  return `const RefreshRuntime = __cachedModules["react-refresh/cjs/react-refresh-runtime.development"];
-const prevRefreshReg = globalThis.$RefreshReg$;
-const prevRefreshSig = globalThis.$RefreshSig$ || (() => {
-  console.info("no react refresh setup!")
-  return (x) => x
-});
-globalThis.$RefreshReg$ = (type, id) => RefreshRuntime.register(type, "${id}" + " " + id);
-globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+  if (hasRefresh) {
+    result.code = `const RefreshRuntime = __cachedModules["react-refresh/cjs/react-refresh-runtime.development"];
+  const prevRefreshReg = globalThis.$RefreshReg$;
+  const prevRefreshSig = globalThis.$RefreshSig$ || (() => {
+    console.info("no react refresh setup!")
+    return (x) => x
+  });
+  globalThis.$RefreshReg$ = (type, id) => RefreshRuntime.register(type, "${id}" + " " + id);
+  globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 
 ${prefixCode}
 
-module.url = '${id}'
-module.hot = createHotContext(module.url)
+  module.url = '${id}'
+  module.hot = createHotContext(module.url)
 
-${code}
+${result.code}
+
+  if (module.hot) {
+    globalThis.$RefreshReg$ = prevRefreshReg;
+    globalThis.$RefreshSig$ = prevRefreshSig;
+    globalThis['lastHmrExports'] = JSON.stringify(Object.keys(exports))
+  }
+`
+  }
+
+  result.code = `${result.code}
 
 if (module.hot) {
-  globalThis.$RefreshReg$ = prevRefreshReg;
-  globalThis.$RefreshSig$ = prevRefreshSig;
-  globalThis['lastHmrExports'] = JSON.stringify(Object.keys(exports))
   if (module.hot.accept) {
     module.hot.accept((nextExports) => {
       RefreshRuntime.performReactRefresh()
     });
   }
-}
-  `
+}`
 }
 
 function getParser(id: string, forceJSX = false) {
