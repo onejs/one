@@ -1,5 +1,4 @@
-import { beforeAll, describe, expect, it, inject } from 'vitest'
-import { ONLY_TEST_DEV, ONLY_TEST_PROD } from '@vxrn/test'
+import { describe, expect, it } from 'vitest'
 
 const serverUrl = process.env.ONE_SERVER_URL
 

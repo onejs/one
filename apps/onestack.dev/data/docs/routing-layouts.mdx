@@ -59,6 +59,28 @@ export default function Layout() {
 }
 ```
 
+### useServerHeadInsertion
+
+The root `_layout.tsx` can use a special hook that allows it to insert tags into your `<head />` tag after server rendering finishes. This is an edge-case that is mostly only useful for CSS-in-JS libraries. You can use it like so:
+
+```tsx
+import { Slot, useServerHeadInsertion } from 'one'
+
+export default function Layout() {
+  useServerHeadInsertion(() => {
+    // this will run after the entire page renders
+    // return a single React.ReactElement that will be spliced into your <head />
+    return <style>{renderCSS()}</style>
+  })
+
+  return (
+    <html>
+      <Slot />
+    </html>
+  )
+}
+```
+
 ## Groups and layouts
 
 If you'd like to logically group together some pages without creating a sub-route, you can use a group folder by naming it like so:
