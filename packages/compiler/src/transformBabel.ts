@@ -82,11 +82,18 @@ const getDefaultBabelPlugins = (props: Props, force = false) => {
   }
 
   if (configuration.enableReanimated && shouldBabelReanimated(props)) {
+    debug?.(`Using babel reanimated on file`)
     plugins.push('react-native-reanimated/plugin')
   }
 
   if (configuration.enableCompiler && shouldBabelReactCompiler(props)) {
+    debug?.(`Using babel react compiler on file`)
     plugins.push(getBabelReactCompilerPlugin(props))
+  }
+
+  if (shouldBabelReactNativeCodegen(props)) {
+    debug?.(`Using babel @react-native/babel-plugin-codegen on file`)
+    plugins.push('@react-native/babel-plugin-codegen')
   }
 
   return plugins
@@ -109,12 +116,32 @@ const getBasePlugins = ({ development }: Props) =>
   ] satisfies BabelPlugins
 
 /**
+ * ----- react native codegen ----
+ */
+
+// Codegen specification files need to go through the react-native codegen babel plugin.
+// See:
+// * https://reactnative.dev/docs/fabric-native-components-introduction#1-define-specification-for-codegen
+// * https://reactnative.dev/docs/turbo-native-modules-introduction#1-declare-typed-specification
+
+const NATIVE_COMPONENT_RE = /NativeComponent\.[jt]sx?$/
+const SPEC_FILE_RE = /[\/\\]specs?[\/\\]/
+
+const shouldBabelReactNativeCodegen = ({ id, environment }: Props) => {
+  return (
+    (environment === 'ios' || environment === 'android') &&
+    (NATIVE_COMPONENT_RE.test(id) || SPEC_FILE_RE.test(id))
+  )
+}
+
+/**
  * ----- react compiler -----
  */
 
 const shouldBabelReactCompiler = (props: Props) => {
   if (!/.*(.tsx?)$/.test(props.id)) return false
   if (props.code.startsWith('// disable-compiler')) return false
+  // may want to disable in node modules? but rare to have tsx in node mods
   console.log('enable compiler')
   return true
 }

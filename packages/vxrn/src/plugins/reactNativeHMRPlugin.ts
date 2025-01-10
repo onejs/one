@@ -100,9 +100,8 @@ export function reactNativeHMRPlugin({
           )
 
           const transformResult = await pluginContainerForTransform.transform(
-            // TODO this is hacky
-            '//!disable-react-refresh\n' + source,
-            file
+            source,
+            `vxrn-swc-preprocess:${file}`
           )
 
           source = transformResult.code

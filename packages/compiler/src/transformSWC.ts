@@ -128,6 +128,37 @@ export async function transformSWC(id: string, code: string, options: Options & 
     return result
   }
 
+  // fix for node_modules that ship tsx but don't use type-specific imports
+  if (id.includes('node_modules') && parser.syntax === 'typescript') {
+    console.warn('FIXING TYPES??', id)
+
+    // we need to keep fake objects for type exports
+    const typeExportsMatch = code.match(/^\s*export\s+type\s+([^\s]+)/gi)
+    if (typeExportsMatch) {
+      for (const typeExport of Array.from(typeExportsMatch)) {
+        const [_export, _type, name] = typeExport.split(/\s+/)
+        // FIXME: support `export { ... } from '...'`
+        if (name.startsWith('{')) continue
+
+        // FIXME: support `export type Type<T> = ...`
+        if (name.includes('<')) continue
+
+        // basic sanity check it isn't exported already
+        const alreadyExported = new RegExp(`export (const|let|class|function) ${name}\\s+`).test(
+          result.code
+        )
+
+        if (!alreadyExported) {
+          const fakeExport = `export let ${name} = {};`
+          console.info(
+            ` ⚠️ Fixing non-type-specifc import in node_module, this should be fixed upstream: ${fakeExport} in ${id}`
+          )
+          result.code += `\n${fakeExport}\n`
+        }
+      }
+    }
+  }
+
   wrapSourceInRefreshRuntime(id, result, options, shouldHMR)
 
   // TODO bring back?

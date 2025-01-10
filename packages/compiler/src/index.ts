@@ -69,37 +69,46 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
         }
       },
 
-      async transform(code, _id) {
-        const id = _id.split('?')[0]
-        if (id.includes(`virtual:`)) {
-          return
-        }
+      transform: {
+        order: 'pre',
+        async handler(code, _id) {
+          let id = _id.split('?')[0]
 
-        const shouldSimpleTransform = code.startsWith(`//!disable-react-refresh`)
-        const options = getOptions(getEnvName(this.environment.name))
+          // pre process = hmr just are removing jsx but leaving imports as esm
+          const isPreProcess = id.startsWith(`vxrn-swc-preprocess:`)
+          if (isPreProcess) {
+            id = id.replace(`vxrn-swc-preprocess:`, '')
+          }
 
-        if (!shouldSimpleTransform) {
-          const babelOut = await transformWithBabelIfNeeded({
-            ...optionsIn?.babel,
-            id,
-            code,
-            development: !options.production,
-            environment: this.environment.name,
-            reactForRNVersion: version.split('.')[0] as '18' | '19',
+          if (id.includes(`virtual:`)) {
+            return
+          }
+
+          const options = getOptions(getEnvName(this.environment.name))
+
+          if (!isPreProcess) {
+            const babelOut = await transformWithBabelIfNeeded({
+              ...optionsIn?.babel,
+              id,
+              code,
+              development: !options.production,
+              environment: this.environment.name,
+              reactForRNVersion: version.split('.')[0] as '18' | '19',
+            })
+
+            if (babelOut) {
+              code = babelOut
+            }
+          }
+
+          const out = await transformSWC(id, code, {
+            ...options,
+            es5: true,
+            noHMR: isPreProcess,
           })
 
-          if (babelOut) {
-            code = babelOut
-          }
-        }
-
-        const out = await transformSWC(id, code, {
-          ...options,
-          es5: true,
-          noHMR: shouldSimpleTransform,
-        })
-
-        return out
+          return out
+        },
       },
     },
   ]
