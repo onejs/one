@@ -10,6 +10,7 @@ import { runtimePublicPath } from './constants'
 import { transformWithBabelIfNeeded } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, Options } from './types'
+import { version } from 'react/package.json'
 
 export * from './configure'
 export * from './transformBabel'
@@ -83,6 +84,8 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
             id,
             code,
             development: !options.production,
+            environment: this.environment.name,
+            reactForRNVersion: version.split('.')[0] as '18' | '19',
           })
 
           if (babelOut) {

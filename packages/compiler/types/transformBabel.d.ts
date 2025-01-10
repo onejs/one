@@ -1,24 +1,20 @@
-import type { Plugin } from 'vite';
 import babel from '@babel/core';
 type BabelPlugins = babel.TransformOptions['plugins'];
 export type TransformBabelOptions = {
-    reactCompiler?: boolean;
-    reanimated?: boolean;
     getUserPlugins?: GetBabelConfig;
 };
-export type TransformBabelProps = TransformBabelOptions & {
+export type GetBabelConfigProps = {
     id: string;
     code: string;
     development: boolean;
+    environment: string;
+    reactForRNVersion: '18' | '19';
 };
-export type GetBabelConfig = (id: string, code: string) => boolean | {
+type Props = TransformBabelOptions & GetBabelConfigProps;
+export type GetBabelConfig = (props: Props) => boolean | {
     plugins: Exclude<BabelPlugins, null | undefined>;
     excludeDefaultPlugins?: boolean;
 };
-export declare function transformWithBabelIfNeeded(props: TransformBabelProps): Promise<string | undefined>;
-/**
- * ----- react compiler -----
- */
-export declare const createReactCompilerPlugin: (root: string) => Plugin;
+export declare function transformWithBabelIfNeeded(props: Props): Promise<string | undefined>;
 export {};
 //# sourceMappingURL=transformBabel.d.ts.map

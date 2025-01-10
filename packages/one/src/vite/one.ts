@@ -100,7 +100,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           autoDepOptimizePlugin({
             onScannedDeps({ hasReanimated }) {
               configureVXRNCompilerPlugin({
-                disableReanimated: !hasReanimated,
+                enableReanimated: hasReanimated,
               })
             },
             root,

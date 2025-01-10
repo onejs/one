@@ -1,10 +1,12 @@
 type Conf = {
-  disableReanimated: boolean
+  enableReanimated?: boolean
+  enableCompiler?: boolean
 }
 
-export const configuration: Conf = {
-  disableReanimated: true,
-}
+export const configuration = {
+  enableReanimated: false,
+  enableCompiler: false,
+} satisfies Conf
 
 export function configureVXRNCompilerPlugin(_: Conf) {
   Object.assign(configuration, _)
