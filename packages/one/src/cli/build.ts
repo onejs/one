@@ -462,23 +462,27 @@ export async function build(args: {
           preloads,
         })
 
+        if (exported.loader) {
+          loaderData = (await exported.loader?.({ path, params })) ?? null
+          const code = await readFile(clientJsPath, 'utf-8')
+          const withLoader = 
+          // super dirty to quickly make ssr loaders work until we have better
+          `
+if (typeof document === 'undefined') globalThis.document = {}
+` + replaceLoader({
+            code,
+            loaderData,
+          })          
+          const loaderPartialPath = join(clientDir, getLoaderPath(path))
+          await outputFile(loaderPartialPath, withLoader)
+        }
+        
         // ssr, we basically skip at build-time and just compile it the js we need
         if (foundRoute.type !== 'ssr') {
           const loaderProps: LoaderProps = { path, params }
           globalThis['__vxrnLoaderProps__'] = loaderProps
           // importing resetState causes issues :/
           globalThis['__vxrnresetState']?.()
-
-          if (exported.loader) {
-            loaderData = (await exported.loader?.({ path, params })) ?? null
-            const code = await readFile(clientJsPath, 'utf-8')
-            const withLoader = replaceLoader({
-              code,
-              loaderData,
-            })
-            const loaderPartialPath = join(clientDir, getLoaderPath(path))
-            await outputFile(loaderPartialPath, withLoader)
-          }
 
           if (foundRoute.type === 'ssg') {
             const html = await render({
