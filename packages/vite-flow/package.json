@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-flow",
-  "version": "1.1.394",
+  "version": "1.1.395",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
