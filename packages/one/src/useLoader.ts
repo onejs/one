@@ -31,13 +31,14 @@ export function useLoader<
     )
   }
 
-  const routeNode = useRouteNode()
   const params = useParams()
+  const pathname = usePathname()
 
   // Cannot use usePathname() here since it will change every time the route changes,
   // but here here we want to get the current local pathname which renders this screen.
-  const currentPath =
-    '/' + resolveHref({ pathname: routeNode?.route || '', params }).replace(/index$/, '')
+  const currentPath = resolveHref({ pathname: pathname, params })
+    .replace(/index$/, '')
+    .replace(/\?.*/, '')
 
   // only if it matches current route
   const preloadedData =
@@ -113,7 +114,6 @@ export function useLoader<
             }
 
             // On web, we can use import to dynamically load the loader
-            console.warn('dyn import', loaderJSUrl)
             return await dynamicImport(loaderJSUrl)
           })()
 
