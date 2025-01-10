@@ -495,8 +495,6 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
 
   setLoadingState('loading')
 
-  // todo
-  globalThis['__vxrntodopath'] = removeSearch(href)
   preloadRoute(href)
 
   const rootState = navigationRef.getRootState()

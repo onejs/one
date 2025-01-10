@@ -1,14 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
-import { getLoaderPath } from './utils/cleanUrl'
 import { useActiveParams, useParams, usePathname } from './hooks'
 import { resolveHref } from './link/href'
 import { useRouteNode } from './router/Route'
 import { preloadingLoader } from './router/router'
-import type { LoaderProps } from './types'
+import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
-import { weakKey } from './utils/weakKey'
 import { getServerContext } from './utils/serverContext'
+import { weakKey } from './utils/weakKey'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -32,19 +31,13 @@ export function useLoader<
     )
   }
 
-  const isNative = process.env.TAMAGUI_TARGET === 'native'
   const routeNode = useRouteNode()
   const params = useParams()
 
   // Cannot use usePathname() here since it will change every time the route changes,
   // but here here we want to get the current local pathname which renders this screen.
-  const pathName =
-    '/' + resolveHref({ pathname: routeNode?.route || '', params }).replace(/index$/, '')
-
   const currentPath =
-    (isNative ? null : globalThis['__vxrntodopath']) || // @zetavg: not sure why we're using `globalThis['__vxrntodopath']` here, but this breaks native when switching between tabs where the value stays with the previous path, so ignoring this on native
-    // TODO likely either not needed or needs proper path from server side
-    (typeof window !== 'undefined' ? window.location?.pathname || pathName : '/')
+    '/' + resolveHref({ pathname: routeNode?.route || '', params }).replace(/index$/, '')
 
   // only if it matches current route
   const preloadedData =
@@ -64,6 +57,7 @@ export function useLoader<
   }
 
   const loaded = loadedData[currentPath]
+
   if (typeof loaded !== 'undefined') {
     return loaded
   }
@@ -92,7 +86,7 @@ export function useLoader<
 
         try {
           const response = await (async () => {
-            if (isNative) {
+            if (process.env.TAMAGUI_TARGET === 'native') {
               const nativeLoaderJSUrl = `${loaderJSUrl}?platform=ios` /* TODO: platform */
 
               try {
@@ -119,6 +113,7 @@ export function useLoader<
             }
 
             // On web, we can use import to dynamically load the loader
+            console.warn('dyn import', loaderJSUrl)
             return await dynamicImport(loaderJSUrl)
           })()
 
