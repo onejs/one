@@ -183,8 +183,6 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
             return
           }
 
-          console.log('send', source)
-
           res.writeHead(200, { 'Content-Type': 'text/javascript' })
           res.end(source)
         }
