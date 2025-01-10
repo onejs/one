@@ -53,6 +53,9 @@
 
 # backlog
 
+- // TODO see about moving to hotUpdate
+    // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
+
 - we can avoid the reanimated babel plugin entirely if we don't detect reanimated in deps during scanDeps
 
 - fix `sub middleware intercepts` test

@@ -58,7 +58,9 @@ export function openReactNativeDevTools() {
         return
       }
 
-      console.warn(`Failed to open React Native DevTools, ${url} returns ${response.status}: ${responseText}.`)
+      console.warn(
+        `Failed to open React Native DevTools, ${url} returns ${response.status}: ${responseText}.`
+      )
     }
   })()
 }
@@ -180,6 +182,8 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
             res.end('')
             return
           }
+
+          console.log('send', source)
 
           res.writeHead(200, { 'Content-Type': 'text/javascript' })
           res.end(source)
