@@ -27,6 +27,9 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
     };
     resolve: {
         dedupe: string[];
+        alias: {
+            'react-native-css-interop/jsx-dev-runtime': string;
+        };
     };
     mode: string;
     define: {

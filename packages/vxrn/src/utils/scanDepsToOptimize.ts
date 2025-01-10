@@ -4,6 +4,7 @@ import path, { dirname, extname, join, sep } from 'node:path'
 export type ScanDepsResult = {
   prebundleDeps: string[]
   hasReanimated: boolean
+  hasNativewind: boolean
 }
 
 /** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
@@ -99,7 +100,7 @@ export async function scanDepsToOptimize(
   const { parentDepNames = [], proceededDeps = new Map(), pkgJsonContent } = options
 
   if (options === rootOptions) {
-    console.info(`[one] Scanning for deps to automatically include in optimizeDeps...`)
+    console.info(`[one] Scanning node_modules to auto-optimize...`)
   }
 
   const currentRoot = path.dirname(packageJsonPath)
@@ -107,7 +108,7 @@ export async function scanDepsToOptimize(
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
   const deps = [...Object.keys(pkgJson.dependencies || {})]
 
-  let hasReanimated = false
+  let hasReanimated = !!pkgJson.dependencies?.['react-native-reanimated']
 
   const prebundleDeps = (
     await Promise.all(
@@ -240,9 +241,20 @@ export async function scanDepsToOptimize(
     .flat()
     .filter((dep, index, arr) => arr.indexOf(dep) === index)
 
+  const hasNativewind = !!pkgJson.dependencies?.['nativewind']
+
+  if ((hasNativewind || hasReanimated) && options === rootOptions) {
+    if (hasReanimated)
+      console.info(
+        `[one] Enabled babel plugins: ${[hasReanimated ? 'Reanimated' : '', hasNativewind ? 'Nativewind' : ''].filter(Boolean).join(', ')}`
+      )
+  }
+
   return {
     prebundleDeps,
     hasReanimated,
+    // only check if set in root, dont want to enable css mode too easily
+    hasNativewind,
   }
 }
 

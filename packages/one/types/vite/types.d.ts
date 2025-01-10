@@ -70,12 +70,16 @@ export declare namespace One {
              */
             tsConfigPaths?: boolean | TSConfigPluginOptions;
         };
-        app?: {
+        native?: {
             /**
              * The uid of your native app, this will be used internally in one to call
              * `AppRegistry.registerComponent(key)`
              */
             key?: string;
+            /**
+             * Turns on react-native-css-interop support when importing CSS on native
+             */
+            css?: boolean;
         };
         web?: {
             /**

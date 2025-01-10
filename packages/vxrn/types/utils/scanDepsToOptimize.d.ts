@@ -1,6 +1,7 @@
 export type ScanDepsResult = {
     prebundleDeps: string[];
     hasReanimated: boolean;
+    hasNativewind: boolean;
 };
 /** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
 export declare const EXCLUDE_LIST: string[];

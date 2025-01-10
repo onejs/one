@@ -6,9 +6,9 @@
 import { resolvePath } from '@vxrn/utils'
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { extname, join } from 'node:path'
 import type { PluginOption, UserConfig } from 'vite'
-import { runtimePublicPath } from './constants'
+import { runtimePublicPath, validParsers } from './constants'
 import { transformWithBabelIfNeeded } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, Options } from './types'
@@ -80,7 +80,26 @@ export async function createVXRNCompilerPlugin(
 
       transform: {
         order: 'pre',
-        async handler(code, _id) {
+        async handler(codeIn, _id) {
+          let code = codeIn
+
+          const shouldDebug =
+            process.env.NODE_ENV === 'development' && codeIn.startsWith('// debug')
+
+          if (shouldDebug) {
+            console.info(`[one] ${_id} input:`)
+            console.info(codeIn)
+          }
+
+          const extension = extname(_id)
+          if (!validParsers.has(extension)) {
+            return
+          }
+
+          if (extension === '.css') {
+            //
+          }
+
           let id = _id.split('?')[0]
 
           // pre process = hmr just are removing jsx but leaving imports as esm
@@ -106,6 +125,10 @@ export async function createVXRNCompilerPlugin(
             })
 
             if (babelOut) {
+              if (shouldDebug) {
+                console.info(`[one] ${id} ran babel:`)
+                console.info(babelOut)
+              }
               code = babelOut
             }
           }
@@ -115,6 +138,11 @@ export async function createVXRNCompilerPlugin(
             es5: true,
             noHMR: isPreProcess,
           })
+
+          if (shouldDebug) {
+            console.info(`[one] ${id} final output:`)
+            console.info(out)
+          }
 
           return out
         },

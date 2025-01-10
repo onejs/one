@@ -13,7 +13,7 @@ export default {
         defaultRenderMode: 'ssg',
       },
 
-      app: {
+      native: {
         // set to the key of your native app
         // will call AppRegistry.registerComponent(app.key)
         key: 'one-example',

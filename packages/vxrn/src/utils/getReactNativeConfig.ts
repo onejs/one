@@ -22,6 +22,7 @@ import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
+import { resolvePath } from '@vxrn/resolve'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
@@ -247,6 +248,15 @@ export async function getReactNativeConfig(
 
     resolve: {
       dedupe,
+
+      alias: {
+        'react-native-css-interop/jsx-dev-runtime': join(
+          resolvePath('react-native-css-interop'),
+          'dist',
+          'runtime',
+          'jsx-dev-runtime.js'
+        ),
+      },
     },
 
     mode: mode === 'dev' ? 'development' : 'production',

@@ -257,6 +257,13 @@ install('URLSearchParams', () => URLSearchParams);
   },
 
   {
+    module: 'react-native-css-interop',
+    patchFiles: {
+      'dist/**/*.js': ['jsx'],
+    },
+  },
+
+  {
     module: 'expo-video',
     patchFiles: {
       'build/index.js': (contents) => {

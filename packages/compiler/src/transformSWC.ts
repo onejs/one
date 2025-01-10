@@ -1,8 +1,16 @@
-import { transform, type Output, type ParserConfig, type Options as SWCOptions } from '@swc/core'
+import {
+  JscConfig,
+  transform,
+  TransformConfig,
+  type Output,
+  type ParserConfig,
+  type Options as SWCOptions,
+} from '@swc/core'
 import type { SourceMapPayload } from 'node:module'
 import { extname } from 'node:path'
-import { asyncGeneratorRegex, debug, runtimePublicPath } from './constants'
+import { asyncGeneratorRegex, debug, parsers, runtimePublicPath } from './constants'
 import type { Options } from './types'
+import { configuration } from './configure'
 
 export async function transformSWC(id: string, code: string, options: Options & { es5?: boolean }) {
   if (id.includes('.vite')) {
@@ -32,7 +40,13 @@ export async function transformSWC(id: string, code: string, options: Options & 
     development: !options.forceJSX && !options.production,
     runtime: 'automatic',
     importSource: 'react',
-  } as const
+    ...(configuration.enableNativeCSS
+      ? {
+          importSource: 'react-native-css-import',
+          pragma: 'createInteropElement',
+        }
+      : {}),
+  } satisfies TransformConfig['react']
 
   const transformOptions = ((): SWCOptions => {
     if (options.environment === 'client' || options.environment === 'ssr') {
@@ -59,11 +73,7 @@ export async function transformSWC(id: string, code: string, options: Options & 
             target: 'es5',
             transform: {
               useDefineForClassFields: true,
-              react: {
-                development: !options?.production,
-                refresh,
-                runtime: 'automatic',
-              },
+              react: reactConfig,
             },
           },
         }
@@ -191,16 +201,6 @@ const SWC_ENV = {
     'transform-regenerator', // Similar to above
   ],
 } satisfies SWCOptions['env']
-
-const parsers: Record<string, ParserConfig> = {
-  '.tsx': { syntax: 'typescript', tsx: true, decorators: true },
-  '.ts': { syntax: 'typescript', tsx: false, decorators: true },
-  '.jsx': { syntax: 'ecmascript', jsx: true },
-  '.js': { syntax: 'ecmascript' },
-  '.mjs': { syntax: 'ecmascript' },
-  '.cjs': { syntax: 'ecmascript' },
-  '.mdx': { syntax: 'ecmascript', jsx: true },
-}
 
 const refreshContentRE = /\$Refresh(?:Reg|Sig)\$\(/
 

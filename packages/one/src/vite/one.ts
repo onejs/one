@@ -98,9 +98,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       ? []
       : [
           autoDepOptimizePlugin({
-            onScannedDeps({ hasReanimated }) {
+            onScannedDeps({ hasReanimated, hasNativewind }) {
               configureVXRNCompilerPlugin({
                 enableReanimated: hasReanimated,
+                enableNativeCSS: options.native?.css ?? hasNativewind,
               })
             },
             root,
@@ -397,9 +398,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         return {
           define: {
-            ...(options.app?.key && {
-              'process.env.ONE_APP_NAME': JSON.stringify(options.app.key),
-              'import.meta.env.ONE_APP_NAME': JSON.stringify(options.app.key),
+            ...(options.native?.key && {
+              'process.env.ONE_APP_NAME': JSON.stringify(options.native.key),
+              'import.meta.env.ONE_APP_NAME': JSON.stringify(options.native.key),
             }),
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
