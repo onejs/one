@@ -16115,6 +16115,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-video@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "expo-video@npm:2.0.4"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10/9e4b66d588327a36487e044d1895e89a8c2b01bfb4237d46a91c387f82cc90988d0be80df7c8a5c1647773bc7fc147131b2aa352970073dfa2b24cc8c42f8b22
+  languageName: node
+  linkType: hard
+
 "expo@npm:~52.0.17":
   version: 52.0.23
   resolution: "expo@npm:52.0.23"
@@ -26308,6 +26319,7 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/utils": "workspace:*"
     expo: "npm:~52.0.17"
+    expo-video: "npm:^2.0.4"
     get-port-please: "npm:^3.1.2"
     one: "workspace:*"
     playwright: "npm:^1.49.1"

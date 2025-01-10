@@ -124,14 +124,11 @@ export async function transformSWC(id: string, code: string, options: Options & 
 
   const shouldHMR = refreshContentRE.test(result.code)
 
-  if (!result || options.noHMR || (!refresh && !shouldHMR)) {
-    return result
-  }
-
   // fix for node_modules that ship tsx but don't use type-specific imports
-  if (id.includes('node_modules') && parser.syntax === 'typescript') {
-    console.warn('FIXING TYPES??', id)
-
+  if (
+    options.fixNonTypeSpecificImports ||
+    (id.includes('node_modules') && parser.syntax === 'typescript')
+  ) {
     // we need to keep fake objects for type exports
     const typeExportsMatch = code.match(/^\s*export\s+type\s+([^\s]+)/gi)
     if (typeExportsMatch) {
@@ -157,6 +154,10 @@ export async function transformSWC(id: string, code: string, options: Options & 
         }
       }
     }
+  }
+
+  if (!result || options.noHMR || (!refresh && !shouldHMR)) {
+    return result
   }
 
   wrapSourceInRefreshRuntime(id, result, options, shouldHMR)

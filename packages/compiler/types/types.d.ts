@@ -7,5 +7,6 @@ export type Options = {
     noHMR?: boolean;
     production?: boolean;
     babel?: TransformBabelOptions;
+    fixNonTypeSpecificImports?: boolean;
 };
 //# sourceMappingURL=types.d.ts.map

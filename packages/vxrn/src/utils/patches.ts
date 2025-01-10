@@ -165,6 +165,8 @@ export async function applyDependencyPatches(
                               mode: 'build',
                               environment: 'ios',
                               forceJSX: strategy === 'jsx',
+                              noHMR: true,
+                              fixNonTypeSpecificImports: true,
                             })
                           )?.code || contents
                       }

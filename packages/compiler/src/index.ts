@@ -3,20 +3,29 @@
  * to work on both native and web, and with reanimated and other babel fallbacks
  */
 
+import { resolvePath } from '@vxrn/utils'
 import { readFileSync } from 'node:fs'
+import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { PluginOption, UserConfig } from 'vite'
 import { runtimePublicPath } from './constants'
 import { transformWithBabelIfNeeded } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, Options } from './types'
-import { version } from 'react/package.json'
 
 export * from './configure'
 export * from './transformBabel'
 export * from './transformSWC'
 
-export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOption[] {
+export async function createVXRNCompilerPlugin(
+  optionsIn?: Partial<Options>
+): Promise<PluginOption[]> {
+  const reactVersion = await (async () => {
+    const path = resolvePath('react/package.json')
+    const json = JSON.parse(await readFile(path, 'utf-8'))
+    return json.version as string
+  })()
+
   const getOptions = (environment: Environment) => {
     return {
       environment,
@@ -93,7 +102,7 @@ export function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): PluginOp
               code,
               development: !options.production,
               environment: this.environment.name,
-              reactForRNVersion: version.split('.')[0] as '18' | '19',
+              reactForRNVersion: reactVersion.split('.')[0] as '18' | '19',
             })
 
             if (babelOut) {
