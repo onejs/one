@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
 import { getLoaderPath } from './utils/cleanUrl'
-import { useActiveParams, useParams } from './hooks'
+import { useActiveParams, useParams, usePathname } from './hooks'
 import { resolveHref } from './link/href'
 import { useRouteNode } from './router/Route'
 import { preloadingLoader } from './router/router'
@@ -24,6 +24,7 @@ export function useLoader<
     return useAsyncFn(
       loader,
       preloadedProps || {
+        path: usePathname(),
         params: useActiveParams(),
       }
     )
