@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/better-auth",
-  "version": "1.1.394",
+  "version": "1.1.395",
   "sideEffects": false,
   "types": "./src/index.ts",
   "main": "dist/cjs",
