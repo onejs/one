@@ -18,19 +18,11 @@ There's a few things that we need to improve:
 
 See the [Status documentation](/docs/status) for more on the general stability of the high level API surfaces.
 
-### How similar is this to Expo Router?
-
-The vast majority of One was written by our team, but we've kept much of the file-system routing the same as we think the Expo team did a great job with the API. Plus, the React Native ecosystem benefits.
-
-We appreciate the work the Expo team has done and look forward to collaborating with them. We recommend you use Expo Go and EAS with One to run and build your apps.
-
 ### How does it compare to Expo Router / Metro?
 
-One started as a port of Expo Router to Metro on top of our [vxrn](https://vxrn.dev) library. The reasons for this were many, but primarily driven by the fact we wanted a better bundler for the web. Metro has lacked many features that are needed for a performant website, and still lacks quite a few in comparison to Vite. On a high level, Vite is faster, supports modern ESM featuers, has a richer plugin and API surface, a bigger ecosystem, and better documentation and JSDoc. See more details in the next FAQ question.
+One started as [vxrn](https://vxrn.dev), a library we made that let Vite serve React Native. We then forked Expo Router as an experiment to see if vxrn could power it. Today, One has changed quite a bit, but retains quite a bit of similarity in the file-system router. We appreciate the work the Expo team has done to pioneer universal file system routes.
 
-On the framework level, One has a similar router to Expo Router but with added [render modes](/docs/routing-modes) that let you render to SSG, SSR, and SPA style pages per-route. Our `build` and `serve` commands are more thorough, outputting a production-ready Hono server. One also adds [loaders](/docs/routing-loader) for server-side data loading, as well as [many quality-of-life features](/docs/features).
-
-One currently lacks [DOM components](https://docs.expo.dev/guides/dom-components/), though we are working on our own implementation.
+A big part of One's upsides is in its leverage of Vite, as explained in the next section. One has already diverged quite a bit from Expo Router, with [render modes](/docs/routing-modes), [loaders](/docs/routing-loader), a production `build` and `serve` pipeline, [middlewares](/docs/routing-middlewarewares), and other [quality-of-life features](/docs/features). One currently lacks [DOM components](https://docs.expo.dev/guides/dom-components/), a feature we'd like to implement.
 
 ### How does Vite compare with Metro?
 
@@ -54,7 +46,7 @@ Cons:
 - Vite is less forgiving on the module-system level and expects things to be closer to spec. vxrn adds a variety of things to smooth this out, including an extensive system for patching bad modules, but in general this is an area that needs improvement.
 - We've implemented a custom HMR in vxrn that will also need time to be as reliably good as Metro.
 
-### How'd you get that sick npm package?
+### How'd you get that npm package?
 
 A big thanks to Dan Maier, who donated it after being unused for 7 years with under
 20 downloads a week

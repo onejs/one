@@ -11,8 +11,8 @@ import { Platform } from 'react-native'
 import type { RouteNode } from './Route'
 import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import type { State } from '../fork/getPathFromState'
-import { deepEqual, getPathDataFromState } from '../fork/getPathFromState'
-import { stripBaseUrl } from '../fork/getStateFromPath'
+import { getPathDataFromState } from '../fork/getPathFromState'
+import { stripBaseUrl } from '../fork/getStateFromPath-mods'
 import { getLinkingConfig, type OneLinkingOptions } from './getLinkingConfig'
 import { getRoutes } from './getRoutes'
 import type { OneRouter } from '../interfaces/router'
@@ -640,4 +640,43 @@ function getNavigateAction(
       params: rootPayload.params,
     },
   }
+}
+
+function deepEqual(a: any, b: any) {
+  if (a === b) {
+    return true
+  }
+
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) {
+      return false
+    }
+
+    for (let i = 0; i < a.length; i++) {
+      if (!deepEqual(a[i], b[i])) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  if (typeof a === 'object' && typeof b === 'object') {
+    const keysA = Object.keys(a)
+    const keysB = Object.keys(b)
+
+    if (keysA.length !== keysB.length) {
+      return false
+    }
+
+    for (const key of keysA) {
+      if (!deepEqual(a[key], b[key])) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  return false
 }

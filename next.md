@@ -23,6 +23,8 @@
     - would be nice to get native bottom tabs and native sheet as options
 
   - web
+    - test app basic ssr needs fixing
+      - ssr loaders need to build to server dir instead of client
     - vercel and cloudflare deploy options working/documented
       - vercel using build output api
 
@@ -30,6 +32,7 @@
     - way to configure the api + server config during production builds
 
   - cleanup
+    - TODO: hard coded for demo app (also find other TODOs in general)
     - codebase needs a few passes cleaning up things (__vxrn globals, structure)
     - error logs on build:web `../../node_modules/expo-modules-core/src/NativeModule.ts (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.`
 

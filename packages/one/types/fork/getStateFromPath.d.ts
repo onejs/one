@@ -1,23 +1,38 @@
+/**
+ * This file is copied from the react-navigation repo:
+ * https://github.com/react-navigation/react-navigation/blob/%40react-navigation/core%407.1.2/packages/core/src/getStateFromPath.tsx
+ *
+ * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
+ * All modifications except formatting should be marked with `// @modified` comment.
+ */
+import type { NavigationState, PartialState } from '@react-navigation/routers';
 import type { PathConfigMap } from '@react-navigation/core';
-import type { RouteNode } from '../router/Route';
-import type { OneRouter } from '../interfaces/router';
-type Options<ParamList extends object> = {
+import { type AdditionalRouteConfig } from './getStateFromPath-mods';
+type Options<ParamList extends {}> = {
+    path?: string;
     initialRouteName?: string;
     screens: PathConfigMap<ParamList>;
 };
 type ParseConfig = Record<string, (value: string) => any>;
-type InitialRouteConfig = {
+export type RouteConfig = {
+    screen: string;
+    regex?: RegExp;
+    path: string;
+    pattern: string;
+    routeNames: string[];
+    parse?: ParseConfig;
+} & AdditionalRouteConfig;
+export type InitialRouteConfig = {
     initialRouteName: string;
     parentScreens: string[];
 };
-export declare function getUrlWithReactNavigationConcessions(path: string, baseUrl?: string | undefined): {
-    nonstandardPathname: string;
-    inputPathnameWithoutHash: string;
-    url: null;
-} | {
-    nonstandardPathname: string;
-    url: URL;
-    inputPathnameWithoutHash?: undefined;
+type ResultState = PartialState<NavigationState> & {
+    state?: ResultState;
+};
+export type ParsedRoute = {
+    name: string;
+    path?: string;
+    params?: Record<string, any> | undefined;
 };
 /**
  * Utility to parse a path string to initial state object accepted by the container.
@@ -40,22 +55,6 @@ export declare function getUrlWithReactNavigationConcessions(path: string, baseU
  * @param path Path string to parse and convert, e.g. /foo/bar?count=42.
  * @param options Extra options to fine-tune how to parse the path.
  */
-export default function getStateFromPath<ParamList extends object>(path: string, options?: Options<ParamList>): OneRouter.ResultState | undefined;
-export declare function getMatchableRouteConfigs<ParamList extends object>(options?: Options<ParamList>): {
-    configs: {
-        isInitial: boolean;
-        screen: string;
-        regex?: RegExp;
-        path: string;
-        pattern: string;
-        routeNames: string[];
-        parse?: ParseConfig;
-        hasChildren: boolean;
-        userReadableName: string;
-        _route?: RouteNode;
-    }[];
-    initialRoutes: InitialRouteConfig[];
-};
-export declare function stripBaseUrl(path: string, baseUrl?: string | undefined): string;
+export declare function getStateFromPath<ParamList extends {}>(path: string, options?: Options<ParamList>): ResultState | undefined;
 export {};
 //# sourceMappingURL=getStateFromPath.d.ts.map

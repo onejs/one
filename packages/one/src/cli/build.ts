@@ -12,10 +12,10 @@ import {
   build as vxrnBuild,
   type ClientManifestEntry,
 } from 'vxrn'
-import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
+import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
@@ -462,23 +462,27 @@ export async function build(args: {
           preloads,
         })
 
+        if (exported.loader) {
+          loaderData = (await exported.loader?.({ path, params })) ?? null
+          const code = await readFile(clientJsPath, 'utf-8')
+          const withLoader = 
+          // super dirty to quickly make ssr loaders work until we have better
+          `
+if (typeof document === 'undefined') globalThis.document = {}
+` + replaceLoader({
+            code,
+            loaderData,
+          })          
+          const loaderPartialPath = join(clientDir, getLoaderPath(path))
+          await outputFile(loaderPartialPath, withLoader)
+        }
+        
         // ssr, we basically skip at build-time and just compile it the js we need
         if (foundRoute.type !== 'ssr') {
           const loaderProps: LoaderProps = { path, params }
           globalThis['__vxrnLoaderProps__'] = loaderProps
           // importing resetState causes issues :/
           globalThis['__vxrnresetState']?.()
-
-          if (exported.loader) {
-            loaderData = (await exported.loader?.({ path, params })) ?? null
-            const code = await readFile(clientJsPath, 'utf-8')
-            const withLoader = replaceLoader({
-              code,
-              loaderData,
-            })
-            const loaderPartialPath = join(clientDir, getLoaderPath(path))
-            await outputFile(loaderPartialPath, withLoader)
-          }
 
           if (foundRoute.type === 'ssg') {
             const html = await render({
@@ -497,8 +501,7 @@ export async function build(args: {
             await outputFile(
               htmlOutPath,
               `<html><head>
-              <script>globalThis['global'] = globalThis</script>
-              <script>globalThis['__vxrnIsSPA'] = true</script>
+              ${constants.SPA_HEADER_ELEMENTS}
               ${preloads
                 .map((preload) => `   <script type="module" src="${preload}"></script>`)
                 .join('\n')}
