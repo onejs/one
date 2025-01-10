@@ -8,6 +8,7 @@ import { preloadingLoader } from './router/router'
 import type { LoaderProps } from './types'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
+import { getServerContext } from './utils/serverContext'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -17,13 +18,14 @@ export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
-  const preloadedProps = globalThis['__vxrnLoaderProps__'] as LoaderProps | undefined
+  const { loaderProps: loaderPropsFromServerContext, loaderData: loaderDataFromServerContext } =
+    getServerContext() || {}
 
   // server side we just run the loader directly
   if (typeof window === 'undefined') {
     return useAsyncFn(
       loader,
-      preloadedProps || {
+      loaderPropsFromServerContext || {
         path: usePathname(),
         params: useActiveParams(),
       }
@@ -46,14 +48,13 @@ export function useLoader<
 
   // only if it matches current route
   const preloadedData =
-    preloadedProps?.path === currentPath ? globalThis['__vxrnLoaderData__'] : undefined
+    loaderPropsFromServerContext?.path === currentPath ? loaderDataFromServerContext : undefined
 
   const currentData = useRef(preloadedData)
 
   useEffect(() => {
     if (preloadedData) {
       loadedData[currentPath] = preloadedData
-      delete globalThis['__vxrnLoaderData__']
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preloadedData])
