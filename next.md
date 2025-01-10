@@ -23,6 +23,8 @@
     - would be nice to get native bottom tabs and native sheet as options
 
   - web
+    - test app basic ssr needs fixing
+      - ssr loaders need to build to server dir instead of client
     - vercel and cloudflare deploy options working/documented
       - vercel using build output api
 

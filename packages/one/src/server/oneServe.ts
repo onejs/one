@@ -3,7 +3,7 @@ import type { BlankEnv } from 'hono/types'
 import { extname, join } from 'node:path'
 import { getServerEntry } from 'vxrn/serve'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
-import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import { LOADER_JS_POSTFIX_REGEX, LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
 import { toAbsolute } from '../utils/toAbsolute'
@@ -71,6 +71,11 @@ export async function oneServe(
       return await import(toAbsolute(route.contextKey))
     },
 
+    async handleLoader({ request, route, url, loaderProps }) {
+      // TODO this shouldn't be in dist/client right? we should build a dist/server version?
+      return await import(toAbsolute(join('./', 'dist/client', route.file)))
+    },
+
     async handlePage({ route, url, loaderProps }) {
       const buildInfo = routeToBuildInfo[route.file]
 
@@ -125,7 +130,7 @@ url: ${url}`)
     return async (context, next) => {
       // assets we ignore
       if (extname(context.req.path)) {
-        return await next()
+        return next()
       }
 
       try {
@@ -133,6 +138,7 @@ url: ${url}`)
         const url = getURLfromRequestURL(request)
 
         const response = await (() => {
+          // this handles the ...rest style routes
           // where to put this best? can likely be after some of the switch?
           if (url.pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
             const originalUrl = getPathFromLoaderPath(url.pathname)
@@ -182,13 +188,13 @@ url: ${url}`)
             return response as Response
           }
 
-          return await next()
+          return next()
         }
       } catch (err) {
         console.error(` [one] Error handling request: ${(err as any)['stack']}`)
       }
 
-      return await next()
+      return next()
     }
   }
 
@@ -205,4 +211,41 @@ url: ${url}`)
   for (const route of compiledManifest.pageRoutes) {
     app.get(route.honoPath, createHonoHandler(route))
   }
+
+  // TODO make this inside each page, need to make loader urls just be REGULAR_URL + loaderpostfix
+  app.get('*', async (c, next) => {
+    if (
+      c.req.path.endsWith(LOADER_JS_POSTFIX_UNCACHED) &&
+      // if it includes /assets its a static loader
+      !c.req.path.includes('/assets/')
+    ) {
+      const request = c.req.raw
+      const url = getURLfromRequestURL(request)
+      const originalUrl = getPathFromLoaderPath(c.req.path)
+
+      for (const route of compiledManifest.pageRoutes) {
+        if (route.file === '') {
+          // ignore not found route
+          continue
+        }
+
+        if (!route.compiledRegex.test(originalUrl)) {
+          continue
+        }
+
+        // for now just change this
+        route.file = c.req.path
+
+        const finalUrl = new URL(originalUrl, url.origin)
+        try {
+          return resolveLoaderRoute(requestHandlers, request, finalUrl, route)
+        } catch (err) {
+          console.error(`Error running loader: ${err}`)
+          return next()
+        }
+      }
+    }
+
+    return next()
+  })
 }
