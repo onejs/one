@@ -1,16 +1,15 @@
 import {
-  JscConfig,
   transform,
-  TransformConfig,
   type Output,
   type ParserConfig,
   type Options as SWCOptions,
+  type TransformConfig,
 } from '@swc/core'
 import type { SourceMapPayload } from 'node:module'
 import { extname } from 'node:path'
+import { configuration } from './configure'
 import { asyncGeneratorRegex, debug, parsers, runtimePublicPath } from './constants'
 import type { Options } from './types'
-import { configuration } from './configure'
 
 export async function transformSWC(id: string, code: string, options: Options & { es5?: boolean }) {
   if (id.includes('.vite')) {
@@ -32,6 +31,12 @@ export async function transformSWC(id: string, code: string, options: Options & 
     return
   }
 
+  const enableNativeCSS =
+    configuration.enableNativeCSS &&
+    // temp fix idk why  this error:
+    // node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx (19:9): "createInteropElement" is not exported by "../../node_modules/react-native-css-interop/dist/runtime/jsx-dev-runtime.js", imported by "node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx
+    !id.includes('node_modules')
+
   const refresh =
     options.environment === 'ssr' || options.production || options.noHMR ? false : !options.forceJSX
 
@@ -40,10 +45,12 @@ export async function transformSWC(id: string, code: string, options: Options & 
     development: !options.forceJSX && !options.production,
     runtime: 'automatic',
     importSource: 'react',
-    ...(configuration.enableNativeCSS
+    ...(enableNativeCSS
       ? {
-          importSource: 'react-native-css-import',
+          importSource: 'react-native-css-interop',
           pragma: 'createInteropElement',
+          // swc doesnt actually change the import right
+          runtime: 'classic',
         }
       : {}),
   } satisfies TransformConfig['react']
@@ -131,6 +138,12 @@ export async function transformSWC(id: string, code: string, options: Options & 
       throw e
     }
   })()
+
+  if (enableNativeCSS) {
+    if (result.code.includes(`createInteropElement`)) {
+      result.code = `import { createInteropElement } from 'react-native-css-interop/jsx-dev-runtime'\n${result.code}`
+    }
+  }
 
   const shouldHMR = refreshContentRE.test(result.code)
 

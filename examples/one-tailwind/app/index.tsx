@@ -1,3 +1,4 @@
+// debug
 import { Text, View } from 'react-native'
 import './base.css'
 
@@ -13,7 +14,7 @@ export default function Index() {
       }}
     >
       <Text>Hello world, from One</Text>
-      {/* <div className="bg-red-500 p-4 border uppercase">this is bg should be red by tailwind</div> */}
+      <div className="bg-red-500 p-4 border uppercase">this is bg should be red by tailwind</div>
     </View>
   )
 }

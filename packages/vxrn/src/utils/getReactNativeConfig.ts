@@ -252,6 +252,8 @@ export async function getReactNativeConfig(
       alias: {
         'react-native-css-interop/jsx-dev-runtime': join(
           resolvePath('react-native-css-interop'),
+          '..',
+          '..',
           'dist',
           'runtime',
           'jsx-dev-runtime.js'
