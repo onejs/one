@@ -9,7 +9,10 @@ export async function transformSWC(id: string, code: string, options: Options & 
     return
   }
 
-  id = id.split('?')[0]
+  id = id
+    .split('?')[0]
+    // fixes hmr
+    .replace(process.cwd(), '')
 
   if (id === runtimePublicPath) {
     return

@@ -1,4 +1,4 @@
-import { type InlineConfig, Logger, type Plugin, type UserConfig } from 'vite';
+import { type InlineConfig, type Logger, type Plugin, type UserConfig } from 'vite';
 import type { VXRNOptionsFilled } from './getOptionsFilled';
 export declare function getReactNativeConfig(options: VXRNOptionsFilled, internal: {
     mode?: "dev" | "prod";

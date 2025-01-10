@@ -1,16 +1,16 @@
 import { transformSWC, transformSWCStripJSX } from '@vxrn/compiler'
 import { parse } from 'es-module-lexer'
 import FSExtra from 'fs-extra'
+import { createIdResolver, type Plugin, type ResolveFn } from 'vite'
 import { connectedNativeClients } from '../utils/connectedNativeClients'
+import { filterPluginsForNative } from '../utils/filterPluginsForNative'
 import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
 import { entryRoot } from '../utils/getReactNativeBundle'
+import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
 import { getVitePath } from '../utils/getVitePath'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
-import { createIdResolver, type ResolveFn, type Plugin, EnvironmentModuleGraph } from 'vite'
 import { conditions } from './reactNativeCommonJsPlugin'
-import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
-import { filterPluginsForNative } from '../utils/filterPluginsForNative'
 
 export function reactNativeHMRPlugin({
   root,
@@ -58,8 +58,6 @@ export function reactNativeHMRPlugin({
         if (!module) return
 
         const fullId = module?.url || file
-
-        console.trace('HOT UPDATE', file, fullId, module?.url)
 
         let id = fullId.replace(root, '').replace('/@id', '')
         if (id[0] !== '/') {
@@ -140,8 +138,6 @@ export function reactNativeHMRPlugin({
         // eg `import x from '@tamagui/core'` => `import x from '/me/node_modules/@tamagui/core/index.js'`
         const [imports] = parse(source)
 
-        console.log('parse imports')
-
         let accumulatedSliceOffset = 0
 
         for (const specifier of imports) {
@@ -185,8 +181,6 @@ export function reactNativeHMRPlugin({
           }
         }
 
-        console.log('now now', fullId)
-
         // then we have to convert to commonjs..
         source =
           (
@@ -212,8 +206,6 @@ export function reactNativeHMRPlugin({
         if (process.env.DEBUG) {
           console.info(`Sending hot update`, id, hotUpdateSource)
         }
-
-        console.log('hotUpdateSource', hotUpdateSource)
 
         hotUpdateCache.set(id, hotUpdateSource)
       } catch (err) {
