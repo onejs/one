@@ -465,22 +465,22 @@ export async function build(args: {
         if (exported.loader) {
           loaderData = (await exported.loader?.({ path, params })) ?? null
           const code = await readFile(clientJsPath, 'utf-8')
-          const withLoader = 
-          // super dirty to quickly make ssr loaders work until we have better
-          `
+          const withLoader =
+            // super dirty to quickly make ssr loaders work until we have better
+            `
 if (typeof document === 'undefined') globalThis.document = {}
-` + replaceLoader({
-            code,
-            loaderData,
-          })          
+` +
+            replaceLoader({
+              code,
+              loaderData,
+            })
           const loaderPartialPath = join(clientDir, getLoaderPath(path))
           await outputFile(loaderPartialPath, withLoader)
         }
-        
+
         // ssr, we basically skip at build-time and just compile it the js we need
         if (foundRoute.type !== 'ssr') {
           const loaderProps: LoaderProps = { path, params }
-          globalThis['__vxrnLoaderProps__'] = loaderProps
           // importing resetState causes issues :/
           globalThis['__vxrnresetState']?.()
 
@@ -501,7 +501,7 @@ if (typeof document === 'undefined') globalThis.document = {}
             await outputFile(
               htmlOutPath,
               `<html><head>
-              ${constants.SPA_HEADER_ELEMENTS}
+              ${constants.getSpaHeaderElements({ serverContext: { loaderProps, loaderData } })}
               ${preloads
                 .map((preload) => `   <script type="module" src="${preload}"></script>`)
                 .join('\n')}
@@ -519,10 +519,10 @@ if (typeof document === 'undefined') globalThis.document = {}
 ${errMsg}
 
   loaderData:
-  
+
 ${JSON.stringify(loaderData || null, null, 2)}
   params:
-  
+
 ${JSON.stringify(params || null, null, 2)}`
         )
         console.error(err)
@@ -655,8 +655,8 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
   function paramsError(part: string) {
     throw new Error(
       `[one] Params doesn't fit route:
-      
-      - path: ${path} 
+
+      - path: ${path}
       - part: ${part}
       - fileName: ${fileName}
       - params:

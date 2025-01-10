@@ -1,3 +1,5 @@
+import type { ServerContext } from './utils/serverContext'
+
 export const isWebClient = process.env.TAMAGUI_TARGET !== 'native' && typeof window !== 'undefined'
 export const isWebServer = process.env.TAMAGUI_TARGET !== 'native' && typeof window === 'undefined'
 export const isNative = process.env.TAMAGUI_TARGET === 'native'
@@ -17,8 +19,10 @@ export const VIRTUAL_SSR_CSS_HREF = `/@id/__x00__${VIRTUAL_SSR_CSS_ENTRY}`
 
 export const SERVER_CONTEXT_KEY = '__one_server_context__'
 
-export const SPA_HEADER_ELEMENTS = `
+export const getSpaHeaderElements = ({
+  serverContext = {},
+}: { serverContext?: ServerContext } = {}) => `
   <script>globalThis['global'] = globalThis</script>
   <script>globalThis['__vxrnIsSPA'] = true</script>
-  <script>globalThis["${SERVER_CONTEXT_KEY}"] = {}</script>
+  <script>globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify(serverContext)}</script>
 `

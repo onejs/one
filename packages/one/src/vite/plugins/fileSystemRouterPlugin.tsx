@@ -3,7 +3,7 @@ import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
-import { SPA_HEADER_ELEMENTS } from '../../constants'
+import { getSpaHeaderElements } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
 import type { RenderAppProps } from '../../types'
 import { isResponse } from '../../utils/isResponse'
@@ -38,7 +38,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         if (route.type === 'spa') {
           // render just the layouts? route.layouts
           return `<html><head>
-            ${SPA_HEADER_ELEMENTS}
+            ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
             <script type="module">
               import { injectIntoGlobalHook } from "/@react-refresh";
               injectIntoGlobalHook(window);
