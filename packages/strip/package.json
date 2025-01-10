@@ -36,7 +36,7 @@
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.6",
+    "@tamagui/build": "^1.121.8",
     "depcheck": "^1.4.7",
     "vitest": "^2.1.8"
   },

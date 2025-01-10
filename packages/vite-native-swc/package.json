@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.121.6",
+    "@tamagui/build": "^1.121.8",
     "react-native": "^0.76.5"
   },
   "peerDependencies": {
