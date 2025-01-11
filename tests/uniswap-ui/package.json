@@ -53,7 +53,6 @@
     "dayjs": "1.11.7",
     "ethers": "5.7.2",
     "expo-linear-gradient": "12.7.2",
-    "expo-localization": "14.8.3",
     "graphql": "^16.10.0",
     "i18next": "23.10.0",
     "jsbi": "3.2.5",
