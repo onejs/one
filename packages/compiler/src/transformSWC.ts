@@ -274,10 +274,6 @@ function wrapSourceInRefreshRuntimeNative(
   options: Options,
   shouldHMR: boolean
 ) {
-  if (id.endsWith('/app/index.tsx')) {
-    console.trace('....', id)
-  }
-
   const prefixCode =
     options.mode === 'build'
       ? `
