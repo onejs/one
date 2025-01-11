@@ -29,7 +29,7 @@ on:
 jobs:
   build-ios:
     name: Build
-    runs-on: [self-hosted, macOS]
+    runs-on: [self-hosted, Mac]
     permissions:
       contents: read
       pull-requests: read
