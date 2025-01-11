@@ -42,6 +42,8 @@ export const EXCLUDE_LIST = [
 
   // CLI shouldn't be used in SSR runtime
   '@tamagui/cli',
+
+  '@storybook/react',
 ]
 
 export const EXCLUDE_LIST_SET = new Set(EXCLUDE_LIST)

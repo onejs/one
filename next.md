@@ -40,6 +40,10 @@
 
 2.0:
 
+  - `doctor --fix`
+    - ensure type: 'module' in package.json
+    - ensure vite.config
+    - ensure tsconfig "module": "Preserve", "moduleResolution": "Bundler", (or else import 'one/vite' can break using node)
   - headless tabs (no style included), headless everything really
   - allow customizing react navigatio Theme
   - layouts can be ssg, while pages can be spa

@@ -7,7 +7,6 @@
     "paths": {
       "ui/*": ["./*"]
     },
-    "module": "esnext",
     "esModuleInterop": true,
     "allowJs": false,
     "jsx": "preserve",
@@ -22,7 +21,6 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -32,6 +30,8 @@
     "inlineSources": false,
     "strict": true,
     "preserveSymlinks": true,
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
     "preserveConstEnums": true,
     "removeComments": false,
     "strictNullChecks": true,

@@ -256,6 +256,13 @@ install('URLSearchParams', () => URLSearchParams);
     },
   },
 
+  {
+    module: 'expo-linear-gradient',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
   // not working because importing a type without `import type`
   // want to get a better smart / generic solution for all expo packages at least
   // {
