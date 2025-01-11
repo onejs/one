@@ -4,7 +4,7 @@ title: <Stack />
 
 This component should only be rendered inside a `_layout.tsx` file, where it will serve as the location that children will render for routes below the layout.
 
-Stack is simply a [React Navigation Stack view](https://reactnavigation.org/docs/stack-navigator/) and accepts the same props as React Navigation.
+Stack is simply a [React Navigation Native Stack view](https://reactnavigation.org/docs/native-stack-navigator) and accepts the same props as React Navigation.
 
 ```tsx
 import { Stack } from 'one'
@@ -20,13 +20,41 @@ export default function Layout() {
           )
         },
       }}
-    >
+    />
+  )
+}
+```
+
+### Stack.Screen
+
+You can customize the children of the Stack in your layout by passing a children prop to Stack has Stack.Screen elements, like so:
+
+```tsx
+import { Stack } from 'one'
+
+export default function Layout() {
+  return (
+    <Stack>
       <Stack.Screen name="index" options={{ title: 'Feed' }} />
       <Stack.Screen name="[id]" options={{ title: 'Post' }} />
+      <Stack.Screen
+        name="sheet"
+        options={{
+          presentation: 'formSheet',
+          gestureDirection: 'vertical',
+          animation: 'slide_from_bottom',
+          headerShown: false,
+        }}
+      />
     </Stack>
   )
 }
 ```
 
-Note that you can include `Stack.Screen` components inside Stack to configure children of the current directory.
-In this example we are setting `index` and `[id]` screens, which would correspond to `index.tsx` and `[id].tsx` pages in the same directory. While this is a convenient way to configure settings for each page up front, you could also render `Stack.Screen` inside each individual page so you can access data loaded inside that page. The upside of doing it in the layout is that it will configure things before any stack animation runs on enter, with the downside being that you can't access page-level data.
+The `name` must match the full name of the file inside `app`, without the extension but including groups.
+
+In this example we are setting `index`, `[id]`, and `sheet` screens, which would correspond to `index.tsx` and `[id].tsx` and `sheet.tsx` pages in the same directory.
+
+This is a convenient way to configure settings for each page up front, but you could also render `Stack.Screen` inside each individual page so you can access data loaded inside that page. The upside of doing it in the layout is that it will configure things before any stack animation runs on enter, with the downside being that you can't access page-level data.
+
+The `options` property passes to the React Navigation NativeStack, and so [takes the same options](https://reactnavigation.org/docs/native-stack-navigator#options).

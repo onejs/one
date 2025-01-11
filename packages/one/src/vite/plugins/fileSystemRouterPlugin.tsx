@@ -3,11 +3,13 @@ import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
+import { getSpaHeaderElements } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
 import type { RenderAppProps } from '../../types'
 import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
+import { setServerContext } from '../../utils/serverContext'
 import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
 import type { One } from '../../vite/types'
@@ -29,13 +31,14 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   function createRequestHandler() {
     return createHandleRequest({
       async handlePage({ route, url, loaderProps }) {
-        console.info(` ⓵  [${route.type}] ${url} resolved to ${route.file}`)
+        console.info(
+          ` ⓵  [${route.type}] ${url} resolved to ${route.isNotFound ? '‼️ 404 not found' : route.file}`
+        )
 
         if (route.type === 'spa') {
           // render just the layouts? route.layouts
           return `<html><head>
-            <script>globalThis['global'] = globalThis</script>
-            <script>globalThis['__vxrnIsSPA'] = true</script>
+            ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
             <script type="module">
               import { injectIntoGlobalHook } from "/@react-refresh";
               injectIntoGlobalHook(window);
@@ -70,8 +73,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
           const render = entry.default.render as (props: RenderAppProps) => any
 
-          globalThis['__vxrnLoaderData__'] = loaderData
-          globalThis['__vxrnLoaderProps__'] = loaderProps
+          setServerContext({
+            loaderData,
+            loaderProps,
+          })
 
           LoaderDataCache[route.file] = loaderData
 
@@ -193,9 +198,10 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           ...new Set(
             handleRequest.manifest.pageRoutes.flatMap((route) => {
               return [
-                join('app', route.file),
-                ...(route.layouts?.map((layout) => {
-                  return join('app', layout.contextKey)
+                join('./app', route.file),
+                ...(route.layouts?.flatMap((layout) => {
+                  if (!layout.contextKey) return []
+                  return [join('./app', layout.contextKey)]
                 }) || []),
               ]
             })

@@ -1,40 +1,33 @@
-/* eslint-disable */
-// Forked from react-navigation to add basePath functionality to web.
-// https://github.com/react-navigation/react-navigation/blob/6.x/packages/native/src/useLinking.tsx
+/**
+ * This file is copied from the react-navigation repo:
+ * https://github.com/react-navigation/react-navigation/blob/%40react-navigation/core%407.1.2/packages/native/src/useLinking.tsx
+ *
+ * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
+ * All modifications except formatting should be marked with `// @modified` comment.
+ */
 
 import {
   findFocusedRoute,
   getActionFromState as getActionFromStateDefault,
   getPathFromState as getPathFromStateDefault,
   getStateFromPath as getStateFromPathDefault,
-  useNavigationIndependentTree,
   type NavigationContainerRef,
   type NavigationState,
   type ParamListBase,
+  useNavigationIndependentTree,
 } from '@react-navigation/core'
 import isEqual from 'fast-deep-equal'
 import * as React from 'react'
 
-/* Start of fork. Source: https://github.com/react-navigation/react-navigation/blob/13d4aa270b301faf07960b4cd861ffc91e9b2c46/packages/native/src/useLinking.tsx#L13  */
-// createMemoryHistory is a self-contained module with no side effects any only depends on `nanoid` and `tiny-warning`
-import createMemoryHistory from './createMemoryHistory'
-
-// This was removed as we don't use ServerContext
-// import ServerContext from './ServerContext';
+import { createMemoryHistory } from './createMemoryHistory'
+// @modified - start
+// import { ServerContext } from '@react-navigation/web';
 import { ServerLocationContext } from '../router/serverLocationContext'
-/* End of fork */
-import type { LinkingOptions } from '@react-navigation/native'
-import { appendBaseUrl } from './getPathFromState'
+// @modified - end
+import type { LinkingOptions } from '@react-navigation/native' // @modified: change import path
+import { appendBaseUrl } from './getPathFromState-mods'
 
 type ResultState = ReturnType<typeof getStateFromPathDefault>
-
-const historyGlobal = createMemoryHistory()
-
-if (typeof window !== 'undefined') {
-  historyGlobal.listen(() => {
-    globalThis['__vxrntodopath'] = window.location.pathname
-  })
-}
 
 /**
  * Find the matching navigation state that changed between 2 navigation states
@@ -82,16 +75,17 @@ const findMatchingState = <T extends NavigationState>(
 export const series = (cb: () => Promise<void>) => {
   let queue = Promise.resolve()
   const callback = () => {
+    // eslint-disable-next-line promise/no-callback-in-promise
     queue = queue.then(cb)
   }
   return callback
 }
 
-let linkingHandlers: Symbol[] = []
+const linkingHandlers: symbol[] = []
 
 type Options = LinkingOptions<ParamListBase>
 
-export default function useLinking(
+export function useLinking(
   ref: React.RefObject<NavigationContainerRef<ParamListBase>>,
   {
     enabled = true,
@@ -99,7 +93,8 @@ export default function useLinking(
     getStateFromPath = getStateFromPathDefault,
     getPathFromState = getPathFromStateDefault,
     getActionFromState = getActionFromStateDefault,
-  }: Options
+  }: Options,
+  onUnhandledLinking: (lastUnhandledLining: string | undefined) => void
 ) {
   const independent = useNavigationIndependentTree()
 
@@ -139,7 +134,7 @@ export default function useLinking(
     }
   }, [enabled, independent])
 
-  const [history] = React.useState(historyGlobal)
+  const [history] = React.useState(createMemoryHistory)
 
   // We store these options in ref to avoid re-creating getInitialState and re-subscribing listeners
   // This lets user avoid wrapping the items in `React.useCallback` or `React.useMemo`
@@ -158,12 +153,24 @@ export default function useLinking(
     getActionFromStateRef.current = getActionFromState
   })
 
-  /* Start of fork. Source: https://github.com/react-navigation/react-navigation/blob/13d4aa270b301faf07960b4cd861ffc91e9b2c46/packages/native/src/useLinking.tsx#L142 */
+  const validateRoutesNotExistInRootState = React.useCallback(
+    (state: ResultState) => {
+      const navigation = ref.current
+      const rootState = navigation?.getRootState()
+      // Make sure that the routes in the state exist in the root navigator
+      // Otherwise there's an error in the linking configuration
+      return state?.routes.some((r) => !rootState?.routeNames.includes(r.name))
+    },
+    [ref]
+  )
+
+  // @modified - start
   // ServerContext is used inside ServerContainer to set the location during SSR: https://github.com/react-navigation/react-navigation/blob/13d4aa270b301faf07960b4cd861ffc91e9b2c46/packages/native/src/ServerContainer.tsx#L50-L54
   // One uses the `initialLocation` prop to set the initial location during SSR:
+  // const server = React.useContext(ServerContext)
   const location = React.useContext(ServerLocationContext)
   const server = { location }
-  /* End of fork */
+  // @modified - end
 
   const getInitialState = React.useCallback(() => {
     let value: ResultState | undefined
@@ -177,10 +184,13 @@ export default function useLinking(
       if (path) {
         value = getStateFromPathRef.current(path, configRef.current)
       }
+
+      // If the link were handled, it gets cleared in NavigationContainer
+      onUnhandledLinking(path)
     }
 
     const thenable = {
-      // biome-ignore lint/suspicious/noThenProperty: <explanation>
+      // biome-ignore lint/suspicious/noThenProperty: don't check copied code
       then(onfulfilled?: (state: ResultState | undefined) => void) {
         return Promise.resolve(onfulfilled ? onfulfilled(value) : value)
       },
@@ -232,18 +242,19 @@ export default function useLinking(
       // We should only dispatch an action when going forward
       // Otherwise the action will likely add items to history, which would mess things up
       if (state) {
+        // If the link were handled, it gets cleared in NavigationContainer
+        onUnhandledLinking(path)
         // Make sure that the routes in the state exist in the root navigator
         // Otherwise there's an error in the linking configuration
-        const rootState = navigation.getRootState()
-
-        if (state.routes.some((r) => !rootState?.routeNames.includes(r.name))) {
-          console.warn(
-            "The navigation state parsed from the URL contains routes not present in the root navigator. This usually means that the linking configuration doesn't match the navigation structure. See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration."
-          )
+        if (validateRoutesNotExistInRootState(state)) {
           return
         }
 
-        if (index > previousIndex) {
+        // @modified: workaround to make react-navigation handle hash changes
+        if (
+          index > previousIndex ||
+          (index === previousIndex && (!record || `${record?.path}${location.hash}` === path))
+        ) {
           const action = getActionFromStateRef.current(state, configRef.current)
 
           if (action !== undefined) {
@@ -269,7 +280,7 @@ export default function useLinking(
         navigation.resetRoot(state)
       }
     })
-  }, [enabled, history, ref])
+  }, [enabled, history, onUnhandledLinking, ref, validateRoutesNotExistInRootState])
 
   React.useEffect(() => {
     if (!enabled) {
@@ -280,6 +291,8 @@ export default function useLinking(
       route: ReturnType<typeof findFocusedRoute>,
       state: NavigationState
     ): string => {
+      let path
+
       // If the `route` object contains a `path`, use that path as long as `route.name` and `params` still match
       // This makes sure that we preserve the original URL for wildcard routes
       if (route?.path) {
@@ -293,14 +306,36 @@ export default function useLinking(
             focusedRoute.name === route.name &&
             isEqual(focusedRoute.params, route.params)
           ) {
-            /* Start of fork. Source: https://github.com/react-navigation/react-navigation/blob/13d4aa270b301faf07960b4cd861ffc91e9b2c46/packages/native/src/useLinking.tsx#L280  */
-            return appendBaseUrl(route.path)
-            /* End of fork */
+            // @modified - start
+            // path = route.path
+            path = appendBaseUrl(route.path)
+            // @modified - end
           }
         }
       }
 
-      return getPathFromStateRef.current(state, configRef.current)
+      if (path == null) {
+        path = getPathFromStateRef.current(state, configRef.current)
+      }
+
+      // @modified - start: One will handle hashes itself, so these lines are not needed
+      // const previousRoute = previousStateRef.current
+      //   ? findFocusedRoute(previousStateRef.current)
+      //   : undefined
+
+      // // Preserve the hash if the route didn't change
+      // if (
+      //   previousRoute &&
+      //   route &&
+      //   'key' in previousRoute &&
+      //   'key' in route &&
+      //   previousRoute.key === route.key
+      // ) {
+      //   path = path + location.hash
+      // }
+      // @modified - end
+
+      return path
     }
 
     if (ref.current) {

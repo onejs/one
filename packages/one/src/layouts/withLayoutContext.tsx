@@ -1,10 +1,10 @@
 import type { EventMapBase, NavigationState } from '@react-navigation/native'
 import React from 'react'
-
-import { useContextKey } from '../Route'
+import { useContextKey } from '../router/Route'
 import type { PickPartial } from '../types'
-import { useSortedScreens, type ScreenProps } from '../useScreens'
+import { useSortedScreens, type ScreenProps } from '../router/useScreens'
 import { Screen } from '../views/Screen'
+import { withStaticProperties } from '../utils/withStaticProperties'
 
 export function useFilterScreenChildren(
   children: React.ReactNode,
@@ -19,6 +19,7 @@ export function useFilterScreenChildren(
 ) {
   return React.useMemo(() => {
     const customChildren: any[] = []
+
     const screens = React.Children.map(children, (child) => {
       if (React.isValidElement(child) && child && child.type === Screen) {
         if (!child.props.name) {
@@ -43,7 +44,7 @@ export function useFilterScreenChildren(
           `Layout children must be of type Screen, all other children are ignored. To use custom children, create a custom <Layout />. Update Layout Route at: "app${contextKey}/_layout"`
         )
       }
-    })
+    })?.filter(Boolean)
 
     // Add an assertion for development
     if (process.env.NODE_ENV !== 'production') {
@@ -73,23 +74,19 @@ export function withLayoutContext<
     options: ScreenProps<TOptions, State, EventMap>[]
   ) => ScreenProps<TOptions, State, EventMap>[],
   options?: { props: any }
-): React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<PickPartial<React.ComponentProps<T>, 'children'>> &
-    React.RefAttributes<unknown>
-> & {
-  Screen: (props: ScreenProps<TOptions, State, EventMap>) => null
-} {
-  const Navigator = React.forwardRef<unknown, React.ComponentProps<T>>(
-    ({ children: userDefinedChildren, ...props }, ref) => {
+) {
+  return withStaticProperties(
+    React.forwardRef<unknown, PickPartial<React.ComponentProps<T>, 'children'>>((propsIn, ref) => {
+      const { children, ...props } = propsIn as React.ComponentProps<T>
       const contextKey = useContextKey()
-
-      const { screens } = useFilterScreenChildren(userDefinedChildren, {
+      const { screens } = useFilterScreenChildren(children, {
         contextKey,
       })
 
       const processed = processor ? processor(screens ?? []) : screens
-
-      const sorted = useSortedScreens(processed ?? [])
+      const sorted = useSortedScreens(processed ?? [], {
+        onlyMatching: true,
+      })
 
       // Prevent throwing an error when there are no screens.
       if (!sorted.length) {
@@ -97,15 +94,13 @@ export function withLayoutContext<
       }
 
       return (
-        <Nav {...props} {...options?.props} id={contextKey} ref={ref}>
+        <Nav {...options?.props} {...props} id={contextKey} ref={ref}>
           {sorted}
         </Nav>
       )
+    }),
+    {
+      Screen,
     }
   )
-
-  // @ts-expect-error
-  Navigator.Screen = Screen
-  // @ts-expect-error
-  return Navigator
 }

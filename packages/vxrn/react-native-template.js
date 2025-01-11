@@ -128,7 +128,7 @@ function createRequire(importer, importsMap) {
 
 function getRequire(importer, importsMap, _mod) {
   if (_mod.endsWith('.css')) {
-    console.warn(`Ignoring css import: ${_mod}`)
+    console.info(`Ignoring css import: ${_mod}`)
     return {}
   }
 
@@ -244,6 +244,11 @@ ${new Error().stack
       const output = globalThis[path]()
       __cachedModules[_mod] = output
       return output
+    }
+
+    if (_mod.endsWith('.css.js')) {
+      // temp fix for hmr error logs
+      return
     }
 
     console.error(`Module not found "${_mod}" imported by "${importer}"\n${getErrorDetails()}`)

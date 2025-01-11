@@ -35,9 +35,51 @@ export default function Layout() {
 }
 ```
 
-As of now, layouts don't support loaders, but we are working to land that shortly, which would enable multiple loaders per-route.
+As of now, layouts don't support loaders. If you need to access the current route params, you can use [the useParams hook](/hooks-useParams).
 
-If you need to access the current route params, you can use [the useParams hook](/hooks-useParams).
+## Root Layout
+
+The root layout on web controls the entire page, from `<html>` on down. You can optionally return `html`, `body`, and `head` elements in your `app/_layout.tsx` and they will "just work" - on web, it will be output, and on native it won't so as to avoid rendering errors:
+
+```tsx fileName=app/_layout.tsx
+import { Slot } from 'one'
+
+export default function Layout() {
+  return (
+    <html lang="en-US">
+      <head>
+        <meta charSet="utf-8" />
+      </head>
+      
+      <body>
+        <Slot />
+      </body>
+    </html>
+  )
+}
+```
+
+### useServerHeadInsertion
+
+The root `_layout.tsx` can use a special hook that allows it to insert tags into your `<head />` tag after server rendering finishes. This is an edge-case that is mostly only useful for CSS-in-JS libraries. You can use it like so:
+
+```tsx
+import { Slot, useServerHeadInsertion } from 'one'
+
+export default function Layout() {
+  useServerHeadInsertion(() => {
+    // this will run after the entire page renders
+    // return a single React.ReactElement that will be spliced into your <head />
+    return <style>{renderCSS()}</style>
+  })
+
+  return (
+    <html>
+      <Slot />
+    </html>
+  )
+}
+```
 
 ## Groups and layouts
 
@@ -153,6 +195,6 @@ This will get you a nice Stack-inside-Tabs pattern that is common on native apps
 
 ## Limitations
 
-As of today layouts have don't support loaders. This is on our radar, please [chime in](https://github.com/onejs/one/discussions/376) if this is helpful for you.
+As of today layouts don't support loaders. This is on our radar, please [chime in](https://github.com/onejs/one/discussions/376) if this is helpful for you.
 
 Also note that `useParams` won't work in layouts, as they are never nested inside a route. Instead, you can use `useActiveParams`.

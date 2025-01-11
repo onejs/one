@@ -181,7 +181,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     ssr: {
       noExternal: true,
-      external: ['react', 'react-dom', 'expo-modules-core'],
+      // we used to do this i think to make our patching react work?
+      // but stopped working for prod builds due to duplicate react somehow
+      // external: ['react', 'react-dom', 'expo-modules-core'],
       optimizeDeps,
     },
 

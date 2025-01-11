@@ -2,7 +2,8 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    setupFiles: ['./_setup-tests.ts'],
+    globalSetup: '@vxrn/test/setup',
+    retry: 1,
     // Ensure tests run sequentially
     poolOptions: {
       threads: {

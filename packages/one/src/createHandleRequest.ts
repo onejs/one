@@ -1,7 +1,8 @@
-import { getPathFromLoaderPath } from './cleanUrl'
+import { extname } from 'node:path'
+import { getPathFromLoaderPath } from './utils/cleanUrl'
 import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
 import type { Middleware, MiddlewareContext } from './createMiddleware'
-import type { RouteNode } from './Route'
+import type { RouteNode } from './router/Route'
 import type { RouteInfo, RouteInfoCompiled } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
 import { getHonoPath } from './utils/getHonoPath'
@@ -108,7 +109,7 @@ export async function resolveAPIRoute(
       console.error(`\n [one] Error importing API route at ${pathname}:
 
         ${err}
-      
+
         If this is an import error, you can likely fix this by adding this dependency to
         the "optimizeDeps.include" array in your vite.config.ts.
       `)
@@ -252,6 +253,7 @@ export function createHandleRequest(handlers: RequestHandlers) {
             }
 
             const finalUrl = new URL(originalUrl, url.origin)
+            finalUrl.search = url.search
 
             if (!route.compiledRegex.test(finalUrl.pathname)) {
               continue
@@ -261,8 +263,9 @@ export function createHandleRequest(handlers: RequestHandlers) {
           }
 
           if (process.env.NODE_ENV === 'development') {
-            console.error(`No matching route found!`, {
+            console.error(`No matching route found for loader!`, {
               originalUrl,
+              pathname,
               routes: manifest.pageRoutes,
             })
           }

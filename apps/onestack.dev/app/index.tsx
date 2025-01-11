@@ -129,19 +129,19 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View gap="$3">
-          <PrettyTextBiggest color="$color13" mt={30} mb={-2} transformOrigin="left center">
+        <View gap="$4">
+          <PrettyTextBiggest color="$color13" mt={30} mb={-10} transformOrigin="left center">
             Easy, simple &&nbsp;fast cross&#8209;platform&nbsp;apps.
           </PrettyTextBiggest>
 
           <PrettyTextBigger intro>
             One&nbsp;is&nbsp;a&nbsp;React framework for web and{' '}
             <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint> in a
-            single Vite plugin with{' '}
+            single Vite plugin. Featuring&nbsp;
             <Hint tint="green" hintContents="Unified file system routes, web and native.">
               universal,
             </Hint>{' '}
-            <Link href="/docs/routing">typed file-system routes</Link> across{' '}
+            typed <Link href="/docs/routing">file-system routes</Link> across{' '}
             <Hint tint="purple" hintContents="SSG - Rendered to HTML during build.">
               static
             </Hint>
@@ -240,8 +240,7 @@ export default function HomePage() {
                     Zero
                   </Link>
                 </b>{' '}
-                to include it as our recommended solution to data. Zero solves for all the above{' '}
-                <Link href="/docs/data">and&nbsp;more</Link>. It even works with&nbsp;Postgres.
+                to include it as our recommended solution to data. Zero solves for all the above.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
@@ -249,28 +248,11 @@ export default function HomePage() {
                 <View tag="span" dsp="inline-flex" m={-2} mr={5} $sm={{ scale: 0.9, y: 5 }}>
                   <OneBall size={0.7} />
                 </View>{' '}
-                is working to make Zero great on server and client. Our proof of concept has no
-                flickers, waterfalls, or config.
+                is working to make Zero and other sync engines to make them work great on server and
+                client.
               </PrettyTextBigger>
 
-              <PrettyTextBigger>We love it, and think you will too.</PrettyTextBigger>
               <Spacer />
-              <Spacer />
-
-              <Link asChild href="/docs/data">
-                <Button
-                  o={0.7}
-                  hoverStyle={{
-                    o: 0.5,
-                  }}
-                  tag="a"
-                  pos="absolute"
-                  b="$9"
-                  r="$9"
-                >
-                  <ButtonText $theme-dark={{ color: '$color10' }}>Read More</ButtonText>
-                </Button>
-              </Link>
             </View>
           </YStack>
 
@@ -364,7 +346,7 @@ const InfoBoxes = () => {
         That's right, no more Metro. One Vite plugin, one Vite server, one port - three platforms.
       </InfoCard>
       <InfoCard title="The future of data" Icon={Database}>
-        Alpha, first-class integration with{' '}
+        Integration with{' '}
         <a target="_blank" href="https://zerosync.dev" rel="noreferrer">
           ZeroSync
         </a>{' '}
@@ -572,7 +554,7 @@ function Video() {
 const Separator = styled(View, {
   width: '100%',
   height: 1,
-  bc: '$color6',
+  bc: '$color2',
   borderStyle: 'dotted',
   bw: 0,
   bbw: 1,

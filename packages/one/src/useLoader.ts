@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef } from 'react'
-import { getLoaderPath } from './cleanUrl'
-import { useActiveParams, useParams } from './hooks'
+import { useActiveParams, useParams, usePathname } from './hooks'
 import { resolveHref } from './link/href'
-import { useRouteNode } from './Route'
+import { useRouteNode } from './router/Route'
 import { preloadingLoader } from './router/router'
-import type { LoaderProps } from './types'
+import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
+import { getServerContext } from './utils/serverContext'
 import { weakKey } from './utils/weakKey'
 
 const promises: Record<string, undefined | Promise<void>> = {}
@@ -17,42 +17,38 @@ export function useLoader<
   Loader extends Function,
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
-  const preloadedProps = globalThis['__vxrnLoaderProps__'] as LoaderProps | undefined
+  const { loaderProps: loaderPropsFromServerContext, loaderData: loaderDataFromServerContext } =
+    getServerContext() || {}
 
   // server side we just run the loader directly
   if (typeof window === 'undefined') {
     return useAsyncFn(
       loader,
-      preloadedProps || {
+      loaderPropsFromServerContext || {
+        path: usePathname(),
         params: useActiveParams(),
       }
     )
   }
 
-  const isNative = process.env.TAMAGUI_TARGET === 'native'
-  const routeNode = useRouteNode()
   const params = useParams()
+  const pathname = usePathname()
 
   // Cannot use usePathname() here since it will change every time the route changes,
   // but here here we want to get the current local pathname which renders this screen.
-  const pathName =
-    '/' + resolveHref({ pathname: routeNode?.route || '', params }).replace(/index$/, '')
-
-  const currentPath =
-    (isNative ? null : globalThis['__vxrntodopath']) || // @zetavg: not sure why we're using `globalThis['__vxrntodopath']` here, but this breaks native when switching between tabs where the value stays with the previous path, so ignoring this on native
-    // TODO likely either not needed or needs proper path from server side
-    (typeof window !== 'undefined' ? window.location?.pathname || pathName : '/')
+  const currentPath = resolveHref({ pathname: pathname, params })
+    .replace(/index$/, '')
+    .replace(/\?.*/, '')
 
   // only if it matches current route
   const preloadedData =
-    preloadedProps?.path === currentPath ? globalThis['__vxrnLoaderData__'] : undefined
+    loaderPropsFromServerContext?.path === currentPath ? loaderDataFromServerContext : undefined
 
   const currentData = useRef(preloadedData)
 
   useEffect(() => {
     if (preloadedData) {
       loadedData[currentPath] = preloadedData
-      delete globalThis['__vxrnLoaderData__']
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preloadedData])
@@ -62,6 +58,7 @@ export function useLoader<
   }
 
   const loaded = loadedData[currentPath]
+
   if (typeof loaded !== 'undefined') {
     return loaded
   }
@@ -90,7 +87,7 @@ export function useLoader<
 
         try {
           const response = await (async () => {
-            if (isNative) {
+            if (process.env.TAMAGUI_TARGET === 'native') {
               const nativeLoaderJSUrl = `${loaderJSUrl}?platform=ios` /* TODO: platform */
 
               try {

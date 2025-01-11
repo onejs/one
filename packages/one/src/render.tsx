@@ -9,15 +9,14 @@ export function render(element: React.ReactNode) {
     globalThis['__vxrnVersion']++
     globalThis['__vxrnRoot'].render(element)
   } else {
-    // const deferLoad = requestAnimationFrame || setImmediate
-    // deferLoad(() => {
     startTransition(() => {
+      const rootElement = document as any
       if (globalThis['__vxrnIsSPA']) {
-        const root = createRoot(document.body)
+        const root = createRoot(rootElement)
         globalThis['__vxrnRoot'] = root
         root.render(element)
       } else {
-        globalThis['__vxrnRoot'] = hydrateRoot(document.body, element, {
+        globalThis['__vxrnRoot'] = hydrateRoot(rootElement, element, {
           onRecoverableError(...args) {
             console.groupCollapsed(
               `[one] Non-critical recoverable React error occurred, expand group to see details`
@@ -35,6 +34,5 @@ export function render(element: React.ReactNode) {
         })
       }
     })
-    // })
   }
 }
