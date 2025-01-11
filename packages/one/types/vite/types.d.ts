@@ -1,6 +1,7 @@
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
 import type { RouteInfo } from '../server/createRoutesManifest';
+import type { GetBabelConfig } from '@vxrn/compiler';
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
@@ -56,6 +57,7 @@ export declare namespace One {
          */
         setupFile?: string;
         config?: {
+            babel?: GetBabelConfig;
             ensureTSConfig?: false;
             /**
              * One automatically adds vite-tsconfig-paths, set this to false to disable, or
@@ -68,12 +70,16 @@ export declare namespace One {
              */
             tsConfigPaths?: boolean | TSConfigPluginOptions;
         };
-        app?: {
+        native?: {
             /**
              * The uid of your native app, this will be used internally in one to call
              * `AppRegistry.registerComponent(key)`
              */
             key?: string;
+            /**
+             * Turns on react-native-css-interop support when importing CSS on native
+             */
+            css?: boolean;
         };
         web?: {
             /**

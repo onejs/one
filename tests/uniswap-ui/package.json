@@ -73,7 +73,7 @@
     "subscriptions-transport-ws": "0.11.0",
     "tamagui": "1.121.8",
     "uuid": "9.0.0",
-    "vite-plugin-require": "^1.2.14",
+    "vite-plugin-commonjs": "^0.10.4",
     "wcag-contrast": "3.0.0",
     "zen-observable-ts": "1.2.5"
   },

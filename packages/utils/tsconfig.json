@@ -3,5 +3,12 @@
   "compilerOptions": {
     "composite": true,
   },
-  "references": []
+  "references": [
+    {
+      "path": "../resolve"
+    },
+    {
+      "path": "../debug"
+    },
+  ]
 }

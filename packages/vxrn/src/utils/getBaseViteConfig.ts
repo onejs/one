@@ -1,9 +1,10 @@
-import reactSwcPlugin from '@vitejs/plugin-react-swc'
 import type { InlineConfig } from 'vite'
 import { webExtensions } from '../constants'
 import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
 import { join } from 'node:path'
+import { createVXRNCompilerPlugin } from '@vxrn/compiler'
+import type { VXRNOptionsFilled } from './getOptionsFilled'
 
 // essentially base web config not base everything
 
@@ -24,14 +25,16 @@ export const dedupe = [
   'expo-modules-core',
 ]
 
-export async function getBaseViteConfig({
-  mode,
-  projectRoot,
-}: { mode: 'development' | 'production'; projectRoot: string }): Promise<InlineConfig> {
+export async function getBaseViteConfig(
+  run: 'serve' | 'build',
+  config: VXRNOptionsFilled
+): Promise<InlineConfig> {
+  const { root, mode } = config
+
   const postCSSPaths = [
-    join(projectRoot, 'postcss.config.js'),
-    join(projectRoot, 'postcss.config.ts'),
-    join(projectRoot, 'postcss.config.json'),
+    join(root, 'postcss.config.js'),
+    join(root, 'postcss.config.ts'),
+    join(root, 'postcss.config.json'),
   ]
 
   const postCSSConfigPath = (
@@ -77,7 +80,9 @@ export async function getBaseViteConfig({
         },
       },
 
-      reactSwcPlugin({}),
+      createVXRNCompilerPlugin({
+        mode: run,
+      }),
     ],
 
     // TODO make this documented / configurable through the plugins
@@ -101,13 +106,13 @@ export async function getBaseViteConfig({
 
     resolve: {
       alias: {
-        'react-native/package.json': resolvePath('react-native-web/package.json', projectRoot),
-        'react-native': resolvePath('react-native-web', projectRoot),
-        'react-native-safe-area-context': resolvePath('@vxrn/safe-area', projectRoot),
+        'react-native/package.json': resolvePath('react-native-web/package.json', root),
+        'react-native': resolvePath('react-native-web', root),
+        'react-native-safe-area-context': resolvePath('@vxrn/safe-area', root),
 
         // bundle size optimizations
-        'query-string': resolvePath('@vxrn/query-string', projectRoot),
-        'url-parse': resolvePath('@vxrn/url-parse', projectRoot),
+        'query-string': resolvePath('@vxrn/query-string', root),
+        'url-parse': resolvePath('@vxrn/url-parse', root),
       },
 
       // TODO auto dedupe all include optimize deps?

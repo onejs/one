@@ -1,15 +1,12 @@
 import { defineConfig } from 'vite'
 import { one } from 'one/vite'
-import vitePluginRequire from 'vite-plugin-require'
-
-// @ts-ignore
-const vpr = vitePluginRequire['default'] as typeof vitePluginRequire
+import viteCommonJS from 'vite-plugin-commonjs'
 
 export default defineConfig({
   plugins: [
-    vpr({
-      fileRegex: /uniswap-ui/,
-    }),
     one(),
+    viteCommonJS({
+      filter: (id) => /uniswap-ui\/(src|utilities)/.test(id),
+    }),
   ],
 })

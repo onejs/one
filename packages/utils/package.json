@@ -31,6 +31,10 @@
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
+  "dependencies": {
+    "@vxrn/debug": "workspace:*",
+    "@vxrn/resolve": "workspace:*"
+  },
   "devDependencies": {
     "@tamagui/build": "^1.121.8"
   },

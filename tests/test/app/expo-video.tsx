@@ -1,9 +1,9 @@
-// import { VideoView, useVideoPlayer } from 'expo-video'
+import { VideoView, useVideoPlayer } from 'expo-video'
 
-// export default () => {
-//   const player = useVideoPlayer({})
+export default () => {
+  const player = useVideoPlayer({})
 
-//   return <VideoView player={player} />
-// }
+  return <VideoView player={player} />
+}
 
-export default () => null
+// export default () => null

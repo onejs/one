@@ -273,6 +273,24 @@ install('URLSearchParams', () => URLSearchParams);
   // },
 
   {
+    module: 'react-native-css-interop',
+    patchFiles: {
+      'dist/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: 'expo-video',
+    patchFiles: {
+      'build/index.js': (contents) => {
+        // bad type export that can't be auto-fixed
+        return contents?.replace(`export { VideoThumbnail } from './VideoThumbnail';`, ``)
+      },
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
     module: 'expo-clipboard',
     patchFiles: {
       'build/**/*.js': ['jsx'],

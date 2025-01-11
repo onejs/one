@@ -38,7 +38,9 @@ export async function transformFlowBabel(
         ],
       },
       (err: any, result) => {
-        if (!result || err) rej(err || 'no res')
+        if (!result || err) {
+          return rej(err || 'no res')
+        }
         res(result!.code!)
       }
     )

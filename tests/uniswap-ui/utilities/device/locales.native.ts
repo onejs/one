@@ -1,13 +1,14 @@
 // eslint-disable-next-line no-restricted-imports
-import { getLocales } from 'expo-localization'
-import { DEFAULT_LANGUAGE_CODE, DEFAULT_LANGUAGE_TAG, DeviceLocale } from 'utilities/src/device/constants'
+import {
+  DEFAULT_LANGUAGE_CODE,
+  DEFAULT_LANGUAGE_TAG,
+  DeviceLocale,
+} from 'utilities/src/device/constants'
 import { logger } from 'utilities/src/logger/logger'
 
 export function getDeviceLocales(): DeviceLocale[] {
   try {
-    return getLocales().map((locale) => {
-      return { languageCode: locale.languageCode, languageTag: locale.languageTag }
-    })
+    return [{ languageCode: 'en-US', languageTag: 'english' }]
   } catch (e) {
     const isKnownError = e instanceof Error && e.message.includes('Unsupported ISO 3166 country')
     if (!isKnownError) {

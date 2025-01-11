@@ -14,3 +14,6 @@ ignores:
   - "react-native-gesture-handler"
   - "react-scan"
   - "react-compiler-runtime"
+
+# we use this as jsx pragma if nativewind:
+  - "react-native-css-interop"
