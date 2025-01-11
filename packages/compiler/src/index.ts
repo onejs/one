@@ -26,14 +26,6 @@ export async function createVXRNCompilerPlugin(
     return json.version as string
   })()
 
-  const getOptions = (environment: Environment) => {
-    return {
-      environment,
-      mode: 'serve',
-      ...optionsIn,
-    } satisfies Options
-  }
-
   const envNames = {
     ios: true,
     android: true,
@@ -112,7 +104,13 @@ export async function createVXRNCompilerPlugin(
             return
           }
 
-          const options = getOptions(getEnvName(this.environment.name))
+          const environment = getEnvName(this.environment.name)
+          const options = {
+            environment,
+            mode: 'serve',
+            production: process.env.NODE_ENV === 'production',
+            ...optionsIn,
+          } satisfies Options
 
           if (!isPreProcess) {
             const babelOut = await transformWithBabelIfNeeded({

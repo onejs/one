@@ -38,7 +38,7 @@ export async function transformSWC(id: string, code: string, options: Options & 
     !id.includes('node_modules')
 
   const refresh =
-    options.environment === 'ssr' || options.production || options.noHMR ? false : !options.forceJSX
+    options.environment !== 'ssr' && !options.production && !options.noHMR && options.forceJSX
 
   const reactConfig = {
     refresh,
