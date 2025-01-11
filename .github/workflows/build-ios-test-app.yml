@@ -29,7 +29,7 @@ on:
 jobs:
   build-ios:
     name: Build
-    runs-on: Mac
+    runs-on: macOS
     permissions:
       contents: read
       pull-requests: read

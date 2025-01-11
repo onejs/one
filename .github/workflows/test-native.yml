@@ -36,7 +36,7 @@ jobs:
   #   name: iOS Development Integration Test
   #   needs:
   #     - build-ios-test-dev-container
-  #   runs-on: Mac
+  #   runs-on: macOS
   #   defaults:
   #     run:
   #       working-directory: ${{ env.test_app_path }}
@@ -161,7 +161,7 @@ jobs:
     # * We do not test `react-native/scripts/react-native-xcode.sh`, instead we copy parts of it into our test scripts, simulating parts of the build process without running the whole native build.
     needs:
       - build-ios-test-app
-    runs-on: Mac
+    runs-on: macOS
     defaults:
       run:
         working-directory: ${{ env.test_app_path }}
