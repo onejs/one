@@ -17,6 +17,8 @@ export const EXCLUDE_LIST = [
   '@swc/core-win32-x64-msvc',
   'lightningcss',
 
+  '@sentry/react-native',
+
   // not ever to be used in app
   '@expo/cli',
   'expo-structured-headers',
@@ -111,6 +113,11 @@ export async function scanDepsToPreBundleForSsr(
           return cachedResult
         }
         if (EXCLUDE_LIST_SET.has(dep)) {
+          return []
+        }
+
+        // lets be a bit conservative and assume react-native starting packages are
+        if (dep.startsWith('react-native-') || dep.startsWith(`@react-native-`)) {
           return []
         }
 

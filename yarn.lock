@@ -3176,6 +3176,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@datadog/browser-core@npm:5.23.3":
+  version: 5.23.3
+  resolution: "@datadog/browser-core@npm:5.23.3"
+  checksum: 10/90c576c540f3330005318977e4b0b73b503f73921af4caf96a52715bd49d27ed77813920353652dc2d09f801ca555830c03d415d4983e613834d64e4f96a8a8b
+  languageName: node
+  linkType: hard
+
 "@datadog/browser-core@npm:5.35.0":
   version: 5.35.0
   resolution: "@datadog/browser-core@npm:5.35.0"
@@ -3194,6 +3201,30 @@ __metadata:
     "@datadog/browser-rum":
       optional: true
   checksum: 10/591bba627316e8176ff54f646b62fdaa37fb82d35bdd2e7bd58a433e3752c3840405a54c780ac5193986215043709b471aa143d8e95c0433c3eb49ce5b95cb56
+  languageName: node
+  linkType: hard
+
+"@datadog/browser-rum-core@npm:5.23.3":
+  version: 5.23.3
+  resolution: "@datadog/browser-rum-core@npm:5.23.3"
+  dependencies:
+    "@datadog/browser-core": "npm:5.23.3"
+  checksum: 10/85af8ef8026a055292030b50876126cb038652b6ad74d8fe696a70d5e139a830fe424f67da902fa34fed34edb4b5c66d095bc65eca1c30ec403988533672d13b
+  languageName: node
+  linkType: hard
+
+"@datadog/browser-rum@npm:5.23.3":
+  version: 5.23.3
+  resolution: "@datadog/browser-rum@npm:5.23.3"
+  dependencies:
+    "@datadog/browser-core": "npm:5.23.3"
+    "@datadog/browser-rum-core": "npm:5.23.3"
+  peerDependencies:
+    "@datadog/browser-logs": 5.23.3
+  peerDependenciesMeta:
+    "@datadog/browser-logs":
+      optional: true
+  checksum: 10/1412d195eb2cb15dd050555a01d154586e9c746fe105a4635641c0c9c578ebc7cc9f662d3b89e19905b9eaf690a7ee977d1dc8a51945cc7ab65024b7a19fc3f5
   languageName: node
   linkType: hard
 
@@ -12126,13 +12157,6 @@ __metadata:
   version: 2.0.11
   resolution: "@types/unist@npm:2.0.11"
   checksum: 10/6d436e832bc35c6dde9f056ac515ebf2b3384a1d7f63679d12358766f9b313368077402e9c1126a14d827f10370a5485e628bf61aa91117cf4fc882423191a4e
-  languageName: node
-  linkType: hard
-
-"@types/uuid@npm:9.0.1":
-  version: 9.0.1
-  resolution: "@types/uuid@npm:9.0.1"
-  checksum: 10/c472b8a77cbeded4bc529220b8611afa39bd64677f507838f8083d8aac8033b1f88cb9ddaa2f8589e0dcd2317291d0f6e1379f82d5ceebd6f74f3b4825288e00
   languageName: node
   linkType: hard
 
@@ -28253,8 +28277,26 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "test-uniswap@workspace:tests/uniswap-ui"
   dependencies:
+    "@amplitude/analytics-browser": "npm:1.12.1"
+    "@amplitude/analytics-core": "npm:0.11.0"
+    "@amplitude/analytics-react-native": "npm:1.4.0"
+    "@amplitude/analytics-types": "npm:0.13.0"
+    "@apollo/client": "npm:3.10.4"
+    "@datadog/browser-logs": "npm:^5.20.0"
+    "@datadog/browser-rum": "npm:5.23.3"
+    "@datadog/mobile-react-native": "npm:2.4.1"
+    "@datadog/mobile-react-native-apollo-client": "npm:2.4.3"
+    "@ethersproject/abstract-signer": "npm:5.7.0"
+    "@ethersproject/address": "npm:5.7.0"
+    "@ethersproject/constants": "npm:5.7.0"
+    "@ethersproject/contracts": "npm:5.7.0"
+    "@ethersproject/providers": "npm:5.7.2"
     "@gorhom/bottom-sheet": "npm:4.5.1"
     "@react-native-masked-view/masked-view": "npm:0.2.9"
+    "@react-navigation/core": "npm:~7"
+    "@sentry/core": "npm:7.80.0"
+    "@sentry/react": "npm:7.80.0"
+    "@sentry/react-native": "npm:5.5.0"
     "@shopify/flash-list": "npm:1.6.3"
     "@shopify/react-native-skia": "npm:1.4.2"
     "@tamagui/animations-moti": "npm:1.121.8"
@@ -28267,13 +28309,21 @@ __metadata:
     "@tamagui/remove-scroll": "npm:1.121.8"
     "@tamagui/theme-base": "npm:1.121.8"
     "@types/qrcode": "npm:1.5.5"
+    "@uniswap/analytics": "npm:1.7.0"
+    "@uniswap/analytics-events": "npm:2.36.0"
+    "@uniswap/sdk-core": "npm:5.3.0"
+    dayjs: "npm:1.11.7"
     ethers: "npm:5.7.2"
     expo-linear-gradient: "npm:12.7.2"
+    expo-localization: "npm:14.8.3"
     graphql: "npm:^16.10.0"
     i18next: "npm:23.10.0"
+    jsbi: "npm:3.2.5"
     one: "workspace:*"
+    promise: "npm:8.3.0"
     qrcode: "npm:1.5.1"
     react-native: "npm:0.76.5"
+    react-native-device-info: "npm:10.0.2"
     react-native-fast-image: "npm:8.6.3"
     react-native-gesture-handler: "npm:^2.18.1"
     react-native-image-colors: "npm:1.5.2"
@@ -28281,10 +28331,12 @@ __metadata:
     react-native-safe-area-context: "npm:4.10.5"
     react-native-svg: "npm:15.8.0"
     react-native-webview: "npm:13.12.5"
+    redux: "npm:4.2.1"
+    subscriptions-transport-ws: "npm:0.11.0"
     tamagui: "npm:1.121.8"
-    utilities: "workspace:*"
     uuid: "npm:9.0.0"
     wcag-contrast: "npm:3.0.0"
+    zen-observable-ts: "npm:1.2.5"
   languageName: unknown
   linkType: soft
 
@@ -29394,44 +29446,6 @@ __metadata:
   checksum: 10/474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
   languageName: node
   linkType: hard
-
-"utilities@workspace:*, utilities@workspace:tests/uniswap-utilities":
-  version: 0.0.0-use.local
-  resolution: "utilities@workspace:tests/uniswap-utilities"
-  dependencies:
-    "@amplitude/analytics-browser": "npm:1.12.1"
-    "@amplitude/analytics-core": "npm:0.11.0"
-    "@amplitude/analytics-react-native": "npm:1.4.0"
-    "@amplitude/analytics-types": "npm:0.13.0"
-    "@apollo/client": "npm:3.10.4"
-    "@datadog/browser-logs": "npm:^5.20.0"
-    "@datadog/mobile-react-native": "npm:2.4.1"
-    "@datadog/mobile-react-native-apollo-client": "npm:2.4.3"
-    "@ethersproject/abstract-signer": "npm:5.7.0"
-    "@ethersproject/address": "npm:5.7.0"
-    "@ethersproject/constants": "npm:5.7.0"
-    "@ethersproject/contracts": "npm:5.7.0"
-    "@ethersproject/providers": "npm:5.7.2"
-    "@react-navigation/core": "npm:~7"
-    "@sentry/core": "npm:7.80.0"
-    "@sentry/react": "npm:7.80.0"
-    "@sentry/react-native": "npm:5.5.0"
-    "@sentry/types": "npm:7.80.0"
-    "@types/uuid": "npm:9.0.1"
-    "@uniswap/analytics": "npm:1.7.0"
-    "@uniswap/analytics-events": "npm:2.36.0"
-    "@uniswap/sdk-core": "npm:5.3.0"
-    dayjs: "npm:1.11.7"
-    expo-localization: "npm:14.8.3"
-    jsbi: "npm:3.2.5"
-    promise: "npm:8.3.0"
-    react-native-device-info: "npm:10.0.2"
-    redux: "npm:4.2.1"
-    subscriptions-transport-ws: "npm:0.11.0"
-    uuid: "npm:9.0.0"
-    zen-observable-ts: "npm:1.2.5"
-  languageName: unknown
-  linkType: soft
 
 "utils-merge@npm:1.0.1":
   version: 1.0.1

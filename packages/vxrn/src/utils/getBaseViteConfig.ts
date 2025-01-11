@@ -101,6 +101,7 @@ export async function getBaseViteConfig({
 
     resolve: {
       alias: {
+        'react-native/package.json': resolvePath('react-native-web/package.json', projectRoot),
         'react-native': resolvePath('react-native-web', projectRoot),
         'react-native-safe-area-context': resolvePath('@vxrn/safe-area', projectRoot),
 

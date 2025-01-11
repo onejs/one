@@ -42,7 +42,9 @@ type CheckboxProps = {
   size?: CheckboxSizeTokens
 } & Omit<TamaguiCheckboxPops, 'size'>
 
-const animationProp = isTestEnv() ? undefined : ({ animation: 'simple' } satisfies FlexProps['animation'])
+const animationProp = isTestEnv()
+  ? undefined
+  : ({ animation: 'simple' } satisfies FlexProps['animation'])
 
 /**
  * Spore Checkbox
@@ -52,7 +54,12 @@ const animationProp = isTestEnv() ? undefined : ({ animation: 'simple' } satisfi
  * @param size - determines size of the checkbox - currently supports $icon.16 $icon.18 $icon.20
  * @returns
  */
-export function Checkbox({ checked, variant = 'default', size = '$icon.20', ...rest }: CheckboxProps): ReactElement {
+export function Checkbox({
+  checked,
+  variant = 'default',
+  size = '$icon.20',
+  ...rest
+}: CheckboxProps): ReactElement {
   const [isHovered, setIsHovered] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const [isPressed, setIsPressed] = useState(false)
@@ -127,9 +134,13 @@ export function Checkbox({ checked, variant = 'default', size = '$icon.20', ...r
                 borderRadius="$roundedFull"
                 enterStyle={{ scale: 0 }}
                 exitStyle={{ scale: 0 }}
-                height={isPressed ? sizes.UnselectedPressedIndicator : sizes.UnselectedHoverIndicator}
+                height={
+                  isPressed ? sizes.UnselectedPressedIndicator : sizes.UnselectedHoverIndicator
+                }
                 position="absolute"
-                width={isPressed ? sizes.UnselectedPressedIndicator : sizes.UnselectedHoverIndicator}
+                width={
+                  isPressed ? sizes.UnselectedPressedIndicator : sizes.UnselectedHoverIndicator
+                }
               />
             )}
           </AnimatePresence>
@@ -139,7 +150,10 @@ export function Checkbox({ checked, variant = 'default', size = '$icon.20', ...r
   )
 }
 
-function getAccentColor(variant: SporeComponentVariant, isHovered: boolean): GetThemeValueForKey<'backgroundColor'> {
+function getAccentColor(
+  variant: SporeComponentVariant,
+  isHovered: boolean
+): GetThemeValueForKey<'backgroundColor'> {
   if (variant === 'branded') {
     return isHovered ? '$accent1Hovered' : '$accent1'
   }
@@ -150,7 +164,7 @@ function getFocusedRingColor(
   variant: SporeComponentVariant,
   isFocused: boolean,
   isSelected: boolean,
-  accentColor: GetThemeValueForKey<'backgroundColor'>,
+  accentColor: GetThemeValueForKey<'backgroundColor'>
 ): GetThemeValueForKey<'borderColor'> {
   if (!isFocused) {
     return 'transparent'

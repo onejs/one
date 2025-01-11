@@ -16,10 +16,21 @@ export type TouchableAreaEvent = GestureResponderEvent
  *  - custom elements that are clickable (e.g. rows, cards, headers)
  */
 export const TouchableArea = forwardRef<TamaguiElement, TouchableAreaProps>(function TouchableArea(
-  { ignoreDragEvents = false, scaleTo, onPress, children, hoverable, activeOpacity = 0.75, ...restProps },
-  ref,
+  {
+    ignoreDragEvents = false,
+    scaleTo,
+    onPress,
+    children,
+    hoverable,
+    activeOpacity = 0.75,
+    ...restProps
+  },
+  ref
 ): JSX.Element {
-  const touchActivationPositionRef = useRef<Pick<GestureResponderEvent['nativeEvent'], 'pageX' | 'pageY'> | null>(null)
+  const touchActivationPositionRef = useRef<Pick<
+    GestureResponderEvent['nativeEvent'],
+    'pageX' | 'pageY'
+  > | null>(null)
 
   const onPressHandler = useCallback(
     async (event: GestureResponderEvent) => {
@@ -33,7 +44,12 @@ export const TouchableArea = forwardRef<TamaguiElement, TouchableAreaProps>(func
 
         const isDragEvent =
           touchActivationPositionRef.current &&
-          isDrag(touchActivationPositionRef.current.pageX, touchActivationPositionRef.current.pageY, pageX, pageY)
+          isDrag(
+            touchActivationPositionRef.current.pageX,
+            touchActivationPositionRef.current.pageY,
+            pageX,
+            pageY
+          )
 
         if (isDragEvent) {
           return
@@ -42,7 +58,7 @@ export const TouchableArea = forwardRef<TamaguiElement, TouchableAreaProps>(func
 
       onPress(event)
     },
-    [onPress, ignoreDragEvents],
+    [onPress, ignoreDragEvents]
   )
 
   const onPressInHandler = useMemo(() => {
@@ -88,7 +104,13 @@ export const AnimatedTouchableArea = withAnimated(TouchableArea)
  * @link https://github.com/satya164/react-native-tab-view/issues/1241#issuecomment-1022400366
  * @returns true if press was after a drag gesture
  */
-function isDrag(activationX: number, activationY: number, releaseX: number, releaseY: number, threshold = 2): boolean {
+function isDrag(
+  activationX: number,
+  activationY: number,
+  releaseX: number,
+  releaseY: number,
+  threshold = 2
+): boolean {
   const absX = Math.abs(activationX - releaseX)
   const absY = Math.abs(activationY - releaseY)
 

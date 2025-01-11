@@ -3,7 +3,15 @@ import { PlainImageProps, UniversalImageResizeMode } from 'ui/src/components/Uni
 import { Flex } from 'ui/src/components/layout/Flex'
 import { isTestEnv } from 'utilities/src/environment/env'
 
-export function PlainImage({ uri, size, fallback, resizeMode, style, testID, onLoad }: PlainImageProps): JSX.Element {
+export function PlainImage({
+  uri,
+  size,
+  fallback,
+  resizeMode,
+  style,
+  testID,
+  onLoad,
+}: PlainImageProps): JSX.Element {
   const [hasError, setHasError] = useState(false)
 
   // TODO cover all cases better

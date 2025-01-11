@@ -5,7 +5,8 @@
     "baseUrl": ".",
     "lib": ["es2022", "dom"],
     "paths": {
-      "ui/*": ["./*"]
+      "ui/*": ["./*"],
+      "utilities/src/*": ["./utilities/*"]
     },
     "esModuleInterop": true,
     "allowJs": false,

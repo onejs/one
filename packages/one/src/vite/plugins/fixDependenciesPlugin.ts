@@ -22,6 +22,7 @@ export function fixDependenciesPlugin(options?: One.FixDependencies): Plugin {
 
   return {
     name: 'one-fix-dependencies',
+    enforce: 'pre',
 
     async config(config) {
       if (!hasApplied && patches.length) {

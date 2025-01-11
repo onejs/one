@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react'
-import { ColorTokens, Switch as TamaguiSwitch, SwitchProps as TamaguiSwitchProps, getTokenValue } from 'tamagui'
+import {
+  ColorTokens,
+  Switch as TamaguiSwitch,
+  SwitchProps as TamaguiSwitchProps,
+  getTokenValue,
+} from 'tamagui'
 import { Check } from 'ui/src/components/icons'
 import { Flex, FlexProps } from 'ui/src/components/layout'
 import { SporeComponentVariant } from 'ui/src/components/types'
