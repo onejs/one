@@ -168,7 +168,7 @@ export default (_options?: Options): PluginOption[] => {
 
   return [
     {
-      name: 'vite:react-swc',
+      name: 'vite:one-react-swc',
       enforce: 'pre',
 
       config: () => {
@@ -335,7 +335,14 @@ export const transformWithOptions = async (
       ...(options.forceJSX ? {} : { env: SWC_ENV }),
     } satisfies SWCOptions
 
+    const start = performance.now()
     result = await transform(code, transformOptions)
+
+    if (process.env.ONE_DEBUG_BUILD_PERF) {
+      if (performance.now() - start > 15) {
+        console.warn('slow swc compile on:', Math.round(performance.now() - start), id)
+      }
+    }
   } catch (e: any) {
     // try another config?
     console.info(

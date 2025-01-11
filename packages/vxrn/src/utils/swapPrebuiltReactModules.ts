@@ -207,44 +207,45 @@ export async function swapPrebuiltReactModules(
       // having trouble getting .native.js to be picked up via vite
       // tried adding packages to optimizeDeps, tried resolveExtensions + extensions...
       // tried this but seems to not be called for node_modules
-      if (id[0] === '.') {
-        const absolutePath = resolve(dirname(importer), id)
-        const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
-        if (nativePath === id) return
-        // Only comparing `nativePath === id` is not enough, because id can be a relative path while nativePath is an absolute path. We need to make sure things are not accidentally handled by this plugin so other plugins such as assets can work.
-        if (path.join(path.dirname(importer), id) === nativePath) {
-          return
-        }
+      // if (id[0] === '.') {
+      //   const absolutePath = resolve(dirname(importer), id)
+      //   const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
+      //   if (nativePath === id) return
+      //   // Only comparing `nativePath === id` is not enough, because id can be a relative path while nativePath is an absolute path. We need to make sure things are not accidentally handled by this plugin so other plugins such as assets can work.
+      //   if (path.join(path.dirname(importer), id) === nativePath) {
+      //     return
+      //   }
 
-        // // if exists can skip
-        // if (await FSExtra.pathExists(absolutePath)) {
-        //   return
-        // }
+      //   // // if exists can skip
+      //   // if (await FSExtra.pathExists(absolutePath)) {
+      //   //   return
+      //   // }
 
-        try {
-          const directoryPath = absolutePath + '/index.native.js'
-          const directoryNonNativePath = absolutePath + '/index.js'
-          if (await FSExtra.pathExists(directoryPath)) {
-            return directoryPath
-          }
-          if (await FSExtra.pathExists(directoryNonNativePath)) {
-            return directoryNonNativePath
-          }
-          try {
-            if (
-              (await FSExtra.stat(nativePath)).isFile() // Prevents "EISDIR: illegal operation on a directory, read" errors
-            ) {
-              return nativePath
-            }
-          } catch (err: any) {
-            if (err.code !== 'ENOENT') {
-              throw err
-            }
-          }
-        } catch (err) {
-          console.warn(`error probably fine`, err)
-        }
-      }
+      //   try {
+      //     const directoryPath = absolutePath + '/index.native.js'
+      //     const directoryNonNativePath = absolutePath + '/index.js'
+      //     if (await FSExtra.pathExists(directoryPath)) {
+      //       return directoryPath
+      //     }
+      //     if (await FSExtra.pathExists(directoryNonNativePath)) {
+      //       return directoryNonNativePath
+      //     }
+      //     try {
+      //       console.log('stating', nativePath)
+      //       if (
+      //         (await FSExtra.stat(nativePath)).isFile() // Prevents "EISDIR: illegal operation on a directory, read" errors
+      //       ) {
+      //         return nativePath
+      //       }
+      //     } catch (err: any) {
+      //       if (err.code !== 'ENOENT') {
+      //         throw err
+      //       }
+      //     }
+      //   } catch (err) {
+      //     console.warn(`error probably fine`, err)
+      //   }
+      // }
     },
 
     async load(id) {
