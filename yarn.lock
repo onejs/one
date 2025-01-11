@@ -11547,7 +11547,7 @@ __metadata:
     "@babel/plugin-transform-regenerator": "npm:^7.25.9"
     "@biomejs/biome": "npm:^1.8.3"
     "@swc/core": "npm:^1.10.4"
-    "@tamagui/build": "npm:^1.121.6"
+    "@tamagui/build": "npm:^1.121.8"
     "@vxrn/utils": "workspace:*"
     "@vxrn/vite-native-client": "workspace:*"
     metro-react-native-babel-preset: "npm:^0.77.0"
@@ -11722,13 +11722,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@vxrn/utils@workspace:packages/utils"
   dependencies:
-<<<<<<< HEAD
-    "@tamagui/build": "npm:^1.121.6"
+    "@tamagui/build": "npm:^1.121.8"
     "@vxrn/debug": "workspace:*"
     "@vxrn/resolve": "workspace:*"
-=======
-    "@tamagui/build": "npm:^1.121.8"
->>>>>>> main
   languageName: unknown
   linkType: soft
 
@@ -11779,29 +11775,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-<<<<<<< HEAD
-=======
-"@vxrn/vite-native-swc@workspace:*, @vxrn/vite-native-swc@workspace:packages/vite-native-swc":
-  version: 0.0.0-use.local
-  resolution: "@vxrn/vite-native-swc@workspace:packages/vite-native-swc"
-  dependencies:
-    "@babel/core": "npm:^7.26.0"
-    "@babel/plugin-transform-destructuring": "npm:^7.25.9"
-    "@babel/plugin-transform-private-methods": "npm:^7.25.9"
-    "@babel/plugin-transform-react-jsx": "npm:^7.25.9"
-    "@babel/plugin-transform-regenerator": "npm:^7.25.9"
-    "@biomejs/biome": "npm:^1.8.3"
-    "@swc/core": "npm:^1.10.4"
-    "@tamagui/build": "npm:^1.121.8"
-    "@vxrn/vite-native-client": "workspace:*"
-    metro-react-native-babel-preset: "npm:^0.77.0"
-    react-native: "npm:^0.76.5"
-  peerDependencies:
-    react-native: "*"
-  languageName: unknown
-  linkType: soft
-
->>>>>>> main
 "@webgpu/types@npm:0.1.21":
   version: 0.1.21
   resolution: "@webgpu/types@npm:0.1.21"
