@@ -1,13 +1,10 @@
+import { Slot } from 'one'
 import { TamaguiProvider } from 'tamagui'
-import { PageLoadProgressBar, ScrollRestoration, Slot } from 'vxs'
-import config from '../tamagui.config'
+import config from 'ui/src/tamagui.config'
 
 export default function Layout() {
   return (
     <>
-      <ScrollRestoration />
-      <PageLoadProgressBar />
-
       <TamaguiProvider config={config}>
         <Slot />
       </TamaguiProvider>

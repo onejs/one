@@ -1,16 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "include": ["./src"],
-  "module": "esnext",
-  "lib": ["es2022", "dom"],
-  "baseUrl": ".",
-  "rootDir": ".",
-  "paths": {
-    "~/*": [
-      "./*"
-    ]
-  },
   "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": ".",
+    "lib": ["es2022", "dom"],
+    "paths": {
+      "ui/*": ["./*"]
+    },
+    "module": "esnext",
     "esModuleInterop": true,
     "allowJs": false,
     "jsx": "preserve",
@@ -42,5 +39,8 @@
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "noUncheckedIndexedAccess": true
+  },
+  "typeAcquisition": {
+    "enable": true
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "uniswap-ui",
+  "name": "test-uniswap",
   "private": true,
   "version": "0.0.0",
   "main": "./src/index.ts",
@@ -8,28 +8,36 @@
     "types",
     "dist"
   ],
-  "scripts": {},
+  "scripts": {
+    "build:web": "one build",
+    "clean": "one clean",
+    "ios": "expo run:ios",
+    "dev": "one dev",
+    "dev:clean": "yarn dev --clean",
+    "prod": "one build && one serve",
+    "serve": "one serve"
+  },
   "sideEffects": [
     "*.css"
   ],
   "dependencies": {
-    "one": "workspace:*",
     "@gorhom/bottom-sheet": "4.5.1",
     "@react-native-masked-view/masked-view": "0.2.9",
     "@shopify/flash-list": "1.6.3",
     "@shopify/react-native-skia": "1.4.2",
     "@storybook/react": "8.4.2",
+    "@tamagui/animations-moti": "1.121.8",
     "@tamagui/animations-react-native": "1.121.8",
+    "@tamagui/core": "1.121.8",
     "@tamagui/font-inter": "1.121.8",
     "@tamagui/helpers-icon": "1.121.8",
     "@tamagui/react-native-media-driver": "1.121.8",
     "@tamagui/remove-scroll": "1.121.8",
     "@tamagui/theme-base": "1.121.8",
-    "@tamagui/animations-moti": "1.121.8",
-    "@tamagui/core": "1.121.8",
     "ethers": "5.7.2",
     "expo-linear-gradient": "12.7.2",
     "i18next": "23.10.0",
+    "one": "workspace:*",
     "qrcode": "1.5.1",
     "react-native": "0.76.5",
     "react-native-fast-image": "8.6.3",

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Flex, Switch } from 'ui/src'
-import { LabeledGroup } from '~/components/LabeledGroup'
+import { LabeledGroup } from 'ui/src/components/LabeledGroup'
 
 export default () => {
   const [checked, setChecked] = useState(false)
@@ -8,9 +8,14 @@ export default () => {
   return (
     <Flex gap="$gap12">
       <LabeledGroup title="Default">
-        <Switch onCheckedChange={() => setChecked(!checked)} checked={checked} />
-        <Switch onCheckedChange={() => setChecked(!checked)} checked={!checked} />
-        <Switch onCheckedChange={() => setChecked(!checked)} disabled checked={!checked} />
+        <Switch variant="default" onCheckedChange={() => setChecked(!checked)} checked={checked} />
+        <Switch variant="default" onCheckedChange={() => setChecked(!checked)} checked={!checked} />
+        <Switch
+          variant="default"
+          onCheckedChange={() => setChecked(!checked)}
+          disabled
+          checked={!checked}
+        />
       </LabeledGroup>
 
       <LabeledGroup title="Variant: Branded">

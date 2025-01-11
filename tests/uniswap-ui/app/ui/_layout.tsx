@@ -1,5 +1,5 @@
 import { Flex } from 'ui/src'
-import { Slot } from 'vxs'
+import { Slot } from 'one'
 
 export default function UILayout() {
   return (
