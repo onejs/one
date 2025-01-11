@@ -8738,7 +8738,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.10.4, @swc/core@npm:^1.5.25, @swc/core@npm:^1.5.7, @swc/core@npm:^1.7.21":
+"@swc/core@npm:^1.10.4, @swc/core@npm:^1.5.25, @swc/core@npm:^1.7.21":
   version: 1.10.4
   resolution: "@swc/core@npm:1.10.4"
   dependencies:
@@ -11137,17 +11137,6 @@ __metadata:
   peerDependencies:
     "@urql/core": ^5.0.0
   checksum: 10/5bbc914a58a6de6ee7146d55fa8d6454cbf0fb5f6d7a3f7b1770d95dfbaa9e44fad041d4655f00f38ce87f12b52fdd694a1ccb8df487265185f5b425d5e12177
-  languageName: node
-  linkType: hard
-
-"@vitejs/plugin-react-swc@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "@vitejs/plugin-react-swc@npm:3.7.0"
-  dependencies:
-    "@swc/core": "npm:^1.5.7"
-  peerDependencies:
-    vite: ^4 || ^5
-  checksum: 10/16498c65aca482f638f490a59c4ef49875e59d4f1631dad7515e2fce2f87a69a4ec0cd9774fc3666b8a6e211f65b78442411a743aea33762caa0044e3c04ad39
   languageName: node
   linkType: hard
 
@@ -27915,7 +27904,6 @@ __metadata:
     "@types/node": "npm:^22.1.0"
     "@types/qrcode-terminal": "npm:^0"
     "@types/ws": "npm:^8.5.10"
-    "@vitejs/plugin-react-swc": "npm:^3.7.0"
     "@vxrn/compiler": "workspace:*"
     "@vxrn/debug": "workspace:*"
     "@vxrn/query-string": "workspace:*"
