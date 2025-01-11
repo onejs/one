@@ -114,7 +114,7 @@ function setupLinking(initialLocation?: URL) {
 
 function subscribeToNavigationChanges() {
   navigationRefSubscription = navigationRef.addListener('state', (data) => {
-    const state = data.data.state as OneRouter.ResultState
+    let state = data.data.state as OneRouter.ResultState
 
     if (!hasAttemptedToHideSplash) {
       hasAttemptedToHideSplash = true
@@ -124,7 +124,7 @@ function subscribeToNavigationChanges() {
     }
 
     if (nextOptions) {
-      state.linkOptions = nextOptions
+      state = { ...state, linkOptions: nextOptions }
       nextOptions = null
     }
 
@@ -495,8 +495,6 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
 
   setLoadingState('loading')
 
-  // todo
-  globalThis['__vxrntodopath'] = removeSearch(href)
   preloadRoute(href)
 
   const rootState = navigationRef.getRootState()

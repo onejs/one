@@ -1,6 +1,6 @@
 import { SERVER_CONTEXT_KEY } from '../constants'
 
-type ServerContext = {
+export type ServerContext = {
   css?: string[]
   postRenderData?: any
   loaderData?: any
@@ -8,7 +8,7 @@ type ServerContext = {
   mode?: 'spa' | 'ssg' | 'ssr'
 }
 
-type MaybeServerContext = null | ServerContext
+export type MaybeServerContext = null | ServerContext
 
 export const SERVER_CONTEXT_POST_RENDER_STRING = `_one_post_render_data_`
 
