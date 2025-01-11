@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "include": ["./src"],
+  "module": "esnext",
+  "lib": ["es2022", "dom"],
+  "baseUrl": ".",
+  "rootDir": ".",
+  "paths": {
+    "~/*": [
+      "./*"
+    ]
+  },
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowJs": false,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "target": "es2019",
+    "types": ["node"],
+    "composite": true,
+    "incremental": true,
+    "noEmit": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
+    "inlineSources": false,
+    "strict": true,
+    "preserveSymlinks": true,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true
+  }
+}
