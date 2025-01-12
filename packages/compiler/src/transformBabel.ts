@@ -20,7 +20,7 @@ export type GetBabelConfigProps = {
 
 type Props = TransformBabelOptions & GetBabelConfigProps
 
-export type GetBabelConfig = (props: Props) =>
+export type GetBabelConfig = (props: GetBabelConfigProps) =>
   | boolean
   | {
       plugins: Exclude<BabelPlugins, null | undefined>

@@ -79,6 +79,39 @@ export namespace One {
     setupFile?: string
 
     config?: {
+      /**
+       * Accepts a function that determines whether to use babel, and which plugins to use.
+       * By default, babel only runs if:
+       *
+       *  - options.react.compiler is `true`, on tsx files in your app
+       *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
+       *
+       * Otherwise One defaults to using `@swc/core`.
+       *
+       * Accepts a function:
+       *
+       *   (props: {
+       *      id: string
+       *      code: string
+       *      development: boolean
+       *      environment: Environment
+       *      reactForRNVersion: '18' | '19'
+       *   }) =>
+       *      | true  // force babel on for file
+       *      | false // force babel off for file
+       *      | {
+       *           plugins: [] // babel plugin array
+       *           excludeDefaultPlugins?: boolean // if true, removes the default plugins
+       *        }
+       *
+       *  Babel always runs with preset `@babel/preset-typescript`.
+       *
+       *  When babel runs without `excludeDefaultPlugins` set to true, it defaults to plugins:
+       *
+       *  @babel/plugin-transform-destructuring, babel/plugin-transform-runtime, @babel/plugin-transform-react-jsx,
+       *  @babel/plugin-transform-async-generator-functions, @babel/plugin-transform-async-to-generator
+       *
+       */
       babel?: GetBabelConfig
 
       ensureTSConfig?: false

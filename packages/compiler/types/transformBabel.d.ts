@@ -12,7 +12,7 @@ export type GetBabelConfigProps = {
     reactForRNVersion: '18' | '19';
 };
 type Props = TransformBabelOptions & GetBabelConfigProps;
-export type GetBabelConfig = (props: Props) => boolean | {
+export type GetBabelConfig = (props: GetBabelConfigProps) => boolean | {
     plugins: Exclude<BabelPlugins, null | undefined>;
     excludeDefaultPlugins?: boolean;
 };
