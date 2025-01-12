@@ -2,8 +2,7 @@ import type { Plugin } from 'vite'
 import { applyDependencyPatches, applyOptimizePatches, type DepPatch } from 'vxrn'
 import type { One } from '../types'
 
-// TEMP
-let hasApplied = false
+let hasAppliedOptimizePatches = false
 
 export function fixDependenciesPlugin(options?: One.FixDependencies): Plugin {
   const patches: DepPatch[] = []
@@ -25,17 +24,14 @@ export function fixDependenciesPlugin(options?: One.FixDependencies): Plugin {
     enforce: 'pre',
 
     async config(config) {
-      if (!hasApplied && patches.length) {
-        hasApplied = true
+      if (!hasAppliedOptimizePatches && patches.length) {
+        hasAppliedOptimizePatches = true
         await applyOptimizePatches(patches, config)
       }
     },
 
     async configResolved(config) {
-      if (!hasApplied && patches.length) {
-        hasApplied = true
-        await applyDependencyPatches(patches, config)
-      }
+      await applyDependencyPatches(patches, config)
     },
   }
 }
