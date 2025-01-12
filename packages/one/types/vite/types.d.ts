@@ -75,8 +75,8 @@ export declare namespace One {
              *      environment: Environment
              *      reactForRNVersion: '18' | '19'
              *   }) =>
-             *      | true  // force babel on for all files
-             *      | false // force babel off for all files
+             *      | true  // force babel on for file
+             *      | false // force babel off for file
              *      | {
              *           plugins: [] // babel plugin array
              *           excludeDefaultPlugins?: boolean // if true, removes the default plugins
