@@ -32,7 +32,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     return createHandleRequest({
       async handlePage({ route, url, loaderProps }) {
         console.info(
-          ` ⓵  [${route.type}] ${url} resolved to ${route.isNotFound ? '‼️ 404 not found' : route.file}`
+          ` ⓵  [${route.type}] ${url} resolved to ${
+            route.isNotFound ? '‼️ 404 not found' : `app/${route.file.slice(2)}`
+          }`
         )
 
         if (route.type === 'spa') {
