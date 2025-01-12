@@ -207,6 +207,11 @@ jobs:
         run: |
           yarn one patch
 
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+        with:
+          limit-access-to-users: zetavg
+
       # Prebuild and pod install because we need hermesc which is installed by pod install
       - name: Prebuild
         run: |
