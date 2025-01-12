@@ -56,6 +56,8 @@
   - use dom with RSC bridge
   - react-native-web-lite proper release
 
+- allow configuring swc from one
+
 - // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
 

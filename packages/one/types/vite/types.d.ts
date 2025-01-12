@@ -2,7 +2,6 @@ import type { GetTransform } from '@vxrn/compiler';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
 import type { RouteInfo } from '../server/createRoutesManifest';
-import type { GetBabelConfig } from '@vxrn/compiler';
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
@@ -107,7 +106,10 @@ export declare namespace One {
          */
         setupFile?: string;
         config?: {
+<<<<<<< HEAD
             babel?: GetBabelConfig;
+=======
+>>>>>>> 5db509c9 (chore: refactor transform plugin a bit to be more flexible)
             ensureTSConfig?: false;
             /**
              * One automatically adds vite-tsconfig-paths, set this to false to disable, or
