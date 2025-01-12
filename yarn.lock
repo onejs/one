@@ -17477,12 +17477,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-linear-gradient@npm:12.7.2":
-  version: 12.7.2
-  resolution: "expo-linear-gradient@npm:12.7.2"
+"expo-linear-gradient@npm:^14.0.2":
+  version: 14.0.2
+  resolution: "expo-linear-gradient@npm:14.0.2"
   peerDependencies:
     expo: "*"
-  checksum: 10/74fc7449bc3400add8cb40173cf5f8010aa239d086a2d43031197c76a380905d126671db7d8efc332cb1e73f806e937156383092798bfb08c09e1191e606fa06
+    react: "*"
+    react-native: "*"
+  checksum: 10/73471a435fa720137c5bb16ddc699c64181101db081cd4ff892b383e9f047db56039fd1235f3570dd2fccd099214230f98405963c9c8afc32891c43eabae2c60
   languageName: node
   linkType: hard
 
@@ -28388,7 +28390,7 @@ __metadata:
     "@uniswap/sdk-core": "npm:5.3.0"
     dayjs: "npm:1.11.7"
     ethers: "npm:5.7.2"
-    expo-linear-gradient: "npm:12.7.2"
+    expo-linear-gradient: "npm:^14.0.2"
     graphql: "npm:^16.10.0"
     i18next: "npm:23.10.0"
     jsbi: "npm:3.2.5"
