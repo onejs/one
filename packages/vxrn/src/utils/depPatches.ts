@@ -257,6 +257,31 @@ install('URLSearchParams', () => URLSearchParams);
   },
 
   {
+    module: 'expo-linear-gradient',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: 'react-native-css-interop',
+    patchFiles: {
+      'dist/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: 'expo-video',
+    patchFiles: {
+      'build/index.js': (contents) => {
+        // bad type export that can't be auto-fixed
+        return contents?.replace(`export { VideoThumbnail } from './VideoThumbnail';`, ``)
+      },
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
     module: 'react-native-css-interop',
     patchFiles: {
       'dist/**/*.js': ['jsx'],
