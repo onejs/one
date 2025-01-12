@@ -11535,15 +11535,14 @@ __metadata:
     "@babel/plugin-transform-private-methods": "npm:^7.25.9"
     "@babel/plugin-transform-react-jsx": "npm:^7.25.9"
     "@babel/plugin-transform-regenerator": "npm:^7.25.9"
-    "@biomejs/biome": "npm:^1.8.3"
     "@swc/core": "npm:^1.10.4"
     "@tamagui/build": "npm:^1.121.8"
     "@vxrn/utils": "workspace:*"
     "@vxrn/vite-native-client": "workspace:*"
     babel-plugin-react-compiler: "npm:^19.0.0-beta-201e55d-20241215"
     depcheck: "npm:^1.4.7"
-    metro-react-native-babel-preset: "npm:^0.77.0"
     react-native: "npm:^0.76.5"
+    vite: "npm:^6.0.6"
   peerDependencies:
     react-native: "*"
   languageName: unknown
