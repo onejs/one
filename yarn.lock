@@ -11540,6 +11540,8 @@ __metadata:
     "@tamagui/build": "npm:^1.121.8"
     "@vxrn/utils": "workspace:*"
     "@vxrn/vite-native-client": "workspace:*"
+    babel-plugin-react-compiler: "npm:^19.0.0-beta-201e55d-20241215"
+    depcheck: "npm:^1.4.7"
     metro-react-native-babel-preset: "npm:^0.77.0"
     react-native: "npm:^0.76.5"
   peerDependencies:
@@ -21771,10 +21773,8 @@ __metadata:
   resolution: "one@workspace:packages/one"
   dependencies:
     "@azure/core-asynciterator-polyfill": "npm:^1.0.2"
-    "@babel/core": "npm:^7.26.0"
     "@babel/generator": "npm:^7.26.3"
     "@babel/parser": "npm:^7.26.3"
-    "@babel/preset-typescript": "npm:^7.26.0"
     "@babel/traverse": "npm:^7.26.4"
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@react-native-masked-view/masked-view": "npm:^0.3.1"
@@ -21797,7 +21797,6 @@ __metadata:
     "@vxrn/universal-color-scheme": "workspace:*"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
     babel-dead-code-elimination: "npm:^1.0.6"
-    babel-plugin-react-compiler: "npm:^19.0.0-beta-201e55d-20241215"
     citty: "npm:^0.1.6"
     core-js: "npm:^3.38.1"
     create-vxrn: "workspace:*"

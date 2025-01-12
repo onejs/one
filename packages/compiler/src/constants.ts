@@ -1,6 +1,6 @@
 import type { ParserConfig } from '@swc/core'
 
-import { createDebugger } from '@vxrn/debug'
+import { createDebugger } from '@vxrn/utils'
 
 export const { debug } = createDebugger('vxrn:compiler-plugin')
 
