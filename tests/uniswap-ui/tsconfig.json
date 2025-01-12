@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": ".",
+    "lib": ["es2022", "dom"],
+    "paths": {
+      "ui/*": ["./*"],
+      "utilities/src/*": ["./utilities/*"]
+    },
+    "esModuleInterop": true,
+    "allowJs": false,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "target": "es2019",
+    "types": ["node"],
+    "composite": true,
+    "incremental": true,
+    "noEmit": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
+    "inlineSources": false,
+    "strict": true,
+    "preserveSymlinks": true,
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true
+  },
+  "typeAcquisition": {
+    "enable": true
+  }
+}

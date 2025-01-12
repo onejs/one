@@ -1,59 +1,38 @@
 import babel from '@babel/core'
-import { configuration } from './configure'
 import { relative } from 'node:path'
+import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
-import type { Environment } from './types'
+import type { GetTransformProps, GetTransformResponse } from './types'
 
-type BabelPlugins = babel.TransformOptions['plugins']
-
-export type TransformBabelOptions = {
-  getUserPlugins?: GetBabelConfig
+type Props = GetTransformProps & {
+  userSetting?: GetTransformResponse
 }
 
-export type GetBabelConfigProps = {
-  id: string
-  code: string
-  development: boolean
-  environment: Environment
-  reactForRNVersion: '18' | '19'
-}
-
-type Props = TransformBabelOptions & GetBabelConfigProps
-
-export type GetBabelConfig = (props: GetBabelConfigProps) =>
-  | boolean
-  | {
-      plugins: Exclude<BabelPlugins, null | undefined>
-      excludeDefaultPlugins?: boolean
+export function getBabelOptions(props: Props): babel.TransformOptions | null {
+  if (props.userSetting === 'babel') {
+    return {
+      plugins: getPlugins(props, true),
     }
-
-export async function transformWithBabelIfNeeded(props: Props) {
-  const babelPlugins = getBabelPlugins(props)
-  if (babelPlugins?.length) {
-    debug?.(`transformBabel: ${props.id}`)
-    return await transformBabel(props, babelPlugins)
   }
-}
-
-function getBabelPlugins(props: Props): BabelPlugins {
-  const userPlugins = props.getUserPlugins?.(props)
-  if (typeof userPlugins !== 'undefined') {
-    if (userPlugins === true) {
-      return getPlugins(props, true)
+  if (
+    typeof props.userSetting === 'undefined' ||
+    (typeof props.userSetting === 'object' && props.userSetting.transform === 'babel')
+  ) {
+    if (props.userSetting?.excludeDefaultPlugins) {
+      return props.userSetting
     }
-    if (userPlugins === false) {
-      return null
+    const plugins = getPlugins(props)
+    if (plugins.length) {
+      return {
+        plugins,
+      }
     }
-    if (userPlugins.excludeDefaultPlugins) {
-      return userPlugins.plugins
-    }
-    return [getPlugins(props), ...userPlugins.plugins]
   }
-  return getPlugins(props)
+  return null
 }
 
 const getPlugins = (props: Props, force = false) => {
-  let plugins: BabelPlugins = []
+  let plugins: babel.PluginItem[] = []
 
   if (force || shouldBabelGenerators(props)) {
     plugins = getBasePlugins(props)
@@ -79,19 +58,18 @@ const getPlugins = (props: Props, force = false) => {
 /**
  * Transform input to mostly ES5 compatible code, keep ESM syntax, and transform generators.
  */
-async function transformBabel(props: Props, pluginsIn: babel.TransformOptions['plugins']) {
-  const plugins = pluginsIn || getPlugins(props)
-  const compilerPlugin = plugins.find((x) => x && x[0] === 'babel-plugin-react-compiler')
+export async function transformBabel(id: string, code: string, options: babel.TransformOptions) {
+  const compilerPlugin = options.plugins?.find((x) => x && x[0] === 'babel-plugin-react-compiler')
 
   const out = await new Promise<string>((res, rej) => {
     babel.transform(
-      props.code,
+      code,
       {
-        filename: props.id,
+        filename: id,
         compact: false,
         minified: false,
         presets: ['@babel/preset-typescript'],
-        plugins,
+        ...options,
       },
       (err: any, result) => {
         if (!result || err) {
@@ -106,7 +84,7 @@ async function transformBabel(props: Props, pluginsIn: babel.TransformOptions['p
     compilerPlugin &&
     out.includes(compilerPlugin[1] === '18' ? `react-compiler-runtime` : `react/compiler-runtime`)
   ) {
-    console.info(` 🪄 [compiler] ${relative(process.cwd(), props.id)}`)
+    console.info(` 🪄 [compiler] ${relative(process.cwd(), id)}`)
   }
 
   return out
@@ -126,7 +104,7 @@ const getBasePlugins = ({ development }: Props) =>
         regenerator: false,
       },
     ],
-  ] satisfies BabelPlugins
+  ] satisfies babel.PluginItem[]
 
 /**
  * ----- react native codegen ----

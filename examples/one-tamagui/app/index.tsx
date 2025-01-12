@@ -1,3 +1,4 @@
+// debug
 import { Image } from '@tamagui/image-next'
 import { Text, YStack } from 'tamagui'
 import { Link } from 'one'

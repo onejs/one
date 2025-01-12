@@ -7,11 +7,17 @@ import {
 } from '@swc/core'
 import type { SourceMapPayload } from 'node:module'
 import { extname } from 'node:path'
+import { merge } from 'ts-deepmerge'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug, parsers, runtimePublicPath } from './constants'
 import type { Options } from './types'
 
-export async function transformSWC(id: string, code: string, options: Options & { es5?: boolean }) {
+export async function transformSWC(
+  id: string,
+  code: string,
+  options: Options & { es5?: boolean },
+  swcOptions?: SWCOptions
+) {
   if (id.includes('.vite')) {
     return
   }
@@ -38,7 +44,7 @@ export async function transformSWC(id: string, code: string, options: Options & 
     !id.includes('node_modules')
 
   const refresh =
-    options.environment !== 'ssr' && !options.production && !options.noHMR && options.forceJSX
+    options.environment !== 'ssr' && !options.production && !options.noHMR && !options.forceJSX
 
   const reactConfig = {
     refresh,
@@ -113,12 +119,15 @@ export async function transformSWC(id: string, code: string, options: Options & 
     }
   })()
 
-  const finalOptions = {
-    filename: id,
-    swcrc: false,
-    configFile: false,
-    ...transformOptions,
-  }
+  const finalOptions = merge(
+    {
+      filename: id,
+      swcrc: false,
+      configFile: false,
+      ...transformOptions,
+    },
+    swcOptions || {}
+  ) satisfies SWCOptions
 
   const result: Output = await (async () => {
     try {
@@ -145,7 +154,7 @@ export async function transformSWC(id: string, code: string, options: Options & 
     }
   }
 
-  const shouldHMR = refreshContentRE.test(result.code)
+  const shouldHMR = refresh && refreshContentRE.test(result.code)
 
   // fix for node_modules that ship tsx but don't use type-specific imports
   if (
@@ -179,7 +188,7 @@ export async function transformSWC(id: string, code: string, options: Options & 
     }
   }
 
-  if (!result || options.noHMR || (!refresh && !shouldHMR)) {
+  if (!result || options.noHMR || !shouldHMR) {
     return result
   }
 

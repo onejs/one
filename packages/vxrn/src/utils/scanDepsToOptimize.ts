@@ -23,6 +23,8 @@ export const EXCLUDE_LIST = [
   '@swc/core-win32-x64-msvc',
   'lightningcss',
 
+  '@sentry/react-native',
+
   // not ever to be used in app
   '@expo/cli',
   'expo-structured-headers',
@@ -48,6 +50,8 @@ export const EXCLUDE_LIST = [
 
   // CLI shouldn't be used in SSR runtime
   '@tamagui/cli',
+
+  '@storybook/react',
 ]
 
 export const EXCLUDE_LIST_SET = new Set(EXCLUDE_LIST)
@@ -124,6 +128,11 @@ export async function scanDepsToOptimize(
         if (EXCLUDE_LIST_SET.has(dep)) {
           return []
         }
+
+        // lets be a bit conservative and assume react-native starting packages are
+        // if (dep.startsWith('react-native-') || dep.startsWith(`@react-native-`)) {
+        //   return []
+        // }
 
         const depPkgJsonPath = await findDepPkgJsonPath(dep, currentRoot)
         if (!depPkgJsonPath) return []

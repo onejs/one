@@ -4,9 +4,7 @@
     "rootDir": ".",
     "outDir": "dist",
     "paths": {
-      "~/*": [
-        "./src/*"
-      ]
+      "~/*": ["./src/*"]
     },
     "forceConsistentCasingInFileNames": true,
     // i want this for nice type import auto complete
@@ -24,23 +22,10 @@
     "preserveConstEnums": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "types": [
-      "node",
-      "react",
-      "vite/client"
-    ],
-    "lib": [
-      "dom",
-      "esnext"
-    ]
+    "types": ["node", "react", "vite/client"],
+    "lib": ["dom", "esnext"]
   },
-  "exclude": [
-    "**/node_modules",
-    "**/test",
-    "**/dist",
-    "**/types",
-    "**/__tests__"
-  ],
+  "exclude": ["**/node_modules", "**/test", "**/dist", "**/types", "**/__tests__"],
   "typeAcquisition": {
     "enable": true
   }

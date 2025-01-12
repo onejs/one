@@ -32,6 +32,23 @@ export const dev = async (optionsIn: DevOptions) => {
       command: 'serve',
     })) ?? {}
 
+  if (!config) {
+    console.error(`
+⛔️ No vite.config.ts, please create a minimal config:
+
+import { createConfig } from 'vite'
+import { one } from 'one/vite'
+
+export default createConfig({
+  plugins: [
+    one()
+  ]
+})
+
+`)
+    process.exit(0)
+  }
+
   // use one server config as defaults
   // this is a bit hacky for now passing it in like this
   const oneServerConfig = config?.plugins?.find(
