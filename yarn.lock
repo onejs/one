@@ -2881,7 +2881,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/traverse--for-generate-function-map@npm:@babel/traverse@^7.25.3, @babel/traverse@npm:^7.1.6, @babel/traverse@npm:^7.20.0, @babel/traverse@npm:^7.23.0, @babel/traverse@npm:^7.23.2, @babel/traverse@npm:^7.23.7, @babel/traverse@npm:^7.25.3, @babel/traverse@npm:^7.25.4, @babel/traverse@npm:^7.25.9, @babel/traverse@npm:^7.26.4":
+"@babel/traverse--for-generate-function-map@npm:@babel/traverse@^7.25.3, @babel/traverse@npm:^7.1.6, @babel/traverse@npm:^7.20.0, @babel/traverse@npm:^7.23.2, @babel/traverse@npm:^7.23.7, @babel/traverse@npm:^7.25.3, @babel/traverse@npm:^7.25.4, @babel/traverse@npm:^7.25.9, @babel/traverse@npm:^7.26.4":
   version: 7.26.4
   resolution: "@babel/traverse@npm:7.26.4"
   dependencies:
@@ -2896,7 +2896,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
 "@babel/traverse@npm:^7.23.0":
   version: 7.26.5
   resolution: "@babel/traverse@npm:7.26.5"
@@ -2913,9 +2912,6 @@ __metadata:
   linkType: hard
 
 "@babel/types@npm:^7.0.0, @babel/types@npm:^7.1.6, @babel/types@npm:^7.19.0, @babel/types@npm:^7.20.0, @babel/types@npm:^7.20.7, @babel/types@npm:^7.23.6, @babel/types@npm:^7.24.7, @babel/types@npm:^7.25.2, @babel/types@npm:^7.25.4, @babel/types@npm:^7.25.9, @babel/types@npm:^7.26.0, @babel/types@npm:^7.26.3, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4":
-=======
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.1.6, @babel/types@npm:^7.19.0, @babel/types@npm:^7.20.0, @babel/types@npm:^7.20.7, @babel/types@npm:^7.23.0, @babel/types@npm:^7.23.6, @babel/types@npm:^7.24.7, @babel/types@npm:^7.25.2, @babel/types@npm:^7.25.4, @babel/types@npm:^7.25.9, @babel/types@npm:^7.26.0, @babel/types@npm:^7.26.3, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4":
->>>>>>> main
   version: 7.26.3
   resolution: "@babel/types@npm:7.26.3"
   dependencies:
@@ -12774,24 +12770,15 @@ __metadata:
     "@babel/plugin-transform-private-methods": "npm:^7.25.9"
     "@babel/plugin-transform-react-jsx": "npm:^7.25.9"
     "@babel/plugin-transform-regenerator": "npm:^7.25.9"
-<<<<<<< HEAD
-    "@biomejs/biome": "npm:^1.8.3"
-=======
->>>>>>> main
     "@swc/core": "npm:^1.10.4"
     "@tamagui/build": "npm:^1.121.8"
     "@vxrn/utils": "workspace:*"
     "@vxrn/vite-native-client": "workspace:*"
-<<<<<<< HEAD
-    metro-react-native-babel-preset: "npm:^0.77.0"
-    react-native: "npm:^0.76.5"
-=======
     babel-plugin-react-compiler: "npm:^19.0.0-beta-201e55d-20241215"
     depcheck: "npm:^1.4.7"
     react-native: "npm:^0.76.5"
     ts-deepmerge: "npm:^7.0.2"
     vite: "npm:^6.0.6"
->>>>>>> main
   peerDependencies:
     react-native: "*"
   languageName: unknown
@@ -17599,22 +17586,13 @@ __metadata:
   linkType: hard
 
 "expo-video@npm:^2.0.4":
-<<<<<<< HEAD
   version: 2.0.5
   resolution: "expo-video@npm:2.0.5"
-=======
-  version: 2.0.4
-  resolution: "expo-video@npm:2.0.4"
->>>>>>> main
   peerDependencies:
     expo: "*"
     react: "*"
     react-native: "*"
-<<<<<<< HEAD
   checksum: 10/ebf55391ed560bfa6c3c47cf9fdbe4aedb8a7b07175c7656876971d2b997fdf86430d08513e981c2c712da95ac86f91b15f7b61778f00079fcf618abbf81a4cc
-=======
-  checksum: 10/9e4b66d588327a36487e044d1895e89a8c2b01bfb4237d46a91c387f82cc90988d0be80df7c8a5c1647773bc7fc147131b2aa352970073dfa2b24cc8c42f8b22
->>>>>>> main
   languageName: node
   linkType: hard
 
@@ -25298,7 +25276,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
 "react-native-device-info@npm:10.0.2":
   version: 10.0.2
   resolution: "react-native-device-info@npm:10.0.2"
@@ -25308,8 +25285,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-=======
->>>>>>> main
 "react-native-drawer-layout@npm:^4.1.1":
   version: 4.1.1
   resolution: "react-native-drawer-layout@npm:4.1.1"
@@ -25656,11 +25631,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
 "react@npm:^18.2.0, react@npm:^18.3.1":
-=======
-"react@npm:^18.3.1":
->>>>>>> main
   version: 18.3.1
   resolution: "react@npm:18.3.1"
   dependencies:
