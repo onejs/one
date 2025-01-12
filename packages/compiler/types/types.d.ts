@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import type { TransformBabelOptions } from './transformBabel';
-=======
 import type { Options as SWCOptions } from '@swc/core';
->>>>>>> main
 export type Environment = 'ios' | 'android' | 'ssr' | 'client';
 export type Options = {
     environment: Environment;
@@ -10,11 +6,6 @@ export type Options = {
     forceJSX?: boolean;
     noHMR?: boolean;
     production?: boolean;
-<<<<<<< HEAD
-    babel?: TransformBabelOptions;
-    fixNonTypeSpecificImports?: boolean;
-};
-=======
     fixNonTypeSpecificImports?: boolean;
     transform?: GetTransform;
 };
@@ -35,5 +26,4 @@ export type BabelTransformOptions = {
     transform: 'babel';
     excludeDefaultPlugins?: boolean;
 } & babel.TransformOptions;
->>>>>>> main
 //# sourceMappingURL=types.d.ts.map

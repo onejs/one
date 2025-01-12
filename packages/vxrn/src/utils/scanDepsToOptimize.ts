@@ -130,9 +130,9 @@ export async function scanDepsToOptimize(
         }
 
         // lets be a bit conservative and assume react-native starting packages are
-        if (dep.startsWith('react-native-') || dep.startsWith(`@react-native-`)) {
-          return []
-        }
+        // if (dep.startsWith('react-native-') || dep.startsWith(`@react-native-`)) {
+        //   return []
+        // }
 
         const depPkgJsonPath = await findDepPkgJsonPath(dep, currentRoot)
         if (!depPkgJsonPath) return []
