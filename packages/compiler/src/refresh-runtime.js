@@ -459,7 +459,7 @@ export function createSignatureFunctionForTransform() {
   let savedType
   let hasCustomHooks
   let didCollectHooks = false
-  return function (type, key, forceReset, getCustomHooks) {
+  return (type, key, forceReset, getCustomHooks) => {
     if (typeof key === 'string') {
       // We're in the initial phase that associates signatures
       // with the functions. Note this may be called multiple times
@@ -477,14 +477,13 @@ export function createSignatureFunctionForTransform() {
         setSignature(type, key, forceReset, getCustomHooks)
       }
       return type
-    } else {
-      // We're in the _s() call without arguments, which means
-      // this is the time to collect custom Hook signatures.
-      // Only do this once. This path is hot and runs *inside* every render!
-      if (!didCollectHooks && hasCustomHooks) {
-        didCollectHooks = true
-        collectCustomHooksForSignature(savedType)
-      }
+    }
+    // We're in the _s() call without arguments, which means
+    // this is the time to collect custom Hook signatures.
+    // Only do this once. This path is hot and runs *inside* every render!
+    if (!didCollectHooks && hasCustomHooks) {
+      didCollectHooks = true
+      collectCustomHooksForSignature(savedType)
     }
   }
 }
