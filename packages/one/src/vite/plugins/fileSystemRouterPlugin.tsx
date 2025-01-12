@@ -197,6 +197,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         const routesAndLayouts = [
           ...new Set(
             handleRequest.manifest.pageRoutes.flatMap((route) => {
+              if (route.isNotFound) return []
+              // sitemap
+              if (!route.file) return []
               return [
                 join('./app', route.file),
                 ...(route.layouts?.flatMap((layout) => {
