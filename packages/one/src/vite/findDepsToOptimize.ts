@@ -17,7 +17,7 @@ export async function getAllDependencies(root: string, depth = 20) {
   return await crawl(pkgJsonPath, depth - 1)
 }
 
-async function crawl(pkgJsonPath: string, depth = Infinity) {
+async function crawl(pkgJsonPath: string, depth = Number.POSITIVE_INFINITY) {
   const pkgJson = await FSExtra.readJson(pkgJsonPath).catch((e) => {
     throw new Error(`Unable to read ${pkgJsonPath}`, { cause: e })
   })

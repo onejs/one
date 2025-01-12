@@ -16,6 +16,18 @@ describe('Simple Run Tests', () => {
     expect(serverUrl).toContain('http://localhost')
   })
 
+  it('should enable babel react compiler', async () => {
+    const response = await fetch(`${serverUrl}/features/theme/ToggleThemeButton.tsx`)
+    const code = await response.text()
+    expect(code).toMatch(/react_compiler-runtime/)
+  })
+
+  it('should enable babel reanimated compiler', async () => {
+    const response = await fetch(`${serverUrl}/app/index.tsx`)
+    const code = await response.text()
+    expect(code).toMatch(/__workletHash/)
+  })
+
   describe('GET /api/test', () => {
     it('should return test items', async () => {
       const response = await fetch(`${serverUrl}/api/test`)

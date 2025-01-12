@@ -6,11 +6,11 @@ ignores:
   - "one/package.json"
   - "@vxrn/tslib-lite"
   - "@react-native-masked-view/masked-view"
-  # These Babel deps are actually being used (src/vite/plugins/reactCompilerPlugin.ts), but will be reported as unused by depcheck so we need to ignore them
-  - "@babel/preset-typescript"
-  - "babel-plugin-react-compiler"
   # this is used dependend on by react-native-screens and errors vite during scan if not here
   - "react-native-reanimated"
   - "react-native-gesture-handler"
   - "react-scan"
   - "react-compiler-runtime"
+
+# we use this as jsx pragma if nativewind:
+  - "react-native-css-interop"

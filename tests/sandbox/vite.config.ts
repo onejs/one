@@ -8,7 +8,7 @@ export default {
         defaultRenderMode: 'ssg',
       },
 
-      app: {
+      native: {
         key: 'one-example',
       },
 

@@ -3,7 +3,7 @@ import { rm } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { VXRNOptions } from '../types'
 import { fillOptions } from '../utils/getOptionsFilled'
-import { getSSRExternalsCachePath } from '../plugins/autoPreBundleDepsForSsrPlugin'
+import { getSSRExternalsCachePath } from '../plugins/autoDepOptimizePlugin'
 
 /**
  * The main entry point for dev mode

@@ -24,6 +24,7 @@
     "@tamagui/vite-plugin": "^1.121.8",
     "@vxrn/color-scheme": "workspace:*",
     "expo": "~52.0.17",
+    "expo-video": "^2.0.4",
     "one": "workspace:*",
     "postgres": "^3.4.4",
     "react": "^19.0.0",

@@ -1,6 +1,7 @@
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
 import type { RouteInfo } from '../server/createRoutesManifest';
+import type { GetBabelConfig } from '@vxrn/compiler';
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
@@ -56,6 +57,40 @@ export declare namespace One {
          */
         setupFile?: string;
         config?: {
+            /**
+             * Accepts a function that determines whether to use babel, and which plugins to use.
+             * By default, babel only runs if:
+             *
+             *  - options.react.compiler is `true`, on tsx files in your app
+             *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
+             *
+             * Otherwise One defaults to using `@swc/core`.
+             *
+             * Accepts a function:
+             *
+             *   (props: {
+             *      id: string
+             *      code: string
+             *      development: boolean
+             *      environment: Environment
+             *      reactForRNVersion: '18' | '19'
+             *   }) =>
+             *      | true  // force babel on for file
+             *      | false // force babel off for file
+             *      | {
+             *           plugins: [] // babel plugin array
+             *           excludeDefaultPlugins?: boolean // if true, removes the default plugins
+             *        }
+             *
+             *  Babel always runs with preset `@babel/preset-typescript`.
+             *
+             *  When babel runs without `excludeDefaultPlugins` set to true, it defaults to plugins:
+             *
+             *  @babel/plugin-transform-destructuring, babel/plugin-transform-runtime, @babel/plugin-transform-react-jsx,
+             *  @babel/plugin-transform-async-generator-functions, @babel/plugin-transform-async-to-generator
+             *
+             */
+            babel?: GetBabelConfig;
             ensureTSConfig?: false;
             /**
              * One automatically adds vite-tsconfig-paths, set this to false to disable, or
@@ -68,12 +103,16 @@ export declare namespace One {
              */
             tsConfigPaths?: boolean | TSConfigPluginOptions;
         };
-        app?: {
+        native?: {
             /**
              * The uid of your native app, this will be used internally in one to call
              * `AppRegistry.registerComponent(key)`
              */
             key?: string;
+            /**
+             * Turns on react-native-css-interop support when importing CSS on native
+             */
+            css?: boolean;
         };
         web?: {
             /**

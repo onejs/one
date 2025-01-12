@@ -1,16 +1,16 @@
-import { swcTransform, transformForBuild } from '@vxrn/vite-native-swc'
+import { transformSWC, transformSWCStripJSX } from '@vxrn/compiler'
 import { parse } from 'es-module-lexer'
 import FSExtra from 'fs-extra'
+import { createIdResolver, type Plugin, type ResolveFn } from 'vite'
 import { connectedNativeClients } from '../utils/connectedNativeClients'
+import { filterPluginsForNative } from '../utils/filterPluginsForNative'
 import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
 import { entryRoot } from '../utils/getReactNativeBundle'
+import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
 import { getVitePath } from '../utils/getVitePath'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
-import { createIdResolver, type ResolveFn, type Plugin, EnvironmentModuleGraph } from 'vite'
 import { conditions } from './reactNativeCommonJsPlugin'
-import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
-import { filterPluginsForNative } from '../utils/filterPluginsForNative'
 
 export function reactNativeHMRPlugin({
   root,
@@ -57,7 +57,9 @@ export function reactNativeHMRPlugin({
         const [module] = modules
         if (!module) return
 
-        let id = (module?.url || file.replace(root, '')).replace('/@id', '')
+        const fullId = module?.url || file
+
+        let id = fullId.replace(root, '').replace('/@id', '')
         if (id[0] !== '/') {
           id = `/${id}`
         }
@@ -96,11 +98,16 @@ export function reactNativeHMRPlugin({
             ),
             server.watcher
           )
-          const transformResult = await pluginContainerForTransform.transform(source, file)
+
+          const transformResult = await pluginContainerForTransform.transform(
+            source,
+            `vxrn-swc-preprocess:${file}`
+          )
+
           source = transformResult.code
         } catch (e) {
           console.warn(`Error transforming source for HMR: ${e}. Retrying without plugins.`)
-          source = (await transformForBuild(id, source))?.code || ''
+          source = (await transformSWCStripJSX(id, source))?.code || ''
         }
 
         // TODO: This is a hacky way to make HMR route files work, since if we don't run through the `clientTreeShakePlugin`, the source code might include imports to server side stuff (typically used inside `loader` functions) that will break the HMR update. Ideally, we should go though all user plugins for HMR updates.
@@ -176,8 +183,9 @@ export function reactNativeHMRPlugin({
         // then we have to convert to commonjs..
         source =
           (
-            await swcTransform(id, source, {
+            await transformSWC(file, source, {
               mode: 'serve-cjs',
+              environment: 'ios',
               production: mode === 'production',
             })
           )?.code || ''

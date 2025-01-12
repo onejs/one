@@ -1,6 +1,12 @@
 import FSExtra from 'fs-extra'
 import path, { dirname, extname, join, sep } from 'node:path'
 
+export type ScanDepsResult = {
+  prebundleDeps: string[]
+  hasReanimated: boolean
+  hasNativewind: boolean
+}
+
 /** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
 export const EXCLUDE_LIST = [
   'fsevents',
@@ -35,7 +41,7 @@ export const EXCLUDE_LIST = [
   // Also, some of these packages might attempt to import from react-native internals, which will break in SSR while react-native is aliased to react-native-web.
   '@vxrn/react-native-prebuilt',
   '@vxrn/vite-native-hmr',
-  '@vxrn/vite-native-swc',
+  '@vxrn/compiler',
   '@vxrn/vite-native-client',
   'react-native-ios-utilities',
   'react-native-ios-modal',
@@ -79,27 +85,34 @@ export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST)
  * [^2]: https://github.com/vitejs/vite/issues/9710#issuecomment-1217775350
  * [^3]: https://vite.dev/guide/dep-pre-bundling.html
  */
-export async function scanDepsToPreBundleForSsr(
+
+const rootOptions = {}
+
+export async function scanDepsToOptimize(
   packageJsonPath: string,
-  {
-    parentDepNames = [],
-    proceededDeps = new Map(),
-    pkgJsonContent,
-  }: {
+  options: {
     parentDepNames?: string[]
     proceededDeps?: Map<string, string[]>
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
     pkgJsonContent?: any
-  } = {}
-): Promise<string[]> {
+  } = rootOptions
+): Promise<ScanDepsResult> {
+  const { parentDepNames = [], proceededDeps = new Map(), pkgJsonContent } = options
+
+  if (options === rootOptions) {
+    console.info(`[one] Scanning node_modules to auto-optimize...`)
+  }
+
   const currentRoot = path.dirname(packageJsonPath)
 
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
   const deps = [...Object.keys(pkgJson.dependencies || {})]
 
-  return (
+  let hasReanimated = !!pkgJson.dependencies?.['react-native-reanimated']
+
+  const prebundleDeps = (
     await Promise.all(
-      deps.map(async (dep) => {
+      deps.map(async (dep): Promise<string[]> => {
         // skip circular deps
         if (parentDepNames.includes(dep)) {
           return []
@@ -117,14 +130,22 @@ export async function scanDepsToPreBundleForSsr(
 
         const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
 
-        const subDepsToPreBundle = await scanDepsToPreBundleForSsr(depPkgJsonPath, {
+        if (depPkgJson.dependencies?.['react-native-reanimated']) {
+          hasReanimated = true
+        }
+
+        const subDeps = await scanDepsToOptimize(depPkgJsonPath, {
           parentDepNames: [...parentDepNames, dep],
           pkgJsonContent: depPkgJson,
           proceededDeps,
         })
 
+        if (subDeps.hasReanimated) {
+          hasReanimated = true
+        }
+
         const shouldPreBundle =
-          subDepsToPreBundle.length >
+          subDeps.prebundleDeps.length >
             0 /* If this dep is depending on other deps that need pre-bundling, then also pre-bundle this dep */ ||
           INCLUDE_LIST_SET.has(dep) /* If this dep is in the include list, then pre-bundle it */ ||
           hasRequiredDep(depPkgJson, 'react') ||
@@ -210,7 +231,7 @@ export async function scanDepsToPreBundleForSsr(
           return exports
         })()
 
-        const result = [...depsToPreBundle, ...subDepsToPreBundle]
+        const result = [...depsToPreBundle, ...subDeps.prebundleDeps]
 
         proceededDeps.set(dep, result)
         return result
@@ -219,6 +240,22 @@ export async function scanDepsToPreBundleForSsr(
   )
     .flat()
     .filter((dep, index, arr) => arr.indexOf(dep) === index)
+
+  const hasNativewind = !!pkgJson.dependencies?.['nativewind']
+
+  if ((hasNativewind || hasReanimated) && options === rootOptions) {
+    if (hasReanimated)
+      console.info(
+        `[one] Enabled babel plugins: ${[hasReanimated ? 'Reanimated' : '', hasNativewind ? 'Nativewind' : ''].filter(Boolean).join(', ')}`
+      )
+  }
+
+  return {
+    prebundleDeps,
+    hasReanimated,
+    // only check if set in root, dont want to enable css mode too easily
+    hasNativewind,
+  }
 }
 
 // vite will fail if there's a main export but it actually doesn't exist

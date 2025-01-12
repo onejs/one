@@ -365,6 +365,7 @@ export function parseQueryParamsExtended(
         )
       }
     } else {
+      // biome-ignore lint/suspicious/noPrototypeBuiltins: <explanation>
       const values = parseConfig?.hasOwnProperty(name)
         ? searchParams.getAll(name).map((value) => parseConfig[name](value))
         : searchParams.getAll(name)

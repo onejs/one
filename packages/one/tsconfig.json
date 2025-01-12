@@ -21,6 +21,9 @@
       "path": "../universal-color-scheme"
     },
     {
+      "path": "../compiler"
+    },
+    {
       "path": "../use-isomorphic-layout-effect"
     },
     {
