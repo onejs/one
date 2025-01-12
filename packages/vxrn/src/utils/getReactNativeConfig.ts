@@ -135,7 +135,7 @@ export async function getReactNativeConfig(
 
       nodeResolve(),
 
-      swapPrebuiltReactModules(options.cacheDir, {
+      await swapPrebuiltReactModules(options.cacheDir, {
         // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
         mode: internal.mode || 'dev',
         platform,
