@@ -89,8 +89,14 @@ export async function createVXRNCompilerPlugin(
             return
           }
 
+          const environment = getEnvName(this.environment.name)
+          const production = process.env.NODE_ENV === 'production'
+
           if (extension === '.css') {
-            //
+            console.warn('EXTENSION CSS')
+            if (environment === 'ios' || environment === 'android') {
+              return null
+            }
           }
 
           let id = _id.split('?')[0]
@@ -104,9 +110,6 @@ export async function createVXRNCompilerPlugin(
           if (id.includes(`virtual:`)) {
             return
           }
-
-          const environment = getEnvName(this.environment.name)
-          const production = process.env.NODE_ENV === 'production'
 
           const transformProps: GetTransformProps = {
             id,

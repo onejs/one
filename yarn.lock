@@ -12776,6 +12776,7 @@ __metadata:
     "@vxrn/vite-native-client": "workspace:*"
     babel-plugin-react-compiler: "npm:^19.0.0-beta-201e55d-20241215"
     depcheck: "npm:^1.4.7"
+    nativewind: "npm:^4.1.23"
     react-native: "npm:^0.76.5"
     ts-deepmerge: "npm:^7.0.2"
     vite: "npm:^6.0.6"

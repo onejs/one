@@ -106,10 +106,6 @@ export declare namespace One {
          */
         setupFile?: string;
         config?: {
-<<<<<<< HEAD
-            babel?: GetBabelConfig;
-=======
->>>>>>> 5db509c9 (chore: refactor transform plugin a bit to be more flexible)
             ensureTSConfig?: false;
             /**
              * One automatically adds vite-tsconfig-paths, set this to false to disable, or
