@@ -1,0 +1,14 @@
+{
+  "name": "RN Test Container",
+  "slug": "rn-test-container",
+  "newArchEnabled": true,
+  "plugins": [
+    "vxrn/expo-plugin"
+  ],
+  "android": {
+    "package": "dev.onestack.rntestcontainer"
+  },
+  "ios": {
+    "bundleIdentifier": "dev.onestack.rntestcontainer"
+  }
+}
