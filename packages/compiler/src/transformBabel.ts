@@ -1,6 +1,8 @@
 import babel from '@babel/core'
 import { configuration } from './configure'
+import { relative } from 'node:path'
 import { asyncGeneratorRegex, debug } from './constants'
+import type { Environment } from './types'
 
 type BabelPlugins = babel.TransformOptions['plugins']
 
@@ -12,7 +14,7 @@ export type GetBabelConfigProps = {
   id: string
   code: string
   development: boolean
-  environment: string
+  environment: Environment
   reactForRNVersion: '18' | '19'
 }
 
@@ -37,7 +39,7 @@ function getBabelPlugins(props: Props): BabelPlugins {
   const userPlugins = props.getUserPlugins?.(props)
   if (typeof userPlugins !== 'undefined') {
     if (userPlugins === true) {
-      return getDefaultBabelPlugins(props, true)
+      return getPlugins(props, true)
     }
     if (userPlugins === false) {
       return null
@@ -45,48 +47,24 @@ function getBabelPlugins(props: Props): BabelPlugins {
     if (userPlugins.excludeDefaultPlugins) {
       return userPlugins.plugins
     }
-    return [getDefaultBabelPlugins(props), ...userPlugins.plugins]
+    return [getPlugins(props), ...userPlugins.plugins]
   }
-  return getDefaultBabelPlugins(props)
+  return getPlugins(props)
 }
 
-/**
- * Transform input to mostly ES5 compatible code, keep ESM syntax, and transform generators.
- */
-async function transformBabel(props: Props, plugins: babel.TransformOptions['plugins']) {
-  return await new Promise<string>((res, rej) => {
-    babel.transform(
-      props.code,
-      {
-        filename: props.id,
-        compact: false,
-        minified: false,
-        presets: ['@babel/preset-typescript'],
-        plugins: plugins || getDefaultBabelPlugins(props),
-      },
-      (err: any, result) => {
-        if (!result || err) {
-          return rej(err || 'no res')
-        }
-        res(result!.code!)
-      }
-    )
-  })
-}
-
-const getDefaultBabelPlugins = (props: Props, force = false) => {
+const getPlugins = (props: Props, force = false) => {
   let plugins: BabelPlugins = []
 
   if (force || shouldBabelGenerators(props)) {
     plugins = getBasePlugins(props)
   }
 
-  if (configuration.enableReanimated && shouldBabelReanimated(props)) {
+  if (shouldBabelReanimated(props)) {
     debug?.(`Using babel reanimated on file`)
     plugins.push('react-native-reanimated/plugin')
   }
 
-  if (configuration.enableCompiler && shouldBabelReactCompiler(props)) {
+  if (shouldBabelReactCompiler(props)) {
     debug?.(`Using babel react compiler on file`)
     plugins.push(getBabelReactCompilerPlugin(props))
   }
@@ -97,6 +75,41 @@ const getDefaultBabelPlugins = (props: Props, force = false) => {
   }
 
   return plugins
+}
+/**
+ * Transform input to mostly ES5 compatible code, keep ESM syntax, and transform generators.
+ */
+async function transformBabel(props: Props, pluginsIn: babel.TransformOptions['plugins']) {
+  const plugins = pluginsIn || getPlugins(props)
+  const compilerPlugin = plugins.find((x) => x && x[0] === 'babel-plugin-react-compiler')
+
+  const out = await new Promise<string>((res, rej) => {
+    babel.transform(
+      props.code,
+      {
+        filename: props.id,
+        compact: false,
+        minified: false,
+        presets: ['@babel/preset-typescript'],
+        plugins,
+      },
+      (err: any, result) => {
+        if (!result || err) {
+          return rej(err || 'no res')
+        }
+        res(result!.code!)
+      }
+    )
+  })
+
+  if (
+    compilerPlugin &&
+    out.includes(compilerPlugin[1] === '18' ? `react-compiler-runtime` : `react/compiler-runtime`)
+  ) {
+    console.info(` 🪄 [compiler] ${relative(process.cwd(), props.id)}`)
+  }
+
+  return out
 }
 
 const getBasePlugins = ({ development }: Props) =>
@@ -139,10 +152,17 @@ const shouldBabelReactNativeCodegen = ({ id, environment }: Props) => {
  */
 
 const shouldBabelReactCompiler = (props: Props) => {
+  if (!configuration.enableCompiler) {
+    return false
+  }
+  if (Array.isArray(configuration.enableCompiler)) {
+    if (!configuration.enableCompiler.includes(props.environment)) {
+      return false
+    }
+  }
   if (!/.*(.tsx?)$/.test(props.id)) return false
   if (props.code.startsWith('// disable-compiler')) return false
   // may want to disable in node modules? but rare to have tsx in node mods
-  console.log('enable compiler')
   return true
 }
 
@@ -200,7 +220,7 @@ const REANIMATED_REGEX = new RegExp(REANIMATED_AUTOWORKLETIZATION_KEYWORDS.join(
 const REANIMATED_IGNORED_PATHS = [
   // React and React Native libraries are not likely to use reanimated.
   // This can also avoid the "[BABEL] Note: The code generator has deoptimised the styling of ... as it exceeds the max of 500KB" warning since the react-native source code also contains `useAnimatedProps`.
-  'react-native-prebuilt/vendor',
+  'react-native-prebuilt',
   'node_modules/.vxrn/react-native',
 ]
 
@@ -209,10 +229,11 @@ const REANIMATED_IGNORED_PATHS_REGEX = new RegExp(
 )
 
 function shouldBabelReanimated({ code, id }: Props) {
-  if (id.includes('react-native-prebuilt')) {
+  if (!configuration.enableReanimated) {
     return false
   }
   if (!REANIMATED_IGNORED_PATHS_REGEX.test(id) && REANIMATED_REGEX.test(code)) {
+    console.info(` 🪄 [reanimated] ${relative(process.cwd(), id)}`)
     return true
   }
   return false

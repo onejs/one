@@ -118,7 +118,7 @@ export async function createVXRNCompilerPlugin(
               id,
               code,
               development: !options.production,
-              environment: this.environment.name,
+              environment: getEnvName(this.environment.name),
               reactForRNVersion: reactVersion.split('.')[0] as '18' | '19',
             })
 

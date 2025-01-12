@@ -71,6 +71,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const root = vxrnOptions?.root || process.cwd()
   const barrelOption = options.optimization?.barrel
 
+  const compiler = options.react?.compiler
+  if (compiler) {
+    configureVXRNCompilerPlugin({
+      enableCompiler:
+        compiler === 'native' ? ['ios', 'android'] : compiler === 'web' ? ['ssr', 'client'] : true,
+    })
+  }
+
   const devAndProdPlugins: Plugin[] = [
     {
       name: 'one:config',

@@ -6,7 +6,7 @@ export default {
   plugins: [
     one({
       react: {
-        compiler: process.env.NODE_ENV === 'production',
+        compiler: true,
       },
 
       web: {

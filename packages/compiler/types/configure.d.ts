@@ -1,13 +1,10 @@
+import type { Environment } from './types';
 type Conf = {
     enableReanimated?: boolean;
-    enableCompiler?: boolean;
+    enableCompiler?: boolean | Environment[];
     enableNativeCSS?: boolean;
 };
-export declare const configuration: {
-    enableReanimated: false;
-    enableCompiler: false;
-    enableNativeCSS: false;
-};
+export declare const configuration: Conf;
 export declare function configureVXRNCompilerPlugin(_: Conf): void;
 export {};
 //# sourceMappingURL=configure.d.ts.map
