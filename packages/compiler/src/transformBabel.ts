@@ -233,7 +233,7 @@ function shouldBabelReanimated({ code, id }: Props) {
     return false
   }
   if (!REANIMATED_IGNORED_PATHS_REGEX.test(id) && REANIMATED_REGEX.test(code)) {
-    console.info(` 🪄 [reanimated] ${relative(process.cwd(), id)}`)
+    // console.info(` 🪄 [reanimated] ${relative(process.cwd(), id)}`)
     return true
   }
   return false

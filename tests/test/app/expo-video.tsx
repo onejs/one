@@ -1,9 +1,11 @@
-import { VideoView, useVideoPlayer } from 'expo-video'
+// without globalThis.expo set it will error
 
-export default () => {
-  const player = useVideoPlayer({})
+// import { VideoView, useVideoPlayer } from 'expo-video'
 
-  return <VideoView player={player} />
-}
+// export default () => {
+//   const player = useVideoPlayer({})
 
-// export default () => null
+//   return <VideoView player={player} />
+// }
+
+export default () => null
