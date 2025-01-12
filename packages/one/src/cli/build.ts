@@ -49,6 +49,7 @@ export async function build(args: {
     )
   }
 
+  console.warn('start build')
   const vxrnOutput = await vxrnBuild(
     {
       server: oneOptions.server,

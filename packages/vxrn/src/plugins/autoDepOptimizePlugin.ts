@@ -48,12 +48,21 @@ export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode)
   }
 }
 
+let sessionCacheVal: ScanDepsResult | null = null
+
 export async function findDepsToOptimize({ root, mode, exclude }: FindDepsOptionsByMode) {
   const cacheFilePath = getSSRExternalsCachePath(root)
   const startedAt = debug ? Date.now() : 0
 
   // Disable cache when building for production to prevent stale cache
   const noCache = mode === 'production'
+
+  // Prod builds its running twice in a row, so avoid that since we can assume it only needs once
+  const sessionCache = mode === 'production'
+
+  if (sessionCache && sessionCacheVal) {
+    return sessionCacheVal
+  }
 
   const lockFile = await lookupFile(root, [
     'yarn.lock',
@@ -73,7 +82,6 @@ export async function findDepsToOptimize({ root, mode, exclude }: FindDepsOption
       if (
         lockFileHash === cachedLockFileHash &&
         !!cachedDepsToPreBundle &&
-        'hasReanimated' in cachedDepsToPreBundle &&
         'prebundleDeps' in cachedDepsToPreBundle
       ) {
         value = cachedDepsToPreBundle
@@ -87,9 +95,12 @@ export async function findDepsToOptimize({ root, mode, exclude }: FindDepsOption
   if (!value) {
     value = await scanDepsToOptimize(`${root}/package.json`)
 
+    if (sessionCache) {
+      sessionCacheVal = value
+    }
+
     if (!noCache) {
-      // no need to wait for this
-      FSExtra.outputJSON(cacheFilePath, {
+      void FSExtra.outputJSON(cacheFilePath, {
         lockFileHash,
         depsToPreBundleForSsr: value,
       })
