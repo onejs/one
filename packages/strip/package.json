@@ -26,7 +26,7 @@
     "watch": "yarn build --watch",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src"
+    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.0.12",

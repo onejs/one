@@ -1,0 +1,7 @@
+ignores:
+  - "babel-plugin-react-compiler"
+  - "@babel/plugin-transform-destructuring"
+  - "@babel/plugin-transform-private-methods"
+  - "@babel/plugin-transform-react-jsx"
+  - "@babel/plugin-transform-regenerator"
+  - "@vxrn/vite-native-client"

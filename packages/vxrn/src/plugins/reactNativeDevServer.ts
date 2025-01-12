@@ -58,7 +58,9 @@ export function openReactNativeDevTools() {
         return
       }
 
-      console.warn(`Failed to open React Native DevTools, ${url} returns ${response.status}: ${responseText}.`)
+      console.warn(
+        `Failed to open React Native DevTools, ${url} returns ${response.status}: ${responseText}.`
+      )
     }
   })()
 }
