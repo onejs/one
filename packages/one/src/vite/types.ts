@@ -9,7 +9,6 @@ import type {
   VXRNServePlatform,
 } from 'vxrn'
 import type { RouteInfo } from '../server/createRoutesManifest'
-import type { GetBabelConfig } from '@vxrn/compiler'
 
 export namespace One {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
@@ -130,8 +129,6 @@ export namespace One {
     setupFile?: string
 
     config?: {
-      babel?: GetBabelConfig
-
       ensureTSConfig?: false
 
       /**
