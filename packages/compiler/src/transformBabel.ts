@@ -3,6 +3,7 @@ import { relative } from 'node:path'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
 import type { GetTransformProps, GetTransformResponse } from './types'
+import { resolvePath } from '@vxrn/resolve'
 
 type Props = GetTransformProps & {
   userSetting?: GetTransformResponse
@@ -32,14 +33,19 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
     plugins = getBasePlugins(props)
   }
 
-  if (
+  const enableNativewind =
     configuration.enableNativewind &&
-    (props.environment === 'ios' || props.environment === 'android')
-  ) {
-    presets.push('nativewind/babel')
+    (props.environment === 'ios' || props.environment === 'android') &&
+    // only needed for createElement calls, so be a bit conservative
+    props.code.includes('createElement')
+
+  if (enableNativewind) {
+    if (!props.id.includes('node_modules')) {
+      plugins.push(resolvePath('react-native-css-interop/dist/babel-plugin.js'))
+    }
   }
 
-  if (shouldBabelReanimated(props)) {
+  if (enableNativewind || shouldBabelReanimated(props)) {
     debug?.(`Using babel reanimated on file`)
     plugins.push('react-native-reanimated/plugin')
   }
@@ -60,6 +66,7 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
 
   return null
 }
+
 /**
  * Transform input to mostly ES5 compatible code, keep ESM syntax, and transform generators.
  */
