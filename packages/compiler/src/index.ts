@@ -8,14 +8,15 @@ import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { extname, join } from 'node:path'
 import type { PluginOption, UserConfig } from 'vite'
-import { runtimePublicPath, validParsers } from './constants'
-import { transformWithBabelIfNeeded } from './transformBabel'
+import { debug, runtimePublicPath, validParsers } from './constants'
+import { getBabelOptions, transformBabel } from './transformBabel'
 import { transformSWC } from './transformSWC'
-import type { Environment, Options } from './types'
+import type { Environment, GetTransformProps, Options } from './types'
 
 export * from './configure'
 export * from './transformBabel'
 export * from './transformSWC'
+export type { GetTransform } from './types'
 
 export async function createVXRNCompilerPlugin(
   optionsIn?: Partial<Options>
@@ -25,14 +26,6 @@ export async function createVXRNCompilerPlugin(
     const json = JSON.parse(await readFile(path, 'utf-8'))
     return json.version as string
   })()
-
-  const getOptions = (environment: Environment) => {
-    return {
-      environment,
-      mode: 'serve',
-      ...optionsIn,
-    } satisfies Options
-  }
 
   const envNames = {
     ios: true,
@@ -112,36 +105,57 @@ export async function createVXRNCompilerPlugin(
             return
           }
 
-          const options = getOptions(getEnvName(this.environment.name))
+          const environment = getEnvName(this.environment.name)
+          const production = process.env.NODE_ENV === 'production'
 
-          if (!isPreProcess) {
-            const babelOut = await transformWithBabelIfNeeded({
-              ...optionsIn?.babel,
-              id,
-              code,
-              development: !options.production,
-              environment: this.environment.name,
-              reactForRNVersion: reactVersion.split('.')[0] as '18' | '19',
-            })
-
-            if (babelOut) {
-              if (shouldDebug) {
-                console.info(`[one] ${id} ran babel:`)
-                console.info(babelOut)
-              }
-              code = babelOut
-            }
+          const transformProps: GetTransformProps = {
+            id,
+            code,
+            development: !production,
+            environment,
+            reactForRNVersion: reactVersion.split('.')[0] as '18' | '19',
           }
 
+          const userTransform = optionsIn?.transform?.(transformProps)
+
+          if (userTransform === false) {
+            return
+          }
+
+          if (!isPreProcess && userTransform !== 'swc') {
+            const babelOptions = getBabelOptions({
+              ...transformProps,
+              userSetting: userTransform,
+            })
+
+            if (babelOptions) {
+              const babelOut = await transformBabel(id, code, babelOptions)
+              if (babelOut) {
+                debug?.(`[${id}] transformed with babel options: ${JSON.stringify(babelOptions)}`)
+                code = babelOut
+              }
+            }
+
+            // we always go to swc for now to ensure class transforms + react refesh
+            // we could make the babel plugin support those if we want to avoid
+          }
+
+          const swcOptions = {
+            environment: environment,
+            mode: 'serve',
+            production,
+            ...optionsIn,
+          } satisfies Options
+
           const out = await transformSWC(id, code, {
-            ...options,
+            ...swcOptions,
             es5: true,
             noHMR: isPreProcess,
           })
 
           if (shouldDebug) {
-            console.info(`[one] ${id} final output:`)
-            console.info(out)
+            console.info(`swcOptions`, swcOptions)
+            console.info(`final output:`, out?.code)
           }
 
           return out

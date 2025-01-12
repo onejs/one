@@ -9,9 +9,7 @@ import type { NavigationContainerRef, ParamListBase } from '@react-navigation/co
 import * as React from 'react'
 import { BackHandler } from 'react-native'
 
-export function useBackButton(
-  ref: React.RefObject<NavigationContainerRef<ParamListBase>>
-) {
+export function useBackButton(ref: React.RefObject<NavigationContainerRef<ParamListBase>>) {
   React.useEffect(() => {
     const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
       const navigation = ref.current

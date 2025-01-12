@@ -187,7 +187,9 @@ function performReactRefresh() {
     failedRootsSnapshot.forEach((root) => {
       const helpers = helpersByRootSnapshot.get(root)
       if (helpers === undefined) {
-        throw new Error('Could not find helpers for a root. This is a bug in React Refresh.')
+        throw new Error(
+          'Could not find helpers for a root. This is a bug in React Refresh.'
+        )
       }
       if (!failedRoots.has(root)) {
         // No longer failed.
@@ -212,7 +214,9 @@ function performReactRefresh() {
     mountedRootsSnapshot.forEach((root) => {
       const helpers = helpersByRootSnapshot.get(root)
       if (helpers === undefined) {
-        throw new Error('Could not find helpers for a root. This is a bug in React Refresh.')
+        throw new Error(
+          'Could not find helpers for a root. This is a bug in React Refresh.'
+        )
       }
       if (!mountedRoots.has(root)) {
         // No longer mounted.
@@ -398,7 +402,8 @@ export function injectIntoGlobalHook(globalObject) {
           alternate.memoizedState.element != null &&
           mountedRoots.has(root)
 
-        const isMounted = current.memoizedState != null && current.memoizedState.element != null
+        const isMounted =
+          current.memoizedState != null && current.memoizedState.element != null
 
         if (!wasMounted && isMounted) {
           // Mount a new root.
@@ -459,7 +464,7 @@ export function createSignatureFunctionForTransform() {
   let savedType
   let hasCustomHooks
   let didCollectHooks = false
-  return function (type, key, forceReset, getCustomHooks) {
+  return (type, key, forceReset, getCustomHooks) => {
     if (typeof key === 'string') {
       // We're in the initial phase that associates signatures
       // with the functions. Note this may be called multiple times
@@ -477,14 +482,13 @@ export function createSignatureFunctionForTransform() {
         setSignature(type, key, forceReset, getCustomHooks)
       }
       return type
-    } else {
-      // We're in the _s() call without arguments, which means
-      // this is the time to collect custom Hook signatures.
-      // Only do this once. This path is hot and runs *inside* every render!
-      if (!didCollectHooks && hasCustomHooks) {
-        didCollectHooks = true
-        collectCustomHooksForSignature(savedType)
-      }
+    }
+    // We're in the _s() call without arguments, which means
+    // this is the time to collect custom Hook signatures.
+    // Only do this once. This path is hot and runs *inside* every render!
+    if (!didCollectHooks && hasCustomHooks) {
+      didCollectHooks = true
+      collectCustomHooksForSignature(savedType)
     }
   }
 }
@@ -577,10 +581,14 @@ const enqueueUpdate = debounce(async () => {
 
 export function validateRefreshBoundaryAndEnqueueUpdate(id, prevExports, nextExports) {
   const ignoredExports = window.__getReactRefreshIgnoredExports?.({ id }) ?? []
-  if (predicateOnExport(ignoredExports, prevExports, (key) => key in nextExports) !== true) {
+  if (
+    predicateOnExport(ignoredExports, prevExports, (key) => key in nextExports) !== true
+  ) {
     return 'Could not Fast Refresh (export removed)'
   }
-  if (predicateOnExport(ignoredExports, nextExports, (key) => key in prevExports) !== true) {
+  if (
+    predicateOnExport(ignoredExports, nextExports, (key) => key in prevExports) !== true
+  ) {
     return 'Could not Fast Refresh (new export)'
   }
 

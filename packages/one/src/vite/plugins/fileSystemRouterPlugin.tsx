@@ -32,7 +32,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     return createHandleRequest({
       async handlePage({ route, url, loaderProps }) {
         console.info(
-          ` ⓵  [${route.type}] ${url} resolved to ${route.isNotFound ? '‼️ 404 not found' : route.file}`
+          ` ⓵  [${route.type}] ${url} resolved to ${
+            route.isNotFound ? '‼️ 404 not found' : `app/${route.file.slice(2)}`
+          }`
         )
 
         if (route.type === 'spa') {
@@ -197,6 +199,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         const routesAndLayouts = [
           ...new Set(
             handleRequest.manifest.pageRoutes.flatMap((route) => {
+              if (route.isNotFound) return []
+              // sitemap
+              if (!route.file) return []
               return [
                 join('./app', route.file),
                 ...(route.layouts?.flatMap((layout) => {

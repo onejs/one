@@ -7,5 +7,9 @@ import type { Options } from './types';
 export * from './configure';
 export * from './transformBabel';
 export * from './transformSWC';
+<<<<<<< HEAD
+=======
+export type { GetTransform } from './types';
+>>>>>>> main
 export declare function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): Promise<PluginOption[]>;
 //# sourceMappingURL=index.d.ts.map

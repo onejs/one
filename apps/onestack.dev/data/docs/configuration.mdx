@@ -101,6 +101,56 @@ export default {
           '**/*.js': ['jsx']
         }
       },
+
+     /**
+      * Per-file control over how code transforms.
+      * Defaults to SWC, runs babel before SWC if:
+      *
+      *  - options.react.compiler is `true`, on tsx files in your app
+      *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
+      *
+      * Otherwise One defaults to using `@swc/core`.
+      *
+      * Accepts a function:
+      *
+      *   (props: {
+      *      id: string
+      *      code: string
+      *      development: boolean
+      *      environment: Environment
+      *      reactForRNVersion: '18' | '19'
+      *   }) =>
+      *      | true     // default transforms
+      *      | false    // no transforms
+      *      | 'babel'  // force babel default transform
+      *      | 'swc'    // force swc default transform
+      *
+      *       // force babel, custom transform
+      *
+      *      | {
+      *          transform: 'babel'
+      *          excludeDefaultPlugins?: boolean
+      *        } & babel.TransformOptions
+      *
+      *      // force swc, custom transform
+      *
+      *      | {
+      *          transform: 'swc'
+      *        } & SWCOptions
+      *
+      * Babel defaults to preset `@babel/preset-typescript` with plugins:
+      *
+      *  - @babel/plugin-transform-destructuring
+      *  - @babel/plugin-transform-runtime
+      *  - @babel/plugin-transform-react-jsx
+      *  - @babel/plugin-transform-async-generator-functions
+      *  - @babel/plugin-transform-async-to-generator
+      *
+      *
+      * SWC default to target es5 for native, es2020 for web.
+      *
+      */
+      transform: true
     })
   ]
 } satisfies UserConfig

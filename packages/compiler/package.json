@@ -20,10 +20,11 @@
   ],
   "scripts": {
     "build": "tamagui-build",
+    "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
     "lint": "../../node_modules/.bin/biome check src",
-    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
+    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
@@ -35,11 +36,13 @@
     "@swc/core": "^1.10.4",
     "@vxrn/utils": "workspace:*",
     "@vxrn/vite-native-client": "workspace:*",
-    "metro-react-native-babel-preset": "^0.77.0"
+    "babel-plugin-react-compiler": "^19.0.0-beta-201e55d-20241215",
+    "ts-deepmerge": "^7.0.2",
+    "vite": "^6.0.6"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
     "@tamagui/build": "^1.121.8",
+    "depcheck": "^1.4.7",
     "react-native": "^0.76.5"
   },
   "peerDependencies": {

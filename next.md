@@ -9,14 +9,14 @@
   - enable StrictMode
 
   - tests
-    - goal for 20+ deps covered on native + web (ssr) (see weird-deps for some)
+    - 20-40 deps, native + web (ssr) (see weird-deps for some)
     - native tests that run in `yarn test`
     - add loader tests (SPA, SSR pages)
-    - disabled javascript ensure styles are all right (currently onestack.dev atually is missing some)
+    - disabled javascript ensure styles are all right (currently onestack.dev is missing some)
 
   - native
-    - better hmr
-    - better caching
+    - hmr tests + multi-file
+    - caching
     - symbolicator
     - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
     - better rebuild module caching
@@ -40,8 +40,6 @@
 
 ---
 
-2.0:
-
   - `doctor --fix`
     - ensure type: 'module' in package.json
     - ensure vite.config
@@ -58,9 +56,12 @@
   - use dom with RSC bridge
   - react-native-web-lite proper release
 
----
+- allow configuring swc from one
 
-# backlog
+- // TODO see about moving to hotUpdate
+    // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
+
+- we can avoid the reanimated babel plugin entirely if we don't detect reanimated in deps during scanDeps
 
 - allow configuring swc from one
 
@@ -107,8 +108,6 @@
   - another cool idea: node_modules package.json sets "vite" field that can add these custom configs, so `tamagui` package can define that *for* react 19
 
 - an easy way to disable swc transform for a node_module using `deps`
-
-- TODO this would probably want to support their configured extensions
 
 - useLoader new useEffect to fetch new loader loader data
   - hits /_vxrn/load/pathname.js for ssg at least

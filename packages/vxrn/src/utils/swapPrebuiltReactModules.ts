@@ -2,7 +2,7 @@ import { buildReact, buildReactJSX, buildReactNative } from '@vxrn/react-native-
 import { resolvePath } from '@vxrn/resolve'
 import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
-import path, { dirname, join, resolve } from 'node:path'
+import { join } from 'node:path'
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from './environmentUtils'
 
@@ -60,7 +60,9 @@ export async function prebuildReactNativeModules(
 
   const reactVersion = reactPackageJson?.version
   if (reactVersion?.startsWith('19')) {
-    console.info(`🧪 React ${reactVersion} detected. Enabling experimental React 19 support for React Native.`)
+    console.info(
+      `🧪 React ${reactVersion} detected. Enabling experimental React 19 support for React Native.`
+    )
     enableExperimentalReactNativeWithReact19Support = true
   }
 
@@ -171,9 +173,13 @@ export async function swapPrebuiltReactModules(
     name: `swap-react-native`,
     enforce: 'pre',
 
-    async resolveId(id, importer = '') {
+    async resolveId(id) {
       if (!isNativeEnvironment(this.environment)) {
         return
+      }
+
+      if (id === 'react-native-web') {
+        return rnPrebuilt
       }
 
       if (id.startsWith('react-native/')) {
@@ -191,61 +197,12 @@ export async function swapPrebuiltReactModules(
         return `virtual:rn-internals:${id.replace(/^.*react-native-web(\/dist\/cjs\/index.js)?/, 'react-native')}`
       }
 
-      if (id === 'react-native-web') {
-        return rnPrebuilt
-      }
-
       for (const targetId in virtualModules) {
         if (id === targetId || id.includes(`/node_modules/${targetId}/`)) {
           const info = virtualModules[targetId]
           return info.alias
         }
       }
-
-      // TODO this also shouldnt be here
-      // TODO this is terrible and slow, we should be able to get extensions working:
-      // having trouble getting .native.js to be picked up via vite
-      // tried adding packages to optimizeDeps, tried resolveExtensions + extensions...
-      // tried this but seems to not be called for node_modules
-      // if (id[0] === '.') {
-      //   const absolutePath = resolve(dirname(importer), id)
-      //   const nativePath = absolutePath.replace(/(.m?js)/, '.native.js')
-      //   if (nativePath === id) return
-      //   // Only comparing `nativePath === id` is not enough, because id can be a relative path while nativePath is an absolute path. We need to make sure things are not accidentally handled by this plugin so other plugins such as assets can work.
-      //   if (path.join(path.dirname(importer), id) === nativePath) {
-      //     return
-      //   }
-
-      //   // // if exists can skip
-      //   // if (await FSExtra.pathExists(absolutePath)) {
-      //   //   return
-      //   // }
-
-      //   try {
-      //     const directoryPath = absolutePath + '/index.native.js'
-      //     const directoryNonNativePath = absolutePath + '/index.js'
-      //     if (await FSExtra.pathExists(directoryPath)) {
-      //       return directoryPath
-      //     }
-      //     if (await FSExtra.pathExists(directoryNonNativePath)) {
-      //       return directoryNonNativePath
-      //     }
-      //     try {
-      //       console.log('stating', nativePath)
-      //       if (
-      //         (await FSExtra.stat(nativePath)).isFile() // Prevents "EISDIR: illegal operation on a directory, read" errors
-      //       ) {
-      //         return nativePath
-      //       }
-      //     } catch (err: any) {
-      //       if (err.code !== 'ENOENT') {
-      //         throw err
-      //       }
-      //     }
-      //   } catch (err) {
-      //     console.warn(`error probably fine`, err)
-      //   }
-      // }
     },
 
     async load(id) {
