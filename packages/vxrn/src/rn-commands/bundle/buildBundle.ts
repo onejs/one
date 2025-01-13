@@ -31,7 +31,7 @@ export async function buildBundle(
   _argv: Array<string>,
   ctx: any,
   args: BundleCommandArgs,
-  bundleImpl: any
+  bundleImpl: any = null
 ): Promise<void> {
   const {
     platform, // Android is not supported yet.

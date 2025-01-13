@@ -1,8 +1,17 @@
 import { defineCommand, runMain } from 'citty'
-import type { dev as devFn } from './exports/dev'
-import type { prebuild as prebuildFn } from './exports/prebuild'
-import type { runIos as runIosFn } from './exports/runIos'
-import type { runAndroid as runAndroidFn } from './exports/runAndroid'
+import type * as devExport from './exports/dev'
+import type * as cleanExport from './exports/clean'
+import type * as patchExport from './exports/patch'
+import type * as buildExport from './exports/build'
+import type * as serveExport from './exports/serve'
+import type * as prebuildExport from './exports/prebuild'
+import type * as runIOSExport from './exports/runIos'
+import type * as runAndroidExport from './exports/runAndroid'
+
+// todo fix this better
+async function importCLIEndpoint<T>(path: string): Promise<T> {
+  return (await import(path)) as any as T
+}
 
 const dev = defineCommand({
   meta: {
@@ -26,13 +35,7 @@ const dev = defineCommand({
     },
   },
   async run({ args }) {
-    const imported = await import(
-      // @ts-expect-error
-      './exports/dev.mjs'
-    )
-
-    // for type safety with our weird import setup
-    const dev = imported.dev as typeof devFn
+    const { dev } = await importCLIEndpoint<typeof devExport>('./exports/dev.mjs')
 
     const { start, stop } = await dev({
       clean: args.clean,
@@ -82,18 +85,41 @@ const build = defineCommand({
       type: 'boolean',
       required: false,
     },
+    platform: {
+      type: 'string',
+      description: `One of: web, ios, android`,
+      default: 'web',
+      required: false,
+    },
   },
   async run({ args }) {
-    const { build } = await import(
-      // @ts-expect-error
-      './exports/build.mjs'
-    )
+    const { build } = await importCLIEndpoint<typeof buildExport>('./exports/build.mjs')
 
     process.on('uncaughtException', (err) => {
       console.error(err?.message || err)
     })
 
-    const results = await build({}, args)
+    const platforms = {
+      ios: 'ios',
+      web: 'web',
+      android: 'android',
+    } as const
+
+    if (args.platform && !platforms[args.platform]) {
+      throw new Error(`Invalid platform: ${args.platform}`)
+    }
+
+    const platform = platforms[args.platform as keyof typeof platforms] || 'web'
+
+    const results = await build(
+      {},
+      {
+        analyze: args.analyze,
+        only: args.only,
+        step: args.step,
+        platform,
+      }
+    )
 
     if (process.env.DEBUG) {
       console.info('results', results)
@@ -116,10 +142,7 @@ const serve = defineCommand({
     },
   },
   async run({ args }) {
-    const { serve } = await import(
-      // @ts-expect-error
-      './exports/serve.mjs'
-    )
+    const { serve } = await importCLIEndpoint<typeof serveExport>('./exports/serve.mjs')
 
     process.on('uncaughtException', (err) => {
       console.error(err?.message || err)
@@ -154,11 +177,7 @@ const prebuild = defineCommand({
     },
   },
   async run({ args }) {
-    const imported = await import(
-      // @ts-expect-error
-      './exports/prebuild.mjs'
-    )
-    const prebuild = imported.prebuild as typeof prebuildFn
+    const { prebuild } = await importCLIEndpoint<typeof prebuildExport>('./exports/prebuild.mjs')
     const root = process.cwd()
     const { platform, expo } = args
 
@@ -173,13 +192,8 @@ const runIos = defineCommand({
   },
   args: {},
   async run() {
-    const imported = await import(
-      // @ts-expect-error
-      './exports/runIos.mjs'
-    )
-    const runIos = imported.runIos as typeof runIosFn
+    const { runIos } = await importCLIEndpoint<typeof runIOSExport>('./exports/runIos.mjs')
     const root = process.cwd()
-
     await runIos({ root })
   },
 })
@@ -191,13 +205,10 @@ const runAndroid = defineCommand({
   },
   args: {},
   async run() {
-    const imported = await import(
-      // @ts-expect-error
+    const { runAndroid } = await importCLIEndpoint<typeof runAndroidExport>(
       './exports/runAndroid.mjs'
     )
-    const runAndroid = imported.runAndroid as typeof runAndroidFn
     const root = process.cwd()
-
     await runAndroid({ root })
   },
 })
@@ -210,10 +221,7 @@ const patch = defineCommand({
   },
   args: {},
   async run() {
-    const { patch: vxrnPatch } = await import(
-      // @ts-expect-error
-      './exports/patch.mjs'
-    )
+    const { patch: vxrnPatch } = await importCLIEndpoint<typeof patchExport>('./exports/patch.mjs')
     await vxrnPatch({
       root: process.cwd(),
     })
@@ -228,10 +236,7 @@ const clean = defineCommand({
   },
   args: {},
   async run() {
-    const { clean: vxrnClean } = await import(
-      // @ts-expect-error
-      './exports/clean.mjs'
-    )
+    const { clean: vxrnClean } = await importCLIEndpoint<typeof cleanExport>('./exports/clean.mjs')
     await vxrnClean({
       root: process.cwd(),
     })

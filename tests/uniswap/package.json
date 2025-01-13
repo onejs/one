@@ -10,12 +10,12 @@
   "scripts": {
     "build:web": "one build",
     "clean": "one clean",
-    "ios": "expo run:ios",
+    "ios": "one run:ios",
     "dev": "one dev",
     "dev:clean": "yarn dev --clean",
     "prod": "one build && one serve",
     "serve": "one serve",
-    "android": "expo run:android"
+    "android": "one run:android"
   },
   "dependencies": {
     "@amplitude/analytics-browser": "1.12.1",
@@ -76,7 +76,8 @@
     "uuid": "9.0.0",
     "vite-plugin-commonjs": "^0.10.4",
     "wcag-contrast": "3.0.0",
-    "zen-observable-ts": "1.2.5"
+    "zen-observable-ts": "1.2.5",
+    "react": "18.3.1"
   },
   "devDependencies": {
     "@tamagui/build": "^1.121.10",

@@ -32,6 +32,7 @@ process.on('uncaughtException', (err) => {
 export async function build(args: {
   step?: string
   only?: string
+  platform?: 'ios' | 'web' | 'android'
 }) {
   labelProcess('build')
 
@@ -49,7 +50,6 @@ export async function build(args: {
     )
   }
 
-  console.warn('start build')
   const vxrnOutput = await vxrnBuild(
     {
       server: oneOptions.server,
@@ -62,6 +62,10 @@ export async function build(args: {
     },
     args
   )
+
+  if (args.platform !== 'web') {
+    return
+  }
 
   const options = await fillOptions(vxrnOutput.options)
 
