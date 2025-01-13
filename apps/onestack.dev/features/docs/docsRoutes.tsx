@@ -76,6 +76,7 @@ export const docsRoutes = [
     pages: [
       { title: 'useActiveParams', route: '/docs/hooks-useActiveParams' },
       { title: 'useFocusEffect', route: '/docs/hooks-useFocusEffect' },
+      { title: 'useIsFocused', route: '/docs/hooks-useIsFocused' },
       { title: 'useLinkTo', route: '/docs/hooks-useLinkTo' },
       { title: 'useLoader', route: '/docs/hooks-useLoader' },
       { title: 'useNavigation', route: '/docs/hooks-useNavigation' },
