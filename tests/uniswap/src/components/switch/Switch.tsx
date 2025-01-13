@@ -87,11 +87,11 @@ export function Switch({
     return checked ? '$surface1' : '$neutral1'
   })()
 
-  const iconColor = ((): string => {
+  const iconColor = (() => {
     if (isDisabledStyling) {
-      return colors.white.val
+      return colors.white.get()
     }
-    return isBranded ? colors.accent1.val : colors.neutral1.val
+    return isBranded ? colors.accent1.get() : colors.neutral1.get()
   })()
 
   // Switch is a bit performance sensitive on native, memo to help here
@@ -156,6 +156,7 @@ export function Switch({
 
         {/* fake thumb for width animation */}
         <Flex
+          debug="profile"
           $group-item-hover={outerActiveStyle}
           $group-item-press={outerActiveStyle}
           {...animationProp}

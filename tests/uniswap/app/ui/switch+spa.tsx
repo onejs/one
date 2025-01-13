@@ -1,32 +1,33 @@
-import { useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Flex, Switch } from 'ui/src'
 import { LabeledGroup } from 'ui/src/components/LabeledGroup'
 
 export default () => {
-  const [checked, setChecked] = useState(false)
+  const [start, setStart] = useState(0)
+
+  useLayoutEffect(() => {
+    if (start) {
+      console.log('TOOK', Date.now() - start)
+    }
+  })
 
   return (
     <Flex gap="$gap12">
       <LabeledGroup title="Default">
-        <Switch variant="default" onCheckedChange={() => setChecked(!checked)} checked={checked} />
-        <Switch variant="default" onCheckedChange={() => setChecked(!checked)} checked={!checked} />
-        <Switch
-          variant="default"
-          onCheckedChange={() => setChecked(!checked)}
-          disabled
-          checked={!checked}
-        />
+        <Switch variant="default" />
+        <Switch variant="default" />
+        <Switch variant="default" disabled />
       </LabeledGroup>
 
       <LabeledGroup title="Variant: Branded">
-        <Switch onCheckedChange={() => setChecked(!checked)} variant="branded" checked={checked} />
-        <Switch onCheckedChange={() => setChecked(!checked)} variant="branded" checked={!checked} />
+        <Switch variant="branded" />
         <Switch
-          onCheckedChange={() => setChecked(!checked)}
-          disabled
           variant="branded"
-          checked={!checked}
+          onCheckedChange={() => {
+            setStart(Date.now())
+          }}
         />
+        <Switch disabled variant="branded" />
       </LabeledGroup>
     </Flex>
   )
