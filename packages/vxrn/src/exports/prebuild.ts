@@ -9,8 +9,14 @@ import { generateForPlatform } from './prebuildWithoutExpo'
 export const prebuild = async ({
   root,
   platform,
+  'no-install': noInstall = false,
   expo = true,
-}: { root: string; platform?: 'ios' | 'android' | string; expo: boolean }) => {
+}: {
+  root: string
+  platform?: 'ios' | 'android' | string
+  'no-install'?: boolean
+  expo: boolean
+}) => {
   const options = await fillOptions({ root })
 
   await applyBuiltInPatches(options)
@@ -25,6 +31,7 @@ export const prebuild = async ({
       const expoPrebuild = (await import(importPath)).default.expoPrebuild
       await expoPrebuild([
         ...(platform ? ['--platform', platform] : []),
+        ...(noInstall ? ['--no-install'] : []),
         '--skip-dependency-update',
         'react,react-native,expo',
       ])

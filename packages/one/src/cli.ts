@@ -177,8 +177,16 @@ const prebuild = defineCommand({
       description: 'expo or non-expo folders',
       default: true,
     },
+
+    'no-install': {
+      type: 'boolean',
+      description: 'skip installing native dependencies',
+      default: false,
+    },
   },
   async run({ args }) {
+    if (args.install === false) args['no-install'] = true // citty seems to convert --no-install to install: false, leaving no-install as default
+
     const { run } = await import('./cli/prebuild')
     await run(args)
   },
