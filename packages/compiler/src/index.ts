@@ -142,7 +142,7 @@ export async function createVXRNCompilerPlugin(
 
           const swcOptions = {
             environment: environment,
-            mode: 'serve',
+            mode: optionsIn?.mode || 'serve',
             production,
             ...optionsIn,
           } satisfies Options
