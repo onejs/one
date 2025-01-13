@@ -25461,7 +25461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.2.0, react@npm:^18.3.1":
+"react@npm:18.3.1, react@npm:^18.2.0, react@npm:^18.3.1":
   version: 18.3.1
   resolution: "react@npm:18.3.1"
   dependencies:
@@ -28212,6 +28212,7 @@ __metadata:
     one: "workspace:*"
     promise: "npm:8.3.0"
     qrcode: "npm:1.5.1"
+    react: "npm:18.3.1"
     react-native: "npm:0.76.5"
     react-native-device-info: "npm:10.0.2"
     react-native-fast-image: "npm:8.6.3"

@@ -37,6 +37,7 @@ export { Redirect } from './link/Redirect'
 export { Head } from './head'
 
 // hooks
+export { useIsFocused } from '@react-navigation/core'
 export { useLinkTo } from './link/useLinkTo'
 export { useServerHeadInsertion, type ServerHeadInsertionCallback } from './useServerHeadInsertion'
 export {
