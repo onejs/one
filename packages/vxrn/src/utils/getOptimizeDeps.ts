@@ -21,6 +21,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-dom',
     'react-dom/server',
     'react-dom/client',
+    '@react-navigation/routers',
     'react-native-css-interop',
     'react-native-css-interop/jsx-dev-runtime',
     'react-native-css-interop/jsx-runtime',
