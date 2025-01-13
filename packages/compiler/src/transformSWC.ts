@@ -192,7 +192,9 @@ export async function transformSWC(
     return result
   }
 
-  wrapSourceInRefreshRuntime(id, result, options, shouldHMR)
+  if (refresh) {
+    wrapSourceInRefreshRuntime(id, result, options, shouldHMR)
+  }
 
   // TODO bring back?
   // if (result.map) {
