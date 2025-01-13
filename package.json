@@ -18,7 +18,6 @@
   },
   "scripts": {
     "profile": "tsx ./scripts/yarn-profile.ts",
-    "postinstall": "tsx ./scripts/setup-zero.ts",
     "npxone": "node ./packages/create-vxrn/run.js",
     "setup": "tsx ./scripts/setup.ts",
     "chat": "yarn workspace onechat dev:tauri",
@@ -46,6 +45,7 @@
     "sandbox": "yarn workspace test-sandbox dev",
     "dev:example": "tsx ./scripts/dev.ts example",
     "dev:test": "tsx ./scripts/dev.ts test",
+    "dev:uniswap": "yarn dev:test uniswap",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
     "upgrade:tamagui:canary": "yarn up '*tamagui*'@canary '@tamagui/*'@canary",
     "test": "yarn turbo:run --concurrency=1 test",
@@ -59,6 +59,23 @@
     "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t one-test . && docker run --rm one-test",
     "docker:build": "DOCKER_BUILDKIT=1 docker build --ssh default -t one-test ."
   },
+  "dependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@manypkg/cli": "^0.19.1",
+    "@types/react": "^18.3.11",
+    "@types/react-native": "^0.73.0",
+    "check-dependency-version-consistency": "^3.0.3",
+    "npm-run-all": "^4.1.5",
+    "p-map": "^7.0.2",
+    "patch-package": "^8.0.0",
+    "sst": "^3.4.46",
+    "tsx": "^4.19.0",
+    "turbo": "^2.1.0",
+    "typescript": "^5.7.2",
+    "ultra-runner": "^3.10.5",
+    "update-ts-references": "^3.4.0",
+    "vitepress": "^1.1.4"
+  },
   "profile": {
     "//": "run 'yarn profile x' to toggle it on/off",
     "react-19": {
@@ -68,6 +85,7 @@
         "react-dom": "19.0.0"
       }
     },
+    "//1": "useful for developing on tamagui and one at once",
     "tamagui": {
       "applied": false,
       "resolutions": {
@@ -199,26 +217,5 @@
         "@tamagui/visually-hidden": "portal:~/tamagui/code/ui/visually-hidden"
       }
     }
-  },
-  "zeroDeps": {
-    "zero-client": "/Users/n8/github/mono/packages/zero-client",
-    "zql": "/Users/n8/github/mono/packages/zql"
-  },
-  "dependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "@manypkg/cli": "^0.19.1",
-    "@types/react": "^18.3.11",
-    "@types/react-native": "^0.73.0",
-    "check-dependency-version-consistency": "^3.0.3",
-    "npm-run-all": "^4.1.5",
-    "p-map": "^7.0.2",
-    "patch-package": "^8.0.0",
-    "sst": "^3.4.46",
-    "tsx": "^4.19.0",
-    "turbo": "^2.1.0",
-    "typescript": "^5.7.2",
-    "ultra-runner": "^3.10.5",
-    "update-ts-references": "^3.4.0",
-    "vitepress": "^1.1.4"
   }
 }

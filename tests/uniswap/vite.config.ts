@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     one(),
     viteCommonJS({
-      filter: (id) => /uniswap-ui\/(src|utilities)/.test(id),
+      filter: (id) => /uniswap\/(src|utilities)/.test(id),
     }),
   ],
 })
