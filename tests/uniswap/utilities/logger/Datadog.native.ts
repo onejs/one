@@ -1,5 +1,7 @@
+// TODO @nate commented out datadog for now due to breaking on native
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { DdLogs, DdRum, DdSdkReactNative, ErrorSource, RumActionType } from '@datadog/mobile-react-native'
+// import { DdLogs, DdRum, DdSdkReactNative, ErrorSource, RumActionType } from '@datadog/mobile-react-native'
 import dayjs from 'dayjs'
 import { AnyAction, PreloadedState, Reducer, StoreEnhancerStoreCreator } from 'redux'
 import { addErrorExtras } from 'utilities/src/logger/logger'
@@ -21,7 +23,10 @@ export function createDatadogReduxEnhancer({
   shouldLogReduxState,
 }: Config): (next: StoreEnhancerStoreCreator) => StoreEnhancerStoreCreator {
   return (next: StoreEnhancerStoreCreator): StoreEnhancerStoreCreator =>
-    <S = any, A extends Action = AnyAction>(reducer: Reducer<S, A>, initialState?: PreloadedState<S>) => {
+    <S = any, A extends Action = AnyAction>(
+      reducer: Reducer<S, A>,
+      initialState?: PreloadedState<S>
+    ) => {
       const enhancedReducer: Reducer<S, A> = (state, action): S => {
         const newState = reducer(state, action)
 
@@ -29,9 +34,9 @@ export function createDatadogReduxEnhancer({
 
         /* Log action to Datadog */
         if (typeof action !== 'undefined' && action !== null) {
-          DdRum.addAction(RumActionType.CUSTOM, `Redux Action: ${action.type}`, action, dayjs().valueOf()).catch(
-            () => undefined,
-          )
+          // DdRum.addAction(RumActionType.CUSTOM, `Redux Action: ${action.type}`, action, dayjs().valueOf()).catch(
+          //   () => undefined,
+          // )
         }
 
         return newState
@@ -42,9 +47,9 @@ export function createDatadogReduxEnhancer({
 }
 
 export function logErrorToDatadog(error: Error, context: LoggerErrorContext): void {
-  DdRum.addError(error.message, ErrorSource.SOURCE, error.stack ?? '', { ...context, reduxState }, Date.now()).catch(
-    () => {},
-  )
+  // DdRum.addError(error.message, ErrorSource.SOURCE, error.stack ?? '', { ...context, reduxState }, Date.now()).catch(
+  //   () => {},
+  // )
 }
 
 export function logWarningToDatadog(
@@ -57,12 +62,12 @@ export function logWarningToDatadog(
     args: unknown[]
     fileName: string
     functionName: string
-  },
+  }
 ): void {
-  DdLogs.warn(message, {
-    ...options,
-    reduxState,
-  }).catch(() => {})
+  // DdLogs.warn(message, {
+  //   ...options,
+  //   reduxState,
+  // }).catch(() => {})
 }
 
 export function logToDatadog(
@@ -75,12 +80,12 @@ export function logToDatadog(
     args: unknown[]
     fileName: string
     functionName: string
-  },
+  }
 ): void {
-  DdLogs.info(message, {
-    ...options,
-    reduxState,
-  }).catch(() => {})
+  // DdLogs.info(message, {
+  //   ...options,
+  //   reduxState,
+  // }).catch(() => {})
 }
 
 /*
@@ -119,13 +124,15 @@ export function attachUnhandledRejectionHandler(): void {
         console.warn(
           `Promise Rejection Handled (id: ${id})\n` +
             'This means you can ignore any previous messages of the form ' +
-            `"Possible Unhandled Promise Rejection (id: ${id}):"`,
+            `"Possible Unhandled Promise Rejection (id: ${id}):"`
         )
       }
     },
   })
 }
 
-export async function setAttributesToDatadog(attributes: { [key: string]: unknown }): Promise<void> {
-  await DdSdkReactNative.setAttributes(attributes)
+export async function setAttributesToDatadog(attributes: {
+  [key: string]: unknown
+}): Promise<void> {
+  // await DdSdkReactNative.setAttributes(attributes)
 }

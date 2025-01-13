@@ -3,7 +3,7 @@ import { Link } from 'one'
 
 export default () => {
   return (
-    <Flex gap="$gap12">
+    <Flex backgroundColor="red" gap="$gap12" py="$padding36">
       <Link href="/ui/switch">
         <Text>Switch</Text>
       </Link>
