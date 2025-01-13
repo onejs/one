@@ -20,5 +20,5 @@ export type BundleCommandArgs = {
     indexedRamBundle?: boolean;
     resolverOption?: Array<string>;
 };
-export declare function buildBundle(_argv: Array<string>, ctx: any, args: BundleCommandArgs, bundleImpl: any): Promise<void>;
+export declare function buildBundle(_argv: Array<string>, ctx: any, args: BundleCommandArgs, bundleImpl?: any): Promise<void>;
 //# sourceMappingURL=buildBundle.d.ts.map

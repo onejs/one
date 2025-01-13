@@ -6,7 +6,12 @@ type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
 
 export type Mode = 'dev' | 'prod'
 
-export type BuildArgs = { step?: string; only?: string; analyze?: boolean }
+export type BuildArgs = {
+  step?: string
+  only?: string
+  analyze?: boolean
+  platform?: 'ios' | 'web' | 'android'
+}
 
 export type AfterBuildProps = {
   options: VXRNOptions

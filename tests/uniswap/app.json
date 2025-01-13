@@ -1,5 +1,8 @@
 {
   "ios": {
     "bundleIdentifier": "com.natew.test-uniswap"
+  },
+  "android": {
+    "package": "com.natew.testuniswap"
   }
 }
