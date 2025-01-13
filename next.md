@@ -10,6 +10,7 @@
 
   - tests
     - 20-40 deps, native + web (ssr) (see weird-deps for some)
+      - `@datadog/mobile-react-native` breaking on tests/uniswap
     - native tests that run in `yarn test`
     - add loader tests (SPA, SSR pages)
     - disabled javascript ensure styles are all right (currently onestack.dev is missing some)
@@ -40,6 +41,7 @@
 
 ---
 
+  - unify the node module finding in dep patches + auto optimize
   - `doctor --fix`
     - ensure type: 'module' in package.json
     - ensure vite.config
