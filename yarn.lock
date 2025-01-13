@@ -6682,6 +6682,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-picker/picker@npm:^2.11.0":
+  version: 2.11.0
+  resolution: "@react-native-picker/picker@npm:2.11.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/6553de2754a8ce3282d8beebb0e7118ad11f8ffb634bbd62044d8822b088737663322354dd4d2af1567e2b0b445d896538920b7e3a2b8025278ce7c8091c7971
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:0.76.5":
   version: 0.76.5
   resolution: "@react-native/assets-registry@npm:0.76.5"
@@ -24883,6 +24893,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rn-test-container@workspace:tests/rn-test-container"
   dependencies:
+    "@react-native-picker/picker": "npm:^2.11.0"
     expo: "npm:~52.0.17"
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
