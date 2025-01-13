@@ -46,7 +46,7 @@
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.8"
+    "@tamagui/build": "^1.121.10"
   },
   "publishConfig": {
     "access": "public"
