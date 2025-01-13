@@ -188,11 +188,11 @@ export async function transformSWC(
     }
   }
 
-  if (!result || options.noHMR || !shouldHMR) {
+  if (!result) {
     return result
   }
 
-  if (refresh) {
+  if (refresh && shouldHMR) {
     wrapSourceInRefreshRuntime(id, result, options, shouldHMR)
   }
 
