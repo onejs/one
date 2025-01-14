@@ -8,5 +8,6 @@ export default {
   theme: {
     extend: {},
   },
+  presets: [require("nativewind/preset")],
   plugins: [require("tailwindcss-animate"), require("tailwindcss-motion")],
 };

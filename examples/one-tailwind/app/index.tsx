@@ -1,5 +1,5 @@
 // debug
-import { Text, View } from 'react-native'
+import {  Text, View } from 'react-native'
 import './base.css'
 
 export default function Index() {
@@ -21,9 +21,9 @@ export default function Index() {
     >
       <Text className="bg-red-500 p-4">Hello world, from One</Text>
 
-      {/* <View style={{ $$css: true, test: 'w-10 h-10 bg-blue-500' }} /> */}
+      <View style={{ $$css: true, test: 'w-10 h-10 bg-blue-500' }} />
 
-      {out}
+      {/* {out} */}
     </View>
   )
 }

@@ -17,6 +17,11 @@
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
-    "ios": {}
+    "ios": {
+      "bundleIdentifier": "com.anonymous.oneexample"
+    },
+    "android": {
+      "package": "com.anonymous.oneexample"
+    }
   }
 }

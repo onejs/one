@@ -37,9 +37,7 @@ export async function transformSWC(
     return
   }
 
-  const enableNativeCSS =
-    configuration.enableNativeCSS &&
-    (options.environment === 'ios' || options.environment === 'android')
+  const enableNativeCSS = configuration.enableNativeCSS
   // temp fix idk why  this error:
   // node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx (19:9): "createInteropElement" is not exported by "../../node_modules/react-native-css-interop/dist/runtime/jsx-dev-runtime.js", imported by "node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx
   !id.includes('node_modules')
