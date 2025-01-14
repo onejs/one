@@ -9,7 +9,9 @@
     "dev": "one dev",
     "dev:clean": "one dev --clean",
     "prebuild:native": "one prebuild",
-    "serve": "one serve"
+    "serve": "one serve",
+    "android": "one run:android",
+    "ios": "one run:ios"
   },
   "dependencies": {
     "expo": "~52.0.17",
