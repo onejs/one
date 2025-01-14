@@ -4,60 +4,34 @@ title: FAQ
 
 ### Is this production ready?
 
-It's production ready for web and as an API server, Native still needs more love but has been in development for over a year and now works with a majority of React Native dependencies.
-
-The [Tamagui website](https://tamagui.dev) and [theme builder SPA](https://tamagui.dev/theme) run One in production, and we've tested porting a variety of apps to Native successfully, including the entire [Uniswap UI package](https://github.com/Uniswap/interface/tree/main/packages/ui), which involved fixing a large number of dependencies.
+All features for 1.0 now work and half are well tested. We've been using it
+for [tamagui.dev](https://tamagui.dev) for 6 months or so. Native we'd like to think is stable summer 2025.
 
 ### What's breaking?
 
 There's a few things that we need to improve:
 
-- We've been adding tests, but need quite a few more and a couple rounds of code cleanup.
-- Hot reloading on native has cases where it can break, and we need to develop this area a bit more.
-- We've spent a lot of time making Vite compatible out of the box with the much less ESM-friendly React Native ecosystem, but there can still be sharp edges. Server side rendering can require a bit of configuration to get right. The [deps options](/docs/configuration#deps) in the One Vite plugin can help alleviate this.
+- Hot reloading easily breaks.
+- Package compatibility - you'll likey need to use the [deps options](/docs/configuration#deps) as we fix issues.
 
 See the [Status documentation](/docs/status) for more on the general stability of the high level API surfaces.
 
 ### How does it compare to Expo Router / Metro?
 
-One started as [vxrn](https://vxrn.dev), a library we made that let Vite serve React Native. We then forked Expo Router as an experiment to see if vxrn could power it. Today, One has changed quite a bit, but retains quite a bit of similarity in the file-system router. We appreciate the work the Expo team has done to pioneer universal file system routes.
+One started as [vxrn](https://vxrn.dev), a library we made that let Vite serve React Native. To test if it worked well, we ported Expo Router and generally got it working. We didn't implement DOM components and a couple other features, but we did add things like [render modes](/docs/routing-modes), [loaders](/docs/routing-loader), [middlewares](/docs/routing-middlewarewares), and [other things](/docs/features).
 
-A big part of One's upsides is in its leverage of Vite, as explained in the next section. One has already diverged quite a bit from Expo Router, with [render modes](/docs/routing-modes), [loaders](/docs/routing-loader), a production `build` and `serve` pipeline, [middlewares](/docs/routing-middlewarewares), and other [quality-of-life features](/docs/features). One currently lacks [DOM components](https://docs.expo.dev/guides/dom-components/), a feature we'd like to implement.
+We added a CLI that serves and builds web, iOS and Android, and all the web features build to a production [Hono](https://hono.dev) server.
 
-### How does Vite compare with Metro?
+### Why Vite?
 
-Pros:
-
-- On a high level, Vite has a much larger ecosystem and community around it with many more answers online to common issues and an active Discord.
-- Vite docs are world-class, and much more comprehensive in general than Metro.
-- Vite is written in TypeScript, with rich JSDoc comments on most API surfaces.
-- Vite is invested in by a wide variety of projects, and has a strong RFC process with a history of long discussions around upcoming features.
-- Vite supports ESM first-class and generally just works with `exports` field and other modern module features.
-- vxrn uses [SWC](https://swc.rs/) under the hood rather than babel, leading to much faster build and hot reload times.
-- The Vite plugin system allows many more hooks, and is much better documented.
-- Vite supports many more features on the web, with a variety of features that Metro doesn't support or has limited support for. Some of these include dynamic imports, importing more types of assets, and importantly, proper code-splitting.
-- Vite can tree shake `require` calls that are unused, whereas Metro always attempts to import require calls, even if the are behind falsy `process.env` checks.
-- Metro has historically been very slow to nearly unresponsive to implement features not used by Meta.
-
-Cons:
-
-- Metro is supported by Meta and is far more mature.
-- vxrn is in beta. It simply hasn't been tested on nearly a many use cases.
-- Vite is less forgiving on the module-system level and expects things to be closer to spec. vxrn adds a variety of things to smooth this out, including an extensive system for patching bad modules, but in general this is an area that needs improvement.
-- We've implemented a custom HMR in vxrn that will also need time to be as reliably good as Metro.
-
-### How'd you get that npm package?
-
-A big thanks to Dan Maier, who donated it after being unused for 7 years with under
-20 downloads a week
+It feels light and simple, runs fast and is easy to customize. It has many web features that are all done well, relative to other bundlers, and the Vite types, documentation, type-documentation, RFC process, and commitment to community are all "god-tier".
 
 ### Will you support RSC?
 
-We plan to support a limited subset, but not in the immediate future.
+We benefit from a lot of complexity focus on server-rendering without RSC, and with [a smart data library](https://zero.rocicorp.dev) you can get many of the same features with better end-user performance and simpler code.
 
-We think Zero makes for such a dramatic simplification of data - loading, mutating, and realtime sync - that we want to avoid much of the complexity of Server Components while retaining some of the upsides.
+We're open to a limited form of RSC that keeps things simple.
 
-What we do like about RSC is that ability to avoid sending some parts of your
-React tree to the client to save bundle size, and potentially Server Functions. We're exploring bringing these to One carefully.
+### What's the npm package?
 
-What we don't like is that by allowing mixing client and server trees so dynamically, they tend to have a "function coloring" like effect, where once you use them in one place, your whole apps routing at a fundamental level becomes "server-first." This is not good for UX - avoiding server round trips, and having to split mental models between server and client, are a big part of the reason we love Zero. We think there's ways to avoid this contaminating effect with a subset of RSC.
+It's `one`, thanks to Dan Maier.
