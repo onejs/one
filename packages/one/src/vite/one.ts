@@ -110,6 +110,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               configureVXRNCompilerPlugin({
                 enableReanimated: hasReanimated,
                 enableNativeCSS: options.native?.css ?? hasNativewind,
+                enableNativewind: hasNativewind,
               })
             },
             root,

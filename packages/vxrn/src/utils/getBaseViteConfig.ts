@@ -23,6 +23,7 @@ export const dedupe = [
   'tamagui',
   'react-native-reanimated',
   'expo-modules-core',
+  'escape-string-regexp',
 ]
 
 export async function getBaseViteConfig(

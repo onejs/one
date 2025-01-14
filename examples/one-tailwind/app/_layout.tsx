@@ -1,4 +1,3 @@
-// debug
 import { Slot } from 'one'
 import './base.css'
 
