@@ -1,3 +1,5 @@
+// test
+
 import debug from 'debug'
 
 type Debugger = debug.Debugger['log'] & { namespace: string }
