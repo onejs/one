@@ -6,7 +6,7 @@
 import { resolvePath } from '@vxrn/utils'
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
-import { extname, join } from 'node:path'
+import { extname, join, relative, resolve, sep } from 'node:path'
 import type { PluginOption, UserConfig } from 'vite'
 import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
@@ -14,6 +14,7 @@ import { transformSWC } from './transformSWC'
 import type { Environment, GetTransformProps, Options } from './types'
 import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
 import { configuration } from './configure'
+import type { OutputChunk } from 'rollup'
 
 export * from './configure'
 export * from './transformBabel'
@@ -43,6 +44,12 @@ export async function createVXRNCompilerPlugin(
 
   const reactForRNVersion = reactVersion.split('.')[0] as '18' | '19'
 
+  const cssTransformCache = new Map<string, string>()
+
+  // fix so we can align the diff between vite and rollup id (rollup resolves from root monorepo)
+  const rollupPath = resolvePath('rollup')
+  const rollupNodeMods = rollupPath.slice(0, rollupPath.indexOf(sep + 'node_modules'))
+
   return [
     {
       name: 'one:compiler-resolve-refresh-runtime',
@@ -57,16 +64,56 @@ export async function createVXRNCompilerPlugin(
 
     {
       name: `one:compiler-css-to-js`,
-      enforce: 'post',
-      transform(code, id) {
+
+      transform(codeIn, id) {
         const environment = getEnvName(this.environment.name)
         if (configuration.enableNativeCSS && (environment === 'ios' || environment === 'android')) {
           if (extname(id) === '.css') {
-            const data = JSON.stringify(cssToReactNativeRuntime(code, { inlineRem: 16 }))
+            const data = JSON.stringify(cssToReactNativeRuntime(codeIn, { inlineRem: 16 }))
+            // TODO were hardcoding the require id we bundle as: nativewind/dist/index.js
+            // could at least resolve this using resolvePath
+            const code = `require("nativewind/dist/index.js").StyleSheet.registerCompiled(${data})`
+            const newId = `${id}.js`
+
+            // rollup uses relative to its node_modules parent dir, vite here uses absolute
+            const cssId = newId.replace(rollupNodeMods + sep, '')
+            cssTransformCache.set(cssId, code)
+
             return {
-              code: `require("nativewind").StyleSheet.registerCompiled(${data})`,
+              code,
+              id: newId,
               map: null,
             }
+          }
+        }
+      },
+
+      generateBundle(_, bundle) {
+        const environment = getEnvName(this.environment.name)
+
+        if (configuration.enableNativeCSS && (environment === 'ios' || environment === 'android')) {
+          const rootJSName = Object.keys(bundle).find((i) => {
+            const chunk = bundle[i]
+            return chunk.type == 'chunk' && chunk.fileName.match(/.[cm]?js(?:\?.+)?$/) != null
+          })
+          if (!rootJSName) {
+            throw new Error(`Can't find root js, internal one error`)
+          }
+
+          const rootJS = bundle[rootJSName] as OutputChunk
+
+          const cssAssets = Object.keys(bundle).filter((i) =>
+            bundle[i].fileName.endsWith('.css.js')
+          )
+
+          for (const name of cssAssets) {
+            delete bundle[name]
+
+            const jsCSS = cssTransformCache.get(name)
+            rootJS.code = `
+${jsCSS}
+${rootJS.code}
+`
           }
         }
       },
@@ -100,6 +147,19 @@ export async function createVXRNCompilerPlugin(
         order: 'pre',
         async handler(codeIn, _id) {
           let code = codeIn
+          const environment = getEnvName(this.environment.name)
+
+          if (
+            configuration.enableNativewind &&
+            (environment === 'ios' || environment === 'android') &&
+            // it has a hidden special character
+            _id.includes('one-entry-native')
+          ) {
+            // ensure we have nativewind import
+            return `import * as x from 'nativewind'
+            console.log('got nativewind', typeof x)
+${code}`
+          }
 
           const shouldDebug =
             process.env.NODE_ENV === 'development' && codeIn.startsWith('// debug')
@@ -120,7 +180,6 @@ export async function createVXRNCompilerPlugin(
             return
           }
 
-          const environment = getEnvName(this.environment.name)
           const production = process.env.NODE_ENV === 'production'
 
           let id = _id.split('?')[0]

@@ -4,6 +4,6 @@ export default {
   theme: {
     extend: {},
   },
-  resets: [require('nativewind/preset')],
+  presets: [require('nativewind/preset')],
   plugins: [require('tailwindcss-animate'), require('tailwindcss-motion')],
 }

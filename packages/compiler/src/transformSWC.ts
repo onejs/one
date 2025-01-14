@@ -286,6 +286,7 @@ function wrapSourceInRefreshRuntimeNative(
   options: Options,
   shouldHMR: boolean
 ) {
+  // do we need this vite-native-client here? cant we do this on its own?
   const prefixCode =
     options.mode === 'build'
       ? `
