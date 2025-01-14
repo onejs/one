@@ -3,6 +3,7 @@ import { relative } from 'node:path'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
 import type { GetTransformProps, GetTransformResponse } from './types'
+import { resolvePath } from '@vxrn/resolve'
 
 type Props = GetTransformProps & {
   userSetting?: GetTransformResponse
@@ -10,9 +11,7 @@ type Props = GetTransformProps & {
 
 export function getBabelOptions(props: Props): babel.TransformOptions | null {
   if (props.userSetting === 'babel') {
-    return {
-      plugins: getPlugins(props, true),
-    }
+    return getOptions(props, true)
   }
   if (
     typeof props.userSetting === 'undefined' ||
@@ -21,24 +20,32 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
     if (props.userSetting?.excludeDefaultPlugins) {
       return props.userSetting
     }
-    const plugins = getPlugins(props)
-    if (plugins.length) {
-      return {
-        plugins,
-      }
-    }
+    return getOptions(props)
   }
   return null
 }
 
-const getPlugins = (props: Props, force = false) => {
+const getOptions = (props: Props, force = false): babel.TransformOptions | null => {
+  const presets: string[] = []
   let plugins: babel.PluginItem[] = []
 
   if (force || shouldBabelGenerators(props)) {
     plugins = getBasePlugins(props)
   }
 
-  if (shouldBabelReanimated(props)) {
+  const enableNativewind =
+    configuration.enableNativewind &&
+    (props.environment === 'ios' || props.environment === 'android') &&
+    // only needed for createElement calls, so be a bit conservative
+    props.code.includes('createElement')
+
+  if (enableNativewind) {
+    if (!props.id.includes('node_modules')) {
+      plugins.push(resolvePath('react-native-css-interop/dist/babel-plugin.js'))
+    }
+  }
+
+  if (enableNativewind || shouldBabelReanimated(props)) {
     debug?.(`Using babel reanimated on file`)
     plugins.push('react-native-reanimated/plugin')
   }
@@ -53,8 +60,13 @@ const getPlugins = (props: Props, force = false) => {
     plugins.push('@react-native/babel-plugin-codegen')
   }
 
-  return plugins
+  if (plugins.length || presets.length) {
+    return { plugins, presets }
+  }
+
+  return null
 }
+
 /**
  * Transform input to mostly ES5 compatible code, keep ESM syntax, and transform generators.
  */
@@ -67,9 +79,11 @@ export async function transformBabel(id: string, code: string, options: babel.Tr
       {
         filename: id,
         compact: false,
+        babelrc: false,
+        configFile: false,
         minified: false,
-        presets: ['@babel/preset-typescript'],
         ...options,
+        presets: ['@babel/preset-typescript', ...(options.presets || [])],
       },
       (err: any, result) => {
         if (!result || err) {

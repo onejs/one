@@ -12,6 +12,8 @@ import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, GetTransformProps, Options } from './types'
+import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
+import { configuration } from './configure'
 
 export * from './configure'
 export * from './transformBabel'
@@ -39,6 +41,8 @@ export async function createVXRNCompilerPlugin(
     return name as Environment
   }
 
+  const reactForRNVersion = reactVersion.split('.')[0] as '18' | '19'
+
   return [
     {
       name: 'one:compiler-resolve-refresh-runtime',
@@ -52,6 +56,23 @@ export async function createVXRNCompilerPlugin(
     },
 
     {
+      name: `one:compiler-css-to-js`,
+      enforce: 'post',
+      transform(code, id) {
+        const environment = getEnvName(this.environment.name)
+        if (configuration.enableNativeCSS && (environment === 'ios' || environment === 'android')) {
+          if (extname(id) === '.css') {
+            const data = JSON.stringify(cssToReactNativeRuntime(code, { inlineRem: 16 }))
+            return {
+              code: `require("nativewind").StyleSheet.registerCompiled(${data})`,
+              map: null,
+            }
+          }
+        }
+      },
+    },
+
+    {
       name: 'one:compiler',
       enforce: 'pre',
 
@@ -60,6 +81,10 @@ export async function createVXRNCompilerPlugin(
           esbuild: false,
           optimizeDeps: {
             noDiscovery: true,
+          },
+
+          define: {
+            'process.env.NATIVEWIND_OS': 'native',
           },
         } satisfies UserConfig
 
@@ -85,13 +110,18 @@ export async function createVXRNCompilerPlugin(
           }
 
           const extension = extname(_id)
+
+          if (extension === '.css') {
+            // handled in one:compiler-css-to-js
+            return
+          }
+
           if (!validParsers.has(extension)) {
             return
           }
 
-          if (extension === '.css') {
-            //
-          }
+          const environment = getEnvName(this.environment.name)
+          const production = process.env.NODE_ENV === 'production'
 
           let id = _id.split('?')[0]
 
@@ -105,15 +135,12 @@ export async function createVXRNCompilerPlugin(
             return
           }
 
-          const environment = getEnvName(this.environment.name)
-          const production = process.env.NODE_ENV === 'production'
-
           const transformProps: GetTransformProps = {
             id,
             code,
             development: !production,
             environment,
-            reactForRNVersion: reactVersion.split('.')[0] as '18' | '19',
+            reactForRNVersion,
           }
 
           const userTransform = optionsIn?.transform?.(transformProps)

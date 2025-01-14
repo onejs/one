@@ -37,11 +37,11 @@ export async function transformSWC(
     return
   }
 
-  const enableNativeCSS =
-    configuration.enableNativeCSS &&
-    // temp fix idk why  this error:
-    // node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx (19:9): "createInteropElement" is not exported by "../../node_modules/react-native-css-interop/dist/runtime/jsx-dev-runtime.js", imported by "node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx
-    !id.includes('node_modules')
+  const enableNativeCSS = configuration.enableNativeCSS
+
+  // temp fix idk why  this error:
+  // node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx (19:9): "createInteropElement" is not exported by "../../node_modules/react-native-css-interop/dist/runtime/jsx-dev-runtime.js", imported by "node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx
+  !id.includes('node_modules')
 
   const refresh =
     options.environment !== 'ssr' && !options.production && !options.noHMR && !options.forceJSX
@@ -53,10 +53,11 @@ export async function transformSWC(
     importSource: 'react',
     ...(enableNativeCSS
       ? {
-          importSource: 'react-native-css-interop',
-          pragma: 'createInteropElement',
+          importSource: 'nativewind',
+          // pragma: 'createInteropElement',
+          // pragmaFrag: '_InteropFragment',
           // swc doesnt actually change the import right
-          runtime: 'classic',
+          // runtime: 'classic',
         }
       : {}),
   } satisfies TransformConfig['react']
@@ -150,7 +151,7 @@ export async function transformSWC(
 
   if (enableNativeCSS) {
     if (result.code.includes(`createInteropElement`)) {
-      result.code = `import { createInteropElement } from 'react-native-css-interop/jsx-dev-runtime'\n${result.code}`
+      result.code = `import { createInteropElement, Fragment as _InteropFragment } from 'react-native-css-interop/jsx-dev-runtime'\n${result.code}`
     }
   }
 

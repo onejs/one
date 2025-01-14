@@ -1,5 +1,7 @@
 1.0:
 
+  - if you remove escape-string-regexp from `dedupe` breaks
+    - non-deduped modules that live in diff sub-dirs resolve to the same id: ___modules___["escape-string-regexp/index.js"]
   - root layout doesnt HMR
   - hmr native tamagui example gives:
     Error: [vite] cannot find entry point module 'virtual:one-entry'.
