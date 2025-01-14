@@ -12,6 +12,8 @@ import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, GetTransformProps, Options } from './types'
+import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
+import { configuration } from './configure'
 
 export * from './configure'
 export * from './transformBabel'
@@ -52,6 +54,23 @@ export async function createVXRNCompilerPlugin(
     },
 
     {
+      name: `one:compiler-css-to-js`,
+      enforce: 'post',
+      transform(code, id) {
+        const environment = getEnvName(this.environment.name)
+        if (configuration.enableNativeCSS && (environment === 'ios' || environment === 'android')) {
+          if (extname(id) === '.css') {
+            const data = JSON.stringify(cssToReactNativeRuntime(code, { inlineRem: 16 }))
+            return {
+              code: `require("nativewind").StyleSheet.registerCompiled(${data})`,
+              map: null,
+            }
+          }
+        }
+      },
+    },
+
+    {
       name: 'one:compiler',
       enforce: 'pre',
 
@@ -60,6 +79,10 @@ export async function createVXRNCompilerPlugin(
           esbuild: false,
           optimizeDeps: {
             noDiscovery: true,
+          },
+
+          define: {
+            'process.env.NATIVEWIND_OS': 'native',
           },
         } satisfies UserConfig
 
@@ -93,10 +116,8 @@ export async function createVXRNCompilerPlugin(
           const production = process.env.NODE_ENV === 'production'
 
           if (extension === '.css') {
-            console.warn('EXTENSION CSS')
-            if (environment === 'ios' || environment === 'android') {
-              return null
-            }
+            // handled in separate post plugin
+            return
           }
 
           let id = _id.split('?')[0]

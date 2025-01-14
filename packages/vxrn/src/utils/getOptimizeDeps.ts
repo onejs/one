@@ -5,6 +5,7 @@ import { webExtensions } from '../constants'
 
 export function getOptimizeDeps(mode: 'build' | 'serve') {
   const needsInterop = [
+    'nativewind/jsx-dev-runtime',
     '@vxrn/safe-area',
     '@vxrn/vendor/react-19-prod',
     '@vxrn/vendor/react-19',
