@@ -41,6 +41,8 @@ export async function createVXRNCompilerPlugin(
     return name as Environment
   }
 
+  const reactForRNVersion = reactVersion.split('.')[0] as '18' | '19'
+
   return [
     {
       name: 'one:compiler-resolve-refresh-runtime',
@@ -108,17 +110,18 @@ export async function createVXRNCompilerPlugin(
           }
 
           const extension = extname(_id)
+
+          if (extension === '.css') {
+            // handled in one:compiler-css-to-js
+            return
+          }
+
           if (!validParsers.has(extension)) {
             return
           }
 
           const environment = getEnvName(this.environment.name)
           const production = process.env.NODE_ENV === 'production'
-
-          if (extension === '.css') {
-            // handled in separate post plugin
-            return
-          }
 
           let id = _id.split('?')[0]
 
@@ -137,7 +140,7 @@ export async function createVXRNCompilerPlugin(
             code,
             development: !production,
             environment,
-            reactForRNVersion: reactVersion.split('.')[0] as '18' | '19',
+            reactForRNVersion,
           }
 
           const userTransform = optionsIn?.transform?.(transformProps)
