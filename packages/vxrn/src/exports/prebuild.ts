@@ -1,11 +1,10 @@
-import path, { relative, sep } from 'node:path'
-import FSExtra from 'fs-extra'
 import { resolvePath } from '@vxrn/resolve'
+import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
+import FSExtra from 'fs-extra'
+import path from 'node:path'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
-import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
 import { generateForPlatform } from './prebuildWithoutExpo'
-import { existsSync } from 'node:fs'
 
 export const prebuild = async ({
   root,
@@ -14,9 +13,8 @@ export const prebuild = async ({
 }: { root: string; platform?: 'ios' | 'android' | string; expo: boolean }) => {
   const options = await fillOptions({ root })
 
-  applyBuiltInPatches(options).catch((err) => {
-    console.error(`\n 🥺 error applying built-in patches`, err)
-  })
+  await applyBuiltInPatches(options)
+
   const doesIOSExist = FSExtra.existsSync(path.resolve('ios'))
   const doesAndroidExist = FSExtra.existsSync(path.resolve('android'))
 
@@ -55,7 +53,14 @@ export const prebuild = async ({
 
     if (!platform || platform === 'ios') {
       console.info(
-        'Run `open ios/*.xcworkspace` in your terminal to open the prebuilt iOS project, then you can either run it via Xcode or archive it for distribution.'
+        `
+iOS:
+
+ Run \`open ios/*.xcworkspace\` in your terminal to open the prebuilt iOS project.
+ Then you can either run it via Xcode or archive it for distribution.
+
+---
+`
       )
     }
   } else {
@@ -119,7 +124,15 @@ export const prebuild = async ({
   }
   if (!platform || platform === 'android') {
     console.info(
-      '`cd android` then `./gradlew assembleRelease` or `./gradlew assembleDebug` to build the Android project. Afterwards, you can find the built APK at `android/app/build/outputs/apk/release/app-release.apk` or `android/app/build/outputs/apk/debug/app-debug.apk`.'
+      `
+Android:
+
+  \`cd android\` then \`./gradlew assembleRelease\` or \`./gradlew assembleDebug\` to build the Android project.
+
+  Afterwards, you can find the built APK at \`android/app/build/outputs/apk/release/app-release.apk\` or
+  \`android/app/build/outputs/apk/debug/app-debug.apk\`.
+
+`
     )
   }
 

@@ -190,11 +190,13 @@ export async function transformSWC(
     }
   }
 
-  if (!result || options.noHMR || !shouldHMR) {
+  if (!result) {
     return result
   }
 
-  wrapSourceInRefreshRuntime(id, result, options, shouldHMR)
+  if (refresh && shouldHMR) {
+    wrapSourceInRefreshRuntime(id, result, options, shouldHMR)
+  }
 
   // TODO bring back?
   // if (result.map) {

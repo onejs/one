@@ -1,3 +1,7 @@
+import { writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+
 export function mustReplace(
   source: string,
   replacements: {
@@ -11,7 +15,11 @@ export function mustReplace(
     if (!optional) {
       const found = find instanceof RegExp ? find.test(sourceOut) : sourceOut.includes(find)
       if (!found) {
-        throw new Error(`Substring or pattern "${find}" not found in the string.`)
+        const tmpPath = join(tmpdir(), `replace-error-${Math.random()}`)
+        writeFileSync(tmpPath, sourceOut, 'utf-8')
+        throw new Error(
+          `Substring or pattern "${find}" not found in the string, replacing in source: ${tmpPath}.`
+        )
       }
     }
 

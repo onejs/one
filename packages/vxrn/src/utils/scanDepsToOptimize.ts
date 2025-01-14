@@ -47,6 +47,9 @@ export const EXCLUDE_LIST = [
   '@vxrn/vite-native-client',
   'react-native-ios-utilities',
   'react-native-ios-modal',
+  'react-native-image-colors',
+  'react-native-fast-image',
+  'react-native-device-info',
 
   // CLI shouldn't be used in SSR runtime
   '@tamagui/cli',

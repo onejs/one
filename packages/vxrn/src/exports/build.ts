@@ -1,5 +1,6 @@
 import FSExtra from 'fs-extra'
 import { rm } from 'node:fs/promises'
+import { sep } from 'node:path'
 import type { RollupOutput } from 'rollup'
 import {
   loadConfigFromFile,
@@ -75,6 +76,26 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       }
     })(),
   ])
+
+  if (buildArgs.platform === 'ios' || buildArgs.platform === 'android') {
+    const { buildBundle } = await import('../rn-commands/bundle/buildBundle')
+
+    return buildBundle(
+      [],
+      { root: options.root },
+      {
+        platform: buildArgs.platform,
+        bundleOutput: `dist${sep}${buildArgs.platform}.js`,
+        dev: false,
+        entryFile: '',
+        resetCache: true,
+        resetGlobalCache: true,
+        sourcemapUseAbsolutePath: true,
+        verbose: false,
+        unstableTransformProfile: '',
+      }
+    )
+  }
 
   const { optimizeDeps } = getOptimizeDeps('build')
 

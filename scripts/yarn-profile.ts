@@ -42,7 +42,8 @@ const main = async (name: string) => {
   await new Promise<void>((res) => {
     exec('yarn', (error, stdout, stderr) => {
       if (error) {
-        console.error(`Error executing yarn: ${error.message}`)
+        console.error(`Error executing yarn: ${error.message} ${error.stack}\n${stderr}`)
+        process.exit(1)
       } else if (stderr) {
         console.error(`yarn stderr: ${stderr}`)
       } else {

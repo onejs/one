@@ -32,6 +32,7 @@ process.on('uncaughtException', (err) => {
 export async function build(args: {
   step?: string
   only?: string
+  platform?: 'ios' | 'web' | 'android'
 }) {
   labelProcess('build')
 
@@ -49,7 +50,6 @@ export async function build(args: {
     )
   }
 
-  console.warn('start build')
   const vxrnOutput = await vxrnBuild(
     {
       server: oneOptions.server,
@@ -62,6 +62,10 @@ export async function build(args: {
     },
     args
   )
+
+  if (!vxrnOutput || args.platform !== 'web') {
+    return
+  }
 
   const options = await fillOptions(vxrnOutput.options)
 
@@ -299,9 +303,9 @@ export async function build(args: {
           [
             ...(type === 'js' ? imports : css || []),
             ...imports.flatMap((name) => {
-              const found = vxrnOutput.clientManifest[name]
+              const found = vxrnOutput!.clientManifest[name]
               if (!found) {
-                console.warn(`No found imports`, name, vxrnOutput.clientManifest)
+                console.warn(`No found imports`, name, vxrnOutput!.clientManifest)
               }
               return collectImports(found, { type })
             }),
