@@ -39,3 +39,49 @@ import { href } from 'one'
 
 const postPageLink = href(`/post/hello-world`) // will type error if invalid Href
 ```
+
+### setClientData and getClientData
+
+<Status is="developing" />
+
+Experimental API, currently only supported on the web.
+
+Allows passing arbitrary JSON-like data from the server to the client. `setClientData` can be called inside
+loaders or anywhere in your app during render on the server side. `getClientData` can only be called on the client,
+and will access the data passed from the server.
+
+The main difference from loaders is that you can set this data from anywhere, anytime during the server render. It lets you avoid loaders altogether for one-off hooks.
+
+```tsx fileName=app/index.tsx
+import { setClientData, useLoader } from 'one'
+
+// prefer loaders for root-level data loading
+export const loader = async () => {
+  return {
+    data: await fetchOtherData()
+  }
+}
+
+// use setClientData and getClientData for one-off hooks
+const useSomeData = () => {
+  const id = useId()
+
+  if (typeof window === 'undefined') {
+    const data = loadDataWithSuspense()
+    setClientData(id, data)
+    return data
+  }
+
+  // this will be available on first render on the client
+  return getClientData(id)
+}
+
+export default () => {
+  const loadedData = useLoader(loader)
+  const otherData = useSomeData()
+
+  // ...
+}
+```
+
+

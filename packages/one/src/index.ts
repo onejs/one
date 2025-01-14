@@ -62,6 +62,7 @@ export { isResponse } from './utils/isResponse'
 export { getURL } from './getURL'
 export { redirect } from './utils/redirect'
 export { href } from './href'
+export { getClientData, setClientData } from './utils/serverContext'
 
 // re-export
 export * from '@vxrn/universal-color-scheme'

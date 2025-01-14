@@ -1,10 +1,13 @@
 import { SERVER_CONTEXT_KEY } from '../constants'
+import type { One } from '../vite/types'
 
 export type ServerContext = {
   css?: string[]
   postRenderData?: any
   loaderData?: any
   loaderProps?: any
+  // externally exposed for apps to use
+  clientData?: any
   mode?: 'spa' | 'ssg' | 'ssr'
 }
 
@@ -51,4 +54,36 @@ export function ServerContextScript() {
       }}
     />
   )
+}
+
+/**
+ * For passing data from the server to the client. Can only be called on the server.
+ * You can type it by overriding `One.ClientData` type using declare module 'one'.
+ *
+ * On the client, you can access the data with `getClientData`.
+ */
+export function setClientData<Key extends keyof One.ClientData>(
+  key: Key,
+  value: One.ClientData[Key]
+) {
+  if (process.env.VITE_ENVIRONMENT === 'server') {
+    setServerContext({
+      clientData: {
+        ...serverContext?.clientData,
+        [key]: value,
+      },
+    })
+  } else {
+    throw new Error(`Cannot setClientData in ${process.env.VITE_ENVIRONMENT} environment!`)
+  }
+}
+
+/**
+ * For getting data set by setClientData on the server.
+ */
+export function getClientData(key: keyof One.ClientData) {
+  if (process.env.VITE_ENVIRONMENT === 'server') {
+    throw new Error(`Cannot getClientData on the server`)
+  }
+  return getServerContext()?.clientData?.[key]
 }
