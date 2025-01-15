@@ -575,7 +575,7 @@ const enqueueUpdate = debounce(async () => {
 }, 16)
 
 export function validateRefreshBoundaryAndEnqueueUpdate(id, prevExports, nextExports) {
-  const ignoredExports = window.__getReactRefreshIgnoredExports?.({ id }) ?? []
+  const ignoredExports = []
   if (predicateOnExport(ignoredExports, prevExports, (key) => key in nextExports) !== true) {
     return 'Could not Fast Refresh (export removed)'
   }

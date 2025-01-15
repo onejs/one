@@ -33,8 +33,6 @@ export function useNavigation<T = NavigationProp<ReactNavigation.RootParamList>>
   if (normalizedParent != null) {
     const parentNavigation = navigation.getParent(normalizedParent)
 
-    // TODO: Maybe print a list of parents...
-
     if (!parentNavigation) {
       throw new Error(
         `Could not find parent navigation with route "${parent}".` +
