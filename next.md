@@ -23,7 +23,6 @@
     - symbolicator
     - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
     - better rebuild module caching
-    - would be nice to get native bottom tabs and native sheet as options
 
   - web
     - test app basic ssr needs fixing
@@ -37,7 +36,6 @@
     - way to configure the api + server config during production builds
 
   - cleanup
-    - TODO: hard coded for demo app (also find other TODOs in general)
     - codebase needs a few passes cleaning up things (__vxrn globals, structure)
     - error logs on build:web `../../node_modules/expo-modules-core/src/NativeModule.ts (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.`
 

@@ -12,18 +12,12 @@ import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
 import type { GlobbedRouteImports } from './types'
+import { ServerRenderID } from './useServerHeadInsertion'
 import { getServerContext } from './utils/serverContext'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollRestoration } from './views/ScrollRestoration'
 import type { One } from './vite/types'
-import { ServerRenderID } from './useServerHeadInsertion'
-// import { SplashScreen } from './views/Splash'
-
-if (typeof window !== 'undefined') {
-  // @ts-ignore TODO: hard coded for demo app
-  window.__getReactRefreshIgnoredExports = () => ['feedCardQuery', 'feedCardReplyQuery', 'loader']
-}
 
 type RootProps = Omit<InnerProps, 'context'> & {
   onRenderId?: (id: string) => void
