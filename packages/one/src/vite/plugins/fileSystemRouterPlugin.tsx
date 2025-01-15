@@ -3,16 +3,17 @@ import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner } from 'vite'
 import type { ModuleRunner } from 'vite/module-runner'
+import { getSpaHeaderElements } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
 import type { RenderAppProps } from '../../types'
 import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
+import { setServerContext } from '../../utils/serverContext'
 import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
 import type { One } from '../../vite/types'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
-import { setServerContext } from '../../utils/serverContext'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -31,14 +32,15 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     return createHandleRequest({
       async handlePage({ route, url, loaderProps }) {
         console.info(
-          ` ⓵  [${route.type}] ${url} resolved to ${route.isNotFound ? '‼️ 404 not found' : route.file}`
+          ` ⓵  [${route.type}] ${url} resolved to ${
+            route.isNotFound ? '‼️ 404 not found' : `app/${route.file.slice(2)}`
+          }`
         )
 
         if (route.type === 'spa') {
           // render just the layouts? route.layouts
           return `<html><head>
-            <script>globalThis['global'] = globalThis</script>
-            <script>globalThis['__vxrnIsSPA'] = true</script>
+            ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
             <script type="module">
               import { injectIntoGlobalHook } from "/@react-refresh";
               injectIntoGlobalHook(window);
@@ -197,6 +199,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         const routesAndLayouts = [
           ...new Set(
             handleRequest.manifest.pageRoutes.flatMap((route) => {
+              if (route.isNotFound) return []
+              // sitemap
+              if (!route.file) return []
               return [
                 join('./app', route.file),
                 ...(route.layouts?.flatMap((layout) => {

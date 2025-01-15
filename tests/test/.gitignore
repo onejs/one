@@ -42,3 +42,4 @@ tsconfig.tsbuildinfo
 /dev-server.log
 /maestro-screenshots
 /test-bundle-output
+.vercel

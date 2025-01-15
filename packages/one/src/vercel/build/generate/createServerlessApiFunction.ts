@@ -1,36 +1,66 @@
-import type React from "react";
 import fs from "fs-extra";
+import { join } from 'path';
 
-import { getPageName } from "../../utils/page";
 import { generateClientBundle } from "../bundle/client";
 import { generateLambdaBundle } from "../bundle/serverless";
+import { sourceMapsEnabled } from "process";
+import { RouteInfo } from "@vxrn/one/src/server/createRoutesManifest";
 
+// Documentation - Vercel Build Output v3
+// https://vercel.com/docs/build-output-api/v3#build-output-api-v3
 export async function createServerlessApiFunction(
-  Component: React.ElementType,
-  filePath: string
+  route: RouteInfo,
+  code: string,
+  options: any,
+  postBuildLogs: string[],
 ) {
-  const pageName = getPageName(filePath);
+  const pageName = route.page.replace('/api/','')
+  postBuildLogs.push(`[createServerlessApiFunction] pageName: ${pageName}`);
 
-  const funcFolder = `.vercel/output/functions/${pageName}.func`;
+  const funcFolder = join(options.root, 'dist', `.vercel/output/functions/${pageName}.func`);
   await fs.ensureDir(funcFolder);
 
   try {
-    await Promise.allSettled([
-      generateClientBundle({ filePath, pageName }),
-      generateLambdaBundle({
-        funcFolder,
-        pageName,
-        Component,
-      }),
-    ]);
+    // await Promise.allSettled([
+    //   generateClientBundle({ filePath, pageName }),
+    //   generateLambdaBundle({
+    //     funcFolder,
+    //     pageName,
+    //     Component,
+    //   }),
+    // ]);
 
-    return fs.writeJson(`${funcFolder}/.vc-config.json`, {
+    postBuildLogs.push(`[createServerlessApiFunction] copy shared assets to ${join(funcFolder, 'assets')}`);
+    await fs.copy(join(options.root, 'dist', 'api', 'assets'), join(funcFolder, 'assets'));
+
+    await fs.ensureDir(join(funcFolder, 'entrypoint'));
+    postBuildLogs.push(`[createServerlessApiFunction] writing entrypoint to ${join(funcFolder, 'entrypoint', 'index.js')}`);
+    await fs.writeFile(
+      join(funcFolder, 'entrypoint', 'index.js'),
+      code
+        // `export default function index(request, event) {
+        //   return new Response(Hello, from the Serverless!)
+        // }`
+    )
+
+    postBuildLogs.push(`[createServerlessApiFunction] writing package.json to ${join(funcFolder, 'package.json')}`);
+    await fs.writeJSON(
+      join(funcFolder, 'package.json'),
+      { "type": "module" }
+    )
+    
+    postBuildLogs.push(`[createServerlessApiFunction] writing .vc-config.json to ${join(funcFolder, '.vc-config.json')}`);
+    // Documentation - Vercel Build Output v3 Node.js Config
+    //   https://vercel.com/docs/build-output-api/v3/primitives#node.js-config
+    return fs.writeJson(join(funcFolder, '.vc-config.json'), {
       runtime: "nodejs20.x",
-      handler: "index.js",
+      // handler: "index.js",
+      handler: "entrypoint/index.js",
       launcherType: "Nodejs",
       shouldAddHelpers: true,
+      shouldAddSourceMapSupport: true
     });
   } catch (e) {
-    console.error(e);
+    console.error('[createServerlessApiFunction]', e);
   }
 }

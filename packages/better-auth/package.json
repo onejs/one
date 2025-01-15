@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/better-auth",
-  "version": "1.1.390",
+  "version": "1.1.396",
   "sideEffects": false,
   "types": "./src/index.ts",
   "main": "dist/cjs",
@@ -21,7 +21,7 @@
   "scripts": {
     "build": "tamagui-build --skip-types",
     "watch": "tamagui-build --skip-types --watch",
-    "lint:fix": "../../node_modules/.bin/biome check --apply-unsafe src",
+    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
@@ -31,7 +31,7 @@
     "react": "^18.3.1 || ^19.0.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.6"
+    "@tamagui/build": "^1.121.8"
   },
   "publishConfig": {
     "access": "public"

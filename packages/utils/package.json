@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/utils",
-  "version": "1.1.390",
+  "version": "1.1.396",
   "sideEffects": false,
   "type": "module",
   "types": "./types/index.d.ts",
@@ -27,12 +27,16 @@
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
     "lint": "npx biome check src",
-    "lint:fix": "npx biome check --apply-unsafe src",
+    "lint:fix": "npx biome check --write --unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
+  "dependencies": {
+    "@vxrn/debug": "workspace:*",
+    "@vxrn/resolve": "workspace:*"
+  },
   "devDependencies": {
-    "@tamagui/build": "^1.121.6"
+    "@tamagui/build": "^1.121.8"
   },
   "publishConfig": {
     "access": "public"

@@ -256,14 +256,23 @@ install('URLSearchParams', () => URLSearchParams);
     },
   },
 
-  // not working because importing a type without `import type`
-  // want to get a better smart / generic solution for all expo packages at least
-  // {
-  //   module: 'expo-video',
-  //   patchFiles: {
-  //     'build/**/*.js': ['jsx'],
-  //   },
-  // },
+  {
+    module: 'react-native-css-interop',
+    patchFiles: {
+      'dist/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: 'expo-video',
+    patchFiles: {
+      'build/index.js': (contents) => {
+        // bad type export that can't be auto-fixed
+        return contents?.replace(`export { VideoThumbnail } from './VideoThumbnail';`, ``)
+      },
+      'build/**/*.js': ['jsx'],
+    },
+  },
 
   {
     module: 'expo-clipboard',

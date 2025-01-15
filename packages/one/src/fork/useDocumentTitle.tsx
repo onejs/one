@@ -1,12 +1,14 @@
-// No change just vendored to avoid import issue with RR7
+/**
+ * This file is copied from the react-navigation repo:
+ * https://github.com/react-navigation/react-navigation/blob/%40react-navigation/core%407.1.2/packages/native/src/useDocumentTitle.tsx
+ *
+ * No changes are made except of formatting and updating the imports.
+ */
 
-import type { NavigationContainerRef, ParamListBase, Route } from '@react-navigation/core'
+import type { NavigationContainerRef, ParamListBase } from '@react-navigation/core'
 import * as React from 'react'
 
-type DocumentTitleOptions = {
-  enabled?: boolean
-  formatter?: (options: Record<string, any> | undefined, route: Route<string> | undefined) => string
-}
+import type { DocumentTitleOptions } from '@react-navigation/native'
 
 /**
  * Set the document title for the active screen

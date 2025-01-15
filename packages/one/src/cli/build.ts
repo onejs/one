@@ -2,7 +2,7 @@ import FSExtra, { writeJSON } from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
 import Path, { join, relative, resolve } from 'node:path'
-import type { OutputAsset, RollupOutput } from 'rollup'
+import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
 import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
 import {
@@ -12,10 +12,10 @@ import {
   build as vxrnBuild,
   type ClientManifestEntry,
 } from 'vxrn'
-import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
+import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
@@ -52,6 +52,7 @@ export async function build(args: {
     )
   }
 
+  console.warn('start build')
   const vxrnOutput = await vxrnBuild(
     {
       server: oneOptions.server,
@@ -179,9 +180,11 @@ export async function build(args: {
     return output as RollupOutput
   }
 
+  let apiOutput: RollupOutput | null = null
   if (manifest.apiRoutes.length) {
     console.info(`\n 🔨 build api routes\n`)
-    await buildCustomRoutes('api', manifest.apiRoutes)
+    apiOutput = await buildCustomRoutes('api', manifest.apiRoutes)
+    console.info("[one.build] apiOutput", apiOutput)
   }
 
   const builtMiddlewares: Record<string, string> = {}
@@ -465,23 +468,27 @@ export async function build(args: {
           preloads,
         })
 
-        // ssr, we basically skip at build-time and just compile it the js we need
-        if (foundRoute.type !== 'ssr') {
-          const loaderProps: LoaderProps = { path, params }
-          globalThis['__vxrnLoaderProps__'] = loaderProps
-          // importing resetState causes issues :/
-          globalThis['__vxrnresetState']?.()
-
-          if (exported.loader) {
-            loaderData = (await exported.loader?.({ path, params })) ?? null
-            const code = await readFile(clientJsPath, 'utf-8')
-            const withLoader = replaceLoader({
+        if (exported.loader) {
+          loaderData = (await exported.loader?.({ path, params })) ?? null
+          const code = await readFile(clientJsPath, 'utf-8')
+          const withLoader =
+            // super dirty to quickly make ssr loaders work until we have better
+            `
+if (typeof document === 'undefined') globalThis.document = {}
+` +
+            replaceLoader({
               code,
               loaderData,
             })
-            const loaderPartialPath = join(clientDir, getLoaderPath(path))
-            await outputFile(loaderPartialPath, withLoader)
-          }
+          const loaderPartialPath = join(clientDir, getLoaderPath(path))
+          await outputFile(loaderPartialPath, withLoader)
+        }
+
+        // ssr, we basically skip at build-time and just compile it the js we need
+        if (foundRoute.type !== 'ssr') {
+          const loaderProps: LoaderProps = { path, params }
+          // importing resetState causes issues :/
+          globalThis['__vxrnresetState']?.()
 
           if (foundRoute.type === 'ssg') {
             const html = await render({
@@ -500,8 +507,7 @@ export async function build(args: {
             await outputFile(
               htmlOutPath,
               `<html><head>
-              <script>globalThis['global'] = globalThis</script>
-              <script>globalThis['__vxrnIsSPA'] = true</script>
+              ${constants.getSpaHeaderElements({ serverContext: { loaderProps, loaderData } })}
               ${preloads
                 .map((preload) => `   <script type="module" src="${preload}"></script>`)
                 .join('\n')}
@@ -519,10 +525,10 @@ export async function build(args: {
 ${errMsg}
 
   loaderData:
-  
+
 ${JSON.stringify(loaderData || null, null, 2)}
   params:
-  
+
 ${JSON.stringify(params || null, null, 2)}`
         )
         console.error(err)
@@ -580,75 +586,108 @@ ${JSON.stringify(params || null, null, 2)}`
   let postBuildLogs: string[] = []
 
   const platform = oneOptions.web?.deploy ?? options.server?.platform
-  console.log("WTF", platform)
+  postBuildLogs.push("[one.build] platform", platform)
   switch (platform) {
     case 'vercel': {
-
-      const compiledManifest = compileManifest(buildInfoForWriting.manifest)
-
-      for (const route of compiledManifest.apiRoutes) {
-        
-        console.log("WTF", route)
+      for (const route of manifest.apiRoutes) {
+        postBuildLogs.push(`[one.build] apiRoute ${route.file}, ${route.page}, ${route.type}`)
         try {
-          const filePath = route.file
-          // const { pageConfig, default: Component } = await import(filePath);
-          // console.log("WTF", pageConfig)
-          // pageConfig.strategy
-          switch (route.type) {
-
-            case "ssg":
-              // return createStaticFile(Component, filePath);
-              break;
-            case "spa":
-              // return createPrerender(Component, filePath, pageConfig);
-              break;
-            case "ssr":
-              // await createServerlessApiFunction(Component, filePath);
-              break;
-            
-            case "layout":
-              // return createEdgeFunction(Component, filePath);
-              break;
-            
+          switch (route.type) {            
             case "api":
-              await createServerlessApiFunction(filePath)
+              const foundCompiledRoute = apiOutput?.output.find(compiledApiRoute => {
+                // console.log("WTF??", compiledApiRoute.name?.replace('.js', ''), route.file.replace('./','').replace('+api','').replace('.tsx', '').replace('[', '_').replace(']', '_'), route.file)
+                return compiledApiRoute.name?.replace('.js', '') === route.file.replace('./','').replace('+api','').replace('.tsx', '').replace('[', '_').replace(']', '_')
+              }) as OutputChunk
+              // console.debug("WTF", foundCompiledRoute)
+              // postBuildLogs.push(`[one.build] foundCompiledRoute ${foundCompiledRoute}`)
+              if (foundCompiledRoute?.code) {
+                const foundBuiltRoute = builtRoutes.find(builtRoute => { 
+                  console.log("WTF", builtRoute.routeFile, route.file)
+                  builtRoute.routeFile === route.file
+                })
+                console.log("WTF???", JSON.stringify(foundBuiltRoute))
+                await createServerlessApiFunction(route, foundCompiledRoute?.code, options, postBuildLogs)
+              }
               break;
             default:
-              // return;
+              break;
           }
         } catch (e) {
           console.error("createBuildManifestRoute route.type", e)
         }
-        
-
-        // await writeJSON(".vercel/output/config.json", {
-        //   // ...(require(process.cwd() + "/vercel.config.js").default),
-        //   ...{
-        //     version: 3,
-        //     routes: getTransformedRoutes({
-        //        cleanUrls: true
-        //     }).routes,
-        //   },
-        // });
-        // app.get(route.honoPath, createHonoHandler(route))
-        // app.put(route.honoPath, createHonoHandler(route))
-        // app.post(route.honoPath, createHonoHandler(route))
-        // app.delete(route.honoPath, createHonoHandler(route))
-        // app.patch(route.honoPath, createHonoHandler(route))
       }
+
+      const vercelMiddlewareDir = join(options.root, 'dist', '.vercel/output/functions/_middleware');
+      await FSExtra.ensureDir(vercelMiddlewareDir);
+      postBuildLogs.push(`[one.build] copying middlewares from ${join(options.root, 'dist', 'middlewares')} to ${vercelMiddlewareDir}`)
+      await moveAllFiles(join(options.root, 'dist', 'middlewares'), vercelMiddlewareDir)
+      postBuildLogs.push(`[one.build] writing package.json to ${join(vercelMiddlewareDir, 'package.json')}`);
+      await FSExtra.writeJSON(
+        join(vercelMiddlewareDir, 'package.json'),
+        { "type": "module" }
+      )
+      postBuildLogs.push(`[one.build] writing .vc-config.json to ${join(vercelMiddlewareDir, '.vc-config.json')}`);
+      await FSExtra.writeJson(join(vercelMiddlewareDir, '.vc-config.json'), {
+        runtime: "nodejs20.x",
+        handler: "_middleware.js",
+        launcherType: "Nodejs",
+        shouldAddHelpers: true,
+        shouldAddSourceMapSupport: true
+      });
+
+      const vercelOutputStaticDir = join(options.root, 'dist', '.vercel/output/static');
+      await FSExtra.ensureDir(vercelOutputStaticDir);
+
+      // await FSExtra.copy(htmlOutPath, funcFolder, { overwrite: true })
+      postBuildLogs.push(`[one.build] copying static files from ${clientDir} to ${vercelOutputStaticDir}`)
+      await moveAllFiles(clientDir, vercelOutputStaticDir)
+
+      // for (const route of compiledManifest.pageRoutes) {
+      //   postBuildLogs.push("[one.build] pageRoute", route.file, route.page, route.type)
+      //   try {
+      //     const filePath = join('.', route.file)
+      //     const writePath = join(options.root, 'dist', '.vercel/output/static', filePath)
+          
+      //     switch (route.type) {
+      //       case "ssg":
+      //         // return createStaticFile(Component, filePath);
+      //         postBuildLogs.push(`[one.build] copying pageRoute from ${filePath} to ${writePath}`)
+      //         await FSExtra.copyFile(filePath, writePath)
+      //         break;
+      //       case "ssr":
+      //           // await createServerlessApiFunction(Component, filePath);
+      //           break;
+      //       case "spa":
+      //         // return createPrerender(Component, filePath, pageConfig);
+      //         break;
+      //       default:
+      //         break;
+      //     }
+      //   } catch (e) {
+      //     console.error("createBuildManifestRoute route.type", e)
+      //   }
+      // }
 
       // for (const route of compiledManifest.pageRoutes) {
       //   app.get(route.honoPath, createHonoHandler(route))
       // }
 
-      await FSExtra.writeFile(
-        join(options.root, 'dist', 'index.js'),
-        `import { serve } from 'one/serve'
-export const handler = await serve()
-export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
-      )
+//       await FSExtra.writeFile(
+//         join(options.root, 'dist', 'index.js'),
+//         `import { serve } from 'one/serve'
+// export const handler = await serve()
+// export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
+//       )
 
-      postBuildLogs.push(`wrote vercel entry to: ${join('.', 'dist', 'index.js')}`)
+      // Documentation - Vercel Build Output v3 config.json
+      // https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
+      const vercelConfigFilePath = join(options.root, 'dist', '.vercel/output', 'config.json')
+      await FSExtra.writeJSON(
+        vercelConfigFilePath,
+        { version: 3 }
+      )
+      postBuildLogs.push(`wrote vercel config to: ${vercelConfigFilePath}`)
+      // postBuildLogs.push(`wrote vercel entry to: ${join('.', 'dist', 'index.js')}`)
       postBuildLogs.push(`point vercel outputDirectory to dist`)
 
       break
@@ -713,8 +752,8 @@ function getPathnameFromFilePath(path: string, params = {}, strict = false) {
   function paramsError(part: string) {
     throw new Error(
       `[one] Params doesn't fit route:
-      
-      - path: ${path} 
+
+      - path: ${path}
       - part: ${part}
       - fileName: ${fileName}
       - params:

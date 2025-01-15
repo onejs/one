@@ -1,40 +1,63 @@
-// Forked from React Navigation
+/**
+ * This file is copied from the react-navigation repo:
+ * https://github.com/react-navigation/react-navigation/blob/%40react-navigation/core%407.1.2/packages/core/src/getPathFromState.tsx
+ *
+ * Please refrain from making changes to this file, as it will make merging updates from the upstream harder.
+ * All modifications except formatting should be marked with `// @modified` comment.
+ */
 
 import {
   BaseNavigationContainer,
-  DefaultTheme,
-  type DocumentTitleOptions,
-  LinkingContext,
-  type LinkingOptions,
-  LocaleDirContext,
-  type LocaleDirection,
-  type NavigationContainerProps,
-  type NavigationContainerRef,
-  type ParamListBase,
-  type Theme,
-  ThemeProvider,
   getActionFromState,
   getPathFromState,
   getStateFromPath,
+  type NavigationContainerProps,
+  type NavigationContainerRef,
+  type NavigationState,
+  type ParamListBase,
+  ThemeProvider,
   validatePathConfig,
-} from '@react-navigation/native'
+} from '@react-navigation/core'
 import * as React from 'react'
-
-import useLinking from './useLinking'
 import { I18nManager } from 'react-native'
+import useLatestCallback from 'use-latest-callback'
+
+// @modified - start
+// import { LinkingContext } from './LinkingContext'
+// import { LocaleDirContext } from './LocaleDirContext'
+// import { DefaultTheme } from './theming/DefaultTheme'
+// import type { DocumentTitleOptions, LinkingOptions, LocaleDirection } from './types'
+// import { UnhandledLinkingContext } from './UnhandledLinkingContext'
+import {
+  LinkingContext,
+  LocaleDirContext,
+  DefaultTheme,
+  type DocumentTitleOptions,
+  type LinkingOptions,
+  type LocaleDirection,
+  UNSTABLE_UnhandledLinkingContext as UnhandledLinkingContext,
+} from '@react-navigation/native'
+// @modified - end
 import { useBackButton } from './useBackButton'
 import { useDocumentTitle } from './useDocumentTitle'
+import { useLinking } from './useLinking'
 import { useThenable } from './useThenable'
+
+declare global {
+  // eslint-disable-next-line no-var
+  var REACT_NAVIGATION_DEVTOOLS: WeakMap<
+    NavigationContainerRef<any>,
+    { readonly linking: LinkingOptions<any> }
+  >
+}
 
 globalThis.REACT_NAVIGATION_DEVTOOLS = new WeakMap()
 
-type Props<ParamList extends object> = NavigationContainerProps & {
+type Props<ParamList extends {}> = NavigationContainerProps & {
   direction?: LocaleDirection
-  documentTitle?: DocumentTitleOptions
-  fallback?: React.ReactNode
   linking?: LinkingOptions<ParamList>
-  onReady?: () => void
-  theme?: Theme
+  fallback?: React.ReactNode
+  documentTitle?: DocumentTitleOptions
 }
 
 /**
@@ -44,7 +67,9 @@ type Props<ParamList extends object> = NavigationContainerProps & {
  * @param props.initialState Initial state object for the navigation tree. When deep link handling is enabled, this will override deep links when specified. Make sure that you don't specify an `initialState` when there's a deep link (`Linking.getInitialURL()`).
  * @param props.onReady Callback which is called after the navigation tree mounts.
  * @param props.onStateChange Callback which is called with the latest navigation state when it changes.
- * @param props.theme Theme object for the navigators.
+ * @param props.onUnhandledAction Callback which is called when an action is not handled.
+ * @param props.direction Text direction of the components. Defaults to `'ltr'`.
+ * @param props.theme Theme object for the UI elements.
  * @param props.linking Options for deep linking. Deep link handling is enabled when this prop is provided, unless `linking.enabled` is `false`.
  * @param props.fallback Fallback component to render until we have finished getting initial state when linking is enabled. Defaults to `null`.
  * @param props.documentTitle Options to configure the document title on Web. Updating document title is handled by default unless `documentTitle.enabled` is `false`.
@@ -59,6 +84,7 @@ function NavigationContainerInner(
     fallback = null,
     documentTitle,
     onReady,
+    onStateChange,
     ...rest
   }: Props<ParamListBase>,
   ref?: React.Ref<NavigationContainerRef<ParamListBase> | null>
@@ -74,12 +100,50 @@ function NavigationContainerInner(
   useBackButton(refContainer)
   useDocumentTitle(refContainer, documentTitle)
 
-  const { getInitialState } = useLinking(refContainer, {
-    enabled: isLinkingEnabled,
-    prefixes: [],
-    ...linking,
+  const [lastUnhandledLink, setLastUnhandledLink] = React.useState<string | undefined>()
+
+  const { getInitialState } = useLinking(
+    refContainer,
+    {
+      enabled: isLinkingEnabled,
+      prefixes: [],
+      ...linking,
+    },
+    setLastUnhandledLink
+  )
+
+  const linkingContext = React.useMemo(() => ({ options: linking }), [linking])
+
+  const unhandledLinkingContext = React.useMemo(
+    () => ({ lastUnhandledLink, setLastUnhandledLink }),
+    [lastUnhandledLink, setLastUnhandledLink]
+  )
+
+  const onReadyForLinkingHandling = useLatestCallback(() => {
+    // If the screen path matches lastUnhandledLink, we do not track it
+    const path = refContainer.current?.getCurrentRoute()?.path
+    setLastUnhandledLink((previousLastUnhandledLink) => {
+      if (previousLastUnhandledLink === path) {
+        return undefined
+      }
+      return previousLastUnhandledLink
+    })
+    onReady?.()
   })
 
+  const onStateChangeForLinkingHandling = useLatestCallback(
+    (state: Readonly<NavigationState> | undefined) => {
+      // If the screen path matches lastUnhandledLink, we do not track it
+      const path = refContainer.current?.getCurrentRoute()?.path
+      setLastUnhandledLink((previousLastUnhandledLink) => {
+        if (previousLastUnhandledLink === path) {
+          return undefined
+        }
+        return previousLastUnhandledLink
+      })
+      onStateChange?.(state)
+    }
+  )
   // Add additional linking related info to the ref
   // This will be used by the devtools
   React.useEffect(() => {
@@ -103,38 +167,36 @@ function NavigationContainerInner(
 
   React.useImperativeHandle(ref, () => refContainer.current)
 
-  const linkingContext = React.useMemo(() => ({ options: linking }), [linking])
+  const isLinkingReady = rest.initialState != null || !isLinkingEnabled || isResolved
 
-  React.useEffect(() => {
-    onReady?.()
-  }, [onReady])
-
-  if (!isResolved) {
+  if (!isLinkingReady) {
+    // This is temporary until we have Suspense for data-fetching
+    // Then the fallback will be handled by a parent `Suspense` component
     return <ThemeProvider value={theme}>{fallback}</ThemeProvider>
   }
 
   return (
     <LocaleDirContext.Provider value={direction}>
-      <LinkingContext.Provider value={linkingContext}>
-        <ThemeProvider value={theme}>
+      <UnhandledLinkingContext.Provider value={unhandledLinkingContext}>
+        <LinkingContext.Provider value={linkingContext}>
           <BaseNavigationContainer
             {...rest}
             theme={theme}
+            onReady={onReadyForLinkingHandling}
+            onStateChange={onStateChangeForLinkingHandling}
+            initialState={rest.initialState == null ? initialState : rest.initialState}
             ref={refContainer}
-            initialState={initialState ?? rest.initialState}
           />
-        </ThemeProvider>
-      </LinkingContext.Provider>
+        </LinkingContext.Provider>
+      </UnhandledLinkingContext.Provider>
     </LocaleDirContext.Provider>
   )
 }
 
-const NavigationContainer = React.forwardRef(NavigationContainerInner) as <
-  RootParamList extends object = ReactNavigation.RootParamList,
+export const NavigationContainer = React.forwardRef(NavigationContainerInner) as <
+  RootParamList extends {} = ReactNavigation.RootParamList,
 >(
   props: Props<RootParamList> & {
     ref?: React.Ref<NavigationContainerRef<RootParamList>>
   }
 ) => React.ReactElement
-
-export default NavigationContainer

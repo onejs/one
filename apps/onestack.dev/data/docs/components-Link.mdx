@@ -52,23 +52,6 @@ export interface LinkProps extends TextProps {
   target?: '_self' | '_blank' | '_parent' | '_top' | string
 
   /**
-   * **Web only:** Specifies where to open the `href`.
-   *
-   * - **_self**: the current tab.
-   * - **_blank**: opens in a new tab or window.
-   * - **_parent**: opens in the parent browsing context. If no parent, defaults to **_self**.
-   * - **_top**: opens in the highest browsing context ancestor. If no ancestors, defaults to **_self**.
-   *
-   * This property is passed to the underlying anchor (`<a>`) tag.
-   *
-   * @default '_self'
-   *
-   * @example
-   * <Link href="https://tamagui.dev" target="_blank">Open in new tab</Link>
-   */
-   target?: '_self' | '_blank' | '_parent' | '_top' | string
-
-  /**
    * **Web only:** Specifies the relationship between the `href` and the current route.
    *
    * Common values:

@@ -1,19 +1,52 @@
-import { Link } from 'one'
-import { Text, View } from 'react-native'
-import { Button, H2, YStack } from 'tamagui'
+import { Link, useLoader } from 'one'
+import { Button, H2, Paragraph, Square, YStack } from 'tamagui'
 import { ToggleThemeButton } from '../features/theme/ToggleThemeButton'
+import { useAnimatedStyle } from 'react-native-reanimated'
 
-export default () => (
-  <YStack f={1} ai="center" jc="center" gap="$6">
-    <H2>Welcome to One</H2>
+export async function loader() {
+  return {
+    test: 'hello',
+  }
+}
 
-    <Link asChild href="/sub-page/sub">
-      <Button>Go to sub</Button>
-    </Link>
-    <Link asChild href="/sheet">
-      <Button>Open Sheet</Button>
-    </Link>
+export default () => {
+  const data = useLoader(loader)
 
-    <ToggleThemeButton />
-  </YStack>
-)
+  // testing babel reanimated
+  useAnimatedStyle(() => {
+    'worklet'
+    return {
+      backgroundColor: 'red',
+    }
+  })
+
+  return (
+    <YStack h={600} bg="red" f={1} ai="center" jc="center" gap="$10">
+      <H2>Welcome to One</H2>
+
+      <Paragraph id="test-loader">{JSON.stringify(data)}</Paragraph>
+
+      <Link asChild id="go-to-sub" href="/sub-page/sub">
+        <Button size="$5" id="go-to-sub">
+          Go to sub
+        </Button>
+      </Link>
+
+      <Square
+        animation="bouncy"
+        scale={1}
+        size={100}
+        bg="yellow"
+        pressStyle={{
+          scale: 2,
+        }}
+      />
+
+      <Link asChild href="/sheet">
+        <Button>Open Sheet</Button>
+      </Link>
+
+      <ToggleThemeButton />
+    </YStack>
+  )
+}

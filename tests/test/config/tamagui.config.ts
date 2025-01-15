@@ -1,8 +1,10 @@
 import { config as configOptions } from '@tamagui/config/v3'
 import { createTamagui } from '@tamagui/core'
+import { animations } from './animations'
 
 export const config = createTamagui({
   ...configOptions,
+  animations,
   themes: {
     ...configOptions.themes,
     light: {

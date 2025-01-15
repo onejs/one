@@ -1,3 +1,4 @@
+import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
 import path, { dirname, resolve } from 'node:path'
@@ -5,7 +6,7 @@ import type { Plugin, PluginOption, UserConfig } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import {
-  autoPreBundleDepsForSsrPlugin,
+  autoDepOptimizePlugin,
   getOptimizeDeps,
   getOptionsFilled,
   isWebEnvironment,
@@ -20,7 +21,6 @@ import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
 import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
 import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
 import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
-import { createReactCompilerPlugin } from './plugins/reactCompilerPlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
@@ -71,6 +71,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const root = vxrnOptions?.root || process.cwd()
   const barrelOption = options.optimization?.barrel
 
+  const compiler = options.react?.compiler
+  if (compiler) {
+    configureVXRNCompilerPlugin({
+      enableCompiler:
+        compiler === 'native' ? ['ios', 'android'] : compiler === 'web' ? ['ssr', 'client'] : true,
+    })
+  }
+
   const devAndProdPlugins: Plugin[] = [
     {
       name: 'one:config',
@@ -97,7 +105,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...(options.ssr?.disableAutoDepsPreBundling === true
       ? []
       : [
-          autoPreBundleDepsForSsrPlugin({
+          autoDepOptimizePlugin({
+            onScannedDeps({ hasReanimated, hasNativewind }) {
+              configureVXRNCompilerPlugin({
+                enableReanimated: hasReanimated,
+                enableNativeCSS: options.native?.css ?? hasNativewind,
+              })
+            },
             root,
             exclude: Array.isArray(options.ssr?.disableAutoDepsPreBundling)
               ? options.ssr?.disableAutoDepsPreBundling
@@ -287,12 +301,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin,
   ] satisfies Plugin[]
 
-  // react compiler
-  const compiler = options.react?.compiler
-  if (compiler) {
-    devAndProdPlugins.push(createReactCompilerPlugin(root))
-  }
-
   // react scan
   const scan = options.react?.scan
 
@@ -398,9 +406,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         return {
           define: {
-            ...(options.app?.key && {
-              'process.env.ONE_APP_NAME': JSON.stringify(options.app.key),
-              'import.meta.env.ONE_APP_NAME': JSON.stringify(options.app.key),
+            ...(options.native?.key && {
+              'process.env.ONE_APP_NAME': JSON.stringify(options.native.key),
+              'import.meta.env.ONE_APP_NAME': JSON.stringify(options.native.key),
             }),
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),

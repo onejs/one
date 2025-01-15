@@ -1,3 +1,5 @@
+// without globalThis.expo set it will error
+
 // import { VideoView, useVideoPlayer } from 'expo-video'
 
 // export default () => {
