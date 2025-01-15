@@ -24,7 +24,7 @@ One also sets some environment variables for you, available on both `process.env
 
 - `ONE_CACHE_KEY` is set to a random number for each production build, or once for each development server run. You can use this to have a stable cache key across releases.
 - `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"server"` for server-side web, and `"ios`" or `"android"` for native platforms, respectively.
-- `ONE_SERVER_URL` is set only in development to the current running server URL, like `http://0.0.0.0:8081`. You are expected to set this yourself for production builds.
+- `ONE_SERVER_URL` is set in development mode to the current running server URL, like `http://0.0.0.0:8081`. You are expected to set this yourself for production builds.
 - `ONE_DEFAULT_RENDER_MODE` is set to either `"ssr"`, `"ssg"`, or `"spa"` based on your [defaultRenderMode setting](/docs/configuration#web-defaultRenderMode)
 - `ONE_APP_NAME` is set to your [app.key setting](/docs/configuration#app-key)
 - `TAMAGUI_REACT_19` is set to `1`, which turns on Tamagui React 19 mode automatically for you, for performance if using Tamagui.

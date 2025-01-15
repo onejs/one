@@ -1,7 +1,7 @@
 import type { Plugin, UserConfig } from 'vite';
 export declare function getServerConfigPlugin(): {
     name: string;
-    configResolved(this: void, conf: Readonly<Omit<UserConfig, "dev" | "server" | "build" | "plugins" | "css" | "json" | "assetsInclude" | "optimizeDeps" | "worker" | "environments" | "preview"> & {
+    configResolved(this: void, conf: Readonly<Omit<UserConfig, "dev" | "server" | "build" | "optimizeDeps" | "plugins" | "css" | "json" | "assetsInclude" | "preview" | "worker" | "environments"> & {
         configFile: string | undefined;
         configFileDependencies: string[];
         inlineConfig: import("vite").InlineConfig;
