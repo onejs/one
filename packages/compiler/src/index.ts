@@ -149,13 +149,17 @@ ${rootJS.code}
           let code = codeIn
           const environment = getEnvName(this.environment.name)
           const isNative = environment === 'ios' || environment === 'android'
+          const production =
+            process.env.NODE_ENV === 'production' ||
+            JSON.parse(this.environment.config?.define?.['process.env.NODE_ENV'] || '""') ===
+              'production'
 
           // it has a hidden special character
           // TODO: use === special char this is in sensitive perf path
           const isEntry = _id.includes('one-entry-native')
 
           if (isEntry) {
-            if (isNative && process.env.NODE_ENV === 'development') {
+            if (isNative && !production) {
               code = `import '@vxrn/vite-native-client'\n${code}`
             }
             if (isNative && configuration.enableNativewind) {
@@ -185,8 +189,6 @@ ${rootJS.code}
           if (!validParsers.has(extension)) {
             return
           }
-
-          const production = process.env.NODE_ENV === 'production'
 
           let id = _id.split('?')[0]
 
