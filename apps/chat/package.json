@@ -24,7 +24,7 @@
     "seed": "tsx ./src/postgres/seed.ts",
     "serve": "one serve",
     "zero": "yarn zero:build-schema && zero-cache --schema-file ./src/zero/zero-schema.json",
-    "zero:build-schema": "cd ./src/zero && zero-build-schema -p './schema-build.ts'"
+    "zero:build-schema": "zero-build-schema -p ./src/zero/schema-build.ts -o ./src/zero/zero-schema.json"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.709.0",

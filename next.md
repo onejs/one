@@ -50,6 +50,7 @@
     - ensure tsconfig "module": "Preserve", "moduleResolution": "Bundler", (or else import 'one/vite' can break using node)
   - headless tabs (no style included), headless everything really
   - allow customizing react navigatio Theme
+  - can configure how loaders run not tied to render mode (on build or request)
   - layouts can be ssg, while pages can be spa
   - get rid of most patching in favor of plugins that are smart
   - worker threads, 3x+ build speed with paralellizing
