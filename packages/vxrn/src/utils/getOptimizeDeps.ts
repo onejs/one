@@ -6,6 +6,13 @@ import { webExtensions } from '../constants'
 export function getOptimizeDeps(mode: 'build' | 'serve') {
   const needsInterop = [
     'nativewind/jsx-dev-runtime',
+    'nativewind/jsx-runtime',
+    'nativewind',
+
+    'react-native-css-interop/jsx-runtime',
+    'react-native-css-interop/jsx-dev-runtime',
+    'react-native-css-interop',
+
     '@vxrn/safe-area',
     '@vxrn/vendor/react-19-prod',
     '@vxrn/vendor/react-19',
@@ -22,9 +29,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-dom',
     'react-dom/server',
     'react-dom/client',
-    'react-native-css-interop/jsx-runtime',
-    'react-native-css-interop/jsx-dev-runtime',
-    'react-native-css-interop',
     'react-native-web-internals',
     'react-native-web',
     '@react-native-masked-view/masked-view',

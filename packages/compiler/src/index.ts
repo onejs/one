@@ -155,7 +155,7 @@ ${rootJS.code}
             // it has a hidden special character
             _id.includes('one-entry-native')
           ) {
-            // ensure we have nativewind import
+            // ensure we have nativewind import in bundle root
             return `import * as x from 'nativewind'
             console.log('got nativewind', typeof x)
 ${code}`
