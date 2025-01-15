@@ -7,7 +7,7 @@ export async function dev(args: {
   port?: string
   https?: boolean
   mode?: 'development' | 'production'
-  debugBundle?: boolean
+  debugBundle?: string
   debug?: string
 }) {
   labelProcess('dev')

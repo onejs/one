@@ -35,8 +35,8 @@ const dev = defineCommand({
       type: 'string',
     },
     'debug-bundle': {
-      type: 'boolean',
-      description: `Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.`,
+      type: 'string',
+      description: `Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems. Can pass path or empty path for a random directory.`,
     },
   },
   async run({ args }) {
@@ -45,7 +45,7 @@ const dev = defineCommand({
     const { start, stop } = await dev({
       clean: args.clean,
       root: process.cwd(),
-      debugBundle: !!args['debug-bundle'],
+      debugBundle: args['debug-bundle'] || '',
       server: {
         host: args.host,
         port: args.port ? +args.port : undefined,
