@@ -1,5 +1,5 @@
 import React from "react";
-import path from "path";
+import path from "node:path";
 import ReactDOMServer from "react-dom/server";
 import { build, transform } from "esbuild";
 import type { BuildOptions, TransformOptions } from "esbuild";

@@ -1,4 +1,4 @@
-import path, { join } from "path";
+import path, { join } from "node:path";
 import { build } from "esbuild";
 import { bundleConstants } from "./constants";
 

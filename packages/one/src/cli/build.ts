@@ -24,6 +24,7 @@ import type { One } from '../vite/types'
 import { labelProcess } from './label-process'
 import { compileManifest } from '../createHandleRequest'
 import { createServerlessFunction } from '../vercel/build/generate/createServerlessFunction'
+import { createServerlessApiFunction } from '../vercel/build/generate/createServerlessApiFunction'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -579,33 +580,44 @@ ${JSON.stringify(params || null, null, 2)}`
   let postBuildLogs: string[] = []
 
   const platform = oneOptions.web?.deploy ?? options.server?.platform
-
+  console.log("WTF", platform)
   switch (platform) {
     case 'vercel': {
 
       const compiledManifest = compileManifest(buildInfoForWriting.manifest)
 
       for (const route of compiledManifest.apiRoutes) {
+        
+        console.log("WTF", route)
+        try {
+          const filePath = route.file
+          // const { pageConfig, default: Component } = await import(filePath);
+          // console.log("WTF", pageConfig)
+          // pageConfig.strategy
+          switch (route.type) {
 
-        const filePath = route.file
-        const { pageConfig, default: Component } = await import(filePath);
-        // pageConfig.strategy
-        switch (route.type) {
-          case "ssg":
-            // return createStaticFile(Component, filePath);
-            break;
-          case "spa":
-            // return createPrerender(Component, filePath, pageConfig);
-            break;
-          case "ssr":
-            await createServerlessFunction(Component, filePath);
-            break;
-          case "api":
-          case "layout":
-            // return createEdgeFunction(Component, filePath);
-            break;
-          default:
-            // return;
+            case "ssg":
+              // return createStaticFile(Component, filePath);
+              break;
+            case "spa":
+              // return createPrerender(Component, filePath, pageConfig);
+              break;
+            case "ssr":
+              // await createServerlessApiFunction(Component, filePath);
+              break;
+            
+            case "layout":
+              // return createEdgeFunction(Component, filePath);
+              break;
+            
+            case "api":
+              await createServerlessApiFunction(filePath)
+              break;
+            default:
+              // return;
+          }
+        } catch (e) {
+          console.error("createBuildManifestRoute route.type", e)
         }
         
 

@@ -36,6 +36,6 @@ export async function createPrerender(
       }
     );
   } catch (e) {
-    console.log(e);
+    console.error('createPrerender', e);
   }
 }
