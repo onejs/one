@@ -36,6 +36,8 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
   const enableNativewind =
     configuration.enableNativewind &&
     (props.environment === 'ios' || props.environment === 'android') &&
+    // if reanimated gets wrapped in transform it causes circular dep issues
+    !/node_modules/.test(props.id) &&
     // only needed for createElement calls, so be a bit conservative
     props.code.includes('createElement')
 

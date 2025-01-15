@@ -115,8 +115,9 @@ export type VXRNOptions = {
 
   /**
    * Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.
+   * If set to an empty string it will create a random tmp file and log it to console.
    */
-  debugBundle?: boolean
+  debugBundle?: string
 
   /**
    * Pass debug options to Vite

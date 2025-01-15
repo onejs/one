@@ -36,6 +36,8 @@
     - way to configure the api + server config during production builds
 
   - cleanup
+    - react-native-template.js needs a big cleanup
+      - eg remove ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')]
     - codebase needs a few passes cleaning up things (__vxrn globals, structure)
     - error logs on build:web `../../node_modules/expo-modules-core/src/NativeModule.ts (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.`
 

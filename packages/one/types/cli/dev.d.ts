@@ -4,7 +4,7 @@ export declare function dev(args: {
     port?: string;
     https?: boolean;
     mode?: 'development' | 'production';
-    debugBundle?: boolean;
+    debugBundle?: string;
     debug?: string;
 }): Promise<void>;
 //# sourceMappingURL=dev.d.ts.map

@@ -72,7 +72,7 @@ export async function createVXRNCompilerPlugin(
             const data = JSON.stringify(cssToReactNativeRuntime(codeIn, { inlineRem: 16 }))
             // TODO were hardcoding the require id we bundle as: nativewind/dist/index.js
             // could at least resolve this using resolvePath
-            const code = `require("nativewind/dist/index.js").StyleSheet.registerCompiled(${data})`
+            const code = `require("nativewind/dist/index.js").__require().StyleSheet.registerCompiled(${data})`
             const newId = `${id}.js`
 
             // rollup uses relative to its node_modules parent dir, vite here uses absolute

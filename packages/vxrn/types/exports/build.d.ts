@@ -28,7 +28,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
             server?: boolean | import("..").VXRNBuildOptions;
             analyze?: boolean;
         };
-        debugBundle?: boolean;
+        debugBundle?: string;
         debug?: string;
     };
     buildArgs: BuildArgs;

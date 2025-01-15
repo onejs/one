@@ -39,21 +39,19 @@ export async function transformSWC(
     return
   }
 
-  const enableNativeCSS = configuration.enableNativeCSS
-
-  // temp fix idk why  this error:
-  // node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx (19:9): "createInteropElement" is not exported by "../../node_modules/react-native-css-interop/dist/runtime/jsx-dev-runtime.js", imported by "node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx
-  !id.includes('node_modules')
-
   const refresh =
-    options.environment !== 'ssr' && !options.production && !options.noHMR && !options.forceJSX
+    options.environment !== 'ssr' &&
+    !options.production &&
+    !options.noHMR &&
+    !options.forceJSX &&
+    !id.includes('node_modules')
 
   const reactConfig = {
     refresh,
     development: !options.forceJSX && !options.production,
     runtime: 'automatic',
     importSource: 'react',
-    ...(enableNativeCSS
+    ...(configuration.enableNativewind && !id.includes('node_modules')
       ? {
           importSource: 'nativewind',
           // pragma: 'createInteropElement',
@@ -151,7 +149,7 @@ export async function transformSWC(
     }
   })()
 
-  if (enableNativeCSS) {
+  if (configuration.enableNativeCSS) {
     if (result.code.includes(`createInteropElement(`)) {
       // TODO need to fix sourceMap adding a ';'
       result.code = `import { createInteropElement, Fragment as _InteropFragment } from 'react-native-css-interop/jsx-dev-runtime'\n${result.code}`
