@@ -18,7 +18,8 @@
     "types": [
       "node",
       "react",
-      "vite/client"
+      "vite/client",
+      "nativewind/types"
     ],
     "lib": [
       "dom",
