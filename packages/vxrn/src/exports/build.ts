@@ -18,6 +18,7 @@ import { fillOptions } from '../utils/getOptionsFilled'
 import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { mergeUserConfig } from '../utils/mergeUserConfig'
 import { applyBuiltInPatches } from '../utils/patches'
+import { loadEnv } from './loadEnv'
 
 const { existsSync } = FSExtra
 
