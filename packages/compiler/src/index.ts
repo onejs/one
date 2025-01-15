@@ -6,15 +6,15 @@
 import { resolvePath } from '@vxrn/utils'
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
-import { extname, join, relative, resolve, sep } from 'node:path'
+import { extname, join, sep } from 'node:path'
+import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
+import type { OutputChunk } from 'rollup'
 import type { PluginOption, UserConfig } from 'vite'
+import { configuration } from './configure'
 import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, GetTransformProps, Options } from './types'
-import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
-import { configuration } from './configure'
-import type { OutputChunk } from 'rollup'
 
 export * from './configure'
 export * from './transformBabel'
@@ -148,17 +148,23 @@ ${rootJS.code}
         async handler(codeIn, _id) {
           let code = codeIn
           const environment = getEnvName(this.environment.name)
+          const isNative = environment === 'ios' || environment === 'android'
 
-          if (
-            configuration.enableNativewind &&
-            (environment === 'ios' || environment === 'android') &&
-            // it has a hidden special character
-            _id.includes('one-entry-native')
-          ) {
-            // ensure we have nativewind import in bundle root
-            return `import * as x from 'nativewind'
-            console.log('got nativewind', typeof x)
-${code}`
+          // it has a hidden special character
+          // TODO: use === special char this is in sensitive perf path
+          const isEntry = _id.includes('one-entry-native')
+
+          if (isEntry) {
+            if (isNative && process.env.NODE_ENV === 'development') {
+              code = `import '@vxrn/vite-native-client'\n${code}`
+            }
+            if (isNative && configuration.enableNativewind) {
+              // ensure we have nativewind import in bundle root
+              code = `import * as x from 'nativewind'\n${code}`
+            }
+
+            // TODO sourcemap add two ';;'?
+            return code
           }
 
           const shouldDebug =
@@ -215,10 +221,13 @@ ${code}`
             })
 
             if (babelOptions) {
+              // TODO we probably need to forward sourceMap here?
               const babelOut = await transformBabel(id, code, babelOptions)
-              if (babelOut) {
+              if (babelOut?.code) {
                 debug?.(`[${id}] transformed with babel options: ${JSON.stringify(babelOptions)}`)
-                code = babelOut
+                // TODO we may want to just avoid SWC after babel it likely is faster
+                // we'd need to have metro or metro-like preset
+                code = babelOut.code
               }
             }
 

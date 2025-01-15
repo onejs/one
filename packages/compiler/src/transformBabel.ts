@@ -73,7 +73,7 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
 export async function transformBabel(id: string, code: string, options: babel.TransformOptions) {
   const compilerPlugin = options.plugins?.find((x) => x && x[0] === 'babel-plugin-react-compiler')
 
-  const out = await new Promise<string>((res, rej) => {
+  const out = await new Promise<babel.BabelFileResult>((res, rej) => {
     babel.transform(
       code,
       {
@@ -81,6 +81,7 @@ export async function transformBabel(id: string, code: string, options: babel.Tr
         compact: false,
         babelrc: false,
         configFile: false,
+        sourceMaps: true,
         minified: false,
         ...options,
         presets: ['@babel/preset-typescript', ...(options.presets || [])],
@@ -89,14 +90,17 @@ export async function transformBabel(id: string, code: string, options: babel.Tr
         if (!result || err) {
           return rej(err || 'no res')
         }
-        res(result!.code!)
+        res(result!)
       }
     )
   })
 
   if (
     compilerPlugin &&
-    out.includes(compilerPlugin[1] === '18' ? `react-compiler-runtime` : `react/compiler-runtime`)
+    // TODO this detection could be a lot faster
+    out.code?.includes(
+      compilerPlugin[1] === '18' ? `react-compiler-runtime` : `react/compiler-runtime`
+    )
   ) {
     console.info(` 🪄 [compiler] ${relative(process.cwd(), id)}`)
   }
@@ -153,8 +157,9 @@ const shouldBabelReactCompiler = (props: Props) => {
     }
   }
   if (!/.*(.tsx?)$/.test(props.id)) return false
+  // disable node modules for now...
+  if (props.id.includes('node_modules')) return false
   if (props.code.startsWith('// disable-compiler')) return false
-  // may want to disable in node modules? but rare to have tsx in node mods
   return true
 }
 

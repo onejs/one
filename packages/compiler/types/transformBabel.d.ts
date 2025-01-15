@@ -7,6 +7,6 @@ export declare function getBabelOptions(props: Props): babel.TransformOptions | 
 /**
  * Transform input to mostly ES5 compatible code, keep ESM syntax, and transform generators.
  */
-export declare function transformBabel(id: string, code: string, options: babel.TransformOptions): Promise<string>;
+export declare function transformBabel(id: string, code: string, options: babel.TransformOptions): Promise<babel.BabelFileResult>;
 export {};
 //# sourceMappingURL=transformBabel.d.ts.map
