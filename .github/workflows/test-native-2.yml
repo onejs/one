@@ -1,11 +1,17 @@
 name: Native Integration Tests 2
+env:
+  # TODO
+  # Relative path from the monorepo root to the app
+  test_app_path: tests/test
+  # Package name in the monorepo
+  test_app_package_name: test-test
 
 on:
   push:
   pull_request:
 
 jobs:
-  build-ios-test-dev-container:
+  build-ios-test-container:
     name: Build iOS RN Test App (Dev)
     uses: ./.github/workflows/build-ios-test-container-app.yml
     secrets: inherit
@@ -14,3 +20,137 @@ jobs:
       pull-requests: read
     with:
       configuration: Debug
+
+  test-ios-native-release:
+    name: iOS Release Integration Test
+    # Note: Some parts of the native build process are not covered by this test:
+    # * We do not test the generated Xcode project has the Build Phase "Bundle React Native code and images" setup correctly using the standard `react-native bundle` command. This is done by the "vxrn/expo-plugin" Expo plugin which users should include in their `app.json` configuration. If that didn't work properly, Expo prebuild may setup the Xcode project to use Expo's custom bundle command that uses Metro.
+    # * We do not test `react-native/scripts/react-native-xcode.sh`, instead we copy parts of it into our test scripts, simulating parts of the build process without running the whole native build.
+    needs:
+      - build-ios-test-container
+    runs-on: macos-14
+    defaults:
+      run:
+        working-directory: ${{ env.test_app_path }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install
+        uses: ./.github/actions/install
+        with:
+          workspace-focus: ${{ env.test_app_package_name }}
+
+      - name: Download Built Native App
+        uses: actions/cache/restore@v4
+        with:
+          fail-on-cache-miss: true
+          key: ${{ needs.build-ios-test-container.outputs.built-app-cache-key }}
+          path: ${{ needs.build-ios-test-container.outputs.built-app-path }}
+
+      - name: Get Simulator UDID
+        id: get-simulator-udid
+        run: |
+          AVAILABLE_SIMULATORS=$(xcrun simctl list devices available --json)
+          echo "Available simulators: $AVAILABLE_SIMULATORS"
+          RUNTIME=$(echo $AVAILABLE_SIMULATORS | jq -r '.devices | keys | map(select(test("iOS"))) | last')
+          echo "Runtime: $RUNTIME"
+          SIMULATOR_INFO=$(echo $AVAILABLE_SIMULATORS | jq ".devices.\"$RUNTIME\" | map(select(.name | test(\"iPhone\"))) | last")
+          SIMULATOR_UDID=$(echo $SIMULATOR_INFO | jq -r .udid)
+          echo "Simulator info: $SIMULATOR_INFO"
+          echo "Simulator UDID: $SIMULATOR_UDID"
+          echo "simulator_udid=$SIMULATOR_UDID" >> $GITHUB_OUTPUT
+
+      - name: Boot Simulator
+        env:
+          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
+        run: xcrun simctl boot $SIMULATOR_UDID
+
+      - name: Install Maestro
+        id: install-maestro
+        uses: ./.github/actions/install-maestro
+
+      - name: Patch Packages
+        run: |
+          yarn one patch
+
+      # Prebuild and pod install because we need hermesc which is installed by pod install
+      - name: Prebuild
+        run: |
+          yarn expo prebuild --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
+      # - name: Cache Pods
+      #   uses: actions/cache@v4
+      #   env:
+      #     cache-name: ${{ env.app_identifier }}-pods
+      #   with:
+      #     path: ${{ env.test_app_path }}/ios/Pods
+      #     key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_app_path)) }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-${{ env.cache-name }}-
+      - name: Pod Install
+        run: |
+          cd ios && pod install
+
+      - name: Bundle React Native code and images
+        run: |
+          mkdir test-bundle-output
+          yarn react-native bundle --platform ios --dev false --bundle-output test-bundle-output/main.tmp.jsbundle --assets-dest test-bundle-output
+          ios/Pods/hermes-engine/destroot/bin/hermesc -emit-binary -max-diagnostic-width=80 -O -output-source-map -out test-bundle-output/main.jsbundle test-bundle-output/main.tmp.jsbundle
+
+      - name: Replace JS Bundle and Assets in App
+        run: |
+          cp -r test-bundle-output/. ${{ github.workspace }}/${{ needs.build-ios-test-container.outputs.built-app-path }}/
+
+      - name: Check .app
+        id: check-app
+        run: |
+          if [ ! -e ${{ github.workspace }}/${{ needs.build-ios-test-container.outputs.built-app-path }} ]; then
+            echo "Error: .app not found"
+            exit 1
+          fi
+
+      - name: Install App in Simulator
+        env:
+          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
+          APP_PATH: ${{ needs.build-ios-test-container.outputs.built-app-path }}
+        working-directory: .
+        run: xcrun simctl install $SIMULATOR_UDID $APP_PATH
+
+      - name: Test
+        run: |
+          export PATH="$PATH":"$HOME/.maestro/bin"
+          export MAESTRO_DRIVER_STARTUP_TIMEOUT=180000 # 3 minutes
+          maestro test maestro-flows/basic.yaml
+
+      - name: Upload App
+        uses: actions/upload-artifact@v4.3.1
+        if: ${{ always() && steps.check-app.outcome == 'success' }}
+        continue-on-error: true
+        with:
+          name: release-app
+          path: |
+            ${{ needs.build-ios-test-container.outputs.built-app-path }}
+
+      - name: Prepare Maestro Logs
+        id: prepare-maestro-logs
+        if: ${{ always() && steps.install-maestro.outcome == 'success' }}
+        continue-on-error: true
+        run: cp -r "$HOME/.maestro/tests" maestro-logs
+
+      - name: Upload Maestro Logs
+        uses: actions/upload-artifact@v4.3.1
+        if: ${{ always() && steps.prepare-maestro-logs.outcome == 'success' }}
+        continue-on-error: true
+        with:
+          name: release-maestro-logs
+          path: |
+            ${{ env.test_app_path }}/maestro-logs
+
+      - name: Upload Maestro Screenshots
+        uses: actions/upload-artifact@v4.3.1
+        if: ${{ always() && steps.install-maestro.outcome == 'success' }}
+        continue-on-error: true
+        with:
+          name: release-maestro-screenshots
+          path: |
+            ${{ env.test_app_path }}/maestro-screenshots

@@ -9,7 +9,7 @@ env:
 
 on:
   push:
-  pull_request:
+  # pull_request:
 
 jobs:
   build-ios-test-dev-container:
