@@ -150,7 +150,7 @@ export async function transformSWC(
   })()
 
   if (enableNativeCSS) {
-    if (result.code.includes(`createInteropElement`)) {
+    if (result.code.includes(`createInteropElement(`)) {
       result.code = `import { createInteropElement, Fragment as _InteropFragment } from 'react-native-css-interop/jsx-dev-runtime'\n${result.code}`
     }
   }

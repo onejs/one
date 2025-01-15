@@ -1,6 +1,10 @@
+import { StyleSheet } from 'nativewind'
+
 // debug
 import { Text, View } from 'react-native'
 import './base.css'
+
+console.log('what is it', typeof StyleSheet)
 
 export default function Index() {
   // const out = (

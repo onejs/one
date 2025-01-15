@@ -2,10 +2,10 @@ const global =
   typeof globalThis !== 'undefined'
     ? globalThis
     : typeof global !== 'undefined'
-      ? global
-      : typeof window !== 'undefined'
-        ? window
-        : this
+    ? global
+    : typeof window !== 'undefined'
+    ? window
+    : this
 
 globalThis['global'] = global
 global['react'] = {}
@@ -114,9 +114,12 @@ function createRequire(importer, importsMap) {
     if (output && typeof output === 'object' && !('__require' in output)) {
       return new Proxy(output, {
         get(target, key) {
+          // if (!Reflect.has(target, key)) {
           if (key === '__require') {
             return () => output
           }
+          // }
+
           return Reflect.get(target, key)
         },
       })
@@ -137,7 +140,9 @@ function getRequire(importer, importsMap, _mod) {
 
 ${JSON.stringify(importsMap, null, 2)}
 
-${/* process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : '' // Will break Android: property 'process' doesn't exist */ ''}
+${
+  /* process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : '' // Will break Android: property 'process' doesn't exist */ ''
+}
 
 ${
   withStack
@@ -251,7 +256,9 @@ ${new Error().stack
       return
     }
 
-    console.error(`Module not found "${_mod}" imported by "${importer}"\n${getErrorDetails()}`)
+    console.error(
+      `Module not found "${_mod}" imported by "${importer}"\n${getErrorDetails()}`
+    )
     return {}
   } catch (err) {
     const errorMessage =
@@ -282,17 +289,19 @@ if (!globalThis['console']) {
 
 // idk why
 globalThis.__vxrnTmpLogs = []
-;['trace', 'info', 'warn', 'error', 'log', 'group', 'groupCollapsed', 'debug'].forEach((level) => {
-  const og = globalThis['console'][level] || (() => {})
-  globalThis['_ogConsole' + level] = og
-  const ogConsole = og.bind(globalThis['console'])
-  globalThis['console'][level] = (...data) => {
-    if (globalThis.__vxrnTmpLogs) {
-      globalThis.__vxrnTmpLogs.push({ level, data })
+;['trace', 'info', 'warn', 'error', 'log', 'group', 'groupCollapsed', 'debug'].forEach(
+  (level) => {
+    const og = globalThis['console'][level] || (() => {})
+    globalThis['_ogConsole' + level] = og
+    const ogConsole = og.bind(globalThis['console'])
+    globalThis['console'][level] = (...data) => {
+      if (globalThis.__vxrnTmpLogs) {
+        globalThis.__vxrnTmpLogs.push({ level, data })
+      }
+      return ogConsole(...data)
     }
-    return ogConsole(...data)
   }
-})
+)
 
 console._isPolyfilled = true
 
