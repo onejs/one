@@ -44,7 +44,8 @@
   "devDependencies": {
     "@tamagui/build": "^1.121.10",
     "depcheck": "^1.4.7",
-    "react-native": "^0.76.5"
+    "react-native": "^0.76.5",
+    "rollup": "^4.29.1"
   },
   "peerDependencies": {
     "react-native": "*"
