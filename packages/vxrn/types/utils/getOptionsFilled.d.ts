@@ -30,7 +30,7 @@ export declare function fillOptions(options: VXRNOptions, { mode }?: {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
     };
-    debugBundle?: boolean;
+    debugBundle?: string;
     debug?: string;
 }>;
 export declare function getOptionsFilled(): {
@@ -61,7 +61,7 @@ export declare function getOptionsFilled(): {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
     };
-    debugBundle?: boolean;
+    debugBundle?: string;
     debug?: string;
 } | null;
 //# sourceMappingURL=getOptionsFilled.d.ts.map
