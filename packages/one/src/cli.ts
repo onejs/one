@@ -59,7 +59,7 @@ const dev = defineCommand({
         'If set to "production" you can run the development server but serve the production bundle',
     },
     'debug-bundle': {
-      type: 'boolean',
+      type: 'string',
       description: `Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.`,
     },
     debug: {
@@ -71,7 +71,7 @@ const dev = defineCommand({
     const { dev } = await import('./cli/dev')
     await dev({
       ...args,
-      debugBundle: !!args['debug-bundle'],
+      debugBundle: args['debug-bundle'],
       mode: modes[args.mode],
     })
   },
