@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import colors from 'picocolors'
-import type { VXRNOptions } from '../types'
 import type { ViteDevServer } from 'vite'
+import type { VXRNOptions } from '../types'
 
 const { ensureDir } = FSExtra
 
