@@ -1,9 +1,9 @@
 import babel from '@babel/core'
+import { resolvePath } from '@vxrn/utils'
 import { relative } from 'node:path'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
 import type { GetTransformProps, GetTransformResponse } from './types'
-import { resolvePath } from '@vxrn/resolve'
 
 type Props = GetTransformProps & {
   userSetting?: GetTransformResponse
