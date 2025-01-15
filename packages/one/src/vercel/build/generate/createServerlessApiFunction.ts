@@ -17,7 +17,7 @@ export async function createServerlessApiFunction(
   const pageName = route.page.replace('/api/','')
   postBuildLogs.push(`[createServerlessApiFunction] pageName: ${pageName}`);
 
-  const funcFolder = join(options.root, 'dist', `.vercel/output/functions/${pageName}.func`);
+  const funcFolder = join(options.root, 'dist', `.vercel/output/functions/api/${pageName}.func`);
   await fs.ensureDir(funcFolder);
 
   try {
@@ -29,6 +29,11 @@ export async function createServerlessApiFunction(
     //     Component,
     //   }),
     // ]);
+
+    if (code.includes("react")) {
+      postBuildLogs.push(`[createServerlessApiFunction] detected react in depenency tree for ${pageName}`);
+      await fs.copy(join(options.root, '..', '..', 'node_modules', 'react'), join(funcFolder, 'node_modules', 'react'));
+    }
 
     postBuildLogs.push(`[createServerlessApiFunction] copy shared assets to ${join(funcFolder, 'assets')}`);
     await fs.copy(join(options.root, 'dist', 'api', 'assets'), join(funcFolder, 'assets'));
