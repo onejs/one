@@ -54,6 +54,12 @@ export async function buildBundle(
 
   loadEnv(dev ? 'development' : 'production', root)
 
+  if (!dev) {
+    // Vite will set `process.env.NODE_ENV` to 'development' if it's not set. See: https://github.com/vitejs/vite/blob/v6.0.7/packages/vite/src/node/config.ts#L973-L977.
+    // So we need to do this here to make sure that won't break our production build, since some plugins' behavior will be overridden if `NODE_ENV` is set to 'development'.
+    process.env.NODE_ENV = 'production'
+  }
+
   let nativeEntry: string | undefined = undefined
 
   // If there's an `app` directory, then we assume that the user is using One.

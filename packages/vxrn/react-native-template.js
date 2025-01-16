@@ -49,19 +49,18 @@ function printError(err) {
 
 const __runningModules = new Map()
 
+const getRunningModulesPrint = () => [...__runningModules.keys()].join(' > ')
+
 function __getRequire(absPath, parent) {
-  absPath =
-    ___vxrnAbsoluteToRelative___[absPath] ||
-    ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')] ||
-    ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.ts')] ||
-    ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '')] ||
-    absPath
+  absPath = ___vxrnAbsoluteToRelative___[absPath] || absPath
 
   if (!__cachedModules[absPath]) {
     const runModule = ___modules___[absPath]
 
     // do not run again if the module is already running, avoids stack overflow on circular dependencies
     if (__runningModules.has(absPath)) {
+      console.info('‼️ circular dependency:', absPath, 'imported from', parent, ':')
+      console.info(' running modules:', getRunningModulesPrint())
       // TODO we can probably print a circular dependency warning for this
       return __runningModules.get(absPath).exports
     }
@@ -136,9 +135,9 @@ function getRequire(importer, importsMap, _mod) {
   }
 
   const getErrorDetails = (withStack) => {
-    return `In importsMap:
-
-${JSON.stringify(importsMap, null, 2)}
+    return `Running modules: ${getRunningModulesPrint()}
+    
+In importsMap: ${JSON.stringify(importsMap, null, 2)}
 
 ${
   /* process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : '' // Will break Android: property 'process' doesn't exist */ ''
