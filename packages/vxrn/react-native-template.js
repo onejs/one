@@ -52,12 +52,7 @@ const __runningModules = new Map()
 const getRunningModulesPrint = () => [...__runningModules.keys()].join(' > ')
 
 function __getRequire(absPath, parent) {
-  absPath =
-    ___vxrnAbsoluteToRelative___[absPath] ||
-    ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')] ||
-    ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.ts')] ||
-    ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '')] ||
-    absPath
+  absPath = ___vxrnAbsoluteToRelative___[absPath] || absPath
 
   if (!__cachedModules[absPath]) {
     const runModule = ___modules___[absPath]
