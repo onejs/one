@@ -15,13 +15,9 @@
   "source": "src/index.ts",
   "types": "./src/index.ts",
   "bin": "run.mjs",
-  "files": [
-    "src",
-    "types",
-    "dist"
-  ],
+  "files": ["src", "types", "dist"],
   "scripts": {
-    "strip-chat": "dotenv -- node ./run.mjs ../../apps/chat /tmp/chat --overwrite",
+    "strip-chat": "dotenv -- node ./run.mjs ../../apps/chat ../../tmp/chat --overwrite",
     "build": "tamagui-build --skip-types --skip-native",
     "watch": "yarn build --watch",
     "clean": "tamagui-build clean",
