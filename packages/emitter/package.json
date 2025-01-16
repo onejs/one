@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/emitter",
-  "version": "1.1.397",
+  "version": "1.1.399",
   "sideEffects": false,
   "source": "src/index.ts",
   "types": "./src/index.ts",
@@ -29,7 +29,7 @@
     "react": "^18.3.1 || ^19.0.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.10"
+    "@tamagui/build": "^1.121.11"
   },
   "publishConfig": {
     "access": "public"

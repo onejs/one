@@ -49,13 +49,17 @@ export async function fillOptions(options: VXRNOptions, { mode = 'dev' }: { mode
     options.build.server = false
   }
 
-  const bundleId = Math.round(Math.random() * 100_000)
+  const debugBundlePath =
+    options.debugBundle && typeof options.debugBundle === 'string'
+      ? options.debugBundle
+      : join(tmpdir(), `bundle-${Math.round(Math.random() * 100_000)}.js`)
 
   const final = {
     ...options,
+    // for now just allow debugging one at once
     debugBundlePaths: {
-      ios: join(tmpdir(), `bundle-${bundleId}-ios.js`),
-      android: join(tmpdir(), `bundle-${bundleId}-android.js`),
+      ios: debugBundlePath,
+      android: debugBundlePath,
     },
     mode: devMode ? ('development' as const) : ('production' as const),
     clean,

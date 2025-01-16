@@ -27,10 +27,12 @@ export const clean = async (rest: VXRNOptions) => {
       recursive: true,
       force: true,
     }).catch(throwIfNotMissingError),
-    rm(join(root, 'node_modules', '.vxrn'), {
-      recursive: true,
-      force: true,
-    }).catch(throwIfNotMissingError),
+    process.env.VXRN_DONT_CLEAN_SELF
+      ? null
+      : rm(join(root, 'node_modules', '.vxrn'), {
+          recursive: true,
+          force: true,
+        }).catch(throwIfNotMissingError),
     rm(join(root, 'dist'), {
       recursive: true,
       force: true,

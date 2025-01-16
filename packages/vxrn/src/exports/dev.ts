@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import colors from 'picocolors'
-import type { VXRNOptions } from '../types'
 import type { ViteDevServer } from 'vite'
+import type { VXRNOptions } from '../types'
 
 const { ensureDir } = FSExtra
 
@@ -36,10 +36,10 @@ export const dev = async (optionsIn: DevOptions) => {
     console.error(`
 ⛔️ No vite.config.ts, please create a minimal config:
 
-import { createConfig } from 'vite'
+import { defineConfig } from 'vite'
 import { one } from 'one/vite'
 
-export default createConfig({
+export default defineConfig({
   plugins: [
     one()
   ]

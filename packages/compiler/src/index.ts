@@ -6,8 +6,11 @@
 import { resolvePath } from '@vxrn/utils'
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
-import { extname, join } from 'node:path'
+import { extname, join, sep } from 'node:path'
+import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
+import type { OutputChunk } from 'rollup'
 import type { PluginOption, UserConfig } from 'vite'
+import { configuration } from './configure'
 import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
 import { transformSWC } from './transformSWC'
@@ -39,6 +42,14 @@ export async function createVXRNCompilerPlugin(
     return name as Environment
   }
 
+  const reactForRNVersion = reactVersion.split('.')[0] as '18' | '19'
+
+  const cssTransformCache = new Map<string, string>()
+
+  // fix so we can align the diff between vite and rollup id (rollup resolves from root monorepo)
+  const rollupPath = resolvePath('rollup')
+  const rollupNodeMods = rollupPath.slice(0, rollupPath.indexOf(sep + 'node_modules'))
+
   return [
     {
       name: 'one:compiler-resolve-refresh-runtime',
@@ -52,6 +63,63 @@ export async function createVXRNCompilerPlugin(
     },
 
     {
+      name: `one:compiler-css-to-js`,
+
+      transform(codeIn, id) {
+        const environment = getEnvName(this.environment.name)
+        if (configuration.enableNativeCSS && (environment === 'ios' || environment === 'android')) {
+          if (extname(id) === '.css') {
+            const data = JSON.stringify(cssToReactNativeRuntime(codeIn, { inlineRem: 16 }))
+            // TODO were hardcoding the require id we bundle as: nativewind/dist/index.js
+            // could at least resolve this using resolvePath
+            const code = `require("nativewind/dist/index.js").__require().StyleSheet.registerCompiled(${data})`
+            const newId = `${id}.js`
+
+            // rollup uses relative to its node_modules parent dir, vite here uses absolute
+            const cssId = newId.replace(rollupNodeMods + sep, '')
+            cssTransformCache.set(cssId, code)
+
+            return {
+              code,
+              id: newId,
+              map: null,
+            }
+          }
+        }
+      },
+
+      generateBundle(_, bundle) {
+        const environment = getEnvName(this.environment.name)
+
+        if (configuration.enableNativeCSS && (environment === 'ios' || environment === 'android')) {
+          const rootJSName = Object.keys(bundle).find((i) => {
+            const chunk = bundle[i]
+            return chunk.type == 'chunk' && chunk.fileName.match(/.[cm]?js(?:\?.+)?$/) != null
+          })
+          if (!rootJSName) {
+            throw new Error(`Can't find root js, internal one error`)
+          }
+
+          const rootJS = bundle[rootJSName] as OutputChunk
+
+          const cssAssets = Object.keys(bundle).filter((i) =>
+            bundle[i].fileName.endsWith('.css.js')
+          )
+
+          for (const name of cssAssets) {
+            delete bundle[name]
+
+            const jsCSS = cssTransformCache.get(name)
+            rootJS.code = `
+${jsCSS}
+${rootJS.code}
+`
+          }
+        }
+      },
+    },
+
+    {
       name: 'one:compiler',
       enforce: 'pre',
 
@@ -60,6 +128,10 @@ export async function createVXRNCompilerPlugin(
           esbuild: false,
           optimizeDeps: {
             noDiscovery: true,
+          },
+
+          define: {
+            'process.env.NATIVEWIND_OS': 'native',
           },
         } satisfies UserConfig
 
@@ -75,6 +147,29 @@ export async function createVXRNCompilerPlugin(
         order: 'pre',
         async handler(codeIn, _id) {
           let code = codeIn
+          const environment = getEnvName(this.environment.name)
+          const isNative = environment === 'ios' || environment === 'android'
+          const production =
+            process.env.NODE_ENV === 'production' ||
+            JSON.parse(this.environment.config?.define?.['process.env.NODE_ENV'] || '""') ===
+              'production'
+
+          // it has a hidden special character
+          // TODO: use === special char this is in sensitive perf path
+          const isEntry = _id.includes('one-entry-native')
+
+          if (isEntry) {
+            if (isNative && !production) {
+              code = `import '@vxrn/vite-native-client'\n${code}`
+            }
+            if (isNative && configuration.enableNativewind) {
+              // ensure we have nativewind import in bundle root
+              code = `import * as x from 'nativewind'\n${code}`
+            }
+
+            // TODO sourcemap add two ';;'?
+            return code
+          }
 
           const shouldDebug =
             process.env.NODE_ENV === 'development' && codeIn.startsWith('// debug')
@@ -85,12 +180,14 @@ export async function createVXRNCompilerPlugin(
           }
 
           const extension = extname(_id)
-          if (!validParsers.has(extension)) {
+
+          if (extension === '.css') {
+            // handled in one:compiler-css-to-js
             return
           }
 
-          if (extension === '.css') {
-            //
+          if (!validParsers.has(extension)) {
+            return
           }
 
           let id = _id.split('?')[0]
@@ -105,15 +202,12 @@ export async function createVXRNCompilerPlugin(
             return
           }
 
-          const environment = getEnvName(this.environment.name)
-          const production = process.env.NODE_ENV === 'production'
-
           const transformProps: GetTransformProps = {
             id,
             code,
             development: !production,
             environment,
-            reactForRNVersion: reactVersion.split('.')[0] as '18' | '19',
+            reactForRNVersion,
           }
 
           const userTransform = optionsIn?.transform?.(transformProps)
@@ -129,10 +223,13 @@ export async function createVXRNCompilerPlugin(
             })
 
             if (babelOptions) {
+              // TODO we probably need to forward sourceMap here?
               const babelOut = await transformBabel(id, code, babelOptions)
-              if (babelOut) {
+              if (babelOut?.code) {
                 debug?.(`[${id}] transformed with babel options: ${JSON.stringify(babelOptions)}`)
-                code = babelOut
+                // TODO we may want to just avoid SWC after babel it likely is faster
+                // we'd need to have metro or metro-like preset
+                code = babelOut.code
               }
             }
 

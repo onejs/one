@@ -2,10 +2,10 @@ const global =
   typeof globalThis !== 'undefined'
     ? globalThis
     : typeof global !== 'undefined'
-      ? global
-      : typeof window !== 'undefined'
-        ? window
-        : this
+    ? global
+    : typeof window !== 'undefined'
+    ? window
+    : this
 
 globalThis['global'] = global
 global['react'] = {}
@@ -49,6 +49,8 @@ function printError(err) {
 
 const __runningModules = new Map()
 
+const getRunningModulesPrint = () => [...__runningModules.keys()].join(' > ')
+
 function __getRequire(absPath, parent) {
   absPath =
     ___vxrnAbsoluteToRelative___[absPath] ||
@@ -62,6 +64,8 @@ function __getRequire(absPath, parent) {
 
     // do not run again if the module is already running, avoids stack overflow on circular dependencies
     if (__runningModules.has(absPath)) {
+      console.info('‼️ circular dependency:', absPath, 'imported from', parent, ':')
+      console.info(' running modules:', getRunningModulesPrint())
       // TODO we can probably print a circular dependency warning for this
       return __runningModules.get(absPath).exports
     }
@@ -114,9 +118,12 @@ function createRequire(importer, importsMap) {
     if (output && typeof output === 'object' && !('__require' in output)) {
       return new Proxy(output, {
         get(target, key) {
+          // if (!Reflect.has(target, key)) {
           if (key === '__require') {
             return () => output
           }
+          // }
+
           return Reflect.get(target, key)
         },
       })
@@ -133,11 +140,13 @@ function getRequire(importer, importsMap, _mod) {
   }
 
   const getErrorDetails = (withStack) => {
-    return `In importsMap:
+    return `Running modules: ${getRunningModulesPrint()}
+    
+In importsMap: ${JSON.stringify(importsMap, null, 2)}
 
-${JSON.stringify(importsMap, null, 2)}
-
-${/* process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : '' // Will break Android: property 'process' doesn't exist */ ''}
+${
+  /* process.env.DEBUG?.startsWith('tamagui') ? debugExtraDetail : '' // Will break Android: property 'process' doesn't exist */ ''
+}
 
 ${
   withStack
@@ -251,7 +260,9 @@ ${new Error().stack
       return
     }
 
-    console.error(`Module not found "${_mod}" imported by "${importer}"\n${getErrorDetails()}`)
+    console.error(
+      `Module not found "${_mod}" imported by "${importer}"\n${getErrorDetails()}`
+    )
     return {}
   } catch (err) {
     const errorMessage =
@@ -282,17 +293,19 @@ if (!globalThis['console']) {
 
 // idk why
 globalThis.__vxrnTmpLogs = []
-;['trace', 'info', 'warn', 'error', 'log', 'group', 'groupCollapsed', 'debug'].forEach((level) => {
-  const og = globalThis['console'][level] || (() => {})
-  globalThis['_ogConsole' + level] = og
-  const ogConsole = og.bind(globalThis['console'])
-  globalThis['console'][level] = (...data) => {
-    if (globalThis.__vxrnTmpLogs) {
-      globalThis.__vxrnTmpLogs.push({ level, data })
+;['trace', 'info', 'warn', 'error', 'log', 'group', 'groupCollapsed', 'debug'].forEach(
+  (level) => {
+    const og = globalThis['console'][level] || (() => {})
+    globalThis['_ogConsole' + level] = og
+    const ogConsole = og.bind(globalThis['console'])
+    globalThis['console'][level] = (...data) => {
+      if (globalThis.__vxrnTmpLogs) {
+        globalThis.__vxrnTmpLogs.push({ level, data })
+      }
+      return ogConsole(...data)
     }
-    return ogConsole(...data)
   }
-})
+)
 
 console._isPolyfilled = true
 

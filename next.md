@@ -1,6 +1,8 @@
 1.0:
 
   - we hit network for loaders even if they don't exist, need to ship info about loaders existing to clients to avoid those requests
+  - if you remove escape-string-regexp from `dedupe` breaks
+    - non-deduped modules that live in diff sub-dirs resolve to the same id: ___modules___["escape-string-regexp/index.js"]
   - root layout doesnt HMR
   - hmr native tamagui example gives:
     Error: [vite] cannot find entry point module 'virtual:one-entry'.
@@ -37,7 +39,8 @@
     - way to configure the api + server config during production builds
 
   - cleanup
-    - TODO: hard coded for demo app (also find other TODOs in general)
+    - react-native-template.js needs a big cleanup
+      - eg remove ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')]
     - codebase needs a few passes cleaning up things (__vxrn globals, structure)
     - error logs on build:web `../../node_modules/expo-modules-core/src/NativeModule.ts (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.`
 
@@ -50,6 +53,7 @@
     - ensure tsconfig "module": "Preserve", "moduleResolution": "Bundler", (or else import 'one/vite' can break using node)
   - headless tabs (no style included), headless everything really
   - allow customizing react navigatio Theme
+  - can configure how loaders run not tied to render mode (on build or request)
   - layouts can be ssg, while pages can be spa
   - get rid of most patching in favor of plugins that are smart
   - worker threads, 3x+ build speed with paralellizing

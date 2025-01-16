@@ -297,6 +297,12 @@ var __commonJS = function __commonJS(cb, mod) {
             `return rn;`,
           ].join('\n'),
         },
+
+        // improve error logs a lot including stack of original error
+        {
+          find: `originalMessage = e.message || "";`,
+          replace: `originalMessage = "" + (e.stack || "");`,
+        },
       ])}
     }
     const RN = run()

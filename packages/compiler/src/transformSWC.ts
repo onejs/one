@@ -6,11 +6,13 @@ import {
   type TransformConfig,
 } from '@swc/core'
 import type { SourceMapPayload } from 'node:module'
-import { extname } from 'node:path'
+import { extname, sep } from 'node:path'
 import { merge } from 'ts-deepmerge'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug, parsers, runtimePublicPath } from './constants'
 import type { Options } from './types'
+
+const ignoreId = new RegExp(`node_modules\\${sep}(\\.vite|vite)\\${sep}`)
 
 export async function transformSWC(
   id: string,
@@ -18,7 +20,7 @@ export async function transformSWC(
   options: Options & { es5?: boolean },
   swcOptions?: SWCOptions
 ) {
-  if (id.includes('.vite')) {
+  if (ignoreId.test(id)) {
     return
   }
 
@@ -37,26 +39,25 @@ export async function transformSWC(
     return
   }
 
-  const enableNativeCSS =
-    configuration.enableNativeCSS &&
-    // temp fix idk why  this error:
-    // node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx (19:9): "createInteropElement" is not exported by "../../node_modules/react-native-css-interop/dist/runtime/jsx-dev-runtime.js", imported by "node_modules/react-native-reanimated/src/component/LayoutAnimationConfig.tsx
-    !id.includes('node_modules')
-
   const refresh =
-    options.environment !== 'ssr' && !options.production && !options.noHMR && !options.forceJSX
+    options.environment !== 'ssr' &&
+    !options.production &&
+    !options.noHMR &&
+    !options.forceJSX &&
+    !id.includes('node_modules')
 
   const reactConfig = {
     refresh,
     development: !options.forceJSX && !options.production,
     runtime: 'automatic',
     importSource: 'react',
-    ...(enableNativeCSS
+    ...(configuration.enableNativewind && !id.includes('node_modules')
       ? {
-          importSource: 'react-native-css-interop',
-          pragma: 'createInteropElement',
+          importSource: 'nativewind',
+          // pragma: 'createInteropElement',
+          // pragmaFrag: '_InteropFragment',
           // swc doesnt actually change the import right
-          runtime: 'classic',
+          // runtime: 'classic',
         }
       : {}),
   } satisfies TransformConfig['react']
@@ -148,13 +149,14 @@ export async function transformSWC(
     }
   })()
 
-  if (enableNativeCSS) {
-    if (result.code.includes(`createInteropElement`)) {
-      result.code = `import { createInteropElement } from 'react-native-css-interop/jsx-dev-runtime'\n${result.code}`
+  if (configuration.enableNativeCSS) {
+    if (result.code.includes(`createInteropElement(`)) {
+      // TODO need to fix sourceMap adding a ';'
+      result.code = `import { createInteropElement, Fragment as _InteropFragment } from 'react-native-css-interop/jsx-dev-runtime'\n${result.code}`
     }
   }
 
-  const shouldHMR = refresh && refreshContentRE.test(result.code)
+  const hasRefreshRuntime = refresh && refreshContentRE.test(result.code)
 
   // fix for node_modules that ship tsx but don't use type-specific imports
   if (
@@ -188,22 +190,122 @@ export async function transformSWC(
     }
   }
 
-  if (!result) {
+  if (result && !options.production && !options.noHMR) {
+    return wrapSourceInRefreshRuntime(id, result, options, hasRefreshRuntime)
+  }
+
+  return result
+}
+
+function wrapSourceInRefreshRuntime(
+  id: string,
+  result: Output,
+  options: Options,
+  hasRefreshRuntime: boolean
+) {
+  if (options.environment === 'ssr') {
     return result
   }
+  if (options.environment === 'client') {
+    return wrapSourceInRefreshRuntimeWeb(id, result, hasRefreshRuntime)
+  }
+  return wrapSourceInRefreshRuntimeNative(id, result, options, hasRefreshRuntime)
+}
 
-  if (refresh && shouldHMR) {
-    wrapSourceInRefreshRuntime(id, result, options, shouldHMR)
+function wrapSourceInRefreshRuntimeWeb(id: string, result: Output, hasRefreshRuntime: boolean) {
+  const sourceMap = result.map ? JSON.parse(result.map) : undefined
+  if (sourceMap) {
+    sourceMap.mappings = ';;' + sourceMap.mappings
   }
 
-  // TODO bring back?
-  // if (result.map) {
-  //   const sourceMap: SourceMapPayload = JSON.parse(result.map)
-  //   sourceMap.mappings = ';;;;;;;;' + sourceMap.mappings
-  //   return { code: result.code, map: sourceMap }
-  // }
+  result.code = `import * as RefreshRuntime from "${runtimePublicPath}";
 
-  return { code: result.code }
+${result.code}`
+
+  if (hasRefreshRuntime) {
+    if (sourceMap) {
+      sourceMap.mappings = ';;;;;;' + sourceMap.mappings
+    }
+    result.code = `if (!window.$RefreshReg$) throw new Error("React refresh preamble was not loaded. Something is wrong.");
+const prevRefreshReg = window.$RefreshReg$;
+const prevRefreshSig = window.$RefreshSig$;
+window.$RefreshReg$ = RefreshRuntime.getRefreshReg("${id}");
+window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+
+${result.code}
+
+window.$RefreshReg$ = prevRefreshReg;
+window.$RefreshSig$ = prevRefreshSig;
+`
+  }
+
+  result.code += `
+RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+  RefreshRuntime.registerExportsForReactRefresh("${id}", currentExports);
+  import.meta.hot.accept((nextExports) => {
+    if (!nextExports) return;
+    const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("${id}", currentExports, nextExports);
+    if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+  });
+});
+`
+
+  return { code: result.code, map: sourceMap }
+}
+
+function wrapSourceInRefreshRuntimeNative(
+  id: string,
+  result: Output,
+  options: Options,
+  hasRefreshRuntime: boolean
+) {
+  const postfixCode = `if (module.hot) {
+  if (module.hot.accept) {
+    module.hot.accept((nextExports) => {
+      RefreshRuntime.performReactRefresh()
+    });
+  }
+}`
+
+  if (hasRefreshRuntime) {
+    // do we need this vite-native-client here? cant we do this on its own?
+    const prefixCode = `const RefreshRuntime = __cachedModules["react-refresh/cjs/react-refresh-runtime.development"];
+const prevRefreshReg = globalThis.$RefreshReg$;
+const prevRefreshSig = globalThis.$RefreshSig$ || (() => {
+  console.info("no react refresh setup!")
+  return (x) => x
+});
+globalThis.$RefreshReg$ = (type, id) => RefreshRuntime.register(type, "${id}" + " " + id);
+globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+module.url = '${id}'
+module.hot = createHotContext(module.url)`
+
+    const sourceMap = result.map ? JSON.parse(result.map) : undefined
+
+    if (sourceMap) {
+      // we need ";" equal to number of lines added to the top
+      const prefixLen = prefixCode.split('\n').length + 1
+      sourceMap.mappings = new Array(prefixLen).fill(';').join('') + sourceMap.mappings
+    }
+
+    return {
+      code: `${prefixCode}
+${result.code}
+
+if (module.hot) {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+  globalThis['lastHmrExports'] = JSON.stringify(Object.keys(exports))
+}
+
+${postfixCode}
+`,
+      map: sourceMap,
+    }
+  }
+
+  result.code += postfixCode
+  return result
 }
 
 const SWC_ENV = {
@@ -230,112 +332,6 @@ const refreshContentRE = /\$Refresh(?:Reg|Sig)\$\(/
 
 function shouldSourceMap() {
   return process.env.VXRN_ENABLE_SOURCE_MAP === '1'
-}
-
-function wrapSourceInRefreshRuntime(
-  id: string,
-  result: Output,
-  options: Options,
-  shouldHMR: boolean
-) {
-  if (options.environment === 'client' || options.environment === 'ssr') {
-    return wrapSourceInRefreshRuntimeWeb(id, result, shouldHMR)
-  }
-  return wrapSourceInRefreshRuntimeNative(id, result, options, shouldHMR)
-}
-
-function wrapSourceInRefreshRuntimeWeb(id: string, result: Output, shouldHMR: boolean) {
-  const sourceMap: SourceMapPayload = JSON.parse(result.map!)
-  sourceMap.mappings = ';;' + sourceMap.mappings
-
-  result.code = `import * as RefreshRuntime from "${runtimePublicPath}";
-
-${result.code}`
-
-  if (shouldHMR) {
-    sourceMap.mappings = ';;;;;;' + sourceMap.mappings
-    result.code = `if (!window.$RefreshReg$) throw new Error("React refresh preamble was not loaded. Something is wrong.");
-const prevRefreshReg = window.$RefreshReg$;
-const prevRefreshSig = window.$RefreshSig$;
-window.$RefreshReg$ = RefreshRuntime.getRefreshReg("${id}");
-window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
-
-${result.code}
-
-window.$RefreshReg$ = prevRefreshReg;
-window.$RefreshSig$ = prevRefreshSig;
-`
-  }
-
-  result.code += `
-RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
-  RefreshRuntime.registerExportsForReactRefresh("${id}", currentExports);
-  import.meta.hot.accept((nextExports) => {
-    if (!nextExports) return;
-    const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("${id}", currentExports, nextExports);
-    if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
-  });
-});
-`
-}
-
-function wrapSourceInRefreshRuntimeNative(
-  id: string,
-  result: Output,
-  options: Options,
-  shouldHMR: boolean
-) {
-  const prefixCode =
-    options.mode === 'build'
-      ? `
-  import 'react-native'
-  import 'react'
-  import '@vxrn/vite-native-client'
-  `
-      : ``
-
-  if (options.production) {
-    return `
-${prefixCode}
-module.url = '${id}'
-${result.code}
-`
-  }
-
-  if (shouldHMR) {
-    result.code = `const RefreshRuntime = __cachedModules["react-refresh/cjs/react-refresh-runtime.development"];
-  const prevRefreshReg = globalThis.$RefreshReg$;
-  const prevRefreshSig = globalThis.$RefreshSig$ || (() => {
-    console.info("no react refresh setup!")
-    return (x) => x
-  });
-  globalThis.$RefreshReg$ = (type, id) => RefreshRuntime.register(type, "${id}" + " " + id);
-  globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
-
-${prefixCode}
-
-  module.url = '${id}'
-  module.hot = createHotContext(module.url)
-
-${result.code}
-
-  if (module.hot) {
-    globalThis.$RefreshReg$ = prevRefreshReg;
-    globalThis.$RefreshSig$ = prevRefreshSig;
-    globalThis['lastHmrExports'] = JSON.stringify(Object.keys(exports))
-  }
-`
-  }
-
-  result.code = `${result.code}
-
-if (module.hot) {
-  if (module.hot.accept) {
-    module.hot.accept((nextExports) => {
-      RefreshRuntime.performReactRefresh()
-    });
-  }
-}`
 }
 
 function getParser(id: string, forceJSX = false) {

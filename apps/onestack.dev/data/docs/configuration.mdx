@@ -313,7 +313,7 @@ We set up `alias` based on environment:
 
 - `react-native` => `react-native-web` for web environments
 
-We also detect if you have a PostCSS config file (js, ts, or json) and set the `css` config:
+We also detect if you have a PostCSS config file (js, ts, or json) and set the `css`. The internal logic is something like:
 
 ```tsx
 {

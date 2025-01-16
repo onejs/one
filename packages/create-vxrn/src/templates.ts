@@ -45,6 +45,20 @@ export const templates = [
   },
 
   {
+    title: `Minimal Tailwind`,
+    value: 'Tailwind',
+    type: 'included-in-monorepo',
+    hidden: false,
+    repo: {
+      url: `https://github.com/onejs/one.git`,
+      sshFallback: `git@github.com:onejs/one.git`,
+      dir: [`examples`, `one-tailwind`],
+      branch: 'main',
+    },
+    ...BasicTemplateSteps,
+  },
+
+  {
     title: `Fullstack Traditional - Drizzle, Postgres, Tamagui`,
     value: 'Recommended',
     type: 'included-in-monorepo',
