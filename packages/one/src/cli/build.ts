@@ -15,13 +15,11 @@ import {
 } from 'vxrn'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
-import type { LoaderProps, RenderApp } from '../types'
-import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
-import { replaceLoader } from '../vite/replaceLoader'
 import type { One } from '../vite/types'
+import { buildPage } from './buildPage'
 import { labelProcess } from './label-process'
 
 const { ensureDir, readFile, outputFile } = FSExtra
@@ -213,32 +211,13 @@ export async function build(args: {
 
   console.info(`\n 🔨 build static routes\n`)
 
-  let render: RenderApp | null = null
-  const entryServer = vxrnOutput.serverEntry
-
-  try {
-    const serverImport = await import(entryServer)
-
-    render =
-      serverImport.default.render ||
-      // for an unknown reason this is necessary
-      serverImport.default.default?.render
-
-    if (typeof render !== 'function') {
-      console.error(`❌ Error: didn't find render function in entry`, serverImport)
-      process.exit(1)
-    }
-  } catch (err) {
-    console.error(`❌ Error importing the root entry:`)
-    console.error(`  This error happened in the built file: ${entryServer}`)
-    // @ts-expect-error
-    console.error(err['stack'])
-    process.exit(1)
-  }
-
   const staticDir = join(`dist/static`)
   const clientDir = join(`dist/client`)
   await ensureDir(staticDir)
+
+  if (!vxrnOutput.serverOutput) {
+    throw new Error(`No server output`)
+  }
 
   const outputEntries = [...vxrnOutput.serverOutput.entries()]
 
@@ -428,113 +407,30 @@ export async function build(args: {
       console.info(`paramsList`, JSON.stringify(paramsList, null, 2))
     }
 
-    for (const params of paramsList) {
-      const cleanId = relativeId.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
-      const path = getPathnameFromFilePath(cleanId, params, foundRoute.type === 'ssg')
-      const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
-      const clientJsPath = join(`dist/client`, clientManifestEntry.file)
-      const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
-
-      let loaderData = {}
-
-      try {
+    const built = await Promise.all(
+      paramsList.map((params) => {
+        const cleanId = relativeId.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
+        const path = getPathnameFromFilePath(cleanId, params, foundRoute.type === 'ssg')
         console.info(`  ↦ route ${path}`)
-
-        const cleanPath = path === '/' ? path : removeTrailingSlash(path)
-
-        const preloadPath = getPreloadPath(path)
-
-        // todo await optimize
-        await FSExtra.writeFile(
-          join(clientDir, preloadPath),
-          preloads.map((preload) => `import "${preload}"`).join('\n')
-        )
-
-        const middlewares = (foundRoute.middlewares || []).map(
-          (x) => builtMiddlewares[x.contextKey]
-        )
-
-        builtRoutes.push({
-          type: foundRoute.type,
-          routeFile: foundRoute.file,
-          middlewares,
-          cleanPath,
-          preloadPath,
-          clientJsPath,
-          serverJsPath,
-          htmlPath,
-          loaderData,
-          params,
+        return buildPage(
+          vxrnOutput.serverEntry,
           path,
+          relativeId,
+          params,
+          foundRoute,
+          clientManifestEntry,
+          staticDir,
+          clientDir,
+          builtMiddlewares,
+          serverJsPath,
           preloads,
-        })
-
-        if (exported.loader) {
-          loaderData = (await exported.loader?.({ path, params })) ?? null
-          const code = await readFile(clientJsPath, 'utf-8')
-          const withLoader =
-            // super dirty to quickly make ssr loaders work until we have better
-            `
-if (typeof document === 'undefined') globalThis.document = {}
-` +
-            replaceLoader({
-              code,
-              loaderData,
-            })
-          const loaderPartialPath = join(clientDir, getLoaderPath(path))
-          await outputFile(loaderPartialPath, withLoader)
-        }
-
-        // ssr, we basically skip at build-time and just compile it the js we need
-        if (foundRoute.type !== 'ssr') {
-          const loaderProps: LoaderProps = { path, params }
-          // importing resetState causes issues :/
-          globalThis['__vxrnresetState']?.()
-
-          if (foundRoute.type === 'ssg') {
-            const html = await render({
-              path,
-              preloads,
-              loaderProps,
-              loaderData,
-              css: allCSS,
-              mode: 'ssg',
-            })
-            await outputFile(htmlOutPath, html)
-            continue
-          }
-
-          if (foundRoute.type === 'spa') {
-            await outputFile(
-              htmlOutPath,
-              `<html><head>
-              ${constants.getSpaHeaderElements({ serverContext: { loaderProps, loaderData } })}
-              ${preloads
-                .map((preload) => `   <script type="module" src="${preload}"></script>`)
-                .join('\n')}
-              ${allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')}
-            </head></html>`
-            )
-          }
-        }
-      } catch (err) {
-        const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
-
-        console.error(
-          `Error building static page at ${path} with id ${relativeId}:
-
-${errMsg}
-
-  loaderData:
-
-${JSON.stringify(loaderData || null, null, 2)}
-  params:
-
-${JSON.stringify(params || null, null, 2)}`
+          allCSS
         )
-        console.error(err)
-        process.exit(1)
-      }
+      })
+    )
+
+    for (const info of built) {
+      builtRoutes.push(info)
     }
   }
 
@@ -640,10 +536,6 @@ compatibility_date = "2024-12-05"
   }
 
   console.info(`\n\n  💛 build complete\n\n`)
-}
-
-function removeTrailingSlash(path: string) {
-  return path.endsWith('/') ? path.slice(0, path.length - 1) : path
 }
 
 async function moveAllFiles(src: string, dest: string) {
