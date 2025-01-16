@@ -1,5 +1,6 @@
 1.0:
 
+  - we hit network for loaders even if they don't exist, need to ship info about loaders existing to clients to avoid those requests
   - root layout doesnt HMR
   - hmr native tamagui example gives:
     Error: [vite] cannot find entry point module 'virtual:one-entry'.
@@ -7,6 +8,8 @@
     - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
   - restore GestureHandlerRootView
   - enable StrictMode
+  - lower priority useLoader(loader, { suspense: false, disable: true })
+    - useLoaderState() or change to array return in v1
 
   - tests
     - 20-40 deps, native + web (ssr) (see weird-deps for some)
@@ -21,7 +24,6 @@
     - symbolicator
     - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
     - better rebuild module caching
-    - would be nice to get native bottom tabs and native sheet as options
 
   - web
     - test app basic ssr needs fixing

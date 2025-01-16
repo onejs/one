@@ -55,15 +55,22 @@ The main difference from loaders is that you can set this data from anywhere, an
 ```tsx fileName=app/index.tsx
 import { setClientData, useLoader } from 'one'
 
-// prefer loaders for root-level data loading
+export default () => {
+  const loadedData = useLoader(loader)
+  const hookData = useHookData()
+
+  // ...
+}
+
+// prefer loaders in your app when possible, easier to keep data local and typed:
 export const loader = async () => {
   return {
-    data: await fetchOtherData()
+    data: await fetchLoaderData()
   }
 }
 
-// use setClientData and getClientData for one-off hooks
-const useSomeData = () => {
+// for libraries, or times where you want to pass data to the client side from hooks
+const useHookData = () => {
   const id = useId()
 
   if (typeof window === 'undefined') {
@@ -74,13 +81,6 @@ const useSomeData = () => {
 
   // this will be available on first render on the client
   return getClientData(id)
-}
-
-export default () => {
-  const loadedData = useLoader(loader)
-  const otherData = useSomeData()
-
-  // ...
 }
 ```
 
