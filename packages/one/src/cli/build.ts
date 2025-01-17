@@ -407,12 +407,14 @@ export async function build(args: {
       console.info(`paramsList`, JSON.stringify(paramsList, null, 2))
     }
 
-    const built = await Promise.all(
-      paramsList.map((params) => {
-        const cleanId = relativeId.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
-        const path = getPathnameFromFilePath(cleanId, params, foundRoute.type === 'ssg')
-        console.info(`  ↦ route ${path}`)
-        return buildPage(
+    const built: One.RouteBuildInfo[] = []
+
+    for (const params of paramsList) {
+      const cleanId = relativeId.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
+      const path = getPathnameFromFilePath(cleanId, params, foundRoute.type === 'ssg')
+      console.info(`  ↦ route ${path}`)
+      built.push(
+        await buildPage(
           vxrnOutput.serverEntry,
           path,
           relativeId,
@@ -426,8 +428,8 @@ export async function build(args: {
           preloads,
           allCSS
         )
-      })
-    )
+      )
+    }
 
     for (const info of built) {
       builtRoutes.push(info)
