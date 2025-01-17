@@ -10,6 +10,8 @@ import { SocialLinksRow } from '~/features/site/SocialLinksRow'
 import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
 
 const SimpleButton = styled(View, {
+  role: 'button',
+  cursor: 'pointer',
   pe: 'auto',
   w: 42,
   h: 42,
