@@ -23,6 +23,7 @@
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
     "@babel/runtime": "^7.26.0",
+    "@react-native-community/cli": "15.1.3",
     "@react-native-community/template": "^0.76.5",
     "@react-native/babel-preset": "0.73.19",
     "@react-native/metro-config": "0.73.3",

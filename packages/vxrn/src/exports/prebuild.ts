@@ -2,6 +2,7 @@ import { resolvePath } from '@vxrn/resolve'
 import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
 import FSExtra from 'fs-extra'
 import path from 'node:path'
+import colors from 'picocolors'
 import { fillOptions } from '../utils/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 import { generateForPlatform } from './prebuildWithoutExpo'
@@ -180,6 +181,32 @@ Android:
 
   //   console.info(`Note: detected monorepo and build adjusted scripts.`)
   // }
+
+  // See: https://github.com/facebook/react-native/pull/45464
+  try {
+    resolvePath('@react-native-community/cli', root)
+  } catch (e) {
+    if (isMissingCliDependency(e)) {
+      warnMissingCliDependency()
+    } else {
+      throw e
+    }
+  }
+}
+
+function isMissingCliDependency(error) {
+  return error.code === 'MODULE_NOT_FOUND' && /@react-native-community\/cli/.test(error.message)
+}
+
+function warnMissingCliDependency() {
+  console.warn(`
+${colors.red('⚠')}️ To build the app, ${colors.dim('react-native')} depends on ${colors.dim('@react-native-community/cli')} for cli commands. Please update your ${colors.dim('package.json')} to include:
+${colors.white(
+  colors.bold(`
+  "devDependencies": {
+    "@react-native-community/cli": "latest",
+  }`)
+)}`)
 }
 
 export async function replaceInUTF8File(filePath: string, findThis: string, replaceWith: string) {
