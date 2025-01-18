@@ -6,8 +6,25 @@ import { SearchableInput, SearchableList, SearchableListItem } from '~/interface
 import { updateSessionState, useSessionState } from '~/state/session'
 
 export const MainMessageInput = () => {
+  const { showHotMenu } = useSessionState()
+
   return (
-    <XStack pos="absolute" b={0} l={252} r={0}>
+    <XStack
+      y={2}
+      animation="quickest"
+      pos="absolute"
+      transformOrigin="right center"
+      b={0}
+      scale={1}
+      l={252}
+      r={0}
+      x={0}
+      {...(showHotMenu && {
+        y: -12,
+        x: -12,
+        scale: 1.02,
+      })}
+    >
       <HotMenuContent />
       <YStack w="100%" pos="relative" zi={100_000}>
         <MessageInput />
@@ -28,27 +45,28 @@ const HotMenuContent = () => {
 
   return (
     <YStack
-      animation="quicker"
+      animation="quickest"
       pos="absolute"
-      t={-400 + 80}
-      pb={80}
-      h={400 + 80}
+      t={-400 + 50}
+      pb={0}
+      h={400}
       r={0}
       l={0}
       o={0}
       y={0}
+      pe="none"
       zi={10_000}
       bg="$background075"
-      btrr="$7"
-      btlr="$7"
+      br="$7"
       ov="hidden"
       shadowColor="$shadowColor"
-      shadowRadius={20}
-      shadowOffset={{ height: -5, width: 0 }}
+      shadowRadius={40}
+      shadowOffset={{ height: 0, width: 0 }}
       style={{
         backdropFilter: 'blur(50px)',
       }}
       {...(showHotMenu && {
+        pe: 'auto',
         o: 1,
         y: 10,
       })}

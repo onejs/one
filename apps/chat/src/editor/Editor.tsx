@@ -35,6 +35,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
           ref={editorRef}
           preview="edit"
           height="100%"
+          style={{
+            borderRadius: 20,
+            paddingLeft: 10,
+            paddingRight: 10,
+            background: 'var(--background075)',
+            backdropFilter: 'blur(50px)',
+          }}
           minHeight={38}
           hideToolbar
           visibleDragbar={false}

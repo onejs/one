@@ -74,10 +74,11 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
 
   return (
     <YStack
-      btw={1}
+      // btw={1}
       f={1}
-      bc="$color4"
+      // bc="$color4"
       p="$2"
+      br="$4"
       gap="$2"
       {...(disabled && {
         opacity: 0.5,
