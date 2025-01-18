@@ -12849,6 +12849,7 @@ __metadata:
   dependencies:
     "@tamagui/build": "npm:^1.123.2"
     compare-versions: "npm:^4.1.3"
+    glob: "npm:^7.2.3"
     gray-matter: "npm:^4.0.3"
     hast-util-to-html: "npm:^8.0.3"
     hast-util-to-string: "npm:^2.0.0"
@@ -19062,7 +19063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.0.5, glob@npm:^7.1.1, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6":
+"glob@npm:^7.0.5, glob@npm:^7.1.1, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6, glob@npm:^7.2.3":
   version: 7.2.3
   resolution: "glob@npm:7.2.3"
   dependencies:
