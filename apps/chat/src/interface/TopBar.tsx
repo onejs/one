@@ -3,7 +3,7 @@ import { memo, useEffect, useRef, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { H1, Input, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
-import { HotMenu } from '~/interface/hotmenu/HotMenu'
+import { HotMenuButton } from '~/interface/hotmenu/HotMenuButton'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { useCurrentServer } from '~/state/server/useCurrentServer'
 import { updateUserState, useUserState } from '~/state/user'
@@ -53,7 +53,7 @@ export const TopBar = memo(() => {
       <XStack pe="box-none" gap="$3" ai="center">
         <XStack ai="center" gap="$2">
           <TooltipSimple label="Menu">
-            <HotMenu />
+            <HotMenuButton />
           </TooltipSimple>
 
           {isTauri && (

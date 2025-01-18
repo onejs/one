@@ -407,13 +407,11 @@ export async function build(args: {
       console.info(`paramsList`, JSON.stringify(paramsList, null, 2))
     }
 
-    const built: One.RouteBuildInfo[] = []
-
     for (const params of paramsList) {
       const cleanId = relativeId.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
       const path = getPathnameFromFilePath(cleanId, params, foundRoute.type === 'ssg')
       console.info(`  ↦ route ${path}`)
-      built.push(
+      builtRoutes.push(
         await buildPage(
           vxrnOutput.serverEntry,
           path,
@@ -429,10 +427,6 @@ export async function build(args: {
           allCSS
         )
       )
-    }
-
-    for (const info of built) {
-      builtRoutes.push(info)
     }
   }
 

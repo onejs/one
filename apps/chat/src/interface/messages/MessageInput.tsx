@@ -20,6 +20,8 @@ import { messageInputEmitter, messageReplyEmitter } from './emitters'
 import { MessageInputReply } from './MessageInputReply'
 import { messagesListEmitter } from './MessagesList'
 import { handleKeyboardEscape } from '~/keyboard/handleKeyboardEscape'
+import { getSessionState, updateSessionState } from '../../state/session'
+import { dialogEmitter } from '../dialogs/shared'
 
 let mainInputRef: EditorRef | null = null
 
@@ -54,6 +56,14 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
     }
   }, [channel, inThread])
 
+  dialogEmitter.use((value) => {
+    if (value.type === 'closed') {
+      setTimeout(() => {
+        mainInputRef?.textarea?.focus()
+      })
+    }
+  })
+
   messageInputEmitter.use((value) => {
     if (value.type === 'focus') {
       setTimeout(() => {
@@ -65,6 +75,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   return (
     <YStack
       btw={1}
+      f={1}
       bc="$color4"
       p="$2"
       gap="$2"
@@ -77,9 +88,26 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
 
       <Editor
         ref={inputRef}
-        onKeyDown={(e) => {
+        onKeyUp={(e) => {
           const key = e.key
+          const text = inputRef.current?.textarea?.['value'] as string
+
+          // if we opened hot menu by typing, close it when cleared
+          if (!text && getSessionState().showHotMenu === 'from-input') {
+            updateSessionState({
+              showHotMenu: false,
+            })
+          }
+
           switch (key) {
+            case '/': {
+              if (text[0] === '/') {
+                updateSessionState({
+                  showHotMenu: 'from-input',
+                })
+              }
+              break
+            }
             case 'ArrowUp': {
               messagesListEmitter.emit({
                 type: 'move',

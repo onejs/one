@@ -27,6 +27,7 @@ export type DialogRedirectToTauri = {
 }
 
 export type DialogType =
+  | { type: 'closed' }
   | DialogConfirmType
   | DialogCreateServerType
   | DialogJoinServerType
