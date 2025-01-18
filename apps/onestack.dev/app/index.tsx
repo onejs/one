@@ -89,6 +89,7 @@ export default function HomePage() {
 
               <Link href="/docs/introduction" asChild>
                 <Button
+                  theme="yellow"
                   size="$5"
                   bg="$color2"
                   br="$10"
@@ -109,8 +110,12 @@ export default function HomePage() {
                     },
                   }}
                 >
-                  <ButtonText $sm={{ dsp: 'none' }}>Get started</ButtonText>
-                  <ButtonText $gtSm={{ dsp: 'none' }}>Docs</ButtonText>
+                  <ButtonText ff="$mono" $sm={{ dsp: 'none' }}>
+                    Get started
+                  </ButtonText>
+                  <ButtonText ff="$mono" $gtSm={{ dsp: 'none' }}>
+                    Docs
+                  </ButtonText>
                 </Button>
               </Link>
             </XStack>
@@ -129,31 +134,76 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View gap="$4">
-          <PrettyTextBiggest color="$color13" mt={30} mb={-10} transformOrigin="left center">
-            Easy, simple &&nbsp;fast cross&#8209;platform&nbsp;apps.
+        <View theme="yellow" gap="$4">
+          <PrettyTextBiggest
+            fontFamily="$mono"
+            fow="800"
+            size="$10"
+            lh="$11"
+            color="$accentColor"
+            mt={30}
+            mb={-10}
+            transformOrigin="left center"
+          >
+            <span
+              style={{
+                display: 'inline-flex',
+                fontSize: '50%',
+                lineHeight: '50%',
+                transform: 'translateY(-4px)',
+              }}
+            >
+              &gt;
+            </span>{' '}
+            share more code
+            <br />
+            <span
+              style={{
+                display: 'inline-flex',
+                fontSize: '50%',
+                lineHeight: '50%',
+                transform: 'translateY(-4px)',
+              }}
+            >
+              &gt;
+            </span>{' '}
+            ship better apps
+            <br />
+            <span
+              style={{
+                display: 'inline-flex',
+                fontSize: '50%',
+                lineHeight: '50%',
+                transform: 'translateY(-4px)',
+              }}
+            >
+              &gt;
+            </span>{' '}
+            React&nbsp;Native + web
+            <br />
+            <span
+              style={{
+                display: 'inline-flex',
+                fontSize: '50%',
+                lineHeight: '50%',
+                transform: 'translateY(-4px)',
+              }}
+            >
+              &gt;
+            </span>{' '}
+            on Vite
           </PrettyTextBiggest>
 
-          <PrettyTextBigger intro>
-            One&nbsp;is&nbsp;a&nbsp;React framework for web and{' '}
-            <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint> in a
-            single Vite plugin. Featuring&nbsp;
-            <Hint tint="green" hintContents="Unified file system routes, web and native.">
-              universal,
-            </Hint>{' '}
-            typed <Link href="/docs/routing">file-system routes</Link> across{' '}
-            <Hint tint="purple" hintContents="SSG - Rendered to HTML during build.">
-              static
-            </Hint>
-            ,{' '}
-            <Hint tint="red" hintContents="SSR - Rendered to HTML for each request.">
-              server
-            </Hint>
-            , and{' '}
-            <Hint tint="pink" hintContents="SPA - No servers or build, just client-side.">
-              client
-            </Hint>{' '}
-            pages, plus a smart new solution&nbsp;to&nbsp;data.
+          <PrettyTextBigger ff="$mono" color="$color12">
+            One aims to make targeting both React Native and web as simple as possible. For now it's
+            an early experiment in making <Link href="https://vite.dev/">Vite</Link> replace Metro
+            (using our <Link href="https://vxrn.dev">vxrn</Link> library), adding{' '}
+            <Link href="/docs/routing">file-system routing</Link>,{' '}
+            <Link href="/docs/routing-modes">render modes</Link>,{' '}
+            <Link href="/docs/routing-loader">loaders</Link>,{' '}
+            <Link href="/docs/routing-middleware">middleware</Link>, a{' '}
+            <Link href="/docs/">CLI</Link>, a Hono production server, and{' '}
+            <Link href="/docs/features">more</Link>.
           </PrettyTextBigger>
 
           <XStack
@@ -163,12 +213,9 @@ export default function HomePage() {
             jc="center"
             gap="$1"
             px="$6"
-            bw={0.5}
             bc="$color4"
             py={12}
           >
-            <Corners />
-
             <View
               pos="absolute"
               t={-20}
@@ -331,7 +378,7 @@ const InfoBoxes = () => {
   return (
     <XStack mx="$-8" fw="wrap" rowGap="$1" columnGap="$5" mb="$13" $sm={{ fd: 'column', mx: 0 }}>
       <InfoCard title="Typed  FS Routing" Icon={FolderCheck}>
-        Simple file-system routes with nested layouts and groups, fully typed.
+        Simple file-system routing, nested layouts and groups, fully typed.
       </InfoCard>
       <InfoCard title="Routing Modes" Icon={FileStack}>
         SPA, SSR, or SSG? One lets you choose - globally <em>and</em> per-page.
@@ -369,9 +416,7 @@ const InfoCard = ({ title, Icon, children }) => {
       // bg="$background075"
       $sm={{ w: '100%', mb: '$2' }}
     >
-      <YStack fullscreen o={0.25}>
-        {/* <Corners /> */}
-      </YStack>
+      <YStack fullscreen o={0.25}></YStack>
       <YStack gap="$2" p="$4">
         <Icon als="flex-end" mb={-20} o={0.1} size={28} />
         <H5 size="$7" color="$color13" mt={-10}>
@@ -447,7 +492,6 @@ function Video() {
         containerType="normal"
         onPress={() => setShowVideo(true)}
         zi={0}
-        className="video-glow"
       >
         <View
           animation="quick"
@@ -510,42 +554,6 @@ function Video() {
             </Circle>
           </View>
         </View>
-        <Paragraph
-          animation="quick"
-          ff="$perfectlyNineties"
-          size="$6"
-          ta="center"
-          w={340}
-          zi={2}
-          px="$5"
-          pt={6}
-          $theme-dark={{
-            bg: '$color9',
-            color: '$color2',
-          }}
-          pb={11}
-          bg="$color2"
-          br="$8"
-          shac="$shadowColorStrong"
-          shar={10}
-          rotate="-1deg"
-          cur="pointer"
-          $group-card-hover={{
-            rotate: '-3deg',
-            y: -5,
-            scale: 1.05,
-          }}
-          $group-card-press={{
-            rotate: '-1deg',
-            y: 0,
-            scale: 0.97,
-          }}
-          $sm={{
-            size: '$6',
-          }}
-        >
-          Watch the demo
-        </Paragraph>
       </View>
     </>
   )

@@ -2,9 +2,7 @@
 title: Configuration
 ---
 
-One is a single Vite plugin exported from `one/vite`, almost all configuration is done through the plugin in your `vite.config.ts`, which takes a single object with entirely optional properties:
-
-## `one`
+One is entirely configured through a Vite plugin:
 
 ```tsx fileName=vite.config.ts
 import type { UserConfig } from 'vite'
@@ -156,13 +154,13 @@ export default {
 } satisfies UserConfig
 ```
 
-Note that some of this configuration is ultimately stored into [environment variables](/docs/environment) for you.
+Note that some of this configuration is ultimately stored into [environment variables](/docs/environment) automatically, accessible in your apps and website.
 
-## app
+## native
 
-The app object allows you to configure your native apps.
+The native object allows you to configure your native apps.
 
-### app.key
+### native.key
 
 One will set up your React Native app to run via `AppRegistry.registerComponent(app.key)`.
 

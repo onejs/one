@@ -1,7 +1,7 @@
 import { Plus, Trash } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useState } from 'react'
-import { Button, Circle, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
+import { Button, Circle, H3, H5, Input, Sheet, SizableText, View, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
 import { randomId } from '~/helpers/randomId'
@@ -23,71 +23,87 @@ import { SearchableInput, SearchableList, SearchableListItem } from '../Searchab
 import { Tabs } from '../tabs/Tabs'
 import { AvatarUpload } from '../upload/AvatarUpload'
 import { UserRow } from '../users/UserRow'
+import { useUserState } from '../../state/user'
 
 const actionEmitter = createEmitter<'create-role'>()
 
 export const ServerSettingsPane = () => {
   const server = useCurrentServer()
   const [tab, setTab] = useState('settings')
+  const [userState] = useUserState()
 
   if (!server) {
     return null
   }
 
   return (
-    <YStack
-      h="100%"
-      data-tauri-drag-region
-      pos="absolute"
-      t={0}
-      r={-hiddenPanelWidth}
-      w={hiddenPanelWidth}
-      p="$4"
-      gap="$4"
-    >
-      <XStack pe="none" ai="center" gap="$2">
-        <Avatar size={28} image={server.icon} />
-        <H3 userSelect="none">{server?.name}</H3>
+    <>
+      <YStack fullscreen zi={99_000} bg="$shadow3" />
+      <YStack
+        h="100%"
+        data-tauri-drag-region
+        animation="quick"
+        pos="absolute"
+        r={0}
+        bg="$color2"
+        elevation="$4"
+        t={0}
+        o={0}
+        x={-hiddenPanelWidth}
+        w={hiddenPanelWidth}
+        zi={100_000}
+        p="$4"
+        gap="$4"
+        {...(userState.showSidePanel && {
+          x: 0,
+          o: 1,
+          pe: 'auto',
+        })}
+      >
+        <XStack pe="none" ai="center" gap="$2">
+          <Avatar size={28} image={server.icon} />
+          <H3 userSelect="none">{server?.name}</H3>
 
-        <XStack f={1} />
+          <XStack f={1} />
 
-        <XStack ai="center" pe="auto">
-          {tab === 'permissions' && (
-            <ButtonSimple
-              icon={Plus}
-              tooltip="Create new role"
-              onPress={() => {
-                actionEmitter.emit('create-role')
-              }}
-            >
-              Role
-            </ButtonSimple>
-          )}
+          <XStack ai="center" pe="auto">
+            {tab === 'permissions' && (
+              <ButtonSimple
+                icon={Plus}
+                tooltip="Create new role"
+                onPress={() => {
+                  actionEmitter.emit('create-role')
+                }}
+              >
+                Role
+              </ButtonSimple>
+            )}
+          </XStack>
         </XStack>
-      </XStack>
 
-      {server && (
-        <Tabs
-          data-tauri-drag-region
-          initialTab="settings"
-          onValueChange={setTab}
-          tabs={[
-            { label: 'Settings', value: 'settings' },
-            { label: 'Permissions', value: 'permissions' },
-          ]}
-        >
-          <YStack pos="relative" f={1} w="100%">
-            <AlwaysVisibleTabContent active={tab} value="settings">
-              <SettingsServer server={server} />
-            </AlwaysVisibleTabContent>
+        {server && (
+          <Tabs
+            data-tauri-drag-region
+            initialTab="settings"
+            onValueChange={setTab}
+            tabs={[
+              { label: 'Settings', value: 'settings' },
+              { label: 'Permissions', value: 'permissions' },
+            ]}
+          >
+            <YStack pos="relative" f={1} w="100%">
+              <AlwaysVisibleTabContent active={tab} value="settings">
+                <SettingsServer server={server} />
+              </AlwaysVisibleTabContent>
 
-            <AlwaysVisibleTabContent active={tab} value="permissions">
-              <SettingsServerPermissions server={server} />
-            </AlwaysVisibleTabContent>
-          </YStack>
-        </Tabs>
-      )}
-    </YStack>
+              <AlwaysVisibleTabContent active={tab} value="permissions">
+                <SettingsServerPermissions server={server} />
+              </AlwaysVisibleTabContent>
+            </YStack>
+          </Tabs>
+        )}
+      </YStack>
+    </>
   )
 }
 
@@ -381,7 +397,7 @@ const SettingsServer = ({ server }: { server: Server }) => {
       </LabeledRow>
 
       <Button
-        theme="blue"
+        theme="accent"
         onPress={() => {
           console.warn('updating', name)
           zero.mutate.server.update({
