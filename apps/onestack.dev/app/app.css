@@ -52,7 +52,7 @@ body {
 
 a, [data-tint-link] {
   text-decoration: underline;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 0.5px;
   text-decoration-color: var(--color05);
   text-underline-offset: 4px;
   transition: all ease-in 100ms;
