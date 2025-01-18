@@ -11,28 +11,28 @@ export const Badge = styled(Paragraph, {
   variants: {
     variant: {
       red: {
-        bg: '$red',
-        color: '$redFg',
+        bg: '$red7',
+        color: '$red12',
       },
 
       blue: {
-        bg: '$blue',
-        color: '$blueFg',
+        bg: '$blue7',
+        color: '$blue12',
       },
 
       green: {
-        bg: '$green',
-        color: '$greenFg',
+        bg: '$green7',
+        color: '$green12',
       },
 
       purple: {
-        bg: '$purple',
-        color: '$purpleFg',
+        bg: '$purple7',
+        color: '$purple12',
       },
 
       pink: {
-        bg: '$pink',
-        color: '$pinkFg',
+        bg: '$pink7',
+        color: '$pink12',
       },
     },
   } as const,

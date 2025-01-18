@@ -6,7 +6,7 @@ import { themeTokenNumber } from '~/features/site/headerColors'
 export const LayoutDecorativeStripe = memo(() => {
   const pathname = usePathname()
   const isHome = pathname === '/'
-  const y = isHome ? -45 : -92
+  const y = isHome ? -62 : -79
 
   return (
     <YStack
@@ -32,8 +32,8 @@ export const LayoutDecorativeStripe = memo(() => {
     />
   )
 })
-const convex = getClipPath(0.15)[0]
-const concave = getClipPath(0.15)[1]
+const convex = getClipPath(0.05)[0]
+const concave = getClipPath(0.05)[1]
 
 function getClipPath(
   // adjust the bendyness
@@ -73,9 +73,9 @@ function getClipPath(
     // for the regular arc (bulging out at the top)
     const yFalse = cy - dyScaled
 
-    const xPercent = (x * 100).toFixed(4) + '%'
-    const yTruePercent = (yTrue * 100).toFixed(4) + '%'
-    const yFalsePercent = (yFalse * 100).toFixed(4) + '%'
+    const xPercent = (x * 100).toFixed(1) + '%'
+    const yTruePercent = (yTrue * 100).toFixed(1) + '%'
+    const yFalsePercent = (yFalse * 100).toFixed(1) + '%'
 
     pointsTrue.push(`${xPercent} ${yTruePercent}`)
     pointsFalse.push(`${xPercent} ${yFalsePercent}`)

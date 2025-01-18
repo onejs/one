@@ -107,25 +107,6 @@ const body = createMainFont(
   }
 )
 
-const perfectlyNineties = createFont({
-  family: '"Perfectly Nineties", "Times New Roman", serif',
-  size: {
-    4: 18,
-    5: 24,
-    6: 30,
-    7: 38,
-    8: 48,
-    9: 58,
-    10: 68,
-  },
-  weight: {
-    0: '400',
-  },
-  letterSpacing: {
-    0: 0,
-  },
-})
-
 const mono = createFont({
   ...body,
   family: '"IBM Plex Mono", Consolas, monospace, monospace',
@@ -138,5 +119,4 @@ export const fonts = {
   heading,
   body,
   mono,
-  perfectlyNineties,
 }

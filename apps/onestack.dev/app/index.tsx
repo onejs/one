@@ -97,7 +97,7 @@ export default function HomePage() {
                   animation="quickest"
                   containerType="normal"
                   gap={0}
-                  bw={0}
+                  bw={0.5}
                   bc="$color10"
                   $theme-light={{
                     hoverStyle: {
@@ -139,9 +139,9 @@ export default function HomePage() {
             fontFamily="$mono"
             fow="800"
             size="$10"
-            lh="$11"
+            lh="$12"
             color="$accentColor"
-            mt={30}
+            mt={20}
             mb={-10}
             transformOrigin="left center"
           >
@@ -195,15 +195,40 @@ export default function HomePage() {
           </PrettyTextBiggest>
 
           <PrettyTextBigger ff="$mono" color="$color12">
-            One aims to make targeting both React Native and web as simple as possible. For now it's
-            an early experiment in making <Link href="https://vite.dev/">Vite</Link> replace Metro
-            (using our <Link href="https://vxrn.dev">vxrn</Link> library), adding{' '}
-            <Link href="/docs/routing">file-system routing</Link>,{' '}
-            <Link href="/docs/routing-modes">render modes</Link>,{' '}
-            <Link href="/docs/routing-loader">loaders</Link>,{' '}
-            <Link href="/docs/routing-middleware">middleware</Link>, a{' '}
-            <Link href="/docs/">CLI</Link>, a Hono production server, and{' '}
-            <Link href="/docs/features">more</Link>.
+            One aims to make cross-platform apps as performant and simple as possible. For now, it's
+            an early experiment in having{' '}
+            <Link style={{ color: 'var(--color11)' }} href="https://vite.dev/">
+              Vite
+            </Link>{' '}
+            replace Metro (using our{' '}
+            <Link style={{ color: 'var(--color11)' }} href="https://vxrn.dev">
+              vxrn
+            </Link>{' '}
+            library), adding{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
+              file-system routing
+            </Link>
+            ,{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-modes">
+              render modes
+            </Link>
+            ,{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-loader">
+              loaders
+            </Link>
+            ,{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-middleware">
+              middleware
+            </Link>
+            , a{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/">
+              CLI
+            </Link>
+            , a Hono production server, and{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/features">
+              more
+            </Link>
+            .
           </PrettyTextBigger>
 
           <XStack
@@ -335,7 +360,7 @@ export default function HomePage() {
 
               <YStack>
                 <PrettyText
-                  ff="$perfectlyNineties"
+                  ff="$mono"
                   mb="$1"
                   mt="$-2"
                   className="text-underline-none"
@@ -554,6 +579,42 @@ function Video() {
             </Circle>
           </View>
         </View>
+        <Paragraph
+          animation="quick"
+          ff="$mono"
+          size="$6"
+          ta="center"
+          w={340}
+          zi={2}
+          px="$5"
+          pt={6}
+          $theme-dark={{
+            bg: '$color9',
+            color: '$color2',
+          }}
+          pb={11}
+          bg="$color2"
+          br="$8"
+          shac="$shadowColorStrong"
+          shar={10}
+          rotate="-1deg"
+          cur="pointer"
+          $group-card-hover={{
+            rotate: '-3deg',
+            y: -5,
+            scale: 1.05,
+          }}
+          $group-card-press={{
+            rotate: '-1deg',
+            y: 0,
+            scale: 0.97,
+          }}
+          $sm={{
+            size: '$6',
+          }}
+        >
+          Watch the demo
+        </Paragraph>
       </View>
     </>
   )
@@ -595,7 +656,7 @@ const CopyCommand = () => {
           onMouseLeave={() => setHovered(false)}
           px="$3"
           pt={27}
-          pb={17}
+          pb={27}
           br="$6"
           fd="row"
           ai="center"
@@ -622,6 +683,7 @@ const CopyCommand = () => {
             ff="$mono"
             color="inherit"
             fontSize={46}
+            lineHeight={46}
             ls={-2}
             lh={0}
             y={-3}
@@ -659,7 +721,6 @@ const CopyCommand = () => {
       <Tooltip.Content
         enterStyle={{ x: -2, y: 0, opacity: 0, scale: 0.9 }}
         exitStyle={{ x: -2, y: 0, opacity: 0, scale: 0.9 }}
-        bg="$color5"
         scale={1}
         x={0}
         y={-1}
@@ -673,7 +734,6 @@ const CopyCommand = () => {
           },
         ]}
       >
-        <Tooltip.Arrow />
         <Paragraph size="$2" lineHeight="$1">
           {hasNpxRunCommandCopied ? 'Copied!' : 'Copy'}
         </Paragraph>
