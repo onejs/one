@@ -161,14 +161,15 @@ jobs:
       #     export MAESTRO_DRIVER_STARTUP_TIMEOUT=180000 # 3 minutes
       #     maestro test maestro-flows/basic.yaml
 
-      # - name: Upload App
-      #   uses: actions/upload-artifact@v4.3.1
-      #   if: ${{ always() && steps.check-app.outcome == 'success' }}
-      #   continue-on-error: true
-      #   with:
-      #     name: release-app
-      #     path: |
-      #       ${{ needs.build-ios-test-container.outputs.built-app-path }}
+      # TODO: remove?
+      - name: Upload App
+        uses: actions/upload-artifact@v4.3.1
+        if: ${{ always() }}
+        continue-on-error: true
+        with:
+          name: ios-test-container-prod
+          path: |
+            ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
 
       # - name: Prepare Maestro Logs
       #   id: prepare-maestro-logs
