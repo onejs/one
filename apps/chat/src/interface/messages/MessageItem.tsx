@@ -142,7 +142,7 @@ export const MessageItem = memo(
             <SizableText f={1} ov="hidden">
               {isEditing ? (
                 <Editor
-                  onKeyDown={(e) => {
+                  onKeyUp={(e) => {
                     if (e.key === 'Escape') {
                       updateUserSetEditingMessage(undefined)
                     }

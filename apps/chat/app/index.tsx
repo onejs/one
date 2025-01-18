@@ -7,6 +7,7 @@ import { ServerSettingsPane } from '~/interface/settings/ServerSettingsPane'
 import { Sidebar } from '~/interface/sidebar/Sidebar'
 import { TopBar } from '~/interface/TopBar'
 import { useUserState } from '~/state/user'
+import { MainMessageInput } from '~/interface/main/MainMessageInput'
 
 export default function HomePage() {
   return (
@@ -17,6 +18,8 @@ export default function HomePage() {
         <Sidebar />
         <Main />
       </XStack>
+
+      <MainMessageInput />
 
       <RightSideHiddenPanel />
     </AppFrame>
