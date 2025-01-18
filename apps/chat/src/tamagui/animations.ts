@@ -76,8 +76,8 @@ export const animations = createAnimations({
     stiffness: 250,
   },
   quickest: {
-    damping: 14,
-    mass: 0.1,
-    stiffness: 380,
+    damping: 16,
+    mass: 0.7,
+    stiffness: 300,
   },
 })

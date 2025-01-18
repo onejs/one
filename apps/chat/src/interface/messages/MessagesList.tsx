@@ -1,6 +1,6 @@
 import { createEmitter } from '@vxrn/emitter'
 import { memo, useEffect, useLayoutEffect, useRef } from 'react'
-import { YStack } from 'tamagui'
+import { View, YStack } from 'tamagui'
 import { VList, type VListHandle } from 'virtua'
 import { useAuth } from '~/better-auth/authClient'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
@@ -138,12 +138,14 @@ export const MessagesList = memo(
       })
     }, [messages])
 
+    const count = messages.length
+
     return (
       <YStack ov="hidden" f={10}>
-        {!!messages.length && (
+        {!!count && (
           <VList
             ref={ref}
-            count={messages.length}
+            count={count + 1}
             reverse
             shift={isPrepend.current}
             overscan={10}
@@ -160,6 +162,12 @@ export const MessagesList = memo(
           >
             {(index) => {
               const message = messages[index]
+
+              // empty space at end
+              if (index === count) {
+                return <View h={64} w="100%" />
+              }
+
               const lastMessage = messages[index - 1]
 
               if (!message || !user || !channel) {

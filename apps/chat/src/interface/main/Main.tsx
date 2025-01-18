@@ -22,7 +22,6 @@ export const Main = memo(() => {
       <ChannelTopBar />
       <YStack mt={mainTopBarHeight} pos="relative" f={1} bg="$background05">
         <MainMessagesList />
-        <YStack h={60}></YStack>
         <MainOpenThread />
       </YStack>
     </YStack>
