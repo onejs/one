@@ -33,7 +33,7 @@ export const Pre = styled(YStack, {
   tag: 'pre',
   padding: '$4',
   borderRadius: '$4',
-  bg: '$background',
+  bg: '$color3',
 })
 
 class CollapseStore {
@@ -187,9 +187,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                   ) : (
                     <FileCode2 size={14} col="$color11" />
                   )}
-                  <Paragraph col="$color11">
-                    {isTerminalCommand ? 'Terminal' : fileName}
-                  </Paragraph>
+                  <Paragraph col="$color11">{isTerminalCommand ? 'Terminal' : fileName}</Paragraph>
                 </XStack>
               )}
 
@@ -205,8 +203,8 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                     backgroundColor="transparent"
                     f={1}
                     className={className}
-                    fontSize={14}
-                    lineHeight={22}
+                    fontSize={15}
+                    lineHeight={25}
                     {...rest}
                   >
                     {children}

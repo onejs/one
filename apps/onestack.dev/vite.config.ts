@@ -47,10 +47,6 @@ export default {
       components: ['tamagui'],
       config: './config/tamagui.config.ts',
       outputCSS: './app/tamagui.css',
-      themeBuilder: {
-        input: './config/themes.ts',
-        output: './config/themesOut.ts',
-      },
     }),
   ],
 } satisfies UserConfig

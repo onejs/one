@@ -31,7 +31,7 @@ const AppFrame = ({ children }: { children: any }) => {
 
   return (
     <AnimationDriver name="css">
-      <YStack h={0} f={1} x={userState?.showSidePanel ? -hiddenPanelWidth : 0} animation="quicker">
+      <YStack h={0} f={1} animation="quicker">
         <AnimationDriver name="spring">{children}</AnimationDriver>
       </YStack>
     </AnimationDriver>

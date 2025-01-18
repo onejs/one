@@ -1,10 +1,13 @@
-import './_layout.css'
 import '~/tamagui/tamagui.css'
+import './_layout.css'
 
 import { SchemeProvider } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
-import { isWeb, View } from 'tamagui'
 import { TamaguiRootProvider } from '../src/tamagui/TamaguiRootProvider'
+
+/**
+ * The root _layout.tsx filters <html /> and <body /> out on native
+ */
 
 export default function Layout() {
   return (

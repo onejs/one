@@ -3,6 +3,10 @@ import '~/code/styles/base.css'
 import '~/code/styles/tamagui.css'
 import './_layout.css'
 
+/**
+ * The root _layout.tsx filters <html /> and <body /> out on native
+ */
+
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar } from 'one'
 import { isWeb, TamaguiProvider } from 'tamagui'

@@ -22,7 +22,7 @@ export const Hint = ({
   const bg = `$${tint}` as ColorTokens
 
   return (
-    <Tooltip placement="top" allowFlip disableRTL offset={15} restMs={40} delay={40}>
+    <Tooltip placement="top" allowFlip disableRTL offset={15} restMs={40} delay={240}>
       <Tooltip.Trigger
         tag="span"
         display="inline"

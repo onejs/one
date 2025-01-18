@@ -11,6 +11,10 @@ import { DragDropFile } from '~/interface/upload/DragDropFile'
 import config from '~/tamagui/tamagui.config'
 import { useZeroEmit, zero } from '~/zero/zero'
 
+/**
+ * The root _layout.tsx filters <html /> and <body /> out on native
+ */
+
 export default function Layout() {
   return (
     <html lang="en-US">

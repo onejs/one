@@ -9,6 +9,7 @@ export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
   return (
     <Text
       tag="a"
+      ff="inherit"
       // always except-style
       asChild={asChild ? 'except-style' : false}
       className="t_Link"

@@ -41,9 +41,7 @@ function createMainFont<A extends GenericFont>(
   return createFont({
     family:
       '-apple-system, Inter, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    lineHeight: Object.fromEntries(
-      Object.entries(size).map(([k, v]) => [k, sizeLineHeight(v)])
-    ),
+    lineHeight: Object.fromEntries(Object.entries(size).map(([k, v]) => [k, sizeLineHeight(v)])),
     weight: {
       4: '300',
     },
@@ -130,7 +128,10 @@ const perfectlyNineties = createFont({
 
 const mono = createFont({
   ...body,
-  family: '"SF Mono", Consolas, monospace, monospace',
+  family: '"IBM Plex Mono", Consolas, monospace, monospace',
+  letterSpacing: {
+    // 0: -2,
+  },
 })
 
 export const fonts = {

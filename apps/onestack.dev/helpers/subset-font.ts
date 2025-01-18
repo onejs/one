@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { basename, join } from 'node:path'
 import subsetFont from 'subset-font'
 
@@ -13,10 +13,6 @@ export async function subset({
   inputFiles: string[]
   characters: string
 }) {
-  try {
-    await rm(outputDir, { recursive: true })
-  } catch {}
-  await mkdir(outputDir)
   console.info(`Subsetting`, inputFiles)
   await Promise.all(
     inputFiles.map(async (file) => {
@@ -31,8 +27,15 @@ export async function subset({
   )
 }
 
+// subset({
+//   inputFiles: ['./public/fonts/perfectlynineties.otf'],
+//   outputDir: './public/fonts',
+//   targetFormat: 'woff2',
+//   characters: `0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-=_+{}[]|\\/.,<>;:'"\``,
+// })
+
 subset({
-  inputFiles: ['./public/fonts/perfectlynineties.otf'],
+  inputFiles: ['./public/fonts/ibm-plex-mono.ttf'],
   outputDir: './public/fonts',
   targetFormat: 'woff2',
   characters: `0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-=_+{}[]|\\/.,<>;:'"\``,

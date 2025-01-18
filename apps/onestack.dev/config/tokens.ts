@@ -1,5 +1,4 @@
 import { createTokens } from 'tamagui'
-import { color } from './colors'
 
 export const size = {
   $0: 0,
@@ -92,7 +91,7 @@ const radius = {
 }
 
 export const tokens = createTokens({
-  color,
+  color: {},
   radius,
   zIndex,
   space,

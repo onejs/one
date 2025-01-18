@@ -169,9 +169,8 @@ const componentsIn = {
     <H2
       pos="relative"
       width={`fit-content` as any}
-      pt="$8"
+      pt="$6"
       mt="$2"
-      mb="$4"
       bbw={1}
       w="100%"
       pb="$4"
@@ -192,27 +191,13 @@ const componentsIn = {
   ),
 
   h4: (props) => (
-    <H4
-      pos="relative"
-      width={`fit-content` as any}
-      mt="$6"
-      mb="$3"
-      fow="400"
-      {...props}
-    />
+    <H4 pos="relative" width={`fit-content` as any} mt="$6" mb="$3" fow="400" {...props} />
   ),
 
   h5: (props) => <H5 mt="$4" {...props} />,
 
   p: (props) => (
-    <Paragraph
-      className="docs-paragraph"
-      display="block"
-      size="$6"
-      lh={30}
-      my="$2.5"
-      {...props}
-    />
+    <Paragraph className="docs-paragraph" display="block" size="$6" lh={30} my="$3" {...props} />
   ),
 
   hr: HR,
@@ -287,9 +272,7 @@ const componentsIn = {
   //   )
   // },
 
-  strong: (props) => (
-    <Paragraph tag="strong" fontSize="inherit" {...props} fontWeight="700" />
-  ),
+  strong: (props) => <Paragraph tag="strong" fontSize="inherit" {...props} fontWeight="700" />,
 
   img: ({ ...props }) => (
     <View tag="span" my="$6">

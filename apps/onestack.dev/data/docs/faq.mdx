@@ -4,33 +4,32 @@ title: FAQ
 
 ### Is this production ready?
 
-All features for 1.0 now work and half are well tested. We've been using it
-for [tamagui.dev](https://tamagui.dev) for 6 months or so. Native we'd like to think is stable summer 2025.
+No. We think it's fun to work with already, but if you are doing anything more than an experiment, we'd recommend
+using more [proven technology](https://tamagui.dev/takeout) 😉.
 
 ### What's breaking?
 
-There's a few things that we need to improve:
+Testing, hot reloading, and general node module [compatibility](/docs/configuration#deps) need work.
 
-- Hot reloading easily breaks.
-- Package compatibility - you'll likey need to use the [deps options](/docs/configuration#deps) as we fix issues.
+See the [Status documentation](/docs/status) for more.
 
-See the [Status documentation](/docs/status) for more on the general stability of the high level API surfaces.
+### Is this on Metro? Is it Expo Router?
 
-### How does it compare to Expo Router / Metro?
+No, One started as a fork of [Expo Router](https://docs.expo.dev/router/introduction/) to test and improve [vxrn](https://vxrn.dev). To test that we ported [tamagui.dev](https://tamagui.dev) to it and enjoyed it.
 
-One started as [vxrn](https://vxrn.dev), a library we made that let Vite serve React Native. To test if it worked well, we ported Expo Router and generally got it working. We didn't implement DOM components and a couple other features, but we did add things like [render modes](/docs/routing-modes), [loaders](/docs/routing-loader), [middlewares](/docs/routing-middlewarewares), and [other things](/docs/features).
-
-We added a CLI that serves and builds web, iOS and Android, and all the web features build to a production [Hono](https://hono.dev) server.
+To make that port work well we added [render modes](/docs/routing-modes), [loaders](/docs/routing-loader), [middlewares](/docs/routing-middlewares), a lot of configuration to make a large amount of node_modules work, a CLI, a production Hono server, and some other [smaller features](/docs/features).
 
 ### Why Vite?
 
-It feels light and simple, runs fast and is easy to customize. It has many web features that are all done well, relative to other bundlers, and the Vite types, documentation, type-documentation, RFC process, and commitment to community are all "god-tier".
+It feels light and simple, runs fast and is easy to customize. It has many web features that are all done really well, and Vite shines in all the details like types, documentation, type-doc, RFCs, pace, and community are all great.
 
 ### Will you support RSC?
 
-We benefit from a lot of complexity focus on server-rendering without RSC, and with [a smart data library](https://zero.rocicorp.dev) you can get many of the same features with better end-user performance and simpler code.
+In the best case scenario, we'd like to build our apps as though they were completely client-side, and have smart tools and libraries make them work fast. Mostly-client-side apps are great.
 
-We're open to a limited form of RSC that keeps things simple.
+We do have [SSR](/docs/)
+
+We think  helps avoid a lot of framework bloat, so we want to see if we can make a simpler to maintain framework by keeping our core light.
 
 ### What's the npm package?
 

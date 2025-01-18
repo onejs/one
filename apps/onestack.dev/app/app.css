@@ -18,10 +18,10 @@ body {
 :root {
   color-scheme: light dark;
   
-  --colorDeepDark: hsl(44, 28%, 8%);
+  --colorDeepDark: hsl(0, 0%, 63%);
   --colorDeepLight: #fff;
-  --bodyBgLight: #fbfbf8;
-  --bodyBgDark: #111113;
+  --bodyBgLight: #fff;
+  --bodyBgDark: #282828;
   --logoColorLight: #000;
   --logoColorDark: #fff;
   
@@ -171,21 +171,31 @@ h1 + h2 {
 
 .t_light .local-shadows {
   box-shadow:
-    0 0 0 7px color-mix(in srgb, var(--color1) 50%, transparent),
+    0 0 0 2px color-mix(in srgb, var(--color1) 50%, transparent),
     0 0 80px rgba(0,0,0,0.07),
     0 40px 40px rgba(0,0,0,0.02),
-    inset 0 0 100px var(--yellow4);
+    inset 0 0 100px var(--color2);
 }
 
 .t_dark .local-shadows {
   box-shadow:
-    0 0 0 7px color-mix(in srgb, var(--color1) 50%, transparent),
-    0 0 0 3px color-mix(in srgb, var(--color5) 8%, transparent),
-    0 0 200px color-mix(in srgb, var(--color1) 80%, transparent);
+    0 0 0 2px color-mix(in srgb, var(--color1) 50%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--color3) 8%, transparent),
+    0 0 50px color-mix(in srgb, var(--color1) 80%, transparent);
 }
 
 :root:root .is_Paragraph {
   text-wrap: pretty;
+}
+
+.grain {
+  background: var(--bodyBg) url(/grain.jpg) 10% 10% !important;
+  background-blend-mode: multiply;
+  opacity: 0.03;
+}
+
+.t_dark .grain {
+  opacity: 0.125;
 }
 
 .video-background {
