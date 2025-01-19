@@ -19,6 +19,7 @@ import {
   Portal,
   Spacer,
   Text,
+  Theme,
   Tooltip,
   View,
   XStack,
@@ -87,37 +88,33 @@ export default function HomePage() {
             <XStack ai="center" gap="$6" $sm={{ jc: 'center' }}>
               <ToggleThemeButton />
 
-              <Link href="/docs/introduction" asChild>
-                <Button
-                  theme="yellow"
-                  size="$5"
-                  bg="$color2"
-                  br="$10"
-                  group
-                  animation="quickest"
-                  containerType="normal"
-                  gap={0}
-                  bw={0.5}
-                  bc="$color10"
-                  $theme-light={{
-                    hoverStyle: {
+              <Theme name="accent">
+                <Link href="/docs/introduction" asChild>
+                  <Button
+                    size="$5"
+                    bg="$color2"
+                    br="$10"
+                    group
+                    animation="quickest"
+                    containerType="normal"
+                    gap={0}
+                    bw={0}
+                    hoverStyle={{
                       bg: '$color5',
-                      bc: '$color11',
-                    },
-                    pressStyle: {
+                    }}
+                    pressStyle={{
                       bg: '$color9',
-                      bc: '$color11',
-                    },
-                  }}
-                >
-                  <ButtonText ff="$mono" $sm={{ dsp: 'none' }}>
-                    Get started
-                  </ButtonText>
-                  <ButtonText ff="$mono" $gtSm={{ dsp: 'none' }}>
-                    Docs
-                  </ButtonText>
-                </Button>
-              </Link>
+                    }}
+                  >
+                    <ButtonText ff="$mono" lh={0} $sm={{ dsp: 'none' }}>
+                      Get started
+                    </ButtonText>
+                    <ButtonText ff="$mono" lh={0} $gtSm={{ dsp: 'none' }}>
+                      Docs
+                    </ButtonText>
+                  </Button>
+                </Link>
+              </Theme>
             </XStack>
 
             <XStack
@@ -402,7 +399,7 @@ export default function HomePage() {
 const InfoBoxes = () => {
   return (
     <XStack mx="$-8" fw="wrap" rowGap="$1" columnGap="$5" mb="$13" $sm={{ fd: 'column', mx: 0 }}>
-      <InfoCard title="Typed  FS Routing" Icon={FolderCheck}>
+      <InfoCard title="Typed FS Routing" Icon={FolderCheck}>
         Simple file-system routing, nested layouts and groups, fully typed.
       </InfoCard>
       <InfoCard title="Routing Modes" Icon={FileStack}>
@@ -444,7 +441,7 @@ const InfoCard = ({ title, Icon, children }) => {
       <YStack fullscreen o={0.25}></YStack>
       <YStack gap="$2" p="$4">
         <Icon als="flex-end" mb={-20} o={0.1} size={28} />
-        <H5 size="$7" color="$color13" mt={-10}>
+        <H5 ff="$mono" size="$7" color="$color13" mt={-10}>
           {title}
         </H5>
         <PrettyText size="$5" color="$color12">
@@ -660,10 +657,6 @@ const CopyCommand = () => {
           br="$6"
           fd="row"
           ai="center"
-          $theme-dark={{
-            // @ts-ignore
-            color: '$color10',
-          }}
           hoverStyle={{
             bg: '$color2',
             //@ts-ignore
