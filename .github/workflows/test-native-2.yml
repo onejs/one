@@ -92,13 +92,10 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
         run: xcrun simctl boot $SIMULATOR_UDID
 
-      - name: Cache Appium Server
-        uses: actions/cache@v4
-        env:
-          cache-name: npm-appium
+      - uses: actions/cache/restore@v4
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-${{ env.cache-name }}
+          key: ${{ runner.os }}-npm-appium
 
       - name: Install and Run Appium Server
         # id: install-maestro
@@ -107,6 +104,12 @@ jobs:
           appium driver install xcuitest
           appium > /tmp/appium.log &
           sleep 3
+
+      - uses: actions/cache/save@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-appium
+
 
       - name: Test
         env:
