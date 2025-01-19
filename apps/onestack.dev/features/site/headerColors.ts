@@ -1,7 +1,7 @@
 import config from '~/config/tamagui.config'
 
 export const themeTokenNumber = {
-  dark: 9,
+  dark: 1,
   light: 9,
 }
 

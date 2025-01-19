@@ -31,8 +31,8 @@ export const Badge = styled(Paragraph, {
       },
 
       pink: {
-        bg: '$gray7',
-        color: '$yellow9',
+        bg: '$gray3',
+        color: '$yellow11',
       },
     },
   } as const,

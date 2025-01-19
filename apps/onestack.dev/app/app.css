@@ -21,7 +21,7 @@ body {
   --colorDeepDark: hsl(0, 0%, 63%);
   --colorDeepLight: #fff;
   --bodyBgLight: #fff;
-  --bodyBgDark: #282828;
+  --bodyBgDark: #111111;
   --logoColorLight: #000;
   --logoColorDark: #fff;
   
@@ -195,7 +195,7 @@ h1 + h2 {
 }
 
 .t_dark .grain {
-  opacity: 0.125;
+  opacity: 0.325;
 }
 
 .video-background {
