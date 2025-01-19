@@ -69,7 +69,7 @@ export default function HomePage() {
             mt={-5}
             $sm={{ scale: 0.75, mx: -32, my: -28 }}
           >
-            <OneLogo size={0.9} animate />
+            <OneLogo size={0.8} animate />
           </View>
 
           <View
@@ -136,15 +136,11 @@ export default function HomePage() {
             One aims to make cross-platform React&nbsp;Native as performant and simple as possible.
             <br />
             <br />
-            We first made{' '}
+            We made{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
               Vite
             </Link>{' '}
-            able to{' '}
-            <Link style={{ color: 'var(--color11)' }} href="https://vxrn.dev">
-              serve
-            </Link>{' '}
-            React Native, then added,{' '}
+            able to <a href="https://vxrn.dev">serve</a> React Native, then&nbsp;added{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
               file-system routing
             </Link>
@@ -164,25 +160,20 @@ export default function HomePage() {
             <Link style={{ color: 'var(--color11)' }} href="/docs/">
               CLI
             </Link>
-            , a <a href="https://hono.dev">Hono</a> prod server, and a bit{' '}
+            , <a href="https://hono.dev">Hono</a>, and{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/features">
               more
             </Link>
             .
           </PrettyTextBigger>
 
-          <XStack
-            my="$6"
-            als="center"
-            ai="center"
-            jc="center"
-            gap="$1"
-            px="$6"
-            bc="$color4"
-            py={12}
-          >
+          <YStack als="center" ai="center" jc="center" gap="$1" px="$6" bc="$color4" mt={12}>
+            <Paragraph theme="gray" color="$color8" mb={-20}>
+              Bootstrap an app with
+            </Paragraph>
+            <br />
             <CopyCommand />
-          </XStack>
+          </YStack>
 
           <YStack>
             <Video />
@@ -466,7 +457,7 @@ function Video() {
           </View>
         </View>
         <Paragraph
-          animation="quick"
+          animation="quickest"
           ff="$mono"
           size="$6"
           ta="center"

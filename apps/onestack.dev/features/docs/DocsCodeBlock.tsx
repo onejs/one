@@ -157,7 +157,7 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
                 l={0}
                 r={0}
                 height={200}
-                colors={['$background0', '$background']}
+                colors={['$background0', '$color2']}
                 zi={1000}
               >
                 <Spacer f={1} />

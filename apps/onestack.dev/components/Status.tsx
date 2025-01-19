@@ -27,7 +27,15 @@ const badgeStatuses = {
 export const Status = ({ is, ...rest }: ViewProps & { is: keyof typeof badgeStatuses }) => {
   const info = badgeStatuses[is]
   return (
-    <Badge ff="$mono" dsp="inline-flex" y={-2} mx={6} variant={info.theme} {...rest}>
+    <Badge
+      alignSelf="flex-start"
+      ff="$mono"
+      dsp="inline-flex"
+      y={-2}
+      mx={6}
+      variant={info.theme}
+      {...rest}
+    >
       {info.text}
     </Badge>
   )
