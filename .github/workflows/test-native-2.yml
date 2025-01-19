@@ -56,7 +56,7 @@ jobs:
         # with:
         #   workspace-focus: ${{ env.test_app_package_name }}
 
-      - name: Download Built Native App
+      - name: Download Built Test Container App
         uses: actions/cache/restore@v4
         with:
           fail-on-cache-miss: true
@@ -99,6 +99,14 @@ jobs:
           appium driver install xcuitest
           appium > /tmp/appium.log &
           sleep 3
+
+      - name: Test
+        env:
+          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
+          TEST_CONTAINER_PATH: ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
+        run: |
+          cd tests/rn-test-container
+          yarn vitest
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v4.3.1
