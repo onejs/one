@@ -40,7 +40,9 @@ function getSimulatorUdid() {
   }
 }
 
-function getWebDriverOpts() {
+type WebdriverIOConfig = Parameters<typeof remote>[0]
+
+function getWebDriverOpts(): WebdriverIOConfig {
   const capabilities = {
     platformName: 'iOS',
     'appium:options': {
@@ -61,9 +63,11 @@ function getWebDriverOpts() {
   const wdOpts = {
     hostname: process.env.APPIUM_HOST || 'localhost',
     port: process.env.APPIUM_PORT ? Number.parseInt(process.env.APPIUM_PORT, 10) : 4723,
+    connectionRetryTimeout: 5 * 60 * 1000,
+    connectionRetryCount: 3,
     logLevel: 'info' as const,
     capabilities,
-  }
+  } satisfies WebdriverIOConfig
 
   return wdOpts
 }
