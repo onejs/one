@@ -190,12 +190,12 @@ h1 + h2 {
 
 .grain {
   background: var(--bodyBg) url(/grain.jpg) 10% 10% !important;
-  background-blend-mode: multiply;
-  opacity: 0.03;
+  image-rendering: pixelated;
+  opacity: 0.035;
 }
 
 .t_dark .grain {
-  opacity: 0.325;
+  opacity: 0.01;
 }
 
 .video-background {
