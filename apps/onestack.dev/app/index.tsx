@@ -131,7 +131,7 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View theme="orange" gap="$4" pt="$6">
+        <View theme="yellow" gap="$4" pt="$6">
           <PrettyTextBigger>
             One aims to make cross-platform React&nbsp;Native as performant and simple as possible.
             <br />
@@ -200,7 +200,7 @@ export default function HomePage() {
               gap="$5"
               $gtSm={{ px: '$9', py: '$8', pb: '$5', mx: '$0' }}
             >
-              <PrettyTextBiggest color="$color11" $md={{ size: '$10' }} $sm={{ size: '$9' }}>
+              <PrettyTextBiggest $md={{ size: '$10' }} $sm={{ size: '$9' }}>
                 Keeping things simple
               </PrettyTextBiggest>
 
@@ -431,13 +431,6 @@ function Video() {
           borderWidth={0}
           userSelect="none"
           y={10}
-          $group-card-hover={{
-            scale: 1.015,
-            y: 0,
-          }}
-          $group-card-press={{
-            scale: 0.95,
-          }}
         >
           <YStack w="100%" h={205}>
             <div
@@ -456,12 +449,6 @@ function Video() {
           <View pos="absolute" top={0} right={0} bottom={0} left={0} ai="center" jc="center">
             <Circle
               animation="bouncy"
-              $group-card-hover={{
-                y: 30,
-              }}
-              $group-card-press={{
-                y: 30,
-              }}
               y={35}
               ai="center"
               size={60}
@@ -494,12 +481,11 @@ function Video() {
           shar={10}
           cur="pointer"
           $group-card-hover={{
-            rotate: '-3deg',
-            scale: 1.05,
+            scale: 1.02,
           }}
           $group-card-press={{
             y: 0,
-            scale: 0.97,
+            scale: 0.99,
           }}
           $sm={{
             size: '$6',
