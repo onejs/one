@@ -105,6 +105,10 @@ jobs:
           appium > /tmp/appium.log &
           sleep 3
 
+      - name: TMP
+        run: |
+          npm list -g
+
       - uses: actions/cache/save@v4
         with:
           path: ~/.npm
