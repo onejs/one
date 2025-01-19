@@ -184,7 +184,15 @@ const componentsIn = {
 
   h3: ({ children, id, ...props }) => (
     <LinkHeading pt="$8" mb="$1" id={id}>
-      <H3 pos="relative" width={`fit-content` as any} id={id} data-heading {...props}>
+      <H3
+        ff="$mono"
+        size="$4"
+        pos="relative"
+        width={`fit-content` as any}
+        id={id}
+        data-heading
+        {...props}
+      >
         {children}
       </H3>
     </LinkHeading>

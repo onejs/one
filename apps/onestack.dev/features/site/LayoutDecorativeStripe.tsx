@@ -6,7 +6,7 @@ import { themeTokenNumber } from '~/features/site/headerColors'
 export const LayoutDecorativeStripe = memo(() => {
   const pathname = usePathname()
   const isHome = pathname === '/'
-  const y = isHome ? -62 : -79
+  const y = isHome ? -52 : -69
 
   return (
     <YStack
@@ -16,11 +16,10 @@ export const LayoutDecorativeStripe = memo(() => {
       l={0}
       r={0}
       h={150}
-      theme="yellow"
       scaleY={-1}
-      bg={`$color${themeTokenNumber.light}`}
+      bg={`$yellow${themeTokenNumber.light}`}
       $theme-dark={{
-        bg: `$color${themeTokenNumber.dark}`,
+        bg: `#000`,
       }}
       y={y}
       $platform-web={{

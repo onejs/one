@@ -15,13 +15,13 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
-    "@tamagui/animations-css": "1.121.12-1737247304231",
-    "@tamagui/animations-moti": "1.121.12-1737247304231",
-    "@tamagui/colors": "1.121.12-1737247304231",
-    "@tamagui/image-next": "1.121.12-1737247304231",
-    "@tamagui/lucide-icons": "1.121.12-1737247304231",
-    "@tamagui/react-native-media-driver": "1.121.12-1737247304231",
-    "@tamagui/shorthands": "1.121.12-1737247304231",
+    "@tamagui/animations-css": "1.121.12-1737271201540",
+    "@tamagui/animations-moti": "1.121.12-1737271201540",
+    "@tamagui/colors": "1.121.12-1737271201540",
+    "@tamagui/image-next": "1.121.12-1737271201540",
+    "@tamagui/lucide-icons": "1.121.12-1737271201540",
+    "@tamagui/react-native-media-driver": "1.121.12-1737271201540",
+    "@tamagui/shorthands": "1.121.12-1737271201540",
     "@vxrn/color-scheme": "workspace:*",
     "expo": "~52.0.17",
     "expo-modules-core": "2.1.2",
@@ -33,12 +33,12 @@
     "react-native-screens": "4.4.0",
     "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "1.121.12-1737247304231"
+    "tamagui": "1.121.12-1737271201540"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@react-native-community/cli": "15.1.3",
-    "@tamagui/vite-plugin": "1.121.12-1737247304231",
+    "@tamagui/vite-plugin": "1.121.12-1737271201540",
     "@types/react": "^18.3.11",
     "vite": "^6.0.6"
   }
