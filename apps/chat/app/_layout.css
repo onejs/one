@@ -29,19 +29,19 @@ div {
   color-scheme: light dark;
 }
 
-:root.not_tauri {
+.not_tauri {
   --bodyBgLight: #eee;
   --bodyBgDark: #222;
   --bodyBg: light-dark(var(--bodyBgLight), var(--bodyBgDark));
 }
 
-:root.not_tauri.t_dark {
+.not_tauri.t_dark {
   --colorDeep: var(--colorDeepDark);
   --bodyBg: var(--bodyBgDark);
   --logoColor: var(--logoColorDark);
 }
 
-:root.not_tauri.t_light {
+.not_tauri.t_light {
   --colorDeep: var(--colorDeepLight);
   --bodyBg: var(--bodyBgLight);
   --logoColor: var(--logoColorLight);

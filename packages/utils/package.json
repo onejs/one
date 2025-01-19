@@ -36,7 +36,7 @@
     "@vxrn/resolve": "workspace:*"
   },
   "devDependencies": {
-    "@tamagui/build": "1.121.12-1737239089067"
+    "@tamagui/build": "1.121.12-1737247304231"
   },
   "publishConfig": {
     "access": "public"
