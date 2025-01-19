@@ -92,10 +92,17 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
         run: xcrun simctl boot $SIMULATOR_UDID
 
+      - name: Get NPM Global Root Path
+        id: get-npm-global-root-path
+        run: |
+          NPM_GLOBAL_ROOT_PATH=$(npm root -g)
+          echo "NPM global root path: $NPM_GLOBAL_ROOT_PATH"
+          echo "path=$NPM_GLOBAL_ROOT_PATH" >> $GITHUB_OUTPUT
+
       - uses: actions/cache/restore@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-appium
+          path: ${{ steps.get-npm-global-root-path.outputs.path }}
+          key: ${{ runner.os }}-npm-appium-2
 
       - name: Install and Run Appium Server
         # id: install-maestro
@@ -111,8 +118,8 @@ jobs:
 
       - uses: actions/cache/save@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-appium
+          path: ${{ steps.get-npm-global-root-path.outputs.path }}
+          key: ${{ runner.os }}-npm-appium-2
 
 
       - name: Test
