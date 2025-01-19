@@ -63,17 +63,6 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
           projectRoot: root,
           assetExts: DEFAULT_ASSET_EXTS,
         }),
-
-        // TODO very hacky/arbitrary
-        {
-          name: 'process-env-ssr',
-          transform(code, id, options) {
-            if (id.includes('node_modules')) return
-            if (code.includes('process.env.TAMAGUI_IS_SERVER')) {
-              return code.replaceAll('process.env.TAMAGUI_IS_SERVER', `${!!options?.ssr}`)
-            }
-          },
-        },
       ],
 
       ssr: {
