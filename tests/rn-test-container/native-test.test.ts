@@ -95,4 +95,26 @@ describe('Native Test Test', () => {
     // const settingsItem = await driver.$('//*[@text="Settings"]');
     // await settingsItem.click();
   }, 10 * 60 * 1000)
+
+  test('hello world 2', async () => {
+    const driver = await remote(getWebDriverOpts())
+    // console.log(JSON.stringify(driver.commandList))
+    // driver.executeScript('mobile: terminateApp', [{ bundleId: 'host.exp.Exponent' }])
+    // driver.executeScript('mobile: launchApp', [{ bundleId: 'host.exp.Exponent' }])
+
+    // const screenShot = await driver.takeScreenshot()
+    // console.log('screenShot', screenShot)
+    await driver.saveScreenshot('./screenshot.png')
+
+    // Select with accessibility id
+    const element = driver.$('~hello-word')
+
+    // expect element to contain text "Hello, World!"
+    const text = await element.getText()
+    expect(text).toBe('Hello One!')
+
+
+    // const settingsItem = await driver.$('//*[@text="Settings"]');
+    // await settingsItem.click();
+  }, 10 * 60 * 1000)
 })
