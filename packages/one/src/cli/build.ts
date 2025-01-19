@@ -21,6 +21,7 @@ import { loadUserOneOptions } from '../vite/loadConfig'
 import type { One } from '../vite/types'
 import { buildPage } from './buildPage'
 import { labelProcess } from './label-process'
+import { checkNodeVersion } from './checkNodeVersion'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -34,6 +35,7 @@ export async function build(args: {
   platform?: 'ios' | 'web' | 'android'
 }) {
   labelProcess('build')
+  checkNodeVersion()
   await loadEnv('production')
 
   if (!process.env.ONE_SERVER_URL) {
