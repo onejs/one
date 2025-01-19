@@ -32,7 +32,7 @@ import { Hint } from '~/components/Hint'
 import { Team } from '~/components/Team'
 import { PrettyText, PrettyTextBigger, PrettyTextBiggest } from '~/components/typography'
 import { OneBall, OneLogo } from '~/features/brand/Logo'
-import { Status } from '~/features/docs/Status'
+import { Status } from '~/components/Status'
 import { useClipboard } from '~/features/docs/useClipboard'
 import { ContainerSm } from '~/features/site/Containers'
 import { Footer } from '~/features/site/Footer'
@@ -107,7 +107,7 @@ export default function HomePage() {
                     }}
                   >
                     <ButtonText ff="$mono" lh={0} $sm={{ dsp: 'none' }}>
-                      Get started
+                      Docs
                     </ButtonText>
                     <ButtonText ff="$mono" lh={0} $gtSm={{ dsp: 'none' }}>
                       Docs
@@ -131,77 +131,20 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View theme="yellow" gap="$4">
-          <PrettyTextBiggest
-            fontFamily="$mono"
-            fow="800"
-            size="$10"
-            lh="$12"
-            color="$accentColor"
-            mt={20}
-            mb={-10}
-            transformOrigin="left center"
-          >
-            <span
-              style={{
-                display: 'inline-flex',
-                fontSize: '50%',
-                lineHeight: '50%',
-                transform: 'translateY(-4px)',
-              }}
-            >
-              &gt;
-            </span>{' '}
-            share more code
+        <View theme="orange" gap="$4" pt="$6">
+          <PrettyTextBigger>
+            One aims to make cross-platform React&nbsp;Native as performant and simple as possible.
             <br />
-            <span
-              style={{
-                display: 'inline-flex',
-                fontSize: '50%',
-                lineHeight: '50%',
-                transform: 'translateY(-4px)',
-              }}
-            >
-              &gt;
-            </span>{' '}
-            ship better apps
             <br />
-            <span
-              style={{
-                display: 'inline-flex',
-                fontSize: '50%',
-                lineHeight: '50%',
-                transform: 'translateY(-4px)',
-              }}
-            >
-              &gt;
-            </span>{' '}
-            React&nbsp;Native + web
-            <br />
-            <span
-              style={{
-                display: 'inline-flex',
-                fontSize: '50%',
-                lineHeight: '50%',
-                transform: 'translateY(-4px)',
-              }}
-            >
-              &gt;
-            </span>{' '}
-            on Vite
-          </PrettyTextBiggest>
-
-          <PrettyTextBigger ff="$mono" color="$color12">
-            One aims to make cross-platform apps as performant and simple as possible. For now, it's
-            an early experiment in having{' '}
-            <Link style={{ color: 'var(--color11)' }} href="https://vite.dev/">
+            We first made{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
               Vite
             </Link>{' '}
-            replace Metro (using our{' '}
+            able to{' '}
             <Link style={{ color: 'var(--color11)' }} href="https://vxrn.dev">
-              vxrn
+              serve
             </Link>{' '}
-            library), adding{' '}
+            React Native, then added,{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
               file-system routing
             </Link>
@@ -221,7 +164,7 @@ export default function HomePage() {
             <Link style={{ color: 'var(--color11)' }} href="/docs/">
               CLI
             </Link>
-            , a Hono production server, and{' '}
+            , a <a href="https://hono.dev">Hono</a> prod server, and a bit{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/features">
               more
             </Link>
@@ -238,21 +181,6 @@ export default function HomePage() {
             bc="$color4"
             py={12}
           >
-            <View
-              pos="absolute"
-              t={-20}
-              r={-20}
-              rotate="5deg"
-              animation="quickest"
-              y={3}
-              mr={5}
-              pe="auto"
-            >
-              <Link href="/docs/status">
-                <Status cur="pointer" is="beta" />
-              </Link>
-            </View>
-
             <CopyCommand />
           </XStack>
 
@@ -264,7 +192,7 @@ export default function HomePage() {
             <View
               id="zero"
               contain="paint layout"
-              className="local-shadows tinted"
+              className="tinted"
               br="$10"
               px="$5"
               py="$10"
@@ -272,53 +200,28 @@ export default function HomePage() {
               gap="$5"
               $gtSm={{ px: '$9', py: '$8', pb: '$5', mx: '$0' }}
             >
-              <PrettyTextBiggest
-                color="$color11"
-                mt={15}
-                $md={{ size: '$10' }}
-                $sm={{ size: '$9' }}
-              >
-                Rethinking read&nbsp;&&nbsp;write
+              <PrettyTextBiggest color="$color11" $md={{ size: '$10' }} $sm={{ size: '$9' }}>
+                Keeping things simple
               </PrettyTextBiggest>
 
-              <PrettyTextBigger style={{ textWrap: 'stable' }}>
-                Simpler code, better UX, cross&#8209;platform - that's&nbsp;the ideal. With&nbsp;One
-                (and <a href="https://tamagui.dev">Tamagui</a>), we're close&#x2026; but there's
-                still one huge pain point. <b>Let's&nbsp;talk about&nbsp;data</b>.
+              <PrettyTextBigger>
+                Native apps feel better and are easier to write thanks to using client-side
+                databases with sync engines. But to date no JavaScript library has cracked the
+                combination of lightweight, full-featured, easy to host, and feature-rich.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                Native apps feel better and are easier to write thanks to having client-side
-                databases. You can say&nbsp;goodbye&nbsp;to server boundaries, lose&nbsp;the glue
-                code, mutate instantly, and things Just&nbsp;Work™&nbsp;offline&#x2026;
+                We think the time has come for the web to build more responsive experiences with
+                great sync engines, and it doesn't hurt that it makes our framework simpler, apps
+                better, and even our code nicer, at once.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                So, <b>why don't we use them on&nbsp;the&nbsp;web?</b>
-              </PrettyTextBigger>
-
-              <PrettyTextBigger>
-                Well, web needs small bundles, and has limited storage. Add in syncing, caching,
-                joins&#x2026; well, there's zero great options.
-              </PrettyTextBigger>
-
-              <PrettyTextBigger>
-                It's why we're excited to partner with{' '}
-                <b>
-                  <Link target="_blank" href="https://zerosync.dev">
-                    Zero
-                  </Link>
-                </b>{' '}
-                to include it as our recommended solution to data. Zero solves for all the above.
-              </PrettyTextBigger>
-
-              <PrettyTextBigger>
-                One{' '}
+                We're building primitives to make that work, starting with{' '}
+                <a href="https://zerosync.dev">Zero</a>, who we are working with to create One.{' '}
                 <View tag="span" dsp="inline-flex" m={-2} mr={5} $sm={{ scale: 0.9, y: 5 }}>
                   <OneBall size={0.7} />
-                </View>{' '}
-                is working with Zero and other sync engines to make them work great on without
-                configuration, on server and client.
+                </View>
               </PrettyTextBigger>
 
               <Spacer />
@@ -331,53 +234,55 @@ export default function HomePage() {
 
           <Spacer /> */}
 
-          <Link asChild href="https://testflight.apple.com/join/aNcDUHZY" target="_blank">
-            <XStack
-              tag="a"
-              className="text-underline-none"
-              my="$6"
-              gap="$6"
-              ai="center"
-              jc="center"
-              animation="medium"
-              cur="pointer"
-              als="center"
-              px="$4"
-              py="$5"
-              br="$9"
-              hoverStyle={{
-                y: -2,
-                bg: '$color2',
-              }}
-              $sm={{
-                fd: 'column',
-              }}
-            >
-              <img width={80} height={80} src="/testflight.webp" alt="Testflight Icon" />
+          <Theme name="gray">
+            <Link asChild href="https://testflight.apple.com/join/aNcDUHZY" target="_blank">
+              <XStack
+                tag="a"
+                className="text-underline-none"
+                my="$6"
+                gap="$6"
+                ai="center"
+                jc="center"
+                animation="medium"
+                cur="pointer"
+                als="center"
+                px="$4"
+                py="$5"
+                br="$9"
+                hoverStyle={{
+                  y: -2,
+                  bg: '$color2',
+                }}
+                $sm={{
+                  fd: 'column',
+                }}
+              >
+                <img width={80} height={80} src="/testflight.webp" alt="Testflight Icon" />
 
-              <YStack>
-                <PrettyText
-                  ff="$mono"
-                  mb="$1"
-                  mt="$-2"
-                  className="text-underline-none"
-                  fontSize="$7"
-                  lineHeight="$7"
-                  cur="inherit"
-                  color="$color"
-                  $sm={{
-                    size: '$5',
-                  }}
-                >
-                  Demo
-                </PrettyText>
+                <YStack>
+                  <PrettyText
+                    ff="$mono"
+                    mb="$1"
+                    mt="$-2"
+                    className="text-underline-none"
+                    fontSize="$7"
+                    lineHeight="$7"
+                    cur="inherit"
+                    color="$color"
+                    $sm={{
+                      size: '$5',
+                    }}
+                  >
+                    Demo
+                  </PrettyText>
 
-                <PrettyText o={0.8} cur="inherit" maw={400}>
-                  Check out our small sample app to see a One iOS app in motion. On Testflight.
-                </PrettyText>
-              </YStack>
-            </XStack>
-          </Link>
+                  <PrettyText o={0.8} cur="inherit" maw={400}>
+                    Check out our small sample app to see a One iOS app in motion. On Testflight.
+                  </PrettyText>
+                </YStack>
+              </XStack>
+            </Link>
+          </Theme>
 
           <Separator />
 
@@ -400,10 +305,10 @@ const InfoBoxes = () => {
   return (
     <XStack mx="$-8" fw="wrap" rowGap="$1" columnGap="$5" mb="$13" $sm={{ fd: 'column', mx: 0 }}>
       <InfoCard title="Typed FS Routing" Icon={FolderCheck}>
-        Simple file-system routing, nested layouts and groups, fully typed.
+        Typed file-system routing, nested layouts with groups.
       </InfoCard>
       <InfoCard title="Routing Modes" Icon={FileStack}>
-        SPA, SSR, or SSG? One lets you choose - globally <em>and</em> per-page.
+        Render any page as SPA, SSR, or SSG, control the global default.
       </InfoCard>
       <InfoCard title="Loaders" Icon={Loader}>
         Typed loaders make it easy to bring in data and migrate from other frameworks.
@@ -412,14 +317,14 @@ const InfoBoxes = () => {
         Build a website with React. Or a native app with React Native. Or both at once.
       </InfoCard>
       <InfoCard title="100% Vite" Icon={ViteIcon}>
-        That's right, no more Metro. One Vite plugin, one Vite server, one port - three platforms.
+        Not based on Metro, One is a single Vite plugin with few dependencies.
       </InfoCard>
       <InfoCard title="The future of data" Icon={Database}>
         Integration with{' '}
         <a target="_blank" href="https://zerosync.dev" rel="noreferrer">
           ZeroSync
         </a>{' '}
-        that makes data delightful.
+        and other sync engines. Coming soon.
       </InfoCard>
     </XStack>
   )
@@ -441,12 +346,10 @@ const InfoCard = ({ title, Icon, children }) => {
       <YStack fullscreen o={0.25}></YStack>
       <YStack gap="$2" p="$4">
         <Icon als="flex-end" mb={-20} o={0.1} size={28} />
-        <H5 ff="$mono" size="$7" color="$color13" mt={-10}>
+        <H5 ff="$mono" size="$2" color="$color13" mt={-10}>
           {title}
         </H5>
-        <PrettyText size="$5" color="$color12">
-          {children}
-        </PrettyText>
+        <PrettyText color="$gray11">{children}</PrettyText>
       </YStack>
     </YStack>
   )
@@ -562,7 +465,6 @@ function Video() {
               y={35}
               ai="center"
               size={60}
-              bg="$color9"
               shac="$shadowColorStrong"
               shar={10}
             >
@@ -570,7 +472,7 @@ function Video() {
                 <polygon
                   style={{ transform: 'translateY(6px)' }}
                   points="35,25 75,50 35,75"
-                  fill="var(--color12)"
+                  fill="var(--color8)"
                 />
               </svg>
             </Circle>
@@ -585,24 +487,17 @@ function Video() {
           zi={2}
           px="$5"
           pt={6}
-          $theme-dark={{
-            bg: '$color9',
-            color: '$color2',
-          }}
           pb={11}
           bg="$color2"
           br="$8"
           shac="$shadowColorStrong"
           shar={10}
-          rotate="-1deg"
           cur="pointer"
           $group-card-hover={{
             rotate: '-3deg',
-            y: -5,
             scale: 1.05,
           }}
           $group-card-press={{
-            rotate: '-1deg',
             y: 0,
             scale: 0.97,
           }}
@@ -610,7 +505,7 @@ function Video() {
             size: '$6',
           }}
         >
-          Watch the demo
+          A quick intro
         </Paragraph>
       </View>
     </>

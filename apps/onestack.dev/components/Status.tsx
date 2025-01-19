@@ -1,5 +1,5 @@
 import type { ViewProps } from 'tamagui'
-import { Badge } from './Badge'
+import { Badge } from '../features/docs/Badge'
 
 const badgeStatuses = {
   stable: {
@@ -24,13 +24,10 @@ const badgeStatuses = {
   },
 } as const
 
-export const Status = ({
-  is,
-  ...rest
-}: ViewProps & { is: keyof typeof badgeStatuses }) => {
+export const Status = ({ is, ...rest }: ViewProps & { is: keyof typeof badgeStatuses }) => {
   const info = badgeStatuses[is]
   return (
-    <Badge dsp="inline-flex" y={-2} mx={6} variant={info.theme} {...rest}>
+    <Badge ff="$mono" dsp="inline-flex" y={-2} mx={6} variant={info.theme} {...rest}>
       {info.text}
     </Badge>
   )

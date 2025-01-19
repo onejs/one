@@ -3,27 +3,26 @@ import { Paragraph, styled } from 'tamagui'
 export const PrettyText = styled(Paragraph, {
   textWrap: 'balanced' as any,
   wordWrap: 'normal',
-  color: '$color12',
+  color: '$color11',
   fontSize: '$6',
   lineHeight: '$7',
 })
 
 export const PrettyTextMedium = styled(PrettyText, {
+  fontFamily: '$mono',
   fontSize: '$5',
   lineHeight: '$5',
 })
 
 export const PrettyTextBigger = styled(PrettyText, {
+  fontFamily: '$mono',
+  size: '$5',
   my: 5,
-  fontSize: 18,
-  lineHeight: 30,
-  ls: -0.1,
   className: '',
-  color: '$color12',
+  color: '$gray11',
 
   $gtSm: {
-    fontSize: 23,
-    lineHeight: 38,
+    size: '$6',
   },
 
   variants: {

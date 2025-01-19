@@ -26,7 +26,7 @@ import { Notice } from './Notice'
 import { PropsTable } from './PropsTable'
 import { RouteTree } from './RouteTree'
 import { unwrapText } from './unwrapText'
-import { Status } from './Status'
+import { Status } from '../../components/Status'
 import { Badge } from './Badge'
 
 const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
