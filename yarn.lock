@@ -29198,6 +29198,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"test-hmr@workspace:tests/hmr":
+  version: 0.0.0-use.local
+  resolution: "test-hmr@workspace:tests/hmr"
+  dependencies:
+    expo: "npm:~52.0.17"
+    expo-modules-core: "npm:2.1.2"
+    one: "workspace:*"
+    playwright: "npm:^1.49.1"
+    react: "npm:^19.0.0"
+    react-native: "npm:^0.76.5"
+    react-native-screens: "npm:4.4.0"
+    vite: "npm:^6.0.6"
+    vitest: "npm:^2.1.8"
+    webdriverio: "npm:^9.5.4"
+  languageName: unknown
+  linkType: soft
+
 "test-sandbox@workspace:tests/sandbox":
   version: 0.0.0-use.local
   resolution: "test-sandbox@workspace:tests/sandbox"
