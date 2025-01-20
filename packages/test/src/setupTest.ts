@@ -55,7 +55,7 @@ export async function setupTestServers(): Promise<TestInfo> {
 
   // Get available ports
   const prodPort = await getPort()
-  const devPort = await getPort()
+  const devPort = process.env.DEV_PORT || (await getPort())
 
   try {
     if (!ONLY_TEST_DEV && !process.env.SKIP_BUILD) {
