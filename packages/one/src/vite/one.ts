@@ -279,6 +279,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           define: {
             // safe to set because it only affects web in tamagui, and one is always react 19
             'process.env.TAMAGUI_REACT_19': '"1"',
+            'process.env.TAMAGUI_SKIP_THEME_OPTIMIZATION': '"1"',
           },
 
           environments: {

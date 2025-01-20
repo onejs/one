@@ -1,0 +1,18 @@
+---
+title: one serve
+---
+
+Serve your web apps for production with `one serve`, after you've successfully run `one build`.
+
+It takes the following arguments:
+
+```bash
+--host          # string, set the hostname to bind to
+--port          # string, set the port to bind to
+--platform      # node | vercel, instructs Hono server to use adapter
+--compress      # boolean, enable gzip compression, defaults to true
+```
+
+One comes with a serve command that is powered by [Hono](https://hono.dev).
+
+If you are only using SPA and SSG routes and aren't using loaders, you don't need to use `one serve` if you don't want to - you can statically serve the results of `dist/client` using any server you'd like.
