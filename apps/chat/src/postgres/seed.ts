@@ -3,7 +3,7 @@ import * as unicodeEmoji from 'unicode-emoji'
 
 const randomId = () => Math.random().toString(36).slice(2)
 
-const connectionString = process.env.ZERO_UPSTREAM_DB.replace('127.0.0.1', 'pgdb')
+const connectionString = process.env.ZERO_UPSTREAM_DB?.replace('127.0.0.1', 'pgdb')
 
 console.info(`Connecting to: ${connectionString}`)
 
@@ -19,15 +19,33 @@ async function insertReactions() {
   const client = await connectWithRetry()
   try {
     await client.query('BEGIN')
-    const insertText = `
-      INSERT INTO reaction(id, value, keyword, "createdAt", "updatedAt") 
-        VALUES ($1, $2, $3, DEFAULT, DEFAULT)
-        ON CONFLICT DO NOTHING;
-      `
-    for (let emoji of emojis) {
-      const values = [randomId(), emoji.emoji, toKeyword(emoji.description)]
-      await client.query(insertText, values)
+    const values = emojis.map((emoji) => ({
+      id: randomId(),
+      value: emoji.emoji,
+      keyword: toKeyword(emoji.description),
+      created_at: new Date(),
+      updated_at: new Date(),
+    }))
+
+    const valueStrings = values.map(
+      (_, index) =>
+        `($${index * 5 + 1}, $${index * 5 + 2}, $${index * 5 + 3}, $${index * 5 + 4}, $${index * 5 + 5})`
+    )
+
+    const query = {
+      text: `
+        INSERT INTO reaction (
+          id,
+          value,
+          keyword,
+          created_at,
+          updated_at
+        )
+        VALUES ${valueStrings.join(',')}
+      `,
+      values: values.flatMap((v) => [v.id, v.value, v.keyword, v.created_at, v.updated_at]),
     }
+    await client.query(query)
     await client.query('COMMIT')
   } catch (e) {
     await client.query('ROLLBACK')

@@ -3458,6 +3458,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@drizzle-team/brocli@npm:^0.10.2":
+  version: 0.10.2
+  resolution: "@drizzle-team/brocli@npm:0.10.2"
+  checksum: 10/c8d664fac9b075406ba7ddb17ab4aaf5aae6c99e371adc30a4d7972061aa9863f10e61584ab795da3a8471fdb46d234bb095133c05dfc113cd94b4ee97884e05
+  languageName: node
+  linkType: hard
+
 "@egjs/hammerjs@npm:^2.0.17":
   version: 2.0.17
   resolution: "@egjs/hammerjs@npm:2.0.17"
@@ -11942,7 +11949,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/pg@npm:^8.11.10":
+"@types/pg@npm:^8.10.2":
   version: 8.11.10
   resolution: "@types/pg@npm:8.11.10"
   dependencies:
@@ -15721,6 +15728,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:^16.4.7":
+  version: 16.4.7
+  resolution: "dotenv@npm:16.4.7"
+  checksum: 10/f13bfe97db88f0df4ec505eeffb8925ec51f2d56a3d0b6d916964d8b4af494e6fb1633ba5d09089b552e77ab2a25de58d70259b2c5ed45ec148221835fc99a0c
+  languageName: node
+  linkType: hard
+
 "drizzle-kit@npm:^0.24.2":
   version: 0.24.2
   resolution: "drizzle-kit@npm:0.24.2"
@@ -15732,6 +15746,20 @@ __metadata:
   bin:
     drizzle-kit: bin.cjs
   checksum: 10/92d26383b70e6e63c87b6e738da10d3daa63115853cd3cba62e8ec2658c5717aaa363adc04efe723762347dbc33d6de2b92f6b3335710b779efd32dcdfc8e7b5
+  languageName: node
+  linkType: hard
+
+"drizzle-kit@npm:^0.30.2":
+  version: 0.30.2
+  resolution: "drizzle-kit@npm:0.30.2"
+  dependencies:
+    "@drizzle-team/brocli": "npm:^0.10.2"
+    "@esbuild-kit/esm-loader": "npm:^2.5.5"
+    esbuild: "npm:^0.19.7"
+    esbuild-register: "npm:^3.5.0"
+  bin:
+    drizzle-kit: bin.cjs
+  checksum: 10/64bdb3863bbb26ceaaaabdd1b15c24ef8bf3b6a41e87f23992ef6ed80796b2c66fc9422161b4779ea6961649acfa905815906211b0a7789c05c7c3c5bed33a34
   languageName: node
   linkType: hard
 
@@ -15827,6 +15855,101 @@ __metadata:
   languageName: node
   linkType: hard
 
+"drizzle-orm@npm:^0.38.4":
+  version: 0.38.4
+  resolution: "drizzle-orm@npm:0.38.4"
+  peerDependencies:
+    "@aws-sdk/client-rds-data": ">=3"
+    "@cloudflare/workers-types": ">=4"
+    "@electric-sql/pglite": ">=0.2.0"
+    "@libsql/client": ">=0.10.0"
+    "@libsql/client-wasm": ">=0.10.0"
+    "@neondatabase/serverless": ">=0.10.0"
+    "@op-engineering/op-sqlite": ">=2"
+    "@opentelemetry/api": ^1.4.1
+    "@planetscale/database": ">=1"
+    "@prisma/client": "*"
+    "@tidbcloud/serverless": "*"
+    "@types/better-sqlite3": "*"
+    "@types/pg": "*"
+    "@types/react": ">=18"
+    "@types/sql.js": "*"
+    "@vercel/postgres": ">=0.8.0"
+    "@xata.io/client": "*"
+    better-sqlite3: ">=7"
+    bun-types: "*"
+    expo-sqlite: ">=14.0.0"
+    knex: "*"
+    kysely: "*"
+    mysql2: ">=2"
+    pg: ">=8"
+    postgres: ">=3"
+    react: ">=18"
+    sql.js: ">=1"
+    sqlite3: ">=5"
+  peerDependenciesMeta:
+    "@aws-sdk/client-rds-data":
+      optional: true
+    "@cloudflare/workers-types":
+      optional: true
+    "@electric-sql/pglite":
+      optional: true
+    "@libsql/client":
+      optional: true
+    "@libsql/client-wasm":
+      optional: true
+    "@neondatabase/serverless":
+      optional: true
+    "@op-engineering/op-sqlite":
+      optional: true
+    "@opentelemetry/api":
+      optional: true
+    "@planetscale/database":
+      optional: true
+    "@prisma/client":
+      optional: true
+    "@tidbcloud/serverless":
+      optional: true
+    "@types/better-sqlite3":
+      optional: true
+    "@types/pg":
+      optional: true
+    "@types/react":
+      optional: true
+    "@types/sql.js":
+      optional: true
+    "@vercel/postgres":
+      optional: true
+    "@xata.io/client":
+      optional: true
+    better-sqlite3:
+      optional: true
+    bun-types:
+      optional: true
+    expo-sqlite:
+      optional: true
+    knex:
+      optional: true
+    kysely:
+      optional: true
+    mysql2:
+      optional: true
+    pg:
+      optional: true
+    postgres:
+      optional: true
+    prisma:
+      optional: true
+    react:
+      optional: true
+    sql.js:
+      optional: true
+    sqlite3:
+      optional: true
+  checksum: 10/0fb012b41ad830b280bb5f48430f01473c36a00f568eedae3aa81910cfdb89e36e119d464023c61a40b33d102d6baca00ededca7afff1677c4f9e3ff994f78f1
+  languageName: node
+  linkType: hard
+
 "drizzle-to-zero@workspace:packages/drizzle-to-zero":
   version: 0.0.0-use.local
   resolution: "drizzle-to-zero@workspace:packages/drizzle-to-zero"
@@ -15836,6 +15959,16 @@ __metadata:
     vitest: "npm:^2.1.8"
   languageName: unknown
   linkType: soft
+
+"drizzle-zero@npm:0.2.2":
+  version: 0.2.2
+  resolution: "drizzle-zero@npm:0.2.2"
+  peerDependencies:
+    "@rocicorp/zero": ">=0.8.2024121204"
+    drizzle-orm: ">=0.36.0"
+  checksum: 10/33b2ab5de47a56fe723ef46a2aa380c7393e96b3ddaa82e25d2280b52d87c5741f31e67e3567adc56128d85f06c9da72e28998aacf33c76cbcc1053d14a3202f
+  languageName: node
+  linkType: hard
 
 "dunder-proto@npm:^1.0.0, dunder-proto@npm:^1.0.1":
   version: 1.0.1
@@ -23350,16 +23483,20 @@ __metadata:
     "@tauri-apps/plugin-fs": "npm:^2.2.0"
     "@tauri-apps/plugin-shell": "npm:^2"
     "@types/aws-lambda": "npm:8.10.146"
-    "@types/pg": "npm:^8.11.10"
+    "@types/pg": "npm:^8.10.2"
     "@uiw/react-md-editor": "npm:^4.0.5"
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/emitter": "workspace:*"
     better-auth: "npm:1.0.23-beta.3"
     burnt: "npm:^0.12.2"
+    dotenv: "npm:^16.4.7"
+    drizzle-kit: "npm:^0.30.2"
+    drizzle-orm: "npm:^0.38.4"
+    drizzle-zero: "npm:0.2.2"
     expo: "npm:~52.0.17"
     flexsearch: "npm:^0.7.43"
     one: "workspace:*"
-    pg: "npm:^8.13.1"
+    pg: "npm:^8.11.0"
     react: "npm:^19.0.0"
     react-hotkeys-hook: "npm:^4.6.1"
     react-native: "npm:^0.76.5"
@@ -23373,7 +23510,7 @@ __metadata:
     tsx: "npm:^4.19.0"
     unicode-emoji: "npm:^2.6.0"
     valtio: "npm:^2.1.2"
-    virtua: "npm:^0.39.2"
+    virtua: "npm:^0.39.3"
   languageName: unknown
   linkType: soft
 
@@ -24081,7 +24218,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pg@npm:>=6.2.2, pg@npm:^8.11.3, pg@npm:^8.13.1":
+"pg@npm:>=6.2.2, pg@npm:^8.11.0, pg@npm:^8.11.3, pg@npm:^8.13.1":
   version: 8.13.1
   resolution: "pg@npm:8.13.1"
   dependencies:
@@ -29482,9 +29619,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"virtua@npm:^0.39.2":
-  version: 0.39.2
-  resolution: "virtua@npm:0.39.2"
+"virtua@npm:^0.39.3":
+  version: 0.39.3
+  resolution: "virtua@npm:0.39.3"
   peerDependencies:
     react: ">=16.14.0"
     react-dom: ">=16.14.0"
@@ -29502,7 +29639,7 @@ __metadata:
       optional: true
     vue:
       optional: true
-  checksum: 10/0be0c8f40a3f07f7bdbc6d9e50ac711082ffe7f5267401be8d100572695534555e5b544d545f4762de491837d890bf6deee50e756e5d7089a20332d19ccf58b4
+  checksum: 10/61561dff48897c87a8812e331e5e2b18ced6a69b89d17986e6c3e9c862efe216eca1e5dbddf188e9e34881c790dcf30bb89c0674c420965d6277b696a6877566
   languageName: node
   linkType: hard
 

@@ -5,7 +5,7 @@ services:
     user: postgres
     restart: always
     healthcheck:
-      test: 'pg_isready -U user --dbname=postgres'
+      test: 'pg_isready -U user --dbname=onechat'
       interval: 1s
       timeout: 5s
       retries: 10
@@ -13,7 +13,7 @@ services:
       - 5432:5432
     environment:
       POSTGRES_USER: user
-      POSTGRES_DB: postgres
+      POSTGRES_DB: onechat
       POSTGRES_PASSWORD: password
     command: |
       postgres 
@@ -24,7 +24,7 @@ services:
       -c hot_standby_feedback=on
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./src/postgres/:/docker-entrypoint-initdb.d
+      - ./src/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   seeder:
     image: oven/bun:latest

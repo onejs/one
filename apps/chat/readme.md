@@ -17,8 +17,9 @@ Start [Docker](https://orbstack.dev).
 
 Then, in separate tabs run:
 
-```
+```bash
 yarn backend
+yarn db:migrate # this will also seed the db
 yarn zero
 yarn dev
 ```
