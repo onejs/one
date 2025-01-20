@@ -231,6 +231,12 @@ jobs:
       - build-ios-test-container-dev
     runs-on: macos-14
     steps:
+      - name: Download Built Test Container App
+        uses: actions/cache/restore@v4
+        with:
+          fail-on-cache-miss: true
+          key: ${{ needs.build-ios-test-container-dev.outputs.built-app-cache-key }}
+          path: ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
       - name: Upload App
         uses: actions/upload-artifact@v4.3.1
         if: ${{ always() }}
