@@ -224,3 +224,18 @@ jobs:
       #     name: release-maestro-screenshots
       #     path: |
       #       ${{ env.test_app_path }}/maestro-screenshots
+
+  test-ios-native-dev:
+    name: Native iOS Test (Dev)
+    needs:
+      - build-ios-test-container-dev
+    runs-on: macos-14
+    steps:
+      - name: Upload App
+        uses: actions/upload-artifact@v4.3.1
+        if: ${{ always() }}
+        continue-on-error: true
+        with:
+          name: ios-test-container-prod
+          path: |
+            ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
