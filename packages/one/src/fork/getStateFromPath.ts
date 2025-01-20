@@ -138,7 +138,7 @@ export function getStateFromPath<ParamList extends {}>(
     if (routes.length) {
       // @modified - start
       // return createNestedStateObject(path, routes, initialRoutes)
-      return createNestedStateObject(pathData, routes, initialRoutes, [], pathData.url.hash)
+      return createNestedStateObject(pathData, routes, initialRoutes, [])
       // @modified - end
     }
 
@@ -165,8 +165,7 @@ export function getStateFromPath<ParamList extends {}>(
         pathData, // @modified: pass pathData instead of path
         match.routeNames.map((name) => ({ name })),
         initialRoutes,
-        configs,
-        pathData.url.hash // @modified: added
+        configs
       )
     }
 
@@ -182,8 +181,8 @@ export function getStateFromPath<ParamList extends {}>(
 
   if (routes !== undefined) {
     // This will always be empty if full path matched
-    // @modified: pass pathData instead of path, and pass hash
-    current = createNestedStateObject(pathData, routes, initialRoutes, configs, pathData.url.hash)
+    // @modified: pass pathData instead of path
+    current = createNestedStateObject(pathData, routes, initialRoutes, configs)
     remaining = remainingPath
     result = current
   }
@@ -677,8 +676,7 @@ const createNestedStateObject = (
   // @modified - end
   routes: ParsedRoute[],
   initialRoutes: InitialRouteConfig[],
-  flatConfig?: RouteConfig[],
-  hash?: string // @modified: added
+  flatConfig?: RouteConfig[]
 ) => {
   let route = routes.shift() as ParsedRoute
   const parentScreens: string[] = []
@@ -726,7 +724,7 @@ const createNestedStateObject = (
     path,
     route,
     flatConfig ? findParseConfigForRoute(route.name, flatConfig) : undefined,
-    hash
+    restPathData.url.hash
   )
   // @modified - end
 
