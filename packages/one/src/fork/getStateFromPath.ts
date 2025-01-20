@@ -165,7 +165,8 @@ export function getStateFromPath<ParamList extends {}>(
         pathData, // @modified: pass pathData instead of path
         match.routeNames.map((name) => ({ name })),
         initialRoutes,
-        configs
+        configs,
+        pathData.url.hash // @modified: added
       )
     }
 
@@ -181,8 +182,8 @@ export function getStateFromPath<ParamList extends {}>(
 
   if (routes !== undefined) {
     // This will always be empty if full path matched
-    // @modified: pass pathData instead of path
-    current = createNestedStateObject(pathData, routes, initialRoutes, configs)
+    // @modified: pass pathData instead of path, and pass hash
+    current = createNestedStateObject(pathData, routes, initialRoutes, configs, pathData.url.hash)
     remaining = remainingPath
     result = current
   }
