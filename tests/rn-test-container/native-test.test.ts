@@ -17,13 +17,31 @@ async function setup() {
 
   const appPath = path.join(tmpDir, 'ios-test-container-prod.app' /* TODO: dev */)
 
-  copySync(
-    process.env.TEST_CONTAINER_PATH,
-    appPath
+  copySync(process.env.TEST_CONTAINER_PATH, appPath)
+
+  const vxrnRnCommands = (await import('vxrn/react-native-commands')).default
+  const vxrnRnBundleCommand = vxrnRnCommands.find((c) => c.name === 'bundle')
+
+  // TODO
+  const tmpAssetsOutputDir = path.join(tmpDir, 'tmp-assets-output')
+  ensureDirSync(tmpAssetsOutputDir)
+
+  await vxrnRnBundleCommand.func(
+    {} /* argv */,
+    { root } /* ctx */,
+    {
+      platform: 'ios',
+      dev: false,
+      bundleOutput: path.join('/tmp', 'main.jsbundle'),
+      assetsDest: tmpAssetsOutputDir, // TODO
+    } /* args */
   )
 
+  // console.log(vxrnRnCommands)
+  console.log('ok...')
+
   // Need to pipe the output to the console
-  execSync(`yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`, { stdio: 'inherit' })
+  // execSync(`yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`, { stdio: 'inherit' })
 }
 
 function getSimulatorUdid() {
@@ -97,11 +115,11 @@ function getWebDriverOpts(): WebdriverIOConfig {
 }
 
 describe('Native Test Test', () => {
-  test('should pass', () => {
+  test('should pass', async () => {
     getWebDriverOpts()
+    await setup()
     expect(true).toBe(true)
     console.log(process.cwd())
-    setup()
   })
 
   // test('hello world', async () => {
