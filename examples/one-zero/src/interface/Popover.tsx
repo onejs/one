@@ -9,7 +9,7 @@ export const PopoverContent = ({
     <Popover.Content
       backgroundColor="$color2"
       borderWidth={1}
-      ai="flex-start"
+      alignItems="flex-start"
       borderColor="$borderColor"
       enterStyle={{ y: -10, opacity: 0 }}
       exitStyle={{ y: -10, opacity: 0 }}
