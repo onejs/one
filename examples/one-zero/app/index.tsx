@@ -14,19 +14,19 @@ export default function HomePage() {
 
   return (
     <YStack
-      $platform-ios={{ pt: '$10' }}
-      f={1}
-      p="$4"
+      flex={1}
+      padding="$4"
       gap="$4"
-      ai="flex-start"
-      maw={600}
-      w="100%"
-      als="center"
+      alignItems="flex-start"
+      maxWidth={600}
+      width="100%"
+      alignSelf="center"
+      $platform-ios={{ paddingTop: '$10' }}
     >
       <H1>Welcome</H1>
 
       {user ? (
-        <XStack ai="center" gap="$4">
+        <XStack alignItems="center" gap="$4">
           <Avatar image={user.image || ''} />
           <SizableText>{user.name}</SizableText>
 
@@ -50,7 +50,7 @@ export default function HomePage() {
         </Button>
       )}
 
-      <YStack w="100%" gap="$4" p="$4" bc="$color2" bw={1} br="$4">
+      <YStack width="100%" gap="$4" p="$4" borderColor="$color2" borderWidth={1} borderRadius="$4">
         <Input onChangeText={setText} />
 
         <Button

@@ -10,18 +10,18 @@ export function ToggleThemeButton() {
   const { onPress, Icon, setting } = useToggleTheme()
 
   return (
-    <View group ai="center" containerType="normal" gap="$1">
+    <View group alignItems="center" containerType="normal" gap="$1">
       <View
         p="$3"
-        br="$10"
+        borderRadius="$10"
+        pointerEvents="auto"
+        cursor="pointer"
         hoverStyle={{
           bg: '$color2',
         }}
         pressStyle={{
           bg: '$color1',
         }}
-        pointerEvents="auto"
-        cur="pointer"
         onPress={onPress}
       >
         <Icon size={22} color="$color13" />
@@ -33,9 +33,9 @@ export function ToggleThemeButton() {
           size="$1"
           mb={-20}
           color="$color10"
-          o={0}
+          opacity={0}
           $group-hover={{
-            o: 1,
+            opacity: 1,
           }}
         >
           {setting[0].toUpperCase()}

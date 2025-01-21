@@ -14,21 +14,21 @@
     "serve:railway": "one serve --host 0.0.0.0"
   },
   "dependencies": {
-    "@tamagui/button": "^1.122.2",
-    "@tamagui/input": "^1.122.2",
-    "@tamagui/linear-gradient": "^1.122.2",
-    "@tamagui/lucide-icons": "^1.122.2",
-    "@tamagui/proxy-tabbable": "^1.122.2",
-    "@tamagui/react-native-web": "^1.122.2",
-    "@tamagui/themes": "^1.122.2",
-    "@tamagui/use-store": "^1.122.2",
+    "@tamagui/button": "^1.122.6",
+    "@tamagui/input": "^1.122.6",
+    "@tamagui/linear-gradient": "^1.122.6",
+    "@tamagui/lucide-icons": "^1.122.6",
+    "@tamagui/proxy-tabbable": "^1.122.6",
+    "@tamagui/react-native-web": "^1.122.6",
+    "@tamagui/themes": "^1.122.6",
+    "@tamagui/use-store": "^1.122.6",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/mdx": "workspace:*",
     "mdx-bundler": "^10.0.2",
     "one": "workspace:*",
     "react": "^19.0.0",
     "react-native": "^0.76.5",
-    "tamagui": "^1.122.2"
+    "tamagui": "^1.122.6"
   },
   "devDependencies": {
     "subset-font": "^2.4.0",

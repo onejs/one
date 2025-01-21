@@ -14,10 +14,10 @@
     "android": "expo run:android"
   },
   "dependencies": {
-    "@tamagui/config": "^1.122.2",
-    "@tamagui/image-next": "^1.122.2",
-    "@tamagui/lucide-icons": "^1.122.2",
-    "@tamagui/vite-plugin": "^1.122.2",
+    "@tamagui/config": "^1.122.6",
+    "@tamagui/image-next": "^1.122.6",
+    "@tamagui/lucide-icons": "^1.122.6",
+    "@tamagui/vite-plugin": "^1.122.6",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
     "react": "^19.0.0",
@@ -28,7 +28,7 @@
     "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
     "react-native-webview": "^13.12.5",
-    "tamagui": "^1.122.2"
+    "tamagui": "^1.122.6"
   },
   "devDependencies": {
     "expo": "~52.0.17"
