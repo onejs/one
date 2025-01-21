@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('./GeistMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('./GeistMono-Black.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ader';
+  src: url('./AderBold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
