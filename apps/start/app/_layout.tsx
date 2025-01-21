@@ -1,13 +1,12 @@
+import '~/fonts/fonts.css'
 import '~/tamagui/tamagui.css'
-import './app.css'
-import './fonts.css'
+import './_layout.css'
 import './syntax-highlight.css'
 
-import { MetaTheme, SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot, usePathname } from 'one'
-import { useEffect } from 'react'
-import { TamaguiProvider, useTheme, YStack } from 'tamagui'
-import config from '~/src/tamagui/tamagui.config'
+import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
+import { LoadProgressBar, Slot } from 'one'
+import { TamaguiProvider, YStack } from 'tamagui'
+import config from '~/tamagui/tamagui.config'
 
 export default function Layout() {
   return (
@@ -30,7 +29,6 @@ export default function Layout() {
         <SchemeProvider>
           <ThemeProvider>
             <YStack zIndex={0} fullscreen className="grain" pointerEvents="none" />
-            <ThemeMetaTag />
             <Slot />
           </ThemeProvider>
         </SchemeProvider>
@@ -49,22 +47,4 @@ const ThemeProvider = ({ children }) => {
       </TamaguiProvider>
     </>
   )
-}
-
-const ThemeMetaTag = () => {
-  const [scheme] = useColorScheme()
-  const theme = useTheme()
-  const pathname = usePathname()
-  const isHome = pathname === '/'
-  const isScrolled = useIsScrolled()
-  let color = headerColors[scheme]
-  if (isHome && isScrolled) {
-    color = theme.color1.val
-  }
-
-  useEffect(() => {
-    document.body.style.background = color
-  }, [color])
-
-  return <MetaTheme color={color} darkColor={headerColors.dark} lightColor={headerColors.light} />
 }
