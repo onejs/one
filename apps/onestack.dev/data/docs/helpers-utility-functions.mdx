@@ -40,47 +40,48 @@ import { href } from 'one'
 const postPageLink = href(`/post/hello-world`) // will type error if invalid Href
 ```
 
-### setClientData and getClientData
+### requestCache
 
 <Status is="developing" />
 
-Experimental API, currently only supported on the web.
+For improving performance of client hydration on the web, you can pass data from the server to the client with `requestCache`, on native values will always be `undefined`. Data must be JSON-stringifyable and  on native.
 
-Allows passing arbitrary JSON-like data from the server to the client. `setClientData` can be called inside
-loaders or anywhere in your app during render on the server side. `getClientData` can only be called on the client,
-and will access the data passed from the server.
-
-The main difference from loaders is that you can set this data from anywhere, anytime during the server render. It lets you avoid loaders altogether for one-off hooks.
+Here's an example of a simple `useFetch` to show how it's useful:
 
 ```tsx fileName=app/index.tsx
-import { setClientData, useLoader } from 'one'
+import { requestCache, environment } from 'one'
 
-export default () => {
-  const loadedData = useLoader(loader)
-  const hookData = useHookData()
+type SafeURLs = `${`https://tamagui.dev` | `http://localhost`}${string}
 
-  // ...
-}
-
-// prefer loaders in your app when possible, easier to keep data local and typed:
-export const loader = async () => {
-  return {
-    data: await fetchLoaderData()
-  }
-}
-
-// for libraries, or times where you want to pass data to the client side from hooks
-const useHookData = () => {
-  const id = useId()
-
-  if (typeof window === 'undefined') {
-    const data = loadDataWithSuspense()
-    setClientData(id, data)
+const useFetch = async (url: SafeURLs) => {
+  if (environment === 'server') {
+    // on server data must be set during render
+    requestCache[url] = await fetch(url).then(res => res.json())
     return data
   }
 
-  // this will be available on first render on the client
-  return getClientData(id)
+  return requestCache[url]
+}
+
+export default async (props) => {
+  const serverData = await useFetch(props.url)
+  return <div />
+}
+
+// can use it in loaders, too
+
+export const loader = async ({ params }) => {
+  await doSomething()
+  requestCache[params.id] = 'data'
+  return {}
+}
+
+// make it typed
+
+declare module 'one' {
+  interface Config {
+    requestCacheKeys: SafeURLs
+  }
 }
 ```
 
