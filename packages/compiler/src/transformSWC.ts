@@ -5,7 +5,6 @@ import {
   type Options as SWCOptions,
   type TransformConfig,
 } from '@swc/core'
-import type { SourceMapPayload } from 'node:module'
 import { extname, sep } from 'node:path'
 import { merge } from 'ts-deepmerge'
 import { configuration } from './configure'
@@ -65,7 +64,7 @@ export async function transformSWC(
   const transformOptions = ((): SWCOptions => {
     if (options.environment === 'client' || options.environment === 'ssr') {
       return {
-        sourceMaps: true,
+        sourceMaps: shouldSourceMap(),
         jsc: {
           target: 'es2020',
           parser,

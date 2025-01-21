@@ -1,20 +1,25 @@
-import { config as configOptions } from '@tamagui/config/v3'
-import { createTamagui } from '@tamagui/core'
+import { defaultConfig } from '@tamagui/config/v4'
+import { createTamagui } from 'tamagui'
 
-export const config = createTamagui({
-  ...configOptions,
-  settings: {
-    ...configOptions.settings,
-    fastSchemeChange: true,
-    // avoids CSS bloat so long as you don't need nesting of dark/light themes
-    maxDarkLightNesting: 2,
-  },
-})
+/**
+ * Welcome to Tamagui, this project uses the default config.
+ *
+ * To learn more about it, see:
+ *   https://tamagui.dev/docs/core/config-v4
+ *
+ */
+
+export const config = createTamagui(defaultConfig)
 
 export type Conf = typeof config
 
-declare module '@tamagui/core' {
+declare module 'tamagui' {
   interface TamaguiCustomConfig extends Conf {}
+
+  // for group types:
+  // interface TypeOverride {
+  //   groupNames(): 'message'
+  // }
 }
 
 export default config

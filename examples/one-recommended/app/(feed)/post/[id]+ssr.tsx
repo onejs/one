@@ -88,12 +88,7 @@ export function PostPage() {
       <PageContainer>
         <FeedCard {...data} disableLink />
         {data.replies && data.replies.length > 0 && (
-          <YStack
-            marginLeft="$7"
-            borderLeftWidth={1}
-            borderRightWidth={1}
-            borderColor="$borderColor"
-          >
+          <YStack ml="$7" borderLeftWidth={1} borderRightWidth={1} borderColor="$borderColor">
             {data.replies.map((reply) => (
               <FeedCard key={reply.id} {...reply} disableLink isReply />
             ))}

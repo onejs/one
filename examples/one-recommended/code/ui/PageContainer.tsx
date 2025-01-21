@@ -1,8 +1,8 @@
 import { styled, View } from 'tamagui'
 
 export const PageContainer = styled(View, {
-  w: '100%',
-  maw: 600,
+  width: '100%',
+  maxW: 600,
   mx: 'auto',
   bg: '$color1',
 
