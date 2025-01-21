@@ -21,6 +21,7 @@
     "npxone": "node ./packages/create-vxrn/run.js",
     "setup": "tsx ./scripts/setup.ts",
     "chat": "yarn workspace onechat dev:tauri",
+    "start": "yarn workspace start dev",
     "devtools": "yarn workspace devtools dev:tauri",
     "site": "yarn workspace site dev",
     "site:build": "yarn workspace site build:web",
