@@ -161,9 +161,7 @@ export function OneLogo({
         scale={10 * scaleDownBy}
         transformOrigin="center top"
       >
-        <Link href="/docs/status">
-          <Status cur="pointer" is="beta" />
-        </Link>
+        <Status cur="pointer" is="beta" />
       </View>
     </View>
   )

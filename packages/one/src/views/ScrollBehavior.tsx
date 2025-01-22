@@ -33,13 +33,13 @@ function rememberScrollPosition() {
   sessionStorage.setItem(KEY, JSON.stringify(state))
 }
 
-type ScrollRestorationProps = {
+type ScrollBehaviorProps = {
   disable?: boolean | 'restore'
 }
 
 let disable: (() => void) | null = null
 
-function configure(props: ScrollRestorationProps) {
+function configure(props: ScrollBehaviorProps) {
   if (typeof window === 'undefined' || !window.addEventListener) {
     return
   }
@@ -75,7 +75,13 @@ function configure(props: ScrollRestorationProps) {
       return
     }
 
-    if (didPop) {
+    const { hash } = state
+
+    if (hash) {
+      setTimeout(() => {
+        scrollToHash(hash)
+      })
+    } else if (didPop) {
       if (props.disable !== 'restore') {
         // for now only restore on back button
         restorePosition()
@@ -95,7 +101,21 @@ function configure(props: ScrollRestorationProps) {
   return disable!
 }
 
-export function ScrollRestoration(props: ScrollRestorationProps) {
+function scrollToHash(hash: string) {
+  if (!hash || !hash.startsWith('#')) return
+  const id = hash.slice(1)
+  const el = document.getElementById(id)
+  if (!el) return
+  el.scrollIntoView({ behavior: 'instant' })
+}
+
+export function ScrollBehavior(props: ScrollBehaviorProps) {
+  useEffect(() => {
+    if (window.location.hash) {
+      scrollToHash(window.location.hash)
+    }
+  }, [])
+
   useEffect(() => {
     return configure(props)
   }, [props.disable])
