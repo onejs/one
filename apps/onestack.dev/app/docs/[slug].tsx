@@ -1,7 +1,7 @@
 import { getMDXComponent } from 'mdx-bundler/client'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { H1 } from 'tamagui'
-import { useLoader } from 'one'
+import { useLoader, useParams } from 'one'
 import { DocsRightSidebar } from '~/features/docs/DocsRightSidebar'
 import { components } from '~/features/docs/MDXComponents'
 import { HeadInfo } from '~/features/site/HeadInfo'
@@ -28,6 +28,23 @@ export async function loader({ params }) {
 export function DocCorePage() {
   const { code, frontmatter } = useLoader(loader)
   const Component = useMemo(() => getMDXComponent(code), [code])
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const hash = window.location.hash
+      if (!hash || !hash.startsWith('#')) return
+
+      const id = hash.slice(1)
+      const el = document.getElementById(id)
+      if (!el) return
+
+      el.scrollIntoView({ behavior: 'instant' })
+    }, 50)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  })
 
   return (
     <>
