@@ -11622,10 +11622,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/aws-lambda@npm:8.10.146":
-  version: 8.10.146
-  resolution: "@types/aws-lambda@npm:8.10.146"
-  checksum: 10/2b923ecc77ef9eb47d91627d351700b17d9d9fe22a7c9a9e99335a02cf2c6291d54fcd2c969dce48753335b5d0fd36b2cfcde3b201a2e6ad5500a9517383fbdb
+"@types/aws-lambda@npm:8.10.147":
+  version: 8.10.147
+  resolution: "@types/aws-lambda@npm:8.10.147"
+  checksum: 10/c80df3be4ed42acf7f1a139afeaa96c69466d63ce3e6578a9411bd956806a10ae182fb45fa6dc9e9b31e5da08762af3758abeb84f989edac4c8011d8bf5f7b8f
   languageName: node
   linkType: hard
 
@@ -23374,7 +23374,7 @@ __metadata:
     "@tauri-apps/plugin-deep-link": "npm:^2.0.1"
     "@tauri-apps/plugin-fs": "npm:^2.2.0"
     "@tauri-apps/plugin-shell": "npm:^2"
-    "@types/aws-lambda": "npm:8.10.146"
+    "@types/aws-lambda": "npm:8.10.147"
     "@types/pg": "npm:^8.11.10"
     "@uiw/react-md-editor": "npm:^4.0.5"
     "@vxrn/color-scheme": "workspace:*"

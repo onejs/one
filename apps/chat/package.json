@@ -13,8 +13,6 @@
     "build:icon": "tauri icon ./src-tauri/icons/icon.png",
     "build:tauri": "tauri build --debug",
     "build:web": "one build",
-    "deploy:dev": "sst deploy --stage dev",
-    "deploy:prod": "sst deploy --stage production",
     "dev": "one dev",
     "dev:android": "one run:android",
     "dev:clean": "one dev --clean",
