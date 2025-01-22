@@ -29,7 +29,7 @@ export const Status = ({ is, ...rest }: ViewProps & { is: keyof typeof badgeStat
   return (
     <Badge
       alignSelf="flex-start"
-      ff="$mono"
+      fontFamily="$mono"
       dsp="inline-flex"
       y={-2}
       mx={6}

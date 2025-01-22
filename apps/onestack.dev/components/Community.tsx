@@ -5,7 +5,7 @@ import { PrettyText } from './typography'
 export const Community = () => {
   return (
     <YStack group containerType="normal" gap="$8" my="$4">
-      <PrettyText ff="$mono" fontSize="$7" lineHeight="$7" color="$color" ta="center">
+      <PrettyText fontFamily="$mono" fontSize="$7" lineHeight="$7" color="$color" ta="center">
         Community
       </PrettyText>
 

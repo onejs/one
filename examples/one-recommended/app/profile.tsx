@@ -111,9 +111,9 @@ export default function ProfilePage() {
   return (
     <PageContainer>
       <ScrollView>
-        <YStack pos="relative" w="100%" h={180} ov="hidden">
+        <YStack position="relative" width="100%" height={180} overflow="hidden">
           <Image
-            pos="absolute"
+            position="absolute"
             t={0}
             r={0}
             b={0}
@@ -121,15 +121,15 @@ export default function ProfilePage() {
             src="https://placecats.com/millie/300/200"
           />
           <Image
-            pos="absolute"
+            position="absolute"
             b="$4"
             l="$4"
-            w={100}
-            h={100}
-            br={100}
+            width={100}
+            height={100}
+            rounded={100}
             src={userData.avatar || ''}
-            bw={1}
-            bc="$color1"
+            borderWidth={1}
+            borderColor="$color1"
             shadowColor="rgba(0,0,0,0.5)"
             shadowRadius={10}
             shadowOffset={{
@@ -144,16 +144,16 @@ export default function ProfilePage() {
             return (
               <YStack
                 key={post.id}
-                padding="$4"
+                p="$4"
                 borderColor="$borderColor"
                 borderWidth={1}
-                borderRadius="$4"
-                marginBottom="$4"
+                rounded="$4"
+                mb="$4"
                 mt="$4"
               >
-                <XStack gap="$2" marginBottom="$2">
+                <XStack gap="$2" mb="$2">
                   <Repeat2 size={12} color="$accent1" />
-                  <Text ff="$body" color="$accent1" fontSize={10}>
+                  <Text fontFamily="$body" color="$accent1" fontSize={10}>
                     Reposted by {userData.name}
                   </Text>
                 </XStack>
