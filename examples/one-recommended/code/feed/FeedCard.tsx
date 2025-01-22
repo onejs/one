@@ -23,7 +23,7 @@ const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
   return (
     <XStack items="center" justify="center" gap="$2">
       <Icon color="$color10" size={14} />
-      <SizableText fontWeight="700" color="$color10" userSelect="none">
+      <SizableText fontWeight="700" color="$color10" select="none">
         {count}
       </SizableText>
     </XStack>
@@ -37,7 +37,7 @@ export const FeedCard = (props: FeedItem) => {
 
   const content = (
     <Card tag="a">
-      <Image width={32} height={32} borderRadius={100} mt="$2" src={props.user.avatar || ''} />
+      <Image width={32} height={32} rounded={100} mt="$2" src={props.user.avatar || ''} />
       <YStack flex={1} gap="$2">
         <Paragraph size="$5" fontWeight="bold">
           {props.user.name}
