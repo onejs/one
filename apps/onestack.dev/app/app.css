@@ -18,10 +18,10 @@ body {
 :root {
   color-scheme: light dark;
   
-  --colorDeepDark: hsl(44, 28%, 8%);
+  --colorDeepDark: hsl(0, 0%, 63%);
   --colorDeepLight: #fff;
-  --bodyBgLight: #fbfbf8;
-  --bodyBgDark: #111113;
+  --bodyBgLight: #fff;
+  --bodyBgDark: #111111;
   --logoColorLight: #000;
   --logoColorDark: #fff;
   
@@ -52,7 +52,7 @@ body {
 
 a, [data-tint-link] {
   text-decoration: underline;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 0.5px;
   text-decoration-color: var(--color05);
   text-underline-offset: 4px;
   transition: all ease-in 100ms;
@@ -171,21 +171,31 @@ h1 + h2 {
 
 .t_light .local-shadows {
   box-shadow:
-    0 0 0 7px color-mix(in srgb, var(--color1) 50%, transparent),
+    0 0 0 2px color-mix(in srgb, var(--color1) 50%, transparent),
     0 0 80px rgba(0,0,0,0.07),
     0 40px 40px rgba(0,0,0,0.02),
-    inset 0 0 100px var(--yellow4);
+    inset 0 0 100px var(--color2);
 }
 
 .t_dark .local-shadows {
   box-shadow:
-    0 0 0 7px color-mix(in srgb, var(--color1) 50%, transparent),
-    0 0 0 3px color-mix(in srgb, var(--color5) 8%, transparent),
-    0 0 200px color-mix(in srgb, var(--color1) 80%, transparent);
+    0 0 0 2px color-mix(in srgb, var(--color1) 50%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--color3) 8%, transparent),
+    0 0 50px color-mix(in srgb, var(--color1) 80%, transparent);
 }
 
 :root:root .is_Paragraph {
   text-wrap: pretty;
+}
+
+.grain {
+  background: var(--bodyBg) url(/grain.jpg) 10% 10% !important;
+  image-rendering: pixelated;
+  opacity: 0.035;
+}
+
+.t_dark .grain {
+  opacity: 0.01;
 }
 
 .video-background {

@@ -26,10 +26,7 @@ export function getTypedRoutesDeclarationFile(ctx: One.RouteContext) {
     dynamicRouteContextKeys
   )
 
-  return `
-import type { OneRouter } from 'one'
-
-declare module 'one' {
+  return `declare module 'one' {
   export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
       StaticRoutes: ${setToUnionType(staticRoutes)}

@@ -1,6 +1,8 @@
 import { View } from '@tamagui/core'
+import { Link } from 'one'
 import React, { useState } from 'react'
 import type { ViewProps } from 'tamagui'
+import { Status } from '../../components/Status'
 
 export const OneBall = (props) => {
   const scaleDownBy = (1 / 20) * (props.size ?? 1)
@@ -130,11 +132,7 @@ export function OneLogo({
         viewBox="0 0 2999 1451"
       >
         <g id="three" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-          <g
-            id="Group"
-            transform="translate(686.000000, 511.000000)"
-            fill="var(--logoColor)"
-          >
+          <g id="Group" transform="translate(686.000000, 511.000000)" fill="var(--logoColor)">
             <path d="M1153.88676,0 C1289.53097,-0.00598487498 1339.37168,84.9945999 1356.97345,141.995028 C1374.57522,198.995456 1366.29204,281.995998 1238.93805,281.995998 L1238.93805,281.995998 L1052,282 C1073.33333,322 1103.33333,342 1142,342 C1180.66667,342 1224,330.333333 1272,307 L1272,307 L1334,410 C1269,446 1226.77907,462 1145.24503,462 C985.75637,462 921,352.035259 921,232.01763 C921,112 996.510066,0.00694375263 1153.88676,0 Z M1152.25624,112 C1087.51247,112 1059.72682,164.642495 1060.0034,176.93048 C1065.71931,177.101513 1124.38484,176.956964 1236,176.496832 C1236,150.497005 1217,112 1152.25624,112 Z"></path>
             <path d="M618,453.002692 L478,453.002692 L478,452.999429 L476,452.999429 L476,8.99942948 L584,8.99942948 L584,8.99942948 C611.084277,8.99942948 612.779589,30.0927846 615.960519,66.0132312 L634,67.0026924 C670,23 714,9.00000001 765,8.99942934 C839,8.99942948 893,67 893,180.999429 L892.777605,453.810647 L750.792347,453.810647 L751,236.002692 C751,160.002692 719.91488,148.133654 688.870971,148.614649 C665.47564,148.977136 620.72958,149.001026 617.999275,232.238226 L618,453.002692 Z"></path>
             <path d="M225.5,3.99942952 C356.533784,3.99942952 451,108.755636 451,232.979649 C451,357.203662 356.533784,464.99943 225.5,464.99943 C94.4662162,464.99943 0,357.203662 0,232.979649 C0,108.755636 94.4662162,3.99942952 225.5,3.99942952 Z M225,127.49943 C172.532949,127.49943 130,174.509531 130,232.49943 C130,290.489328 172.532949,337.49943 225,337.49943 C277.467051,337.49943 320,290.489328 320,232.49943 C320,174.509531 277.467051,127.49943 225,127.49943 Z"></path>
@@ -151,14 +149,27 @@ export function OneLogo({
           zIndex: -1,
         }}
       />
+
+      <View
+        pos="absolute"
+        t={20}
+        r={-60}
+        animation="quickest"
+        y={0}
+        mr={5}
+        pe="auto"
+        scale={10 * scaleDownBy}
+        transformOrigin="center top"
+      >
+        <Link href="/docs/status">
+          <Status cur="pointer" is="beta" />
+        </Link>
+      </View>
     </View>
   )
 }
 
-function OneBallAnimation({
-  start,
-  size: sizeProp = 1,
-}: { start: boolean; size?: number }) {
+function OneBallAnimation({ start, size: sizeProp = 1 }: { start: boolean; size?: number }) {
   const [hovered, setHovered] = useState(false)
   const [step, setStep] = React.useState(0)
   const size = 76 * sizeProp

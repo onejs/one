@@ -1,5 +1,5 @@
-import { Text } from 'tamagui'
 import { useLinkTo, type Href, type LinkProps as OneLinkProps } from 'one'
+import { Text } from 'tamagui'
 
 export type LinkProps = OneLinkProps<Href>
 

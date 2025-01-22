@@ -1,6 +1,10 @@
 1.0:
 
+<<<<<<< HEAD
   - we hit network for loaders even if they don't exist, need to ship info about loaders existing to clients to avoid those requests
+=======
+  - expose useRouteInfo or similar (do things like change layout for not-found pages)
+>>>>>>> main
   - if you remove escape-string-regexp from `dedupe` breaks
     - non-deduped modules that live in diff sub-dirs resolve to the same id: ___modules___["escape-string-regexp/index.js"]
   - root layout doesnt HMR
@@ -52,7 +56,7 @@
     - ensure vite.config
     - ensure tsconfig "module": "Preserve", "moduleResolution": "Bundler", (or else import 'one/vite' can break using node)
   - headless tabs (no style included), headless everything really
-  - allow customizing react navigatio Theme
+  - allow customizing react navigation Theme
   - can configure how loaders run not tied to render mode (on build or request)
   - layouts can be ssg, while pages can be spa
   - get rid of most patching in favor of plugins that are smart

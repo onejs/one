@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/color-scheme",
-  "version": "1.1.399",
+  "version": "1.1.402",
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
@@ -32,12 +32,12 @@
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
-    "@tamagui/use-did-finish-ssr": "^1.121.11",
+    "@tamagui/use-did-finish-ssr": "^1.122.7",
     "@vxrn/universal-color-scheme": "workspace:*",
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.11",
+    "@tamagui/build": "^1.122.7",
     "react": "^18.3.1 || ^19.0.0",
     "react-native": "^0.76.5"
   },

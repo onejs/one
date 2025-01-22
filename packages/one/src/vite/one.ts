@@ -235,6 +235,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             client: {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"client"',
+                'process.env.TAMAGUI_ENVIRONMENT': '"client"',
                 'import.meta.env.VITE_ENVIRONMENT': '"client"',
                 'process.env.EXPO_OS': '"web"',
               },
@@ -243,6 +244,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             ssr: {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"ssr"',
+                'process.env.TAMAGUI_ENVIRONMENT': '"ssr"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
                 'process.env.EXPO_OS': '"web"',
               },
@@ -251,6 +253,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             ios: {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"ios"',
+                'process.env.TAMAGUI_ENVIRONMENT': '"ios"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ios"',
                 'process.env.EXPO_OS': '"ios"',
               },
@@ -259,6 +262,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             android: {
               define: {
                 'process.env.VITE_ENVIRONMENT': '"android"',
+                'process.env.TAMAGUI_ENVIRONMENT': '"android"',
                 'import.meta.env.VITE_ENVIRONMENT': '"android"',
                 'process.env.EXPO_OS': '"android"',
               },
@@ -269,12 +273,32 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     } satisfies Plugin,
 
     {
-      name: 'tamagui-react-19',
+      name: 'one:tamagui',
       config() {
         return {
           define: {
             // safe to set because it only affects web in tamagui, and one is always react 19
             'process.env.TAMAGUI_REACT_19': '"1"',
+            'process.env.TAMAGUI_SKIP_THEME_OPTIMIZATION': '"1"',
+          },
+
+          environments: {
+            ssr: {
+              define: {
+                'process.env.TAMAGUI_IS_SERVER': '"1"',
+                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+              },
+            },
+            ios: {
+              define: {
+                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+              },
+            },
+            android: {
+              define: {
+                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+              },
+            },
           },
         }
       },

@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/debug",
-  "version": "1.1.399",
+  "version": "1.1.402",
   "sideEffects": false,
   "source": "src/index.ts",
   "type": "module",
@@ -32,7 +32,7 @@
     "debug": "^4.3.7"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.11",
+    "@tamagui/build": "^1.122.7",
     "@types/debug": "^4"
   },
   "publishConfig": {

@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/safe-area",
-  "version": "1.1.399",
+  "version": "1.1.402",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
@@ -30,6 +30,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.121.11"
+    "@tamagui/build": "^1.122.7"
   }
 }

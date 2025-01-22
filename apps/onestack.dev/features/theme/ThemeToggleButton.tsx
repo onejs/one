@@ -23,6 +23,8 @@ export function ToggleThemeButton() {
         pointerEvents="auto"
         cur="pointer"
         onPress={onPress}
+        role="button"
+        aria-label="Toggle theme"
       >
         <Icon size={22} color="$color13" />
       </View>

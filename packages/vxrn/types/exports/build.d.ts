@@ -1,3 +1,4 @@
+import type { OutputAsset, OutputChunk } from 'rollup';
 import type { BuildArgs, VXRNOptions } from '../types';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<void | {
     options: {
@@ -34,7 +35,7 @@ export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => P
     buildArgs: BuildArgs;
     serverEntry: string;
     clientOutput: any;
-    serverOutput: any;
+    serverOutput: [OutputChunk, ...(OutputChunk | OutputAsset)[]] | undefined;
     serverBuildConfig: Record<string, any>;
     webBuildConfig: Record<string, any>;
     clientManifest: any;

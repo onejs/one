@@ -6,7 +6,7 @@ import { themeTokenNumber } from '~/features/site/headerColors'
 export const LayoutDecorativeStripe = memo(() => {
   const pathname = usePathname()
   const isHome = pathname === '/'
-  const y = isHome ? -61 : -85
+  const y = isHome ? -52 : -69
 
   return (
     <YStack
@@ -16,11 +16,10 @@ export const LayoutDecorativeStripe = memo(() => {
       l={0}
       r={0}
       h={150}
-      theme="yellow"
       scaleY={-1}
-      bg={`$color${themeTokenNumber.light}`}
+      bg={`$yellow${themeTokenNumber.light}`}
       $theme-dark={{
-        bg: `$color${themeTokenNumber.dark}`,
+        bg: `#000`,
       }}
       y={y}
       $platform-web={{
@@ -32,57 +31,60 @@ export const LayoutDecorativeStripe = memo(() => {
     />
   )
 })
-const convex = getClipPath(0.1)[0]
-const concave = getClipPath(0.1)[1]
+const convex = getClipPath(0.05)[0]
+const concave = getClipPath(0.05)[1]
 
-function getClipPath(amplitude = 0.15) {
-  const N = 200 // Number of points for smoothness
-  const cx = 0.5 // Center x-coordinate (50%)
-  const cy = 0.5 // Center y-coordinate (50%)
-  const r = 0.5 // Radius (50%)
+function getClipPath(
+  // adjust the bendyness
+  amplitude = 0.5
+) {
+  const N = 300 // number of points / smoothness
+  const cx = 0.5 // center x-coordinate
+  const cy = 0.5 // center y-coordinate
+  const r = 0.5 // radius
 
-  // Generate points for the inverted arc (cutout at the top)
+  // generate points for the inverted arc (cutout at the top)
   const pointsTrue: string[] = []
 
-  // Generate points for the regular arc (bulging out at the top)
+  // generate points for the regular arc (bulging out at the top)
   const pointsFalse: string[] = []
 
-  // Start from the bottom-left corner
+  // start from the bottom-left corner
   pointsTrue.push('0% 100%')
   pointsFalse.push('0% 100%')
 
-  // Bottom-right corner
+  // bottom-right corner
   pointsTrue.push('100% 100%')
   pointsFalse.push('100% 100%')
 
-  // Generate points along the arc from right to left
+  // generate points along the arc from right to left
   for (let i = N - 1; i >= 0; i--) {
     const x = i / (N - 1)
     const dx = x - cx
     const dy = Math.sqrt(Math.max(r * r - dx * dx, 0))
 
-    // Scale dy to adjust the amplitude
+    // scale dy to adjust the amplitude
     const dyScaled = (dy / r) * amplitude
 
-    // For the inverted arc (cutout at the top)
+    // for the inverted arc (cutout at the top)
     const yTrue = cy + dyScaled
 
-    // For the regular arc (bulging out at the top)
+    // for the regular arc (bulging out at the top)
     const yFalse = cy - dyScaled
 
-    const xPercent = (x * 100).toFixed(4) + '%'
-    const yTruePercent = (yTrue * 100).toFixed(4) + '%'
-    const yFalsePercent = (yFalse * 100).toFixed(4) + '%'
+    const xPercent = (x * 100).toFixed(1) + '%'
+    const yTruePercent = (yTrue * 100).toFixed(1) + '%'
+    const yFalsePercent = (yFalse * 100).toFixed(1) + '%'
 
     pointsTrue.push(`${xPercent} ${yTruePercent}`)
     pointsFalse.push(`${xPercent} ${yFalsePercent}`)
   }
 
-  // Top-left corner
+  // top-left corner
   pointsTrue.push('0% 0%')
   pointsFalse.push('0% 0%')
 
-  // Create the clipPath strings
+  // create the clippath strings
   const clipPathTrue = `polygon(${pointsTrue.join(', ')})`
   const clipPathFalse = `polygon(${pointsFalse.join(', ')})`
 

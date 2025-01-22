@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import { rm } from 'node:fs/promises'
 import { sep } from 'node:path'
-import type { RollupOutput } from 'rollup'
+import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
 import {
   loadConfigFromFile,
   mergeConfig,
@@ -241,7 +241,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   const serverEntry = getServerEntry(options)
 
-  let serverOutput
+  let serverOutput: [OutputChunk, ...(OutputChunk | OutputAsset)[]] | undefined
   let clientManifest
 
   if (serverOptions !== false) {
