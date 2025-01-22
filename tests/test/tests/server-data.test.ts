@@ -17,18 +17,19 @@ afterAll(async () => {
 })
 
 test('setServerData getServerData', async () => {
-  const stringiifed = '{"fromServer":true}'
+  const url = serverUrl + '/server-data'
 
-  const response = await fetch(serverUrl)
+  const response = await fetch(url)
   const html = await response.text()
-  expect(html.includes(stringiifed)).toBeTruthy()
+
+  expect(html.includes(`<div id="server-data">{&quot;fromServer&quot;:true}</div>`)).toBeTruthy()
 
   const page = await context.newPage()
 
-  await page.goto(serverUrl + '/server-data')
+  await page.goto(url)
 
-  const textContent = await page.textContent('#loader-data')
-  expect(textContent).toContain(stringiifed)
+  const textContent = await page.textContent('#server-data')
+  expect(textContent).toContain(`{"fromServer":true}`)
 
   await page.close()
 })
