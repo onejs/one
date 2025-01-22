@@ -1,14 +1,12 @@
 import { SERVER_CONTEXT_KEY } from '../constants'
 import type { One } from '../vite/types'
-import { ensureAsyncLocalID } from './ensureAsyncLocalID'
+import { ensureAsyncLocalID } from './one__ensureAsyncLocalID'
 
 export type ServerContext = {
   css?: string[]
   postRenderData?: any
   loaderData?: any
   loaderProps?: any
-  // externally exposed for apps to use
-  clientData?: any
   mode?: 'spa' | 'ssg' | 'ssr'
 }
 
@@ -22,9 +20,7 @@ export function setServerContext(data: ServerContext) {
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
     const id = ensureAsyncLocalID()
     if (!serverContexts.has(id)) {
-      serverContexts.set(id, {
-        postRenderData: SERVER_CONTEXT_POST_RENDER_STRING,
-      })
+      serverContexts.set(id, {})
     }
 
     const context = serverContexts.get(id)!
@@ -56,9 +52,16 @@ export function ServerContextScript() {
       async
       // @ts-ignore
       href={SERVER_CONTEXT_KEY}
+      suppressHydrationWarning
       dangerouslySetInnerHTML={{
-        __html: `
-            globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify(context)};
+        __html:
+          process.env.VITE_ENVIRONMENT === 'client'
+            ? ''
+            : `
+            globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify({
+              ...context,
+              postRenderData: SERVER_CONTEXT_POST_RENDER_STRING,
+            })};
         `,
       }}
     />
@@ -75,11 +78,11 @@ export function setServerData<Key extends keyof One.ClientData>(
   key: Key,
   value: One.ClientData[Key]
 ) {
-  if (process.env.VITE_ENVIRONMENT === 'server') {
+  if (process.env.VITE_ENVIRONMENT === 'ssr') {
     const context = getServerContext()
     setServerContext({
-      clientData: {
-        ...context?.clientData,
+      postRenderData: {
+        ...context?.postRenderData,
         [key]: value,
       },
     })
@@ -92,8 +95,8 @@ export function setServerData<Key extends keyof One.ClientData>(
  * For getting data set by setServerData on the server.
  */
 export function getServerData(key: keyof One.ClientData) {
-  if (process.env.VITE_ENVIRONMENT === 'server') {
+  if (process.env.VITE_ENVIRONMENT === 'ssr') {
     throw new Error(`Cannot getServerData on the server`)
   }
-  return getServerContext()?.clientData?.[key]
+  return getServerContext()?.postRenderData?.[key]
 }

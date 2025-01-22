@@ -14,7 +14,7 @@ import {
   getServerContext,
   SERVER_CONTEXT_POST_RENDER_STRING,
   setServerContext,
-} from './utils/serverData'
+} from './utils/serverContext'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
@@ -96,15 +96,13 @@ export function createApp(options: CreateAppProps) {
         }
 
         // now we can grab and serialize in our zero queries
-        const serverData = getServerContext()?.postRenderData
-        if (serverData) {
-          const hasQueryData = Object.keys(serverData).length
-          if (hasQueryData) {
-            html = html.replace(
-              JSON.stringify(SERVER_CONTEXT_POST_RENDER_STRING),
-              JSON.stringify(serverData)
-            )
-          }
+        const postRenderData = getServerContext()?.postRenderData
+
+        if (postRenderData) {
+          html = html.replace(
+            JSON.stringify(SERVER_CONTEXT_POST_RENDER_STRING),
+            JSON.stringify(postRenderData)
+          )
         }
 
         return html

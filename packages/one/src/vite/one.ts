@@ -340,6 +340,23 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         }
       },
     } satisfies Plugin,
+
+    {
+      name: 'one:remove-server-from-client',
+
+      transform(code, id) {
+        if (this.environment.name !== 'client') {
+          return
+        }
+        if (!id.includes('one__ensureAsyncLocalID')) {
+          return
+        }
+        return `export function ensureAsyncLocalID() {
+          return {}
+          }
+        `
+      },
+    },
   ] satisfies Plugin[]
 
   // react scan

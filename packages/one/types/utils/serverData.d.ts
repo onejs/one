@@ -4,6 +4,7 @@ export type ServerContext = {
     postRenderData?: any;
     loaderData?: any;
     loaderProps?: any;
+    clientData?: any;
     mode?: 'spa' | 'ssg' | 'ssr';
 };
 export type MaybeServerContext = null | ServerContext;
@@ -22,4 +23,4 @@ export declare function setServerData<Key extends keyof One.ClientData>(key: Key
  * For getting data set by setServerData on the server.
  */
 export declare function getServerData(key: keyof One.ClientData): any;
-//# sourceMappingURL=serverContext.d.ts.map
+//# sourceMappingURL=serverData.d.ts.map
