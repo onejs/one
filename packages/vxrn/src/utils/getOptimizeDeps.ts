@@ -13,6 +13,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-native-css-interop/jsx-dev-runtime',
     'react-native-css-interop',
 
+    'secure-json-parse',
+
     '@vxrn/safe-area',
     '@vxrn/vendor/react-19-prod',
     '@vxrn/vendor/react-19',
@@ -39,6 +41,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-is',
     'fast-deep-equal',
     '@supabase/auth-helpers-react',
+    '@supabase/postgres-js',
     'core-js',
     'parse-numeric-range',
     'use-sync-external-store',

@@ -16,7 +16,7 @@ import { ServerRenderID } from './useServerHeadInsertion'
 import { getServerContext } from './utils/serverData'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
-import { ScrollRestoration } from './views/ScrollRestoration'
+import { ScrollBehavior } from './views/ScrollBehavior'
 import type { One } from './vite/types'
 
 type RootProps = Omit<InnerProps, 'context'> & {
@@ -96,7 +96,7 @@ export function Root(props: RootProps) {
              */}
             <>
               {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
-              <ScrollRestoration />
+              <ScrollBehavior />
               <Component />
 
               {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}

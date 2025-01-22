@@ -75,7 +75,7 @@ const SubSection = ({
 
   const wrapper = (children) => {
     return (
-      <YStack bbw={0.5} bc={inMenu ? 'transparent' : '$background025'}>
+      <YStack bbw={0} bc={inMenu ? 'transparent' : '$background025'}>
         {children}
       </YStack>
     )
@@ -86,7 +86,7 @@ const SubSection = ({
   }
 
   return wrapper(
-    <Accordion.Item value={section.title || 'base'}>
+    <Accordion.Item bw={0} value={section.title || 'base'}>
       <Accordion.Trigger
         unstyled
         bg="transparent"
@@ -105,6 +105,7 @@ const SubSection = ({
               py="$2"
               px="$4"
               jc="space-between"
+              tag="span"
               ai="center"
               gap="$3"
             >

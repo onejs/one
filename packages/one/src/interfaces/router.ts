@@ -208,6 +208,7 @@ export namespace OneRouter {
 
   export type ResultState = PartialState<NavigationState> & {
     state?: ResultState
+    hash?: string
     linkOptions?: OneRouter.LinkToOptions
   }
 

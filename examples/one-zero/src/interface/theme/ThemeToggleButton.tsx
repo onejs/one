@@ -24,7 +24,7 @@ export function ToggleThemeButton() {
         }}
         onPress={onPress}
       >
-        <Icon size={22} color="$color13" />
+        <Icon size={22} color="$color12" />
       </View>
 
       <YStack>

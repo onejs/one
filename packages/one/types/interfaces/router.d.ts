@@ -122,6 +122,7 @@ export declare namespace OneRouter {
     export type LoadingState = 'loading' | 'loaded';
     export type ResultState = PartialState<NavigationState> & {
         state?: ResultState;
+        hash?: string;
         linkOptions?: OneRouter.LinkToOptions;
     };
     export type RootStateListener = (state: ResultState) => void;

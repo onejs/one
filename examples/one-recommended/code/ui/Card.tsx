@@ -2,7 +2,7 @@ import { styled, XStack } from 'tamagui'
 
 export const Card = styled(XStack, {
   overflow: 'hidden',
-  minWidth: '100%',
+  minW: '100%',
   p: '$4',
   gap: '$4',
   borderBottomWidth: 1,

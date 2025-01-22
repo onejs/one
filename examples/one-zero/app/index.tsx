@@ -50,7 +50,7 @@ export default function HomePage() {
         </Button>
       )}
 
-      <YStack width="100%" gap="$4" p="$4" borderColor="$color2" borderWidth={1} borderRadius="$4">
+      <YStack width="100%" gap="$4" p="$4" borderColor="$color2" borderWidth={1} rounded="$4">
         <Input onChangeText={setText} />
 
         <Button

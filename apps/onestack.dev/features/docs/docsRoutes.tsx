@@ -66,7 +66,7 @@ export const docsRoutes = [
       // { title: 'Head', route: '/docs/components-Head' },
       { title: 'Redirect', route: '/docs/components-Redirect' },
       { title: 'LoadProgressBar', route: '/docs/components-LoadProgressBar' },
-      { title: 'ScrollRestoration', route: '/docs/components-ScrollRestoration' },
+      { title: 'ScrollBehavior', route: '/docs/components-ScrollBehavior' },
       { title: 'SafeAreaView', route: '/docs/components-SafeAreaView' },
     ],
   },
