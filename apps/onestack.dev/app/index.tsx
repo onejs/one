@@ -106,10 +106,10 @@ export default function HomePage() {
                       bg: '$color9',
                     }}
                   >
-                    <ButtonText ff="$mono" lh={0} $sm={{ dsp: 'none' }}>
+                    <ButtonText fontFamily="$mono" lh={0} $sm={{ dsp: 'none' }}>
                       Docs
                     </ButtonText>
-                    <ButtonText ff="$mono" lh={0} $gtSm={{ dsp: 'none' }}>
+                    <ButtonText fontFamily="$mono" lh={0} $gtSm={{ dsp: 'none' }}>
                       Docs
                     </ButtonText>
                   </Button>
@@ -252,7 +252,7 @@ export default function HomePage() {
 
                 <YStack>
                   <PrettyText
-                    ff="$mono"
+                    fontFamily="$mono"
                     mb="$1"
                     mt="$-2"
                     className="text-underline-none"
@@ -337,7 +337,7 @@ const InfoCard = ({ title, Icon, children }) => {
       <YStack fullscreen o={0.25}></YStack>
       <YStack gap="$2" p="$4">
         <Icon als="flex-end" mb={-20} o={0.1} size={28} />
-        <H5 ff="$mono" size="$2" color="$color13" mt={-10}>
+        <H5 fontFamily="$mono" size="$2" color="$color13" mt={-10}>
           {title}
         </H5>
         <PrettyText color="$gray11">{children}</PrettyText>
@@ -458,7 +458,7 @@ function Video() {
         </View>
         <Paragraph
           animation="quickest"
-          ff="$mono"
+          fontFamily="$mono"
           size="$6"
           ta="center"
           w={340}
@@ -545,7 +545,7 @@ const CopyCommand = () => {
           aria-label="Copy npx one command"
         >
           <Text
-            ff="$mono"
+            fontFamily="$mono"
             color="inherit"
             fontSize={46}
             lineHeight={46}

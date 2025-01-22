@@ -19,7 +19,7 @@ export const Avatar = ({
   ...rest
 }: CircleProps & { image: string; size?: number; active?: boolean }) => {
   return (
-    <SelectableCircle active={active} size={size} bg="$color5" ov="hidden" {...rest}>
+    <SelectableCircle active={active} size={size} bg="$color5" overflow="hidden" {...rest}>
       {image && <Image src={image} width={size} height={size} />}
     </SelectableCircle>
   )

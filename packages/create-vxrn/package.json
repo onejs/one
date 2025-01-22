@@ -27,7 +27,7 @@
     }
   },
   "dependencies": {
-    "@tamagui/build": "^1.122.1",
+    "@tamagui/build": "^1.122.7",
     "@types/validate-npm-package-name": "^4.0.2",
     "@vxrn/utils": "workspace:*",
     "ansis": "^3.1.0",

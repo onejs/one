@@ -5,7 +5,7 @@
     "outDir": "dist",
     "paths": {
       "~/*": [
-        "./*"
+        "./src/*"
       ]
     },
     "importHelpers": true,

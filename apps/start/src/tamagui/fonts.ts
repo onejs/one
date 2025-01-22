@@ -1,8 +1,11 @@
 import { createSystemFont } from '@tamagui/config/v4'
 import { createFont } from 'tamagui'
 
-const heading = createSystemFont(
-  {
+const heading = createSystemFont({
+  sizeSize: (size) => Math.round(2.5 * size),
+  sizeLineHeight: (size) => Math.round(size * 1.1 + (size < 30 ? 10 : 5)),
+  font: {
+    family: '"Ader"',
     size: {
       5: 13,
       6: 15,
@@ -39,25 +42,25 @@ const heading = createSystemFont(
       900: { normal: 'InterBold' },
     },
   },
-  { sizeLineHeight: (size) => Math.round(size * 1.1 + (size < 30 ? 10 : 5)) }
-)
+})
 
-const body = createSystemFont(
-  {
+const body = createSystemFont({
+  sizeSize: (size) => Math.round(size),
+  sizeLineHeight: (size) => Math.round(size * 1.1 + (size >= 12 ? 10 : 4)),
+  font: {
     weight: {
       1: '400',
       7: '600',
     },
   },
-  {
-    sizeSize: (size) => Math.round(size),
-    sizeLineHeight: (size) => Math.round(size * 1.1 + (size >= 12 ? 10 : 4)),
-  }
-)
+})
 
 const mono = createFont({
   ...body,
-  family: '"IBM Plex Mono", Consolas, monospace, monospace',
+  family: '"Geist Mono", Consolas, monospace, monospace',
+  weight: {
+    0: '400',
+  },
   size: {
     1: 11 * 1.4,
     2: 12 * 1.4,
