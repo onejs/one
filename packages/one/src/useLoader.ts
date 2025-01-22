@@ -6,7 +6,7 @@ import { useRouteNode } from './router/Route'
 import { preloadingLoader } from './router/router'
 import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
-import { getServerContext } from './utils/serverContext'
+import { getServerContext } from './utils/serverData'
 import { weakKey } from './utils/weakKey'
 
 const promises: Record<string, undefined | Promise<void>> = {}

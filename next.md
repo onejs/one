@@ -1,10 +1,7 @@
 1.0:
 
-<<<<<<< HEAD
   - we hit network for loaders even if they don't exist, need to ship info about loaders existing to clients to avoid those requests
-=======
   - expose useRouteInfo or similar (do things like change layout for not-found pages)
->>>>>>> main
   - if you remove escape-string-regexp from `dedupe` breaks
     - non-deduped modules that live in diff sub-dirs resolve to the same id: ___modules___["escape-string-regexp/index.js"]
   - root layout doesnt HMR

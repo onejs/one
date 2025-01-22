@@ -1,4 +1,5 @@
 import { AsyncLocalStorage } from 'node:async_hooks'
+import { ensureAsyncLocalID } from '../utils/ensureAsyncLocalID'
 
 export const requestAsyncLocalStore =
   globalThis['__vxrnrequestAsyncLocalStore'] ?? new AsyncLocalStorage()
@@ -15,12 +16,7 @@ globalThis['__vxrnrequestAsyncLocalStore'] ||= requestAsyncLocalStore
 globalThis['__vxrnasyncHeadersCache'] ||= asyncHeadersCache
 
 export async function setResponseHeaders(cb: (headers: Headers) => void) {
-  const id = requestAsyncLocalStore.getStore()
-
-  if (!id) {
-    throw new Error(`AsyncLocalStorage not working, no id!`)
-  }
-
+  const id = ensureAsyncLocalID()
   const headers = asyncHeadersCache.get(id) ?? new Headers()
   asyncHeadersCache.set(id, headers)
   cb(headers)

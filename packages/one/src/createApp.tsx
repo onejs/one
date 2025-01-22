@@ -8,14 +8,13 @@ import { renderToString } from './server-render'
 import type { RenderAppProps } from './types'
 // @ts-ignore
 import ReactDOMServer from 'react-dom/server.browser'
+import { getServerHeadInsertions } from './useServerHeadInsertion'
+import { ensureExists } from './utils/ensureExists'
 import {
   getServerContext,
   SERVER_CONTEXT_POST_RENDER_STRING,
   setServerContext,
-} from './utils/serverContext'
-import { cloneElement, useId } from 'react'
-import { ensureExists } from './utils/ensureExists'
-import { getServerHeadInsertions } from './useServerHeadInsertion'
+} from './utils/serverData'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
