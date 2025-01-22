@@ -324,6 +324,26 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         })
       },
     } satisfies Plugin,
+
+    // Plugins may transform the source code and add imports of `react/jsx-dev-runtime`, which won't be discovered by Vite's initial `scanImports` since the implementation is using ESbuild where such plugins are not executed.
+    // Thus, if the project has a valid `react/jsx-dev-runtime` import, we tell Vite to optimize it, so Vite won't only discover it on the next page load and trigger a full reload.
+    {
+      name: 'one:optimize-react-dev-runtime',
+
+      config() {
+        try {
+          resolvePath('react/jsx-dev-runtime', root)
+
+          return {
+            optimizeDeps: {
+              include: ['react/jsx-dev-runtime'],
+            },
+          }
+        } catch {
+          return {}
+        }
+      },
+    } satisfies Plugin
   ] satisfies Plugin[]
 
   // react scan
