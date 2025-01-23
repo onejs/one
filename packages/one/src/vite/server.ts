@@ -1,26 +1,39 @@
 import { AsyncLocalStorage } from 'node:async_hooks'
 import { ensureAsyncLocalID } from '../utils/one__ensureAsyncLocalID'
 
-const newContext = new AsyncLocalStorage()
-const existing = globalThis['__vxrnrequestAsyncLocalStore'] as typeof newContext
-export const requestAsyncLocalStore = existing ?? newContext
-
-const newCache = new WeakMap<any, Headers>()
-export const asyncHeadersCache =
-  (globalThis['__vxrnasyncHeadersCache'] as typeof newCache) ?? newCache
-
 // NOTE: we have a big issue right now, we have "one" in optimizeDeps
 // because otherwise you get an error when Root imports Text/View from react-native
 // even though react-native is in optimizeDeps, it seems thats not working
 // but what happens is that somehow one is imported directly by node right away
 // and then later its imported through optimizeDeps, a seaprate instance, creating a separate requestAsyncLocalStore
-globalThis['__vxrnrequestAsyncLocalStore'] ||= requestAsyncLocalStore
+type ALSInstance = AsyncLocalStorage<unknown>
+
+const key = '__vxrnrequestAsyncLocalStore'
+const read = () => globalThis[key] as ALSInstance | undefined
+
+const ASYNC_LOCAL_STORE = {
+  get current() {
+    if (read()) return read()
+    const _ = new AsyncLocalStorage()
+    globalThis[key] = _
+    return _
+  },
+}
+
+export const requestAsyncLocalStore =
+  process.env.VITE_ENVIRONMENT === 'ssr' ? ASYNC_LOCAL_STORE.current : null
+
+const newCache = new WeakMap<any, Headers>()
+
+export const asyncHeadersCache =
+  (globalThis['__vxrnasyncHeadersCache'] as typeof newCache) ?? newCache
+
 globalThis['__vxrnasyncHeadersCache'] ||= asyncHeadersCache
 
 export async function runWithAsyncLocalContext<A>(cb: (id: Object) => Promise<A>): Promise<A> {
   const id = { _id: Math.random() }
   let out: A = null as any
-  await requestAsyncLocalStore.run(id, async () => {
+  await ASYNC_LOCAL_STORE.current!.run(id, async () => {
     out = await cb(id)
   })
   return out
