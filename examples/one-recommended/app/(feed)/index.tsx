@@ -61,7 +61,7 @@ export function FeedPage() {
       />
 
       <PageContainer>
-        <ScrollView maxHeight="100%">
+        <ScrollView maxH="100%">
           <RefreshControl refreshing={false} />
           {feed.map((item) => (
             <FeedCard key={item.id} {...item} />

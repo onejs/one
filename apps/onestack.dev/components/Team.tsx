@@ -1,13 +1,11 @@
-import { Image } from '@tamagui/image-next'
-import { Github, Twitter } from '@tamagui/lucide-icons'
-import { Spacer, styled, View, XStack, YStack } from 'tamagui'
+import { styled, YStack } from 'tamagui'
 import { Link } from '~/features/site/Link'
 import { PrettyText } from './typography'
 
 export const Team = () => {
   return (
     <YStack group containerType="normal" gap="$8" my="$4">
-      <PrettyText ff="$perfectlyNineties" fontSize="$7" lineHeight="$7" color="$color" ta="center">
+      <PrettyText fontFamily="$mono" fontSize="$7" lineHeight="$7" color="$color" ta="center">
         Team
       </PrettyText>
 

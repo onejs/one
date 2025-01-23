@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
 import { nanoid } from 'nanoid/non-secure'
-import { Fragment, startTransition, useSyncExternalStore, type ComponentType } from 'react'
+import { act, Fragment, startTransition, useSyncExternalStore, type ComponentType } from 'react'
 import { Platform } from 'react-native'
 import type { RouteNode } from './Route'
 import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
@@ -114,7 +114,14 @@ function setupLinking(initialLocation?: URL) {
 
 function subscribeToNavigationChanges() {
   navigationRefSubscription = navigationRef.addListener('state', (data) => {
-    let state = data.data.state as OneRouter.ResultState
+    let state = { ...data.data.state } as OneRouter.ResultState
+
+    if (state.key) {
+      if (hashes[state.key]) {
+        state.hash = hashes[state.key]
+        delete hashes[state.key]
+      }
+    }
 
     if (!hasAttemptedToHideSplash) {
       hasAttemptedToHideSplash = true
@@ -500,6 +507,11 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
   const rootState = navigationRef.getRootState()
   const action = getNavigateAction(state, rootState, event)
 
+  const hash = href.indexOf('#')
+  if (rootState.key && hash > 0) {
+    hashes[rootState.key] = href.slice(hash)
+  }
+
   // a bit hacky until can figure out a reliable way to tie it to the state
   nextOptions = options ?? null
 
@@ -528,6 +540,8 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
 
   return
 }
+
+const hashes: Record<string, string> = {}
 
 let nextOptions: OneRouter.LinkToOptions | null = null
 

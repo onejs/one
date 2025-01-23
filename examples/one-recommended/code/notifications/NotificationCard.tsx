@@ -27,8 +27,8 @@ export const NotificationCard = (props: NotificationItem) => {
   return (
     <Link asChild href={(props.post ? props.post.postLink : props.fromUser.userLink) || '/'}>
       <Card tag="a">
-        <Image width={32} height={32} br={100} src={props.fromUser.avatar || ''} />
-        <YStack f={1}>
+        <Image width={32} height={32} borderRadius={100} src={props.fromUser.avatar || ''} />
+        <YStack flex={1}>
           <Paragraph size="$5">
             <Text fontWeight="bold">{props.fromUser.username}</Text>
             &nbsp;

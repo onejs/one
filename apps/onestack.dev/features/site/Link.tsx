@@ -9,6 +9,8 @@ export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
   return (
     <Text
       tag="a"
+      // @ts-ignore
+      fontFamily="inherit"
       // always except-style
       asChild={asChild ? 'except-style' : false}
       className="t_Link"
@@ -17,7 +19,7 @@ export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
       fontSize="inherit"
       lineHeight="inherit"
       {...props}
-      {...linkProps}
+      {...(linkProps as any)}
     />
   )
 }

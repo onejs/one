@@ -1,9 +1,6 @@
 import {
-  BoxSelect,
   Database,
-  Download,
   FileStack,
-  Folder,
   FolderCheck,
   Loader,
   TabletSmartphone,
@@ -19,6 +16,7 @@ import {
   Portal,
   Spacer,
   Text,
+  Theme,
   Tooltip,
   View,
   XStack,
@@ -27,11 +25,9 @@ import {
 } from 'tamagui'
 import { Button } from '~/components/Button'
 import { Community } from '~/components/Community'
-import { Hint } from '~/components/Hint'
 import { Team } from '~/components/Team'
 import { PrettyText, PrettyTextBigger, PrettyTextBiggest } from '~/components/typography'
 import { OneBall, OneLogo } from '~/features/brand/Logo'
-import { Status } from '~/features/docs/Status'
 import { useClipboard } from '~/features/docs/useClipboard'
 import { ContainerSm } from '~/features/site/Containers'
 import { Footer } from '~/features/site/Footer'
@@ -68,7 +64,7 @@ export default function HomePage() {
             mt={-5}
             $sm={{ scale: 0.75, mx: -32, my: -28 }}
           >
-            <OneLogo size={0.9} animate />
+            <OneLogo size={0.8} animate />
           </View>
 
           <View
@@ -87,32 +83,30 @@ export default function HomePage() {
             <XStack ai="center" gap="$6" $sm={{ jc: 'center' }}>
               <ToggleThemeButton />
 
-              <Link href="/docs/introduction" asChild>
-                <Button
-                  size="$5"
-                  bg="$color2"
-                  br="$10"
-                  group
-                  animation="quickest"
-                  containerType="normal"
-                  gap={0}
-                  bw={0}
-                  bc="$color10"
-                  $theme-light={{
-                    hoverStyle: {
+              <Theme name="accent">
+                <Link href="/docs/introduction" asChild>
+                  <Button
+                    size="$5"
+                    bg="$color2"
+                    br="$10"
+                    group
+                    animation="quickest"
+                    containerType="normal"
+                    gap={0}
+                    bw={0}
+                    hoverStyle={{
                       bg: '$color5',
-                      bc: '$color11',
-                    },
-                    pressStyle: {
+                    }}
+                    pressStyle={{
                       bg: '$color9',
-                      bc: '$color11',
-                    },
-                  }}
-                >
-                  <ButtonText $sm={{ dsp: 'none' }}>Get started</ButtonText>
-                  <ButtonText $gtSm={{ dsp: 'none' }}>Docs</ButtonText>
-                </Button>
-              </Link>
+                    }}
+                  >
+                    <ButtonText color="$color12" fontFamily="$mono" lh={0}>
+                      Docs
+                    </ButtonText>
+                  </Button>
+                </Link>
+              </Theme>
             </XStack>
 
             <XStack
@@ -129,63 +123,49 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View gap="$4">
-          <PrettyTextBiggest color="$color13" mt={30} mb={-10} transformOrigin="left center">
-            Easy, simple &&nbsp;fast cross&#8209;platform&nbsp;apps.
-          </PrettyTextBiggest>
-
-          <PrettyTextBigger intro>
-            One&nbsp;is&nbsp;a&nbsp;React framework for web and{' '}
-            <Hint hintContents={<>One makes Vite fully support React Native.</>}>native</Hint> in a
-            single Vite plugin. Featuring&nbsp;
-            <Hint tint="green" hintContents="Unified file system routes, web and native.">
-              universal,
-            </Hint>{' '}
-            typed <Link href="/docs/routing">file-system routes</Link> across{' '}
-            <Hint tint="purple" hintContents="SSG - Rendered to HTML during build.">
-              static
-            </Hint>
+        <View theme="yellow" gap="$4" pt="$6">
+          <PrettyTextBigger>
+            One aims to make cross-platform React&nbsp;Native as performant and simple as possible.
+            <br />
+            <br />
+            We made{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
+              Vite
+            </Link>{' '}
+            able to <a href="https://vxrn.dev">serve</a> React Native, then&nbsp;added{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
+              file-system routing
+            </Link>
             ,{' '}
-            <Hint tint="red" hintContents="SSR - Rendered to HTML for each request.">
-              server
-            </Hint>
-            , and{' '}
-            <Hint tint="pink" hintContents="SPA - No servers or build, just client-side.">
-              client
-            </Hint>{' '}
-            pages, plus a smart new solution&nbsp;to&nbsp;data.
+            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-modes">
+              render modes
+            </Link>
+            ,{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-loader">
+              loaders
+            </Link>
+            ,{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-middleware">
+              middleware
+            </Link>
+            , a{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/">
+              CLI
+            </Link>
+            , <a href="https://hono.dev">Hono</a>, and{' '}
+            <Link style={{ color: 'var(--color11)' }} href="/docs/features">
+              more
+            </Link>
+            .
           </PrettyTextBigger>
 
-          <XStack
-            my="$6"
-            als="center"
-            ai="center"
-            jc="center"
-            gap="$1"
-            px="$6"
-            bw={0.5}
-            bc="$color4"
-            py={12}
-          >
-            <Corners />
-
-            <View
-              pos="absolute"
-              t={-20}
-              r={-20}
-              rotate="5deg"
-              animation="quickest"
-              y={3}
-              mr={5}
-              pe="auto"
-            >
-              <Link href="/docs/status">
-                <Status cur="pointer" is="beta" />
-              </Link>
-            </View>
-
+          <YStack als="center" ai="center" jc="center" gap="$1" px="$6" bc="$color4" mt={12}>
+            <Paragraph theme="gray" color="$color8" mb={-20}>
+              Bootstrap an app with
+            </Paragraph>
+            <br />
             <CopyCommand />
-          </XStack>
+          </YStack>
 
           <YStack>
             <Video />
@@ -195,7 +175,7 @@ export default function HomePage() {
             <View
               id="zero"
               contain="paint layout"
-              className="local-shadows tinted"
+              className="tinted"
               br="$10"
               px="$5"
               py="$10"
@@ -203,53 +183,28 @@ export default function HomePage() {
               gap="$5"
               $gtSm={{ px: '$9', py: '$8', pb: '$5', mx: '$0' }}
             >
-              <PrettyTextBiggest
-                color="$color11"
-                mt={15}
-                $md={{ size: '$10' }}
-                $sm={{ size: '$9' }}
-              >
-                Rethinking read&nbsp;&&nbsp;write
+              <PrettyTextBiggest $md={{ size: '$10' }} $sm={{ size: '$9' }}>
+                Keeping things simple
               </PrettyTextBiggest>
 
-              <PrettyTextBigger style={{ textWrap: 'stable' }}>
-                Simpler code, better UX, cross&#8209;platform - that's&nbsp;the ideal. With&nbsp;One
-                (and <a href="https://tamagui.dev">Tamagui</a>), we're close&#x2026; but there's
-                still one huge pain point. <b>Let's&nbsp;talk about&nbsp;data</b>.
+              <PrettyTextBigger>
+                Native apps feel better and are easier to write thanks to using client-side
+                databases with sync engines. But to date no JavaScript library has cracked the
+                combination of lightweight, full-featured, easy to host, and feature-rich.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                Native apps feel better and are easier to write thanks to having client-side
-                databases. You can say&nbsp;goodbye&nbsp;to server boundaries, lose&nbsp;the glue
-                code, mutate instantly, and things Just&nbsp;Work™&nbsp;offline&#x2026;
+                We think the time has come for the web to build more responsive experiences with
+                great sync engines, and it doesn't hurt that it makes our framework simpler, apps
+                better, and even our code nicer, at once.
               </PrettyTextBigger>
 
               <PrettyTextBigger>
-                So, <b>why don't we use them on&nbsp;the&nbsp;web?</b>
-              </PrettyTextBigger>
-
-              <PrettyTextBigger>
-                Well, web needs small bundles, and has limited storage. Add in syncing, caching,
-                joins&#x2026; well, there's zero great options.
-              </PrettyTextBigger>
-
-              <PrettyTextBigger>
-                It's why we're excited to partner with{' '}
-                <b>
-                  <Link target="_blank" href="https://zerosync.dev">
-                    Zero
-                  </Link>
-                </b>{' '}
-                to include it as our recommended solution to data. Zero solves for all the above.
-              </PrettyTextBigger>
-
-              <PrettyTextBigger>
-                One{' '}
+                We're building primitives to make that work, starting with{' '}
+                <a href="https://zerosync.dev">Zero</a>, who we are working with to create One.{' '}
                 <View tag="span" dsp="inline-flex" m={-2} mr={5} $sm={{ scale: 0.9, y: 5 }}>
                   <OneBall size={0.7} />
-                </View>{' '}
-                is working with Zero and other sync engines to make them work great on without
-                configuration, on server and client.
+                </View>
               </PrettyTextBigger>
 
               <Spacer />
@@ -262,53 +217,55 @@ export default function HomePage() {
 
           <Spacer /> */}
 
-          <Link asChild href="https://testflight.apple.com/join/aNcDUHZY" target="_blank">
-            <XStack
-              tag="a"
-              className="text-underline-none"
-              my="$6"
-              gap="$6"
-              ai="center"
-              jc="center"
-              animation="medium"
-              cur="pointer"
-              als="center"
-              px="$4"
-              py="$5"
-              br="$9"
-              hoverStyle={{
-                y: -2,
-                bg: '$color2',
-              }}
-              $sm={{
-                fd: 'column',
-              }}
-            >
-              <img width={80} height={80} src="/testflight.webp" alt="Testflight Icon" />
+          <Theme name="gray">
+            <Link asChild href="https://testflight.apple.com/join/aNcDUHZY" target="_blank">
+              <XStack
+                tag="a"
+                className="text-underline-none"
+                my="$6"
+                gap="$6"
+                ai="center"
+                jc="center"
+                animation="medium"
+                cur="pointer"
+                als="center"
+                px="$4"
+                py="$5"
+                br="$9"
+                hoverStyle={{
+                  y: -2,
+                  bg: '$color2',
+                }}
+                $sm={{
+                  fd: 'column',
+                }}
+              >
+                <img width={80} height={80} src="/testflight.webp" alt="Testflight Icon" />
 
-              <YStack>
-                <PrettyText
-                  ff="$perfectlyNineties"
-                  mb="$1"
-                  mt="$-2"
-                  className="text-underline-none"
-                  fontSize="$7"
-                  lineHeight="$7"
-                  cur="inherit"
-                  color="$color"
-                  $sm={{
-                    size: '$5',
-                  }}
-                >
-                  Demo
-                </PrettyText>
+                <YStack>
+                  <PrettyText
+                    fontFamily="$mono"
+                    mb="$1"
+                    mt="$-2"
+                    className="text-underline-none"
+                    fontSize="$7"
+                    lineHeight="$7"
+                    cur="inherit"
+                    color="$color"
+                    $sm={{
+                      size: '$5',
+                    }}
+                  >
+                    Demo
+                  </PrettyText>
 
-                <PrettyText o={0.8} cur="inherit" maw={400}>
-                  Check out our small sample app to see a One iOS app in motion. On Testflight.
-                </PrettyText>
-              </YStack>
-            </XStack>
-          </Link>
+                  <PrettyText o={0.8} cur="inherit" maw={400}>
+                    Check out our small sample app to see a One iOS app in motion. On Testflight.
+                  </PrettyText>
+                </YStack>
+              </XStack>
+            </Link>
+          </Theme>
 
           <Separator />
 
@@ -330,11 +287,11 @@ export default function HomePage() {
 const InfoBoxes = () => {
   return (
     <XStack mx="$-8" fw="wrap" rowGap="$1" columnGap="$5" mb="$13" $sm={{ fd: 'column', mx: 0 }}>
-      <InfoCard title="Typed  FS Routing" Icon={FolderCheck}>
-        Simple file-system routes with nested layouts and groups, fully typed.
+      <InfoCard title="Typed FS Routing" Icon={FolderCheck}>
+        Typed file-system routing, nested layouts with groups.
       </InfoCard>
       <InfoCard title="Routing Modes" Icon={FileStack}>
-        SPA, SSR, or SSG? One lets you choose - globally <em>and</em> per-page.
+        Render any page as SPA, SSR, or SSG, control the global default.
       </InfoCard>
       <InfoCard title="Loaders" Icon={Loader}>
         Typed loaders make it easy to bring in data and migrate from other frameworks.
@@ -343,14 +300,14 @@ const InfoBoxes = () => {
         Build a website with React. Or a native app with React Native. Or both at once.
       </InfoCard>
       <InfoCard title="100% Vite" Icon={ViteIcon}>
-        That's right, no more Metro. One Vite plugin, one Vite server, one port - three platforms.
+        Not based on Metro, One is a single Vite plugin with few dependencies.
       </InfoCard>
       <InfoCard title="The future of data" Icon={Database}>
         Integration with{' '}
         <a target="_blank" href="https://zerosync.dev" rel="noreferrer">
           ZeroSync
         </a>{' '}
-        that makes data delightful.
+        and other sync engines. Coming soon.
       </InfoCard>
     </XStack>
   )
@@ -369,17 +326,13 @@ const InfoCard = ({ title, Icon, children }) => {
       // bg="$background075"
       $sm={{ w: '100%', mb: '$2' }}
     >
-      <YStack fullscreen o={0.25}>
-        {/* <Corners /> */}
-      </YStack>
+      <YStack fullscreen o={0.25}></YStack>
       <YStack gap="$2" p="$4">
         <Icon als="flex-end" mb={-20} o={0.1} size={28} />
-        <H5 size="$7" color="$color13" mt={-10}>
+        <H5 fontFamily="$mono" size="$2" color="$color13" mt={-10}>
           {title}
         </H5>
-        <PrettyText size="$5" color="$color12">
-          {children}
-        </PrettyText>
+        <PrettyText color="$gray11">{children}</PrettyText>
       </YStack>
     </YStack>
   )
@@ -447,7 +400,6 @@ function Video() {
         containerType="normal"
         onPress={() => setShowVideo(true)}
         zi={0}
-        className="video-glow"
       >
         <View
           animation="quick"
@@ -462,13 +414,6 @@ function Video() {
           borderWidth={0}
           userSelect="none"
           y={10}
-          $group-card-hover={{
-            scale: 1.015,
-            y: 0,
-          }}
-          $group-card-press={{
-            scale: 0.95,
-          }}
         >
           <YStack w="100%" h={205}>
             <div
@@ -487,16 +432,9 @@ function Video() {
           <View pos="absolute" top={0} right={0} bottom={0} left={0} ai="center" jc="center">
             <Circle
               animation="bouncy"
-              $group-card-hover={{
-                y: 30,
-              }}
-              $group-card-press={{
-                y: 30,
-              }}
               y={35}
               ai="center"
               size={60}
-              bg="$color9"
               shac="$shadowColorStrong"
               shar={10}
             >
@@ -504,47 +442,39 @@ function Video() {
                 <polygon
                   style={{ transform: 'translateY(6px)' }}
                   points="35,25 75,50 35,75"
-                  fill="var(--color12)"
+                  fill="var(--color8)"
                 />
               </svg>
             </Circle>
           </View>
         </View>
         <Paragraph
-          animation="quick"
-          ff="$perfectlyNineties"
-          size="$6"
+          animation="quickest"
+          fontFamily="$mono"
+          size="$5"
           ta="center"
           w={340}
           zi={2}
           px="$5"
           pt={6}
-          $theme-dark={{
-            bg: '$color9',
-            color: '$color2',
-          }}
           pb={11}
           bg="$color2"
           br="$8"
           shac="$shadowColorStrong"
           shar={10}
-          rotate="-1deg"
           cur="pointer"
           $group-card-hover={{
-            rotate: '-3deg',
-            y: -5,
-            scale: 1.05,
+            scale: 1.02,
           }}
           $group-card-press={{
-            rotate: '-1deg',
             y: 0,
-            scale: 0.97,
+            scale: 0.99,
           }}
           $sm={{
             size: '$6',
           }}
         >
-          Watch the demo
+          5m video intro
         </Paragraph>
       </View>
     </>
@@ -587,14 +517,10 @@ const CopyCommand = () => {
           onMouseLeave={() => setHovered(false)}
           px="$3"
           pt={27}
-          pb={17}
+          pb={27}
           br="$6"
           fd="row"
           ai="center"
-          $theme-dark={{
-            // @ts-ignore
-            color: '$color10',
-          }}
           hoverStyle={{
             bg: '$color2',
             //@ts-ignore
@@ -611,9 +537,10 @@ const CopyCommand = () => {
           aria-label="Copy npx one command"
         >
           <Text
-            ff="$mono"
+            fontFamily="$mono"
             color="inherit"
             fontSize={46}
+            lineHeight={46}
             ls={-2}
             lh={0}
             y={-3}
@@ -651,7 +578,6 @@ const CopyCommand = () => {
       <Tooltip.Content
         enterStyle={{ x: -2, y: 0, opacity: 0, scale: 0.9 }}
         exitStyle={{ x: -2, y: 0, opacity: 0, scale: 0.9 }}
-        bg="$color5"
         scale={1}
         x={0}
         y={-1}
@@ -665,7 +591,6 @@ const CopyCommand = () => {
           },
         ]}
       >
-        <Tooltip.Arrow />
         <Paragraph size="$2" lineHeight="$1">
           {hasNpxRunCommandCopied ? 'Copied!' : 'Copy'}
         </Paragraph>

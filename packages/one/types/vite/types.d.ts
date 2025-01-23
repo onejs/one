@@ -6,6 +6,7 @@ export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
     export type RouteType = RouteRenderMode | 'api' | 'layout';
+    export type ClientData = Record<string, any>;
     export type RouteOptions = {
         routeModes?: Record<string, RouteRenderMode>;
     };

@@ -157,7 +157,7 @@ function Tab({
       onInteraction={onInteraction}
     >
       <XStack data-tauri-drag-region gap="$1.5" ai="center" jc="center">
-        <SizableText ff="$mono" data-tauri-drag-region y={-0.5} size="$2">
+        <SizableText fontFamily="$mono" data-tauri-drag-region y={-0.5} size="$2">
           {label}
         </SizableText>
       </XStack>

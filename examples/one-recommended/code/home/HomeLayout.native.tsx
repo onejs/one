@@ -9,8 +9,8 @@ export function HomeLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: theme.accentColor.val,
-        tabBarInactiveTintColor: theme.gray9.val,
+        tabBarActiveTintColor: theme.color2.val,
+        tabBarInactiveTintColor: theme.color9.val,
       }}
     >
       <Tabs.Screen

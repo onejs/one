@@ -75,7 +75,7 @@ const SubSection = ({
 
   const wrapper = (children) => {
     return (
-      <YStack bbw={1} bc={inMenu ? 'transparent' : '$background05'}>
+      <YStack bbw={0} bc={inMenu ? 'transparent' : '$background025'}>
         {children}
       </YStack>
     )
@@ -86,13 +86,13 @@ const SubSection = ({
   }
 
   return wrapper(
-    <Accordion.Item value={section.title || 'base'}>
+    <Accordion.Item bw={0} value={section.title || 'base'}>
       <Accordion.Trigger
         unstyled
         bg="transparent"
         bw={0}
         hoverStyle={{
-          bg: '$color2',
+          bg: '$background025',
         }}
       >
         {({ open }) => {
@@ -105,15 +105,16 @@ const SubSection = ({
               py="$2"
               px="$4"
               jc="space-between"
+              tag="span"
               ai="center"
               gap="$3"
             >
-              <Paragraph size="$5" fow="600" color="$color11">
+              <Paragraph size="$5" fow="600" color="$color12">
                 {section.title}
               </Paragraph>
 
               <Square animation="quick" rotate={open ? '180deg' : '0deg'}>
-                <ChevronDown color="$color5" size="$1" />
+                <ChevronDown color="$color7" size="$1" />
               </Square>
             </XStack>
           )

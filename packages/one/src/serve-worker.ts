@@ -1,16 +1,15 @@
+import { Hono } from 'hono'
 import { createProdServer } from 'vxrn/serve'
 import { oneServe } from './server/oneServe'
-import type { One } from './vite/types'
+import { setServerGlobals } from './server/setServerGlobals'
 import { setupBuildInfo } from './server/setupBuildOptions'
 import { ensureExists } from './utils/ensureExists'
-import { Hono } from 'hono'
+import type { One } from './vite/types'
 
 export async function serve(buildInfo: One.BuildInfo) {
   setupBuildInfo(buildInfo)
   ensureExists(buildInfo.oneOptions)
-
-  // TODO make this better, this ensures we get react 19
-  process.env.VXRN_REACT_19 = '1'
+  setServerGlobals()
 
   const serverOptions = buildInfo.oneOptions.server || {}
 

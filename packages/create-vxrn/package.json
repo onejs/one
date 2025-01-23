@@ -1,6 +1,6 @@
 {
   "name": "create-vxrn",
-  "version": "1.1.400",
+  "version": "1.1.406",
   "bin": "run.js",
   "main": "dist/cjs",
   "module": "dist/esm",
@@ -27,7 +27,7 @@
     }
   },
   "dependencies": {
-    "@tamagui/build": "^1.121.11",
+    "@tamagui/build": "^1.122.7",
     "@types/validate-npm-package-name": "^4.0.2",
     "@vxrn/utils": "workspace:*",
     "ansis": "^3.1.0",

@@ -11,7 +11,7 @@
     "plugins": [
       "vxrn/expo-plugin"
     ],
-    "icon": "./public/app-icon.png",
+    "icon": "./src/app-icon.png",
     "splash": {
       "image": "./public/splash.png",
       "resizeMode": "contain",

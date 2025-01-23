@@ -3,13 +3,15 @@ import { useContext, useRef } from 'react'
 import { Separator, styled, View, XStack, YStack } from 'tamagui'
 import { Link } from 'one'
 import { OneLogo } from '~/features/brand/Logo'
-import { Status } from '~/features/docs/Status'
+import { Status } from '~/components/Status'
 import { SearchContext } from '~/features/search/SearchContext'
 import { HeaderMenu } from '~/features/site/HeaderMenu'
 import { SocialLinksRow } from '~/features/site/SocialLinksRow'
 import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
 
 const SimpleButton = styled(View, {
+  role: 'button',
+  cursor: 'pointer',
   pe: 'auto',
   w: 42,
   h: 42,

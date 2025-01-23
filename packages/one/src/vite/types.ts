@@ -17,6 +17,8 @@ export namespace One {
 
   export type RouteType = RouteRenderMode | 'api' | 'layout'
 
+  export type ClientData = Record<string, any>
+
   export type RouteOptions = {
     routeModes?: Record<string, RouteRenderMode>
   }

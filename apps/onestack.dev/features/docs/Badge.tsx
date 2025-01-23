@@ -3,36 +3,36 @@ import { Paragraph, styled } from 'tamagui'
 export const Badge = styled(Paragraph, {
   userSelect: 'none',
   cur: 'default',
-  size: '$2',
-  px: '$3',
-  py: '$2',
+  size: '$1',
+  px: '$2.5',
+  py: '$1.5',
   br: '$10',
   lineHeight: '$1',
   variants: {
     variant: {
       red: {
-        bg: '$red',
-        color: '$redFg',
+        bg: '$red7',
+        color: '$red9',
       },
 
       blue: {
-        bg: '$blue',
-        color: '$blueFg',
+        bg: '$blue7',
+        color: '$blue9',
       },
 
       green: {
-        bg: '$green',
-        color: '$greenFg',
+        bg: '$green7',
+        color: '$green9',
       },
 
       purple: {
-        bg: '$purple',
-        color: '$purpleFg',
+        bg: '$purple7',
+        color: '$purple9',
       },
 
       pink: {
-        bg: '$pink',
-        color: '$pinkFg',
+        bg: '$gray3',
+        color: '$yellow11',
       },
     },
   } as const,
