@@ -113,5 +113,7 @@ export function getServerData(key: keyof One.ClientData) {
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
     throw new Error(`Cannot getServerData on the server`)
   }
-  return getServerContext()?.postRenderData?.[key]
+  if (process.env.VITE_ENVIRONMENT !== 'ssr') {
+    return getServerContext()?.postRenderData?.[key]
+  }
 }
