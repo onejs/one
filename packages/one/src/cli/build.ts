@@ -15,13 +15,15 @@ import {
 } from 'vxrn'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
+import { setServerGlobals } from '../server/setServerGlobals'
 import { toAbsolute } from '../utils/toAbsolute'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 import type { One } from '../vite/types'
 import { buildPage } from './buildPage'
-import { labelProcess } from './label-process'
 import { checkNodeVersion } from './checkNodeVersion'
+import { labelProcess } from './label-process'
+import { runWithAsyncLocalContext } from '../vite/server'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -36,6 +38,7 @@ export async function build(args: {
 }) {
   labelProcess('build')
   checkNodeVersion()
+  setServerGlobals()
   await loadEnv('production')
 
   if (!process.env.ONE_SERVER_URL) {
@@ -48,9 +51,6 @@ export async function build(args: {
   const manifest = getManifest()!
 
   const serverOutputFormat = oneOptions.build?.server?.outputFormat ?? 'esm'
-
-  // TODO make this better, this ensures we get react 19
-  process.env.VXRN_REACT_19 = '1'
 
   const vxrnOutput = await vxrnBuild(
     {
@@ -413,8 +413,9 @@ export async function build(args: {
       const cleanId = relativeId.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
       const path = getPathnameFromFilePath(cleanId, params, foundRoute.type === 'ssg')
       console.info(`  ↦ route ${path}`)
-      builtRoutes.push(
-        await buildPage(
+
+      const built = await runWithAsyncLocalContext(async () => {
+        return await buildPage(
           vxrnOutput.serverEntry,
           path,
           relativeId,
@@ -428,7 +429,9 @@ export async function build(args: {
           preloads,
           allCSS
         )
-      )
+      })
+
+      builtRoutes.push(built)
     }
   }
 

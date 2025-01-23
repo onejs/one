@@ -1,3 +1,4 @@
+import { setServerGlobals } from '../server/setServerGlobals'
 import { virtualEntryIdNative } from '../vite/plugins/virtualEntryConstants'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
@@ -13,6 +14,7 @@ export async function dev(args: {
 }) {
   labelProcess('dev')
   checkNodeVersion()
+  setServerGlobals()
 
   const { dev } = await import('vxrn/dev')
 

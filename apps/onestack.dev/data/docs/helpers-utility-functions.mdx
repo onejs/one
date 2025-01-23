@@ -39,3 +39,41 @@ import { href } from 'one'
 
 const postPageLink = href(`/post/hello-world`) // will type error if invalid Href
 ```
+
+### setServerData, getServerData
+
+<Status is="developing" />
+
+For improving performance of client hydration on the web, you can pass data from the server to the client with `requestCache`, on native values will always be `undefined`. Data must be JSON-stringifyable and  on native.
+
+Here's an example of a simple `useFetch` to show how it's useful:
+
+```tsx fileName=app/index.tsx
+import { setServerData, getServerData } from 'one'
+
+type SafeURLs = `${`https://tamagui.dev` | `http://localhost`}${string}
+
+const useFetch = async (url: SafeURLs) => {
+  if (process.env.VITE_ENVIRONMENT === 'ssr') {
+    // on server data must be set during render
+    setServerData(url, await fetch(url).then(res => res.json()))
+  }
+
+  return getServerData(url)
+}
+
+export default async (props) => {
+  const serverData = await useFetch(props.url)
+  return <div />
+}
+
+// can use it in loaders, too
+
+export const loader = async ({ params }) => {
+  await doSomething()
+  setServerData(params.idl, 'data')
+  return {}
+}
+```
+
+
