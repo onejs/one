@@ -9,7 +9,7 @@ import type {
 } from '@react-navigation/native'
 import React, { forwardRef, Suspense, useEffect } from 'react'
 import { getPageExport } from '../utils/getPageExport'
-import { getServerContext, ServerContextScript } from '../utils/serverContext'
+import { getServerContext, ServerContextScript } from '../vite/server'
 import { useConstant } from '../utils/useConstant'
 import { EmptyRoute } from '../views/EmptyRoute'
 import { RootErrorBoundary } from '../views/RootErrorBoundary'

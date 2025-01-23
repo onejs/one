@@ -14,7 +14,7 @@ import {
   getServerContext,
   SERVER_CONTEXT_POST_RENDER_STRING,
   setServerContext,
-} from './utils/serverContext'
+} from './vite/server'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 

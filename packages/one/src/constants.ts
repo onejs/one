@@ -1,4 +1,4 @@
-import type { ServerContext } from './utils/serverContext'
+import type { ServerContext } from './vite/server'
 
 export const isWebClient = process.env.TAMAGUI_TARGET !== 'native' && typeof window !== 'undefined'
 export const isWebServer = process.env.TAMAGUI_TARGET !== 'native' && typeof window === 'undefined'
