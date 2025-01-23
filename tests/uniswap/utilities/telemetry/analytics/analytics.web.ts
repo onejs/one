@@ -1,8 +1,19 @@
-import { flush, getUserId, Identify, identify, init, setDeviceId, track } from '@amplitude/analytics-browser'
+import {
+  flush,
+  getUserId,
+  Identify,
+  identify,
+  init,
+  setDeviceId,
+  track,
+} from '@amplitude/analytics-browser'
 // eslint-disable-next-line no-restricted-imports
-import { ANONYMOUS_DEVICE_ID } from '@uniswap/analytics'
 // eslint-disable-next-line no-restricted-imports
-import { Analytics, TestnetModeConfig, UserPropertyValue } from 'utilities/src/telemetry/analytics/analytics'
+import {
+  Analytics,
+  TestnetModeConfig,
+  UserPropertyValue,
+} from 'utilities/src/telemetry/analytics/analytics'
 import { ApplicationTransport } from 'utilities/src/telemetry/analytics/ApplicationTransport'
 import {
   ALLOW_ANALYTICS_ATOM_KEY,
@@ -61,7 +72,7 @@ export const analytics: Analytics = {
     transportProvider: ApplicationTransport,
     allowed: boolean,
     initHash?: string,
-    userIdGetter?: () => Promise<string>,
+    userIdGetter?: () => Promise<string>
   ): Promise<void> {
     // Set properties
     commitHash = initHash
@@ -75,7 +86,7 @@ export const analytics: Analytics = {
           transportProvider, // Used to support custom reverse proxy header
           // Disable tracking of private user information by Amplitude
           trackingOptions: AMPLITUDE_SHARED_TRACKING_OPTIONS,
-        },
+        }
       )
 
       userId = userIdGetter ? await userIdGetter() : getUserId()
@@ -85,7 +96,7 @@ export const analytics: Analytics = {
       }
 
       if (!allowed) {
-        setDeviceId(ANONYMOUS_DEVICE_ID)
+        setDeviceId('')
       }
     } catch (error) {
       loggers.init(error)
@@ -100,7 +111,7 @@ export const analytics: Analytics = {
     } else {
       loggers.setAllowAnalytics(allowed)
       identify(new Identify().clearAll()) // Clear all custom user properties
-      setDeviceId(ANONYMOUS_DEVICE_ID)
+      setDeviceId('')
     }
   },
   setTestnetMode(enabled: boolean, config: TestnetModeConfig): void {
@@ -124,7 +135,8 @@ export const analytics: Analytics = {
     })
 
     if (processedTestnetEvent) {
-      const { eventName: processedEventName, eventProperties: processedEventProperties } = processedTestnetEvent
+      const { eventName: processedEventName, eventProperties: processedEventProperties } =
+        processedTestnetEvent
       loggers.sendEvent(processedEventName, processedEventProperties)
       track(processedEventName, processedEventProperties)
     }
@@ -133,7 +145,11 @@ export const analytics: Analytics = {
     loggers.flushEvents()
     flush()
   },
-  async setUserProperty(property: string, value: UserPropertyValue, insert?: boolean): Promise<void> {
+  async setUserProperty(
+    property: string,
+    value: UserPropertyValue,
+    insert?: boolean
+  ): Promise<void> {
     if (!(await getAnalyticsAtomDirect())) {
       return
     }
