@@ -1,0 +1,1375 @@
+app = "onechat-zstart-cache"
+primary_region = 'lax'
+
+[build]
+image = "registry.hub.docker.com/rocicorp/zero:latest"
+
+[http_service]
+internal_port = 4848
+force_https = true
+auto_stop_machines = 'off'
+min_machines_running = 1
+
+[[http_service.checks]]
+grace_period = "10s"
+interval = "30s"
+method = "GET"
+timeout = "5s"
+path = "/"
+
+[[vm]]
+memory = '2gb'
+cpu_kind = 'shared'
+cpus = 2
+
+[mounts]
+source = "sqlite_db"
+destination = "/data"
+
+[env]
+ZERO_REPLICA_FILE = "/data/sync-replica.db"
+ZERO_UPSTREAM_DB="postgres://postgres:password@onechat-db.flycast:5432/zstart?sslmode=disable"
+ZERO_CVR_DB="postgres://postgres:password@onechat-db.flycast:5432/zstart_cvr?sslmode=disable"
+ZERO_CHANGE_DB="postgres://postgres:password@onechat-db.flycast:5432/zstart_cdb?sslmode=disable"
+ZERO_AUTH_SECRET="secretkey"
+LOG_LEVEL = "debug"
+ZERO_SCHEMA_JSON = """{
+  "permissions": {
+    "user": {
+      "row": {
+        "insert": [],
+        "update": {},
+        "delete": []
+      }
+    },
+    "server": {
+      "row": {
+        "insert": [
+          [
+            "allow",
+            {
+              "type": "simple",
+              "left": {
+                "type": "static",
+                "anchor": "authData",
+                "field": "id"
+              },
+              "right": {
+                "type": "literal",
+                "value": null
+              },
+              "op": "IS NOT"
+            }
+          ]
+        ],
+        "update": {
+          "preMutation": [
+            [
+              "allow",
+              {
+                "type": "or",
+                "conditions": [
+                  {
+                    "type": "correlatedSubquery",
+                    "related": {
+                      "system": "permissions",
+                      "correlation": {
+                        "parentField": [
+                          "id"
+                        ],
+                        "childField": [
+                          "serverId"
+                        ]
+                      },
+                      "subquery": {
+                        "table": "role",
+                        "alias": "zsubq_roles",
+                        "where": {
+                          "type": "and",
+                          "conditions": [
+                            {
+                              "type": "simple",
+                              "left": {
+                                "type": "column",
+                                "name": "canAdmin"
+                              },
+                              "right": {
+                                "type": "literal",
+                                "value": true
+                              },
+                              "op": "="
+                            },
+                            {
+                              "type": "correlatedSubquery",
+                              "related": {
+                                "system": "permissions",
+                                "correlation": {
+                                  "parentField": [
+                                    "id"
+                                  ],
+                                  "childField": [
+                                    "roleId"
+                                  ]
+                                },
+                                "subquery": {
+                                  "table": "userRole",
+                                  "alias": "zsubq_members",
+                                  "orderBy": [
+                                    [
+                                      "serverId",
+                                      "asc"
+                                    ],
+                                    [
+                                      "userId",
+                                      "asc"
+                                    ],
+                                    [
+                                      "roleId",
+                                      "asc"
+                                    ]
+                                  ],
+                                  "where": {
+                                    "type": "correlatedSubquery",
+                                    "related": {
+                                      "system": "permissions",
+                                      "correlation": {
+                                        "parentField": [
+                                          "userId"
+                                        ],
+                                        "childField": [
+                                          "id"
+                                        ]
+                                      },
+                                      "subquery": {
+                                        "table": "user",
+                                        "alias": "zsubq_members",
+                                        "where": {
+                                          "type": "simple",
+                                          "left": {
+                                            "type": "column",
+                                            "name": "id"
+                                          },
+                                          "right": {
+                                            "type": "static",
+                                            "anchor": "authData",
+                                            "field": "id"
+                                          },
+                                          "op": "="
+                                        },
+                                        "orderBy": [
+                                          [
+                                            "id",
+                                            "asc"
+                                          ]
+                                        ]
+                                      }
+                                    },
+                                    "op": "EXISTS"
+                                  }
+                                }
+                              },
+                              "op": "EXISTS"
+                            }
+                          ]
+                        },
+                        "orderBy": [
+                          [
+                            "id",
+                            "asc"
+                          ]
+                        ]
+                      }
+                    },
+                    "op": "EXISTS"
+                  },
+                  {
+                    "type": "correlatedSubquery",
+                    "related": {
+                      "system": "permissions",
+                      "correlation": {
+                        "parentField": [
+                          "id"
+                        ],
+                        "childField": [
+                          "serverId"
+                        ]
+                      },
+                      "subquery": {
+                        "table": "role",
+                        "alias": "zsubq_roles",
+                        "where": {
+                          "type": "and",
+                          "conditions": [
+                            {
+                              "type": "simple",
+                              "left": {
+                                "type": "column",
+                                "name": "canEditServer"
+                              },
+                              "right": {
+                                "type": "literal",
+                                "value": true
+                              },
+                              "op": "="
+                            },
+                            {
+                              "type": "correlatedSubquery",
+                              "related": {
+                                "system": "permissions",
+                                "correlation": {
+                                  "parentField": [
+                                    "id"
+                                  ],
+                                  "childField": [
+                                    "roleId"
+                                  ]
+                                },
+                                "subquery": {
+                                  "table": "userRole",
+                                  "alias": "zsubq_members",
+                                  "orderBy": [
+                                    [
+                                      "serverId",
+                                      "asc"
+                                    ],
+                                    [
+                                      "userId",
+                                      "asc"
+                                    ],
+                                    [
+                                      "roleId",
+                                      "asc"
+                                    ]
+                                  ],
+                                  "where": {
+                                    "type": "correlatedSubquery",
+                                    "related": {
+                                      "system": "permissions",
+                                      "correlation": {
+                                        "parentField": [
+                                          "userId"
+                                        ],
+                                        "childField": [
+                                          "id"
+                                        ]
+                                      },
+                                      "subquery": {
+                                        "table": "user",
+                                        "alias": "zsubq_members",
+                                        "where": {
+                                          "type": "simple",
+                                          "left": {
+                                            "type": "column",
+                                            "name": "id"
+                                          },
+                                          "right": {
+                                            "type": "static",
+                                            "anchor": "authData",
+                                            "field": "id"
+                                          },
+                                          "op": "="
+                                        },
+                                        "orderBy": [
+                                          [
+                                            "id",
+                                            "asc"
+                                          ]
+                                        ]
+                                      }
+                                    },
+                                    "op": "EXISTS"
+                                  }
+                                }
+                              },
+                              "op": "EXISTS"
+                            }
+                          ]
+                        },
+                        "orderBy": [
+                          [
+                            "id",
+                            "asc"
+                          ]
+                        ]
+                      }
+                    },
+                    "op": "EXISTS"
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "channel": {
+      "row": {
+        "insert": [
+          [
+            "allow",
+            {
+              "type": "correlatedSubquery",
+              "related": {
+                "system": "permissions",
+                "correlation": {
+                  "parentField": [
+                    "serverId"
+                  ],
+                  "childField": [
+                    "id"
+                  ]
+                },
+                "subquery": {
+                  "table": "server",
+                  "alias": "zsubq_server",
+                  "where": {
+                    "type": "correlatedSubquery",
+                    "related": {
+                      "system": "permissions",
+                      "correlation": {
+                        "parentField": [
+                          "id"
+                        ],
+                        "childField": [
+                          "serverId"
+                        ]
+                      },
+                      "subquery": {
+                        "table": "role",
+                        "alias": "zsubq_roles",
+                        "where": {
+                          "type": "and",
+                          "conditions": [
+                            {
+                              "type": "simple",
+                              "left": {
+                                "type": "column",
+                                "name": "canAdmin"
+                              },
+                              "right": {
+                                "type": "literal",
+                                "value": true
+                              },
+                              "op": "="
+                            },
+                            {
+                              "type": "correlatedSubquery",
+                              "related": {
+                                "system": "permissions",
+                                "correlation": {
+                                  "parentField": [
+                                    "id"
+                                  ],
+                                  "childField": [
+                                    "roleId"
+                                  ]
+                                },
+                                "subquery": {
+                                  "table": "userRole",
+                                  "alias": "zsubq_members",
+                                  "orderBy": [
+                                    [
+                                      "serverId",
+                                      "asc"
+                                    ],
+                                    [
+                                      "userId",
+                                      "asc"
+                                    ],
+                                    [
+                                      "roleId",
+                                      "asc"
+                                    ]
+                                  ],
+                                  "where": {
+                                    "type": "correlatedSubquery",
+                                    "related": {
+                                      "system": "permissions",
+                                      "correlation": {
+                                        "parentField": [
+                                          "userId"
+                                        ],
+                                        "childField": [
+                                          "id"
+                                        ]
+                                      },
+                                      "subquery": {
+                                        "table": "user",
+                                        "alias": "zsubq_members",
+                                        "where": {
+                                          "type": "simple",
+                                          "left": {
+                                            "type": "column",
+                                            "name": "id"
+                                          },
+                                          "right": {
+                                            "type": "static",
+                                            "anchor": "authData",
+                                            "field": "id"
+                                          },
+                                          "op": "="
+                                        },
+                                        "orderBy": [
+                                          [
+                                            "id",
+                                            "asc"
+                                          ]
+                                        ]
+                                      }
+                                    },
+                                    "op": "EXISTS"
+                                  }
+                                }
+                              },
+                              "op": "EXISTS"
+                            }
+                          ]
+                        },
+                        "orderBy": [
+                          [
+                            "id",
+                            "asc"
+                          ]
+                        ]
+                      }
+                    },
+                    "op": "EXISTS"
+                  },
+                  "orderBy": [
+                    [
+                      "id",
+                      "asc"
+                    ]
+                  ]
+                }
+              },
+              "op": "EXISTS"
+            }
+          ]
+        ],
+        "update": {
+          "preMutation": [
+            [
+              "allow",
+              {
+                "type": "correlatedSubquery",
+                "related": {
+                  "system": "permissions",
+                  "correlation": {
+                    "parentField": [
+                      "serverId"
+                    ],
+                    "childField": [
+                      "id"
+                    ]
+                  },
+                  "subquery": {
+                    "table": "server",
+                    "alias": "zsubq_server",
+                    "where": {
+                      "type": "correlatedSubquery",
+                      "related": {
+                        "system": "permissions",
+                        "correlation": {
+                          "parentField": [
+                            "id"
+                          ],
+                          "childField": [
+                            "serverId"
+                          ]
+                        },
+                        "subquery": {
+                          "table": "role",
+                          "alias": "zsubq_roles",
+                          "where": {
+                            "type": "and",
+                            "conditions": [
+                              {
+                                "type": "simple",
+                                "left": {
+                                  "type": "column",
+                                  "name": "canAdmin"
+                                },
+                                "right": {
+                                  "type": "literal",
+                                  "value": true
+                                },
+                                "op": "="
+                              },
+                              {
+                                "type": "correlatedSubquery",
+                                "related": {
+                                  "system": "permissions",
+                                  "correlation": {
+                                    "parentField": [
+                                      "id"
+                                    ],
+                                    "childField": [
+                                      "roleId"
+                                    ]
+                                  },
+                                  "subquery": {
+                                    "table": "userRole",
+                                    "alias": "zsubq_members",
+                                    "orderBy": [
+                                      [
+                                        "serverId",
+                                        "asc"
+                                      ],
+                                      [
+                                        "userId",
+                                        "asc"
+                                      ],
+                                      [
+                                        "roleId",
+                                        "asc"
+                                      ]
+                                    ],
+                                    "where": {
+                                      "type": "correlatedSubquery",
+                                      "related": {
+                                        "system": "permissions",
+                                        "correlation": {
+                                          "parentField": [
+                                            "userId"
+                                          ],
+                                          "childField": [
+                                            "id"
+                                          ]
+                                        },
+                                        "subquery": {
+                                          "table": "user",
+                                          "alias": "zsubq_members",
+                                          "where": {
+                                            "type": "simple",
+                                            "left": {
+                                              "type": "column",
+                                              "name": "id"
+                                            },
+                                            "right": {
+                                              "type": "static",
+                                              "anchor": "authData",
+                                              "field": "id"
+                                            },
+                                            "op": "="
+                                          },
+                                          "orderBy": [
+                                            [
+                                              "id",
+                                              "asc"
+                                            ]
+                                          ]
+                                        }
+                                      },
+                                      "op": "EXISTS"
+                                    }
+                                  }
+                                },
+                                "op": "EXISTS"
+                              }
+                            ]
+                          },
+                          "orderBy": [
+                            [
+                              "id",
+                              "asc"
+                            ]
+                          ]
+                        }
+                      },
+                      "op": "EXISTS"
+                    },
+                    "orderBy": [
+                      [
+                        "id",
+                        "asc"
+                      ]
+                    ]
+                  }
+                },
+                "op": "EXISTS"
+              }
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "schema": {
+    "version": 1,
+    "tables": {
+      "attachment": {
+        "tableName": "attachment",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelId": {
+            "type": "string",
+            "optional": true
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "data": {
+            "type": "string",
+            "optional": true
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "messageId": {
+            "type": "string",
+            "optional": true
+          },
+          "type": {
+            "type": "string",
+            "optional": false
+          },
+          "url": {
+            "type": "string",
+            "optional": true
+          },
+          "userId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      },
+      "channel": {
+        "tableName": "channel",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "description": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          },
+          "private": {
+            "type": "boolean",
+            "optional": false
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "messages": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "channelId"
+            ],
+            "destSchema": "message"
+          },
+          "permissions": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "channelId"
+            ],
+            "destSchema": "channelPermission"
+          },
+          "pins": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "channelId"
+            ],
+            "destSchema": "pin"
+          },
+          "roles": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "channelId"
+              ],
+              "destSchema": "channelPermission"
+            },
+            {
+              "sourceField": [
+                "roleId"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "role"
+            }
+          ],
+          "server": {
+            "sourceField": [
+              "serverId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "server"
+          },
+          "threads": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "channelId"
+            ],
+            "destSchema": "thread"
+          }
+        }
+      },
+      "channelPermission": {
+        "tableName": "channelPermission",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelId": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "granterId": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "roleId": {
+            "type": "string",
+            "optional": false
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "role": {
+            "sourceField": [
+              "roleId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "role"
+          }
+        }
+      },
+      "friendship": {
+        "tableName": "friendship",
+        "primaryKey": [
+          "requestingId",
+          "acceptingId"
+        ],
+        "columns": {
+          "accepted": {
+            "type": "boolean",
+            "optional": false
+          },
+          "acceptingId": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "requestingId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      },
+      "message": {
+        "tableName": "message",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelId": {
+            "type": "string",
+            "optional": false
+          },
+          "content": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorId": {
+            "type": "string",
+            "optional": false
+          },
+          "deleted": {
+            "type": "boolean",
+            "optional": true
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "isThreadReply": {
+            "type": "boolean",
+            "optional": false
+          },
+          "replyingToId": {
+            "type": "string",
+            "optional": true
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          },
+          "threadId": {
+            "type": "string",
+            "optional": true
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          }
+        },
+        "relationships": {
+          "attachments": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "messageId"
+            ],
+            "destSchema": "attachment"
+          },
+          "channel": {
+            "sourceField": [
+              "channelId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "channel"
+          },
+          "reactions": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "messageId"
+              ],
+              "destSchema": "messageReaction"
+            },
+            {
+              "sourceField": [
+                "reactionId"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "reaction"
+            }
+          ],
+          "replyingTo": {
+            "sourceField": [
+              "replyingToId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "message"
+          },
+          "sender": {
+            "sourceField": [
+              "creatorId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "user"
+          },
+          "thread": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "messageId"
+            ],
+            "destSchema": "thread"
+          }
+        }
+      },
+      "messageReaction": {
+        "tableName": "messageReaction",
+        "primaryKey": [
+          "messageId",
+          "creatorId",
+          "reactionId"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorId": {
+            "type": "string",
+            "optional": false
+          },
+          "messageId": {
+            "type": "string",
+            "optional": false
+          },
+          "reactionId": {
+            "type": "string",
+            "optional": false
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          }
+        },
+        "relationships": {}
+      },
+      "pin": {
+        "tableName": "pin",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelId": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorId": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "messageId": {
+            "type": "string",
+            "optional": false
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "message": {
+            "sourceField": [
+              "messageId"
+            ],
+            "destField": [
+              "id"
+            ],
+            "destSchema": "message"
+          }
+        }
+      },
+      "reaction": {
+        "tableName": "reaction",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "keyword": {
+            "type": "string",
+            "optional": false
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          },
+          "value": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      },
+      "role": {
+        "tableName": "role",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "canAdmin": {
+            "type": "boolean",
+            "optional": true
+          },
+          "canEditChannel": {
+            "type": "boolean",
+            "optional": true
+          },
+          "canEditServer": {
+            "type": "boolean",
+            "optional": true
+          },
+          "color": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorId": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          }
+        },
+        "relationships": {
+          "members": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "roleId"
+              ],
+              "destSchema": "userRole"
+            },
+            {
+              "sourceField": [
+                "userId"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "user"
+            }
+          ]
+        }
+      },
+      "server": {
+        "tableName": "server",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelSort": {
+            "type": "json",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorId": {
+            "type": "string",
+            "optional": false
+          },
+          "description": {
+            "type": "string",
+            "optional": false
+          },
+          "icon": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "channels": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "serverId"
+            ],
+            "destSchema": "channel"
+          },
+          "members": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "serverId"
+              ],
+              "destSchema": "serverMember"
+            },
+            {
+              "sourceField": [
+                "userId"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "user"
+            }
+          ],
+          "roles": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "serverId"
+            ],
+            "destSchema": "role"
+          }
+        }
+      },
+      "serverMember": {
+        "tableName": "serverMember",
+        "primaryKey": [
+          "serverId",
+          "userId"
+        ],
+        "columns": {
+          "joinedAt": {
+            "type": "number",
+            "optional": true
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          },
+          "userId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      },
+      "thread": {
+        "tableName": "thread",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "channelId": {
+            "type": "string",
+            "optional": false
+          },
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "creatorId": {
+            "type": "string",
+            "optional": false
+          },
+          "deleted": {
+            "type": "boolean",
+            "optional": false
+          },
+          "description": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "messageId": {
+            "type": "string",
+            "optional": false
+          },
+          "title": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "messages": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "threadId"
+            ],
+            "destSchema": "message"
+          }
+        }
+      },
+      "user": {
+        "tableName": "user",
+        "primaryKey": [
+          "id"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "email": {
+            "type": "string",
+            "optional": false
+          },
+          "id": {
+            "type": "string",
+            "optional": false
+          },
+          "image": {
+            "type": "string",
+            "optional": false
+          },
+          "name": {
+            "type": "string",
+            "optional": false
+          },
+          "state": {
+            "type": "json",
+            "optional": false
+          },
+          "updatedAt": {
+            "type": "number",
+            "optional": true
+          },
+          "username": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {
+          "attachments": {
+            "sourceField": [
+              "id"
+            ],
+            "destField": [
+              "userId"
+            ],
+            "destSchema": "attachment"
+          },
+          "friends": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "requestingId"
+              ],
+              "destSchema": "friendship"
+            },
+            {
+              "sourceField": [
+                "acceptingId"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "user"
+            }
+          ],
+          "servers": [
+            {
+              "sourceField": [
+                "id"
+              ],
+              "destField": [
+                "userId"
+              ],
+              "destSchema": "serverMember"
+            },
+            {
+              "sourceField": [
+                "serverId"
+              ],
+              "destField": [
+                "id"
+              ],
+              "destSchema": "server"
+            }
+          ]
+        }
+      },
+      "userRole": {
+        "tableName": "userRole",
+        "primaryKey": [
+          "serverId",
+          "userId",
+          "roleId"
+        ],
+        "columns": {
+          "createdAt": {
+            "type": "number",
+            "optional": true
+          },
+          "granterId": {
+            "type": "string",
+            "optional": false
+          },
+          "roleId": {
+            "type": "string",
+            "optional": false
+          },
+          "serverId": {
+            "type": "string",
+            "optional": false
+          },
+          "userId": {
+            "type": "string",
+            "optional": false
+          }
+        },
+        "relationships": {}
+      }
+    }
+  }
+}"""

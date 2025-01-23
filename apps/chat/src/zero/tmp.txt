@@ -1,0 +1,42 @@
+CACHE_APP_NAME="onechat-zstart-cache"
+CONNECTION_STRING="postgres://postgres:password@onechat-db.flycast:5432"
+
+cat <<EOF > fly.toml
+app = "$CACHE_APP_NAME"
+primary_region = 'lax'
+
+[build]
+image = "registry.hub.docker.com/rocicorp/zero:latest"
+
+[http_service]
+internal_port = 4848
+force_https = true
+auto_stop_machines = 'off'
+min_machines_running = 1
+
+[[http_service.checks]]
+grace_period = "10s"
+interval = "30s"
+method = "GET"
+timeout = "5s"
+path = "/"
+
+[[vm]]
+memory = '2gb'
+cpu_kind = 'shared'
+cpus = 2
+
+[mounts]
+source = "sqlite_db"
+destination = "/data"
+
+[env]
+HOST = "0.0.0.0"
+ZERO_REPLICA_FILE = "/data/sync-replica.db"
+ZERO_UPSTREAM_DB="${CONNECTION_STRING}/zstart?sslmode=disable"
+ZERO_CVR_DB="${CONNECTION_STRING}/zstart_cvr?sslmode=disable"
+ZERO_CHANGE_DB="${CONNECTION_STRING}/zstart_cdb?sslmode=disable"
+ZERO_AUTH_SECRET="secretkey"
+LOG_LEVEL = "debug"
+ZERO_SCHEMA_JSON = """$(cat zero-schema.json)"""
+EOF
