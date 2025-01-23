@@ -1,4 +1,13 @@
-import { pgTable, text, timestamp, boolean, json, primaryKey } from 'drizzle-orm/pg-core'
+import {
+  pgTable,
+  text,
+  timestamp,
+  boolean,
+  json,
+  primaryKey,
+  foreignKey,
+  type AnyPgColumn,
+} from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 import type { UserState } from './types'
 
@@ -6,11 +15,12 @@ export const user = pgTable('user', {
   id: text('id').primaryKey(),
   username: text('username').notNull(),
   email: text('email').notNull(),
+  emailVerified: boolean('email_verified').notNull().default(false),
   name: text('name').notNull(),
   image: text('image'),
   state: json('state').$type<UserState>(),
-  updatedAt: timestamp('updated_at'),
-  createdAt: timestamp('created_at'),
+  updatedAt: timestamp('updated_at').defaultNow(),
+  createdAt: timestamp('created_at').defaultNow(),
 })
 
 export const friendship = pgTable(
@@ -23,7 +33,7 @@ export const friendship = pgTable(
       .notNull()
       .references(() => user.id),
     accepted: boolean('accepted').notNull(),
-    createdAt: timestamp('created_at'),
+    createdAt: timestamp('created_at').defaultNow(),
   },
   (t) => [primaryKey({ columns: [t.requestingId, t.acceptingId] })]
 )
@@ -37,7 +47,7 @@ export const server = pgTable('server', {
   channelSort: json('channel_sort'),
   description: text('description'),
   icon: text('icon'),
-  createdAt: timestamp('created_at'),
+  createdAt: timestamp('created_at').defaultNow(),
 })
 
 export const serverMember = pgTable(
@@ -49,7 +59,7 @@ export const serverMember = pgTable(
     userId: text('user_id')
       .notNull()
       .references(() => user.id, { onDelete: 'cascade' }),
-    joinedAt: timestamp('joined_at'),
+    joinedAt: timestamp('joined_at').defaultNow(),
   },
   (t) => [primaryKey({ columns: [t.serverId, t.userId] })]
 )
@@ -62,7 +72,21 @@ export const channel = pgTable('channel', {
   name: text('name').notNull(),
   description: text('description'),
   private: boolean('private').notNull(),
-  createdAt: timestamp('created_at'),
+  createdAt: timestamp('created_at').defaultNow(),
+})
+
+export const thread = pgTable('thread', {
+  id: text('id').primaryKey(),
+  channelId: text('channel_id')
+    .notNull()
+    .references(() => channel.id),
+  creatorId: text('creator_id')
+    .notNull()
+    .references(() => user.id),
+  title: text('title').notNull(),
+  description: text('description'),
+  deleted: boolean('deleted').notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
 })
 
 export const message = pgTable('message', {
@@ -73,38 +97,16 @@ export const message = pgTable('message', {
   channelId: text('channel_id')
     .notNull()
     .references(() => channel.id),
-  // threadId: text('thread_id'),
-  isThreadReply: boolean('is_thread_reply').notNull(),
+  threadId: text('thread_id').references(() => thread.id),
   creatorId: text('creator_id')
     .notNull()
     .references(() => user.id),
-  // replyingToId: text('replying_to_id'),
   content: text('content').notNull(),
-  createdAt: timestamp('created_at'),
-  updatedAt: timestamp('updated_at'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
   deleted: boolean('deleted'),
-})
-
-// export const messageReferences = pgTable('message', {
-//   threadId: text('thread_id').references(() => thread.id),
-//   replyingToId: text('replying_to_id').references(() => message.id),
-// })
-
-export const thread = pgTable('thread', {
-  id: text('id').primaryKey(),
-  channelId: text('channel_id')
-    .notNull()
-    .references(() => channel.id),
-  creatorId: text('creator_id')
-    .notNull()
-    .references(() => user.id),
-  messageId: text('message_id')
-    .notNull()
-    .references(() => message.id),
-  title: text('title').notNull(),
-  deleted: boolean('deleted').notNull(),
-  description: text('description'),
-  createdAt: timestamp('created_at'),
+  isThreadReply: boolean('is_thread_reply').notNull().default(false),
+  replyingToId: text('replying_to_id').references((): AnyPgColumn => message.id),
 })
 
 export const attachment = pgTable('attachment', {
@@ -117,15 +119,15 @@ export const attachment = pgTable('attachment', {
   type: text('type').notNull(),
   data: text('data'),
   url: text('url'),
-  createdAt: timestamp('created_at'),
+  createdAt: timestamp('created_at').defaultNow(),
 })
 
 export const reaction = pgTable('reaction', {
   id: text('id').primaryKey(),
   value: text('value').notNull(),
   keyword: text('keyword').notNull(),
-  createdAt: timestamp('created_at'),
-  updatedAt: timestamp('updated_at'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
 })
 
 export const messageReaction = pgTable(
@@ -140,8 +142,8 @@ export const messageReaction = pgTable(
     reactionId: text('reaction_id')
       .notNull()
       .references(() => reaction.id),
-    createdAt: timestamp('created_at'),
-    updatedAt: timestamp('updated_at'),
+    createdAt: timestamp('created_at').defaultNow(),
+    updatedAt: timestamp('updated_at').defaultNow(),
   },
   (t) => [primaryKey({ columns: [t.messageId, t.creatorId, t.reactionId] })]
 )
@@ -159,8 +161,8 @@ export const role = pgTable('role', {
   canAdmin: boolean('can_admin'),
   canEditChannel: boolean('can_edit_channel'),
   canEditServer: boolean('can_edit_server'),
-  updatedAt: timestamp('updated_at'),
-  createdAt: timestamp('created_at'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
 })
 
 export const userRole = pgTable(
@@ -178,7 +180,7 @@ export const userRole = pgTable(
     granterId: text('granter_id')
       .notNull()
       .references(() => user.id),
-    createdAt: timestamp('created_at'),
+    createdAt: timestamp('created_at').defaultNow(),
   },
   (t) => [primaryKey({ columns: [t.serverId, t.userId, t.roleId] })]
 )
@@ -197,7 +199,7 @@ export const channelPermission = pgTable('channel_permission', {
   granterId: text('granter_id')
     .notNull()
     .references(() => user.id),
-  createdAt: timestamp('created_at'),
+  createdAt: timestamp('created_at').defaultNow(),
 })
 
 export const pin = pgTable('pin', {
@@ -214,12 +216,10 @@ export const pin = pgTable('pin', {
   creatorId: text('creator_id')
     .notNull()
     .references(() => user.id),
-  createdAt: timestamp('created_at'),
+  createdAt: timestamp('created_at').defaultNow(),
 })
 
 export const userRelations = relations(user, ({ many }) => ({
-  servers: many(serverMember),
-  roles: many(userRole),
   messages: many(message),
   attachments: many(attachment),
 }))
@@ -240,7 +240,6 @@ export const serverRelations = relations(server, ({ one, many }) => ({
     fields: [server.creatorId],
     references: [user.id],
   }),
-  members: many(serverMember),
   channels: many(channel),
   roles: many(role),
 }))
@@ -267,21 +266,21 @@ export const channelRelations = relations(channel, ({ one, many }) => ({
   channelPermissions: many(channelPermission),
 }))
 
-export const messageRelations = relations(message, ({ one, many }) => ({
+export const messageRelations = relations(message, ({ one }) => ({
   thread: one(thread, {
-    fields: [message.id],
-    references: [thread.messageId],
+    fields: [message.threadId],
+    references: [thread.id],
   }),
   channel: one(channel, {
     fields: [message.channelId],
     references: [channel.id],
+    relationName: 'channel',
   }),
-  sender: one(user, {
+  creator: one(user, {
     fields: [message.creatorId],
     references: [user.id],
+    relationName: 'creator',
   }),
-  attachments: many(attachment),
-  reactions: many(messageReaction),
 }))
 
 export const threadRelations = relations(thread, ({ one, many }) => ({
@@ -292,10 +291,6 @@ export const threadRelations = relations(thread, ({ one, many }) => ({
   creator: one(user, {
     fields: [thread.creatorId],
     references: [user.id],
-  }),
-  originalMessage: one(message, {
-    fields: [thread.messageId],
-    references: [message.id],
   }),
   messages: many(message),
 }))
@@ -313,10 +308,6 @@ export const attachmentRelations = relations(attachment, ({ one }) => ({
     fields: [attachment.channelId],
     references: [channel.id],
   }),
-}))
-
-export const reactionRelations = relations(reaction, ({ many }) => ({
-  messageReactions: many(messageReaction),
 }))
 
 export const messageReactionRelations = relations(messageReaction, ({ one }) => ({
@@ -343,7 +334,6 @@ export const roleRelations = relations(role, ({ one, many }) => ({
     fields: [role.creatorId],
     references: [user.id],
   }),
-  members: many(userRole),
   channelPermissions: many(channelPermission),
 }))
 
@@ -436,7 +426,6 @@ export type ThreadWithRelations = Thread & {
 export type RoleWithRelations = Role & {
   server?: Server
   creator?: User
-  members?: UserRole[]
   channelPermissions?: ChannelPermission[]
 }
 
@@ -450,14 +439,11 @@ export type ChannelWithRelations = Channel & {
 
 export type ServerWithRelations = Server & {
   creator?: User
-  members?: ServerMember[]
   channels?: Channel[]
   roles?: Role[]
 }
 
 export type UserWithRelations = User & {
-  servers?: ServerMember[]
-  roles?: UserRole[]
   messages?: Message[]
   attachments?: Attachment[]
   requestingFriendships?: Friendship[]

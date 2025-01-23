@@ -26,8 +26,9 @@
     "zero": "yarn zero:build-schema && zero-cache --schema-file ./src/zero/zero-schema.json",
     "zero:build-schema": "zero-build-schema -p ./src/zero/schema-build.ts -o ./src/zero/zero-schema.json",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate --config=./drizzle.config.ts && docker compose up seeder",
-    "db:drop": "drizzle-kit drop --schema=./src/zero/tables.ts"
+    "db:migrate": "drizzle-kit migrate --config=./drizzle.config.ts",
+    "db:drop": "drizzle-kit drop --schema=./src/zero/tables.ts",
+    "db:seed": "docker compose up seeder"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.709.0",

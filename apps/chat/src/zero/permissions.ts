@@ -28,10 +28,12 @@ export function usePermission(permission: PermissionsKeys) {
 
 usePermission('channel.insert')
 
-const canEditChannel = (ad: AuthData, eb: ExpressionBuilder<typeof channel>) => {
+type Channel = typeof schema.tables.channel
+
+const canEditChannel = (ad: AuthData, eb: ExpressionBuilder<Channel>) => {
   return eb.exists('server', (server) => {
     return server.whereExists('roles', (q) =>
-      q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
+      q.where('can_admin', true).whereExists('members', (q) => q.where('id', ad.id))
     )
   })
 }
@@ -39,6 +41,8 @@ const canEditChannel = (ad: AuthData, eb: ExpressionBuilder<typeof channel>) => 
 const userIsLoggedIn = (authData: AuthData, { cmpLit }: ExpressionBuilder<TableSchema>) => {
   return cmpLit(authData.id, 'IS NOT', null)
 }
+
+type Server = typeof schema.tables.server
 
 export const permissionQueries = {
   user: {
@@ -49,13 +53,13 @@ export const permissionQueries = {
   server: {
     insert: [userIsLoggedIn],
     update: [
-      (ad: AuthData, eb: ExpressionBuilder<typeof server>) => {
+      (ad: AuthData, eb: ExpressionBuilder<Server>) => {
         return eb.or(
           eb.exists('roles', (q) =>
-            q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
+            q.where('can_admin', true).whereExists('members', (q) => q.where('id', ad.id))
           ),
           eb.exists('roles', (q) =>
-            q.where('canEditServer', true).whereExists('members', (q) => q.where('id', ad.id))
+            q.where('can_edit_server', true).whereExists('members', (q) => q.where('id', ad.id))
           )
         )
       },
