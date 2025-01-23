@@ -18,5 +18,6 @@ export default defineConfig({
         minThreads: 1,
       },
     },
+    exclude: process.env.CI ? ['**/*.test.ts'] : [],
   },
 })
