@@ -476,36 +476,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     } satisfies Plugin,
 
-    {
-      name: 'one:optimize-deps-load-web-extensions-web-only',
-      enforce: 'pre',
-
-      applyToEnvironment(environment) {
-        return isWebEnvironment(environment)
-      },
-
-      async resolveId(id, importer = '') {
-        const shouldOptimize = optimizeIdRegex.test(importer)
-
-        if (shouldOptimize) {
-          const absolutePath = resolve(dirname(importer), id)
-          const webPath = absolutePath.replace(/(.m?js)/, '') + '.web.js'
-          if (webPath === id) return
-          try {
-            const directoryPath = absolutePath + '/index.web.js'
-            if (await existsAsync(directoryPath)) {
-              return directoryPath
-            }
-            if (await existsAsync(webPath)) {
-              return webPath
-            }
-          } catch (err) {
-            console.warn(`error probably fine`, err)
-          }
-        }
-      },
-    } satisfies Plugin,
-
     SSRCSSPlugin({
       entries: [virtualEntryId],
     }),
