@@ -1,5 +1,8 @@
 1.0:
 
+  - expose useRouteInfo or similar (do things like change layout for not-found pages)
+  - if you remove escape-string-regexp from `dedupe` breaks
+    - non-deduped modules that live in diff sub-dirs resolve to the same id: ___modules___["escape-string-regexp/index.js"]
   - root layout doesnt HMR
   - hmr native tamagui example gives:
     Error: [vite] cannot find entry point module 'virtual:one-entry'.
@@ -9,18 +12,18 @@
   - enable StrictMode
 
   - tests
-    - goal for 20+ deps covered on native + web (ssr) (see weird-deps for some)
+    - 20-40 deps, native + web (ssr) (see weird-deps for some)
+      - `@datadog/mobile-react-native` breaking on tests/uniswap
     - native tests that run in `yarn test`
     - add loader tests (SPA, SSR pages)
-    - disabled javascript ensure styles are all right (currently onestack.dev atually is missing some)
+    - disabled javascript ensure styles are all right (currently onestack.dev is missing some)
 
   - native
-    - better hmr
-    - better caching
+    - hmr tests + multi-file
+    - caching
     - symbolicator
     - Tabs.Screen href shouldn't be necessary (see docs on Tabs / Tabs examples)
     - better rebuild module caching
-    - would be nice to get native bottom tabs and native sheet as options
 
   - web
     - test app basic ssr needs fixing
@@ -29,19 +32,26 @@
       - vercel using build output api
 
   - build
+    - lets make a simple option to use vite-plugin-commonjs
+      - commonjs: (id) => boolean
     - way to configure the api + server config during production builds
 
   - cleanup
-    - TODO: hard coded for demo app (also find other TODOs in general)
+    - react-native-template.js needs a big cleanup
+      - eg remove ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')]
     - codebase needs a few passes cleaning up things (__vxrn globals, structure)
     - error logs on build:web `../../node_modules/expo-modules-core/src/NativeModule.ts (1:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.`
 
 ---
 
-2.0:
-
+  - unify the node module finding in dep patches + auto optimize
+  - `doctor --fix`
+    - ensure type: 'module' in package.json
+    - ensure vite.config
+    - ensure tsconfig "module": "Preserve", "moduleResolution": "Bundler", (or else import 'one/vite' can break using node)
   - headless tabs (no style included), headless everything really
-  - allow customizing react navigatio Theme
+  - allow customizing react navigation Theme
+  - can configure how loaders run not tied to render mode (on build or request)
   - layouts can be ssg, while pages can be spa
   - get rid of most patching in favor of plugins that are smart
   - worker threads, 3x+ build speed with paralellizing
@@ -52,16 +62,10 @@
   - use dom with RSC bridge
   - react-native-web-lite proper release
 
----
-
-# backlog
-
 - allow configuring swc from one
 
 - // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
-
-- we can avoid the reanimated babel plugin entirely if we don't detect reanimated in deps during scanDeps
 
 - fix `sub middleware intercepts` test
   - fix TODO intercept not working
@@ -101,8 +105,6 @@
   - another cool idea: node_modules package.json sets "vite" field that can add these custom configs, so `tamagui` package can define that *for* react 19
 
 - an easy way to disable swc transform for a node_module using `deps`
-
-- TODO this would probably want to support their configured extensions
 
 - useLoader new useEffect to fetch new loader loader data
   - hits /_vxrn/load/pathname.js for ssg at least

@@ -8,23 +8,23 @@ import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
 import {
   fillOptions,
   getOptimizeDeps,
+  loadEnv,
   rollupRemoveUnusedImportsPlugin,
   build as vxrnBuild,
   type ClientManifestEntry,
 } from 'vxrn'
 import * as constants from '../constants'
 import type { RouteInfo } from '../server/createRoutesManifest'
-import type { LoaderProps, RenderApp } from '../types'
-import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
-import { replaceLoader } from '../vite/replaceLoader'
 import type { One } from '../vite/types'
+import { buildPage } from './buildPage'
 import { labelProcess } from './label-process'
 import { compileManifest } from '../createHandleRequest'
 import { createServerlessFunction } from '../vercel/build/generate/createServerlessFunction'
 import { createServerlessApiFunction } from '../vercel/build/generate/createServerlessApiFunction'
+import { checkNodeVersion } from './checkNodeVersion'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 
@@ -35,8 +35,17 @@ process.on('uncaughtException', (err) => {
 export async function build(args: {
   step?: string
   only?: string
+  platform?: 'ios' | 'web' | 'android'
 }) {
   labelProcess('build')
+  checkNodeVersion()
+  await loadEnv('production')
+
+  if (!process.env.ONE_SERVER_URL) {
+    console.warn(
+      `⚠️ No ONE_SERVER_URL environment set, set it in your .env to your target deploy URL`
+    )
+  }
 
   const oneOptions = await loadUserOneOptions('build')
   const manifest = getManifest()!
@@ -46,13 +55,6 @@ export async function build(args: {
   // TODO make this better, this ensures we get react 19
   process.env.VXRN_REACT_19 = '1'
 
-  if (!process.env.ONE_SERVER_URL) {
-    console.warn(
-      `⚠️ No ONE_SERVER_URL environment set, set it in your .env to your target deploy URL`
-    )
-  }
-
-  console.warn('start build')
   const vxrnOutput = await vxrnBuild(
     {
       server: oneOptions.server,
@@ -65,6 +67,10 @@ export async function build(args: {
     },
     args
   )
+
+  if (!vxrnOutput || args.platform !== 'web') {
+    return
+  }
 
   const options = await fillOptions(vxrnOutput.options)
 
@@ -212,32 +218,13 @@ export async function build(args: {
 
   console.info(`\n 🔨 build static routes\n`)
 
-  let render: RenderApp | null = null
-  const entryServer = vxrnOutput.serverEntry
-
-  try {
-    const serverImport = await import(entryServer)
-
-    render =
-      serverImport.default.render ||
-      // for an unknown reason this is necessary
-      serverImport.default.default?.render
-
-    if (typeof render !== 'function') {
-      console.error(`❌ Error: didn't find render function in entry`, serverImport)
-      process.exit(1)
-    }
-  } catch (err) {
-    console.error(`❌ Error importing the root entry:`)
-    console.error(`  This error happened in the built file: ${entryServer}`)
-    // @ts-expect-error
-    console.error(err['stack'])
-    process.exit(1)
-  }
-
   const staticDir = join(`dist/static`)
   const clientDir = join(`dist/client`)
   await ensureDir(staticDir)
+
+  if (!vxrnOutput.serverOutput) {
+    throw new Error(`No server output`)
+  }
 
   const outputEntries = [...vxrnOutput.serverOutput.entries()]
 
@@ -304,9 +291,9 @@ export async function build(args: {
           [
             ...(type === 'js' ? imports : css || []),
             ...imports.flatMap((name) => {
-              const found = vxrnOutput.clientManifest[name]
+              const found = vxrnOutput!.clientManifest[name]
               if (!found) {
-                console.warn(`No found imports`, name, vxrnOutput.clientManifest)
+                console.warn(`No found imports`, name, vxrnOutput!.clientManifest)
               }
               return collectImports(found, { type })
             }),
@@ -430,110 +417,23 @@ export async function build(args: {
     for (const params of paramsList) {
       const cleanId = relativeId.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
       const path = getPathnameFromFilePath(cleanId, params, foundRoute.type === 'ssg')
-      const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
-      const clientJsPath = join(`dist/client`, clientManifestEntry.file)
-      const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
-
-      let loaderData = {}
-
-      try {
-        console.info(`  ↦ route ${path}`)
-
-        const cleanPath = path === '/' ? path : removeTrailingSlash(path)
-
-        const preloadPath = getPreloadPath(path)
-
-        // todo await optimize
-        await FSExtra.writeFile(
-          join(clientDir, preloadPath),
-          preloads.map((preload) => `import "${preload}"`).join('\n')
-        )
-
-        const middlewares = (foundRoute.middlewares || []).map(
-          (x) => builtMiddlewares[x.contextKey]
-        )
-
-        builtRoutes.push({
-          type: foundRoute.type,
-          routeFile: foundRoute.file,
-          middlewares,
-          cleanPath,
-          preloadPath,
-          clientJsPath,
-          serverJsPath,
-          htmlPath,
-          loaderData,
-          params,
+      console.info(`  ↦ route ${path}`)
+      builtRoutes.push(
+        await buildPage(
+          vxrnOutput.serverEntry,
           path,
+          relativeId,
+          params,
+          foundRoute,
+          clientManifestEntry,
+          staticDir,
+          clientDir,
+          builtMiddlewares,
+          serverJsPath,
           preloads,
-        })
-
-        if (exported.loader) {
-          loaderData = (await exported.loader?.({ path, params })) ?? null
-          const code = await readFile(clientJsPath, 'utf-8')
-          const withLoader =
-            // super dirty to quickly make ssr loaders work until we have better
-            `
-if (typeof document === 'undefined') globalThis.document = {}
-` +
-            replaceLoader({
-              code,
-              loaderData,
-            })
-          const loaderPartialPath = join(clientDir, getLoaderPath(path))
-          await outputFile(loaderPartialPath, withLoader)
-        }
-
-        // ssr, we basically skip at build-time and just compile it the js we need
-        if (foundRoute.type !== 'ssr') {
-          const loaderProps: LoaderProps = { path, params }
-          // importing resetState causes issues :/
-          globalThis['__vxrnresetState']?.()
-
-          if (foundRoute.type === 'ssg') {
-            const html = await render({
-              path,
-              preloads,
-              loaderProps,
-              loaderData,
-              css: allCSS,
-              mode: 'ssg',
-            })
-            await outputFile(htmlOutPath, html)
-            continue
-          }
-
-          if (foundRoute.type === 'spa') {
-            await outputFile(
-              htmlOutPath,
-              `<html><head>
-              ${constants.getSpaHeaderElements({ serverContext: { loaderProps, loaderData } })}
-              ${preloads
-                .map((preload) => `   <script type="module" src="${preload}"></script>`)
-                .join('\n')}
-              ${allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')}
-            </head></html>`
-            )
-          }
-        }
-      } catch (err) {
-        const errMsg = err instanceof Error ? `${err.message}\n${err.stack}` : `${err}`
-
-        console.error(
-          `Error building static page at ${path} with id ${relativeId}:
-
-${errMsg}
-
-  loaderData:
-
-${JSON.stringify(loaderData || null, null, 2)}
-  params:
-
-${JSON.stringify(params || null, null, 2)}`
+          allCSS
         )
-        console.error(err)
-        process.exit(1)
-      }
+      )
     }
   }
 
@@ -730,10 +630,6 @@ compatibility_date = "2024-12-05"
   }
 
   console.info(`\n\n  💛 build complete\n\n`)
-}
-
-function removeTrailingSlash(path: string) {
-  return path.endsWith('/') ? path.slice(0, path.length - 1) : path
 }
 
 async function moveAllFiles(src: string, dest: string) {

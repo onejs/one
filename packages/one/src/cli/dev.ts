@@ -1,4 +1,5 @@
 import { virtualEntryIdNative } from '../vite/plugins/virtualEntryConstants'
+import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
 
 export async function dev(args: {
@@ -7,10 +8,11 @@ export async function dev(args: {
   port?: string
   https?: boolean
   mode?: 'development' | 'production'
-  debugBundle?: boolean
+  debugBundle?: string
   debug?: string
 }) {
   labelProcess('dev')
+  checkNodeVersion()
 
   const { dev } = await import('vxrn/dev')
 

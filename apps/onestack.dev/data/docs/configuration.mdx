@@ -2,9 +2,7 @@
 title: Configuration
 ---
 
-One is a single Vite plugin exported from `one/vite`, almost all configuration is done through the plugin in your `vite.config.ts`, which takes a single object with entirely optional properties:
-
-## `one`
+One is entirely configured through a Vite plugin:
 
 ```tsx fileName=vite.config.ts
 import type { UserConfig } from 'vite'
@@ -102,52 +100,67 @@ export default {
         }
       },
 
-      /**
-       * Accepts a function that determines whether to use babel, and which plugins to use.
-       * By default, babel only runs if:
-       *
-       *  - options.react.compiler is `true`, on tsx files in your app
-       *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
-       *
-       * Otherwise One defaults to using `@swc/core`.
-       *
-       * Accepts a function:
-       *
-       *   (props: {
-       *      id: string
-       *      code: string
-       *      development: boolean
-       *      environment: Environment
-       *      reactForRNVersion: '18' | '19'
-       *   }) =>
-       *      | true  // force babel on for file
-       *      | false // force babel off for file
-       *      | {
-       *           plugins: [] // babel plugin array
-       *           excludeDefaultPlugins?: boolean // if true, removes the default plugins
-       *        }
-       *
-       *  Babel always runs with preset `@babel/preset-typescript`.
-       *
-       *  When babel runs without `excludeDefaultPlugins` set to true, it defaults to plugins:
-       *
-       *  @babel/plugin-transform-destructuring, babel/plugin-transform-runtime, @babel/plugin-transform-react-jsx,
-       *  @babel/plugin-transform-async-generator-functions, @babel/plugin-transform-async-to-generator
-       *
-       */
-      babel: false
+     /**
+      * Per-file control over how code transforms.
+      * Defaults to SWC, runs babel before SWC if:
+      *
+      *  - options.react.compiler is `true`, on tsx files in your app
+      *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
+      *
+      * Otherwise One defaults to using `@swc/core`.
+      *
+      * Accepts a function:
+      *
+      *   (props: {
+      *      id: string
+      *      code: string
+      *      development: boolean
+      *      environment: Environment
+      *      reactForRNVersion: '18' | '19'
+      *   }) =>
+      *      | true     // default transforms
+      *      | false    // no transforms
+      *      | 'babel'  // force babel default transform
+      *      | 'swc'    // force swc default transform
+      *
+      *       // force babel, custom transform
+      *
+      *      | {
+      *          transform: 'babel'
+      *          excludeDefaultPlugins?: boolean
+      *        } & babel.TransformOptions
+      *
+      *      // force swc, custom transform
+      *
+      *      | {
+      *          transform: 'swc'
+      *        } & SWCOptions
+      *
+      * Babel defaults to preset `@babel/preset-typescript` with plugins:
+      *
+      *  - @babel/plugin-transform-destructuring
+      *  - @babel/plugin-transform-runtime
+      *  - @babel/plugin-transform-react-jsx
+      *  - @babel/plugin-transform-async-generator-functions
+      *  - @babel/plugin-transform-async-to-generator
+      *
+      *
+      * SWC default to target es5 for native, es2020 for web.
+      *
+      */
+      transform: true
     })
   ]
 } satisfies UserConfig
 ```
 
-Note that some of this configuration is ultimately stored into [environment variables](/docs/environment) for you.
+Note that some of this configuration is ultimately stored into [environment variables](/docs/environment) automatically, accessible in your apps and website.
 
-## app
+## native
 
-The app object allows you to configure your native apps.
+The native object allows you to configure your native apps.
 
-### app.key
+### native.key
 
 One will set up your React Native app to run via `AppRegistry.registerComponent(app.key)`.
 
@@ -186,13 +199,11 @@ You can apply server-level redirects. One serves your app with Hono in productio
 
 ## react
 
-<Status cur="pointer" is="beta" />
+### compiler: boolean
 
 Enables the new [React Compiler](https://react.dev/learn/react-compiler) for both native and web. Will slow down compilation as it uses Babel, but will improve app performance and reduce the need to write memoization.
 
-### scan
-
-<Status cur="pointer" is="beta" />
+### scan: boolean
 
 Enables [React Scan](https://react-scan.com). Helps you re-rendering and other performance issues. We disabled native support for now as it was running too slow, [follow this PR](https://github.com/aidenybai/react-scan/pull/23) for their status on getting native to stability (if you override the react-scan version with one from that PR, it should work on native).
 
@@ -298,7 +309,7 @@ We set up `alias` based on environment:
 
 - `react-native` => `react-native-web` for web environments
 
-We also detect if you have a PostCSS config file (js, ts, or json) and set the `css` config:
+We also detect if you have a PostCSS config file (js, ts, or json) and set the `css`. The internal logic is something like:
 
 ```tsx
 {

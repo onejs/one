@@ -1,5 +1,5 @@
-import { Text } from 'tamagui'
 import { useLinkTo, type Href, type LinkProps as OneLinkProps } from 'one'
+import { Text } from 'tamagui'
 
 export type LinkProps = OneLinkProps<Href>
 
@@ -15,7 +15,9 @@ export const Link = ({ href, replace, asChild, disabled, ...props }: LinkProps) 
       className="t_Link"
       cursor="pointer"
       color="inherit"
+      // @ts-ignore
       fontSize="inherit"
+      // @ts-ignore
       lineHeight="inherit"
       {...props}
       {...linkProps}

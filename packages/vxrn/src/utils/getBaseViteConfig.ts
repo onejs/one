@@ -23,6 +23,7 @@ export const dedupe = [
   'tamagui',
   'react-native-reanimated',
   'expo-modules-core',
+  'escape-string-regexp',
 ]
 
 export async function getBaseViteConfig(
@@ -106,6 +107,7 @@ export async function getBaseViteConfig(
 
     resolve: {
       alias: {
+        'react-native/package.json': resolvePath('react-native-web/package.json', root),
         'react-native': resolvePath('react-native-web', root),
         'react-native-safe-area-context': resolvePath('@vxrn/safe-area', root),
 

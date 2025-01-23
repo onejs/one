@@ -1,5 +1,6 @@
 import type { Environment } from './types';
 type Conf = {
+    enableNativewind?: boolean;
     enableReanimated?: boolean;
     enableCompiler?: boolean | Environment[];
     enableNativeCSS?: boolean;

@@ -288,19 +288,20 @@ var __commonJS = function __commonJS(cb, mod) {
 `,
         },
         {
-          find: `module.exports = require_react_native();`,
-          replace: `return require_react_native();`,
-        },
-        // Export `@react-native/assets-registry/registry`
-        {
-          find: `return require_react_native();`,
+          find: /module\.exports = require_(react_native|index)\(\)\;/,
           replace: [
-            `const rn = require_react_native();`,
+            `const rn = require_$1();`,
             `rn.AssetRegistry = require_registry();`,
             `require_ReactNative();`, // This is react-native/Libraries/Renderer/shims/ReactNative.js, we call it here to ensure shims are initialized since we won't lazy load React Native components. See the NOTE below.
             `if (typeof require_InitializeCore === 'function') { require_InitializeCore(); }`, // Since we're accessing the RefreshRuntime directly via `__cachedModules` directly in the RN bundle, we need to ensure it's loaded in time. Note that calling `require_react_refresh_runtime_development()`, `require_setUpReactRefresh()` or `require_setUpDeveloperTools()` directly won't work.
             `return rn;`,
           ].join('\n'),
+        },
+
+        // improve error logs a lot including stack of original error
+        {
+          find: `originalMessage = e.message || "";`,
+          replace: `originalMessage = "" + (e.stack || "");`,
         },
       ])}
     }

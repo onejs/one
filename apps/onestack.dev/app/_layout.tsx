@@ -5,7 +5,7 @@ import './tamagui.css'
 
 import { MetaTheme, SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { useEffect } from 'react'
-import { TamaguiProvider, Theme, useTheme } from 'tamagui'
+import { TamaguiProvider, Theme, useTheme, YStack } from 'tamagui'
 import { LoadProgressBar, Slot, usePathname } from 'one'
 import config from '~/config/tamagui.config'
 import { useIsScrolled } from '~/features/site/useIsScrolled'
@@ -33,10 +33,11 @@ export default function Layout() {
         <SchemeProvider>
           <ThemeProvider>
             <LayoutDecorativeStripe />
-            <Theme name="yellow">
-              <ThemeMetaTag />
-              <Slot />
-            </Theme>
+            {/* <Theme name="yellow"> */}
+            <YStack zi={0} fullscreen className="grain" pe="none" />
+            <ThemeMetaTag />
+            <Slot />
+            {/* </Theme> */}
           </ThemeProvider>
         </SchemeProvider>
       </body>

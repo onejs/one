@@ -21,6 +21,7 @@ export { LoadProgressBar } from './views/LoadProgressBar';
 export { Link } from './link/Link';
 export { Redirect } from './link/Redirect';
 export { Head } from './head';
+export { useIsFocused } from '@react-navigation/core';
 export { useLinkTo } from './link/useLinkTo';
 export { useServerHeadInsertion, type ServerHeadInsertionCallback } from './useServerHeadInsertion';
 export { useRouter, useUnstableGlobalHref, usePathname, useNavigationContainerRef, useParams, useActiveParams, useSegments, useRootNavigationState, } from './hooks';

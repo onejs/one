@@ -200,7 +200,7 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
 
         try {
           const bundle = await (async () => {
-            if (options.debugBundle) {
+            if (typeof options.debugBundle === 'string') {
               const path = options.debugBundlePaths[platform]
               if (existsSync(path)) {
                 console.info(`  !!! - serving debug bundle from`, path)
@@ -212,8 +212,10 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
 
             if (options.debugBundle) {
               const path = options.debugBundlePaths[platform]
-              console.info(`  !!! - writing debug bundle to`, path)
-              await writeFile(path, outBundle)
+              if (!existsSync(path)) {
+                console.info(`  !!! - writing debug bundle to`, path)
+                await writeFile(path, outBundle)
+              }
             }
 
             return outBundle

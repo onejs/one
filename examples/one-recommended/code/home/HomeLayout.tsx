@@ -1,3 +1,4 @@
+import { type Href, Link, Slot, usePathname } from 'one'
 import type { ReactNode } from 'react'
 import {
   createStyledContext,
@@ -10,7 +11,6 @@ import {
   XStack,
   YStack,
 } from 'tamagui'
-import { type Href, Link, Slot, usePathname } from 'one'
 import { Logo } from '../brand/Logo'
 import { useToggleTheme } from '../theme/ToggleThemeButton'
 import { HomeIcons } from './HomeIcons'
@@ -29,19 +29,33 @@ export function HomeLayout() {
 
 function HomeLayoutTouch() {
   return (
-    <YStack f={1}>
-      <XStack ai="center" jc="space-between" py="$1" px="$4" bbc="$borderColor" bbw={1}>
+    <YStack flex={1}>
+      <XStack
+        items="center"
+        justify="space-between"
+        py="$1"
+        px="$4"
+        borderColor="$borderColor"
+        borderBottomWidth={1}
+      >
         <Logo />
-        <ToggleThemeLink f={0} />
+        <ToggleThemeLink flex={0} />
       </XStack>
 
-      <YStack f={1}>
+      <YStack flex={1}>
         <ScrollView>
           <Slot />
         </ScrollView>
       </YStack>
 
-      <XStack ai="center" jc="space-around" btw={1} btc="$borderColor" py="$1" gap="$1">
+      <XStack
+        items="center"
+        justify="space-around"
+        borderTopWidth={1}
+        borderTopColor="$borderColor"
+        py="$1"
+        gap="$1"
+      >
         <NavLinks />
       </XStack>
     </YStack>
@@ -50,26 +64,26 @@ function HomeLayoutTouch() {
 
 function HomeLayoutMouse() {
   return (
-    <XStack f={1} mah="100vh">
+    <XStack flex={1} maxH="100vh">
       <YStack
-        miw={220}
-        ai="center"
-        brw={1}
-        brc="$borderColor"
+        minW={220}
+        items="center"
+        borderRightWidth={1}
+        borderRightColor="$borderColor"
         px="$2"
         py="$4"
         gap="$1"
         $xs={{
-          miw: 'auto',
+          minW: 'auto',
         }}
       >
         <XStack
           mb="$3"
           $xs={{
-            w: '$5',
-            h: '$5',
-            ai: 'center',
-            jc: 'center',
+            width: '$5',
+            height: '$5',
+            items: 'center',
+            justify: 'center',
           }}
         >
           <Logo />
@@ -82,7 +96,7 @@ function HomeLayoutMouse() {
         <ToggleThemeLink />
       </YStack>
 
-      <YStack f={1}>
+      <YStack flex={1}>
         <ScrollView>
           <Slot />
         </ScrollView>
@@ -110,7 +124,7 @@ function NavLinks() {
 }
 
 const IconFrame = styled(View, {
-  $gtXs: {
+  $sm: {
     scale: 0.8,
     m: -5,
   },
@@ -159,11 +173,11 @@ const SideMenuLink = ({
 
 const LinkText = styled(SizableText, {
   context: Context,
-  userSelect: 'none',
-  dsp: 'flex',
-  f: 10,
+  select: 'none',
+  display: 'flex',
+  flex: 10,
   size: '$5',
-  cur: 'pointer',
+  cursor: 'pointer',
   $xs: {
     display: 'none',
   },
@@ -180,12 +194,14 @@ const LinkContainer = styled(XStack, {
   tag: 'a',
   className: 'text-decoration-none',
   gap: '$4',
-  br: '$6',
-  cur: 'pointer',
-  ai: 'center',
+  rounded: '$6',
+  cursor: 'pointer',
+  items: 'center',
+
   hoverStyle: {
     bg: '$color3',
   },
+
   pressStyle: {
     bg: '$color3',
   },
@@ -193,28 +209,28 @@ const LinkContainer = styled(XStack, {
   variants: {
     isActive: {
       true: {
-        backgroundColor: '$color2',
+        bg: '$color2',
       },
     },
 
     isVertical: {
       true: {
-        f: 1,
-        jc: 'center',
+        flex: 1,
+        justify: 'center',
         px: '$2',
         py: '$2.5',
       },
       false: {
-        w: '100%',
+        width: '100%',
         px: '$4',
         py: '$2.5',
 
         $xs: {
           p: 0,
-          w: '$6',
-          h: '$6',
-          ai: 'center',
-          jc: 'center',
+          width: '$6',
+          height: '$6',
+          items: 'center',
+          justify: 'center',
         },
       },
     },

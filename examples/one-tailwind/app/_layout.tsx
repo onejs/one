@@ -1,6 +1,9 @@
-// debug
 import { Slot } from 'one'
 import './base.css'
+
+/**
+ * The root _layout.tsx filters <html /> and <body /> out on native
+ */
 
 export default function Layout() {
   return (
@@ -13,9 +16,6 @@ export default function Layout() {
           <link rel="icon" href="/favicon.svg" />
         </>
       )}
-
-      {/* <div className="bg-red-500 p-4 border uppercase">this is bg should be red by tailwind</div> */}
-
       <Slot />
     </>
   )

@@ -11,7 +11,6 @@ import { posts, reposts, users, likes, replies } from '~/code/db/schema'
 import { eq, sql, desc } from 'drizzle-orm'
 import { profileFeed, userData } from '~/code/data'
 
-
 export default function ProfilePage() {
   const scrollViewRef = useRef<ElementRef<typeof ScrollView>>(null)
   useScrollToTop(scrollViewRef)
@@ -61,7 +60,7 @@ export default function ProfilePage() {
               >
                 <XStack gap="$2" marginBottom="$2">
                   <Repeat2 size={12} color="$accent1" />
-                  <Text ff="$body" color="$accent1" fontSize={10}>
+                  <Text fontFamily="$body" color="$accent1" fontSize={10}>
                     Reposted by {userData.name}
                   </Text>
                 </XStack>

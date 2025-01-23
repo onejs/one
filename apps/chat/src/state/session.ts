@@ -1,7 +1,7 @@
 import { proxy, useSnapshot } from 'valtio'
 
 type SessionState = {
-  showHotMenu: boolean
+  showHotMenu: boolean | 'from-input'
 }
 
 const sessionState = proxy<SessionState>({
@@ -10,6 +10,10 @@ const sessionState = proxy<SessionState>({
 
 export const useSessionState = () => {
   return useSnapshot(sessionState)
+}
+
+export const getSessionState = () => {
+  return sessionState
 }
 
 export const updateSessionState = (next: Partial<SessionState>) => {

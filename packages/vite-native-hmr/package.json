@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-hmr",
-  "version": "1.1.396",
+  "version": "1.1.402",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -37,7 +37,7 @@
     "pretty-format": "^28.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.121.8",
+    "@tamagui/build": "^1.122.7",
     "react-native": "^0.76.5"
   },
   "peerDependencies": {

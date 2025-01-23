@@ -7,6 +7,7 @@ import { ServerSettingsPane } from '~/interface/settings/ServerSettingsPane'
 import { Sidebar } from '~/interface/sidebar/Sidebar'
 import { TopBar } from '~/interface/TopBar'
 import { useUserState } from '~/state/user'
+import { MainMessageInput } from '~/interface/main/MainMessageInput'
 
 export default function HomePage() {
   return (
@@ -18,6 +19,8 @@ export default function HomePage() {
         <Main />
       </XStack>
 
+      <MainMessageInput />
+
       <RightSideHiddenPanel />
     </AppFrame>
   )
@@ -28,7 +31,7 @@ const AppFrame = ({ children }: { children: any }) => {
 
   return (
     <AnimationDriver name="css">
-      <YStack h={0} f={1} x={userState?.showSidePanel ? -hiddenPanelWidth : 0} animation="quicker">
+      <YStack h={0} f={1} animation="quicker">
         <AnimationDriver name="spring">{children}</AnimationDriver>
       </YStack>
     </AnimationDriver>

@@ -59,7 +59,7 @@ const dev = defineCommand({
         'If set to "production" you can run the development server but serve the production bundle',
     },
     'debug-bundle': {
-      type: 'boolean',
+      type: 'string',
       description: `Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.`,
     },
     debug: {
@@ -71,7 +71,7 @@ const dev = defineCommand({
     const { dev } = await import('./cli/dev')
     await dev({
       ...args,
-      debugBundle: !!args['debug-bundle'],
+      debugBundle: args['debug-bundle'],
       mode: modes[args.mode],
     })
   },
@@ -93,10 +93,33 @@ const buildCommand = defineCommand({
       type: 'string',
       required: false,
     },
+    platform: {
+      type: 'string',
+      description: `One of: web, ios, android`,
+      default: 'web',
+      required: false,
+    },
   },
   async run({ args }) {
     const { build } = await import('./cli/build')
-    await build(args)
+
+    const platforms = {
+      ios: 'ios',
+      web: 'web',
+      android: 'android',
+    } as const
+
+    if (args.platform && !platforms[args.platform]) {
+      throw new Error(`Invalid platform: ${args.platform}`)
+    }
+
+    const platform = platforms[args.platform as keyof typeof platforms] || 'web'
+
+    await build({
+      only: args.only,
+      platform,
+      step: args.step,
+    })
     // TODO somewhere just before 1787f241b79 this stopped exiting, must have some hanging task
     process.exit(0)
   },

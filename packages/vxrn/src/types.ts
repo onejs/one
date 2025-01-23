@@ -6,7 +6,12 @@ type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
 
 export type Mode = 'dev' | 'prod'
 
-export type BuildArgs = { step?: string; only?: string; analyze?: boolean }
+export type BuildArgs = {
+  step?: string
+  only?: string
+  analyze?: boolean
+  platform?: 'ios' | 'web' | 'android'
+}
 
 export type AfterBuildProps = {
   options: VXRNOptions
@@ -110,8 +115,9 @@ export type VXRNOptions = {
 
   /**
    * Will output the bundle to a temp file and then serve it from there afterwards allowing you to easily edit the bundle to debug problems.
+   * If set to an empty string it will create a random tmp file and log it to console.
    */
-  debugBundle?: boolean
+  debugBundle?: string
 
   /**
    * Pass debug options to Vite
