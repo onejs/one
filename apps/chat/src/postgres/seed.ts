@@ -16,7 +16,7 @@ async function insertSeedData() {
     // Test User
     await client.query(`
       INSERT INTO "user" (
-        id, username, name, email, state, email_verified, image, created_at, updated_at
+        id, username, name, email, state, "emailVerified", image, "createdAt", "updatedAt"
       ) VALUES (
         'test-user-id',
         'testuser',
@@ -33,7 +33,7 @@ async function insertSeedData() {
     // Test Server
     await client.query(`
       INSERT INTO server (
-        id, name, creator_id, description, icon, channel_sort, created_at
+        id, name, "creatorId", description, icon, "channelSort", "createdAt"
       ) VALUES (
         'test-server-id',
         'Test Server',
@@ -48,7 +48,7 @@ async function insertSeedData() {
     // Default Channel
     await client.query(`
       INSERT INTO channel (
-        id, server_id, name, description, private, created_at
+        id, "serverId", name, description, private, "createdAt"
       ) VALUES (
         'test-channel-id',
         'test-server-id',
@@ -61,13 +61,13 @@ async function insertSeedData() {
 
     // Server Member
     await client.query(`
-      INSERT INTO server_member (
-        server_id, user_id, joined_at
+      INSERT INTO "serverMember" (
+        "serverId", "userId", "joinedAt"
       ) VALUES (
         'test-server-id',
         'test-user-id',
         CURRENT_TIMESTAMP
-      ) ON CONFLICT (server_id, user_id) DO NOTHING;
+      ) ON CONFLICT ("serverId", "userId") DO NOTHING;
     `)
 
     // Reactions

@@ -33,7 +33,7 @@ type Channel = typeof schema.tables.channel
 const canEditChannel = (ad: AuthData, eb: ExpressionBuilder<Channel>) => {
   return eb.exists('server', (server) => {
     return server.whereExists('roles', (q) =>
-      q.where('can_admin', true).whereExists('members', (q) => q.where('id', ad.id))
+      q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
     )
   })
 }
@@ -56,10 +56,10 @@ export const permissionQueries = {
       (ad: AuthData, eb: ExpressionBuilder<Server>) => {
         return eb.or(
           eb.exists('roles', (q) =>
-            q.where('can_admin', true).whereExists('members', (q) => q.where('id', ad.id))
+            q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
           ),
           eb.exists('roles', (q) =>
-            q.where('can_edit_server', true).whereExists('members', (q) => q.where('id', ad.id))
+            q.where('canEditServer', true).whereExists('members', (q) => q.where('id', ad.id))
           )
         )
       },
