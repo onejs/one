@@ -202,6 +202,11 @@ ${rootJS.code}
             return
           }
 
+          if (environment === 'client') {
+            // no need to transform?
+            return
+          }
+
           const transformProps: GetTransformProps = {
             id,
             code,
