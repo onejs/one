@@ -58,7 +58,7 @@
     "burnt": "^0.12.2",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.38.4",
-    "drizzle-zero": "0.2.2",
+    "drizzle-zero": "0.2.3",
     "expo": "~52.0.17",
     "flexsearch": "^0.7.43",
     "one": "workspace:*",
