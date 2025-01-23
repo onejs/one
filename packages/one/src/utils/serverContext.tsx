@@ -48,10 +48,6 @@ export function getServerContext() {
     return globalThis[SERVER_CONTEXT_KEY] as MaybeServerContext
   })()
 
-  if (!out) {
-    throw new Error(`no server context, internal one bug`)
-  }
-
   return out
 }
 
@@ -60,27 +56,31 @@ const ServerAsyncLocalIDContext = createContext<ServerContext | null>(null)
 export const ProviderServerAsyncLocalIDContext = ServerAsyncLocalIDContext.Provider
 
 export function ServerContextScript() {
-  const context = getServerContext()
+  if (process.env.VITE_ENVIRONMENT === 'client' || process.env.VITE_ENVIRONMENT === 'ssr') {
+    const context = getServerContext()
 
-  return (
-    <script
-      async
-      // @ts-ignore
-      href={SERVER_CONTEXT_KEY}
-      suppressHydrationWarning
-      dangerouslySetInnerHTML={{
-        __html:
-          process.env.VITE_ENVIRONMENT === 'client'
-            ? ``
-            : `
-            globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify({
-              ...context,
-              postRenderData: SERVER_CONTEXT_POST_RENDER_STRING,
-            })};
-        `,
-      }}
-    />
-  )
+    return (
+      <script
+        async
+        // @ts-ignore
+        href={SERVER_CONTEXT_KEY}
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html:
+            process.env.VITE_ENVIRONMENT === 'client'
+              ? ``
+              : `
+              globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify({
+                ...context,
+                postRenderData: SERVER_CONTEXT_POST_RENDER_STRING,
+              })};
+          `,
+        }}
+      />
+    )
+  }
+
+  return null
 }
 
 /**
