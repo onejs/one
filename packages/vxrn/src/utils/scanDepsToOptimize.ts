@@ -54,6 +54,9 @@ export const EXCLUDE_LIST = [
   // CLI shouldn't be used in SSR runtime
   '@tamagui/cli',
 
+  // Should be used on native only
+  '@tamagui/core/native-test',
+
   '@storybook/react',
 ]
 
@@ -233,7 +236,9 @@ export async function scanDepsToOptimize(
 
           const mainExport = depPkgJson['main'] || depPkgJson['module'] || definedExports['.']
 
-          const exports = [...definedExports, ...specialExports]
+          const exports = [...definedExports, ...specialExports].filter(
+            (d) => !EXCLUDE_LIST_SET.has(d)
+          )
           if (mainExport) {
             if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
               exports.unshift(dep)
