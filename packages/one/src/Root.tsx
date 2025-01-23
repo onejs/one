@@ -13,7 +13,7 @@ import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
 import type { GlobbedRouteImports } from './types'
 import { ServerRenderID } from './useServerHeadInsertion'
-import { getServerContext } from './utils/serverContext'
+import { getServerContext, ProviderServerAsyncLocalIDContext } from './utils/serverContext'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollBehavior } from './views/ScrollBehavior'
@@ -73,41 +73,45 @@ export function Root(props: RootProps) {
 
   const contents = (
     // <StrictMode>
-    <ServerRenderID.Provider value={id}>
-      <RootErrorBoundary>
-        {/* for some reason warning if no key here */}
-        <UpstreamNavigationContainer
-          ref={store.navigationRef}
-          initialState={store.initialState}
-          linking={store.linking}
-          onUnhandledAction={onUnhandledAction}
-          theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-          documentTitle={{
-            enabled: false,
-          }}
-          {...navigationContainerProps}
-        >
-          <ServerLocationContext.Provider value={location}>
-            {/* <GestureHandlerRootView> */}
-            {/*
-             * Due to static rendering we need to wrap these top level views in second wrapper
-             * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
-             * is a HTML document, we need to ensure its inside the <body>
-             */}
-            <>
-              {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
-              <ScrollBehavior />
-              <Component />
+    <ProviderServerAsyncLocalIDContext
+      value={globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null}
+    >
+      <ServerRenderID.Provider value={id}>
+        <RootErrorBoundary>
+          {/* for some reason warning if no key here */}
+          <UpstreamNavigationContainer
+            ref={store.navigationRef}
+            initialState={store.initialState}
+            linking={store.linking}
+            onUnhandledAction={onUnhandledAction}
+            theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+            documentTitle={{
+              enabled: false,
+            }}
+            {...navigationContainerProps}
+          >
+            <ServerLocationContext.Provider value={location}>
+              {/* <GestureHandlerRootView> */}
+              {/*
+               * Due to static rendering we need to wrap these top level views in second wrapper
+               * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
+               * is a HTML document, we need to ensure its inside the <body>
+               */}
+              <>
+                {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
+                <ScrollBehavior />
+                <Component />
 
-              {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-            </>
-            {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-            {/* </GestureHandlerRootView> */}
-          </ServerLocationContext.Provider>
-        </UpstreamNavigationContainer>
-        <PreloadLinks key="preload-links" />
-      </RootErrorBoundary>
-    </ServerRenderID.Provider>
+                {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+              </>
+              {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+              {/* </GestureHandlerRootView> */}
+            </ServerLocationContext.Provider>
+          </UpstreamNavigationContainer>
+          <PreloadLinks key="preload-links" />
+        </RootErrorBoundary>
+      </ServerRenderID.Provider>
+    </ProviderServerAsyncLocalIDContext>
     // </StrictMode>
   )
 

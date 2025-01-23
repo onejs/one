@@ -1,5 +1,6 @@
 1.0:
 
+  - we hit network for loaders even if they don't exist, need to ship info about loaders existing to clients to avoid those requests
   - expose useRouteInfo or similar (do things like change layout for not-found pages)
   - if you remove escape-string-regexp from `dedupe` breaks
     - non-deduped modules that live in diff sub-dirs resolve to the same id: ___modules___["escape-string-regexp/index.js"]
@@ -10,6 +11,8 @@
     - were using Compat version from react-navigation seems to not work directly on web, need to fix/document
   - restore GestureHandlerRootView
   - enable StrictMode
+  - lower priority useLoader(loader, { suspense: false, disable: true })
+    - useLoaderState() or change to array return in v1
 
   - tests
     - 20-40 deps, native + web (ssr) (see weird-deps for some)

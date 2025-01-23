@@ -2,6 +2,7 @@ import './polyfills-server'
 
 import FSExtra from 'fs-extra'
 import type { VXRNOptions } from 'vxrn'
+import { setServerGlobals } from './server/setServerGlobals'
 import { setupBuildInfo } from './server/setupBuildOptions'
 import { ensureExists } from './utils/ensureExists'
 import type { One } from './vite/types'
@@ -14,6 +15,7 @@ export async function serve(args: VXRNOptions['server'] = {}) {
   const buildInfo = (await FSExtra.readJSON(`dist/buildInfo.json`)) as One.BuildInfo
   const { oneOptions } = buildInfo
 
+  setServerGlobals()
   setupBuildInfo(buildInfo)
   ensureExists(oneOptions)
 
@@ -28,9 +30,6 @@ export async function serve(args: VXRNOptions['server'] = {}) {
   if (args.loadEnv) {
     await loadEnv('production')
   }
-
-  // TODO make this better, this ensures we get react 19
-  process.env.VXRN_REACT_19 = '1'
 
   return await vxrnServe({
     // fallback to one plugin
