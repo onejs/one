@@ -1,7 +1,17 @@
 import type { GetTransform } from '@vxrn/compiler';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
-import type { RouteInfo } from '../server/createRoutesManifest';
+import type { RouteNode } from '../router/Route';
+export type RouteInfo<TRegex = string> = {
+    file: string;
+    page: string;
+    namedRegex: TRegex;
+    routeKeys: Record<string, string>;
+    layouts?: RouteNode[];
+    middlewares?: RouteNode[];
+    type: One.RouteType;
+    isNotFound?: boolean;
+};
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
