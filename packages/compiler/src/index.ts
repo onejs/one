@@ -202,11 +202,6 @@ ${rootJS.code}
             return
           }
 
-          if (environment === 'client') {
-            // no need to transform?
-            return
-          }
-
           const transformProps: GetTransformProps = {
             id,
             code,
@@ -240,6 +235,10 @@ ${rootJS.code}
 
             // we always go to swc for now to ensure class transforms + react refesh
             // we could make the babel plugin support those if we want to avoid
+          }
+
+          if (environment === 'client') {
+            return code
           }
 
           const swcOptions = {

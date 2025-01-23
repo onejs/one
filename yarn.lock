@@ -353,21 +353,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/analytics-browser@npm:^1.5.8":
-  version: 1.13.6
-  resolution: "@amplitude/analytics-browser@npm:1.13.6"
-  dependencies:
-    "@amplitude/analytics-client-common": "npm:^1.2.3"
-    "@amplitude/analytics-core": "npm:^1.2.5"
-    "@amplitude/analytics-types": "npm:^1.3.4"
-    "@amplitude/plugin-page-view-tracking-browser": "npm:^1.0.13"
-    "@amplitude/plugin-web-attribution-browser": "npm:^1.0.13"
-    "@amplitude/ua-parser-js": "npm:^0.7.31"
-    tslib: "npm:^2.4.1"
-  checksum: 10/c3fdbcf826bb7e28c06a4aa8e7459fc99eba59b079cf4b41222792991e4ccf225f2651bc2fb689d86d90d67bf42e8c29eb4f35f913bec8b15669ee96ce067006
-  languageName: node
-  linkType: hard
-
 "@amplitude/analytics-client-common@npm:^1.1.1, @amplitude/analytics-client-common@npm:^1.1.2, @amplitude/analytics-client-common@npm:^1.2.3":
   version: 1.2.3
   resolution: "@amplitude/analytics-client-common@npm:1.2.3"
@@ -456,7 +441,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-page-view-tracking-browser@npm:^1.0.13, @amplitude/plugin-page-view-tracking-browser@npm:^1.0.7":
+"@amplitude/plugin-page-view-tracking-browser@npm:^1.0.7":
   version: 1.0.13
   resolution: "@amplitude/plugin-page-view-tracking-browser@npm:1.0.13"
   dependencies:
@@ -467,7 +452,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amplitude/plugin-web-attribution-browser@npm:^1.0.13, @amplitude/plugin-web-attribution-browser@npm:^1.0.7":
+"@amplitude/plugin-web-attribution-browser@npm:^1.0.7":
   version: 1.0.13
   resolution: "@amplitude/plugin-web-attribution-browser@npm:1.0.13"
   dependencies:
@@ -12266,24 +12251,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uniswap/analytics-events@npm:2.36.0":
-  version: 2.36.0
-  resolution: "@uniswap/analytics-events@npm:2.36.0"
-  checksum: 10/fca7ffd3bcfd04d477a3f05d2e47009777c6a9a9d5a485a0b4aefeb97d49d89c24da5a485c0ceabaa85d59cb3fee0a875eace534ef3848913501ad897cb102ec
-  languageName: node
-  linkType: hard
-
-"@uniswap/analytics@npm:1.7.0":
-  version: 1.7.0
-  resolution: "@uniswap/analytics@npm:1.7.0"
-  dependencies:
-    "@amplitude/analytics-browser": "npm:^1.5.8"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-  checksum: 10/01df88ed4d2671db2866139b2a7cbc93f399ab3b6e527892b527e228efac924d45a44dfc74853975b4a2706cb8caaa94a05d1f897e7514356fe5da67fb0fbbb9
-  languageName: node
-  linkType: hard
-
 "@uniswap/sdk-core@npm:5.3.0":
   version: 5.3.0
   resolution: "@uniswap/sdk-core@npm:5.3.0"
@@ -17063,13 +17030,12 @@ __metadata:
   resolution: "example-tailwind@workspace:examples/one-tailwind"
   dependencies:
     "@react-native-community/cli": "npm:15.1.3"
-    "@types/react": "npm:^18.3.11"
     autoprefixer: "npm:^10.4.20"
     expo: "npm:~52.0.17"
     nativewind: "npm:^4.1.23"
     one: "workspace:*"
     postcss: "npm:^8.4.49"
-    react: "npm:^18.3.1"
+    react: "npm:^19.0.0"
     react-native: "npm:0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -25067,18 +25033,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.2.0":
-  version: 18.3.1
-  resolution: "react-dom@npm:18.3.1"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-    scheduler: "npm:^0.23.2"
-  peerDependencies:
-    react: ^18.3.1
-  checksum: 10/3f4b73a3aa083091173b29812b10394dd06f4ac06aff410b74702cfb3aa29d7b0ced208aab92d5272919b612e5cda21aeb1d54191848cf6e46e9e354f3541f81
-  languageName: node
-  linkType: hard
-
 "react-dom@npm:^18.3.1 || ^19.0.0":
   version: 19.0.0
   resolution: "react-dom@npm:19.0.0"
@@ -25576,15 +25530,6 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 10/39473e43f64eec92da35db9d4411f3887b368038670787d49dd23172eb3a29953eb13767d1bfa34cbe2665b6e25632cad146e362e8910ce33755d343537763ae
-  languageName: node
-  linkType: hard
-
-"react@npm:18.3.1, react@npm:^18.2.0, react@npm:^18.3.1":
-  version: 18.3.1
-  resolution: "react@npm:18.3.1"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10/261137d3f3993eaa2368a83110466fc0e558bc2c7f7ae7ca52d94f03aac945f45146bd85e5f481044db1758a1dbb57879e2fcdd33924e2dde1bdc550ce73f7bf
   languageName: node
   linkType: hard
 
@@ -26671,7 +26616,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.23.0, scheduler@npm:^0.23.2":
+"scheduler@npm:^0.23.0":
   version: 0.23.2
   resolution: "scheduler@npm:0.23.2"
   dependencies:
@@ -28353,8 +28298,6 @@ __metadata:
     "@tamagui/remove-scroll": "npm:^1.122.7"
     "@tamagui/theme-base": "npm:^1.122.7"
     "@types/qrcode": "npm:1.5.5"
-    "@uniswap/analytics": "npm:1.7.0"
-    "@uniswap/analytics-events": "npm:2.36.0"
     "@uniswap/sdk-core": "npm:5.3.0"
     dayjs: "npm:1.11.7"
     ethers: "npm:5.7.2"
@@ -28366,7 +28309,6 @@ __metadata:
     one: "workspace:*"
     promise: "npm:8.3.0"
     qrcode: "npm:1.5.1"
-    react: "npm:18.3.1"
     react-native: "npm:0.76.5"
     react-native-device-info: "npm:10.0.2"
     react-native-fast-image: "npm:8.6.3"

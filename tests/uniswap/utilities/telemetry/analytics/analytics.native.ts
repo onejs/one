@@ -1,8 +1,19 @@
 /* eslint-disable no-restricted-imports */
-import { Identify, flush, getUserId, identify, init, setDeviceId, track } from '@amplitude/analytics-react-native'
-import { ANONYMOUS_DEVICE_ID } from '@uniswap/analytics'
+import {
+  Identify,
+  flush,
+  getUserId,
+  identify,
+  init,
+  setDeviceId,
+  track,
+} from '@amplitude/analytics-react-native'
 import { ApplicationTransport } from 'utilities/src/telemetry/analytics/ApplicationTransport'
-import { Analytics, TestnetModeConfig, UserPropertyValue } from 'utilities/src/telemetry/analytics/analytics'
+import {
+  Analytics,
+  TestnetModeConfig,
+  UserPropertyValue,
+} from 'utilities/src/telemetry/analytics/analytics'
 import {
   AMPLITUDE_NATIVE_TRACKING_OPTIONS,
   AMPLITUDE_SHARED_TRACKING_OPTIONS,
@@ -28,7 +39,7 @@ export const analytics: Analytics = {
     transportProvider: ApplicationTransport,
     allowed: boolean,
     _initHash?: string,
-    userIdGetter?: () => Promise<string>,
+    userIdGetter?: () => Promise<string>
   ): Promise<void> {
     try {
       allowAnalytics = allowed
@@ -42,7 +53,7 @@ export const analytics: Analytics = {
             ...AMPLITUDE_SHARED_TRACKING_OPTIONS,
             ...AMPLITUDE_NATIVE_TRACKING_OPTIONS,
           },
-        },
+        }
       )
 
       userId = userIdGetter ? await userIdGetter() : getUserId()
@@ -52,7 +63,7 @@ export const analytics: Analytics = {
       }
 
       if (!allowed) {
-        setDeviceId(ANONYMOUS_DEVICE_ID)
+        setDeviceId('')
       }
     } catch (error) {
       loggers.init(error)
@@ -67,7 +78,7 @@ export const analytics: Analytics = {
     } else {
       loggers.setAllowAnalytics(allowed)
       identify(new Identify().clearAll()) // Clear all custom user properties
-      setDeviceId(ANONYMOUS_DEVICE_ID)
+      setDeviceId('')
     }
   },
   setTestnetMode(enabled: boolean, config: TestnetModeConfig): void {
@@ -87,7 +98,8 @@ export const analytics: Analytics = {
     })
 
     if (processedTestnetEvent) {
-      const { eventName: processedEventName, eventProperties: processedEventProperties } = processedTestnetEvent
+      const { eventName: processedEventName, eventProperties: processedEventProperties } =
+        processedTestnetEvent
       loggers.sendEvent(processedEventName, processedEventProperties)
       track(processedEventName, processedEventProperties)
     }
