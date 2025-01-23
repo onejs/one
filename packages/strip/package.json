@@ -26,14 +26,17 @@
     "watch": "yarn build --watch",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src"
+    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
+    "test": "vitest",
+    "test:watch": "vitest watch"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.0.12",
     "ai": "^4.0.22",
     "citty": "^0.1.6",
     "dotenv": "^16.4.5",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "typescript": "^5.3.0"
   },
   "devDependencies": {
     "@tamagui/build": "^1.122.7",

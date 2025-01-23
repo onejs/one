@@ -5,7 +5,7 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    globalSetup: './test/_globalSetup.ts',
+    // globalSetup: './test/_globalSetup.ts',
     // reporters: ['hanging-process'],
     teardownTimeout: 500,
     poolOptions: {
@@ -18,5 +18,6 @@ export default defineConfig({
         minThreads: 1,
       },
     },
+    exclude: process.env.CI ? ['**/*.test.ts'] : [],
   },
 })

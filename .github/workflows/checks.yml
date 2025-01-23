@@ -40,7 +40,7 @@ jobs:
         #   workspace-focus: ${{ env.test_app_package_name }}
 
       - name: Test
-        run: yarn test
+        run: yarn turbo run test --filter='!@vxrn/strip'
 
   notify:
     needs: [checks, tests]
