@@ -170,8 +170,6 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   let ScreenComponent: React.ForwardRefExoticComponent<{ segment: string; key?: string }>
 
-  const serverContext = getServerContext()
-
   ScreenComponent = React.forwardRef((props, ref) => {
     const res = value.loadRoute()
     const Component = useConstant(() => {
@@ -184,6 +182,8 @@ export function getQualifiedRouteComponent(value: RouteNode) {
           const out = BaseComponent(props, ref)
           const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
           const { children: headChildren, ...headProps } = head?.props || {}
+
+          const serverContext = getServerContext()
 
           if (process.env.TAMAGUI_TARGET === 'native') {
             // on native we just ignore all html/body/head
