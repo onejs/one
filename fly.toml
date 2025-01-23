@@ -1,26 +1,36 @@
-app = 'onechat'
-primary_region = 'nrt'
+app = "onechat-zstart-cache"
+primary_region = 'lax'
 
 [build]
-  dockerfile = "Dockerfile.chat"
+image = "registry.hub.docker.com/rocicorp/zero:latest"
 
 [http_service]
-  internal_port = 3000
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
+internal_port = 4848
+force_https = true
+auto_stop_machines = 'off'
+min_machines_running = 1
 
-  [[http_service.checks]]
-    interval = '10s'
-    timeout = '2s'
-    grace_period = '5s'
-    method = 'GET'
-    path = '/'
-    protocol = 'http'
+[[http_service.checks]]
+grace_period = "10s"
+interval = "30s"
+method = "GET"
+timeout = "5s"
+path = "/"
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1 
+memory = '2gb'
+cpu_kind = 'shared'
+cpus = 2
+
+[mounts]
+source = "sqlite_db"
+destination = "/data"
+
+[env]
+ZERO_REPLICA_FILE = "/data/sync-replica.db"
+ZERO_UPSTREAM_DB="postgres://postgres:password@onechat-db.flycast:5432/zstart?sslmode=disable"
+ZERO_CVR_DB="postgres://postgres:password@onechat-db.flycast:5432/zstart_cvr?sslmode=disable"
+ZERO_CHANGE_DB="postgres://postgres:password@onechat-db.flycast:5432/zstart_cdb?sslmode=disable"
+ZERO_AUTH_SECRET="secretkey"
+LOG_LEVEL = "debug"
+ZERO_SCHEMA_JSON = """"""

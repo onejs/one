@@ -1,0 +1,15 @@
+FROM node:22.4
+
+WORKDIR /app
+COPY . .
+
+RUN corepack enable
+RUN corepack prepare yarn@4.4.0 --activate
+RUN yarn install --immutable
+
+ENV ZERO_UPSTREAM_DB="postgresql://onechat-db.flycast"
+
+RUN yarn workspace onechat migrate:auth
+RUN yarn workspace onechat seed
+
+CMD ["yarn", "workspace", "onechat", "zero"] 
