@@ -111,6 +111,7 @@ function scrollToHash(hash: string) {
 
 export function ScrollBehavior(props: ScrollBehaviorProps) {
   useEffect(() => {
+    if (typeof window === 'undefined') return
     if (window.location.hash) {
       scrollToHash(window.location.hash)
     }
