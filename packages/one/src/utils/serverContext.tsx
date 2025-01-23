@@ -1,3 +1,4 @@
+import { createContext, useContext } from 'react'
 import { SERVER_CONTEXT_KEY } from '../constants'
 import type { One } from '../vite/types'
 import { ensureAsyncLocalID } from './one__ensureAsyncLocalID'
@@ -31,6 +32,14 @@ export function setServerContext(data: ServerContext) {
 }
 
 export function getServerContext() {
+  if (process.env.VITE_ENVIRONMENT === 'ssr') {
+    try {
+      return serverContexts.get(useContext(ServerAsyncLocalIDContext))
+    } catch {
+      // ok, not in react tree
+    }
+  }
+
   const out = (() => {
     if (process.env.VITE_ENVIRONMENT === 'ssr') {
       const id = ensureAsyncLocalID()
@@ -38,11 +47,17 @@ export function getServerContext() {
     }
     return globalThis[SERVER_CONTEXT_KEY] as MaybeServerContext
   })()
+
   if (!out) {
     throw new Error(`no server context, internal one bug`)
   }
+
   return out
 }
+
+// we bridge it to react because reacts weird rendering loses it
+const ServerAsyncLocalIDContext = createContext<ServerContext | null>(null)
+export const ProviderServerAsyncLocalIDContext = ServerAsyncLocalIDContext.Provider
 
 export function ServerContextScript() {
   const context = getServerContext()
@@ -56,7 +71,7 @@ export function ServerContextScript() {
       dangerouslySetInnerHTML={{
         __html:
           process.env.VITE_ENVIRONMENT === 'client'
-            ? ''
+            ? ``
             : `
             globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify({
               ...context,

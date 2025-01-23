@@ -170,11 +170,12 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   let ScreenComponent: React.ForwardRefExoticComponent<{ segment: string; key?: string }>
 
+  const serverContext = getServerContext()
+
   ScreenComponent = React.forwardRef((props, ref) => {
     const res = value.loadRoute()
     const Component = useConstant(() => {
       const BaseComponent = getPageExport(fromImport(res)) as React.ComponentType<any>
-      const serverContext = getServerContext()
 
       // root layout do special html handling only
       if (props.segment === '') {
