@@ -6,7 +6,7 @@ import { useRouteNode } from './router/Route'
 import { preloadingLoader } from './router/router'
 import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
-import { getServerContext } from './vite/server'
+import { getServerContext } from './vite/one-server-only'
 import { weakKey } from './utils/weakKey'
 
 const promises: Record<string, undefined | Promise<void>> = {}

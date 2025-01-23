@@ -230,6 +230,13 @@ export declare namespace One {
         loaderData: any;
         preloads: string[];
     };
+    export type ServerContext = {
+        css?: string[];
+        postRenderData?: any;
+        loaderData?: any;
+        loaderProps?: any;
+        mode?: 'spa' | 'ssg' | 'ssr';
+    };
     export {};
 }
 //# sourceMappingURL=types.d.ts.map

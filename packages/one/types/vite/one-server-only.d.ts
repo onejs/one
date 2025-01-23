@@ -22,4 +22,4 @@ export declare function setServerData<Key extends keyof One.ClientData>(key: Key
  */
 export declare function getServerData(key: keyof One.ClientData): any;
 export {};
-//# sourceMappingURL=server.d.ts.map
+//# sourceMappingURL=one-server-only.d.ts.map

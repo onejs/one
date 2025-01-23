@@ -23,7 +23,7 @@ import type { One } from '../vite/types'
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
-import { runWithAsyncLocalContext } from '../vite/server'
+import { runWithAsyncLocalContext } from '../vite/one-server-only'
 
 const { ensureDir, readFile, outputFile } = FSExtra
 

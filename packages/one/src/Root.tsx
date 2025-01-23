@@ -5,7 +5,15 @@ import {
   type NavigationContainerProps,
 } from '@react-navigation/native'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
-import { useEffect, useId, useState, type FunctionComponent, type ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useId,
+  useState,
+  type FunctionComponent,
+  type ReactNode,
+} from 'react'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
 import { ServerLocationContext } from './router/serverLocationContext'
@@ -16,7 +24,7 @@ import { ServerRenderID } from './useServerHeadInsertion'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollBehavior } from './views/ScrollBehavior'
-import { getServerContext, ProviderServerAsyncLocalIDContext } from './vite/server'
+import { getServerContext } from './vite/one-server-only'
 import type { One } from './vite/types'
 
 type RootProps = Omit<InnerProps, 'context'> & {
@@ -46,6 +54,11 @@ type InnerProps = {
   }
 }
 
+// we bridge it to react because reacts weird rendering loses it
+const ServerAsyncLocalIDContext = createContext<One.ServerContext | null>(null)
+
+globalThis['__vxrnGetContextFromReactContext'] = () => useContext(ServerAsyncLocalIDContext)
+
 export function Root(props: RootProps) {
   const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } = props
 
@@ -71,11 +84,11 @@ export function Root(props: RootProps) {
 
   onRenderId?.(id)
 
+  const value = globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
+
   const contents = (
     // <StrictMode>
-    <ProviderServerAsyncLocalIDContext
-      value={globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null}
-    >
+    <ServerAsyncLocalIDContext.Provider value={value}>
       <ServerRenderID.Provider value={id}>
         <RootErrorBoundary>
           {/* for some reason warning if no key here */}
@@ -111,7 +124,7 @@ export function Root(props: RootProps) {
           <PreloadLinks key="preload-links" />
         </RootErrorBoundary>
       </ServerRenderID.Provider>
-    </ProviderServerAsyncLocalIDContext>
+    </ServerAsyncLocalIDContext.Provider>
     // </StrictMode>
   )
 

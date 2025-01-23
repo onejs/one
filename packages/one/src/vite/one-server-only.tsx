@@ -1,13 +1,15 @@
-import { AsyncLocalStorage } from 'node:async_hooks'
-import { createContext, useContext } from 'react'
-import { SERVER_CONTEXT_KEY } from '../constants'
-import type { One } from './types'
-
+// ⛔️⛔️⛔️⛔️⛔️⛔️
+//
 // NOTE: we have a big issue right now, we have "one" in optimizeDeps
 // because otherwise you get an error when Root imports Text/View from react-native
 // even though react-native is in optimizeDeps, it seems thats not working
 // but what happens is that somehow one is imported directly by node right away
 // and then later its imported through optimizeDeps, a seaprate instance, creating a separate requestAsyncLocalStore
+
+import { AsyncLocalStorage } from 'node:async_hooks'
+import { SERVER_CONTEXT_KEY } from '../constants'
+import type { One } from './types'
+
 type ALSInstance = AsyncLocalStorage<unknown>
 
 const key = '__vxrnrequestAsyncLocalStore'
@@ -68,21 +70,11 @@ export function ensureAsyncLocalID() {
   return id as Object
 }
 
-export type ServerContext = {
-  css?: string[]
-  postRenderData?: any
-  loaderData?: any
-  loaderProps?: any
-  mode?: 'spa' | 'ssg' | 'ssr'
-}
+export type MaybeServerContext = null | One.ServerContext
 
-export type MaybeServerContext = null | ServerContext
+const serverContexts = new WeakMap<any, One.ServerContext>()
 
-export const SERVER_CONTEXT_POST_RENDER_STRING = `_one_post_render_data_`
-
-const serverContexts = new WeakMap<any, ServerContext>()
-
-export function setServerContext(data: ServerContext) {
+export function setServerContext(data: One.ServerContext) {
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
     const id = ensureAsyncLocalID()
     if (!serverContexts.has(id)) {
@@ -99,7 +91,10 @@ export function setServerContext(data: ServerContext) {
 export function getServerContext() {
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
     try {
-      return serverContexts.get(useContext(ServerAsyncLocalIDContext))
+      const useContext = globalThis['__vxrnGetContextFromReactContext']
+      if (useContext) {
+        return serverContexts.get(useContext())
+      }
     } catch {
       // ok, not in react tree
     }
@@ -114,46 +109,6 @@ export function getServerContext() {
   })()
 
   return out
-}
-
-// we bridge it to react because reacts weird rendering loses it
-const ServerAsyncLocalIDContext = createContext<ServerContext | null>(null)
-export const ProviderServerAsyncLocalIDContext = ServerAsyncLocalIDContext.Provider
-
-export function ServerContextScript() {
-  if (process.env.VITE_ENVIRONMENT === 'client') {
-    return (
-      <script
-        async
-        // @ts-ignore
-        href={SERVER_CONTEXT_KEY}
-        suppressHydrationWarning
-      />
-    )
-  }
-
-  if (process.env.VITE_ENVIRONMENT === 'ssr') {
-    const context = getServerContext()
-
-    return (
-      <script
-        async
-        // @ts-ignore
-        href={SERVER_CONTEXT_KEY}
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: `
-              globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify({
-                ...context,
-                postRenderData: SERVER_CONTEXT_POST_RENDER_STRING,
-              })};
-          `,
-        }}
-      />
-    )
-  }
-
-  return null
 }
 
 /**

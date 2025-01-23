@@ -1,4 +1,4 @@
-import type { ServerContext } from './vite/server'
+import type { One } from './vite/types'
 
 export const isWebClient = process.env.TAMAGUI_TARGET !== 'native' && typeof window !== 'undefined'
 export const isWebServer = process.env.TAMAGUI_TARGET !== 'native' && typeof window === 'undefined'
@@ -21,7 +21,7 @@ export const SERVER_CONTEXT_KEY = '__one_server_context__'
 
 export const getSpaHeaderElements = ({
   serverContext = {},
-}: { serverContext?: ServerContext } = {}) => `
+}: { serverContext?: One.ServerContext } = {}) => `
   <script>globalThis['global'] = globalThis</script>
   <script>globalThis['__vxrnIsSPA'] = true</script>
   <script>globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify(serverContext)}</script>
