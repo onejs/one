@@ -8,13 +8,14 @@ import type {
   ScreenListeners,
 } from '@react-navigation/native'
 import React, { forwardRef, Suspense, useEffect } from 'react'
+import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
-import { getServerContext, ServerContextScript } from '../vite/server'
 import { useConstant } from '../utils/useConstant'
 import { EmptyRoute } from '../views/EmptyRoute'
 import { RootErrorBoundary } from '../views/RootErrorBoundary'
 import { Try } from '../views/Try'
 import { DevHead } from '../vite/DevHead'
+import { getServerContext } from '../vite/one-server-only'
 import { filterRootHTML } from './filterRootHTML'
 import {
   Route,

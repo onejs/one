@@ -1,20 +1,13 @@
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
-import path, { dirname, resolve } from 'node:path'
+import path, { sep } from 'node:path'
 import type { Plugin, PluginOption, UserConfig } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import {
-  autoDepOptimizePlugin,
-  getOptimizeDeps,
-  getOptionsFilled,
-  isWebEnvironment,
-  loadEnv,
-} from 'vxrn'
+import { autoDepOptimizePlugin, getOptimizeDeps, getOptionsFilled, loadEnv } from 'vxrn'
 import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
-import { existsAsync } from '../utils/existsAsync'
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
 import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
@@ -341,33 +334,21 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     } satisfies Plugin,
 
-    // {
-    //   name: 'one:remove-server-from-client',
-    //   enforce: 'pre',
+    {
+      name: 'one:remove-server-from-client',
+      enforce: 'pre',
 
-    //   config() {
-    //     return {
-    //       environments: {
-    //         client: {
-    //           resolve: {
-    //             external: ['node:async_hooks'],
-    //           },
-    //         },
-    //       },
-    //     }
-    //   },
-
-    //   transform(code, id) {
-    //     if (this.environment.name === 'client') {
-    //       if (id.includes('one__ensureAsyncLocalID')) {
-    //         return `export function ensureAsyncLocalID() {
-    //           return {}
-    //           }
-    //         `
-    //       }
-    //     }
-    //   },
-    // },
+      transform(code, id) {
+        if (this.environment.name === 'client') {
+          if (id.includes(`vite${sep}one-server-only`)) {
+            return code.replace(
+              `import { AsyncLocalStorage } from "node:async_hooks"`,
+              `class AsyncLocalStorage {}`
+            )
+          }
+        }
+      },
+    },
   ] satisfies Plugin[]
 
   // react scan

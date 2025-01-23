@@ -62,7 +62,7 @@ export { isResponse } from './utils/isResponse'
 export { getURL } from './getURL'
 export { redirect } from './utils/redirect'
 export { href } from './href'
-export { getServerData, setServerData } from './vite/server'
+export { getServerData, setServerData } from './vite/one-server-only'
 
 // re-export
 export * from '@vxrn/universal-color-scheme'

@@ -1,5 +1,5 @@
 import { isResponse } from '../utils/isResponse'
-import { asyncHeadersCache, mergeHeaders, runWithAsyncLocalContext } from './server'
+import { asyncHeadersCache, mergeHeaders, runWithAsyncLocalContext } from './one-server-only'
 
 export function resolveResponse(getResponse: () => Promise<Response>) {
   return new Promise<Response>((res, rej) => {
