@@ -10,6 +10,7 @@ export declare function ensureAsyncLocalID(): Object;
 export type MaybeServerContext = null | One.ServerContext;
 export declare function setServerContext(data: One.ServerContext): void;
 export declare function getServerContext(): MaybeServerContext | undefined;
+export declare function useServerContext(): MaybeServerContext | undefined;
 /**
  * For passing data from the server to the client. Can only be called on the server.
  * You can type it by overriding `One.ClientData` type using declare module 'one'.

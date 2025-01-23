@@ -48,20 +48,6 @@
       "import": "./dist/esm/routes-manifest.mjs",
       "require": "./dist/cjs/routes-manifest.js"
     },
-    "./server-render": {
-      "types": "./types/server-render.d.ts",
-      "import": "./dist/esm/server-render.mjs",
-      "require": "./dist/cjs/server-render.js"
-    },
-    "./server": {
-      "react-native": {
-        "import": "./server.js",
-        "require": "./server.js"
-      },
-      "types": "./types/vite/server.d.ts",
-      "import": "./dist/esm/vite/server.mjs",
-      "require": "./dist/cjs/vite/server.js"
-    },
     "./react-18": {
       "require": "./vendor/react/cjs/react.development.js",
       "import": "./vendor/react/cjs/react.development.js"

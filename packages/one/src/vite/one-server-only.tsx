@@ -9,6 +9,7 @@
 import { AsyncLocalStorage } from 'node:async_hooks'
 import { SERVER_CONTEXT_KEY } from '../constants'
 import type { One } from './types'
+import React from 'react'
 
 type ALSInstance = AsyncLocalStorage<unknown>
 
@@ -89,17 +90,6 @@ export function setServerContext(data: One.ServerContext) {
 }
 
 export function getServerContext() {
-  if (process.env.VITE_ENVIRONMENT === 'ssr') {
-    try {
-      const useContext = globalThis['__vxrnGetContextFromReactContext']
-      if (useContext) {
-        return serverContexts.get(useContext())
-      }
-    } catch {
-      // ok, not in react tree
-    }
-  }
-
   const out = (() => {
     if (process.env.VITE_ENVIRONMENT === 'ssr') {
       const id = ensureAsyncLocalID()
@@ -111,7 +101,20 @@ export function getServerContext() {
   return out
 }
 
-globalThis['__vxrngetServerContext'] = getServerContext
+export function useServerContext() {
+  if (process.env.VITE_ENVIRONMENT === 'ssr') {
+    try {
+      const useContext = globalThis['__vxrnGetContextFromReactContext']
+      if (useContext) {
+        return serverContexts.get(useContext())
+      }
+    } catch {
+      // ok, not in react tree
+    }
+  }
+
+  return getServerContext()
+}
 
 /**
  * For passing data from the server to the client. Can only be called on the server.

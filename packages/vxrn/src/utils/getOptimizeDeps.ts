@@ -59,8 +59,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
   const depsToOptimize = [
     ...needsInterop,
 
-    'one/server',
-
     'fast-xml-parser',
     'set-cookie-parser',
     'ipaddr.js',
@@ -90,7 +88,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@react-navigation/bottom-tabs',
     '@react-navigation/native-stack',
     'one',
-    'one/server-render',
     'styleq',
     'fbjs',
     '@vxrn/universal-color-scheme',
@@ -113,7 +110,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'swr/mutation',
     'one',
     'one/zero',
-    'one/server-render',
     'refractor/lang/tsx',
     'invariant',
     'tamagui/linear-gradient',

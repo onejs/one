@@ -1,5 +1,5 @@
 import { createMiddleware } from 'one'
-import { setResponseHeaders } from 'one/server'
+import { setResponseHeaders } from 'one'
 
 export default createMiddleware(({ request }) => {
   if (request.url.includes('intercept')) {

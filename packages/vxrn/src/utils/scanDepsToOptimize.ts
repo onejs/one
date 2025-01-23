@@ -23,8 +23,6 @@ export const EXCLUDE_LIST = [
   '@swc/core-win32-x64-msvc',
   'lightningcss',
 
-  'one/server',
-
   '@sentry/react-native',
 
   // not ever to be used in app
