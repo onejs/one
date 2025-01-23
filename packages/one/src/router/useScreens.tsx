@@ -15,7 +15,7 @@ import { EmptyRoute } from '../views/EmptyRoute'
 import { RootErrorBoundary } from '../views/RootErrorBoundary'
 import { Try } from '../views/Try'
 import { DevHead } from '../vite/DevHead'
-import { getServerContext } from '../vite/one-server-only'
+import { useServerContext } from '../vite/one-server-only'
 import { filterRootHTML } from './filterRootHTML'
 import {
   Route,
@@ -183,8 +183,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
           const out = BaseComponent(props, ref)
           const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
           const { children: headChildren, ...headProps } = head?.props || {}
-
-          const serverContext = getServerContext()
+          const serverContext = useServerContext()
 
           if (process.env.TAMAGUI_TARGET === 'native') {
             // on native we just ignore all html/body/head
