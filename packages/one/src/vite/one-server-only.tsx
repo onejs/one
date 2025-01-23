@@ -111,6 +111,8 @@ export function getServerContext() {
   return out
 }
 
+globalThis['__vxrngetServerContext'] = getServerContext
+
 /**
  * For passing data from the server to the client. Can only be called on the server.
  * You can type it by overriding `One.ClientData` type using declare module 'one'.

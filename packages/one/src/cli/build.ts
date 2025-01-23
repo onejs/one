@@ -14,18 +14,17 @@ import {
   type ClientManifestEntry,
 } from 'vxrn'
 import * as constants from '../constants'
-import type { RouteInfo } from '../server/createRoutesManifest'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { toAbsolute } from '../utils/toAbsolute'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
-import type { One } from '../vite/types'
+import { runWithAsyncLocalContext } from '../vite/one-server-only'
+import type { One, RouteInfo } from '../vite/types'
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
-import { runWithAsyncLocalContext } from '../vite/one-server-only'
 
-const { ensureDir, readFile, outputFile } = FSExtra
+const { ensureDir } = FSExtra
 
 process.on('uncaughtException', (err) => {
   console.error(err?.message || err)

@@ -1,6 +1,5 @@
 import { SERVER_CONTEXT_KEY } from '../constants'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from '../vite/constants'
-import { getServerContext } from '../vite/one-server-only'
 
 export function ServerContextScript() {
   if (process.env.VITE_ENVIRONMENT === 'client') {
@@ -18,7 +17,7 @@ export function ServerContextScript() {
   }
 
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
-    const context = getServerContext()
+    const context = globalThis['__vxrngetServerContext']()
 
     return (
       <script

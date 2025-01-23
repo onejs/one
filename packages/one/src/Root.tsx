@@ -14,6 +14,7 @@ import {
   type FunctionComponent,
   type ReactNode,
 } from 'react'
+import { SERVER_CONTEXT_KEY } from './constants'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
 import { ServerLocationContext } from './router/serverLocationContext'
@@ -24,7 +25,6 @@ import { ServerRenderID } from './useServerHeadInsertion'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollBehavior } from './views/ScrollBehavior'
-import { getServerContext } from './vite/one-server-only'
 import type { One } from './vite/types'
 
 type RootProps = Omit<InnerProps, 'context'> & {
@@ -129,7 +129,8 @@ export function Root(props: RootProps) {
   )
 
   if (isClient) {
-    if (getServerContext()?.mode === 'spa') {
+    // only on client can read like this
+    if (globalThis[SERVER_CONTEXT_KEY]?.mode === 'spa') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [show, setShow] = useState(false)
 

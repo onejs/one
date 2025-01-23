@@ -8,7 +8,18 @@ import type {
   VXRNOptions,
   VXRNServePlatform,
 } from 'vxrn'
-import type { RouteInfo } from '../server/createRoutesManifest'
+import type { RouteNode } from '../router/Route'
+
+export type RouteInfo<TRegex = string> = {
+  file: string
+  page: string
+  namedRegex: TRegex
+  routeKeys: Record<string, string>
+  layouts?: RouteNode[]
+  middlewares?: RouteNode[]
+  type: One.RouteType
+  isNotFound?: boolean
+}
 
 export namespace One {
   export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
