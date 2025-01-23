@@ -156,6 +156,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       build: {
         ssrManifest: true,
         outDir: 'dist/client',
+        sourcemap: false,
         manifest: true,
         rollupOptions: {
           input: ['virtual:one-entry'],
@@ -213,6 +214,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       // we want one big file of css
       cssCodeSplit: false,
       ssr: true,
+      sourcemap: false,
       outDir: 'dist/server',
       rollupOptions: {
         treeshake: true,
