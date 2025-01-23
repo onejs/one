@@ -1,4 +1,4 @@
-import type { ServerContext } from './utils/serverContext';
+import type { ServerContext } from './vite/server';
 export declare const isWebClient: boolean;
 export declare const isWebServer: boolean;
 export declare const isNative: boolean;

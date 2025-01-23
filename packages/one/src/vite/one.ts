@@ -341,22 +341,33 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     } satisfies Plugin,
 
-    {
-      name: 'one:remove-server-from-client',
+    // {
+    //   name: 'one:remove-server-from-client',
+    //   enforce: 'pre',
 
-      transform(code, id) {
-        if (this.environment.name !== 'client') {
-          return
-        }
-        if (!id.includes('one__ensureAsyncLocalID')) {
-          return
-        }
-        return `export function ensureAsyncLocalID() {
-          return {}
-          }
-        `
-      },
-    },
+    //   config() {
+    //     return {
+    //       environments: {
+    //         client: {
+    //           resolve: {
+    //             external: ['node:async_hooks'],
+    //           },
+    //         },
+    //       },
+    //     }
+    //   },
+
+    //   transform(code, id) {
+    //     if (this.environment.name === 'client') {
+    //       if (id.includes('one__ensureAsyncLocalID')) {
+    //         return `export function ensureAsyncLocalID() {
+    //           return {}
+    //           }
+    //         `
+    //       }
+    //     }
+    //   },
+    // },
   ] satisfies Plugin[]
 
   // react scan

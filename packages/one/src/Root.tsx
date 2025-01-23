@@ -13,10 +13,10 @@ import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
 import type { GlobbedRouteImports } from './types'
 import { ServerRenderID } from './useServerHeadInsertion'
-import { getServerContext, ProviderServerAsyncLocalIDContext } from './utils/serverContext'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollBehavior } from './views/ScrollBehavior'
+import { getServerContext, ProviderServerAsyncLocalIDContext } from './vite/server'
 import type { One } from './vite/types'
 
 type RootProps = Omit<InnerProps, 'context'> & {
