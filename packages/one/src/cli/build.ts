@@ -1,4 +1,4 @@
-import FSExtra, { writeJSON } from 'fs-extra'
+import FSExtra from 'fs-extra'
 import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
 import Path, { join, relative, resolve } from 'node:path'
@@ -26,7 +26,7 @@ import { createServerlessFunction } from '../vercel/build/generate/createServerl
 import { createServerlessApiFunction } from '../vercel/build/generate/createServerlessApiFunction'
 import { checkNodeVersion } from './checkNodeVersion'
 
-const { ensureDir, readFile, outputFile } = FSExtra
+const { ensureDir, readFile, outputFile, writeJSON } = FSExtra
 
 process.on('uncaughtException', (err) => {
   console.error(err?.message || err)
@@ -481,7 +481,7 @@ export async function build(args: {
     constants: JSON.parse(JSON.stringify({ ...constants })) as any,
   }
 
-  await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
+  await writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
 
   let postBuildLogs: string[] = []
 
@@ -518,16 +518,16 @@ export async function build(args: {
       }
 
       const vercelMiddlewareDir = join(options.root, 'dist', '.vercel/output/functions/_middleware');
-      await FSExtra.ensureDir(vercelMiddlewareDir);
+      await ensureDir(vercelMiddlewareDir);
       postBuildLogs.push(`[one.build] copying middlewares from ${join(options.root, 'dist', 'middlewares')} to ${vercelMiddlewareDir}`)
       await moveAllFiles(join(options.root, 'dist', 'middlewares'), vercelMiddlewareDir)
       postBuildLogs.push(`[one.build] writing package.json to ${join(vercelMiddlewareDir, 'package.json')}`);
-      await FSExtra.writeJSON(
+      await writeJSON(
         join(vercelMiddlewareDir, 'package.json'),
         { "type": "module" }
       )
       postBuildLogs.push(`[one.build] writing .vc-config.json to ${join(vercelMiddlewareDir, '.vc-config.json')}`);
-      await FSExtra.writeJson(join(vercelMiddlewareDir, '.vc-config.json'), {
+      await writeJSON(join(vercelMiddlewareDir, '.vc-config.json'), {
         runtime: "nodejs20.x",
         handler: "_middleware.js",
         launcherType: "Nodejs",
@@ -536,7 +536,7 @@ export async function build(args: {
       });
 
       const vercelOutputStaticDir = join(options.root, 'dist', '.vercel/output/static');
-      await FSExtra.ensureDir(vercelOutputStaticDir);
+      await ensureDir(vercelOutputStaticDir);
 
       // await FSExtra.copy(htmlOutPath, funcFolder, { overwrite: true })
       postBuildLogs.push(`[one.build] copying static files from ${clientDir} to ${vercelOutputStaticDir}`)
@@ -582,7 +582,7 @@ export async function build(args: {
       // Documentation - Vercel Build Output v3 config.json
       // https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
       const vercelConfigFilePath = join(options.root, 'dist', '.vercel/output', 'config.json')
-      await FSExtra.writeJSON(
+      await writeJSON(
         vercelConfigFilePath,
         { version: 3 }
       )
