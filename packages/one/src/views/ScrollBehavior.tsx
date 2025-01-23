@@ -110,16 +110,17 @@ function scrollToHash(hash: string) {
 }
 
 export function ScrollBehavior(props: ScrollBehaviorProps) {
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (window.location.hash) {
-      scrollToHash(window.location.hash)
-    }
-  }, [])
+  if (process.env.VITE_ENVIRONMENT === 'client') {
+    useEffect(() => {
+      if (window.location.hash) {
+        scrollToHash(window.location.hash)
+      }
+    }, [])
 
-  useEffect(() => {
-    return configure(props)
-  }, [props.disable])
+    useEffect(() => {
+      return configure(props)
+    }, [props.disable])
+  }
 
   return null
 }
