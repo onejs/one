@@ -40,7 +40,7 @@ import { href } from 'one'
 const postPageLink = href(`/post/hello-world`) // will type error if invalid Href
 ```
 
-### requestCache
+### setServerData, getServerData
 
 <Status is="developing" />
 
@@ -49,18 +49,17 @@ For improving performance of client hydration on the web, you can pass data from
 Here's an example of a simple `useFetch` to show how it's useful:
 
 ```tsx fileName=app/index.tsx
-import { requestCache, environment } from 'one'
+import { setServerData, getServerData } from 'one'
 
 type SafeURLs = `${`https://tamagui.dev` | `http://localhost`}${string}
 
 const useFetch = async (url: SafeURLs) => {
-  if (environment === 'server') {
+  if (process.env.VITE_ENVIRONMENT === 'ssr') {
     // on server data must be set during render
-    requestCache[url] = await fetch(url).then(res => res.json())
-    return data
+    setServerData(url, await fetch(url).then(res => res.json()))
   }
 
-  return requestCache[url]
+  return getServerData(url)
 }
 
 export default async (props) => {
@@ -72,16 +71,8 @@ export default async (props) => {
 
 export const loader = async ({ params }) => {
   await doSomething()
-  requestCache[params.id] = 'data'
+  setServerData(params.idl, 'data')
   return {}
-}
-
-// make it typed
-
-declare module 'one' {
-  interface Config {
-    requestCacheKeys: SafeURLs
-  }
 }
 ```
 
