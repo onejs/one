@@ -23,6 +23,7 @@
     "@tamagui/lucide-icons": "^1.123.1",
     "@tamagui/vite-plugin": "^1.123.1",
     "@vxrn/color-scheme": "workspace:*",
+    "@vxrn/test-package": "workspace:*",
     "expo": "~52.0.17",
     "expo-video": "^2.0.4",
     "one": "workspace:*",
