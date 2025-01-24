@@ -44,7 +44,7 @@ export const server = pgTable('server', {
   creatorId: text('creatorId')
     .notNull()
     .references(() => user.id),
-  channelSort: json('channelSort'),
+  channelSort: json('channelSort').$type<Array<string>>(),
   description: text('description'),
   icon: text('icon'),
   createdAt: timestamp('createdAt').defaultNow(),
@@ -263,10 +263,10 @@ export const channelRelations = relations(channel, ({ one, many }) => ({
   messages: many(message),
   threads: many(thread),
   pins: many(pin),
-  channelPermissions: many(channelPermission),
+  permissions: many(channelPermission),
 }))
 
-export const messageRelations = relations(message, ({ one }) => ({
+export const messageRelations = relations(message, ({ one, many }) => ({
   thread: one(thread, {
     fields: [message.threadId],
     references: [thread.id],
@@ -276,11 +276,17 @@ export const messageRelations = relations(message, ({ one }) => ({
     references: [channel.id],
     relationName: 'channel',
   }),
-  creator: one(user, {
+  sender: one(user, {
     fields: [message.creatorId],
     references: [user.id],
-    relationName: 'creator',
+    relationName: 'sender',
   }),
+  replyingTo: one(message, {
+    fields: [message.replyingToId],
+    references: [message.id],
+    relationName: 'replyingTo',
+  }),
+  attachments: many(attachment),
 }))
 
 export const threadRelations = relations(thread, ({ one, many }) => ({

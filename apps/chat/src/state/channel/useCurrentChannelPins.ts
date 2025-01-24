@@ -5,6 +5,8 @@ import { useUserState } from '../user'
 export const useCurrentChannelPins = () => {
   const [_, { activeChannel }] = useUserState()
   return (
+    // TODO: fix `Type instantiation is excessively deep and possibly infinite`
+    // @ts-ignore
     useQuery((q) =>
       q.channel
         .where('id', activeChannel || '')
@@ -14,6 +16,6 @@ export const useCurrentChannelPins = () => {
             .orderBy('createdAt', 'desc')
             .related('message', (q) => queryMessageItemRelations(q).one())
         )
-    )[0]?.[0]?.pins || []
+    )[0]?.[0]?.pins || ([] as any)
   )
 }

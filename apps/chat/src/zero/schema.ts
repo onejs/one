@@ -132,6 +132,7 @@ export const schema = createSchema(
       user: {
         servers: ['serverMember', 'server'],
         roles: ['userRole', 'role'],
+        friends: ['attachment', 'user'],
       },
       server: {
         members: ['serverMember', 'user'],

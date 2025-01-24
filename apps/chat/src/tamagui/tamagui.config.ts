@@ -20,7 +20,12 @@ export const config = createTamagui({
     gtLg: { minWidth: 1180 + 1 },
     gtXl: { minWidth: 1450 + 1 },
   },
-  tokens,
+  tokens: {
+    ...tokens,
+    color: {
+      $background025: 'hsla(322, 100%, 99.4%, 0.25)',
+    },
+  },
   fonts,
   selectionStyles: (theme) =>
     theme.color5
