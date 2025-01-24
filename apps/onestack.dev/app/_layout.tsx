@@ -4,13 +4,13 @@ import './syntax-highlight.css'
 import './tamagui.css'
 
 import { MetaTheme, SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
-import { useEffect } from 'react'
-import { TamaguiProvider, Theme, useTheme, YStack } from 'tamagui'
 import { LoadProgressBar, Slot, usePathname } from 'one'
+import { useEffect } from 'react'
+import { TamaguiProvider, useTheme, YStack } from 'tamagui'
 import config from '~/config/tamagui.config'
-import { useIsScrolled } from '~/features/site/useIsScrolled'
 import { LayoutDecorativeStripe } from '~/features/site/LayoutDecorativeStripe'
 import { headerColors } from '~/features/site/headerColors'
+import { useIsScrolled } from '~/features/site/useIsScrolled'
 
 export default function Layout() {
   return (
