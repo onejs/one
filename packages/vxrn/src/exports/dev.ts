@@ -68,7 +68,7 @@ export default defineConfig({
   bindKeypressInput()
 
   if (options.clean) {
-    await clean(optionsIn)
+    await clean(optionsIn, options.clean)
   }
 
   await applyBuiltInPatches(options).catch((err) => {
