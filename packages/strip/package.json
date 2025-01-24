@@ -39,7 +39,7 @@
     "typescript": "^5.3.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.122.7",
+    "@tamagui/build": "^1.123.0",
     "depcheck": "^1.4.7",
     "vitest": "^2.1.8"
   },
