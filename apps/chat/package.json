@@ -10,7 +10,7 @@
     "backend": "yarn docker up",
     "backend:clean": "docker compose down --volumes; rm /tmp/onechat_replica.db || true",
     "backend:run-clean": "yarn backend:clean; yarn backend",
-    "build:icon": "tauri icon ./src-tauri/icons/icon.png",
+    "build:icon": "tauri icon ./src/tauri/icons/icon.png",
     "build:tauri": "tauri build --debug",
     "build:web": "one build",
     "dev": "one dev",

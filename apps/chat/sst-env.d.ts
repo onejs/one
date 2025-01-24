@@ -6,21 +6,5 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
-    "chat-replication-bucket": {
-      "name": string
-      "type": "sst.aws.Bucket"
-    }
-    "chat-replication-manager": {
-      "service": string
-      "type": "sst.aws.Service"
-    }
-    "chat-view-syncer": {
-      "service": string
-      "type": "sst.aws.Service"
-      "url": string
-    }
-    "chat-vpc": {
-      "type": "sst.aws.Vpc"
-    }
   }
 }

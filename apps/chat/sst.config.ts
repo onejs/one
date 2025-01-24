@@ -1,5 +1,7 @@
 /// <reference path="./.sst/platform/config.d.ts" />
 
+import { readFileSync } from 'node:fs'
+
 export default $config({
   app(input) {
     // Load .env file
@@ -26,7 +28,7 @@ export default $config({
     const upstreamDb = process.env.ZERO_UPSTREAM_DB!
     const cvrDb = process.env.ZERO_CVR_DB!
     const changeDb = process.env.ZERO_CHANGE_DB!
-    const schemaJson = process.env.ZERO_SCHEMA_JSON!
+    const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
 
     // S3 Bucket
     const replicationBucket = new sst.aws.Bucket(`${namespace}-replication-bucket`)
