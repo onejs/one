@@ -12817,8 +12817,6 @@ __metadata:
 "@vxrn/test-package@workspace:*, @vxrn/test-package@workspace:packages/test-package":
   version: 0.0.0-use.local
   resolution: "@vxrn/test-package@workspace:packages/test-package"
-  dependencies:
-    "@tamagui/build": "npm:^1.123.0"
   languageName: unknown
   linkType: soft
 
