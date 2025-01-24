@@ -9,7 +9,7 @@ export default $config({
 
     return {
       name: 'aws-zero',
-      removal: input?.stage === 'production' ? 'retain' : 'remove',
+      // removal: input?.stage === 'production' ? 'retain' : 'remove',
       home: 'aws',
 
       // providers: {
@@ -24,10 +24,11 @@ export default $config({
     require('dotenv').config()
 
     // Config parameters
-    const namespace = process.env.DEPLOY_NAMESPACE!
-    const upstreamDb = process.env.ZERO_UPSTREAM_DB!
-    const cvrDb = process.env.ZERO_CVR_DB!
-    const changeDb = process.env.ZERO_CHANGE_DB!
+    const namespace = process.env.DEPLOY_NAMESPACE
+    if (!namespace) {
+      throw new Error(`No DEPLOY_NAMESPACE set`)
+    }
+
     const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
 
     // S3 Bucket
@@ -65,6 +66,34 @@ export default $config({
       },
     })
 
+    // Database
+    const db = new sst.aws.Postgres(`${namespace}-postgres`, {
+      vpc,
+      transform: {
+        parameterGroup: {
+          parameters: [
+            {
+              name: 'rds.logical_replication',
+              value: '1',
+              applyMethod: 'pending-reboot',
+            },
+            {
+              name: 'rds.force_ssl',
+              value: '0',
+              applyMethod: 'pending-reboot',
+            },
+            {
+              name: 'max_connections',
+              value: '1000',
+              applyMethod: 'pending-reboot',
+            },
+          ],
+        },
+      },
+    })
+
+    const connection = $interpolate`postgres://${db.username}:${db.password}@${db.host}:${db.port}`
+
     // ECS Cluster
     const cluster = new sst.aws.Cluster(`${namespace}-cluster`, {
       vpc,
@@ -73,9 +102,9 @@ export default $config({
     // Common environment variables
     const commonEnv = {
       AWS_REGION: process.env.AWS_REGION!,
-      ZERO_UPSTREAM_DB: upstreamDb,
-      ZERO_CVR_DB: cvrDb,
-      ZERO_CHANGE_DB: changeDb,
+      ZERO_UPSTREAM_DB: $interpolate`${connection}/${db.database}`,
+      ZERO_CVR_DB: $interpolate`${connection}/zero_cvr`,
+      ZERO_CHANGE_DB: $interpolate`${connection}/zero_change`,
       ZERO_SCHEMA_JSON: schemaJson,
       ZERO_LOG_FORMAT: 'json',
       ZERO_REPLICA_FILE: 'sync-replica.db',
@@ -83,7 +112,7 @@ export default $config({
     }
 
     // View Syncer Service
-    cluster.addService(`${namespace}-view-syncer`, {
+    const zeroService = cluster.addService(`${namespace}-view-syncer`, {
       cpu: '2 vCPU',
       memory: '8 GB',
       image: 'rocicorp/zero:canary',
@@ -169,5 +198,17 @@ export default $config({
         port: 4849,
       },
     })
+
+    // new sst.aws.StaticSite('Web', {
+    //   path: '.',
+    //   build: {
+    //     command: 'yarn build:web',
+    //     output: 'dist',
+    //   },
+    //   environment: {
+    //     ZERO_AUTH_SECRET: 'secretkey',
+    //     VITE_ZERO_CACHE_URL: zeroService.url,
+    //   },
+    // })
   },
 })
