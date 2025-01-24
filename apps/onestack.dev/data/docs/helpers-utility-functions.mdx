@@ -76,4 +76,20 @@ export const loader = async ({ params }) => {
 }
 ```
 
+### setResponseHeaders
 
+<Status is="developing" />
+
+A convenience function for setting headers of the current response from anywhere on the server.
+
+```tsx fileName=app/_middleware.ts
+import { createMiddleware, setResponseHeaders } from 'one'
+
+export default createMiddleware(({ request }) => {
+  ØsetResponseHeaders((headers) => {
+    headers.append('test-header', 'test-value')
+  })
+})
+```
+
+Where `headers` is of type [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers).

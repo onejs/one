@@ -31,7 +31,7 @@ export { isResponse } from './utils/isResponse';
 export { getURL } from './getURL';
 export { redirect } from './utils/redirect';
 export { href } from './href';
-export { getServerData, setServerData } from './utils/serverContext';
+export { setResponseHeaders, getServerData, setServerData } from './vite/one-server-only';
 export * from '@vxrn/universal-color-scheme';
 export { useFocusEffect } from './useFocusEffect';
 export { useNavigation } from './router/useNavigation';

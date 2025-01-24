@@ -1,14 +1,14 @@
-import { extname } from 'node:path'
-import { getPathFromLoaderPath } from './utils/cleanUrl'
 import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
 import type { Middleware, MiddlewareContext } from './createMiddleware'
 import type { RouteNode } from './router/Route'
-import type { RouteInfo, RouteInfoCompiled } from './server/createRoutesManifest'
+import type { RouteInfoCompiled } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
+import { getPathFromLoaderPath } from './utils/cleanUrl'
 import { getHonoPath } from './utils/getHonoPath'
 import { isResponse } from './utils/isResponse'
 import { getManifest } from './vite/getManifest'
 import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
+import type { RouteInfo } from './vite/types'
 
 export type RequestHandlers = {
   handlePage?: (props: RequestHandlerProps) => Promise<any>

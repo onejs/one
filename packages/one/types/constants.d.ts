@@ -1,4 +1,4 @@
-import type { ServerContext } from './utils/serverContext';
+import type { One } from './vite/types';
 export declare const isWebClient: boolean;
 export declare const isWebServer: boolean;
 export declare const isNative: boolean;
@@ -12,6 +12,6 @@ export declare const VIRTUAL_SSR_CSS_ENTRY = "virtual:ssr-css.css";
 export declare const VIRTUAL_SSR_CSS_HREF = "/@id/__x00__virtual:ssr-css.css";
 export declare const SERVER_CONTEXT_KEY = "__one_server_context__";
 export declare const getSpaHeaderElements: ({ serverContext, }?: {
-    serverContext?: ServerContext;
+    serverContext?: One.ServerContext;
 }) => string;
 //# sourceMappingURL=constants.d.ts.map

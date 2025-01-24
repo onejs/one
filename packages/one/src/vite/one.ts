@@ -1,20 +1,13 @@
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
-import path, { dirname, resolve } from 'node:path'
+import path, { sep } from 'node:path'
 import type { Plugin, PluginOption, UserConfig } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import {
-  autoDepOptimizePlugin,
-  getOptimizeDeps,
-  getOptionsFilled,
-  isWebEnvironment,
-  loadEnv,
-} from 'vxrn'
+import { autoDepOptimizePlugin, getOptimizeDeps, getOptionsFilled, loadEnv } from 'vxrn'
 import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
-import { existsAsync } from '../utils/existsAsync'
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
 import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
@@ -343,18 +336,17 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     {
       name: 'one:remove-server-from-client',
+      enforce: 'pre',
 
       transform(code, id) {
-        if (this.environment.name !== 'client') {
-          return
-        }
-        if (!id.includes('one__ensureAsyncLocalID')) {
-          return
-        }
-        return `export function ensureAsyncLocalID() {
-          return {}
+        if (this.environment.name === 'client') {
+          if (id.includes(`vite${sep}one-server-only`)) {
+            return code.replace(
+              `import { AsyncLocalStorage } from "node:async_hooks"`,
+              `class AsyncLocalStorage {}`
+            )
           }
-        `
+        }
       },
     },
   ] satisfies Plugin[]
@@ -472,36 +464,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
             'import.meta.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
           },
-        }
-      },
-    } satisfies Plugin,
-
-    {
-      name: 'one:optimize-deps-load-web-extensions-web-only',
-      enforce: 'pre',
-
-      applyToEnvironment(environment) {
-        return isWebEnvironment(environment)
-      },
-
-      async resolveId(id, importer = '') {
-        const shouldOptimize = optimizeIdRegex.test(importer)
-
-        if (shouldOptimize) {
-          const absolutePath = resolve(dirname(importer), id)
-          const webPath = absolutePath.replace(/(.m?js)/, '') + '.web.js'
-          if (webPath === id) return
-          try {
-            const directoryPath = absolutePath + '/index.web.js'
-            if (await existsAsync(directoryPath)) {
-              return directoryPath
-            }
-            if (await existsAsync(webPath)) {
-              return webPath
-            }
-          } catch (err) {
-            console.warn(`error probably fine`, err)
-          }
         }
       },
     } satisfies Plugin,

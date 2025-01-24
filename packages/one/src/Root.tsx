@@ -5,7 +5,16 @@ import {
   type NavigationContainerProps,
 } from '@react-navigation/native'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
-import { useEffect, useId, useState, type FunctionComponent, type ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useId,
+  useState,
+  type FunctionComponent,
+  type ReactNode,
+} from 'react'
+import { SERVER_CONTEXT_KEY } from './constants'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
 import { ServerLocationContext } from './router/serverLocationContext'
@@ -13,7 +22,6 @@ import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
 import type { GlobbedRouteImports } from './types'
 import { ServerRenderID } from './useServerHeadInsertion'
-import { getServerContext, ProviderServerAsyncLocalIDContext } from './utils/serverContext'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollBehavior } from './views/ScrollBehavior'
@@ -46,6 +54,11 @@ type InnerProps = {
   }
 }
 
+// we bridge it to react because reacts weird rendering loses it
+const ServerAsyncLocalIDContext = createContext<One.ServerContext | null>(null)
+
+globalThis['__vxrnGetContextFromReactContext'] = () => useContext(ServerAsyncLocalIDContext)
+
 export function Root(props: RootProps) {
   const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } = props
 
@@ -71,11 +84,11 @@ export function Root(props: RootProps) {
 
   onRenderId?.(id)
 
+  const value = globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
+
   const contents = (
     // <StrictMode>
-    <ProviderServerAsyncLocalIDContext
-      value={globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null}
-    >
+    <ServerAsyncLocalIDContext.Provider value={value}>
       <ServerRenderID.Provider value={id}>
         <RootErrorBoundary>
           {/* for some reason warning if no key here */}
@@ -111,12 +124,13 @@ export function Root(props: RootProps) {
           <PreloadLinks key="preload-links" />
         </RootErrorBoundary>
       </ServerRenderID.Provider>
-    </ProviderServerAsyncLocalIDContext>
+    </ServerAsyncLocalIDContext.Provider>
     // </StrictMode>
   )
 
   if (isClient) {
-    if (getServerContext()?.mode === 'spa') {
+    // only on client can read like this
+    if (globalThis[SERVER_CONTEXT_KEY]?.mode === 'spa') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [show, setShow] = useState(false)
 

@@ -10,11 +10,8 @@ import type { RenderAppProps } from './types'
 import ReactDOMServer from 'react-dom/server.browser'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
-import {
-  getServerContext,
-  SERVER_CONTEXT_POST_RENDER_STRING,
-  setServerContext,
-} from './utils/serverContext'
+import { getServerContext, setServerContext } from './vite/one-server-only'
+import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 

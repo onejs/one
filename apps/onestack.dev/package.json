@@ -1,6 +1,6 @@
 {
   "name": "site",
-  "version": "1.1.406",
+  "version": "1.1.411",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -19,14 +19,14 @@
   "dependencies": {
     "@docsearch/react": "^3.6.1",
     "@supabase/supabase-js": "^2.44.4",
-    "@tamagui/button": "^1.122.7",
-    "@tamagui/input": "^1.122.7",
-    "@tamagui/linear-gradient": "^1.122.7",
-    "@tamagui/lucide-icons": "^1.122.7",
-    "@tamagui/proxy-tabbable": "^1.122.7",
-    "@tamagui/react-native-web": "^1.122.7",
-    "@tamagui/themes": "^1.122.7",
-    "@tamagui/use-store": "^1.122.7",
+    "@tamagui/button": "^1.123.0",
+    "@tamagui/input": "^1.123.0",
+    "@tamagui/linear-gradient": "^1.123.0",
+    "@tamagui/lucide-icons": "^1.123.0",
+    "@tamagui/proxy-tabbable": "^1.123.0",
+    "@tamagui/react-native-web": "^1.123.0",
+    "@tamagui/themes": "^1.123.0",
+    "@tamagui/use-store": "^1.123.0",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/mdx": "workspace:*",
     "body-scroll-lock": "^4.0.0-beta.0",
@@ -35,7 +35,7 @@
     "postmark": "^3.0.18",
     "react": "^19.0.0",
     "react-native": "^0.76.5",
-    "tamagui": "^1.122.7"
+    "tamagui": "^1.123.0"
   },
   "devDependencies": {
     "@algolia/client-search": "^5.8.1",
