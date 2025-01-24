@@ -129,7 +129,7 @@ export default $config({
             enabled: true,
             type: 'lb_cookie',
           },
-          loadBalancingAlgorithmType: 'least_connections',
+          loadBalancingAlgorithmType: 'least_outstanding_requests',
         },
         autoScalingTarget: {
           minCapacity: 1,
