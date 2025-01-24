@@ -10,11 +10,11 @@ export default $config({
       removal: input?.stage === 'production' ? 'retain' : 'remove',
       home: 'aws',
 
-      providers: {
-        aws: {
-          profile: input.stage === 'production' ? 'tamagui-prod' : 'tamagui-dev',
-        },
-      },
+      // providers: {
+      //   aws: {
+      //     profile: input.stage === 'production' ? 'tamagui-prod' : 'tamagui-dev',
+      //   },
+      // },
     }
   },
   async run() {
