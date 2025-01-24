@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "android": "expo run:android",
-    "backend": "docker compose up -d pgdb search",
+    "backend": "docker compose up pgdb search",
     "backend:clean": "docker compose down --volumes; rm /tmp/onechat_replica.db || true",
     "backend:run-clean": "yarn backend:clean; yarn backend",
     "build:icon": "tauri icon ./src-tauri/icons/icon.png",
