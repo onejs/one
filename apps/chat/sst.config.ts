@@ -9,6 +9,12 @@ export default $config({
       name: 'aws-zero',
       removal: input?.stage === 'production' ? 'retain' : 'remove',
       home: 'aws',
+
+      providers: {
+        aws: {
+          profile: input.stage === 'production' ? 'tamagui-prod' : 'tamagui-dev',
+        },
+      },
     }
   },
   async run() {
