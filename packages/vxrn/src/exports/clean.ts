@@ -15,7 +15,7 @@ import { getSSRExternalsCachePath } from '../plugins/autoDepOptimizePlugin'
  *
  */
 
-export const clean = async (rest: VXRNOptions) => {
+export const clean = async (rest: VXRNOptions, only?: 'vite') => {
   const options = await fillOptions(rest)
   const { root } = options
 
@@ -33,10 +33,12 @@ export const clean = async (rest: VXRNOptions) => {
           recursive: true,
           force: true,
         }).catch(throwIfNotMissingError),
-    rm(join(root, 'dist'), {
-      recursive: true,
-      force: true,
-    }).catch(throwIfNotMissingError),
+    only === 'vite'
+      ? null
+      : rm(join(root, 'dist'), {
+          recursive: true,
+          force: true,
+        }).catch(throwIfNotMissingError),
   ])
 }
 

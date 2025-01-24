@@ -38,7 +38,8 @@ export async function fillOptions(options: VXRNOptions, { mode = 'dev' }: { mode
       : undefined
 
   const versionHash = hashString(JSON.stringify(packageJSON))
-  const clean = Boolean(options.clean ?? (state.versionHash && state.versionHash !== versionHash))
+  const clean =
+    (options.clean ?? (state.versionHash && state.versionHash !== versionHash)) ? 'vite' : false
 
   // no need to wait to write state
   void writeState(cacheDir, { versionHash })
@@ -75,7 +76,7 @@ export async function fillOptions(options: VXRNOptions, { mode = 'dev' }: { mode
     state,
     packageRootDir,
     cacheDir,
-  }
+  } as const
 
   optionsFilled = final
 
