@@ -18,6 +18,7 @@
     "@tamagui/animations-css": "^1.122.7",
     "@tamagui/animations-moti": "^1.122.7",
     "@tamagui/colors": "^1.122.7",
+    "@tamagui/config": "^1.122.7",
     "@tamagui/image-next": "^1.122.7",
     "@tamagui/lucide-icons": "^1.122.7",
     "@tamagui/react-native-media-driver": "^1.122.7",
