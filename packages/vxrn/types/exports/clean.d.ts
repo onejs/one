@@ -8,5 +8,5 @@ import type { VXRNOptions } from '../types';
  *  - clientTreeShakePlugin handles loaders/transforms
  *
  */
-export declare const clean: (rest: VXRNOptions) => Promise<void>;
+export declare const clean: (rest: VXRNOptions, only?: "vite") => Promise<void>;
 //# sourceMappingURL=clean.d.ts.map

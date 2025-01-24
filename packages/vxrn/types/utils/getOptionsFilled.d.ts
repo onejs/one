@@ -3,65 +3,65 @@ export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>;
 export declare function fillOptions(options: VXRNOptions, { mode }?: {
     mode?: Mode;
 }): Promise<{
-    debugBundlePaths: {
-        ios: string;
-        android: string;
+    readonly debugBundlePaths: {
+        readonly ios: string;
+        readonly android: string;
     };
-    mode: "development" | "production";
-    clean: boolean;
-    root: string;
-    server: import("..").VXRNServeOptionsFilled;
-    entries: {
+    readonly mode: "development" | "production";
+    readonly clean: false | "vite";
+    readonly root: string;
+    readonly server: import("..").VXRNServeOptionsFilled;
+    readonly entries: {
         native: string;
-        web?: string;
-        server: string;
+        readonly web?: string;
+        readonly server: "./src/entry-server.tsx";
     };
-    packageJSON: import("pkg-types").PackageJson;
-    packageVersions: {
+    readonly packageJSON: import("pkg-types").PackageJson;
+    readonly packageVersions: {
         react: string;
         reactNative: string;
     } | undefined;
-    state: {
+    readonly state: {
         versionHash?: string;
     };
-    packageRootDir: string;
-    cacheDir: string;
-    build?: {
+    readonly packageRootDir: string;
+    readonly cacheDir: string;
+    readonly build?: {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
     };
-    debugBundle?: string;
-    debug?: string;
+    readonly debugBundle?: string;
+    readonly debug?: string;
 }>;
 export declare function getOptionsFilled(): {
-    debugBundlePaths: {
-        ios: string;
-        android: string;
+    readonly debugBundlePaths: {
+        readonly ios: string;
+        readonly android: string;
     };
-    mode: "development" | "production";
-    clean: boolean;
-    root: string;
-    server: import("..").VXRNServeOptionsFilled;
-    entries: {
+    readonly mode: "development" | "production";
+    readonly clean: false | "vite";
+    readonly root: string;
+    readonly server: import("..").VXRNServeOptionsFilled;
+    readonly entries: {
         native: string;
-        web?: string;
-        server: string;
+        readonly web?: string;
+        readonly server: "./src/entry-server.tsx";
     };
-    packageJSON: import("pkg-types").PackageJson;
-    packageVersions: {
+    readonly packageJSON: import("pkg-types").PackageJson;
+    readonly packageVersions: {
         react: string;
         reactNative: string;
     } | undefined;
-    state: {
+    readonly state: {
         versionHash?: string;
     };
-    packageRootDir: string;
-    cacheDir: string;
-    build?: {
+    readonly packageRootDir: string;
+    readonly cacheDir: string;
+    readonly build?: {
         server?: boolean | import("..").VXRNBuildOptions;
         analyze?: boolean;
     };
-    debugBundle?: string;
-    debug?: string;
+    readonly debugBundle?: string;
+    readonly debug?: string;
 } | null;
 //# sourceMappingURL=getOptionsFilled.d.ts.map
