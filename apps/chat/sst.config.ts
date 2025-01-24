@@ -11,31 +11,25 @@ export default $config({
       name: 'aws-zero',
       // removal: input?.stage === 'production' ? 'retain' : 'remove',
       home: 'aws',
-
-      // providers: {
-      //   aws: {
-      //     profile: input.stage === 'production' ? 'tamagui-prod' : 'tamagui-dev',
-      //   },
-      // },
+      providers: {
+        aws: {
+          profile: input.stage === 'production' ? 'tamagui-prod' : 'tamagui-dev',
+        },
+      },
     }
   },
+
   async run() {
     // Load .env file
     require('dotenv').config()
 
-    // Config parameters
-    const namespace = process.env.DEPLOY_NAMESPACE
-    if (!namespace) {
-      throw new Error(`No DEPLOY_NAMESPACE set`)
-    }
-
     const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
 
     // S3 Bucket
-    const replicationBucket = new sst.aws.Bucket(`${namespace}-replication-bucket`)
+    const replicationBucket = new sst.aws.Bucket(`replication-bucket`)
 
     // VPC Configuration
-    const vpc = new sst.aws.Vpc(`${namespace}-vpc`, {
+    const vpc = new sst.aws.Vpc(`vpc`, {
       az: 2,
       transform: {
         securityGroup: {
@@ -67,7 +61,7 @@ export default $config({
     })
 
     // Database
-    const db = new sst.aws.Postgres(`${namespace}-postgres`, {
+    const db = new sst.aws.Postgres(`postgres`, {
       vpc,
       transform: {
         parameterGroup: {
@@ -95,7 +89,7 @@ export default $config({
     const connection = $interpolate`postgres://${db.username}:${db.password}@${db.host}:${db.port}`
 
     // ECS Cluster
-    const cluster = new sst.aws.Cluster(`${namespace}-cluster`, {
+    const cluster = new sst.aws.Cluster(`cluster`, {
       vpc,
     })
 
@@ -112,7 +106,7 @@ export default $config({
     }
 
     // View Syncer Service
-    const zeroService = cluster.addService(`${namespace}-view-syncer`, {
+    const zeroService = cluster.addService(`view-syncer`, {
       cpu: '2 vCPU',
       memory: '8 GB',
       image: 'rocicorp/zero:canary',
@@ -124,7 +118,7 @@ export default $config({
       },
       environment: {
         ...commonEnv,
-        ZERO_CHANGE_STREAMER_URI: `ws://change-streamer.${namespace}:4849`,
+        ZERO_CHANGE_STREAMER_URI: `ws://change-streamer.chat:4849`,
         ZERO_UPSTREAM_MAX_CONNS: '15',
         ZERO_CVR_MAX_CONNS: '160',
       },
@@ -175,8 +169,7 @@ export default $config({
       },
     })
 
-    // Replication Manager Service
-    cluster.addService(`${namespace}-replication-manager`, {
+    cluster.addService(`replication-manager`, {
       cpu: '2 vCPU',
       memory: '8 GB',
       image: 'rocicorp/zero:canary',
