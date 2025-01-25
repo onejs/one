@@ -6,12 +6,5 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
-    "replication-bucket": {
-      "name": string
-      "type": "sst.aws.Bucket"
-    }
-    "vpc": {
-      "type": "sst.aws.Vpc"
-    }
   }
 }
