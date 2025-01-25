@@ -28244,6 +28244,7 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/utils": "workspace:*"
     expo: "npm:~52.0.17"
+    expo-image: "npm:~1.13.0"
     expo-video: "npm:^2.0.4"
     get-port-please: "npm:^3.1.2"
     one: "workspace:*"
