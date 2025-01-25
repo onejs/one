@@ -90,7 +90,7 @@ export async function getBaseViteConfig(
 
         // this fix platform extensions if they aren't picked up, but seems it is working with resolve.extensions
         async resolveId(source, importer, options) {
-          // if (process.env.NODE_ENV === 'development') {
+          // if (process.env.NODE_ENV !== 'development') {
           //   // is this only dev mode problem?
           //   return
           // }
