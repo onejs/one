@@ -10,10 +10,6 @@ declare module "sst" {
       "name": string
       "type": "sst.aws.Bucket"
     }
-    "replication-manager": {
-      "service": string
-      "type": "sst.aws.Service"
-    }
     "vpc": {
       "type": "sst.aws.Vpc"
     }
