@@ -48,6 +48,9 @@ export async function getBaseViteConfig(
     )
   ).find((x) => typeof x === 'string')
 
+  const reactNativePackageJsonPath = resolvePath('react-native/package.json', root)
+  const { version } = await FSExtra.readJSON(reactNativePackageJsonPath)
+
   return {
     mode,
 
@@ -103,6 +106,7 @@ export async function getBaseViteConfig(
     define: {
       __DEV__: `${mode === 'development'}`,
       'process.env.NODE_ENV': `"${mode}"`,
+      'process.env.REACT_NATIVE_VERSION': `"${version}"`,
     },
 
     resolve: {
