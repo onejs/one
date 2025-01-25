@@ -341,7 +341,7 @@ function getParser(id: string, forceJSX = false) {
   const extension = extname(id)
   let parser: ParserConfig = !extension ? parsers['.js'] : parsers[extension]
 
-  if (extension === '.js') {
+  if (extension === '.js' || extension === '.mjs') {
     if (forceJSX) {
       parser = parsers['.jsx']
     }
