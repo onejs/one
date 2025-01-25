@@ -1,12 +1,11 @@
 import FSExtra from 'fs-extra'
 import { join } from 'node:path'
 import * as constants from '../constants'
-import type { RouteInfo } from '../server/createRoutesManifest'
 import type { LoaderProps, RenderApp } from '../types'
 import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import { replaceLoader } from '../vite/replaceLoader'
-import type { One } from '../vite/types'
+import type { One, RouteInfo } from '../vite/types'
 
 const { readFile, outputFile } = FSExtra
 

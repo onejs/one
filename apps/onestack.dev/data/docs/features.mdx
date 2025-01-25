@@ -3,6 +3,8 @@ title: Features
 description: One is a complete solution to cross-platform development with React and React Native. We're experimenting with a features document to offer a high-level overview of One.
 ---
 
+[Test link](/docs/environment#variables)
+
 See the [Status document](/docs/status) for the status of features.
 
 ## Vite
@@ -48,12 +50,11 @@ Out of the box, the One Vite plugin does the following:
 - Server rendering - find JS and CSS for all nested routes and layouts and hoists it to header to avoid waterfalls and flickering
 - Automatically preloads next page JS when hovering a link or navigating to a new route, including loaders
   - Doesn't require up-front route map so no scaling cost
-- Automatically handles scroll restoration and [allows configuration](/docs/components-ScrollRestoration)
+- Automatically handles scroll restoration and [allows configuration](/docs/components-ScrollBehavior)
 - Adds an easy [`redirects` option](/docs/configuration)
 - Adds [`generateStaticParams` export](/docs/routing-exports#generatestaticparams) for SSG and SSR routes
 - Implements [API routes](/docs/routing-modes#api)
 - Adds a [page loading progress bar](/docs/components-LoadProgressBar)
-- Allows configuration of [routing scroll position logic](/docs/components-ScrollRestoration)
 - Swaps `query-string` and `url-parse` libraries to save ~20Kb
 - Adds a [Redirect component](/docs/components-Redirect) 
 

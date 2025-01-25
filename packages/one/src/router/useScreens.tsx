@@ -8,13 +8,14 @@ import type {
   ScreenListeners,
 } from '@react-navigation/native'
 import React, { forwardRef, Suspense, useEffect } from 'react'
+import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
-import { getServerContext, ServerContextScript } from '../utils/serverContext'
 import { useConstant } from '../utils/useConstant'
 import { EmptyRoute } from '../views/EmptyRoute'
 import { RootErrorBoundary } from '../views/RootErrorBoundary'
 import { Try } from '../views/Try'
 import { DevHead } from '../vite/DevHead'
+import { useServerContext } from '../vite/one-server-only'
 import { filterRootHTML } from './filterRootHTML'
 import {
   Route,
@@ -174,7 +175,6 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     const res = value.loadRoute()
     const Component = useConstant(() => {
       const BaseComponent = getPageExport(fromImport(res)) as React.ComponentType<any>
-      const serverContext = getServerContext()
 
       // root layout do special html handling only
       if (props.segment === '') {
@@ -183,6 +183,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
           const out = BaseComponent(props, ref)
           const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
           const { children: headChildren, ...headProps } = head?.props || {}
+          const serverContext = useServerContext()
 
           if (process.env.TAMAGUI_TARGET === 'native') {
             // on native we just ignore all html/body/head

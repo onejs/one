@@ -1,10 +1,9 @@
 import { isResponse } from '../utils/isResponse'
-import { asyncHeadersCache, mergeHeaders, requestAsyncLocalStore } from './server'
+import { asyncHeadersCache, mergeHeaders, runWithAsyncLocalContext } from './one-server-only'
 
 export function resolveResponse(getResponse: () => Promise<Response>) {
   return new Promise<Response>((res, rej) => {
-    const id = { _id: Math.random() }
-    requestAsyncLocalStore.run(id, async () => {
+    runWithAsyncLocalContext(async (id) => {
       try {
         const response = await getResponse()
         const modifiedResponse = await getResponseWithAddedHeaders(response, id)

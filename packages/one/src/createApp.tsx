@@ -8,14 +8,10 @@ import { renderToString } from './server-render'
 import type { RenderAppProps } from './types'
 // @ts-ignore
 import ReactDOMServer from 'react-dom/server.browser'
-import {
-  getServerContext,
-  SERVER_CONTEXT_POST_RENDER_STRING,
-  setServerContext,
-} from './utils/serverContext'
-import { cloneElement, useId } from 'react'
-import { ensureExists } from './utils/ensureExists'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
+import { ensureExists } from './utils/ensureExists'
+import { getServerContext, setServerContext } from './vite/one-server-only'
+import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
@@ -97,15 +93,13 @@ export function createApp(options: CreateAppProps) {
         }
 
         // now we can grab and serialize in our zero queries
-        const serverData = getServerContext()?.postRenderData
-        if (serverData) {
-          const hasQueryData = Object.keys(serverData).length
-          if (hasQueryData) {
-            html = html.replace(
-              JSON.stringify(SERVER_CONTEXT_POST_RENDER_STRING),
-              JSON.stringify(serverData)
-            )
-          }
+        const postRenderData = getServerContext()?.postRenderData
+
+        if (postRenderData) {
+          html = html.replace(
+            JSON.stringify(SERVER_CONTEXT_POST_RENDER_STRING),
+            JSON.stringify(postRenderData)
+          )
         }
 
         return html

@@ -13,6 +13,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-native-css-interop/jsx-dev-runtime',
     'react-native-css-interop',
 
+    'secure-json-parse',
+
     '@vxrn/safe-area',
     '@vxrn/vendor/react-19-prod',
     '@vxrn/vendor/react-19',
@@ -39,6 +41,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-is',
     'fast-deep-equal',
     '@supabase/auth-helpers-react',
+    '@supabase/postgres-js',
     'core-js',
     'parse-numeric-range',
     'use-sync-external-store',
@@ -55,8 +58,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
   const depsToOptimize = [
     ...needsInterop,
-
-    'one/server',
 
     'fast-xml-parser',
     'set-cookie-parser',
@@ -87,7 +88,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@react-navigation/bottom-tabs',
     '@react-navigation/native-stack',
     'one',
-    'one/server-render',
     'styleq',
     'fbjs',
     '@vxrn/universal-color-scheme',
@@ -110,7 +110,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'swr/mutation',
     'one',
     'one/zero',
-    'one/server-render',
     'refractor/lang/tsx',
     'invariant',
     'tamagui/linear-gradient',

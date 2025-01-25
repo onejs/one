@@ -2,12 +2,11 @@
 import { useEffect, useRef } from 'react'
 import { useActiveParams, useParams, usePathname } from './hooks'
 import { resolveHref } from './link/href'
-import { useRouteNode } from './router/Route'
 import { preloadingLoader } from './router/router'
 import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
-import { getServerContext } from './utils/serverContext'
 import { weakKey } from './utils/weakKey'
+import { useServerContext } from './vite/one-server-only'
 
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
@@ -18,7 +17,7 @@ export function useLoader<
   Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
 >(loader: Loader): Returned extends Promise<any> ? Awaited<Returned> : Returned {
   const { loaderProps: loaderPropsFromServerContext, loaderData: loaderDataFromServerContext } =
-    getServerContext() || {}
+    useServerContext() || {}
 
   // server side we just run the loader directly
   if (typeof window === 'undefined') {

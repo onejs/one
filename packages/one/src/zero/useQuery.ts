@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { getQueryKey } from './getQueryKey'
 import { resolveZeroQuery } from './resolveQuery'
 import { useQuery as useQueryZero } from './useQueryZero'
-import { getServerContext } from '../utils/serverContext'
+import { getServerContext } from '../vite/one-server-only'
 
 let clientInitialData: Object | null = getServerContext()?.postRenderData
 

@@ -30,7 +30,7 @@ export { Tabs } from './layouts/Tabs'
 export { SafeAreaView } from 'react-native-safe-area-context'
 export { Navigator, Slot } from './views/Navigator'
 export { ErrorBoundary } from './views/ErrorBoundary'
-export { ScrollRestoration } from './views/ScrollRestoration'
+export { ScrollBehavior } from './views/ScrollBehavior'
 export { LoadProgressBar } from './views/LoadProgressBar'
 export { Link } from './link/Link'
 export { Redirect } from './link/Redirect'
@@ -62,6 +62,9 @@ export { isResponse } from './utils/isResponse'
 export { getURL } from './getURL'
 export { redirect } from './utils/redirect'
 export { href } from './href'
+
+// server
+export { setResponseHeaders, getServerData, setServerData } from './vite/one-server-only'
 
 // re-export
 export * from '@vxrn/universal-color-scheme'

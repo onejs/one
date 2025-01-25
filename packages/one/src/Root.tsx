@@ -5,7 +5,16 @@ import {
   type NavigationContainerProps,
 } from '@react-navigation/native'
 import { useColorScheme } from '@vxrn/universal-color-scheme'
-import { useEffect, useId, useState, type FunctionComponent, type ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useId,
+  useState,
+  type FunctionComponent,
+  type ReactNode,
+} from 'react'
+import { SERVER_CONTEXT_KEY } from './constants'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
 import { ServerLocationContext } from './router/serverLocationContext'
@@ -13,10 +22,9 @@ import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
 import type { GlobbedRouteImports } from './types'
 import { ServerRenderID } from './useServerHeadInsertion'
-import { getServerContext } from './utils/serverContext'
 import { PreloadLinks } from './views/PreloadLinks'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
-import { ScrollRestoration } from './views/ScrollRestoration'
+import { ScrollBehavior } from './views/ScrollBehavior'
 import type { One } from './vite/types'
 
 type RootProps = Omit<InnerProps, 'context'> & {
@@ -46,6 +54,11 @@ type InnerProps = {
   }
 }
 
+// we bridge it to react because reacts weird rendering loses it
+const ServerAsyncLocalIDContext = createContext<One.ServerContext | null>(null)
+
+globalThis['__vxrnGetContextFromReactContext'] = () => useContext(ServerAsyncLocalIDContext)
+
 export function Root(props: RootProps) {
   const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } = props
 
@@ -71,48 +84,53 @@ export function Root(props: RootProps) {
 
   onRenderId?.(id)
 
+  const value = globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
+
   const contents = (
     // <StrictMode>
-    <ServerRenderID.Provider value={id}>
-      <RootErrorBoundary>
-        {/* for some reason warning if no key here */}
-        <UpstreamNavigationContainer
-          ref={store.navigationRef}
-          initialState={store.initialState}
-          linking={store.linking}
-          onUnhandledAction={onUnhandledAction}
-          theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-          documentTitle={{
-            enabled: false,
-          }}
-          {...navigationContainerProps}
-        >
-          <ServerLocationContext.Provider value={location}>
-            {/* <GestureHandlerRootView> */}
-            {/*
-             * Due to static rendering we need to wrap these top level views in second wrapper
-             * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
-             * is a HTML document, we need to ensure its inside the <body>
-             */}
-            <>
-              {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
-              <ScrollRestoration />
-              <Component />
+    <ServerAsyncLocalIDContext.Provider value={value}>
+      <ServerRenderID.Provider value={id}>
+        <RootErrorBoundary>
+          {/* for some reason warning if no key here */}
+          <UpstreamNavigationContainer
+            ref={store.navigationRef}
+            initialState={store.initialState}
+            linking={store.linking}
+            onUnhandledAction={onUnhandledAction}
+            theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+            documentTitle={{
+              enabled: false,
+            }}
+            {...navigationContainerProps}
+          >
+            <ServerLocationContext.Provider value={location}>
+              {/* <GestureHandlerRootView> */}
+              {/*
+               * Due to static rendering we need to wrap these top level views in second wrapper
+               * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
+               * is a HTML document, we need to ensure its inside the <body>
+               */}
+              <>
+                {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
+                <ScrollBehavior />
+                <Component />
 
-              {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-            </>
-            {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-            {/* </GestureHandlerRootView> */}
-          </ServerLocationContext.Provider>
-        </UpstreamNavigationContainer>
-        <PreloadLinks key="preload-links" />
-      </RootErrorBoundary>
-    </ServerRenderID.Provider>
+                {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+              </>
+              {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+              {/* </GestureHandlerRootView> */}
+            </ServerLocationContext.Provider>
+          </UpstreamNavigationContainer>
+          <PreloadLinks key="preload-links" />
+        </RootErrorBoundary>
+      </ServerRenderID.Provider>
+    </ServerAsyncLocalIDContext.Provider>
     // </StrictMode>
   )
 
   if (isClient) {
-    if (getServerContext()?.mode === 'spa') {
+    // only on client can read like this
+    if (globalThis[SERVER_CONTEXT_KEY]?.mode === 'spa') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [show, setShow] = useState(false)
 
