@@ -78,12 +78,19 @@
     "vitepress": "^1.1.4"
   },
   "profile": {
-    "//": "run 'yarn profile x' to toggle it on/off",
+    "//": "yarn profile [name] to toggle package resolutions",
     "react-19": {
       "applied": false,
       "resolutions": {
         "react": "19.0.0",
         "react-dom": "19.0.0"
+      }
+    },
+    "react-18": {
+      "applied": false,
+      "resolutions": {
+        "react": "18.3.1",
+        "react-dom": "18.3.1"
       }
     },
     "//1": "useful for developing on tamagui and one at once",
