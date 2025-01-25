@@ -15,6 +15,7 @@
   "dependencies": {
     "@lexical/react": "^0.21.0",
     "@react-native-masked-view/masked-view": "^0.3.1",
+    "@rn-primitives/slot": "^1.1.0",
     "@sentry/react-native": "^5.30.0",
     "@shopify/flash-list": "^1.7.2",
     "@tamagui/config": "^1.123.0",

@@ -7933,6 +7933,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rn-primitives/slot@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@rn-primitives/slot@npm:1.1.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-web: "*"
+  peerDependenciesMeta:
+    react-native:
+      optional: true
+    react-native-web:
+      optional: true
+  checksum: 10/707c9d7b202b2a1e17b9b413d08703470576aced61ed3d7403b3d37c30d5bfb3e0c6731c120a831bfdba6707c6fd2259326edc19b47c1a8bb1a93496ee3241c0
+  languageName: node
+  linkType: hard
+
 "@rocicorp/lock@npm:^1.0.4":
   version: 1.0.4
   resolution: "@rocicorp/lock@npm:1.0.4"
@@ -28351,6 +28367,7 @@ __metadata:
   dependencies:
     "@lexical/react": "npm:^0.21.0"
     "@react-native-masked-view/masked-view": "npm:^0.3.1"
+    "@rn-primitives/slot": "npm:^1.1.0"
     "@sentry/react-native": "npm:^5.30.0"
     "@shopify/flash-list": "npm:^1.7.2"
     "@tamagui/config": "npm:^1.123.0"
