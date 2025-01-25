@@ -30,6 +30,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@tamagui/build": "^1.123.0"
+    "@tamagui/build": "^1.123.1"
   }
 }
