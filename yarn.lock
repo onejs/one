@@ -28990,6 +28990,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ts-pattern@npm:^5.6.2":
+  version: 5.6.2
+  resolution: "ts-pattern@npm:5.6.2"
+  checksum: 10/7eea891a2653650793143e058a6b488c9931444996234bfb71f569528e8aa55decdc13266b710135757614c4eaa1e8cb9015c46ccfd258a5bd81e5e86c2d1dcb
+  languageName: node
+  linkType: hard
+
 "tsconfck@npm:^3.0.3":
   version: 3.1.4
   resolution: "tsconfck@npm:3.1.4"
@@ -30309,6 +30316,7 @@ __metadata:
     p-map: "npm:^7.0.2"
     patch-package: "npm:^8.0.0"
     sst: "npm:^3.4.46"
+    ts-pattern: "npm:^5.6.2"
     tsx: "npm:^4.19.0"
     turbo: "npm:^2.1.0"
     typescript: "npm:^5.7.2"

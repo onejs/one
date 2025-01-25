@@ -71,6 +71,7 @@
     "p-map": "^7.0.2",
     "patch-package": "^8.0.0",
     "sst": "^3.4.46",
+    "ts-pattern": "^5.6.2",
     "tsx": "^4.19.0",
     "turbo": "^2.1.0",
     "typescript": "^5.7.2",
