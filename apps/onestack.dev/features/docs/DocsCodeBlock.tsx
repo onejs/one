@@ -27,6 +27,7 @@ import { Code } from './Code'
 import { RovingTabs } from './RovingTabs'
 import { useBashCommand } from './useBashCommand'
 import { useClipboard } from './useClipboard'
+import { unwrapText } from './unwrapText'
 
 export const Pre = styled(YStack, {
   overflow: 'visible',
@@ -80,23 +81,23 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
 
   const isPreVisible = !isCollapsed || !isCollapsible
 
-  const onCommandChange = useEvent(() => {
-    try {
-      const codeElement = preRef.current.querySelector('code')
-      if (codeElement) {
-        // remove double line breaks
-        const codeExtract = codeElement.innerText.replace(/\n{3,}/g, '\n')
-        setCode(transformedCommand)
-      }
-    } catch (err) {
-      console.warn('err', err)
-      // ok
-    }
-  })
+  // const onCommandChange = useEvent(() => {
+  //   try {
+  //     const codeElement = preRef.current.querySelector('code')
+  //     if (codeElement) {
+  //       // remove double line breaks
+  //       // const codeExtract = codeElement.innerText.replace(/\n{3,}/g, '\n')
+  //       setCode(transformedCommand)
+  //     }
+  //   } catch (err) {
+  //     console.warn('err', err)
+  //     // ok
+  //   }
+  // })
 
   useEffect(() => {
-    onCommandChange()
-  }, [transformedCommand, onCommandChange])
+    setCode(transformedCommand)
+  }, [transformedCommand])
 
   return (
     <YStack
@@ -168,6 +169,16 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
               </LinearGradient>
             )}
 
+            {showFileName && (
+              <XStack ai="center" gap="$2" pl="$4" py="$3" bbw={1} bc="$gray4">
+                {isTerminalCommand ? (
+                  <TerminalSquare size={14} col="$color11" />
+                ) : (
+                  <FileCode2 size={14} col="$color11" />
+                )}
+                <Paragraph col="$color11">{isTerminalCommand ? 'Terminal' : fileName}</Paragraph>
+              </XStack>
+            )}
             <Pre
               ref={preRef}
               data-invert-line-highlight={isHighlightingLines}
@@ -180,36 +191,8 @@ export const DocCodeBlock = forwardRef((props: any, ref) => {
               jc="center"
               mt={0}
             >
-              {showFileName && (
-                <XStack ai="center" gap="$2" pl="$4" py="$3" bbw={1} bc="$gray4">
-                  {isTerminalCommand ? (
-                    <TerminalSquare size={14} col="$color11" />
-                  ) : (
-                    <FileCode2 size={14} col="$color11" />
-                  )}
-                  <Paragraph col="$color11">{isTerminalCommand ? 'Terminal' : fileName}</Paragraph>
-                </XStack>
-              )}
-
               <RovingTabs className={className} size={size} {...rest}>
-                <ScrollView
-                  style={{ width: '100%' }}
-                  contentContainerStyle={{ minWidth: '100%' }}
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                >
-                  <Code
-                    p="$4"
-                    backgroundColor="transparent"
-                    f={1}
-                    className={className}
-                    fontSize={15}
-                    lineHeight={25}
-                    {...rest}
-                  >
-                    {children}
-                  </Code>
-                </ScrollView>
+                {children}
               </RovingTabs>
             </Pre>
 

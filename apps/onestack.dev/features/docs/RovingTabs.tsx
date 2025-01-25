@@ -1,15 +1,7 @@
 import { Image } from '@tamagui/image-next'
 import { useState } from 'react'
 import type { TabLayout, TabsTabProps, ViewProps } from 'tamagui'
-import {
-  AnimatePresence,
-  Avatar,
-  SizableText,
-  Tabs,
-  XStack,
-  YStack,
-  styled,
-} from 'tamagui'
+import { AnimatePresence, ScrollView, SizableText, Tabs, XStack, YStack, styled } from 'tamagui'
 import { Code } from './Code'
 import { PACKAGE_MANAGERS, useBashCommand } from './useBashCommand'
 
@@ -49,6 +41,21 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
     }
   }
 
+  const content = (
+    <Code
+      p="$4"
+      backgroundColor="transparent"
+      f={1}
+      className={className}
+      fontSize={15}
+      lineHeight={25}
+      color="$color12"
+      {...rest}
+    >
+      {showTabs ? transformedCommand : children}
+    </Code>
+  )
+
   return (
     <>
       {showTabs ? (
@@ -87,12 +94,7 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
                 )}
               </AnimatePresence>
 
-              <Tabs.List
-                disablePassBorderRadius
-                loop={false}
-                aria-label="package manager"
-                gap="$2"
-              >
+              <Tabs.List disablePassBorderRadius loop={false} aria-label="package manager" gap="$2">
                 <>
                   {PACKAGE_MANAGERS.map((pkgManager) => (
                     <Tab
@@ -107,23 +109,19 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
             </YStack>
 
             <Tabs.Content value={selectedPackageManager} forceMount>
-              <Code
-                p="$4"
-                backgroundColor="transparent"
-                f={1}
-                className={className}
-                fontSize={size ?? '$5'}
-                lineHeight={size ?? '$5'}
-                allowMultiline
-                {...rest}
-              >
-                {transformedCommand}
-              </Code>
+              {content}
             </Tabs.Content>
           </YStack>
         </Tabs>
       ) : (
-        children
+        <ScrollView
+          style={{ width: '100%' }}
+          contentContainerStyle={{ minWidth: '100%' }}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          {content}
+        </ScrollView>
       )}
     </>
   )
