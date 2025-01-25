@@ -9,10 +9,11 @@ export default $config({
 
     return {
       name: 'aws-zero',
-      // removal: input?.stage === 'production' ? 'retain' : 'remove',
+      removal: input?.stage === 'production' ? 'retain' : 'remove',
       home: 'aws',
       providers: {
         aws: {
+          region: 'us-east-1',
           profile: input.stage === 'production' ? 'tamagui-prod' : 'tamagui-dev',
         },
       },
@@ -109,7 +110,7 @@ export default $config({
     const zeroService = cluster.addService(`view-syncer`, {
       cpu: '2 vCPU',
       memory: '8 GB',
-      image: 'rocicorp/zero:canary',
+      image: 'rocicorp/zero',
       health: {
         command: ['CMD-SHELL', 'curl -f http://localhost:4848/ || exit 1'],
         interval: '5 seconds',
@@ -172,7 +173,7 @@ export default $config({
     cluster.addService(`replication-manager`, {
       cpu: '2 vCPU',
       memory: '8 GB',
-      image: 'rocicorp/zero:canary',
+      image: 'rocicorp/zero',
       health: {
         command: ['CMD-SHELL', 'curl -f http://localhost:4849/ || exit 1'],
         interval: '5 seconds',
