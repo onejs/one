@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/better-auth",
-  "version": "1.1.411",
+  "version": "1.1.412",
   "sideEffects": false,
   "types": "./src/index.ts",
   "main": "dist/cjs",
@@ -31,7 +31,7 @@
     "react": "^18.3.1 || ^19.0.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.123.0"
+    "@tamagui/build": "^1.123.1"
   },
   "publishConfig": {
     "access": "public"
