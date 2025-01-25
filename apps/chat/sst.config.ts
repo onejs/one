@@ -31,33 +31,32 @@ export default $config({
 
     // VPC Configuration
     const vpc = new sst.aws.Vpc(`vpc`, {
-      az: 2,
       transform: {
-        securityGroup: {
-          ingress: [
-            {
-              description: 'Allow HTTP traffic',
-              protocol: 'tcp',
-              fromPort: 80,
-              toPort: 80,
-              cidrBlocks: ['0.0.0.0/0'],
-            },
-            {
-              description: 'Allow traffic to ZeroCache service',
-              protocol: 'tcp',
-              fromPort: 4848,
-              toPort: 4848,
-              cidrBlocks: ['0.0.0.0/0'],
-            },
-            {
-              description: 'Allow traffic to ZeroCache Heartbeat',
-              protocol: 'tcp',
-              fromPort: 4850,
-              toPort: 4850,
-              cidrBlocks: ['0.0.0.0/0'],
-            },
-          ],
-        },
+        // securityGroup: {
+        //   ingress: [
+        //     {
+        //       description: 'Allow HTTP traffic',
+        //       protocol: 'tcp',
+        //       fromPort: 80,
+        //       toPort: 80,
+        //       cidrBlocks: ['0.0.0.0/0'],
+        //     },
+        //     {
+        //       description: 'Allow traffic to ZeroCache service',
+        //       protocol: 'tcp',
+        //       fromPort: 4848,
+        //       toPort: 4848,
+        //       cidrBlocks: ['0.0.0.0/0'],
+        //     },
+        //     {
+        //       description: 'Allow traffic to ZeroCache Heartbeat',
+        //       protocol: 'tcp',
+        //       fromPort: 4850,
+        //       toPort: 4850,
+        //       cidrBlocks: ['0.0.0.0/0'],
+        //     },
+        //   ],
+        // },
       },
     })
 
@@ -82,12 +81,21 @@ export default $config({
               value: '1000',
               applyMethod: 'pending-reboot',
             },
+            ...($app.stage === 'production'
+              ? []
+              : [
+                  {
+                    name: 'max_slot_wal_keep_size',
+                    value: '1024',
+                  },
+                ]),
           ],
         },
       },
     })
 
     const connection = $interpolate`postgres://${db.username}:${db.password}@${db.host}:${db.port}`
+    const upstreamDbConnection = $interpolate`${connection}/${db.database}`
 
     // ECS Cluster
     const cluster = new sst.aws.Cluster(`cluster`, {
@@ -97,7 +105,7 @@ export default $config({
     // Common environment variables
     const commonEnv = {
       AWS_REGION: process.env.AWS_REGION!,
-      ZERO_UPSTREAM_DB: $interpolate`${connection}/${db.database}`,
+      ZERO_UPSTREAM_DB: upstreamDbConnection,
       ZERO_CVR_DB: $interpolate`${connection}/zero_cvr`,
       ZERO_CHANGE_DB: $interpolate`${connection}/zero_change`,
       ZERO_SCHEMA_JSON: schemaJson,
@@ -107,7 +115,7 @@ export default $config({
     }
 
     // View Syncer Service
-    const zeroService = cluster.addService(`view-syncer`, {
+    const zeroService = cluster.addService(`zero`, {
       cpu: '2 vCPU',
       memory: '8 GB',
       image: 'rocicorp/zero',
