@@ -8,7 +8,7 @@ export default $config({
     require('dotenv').config()
 
     return {
-      name: 'aws-zero',
+      name: 'aws-chat',
       removal: input?.stage === 'production' ? 'retain' : 'remove',
       home: 'aws',
       providers: {
@@ -27,7 +27,7 @@ export default $config({
     // const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
 
     // S3 Bucket
-    const replicationBucket = new sst.aws.Bucket(`replication-bucket`)
+    // const replicationBucket = new sst.aws.Bucket(`replication-bucket`)
 
     // VPC Configuration
     const vpc = new sst.aws.Vpc(`vpc`, {
@@ -69,7 +69,7 @@ export default $config({
     cluster.addService(`chat-app`, {
       cpu: '2 vCPU',
       memory: '8 GB',
-      link: [replicationBucket],
+      // link: [replicationBucket],
       environment: {
         ONE_SERVER_URL: 'https://example.com',
       },
