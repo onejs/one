@@ -36,31 +36,38 @@ export default $config({
     // VPC Configuration
     const vpc = new sst.aws.Vpc(`vpc`, {
       transform: {
-        // securityGroup: {
-        //   ingress: [
-        //     {
-        //       description: 'Allow HTTP traffic',
-        //       protocol: 'tcp',
-        //       fromPort: 80,
-        //       toPort: 80,
-        //       cidrBlocks: ['0.0.0.0/0'],
-        //     },
-        //     {
-        //       description: 'Allow traffic to ZeroCache service',
-        //       protocol: 'tcp',
-        //       fromPort: 4848,
-        //       toPort: 4848,
-        //       cidrBlocks: ['0.0.0.0/0'],
-        //     },
-        //     {
-        //       description: 'Allow traffic to ZeroCache Heartbeat',
-        //       protocol: 'tcp',
-        //       fromPort: 4850,
-        //       toPort: 4850,
-        //       cidrBlocks: ['0.0.0.0/0'],
-        //     },
-        //   ],
-        // },
+        securityGroup: {
+          ingress: [
+            {
+              description: 'Allow HTTP traffic',
+              protocol: 'tcp',
+              fromPort: 80,
+              toPort: 80,
+              cidrBlocks: ['0.0.0.0/0'],
+            },
+            {
+              description: 'Allow traffic to Chat app',
+              protocol: 'tcp',
+              fromPort: 3000,
+              toPort: 3000,
+              cidrBlocks: ['0.0.0.0/0'],
+            },
+            {
+              description: 'Allow traffic to ZeroCache service',
+              protocol: 'tcp',
+              fromPort: 4848,
+              toPort: 4848,
+              cidrBlocks: ['0.0.0.0/0'],
+            },
+            {
+              description: 'Allow traffic to ZeroCache Heartbeat',
+              protocol: 'tcp',
+              fromPort: 4850,
+              toPort: 4850,
+              cidrBlocks: ['0.0.0.0/0'],
+            },
+          ],
+        },
       },
     })
 
@@ -71,13 +78,19 @@ export default $config({
 
     // Web App
     cluster.addService(`chat-app`, {
+      image: chatAppImage,
       cpu: '2 vCPU',
       memory: '8 GB',
+
+      scaling: {
+        min: 1,
+        max: 2,
+      },
+
       // link: [replicationBucket],
       environment: {
         ONE_SERVER_URL: 'https://start.chat',
       },
-      image: chatAppImage,
 
       health: {
         command: ['CMD-SHELL', 'curl -f http://localhost:3000/ || exit 1'],
@@ -90,15 +103,15 @@ export default $config({
         port: 3000,
       },
 
-      // loadBalancer: {
-      //   public: true,
-      //   rules: [
-      //     {
-      //       listen: '80/http',
-      //       forward: '3000/http',
-      //     },
-      //   ],
-      // },
+      loadBalancer: {
+        public: true,
+        rules: [
+          {
+            listen: '80/http',
+            forward: '3000/http',
+          },
+        ],
+      },
     })
 
     // Database
