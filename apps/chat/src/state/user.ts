@@ -36,7 +36,7 @@ export const useUserState = () => {
   const { user: authUser, loggedIn } = useAuth()
   const user = useQuery((q) => q.user.where('id', authUser?.id || ''))[0][0]
   if (loggedIn) {
-    // TODO
+    // @ts-ignore TODO
     currentUser = user
   }
   return getUserState()
