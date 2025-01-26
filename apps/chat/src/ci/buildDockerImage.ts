@@ -1,5 +1,5 @@
-import * as exec from '@actions/exec'
-import * as core from '@actions/core'
+import { info, setFailed } from '@actions/core'
+import { exec } from '@actions/exec'
 
 export async function buildDockerImage({
   image,
@@ -11,19 +11,20 @@ export async function buildDockerImage({
   const tag = 'latest'
 
   try {
-    // Build the Docker image
-    await exec.exec('docker', ['build', '-f', image, '-t', `${imageName}:${tag}`, context])
-
     // Log in to GitHub Container Registry
-    await exec.exec('docker', ['login', 'ghcr.io', '-u', githubActor, '-p', githubToken])
+    await exec('docker', ['login', ' ', '-u', githubActor, '-p', githubToken])
+
+    // Build the Docker image
+    await exec('docker', ['build', '-f', image, '-t', `${imageName}:${tag}`, context])
 
     // Push the Docker image to GHCR
-    await exec.exec('docker', ['push', `${imageName}:${tag}`])
+    await exec('docker', ['push', `${imageName}:${tag}`])
 
-    core.info(`Successfully pushed ${imageName}:${tag} to GHCR`)
+    info(`Successfully pushed ${imageName}:${tag} to GHCR`)
+
     return `${imageName}:${tag}`
   } catch (error) {
-    core.setFailed(`Failed to build and push Docker image: ${(error as any).message}`)
+    setFailed(`Failed to build and push Docker image: ${(error as any).message}`)
     throw error
   }
 }
