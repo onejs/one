@@ -13,4 +13,7 @@ export default defineConfig({
   dbCredentials: {
     url: DATABASE_URL as string, // Type assertion to ensure it's a string
   },
+  introspect: {
+    casing: 'camel',
+  },
 })

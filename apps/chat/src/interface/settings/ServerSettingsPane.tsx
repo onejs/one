@@ -1,4 +1,4 @@
-import { Plus, Trash } from '@tamagui/lucide-icons'
+import { Plus, Trash, X } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
 import { useEffect, useState } from 'react'
 import { Button, Circle, H3, H5, Input, Sheet, SizableText, View, XStack, YStack } from 'tamagui'
@@ -23,7 +23,7 @@ import { SearchableInput, SearchableList, SearchableListItem } from '../Searchab
 import { Tabs } from '../tabs/Tabs'
 import { AvatarUpload } from '../upload/AvatarUpload'
 import { UserRow } from '../users/UserRow'
-import { useUserState } from '../../state/user'
+import { updateUserState, useUserState } from '../../state/user'
 
 const actionEmitter = createEmitter<'create-role'>()
 
@@ -60,8 +60,19 @@ export const ServerSettingsPane = () => {
           pe: 'auto',
         })}
       >
+        {userState.showSidePanel && (
+          <Button
+            circular
+            pos="absolute"
+            t={0}
+            l={0}
+            zi={1000}
+            icon={X}
+            onPress={() => updateUserState({ showSidePanel: undefined })}
+          ></Button>
+        )}
         <XStack pe="none" ai="center" gap="$2">
-          <Avatar size={28} image={server.icon} />
+          {server.icon && <Avatar size={28} image={server.icon} />}
           <H3 userSelect="none">{server?.name}</H3>
 
           <XStack f={1} />

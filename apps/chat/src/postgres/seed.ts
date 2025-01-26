@@ -2,33 +2,103 @@ import pg from 'pg'
 import * as unicodeEmoji from 'unicode-emoji'
 
 const randomId = () => Math.random().toString(36).slice(2)
-
 const connectionString = process.env.ZERO_UPSTREAM_DB?.replace('127.0.0.1', 'pgdb') || ''
 
 console.info(`Connecting to: ${connectionString}`)
 
-const pool = new pg.Pool({
-  connectionString,
-})
+const pool = new pg.Pool({ connectionString })
 
-const emojis = unicodeEmoji.getEmojis()
-
-const toKeyword = (description: string) => description.split(' ').join('_')
-
-async function insertReactions() {
+async function insertSeedData() {
   const client = await connectWithRetry()
   try {
     await client.query('BEGIN')
-    const insertText = `
-      INSERT INTO reaction(id, value, keyword, "createdAt", "updatedAt") 
-        VALUES ($1, $2, $3, DEFAULT, DEFAULT)
-        ON CONFLICT DO NOTHING;
-      `
-    for (let emoji of emojis) {
-      const values = [randomId(), emoji.emoji, toKeyword(emoji.description)]
-      await client.query(insertText, values)
+
+    // Test User
+    await client.query(`
+      INSERT INTO "user" (
+        id, username, name, email, state, "emailVerified", image, "createdAt", "updatedAt"
+      ) VALUES (
+        'test-user-id',
+        'testuser',
+        'Test User',
+        'testuser@example.com',
+        '{"activeChannels":{}}',
+        true,
+        'https://one1.dev/onechatimages/uploads/np424wtl8z-avatar.png',
+        CURRENT_TIMESTAMP,
+        CURRENT_TIMESTAMP
+      ) ON CONFLICT (id) DO NOTHING;
+    `)
+
+    // Test Server
+    await client.query(`
+      INSERT INTO server (
+        id, name, "creatorId", description, icon, "channelSort", "createdAt"
+      ) VALUES (
+        'test-server-id',
+        'Test Server',
+        'test-user-id',
+        'This is a test server.',
+        'https://one1.dev/onechatimages/uploads/np424wtl8z-avatar.png',
+        '["test-channel-id"]',
+        CURRENT_TIMESTAMP
+      ) ON CONFLICT (id) DO NOTHING;
+    `)
+
+    // Default Channel
+    await client.query(`
+      INSERT INTO channel (
+        id, "serverId", name, description, private, "createdAt"
+      ) VALUES (
+        'test-channel-id',
+        'test-server-id',
+        'general',
+        'This is a default channel.',
+        false,
+        CURRENT_TIMESTAMP
+      ) ON CONFLICT (id) DO NOTHING;
+    `)
+
+    // Server Member
+    await client.query(`
+      INSERT INTO "serverMember" (
+        "serverId", "userId", "joinedAt"
+      ) VALUES (
+        'test-server-id',
+        'test-user-id',
+        CURRENT_TIMESTAMP
+      ) ON CONFLICT ("serverId", "userId") DO NOTHING;
+    `)
+
+    // Reactions
+    const emojis = unicodeEmoji.getEmojis()
+    const values = emojis.map((emoji) => ({
+      id: randomId(),
+      value: emoji.emoji,
+      keyword: emoji.description.split(' ').join('_'),
+    }))
+
+    // Clear existing reactions
+    await client.query('DELETE FROM reaction')
+
+    // Insert reactions in batches
+    for (let i = 0; i < values.length; i += 100) {
+      const batch = values.slice(i, i + 100)
+      const valueStrings = batch.map(
+        (_, index) => `($${index * 3 + 1}, $${index * 3 + 2}, $${index * 3 + 3})`
+      )
+      const query = {
+        text: `
+          INSERT INTO reaction (id, value, keyword)
+          VALUES ${valueStrings.join(',')}
+        `,
+        values: batch.flatMap((v) => [v.id, v.value, v.keyword]),
+      }
+      await client.query(query)
     }
+
     await client.query('COMMIT')
+    console.info('Seed data has been inserted successfully.')
   } catch (e) {
     await client.query('ROLLBACK')
     throw e
@@ -47,14 +117,12 @@ const connectWithRetry = async () => {
   }
 }
 
-connectWithRetry().then(() => {
-  insertReactions()
-    .then(() => {
-      console.info('Reactions have been seeded')
-      process.exit(0)
-    })
-    .catch((err) => {
-      console.error('Error seeding reactions:', err)
-      process.exit(1)
-    })
-})
+insertSeedData()
+  .then(() => {
+    console.info('Seed data insertion complete.')
+    process.exit(0)
+  })
+  .catch((err) => {
+    console.error('Error during seed data insertion:', err)
+    process.exit(1)
+  })
