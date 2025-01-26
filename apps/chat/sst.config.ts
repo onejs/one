@@ -26,6 +26,8 @@ export default $config({
     // Load .env file
     require('dotenv').config()
 
+    new sst.Secret('GITHUB_TOKEN', process.env.GITHUB_TOKEN)
+
     const chatAppImage = `ghcr.io/onejs/one/chat-app:latest` //await buildChatAppDocker()
 
     // const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
