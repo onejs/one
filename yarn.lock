@@ -15876,16 +15876,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"drizzle-to-zero@workspace:packages/drizzle-to-zero":
-  version: 0.0.0-use.local
-  resolution: "drizzle-to-zero@workspace:packages/drizzle-to-zero"
-  dependencies:
-    "@tamagui/build": "npm:^1.123.2"
-    drizzle-orm: "npm:^0.33.0"
-    vitest: "npm:^2.1.8"
-  languageName: unknown
-  linkType: soft
-
 "dunder-proto@npm:^1.0.0, dunder-proto@npm:^1.0.1":
   version: 1.0.1
   resolution: "dunder-proto@npm:1.0.1"
