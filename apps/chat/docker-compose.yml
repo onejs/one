@@ -24,7 +24,7 @@ services:
       -c hot_standby_feedback=on
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./src/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./src/postgres/:/docker-entrypoint-initdb.d
 
   seeder:
     image: oven/bun:latest
