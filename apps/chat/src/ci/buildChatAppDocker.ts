@@ -9,8 +9,9 @@ export async function buildChatAppDocker() {
   }
 
   return await buildDockerImage({
+    name: `chat-app`,
     context: '../..',
-    image: 'Dockerfile.chat',
+    image: 'Dockerfile',
     githubActor: 'natew',
     githubToken: process.env.GITHUB_TOKEN,
   })

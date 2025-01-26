@@ -2,12 +2,13 @@ import { info, setFailed } from '@actions/core'
 import { exec } from '@actions/exec'
 
 export async function buildDockerImage({
+  name,
   image,
   context,
   githubActor,
   githubToken,
-}: { image: string; context: string; githubActor: string; githubToken: string }) {
-  const imageName = `ghcr.io/onejs/one/chat-app`
+}: { name: string; image: string; context: string; githubActor: string; githubToken: string }) {
+  const imageName = `ghcr.io/onejs/one/${name}`
   const tag = 'latest'
 
   try {

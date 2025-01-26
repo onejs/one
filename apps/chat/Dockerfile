@@ -1,6 +1,6 @@
 # for chat app
 
-FROM node:22.4
+FROM --platform=linux/amd64 node:22.4
 
 ARG ONE_SERVER_URL
 
