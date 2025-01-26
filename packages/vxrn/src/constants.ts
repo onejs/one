@@ -5,7 +5,6 @@ const viteDefaultExtensions = [
   '.mjs',
   '.js',
   '.ts',
-  '.jsx',
   '.tsx',
   '.json',
 ]
@@ -13,7 +12,6 @@ const viteDefaultExtensions = [
 export const webExtensions = [
   '.web.tsx',
   '.web.ts',
-  '.web.jsx',
   '.web.mjs',
   '.web.js',
   ...viteDefaultExtensions,

@@ -1,7 +1,7 @@
 import type { Query } from '@rocicorp/zero'
-import type { message } from '~/zero'
+import type { Schema } from '~/zero'
 
-export function queryMessageItemRelations(q: Query<typeof message>) {
+export function queryMessageItemRelations(q: Query<Schema, 'message', any>) {
   return q
     .related('reactions')
     .related('channel', (q) => q.one())

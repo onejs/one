@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/strip",
-  "version": "1.1.411",
+  "version": "1.1.412",
   "license": "BSD-3-Clause",
   "sideEffects": false,
   "type": "module",
@@ -39,7 +39,7 @@
     "typescript": "^5.3.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.123.0",
+    "@tamagui/build": "^1.123.2",
     "depcheck": "^1.4.7",
     "vitest": "^2.1.8"
   },

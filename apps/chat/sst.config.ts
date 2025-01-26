@@ -1,5 +1,7 @@
 /// <reference path="./.sst/platform/config.d.ts" />
 
+import { buildChatAppDocker } from './src/ci/buildChatAppDocker'
+
 import { readFileSync } from 'node:fs'
 
 export default $config({
@@ -23,6 +25,12 @@ export default $config({
   async run() {
     // Load .env file
     require('dotenv').config()
+
+    const webImage = await buildChatAppDocker()
+
+    console.log('webImage', webImage)
+
+    return
 
     // const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
 
@@ -73,10 +81,7 @@ export default $config({
       environment: {
         ONE_SERVER_URL: 'https://example.com',
       },
-      image: {
-        dockerfile: 'Dockerfile.chat',
-        context: '../..',
-      },
+      image: ``,
       loadBalancer: {
         public: true,
         rules: [

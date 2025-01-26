@@ -122,10 +122,10 @@ const ChannelPermissions = () => {
           {rolesWithPermission.map((role, index) => {
             return (
               <SearchableListItem key={index} index={index}>
-                {(active, index) => {
+                {(active, itemProps, key) => {
                   const granted = !!role.permissionId
                   return (
-                    <Row active={active}>
+                    <Row key={key} active={active} {...itemProps}>
                       <Circle size={24} bg="$color4" />
                       <Row.Text o={granted ? 1 : 0.5}>{role.name}</Row.Text>
                       <XStack f={1} />

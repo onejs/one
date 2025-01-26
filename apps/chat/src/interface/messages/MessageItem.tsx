@@ -100,7 +100,7 @@ export const MessageItem = memo(
           messageHover.emit(message.id)
         }}
         hoverStyle={{
-          bg: '$background025',
+          bg: '$background02',
         }}
         {...(isFocused && {
           backgroundColor: '$color4',

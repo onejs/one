@@ -1,11 +1,5 @@
-import {
-  definePermissions,
-  type ExpressionBuilder,
-  NOBODY_CAN,
-  type TableSchema,
-} from '@rocicorp/zero'
+import { definePermissions, type ExpressionBuilder, NOBODY_CAN } from '@rocicorp/zero'
 import { type Schema, schema } from './schema'
-import type { channel, server } from './tables'
 import type { AuthData } from './types'
 
 // type PermissionQuery<Condition = any> = (ad: AuthData, eb: ExpressionBuilder<any>) => Condition
@@ -28,7 +22,7 @@ export function usePermission(permission: PermissionsKeys) {
 
 usePermission('channel.insert')
 
-const canEditChannel = (ad: AuthData, eb: ExpressionBuilder<typeof channel>) => {
+const canEditChannel = (ad: AuthData, eb: ExpressionBuilder<Schema, 'channel'>) => {
   return eb.exists('server', (server) => {
     return server.whereExists('roles', (q) =>
       q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
@@ -36,7 +30,7 @@ const canEditChannel = (ad: AuthData, eb: ExpressionBuilder<typeof channel>) => 
   })
 }
 
-const userIsLoggedIn = (authData: AuthData, { cmpLit }: ExpressionBuilder<TableSchema>) => {
+const userIsLoggedIn = (authData: AuthData, { cmpLit }: ExpressionBuilder<Schema, 'user'>) => {
   return cmpLit(authData.id, 'IS NOT', null)
 }
 
@@ -49,7 +43,7 @@ export const permissionQueries = {
   server: {
     insert: [userIsLoggedIn],
     update: [
-      (ad: AuthData, eb: ExpressionBuilder<typeof server>) => {
+      (ad: AuthData, eb: ExpressionBuilder<Schema, 'server'>) => {
         return eb.or(
           eb.exists('roles', (q) =>
             q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))

@@ -2,9 +2,8 @@ import type { TableSchema } from '@rocicorp/zero'
 import { ChevronLeft } from '@tamagui/lucide-icons'
 import { Button, H4, XStack, YStack } from 'tamagui'
 import { proxy, useSnapshot } from 'valtio'
-import { type Schema, schema } from '~/zero'
-import { useQuery } from '~/zero'
 import { Table } from '~/interface/devtools/Table'
+import { type Schema, schema, useQuery } from '~/zero'
 
 const globalState = proxy({
   activeTable: '',
@@ -91,7 +90,7 @@ const TableDataExplorer = () => {
       }}
       title={state.activeTable}
     >
-      <Table data={data} />
+      <Table data={data as any} />
     </Pane>
   )
 }
