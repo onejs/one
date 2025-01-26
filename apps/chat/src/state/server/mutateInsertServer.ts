@@ -3,7 +3,6 @@ import type { Server } from '~/zero'
 import { randomId } from '~/helpers/randomId'
 import { zero } from '~/zero/zero'
 import { updateUserState } from '~/state/user'
-import type { JSONValue } from '@rocicorp/zero'
 
 export const mutateInsertServer = async (server: Partial<Server>) => {
   const currentUser = await ensureSignedUp()
@@ -12,7 +11,6 @@ export const mutateInsertServer = async (server: Partial<Server>) => {
   const roleId = randomId()
 
   await zero.mutateBatch((tx) => {
-    const { createdAt, ...rest } = server
     tx.server.insert({
       id: serverId,
       description: '',
@@ -20,8 +18,7 @@ export const mutateInsertServer = async (server: Partial<Server>) => {
       name: 'Lorem',
       creatorId: currentUser.id,
       channelSort: [channelId],
-      createdAt: Number(createdAt),
-      ...rest,
+      ...server,
     })
 
     console.warn('insert role', roleId)

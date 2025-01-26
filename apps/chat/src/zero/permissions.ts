@@ -28,9 +28,7 @@ export function usePermission(permission: PermissionsKeys) {
 
 usePermission('channel.insert')
 
-type Channel = typeof schema.tables.channel
-
-const canEditChannel = (ad: AuthData, eb: ExpressionBuilder<Channel>) => {
+const canEditChannel = (ad: AuthData, eb: ExpressionBuilder<typeof channel>) => {
   return eb.exists('server', (server) => {
     return server.whereExists('roles', (q) =>
       q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
@@ -42,8 +40,6 @@ const userIsLoggedIn = (authData: AuthData, { cmpLit }: ExpressionBuilder<TableS
   return cmpLit(authData.id, 'IS NOT', null)
 }
 
-type Server = typeof schema.tables.server
-
 export const permissionQueries = {
   user: {
     insert: NOBODY_CAN,
@@ -53,7 +49,7 @@ export const permissionQueries = {
   server: {
     insert: [userIsLoggedIn],
     update: [
-      (ad: AuthData, eb: ExpressionBuilder<Server>) => {
+      (ad: AuthData, eb: ExpressionBuilder<typeof server>) => {
         return eb.or(
           eb.exists('roles', (q) =>
             q.where('canAdmin', true).whereExists('members', (q) => q.where('id', ad.id))
