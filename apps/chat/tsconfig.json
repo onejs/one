@@ -26,8 +26,8 @@
     "lib": ["dom", "esnext"]
   },
   "include": [
-    "src",
-    "app"
+    "./src",
+    "./app"
   ],
   "typeAcquisition": {
     "enable": true
