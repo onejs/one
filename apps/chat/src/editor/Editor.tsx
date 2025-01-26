@@ -39,7 +39,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
             borderRadius: 20,
             paddingLeft: 10,
             paddingRight: 10,
-            background: 'var(--background075)',
+            background: 'var(--background06)',
             backdropFilter: 'blur(50px)',
           }}
           minHeight={38}
