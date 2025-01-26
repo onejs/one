@@ -26,11 +26,7 @@ export default $config({
     // Load .env file
     require('dotenv').config()
 
-    const webImage = await buildChatAppDocker()
-
-    console.log('webImage', webImage)
-
-    return
+    const chatAppImage = `ghcr.io/onejs/one/chat-app:latest` //await buildChatAppDocker()
 
     // const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
 
@@ -81,7 +77,7 @@ export default $config({
       environment: {
         ONE_SERVER_URL: 'https://example.com',
       },
-      image: ``,
+      image: chatAppImage,
       loadBalancer: {
         public: true,
         rules: [
