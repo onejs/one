@@ -15,7 +15,7 @@ export default $config({
       home: 'aws',
       providers: {
         aws: {
-          region: 'us-east-1',
+          region: 'us-west-1',
           profile: input.stage === 'production' ? 'tamagui-prod' : 'tamagui-dev',
         },
       },
@@ -75,7 +75,7 @@ export default $config({
       memory: '8 GB',
       // link: [replicationBucket],
       environment: {
-        ONE_SERVER_URL: 'https://example.com',
+        ONE_SERVER_URL: 'https://start.chat',
       },
       image: chatAppImage,
       loadBalancer: {
