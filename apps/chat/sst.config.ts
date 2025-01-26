@@ -10,7 +10,7 @@ export default $config({
     require('dotenv').config()
 
     return {
-      name: 'aws-chat',
+      name: 'start.chat',
       removal: input?.stage === 'production' ? 'retain' : 'remove',
       home: 'aws',
       providers: {
