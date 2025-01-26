@@ -78,15 +78,27 @@ export default $config({
         ONE_SERVER_URL: 'https://start.chat',
       },
       image: chatAppImage,
-      loadBalancer: {
-        public: true,
-        rules: [
-          {
-            listen: '80/http',
-            forward: '3000/http',
-          },
-        ],
+
+      health: {
+        command: ['CMD-SHELL', 'curl -f http://localhost:3000/ || exit 1'],
+        interval: '5 seconds',
+        retries: 3,
+        startPeriod: '300 seconds',
       },
+
+      serviceRegistry: {
+        port: 3000,
+      },
+
+      // loadBalancer: {
+      //   public: true,
+      //   rules: [
+      //     {
+      //       listen: '80/http',
+      //       forward: '3000/http',
+      //     },
+      //   ],
+      // },
     })
 
     // Database

@@ -6,5 +6,13 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
+    "chat-app": {
+      "service": string
+      "type": "sst.aws.Service"
+      "url": string
+    }
+    "vpc": {
+      "type": "sst.aws.Vpc"
+    }
   }
 }
