@@ -323,7 +323,7 @@ const InfoCard = ({ title, Icon, children }) => {
       mb="$4"
       py="$2"
       // br="$5"
-      // bg="$background075"
+      // bg="$background06"
       $sm={{ w: '100%', mb: '$2' }}
     >
       <YStack fullscreen o={0.25}></YStack>

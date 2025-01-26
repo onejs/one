@@ -82,7 +82,7 @@ const Card = styled(View, {
   jc: 'center',
   w: '30%',
   f: 1,
-  bg: '$background025',
+  bg: '$background02',
   p: '$6',
   br: '$4',
   mih: 150,

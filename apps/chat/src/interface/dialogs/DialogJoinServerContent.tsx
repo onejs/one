@@ -48,9 +48,9 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
 
               return (
                 <SearchableListItem index={index} key={server.id}>
-                  {(active, itemProps) => {
+                  {(active, itemProps, key) => {
                     return (
-                      <Row active={active} {...itemProps}>
+                      <Row key={key} active={active} {...itemProps}>
                         <Avatar image={server.icon} />
                         <Row.Text>{server.name}</Row.Text>
                         <XStack f={1} />

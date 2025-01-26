@@ -75,7 +75,7 @@ const SubSection = ({
 
   const wrapper = (children) => {
     return (
-      <YStack bbw={0} bc={inMenu ? 'transparent' : '$background025'}>
+      <YStack bbw={0} bc={inMenu ? 'transparent' : '$background02'}>
         {children}
       </YStack>
     )
@@ -92,7 +92,7 @@ const SubSection = ({
         bg="transparent"
         bw={0}
         hoverStyle={{
-          bg: '$background025',
+          bg: '$background02',
         }}
       >
         {({ open }) => {

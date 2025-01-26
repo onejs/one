@@ -7985,9 +7985,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rocicorp/zero@npm:^0.9.2024122100":
-  version: 0.9.2024122100
-  resolution: "@rocicorp/zero@npm:0.9.2024122100"
+"@rocicorp/zero@npm:^0.12.2025012501":
+  version: 0.12.2025012501
+  resolution: "@rocicorp/zero@npm:0.12.2025012501"
   dependencies:
     "@badrap/valita": "npm:0.3.11"
     "@databases/escape-identifier": "npm:^1.0.3"
@@ -8011,15 +8011,14 @@ __metadata:
     command-line-args: "npm:^6.0.1"
     command-line-usage: "npm:^7.0.3"
     compare-utf8: "npm:^0.1.1"
+    defu: "npm:^6.1.4"
     dotenv: "npm:^16.4.5"
     eventemitter3: "npm:^5.0.1"
     fastify: "npm:^5.0.0"
     jose: "npm:^5.9.3"
     js-xxhash: "npm:^4.0.0"
     json-custom-numbers: "npm:^3.1.1"
-    lodash.kebabcase: "npm:^4.1.1"
-    lodash.merge: "npm:^4.6.2"
-    lodash.snakecase: "npm:^4.1.1"
+    kasi: "npm:^1.1.0"
     nanoid: "npm:^5.0.8"
     pg: "npm:^8.11.3"
     pg-format: "npm:pg-format-fix@^1.0.5"
@@ -8028,7 +8027,6 @@ __metadata:
     postgres: "npm:^3.4.4"
     postgres-array: "npm:^3.0.2"
     semver: "npm:^7.5.4"
-    strip-ansi: "npm:^7.1.0"
     tsx: "npm:^4.19.1"
     url-pattern: "npm:^1.0.3"
     ws: "npm:^8.18.0"
@@ -8036,7 +8034,7 @@ __metadata:
     zero-build-schema: out/zero/src/build-schema.js
     zero-cache: out/zero/src/cli.js
     zero-cache-dev: out/zero/src/zero-cache-dev.js
-  checksum: 10/3e7c008b61682851462c46a4e1bb7c6825d14ae6af52c483adec91e6e77ceb0cb5fe80f99a5792e80bef90e968ebc53248dc0968e84b2f2229cc520919ba70ad
+  checksum: 10/140d52f9b585aa036235ee5684749ccde1f8bf22d09dbbd450c3faeb914e8dc26d9c44e33840c4c30e518026952e62a8376ae0bb227dc02219c9dc3c03a80acd
   languageName: node
   linkType: hard
 
@@ -20549,6 +20547,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"kasi@npm:^1.1.0":
+  version: 1.1.1
+  resolution: "kasi@npm:1.1.1"
+  checksum: 10/6a686901db23c872c7e5965d4e044610a9b81c988106b733eebac76a49055895d3393331dffba5ed605b85cd532b2bb507133a488ce89617098523dc0df019d0
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^3.0.0":
   version: 3.1.0
   resolution: "keyv@npm:3.1.0"
@@ -20839,27 +20844,6 @@ __metadata:
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
   checksum: 10/cd0b2819786e6e80cb9f5cda26b1a8fc073daaf04e48d4cb462fa4663ec9adb3a5387aa22d7129e48eed1afa05b482e2a6b79bfc99b86886364449500cbb00fd
-  languageName: node
-  linkType: hard
-
-"lodash.kebabcase@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "lodash.kebabcase@npm:4.1.1"
-  checksum: 10/d84ec5441ef8e5c718c50315f35b0a045a77c7e8ee3e54472c06dc31f6f3602e95551a16c0923d689198b51deb8902c4bbc54fc9b965b26c1f86e21df3a05f34
-  languageName: node
-  linkType: hard
-
-"lodash.merge@npm:^4.6.2":
-  version: 4.6.2
-  resolution: "lodash.merge@npm:4.6.2"
-  checksum: 10/d0ea2dd0097e6201be083865d50c3fb54fbfbdb247d9cc5950e086c991f448b7ab0cdab0d57eacccb43473d3f2acd21e134db39f22dac2d6c9ba6bf26978e3d6
-  languageName: node
-  linkType: hard
-
-"lodash.snakecase@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "lodash.snakecase@npm:4.1.1"
-  checksum: 10/82ed40935d840477ef8fee64f9f263f75989c6cde36b84aae817246d95826228e1b5a7f6093c51de324084f86433634c7af244cb89496633cacfe443071450d0
   languageName: node
   linkType: hard
 
@@ -23289,7 +23273,7 @@ __metadata:
   resolution: "one-zero@workspace:examples/one-zero"
   dependencies:
     "@react-native-community/cli": "npm:15.1.3"
-    "@rocicorp/zero": "npm:^0.9.2024122100"
+    "@rocicorp/zero": "npm:^0.12.2025012501"
     "@tamagui/config": "npm:^1.123.2"
     "@tamagui/linear-gradient": "npm:^1.123.2"
     "@tamagui/lucide-icons": "npm:^1.123.2"
@@ -23404,7 +23388,7 @@ __metadata:
     "@docsearch/react": "npm:^3.6.1"
     "@floating-ui/react": "npm:0.26.24"
     "@react-native-community/cli": "npm:15.1.3"
-    "@rocicorp/zero": "npm:^0.9.2024122100"
+    "@rocicorp/zero": "npm:^0.12.2025012501"
     "@shopify/react-native-skia": "npm:^1.7.6"
     "@tamagui/animations-moti": "npm:^1.123.2"
     "@tamagui/config": "npm:^1.123.2"
@@ -27698,7 +27682,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strip-ansi@npm:^7.0.1, strip-ansi@npm:^7.1.0":
+"strip-ansi@npm:^7.0.1":
   version: 7.1.0
   resolution: "strip-ansi@npm:7.1.0"
   dependencies:

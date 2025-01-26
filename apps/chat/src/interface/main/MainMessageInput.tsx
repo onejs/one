@@ -56,7 +56,7 @@ const HotMenuContent = () => {
       y={0}
       pe="none"
       zi={10_000}
-      bg="$background075"
+      bg="$background06"
       br="$7"
       ov="hidden"
       shadowColor="$shadowColor"
@@ -94,9 +94,10 @@ const HotMenuContent = () => {
 
           return (
             <SearchableListItem key={item.name} index={index}>
-              {(active, itemProps) => {
+              {(active, itemProps, key) => {
                 return (
                   <Row
+                    key={key}
                     ai="center"
                     px="$4"
                     py="$4"

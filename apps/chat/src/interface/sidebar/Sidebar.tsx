@@ -16,7 +16,7 @@ export const Sidebar = memo(() => {
 
       <SidebarServerChannelsList />
 
-      <YStack btw={1} bc="$background025" py="$2" mt="auto" mah={200}>
+      <YStack btw={1} bc="$background02" py="$2" mt="auto" mah={200}>
         <SidebarQuickList />
       </YStack>
     </YStack>
