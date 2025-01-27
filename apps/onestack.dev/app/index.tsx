@@ -125,25 +125,20 @@ export default function HomePage() {
 
         <View theme="yellow" gap="$4" pt="$6">
           <PrettyTextBigger>
-            One aims to make cross-platform React&nbsp;Native as performant and simple as possible
-            by letting sync engines like{' '}
-            <Link target="_blank" href="https://zero.rocicorp.dev/">
-              Zero
-            </Link>{' '}
-            do the hard work.
+            One aims to make web + native with React and React&nbsp;Native much simpler, and faster.
             <br />
             <br />
             One takes{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
               Vite
-            </Link>
-            ,{' '}
-            <Link target="_blank" href="https://vxrn.dev">
-              makes it serve
             </Link>{' '}
-            React Native, then adds{' '}
+            and makes it{' '}
+            <Link target="_blank" href="https://vxrn.dev">
+              able to target
+            </Link>{' '}
+            React&nbsp;Native. Then it adds{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
-              file-system routing
+              FS routes
             </Link>
             ,{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing-modes">
@@ -165,15 +160,27 @@ export default function HomePage() {
             <Link target="_blank" href="https://hono.dev">
               Hono
             </Link>
-            , and a bit{' '}
+            ,{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/features">
-              more
+              etc
             </Link>
             .
           </PrettyTextBigger>
 
-          <YStack als="center" ai="center" jc="center" gap="$1" px="$6" bc="$color4" mt={12}>
-            <Paragraph theme="gray" color="$color8" mb={-20}>
+          <PrettyTextBigger>
+            One is a simpler framework because it's being designed alongside a sync engine,{' '}
+            <Link
+              style={{ color: 'var(--color11)' }}
+              target="_blank"
+              href="https://zero.rocicorp.dev/"
+            >
+              Zero
+            </Link>
+            .
+          </PrettyTextBigger>
+
+          <YStack mt={40} als="center" ai="center" jc="center" gap="$1" px="$6" bc="$color4">
+            <Paragraph size="$5" theme="gray" color="$color8" mb={-20}>
               Bootstrap an app with
             </Paragraph>
             <br />
@@ -548,8 +555,8 @@ const CopyCommand = () => {
         </View>
       </Tooltip.Trigger>
       <Tooltip.Content
-        enterStyle={{ x: -2, y: 0, opacity: 0, scale: 0.9 }}
-        exitStyle={{ x: -2, y: 0, opacity: 0, scale: 0.9 }}
+        enterStyle={{ x: -2, y: 0, opacity: 0, scale: 0.98 }}
+        exitStyle={{ x: -2, y: 0, opacity: 0, scale: 0.98 }}
         scale={1}
         x={0}
         y={-1}
