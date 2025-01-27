@@ -28,7 +28,7 @@ const ButtonFrame = styled(XStack, {
   },
 
   pressStyle: {
-    bg: '$background025',
+    bg: '$background02',
   },
 
   focusVisibleStyle: {

@@ -1,4 +1,4 @@
-import { type Query, type QueryType, type Smash, Zero } from '@rocicorp/zero'
+import { type Query, Zero } from '@rocicorp/zero'
 import { useZero, useQuery as useZeroQuery } from '@rocicorp/zero/react'
 import { createEmitter } from '@vxrn/emitter'
 import { type Schema, schema } from './schema'
@@ -31,17 +31,12 @@ export function setZeroAuth({ jwtToken, userId }: { jwtToken: string; userId: st
   zeroEmitter.emit(zero)
 }
 
-export type QueryResult<TReturn extends QueryType> = [
-  Smash<TReturn>,
-  {
-    type: 'unknown' | 'complete'
-  },
-]
-
 export function useQuery<
-  QueryBuilder extends (z: Zero<Schema>['query']) => Query<any, any>,
-  Q extends ReturnType<QueryBuilder>,
->(createQuery: QueryBuilder): Q extends Query<any, infer Return> ? QueryResult<Return> : never {
-  const z = useZero<Schema>()
-  return useZeroQuery(createQuery(z.query)) as any
+  TSchema extends Schema,
+  TTable extends keyof TSchema['tables'] & string,
+  TReturn,
+>(createQuery: (z: Zero<TSchema>['query']) => Query<TSchema, TTable, TReturn>, enable?: boolean) {
+  const z = useZero<TSchema>()
+  z.query
+  return useZeroQuery<TSchema, TTable, TReturn>(createQuery(z.query), enable)
 }

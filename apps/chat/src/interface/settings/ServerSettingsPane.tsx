@@ -255,11 +255,12 @@ const ServerRolePermissionsPaneMembers = ({ role }: { role: RoleWithRelations })
       {serverMembers.map((user, index) => {
         return (
           <SearchableListItem key={user.name} index={index}>
-            {(active, itemProps) => {
+            {(active, itemProps, key) => {
               const isMember = members[user.id]
 
               return (
                 <UserRow
+                  key={key}
                   active={active}
                   user={user}
                   rowProps={itemProps}
