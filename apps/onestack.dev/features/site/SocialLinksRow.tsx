@@ -39,11 +39,7 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
         </Container>
       </HoverableLink>
 
-      <HoverableLink
-        target="_blank"
-        href="https://github.com/onejs/one"
-        aria-label="GitHub"
-      >
+      <HoverableLink target="_blank" href="https://github.com/onejs/one" aria-label="GitHub">
         <Container miw={large ? 60 : 45} y={-1}>
           <GithubIcon width={28 * scale} height={28 * scale} aria-hidden="true" />
           <SubTitle dsp={large ? 'flex' : 'none'}>Github</SubTitle>
@@ -51,11 +47,7 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
       </HoverableLink>
 
       <View dsp={large ? 'flex' : 'none'} $group-card-gtXs={{ dsp: 'inline-flex' }}>
-        <HoverableLink
-          target="_blank"
-          href="https://discord.gg/YpUKRqaFtm"
-          aria-label="Discord"
-        >
+        <HoverableLink target="_blank" href="https://discord.gg/YpUKRqaFtm" aria-label="Discord">
           <Container miw={large ? 60 : 45}>
             <DiscordIcon width={25 * scale} height={25 * scale} aria-hidden="true" />
             <SubTitle dsp={large ? 'flex' : 'none'}>Discord</SubTitle>
@@ -88,6 +80,7 @@ const HoverableLink = (props: SizableTextProps & LinkProps) => {
       px="$3"
       o={0.66}
       hoverStyle={{ o: 1 }}
+      textDecorationColor="transparent"
       ai="center"
       jc="center"
       dsp="inline-flex"
