@@ -5,8 +5,6 @@ import { readFileSync } from 'node:fs'
 
 const env = config()
 
-console.log('got env', env.parsed)
-
 export default $config({
   app(input) {
     return {
@@ -111,6 +109,16 @@ export default $config({
 
     const connection = $interpolate`postgres://${db.username}:${db.password}@${db.host}:${db.port}`
     const upstreamDbConnection = $interpolate`${connection}/${db.database}`
+
+    const migrations = cluster.addService(`migrations`, {
+      image: `ghcr.io/onejs/one/chat-migrations`,
+      cpu: '1 vCPU',
+      memory: '2 GB',
+      environment: {
+        POSTGRES_DB: upstreamDbConnection,
+      },
+      link: [db],
+    })
 
     // // Common environment variables
     const zeroSharedEnv = {
