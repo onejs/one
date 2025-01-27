@@ -1,13 +1,12 @@
 import { XStack, YStack } from 'tamagui'
 import { AnimationDriver } from '~/interface/animations/AnimationDriver'
 import { Main } from '~/interface/main/Main'
+import { MainMessageInput } from '~/interface/main/MainMessageInput'
 import { AccountSettingsPane } from '~/interface/settings/AccountSettingsPane'
-import { hiddenPanelWidth } from '~/interface/settings/constants'
 import { ServerSettingsPane } from '~/interface/settings/ServerSettingsPane'
 import { Sidebar } from '~/interface/sidebar/Sidebar'
 import { TopBar } from '~/interface/TopBar'
 import { useUserState } from '~/state/user'
-import { MainMessageInput } from '~/interface/main/MainMessageInput'
 
 export default function HomePage() {
   return (

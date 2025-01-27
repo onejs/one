@@ -68,7 +68,7 @@ export default $config({
       },
     })
 
-    // // ECS Cluster
+    // ECS Cluster
     const cluster = new sst.aws.Cluster(`cluster`, {
       vpc,
     })
