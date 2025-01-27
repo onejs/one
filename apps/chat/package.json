@@ -20,7 +20,7 @@
     "dev:tauri": "tauri dev",
     "docker": "docker compose --env-file .env",
     "ios": "expo run:ios",
-    "migrate": "",
+    "migrate": "tsx ./src/postgres/migrate.ts",
     "migrate:auth": "npx @better-auth/cli migrate --config ./src/better-auth/auth.ts",
     "build:docker:app": "RUN=1 tsx ./src/ci/buildChatAppDocker.ts",
     "sst:login": "aws sso login --sso-session=tamagui",
