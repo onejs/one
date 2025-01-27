@@ -24,7 +24,8 @@ export default function Layout() {
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <link rel="icon" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.png" sizes="32x32" />
+        <link rel="icon" href="/large-icon.png" sizes="192x192" />
       </head>
 
       <body>
