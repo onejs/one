@@ -79,7 +79,6 @@
     "virtua": "^0.39.2"
   },
   "devDependencies": {
-    "kysely-ctl": "^0.10.1",
     "@actions/core": "^1.11.1",
     "@actions/exec": "^1.1.1",
     "@react-native-community/cli": "15.1.3",

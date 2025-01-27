@@ -1,6 +1,6 @@
-import * as unicodeEmoji from 'unicode-emoji'
-import { getClient, randomId } from './_lib'
 import type { PoolClient } from 'pg'
+import * as unicodeEmoji from 'unicode-emoji'
+import { randomId } from './_lib'
 
 export async function up(client: PoolClient) {
   const emojis = unicodeEmoji.getEmojis()
