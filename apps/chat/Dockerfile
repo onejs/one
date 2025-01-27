@@ -14,9 +14,7 @@ COPY . .
 
 RUN corepack enable
 RUN corepack prepare yarn@4.4.0 --activate
-RUN yarn install --immutable
-
-WORKDIR /app/apps/chat
+RUN yarn install
 
 EXPOSE 3000
 
