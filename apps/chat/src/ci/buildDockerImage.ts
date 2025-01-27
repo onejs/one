@@ -16,7 +16,15 @@ export async function buildDockerImage({
     await exec('docker', ['login', 'ghcr.io', '-u', githubActor, '-p', githubToken])
 
     // build
-    await exec('docker', ['build', '-f', image, '-t', `${imageName}:${tag}`, context])
+    await exec('docker', [
+      'build',
+      '--platform=linux/amd64',
+      '-f',
+      image,
+      '-t',
+      `${imageName}:${tag}`,
+      context,
+    ])
 
     // push
     await exec('docker', ['push', `${imageName}:${tag}`])

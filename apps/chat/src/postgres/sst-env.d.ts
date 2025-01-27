@@ -6,17 +6,5 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
-    "GITHUB_TOKEN": {
-      "type": "sst.sst.Secret"
-      "value": string
-    }
-    "chat-app": {
-      "service": string
-      "type": "sst.aws.Service"
-      "url": string
-    }
-    "vpc": {
-      "type": "sst.aws.Vpc"
-    }
   }
 }
