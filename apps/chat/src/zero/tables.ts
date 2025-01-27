@@ -1,4 +1,4 @@
-import { boolean, json, number, relationships, string, table, type Row } from '@rocicorp/zero'
+import { boolean, json, number, relationships, string, table } from '@rocicorp/zero'
 import type { UserState } from './types'
 
 export const user = table('user')

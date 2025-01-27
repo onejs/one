@@ -1,1 +1,2 @@
 packages/strip/src/** filter=crypt diff=crypt merge=crypt
+apps/chat/sst.config.ts filter=crypt diff=crypt merge=crypt
