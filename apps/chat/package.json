@@ -72,7 +72,7 @@
     "react-native-safe-area-context": "4.10.5",
     "react-native-screens": "4.4.0",
     "react-native-svg": "15.8.0",
-    "sst": "3.6.9",
+    "sst": "^3.6.18",
     "tamagui": "^1.123.2",
     "ts-deepmerge": "^7.0.2",
     "valtio": "^2.1.2",
@@ -87,7 +87,7 @@
     "@types/aws-lambda": "8.10.147",
     "@types/pg": "^8.11.10",
     "dotenv": "^16.4.7",
-    "sst": "^3.4.46",
+    "sst": "^3.6.18",
     "tsx": "^4.19.0",
     "unicode-emoji": "^2.6.0"
   },

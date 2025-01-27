@@ -23459,7 +23459,7 @@ __metadata:
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:4.4.0"
     react-native-svg: "npm:15.8.0"
-    sst: "npm:^3.4.46"
+    sst: "npm:^3.6.18"
     tamagui: "npm:^1.123.2"
     ts-deepmerge: "npm:^7.0.2"
     tsx: "npm:^4.19.0"
@@ -27403,56 +27403,53 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sst-darwin-arm64@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-darwin-arm64@npm:3.4.46"
+"sst-darwin-arm64@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-darwin-arm64@npm:3.6.18"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"sst-darwin-x64@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-darwin-x64@npm:3.4.46"
+"sst-darwin-x64@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-darwin-x64@npm:3.6.18"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"sst-linux-arm64@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-linux-arm64@npm:3.4.46"
+"sst-linux-arm64@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-linux-arm64@npm:3.6.18"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"sst-linux-x64@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-linux-x64@npm:3.4.46"
+"sst-linux-x64@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-linux-x64@npm:3.6.18"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"sst-linux-x86@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-linux-x86@npm:3.4.46"
+"sst-linux-x86@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-linux-x86@npm:3.6.18"
   conditions: os=linux & cpu=x86
   languageName: node
   linkType: hard
 
-"sst@npm:^3.4.46":
-  version: 3.4.46
-  resolution: "sst@npm:3.4.46"
+"sst@npm:^3.6.18":
+  version: 3.6.18
+  resolution: "sst@npm:3.6.18"
   dependencies:
     aws4fetch: "npm:^1.0.18"
     jose: "npm:5.2.3"
     openid-client: "npm:5.6.4"
-    sst-darwin-arm64: "npm:3.4.46"
-    sst-darwin-x64: "npm:3.4.46"
-    sst-linux-arm64: "npm:3.4.46"
-    sst-linux-x64: "npm:3.4.46"
-    sst-linux-x86: "npm:3.4.46"
-  peerDependencies:
-    hono: 4.x
-    valibot: 0.30.x
+    sst-darwin-arm64: "npm:3.6.18"
+    sst-darwin-x64: "npm:3.6.18"
+    sst-linux-arm64: "npm:3.6.18"
+    sst-linux-x64: "npm:3.6.18"
+    sst-linux-x86: "npm:3.6.18"
   dependenciesMeta:
     sst-darwin-arm64:
       optional: true
@@ -27464,14 +27461,9 @@ __metadata:
       optional: true
     sst-linux-x86:
       optional: true
-  peerDependenciesMeta:
-    hono:
-      optional: true
-    valibot:
-      optional: true
   bin:
     sst: bin/sst.mjs
-  checksum: 10/b52cd377487232fb4c7a82d690e5227ca218d5e110d59eeb1beec9e002987656dbfb118fbf59d95f36b6a14c73cef76b99c517f7960c0e60142c0c470bbcde64
+  checksum: 10/122fc447ae648fd956750822fad578d9cddbcf5dc93f518abd79aaeeb6a965efa56f7b02a3fb53316cf2347c1b96bb543f5276731eec3c4c0b5049145fd618d6
   languageName: node
   linkType: hard
 
@@ -29998,7 +29990,7 @@ __metadata:
     npm-run-all: "npm:^4.1.5"
     p-map: "npm:^7.0.2"
     patch-package: "npm:^8.0.0"
-    sst: "npm:^3.4.46"
+    sst: "npm:^3.6.18"
     tsx: "npm:^4.19.0"
     turbo: "npm:^2.1.0"
     typescript: "npm:^5.7.2"
