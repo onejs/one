@@ -18,6 +18,11 @@ export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
       color="inherit"
       fontSize="inherit"
       lineHeight="inherit"
+      textDecorationColor="$color04"
+      hoverStyle={{
+        color: '$color12',
+        textDecorationColor: '$color12',
+      }}
       {...props}
       {...(linkProps as any)}
     />

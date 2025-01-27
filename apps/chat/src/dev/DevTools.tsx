@@ -3,8 +3,8 @@ import { getRandomItem } from '~/helpers/getRandomItem'
 import { randomId } from '~/helpers/randomId'
 import { showToast } from '~/interface/toast/Toast'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
-import { resolve } from '~/zero/resolve'
 import { zero, type Message } from '~/zero'
+import { resolve } from '~/zero/resolve'
 
 export const DevTools = () => {
   const channel = useCurrentChannel()
@@ -44,7 +44,6 @@ export const DevTools = () => {
               createdAt: new Date().getTime() - index * 60 * 1000,
               deleted: false,
               id: randomId(),
-              // @ts-expect-error
               creatorId: getRandomItem(users)!.id,
               serverId: channel.serverId,
               isThreadReply: false,

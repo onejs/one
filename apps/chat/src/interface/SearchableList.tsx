@@ -158,7 +158,7 @@ export const SearchableListItem = ({
   children,
   index,
 }: {
-  children: (active: boolean, itemProps: Record<string, any>) => JSX.Element
+  children: (active: boolean, itemProps: Record<string, any>, key: string) => JSX.Element
   index: number
 }) => {
   const [active, setActive] = useState(false)
@@ -169,10 +169,10 @@ export const SearchableListItem = ({
 
   if (!isWeb) {
     // TODO
-    return children(active, {})
+    return children(active, {}, '')
   }
 
   const context = useContext(Context)
-
-  return children(active, context?.getItemProps(index))
+  const { key, ...rest } = context?.getItemProps(index) || {}
+  return children(active, rest, key)
 }

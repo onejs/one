@@ -73,12 +73,13 @@ export const AddReactionButton = ({ message }: { message: Message }) => {
                 const reaction = reactions[index]
                 return (
                   <SearchableListItem index={index}>
-                    {(active, itemProps) => {
+                    {(active, itemProps, key) => {
                       return (
                         <ReactionButton
                           message={message}
                           reaction={reaction}
                           active={active}
+                          key={key}
                           {...itemProps}
                         />
                       )

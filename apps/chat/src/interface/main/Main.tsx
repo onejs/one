@@ -20,7 +20,7 @@ export const Main = memo(() => {
       bc="$color7"
     >
       <ChannelTopBar />
-      <YStack mt={mainTopBarHeight} pos="relative" f={1} bg="$background05">
+      <YStack mt={mainTopBarHeight} pos="relative" f={1} bg="$background04">
         <MainMessagesList />
         <MainOpenThread />
       </YStack>

@@ -53,13 +53,13 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
         cur="default"
         {...(!disableHover && {
           hoverStyle: {
-            bg: '$background025',
+            bg: '$background02',
           },
         })}
         {...(active && {
-          bg: '$background05',
+          bg: '$background04',
           hoverStyle: {
-            bg: '$background05',
+            bg: '$background04',
           },
         })}
         {...(size === 'large' && {
