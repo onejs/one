@@ -105,7 +105,7 @@ export function OneLogo({
 
   return (
     <View
-      pos="relative"
+      position="relative"
       width={1840 * scaleDownBy}
       height={1451 * scaleDownBy}
       x={-23 * size}
@@ -188,13 +188,13 @@ function OneBallAnimation({ start, size: sizeProp = 1 }: { start: boolean; size?
     <View
       // opacity={0}
       // $group-hover={{ opacity: 1 }}
-      pos="absolute"
-      w={size}
-      h={size}
+      position="absolute"
+      width={size}
+      height={size}
       t={65 * sizeProp}
       l={180 * sizeProp}
       onMouseEnter={() => setHovered(true)}
-      userSelect="none"
+      select="none"
     >
       {new Array(balls).fill(0).map((_, index) => {
         return (

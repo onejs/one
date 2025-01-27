@@ -59,7 +59,7 @@ export const SidebarServerChannelsList = () => {
 
   return (
     <YStack>
-      <YStack pos="relative">
+      <YStack position="relative">
         {server && user && (
           <ListTitle
             icon={
@@ -68,7 +68,7 @@ export const SidebarServerChannelsList = () => {
                   setShowTempChannel(true)
                 }}
               >
-                <Plus size={16} o={0.5} />
+                <Plus size={16} opacity={0.5} />
               </ButtonSimple>
             }
             iconAfter
@@ -189,10 +189,10 @@ const ChannelListItem = forwardRef(
     return (
       <EditableListItem
         ref={ref}
-        icon={channel?.private ? <Lock mx="$2.5" o={0.5} size={12} /> : null}
+        icon={channel?.private ? <Lock mx="$2.5" opacity={0.5} size={12} /> : null}
         iconAfter
         before={
-          <SizableText size="$2" mr={-5} o={0.3}>
+          <SizableText size="$2" mr={-5} opacity={0.3}>
             #
           </SizableText>
         }

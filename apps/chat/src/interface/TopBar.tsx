@@ -39,18 +39,18 @@ export const TopBar = memo(() => {
   return (
     <XStack
       data-tauri-drag-region
-      br="$4"
+      rounded="$4"
       mx={2}
-      ai="center"
-      jc="space-between"
+      items="center"
+      justify="space-between"
       y={2}
-      h={30}
+      height={30}
       pl={72}
       pr={4}
       mb={4}
     >
-      <XStack pe="box-none" gap="$3" ai="center">
-        <XStack ai="center" gap="$2">
+      <XStack pointerEvents="box-none" gap="$3" items="center">
+        <XStack items="center" gap="$2">
           <TooltipSimple label="Menu">
             <HotMenuButton />
           </TooltipSimple>
@@ -65,11 +65,11 @@ export const TopBar = memo(() => {
 
         <H1
           data-tauri-drag-region
-          cur="default"
-          userSelect="none"
-          pe="none"
+          cursor="default"
+          select="none"
+          pointerEvents="none"
           m={0}
-          o={0.6}
+          opacity={0.6}
           fontSize={12}
           textTransform="uppercase"
           letterSpacing={2}
@@ -78,12 +78,12 @@ export const TopBar = memo(() => {
         </H1>
       </XStack>
 
-      <XStack ai="center" gap="$1">
+      <XStack items="center" gap="$1">
         <TopBarSearch />
 
-        <XStack ai="center">
+        <XStack items="center">
           {!!userState?.showSidePanel && (
-            <YStack fullscreen ai="center" jc="center" zi={100}>
+            <YStack fullscreen items="center" justify="center" z={100}>
               <ButtonSimple
                 onPress={() => {
                   updateUserState({
@@ -91,13 +91,13 @@ export const TopBar = memo(() => {
                   })
                 }}
               >
-                <ChevronRight size={20} o={0.5} />
+                <ChevronRight size={20} opacity={0.5} />
               </ButtonSimple>
             </YStack>
           )}
 
           <XStack
-            ai="center"
+            items="center"
             {...(userState?.showSidePanel && {
               opacity: 0,
             })}
@@ -117,7 +117,7 @@ export const TopBar = memo(() => {
                 }
               }}
             >
-              <Settings2 o={0.5} size={20} />
+              <Settings2 opacity={0.5} size={20} />
             </ButtonSimple>
 
             <UserButton />
@@ -152,7 +152,11 @@ const UserButton = () => {
           ensureSignedUp()
         }}
       >
-        {user?.image ? <Avatar size={20} image={user.image} /> : <UserCircle size={20} o={0.5} />}
+        {user?.image ? (
+          <Avatar size={20} image={user.image} />
+        ) : (
+          <UserCircle size={20} opacity={0.5} />
+        )}
       </ButtonSimple>
     </>
   )
@@ -166,9 +170,9 @@ const TopBarSearch = () => {
   })
 
   return (
-    <XStack ai="center" gap="$2" mr="$4">
-      <Search size={16} o={0.5} />
-      <Input ref={inputRef} w={250} placeholder="" size="$2" h={26} bw={0} />
+    <XStack items="center" gap="$2" mr="$4">
+      <Search size={16} opacity={0.5} />
+      <Input ref={inputRef} width={250} placeholder="" size="$2" height={26} borderWidth={0} />
     </XStack>
   )
 }

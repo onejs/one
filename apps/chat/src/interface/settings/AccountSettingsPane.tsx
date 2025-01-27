@@ -8,12 +8,12 @@ import { updateUserState } from '~/state/user'
 export const AccountSettingsPane = () => {
   return (
     <YStack
-      h="100%"
+      height="100%"
       data-tauri-drag-region
-      pos="absolute"
+      position="absolute"
       t={0}
       r={-hiddenPanelWidth}
-      w={hiddenPanelWidth}
+      width={hiddenPanelWidth}
       p="$4"
       gap="$4"
     >

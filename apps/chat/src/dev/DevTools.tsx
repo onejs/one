@@ -10,7 +10,7 @@ export const DevTools = () => {
   const channel = useCurrentChannel()
 
   return (
-    <YStack f={1} p="$4" gap="$2">
+    <YStack flex={1} p="$4" gap="$2">
       <Button
         onPress={async () => {
           const friendships = await resolve(zero.query.friendship)

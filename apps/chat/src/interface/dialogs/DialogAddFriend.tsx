@@ -43,8 +43,8 @@ export const DialogAddFriend = () => {
         />
 
         <DialogContent key="content">
-          <Input onChangeText={setSearch} ref={inputRef as any} f={1} size="$5" />
-          <YStack f={100}>
+          <Input onChangeText={setSearch} ref={inputRef as any} flex={1} size="$5" />
+          <YStack flex={100}>
             {foundUsers.map((user) => {
               return <UserRowFriendable key={user.id} user={user} />
             })}

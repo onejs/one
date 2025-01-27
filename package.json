@@ -72,7 +72,7 @@
     "sst": "^3.6.18",
     "tsx": "^4.19.0",
     "turbo": "^2.1.0",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
     "vitepress": "^1.1.4"

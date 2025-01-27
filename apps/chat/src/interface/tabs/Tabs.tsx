@@ -70,7 +70,7 @@ function TabsComponent({
       orientation="horizontal"
       size="$4"
       width="100%"
-      br="$4"
+      rounded="$4"
       value={selected}
       onPress={(e) => e.stopPropagation()}
       onValueChange={(val) => {
@@ -78,18 +78,18 @@ function TabsComponent({
         setSelected(val)
       }}
       group
-      f={1}
+      flex={1}
       {...rest}
     >
-      <YStack w="100%">
-        <YStack br="$5">
-          <XStack w="100%" gap="$6">
-            <XStack mb="$4" f={1}>
+      <YStack width="100%">
+        <YStack rounded="$5">
+          <XStack width="100%" gap="$6">
+            <XStack mb="$4" flex={1}>
               <AnimatePresence initial={false}>
                 {intentAt && (
                   <TabIndicator
-                    w={intentAt.width}
-                    h={intentAt.height}
+                    width={intentAt.width}
+                    height={intentAt.height}
                     x={intentAt.x}
                     y={intentAt.y}
                   />
@@ -99,9 +99,8 @@ function TabsComponent({
               <AnimatePresence initial={false}>
                 {activeAt && (
                   <TabIndicator
-                    theme="alt1"
-                    w={activeAt.width}
-                    h={activeAt.height}
+                    width={activeAt.width}
+                    height={activeAt.height}
                     x={activeAt.x}
                     y={activeAt.y}
                   />
@@ -109,7 +108,7 @@ function TabsComponent({
               </AnimatePresence>
 
               <TamaguiTabs.List
-                f={1}
+                flex={1}
                 disablePassBorderRadius
                 loop={false}
                 aria-label="package manager"
@@ -132,7 +131,7 @@ function TabsComponent({
         </YStack>
 
         {/* <AnimatePresence exitBeforeEnter custom={{ direction }} initial={false}>
-          <AnimatedYStack f={1} key={selected}>
+          <AnimatedYStack flex={1} key={selected}>
             
           </AnimatedYStack>
         </AnimatePresence> */}
@@ -161,16 +160,16 @@ function Tab({
       pr="$2.5"
       py="$1.5"
       gap="$1.5"
-      f={1}
+      flex={1}
       bg="transparent"
-      bw={0}
-      bc="$color1"
+      borderWidth={0}
+      borderColor="$color1"
       shadowRadius={0}
       value={value}
       onInteraction={onInteraction}
     >
-      <XStack gap="$1.5" ai="center" jc="center">
-        <SizableText y={-0.5} size="$4" fow="500">
+      <XStack gap="$1.5" items="center" justify="center">
+        <SizableText y={-0.5} size="$4" fontWeight="500">
           {label}
         </SizableText>
       </XStack>
@@ -181,20 +180,20 @@ function Tab({
 function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
   return (
     <YStack
-      pos="absolute"
+      position="absolute"
       bg="$color5"
-      o={0.7}
-      br="$4"
+      opacity={0.7}
+      rounded="$4"
       animation="quickestLessBouncy"
       enterStyle={{
-        o: 0,
+        opacity: 0,
       }}
       exitStyle={{
-        o: 0,
+        opacity: 0,
       }}
       {...(active && {
         bg: '$color8',
-        o: 0.6,
+        opacity: 0.6,
       })}
       {...props}
     />
@@ -202,9 +201,9 @@ function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
 }
 
 const AnimatedYStack = styled(YStack, {
-  f: 1,
+  flex: 1,
   x: 0,
-  o: 1,
+  opacity: 1,
 
   animation: '100ms',
   variants: {

@@ -12,7 +12,7 @@ export const SidebarServersRow = () => {
   return (
     <XStack>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <SidebarIndent fd="row" gap="$2" py="$3">
+        <SidebarIndent flexDirection="row" gap="$2" py="$3">
           {servers.map((server) => {
             return (
               <TooltipSimple key={server.id} label={server.name}>

@@ -34,13 +34,13 @@ export const ServerSettingsPane = () => {
     <>
       <YStack
         fullscreen
-        zi={99_000}
+        z={99_000}
         bg="$shadow3"
         animation="quicker"
-        o={0}
-        pe="none"
+        opacity={0}
+        pointerEvents="none"
         {...(userState.showSidePanel && {
-          o: 1,
+          opacity: 1,
           pe: 'auto',
         })}
         onPress={() => {
@@ -50,24 +50,24 @@ export const ServerSettingsPane = () => {
         }}
       />
       <YStack
-        h="100%"
+        height="100%"
         data-tauri-drag-region
         animation="quicker"
-        pos="absolute"
+        position="absolute"
         r={0}
         bg="$color1"
         elevation="$4"
         t={0}
-        o={0}
-        pe="none"
+        opacity={0}
+        pointerEvents="none"
         x={10}
-        w={hiddenPanelWidth}
-        zi={100_000}
+        width={hiddenPanelWidth}
+        z={100_000}
         p="$4"
         gap="$4"
         {...(userState.showSidePanel && {
           x: 0,
-          o: 1,
+          opacity: 1,
           pe: 'auto',
         })}
       >
@@ -87,13 +87,13 @@ const SettingsContents = memo(() => {
 
   return (
     <>
-      <XStack pe="none" ai="center" gap="$2">
+      <XStack pointerEvents="none" items="center" gap="$2">
         <Avatar size={28} image={server.icon} />
-        <H3 userSelect="none">{server?.name}</H3>
+        <H3 select="none">{server?.name}</H3>
 
-        <XStack f={1} />
+        <XStack flex={1} />
 
-        <XStack ai="center" pe="auto">
+        <XStack items="center" pointerEvents="auto">
           {tab === 'permissions' && (
             <ButtonSimple
               icon={Plus}
@@ -118,7 +118,7 @@ const SettingsContents = memo(() => {
             { label: 'Permissions', value: 'permissions' },
           ]}
         >
-          <YStack pos="relative" f={1} w="100%">
+          <YStack position="relative" flex={1} width="100%">
             <AlwaysVisibleTabContent active={tab} value="settings">
               <SettingsServer server={server} />
             </AlwaysVisibleTabContent>
@@ -149,8 +149,8 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
   })
 
   return (
-    <YStack data-tauri-drag-region f={1}>
-      <YStack f={1}>
+    <YStack data-tauri-drag-region flex={1}>
+      <YStack flex={1}>
         <SortableList
           items={roles}
           renderItem={(role) => (
@@ -190,7 +190,7 @@ const SettingsServerPermissions = ({ server }: { server: Server }) => {
       </YStack>
 
       <Sheet animation="quickest" open={!!selected}>
-        <Sheet.Frame bg="$color2" br="$6" elevation="$4" p="$4">
+        <Sheet.Frame bg="$color2" rounded="$6" elevation="$4" p="$4">
           {selected && <ServerRolePermissionsPane role={selected} />}
         </Sheet.Frame>
       </Sheet>
@@ -205,7 +205,7 @@ const ServerRolePermissionsPane = ({ role }: { role: RoleWithRelations }) => {
 
   return (
     <>
-      <H5 size="$2" o={0.5} mb="$3">
+      <H5 size="$2" opacity={0.5} mb="$3">
         Role: {role?.name}
       </H5>
 
@@ -218,7 +218,7 @@ const ServerRolePermissionsPane = ({ role }: { role: RoleWithRelations }) => {
           { label: 'Members', value: 'members' },
         ]}
       >
-        <YStack pos="relative" f={1} w="100%">
+        <YStack position="relative" flex={1} width="100%">
           <AlwaysVisibleTabContent active={tab} value="abilities">
             <RoleSettingSwitch
               label="Admin"
@@ -230,7 +230,7 @@ const ServerRolePermissionsPane = ({ role }: { role: RoleWithRelations }) => {
 
             <YStack
               {...(role.canAdmin && {
-                o: 0.35,
+                opacity: 0.35,
                 pe: 'none',
               })}
             >
@@ -330,7 +330,7 @@ const ServerRolePermissionsPaneMembers = ({ role }: { role: RoleWithRelations })
                             icon: Trash,
                           }
                         : {
-                            theme: 'gray',
+                            theme: null,
                             icon: Plus,
                           })}
                     ></Button>
@@ -395,7 +395,7 @@ const RoleListItem = ({
 }: Omit<EditableListItemProps, 'role'> & { role?: RoleWithRelations }) => {
   return (
     <EditableListItem
-      icon={<Circle size={24} bg={role?.color || 'gray'} />}
+      icon={<Circle size={24} bg={(role?.color as any) || 'gray'} />}
       after={<SizableText>{role?.members?.length} members</SizableText>}
       {...rest}
     >
@@ -416,7 +416,7 @@ const SettingsServer = ({ server }: { server: Server }) => {
   return (
     <>
       <LabeledRow label="Name" htmlFor="server-name">
-        <Input onChangeText={setName} defaultValue={server.name} f={1} id="server-name" />
+        <Input onChangeText={setName} defaultValue={server.name} flex={1} id="server-name" />
       </LabeledRow>
 
       <LabeledRow label="Image" htmlFor="image">

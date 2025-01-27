@@ -232,6 +232,7 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
             minHeight: '100vh',
             inset: 0,
             pointerEvents: 'auto',
+            overflow: 'hidden',
           }}
         >
           {children}

@@ -53,7 +53,7 @@ export const DialogJoinServerContent = (props: TabContentPaneProps) => {
                       <Row key={key} active={active} {...itemProps}>
                         <Avatar image={server.icon} />
                         <Row.Text>{server.name}</Row.Text>
-                        <XStack f={1} />
+                        <XStack flex={1} />
                         <TooltipSimple label={isJoined ? 'Joined!' : 'Join server'}>
                           <Row.Button
                             onPress={async (e) => {

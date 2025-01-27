@@ -41,7 +41,7 @@ export const AddReactionButton = ({ message }: { message: Message }) => {
     >
       <Popover.Trigger>
         <TooltipSimple label="Add reaction">
-          <Button chromeless size="$2.5" br={0}>
+          <Button chromeless size="$2.5" rounded={0}>
             <SmilePlus size={16} />
           </Button>
         </TooltipSimple>
@@ -57,8 +57,8 @@ export const AddReactionButton = ({ message }: { message: Message }) => {
             items={reactions}
             onSearch={setReactions}
           >
-            <XStack p="$2" w="100%">
-              <SearchableInput size="$4" f={1} />
+            <XStack p="$2" width="100%">
+              <SearchableInput size="$4" flex={1} />
             </XStack>
 
             <VGrid
