@@ -4,9 +4,7 @@ title: Loaders
 
 Loaders are useful for one-time loading of data from the server to the client and can only be used in routes in your `app` directory.
 
-For a more general purpose data solution, see [load and query]().
-
-Loaders run on the server, either once during build-time for normal routes, or once on each request for `+ssr` routes.
+Loaders run on the server, for now they run based on their render mode - during build-time for SSG routes, or on each request for SPA or SSR routes.
 
 Loaders and their imports are removed from client bundles, so you can access private information from within the loader. The data returned from the loader will be passed to the client, and so should be clear of private information. To access the loader data on the client, you must use the `useLoader` hook:
 
