@@ -63,7 +63,7 @@ jobs:
           # This hash MUST be different if the build_hash will be different.
           #
           # This hash can be different if the build_hash remains the same. For example, if `yarn.lock` changes, `Podfile.lock` may not change if the updated package contains no native code.
-          PRE_BUILD_HASH: ${{ hashFiles(format('{0}/yarn.lock', env.test_app_path), format('{0}/app.json', env.test_app_path), 'packages/vxrn/expo-plugin.cjs') }}
+          PRE_BUILD_HASH: ${{ hashFiles('yarn.lock', format('{0}/app.json', env.test_app_path), 'packages/vxrn/expo-plugin.cjs') }}
         run: |
           if [ -z "$PRE_BUILD_HASH" ]; then
             echo '[ERROR] Failed to calculate pre-build hash.'
