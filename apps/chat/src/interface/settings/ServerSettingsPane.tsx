@@ -1,6 +1,6 @@
 import { Plus, Trash } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { Button, Circle, H3, H5, Input, Sheet, SizableText, View, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
@@ -23,33 +23,44 @@ import { SearchableInput, SearchableList, SearchableListItem } from '../Searchab
 import { Tabs } from '../tabs/Tabs'
 import { AvatarUpload } from '../upload/AvatarUpload'
 import { UserRow } from '../users/UserRow'
-import { useUserState } from '../../state/user'
+import { updateUserState, useUserState } from '../../state/user'
 
 const actionEmitter = createEmitter<'create-role'>()
 
 export const ServerSettingsPane = () => {
-  const server = useCurrentServer()
-  const [tab, setTab] = useState('settings')
   const [userState] = useUserState()
-
-  if (!server) {
-    return null
-  }
 
   return (
     <>
-      <YStack fullscreen zi={99_000} bg="$shadow3" />
+      <YStack
+        fullscreen
+        zi={99_000}
+        bg="$shadow3"
+        animation="quicker"
+        o={0}
+        pe="none"
+        {...(userState.showSidePanel && {
+          o: 1,
+          pe: 'auto',
+        })}
+        onPress={() => {
+          updateUserState({
+            showSidePanel: undefined,
+          })
+        }}
+      />
       <YStack
         h="100%"
         data-tauri-drag-region
-        animation="quick"
+        animation="quicker"
         pos="absolute"
         r={0}
-        bg="$color2"
+        bg="$color1"
         elevation="$4"
         t={0}
         o={0}
-        x={-hiddenPanelWidth}
+        pe="none"
+        x={10}
         w={hiddenPanelWidth}
         zi={100_000}
         p="$4"
@@ -60,52 +71,67 @@ export const ServerSettingsPane = () => {
           pe: 'auto',
         })}
       >
-        <XStack pe="none" ai="center" gap="$2">
-          <Avatar size={28} image={server.icon} />
-          <H3 userSelect="none">{server?.name}</H3>
-
-          <XStack f={1} />
-
-          <XStack ai="center" pe="auto">
-            {tab === 'permissions' && (
-              <ButtonSimple
-                icon={Plus}
-                tooltip="Create new role"
-                onPress={() => {
-                  actionEmitter.emit('create-role')
-                }}
-              >
-                Role
-              </ButtonSimple>
-            )}
-          </XStack>
-        </XStack>
-
-        {server && (
-          <Tabs
-            data-tauri-drag-region
-            initialTab="settings"
-            onValueChange={setTab}
-            tabs={[
-              { label: 'Settings', value: 'settings' },
-              { label: 'Permissions', value: 'permissions' },
-            ]}
-          >
-            <YStack pos="relative" f={1} w="100%">
-              <AlwaysVisibleTabContent active={tab} value="settings">
-                <SettingsServer server={server} />
-              </AlwaysVisibleTabContent>
-
-              <AlwaysVisibleTabContent active={tab} value="permissions">
-                <SettingsServerPermissions server={server} />
-              </AlwaysVisibleTabContent>
-            </YStack>
-          </Tabs>
-        )}
+        <SettingsContents />
       </YStack>
     </>
   )
 }
+
+const SettingsContents = memo(() => {
+  const server = useCurrentServer()
+  const [tab, setTab] = useState('settings')
+
+  if (!server) {
+    return null
+  }
+
+  return (
+    <>
+      <XStack pe="none" ai="center" gap="$2">
+        <Avatar size={28} image={server.icon} />
+        <H3 userSelect="none">{server?.name}</H3>
+
+        <XStack f={1} />
+
+        <XStack ai="center" pe="auto">
+          {tab === 'permissions' && (
+            <ButtonSimple
+              icon={Plus}
+              tooltip="Create new role"
+              onPress={() => {
+                actionEmitter.emit('create-role')
+              }}
+            >
+              Role
+            </ButtonSimple>
+          )}
+        </XStack>
+      </XStack>
+
+      {server && (
+        <Tabs
+          data-tauri-drag-region
+          initialTab="settings"
+          onValueChange={setTab}
+          tabs={[
+            { label: 'Settings', value: 'settings' },
+            { label: 'Permissions', value: 'permissions' },
+          ]}
+        >
+          <YStack pos="relative" f={1} w="100%">
+            <AlwaysVisibleTabContent active={tab} value="settings">
+              <SettingsServer server={server} />
+            </AlwaysVisibleTabContent>
+
+            <AlwaysVisibleTabContent active={tab} value="permissions">
+              <SettingsServerPermissions server={server} />
+            </AlwaysVisibleTabContent>
+          </YStack>
+        </Tabs>
+      )}
+    </>
+  )
+})
 
 const SettingsServerPermissions = ({ server }: { server: Server }) => {
   const { user } = useAuth()

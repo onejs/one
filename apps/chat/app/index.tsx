@@ -20,7 +20,7 @@ export default function HomePage() {
 
       <MainMessageInput />
 
-      <RightSideHiddenPanel />
+      <ServerSettingsPane />
     </AppFrame>
   )
 }
@@ -37,15 +37,15 @@ const AppFrame = ({ children }: { children: any }) => {
   )
 }
 
-const RightSideHiddenPanel = () => {
-  const [userState] = useUserState()
+// const RightSideHiddenPanel = () => {
+//   const [userState] = useUserState()
 
-  if (userState?.showSidePanel === 'settings') {
-    return <ServerSettingsPane />
-  }
+//   if (userState?.showSidePanel === 'settings') {
+//     return
+//   }
 
-  return <AccountSettingsPane />
-}
+//   return <AccountSettingsPane />
+// }
 
 // <a target="_blank" href={window.location.origin + '/login-github'} rel="noreferrer">
 // <Button size="$2">Github</Button>
