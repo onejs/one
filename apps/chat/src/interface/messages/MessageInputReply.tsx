@@ -1,10 +1,9 @@
 import { X } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, SizableText, XStack } from 'tamagui'
-import { useQuery } from '~/zero'
-import { Avatar } from '../Avatar'
-import { messageInputEmitter, messageReplyEmitter } from './emitters'
 import { UserInline } from '~/interface/users/UserInline'
+import { useQuery } from '~/zero'
+import { messageInputEmitter, messageReplyEmitter } from './emitters'
 
 export const MessageInputReply = () => {
   const [replyId, setReplyId] = useState('')

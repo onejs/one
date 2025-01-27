@@ -31,7 +31,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   const server = useCurrentServer()
   const thread = useCurrentThreadWithMessages()
   const { user } = useAuth()
-  const disabled = !user || !channel
+  // const disabled = !user || !channel
 
   // on channel change, focus input
   useEffect(() => {
@@ -77,13 +77,14 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
       // btw={1}
       f={1}
       // bc="$color4"
+
       p="$2"
       br="$4"
       gap="$2"
-      {...(disabled && {
-        opacity: 0.5,
-        pointerEvents: 'none',
-      })}
+      // {...(disabled && {
+      //   opacity: 0.5,
+      //   pointerEvents: 'none',
+      // })}
     >
       <MessageInputReply />
 

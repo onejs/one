@@ -103,7 +103,8 @@ a.is_Button, .text-underline-none {
   text-decoration: none;
 }
 
-.t_dark .w-md-editor {
-  background-color: #000;
-  --md-editor-box-shadow-color: #333;
+.t_dark .w-md-editor, .wmde-markdown {
+  --color-fg-default: var(--color12) !important;
+  background-color: transparent !important;
+  --md-editor-box-shadow-color: var(--shadow1) !important;
 }
