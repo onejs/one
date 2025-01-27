@@ -208,7 +208,9 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
               }
             }
 
-            const outBundle = await getReactNativeBundle(options, platform)
+            const outBundle = await getReactNativeBundle(options, platform, {
+              mode: process.env.RN_SERVE_PROD_BUNDLE ? 'prod' : 'dev',
+            })
 
             if (options.debugBundle) {
               const path = options.debugBundlePaths[platform]
