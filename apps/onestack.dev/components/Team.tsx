@@ -5,14 +5,11 @@ import { PrettyText } from './typography'
 export const Team = () => {
   return (
     <YStack group containerType="normal" gap="$8" my="$4">
-      <PrettyText fontFamily="$mono" fontSize="$7" lineHeight="$7" color="$color" ta="center">
-        Team
-      </PrettyText>
-
       <PrettyText maw={500} als="center">
-        Hello. We're the creators of <Link href="https://tamagui.dev">Tamagui</Link>. We built One
-        out of our experience at <Link href="https://app.uniswap.org">Uniswap</Link> and creating{' '}
-        <Link href="https://tamagui.dev/takeout">Takeout</Link>.
+        We built One out of our experience building cross-platform apps with{' '}
+        <Link href="https://tamagui.dev">Tamagui</Link>{' '}
+        <Link href="https://tamagui.dev/takeout">Takeout</Link>, and at{' '}
+        <Link href="https://app.uniswap.org">Uniswap</Link>.
       </PrettyText>
 
       {/* <View

@@ -125,14 +125,23 @@ export default function HomePage() {
 
         <View theme="yellow" gap="$4" pt="$6">
           <PrettyTextBigger>
-            One aims to make cross-platform React&nbsp;Native as performant and simple as possible.
+            One aims to make cross-platform React&nbsp;Native as performant and simple as possible
+            by letting sync engines like{' '}
+            <Link target="_blank" href="https://zero.rocicorp.dev/">
+              Zero
+            </Link>{' '}
+            do the hard work.
             <br />
             <br />
-            We made{' '}
+            One takes{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
               Vite
+            </Link>
+            ,{' '}
+            <Link target="_blank" href="https://vxrn.dev">
+              makes it serve
             </Link>{' '}
-            able to <a href="https://vxrn.dev">serve</a> React Native, then&nbsp;added{' '}
+            React Native, then adds{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
               file-system routing
             </Link>
@@ -152,7 +161,11 @@ export default function HomePage() {
             <Link style={{ color: 'var(--color11)' }} href="/docs/">
               CLI
             </Link>
-            , <a href="https://hono.dev">Hono</a>, and{' '}
+            ,{' '}
+            <Link target="_blank" href="https://hono.dev">
+              Hono
+            </Link>
+            , and a bit{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/features">
               more
             </Link>
@@ -171,47 +184,9 @@ export default function HomePage() {
             <Video />
 
             <InfoBoxes />
-
-            <View
-              id="zero"
-              contain="paint layout"
-              className="tinted"
-              br="$10"
-              px="$5"
-              py="$10"
-              mx={'$-5'}
-              gap="$5"
-              $gtSm={{ px: '$9', py: '$8', pb: '$5', mx: '$0' }}
-            >
-              <PrettyTextBiggest $md={{ size: '$10' }} $sm={{ size: '$9' }}>
-                Keeping things simple
-              </PrettyTextBiggest>
-
-              <PrettyTextBigger>
-                Native apps feel better and are easier to write thanks to using client-side
-                databases with sync engines. But to date no JavaScript library has cracked the
-                combination of lightweight, full-featured, easy to host, and feature-rich.
-              </PrettyTextBigger>
-
-              <PrettyTextBigger>
-                We think the time has come for the web to build more responsive experiences with
-                great sync engines, and it doesn't hurt that it makes our framework simpler, apps
-                better, and even our code nicer, at once.
-              </PrettyTextBigger>
-
-              <PrettyTextBigger>
-                We're building primitives to make that work, starting with{' '}
-                <a href="https://zerosync.dev">Zero</a>, who we are working with to create One.{' '}
-                <View tag="span" dsp="inline-flex" m={-2} mr={5} $sm={{ scale: 0.9, y: 5 }}>
-                  <OneBall size={0.7} />
-                </View>
-              </PrettyTextBigger>
-
-              <Spacer />
-            </View>
           </YStack>
 
-          <Spacer />
+          {/* <Spacer /> */}
 
           {/* <EmailSignup />
 
@@ -222,7 +197,6 @@ export default function HomePage() {
               <XStack
                 tag="a"
                 className="text-underline-none"
-                my="$6"
                 gap="$6"
                 ai="center"
                 jc="center"
@@ -260,7 +234,7 @@ export default function HomePage() {
                   </PrettyText>
 
                   <PrettyText o={0.8} cur="inherit" maw={400}>
-                    Check out our small sample app to see a One iOS app in motion. On Testflight.
+                    See a sample app on Testflight.
                   </PrettyText>
                 </YStack>
               </XStack>
@@ -274,8 +248,6 @@ export default function HomePage() {
           <Separator />
 
           <Team />
-
-          <Separator my="$8" />
 
           <Footer />
         </View>
