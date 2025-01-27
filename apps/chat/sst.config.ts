@@ -28,7 +28,7 @@ export default $config({
 
     new sst.Secret('GITHUB_TOKEN', process.env.GITHUB_TOKEN)
 
-    const chatAppImage = await buildChatAppDocker()
+    const chatAppImage = `ghcr.io/onejs/one/chat-app` //await buildChatAppDocker()
 
     // const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
 

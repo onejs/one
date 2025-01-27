@@ -25,7 +25,7 @@
     "sst:login": "aws sso login --sso-session=tamagui",
     "sst:build:production": "yarn build:docker:app",
     "sst:deploy:production": "sst deploy --stage production",
-    "sst:push:production": "yarn sst:build:production && yarn sst:deploy:production",
+    "sst:build-and-deploy:production": "yarn sst:build:production && yarn sst:deploy:production",
     "seed": "tsx ./src/postgres/seed.ts",
     "serve": "one serve",
     "zero": "yarn zero:build-schema && zero-cache --schema-file ./src/zero/zero-schema.json",
