@@ -1,14 +1,14 @@
 /// <reference path="./.sst/platform/config.d.ts" />
 
-import { buildChatAppDocker } from './src/ci/buildChatAppDocker'
-
+import { config } from 'dotenv'
 import { readFileSync } from 'node:fs'
+
+const env = config()
+
+console.log('got env', env.parsed)
 
 export default $config({
   app(input) {
-    // Load .env file
-    require('dotenv').config()
-
     return {
       name: 'start-chat',
       removal: input?.stage === 'production' ? 'retain' : 'remove',
@@ -23,14 +23,11 @@ export default $config({
   },
 
   async run() {
-    // Load .env file
-    require('dotenv').config()
-
     new sst.Secret('GITHUB_TOKEN', process.env.GITHUB_TOKEN)
 
-    const chatAppImage = `ghcr.io/onejs/one/chat-app` //await buildChatAppDocker()
+    const chatAppImage = `ghcr.io/onejs/one/chat-app`
 
-    // const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
+    const schemaJson = readFileSync('./src/zero/zero-schema.json', 'utf-8').replaceAll(/\s/g, '')
 
     // S3 Bucket
     // const replicationBucket = new sst.aws.Bucket(`replication-bucket`)
@@ -78,6 +75,142 @@ export default $config({
       vpc,
     })
 
+    // Database
+    const db = new sst.aws.Postgres(`postgres`, {
+      vpc,
+      transform: {
+        parameterGroup: {
+          parameters: [
+            {
+              name: 'rds.logical_replication',
+              value: '1',
+              applyMethod: 'pending-reboot',
+            },
+            {
+              name: 'rds.force_ssl',
+              value: '0',
+              applyMethod: 'pending-reboot',
+            },
+            {
+              name: 'max_connections',
+              value: '1000',
+              applyMethod: 'pending-reboot',
+            },
+            ...($app.stage === 'production'
+              ? []
+              : [
+                  {
+                    name: 'max_slot_wal_keep_size',
+                    value: '1024',
+                  },
+                ]),
+          ],
+        },
+      },
+    })
+
+    const connection = $interpolate`postgres://${db.username}:${db.password}@${db.host}:${db.port}`
+    const upstreamDbConnection = $interpolate`${connection}/${db.database}`
+
+    // // Common environment variables
+    const zeroSharedEnv = {
+      AWS_REGION: process.env.AWS_REGION!,
+      ZERO_UPSTREAM_DB: upstreamDbConnection,
+      ZERO_CVR_DB: $interpolate`${connection}/zero_cvr`,
+      ZERO_CHANGE_DB: $interpolate`${connection}/zero_change`,
+      ZERO_SCHEMA_JSON: schemaJson,
+      ZERO_LOG_FORMAT: 'json',
+      ZERO_REPLICA_FILE: 'sync-replica.db',
+      // ZERO_LITESTREAM_BACKUP_URL: `s3://${replicationBucket.name}/backup`,
+    }
+
+    // // View Syncer Service
+    const zeroService = cluster.addService(`zero`, {
+      cpu: '2 vCPU',
+      memory: '8 GB',
+      image: 'rocicorp/zero',
+      health: {
+        command: ['CMD-SHELL', 'curl -f http://localhost:4848/ || exit 1'],
+        interval: '5 seconds',
+        retries: 3,
+        startPeriod: '300 seconds',
+      },
+      environment: {
+        ...zeroSharedEnv,
+        // ZERO_CHANGE_STREAMER_URI: `ws://change-streamer.chat:4849`,
+        ZERO_UPSTREAM_MAX_CONNS: '15',
+        ZERO_CVR_MAX_CONNS: '160',
+      },
+      logging: {
+        retention: '1 month',
+      },
+      loadBalancer: {
+        public: true,
+        rules: [
+          {
+            listen: '80/http',
+            forward: '4848/http',
+          },
+          {
+            listen: '4850/http',
+          },
+        ],
+        health: {
+          '4850/http': {
+            path: '/',
+            interval: '5 seconds',
+            unhealthyThreshold: 2,
+            healthyThreshold: 3,
+            timeout: '3 seconds',
+          },
+        },
+      },
+      serviceRegistry: {
+        port: 4848,
+      },
+      transform: {
+        target: {
+          healthCheck: {
+            enabled: true,
+            path: '/',
+            protocol: 'HTTP',
+          },
+          stickiness: {
+            enabled: true,
+            type: 'lb_cookie',
+          },
+          loadBalancingAlgorithmType: 'least_outstanding_requests',
+        },
+        autoScalingTarget: {
+          minCapacity: 1,
+          maxCapacity: 10,
+        },
+      },
+    })
+
+    cluster.addService(`replication-manager`, {
+      cpu: '2 vCPU',
+      memory: '8 GB',
+      image: 'rocicorp/zero',
+      health: {
+        command: ['CMD-SHELL', 'curl -f http://localhost:4849/ || exit 1'],
+        interval: '5 seconds',
+        retries: 3,
+        startPeriod: '300 seconds',
+      },
+      environment: {
+        ...zeroSharedEnv,
+        ZERO_CHANGE_MAX_CONNS: '3',
+        ZERO_NUM_SYNC_WORKERS: '0',
+      },
+      logging: {
+        retention: '1 month',
+      },
+      serviceRegistry: {
+        port: 4849,
+      },
+    })
+
     // Web App
     cluster.addService(`chat-app`, {
       image: chatAppImage,
@@ -90,8 +223,11 @@ export default $config({
       },
 
       // link: [replicationBucket],
+
       environment: {
+        ...env.parsed,
         ONE_SERVER_URL: 'https://start.chat',
+        VITE_ZERO_CACHE_URL: zeroService.url,
       },
 
       health: {
@@ -115,153 +251,5 @@ export default $config({
         ],
       },
     })
-
-    // Database
-    // const db = new sst.aws.Postgres(`postgres`, {
-    //   vpc,
-    //   transform: {
-    //     parameterGroup: {
-    //       parameters: [
-    //         {
-    //           name: 'rds.logical_replication',
-    //           value: '1',
-    //           applyMethod: 'pending-reboot',
-    //         },
-    //         {
-    //           name: 'rds.force_ssl',
-    //           value: '0',
-    //           applyMethod: 'pending-reboot',
-    //         },
-    //         {
-    //           name: 'max_connections',
-    //           value: '1000',
-    //           applyMethod: 'pending-reboot',
-    //         },
-    //         ...($app.stage === 'production'
-    //           ? []
-    //           : [
-    //               {
-    //                 name: 'max_slot_wal_keep_size',
-    //                 value: '1024',
-    //               },
-    //             ]),
-    //       ],
-    //     },
-    //   },
-    // })
-
-    // const connection = $interpolate`postgres://${db.username}:${db.password}@${db.host}:${db.port}`
-    // const upstreamDbConnection = $interpolate`${connection}/${db.database}`
-
-    // // Common environment variables
-    // const commonEnv = {
-    //   AWS_REGION: process.env.AWS_REGION!,
-    //   ZERO_UPSTREAM_DB: upstreamDbConnection,
-    //   ZERO_CVR_DB: $interpolate`${connection}/zero_cvr`,
-    //   ZERO_CHANGE_DB: $interpolate`${connection}/zero_change`,
-    //   ZERO_SCHEMA_JSON: schemaJson,
-    //   ZERO_LOG_FORMAT: 'json',
-    //   ZERO_REPLICA_FILE: 'sync-replica.db',
-    //   ZERO_LITESTREAM_BACKUP_URL: `s3://${replicationBucket.name}/backup`,
-    // }
-
-    // // View Syncer Service
-    // const zeroService = cluster.addService(`zero`, {
-    //   cpu: '2 vCPU',
-    //   memory: '8 GB',
-    //   image: 'rocicorp/zero',
-    //   health: {
-    //     command: ['CMD-SHELL', 'curl -f http://localhost:4848/ || exit 1'],
-    //     interval: '5 seconds',
-    //     retries: 3,
-    //     startPeriod: '300 seconds',
-    //   },
-    //   environment: {
-    //     ...commonEnv,
-    //     ZERO_CHANGE_STREAMER_URI: `ws://change-streamer.chat:4849`,
-    //     ZERO_UPSTREAM_MAX_CONNS: '15',
-    //     ZERO_CVR_MAX_CONNS: '160',
-    //   },
-    //   logging: {
-    //     retention: '1 month',
-    //   },
-    //   loadBalancer: {
-    //     public: true,
-    //     rules: [
-    //       {
-    //         listen: '80/http',
-    //         forward: '4848/http',
-    //       },
-    //       {
-    //         listen: '4850/http',
-    //       },
-    //     ],
-    //     health: {
-    //       '4850/http': {
-    //         path: '/',
-    //         interval: '5 seconds',
-    //         unhealthyThreshold: 2,
-    //         healthyThreshold: 3,
-    //         timeout: '3 seconds',
-    //       },
-    //     },
-    //   },
-    //   serviceRegistry: {
-    //     port: 4848,
-    //   },
-    //   transform: {
-    //     target: {
-    //       healthCheck: {
-    //         enabled: true,
-    //         path: '/',
-    //         protocol: 'HTTP',
-    //       },
-    //       stickiness: {
-    //         enabled: true,
-    //         type: 'lb_cookie',
-    //       },
-    //       loadBalancingAlgorithmType: 'least_outstanding_requests',
-    //     },
-    //     autoScalingTarget: {
-    //       minCapacity: 1,
-    //       maxCapacity: 10,
-    //     },
-    //   },
-    // })
-
-    // cluster.addService(`replication-manager`, {
-    //   cpu: '2 vCPU',
-    //   memory: '8 GB',
-    //   image: 'rocicorp/zero',
-    //   health: {
-    //     command: ['CMD-SHELL', 'curl -f http://localhost:4849/ || exit 1'],
-    //     interval: '5 seconds',
-    //     retries: 3,
-    //     startPeriod: '300 seconds',
-    //   },
-    //   environment: {
-    //     ...commonEnv,
-    //     ZERO_CHANGE_MAX_CONNS: '3',
-    //     ZERO_NUM_SYNC_WORKERS: '0',
-    //   },
-    //   logging: {
-    //     retention: '1 month',
-    //   },
-    //   serviceRegistry: {
-    //     port: 4849,
-    //   },
-    // })
-
-    // new sst.aws.StaticSite('Web', {
-    //   path: '.',
-    //   build: {
-    //     command: 'yarn build:web',
-    //     output: 'dist',
-    //   },
-    //   environment: {
-    //     ZERO_AUTH_SECRET: 'secretkey',
-    //     VITE_ZERO_CACHE_URL: zeroService.url,
-    //   },
-    // })
   },
 })
