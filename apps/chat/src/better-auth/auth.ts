@@ -7,6 +7,8 @@ export const auth = betterAuth({
     connectionString: process.env.ZERO_UPSTREAM_DB,
   }),
 
+  trustedOrigins: ['https://start.chat'],
+
   plugins: [
     jwt({
       jwt: {
