@@ -5,6 +5,7 @@ import { showToast } from '~/interface/toast/Toast'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { zero, type Message } from '~/zero'
 import { resolve } from '~/zero/resolve'
+import { mutateInsertServer } from '../state/server/mutateInsertServer'
 
 export const DevTools = () => {
   const channel = useCurrentChannel()
@@ -15,6 +16,11 @@ export const DevTools = () => {
         onPress={async () => {
           // TODO creates the entire one.start.chat server
           // should include icon, ai room, etc
+
+          await mutateInsertServer({
+            name: `One`,
+            icon: `https://onestack.dev/large-icon.png`,
+          })
         }}
       >
         Create One Server
