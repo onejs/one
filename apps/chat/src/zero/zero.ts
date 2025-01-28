@@ -16,7 +16,7 @@ function createZero({ auth, userId = 'anon' }: { auth?: string; userId?: string 
       typeof window !== 'undefined'
         ? window.location.host === 'start.chat'
           ? 'https://zero.start.chat'
-          : `${window.location.origin}:4848`
+          : `${window.location.origin.replace(/:[\d]+/, ':4848')}`
         : import.meta.env.VITE_PUBLIC_ZERO_SERVER,
     schema,
     kvStore: 'mem',

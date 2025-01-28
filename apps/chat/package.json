@@ -18,6 +18,7 @@
     "dev:clean": "one dev --clean",
     "dev:ios": "one run:ios",
     "dev:tauri": "tauri dev",
+    "local-install": "bun run ./scripts/local-install.ts",
     "dev": "one dev",
     "docker": "docker compose --env-file .env",
     "ios": "expo run:ios",
