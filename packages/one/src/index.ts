@@ -68,6 +68,7 @@ export { setResponseHeaders, getServerData, setServerData } from './vite/one-ser
 
 // re-export
 export * from '@vxrn/universal-color-scheme'
+export { loadEnv } from 'vxrn'
 
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'
