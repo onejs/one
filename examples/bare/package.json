@@ -32,7 +32,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "react-test-renderer": "18.2.0",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "vxrn": "workspace:*"
   },
   "engines": {

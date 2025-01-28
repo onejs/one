@@ -147,6 +147,7 @@ export const SearchableInput = forwardRef<Input, InputProps>((props: InputProps,
         props.onChange?.(e as any)
       }}
       style={{
+        background: 'var(--color2)',
         ...(inputStyle as any),
         borderWidth: 0,
       }}

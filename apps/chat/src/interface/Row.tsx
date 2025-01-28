@@ -4,7 +4,7 @@ const RowComponent = styled(XStack, {
   gap: '$4',
   py: '$3',
   px: '$4',
-  ai: 'center',
+  items: 'center',
   hoverStyle: {
     bg: '$color3',
   },
@@ -20,7 +20,7 @@ const RowComponent = styled(XStack, {
 
 const RowText = styled(SizableText, {
   size: '$5',
-  cur: 'default',
+  cursor: 'default',
 })
 
 const RowButton = styled(Button, {

@@ -15,12 +15,12 @@ const ButtonFrame = styled(XStack, {
   role: 'button',
   tabIndex: -1,
 
-  bw: 0,
-  ai: 'center',
+  borderWidth: 0,
+  items: 'center',
   gap: '$2',
   py: '$1.5',
   px: '$2',
-  br: '$4',
+  rounded: '$4',
   bg: 'transparent',
 
   hoverStyle: {
@@ -89,7 +89,7 @@ export const ButtonSimple = forwardRef<TamaguiElement, ButtonFrameProps & { size
         {typeof children !== 'string' ? (
           children
         ) : (
-          <SizableText cursor="default" userSelect="none" fontSize={size} lineHeight={size}>
+          <SizableText cursor="default" select="none" fontSize={size} lineHeight={size}>
             {children}
           </SizableText>
         )}

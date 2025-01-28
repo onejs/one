@@ -4,13 +4,14 @@ import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 export type EditorProps = {
   initialValue?: string
   onKeyUp?: React.KeyboardEventHandler<HTMLDivElement>
+  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>
   onSubmit?: (text: string) => void
 }
 
 export type EditorRef = RefMDEditor & { clear?: () => void }
 
 export const Editor = forwardRef<EditorRef, EditorProps>(
-  ({ onSubmit, onKeyUp, initialValue }, ref) => {
+  ({ onSubmit, onKeyUp, onKeyDown, initialValue }, ref) => {
     const editorRef = useRef<RefMDEditor>(null)
     const [value, setValue] = useState(initialValue || '')
     const hasNewLines = value.includes('\n')
@@ -48,8 +49,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
           toolbarBottom
           value={value}
           onChange={(x) => setValue(x || '')}
-          onKeyUp={(e) => {
-            onKeyUp?.(e)
+          onKeyDown={(e) => {
+            onKeyDown?.(e)
 
             if (!e.defaultPrevented) {
               if (!hasNewLines && e.key === 'Enter' && !e.shiftKey) {
@@ -62,6 +63,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
                 sendMessage()
               }
             }
+          }}
+          onKeyUp={(e) => {
+            onKeyUp?.(e)
           }}
         />
       </div>

@@ -17,7 +17,7 @@ export const Menu = ({ items, trigger, popoverProps, size = 'large' }: MenuProps
     <Popover ref={popoverRef} allowFlip stayInFrame={{ padding: 10 }} {...popoverProps}>
       <Popover.Trigger asChild>{trigger}</Popover.Trigger>
 
-      <PopoverContent ov="hidden" miw={200}>
+      <PopoverContent overflow="hidden" minW={200}>
         {items?.map((item) => {
           if ('separator' in item) {
             return <Separator width="100%" my={4} />

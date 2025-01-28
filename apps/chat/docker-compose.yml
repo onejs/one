@@ -36,7 +36,7 @@ services:
     working_dir: /app
     env_file:
       - .env
-    command: sh -c "bun install && bun run seed.ts"
+    command: sh -c "bun install && IN_DOCKER=1 bun run migrate.ts"
 
   search:
     image: typesense/typesense:27.1

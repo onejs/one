@@ -112,8 +112,7 @@ export const SearchProvider = memo(({ children }: any) => {
                   ...item,
                   url: `${url.pathname}${url.hash}`,
                   content: item.content,
-                  highlightedContent:
-                    item._highlightResult?.content?.value || item.content,
+                  highlightedContent: item._highlightResult?.content?.value || item.content,
                   snippet: item._snippetResult?.content?.value || '',
                   objectID: item.objectID,
                   type: item.type || 'content',

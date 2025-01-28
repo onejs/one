@@ -5,3 +5,7 @@ dist
 .git
 .turbo
 .yarn/cache
+
+
+# sst
+.sst

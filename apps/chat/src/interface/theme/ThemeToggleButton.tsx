@@ -10,10 +10,10 @@ export function ToggleThemeButton() {
   const { onPress, Icon, setting } = useToggleTheme()
 
   return (
-    <View group ai="center" containerType="normal" gap="$1">
+    <View group items="center" containerType="normal" gap="$1">
       <View
         p="$3"
-        br="$10"
+        rounded="$10"
         hoverStyle={{
           bg: '$color2',
         }}
@@ -21,10 +21,10 @@ export function ToggleThemeButton() {
           bg: '$color1',
         }}
         pointerEvents="auto"
-        cur="pointer"
+        cursor="pointer"
         onPress={onPress}
       >
-        <Icon size={22} color="$color13" />
+        <Icon size={22} color="$color12" />
       </View>
 
       <YStack>
@@ -33,9 +33,9 @@ export function ToggleThemeButton() {
           size="$1"
           mb={-20}
           color="$color10"
-          o={0}
+          opacity={0}
           $group-hover={{
-            o: 1,
+            opacity: 1,
           }}
         >
           {setting[0].toUpperCase()}

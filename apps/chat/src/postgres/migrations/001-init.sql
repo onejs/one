@@ -1,18 +1,24 @@
 -- Drop existing tables if they exist
-DROP TABLE IF EXISTS "message",
-"thread",
-"channel",
-"serverMember",
-"server",
-"user";
-
-CREATE DATABASE onechat;
-
-CREATE DATABASE onechat_cvr;
-
-CREATE DATABASE onechat_cdb;
-
-\c onechat;
+DROP TABLE IF EXISTS 
+  "messageReaction", 
+  "reaction", 
+  "attachment", 
+  "pin", 
+  "message", 
+  "thread", 
+  "channelPermission", 
+  "userRole", 
+  "channel", 
+  "role", 
+  "serverMember", 
+  "server", 
+  "friendship", 
+  "account", 
+  "session", 
+  "verification", 
+  "jwks", 
+  "user" 
+CASCADE;
 
 CREATE TABLE "user" (
     "id" VARCHAR PRIMARY KEY,

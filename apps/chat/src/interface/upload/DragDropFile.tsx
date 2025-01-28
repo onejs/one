@@ -1,8 +1,9 @@
+import { createPortal } from 'react-dom'
 import { getCurrentWebview } from '@tauri-apps/api/webview'
 import { exists, readFile } from '@tauri-apps/plugin-fs'
 import { createEmitter } from '@vxrn/emitter'
 import { useCallback, useEffect, useState } from 'react'
-import { isWeb } from 'tamagui'
+import { isWeb, useDidFinishSSR } from 'tamagui'
 import { isTauri } from '~/tauri/constants'
 import { getFileType, isImageFile } from './helpers'
 import { useUploadImages, type FileUpload } from './uploadImage'
@@ -16,6 +17,7 @@ export const DragDropFile = (props: { children: any }) => {
 
   const [state, setState] = useState<DragDropEvent | null>(null)
   const [uploading, setUploading] = useState<FileUpload[]>([])
+  const isMounted = useDidFinishSSR()
 
   const { handleUpload } = useUploadImages({
     onChange: (uploads) => {
@@ -34,8 +36,9 @@ export const DragDropFile = (props: { children: any }) => {
     },
   })
 
-  const { createElement } = useDragDrop(
-    useCallback(
+  useDragDrop({
+    selector: 'body',
+    onChange: useCallback(
       (event) => {
         setState(event)
         if (event.type === 'drop') {
@@ -58,24 +61,28 @@ export const DragDropFile = (props: { children: any }) => {
         }
       },
       [setState, handleUpload]
-    )
-  )
+    ),
+  })
 
-  return createElement(
+  return (
     <>
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          zIndex: 100_000,
-          position: 'absolute',
-          pointerEvents: 'none',
-          background:
-            !state || state.type === 'cancel' || state.type === 'drop'
-              ? 'transparent'
-              : 'rgba(0,0,0,0.5)',
-        }}
-      />
+      {isMounted &&
+        createPortal(
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              zIndex: Number.MAX_SAFE_INTEGER,
+              position: 'absolute',
+              pointerEvents: 'none',
+              background:
+                !state || state.type === 'cancel' || state.type === 'drop'
+                  ? 'transparent'
+                  : 'rgba(0,0,0,0.5)',
+            }}
+          />,
+          document.body
+        )}
       {props.children}
     </>
   )
@@ -103,8 +110,14 @@ export type DragDropEvent =
       type: 'cancel'
     }
 
-export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
-  const [node, setNode] = useState<HTMLDivElement | null>(null)
+export const useDragDrop = ({
+  onChange,
+  selector,
+}: {
+  onChange: (e: DragDropEvent) => void
+  selector?: string
+}) => {
+  const [internalNode, setNode] = useState<HTMLDivElement | null>(null)
 
   if (isTauri) {
     useEffect(() => {
@@ -113,7 +126,7 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
       getCurrentWebview()
         .onDragDropEvent(async (event) => {
           if (event.payload.type === 'over') {
-            callback({
+            onChange({
               ...event.payload.position,
               type: 'drag',
             })
@@ -138,12 +151,12 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
               )
             ).flat()
 
-            callback({
+            onChange({
               type: 'drop',
               files,
             })
           } else {
-            callback({
+            onChange({
               type: 'cancel',
             })
           }
@@ -158,7 +171,12 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
     }, [])
   } else {
     useEffect(() => {
+      const node = selector
+        ? (document.querySelector(selector) as HTMLElement | undefined)
+        : internalNode
+
       if (!node) return
+
       const controller = new AbortController()
       const { signal } = controller
 
@@ -168,7 +186,7 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
           e.preventDefault()
           e.stopPropagation()
           e.dataTransfer!.dropEffect = 'copy'
-          callback({
+          onChange({
             type: 'drag',
             x: e.clientX,
             y: e.clientY,
@@ -182,7 +200,7 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
         (e) => {
           e.preventDefault()
           e.stopPropagation()
-          callback({
+          onChange({
             type: 'cancel',
           })
         },
@@ -209,7 +227,7 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
             }
           }
 
-          callback({
+          onChange({
             type: 'drop',
             files,
           })
@@ -218,24 +236,25 @@ export const useDragDrop = (callback: (e: DragDropEvent) => void) => {
       )
 
       return () => controller.abort()
-    }, [node, callback])
+    }, [internalNode, onChange, selector])
   }
 
   return {
-    createElement: (children: any) => {
+    createDropElement: (props?: React.HTMLAttributes<HTMLDivElement>) => {
       return (
         <div
           id="drag-drop-root"
           ref={setNode}
+          {...props}
           style={{
             minWidth: '100vw',
             minHeight: '100vh',
             inset: 0,
             pointerEvents: 'auto',
+            overflow: 'hidden',
+            ...props?.style,
           }}
-        >
-          {children}
-        </div>
+        />
       )
     },
   }

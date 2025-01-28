@@ -28,7 +28,7 @@ export const AvatarUpload = ({
   return (
     <XStack
       gap="$4"
-      ai="center"
+      items="center"
       // @ts-expect-error
       onDrop={(event: DragEvent<HTMLDivElement>) => {
         event.preventDefault()
@@ -74,7 +74,7 @@ export const AvatarUpload = ({
 
             {!!(progress && progress !== 100) && (
               <Progress mt="$2" value={progress} bg="$color2">
-                <Progress.Indicator bc="$color7" animation="bouncy" />
+                <Progress.Indicator borderColor="$color7" animation="bouncy" />
               </Progress>
             )}
 

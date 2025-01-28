@@ -26,7 +26,7 @@ export const ReactScanCompilerDemo = () => {
         <Tree />
       </XStack>
 
-      <XStack gap="$4" fw="wrap">
+      <XStack gap="$4" flexWrap="wrap">
         {items.map((color, i) => {
           return <Item key={i} color={color} />
         })}
@@ -40,5 +40,5 @@ const Tree = () => {
 }
 
 const Item = ({ color }: { color: string }) => {
-  return <Circle size={65} bg={color} />
+  return <Circle size={65} bg={color as any} />
 }

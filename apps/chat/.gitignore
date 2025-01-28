@@ -4,3 +4,4 @@ zero-schema.json
 # sst
 .sst
 .tamagui
+sst-env.d.ts

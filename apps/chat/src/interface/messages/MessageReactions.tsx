@@ -63,17 +63,17 @@ export const ReactionButton = ({
     >
       {typeof count === 'number' && (
         <SizableText
-          pos="absolute"
+          position="absolute"
           t={-5}
-          br="$10"
+          rounded="$10"
           r={-5}
           bg="$color5"
-          w={20}
-          h={20}
+          width={20}
+          height={20}
           size="$1"
-          lh={20}
-          ai="center"
-          jc="center"
+          lineHeight={20}
+          items="center"
+          justify="center"
         >
           {count}
         </SizableText>

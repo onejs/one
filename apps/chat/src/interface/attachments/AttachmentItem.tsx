@@ -29,10 +29,10 @@ export const AttachmentItem = ({
   return (
     <YStack
       onPress={onPress}
-      pos="relative"
+      position="relative"
       p={size * 0.025}
       m={size * -0.025}
-      br={size * 0.1}
+      rounded={size * 0.1}
       {...(onPress && {
         hoverStyle: {
           bg: 'rgba(0,0,0,0.05)',
@@ -47,10 +47,10 @@ export const AttachmentItem = ({
           circular
           icon={X}
           size="$1"
-          pos="absolute"
+          position="absolute"
           t={-2}
           r={-2}
-          zi={10}
+          z={10}
           onPress={async (e) => {
             e.stopPropagation()
 

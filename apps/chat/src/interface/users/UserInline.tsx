@@ -22,9 +22,9 @@ export const UserInline = ({
   size = 'medium',
 }: { user: User; size?: 'small' | 'medium' }) => {
   return (
-    <XStack ai="center" gap={gapSizes[size]}>
+    <XStack items="center" gap={gapSizes[size]}>
       <Avatar size={avatarSizes[size]} image={user.image} />
-      <SizableText size={textSizes[size]} fow="500">
+      <SizableText size={textSizes[size]} fontWeight="500">
         {user.name || user.username}
       </SizableText>
     </XStack>

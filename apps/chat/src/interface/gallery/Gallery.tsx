@@ -13,13 +13,13 @@ export const galleryEmitter = createEmitter<{
 } | null>()
 
 const GalleryItem = styled(YStack, {
-  zIndex: 1,
+  z: 1,
   x: 0,
   opacity: 1,
   inset: 0,
-  pos: 'absolute',
-  ai: 'center',
-  jc: 'center',
+  position: 'absolute',
+  items: 'center',
+  justify: 'center',
 
   variants: {
     // 1 = right, 0 = nowhere, -1 = left
@@ -83,12 +83,12 @@ export const Gallery = () => {
     <XStack
       animation="quickest"
       overflow="hidden"
-      backgroundColor="rgba(0,0,0,0.5)"
+      bg="rgba(0,0,0,0.5)"
       width="100%"
-      alignItems="center"
-      pos="absolute"
+      items="center"
+      position="absolute"
       inset={0}
-      zi={100_000}
+      z={100_000}
       {...(hidden
         ? {
             opacity: 0,
@@ -101,10 +101,10 @@ export const Gallery = () => {
       {items && (
         <>
           <Button
-            pos="absolute"
+            position="absolute"
             circular
             icon={X}
-            zi={100}
+            z={100}
             size="$3"
             t="$4"
             r="$4"
@@ -130,7 +130,7 @@ export const Gallery = () => {
 
           <GalleryButton
             aria-label="Carousel left"
-            left="$4"
+            l="$4"
             icon={ChevronLeft}
             onPress={() => paginate(-1)}
             inactive={page <= 0}
@@ -138,7 +138,7 @@ export const Gallery = () => {
 
           <GalleryButton
             aria-label="Carousel right"
-            right="$4"
+            r="$4"
             icon={ChevronRight}
             onPress={() => paginate(1)}
             inactive={page >= images.length - 1}
@@ -156,7 +156,7 @@ const GalleryButton = ({ inactive, ...props }: ButtonProps & { inactive?: boolea
       position="absolute"
       circular
       elevate
-      zi={100}
+      z={100}
       {...(inactive && {
         opacity: 0.25,
         pointerEvents: 'none',
