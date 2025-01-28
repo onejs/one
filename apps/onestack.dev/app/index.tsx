@@ -131,6 +131,10 @@ export default function HomePage() {
             One takes{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
               Vite
+            </Link>
+            ,{' '}
+            <Link target="_blank" href="https://vxrn.dev">
+              makes it serve
             </Link>{' '}
             and makes it{' '}
             <Link target="_blank" href="https://vxrn.dev">

@@ -1,27 +1,26 @@
 import { XStack, YStack } from 'tamagui'
 import { AnimationDriver } from '~/interface/animations/AnimationDriver'
 import { Main } from '~/interface/main/Main'
+import { MainMessageInput } from '~/interface/main/MainMessageInput'
 import { AccountSettingsPane } from '~/interface/settings/AccountSettingsPane'
-import { hiddenPanelWidth } from '~/interface/settings/constants'
 import { ServerSettingsPane } from '~/interface/settings/ServerSettingsPane'
 import { Sidebar } from '~/interface/sidebar/Sidebar'
 import { TopBar } from '~/interface/TopBar'
 import { useUserState } from '~/state/user'
-import { MainMessageInput } from '~/interface/main/MainMessageInput'
 
 export default function HomePage() {
   return (
     <AppFrame>
       <TopBar />
 
-      <XStack h={0} ai="stretch" f={1}>
+      <XStack position="relative" items="stretch" flex={1} overflow="hidden">
         <Sidebar />
         <Main />
       </XStack>
 
       <MainMessageInput />
 
-      <RightSideHiddenPanel />
+      <ServerSettingsPane />
     </AppFrame>
   )
 }
@@ -31,22 +30,22 @@ const AppFrame = ({ children }: { children: any }) => {
 
   return (
     <AnimationDriver name="css">
-      <YStack h={0} f={1} animation="quicker">
+      <YStack flex={1} overflow="hidden" animation="quicker">
         <AnimationDriver name="spring">{children}</AnimationDriver>
       </YStack>
     </AnimationDriver>
   )
 }
 
-const RightSideHiddenPanel = () => {
-  const [userState] = useUserState()
+// const RightSideHiddenPanel = () => {
+//   const [userState] = useUserState()
 
-  if (userState?.showSidePanel === 'settings') {
-    return <ServerSettingsPane />
-  }
+//   if (userState?.showSidePanel === 'settings') {
+//     return
+//   }
 
-  return <AccountSettingsPane />
-}
+//   return <AccountSettingsPane />
+// }
 
 // <a target="_blank" href={window.location.origin + '/login-github'} rel="noreferrer">
 // <Button size="$2">Github</Button>
@@ -161,10 +160,10 @@ const RightSideHiddenPanel = () => {
 
 // const DateSeparator = () => {
 //   return (
-//     <XStack gap="$6" ai="center" jc="center">
-//       <Separator bc="rgba(0,0,0,0.1)" />
+//     <XStack gap="$6" items="center" justify="center">
+//       <Separator borderColor="rgba(0,0,0,0.1)" />
 //       <SizableText>Dec 2nd, 2024</SizableText>
-//       <Separator bc="rgba(0,0,0,0.1)" />
+//       <Separator borderColor="rgba(0,0,0,0.1)" />
 //     </XStack>
 //   )
 // }
@@ -173,17 +172,17 @@ const RightSideHiddenPanel = () => {
 //   return (
 //     <ThreadButtonFrame size="large">
 //       <YStack>
-//         <XStack ai="center" jc="center" gap="$2">
+//         <XStack items="center" justify="center" gap="$2">
 //           <Circle size={32} bg="$color9">
 //             <OneBall size={1} />
 //           </Circle>
 
-//           <SizableText size="$5" userSelect="none" cur="default" f={1} ov="hidden">
+//           <SizableText size="$5" select="none" cursor="default" flex={1} overflow="hidden">
 //             {props.title}
 //           </SizableText>
 //         </XStack>
 
-//         {!!props.description && <SizableText o={0.7}>{props.description}</SizableText>}
+//         {!!props.description && <SizableText opacity={0.7}>{props.description}</SizableText>}
 //       </YStack>
 //     </ThreadButtonFrame>
 //   )
@@ -196,7 +195,7 @@ const RightSideHiddenPanel = () => {
 //     return (
 //       <YStack
 //         p="$3"
-//         br="$4"
+//         rounded="$4"
 //         gap="$2"
 //         hoverStyle={{
 //           bg: '$color3',
@@ -205,16 +204,16 @@ const RightSideHiddenPanel = () => {
 //           setCollapsed(!collapsed)
 //         }}
 //       >
-//         <XStack ai="center" gap="$6">
-//           {/* <Separator bc="rgba(0,0,0,0.1)" /> */}
+//         <XStack items="center" gap="$6">
+//           {/* <Separator borderColor="rgba(0,0,0,0.1)" /> */}
 //           <SizableText style={{ fontWeight: '500' }} size="$4">
 //             25 messages
 //           </SizableText>
-//           {/* <Separator bc="rgba(0,0,0,0.1)" /> */}
+//           {/* <Separator borderColor="rgba(0,0,0,0.1)" /> */}
 //         </XStack>
 
 //         <XStack>
-//           <XStack ai="center" gap="$2">
+//           <XStack items="center" gap="$2">
 //             <Circle size={16} bg="$color9" mt={4}>
 //               <OneBall size={0.7} />
 //             </Circle>

@@ -1,10 +1,9 @@
 import { X } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, SizableText, XStack } from 'tamagui'
-import { useQuery } from '~/zero'
-import { Avatar } from '../Avatar'
-import { messageInputEmitter, messageReplyEmitter } from './emitters'
 import { UserInline } from '~/interface/users/UserInline'
+import { useQuery } from '~/zero'
+import { messageInputEmitter, messageReplyEmitter } from './emitters'
 
 export const MessageInputReply = () => {
   const [replyId, setReplyId] = useState('')
@@ -32,7 +31,7 @@ export const MessageInputReply = () => {
   }
 
   return (
-    <XStack bg="$color6" py="$1.5" px="$2" ai="center" gap="$3" br="$3">
+    <XStack bg="$color6" py="$1.5" px="$2" items="center" gap="$3" rounded="$3">
       <Button
         onPress={() => {
           messageReplyEmitter.emit({ type: 'cancel' })

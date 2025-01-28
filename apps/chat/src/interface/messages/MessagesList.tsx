@@ -141,7 +141,7 @@ export const MessagesList = memo(
     const count = messages.length
 
     return (
-      <YStack ov="hidden" f={10}>
+      <YStack overflow="hidden" flex={10}>
         {!!count && (
           <VList
             ref={ref}
@@ -165,7 +165,7 @@ export const MessagesList = memo(
 
               // empty space at end
               if (index === count) {
-                return <View h={64} w="100%" />
+                return <View height={64} width="100%" />
               }
 
               const lastMessage = messages[index - 1]

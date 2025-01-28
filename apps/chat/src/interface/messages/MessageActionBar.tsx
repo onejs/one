@@ -36,16 +36,16 @@ export const MessageActionBar = ({
 
   return (
     <XStack
-      pos="absolute"
+      position="absolute"
       t={-8}
       r={8}
-      o={0}
+      opacity={0}
       elevation="$0.5"
-      br="$4"
-      zi={1000}
-      $group-message-hover={{ o: 1 }}
+      rounded="$4"
+      z={1000}
+      $group-message-hover={{ opacity: 1 }}
       {...(stickOpen && {
-        o: 1,
+        opacity: 1,
       })}
     >
       <XGroup bg="$color2">
@@ -91,7 +91,7 @@ export const MessageActionBar = ({
             }}
             chromeless
             size="$2.5"
-            br={0}
+            rounded={0}
           >
             <IndentIncrease size={16} />
           </Button>
@@ -101,7 +101,7 @@ export const MessageActionBar = ({
           <Button
             chromeless
             size="$2.5"
-            br={0}
+            rounded={0}
             onPress={() => {
               messageReplyEmitter.emit({
                 type: 'reply',

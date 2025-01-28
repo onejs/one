@@ -23,13 +23,13 @@ export const DialogConfirm = () => {
           }}
         />
 
-        <DialogContent mih={150}>
-          <YStack f={1}>
+        <DialogContent minH={150}>
+          <YStack flex={1}>
             <H3>{state?.title}</H3>
             <Paragraph>{state?.description}</Paragraph>
           </YStack>
 
-          <XStack jc="flex-end" gap="$2">
+          <XStack justify="flex-end" gap="$2">
             <Dialog.Close asChild>
               <Button
                 onPress={() => {

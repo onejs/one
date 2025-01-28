@@ -40,7 +40,7 @@ export const Avatar = ({
       pressable={!!rest.onPress && !active}
       size={size}
       bg="$color5"
-      ov="hidden"
+      overflow="hidden"
       {...rest}
     >
       {image && <Image src={image} width={size} height={size} />}

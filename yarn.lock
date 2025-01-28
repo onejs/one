@@ -17,6 +17,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@actions/core@npm:^1.11.1":
+  version: 1.11.1
+  resolution: "@actions/core@npm:1.11.1"
+  dependencies:
+    "@actions/exec": "npm:^1.1.1"
+    "@actions/http-client": "npm:^2.0.1"
+  checksum: 10/94f260e33607cc16567ce4c88014f069cd7da92baaa443b72cff80fdf4f1dcd18192e135df0d51ec29e8b82cfe214218715d482f2a7804efa5095737d1245f38
+  languageName: node
+  linkType: hard
+
+"@actions/exec@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@actions/exec@npm:1.1.1"
+  dependencies:
+    "@actions/io": "npm:^1.0.1"
+  checksum: 10/c04bd25191e522841c7e17862d70099de8db61278d2b4c744b69ac0197a48f85c75dba548e1c29c695c4cc5363d558846b4dcd3db9013463c18ba8cf36497c6d
+  languageName: node
+  linkType: hard
+
+"@actions/http-client@npm:^2.0.1":
+  version: 2.2.3
+  resolution: "@actions/http-client@npm:2.2.3"
+  dependencies:
+    tunnel: "npm:^0.0.6"
+    undici: "npm:^5.25.4"
+  checksum: 10/0c0a540c79e50f795d214f696710bb9c50bdf5bb1458be288140f2aae3686adec73fdb464c43da5ef94f985ac7736273efef21cb5ba5a3b09e85b403d852c04b
+  languageName: node
+  linkType: hard
+
+"@actions/io@npm:^1.0.1":
+  version: 1.1.3
+  resolution: "@actions/io@npm:1.1.3"
+  checksum: 10/4de44e8d428ba9f20049c844b37ecd486b589ed201f8cc8c5b550a9e4c72d1f594271ee2a7a6cfe8a42ebfb5dd527ef65016454656db391a353d41eab4f147e1
+  languageName: node
+  linkType: hard
+
 "@ai-sdk/google@npm:^1.0.12":
   version: 1.0.12
   resolution: "@ai-sdk/google@npm:1.0.12"
@@ -11678,10 +11714,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/aws-lambda@npm:8.10.146":
-  version: 8.10.146
-  resolution: "@types/aws-lambda@npm:8.10.146"
-  checksum: 10/2b923ecc77ef9eb47d91627d351700b17d9d9fe22a7c9a9e99335a02cf2c6291d54fcd2c969dce48753335b5d0fd36b2cfcde3b201a2e6ad5500a9517383fbdb
+"@types/aws-lambda@npm:8.10.147":
+  version: 8.10.147
+  resolution: "@types/aws-lambda@npm:8.10.147"
+  checksum: 10/c80df3be4ed42acf7f1a139afeaa96c69466d63ce3e6578a9411bd956806a10ae182fb45fa6dc9e9b31e5da08762af3758abeb84f989edac4c8011d8bf5f7b8f
   languageName: node
   linkType: hard
 
@@ -12821,7 +12857,7 @@ __metadata:
     depcheck: "npm:^1.4.7"
     dotenv: "npm:^16.4.5"
     fs-extra: "npm:^11.2.0"
-    typescript: "npm:^5.3.0"
+    typescript: "npm:^5.7.3"
     vitest: "npm:^2.1.8"
   bin:
     strip: run.mjs
@@ -15770,6 +15806,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:^16.4.7":
+  version: 16.4.7
+  resolution: "dotenv@npm:16.4.7"
+  checksum: 10/f13bfe97db88f0df4ec505eeffb8925ec51f2d56a3d0b6d916964d8b4af494e6fb1633ba5d09089b552e77ab2a25de58d70259b2c5ed45ec148221835fc99a0c
+  languageName: node
+  linkType: hard
+
 "drizzle-kit@npm:^0.24.2":
   version: 0.24.2
   resolution: "drizzle-kit@npm:0.24.2"
@@ -16977,7 +17020,7 @@ __metadata:
     react: "npm:^19.0.0"
     react-native: "npm:^0.76.5"
     react-test-renderer: "npm:18.2.0"
-    typescript: "npm:^5.7.2"
+    typescript: "npm:^5.7.3"
     vxrn: "workspace:*"
   languageName: unknown
   linkType: soft
@@ -23371,6 +23414,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "onechat@workspace:apps/chat"
   dependencies:
+    "@actions/core": "npm:^1.11.1"
+    "@actions/exec": "npm:^1.1.1"
     "@aws-sdk/client-s3": "npm:^3.709.0"
     "@aws-sdk/lib-storage": "npm:^3.709.0"
     "@dnd-kit/core": "npm:^6.3.1"
@@ -23395,13 +23440,15 @@ __metadata:
     "@tauri-apps/plugin-deep-link": "npm:^2.0.1"
     "@tauri-apps/plugin-fs": "npm:^2.2.0"
     "@tauri-apps/plugin-shell": "npm:^2"
-    "@types/aws-lambda": "npm:8.10.146"
+    "@types/aws-lambda": "npm:8.10.147"
     "@types/pg": "npm:^8.11.10"
     "@uiw/react-md-editor": "npm:^4.0.5"
+    "@vxrn/better-auth": "workspace:*"
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/emitter": "workspace:*"
     better-auth: "npm:1.0.23-beta.3"
     burnt: "npm:^0.12.2"
+    dotenv: "npm:^16.4.7"
     expo: "npm:~52.0.17"
     flexsearch: "npm:^0.7.43"
     one: "workspace:*"
@@ -23413,10 +23460,11 @@ __metadata:
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:4.4.0"
     react-native-svg: "npm:15.8.0"
-    sst: "npm:^3.4.46"
+    sst: "npm:^3.6.18"
     tamagui: "npm:^1.123.2"
     ts-deepmerge: "npm:^7.0.2"
     tsx: "npm:^4.19.0"
+    typescript: "npm:^5.7.3"
     unicode-emoji: "npm:^2.6.0"
     valtio: "npm:^2.1.2"
     virtua: "npm:^0.39.2"
@@ -27357,56 +27405,53 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sst-darwin-arm64@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-darwin-arm64@npm:3.4.46"
+"sst-darwin-arm64@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-darwin-arm64@npm:3.6.18"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"sst-darwin-x64@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-darwin-x64@npm:3.4.46"
+"sst-darwin-x64@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-darwin-x64@npm:3.6.18"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"sst-linux-arm64@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-linux-arm64@npm:3.4.46"
+"sst-linux-arm64@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-linux-arm64@npm:3.6.18"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"sst-linux-x64@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-linux-x64@npm:3.4.46"
+"sst-linux-x64@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-linux-x64@npm:3.6.18"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"sst-linux-x86@npm:3.4.46":
-  version: 3.4.46
-  resolution: "sst-linux-x86@npm:3.4.46"
+"sst-linux-x86@npm:3.6.18":
+  version: 3.6.18
+  resolution: "sst-linux-x86@npm:3.6.18"
   conditions: os=linux & cpu=x86
   languageName: node
   linkType: hard
 
-"sst@npm:^3.4.46":
-  version: 3.4.46
-  resolution: "sst@npm:3.4.46"
+"sst@npm:^3.6.18":
+  version: 3.6.18
+  resolution: "sst@npm:3.6.18"
   dependencies:
     aws4fetch: "npm:^1.0.18"
     jose: "npm:5.2.3"
     openid-client: "npm:5.6.4"
-    sst-darwin-arm64: "npm:3.4.46"
-    sst-darwin-x64: "npm:3.4.46"
-    sst-linux-arm64: "npm:3.4.46"
-    sst-linux-x64: "npm:3.4.46"
-    sst-linux-x86: "npm:3.4.46"
-  peerDependencies:
-    hono: 4.x
-    valibot: 0.30.x
+    sst-darwin-arm64: "npm:3.6.18"
+    sst-darwin-x64: "npm:3.6.18"
+    sst-linux-arm64: "npm:3.6.18"
+    sst-linux-x64: "npm:3.6.18"
+    sst-linux-x86: "npm:3.6.18"
   dependenciesMeta:
     sst-darwin-arm64:
       optional: true
@@ -27418,14 +27463,9 @@ __metadata:
       optional: true
     sst-linux-x86:
       optional: true
-  peerDependenciesMeta:
-    hono:
-      optional: true
-    valibot:
-      optional: true
   bin:
     sst: bin/sst.mjs
-  checksum: 10/b52cd377487232fb4c7a82d690e5227ca218d5e110d59eeb1beec9e002987656dbfb118fbf59d95f36b6a14c73cef76b99c517f7960c0e60142c0c470bbcde64
+  checksum: 10/122fc447ae648fd956750822fad578d9cddbcf5dc93f518abd79aaeeb6a965efa56f7b02a3fb53316cf2347c1b96bb543f5276731eec3c4c0b5049145fd618d6
   languageName: node
   linkType: hard
 
@@ -28664,6 +28704,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tunnel@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "tunnel@npm:0.0.6"
+  checksum: 10/cf1ffed5e67159b901a924dbf94c989f20b2b3b65649cfbbe4b6abb35955ce2cf7433b23498bdb2c5530ab185b82190fce531597b3b4a649f06a907fc8702405
+  languageName: node
+  linkType: hard
+
 "turbo-darwin-64@npm:2.1.2":
   version: 2.1.2
   resolution: "turbo-darwin-64@npm:2.1.2"
@@ -28840,16 +28887,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.3.0":
-  version: 5.7.3
-  resolution: "typescript@npm:5.7.3"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10/6a7e556de91db3d34dc51cd2600e8e91f4c312acd8e52792f243c7818dfadb27bae677175fad6947f9c81efb6c57eb6b2d0c736f196a6ee2f1f7d57b74fc92fa
-  languageName: node
-  linkType: hard
-
 "typescript@npm:^5.7.2":
   version: 5.7.2
   resolution: "typescript@npm:5.7.2"
@@ -28857,6 +28894,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10/4caa3904df69db9d4a8bedc31bafc1e19ffb7b24fbde2997a1633ae1398d0de5bdbf8daf602ccf3b23faddf1aeeb9b795223a2ed9c9a4fdcaf07bfde114a401a
+  languageName: node
+  linkType: hard
+
+"typescript@npm:^5.7.3":
+  version: 5.7.3
+  resolution: "typescript@npm:5.7.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/6a7e556de91db3d34dc51cd2600e8e91f4c312acd8e52792f243c7818dfadb27bae677175fad6947f9c81efb6c57eb6b2d0c736f196a6ee2f1f7d57b74fc92fa
   languageName: node
   linkType: hard
 
@@ -28870,16 +28917,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.3.0#optional!builtin<compat/typescript>":
-  version: 5.7.3
-  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10/dc58d777eb4c01973f7fbf1fd808aad49a0efdf545528dab9b07d94fdcb65b8751742804c3057e9619a4627f2d9cc85547fdd49d9f4326992ad0181b49e61d81
-  languageName: node
-  linkType: hard
-
 "typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
   version: 5.7.2
   resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=5786d5"
@@ -28887,6 +28924,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10/d75ca10141afc64fd3474b41a8b082b640555bed388d237558aed64e5827ddadb48f90932c7f4205883f18f5bcab8b6a739a2cfac95855604b0dfeb34bc2f3eb
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.7.3#optional!builtin<compat/typescript>":
+  version: 5.7.3
+  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/dc58d777eb4c01973f7fbf1fd808aad49a0efdf545528dab9b07d94fdcb65b8751742804c3057e9619a4627f2d9cc85547fdd49d9f4326992ad0181b49e61d81
   languageName: node
   linkType: hard
 
@@ -28971,6 +29018,15 @@ __metadata:
   version: 6.20.0
   resolution: "undici-types@npm:6.20.0"
   checksum: 10/583ac7bbf4ff69931d3985f4762cde2690bb607844c16a5e2fbb92ed312fe4fa1b365e953032d469fa28ba8b224e88a595f0b10a449332f83fa77c695e567dbe
+  languageName: node
+  linkType: hard
+
+"undici@npm:^5.25.4":
+  version: 5.28.5
+  resolution: "undici@npm:5.28.5"
+  dependencies:
+    "@fastify/busboy": "npm:^2.0.0"
+  checksum: 10/459cd84ab75fe90d696fa2634a8b5b23f9e1080b27236c6809bd74e51862be85df6d95b4a8fed3ee42554495008cb3c05f1bc9d4a1807478f433cca567003d70
   languageName: node
   linkType: hard
 
@@ -29936,10 +29992,10 @@ __metadata:
     npm-run-all: "npm:^4.1.5"
     p-map: "npm:^7.0.2"
     patch-package: "npm:^8.0.0"
-    sst: "npm:^3.4.46"
+    sst: "npm:^3.6.18"
     tsx: "npm:^4.19.0"
     turbo: "npm:^2.1.0"
-    typescript: "npm:^5.7.2"
+    typescript: "npm:^5.7.3"
     ultra-runner: "npm:^3.10.5"
     update-ts-references: "npm:^3.4.0"
     vitepress: "npm:^1.1.4"

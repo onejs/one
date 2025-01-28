@@ -4,14 +4,21 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import type { TamaguiElement } from 'tamagui'
 import { ButtonSimple } from '~/interface/ButtonSimple'
 import { updateSessionState, useSessionState } from '~/state/session'
+import { messageInputEmitter } from '../messages/emitters'
 
 export const HotMenuButton = forwardRef<TamaguiElement, any>((props, ref) => {
   const { showHotMenu } = useSessionState()
 
   function toggleHotMenu() {
+    const show = !showHotMenu
     updateSessionState({
-      showHotMenu: !showHotMenu,
+      showHotMenu: show,
     })
+    if (show) {
+      setTimeout(() => {
+        messageInputEmitter.emit({ type: 'focus' })
+      })
+    }
   }
 
   useHotkeys('/', () => {

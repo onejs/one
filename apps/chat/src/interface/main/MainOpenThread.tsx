@@ -30,14 +30,14 @@ export const MainOpenThread = () => {
             },
           },
         ]}
-        pos="absolute"
+        position="absolute"
         t={0}
         r={0}
         b={0}
-        w="70%"
-        zi={1000}
+        width="70%"
+        z={1000}
         {...(maximized && {
-          w: '100%',
+          width: '100%',
         })}
         {...(thread
           ? {
@@ -50,7 +50,7 @@ export const MainOpenThread = () => {
               x: 7,
             })}
       >
-        {/* <YStack zi={1000} pos="absolute" t={10} l={-20} jc="center" gap="$3">
+        {/* <YStack zi={1000} position="absolute" t={10} l={-20} justify="center" gap="$3">
           <ButtonClose
             onPress={() => {
               closeCurrentThread()
