@@ -16,8 +16,8 @@ COPY . .
 # with the version number found in the package.json.version:
 RUN node -e "let pkg=require('./package.json'); ['dependencies', 'devDependencies'].forEach(depType => { if(pkg[depType]) { Object.keys(pkg[depType]).forEach(dep => { if(pkg[depType][dep].startsWith('workspace:')) { pkg[depType][dep] = pkg.version; } }); } }); require('fs').writeFileSync('./package.json', JSON.stringify(pkg, null, 2));"
 
-RUN corepack enable
-RUN corepack prepare yarn@4.5.3 --activate
+RUN corepack enable && corepack prepare yarn@4.5.3 --activate
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 RUN yarn install
 
 EXPOSE 3000
