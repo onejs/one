@@ -136,11 +136,7 @@ export default function HomePage() {
             <Link target="_blank" href="https://vxrn.dev">
               makes it serve
             </Link>{' '}
-            and makes it{' '}
-            <Link target="_blank" href="https://vxrn.dev">
-              able to target
-            </Link>{' '}
-            React&nbsp;Native. Then it adds{' '}
+            React&nbsp;web and React&nbsp;Native. Then adds{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
               FS routes
             </Link>
