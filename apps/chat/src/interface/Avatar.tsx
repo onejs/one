@@ -43,7 +43,7 @@ export const Avatar = ({
       overflow="hidden"
       {...rest}
     >
-      {image && <Image src={image} width={size} height={size} />}
+      {image ? <Image src={image} width={size} height={size} /> : null}
     </SelectableCircle>
   )
 }
