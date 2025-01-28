@@ -16,7 +16,6 @@
     "jsx": "react-jsx",
     "module": "Preserve",
     "moduleResolution": "Bundler",
-    "noEmit": true,
     "noEmitOnError": false,
     "noImplicitAny": false,
     "noImplicitReturns": false,

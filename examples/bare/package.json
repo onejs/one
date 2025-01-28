@@ -7,6 +7,7 @@
   "scripts": {
     "android": "react-native run-android",
     "build:web": "vxrn build",
+    "typecheck": "tsc --noEmit",
     "clean": "vxrn clean",
     "dev": "vxrn dev",
     "dev:clean": "vxrn dev --clean",

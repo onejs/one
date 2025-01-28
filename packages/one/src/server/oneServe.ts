@@ -114,7 +114,7 @@ ${err?.['stack'] ?? err}
 url: ${url}`)
         }
       } else {
-        const htmlPath = routeMap[url.pathname] || routeMap[buildInfo.cleanPath]
+        const htmlPath = routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {
           const html = await FSExtra.readFile(join('dist/client', htmlPath), 'utf-8')

@@ -6,6 +6,7 @@
   "files": [],
   "type": "module",
   "scripts": {
+    "typecheck": "tsc --noEmit",
     "build:icon": "tauri icon ./src-tauri/icons/icon.png",
     "build:tauri": "tauri build --debug",
     "build:web": "one build",
@@ -56,6 +57,7 @@
     "@tauri-apps/cli": "^2",
     "@types/node": "^22.1.0",
     "tsx": "^4.19.0",
+    "typescript": "^5.7.3",
     "vite": "^6.0.6"
   },
   "publishConfig": {

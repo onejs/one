@@ -8,6 +8,7 @@
     "start": "./run.js",
     "prerelease": "rimraf ./dist/",
     "prepublish": "yarn build",
+    "typecheck": "tsc --noEmit",
     "build": "tamagui-build --skip-types",
     "watch": "yarn build --watch",
     "clean": "tamagui-build clean",
@@ -41,7 +42,8 @@
     "yocto-spinner": "^0.1.0"
   },
   "devDependencies": {
-    "@types/prompts": "^2.4.9"
+    "@types/prompts": "^2.4.9",
+    "typescript": "^5.7.3"
   },
   "publishConfig": {
     "access": "public"
