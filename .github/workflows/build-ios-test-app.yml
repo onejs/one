@@ -117,7 +117,7 @@ jobs:
       - name: Prebuild
         if: ${{ !steps.pre-check-previous-build.outputs.cache-hit }}
         run: |
-          node_modules/.bin/expo prebuild --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
+          yarn expo prebuild --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
 
       - name: Cache Pods
         uses: actions/cache@v4
