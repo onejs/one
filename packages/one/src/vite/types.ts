@@ -1,4 +1,5 @@
 import type { GetTransform } from '@vxrn/compiler'
+import { InlineConfig } from 'vite'
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths'
 import type {
   DepOptimize,

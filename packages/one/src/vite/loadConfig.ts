@@ -12,7 +12,7 @@ async function getUserOneOptions(command?: 'serve' | 'build') {
   if (!globalThis.__oneOptions) {
     throw new Error(`One not loaded properly, is the one() plugin in your vite.config.ts?`)
   }
-  return globalThis.__oneOptions
+  return globalThis.__oneOptions as One.PluginOptions
 }
 
 export async function loadUserOneOptions(command: 'serve' | 'build') {

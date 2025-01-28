@@ -82,7 +82,7 @@ export async function build(args: {
     } satisfies InlineConfig
   )
 
-  const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
+  // const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
   const processEnvDefines = Object.fromEntries(
     Object.entries(process.env).map(([key, value]) => {
       return [`process.env.${key}`, JSON.stringify(value)]
@@ -103,16 +103,17 @@ export async function build(args: {
       appType: 'custom',
       configFile: false,
 
-      plugins: [
-        nodeExternals({
-          exclude: optimizeDeps.include,
-        }) as any,
-      ],
+      // plugins: [
+      //   nodeExternals({
+      //     exclude: optimizeDeps.include,
+      //   }) as any,
+      // ],
 
       define: {
         ...processEnvDefines,
       },
 
+      // dont think this is doing anything
       ssr: {
         noExternal: true,
         // we patched them to switch to react 19
@@ -143,7 +144,7 @@ export async function build(args: {
           // prevents it from shaking out the exports
           preserveEntrySignatures: 'strict',
           input: input,
-          external: externalRegex,
+          external: (id) => false,
           output: {
             entryFileNames: '[name]',
             exports: 'auto',
@@ -177,7 +178,12 @@ export async function build(args: {
       },
     } satisfies InlineConfig)
 
-    const output = await viteBuild(mergedConfig)
+    const userApiBuildConf = oneOptions.build?.api?.config
+
+    const output = await viteBuild(
+      // allow user merging api build config
+      userApiBuildConf ? mergeConfig(mergedConfig, userApiBuildConf) : mergedConfig
+    )
 
     return output as RollupOutput
   }

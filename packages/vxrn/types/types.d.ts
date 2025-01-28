@@ -1,6 +1,6 @@
 import type { Hono } from 'hono';
 import type { OutputAsset, OutputChunk, TreeshakingOptions, TreeshakingPreset } from 'rollup';
-import type { UserConfig } from 'vite';
+import type { InlineConfig, UserConfig } from 'vite';
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
 export type Mode = 'dev' | 'prod';
 export type BuildArgs = {
@@ -37,6 +37,10 @@ export type VXRNBuildOptions = {
      */
     outputFormat?: 'cjs' | 'esm';
     treeshake?: RollupTreeshakeOptions;
+    /**
+     * Uses Vite mergeConfig to overwrite any build configuration during build
+     */
+    config?: InlineConfig;
 };
 export type VXRNServePlatform = 'node' | 'vercel' | 'cloudflare';
 export type VXRNOptions = {
