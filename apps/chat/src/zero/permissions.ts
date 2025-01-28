@@ -102,7 +102,5 @@ export const permissions = definePermissions<AuthData, Schema>(schema, () => {
     }
   }
 
-  console.info(`Build permissions:`, out)
-
   return out
 })
