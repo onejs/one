@@ -33,7 +33,6 @@ export { redirect } from './utils/redirect';
 export { href } from './href';
 export { setResponseHeaders, getServerData, setServerData } from './vite/one-server-only';
 export * from '@vxrn/universal-color-scheme';
-export { loadEnv } from 'vxrn';
 export { useFocusEffect } from './useFocusEffect';
 export { useNavigation } from './router/useNavigation';
 export { useLoader } from './useLoader';
