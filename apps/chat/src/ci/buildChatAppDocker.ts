@@ -1,6 +1,7 @@
 import { config } from 'dotenv'
 import { buildDockerImage } from './buildDockerImage'
 import { exec } from '@actions/exec'
+import FSExtra from 'fs-extra'
 
 export async function buildChatAppDocker() {
   config()
@@ -17,6 +18,7 @@ export async function buildChatAppDocker() {
   // then docker just uses the dist and sets up node modules
   return await buildDockerImage({
     name: `chat-app`,
+    releaseVersion: `${Date.now()}`,
     context: '.',
     image: 'Dockerfile',
     githubActor: 'natew',
@@ -24,8 +26,12 @@ export async function buildChatAppDocker() {
   })
 }
 
+async function run() {
+  const { latest, specific } = await buildChatAppDocker()
+  console.info(`Built:`, latest, specific)
+  await FSExtra.writeFile('src/ci/LATEST_DOCKER_IMAGE_VERSION', specific)
+}
+
 if (process.env.RUN) {
-  buildChatAppDocker().then((res) => {
-    console.info(`Built:`, res)
-  })
+  run()
 }

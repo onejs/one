@@ -7,31 +7,42 @@ export async function buildDockerImage({
   context,
   githubActor,
   githubToken,
-}: { name: string; image: string; context: string; githubActor: string; githubToken: string }) {
+  releaseVersion,
+}: {
+  name: string
+  image: string
+  context: string
+  githubActor: string
+  githubToken: string
+  releaseVersion: string
+}) {
   const imageName = `ghcr.io/onejs/one/${name}`
-  const tag = 'latest'
+  const latestTag = 'latest'
+  const versionTag = releaseVersion
 
   try {
-    // login
     await exec('docker', ['login', 'ghcr.io', '-u', githubActor, '-p', githubToken])
 
-    // build
     await exec('docker', [
       'build',
       '--platform=linux/amd64',
       '-f',
       image,
       '-t',
-      `${imageName}:${tag}`,
+      `${imageName}:${latestTag}`,
       context,
     ])
 
-    // push
-    await exec('docker', ['push', `${imageName}:${tag}`])
+    await exec('docker', ['tag', `${imageName}:${latestTag}`, `${imageName}:${versionTag}`])
+    await exec('docker', ['push', `${imageName}:${latestTag}`])
+    await exec('docker', ['push', `${imageName}:${versionTag}`])
 
-    info(`Successfully pushed ${imageName}:${tag} to GHCR`)
+    info(`Successfully pushed ${imageName}:${latestTag} and ${imageName}:${versionTag} to GHCR`)
 
-    return `${imageName}:${tag}`
+    return {
+      latest: `${imageName}:${latestTag}`,
+      specific: `${imageName}:${versionTag}`,
+    }
   } catch (error) {
     setFailed(`Failed to build and push Docker image: ${(error as any).message}`)
     throw error
