@@ -21,6 +21,10 @@
       "cache": false,
       "outputs": []
     },
+    "typecheck": {
+      "cache": false,
+      "outputs": []
+    },
     "test": {
       "dependsOn": ["^build:js"],
       "outputs": []

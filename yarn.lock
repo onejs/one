@@ -15148,6 +15148,7 @@ __metadata:
     fs-extra: "npm:^11.2.0"
     prompts: "npm:^2.4.2"
     rimraf: "npm:^5.0.1"
+    typescript: "npm:^5.7.3"
     validate-npm-package-name: "npm:3.0.0"
     yocto-spinner: "npm:^0.1.0"
   bin:
@@ -17074,6 +17075,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.123.2"
     tsx: "npm:^4.19.0"
+    typescript: "npm:^5.7.3"
     vite: "npm:^6.0.6"
   languageName: unknown
   linkType: soft
@@ -23335,6 +23337,7 @@ __metadata:
     react-native-web: "npm:^0.19.12"
     tamagui: "npm:^1.123.2"
     tsx: "npm:^4.19.0"
+    typescript: "npm:^5.7.3"
     vite: "npm:^6.0.6"
   languageName: unknown
   linkType: soft
@@ -23396,6 +23399,7 @@ __metadata:
     react-scan: "npm:^0.0.54"
     rollup: "npm:^4.29.1"
     rollup-plugin-node-externals: "npm:^7.1.2"
+    typescript: "npm:^5.7.3"
     use-latest-callback: "npm:^0.2.3"
     vite: "npm:^6.0.6"
     vite-plugin-barrel: "npm:^0.4.1"

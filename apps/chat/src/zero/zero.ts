@@ -12,7 +12,10 @@ function createZero({ auth, userId = 'anon' }: { auth?: string; userId?: string 
   return new Zero({
     userID: userId,
     auth,
-    server: import.meta.env.VITE_PUBLIC_ZERO_SERVER,
+    server:
+      typeof window !== 'undefined'
+        ? `${window.location.origin}:4848`
+        : import.meta.env.VITE_PUBLIC_ZERO_SERVER,
     schema,
     kvStore: 'mem',
   })

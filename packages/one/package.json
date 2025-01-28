@@ -74,6 +74,7 @@
     "check": "yarn depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
+    "typecheck": "tsc --noEmit",
     "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
     "watch": "tamagui-build --watch"
   },
@@ -139,7 +140,8 @@
     "@types/xxhashjs": "^0.2.4",
     "depcheck": "^1.4.7",
     "react-native": "^0.76.5",
-    "rollup": "^4.29.1"
+    "rollup": "^4.29.1",
+    "typescript": "^5.7.3"
   },
   "peerDependencies": {
     "react-native": "*"
