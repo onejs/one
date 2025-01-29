@@ -38,7 +38,7 @@ export async function build(args: {
   labelProcess('build')
   checkNodeVersion()
   setServerGlobals()
-  await loadEnv('production')
+  const { serverEnv } = await loadEnv('production')
 
   if (!process.env.ONE_SERVER_URL) {
     console.warn(
@@ -84,7 +84,7 @@ export async function build(args: {
 
   // const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
   const processEnvDefines = Object.fromEntries(
-    Object.entries(process.env).map(([key, value]) => {
+    Object.entries(serverEnv).map(([key, value]) => {
       return [`process.env.${key}`, JSON.stringify(value)]
     })
   )
