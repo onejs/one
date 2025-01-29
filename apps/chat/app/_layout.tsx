@@ -45,7 +45,7 @@ export default function Layout() {
       )
       return controller.abort
     }
-  })
+  }, [])
 
   // if web, send errors to showToast
   if (isWeb) {
