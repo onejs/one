@@ -1,6 +1,6 @@
 import { betterAuth } from 'better-auth'
+import { bearer, jwt } from 'better-auth/plugins'
 import { Pool } from 'pg'
-import { jwt, bearer } from 'better-auth/plugins'
 
 // make sure not set during production builds so we can dynamically set it
 const DATABASE_URL = process.env.ZERO_UPSTREAM_DB
@@ -10,17 +10,12 @@ export const auth = betterAuth({
     connectionString: DATABASE_URL,
   }),
 
-  trustedOrigins: ['https://start.chat'],
+  trustedOrigins: ['https://start.chat', 'http://localhost'],
 
   plugins: [
     jwt({
       jwt: {
         expirationTime: '3y',
-      },
-
-      jwks: {
-        // default
-        keyPairConfig: { alg: 'EdDSA', crv: 'Ed25519' },
       },
     }),
 
@@ -29,8 +24,9 @@ export const auth = betterAuth({
 
   socialProviders: {
     github: {
-      clientId: process.env.ONECHAT_GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.ONECHAT_GITHUB_CLIENT_SECRET as string,
+      enabled: true,
+      clientId: process.env.ONECHAT_GITHUB_CLIENT_ID!,
+      clientSecret: process.env.ONECHAT_GITHUB_CLIENT_SECRET!,
     },
   },
 })

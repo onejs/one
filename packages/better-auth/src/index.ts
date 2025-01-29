@@ -1,6 +1,5 @@
-import type { Session, User } from 'better-auth'
-import { useEffect, useState } from 'react'
 import { createEmitter } from '@vxrn/emitter'
+import type { Session, User } from 'better-auth'
 import { type ClientOptions, createAuthClient } from 'better-auth/client'
 
 interface StorageKeys {
@@ -56,45 +55,65 @@ export function createBetterAuthClient(
   const authClientVersion = createEmitter<number>()
   const useAuthClientVersion = authClientVersion.use
 
-  const setAuthClientToken = ({ token, session }: { token: string; session: string }) => {
+  const setAuthClientToken = async ({ token, session }: { token: string; session: string }) => {
     localStorage.setItem(keys.token, token)
     localStorage.setItem(keys.session, session)
     authClient = createAuthClientWithSession(session)
     authClientVersion.emit(Math.random())
+    await fetchToken()
   }
 
-  const empty = {
+  async function fetchToken() {
+    const res = await authClient.$fetch('/token')
+    const data = res.data as any
+    if (data?.token) {
+      setState({ token: data?.token || null })
+    }
+  }
+
+  async function refreshAuth() {
+    const token = localStorage.getItem(keys.token)
+    const session = localStorage.getItem(keys.session)
+    if (token && session) {
+      setAuthClientToken({ token, session })
+      return
+    }
+    const tokenF = await fetchToken()
+    console.log('tokenF', tokenF)
+  }
+
+  type State = {
+    session: Session | null
+    user: User | null
+    token: string | null
+  }
+
+  const empty: State = {
     session: null,
     user: null,
+    token: null,
   }
 
+  const stateEmitter = createEmitter<State>(empty)
+
+  function setState(next: Partial<State>) {
+    const current = stateEmitter.value!
+    stateEmitter.emit({ ...current, ...next })
+  }
+
+  authClient.useSession.subscribe(({ data, error }) => {
+    if (error) {
+      console.error(`Auth error`, error)
+    }
+    console.warn('WHAT IS IT', data)
+    setState(data || empty)
+  })
+
   const useAuth = () => {
-    const [clientVersion, setClientVersion] = useState(0)
-    const [state, setState] = useState<{ session: Session | null; user: User | null }>(empty)
-    const [jwtToken, setToken] = useState<string | null>(null)
-
-    useAuthClientVersion(() => {
-      setClientVersion(Math.random())
-    })
-
-    useEffect(() => {
-      authClient.$fetch('/token').then(async (props) => {
-        const data = props.data as any
-        if (data?.token) {
-          setToken(data.token)
-          return
-        }
-      })
-
-      return authClient.useSession.subscribe((value) => {
-        setState(value.data || empty)
-      })
-    }, [clientVersion])
-
+    const state = stateEmitter.useValue() || empty
     return {
       ...state,
-      jwtToken,
-      loggedIn: !!state.user,
+      loggedIn: !!state.session,
     }
   }
 
@@ -103,5 +122,7 @@ export function createBetterAuthClient(
     setAuthClientToken,
     useAuthClientVersion,
     useAuth,
+    refreshAuth,
+    fetchToken,
   }
 }

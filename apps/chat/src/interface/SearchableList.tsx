@@ -90,7 +90,6 @@ export function SearchableList<A>({
       refs,
       setSearch(val) {
         if (onSearch) {
-          console.warn('??', items, val ? fuzzy.search(val) : (items as any))
           onSearch(val ? fuzzy.search(val) : (items as any))
         }
       },

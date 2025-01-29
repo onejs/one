@@ -65,7 +65,7 @@
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/emitter": "workspace:*",
     "@vxrn/strip": "workspace:*",
-    "better-auth": "^1.1.14",
+    "better-auth": "^1.1.15",
     "burnt": "^0.12.2",
     "expo": "~52.0.17",
     "flexsearch": "^0.7.43",

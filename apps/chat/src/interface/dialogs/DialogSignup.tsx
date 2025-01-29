@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Button, Dialog, H3, isWeb, XStack, YStack } from 'tamagui'
 import { authClient, useAuth } from '~/better-auth/authClient'
-import { isTauri } from '~/tauri/constants'
+import { setLoginPopup } from '~/better-auth/AuthEffects'
+import { isTauri } from '../../tauri/constants'
 import { ButtonSimple } from '../ButtonSimple'
 import { GithubIcon } from '../icons/GithubIcon'
 import { isSignedUpEmitter } from './actions'
@@ -12,9 +13,7 @@ export const DialogSignUp = () => {
   const [show, setShow] = useState(false)
 
   useDialogEmit((next) => {
-    if (next.type === 'signup') {
-      setShow((x) => !x)
-    }
+    setShow(next.type === 'signup')
   })
 
   if (loggedIn && show) {
@@ -80,11 +79,36 @@ const TauriOpenNewWindowLoginLink = (props: { children: any }) => {
           e.preventDefault()
           authClient.signIn.social({
             provider: 'github',
+            callbackURL: '/',
           })
-          return
+
+          // const origin = window.location.origin
+          // const popup = openCenteredPopup(origin + '/login-github', 'Login', 700, 800)
+          // if (popup) {
+          //   e.preventDefault()
+          //   setLoginPopup(popup)
+          // } else {
+          //   // let it continue
+          // }
         }
       }}
       {...props}
     />
   )
+}
+
+function openCenteredPopup(url: string, title: string, width: number, height: number) {
+  const left = (screen.width - width) / 2
+  const top = (screen.height - height) / 2
+
+  const windowFeatures = `
+    width=${width},
+    height=${height},
+    left=${left},
+    top=${top},
+    scrollbars=yes,
+    resizable=yes
+  `
+
+  return window.open(url, title, windowFeatures)
 }

@@ -12784,7 +12784,7 @@ __metadata:
   dependencies:
     "@tamagui/build": "npm:^1.123.2"
     "@vxrn/emitter": "workspace:*"
-    better-auth: "npm:^1.1.14"
+    better-auth: "npm:^1.1.15"
     react: "npm:^18.3.1 || ^19.0.0"
   languageName: unknown
   linkType: soft
@@ -13960,9 +13960,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"better-auth@npm:^1.1.14":
-  version: 1.1.14
-  resolution: "better-auth@npm:1.1.14"
+"better-auth@npm:^1.1.15":
+  version: 1.1.15
+  resolution: "better-auth@npm:1.1.15"
   dependencies:
     "@better-auth/utils": "npm:0.2.3"
     "@better-fetch/fetch": "npm:1.1.12"
@@ -13976,7 +13976,7 @@ __metadata:
     kysely: "npm:^0.27.4"
     nanostores: "npm:^0.11.3"
     zod: "npm:^3.24.1"
-  checksum: 10/2b3334b165630ec20071a22aea172969e1558b9ece368e8246120f45ad3b2b3f10f8913860cbd5e3f93da28b6e085ea286d057c54f20876321b736137c002371
+  checksum: 10/77f5a1fcb1055b022289598446a808f73f0fe5bcb62509d32799131a721a9ef52bee89a3b0fd181e8f0f630e784c2849775ecc7250085de10a2253b18bc8bdf2
   languageName: node
   linkType: hard
 
@@ -23400,7 +23400,7 @@ __metadata:
     "@vxrn/better-auth": "workspace:*"
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/emitter": "workspace:*"
-    better-auth: "npm:^1.1.14"
+    better-auth: "npm:^1.1.15"
     expo: "npm:~52.0.17"
     one: "workspace:*"
     pg: "npm:^8.13.1"
@@ -23528,7 +23528,7 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/emitter": "workspace:*"
     "@vxrn/strip": "workspace:*"
-    better-auth: "npm:^1.1.14"
+    better-auth: "npm:^1.1.15"
     burnt: "npm:^0.12.2"
     expo: "npm:~52.0.17"
     flexsearch: "npm:^0.7.43"
