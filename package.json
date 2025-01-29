@@ -55,7 +55,7 @@
     "test:one:dev": "yarn workspace one test:dev",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",
     "watch:js": "SKIP_TYPES=1 yarn watch:build",
-    "watch:ts": "ultra -r --no-pretty --concurrency 400 typecheck -w",
+    "watch:ts": "ultra -r --no-pretty --concurrency 400 typecheck -w --preserveWatchOutput",
     "watch": "npm-run-all --parallel watch:ts watch:build",
     "one": "yarn workspace example-basic",
     "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t one-test . && docker run --rm one-test",
