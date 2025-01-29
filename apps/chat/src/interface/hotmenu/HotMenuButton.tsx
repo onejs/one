@@ -2,7 +2,7 @@ import { Slash } from '@tamagui/lucide-icons'
 import { forwardRef } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import type { TamaguiElement } from 'tamagui'
-import { ButtonSimple } from '~/interface/ButtonSimple'
+import { ButtonSimple } from '~/interface/buttons/ButtonSimple'
 import { updateSessionState, useSessionState } from '~/state/session'
 import { messageInputEmitter } from '../messages/emitters'
 
