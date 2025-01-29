@@ -1,15 +1,15 @@
+import { default as FSExtra } from 'fs-extra'
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
 import { extname, join } from 'node:path'
 import { getServerEntry } from 'vxrn/serve'
-import { getPathFromLoaderPath } from '../utils/cleanUrl'
-import { LOADER_JS_POSTFIX_REGEX, LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
+import { getPathFromLoaderPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
-import { default as FSExtra } from 'fs-extra'
 
 export async function oneServe(
   oneOptions: One.PluginOptions,
@@ -114,7 +114,7 @@ ${err?.['stack'] ?? err}
 url: ${url}`)
         }
       } else {
-        const htmlPath = routeMap[url.pathname] || routeMap[buildInfo.cleanPath]
+        const htmlPath = routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {
           const html = await FSExtra.readFile(join('dist/client', htmlPath), 'utf-8')

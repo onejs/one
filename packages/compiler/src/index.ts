@@ -237,10 +237,6 @@ ${rootJS.code}
             // we could make the babel plugin support those if we want to avoid
           }
 
-          if (environment === 'client') {
-            return code
-          }
-
           const swcOptions = {
             environment: environment,
             mode: optionsIn?.mode || 'serve',

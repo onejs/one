@@ -84,12 +84,12 @@ export const MessageItem = memo(
 
     return (
       <YStack
-        w="100%"
+        width="100%"
         gap="$2"
         py={hideUser ? '$1' : '$2'}
         px="$4"
         group="message"
-        marginTop={-0.5}
+        mt={-0.5}
         borderTopWidth={0.5}
         borderBottomWidth={0.5}
         borderColor="transparent"
@@ -103,23 +103,23 @@ export const MessageItem = memo(
           bg: '$background02',
         }}
         {...(isFocused && {
-          backgroundColor: '$color4',
+          bg: '$color4',
         })}
         {...(thread && {
-          backgroundColor: '$green2',
+          bg: '$green2',
           borderColor: '$green3',
           hoverStyle: {
-            backgroundColor: '$green1',
+            bg: '$green1',
           },
           onDoubleClick: () => {
             openThread()
           },
         })}
         {...((isReplying || isHighlighted) && {
-          backgroundColor: '$blue5',
+          bg: '$blue5',
           borderColor: '$blue7',
           hoverStyle: {
-            backgroundColor: '$blue5',
+            bg: '$blue5',
           },
         })}
       >
@@ -128,18 +128,18 @@ export const MessageItem = memo(
         <XStack gap="$3">
           <MessageActionBar message={message} />
 
-          <XStack w={avatarGutterWidth}>
+          <XStack width={avatarGutterWidth}>
             {sender && !hideUser && <Avatar image={sender.image} />}
           </XStack>
 
-          <YStack f={1} gap="$1">
+          <YStack flex={1} gap="$1">
             {sender && !hideUser && (
-              <SizableText o={0.5} mb={-4} fow="bold">
+              <SizableText opacity={0.5} mb={-4} fontWeight="bold">
                 {sender.username || sender.name}
               </SizableText>
             )}
 
-            <SizableText f={1} ov="hidden">
+            <SizableText flex={1} overflow="hidden">
               {isEditing ? (
                 <Editor
                   onKeyUp={(e) => {
@@ -196,10 +196,10 @@ export const MessageItem = memo(
               <YStack>
                 <XStack
                   bg="$color2"
-                  als="flex-start"
+                  self="flex-start"
                   px="$2"
-                  br="$8"
-                  ai="center"
+                  rounded="$8"
+                  items="center"
                   gap="$2"
                   hoverStyle={{
                     bg: '$color5',
@@ -208,8 +208,8 @@ export const MessageItem = memo(
                     openThread()
                   }}
                 >
-                  <IndentIncrease o={0.5} size={16} />
-                  <SizableText cur="default" o={0.5} size="$3">
+                  <IndentIncrease opacity={0.5} size={16} />
+                  <SizableText cursor="default" opacity={0.5} size="$3">
                     thread with 2 replies
                   </SizableText>
                 </XStack>
@@ -235,10 +235,10 @@ const MessageItemReplyingTo = ({ message }: { message: MessageWithRelations }) =
     <XStack
       pl={avatarGutterWidth - 18}
       gap="$2"
-      cur="default"
-      br="$4"
+      cursor="default"
+      rounded="$4"
       py="$2"
-      userSelect="none"
+      select="none"
       hoverStyle={{
         bg: '$color2',
       }}
@@ -251,11 +251,11 @@ const MessageItemReplyingTo = ({ message }: { message: MessageWithRelations }) =
         })
       }}
     >
-      <Reply scaleX="-100%" size={18} o={0.5} />
+      <Reply scaleX="-100%" size={18} opacity={0.5} />
       <XStack>
         <UserInline size="small" user={replyingTo.sender!} />
       </XStack>
-      <SizableText size="$2" maw="100%" ellipse o={0.7}>
+      <SizableText size="$2" maxW="100%" ellipse opacity={0.7}>
         {replyingTo.content}
       </SizableText>
     </XStack>

@@ -1,27 +1,23 @@
 import { useEffect, useRef, useState } from 'react'
-import { Progress, XStack, YStack } from 'tamagui'
+import { Progress, TooltipSimple, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { Editor, type EditorRef } from '~/editor/Editor'
 import { randomId } from '~/helpers/randomId'
+import { handleKeyboardEscape } from '~/keyboard/handleKeyboardEscape'
+import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
 import { useCurrentServer } from '~/state/server/useCurrentServer'
-import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
-import {
-  closeCurrentThread,
-  getCurrentUser,
-  getDerivedUserState,
-  updateUserCurrentChannel,
-} from '~/state/user'
+import { closeCurrentThread, getCurrentUser, getDerivedUserState } from '~/state/user'
 import { type Attachment, zero } from '~/zero'
+import { getSessionState, updateSessionState } from '../../state/session'
 import { AttachmentItem } from '../attachments/AttachmentItem'
+import { dialogEmitter } from '../dialogs/shared'
+import { HotMenuButton } from '../hotmenu/HotMenuButton'
 import { attachmentEmitter } from '../upload/DragDropFile'
 import type { FileUpload } from '../upload/uploadImage'
 import { messageInputEmitter, messageReplyEmitter } from './emitters'
 import { MessageInputReply } from './MessageInputReply'
 import { messagesListEmitter } from './MessagesList'
-import { handleKeyboardEscape } from '~/keyboard/handleKeyboardEscape'
-import { getSessionState, updateSessionState } from '../../state/session'
-import { dialogEmitter } from '../dialogs/shared'
 
 let mainInputRef: EditorRef | null = null
 
@@ -31,7 +27,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   const server = useCurrentServer()
   const thread = useCurrentThreadWithMessages()
   const { user } = useAuth()
-  const disabled = !user || !channel
+  // const disabled = !user || !channel
 
   // on channel change, focus input
   useEffect(() => {
@@ -73,18 +69,7 @@ export const MessageInput = ({ inThread }: { inThread?: boolean }) => {
   })
 
   return (
-    <YStack
-      // btw={1}
-      f={1}
-      // bc="$color4"
-      p="$2"
-      br="$4"
-      gap="$2"
-      {...(disabled && {
-        opacity: 0.5,
-        pointerEvents: 'none',
-      })}
-    >
+    <YStack overflow="hidden" maxH="100%" p="$2" rounded="$4" gap="$2">
       <MessageInputReply />
 
       <Editor
@@ -243,7 +228,7 @@ const MessageInputAttachments = () => {
         const size = 60
 
         return (
-          <YStack key={attachment.id} gap="$1" w={size} h={size}>
+          <YStack key={attachment.id} gap="$1" width={size} height={size}>
             {attachment.url && (
               <AttachmentItem
                 attachment={attachment}
@@ -259,18 +244,18 @@ const MessageInputAttachments = () => {
             )}
             {upload.progress !== 100 && (
               <Progress
-                pos="absolute"
+                position="absolute"
                 b={0}
                 l={0}
                 r={0}
-                w={size}
-                miw={size}
-                h={5}
-                zi={100}
+                width={size}
+                minW={size}
+                height={5}
+                z={100}
                 value={upload.progress}
                 bg="$color2"
               >
-                <Progress.Indicator h={5} bc="$color7" animation="bouncy" />
+                <Progress.Indicator height={5} borderColor="$color7" animation="bouncy" />
               </Progress>
             )}
           </YStack>

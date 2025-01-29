@@ -1,5 +1,5 @@
 import { Pin } from '@tamagui/lucide-icons'
-import { ListItem, Popover } from 'tamagui'
+import { closeOpenTooltips, ListItem, Popover } from 'tamagui'
 import { closeCurrentThread } from '../../state/user'
 import { ButtonSimple } from '../ButtonSimple'
 import { PopoverContent } from '../Popover'
@@ -21,7 +21,7 @@ export const ChannelPinsPopover = () => {
         />
       </Popover.Trigger>
 
-      <PopoverContent miw={500} mih="calc(80vh)" p="$3" gap="$3">
+      <PopoverContent minW={500} minH="calc(80vh)" p="$3" gap="$3">
         {pins.map((pin) => {
           if (!pin.message) return null
           return <MessageItem key={pin.id} message={pin.message} />

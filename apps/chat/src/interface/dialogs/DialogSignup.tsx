@@ -31,10 +31,10 @@ export const DialogSignUp = () => {
         />
 
         <DialogContent>
-          <YStack f={1}>
+          <YStack flex={1}>
             <H3>Signup</H3>
 
-            <YStack f={1} ai="center" jc="center">
+            <YStack flex={1} items="center" justify="center">
               <TauriOpenNewWindowLoginLink>
                 <Button size="$5" scaleIcon={1.5} icon={GithubIcon}>
                   Login with Github
@@ -43,7 +43,7 @@ export const DialogSignUp = () => {
             </YStack>
           </YStack>
 
-          <XStack jc="flex-end" gap="$2">
+          <XStack justify="flex-end" gap="$2">
             <Dialog.Close asChild>
               <ButtonSimple
                 onPress={() => {

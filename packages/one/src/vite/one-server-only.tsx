@@ -9,7 +9,6 @@
 import { AsyncLocalStorage } from 'node:async_hooks'
 import { SERVER_CONTEXT_KEY } from '../constants'
 import type { One } from './types'
-import React from 'react'
 
 type ALSInstance = AsyncLocalStorage<unknown>
 

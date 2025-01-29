@@ -1,12 +1,13 @@
 {
   "name": "example-recommended",
-  "version": "1.1.412",
+  "version": "1.1.416",
   "private": true,
   "type": "module",
   "scripts": {
     "android": "one run:android",
     "build:web": "one build",
     "clean": "one clean",
+    "typecheck": "tsc --noEmit",
     "db:check": "bash -c \"$npm_execpath db:push 2>&1 >/dev/null | grep ECONNREFUSED >/dev/null; if [ $? -eq 1 ]; then echo '\n\n❌ Note! Error running db:push, you may need to set up and run your db. See README.md\n\n'; exit 1; fi\"",
     "db:generate": "drizzle-kit generate --config ./code/db/drizzle.config.ts",
     "db:init": "$npm_execpath db:generate && $npm_execpath db:push && $npm_execpath db:seed",
@@ -50,6 +51,7 @@
     "@tamagui/vite-plugin": "^1.123.2",
     "@types/react": "^18.3.11",
     "tsx": "^4.19.0",
+    "typescript": "^5.7.3",
     "vite": "^6.0.6"
   }
 }

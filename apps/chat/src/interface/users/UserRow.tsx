@@ -17,7 +17,7 @@ export const UserRow = ({
     <Row active={active} {...rowProps}>
       <Avatar image={user.image} />
       <Row.Text>{user.username || user.name}</Row.Text>
-      <XStack f={1} />
+      <XStack flex={1} />
       {action}
     </Row>
   )

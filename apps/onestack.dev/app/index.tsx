@@ -131,12 +131,12 @@ export default function HomePage() {
             One takes{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
               Vite
-            </Link>{' '}
-            and makes it{' '}
+            </Link>
+            ,{' '}
             <Link target="_blank" href="https://vxrn.dev">
-              able to target
+              makes it serve
             </Link>{' '}
-            React&nbsp;Native. Then it adds{' '}
+            React&nbsp;web and React&nbsp;Native. Then adds{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
               FS routes
             </Link>

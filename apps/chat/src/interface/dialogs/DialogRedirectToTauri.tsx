@@ -23,10 +23,10 @@ export const DialogRedirectToTauri = () => {
         />
 
         <DialogContent>
-          <YStack f={1}>
+          <YStack flex={1}>
             <H3>Login on Desktop</H3>
 
-            <YStack f={1} ai="center" jc="center">
+            <YStack flex={1} items="center" justify="center">
               <a href={link}>
                 <Button
                   onPressOut={() => {
@@ -41,7 +41,7 @@ export const DialogRedirectToTauri = () => {
             </YStack>
           </YStack>
 
-          <XStack jc="flex-end" gap="$2">
+          <XStack justify="flex-end" gap="$2">
             <Dialog.Close asChild>
               <ButtonSimple
                 onPress={() => {

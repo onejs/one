@@ -14,7 +14,7 @@ const useState = () => useSnapshot(globalState)
 
 export default () => {
   return (
-    <YStack f={1}>
+    <YStack flex={1}>
       <DataExplorer />
     </YStack>
   )
@@ -52,11 +52,11 @@ const DataExplorer = () => {
   }
 
   return (
-    // <ScrollView f={1} horizontal>
-    <XStack f={1} fw="wrap" gap="$4" ai="center" jc="center">
+    // <ScrollView flex={1} horizontal>
+    <XStack flex={1} flexWrap="wrap" gap="$4" items="center" justify="center">
       {Object.entries(schema.tables).map(([tableName, tableSchema]) => {
         return (
-          <YStack key={tableName} w="30%">
+          <YStack key={tableName} width="30%">
             <TableButton name={tableName} tableSchema={tableSchema} />
           </YStack>
         )

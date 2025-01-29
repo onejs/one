@@ -1,4 +1,4 @@
-import { boolean, json, number, relationships, string, table, type Row } from '@rocicorp/zero'
+import { boolean, enumeration, json, number, relationships, string, table } from '@rocicorp/zero'
 import type { UserState } from './types'
 
 export const user = table('user')
@@ -108,6 +108,7 @@ export const channel = table('channel')
     id: string(),
     serverId: string(),
     name: string(),
+    type: enumeration<'chat' | 'bot'>().optional(),
     description: string(),
     private: boolean(),
     createdAt: number().optional(),

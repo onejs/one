@@ -77,7 +77,12 @@ export const animations = createAnimations({
   },
   quickest: {
     damping: 16,
-    mass: 0.7,
+    mass: 0.5,
     stiffness: 300,
+  },
+  quickestLessBouncy: {
+    damping: 25,
+    mass: 0.5,
+    stiffness: 550,
   },
 })

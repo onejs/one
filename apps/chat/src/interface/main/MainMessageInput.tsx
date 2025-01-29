@@ -2,7 +2,7 @@ import { SizableText, XStack, YStack } from 'tamagui'
 import { useHotMenuItems } from '~/interface/hotmenu/useHotMenuItems'
 import { MessageInput } from '~/interface/messages/MessageInput'
 import { Row } from '~/interface/Row'
-import { SearchableInput, SearchableList, SearchableListItem } from '~/interface/SearchableList'
+import { SearchableList, SearchableListItem } from '~/interface/SearchableList'
 import { updateSessionState, useSessionState } from '~/state/session'
 
 export const MainMessageInput = () => {
@@ -10,12 +10,10 @@ export const MainMessageInput = () => {
 
   return (
     <XStack
-      y={2}
       animation="quickest"
-      pos="absolute"
+      position="absolute"
       transformOrigin="right center"
       b={0}
-      scale={1}
       l={252}
       r={0}
       x={0}
@@ -26,7 +24,7 @@ export const MainMessageInput = () => {
       })}
     >
       <HotMenuContent />
-      <YStack w="100%" pos="relative" zi={100_000}>
+      <YStack width="100%" position="relative" z={100_000}>
         <MessageInput />
       </YStack>
     </XStack>
@@ -46,19 +44,19 @@ const HotMenuContent = () => {
   return (
     <YStack
       animation="quickest"
-      pos="absolute"
+      position="absolute"
       t={-400 + 50}
       pb={0}
-      h={400}
+      height={400}
       r={0}
       l={0}
-      o={0}
+      opacity={0}
       y={0}
-      pe="none"
-      zi={10_000}
+      pointerEvents="none"
+      z={10_000}
       bg="$background06"
-      br="$7"
-      ov="hidden"
+      rounded="$7"
+      overflow="hidden"
       shadowColor="$shadowColor"
       shadowRadius={40}
       shadowOffset={{ height: 0, width: 0 }}
@@ -67,7 +65,7 @@ const HotMenuContent = () => {
       }}
       {...(showHotMenu && {
         pe: 'auto',
-        o: 1,
+        opacity: 1,
         y: 10,
       })}
     >
@@ -98,7 +96,7 @@ const HotMenuContent = () => {
                 return (
                   <Row
                     key={key}
-                    ai="center"
+                    items="center"
                     px="$4"
                     py="$4"
                     gap="$4"
@@ -121,7 +119,7 @@ const HotMenuContent = () => {
                   >
                     <Icon size={18} />
 
-                    <SizableText cur="default" size="$5">
+                    <SizableText cursor="default" size="$5">
                       {item.name}
                     </SizableText>
                   </Row>

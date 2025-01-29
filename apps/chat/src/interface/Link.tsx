@@ -15,7 +15,9 @@ export const Link = ({ href, replace, asChild, disabled, ...props }: LinkProps) 
       className="t_Link"
       cursor="pointer"
       color="inherit"
+      // @ts-expect-error
       fontSize="inherit"
+      // @ts-expect-error
       lineHeight="inherit"
       {...props}
       {...linkProps}

@@ -46,11 +46,11 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
         ref={ref}
         px="$2.5"
         py="$2"
-        ai="center"
-        userSelect="none"
+        items="center"
+        select="none"
         gap="$3"
-        miw="100%"
-        cur="default"
+        minW="100%"
+        cursor="default"
         {...(!disableHover && {
           hoverStyle: {
             bg: '$background02',
@@ -97,7 +97,7 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
             }}
           />
         ) : typeof children === 'string' ? (
-          <SizableText color="$color" fow="500" cur="default">
+          <SizableText color="$color" fontWeight="500" cursor="default">
             {children}
           </SizableText>
         ) : (
@@ -105,12 +105,12 @@ export const ListItem = forwardRef<TamaguiElement, ListItemProps>(
         )}
         {(iconAfter || after) && (
           <>
-            <XStack f={1} />
+            <XStack flex={1} />
 
-            <XStack ai="center" als="flex-end" h="100%">
+            <XStack items="center" self="flex-end" height="100%">
               {after}
               {iconAfter ? (
-                <YStack pos="absolute" t={0} r={0} b={0} ai="center" jc="center">
+                <YStack position="absolute" t={0} r={0} b={0} items="center" justify="center">
                   {iconElement}
                 </YStack>
               ) : null}

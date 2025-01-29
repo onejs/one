@@ -39,14 +39,14 @@ export const ChannelSettingsPopover = () => {
       <Popover.Trigger>
         <TooltipSimple label="Channel settings">
           <Button chromeless size="$2.5" scaleIcon={1.3}>
-            <Settings size={18} o={0.5} />
+            <Settings size={18} opacity={0.5} />
           </Button>
         </TooltipSimple>
       </Popover.Trigger>
 
-      <PopoverContent miw={600} mih="calc(80vh)" p="$3" gap="$3">
-        <XStack w="100%" jc="center" ai="center" gap="$2">
-          <SizableText size="$3" o={0.3}>
+      <PopoverContent minW={600} minH="calc(80vh)" p="$3" gap="$3">
+        <XStack width="100%" justify="center" items="center" gap="$2">
+          <SizableText size="$3" opacity={0.3}>
             #
           </SizableText>
           <H4 size="$5">{channel.name}</H4>
@@ -61,7 +61,7 @@ export const ChannelSettingsPopover = () => {
             { label: 'Permissions', value: 'permissions' },
           ]}
         >
-          <YStack pos="relative" f={1} w="100%">
+          <YStack position="relative" flex={1} width="100%">
             <AlwaysVisibleTabContent active={tab} value="settings">
               <ChannelSettings />
             </AlwaysVisibleTabContent>
@@ -127,8 +127,8 @@ const ChannelPermissions = () => {
                   return (
                     <Row key={key} active={active} {...itemProps}>
                       <Circle size={24} bg="$color4" />
-                      <Row.Text o={granted ? 1 : 0.5}>{role.name}</Row.Text>
-                      <XStack f={1} />
+                      <Row.Text opacity={granted ? 1 : 0.5}>{role.name}</Row.Text>
+                      <XStack flex={1} />
                       <Row.Button
                         onPress={() => {
                           if (!user || !channel) return
@@ -177,27 +177,27 @@ const ChannelPermissions = () => {
 
 const HoverHideIcon = styled(YStack, {
   animation: 'quick',
-  o: 1,
+  opacity: 1,
   y: 0,
   fullscreen: true,
-  ai: 'center',
-  jc: 'center',
+  items: 'center',
+  justify: 'center',
   '$group-icon-hover': {
     y: 5,
-    o: 0,
+    opacity: 0,
   },
 })
 
 const HoverShowIcon = styled(YStack, {
   animation: 'quick',
   y: 5,
-  o: 0,
+  opacity: 0,
   fullscreen: true,
-  ai: 'center',
-  jc: 'center',
+  items: 'center',
+  justify: 'center',
   '$group-icon-hover': {
     y: 0,
-    o: 1,
+    opacity: 1,
   },
 })
 
