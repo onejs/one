@@ -1,4 +1,5 @@
-import { XStack, YStack } from 'tamagui'
+import { useEffect, useState } from 'react'
+import { Paragraph, View, XStack, YStack } from 'tamagui'
 import { AnimationDriver } from '~/interface/animations/AnimationDriver'
 import { Main } from '~/interface/main/Main'
 import { MainMessageInput } from '~/interface/main/MainMessageInput'
@@ -6,7 +7,8 @@ import { AccountSettingsPane } from '~/interface/settings/AccountSettingsPane'
 import { ServerSettingsPane } from '~/interface/settings/ServerSettingsPane'
 import { Sidebar } from '~/interface/sidebar/Sidebar'
 import { TopBar } from '~/interface/TopBar'
-import { useUserState } from '~/state/user'
+import { isTauri } from '../src/tauri/constants'
+import { useAuth } from '../src/better-auth/authClient'
 
 export default function HomePage() {
   return (
@@ -27,14 +29,114 @@ export default function HomePage() {
 }
 
 const AppFrame = ({ children }: { children: any }) => {
-  const [userState] = useUserState()
+  const { loggedIn } = useAuth()
+  const [showIntro, setShowIntro] = useState(false)
+
+  useEffect(() => {
+    if (!loggedIn) {
+      setShowIntro(true)
+    }
+  }, [loggedIn])
 
   return (
-    <AnimationDriver name="css">
-      <YStack flex={1} overflow="hidden" animation="quicker">
-        <AnimationDriver name="spring">{children}</AnimationDriver>
-      </YStack>
-    </AnimationDriver>
+    <>
+      <View
+        position="absolute"
+        inset={0}
+        background="url(/bg.webp) top center"
+        backgroundSize="contain"
+      />
+
+      {/* was css */}
+      <AnimationDriver name="spring">
+        <XStack
+          animation="medium"
+          y={showIntro ? 0 : -20}
+          opacity={showIntro ? 1 : 0}
+          position="absolute"
+          t={0}
+          l={0}
+          r={0}
+          height={100}
+          items="center"
+          justify="center"
+          px="$8"
+          gap="$6"
+        >
+          <View asChild maxW={250}>
+            <img src="/words.svg" />
+          </View>
+
+          <View
+            bg="rgba(0,0,0,0.7)"
+            p={10}
+            position="absolute"
+            t={0}
+            b={0}
+            r={28}
+            maxW={400}
+            rounded={4}
+            self="center"
+          >
+            <Paragraph
+              color="white"
+              textShadowColor="#000"
+              textShadowOffset={{ height: 1, width: 0 }}
+              fontFamily="$mono"
+              lineHeight={18}
+            >
+              Hello. This is start.chat. We're building a new type of chat platform.
+            </Paragraph>
+          </View>
+        </XStack>
+        <div style={{ flex: 1, perspective: 1000 }}>
+          <YStack
+            animation="bouncy"
+            rounded={0}
+            flex={1}
+            overflow="hidden"
+            y={0}
+            scale={1}
+            {...(showIntro && {
+              y: 50,
+              rotateX: '8deg',
+              scale: 0.95,
+              shadowRadius: '$6',
+              shadowOffset: { width: 0, height: 6 },
+              shadowColor: '$shadow6',
+              rounded: '$7',
+            })}
+          >
+            <AnimationDriver name="spring">{children}</AnimationDriver>
+
+            <YStack
+              fullscreen
+              z={-1}
+              {...(!isTauri && {
+                bg: '$color1',
+              })}
+            />
+
+            {showIntro && (
+              <View
+                animation="medium"
+                cursor="pointer"
+                onPress={() => {
+                  setShowIntro(false)
+                }}
+                z={Number.MAX_SAFE_INTEGER}
+                position="absolute"
+                inset={0}
+                bg="$background0"
+                hoverStyle={{
+                  bg: '$shadow3',
+                }}
+              />
+            )}
+          </YStack>
+        </div>
+      </AnimationDriver>
+    </>
   )
 }
 
