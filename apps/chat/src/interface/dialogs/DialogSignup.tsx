@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Dialog, H3, isWeb, XStack, YStack } from 'tamagui'
-import { authClient, useAuth } from '~/better-auth/authClient'
-import { setLoginPopup } from '~/better-auth/AuthEffects'
+import { clearAuthClientToken, useAuth } from '~/better-auth/authClient'
+import { setLoginPopup } from '../../better-auth/AuthEffects'
 import { isTauri } from '../../tauri/constants'
 import { ButtonSimple } from '../ButtonSimple'
 import { GithubIcon } from '../icons/GithubIcon'
@@ -69,7 +69,7 @@ const TauriOpenNewWindowLoginLink = (props: { children: any }) => {
   return (
     <a
       target="_blank"
-      href={window.location.origin + '/login-github'}
+      href={window.location.origin + '/login-github?from-tauri'}
       style={{
         textDecoration: 'none',
       }}
@@ -77,19 +77,19 @@ const TauriOpenNewWindowLoginLink = (props: { children: any }) => {
       onClick={(e) => {
         if (!isTauri) {
           e.preventDefault()
-          authClient.signIn.social({
-            provider: 'github',
-            callbackURL: '/',
-          })
 
-          // const origin = window.location.origin
-          // const popup = openCenteredPopup(origin + '/login-github', 'Login', 700, 800)
-          // if (popup) {
-          //   e.preventDefault()
-          //   setLoginPopup(popup)
-          // } else {
-          //   // let it continue
-          // }
+          const origin = window.location.origin
+
+          // ensure we clear any stale info
+          clearAuthClientToken()
+
+          const popup = openCenteredPopup(origin + '/login-github', 'Login', 700, 800)
+          if (popup) {
+            e.preventDefault()
+            setLoginPopup(popup)
+          } else {
+            // let it continue
+          }
         }
       }}
       {...props}

@@ -23532,6 +23532,7 @@ __metadata:
     burnt: "npm:^0.12.2"
     expo: "npm:~52.0.17"
     flexsearch: "npm:^0.7.43"
+    nanostores: "npm:^0.11.3"
     one: "workspace:*"
     pg: "npm:^8.13.1"
     react: "npm:^19.0.0"

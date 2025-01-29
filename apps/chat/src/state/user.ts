@@ -1,5 +1,5 @@
 import { merge } from 'ts-deepmerge'
-import { useAuth } from '~/better-auth/authClient'
+import { useAuth, authState } from '~/better-auth/authClient'
 import { ensureSignedUp } from '~/interface/dialogs/actions'
 import { useQuery, type User, zero } from '~/zero'
 import type { ChannelState, UserState } from '~/zero/types'
@@ -7,15 +7,7 @@ import type { ChannelState, UserState } from '~/zero/types'
 // TODO
 let currentUser = null as User | null
 
-setInterval(() => {
-  console.log('user', currentUser)
-}, 1000)
-
 export const getCurrentUser = () => currentUser
-export const clearCurrentUser = () => {
-  console.log('clesrin')
-  currentUser = null
-}
 
 const getJustUserState = () => {
   return {
@@ -44,11 +36,8 @@ export const useUserState = () => {
   const { user: authUser, loggedIn } = useAuth()
   const user = useQuery((q) => q.user.where('id', authUser?.id || ''))[0][0]
 
-  if (loggedIn) {
-    console.warn('SETTING WTF')
-    // TODO
-    currentUser = user
-  }
+  // TODO
+  currentUser = user
 
   return getUserState()
 }

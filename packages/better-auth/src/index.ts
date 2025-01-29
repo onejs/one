@@ -60,11 +60,15 @@ export function createBetterAuthClient(
     localStorage.setItem(keys.session, session)
     authClient = createAuthClientWithSession(session)
     authClientVersion.emit(Math.random())
-    await fetchToken()
   }
 
+  // seems to 500 the server for some reason
   async function fetchToken() {
     const res = await authClient.$fetch('/token')
+    if (res.error) {
+      console.error(`Error fetching token ${res.error.statusText}`)
+      return
+    }
     const data = res.data as any
     if (data?.token) {
       setState({ token: data?.token || null })
@@ -78,8 +82,11 @@ export function createBetterAuthClient(
       setAuthClientToken({ token, session })
       return
     }
-    const tokenF = await fetchToken()
-    console.log('tokenF', tokenF)
+  }
+
+  const clearAuthClientToken = () => {
+    localStorage.setItem(keys.token, '')
+    localStorage.setItem(keys.session, '')
   }
 
   type State = {
@@ -94,35 +101,56 @@ export function createBetterAuthClient(
     token: null,
   }
 
-  const stateEmitter = createEmitter<State>(empty)
+  const authState = createEmitter<State>(empty)
 
   function setState(next: Partial<State>) {
-    const current = stateEmitter.value!
-    stateEmitter.emit({ ...current, ...next })
+    const current = authState.value!
+    authState.emit({ ...current, ...next })
   }
 
   authClient.useSession.subscribe(({ data, error }) => {
     if (error) {
       console.error(`Auth error`, error)
     }
-    console.warn('WHAT IS IT', data)
-    setState(data || empty)
+    if (data) {
+      setState({
+        ...data,
+        token: data.session.token,
+      })
+    } else {
+      setState(empty)
+    }
   })
 
   const useAuth = () => {
-    const state = stateEmitter.useValue() || empty
+    const state = authState.useValue() || empty
     return {
       ...state,
       loggedIn: !!state.session,
     }
   }
 
-  return {
-    authClient,
+  const response = {
+    authState,
+    authClient: new Proxy(authClient, {
+      get(target, key) {
+        // TODO if we need to manually manage clearing
+        // if (key === 'signOut') {
+        //   return () => {
+        //     // ensure we sync state on signout
+        //     authClient.signOut()
+        //   }
+        // }
+        return Reflect.get(authClient, key)
+      },
+    }),
     setAuthClientToken,
+    clearAuthClientToken,
     useAuthClientVersion,
     useAuth,
     refreshAuth,
     fetchToken,
   }
+
+  return response
 }

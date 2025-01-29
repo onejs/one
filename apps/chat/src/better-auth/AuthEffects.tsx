@@ -1,11 +1,9 @@
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
 import { useEffect } from 'react'
 import { isWeb } from 'tamagui'
-import { dialogEmit } from '~/interface/dialogs/shared'
-import { showToast } from '~/interface/toast/Toast'
 import { isTauri } from '~/tauri/constants'
 import { setZeroAuth } from '~/zero/zero'
-import { refreshAuth, setAuthClientToken, useAuth } from './authClient'
+import { setAuthClientToken, useAuth } from './authClient'
 
 export const AuthEffects = () => {
   useAuthPassTokenToTauriEffect()
@@ -30,9 +28,15 @@ const useAuthBrowser = () => {
       if (event.origin !== origin) return
       if (event.data?.type === 'login-success') {
         popup?.close()
-        refreshAuth()
-        dialogEmit({ type: 'closed' })
-        showToast(`Welcome!`)
+
+        // hard refresh instead
+        window.location.reload()
+        return
+
+        // TODO not working:
+        // refreshAuth()
+        // dialogEmit({ type: 'closed' })
+        // showToast(`Welcome!`)
       }
     })
   }, [])

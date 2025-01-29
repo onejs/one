@@ -78,16 +78,6 @@ export default function Layout() {
         <meta property="twitter:image" content={`${process.env.ONE_SERVER_URL}/og.jpg`} />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" href="/favicon.svg" />
-
-        <script type="text/javascript">
-          {`console.log('wtf')
-          alert("O?")
-          if (window.opener) {
-            console.log('closing')
-            window.opener.postMessage({ type: 'login-success' }, window.location.origin)
-            window.close()
-          }`}
-        </script>
       </head>
 
       <body>
