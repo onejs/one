@@ -1,11 +1,7 @@
-import pg from 'pg'
-import type { PoolClient } from 'pg'
 import { readdir } from 'node:fs/promises'
 import { join } from 'node:path'
-import { Resource } from 'sst'
-
-// @ts-ignore
-console.info('testing123', Resource['Postgres'])
+import type { PoolClient } from 'pg'
+import pg from 'pg'
 
 /**
  * Custom migration script - why?
