@@ -7,11 +7,21 @@ const heading = createSystemFont({
   sizeLineHeight: (x) => Math.round(x * 1.33 + 10),
 })
 
+const mono = createSystemFont({
+  font: {
+    family: '"JetBrains Mono"',
+    weight: {
+      0: '600',
+    },
+  },
+})
+
 export const config = createTamagui({
   ...defaultConfig,
   fonts: {
     ...defaultConfig.fonts,
     heading,
+    mono,
   },
   animations,
   settings: {

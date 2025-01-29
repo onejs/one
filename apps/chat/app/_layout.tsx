@@ -1,21 +1,23 @@
 import '~/editor/markdown.css'
 import '~/tamagui/tamagui.css'
-import './_layout.css'
+import './root.css'
 
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
-import { useEffect, useLayoutEffect, useState } from 'react'
-import { closeOpenTooltips, isWeb, TamaguiProvider } from 'tamagui'
+import { useLayoutEffect, useState } from 'react'
+import { isWeb, TamaguiProvider } from 'tamagui'
 import { AuthEffects } from '~/better-auth/AuthEffects'
 import { Dialogs } from '~/interface/dialogs/Dialogs'
 import { Gallery } from '~/interface/gallery/Gallery'
-import { showToast, ToastProvider } from '~/interface/toast/Toast'
+import { ToastProvider } from '~/interface/toast/Toast'
 import { DragDropFile } from '~/interface/upload/DragDropFile'
+import { useErrorsToast } from '~/interface/useErrorsToast'
+import { useTooltipCloser } from '~/interface/useTooltipCloser'
+import { useGlobalHotKeys } from '~/keyboard/useGlobalHotKeys'
 import config from '~/tamagui/tamagui.config'
 import { isTauri } from '~/tauri/constants'
 import { useZeroEmit, zero } from '~/zero'
-import { useGlobalHotKeys } from '~/keyboard/useGlobalHotKeys'
 
 /**
  * The root _layout.tsx filters <html /> and <body /> out on native
@@ -23,48 +25,14 @@ import { useGlobalHotKeys } from '~/keyboard/useGlobalHotKeys'
 
 export default function Layout() {
   useGlobalHotKeys()
+  useTooltipCloser()
+  useErrorsToast()
 
   useLayoutEffect(() => {
     if (isWeb && !isTauri) {
       document.documentElement.classList.add('not_tauri')
     }
   }, [isTauri])
-
-  useEffect(() => {
-    if (isWeb) {
-      const controller = new AbortController()
-      document.addEventListener(
-        'click',
-        () => {
-          // lets just do this on any click seems reasonable
-          closeOpenTooltips()
-        },
-        {
-          signal: controller.signal,
-        }
-      )
-      return controller.abort
-    }
-  }, [])
-
-  // if web, send errors to showToast
-  if (isWeb) {
-    useEffect(() => {
-      window.addEventListener('error', (e) => {
-        const msg = e.message.trim()
-        if (!msg) return
-        // filter known ok errors
-        if (
-          !/(measurement is not an Object)|(ResizeObserver loop|Cannot use \'in\' operator)/.test(
-            msg
-          )
-        ) {
-          console.error(`msg`, msg)
-          showToast(`Error: ${msg}`)
-        }
-      })
-    }, [])
-  }
 
   return (
     <html lang="en-US">
