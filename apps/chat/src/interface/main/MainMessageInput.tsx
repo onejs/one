@@ -10,12 +10,10 @@ export const MainMessageInput = () => {
 
   return (
     <XStack
-      y={2}
       animation="quickest"
       position="absolute"
       transformOrigin="right center"
       b={0}
-      scale={1}
       l={252}
       r={0}
       x={0}

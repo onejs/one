@@ -12,6 +12,7 @@ import {
   ScrollView,
   SizableText,
   TooltipSimple,
+  View,
   XGroup,
   XStack,
   YStack,
@@ -60,7 +61,7 @@ export const ChannelTopBar = () => {
       </XStack>
 
       <XStack flex={10} items="center">
-        <IndentIncrease size={14} opacity={0.5} />
+        {/* <IndentIncrease size={14} opacity={0.5} /> */}
         <ScrollView my="$-2" flex={2} horizontal showsHorizontalScrollIndicator={false}>
           <XStack p="$2" items="center" gap="$1">
             {threads.map((thread) => {
@@ -206,51 +207,59 @@ const ChannelViewToggle = () => {
   const channel = useCurrentChannel()
   const view = channelState?.mainView
 
-  const activeStyle: ButtonProps = {
-    bg: '$color2',
+  const activeProps: ButtonProps = {
+    className: 'path-glow',
+    opacity: 1,
   }
 
-  const inactiveStyle: ButtonProps = {
+  const inactiveProps: ButtonProps = {
     bg: 'transparent',
     size: '$2',
     scaleIcon: 1.3,
     borderWidth: 0,
     rounded: 0,
+    opacity: 0.5,
   }
 
   return (
-    <XGroup overflow="hidden" borderWidth={1} borderColor="$borderColor">
+    <XGroup overflow="hidden">
       <TooltipSimple label="Chat view">
-        <Button
+        <View
+          px="$2.5"
+          py="$1.5"
           disabled={!channel}
           disabledStyle={{
             opacity: 0.5,
           }}
-          {...inactiveStyle}
-          icon={MessageCircle}
-          {...(view !== 'thread' && activeStyle)}
+          {...inactiveProps}
+          {...(view !== 'thread' && activeProps)}
           onPress={() => {
             updateUserCurrentChannel({
               mainView: 'chat',
             })
           }}
-        />
+        >
+          <MessageCircle size={26} viewBox="-8 -8 40 40" m={-6} />
+        </View>
       </TooltipSimple>
       <TooltipSimple label="Thread view">
-        <Button
-          {...inactiveStyle}
+        <View
+          px="$2.5"
+          py="$1.5"
+          {...inactiveProps}
           disabled={!channel}
           disabledStyle={{
             opacity: 0.5,
           }}
-          icon={IndentIncrease}
-          {...(view === 'thread' && activeStyle)}
+          {...(view === 'thread' && activeProps)}
           onPress={() => {
             updateUserCurrentChannel({
               mainView: 'thread',
             })
           }}
-        />
+        >
+          <IndentIncrease size={26} viewBox="-8 -8 40 40" m={-6} />
+        </View>
       </TooltipSimple>
     </XGroup>
   )

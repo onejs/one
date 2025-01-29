@@ -6,7 +6,7 @@ import { ZeroProvider } from '@rocicorp/zero/react'
 import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot } from 'one'
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { isWeb, TamaguiProvider } from 'tamagui'
+import { closeOpenTooltips, isWeb, TamaguiProvider } from 'tamagui'
 import { AuthEffects } from '~/better-auth/AuthEffects'
 import { Dialogs } from '~/interface/dialogs/Dialogs'
 import { Gallery } from '~/interface/gallery/Gallery'
@@ -29,6 +29,23 @@ export default function Layout() {
       document.documentElement.classList.add('not_tauri')
     }
   }, [isTauri])
+
+  useEffect(() => {
+    if (isWeb) {
+      const controller = new AbortController()
+      document.addEventListener(
+        'click',
+        () => {
+          // lets just do this on any click seems reasonable
+          closeOpenTooltips()
+        },
+        {
+          signal: controller.signal,
+        }
+      )
+      return controller.abort
+    }
+  })
 
   // if web, send errors to showToast
   if (isWeb) {

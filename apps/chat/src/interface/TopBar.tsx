@@ -172,7 +172,22 @@ const TopBarSearch = () => {
   return (
     <XStack items="center" gap="$2" mr="$4">
       <Search size={16} opacity={0.5} />
-      <Input ref={inputRef} width={250} placeholder="" size="$2" height={26} borderWidth={0} />
+      <Input
+        bg="transparent"
+        ref={inputRef}
+        width={250}
+        placeholder=""
+        size="$2"
+        height={26}
+        borderWidth={0}
+        hoverStyle={{
+          bg: '$shadow1',
+        }}
+        focusStyle={{
+          bg: '$shadow1',
+          outlineWidth: 0,
+        }}
+      />
     </XStack>
   )
 }
