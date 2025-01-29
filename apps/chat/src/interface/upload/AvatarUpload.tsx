@@ -49,7 +49,7 @@ export const AvatarUpload = ({
         bg: '$color4',
       })}
     >
-      <Avatar size={80} image={uploadUrl || defaultImage || ''} />
+      <Avatar size={64} image={uploadUrl || defaultImage || ''} />
 
       {isWeb && (
         <form
@@ -67,7 +67,7 @@ export const AvatarUpload = ({
                 name="file"
                 onChange={handleFileChange}
               />
-              <Button size="$3" tag="span" icon={Image}>
+              <Button size="$3" rounded="$8" tag="span">
                 Pick
               </Button>
             </label>

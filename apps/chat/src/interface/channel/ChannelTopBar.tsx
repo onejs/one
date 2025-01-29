@@ -29,7 +29,7 @@ import {
 } from '~/state/user'
 import { zero, type ThreadWithRelations } from '~/zero'
 import { AnimationDriver } from '../animations/AnimationDriver'
-import { ButtonSimple } from '../ButtonSimple'
+import { ButtonSimple } from '../buttons/ButtonSimple'
 import { dialogConfirm } from '../dialogs/actions'
 import { mainTopBarHeight } from '../main/constants'
 import { showToast } from '../toast/Toast'
@@ -51,7 +51,7 @@ export const ChannelTopBar = () => {
       r={0}
       bg="$color1"
       elevation={1}
-      z={100_000}
+      z={1000}
       gap="$4"
       py="$2"
       px="$2"

@@ -1,13 +1,7 @@
-import { Maximize } from '@tamagui/lucide-icons'
-import { Button, YStack } from 'tamagui'
+import { YStack } from 'tamagui'
 import { useCurrentThreadWithMessages } from '~/state/message/useCurrentThread'
-import {
-  closeCurrentThread,
-  updateUserCurrentChannel,
-  useUserCurrentChannelState,
-} from '~/state/user'
+import { useUserCurrentChannelState } from '~/state/user'
 import { AnimationDriver } from '../animations/AnimationDriver'
-import { ButtonClose } from '../ButtonClose'
 import { MessageInput } from '../messages/MessageInput'
 import { MessagesList } from '../messages/MessagesList'
 

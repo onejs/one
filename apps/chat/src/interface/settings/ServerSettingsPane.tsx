@@ -1,7 +1,20 @@
 import { Plus, Trash } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
 import { memo, useEffect, useState } from 'react'
-import { Button, Circle, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
+import {
+  Button,
+  Circle,
+  H3,
+  H4,
+  H5,
+  Input,
+  Sheet,
+  SizableText,
+  Spacer,
+  Theme,
+  XStack,
+  YStack,
+} from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
 import { randomId } from '~/helpers/randomId'
@@ -11,7 +24,7 @@ import { useCurrentServerRoles } from '~/state/server/useCurrentServerRoles'
 import type { RolePermissionsKeys, RoleWithRelations, Server } from '~/zero'
 import { zero } from '~/zero'
 import { Avatar } from '../Avatar'
-import { ButtonSimple } from '../ButtonSimple'
+import { ButtonSimple } from '../buttons/ButtonSimple'
 import { dialogConfirm } from '../dialogs/actions'
 import { AlwaysVisibleTabContent } from '../dialogs/AlwaysVisibleTabContent'
 import { LabeledRow } from '../forms/LabeledRow'
@@ -44,13 +57,15 @@ const SettingsContents = memo(() => {
 
   return (
     <>
-      <XStack pointerEvents="none" items="center" gap="$2">
+      <XStack pointerEvents="none" items="center" gap="$3">
         <Avatar size={28} image={server.icon} />
-        <H3 select="none">{server?.name}</H3>
+        <H3 size="$4" y={-3} select="none">
+          {server?.name}
+        </H3>
 
         <XStack flex={1} />
 
-        <XStack items="center" pointerEvents="auto">
+        <XStack my={-4} items="center" pointerEvents="auto">
           {tab === 'permissions' && (
             <ButtonSimple
               icon={Plus}
@@ -380,21 +395,29 @@ const SettingsServer = ({ server }: { server: Server }) => {
         <AvatarUpload defaultImage={server.icon} onChangeImage={setImage} />
       </LabeledRow>
 
-      <Button
-        theme="accent"
-        onPress={() => {
-          console.warn('updating', name)
-          zero.mutate.server.update({
-            id: server.id,
-            name,
-            icon: image,
-          })
-          // showToast('Saved')
-        }}
-      >
-        Save
-      </Button>
+      <Theme name="accent">
+        <Button
+          self="flex-end"
+          onPress={() => {
+            console.warn('updating', name)
+            zero.mutate.server.update({
+              id: server.id,
+              name,
+              icon: image,
+            })
+            // showToast('Saved')
+          }}
+        >
+          Save
+        </Button>
+      </Theme>
 
+      <Spacer />
+      <Spacer />
+      <Spacer />
+      <Spacer />
+
+      <H4>Dev tools</H4>
       <DevTools />
     </>
   )

@@ -1,7 +1,7 @@
 import { Pin } from '@tamagui/lucide-icons'
 import { closeOpenTooltips, ListItem, Popover } from 'tamagui'
 import { closeCurrentThread } from '../../state/user'
-import { ButtonSimple } from '../ButtonSimple'
+import { ButtonSimple } from '../buttons/ButtonSimple'
 import { PopoverContent } from '../Popover'
 import { useCurrentChannelPins } from '../../state/channel/useCurrentChannelPins'
 import { MessageItem } from '../messages/MessageItem'

@@ -1,5 +1,5 @@
 import { createElement, isValidElement } from 'react'
-import { Label, Paragraph, XStack, YStack, type XStackProps } from 'tamagui'
+import { Label, Paragraph, View, XStack, YStack, type XStackProps } from 'tamagui'
 
 export const LabeledRow = ({
   htmlFor,
@@ -11,7 +11,7 @@ export const LabeledRow = ({
 }: XStackProps & { icon?: any; htmlFor: string; label: string; description?: string }) => {
   return (
     <YStack py="$2">
-      <XStack width="100%" gap="$1" $sm={{ flexDirection: 'column' }} {...rest}>
+      <View flexDirection="column" width="100%" gap="$1" $xs={{ flexDirection: 'row' }} {...rest}>
         <Label
           display="flex"
           gap="$4"
@@ -34,10 +34,8 @@ export const LabeledRow = ({
 
         <XStack flex={1} />
 
-        <XStack minW={300} items="center">
-          {children}
-        </XStack>
-      </XStack>
+        <XStack items="center">{children}</XStack>
+      </View>
 
       {!!description && <Paragraph opacity={0.5}>{description}</Paragraph>}
     </YStack>
