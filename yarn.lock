@@ -53,6 +53,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ai-sdk/anthropic@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "@ai-sdk/anthropic@npm:1.1.5"
+  dependencies:
+    "@ai-sdk/provider": "npm:1.0.6"
+    "@ai-sdk/provider-utils": "npm:2.1.5"
+  peerDependencies:
+    zod: ^3.0.0
+  checksum: 10/506aff24f3af042245a02a30b0248f6439a99ecabf3c90805317c3df6ef4ab6a006f325cea93ef5a9fd3d05025d4b319094d39b1cce7e0a872dc9afc510cd060
+  languageName: node
+  linkType: hard
+
+"@ai-sdk/deepseek@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "@ai-sdk/deepseek@npm:0.1.6"
+  dependencies:
+    "@ai-sdk/openai-compatible": "npm:0.1.6"
+    "@ai-sdk/provider": "npm:1.0.6"
+    "@ai-sdk/provider-utils": "npm:2.1.5"
+  peerDependencies:
+    zod: ^3.0.0
+  checksum: 10/4a642a759b08b202b46caacf815855612de3ffc2f0b96a5668af8e0f1f6fbcb40f2573a8c555ad325968b5d40038dd8fc5dd75caab45d07a53c315fed872f830
+  languageName: node
+  linkType: hard
+
 "@ai-sdk/google@npm:^1.0.12":
   version: 1.0.12
   resolution: "@ai-sdk/google@npm:1.0.12"
@@ -62,6 +87,30 @@ __metadata:
   peerDependencies:
     zod: ^3.0.0
   checksum: 10/8df0eddc0c3eafaac5bbecf0deccd5cfc9dc13925efdc757327a8cc20d034ae5a84fee7e5e1f48def1c795a7c29bd3f554fb492f5d22cd3a7fef18e3f0d01258
+  languageName: node
+  linkType: hard
+
+"@ai-sdk/openai-compatible@npm:0.1.6":
+  version: 0.1.6
+  resolution: "@ai-sdk/openai-compatible@npm:0.1.6"
+  dependencies:
+    "@ai-sdk/provider": "npm:1.0.6"
+    "@ai-sdk/provider-utils": "npm:2.1.5"
+  peerDependencies:
+    zod: ^3.0.0
+  checksum: 10/d939d94e1b94aaff5d317f4710cfb9a5c9cab882f1c5e2ebe898a5e72002fcbfe67c939d9ed5fa8f2ed1c29af1291105fb11f4de1a52109407be2b09fb98bb0d
+  languageName: node
+  linkType: hard
+
+"@ai-sdk/openai@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "@ai-sdk/openai@npm:1.1.5"
+  dependencies:
+    "@ai-sdk/provider": "npm:1.0.6"
+    "@ai-sdk/provider-utils": "npm:2.1.5"
+  peerDependencies:
+    zod: ^3.0.0
+  checksum: 10/951bb98b79efc63f3018c8a8d440cb18e04ebebfd329264e274f867635dffe2cb669a17c4fad9db9d72f57822e13aed47d509348b442da73354ec375ac9ed395
   languageName: node
   linkType: hard
 
@@ -82,12 +131,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ai-sdk/provider-utils@npm:2.1.5":
+  version: 2.1.5
+  resolution: "@ai-sdk/provider-utils@npm:2.1.5"
+  dependencies:
+    "@ai-sdk/provider": "npm:1.0.6"
+    eventsource-parser: "npm:^3.0.0"
+    nanoid: "npm:^3.3.8"
+    secure-json-parse: "npm:^2.7.0"
+  peerDependencies:
+    zod: ^3.0.0
+  peerDependenciesMeta:
+    zod:
+      optional: true
+  checksum: 10/d57bbdc66cf7efed1550920e344b390f61ea89d6519e6a2d77134129f3b3c195d672e4b46c5152d95b649e5c94ae8da538c0247a8bb4931037b132d88876dc82
+  languageName: node
+  linkType: hard
+
 "@ai-sdk/provider@npm:1.0.3":
   version: 1.0.3
   resolution: "@ai-sdk/provider@npm:1.0.3"
   dependencies:
     json-schema: "npm:^0.4.0"
   checksum: 10/2ab1b96c46635c1cb9ecc46b12948c126f4fbf2fbd2d5a96bfb1dc257e7943a309f770d911abe2dc5ded8de6a175ddf57b0480520fbed4421cf8fa5606fc9cec
+  languageName: node
+  linkType: hard
+
+"@ai-sdk/provider@npm:1.0.6":
+  version: 1.0.6
+  resolution: "@ai-sdk/provider@npm:1.0.6"
+  dependencies:
+    json-schema: "npm:^0.4.0"
+  checksum: 10/3ca3881396a26dfd634fe3ecda1b5de7456076a92dfa2fd836aeec01a28a4af9cbe26ace37793132517739a74e181e6c5a90032ebb9d21a29e10182543dd4563
   languageName: node
   linkType: hard
 
@@ -124,6 +199,19 @@ __metadata:
     zod:
       optional: true
   checksum: 10/173f73c190dce53729965cee775713aaf71ea68e33eb741e6f582503733f41a4488d1d9217ff1aace983bb452f41ebd416aa9be2ee19f9f6469ac3ee3f03afe2
+  languageName: node
+  linkType: hard
+
+"@ai-sdk/xai@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@ai-sdk/xai@npm:1.1.6"
+  dependencies:
+    "@ai-sdk/openai-compatible": "npm:0.1.6"
+    "@ai-sdk/provider": "npm:1.0.6"
+    "@ai-sdk/provider-utils": "npm:2.1.5"
+  peerDependencies:
+    zod: ^3.0.0
+  checksum: 10/6cbffb05442f07a2c748a2a430177c741e2f742b541ec70ddc1528492720d5288129465f4226a5722cff45dc251f7b147125dff30183614a79149cfc126de57a
   languageName: node
   linkType: hard
 
@@ -12868,7 +12956,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@vxrn/strip@workspace:packages/strip"
   dependencies:
+    "@ai-sdk/anthropic": "npm:^1.1.5"
+    "@ai-sdk/deepseek": "npm:^0.1.6"
     "@ai-sdk/google": "npm:^1.0.12"
+    "@ai-sdk/openai": "npm:^1.1.5"
+    "@ai-sdk/xai": "npm:^1.1.6"
     "@tamagui/build": "npm:^1.123.2"
     ai: "npm:^4.0.22"
     citty: "npm:^0.1.6"
