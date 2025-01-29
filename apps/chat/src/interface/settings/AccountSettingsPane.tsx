@@ -1,22 +1,13 @@
-import { H3, YStack } from 'tamagui'
+import { H3 } from 'tamagui'
 import { authClient } from '~/better-auth/authClient'
 import { ListItem } from '~/interface/lists/ListItem'
-import { hiddenPanelWidth } from '~/interface/settings/constants'
+import { updateSessionState } from '../../state/session'
+import { SettingsPane } from './SettingsPane'
 import { ThemeToggleListItem } from './ThemeToggleListItem'
-import { updateUserState } from '~/state/user'
 
 export const AccountSettingsPane = () => {
   return (
-    <YStack
-      height="100%"
-      data-tauri-drag-region
-      position="absolute"
-      t={0}
-      r={-hiddenPanelWidth}
-      width={hiddenPanelWidth}
-      p="$4"
-      gap="$4"
-    >
+    <SettingsPane name="user">
       <H3>Account Settings</H3>
 
       <ThemeToggleListItem />
@@ -24,13 +15,13 @@ export const AccountSettingsPane = () => {
       <ListItem
         onPress={() => {
           authClient.signOut()
-          updateUserState({
-            showSidePanel: undefined,
+          updateSessionState({
+            showPanel: null,
           })
         }}
       >
         Logout
       </ListItem>
-    </YStack>
+    </SettingsPane>
   )
 }

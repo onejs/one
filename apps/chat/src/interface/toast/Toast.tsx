@@ -3,6 +3,7 @@ import { Toast, useToastController, useToastState } from '@tamagui/toast'
 import { YStack } from 'tamagui'
 import type { ToastController, ToastShowOptions } from './types'
 import { useState } from 'react'
+import { zIndices } from '../constants'
 
 export type ToastType = 'error' | 'warn' | 'info'
 
@@ -33,7 +34,14 @@ export const ToastProvider = ({ children }: { children: any }) => {
   return (
     <TamaguiToastProvider swipeDirection="horizontal">
       <ToastDisplay />
-      <ToastViewport flexDirection="column-reverse" top={0} left={0} right={0} mx="auto" />
+      <ToastViewport
+        z={zIndices.tooltip}
+        flexDirection="column-reverse"
+        top={0}
+        left={0}
+        right={0}
+        mx="auto"
+      />
       {children}
     </TamaguiToastProvider>
   )

@@ -6,24 +6,24 @@ import { useAuth } from '~/better-auth/authClient'
 import { HotMenuButton } from '~/interface/hotmenu/HotMenuButton'
 import { useCurrentChannel } from '~/state/channel/useCurrentChannel'
 import { useCurrentServer } from '~/state/server/useCurrentServer'
-import { updateUserState, useUserState } from '~/state/user'
 import {
   setShouldRedirectBackToTauri,
   shouldRedirectBackToTauri,
   useTauriAuthDeepLink,
 } from '~/tauri/authFlowHelpers'
 import { isTauri } from '~/tauri/constants'
+import { updateSessionState, useSessionState } from '../state/session'
 import { Avatar } from './Avatar'
 import { ButtonSimple } from './ButtonSimple'
 import { dialogRedirectToTauri, ensureSignedUp } from './dialogs/actions'
 
 export const TopBar = memo(() => {
-  const { jwtToken } = useAuth()
+  const { token } = useAuth()
   const tauriDeepLink = useTauriAuthDeepLink()
 
   const server = useCurrentServer()
   const channel = useCurrentChannel()
-  const [userState] = useUserState()
+  const sessionState = useSessionState()
 
   useEffect(() => {
     if (shouldRedirectBackToTauri()) {
@@ -34,7 +34,7 @@ export const TopBar = memo(() => {
         dialogRedirectToTauri()
       })
     }
-  }, [jwtToken])
+  }, [token])
 
   return (
     <XStack
@@ -82,12 +82,12 @@ export const TopBar = memo(() => {
         <TopBarSearch />
 
         <XStack items="center">
-          {!!userState?.showSidePanel && (
+          {!!sessionState?.showPanel && (
             <YStack fullscreen items="center" justify="center" z={100}>
               <ButtonSimple
                 onPress={() => {
-                  updateUserState({
-                    showSidePanel: undefined,
+                  updateSessionState({
+                    showPanel: null,
                   })
                 }}
               >
@@ -98,7 +98,7 @@ export const TopBar = memo(() => {
 
           <XStack
             items="center"
-            {...(userState?.showSidePanel && {
+            {...(sessionState?.showPanel && {
               opacity: 0,
             })}
           >
@@ -106,13 +106,13 @@ export const TopBar = memo(() => {
               disabled={!server}
               tooltip="Server settings"
               onPress={() => {
-                if (userState?.showSidePanel === 'settings') {
-                  updateUserState({
-                    showSidePanel: undefined,
+                if (sessionState?.showPanel === 'settings') {
+                  updateSessionState({
+                    showPanel: undefined,
                   })
                 } else {
-                  updateUserState({
-                    showSidePanel: 'settings',
+                  updateSessionState({
+                    showPanel: 'settings',
                   })
                 }
               }}
@@ -124,7 +124,7 @@ export const TopBar = memo(() => {
           </XStack>
         </XStack>
 
-        {!isTauri && jwtToken && (
+        {!isTauri && token && (
           <a href={tauriDeepLink}>
             <ButtonSimple>Open app</ButtonSimple>
           </a>
@@ -143,8 +143,8 @@ const UserButton = () => {
         onPress={(e) => {
           if (loggedIn) {
             e.preventDefault()
-            updateUserState({
-              showSidePanel: 'user',
+            updateSessionState({
+              showPanel: 'user',
             })
             return
           }

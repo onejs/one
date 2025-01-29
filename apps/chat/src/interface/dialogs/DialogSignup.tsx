@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Button, Dialog, H3, isWeb, XStack, YStack } from 'tamagui'
-import { authClient, useAuth } from '~/better-auth/authClient'
-import { isTauri } from '~/tauri/constants'
+import { clearAuthClientToken, useAuth } from '~/better-auth/authClient'
+import { setLoginPopup } from '../../better-auth/AuthEffects'
+import { isTauri } from '../../tauri/constants'
 import { ButtonSimple } from '../ButtonSimple'
 import { GithubIcon } from '../icons/GithubIcon'
 import { isSignedUpEmitter } from './actions'
@@ -12,9 +13,7 @@ export const DialogSignUp = () => {
   const [show, setShow] = useState(false)
 
   useDialogEmit((next) => {
-    if (next.type === 'signup') {
-      setShow((x) => !x)
-    }
+    setShow(next.type === 'signup')
   })
 
   if (loggedIn && show) {
@@ -70,7 +69,7 @@ const TauriOpenNewWindowLoginLink = (props: { children: any }) => {
   return (
     <a
       target="_blank"
-      href={window.location.origin + '/login-github'}
+      href={window.location.origin + '/login-github?from-tauri'}
       style={{
         textDecoration: 'none',
       }}
@@ -78,13 +77,38 @@ const TauriOpenNewWindowLoginLink = (props: { children: any }) => {
       onClick={(e) => {
         if (!isTauri) {
           e.preventDefault()
-          authClient.signIn.social({
-            provider: 'github',
-          })
-          return
+
+          const origin = window.location.origin
+
+          // ensure we clear any stale info
+          clearAuthClientToken()
+
+          const popup = openCenteredPopup(origin + '/login-github', 'Login', 700, 800)
+          if (popup) {
+            e.preventDefault()
+            setLoginPopup(popup)
+          } else {
+            // let it continue
+          }
         }
       }}
       {...props}
     />
   )
+}
+
+function openCenteredPopup(url: string, title: string, width: number, height: number) {
+  const left = (screen.width - width) / 2
+  const top = (screen.height - height) / 2
+
+  const windowFeatures = `
+    width=${width},
+    height=${height},
+    left=${left},
+    top=${top},
+    scrollbars=yes,
+    resizable=yes
+  `
+
+  return window.open(url, title, windowFeatures)
 }

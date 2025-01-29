@@ -38,7 +38,7 @@
     "@vxrn/better-auth": "workspace:*",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/emitter": "workspace:*",
-    "better-auth": "^1.1.14",
+    "better-auth": "^1.1.15",
     "expo": "~52.0.17",
     "one": "workspace:*",
     "pg": "^8.13.1",
