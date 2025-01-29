@@ -2,7 +2,7 @@ import { Lock } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, Dialog, H3, XStack, YStack } from 'tamagui'
 import { useTauriAuthDeepLink } from '~/tauri/authFlowHelpers'
-import { ButtonSimple } from '../ButtonSimple'
+import { ButtonSimple } from '../buttons/ButtonSimple'
 import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
 
 export const DialogRedirectToTauri = () => {

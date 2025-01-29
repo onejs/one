@@ -14,7 +14,7 @@ import {
 import { isTauri } from '~/tauri/constants'
 import { updateSessionState, useSessionState } from '../state/session'
 import { Avatar } from './Avatar'
-import { ButtonSimple } from './ButtonSimple'
+import { ButtonSimple } from './buttons/ButtonSimple'
 import { dialogRedirectToTauri, ensureSignedUp } from './dialogs/actions'
 
 export const TopBar = memo(() => {
