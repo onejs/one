@@ -252,7 +252,8 @@ jobs:
       - name: Test
         run: |
           export PATH="$PATH":"$HOME/.maestro/bin"
-          export MAESTRO_DRIVER_STARTUP_TIMEOUT=180000 # 3 minutes
+          export MAESTRO_CLI_NO_ANALYTICS=1
+          export MAESTRO_DRIVER_STARTUP_TIMEOUT=360000 # 6 minutes
           maestro test maestro-flows/basic.yaml
 
       - name: Upload App
