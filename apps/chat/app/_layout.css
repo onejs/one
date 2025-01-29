@@ -108,3 +108,12 @@ a.is_Button, .text-underline-none {
   background-color: transparent !important;
   --md-editor-box-shadow-color: var(--shadow1) !important;
 }
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.path-glow svg * {
+  transition: filter ease-in 100ms;
+  filter: drop-shadow(0 0 4px #fff);
+}

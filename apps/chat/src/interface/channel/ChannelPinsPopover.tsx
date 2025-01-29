@@ -1,5 +1,5 @@
 import { Pin } from '@tamagui/lucide-icons'
-import { ListItem, Popover } from 'tamagui'
+import { closeOpenTooltips, ListItem, Popover } from 'tamagui'
 import { closeCurrentThread } from '../../state/user'
 import { ButtonSimple } from '../ButtonSimple'
 import { PopoverContent } from '../Popover'
