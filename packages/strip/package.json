@@ -22,6 +22,7 @@
   ],
   "scripts": {
     "strip-chat": "dotenv -- node ./run.mjs ../../apps/chat ../../tmp/chat --overwrite",
+    "start": "dotenv -- node ./run.mjs",
     "build": "tamagui-build --skip-types --skip-native",
     "watch": "yarn build --watch",
     "clean": "tamagui-build clean",
@@ -31,7 +32,11 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^1.1.5",
+    "@ai-sdk/deepseek": "^0.1.6",
     "@ai-sdk/google": "^1.0.12",
+    "@ai-sdk/openai": "^1.1.5",
+    "@ai-sdk/xai": "^1.1.6",
     "ai": "^4.0.22",
     "citty": "^0.1.6",
     "dotenv": "^16.4.5",
