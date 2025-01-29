@@ -1,8 +1,8 @@
 import { merge } from 'ts-deepmerge'
-import { useAuth } from '~/better-auth/authClient'
+import { useAuth, authState } from '~/better-auth/authClient'
 import { ensureSignedUp } from '~/interface/dialogs/actions'
-import type { ChannelState, UserState } from '~/zero/types'
 import { useQuery, type User, zero } from '~/zero'
+import type { ChannelState, UserState } from '~/zero/types'
 
 // TODO
 let currentUser = null as User | null
@@ -35,10 +35,10 @@ export const getUserState = () => {
 export const useUserState = () => {
   const { user: authUser, loggedIn } = useAuth()
   const user = useQuery((q) => q.user.where('id', authUser?.id || ''))[0][0]
-  if (loggedIn) {
-    // TODO
-    currentUser = user
-  }
+
+  // TODO
+  currentUser = user
+
   return getUserState()
 }
 

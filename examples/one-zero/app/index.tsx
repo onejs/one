@@ -8,7 +8,7 @@ import { useQuery, zero } from '~/zero/zero'
 
 export default function HomePage() {
   const [messages] = useQuery((q) => q.message.orderBy('createdAt', 'desc'))
-  const { user, jwtToken, session } = useAuth()
+  const { user, token, session } = useAuth()
   const [text, setText] = useState('')
   const existingUser = useQuery((q) => q.user)[0][0]
 
@@ -32,7 +32,7 @@ export default function HomePage() {
 
           <Button onPress={() => authClient.signOut()}>Logout</Button>
 
-          {isWeb && !isTauri && jwtToken && (
+          {isWeb && !isTauri && token && (
             <a href={`one-chat://finish-auth?token=${session?.token}`}>
               <Button>Login in Tauri</Button>
             </a>

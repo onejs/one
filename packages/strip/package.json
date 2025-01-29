@@ -7,8 +7,8 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./types/index.d.ts",
-      "import": "./dist/esm/index.mjs"
+      "types": "./src/index.ts",
+      "import": "./dist/index.mjs"
     }
   },
   "module": "dist",
@@ -34,10 +34,10 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^1.1.5",
     "@ai-sdk/deepseek": "^0.1.6",
-    "@ai-sdk/google": "^1.0.12",
+    "@ai-sdk/google": "^1.1.6",
     "@ai-sdk/openai": "^1.1.5",
     "@ai-sdk/xai": "^1.1.6",
-    "ai": "^4.0.22",
+    "ai": "^4.1.11",
     "citty": "^0.1.6",
     "dotenv": "^16.4.5",
     "fs-extra": "^11.2.0",

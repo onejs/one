@@ -21,6 +21,7 @@ export default function HomePage() {
       <MainMessageInput />
 
       <ServerSettingsPane />
+      <AccountSettingsPane />
     </AppFrame>
   )
 }
@@ -36,16 +37,6 @@ const AppFrame = ({ children }: { children: any }) => {
     </AnimationDriver>
   )
 }
-
-// const RightSideHiddenPanel = () => {
-//   const [userState] = useUserState()
-
-//   if (userState?.showSidePanel === 'settings') {
-//     return
-//   }
-
-//   return <AccountSettingsPane />
-// }
 
 // <a target="_blank" href={window.location.origin + '/login-github'} rel="noreferrer">
 // <Button size="$2">Github</Button>

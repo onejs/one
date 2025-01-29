@@ -3,8 +3,8 @@ import { useAuth } from '~/better-auth/authClient'
 const key = 'CHAT_CAME_FROM_TAURI'
 
 export const useTauriAuthDeepLink = () => {
-  const { session, jwtToken } = useAuth()
-  return `one-chat://finish-auth?session=${session?.token || ''}&token=${jwtToken}`
+  const { session, token } = useAuth()
+  return `one-chat://finish-auth?session=${session?.token || ''}&token=${token}`
 }
 
 export const setShouldRedirectBackToTauri = (should = true) => {
