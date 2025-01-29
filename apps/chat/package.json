@@ -35,7 +35,8 @@
     "sst:shell:db:production": "sst shell --stage=production ./scripts/db.ts",
     "typecheck": "tsc --noEmit",
     "zero:build-schema": "zero-build-schema -p ./src/zero/schema-build.ts -o ./src/zero/zero-schema.json",
-    "zero": "yarn zero:build-schema && zero-cache --schema-file ./src/zero/zero-schema.json"
+    "zero:run": "dotenvx run -f .env.development -- zero-cache --schema-file ./src/zero/zero-schema.json",
+    "zero": "yarn zero:build-schema && yarn zero:run"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.709.0",
@@ -85,12 +86,12 @@
   "devDependencies": {
     "@actions/core": "^1.11.1",
     "@actions/exec": "^1.1.1",
+    "@dotenvx/dotenvx": "^1.34.0",
     "@react-native-community/cli": "15.1.3",
     "@tamagui/vite-plugin": "^1.123.2",
     "@tauri-apps/cli": "^2",
     "@types/aws-lambda": "8.10.147",
     "@types/pg": "^8.11.10",
-    "dotenv": "^16.4.7",
     "sst": "^3.6.18",
     "tsx": "^4.19.0",
     "typescript": "^5.7.3",
