@@ -9,13 +9,12 @@ import { AlwaysVisibleTabContent } from './AlwaysVisibleTabContent'
 import { DialogJoinServerContent } from './DialogJoinServerContent'
 import { DialogContent, DialogOverlay, useDialogEmit } from './shared'
 import type { TabContentPaneProps } from './types'
-import { debugUseState } from '~/helpers/debug'
 
 const success = () => serverDialogEmitter.emit(true)
 const cancel = () => serverDialogEmitter.emit(false)
 
 export const DialogCreateJoinServer = () => {
-  const [show, setShow] = debugUseState(useState(false))
+  const [show, setShow] = useState(false)
   const [tab, setTab] = useState('create')
 
   useDialogEmit((next) => {

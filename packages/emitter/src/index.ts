@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react'
 export class Emitter<const T> {
   private disposables = new Set<(cb: any) => void>()
 
-  value?: T
-
-  constructor(public defaultValue?: T) {}
+  constructor(public value?: T) {}
 
   listen = (disposable: (cb: T) => void) => {
     this.disposables.add(disposable)
@@ -26,7 +24,7 @@ export class Emitter<const T> {
   }
 
   useValue = () => {
-    const [state, setState] = useState<T | undefined>(this.defaultValue)
+    const [state, setState] = useState<T | undefined>(this.value)
     this.use(setState)
     return state
   }

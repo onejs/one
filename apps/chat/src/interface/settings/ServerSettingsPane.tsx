@@ -1,14 +1,13 @@
 import { Plus, Trash } from '@tamagui/lucide-icons'
 import { createEmitter } from '@vxrn/emitter'
 import { memo, useEffect, useState } from 'react'
-import { Button, Circle, H3, H5, Input, Sheet, SizableText, View, XStack, YStack } from 'tamagui'
+import { Button, Circle, H3, H5, Input, Sheet, SizableText, XStack, YStack } from 'tamagui'
 import { useAuth } from '~/better-auth/authClient'
 import { DevTools } from '~/dev/DevTools'
 import { randomId } from '~/helpers/randomId'
-import { hiddenPanelWidth } from '~/interface/settings/constants'
-import { useCurrentServerRoles } from '~/state/server/useCurrentServerRoles'
-import { useCurrentServerMembers } from '~/state/server/useCurrentServerMembers'
 import { useCurrentServer } from '~/state/server/useCurrentServer'
+import { useCurrentServerMembers } from '~/state/server/useCurrentServerMembers'
+import { useCurrentServerRoles } from '~/state/server/useCurrentServerRoles'
 import type { RolePermissionsKeys, RoleWithRelations, Server } from '~/zero'
 import { zero } from '~/zero'
 import { Avatar } from '../Avatar'
@@ -23,57 +22,15 @@ import { SearchableInput, SearchableList, SearchableListItem } from '../Searchab
 import { Tabs } from '../tabs/Tabs'
 import { AvatarUpload } from '../upload/AvatarUpload'
 import { UserRow } from '../users/UserRow'
-import { updateUserState, useUserState } from '../../state/user'
+import { SettingsPane } from './SettingsPane'
 
 const actionEmitter = createEmitter<'create-role'>()
 
 export const ServerSettingsPane = () => {
-  const [userState] = useUserState()
-
   return (
-    <>
-      <YStack
-        fullscreen
-        z={99_000}
-        bg="$shadow3"
-        animation="quicker"
-        opacity={0}
-        pointerEvents="none"
-        {...(userState.showSidePanel && {
-          opacity: 1,
-          pe: 'auto',
-        })}
-        onPress={() => {
-          updateUserState({
-            showSidePanel: undefined,
-          })
-        }}
-      />
-      <YStack
-        height="100%"
-        data-tauri-drag-region
-        animation="quicker"
-        position="absolute"
-        r={0}
-        bg="$color1"
-        elevation="$4"
-        t={0}
-        opacity={0}
-        pointerEvents="none"
-        x={10}
-        width={hiddenPanelWidth}
-        z={100_000}
-        p="$4"
-        gap="$4"
-        {...(userState.showSidePanel && {
-          x: 0,
-          opacity: 1,
-          pe: 'auto',
-        })}
-      >
-        <SettingsContents />
-      </YStack>
-    </>
+    <SettingsPane name="settings">
+      <SettingsContents />
+    </SettingsPane>
   )
 }
 
