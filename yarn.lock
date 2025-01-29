@@ -2959,12 +2959,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@better-auth/utils@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@better-auth/utils@npm:0.2.1"
+"@better-auth/utils@npm:0.2.3":
+  version: 0.2.3
+  resolution: "@better-auth/utils@npm:0.2.3"
   dependencies:
     uncrypto: "npm:^0.1.3"
-  checksum: 10/97cc40f418f391e0cbf1b60e703ee85a7fc0f14db57952d8bf83193d1fa8a7a485ab385873d3ec80241ae1e4134e39fdec675908ea3d3b5a95fa6f5d1b537eb9
+  checksum: 10/121c69e01694ddc8f7881bd2fcb8418f291b830ed4656817e32fb55b260fcf6816bd6515e1a4340c98adca84507db5509c232c9c2c50eeb84c75fce1bae1c5cb
   languageName: node
   linkType: hard
 
@@ -8940,18 +8940,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@simplewebauthn/browser@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "@simplewebauthn/browser@npm:10.0.0"
-  dependencies:
-    "@simplewebauthn/types": "npm:^10.0.0"
-  checksum: 10/842ad10bdeb4c1d1139ecca46c566b9113b755acf2c9845f91a7c13333211e3a8e329412057b1416ea65e294449cb580830fde7b264eb06ec6ac8a6bbeae5934
+"@simplewebauthn/browser@npm:^13.0.0":
+  version: 13.1.0
+  resolution: "@simplewebauthn/browser@npm:13.1.0"
+  checksum: 10/8eaae9cb53b76949764d150d2b3111a28ac049ee48540648d1cd42caf679884128a2eaede0aa05769af79999c2ba70e87e0012fbf6b7d0309e2ff29dffbb185e
   languageName: node
   linkType: hard
 
-"@simplewebauthn/server@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "@simplewebauthn/server@npm:10.0.1"
+"@simplewebauthn/server@npm:^13.0.0":
+  version: 13.1.1
+  resolution: "@simplewebauthn/server@npm:13.1.1"
   dependencies:
     "@hexagon/base64": "npm:^1.1.27"
     "@levischuck/tiny-cbor": "npm:^0.2.2"
@@ -8960,16 +8958,7 @@ __metadata:
     "@peculiar/asn1-rsa": "npm:^2.3.8"
     "@peculiar/asn1-schema": "npm:^2.3.8"
     "@peculiar/asn1-x509": "npm:^2.3.8"
-    "@simplewebauthn/types": "npm:^10.0.0"
-    cross-fetch: "npm:^4.0.0"
-  checksum: 10/b705110c36714268fe64bcb4d7a7084b7e9adc817d932e4e3ad1bca767c171e7503acebbec9c96adfaf7cca714f5a225dcc3d08f74f5944b22aeaaea412bcd86
-  languageName: node
-  linkType: hard
-
-"@simplewebauthn/types@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "@simplewebauthn/types@npm:10.0.0"
-  checksum: 10/ea1ab884563ebbd23d91a1042a8762393874335a88ec400528f249186f9a30bc8260987c900b7b87177ba37550109903d6cba51ddf33e2f8fc082b96daa18c53
+  checksum: 10/19c5ed71afc8137ca9ac298778ed210332d70fa16a815545b7eb8ea5d997d53849fc53a1de81901250b1bd2af7c365399fce1a2123bffb3c09aff44ffdf89792
   languageName: node
   linkType: hard
 
@@ -12704,7 +12693,7 @@ __metadata:
   dependencies:
     "@tamagui/build": "npm:^1.123.2"
     "@vxrn/emitter": "workspace:*"
-    better-auth: "npm:1.0.23-beta.3"
+    better-auth: "npm:^1.1.14"
     react: "npm:^18.3.1 || ^19.0.0"
   languageName: unknown
   linkType: soft
@@ -13877,38 +13866,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"better-auth@npm:1.0.23-beta.3":
-  version: 1.0.23-beta.3
-  resolution: "better-auth@npm:1.0.23-beta.3"
+"better-auth@npm:^1.1.14":
+  version: 1.1.14
+  resolution: "better-auth@npm:1.1.14"
   dependencies:
-    "@better-auth/utils": "npm:^0.2.1"
+    "@better-auth/utils": "npm:0.2.3"
     "@better-fetch/fetch": "npm:1.1.12"
     "@noble/ciphers": "npm:^0.6.0"
     "@noble/hashes": "npm:^1.6.1"
-    "@simplewebauthn/browser": "npm:^10.0.0"
-    "@simplewebauthn/server": "npm:^10.0.1"
-    better-call: "npm:0.3.3-beta.4"
-    consola: "npm:^3.2.3"
+    "@simplewebauthn/browser": "npm:^13.0.0"
+    "@simplewebauthn/server": "npm:^13.0.0"
+    better-call: "npm:0.3.3"
     defu: "npm:^6.1.4"
     jose: "npm:^5.9.6"
     kysely: "npm:^0.27.4"
     nanostores: "npm:^0.11.3"
-    uncrypto: "npm:^0.1.3"
-    zod: "npm:^3.23.8"
-  checksum: 10/9cc257d5519fd140f7251a32dbc77a8fed277cbe4bc00654d512cc695b32ebc3dd323e44dda0ee43bfbeb6d4feba902b77d38281d1294152c8887045648e0486
+    zod: "npm:^3.24.1"
+  checksum: 10/2b3334b165630ec20071a22aea172969e1558b9ece368e8246120f45ad3b2b3f10f8913860cbd5e3f93da28b6e085ea286d057c54f20876321b736137c002371
   languageName: node
   linkType: hard
 
-"better-call@npm:0.3.3-beta.4":
-  version: 0.3.3-beta.4
-  resolution: "better-call@npm:0.3.3-beta.4"
+"better-call@npm:0.3.3":
+  version: 0.3.3
+  resolution: "better-call@npm:0.3.3"
   dependencies:
     "@better-fetch/fetch": "npm:^1.1.4"
     rou3: "npm:^0.5.1"
-    set-cookie-parser: "npm:^2.7.1"
     uncrypto: "npm:^0.1.3"
-    zod: "npm:^3.23.8"
-  checksum: 10/6d2c00723d152af248d0f0e4ce9cf2cfcb3d87cc1e994d12bc648400d2cf09db4761c6bc5d3626385ac22e45290b19fa83bf208579bfeda98c39fe074977485b
+    zod: "npm:^3.24.1"
+  checksum: 10/9f8fa223ae33dd46d8b50c1eee55b2eb4af3009e482b0572159d238c0be08d150c4b094bf1954c2bea850118fd3a03775f264d5d4c70cc37c09301092320409e
   languageName: node
   linkType: hard
 
@@ -15162,15 +15148,6 @@ __metadata:
   dependencies:
     node-fetch: "npm:^2.6.12"
   checksum: 10/ac8c4ca87d2ac0e17a19b6a293a67ee8934881aee5ec9a5a8323c30e9a9a60a0f5291d3c0d633ec2a2f970cbc60978d628804dfaf03add92d7e720b6d37f392c
-  languageName: node
-  linkType: hard
-
-"cross-fetch@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "cross-fetch@npm:4.0.0"
-  dependencies:
-    node-fetch: "npm:^2.6.12"
-  checksum: 10/e231a71926644ef122d334a3a4e73d9ba3ba4b480a8a277fb9badc434c1ba905b3d60c8034e18b348361a09afbec40ba9371036801ba2b675a7b84588f9f55d8
   languageName: node
   linkType: hard
 
@@ -23324,7 +23301,7 @@ __metadata:
     "@vxrn/better-auth": "workspace:*"
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/emitter": "workspace:*"
-    better-auth: "npm:1.0.23-beta.3"
+    better-auth: "npm:^1.1.14"
     expo: "npm:~52.0.17"
     one: "workspace:*"
     pg: "npm:^8.13.1"
@@ -23450,7 +23427,7 @@ __metadata:
     "@vxrn/better-auth": "workspace:*"
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/emitter": "workspace:*"
-    better-auth: "npm:1.0.23-beta.3"
+    better-auth: "npm:^1.1.14"
     burnt: "npm:^0.12.2"
     dotenv: "npm:^16.4.7"
     expo: "npm:~52.0.17"
@@ -26834,7 +26811,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"set-cookie-parser@npm:^2.6.0, set-cookie-parser@npm:^2.7.1":
+"set-cookie-parser@npm:^2.6.0":
   version: 2.7.1
   resolution: "set-cookie-parser@npm:2.7.1"
   checksum: 10/c92b1130032693342bca13ea1b1bc93967ab37deec4387fcd8c2a843c0ef2fd9a9f3df25aea5bb3976cd05a91c2cf4632dd6164d6e1814208fb7d7e14edd42b4
@@ -30841,7 +30818,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.22.3, zod@npm:^3.23.8":
+"zod@npm:^3.22.3, zod@npm:^3.24.1":
   version: 3.24.1
   resolution: "zod@npm:3.24.1"
   checksum: 10/54e25956495dec22acb9399c168c6ba657ff279801a7fcd0530c414d867f1dcca279335e160af9b138dd70c332e17d548be4bc4d2f7eaf627dead50d914fec27
