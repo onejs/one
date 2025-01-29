@@ -8,15 +8,15 @@ export const AlwaysVisibleTabContent = ({
   return (
     <Tabs.Content
       forceMount
-      pos="absolute"
+      position="absolute"
       t={0}
       l={0}
       r={0}
       b={0}
-      o={0}
-      pe="none"
+      opacity={0}
+      pointerEvents="none"
       {...(active === props.value && {
-        o: 1,
+        opacity: 1,
         pe: 'auto',
       })}
       {...props}

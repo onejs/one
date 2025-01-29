@@ -12,6 +12,7 @@ import {
   ScrollView,
   SizableText,
   TooltipSimple,
+  View,
   XGroup,
   XStack,
   YStack,
@@ -43,26 +44,26 @@ export const ChannelTopBar = () => {
 
   return (
     <XStack
-      h={mainTopBarHeight}
-      pos="absolute"
+      height={mainTopBarHeight}
+      position="absolute"
       t={0}
       l={0}
       r={0}
       bg="$color1"
       elevation={1}
-      zi={100_000}
+      z={100_000}
       gap="$4"
       py="$2"
       px="$2"
     >
-      <XStack ai="center" gap="$1">
+      <XStack items="center" gap="$1">
         <ChannelViewToggle />
       </XStack>
 
-      <XStack f={10} ai="center">
-        <IndentIncrease size={14} o={0.5} />
-        <ScrollView my="$-2" f={2} horizontal showsHorizontalScrollIndicator={false}>
-          <XStack p="$2" ai="center" gap="$1">
+      <XStack flex={10} items="center">
+        {/* <IndentIncrease size={14} opacity={0.5} /> */}
+        <ScrollView my="$-2" flex={2} horizontal showsHorizontalScrollIndicator={false}>
+          <XStack p="$2" items="center" gap="$1">
             {threads.map((thread) => {
               return <ThreadButton key={thread.id} thread={thread} />
             })}
@@ -70,7 +71,7 @@ export const ChannelTopBar = () => {
         </ScrollView>
       </XStack>
 
-      <XStack ai="center" gap="$1">
+      <XStack items="center" gap="$1">
         <ChannelPinsPopover />
         <ChannelSettingsPopover />
       </XStack>
@@ -78,26 +79,26 @@ export const ChannelTopBar = () => {
       <AnimationDriver name="css">
         <XStack
           animation="quickest"
-          pos="absolute"
+          position="absolute"
           inset={0}
           bg="$color1"
-          zi={10}
-          pe="none"
-          o={0}
+          z={10}
+          pointerEvents="none"
+          opacity={0}
           x={10}
-          ai="center"
+          items="center"
           px="$3"
           gap="$3"
           // TODO type isnt nullish from zero
           {...(!!(openThread as any as boolean) && {
-            o: 1,
+            opacity: 1,
             x: 0,
-            pe: 'auto',
+            pointerEvents: 'auto',
           })}
         >
-          <XStack ai="center" gap="$1">
+          <XStack items="center" gap="$1">
             <Button
-              pe="auto"
+              pointerEvents={openThread ? 'auto' : 'none'}
               size="$2.5"
               bg="transparent"
               circular
@@ -109,7 +110,7 @@ export const ChannelTopBar = () => {
             />
 
             <Button
-              pe="auto"
+              pointerEvents={openThread ? 'auto' : 'none'}
               size="$2.5"
               bg="transparent"
               circular
@@ -122,13 +123,13 @@ export const ChannelTopBar = () => {
               <>
                 <YStack
                   animation="quick"
-                  o={0}
+                  opacity={0}
                   fullscreen
-                  ai="center"
-                  jc="center"
+                  items="center"
+                  justify="center"
                   y={5}
                   {...(maximized && {
-                    o: 1,
+                    opacity: 1,
                     y: 0,
                   })}
                 >
@@ -136,13 +137,13 @@ export const ChannelTopBar = () => {
                 </YStack>
                 <YStack
                   animation="quick"
-                  o={0}
+                  opacity={0}
                   y={5}
                   fullscreen
-                  ai="center"
-                  jc="center"
+                  items="center"
+                  justify="center"
                   {...(!maximized && {
-                    o: 1,
+                    opacity: 1,
                     y: 0,
                   })}
                 >
@@ -152,17 +153,17 @@ export const ChannelTopBar = () => {
             </Button>
           </XStack>
 
-          <XStack ai="center" gap="$3">
-            {/* <IndentIncrease o={0.5} size={14} /> */}
-            <SizableText cur="default" size="$5">
+          <XStack items="center" gap="$3">
+            {/* <IndentIncrease opacity={0.5} size={14} /> */}
+            <SizableText cursor="default" size="$5">
               {openThread?.description || 'Thread Name'}
             </SizableText>
           </XStack>
 
-          <XStack f={1} />
+          <XStack flex={1} />
 
           <AnimationDriver name="spring">
-            <XStack ai="center" gap="$2">
+            <XStack items="center" gap="$2">
               <ButtonSimple icon={Pencil}></ButtonSimple>
               <ButtonSimple
                 icon={Trash}
@@ -206,51 +207,59 @@ const ChannelViewToggle = () => {
   const channel = useCurrentChannel()
   const view = channelState?.mainView
 
-  const activeStyle: ButtonProps = {
-    bg: '$color2',
+  const activeProps: ButtonProps = {
+    className: 'path-glow',
+    opacity: 1,
   }
 
-  const inactiveStyle: ButtonProps = {
+  const inactiveProps: ButtonProps = {
     bg: 'transparent',
     size: '$2',
     scaleIcon: 1.3,
     borderWidth: 0,
-    borderRadius: 0,
+    rounded: 0,
+    opacity: 0.5,
   }
 
   return (
-    <XGroup overflow="hidden" borderWidth={1} borderColor="$borderColor">
+    <XGroup overflow="hidden">
       <TooltipSimple label="Chat view">
-        <Button
+        <View
+          px="$2.5"
+          py="$1.5"
           disabled={!channel}
           disabledStyle={{
-            o: 0.5,
+            opacity: 0.5,
           }}
-          {...inactiveStyle}
-          icon={MessageCircle}
-          {...(view !== 'thread' && activeStyle)}
+          {...inactiveProps}
+          {...(view !== 'thread' && activeProps)}
           onPress={() => {
             updateUserCurrentChannel({
               mainView: 'chat',
             })
           }}
-        />
+        >
+          <MessageCircle size={26} viewBox="-8 -8 40 40" m={-6} />
+        </View>
       </TooltipSimple>
       <TooltipSimple label="Thread view">
-        <Button
-          {...inactiveStyle}
+        <View
+          px="$2.5"
+          py="$1.5"
+          {...inactiveProps}
           disabled={!channel}
           disabledStyle={{
-            o: 0.5,
+            opacity: 0.5,
           }}
-          icon={IndentIncrease}
-          {...(view === 'thread' && activeStyle)}
+          {...(view === 'thread' && activeProps)}
           onPress={() => {
             updateUserCurrentChannel({
               mainView: 'thread',
             })
           }}
-        />
+        >
+          <IndentIncrease size={26} viewBox="-8 -8 40 40" m={-6} />
+        </View>
       </TooltipSimple>
     </XGroup>
   )
@@ -263,12 +272,20 @@ const ThreadButton = ({ thread }: { thread: ThreadWithRelations }) => {
   return (
     <ButtonSimple
       active={isOpen}
-      maw={200}
+      maxW={200}
       onPress={() => {
         updateUserOpenThread(thread)
       }}
     >
-      <SizableText size="$3" maw="100%" ellipse userSelect="none" cur="default" f={1} ov="hidden">
+      <SizableText
+        size="$3"
+        maxW="100%"
+        ellipse
+        select="none"
+        cursor="default"
+        flex={1}
+        overflow="hidden"
+      >
         {thread.messages[0]?.content}
       </SizableText>
     </ButtonSimple>

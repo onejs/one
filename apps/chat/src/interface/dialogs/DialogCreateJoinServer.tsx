@@ -35,7 +35,7 @@ export const DialogCreateJoinServer = () => {
             exitStyle={{ opacity: 0 }}
           />
           <Dialog.Sheet.Handle />
-          <Dialog.Sheet.Frame padding="$4" gap="$4">
+          <Dialog.Sheet.Frame p="$4" gap="$4">
             <Dialog.Adapt.Contents />
           </Dialog.Sheet.Frame>
         </Dialog.Sheet>
@@ -59,7 +59,7 @@ export const DialogCreateJoinServer = () => {
               { label: 'Join Server', value: 'join' },
             ]}
           >
-            <YStack pos="relative" f={1} w="100%">
+            <YStack position="relative" flex={1} width="100%">
               <DialogCreateServerContent value="create" active={tab} setShow={setShow} />
               <DialogJoinServerContent value="join" active={tab} setShow={setShow} />
             </YStack>
@@ -83,11 +83,17 @@ const DialogCreateServerContent = (props: TabContentPaneProps) => {
 
   return (
     <AlwaysVisibleTabContent {...props}>
-      <YStack f={1}>
+      <YStack flex={1}>
         <ScrollView m="$-1">
           <YStack py="$4" gap="$2" px="$1">
             <LabeledRow label="Name" htmlFor="server-name">
-              <Input autoComplete="off" miw={300} ref={inputRef as any} f={2} id="server-name" />
+              <Input
+                autoComplete="off"
+                minW={300}
+                ref={inputRef as any}
+                flex={2}
+                id="server-name"
+              />
             </LabeledRow>
 
             <LabeledRow label="Image" htmlFor="image">
@@ -97,7 +103,7 @@ const DialogCreateServerContent = (props: TabContentPaneProps) => {
         </ScrollView>
       </YStack>
 
-      <XStack jc="flex-end" gap="$2">
+      <XStack justify="flex-end" gap="$2">
         <Dialog.Close asChild>
           <Button
             onPress={() => {

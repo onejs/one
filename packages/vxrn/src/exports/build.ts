@@ -249,7 +249,13 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   if (serverOptions !== false) {
     console.info(`\n 🔨 build server\n`)
 
-    const { output } = (await viteBuild(serverBuildConfig)) as RollupOutput
+    const userServerConf = optionsIn.build?.server
+    const userServerBuildConf = typeof userServerConf === 'boolean' ? null : userServerConf?.config
+
+    const { output } = (await viteBuild(
+      userServerBuildConf ? mergeConfig(serverBuildConfig, userServerBuildConf) : serverBuildConfig
+    )) as RollupOutput
+
     serverOutput = output
     clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
 

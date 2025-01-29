@@ -25,7 +25,6 @@
     ],
     "composite": true,
     "incremental": true,
-    "noEmit": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "declaration": true,

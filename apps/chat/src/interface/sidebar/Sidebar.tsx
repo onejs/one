@@ -11,12 +11,12 @@ import { ListItem } from '../lists/ListItem'
 
 export const Sidebar = memo(() => {
   return (
-    <YStack ov="hidden" f={10} mih={200} maw={250} miw={250} gap="$2">
+    <YStack overflow="hidden" flex={10} minH={200} maxW={250} minW={250} gap="$2">
       <SidebarServersRow />
 
       <SidebarServerChannelsList />
 
-      <YStack btw={1} bc="$background02" py="$2" mt="auto" mah={200}>
+      <YStack borderTopWidth={1} borderColor="$background02" py="$2" mt="auto" maxH={200}>
         <SidebarQuickList />
       </YStack>
     </YStack>
@@ -36,7 +36,7 @@ const SidebarQuickList = () => {
               dialogAddFriend()
             }}
           >
-            <Plus size={16} o={0.5} />
+            <Plus size={16} opacity={0.5} />
           </ButtonSimple>
         }
         iconAfter

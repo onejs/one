@@ -1,9 +1,14 @@
 import { createEmitter } from '@vxrn/emitter'
 import type { DialogType } from './types'
-import { Dialog, styled } from 'tamagui'
+import { closeOpenTooltips, Dialog, styled } from 'tamagui'
 
 export const dialogEmitter = createEmitter<DialogType>()
-export const dialogEmit = dialogEmitter.emit
+
+export const dialogEmit = (next: DialogType) => {
+  closeOpenTooltips()
+  dialogEmitter.emit(next)
+}
+
 export const useDialogEmit = dialogEmitter.use
 
 export const DialogOverlay = styled(Dialog.Overlay, {
@@ -27,14 +32,14 @@ export const DialogContent = styled(Dialog.Content, {
   bordered: true,
   elevate: true,
   bg: '$color2',
-  w: '60%',
-  h: '50%',
-  miw: 200,
-  maw: 500,
-  mih: 400,
+  width: '60%',
+  height: '50%',
+  minW: 200,
+  maxW: 500,
+  minH: 400,
   opacity: 1,
+  maxH: 'max-content',
   y: 0,
-  mah: 'max-content',
   enterStyle: { x: 0, y: -5, opacity: 0 },
   exitStyle: { x: 0, y: 5, opacity: 0 },
   gap: '$4',

@@ -1,12 +1,16 @@
 import { S3Client } from '@aws-sdk/client-s3'
 import { Upload } from '@aws-sdk/lib-storage'
 import { randomId } from '~/helpers/randomId'
+import { Resource } from 'sst'
 
 // TODO: upload folder based on user or server
 
 const endpoint = 'https://aa20b480cc813f2131bc005e2b7fd140.r2.cloudflarestorage.com/onechatimages'
 const bucket = 'onechatimages'
 const folder = 'uploads'
+
+// @ts-ignore
+console.info(`did we get it?`, Resource['ImagesBucket'])
 
 const s3Client = new S3Client({
   credentials: {
