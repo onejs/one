@@ -1,6 +1,22 @@
 ios
 zero-schema.json
 
+.env
+.env.test
+.env.development
+.env.production
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # sst
 .sst
 .tamagui

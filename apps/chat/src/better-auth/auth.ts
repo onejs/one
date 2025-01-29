@@ -2,9 +2,14 @@ import { betterAuth } from 'better-auth'
 import { Pool } from 'pg'
 import { jwt, bearer } from 'better-auth/plugins'
 
+// make sure not set during production builds so we can dynamically set it
+const DATABASE_URL = process.env.ZERO_UPSTREAM_DB
+
+console.info('DATABASE_URL', DATABASE_URL)
+
 export const auth = betterAuth({
   database: new Pool({
-    connectionString: process.env.ZERO_UPSTREAM_DB,
+    connectionString: DATABASE_URL,
   }),
 
   trustedOrigins: ['https://start.chat'],
