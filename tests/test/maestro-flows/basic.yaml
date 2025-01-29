@@ -1,4 +1,4 @@
-appId: dev.onestack.dev.test
+appId: dev.onestack.rntestcontainer
 ---
 - launchApp
 # - assertVisible: ".*Welcome to.*"
