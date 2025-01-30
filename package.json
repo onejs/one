@@ -51,6 +51,7 @@
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
     "upgrade:tamagui:canary": "yarn up '*tamagui*'@canary '@tamagui/*'@canary",
     "test": "yarn turbo:run test --filter='!@vxrn/strip'",
+    "test-ios": "yarn workspaces foreach -A run test-ios",
     "test:one": "yarn workspace one test",
     "test:one:dev": "yarn workspace one test:dev",
     "watch:build": "SKIP_TYPES_INITIAL=1 ultra -r --no-pretty --concurrency 400 watch",

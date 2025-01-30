@@ -8,12 +8,6 @@ env:
   # Examples: "iPhone 15 Pro", "iPhone 16 Pro Max".
   simulator_device_name: iPhone 16 Pro
 
-  # TODO
-  # Relative path from the monorepo root to the app
-  test_app_path: tests/test
-  # Package name in the monorepo
-  test_app_package_name: test-test
-
 on:
   push:
   pull_request:
@@ -40,28 +34,23 @@ jobs:
       configuration: Release
 
   test-ios-native-prod:
-    name: Native iOS Test (Prod)
+    name: Native iOS Tests (Dev)
     needs:
-      - build-ios-test-container-prod
+      - build-ios-test-container-dev
     runs-on: macos-14
-    # defaults:
-      # run:
-      #   working-directory: ${{ env.test_app_path }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install
         uses: ./.github/actions/install
-        # with:
-        #   workspace-focus: ${{ env.test_app_package_name }}
 
       - name: Download Built Test Container App
         uses: actions/cache/restore@v4
         with:
           fail-on-cache-miss: true
-          key: ${{ needs.build-ios-test-container-prod.outputs.built-app-cache-key }}
-          path: ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
+          key: ${{ needs.build-ios-test-container-dev.outputs.built-app-cache-key }}
+          path: ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
 
       - name: Get Simulator UDID
         id: get-simulator-udid
@@ -102,33 +91,26 @@ jobs:
       - uses: actions/cache/restore@v4
         with:
           path: ${{ steps.get-npm-global-root-path.outputs.path }}
-          key: ${{ runner.os }}-npm-appium-2
+          key: ${{ runner.os }}-npm-appium
 
       - name: Install and Run Appium Server
-        # id: install-maestro
         run: |
           npm install -g appium
           appium driver install xcuitest
           appium > /tmp/appium.log &
           sleep 3
 
-      - name: TMP
-        run: |
-          npm list -g
-
       - uses: actions/cache/save@v4
         with:
           path: ${{ steps.get-npm-global-root-path.outputs.path }}
-          key: ${{ runner.os }}-npm-appium-2
-
+          key: ${{ runner.os }}-npm-appium
 
       - name: Test
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-          TEST_CONTAINER_PATH: ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
+          TEST_CONTAINER_PATH: ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
         run: |
-          cd tests/rn-test-container
-          yarn vitest
+          yarn test-ios
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v4.3.1
@@ -138,110 +120,3 @@ jobs:
           name: appium.log
           path: |
             /tmp/appium.log
-
-      # - name: Patch Packages
-      #   run: |
-      #     yarn one patch
-
-      # Prebuild and pod install because we need hermesc which is installed by pod install
-      # - name: Prebuild
-      #   run: |
-      #     yarn expo prebuild --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
-      # # - name: Cache Pods
-      # #   uses: actions/cache@v4
-      # #   env:
-      # #     cache-name: ${{ env.app_identifier }}-pods
-      # #   with:
-      # #     path: ${{ env.test_app_path }}/ios/Pods
-      # #     key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_app_path)) }}
-      # #     restore-keys: |
-      # #       ${{ runner.os }}-${{ env.cache-name }}-
-      # - name: Pod Install
-      #   run: |
-      #     cd ios && pod install
-
-      # - name: Bundle React Native code and images
-      #   run: |
-      #     mkdir test-bundle-output
-      #     yarn react-native bundle --platform ios --dev false --bundle-output test-bundle-output/main.tmp.jsbundle --assets-dest test-bundle-output
-      #     ios/Pods/hermes-engine/destroot/bin/hermesc -emit-binary -max-diagnostic-width=80 -O -output-source-map -out test-bundle-output/main.jsbundle test-bundle-output/main.tmp.jsbundle
-
-      # - name: Replace JS Bundle and Assets in App
-      #   run: |
-      #     cp -r test-bundle-output/. ${{ github.workspace }}/${{ needs.build-ios-test-container.outputs.built-app-path }}/
-
-      # - name: Check .app
-      #   id: check-app
-      #   run: |
-      #     if [ ! -e ${{ github.workspace }}/${{ needs.build-ios-test-container.outputs.built-app-path }} ]; then
-      #       echo "Error: .app not found"
-      #       exit 1
-      #     fi
-
-      # - name: Install App in Simulator
-      #   env:
-      #     SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-      #     APP_PATH: ${{ needs.build-ios-test-container.outputs.built-app-path }}
-      #   working-directory: .
-      #   run: xcrun simctl install $SIMULATOR_UDID $APP_PATH
-
-      # - name: Test
-      #   run: |
-      #     export PATH="$PATH":"$HOME/.maestro/bin"
-      #     export MAESTRO_DRIVER_STARTUP_TIMEOUT=180000 # 3 minutes
-      #     maestro test maestro-flows/basic.yaml
-
-      # TODO: remove?
-      - name: Upload App
-        uses: actions/upload-artifact@v4.3.1
-        if: ${{ always() }}
-        continue-on-error: true
-        with:
-          name: ios-test-container-prod
-          path: |
-            ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
-
-      # - name: Prepare Maestro Logs
-      #   id: prepare-maestro-logs
-      #   if: ${{ always() && steps.install-maestro.outcome == 'success' }}
-      #   continue-on-error: true
-      #   run: cp -r "$HOME/.maestro/tests" maestro-logs
-
-      # - name: Upload Maestro Logs
-      #   uses: actions/upload-artifact@v4.3.1
-      #   if: ${{ always() && steps.prepare-maestro-logs.outcome == 'success' }}
-      #   continue-on-error: true
-      #   with:
-      #     name: release-maestro-logs
-      #     path: |
-      #       ${{ env.test_app_path }}/maestro-logs
-
-      # - name: Upload Maestro Screenshots
-      #   uses: actions/upload-artifact@v4.3.1
-      #   if: ${{ always() && steps.install-maestro.outcome == 'success' }}
-      #   continue-on-error: true
-      #   with:
-      #     name: release-maestro-screenshots
-      #     path: |
-      #       ${{ env.test_app_path }}/maestro-screenshots
-
-  test-ios-native-dev:
-    name: Native iOS Test (Dev)
-    needs:
-      - build-ios-test-container-dev
-    runs-on: macos-14
-    steps:
-      - name: Download Built Test Container App
-        uses: actions/cache/restore@v4
-        with:
-          fail-on-cache-miss: true
-          key: ${{ needs.build-ios-test-container-dev.outputs.built-app-cache-key }}
-          path: ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
-      - name: Upload App
-        uses: actions/upload-artifact@v4.3.1
-        if: ${{ always() }}
-        continue-on-error: true
-        with:
-          name: ios-test-container-prod
-          path: |
-            ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
