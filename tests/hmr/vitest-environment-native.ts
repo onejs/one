@@ -93,11 +93,15 @@ async function prepareTestApp() {
     // Since the initial bundle may take some time to build, we poke it first and make sure it's ready before running tests, which removes some flakiness during Appium tests.
     const bundleUrl = `http://127.0.0.1:8081/index.bundle?platform=ios`
     await new Promise<void>((resolve, reject) => {
+      const startedAt = performance.now()
       let retries = 0
       const checkUrl = async () => {
         try {
           const response = await fetch(bundleUrl)
           if (response.ok) {
+            console.info(
+              `Initial RN bundle served after ${Math.round(performance.now() - startedAt)}ms`
+            )
             resolve()
           } else {
             throw new Error('not ready')
