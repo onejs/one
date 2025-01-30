@@ -15,6 +15,7 @@
     "build": "turbo run build --filter='*' --filter='!example/*'",
     "build:js": "yarn build --no-cache --force -- --skip-types",
     "check": "turbo check",
+    "ci": "yarn && yarn build && yarn check && yarn typecheck && yarn lint && yarn test && git diff --exit-code",
     "clean": "yarn turbo:run clean:build",
     "clean:build": "yarn turbo:run clean:build",
     "clean:ts": "tsc -b --clean tsconfig.json",
