@@ -42,6 +42,9 @@ jobs:
       - name: Test
         run: yarn test
 
+      - name: Web Integration Test
+        run: yarn test-web
+
   notify:
     needs: [checks, tests]
     runs-on: ubuntu-latest
