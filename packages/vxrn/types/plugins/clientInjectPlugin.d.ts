@@ -44,6 +44,7 @@ export declare function getServerConfigPlugin(): {
             dev: import("vite").ResolvedDevEnvironmentOptions;
             build: import("vite").ResolvedBuildEnvironmentOptions;
         }>;
+        webSocketToken: string;
     } & import("vite").PluginHookUtils>): void;
 };
 /**
