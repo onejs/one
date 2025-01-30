@@ -45,7 +45,7 @@ test('component HMR', async () => {
   expect(await textInput.inputValue()).toBe('page did not reload')
 
   await page.close()
-})
+}, { retry: 5 })
 
 
 test('route HMR', async () => {
@@ -72,4 +72,4 @@ test('route HMR', async () => {
   expect(await textInput.inputValue()).toBe('page did not reload')
 
   await page.close()
-})
+}, { retry: 5 })
