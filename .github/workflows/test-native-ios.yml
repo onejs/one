@@ -33,7 +33,7 @@ jobs:
     with:
       configuration: Release
 
-  test-ios-native-prod:
+  test-ios-native-dev:
     name: Native iOS Tests (Dev)
     needs:
       - build-ios-test-container-dev
