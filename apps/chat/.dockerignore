@@ -1,7 +1,0 @@
-# note we want dist
-
-node_modules
-ios
-android
-.git
-.sst
