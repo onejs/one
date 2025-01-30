@@ -1,4 +1,4 @@
-name: Native Integration Tests 2
+name: iOS Native Tests
 env:
   # Specify an iOS version to test on.
   # Examples: "17", "18", "18-2", or leave it blank, which means any available version.
