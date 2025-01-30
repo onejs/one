@@ -52,6 +52,7 @@ jobs:
           fail-on-cache-miss: true
           key: ${{ needs.build-ios-test-container-dev.outputs.built-app-cache-key }}
           path: ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
+          enableCrossOsArchive: true
 
       - name: Get Simulator UDID
         id: get-simulator-udid
