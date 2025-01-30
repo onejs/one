@@ -36,4 +36,29 @@ test('component HMR', async () => {
   expect(result).toBe(true)
 
   expect(await textInput.getValue()).toBe('app did not reload')
-}, { timeout: 5 * 60 * 1000, retry: 5 })
+}, { timeout: 5 * 60 * 1000, retry: 3 })
+
+test('route HMR', async () => {
+  const driver = await remote(getWebDriverConfig())
+
+  const textInput = driver.$('~text-input')
+  await textInput.waitForDisplayed({ timeout: 2 * 60 * 1000 })
+  await textInput.setValue('app did not reload')
+  expect(await textInput.getValue()).toBe('app did not reload')
+
+  const textElementInComponent = driver.$('~route-text-content')
+  expect(await textElementInComponent.getText()).toBe('Some text')
+
+  editRouteFile()
+
+  const result = await driver.waitUntil(
+    async () => {
+      const element = await driver.$('~route-text-content')
+      return element && (await element.getText()) === 'Some edited text in route file'
+    },
+    { timeout: 10 * 1000 }
+  )
+  expect(result).toBe(true)
+
+  expect(await textInput.getValue()).toBe('app did not reload')
+}, { timeout: 5 * 60 * 1000, retry: 3 })
