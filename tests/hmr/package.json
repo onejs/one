@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "one dev",
-    "test:web": "TEST_ONLY=dev vitest tests/hmr-web.test.ts",
-    "test:native": "TEST_ONLY=dev DEV_PORT=8081 vitest tests/hmr-native.test.ts"
+    "test": "TEST_ONLY=dev vitest tests/hmr-web.test.ts",
+    "test-ios": "TEST_ONLY=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts"
   },
   "devDependencies": {
     "playwright": "^1.49.1",
