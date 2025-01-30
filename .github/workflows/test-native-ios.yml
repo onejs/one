@@ -38,7 +38,7 @@ jobs:
     needs:
       - build-ios-test-container-dev
     # runs-on: macos-14
-    runs-on: [self-hosted, macOS]
+    runs-on: macOS
     steps:
       - name: Checkout
         uses: actions/checkout@v4
