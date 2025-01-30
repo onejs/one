@@ -46,19 +46,23 @@ const waitForServer = (
   })
 }
 
-export async function setupTestServers(): Promise<TestInfo> {
+export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): Promise<TestInfo> {
   console.info('Setting up tests 🛠️')
 
   let prodServer: ChildProcess | null = null
   let devServer: ChildProcess | null = null
   let buildProcess: ChildProcess | null = null // Add this line
 
+  const shouldStartDevServer = !ONLY_TEST_PROD && !skipDev
+  const shouldStartProdServer = !ONLY_TEST_DEV
+
   // Get available ports
   const prodPort = await getPort()
-  const devPort = process.env.DEV_PORT || (await getPort())
+  const devPort =
+    (process.env.DEV_PORT && Number.parseInt(process.env.DEV_PORT, 10)) || (await getPort())
 
   try {
-    if (!ONLY_TEST_DEV && !process.env.SKIP_BUILD) {
+    if (shouldStartProdServer && !process.env.SKIP_BUILD) {
       // Run prod build using spawn
       console.info('Starting a prod build.')
       const prodBuildStartedAt = performance.now()
@@ -103,7 +107,7 @@ export async function setupTestServers(): Promise<TestInfo> {
     // Start dev server
     let devServerOutput = ''
 
-    if (!ONLY_TEST_PROD) {
+    if (shouldStartDevServer) {
       console.info(`Starting a dev server on http://localhost:${devPort}`)
       devServer = exec(`yarn dev --clean --port ${devPort}`, {
         cwd: process.cwd(),
@@ -120,7 +124,7 @@ export async function setupTestServers(): Promise<TestInfo> {
     // Start prod server
     let prodServerOutput = ''
 
-    if (!ONLY_TEST_DEV) {
+    if (shouldStartProdServer) {
       console.info(`Starting a prod server on http://localhost:${prodPort}`)
       prodServer = exec(`yarn serve --port ${prodPort}`, {
         cwd: process.cwd(),
@@ -139,14 +143,14 @@ export async function setupTestServers(): Promise<TestInfo> {
 
     // Wait for both servers to be ready
     await Promise.all([
-      ONLY_TEST_PROD
-        ? null
-        : waitForServer(`http://localhost:${devPort}`, { getServerOutput: () => devServerOutput }),
-      ONLY_TEST_DEV
-        ? null
-        : waitForServer(`http://localhost:${prodPort}`, {
+      shouldStartProdServer
+        ? waitForServer(`http://localhost:${devPort}`, { getServerOutput: () => devServerOutput })
+        : null,
+      shouldStartDevServer
+        ? waitForServer(`http://localhost:${prodPort}`, {
             getServerOutput: () => prodServerOutput,
-          }),
+          })
+        : null,
     ])
 
     console.info('Servers are running.🎉 \n')
