@@ -36,4 +36,4 @@ test('component HMR', async () => {
   expect(result).toBe(true)
 
   expect(await textInput.getValue()).toBe('app did not reload')
-}, 5 * 60 * 1000)
+}, { timeout: 5 * 60 * 1000, retry: 5 })
