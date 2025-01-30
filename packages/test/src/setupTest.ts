@@ -144,10 +144,10 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
     // Wait for both servers to be ready
     await Promise.all([
       shouldStartProdServer
-        ? waitForServer(`http://localhost:${devPort}`, { getServerOutput: () => devServerOutput })
+        ? waitForServer(`http://localhost:${prodPort}`, { getServerOutput: () => devServerOutput })
         : null,
       shouldStartDevServer
-        ? waitForServer(`http://localhost:${prodPort}`, {
+        ? waitForServer(`http://localhost:${devPort}`, {
             getServerOutput: () => prodServerOutput,
           })
         : null,
