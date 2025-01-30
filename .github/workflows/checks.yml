@@ -28,7 +28,7 @@ jobs:
         run: yarn lint
 
   tests:
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - name: Checkout
