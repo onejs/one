@@ -1,0 +1,20 @@
+name: macOS Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-dev:
+    name: Tests
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install
+        uses: ./.github/actions/install
+
+      - name: Test
+        run: |
+          yarn test-macos
