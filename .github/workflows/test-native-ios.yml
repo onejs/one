@@ -37,8 +37,7 @@ jobs:
     name: Native iOS Tests (Dev)
     needs:
       - build-ios-test-container-dev
-    # runs-on: macos-14
-    runs-on: macOS
+    runs-on: macos-14
     steps:
       - name: Checkout
         uses: actions/checkout@v4
