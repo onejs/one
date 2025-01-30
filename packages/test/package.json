@@ -14,6 +14,6 @@
   "devDependencies": {
     "@vxrn/utils": "workspace:*",
     "get-port": "^7.1.0",
-    "vitest": "^2.1.8"
+    "vitest": "^3.0.4"
   }
 }

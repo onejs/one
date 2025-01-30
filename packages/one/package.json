@@ -126,7 +126,7 @@
     "react-scan": "^0.0.54",
     "rollup-plugin-node-externals": "^7.1.2",
     "use-latest-callback": "^0.2.3",
-    "vite": "^6.0.6",
+    "vite": "^6.0.11",
     "vite-plugin-barrel": "^0.4.1",
     "vite-tsconfig-paths": "^5.0.1",
     "vxrn": "workspace:*",
