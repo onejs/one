@@ -10,8 +10,15 @@ declare module 'vitest/node' {
 let testInfo: TestInfo | null = null
 
 export async function setup({ provide }: GlobalSetupContext) {
-  testInfo = await setupTestServers()
-  process.env.ONE_SERVER_URL = `http://localhost:${testInfo.devServerPid ? testInfo.testDevPort : testInfo.testProdPort}`
+  /**
+   * When running tests locally, sometimes it’s more convenient to run your own dev server manually instead of having the test framework managing it for you. For example, it’s more easy to see the server logs, or you won’t have to wait for another dev server to start if you’re already running one.
+   */
+  const urlOfDevServerWhichIsAlreadyRunning = process.env.DEV_SERVER_URL
+
+  testInfo = await setupTestServers({ skipDev: !!urlOfDevServerWhichIsAlreadyRunning })
+  process.env.ONE_SERVER_URL =
+    urlOfDevServerWhichIsAlreadyRunning ||
+    `http://localhost:${testInfo.devServerPid ? testInfo.testDevPort : testInfo.testProdPort}`
   provide('testInfo', testInfo)
 }
 
