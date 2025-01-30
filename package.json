@@ -44,6 +44,7 @@
     "start": "yarn workspace start dev",
     "test": "yarn turbo:run test",
     "test-ios": "yarn workspaces foreach -A run test-ios",
+    "test-macos": "yarn workspaces foreach -A run test-macos",
     "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t one-test . && docker run --rm one-test",
     "test:one": "yarn workspace one test",
     "test:one:dev": "yarn workspace one test:dev",
