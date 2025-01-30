@@ -56,6 +56,7 @@
     "@tamagui/vite-plugin": "^1.123.5",
     "@tauri-apps/cli": "^2",
     "@types/node": "^22.1.0",
+    "@types/pg": "^8.11.11",
     "tsx": "^4.19.0",
     "typescript": "^5.7.3",
     "vite": "^6.0.11"
