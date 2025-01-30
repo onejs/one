@@ -99,5 +99,6 @@ export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig
         dev: import("vite").ResolvedDevEnvironmentOptions;
         build: import("vite").ResolvedBuildEnvironmentOptions;
     }>;
+    webSocketToken: string;
 } & import("vite").PluginHookUtils> | null;
 //# sourceMappingURL=getReactNativeConfig.d.ts.map
