@@ -53,6 +53,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+
       - name: Get Built App Path
         id: get-built-app-path
         env:
