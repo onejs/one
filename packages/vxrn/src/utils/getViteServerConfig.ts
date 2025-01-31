@@ -21,6 +21,10 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
 
     {
       root,
+      legacy: {
+        // TODO: Proper fix to make native HMR work again. See: https://github.com/vitejs/vite/pull/19234
+        skipWebSocketTokenCheck: true,
+      },
       appType: 'custom',
       clearScreen: false,
       publicDir: 'public',
