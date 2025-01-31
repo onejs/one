@@ -36,7 +36,8 @@ on:
 jobs:
   build-ios:
     name: Build
-    runs-on: macos-13
+    # runs-on: macos-13
+    runs-on: [self-hosted, macOS]
     permissions:
       contents: read
       pull-requests: read
