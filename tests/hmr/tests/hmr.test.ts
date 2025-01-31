@@ -21,7 +21,7 @@ afterEach(async () => {
   revertEditedFiles()
 })
 
-test('component HMR', async () => {
+test('component HMR', { retry: 3 }, async () => {
   const page = await context.newPage()
   await page.goto(serverUrl + '/')
 
@@ -33,22 +33,29 @@ test('component HMR', async () => {
 
   editComponentFile()
 
-  await page.waitForFunction(
-    () => {
-      const element = document.querySelector(`[data-testid="component-text-content"]`)
-      return element && element.textContent?.trim() === 'Some edited text in component file'
-    },
-    {},
-    { timeout: 10000 }
-  )
+  try {
+    await page.waitForFunction(
+      () => {
+        const element = document.querySelector(`[data-testid="component-text-content"]`)
+        return element && element.textContent?.trim() === 'Some edited text in component file'
+      },
+      {},
+      { timeout: 10000 }
+    )
+  } catch (e) {
+    if (e instanceof Error) {
+      e.message = `Changes did not seem to HMR: ${e.message}`
+    }
+
+    throw e
+  }
 
   expect(await textInput.inputValue()).toBe('page did not reload')
 
   await page.close()
-}, { retry: 5 })
+})
 
-
-test('route HMR', async () => {
+test('route HMR', { retry: 3 }, async () => {
   const page = await context.newPage()
   await page.goto(serverUrl + '/')
 
@@ -60,16 +67,24 @@ test('route HMR', async () => {
 
   editRouteFile()
 
-  await page.waitForFunction(
-    () => {
-      const element = document.querySelector(`[data-testid="route-text-content"]`)
-      return element && element.textContent?.trim() === 'Some edited text in route file'
-    },
-    {},
-    { timeout: 10000 }
-  )
+  try {
+    await page.waitForFunction(
+      () => {
+        const element = document.querySelector(`[data-testid="route-text-content"]`)
+        return element && element.textContent?.trim() === 'Some edited text in route file'
+      },
+      {},
+      { timeout: 10000 }
+    )
+  } catch (e) {
+    if (e instanceof Error) {
+      e.message = `Changes did not seem to HMR: ${e.message}`
+    }
+
+    throw e
+  }
 
   expect(await textInput.inputValue()).toBe('page did not reload')
 
   await page.close()
-}, { retry: 5 })
+})

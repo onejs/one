@@ -13,7 +13,7 @@ afterEach(async () => {
   revertEditedFiles()
 })
 
-test('component HMR', async () => {
+test('component HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
   const driver = await remote(getWebDriverConfig())
 
   const textInput = driver.$('~text-input')
@@ -26,19 +26,27 @@ test('component HMR', async () => {
 
   editComponentFile()
 
-  const result = await driver.waitUntil(
-    async () => {
-      const element = await driver.$('~component-text-content')
-      return element && (await element.getText()) === 'Some edited text in component file'
-    },
-    { timeout: 10 * 1000 }
-  )
-  expect(result).toBe(true)
+  try {
+    const result = await driver.waitUntil(
+      async () => {
+        const element = await driver.$('~component-text-content')
+        return element && (await element.getText()) === 'Some edited text in component file'
+      },
+      { timeout: 10 * 1000 }
+    )
+    expect(result).toBe(true)
+  } catch (e) {
+    if (e instanceof Error) {
+      e.message = `Changes did not seem to HMR: ${e.message}`
+    }
 
-  expect(await textInput.getValue()).toBe('app did not reload')
-}, { timeout: 5 * 60 * 1000, retry: 3 })
+    throw e
+  }
 
-test('route HMR', async () => {
+  expect(await textInput.getValue(), 'the app should not fully reload').toBe('app did not reload')
+})
+
+test('route HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
   const driver = await remote(getWebDriverConfig())
 
   const textInput = driver.$('~text-input')
@@ -51,14 +59,22 @@ test('route HMR', async () => {
 
   editRouteFile()
 
-  const result = await driver.waitUntil(
-    async () => {
-      const element = await driver.$('~route-text-content')
-      return element && (await element.getText()) === 'Some edited text in route file'
-    },
-    { timeout: 10 * 1000 }
-  )
-  expect(result).toBe(true)
+  try {
+    const result = await driver.waitUntil(
+      async () => {
+        const element = await driver.$('~route-text-content')
+        return element && (await element.getText()) === 'Some edited text in route file'
+      },
+      { timeout: 10 * 1000 }
+    )
+    expect(result).toBe(true)
+  } catch (e) {
+    if (e instanceof Error) {
+      e.message = `Changes did not seem to HMR: ${e.message}`
+    }
 
-  expect(await textInput.getValue()).toBe('app did not reload')
-}, { timeout: 5 * 60 * 1000, retry: 3 })
+    throw e
+  }
+
+  expect(await textInput.getValue(), 'the app should not fully reload').toBe('app did not reload')
+})
