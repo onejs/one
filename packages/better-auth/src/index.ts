@@ -58,9 +58,35 @@ export function createBetterAuthClient(
   const setAuthClientToken = async ({ token, session }: { token: string; session: string }) => {
     localStorage.setItem(keys.token, token)
     localStorage.setItem(keys.session, session)
+    updateAuthClient(session)
+  }
+
+  function updateAuthClient(session: string) {
     authClient = createAuthClientWithSession(session)
     authClientVersion.emit(Math.random())
+    subscribeToAuthClientSession()
   }
+
+  let disposeSessionSub: Function | null = null
+  function subscribeToAuthClientSession() {
+    disposeSessionSub?.()
+    disposeSessionSub = authClient.useSession.subscribe(async ({ data, error }) => {
+      if (error) {
+        console.error(`Auth error`, error)
+      }
+      if (data) {
+        const token = await fetchToken()
+        setState({
+          ...data,
+          token,
+        })
+      } else {
+        setState(empty)
+      }
+    })
+  }
+
+  subscribeToAuthClientSession()
 
   async function fetchToken() {
     const res = await authClient.$fetch('/token')
@@ -104,21 +130,6 @@ export function createBetterAuthClient(
     const current = authState.value!
     authState.emit({ ...current, ...next })
   }
-
-  authClient.useSession.subscribe(async ({ data, error }) => {
-    if (error) {
-      console.error(`Auth error`, error)
-    }
-    if (data) {
-      const token = await fetchToken()
-      setState({
-        ...data,
-        token,
-      })
-    } else {
-      setState(empty)
-    }
-  })
 
   const useAuth = () => {
     const state = authState.useValue() || empty
