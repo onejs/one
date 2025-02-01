@@ -1,5 +1,6 @@
 1.0:
 
+  - // TODO: temp until we fix sourcemap issues!
   - aliases for react-native/ on web:
     - https://discord.com/channels/1223009626400751671/1334176876347789333/1334179606139506803
   - we hit network for loaders even if they don't exist, need to ship info about loaders existing to clients to avoid those requests

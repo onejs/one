@@ -110,6 +110,33 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       clearScreen: false,
       configFile: false,
       optimizeDeps,
+      logLevel: 'warn',
+      build: {
+        rollupOptions: {
+          onwarn(warning, defaultHandler) {
+            if (
+              warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+              warning.message.includes('use client')
+            ) {
+              return
+            }
+
+            // TODO: temp until we fix sourcemap issues!
+            if (
+              warning.code === 'SOURCEMAP_ERROR' &&
+              warning.message.includes(`Can't resolve original location of error.`)
+            ) {
+              return
+            }
+
+            if (warning.code === 'EVAL') {
+              warning.message = warning.message.replace(/(\.+\/){0,}node_modules/, 'node_modules')
+            }
+
+            defaultHandler(warning)
+          },
+        },
+      },
     } satisfies InlineConfig
   )
 
