@@ -40,6 +40,8 @@ export function createBetterAuthClient(
   options: ClientOptions = {},
   { storageKeys }: ExtraConfig = {}
 ) {
+  const authState = createEmitter<State>(empty)
+
   const keys = {
     token: storageKeys?.token ?? 'TOKEN_KEY',
     session: storageKeys?.session ?? 'SESSION_KEY',
@@ -123,8 +125,6 @@ export function createBetterAuthClient(
     localStorage.setItem(keys.token, '')
     localStorage.setItem(keys.session, '')
   }
-
-  const authState = createEmitter<State>(empty)
 
   function setState(next: Partial<State>) {
     const current = authState.value!
