@@ -11,6 +11,12 @@ interface ExtraConfig {
   storageKeys?: StorageKeys
 }
 
+const empty: State = {
+  session: null,
+  user: null,
+  token: null,
+}
+
 /**
  *
  * This is a very early package to lightly abstract better-auth/client to work well with:
@@ -116,12 +122,6 @@ export function createBetterAuthClient(
     session: Session | null
     user: User | null
     token: string | null
-  }
-
-  const empty: State = {
-    session: null,
-    user: null,
-    token: null,
   }
 
   const authState = createEmitter<State>(empty)
