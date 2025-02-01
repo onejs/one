@@ -411,7 +411,18 @@ async function streamToString(stream: ReadableStream) {
     while (true) {
       const { done, value } = await reader.read()
       if (done) break
-      result += decoder.decode(value, { stream: true })
+
+      // If the chunk is already a string, use it as-is.
+      if (typeof value === 'string') {
+        result += value
+      }
+      // If it is a Uint8Array (or another ArrayBufferView), decode it.
+      else if (value instanceof Uint8Array) {
+        result += decoder.decode(value, { stream: true })
+      } else {
+        // You could add further handling here if needed.
+        throw new Error('Unexpected chunk type: ' + typeof value)
+      }
     }
   } catch (error) {
     console.error('Error reading the stream:', error)
