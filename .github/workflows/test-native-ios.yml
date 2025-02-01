@@ -50,6 +50,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           fail-on-cache-miss: true
+          enableCrossOsArchive: true
           key: ${{ needs.build-ios-test-container-dev.outputs.built-app-cache-key }}
           path: ${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
 
