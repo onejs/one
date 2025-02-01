@@ -1,3 +1,4 @@
+import { Readable } from 'node:stream'
 import { join } from 'node:path'
 import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
@@ -364,13 +365,22 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 }
               }
 
-              try {
-                outString = reply.body ? await streamToString(reply.body) : ''
-              } catch (err) {
-                console.warn(`Error converting body in dev mode: ${err}`)
+              if (reply.body) {
+                if (reply.body.locked) {
+                  console.warn(`Body is locked??`, req.url)
+                  res.end()
+                  return
+                }
+                try {
+                  // Use Node >=18's fromWeb to pipe the web-stream directly:
+                  Readable.fromWeb(reply.body as any).pipe(res)
+                } catch (err) {
+                  console.warn('Error piping reply body to response:', err)
+                  res.end()
+                }
+                return
               }
 
-              res.write(outString)
               res.end()
               return
             }
