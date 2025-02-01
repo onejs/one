@@ -11,6 +11,12 @@ interface ExtraConfig {
   storageKeys?: StorageKeys
 }
 
+type State = {
+  session: Session | null
+  user: User | null
+  token: string | null
+}
+
 const empty: State = {
   session: null,
   user: null,
@@ -116,12 +122,6 @@ export function createBetterAuthClient(
   const clearAuthClientToken = () => {
     localStorage.setItem(keys.token, '')
     localStorage.setItem(keys.session, '')
-  }
-
-  type State = {
-    session: Session | null
-    user: User | null
-    token: string | null
   }
 
   const authState = createEmitter<State>(empty)
