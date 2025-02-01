@@ -80,7 +80,14 @@ try {
 }
 
 function setupWebSocket(protocol: string, hostAndPath: string, onCloseWithoutOpen?: () => void) {
-  const endpoint = `${protocol}://${hostAndPath}`
+  let endpoint = `${protocol}://${hostAndPath}`
+
+  if (typeof globalThis.__VITE_WS_TOKEN__ === 'string') {
+    // We expect the dev server to set `__VITE_WS_TOKEN__` when serving the react-native bundle for development.
+    // See: https://github.com/vitejs/vite/pull/19234
+    endpoint += `?token=${globalThis.__VITE_WS_TOKEN__}`
+  }
+
   const socket = new WebSocket(endpoint, 'vite-hmr')
   let isOpened = false
 

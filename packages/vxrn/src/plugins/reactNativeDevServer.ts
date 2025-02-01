@@ -208,9 +208,13 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
               }
             }
 
-            const outBundle = await getReactNativeBundle(options, platform, {
+            let outBundle = await getReactNativeBundle(options, platform, {
               mode: process.env.RN_SERVE_PROD_BUNDLE ? 'prod' : 'dev',
             })
+
+            if (server.config.webSocketToken) {
+              outBundle = `globalThis.__VITE_WS_TOKEN__ = "${server.config.webSocketToken}";\n${outBundle}`
+            }
 
             if (options.debugBundle) {
               const path = options.debugBundlePaths[platform]
