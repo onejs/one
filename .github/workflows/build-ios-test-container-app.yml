@@ -133,7 +133,6 @@ jobs:
       - name: Pod Install
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit }}
         run: |
-          gem install cocoapods
           pod install --project-directory=ios
 
       - name: Calculate Build Hash
