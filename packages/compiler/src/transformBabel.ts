@@ -150,6 +150,10 @@ const shouldBabelReactNativeCodegen = ({ id, environment }: Props) => {
  */
 
 const shouldBabelReactCompiler = (props: Props) => {
+  if (props.environment === 'ssr') {
+    // disable on server for now - we aren't really re-rendering anything anyway
+    return false
+  }
   if (!configuration.enableCompiler) {
     return false
   }
