@@ -1,5 +1,4 @@
 import type { GetTransform } from '@vxrn/compiler'
-import { InlineConfig } from 'vite'
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths'
 import type {
   DepOptimize,
@@ -35,6 +34,7 @@ export namespace One {
     routeModes?: Record<string, RouteRenderMode>
   }
 
+  // todo move into vxrn
   export type FixDependencies = {
     [key: string]: DepOptimize | DepPatch['patchFiles']
   }

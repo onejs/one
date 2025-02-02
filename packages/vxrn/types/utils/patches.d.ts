@@ -14,7 +14,8 @@ export type DepPatch = {
 };
 export declare function bailIfUnchanged(obj1: any, obj2: any): void;
 export declare function bailIfExists(haystack: string, needle: string): void;
-export declare function applyBuiltInPatches(options: VXRNOptionsFilled): Promise<void>;
+export type SimpleDepPatchObject = Record<string, DepPatch['patchFiles']>;
+export declare function applyBuiltInPatches(options: VXRNOptionsFilled, extraPatches?: SimpleDepPatchObject): Promise<void>;
 export declare function applyOptimizePatches(patches: DepPatch[], config: UserConfig): Promise<void>;
 export declare function applyDependencyPatches(patches: DepPatch[], { root }?: {
     root?: string;
