@@ -1,6 +1,20 @@
-import { describe, expect, it } from 'vitest'
+import { type Browser, type BrowserContext, chromium } from 'playwright'
+import { afterAll, beforeAll, describe, expect, it, test } from 'vitest'
 
 const serverUrl = process.env.ONE_SERVER_URL
+const isDebug = !!process.env.DEBUG
+
+let browser: Browser
+let context: BrowserContext
+
+beforeAll(async () => {
+  browser = await chromium.launch({ headless: !isDebug })
+  context = await browser.newContext()
+})
+
+afterAll(async () => {
+  await browser.close()
+})
 
 describe(`Routing Tests`, () => {
   describe('Basic routing', () => {
@@ -65,6 +79,22 @@ describe(`Routing Tests`, () => {
       const response = await fetch(`${serverUrl}/blog/my-first-post`)
       const html = await response.text()
       expect(html).toContain('My First Post')
+    })
+  })
+
+  describe(`SPA routing`, () => {
+    it(`Dynamic SPA pages should work`, async () => {
+      const page = await context.newPage()
+
+      await page.goto(`${serverUrl}/spa/dynamic-1`)
+
+      expect(await page.textContent('#spa-page')).toContain(`dynamic-1`)
+
+      await page.goto(`${serverUrl}/spa/hello-world`)
+
+      expect(await page.textContent('#spa-page')).toContain(`hello-world`)
+
+      await page.close()
     })
   })
 })
