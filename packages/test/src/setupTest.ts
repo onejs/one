@@ -109,15 +109,11 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
 
     if (shouldStartDevServer) {
       console.info(`Starting a dev server on http://localhost:${devPort}`)
-      devServer = exec(`yarn dev --clean --port ${devPort}`, {
+      devServer = spawn('yarn', ['dev', '--clean', '--port', devPort.toString()], {
         cwd: process.cwd(),
         env: { ...process.env },
-      })
-      devServer.stdout?.on('data', (data) => {
-        devServerOutput += data.toString()
-      })
-      devServer.stderr?.on('data', (data) => {
-        devServerOutput += data.toString()
+        detached: true,
+        stdio: 'inherit',
       })
     }
 
@@ -126,29 +122,27 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
 
     if (shouldStartProdServer) {
       console.info(`Starting a prod server on http://localhost:${prodPort}`)
-      prodServer = exec(`yarn serve --port ${prodPort}`, {
+      prodServer = spawn('yarn', ['serve', '--port', prodPort.toString()], {
         cwd: process.cwd(),
         env: {
           ...process.env,
           ONE_SERVER_URL: `http://localhost:${prodPort}`,
         },
-      })
-      prodServer.stdout?.on('data', (data) => {
-        prodServerOutput += data.toString()
-      })
-      prodServer.stderr?.on('data', (data) => {
-        prodServerOutput += data.toString()
+        detached: true,
+        stdio: 'inherit',
       })
     }
 
     // Wait for both servers to be ready
     await Promise.all([
       shouldStartProdServer
-        ? waitForServer(`http://localhost:${prodPort}`, { getServerOutput: () => devServerOutput })
+        ? waitForServer(`http://localhost:${prodPort}`, {
+            getServerOutput: () => 'Server output in terminal',
+          })
         : null,
       shouldStartDevServer
         ? waitForServer(`http://localhost:${devPort}`, {
-            getServerOutput: () => prodServerOutput,
+            getServerOutput: () => 'Server output in terminal',
           })
         : null,
     ])

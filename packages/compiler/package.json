@@ -42,7 +42,7 @@
     "vite": "^6.0.11"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.123.9",
+    "@tamagui/build": "^1.123.10",
     "depcheck": "^1.4.7",
     "react-native": "^0.76.5",
     "rollup": "^4.29.1"
