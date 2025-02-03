@@ -1,9 +1,7 @@
-export const generateStaticParams = () => {
-  return [
-    {
-      spaparams: '123',
-    },
-  ]
-}
+import { useParams } from 'one'
 
-export default () => <div id="spa-page" />
+export default () => {
+  const params = useParams<any>()
+
+  return <div id="spa-page">{params.spaparams}</div>
+}
