@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "playwright": "^1.49.1",
-    "vitest": "^2.1.8",
+    "vitest": "^3.0.5",
     "webdriverio": "^9.5.4"
   },
   "dependencies": {
