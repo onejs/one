@@ -15,6 +15,7 @@ if (process.env.ONE_SETUP_FILE) {
 
 export function createVirtualEntry(options: { root: string }): Plugin {
   const appDirGlob = `/${options.root}/**/*.tsx`
+  const appDirApiGlob = `/${options.root}/**/*+api.tsx`
 
   return {
     name: 'one-virtual-entry',
@@ -57,7 +58,7 @@ import { createApp } from 'one'
 
 // globbing ${appDirGlob}
 export default createApp({
-  routes: import.meta.glob('${appDirGlob}'),
+  routes: import.meta.glob(['${appDirGlob}', '!${appDirApiGlob}']),
 })
         `
       }
