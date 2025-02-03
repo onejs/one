@@ -387,7 +387,7 @@ export async function build(args: {
     const isDynamic = !!Object.keys(foundRoute.routeKeys).length
 
     if (
-      foundRoute.type !== 'ssr' &&
+      foundRoute.type === 'ssg' &&
       isDynamic &&
       !foundRoute.page.includes('+not-found') &&
       !foundRoute.page.includes('_sitemap') &&
