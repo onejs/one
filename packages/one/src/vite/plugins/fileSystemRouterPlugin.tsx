@@ -196,6 +196,12 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     apply: 'serve',
 
     async config(userConfig) {
+      const setting = options.optimization?.autoEntriesScanning ?? 'flat'
+
+      if (setting === false) {
+        return
+      }
+
       if (handleRequest.manifest.pageRoutes) {
         const routesAndLayouts = [
           ...new Set(
@@ -203,6 +209,14 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               if (route.isNotFound) return []
               // sitemap
               if (!route.file) return []
+
+              if (
+                setting === 'flat' &&
+                route.file.split('/').filter((x) => !x.startsWith('(')).length > 2
+              ) {
+                return []
+              }
+
               return [
                 join('./app', route.file),
                 ...(route.layouts?.flatMap((layout) => {
