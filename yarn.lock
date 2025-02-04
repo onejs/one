@@ -19567,6 +19567,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lllink@workspace:*, lllink@workspace:packages/lllink":
+  version: 0.0.0-use.local
+  resolution: "lllink@workspace:packages/lllink"
+  dependencies:
+    "@biomejs/biome": "npm:^1.8.3"
+    "@tamagui/build": "npm:^1.123.10"
+  bin:
+    lllink: ./dist/index.mjs
+  languageName: unknown
+  linkType: soft
+
 "load-bmfont@npm:^1.3.1":
   version: 1.4.2
   resolution: "load-bmfont@npm:1.4.2"
@@ -28546,6 +28557,7 @@ __metadata:
     "@types/react": "npm:^18.3.11"
     "@types/react-native": "npm:^0.73.0"
     check-dependency-version-consistency: "npm:^3.0.3"
+    lllink: "workspace:*"
     npm-run-all: "npm:^4.1.5"
     p-map: "npm:^7.0.2"
     patch-package: "npm:^8.0.0"

@@ -1,0 +1,31 @@
+{
+  "name": "lllink",
+  "version": "1.1.430",
+  "type": "module",
+  "module": "dist",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.mjs"
+    }
+  },
+  "bin": "./dist/index.mjs",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "tamagui-build --skip-types --skip-native",
+    "watch": "yarn build --watch",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build",
+    "lint": "../../node_modules/.bin/biome check src",
+    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@tamagui/build": "^1.123.10"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
