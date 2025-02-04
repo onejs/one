@@ -6302,6 +6302,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pivanov/utils@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@pivanov/utils@npm:0.0.1"
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  checksum: 10/533c31c76a0cb71703526a9c0ab78a6e68bfe4ff290c30cfc4adc0f2966b7561de1758029f4df574b5a3ddd0775924002b85ef9071aac8a0b50e52d4a98f445b
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -12616,10 +12626,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bippy@npm:^0.0.25":
-  version: 0.0.25
-  resolution: "bippy@npm:0.0.25"
-  checksum: 10/e34908cc1c297e2c5a1a1230cbb2784bcd04c9883e5655019aa6f906d38e8ebf066c8a5e89631e75cee6e429d03a840379750347c9d454c3206fa9ca9ee7c4a7
+"bippy@npm:0.2.7":
+  version: 0.2.7
+  resolution: "bippy@npm:0.2.7"
+  checksum: 10/98f9c0db59ba808c672cdd55de3c0cb085aaec600046767be4f074e4391760e2ffeb28ed4e4ddad171bdc0377efa78e27fe1058db37293a5936a1025003c0098
   languageName: node
   linkType: hard
 
@@ -22063,7 +22073,7 @@ __metadata:
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:4.4.0"
-    react-scan: "npm:^0.0.54"
+    react-scan: "npm:^0.1.3"
     rollup: "npm:^4.29.1"
     rollup-plugin-node-externals: "npm:^7.1.2"
     typescript: "npm:^5.7.3"
@@ -24175,19 +24185,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-scan@npm:^0.0.54":
-  version: 0.0.54
-  resolution: "react-scan@npm:0.0.54"
+"react-scan@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "react-scan@npm:0.1.3"
   dependencies:
     "@babel/core": "npm:^7.26.0"
     "@babel/generator": "npm:^7.26.2"
     "@babel/types": "npm:^7.26.0"
     "@clack/core": "npm:^0.3.5"
     "@clack/prompts": "npm:^0.8.2"
+    "@pivanov/utils": "npm:^0.0.1"
     "@preact/signals": "npm:^1.3.1"
     "@rollup/pluginutils": "npm:^5.1.3"
     "@types/node": "npm:^20.17.9"
-    bippy: "npm:^0.0.25"
+    bippy: "npm:0.2.7"
     esbuild: "npm:^0.24.0"
     estree-walker: "npm:^3.0.3"
     kleur: "npm:^4.1.5"
@@ -24217,7 +24228,7 @@ __metadata:
       optional: true
   bin:
     react-scan: bin/cli.js
-  checksum: 10/371c25f7ffe31755e9d6681a3337aa0a07e082f947d3a81c3abbe3a19098d8c47e4db8d08cc181f80595309b79dd43faf409ab6287ef950b77962b16b0129555
+  checksum: 10/2d6a1d2560513b3830eef080ea3a2dca594d210d375eef1f737313b7cf78f0b541dfcf3e47f2296effa0cc8419ebb12606416397d6e9900efe0d847fd7b6c106
   languageName: node
   linkType: hard
 
