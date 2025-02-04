@@ -1,4 +1,4 @@
-import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
+import { configureVXRNCompilerPlugin, clearCompilerCache } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
 import path from 'node:path'
@@ -43,6 +43,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     globalThis['__vxrnPluginConfig__'] = options
     return []
   }
+
+  clearCompilerCache()
 
   // ensure tsconfig
   if (options.config?.ensureTSConfig !== false) {
