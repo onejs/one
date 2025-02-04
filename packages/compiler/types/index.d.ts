@@ -8,5 +8,6 @@ export * from './configure';
 export * from './transformBabel';
 export * from './transformSWC';
 export type { GetTransform } from './types';
+export declare const clearCompilerCache: () => void;
 export declare function createVXRNCompilerPlugin(optionsIn?: Partial<Options>): Promise<PluginOption[]>;
 //# sourceMappingURL=index.d.ts.map
