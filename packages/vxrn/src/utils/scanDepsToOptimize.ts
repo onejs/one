@@ -142,8 +142,16 @@ export async function scanDepsToOptimize(
         //   return []
         // }
 
-        const depPkgJsonPath = await findDepPkgJsonPath(dep, currentRoot)
-        if (!depPkgJsonPath) return []
+        const localPath = await findDepPkgJsonPath(dep, currentRoot)
+
+        if (!localPath) return []
+
+        const depPkgJsonPath = await FSExtra.realpath(localPath)
+
+        if (!depPkgJsonPath.includes('node_modules')) {
+          // if not in node_modules (in monorepo) dont auto optimize
+          return []
+        }
 
         const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
 
