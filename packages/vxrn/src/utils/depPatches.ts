@@ -260,6 +260,14 @@ install('URLSearchParams', () => URLSearchParams);
         // Prevents type-checking errors like "Named property 'NODE_ENV' of types 'ExpoProcessEnv' and 'Env' are not identical."
         return contents.replace('NODE_ENV: string;', 'NODE_ENV?: string;')
       },
+
+      // lets us use tsconfig verbatimModuleSyntax in peace
+      'src/uuid/uuid.ts': (contents) => {
+        return contents?.replace(
+          `import { UUID, Uuidv5Namespace } from './uuid.types`,
+          `import { type UUID, Uuidv5Namespace } from './uuid.types`
+        )
+      },
     },
   },
 
