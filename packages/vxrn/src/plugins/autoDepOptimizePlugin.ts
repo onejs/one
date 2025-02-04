@@ -21,7 +21,19 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
     enforce: 'pre',
     config(_cfg, env) {
       debug?.('Config hook called')
-      return getScannedOptimizeDepsConfig({ ...props, mode: env.mode })
+
+      // TODO not use global here we should move deps into vxrn
+      const userOptions = globalThis.__oneOptions
+      const depsConfig = userOptions?.deps
+      const exclude = Object.entries(depsConfig)
+        .filter(([key, value]) => value === false)
+        .map(([k]) => k)
+
+      return getScannedOptimizeDepsConfig({
+        ...props,
+        mode: env.mode,
+        exclude: [...exclude, ...(props.exclude || [])],
+      })
     },
   } satisfies Plugin
 }
