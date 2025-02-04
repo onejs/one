@@ -276,8 +276,8 @@ ${rootJS.code}
 
           if (out) {
             cacheSize += out?.code.length
-            // ~500Mb cache for recently compiler files
-            if (cacheSize > 262144000) {
+            // ~100Mb cache for recent compiler files
+            if (cacheSize > 52_428_800) {
               clearCompilerCache()
             }
             memoryCache[cacheKey] = out
