@@ -15,11 +15,22 @@ import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, GetTransformProps, Options } from './types'
+import { createHash } from 'node:crypto'
 
 export * from './configure'
 export * from './transformBabel'
 export * from './transformSWC'
 export type { GetTransform } from './types'
+
+const getHash = (environment: string, id: string, code: string) =>
+  createHash('sha1').update(`${environment}${id}${code}`).digest('base64')
+
+export const clearCompilerCache = () => {
+  memoryCache = {}
+}
+
+let memoryCache = {}
+let cacheSize = 0
 
 export async function createVXRNCompilerPlugin(
   optionsIn?: Partial<Options>
@@ -179,6 +190,13 @@ ${rootJS.code}
             console.info(codeIn)
           }
 
+          const cacheKey = getHash(environment, _id, code)
+          const cached = memoryCache[cacheKey]
+          if (cached) {
+            debug?.(`Using cache ${_id} ${cacheKey}`)
+            return cached
+          }
+
           const extension = extname(_id)
 
           if (extension === '.css') {
@@ -253,6 +271,15 @@ ${rootJS.code}
           if (shouldDebug) {
             console.info(`swcOptions`, swcOptions)
             console.info(`final output:`, out?.code)
+          }
+
+          if (out) {
+            cacheSize += out?.code.length
+            // ~500Mb cache for recently compiler files
+            if (cacheSize > 262144000) {
+              clearCompilerCache()
+            }
+            memoryCache[cacheKey] = out
           }
 
           return out
