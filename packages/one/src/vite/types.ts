@@ -133,6 +133,17 @@ export namespace One {
        * @default ['@tamagui/lucide-icons']
        */
       barrel?: boolean | string[]
+
+      /**
+       * By default One scans your fs routes and adds them as Vite `entries`, this prevents some hard
+       * reloads on web as you navigate to new pages, but can slow things startup.
+       *
+       * The 'flat' option is default and will automatically add just the routes at the root of your
+       * app but nothing nested in non-group folders below that.
+       *
+       * @default 'flat'
+       */
+      autoEntriesScanning?: boolean | 'flat'
     }
 
     /**
