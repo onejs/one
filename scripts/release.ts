@@ -71,7 +71,7 @@ const sleep = (ms) => {
 if (!skipVersion) {
   console.info('Current:', curVersion, '\n')
 } else {
-  console.info(`Re-publishing ${curVersion}`)
+  console.info(`Releasing ${curVersion}`)
 }
 
 async function upgradeReproApp(newVersion: string) {
