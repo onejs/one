@@ -35,7 +35,7 @@ export const teardown = async () => {
 
   if (testInfo.devServerPid) {
     try {
-      process.kill(testInfo.devServerPid, 9)
+      process.kill(testInfo.devServerPid)
       console.info(`Dev server process (PID: ${testInfo.devServerPid}) killed successfully.`)
     } catch (error) {
       console.error(`Failed to kill dev server process (PID: ${testInfo.devServerPid}):`, error)
@@ -44,7 +44,7 @@ export const teardown = async () => {
 
   if (testInfo.prodServerPid) {
     try {
-      process.kill(testInfo.prodServerPid, 9)
+      process.kill(testInfo.prodServerPid)
       console.info(`Prod server process (PID: ${testInfo.prodServerPid}) killed successfully.`)
     } catch (error) {
       console.error(`Failed to kill prod server process (PID: ${testInfo.prodServerPid}):`, error)
@@ -53,7 +53,7 @@ export const teardown = async () => {
 
   if (testInfo.buildPid) {
     try {
-      process.kill(testInfo.buildPid, 9)
+      process.kill(testInfo.buildPid)
       console.info(`Build process (PID: ${testInfo.buildPid}) killed successfully.`)
     } catch (error) {
       console.error(`Failed to kill build process (PID: ${testInfo.buildPid}):`, error)

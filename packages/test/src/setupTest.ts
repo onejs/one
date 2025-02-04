@@ -109,12 +109,16 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
 
     if (shouldStartDevServer) {
       console.info(`Starting a dev server on http://localhost:${devPort}`)
-      devServer = spawn('yarn', ['dev', '--clean', '--port', devPort.toString()], {
-        cwd: process.cwd(),
-        env: { ...process.env },
-        detached: true,
-        stdio: 'inherit',
-      })
+      devServer = spawn(
+        'node',
+        ['../../node_modules/.bin/one', 'dev', '--clean', '--port', devPort.toString()],
+        {
+          cwd: process.cwd(),
+          env: { ...process.env },
+          detached: true,
+          stdio: 'inherit',
+        }
+      )
     }
 
     // Start prod server
@@ -122,15 +126,19 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
 
     if (shouldStartProdServer) {
       console.info(`Starting a prod server on http://localhost:${prodPort}`)
-      prodServer = spawn('yarn', ['serve', '--port', prodPort.toString()], {
-        cwd: process.cwd(),
-        env: {
-          ...process.env,
-          ONE_SERVER_URL: `http://localhost:${prodPort}`,
-        },
-        detached: true,
-        stdio: 'inherit',
-      })
+      prodServer = spawn(
+        'node',
+        ['../../node_modules/.bin/one', 'serve', '--port', prodPort.toString()],
+        {
+          cwd: process.cwd(),
+          env: {
+            ...process.env,
+            ONE_SERVER_URL: `http://localhost:${prodPort}`,
+          },
+          detached: true,
+          stdio: 'inherit',
+        }
+      )
     }
 
     // Wait for both servers to be ready
