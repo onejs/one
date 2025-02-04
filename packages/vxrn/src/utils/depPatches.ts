@@ -250,6 +250,20 @@ install('URLSearchParams', () => URLSearchParams);
   },
 
   {
+    module: 'expo-modules-core',
+    patchFiles: {
+      version: '2.*',
+      'src/ts-declarations/global.ts': (contents) => {
+        assertString(contents)
+
+        // Make it compatible with other packages that also overrides ProcessEnv, such as `bun-types`.
+        // Prevents type-checking errors like "Named property 'NODE_ENV' of types 'ExpoProcessEnv' and 'Env' are not identical."
+        return contents.replace('NODE_ENV: string;', 'NODE_ENV?: string;')
+      },
+    },
+  },
+
+  {
     module: 'expo-image',
     patchFiles: {
       'build/**/*.js': ['jsx'],
