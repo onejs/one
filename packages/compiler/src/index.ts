@@ -27,6 +27,7 @@ const getHash = (environment: string, id: string, code: string) =>
 
 export const clearCompilerCache = () => {
   memoryCache = {}
+  cacheSize = 0
 }
 
 let memoryCache = {}
