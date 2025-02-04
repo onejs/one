@@ -9,6 +9,13 @@ import { readdir, readFile, stat, rm, symlink } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { join, relative, resolve } from 'node:path'
 
+// if not run through bun exit:
+// @ts-ignore
+if (typeof Bun === 'undefined') {
+  console.error(`Must run in Bun due to using ~ resolutions`)
+  process.exit(1)
+}
+
 const IGNORE_DIR = 'node_modules'
 
 async function findLocalPackages(rootDir: string): Promise<Record<string, string>> {
