@@ -1,4 +1,5 @@
 // TODO: Move this into a shared package
+// Should probably use a setup file (such as packages/test) instead of a custom environment since there's no point in having a custom environment for this (see: https://github.com/onejs/one/pull/467).
 
 import { execSync } from 'node:child_process'
 import path from 'node:path'
