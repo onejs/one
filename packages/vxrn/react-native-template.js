@@ -52,7 +52,17 @@ const __runningModules = new Map()
 const getRunningModulesPrint = () => [...__runningModules.keys()].join(' > ')
 
 function __getRequire(absPath, parent) {
-  absPath = ___vxrnAbsoluteToRelative___[absPath] || absPath
+  absPath =
+    ___vxrnAbsoluteToRelative___[absPath] ||
+    // START WORKAROUND
+    // Since during HMR, `getVitePath` is used and it'll always return with `.js` extension while turning relative paths to absolute paths (see: https://github.com/onejs/one/blob/v1.1.432/packages/vxrn/src/utils/getVitePath.ts#L33),
+    // we need to check for other extensions as well.
+    (absPath.endsWith('.js') &&
+      (___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.jsx')] ||
+        ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.ts')] ||
+        ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')])) ||
+    // END WORKAROUND
+    absPath
 
   if (!__cachedModules[absPath]) {
     const runModule = ___modules___[absPath]
@@ -136,7 +146,7 @@ function getRequire(importer, importsMap, _mod) {
 
   const getErrorDetails = (withStack) => {
     return `Running modules: ${getRunningModulesPrint()}
-    
+
 In importsMap: ${JSON.stringify(importsMap, null, 2)}
 
 ${

@@ -5,48 +5,80 @@ import FSExtra from 'fs-extra'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const root = dirname(__dirname)
-const routeFilePath = path.join(root, 'app', 'index.tsx')
-const componentFilePath = path.join(root, 'components', 'TestComponent.tsx')
 
-const routeOrigFilePath = routeFilePath + '.orig'
-const componentOrigFilePath = componentFilePath + '.orig'
+const editedFilesJsonPath = path.join(root, '_edited_files.json')
 
-export function editComponentFile() {
-  if (FSExtra.existsSync(componentOrigFilePath)) {
-    throw new Error('Component file already edited, please revert it first')
+function editFile(filePath: string, oldText: string, newText: string) {
+  const origFilePath = filePath + '.orig'
+
+  if (FSExtra.existsSync(origFilePath)) {
+    throw new Error(`File already edited (${origFilePath} exists), please revert the edits first.`)
   }
 
-  FSExtra.copyFileSync(componentFilePath, componentOrigFilePath)
+  if (process.env.DEBUG) {
+    console.info(`Editing file: ${filePath}`)
+  }
 
-  let componentFileContent = FSExtra.readFileSync(componentFilePath, 'utf-8')
-  componentFileContent = componentFileContent.replace(
+  FSExtra.copyFileSync(filePath, origFilePath)
+
+  const editedFiles = FSExtra.readJSONSync(editedFilesJsonPath, { throws: false }) || []
+  editedFiles.push(filePath)
+  FSExtra.writeJSONSync(editedFilesJsonPath, editedFiles)
+
+  let fileContent = FSExtra.readFileSync(filePath, 'utf-8')
+  fileContent = fileContent.replace(oldText, newText)
+  FSExtra.writeFileSync(filePath, fileContent)
+}
+
+export function editComponentFile() {
+  editFile(
+    path.join(root, 'components', 'TestComponent.tsx'),
     "const text = 'Some text'",
     "const text = 'Some edited text in component file'"
   )
-  FSExtra.writeFileSync(componentFilePath, componentFileContent)
 }
 
 export function editRouteFile() {
-  if (FSExtra.existsSync(routeOrigFilePath)) {
-    throw new Error('Route file already edited, please revert it first')
-  }
-
-  FSExtra.copyFileSync(routeFilePath, routeOrigFilePath)
-
-  let routeFileContent = FSExtra.readFileSync(routeFilePath, 'utf-8')
-  routeFileContent = routeFileContent.replace(
+  editFile(
+    path.join(root, 'app', 'index.tsx'),
     "const text = 'Some text'",
     "const text = 'Some edited text in route file'"
   )
-  FSExtra.writeFileSync(routeFilePath, routeFileContent)
+}
+
+export function editLayoutFile() {
+  editFile(
+    path.join(root, 'app', '_layout.tsx'),
+    "const text = 'Some text'",
+    "const text = 'Some edited text in layout file'"
+  )
+}
+
+export function editTestComponentContainingRelativeImportFile() {
+  editFile(
+    path.join(root, 'components', 'TestComponentContainingRelativeImport.tsx'),
+    "const text = 'Some text in TestComponentContainingRelativeImport'",
+    "const text = 'Some edited text in TestComponentContainingRelativeImport'"
+  )
 }
 
 export function revertEditedFiles() {
-  if (FSExtra.existsSync(componentOrigFilePath)) {
-    FSExtra.moveSync(componentOrigFilePath, componentFilePath, { overwrite: true })
+  const editedFiles = FSExtra.readJSONSync(editedFilesJsonPath, { throws: false }) || []
+
+  if (process.env.DEBUG) {
+    console.info('Reverting edited files:', JSON.stringify(editedFiles))
   }
 
-  if (FSExtra.existsSync(routeOrigFilePath)) {
-    FSExtra.moveSync(routeOrigFilePath, routeFilePath, { overwrite: true })
+  for (const filePath of editedFiles) {
+    const origFilePath = filePath + '.orig'
+
+    if (!FSExtra.existsSync(origFilePath)) {
+      console.warn(`Cannot revert: ${origFilePath} does not exist.`)
+      continue
+    }
+
+    FSExtra.moveSync(origFilePath, filePath, { overwrite: true })
   }
+
+  FSExtra.removeSync(editedFilesJsonPath)
 }
