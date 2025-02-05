@@ -1,6 +1,6 @@
 import { afterAll, afterEach, beforeAll, expect, test } from 'vitest'
 import { type Browser, type BrowserContext, chromium } from 'playwright'
-import { editComponentFile, editLayoutFile, editRouteFile, revertEditedFiles } from './utils'
+import { editComponentFile, editLayoutFile, editRouteFile, editTestComponentContainingRelativeImportFile, revertEditedFiles } from './utils'
 
 const serverUrl = process.env.ONE_SERVER_URL
 
@@ -71,6 +71,15 @@ test('component HMR', { retry: 3 }, async () => {
 
 test('route HMR', { retry: 3 }, async () => {
   await testHMR('route-text-content', 'Some text', editRouteFile, 'Some edited text in route file')
+})
+
+test('component containing relative import HMR', { retry: 3 }, async () => {
+  await testHMR(
+    'TestComponentContainingRelativeImport-text-content',
+    'Some text in TestComponentContainingRelativeImport',
+    editTestComponentContainingRelativeImportFile,
+    'Some edited text in TestComponentContainingRelativeImport'
+  )
 })
 
 // TODO: make this pass

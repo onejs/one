@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, TextInput } from 'react-native'
 import { TestComponent } from 'components/TestComponent'
+import { TestComponentContainingRelativeImport } from 'components/TestComponentContainingRelativeImport'
 
 const text = 'Some text'
 
@@ -10,6 +11,7 @@ export default function Page() {
       <TextInput testID="text-input" placeholder="Type something here.." />
       <Text testID="route-text-content">{text}</Text>
       <TestComponent />
+      <TestComponentContainingRelativeImport />
     </View>
   )
 }

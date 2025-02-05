@@ -54,6 +54,14 @@ export function editLayoutFile() {
   )
 }
 
+export function editTestComponentContainingRelativeImportFile() {
+  editFile(
+    path.join(root, 'components', 'TestComponentContainingRelativeImport.tsx'),
+    "const text = 'Some text in TestComponentContainingRelativeImport'",
+    "const text = 'Some edited text in TestComponentContainingRelativeImport'"
+  )
+}
+
 export function revertEditedFiles() {
   const editedFiles = FSExtra.readJSONSync(editedFilesJsonPath, { throws: false }) || []
 

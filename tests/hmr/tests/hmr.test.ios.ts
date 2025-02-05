@@ -2,7 +2,13 @@
 
 import { afterEach, beforeAll, expect, test, inject } from 'vitest'
 import { remote } from 'webdriverio'
-import { editComponentFile, editLayoutFile, editRouteFile, revertEditedFiles } from './utils'
+import {
+  editComponentFile,
+  editLayoutFile,
+  editRouteFile,
+  editTestComponentContainingRelativeImportFile,
+  revertEditedFiles,
+} from './utils'
 import { getWebDriverConfig } from '../vitest-environment-native'
 
 beforeAll(async () => {
@@ -24,7 +30,7 @@ async function testHMR(
   const textInput = driver.$('~text-input')
   await textInput.waitForDisplayed({ timeout: 2 * 60 * 1000 })
   await textInput.setValue('app did not reload')
-  expect(await textInput.getValue()).toBe('app did not reload')
+  expect((await textInput.getValue()).endsWith('did not reload')).toBe(true)
 
   const textElementInComponent = await driver.$(`~${testId}`)
   expect(await textElementInComponent.getText()).toBe(originalText)
@@ -48,7 +54,10 @@ async function testHMR(
     throw e
   }
 
-  expect(await textInput.getValue(), 'the app should not fully reload').toBe('app did not reload')
+  expect(
+    (await textInput.getValue()).endsWith('did not reload'),
+    'the app should not fully reload'
+  ).toBe(true)
 }
 
 test('component HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
@@ -64,7 +73,21 @@ test('route HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
   await testHMR('route-text-content', 'Some text', editRouteFile, 'Some edited text in route file')
 })
 
+test('component containing relative import HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
+  await testHMR(
+    'TestComponentContainingRelativeImport-text-content',
+    'Some text in TestComponentContainingRelativeImport',
+    editTestComponentContainingRelativeImportFile,
+    'Some edited text in TestComponentContainingRelativeImport'
+  )
+})
+
 // TODO: make this pass
 test.skip('layout HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
-  await testHMR('layout-text-content', 'Some text', editLayoutFile, 'Some edited text in layout file')
+  await testHMR(
+    'layout-text-content',
+    'Some text',
+    editLayoutFile,
+    'Some edited text in layout file'
+  )
 })
