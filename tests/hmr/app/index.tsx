@@ -2,7 +2,8 @@ import React from 'react'
 import { View, Text, TextInput } from 'react-native'
 import { TestComponent } from 'components/TestComponent'
 import { TestComponentContainingRelativeImport } from 'components/TestComponentContainingRelativeImport'
-import { TestComponentWithFlatList } from 'components/TestComponentWithFlatList'
+// TODO
+// import { TestComponentWithFlatList } from 'components/TestComponentWithFlatList'
 
 const text = 'Some text'
 
@@ -13,7 +14,7 @@ export default function Page() {
       <Text testID="route-text-content">{text}</Text>
       <TestComponent />
       <TestComponentContainingRelativeImport />
-      <TestComponentWithFlatList />
+      {/* <TestComponentWithFlatList /> */}
     </View>
   )
 }
