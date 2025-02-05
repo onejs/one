@@ -1,6 +1,6 @@
 {
   "name": "test-cloudflare",
-  "version": "1.1.423",
+  "version": "1.1.433",
   "private": true,
   "type": "module",
   "scripts": {
@@ -19,7 +19,7 @@
     "@cloudflare/vitest-pool-workers": "^0.5.38",
     "@cloudflare/workers-types": "^4.20241216.0",
     "vite": "^6.0.11",
-    "vitest": "^3.0.4",
+    "vitest": "^3.0.5",
     "wrangler": "^3.97.0"
   }
 }

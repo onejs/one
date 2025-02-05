@@ -38,8 +38,21 @@ export function bailIfExists(haystack: string, needle: string) {
   }
 }
 
-export async function applyBuiltInPatches(options: VXRNOptionsFilled) {
-  await applyDependencyPatches(depPatches, { root: options.root })
+export type SimpleDepPatchObject = Record<string, DepPatch['patchFiles']>
+
+export async function applyBuiltInPatches(
+  options: VXRNOptionsFilled,
+  extraPatches?: SimpleDepPatchObject
+) {
+  const all = [...depPatches]
+
+  if (extraPatches) {
+    for (const key in extraPatches) {
+      all.push({ module: key, patchFiles: extraPatches[key] })
+    }
+  }
+
+  await applyDependencyPatches(all, { root: options.root })
 }
 
 export async function applyOptimizePatches(patches: DepPatch[], config: UserConfig) {
