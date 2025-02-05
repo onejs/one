@@ -399,4 +399,18 @@ install('URLSearchParams', () => URLSearchParams);
           ?.replace(/punycode\.ucs2\.encode/gm, '(punycode.ucs2encode || punycode.ucs2.encode)'),
     },
   },
+
+  {
+    module: 'html-entities',
+    patchFiles: {
+      version: '2.*',
+      // [react-native-live-markdown] `parseExpensiMark` requires `html-entities` package to be workletized.
+      'lib/index.js': (contents) => {
+        assertString(contents)
+        if (contents.startsWith(`'worklet';`)) return contents
+
+        return `'worklet';\n\n${contents}`
+      },
+    },
+  },
 ]
