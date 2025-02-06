@@ -12,6 +12,7 @@ import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
 import { getServerContext, setServerContext } from './vite/one-server-only'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
+import { useId } from 'react'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
@@ -33,6 +34,7 @@ export function createApp(options: CreateAppProps) {
         let renderId: string | undefined
 
         const App = () => {
+          console.warn('rendering App()', useId())
           return (
             <Root
               onRenderId={(id) => {

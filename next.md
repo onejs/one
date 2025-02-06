@@ -50,6 +50,7 @@
 
 ---
 
+  - it seems we render root layout then find screens, then re-render again and that could be done much better, probabyl we should use the new react navigation static definition method to define everything up-front rather than during render. should be faster and simpler.
   - unify the node module finding in dep patches + auto optimize
   - `doctor --fix`
     - ensure type: 'module' in package.json

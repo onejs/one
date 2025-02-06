@@ -7,7 +7,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { forwardRef, Suspense, useEffect } from 'react'
+import React, { forwardRef, Suspense, useEffect, useId, useMemo } from 'react'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
 import { useConstant } from '../utils/useConstant'
@@ -171,9 +171,11 @@ export function getQualifiedRouteComponent(value: RouteNode) {
 
   let ScreenComponent: React.ForwardRefExoticComponent<{ segment: string; key?: string }>
 
+  let Component
+
   ScreenComponent = React.forwardRef((props, ref) => {
-    const res = value.loadRoute()
-    const Component = useConstant(() => {
+    Component ||= (() => {
+      const res = value.loadRoute()
       const BaseComponent = getPageExport(fromImport(res)) as React.ComponentType<any>
 
       // root layout do special html handling only
@@ -222,50 +224,20 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }
 
       return BaseComponent
-    })
+    })()
 
     if (process.env.NODE_ENV === 'development' && process.env.DEBUG === 'one') {
       console.groupCollapsed(`Render ${props.key} ${props.segment}`)
-      console.info(`res`, res)
       console.info(`value`, value)
-      console.info(`fromImport`, fromImport(res))
       console.info(`Component`, Component)
       console.groupEnd()
     }
 
-    return (
-      // <Suspense fallback={null}>
-      <Component {...props} ref={ref} />
-      // </Suspense>
-    )
+    return <Component {...props} ref={ref} />
   })
 
   const wrapSuspense = (children: any) => {
-    if (process.env.TAMAGUI_TARGET === 'native') {
-      return <Suspense fallback={<SuspenseFallback route={value} />}>{children}</Suspense>
-    }
-    // on web avoiding suspense for now
-    // its causing page flickers, we need to make sure we wrap loaders + page nav
-    // in startTransition
-    return children
-  }
-
-  const getLoadable = (props: any, ref: any) => {
-    return (
-      <RootErrorBoundary>
-        {wrapSuspense(
-          <ScreenComponent
-            {...{
-              ...props,
-              ref,
-              // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-              // the intention is to make it possible to deduce shared routes.
-              segment: value.route,
-            }}
-          />
-        )}
-      </RootErrorBoundary>
-    )
+    return <Suspense fallback={<SuspenseFallback route={value} />}>{children}</Suspense>
   }
 
   const SuspenseFallback = ({ route }: { route: RouteNode }) => {
@@ -289,10 +261,21 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }: any,
       ref: any
     ) => {
-      const loadable = getLoadable(props, ref)
       return (
         <Route route={route} node={value}>
-          {loadable}
+          <RootErrorBoundary>
+            {wrapSuspense(
+              <ScreenComponent
+                {...{
+                  ...props,
+                  ref,
+                  // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+                  // the intention is to make it possible to deduce shared routes.
+                  segment: value.route,
+                }}
+              />
+            )}
+          </RootErrorBoundary>
         </Route>
       )
     }
