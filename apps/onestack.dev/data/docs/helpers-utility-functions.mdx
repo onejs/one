@@ -44,9 +44,9 @@ const postPageLink = href(`/post/hello-world`) // will type error if invalid Hre
 
 <Status is="developing" />
 
-For improving performance of client hydration on the web, you can pass data from the server to the client with `requestCache`, on native values will always be `undefined`. Data must be JSON-stringifyable and  on native.
+For improving performance of client hydration on the web, you can pass data from the server to the client. Data must be serializable to JSON.
 
-Here's an example of a simple `useFetch` to show how it's useful:
+Here's an example of a simple `useFetch`:
 
 ```tsx fileName=app/index.tsx
 import { setServerData, getServerData } from 'one'

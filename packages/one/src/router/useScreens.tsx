@@ -7,10 +7,9 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { forwardRef, Suspense, useEffect, useId, useMemo } from 'react'
+import React, { forwardRef, memo, Suspense, useId } from 'react'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
-import { useConstant } from '../utils/useConstant'
 import { EmptyRoute } from '../views/EmptyRoute'
 import { RootErrorBoundary } from '../views/RootErrorBoundary'
 import { Try } from '../views/Try'
@@ -187,12 +186,15 @@ export function getQualifiedRouteComponent(value: RouteNode) {
           const { children: headChildren, ...headProps } = head?.props || {}
           const serverContext = useServerContext()
 
+          // let finalChildren = <Suspense fallback={null}>{children}</Suspense>
+          let finalChildren = children
+
           if (process.env.TAMAGUI_TARGET === 'native') {
             // on native we just ignore all html/body/head
-            return children
+            return finalChildren
           }
 
-          const contents = (
+          finalChildren = (
             <>
               <head key="head" {...headProps}>
                 <DevHead />
@@ -208,7 +210,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
                 {headChildren}
               </head>
               <body key="body" suppressHydrationWarning {...bodyProps}>
-                <SafeAreaProviderCompat>{children}</SafeAreaProviderCompat>
+                <SafeAreaProviderCompat>{finalChildren}</SafeAreaProviderCompat>
               </body>
             </>
           )
@@ -217,7 +219,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
             // tamagui and libraries can add className on hydration to have ssr safe styling
             // so supress hydration warnings here
             <html suppressHydrationWarning lang="en-US" {...htmlProps}>
-              {contents}
+              {finalChildren}
             </html>
           )
         })
@@ -236,18 +238,6 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     return <Component {...props} ref={ref} />
   })
 
-  const wrapSuspense = (children: any) => {
-    return <Suspense fallback={<SuspenseFallback route={value} />}>{children}</Suspense>
-  }
-
-  const SuspenseFallback = ({ route }: { route: RouteNode }) => {
-    useEffect(() => {
-      // console.info(`⚠️ Suspended:`, route)
-    }, [route])
-
-    return null
-  }
-
   const QualifiedRoute = React.forwardRef(
     (
       {
@@ -264,17 +254,15 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       return (
         <Route route={route} node={value}>
           <RootErrorBoundary>
-            {wrapSuspense(
-              <ScreenComponent
-                {...{
-                  ...props,
-                  ref,
-                  // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-                  // the intention is to make it possible to deduce shared routes.
-                  segment: value.route,
-                }}
-              />
-            )}
+            <ScreenComponent
+              {...{
+                ...props,
+                ref,
+                // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+                // the intention is to make it possible to deduce shared routes.
+                segment: value.route,
+              }}
+            />
           </RootErrorBoundary>
         </Route>
       )
@@ -284,7 +272,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
   QualifiedRoute.displayName = `Route(${value.route})`
 
   qualifiedStore.set(value, QualifiedRoute)
-  return QualifiedRoute
+  return memo(QualifiedRoute)
 }
 
 /** @returns a function which provides a screen id that matches the dynamic route name in params. */
@@ -349,6 +337,20 @@ function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenPr
 
         return output
       }}
+      // this doesn't work, also probably better to wrap suspense only on root layout in useScreens
+      // but it doesnt seem to pick up our startTransitions which i wrapped in a few places.
+      // now i thought this was due to our use of useSyncExternalStore, but i replaced that with
+      // `use-sync-external-store/shim` and i also replaced the one in react-navigation that does
+      // `use-sync-external-store/with-selector` to `use-sync-external-store/shim/with-selector`
+      // but still it seems something else must be updating state outside a transition.
+
+      // layout={({ children }) => {
+      //   console.log('route.contextKey', route.contextKey)
+      //   if (route.contextKey === '') {
+      //     return <Suspense fallback={null}>{children}</Suspense>
+      //   }
+      //   return children
+      // }}
       getComponent={() => {
         // log here to see which route is rendered
         // console.log('getting', route, getQualifiedRouteComponent(route))

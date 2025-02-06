@@ -6,28 +6,27 @@ import {
 } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
 import { nanoid } from 'nanoid/non-secure'
-import { act, Fragment, startTransition, useSyncExternalStore, type ComponentType } from 'react'
+import { Fragment, startTransition, type ComponentType, useSyncExternalStore } from 'react'
 import { Platform } from 'react-native'
-import type { RouteNode } from './Route'
-import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import type { State } from '../fork/getPathFromState'
 import { getPathDataFromState } from '../fork/getPathFromState'
 import { stripBaseUrl } from '../fork/getStateFromPath-mods'
-import { getLinkingConfig, type OneLinkingOptions } from './getLinkingConfig'
-import { getRoutes } from './getRoutes'
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
 import { resolve } from '../link/path'
-import { matchDynamicName } from './matchers'
-import { sortRoutes } from './sortRoutes'
-import { getQualifiedRouteComponent } from './useScreens'
 import { assertIsReady } from '../utils/assertIsReady'
+import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import { dynamicImport } from '../utils/dynamicImport'
-import { removeSearch } from '../utils/removeSearch'
 import { shouldLinkExternally } from '../utils/url'
 import type { One } from '../vite/types'
+import { getLinkingConfig, type OneLinkingOptions } from './getLinkingConfig'
 import { getNormalizedStatePath, type UrlObject } from './getNormalizedStatePath'
+import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
+import { matchDynamicName } from './matchers'
+import type { RouteNode } from './Route'
+import { sortRoutes } from './sortRoutes'
+import { getQualifiedRouteComponent } from './useScreens'
 
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
@@ -144,16 +143,20 @@ function subscribeToNavigationChanges() {
     }
 
     if (shouldUpdateSubscribers) {
-      for (const subscriber of rootStateSubscribers) {
-        subscriber(state)
-      }
+      startTransition(() => {
+        for (const subscriber of rootStateSubscribers) {
+          subscriber(state)
+        }
+      })
     }
   })
 
-  updateSnapshot()
-  for (const subscriber of storeSubscribers) {
-    subscriber()
-  }
+  startTransition(() => {
+    updateSnapshot()
+    for (const subscriber of storeSubscribers) {
+      subscriber()
+    }
+  })
 }
 
 // Navigation functions
@@ -285,9 +288,11 @@ export function subscribeToLoadingState(subscriber: OneRouter.LoadingStateListen
 }
 
 export function setLoadingState(state: OneRouter.LoadingState) {
-  for (const listener of loadingStateSubscribers) {
-    listener(state)
-  }
+  startTransition(() => {
+    for (const listener of loadingStateSubscribers) {
+      listener(state)
+    }
+  })
 }
 
 // Snapshot function
@@ -505,7 +510,6 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
   preloadRoute(href)
 
   const rootState = navigationRef.getRootState()
-  const action = getNavigateAction(state, rootState, event)
 
   const hash = href.indexOf('#')
   if (rootState.key && hash > 0) {
@@ -516,9 +520,10 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
   nextOptions = options ?? null
 
   startTransition(() => {
+    const action = getNavigateAction(state, rootState, event)
     const current = navigationRef.getCurrentRoute()
-
     navigationRef.dispatch(action)
+
     let warningTm
     const interval = setInterval(() => {
       const next = navigationRef.getCurrentRoute()

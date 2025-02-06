@@ -1,10 +1,10 @@
 import { type NavigationContainerRefWithCurrent } from '@react-navigation/native';
 import { type ComponentType } from 'react';
-import type { RouteNode } from './Route';
-import { type OneLinkingOptions } from './getLinkingConfig';
 import type { OneRouter } from '../interfaces/router';
 import type { One } from '../vite/types';
+import { type OneLinkingOptions } from './getLinkingConfig';
 import { type UrlObject } from './getNormalizedStatePath';
+import type { RouteNode } from './Route';
 export declare let routeNode: RouteNode | null;
 export declare let rootComponent: ComponentType;
 export declare let linking: OneLinkingOptions | undefined;
