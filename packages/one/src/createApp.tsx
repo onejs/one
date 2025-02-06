@@ -12,6 +12,7 @@ import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 import { getServerContext, setServerContext } from './vite/one-server-only'
+import { cloneElement } from 'react'
 
 export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
 
@@ -76,7 +77,9 @@ export function createApp(options: CreateAppProps) {
           }
 
           if (extraHeadElements.length) {
-            const extraHeadHTML = ReactDOMServer.renderToStaticMarkup(<>{extraHeadElements}</>)
+            const extraHeadHTML = ReactDOMServer.renderToStaticMarkup(
+              <>{extraHeadElements.map((x, i) => cloneElement(x, { key: i }))}</>
+            )
 
             if (extraHeadHTML) {
               html = html.replace(`</head>`, `${extraHeadHTML}</head>`)
