@@ -7,6 +7,7 @@ import {
 import { useColorScheme } from '@vxrn/universal-color-scheme'
 import {
   createContext,
+  Suspense,
   useContext,
   useEffect,
   useId,
@@ -86,6 +87,8 @@ export function Root(props: RootProps) {
 
   const value = globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
 
+  console.log('wtf', value)
+
   const contents = (
     // <StrictMode>
     <ServerAsyncLocalIDContext.Provider value={value}>
@@ -113,6 +116,7 @@ export function Root(props: RootProps) {
               <>
                 {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
                 <ScrollBehavior />
+
                 <Component />
 
                 {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}

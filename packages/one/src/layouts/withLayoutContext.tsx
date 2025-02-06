@@ -88,6 +88,8 @@ export function withLayoutContext<
         onlyMatching: true,
       })
 
+      console.warn('RENDERING WITH LAYOUT')
+
       // Prevent throwing an error when there are no screens.
       if (!sorted.length) {
         return null

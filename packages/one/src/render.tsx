@@ -5,6 +5,7 @@ globalThis['__vxrnVersion'] ||= 0
 
 export function render(element: React.ReactNode) {
   if (typeof document === 'undefined') return
+
   if (globalThis['__vxrnRoot']) {
     globalThis['__vxrnVersion']++
     globalThis['__vxrnRoot'].render(element)
