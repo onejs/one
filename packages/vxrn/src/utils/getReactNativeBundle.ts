@@ -3,6 +3,7 @@ import { dirname, relative } from 'node:path'
 import { createBuilder } from 'vite'
 // import { buildEnvironment } from './fork/vite/build'
 import { resolvePath } from '@vxrn/resolve'
+import type { RollupCache } from 'rollup'
 import { filterPluginsForNative } from './filterPluginsForNative'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { getReactNativeConfig } from './getReactNativeConfig'
@@ -16,6 +17,11 @@ let cachedReactNativeBundles: Record<string, string | undefined> = {}
 
 export function clearCachedBundle() {
   cachedReactNativeBundles = {}
+}
+
+const rollupBuildCaches: Record<'ios' | 'android', RollupCache | undefined> = {
+  ios: undefined,
+  android: undefined,
 }
 
 export async function getReactNativeBundle(
@@ -100,7 +106,40 @@ export async function getReactNativeBundle(
   // We are using a forked version of the Vite internal function `buildEnvironment` (which is what `builder.build` calls) that will return the Rollup cache object with the build output, and also with some performance improvements.
   // disabled due to differences in vite 6 stable upgrade
 
-  const buildOutput = await builder.build(environment)
+  let cache: RollupCache | undefined = undefined
+  if (process.env.EXPERIMENTAL_RN_ROLLUP_CACHE) {
+    if (/* internal.useCache && */ internal.mode === 'dev') {
+      if (rollupBuildCaches[platform]) {
+        cache = rollupBuildCaches[platform]
+        console.info(
+          `[EXPERIMENTAL_RN_ROLLUP_CACHE] Using Rollup build cache from previous ${platform} build.`
+        )
+      } else {
+        console.info(
+          `[EXPERIMENTAL_RN_ROLLUP_CACHE] No Rollup build cache found for ${platform} build.`
+        )
+      }
+    } else {
+      console.info(
+        `[EXPERIMENTAL_RN_ROLLUP_CACHE] Not using Rollup build cache for ${platform} build. internal.useCache: ${internal.useCache}, internal.mode: ${internal.mode}.`
+      )
+    }
+  }
+
+  const buildOutput = await (builder.build as any)(environment, cache || true)
+
+  if (process.env.EXPERIMENTAL_RN_ROLLUP_CACHE) {
+    if (/*internal.useCache && */ internal.mode === 'dev' && buildOutput.cache) {
+      rollupBuildCaches[platform] = buildOutput.cache
+      console.info(
+        `[EXPERIMENTAL_RN_ROLLUP_CACHE] Saving Rollup build cache for ${platform} build.`
+      )
+    } else {
+      console.info(
+        `[EXPERIMENTAL_RN_ROLLUP_CACHE] Not saving Rollup build cache for ${platform} build. internal.useCache: ${internal.useCache}, internal.mode: ${internal.mode}, typeof buildOutput.cache: ${typeof buildOutput.cache}.`
+      )
+    }
+  }
 
   if (process.env.ONE_DEBUG_BUILD_PERF) {
     console.info(JSON.stringify(buildStats, null, 2))
