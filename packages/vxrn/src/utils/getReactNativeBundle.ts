@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { dirname, relative } from 'node:path'
-// import { createBuilder } from 'vite'
-import { createBuilder } from '../fork/vite/build'
+import { createBuilder } from 'vite'
+// import { createBuilder } from '../fork/vite/build'
 // import { buildEnvironment } from './fork/vite/build'
 import { resolvePath } from '@vxrn/resolve'
 import { filterPluginsForNative } from './filterPluginsForNative'
@@ -109,14 +109,17 @@ export async function getReactNativeBundle(
 
   let cache: RollupCache | undefined = undefined
   if (internal.useCache && internal.mode === 'dev') {
+    console.log(`Using cache for build: ${platform}`)
     cache = rollupBuildCaches[platform]
   }
 
-  const buildOutput = await builder.build(environment, cache)
+  const buildOutput = await (builder.build as any)(environment, cache)
 
   if (internal.useCache && internal.mode === 'dev' && buildOutput.cache) {
     rollupBuildCaches[platform] = buildOutput.cache
+    console.log(`Saving cache for next build: ${platform}`)
   }
+  console.log(`internal.mode: ${internal.mode}, internal.useCache: ${internal.useCache}`)
 
   if (process.env.ONE_DEBUG_BUILD_PERF) {
     console.info(JSON.stringify(buildStats, null, 2))
