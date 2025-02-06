@@ -1,6 +1,7 @@
 import type { GetTransform } from '@vxrn/compiler'
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths'
 import type {
+  AutoDepOptimizationOptions,
   DepOptimize,
   DepPatch,
   AfterBuildProps as VXRNAfterBuildProps,
@@ -230,9 +231,15 @@ export namespace One {
 
     ssr?: {
       /**
-       * Do not pre-bundle specific dependencies for SSR, or disable the automatic scan for dependencies to pre-bundle entirely.
+       * One scans dependencies on startup and decides which ones to optimize based on known broken
+       * dependencies. These include react-native and react, which need to be optimized to work.
+       * It finds all parent dependencies of the know bad deps and adds them to ssr.optimizeDeps.include.
+       *
+       * You can disable with false, or configure the include/exclude with options.
+       *
+       * @default { include: /node_modules/ }
        */
-      disableAutoDepsPreBundling?: boolean | string[]
+      autoDepsOptimization?: boolean | AutoDepOptimizationOptions
     }
   }
 

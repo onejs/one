@@ -1,6 +1,6 @@
 import type { Hono } from 'hono'
 import type { OutputAsset, OutputChunk, TreeshakingOptions, TreeshakingPreset } from 'rollup'
-import type { InlineConfig, UserConfig } from 'vite'
+import type { FilterPattern, InlineConfig, UserConfig } from 'vite'
 
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]]
 
@@ -24,6 +24,11 @@ export type AfterBuildProps = {
     // app/[user].tsx
     [key: string]: ClientManifestEntry
   }
+}
+
+export type AutoDepOptimizationOptions = {
+  exclude?: FilterPattern
+  include?: FilterPattern
 }
 
 export type ClientManifestEntry = {
