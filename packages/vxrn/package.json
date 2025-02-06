@@ -59,6 +59,7 @@
     "@hono/node-server": "^1.13.7",
     "@react-native/babel-plugin-codegen": "^0.76.5",
     "@react-native/dev-middleware": "^0.76.5",
+    "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@tamagui/react-native-svg": "^1.123.14",
     "@vxrn/compiler": "workspace:*",
