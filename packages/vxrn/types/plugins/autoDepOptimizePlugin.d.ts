@@ -1,8 +1,8 @@
-import type { Plugin } from 'vite';
+import { type Plugin } from 'vite';
+import type { AutoDepOptimizationOptions } from '../types';
 import { type ScanDepsResult } from '../utils/scanDepsToOptimize';
-type FindDepsOptions = {
+type FindDepsOptions = AutoDepOptimizationOptions & {
     root: string;
-    exclude?: string[];
     onScannedDeps?: (result: ScanDepsResult) => void;
 };
 export declare function autoDepOptimizePlugin(props: FindDepsOptions): Plugin;
@@ -19,6 +19,6 @@ export declare function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMod
         noExternal: string[];
     };
 }>;
-export declare function findDepsToOptimize({ root, mode, exclude }: FindDepsOptionsByMode): Promise<ScanDepsResult>;
+export declare function findDepsToOptimize({ root, mode, exclude, include }: FindDepsOptionsByMode): Promise<ScanDepsResult>;
 export {};
 //# sourceMappingURL=autoDepOptimizePlugin.d.ts.map

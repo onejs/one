@@ -103,6 +103,7 @@ const rootOptions = {}
 export async function scanDepsToOptimize(
   packageJsonPath: string,
   options: {
+    filter?: (id: string | unknown) => boolean
     parentDepNames?: string[]
     proceededDeps?: Map<string, string[]>
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
@@ -136,20 +137,13 @@ export async function scanDepsToOptimize(
         if (EXCLUDE_LIST_SET.has(dep)) {
           return []
         }
-
-        // lets be a bit conservative and assume react-native starting packages are
-        // if (dep.startsWith('react-native-') || dep.startsWith(`@react-native-`)) {
-        //   return []
-        // }
-
         const localPath = await findDepPkgJsonPath(dep, currentRoot)
 
         if (!localPath) return []
 
         const depPkgJsonPath = await FSExtra.realpath(localPath)
 
-        if (!depPkgJsonPath.includes('node_modules')) {
-          // if not in node_modules (in monorepo) dont auto optimize
+        if (options.filter && !options.filter(depPkgJsonPath)) {
           return []
         }
 

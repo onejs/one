@@ -74,6 +74,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     })
   }
 
+  const autoDepsOptions = options.ssr?.autoDepsOptimization
+
   const devAndProdPlugins: Plugin[] = [
     {
       name: 'one:config',
@@ -97,7 +99,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    ...(options.ssr?.disableAutoDepsPreBundling === true
+    ...(autoDepsOptions === false
       ? []
       : [
           autoDepOptimizePlugin({
@@ -109,9 +111,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               })
             },
             root,
-            exclude: Array.isArray(options.ssr?.disableAutoDepsPreBundling)
-              ? options.ssr?.disableAutoDepsPreBundling
-              : undefined,
+            include: /node_modules/,
+            ...(autoDepsOptions === true ? {} : autoDepsOptions),
           }),
         ]),
 

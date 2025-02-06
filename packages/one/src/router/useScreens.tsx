@@ -7,7 +7,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { forwardRef, memo, Suspense, useId } from 'react'
+import React, { forwardRef, memo, Suspense } from 'react'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
 import { EmptyRoute } from '../views/EmptyRoute'
@@ -238,6 +238,18 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     return <Component {...props} ref={ref} />
   })
 
+  const wrapSuspense = (children: any) => {
+    // so as far as i understand, adding suspense causes flickers on web during nav because
+    // we can't seem to get react navigation to properly respect startTransition(() => {})
+    // i tried a lot of things, but didn't find the root cause, but native needs suspense or
+    // else it hits an error about no suspense boundary being set
+
+    if (process.env.TAMAGUI_TARGET === 'native') {
+      return <Suspense fallback={null}>{children}</Suspense>
+    }
+    return children
+  }
+
   const QualifiedRoute = React.forwardRef(
     (
       {
@@ -254,15 +266,17 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       return (
         <Route route={route} node={value}>
           <RootErrorBoundary>
-            <ScreenComponent
-              {...{
-                ...props,
-                ref,
-                // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-                // the intention is to make it possible to deduce shared routes.
-                segment: value.route,
-              }}
-            />
+            {wrapSuspense(
+              <ScreenComponent
+                {...{
+                  ...props,
+                  ref,
+                  // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+                  // the intention is to make it possible to deduce shared routes.
+                  segment: value.route,
+                }}
+              />
+            )}
           </RootErrorBoundary>
         </Route>
       )
