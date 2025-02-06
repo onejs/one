@@ -103,6 +103,10 @@ const __specialRequireMap = globalThis.__vxrnPrebuildSpecialRequireMap || {
   'react/jsx-dev-runtime': '.vxrn/react-jsx-runtime.js',
 }
 
+// WORKAROUND: react-native-reanimated may be dynamically imported by react-native-gesture-handler, which the import path will not be transformed. Doing this so `require('react-native-reanimated')` can work.
+// See: https://github.com/software-mansion/react-native-gesture-handler/blob/2.23.0/src/handlers/gestures/reanimatedWrapper.ts#L33
+__specialRequireMap['react-native-reanimated'] = 'react-native-reanimated/src/index.js'
+
 const nodeImports = {
   fs: true,
   path: true,
