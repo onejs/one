@@ -155,7 +155,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ),
 
     {
-      name: 'one-slim-deps',
+      name: 'one-aliases',
       enforce: 'pre',
 
       config() {
@@ -177,6 +177,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         return {
           resolve: {
             alias: {
+              // testing getting transition between routes working
+              // 'use-sync-external-store/with-selector': resolvePath(
+              //   'use-sync-external-store/shim/with-selector'
+              // ),
+
               ...(tslibLitePath && {
                 tslib: tslibLitePath,
               }),

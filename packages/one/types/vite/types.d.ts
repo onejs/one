@@ -2,6 +2,7 @@ import type { GetTransform } from '@vxrn/compiler';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
 import type { RouteNode } from '../router/Route';
+import type { Options as ReactScanOptions } from 'react-scan';
 export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;
@@ -23,19 +24,6 @@ export declare namespace One {
     export type FixDependencies = {
         [key: string]: DepOptimize | DepPatch['patchFiles'];
     };
-    export type ReactScanOptions = {
-        enabled?: boolean;
-        includeChildren?: boolean;
-        playSound?: boolean;
-        log?: boolean;
-        showToolbar?: boolean;
-        renderCountThreshold?: number;
-        resetCountTimeout?: number;
-        maxRenders?: number;
-        report?: boolean;
-        alwaysShowLabels?: boolean;
-        animationSpeed?: 'slow' | 'fast' | 'off';
-    };
     type PluginPlatformTarget = 'native' | 'web';
     export type PluginOptions = {
         /**
@@ -44,7 +32,6 @@ export declare namespace One {
          *   - It makes zero hand of seamelessly from server to client without flicker
          *
          */
-        zero?: boolean;
         /**
          * Per-file control over how code transforms.
          * Defaults to SWC, runs babel before SWC if:
