@@ -127,6 +127,7 @@ export function getPathDataFromState<ParamList extends {}>(
 
   while (current) {
     let index = typeof current.index === 'number' ? current.index : 0
+
     let route = current.routes[index] as Route<string> & {
       state?: State
     }

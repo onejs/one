@@ -1,10 +1,10 @@
 import React from 'react'
+import { Text, View } from 'react-native'
 
 export class RootErrorBoundary extends React.Component<{ children: any }> {
   state = { hasError: false }
 
   static getDerivedStateFromError(error) {
-    console.error('RootErrorBoundary.error', error)
     // Update state so the next render will show the fallback UI.
     return { hasError: true }
   }
