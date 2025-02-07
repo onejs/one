@@ -18,6 +18,9 @@ export function clearCachedBundle() {
   cachedReactNativeBundles = {}
 }
 
+// TODO figure out better
+export let lastRequestedBundlePlatform: 'ios' | 'android' | null = null
+
 export async function getReactNativeBundle(
   options: VXRNOptionsFilled,
   platform: 'ios' | 'android',
@@ -27,6 +30,7 @@ export async function getReactNativeBundle(
   }
 ) {
   entryRoot = options.root
+  lastRequestedBundlePlatform = platform
 
   const cached = cachedReactNativeBundles[platform]
   if (cached && !process.env.VXRN_DISABLE_CACHE) {

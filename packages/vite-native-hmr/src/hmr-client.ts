@@ -1,6 +1,17 @@
 import { getDevServerLocation } from './getDevServerLocation'
 
 /**
+ * 🚨🚨🚨🚨🚨🚨🚨
+ *
+ *
+ * It seems we're doing HMR from `@vxrn/vite-native-client`
+ *
+ *
+ * Can we remove this?
+ *
+ */
+
+/**
  * Represent Hot Module Replacement Update body.
  *
  * @internal

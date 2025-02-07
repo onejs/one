@@ -1,15 +1,15 @@
 import { Image } from '@tamagui/image-next'
-import { Text, YStack } from 'tamagui'
 import { Link } from 'one'
-import { ToggleThemeButton } from '~/interface/ToggleThemeButton'
-import oneBall from '~/app-icon.png'
 import { version } from 'react'
+import { Text, YStack } from 'tamagui'
+import oneBall from '~/app-icon.png'
+import { ToggleThemeButton } from '~/interface/ToggleThemeButton'
 
 export function HomePage() {
   return (
     <YStack bg="$color1" minH="100%" gap="$4" px="$4" items="center" justify="center" flex={1}>
       <Text fontSize="$8" text="center">
-        Hello, One
+        Hello, One2222222222222222222
       </Text>
 
       <Image src={oneBall} width={128} height={128} />
