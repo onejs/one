@@ -150,10 +150,13 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   const excludeAPIRoutesPlugin = {
     enforce: 'pre',
     name: 'omit-api-routes',
-    transform(code, id) {
-      if (/\+api.tsx?$/.test(id)) {
-        return ``
-      }
+    transform: {
+      order: 'pre',
+      handler(code, id) {
+        if (/\+api.tsx?$/.test(id)) {
+          return ``
+        }
+      },
     },
   } satisfies Plugin
 
