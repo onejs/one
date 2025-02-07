@@ -1,9 +1,11 @@
-export let connectedNativeClients = 0
+type Env = string
 
-export function addConnectedNativeClient() {
-  connectedNativeClients++
+export const connectedNativeClients = new Map<Env, number>()
+
+export function addConnectedNativeClient(env: Env) {
+  connectedNativeClients.set(env, (connectedNativeClients.get(env) || 0) + 1)
 }
 
-export function removeConnectedNativeClient() {
-  connectedNativeClients--
+export function removeConnectedNativeClient(env: Env) {
+  connectedNativeClients.set(env, (connectedNativeClients.get(env) || 0) - 1)
 }

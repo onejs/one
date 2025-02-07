@@ -294,7 +294,6 @@ ${result.code}
 if (module.hot) {
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
-  globalThis['lastHmrExports'] = JSON.stringify(Object.keys(exports))
 }
 
 ${postfixCode}
