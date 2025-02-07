@@ -24,6 +24,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
       appType: 'custom',
       clearScreen: false,
       publicDir: 'public',
+      esbuild: false,
       plugins: [
         createReactNativeDevServerPlugin(config),
 
