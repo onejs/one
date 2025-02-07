@@ -7,11 +7,10 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { forwardRef, memo, Suspense } from 'react'
+import React, { memo, Suspense } from 'react'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
 import { EmptyRoute } from '../views/EmptyRoute'
-import { RootErrorBoundary } from '../views/RootErrorBoundary'
 import { Try } from '../views/Try'
 import { DevHead } from '../vite/DevHead'
 import { useServerContext } from '../vite/one-server-only'
@@ -168,71 +167,61 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     return qualifiedStore.get(value)!
   }
 
-  let ScreenComponent: React.ForwardRefExoticComponent<{ segment: string; key?: string }>
-
-  let Component
-
-  ScreenComponent = React.forwardRef((props, ref) => {
-    Component ||= (() => {
-      const res = value.loadRoute()
-      const BaseComponent = getPageExport(fromImport(res)) as React.ComponentType<any>
-
-      // root layout do special html handling only
-      if (props.segment === '') {
-        return forwardRef((props, ref) => {
-          // @ts-expect-error
-          const out = BaseComponent(props, ref)
-          const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
-          const { children: headChildren, ...headProps } = head?.props || {}
-          const serverContext = useServerContext()
-
-          // let finalChildren = <Suspense fallback={null}>{children}</Suspense>
-          let finalChildren = children
-
-          if (process.env.TAMAGUI_TARGET === 'native') {
-            // on native we just ignore all html/body/head
-            return finalChildren
-          }
-
-          finalChildren = (
-            <>
-              <head key="head" {...headProps}>
-                <DevHead />
-                <script
-                  dangerouslySetInnerHTML={{
-                    __html: `globalThis['global'] = globalThis`,
-                  }}
-                />
-                {serverContext?.css?.map((file) => {
-                  return <link key={file} rel="stylesheet" href={file} />
-                })}
-                <ServerContextScript />
-                {headChildren}
-              </head>
-              <body key="body" suppressHydrationWarning {...bodyProps}>
-                <SafeAreaProviderCompat>{finalChildren}</SafeAreaProviderCompat>
-              </body>
-            </>
-          )
-
-          return (
-            // tamagui and libraries can add className on hydration to have ssr safe styling
-            // so supress hydration warnings here
-            <html suppressHydrationWarning lang="en-US" {...htmlProps}>
-              {finalChildren}
-            </html>
-          )
-        })
-      }
-
-      return BaseComponent
-    })()
+  const ScreenComponent = React.forwardRef((props: any, ref) => {
+    const res = value.loadRoute()
+    const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
 
     if (process.env.NODE_ENV === 'development' && process.env.DEBUG === 'one') {
       console.groupCollapsed(`Render ${props.key} ${props.segment}`)
       console.info(`value`, value)
       console.info(`Component`, Component)
       console.groupEnd()
+    }
+
+    if (props.segment === '') {
+      // @ts-expect-error
+      const out = Component(props, ref)
+
+      const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
+      const { children: headChildren, ...headProps } = head?.props || {}
+      const serverContext = useServerContext()
+
+      // let finalChildren = <Suspense fallback={null}>{children}</Suspense>
+      let finalChildren = children
+
+      if (process.env.TAMAGUI_TARGET === 'native') {
+        // on native we just ignore all html/body/head
+        return finalChildren
+      }
+
+      finalChildren = (
+        <>
+          <head key="head" {...headProps}>
+            <DevHead />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `globalThis['global'] = globalThis`,
+              }}
+            />
+            {serverContext?.css?.map((file) => {
+              return <link key={file} rel="stylesheet" href={file} />
+            })}
+            <ServerContextScript />
+            {headChildren}
+          </head>
+          <body key="body" suppressHydrationWarning {...bodyProps}>
+            <SafeAreaProviderCompat>{finalChildren}</SafeAreaProviderCompat>
+          </body>
+        </>
+      )
+
+      return (
+        // tamagui and libraries can add className on hydration to have ssr safe styling
+        // so supress hydration warnings here
+        <html suppressHydrationWarning lang="en-US" {...htmlProps}>
+          {finalChildren}
+        </html>
+      )
     }
 
     return <Component {...props} ref={ref} />
@@ -265,7 +254,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     ) => {
       return (
         <Route route={route} node={value}>
-          <RootErrorBoundary>
+          <>
             {wrapSuspense(
               <ScreenComponent
                 {...{
@@ -277,7 +266,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
                 }}
               />
             )}
-          </RootErrorBoundary>
+          </>
         </Route>
       )
     }
