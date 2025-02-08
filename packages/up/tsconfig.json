@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "exclude": [
+    "vitest.config.ts",
+    "**/test",
+    "**/dist",
+    "**/types",
+    "**/__tests__"
+  ],
+  "compilerOptions": {
+    "composite": true
+  },
+  "references": [
+  ]
+}

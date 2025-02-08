@@ -244,7 +244,21 @@ const patch = defineCommand({
   },
 })
 
+const up = defineCommand({
+  meta: {
+    name: 'up',
+    version: '0.0.0',
+    description: '',
+  },
+  args: {},
+  async run({ args }) {
+    const { run } = await import('./cli/up')
+    await run(args)
+  },
+})
+
 const subCommands = {
+  up,
   dev,
   clean,
   build: buildCommand,

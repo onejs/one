@@ -1,0 +1,47 @@
+{
+  "name": "@vxrn/up",
+  "version": "1.1.437",
+  "license": "BSD-3-Clause",
+  "sideEffects": [
+    "setup.mjs",
+    "setup.js"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./src/index.tsx",
+      "default": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "source": "src/index.ts",
+  "files": [
+    "src",
+    "types",
+    "dist",
+    "vendor",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "bun ./build.ts",
+    "clean": "bun ./build.ts --watch",
+    "clean:build": "rm -r dist || true",
+    "typecheck": "tsc --noEmit",
+    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
+    "watch": "yarn build --watch"
+  },
+  "dependencies": {
+    "@onreza/docker-api-typescript": "^0.5.1-0",
+    "fast-glob": "^3.3.3",
+    "js-yaml": "^4.1.0",
+    "react": "18.3.1",
+    "react-reconciler": "0.23.0",
+    "terminosaurus": "^3.0.0-rc.5"
+  },
+  "devDependencies": {
+    "@tamagui/build": "^1.124.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
