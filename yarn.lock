@@ -11591,6 +11591,7 @@ __metadata:
     react-reconciler: "npm:0.23.0"
     terminosaurus: "npm:^3.0.0-rc.5"
     valtio: "npm:^2.1.3"
+    zod: "npm:^3.24.1"
   languageName: unknown
   linkType: soft
 

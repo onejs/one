@@ -1,8 +1,10 @@
-import { useEffect, useState, useSyncExternalStore } from 'react'
-import { getContainers, getDockerComposeContainers, parseDockerComposeYAML } from './docker'
-import { useAsync } from './utils'
+import { useEffect, useState } from 'react'
 import type { TermPty } from 'terminosaurus'
 import { proxy, useSnapshot } from 'valtio'
+import { getDockerComposeContainers } from './docker'
+import { readPackageJSON } from './package'
+import { objectEntries } from './typeHelpers'
+import { useAsync } from './utils'
 
 declare global {
   namespace JSX {
@@ -18,7 +20,13 @@ declare global {
 
 const globalState = proxy({
   selected: 0,
+  processes: {} as Record<string, Process>,
+  logs: [] as string[],
 })
+
+function log(...args: string[]) {
+  globalState.logs.push(args.join(' '))
+}
 
 const useGlobalState = () => useSnapshot(globalState)
 
@@ -27,29 +35,54 @@ export async function debug() {
   // return true
 }
 
+type Process = {
+  name: string
+  run: string
+  type: 'docker' | 'script'
+  status: 'idle' | 'running'
+  pty?: TermPty | null
+}
+
+const ptys = new Set<any>()
+
 export function OneUpTUI() {
-  const [pty, setPty] = useState<TermPty | null>(null)
+  const runnableScripts = useAsync(readRunnableScripts, 'development')
   const containers = useAsync(getDockerComposeContainers)
+  const inactiveContainers = containers.data?.filter((x) => !x.instance?.Status)
   const state = useGlobalState()
-  const activeContainer = containers.data?.[state.selected]
   const [input, setInput] = useState('')
 
   useEffect(() => {
     containers.execute()
+    runnableScripts.execute()
   }, [])
 
-  useEffect(() => {
-    if (activeContainer) {
-      pty!.spawn(`docker`, [
-        'exec',
-        '-it',
-        activeContainer.instance?.Id || '',
-        '/bin/sh',
-        '-c',
-        '[ -e /bin/bash ] && /bin/bash || /bin/sh',
-      ])
-    }
-  }, [activeContainer])
+  const containerProcesses = containers.data?.map((container) => {
+    return {
+      name: container.name,
+      run: `docker exec -it ${container.instance?.Id || ''} /bin/sh -c [ -e /bin/bash ] && /bin/bash || /bin/sh`,
+      status: 'idle',
+      type: 'docker',
+    } as Process
+  })
+
+  const scriptProcesses = runnableScripts.data?.map((script) => {
+    return {
+      name: script.name,
+      run: `bun ${script.command}`,
+      status: 'idle',
+      type: 'script',
+    } as Process
+  })
+
+  const processes = [...(scriptProcesses || []), ...(containerProcesses || [])]
+  const activeProc = processes[state.selected]
+
+  // useEffect(() => {
+  //   if (activeContainer?.instance?.Status) {
+  //     pty!.spawn()
+  //   }
+  // }, [activeContainer])
 
   const handleSubmit = async () => {}
 
@@ -60,15 +93,17 @@ export function OneUpTUI() {
       height="100%"
       onClick={(e) => e.target.rootNode.queueDirtyRect()}
     >
+      {/* <term:text>{JSON.stringify(runnableScripts.data) || ''}</term:text> */}
+      <term:text>{state.logs.join('\n')}</term:text>
       <term:div flex={1} flexDirection="row" width="100%" position="relative">
         <term:div width={30} flexDirection="column">
           {/* Discussions list */}
           <term:div flex={1} border="modern" overflow="scroll" flexDirection="column">
-            {containers.data?.map((container, index) => {
-              const isActive = container === activeContainer
+            {processes.map((proc, index) => {
+              const isActive = proc === activeProc
               return (
                 <term:div
-                  key={container.name}
+                  key={proc.name}
                   paddingLeft={1}
                   paddingRight={1}
                   onClick={() => {
@@ -76,8 +111,8 @@ export function OneUpTUI() {
                   }}
                   backgroundColor={isActive ? 'blue' : undefined}
                 >
-                  <term:text>{container.name}</term:text>
-                  <term:text color="yellow">{container.instance?.Status || ''}</term:text>
+                  <term:text>{proc.name}</term:text>
+                  <term:text color="yellow">{proc.status || 'Starting...'}</term:text>
                 </term:div>
               )
             })}
@@ -109,7 +144,28 @@ export function OneUpTUI() {
             paddingLeft={1}
             paddingRight={1}
           >
-            <term:pty ref={setPty} flexGrow={1} />
+            {processes.map((proc, index) => {
+              return (
+                <term:pty
+                  key={proc.name}
+                  ref={(ref) => {
+                    if (ref && !ptys.has(ref)) {
+                      ptys.add(ref)
+                      const [command, ...args] = proc.run.split(' ')
+                      ref.spawn(command, args)
+                      // log(`spawn ${proc.name} ${typeof ref}`)
+                    }
+                  }}
+                  flexGrow={1}
+                  display={
+                    index === state.selected
+                      ? // || index === state.selected + 1
+                        'flex'
+                      : 'none'
+                  }
+                />
+              )
+            })}
           </term:div>
 
           <term:form border="modern" paddingLeft={1} paddingRight={1} onSubmit={handleSubmit}>
@@ -203,4 +259,19 @@ function KeyModal({ onClose }: { onClose: () => void }) {
 // Note: should move that to term-strings
 const hyperlink = (text: string, url: string) => {
   return `\x1b]8;;${url}\x07${text}\x1b]8;;\x07`
+}
+
+const readRunnableScripts = async (mode: 'development' | 'production') => {
+  const json = await readPackageJSON('.')
+  return objectEntries(json.scripts || {}).flatMap(([name, command]) => {
+    if (name === 'dev' || name.startsWith('dev:') || name === 'watch') {
+      return [
+        {
+          name,
+          command,
+        },
+      ]
+    }
+    return []
+  })
 }
