@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import { getContainers, getDockerComposeContainers, parseDockerComposeYAML } from './docker'
 import { useAsync } from './utils'
+import type { TermPty } from 'terminosaurus'
+import { proxy, useSnapshot } from 'valtio'
 
 declare global {
   namespace JSX {
@@ -9,9 +11,16 @@ declare global {
       'term:text': any
       'term:form': any
       'term:input': any
+      'term:pty': any
     }
   }
 }
+
+const globalState = proxy({
+  selected: 0,
+})
+
+const useGlobalState = () => useSnapshot(globalState)
 
 export async function debug() {
   console.info(await getDockerComposeContainers())
@@ -19,12 +28,28 @@ export async function debug() {
 }
 
 export function OneUpTUI() {
+  const [pty, setPty] = useState<TermPty | null>(null)
   const containers = useAsync(getDockerComposeContainers)
+  const state = useGlobalState()
+  const activeContainer = containers.data?.[state.selected]
   const [input, setInput] = useState('')
 
   useEffect(() => {
     containers.execute()
   }, [])
+
+  useEffect(() => {
+    if (activeContainer) {
+      pty!.spawn(`docker`, [
+        'exec',
+        '-it',
+        activeContainer.instance?.Id || '',
+        '/bin/sh',
+        '-c',
+        '[ -e /bin/bash ] && /bin/bash || /bin/sh',
+      ])
+    }
+  }, [activeContainer])
 
   const handleSubmit = async () => {}
 
@@ -35,56 +60,27 @@ export function OneUpTUI() {
       height="100%"
       onClick={(e) => e.target.rootNode.queueDirtyRect()}
     >
-      {/* {!apiKey ? (
-        <term:div
-          height={1}
-          backgroundColor="yellow"
-          // onClick={() => dispatch(anthropicSlice.actions.openKeyModal())}
-        >
-          <term:text color="black" paddingLeft={1} paddingRight={1}>
-            Click here to set your Anthropic API key and start chatting!
-          </term:text>
-        </term:div>
-      ) : (
-        <term:div height={1} backgroundColor="gray" flexDirection="row">
-          <term:text flex={1} color="white" paddingLeft={1}>
-            Connected as Anthropic User
-          </term:text>
-          <term:div
-            marginLeft={1}
-            marginRight={1}
-            paddingLeft={1}
-            paddingRight={1}
-            backgroundColor="darkGray"
-            // onClick={handleLogout}
-          >
-            Logout
-          </term:div>
-        </term:div>
-      )} */}
-
       <term:div flex={1} flexDirection="row" width="100%" position="relative">
         <term:div width={30} flexDirection="column">
           {/* Discussions list */}
           <term:div flex={1} border="modern" overflow="scroll" flexDirection="column">
-            {containers.data?.map((container) => (
-              <term:div
-                key={container.name}
-                paddingLeft={1}
-                paddingRight={1}
-                // backgroundColor={currentDiscussion.model === model ? 'blue' : undefined}
-                // onClick={() =>
-                //   dispatch(
-                //     anthropicSlice.actions.setDiscussionModel({
-                //       discussionId: currentDiscussionId,
-                //       model,
-                //     })
-                //   )
-                // }
-              >
-                <term:text>{container.name}</term:text>
-              </term:div>
-            ))}
+            {containers.data?.map((container, index) => {
+              const isActive = container === activeContainer
+              return (
+                <term:div
+                  key={container.name}
+                  paddingLeft={1}
+                  paddingRight={1}
+                  onClick={() => {
+                    globalState.selected = index
+                  }}
+                  backgroundColor={isActive ? 'blue' : undefined}
+                >
+                  <term:text>{container.name}</term:text>
+                  <term:text color="yellow">{container.instance?.Status || ''}</term:text>
+                </term:div>
+              )
+            })}
           </term:div>
 
           {/* <term:div flex={1} border="modern" flexDirection="column"> */}
@@ -113,54 +109,7 @@ export function OneUpTUI() {
             paddingLeft={1}
             paddingRight={1}
           >
-            {/* {currentDiscussion.messages.length === 0 && !isProcessing && (
-              <term:div flexDirection="column">
-                <term:text color="yellow" fontWeight="bold" marginBottom={1}>
-                  Welcome to the Terminosaurus Anthropic Chat!
-                </term:text>
-                <term:text marginBottom={1}>
-                  This is a terminal-based chat interface for{' '}
-                  {hyperlink(`Anthropic`, `https://anthropic.com/`)}. To use this application:
-                </term:text>
-                <term:text marginBottom={1}>
-                  1. Click the yellow banner to set your API key
-                </term:text>
-                <term:text marginBottom={1}>
-                  2. Type your message in the input box below and press Enter
-                </term:text>
-                <term:text marginBottom={1}>3. Use /new to start a new conversation</term:text>
-                <term:text color="gray">
-                  Note: The Anthropic API key is only used locally to make API calls. It will never
-                  be transmitted to any other server.
-                </term:text>
-              </term:div>
-            )}
-
-            {currentDiscussion.messages.map((message, index) => (
-              <term:div key={`${index}`} marginBottom={1}>
-                <term:text color={message.role === 'user' ? 'green' : 'blue'} fontWeight="bold">
-                  {message.role === 'user' ? 'You' : 'Anthropic'}:
-                </term:text>
-                <term:text whiteSpace="preLine">{message.content}</term:text>
-              </term:div>
-            ))}
-
-            {error && (
-              <term:div marginBottom={1}>
-                <term:text color="red" fontWeight="bold">
-                  {error}
-                </term:text>
-              </term:div>
-            )}
-
-            {isProcessing && (
-              <term:div>
-                <term:text fontStyle={`italic`} color="yellow">
-                  Anthropic is thinking
-                  <ProgressDots />
-                </term:text>
-              </term:div>
-            )} */}
+            <term:pty ref={setPty} flexGrow={1} />
           </term:div>
 
           <term:form border="modern" paddingLeft={1} paddingRight={1} onSubmit={handleSubmit}>
