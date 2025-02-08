@@ -5,7 +5,7 @@
  *   bun run link-workspaces.ts <workspaceDir1> <workspaceDir2> ...
  */
 
-import { readdir, readFile, stat, rm, symlink } from 'node:fs/promises'
+import { readdir, readFile, stat, rm, symlink, rename, mkdir } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { join, relative, resolve } from 'node:path'
 
@@ -63,22 +63,46 @@ async function findLocalPackages(rootDir: string): Promise<Record<string, string
 }
 
 async function linkPackages(localPackages: Record<string, string>) {
+  const backupDir = join(process.cwd(), 'node_modules', '.cache', 'lllink', 'moved')
+  await mkdir(backupDir, { recursive: true })
   for (const pkgName of Object.keys(localPackages)) {
     const nmPath = join(process.cwd(), 'node_modules', ...pkgName.split('/'))
     try {
       const existingStat = await stat(nmPath)
-      if (existingStat) {
-        await rm(nmPath, { recursive: true, force: true })
-        const localPath = localPackages[pkgName]
-        console.info(`${relative(process.cwd(), nmPath)} -> ${localPath.replace(homedir(), '~')}`)
-        await symlink(localPath, nmPath, 'dir')
+      if (existingStat && (existingStat.isDirectory() || existingStat.isSymbolicLink())) {
+        await rename(nmPath, join(backupDir, pkgName.replace('/', '__')))
       }
+      const localPath = localPackages[pkgName]
+      console.info(`${relative(process.cwd(), nmPath)} -> ${localPath.replace(homedir(), '~')}`)
+      await symlink(localPath, nmPath, 'dir')
     } catch {}
+  }
+}
+
+async function undoLinks() {
+  const backupDir = join(process.cwd(), 'node_modules', '.cache', 'lllink', 'moved')
+  let movedItems: string[]
+  try {
+    movedItems = await readdir(backupDir)
+  } catch {
+    console.info('Nothing to undo.')
+    return
+  }
+  for (const item of movedItems) {
+    const originalName = item.replace('__', '/')
+    const nmPath = join(process.cwd(), 'node_modules', ...originalName.split('/'))
+    await rm(nmPath, { recursive: true, force: true }).catch(() => {})
+    await rename(join(backupDir, item), nmPath).catch(() => {})
+    console.info(`Restored: ${originalName}`)
   }
 }
 
 async function main() {
   const args = process.argv.slice(2)
+  if (args.includes('--unlink')) {
+    await undoLinks()
+    process.exit(0)
+  }
   if (args.length === 0) {
     console.info('No workspace directories provided.')
     process.exit(0)
