@@ -9,7 +9,7 @@ import { TamaguiRootProvider } from '../src/tamagui/TamaguiRootProvider'
  * The root _layout.tsx filters <html /> and <body /> out on native
  */
 
-export function Layout() {
+export default function Layout() {
   return (
     <html lang="en-US">
       <head>

@@ -4,7 +4,6 @@
  */
 
 import { resolvePath } from '@vxrn/utils'
-import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { extname, join, sep } from 'node:path'
@@ -16,6 +15,7 @@ import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, GetTransformProps, Options } from './types'
+import { createHash } from 'node:crypto'
 
 export * from './configure'
 export * from './transformBabel'

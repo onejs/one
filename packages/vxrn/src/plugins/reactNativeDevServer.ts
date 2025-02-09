@@ -5,11 +5,7 @@ import {
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
 import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
-import {
-  clearCachedBundle,
-  getReactNativeBundle,
-  lastRequestedBundlePlatform,
-} from '../utils/getReactNativeBundle'
+import { clearCachedBundle, getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { URL } from 'node:url'
 import { existsSync } from 'node:fs'
@@ -121,10 +117,7 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
       })
 
       hmrWSS.on('connection', (socket) => {
-        const platform = lastRequestedBundlePlatform
-        if (!platform) return
-
-        addConnectedNativeClient(platform)
+        addConnectedNativeClient()
 
         socket.on('message', (message) => {
           if (message.toString().includes('ping')) {
@@ -133,7 +126,7 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
         })
 
         socket.on('close', () => {
-          removeConnectedNativeClient(platform)
+          removeConnectedNativeClient()
         })
 
         socket.on('error', (error) => {

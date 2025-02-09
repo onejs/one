@@ -16,7 +16,7 @@ export function reactNativeHMRPlugin({
   root,
   assetExts,
   mode,
-}: VXRNOptionsFilled & { assetExts: string[] }): Plugin {
+}: VXRNOptionsFilled & { assetExts: string[] }) {
   let idResolver: ReturnType<typeof createIdResolver>
 
   const assetExtsRegExp = new RegExp(`\\.(${assetExts.join('|')})$`)
@@ -27,14 +27,8 @@ export function reactNativeHMRPlugin({
 
     // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
-    async hotUpdate({ read, modules, file, server }) {
-      if (!connectedNativeClients.get(this.environment.name)) {
-        return
-      }
-
-      console.log('no modules?', modules)
-
-      const environment = server.environments[this.environment.name]
+    async handleHotUpdate({ read, modules, file, server }) {
+      const environment = server.environments.ios // TODO: android? How can we get the current environment here?
 
       if (!idResolver) {
         const rnConfig = getReactNativeResolvedConfig()
@@ -54,6 +48,9 @@ export function reactNativeHMRPlugin({
 
       try {
         if (!isWithin(root, file)) {
+          return
+        }
+        if (!connectedNativeClients) {
           return
         }
 

@@ -178,15 +178,16 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       console.groupEnd()
     }
 
-    if (value.contextKey === './_layout.tsx') {
-      // this is breaking root layout hmr
+    if (props.segment === '') {
       // @ts-expect-error
       const out = Component(props, ref)
+
       const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
       const { children: headChildren, ...headProps } = head?.props || {}
       const serverContext = useServerContext()
 
-      let finalChildren = <SafeAreaProviderCompat>{children}</SafeAreaProviderCompat>
+      // let finalChildren = <Suspense fallback={null}>{children}</Suspense>
+      let finalChildren = children
 
       if (process.env.TAMAGUI_TARGET === 'native') {
         // on native we just ignore all html/body/head
@@ -209,7 +210,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
             {headChildren}
           </head>
           <body key="body" suppressHydrationWarning {...bodyProps}>
-            {finalChildren}
+            <SafeAreaProviderCompat>{finalChildren}</SafeAreaProviderCompat>
           </body>
         </>
       )

@@ -43,7 +43,6 @@
   },
   "devDependencies": {
     "@tamagui/build": "^1.124.1",
-    "@types/react-refresh": "^0",
     "depcheck": "^1.4.7",
     "react-native": "^0.76.5",
     "rollup": "^4.29.1"

@@ -167,8 +167,6 @@ const debounceReload = (time: number) => {
 const pageReload = debounceReload(50)
 
 async function handleMessage(payload: HMRPayload) {
-  console.log('MESSAGE', JSON.stringify(payload, null, 2))
-
   switch (payload.type) {
     case 'connected':
       console.info(`[vite] connected.`)
