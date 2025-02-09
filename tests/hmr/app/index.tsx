@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, TextInput } from 'react-native'
 import { TestComponent } from 'components/TestComponent'
 import { TestComponentContainingRelativeImport } from 'components/TestComponentContainingRelativeImport'
+import { TestComponentUsingHookThatHasNativeVersion } from 'components/TestComponentUsingHookThatHasNativeVersion'
 // TODO
 // import { TestComponentWithFlatList } from 'components/TestComponentWithFlatList'
 
@@ -14,6 +15,7 @@ export default function Page() {
       <Text testID="route-text-content">{text}</Text>
       <TestComponent />
       <TestComponentContainingRelativeImport />
+      <TestComponentUsingHookThatHasNativeVersion />
       {/* <TestComponentWithFlatList /> */}
     </View>
   )
