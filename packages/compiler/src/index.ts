@@ -22,15 +22,15 @@ export * from './transformBabel'
 export * from './transformSWC'
 export type { GetTransform } from './types'
 
-const getHash = (environment: string, id: string, code: string) =>
-  createHash('sha1').update(`${environment}${id}${code}`).digest('base64')
+const getCacheId = (environment: string, id: string) => `${environment}${id}`
+const getCacheHash = (code: string) => createHash('sha1').update(code).digest('base64')
 
 export const clearCompilerCache = () => {
   memoryCache = {}
   cacheSize = 0
 }
 
-let memoryCache = {}
+let memoryCache: Record<string, { hash: string; out: { code: string; map?: any } }> = {}
 let cacheSize = 0
 
 export async function createVXRNCompilerPlugin(
@@ -188,11 +188,13 @@ ${rootJS.code}
           console.info(codeIn)
         }
 
-        const cacheKey = getHash(environment, _id, code)
-        const cached = memoryCache[cacheKey]
-        if (cached) {
-          debug?.(`Using cache ${_id} ${cacheKey}`)
-          return cached
+        const cacheId = getCacheId(environment, _id)
+        const cacheHash = getCacheHash(code)
+        const cached = memoryCache[cacheId]
+
+        if (cached?.hash === cacheHash) {
+          debug?.(`Using cache ${_id} ${cacheId}`)
+          return cached.out
         }
 
         const extension = extname(_id)
@@ -277,7 +279,7 @@ ${rootJS.code}
           if (cacheSize > 52_428_800) {
             clearCompilerCache()
           }
-          memoryCache[cacheKey] = out
+          memoryCache[cacheId] = { out, hash: cacheHash }
         }
 
         return out
