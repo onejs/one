@@ -4,11 +4,11 @@ import FSExtra from 'fs-extra'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
-const root = dirname(__dirname)
+export const root = dirname(__dirname)
 
 const editedFilesJsonPath = path.join(root, '_edited_files.json')
 
-function editFile(filePath: string, oldText: string, newText: string) {
+export function editFile(filePath: string, oldText: string, newText: string) {
   const origFilePath = filePath + '.orig'
 
   if (FSExtra.existsSync(origFilePath)) {

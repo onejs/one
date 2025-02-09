@@ -2,12 +2,15 @@
 
 import { afterEach, beforeAll, expect, test, inject } from 'vitest'
 import { remote } from 'webdriverio'
+import path from 'node:path'
 import {
   editComponentFile,
+  editFile,
   editLayoutFile,
   editRouteFile,
   editTestComponentContainingRelativeImportFile,
   revertEditedFiles,
+  root,
 } from './utils'
 import { getWebDriverConfig } from '../vitest-environment-native'
 
@@ -81,6 +84,25 @@ test('component containing relative import HMR', { timeout: 5 * 60 * 1000, retry
     'Some edited text in TestComponentContainingRelativeImport'
   )
 })
+
+test(
+  'component using hook that have native version HMR',
+  { timeout: 5 * 60 * 1000, retry: 3 },
+  async () => {
+    await testHMR(
+      'TestComponentUsingHookThatHasNativeVersion-text-content',
+      'Some text in TestComponentUsingHookThatHasNativeVersion',
+      () => {
+        editFile(
+          path.join(root, 'components', 'TestComponentUsingHookThatHasNativeVersion.tsx'),
+          "const text = 'Some text in TestComponentUsingHookThatHasNativeVersion'",
+          "const text = 'Some edited text in TestComponentUsingHookThatHasNativeVersion'"
+        )
+      },
+      'Some edited text in TestComponentUsingHookThatHasNativeVersion'
+    )
+  }
+)
 
 // TODO: make this pass
 test.skip('layout HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
