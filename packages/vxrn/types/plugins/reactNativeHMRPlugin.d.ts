@@ -1,6 +1,8 @@
-import { type Plugin } from 'vite';
 import type { VXRNOptionsFilled } from '../utils/getOptionsFilled';
 export declare function reactNativeHMRPlugin({ root, assetExts, mode, }: VXRNOptionsFilled & {
     assetExts: string[];
-}): Plugin;
+}): {
+    name: string;
+    handleHotUpdate(this: void, { read, modules, file, server }: import("vite").HmrContext): Promise<void>;
+};
 //# sourceMappingURL=reactNativeHMRPlugin.d.ts.map

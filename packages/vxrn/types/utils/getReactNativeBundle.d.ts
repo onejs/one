@@ -1,7 +1,6 @@
 import type { VXRNOptionsFilled } from './getOptionsFilled';
 export declare let entryRoot: string;
 export declare function clearCachedBundle(): void;
-export declare let lastRequestedBundlePlatform: 'ios' | 'android' | null;
 export declare function getReactNativeBundle(options: VXRNOptionsFilled, platform: 'ios' | 'android', internal?: {
     mode?: 'dev' | 'prod';
     assetsDest?: string;
