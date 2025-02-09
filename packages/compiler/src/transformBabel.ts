@@ -2,7 +2,7 @@ import babel from '@babel/core'
 import { resolvePath } from '@vxrn/utils'
 import { relative } from 'node:path'
 import { configuration } from './configure'
-import { asyncGeneratorRegex, debug } from './constants'
+import { asyncGeneratorRegex, debug, USE_OXC } from './constants'
 import type { GetTransformProps, GetTransformResponse } from './types'
 
 type Props = GetTransformProps & {
@@ -50,6 +50,11 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
   if (enableNativewind || shouldBabelReanimated(props)) {
     debug?.(`Using babel reanimated on file`)
     plugins.push('react-native-reanimated/plugin')
+  }
+
+  if (USE_OXC && /class [a-z]+ \{/i.test(props.code)) {
+    plugins.push(`@babel/plugin-transform-class-properties`)
+    plugins.push(`@babel/plugin-transform-classes`)
   }
 
   if (shouldBabelReactCompiler(props)) {

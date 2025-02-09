@@ -6,4 +6,5 @@ export declare const runtimePublicPath = "/@react-refresh";
 export declare const asyncGeneratorRegex: RegExp;
 export declare const parsers: Record<string, ParserConfig>;
 export declare const validParsers: Set<string>;
+export declare const USE_OXC: boolean;
 //# sourceMappingURL=constants.d.ts.map

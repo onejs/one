@@ -8,7 +8,7 @@ import {
 import { extname, sep } from 'node:path'
 import { merge } from 'ts-deepmerge'
 import { configuration } from './configure'
-import { asyncGeneratorRegex, debug, parsers, runtimePublicPath } from './constants'
+import { asyncGeneratorRegex, debug, parsers, runtimePublicPath, USE_OXC } from './constants'
 import type { Options } from './types'
 
 const ignoreId = new RegExp(`node_modules\\${sep}(\\.vite|vite)\\${sep}`)
@@ -45,108 +45,118 @@ export async function transformSWC(
     !options.forceJSX &&
     !id.includes('node_modules')
 
-  const reactConfig = {
-    refresh,
-    development: !options.forceJSX && !options.production,
-    runtime: 'automatic',
-    importSource: 'react',
-    ...(configuration.enableNativewind && !id.includes('node_modules')
-      ? {
-          importSource: 'nativewind',
-          // pragma: 'createInteropElement',
-          // pragmaFrag: '_InteropFragment',
-          // swc doesnt actually change the import right
-          // runtime: 'classic',
-        }
-      : {}),
-  } satisfies TransformConfig['react']
+  let result: Output
 
-  const transformOptions = ((): SWCOptions => {
-    if (options.environment === 'client' || options.environment === 'ssr') {
+  if (USE_OXC) {
+    const oxc = await import('oxc-transform')
+    result = oxc.transform(id, code, {
+      target: 'es2015',
+    })
+  } else {
+    const reactConfig = {
+      refresh,
+      development: !options.forceJSX && !options.production,
+      runtime: 'automatic',
+      importSource: 'react',
+      ...(configuration.enableNativewind && !id.includes('node_modules')
+        ? {
+            importSource: 'nativewind',
+            // pragma: 'createInteropElement',
+            // pragmaFrag: '_InteropFragment',
+            // swc doesnt actually change the import right
+            // runtime: 'classic',
+          }
+        : {}),
+    } satisfies TransformConfig['react']
+
+    const transformOptions = ((): SWCOptions => {
+      if (options.environment === 'client' || options.environment === 'ssr') {
+        return {
+          sourceMaps: shouldSourceMap(),
+          jsc: {
+            target: 'es2020',
+            parser,
+            transform: {
+              useDefineForClassFields: true,
+              react: reactConfig,
+            },
+          },
+        }
+      }
+
+      const shouldEs5Transform =
+        options.es5 ||
+        (!process.env.VXRN_USE_BABEL_FOR_GENERATORS && asyncGeneratorRegex.test(code))
+
+      const opts: SWCOptions = shouldEs5Transform
+        ? {
+            jsc: {
+              parser,
+              target: 'es5',
+              transform: {
+                useDefineForClassFields: true,
+                react: reactConfig,
+              },
+            },
+          }
+        : {
+            ...(!options.forceJSX && { env: SWC_ENV }),
+            jsc: {
+              ...(options.forceJSX && { target: 'esnext' }),
+              parser,
+              transform: {
+                useDefineForClassFields: true,
+                react: reactConfig,
+              },
+            },
+          }
+
       return {
         sourceMaps: shouldSourceMap(),
-        jsc: {
-          target: 'es2020',
-          parser,
-          transform: {
-            useDefineForClassFields: true,
-            react: reactConfig,
-          },
-        },
-      }
-    }
-
-    const shouldEs5Transform =
-      options.es5 || (!process.env.VXRN_USE_BABEL_FOR_GENERATORS && asyncGeneratorRegex.test(code))
-
-    const opts: SWCOptions = shouldEs5Transform
-      ? {
-          jsc: {
-            parser,
-            target: 'es5',
-            transform: {
-              useDefineForClassFields: true,
-              react: reactConfig,
-            },
-          },
-        }
-      : {
-          ...(!options.forceJSX && { env: SWC_ENV }),
-          jsc: {
-            ...(options.forceJSX && { target: 'esnext' }),
-            parser,
-            transform: {
-              useDefineForClassFields: true,
-              react: reactConfig,
-            },
-          },
-        }
-
-    return {
-      sourceMaps: shouldSourceMap(),
-      module: {
-        importInterop: 'none',
-        type: 'nodenext',
-      },
-      ...(options.mode === 'serve-cjs' && {
         module: {
           importInterop: 'none',
-          type: 'commonjs',
-          strict: true,
+          type: 'nodenext',
         },
-      }),
-      ...opts,
-    }
-  })()
-
-  const finalOptions = merge(
-    {
-      filename: id,
-      swcrc: false,
-      configFile: false,
-      ...transformOptions,
-    },
-    swcOptions || {}
-  ) satisfies SWCOptions
-
-  const result: Output = await (async () => {
-    try {
-      debug?.(`transformSWC ${id} using options:\n${JSON.stringify(finalOptions, null, 2)}`)
-
-      return await transform(code, finalOptions)
-    } catch (e: any) {
-      const message: string = e.message
-      const fileStartIndex = message.indexOf('╭─[')
-      if (fileStartIndex !== -1) {
-        const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
-        if (match) {
-          e.line = match[1]
-          e.column = match[2]
-        }
+        ...(options.mode === 'serve-cjs' && {
+          module: {
+            importInterop: 'none',
+            type: 'commonjs',
+            strict: true,
+          },
+        }),
+        ...opts,
       }
-      throw e
-    }
-  })()
+    })()
+
+    const finalOptions = merge(
+      {
+        filename: id,
+        swcrc: false,
+        configFile: false,
+        ...transformOptions,
+      },
+      swcOptions || {}
+    ) satisfies SWCOptions
+
+    result = await (async () => {
+      try {
+        debug?.(`transformSWC ${id} using options:\n${JSON.stringify(finalOptions, null, 2)}`)
+
+        return await transform(code, finalOptions)
+      } catch (e: any) {
+        const message: string = e.message
+        const fileStartIndex = message.indexOf('╭─[')
+        if (fileStartIndex !== -1) {
+          const match = message.slice(fileStartIndex).match(/:(\d+):(\d+)]/)
+          if (match) {
+            e.line = match[1]
+            e.column = match[2]
+          }
+        }
+        throw e
+      }
+    })()
+  }
 
   if (configuration.enableNativeCSS) {
     if (result.code.includes(`createInteropElement(`)) {

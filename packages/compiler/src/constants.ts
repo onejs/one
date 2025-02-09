@@ -19,3 +19,5 @@ export const parsers: Record<string, ParserConfig> = {
 }
 
 export const validParsers = new Set([...Object.keys(parsers), '.css'])
+
+export const USE_OXC = process.env.USE_OXC === '1'

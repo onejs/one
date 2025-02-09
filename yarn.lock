@@ -6194,9 +6194,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@oxc-transform/binding-darwin-arm64@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@oxc-transform/binding-darwin-arm64@npm:0.48.2"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@oxc-transform/binding-darwin-x64@npm:0.47.1":
   version: 0.47.1
   resolution: "@oxc-transform/binding-darwin-x64@npm:0.47.1"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@oxc-transform/binding-darwin-x64@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@oxc-transform/binding-darwin-x64@npm:0.48.2"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -6208,9 +6222,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@oxc-transform/binding-linux-arm64-gnu@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@oxc-transform/binding-linux-arm64-gnu@npm:0.48.2"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
 "@oxc-transform/binding-linux-arm64-musl@npm:0.47.1":
   version: 0.47.1
   resolution: "@oxc-transform/binding-linux-arm64-musl@npm:0.47.1"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@oxc-transform/binding-linux-arm64-musl@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@oxc-transform/binding-linux-arm64-musl@npm:0.48.2"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
@@ -6222,9 +6250,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@oxc-transform/binding-linux-x64-gnu@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@oxc-transform/binding-linux-x64-gnu@npm:0.48.2"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
 "@oxc-transform/binding-linux-x64-musl@npm:0.47.1":
   version: 0.47.1
   resolution: "@oxc-transform/binding-linux-x64-musl@npm:0.47.1"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@oxc-transform/binding-linux-x64-musl@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@oxc-transform/binding-linux-x64-musl@npm:0.48.2"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
@@ -6236,9 +6278,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@oxc-transform/binding-win32-arm64-msvc@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@oxc-transform/binding-win32-arm64-msvc@npm:0.48.2"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@oxc-transform/binding-win32-x64-msvc@npm:0.47.1":
   version: 0.47.1
   resolution: "@oxc-transform/binding-win32-x64-msvc@npm:0.47.1"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@oxc-transform/binding-win32-x64-msvc@npm:0.48.2":
+  version: 0.48.2
+  resolution: "@oxc-transform/binding-win32-x64-msvc@npm:0.48.2"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -11380,6 +11436,8 @@ __metadata:
   resolution: "@vxrn/compiler@workspace:packages/compiler"
   dependencies:
     "@babel/core": "npm:^7.26.0"
+    "@babel/plugin-transform-class-properties": "npm:^7.25.9"
+    "@babel/plugin-transform-classes": "npm:^7.25.9"
     "@babel/plugin-transform-destructuring": "npm:^7.25.9"
     "@babel/plugin-transform-private-methods": "npm:^7.25.9"
     "@babel/plugin-transform-react-jsx": "npm:^7.25.9"
@@ -11390,6 +11448,7 @@ __metadata:
     "@vxrn/vite-native-client": "workspace:*"
     babel-plugin-react-compiler: "npm:^19.0.0-beta-201e55d-20241215"
     depcheck: "npm:^1.4.7"
+    oxc-transform: "npm:^0.48.2"
     react-native: "npm:^0.76.5"
     react-native-css-interop: "npm:^0.1.22"
     rollup: "npm:^4.29.1"
@@ -22447,6 +22506,39 @@ __metadata:
     "@oxc-transform/binding-win32-x64-msvc":
       optional: true
   checksum: 10/3845f9cfc5d80724c027c554bca88f66dd4916ab0c5667fbe1eeb00d7da41870f9a1ef86b6649df4e6f0a9ba76fe8158f968cbfeed896c5da9b3f0358af04485
+  languageName: node
+  linkType: hard
+
+"oxc-transform@npm:^0.48.2":
+  version: 0.48.2
+  resolution: "oxc-transform@npm:0.48.2"
+  dependencies:
+    "@oxc-transform/binding-darwin-arm64": "npm:0.48.2"
+    "@oxc-transform/binding-darwin-x64": "npm:0.48.2"
+    "@oxc-transform/binding-linux-arm64-gnu": "npm:0.48.2"
+    "@oxc-transform/binding-linux-arm64-musl": "npm:0.48.2"
+    "@oxc-transform/binding-linux-x64-gnu": "npm:0.48.2"
+    "@oxc-transform/binding-linux-x64-musl": "npm:0.48.2"
+    "@oxc-transform/binding-win32-arm64-msvc": "npm:0.48.2"
+    "@oxc-transform/binding-win32-x64-msvc": "npm:0.48.2"
+  dependenciesMeta:
+    "@oxc-transform/binding-darwin-arm64":
+      optional: true
+    "@oxc-transform/binding-darwin-x64":
+      optional: true
+    "@oxc-transform/binding-linux-arm64-gnu":
+      optional: true
+    "@oxc-transform/binding-linux-arm64-musl":
+      optional: true
+    "@oxc-transform/binding-linux-x64-gnu":
+      optional: true
+    "@oxc-transform/binding-linux-x64-musl":
+      optional: true
+    "@oxc-transform/binding-win32-arm64-msvc":
+      optional: true
+    "@oxc-transform/binding-win32-x64-msvc":
+      optional: true
+  checksum: 10/0ae4074c40a2141b4ca935cdd3bd0cd953f8e11a22985b9a4a5b0fcfeec1e21ef30449ea765cccb1aa301bd3683256e529457f48a5bc51c2cd01aacaccbaf344
   languageName: node
   linkType: hard
 
