@@ -27,15 +27,13 @@ test('hooks', async () => {
     await link0?.click({
       force: true,
     })
-    await new Promise((res) => setTimeout(res, 500))
-    expect(page.url()).toBe(`${serverUrl}/hooks`)
+    await page.waitForURL('**/hooks', { timeout: 5_000 })
 
     const link1 = await page.$('a[href="/hooks/contents/page-1"]')
     await link1?.click({
       force: true,
     })
-    await new Promise((res) => setTimeout(res, 500))
-    expect(page.url()).toBe(`${serverUrl}/hooks/contents/page-1`)
+    await page.waitForURL('**/hooks/contents/page-1', { timeout: 5_000 })
 
     expect(await page.textContent('#layout-usePathname')).toEqual(
       'Layout `usePathname()`: /hooks/contents/page-1'
@@ -48,8 +46,7 @@ test('hooks', async () => {
     await link2?.click({
       force: true,
     })
-    await new Promise((res) => setTimeout(res, 500))
-    expect(page.url()).toBe(`${serverUrl}/hooks/contents/page-2`)
+    await page.waitForURL('**//hooks/contents/page-2', { timeout: 5_000 })
 
     expect(await page.textContent('#layout-usePathname')).toEqual(
       'Layout `usePathname()`: /hooks/contents/page-2'
