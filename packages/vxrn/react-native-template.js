@@ -52,17 +52,22 @@ const __runningModules = new Map()
 const getRunningModulesPrint = () => [...__runningModules.keys()].join(' > ')
 
 function __getRequire(absPath, parent) {
-  absPath =
-    ___vxrnAbsoluteToRelative___[absPath] ||
+  absPath = ___vxrnAbsoluteToRelative___[absPath] || absPath
+
     // START WORKAROUND
     // Since during HMR, `getVitePath` is used and it'll always return with `.js` extension while turning relative paths to absolute paths (see: https://github.com/onejs/one/blob/v1.1.432/packages/vxrn/src/utils/getVitePath.ts#L33),
     // we need to check for other extensions as well.
-    (absPath.endsWith('.js') &&
-      (___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.jsx')] ||
-        ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.ts')] ||
-        ___vxrnAbsoluteToRelative___[absPath.replace(/\.js$/, '.tsx')])) ||
+  if (absPath.endsWith('.js')) {
+    for (const ext of ['.jsx', '.ts', '.tsx']) {
+      for (const platformExt of ['', `.${__VXRN_PLATFORM__.toLowerCase()}`, `.native`]) {
+        const possibleAbsPath = absPath.replace(/\.js$/, `${platformExt}${ext}`)
+        if (___vxrnAbsoluteToRelative___[possibleAbsPath]) {
+          absPath = ___vxrnAbsoluteToRelative___[possibleAbsPath]
+        }
+      }
+    }
+  }
     // END WORKAROUND
-    absPath
 
   if (!__cachedModules[absPath]) {
     const runModule = ___modules___[absPath]
