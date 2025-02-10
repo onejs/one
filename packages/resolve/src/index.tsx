@@ -14,7 +14,7 @@ const resolverV2 = (path: string, from = process.cwd()) => {
   return importPath
 }
 
-export const resolvePath = (path: string, from?: string): string => {
+export const resolvePath = (path: string, from = process.cwd()): string => {
   // We might be able to use resolverV2 directly, but here we'll still try to use the original implementation first in case there're any issues with the new one.
   try {
     return resolver(path, from)
