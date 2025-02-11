@@ -209,14 +209,14 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
               }
             }
 
-            let outBundle = await runOnWorker('bundle-react-native', {
-              options,
-              platform,
-            })
-
-            // await getReactNativeBundle(options, platform, {
-            //   mode: process.env.RN_SERVE_PROD_BUNDLE ? 'prod' : 'dev',
-            // })
+            let outBundle = process.env.VXRN_WORKER_BUNDLE
+              ? await runOnWorker('bundle-react-native', {
+                  options,
+                  platform,
+                })
+              : await getReactNativeBundle(options, platform, {
+                  mode: process.env.RN_SERVE_PROD_BUNDLE ? 'prod' : 'dev',
+                })
 
             if (server.config.webSocketToken) {
               outBundle = `globalThis.__VITE_WS_TOKEN__ = "${server.config.webSocketToken}";\n${outBundle}`
