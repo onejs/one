@@ -1,4 +1,4 @@
-import glob from 'glob'
+import glob from 'fast-glob'
 import matter from 'gray-matter'
 import fs from 'node:fs'
 import path from 'node:path'
