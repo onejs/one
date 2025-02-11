@@ -2,6 +2,7 @@ import path from 'node:path'
 
 import type { HmrOptions, Plugin, ResolvedConfig, UserConfig } from 'vite'
 import { isNativeEnvironment } from '../utils/environmentUtils'
+import { getResolvedConfig, setResolvedConfig } from './getResolvedConfigSubset'
 
 let config: ResolvedConfig | null
 
@@ -12,7 +13,12 @@ export function getServerConfigPlugin() {
     name: 'get-server-config',
 
     configResolved(conf) {
-      config = conf
+      setResolvedConfig({
+        base: conf.base,
+        mode: conf.mode,
+        server: conf.server,
+        define: conf.define,
+      })
     },
   } satisfies Plugin
 }
@@ -28,9 +34,7 @@ export function nativeClientInjectPlugin(): Plugin {
     name: 'vite:native-client-inject',
 
     async buildStart() {
-      if (!config) {
-        throw new Error(`Server config not resolved yet`)
-      }
+      const config = getResolvedConfig()
 
       const resolvedServerHostname = config.server.host || '127.0.0.1'
       const resolvedServerPort = config.server!.port! || 5173
