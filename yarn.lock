@@ -28408,6 +28408,7 @@ __metadata:
     npm-run-all: "npm:^4.1.5"
     p-map: "npm:^7.0.2"
     patch-package: "npm:^8.0.0"
+    playwright: "npm:^1.49.1"
     sst: "npm:^3.6.18"
     tsx: "npm:^4.19.0"
     turbo: "npm:^2.1.0"
