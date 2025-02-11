@@ -212,7 +212,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
               if (
                 setting === 'flat' &&
-                route.file.split('/').filter((x) => !x.startsWith('(')).length > 2
+                route.file.split('/').filter((x) => !x.startsWith('(')).length > 3
               ) {
                 return []
               }
