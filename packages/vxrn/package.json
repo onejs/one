@@ -25,6 +25,10 @@
       "types": "./types/exports/serve.d.ts",
       "default": "./dist/exports/serve.mjs"
     },
+    "./worker": {
+      "types": "./types/worker.d.ts",
+      "default": "./dist/worker.mjs"
+    },
     "./loadEnv": {
       "types": "./types/exports/loadEnv.d.ts",
       "default": "./dist/exports/loadEnv.mjs"

@@ -11,6 +11,7 @@ import { URL } from 'node:url'
 import { existsSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
+import { runOnWorker } from '../worker'
 
 type ClientMessage = {
   type: 'client-log'
@@ -208,9 +209,14 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
               }
             }
 
-            let outBundle = await getReactNativeBundle(options, platform, {
-              mode: process.env.RN_SERVE_PROD_BUNDLE ? 'prod' : 'dev',
+            let outBundle = await runOnWorker('bundle-react-native', {
+              options,
+              platform,
             })
+
+            // await getReactNativeBundle(options, platform, {
+            //   mode: process.env.RN_SERVE_PROD_BUNDLE ? 'prod' : 'dev',
+            // })
 
             if (server.config.webSocketToken) {
               outBundle = `globalThis.__VITE_WS_TOKEN__ = "${server.config.webSocketToken}";\n${outBundle}`

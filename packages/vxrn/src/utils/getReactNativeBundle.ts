@@ -18,10 +18,12 @@ export function clearCachedBundle() {
   cachedReactNativeBundles = {}
 }
 
+type InternalProps = { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean }
+
 export async function getReactNativeBundle(
   options: VXRNOptionsFilled,
   platform: 'ios' | 'android',
-  internal: { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean } = {
+  internal: InternalProps = {
     mode: 'dev',
     useCache: true,
   }
