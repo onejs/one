@@ -20,12 +20,15 @@ type WorkerCommands = {
 
 const workerPath = resolvePath('vxrn/worker')
 
+let worker: Worker
+
 export function runOnWorker<Command extends WorkerCommands>(
   name: Command['name'],
   arg: Command['arg']
 ): Promise<Command['returns']> {
   console.info(`RUN`, name)
-  const worker = new Worker(workerPath, {
+
+  worker ||= new Worker(workerPath, {
     stdout: true,
     stderr: true,
   })
@@ -39,12 +42,10 @@ export function runOnWorker<Command extends WorkerCommands>(
       } else if (message.error) {
         reject(new Error(message.error))
       }
-      worker.terminate()
     })
 
     worker.on('error', (error) => {
       reject(error)
-      worker.terminate()
     })
 
     worker.on('exit', (code) => {
@@ -54,6 +55,10 @@ export function runOnWorker<Command extends WorkerCommands>(
     })
   })
 }
+
+process.on('exit', () => {
+  worker?.terminate()
+})
 
 if (!isMainThread && parentPort) {
   parentPort.on('message', async (message: WorkerCommands & { _resolvedConfig: ConfigSubset }) => {
