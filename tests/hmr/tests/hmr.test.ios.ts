@@ -104,6 +104,29 @@ test(
   }
 )
 
+test('component importing barrel file HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
+  await testHMR(
+    'TestComponentImportingBarrelFile-text-content',
+    'Some text in TestComponentImportingBarrelFile',
+    () => {
+      editFile(
+        path.join(root, 'components', 'TestComponentImportingBarrelFile.tsx'),
+        `
+        import { Rocket } from '@tamagui/lucide-icons'
+        const IconComponent = Rocket
+        const text = 'Some text in TestComponentImportingBarrelFile'
+              `.trim(),
+        `
+        import { Heart } from '@tamagui/lucide-icons' // import another icon, this is part of the test
+        const IconComponent = Heart
+        const text = 'Some edited text in TestComponentImportingBarrelFile'
+              `.trim()
+      )
+    },
+    'Some edited text in TestComponentImportingBarrelFile'
+  )
+})
+
 // TODO: make this pass
 test.skip('layout HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
   await testHMR(

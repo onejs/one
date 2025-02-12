@@ -5,21 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "one dev",
-    "test-macos": "TEST_ONLY=dev vitest",
-    "test-ios": "TEST_ONLY=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts"
-  },
-  "devDependencies": {
-    "playwright": "^1.49.1",
-    "vitest": "^3.0.5",
-    "webdriverio": "^9.5.4"
+    "test-ios": "TEST_ONLY=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts",
+    "test-macos": "TEST_ONLY=dev vitest"
   },
   "dependencies": {
+    "@tamagui/lucide-icons": "^1.124.17",
     "expo": "~52.0.17",
     "expo-modules-core": "2.1.2",
     "one": "workspace:*",
     "react": "^19.0.0",
     "react-native": "^0.76.5",
     "react-native-screens": "4.4.0",
+    "react-native-svg": "^15.11.1",
     "vite": "^6.1.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.1",
+    "vitest": "^3.0.5",
+    "webdriverio": "^9.5.4"
   }
 }

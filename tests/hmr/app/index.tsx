@@ -3,6 +3,8 @@ import { View, Text, TextInput } from 'react-native'
 import { TestComponent } from 'components/TestComponent'
 import { TestComponentContainingRelativeImport } from 'components/TestComponentContainingRelativeImport'
 import { TestComponentUsingHookThatHasNativeVersion } from 'components/TestComponentUsingHookThatHasNativeVersion'
+import { TestComponentImportingBarrelFile } from 'components/TestComponentImportingBarrelFile'
+
 // TODO
 // import { TestComponentWithFlatList } from 'components/TestComponentWithFlatList'
 
@@ -16,6 +18,7 @@ export default function Page() {
       <TestComponent />
       <TestComponentContainingRelativeImport />
       <TestComponentUsingHookThatHasNativeVersion />
+      <TestComponentImportingBarrelFile />
       {/* <TestComponentWithFlatList /> */}
     </View>
   )
