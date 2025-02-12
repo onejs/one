@@ -138,10 +138,6 @@ function subscribeToNavigationChanges() {
     nextState = undefined
 
     if (state && state !== rootState) {
-      if (process.env.NODE_ENV === 'development') {
-        console.debug(` [one] router state`, state)
-      }
-
       updateState(state, undefined)
       shouldUpdateSubscribers = true
     }
