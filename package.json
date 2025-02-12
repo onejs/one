@@ -32,7 +32,7 @@
     "fix:references": "update-ts-references",
     "lint": "ultra -r --no-pretty lint",
     "lint:fix": "ultra -r --no-pretty lint:fix",
-    "link-repos": "lllink ~/tamagui",
+    "llink": "lllink ~/tamagui",
     "npxone": "node ./packages/create-vxrn/run.js",
     "one": "yarn workspace example-basic",
     "profile": "tsx ./scripts/yarn-profile.ts",
