@@ -255,34 +255,36 @@ ${rootJS.code}
           // we could make the babel plugin support those if we want to avoid
         }
 
-        const swcOptions = {
-          environment: environment,
-          mode: optionsIn?.mode || 'serve',
-          production,
-          ...optionsIn,
-        } satisfies Options
+        if (environment !== 'client' && environment !== 'ssr') {
+          const swcOptions = {
+            environment: environment,
+            mode: optionsIn?.mode || 'serve',
+            production,
+            ...optionsIn,
+          } satisfies Options
 
-        const out = await transformSWC(id, code, {
-          ...swcOptions,
-          es5: true,
-          noHMR: isPreProcess,
-        })
+          const out = await transformSWC(id, code, {
+            ...swcOptions,
+            es5: true,
+            noHMR: isPreProcess,
+          })
 
-        if (shouldDebug) {
-          console.info(`swcOptions`, swcOptions)
-          console.info(`final output:`, out?.code)
-        }
-
-        if (out) {
-          cacheSize += out?.code.length
-          // ~100Mb cache for recent compiler files
-          if (cacheSize > 52_428_800) {
-            clearCompilerCache()
+          if (shouldDebug) {
+            console.info(`swcOptions`, swcOptions)
+            console.info(`final output:`, out?.code)
           }
-          memoryCache[cacheId] = { out, hash: cacheHash }
-        }
 
-        return out
+          if (out) {
+            cacheSize += out?.code.length
+            // ~100Mb cache for recent compiler files
+            if (cacheSize > 52_428_800) {
+              clearCompilerCache()
+            }
+            memoryCache[cacheId] = { out, hash: cacheHash }
+          }
+
+          return out
+        }
       },
     },
   ]
