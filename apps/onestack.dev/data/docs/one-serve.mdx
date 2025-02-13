@@ -16,3 +16,39 @@ It takes the following arguments:
 One comes with a serve command that is powered by [Hono](https://hono.dev).
 
 If you are only using SPA and SSG routes and aren't using loaders, you don't need to use `one serve` if you don't want to - you can statically serve the results of `dist/client` using any server you'd like.
+
+You must run a `one build` before serve.
+
+You can also run your production server programatically:
+
+```tsx
+import { serve } from 'one/serve'
+
+await serve()
+```
+
+Which takes options:
+
+```tsx
+type ServeOptions = {
+  // you can pass in your own Hono server
+  app?: Hono
+  
+  host?: string
+  port?: number
+  compress?: boolean
+
+  /**
+    * Whether to run the Vite logic to load .env files before running the server
+    * @default false
+    */
+  loadEnv?: boolean
+
+  /**
+    * Determines the Hono platform adapter
+    *   node: https://github.com/honojs/node-server
+    *   vercel: https://hono.dev/docs/getting-started/vercel
+    */
+  platform?: VXRNServePlatform
+}
+```
