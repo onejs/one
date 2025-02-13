@@ -192,6 +192,7 @@ export async function getReactNativeConfig(
     appType: 'custom',
     root,
     clearScreen: false,
+    esbuild: false,
 
     // the huge logs actually add quite a bit of time to build
     customLogger,
