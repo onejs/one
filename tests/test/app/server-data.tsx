@@ -10,7 +10,5 @@ export default function () {
     serverData = getServerData(`test`)
   }
 
-  console.info('env is', process.env.VITE_ENVIRONMENT, 'got', serverData)
-
   return <div id="server-data">{JSON.stringify(serverData)}</div>
 }
