@@ -246,7 +246,6 @@ ${rootJS.code}
           })
 
           if (babelOptions) {
-            // TODO we probably need to forward sourceMap here?
             const babelOut = await transformBabel(id, code, babelOptions)
             if (babelOut?.code) {
               debug?.(`[${id}] transformed with babel options: ${JSON.stringify(babelOptions)}`)
@@ -255,12 +254,11 @@ ${rootJS.code}
               out = { code: babelOut.code, map: babelOut.map }
             }
           }
-
-          // we always go to swc for now to ensure class transforms + react refesh
-          // we could make the babel plugin support those if we want to avoid
         }
 
         if (environment !== 'client' && environment !== 'ssr') {
+          // on native we always go to swc for now to ensure class transforms + react refesh
+          // we could make the babel plugin support those if we want to avoid
           const swcOptions = {
             environment: environment,
             mode: optionsIn?.mode || 'serve',
@@ -277,7 +275,7 @@ ${rootJS.code}
           if (swcOut) {
             out = {
               code: swcOut?.code,
-              map: swcOut?.code,
+              map: swcOut?.map,
             }
           }
 
