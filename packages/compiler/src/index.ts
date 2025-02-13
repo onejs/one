@@ -256,7 +256,8 @@ ${rootJS.code}
           }
         }
 
-        if (environment !== 'client' && environment !== 'ssr') {
+        // dont need refresh for ssr, but do for client
+        if (environment !== 'ssr') {
           // on native we always go to swc for now to ensure class transforms + react refesh
           // we could make the babel plugin support those if we want to avoid
           const swcOptions = {
