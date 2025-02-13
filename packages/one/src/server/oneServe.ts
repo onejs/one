@@ -11,12 +11,7 @@ import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 
-export async function oneServe(
-  oneOptions: One.PluginOptions,
-  buildInfo: One.BuildInfo,
-  app: Hono,
-  serveStatic = true
-) {
+export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.BuildInfo, app: Hono) {
   const { resolveAPIRoute, resolveLoaderRoute, resolvePageRoute } = await import(
     '../createHandleRequest'
   )
