@@ -133,6 +133,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
               warning.message = warning.message.replace(/(\.+\/){0,}node_modules/, 'node_modules')
             }
 
+            if (warning.code === 'INVALID_ANNOTATION') {
+              return
+            }
+
             defaultHandler(warning)
           },
         },
