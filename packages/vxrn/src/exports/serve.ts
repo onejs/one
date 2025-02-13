@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { RegExpRouter } from 'hono/router/reg-exp-router'
+import { LinearRouter } from 'hono/router/linear-router'
 import type { VXRNServeOptions } from '../types'
 import { createProdServer } from './createServer'
 
@@ -7,23 +7,26 @@ export { loadEnv } from '../exports/loadEnv'
 export * from '../utils/getServerEntry'
 export { createProdServer } from './createServer'
 
-export const serve = async (optionsIn: VXRNServeOptions) => {
+export const serve = async ({
+  afterRegisterRoutes,
+  beforeRegisterRoutes,
+  app = new Hono({
+    router: new LinearRouter(),
+  }),
+  ...optionsIn
+}: VXRNServeOptions) => {
   const { getServerOptionsFilled } = await import('../utils/getServerOptionsFilled')
   const options = await getServerOptionsFilled(optionsIn, 'prod')
 
-  const app = new Hono({
-    router: new RegExpRouter(),
-  })
-
-  if (optionsIn.beforeRegisterRoutes) {
-    await optionsIn.beforeRegisterRoutes(options, app)
+  if (beforeRegisterRoutes) {
+    await beforeRegisterRoutes(options, app)
   }
 
   // see this for more hono setup
   await createProdServer(app, options)
 
-  if (optionsIn.afterRegisterRoutes) {
-    await optionsIn.afterRegisterRoutes(options, app)
+  if (afterRegisterRoutes) {
+    await afterRegisterRoutes(options, app)
   }
 
   // strange prevents a cant listen on port issue
