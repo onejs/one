@@ -2,9 +2,9 @@ import BabelGenerate from '@babel/generator'
 import { parse } from '@babel/parser'
 import BabelTraverse from '@babel/traverse'
 import { deadCodeElimination, findReferencedIdentifiers } from 'babel-dead-code-elimination'
+import { extname, relative } from 'node:path'
 import type { Plugin } from 'vite'
 import { EMPTY_LOADER_STRING } from '../constants'
-import { extname, relative } from 'node:path'
 
 const traverse = BabelTraverse['default'] as typeof BabelTraverse
 const generate = BabelGenerate['default'] as any as typeof BabelGenerate
@@ -45,7 +45,9 @@ export async function transformTreeShakeClient(code: string, id: string) {
     return
   }
 
-  const ast = parse(code, { sourceType: 'module', plugins: ['typescript', 'jsx'] })
+  // `as any` because babel-dead-code-elimination using @types and it conflicts :/
+  const ast = parse(code, { sourceType: 'module', plugins: ['typescript', 'jsx'] }) as any
+
   const referenced = findReferencedIdentifiers(ast)
 
   const removed = {

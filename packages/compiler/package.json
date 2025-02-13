@@ -28,7 +28,7 @@
     "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src"
   },
   "dependencies": {
-    "@babel/core": "^7.26.0",
+    "@babel/core": "^7.26.8",
     "@babel/plugin-transform-destructuring": "^7.25.9",
     "@babel/plugin-transform-private-methods": "^7.25.9",
     "@babel/plugin-transform-react-jsx": "^7.25.9",

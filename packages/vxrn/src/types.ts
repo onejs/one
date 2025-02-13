@@ -147,6 +147,7 @@ export type VXRNServeOptionsFilled = Required<VXRNServeOptionsBase> & {
 }
 
 export type VXRNServeOptions = VXRNServeOptionsBase & {
+  app?: Hono
   beforeRegisterRoutes?: (options: VXRNServeOptionsFilled, app: Hono) => void | Promise<void>
   afterRegisterRoutes?: (options: VXRNServeOptionsFilled, app: Hono) => void | Promise<void>
 }
