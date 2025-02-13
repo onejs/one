@@ -86,48 +86,50 @@ export function Root(props: RootProps) {
 
   const value = globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
 
-  const contents = (
-    <StrictMode>
-      <ServerAsyncLocalIDContext.Provider value={value}>
-        <ServerRenderID.Provider value={id}>
-          {/* for some reason warning if no key here */}
-          <UpstreamNavigationContainer
-            ref={store.navigationRef}
-            initialState={store.initialState}
-            linking={store.linking}
-            onUnhandledAction={onUnhandledAction}
-            theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-            documentTitle={{
-              enabled: false,
-            }}
-            {...navigationContainerProps}
-          >
-            <ServerLocationContext.Provider value={location}>
-              {/* <GestureHandlerRootView> */}
-              {/*
-               * Due to static rendering we need to wrap these top level views in second wrapper
-               * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
-               * is a HTML document, we need to ensure its inside the <body>
-               */}
-              <>
-                {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
-                <ScrollBehavior />
+  let contents = (
+    <ServerAsyncLocalIDContext.Provider value={value}>
+      <ServerRenderID.Provider value={id}>
+        {/* for some reason warning if no key here */}
+        <UpstreamNavigationContainer
+          ref={store.navigationRef}
+          initialState={store.initialState}
+          linking={store.linking}
+          onUnhandledAction={onUnhandledAction}
+          theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+          documentTitle={{
+            enabled: false,
+          }}
+          {...navigationContainerProps}
+        >
+          <ServerLocationContext.Provider value={location}>
+            {/* <GestureHandlerRootView> */}
+            {/*
+             * Due to static rendering we need to wrap these top level views in second wrapper
+             * View's like <GestureHandlerRootView /> generate a <div> so if the parent wrapper
+             * is a HTML document, we need to ensure its inside the <body>
+             */}
+            <>
+              {/* default scroll restoration to on, but users can configure it by importing and using themselves */}
+              <ScrollBehavior />
 
-                <RootErrorBoundary>
-                  <Component />
-                </RootErrorBoundary>
+              <RootErrorBoundary>
+                <Component />
+              </RootErrorBoundary>
 
-                {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
-              </>
-              {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
-              {/* </GestureHandlerRootView> */}
-            </ServerLocationContext.Provider>
-          </UpstreamNavigationContainer>
-          <PreloadLinks key="preload-links" />
-        </ServerRenderID.Provider>
-      </ServerAsyncLocalIDContext.Provider>
-    </StrictMode>
+              {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
+            </>
+            {/* {!hasViewControllerBasedStatusBarAppearance && <StatusBar style="auto" />} */}
+            {/* </GestureHandlerRootView> */}
+          </ServerLocationContext.Provider>
+        </UpstreamNavigationContainer>
+        <PreloadLinks key="preload-links" />
+      </ServerRenderID.Provider>
+    </ServerAsyncLocalIDContext.Provider>
   )
+
+  if (!process.env.ONE_DISABLE_STRICT_MODE) {
+    contents = <StrictMode>{contents}</StrictMode>
+  }
 
   if (isClient) {
     // only on client can read like this
