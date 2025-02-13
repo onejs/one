@@ -8,6 +8,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
     appType: "custom";
     root: string;
     clearScreen: false;
+    esbuild: false;
     customLogger: {
         info(msg: string, options: import("vite").LogOptions | undefined): void;
         warn(msg: string, options?: import("vite").LogOptions): void;
