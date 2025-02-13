@@ -8,6 +8,6 @@ export async function run(args: {}) {
 
   await patch({
     root: process.cwd(),
-    deps: options.deps as SimpleDepPatchObject,
+    deps: options.oneOptions.deps as SimpleDepPatchObject,
   })
 }

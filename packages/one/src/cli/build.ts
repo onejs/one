@@ -3,7 +3,6 @@ import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
 import Path, { join, relative, resolve } from 'node:path'
 import type { OutputAsset, RollupOutput } from 'rollup'
-import { nodeExternals } from 'rollup-plugin-node-externals'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
 import {
   fillOptions,
@@ -46,7 +45,7 @@ export async function build(args: {
     )
   }
 
-  const oneOptions = await loadUserOneOptions('build')
+  const { oneOptions } = await loadUserOneOptions('build')
   const manifest = getManifest()!
 
   const serverOutputFormat = oneOptions.build?.server?.outputFormat ?? 'esm'

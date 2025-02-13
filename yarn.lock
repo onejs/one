@@ -22177,7 +22177,6 @@ __metadata:
     react-native-screens: "npm:4.4.0"
     react-scan: "npm:^0.1.3"
     rollup: "npm:^4.29.1"
-    rollup-plugin-node-externals: "npm:^7.1.2"
     typescript: "npm:^5.7.3"
     use-latest-callback: "npm:^0.2.3"
     vite: "npm:^6.1.0"
@@ -25148,15 +25147,6 @@ __metadata:
     magic-string: "npm:^0.25.3"
     rollup-pluginutils: "npm:^2.8.1"
   checksum: 10/34081611c4b00b582339fc76880844d9729d9a26ede987c9939440cb0affe5965d4c9b1ebb62a021bb67e118426420de77114731404fa57126e35186267548e7
-  languageName: node
-  linkType: hard
-
-"rollup-plugin-node-externals@npm:^7.1.2":
-  version: 7.1.3
-  resolution: "rollup-plugin-node-externals@npm:7.1.3"
-  peerDependencies:
-    rollup: ^3.0.0 || ^4.0.0
-  checksum: 10/4e8d38ebc3c8a29cb72d11a73f97ba810a4560b5b0f0be445ba32180875073ce4752a9ea4d0b658717ddae642d314738047677e5c818b1893f3d715d18fe413c
   languageName: node
   linkType: hard
 
