@@ -234,6 +234,11 @@ ${rootJS.code}
           return
         }
 
+        let out: {
+          code: string
+          map: any
+        } | null = null
+
         if (!isPreProcess && userTransform !== 'swc') {
           const babelOptions = getBabelOptions({
             ...transformProps,
@@ -247,7 +252,7 @@ ${rootJS.code}
               debug?.(`[${id}] transformed with babel options: ${JSON.stringify(babelOptions)}`)
               // TODO we may want to just avoid SWC after babel it likely is faster
               // we'd need to have metro or metro-like preset
-              code = babelOut.code
+              out = { code: babelOut.code, map: babelOut.map }
             }
           }
 
@@ -263,28 +268,35 @@ ${rootJS.code}
             ...optionsIn,
           } satisfies Options
 
-          const out = await transformSWC(id, code, {
+          const swcOut = await transformSWC(id, out?.code || code, {
             ...swcOptions,
             es5: true,
             noHMR: isPreProcess,
           })
 
+          if (swcOut) {
+            out = {
+              code: swcOut?.code,
+              map: swcOut?.code,
+            }
+          }
+
           if (shouldDebug) {
             console.info(`swcOptions`, swcOptions)
             console.info(`final output:`, out?.code)
           }
-
-          if (out) {
-            cacheSize += out?.code.length
-            // ~100Mb cache for recent compiler files
-            if (cacheSize > 52_428_800) {
-              clearCompilerCache()
-            }
-            memoryCache[cacheId] = { out, hash: cacheHash }
-          }
-
-          return out
         }
+
+        if (out) {
+          cacheSize += out?.code.length
+          // ~100Mb cache for recent compiler files
+          if (cacheSize > 52_428_800) {
+            clearCompilerCache()
+          }
+          memoryCache[cacheId] = { out, hash: cacheHash }
+        }
+
+        return out
       },
     },
   ]
