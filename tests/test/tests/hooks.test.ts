@@ -46,7 +46,7 @@ test('hooks', async () => {
     await link2?.click({
       force: true,
     })
-    await page.waitForURL('**//hooks/contents/page-2', { timeout: 5_000 })
+    await page.waitForURL('**/hooks/contents/page-2', { timeout: 5_000 })
 
     expect(await page.textContent('#layout-usePathname')).toEqual(
       'Layout `usePathname()`: /hooks/contents/page-2'
