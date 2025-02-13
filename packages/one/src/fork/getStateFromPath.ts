@@ -461,6 +461,7 @@ const matchAgainstConfigs = (remaining: string, configs: RouteConfig[]) => {
           }, {})
 
         if (params && Object.keys(params).length) {
+          Object.assign(allParams, params) // @modified: let page access layout params
           return { name, params }
         }
 
