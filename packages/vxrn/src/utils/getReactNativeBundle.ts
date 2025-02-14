@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises'
 import { dirname, relative } from 'node:path'
-import { createBuilder } from 'vite'
+import { type BuildEnvironment, createBuilder } from 'vite'
 // import { buildEnvironment } from './fork/vite/build'
 import { resolvePath } from '@vxrn/resolve'
 import { filterPluginsForNative } from './filterPluginsForNative'
@@ -102,7 +102,22 @@ export async function getReactNativeBundle(
   // We are using a forked version of the Vite internal function `buildEnvironment` (which is what `builder.build` calls) that will return the Rollup cache object with the build output, and also with some performance improvements.
   // disabled due to differences in vite 6 stable upgrade
 
-  const buildOutput = await builder.build(environment)
+  const buildEnvironment: BuildEnvironment = {
+    ...environment,
+    init: environment.init,
+    options: environment.options,
+    getTopLevelConfig: environment.getTopLevelConfig,
+    plugins: (() => {
+      if (internal.mode !== 'prod') {
+        // Workaround of removing barrel optimization plugins in dev, as it will break HMR because we didn't handle barrel optimizations in HMR yet.
+        return environment.plugins.filter((p) => !p.name.startsWith('vite-plugin-barrel'))
+      }
+
+      return environment.plugins
+    })(),
+  }
+
+  const buildOutput = await builder.build(buildEnvironment)
 
   if (process.env.ONE_DEBUG_BUILD_PERF) {
     console.info(JSON.stringify(buildStats, null, 2))

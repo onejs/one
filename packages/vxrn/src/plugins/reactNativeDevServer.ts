@@ -171,6 +171,7 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
       }
 
       // Handle React Native endpoints
+      // HMR fetching updates
       server.middlewares.use('/file', async (req, res) => {
         const url = new URL(req.url!, `http://${req.headers.host}`)
         const file = url.searchParams.get('file')
