@@ -1,6 +1,6 @@
 import type { Hono } from 'hono';
 import type { OutputAsset, OutputChunk, TreeshakingOptions, TreeshakingPreset } from 'rollup';
-import type { UserConfig } from 'vite';
+import type { FilterPattern, InlineConfig, UserConfig } from 'vite';
 type RollupOutputList = [OutputChunk, ...(OutputChunk | OutputAsset)[]];
 export type Mode = 'dev' | 'prod';
 export type BuildArgs = {
@@ -20,6 +20,10 @@ export type AfterBuildProps = {
         [key: string]: ClientManifestEntry;
     };
 };
+export type AutoDepOptimizationOptions = {
+    exclude?: FilterPattern;
+    include?: FilterPattern;
+};
 export type ClientManifestEntry = {
     file: string;
     src?: string;
@@ -37,6 +41,10 @@ export type VXRNBuildOptions = {
      */
     outputFormat?: 'cjs' | 'esm';
     treeshake?: RollupTreeshakeOptions;
+    /**
+     * Uses Vite mergeConfig to overwrite any build configuration during build
+     */
+    config?: InlineConfig;
 };
 export type VXRNServePlatform = 'node' | 'vercel' | 'cloudflare';
 export type VXRNOptions = {
@@ -115,6 +123,7 @@ export type VXRNServeOptionsFilled = Required<VXRNServeOptionsBase> & {
     protocol: string;
 };
 export type VXRNServeOptions = VXRNServeOptionsBase & {
+    app?: Hono;
     beforeRegisterRoutes?: (options: VXRNServeOptionsFilled, app: Hono) => void | Promise<void>;
     afterRegisterRoutes?: (options: VXRNServeOptionsFilled, app: Hono) => void | Promise<void>;
 };

@@ -1,0 +1,25 @@
+{
+  "name": "@vxrn/test-package",
+  "version": "1.1.445",
+  "sideEffects": false,
+  "type": "module",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "source": "src/index.ts",
+  "types": "./types/index.d.ts",
+  "files": [
+    "src",
+    "types",
+    "dist"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

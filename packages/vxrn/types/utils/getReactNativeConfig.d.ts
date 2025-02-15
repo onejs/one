@@ -1,4 +1,4 @@
-import { type InlineConfig, type Logger, type Plugin, type UserConfig } from 'vite';
+import { type ResolvedConfig } from 'vite';
 import type { VXRNOptionsFilled } from './getOptionsFilled';
 export declare function getReactNativeConfig(options: VXRNOptionsFilled, internal: {
     mode?: "dev" | "prod";
@@ -8,6 +8,7 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
     appType: "custom";
     root: string;
     clearScreen: false;
+    esbuild: false;
     customLogger: {
         info(msg: string, options: import("vite").LogOptions | undefined): void;
         warn(msg: string, options?: import("vite").LogOptions): void;
@@ -56,48 +57,5 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
         };
     };
 }>;
-export declare function getReactNativeResolvedConfig(): Readonly<Omit<UserConfig, "dev" | "server" | "build" | "optimizeDeps" | "plugins" | "css" | "json" | "assetsInclude" | "preview" | "worker" | "environments"> & {
-    configFile: string | undefined;
-    configFileDependencies: string[];
-    inlineConfig: InlineConfig;
-    root: string;
-    base: string;
-    publicDir: string;
-    cacheDir: string;
-    command: "build" | "serve";
-    mode: string;
-    isWorker: boolean;
-    isProduction: boolean;
-    envDir: string;
-    env: Record<string, any>;
-    resolve: Required<import("vite").ResolveOptions> & {
-        alias: import("vite").Alias[];
-    };
-    plugins: readonly Plugin[];
-    css: import("vite").ResolvedCSSOptions;
-    json: Required<import("vite").JsonOptions>;
-    esbuild: import("vite").ESBuildOptions | false;
-    server: import("vite").ResolvedServerOptions;
-    dev: import("vite").ResolvedDevEnvironmentOptions;
-    builder: Required<import("vite").BuilderOptions> | undefined;
-    build: import("vite").ResolvedBuildOptions;
-    preview: import("vite").ResolvedPreviewOptions;
-    ssr: import("vite").ResolvedSSROptions;
-    assetsInclude: (file: string) => boolean;
-    logger: Logger;
-    createResolver: (options?: Partial<import("vite").InternalResolveOptions>) => import("vite").ResolveFn;
-    optimizeDeps: import("vite").DepOptimizationOptions;
-    worker: import("vite").ResolvedWorkerOptions;
-    appType: import("vite").AppType;
-    experimental: import("vite").ExperimentalOptions;
-    environments: Record<string, {
-        define?: Record<string, any>;
-        resolve: Required<import("vite").ResolveOptions>;
-        consumer: "client" | "server";
-        keepProcessEnv?: boolean;
-        optimizeDeps: import("vite").DepOptimizationOptions;
-        dev: import("vite").ResolvedDevEnvironmentOptions;
-        build: import("vite").ResolvedBuildEnvironmentOptions;
-    }>;
-} & import("vite").PluginHookUtils> | null;
+export declare function getReactNativeResolvedConfig(): ResolvedConfig | null;
 //# sourceMappingURL=getReactNativeConfig.d.ts.map

@@ -150,6 +150,10 @@ const shouldBabelReactNativeCodegen = ({ id, environment }: Props) => {
  */
 
 const shouldBabelReactCompiler = (props: Props) => {
+  if (props.environment === 'ssr') {
+    // disable on server for now - we aren't really re-rendering anything anyway
+    return false
+  }
   if (!configuration.enableCompiler) {
     return false
   }
@@ -161,6 +165,8 @@ const shouldBabelReactCompiler = (props: Props) => {
   if (!/.*(.tsx?)$/.test(props.id)) return false
   // disable node modules for now...
   if (props.id.includes('node_modules')) return false
+  // we had OG image generation on the server using react, this fixes a bug because compiler breaks @vercel/og
+  if (props.id.includes('+api.')) return false
   if (props.code.startsWith('// disable-compiler')) return false
   return true
 }

@@ -17,7 +17,7 @@ export async function serve(buildInfo: One.BuildInfo) {
 
   await createProdServer(app, serverOptions)
 
-  await oneServe(buildInfo.oneOptions, buildInfo, app, false)
+  await oneServe(buildInfo.oneOptions, buildInfo, app)
 
   return app
 }

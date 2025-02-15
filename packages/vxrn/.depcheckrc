@@ -12,6 +12,3 @@ ignores:
   - "metro-react-native-babel-preset"
   # Should probably be a peer dependency, this is only used while running prebuild without expo
   - "@react-native-community/template"
-  # Babel preset and plugins, which aren't directly imported in the code but referenced by their names
-  - "@babel/preset-typescript"
-  - "@react-native/babel-plugin-codegen"

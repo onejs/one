@@ -1,6 +1,7 @@
 import './polyfills-server'
 
 import FSExtra from 'fs-extra'
+import type { Hono } from 'hono'
 import type { VXRNOptions } from 'vxrn'
 import { setServerGlobals } from './server/setServerGlobals'
 import { setupBuildInfo } from './server/setupBuildOptions'
@@ -11,7 +12,7 @@ process.on('uncaughtException', (err) => {
   console.error(`[one] Uncaught exception`, err?.stack || err)
 })
 
-export async function serve(args: VXRNOptions['server'] = {}) {
+export async function serve(args: VXRNOptions['server'] & { app?: Hono } = {}) {
   const buildInfo = (await FSExtra.readJSON(`dist/buildInfo.json`)) as One.BuildInfo
   const { oneOptions } = buildInfo
 
@@ -32,6 +33,7 @@ export async function serve(args: VXRNOptions['server'] = {}) {
   }
 
   return await vxrnServe({
+    app: args.app,
     // fallback to one plugin
     ...oneOptions.server,
     // override with any flags given to cli

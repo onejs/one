@@ -110,6 +110,37 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       clearScreen: false,
       configFile: false,
       optimizeDeps,
+      logLevel: 'warn',
+      build: {
+        rollupOptions: {
+          onwarn(warning, defaultHandler) {
+            if (
+              warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+              warning.message.includes('use client')
+            ) {
+              return
+            }
+
+            // TODO: temp until we fix sourcemap issues!
+            if (
+              warning.code === 'SOURCEMAP_ERROR' &&
+              warning.message.includes(`Can't resolve original location of error.`)
+            ) {
+              return
+            }
+
+            if (warning.code === 'EVAL') {
+              warning.message = warning.message.replace(/(\.+\/){0,}node_modules/, 'node_modules')
+            }
+
+            if (warning.code === 'INVALID_ANNOTATION') {
+              return
+            }
+
+            defaultHandler(warning)
+          },
+        },
+      },
     } satisfies InlineConfig
   )
 
@@ -123,10 +154,13 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   const excludeAPIRoutesPlugin = {
     enforce: 'pre',
     name: 'omit-api-routes',
-    transform(code, id) {
-      if (/\+api.tsx?$/.test(id)) {
-        return ``
-      }
+    transform: {
+      order: 'pre',
+      handler(code, id) {
+        if (/\+api.tsx?$/.test(id)) {
+          return ``
+        }
+      },
     },
   } satisfies Plugin
 
@@ -249,7 +283,13 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   if (serverOptions !== false) {
     console.info(`\n 🔨 build server\n`)
 
-    const { output } = (await viteBuild(serverBuildConfig)) as RollupOutput
+    const userServerConf = optionsIn.build?.server
+    const userServerBuildConf = typeof userServerConf === 'boolean' ? null : userServerConf?.config
+
+    const { output } = (await viteBuild(
+      userServerBuildConf ? mergeConfig(serverBuildConfig, userServerBuildConf) : serverBuildConfig
+    )) as RollupOutput
+
     serverOutput = output
     clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
 

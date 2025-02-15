@@ -102,7 +102,16 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
     delete userViteConfig.ssr!.noExternal
   }
 
-  serverConfig = mergeUserConfig(optimizeDeps, serverConfig, userViteConfig)
+  // don't merge full user vite config because vite will do that since we don't disable configFile
+  // because we want vite to watch the configFile for changes
+  // but we need to probably avoid loading the config before vite does in the future
+  // for some reason i do have to merge this partial config or else it doesnt pick up things which
+  const { plugins, ...rest } = userViteConfig || {}
+  const mergableUserConf = {
+    ...rest,
+  }
+
+  serverConfig = mergeUserConfig(optimizeDeps, serverConfig, mergableUserConf)
 
   if (rerouteNoExternalConfig) {
     serverConfig.ssr!.noExternal = true

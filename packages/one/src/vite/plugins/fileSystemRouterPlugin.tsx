@@ -1,4 +1,5 @@
 import { join } from 'node:path'
+import { Readable } from 'node:stream'
 import { debounce } from 'perfect-debounce'
 import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { createServerModuleRunner } from 'vite'
@@ -9,10 +10,10 @@ import type { RenderAppProps } from '../../types'
 import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
-import { setServerContext } from '../one-server-only'
 import { LoaderDataCache } from '../../vite/constants'
 import { replaceLoader } from '../../vite/replaceLoader'
 import type { One } from '../../vite/types'
+import { setServerContext } from '../one-server-only'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
 // server needs better dep optimization
@@ -195,6 +196,12 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
     apply: 'serve',
 
     async config(userConfig) {
+      const setting = options.optimization?.autoEntriesScanning ?? 'flat'
+
+      if (setting === false) {
+        return
+      }
+
       if (handleRequest.manifest.pageRoutes) {
         const routesAndLayouts = [
           ...new Set(
@@ -202,6 +209,14 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               if (route.isNotFound) return []
               // sitemap
               if (!route.file) return []
+
+              if (
+                setting === 'flat' &&
+                route.file.split('/').filter((x) => !x.startsWith('(')).length > 3
+              ) {
+                return []
+              }
+
               return [
                 join('./app', route.file),
                 ...(route.layouts?.flatMap((layout) => {
@@ -364,13 +379,22 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                 }
               }
 
-              try {
-                outString = reply.body ? await streamToString(reply.body) : ''
-              } catch (err) {
-                console.warn(`Error converting body in dev mode: ${err}`)
+              if (reply.body) {
+                if (reply.body.locked) {
+                  console.warn(`Body is locked??`, req.url)
+                  res.end()
+                  return
+                }
+                try {
+                  // Use Node >=18's fromWeb to pipe the web-stream directly:
+                  Readable.fromWeb(reply.body as any).pipe(res)
+                } catch (err) {
+                  console.warn('Error piping reply body to response:', err)
+                  res.end()
+                }
+                return
               }
 
-              res.write(outString)
               res.end()
               return
             }
@@ -402,54 +426,30 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   } satisfies Plugin
 }
 
-async function streamToString(stream: ReadableStream) {
-  const reader = stream.getReader()
-  const decoder = new TextDecoder()
-  let result = ''
-
-  try {
-    while (true) {
-      const { done, value } = await reader.read()
-      if (done) break
-      result += decoder.decode(value, { stream: true })
-    }
-  } catch (error) {
-    console.error('Error reading the stream:', error)
-  } finally {
-    reader.releaseLock()
-  }
-
-  return result
-}
-
-const convertIncomingMessageToRequest = async (req: Connect.IncomingMessage): Promise<Request> => {
+const convertIncomingMessageToRequest = (req: Connect.IncomingMessage): Request => {
   if (!req.originalUrl) {
-    throw new Error(`Can't convert`)
+    throw new Error(`Can't convert: originalUrl is missing`)
   }
 
   const urlBase = `http://${req.headers.host}`
-  const urlString = req.originalUrl || ''
+  const urlString = req.originalUrl
   const url = new URL(urlString, urlBase)
 
   const headers = new Headers()
   for (const key in req.headers) {
-    if (req.headers[key]) headers.append(key, req.headers[key] as string)
+    if (req.headers[key]) {
+      headers.append(key, req.headers[key] as string)
+    }
   }
+
+  const hasBody = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method || '')
+  const body = hasBody ? Readable.toWeb(req) : null
 
   return new Request(url, {
     method: req.method,
-    body: ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method || '')
-      ? await readStream(req)
-      : null,
     headers,
-  })
-}
-
-function readStream(stream: Connect.IncomingMessage): Promise<Buffer> {
-  return new Promise((resolve, reject) => {
-    const chunks: Uint8Array[] = []
-    stream.on('data', (chunk: Uint8Array) => chunks.push(chunk))
-    stream.on('end', () => resolve(Buffer.concat(chunks)))
-    stream.on('error', reject)
-  })
+    body,
+    // Required for streaming bodies in Node's experimental fetch:
+    duplex: 'half',
+  } as RequestInit & { duplex: 'half' })
 }

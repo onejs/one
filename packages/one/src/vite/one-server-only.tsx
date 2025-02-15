@@ -9,7 +9,6 @@
 import { AsyncLocalStorage } from 'node:async_hooks'
 import { SERVER_CONTEXT_KEY } from '../constants'
 import type { One } from './types'
-import React from 'react'
 
 type ALSInstance = AsyncLocalStorage<unknown>
 
@@ -62,7 +61,11 @@ export function mergeHeaders(onto: Headers, from: Headers) {
 }
 
 export function ensureAsyncLocalID() {
-  const id = requestAsyncLocalStore?.getStore()
+  console.log("WTF??? ensureAsyncLocalID")
+  // console.log("WTF??? ensureAsyncLocalID", !!AsyncLocalStorage)
+  console.log("WTF??? ensureAsyncLocalID", !!requestAsyncLocalStore?.getStore)
+  const id = requestAsyncLocalStore?.getStore() || asyncHeadersCache
+  console.log("WTF??? ensureAsyncLocalID", id)
 
   if (!id) {
     throw new Error(`Internal One error, no AsyncLocalStorage id!`)

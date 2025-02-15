@@ -2,6 +2,7 @@ import BabelGenerate from '@babel/generator'
 import { parse } from '@babel/parser'
 import BabelTraverse from '@babel/traverse'
 import { deadCodeElimination, findReferencedIdentifiers } from 'babel-dead-code-elimination'
+import { extname, relative } from 'node:path'
 import type { Plugin } from 'vite'
 import { EMPTY_LOADER_STRING } from '../constants'
 
@@ -18,23 +19,35 @@ export const clientTreeShakePlugin = (): Plugin => {
       return env.name === 'client' || env.name === 'ios' || env.name === 'android'
     },
 
-    async transform(code, id, settings) {
-      if (this.environment.name === 'ssr') {
-        return
-      }
-      return await transformTreeShakeClient(code, id)
+    transform: {
+      order: 'pre',
+      async handler(code, id, settings) {
+        if (this.environment.name === 'ssr') {
+          return
+        }
+        if (!/\.(js|jsx|ts|tsx)/.test(extname(id))) {
+          return
+        }
+        if (/node_modules/.test(id)) {
+          return
+        }
+
+        const out = await transformTreeShakeClient(code, id)
+
+        return out
+      },
     },
   } satisfies Plugin
 }
 
 export async function transformTreeShakeClient(code: string, id: string) {
-  if (id.includes('node_modules')) return
-
   if (!/generateStaticParams|loader/.test(code)) {
     return
   }
 
-  const ast = parse(code, { sourceType: 'module', plugins: ['typescript', 'jsx'] })
+  // `as any` because babel-dead-code-elimination using @types and it conflicts :/
+  const ast = parse(code, { sourceType: 'module', plugins: ['typescript', 'jsx'] }) as any
+
   const referenced = findReferencedIdentifiers(ast)
 
   const removed = {
@@ -88,6 +101,10 @@ export async function transformTreeShakeClient(code: string, id: string) {
           return `export function generateStaticParams() {};`
         })
         .join('\n')
+
+    console.info(
+      ` 🧹 [one]      ${relative(process.cwd(), id)} removed ${removedFunctions.length} server-only exports`
+    )
 
     return {
       code: codeOut,

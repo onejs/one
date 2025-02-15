@@ -46,19 +46,23 @@ const waitForServer = (
   })
 }
 
-export async function setupTestServers(): Promise<TestInfo> {
+export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): Promise<TestInfo> {
   console.info('Setting up tests 🛠️')
 
   let prodServer: ChildProcess | null = null
   let devServer: ChildProcess | null = null
   let buildProcess: ChildProcess | null = null // Add this line
 
+  const shouldStartDevServer = !ONLY_TEST_PROD && !skipDev
+  const shouldStartProdServer = !ONLY_TEST_DEV
+
   // Get available ports
   const prodPort = await getPort()
-  const devPort = await getPort()
+  const devPort =
+    (process.env.DEV_PORT && Number.parseInt(process.env.DEV_PORT, 10)) || (await getPort())
 
   try {
-    if (!ONLY_TEST_DEV && !process.env.SKIP_BUILD) {
+    if (shouldStartProdServer && !process.env.SKIP_BUILD) {
       // Run prod build using spawn
       console.info('Starting a prod build.')
       const prodBuildStartedAt = performance.now()
@@ -103,50 +107,52 @@ export async function setupTestServers(): Promise<TestInfo> {
     // Start dev server
     let devServerOutput = ''
 
-    if (!ONLY_TEST_PROD) {
+    if (shouldStartDevServer) {
       console.info(`Starting a dev server on http://localhost:${devPort}`)
-      devServer = exec(`yarn dev --clean --port ${devPort}`, {
-        cwd: process.cwd(),
-        env: { ...process.env },
-      })
-      devServer.stdout?.on('data', (data) => {
-        devServerOutput += data.toString()
-      })
-      devServer.stderr?.on('data', (data) => {
-        devServerOutput += data.toString()
-      })
+      devServer = spawn(
+        'node',
+        ['../../node_modules/.bin/one', 'dev', '--clean', '--port', devPort.toString()],
+        {
+          cwd: process.cwd(),
+          env: { ...process.env },
+          detached: true,
+          stdio: 'inherit',
+        }
+      )
     }
 
     // Start prod server
     let prodServerOutput = ''
 
-    if (!ONLY_TEST_DEV) {
+    if (shouldStartProdServer) {
       console.info(`Starting a prod server on http://localhost:${prodPort}`)
-      prodServer = exec(`yarn serve --port ${prodPort}`, {
-        cwd: process.cwd(),
-        env: {
-          ...process.env,
-          ONE_SERVER_URL: `http://localhost:${prodPort}`,
-        },
-      })
-      prodServer.stdout?.on('data', (data) => {
-        prodServerOutput += data.toString()
-      })
-      prodServer.stderr?.on('data', (data) => {
-        prodServerOutput += data.toString()
-      })
+      prodServer = spawn(
+        'node',
+        ['../../node_modules/.bin/one', 'serve', '--port', prodPort.toString()],
+        {
+          cwd: process.cwd(),
+          env: {
+            ...process.env,
+            ONE_SERVER_URL: `http://localhost:${prodPort}`,
+          },
+          detached: true,
+          stdio: 'inherit',
+        }
+      )
     }
 
     // Wait for both servers to be ready
     await Promise.all([
-      ONLY_TEST_PROD
-        ? null
-        : waitForServer(`http://localhost:${devPort}`, { getServerOutput: () => devServerOutput }),
-      ONLY_TEST_DEV
-        ? null
-        : waitForServer(`http://localhost:${prodPort}`, {
-            getServerOutput: () => prodServerOutput,
-          }),
+      shouldStartProdServer
+        ? waitForServer(`http://localhost:${prodPort}`, {
+            getServerOutput: () => 'Server output in terminal',
+          })
+        : null,
+      shouldStartDevServer
+        ? waitForServer(`http://localhost:${devPort}`, {
+            getServerOutput: () => 'Server output in terminal',
+          })
+        : null,
     ])
 
     console.info('Servers are running.🎉 \n')

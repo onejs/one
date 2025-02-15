@@ -23,6 +23,8 @@ export const EXCLUDE_LIST = [
   '@swc/core-win32-x64-msvc',
   'lightningcss',
 
+  'sharp',
+
   '@sentry/react-native',
 
   // not ever to be used in app
@@ -101,6 +103,7 @@ const rootOptions = {}
 export async function scanDepsToOptimize(
   packageJsonPath: string,
   options: {
+    filter?: (id: string | unknown) => boolean
     parentDepNames?: string[]
     proceededDeps?: Map<string, string[]>
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
@@ -134,14 +137,15 @@ export async function scanDepsToOptimize(
         if (EXCLUDE_LIST_SET.has(dep)) {
           return []
         }
+        const localPath = await findDepPkgJsonPath(dep, currentRoot)
 
-        // lets be a bit conservative and assume react-native starting packages are
-        // if (dep.startsWith('react-native-') || dep.startsWith(`@react-native-`)) {
-        //   return []
-        // }
+        if (!localPath) return []
 
-        const depPkgJsonPath = await findDepPkgJsonPath(dep, currentRoot)
-        if (!depPkgJsonPath) return []
+        const depPkgJsonPath = await FSExtra.realpath(localPath)
+
+        if (options.filter && !options.filter(depPkgJsonPath)) {
+          return []
+        }
 
         const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
 

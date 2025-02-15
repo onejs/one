@@ -1,12 +1,13 @@
 {
   "name": "test-test",
-  "version": "1.1.411",
+  "version": "1.1.445",
   "private": true,
   "type": "module",
   "scripts": {
     "test:dev": "TEST_ONLY=dev yarn vitest --run --reporter=dot --color=false",
     "test:prod": "TEST_ONLY=prod yarn vitest --run --reporter=dot --color=false",
     "test": "yarn test:dev && yarn test:prod",
+    "typecheck": "tsc --noEmit",
     "build:web": "one build",
     "clean": "one clean",
     "ios": "expo run:ios",
@@ -18,11 +19,12 @@
     "android": "expo run:android"
   },
   "dependencies": {
-    "@tamagui/config": "^1.123.0",
-    "@tamagui/image-next": "^1.123.0",
-    "@tamagui/lucide-icons": "^1.123.0",
-    "@tamagui/vite-plugin": "^1.123.0",
+    "@tamagui/config": "^1.125.1",
+    "@tamagui/image-next": "^1.125.1",
+    "@tamagui/lucide-icons": "^1.125.1",
+    "@tamagui/vite-plugin": "^1.125.1",
     "@vxrn/color-scheme": "workspace:*",
+    "@vxrn/test-package": "workspace:*",
     "expo": "~52.0.17",
     "expo-video": "^2.0.4",
     "one": "workspace:*",
@@ -34,7 +36,7 @@
     "react-native-screens": "4.4.0",
     "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.123.0"
+    "tamagui": "^1.125.1"
   },
   "devDependencies": {
     "@react-native-community/cli": "latest",
@@ -42,7 +44,8 @@
     "get-port-please": "^3.1.2",
     "playwright": "^1.49.1",
     "tsx": "^4.19.0",
-    "vite": "^6.0.6",
-    "vitest": "^2.1.8"
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
   }
 }

@@ -44,7 +44,7 @@ export async function build(args: {
   labelProcess('build')
   checkNodeVersion()
   setServerGlobals()
-  await loadEnv('production')
+  const { serverEnv } = await loadEnv('production')
 
   if (!process.env.ONE_SERVER_URL) {
     console.warn(
@@ -52,7 +52,7 @@ export async function build(args: {
     )
   }
 
-  const oneOptions = await loadUserOneOptions('build')
+  const { oneOptions } = await loadUserOneOptions('build')
   const manifest = getManifest()!
 
   const serverOutputFormat = oneOptions.build?.server?.outputFormat ?? 'esm'
@@ -88,9 +88,9 @@ export async function build(args: {
     } satisfies InlineConfig
   )
 
-  const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
+  // const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
   const processEnvDefines = Object.fromEntries(
-    Object.entries(process.env).map(([key, value]) => {
+    Object.entries(serverEnv).map(([key, value]) => {
       return [`process.env.${key}`, JSON.stringify(value)]
     })
   )
@@ -109,16 +109,17 @@ export async function build(args: {
       appType: 'custom',
       configFile: false,
 
-      plugins: [
-        nodeExternals({
-          exclude: optimizeDeps.include,
-        }) as any,
-      ],
+      // plugins: [
+      //   nodeExternals({
+      //     exclude: optimizeDeps.include,
+      //   }) as any,
+      // ],
 
       define: {
         ...processEnvDefines,
       },
 
+      // dont think this is doing anything
       ssr: {
         noExternal: true,
         // we patched them to switch to react 19
@@ -149,7 +150,7 @@ export async function build(args: {
           // prevents it from shaking out the exports
           preserveEntrySignatures: 'strict',
           input: input,
-          external: externalRegex,
+          external: (id) => false,
           output: {
             entryFileNames: '[name]',
             exports: 'auto',
@@ -183,7 +184,12 @@ export async function build(args: {
       },
     } satisfies InlineConfig)
 
-    const output = await viteBuild(mergedConfig)
+    const userApiBuildConf = oneOptions.build?.api?.config
+
+    const output = await viteBuild(
+      // allow user merging api build config
+      userApiBuildConf ? mergeConfig(mergedConfig, userApiBuildConf) : mergedConfig
+    )
 
     return output as RollupOutput
   }
@@ -389,7 +395,7 @@ export async function build(args: {
     const isDynamic = !!Object.keys(foundRoute.routeKeys).length
 
     if (
-      foundRoute.type !== 'ssr' &&
+      foundRoute.type === 'ssg' &&
       isDynamic &&
       !foundRoute.page.includes('+not-found') &&
       !foundRoute.page.includes('_sitemap') &&

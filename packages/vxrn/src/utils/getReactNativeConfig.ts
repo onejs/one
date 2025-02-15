@@ -1,7 +1,6 @@
-import babel from '@babel/core'
 import nodeResolve from '@rollup/plugin-node-resolve'
-import { createDebugger } from '@vxrn/debug'
-import { createVXRNCompilerPlugin, transformSWC } from '@vxrn/compiler'
+import { createVXRNCompilerPlugin } from '@vxrn/compiler'
+import { resolvePath } from '@vxrn/resolve'
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import {
@@ -11,7 +10,6 @@ import {
   type Plugin,
   resolveConfig,
   type ResolvedConfig,
-  transformWithEsbuild,
   type UserConfig,
 } from 'vite'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
@@ -22,7 +20,6 @@ import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
-import { resolvePath } from '@vxrn/resolve'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
@@ -30,8 +27,6 @@ import { resolvePath } from '@vxrn/resolve'
 // (not an exhaustive list)
 const IGNORE_ROLLUP_LOGS_RE =
   /vite-native-client\/dist\/esm\/client|node_modules\/\.vxrn\/react-native|react-native-prebuilt\/vendor|one\/dist/
-
-const { debug: reactNativeCodegenDebug } = createDebugger('vxrn:react-native-codegen')
 
 export async function getReactNativeConfig(
   options: VXRNOptionsFilled,
@@ -197,6 +192,7 @@ export async function getReactNativeConfig(
     appType: 'custom',
     root,
     clearScreen: false,
+    esbuild: false,
 
     // the huge logs actually add quite a bit of time to build
     customLogger,

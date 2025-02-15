@@ -1,7 +1,7 @@
-import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
+import { configureVXRNCompilerPlugin, clearCompilerCache } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
-import path, { sep } from 'node:path'
+import path from 'node:path'
 import type { Plugin, PluginOption, UserConfig } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -44,6 +44,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     return []
   }
 
+  clearCompilerCache()
+
   // ensure tsconfig
   if (options.config?.ensureTSConfig !== false) {
     void ensureTSConfig()
@@ -72,6 +74,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     })
   }
 
+  const autoDepsOptions = options.ssr?.autoDepsOptimization
+
   const devAndProdPlugins: Plugin[] = [
     {
       name: 'one:config',
@@ -95,7 +99,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
     },
 
-    ...(options.ssr?.disableAutoDepsPreBundling === true
+    ...(autoDepsOptions === false
       ? []
       : [
           autoDepOptimizePlugin({
@@ -107,9 +111,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               })
             },
             root,
-            exclude: Array.isArray(options.ssr?.disableAutoDepsPreBundling)
-              ? options.ssr?.disableAutoDepsPreBundling
-              : undefined,
+            include: /node_modules/,
+            ...(autoDepsOptions === true ? {} : autoDepsOptions),
           }),
         ]),
 
@@ -153,7 +156,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ),
 
     {
-      name: 'one-slim-deps',
+      name: 'one-aliases',
       enforce: 'pre',
 
       config() {
@@ -175,6 +178,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         return {
           resolve: {
             alias: {
+              // testing getting transition between routes working
+              // 'use-sync-external-store/with-selector': resolvePath(
+              //   'use-sync-external-store/shim/with-selector'
+              // ),
+
               ...(tslibLitePath && {
                 tslib: tslibLitePath,
               }),
@@ -340,7 +348,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
       transform(code, id) {
         if (this.environment.name === 'client') {
-          if (id.includes(`vite${sep}one-server-only`)) {
+          if (id.includes(`one-server-only`)) {
             return code.replace(
               `import { AsyncLocalStorage } from "node:async_hooks"`,
               `class AsyncLocalStorage {}`

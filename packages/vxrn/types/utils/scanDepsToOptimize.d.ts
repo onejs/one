@@ -9,6 +9,7 @@ export declare const EXCLUDE_LIST_SET: Set<string>;
 export declare const INCLUDE_LIST: string[];
 export declare const INCLUDE_LIST_SET: Set<string>;
 export declare function scanDepsToOptimize(packageJsonPath: string, options?: {
+    filter?: (id: string | unknown) => boolean;
     parentDepNames?: string[];
     proceededDeps?: Map<string, string[]>;
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */

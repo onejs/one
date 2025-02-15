@@ -236,7 +236,20 @@ export async function buildReactNative(
               const code = await readFile(input.path, 'utf-8')
 
               // omg so ugly but no class support?
-              const outagain = await transformFlow(code, { development: true })
+              let outagain = await transformFlow(code, { development: true })
+
+              // Some libs such as Tamagui are importing `react-native/Libraries/Core/ReactNativeVersion`, but it may be tree-shaken away in the production bundle, since in RN it's only used when `__DEV__` is true (https://github.com/facebook/react-native/blob/v0.77.0/packages/react-native/Libraries/Core/InitializeCore.js#L44). The main purpose of exporting this is here to let it not be tree-shaken away by esbuild.
+              if (input.path.endsWith('react-native/index.js')) {
+                outagain = outagain.replace(
+                  /module\.exports *= *{/,
+                  `
+module.exports = {
+  get _vxrnInternalReactNativeVersionDoNotUse() {
+      return require("./Libraries/Core/ReactNativeVersion").default;
+  },
+                  `.trim()
+                )
+              }
 
               return {
                 contents: outagain,

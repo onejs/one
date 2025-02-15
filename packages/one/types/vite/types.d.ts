@@ -1,7 +1,8 @@
 import type { GetTransform } from '@vxrn/compiler';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
-import type { DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
+import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
 import type { RouteNode } from '../router/Route';
+import type { Options as ReactScanOptions } from 'react-scan';
 export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;
@@ -23,19 +24,6 @@ export declare namespace One {
     export type FixDependencies = {
         [key: string]: DepOptimize | DepPatch['patchFiles'];
     };
-    export type ReactScanOptions = {
-        enabled?: boolean;
-        includeChildren?: boolean;
-        playSound?: boolean;
-        log?: boolean;
-        showToolbar?: boolean;
-        renderCountThreshold?: number;
-        resetCountTimeout?: number;
-        maxRenders?: number;
-        report?: boolean;
-        alwaysShowLabels?: boolean;
-        animationSpeed?: 'slow' | 'fast' | 'off';
-    };
     type PluginPlatformTarget = 'native' | 'web';
     export type PluginOptions = {
         /**
@@ -44,7 +32,6 @@ export declare namespace One {
          *   - It makes zero hand of seamelessly from server to client without flicker
          *
          */
-        zero?: boolean;
         /**
          * Per-file control over how code transforms.
          * Defaults to SWC, runs babel before SWC if:
@@ -109,6 +96,16 @@ export declare namespace One {
              * @default ['@tamagui/lucide-icons']
              */
             barrel?: boolean | string[];
+            /**
+             * By default One scans your fs routes and adds them as Vite `entries`, this prevents some hard
+             * reloads on web as you navigate to new pages, but can slow things startup.
+             *
+             * The 'flat' option is default and will automatically add just the routes at the root of your
+             * app but nothing nested in non-group folders below that.
+             *
+             * @default 'flat'
+             */
+            autoEntriesScanning?: boolean | 'flat';
         };
         /**
          * Path to a js or ts file to import before the rest of your app runs
@@ -196,9 +193,15 @@ export declare namespace One {
         deps?: FixDependencies;
         ssr?: {
             /**
-             * Do not pre-bundle specific dependencies for SSR, or disable the automatic scan for dependencies to pre-bundle entirely.
+             * One scans dependencies on startup and decides which ones to optimize based on known broken
+             * dependencies. These include react-native and react, which need to be optimized to work.
+             * It finds all parent dependencies of the know bad deps and adds them to ssr.optimizeDeps.include.
+             *
+             * You can disable with false, or configure the include/exclude with options.
+             *
+             * @default { include: /node_modules/ }
              */
-            disableAutoDepsPreBundling?: boolean | string[];
+            autoDepsOptimization?: boolean | AutoDepOptimizationOptions;
         };
     };
     export interface RouteContext {

@@ -1,6 +1,6 @@
 {
   "name": "test-weird-deps",
-  "version": "1.1.411",
+  "version": "1.1.445",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,9 +15,10 @@
   "dependencies": {
     "@lexical/react": "^0.21.0",
     "@react-native-masked-view/masked-view": "^0.3.1",
+    "@rn-primitives/slot": "^1.1.0",
     "@sentry/react-native": "^5.30.0",
     "@shopify/flash-list": "^1.7.2",
-    "@tamagui/config": "^1.123.0",
+    "@tamagui/config": "^1.125.1",
     "expo": "~52.0.17",
     "expo-image": "~1.13.0",
     "expo-structured-headers": "^4.0.0",
@@ -29,10 +30,10 @@
     "react-native-reanimated": "~3.16.5",
     "react-native-svg": "15.8.0",
     "react-native-webview": "^13.12.5",
-    "tamagui": "^1.123.0",
+    "tamagui": "^1.125.1",
     "uuid": "9.0.0"
   },
   "devDependencies": {
-    "vite": "^6.0.6"
+    "vite": "^6.1.0"
   }
 }

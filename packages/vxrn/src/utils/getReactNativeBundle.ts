@@ -1,6 +1,5 @@
-import FSExtra from 'fs-extra'
 import { readFile } from 'node:fs/promises'
-import { dirname, join, relative } from 'node:path'
+import { dirname, relative } from 'node:path'
 import { createBuilder } from 'vite'
 // import { buildEnvironment } from './fork/vite/build'
 import { resolvePath } from '@vxrn/resolve'
@@ -19,10 +18,12 @@ export function clearCachedBundle() {
   cachedReactNativeBundles = {}
 }
 
+type InternalProps = { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean }
+
 export async function getReactNativeBundle(
   options: VXRNOptionsFilled,
   platform: 'ios' | 'android',
-  internal: { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean } = {
+  internal: InternalProps = {
     mode: 'dev',
     useCache: true,
   }

@@ -12,19 +12,19 @@ on:
   pull_request:
 
 jobs:
-  build-ios-test-dev-container:
-    name: Build iOS Test Development Container App
-    uses: ./.github/workflows/build-ios-test-app.yml
-    secrets: inherit
-    permissions:
-      contents: read
-      pull-requests: read
-    with:
-      configuration: Debug
+  # build-ios-test-dev-container:
+  #   name: Build iOS Test Development Container App
+  #   uses: ./.github/workflows/build-ios-test-app.yml
+  #   secrets: inherit
+  #   permissions:
+  #     contents: read
+  #     pull-requests: read
+  #   with:
+  #     configuration: Debug
 
-  build-ios-test-app:
-    name: Build iOS Release App
-    uses: ./.github/workflows/build-ios-test-app.yml
+  build-ios-test-container-prod:
+    name: Build iOS RN Test App (Prod)
+    uses: ./.github/workflows/build-ios-test-container-app.yml
     secrets: inherit
     permissions:
       contents: read
@@ -160,7 +160,7 @@ jobs:
     # * We do not test the generated Xcode project has the Build Phase "Bundle React Native code and images" setup correctly using the standard `react-native bundle` command. This is done by the "vxrn/expo-plugin" Expo plugin which users should include in their `app.json` configuration. If that didn't work properally, Expo prebuild may setup the Xcode project to use Expo's custom bundle command that uses Metro.
     # * We do not test `react-native/scripts/react-native-xcode.sh`, instead we copy parts of it into our test scripts, simulating parts of the build process without running the whole native build.
     needs:
-      - build-ios-test-app
+      - build-ios-test-container-prod
     runs-on: macos-14
     defaults:
       run:
@@ -178,8 +178,8 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           fail-on-cache-miss: true
-          key: ${{ needs.build-ios-test-app.outputs.built-app-cache-key }}
-          path: ${{ needs.build-ios-test-app.outputs.built-app-path }}
+          key: ${{ needs.build-ios-test-container-prod.outputs.built-app-cache-key }}
+          path: ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
 
       - name: Get Simulator UDID
         id: get-simulator-udid
@@ -232,12 +232,12 @@ jobs:
 
       - name: Replace JS Bundle and Assets in App
         run: |
-          cp -r test-bundle-output/. ${{ github.workspace }}/${{ needs.build-ios-test-app.outputs.built-app-path }}/
+          cp -r test-bundle-output/. ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}/
 
       - name: Check .app
         id: check-app
         run: |
-          if [ ! -e ${{ github.workspace }}/${{ needs.build-ios-test-app.outputs.built-app-path }} ]; then
+          if [ ! -e ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }} ]; then
             echo "Error: .app not found"
             exit 1
           fi
@@ -245,14 +245,15 @@ jobs:
       - name: Install App in Simulator
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-          APP_PATH: ${{ needs.build-ios-test-app.outputs.built-app-path }}
+          APP_PATH: ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
         working-directory: .
         run: xcrun simctl install $SIMULATOR_UDID $APP_PATH
 
       - name: Test
         run: |
           export PATH="$PATH":"$HOME/.maestro/bin"
-          export MAESTRO_DRIVER_STARTUP_TIMEOUT=180000 # 3 minutes
+          export MAESTRO_CLI_NO_ANALYTICS=1
+          export MAESTRO_DRIVER_STARTUP_TIMEOUT=360000 # 6 minutes
           maestro test maestro-flows/basic.yaml
 
       - name: Upload App
@@ -262,7 +263,7 @@ jobs:
         with:
           name: release-app
           path: |
-            ${{ needs.build-ios-test-app.outputs.built-app-path }}
+            ${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
 
       - name: Prepare Maestro Logs
         id: prepare-maestro-logs

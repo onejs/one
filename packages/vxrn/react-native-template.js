@@ -54,6 +54,21 @@ const getRunningModulesPrint = () => [...__runningModules.keys()].join(' > ')
 function __getRequire(absPath, parent) {
   absPath = ___vxrnAbsoluteToRelative___[absPath] || absPath
 
+    // START WORKAROUND
+    // Since during HMR, `getVitePath` is used and it'll always return with `.js` extension while turning relative paths to absolute paths (see: https://github.com/onejs/one/blob/v1.1.432/packages/vxrn/src/utils/getVitePath.ts#L33),
+    // we need to check for other extensions as well.
+  if (absPath.endsWith('.js')) {
+    for (const ext of ['.jsx', '.ts', '.tsx']) {
+      for (const platformExt of ['', `.${__VXRN_PLATFORM__.toLowerCase()}`, `.native`]) {
+        const possibleAbsPath = absPath.replace(/\.js$/, `${platformExt}${ext}`)
+        if (___vxrnAbsoluteToRelative___[possibleAbsPath]) {
+          absPath = ___vxrnAbsoluteToRelative___[possibleAbsPath]
+        }
+      }
+    }
+  }
+    // END WORKAROUND
+
   if (!__cachedModules[absPath]) {
     const runModule = ___modules___[absPath]
 
@@ -92,6 +107,10 @@ const __specialRequireMap = globalThis.__vxrnPrebuildSpecialRequireMap || {
   'react/jsx-runtime': '.vxrn/react-jsx-runtime.js',
   'react/jsx-dev-runtime': '.vxrn/react-jsx-runtime.js',
 }
+
+// WORKAROUND: react-native-reanimated may be dynamically imported by react-native-gesture-handler, which the import path will not be transformed. Doing this so `require('react-native-reanimated')` can work.
+// See: https://github.com/software-mansion/react-native-gesture-handler/blob/2.23.0/src/handlers/gestures/reanimatedWrapper.ts#L33
+__specialRequireMap['react-native-reanimated'] = 'react-native-reanimated/src/index.js'
 
 const nodeImports = {
   fs: true,
@@ -136,7 +155,7 @@ function getRequire(importer, importsMap, _mod) {
 
   const getErrorDetails = (withStack) => {
     return `Running modules: ${getRunningModulesPrint()}
-    
+
 In importsMap: ${JSON.stringify(importsMap, null, 2)}
 
 ${

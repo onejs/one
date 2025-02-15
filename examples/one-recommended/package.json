@@ -1,12 +1,13 @@
 {
   "name": "example-recommended",
-  "version": "1.1.411",
+  "version": "1.1.445",
   "private": true,
   "type": "module",
   "scripts": {
     "android": "one run:android",
     "build:web": "one build",
     "clean": "one clean",
+    "typecheck": "tsc --noEmit",
     "db:check": "bash -c \"$npm_execpath db:push 2>&1 >/dev/null | grep ECONNREFUSED >/dev/null; if [ $? -eq 1 ]; then echo '\n\n❌ Note! Error running db:push, you may need to set up and run your db. See README.md\n\n'; exit 1; fi\"",
     "db:generate": "drizzle-kit generate --config ./code/db/drizzle.config.ts",
     "db:init": "$npm_execpath db:generate && $npm_execpath db:push && $npm_execpath db:seed",
@@ -22,9 +23,9 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
-    "@tamagui/config": "^1.123.0",
-    "@tamagui/image-next": "^1.123.0",
-    "@tamagui/lucide-icons": "^1.123.0",
+    "@tamagui/config": "^1.125.1",
+    "@tamagui/image-next": "^1.125.1",
+    "@tamagui/lucide-icons": "^1.125.1",
     "@vxrn/color-scheme": "workspace:*",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
@@ -41,15 +42,16 @@
     "react-native-screens": "4.4.0",
     "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.123.0"
+    "tamagui": "^1.125.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@faker-js/faker": "next",
     "@react-native-community/cli": "15.1.3",
-    "@tamagui/vite-plugin": "^1.123.0",
+    "@tamagui/vite-plugin": "^1.125.1",
     "@types/react": "^18.3.11",
     "tsx": "^4.19.0",
-    "vite": "^6.0.6"
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
   }
 }

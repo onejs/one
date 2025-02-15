@@ -1,7 +1,8 @@
 import { createDebugger } from '@vxrn/debug'
 import FSExtra from 'fs-extra'
 import path from 'node:path'
-import type { ConfigEnv, Plugin } from 'vite'
+import { createFilter, type Plugin } from 'vite'
+import type { AutoDepOptimizationOptions } from '../types'
 import { EXCLUDE_LIST, type ScanDepsResult, scanDepsToOptimize } from '../utils/scanDepsToOptimize'
 import { getFileHash, lookupFile } from '../utils/utils'
 
@@ -9,9 +10,8 @@ const name = 'vxrn:auto-dep-optimize'
 
 const { debug, debugDetails } = createDebugger(name)
 
-type FindDepsOptions = {
+type FindDepsOptions = AutoDepOptimizationOptions & {
   root: string
-  exclude?: string[]
   onScannedDeps?: (result: ScanDepsResult) => void
 }
 
@@ -21,7 +21,24 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
     enforce: 'pre',
     config(_cfg, env) {
       debug?.('Config hook called')
-      return getScannedOptimizeDepsConfig({ ...props, mode: env.mode })
+
+      // TODO not use global here we should move deps into vxrn
+      const userOptions = globalThis.__oneOptions
+      const depsConfig = userOptions?.deps
+
+      const exclude = depsConfig
+        ? Object.entries(depsConfig)
+            .filter(([key, value]) => value === false)
+            .map(([k]) => k)
+        : []
+
+      const userExcludes = Array.isArray(props.exclude) ? props.exclude : [props.exclude]
+
+      return getScannedOptimizeDepsConfig({
+        ...props,
+        mode: env.mode,
+        exclude: [...exclude, ...userExcludes].filter(Boolean),
+      })
     },
   } satisfies Plugin
 }
@@ -41,7 +58,7 @@ export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode)
     ssr: {
       optimizeDeps: {
         include: result.prebundleDeps,
-        exclude: props.exclude ? [...props.exclude, ...EXCLUDE_LIST] : EXCLUDE_LIST,
+        exclude: EXCLUDE_LIST,
       },
       noExternal: result.prebundleDeps,
     },
@@ -50,7 +67,7 @@ export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode)
 
 let sessionCacheVal: ScanDepsResult | null = null
 
-export async function findDepsToOptimize({ root, mode, exclude }: FindDepsOptionsByMode) {
+export async function findDepsToOptimize({ root, mode, exclude, include }: FindDepsOptionsByMode) {
   const cacheFilePath = getSSRExternalsCachePath(root)
   const startedAt = debug ? Date.now() : 0
 
@@ -92,8 +109,10 @@ export async function findDepsToOptimize({ root, mode, exclude }: FindDepsOption
     }
   }
 
+  const filter = createFilter(include, exclude)
+
   if (!value) {
-    value = await scanDepsToOptimize(`${root}/package.json`)
+    value = await scanDepsToOptimize(`${root}/package.json`, { filter })
 
     if (sessionCache) {
       sessionCacheVal = value
@@ -114,11 +133,6 @@ export async function findDepsToOptimize({ root, mode, exclude }: FindDepsOption
         ? ''
         : ` (Focus on this debug scope, "DEBUG=${debug.namespace}", to see more details.)`)
   )
-
-  if (exclude) {
-    debug?.(`Excluding user specified deps ${JSON.stringify(exclude)} from pre-bundling for SSR.`)
-    value.prebundleDeps = value.prebundleDeps.filter((dep) => !exclude.includes(dep))
-  }
 
   debugDetails?.(`Deps discovered to be pre-bundled for SSR: ${value.prebundleDeps.join(', ')}`)
 

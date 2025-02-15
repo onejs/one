@@ -250,6 +250,28 @@ install('URLSearchParams', () => URLSearchParams);
   },
 
   {
+    module: 'expo-modules-core',
+    patchFiles: {
+      version: '2.*',
+      'src/ts-declarations/global.ts': (contents) => {
+        assertString(contents)
+
+        // Make it compatible with other packages that also overrides ProcessEnv, such as `bun-types`.
+        // Prevents type-checking errors like "Named property 'NODE_ENV' of types 'ExpoProcessEnv' and 'Env' are not identical."
+        return contents.replace('NODE_ENV: string;', 'NODE_ENV?: string;')
+      },
+
+      // lets us use tsconfig verbatimModuleSyntax in peace
+      'src/uuid/uuid.ts': (contents) => {
+        return contents?.replace(
+          `import { UUID, Uuidv5Namespace } from './uuid.types`,
+          `import { type UUID, Uuidv5Namespace } from './uuid.types`
+        )
+      },
+    },
+  },
+
+  {
     module: 'expo-image',
     patchFiles: {
       'build/**/*.js': ['jsx'],
@@ -375,6 +397,20 @@ install('URLSearchParams', () => URLSearchParams);
         contents
           ?.replace(/punycode\.ucs2\.decode/gm, '(punycode.ucs2decode || punycode.ucs2.decode)')
           ?.replace(/punycode\.ucs2\.encode/gm, '(punycode.ucs2encode || punycode.ucs2.encode)'),
+    },
+  },
+
+  {
+    module: 'html-entities',
+    patchFiles: {
+      version: '2.*',
+      // [react-native-live-markdown] `parseExpensiMark` requires `html-entities` package to be workletized.
+      'lib/index.js': (contents) => {
+        assertString(contents)
+        if (contents.startsWith(`'worklet';`)) return contents
+
+        return `'worklet';\n\n${contents}`
+      },
     },
   },
 ]

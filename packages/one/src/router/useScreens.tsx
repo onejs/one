@@ -7,12 +7,10 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { forwardRef, Suspense, useEffect } from 'react'
+import React, { memo, Suspense } from 'react'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
-import { useConstant } from '../utils/useConstant'
 import { EmptyRoute } from '../views/EmptyRoute'
-import { RootErrorBoundary } from '../views/RootErrorBoundary'
 import { Try } from '../views/Try'
 import { DevHead } from '../vite/DevHead'
 import { useServerContext } from '../vite/one-server-only'
@@ -169,111 +167,76 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     return qualifiedStore.get(value)!
   }
 
-  let ScreenComponent: React.ForwardRefExoticComponent<{ segment: string; key?: string }>
-
-  ScreenComponent = React.forwardRef((props, ref) => {
+  const ScreenComponent = React.forwardRef((props: any, ref) => {
     const res = value.loadRoute()
-    const Component = useConstant(() => {
-      const BaseComponent = getPageExport(fromImport(res)) as React.ComponentType<any>
-
-      // root layout do special html handling only
-      if (props.segment === '') {
-        return forwardRef((props, ref) => {
-          // @ts-expect-error
-          const out = BaseComponent(props, ref)
-          const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
-          const { children: headChildren, ...headProps } = head?.props || {}
-          const serverContext = useServerContext()
-
-          if (process.env.TAMAGUI_TARGET === 'native') {
-            // on native we just ignore all html/body/head
-            return children
-          }
-
-          const contents = (
-            <>
-              <head key="head" {...headProps}>
-                <DevHead />
-                <script
-                  dangerouslySetInnerHTML={{
-                    __html: `globalThis['global'] = globalThis`,
-                  }}
-                />
-                {serverContext?.css?.map((file) => {
-                  return <link key={file} rel="stylesheet" href={file} />
-                })}
-                <ServerContextScript />
-                {headChildren}
-              </head>
-              <body key="body" suppressHydrationWarning {...bodyProps}>
-                <SafeAreaProviderCompat>{children}</SafeAreaProviderCompat>
-              </body>
-            </>
-          )
-
-          return (
-            // tamagui and libraries can add className on hydration to have ssr safe styling
-            // so supress hydration warnings here
-            <html suppressHydrationWarning lang="en-US" {...htmlProps}>
-              {contents}
-            </html>
-          )
-        })
-      }
-
-      return BaseComponent
-    })
+    const Component = getPageExport(fromImport(res)) as React.ComponentType<any>
 
     if (process.env.NODE_ENV === 'development' && process.env.DEBUG === 'one') {
       console.groupCollapsed(`Render ${props.key} ${props.segment}`)
-      console.info(`res`, res)
       console.info(`value`, value)
-      console.info(`fromImport`, fromImport(res))
       console.info(`Component`, Component)
       console.groupEnd()
     }
 
-    return (
-      // <Suspense fallback={null}>
-      <Component {...props} ref={ref} />
-      // </Suspense>
-    )
+    if (props.segment === '') {
+      // @ts-expect-error
+      const out = Component(props, ref)
+
+      const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
+      const { children: headChildren, ...headProps } = head?.props || {}
+      const serverContext = useServerContext()
+
+      // let finalChildren = <Suspense fallback={null}>{children}</Suspense>
+      let finalChildren = children
+
+      if (process.env.TAMAGUI_TARGET === 'native') {
+        // on native we just ignore all html/body/head
+        return finalChildren
+      }
+
+      finalChildren = (
+        <>
+          <head key="head" {...headProps}>
+            <DevHead />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `globalThis['global'] = globalThis`,
+              }}
+            />
+            {serverContext?.css?.map((file) => {
+              return <link key={file} rel="stylesheet" href={file} />
+            })}
+            <ServerContextScript />
+            {headChildren}
+          </head>
+          <body key="body" suppressHydrationWarning {...bodyProps}>
+            <SafeAreaProviderCompat>{finalChildren}</SafeAreaProviderCompat>
+          </body>
+        </>
+      )
+
+      return (
+        // tamagui and libraries can add className on hydration to have ssr safe styling
+        // so supress hydration warnings here
+        <html suppressHydrationWarning lang="en-US" {...htmlProps}>
+          {finalChildren}
+        </html>
+      )
+    }
+
+    return <Component {...props} ref={ref} />
   })
 
   const wrapSuspense = (children: any) => {
+    // so as far as i understand, adding suspense causes flickers on web during nav because
+    // we can't seem to get react navigation to properly respect startTransition(() => {})
+    // i tried a lot of things, but didn't find the root cause, but native needs suspense or
+    // else it hits an error about no suspense boundary being set
+
     if (process.env.TAMAGUI_TARGET === 'native') {
-      return <Suspense fallback={<SuspenseFallback route={value} />}>{children}</Suspense>
+      return <Suspense fallback={null}>{children}</Suspense>
     }
-    // on web avoiding suspense for now
-    // its causing page flickers, we need to make sure we wrap loaders + page nav
-    // in startTransition
     return children
-  }
-
-  const getLoadable = (props: any, ref: any) => {
-    return (
-      <RootErrorBoundary>
-        {wrapSuspense(
-          <ScreenComponent
-            {...{
-              ...props,
-              ref,
-              // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-              // the intention is to make it possible to deduce shared routes.
-              segment: value.route,
-            }}
-          />
-        )}
-      </RootErrorBoundary>
-    )
-  }
-
-  const SuspenseFallback = ({ route }: { route: RouteNode }) => {
-    useEffect(() => {
-      // console.info(`⚠️ Suspended:`, route)
-    }, [route])
-
-    return null
   }
 
   const QualifiedRoute = React.forwardRef(
@@ -289,10 +252,21 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       }: any,
       ref: any
     ) => {
-      const loadable = getLoadable(props, ref)
       return (
         <Route route={route} node={value}>
-          {loadable}
+          <>
+            {wrapSuspense(
+              <ScreenComponent
+                {...{
+                  ...props,
+                  ref,
+                  // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+                  // the intention is to make it possible to deduce shared routes.
+                  segment: value.route,
+                }}
+              />
+            )}
+          </>
         </Route>
       )
     }
@@ -301,7 +275,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
   QualifiedRoute.displayName = `Route(${value.route})`
 
   qualifiedStore.set(value, QualifiedRoute)
-  return QualifiedRoute
+  return memo(QualifiedRoute)
 }
 
 /** @returns a function which provides a screen id that matches the dynamic route name in params. */
@@ -366,6 +340,20 @@ function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenPr
 
         return output
       }}
+      // this doesn't work, also probably better to wrap suspense only on root layout in useScreens
+      // but it doesnt seem to pick up our startTransitions which i wrapped in a few places.
+      // now i thought this was due to our use of useSyncExternalStore, but i replaced that with
+      // `use-sync-external-store/shim` and i also replaced the one in react-navigation that does
+      // `use-sync-external-store/with-selector` to `use-sync-external-store/shim/with-selector`
+      // but still it seems something else must be updating state outside a transition.
+
+      // layout={({ children }) => {
+      //   console.log('route.contextKey', route.contextKey)
+      //   if (route.contextKey === '') {
+      //     return <Suspense fallback={null}>{children}</Suspense>
+      //   }
+      //   return children
+      // }}
       getComponent={() => {
         // log here to see which route is rendered
         // console.log('getting', route, getQualifiedRouteComponent(route))

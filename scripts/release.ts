@@ -2,7 +2,7 @@ import path from 'node:path'
 import * as proc from 'node:child_process'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
-import fs, { ensureDir, writeJSON } from 'fs-extra'
+import fs, { ensureDir, writeJson, writeJSON } from 'fs-extra'
 import pMap from 'p-map'
 import prompts from 'prompts'
 import { spawnify } from './spawnify'
@@ -71,7 +71,18 @@ const sleep = (ms) => {
 if (!skipVersion) {
   console.info('Current:', curVersion, '\n')
 } else {
-  console.info(`Re-publishing ${curVersion}`)
+  console.info(`Releasing ${curVersion}`)
+}
+
+async function upgradeReproApp(newVersion: string) {
+  const pkgJsonPath = path.join(process.cwd(), 'repro', 'package.json');
+
+  const pkgJson =
+    await fs.readJSON(pkgJsonPath);
+  pkgJson.version = newVersion;
+  pkgJson.dependencies.one = newVersion;
+
+  await writeJSON(pkgJsonPath, pkgJson, { spaces: 2 })
 }
 
 async function run() {
@@ -169,11 +180,11 @@ async function run() {
         isCI || skipVersion
           ? { version: nextVersion }
           : await prompts({
-              type: 'text',
-              name: 'version',
-              message: 'Version?',
-              initial: nextVersion,
-            })
+            type: 'text',
+            name: 'version',
+            message: 'Version?',
+            initial: nextVersion,
+          })
 
       version = answer.version
       console.info('Next:', version, '\n')
@@ -235,6 +246,8 @@ async function run() {
           await writeJSON(path, next, { spaces: 2 })
         })
       )
+
+      await upgradeReproApp(version);
     }
 
     if (!finish && dryRun) {

@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "1.1.411",
+  "version": "1.1.445",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -28,7 +28,7 @@
     "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src"
   },
   "dependencies": {
-    "@babel/core": "^7.26.0",
+    "@babel/core": "^7.26.8",
     "@babel/plugin-transform-destructuring": "^7.25.9",
     "@babel/plugin-transform-private-methods": "^7.25.9",
     "@babel/plugin-transform-react-jsx": "^7.25.9",
@@ -39,10 +39,10 @@
     "babel-plugin-react-compiler": "^19.0.0-beta-201e55d-20241215",
     "react-native-css-interop": "^0.1.22",
     "ts-deepmerge": "^7.0.2",
-    "vite": "^6.0.6"
+    "vite": "^6.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.123.0",
+    "@tamagui/build": "^1.125.1",
     "depcheck": "^1.4.7",
     "react-native": "^0.76.5",
     "rollup": "^4.29.1"
