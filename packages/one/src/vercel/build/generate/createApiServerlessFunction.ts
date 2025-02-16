@@ -11,12 +11,12 @@ export async function createApiServerlessFunction(
   options: any,
   postBuildLogs: string[],
 ) {
-  postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`);
-
-  const funcFolder = join(options.root, 'dist', `.vercel/output/functions/${pageName}.func`);
-  await fs.ensureDir(funcFolder);
-
   try {
+    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`);
+
+    const funcFolder = join(options.root, 'dist', `.vercel/output/functions/${pageName}.func`);
+    await fs.ensureDir(funcFolder);
+
     if (code.includes("react")) {
       postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] detected react in depenency tree for ${pageName}`);
       await fs.copy(resolve(join(options.root, '..', '..', 'node_modules', 'react')), resolve(join(funcFolder, 'node_modules', 'react')));
