@@ -1,4 +1,5 @@
-export declare const serverlessVercelConfig: {
+export declare const serverlessVercelNodeJsConfig: {
+    environment: {};
     runtime: string;
     handler: string;
     launcherType: string;

@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import { join, resolve } from 'path';
 
 import { serverlessVercelPackageJson } from "../config/vc-package-base";
-import { serverlessVercelConfig } from "../config/vc-config-base";
+import { serverlessVercelNodeJsConfig } from "../config/vc-config-base";
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
@@ -40,7 +40,7 @@ export async function createApiServerlessFunction(
     // Documentation - Vercel Build Output v3 Node.js Config
     //   https://vercel.com/docs/build-output-api/v3/primitives#node.js-config
     return fs.writeJson(join(funcFolder, '.vc-config.json'), {
-      ...serverlessVercelConfig,
+      ...serverlessVercelNodeJsConfig,
       handler: "entrypoint/index.js",
     });
   } catch (e) {

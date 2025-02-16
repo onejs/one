@@ -26,7 +26,7 @@ import { createSsrServerlessFunction } from '../vercel/build/generate/createSsrS
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
-import { serverlessVercelConfig } from '../vercel/build/config/vc-config-base'
+import { serverlessVercelNodeJsConfig } from '../vercel/build/config/vc-config-base'
 import { serverlessVercelPackageJson } from '../vercel/build/config/vc-package-base'
 import { vercelBuildOutputConfig } from '../vercel/build/config/vc-build-output-config-base'
 
@@ -544,7 +544,7 @@ export async function build(args: {
       await writeJSON(vercelMiddlewarePackageJsonFilePath, serverlessVercelPackageJson);
       postBuildLogs.push(`[one.build][vercel] writing .vc-config.json to ${join(vercelMiddlewareDir, '.vc-config.json')}`);
       await writeJSON(resolve(join(vercelMiddlewareDir, '.vc-config.json')), {
-        ...serverlessVercelConfig,
+        ...serverlessVercelNodeJsConfig,
         handler: "_middleware.js",
       });
 

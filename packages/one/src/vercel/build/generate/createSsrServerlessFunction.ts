@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path';
 
 import { One } from "@vxrn/one/src/vite/types";
 
-import { serverlessVercelConfig } from "../config/vc-config-base";
+import { serverlessVercelNodeJsConfig } from "../config/vc-config-base";
 import { serverlessVercelPackageJson } from "../config/vc-package-base";
 
 // Documentation - Vercel Build Output v3
@@ -82,9 +82,10 @@ export async function createSsrServerlessFunction(
     const vcConfigFilePath = resolve(join(funcFolder, '.vc-config.json'));
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] writing .vc-config.json to ${vcConfigFilePath}`);
     return fs.writeJson(vcConfigFilePath, {
-      ...serverlessVercelConfig,
+      ...serverlessVercelNodeJsConfig,
       handler: "entrypoint/index.js",
       environment: {
+        ...serverlessVercelNodeJsConfig.environment,
         ONE_DEFAULT_RENDER_MODE: 'ssr',
       }
     });
