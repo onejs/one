@@ -22,13 +22,13 @@ import { loadUserOneOptions } from '../vite/loadConfig'
 import { runWithAsyncLocalContext } from '../vite/one-server-only'
 import type { One, RouteInfo } from '../vite/types'
 import { createApiServerlessFunction } from '../vercel/build/generate/createApiServerlessFunction'
+import { createSsrServerlessFunction } from '../vercel/build/generate/createSsrServerlessFunction'
+
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
-import { createSsrServerlessFunction } from '../vercel/build/generate/createSsrServerlessFunction'
 
-
-const { ensureDir, readFile, outputFile, writeJSON } = FSExtra
+const { ensureDir, writeJSON } = FSExtra
 
 process.on('uncaughtException', (err) => {
   console.error(err?.message || err)
