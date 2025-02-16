@@ -7,7 +7,6 @@ import ReactDOMServer from "react-dom/server";
 
 import { One } from "@vxrn/one/src/vite/types";
 import { AsyncLocalStorage } from "node:async_hooks";
-import { routeInfo } from "@vxrn/one/src/router/router";
 // import { toAbsolute } from "@vxrn/one/src/utils/toAbsolute";
 // import { RenderAppProps } from "@vxrn/one/src/types";
 // import { getServerEntry } from 'vxrn/serve'
@@ -62,91 +61,127 @@ const dirname =  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fil
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
-export async function createSsrServerlessFunction(
+export async function createSsrServerlessFunctionForRoute(
   pageName: string,
-  buildInfo: One.BuildInfo,
+  builtPageRoute: One.RouteBuildInfo,
   oneOptions: any,
   postBuildLogs: string[],
 ) {
   postBuildLogs.push(`[createSsrServerlessFunction] pageName: ${pageName}`);
+  postBuildLogs.push(`[createSsrServerlessFunction] htmlPath: ${builtPageRoute.htmlPath}`);
+
+  const funcFolder = join(oneOptions.root, 'dist', `.vercel/output/functions/${pageName}.func`);
+  await fs.ensureDir(funcFolder);
 
   try {
     // postBuildLogs.push(`[createSsrServerlessFunction] copy shared assets to ${join(funcFolder, 'assets')}`);
     // await fs.copy(join(options.root, 'dist', 'api', 'assets'), join(funcFolder, 'assets'));
 
-    const buildInfoAsString = JSON.stringify(buildInfo)
-
-    const funcFolder = join(oneOptions.root, 'dist', `.vercel/output/functions/${pageName}.func`);
-    await fs.ensureDir(funcFolder);
-
-    const distServerFrom = path.resolve(join(oneOptions.root, 'dist', 'server'));
-    const distServerTo = path.resolve(join(funcFolder, 'server'));
-    await fs.ensureDir(distServerTo);
-    postBuildLogs.push(`[createSsrServerlessFunction] copy server from ${distServerFrom} to ${distServerTo}`);
-    await fs.copy(distServerFrom, distServerTo);
-    
-    postBuildLogs.push(`[createSsrServerlessFunction] writing buildInfo.json`);
-    await fs.writeFile(join(funcFolder, 'buildInfo.js'), `export default ${buildInfoAsString}`);
-
     await fs.ensureDir(join(funcFolder, 'entrypoint'));
     postBuildLogs.push(`[createSsrServerlessFunction] writing entrypoint to ${join(funcFolder, 'entrypoint', 'index.js')}`);
-    await fs.writeFile(
+    // await fs.copy(join(options.root, builtPageRoute.clientJsPath), join(funcFolder, 'entrypoint', 'client.js'));
+    // await fs.copy(join(options.root, builtPageRoute.serverJsPath), join(funcFolder, 'entrypoint', 'server.js'));
+    // if (fs.existsSync(join(options.root, 'dist', builtPageRoute.preloadPath))) {
+    //   await fs.copy(join(options.root, 'dist', builtPageRoute.preloadPath), join(funcFolder, 'entrypoint', 'preload.js'));
+    // }
+
+    
+    
+    // for (const preload in builtPageRoute.preloads) {
+    //   postBuildLogs.push(`[createSsrServerlessFunction] writing preload`, preload, join(options.root, 'dist', preload))
+    //   await fs.copy(join(options.root, 'dist', preload), join(funcFolder, 'entrypoint', basename(preload)));
+    // }
+    // const entry = await fs.readFile(join(options.root, builtPageRoute.clientJsPath), 'utf8')
+    postBuildLogs.push(`[createSsrServerlessFunction] serverJsPath`, join(oneOptions.root, builtPageRoute.serverJsPath))
+    // postBuildLogs.push(`[createSsrServerlessFunction] entrypoint template`, join(dirname, 'entrypoint.ts'))
+    // const template = fs.readFileSync(path.resolve(join(dirname, 'entrypoint.ts')), 'utf8')
+    // postBuildLogs.push(`[createSsrServerlessFunction] entrypoint template ${template}`)
+    // const { default: Component } = await import(join(options.root, builtPageRoute.clientJsPath))
+
+    try {
+      // const serverOptions = {
+      //   ...oneOptions,
+      //   root: '.',
+      // }
+      // const entryServer = getServerEntry(serverOptions)
+      // const entry = await import(entryServer)
+      const entryFilePath = path.resolve(join(oneOptions.root, 'dist', 'server', '_virtual_one-entry.js'))
+      postBuildLogs.push(`[createSsrServerlessFunction] entry builtPageRoute.preloads[1]`, entryFilePath)
+      const entry = await import(entryFilePath)
+      const render = entry.default.render
+      const loaderProps = { path: pageName, params: {} }
+      const serverJsPath = path.resolve(join(oneOptions.root, builtPageRoute.serverJsPath))
+      postBuildLogs.push(`[createSsrServerlessFunction] entry builtPageRoute.serverJsPath ${serverJsPath}`)
+      // const exported = await import(serverJsPath)
+      // postBuildLogs.push(`[createSsrServerlessFunction] entry exported`, exported)
+      // const loaderData = await exported.loader?.(loaderProps)
+      const loaderData = builtPageRoute.loaderData
+      postBuildLogs.push(`[createSsrServerlessFunction] entry loaderData`, loaderData)
+      const preloads = builtPageRoute.preloads
+      const headers = new Headers()
+      // entry.default.setResponseHeaders(headers)
+      headers.set('content-type', 'text/html')
+
+      // const key = '__vxrnrequestAsyncLocalStore'
+      // type ALSInstance = AsyncLocalStorage<unknown>
+      // const read = () => globalThis[key] as ALSInstance | undefined
+      
+      // const ASYNC_LOCAL_STORE = {
+      //   get current() {
+      //     if (read()) return read()
+      //     const _ = new AsyncLocalStorage()
+      //     globalThis[key] = _
+      //     return _
+      //   },
+      // }
+      // const requestAsyncLocalStore =
+      //   process.env.VITE_ENVIRONMENT === 'ssr' ? ASYNC_LOCAL_STORE.current : null
+      // global[key] = requestAsyncLocalStore
+      // process.env.VITE_ENVIRONMENT = 'ssr'
+      postBuildLogs.push(`[createSsrServerlessFunction] entrypoint process.env.VITE_ENVIRONMENT`, process.env.VITE_ENVIRONMENT || 'void')
+      const rendered = await render({
+        mode: builtPageRoute.type,
+        loaderData,
+        loaderProps,
+        path: loaderProps?.path || '/',
+        preloads,
+      })
+
+      postBuildLogs.push(`[createSsrServerlessFunction] entrypoint template`, rendered)
+
+      // return new Response(rendered, {
+      //   headers,
+      //   status: 200
+      //   // status: route.isNotFound ? 404 : 200,
+      // })
+
+      await fs.writeFile(
         join(funcFolder, 'entrypoint', 'index.js'),
-  `
-  process.env.ONE_DEFAULT_RENDER_MODE = 'ssr';
-  const buildInfoConfig = await import('../buildInfo.js');
-  const entry = await import('../server/_virtual_one-entry.js');
+              `const { parse } = require('querystring')
   
-  const handler = async (req, res) => {
-    console.log("req.url", req.url);
-
-    const url = new URL(req.url, \`https://\${process.env.VERCEL_URL}\`);
-    const loaderProps = { 
-      path: url.pathname,
-      params: Object.fromEntries(url.searchParams.entries())
-    }
-    console.log("loaderProps", loaderProps)
-    const postfix = url.pathname.endsWith('/') ? 'index.tsx' : '+ssr.tsx';
-    const routeFile = \`.\${url.pathname}\${postfix}\`;
-    console.log("routeFile", routeFile)
-    //console.log("buildInfoConfig", Object.keys(buildInfoConfig.default));
-    //console.log("buildInfoConfig.routeToBuildInfo", Object.keys(buildInfoConfig.default.routeToBuildInfo));
-    const route = buildInfoConfig.default.routeToBuildInfo[routeFile];
-    console.log("buildInfo route", route)
-
-    const render = entry.default.render;
-    const exported = await import(route.serverJsPath.replace('dist/','../'))
-    const loaderData = await exported.loader?.(loaderProps)
-    const preloads = route.preloads
-
-    //const headers = new Headers()
-    //headers.set('content-type', 'text/html')
-
-    const rendered = await render({
-      mode: route.type,
-      loaderData,
-      loaderProps,
-      path: loaderProps?.path || '/',
-      preloads,
-    })
-    // const rendered = "<!DOCTYPE html><html><head><title>My blog</title></head><body><h1>hello world</h1></body></html>"
-    // return new Response(rendered, {
-    //   headers,
-    //   status: route.isNotFound ? 404 : 200,
-    // })
+  module.exports = (req, res) => {
+    console.log("req.url", req.url)
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
-    res.end(rendered)
-  }
-
-  export default handler;  
-  `
-  // module.exports = (req, res) => {
-  //   console.log("req.url", req.url)
-  //   res.setHeader('Content-Type', 'text/html; charset=utf-8')
-  //   res.end(\`${rendered}\`)
-  // }`
+    res.end(\`${rendered}\`)
+  }`
+        // template
+        // getHandlerCode(
+        //   ReactDOMServer.renderToString(React.createElement(Component)),
+        //   pageName
+        // )
+        // getHydrationScript(join(options.root, builtPageRoute.clientJsPath))
+        // `<!DOCTYPE html>
+        //   <head>
+        //     <meta charset="UTF-8">
+        //     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        //     <link href="styles.css" rel="stylesheet">
+        //   </head>
+        //   <body>
+        //     <div id="root"></div>
+        //     <script src="client.js" defer></script>
+        //   </body>`
   //       `const { parse } = require('querystring')
-
+  
   // module.exports = (req, res) => {
   //   const matches = parse(req.headers['x-now-route-matches'])
   //   let { slug } = matches
@@ -181,12 +216,15 @@ export async function createSsrServerlessFunction(
   //   \`)
   // }`
       )
+    } catch (err) {
+      console.error(`[one] Error rendering SSR route ${pageName} ${err?.['stack'] ?? err}`)
+    }
 
     postBuildLogs.push(`[createSsrServerlessFunction] writing package.json to ${join(funcFolder, 'package.json')}`);
-    await fs.writeJSON(
-      join(funcFolder, 'package.json'),
-      { "type": "module" }
-    )
+    // await fs.writeJSON(
+    //   join(funcFolder, 'package.json'),
+    //   { "type": "module" }
+    // )
     
     postBuildLogs.push(`[createSsrServerlessFunction] writing .vc-config.json to ${join(funcFolder, '.vc-config.json')}`);
     // Documentation - Vercel Build Output v3 Node.js Config
@@ -196,10 +234,7 @@ export async function createSsrServerlessFunction(
       handler: "entrypoint/index.js",
       launcherType: "Nodejs",
       shouldAddHelpers: true,
-      shouldAddSourceMapSupport: true,
-      environment: {
-        ONE_DEFAULT_RENDER_MODE: 'ssr',
-      }
+      shouldAddSourceMapSupport: true
     });
   } catch (e) {
     console.error('[createSsrServerlessFunction]', e);

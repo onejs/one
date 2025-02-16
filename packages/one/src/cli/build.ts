@@ -26,6 +26,7 @@ import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
 import { createSsrServerlessFunction } from '../vercel/build/generate/createSSRServerlessFunction'
+import { createSsrServerlessFunctionForRoute } from '../vercel/build/generate/createSsrServerlessFunctionForRoute'
 // import { fileURLToPath } from 'node:url'
 // import path from 'node:path'
 // const dirname =  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
@@ -515,6 +516,9 @@ export async function build(args: {
         }
       }
 
+      const vercelOutputFunctionsDir = join(options.root, 'dist', `.vercel/output/functions`);
+      await ensureDir(vercelOutputFunctionsDir);
+
       for (const route of buildInfoForWriting.manifest.pageRoutes) {
         // postBuildLogs.push('[vercel] pageRoute', route.type, route.page, JSON.stringify(route))
         switch (route.type) {
@@ -524,8 +528,13 @@ export async function build(args: {
             // const builtPageRoute = builtRoutes.find(pageRoute => pageRoute.routeFile === route.file)
             const builtPageRoute = routeToBuildInfo[route.file]
             if (builtPageRoute) {
-              postBuildLogs.push('[vercel] pageRoute', route.type, route.page, JSON.stringify(route), 'pagebuiltPageRouteRoute', JSON.stringify(builtPageRoute))
-              await createSsrServerlessFunction(route.page, builtPageRoute, options, postBuildLogs)
+              //postBuildLogs.push('[vercel] pageRoute', route.type, route.page, JSON.stringify(route), 'pagebuiltPageRouteRoute', JSON.stringify(builtPageRoute))
+              // await createSsrServerlessFunctionForRoute(route.page, builtPageRoute, options, postBuildLogs)
+              // const funcFolder = resolve(join(vercelOutputFunctionsDir, `${route.page}`));
+              // await ensureDir(funcFolder);
+              // postBuildLogs.push('[vercel] pageRoute', route.type, route.page, funcFolder)
+              // await FSExtra.writeFile(`${funcFolder}.func`, 'index.func')
+              await createSsrServerlessFunction(route.page, buildInfoForWriting, options, postBuildLogs)
             }
             break;
           case "ssg": // Static Site Generation
@@ -536,6 +545,8 @@ export async function build(args: {
             break;
         }
       }
+      
+      // await createSsrServerlessFunction('index', buildInfoForWriting, options, postBuildLogs)
 
       const vercelMiddlewareDir = join(options.root, 'dist', '.vercel/output/functions/_middleware');
       await ensureDir(vercelMiddlewareDir);
@@ -574,7 +585,16 @@ export async function build(args: {
       const vercelConfigFilePath = join(options.root, 'dist', '.vercel/output', 'config.json')
       await writeJSON(
         vercelConfigFilePath,
-        { version: 3 }
+        {
+          version: 3,
+          routes: [
+            {
+              "src": "/(.*)",
+              "status": 200,
+              // "headers": { "Location": "https://example.com/$1" }
+            }
+          ]
+        }
       )
       postBuildLogs.push(`[one.build] wrote vercel config to: ${vercelConfigFilePath}`)
 

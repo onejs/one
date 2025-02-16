@@ -61,9 +61,6 @@ export function mergeHeaders(onto: Headers, from: Headers) {
 }
 
 export function ensureAsyncLocalID() {
-  console.log("WTF??? ensureAsyncLocalID")
-  // console.log("WTF??? ensureAsyncLocalID", !!AsyncLocalStorage)
-  console.log("WTF??? ensureAsyncLocalID", !!requestAsyncLocalStore?.getStore)
   const id = requestAsyncLocalStore?.getStore() || asyncHeadersCache
   console.log("WTF??? ensureAsyncLocalID", id)
 
