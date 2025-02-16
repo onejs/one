@@ -61,8 +61,7 @@ export function mergeHeaders(onto: Headers, from: Headers) {
 }
 
 export function ensureAsyncLocalID() {
-  const id = requestAsyncLocalStore?.getStore() || asyncHeadersCache
-  console.log("WTF??? ensureAsyncLocalID", id)
+  const id = requestAsyncLocalStore?.getStore() ?? { _id: Math.random() }
 
   if (!id) {
     throw new Error(`Internal One error, no AsyncLocalStorage id!`)

@@ -25,11 +25,8 @@ import { createApiServerlessFunction } from '../vercel/build/generate/createApiS
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
-import { createSsrServerlessFunction } from '../vercel/build/generate/createSSRServerlessFunction'
-import { createSsrServerlessFunctionForRoute } from '../vercel/build/generate/createSsrServerlessFunctionForRoute'
-// import { fileURLToPath } from 'node:url'
-// import path from 'node:path'
-// const dirname =  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
+import { createSsrServerlessFunction } from '../vercel/build/generate/createSsrServerlessFunction'
+
 
 const { ensureDir, readFile, outputFile, writeJSON } = FSExtra
 
@@ -498,21 +495,21 @@ export async function build(args: {
   let postBuildLogs: string[] = []
 
   const platform = oneOptions.web?.deploy ?? options.server?.platform
-  postBuildLogs.push("[one.build] platform", platform)
-  const compiltedApiRoutes = apiOutput?.output.filter(o => isMatching({ code: P.string, facadeModuleId: P.string }, o)) ?? []
+  postBuildLogs.push(`[one.build] platform ${platform}`)
+  
   switch (platform) {
     case 'vercel': {
+      const compiltedApiRoutes = apiOutput?.output.filter(o => isMatching({ code: P.string, facadeModuleId: P.string }, o)) ?? []
       for (const route of buildInfoForWriting.manifest.apiRoutes) {
         const compiledRoute = compiltedApiRoutes.find(compiled => {
           const flag = compiled.facadeModuleId.includes(route.file.replace('./',''))
-          // postBuildLogs.push("[vercel] apiRoute matching???", `${flag}`, route.file, compiledRoute.facadeModuleId)
           return flag
         })
         if (compiledRoute) {
-          // postBuildLogs.push('[vercel] apiRoute matched', route.page, compiledRoute?.facadeModuleId)
+          postBuildLogs.push(`[one.build][vercel] generating serverless function for apiRoute ${route.page}`)
           await createApiServerlessFunction(route.page, compiledRoute.code, options, postBuildLogs)
         } else {
-          // postBuildLogs.push("[vercel] apiRoute unmatched", route.file)
+          console.warn("[one.build][vercel] apiRoute missing code compilation for", route.file)
         }
       }
 
@@ -520,20 +517,11 @@ export async function build(args: {
       await ensureDir(vercelOutputFunctionsDir);
 
       for (const route of buildInfoForWriting.manifest.pageRoutes) {
-        // postBuildLogs.push('[vercel] pageRoute', route.type, route.page, JSON.stringify(route))
         switch (route.type) {
           case "ssr": // Server Side Rendered
-            // const f = manifest.pageRoutes.find(pageRoute => pageRoute.file === route.file)
-            // postBuildLogs.push('[vercel] pageRoute', route.type, route.page, JSON.stringify(route), 'pageRoute', JSON.stringify(f))
-            // const builtPageRoute = builtRoutes.find(pageRoute => pageRoute.routeFile === route.file)
             const builtPageRoute = routeToBuildInfo[route.file]
             if (builtPageRoute) {
-              //postBuildLogs.push('[vercel] pageRoute', route.type, route.page, JSON.stringify(route), 'pagebuiltPageRouteRoute', JSON.stringify(builtPageRoute))
-              // await createSsrServerlessFunctionForRoute(route.page, builtPageRoute, options, postBuildLogs)
-              // const funcFolder = resolve(join(vercelOutputFunctionsDir, `${route.page}`));
-              // await ensureDir(funcFolder);
-              // postBuildLogs.push('[vercel] pageRoute', route.type, route.page, funcFolder)
-              // await FSExtra.writeFile(`${funcFolder}.func`, 'index.func')
+              postBuildLogs.push(`[one.build][vercel] generate serverless function for ${route.page} with ${route.type}`)
               await createSsrServerlessFunction(route.page, buildInfoForWriting, options, postBuildLogs)
             }
             break;
@@ -545,19 +533,17 @@ export async function build(args: {
             break;
         }
       }
-      
-      // await createSsrServerlessFunction('index', buildInfoForWriting, options, postBuildLogs)
 
       const vercelMiddlewareDir = join(options.root, 'dist', '.vercel/output/functions/_middleware');
       await ensureDir(vercelMiddlewareDir);
-      postBuildLogs.push(`[one.build] copying middlewares from ${join(options.root, 'dist', 'middlewares')} to ${vercelMiddlewareDir}`)
+      postBuildLogs.push(`[one.build][vercel] copying middlewares from ${join(options.root, 'dist', 'middlewares')} to ${vercelMiddlewareDir}`)
       await moveAllFiles(join(options.root, 'dist', 'middlewares'), vercelMiddlewareDir)
-      postBuildLogs.push(`[one.build] writing package.json to ${join(vercelMiddlewareDir, 'package.json')}`);
+      postBuildLogs.push(`[one.build][vercel] writing package.json to ${join(vercelMiddlewareDir, 'package.json')}`);
       await writeJSON(
         join(vercelMiddlewareDir, 'package.json'),
         { "type": "module" }
       )
-      postBuildLogs.push(`[one.build] writing .vc-config.json to ${join(vercelMiddlewareDir, '.vc-config.json')}`);
+      postBuildLogs.push(`[one.build][vercel] writing .vc-config.json to ${join(vercelMiddlewareDir, '.vc-config.json')}`);
       await writeJSON(join(vercelMiddlewareDir, '.vc-config.json'), {
         runtime: "nodejs20.x",
         handler: "_middleware.js",
@@ -570,15 +556,8 @@ export async function build(args: {
       await ensureDir(vercelOutputStaticDir);
 
       // await FSExtra.copy(htmlOutPath, funcFolder, { overwrite: true })
-      postBuildLogs.push(`[one.build] copying static files from ${clientDir} to ${vercelOutputStaticDir}`)
+      postBuildLogs.push(`[one.build > vercel] copying static files from ${clientDir} to ${vercelOutputStaticDir}`)
       await moveAllFiles(clientDir, vercelOutputStaticDir)
-
-//       await FSExtra.writeFile(
-//         join(options.root, 'dist', 'index.js'),
-//         `import { serve } from 'one/serve'
-// export const handler = await serve()
-// export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
-//       )
 
       // Documentation - Vercel Build Output v3 config.json
       // https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
@@ -591,7 +570,6 @@ export async function build(args: {
             {
               "src": "/(.*)",
               "status": 200,
-              // "headers": { "Location": "https://example.com/$1" }
             }
           ]
         }
