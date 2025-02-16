@@ -1,5 +1,6 @@
+import { join, resolve } from 'node:path'
+
 import FSExtra from 'fs-extra'
-import { join, resolve } from 'path'
 import type { RollupOutput } from 'rollup'
 import { isMatching, P } from 'ts-pattern'
 

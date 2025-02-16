@@ -1,5 +1,6 @@
+import { join, resolve } from 'node:path';
+
 import fs from "fs-extra";
-import { join, resolve } from 'path';
 
 import { serverlessVercelPackageJson } from "../config/vc-package-base";
 import { serverlessVercelNodeJsConfig } from "../config/vc-config-base";
