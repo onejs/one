@@ -555,7 +555,7 @@ export async function build(args: {
       await moveAllFiles(clientDir, vercelOutputStaticDir)
 
       // Documentation - Vercel Build Output v3 config.json
-      // https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
+      //   https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
       const vercelConfigFilePath = resolve(join(options.root, 'dist', '.vercel/output', 'config.json'));
       await writeJSON(vercelConfigFilePath, vercelBuildOutputConfig);
       postBuildLogs.push(`[one.build] wrote vercel config to: ${vercelConfigFilePath}`);
