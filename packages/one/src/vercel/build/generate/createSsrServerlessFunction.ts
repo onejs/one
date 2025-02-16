@@ -11,17 +11,17 @@ import { serverlessVercelPackageJson } from "../config/vc-package-base";
 export async function createSsrServerlessFunction(
   pageName: string,
   buildInfo: One.BuildInfo,
-  oneOptions: any,
+  oneOptionsRoot: string,
   postBuildLogs: string[],
 ) {
   try { 
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`);
 
     const buildInfoAsString = JSON.stringify(buildInfo);
-    const funcFolder = resolve(join(oneOptions.root, 'dist', `.vercel/output/functions/${pageName}.func`));
+    const funcFolder = resolve(join(oneOptionsRoot, 'dist', `.vercel/output/functions/${pageName}.func`));
     await fs.ensureDir(funcFolder);
 
-    const distServerFrom = resolve(join(oneOptions.root, 'dist', 'server'));
+    const distServerFrom = resolve(join(oneOptionsRoot, 'dist', 'server'));
     const distServerTo = resolve(join(funcFolder, 'server'));
     await fs.ensureDir(distServerTo);
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] copy server dist files from ${distServerFrom} to ${distServerTo}`);

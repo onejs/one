@@ -508,7 +508,7 @@ export async function build(args: {
         })
         if (compiledRoute) {
           postBuildLogs.push(`[one.build][vercel] generating serverless function for apiRoute ${route.page}`)
-          await createApiServerlessFunction(route.page, compiledRoute.code, options, postBuildLogs)
+          await createApiServerlessFunction(route.page, compiledRoute.code, options.root, postBuildLogs)
         } else {
           console.warn("\n 🔨[one.build][vercel] apiRoute missing code compilation for", route.file)
         }
@@ -523,7 +523,7 @@ export async function build(args: {
             const builtPageRoute = routeToBuildInfo[route.file]
             if (builtPageRoute) {
               postBuildLogs.push(`[one.build][vercel] generate serverless function for ${route.page} with ${route.type}`)
-              await createSsrServerlessFunction(route.page, buildInfoForWriting, options, postBuildLogs)
+              await createSsrServerlessFunction(route.page, buildInfoForWriting, options.root, postBuildLogs)
             }
             break;
           case "ssg": // Static Site Generation

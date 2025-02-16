@@ -9,23 +9,23 @@ import { serverlessVercelNodeJsConfig } from "../config/vc-config-base";
 export async function createApiServerlessFunction(
   pageName: string,
   code: string,
-  options: any,
+  oneOptionsRoot: string,
   postBuildLogs: string[],
 ) {
   try {
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`);
 
-    const funcFolder = join(options.root, 'dist', `.vercel/output/functions/${pageName}.func`);
+    const funcFolder = join(oneOptionsRoot, 'dist', `.vercel/output/functions/${pageName}.func`);
     await fs.ensureDir(funcFolder);
 
     if (code.includes("react")) {
       postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] detected react in depenency tree for ${pageName}`);
-      await fs.copy(resolve(join(options.root, '..', '..', 'node_modules', 'react')), resolve(join(funcFolder, 'node_modules', 'react')));
+      await fs.copy(resolve(join(oneOptionsRoot, '..', '..', 'node_modules', 'react')), resolve(join(funcFolder, 'node_modules', 'react')));
     }
 
     const distAssetsFolder = resolve(join(funcFolder, 'assets'));
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] copy shared assets to ${distAssetsFolder}`);
-    await fs.copy(resolve(join(options.root, 'dist', 'api', 'assets')), distAssetsFolder);
+    await fs.copy(resolve(join(oneOptionsRoot, 'dist', 'api', 'assets')), distAssetsFolder);
 
     await fs.ensureDir(resolve(join(funcFolder, 'entrypoint')));
     const entrypointFilePath = resolve(join(funcFolder, 'entrypoint', 'index.js'))
