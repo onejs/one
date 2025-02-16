@@ -2,6 +2,7 @@ import fs from "fs-extra";
 import { join, resolve } from 'path';
 
 import { serverlessVercelPackageJson } from "../config/vc-package-base";
+import { serverlessVercelConfig } from "../config/vc-config-base";
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
@@ -39,11 +40,8 @@ export async function createApiServerlessFunction(
     // Documentation - Vercel Build Output v3 Node.js Config
     //   https://vercel.com/docs/build-output-api/v3/primitives#node.js-config
     return fs.writeJson(join(funcFolder, '.vc-config.json'), {
-      runtime: "nodejs20.x",
+      ...serverlessVercelConfig,
       handler: "entrypoint/index.js",
-      launcherType: "Nodejs",
-      shouldAddHelpers: true,
-      shouldAddSourceMapSupport: true
     });
   } catch (e) {
     console.error(`[one.build][vercel.createSsrServerlessFunction] failed to generate func for ${pageName}`, e);

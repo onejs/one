@@ -83,6 +83,7 @@ export async function createSsrServerlessFunction(
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] writing .vc-config.json to ${vcConfigFilePath}`);
     return fs.writeJson(vcConfigFilePath, {
       ...serverlessVercelConfig,
+      handler: "entrypoint/index.js",
       environment: {
         ONE_DEFAULT_RENDER_MODE: 'ssr',
       }

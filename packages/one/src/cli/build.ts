@@ -26,8 +26,9 @@ import { createSsrServerlessFunction } from '../vercel/build/generate/createSsrS
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
-import { serverlessVercelPackageJson } from '../vercel/build/config/vc-package-base'
 import { serverlessVercelConfig } from '../vercel/build/config/vc-config-base'
+import { serverlessVercelPackageJson } from '../vercel/build/config/vc-package-base'
+import { vercelBuildOutputConfig } from '../vercel/build/config/vc-build-output-config-base'
 
 const { ensureDir, writeJSON } = FSExtra
 
@@ -537,19 +538,17 @@ export async function build(args: {
       const vercelMiddlewareDir = join(options.root, 'dist', '.vercel/output/functions/_middleware');
       await ensureDir(vercelMiddlewareDir);
       postBuildLogs.push(`[one.build][vercel] copying middlewares from ${join(options.root, 'dist', 'middlewares')} to ${vercelMiddlewareDir}`)
-      await moveAllFiles(join(options.root, 'dist', 'middlewares'), vercelMiddlewareDir)
-      postBuildLogs.push(`[one.build][vercel] writing package.json to ${join(vercelMiddlewareDir, 'package.json')}`);
-      await writeJSON(
-        join(vercelMiddlewareDir, 'package.json'),
-        serverlessVercelPackageJson
-      )
+      await moveAllFiles(resolve(join(options.root, 'dist', 'middlewares')), vercelMiddlewareDir)
+      const vercelMiddlewarePackageJsonFilePath = resolve(join(vercelMiddlewareDir, 'index.js'));
+      postBuildLogs.push(`[one.build][vercel] writing package.json to ${vercelMiddlewarePackageJsonFilePath}`);
+      await writeJSON(vercelMiddlewarePackageJsonFilePath, serverlessVercelPackageJson);
       postBuildLogs.push(`[one.build][vercel] writing .vc-config.json to ${join(vercelMiddlewareDir, '.vc-config.json')}`);
-      await writeJSON(join(vercelMiddlewareDir, '.vc-config.json'), {
+      await writeJSON(resolve(join(vercelMiddlewareDir, '.vc-config.json')), {
         ...serverlessVercelConfig,
         handler: "_middleware.js",
       });
 
-      const vercelOutputStaticDir = join(options.root, 'dist', '.vercel/output/static');
+      const vercelOutputStaticDir = resolve(join(options.root, 'dist', '.vercel/output/static'));
       await ensureDir(vercelOutputStaticDir);
 
       postBuildLogs.push(`[one.build][vercel] copying static files from ${clientDir} to ${vercelOutputStaticDir}`)
@@ -557,20 +556,9 @@ export async function build(args: {
 
       // Documentation - Vercel Build Output v3 config.json
       // https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
-      const vercelConfigFilePath = join(options.root, 'dist', '.vercel/output', 'config.json')
-      await writeJSON(
-        vercelConfigFilePath,
-        {
-          version: 3,
-          routes: [
-            {
-              "src": "/(.*)",
-              "status": 200,
-            }
-          ]
-        }
-      )
-      postBuildLogs.push(`[one.build] wrote vercel config to: ${vercelConfigFilePath}`)
+      const vercelConfigFilePath = resolve(join(options.root, 'dist', '.vercel/output', 'config.json'));
+      await writeJSON(vercelConfigFilePath, vercelBuildOutputConfig);
+      postBuildLogs.push(`[one.build] wrote vercel config to: ${vercelConfigFilePath}`);
 
       break
     }
