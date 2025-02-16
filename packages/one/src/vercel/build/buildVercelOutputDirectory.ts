@@ -11,11 +11,11 @@ import { vercelBuildOutputConfig } from './config/vc-build-output-config-base'
 
 import type { One } from '../../vite/types'
 
-const { ensureDir, writeJSON } = FSExtra
+const { copy, ensureDir, writeJSON } = FSExtra
 
 async function moveAllFiles(src: string, dest: string) {
   try {
-    await FSExtra.copy(src, dest, { overwrite: true, errorOnExist: false })
+    await copy(src, dest, { overwrite: true, errorOnExist: false })
   } catch (err) {
     console.error('Error moving files:', err)
   }

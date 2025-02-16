@@ -496,7 +496,13 @@ export async function build(args: {
   
   switch (platform) {
     case 'vercel': {
-      await buildVercelOutputDirectory({ apiOutput, buildInfoForWriting, oneOptionsRoot: options.root, clientDir, postBuildLogs })
+      await buildVercelOutputDirectory({ 
+        apiOutput, 
+        buildInfoForWriting, 
+        clientDir, 
+        oneOptionsRoot: options.root, 
+        postBuildLogs 
+      })
 
       break
     }
