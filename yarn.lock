@@ -25515,15 +25515,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "rollup-plugin-node-externals@npm:8.0.0"
-  peerDependencies:
-    rollup: ^4.0.0
-  checksum: 10/ef5565e8fdba4acbba81c4b214f789e03d3a3d049cbbe372679151c4f749a21a7f51d8448eff82b0b1bbbe5d2d64862cd292795e0f92e1fcad2afc9954a6fbdd
-  languageName: node
-  linkType: hard
-
 "rollup-plugin-node-polyfills@npm:^0.2.1":
   version: 0.2.1
   resolution: "rollup-plugin-node-polyfills@npm:0.2.1"
@@ -29024,7 +29015,6 @@ __metadata:
     p-map: "npm:^7.0.2"
     patch-package: "npm:^8.0.0"
     playwright: "npm:^1.49.1"
-    rollup-plugin-node-externals: "npm:^8.0.0"
     sst: "npm:^3.6.18"
     ts-pattern: "npm:^5.6.2"
     tsx: "npm:^4.19.0"

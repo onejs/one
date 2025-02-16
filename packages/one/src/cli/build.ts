@@ -3,7 +3,6 @@ import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
 import Path, { join, relative, resolve } from 'node:path'
 import type { OutputAsset, RollupOutput } from 'rollup'
-import { nodeExternals } from 'rollup-plugin-node-externals'
 import { isMatching, P } from 'ts-pattern'
 import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
 import {
