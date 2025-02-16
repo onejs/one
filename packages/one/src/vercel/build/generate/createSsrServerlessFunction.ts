@@ -1,5 +1,5 @@
 import fs from "fs-extra";
-import path, { join } from 'node:path';
+import { join, resolve } from 'node:path';
 
 import { One } from "@vxrn/one/src/vite/types";
 import { serverlessVercelConfig } from "../config/vc-config-base";
@@ -12,15 +12,15 @@ export async function createSsrServerlessFunction(
   oneOptions: any,
   postBuildLogs: string[],
 ) {
-  postBuildLogs.push(`[createSsrServerlessFunction] pageName: ${pageName}`);
+  postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`);
 
   try { 
     const buildInfoAsString = JSON.stringify(buildInfo);
-    const funcFolder = join(oneOptions.root, 'dist', `.vercel/output/functions/${pageName}.func`);
+    const funcFolder = resolve(join(oneOptions.root, 'dist', `.vercel/output/functions/${pageName}.func`));
     await fs.ensureDir(funcFolder);
 
-    const distServerFrom = path.resolve(join(oneOptions.root, 'dist', 'server'));
-    const distServerTo = path.resolve(join(funcFolder, 'server'));
+    const distServerFrom = resolve(join(oneOptions.root, 'dist', 'server'));
+    const distServerTo = resolve(join(funcFolder, 'server'));
     await fs.ensureDir(distServerTo);
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] copy server dist files from ${distServerFrom} to ${distServerTo}`);
     await fs.copy(distServerFrom, distServerTo);
@@ -50,7 +50,7 @@ export async function createSsrServerlessFunction(
     // console.debug("buildInfoConfig", Object.keys(buildInfoConfig.default));
     // console.debug("buildInfoConfig.routeToBuildInfo", Object.keys(buildInfoConfig.default.routeToBuildInfo));
     const route = buildInfoConfig.default.routeToBuildInfo[routeFile];
-    console.debug("buildInfo route", route)
+    // console.debug("buildInfo route", route)
 
     const render = entry.default.render;
     const exported = await import(route.serverJsPath.replace('dist/','../'))

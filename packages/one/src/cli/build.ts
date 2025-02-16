@@ -27,6 +27,8 @@ import { createSsrServerlessFunction } from '../vercel/build/generate/createSsrS
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
+import { serverlessVercelPackageJson } from '../vercel/build/config/vc-package-base'
+import { serverlessVercelConfig } from '../vercel/build/config/vc-config-base'
 
 const { ensureDir, writeJSON } = FSExtra
 
@@ -196,7 +198,6 @@ export async function build(args: {
   if (manifest.apiRoutes.length) {
     console.info(`\n 🔨 build api routes\n`)
     apiOutput = await buildCustomRoutes('api', manifest.apiRoutes)
-    console.info("[one.build] apiOutput", apiOutput)
   }
 
   const builtMiddlewares: Record<string, string> = {}
@@ -509,7 +510,7 @@ export async function build(args: {
           postBuildLogs.push(`[one.build][vercel] generating serverless function for apiRoute ${route.page}`)
           await createApiServerlessFunction(route.page, compiledRoute.code, options, postBuildLogs)
         } else {
-          console.warn("[one.build][vercel] apiRoute missing code compilation for", route.file)
+          console.warn("\n 🔨[one.build][vercel] apiRoute missing code compilation for", route.file)
         }
       }
 
@@ -529,7 +530,7 @@ export async function build(args: {
           case "spa": // Single Page Application
           default:
             // no-op, these will be copied from built dist/client into .vercel/output/static
-            // postBuildLogs.push('[vercel] pageRoute will be copied to .vercel/output/static', route.type, route.page)
+            // postBuildLogs.push(`[one.build][vercel] pageRoute will be copied to .vercel/output/static for ${route.page} with ${route.type}`)
             break;
         }
       }
@@ -541,22 +542,18 @@ export async function build(args: {
       postBuildLogs.push(`[one.build][vercel] writing package.json to ${join(vercelMiddlewareDir, 'package.json')}`);
       await writeJSON(
         join(vercelMiddlewareDir, 'package.json'),
-        { "type": "module" }
+        serverlessVercelPackageJson
       )
       postBuildLogs.push(`[one.build][vercel] writing .vc-config.json to ${join(vercelMiddlewareDir, '.vc-config.json')}`);
       await writeJSON(join(vercelMiddlewareDir, '.vc-config.json'), {
-        runtime: "nodejs20.x",
+        ...serverlessVercelConfig,
         handler: "_middleware.js",
-        launcherType: "Nodejs",
-        shouldAddHelpers: true,
-        shouldAddSourceMapSupport: true
       });
 
       const vercelOutputStaticDir = join(options.root, 'dist', '.vercel/output/static');
       await ensureDir(vercelOutputStaticDir);
 
-      // await FSExtra.copy(htmlOutPath, funcFolder, { overwrite: true })
-      postBuildLogs.push(`[one.build > vercel] copying static files from ${clientDir} to ${vercelOutputStaticDir}`)
+      postBuildLogs.push(`[one.build][vercel] copying static files from ${clientDir} to ${vercelOutputStaticDir}`)
       await moveAllFiles(clientDir, vercelOutputStaticDir)
 
       // Documentation - Vercel Build Output v3 config.json

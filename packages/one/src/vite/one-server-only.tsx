@@ -61,7 +61,7 @@ export function mergeHeaders(onto: Headers, from: Headers) {
 }
 
 export function ensureAsyncLocalID() {
-  const id = requestAsyncLocalStore?.getStore() ?? { _id: Math.random() }
+  const id = process.env.VERCEL ? { _id: Math.random() } : requestAsyncLocalStore?.getStore()
 
   if (!id) {
     throw new Error(`Internal One error, no AsyncLocalStorage id!`)
