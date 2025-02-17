@@ -23,6 +23,9 @@ export const EXCLUDE_LIST = [
   '@swc/core-win32-x64-msvc',
   'lightningcss',
 
+  // this breaks fileToUrlPath in upstreams, like @discordjs/client
+  'url',
+
   'sharp',
 
   '@sentry/react-native',
