@@ -8,6 +8,7 @@ import type {
   ScreenListeners,
 } from '@react-navigation/native'
 import React, { memo, Suspense, useId } from 'react'
+import { Text } from 'react-native'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
 import { EmptyRoute } from '../views/EmptyRoute'
@@ -31,7 +32,7 @@ export const { Screen, Group } = createNavigatorFactory({} as any)()
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
   State extends NavigationState = NavigationState,
-  EventMap extends EventMapBase = EventMapBase,
+  EventMap extends EventMapBase = EventMapBase
 > = {
   /** Name is required when used inside a Layout component. */
   name?: string
@@ -70,7 +71,9 @@ function getSortedChildren(
   const ordered = order
     .map(({ name, redirect, initialParams, listeners, options, getId }) => {
       if (!entries.length) {
-        console.warn(`[Layout children]: Too many screens defined. Route "${name}" is extraneous.`)
+        console.warn(
+          `[Layout children]: Too many screens defined. Route "${name}" is extraneous.`
+        )
         return null
       }
       const matchIndex = entries.findIndex((child) => child.route === name)
@@ -225,7 +228,11 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       )
     }
 
-    return <Component {...props} ref={ref} />
+    return (
+      <RouteErrorBoundary routeName={value.route}>
+        <Component {...props} ref={ref} />
+      </RouteErrorBoundary>
+    )
   })
 
   const wrapSuspense = (children: any) => {
@@ -313,7 +320,10 @@ export function createGetIdForRoute(
   }
 }
 
-function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenProps> = {}) {
+function routeToScreen(
+  route: RouteNode,
+  { options, ...props }: Partial<ScreenProps> = {}
+) {
   return (
     <Screen
       // Users can override the screen getId function.
@@ -362,4 +372,37 @@ function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenPr
       }}
     />
   )
+}
+
+class RouteErrorBoundary extends React.Component<
+  { children: React.ReactNode; routeName: string },
+  { hasError: boolean; error: any }
+> {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false, error: null }
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error }
+  }
+
+  componentDidCatch(error, info) {
+    console.error(
+      `Error occurred while running route ${this.props.routeName}: ${
+        error instanceof Error ? error.message : error
+      }`,
+      error,
+      info.componentStack
+    )
+  }
+
+  render() {
+    if (this.state.hasError) {
+      const error = this.state.error
+      return <Text>Error: {error instanceof Error ? error.message : error}</Text>
+    }
+
+    return this.props.children
+  }
 }
