@@ -5,7 +5,7 @@
  *   bun run link-workspaces.ts <workspaceDir1> <workspaceDir2> ...
  */
 
-import { readdir, readFile, stat, rm, symlink, rename, mkdir } from 'node:fs/promises'
+import { readdir, readFile, stat, rm, symlink, rename, mkdir, cp } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { join, relative, resolve } from 'node:path'
 
@@ -69,8 +69,8 @@ async function linkPackages(localPackages: Record<string, string>) {
     const nmPath = join(process.cwd(), 'node_modules', ...pkgName.split('/'))
     try {
       const existingStat = await stat(nmPath)
-      if (existingStat && (existingStat.isDirectory() || existingStat.isSymbolicLink())) {
-        await rename(nmPath, join(backupDir, pkgName.replace('/', '__')))
+      if (existingStat && existingStat.isDirectory()) {
+        await cp(nmPath, join(backupDir, pkgName.replace('/', '__')))
       }
       const localPath = localPackages[pkgName]
       console.info(`${relative(process.cwd(), nmPath)} -> ${localPath.replace(homedir(), '~')}`)
