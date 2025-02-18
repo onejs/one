@@ -1,5 +1,6 @@
 import babel from '@babel/core'
 import { resolvePath } from '@vxrn/resolve'
+import { stat } from 'node:fs/promises'
 
 export async function transformFlowBabel(
   input: string,
@@ -10,7 +11,10 @@ export async function transformFlowBabel(
   try {
     // the above doesn't work in some monorepos so lets try resolving it specifically ourselves
     // has to be relative to this package as it is installed below it
-    metroPresetPath = resolvePath('metro-react-native-babel-preset', resolvePath('@vxrn/vite-flow'))
+    const attempt = resolvePath('metro-react-native-babel-preset', resolvePath('@vxrn/vite-flow'))
+    if ((await stat(attempt)).isDirectory()) {
+      metroPresetPath = attempt
+    }
   } catch (err) {
     // fallback to original
   }

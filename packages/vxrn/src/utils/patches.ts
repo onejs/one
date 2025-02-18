@@ -201,7 +201,7 @@ export async function applyDependencyPatches(
                   if (err instanceof Bail) {
                     return
                   }
-                  console.error(`Error applying patch to ${patch.module} ${relativePath}: ${err}`)
+                  throw err
                 }
               })
             )
