@@ -10,9 +10,7 @@ export { createProdServer } from './createServer'
 export const serve = async ({
   afterRegisterRoutes,
   beforeRegisterRoutes,
-  app = new Hono({
-    router: new LinearRouter(),
-  }),
+  app = new Hono(),
   ...optionsIn
 }: VXRNServeOptions) => {
   const { getServerOptionsFilled } = await import('../utils/getServerOptionsFilled')
