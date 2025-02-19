@@ -1,12 +1,11 @@
 // Copyright © 2024 650 Industries.
-import { useNavigationBuilder, type RouterFactory } from '@react-navigation/native'
+import { StackRouter, useNavigationBuilder, type RouterFactory } from '@react-navigation/native'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
 import { useContextKey } from '../router/Route'
 import { useSortedScreens } from '../router/useScreens'
 import { Screen } from './Screen'
-import { CustomStackRouter } from './OneStackRouter'
 
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>
 
@@ -66,7 +65,7 @@ function QualifiedNavigator({
   children,
   screens,
   contextKey,
-  router = CustomStackRouter,
+  router = StackRouter,
 }: NavigatorProps & { contextKey: string; screens: React.ReactNode[] }) {
   const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(router, {
     // Used for getting the parent with navigation.getParent('/normalized/path')

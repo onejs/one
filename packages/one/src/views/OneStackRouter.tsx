@@ -7,7 +7,6 @@ export const CustomStackRouter = (options: StackRouterOptions) => {
   const router = StackRouter(options)
 
   const og = router.getStateForAction.bind(router)
-
   router.getStateForAction = (state, action, options) => {
     const next = og(state, action, options)
 
@@ -25,17 +24,43 @@ export const CustomStackRouter = (options: StackRouterOptions) => {
           const firstRoute = outRoutes[0]
           if (firstRoute.name.includes('[...')) {
             if (outRoutes.every((x) => x.name === firstRoute.name)) {
+              // this isn't working, we need a deeper solution
+              // change keys to be stable
+              // return [
+              //   ...outRoutes,
+              //   {
+              //     ...outRoutes[outRoutes.length - 1],
+              //     key: outRoutes[0].key,
+              //   },
+              // ] as any
+              // console.warn(
+              //   'outRoutes',
+              //   outRoutes.map((x) => x.key)
+              // )
+              // const next = outRoutes.map((route, i) => {
+              //   const inverse = outRoutes.length - i
+              //   const isLast = i === outRoutes.length - 1
+              //   const key = isLast ? route.key : `${route.name}-${inverse}`
+              //   return {
+              //     ...route,
+              //     key,
+              //   }
+              // })
+              // console.warn(next)
+              // return next
               // instead of stacking, just update the original one with the new params
-              const next = { ...firstRoute }
-              next.params = outRoutes[outRoutes.length - 1].params
-              const routes = [next]
-              return {
-                ...next,
-                routes,
-                preloadedRoutes: state.preloadedRoutes.filter(
-                  (route) => routes[routes.length - 1].key !== route.key
-                ),
-              } as any
+              // const next = { ...firstRoute }
+              // next.params = outRoutes[outRoutes.length - 1].params
+              // const otherRoutes = outRoutes.filter((x) => x !== firstRoute)
+              // console.warn('otherRoutes', otherRoutes)
+              // const routes = [next]
+              // return {
+              //   ...next,
+              //   routes,
+              //   preloadedRoutes: state.preloadedRoutes.filter(
+              //     (route) => routes[routes.length - 1].key !== route.key
+              //   ),
+              // } as any
             }
           }
         }
