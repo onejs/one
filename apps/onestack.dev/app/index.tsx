@@ -149,11 +149,11 @@ export default function HomePage() {
               loaders
             </Link>
             ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-middleware">
+            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-middlewares">
               middleware
             </Link>
             , a{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/">
+            <Link style={{ color: 'var(--color11)' }} href="/docs/one-dev">
               CLI
             </Link>
             ,{' '}
