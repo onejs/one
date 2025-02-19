@@ -1,4 +1,4 @@
-import React, { createContext, useContext, type ReactNode } from 'react'
+import React, { createContext, useContext, useId, type ReactNode } from 'react'
 
 import { getContextKey } from './matchers'
 import type { ErrorBoundaryProps } from '../views/Try'

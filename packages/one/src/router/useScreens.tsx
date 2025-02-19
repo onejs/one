@@ -7,7 +7,7 @@ import type {
   RouteProp,
   ScreenListeners,
 } from '@react-navigation/native'
-import React, { memo, Suspense } from 'react'
+import React, { memo, Suspense, useId } from 'react'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
 import { EmptyRoute } from '../views/EmptyRoute'
@@ -178,6 +178,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       console.groupEnd()
     }
 
+    // this is causing HMR to not work on root layout
     if (props.segment === '') {
       // @ts-expect-error
       const out = Component(props, ref)
