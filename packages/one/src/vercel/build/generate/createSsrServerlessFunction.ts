@@ -58,7 +58,6 @@ export async function createSsrServerlessFunction(
     const exported = await import(route.serverJsPath.replace('dist/','../'))
     const loaderData = await exported.loader?.(loaderProps)
     const preloads = route.preloads
-
     const rendered = await render({
       mode: route.type,
       loaderData,
@@ -67,6 +66,12 @@ export async function createSsrServerlessFunction(
       preloads,
     })
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
+    // https://vercel.com/docs/deployments/skew-protection#supported-frameworks__
+    if (process.env.VERCEL_SKEW_PROTECTION_ENABLED === '1') {
+      res.setHeader('Set-Cookie', [
+        \`__vdpl=\${process.env.VERCEL_DEPLOYMENT_ID}; HttpOnly\`,
+      ]);
+    }
     res.end(rendered)
   }
 
