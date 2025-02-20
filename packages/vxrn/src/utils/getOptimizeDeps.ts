@@ -69,6 +69,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-native-svg',
     'react-native-screens',
 
+    'ws',
     'lodash',
     'moti/author',
 
