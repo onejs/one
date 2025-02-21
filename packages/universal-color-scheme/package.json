@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/universal-color-scheme",
-  "version": "1.1.450",
+  "version": "1.1.451",
   "sideEffects": false,
   "type": "module",
   "exports": {
