@@ -46,7 +46,6 @@ export type VXRNBuildOptions = {
      */
     config?: InlineConfig;
 };
-export type VXRNServePlatform = 'node' | 'vercel' | 'cloudflare';
 export type VXRNOptions = {
     /**
      * Root directory, your entries.native and entires.web will resolve relative to this
@@ -90,12 +89,6 @@ export type VXRNOptions = {
          * @default false
          */
         loadEnv?: boolean;
-        /**
-         * Determines the Hono platform adapter
-         *   node: https://github.com/honojs/node-server
-         *   vercel: https://hono.dev/docs/getting-started/vercel
-         */
-        platform?: VXRNServePlatform;
     };
     /**
      * Whether to clean cache directories on startup
@@ -115,9 +108,7 @@ export type HMRListener = (update: {
     file: string;
     contents: string;
 }) => void;
-type VXRNServeOptionsBase = VXRNOptions['server'] & {
-    platform?: VXRNServePlatform;
-};
+type VXRNServeOptionsBase = VXRNOptions['server'];
 export type VXRNServeOptionsFilled = Required<VXRNServeOptionsBase> & {
     url: string;
     protocol: string;

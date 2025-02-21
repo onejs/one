@@ -491,7 +491,7 @@ export async function build(args: {
 
   let postBuildLogs: string[] = []
 
-  const platform = oneOptions.web?.deploy ?? options.server?.platform
+  const platform = oneOptions.web?.deploy
   postBuildLogs.push(`[one.build] platform ${platform}`)
 
   switch (platform) {
@@ -507,29 +507,29 @@ export async function build(args: {
       break
     }
 
-    case 'cloudflare': {
-      await FSExtra.writeFile(
-        join(options.root, 'dist', 'worker.js'),
-        `import { serve } from 'one/serve-worker'
+    //     case 'cloudflare': {
+    //       await FSExtra.writeFile(
+    //         join(options.root, 'dist', 'worker.js'),
+    //         `import { serve } from 'one/serve-worker'
 
-const buildInfo = ${JSON.stringify(buildInfoForWriting)}
+    // const buildInfo = ${JSON.stringify(buildInfoForWriting)}
 
-const handler = await serve(buildInfo)
+    // const handler = await serve(buildInfo)
 
-export default {
-  fetch: handler.fetch,
-}`
-      )
+    // export default {
+    //   fetch: handler.fetch,
+    // }`
+    //       )
 
-      await FSExtra.writeFile(
-        join(options.root, 'dist', 'wrangler.toml'),
-        `assets = { directory = "client" }
-compatibility_date = "2024-12-05"
-`
-      )
+    //       await FSExtra.writeFile(
+    //         join(options.root, 'dist', 'wrangler.toml'),
+    //         `assets = { directory = "client" }
+    // compatibility_date = "2024-12-05"
+    // `
+    //       )
 
-      break
-    }
+    //       break
+    //     }
   }
 
   if (process.env.VXRN_ANALYZE_BUNDLE) {

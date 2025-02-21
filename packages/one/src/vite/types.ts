@@ -1,4 +1,5 @@
 import type { GetTransform } from '@vxrn/compiler'
+import type { Options as ReactScanOptions } from 'react-scan'
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths'
 import type {
   AutoDepOptimizationOptions,
@@ -7,10 +8,8 @@ import type {
   AfterBuildProps as VXRNAfterBuildProps,
   VXRNBuildOptions,
   VXRNOptions,
-  VXRNServePlatform,
 } from 'vxrn'
 import type { RouteNode } from '../router/Route'
-import type { Options as ReactScanOptions } from 'react-scan'
 
 export type RouteInfo<TRegex = string> = {
   file: string
@@ -217,7 +216,7 @@ export namespace One {
        *
        * @default node
        */
-      deploy?: VXRNServePlatform
+      deploy?: 'vercel'
     }
 
     server?: VXRNOptions['server']

@@ -41,7 +41,6 @@ export async function serve(args: VXRNOptions['server'] & { app?: Hono } = {}) {
       port: args.port ? +args.port : undefined,
       host: args.host,
       compress: args.compress,
-      platform: args.platform,
     }),
 
     async beforeRegisterRoutes(options, app) {
