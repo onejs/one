@@ -629,7 +629,8 @@ function getNavigateAction(
      * The StackAction.PUSH does not work correctly with One.
      *
      * One provides a getId() function for every route, altering how React Navigation handles stack routing.
-     * Ordinarily, PUSH always adds a new screen to the stack. However, with getId() present, it navigates to the screen with the matching ID instead (by moving the screen to the top of the stack)
+     * Ordinarily, PUSH always adds a new screen to the stack. However, with getId() present, it navigates to the screen with the matching ID instead
+     * (by moving the screen to the top of the stack)
      * When you try and push to a screen with the same ID, no navigation will occur
      * Refer to: https://github.com/react-navigation/react-navigation/blob/13d4aa270b301faf07960b4cd861ffc91e9b2c46/packages/routers/src/StackRouter.tsx#L279-L290
      *

@@ -67,6 +67,8 @@ iOS:
  Run \`open ios/*.xcworkspace\` in your terminal to open the prebuilt iOS project.
  Then you can either run it via Xcode or archive it for distribution.
 
+ See https://onestack.dev/docs/guides-ios-native for more information.
+
 ---
 `
       )
