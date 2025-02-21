@@ -1,10 +1,8 @@
 import fs from 'fs-extra'
 import { join, resolve } from 'node:path'
-
-import type { One } from '@vxrn/one/src/vite/types'
-
 import { serverlessVercelNodeJsConfig } from '../config/vc-config-base'
 import { serverlessVercelPackageJson } from '../config/vc-package-base'
+import type { One } from '../../../vite/types'
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
@@ -52,14 +50,9 @@ export async function createSsrServerlessFunction(
       path: url.pathname,
       params: Object.fromEntries(url.searchParams.entries())
     }
-    // console.debug("loaderProps", loaderProps)
     const postfix = url.pathname.endsWith('/') ? 'index.tsx' : '+ssr.tsx';
     const routeFile = \`.\${url.pathname}\${postfix}\`;
-    // console.debug("routeFile", routeFile)
-    // console.debug("buildInfoConfig", Object.keys(buildInfoConfig.default));
-    // console.debug("buildInfoConfig.routeToBuildInfo", Object.keys(buildInfoConfig.default.routeToBuildInfo));
     const route = buildInfoConfig.default.routeToBuildInfo[routeFile];
-    // console.debug("buildInfo route", route)
 
     const render = entry.default.render;
     const exported = await import(route.serverJsPath.replace('dist/','../'))
