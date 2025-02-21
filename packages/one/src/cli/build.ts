@@ -493,15 +493,15 @@ export async function build(args: {
 
   const platform = oneOptions.web?.deploy ?? options.server?.platform
   postBuildLogs.push(`[one.build] platform ${platform}`)
-  
+
   switch (platform) {
     case 'vercel': {
-      await buildVercelOutputDirectory({ 
-        apiOutput, 
-        buildInfoForWriting, 
-        clientDir, 
-        oneOptionsRoot: options.root, 
-        postBuildLogs 
+      await buildVercelOutputDirectory({
+        apiOutput,
+        buildInfoForWriting,
+        clientDir,
+        oneOptionsRoot: options.root,
+        postBuildLogs,
       })
 
       break

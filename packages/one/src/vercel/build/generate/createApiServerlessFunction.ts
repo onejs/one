@@ -1,9 +1,9 @@
-import { join, resolve } from 'node:path';
+import { join, resolve } from 'node:path'
 
-import fs from "fs-extra";
+import fs from 'fs-extra'
 
-import { serverlessVercelPackageJson } from "../config/vc-package-base";
-import { serverlessVercelNodeJsConfig } from "../config/vc-config-base";
+import { serverlessVercelPackageJson } from '../config/vc-package-base'
+import { serverlessVercelNodeJsConfig } from '../config/vc-config-base'
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
@@ -11,40 +11,56 @@ export async function createApiServerlessFunction(
   pageName: string,
   code: string,
   oneOptionsRoot: string,
-  postBuildLogs: string[],
+  postBuildLogs: string[]
 ) {
   try {
-    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`);
+    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`)
 
-    const funcFolder = join(oneOptionsRoot, 'dist', `.vercel/output/functions/${pageName}.func`);
-    await fs.ensureDir(funcFolder);
+    const funcFolder = join(oneOptionsRoot, 'dist', `.vercel/output/functions/${pageName}.func`)
+    await fs.ensureDir(funcFolder)
 
-    if (code.includes("react")) {
-      postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] detected react in depenency tree for ${pageName}`);
-      await fs.copy(resolve(join(oneOptionsRoot, '..', '..', 'node_modules', 'react')), resolve(join(funcFolder, 'node_modules', 'react')));
+    if (code.includes('react')) {
+      postBuildLogs.push(
+        `[one.build][vercel.createSsrServerlessFunction] detected react in depenency tree for ${pageName}`
+      )
+      await fs.copy(
+        resolve(join(oneOptionsRoot, '..', '..', 'node_modules', 'react')),
+        resolve(join(funcFolder, 'node_modules', 'react'))
+      )
     }
 
-    const distAssetsFolder = resolve(join(funcFolder, 'assets'));
-    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] copy shared assets to ${distAssetsFolder}`);
-    await fs.copy(resolve(join(oneOptionsRoot, 'dist', 'api', 'assets')), distAssetsFolder);
+    const distAssetsFolder = resolve(join(funcFolder, 'assets'))
+    postBuildLogs.push(
+      `[one.build][vercel.createSsrServerlessFunction] copy shared assets to ${distAssetsFolder}`
+    )
+    await fs.copy(resolve(join(oneOptionsRoot, 'dist', 'api', 'assets')), distAssetsFolder)
 
-    await fs.ensureDir(resolve(join(funcFolder, 'entrypoint')));
+    await fs.ensureDir(resolve(join(funcFolder, 'entrypoint')))
     const entrypointFilePath = resolve(join(funcFolder, 'entrypoint', 'index.js'))
-    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] writing entrypoint to ${entrypointFilePath}`);
-    await fs.writeFile(entrypointFilePath, code);
+    postBuildLogs.push(
+      `[one.build][vercel.createSsrServerlessFunction] writing entrypoint to ${entrypointFilePath}`
+    )
+    await fs.writeFile(entrypointFilePath, code)
 
-    const packageJsonFilePath = resolve(join(funcFolder, 'package.json'));
-    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] writing package.json to ${packageJsonFilePath}`);
-    await fs.writeJSON(packageJsonFilePath, serverlessVercelPackageJson);
-    
-    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] writing .vc-config.json to ${join(funcFolder, '.vc-config.json')}`);
+    const packageJsonFilePath = resolve(join(funcFolder, 'package.json'))
+    postBuildLogs.push(
+      `[one.build][vercel.createSsrServerlessFunction] writing package.json to ${packageJsonFilePath}`
+    )
+    await fs.writeJSON(packageJsonFilePath, serverlessVercelPackageJson)
+
+    postBuildLogs.push(
+      `[one.build][vercel.createSsrServerlessFunction] writing .vc-config.json to ${join(funcFolder, '.vc-config.json')}`
+    )
     // Documentation - Vercel Build Output v3 Node.js Config
     //   https://vercel.com/docs/build-output-api/v3/primitives#node.js-config
     return fs.writeJson(join(funcFolder, '.vc-config.json'), {
       ...serverlessVercelNodeJsConfig,
-      handler: "entrypoint/index.js",
-    });
+      handler: 'entrypoint/index.js',
+    })
   } catch (e) {
-    console.error(`[one.build][vercel.createSsrServerlessFunction] failed to generate func for ${pageName}`, e);
+    console.error(
+      `[one.build][vercel.createSsrServerlessFunction] failed to generate func for ${pageName}`,
+      e
+    )
   }
 }

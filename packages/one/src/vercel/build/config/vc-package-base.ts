@@ -1,1 +1,1 @@
-export const serverlessVercelPackageJson = { "type": "module" }
+export const serverlessVercelPackageJson = { type: 'module' }

@@ -5,8 +5,8 @@ export const vercelBuildOutputConfig = {
   // https://vercel.com/docs/build-output-api/v3/configuration#routes
   routes: [
     {
-      "src": "/(.*)",
-      "status": 200,
-    }
-  ]
+      src: '/(.*)',
+      status: 200,
+    },
+  ],
 }
