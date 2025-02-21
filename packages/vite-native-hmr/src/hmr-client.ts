@@ -85,7 +85,6 @@ class HMRClient {
     if (hash) {
       this.lastHash = hash
     }
-    // @ts-expect-error will deal with this when we get to it
     return this.lastHash === __webpack_hash__
   }
 
