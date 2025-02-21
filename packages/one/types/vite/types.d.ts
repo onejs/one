@@ -1,8 +1,8 @@
 import type { GetTransform } from '@vxrn/compiler';
-import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
-import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
-import type { RouteNode } from '../router/Route';
 import type { Options as ReactScanOptions } from 'react-scan';
+import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
+import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
+import type { RouteNode } from '../router/Route';
 export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;
@@ -183,7 +183,7 @@ export declare namespace One {
              *
              * @default node
              */
-            deploy?: VXRNServePlatform;
+            deploy?: 'vercel';
         };
         server?: VXRNOptions['server'];
         build?: {
