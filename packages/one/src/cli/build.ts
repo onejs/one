@@ -12,6 +12,7 @@ import {
   build as vxrnBuild,
   type ClientManifestEntry,
 } from 'vxrn'
+
 import * as constants from '../constants'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { toAbsolute } from '../utils/toAbsolute'
@@ -19,11 +20,13 @@ import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 import { runWithAsyncLocalContext } from '../vite/one-server-only'
 import type { One, RouteInfo } from '../vite/types'
+import { buildVercelOutputDirectory } from '../vercel/build/buildVercelOutputDirectory'
+
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
 
-const { ensureDir } = FSExtra
+const { ensureDir, writeJSON } = FSExtra
 
 process.on('uncaughtException', (err) => {
   console.error(err?.message || err)
@@ -187,9 +190,10 @@ export async function build(args: {
     return output as RollupOutput
   }
 
+  let apiOutput: RollupOutput | null = null
   if (manifest.apiRoutes.length) {
     console.info(`\n 🔨 build api routes\n`)
-    await buildCustomRoutes('api', manifest.apiRoutes)
+    apiOutput = await buildCustomRoutes('api', manifest.apiRoutes)
   }
 
   const builtMiddlewares: Record<string, string> = {}
@@ -483,23 +487,22 @@ export async function build(args: {
     constants: JSON.parse(JSON.stringify({ ...constants })) as any,
   }
 
-  await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
+  await writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
 
   let postBuildLogs: string[] = []
 
   const platform = oneOptions.web?.deploy ?? options.server?.platform
+  postBuildLogs.push(`[one.build] platform ${platform}`)
 
   switch (platform) {
     case 'vercel': {
-      await FSExtra.writeFile(
-        join(options.root, 'dist', 'index.js'),
-        `import { serve } from 'one/serve'
-export const handler = await serve()
-export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
-      )
-
-      postBuildLogs.push(`wrote vercel entry to: ${join('.', 'dist', 'index.js')}`)
-      postBuildLogs.push(`point vercel outputDirectory to dist`)
+      await buildVercelOutputDirectory({
+        apiOutput,
+        buildInfoForWriting,
+        clientDir,
+        oneOptionsRoot: options.root,
+        postBuildLogs,
+      })
 
       break
     }

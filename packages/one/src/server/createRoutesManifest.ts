@@ -3,7 +3,7 @@ import { getServerManifest } from './getServerManifest'
 
 import type { One, RouteInfo } from '../vite/types'
 
-export { type Options } from '../router/getRoutes'
+export type { Options } from '../router/getRoutes'
 
 export type RouteInfoCompiled = RouteInfo & {
   compiledRegex: RegExp
