@@ -2100,7 +2100,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:^1.8.3":
+"@biomejs/biome@npm:1.9.4":
   version: 1.9.4
   resolution: "@biomejs/biome@npm:1.9.4"
   dependencies:
@@ -11506,7 +11506,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@vxrn/safe-area@workspace:packages/safe-area"
   dependencies:
-    "@biomejs/biome": "npm:^1.8.3"
+    "@biomejs/biome": "npm:1.9.4"
     "@tamagui/build": "npm:^1.125.8"
   languageName: unknown
   linkType: soft
@@ -11588,7 +11588,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.26.8"
     "@babel/plugin-transform-private-methods": "npm:^7.25.9"
-    "@biomejs/biome": "npm:^1.8.3"
+    "@biomejs/biome": "npm:1.9.4"
     "@react-native/babel-plugin-codegen": "npm:^0.76.5"
     "@tamagui/build": "npm:^1.125.8"
     "@vxrn/resolve": "workspace:*"
@@ -11603,7 +11603,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@vxrn/vite-native-client@workspace:packages/vite-native-client"
   dependencies:
-    "@biomejs/biome": "npm:^1.8.3"
+    "@biomejs/biome": "npm:1.9.4"
     "@tamagui/build": "npm:^1.125.8"
     react-native: "npm:^0.76.5"
   peerDependencies:
@@ -16045,7 +16045,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-recommended@workspace:examples/one-recommended"
   dependencies:
-    "@biomejs/biome": "npm:^1.8.3"
+    "@biomejs/biome": "npm:1.9.4"
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
     "@react-native-community/cli": "npm:15.1.3"
@@ -16104,7 +16104,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-tamagui@workspace:examples/one-tamagui"
   dependencies:
-    "@biomejs/biome": "npm:^1.8.3"
+    "@biomejs/biome": "npm:1.9.4"
     "@react-native-community/cli": "npm:15.1.3"
     "@tamagui/animations-css": "npm:^1.125.8"
     "@tamagui/animations-moti": "npm:^1.125.8"
@@ -16137,7 +16137,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-testflight@workspace:examples/testflight"
   dependencies:
-    "@biomejs/biome": "npm:^1.8.3"
+    "@biomejs/biome": "npm:1.9.4"
     "@bottom-tabs/react-navigation": "npm:^0.7.8"
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
@@ -19711,7 +19711,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "lllink@workspace:packages/lllink"
   dependencies:
-    "@biomejs/biome": "npm:^1.8.3"
+    "@biomejs/biome": "npm:1.9.4"
     "@tamagui/build": "npm:^1.125.8"
   bin:
     lllink: ./dist/index.mjs
@@ -28799,7 +28799,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "vxrn-monorepo@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:^1.8.3"
+    "@biomejs/biome": "npm:1.9.4"
     "@manypkg/cli": "npm:^0.19.1"
     "@types/react": "npm:^18.3.11"
     "@types/react-native": "npm:^0.73.0"
@@ -28824,7 +28824,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "vxrn@workspace:packages/vxrn"
   dependencies:
-    "@biomejs/biome": "npm:^1.8.3"
+    "@biomejs/biome": "npm:1.9.4"
     "@expo/config-plugins": "npm:^8.0.8"
     "@hono/node-server": "npm:^1.13.7"
     "@react-native-community/cli": "npm:^15.1.3"
