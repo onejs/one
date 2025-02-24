@@ -1,7 +1,9 @@
 {
   "name": "@vxrn/vite-native-client",
-  "version": "1.1.451",
-  "sideEffects": ["*"],
+  "version": "1.1.452",
+  "sideEffects": [
+    "*"
+  ],
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -13,7 +15,11 @@
   "main": "dist/cjs",
   "module": "dist/esm",
   "types": "./types/index.d.ts",
-  "files": ["src", "types", "dist"],
+  "files": [
+    "src",
+    "types",
+    "dist"
+  ],
   "scripts": {
     "build": "tamagui-build",
     "clean": "tamagui-build clean",
