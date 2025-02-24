@@ -1,7 +1,7 @@
 {
   "name": "@vxrn/test",
   "private": true,
-  "version": "1.1.452",
+  "version": "1.1.453",
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
