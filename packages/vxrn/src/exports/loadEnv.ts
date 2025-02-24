@@ -5,11 +5,14 @@ import { normalizePath } from 'vite'
 
 type Mode = 'development' | 'production'
 
-export async function loadEnv(mode: Mode, root = process.cwd()) {
+export async function loadEnv(mode: Mode, root = process.cwd(), userPrefix?: string | string[]) {
   const serverEnv = await loadJustEnvFiles(mode)
+
+  const prefix = userPrefix ? (Array.isArray(userPrefix) ? userPrefix : [userPrefix]) : []
+
   const clientEnv = Object.fromEntries(
     Object.entries(serverEnv).flatMap(([key, value]) => {
-      if (/^(ONE|VITE)_/.test(key)) {
+      if (prefix.some((p) => key.startsWith(p)) || /^(ONE|VITE)_/.test(key)) {
         return [[key, value]]
       }
       return []

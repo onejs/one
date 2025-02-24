@@ -1,5 +1,5 @@
 type Mode = 'development' | 'production';
-export declare function loadEnv(mode: Mode, root?: string): Promise<{
+export declare function loadEnv(mode: Mode, root?: string, userPrefix?: string | string[]): Promise<{
     serverEnv: {
         [k: string]: string;
     };
