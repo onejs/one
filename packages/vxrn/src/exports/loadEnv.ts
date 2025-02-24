@@ -7,12 +7,17 @@ type Mode = 'development' | 'production'
 
 export async function loadEnv(mode: Mode, root = process.cwd(), userPrefix?: string | string[]) {
   const serverEnv = await loadJustEnvFiles(mode)
-
   const prefix = userPrefix ? (Array.isArray(userPrefix) ? userPrefix : [userPrefix]) : []
+  const isPublicKey = (key: string) => {
+    return prefix.some((p) => key.startsWith(p)) || /^(ONE|VITE)_/.test(key)
+  }
 
   const clientEnv = Object.fromEntries(
-    Object.entries(serverEnv).flatMap(([key, value]) => {
-      if (prefix.some((p) => key.startsWith(p)) || /^(ONE|VITE)_/.test(key)) {
+    Object.entries({
+      ...process.env,
+      ...serverEnv,
+    }).flatMap(([key, value]) => {
+      if (isPublicKey(key)) {
         return [[key, value]]
       }
       return []
