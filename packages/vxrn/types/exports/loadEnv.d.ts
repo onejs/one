@@ -4,7 +4,7 @@ export declare function loadEnv(mode: Mode, root?: string, userPrefix?: string |
         [k: string]: string;
     };
     clientEnv: {
-        [k: string]: string;
+        [k: string]: string | undefined;
     };
     clientEnvDefine: {
         [k: string]: string;
