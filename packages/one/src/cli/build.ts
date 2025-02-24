@@ -492,7 +492,10 @@ export async function build(args: {
   let postBuildLogs: string[] = []
 
   const platform = oneOptions.web?.deploy
-  postBuildLogs.push(`[one.build] platform ${platform}`)
+
+  if (platform) {
+    postBuildLogs.push(`[one.build] platform ${platform}`)
+  }
 
   switch (platform) {
     case 'vercel': {
