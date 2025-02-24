@@ -10,9 +10,7 @@
     }
   },
   "bin": "./dist/index.mjs",
-  "files": [
-    "src"
-  ],
+  "files": ["src"],
   "scripts": {
     "build": "tamagui-build --skip-types --skip-native",
     "watch": "yarn build --watch",
@@ -22,7 +20,7 @@
     "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
+    "@biomejs/biome": "1.9.4",
     "@tamagui/build": "^1.125.8"
   },
   "publishConfig": {
