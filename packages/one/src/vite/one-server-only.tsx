@@ -60,13 +60,15 @@ export function mergeHeaders(onto: Headers, from: Headers) {
   })
 }
 
+const globalId = { _id: Math.random() }
+
 export function ensureAsyncLocalID() {
   // NOTE: this is a hack to get around AsyncLocalStorage.getStore() being undefined on Vercel
   // We don't think there's a need to invoke runWithAsyncLocalContext to handle multiple requests
   // since Vercel ultimately deploys to AWS Lambda, which does not have this issue
   // The Error you willl see is something like this:
   //    Error: Internal One error, no AsyncLocalStorage id! at ensureAsyncLocalID (file:///var/task/server/_virtual_one-entry.js:37411:64)
-  const id = process.env.VERCEL ? { _id: Math.random() } : requestAsyncLocalStore?.getStore()
+  const id = process.env.VERCEL ? globalId : requestAsyncLocalStore?.getStore()
 
   if (!id) {
     throw new Error(`Internal One error, no AsyncLocalStorage id!`)
