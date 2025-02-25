@@ -11,9 +11,8 @@ import { serverlessVercelPackageJson } from './config/vc-package-base'
 import { vercelBuildOutputConfig } from './config/vc-build-output-config-base'
 
 import type { One } from '../../vite/types'
-import { existsSync } from 'node:fs'
 
-const { copy, ensureDir, writeJSON } = FSExtra
+const { copy, ensureDir, existsSync, writeJSON } = FSExtra
 
 async function moveAllFiles(src: string, dest: string) {
   try {
