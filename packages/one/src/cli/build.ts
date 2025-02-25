@@ -503,6 +503,7 @@ export async function build(args: {
         apiOutput,
         buildInfoForWriting,
         clientDir,
+        hasMiddleware: manifest.middlewareRoutes.length > 0,
         oneOptionsRoot: options.root,
         postBuildLogs,
       })

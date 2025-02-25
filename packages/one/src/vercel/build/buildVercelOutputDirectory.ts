@@ -33,10 +33,11 @@ export const buildVercelOutputDirectory = async ({
   apiOutput: RollupOutput | null
   buildInfoForWriting: One.BuildInfo
   clientDir: string
+  hasMiddleware: boolean
   oneOptionsRoot: string
   postBuildLogs: string[]
 }) => {
-  const { routeToBuildInfo, manifest } = buildInfoForWriting
+  const { routeToBuildInfo } = buildInfoForWriting
   if (apiOutput) {
     const compiltedApiRoutes = (apiOutput?.output ?? []).filter((o) =>
       isMatching({ code: P.string, facadeModuleId: P.string }, o)
