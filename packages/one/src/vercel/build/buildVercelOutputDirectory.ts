@@ -11,6 +11,7 @@ import { serverlessVercelPackageJson } from './config/vc-package-base'
 import { vercelBuildOutputConfig } from './config/vc-build-output-config-base'
 
 import type { One } from '../../vite/types'
+import { existsSync } from 'node:fs'
 
 const { copy, ensureDir, writeJSON } = FSExtra
 
@@ -26,14 +27,12 @@ export const buildVercelOutputDirectory = async ({
   apiOutput,
   buildInfoForWriting,
   clientDir,
-  hasMiddleware,
   oneOptionsRoot,
   postBuildLogs,
 }: {
   apiOutput: RollupOutput | null
   buildInfoForWriting: One.BuildInfo
   clientDir: string
-  hasMiddleware: boolean
   oneOptionsRoot: string
   postBuildLogs: string[]
 }) => {
@@ -91,11 +90,14 @@ export const buildVercelOutputDirectory = async ({
     }
   }
 
-  if (hasMiddleware) {
-    const vercelMiddlewareDir = join(oneOptionsRoot, 'dist', '.vercel/output/functions/_middleware')
+  const distMiddlewareDir = resolve(join(oneOptionsRoot, 'dist', 'middlewares'))
+  if (existsSync(distMiddlewareDir)) {
+    const vercelMiddlewareDir = resolve(
+      join(oneOptionsRoot, 'dist', '.vercel/output/functions/_middleware')
+    )
     await ensureDir(vercelMiddlewareDir)
     postBuildLogs.push(
-      `[one.build][vercel] copying middlewares from ${join(oneOptionsRoot, 'dist', 'middlewares')} to ${vercelMiddlewareDir}`
+      `[one.build][vercel] copying middlewares from ${distMiddlewareDir} to ${vercelMiddlewareDir}`
     )
     await moveAllFiles(resolve(join(oneOptionsRoot, 'dist', 'middlewares')), vercelMiddlewareDir)
     const vercelMiddlewarePackageJsonFilePath = resolve(join(vercelMiddlewareDir, 'index.js'))
@@ -103,10 +105,11 @@ export const buildVercelOutputDirectory = async ({
       `[one.build][vercel] writing package.json to ${vercelMiddlewarePackageJsonFilePath}`
     )
     await writeJSON(vercelMiddlewarePackageJsonFilePath, serverlessVercelPackageJson)
+    const middlewareVercelConfigFilePath = resolve(join(vercelMiddlewareDir, '.vc-config.json'))
     postBuildLogs.push(
-      `[one.build][vercel] writing .vc-config.json to ${join(vercelMiddlewareDir, '.vc-config.json')}`
+      `[one.build][vercel] writing .vc-config.json to ${middlewareVercelConfigFilePath}`
     )
-    await writeJSON(resolve(join(vercelMiddlewareDir, '.vc-config.json')), {
+    await writeJSON(middlewareVercelConfigFilePath, {
       ...serverlessVercelNodeJsConfig,
       handler: '_middleware.js',
     })
