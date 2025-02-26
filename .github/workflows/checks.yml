@@ -18,11 +18,14 @@ jobs:
 
       - name: Install
         uses: ./.github/actions/install
-        with:
-          workspace-focus: ${{ env.test_app_package_name }}
+        # with:
+        #  workspace-focus: ${{ env.test_app_package_name }}
 
       - name: Check
         run: yarn check
+
+      # workaround of node_modules/.bin/biome not being executable
+      - run: chmod +x node_modules/@biomejs/biome/bin/biome
 
       - name: Lint
         run: yarn lint
