@@ -24,6 +24,9 @@ jobs:
       - name: Check
         run: yarn check
 
+      # workaround of node_modules/.bin/biome not being executable
+      - run: chmod +x node_modules/@biomejs/biome/bin/biome
+
       - name: Lint
         run: yarn lint
 
