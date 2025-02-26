@@ -174,7 +174,9 @@ export function getPathDataFromState<ParamList extends {}>(
                   ? stringify[key](value)
                   : Array.isArray(value)
                     ? value.map(String)
-                    : String(value),
+                    : typeof value === 'undefined'
+                      ? value
+                      : String(value),
               ],
             ]
           })
