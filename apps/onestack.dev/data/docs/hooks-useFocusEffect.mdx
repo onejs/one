@@ -4,7 +4,7 @@ title: useFocusEffect
 
 Similar to React `useEffect`, but only runs when the current route is focused. This is directly based off [React Navigation's useFocusEffect](https://reactnavigation.org/docs/use-focus-effect/).
 
-You should pass it a function that is wrapped in a useCallback to avoid running it every render.
+You must pass it an array as the second argument to determine memoization, otherwise the effect will not change.
 
 Example:
 
@@ -16,11 +16,11 @@ function Profile({ userId }) {
   const [user, setUser] = React.useState(null)
 
   useFocusEffect(
-    useCallback(() => {
+    () => {
       const unsubscribe = API.subscribe(userId, (user) => setUser(user))
-
-      return () => unsubscribe();
-    }, [userId])
+      return () => unsubscribe()
+    },
+    [userId]
   )
 
   return <ProfileContent user={user} />

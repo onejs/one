@@ -1,7 +1,7 @@
 // A fork of `useFocusEffect` that waits for the navigation state to load before
 // running the effect. This is especially useful for native redirects.
-import * as React from 'react'
 
+import { useEffect } from 'react'
 import { useOptionalNavigation } from './link/useLoadedNavigation'
 
 type EffectCallback = () => undefined | void | (() => void)
@@ -9,28 +9,13 @@ type EffectCallback = () => undefined | void | (() => void)
 /**
  * Hook to run an effect in a focused screen, similar to `React.useEffect`.
  * This can be used to perform side-effects such as fetching data or subscribing to events.
- * The passed callback should be wrapped in `React.useCallback` to avoid running the effect too often.
  *
  * @param callback Memoized callback containing the effect, should optionally return a cleanup function.
  */
-export function useFocusEffect(effect: EffectCallback, do_not_pass_a_second_prop?: never) {
+export function useFocusEffect(effect: EffectCallback, args: any[]) {
   const navigation = useOptionalNavigation()
 
-  if (do_not_pass_a_second_prop !== undefined) {
-    const message =
-      "You passed a second argument to 'useFocusEffect', but it only accepts one argument. " +
-      "If you want to pass a dependency array, you can use 'React.useCallback':\n\n" +
-      'useFocusEffect(\n' +
-      '  React.useCallback(() => {\n' +
-      '    // Your code here\n' +
-      '  }, [depA, depB])\n' +
-      ');\n\n' +
-      'See usage guide: https://reactnavigation.org/docs/use-focus-effect'
-
-    console.error(message)
-  }
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (!navigation) {
       return
     }
@@ -85,34 +70,22 @@ export function useFocusEffect(effect: EffectCallback, do_not_pass_a_second_prop
     const unsubscribeFocus = navigation.addListener('focus', () => {
       // If callback was already called for focus, avoid calling it again
       // The focus event may also fire on intial render, so we guard against runing the effect twice
-      if (isFocused) {
-        return
-      }
-
-      if (cleanup !== undefined) {
-        cleanup()
-      }
-
+      if (isFocused) return
+      cleanup?.()
       cleanup = callback()
       isFocused = true
     })
 
     const unsubscribeBlur = navigation.addListener('blur', () => {
-      if (cleanup !== undefined) {
-        cleanup()
-      }
-
+      cleanup?.()
       cleanup = undefined
       isFocused = false
     })
 
     return () => {
-      if (cleanup !== undefined) {
-        cleanup()
-      }
-
+      cleanup?.()
       unsubscribeFocus()
       unsubscribeBlur()
     }
-  }, [effect, navigation])
+  }, [navigation, ...args])
 }
