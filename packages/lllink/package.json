@@ -18,8 +18,8 @@
     "watch": "yarn build --watch",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint": "../../node_modules/.bin/biome check src",
-    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src"
+    "lint": "node ../../node_modules/.bin/biome check src",
+    "lint:fix": "node ../../node_modules/.bin/biome check --write --unsafe src"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

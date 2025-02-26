@@ -22,7 +22,7 @@
   "scripts": {
     "build": "tamagui-build --skip-types",
     "watch": "tamagui-build --skip-types --watch",
-    "lint": "npx biome check src",
+    "lint": "node ../../node_modules/.bin/biome check src",
     "lint:fix": "npx biome check --write --unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"

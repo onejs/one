@@ -21,7 +21,7 @@
   "scripts": {
     "build": "tamagui-build --skip-types",
     "watch": "tamagui-build --skip-types --watch",
-    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
+    "lint:fix": "node ../../node_modules/.bin/biome check --write --unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
   },
