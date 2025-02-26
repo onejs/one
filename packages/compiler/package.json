@@ -24,8 +24,8 @@
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint": "node ../../node_modules/.bin/biome check src",
-    "lint:fix": "node ../../node_modules/.bin/biome check --write --unsafe src"
+    "lint": "../../node_modules/.bin/biome check src",
+    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src"
   },
   "dependencies": {
     "@babel/core": "^7.26.8",

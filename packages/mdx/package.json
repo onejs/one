@@ -24,7 +24,7 @@
     "build": "tamagui-build --bundle --bundle-modules",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint": "node ../../node_modules/.bin/biome check src",
+    "lint": "biome check src",
     "lint:fix": "biome check --write src",
     "watch": "yarn build --watch"
   },

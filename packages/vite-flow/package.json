@@ -22,8 +22,8 @@
     "build": "tamagui-build",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
-    "lint": "node ../../node_modules/.bin/biome check src",
-    "lint:fix": "node ../../node_modules/.bin/biome check --write --unsafe src",
+    "lint": "../../node_modules/.bin/biome check src",
+    "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src",
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
