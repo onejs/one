@@ -69,8 +69,11 @@ async function linkPackages(localPackages: Record<string, string>) {
     const nmPath = join(process.cwd(), 'node_modules', ...pkgName.split('/'))
     try {
       const existingStat = await stat(nmPath)
-      if (existingStat && existingStat.isDirectory()) {
-        await cp(nmPath, join(backupDir, pkgName.replace('/', '__')))
+      if (existingStat) {
+        await cp(nmPath, join(backupDir, pkgName.replace('/', '__')), {
+          recursive: true,
+          dereference: true,
+        })
       }
       const localPath = localPackages[pkgName]
       console.info(`${relative(process.cwd(), nmPath)} -> ${localPath.replace(homedir(), '~')}`)
