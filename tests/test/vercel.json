@@ -1,7 +1,7 @@
 {
-  "buildCommand": "echo \"yarn build:web\"",
-  "outputDirectory": "dist",
-  "installCommand": "echo \"yarn install\"",
+  "buildCommand": "yarn build:web",
+  "outputDirectory": "dist/.vercel",
+  "installCommand": "yarn install",
   "cleanUrls": true,
   "public": true,
   "headers": [

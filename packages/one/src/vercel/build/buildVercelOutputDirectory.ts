@@ -12,7 +12,7 @@ import { vercelBuildOutputConfig } from './config/vc-build-output-config-base'
 
 import type { One } from '../../vite/types'
 
-const { copy, ensureDir, writeJSON } = FSExtra
+const { copy, ensureDir, existsSync, writeJSON } = FSExtra
 
 async function moveAllFiles(src: string, dest: string) {
   try {
@@ -89,24 +89,30 @@ export const buildVercelOutputDirectory = async ({
     }
   }
 
-  const vercelMiddlewareDir = join(oneOptionsRoot, 'dist', '.vercel/output/functions/_middleware')
-  await ensureDir(vercelMiddlewareDir)
-  postBuildLogs.push(
-    `[one.build][vercel] copying middlewares from ${join(oneOptionsRoot, 'dist', 'middlewares')} to ${vercelMiddlewareDir}`
-  )
-  await moveAllFiles(resolve(join(oneOptionsRoot, 'dist', 'middlewares')), vercelMiddlewareDir)
-  const vercelMiddlewarePackageJsonFilePath = resolve(join(vercelMiddlewareDir, 'index.js'))
-  postBuildLogs.push(
-    `[one.build][vercel] writing package.json to ${vercelMiddlewarePackageJsonFilePath}`
-  )
-  await writeJSON(vercelMiddlewarePackageJsonFilePath, serverlessVercelPackageJson)
-  postBuildLogs.push(
-    `[one.build][vercel] writing .vc-config.json to ${join(vercelMiddlewareDir, '.vc-config.json')}`
-  )
-  await writeJSON(resolve(join(vercelMiddlewareDir, '.vc-config.json')), {
-    ...serverlessVercelNodeJsConfig,
-    handler: '_middleware.js',
-  })
+  const distMiddlewareDir = resolve(join(oneOptionsRoot, 'dist', 'middlewares'))
+  if (existsSync(distMiddlewareDir)) {
+    const vercelMiddlewareDir = resolve(
+      join(oneOptionsRoot, 'dist', '.vercel/output/functions/_middleware')
+    )
+    await ensureDir(vercelMiddlewareDir)
+    postBuildLogs.push(
+      `[one.build][vercel] copying middlewares from ${distMiddlewareDir} to ${vercelMiddlewareDir}`
+    )
+    await moveAllFiles(resolve(join(oneOptionsRoot, 'dist', 'middlewares')), vercelMiddlewareDir)
+    const vercelMiddlewarePackageJsonFilePath = resolve(join(vercelMiddlewareDir, 'index.js'))
+    postBuildLogs.push(
+      `[one.build][vercel] writing package.json to ${vercelMiddlewarePackageJsonFilePath}`
+    )
+    await writeJSON(vercelMiddlewarePackageJsonFilePath, serverlessVercelPackageJson)
+    const middlewareVercelConfigFilePath = resolve(join(vercelMiddlewareDir, '.vc-config.json'))
+    postBuildLogs.push(
+      `[one.build][vercel] writing .vc-config.json to ${middlewareVercelConfigFilePath}`
+    )
+    await writeJSON(middlewareVercelConfigFilePath, {
+      ...serverlessVercelNodeJsConfig,
+      handler: '_middleware.js',
+    })
+  }
 
   const vercelOutputStaticDir = resolve(join(oneOptionsRoot, 'dist', '.vercel/output/static'))
   await ensureDir(vercelOutputStaticDir)
