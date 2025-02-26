@@ -112,9 +112,17 @@ export function createBetterAuthClient(
     return data?.token as string | undefined
   }
 
-  async function refreshAuth() {
+  function getPersistedKeys() {
     const token = localStorage.getItem(keys.token)
     const session = localStorage.getItem(keys.session)
+    return {
+      token,
+      session,
+    }
+  }
+
+  async function refreshAuth() {
+    const { token, session } = getPersistedKeys()
     if (token && session) {
       setAuthClientToken({ token, session })
       return
@@ -126,8 +134,11 @@ export function createBetterAuthClient(
     localStorage.setItem(keys.session, '')
   }
 
+  let loading = true
+
   function setState(next: Partial<State>) {
     const current = authState.value!
+    loading = false
     authState.emit({ ...current, ...next })
   }
 
@@ -135,11 +146,13 @@ export function createBetterAuthClient(
     const state = authState.useValue() || empty
     return {
       ...state,
-      loggedIn: !!state.session,
+      loggedIn: loading ? null : !!state.session,
+      loading,
     }
   }
 
   const response = {
+    getPersistedKeys,
     authState,
     authClient: new Proxy(authClient, {
       get(target, key) {
