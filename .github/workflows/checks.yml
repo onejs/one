@@ -18,8 +18,8 @@ jobs:
 
       - name: Install
         uses: ./.github/actions/install
-        with:
-          workspace-focus: ${{ env.test_app_package_name }}
+        # with:
+        #  workspace-focus: ${{ env.test_app_package_name }}
 
       - name: Check
         run: yarn check
