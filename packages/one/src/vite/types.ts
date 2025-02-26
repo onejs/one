@@ -216,7 +216,7 @@ export namespace One {
        *
        * @default node
        */
-      deploy?: 'vercel'
+      deploy?: 'vercel' | 'node'
     }
 
     server?: VXRNOptions['server']
