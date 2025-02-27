@@ -5,11 +5,13 @@ import { normalizePath } from 'vite'
 
 type Mode = 'development' | 'production'
 
+const DEFAULT_PREFIX = /^(ONE|VITE|TAMAGUI)_/
+
 export async function loadEnv(mode: Mode, root = process.cwd(), userPrefix?: string | string[]) {
   const serverEnv = await loadJustEnvFiles(mode)
   const prefix = userPrefix ? (Array.isArray(userPrefix) ? userPrefix : [userPrefix]) : []
   const isPublicKey = (key: string) => {
-    return prefix.some((p) => key.startsWith(p)) || /^(ONE|VITE)_/.test(key)
+    return prefix.some((p) => key.startsWith(p)) || DEFAULT_PREFIX.test(key)
   }
 
   const clientEnv = Object.fromEntries(
