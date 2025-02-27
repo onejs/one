@@ -4,7 +4,6 @@ import type { RouteNode } from './router/Route'
 import type { RouteInfoCompiled } from './server/createRoutesManifest'
 import type { LoaderProps } from './types'
 import { getPathFromLoaderPath } from './utils/cleanUrl'
-import { getHonoPath } from './utils/getHonoPath'
 import { isResponse } from './utils/isResponse'
 import { getManifest } from './vite/getManifest'
 import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
@@ -195,7 +194,6 @@ function compileRouteRegex(route: RouteInfo): RouteInfoCompiled {
   return {
     ...route,
     compiledRegex: new RegExp(route.namedRegex),
-    honoPath: getHonoPath(route.page),
   }
 }
 

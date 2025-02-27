@@ -31,19 +31,4 @@ export const serve = async ({
 
   const { honoServeNode } = await import('../serve/node')
   return honoServeNode(app, options)
-
-  // switch (options.platform) {
-  //   case 'node': {
-
-  //   }
-
-  //   case 'vercel': {
-  //     const { honoServeVercel } = await import('../serve/vercel')
-  //     return honoServeVercel(app, options)
-  //   }
-
-  //   // case 'cloudflare': {
-  //   //   return app
-  //   // }
-  // }
 }
