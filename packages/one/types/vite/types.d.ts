@@ -7,6 +7,7 @@ export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;
     namedRegex: TRegex;
+    urlPath: string;
     routeKeys: Record<string, string>;
     layouts?: RouteNode[];
     middlewares?: RouteNode[];

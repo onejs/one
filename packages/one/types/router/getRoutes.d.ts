@@ -1,5 +1,5 @@
-import type { DynamicConvention, RouteNode } from './Route';
 import type { One } from '../vite/types';
+import type { DynamicConvention, RouteNode } from './Route';
 export type Options = {
     ignore?: RegExp[];
     preserveApiRoutes?: boolean;
