@@ -36,8 +36,8 @@ const empty: State = {
  * @param extraConfig for setting localStorage keys
  * @returns
  */
-export function createBetterAuthClient(
-  options: ClientOptions = {},
+export function createBetterAuthClient<Opts extends ClientOptions>(
+  options: Opts,
   { storageKeys }: ExtraConfig = {}
 ) {
   const authState = createEmitter<State>(empty)
@@ -92,7 +92,9 @@ export function createBetterAuthClient(
       }
       if (data) {
         const token = await fetchToken()
+        console.warn('data', data)
         setState({
+          // @ts-expect-error
           ...data,
           token,
         })
@@ -154,18 +156,7 @@ export function createBetterAuthClient(
   const response = {
     getPersistedKeys,
     authState,
-    authClient: new Proxy(authClient, {
-      get(target, key) {
-        // TODO if we need to manually manage clearing
-        // if (key === 'signOut') {
-        //   return () => {
-        //     // ensure we sync state on signout
-        //     authClient.signOut()
-        //   }
-        // }
-        return Reflect.get(authClient, key)
-      },
-    }),
+    authClient,
     setAuthClientToken,
     clearAuthClientToken,
     useAuthClientVersion,
