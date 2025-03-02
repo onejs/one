@@ -1,6 +1,6 @@
 {
   "name": "test-weird-deps",
-  "version": "1.1.459",
+  "version": "1.1.460",
   "private": true,
   "type": "module",
   "scripts": {
