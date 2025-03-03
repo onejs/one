@@ -8,6 +8,7 @@ import type {
   ScreenListeners,
 } from '@react-navigation/native'
 import React, { memo, Suspense, useId } from 'react'
+import { SafeAreaView, ScrollView, View, TouchableOpacity, Text } from 'react-native'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
 import { EmptyRoute } from '../views/EmptyRoute'
@@ -31,7 +32,7 @@ export const { Screen, Group } = createNavigatorFactory({} as any)()
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
   State extends NavigationState = NavigationState,
-  EventMap extends EventMapBase = EventMapBase,
+  EventMap extends EventMapBase = EventMapBase
 > = {
   /** Name is required when used inside a Layout component. */
   name?: string
@@ -70,7 +71,9 @@ function getSortedChildren(
   const ordered = order
     .map(({ name, redirect, initialParams, listeners, options, getId }) => {
       if (!entries.length) {
-        console.warn(`[Layout children]: Too many screens defined. Route "${name}" is extraneous.`)
+        console.warn(
+          `[Layout children]: Too many screens defined. Route "${name}" is extraneous.`
+        )
         return null
       }
       const matchIndex = entries.findIndex((child) => child.route === name)
@@ -225,7 +228,11 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       )
     }
 
-    return <Component {...props} ref={ref} />
+    return (
+      <RouteErrorBoundary routeName={value.route}>
+        <Component {...props} ref={ref} />
+      </RouteErrorBoundary>
+    )
   })
 
   const wrapSuspense = (children: any) => {
@@ -313,7 +320,10 @@ export function createGetIdForRoute(
   }
 }
 
-function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenProps> = {}) {
+function routeToScreen(
+  route: RouteNode,
+  { options, ...props }: Partial<ScreenProps> = {}
+) {
   return (
     <Screen
       // Users can override the screen getId function.
@@ -362,4 +372,96 @@ function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenPr
       }}
     />
   )
+}
+
+type RouteErrorBoundaryState = { hasError: boolean; error: any; errorInfo: any }
+
+const ROUTE_ERROR_BOUNDARY_INITIAL_STATE = {
+  hasError: false,
+  error: null,
+  errorInfo: null,
+}
+
+class RouteErrorBoundary extends React.Component<
+  { children: React.ReactNode; routeName: string },
+  RouteErrorBoundaryState
+> {
+  constructor(props) {
+    super(props)
+    this.state = ROUTE_ERROR_BOUNDARY_INITIAL_STATE
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error }
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error(
+      `Error occurred while running route "${this.props.routeName}": ${
+        error instanceof Error ? error.message : error
+      }\n\n${error.stack}\n\nComponent Stack:\n${errorInfo.componentStack}`
+    )
+    this.setState({ errorInfo })
+  }
+
+  clearError() {
+    this.setState(ROUTE_ERROR_BOUNDARY_INITIAL_STATE)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      const { error, errorInfo } = this.state
+      return (
+        <SafeAreaView style={{ backgroundColor: '#000' }}>
+          <View style={{ margin: 16, gap: 16 }}>
+            <Text
+              style={{
+                alignSelf: 'flex-start',
+                padding: 5,
+                margin: -5,
+                backgroundColor: 'red',
+                color: 'white',
+                fontSize: 20,
+                fontFamily: 'monospace',
+              }}
+            >
+              Error on route "{this.props.routeName}"
+            </Text>
+            <Text style={{ color: 'white', fontSize: 16, fontFamily: 'monospace' }}>
+              {error instanceof Error ? error.message : error}
+            </Text>
+            <TouchableOpacity onPress={this.clearError.bind(this)}>
+              <Text
+                style={{
+                  alignSelf: 'flex-start',
+                  margin: -6,
+                  padding: 6,
+                  backgroundColor: 'white',
+                  color: 'black',
+                  fontSize: 14,
+                  fontFamily: 'monospace',
+                }}
+              >
+                Retry
+              </Text>
+            </TouchableOpacity>
+            <ScrollView contentContainerStyle={{ gap: 12 }}>
+              {error instanceof Error ? (
+                <Text style={{ color: 'white', fontSize: 12, fontFamily: 'monospace' }}>
+                  {error.stack}
+                </Text>
+              ) : null}
+              {errorInfo?.componentStack ? (
+                <Text style={{ color: 'white', fontSize: 12, fontFamily: 'monospace' }}>
+                  Component Stack: {errorInfo.componentStack}
+                </Text>
+              ) : null}
+            </ScrollView>
+          </View>
+        </SafeAreaView>
+      )
+    }
+
+    return this.props.children
+  }
 }
