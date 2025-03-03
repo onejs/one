@@ -1,5 +1,4 @@
 import type { GetTransform } from '@vxrn/compiler';
-import type { Options as ReactScanOptions } from 'react-scan';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { RouteNode } from '../router/Route';
@@ -14,6 +13,14 @@ export type RouteInfo<TRegex = string> = {
     type: One.RouteType;
     isNotFound?: boolean;
 };
+interface ReactScanOptions {
+    log?: boolean;
+    showToolbar?: boolean;
+    animationSpeed?: 'slow' | 'fast' | 'off';
+    trackUnnecessaryRenders?: boolean;
+    showFPS?: boolean;
+    _debug?: 'verbose' | false;
+}
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
@@ -84,6 +91,10 @@ export declare namespace One {
         transform?: GetTransform;
         react?: {
             compiler?: boolean | PluginPlatformTarget;
+            /**
+             * Enable react-scan, we've given a minimal subset of options here
+             * So long as the options can be serialized they should work here
+             */
             scan?: boolean | PluginPlatformTarget | (Record<PluginPlatformTarget, ReactScanOptions> & {
                 options?: ReactScanOptions;
             });
@@ -253,4 +264,5 @@ export declare namespace One {
     };
     export {};
 }
+export {};
 //# sourceMappingURL=types.d.ts.map
