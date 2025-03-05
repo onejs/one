@@ -51,16 +51,20 @@ export async function build(args: {
   const { oneOptions } = await loadUserOneOptions('build')
   const manifest = getManifest()!
 
-  const serverOutputFormat = oneOptions.build?.server?.outputFormat ?? 'esm'
+  const serverOutputFormat =
+    oneOptions.build?.server === false ? 'esm' : (oneOptions.build?.server?.outputFormat ?? 'esm')
 
   const vxrnOutput = await vxrnBuild(
     {
       server: oneOptions.server,
       build: {
         analyze: true,
-        server: {
-          outputFormat: serverOutputFormat,
-        },
+        server:
+          oneOptions.build?.server === false
+            ? false
+            : {
+                outputFormat: serverOutputFormat,
+              },
       },
     },
     args
