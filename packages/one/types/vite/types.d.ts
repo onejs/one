@@ -199,7 +199,7 @@ export declare namespace One {
         };
         server?: VXRNOptions['server'];
         build?: {
-            server?: VXRNBuildOptions;
+            server?: VXRNBuildOptions | false;
             api?: VXRNBuildOptions;
         };
         deps?: FixDependencies;
