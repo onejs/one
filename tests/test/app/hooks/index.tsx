@@ -1,18 +1,12 @@
-import { Link } from 'one'
-import { View, Text } from 'tamagui'
+import { View, H1 } from 'tamagui'
+import { HooksTestingLinks } from '~/features/hooks-testing/HooksTestingLinks'
 
 export default function HooksTestingIndexPage() {
   return (
     <View>
-      <Link href="/hooks/contents/page-1">
-        <Text>Go to page-1</Text>
-      </Link>
-      <Link href="/hooks/contents/page-2">
-        <Text>Go to page-2</Text>
-      </Link>
-      <Link href="/hooks">
-        <Text>Go to index</Text>
-      </Link>
+      <H1>Hooks Testing Index</H1>
+
+      <HooksTestingLinks />
     </View>
   )
 }
