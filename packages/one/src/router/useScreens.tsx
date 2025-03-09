@@ -32,7 +32,7 @@ export const { Screen, Group } = createNavigatorFactory({} as any)()
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
   State extends NavigationState = NavigationState,
-  EventMap extends EventMapBase = EventMapBase
+  EventMap extends EventMapBase = EventMapBase,
 > = {
   /** Name is required when used inside a Layout component. */
   name?: string
@@ -71,9 +71,7 @@ function getSortedChildren(
   const ordered = order
     .map(({ name, redirect, initialParams, listeners, options, getId }) => {
       if (!entries.length) {
-        console.warn(
-          `[Layout children]: Too many screens defined. Route "${name}" is extraneous.`
-        )
+        console.warn(`[Layout children]: Too many screens defined. Route "${name}" is extraneous.`)
         return null
       }
       const matchIndex = entries.findIndex((child) => child.route === name)
@@ -241,7 +239,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     // i tried a lot of things, but didn't find the root cause, but native needs suspense or
     // else it hits an error about no suspense boundary being set
 
-    if (process.env.TAMAGUI_TARGET === 'native') {
+    if (process.env.TAMAGUI_TARGET === 'native' || process.env.ONE_SUSPEND_ROUTES === '1') {
       return <Suspense fallback={null}>{children}</Suspense>
     }
     return children
@@ -320,10 +318,7 @@ export function createGetIdForRoute(
   }
 }
 
-function routeToScreen(
-  route: RouteNode,
-  { options, ...props }: Partial<ScreenProps> = {}
-) {
+function routeToScreen(route: RouteNode, { options, ...props }: Partial<ScreenProps> = {}) {
   return (
     <Screen
       // Users can override the screen getId function.
