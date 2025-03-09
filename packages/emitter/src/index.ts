@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 
 export class Emitter<const T> {
   private disposables = new Set<(cb: any) => void>()
@@ -18,7 +18,7 @@ export class Emitter<const T> {
   }
 
   use = (cb: (cb: T) => void, args?: any[]) => {
-    useEffect(() => {
+    useLayoutEffect(() => {
       return this.listen(cb)
     }, args ?? [])
   }
