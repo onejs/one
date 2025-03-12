@@ -453,15 +453,17 @@ export async function build(args: {
 
   // write out the static paths (pathname => html) for the server
   const routeMap: Record<string, string> = {}
+  const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
+  const preloads: Record<string, boolean> = {}
+  const loaders: Record<string, boolean> = {}
+
   for (const route of builtRoutes) {
     if (!route.cleanPath.includes('*')) {
       routeMap[route.cleanPath] = route.htmlPath
     }
-  }
-
-  const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
-  for (const route of builtRoutes) {
     routeToBuildInfo[route.routeFile] = route
+    preloads[route.preloadPath] = true
+    loaders[route.loaderPath] = true
   }
 
   function createBuildManifestRoute(route: RouteInfo) {
@@ -479,18 +481,6 @@ export async function build(args: {
 
     return built
   }
-
-  const preloads = Object.fromEntries(
-    Object.entries(routeToBuildInfo).map(([_, val]) => {
-      return [val.preloadPath, true]
-    })
-  )
-
-  const loaders = Object.fromEntries(
-    Object.entries(routeToBuildInfo).map(([_, val]) => {
-      return [val.loaderPath, true]
-    })
-  )
 
   const buildInfoForWriting: One.BuildInfo = {
     oneOptions,
