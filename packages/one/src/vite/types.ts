@@ -281,6 +281,9 @@ export namespace One {
       pageRoutes: RouteInfo[]
       apiRoutes: RouteInfo[]
     }
+    // for quick checking if preload exists
+    preloads: Record<string, boolean>
+    loaders: Record<string, boolean>
   }
 
   export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo
@@ -291,6 +294,7 @@ export namespace One {
     routeFile: string
     middlewares: string[]
     preloadPath: string
+    loaderPath: string
     cleanPath: string
     htmlPath: string
     clientJsPath: string

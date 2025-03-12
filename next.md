@@ -19,6 +19,8 @@
   - lower priority useLoader(loader, { suspense: false, disable: true })
     - useLoaderState() or change to array return in v1
 
+  - fix _preloads.js for dynamic segments
+
   - tests
     - 20-40 deps, native + web (ssr) (see weird-deps for some)
       - `@datadog/mobile-react-native` breaking on tests/uniswap

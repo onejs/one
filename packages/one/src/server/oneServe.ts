@@ -3,7 +3,7 @@ import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
 import { extname, join } from 'node:path'
 import { getServerEntry } from 'vxrn/serve'
-import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import { LOADER_JS_POSTFIX_UNCACHED, PRELOAD_JS_POSTFIX } from '../constants'
 import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
@@ -207,36 +207,54 @@ url: ${url}`)
     app.get(route.urlPath, createHonoHandler(route))
   }
 
+  const { preloads, loaders } = buildInfo
+
   // TODO make this inside each page, need to make loader urls just be REGULAR_URL + loaderpostfix
   app.get('*', async (c, next) => {
-    if (
-      c.req.path.endsWith(LOADER_JS_POSTFIX_UNCACHED) &&
-      // if it includes /assets its a static loader
-      !c.req.path.includes('/assets/')
-    ) {
-      const request = c.req.raw
-      const url = getURLfromRequestURL(request)
-      const originalUrl = getPathFromLoaderPath(c.req.path)
+    if (c.req.path.endsWith(PRELOAD_JS_POSTFIX)) {
+      // TODO handle dynamic segments (i think the below loader has some logic for this)
+      if (!preloads[c.req.path]) {
+        // no preload exists 200 gracefully
+        c.header('Content-Type', 'text/javascript')
+        c.status(200)
+        return c.body(``)
+      }
+    }
 
-      for (const route of compiledManifest.pageRoutes) {
-        if (route.file === '') {
-          // ignore not found route
-          continue
+    if (c.req.path.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
+      if (c.req.path.includes('/assets/')) {
+        if (!loaders[c.req.path]) {
+          // no preload exists 200 gracefully
+          c.header('Content-Type', 'text/javascript')
+          c.status(200)
+          return c.body(``)
         }
+      } else {
+        const request = c.req.raw
+        const url = getURLfromRequestURL(request)
+        const originalUrl = getPathFromLoaderPath(c.req.path)
 
-        if (!route.compiledRegex.test(originalUrl)) {
-          continue
-        }
+        for (const route of compiledManifest.pageRoutes) {
+          if (route.file === '') {
+            // ignore not found route
+            continue
+          }
 
-        // for now just change this
-        route.file = c.req.path
+          if (!route.compiledRegex.test(originalUrl)) {
+            continue
+          }
 
-        const finalUrl = new URL(originalUrl, url.origin)
-        try {
-          return resolveLoaderRoute(requestHandlers, request, finalUrl, route)
-        } catch (err) {
-          console.error(`Error running loader: ${err}`)
-          return next()
+          // for now just change this
+          route.file = c.req.path
+
+          const finalUrl = new URL(originalUrl, url.origin)
+          try {
+            const resolved = await resolveLoaderRoute(requestHandlers, request, finalUrl, route)
+            return resolved
+          } catch (err) {
+            console.error(`Error running loader: ${err}`)
+            return next()
+          }
         }
       }
     }

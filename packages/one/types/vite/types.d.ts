@@ -239,6 +239,8 @@ export declare namespace One {
             pageRoutes: RouteInfo[];
             apiRoutes: RouteInfo[];
         };
+        preloads: Record<string, boolean>;
+        loaders: Record<string, boolean>;
     };
     export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo;
     export type RouteBuildInfo = {
@@ -247,6 +249,7 @@ export declare namespace One {
         routeFile: string;
         middlewares: string[];
         preloadPath: string;
+        loaderPath: string;
         cleanPath: string;
         htmlPath: string;
         clientJsPath: string;
