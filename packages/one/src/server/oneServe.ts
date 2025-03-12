@@ -225,9 +225,10 @@ url: ${url}`)
       if (c.req.path.includes('/assets/')) {
         if (!loaders[c.req.path]) {
           // no preload exists 200 gracefully
-          c.header('Content-Type', 'text/javascript')
-          c.status(200)
-          return c.body(``)
+          // c.header('Content-Type', 'text/javascript')
+          // c.status(200)
+          // return c.body(``)
+          // this breaks for loaders on [...dynamic] + ssr routes
         }
       } else {
         const request = c.req.raw
