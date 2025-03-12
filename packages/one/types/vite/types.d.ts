@@ -6,6 +6,8 @@ export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;
     namedRegex: TRegex;
+    loaderPath?: string;
+    loaderServerPath?: string;
     urlPath: string;
     routeKeys: Record<string, string>;
     layouts?: RouteNode[];

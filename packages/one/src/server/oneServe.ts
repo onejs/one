@@ -67,8 +67,18 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
     },
 
     async handleLoader({ request, route, url, loaderProps }) {
-      // TODO this shouldn't be in dist/client right? we should build a dist/server version?
-      return await import(toAbsolute(join('./', 'dist/client', route.file)))
+      const exports = await import(toAbsolute(join('./', 'dist/server', route.file)))
+
+      const { loader } = exports
+
+      if (!loader) {
+        console.warn(`No loader found in exports`, route.file)
+        return null
+      }
+
+      const json = await loader(loaderProps)
+
+      return `export function loader() { return ${JSON.stringify(json)} }`
     },
 
     async handlePage({ route, url, loaderProps }) {
@@ -237,9 +247,10 @@ url: ${url}`)
         }
 
         // for now just change this
-        route.file = c.req.path
+        route.file = route.loaderServerPath || c.req.path
 
         const finalUrl = new URL(originalUrl, url.origin)
+
         try {
           const resolved = await resolveLoaderRoute(requestHandlers, request, finalUrl, route)
           return resolved

@@ -14,6 +14,8 @@ export type RouteInfo<TRegex = string> = {
   file: string
   page: string
   namedRegex: TRegex
+  loaderPath?: string
+  loaderServerPath?: string
   urlPath: string
   routeKeys: Record<string, string>
   layouts?: RouteNode[]
@@ -281,6 +283,7 @@ export namespace One {
       pageRoutes: RouteInfo[]
       apiRoutes: RouteInfo[]
     }
+
     // for quick checking if preload exists
     preloads: Record<string, boolean>
     loaders: Record<string, boolean>

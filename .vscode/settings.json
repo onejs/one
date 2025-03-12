@@ -4,7 +4,7 @@
         "editor.defaultFormatter": "biomejs.biome"
     },
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "biomejs.biome"
     },
     "[sql]": {
         "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
