@@ -407,12 +407,11 @@ export const preloadingLoader = {}
 function setupPreload(href: string) {
   if (preloadingLoader[href]) return
   preloadingLoader[href] = async () => {
-    const [_preload, loader] = await Promise.all([
-      dynamicImport(getPreloadPath(href)),
-      dynamicImport(getLoaderPath(href)),
-    ])
-
     try {
+      const [_preload, loader] = await Promise.all([
+        dynamicImport(getPreloadPath(href)),
+        dynamicImport(getLoaderPath(href)),
+      ])
       const response = await loader
       return await response.loader?.()
     } catch (err) {

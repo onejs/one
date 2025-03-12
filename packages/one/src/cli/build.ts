@@ -480,6 +480,18 @@ export async function build(args: {
     return built
   }
 
+  const preloads = Object.fromEntries(
+    Object.entries(routeToBuildInfo).map(([_, val]) => {
+      return [val.preloadPath, true]
+    })
+  )
+
+  const loaders = Object.fromEntries(
+    Object.entries(routeToBuildInfo).map(([_, val]) => {
+      return [val.loaderPath, true]
+    })
+  )
+
   const buildInfoForWriting: One.BuildInfo = {
     oneOptions,
     routeToBuildInfo,
@@ -489,6 +501,8 @@ export async function build(args: {
     },
     routeMap,
     constants: JSON.parse(JSON.stringify({ ...constants })) as any,
+    preloads,
+    loaders,
   }
 
   await writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
