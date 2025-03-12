@@ -1,5 +1,5 @@
 import { Slot, useParams, usePathname } from 'one'
-import { View, Text, HR } from 'tamagui'
+import { Text, View } from 'tamagui'
 
 export default function HooksTestingSlugLayout() {
   const pathname = usePathname()
@@ -8,8 +8,7 @@ export default function HooksTestingSlugLayout() {
   return (
     <View>
       <Text id="slug-layout-usePathname">
-        Slug layout `usePathname()`:{' '}
-        <Text testID="slug-layout-usePathname">{pathname}</Text>
+        Slug layout `usePathname()`: <Text testID="slug-layout-usePathname">{pathname}</Text>
       </Text>
       <Text id="slug-layout-useParams">
         Slug layout `useParams()`:{' '}

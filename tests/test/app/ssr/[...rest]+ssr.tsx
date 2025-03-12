@@ -1,7 +1,20 @@
-import { useParams } from 'one'
-import { Text, View } from 'tamagui'
+import { Link, type LoaderProps, useLoader, useParams } from 'one'
+import { memo } from 'react'
+import { Separator, Text, View } from 'tamagui'
 
-export default function ParamsSSR() {
+export function loader(props: LoaderProps) {
+  return {
+    // @ts-ignore
+    path: [].concat(props.params.rest).join('/'),
+  }
+}
+
+export function ParamsSSR() {
+  const { path } = useLoader(loader)
+  const href = `/ssr/${path}-next` as any
+
+  console.info('got data', path)
+
   return (
     <View
       flexDirection="column"
@@ -11,7 +24,27 @@ export default function ParamsSSR() {
       gap={16}
     >
       <Text>Params SSR</Text>
+      <Text>Params:</Text>
       <Text id="params">{JSON.stringify(useParams())}</Text>
+
+      <Separator />
+
+      <Text>Data:</Text>
+      <Text id="data">{JSON.stringify(path)}</Text>
+
+      <Separator />
+
+      <Link id="test-change-sub-route" href={href}>
+        Change sub-route to {href}
+      </Link>
+
+      <TestSubComponentParams />
     </View>
   )
 }
+
+const TestSubComponentParams = memo(() => {
+  const params = useParams()
+  console.info('did i render?')
+  return <Text id="sub-params">sub params are: {JSON.stringify(params)}</Text>
+})
