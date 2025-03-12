@@ -290,6 +290,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     )) as RollupOutput
 
     serverOutput = output
+
     clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
 
     // temp fix - react native web is importing non-existent react 19 apis

@@ -289,6 +289,8 @@ export async function build(args: {
       continue
     }
 
+    foundRoute.loaderServerPath = output.fileName
+
     function collectImports(
       { imports = [], css }: ClientManifestEntry,
       { type = 'js' }: { type?: 'js' | 'css' } = {}
@@ -477,6 +479,10 @@ export async function build(args: {
       for (const [index, mw] of built.middlewares.entries()) {
         mw.contextKey = buildInfo.middlewares[index]
       }
+    }
+
+    if (buildInfo) {
+      built.loaderPath = buildInfo.loaderPath
     }
 
     return built
