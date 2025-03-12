@@ -222,40 +222,30 @@ url: ${url}`)
     }
 
     if (c.req.path.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
-      if (c.req.path.includes('/assets/')) {
-        if (!loaders[c.req.path]) {
-          // no preload exists 200 gracefully
-          // c.header('Content-Type', 'text/javascript')
-          // c.status(200)
-          // return c.body(``)
-          // this breaks for loaders on [...dynamic] + ssr routes
+      const request = c.req.raw
+      const url = getURLfromRequestURL(request)
+      const originalUrl = getPathFromLoaderPath(c.req.path)
+
+      for (const route of compiledManifest.pageRoutes) {
+        if (route.file === '') {
+          // ignore not found route
+          continue
         }
-      } else {
-        const request = c.req.raw
-        const url = getURLfromRequestURL(request)
-        const originalUrl = getPathFromLoaderPath(c.req.path)
 
-        for (const route of compiledManifest.pageRoutes) {
-          if (route.file === '') {
-            // ignore not found route
-            continue
-          }
+        if (!route.compiledRegex.test(originalUrl)) {
+          continue
+        }
 
-          if (!route.compiledRegex.test(originalUrl)) {
-            continue
-          }
+        // for now just change this
+        route.file = c.req.path
 
-          // for now just change this
-          route.file = c.req.path
-
-          const finalUrl = new URL(originalUrl, url.origin)
-          try {
-            const resolved = await resolveLoaderRoute(requestHandlers, request, finalUrl, route)
-            return resolved
-          } catch (err) {
-            console.error(`Error running loader: ${err}`)
-            return next()
-          }
+        const finalUrl = new URL(originalUrl, url.origin)
+        try {
+          const resolved = await resolveLoaderRoute(requestHandlers, request, finalUrl, route)
+          return resolved
+        } catch (err) {
+          console.error(`Error running loader: ${err}`)
+          return next()
         }
       }
     }
