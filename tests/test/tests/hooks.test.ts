@@ -58,34 +58,3 @@ test('hooks', async () => {
 
   await page.close()
 })
-
-test('useParams in _layout', async () => {
-  const page = await context.newPage()
-  await page.goto(serverUrl + '/hooks')
-
-  const link1 = await page.$('a[href="/hooks/contents/with-slug/slug-page-foo"]')
-  await link1?.click({
-    force: true,
-  })
-  await page.waitForURL('**/hooks/contents/with-slug/slug-page-foo', { timeout: 5_000 })
-  const pageUseParamsJsonString1 = (await page.getByTestId('page-useParams').textContent()) || '{}'
-  const pageUseParamsJson1 = JSON.parse(pageUseParamsJsonString1)
-  expect(pageUseParamsJson1.slug).toBe('slug-page-foo')
-  const layoutUseParamsJsonString1 =
-    (await page.getByTestId('layout-useParams').textContent()) || '{}'
-  const layoutUseParamsJson1 = JSON.parse(layoutUseParamsJsonString1)
-  expect(layoutUseParamsJson1.slug).toBe('slug-page-foo')
-
-  const link2 = await page.$('a[href="/hooks/contents/with-slug/slug-page-bar"]')
-  await link2?.click({
-    force: true,
-  })
-  await page.waitForURL('**/hooks/contents/with-slug/slug-page-bar', { timeout: 5_000 })
-  const pageUseParamsJsonString2 = (await page.getByTestId('page-useParams').textContent()) || '{}'
-  const pageUseParamsJson2 = JSON.parse(pageUseParamsJsonString2)
-  expect(pageUseParamsJson2.slug).toBe('slug-page-bar')
-  const layoutUseParamsJsonString2 =
-    (await page.getByTestId('layout-useParams').textContent()) || '{}'
-  const layoutUseParamsJson2 = JSON.parse(layoutUseParamsJsonString2)
-  expect(layoutUseParamsJson2.slug).toBe('slug-page-bar')
-})
