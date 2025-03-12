@@ -585,7 +585,6 @@ function getNavigateAction(
 
     const didActionAndCurrentStateDiverge =
       actionStateRoute.name !== stateRoute.name ||
-      !deepEqual(actionStateRoute.params, stateRoute.params) ||
       !childState ||
       !nextNavigationState ||
       (dynamicName && actionStateRoute.params?.[dynamicName] !== stateRoute.params?.[dynamicName])
