@@ -28,7 +28,8 @@ export async function buildPage(
   const clientJsPath = join(`dist/client`, clientManifestEntry.file)
   const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
   const preloadPath = getPreloadPath(path)
-  const loaderPath = getLoaderPath(path)
+
+  let loaderPath = ''
 
   let loaderData = {}
 
@@ -55,6 +56,7 @@ if (typeof document === 'undefined') globalThis.document = {}
         })
       const loaderPartialPath = join(clientDir, getLoaderPath(path))
       await outputFile(loaderPartialPath, withLoader)
+      loaderPath = getLoaderPath(path)
     }
 
     // ssr, we basically skip at build-time and just compile it the js we need
