@@ -106,6 +106,7 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
             loaderProps,
             path: loaderProps?.path || '/',
             preloads,
+            css: buildInfo.css,
           })
 
           return new Response(rendered, {
@@ -183,7 +184,7 @@ url: ${url}`)
                 return response
               } catch (err) {
                 console.info(
-                  `Error udpating cache header on api route "${
+                  `Error updating cache header on api route "${
                     context.req.path
                   }" to no-store, it is ${response.headers.get('cache-control')}, continue`,
                   err

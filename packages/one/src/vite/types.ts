@@ -305,6 +305,7 @@ export namespace One {
     params: Object
     loaderData: any
     preloads: string[]
+    css: string[]
   }
 
   export type ServerContext = {

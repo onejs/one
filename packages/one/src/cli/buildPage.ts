@@ -109,6 +109,7 @@ params:\n\n${JSON.stringify(params || null, null, 2)}`
 
   return {
     type: foundRoute.type,
+    css: allCSS,
     routeFile: foundRoute.file,
     middlewares,
     cleanPath,
