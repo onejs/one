@@ -125,18 +125,14 @@ function getGeneratedNamedRouteRegex(
   node: RouteNode
 ): OneRouterServerManifestV1Route {
   return {
-    ...getNamedRouteRegex(normalizedRoute, node),
+    ...getRouteEntry(normalizedRoute, node),
     generated: true,
     isNotFound: isNotFoundRoute(node),
   }
 }
 
-function getNamedRouteRegex(
-  normalizedRoute: string,
-  node: RouteNode
-): OneRouterServerManifestV1Route {
+function getRouteEntry(normalizedRoute: string, node: RouteNode): OneRouterServerManifestV1Route {
   const result = getPathMeta(normalizedRoute)
-
   return {
     file: node.contextKey,
     page: getContextKey(node.route),
