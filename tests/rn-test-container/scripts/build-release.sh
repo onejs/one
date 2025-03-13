@@ -1,11 +1,4 @@
-set -o pipefail # Since we pipe the output to xcpretty, we need this to fail this step if `xcrun xcodebuild` fails
-
-PROJ_DIRNAME="$(dirname $(dirname -- "$( readlink -f -- "$0"; )";))"
-
-echo "cd into PROJ_DIRNAME: ${PROJ_DIRNAME}"
-
-cd "${PROJ_DIRNAME}"
-
+# yarn prebuild:native --platform ios --no-install # --no-install is used to skip installing dependencies, specifically `pod install` as we want to do it after the Cache Pods step
 yarn prebuild:native --platform ios
 
 xcrun xcodebuild -scheme 'RNTestContainer' \
