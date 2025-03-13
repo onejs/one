@@ -248,12 +248,15 @@ url: ${url}`)
         }
 
         // for now just change this
-        route.file = route.loaderServerPath || c.req.path
+        const loaderRoute = {
+          ...route,
+          file: route.loaderServerPath || c.req.path,
+        }
 
         const finalUrl = new URL(originalUrl, url.origin)
 
         try {
-          const resolved = await resolveLoaderRoute(requestHandlers, request, finalUrl, route)
+          const resolved = await resolveLoaderRoute(requestHandlers, request, finalUrl, loaderRoute)
           return resolved
         } catch (err) {
           console.error(`Error running loader: ${err}`)
