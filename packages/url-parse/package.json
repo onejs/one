@@ -34,7 +34,7 @@
     "url-parse": "^1.5.10"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.125.23"
+    "@tamagui/build": "^1.125.24"
   },
   "publishConfig": {
     "access": "public"
