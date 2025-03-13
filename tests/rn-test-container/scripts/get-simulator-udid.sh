@@ -1,3 +1,5 @@
+set -x
+set -e
 set -o pipefail # Since we pipe the output to xcpretty, we need this to fail this step if `xcrun xcodebuild` fails
 
 export SIMULATOR_IOS_VERSION=18
@@ -22,4 +24,13 @@ echo "Simulator UDID: $SIMULATOR_UDID"
 # echo "simulator_udid=$SIMULATOR_UDID" >> $GITHUB_OUTPUT
 
 # https://github.com/onejs/one/blob/main/.github/workflows/test-native-ios.yml#L79
-xcrun simctl boot $SIMULATOR_UDID
+# xcrun simctl boot $SIMULATOR_UDID
+# Check the status of the simulator
+STATUS=$(xcrun simctl list devices | grep "$SIMULATOR_ID" | grep -o "Booted")
+
+if [ "$STATUS" == "Booted" ]; then
+    echo "Simulator $SIMULATOR_ID is already booted."
+else
+    echo "Booting simulator $SIMULATOR_ID..."
+    xcrun simctl boot "$SIMULATOR_ID"
+fi
