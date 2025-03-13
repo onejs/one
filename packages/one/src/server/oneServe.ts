@@ -86,8 +86,9 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
 
       if (route.type === 'ssr') {
         if (!buildInfo) {
+          console.error(`Error in route`, route)
           throw new Error(
-            `No buildinfo found for ${url}, route: ${route.page}, in keys: ${Object.keys(routeToBuildInfo)}`
+            `No buildinfo found for ${url}, route: ${route.file}, in keys:\n  ${Object.keys(routeToBuildInfo).join('\n  ')}`
           )
         }
 
@@ -112,7 +113,7 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
             status: route.isNotFound ? 404 : 200,
           })
         } catch (err) {
-          console.error(`[one] Error rendering SSR route ${route.page}
+          console.error(`[one] Error rendering SSR route ${route.file}
 
 ${err?.['stack'] ?? err}
 

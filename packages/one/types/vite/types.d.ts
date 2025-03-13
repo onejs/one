@@ -235,7 +235,7 @@ export declare namespace One {
             CACHE_KEY: string;
         };
         oneOptions?: PluginOptions;
-        routeToBuildInfo: Record<string, One.RouteBuildInfo>;
+        routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>>;
         routeMap: Record<string, string>;
         manifest: {
             pageRoutes: RouteInfo[];

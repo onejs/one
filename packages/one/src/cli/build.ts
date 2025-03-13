@@ -455,7 +455,7 @@ export async function build(args: {
 
   // write out the static paths (pathname => html) for the server
   const routeMap: Record<string, string> = {}
-  const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
+  const routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>> = {}
   const preloads: Record<string, boolean> = {}
   const loaders: Record<string, boolean> = {}
 
@@ -463,7 +463,13 @@ export async function build(args: {
     if (!route.cleanPath.includes('*')) {
       routeMap[route.cleanPath] = route.htmlPath
     }
-    routeToBuildInfo[route.routeFile] = route
+    const {
+      // dont include loaderData it can be huge
+      loaderData: _loaderData,
+      ...rest
+    } = route
+
+    routeToBuildInfo[route.routeFile] = rest
     preloads[route.preloadPath] = true
     loaders[route.loaderPath] = true
   }
