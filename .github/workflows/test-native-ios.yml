@@ -108,7 +108,7 @@ jobs:
       - name: Test
         env:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-          TEST_CONTAINER_PATH: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
+          IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
         run: |
           yarn test-ios
 
