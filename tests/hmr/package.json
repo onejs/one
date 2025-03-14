@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "one dev",
     "test-macos": "TEST_ONLY=dev vitest",
-    "test-ios": "TEST_ONLY=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts"
+    "test-ios": "TEST_ONLY=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run"
   },
   "devDependencies": {
     "playwright": "^1.49.1",
