@@ -10,5 +10,4 @@ xcrun xcodebuild -scheme 'RNTestContainer' \
   -configuration Release \
   -sdk 'iphonesimulator' \
   -destination 'generic/platform=iOS Simulator' \
-  -archivePath build \
   -derivedDataPath build | tee xcodebuild.log | xcpretty

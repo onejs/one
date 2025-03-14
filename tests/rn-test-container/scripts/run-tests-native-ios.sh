@@ -25,6 +25,6 @@ $PROJ_DIRNAME/scripts/install-and-run-appium.sh
 # https://github.com/onejs/one/blob/main/.github/workflows/test-native-ios.yml#L108
 # SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
 # TEST_CONTAINER_PATH: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
-export TEST_CONTAINER_PATH="${PROJ_DIRNAME}/build"
+export TEST_CONTAINER_PATH="${PROJ_DIRNAME}/build/Build/Products/Release-iphonesimulator/RNTestContainer.app"
 echo "set TEST_CONTAINER_PATH = ${TEST_CONTAINER_PATH}"
 cd "${PROJ_DIRNAME}/../.." && yarn test-ios
