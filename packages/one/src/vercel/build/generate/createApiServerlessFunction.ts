@@ -16,7 +16,7 @@ export async function createApiServerlessFunction(
   try {
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`)
 
-    const funcFolder = join(oneOptionsRoot, 'dist', `.vercel/output/functions/${pageName}.func`)
+    const funcFolder = join(oneOptionsRoot, `.vercel/output/functions/${pageName}.func`)
     await fs.ensureDir(funcFolder)
 
     if (code.includes('react')) {
