@@ -12,6 +12,7 @@ import {
   build as vxrnBuild,
   type ClientManifestEntry,
 } from 'vxrn'
+
 import * as constants from '../constants'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { toAbsolute } from '../utils/toAbsolute'
@@ -19,11 +20,13 @@ import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 import { runWithAsyncLocalContext } from '../vite/one-server-only'
 import type { One, RouteInfo } from '../vite/types'
+import { buildVercelOutputDirectory } from '../vercel/build/buildVercelOutputDirectory'
+
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
 
-const { ensureDir } = FSExtra
+const { ensureDir, writeJSON } = FSExtra
 
 process.on('uncaughtException', (err) => {
   console.error(err?.message || err)
@@ -48,16 +51,20 @@ export async function build(args: {
   const { oneOptions } = await loadUserOneOptions('build')
   const manifest = getManifest()!
 
-  const serverOutputFormat = oneOptions.build?.server?.outputFormat ?? 'esm'
+  const serverOutputFormat =
+    oneOptions.build?.server === false ? 'esm' : (oneOptions.build?.server?.outputFormat ?? 'esm')
 
   const vxrnOutput = await vxrnBuild(
     {
       server: oneOptions.server,
       build: {
         analyze: true,
-        server: {
-          outputFormat: serverOutputFormat,
-        },
+        server:
+          oneOptions.build?.server === false
+            ? false
+            : {
+                outputFormat: serverOutputFormat,
+              },
       },
     },
     args
@@ -187,9 +194,10 @@ export async function build(args: {
     return output as RollupOutput
   }
 
+  let apiOutput: RollupOutput | null = null
   if (manifest.apiRoutes.length) {
     console.info(`\n 🔨 build api routes\n`)
-    await buildCustomRoutes('api', manifest.apiRoutes)
+    apiOutput = await buildCustomRoutes('api', manifest.apiRoutes)
   }
 
   const builtMiddlewares: Record<string, string> = {}
@@ -280,6 +288,8 @@ export async function build(args: {
       // should probably error?
       continue
     }
+
+    foundRoute.loaderServerPath = output.fileName
 
     function collectImports(
       { imports = [], css }: ClientManifestEntry,
@@ -445,15 +455,23 @@ export async function build(args: {
 
   // write out the static paths (pathname => html) for the server
   const routeMap: Record<string, string> = {}
+  const routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>> = {}
+  const preloads: Record<string, boolean> = {}
+  const loaders: Record<string, boolean> = {}
+
   for (const route of builtRoutes) {
     if (!route.cleanPath.includes('*')) {
       routeMap[route.cleanPath] = route.htmlPath
     }
-  }
+    const {
+      // dont include loaderData it can be huge
+      loaderData: _loaderData,
+      ...rest
+    } = route
 
-  const routeToBuildInfo: Record<string, One.RouteBuildInfo> = {}
-  for (const route of builtRoutes) {
-    routeToBuildInfo[route.routeFile] = route
+    routeToBuildInfo[route.routeFile] = rest
+    preloads[route.preloadPath] = true
+    loaders[route.loaderPath] = true
   }
 
   function createBuildManifestRoute(route: RouteInfo) {
@@ -469,6 +487,10 @@ export async function build(args: {
       }
     }
 
+    if (buildInfo) {
+      built.loaderPath = buildInfo.loaderPath
+    }
+
     return built
   }
 
@@ -481,52 +503,56 @@ export async function build(args: {
     },
     routeMap,
     constants: JSON.parse(JSON.stringify({ ...constants })) as any,
+    preloads,
+    loaders,
   }
 
-  await FSExtra.writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
+  await writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
 
   let postBuildLogs: string[] = []
 
-  const platform = oneOptions.web?.deploy ?? options.server?.platform
+  const platform = oneOptions.web?.deploy
+
+  if (platform) {
+    postBuildLogs.push(`[one.build] platform ${platform}`)
+  }
 
   switch (platform) {
     case 'vercel': {
-      await FSExtra.writeFile(
-        join(options.root, 'dist', 'index.js'),
-        `import { serve } from 'one/serve'
-export const handler = await serve()
-export const { GET, POST, PUT, PATCH, OPTIONS } = handler`
-      )
-
-      postBuildLogs.push(`wrote vercel entry to: ${join('.', 'dist', 'index.js')}`)
-      postBuildLogs.push(`point vercel outputDirectory to dist`)
+      await buildVercelOutputDirectory({
+        apiOutput,
+        buildInfoForWriting,
+        clientDir,
+        oneOptionsRoot: options.root,
+        postBuildLogs,
+      })
 
       break
     }
 
-    case 'cloudflare': {
-      await FSExtra.writeFile(
-        join(options.root, 'dist', 'worker.js'),
-        `import { serve } from 'one/serve-worker'
+    //     case 'cloudflare': {
+    //       await FSExtra.writeFile(
+    //         join(options.root, 'dist', 'worker.js'),
+    //         `import { serve } from 'one/serve-worker'
 
-const buildInfo = ${JSON.stringify(buildInfoForWriting)}
+    // const buildInfo = ${JSON.stringify(buildInfoForWriting)}
 
-const handler = await serve(buildInfo)
+    // const handler = await serve(buildInfo)
 
-export default {
-  fetch: handler.fetch,
-}`
-      )
+    // export default {
+    //   fetch: handler.fetch,
+    // }`
+    //       )
 
-      await FSExtra.writeFile(
-        join(options.root, 'dist', 'wrangler.toml'),
-        `assets = { directory = "client" }
-compatibility_date = "2024-12-05"
-`
-      )
+    //       await FSExtra.writeFile(
+    //         join(options.root, 'dist', 'wrangler.toml'),
+    //         `assets = { directory = "client" }
+    // compatibility_date = "2024-12-05"
+    // `
+    //       )
 
-      break
-    }
+    //       break
+    //     }
   }
 
   if (process.env.VXRN_ANALYZE_BUNDLE) {

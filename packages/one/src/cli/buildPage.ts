@@ -29,6 +29,8 @@ export async function buildPage(
   const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
   const preloadPath = getPreloadPath(path)
 
+  let loaderPath = ''
+
   let loaderData = {}
 
   try {
@@ -54,6 +56,7 @@ if (typeof document === 'undefined') globalThis.document = {}
         })
       const loaderPartialPath = join(clientDir, getLoaderPath(path))
       await outputFile(loaderPartialPath, withLoader)
+      loaderPath = getLoaderPath(path)
     }
 
     // ssr, we basically skip at build-time and just compile it the js we need
@@ -106,10 +109,12 @@ params:\n\n${JSON.stringify(params || null, null, 2)}`
 
   return {
     type: foundRoute.type,
+    css: allCSS,
     routeFile: foundRoute.file,
     middlewares,
     cleanPath,
     preloadPath,
+    loaderPath,
     clientJsPath,
     serverJsPath,
     htmlPath,

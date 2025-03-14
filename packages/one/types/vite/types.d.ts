@@ -1,18 +1,28 @@
 import type { GetTransform } from '@vxrn/compiler';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
-import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions, VXRNServePlatform } from 'vxrn';
+import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { RouteNode } from '../router/Route';
-import type { Options as ReactScanOptions } from 'react-scan';
 export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;
     namedRegex: TRegex;
+    loaderPath?: string;
+    loaderServerPath?: string;
+    urlPath: string;
     routeKeys: Record<string, string>;
     layouts?: RouteNode[];
     middlewares?: RouteNode[];
     type: One.RouteType;
     isNotFound?: boolean;
 };
+interface ReactScanOptions {
+    log?: boolean;
+    showToolbar?: boolean;
+    animationSpeed?: 'slow' | 'fast' | 'off';
+    trackUnnecessaryRenders?: boolean;
+    showFPS?: boolean;
+    _debug?: 'verbose' | false;
+}
 export declare namespace One {
     export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
     export type RouteRenderMode = 'ssg' | 'spa' | 'ssr';
@@ -83,6 +93,10 @@ export declare namespace One {
         transform?: GetTransform;
         react?: {
             compiler?: boolean | PluginPlatformTarget;
+            /**
+             * Enable react-scan, we've given a minimal subset of options here
+             * So long as the options can be serialized they should work here
+             */
             scan?: boolean | PluginPlatformTarget | (Record<PluginPlatformTarget, ReactScanOptions> & {
                 options?: ReactScanOptions;
             });
@@ -183,11 +197,11 @@ export declare namespace One {
              *
              * @default node
              */
-            deploy?: VXRNServePlatform;
+            deploy?: 'vercel' | 'node';
         };
         server?: VXRNOptions['server'];
         build?: {
-            server?: VXRNBuildOptions;
+            server?: VXRNBuildOptions | false;
             api?: VXRNBuildOptions;
         };
         deps?: FixDependencies;
@@ -221,12 +235,14 @@ export declare namespace One {
             CACHE_KEY: string;
         };
         oneOptions?: PluginOptions;
-        routeToBuildInfo: Record<string, One.RouteBuildInfo>;
+        routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>>;
         routeMap: Record<string, string>;
         manifest: {
             pageRoutes: RouteInfo[];
             apiRoutes: RouteInfo[];
         };
+        preloads: Record<string, boolean>;
+        loaders: Record<string, boolean>;
     };
     export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo;
     export type RouteBuildInfo = {
@@ -235,6 +251,7 @@ export declare namespace One {
         routeFile: string;
         middlewares: string[];
         preloadPath: string;
+        loaderPath: string;
         cleanPath: string;
         htmlPath: string;
         clientJsPath: string;
@@ -242,6 +259,7 @@ export declare namespace One {
         params: Object;
         loaderData: any;
         preloads: string[];
+        css: string[];
     };
     export type ServerContext = {
         css?: string[];
@@ -252,4 +270,5 @@ export declare namespace One {
     };
     export {};
 }
+export {};
 //# sourceMappingURL=types.d.ts.map

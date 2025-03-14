@@ -1,22 +1,24 @@
-import { Link, Slot, usePathname } from 'one'
+import { Slot, useParams, usePathname } from 'one'
 import { View, Text } from 'tamagui'
+import { HooksTestingLinks } from '~/features/hooks-testing/HooksTestingLinks'
 
 export default function HooksTestingLayout() {
   const pathname = usePathname()
+  const params = useParams()
+
   return (
     <View>
-      <Text id="layout-usePathname">Layout `usePathname()`: {pathname}</Text>
+      <Text id="layout-usePathname">
+        Layout `usePathname()`: <Text testID="layout-usePathname">{pathname}</Text>
+      </Text>
+      <Text id="layout-useParams">
+        Layout `useParams()`:{' '}
+        <Text testID="layout-useParams">{JSON.stringify(params)}</Text>
+      </Text>
+
       <Slot />
 
-      <Link href="/hooks/contents/page-1">
-        <Text>Go to page-1</Text>
-      </Link>
-      <Link href="/hooks/contents/page-2">
-        <Text>Go to page-2</Text>
-      </Link>
-      <Link href="/hooks">
-        <Text>Go to index</Text>
-      </Link>
+      <HooksTestingLinks />
     </View>
   )
 }

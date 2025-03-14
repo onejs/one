@@ -18,13 +18,10 @@ export async function getServerOptionsFilled(
     host,
   })
 
-  const platform = serverOptions?.platform ?? 'node'
-
   return {
     loadEnv: false,
     compress: true,
     ...serverOptions,
-    platform,
     port,
     host,
     protocol,

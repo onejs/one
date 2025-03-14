@@ -7,20 +7,30 @@ import type {
   AfterBuildProps as VXRNAfterBuildProps,
   VXRNBuildOptions,
   VXRNOptions,
-  VXRNServePlatform,
 } from 'vxrn'
 import type { RouteNode } from '../router/Route'
-import type { Options as ReactScanOptions } from 'react-scan'
 
 export type RouteInfo<TRegex = string> = {
   file: string
   page: string
   namedRegex: TRegex
+  loaderPath?: string
+  loaderServerPath?: string
+  urlPath: string
   routeKeys: Record<string, string>
   layouts?: RouteNode[]
   middlewares?: RouteNode[]
   type: One.RouteType
   isNotFound?: boolean
+}
+
+interface ReactScanOptions {
+  log?: boolean
+  showToolbar?: boolean
+  animationSpeed?: 'slow' | 'fast' | 'off'
+  trackUnnecessaryRenders?: boolean
+  showFPS?: boolean
+  _debug?: 'verbose' | false
 }
 
 export namespace One {
@@ -104,6 +114,11 @@ export namespace One {
 
     react?: {
       compiler?: boolean | PluginPlatformTarget
+
+      /**
+       * Enable react-scan, we've given a minimal subset of options here
+       * So long as the options can be serialized they should work here
+       */
       scan?:
         | boolean
         | PluginPlatformTarget
@@ -217,13 +232,13 @@ export namespace One {
        *
        * @default node
        */
-      deploy?: VXRNServePlatform
+      deploy?: 'vercel' | 'node'
     }
 
     server?: VXRNOptions['server']
 
     build?: {
-      server?: VXRNBuildOptions
+      server?: VXRNBuildOptions | false
       api?: VXRNBuildOptions
     }
 
@@ -262,12 +277,16 @@ export namespace One {
       CACHE_KEY: string
     }
     oneOptions?: PluginOptions
-    routeToBuildInfo: Record<string, One.RouteBuildInfo>
+    routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>>
     routeMap: Record<string, string>
     manifest: {
       pageRoutes: RouteInfo[]
       apiRoutes: RouteInfo[]
     }
+
+    // for quick checking if preload exists
+    preloads: Record<string, boolean>
+    loaders: Record<string, boolean>
   }
 
   export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo
@@ -278,6 +297,7 @@ export namespace One {
     routeFile: string
     middlewares: string[]
     preloadPath: string
+    loaderPath: string
     cleanPath: string
     htmlPath: string
     clientJsPath: string
@@ -285,6 +305,7 @@ export namespace One {
     params: Object
     loaderData: any
     preloads: string[]
+    css: string[]
   }
 
   export type ServerContext = {

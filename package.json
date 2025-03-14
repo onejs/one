@@ -5,12 +5,7 @@
   "repository": {
     "url": "https://github.com/onejs/one"
   },
-  "workspaces": [
-    "./apps/*",
-    "./packages/*",
-    "./examples/*",
-    "./tests/*"
-  ],
+  "workspaces": ["./apps/*", "./packages/*", "./examples/*", "./tests/*"],
   "scripts": {
     "build": "turbo run build --filter='*' --filter='!example/*'",
     "build:js": "yarn build --no-cache --force -- --skip-types",
@@ -45,6 +40,7 @@
     "site:serve": "yarn workspace site serve --host 0.0.0.0 --port 3000",
     "start": "yarn workspace start dev",
     "test": "yarn turbo:run test",
+    "test:vite-ecosystem-ci": "yarn --cwd tests/test test",
     "test-ios": "yarn workspaces foreach -A run test-ios",
     "test-macos": "yarn workspaces foreach -A run test-macos",
     "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t one-test . && docker run --rm one-test",
@@ -60,7 +56,7 @@
     "watch:ts": "ultra -r --no-pretty --concurrency 400 typecheck -w --preserveWatchOutput"
   },
   "dependencies": {
-    "@biomejs/biome": "^1.8.3",
+    "@biomejs/biome": "1.9.4",
     "@manypkg/cli": "^0.19.1",
     "@types/react": "^18.3.11",
     "@types/react-native": "^0.73.0",
@@ -71,6 +67,7 @@
     "patch-package": "^8.0.0",
     "playwright": "^1.49.1",
     "sst": "^3.6.18",
+    "ts-pattern": "^5.6.2",
     "tsx": "^4.19.0",
     "turbo": "^2.1.0",
     "typescript": "^5.7.3",

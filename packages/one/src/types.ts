@@ -9,7 +9,7 @@ export type Endpoint = (req: Request) => Response | string | Object | null
 
 export type RenderApp = (props: RenderAppProps) => Promise<string>
 
-export type LoaderProps<Params extends Object = Record<string, string>> = {
+export type LoaderProps<Params extends Object = Record<string, string | string[]>> = {
   path: string
   params: Params
   request?: Request

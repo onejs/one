@@ -1,4 +1,6 @@
 import { getDefaultRenderMode } from '../config'
+import { getPageExport } from '../utils/getPageExport'
+import type { One } from '../vite/types'
 import {
   matchArrayGroupName,
   matchDeepDynamicRouteName,
@@ -7,9 +9,6 @@ import {
   removeSupportedExtensions,
 } from './matchers'
 import type { DynamicConvention, RouteNode } from './Route'
-import { getPageExport } from '../utils/getPageExport'
-import type { One } from '../vite/types'
-// import { Unmatched } from './views/Unmatched'
 
 export type Options = {
   ignore?: RegExp[]
@@ -136,6 +135,7 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
      * A single filepath may be extrapolated into multiple routes if it contains array syntax.
      * Another way to thinking about is that a filepath node is present in multiple leaves of the directory tree.
      */
+
     for (const route of extrapolateGroups(meta.route)) {
       // Traverse the directory tree to its leaf node, creating any missing directories along the way
       const subdirectoryParts = route.split('/').slice(0, -1)

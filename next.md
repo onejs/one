@@ -1,5 +1,7 @@
 1.0:
 
+  - SPA only mode
+    - you can set build.server: false but it breaks `build static routes` with "No server output", ideally we can make this still work so you can have SPA + some SSG if you need, you could detect if all routes are SPA up front and skip it, and then if there are some static or ssr you'd build server
   - // TODO: temp until we fix sourcemap issues!
   - aliases for react-native/ on web:
     - https://discord.com/channels/1223009626400751671/1334176876347789333/1334179606139506803
@@ -16,6 +18,8 @@
   - enable StrictMode
   - lower priority useLoader(loader, { suspense: false, disable: true })
     - useLoaderState() or change to array return in v1
+
+  - fix _preloads.js for dynamic segments
 
   - tests
     - 20-40 deps, native + web (ssr) (see weird-deps for some)

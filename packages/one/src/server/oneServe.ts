@@ -3,7 +3,7 @@ import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
 import { extname, join } from 'node:path'
 import { getServerEntry } from 'vxrn/serve'
-import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import { LOADER_JS_POSTFIX_UNCACHED, PRELOAD_JS_POSTFIX } from '../constants'
 import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
@@ -67,8 +67,18 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
     },
 
     async handleLoader({ request, route, url, loaderProps }) {
-      // TODO this shouldn't be in dist/client right? we should build a dist/server version?
-      return await import(toAbsolute(join('./', 'dist/client', route.file)))
+      const exports = await import(toAbsolute(join('./', 'dist/server', route.file)))
+
+      const { loader } = exports
+
+      if (!loader) {
+        console.warn(`No loader found in exports`, route.file)
+        return null
+      }
+
+      const json = await loader(loaderProps)
+
+      return `export function loader() { return ${JSON.stringify(json)} }`
     },
 
     async handlePage({ route, url, loaderProps }) {
@@ -76,8 +86,9 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
 
       if (route.type === 'ssr') {
         if (!buildInfo) {
+          console.error(`Error in route`, route)
           throw new Error(
-            `No buildinfo found for ${url}, route: ${route.page}, in keys: ${Object.keys(routeToBuildInfo)}`
+            `No buildinfo found for ${url}, route: ${route.file}, in keys:\n  ${Object.keys(routeToBuildInfo).join('\n  ')}`
           )
         }
 
@@ -95,6 +106,7 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
             loaderProps,
             path: loaderProps?.path || '/',
             preloads,
+            css: buildInfo.css,
           })
 
           return new Response(rendered, {
@@ -102,7 +114,7 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
             status: route.isNotFound ? 404 : 200,
           })
         } catch (err) {
-          console.error(`[one] Error rendering SSR route ${route.page}
+          console.error(`[one] Error rendering SSR route ${route.file}
 
 ${err?.['stack'] ?? err}
 
@@ -172,7 +184,7 @@ url: ${url}`)
                 return response
               } catch (err) {
                 console.info(
-                  `Error udpating cache header on api route "${
+                  `Error updating cache header on api route "${
                     context.req.path
                   }" to no-store, it is ${response.headers.get('cache-control')}, continue`,
                   err
@@ -196,24 +208,32 @@ url: ${url}`)
   const compiledManifest = compileManifest(buildInfo.manifest)
 
   for (const route of compiledManifest.apiRoutes) {
-    app.get(route.honoPath, createHonoHandler(route))
-    app.put(route.honoPath, createHonoHandler(route))
-    app.post(route.honoPath, createHonoHandler(route))
-    app.delete(route.honoPath, createHonoHandler(route))
-    app.patch(route.honoPath, createHonoHandler(route))
+    app.get(route.urlPath, createHonoHandler(route))
+    app.put(route.urlPath, createHonoHandler(route))
+    app.post(route.urlPath, createHonoHandler(route))
+    app.delete(route.urlPath, createHonoHandler(route))
+    app.patch(route.urlPath, createHonoHandler(route))
   }
 
   for (const route of compiledManifest.pageRoutes) {
-    app.get(route.honoPath, createHonoHandler(route))
+    app.get(route.urlPath, createHonoHandler(route))
   }
+
+  const { preloads, loaders } = buildInfo
 
   // TODO make this inside each page, need to make loader urls just be REGULAR_URL + loaderpostfix
   app.get('*', async (c, next) => {
-    if (
-      c.req.path.endsWith(LOADER_JS_POSTFIX_UNCACHED) &&
-      // if it includes /assets its a static loader
-      !c.req.path.includes('/assets/')
-    ) {
+    if (c.req.path.endsWith(PRELOAD_JS_POSTFIX)) {
+      // TODO handle dynamic segments (i think the below loader has some logic for this)
+      if (!preloads[c.req.path]) {
+        // no preload exists 200 gracefully
+        c.header('Content-Type', 'text/javascript')
+        c.status(200)
+        return c.body(``)
+      }
+    }
+
+    if (c.req.path.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
       const request = c.req.raw
       const url = getURLfromRequestURL(request)
       const originalUrl = getPathFromLoaderPath(c.req.path)
@@ -229,11 +249,16 @@ url: ${url}`)
         }
 
         // for now just change this
-        route.file = c.req.path
+        const loaderRoute = {
+          ...route,
+          file: route.loaderServerPath || c.req.path,
+        }
 
         const finalUrl = new URL(originalUrl, url.origin)
+
         try {
-          return resolveLoaderRoute(requestHandlers, request, finalUrl, route)
+          const resolved = await resolveLoaderRoute(requestHandlers, request, finalUrl, loaderRoute)
+          return resolved
         } catch (err) {
           console.error(`Error running loader: ${err}`)
           return next()

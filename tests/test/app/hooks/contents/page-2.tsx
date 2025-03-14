@@ -1,13 +1,5 @@
-import { Link, usePathname } from 'one'
-import { View, Text } from 'tamagui'
+import { HooksTestingPageContent } from '~/features/hooks-testing/HooksTestingPageContent'
 
 export default function HooksTestingPage() {
-  const pathname = usePathname()
-
-  return (
-    <View>
-      <Text>This is page-1</Text>
-      <Text id="page-usePathname">Page `usePathname()`: {pathname}</Text>
-    </View>
-  )
+  return <HooksTestingPageContent pageName="page-2" />
 }

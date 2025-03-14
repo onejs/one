@@ -24,6 +24,7 @@ export const Link = React.forwardRef(function Link(
     href,
     replace,
     push,
+    id,
     // TODO: This does not prevent default on the anchor tag.
     asChild,
     rel,
@@ -64,6 +65,7 @@ export const Link = React.forwardRef(function Link(
       {...props}
       {...hrefAttrs}
       {...rest}
+      nativeID={id}
       style={asChild ? null : style}
       {...Platform.select({
         web: {
