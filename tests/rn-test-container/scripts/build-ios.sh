@@ -21,9 +21,9 @@ xcrun xcodebuild -scheme 'RNTestContainer' \
   -configuration "${CONFIGURATION}" \
   -sdk 'iphonesimulator' \
   -destination 'generic/platform=iOS Simulator' \
-  -derivedDataPath "ios/build-${CONFIGURATION}" | tee xcodebuild.log | xcpretty
+  -derivedDataPath "$(./scripts/get-ios-derived-data-path.sh "$CONFIGURATION")" | tee xcodebuild.log | xcpretty
 
-OUTPUT_APP_PATH="$(pwd)/ios/build-${CONFIGURATION}/Build/Products/${CONFIGURATION}-iphonesimulator/RNTestContainer.app"
+OUTPUT_APP_PATH="$(./scripts/get-ios-built-app-path.sh "$CONFIGURATION")"
 
 if [ -d "$OUTPUT_APP_PATH" ]; then
   echo "Build completed, built app located at $OUTPUT_APP_PATH."
