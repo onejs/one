@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 set -x
 set -e
 set -o pipefail # Since we pipe the output to xcpretty, we need this to fail this step if `xcrun xcodebuild` fails
