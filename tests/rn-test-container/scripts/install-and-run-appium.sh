@@ -8,7 +8,7 @@ set -o pipefail # Since we pipe the output to xcpretty, we need this to fail thi
 DRIVER_NAME=xcuitest
 # INSTALLED=$(appium driver list --installed | grep -w "$DRIVER_NAME")
 # Check if the driver is installed by parsing the JSON output
-INSTALLED_VERSION=$(npx appium driver list --installed --json | jq -r ".$DRIVER_NAME.version")
+INSTALLED_VERSION=$(npx -y appium driver list --installed --json | jq -r ".$DRIVER_NAME.version")
 if [[ "$INSTALLED_VERSION" != "null" ]]; then
     echo "Driver '$DRIVER_NAME' is already installed (version: $INSTALLED_VERSION)."
 else

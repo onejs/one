@@ -27,4 +27,4 @@ $PROJ_DIRNAME/scripts/install-and-run-appium.sh
 # TEST_CONTAINER_PATH: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
 export TEST_CONTAINER_PATH="${PROJ_DIRNAME}/build"
 echo "set TEST_CONTAINER_PATH = ${TEST_CONTAINER_PATH}"
-cd ../.. && yarn test-ios
+cd "${PROJ_DIRNAME}/../.." && yarn test-ios

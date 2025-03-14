@@ -26,11 +26,11 @@ echo "Simulator UDID: $SIMULATOR_UDID"
 # https://github.com/onejs/one/blob/main/.github/workflows/test-native-ios.yml#L79
 # xcrun simctl boot $SIMULATOR_UDID
 # Check the status of the simulator
-STATUS=$(xcrun simctl list devices | grep "$SIMULATOR_ID" | grep -o "Booted")
-
-if [ "$STATUS" == "Booted" ]; then
-    echo "Simulator $SIMULATOR_ID is already booted."
+STATUS=$(xcrun simctl list devices | grep "$SIMULATOR_UDID" | grep -o "Booted" || true)
+echo "xcrun status ${STATUS}"
+if [ -z "$STATUS" ]; then
+    echo "Booting simulator $SIMULATOR_UDID..."
+    xcrun simctl boot "$SIMULATOR_UDID"
 else
-    echo "Booting simulator $SIMULATOR_ID..."
-    xcrun simctl boot "$SIMULATOR_ID"
+    echo "Simulator $SIMULATOR_UDID is already booted."
 fi
