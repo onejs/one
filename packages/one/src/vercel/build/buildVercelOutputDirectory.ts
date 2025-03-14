@@ -61,7 +61,7 @@ export const buildVercelOutputDirectory = async ({
     }
   }
 
-  const vercelOutputFunctionsDir = join(oneOptionsRoot, 'dist', `.vercel/output/functions`)
+  const vercelOutputFunctionsDir = join(oneOptionsRoot, '.vercel/output/functions')
   await ensureDir(vercelOutputFunctionsDir)
 
   for (const route of buildInfoForWriting.manifest.pageRoutes) {
@@ -92,7 +92,7 @@ export const buildVercelOutputDirectory = async ({
   const distMiddlewareDir = resolve(join(oneOptionsRoot, 'dist', 'middlewares'))
   if (existsSync(distMiddlewareDir)) {
     const vercelMiddlewareDir = resolve(
-      join(oneOptionsRoot, 'dist', '.vercel/output/functions/_middleware')
+      join(oneOptionsRoot, '.vercel/output/functions/_middleware')
     )
     await ensureDir(vercelMiddlewareDir)
     postBuildLogs.push(
@@ -114,7 +114,7 @@ export const buildVercelOutputDirectory = async ({
     })
   }
 
-  const vercelOutputStaticDir = resolve(join(oneOptionsRoot, 'dist', '.vercel/output/static'))
+  const vercelOutputStaticDir = resolve(join(oneOptionsRoot, '.vercel/output/static'))
   await ensureDir(vercelOutputStaticDir)
 
   postBuildLogs.push(
@@ -124,9 +124,7 @@ export const buildVercelOutputDirectory = async ({
 
   // Documentation - Vercel Build Output v3 config.json
   //   https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
-  const vercelConfigFilePath = resolve(
-    join(oneOptionsRoot, 'dist', '.vercel/output', 'config.json')
-  )
+  const vercelConfigFilePath = resolve(join(oneOptionsRoot, '.vercel/output', 'config.json'))
   await writeJSON(vercelConfigFilePath, vercelBuildOutputConfig)
   postBuildLogs.push(`[one.build] wrote vercel config to: ${vercelConfigFilePath}`)
 }

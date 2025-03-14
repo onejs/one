@@ -1,6 +1,6 @@
 {
   "buildCommand": "yarn build:web",
-  "outputDirectory": "dist/.vercel",
+  "outputDirectory": ".vercel/output",
   "installCommand": "yarn install",
   "cleanUrls": true,
   "public": true,
