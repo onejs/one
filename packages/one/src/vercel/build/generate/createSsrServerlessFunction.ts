@@ -16,9 +16,7 @@ export async function createSsrServerlessFunction(
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`)
 
     const buildInfoAsString = JSON.stringify(buildInfo)
-    const funcFolder = resolve(
-      join(oneOptionsRoot, 'dist', `.vercel/output/functions/${pageName}.func`)
-    )
+    const funcFolder = resolve(join(oneOptionsRoot, `.vercel/output/functions/${pageName}.func`))
     await fs.ensureDir(funcFolder)
 
     const distServerFrom = resolve(join(oneOptionsRoot, 'dist', 'server'))
