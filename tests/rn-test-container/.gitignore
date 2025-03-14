@@ -34,3 +34,7 @@ yarn-error.*
 # generated code
 /ios
 /android
+
+# build
+/build
+/xcodebuild.log
