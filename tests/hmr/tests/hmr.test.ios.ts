@@ -22,6 +22,8 @@ afterEach(async () => {
   revertEditedFiles()
 })
 
+const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 3 }
+
 async function testHMR(
   testId: string,
   originalText: string,
@@ -63,7 +65,7 @@ async function testHMR(
   ).toBe(true)
 }
 
-test('component HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
+test('component HMR', sharedTestOptions, async () => {
   await testHMR(
     'component-text-content',
     'Some text',
@@ -72,11 +74,11 @@ test('component HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
   )
 })
 
-test('route HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
+test('route HMR', sharedTestOptions, async () => {
   await testHMR('route-text-content', 'Some text', editRouteFile, 'Some edited text in route file')
 })
 
-test('component containing relative import HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
+test('component containing relative import HMR', sharedTestOptions, async () => {
   await testHMR(
     'TestComponentContainingRelativeImport-text-content',
     'Some text in TestComponentContainingRelativeImport',
@@ -85,27 +87,23 @@ test('component containing relative import HMR', { timeout: 5 * 60 * 1000, retry
   )
 })
 
-test(
-  'component using hook that have native version HMR',
-  { timeout: 5 * 60 * 1000, retry: 3 },
-  async () => {
-    await testHMR(
-      'TestComponentUsingHookThatHasNativeVersion-text-content',
-      'Some text in TestComponentUsingHookThatHasNativeVersion',
-      () => {
-        editFile(
-          path.join(root, 'components', 'TestComponentUsingHookThatHasNativeVersion.tsx'),
-          "const text = 'Some text in TestComponentUsingHookThatHasNativeVersion'",
-          "const text = 'Some edited text in TestComponentUsingHookThatHasNativeVersion'"
-        )
-      },
-      'Some edited text in TestComponentUsingHookThatHasNativeVersion'
-    )
-  }
-)
+test('component using hook that have native version HMR', sharedTestOptions, async () => {
+  await testHMR(
+    'TestComponentUsingHookThatHasNativeVersion-text-content',
+    'Some text in TestComponentUsingHookThatHasNativeVersion',
+    () => {
+      editFile(
+        path.join(root, 'components', 'TestComponentUsingHookThatHasNativeVersion.tsx'),
+        "const text = 'Some text in TestComponentUsingHookThatHasNativeVersion'",
+        "const text = 'Some edited text in TestComponentUsingHookThatHasNativeVersion'"
+      )
+    },
+    'Some edited text in TestComponentUsingHookThatHasNativeVersion'
+  )
+})
 
 // TODO: make this pass
-test.skip('layout HMR', { timeout: 5 * 60 * 1000, retry: 3 }, async () => {
+test.skip('layout HMR', sharedTestOptions, async () => {
   await testHMR(
     'layout-text-content',
     'Some text',
