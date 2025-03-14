@@ -18,7 +18,6 @@ import { fillOptions } from '../utils/getOptionsFilled'
 import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { mergeUserConfig } from '../utils/mergeUserConfig'
 import { applyBuiltInPatches } from '../utils/patches'
-import { loadEnv } from './loadEnv'
 
 const { existsSync } = FSExtra
 
@@ -291,6 +290,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     )) as RollupOutput
 
     serverOutput = output
+
     clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
 
     // temp fix - react native web is importing non-existent react 19 apis

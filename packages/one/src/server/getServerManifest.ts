@@ -11,19 +11,11 @@
 import type { RouteNode } from '../router/Route'
 import { getContextKey, matchGroupName } from '../router/matchers'
 import { sortRoutes } from '../router/sortRoutes'
-import type { One } from '../vite/types'
+import type { One, RouteInfo } from '../vite/types'
 
 // TODO: Share these types across cli, server, router, etc.
-export type OneRouterServerManifestV1Route<TRegex = string> = {
-  file: string
-  page: string
-  routeKeys: Record<string, string>
-  namedRegex: TRegex
+export type OneRouterServerManifestV1Route<TRegex = string> = RouteInfo & {
   generated?: boolean
-  layouts?: RouteNode[]
-  middlewares?: RouteNode[]
-  type: One.RouteType
-  isNotFound?: boolean
 }
 
 export type OneRouterServerManifestV1<TRegex = string> = {
@@ -133,22 +125,20 @@ function getGeneratedNamedRouteRegex(
   node: RouteNode
 ): OneRouterServerManifestV1Route {
   return {
-    ...getNamedRouteRegex(normalizedRoute, node),
+    ...getRouteEntry(normalizedRoute, node),
     generated: true,
     isNotFound: isNotFoundRoute(node),
   }
 }
 
-function getNamedRouteRegex(
-  normalizedRoute: string,
-  node: RouteNode
-): OneRouterServerManifestV1Route {
-  const result = getNamedRegex(normalizedRoute)
+function getRouteEntry(normalizedRoute: string, node: RouteNode): OneRouterServerManifestV1Route {
+  const result = getPathMeta(normalizedRoute)
   return {
     file: node.contextKey,
     page: getContextKey(node.route),
     type: node.type,
     namedRegex: result.namedRegex,
+    urlPath: result.urlPath,
     routeKeys: result.routeKeys,
     layouts: node.layouts,
     middlewares: node.middlewares,
@@ -195,10 +185,12 @@ function removeTrailingSlash(route: string): string {
   return route.replace(/\/$/, '') || '/'
 }
 
-function getNamedRegex(route: string) {
+function getPathMeta(route: string) {
   const segments = removeTrailingSlash(route).slice(1).split('/')
   const getSafeRouteKey = buildGetSafeRouteKey()
   const routeKeys: Record<string, string> = {}
+
+  let urlPath = ''
 
   const routeSegments = segments
     .map((segment, index) => {
@@ -229,7 +221,9 @@ function getNamedRegex(route: string) {
           cleanedKey = getSafeRouteKey()
         }
 
+        urlPath += repeat ? '/*' : `/:${name}${optional ? '?' : ''}`
         routeKeys[cleanedKey] = name
+
         return repeat
           ? optional
             ? `(?:/(?<${cleanedKey}>.+?))?`
@@ -243,14 +237,20 @@ function getNamedRegex(route: string) {
           .map((group) => group.trim())
           .filter(Boolean)
 
+        urlPath += `/:${groupName}?`
+
         if (groupName.length > 1) {
           const optionalSegment = `\\((?:${groupName.map(escapeStringRegexp).join('|')})\\)`
+
           // Make section optional
           return `(?:/${optionalSegment})?`
         }
+
         // Use simpler regex for single groups
         return `(?:/${escapeStringRegexp(segment)})?`
       }
+
+      urlPath += `/${segment}`
 
       return `/${escapeStringRegexp(segment)}`
     })
@@ -258,6 +258,7 @@ function getNamedRegex(route: string) {
 
   return {
     namedRegex: `^${routeSegments}(?:/)?$`,
+    urlPath: urlPath === '' ? '/' : urlPath,
     routeKeys,
   }
 }

@@ -62,19 +62,27 @@ async function findLocalPackages(rootDir: string): Promise<Record<string, string
   return results
 }
 
-async function linkPackages(localPackages: Record<string, string>) {
+async function linkPackages(externalPackages: Record<string, string>) {
   const backupDir = join(process.cwd(), 'node_modules', '.cache', 'lllink', 'moved')
   await mkdir(backupDir, { recursive: true })
-  for (const pkgName of Object.keys(localPackages)) {
-    const nmPath = join(process.cwd(), 'node_modules', ...pkgName.split('/'))
+  for (const pkgName of Object.keys(externalPackages)) {
+    const localPath = join(process.cwd(), 'node_modules', ...pkgName.split('/'))
     try {
-      const existingStat = await stat(nmPath)
-      if (existingStat && existingStat.isDirectory()) {
-        await cp(nmPath, join(backupDir, pkgName.replace('/', '__')))
+      const existingStat = await stat(localPath)
+      if (existingStat) {
+        await cp(localPath, join(backupDir, pkgName.replace('/', '__')), {
+          recursive: true,
+          dereference: true,
+        })
       }
-      const localPath = localPackages[pkgName]
-      console.info(`${relative(process.cwd(), nmPath)} -> ${localPath.replace(homedir(), '~')}`)
-      await symlink(localPath, nmPath, 'dir')
+      const externalPath = externalPackages[pkgName]
+      if (externalPath) {
+        console.info(
+          `symlink ${relative(process.cwd(), localPath)} to ${externalPath.replace(homedir(), '~')}`
+        )
+        await rm(localPath, { recursive: true, force: true }).catch(() => {})
+        await symlink(externalPath, localPath)
+      }
     } catch {}
   }
 }

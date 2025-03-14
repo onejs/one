@@ -90,9 +90,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         }) as any),
 
     {
-      name: 'one-define-env',
-      async config() {
-        const { clientEnvDefine } = await loadEnv(vxrnOptions?.mode ?? 'development')
+      name: 'one-define-client-env',
+      async config(userConfig) {
+        const { clientEnvDefine } = await loadEnv(
+          vxrnOptions?.mode ?? 'development',
+          process.cwd(),
+          userConfig?.envPrefix
+        )
         return {
           define: clientEnvDefine,
         }

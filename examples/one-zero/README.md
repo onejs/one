@@ -3,7 +3,7 @@
 Install packages with yarn:
 
 ```sh
-yarn
+npm install react react-dom
 ```
 
 For login, we have set up Github auth with [Better Auth](https://www.better-auth.com/) as an example.

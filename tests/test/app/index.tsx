@@ -46,6 +46,10 @@ export default () => {
         <Button>Open Sheet</Button>
       </Link>
 
+      <Link asChild href="/hooks">
+        <Button>Go to hooks</Button>
+      </Link>
+
       <ToggleThemeButton />
     </YStack>
   )

@@ -138,9 +138,6 @@ const serveCommand = defineCommand({
     port: {
       type: 'string',
     },
-    platform: {
-      type: 'string',
-    },
     compress: {
       type: 'boolean',
     },
@@ -154,7 +151,6 @@ const serveCommand = defineCommand({
       port: args.port ? +args.port : undefined,
       host: args.host,
       compress: args.compress,
-      platform: args.platform === 'vercel' ? 'vercel' : 'node',
       loadEnv: !!args.loadEnv,
     })
   },

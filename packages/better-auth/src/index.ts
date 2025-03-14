@@ -36,11 +36,13 @@ const empty: State = {
  * @param extraConfig for setting localStorage keys
  * @returns
  */
-export function createBetterAuthClient(
-  options: ClientOptions = {},
+export function createBetterAuthClient<Opts extends ClientOptions>(
+  options: Opts,
   { storageKeys }: ExtraConfig = {}
 ) {
   const authState = createEmitter<State>(empty)
+
+  let loading = true
 
   const keys = {
     token: storageKeys?.token ?? 'TOKEN_KEY',
@@ -90,7 +92,9 @@ export function createBetterAuthClient(
       }
       if (data) {
         const token = await fetchToken()
+        console.warn('data', data)
         setState({
+          // @ts-expect-error
           ...data,
           token,
         })
@@ -112,9 +116,17 @@ export function createBetterAuthClient(
     return data?.token as string | undefined
   }
 
-  async function refreshAuth() {
+  function getPersistedKeys() {
     const token = localStorage.getItem(keys.token)
     const session = localStorage.getItem(keys.session)
+    return {
+      token,
+      session,
+    }
+  }
+
+  async function refreshAuth() {
+    const { token, session } = getPersistedKeys()
     if (token && session) {
       setAuthClientToken({ token, session })
       return
@@ -128,6 +140,7 @@ export function createBetterAuthClient(
 
   function setState(next: Partial<State>) {
     const current = authState.value!
+    loading = false
     authState.emit({ ...current, ...next })
   }
 
@@ -135,24 +148,15 @@ export function createBetterAuthClient(
     const state = authState.useValue() || empty
     return {
       ...state,
-      loggedIn: !!state.session,
+      loggedIn: loading ? null : !!state.session,
+      loading,
     }
   }
 
   const response = {
+    getPersistedKeys,
     authState,
-    authClient: new Proxy(authClient, {
-      get(target, key) {
-        // TODO if we need to manually manage clearing
-        // if (key === 'signOut') {
-        //   return () => {
-        //     // ensure we sync state on signout
-        //     authClient.signOut()
-        //   }
-        // }
-        return Reflect.get(authClient, key)
-      },
-    }),
+    authClient,
     setAuthClientToken,
     clearAuthClientToken,
     useAuthClientVersion,
