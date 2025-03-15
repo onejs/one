@@ -3,6 +3,7 @@ import path from 'node:path'
 import { copySync, ensureDirSync } from 'fs-extra'
 import type { Environment } from 'vitest/environments'
 import type { remote } from 'webdriverio'
+import { TEST_ENV } from '../constants'
 
 export type WebdriverIOConfig = Parameters<typeof remote>[0]
 
@@ -45,11 +46,8 @@ function getSimulatorUdid() {
 }
 
 async function prepareTestApp() {
-  // TODO: read this from env
-  const testEnv: 'dev' | 'prod' = 'dev'
-
   const copyTestContainerFrom = (() => {
-    const envName = `IOS_TEST_CONTAINER_PATH_${testEnv.toUpperCase()}`
+    const envName = `IOS_TEST_CONTAINER_PATH_${TEST_ENV.toUpperCase()}`
 
     if (!process.env[envName]) {
       throw new Error(`No ${envName} provided, this is required for now`)
@@ -62,10 +60,10 @@ async function prepareTestApp() {
   const tmpDir = path.join(root, 'node_modules', '.test')
   ensureDirSync(tmpDir)
 
-  const appPath = path.join(tmpDir, `ios-test-container-${testEnv}.app`)
+  const appPath = path.join(tmpDir, `ios-test-container-${TEST_ENV}.app`)
   copySync(copyTestContainerFrom, appPath)
 
-  if (testEnv === 'dev') {
+  if (TEST_ENV === 'dev') {
     // TODO: Dynamically set the bundle URL in the app
 
     // Since the initial bundle may take some time to build, we poke it first and make sure it's ready before running tests, which removes some flakiness during Appium tests.
