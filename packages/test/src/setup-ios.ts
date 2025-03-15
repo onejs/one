@@ -14,6 +14,7 @@ declare module 'vitest' {
 }
 
 export async function setup(project: TestProject) {
+  process.env.IS_NATIVE_TEST = 'true' // TODO: maybe need a better way to skip building the web app since we don't need it for native tests
   await defaultSetup(project)
   const webDriverConfig = await getWebDriverConfig()
   project.provide('webDriverConfig', webDriverConfig)

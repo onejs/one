@@ -22,7 +22,7 @@ export default () => {
 
   return (
     <YStack h={600} bg="red" f={1} ai="center" jc="center" gap="$10">
-      <H2>Welcome to One</H2>
+      <H2 testID="welcome-message">Welcome to One</H2>
 
       <Paragraph id="test-loader">{JSON.stringify(data)}</Paragraph>
 

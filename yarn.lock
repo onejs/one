@@ -11477,6 +11477,7 @@ __metadata:
     react: "npm:^18.3.1 || ^19.0.0"
     typescript: "npm:^5.7.3"
     vitest: "npm:^3.0.5"
+    zx: "npm:^8.4.1"
   languageName: unknown
   linkType: soft
 
@@ -29617,5 +29618,14 @@ __metadata:
   version: 2.0.4
   resolution: "zwitch@npm:2.0.4"
   checksum: 10/f22ec5fc2d5f02c423c93d35cdfa83573a3a3bd98c66b927c368ea4d0e7252a500df2a90a6b45522be536a96a73404393c958e945fdba95e6832c200791702b6
+  languageName: node
+  linkType: hard
+
+"zx@npm:^8.4.1":
+  version: 8.4.1
+  resolution: "zx@npm:8.4.1"
+  bin:
+    zx: build/cli.js
+  checksum: 10/2b9ee0adc14f441c4feef076ffd1eadbdb6ad9ebc7fcc60fd99210c26f8fb7a3991568d6f0d040ce80bc350998da4576d8330ec484870406302345e7641e12ef
   languageName: node
   linkType: hard

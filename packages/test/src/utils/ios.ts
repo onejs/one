@@ -1,8 +1,9 @@
-import { execSync } from 'node:child_process'
-import path from 'node:path'
+import { exec, execSync } from 'node:child_process'
+import path, { resolve } from 'node:path'
 import { copySync, ensureDirSync } from 'fs-extra'
 import type { Environment } from 'vitest/environments'
 import type { remote } from 'webdriverio'
+import { $ } from 'zx'
 import { TEST_ENV } from '../constants'
 
 export type WebdriverIOConfig = Parameters<typeof remote>[0]
@@ -95,10 +96,23 @@ async function prepareTestApp() {
     })
 
     return appPath
-  }
+  } // End of `TEST_ENV === 'dev'`
 
   // Prod
-  // TODO: Build prod bundle and replace it in the app
+  // Build prod bundle and replace it in the app
+
+  // Not working, this will make the app hang with a blank white screen, idk why but if we use zx it works.
+  // await execSync(`rm -f ${appPath}/main.jsbundle`, { cwd: root })
+  // await execSync(
+  //   `yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`,
+  //   { cwd: root }
+  // )
+
+  $.cwd = root
+  $`yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`
+  await new Promise((resolve) => {
+    setTimeout(resolve, 1000)
+  })
   return appPath
 }
 
