@@ -54,7 +54,7 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
   let buildProcess: ChildProcess | null = null // Add this line
 
   const shouldStartDevServer = !ONLY_TEST_PROD && !skipDev
-  const shouldStartProdServer = !ONLY_TEST_DEV
+  const shouldStartProdServer = !ONLY_TEST_DEV && !process.env.IS_NATIVE_TEST
 
   // Get available ports
   const prodPort = await getPort()
@@ -62,7 +62,7 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
     (process.env.DEV_PORT && Number.parseInt(process.env.DEV_PORT, 10)) || (await getPort())
 
   try {
-    if (shouldStartProdServer && !process.env.SKIP_BUILD) {
+    if (shouldStartProdServer && !process.env.SKIP_BUILD && !process.env.IS_NATIVE_TEST) {
       // Run prod build using spawn
       console.info('Starting a prod build.')
       const prodBuildStartedAt = performance.now()
