@@ -1,40 +1,10 @@
-// TODO: Move this into a shared package
-// Should probably use a setup file (such as packages/test) instead of a custom environment since there's no point in having a custom environment for this (see: https://github.com/onejs/one/pull/467).
-
 import { execSync } from 'node:child_process'
 import path from 'node:path'
 import { copySync, ensureDirSync } from 'fs-extra'
 import type { Environment } from 'vitest/environments'
 import type { remote } from 'webdriverio'
 
-type WebdriverIOConfig = Parameters<typeof remote>[0]
-
-export default (<Environment>{
-  name: 'native',
-  transformMode: 'ssr',
-  async setup(global) {
-    const webDriverConfig = await _internal_getWebDriverConfig()
-    global.webDriverConfig = webDriverConfig
-
-    return {
-      teardown() {
-        // called after all tests with this env have been run
-      },
-    }
-  },
-})
-
-export function getWebDriverConfig(): WebdriverIOConfig {
-  const { webDriverConfig } = global as any
-
-  if (!webDriverConfig) {
-    throw new Error(
-      'Cannot get webDriverConfig. Did you add `// @vitest-environment native` in your test file?'
-    )
-  }
-
-  return webDriverConfig
-}
+export type WebdriverIOConfig = Parameters<typeof remote>[0]
 
 function getSimulatorUdid() {
   if (process.env.SIMULATOR_UDID) {
@@ -134,7 +104,7 @@ async function prepareTestApp() {
   return appPath
 }
 
-async function _internal_getWebDriverConfig(): Promise<WebdriverIOConfig> {
+export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
   const capabilities = {
     platformName: 'iOS',
     'appium:options': {

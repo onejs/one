@@ -6,6 +6,8 @@
   "exports": {
     "./package.json": "./package.json",
     "./setup": "./src/setup.ts",
+    "./setup-ios": "./src/setup-ios.ts",
+    "./ios": "./src/ios.ts",
     ".": "./src/index.ts"
   },
   "scripts": {

@@ -1,8 +1,7 @@
-// @vitest-environment native
-
 import { afterEach, beforeAll, expect, test, inject } from 'vitest'
-import { remote } from 'webdriverio'
 import path from 'node:path'
+import { remote } from 'webdriverio'
+import { getWebDriverConfig } from '@vxrn/test/ios'
 import {
   editComponentFile,
   editFile,
@@ -12,7 +11,6 @@ import {
   revertEditedFiles,
   root,
 } from './utils'
-import { getWebDriverConfig } from '../vitest-environment-native'
 
 beforeAll(async () => {
   revertEditedFiles()
