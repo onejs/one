@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+# This script prepares the required environment for running the iOS tests (such as the test container app, Appium), and then runs the tests.
 set -e
 
 cd "$(dirname "$0")/.."
