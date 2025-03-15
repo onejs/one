@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 set -x
 set -e
 set -o pipefail # Since we pipe the output to xcpretty, we need this to fail this step if `xcrun xcodebuild` fails
@@ -20,5 +21,13 @@ xcrun xcodebuild -scheme 'RNTestContainer' \
   -configuration "${CONFIGURATION}" \
   -sdk 'iphonesimulator' \
   -destination 'generic/platform=iOS Simulator' \
-  -archivePath "ios/build-${CONFIGURATION}" \
-  -derivedDataPath "ios/build-${CONFIGURATION}" | tee xcodebuild.log | xcpretty
+  -derivedDataPath "$(./scripts/get-ios-derived-data-path.sh "$CONFIGURATION")" | tee xcodebuild.log | xcpretty
+
+OUTPUT_APP_PATH="$(./scripts/get-ios-built-app-path.sh "$CONFIGURATION")"
+
+if [ -d "$OUTPUT_APP_PATH" ]; then
+  echo "Build completed, built app located at $OUTPUT_APP_PATH."
+else
+  echo "Error: expect $OUTPUT_APP_PATH to exists after the build but it does not."
+  exit 1
+fi

@@ -1,40 +1,12 @@
-// TODO: Move this into a shared package
-// Should probably use a setup file (such as packages/test) instead of a custom environment since there's no point in having a custom environment for this (see: https://github.com/onejs/one/pull/467).
-
-import { execSync } from 'node:child_process'
-import path from 'node:path'
+import { exec, execSync } from 'node:child_process'
+import path, { resolve } from 'node:path'
 import { copySync, ensureDirSync } from 'fs-extra'
 import type { Environment } from 'vitest/environments'
 import type { remote } from 'webdriverio'
+import { $ } from 'zx'
+import { TEST_ENV } from '../constants'
 
-type WebdriverIOConfig = Parameters<typeof remote>[0]
-
-export default (<Environment>{
-  name: 'native',
-  transformMode: 'ssr',
-  async setup(global) {
-    const webDriverConfig = await _internal_getWebDriverConfig()
-    global.webDriverConfig = webDriverConfig
-
-    return {
-      teardown() {
-        // called after all tests with this env have been run
-      },
-    }
-  },
-})
-
-export function getWebDriverConfig(): WebdriverIOConfig {
-  const { webDriverConfig } = global as any
-
-  if (!webDriverConfig) {
-    throw new Error(
-      'Cannot get webDriverConfig. Did you add `// @vitest-environment native` in your test file?'
-    )
-  }
-
-  return webDriverConfig
-}
+export type WebdriverIOConfig = Parameters<typeof remote>[0]
 
 function getSimulatorUdid() {
   if (process.env.SIMULATOR_UDID) {
@@ -75,20 +47,24 @@ function getSimulatorUdid() {
 }
 
 async function prepareTestApp() {
-  if (!process.env.TEST_CONTAINER_PATH) {
-    throw new Error('No TEST_CONTAINER_PATH provided, this is required for now')
-  }
+  const copyTestContainerFrom = (() => {
+    const envName = `IOS_TEST_CONTAINER_PATH_${TEST_ENV.toUpperCase()}`
+
+    if (!process.env[envName]) {
+      throw new Error(`No ${envName} provided, this is required for now`)
+    }
+
+    return process.env[envName]
+  })()
 
   const root = process.cwd()
   const tmpDir = path.join(root, 'node_modules', '.test')
   ensureDirSync(tmpDir)
 
-  const isDev = true
+  const appPath = path.join(tmpDir, `ios-test-container-${TEST_ENV}.app`)
+  copySync(copyTestContainerFrom, appPath)
 
-  const appPath = path.join(tmpDir, `ios-test-container-${isDev ? 'dev' : 'prod'}.app`)
-  copySync(process.env.TEST_CONTAINER_PATH, appPath)
-
-  if (isDev) {
+  if (TEST_ENV === 'dev') {
     // TODO: Dynamically set the bundle URL in the app
 
     // Since the initial bundle may take some time to build, we poke it first and make sure it's ready before running tests, which removes some flakiness during Appium tests.
@@ -120,14 +96,27 @@ async function prepareTestApp() {
     })
 
     return appPath
-  }
+  } // End of `TEST_ENV === 'dev'`
 
   // Prod
-  // TODO: Build prod bundle and replace it in the app
+  // Build prod bundle and replace it in the app
+
+  // Not working, this will make the app hang with a blank white screen, idk why but if we use zx it works.
+  // await execSync(`rm -f ${appPath}/main.jsbundle`, { cwd: root })
+  // await execSync(
+  //   `yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`,
+  //   { cwd: root }
+  // )
+
+  $.cwd = root
+  $`yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`
+  await new Promise((resolve) => {
+    setTimeout(resolve, 1000)
+  })
   return appPath
 }
 
-async function _internal_getWebDriverConfig(): Promise<WebdriverIOConfig> {
+export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
   const capabilities = {
     platformName: 'iOS',
     'appium:options': {
