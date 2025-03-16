@@ -71,6 +71,7 @@ export const INCLUDE_LIST = [
   // ReferenceError: exports is not defined - at eval (.../node_modules/inline-style-prefixer/lib/createPrefixer.js:3:23)
   'inline-style-prefixer',
   'react-native-vector-icons',
+  'jotai',
 ]
 
 export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST)
