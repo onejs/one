@@ -233,7 +233,7 @@ export function getPathDataFromState<ParamList extends {}>(
               : undefined
 
         if (screen && screens && currentOptions[route.name].screens?.[screen]) {
-          route = { ...screens[screen], name: screen, key: screen }
+          route = { ...screens[screen], name: screen, key: screen, params: (route.params as any)?.params }
           currentOptions = screens
         } else {
           hasNext = false
