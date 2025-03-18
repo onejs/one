@@ -10,7 +10,7 @@ env:
 
 jobs:
   checks:
-    runs-on: ubuntu-latest
+    runs-on: ghcr.io/cirruslabs/macos-runner:sonoma
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - name: Checkout
@@ -31,7 +31,7 @@ jobs:
         run: yarn lint
 
   tests:
-    runs-on: ubuntu-latest
+    runs-on: ghcr.io/cirruslabs/macos-runner:sonoma
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - name: Checkout
@@ -47,7 +47,7 @@ jobs:
 
   notify:
     needs: [checks, tests]
-    runs-on: ubuntu-latest
+    runs-on: ghcr.io/cirruslabs/macos-runner:sonoma
     if: failure()
     steps:
       - name: Notify Discord on failure
