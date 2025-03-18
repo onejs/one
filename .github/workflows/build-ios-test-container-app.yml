@@ -36,7 +36,7 @@ on:
 jobs:
   build-ios:
     name: Build
-    runs-on: macos-13
+    runs-on: ghcr.io/cirruslabs/macos-runner:sonoma
     permissions:
       contents: read
       pull-requests: read

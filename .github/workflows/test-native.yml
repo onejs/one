@@ -161,7 +161,7 @@ jobs:
     # * We do not test `react-native/scripts/react-native-xcode.sh`, instead we copy parts of it into our test scripts, simulating parts of the build process without running the whole native build.
     needs:
       - build-ios-test-container-prod
-    runs-on: macos-14
+    runs-on: ghcr.io/cirruslabs/macos-runner:sonoma
     defaults:
       run:
         working-directory: ${{ env.test_app_path }}

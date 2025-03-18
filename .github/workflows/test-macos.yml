@@ -7,7 +7,7 @@ on:
 jobs:
   test-dev:
     name: Tests
-    runs-on: macos-14
+    runs-on: ghcr.io/cirruslabs/macos-runner:sonoma
     steps:
       - name: Checkout
         uses: actions/checkout@v4
