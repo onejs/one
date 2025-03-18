@@ -110,7 +110,7 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/${{ needs.build-ios-test-container-dev.outputs.built-app-path }}
         run: |
-          yarn workspaces foreach --exclude vxrn-monorepo -A run test-ios:dev
+          yarn workspaces foreach -v -v --exclude vxrn-monorepo -A run test-ios:dev
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v4.3.1
@@ -199,7 +199,7 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ github.workspace }}/${{ needs.build-ios-test-container-prod.outputs.built-app-path }}
         run: |
-          yarn workspaces foreach --exclude vxrn-monorepo -A run test-ios:prod
+          yarn workspaces foreach -v -v --exclude vxrn-monorepo -A run test-ios:prod
 
       - name: Upload Appium Logs
         uses: actions/upload-artifact@v4.3.1
