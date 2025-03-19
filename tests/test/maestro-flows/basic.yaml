@@ -1,9 +1,0 @@
-appId: dev.onestack.rntestcontainer
----
-- launchApp
-# - assertVisible: ".*Welcome to.*"
-- extendedWaitUntil:
-    visible: ".*Welcome to.*"
-    timeout: 1200000 # 20 minutes
-- takeScreenshot:
-    path: maestro-screenshots/app-startup

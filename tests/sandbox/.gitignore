@@ -40,5 +40,4 @@ tsconfig.tsbuildinfo
 /xcodebuild.log
 /dev-server.pid
 /dev-server.log
-/maestro-screenshots
 /test-bundle-output
