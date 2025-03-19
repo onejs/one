@@ -90,7 +90,7 @@ jobs:
           echo "NPM global root path: $NPM_GLOBAL_ROOT_PATH"
           echo "path=$NPM_GLOBAL_ROOT_PATH" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache/restore@v4
+      - uses: cirruslabs/cache/restore@v4
         with:
           path: ${{ steps.get-npm-global-root-path.outputs.path }}
           key: ${{ runner.os }}-npm-appium
@@ -102,7 +102,7 @@ jobs:
           appium > /tmp/appium.log &
           sleep 3
 
-      - uses: actions/cache/save@v4
+      - uses: cirruslabs/cache/save@v4
         with:
           path: ${{ steps.get-npm-global-root-path.outputs.path }}
           key: ${{ runner.os }}-npm-appium
@@ -179,7 +179,7 @@ jobs:
           echo "NPM global root path: $NPM_GLOBAL_ROOT_PATH"
           echo "path=$NPM_GLOBAL_ROOT_PATH" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache/restore@v4
+      - uses: cirruslabs/cache/restore@v4
         with:
           path: ${{ steps.get-npm-global-root-path.outputs.path }}
           key: ${{ runner.os }}-npm-appium
@@ -191,7 +191,7 @@ jobs:
           appium > /tmp/appium.log &
           sleep 3
 
-      - uses: actions/cache/save@v4
+      - uses: cirruslabs/cache/save@v4
         with:
           path: ${{ steps.get-npm-global-root-path.outputs.path }}
           key: ${{ runner.os }}-npm-appium
