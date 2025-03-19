@@ -26,15 +26,15 @@ runs:
       shell: bash
       run: corepack enable && corepack prepare yarn@4.4.1 --activate
 
-    # - name: Cache node_modules
-    #   uses: cirruslabs/cache@v4
-    #   env:
-    #     cache-name: node_modules
-    #   with:
-    #     path: '**/node_modules'
-    #     key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}-${{ hashFiles('yarn.lock') }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}-
+    - name: Cache node_modules
+      uses: cirruslabs/cache@v4
+      env:
+        cache-name: node_modules
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}-
 
     - name: Get Home Dir Path
       id: get-home-dir-path
