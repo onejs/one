@@ -14,6 +14,9 @@ export const createProdServer = async (app: Hono, options: VXRNServeOptions) => 
 
     const response = await serveStatic({
       root: './dist/client',
+      onFound: (_path, c) => {
+        c.header('Cache-Control', `public, immutable, max-age=31536000`)
+      },
     })(c, async () => {
       didCallNext = true
       await next()
