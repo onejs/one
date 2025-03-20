@@ -26,6 +26,23 @@ runs:
       shell: bash
       run: corepack enable && corepack prepare yarn@4.4.1 --activate
 
+    - name: Get Home Dir Path
+      id: get-home-dir-path
+      shell: bash
+      run: |
+        echo "Home dir path: $HOME"
+        echo "path=$HOME" >> $GITHUB_OUTPUT
+
+    - name: Cache Yarn Cache
+      uses: cirruslabs/cache@v4
+      env:
+        cache-name: yarn_cache
+      with:
+        path: ${{ steps.get-home-dir-path.outputs.path }}/.yarn/berry
+        key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-
+
     - name: Cache node_modules
       uses: cirruslabs/cache@v4
       env:
@@ -40,7 +57,7 @@ runs:
       shell: bash
       run: ${{ inputs.workspace-focus && format('yarn workspaces focus vxrn-monorepo {0}', inputs.workspace-focus) || 'yarn install'}}
 
-    - name: Install playwright
+    - name: Install Playwright
       shell: bash
       run: npx playwright install
 
