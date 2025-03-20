@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "1.1.470",
+  "version": "1.1.471",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
