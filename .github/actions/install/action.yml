@@ -53,6 +53,16 @@ runs:
         restore-keys: |
           ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}-
 
+    - name: Cache Playwright
+      uses: cirruslabs/cache@v4
+      env:
+        cache-name: playwright_cache
+      with:
+        path: ${{ steps.get-home-dir-path.outputs.path }}/.cache/ms-playwright
+        key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-
+
     - name: Install Dependencies
       shell: bash
       run: ${{ inputs.workspace-focus && format('yarn workspaces focus vxrn-monorepo {0}', inputs.workspace-focus) || 'yarn install'}}
