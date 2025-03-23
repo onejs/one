@@ -22155,6 +22155,7 @@ __metadata:
     vite: "npm:^6.1.0"
     vite-plugin-barrel: "npm:^0.4.1"
     vite-tsconfig-paths: "npm:^5.0.1"
+    vitest: "npm:^3.0.5"
     vxrn: "workspace:*"
     ws: "npm:^8.18.0"
     xxhashjs: "npm:^0.2.2"
