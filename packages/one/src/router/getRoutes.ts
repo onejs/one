@@ -242,8 +242,20 @@ function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
       {
         type: 'layout',
         loadRoute: () => ({
-          default: (require('../views/Navigator') as typeof import('../views/Navigator'))
-            .DefaultNavigator,
+          default: (
+            (() => {
+              try {
+                return require('../views/Navigator')
+              } catch (e) {
+                // This can happen during unit testing with vitest, where we cannot just require TypeScript files. Currently we will not actually render the navigator in tests, so it's fine to mock it this way but still bring awareness of what's happening if it happens in actual runtime.
+                return {
+                  DefaultNavigator: () => {
+                    throw e
+                  },
+                }
+              }
+            })() as typeof import('../views/Navigator')
+          ).DefaultNavigator,
         }),
         // Generate a fake file name for the directory
         contextKey: 'router/build/views/Navigator.js',
