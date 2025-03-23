@@ -18349,6 +18349,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"immer@npm:^10.1.1":
+  version: 10.1.1
+  resolution: "immer@npm:10.1.1"
+  checksum: 10/9dacf1e8c201d69191ccd88dc5d733bafe166cd45a5a360c5d7c88f1de0dff974a94114d72b35f3106adfe587fcfb131c545856184a2247d89d735ad25589863
+  languageName: node
+  linkType: hard
+
 "import-fresh@npm:^2.0.0":
   version: 2.0.0
   resolution: "import-fresh@npm:2.0.0"
@@ -22219,6 +22226,7 @@ __metadata:
     fast-glob: "npm:^3.3.3"
     fs-extra: "npm:^11.2.0"
     hono: "npm:^4.6.16"
+    immer: "npm:^10.1.1"
     lightningcss: "npm:^1.27.0"
     micromatch: "npm:^4.0.7"
     nanoid: "npm:^3.3.7"

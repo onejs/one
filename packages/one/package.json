@@ -139,6 +139,7 @@
     "@types/react-dom": "^18.2.25",
     "@types/xxhashjs": "^0.2.4",
     "depcheck": "^1.4.7",
+    "immer": "^10.1.1",
     "react-native": "^0.76.5",
     "rollup": "^4.29.1",
     "typescript": "^5.7.3",
