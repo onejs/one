@@ -1,7 +1,11 @@
+import { afterClientRender } from './render'
+
 if (process.env.ONE_ENABLE_REACT_SCAN) {
   // @ts-expect-error
   import('react-scan').then(({ scan }) => {
-    scan(JSON.parse(`${process.env.ONE_ENABLE_REACT_SCAN}`))
+    afterClientRender(() => {
+      scan(JSON.parse(`${process.env.ONE_ENABLE_REACT_SCAN}`))
+    })
   })
 }
 

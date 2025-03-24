@@ -8,9 +8,10 @@ import { useColorScheme } from '@vxrn/universal-color-scheme'
 import {
   createContext,
   StrictMode,
+  Suspense,
   useContext,
-  useEffect,
   useId,
+  useLayoutEffect,
   useState,
   type FunctionComponent,
   type ReactNode,
@@ -138,12 +139,13 @@ export function Root(props: RootProps) {
       const [show, setShow] = useState(false)
 
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      useEffect(() => {
+      useLayoutEffect(() => {
         setShow(true)
       }, [])
 
       return show ? contents : null
     }
+
     return contents
   }
 
