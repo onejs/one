@@ -22,10 +22,10 @@
     "android": "expo run:android"
   },
   "dependencies": {
-    "@tamagui/config": "^1.125.27",
-    "@tamagui/image-next": "^1.125.27",
-    "@tamagui/lucide-icons": "^1.125.27",
-    "@tamagui/vite-plugin": "^1.125.27",
+    "@tamagui/config": "^1.125.28",
+    "@tamagui/image-next": "^1.125.28",
+    "@tamagui/lucide-icons": "^1.125.28",
+    "@tamagui/vite-plugin": "^1.125.28",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/test-package": "workspace:*",
     "expo": "~52.0.17",
@@ -39,7 +39,7 @@
     "react-native-screens": "4.4.0",
     "react-native-svg": "15.8.0",
     "react-native-web": "^0.19.12",
-    "tamagui": "^1.125.27"
+    "tamagui": "^1.125.28"
   },
   "devDependencies": {
     "@react-native-community/cli": "latest",
