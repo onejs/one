@@ -37,6 +37,7 @@ export default {
   plugins: [
     one({
       react: {
+        scan: false,
         compiler: process.env.NODE_ENV === 'production',
       },
     }),
