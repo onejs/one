@@ -14,9 +14,9 @@ export function render(element: React.ReactNode) {
     globalThis['__vxrnRoot'].render(element)
   } else {
     startTransition(() => {
-      const rootElement = process.env.ONE_FIX_REACT_PORTAL_BUG
-        ? (document as any)
-        : document.documentElement
+      const rootElement = process.env.ONE_USE_FASTER_DOCUMENT
+        ? document.documentElement
+        : (document as any)
 
       if (globalThis['__vxrnIsSPA']) {
         const root = createRoot(rootElement)
