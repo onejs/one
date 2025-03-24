@@ -46,6 +46,7 @@
     "@vxrn/utils": "workspace:*",
     "get-port-please": "^3.1.2",
     "playwright": "^1.49.1",
+    "react-scan": "^0.3.3",
     "tsx": "^4.19.0",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",

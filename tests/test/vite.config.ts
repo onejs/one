@@ -10,6 +10,7 @@ export default {
 
       react: {
         compiler: true,
+        scan: true,
       },
 
       config: {
