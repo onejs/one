@@ -2,7 +2,7 @@ import { inject } from 'vitest'
 import type { WebdriverIOConfig } from './utils/ios'
 
 export function getWebDriverConfig(): WebdriverIOConfig {
-  const webDriverConfig = inject('webDriverConfig') as any
+  const webDriverConfig = inject('webDriverConfig' as never) as any
 
   if (!webDriverConfig) {
     throw new Error(
