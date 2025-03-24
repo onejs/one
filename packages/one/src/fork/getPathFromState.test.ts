@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { getPathFromState } from './getPathFromState'
+import type { PathConfigMap } from '@react-navigation/core'
+
+import { getPathFromState, type State } from './getPathFromState'
 
 describe('hash support', () => {
   it('appends hash to the path', () => {
@@ -92,4 +94,53 @@ it.skip(`handles url search params params`, () => {
   }
 
   expect(getPathFromState(state, config)).toBe('/?test=true&hello=world&array=1&array=2')
+})
+
+it(`handles uninitialized state on nested navigation with route params`, () => {
+  const config = {
+    screens: {
+      index: '',
+      '[folderSlugL1]': {
+        path: ':folderSlugL1',
+        screens: {
+          '[folderSlugL2]': {
+            path: ':folderSlugL2',
+            screens: {
+              '[folderSlugL3]': {
+                path: ':folderSlugL3',
+                screens: {
+                  page: 'page',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  } satisfies { screens: PathConfigMap<any> }
+
+  const state = {
+    routes: [
+      {
+        name: '[folderSlugL1]',
+        params: {
+          folderSlugL1: 'foo',
+          screen: '[folderSlugL2]',
+          params: {
+            folderSlugL1: 'foo',
+            folderSlugL2: 'bar',
+            screen: '[folderSlugL3]',
+            params: {
+              folderSlugL1: 'foo',
+              folderSlugL2: 'bar',
+              folderSlugL3: 'baz',
+              screen: 'page',
+            },
+          },
+        },
+      },
+    ],
+  } satisfies State
+
+  expect(getPathFromState(state, config)).toBe('/foo/bar/baz/page')
 })
