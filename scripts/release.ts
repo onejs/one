@@ -75,12 +75,11 @@ if (!skipVersion) {
 }
 
 async function upgradeReproApp(newVersion: string) {
-  const pkgJsonPath = path.join(process.cwd(), 'repro', 'package.json');
+  const pkgJsonPath = path.join(process.cwd(), 'repro', 'package.json')
 
-  const pkgJson =
-    await fs.readJSON(pkgJsonPath);
-  pkgJson.version = newVersion;
-  pkgJson.dependencies.one = newVersion;
+  const pkgJson = await fs.readJSON(pkgJsonPath)
+  pkgJson.version = newVersion
+  pkgJson.dependencies.one = newVersion
 
   await writeJSON(pkgJsonPath, pkgJson, { spaces: 2 })
 }
@@ -180,11 +179,11 @@ async function run() {
         isCI || skipVersion
           ? { version: nextVersion }
           : await prompts({
-            type: 'text',
-            name: 'version',
-            message: 'Version?',
-            initial: nextVersion,
-          })
+              type: 'text',
+              name: 'version',
+              message: 'Version?',
+              initial: nextVersion,
+            })
 
       version = answer.version
       console.info('Next:', version, '\n')
@@ -205,10 +204,14 @@ async function run() {
 
     if (!finish) {
       console.info('run checks')
+
       if (!skipTest) {
         await spawnify(`yarn lint`)
         await spawnify(`yarn check`)
+        await spawnify(`yarn typecheck`)
+        await spawnify(`yarn typecheck`)
         await spawnify(`yarn test`)
+        await spawnify(`yarn test-ios`)
       }
     }
 
@@ -247,7 +250,7 @@ async function run() {
         })
       )
 
-      await upgradeReproApp(version);
+      await upgradeReproApp(version)
     }
 
     if (!finish && dryRun) {
