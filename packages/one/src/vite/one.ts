@@ -445,6 +445,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
+  const flags: One.Flags = {
+    experimentalPreventLayoutRemounting: options.router?.experimental?.preventLayoutRemounting,
+  }
+
   return [
     ...devAndProdPlugins,
     ...nativeWebDevAndProdPlugsin,
@@ -460,6 +464,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     createVirtualEntry({
       ...options,
+      flags,
       root: 'app',
     }),
 

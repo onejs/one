@@ -91,6 +91,18 @@ export declare namespace One {
          *
          */
         transform?: GetTransform;
+        router?: {
+            experimental?: {
+                /**
+                 * If enabled, the router will try to avoid unnecessary remounts of _layout components.
+                 *
+                 * We aren't sure that this won't cause any side effects and break things, so this is still experimental and defaults to `false`.
+                 *
+                 * Currently, this will only effect the `<Slot />` navigator, where it will modify the screen element provided by `react-navigation` and set the `key` to a static value to prevent re-mounting.
+                 */
+                preventLayoutRemounting?: boolean;
+            };
+        };
         react?: {
             compiler?: boolean | PluginPlatformTarget;
             /**
@@ -267,6 +279,10 @@ export declare namespace One {
         loaderData?: any;
         loaderProps?: any;
         mode?: 'spa' | 'ssg' | 'ssr';
+    };
+    export type Flags = {
+        /** See PluginOptions.router.experimental.PreventLayoutRemounting */
+        experimentalPreventLayoutRemounting?: boolean;
     };
     export {};
 }

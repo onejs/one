@@ -1,5 +1,6 @@
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from 'vxrn'
+import type { One } from '../types'
 import {
   resolvedVirtualEntryId,
   resolvedVirtualEntryIdNative,
@@ -13,7 +14,7 @@ if (process.env.ONE_SETUP_FILE) {
 }
 `
 
-export function createVirtualEntry(options: { root: string }): Plugin {
+export function createVirtualEntry(options: { root: string; flags: One.Flags }): Plugin {
   const appDirGlob = `/${options.root}/**/*.tsx`
   const appDirApiGlob = `/${options.root}/**/*+api.tsx`
 
@@ -43,6 +44,7 @@ import { createApp } from 'one'
 // globbing ${appDirGlob}
 export default createApp({
   routes: import.meta.glob('${appDirGlob}'),
+  flags: ${JSON.stringify(options.flags)}
 })
         `
       }
@@ -59,6 +61,7 @@ import { createApp } from 'one'
 // globbing ${appDirGlob}
 export default createApp({
   routes: import.meta.glob(['${appDirGlob}', '!${appDirApiGlob}']),
+  flags: ${JSON.stringify(options.flags)}
 })
         `
       }
