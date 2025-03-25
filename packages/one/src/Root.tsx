@@ -22,6 +22,7 @@ import { getURL } from './getURL'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
+import { FlagsContext } from './router/FlagsContext'
 import type { GlobbedRouteImports } from './types'
 import { ServerRenderID } from './useServerHeadInsertion'
 import { PreloadLinks } from './views/PreloadLinks'
@@ -35,6 +36,7 @@ type RootProps = Omit<InnerProps, 'context'> & {
   isClient?: boolean
   routes: GlobbedRouteImports
   routeOptions?: One.RouteOptions
+  flags?: One.Flags
 }
 
 type InnerProps = {
@@ -59,10 +61,12 @@ type InnerProps = {
 // we bridge it to react because reacts weird rendering loses it
 const ServerAsyncLocalIDContext = createContext<One.ServerContext | null>(null)
 
-globalThis['__vxrnGetContextFromReactContext'] = () => useContext(ServerAsyncLocalIDContext)
+globalThis['__vxrnGetContextFromReactContext'] = () =>
+  useContext(ServerAsyncLocalIDContext)
 
 export function Root(props: RootProps) {
-  const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } = props
+  const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } =
+    props
 
   const context = useViteRoutes(routes, routeOptions, globalThis['__vxrnVersion'])
   const location =
@@ -127,6 +131,12 @@ export function Root(props: RootProps) {
       </ServerRenderID.Provider>
     </ServerAsyncLocalIDContext.Provider>
   )
+
+  if (props.flags) {
+    contents = (
+      <FlagsContext.Provider value={props.flags}>{contents}</FlagsContext.Provider>
+    )
+  }
 
   if (!process.env.ONE_DISABLE_STRICT_MODE) {
     contents = <StrictMode>{contents}</StrictMode>

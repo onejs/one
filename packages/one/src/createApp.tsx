@@ -10,11 +10,15 @@ import type { RenderAppProps } from './types'
 import ReactDOMServer from 'react-dom/server.browser'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
+import type { One } from './vite/types'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 import { getServerContext, setServerContext } from './vite/one-server-only'
 import { cloneElement } from 'react'
 
-export type CreateAppProps = { routes: Record<string, () => Promise<unknown>> }
+export type CreateAppProps = {
+  routes: Record<string, () => Promise<unknown>>
+  flags?: One.Flags
+}
 
 export function createApp(options: CreateAppProps) {
   if (import.meta.env.SSR) {
@@ -36,6 +40,7 @@ export function createApp(options: CreateAppProps) {
         const App = () => {
           return (
             <Root
+              flags={options.flags}
               onRenderId={(id) => {
                 renderId = id
               }}
@@ -118,10 +123,20 @@ export function createApp(options: CreateAppProps) {
       resolveClientLoader(getServerContext() || {})
         .then(() => {
           // on client we just render
-          render(<Root isClient routes={options.routes} path={window.location.href} />)
+          render(
+            <Root
+              isClient
+              flags={options.flags}
+              routes={options.routes}
+              path={window.location.href}
+            />
+          )
         })
         .catch((err) => {
-          console.error(`Error running client loader resolver "onClientLoaderResolve":`, err)
+          console.error(
+            `Error running client loader resolver "onClientLoaderResolve":`,
+            err
+          )
         })
     })
     .catch((err) => {
