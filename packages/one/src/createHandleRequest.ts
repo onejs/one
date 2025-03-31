@@ -53,6 +53,7 @@ async function runMiddlewares(
     const exported = (await handlers.loadMiddleware!(middlewareModule))?.default as
       | Middleware
       | undefined
+
     if (!exported) {
       throw new Error(`No valid export found in middleware: ${middlewareModule.contextKey}`)
     }
@@ -64,6 +65,7 @@ async function runMiddlewares(
 
     // run middlewares, if response returned, exit early
     const response = await exported({ request, next, context })
+
     if (response) {
       return response
     }
