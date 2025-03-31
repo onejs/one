@@ -54,6 +54,9 @@
 
 ---
 
+- if there's no not-found route at the root, middleware wont run in prod
+  - can fix this, but also we could first document that you need not-found for middleware to run if routes arent found until fixed
+
   - it seems we render root layout then find screens, then re-render again and that could be done much better, probabyl we should use the new react navigation static definition method to define everything up-front rather than during render. should be faster and simpler.
   - unify the node module finding in dep patches + auto optimize
   - `doctor --fix`

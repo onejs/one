@@ -219,7 +219,7 @@ url: ${url}`)
     app.get(route.urlPath, createHonoHandler(route))
   }
 
-  const { preloads, loaders } = buildInfo
+  const { preloads } = buildInfo
 
   // TODO make this inside each page, need to make loader urls just be REGULAR_URL + loaderpostfix
   app.get('*', async (c, next) => {
