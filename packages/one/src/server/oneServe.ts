@@ -137,6 +137,13 @@ url: ${url}`)
     return async (context, next) => {
       try {
         const request = context.req.raw
+
+        // for js we want to serve our js files directly, as they can match a route on accident
+        // middleware my want to handle this eventually as well but for now this is a fine balance
+        if (extname(request.url) === '.js') {
+          return next()
+        }
+
         const url = getURLfromRequestURL(request)
 
         const response = await (() => {
