@@ -135,11 +135,6 @@ url: ${url}`)
 
   function createHonoHandler(route: RouteInfoCompiled): MiddlewareHandler<BlankEnv, never, {}> {
     return async (context, next) => {
-      // assets we ignore
-      if (extname(context.req.path)) {
-        return next()
-      }
-
       try {
         const request = context.req.raw
         const url = getURLfromRequestURL(request)
