@@ -18,6 +18,10 @@ afterAll(async () => {
 
 test(
   'setServerData getServerData',
+  {
+    // why is this flaky tho, async context / race issue?
+    retry: 2,
+  },
   async () => {
     const url = serverUrl + '/server-data'
 
@@ -34,9 +38,5 @@ test(
     expect(textContent).toContain(`{"fromServer":true}`)
 
     await page.close()
-  },
-  {
-    // why is this flaky tho, async context / race issue?
-    retry: 2,
   }
 )
