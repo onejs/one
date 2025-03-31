@@ -174,8 +174,13 @@ url: ${url}`)
 
             if (isAPIRequest.get(request)) {
               try {
-                // don't cache api requests by default
-                response.headers.set('Cache-Control', 'no-store')
+                if (
+                  !response.headers.has('cache-control') &&
+                  !response.headers.has('Cache-Control')
+                ) {
+                  // don't cache api requests by default
+                  response.headers.set('cache-control', 'no-store')
+                }
                 return response
               } catch (err) {
                 console.info(
