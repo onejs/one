@@ -35,6 +35,15 @@ describe('Middleware', () => {
     `)
   })
 
+  test('middleware runs even on not found routes', async () => {
+    const res = await fetchThing('/testing/that/this-route-doesnt-exist.md?test-middleware', 'json')
+    expect(res).toMatchInlineSnapshot(`
+      {
+        "middleware": "works",
+      }
+    `)
+  })
+
   // test('sub middleware intercepts', async () => {
   //   const res = await fetchThing('/middleware?intercept', 'json')
   //   expect(JSON.stringify(devRes)).toBe(JSON.stringify(prodRes))

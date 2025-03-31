@@ -41,6 +41,7 @@ async function runMiddlewares(
   }
 
   const context: MiddlewareContext = {}
+
   async function dispatch(index: number): Promise<Response> {
     const middlewareModule = middlewares![index]
 
@@ -56,7 +57,7 @@ async function runMiddlewares(
       throw new Error(`No valid export found in middleware: ${middlewareModule.contextKey}`)
     }
 
-    // go to next middlware
+    // go to next middleware
     const next = async () => {
       return dispatch(index + 1)
     }
