@@ -43,7 +43,7 @@ import { createApp } from 'one'
 
 // globbing ${appDirGlob}
 export default createApp({
-  routes: import.meta.glob('${appDirGlob}'),
+  routes: import.meta.glob('${appDirGlob}', { exhaustive: true }),
   flags: ${JSON.stringify(options.flags)}
 })
         `
@@ -60,7 +60,7 @@ import { createApp } from 'one'
 
 // globbing ${appDirGlob}
 export default createApp({
-  routes: import.meta.glob(['${appDirGlob}', '!${appDirApiGlob}']),
+  routes: import.meta.glob(['${appDirGlob}', '!${appDirApiGlob}'], { exhaustive: true }),
   flags: ${JSON.stringify(options.flags)}
 })
         `

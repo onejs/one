@@ -12,20 +12,23 @@ function sortDynamicConvention(a: DynamicConvention, b: DynamicConvention) {
 }
 
 export function sortRoutes(a: RouteNode, b: RouteNode): number {
-  if (a.dynamic && !b.dynamic) {
+  const aDynamicSegments = getDynamicSegments(a)
+  const bDynamicSegments = getDynamicSegments(b)
+
+  if (aDynamicSegments.length && !bDynamicSegments.length) {
     return 1
   }
-  if (!a.dynamic && b.dynamic) {
+  if (!aDynamicSegments.length && bDynamicSegments.length) {
     return -1
   }
-  if (a.dynamic && b.dynamic) {
-    if (a.dynamic.length !== b.dynamic.length) {
-      return b.dynamic.length - a.dynamic.length
+  if (aDynamicSegments.length && bDynamicSegments.length) {
+    if (aDynamicSegments.length !== bDynamicSegments.length) {
+      return bDynamicSegments.length - aDynamicSegments.length
     }
 
-    for (let i = 0; i < a.dynamic.length; i++) {
-      const aDynamic = a.dynamic[i]
-      const bDynamic = b.dynamic[i]
+    for (let i = 0; i < aDynamicSegments.length; i++) {
+      const aDynamic = aDynamicSegments[i]
+      const bDynamic = bDynamicSegments[i]
 
       if (aDynamic.notFound && bDynamic.notFound) {
         const s = sortDynamicConvention(aDynamic, bDynamic)
@@ -59,6 +62,13 @@ export function sortRoutes(a: RouteNode, b: RouteNode): number {
   }
 
   return a.route.length - b.route.length
+}
+
+function getDynamicSegments(route: RouteNode) {
+  return [
+    ...(route.dynamic || []),
+    ...(route.layouts?.flatMap((layout) => layout.dynamic || []) || []),
+  ]
 }
 
 export function sortRoutesWithInitial(initialRouteName?: string) {

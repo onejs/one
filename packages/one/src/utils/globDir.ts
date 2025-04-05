@@ -4,6 +4,7 @@ import Glob from 'fast-glob'
 export function globDir(cwd: string) {
   return Glob.sync('**/*.@(ts|tsx|js|jsx)', {
     cwd,
+    dot: true,
   }).map((p) => './' + normalizePaths(p))
 }
 
