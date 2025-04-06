@@ -1,3 +1,5 @@
 export function removeSearch(url: string) {
-  return url.replace(/\#.*/, '')
+  return url
+    .replace(/\#.*/, '') // remove hash
+    .replace(/\?.*/, '') // remove query params
 }
