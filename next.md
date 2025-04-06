@@ -124,3 +124,5 @@
   - hits /_vxrn/load/pathname.js for ssg at least
   - in dev mode handleRequest just runs handleLoader
   - in build mode generates the json
+
+- route sorting algorithm isn't same between server (packages/one/src/router/sortRoutes.ts) and client (getRouteConfigSorter in packages/one/src/fork/getStateFromPath-mods.ts), may lead to loader bug on edge cases
