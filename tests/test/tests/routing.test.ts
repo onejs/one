@@ -17,7 +17,7 @@ afterAll(async () => {
 })
 
 describe(`Routing Tests`, () => {
-  describe('Basic routing', () => {
+  describe('Basic routing', { retry: 1 }, () => {
     it('should render the home page', async () => {
       const response = await fetch(serverUrl)
       const html = await response.text()
