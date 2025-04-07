@@ -2,7 +2,7 @@
   "name": "test-uniswap",
   "private": true,
   "type": "module",
-  "version": "1.1.478",
+  "version": "1.1.479",
   "files": [
     "types",
     "dist"
