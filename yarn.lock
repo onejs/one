@@ -11377,7 +11377,7 @@ __metadata:
     "@tamagui/build": "npm:^1.125.28"
     "@vxrn/emitter": "workspace:*"
     better-auth: "npm:^1.1.15"
-    react: "npm:^18.3.1 || ^19.0.0"
+    react: "npm:^18.3.1 || ~19.0.0"
   languageName: unknown
   linkType: soft
 
@@ -11389,7 +11389,7 @@ __metadata:
     "@tamagui/use-did-finish-ssr": "npm:^1.125.28"
     "@vxrn/universal-color-scheme": "workspace:*"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
-    react: "npm:^18.3.1 || ^19.0.0"
+    react: "npm:^18.3.1 || ~19.0.0"
     react-native: "npm:^0.76.5"
   peerDependencies:
     react: "*"
@@ -11437,7 +11437,7 @@ __metadata:
   resolution: "@vxrn/emitter@workspace:packages/emitter"
   dependencies:
     "@tamagui/build": "npm:^1.125.28"
-    react: "npm:^18.3.1 || ^19.0.0"
+    react: "npm:^18.3.1 || ~19.0.0"
   languageName: unknown
   linkType: soft
 
@@ -11485,8 +11485,8 @@ __metadata:
     esbuild: "npm:~0.24.0"
     fs-extra: "npm:^11.2.0"
     import-meta-resolve: "npm:^4.1.0"
-    react: "npm:^18.3.1 || ^19.0.0"
-    react-dom: "npm:^18.3.1 || ^19.0.0"
+    react: "npm:^18.3.1 || ~19.0.0"
+    react-dom: "npm:^18.3.1 || ~19.0.0"
     react-native: "npm:^0.76.5"
     tsx: "npm:^4.19.0"
   peerDependencies:
@@ -11531,7 +11531,7 @@ __metadata:
   dependencies:
     "@vxrn/utils": "workspace:*"
     get-port: "npm:^7.1.0"
-    react: "npm:^18.3.1 || ^19.0.0"
+    react: "npm:^18.3.1 || ~19.0.0"
     typescript: "npm:^5.7.3"
     vitest: "npm:^3.0.5"
     zx: "npm:^8.4.1"
@@ -11550,7 +11550,7 @@ __metadata:
   dependencies:
     "@tamagui/build": "npm:^1.125.28"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
-    react: "npm:^18.3.1 || ^19.0.0"
+    react: "npm:^18.3.1 || ~19.0.0"
     react-native: "npm:^0.76.5"
   peerDependencies:
     react-native: "*"
@@ -11571,7 +11571,7 @@ __metadata:
   resolution: "@vxrn/use-isomorphic-layout-effect@workspace:packages/use-isomorphic-layout-effect"
   dependencies:
     "@tamagui/build": "npm:^1.125.28"
-    react: "npm:^18.3.1 || ^19.0.0"
+    react: "npm:^18.3.1 || ~19.0.0"
   languageName: unknown
   linkType: soft
 
@@ -14622,7 +14622,7 @@ __metadata:
     "@tauri-apps/plugin-shell": "npm:^2"
     "@vxrn/color-scheme": "workspace:*"
     one: "workspace:*"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-hotkeys-hook: "npm:^4.6.1"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
@@ -16031,7 +16031,7 @@ __metadata:
     "@types/react-test-renderer": "npm:^18.0.0"
     babel-jest: "npm:^29.6.3"
     expo-constants: "npm:~16.0.0"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-test-renderer: "npm:18.2.0"
     typescript: "npm:^5.7.3"
@@ -16047,7 +16047,7 @@ __metadata:
     "@types/react": "npm:^18.3.11"
     expo: "npm:~52.0.17"
     one: "workspace:*"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -16079,7 +16079,7 @@ __metadata:
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
     postgres: "npm:^3.4.4"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -16103,7 +16103,7 @@ __metadata:
     nativewind: "npm:^4.1.23"
     one: "workspace:*"
     postcss: "npm:^8.4.49"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -16136,7 +16136,7 @@ __metadata:
     expo: "npm:~52.0.17"
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -16172,7 +16172,7 @@ __metadata:
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
     postgres: "npm:^3.4.4"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-bottom-tabs: "npm:^0.7.8"
     react-native-reanimated: "npm:~3.16.5"
@@ -16284,7 +16284,7 @@ __metadata:
   dependencies:
     expo: "npm:~52.0.17"
     expo-status-bar: "npm:~1.12.1"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     vxrn: "workspace:*"
   languageName: unknown
@@ -22172,7 +22172,7 @@ __metadata:
     expo: "npm:~52.0.17"
     one: "workspace:*"
     pg: "npm:^8.13.1"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -22232,9 +22232,9 @@ __metadata:
     nanoid: "npm:^3.3.7"
     perfect-debounce: "npm:^1.0.0"
     picocolors: "npm:^1.0.0"
-    react: "npm:^18.3.1 || ^19.0.0"
+    react: "npm:^18.3.1 || ~19.0.0"
     react-compiler-runtime: "npm:^19.0.0-beta-201e55d-20241215"
-    react-dom: "npm:^18.3.1 || ^19.0.0"
+    react-dom: "npm:^18.3.1 || ~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-css-interop: "npm:^0.1.22"
     react-native-gesture-handler: "npm:^2.18.1"
@@ -23935,7 +23935,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.3.1 || ^19.0.0":
+"react-dom@npm:^18.3.1 || ~19.0.0":
   version: 19.0.0
   resolution: "react-dom@npm:19.0.0"
   dependencies:
@@ -24480,7 +24480,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.3.1 || ^19.0.0, react@npm:^19.0.0":
+"react@npm:^18.3.1 || ~19.0.0, react@npm:~19.0.0":
   version: 19.0.0
   resolution: "react@npm:19.0.0"
   checksum: 10/2490969c503f644703c88990d20e4011fa6119ddeca451e9de48f6d7ab058d670d2852a5fcd3aa3cd90a923ab2815d532637bd4a814add402ae5c0d4f129ee71
@@ -25315,7 +25315,7 @@ __metadata:
     expo: "npm:~52.0.17"
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-gesture-handler: "npm:^2.22.0"
     react-native-reanimated: "npm:~3.16.5"
@@ -26020,7 +26020,7 @@ __metadata:
     one: "workspace:*"
     playwright: "npm:^1.49.1"
     postmark: "npm:^3.0.18"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     subset-font: "npm:^2.4.0"
     tamagui: "npm:^1.125.28"
@@ -27146,7 +27146,7 @@ __metadata:
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
     playwright: "npm:^1.49.1"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-screens: "npm:4.4.0"
     vite: "npm:^6.1.0"
@@ -27166,7 +27166,7 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     expo: "npm:~52.0.17"
     one: "workspace:*"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -27196,7 +27196,7 @@ __metadata:
     one: "workspace:*"
     playwright: "npm:^1.49.1"
     postgres: "npm:^3.4.4"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -27285,7 +27285,7 @@ __metadata:
     "@types/react": "npm:^18.3.11"
     expo: "npm:~52.0.17"
     one: "workspace:*"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:4.4.0"
@@ -27310,7 +27310,7 @@ __metadata:
     expo-updates: "npm:~0.26.10"
     moti: "npm:^0.29.0"
     one: "workspace:*"
-    react: "npm:^19.0.0"
+    react: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-svg: "npm:15.8.0"
