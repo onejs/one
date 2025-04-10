@@ -12,7 +12,7 @@
   "dependencies": {
     "expo": "~52.0.17",
     "expo-status-bar": "~1.12.1",
-    "react": "^19.0.0",
+    "react": "~19.0.0",
     "react-native": "^0.76.5",
     "vxrn": "workspace:*"
   }

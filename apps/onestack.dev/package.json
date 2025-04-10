@@ -33,7 +33,7 @@
     "mdx-bundler": "^10.0.2",
     "one": "workspace:*",
     "postmark": "^3.0.18",
-    "react": "^19.0.0",
+    "react": "~19.0.0",
     "react-native": "^0.76.5",
     "tamagui": "^1.125.28"
   },
