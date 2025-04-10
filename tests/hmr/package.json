@@ -19,7 +19,7 @@
     "expo": "~52.0.17",
     "expo-modules-core": "2.1.2",
     "one": "workspace:*",
-    "react": "^19.0.0",
+    "react": "~19.0.0",
     "react-native": "^0.76.5",
     "react-native-screens": "4.4.0",
     "vite": "^6.1.0"

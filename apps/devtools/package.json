@@ -23,7 +23,7 @@
     "@tauri-apps/plugin-shell": "^2",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
-    "react": "^19.0.0",
+    "react": "~19.0.0",
     "react-hotkeys-hook": "^4.6.1",
     "react-native": "^0.76.5",
     "react-native-reanimated": "~3.16.5",

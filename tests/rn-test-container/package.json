@@ -18,7 +18,7 @@
     "expo": "~52.0.17",
     "expo-modules-core": "2.1.2",
     "one": "workspace:*",
-    "react": "^19.0.0",
+    "react": "~19.0.0",
     "react-native": "^0.76.5",
     "react-native-gesture-handler": "^2.22.0",
     "react-native-reanimated": "~3.16.5",
