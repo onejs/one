@@ -21,7 +21,7 @@
     "scheduler": "^0.23.2"
   },
   "peerDependencies": {
-    "react": "^19.0.0"
+    "react": "~19.0.0"
   },
   "files": [
     "LICENSE",
