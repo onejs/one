@@ -456,6 +456,7 @@ export async function build(args: {
   // write out the static paths (pathname => html) for the server
   const routeMap: Record<string, string> = {}
   const routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>> = {}
+  const pathToRoute: Record<string, string> = {}
   const preloads: Record<string, boolean> = {}
   const loaders: Record<string, boolean> = {}
 
@@ -470,6 +471,8 @@ export async function build(args: {
     } = route
 
     routeToBuildInfo[route.routeFile] = rest
+    pathToRoute[route.path] = route.routeFile
+    pathToRoute[route.cleanPath] = route.routeFile
     preloads[route.preloadPath] = true
     loaders[route.loaderPath] = true
   }
@@ -497,6 +500,7 @@ export async function build(args: {
   const buildInfoForWriting: One.BuildInfo = {
     oneOptions,
     routeToBuildInfo,
+    pathToRoute,
     manifest: {
       pageRoutes: manifest.pageRoutes.map(createBuildManifestRoute),
       apiRoutes: manifest.apiRoutes.map(createBuildManifestRoute),
