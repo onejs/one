@@ -2,6 +2,7 @@ import React, { createContext, useContext, type ReactNode } from 'react'
 import type { ErrorBoundaryProps } from '../views/Try'
 import type { One } from '../vite/types'
 import { getContextKey } from './matchers'
+import { RouteInfoContextProvider } from './RouteInfoContext'
 
 export type DynamicConvention = { name: string; deep: boolean; notFound?: boolean }
 
@@ -45,7 +46,9 @@ export type RouteNode = {
   middlewares?: RouteNode[]
 }
 
-export const RouteParamsContext = createContext<Record<string, string | undefined> | undefined>({})
+export const RouteParamsContext = createContext<
+  Record<string, string | undefined> | undefined
+>({})
 
 const CurrentRouteContext = React.createContext<RouteNode | null>(null)
 
@@ -78,7 +81,9 @@ export function Route({
 }) {
   return (
     <RouteParamsContext.Provider value={route?.params}>
-      <CurrentRouteContext.Provider value={node}>{children}</CurrentRouteContext.Provider>
+      <CurrentRouteContext.Provider value={node}>
+        <RouteInfoContextProvider>{children}</RouteInfoContextProvider>
+      </CurrentRouteContext.Provider>
     </RouteParamsContext.Provider>
   )
 }
