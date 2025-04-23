@@ -28,10 +28,10 @@ export declare function useNavigatorContext(): {
     descriptors: NavigatorTypes["descriptors"];
     router: RouterFactory<any, any, any>;
 };
-export declare function useSlot(): JSX.Element | null;
+export declare function useSlot(): React.JSX.Element | null;
 /** Renders the currently selected content. */
 export declare const Slot: React.NamedExoticComponent<Omit<NavigatorProps, "children">>;
-export declare function QualifiedSlot(): JSX.Element | null;
+export declare function QualifiedSlot(): React.JSX.Element | null;
 export declare function DefaultNavigator(): import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=Navigator.d.ts.map
