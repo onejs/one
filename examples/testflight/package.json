@@ -36,6 +36,7 @@
     "one": "workspace:*",
     "postgres": "^3.4.4",
     "react": "~19.0.0",
+    "react-dom": "~19.0.0",
     "react-native": "^0.76.5",
     "react-native-bottom-tabs": "^0.7.8",
     "react-native-reanimated": "~3.16.5",

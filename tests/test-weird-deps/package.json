@@ -26,6 +26,7 @@
     "moti": "^0.29.0",
     "one": "workspace:*",
     "react": "~19.0.0",
+    "react-dom": "~19.0.0",
     "react-native": "^0.76.5",
     "react-native-reanimated": "~3.16.5",
     "react-native-svg": "15.8.0",
