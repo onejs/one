@@ -16104,6 +16104,7 @@ __metadata:
     one: "workspace:*"
     postcss: "npm:^8.4.49"
     react: "npm:~19.0.0"
+    react-dom: "npm:~19.0.0"
     react-native: "npm:0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -16137,6 +16138,7 @@ __metadata:
     expo-modules-core: "npm:2.1.2"
     one: "workspace:*"
     react: "npm:~19.0.0"
+    react-dom: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -16173,6 +16175,7 @@ __metadata:
     one: "workspace:*"
     postgres: "npm:^3.4.4"
     react: "npm:~19.0.0"
+    react-dom: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-bottom-tabs: "npm:^0.7.8"
     react-native-reanimated: "npm:~3.16.5"
@@ -22173,6 +22176,7 @@ __metadata:
     one: "workspace:*"
     pg: "npm:^8.13.1"
     react: "npm:~19.0.0"
+    react-dom: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -23935,7 +23939,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.3.1 || ~19.0.0":
+"react-dom@npm:^18.3.1 || ~19.0.0, react-dom@npm:~19.0.0":
   version: 19.0.0
   resolution: "react-dom@npm:19.0.0"
   dependencies:
@@ -27147,6 +27151,7 @@ __metadata:
     one: "workspace:*"
     playwright: "npm:^1.49.1"
     react: "npm:~19.0.0"
+    react-dom: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-screens: "npm:4.4.0"
     vite: "npm:^6.1.0"
@@ -27167,6 +27172,7 @@ __metadata:
     expo: "npm:~52.0.17"
     one: "workspace:*"
     react: "npm:~19.0.0"
+    react-dom: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -27197,6 +27203,7 @@ __metadata:
     playwright: "npm:^1.49.1"
     postgres: "npm:^3.4.4"
     react: "npm:~19.0.0"
+    react-dom: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-safe-area-context: "npm:4.10.5"
@@ -27286,6 +27293,7 @@ __metadata:
     expo: "npm:~52.0.17"
     one: "workspace:*"
     react: "npm:~19.0.0"
+    react-dom: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:4.4.0"
@@ -27311,6 +27319,7 @@ __metadata:
     moti: "npm:^0.29.0"
     one: "workspace:*"
     react: "npm:~19.0.0"
+    react-dom: "npm:~19.0.0"
     react-native: "npm:^0.76.5"
     react-native-reanimated: "npm:~3.16.5"
     react-native-svg: "npm:15.8.0"
