@@ -471,8 +471,9 @@ export async function build(args: {
     } = route
 
     routeToBuildInfo[route.routeFile] = rest
-    pathToRoute[route.path] = route.routeFile
-    pathToRoute[route.cleanPath] = route.routeFile
+    for (let p of getCleanPaths([route.path, route.cleanPath])) {
+      pathToRoute[p] = route.routeFile
+    }
     preloads[route.preloadPath] = true
     loaders[route.loaderPath] = true
   }
@@ -571,6 +572,25 @@ export async function build(args: {
   }
 
   console.info(`\n\n  💛 build complete\n\n`)
+}
+
+const TRAILING_INDEX_REGEX = /\/index(\.(web))?/
+function getCleanPaths(possiblePaths: Array<string>) {
+  return Array.from(
+    new Set(
+      Array.from(new Set(possiblePaths)).flatMap((p) => {
+        const paths = [p]
+
+        if (p.match(TRAILING_INDEX_REGEX)) {
+          const pathWithTrailingIndexRemoved = p.replace(TRAILING_INDEX_REGEX, '')
+          paths.push(pathWithTrailingIndexRemoved)
+          paths.push(pathWithTrailingIndexRemoved + '/')
+        }
+
+        return paths
+      })
+    )
+  )
 }
 
 async function moveAllFiles(src: string, dest: string) {
