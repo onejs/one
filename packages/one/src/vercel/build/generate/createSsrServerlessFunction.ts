@@ -40,17 +40,25 @@ export async function createSsrServerlessFunction(
       `
   const buildInfoConfig = await import('../buildInfo.js');
   const entry = await import('../server/_virtual_one-entry.js');
-  
+
   const handler = async (req, res) => {
     // console.debug("req.url", req.url);
     const url = new URL(req.url, \`https://\${process.env.VERCEL_URL}\`);
-    const loaderProps = { 
+    const loaderProps = {
       path: url.pathname,
       params: Object.fromEntries(url.searchParams.entries())
     }
     const postfix = url.pathname.endsWith('/') ? 'index.tsx' : '+ssr.tsx';
     const routeFile = \`.\${url.pathname}\${postfix}\`;
-    const route = buildInfoConfig.default.routeToBuildInfo[routeFile];
+    let route = buildInfoConfig.default.routeToBuildInfo[routeFile];
+
+    // If we cannot find the route by direct match, try to find it by looking it up in the
+    // pathToRoute mapping. Currently this handles cases such as "(some-group)/index.tsx",
+    // "index.web.tsx".
+    if (!route) {
+      const routeName = buildInfoConfig.default.pathToRoute[url.pathname];
+      route = buildInfoConfig.default.routeToBuildInfo[routeName];
+    }
 
     const render = entry.default.render;
     const exported = await import(route.serverJsPath.replace('dist/','../'))

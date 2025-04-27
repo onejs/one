@@ -291,6 +291,8 @@ export namespace One {
     }
     oneOptions?: PluginOptions
     routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>>
+    /** A mapping to lookup the full route name from a path */
+    pathToRoute: Record<string, string>
     routeMap: Record<string, string>
     manifest: {
       pageRoutes: RouteInfo[]
