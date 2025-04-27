@@ -456,6 +456,7 @@ export async function build(args: {
   // write out the static paths (pathname => html) for the server
   const routeMap: Record<string, string> = {}
   const routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>> = {}
+  const pathToRoute: Record<string, string> = {}
   const preloads: Record<string, boolean> = {}
   const loaders: Record<string, boolean> = {}
 
@@ -470,6 +471,9 @@ export async function build(args: {
     } = route
 
     routeToBuildInfo[route.routeFile] = rest
+    for (let p of getCleanPaths([route.path, route.cleanPath])) {
+      pathToRoute[p] = route.routeFile
+    }
     preloads[route.preloadPath] = true
     loaders[route.loaderPath] = true
   }
@@ -497,6 +501,7 @@ export async function build(args: {
   const buildInfoForWriting: One.BuildInfo = {
     oneOptions,
     routeToBuildInfo,
+    pathToRoute,
     manifest: {
       pageRoutes: manifest.pageRoutes.map(createBuildManifestRoute),
       apiRoutes: manifest.apiRoutes.map(createBuildManifestRoute),
@@ -567,6 +572,25 @@ export async function build(args: {
   }
 
   console.info(`\n\n  💛 build complete\n\n`)
+}
+
+const TRAILING_INDEX_REGEX = /\/index(\.(web))?/
+function getCleanPaths(possiblePaths: Array<string>) {
+  return Array.from(
+    new Set(
+      Array.from(new Set(possiblePaths)).flatMap((p) => {
+        const paths = [p]
+
+        if (p.match(TRAILING_INDEX_REGEX)) {
+          const pathWithTrailingIndexRemoved = p.replace(TRAILING_INDEX_REGEX, '')
+          paths.push(pathWithTrailingIndexRemoved)
+          paths.push(pathWithTrailingIndexRemoved + '/')
+        }
+
+        return paths
+      })
+    )
+  )
 }
 
 async function moveAllFiles(src: string, dest: string) {
