@@ -44,9 +44,13 @@ export async function serve(args: VXRNOptions['server'] & { app?: Hono } = {}) {
     }),
 
     async beforeRegisterRoutes(options, app) {
-      await oneServe(oneOptions, buildInfo, app)
+      // Doing this here will make root not-found or match-all routes take over
+      // asset serving on production.
+      // await oneServe(oneOptions, buildInfo, app)
     },
 
-    async afterRegisterRoutes(options, app) {},
+    async afterRegisterRoutes(options, app) {
+      await oneServe(oneOptions, buildInfo, app)
+    },
   })
 }
