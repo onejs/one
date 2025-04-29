@@ -13,7 +13,7 @@ export type TestInfo = {
 
 const waitForServer = (
   url: string,
-  { maxRetries = 30, retryInterval = 1000, getServerOutput = () => '' }
+  { maxRetries = 45, retryInterval = 1000, getServerOutput = () => '' }
 ): Promise<void> => {
   const startedAt = performance.now()
   return new Promise((resolve, reject) => {
