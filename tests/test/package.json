@@ -6,7 +6,11 @@
   "scripts": {
     "test:dev": "TEST_ONLY=dev yarn vitest --run --reporter=dot --color=false",
     "test:prod": "TEST_ONLY=prod yarn vitest --run --reporter=dot --color=false",
-    "test": "yarn test:dev && yarn test:prod",
+    "test": "yarn test:dev && yarn test:prod && yarn test:app-cases-dev && yarn test:app-cases-prod",
+    "test:app-cases-dev": "TEST_ONLY=dev yarn test:app-cases",
+    "test:app-cases-prod": "TEST_ONLY=prod yarn test:app-cases",
+    "test:app-cases": "yarn test:app-cases:basic",
+    "test:app-cases:basic": "ONE_ROUTER_ROOT=app-cases/basic/app yarn vitest --run --reporter=dot --color=false",
     "test-ios:dev": "TEST_ONLY=dev TEST_ENV=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
     "test-ios:prod": "TEST_ONLY=prod TEST_ENV=prod DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
     "test-ios": "yarn test-ios:dev && yarn test-ios:prod",

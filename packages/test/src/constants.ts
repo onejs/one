@@ -6,7 +6,20 @@ export const TEST_ENV = (() => {
   const testEnvFromEnv = process.env.TEST_ENV
 
   if (!testEnvFromEnv) {
+    if (process.env.TEST_ONLY === 'dev') {
+      // Not now, we should remove ONLY_TEST_DEV before showing this warning
+      // console.warn('TEST_ONLY=dev is deprecated, use TEST_ENV=dev instead')
+      return 'dev'
+    }
+
+    if (process.env.TEST_ONLY === 'prod') {
+      // Not now, we should remove ONLY_TEST_PROD before showing this warning
+      // console.warn('TEST_ONLY=prod is deprecated, use TEST_ENV=prod instead')
+      return 'prod'
+    }
+
     console.warn('No TEST_ENV provided, defaulting to dev')
+
     return 'dev'
   }
 

@@ -45,7 +45,7 @@ describe('loader() SSG', () => {
     expect(await page.textContent('#test-loader')).toBe('{"test":"hello"}')
 
     await page.click('#go-to-sub')
-    await new Promise((res) => setTimeout(res, 100))
+    await new Promise((res) => setTimeout(res, 500))
 
     expect(page.url()).toBe(`${serverUrl}/sub-page/sub`)
 
