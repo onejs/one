@@ -7,6 +7,7 @@ type RootProps = Omit<InnerProps, 'context'> & {
     path: string;
     isClient?: boolean;
     routes: GlobbedRouteImports;
+    routerRoot: string;
     routeOptions?: One.RouteOptions;
     flags?: One.Flags;
 };

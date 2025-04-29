@@ -113,6 +113,10 @@ export namespace One {
     transform?: GetTransform
 
     router?: {
+      /**
+       * Dangerously customize the router root directory. This may lead to unexpected behavior.
+       */
+      root?: string;
       experimental?: {
         /**
          * If enabled, the router will try to avoid unnecessary remounts of _layout components.

@@ -5,13 +5,13 @@ import { globbedRoutesToRouteContext } from '../router/useViteRoutes'
 import { globDir } from '../utils/globDir'
 import { getTypedRoutesDeclarationFile } from './getTypedRoutesDeclarationFile'
 
-export async function generateRouteTypes(outFile: string) {
+export async function generateRouteTypes(outFile: string, routerRoot: string) {
   const routePaths = globDir('app')
   const routes = routePaths.reduce((acc, cur) => {
     acc[cur] = {}
     return acc
   }, {})
-  const context = globbedRoutesToRouteContext(routes)
+  const context = globbedRoutesToRouteContext(routes, routerRoot)
   const declarations = getTypedRoutesDeclarationFile(context)
   await FSExtra.ensureDir(dirname(outFile))
   await writeFile(outFile, declarations)

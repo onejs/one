@@ -8,6 +8,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { autoDepOptimizePlugin, getOptimizeDeps, getOptionsFilled, loadEnv } from 'vxrn'
 import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
+import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
 import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
@@ -449,6 +450,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     experimentalPreventLayoutRemounting: options.router?.experimental?.preventLayoutRemounting,
   }
 
+  const routerRoot = getRouterRootFromOneOptions(options)
+
   return [
     ...devAndProdPlugins,
     ...nativeWebDevAndProdPlugsin,
@@ -465,7 +468,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     createVirtualEntry({
       ...options,
       flags,
-      root: 'app',
+      root: routerRoot,
     }),
 
     {

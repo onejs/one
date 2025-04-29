@@ -21,6 +21,7 @@ import { loadUserOneOptions } from '../vite/loadConfig'
 import { runWithAsyncLocalContext } from '../vite/one-server-only'
 import type { One, RouteInfo } from '../vite/types'
 import { buildVercelOutputDirectory } from '../vercel/build/buildVercelOutputDirectory'
+import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
@@ -49,6 +50,9 @@ export async function build(args: {
   }
 
   const { oneOptions } = await loadUserOneOptions('build')
+  const routerRoot = getRouterRootFromOneOptions(oneOptions)
+  const routerRootRegexp = new RegExp(`^${routerRoot}`)
+
   const manifest = getManifest()!
 
   const serverOutputFormat =
@@ -252,13 +256,11 @@ export async function build(args: {
     }
 
     // temp we should use manifest but lets just filter out non-app dir stuff
-    if (!id.includes('/app/')) {
+    if (!id.includes(`/${routerRoot}/`)) {
       continue
     }
 
-    const relativeId = relative(process.cwd(), id)
-      // TODO hardcoded app
-      .replace('app/', '/')
+    const relativeId = relative(process.cwd(), id).replace(`${routerRoot}/`, '/')
 
     const onlyBuild = vxrnOutput.buildArgs?.only
     if (onlyBuild) {
@@ -281,7 +283,7 @@ export async function build(args: {
     const clientManifestEntry = vxrnOutput.clientManifest[clientManifestKey]
 
     const foundRoute = manifest.pageRoutes.find((route: RouteInfo<string>) => {
-      return route.file && clientManifestKey.replace(/^app/, '') === route.file.slice(1)
+      return route.file && clientManifestKey.replace(routerRootRegexp, '') === route.file.slice(1)
     })
 
     if (!foundRoute) {
@@ -329,8 +331,7 @@ export async function build(args: {
     // TODO isn't this getting all layouts not just the ones for this route?
     const layoutEntries =
       foundRoute.layouts?.flatMap((layout) => {
-        // TODO hardcoded app/
-        const clientKey = `app${layout.contextKey.slice(1)}`
+        const clientKey = `${routerRoot}${layout.contextKey.slice(1)}`
         return vxrnOutput.clientManifest[clientKey]
       }) ?? []
 
