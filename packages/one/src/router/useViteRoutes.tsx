@@ -9,6 +9,7 @@ let context
 // for some reason putting it in state doesnt even re-render
 export function useViteRoutes(
   routes: GlobbedRouteImports,
+  routerRoot: string,
   options?: One.RouteOptions,
   version?: number
 ) {
@@ -19,21 +20,22 @@ export function useViteRoutes(
   }
 
   if (!context) {
-    loadRoutes(routes, options)
+    loadRoutes(routes, routerRoot, options)
   }
 
   return context
 }
 
-export function loadRoutes(paths: GlobbedRouteImports, options?: One.RouteOptions) {
+export function loadRoutes(paths: GlobbedRouteImports, routerRoot: string, options?: One.RouteOptions) {
   if (context) return context
   globalThis['__importMetaGlobbed'] = paths
-  context = globbedRoutesToRouteContext(paths, options)
+  context = globbedRoutesToRouteContext(paths, routerRoot, options)
   return context
 }
 
 export function globbedRoutesToRouteContext(
   paths: GlobbedRouteImports,
+  routerRoot: string,
   options?: One.RouteOptions
 ): One.RouteContext {
   // make it look like webpack context
@@ -48,7 +50,7 @@ export function globbedRoutesToRouteContext(
       return
     }
     const loadRouteFunction = paths[path]
-    const pathWithoutRelative = path.replace('/app/', './')
+    const pathWithoutRelative = path.replace(`/${routerRoot}/`, './')
 
     const originalPath = pathWithoutRelative.slice(1).replace(/\.[jt]sx?$/, '')
     if (options?.routeModes?.[originalPath] === 'spa') {

@@ -3,6 +3,7 @@ import { debounce } from 'perfect-debounce'
 import type { Plugin } from 'vite'
 import type { One } from '../types'
 import { generateRouteTypes } from '../../typed-routes/generateRouteTypes'
+import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
 
 export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): Plugin {
   return {
@@ -14,12 +15,14 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
       const appDir = join(process.cwd(), 'app')
       const outFile = join(process.cwd(), 'routes.d.ts')
 
+      const routerRoot = getRouterRootFromOneOptions(options)
+
       // on change ./app stuff lets reload this to pick up any route changes
       const fileWatcherChangeListener = debounce(async (type: string, path: string) => {
         if (type === 'add' || type === 'delete') {
           if (path.startsWith(appDir)) {
             // generate
-            generateRouteTypes(outFile)
+            generateRouteTypes(outFile, routerRoot)
           }
         }
       }, 100)
@@ -29,7 +32,7 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
       return () => {
         // once on startup:
 
-        generateRouteTypes(outFile)
+        generateRouteTypes(outFile, routerRoot)
       }
     },
   } satisfies Plugin

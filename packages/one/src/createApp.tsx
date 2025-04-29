@@ -17,6 +17,7 @@ import { cloneElement } from 'react'
 
 export type CreateAppProps = {
   routes: Record<string, () => Promise<unknown>>
+  routerRoot: string
   flags?: One.Flags
 }
 
@@ -45,6 +46,7 @@ export function createApp(options: CreateAppProps) {
                 renderId = id
               }}
               routes={options.routes}
+              routerRoot={options.routerRoot}
               {...props}
             />
           )
@@ -116,7 +118,8 @@ export function createApp(options: CreateAppProps) {
   }
 
   // run their root layout before calling resolveClientLoader so they can register hook
-  const rootLayoutImport = options.routes['/app/_layout.tsx']?.()
+  const rootLayoutImport =
+    options.routes[`/${options.routerRoot}/_layout.tsx`]?.()
 
   return rootLayoutImport
     .then(() => {
@@ -128,6 +131,7 @@ export function createApp(options: CreateAppProps) {
               isClient
               flags={options.flags}
               routes={options.routes}
+              routerRoot={options.routerRoot}
               path={window.location.href}
             />
           )

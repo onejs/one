@@ -3,11 +3,7 @@ import type { One } from './vite/types'
 import './polyfills-mobile'
 import { Root } from './Root'
 import './setup'
-
-export type CreateAppProps = {
-  routes: Record<string, () => Promise<unknown>>
-  flags?: One.Flags
-}
+import type { CreateAppProps } from './createApp'
 
 // TODO temporary
 LogBox.ignoreLogs([/Sending .* with no listeners registered/])
@@ -15,7 +11,13 @@ LogBox.ignoreLogs([/Sending .* with no listeners registered/])
 export function createApp(options: CreateAppProps): void {
   const App = () => {
     let contents = (
-      <Root isClient flags={options.flags} routes={options.routes} path="/" />
+      <Root
+        isClient
+        flags={options.flags}
+        routes={options.routes}
+        routerRoot={options.routerRoot}
+        path="/"
+      />
     )
 
     return contents

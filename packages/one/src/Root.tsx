@@ -35,6 +35,7 @@ type RootProps = Omit<InnerProps, 'context'> & {
   path: string
   isClient?: boolean
   routes: GlobbedRouteImports
+  routerRoot: string
   routeOptions?: One.RouteOptions
   flags?: One.Flags
 }
@@ -68,7 +69,7 @@ export function Root(props: RootProps) {
   const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } =
     props
 
-  const context = useViteRoutes(routes, routeOptions, globalThis['__vxrnVersion'])
+  const context = useViteRoutes(routes, props.routerRoot, routeOptions, globalThis['__vxrnVersion'])
   const location =
     typeof window !== 'undefined' && window.location
       ? new URL(path || window.location.href || '/', window.location.href)
