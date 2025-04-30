@@ -17,6 +17,7 @@ export type RouteInfo<TRegex = string> = {
   loaderPath?: string
   loaderServerPath?: string
   urlPath: string
+  urlCleanPath: string
   routeKeys: Record<string, string>
   layouts?: RouteNode[]
   middlewares?: RouteNode[]

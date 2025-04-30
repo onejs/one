@@ -55,6 +55,15 @@ export const buildVercelOutputDirectory = async ({
           oneOptionsRoot,
           postBuildLogs
         )
+
+        if (route.page !== route.urlCleanPath ) {
+          await createApiServerlessFunction(
+            route.urlCleanPath,
+            compiledRoute.code,
+            oneOptionsRoot,
+            postBuildLogs
+          )
+        }
       } else {
         console.warn('\n 🔨[one.build][vercel] apiRoute missing code compilation for', route.file)
       }
