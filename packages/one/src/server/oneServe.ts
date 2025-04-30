@@ -251,7 +251,7 @@ url: ${url}`)
     app.get(route.urlPath, createHonoHandler(route))
 
     if (route.urlPath !== route.urlCleanPath) {
-      app.get(route.urlPath, createHonoHandler(route))
+      app.get(route.urlCleanPath, createHonoHandler(route))
     }
   }
 
