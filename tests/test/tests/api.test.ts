@@ -137,4 +137,15 @@ describe(`API Tests`, () => {
       expect(data.data).toEqual({ key: 'value', description: 'This is the JSON response data' })
     })
   })
+
+  describe('GET /api/api-under-group', () => {
+    it('should work', async () => {
+      const url = `${serverUrl}/api/api-under-group`
+      const response = await fetch(url)
+      const data = await response.json()
+
+      expect(response.status).toBe(200)
+      expect(data.api).toBe('works')
+    })
+  })
 })

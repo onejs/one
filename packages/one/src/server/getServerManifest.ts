@@ -139,6 +139,7 @@ function getRouteEntry(normalizedRoute: string, node: RouteNode): OneRouterServe
     type: node.type,
     namedRegex: result.namedRegex,
     urlPath: result.urlPath,
+    urlCleanPath: result.urlCleanPath,
     routeKeys: result.routeKeys,
     layouts: node.layouts,
     middlewares: node.middlewares,
@@ -190,7 +191,7 @@ function getPathMeta(route: string) {
   const getSafeRouteKey = buildGetSafeRouteKey()
   const routeKeys: Record<string, string> = {}
 
-  let urlPath = ''
+  const urlPathParts: Array<{ content: string; type?: 'group' }> = []
 
   const routeSegments = segments
     .map((segment, index) => {
@@ -221,7 +222,7 @@ function getPathMeta(route: string) {
           cleanedKey = getSafeRouteKey()
         }
 
-        urlPath += repeat ? '/*' : `/:${name}${optional ? '?' : ''}`
+        urlPathParts.push({ content: repeat ? '/*' : `/:${name}${optional ? '?' : ''}` })
         routeKeys[cleanedKey] = name
 
         return repeat
@@ -237,7 +238,7 @@ function getPathMeta(route: string) {
           .map((group) => group.trim())
           .filter(Boolean)
 
-        urlPath += `/:${groupName}?`
+        urlPathParts.push({ content: `/:${groupName}?`, type: 'group' })
 
         if (groupName.length > 1) {
           const optionalSegment = `\\((?:${groupName.map(escapeStringRegexp).join('|')})\\)`
@@ -250,15 +251,22 @@ function getPathMeta(route: string) {
         return `(?:/${escapeStringRegexp(segment)})?`
       }
 
-      urlPath += `/${segment}`
+      urlPathParts.push({ content: `/${segment}` })
 
       return `/${escapeStringRegexp(segment)}`
     })
     .join('')
 
+  const urlPath = urlPathParts.map((p) => p.content).join('')
+  const urlCleanPath = urlPathParts
+    .filter((p) => p.type !== 'group')
+    .map((p) => p.content)
+    .join('')
+
   return {
     namedRegex: `^${routeSegments}(?:/)?$`,
     urlPath: urlPath === '' ? '/' : urlPath,
+    urlCleanPath: urlCleanPath === '' ? '/' : urlCleanPath,
     routeKeys,
   }
 }
