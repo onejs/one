@@ -16,7 +16,7 @@ afterAll(async () => {
   await browser.close()
 })
 
-test('basic', async () => {
+test('index page', async () => {
   const page = await context.newPage()
   await page.goto(serverUrl + '/')
 
@@ -26,3 +26,30 @@ test('basic', async () => {
 
   await page.close()
 })
+
+test('api', async () => {
+  const res = await fetchThing('/api', 'json')
+  expect(res).toMatchInlineSnapshot(`
+    {
+      "api": "works under app-cases/basic/app",
+    }
+  `)
+})
+
+test('middleware', async () => {
+  const res = await fetchThing('/?test-middleware', 'json')
+  expect(res).toMatchInlineSnapshot(`
+    {
+      "middleware": "works under app-cases/basic/app",
+    }
+  `)
+})
+
+async function fetchThing(path = '/', type: 'text' | 'json' | 'headers') {
+  return await fetch(`${process.env.ONE_SERVER_URL}${path}`).then((res) => {
+    if (type === 'headers') {
+      return res.headers
+    }
+    return res[type]()
+  })
+}
