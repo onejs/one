@@ -63,6 +63,7 @@ export async function buildBundle(
   let nativeEntry: string | undefined = undefined
 
   // If there's an `app` directory, then we assume that the user is using One.
+  // FIXME: should use a better way to detect this.
   const appDir = path.join(root, 'app')
   if (FSExtra.existsSync(appDir) && FSExtra.statSync(appDir).isDirectory()) {
     console.info('One project detected. Using One virtual entry.')

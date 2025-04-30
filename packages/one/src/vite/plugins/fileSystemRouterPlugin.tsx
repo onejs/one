@@ -15,6 +15,7 @@ import { replaceLoader } from '../../vite/replaceLoader'
 import type { One } from '../../vite/types'
 import { setServerContext } from '../one-server-only'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
+import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -30,6 +31,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
   let renderPromise: Promise<void> | null = null
 
   function createRequestHandler() {
+    const routerRoot = getRouterRootFromOneOptions(options)
     return createHandleRequest({
       async handlePage({ route, url, loaderProps }) {
         console.info(
@@ -61,7 +63,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         renderPromise = promise
 
         try {
-          const routeFile = join('app', route.file)
+          const routeFile = join(routerRoot, route.file)
           runner.clearCache()
 
           globalThis['__vxrnresetState']?.()
@@ -142,7 +144,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       },
 
       async handleLoader({ request, route, url, loaderProps }) {
-        const routeFile = join('app', route.file)
+        const routeFile = join(routerRoot, route.file)
 
         // this will remove all loaders
         let transformedJS = (await server.transformRequest(routeFile))?.code
@@ -181,13 +183,13 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
       },
 
       async handleAPI({ route }) {
-        return await runner.import(join('app', route.file))
+        return await runner.import(join(routerRoot, route.file))
       },
 
       async loadMiddleware(route) {
-        return await runner.import(join('app', route.contextKey))
+        return await runner.import(join(routerRoot, route.contextKey))
       },
-    })
+    }, { routerRoot })
   }
 
   return {
@@ -287,7 +289,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
         USE_SERVER_ENV ? server.environments.server : server.environments.ssr
       )
 
-      const appDir = join(process.cwd(), 'app')
+      const appDir = join(process.cwd(), getRouterRootFromOneOptions(options))
 
       // on change ./app stuff lets reload this to pick up any route changes
       const fileWatcherChangeListener = debounce(async (type: string, path: string) => {

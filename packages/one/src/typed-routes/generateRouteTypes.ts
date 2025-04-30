@@ -6,7 +6,7 @@ import { globDir } from '../utils/globDir'
 import { getTypedRoutesDeclarationFile } from './getTypedRoutesDeclarationFile'
 
 export async function generateRouteTypes(outFile: string, routerRoot: string) {
-  const routePaths = globDir('app')
+  const routePaths = globDir(routerRoot)
   const routes = routePaths.reduce((acc, cur) => {
     acc[cur] = {}
     return acc

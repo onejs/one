@@ -26,7 +26,9 @@ export declare function compileManifest(manifest: {
     pageRoutes: RouteInfoCompiled[];
     apiRoutes: RouteInfoCompiled[];
 };
-export declare function createHandleRequest(handlers: RequestHandlers): {
+export declare function createHandleRequest(handlers: RequestHandlers, { routerRoot }: {
+    routerRoot: string;
+}): {
     manifest: import("./server/createRoutesManifest").RoutesManifest<string>;
     handler: (request: Request) => Promise<RequestHandlerResponse>;
 };
