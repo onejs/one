@@ -237,10 +237,22 @@ url: ${url}`)
     app.post(route.urlPath, createHonoHandler(route))
     app.delete(route.urlPath, createHonoHandler(route))
     app.patch(route.urlPath, createHonoHandler(route))
+
+    if (route.urlPath !== route.urlCleanPath) {
+      app.get(route.urlCleanPath, createHonoHandler(route))
+      app.put(route.urlCleanPath, createHonoHandler(route))
+      app.post(route.urlCleanPath, createHonoHandler(route))
+      app.delete(route.urlCleanPath, createHonoHandler(route))
+      app.patch(route.urlCleanPath, createHonoHandler(route))
+    }
   }
 
   for (const route of compiledManifest.pageRoutes) {
     app.get(route.urlPath, createHonoHandler(route))
+
+    if (route.urlPath !== route.urlCleanPath) {
+      app.get(route.urlPath, createHonoHandler(route))
+    }
   }
 
   const { preloads } = buildInfo
