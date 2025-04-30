@@ -12,7 +12,7 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
     apply: 'serve',
 
     configureServer(server) {
-      const appDir = join(process.cwd(), 'app')
+      const appDir = join(process.cwd(), getRouterRootFromOneOptions(options))
       const outFile = join(process.cwd(), 'routes.d.ts')
 
       const routerRoot = getRouterRootFromOneOptions(options)

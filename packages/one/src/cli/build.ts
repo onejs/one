@@ -53,7 +53,7 @@ export async function build(args: {
   const routerRoot = getRouterRootFromOneOptions(oneOptions)
   const routerRootRegexp = new RegExp(`^${routerRoot}`)
 
-  const manifest = getManifest()!
+  const manifest = getManifest({ routerRoot })!
 
   const serverOutputFormat =
     oneOptions.build?.server === false ? 'esm' : (oneOptions.build?.server?.outputFormat ?? 'esm')
@@ -101,7 +101,7 @@ export async function build(args: {
 
   async function buildCustomRoutes(subFolder: string, routes: RouteInfo<string>[]) {
     const input = routes.reduce((entries, { page, file }) => {
-      entries[page.slice(1) + '.js'] = join('app', file)
+      entries[page.slice(1) + '.js'] = join(routerRoot, file)
       return entries
     }, {}) as Record<string, string>
 
@@ -212,7 +212,7 @@ export async function build(args: {
 
     for (const middleware of manifest.middlewareRoutes) {
       const absoluteRoot = resolve(process.cwd(), options.root)
-      const fullPath = join(absoluteRoot, 'app', middleware.file)
+      const fullPath = join(absoluteRoot, routerRoot, middleware.file)
       const outChunks = middlewareBuildInfo.output.filter((x) => x.type === 'chunk')
       const chunk = outChunks.find((x) => x.facadeModuleId === fullPath)
       if (!chunk) throw new Error(`internal err finding middleware`)
