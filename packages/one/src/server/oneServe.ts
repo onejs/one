@@ -2,7 +2,7 @@ import { default as FSExtra } from 'fs-extra'
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
 import { extname, join } from 'node:path'
-import { getServerEntry } from 'vxrn/serve'
+import { getServerEntry, serveStatic } from 'vxrn/serve'
 import { LOADER_JS_POSTFIX_UNCACHED, PRELOAD_JS_POSTFIX } from '../constants'
 import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
@@ -135,6 +135,23 @@ url: ${url}`)
 
   function createHonoHandler(route: RouteInfoCompiled): MiddlewareHandler<BlankEnv, never, {}> {
     return async (context, next) => {
+      if (route.page.endsWith('/+not-found')) {
+        let didCallNext = false
+
+        const response = await serveStatic({
+          root: './dist/client',
+          onFound: (_path, c) => {
+            c.header('Cache-Control', `public, immutable, max-age=31536000`)
+          },
+        })(context, async () => {
+          didCallNext = true
+        })
+
+        if (response && !didCallNext) {
+          return response
+        }
+      }
+
       try {
         const request = context.req.raw
 
