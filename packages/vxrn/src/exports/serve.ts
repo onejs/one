@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+export { serveStatic } from '@hono/node-server/serve-static'
 import type { VXRNServeOptions } from '../types'
 import { createProdServer } from './createServer'
 

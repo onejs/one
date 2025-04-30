@@ -1,3 +1,4 @@
+export { serveStatic } from '@hono/node-server/serve-static';
 import type { VXRNServeOptions } from '../types';
 export { loadEnv } from '../exports/loadEnv';
 export * from '../utils/getServerEntry';
