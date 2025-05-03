@@ -17,6 +17,7 @@ export type OneRouterServerManifestV1<TRegex = string> = {
     apiRoutes: OneRouterServerManifestV1Route<TRegex>[];
     middlewareRoutes: OneRouterServerManifestV1Route<TRegex>[];
     pageRoutes: OneRouterServerManifestV1Route<TRegex>[];
+    allRoutes: OneRouterServerManifestV1Route<TRegex>[];
 };
 export interface Group {
     pos: number;

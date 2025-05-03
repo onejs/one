@@ -8,7 +8,7 @@ import { createApiServerlessFunction } from './generate/createApiServerlessFunct
 import { createSsrServerlessFunction } from './generate/createSsrServerlessFunction'
 import { serverlessVercelNodeJsConfig } from './config/vc-config-base'
 import { serverlessVercelPackageJson } from './config/vc-package-base'
-import { vercelBuildOutputConfig } from './config/vc-build-output-config-base'
+import { vercelBuildOutputConfigBase } from './config/vc-build-output-config-base'
 
 import type { One } from '../../vite/types'
 
@@ -49,21 +49,21 @@ export const buildVercelOutputDirectory = async ({
         postBuildLogs.push(
           `[one.build][vercel] generating serverless function for apiRoute ${route.page}`
         )
+
+        // @zetavg: don't think we actually need this one
+        // await createApiServerlessFunction(
+        //   route.page,
+        //   compiledRoute.code,
+        //   oneOptionsRoot,
+        //   postBuildLogs
+        // )
+
         await createApiServerlessFunction(
-          route.page,
+          route.urlCleanPath,
           compiledRoute.code,
           oneOptionsRoot,
           postBuildLogs
         )
-
-        if (route.page !== route.urlCleanPath ) {
-          await createApiServerlessFunction(
-            route.urlCleanPath,
-            compiledRoute.code,
-            oneOptionsRoot,
-            postBuildLogs
-          )
-        }
       } else {
         console.warn('\n 🔨[one.build][vercel] apiRoute missing code compilation for', route.file)
       }
@@ -83,7 +83,7 @@ export const buildVercelOutputDirectory = async ({
             `[one.build][vercel] generate serverless function for ${route.page} with ${route.type}`
           )
           await createSsrServerlessFunction(
-            route.page,
+            route,
             buildInfoForWriting,
             oneOptionsRoot,
             postBuildLogs
@@ -134,6 +134,22 @@ export const buildVercelOutputDirectory = async ({
   // Documentation - Vercel Build Output v3 config.json
   //   https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
   const vercelConfigFilePath = resolve(join(oneOptionsRoot, '.vercel/output', 'config.json'))
-  await writeJSON(vercelConfigFilePath, vercelBuildOutputConfig)
+  await writeJSON(vercelConfigFilePath, {
+    ...vercelBuildOutputConfigBase,
+    routes: [
+      ...vercelBuildOutputConfigBase.routes,
+      {
+        handle: 'rewrite',
+      },
+      ...buildInfoForWriting.manifest.allRoutes
+        .filter((r) => r.routeKeys && Object.keys(r.routeKeys).length > 0)
+        .map((r) => ({
+          src: r.namedRegex,
+          dest: `${r.urlCleanPath}?${Object.entries(r.routeKeys)
+            .map(([k, v]) => `${k}=$${v}`)
+            .join('&')}`,
+        })),
+    ],
+  })
   postBuildLogs.push(`[one.build] wrote vercel config to: ${vercelConfigFilePath}`)
 }

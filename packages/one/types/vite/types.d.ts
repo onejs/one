@@ -259,6 +259,7 @@ export declare namespace One {
         manifest: {
             pageRoutes: RouteInfo[];
             apiRoutes: RouteInfo[];
+            allRoutes: RouteInfo[];
         };
         preloads: Record<string, boolean>;
         loaders: Record<string, boolean>;
