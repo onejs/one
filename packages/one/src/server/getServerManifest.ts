@@ -22,6 +22,7 @@ export type OneRouterServerManifestV1<TRegex = string> = {
   apiRoutes: OneRouterServerManifestV1Route<TRegex>[]
   middlewareRoutes: OneRouterServerManifestV1Route<TRegex>[]
   pageRoutes: OneRouterServerManifestV1Route<TRegex>[]
+  allRoutes: OneRouterServerManifestV1Route<TRegex>[]
 }
 
 export interface Group {
@@ -94,12 +95,15 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
   const apiRoutes: OneRouterServerManifestV1Route[] = []
   const middlewareRoutes: OneRouterServerManifestV1Route[] = []
   const pageRoutes: OneRouterServerManifestV1Route[] = []
+  const allRoutes: OneRouterServerManifestV1Route[] = []
 
   const addedMiddlewares: Record<string, boolean> = {}
 
   for (const [path, node] of flat) {
     if (node.type === 'api') {
-      apiRoutes.push(getGeneratedNamedRouteRegex(path, node))
+      const route = getGeneratedNamedRouteRegex(path, node)
+      apiRoutes.push(route)
+      allRoutes.push(route)
       continue
     }
 
@@ -112,13 +116,16 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
       }
     }
 
-    pageRoutes.push(getGeneratedNamedRouteRegex(path, node))
+    const route = getGeneratedNamedRouteRegex(path, node)
+    pageRoutes.push(route)
+    allRoutes.push(route)
   }
 
   return {
     apiRoutes,
     middlewareRoutes,
     pageRoutes,
+    allRoutes,
   }
 }
 

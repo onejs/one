@@ -302,6 +302,7 @@ export namespace One {
     manifest: {
       pageRoutes: RouteInfo[]
       apiRoutes: RouteInfo[]
+      allRoutes: RouteInfo[]
     }
 
     // for quick checking if preload exists

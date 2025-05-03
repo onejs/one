@@ -2,21 +2,23 @@ import fs from 'fs-extra'
 import { join, resolve } from 'node:path'
 import { serverlessVercelNodeJsConfig } from '../config/vc-config-base'
 import { serverlessVercelPackageJson } from '../config/vc-package-base'
-import type { One } from '../../../vite/types'
+import type { One, RouteInfo } from '../../../vite/types'
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
 export async function createSsrServerlessFunction(
-  pageName: string,
+  route: RouteInfo<string>,
   buildInfo: One.BuildInfo,
   oneOptionsRoot: string,
   postBuildLogs: string[]
 ) {
+  const { page: pageName, urlCleanPath: pagePath } = route
+
   try {
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`)
 
     const buildInfoAsString = JSON.stringify(buildInfo)
-    const funcFolder = resolve(join(oneOptionsRoot, `.vercel/output/functions/${pageName}.func`))
+    const funcFolder = resolve(join(oneOptionsRoot, `.vercel/output/functions/${pagePath}.func`))
     await fs.ensureDir(funcFolder)
 
     const distServerFrom = resolve(join(oneOptionsRoot, 'dist', 'server'))
@@ -40,6 +42,7 @@ export async function createSsrServerlessFunction(
       `
   const buildInfoConfig = await import('../buildInfo.js');
   const entry = await import('../server/_virtual_one-entry.js');
+  const routeFile = ${JSON.stringify(route.file)}
 
   const handler = async (req, res) => {
     // console.debug("req.url", req.url);
@@ -49,7 +52,7 @@ export async function createSsrServerlessFunction(
       params: Object.fromEntries(url.searchParams.entries())
     }
     const postfix = url.pathname.endsWith('/') ? 'index.tsx' : '+ssr.tsx';
-    const routeFile = \`.\${url.pathname}\${postfix}\`;
+    // const routeFile = \`.\${url.pathname}\${postfix}\`;
     let route = buildInfoConfig.default.routeToBuildInfo[routeFile];
 
     // If we cannot find the route by direct match, try to find it by looking it up in the
