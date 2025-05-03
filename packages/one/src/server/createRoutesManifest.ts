@@ -13,6 +13,7 @@ export type RoutesManifest<TRegex = string> = {
   apiRoutes: RouteInfo<TRegex>[]
   middlewareRoutes: RouteInfo<TRegex>[]
   pageRoutes: RouteInfo<TRegex>[]
+  allRoutes: RouteInfo<TRegex>[]
 }
 
 function createMockModuleWithContext(map: string[] = []) {

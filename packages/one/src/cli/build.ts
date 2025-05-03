@@ -506,6 +506,7 @@ export async function build(args: {
     manifest: {
       pageRoutes: manifest.pageRoutes.map(createBuildManifestRoute),
       apiRoutes: manifest.apiRoutes.map(createBuildManifestRoute),
+      allRoutes: manifest.allRoutes.map(createBuildManifestRoute),
     },
     routeMap,
     constants: JSON.parse(JSON.stringify({ ...constants })) as any,

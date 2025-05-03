@@ -1,8 +1,5 @@
-export declare const vercelBuildOutputConfig: {
+export declare const vercelBuildOutputConfigBase: {
     version: number;
-    routes: {
-        src: string;
-        status: number;
-    }[];
+    routes: never[];
 };
 //# sourceMappingURL=vc-build-output-config-base.d.ts.map
