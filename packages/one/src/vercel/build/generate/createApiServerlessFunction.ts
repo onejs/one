@@ -1,4 +1,6 @@
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
+import FSExtra from 'fs-extra'
+import { resolvePath } from '@vxrn/resolve'
 
 import parser from '@babel/parser'
 import traverse from '@babel/traverse'
@@ -32,17 +34,18 @@ export async function createApiServerlessFunction(
       postBuildLogs.push(
         `[one.build][vercel.createSsrServerlessFunction] detected react in depenency tree for ${path}`
       )
-      await fs.copy(
-        resolve(join(oneOptionsRoot, '..', '..', 'node_modules', 'react')),
-        resolve(join(funcFolder, 'node_modules', 'react'))
-      )
+      const reactPath = dirname(resolvePath('react/package.json', oneOptionsRoot))
+      await fs.copy(resolve(reactPath), resolve(join(funcFolder, 'node_modules', 'react')))
     }
 
     const distAssetsFolder = resolve(join(funcFolder, 'assets'))
     postBuildLogs.push(
       `[one.build][vercel.createSsrServerlessFunction] copy shared assets to ${distAssetsFolder}`
     )
-    await fs.copy(resolve(join(oneOptionsRoot, 'dist', 'api', 'assets')), distAssetsFolder)
+    const sourceAssetsFolder = resolve(join(oneOptionsRoot, 'dist', 'api', 'assets'))
+    if (await FSExtra.pathExists(sourceAssetsFolder)) {
+      await fs.copy(sourceAssetsFolder, distAssetsFolder)
+    }
 
     await fs.ensureDir(resolve(join(funcFolder, 'entrypoint')))
     const entrypointFilePath = resolve(join(funcFolder, 'entrypoint', 'index.js'))
