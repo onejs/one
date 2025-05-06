@@ -63,7 +63,9 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
         return [key]
       })
 
-      key = parentSegments + getContextKey(route.route).replace(/\/index$/, '') || '/'
+      key =
+        (parentSegments ? parentSegments.join('') : '') +
+          getContextKey(route.route).replace(/\/index$/, '') || '/'
     }
 
     return [[key, { ...route, layouts }]]
