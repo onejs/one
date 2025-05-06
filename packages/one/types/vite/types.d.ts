@@ -209,7 +209,7 @@ export declare namespace One {
              */
             redirects?: Redirect[];
             /**
-             * Can be one of "node" or "vercel", this will determine the Hono adapter and build to run
+             * Can be one of "node" or "vercel" ("vercel" support is experimental and currently not recommended for production use), this will determine the Hono adapter and build to run
              * properly in production for each platform.
              *
              * @default node
