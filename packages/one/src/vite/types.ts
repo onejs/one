@@ -117,7 +117,7 @@ export namespace One {
       /**
        * Dangerously customize the router root directory. This may lead to unexpected behavior.
        */
-      root?: string;
+      root?: string
       experimental?: {
         /**
          * If enabled, the router will try to avoid unnecessary remounts of _layout components.
@@ -245,7 +245,7 @@ export namespace One {
       redirects?: Redirect[]
 
       /**
-       * Can be one of "node" or "vercel", this will determine the Hono adapter and build to run
+       * Can be one of "node" or "vercel" ("vercel" support is experimental and currently not recommended for production use), this will determine the Hono adapter and build to run
        * properly in production for each platform.
        *
        * @default node
