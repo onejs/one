@@ -1,4 +1,4 @@
-import { configureVXRNCompilerPlugin, clearCompilerCache } from '@vxrn/compiler'
+import { clearCompilerCache, configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import events from 'node:events'
 import path from 'node:path'
@@ -87,7 +87,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     barrelOption === false
       ? null
       : (barrel({
-          packages: Array.isArray(barrelOption) ? barrelOption : ['@tamagui/lucide-icons'],
+          packages: Array.isArray(barrelOption) ? barrelOption : [],
         }) as any),
 
     {
