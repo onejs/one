@@ -70,7 +70,7 @@ API routes have a few standard exports. The default export acts as a catch-all:
 
 ```tsx
 export default (request: Request): Response => {
-  return new Response.json({
+  return Response.json({
     hello: 'world'
   })
 }
@@ -84,20 +84,20 @@ You may also export a function for each of the supported HTTP types:
 
 ```tsx
 export const GET = (request: Request): Response => {
-  return new Response.json({
+  return Response.json({
     hello: 'world'
   })
 }
 ```
 
-One exports a type helper called `Handler` that you can use to make typing easier:
+One exports a type helper called `Endpoint` that you can use to make typing easier:
 
 ```tsx
-import { Handler } from 'one'
+import { Endpoint } from 'one'
 
 // this route will be typed as "(request: Request) => Response | Promise<Response>"
-export const GET: Handler = (request) => {
-  return new Response.json({
+export const GET: Endpoint = (request) => {
+  return Response.json({
     hello: 'world'
   })
 }
