@@ -86,7 +86,8 @@ export function createBetterAuthClient<Opts extends ClientOptions>(
   let disposeSessionSub: Function | null = null
   function subscribeToAuthClientSession() {
     disposeSessionSub?.()
-    disposeSessionSub = authClient.useSession.subscribe(async ({ data, error }) => {
+    disposeSessionSub = authClient.useSession.subscribe(async ({ data, error, isPending }) => {
+      loading = isPending;
       if (error) {
         console.error(`Auth error`, error)
       }
@@ -140,7 +141,6 @@ export function createBetterAuthClient<Opts extends ClientOptions>(
 
   function setState(next: Partial<State>) {
     const current = authState.value!
-    loading = false
     authState.emit({ ...current, ...next })
   }
 
