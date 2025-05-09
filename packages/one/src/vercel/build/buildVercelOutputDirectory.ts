@@ -11,6 +11,7 @@ import { serverlessVercelPackageJson } from './config/vc-package-base'
 import { vercelBuildOutputConfigBase } from './config/vc-build-output-config-base'
 
 import type { One } from '../../vite/types'
+import { getPathFromRoute } from './getPathFromRoute'
 
 const { copy, ensureDir, existsSync, writeJSON } = FSExtra
 
@@ -50,20 +51,7 @@ export const buildVercelOutputDirectory = async ({
           `[one.build][vercel] generating serverless function for apiRoute ${route.page}`
         )
 
-        // @zetavg: don't think we actually need this one
-        // await createApiServerlessFunction(
-        //   route.page,
-        //   compiledRoute.code,
-        //   oneOptionsRoot,
-        //   postBuildLogs
-        // )
-
-        await createApiServerlessFunction(
-          route.urlCleanPath,
-          compiledRoute.code,
-          oneOptionsRoot,
-          postBuildLogs
-        )
+        await createApiServerlessFunction(route, compiledRoute.code, oneOptionsRoot, postBuildLogs)
       } else {
         console.warn('\n 🔨[one.build][vercel] apiRoute missing code compilation for', route.file)
       }
@@ -145,12 +133,9 @@ export const buildVercelOutputDirectory = async ({
         .filter((r) => r.routeKeys && Object.keys(r.routeKeys).length > 0)
         .map((r) => ({
           src: r.namedRegex,
-          dest: `${
-            r.urlCleanPath.replace(
-              /\?/gm,
-              '%3F'
-            ) /* Handle dynamic routes like /route/:dynamic-part?/page */
-          }?${Object.entries(r.routeKeys)
+          dest: `${getPathFromRoute(r)}?${Object.entries(
+            r.routeKeys
+          )
             .map(([k, v]) => `${k}=$${v}`)
             .join('&')}`,
         })),

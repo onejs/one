@@ -6,27 +6,31 @@ import t from '@babel/types'
 import generator from '@babel/generator'
 
 import fs from 'fs-extra'
+import type { RouteInfo } from '../../../vite/types'
 
 import { serverlessVercelPackageJson } from '../config/vc-package-base'
 import { serverlessVercelNodeJsConfig } from '../config/vc-config-base'
+import { getPathFromRoute } from '../getPathFromRoute'
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
 export async function createApiServerlessFunction(
-  pageName: string,
+  route: RouteInfo<string>,
   code: string,
   oneOptionsRoot: string,
   postBuildLogs: string[]
 ) {
   try {
-    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`)
+    const path = getPathFromRoute(route)
 
-    const funcFolder = join(oneOptionsRoot, `.vercel/output/functions/${pageName}.func`)
+    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${path}`)
+
+    const funcFolder = join(oneOptionsRoot, `.vercel/output/functions/${path}.func`)
     await fs.ensureDir(funcFolder)
 
     if (code.includes('react')) {
       postBuildLogs.push(
-        `[one.build][vercel.createSsrServerlessFunction] detected react in depenency tree for ${pageName}`
+        `[one.build][vercel.createSsrServerlessFunction] detected react in depenency tree for ${path}`
       )
       await fs.copy(
         resolve(join(oneOptionsRoot, '..', '..', 'node_modules', 'react')),
@@ -64,7 +68,7 @@ export async function createApiServerlessFunction(
     })
   } catch (e) {
     console.error(
-      `[one.build][vercel.createSsrServerlessFunction] failed to generate func for ${pageName}`,
+      `[one.build][vercel.createSsrServerlessFunction] failed to generate func for ${route.file}`,
       e
     )
   }

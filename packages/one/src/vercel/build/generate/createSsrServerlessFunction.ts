@@ -3,6 +3,7 @@ import { join, resolve } from 'node:path'
 import { serverlessVercelNodeJsConfig } from '../config/vc-config-base'
 import { serverlessVercelPackageJson } from '../config/vc-package-base'
 import type { One, RouteInfo } from '../../../vite/types'
+import { getPathFromRoute } from '../getPathFromRoute'
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
@@ -12,13 +13,12 @@ export async function createSsrServerlessFunction(
   oneOptionsRoot: string,
   postBuildLogs: string[]
 ) {
-  const { page: pageName, urlCleanPath: pagePath } = route
-
   try {
-    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${pageName}`)
+    const path = getPathFromRoute(route)
+    postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] path: ${path}`)
 
     const buildInfoAsString = JSON.stringify(buildInfo)
-    const funcFolder = resolve(join(oneOptionsRoot, `.vercel/output/functions/${pagePath}.func`))
+    const funcFolder = resolve(join(oneOptionsRoot, `.vercel/output/functions/${path}.func`))
     await fs.ensureDir(funcFolder)
 
     const distServerFrom = resolve(join(oneOptionsRoot, 'dist', 'server'))
@@ -110,7 +110,7 @@ export async function createSsrServerlessFunction(
     })
   } catch (e) {
     console.error(
-      `[one.build][vercel.createSsrServerlessFunction] failed to generate func for ${pageName}`,
+      `[one.build][vercel.createSsrServerlessFunction] failed to generate func for ${route.file}`,
       e
     )
   }
