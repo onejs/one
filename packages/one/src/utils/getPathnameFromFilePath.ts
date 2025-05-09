@@ -1,7 +1,7 @@
 import Path from 'node:path'
 
 export function getPathnameFromFilePath(inputPath: string, params = {}, strict = false) {
-  const path = inputPath.replace(/\+(spa|ssg|ssr)\.tsx?$/, '')
+  const path = inputPath.replace(/\+(spa|ssg|ssr|api)\.tsx?$/, '')
   const dirname = Path.dirname(path).replace(/\([^\/]+\)/gi, '')
   const file = Path.basename(path)
   const fileName = file.replace(/\.[a-z]+$/, '')
