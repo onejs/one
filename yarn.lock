@@ -22469,6 +22469,7 @@ __metadata:
     "@babel/generator": "npm:^7.26.8"
     "@babel/parser": "npm:^7.26.8"
     "@babel/traverse": "npm:^7.26.8"
+    "@babel/types": "npm:^7.26.10"
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@react-native-masked-view/masked-view": "npm:^0.3.1"
     "@react-navigation/bottom-tabs": "npm:~7"
