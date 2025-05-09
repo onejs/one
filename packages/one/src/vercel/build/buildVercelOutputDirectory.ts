@@ -145,7 +145,12 @@ export const buildVercelOutputDirectory = async ({
         .filter((r) => r.routeKeys && Object.keys(r.routeKeys).length > 0)
         .map((r) => ({
           src: r.namedRegex,
-          dest: `${r.urlCleanPath}?${Object.entries(r.routeKeys)
+          dest: `${
+            r.urlCleanPath.replace(
+              /\?/gm,
+              '%3F'
+            ) /* Handle dynamic routes like /route/:dynamic-part?/page */
+          }?${Object.entries(r.routeKeys)
             .map(([k, v]) => `${k}=$${v}`)
             .join('&')}`,
         })),
