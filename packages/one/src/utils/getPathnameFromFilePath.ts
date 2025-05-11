@@ -1,10 +1,15 @@
 import Path from 'node:path'
 
-export function getPathnameFromFilePath(inputPath: string, params = {}, strict = false) {
+export function getPathnameFromFilePath(
+  inputPath: string,
+  params = {},
+  strict = false,
+  options: { preserveExtensions?: boolean } = {}
+) {
   const path = inputPath.replace(/\+(spa|ssg|ssr|api)\.tsx?$/, '')
   const dirname = Path.dirname(path).replace(/\([^\/]+\)/gi, '')
   const file = Path.basename(path)
-  const fileName = file.replace(/\.[a-z]+$/, '')
+  const fileName = options.preserveExtensions ? file : file.replace(/\.[a-z]+$/, '')
 
   function paramsError(part: string) {
     throw new Error(
