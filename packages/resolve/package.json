@@ -2,15 +2,15 @@
   "name": "@vxrn/resolve",
   "version": "1.1.483",
   "sideEffects": false,
-  "source": "src/index.ts",
+  "source": "src/index.tsx",
   "type": "module",
-  "types": "./src/index.tsx",
+  "types": "./types/index.d.ts",
   "main": "dist/cjs",
   "module": "dist/esm",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./src/index.tsx",
+      "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.js"
     }
@@ -20,8 +20,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tamagui-build --skip-types",
-    "watch": "tamagui-build --skip-types --watch",
+    "build": "tamagui-build",
+    "watch": "tamagui-build --watch",
     "lint": "npx biome check src",
     "lint:fix": "npx biome check --write --unsafe src",
     "clean": "tamagui-build clean",
