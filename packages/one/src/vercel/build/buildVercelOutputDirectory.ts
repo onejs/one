@@ -89,7 +89,7 @@ export const buildVercelOutputDirectory = async ({
   const distMiddlewareDir = resolve(join(oneOptionsRoot, 'dist', 'middlewares'))
   if (existsSync(distMiddlewareDir)) {
     const vercelMiddlewareDir = resolve(
-      join(oneOptionsRoot, '.vercel/output/functions/_middleware')
+      join(oneOptionsRoot, '.vercel/output/functions/_middleware.func')
     )
     await ensureDir(vercelMiddlewareDir)
     postBuildLogs.push(
@@ -101,13 +101,35 @@ export const buildVercelOutputDirectory = async ({
       `[one.build][vercel] writing package.json to ${vercelMiddlewarePackageJsonFilePath}`
     )
     await writeJSON(vercelMiddlewarePackageJsonFilePath, serverlessVercelPackageJson)
+    const wrappedMiddlewareEntryPointFilename = '_wrapped_middleware.js'
+    const wrappedMiddlewareEntryPointPath = resolve(
+      join(vercelMiddlewareDir, wrappedMiddlewareEntryPointFilename)
+    )
+    await FSExtra.writeFile(
+      wrappedMiddlewareEntryPointPath,
+      `
+import middlewareFunction from './_middleware.js'
+
+const next = (e) => {
+  const t = new Headers(null == e ? void 0 : e.headers)
+  t.set('x-middleware-next', '1')
+  return new Response(null, { ...e, headers: t })
+}
+
+const wrappedMiddlewareFunction = (request, event) => {
+  return middlewareFunction({ request, event, next })
+}
+
+export { wrappedMiddlewareFunction as default }
+  `
+    )
     const middlewareVercelConfigFilePath = resolve(join(vercelMiddlewareDir, '.vc-config.json'))
     postBuildLogs.push(
       `[one.build][vercel] writing .vc-config.json to ${middlewareVercelConfigFilePath}`
     )
     await writeJSON(middlewareVercelConfigFilePath, {
-      ...serverlessVercelNodeJsConfig,
-      handler: '_middleware.js',
+      runtime: 'edge', // Seems that middlewares only work with edge runtime
+      entrypoint: wrappedMiddlewareEntryPointFilename,
     })
   }
 
@@ -126,6 +148,15 @@ export const buildVercelOutputDirectory = async ({
     ...vercelBuildOutputConfigBase,
     routes: [
       ...vercelBuildOutputConfigBase.routes,
+      ...(existsSync(distMiddlewareDir)
+        ? [
+            {
+              src: '/(.*)',
+              middlewarePath: '_middleware',
+              continue: true,
+            },
+          ]
+        : []),
       {
         handle: 'rewrite',
       },
@@ -133,9 +164,7 @@ export const buildVercelOutputDirectory = async ({
         .filter((r) => r.routeKeys && Object.keys(r.routeKeys).length > 0)
         .map((r) => ({
           src: r.namedRegex,
-          dest: `${getPathFromRoute(r)}?${Object.entries(
-            r.routeKeys
-          )
+          dest: `${getPathFromRoute(r)}?${Object.entries(r.routeKeys)
             .map(([k, v]) => `${k}=$${v}`)
             .join('&')}`,
         })),
