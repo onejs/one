@@ -23,6 +23,7 @@ import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
 import { FlagsContext } from './router/FlagsContext'
+import { RootRouterStateContextProvider } from './router/RootRouterStateContext'
 import type { GlobbedRouteImports } from './types'
 import { ServerRenderID } from './useServerHeadInsertion'
 import { PreloadLinks } from './views/PreloadLinks'
@@ -69,7 +70,12 @@ export function Root(props: RootProps) {
   const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } =
     props
 
-  const context = useViteRoutes(routes, props.routerRoot, routeOptions, globalThis['__vxrnVersion'])
+  const context = useViteRoutes(
+    routes,
+    props.routerRoot,
+    routeOptions,
+    globalThis['__vxrnVersion']
+  )
   const location =
     typeof window !== 'undefined' && window.location
       ? new URL(path || window.location.href || '/', window.location.href)
@@ -119,7 +125,9 @@ export function Root(props: RootProps) {
               <ScrollBehavior />
 
               <RootErrorBoundary>
-                <Component />
+                <RootRouterStateContextProvider>
+                  <Component />
+                </RootRouterStateContextProvider>
               </RootErrorBoundary>
 
               {/* Users can override this by adding another StatusBar element anywhere higher in the component tree. */}
