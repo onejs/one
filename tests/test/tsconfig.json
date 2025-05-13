@@ -49,7 +49,8 @@
     "**/test",
     "**/dist",
     "**/types",
-    "**/__tests__"
+    "**/__tests__",
+    "app-cases" // We need to use a different tsconfig.json for each app-case, since each one will have totally different routes and will have different `routes.d.ts`.
   ],
   "typeAcquisition": {
     "enable": true
