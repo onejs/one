@@ -7,6 +7,7 @@ export { runAndroid } from './exports/runAndroid'
 export { clean } from './exports/clean'
 export { patch } from './exports/patch'
 export { loadEnv } from './exports/loadEnv'
+export { serveStaticAssets } from './exports/serveStaticAssets'
 
 export { type VXRNOptionsFilled, getOptionsFilled, fillOptions } from './utils/getOptionsFilled'
 export * from './utils/getOptimizeDeps'

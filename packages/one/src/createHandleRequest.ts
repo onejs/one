@@ -25,7 +25,7 @@ type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
 
 type RequestHandlerResponse = null | string | Response
 
-async function runMiddlewares(
+export async function runMiddlewares(
   handlers: RequestHandlers,
   request: Request,
   route: RouteInfo,

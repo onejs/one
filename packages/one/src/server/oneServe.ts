@@ -4,12 +4,18 @@ import type { BlankEnv } from 'hono/types'
 import { extname, join } from 'node:path'
 import { getServerEntry, serveStatic } from 'vxrn/serve'
 import { LOADER_JS_POSTFIX_UNCACHED, PRELOAD_JS_POSTFIX } from '../constants'
-import { compileManifest, getURLfromRequestURL, type RequestHandlers } from '../createHandleRequest'
+import {
+  compileManifest,
+  getURLfromRequestURL,
+  runMiddlewares,
+  type RequestHandlers,
+} from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
+import { serveStaticAssets } from 'vxrn'
 
 export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.BuildInfo, app: Hono) {
   const { resolveAPIRoute, resolveLoaderRoute, resolvePageRoute } = await import(
@@ -135,25 +141,24 @@ url: ${url}`)
 
   function createHonoHandler(route: RouteInfoCompiled): MiddlewareHandler<BlankEnv, never, {}> {
     return async (context, next) => {
-      if (route.page.endsWith('/+not-found')) {
-        let didCallNext = false
-
-        const response = await serveStatic({
-          root: './dist/client',
-          onFound: (_path, c) => {
-            c.header('Cache-Control', `public, immutable, max-age=31536000`)
-          },
-        })(context, async () => {
-          didCallNext = true
-        })
-
-        if (response && !didCallNext) {
-          return response
-        }
-      }
-
       try {
         const request = context.req.raw
+
+        if (route.page.endsWith('/+not-found') || Reflect.ownKeys(route.routeKeys).length > 0) {
+          // Static assets should have the highest priority - which is the behavior of the dev server.
+          // But if we handle every matching static asset here, it seems to break some of the static routes.
+          // So we only handle it if there's a matching not-found or dynamic route, to prevent One from taking over the static asset.
+          // If there's no matching not-found or dynamic route, it's very likely that One won't handle it and will fallback to VxRN serving the static asset so it will also work.
+          const staticAssetResponse = await serveStaticAssets({ context })
+          if (staticAssetResponse) {
+            return await runMiddlewares(
+              requestHandlers,
+              request,
+              route,
+              async () => staticAssetResponse
+            )
+          }
+        }
 
         // for js we want to serve our js files directly, as they can match a route on accident
         // middleware my want to handle this eventually as well but for now this is a fine balance
