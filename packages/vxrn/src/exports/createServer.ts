@@ -3,30 +3,15 @@ import { compress } from 'hono/compress'
 import { dirname, join } from 'node:path'
 import type { VXRNServeOptions } from '../types'
 import type { Hono } from 'hono'
+import { serveStaticAssets } from './serveStaticAssets'
 
 export const createProdServer = async (app: Hono, options: VXRNServeOptions) => {
   if (options.compress !== false) {
     app.use(compress())
   }
 
-  app.use('*', async (c, next) => {
-    let didCallNext = false
-
-    const response = await serveStatic({
-      root: './dist/client',
-      onFound: (_path, c) => {
-        c.header('Cache-Control', `public, immutable, max-age=31536000`)
-      },
-    })(c, async () => {
-      didCallNext = true
-      await next()
-    })
-
-    if (!response || didCallNext) {
-      return
-    }
-
-    return response
+  app.use('*', async (context, next) => {
+    return await serveStaticAssets({ context, next })
   })
 
   app.notFound(async (c) => {
