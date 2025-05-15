@@ -1,8 +1,9 @@
-import React, { createContext, type ReactNode } from 'react'
+import React, { createContext, useContext, type ReactNode } from 'react'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
-import { RouteParamsContext } from './router/Route'
+import { RouteParamsContext, useRouteNode } from './router/Route'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
+import { RouteInfoContext } from './router/RouteInfoContext'
 
 type SearchParams = OneRouter.SearchParams
 
@@ -11,7 +12,25 @@ export function useRootNavigationState() {
 }
 
 export function useRouteInfo() {
-  return useStoreRouteInfo()
+  // This uses the `useStateForPath` hook under the hood, which will be always correct
+  // when used in a page, but will not be correct when used in a layout.
+  // See the comment in `RouteInfoContext` for more details.
+  const routeInfoFromContext = useContext(RouteInfoContext)
+
+  // This uses `navigationRef.getRootState()` under the hood, which has the
+  // issue of returning an incomplete state during the first render of nested navigators.
+  // See: https://github.com/react-navigation/react-navigation/pull/12521#issue-2958644406
+  const routeInfoFromRootState = useStoreRouteInfo()
+
+  const routeNode = useRouteNode()
+
+  if (routeNode?.type === 'layout') {
+    // We are in a layout, do not consider using `RouteInfoContextProvider`.
+    return routeInfoFromRootState
+  }
+
+  // We are in a page, prioritize `routeInfoFromContext` over `routeInfoFromRootState` because it is more accurate.
+  return routeInfoFromContext || routeInfoFromRootState
 }
 
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
@@ -57,7 +76,7 @@ export function useRouter(): OneRouter.Router {
  * @returns the current global pathname with query params attached. This may change in the future to include the hostname from a predefined universal link, i.e. `/foobar?hey=world` becomes `https://acme.dev/foobar?hey=world`
  */
 export function useUnstableGlobalHref(): string {
-  return useStoreRouteInfo().unstable_globalHref
+  return useRouteInfo().unstable_globalHref
 }
 
 /**
@@ -80,12 +99,12 @@ export function useUnstableGlobalHref(): string {
  * ```
  */
 export function useSegments<TSegments extends string[] = string[]>(): TSegments {
-  return useStoreRouteInfo().segments as TSegments
+  return useRouteInfo().segments as TSegments
 }
 
 /** @returns global selected pathname without query parameters. */
 export function usePathname(): string {
-  return useStoreRouteInfo().pathname
+  return useRouteInfo().pathname
 }
 
 /**
@@ -97,8 +116,10 @@ export function usePathname(): string {
  *
  * @see `useParams`
  */
-export function useActiveParams<TParams extends Object = SearchParams>(): Partial<TParams> {
-  return useStoreRouteInfo().params as Partial<TParams>
+export function useActiveParams<
+  TParams extends Object = SearchParams
+>(): Partial<TParams> {
+  return useRouteInfo().params as Partial<TParams>
 }
 
 /** @deprecated @see `useParams` */
