@@ -1,7 +1,7 @@
 import React, { createContext, useContext, type ReactNode } from 'react'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
-import { RouteParamsContext } from './router/Route'
+import { RouteParamsContext, useRouteNode } from './router/Route'
 import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 import { RouteInfoContext } from './router/RouteInfoContext'
 
@@ -12,15 +12,25 @@ export function useRootNavigationState() {
 }
 
 export function useRouteInfo() {
-  const routeInfo = useContext(RouteInfoContext)
+  // This uses the `useStateForPath` hook under the hood, which will be always correct
+  // when used in a page, but will not be correct when used in a layout.
+  // See the comment in `RouteInfoContext` for more details.
+  const routeInfoFromContext = useContext(RouteInfoContext)
 
-  // Normally this will not be used.
-  // This will use `navigationRef.getRootState()` under the hood, which has the
+  // This uses `navigationRef.getRootState()` under the hood, which has the
   // issue of returning an incomplete state during the first render of nested navigators.
   // See: https://github.com/react-navigation/react-navigation/pull/12521#issue-2958644406
-  const routeInfo2 = useStoreRouteInfo()
+  const routeInfoFromRootState = useStoreRouteInfo()
 
-  return routeInfo || routeInfo2
+  const routeNode = useRouteNode()
+
+  if (routeNode?.type === 'layout') {
+    // We are in a layout, do not consider using `RouteInfoContextProvider`.
+    return routeInfoFromRootState
+  }
+
+  // We are in a page, prioritize `routeInfoFromContext` over `routeInfoFromRootState` because it is more accurate.
+  return routeInfoFromContext || routeInfoFromRootState
 }
 
 /** @return the root `<NavigationContainer />` ref for the app. The `ref.current` may be `null` if the `<NavigationContainer />` hasn't mounted yet. */
