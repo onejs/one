@@ -24,7 +24,7 @@ export type OneLinkingOptions = LinkingOptions<object> & {
 }
 
 export function getLinkingConfig(routes: RouteNode, metaOnly = true): OneLinkingOptions {
-  return {
+  const linkingConfig = {
     prefixes: [],
     // @ts-expect-error
     config: getNavigationConfig(routes, metaOnly),
@@ -49,6 +49,8 @@ export function getLinkingConfig(routes: RouteNode, metaOnly = true): OneLinking
     // This is a convenience for usage in the package.
     getActionFromState,
   }
+  linkingConfig.getPathFromState = linkingConfig.getPathFromState.bind(linkingConfig)
+  return linkingConfig
 }
 
 export const stateCache = new Map<string, any>()
