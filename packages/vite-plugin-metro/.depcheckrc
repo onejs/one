@@ -1,0 +1,5 @@
+ignores:
+  - "@biomejs/biome"
+  - "@expo/cli"
+  - "react"
+  - "expo"
