@@ -1,0 +1,52 @@
+{
+  "name": "@vxrn/vite-plugin-metro",
+  "version": "1.1.486",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "module": "dist",
+  "source": "src/index.ts",
+  "types": "./types/index.d.ts",
+  "files": [
+    "src",
+    "types",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tamagui-build",
+    "watch": "yarn build --watch",
+    "check": "yarn depcheck",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build"
+  },
+  "peerDependencies": {
+    "@expo/metro-config": "^0.19.8",
+    "expo": "~53",
+    "metro": "^0.82",
+    "react-native": "~0.79",
+    "vite": "^6.1.0"
+  },
+  "dependencies": {
+    "@vxrn/debug": "workspace:*",
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@expo/metro-config": "^0.19.8",
+    "@tamagui/build": "^1.126.4",
+    "@types/node": "^22.1.0",
+    "depcheck": "^1.4.7",
+    "expo": "~53",
+    "metro": "^0.82",
+    "vite": "^6.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
