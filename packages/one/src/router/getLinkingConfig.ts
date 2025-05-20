@@ -24,7 +24,7 @@ export type OneLinkingOptions = LinkingOptions<object> & {
 }
 
 export function getLinkingConfig(routes: RouteNode, metaOnly = true): OneLinkingOptions {
-  const linkingConfig = {
+  const linkingConfig: OneLinkingOptions = {
     prefixes: [],
     // @ts-expect-error
     config: getNavigationConfig(routes, metaOnly),
