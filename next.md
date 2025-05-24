@@ -54,6 +54,9 @@
 
 ---
 
+- ownerstack for nicer errors
+  - https://github.com/facebook/react/releases/tag/v19.1.0
+
 - if there's no not-found route at the root, middleware wont run in prod
   - can fix this, but also we could first document that you need not-found for middleware to run if routes arent found until fixed
 
