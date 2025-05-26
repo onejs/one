@@ -1,6 +1,9 @@
 import type { OutputAsset, OutputChunk } from 'rollup';
 import type { BuildArgs, VXRNOptions } from '../types';
 export declare const build: (optionsIn: VXRNOptions, buildArgs?: BuildArgs) => Promise<void | {
+    processEnvDefines: {
+        [k: string]: string;
+    };
     options: {
         readonly debugBundlePaths: {
             readonly ios: string;

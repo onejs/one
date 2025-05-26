@@ -18,6 +18,7 @@ import { fillOptions } from '../utils/getOptionsFilled'
 import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { mergeUserConfig } from '../utils/mergeUserConfig'
 import { applyBuiltInPatches } from '../utils/patches'
+import { loadEnv } from './loadEnv'
 
 const { existsSync } = FSExtra
 
@@ -49,13 +50,27 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   // @ts-ignore
   process.env.ONE_ENABLE_REACT_SCAN = ''
 
-  const [options, userViteConfig] = await Promise.all([
+  const [{ serverEnv }, options, userViteConfig] = await Promise.all([
+    loadEnv('production'),
     fillOptions(optionsIn),
     loadConfigFromFile({
       command: 'build',
       mode: 'prod',
     }).then((_) => _?.config),
   ])
+
+  if (!process.env.ONE_SERVER_URL) {
+    console.warn(
+      `⚠️ No ONE_SERVER_URL environment set, set it in your .env to your target deploy URL`
+    )
+  }
+
+  // const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
+  const processEnvDefines = Object.fromEntries(
+    Object.entries(serverEnv).map(([key, value]) => {
+      return [`process.env.${key}`, JSON.stringify(value)]
+    })
+  )
 
   await applyBuiltInPatches(options).catch((err) => {
     console.error(`\n 🥺 error applying built-in patches`, err)
@@ -218,13 +233,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   // default to cjs
   const shouldOutputCJS = getServerCJSSetting(options)
 
-  // servers can get all the defines
-  const processEnvDefines = Object.fromEntries(
-    Object.entries(process.env).map(([key, value]) => {
-      return [`process.env.${key}`, JSON.stringify(value)]
-    })
-  )
-
   let serverBuildConfig = mergeConfig(webBuildConfig, {
     plugins: [excludeAPIRoutesPlugin, ...globalThis.__vxrnAddWebPluginsProd],
 
@@ -310,6 +318,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   }
 
   return {
+    processEnvDefines,
     options,
     buildArgs,
     serverEntry,
