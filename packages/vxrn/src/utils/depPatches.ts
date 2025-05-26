@@ -182,6 +182,13 @@ ${contents}
   },
 
   {
+    module: 'react-native-reanimated',
+    patchFiles: {
+      '**/*.js': ['jsx'],
+    },
+  },
+
+  {
     module: '@react-native-masked-view/masked-view',
     patchFiles: {
       '**/*.js': ['flow', 'swc'],
