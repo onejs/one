@@ -5,24 +5,24 @@
   "type": "module",
   "scripts": {
     "dev": "one dev",
-    "test-macos": "TEST_ONLY=dev vitest",
+    "test-ios": "yarn test-ios:dev && yarn test-ios:prod",
     "test-ios:dev": "TEST_ONLY=dev TEST_ENV=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
     "test-ios:prod": ":",
-    "test-ios": "yarn test-ios:dev && yarn test-ios:prod"
+    "test-macos": "TEST_ONLY=dev vitest"
+  },
+  "dependencies": {
+    "expo": "^53.0.4",
+    "expo-modules-core": "2.1.2",
+    "one": "workspace:*",
+    "react": "~19.0.0",
+    "react-dom": "~19.0.0",
+    "react-native": "~0.79.2",
+    "react-native-screens": "4.4.0",
+    "vite": "^6.1.0"
   },
   "devDependencies": {
     "playwright": "^1.49.1",
     "vitest": "^3.0.5",
     "webdriverio": "^9.5.4"
-  },
-  "dependencies": {
-    "expo": "~52.0.17",
-    "expo-modules-core": "2.1.2",
-    "one": "workspace:*",
-    "react": "~19.0.0",
-    "react-dom": "~19.0.0",
-    "react-native": "^0.76.5",
-    "react-native-screens": "4.4.0",
-    "vite": "^6.1.0"
   }
 }
