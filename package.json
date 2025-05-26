@@ -5,7 +5,12 @@
   "repository": {
     "url": "https://github.com/onejs/one"
   },
-  "workspaces": ["./apps/*", "./packages/*", "./examples/*", "./tests/*"],
+  "workspaces": [
+    "./apps/*",
+    "./packages/*",
+    "./examples/*",
+    "./tests/*"
+  ],
   "scripts": {
     "build": "turbo run build --filter='*' --filter='!example/*'",
     "build:js": "yarn build --no-cache --force -- --skip-types",
@@ -40,13 +45,13 @@
     "site:serve": "yarn workspace site serve --host 0.0.0.0 --port 3000",
     "start": "yarn workspace start dev",
     "test": "yarn turbo:run test",
-    "test:vite-ecosystem-ci": "yarn --cwd tests/test test",
     "test-ios": "./scripts/test-ios.sh",
     "test-ios:run": "yarn workspaces foreach --exclude vxrn-monorepo -A run test-ios",
     "test-macos": "yarn workspaces foreach -A run test-macos",
     "test:docker": "DOCKER_BUILDKIT=1 docker build --no-cache --ssh default -t one-test . && docker run --rm one-test",
     "test:one": "yarn workspace one test",
     "test:one:dev": "yarn workspace one test:dev",
+    "test:vite-ecosystem-ci": "yarn --cwd tests/test test",
     "turbo:run": "TURBO_TELEMETRY_DISABLED=1 turbo",
     "typecheck": "turbo typecheck",
     "upgrade:tamagui": "yarn up '*tamagui*' '@tamagui/*'",
@@ -60,7 +65,6 @@
     "@biomejs/biome": "1.9.4",
     "@manypkg/cli": "^0.19.1",
     "@types/react": "^18.3.11",
-    "@types/react-native": "^0.73.0",
     "check-dependency-version-consistency": "^3.0.3",
     "lllink": "workspace:*",
     "npm-run-all": "^4.1.5",
