@@ -39,16 +39,12 @@ export async function build(args: {
   only?: string
   platform?: 'ios' | 'web' | 'android'
 }) {
+  // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
+  process.env.NODE_ENV = 'production'
+
   labelProcess('build')
   checkNodeVersion()
   setServerGlobals()
-  const { serverEnv } = await loadEnv('production')
-
-  if (!process.env.ONE_SERVER_URL) {
-    console.warn(
-      `⚠️ No ONE_SERVER_URL environment set, set it in your .env to your target deploy URL`
-    )
-  }
 
   const { oneOptions } = await loadUserOneOptions('build')
   const routerRoot = getRouterRootFromOneOptions(oneOptions)
@@ -93,13 +89,6 @@ export async function build(args: {
     } satisfies InlineConfig
   )
 
-  // const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
-  const processEnvDefines = Object.fromEntries(
-    Object.entries(serverEnv).map(([key, value]) => {
-      return [`process.env.${key}`, JSON.stringify(value)]
-    })
-  )
-
   async function buildCustomRoutes(subFolder: string, routes: RouteInfo<string>[]) {
     const input = routes.reduce((entries, { page, file }) => {
       entries[page.slice(1) + '.js'] = join(routerRoot, file)
@@ -121,7 +110,7 @@ export async function build(args: {
       // ],
 
       define: {
-        ...processEnvDefines,
+        ...vxrnOutput!.processEnvDefines,
       },
 
       // dont think this is doing anything
