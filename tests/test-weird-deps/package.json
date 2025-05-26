@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "ios": "EXPO_NO_TELEMETRY=true one run:ios",
+    "android": "expo run:android",
     "build:web": "one build",
     "clean": "one clean",
     "dev": "one dev",
     "dev:clean": "one dev --clean",
-    "serve": "one serve",
-    "android": "expo run:android"
+    "ios": "EXPO_NO_TELEMETRY=true one run:ios",
+    "serve": "one serve"
   },
   "dependencies": {
     "@lexical/react": "^0.21.0",
@@ -19,7 +19,7 @@
     "@sentry/react-native": "^5.30.0",
     "@shopify/flash-list": "^1.7.2",
     "@tamagui/config": "^1.126.4",
-    "expo": "~52.0.17",
+    "expo": "^53.0.4",
     "expo-image": "~1.13.0",
     "expo-structured-headers": "^4.0.0",
     "expo-updates": "~0.26.10",
@@ -27,7 +27,7 @@
     "one": "workspace:*",
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
-    "react-native": "^0.76.5",
+    "react-native": "~0.79.2",
     "react-native-reanimated": "~3.16.5",
     "react-native-svg": "15.8.0",
     "react-native-webview": "^13.12.5",
