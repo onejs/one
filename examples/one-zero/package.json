@@ -25,7 +25,7 @@
     "zero:build-schema": "cd ./src/zero && zero-build-schema -p './schema.ts'"
   },
   "dependencies": {
-    "@rocicorp/zero": "^0.12.2025012501",
+    "@rocicorp/zero": "^0.20.2025052100",
     "@tamagui/config": "^1.126.4",
     "@tamagui/linear-gradient": "^1.126.4",
     "@tamagui/lucide-icons": "^1.126.4",
@@ -38,7 +38,7 @@
     "@vxrn/better-auth": "workspace:*",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/emitter": "workspace:*",
-    "better-auth": "^1.1.15",
+    "better-auth": "^1.2.8",
     "expo": "~52.0.17",
     "one": "workspace:*",
     "pg": "^8.13.1",
