@@ -21,8 +21,8 @@
     "migrate:auth": "npx @better-auth/cli migrate --config ./src/better-auth/auth.ts",
     "seed": "tsx ./src/postgres/seed.ts",
     "serve": "one serve",
-    "zero": "yarn zero:build-schema && zero-cache --schema-file ./src/zero/zero-schema.json",
-    "zero:build-schema": "cd ./src/zero && zero-build-schema -p './schema.ts'"
+    "zero": "yarn zero:deploy-permissions && zero-cache",
+    "zero:deploy-permissions": "zero-deploy-permissions --schema-path './src/zero/schema.ts'"
   },
   "dependencies": {
     "@rocicorp/zero": "^0.20.2025052100",

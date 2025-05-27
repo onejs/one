@@ -31,7 +31,7 @@ export const message = table('message')
   })
   .primaryKey('id')
 
-export const schema = createSchema(1, {
+export const schema = createSchema({
   tables: [user, message],
 })
 
