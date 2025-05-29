@@ -109,6 +109,7 @@ async function prepareTestApp() {
   // )
 
   $.cwd = root
+  $`yarn one patch` // Ensure patches are applied.
   $`yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`
   await new Promise((resolve) => {
     setTimeout(resolve, 1000)
