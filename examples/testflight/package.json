@@ -20,7 +20,7 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
-    "@bottom-tabs/react-navigation": "^0.7.8",
+    "@bottom-tabs/react-navigation": "^0.9.1",
     "@dotenvx/dotenvx": "^1.12.1",
     "@tamagui/config": "^1.126.4",
     "@tamagui/image-next": "^1.126.4",
@@ -38,7 +38,7 @@
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
     "react-native": "~0.79.2",
-    "react-native-bottom-tabs": "^0.7.8",
+    "react-native-bottom-tabs": "^0.9.1",
     "react-native-reanimated": "~3.17.1",
     "react-native-safe-area-context": "5.4.1",
     "react-native-screens": "4.10.0",
