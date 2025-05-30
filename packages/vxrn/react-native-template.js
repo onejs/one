@@ -327,14 +327,25 @@ global.performance = {
   now: () => Date.now(),
 }
 
+let _globalErrorHandler
 global.ErrorUtils = {
-  // mocked
-  setGlobalHandler: () => {},
-  getGlobalHandler: () => () => {},
-  reportFatalError: (err) => {
-    // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-    console.log('err' + err['message'] + err['stack'])
+  setGlobalHandler: (fun) => {
+    _globalErrorHandler = fun
   },
+  getGlobalHandler: () => (_globalErrorHandler || (() => {})),
+  reportError: (error) => {
+    _globalErrorHandler && _globalErrorHandler(error, false);
+    console.log('e1', error.message, error.stack, Object.keys(error), JSON.stringify(error))
+  },
+  reportFatalError: (error) => {
+    _globalErrorHandler && _globalErrorHandler(error, true);
+    console.log('e2', error.message, error.stack, Object.keys(error), JSON.stringify(error))
+  },
+  // mocked
+  applyWithGuard: () => {},
+  applyWithGuardIfNeeded: () => {},
+  inGuard: () => {},
+  guard: () => {},
 }
 
 // These are necessary for react-native-reanimated to work. Without this, app will crash with `EXC_BAD_ACCESS` [here](https://github.com/software-mansion/react-native-reanimated/blob/3.10.1/Common/cpp/SharedItems/Shareables.cpp#L57) with `function.getProperty(rt, "name").getString(rt).utf8(rt).c_str()` being `assert`, `clear`, `dir`, `dirxml`, `profile`, `profileEnd`, `table`, etc.
