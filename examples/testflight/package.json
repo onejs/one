@@ -43,7 +43,7 @@
     "react-native-safe-area-context": "5.4.1",
     "react-native-screens": "4.10.0",
     "react-native-svg": "15.12.0",
-    "react-native-web": "^0.19.12",
+    "react-native-web": "~0.20.0",
     "tamagui": "^1.126.4"
   },
   "devDependencies": {
