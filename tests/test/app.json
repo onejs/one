@@ -9,7 +9,7 @@
       "backgroundColor": "#000000",
       "resizeMode": "contain"
     },
-    "sdkVersion": "52.0.0",
+    "sdkVersion": "53.0.4",
     "platforms": ["ios", "android"],
     "plugins": ["vxrn/expo-plugin"],
     "android": {

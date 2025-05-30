@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid/non-secure'
 import type { NavigationState, PartialRoute } from '@react-navigation/core'
 import type { OneRouter } from '../../interfaces/router'
 import { matchDynamicName } from '../matchers'
