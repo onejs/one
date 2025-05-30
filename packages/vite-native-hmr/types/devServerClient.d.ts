@@ -18,6 +18,7 @@ declare class DevServerClient {
     send(level: string, data: any[]): void;
     flushBuffer(): void;
     log(level: string, data: any[]): void;
+    setup(): void;
 }
 export declare const client: DevServerClient;
 export declare const setup: () => void;
