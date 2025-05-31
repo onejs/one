@@ -102,7 +102,7 @@ export function metroPlugin({
             }
           }
 
-          await middleware(req, res, next)
+          await (middleware as any)(req, res, next)
         } catch (error) {
           // TODO: handle errors from Metro middleware?
           console.error('Metro middleware error:', error)
