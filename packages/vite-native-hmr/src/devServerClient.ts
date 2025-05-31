@@ -127,6 +127,11 @@ class DevServerClient {
       this.buffer.push({ level, data })
     }
   }
+
+  // Mock for React Native 0.79 to prevent native error "getPropertyAsObject: property 'setup' is undefined, expected an Object"
+  setup() {
+    // noop
+  }
 }
 
 export const client = new DevServerClient()
