@@ -39,7 +39,7 @@ jobs:
     name: Native iOS Tests (Dev)
     needs:
       - build-ios-test-container-dev
-    runs-on: ghcr.io/cirruslabs/macos-runner:sonoma
+    runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -128,7 +128,7 @@ jobs:
     name: Native iOS Tests (Prod)
     needs:
       - build-ios-test-container-prod
-    runs-on: ghcr.io/cirruslabs/macos-runner:sonoma
+    runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
     steps:
       - name: Checkout
         uses: actions/checkout@v4
