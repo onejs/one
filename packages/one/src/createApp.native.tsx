@@ -8,8 +8,11 @@ import type { CreateAppProps } from './createApp'
 // TODO temporary
 LogBox.ignoreLogs([/Sending .* with no listeners registered/])
 
+console.warn('createApp native !!!')
 export function createApp(options: CreateAppProps): void {
+  console.warn('createApp called !!!')
   const App = () => {
+    console.warn('createApp App called !!!')
     let contents = (
       <Root
         isClient
@@ -24,8 +27,10 @@ export function createApp(options: CreateAppProps): void {
   }
 
   AppRegistry.registerComponent('main', () => App)
+  console.warn('AppRegistry.registerComponent')
 
   if (process.env.ONE_APP_NAME) {
     AppRegistry.registerComponent(process.env.ONE_APP_NAME, () => App)
+    console.warn('AppRegistry.registerComponent for process.env.ONE_APP_NAME')
   }
 }

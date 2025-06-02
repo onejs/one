@@ -404,19 +404,19 @@ export const preloadingLoader = {}
 
 function setupPreload(href: string) {
   if (preloadingLoader[href]) return
-  preloadingLoader[href] = async () => {
-    try {
-      const [_preload, loader] = await Promise.all([
-        dynamicImport(getPreloadPath(href)),
-        dynamicImport(getLoaderPath(href)),
-      ])
-      const response = await loader
-      return await response.loader?.()
-    } catch (err) {
-      console.error(`Error preloading loader: ${err}`)
-      return null
-    }
-  }
+  // preloadingLoader[href] = async () => {
+  //   try {
+  //     const [_preload, loader] = await Promise.all([
+  //       dynamicImport(getPreloadPath(href)),
+  //       dynamicImport(getLoaderPath(href)),
+  //     ])
+  //     const response = await loader
+  //     return await response.loader?.()
+  //   } catch (err) {
+  //     console.error(`Error preloading loader: ${err}`)
+  //     return null
+  //   }
+  // }
 }
 
 export function preloadRoute(href: string) {

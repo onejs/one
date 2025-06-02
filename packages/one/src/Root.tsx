@@ -4,6 +4,7 @@ import {
   type NavigationAction,
   type NavigationContainerProps,
 } from '@react-navigation/native'
+import { Text } from 'react-native';
 import { useColorScheme } from '@vxrn/universal-color-scheme'
 import {
   createContext,
@@ -66,6 +67,7 @@ globalThis['__vxrnGetContextFromReactContext'] = () =>
   useContext(ServerAsyncLocalIDContext)
 
 export function Root(props: RootProps) {
+  console.warn('rendering Root component')
   const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } =
     props
 
@@ -94,6 +96,7 @@ export function Root(props: RootProps) {
 
   let contents = (
     <ServerAsyncLocalIDContext.Provider value={value}>
+      <Text>Hello there! This is the root component rendering.</Text>
       <ServerRenderID.Provider value={id}>
         {/* for some reason warning if no key here */}
         <UpstreamNavigationContainer
@@ -144,8 +147,10 @@ export function Root(props: RootProps) {
   }
 
   if (isClient) {
+    console.warn('ROOT: isClient')
     // only on client can read like this
     if (globalThis[SERVER_CONTEXT_KEY]?.mode === 'spa') {
+      console.warn('ROOT: globalThis[SERVER_CONTEXT_KEY]?.mode === spa')
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [show, setShow] = useState(false)
 

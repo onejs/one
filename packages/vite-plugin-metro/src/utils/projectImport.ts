@@ -11,8 +11,7 @@ export const { debug } = createDebugger('vite-metro:projectImport')
  */
 export async function projectImport<T = any>(projectRoot: string, path: string): Promise<T> {
   try {
-    const require = module.createRequire(projectRoot)
-    const importPath = require.resolve(path, { paths: [projectRoot] })
+    const importPath = projectResolve(projectRoot, path)
 
     debug?.(`Importing "${path}" from project root: "${projectRoot}" at "${importPath}"`)
 
@@ -24,4 +23,10 @@ export async function projectImport<T = any>(projectRoot: string, path: string):
 
     throw e
   }
+}
+
+export function projectResolve(projectRoot: string, path: string): string {
+  const require = module.createRequire(projectRoot)
+  const importPath = require.resolve(path, { paths: [projectRoot] })
+  return importPath
 }

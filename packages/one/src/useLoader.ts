@@ -4,7 +4,7 @@ import { useActiveParams, useParams, usePathname } from './hooks'
 import { resolveHref } from './link/href'
 import { preloadingLoader } from './router/router'
 import { getLoaderPath } from './utils/cleanUrl'
-import { dynamicImport } from './utils/dynamicImport'
+// import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
 import { useServerContext } from './vite/one-server-only'
 
@@ -113,7 +113,7 @@ export function useLoader<
             }
 
             // On web, we can use import to dynamically load the loader
-            return await dynamicImport(loaderJSUrl)
+            // return await dynamicImport(loaderJSUrl)
           })()
 
           loadedData[currentPath] = response.loader()

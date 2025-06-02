@@ -11,8 +11,8 @@ export function getURL() {
       )
     }
 
-    const { url: devServerUrl } = getDevServer() as { url: string }
-    url = devServerUrl
+    // const { url: devServerUrl } = getDevServer() as { url: string }
+    // url = devServerUrl
   }
 
   if (!url) {

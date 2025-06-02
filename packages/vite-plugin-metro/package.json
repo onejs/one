@@ -3,16 +3,23 @@
   "version": "1.1.486",
   "sideEffects": false,
   "type": "module",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "source": "src/index.ts",
+  "types": "./types/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "types": "./types/index.d.ts",
-      "default": "./dist/index.mjs"
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    },
+    "./babel-transformer": {
+      "types": "./types/transformer/babel-transformer.d.ts",
+      "import": "./dist/esm/transformer/babel-transformer.mjs",
+      "require": "./dist/cjs/transformer/babel-transformer.cjs"
     }
   },
-  "module": "dist",
-  "source": "src/index.ts",
-  "types": "./types/index.d.ts",
   "files": [
     "src",
     "types",
@@ -27,14 +34,17 @@
   },
   "peerDependencies": {
     "@expo/metro-config": "^0.19.8",
-    "expo": "~53",
+    "expo": "^53.0.4",
     "metro": "^0.82",
-    "react-native": "~0.79",
+    "react-native": "~0.79.2",
     "vite": "^6.1.0"
   },
   "dependencies": {
+    "@babel/core": "^7.26.8",
     "@vxrn/debug": "workspace:*",
-    "picocolors": "^1.0.0"
+    "launch-editor": "^2.10.0",
+    "picocolors": "^1.0.0",
+    "tinyglobby": "^0.2.14"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -42,7 +52,7 @@
     "@tamagui/build": "^1.126.4",
     "@types/node": "^22.1.0",
     "depcheck": "^1.4.7",
-    "expo": "~53",
+    "expo": "^53.0.4",
     "metro": "^0.82",
     "vite": "^6.1.0"
   },

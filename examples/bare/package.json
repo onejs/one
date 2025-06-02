@@ -7,13 +7,13 @@
   "scripts": {
     "android": "react-native run-android",
     "build:web": "vxrn build",
-    "typecheck": "tsc --noEmit",
     "clean": "vxrn clean",
     "dev": "vxrn dev",
     "dev:clean": "vxrn dev --clean",
     "ios": "react-native run-ios",
+    "prebuild": "vxrn prebuild --expo false",
     "serve": "vxrn serve",
-    "prebuild": "vxrn prebuild --expo false"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "expo-constants": "~16.0.0",

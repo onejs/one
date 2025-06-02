@@ -15,6 +15,7 @@ import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 import { getServerContext, setServerContext } from './vite/one-server-only'
 import { cloneElement } from 'react'
 
+console.warn('createApp not native !!!')
 export type CreateAppProps = {
   routes: Record<string, () => Promise<unknown>>
   routerRoot: string

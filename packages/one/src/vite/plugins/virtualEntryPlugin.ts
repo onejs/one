@@ -18,6 +18,9 @@ export function createVirtualEntry(options: { root: string; flags: One.Flags }):
   const appDirGlob = `/${options.root}/**/*.tsx`
   const appDirApiGlob = `/${options.root}/**/*+api.tsx`
 
+  console.log(`appDirGlob is ${appDirGlob}`)
+  console.log(`appDirApiGlob is ${appDirApiGlob}`)
+
   return {
     name: 'one-virtual-entry',
     enforce: 'pre',
@@ -42,6 +45,7 @@ ${prependCode}
 import { createApp } from 'one'
 
 // globbing ${appDirGlob}
+console.log('ve here 2839')
 export default createApp({
   routes: import.meta.glob('${appDirGlob}', { exhaustive: true }),
   routerRoot: ${JSON.stringify(options.root)},
@@ -60,6 +64,7 @@ ${prependCode}
 import { createApp } from 'one'
 
 // globbing ${appDirGlob}
+console.log('ve here 2839')
 export default createApp({
   routes: import.meta.glob(['${appDirGlob}', '!${appDirApiGlob}'], { exhaustive: true }),
   routerRoot: ${JSON.stringify(options.root)},
