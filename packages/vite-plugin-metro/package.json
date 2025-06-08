@@ -3,16 +3,23 @@
   "version": "1.1.486",
   "sideEffects": false,
   "type": "module",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "source": "src/index.ts",
+  "types": "./types/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "types": "./types/index.d.ts",
-      "default": "./dist/index.mjs"
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.mjs"
+    },
+    "./babel-transformer": {
+      "types": "./types/transformer/babel-transformer.d.ts",
+      "import": "./dist/esm/transformer/babel-transformer.mjs",
+      "require": "./dist/cjs/transformer/babel-transformer.cjs"
     }
   },
-  "module": "dist",
-  "source": "src/index.ts",
-  "types": "./types/index.d.ts",
   "files": [
     "src",
     "types",

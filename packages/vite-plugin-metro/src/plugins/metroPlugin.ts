@@ -14,8 +14,9 @@ import type createWebsocketServerT from 'metro/src/lib/createWebsocketServer'
 import type { getDefaultConfig as getDefaultConfigT } from '@expo/metro-config'
 import type { createDevMiddleware as createDevMiddlewareT } from '@react-native/dev-middleware'
 
-import { projectImport } from '../utils/projectImport'
+import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
+import type { TransformOptions } from '../transformer/babel-core'
 
 type MetroYargArguments = Parameters<typeof loadConfigT>[0]
 type MetroInputConfig = Parameters<typeof loadConfigT>[1]
@@ -23,11 +24,13 @@ type MetroInputConfig = Parameters<typeof loadConfigT>[1]
 export function metroPlugin({
   argv,
   defaultConfigOverrides,
+  babelConfig,
 }: {
   argv?: MetroYargArguments
   defaultConfigOverrides?:
     | MetroInputConfig
     | ((defaultConfig: MetroInputConfig) => MetroInputConfig)
+  babelConfig?: TransformOptions
 } = {}): PluginOption {
   // let projectRoot = ''
 
@@ -106,6 +109,13 @@ export function metroPlugin({
         },
         {
           ...defaultConfig,
+          transformer: {
+            ...defaultConfig.transformer,
+            babelTransformerPath: projectResolve(
+              projectRoot,
+              '@vxrn/vite-plugin-metro/babel-transformer'
+            ),
+          },
           ...(typeof defaultConfigOverrides === 'function'
             ? defaultConfigOverrides(defaultConfig)
             : defaultConfigOverrides),
@@ -113,6 +123,31 @@ export function metroPlugin({
       )
 
       const { middleware, end, metroServer } = await Metro.createConnectMiddleware(config)
+
+      // Patch transformFile to inject custom transform options.
+      const originalTransformFile = metroServer
+        .getBundler()
+        .getBundler()
+        .transformFile.bind(metroServer.getBundler().getBundler())
+      metroServer.getBundler().getBundler().transformFile = async (
+        filePath: string,
+        transformOptions: Parameters<typeof originalTransformFile>[1],
+        fileBuffer?: Parameters<typeof originalTransformFile>[2]
+      ) => {
+        return originalTransformFile(
+          filePath,
+          {
+            ...transformOptions,
+            customTransformOptions: {
+              ...transformOptions.customTransformOptions,
+              vite: {
+                babelConfig,
+              },
+            },
+          },
+          fileBuffer
+        )
+      }
 
       const hmrServer = new MetroHmrServer(
         metroServer.getBundler(),
