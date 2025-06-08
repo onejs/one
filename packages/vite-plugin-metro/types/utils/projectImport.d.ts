@@ -8,4 +8,5 @@ export declare const debug: (((...args: any[]) => any) & {
  * might be installed in nested `node_modules` directories.
  */
 export declare function projectImport<T = any>(projectRoot: string, path: string): Promise<T>;
+export declare function projectResolve(projectRoot: string, path: string): string;
 //# sourceMappingURL=projectImport.d.ts.map
