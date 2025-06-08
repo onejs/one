@@ -27,9 +27,9 @@
   },
   "peerDependencies": {
     "@expo/metro-config": "^0.19.8",
-    "expo": "~53",
+    "expo": "^53.0.4",
     "metro": "^0.82",
-    "react-native": "~0.79",
+    "react-native": "~0.79.2",
     "vite": "^6.1.0"
   },
   "dependencies": {
@@ -42,7 +42,7 @@
     "@tamagui/build": "^1.126.4",
     "@types/node": "^22.1.0",
     "depcheck": "^1.4.7",
-    "expo": "~53",
+    "expo": "^53.0.4",
     "metro": "^0.82",
     "vite": "^6.1.0"
   },
