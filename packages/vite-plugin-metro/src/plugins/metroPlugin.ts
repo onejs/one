@@ -60,6 +60,35 @@ export function metroPlugin({
       const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
       const defaultConfig: MetroInputConfig = {
         ..._defaultConfig,
+        resolver: {
+          ..._defaultConfig?.resolver,
+          sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This somehow fixes `.native` files not being resolved correctly when `.mjs` files are present.
+          resolveRequest: (context, moduleName, platform) => {
+            const origResolveRequestFn =
+              _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
+
+            // HACK: Do not assert the "import" condition for `@babel/runtime`. This
+            // is a workaround for ESM <-> CJS interop, as we need the CJS versions of
+            // `@babel/runtime` helpers.
+            //
+            // This hack is originally made in Metro and was removed in `v0.81.3`, but
+            // we somehow still need it.
+            // See: https://github.com/facebook/metro/commit/9552a64a0487af64cd86d8591e203a55c59c9686#diff-b03f1b511a2be7abd755b9c2561e47f513f84931466f2cc20a17a4238d70f12bL370-L378
+            //
+            // Resolves the "TypeError: _interopRequireDefault is not a function (it is Object)" error.
+            if (moduleName.startsWith('@babel/runtime')) {
+              const contextOverride = {
+                ...context,
+                unstable_conditionNames: context.unstable_conditionNames.filter(
+                  (c) => c !== 'import'
+                ),
+              }
+              return origResolveRequestFn(contextOverride, moduleName, platform)
+            }
+
+            return origResolveRequestFn(context, moduleName, platform)
+          },
+        },
         transformer: {
           ..._defaultConfig?.transformer,
           // TODO: This is what Expo is doing, but do we really need this?
