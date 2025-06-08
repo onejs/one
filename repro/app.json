@@ -2,7 +2,6 @@
   "expo": {
     "name": "repro",
     "slug": "repro",
-    "sdkVersion": "53.0.4",
     "newArchEnabled": true,
     "platforms": [
       "ios",

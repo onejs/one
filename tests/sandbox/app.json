@@ -3,7 +3,6 @@
     "name": "test-sandbox",
     "slug": "test-sandbox",
     "version": "1.1.358",
-    "sdkVersion": "53.0.4",
     "newArchEnabled": true,
     "platforms": ["ios", "android", "web"],
     "ios": {
