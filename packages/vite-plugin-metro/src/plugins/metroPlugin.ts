@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { parse } from 'node:url'
 import type { PluginOption } from 'vite'
+import launchEditor from 'launch-editor'
 
 // For Metro and Expo, we only import types here.
 // We use `projectImport` to dynamically import the actual modules
@@ -112,6 +113,31 @@ export function metroPlugin({
                 return
               }
             }
+          }
+
+          if (req.url === '/open-stack-frame' && req.method === 'POST') {
+            let body = ''
+
+            req.on('data', (chunk) => {
+              body += chunk.toString()
+            })
+
+            req.on('end', () => {
+              try {
+                const frame = JSON.parse(body)
+
+                // https://github.com/yyx990803/launch-editor/blob/master/packages/launch-editor-middleware/index.js
+                launchEditor(frame.file)
+                res.statusCode = 200
+                res.end('Stack frame opened in editor')
+              } catch (e) {
+                console.error('Failed to parse stack frame:', e)
+                res.statusCode = 400
+                return res.end('Invalid stack frame JSON')
+              }
+            })
+
+            return
           }
 
           await (middleware as any)(req, res, next)
