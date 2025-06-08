@@ -8060,6 +8060,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native/debugger-frontend@npm:0.79.3":
+  version: 0.79.3
+  resolution: "@react-native/debugger-frontend@npm:0.79.3"
+  checksum: 10/81651af5f614ffc0ab4baf118e951a5f0a827f14c1a594d3a53c9ecd11b1d6fde872fcb650ccc70dabd64fb417e492119659ecd0135d297163f325c3e8a27a09
+  languageName: node
+  linkType: hard
+
 "@react-native/dev-middleware@npm:0.79.2":
   version: 0.79.2
   resolution: "@react-native/dev-middleware@npm:0.79.2"
@@ -8095,6 +8102,25 @@ __metadata:
     serve-static: "npm:^1.13.1"
     ws: "npm:^6.2.3"
   checksum: 10/a3788c0e2cc6938e44803162923b69ef9951efc9cc75b751d1823db07115731a4132ab70604da98821e34210f07d3adc7b42fa15b870a6ed08d04e88ebe107ad
+  languageName: node
+  linkType: hard
+
+"@react-native/dev-middleware@npm:~0.79.2":
+  version: 0.79.3
+  resolution: "@react-native/dev-middleware@npm:0.79.3"
+  dependencies:
+    "@isaacs/ttlcache": "npm:^1.4.1"
+    "@react-native/debugger-frontend": "npm:0.79.3"
+    chrome-launcher: "npm:^0.15.2"
+    chromium-edge-launcher: "npm:^0.2.0"
+    connect: "npm:^3.6.5"
+    debug: "npm:^2.2.0"
+    invariant: "npm:^2.2.4"
+    nullthrows: "npm:^1.1.1"
+    open: "npm:^7.0.3"
+    serve-static: "npm:^1.16.2"
+    ws: "npm:^6.2.3"
+  checksum: 10/80b0a1b65599d36d9394ecfa521c75e5939630f2253a5f0fc47697f030d33efd2ce38546ae06265518c8b9e4fe13628a378987c5c93d2f07bb4de1bb5be9d9c5
   languageName: node
   linkType: hard
 
@@ -12801,6 +12827,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:1.9.4"
     "@expo/metro-config": "npm:^0.19.8"
+    "@react-native/dev-middleware": "npm:~0.79.2"
     "@tamagui/build": "npm:^1.126.4"
     "@types/node": "npm:^22.1.0"
     "@vxrn/debug": "workspace:*"
