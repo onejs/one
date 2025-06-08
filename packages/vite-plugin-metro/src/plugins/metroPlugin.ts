@@ -179,6 +179,20 @@ export function metroPlugin({
             }
           }
 
+          // Handle `isPackagerRunning` request from native app.
+          // Without this, people may see a `No script URL provided. Make sure the packager is running or you have embedded a JS bundle in your application bundle.`, `unsanitizedScriptURLString = (null)` error in their native app running with the "Debug" configuration.
+          // See: https://github.com/facebook/react-native/blob/v0.80.0-rc.4/packages/react-native/React/Base/RCTBundleURLProvider.mm#L87-L113
+          if (
+            req.url === '/status' &&
+            req.headers['user-agent']?.includes(
+              'CFNetwork/'
+            ) /* The path (`/status`) is too general and may conflict with the user's web app, so we also check the User-Agent header to ensure it's a request from a native app. */ /* TODO: Android */
+          ) {
+            res.statusCode = 200
+            res.end('packager-status:running')
+            return
+          }
+
           if (req.url === '/open-stack-frame' && req.method === 'POST') {
             let body = ''
 
