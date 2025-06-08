@@ -11,6 +11,7 @@ import type { loadConfig as loadConfigT } from 'metro'
 import type MetroHmrServerT from 'metro/src/HmrServer'
 import type createWebsocketServerT from 'metro/src/lib/createWebsocketServer'
 import type { getDefaultConfig as getDefaultConfigT } from '@expo/metro-config'
+import type { createDevMiddleware as createDevMiddlewareT } from '@react-native/dev-middleware'
 
 import { projectImport } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
@@ -51,6 +52,9 @@ export function metroPlugin({
       const { getDefaultConfig } = await projectImport<{
         getDefaultConfig: typeof getDefaultConfigT
       }>(projectRoot, '@expo/metro-config')
+      const { createDevMiddleware } = await projectImport<{
+        createDevMiddleware: typeof createDevMiddlewareT
+      }>(projectRoot, '@react-native/dev-middleware')
 
       const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
       const defaultConfig: MetroInputConfig = {
@@ -86,6 +90,14 @@ export function metroPlugin({
         config
       )
 
+      const reactNativeDevToolsUrl = `http://${typeof server.config.server.host === 'boolean' ? 'localhost' : server.config.server.host}:${server.config.server.port}`
+      const { middleware: rnDevtoolsMiddleware, websocketEndpoints: rnDevtoolsWebsocketEndpoints } =
+        createDevMiddleware({
+          projectRoot,
+          serverBaseUrl: reactNativeDevToolsUrl,
+          logger: console,
+        })
+
       server.middlewares.use(async (req, res, next) => {
         try {
           // Just for debugging purposes.
@@ -110,10 +122,13 @@ export function metroPlugin({
         }
       })
 
+      server.middlewares.use(rnDevtoolsMiddleware)
+
       const websocketEndpoints = {
         '/hot': createWebsocketServer({
           websocketServer: hmrServer,
         }),
+        ...rnDevtoolsWebsocketEndpoints,
       }
 
       server.httpServer?.on('upgrade', (request, socket, head) => {
