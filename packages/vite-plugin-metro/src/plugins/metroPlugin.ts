@@ -94,6 +94,10 @@ export function metroPlugin({
         },
         transformer: {
           ..._defaultConfig?.transformer,
+          babelTransformerPath: projectResolve(
+            projectRoot,
+            '@vxrn/vite-plugin-metro/babel-transformer'
+          ),
           // TODO: This is what Expo is doing, but do we really need this?
           publicPath: '/assets/?unstable_path=.',
         },
@@ -109,13 +113,6 @@ export function metroPlugin({
         },
         {
           ...defaultConfig,
-          transformer: {
-            ...defaultConfig.transformer,
-            babelTransformerPath: projectResolve(
-              projectRoot,
-              '@vxrn/vite-plugin-metro/babel-transformer'
-            ),
-          },
           ...(typeof defaultConfigOverrides === 'function'
             ? defaultConfigOverrides(defaultConfig)
             : defaultConfigOverrides),
