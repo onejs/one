@@ -1,6 +1,9 @@
 import { type ResolvedConfig } from 'vite';
 import type { VXRNOptionsFilled } from './getOptionsFilled';
-export declare function getReactNativeConfig(options: VXRNOptionsFilled, internal: {
+export declare function getReactNativeConfig(options: Pick<VXRNOptionsFilled, 'root' | 'cacheDir'> & {
+    server: Pick<VXRNOptionsFilled['server'], 'url' | 'port'>;
+    entries: Pick<VXRNOptionsFilled['entries'], 'native'>;
+}, internal: {
     mode?: "dev" | "prod";
     assetsDest?: string;
 } | undefined, platform: 'ios' | 'android'): Promise<{

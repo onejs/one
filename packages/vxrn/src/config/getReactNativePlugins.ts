@@ -7,15 +7,13 @@ import { createReactNativeDevServerPlugin } from '../plugins/reactNativeDevServe
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
 import { applyBuiltInPatchesPlugin } from '../plugins/applyBuiltInPatchesPlugin'
 
-export function getReactNativePlugins(config: VXRNOptionsFilled) {
-  const { root, server } = config
-
+export function getReactNativePlugins(config?: VXRNOptionsFilled) {
   return [
     createReactNativeDevServerPlugin(config),
 
     getServerConfigPlugin(),
 
-    applyBuiltInPatchesPlugin(config),
+    applyBuiltInPatchesPlugin(),
 
     // temp fix
     // avoid logging the optimizeDeps we add that aren't in the app:
@@ -39,13 +37,9 @@ export function getReactNativePlugins(config: VXRNOptionsFilled) {
       assetExts: DEFAULT_ASSET_EXTS,
     }),
 
-    expoManifestRequestHandlerPlugin({
-      projectRoot: root,
-      port: server.port,
-    }),
+    expoManifestRequestHandlerPlugin({}),
 
     reactNativeDevAssetPlugin({
-      projectRoot: root,
       assetExts: DEFAULT_ASSET_EXTS,
     }),
   ]

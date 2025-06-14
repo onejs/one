@@ -5,6 +5,7 @@ import { createFilter, type Plugin } from 'vite'
 import type { AutoDepOptimizationOptions } from '../types'
 import { EXCLUDE_LIST, type ScanDepsResult, scanDepsToOptimize } from '../utils/scanDepsToOptimize'
 import { getFileHash, lookupFile } from '../utils/utils'
+import { getCacheDir } from '../utils/getCacheDir'
 
 const name = 'vxrn:auto-dep-optimize'
 
@@ -44,7 +45,7 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
 }
 
 export const getSSRExternalsCachePath = (root: string) => {
-  return path.join(root, 'node_modules', '.vxrn', 'deps-to-pre-bundle-for-ssr-cache.json')
+  return path.join(getCacheDir(root), 'deps-to-pre-bundle-for-ssr-cache.json')
 }
 
 type FindDepsOptionsByMode = FindDepsOptions & { mode: string }

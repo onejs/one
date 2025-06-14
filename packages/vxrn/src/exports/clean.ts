@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import type { VXRNOptions } from '../types'
 import { fillOptions } from '../config/getOptionsFilled'
 import { getSSRExternalsCachePath } from '../plugins/autoDepOptimizePlugin'
+import { getCacheDir } from '../utils/getCacheDir'
 
 /**
  * The main entry point for dev mode
@@ -29,7 +30,7 @@ export const clean = async (rest: VXRNOptions, only?: 'vite') => {
     }).catch(throwIfNotMissingError),
     process.env.VXRN_DONT_CLEAN_SELF
       ? null
-      : rm(join(root, 'node_modules', '.vxrn'), {
+      : rm(getCacheDir(root), {
           recursive: true,
           force: true,
         }).catch(throwIfNotMissingError),

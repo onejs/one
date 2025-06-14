@@ -41,7 +41,7 @@ export function bailIfExists(haystack: string, needle: string) {
 export type SimpleDepPatchObject = Record<string, DepPatch['patchFiles']>
 
 export async function applyBuiltInPatches(
-  options: VXRNOptionsFilled,
+  options: Pick<VXRNOptionsFilled, 'root'>,
   extraPatches?: SimpleDepPatchObject
 ) {
   const all = [...builtInDepPatches]
