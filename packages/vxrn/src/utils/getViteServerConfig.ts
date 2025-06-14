@@ -6,6 +6,7 @@ import { expoManifestRequestHandlerPlugin } from '../plugins/expoManifestRequest
 import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
 import { createReactNativeDevServerPlugin } from '../plugins/reactNativeDevServer'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
+import { applyBuiltInPatchesPlugin } from '../plugins/applyBuiltInPatchesPlugin'
 import { getBaseViteConfig } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
@@ -28,6 +29,8 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
         createReactNativeDevServerPlugin(config),
 
         getServerConfigPlugin(),
+
+        applyBuiltInPatchesPlugin(config),
 
         // temp fix
         // avoid logging the optimizeDeps we add that aren't in the app:
