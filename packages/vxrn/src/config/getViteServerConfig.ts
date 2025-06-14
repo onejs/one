@@ -9,6 +9,7 @@ import { getReactNativePlugins } from './getReactNativePlugins'
 import { getAdditionalViteConfig } from './getAdditionalViteConfig'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled, userViteConfig?: UserConfig) {
+  console.log('getViteServerConfig called')
   const { root, server } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
 
@@ -17,14 +18,14 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
     await getBaseViteConfigWithPlugins(config),
 
     mergeConfig(getAdditionalViteConfig(), {
-      plugins: [...getReactNativePlugins(config)],
-      server: {
-        hmr: {
-          path: '/__vxrnhmr',
-        },
-        host: server.host,
-        port: server.port,
-      },
+      // plugins: [...getReactNativePlugins(config)],
+      // server: {
+      //   hmr: {
+      //     path: '/__vxrnhmr',
+      //   },
+      //   host: server.host,
+      //   port: server.port,
+      // },
       root,
     } satisfies UserConfig)
   ) satisfies InlineConfig
@@ -44,9 +45,10 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
     ...rest,
   }
 
-  serverConfig = mergeUserConfig(optimizeDeps, serverConfig, mergableUserConf)
+  // serverConfig = mergeUserConfig(optimizeDeps, serverConfig, mergableUserConf)
 
   if (rerouteNoExternalConfig) {
+    console.log('setting noExternal back to true')
     serverConfig.ssr!.noExternal = true
   }
 

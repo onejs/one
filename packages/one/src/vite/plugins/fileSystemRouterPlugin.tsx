@@ -20,6 +20,12 @@ import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOpt
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
+
+console.log(`fsrp process.env.VITE_ENVIRONMENT is ${process.env.VITE_ENVIRONMENT}`)
+console.log(`fsrp process.env.NODE_ENV is ${process.env.NODE_ENV}`)
+console.log(`fsrp process.env.REACT_NATIVE_VERSION is ${process.env.REACT_NATIVE_VERSION}`)
+console.log(`fsrp process.env.ONE_CACHE_KEY is ${process.env.ONE_CACHE_KEY}`)
+
 export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin {
   const preloads = ['/@vite/client', virtalEntryIdClient]
 
@@ -77,6 +83,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
           const entry = await runner.import(virtualEntryId)
 
           const render = entry.default.render as (props: RenderAppProps) => any
+
+          console.log(`fsrp2 process.env.VITE_ENVIRONMENT is ${process.env.VITE_ENVIRONMENT}`)
+          console.log(`fsrp2 process.env.NODE_ENV is ${process.env.NODE_ENV}`)
+          console.log(`fsrp2 process.env.REACT_NATIVE_VERSION is ${process.env.REACT_NATIVE_VERSION}`)
+          console.log(`fsrp2 process.env.ONE_CACHE_KEY is ${process.env.ONE_CACHE_KEY}`)
 
           setServerContext({
             loaderData,

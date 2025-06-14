@@ -267,3 +267,10 @@ if (process.env.NODE_ENV !== 'production') {
 //     return og2(...args)
 //   }
 // }
+
+console.log(`process.env`, process.env)
+
+console.log(`Root.tsx process.env.VITE_ENVIRONMENT is ${process.env.VITE_ENVIRONMENT}`)
+  console.log(`Root.tsx process.env.NODE_ENV is ${process.env.NODE_ENV}`)
+  console.log(`Root.tsx process.env.REACT_NATIVE_VERSION is ${process.env.REACT_NATIVE_VERSION}`)
+  console.log(`Root.tsx process.env.ONE_CACHE_KEY is ${process.env.ONE_CACHE_KEY}`)

@@ -13,6 +13,7 @@
     "db:push": "drizzle-kit push --config ./code/db/drizzle.config.ts",
     "db:seed": "dotenvx run -f .env -- tsx ./code/db/seed.ts",
     "dev": "one dev",
+    "dev-vite": "vite dev --host",
     "dev:clean": "one dev --clean",
     "ios": "EXPO_NO_TELEMETRY=true one run:ios",
     "prebuild:native": "one prebuild",

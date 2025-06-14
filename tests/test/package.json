@@ -8,6 +8,7 @@
     "build:web": "one build",
     "clean": "one clean",
     "dev": "one dev",
+    "dev-vite": "vite dev --host",
     "dev:clean": "yarn dev --clean",
     "ios": "expo run:ios",
     "prod": "one build && one serve",

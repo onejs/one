@@ -17,15 +17,31 @@ const read = () => globalThis[key] as ALSInstance | undefined
 
 const ASYNC_LOCAL_STORE = {
   get current() {
-    if (read()) return read()
+    if (read()) {
+      console.log('read!!! 289328')
+      return read()
+    }
     const _ = new AsyncLocalStorage()
+    console.log(`new AsyncLocalStorage ${_}`)
     globalThis[key] = _
     return _
   },
 }
 
 export const requestAsyncLocalStore =
-  process.env.VITE_ENVIRONMENT === 'ssr' ? ASYNC_LOCAL_STORE.current : null
+  !process.env.VITE_ENVIRONMENT || process.env.VITE_ENVIRONMENT === 'ssr'
+    ? ASYNC_LOCAL_STORE.current
+    : null
+console.log(
+  `requestAsyncLocalStore is ${requestAsyncLocalStore} while process.env.VITE_ENVIRONMENT is ${process.env.VITE_ENVIRONMENT}`
+)
+if (!requestAsyncLocalStore) {
+  const e = new Error()
+  console.warn(
+    `requestAsyncLocalStore is null while process.env.VITE_ENVIRONMENT is ${process.env.VITE_ENVIRONMENT}`,
+    e.stack
+  )
+}
 
 const newCache = new WeakMap<any, Headers>()
 
@@ -34,7 +50,9 @@ export const asyncHeadersCache =
 
 globalThis['__vxrnasyncHeadersCache'] ||= asyncHeadersCache
 
-export async function runWithAsyncLocalContext<A>(cb: (id: Object) => Promise<A>): Promise<A> {
+export async function runWithAsyncLocalContext<A>(
+  cb: (id: Object) => Promise<A>
+): Promise<A> {
   const id = { _id: Math.random() }
   let out: A = null as any
   await ASYNC_LOCAL_STORE.current!.run(id, async () => {
@@ -70,8 +88,14 @@ export function ensureAsyncLocalID() {
   //    Error: Internal One error, no AsyncLocalStorage id! at ensureAsyncLocalID (file:///var/task/server/_virtual_one-entry.js:37411:64)
   const id = process.env.VERCEL ? globalId : requestAsyncLocalStore?.getStore()
 
+  console.log(
+    `ensureAsyncLocalID 8293, requestAsyncLocalStore keys ${Object.keys(requestAsyncLocalStore || { noon: 312 })} a ${requestAsyncLocalStore}, ${typeof requestAsyncLocalStore}`
+  )
+
   if (!id) {
-    throw new Error(`Internal One error, no AsyncLocalStorage id!`)
+    throw new Error(
+      `Internal One error, no AsyncLocalStorage id! process.env.VITE_ENVIRONMENT is ${process.env.VITE_ENVIRONMENT}, requestAsyncLocalStore keys ${Object.keys(requestAsyncLocalStore || { noon: 312 })}`
+    )
   }
 
   return id as Object
@@ -82,6 +106,14 @@ export type MaybeServerContext = null | One.ServerContext
 const serverContexts = new WeakMap<any, One.ServerContext>()
 
 export function setServerContext(data: One.ServerContext) {
+  const err = new Error()
+  console.log(
+    `process.env.VITE_ENVIRONMENT is ${process.env.VITE_ENVIRONMENT}, stack: ${err.stack}`
+  )
+  console.log(`process.env.NODE_ENV is ${process.env.NODE_ENV}`)
+  console.log(`process.env.REACT_NATIVE_VERSION is ${process.env.REACT_NATIVE_VERSION}`)
+  console.log(`process.env.ONE_CACHE_KEY is ${process.env.ONE_CACHE_KEY}`)
+
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
     const id = ensureAsyncLocalID()
     if (!serverContexts.has(id)) {
@@ -91,7 +123,9 @@ export function setServerContext(data: One.ServerContext) {
     const context = serverContexts.get(id)!
     Object.assign(context, data)
   } else {
-    throw new Error(`Don't call setServerContext on client`)
+    throw new Error(
+      `Don't call setServerContext on client process.env.VITE_ENVIRONMENT is ${process.env.VITE_ENVIRONMENT}`
+    )
   }
 }
 
@@ -141,7 +175,9 @@ export function setServerData<Key extends keyof One.ClientData>(
       },
     })
   } else {
-    throw new Error(`Cannot setServerData in ${process.env.VITE_ENVIRONMENT} environment!`)
+    throw new Error(
+      `Cannot setServerData in ${process.env.VITE_ENVIRONMENT} environment!`
+    )
   }
 }
 
