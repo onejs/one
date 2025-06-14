@@ -5,7 +5,7 @@ import { createBuilder } from 'vite'
 import { resolvePath } from '@vxrn/resolve'
 import { filterPluginsForNative } from './filterPluginsForNative'
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
-import { getReactNativeConfig } from '../config/getReactNativeConfig'
+import { getReactNativeBuildConfig } from '../config/getReactNativeBuildConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
 import { getCacheDir } from './getCacheDir'
@@ -22,7 +22,9 @@ export function clearCachedBundle() {
 type InternalProps = { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean }
 
 export async function getReactNativeBundle(
-  options: Pick<VXRNOptionsFilled, 'root'> & Partial<Pick<VXRNOptionsFilled, 'cacheDir'>> & Parameters<typeof getReactNativeConfig>[0],
+  options: Pick<VXRNOptionsFilled, 'root'> &
+    Partial<Pick<VXRNOptionsFilled, 'cacheDir'>> &
+    Parameters<typeof getReactNativeBuildConfig>[0],
   platform: 'ios' | 'android',
   internal: InternalProps = {
     mode: 'dev',
@@ -54,7 +56,7 @@ export async function getReactNativeBundle(
   )
 
   // build app
-  const nativeBuildConfig = await getReactNativeConfig(options, internal, platform)
+  const nativeBuildConfig = await getReactNativeBuildConfig(options, internal, platform)
 
   nativeBuildConfig.plugins = filterPluginsForNative(nativeBuildConfig.plugins, { isNative: true })
 
