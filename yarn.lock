@@ -23100,6 +23100,7 @@ __metadata:
     react-native-screens: "npm:4.10.0"
     rollup: "npm:^4.29.1"
     ts-pattern: "npm:^5.6.2"
+    tsconfig-paths: "npm:^4"
     typescript: "npm:^5.7.3"
     use-latest-callback: "npm:^0.2.3"
     vite: "npm:^6.1.0"
@@ -28346,6 +28347,17 @@ __metadata:
   bin:
     tsconfck: bin/tsconfck.js
   checksum: 10/4fb02e75ff374a82052b4800970bebe4466b5a6e7193d74e7b875cc8225acb5037fb4e7dcd4a5cd751c22129360cb13b4d5536897eae131d69c1a20fb18a99b4
+  languageName: node
+  linkType: hard
+
+"tsconfig-paths@npm:^4":
+  version: 4.2.0
+  resolution: "tsconfig-paths@npm:4.2.0"
+  dependencies:
+    json5: "npm:^2.2.2"
+    minimist: "npm:^1.2.6"
+    strip-bom: "npm:^3.0.0"
+  checksum: 10/5e55cc2fb6b800eb72011522e10edefccb45b1f9af055681a51354c9b597d1390c6fa9cc356b8c7529f195ac8a90a78190d563159f3a1eed10e01bbd4d01a8ab
   languageName: node
   linkType: hard
 
