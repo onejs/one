@@ -55,6 +55,10 @@
     "./react-dom-18": {
       "require": "./vendor/react-dom/cjs/react-dom.development.js",
       "import": "./vendor/react-dom/cjs/react-dom.development.js"
+    },
+    "./metro-entry": {
+      "require": "./metro-entry.js",
+      "import": "./metro-entry.js"
     }
   },
   "main": "dist/cjs",
@@ -67,6 +71,8 @@
     "types",
     "dist",
     "vendor",
+    "metro-entry.js",
+    "metro-entry-ctx.js",
     "LICENSE"
   ],
   "scripts": {
