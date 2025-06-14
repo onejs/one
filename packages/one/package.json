@@ -56,6 +56,16 @@
       "require": "./vendor/react-dom/cjs/react-dom.development.js",
       "import": "./vendor/react-dom/cjs/react-dom.development.js"
     },
+    "./babel-plugin-one-router-metro": {
+      "import": "./dist/esm/babel-plugins/one-router-metro.mjs",
+      "require": "./dist/cjs/babel-plugins/one-router-metro.cjs",
+      "types": "./types/babel-plugins/one-router-metro.d.ts"
+    },
+    "./getViteMetroPluginOptions": {
+      "import": "./dist/esm/metro-config/getViteMetroPluginOptions.mjs",
+      "require": "./dist/cjs/metro-config/getViteMetroPluginOptions.cjs",
+      "types": "./types/metro-config/getViteMetroPluginOptions.d.ts"
+    },
     "./metro-entry": {
       "require": "./metro-entry.js",
       "import": "./metro-entry.js"
@@ -132,6 +142,7 @@
     "react-native-safe-area-context": "5.4.1",
     "react-native-screens": "4.10.0",
     "ts-pattern": "^5.6.2",
+    "tsconfig-paths": "^4",
     "use-latest-callback": "^0.2.3",
     "vite": "^6.1.0",
     "vite-plugin-barrel": "^0.4.1",

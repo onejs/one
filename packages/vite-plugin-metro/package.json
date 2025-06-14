@@ -18,11 +18,16 @@
       "types": "./types/transformer/babel-transformer.d.ts",
       "import": "./dist/esm/transformer/babel-transformer.mjs",
       "require": "./dist/cjs/transformer/babel-transformer.cjs"
+    },
+    "./empty": {
+      "import": "./empty.js",
+      "require": "./empty.js"
     }
   },
   "files": [
     "src",
     "types",
+    "empty.js",
     "dist"
   ],
   "scripts": {
