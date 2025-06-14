@@ -28,7 +28,15 @@ import { swapPrebuiltReactModules } from '../utils/swapPrebuiltReactModules'
 const IGNORE_ROLLUP_LOGS_RE =
   /vite-native-client\/dist\/esm\/client|node_modules\/\.vxrn\/react-native|react-native-prebuilt\/vendor|one\/dist/
 
-export async function getReactNativeConfig(
+/**
+ * This is not the config that you merge into the general Vite config.
+ *
+ * It is only for building native React Native bundles, while passed directly
+ * to Vite's `createBuilder` function.
+ *
+ * Mainly used by the `getReactNativeBundle` function.
+ */
+export async function getReactNativeBuildConfig(
   options: Pick<VXRNOptionsFilled, 'root' | 'cacheDir'> & {
     server: Pick<VXRNOptionsFilled['server'], 'url' | 'port'>
     entries: Pick<VXRNOptionsFilled['entries'], 'native'>
@@ -298,6 +306,7 @@ export async function getReactNativeConfig(
 }
 
 let resolvedConfig: ResolvedConfig | null = null
+/** Use by things such as the reactNativeHMRPlugin to get the config after the initial build. */
 export function getReactNativeResolvedConfig() {
   return resolvedConfig
 }
