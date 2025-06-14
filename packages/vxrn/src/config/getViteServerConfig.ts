@@ -6,14 +6,7 @@ import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
 
 import { webExtensions } from '../constants'
-import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
-import { getServerConfigPlugin } from '../plugins/clientInjectPlugin'
-import { expoManifestRequestHandlerPlugin } from '../plugins/expoManifestRequestHandlerPlugin'
-import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
-import { createReactNativeDevServerPlugin } from '../plugins/reactNativeDevServer'
-import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
-import { applyBuiltInPatchesPlugin } from '../plugins/applyBuiltInPatchesPlugin'
-
+import { getReactNativePlugins } from './getReactNativePlugins'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled, userViteConfig?: UserConfig) {
   const { root, server } = config
@@ -28,48 +21,7 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
       appType: 'custom',
       clearScreen: false,
       publicDir: 'public',
-      plugins: [
-        createReactNativeDevServerPlugin(config),
-
-        getServerConfigPlugin(),
-
-        applyBuiltInPatchesPlugin(config),
-
-        // temp fix
-        // avoid logging the optimizeDeps we add that aren't in the app:
-        // likely we need a whole better solution to optimize deps
-        {
-          name: `avoid-optimize-logs`,
-
-          configureServer() {
-            const ogWarn = console.warn
-            console.warn = (...args: any[]) => {
-              if (
-                typeof args[0] === 'string' &&
-                args[0].startsWith(`Failed to resolve dependency:`)
-              ) {
-                return
-              }
-              return ogWarn(...args)
-            }
-          },
-        },
-
-        reactNativeHMRPlugin({
-          ...config,
-          assetExts: DEFAULT_ASSET_EXTS,
-        }),
-
-        expoManifestRequestHandlerPlugin({
-          projectRoot: root,
-          port: server.port,
-        }),
-
-        reactNativeDevAssetPlugin({
-          projectRoot: root,
-          assetExts: DEFAULT_ASSET_EXTS,
-        }),
-      ],
+      plugins: [...getReactNativePlugins(config)],
 
       ssr: {
         optimizeDeps,
