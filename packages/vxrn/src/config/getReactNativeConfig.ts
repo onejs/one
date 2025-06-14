@@ -19,7 +19,7 @@ import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
 import { dedupe } from './getBaseViteConfig'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
-import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
+import { swapPrebuiltReactModules } from '../utils/swapPrebuiltReactModules'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.

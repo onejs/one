@@ -1,4 +1,4 @@
-import type { VXRNOptionsFilled } from '../utils/getOptionsFilled';
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled';
 export declare function reactNativeHMRPlugin({ root, assetExts, mode, }: VXRNOptionsFilled & {
     assetExts: string[];
 }): {

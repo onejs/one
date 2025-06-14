@@ -1,5 +1,5 @@
 import type { Plugin } from 'vite'
-import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 
 export function applyBuiltInPatchesPlugin(options: VXRNOptionsFilled): Plugin {

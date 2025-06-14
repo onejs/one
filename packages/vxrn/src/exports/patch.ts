@@ -1,5 +1,5 @@
 import type { VXRNOptions } from '../types'
-import { fillOptions } from '../utils/getOptionsFilled'
+import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches, type SimpleDepPatchObject } from '../utils/patches'
 
 export type DevOptions = VXRNOptions & { clean?: boolean; deps?: SimpleDepPatchObject }

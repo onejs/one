@@ -6,9 +6,9 @@ import { join } from 'node:path'
 import semver from 'semver'
 import type { UserConfig } from 'vite'
 import { builtInDepPatches } from '../patches/builtInDepPatches'
-import type { VXRNOptionsFilled } from './getOptionsFilled'
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { globDir } from './globDir'
-import { deepMergeOptimizeDeps } from './mergeUserConfig'
+import { deepMergeOptimizeDeps } from '../config/mergeUserConfig'
 
 type Strategies = 'swc' | 'flow' | 'jsx'
 

@@ -13,7 +13,7 @@ export const serve = async ({
   app = new Hono(),
   ...optionsIn
 }: VXRNServeOptions) => {
-  const { getServerOptionsFilled } = await import('../utils/getServerOptionsFilled')
+  const { getServerOptionsFilled } = await import('../config/getServerOptionsFilled')
   const options = await getServerOptionsFilled(optionsIn, 'prod')
 
   if (beforeRegisterRoutes) {

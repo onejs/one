@@ -4,7 +4,7 @@ import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
-import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { clearCachedBundle, getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { URL } from 'node:url'

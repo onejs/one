@@ -1,4 +1,10 @@
 import { mergeConfig, type InlineConfig, type UserConfig } from 'vite'
+
+import { getBaseViteConfig } from './getBaseViteConfig'
+import { getOptimizeDeps } from './getOptimizeDeps'
+import type { VXRNOptionsFilled } from './getOptionsFilled'
+import { mergeUserConfig } from './mergeUserConfig'
+
 import { webExtensions } from '../constants'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getServerConfigPlugin } from '../plugins/clientInjectPlugin'
@@ -7,10 +13,7 @@ import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
 import { createReactNativeDevServerPlugin } from '../plugins/reactNativeDevServer'
 import { reactNativeHMRPlugin } from '../plugins/reactNativeHMRPlugin'
 import { applyBuiltInPatchesPlugin } from '../plugins/applyBuiltInPatchesPlugin'
-import { getBaseViteConfig } from './getBaseViteConfig'
-import { getOptimizeDeps } from './getOptimizeDeps'
-import type { VXRNOptionsFilled } from './getOptionsFilled'
-import { mergeUserConfig } from './mergeUserConfig'
+
 
 export async function getViteServerConfig(config: VXRNOptionsFilled, userViteConfig?: UserConfig) {
   const { root, server } = config

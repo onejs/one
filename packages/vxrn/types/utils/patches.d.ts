@@ -1,5 +1,5 @@
 import type { UserConfig } from 'vite';
-import type { VXRNOptionsFilled } from './getOptionsFilled';
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled';
 type Strategies = 'swc' | 'flow' | 'jsx';
 export type DepOptimize = boolean | 'exclude' | 'interop';
 export type DepFileStrategy = ((contents?: string) => void | string | Promise<void | string>) | string | Strategies[];

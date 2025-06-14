@@ -3,7 +3,7 @@ import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
 import FSExtra from 'fs-extra'
 import path from 'node:path'
 import colors from 'picocolors'
-import { fillOptions } from '../utils/getOptionsFilled'
+import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 import { generateForPlatform } from './prebuildWithoutExpo'
 

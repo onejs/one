@@ -1,4 +1,4 @@
-import type { VXRNOptionsFilled } from './getOptionsFilled';
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled';
 export declare let entryRoot: string;
 export declare function clearCachedBundle(): void;
 type InternalProps = {

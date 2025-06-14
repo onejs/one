@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { readPackageJSON } from 'pkg-types'
 import type { Mode, VXRNOptions } from '../types'
 import { getServerOptionsFilled } from './getServerOptionsFilled'
-import { readState, writeState } from './state'
+import { readState, writeState } from '../utils/state'
 
 const require = createRequire(import.meta.url)
 

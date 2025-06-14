@@ -1,4 +1,4 @@
-import type { VXRNOptionsFilled } from './utils/getOptionsFilled';
+import type { VXRNOptionsFilled } from './config/getOptionsFilled';
 type WorkerCommands = {
     name: 'bundle-react-native';
     arg: {
