@@ -1,7 +1,7 @@
 import path from 'node:path'
 import FSExtra from 'fs-extra'
 
-import type { Plugin } from 'vite'
+import type { Plugin, ResolvedConfig } from 'vite'
 import colors from 'picocolors'
 import { isNativeEnvironment } from '../utils/environmentUtils'
 
@@ -13,7 +13,6 @@ const ASSET_DEST_DIR = 'assets'
 const DEV_ASSET_DEST_PATH = '__vxrn_dev_native_assets'
 
 type ReactNativeDevAssetPluginConfig = {
-  projectRoot: string
   /** The list file extensions to be treated as assets. Assets are recognized by their extension. */
   assetExts: string[]
   /** Defaults to `'dev'`. */
@@ -23,12 +22,15 @@ type ReactNativeDevAssetPluginConfig = {
 }
 
 export function reactNativeDevAssetPlugin(options: ReactNativeDevAssetPluginConfig): Plugin {
-  const { projectRoot, assetExts } = options
+  const { assetExts } = options
 
   const assetExtsRegExp = new RegExp(`\\.(${assetExts.join('|')})$`)
   const isAssetFile = (id: string) => assetExtsRegExp.test(id)
 
+  let config: ResolvedConfig
+
   async function getAssetData(id) {
+    const projectRoot = config.root
     /** Asset path relative to the project root. */
     const relativeAssetPath = path.relative(projectRoot, id) // TODO: Handle assets that are outside the project root.
 
@@ -62,6 +64,10 @@ export function reactNativeDevAssetPlugin(options: ReactNativeDevAssetPluginConf
   return {
     name: 'vxrn:react-native-dev-asset',
     enforce: 'pre',
+
+    configResolved(resolvedConfig) {
+      config = resolvedConfig
+    },
 
     // resolveId(source, importer, options) {
     //   if (!isNativeEnvironment(this.environment)) return

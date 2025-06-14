@@ -12,11 +12,11 @@ import {
 } from 'vite'
 import { analyzer } from 'vite-bundle-analyzer'
 import type { BuildArgs, VXRNOptions } from '../types'
-import { getBaseViteConfig } from '../utils/getBaseViteConfig'
-import { getOptimizeDeps } from '../utils/getOptimizeDeps'
-import { fillOptions } from '../utils/getOptionsFilled'
+import { getBaseViteConfigWithPlugins } from '../config/getBaseViteConfigWithPlugins'
+import { getOptimizeDeps } from '../config/getOptimizeDeps'
+import { fillOptions } from '../config/getOptionsFilled'
 import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
-import { mergeUserConfig } from '../utils/mergeUserConfig'
+import { mergeUserConfig } from '../config/mergeUserConfig'
 import { applyBuiltInPatches } from '../utils/patches'
 import { loadEnv } from './loadEnv'
 
@@ -115,7 +115,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   const { optimizeDeps } = getOptimizeDeps('build')
 
   let webBuildConfig = mergeConfig(
-    await getBaseViteConfig('build', {
+    await getBaseViteConfigWithPlugins({
       ...options,
       mode: 'production',
     }),

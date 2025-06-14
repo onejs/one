@@ -1,0 +1,22 @@
+{
+  "name": "expo-blank-with-vite-metro",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev --host",
+    "start": "expo start"
+  },
+  "dependencies": {
+    "expo": "^53.0.4",
+    "one": "workspace:*",
+    "react": "~19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "~0.79.2",
+    "react-native-web": "~0.20.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.8",
+    "@vxrn/vite-plugin-metro": "workspace:*",
+    "vite": "^6.1.0"
+  }
+}
