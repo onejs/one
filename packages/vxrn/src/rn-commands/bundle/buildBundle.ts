@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import path from 'node:path'
 import { loadEnv } from '../../exports/loadEnv'
-import { fillOptions } from '../../utils/getOptionsFilled'
+import { fillOptions } from '../../config/getOptionsFilled'
 import { getReactNativeBundle } from '../../utils/getReactNativeBundle'
 
 export type BundleCommandArgs = {

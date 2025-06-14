@@ -2,7 +2,7 @@ import FSExtra from 'fs-extra'
 import { rm } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { VXRNOptions } from '../types'
-import { fillOptions } from '../utils/getOptionsFilled'
+import { fillOptions } from '../config/getOptionsFilled'
 import { getSSRExternalsCachePath } from '../plugins/autoDepOptimizePlugin'
 
 /**
