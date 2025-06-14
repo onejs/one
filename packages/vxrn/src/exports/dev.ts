@@ -71,10 +71,6 @@ export default defineConfig({
     await clean(optionsIn, options.clean)
   }
 
-  await applyBuiltInPatches(options).catch((err) => {
-    console.error(`\n 🥺 error applying built-in patches`, err)
-  })
-
   await ensureDir(cacheDir)
 
   const serverConfig = await getViteServerConfig(options, config)
