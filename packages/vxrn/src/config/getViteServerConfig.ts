@@ -1,12 +1,12 @@
 import { mergeConfig, type InlineConfig, type UserConfig } from 'vite'
 
-import { getBaseViteConfig } from './getBaseViteConfig'
+import { getBaseViteConfigWithPlugins } from './getBaseViteConfigWithPlugins'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { mergeUserConfig } from './mergeUserConfig'
 
-import { webExtensions } from '../constants'
 import { getReactNativePlugins } from './getReactNativePlugins'
+import { getAdditionalViteConfig } from './getAdditionalViteConfig'
 
 export async function getViteServerConfig(config: VXRNOptionsFilled, userViteConfig?: UserConfig) {
   const { root, server } = config
@@ -14,49 +14,24 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
 
   // TODO: can we move most of this into `one` plugin:
   let serverConfig: UserConfig = mergeConfig(
-    await getBaseViteConfig(config),
+    await getBaseViteConfigWithPlugins(config),
 
-    {
-      root,
-      appType: 'custom',
-      clearScreen: false,
-      publicDir: 'public',
+    mergeConfig(getAdditionalViteConfig(), {
       plugins: [...getReactNativePlugins(config)],
-
-      ssr: {
-        optimizeDeps,
-      },
-
-      environments: {
-        client: {
-          optimizeDeps: {
-            include: ['react-native-screens', '@rocicorp/zero'],
-            esbuildOptions: {
-              resolveExtensions: webExtensions,
-            },
-          },
-        },
-      },
-
-      optimizeDeps: {
-        esbuildOptions: {
-          target: 'esnext',
-        },
-      },
-
       server: {
         hmr: {
           path: '/__vxrnhmr',
         },
-        cors: true,
         host: server.host,
         port: server.port,
       },
-    } satisfies UserConfig
+      root,
+    } satisfies UserConfig)
   ) satisfies InlineConfig
 
   const rerouteNoExternalConfig = userViteConfig?.ssr?.noExternal === true
   if (rerouteNoExternalConfig) {
+    console.warn(`[rerouteNoExternalConfig] delete userViteConfig.ssr.noExternal`)
     delete userViteConfig.ssr!.noExternal
   }
 
