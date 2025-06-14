@@ -8,6 +8,7 @@ import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { getReactNativeConfig } from '../config/getReactNativeConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
+import { getCacheDir } from './getCacheDir'
 
 // used for normalizing hot reloads
 export let entryRoot = ''
@@ -21,7 +22,7 @@ export function clearCachedBundle() {
 type InternalProps = { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean }
 
 export async function getReactNativeBundle(
-  options: VXRNOptionsFilled,
+  options: Pick<VXRNOptionsFilled, 'root'> & Partial<Pick<VXRNOptionsFilled, 'cacheDir'>> & Parameters<typeof getReactNativeConfig>[0],
   platform: 'ios' | 'android',
   internal: InternalProps = {
     mode: 'dev',
@@ -35,7 +36,7 @@ export async function getReactNativeBundle(
     return cached
   }
 
-  await prebuildReactNativeModules(options.cacheDir, {
+  await prebuildReactNativeModules(options.cacheDir || getCacheDir(options.root), {
     // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
     mode: internal.mode,
   })

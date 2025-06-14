@@ -29,7 +29,10 @@ const IGNORE_ROLLUP_LOGS_RE =
   /vite-native-client\/dist\/esm\/client|node_modules\/\.vxrn\/react-native|react-native-prebuilt\/vendor|one\/dist/
 
 export async function getReactNativeConfig(
-  options: VXRNOptionsFilled,
+  options: Pick<VXRNOptionsFilled, 'root' | 'cacheDir'> & {
+    server: Pick<VXRNOptionsFilled['server'], 'url' | 'port'>
+    entries: Pick<VXRNOptionsFilled['entries'], 'native'>
+  },
   internal: { mode?: 'dev' | 'prod'; assetsDest?: string } = { mode: 'dev' },
   platform: 'ios' | 'android'
 ) {
@@ -137,7 +140,6 @@ export async function getReactNativeConfig(
       }),
 
       reactNativeDevAssetPlugin({
-        projectRoot: options.root,
         mode: internal.mode,
         assetsDest: internal.assetsDest,
         assetExts: DEFAULT_ASSET_EXTS,

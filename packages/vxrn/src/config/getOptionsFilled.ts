@@ -6,9 +6,38 @@ import { readPackageJSON } from 'pkg-types'
 import type { Mode, VXRNOptions } from '../types'
 import { getServerOptionsFilled } from './getServerOptionsFilled'
 import { readState, writeState } from '../utils/state'
+import { getCacheDir } from '../utils/getCacheDir'
 
 const require = createRequire(import.meta.url)
 
+/**
+ * **NOTES**
+ *
+ * * Currently, the `VXRNOptionsFilled` type (which initially is the bag of
+ *   command line arguments (`optionsIn`) filled with defaults)
+ *   is used throughout the codebase. This makes it difficult to turn `vxrn`
+ *   into a pure Vite plugin, because without using the vxrn CLI there will be
+ *   no `VXRNOptionsFilled`.
+ * * So we plan to gradually phase out `VXRNOptionsFilled`.
+ * * The content of `VXRNOptionsFilled` can be divide into two types:
+ *   1. Values that can be derived from the Vite config object.
+ *   2. Optional settings that are rarely needed.
+ *   * For type 1, we will just derive them from the Vite config object. We can
+ *     create helper functions like `getSomething(config: ViteResolvedConfig)`
+ *     and reuse them across sub-plugins or functions.
+ *   * For type 2, we'll avoid referencing VXRNOptionsFilled entirely and
+ *     instead pass individual options with sensible defaults.
+ * * Current transition strategy:
+ *   * To maintain backward compatibility and avoid large-scale refactors at
+ *     once, we will still leave most of the `VXRNOptionsFilled` usages there.
+ *   * However, we should avoid depending on the full `VXRNOptionsFilled` type.
+ *     Instead, we'll use `Pick<...>` and/or `Partial<...>` to narrow the type
+ *     to only the properties actually used by each function.
+ *   * This makes it easier to use these functions outside of the vxrn CLI by
+ *     supplying only the required values.
+ *   * Over time, we can progressively eliminate dependencies on
+ *     `VXRNOptionsFilled` across the codebase.
+ */
 export type VXRNOptionsFilled = Awaited<ReturnType<typeof fillOptions>>
 
 let optionsFilled: VXRNOptionsFilled | null = null
@@ -23,7 +52,7 @@ export async function fillOptions(options: VXRNOptions, { mode = 'dev' }: { mode
   }
 
   const packageRootDir = join(require.resolve('vxrn'), '../..')
-  const cacheDir = join(root, 'node_modules', '.vxrn')
+  const cacheDir = getCacheDir(root)
 
   const [state, packageJSON] = await Promise.all([readState(cacheDir), readPackageJSON()])
 
