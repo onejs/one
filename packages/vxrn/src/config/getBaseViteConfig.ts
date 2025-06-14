@@ -27,10 +27,7 @@ export const dedupe = [
   'escape-string-regexp',
 ]
 
-export async function getBaseViteConfig(
-  run: 'serve' | 'build',
-  config: VXRNOptionsFilled
-): Promise<InlineConfig> {
+export async function getBaseViteConfig(config: VXRNOptionsFilled): Promise<InlineConfig> {
   const { root, mode } = config
 
   const postCSSPaths = [
@@ -130,9 +127,7 @@ export async function getBaseViteConfig(
         },
       },
 
-      createVXRNCompilerPlugin({
-        mode: run,
-      }),
+      createVXRNCompilerPlugin({}),
     ],
 
     // TODO make this documented / configurable through the plugins
