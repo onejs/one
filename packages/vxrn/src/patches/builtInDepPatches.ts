@@ -1,7 +1,7 @@
-import { assertString } from './assert'
-import { type DepPatch, bailIfUnchanged } from './patches'
+import { assertString } from '../utils/assert'
+import { type DepPatch, bailIfUnchanged } from '../utils/patches'
 
-export const depPatches: DepPatch[] = [
+export const builtInDepPatches: DepPatch[] = [
   {
     module: 'react',
     patchFiles: {

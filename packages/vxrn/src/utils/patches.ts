@@ -5,7 +5,7 @@ import FSExtra from 'fs-extra'
 import { join } from 'node:path'
 import semver from 'semver'
 import type { UserConfig } from 'vite'
-import { depPatches } from './depPatches'
+import { builtInDepPatches } from '../patches/builtInDepPatches'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { globDir } from './globDir'
 import { deepMergeOptimizeDeps } from './mergeUserConfig'
@@ -44,7 +44,7 @@ export async function applyBuiltInPatches(
   options: VXRNOptionsFilled,
   extraPatches?: SimpleDepPatchObject
 ) {
-  const all = [...depPatches]
+  const all = [...builtInDepPatches]
 
   if (extraPatches) {
     for (const key in extraPatches) {
