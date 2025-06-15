@@ -14,10 +14,10 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@tamagui/config": "^1.126.4",
-    "@tamagui/image-next": "^1.126.4",
-    "@tamagui/lucide-icons": "^1.126.4",
-    "@tamagui/vite-plugin": "^1.126.4",
+    "@tamagui/config": "^1.126.18",
+    "@tamagui/image-next": "^1.126.18",
+    "@tamagui/lucide-icons": "^1.126.18",
+    "@tamagui/vite-plugin": "^1.126.18",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-shell": "^2",
@@ -30,7 +30,7 @@
     "react-native-safe-area-context": "5.4.1",
     "react-native-svg": "15.12.0",
     "react-native-web": "~0.20.0",
-    "tamagui": "^1.126.4"
+    "tamagui": "^1.126.18"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
