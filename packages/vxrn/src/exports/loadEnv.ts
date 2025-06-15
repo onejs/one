@@ -29,6 +29,7 @@ export async function loadEnv(mode: Mode, root = process.cwd(), userPrefix?: str
   // define into process.env
   for (const key in serverEnv) {
     if (typeof process.env[key] === 'undefined') {
+      console.log(`define into process.env: ${key}=${serverEnv[key]}`)
       process.env[key] = serverEnv[key]
     }
   }

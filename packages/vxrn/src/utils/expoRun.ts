@@ -1,5 +1,5 @@
 import module from 'node:module'
-import { fillOptions } from '../utils/getOptionsFilled'
+import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 import picocolors from 'picocolors'
 

@@ -1,5 +1,6 @@
 import { clearCompilerCache, configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
+import vxrnVitePlugin from 'vxrn/vite-plugin'
 import events from 'node:events'
 import path from 'node:path'
 import type { Plugin, PluginOption, UserConfig } from 'vite'
@@ -19,6 +20,7 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import type { One } from './types'
+import { setServerGlobals } from '../server/setServerGlobals'
 
 /**
  * This needs a big refactor!
@@ -36,13 +38,25 @@ globalThis.__vxrnEnableNativeEnv = true
 // not control the port/host from our config, but still pass it into ENV
 // until then we want to avoid double loading everything on first start
 
+console.log('one!')
+setServerGlobals()
+console.log('one setServerGlobals end!')
+
 export function one(options: One.PluginOptions = {}): PluginOption {
-  if (!globalThis.__oneOptions) {
-    // first load we are just loading it ourselves to get the user options
-    // so we can just set here and return nothing
-    setOneOptions(options)
-    globalThis['__vxrnPluginConfig__'] = options
-    return []
+  const vxrnPlugins: PluginOption[] = []
+
+  if (!process.env.IS_VXRN_CLI) {
+    console.warn('Experimental: not using vxrn CLI todo')
+    setServerGlobals()
+    vxrnPlugins.push(vxrnVitePlugin(/* TODO */))
+  } else {
+    if (!globalThis.__oneOptions) {
+      // first load we are just loading it ourselves to get the user options
+      // so we can just set here and return nothing
+      setOneOptions(options)
+      globalThis['__vxrnPluginConfig__'] = options
+      return []
+    }
   }
 
   clearCompilerCache()
@@ -215,8 +229,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
     {
       name: 'one:init-config',
-
       config() {
+        console.log('one:init-config !!!!')
         return {
           define: {
             ...(options.web?.defaultRenderMode && {
@@ -249,7 +263,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
             ssr: {
               define: {
-                'process.env.VITE_ENVIRONMENT': '"ssr"',
+                'process.env.VITE_ENVIRONMENT': '"ssr"', // Note that we are also setting `process.env.VITE_ENVIRONMENT = 'ssr'` for this process! See `setServerGlobals()`.
                 'process.env.TAMAGUI_ENVIRONMENT': '"ssr"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
                 'process.env.EXPO_OS': '"web"',
@@ -453,6 +467,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const routerRoot = getRouterRootFromOneOptions(options)
 
   return [
+    ...vxrnPlugins,
     ...devAndProdPlugins,
     ...nativeWebDevAndProdPlugsin,
 

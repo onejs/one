@@ -7,7 +7,9 @@ export const getDefaultRenderMode = () => {
   const serverConfig = globalThis['__vxrnPluginConfig__'] as One.PluginOptions | undefined
 
   if (!CLIENT_RENDER_MODE && isWebServer && !serverConfig) {
-    throw new Error(`Internal one error: should call setServerConfig before createManifest`)
+    if (process.env.IS_VXRN_CLI) {
+      throw new Error(`Internal one error: should call setServerConfig before createManifest`)
+    }
   }
 
   return CLIENT_RENDER_MODE ?? serverConfig?.web?.defaultRenderMode ?? 'ssg'
