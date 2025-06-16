@@ -95,117 +95,128 @@ export async function applyDependencyPatches(
   await Promise.all(
     patches.flatMap((patch) => {
       return nodeModulesDirs!.flatMap(async (dir) => {
-        const nodeModuleDir = join(dir, patch.module)
-        const version = patch.patchFiles.version
+        try {
+          const nodeModuleDir = join(dir, patch.module)
+          const version = patch.patchFiles.version
 
-        let hasLogged = false
+          let hasLogged = false
 
-        if (FSExtra.existsSync(nodeModuleDir)) {
-          if (typeof version === 'string') {
-            const pkgJSON = await FSExtra.readJSON(join(nodeModuleDir, 'package.json'))
-            if (!semver.satisfies(pkgJSON.version, version)) {
-              return
-            }
-          }
-
-          for (const file in patch.patchFiles) {
-            if (file === 'optimize' || file === 'version') {
-              continue
+          if (FSExtra.existsSync(nodeModuleDir)) {
+            if (typeof version === 'string') {
+              const pkgJSON = await FSExtra.readJSON(join(nodeModuleDir, 'package.json'))
+              if (!semver.satisfies(pkgJSON.version, version)) {
+                return
+              }
             }
 
-            const filesToApply = file.includes('*') ? globDir(nodeModuleDir, file) : [file]
+            for (const file in patch.patchFiles) {
+              if (file === 'optimize' || file === 'version') {
+                continue
+              }
 
-            await Promise.all(
-              filesToApply.map(async (relativePath) => {
-                try {
-                  const fullPath = join(nodeModuleDir, relativePath)
-                  const ogFile = fullPath + '.vxrn.ogfile'
+              const filesToApply = file.includes('*') ? globDir(nodeModuleDir, file) : [file]
 
-                  // for any update we store an "og" file to compare and decide if we need to run again
-                  const existingPatch = FSExtra.existsSync(ogFile)
-                    ? await FSExtra.readFile(ogFile, 'utf-8')
-                    : null
+              await Promise.all(
+                filesToApply.map(async (relativePath) => {
+                  try {
+                    const fullPath = join(nodeModuleDir, relativePath)
+                    const ogFile = fullPath + '.vxrn.ogfile'
 
-                  let contentsIn = FSExtra.existsSync(fullPath)
-                    ? await FSExtra.readFile(fullPath, 'utf-8')
-                    : ''
+                    // for any update we store an "og" file to compare and decide if we need to run again
+                    let existingPatch: string | null = null
+                    if (FSExtra.existsSync(ogFile)) {
+                      try {
+                        // for some reason with bun install this would say it exists? but then fail here?
+                        existingPatch = await FSExtra.readFile(ogFile, 'utf-8')
+                      } catch (err) {
+                        console.warn(`Error reading patch`, err)
+                      }
+                    }
 
-                  if (typeof existingPatch === 'string') {
-                    if (!process.env.VXRN_FORCE_PATCH) {
+                    let contentsIn = FSExtra.existsSync(fullPath)
+                      ? await FSExtra.readFile(fullPath, 'utf-8')
+                      : ''
+
+                    if (typeof existingPatch === 'string') {
+                      if (!process.env.VXRN_FORCE_PATCH) {
+                        return
+                      }
+
+                      // start from the OG
+                      contentsIn = existingPatch
+                    }
+
+                    const write = async (contents: string) => {
+                      await Promise.all([
+                        FSExtra.writeFile(ogFile, contentsIn),
+                        FSExtra.writeFile(fullPath, contents),
+                      ])
+
+                      if (!hasLogged) {
+                        hasLogged = true
+                        console.info(` 🩹 Patching ${patch.module}`)
+                      }
+
+                      if (process.env.DEBUG) {
+                        console.info(`  - Applied patch to ${patch.module}: ${relativePath}`)
+                      }
+                    }
+
+                    const patchDefinition = patch.patchFiles[file]
+
+                    // add
+                    if (typeof patchDefinition === 'string') {
+                      await write(patchDefinition)
                       return
                     }
 
-                    // start from the OG
-                    contentsIn = existingPatch
-                  }
+                    // strategy
+                    if (Array.isArray(patchDefinition)) {
+                      let contents = contentsIn
 
-                  const write = async (contents: string) => {
-                    await Promise.all([
-                      FSExtra.writeFile(ogFile, contentsIn),
-                      FSExtra.writeFile(fullPath, contents),
-                    ])
-
-                    if (!hasLogged) {
-                      hasLogged = true
-                      console.info(` 🩹 Patching ${patch.module}`)
-                    }
-
-                    if (process.env.DEBUG) {
-                      console.info(`  - Applied patch to ${patch.module}: ${relativePath}`)
-                    }
-                  }
-
-                  const patchDefinition = patch.patchFiles[file]
-
-                  // add
-                  if (typeof patchDefinition === 'string') {
-                    await write(patchDefinition)
-                    return
-                  }
-
-                  // strategy
-                  if (Array.isArray(patchDefinition)) {
-                    let contents = contentsIn
-
-                    for (const strategy of patchDefinition) {
-                      if (strategy === 'flow') {
-                        contents = await transformFlow(contents)
+                      for (const strategy of patchDefinition) {
+                        if (strategy === 'flow') {
+                          contents = await transformFlow(contents)
+                        }
+                        if (strategy === 'swc' || strategy === 'jsx') {
+                          contents =
+                            (
+                              await transformSWC(fullPath, contents, {
+                                mode: 'build',
+                                environment: 'ios',
+                                forceJSX: strategy === 'jsx',
+                                noHMR: true,
+                                fixNonTypeSpecificImports: true,
+                              })
+                            )?.code || contents
+                        }
                       }
-                      if (strategy === 'swc' || strategy === 'jsx') {
-                        contents =
-                          (
-                            await transformSWC(fullPath, contents, {
-                              mode: 'build',
-                              environment: 'ios',
-                              forceJSX: strategy === 'jsx',
-                              noHMR: true,
-                              fixNonTypeSpecificImports: true,
-                            })
-                          )?.code || contents
+
+                      if (contentsIn !== contents) {
+                        await write(contents)
                       }
+
+                      return
                     }
 
-                    if (contentsIn !== contents) {
-                      await write(contents)
+                    // update
+                    const out = await patchDefinition(contentsIn)
+                    if (typeof out === 'string') {
+                      await write(out)
                     }
-
-                    return
+                  } catch (err) {
+                    if (err instanceof Bail) {
+                      return
+                    }
+                    throw err
                   }
-
-                  // update
-                  const out = await patchDefinition(contentsIn)
-                  if (typeof out === 'string') {
-                    await write(out)
-                  }
-                } catch (err) {
-                  if (err instanceof Bail) {
-                    return
-                  }
-                  throw err
-                }
-              })
-            )
+                })
+              )
+            }
           }
+        } catch (err) {
+          console.error(`🚨 Error applying patch to`, patch.module)
+          console.error(err)
         }
       })
     })
