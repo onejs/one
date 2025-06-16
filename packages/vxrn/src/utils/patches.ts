@@ -100,7 +100,7 @@ export async function applyDependencyPatches(
 
         let hasLogged = false
 
-        if (await FSExtra.pathExists(nodeModuleDir)) {
+        if (FSExtra.existsSync(nodeModuleDir)) {
           if (typeof version === 'string') {
             const pkgJSON = await FSExtra.readJSON(join(nodeModuleDir, 'package.json'))
             if (!semver.satisfies(pkgJSON.version, version)) {
@@ -122,11 +122,11 @@ export async function applyDependencyPatches(
                   const ogFile = fullPath + '.vxrn.ogfile'
 
                   // for any update we store an "og" file to compare and decide if we need to run again
-                  const existingPatch = (await FSExtra.pathExists(ogFile))
+                  const existingPatch = FSExtra.existsSync(ogFile)
                     ? await FSExtra.readFile(ogFile, 'utf-8')
                     : null
 
-                  let contentsIn = (await FSExtra.pathExists(fullPath))
+                  let contentsIn = FSExtra.existsSync(fullPath)
                     ? await FSExtra.readFile(fullPath, 'utf-8')
                     : ''
 
