@@ -10,6 +10,8 @@ export type DevOptions = VXRNOptions & {
 }
 
 export const dev = async (optionsIn: DevOptions) => {
+  process.env.IS_VXRN_CLI = 'true'
+
   if (typeof optionsIn.debug === 'string') {
     process.env.DEBUG ||= !optionsIn.debug ? `vite` : `vite:${optionsIn.debug}`
   }
@@ -17,8 +19,8 @@ export const dev = async (optionsIn: DevOptions) => {
   // import vite only after setting process.env.DEBUG
   const { startUserInterface } = await import('../user-interface/index')
   const { bindKeypressInput } = await import('../utils/bindKeypressInput')
-  const { fillOptions } = await import('../utils/getOptionsFilled')
-  const { getViteServerConfig } = await import('../utils/getViteServerConfig')
+  const { fillOptions } = await import('../config/getOptionsFilled')
+  const { getViteServerConfig } = await import('../config/getViteServerConfig')
   const { applyBuiltInPatches } = await import('../utils/patches')
   const { printServerUrls } = await import('../utils/printServerUrls')
   const { clean } = await import('./clean')
@@ -70,10 +72,6 @@ export default defineConfig({
   if (options.clean) {
     await clean(optionsIn, options.clean)
   }
-
-  await applyBuiltInPatches(options).catch((err) => {
-    console.error(`\n 🥺 error applying built-in patches`, err)
-  })
 
   await ensureDir(cacheDir)
 

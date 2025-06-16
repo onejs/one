@@ -8,8 +8,8 @@ import colors from 'picocolors'
 // Can support more [options](https://github.com/expo/expo/blob/sdk-50/packages/%40expo/cli/src/start/server/middleware/ManifestMiddleware.ts#L113-L121) in the future.
 type ExpoManifestRequestHandlerPluginConfig = {
   /** The root of the Expo project. */
-  projectRoot: string
-  port: number
+  // projectRoot: string
+  // port: number
 }
 
 /**
@@ -18,11 +18,12 @@ type ExpoManifestRequestHandlerPluginConfig = {
 export function expoManifestRequestHandlerPlugin(
   options: ExpoManifestRequestHandlerPluginConfig
 ): Plugin {
-  const { projectRoot } = options
   return {
     name: 'vxrn:expo-manifest-request-handler',
 
     configureServer(server) {
+      const projectRoot = server.config.root
+      const port = server.config.server.port
       const { logger } = server.config
       const defaultLogOptions = { timestamp: true }
 
@@ -84,7 +85,7 @@ export function expoManifestRequestHandlerPlugin(
             defaultLogOptions
           )
 
-          const json = getIndexJsonResponse(options)
+          const json = getIndexJsonResponse({ projectRoot, port })
 
           res.setHeader('content-type', 'application/json')
           res.write(JSON.stringify(json))
@@ -146,8 +147,10 @@ export function expoManifestRequestHandlerPlugin(
               )
             }
             if (typeof parsedBody.extra.expoGo.debuggerHost === 'string') {
-              parsedBody.extra.expoGo.debuggerHost =
-                parsedBody.extra.expoGo.debuggerHost.replace(/^https?:\/\//, '')
+              parsedBody.extra.expoGo.debuggerHost = parsedBody.extra.expoGo.debuggerHost.replace(
+                /^https?:\/\//,
+                ''
+              )
             }
 
             // TODO: Using a static icon and splash for branding for now.
@@ -182,7 +185,13 @@ export function expoManifestRequestHandlerPlugin(
   }
 }
 
-function getIndexJsonResponse({ port, projectRoot }: ExpoManifestRequestHandlerPluginConfig) {
+function getIndexJsonResponse({
+  port,
+  projectRoot,
+}: {
+  projectRoot: string
+  port: number
+}) {
   return {
     name: 'myapp',
     slug: 'myapp',

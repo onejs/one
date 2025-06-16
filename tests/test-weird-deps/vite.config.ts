@@ -5,8 +5,13 @@ export default {
   plugins: [
     one({
       deps: {
-        '@rn-primitives/slot': {
-          '**/*.mjs': ['jsx'],
+        'react': {
+          'lib/module/useOnGetState.js': (contents) => {
+            return contents?.replace(
+              'if (route.state === childState)',
+              'if (!childState || route.state === childState)'
+            )
+          },
         },
       },
     }),
