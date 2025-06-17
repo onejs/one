@@ -2,10 +2,6 @@
   "name": "@vxrn/query-string",
   "version": "1.1.491",
   "sideEffects": false,
-  "source": "src/index.ts",
-  "types": "./types/index.d.ts",
-  "main": "dist/cjs",
-  "module": "dist/esm",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -18,6 +14,10 @@
       "require": "./dist/cjs/index.cjs"
     }
   },
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "source": "src/index.ts",
+  "types": "./types/index.d.ts",
   "files": [
     "src",
     "types",
@@ -25,17 +25,17 @@
   ],
   "scripts": {
     "build": "tamagui-build",
-    "watch": "tamagui-build --watch",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build",
     "lint": "npx biome check src",
     "lint:fix": "npx biome check --write --unsafe src",
-    "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
+    "watch": "tamagui-build --watch"
   },
   "dependencies": {
     "query-string": "^9.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.126.18"
+    "@tamagui/build": "^1.126.4"
   },
   "publishConfig": {
     "access": "public"
