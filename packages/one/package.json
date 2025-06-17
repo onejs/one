@@ -144,7 +144,7 @@
     "react-native": "~0.79.2",
     "rollup": "^4.29.1",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "vitest": "^3.2.0"
   },
   "peerDependencies": {
     "react-native": "*",
