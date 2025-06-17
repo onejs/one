@@ -45,7 +45,7 @@
     "playwright": "^1.49.1",
     "subset-font": "^2.4.0",
     "tsx": "^4.19.0",
-    "vitest": "^3.0.5"
+    "vitest": "^3.2.3"
   },
   "publishConfig": {
     "access": "public"
