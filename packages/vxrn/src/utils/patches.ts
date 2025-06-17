@@ -46,9 +46,21 @@ export async function applyBuiltInPatches(
 ) {
   const all = [...depPatches]
 
+  // merge user patches on top of built ins
   if (extraPatches) {
     for (const key in extraPatches) {
-      all.push({ module: key, patchFiles: extraPatches[key] })
+      const extraPatchFiles = extraPatches[key]
+      const existing = all.find((x) => x.module === key)
+      if (existing) {
+        for (const patchKey in extraPatchFiles) {
+          if (existing.patchFiles[patchKey]) {
+            console.warn(`Warning: Overwriting One built-in patch with user patch`, key, patchKey)
+          }
+          existing.patchFiles[patchKey] = extraPatchFiles[patchKey]
+        }
+      } else {
+        all.push({ module: key, patchFiles: extraPatchFiles })
+      }
     }
   }
 
@@ -147,6 +159,8 @@ export async function applyDependencyPatches(
                     }
 
                     const write = async (contents: string) => {
+                      // update contentsIn so the next patch gets the new value if it runs multiple
+                      contentsIn = contents
                       await Promise.all([
                         FSExtra.writeFile(ogFile, contentsIn),
                         FSExtra.writeFile(fullPath, contents),
