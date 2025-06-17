@@ -1,21 +1,8 @@
 {
   "name": "@vxrn/safe-area",
   "version": "1.1.491",
-  "source": "src/index.ts",
-  "types": "./types/index.d.ts",
-  "type": "module",
-  "main": "dist/cjs",
-  "module": "dist/esm",
   "sideEffects": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "build": "tamagui-build",
-    "watch": "yarn build --watch",
-    "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
-  },
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -28,8 +15,21 @@
       "require": "./dist/cjs/index.cjs"
     }
   },
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "source": "src/index.ts",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "build": "tamagui-build",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build",
+    "watch": "yarn build --watch"
+  },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@tamagui/build": "^1.126.18"
+    "@tamagui/build": "^1.126.4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

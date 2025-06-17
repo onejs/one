@@ -3,9 +3,6 @@
   "version": "1.1.491",
   "sideEffects": false,
   "type": "module",
-  "types": "./src/index.ts",
-  "main": "dist/cjs",
-  "module": "dist/esm",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -18,23 +15,26 @@
       "require": "./dist/cjs/index.cjs"
     }
   },
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "types": "./src/index.ts",
   "files": [
     "src",
     "dist"
   ],
   "scripts": {
     "build": "tamagui-build --skip-types",
-    "watch": "tamagui-build --skip-types --watch",
+    "clean": "tamagui-build clean",
+    "clean:build": "tamagui-build clean:build",
     "lint": "npx biome check src",
     "lint:fix": "npx biome check --write --unsafe src",
-    "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
+    "watch": "tamagui-build --skip-types --watch"
   },
   "dependencies": {
     "url-parse": "^1.5.10"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.126.18"
+    "@tamagui/build": "^1.126.4"
   },
   "publishConfig": {
     "access": "public"

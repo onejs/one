@@ -13,17 +13,21 @@ import {
   Button,
   Paragraph,
   Spacer,
-  Text,
   TooltipSimple,
   XStack,
   YStack,
   styled,
+  ScrollView,
+  useEvent,
+  Text,
 } from 'tamagui'
 import { LinearGradient } from 'tamagui/linear-gradient'
 import { ErrorBoundary } from '~/features/site/ErrorBoundary'
+import { Code } from './Code'
 import { RovingTabs } from './RovingTabs'
 import { useBashCommand } from './useBashCommand'
 import { useClipboard } from './useClipboard'
+import { unwrapText } from './unwrapText'
 
 export const Pre = styled(YStack, {
   overflow: 'visible',
