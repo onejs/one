@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "playwright": "^1.49.1",
-    "vitest": "^3.0.5",
+    "vitest": "^3.2.0",
     "webdriverio": "^9.5.4"
   }
 }
