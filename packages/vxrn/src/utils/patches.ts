@@ -127,6 +127,7 @@ export async function applyDependencyPatches(
               }
 
               const filesToApply = file.includes('*') ? globDir(nodeModuleDir, file) : [file]
+              const appliedContents = new Map<string, string>()
 
               await Promise.all(
                 filesToApply.map(async (relativePath) => {
@@ -135,32 +136,31 @@ export async function applyDependencyPatches(
                     const ogFile = fullPath + '.vxrn.ogfile'
 
                     // for any update we store an "og" file to compare and decide if we need to run again
-                    let existingPatch: string | null = null
-                    if (FSExtra.existsSync(ogFile)) {
-                      try {
-                        // for some reason with bun install this would say it exists? but then fail here?
-                        existingPatch = await FSExtra.readFile(ogFile, 'utf-8')
-                      } catch (err) {
-                        console.warn(`Error reading patch`, err)
-                      }
-                    }
+                    let existingPatch: string | null = appliedContents.get(ogFile) || null
 
-                    let contentsIn = FSExtra.existsSync(fullPath)
-                      ? await FSExtra.readFile(fullPath, 'utf-8')
-                      : ''
-
-                    if (typeof existingPatch === 'string') {
+                    if (!existingPatch) {
                       if (!process.env.VXRN_FORCE_PATCH) {
-                        return
+                        if (FSExtra.existsSync(ogFile)) {
+                          try {
+                            // for some reason with bun install this would say it exists? but then fail here?
+                            existingPatch = await FSExtra.readFile(ogFile, 'utf-8')
+                          } catch (err) {
+                            console.warn(`Error reading patch`, err)
+                          }
+                        }
                       }
-
-                      // start from the OG
-                      contentsIn = existingPatch
                     }
+
+                    let contentsIn =
+                      existingPatch ||
+                      (FSExtra.existsSync(fullPath)
+                        ? await FSExtra.readFile(fullPath, 'utf-8')
+                        : '')
 
                     const write = async (contents: string) => {
                       // update contentsIn so the next patch gets the new value if it runs multiple
                       contentsIn = contents
+                      appliedContents.set(ogFile, contents)
                       await Promise.all([
                         FSExtra.writeFile(ogFile, contentsIn),
                         FSExtra.writeFile(fullPath, contents),
@@ -226,6 +226,8 @@ export async function applyDependencyPatches(
                   }
                 })
               )
+
+              appliedContents.clear()
             }
           }
         } catch (err) {
