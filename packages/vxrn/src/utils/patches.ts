@@ -96,23 +96,42 @@ export async function applyOptimizePatches(patches: DepPatch[], config: UserConf
   deepMergeOptimizeDeps(config.ssr!, { optimizeDeps }, undefined, true)
 }
 
+// HACK!
+// These originally lives inside applyDependencyPatches
+// but we can't be sure that `applyDependencyPatches` will only be called
+// once, at least one is calling applyDependencyPatches directly, in fixDependenciesPlugin.ts
+/**
+ * We need this to be cached not only for performance but also for the
+ * fact that we may patch the same file multiple times but the "ogfile"
+ * will be created during the first patching.
+ */
+const isAlreadyPatchedMap = createCachingMap((fullFilePath: string) =>
+  FSExtra.existsSync(getOgFilePath(fullFilePath))
+)
+/**
+ * A set of full paths to files that have been patched during the
+ * current run.
+ */
+const pathsBeingPatched = new Set<string>()
+// --- HACK! ---
+
 export async function applyDependencyPatches(
   patches: DepPatch[],
   { root = process.cwd() }: { root?: string } = {}
 ) {
-  /**
-   * We need this to be cached not only for performance but also for the
-   * fact that we may patch the same file multiple times but the "ogfile"
-   * will be created during the first patching.
-   */
-  const isAlreadyPatchedMap = createCachingMap((fullFilePath: string) =>
-    FSExtra.existsSync(getOgFilePath(fullFilePath))
-  )
-  /**
-   * A set of full paths to files that have been patched during the
-   * current run.
-   */
-  const pathsBeingPatched = new Set<string>()
+  // /**
+  //  * We need this to be cached not only for performance but also for the
+  //  * fact that we may patch the same file multiple times but the "ogfile"
+  //  * will be created during the first patching.
+  //  */
+  // const isAlreadyPatchedMap = createCachingMap((fullFilePath: string) =>
+  //   FSExtra.existsSync(getOgFilePath(fullFilePath))
+  // )
+  // /**
+  //  * A set of full paths to files that have been patched during the
+  //  * current run.
+  //  */
+  // const pathsBeingPatched = new Set<string>()
 
   const nodeModulesDirs = findNodeModules({
     cwd: root,
