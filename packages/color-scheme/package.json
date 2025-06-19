@@ -32,12 +32,12 @@
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
-    "@tamagui/use-did-finish-ssr": "^1.127.1",
+    "@tamagui/use-did-finish-ssr": "^1.127.2",
     "@vxrn/universal-color-scheme": "workspace:*",
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.127.1",
+    "@tamagui/build": "^1.127.2",
     "react": "^19.1.0",
     "react-native": "~0.79.2"
   },

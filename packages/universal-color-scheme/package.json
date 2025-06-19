@@ -37,7 +37,7 @@
     "react": "^19.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.127.1",
+    "@tamagui/build": "^1.127.2",
     "react-native": "~0.79.2"
   },
   "peerDependencies": {
