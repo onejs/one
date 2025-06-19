@@ -17,7 +17,7 @@
     "test:prod": "TEST_ONLY=prod yarn vitest run --mode prod"
   },
   "dependencies": {
-    "@docsearch/react": "^3.6.1",
+    "@docsearch/react": "^3.9.0",
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/button": "^1.127.1",
     "@tamagui/input": "^1.127.1",
@@ -33,7 +33,7 @@
     "mdx-bundler": "^10.0.2",
     "one": "workspace:*",
     "postmark": "^3.0.18",
-    "react": "~19.0.0",
+    "react": "^19.1.0",
     "react-native": "~0.79.2",
     "tamagui": "^1.127.1"
   },
