@@ -112,7 +112,7 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
           ...server.config.css.lightningcss,
         }).code.toString()
 
-        return [prefix, processed]
+        return [prefix, dedupeCSS(processed)]
       } catch (err) {
         console.error(` [one] Error post-processing CSS, leaving un-processed: ${err}`)
         return [prefix, code]
@@ -150,3 +150,17 @@ async function collectStyleUrls(server: ViteDevServer, entries: string[]): Promi
 
 // cf. https://github.com/vitejs/vite/blob/d6bde8b03d433778aaed62afc2be0630c8131908/packages/vite/src/node/constants.ts#L49C23-L50
 const CSS_LANGS_RE = /\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/
+
+function dedupeCSS(css: string): string {
+  const lines = css.split('\n')
+  const uniqueLines = new Set<string>()
+
+  for (const line of lines) {
+    const trimmedLine = line.trim()
+    if (trimmedLine) {
+      uniqueLines.add(trimmedLine)
+    }
+  }
+
+  return Array.from(uniqueLines).join('\n')
+}
