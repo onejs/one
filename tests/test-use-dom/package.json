@@ -14,8 +14,8 @@
   "dependencies": {
     "expo": "^53.0.4",
     "one": "workspace:*",
-    "react": "~19.0.0",
-    "react-dom": "~19.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-native": "~0.79.2",
     "react-native-safe-area-context": "5.4.1",
     "react-native-screens": "4.10.0",

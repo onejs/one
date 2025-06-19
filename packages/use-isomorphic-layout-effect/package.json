@@ -29,7 +29,7 @@
     }
   },
   "dependencies": {
-    "react": "^18.3.1 || ~19.0.0"
+    "react": "^19.1.0"
   },
   "devDependencies": {
     "@tamagui/build": "^1.127.1"
