@@ -113,18 +113,6 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
           ...server.config.css.lightningcss,
         }).code.toString()
 
-        if (process.env.ONE_DEBUG_CSS) {
-          console.info(`Got CSS`, processed)
-        }
-
-        if (process.env.ONE_DEDUPE_CSS) {
-          processed = dedupeCSS(processed)
-        }
-
-        if (process.env.ONE_DEBUG_CSS) {
-          console.info(`Got CSS after dedupe`, processed)
-        }
-
         return [prefix, processed]
       } catch (err) {
         console.error(` [one] Error post-processing CSS, leaving un-processed: ${err}`)
@@ -132,7 +120,22 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
       }
     })
   )
-  return codes.flat().filter(Boolean).join('\n\n')
+
+  let out = codes.flat().filter(Boolean).join('\n\n')
+
+  if (process.env.ONE_DEBUG_CSS) {
+    console.info(`Got CSS`, out)
+  }
+
+  if (process.env.ONE_DEDUPE_CSS) {
+    out = dedupeCSS(out)
+  }
+
+  if (process.env.ONE_DEBUG_CSS) {
+    console.info(`Got CSS after dedupe`, out)
+  }
+
+  return out
 }
 
 async function collectStyleUrls(server: ViteDevServer, entries: string[]): Promise<string[]> {
@@ -165,15 +168,44 @@ async function collectStyleUrls(server: ViteDevServer, entries: string[]): Promi
 const CSS_LANGS_RE = /\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/
 
 function dedupeCSS(css: string): string {
-  const lines = css.split('\n')
-  const uniqueLines = new Set<string>()
+  // Regex to match CSS rule blocks: selector(s) { content }
+  // Matches: selectors (conservative chars) followed by { content } with proper nesting
+  const cssRuleRegex = /([^{}]+)\s*\{\s*([^{}]*(?:\{[^{}]*\}[^{}]*)*)\s*\}/g
 
-  for (const line of lines) {
-    const trimmedLine = line.trim()
-    if (trimmedLine) {
-      uniqueLines.add(trimmedLine)
+  const uniqueBlocks = new Set<string>()
+  const nonRuleContent: string[] = []
+  let lastIndex = 0
+  let match: RegExpExecArray | null
+
+  // Extract CSS rules and preserve non-rule content (comments, at-rules, etc.)
+  while ((match = cssRuleRegex.exec(css)) !== null) {
+    // Add any content before this rule
+    const beforeRule = css.slice(lastIndex, match.index).trim()
+    if (beforeRule) {
+      nonRuleContent.push(beforeRule)
     }
+
+    // Process the CSS rule
+    const selector = match[1].trim()
+    const content = match[2].trim()
+
+    // Only process if it looks like a valid CSS rule (conservative selector chars)
+    if (selector && /^[a-zA-Z0-9\s\-_.,#:@()\[\]"'*+>~^$|=]+$/.test(selector)) {
+      const normalizedRule = `${selector} {\n  ${content.replace(/;\s*/g, ';\n  ')}\n}`
+      uniqueBlocks.add(normalizedRule)
+    }
+
+    lastIndex = cssRuleRegex.lastIndex
   }
 
-  return Array.from(uniqueLines).join('\n')
+  // Add any remaining content after the last rule
+  const afterRules = css.slice(lastIndex).trim()
+  if (afterRules) {
+    nonRuleContent.push(afterRules)
+  }
+
+  // Combine non-rule content with deduplicated rules
+  const result = [...nonRuleContent, ...Array.from(uniqueBlocks)].filter(Boolean).join('\n\n')
+
+  return result
 }
