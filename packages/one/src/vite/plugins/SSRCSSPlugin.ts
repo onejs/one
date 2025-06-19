@@ -106,13 +106,22 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
         const { transform } = await import('lightningcss')
         const buffer = Buffer.from(code)
         const codeOut = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
-        const processed = transform({
+
+        let processed = transform({
           filename: 'code.css',
           code: codeOut,
           ...server.config.css.lightningcss,
         }).code.toString()
 
-        return [prefix, dedupeCSS(processed)]
+        if (process.env.ONE_DEBUG_CSS) {
+          console.info(`Got CSS`, processed)
+        }
+
+        if (process.env.ONE_DEDUPE_CSS) {
+          processed = dedupeCSS(processed)
+        }
+
+        return [prefix, processed]
       } catch (err) {
         console.error(` [one] Error post-processing CSS, leaving un-processed: ${err}`)
         return [prefix, code]
