@@ -95,6 +95,8 @@ function invalidateModule(server: ViteDevServer, id: string) {
 // https://github.com/vikejs/vike/blob/f9a91f3c47cab9c2871526ef714cc0f87a41fda0/vike/node/runtime/renderPage/getPageAssets/retrieveAssetsDev.ts
 
 export async function collectStyle(server: ViteDevServer, entries: string[]) {
+  const { transform } = await import('lightningcss')
+
   const urls = await collectStyleUrls(server, entries)
   const codes = await Promise.all(
     urls.map(async (url) => {
@@ -103,7 +105,6 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
       const prefix = `/* [collectStyle] ${url} */`
 
       try {
-        const { transform } = await import('lightningcss')
         const buffer = Buffer.from(code)
         const codeOut = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
 
@@ -123,16 +124,17 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
 
   let out = codes.flat().filter(Boolean).join('\n\n')
 
-  if (process.env.ONE_DEBUG_CSS) {
-    console.info(`Got CSS`, out)
-  }
-
-  if (process.env.ONE_DEDUPE_CSS) {
-    out = dedupeCSS(out)
-  }
-
-  if (process.env.ONE_DEBUG_CSS) {
-    console.info(`Got CSS after dedupe`, out)
+  try {
+    // run once more at the end to de-dupe!
+    const buffer = Buffer.from(out)
+    const codeOut = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
+    out = transform({
+      filename: 'code.css',
+      code: codeOut,
+      ...server.config.css.lightningcss,
+    }).code.toString()
+  } catch (err) {
+    console.error(` [one] Error post-processing merged CSS, leaving un-processed`)
   }
 
   return out
@@ -166,46 +168,3 @@ async function collectStyleUrls(server: ViteDevServer, entries: string[]): Promi
 
 // cf. https://github.com/vitejs/vite/blob/d6bde8b03d433778aaed62afc2be0630c8131908/packages/vite/src/node/constants.ts#L49C23-L50
 const CSS_LANGS_RE = /\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/
-
-function dedupeCSS(css: string): string {
-  // Regex to match CSS rule blocks: selector(s) { content }
-  // Matches: selectors (conservative chars) followed by { content } with proper nesting
-  const cssRuleRegex = /([^{}]+)\s*\{\s*([^{}]*(?:\{[^{}]*\}[^{}]*)*)\s*\}/g
-
-  const uniqueBlocks = new Set<string>()
-  const nonRuleContent: string[] = []
-  let lastIndex = 0
-  let match: RegExpExecArray | null
-
-  // Extract CSS rules and preserve non-rule content (comments, at-rules, etc.)
-  while ((match = cssRuleRegex.exec(css)) !== null) {
-    // Add any content before this rule
-    const beforeRule = css.slice(lastIndex, match.index).trim()
-    if (beforeRule) {
-      nonRuleContent.push(beforeRule)
-    }
-
-    // Process the CSS rule
-    const selector = match[1].trim()
-    const content = match[2].trim()
-
-    // Only process if it looks like a valid CSS rule (conservative selector chars)
-    if (selector && /^[a-zA-Z0-9\s\-_.,#:@()\[\]"'*+>~^$|=]+$/.test(selector)) {
-      const normalizedRule = `${selector} {\n  ${content.replace(/;\s*/g, ';\n  ')}\n}`
-      uniqueBlocks.add(normalizedRule)
-    }
-
-    lastIndex = cssRuleRegex.lastIndex
-  }
-
-  // Add any remaining content after the last rule
-  const afterRules = css.slice(lastIndex).trim()
-  if (afterRules) {
-    nonRuleContent.push(afterRules)
-  }
-
-  // Combine non-rule content with deduplicated rules
-  const result = [...nonRuleContent, ...Array.from(uniqueBlocks)].filter(Boolean).join('\n\n')
-
-  return result
-}
