@@ -115,22 +115,26 @@ const getIsAlreadyPatched = (fullFilePath: string) => {
   _isAlreadyPatchedMap.set(fullFilePath, isAlreadyPatched)
   return isAlreadyPatched
 }
-const _isAlreadyPatchedMap = new Map<string, boolean>()
+export const _isAlreadyPatchedMap = new Map<string, boolean>()
 
 /**
  * A set of full paths to files that have been patched during the
  * current run.
  */
-const pathsBeingPatched = new Set<string>()
+export const pathsBeingPatched = new Set<string>()
 // --- HACK! ---
 
 export async function applyDependencyPatches(
   patches: DepPatch[],
-  { root = process.cwd() }: { root?: string } = {}
+  { root = process.cwd(), nodeModulesPath }: { root?: string; nodeModulesPath?: string | string[] } = {}
 ) {
-  const nodeModulesDirs = findNodeModules({
-    cwd: root,
-  }).map((relativePath) => join(root, relativePath))
+  const nodeModulesDirs = nodeModulesPath
+    ? Array.isArray(nodeModulesPath)
+      ? nodeModulesPath
+      : [nodeModulesPath]
+    : findNodeModules({
+        cwd: root,
+      }).map((relativePath) => join(root, relativePath))
 
   await Promise.all(
     patches.flatMap((patch) => {
