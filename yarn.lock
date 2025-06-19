@@ -9600,13 +9600,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/proxy-tabbable@npm:^1.127.2":
-  version: 1.127.2
-  resolution: "@tamagui/proxy-tabbable@npm:1.127.2"
-  checksum: 10/73a489a8f2ed4b06db156700c88ddae3ecdd4a401f80cab2bf8ab303e7c55d90d05236fd7ec13831d729fe99b5c8af0b76794c189d0b099524ba1f98c17c4759
-  languageName: node
-  linkType: hard
-
 "@tamagui/proxy-worm@npm:1.127.2":
   version: 1.127.2
   resolution: "@tamagui/proxy-worm@npm:1.127.2"
@@ -25259,7 +25252,6 @@ __metadata:
     "@tamagui/input": "npm:^1.127.2"
     "@tamagui/linear-gradient": "npm:^1.127.2"
     "@tamagui/lucide-icons": "npm:^1.127.2"
-    "@tamagui/proxy-tabbable": "npm:^1.127.2"
     "@tamagui/react-native-web": "npm:^1.127.2"
     "@tamagui/themes": "npm:^1.127.2"
     "@tamagui/use-store": "npm:^1.127.2"
