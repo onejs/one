@@ -16327,6 +16327,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-linear-gradient@npm:~14.1.5":
+  version: 14.1.5
+  resolution: "expo-linear-gradient@npm:14.1.5"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10/f58133151908b344950b4ca7c7096209b6001ae11d1701da989759637838d859d45150be180c93550b3a89f90ad9887ae595ba7122da8d58959b7bb89d599886
+  languageName: node
+  linkType: hard
+
 "expo-linking@npm:~6.3.1":
   version: 6.3.1
   resolution: "expo-linking@npm:6.3.1"
@@ -26349,6 +26360,7 @@ __metadata:
     "@vxrn/test-package": "workspace:*"
     "@vxrn/utils": "workspace:*"
     expo: "npm:^53.0.4"
+    expo-linear-gradient: "npm:~14.1.5"
     expo-video: "npm:^2.0.4"
     get-port-please: "npm:^3.1.2"
     one: "workspace:*"
