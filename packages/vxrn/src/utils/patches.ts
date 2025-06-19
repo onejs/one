@@ -96,18 +96,27 @@ export async function applyOptimizePatches(patches: DepPatch[], config: UserConf
   deepMergeOptimizeDeps(config.ssr!, { optimizeDeps }, undefined, true)
 }
 
-// HACK!
+// --- HACK! ---
 // These originally lives inside applyDependencyPatches
 // but we can't be sure that `applyDependencyPatches` will only be called
 // once, at least one is calling applyDependencyPatches directly, in fixDependenciesPlugin.ts
 /**
+ * Determine if a file has already been patched by a previous run.
+ *
  * We need this to be cached not only for performance but also for the
  * fact that we may patch the same file multiple times but the "ogfile"
  * will be created during the first patching.
  */
-const isAlreadyPatchedMap = createCachingMap((fullFilePath: string) =>
-  FSExtra.existsSync(getOgFilePath(fullFilePath))
-)
+const getIsAlreadyPatched = (fullFilePath: string) => {
+  if (_isAlreadyPatchedMap.has(fullFilePath)) {
+    return _isAlreadyPatchedMap.get(fullFilePath)
+  }
+  const isAlreadyPatched = FSExtra.existsSync(getOgFilePath(fullFilePath))
+  _isAlreadyPatchedMap.set(fullFilePath, isAlreadyPatched)
+  return isAlreadyPatched
+}
+const _isAlreadyPatchedMap = new Map<string, boolean>()
+
 /**
  * A set of full paths to files that have been patched during the
  * current run.
@@ -119,20 +128,6 @@ export async function applyDependencyPatches(
   patches: DepPatch[],
   { root = process.cwd() }: { root?: string } = {}
 ) {
-  // /**
-  //  * We need this to be cached not only for performance but also for the
-  //  * fact that we may patch the same file multiple times but the "ogfile"
-  //  * will be created during the first patching.
-  //  */
-  // const isAlreadyPatchedMap = createCachingMap((fullFilePath: string) =>
-  //   FSExtra.existsSync(getOgFilePath(fullFilePath))
-  // )
-  // /**
-  //  * A set of full paths to files that have been patched during the
-  //  * current run.
-  //  */
-  // const pathsBeingPatched = new Set<string>()
-
   const nodeModulesDirs = findNodeModules({
     cwd: root,
   }).map((relativePath) => join(root, relativePath))
@@ -166,7 +161,7 @@ export async function applyDependencyPatches(
                   try {
                     const fullPath = join(nodeModuleDir, relativePath)
 
-                    if (!process.env.VXRN_FORCE_PATCH && isAlreadyPatchedMap.get(fullPath)) {
+                    if (!process.env.VXRN_FORCE_PATCH && getIsAlreadyPatched(fullPath)) {
                       // if the file is already patched, skip it
                       return
                     }
@@ -178,7 +173,7 @@ export async function applyDependencyPatches(
                         return await FSExtra.readFile(fullPath, 'utf-8')
                       }
 
-                      if (isAlreadyPatchedMap.get(fullPath)) {
+                      if (getIsAlreadyPatched(fullPath)) {
                         // If a original file exists, we should start from it
                         // If we can reach here, basically it means
                         // VXRN_FORCE_PATCH is set
@@ -197,7 +192,7 @@ export async function applyDependencyPatches(
                       await Promise.all(
                         [
                           !alreadyPatchedPreviouslyInCurrentRun /* only write ogfile if this is the first patch, otherwise contentsIn will be already patched content */ &&
-                            !isAlreadyPatchedMap.get(
+                            !getIsAlreadyPatched(
                               fullPath
                             ) /* an ogfile must already be there, no need to write */ &&
                             FSExtra.writeFile(getOgFilePath(fullPath), possibleOrigContents),
@@ -285,29 +280,4 @@ export async function applyDependencyPatches(
  */
 function getOgFilePath(fullPath: string) {
   return fullPath + '.vxrn.ogfile'
-}
-
-/**
- * Creates a caching map that uses a getter function to retrieve values.
- * If the value for a key is not present, it calls the getter and caches the result.
- */
-function createCachingMap(getter) {
-  const map = new Map()
-
-  return new Proxy(map, {
-    get(target, prop, receiver) {
-      if (prop === 'get') {
-        return (key) => {
-          if (target.has(key)) {
-            return target.get(key)
-          }
-          const value = getter(key)
-          target.set(key, value)
-          return value
-        }
-      }
-
-      return Reflect.get(target, prop, receiver)
-    },
-  })
 }
