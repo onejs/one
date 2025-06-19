@@ -54,7 +54,9 @@
     "watch": "yarn build --watch",
     "check": "yarn depcheck",
     "clean": "tamagui-build clean",
-    "clean:build": "tamagui-build clean:build"
+    "clean:build": "tamagui-build clean:build",
+    "test": "yarn test:deps-patching",
+    "test:deps-patching": "./run-tests.sh"
   },
   "dependencies": {
     "@expo/config-plugins": "^8.0.8",
