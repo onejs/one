@@ -121,6 +121,10 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
           processed = dedupeCSS(processed)
         }
 
+        if (process.env.ONE_DEBUG_CSS) {
+          console.info(`Got CSS after dedupe`, processed)
+        }
+
         return [prefix, processed]
       } catch (err) {
         console.error(` [one] Error post-processing CSS, leaving un-processed: ${err}`)
