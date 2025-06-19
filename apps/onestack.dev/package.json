@@ -23,7 +23,6 @@
     "@tamagui/input": "^1.127.2",
     "@tamagui/linear-gradient": "^1.127.2",
     "@tamagui/lucide-icons": "^1.127.2",
-    "@tamagui/proxy-tabbable": "^1.127.2",
     "@tamagui/react-native-web": "^1.127.2",
     "@tamagui/themes": "^1.127.2",
     "@tamagui/use-store": "^1.127.2",
