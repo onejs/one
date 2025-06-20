@@ -10177,7 +10177,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/use-did-finish-ssr@npm:1.127.2, @tamagui/use-did-finish-ssr@npm:^1.127.2":
+"@tamagui/use-did-finish-ssr@npm:1.127.2":
   version: 1.127.2
   resolution: "@tamagui/use-did-finish-ssr@npm:1.127.2"
   peerDependencies:
@@ -11571,7 +11571,6 @@ __metadata:
   resolution: "@vxrn/color-scheme@workspace:packages/color-scheme"
   dependencies:
     "@tamagui/build": "npm:^1.127.2"
-    "@tamagui/use-did-finish-ssr": "npm:^1.127.2"
     "@vxrn/universal-color-scheme": "workspace:*"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
     react: "npm:^19.1.0"
