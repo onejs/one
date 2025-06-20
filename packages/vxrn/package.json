@@ -61,7 +61,6 @@
     "@hono/node-server": "^1.13.7",
     "@react-native/dev-middleware": "^0.76.5",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@tamagui/react-native-svg": "^1.127.2",
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
     "@vxrn/query-string": "workspace:*",

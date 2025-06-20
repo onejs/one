@@ -9659,7 +9659,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/react-native-svg@npm:1.127.2, @tamagui/react-native-svg@npm:^1.127.2":
+"@tamagui/react-native-svg@npm:1.127.2":
   version: 1.127.2
   resolution: "@tamagui/react-native-svg@npm:1.127.2"
   checksum: 10/9a6babb3a461a63b22e5a0b5def75ca96de2eee354b8e5c212a5f6695216ffc95f046e2d3e2efedca457c077ace2f00db40013c244e6ec8cf96bfae95a2920e1
@@ -27959,7 +27959,6 @@ __metadata:
     "@react-native/dev-middleware": "npm:^0.76.5"
     "@rollup/plugin-node-resolve": "npm:^15.2.3"
     "@tamagui/build": "npm:^1.127.2"
-    "@tamagui/react-native-svg": "npm:^1.127.2"
     "@types/find-node-modules": "npm:^2.1.2"
     "@types/node": "npm:^22.1.0"
     "@types/qrcode-terminal": "npm:^0"
