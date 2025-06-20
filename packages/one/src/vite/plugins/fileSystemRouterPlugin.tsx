@@ -32,17 +32,18 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
   function createRequestHandler() {
     const routerRoot = getRouterRootFromOneOptions(options)
-    return createHandleRequest({
-      async handlePage({ route, url, loaderProps }) {
-        console.info(
-          ` ⓵  [${route.type}] ${url} resolved to ${
-            route.isNotFound ? '‼️ 404 not found' : `app/${route.file.slice(2)}`
-          }`
-        )
+    return createHandleRequest(
+      {
+        async handlePage({ route, url, loaderProps }) {
+          console.info(
+            ` ⓵  [${route.type}] ${url} resolved to ${
+              route.isNotFound ? '‼️ 404 not found' : `app/${route.file.slice(2)}`
+            }`
+          )
 
-        if (route.type === 'spa') {
-          // render just the layouts? route.layouts
-          return `<html><head>
+          if (route.type === 'spa') {
+            // render just the layouts? route.layouts
+            return `<html><head>
             ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
             <script type="module">
               import { injectIntoGlobalHook } from "/@react-refresh";
@@ -53,76 +54,76 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             <script type="module" src="/@vite/client" async=""></script>
             <script type="module" src="/@id/__x00__virtual:one-entry" async=""></script>
           </head></html>`
-        }
-
-        if (renderPromise) {
-          await renderPromise
-        }
-
-        const { promise, resolve } = promiseWithResolvers<void>()
-        renderPromise = promise
-
-        try {
-          const routeFile = join(routerRoot, route.file)
-          runner.clearCache()
-
-          globalThis['__vxrnresetState']?.()
-
-          const exported = routeFile === '' ? {} : await runner.import(routeFile)
-          const loaderData = await exported.loader?.(loaderProps)
-
-          // biome-ignore lint/security/noGlobalEval: <explanation>
-          eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
-
-          const entry = await runner.import(virtualEntryId)
-
-          const render = entry.default.render as (props: RenderAppProps) => any
-
-          setServerContext({
-            loaderData,
-            loaderProps,
-          })
-
-          LoaderDataCache[route.file] = loaderData
-
-          const is404 = route.isNotFound || !exported.default
-
-          const html = await render({
-            mode: route.type === 'ssg' ? 'ssg' : route.type === 'ssr' ? 'ssr' : 'spa',
-            loaderData,
-            loaderProps,
-            path: loaderProps?.path || '/',
-            preloads,
-          })
-
-          if (is404) {
-            return new Response(html, {
-              status: 404,
-              headers: { 'Content-Type': 'text/html' },
-            })
           }
 
-          return html
-        } catch (err) {
-          console.error(`SSR error while loading file ${route.file} from URL ${url.href}\n`, err)
-          const title = `Error rendering ${url.pathname} on server`
-          const message = err instanceof Error ? err.message : `${err}`
-          const stack = err instanceof Error ? err.stack || '' : ''
+          if (renderPromise) {
+            await renderPromise
+          }
 
-          const isDuplicateReactError =
-            /at (useEffect|useState|useReducer|useContext|useLayoutEffect)\s*\(.*?react\.development\.js/g.test(
-              stack
-            )
-          const subMessage = isDuplicateReactError
-            ? `
+          const { promise, resolve } = promiseWithResolvers<void>()
+          renderPromise = promise
+
+          try {
+            const routeFile = join(routerRoot, route.file)
+            runner.clearCache()
+
+            globalThis['__vxrnresetState']?.()
+
+            const exported = routeFile === '' ? {} : await runner.import(routeFile)
+            const loaderData = await exported.loader?.(loaderProps)
+
+            // biome-ignore lint/security/noGlobalEval: <explanation>
+            eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
+
+            const entry = await runner.import(virtualEntryId)
+
+            const render = entry.default.render as (props: RenderAppProps) => any
+
+            setServerContext({
+              loaderData,
+              loaderProps,
+            })
+
+            LoaderDataCache[route.file] = loaderData
+
+            const is404 = route.isNotFound || !exported.default
+
+            const html = await render({
+              mode: route.type === 'ssg' ? 'ssg' : route.type === 'ssr' ? 'ssr' : 'spa',
+              loaderData,
+              loaderProps,
+              path: loaderProps?.path || '/',
+              preloads,
+            })
+
+            if (is404) {
+              return new Response(html, {
+                status: 404,
+                headers: { 'Content-Type': 'text/html' },
+              })
+            }
+
+            return html
+          } catch (err) {
+            console.error(`SSR error while loading file ${route.file} from URL ${url.href}\n`, err)
+            const title = `Error rendering ${url.pathname} on server`
+            const message = err instanceof Error ? err.message : `${err}`
+            const stack = err instanceof Error ? err.stack || '' : ''
+
+            const isDuplicateReactError =
+              /at (useEffect|useState|useReducer|useContext|useLayoutEffect)\s*\(.*?react\.development\.js/g.test(
+                stack
+              )
+            const subMessage = isDuplicateReactError
+              ? `
             <h2>Duplicate React Error</h2>
             <p style="font-size: 18px; line-height: 24px; max-width: 850px;">Note: These types of errors happen during SSR because One needs all dependencies that use React to be optimized. Find the dependency on the line after the react.development.js line below to find the failing dependency. So long as that dependency has "react" as a sub-dependency, you can add it to your package.json and One will optimize it automatically. If it doesn't list it properly, you can fix this manually by changing your vite.config.ts One plugin to add "one({ deps: { depName: true })" so One optimizes depName.</p>
           `
-            : ``
+              : ``
 
-          console.error(`${title}\n ${message}\n\n${stack}\n`)
+            console.error(`${title}\n ${message}\n\n${stack}\n`)
 
-          return `
+            return `
             <html>
               <body style="background: #000; color: #fff; padding: 5%; font-family: monospace; line-height: 2rem;">
                 <h1 style="display: inline-flex; background: red; color: white; padding: 5px; margin: -5px;">${title}</h1>
@@ -138,58 +139,60 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               </body>
             </html>
           `
-        } finally {
-          resolve()
-        }
-      },
+          } finally {
+            resolve()
+          }
+        },
 
-      async handleLoader({ request, route, url, loaderProps }) {
-        const routeFile = join(routerRoot, route.file)
+        async handleLoader({ request, route, url, loaderProps }) {
+          const routeFile = join(routerRoot, route.file)
 
-        // this will remove all loaders
-        let transformedJS = (await server.transformRequest(routeFile))?.code
-        if (!transformedJS) {
-          throw new Error(`No transformed js returned`)
-        }
-
-        const exported = await runner.import(routeFile)
-        const loaderData = await exported.loader?.(loaderProps)
-
-        if (loaderData) {
-          // add loader back in!
-          transformedJS = replaceLoader({
-            code: transformedJS,
-            loaderData,
-          })
-        }
-
-        const platform = url.searchParams.get('platform')
-
-        if (platform === 'ios' || platform === 'android') {
-          // Need to transpile to CommonJS for React Native
-
-          const environment = server.environments[platform || '']
-          if (!environment) {
-            throw new Error(`[handleLoader] No Vite environment found for platform '${platform}'`)
+          // this will remove all loaders
+          let transformedJS = (await server.transformRequest(routeFile))?.code
+          if (!transformedJS) {
+            throw new Error(`No transformed js returned`)
           }
 
-          // [3] Just use a simple function to return the loader data for now.
-          const nativeTransformedJS = `exports.loader = () => (${JSON.stringify(loaderData)});`
+          const exported = await runner.import(routeFile)
+          const loaderData = await exported.loader?.(loaderProps)
 
-          return nativeTransformedJS
-        }
+          if (loaderData) {
+            // add loader back in!
+            transformedJS = replaceLoader({
+              code: transformedJS,
+              loaderData,
+            })
+          }
 
-        return transformedJS
+          const platform = url.searchParams.get('platform')
+
+          if (platform === 'ios' || platform === 'android') {
+            // Need to transpile to CommonJS for React Native
+
+            const environment = server.environments[platform || '']
+            if (!environment) {
+              throw new Error(`[handleLoader] No Vite environment found for platform '${platform}'`)
+            }
+
+            // [3] Just use a simple function to return the loader data for now.
+            const nativeTransformedJS = `exports.loader = () => (${JSON.stringify(loaderData)});`
+
+            return nativeTransformedJS
+          }
+
+          return transformedJS
+        },
+
+        async handleAPI({ route }) {
+          return await runner.import(join(routerRoot, route.file))
+        },
+
+        async loadMiddleware(route) {
+          return await runner.import(join(routerRoot, route.contextKey))
+        },
       },
-
-      async handleAPI({ route }) {
-        return await runner.import(join(routerRoot, route.file))
-      },
-
-      async loadMiddleware(route) {
-        return await runner.import(join(routerRoot, route.contextKey))
-      },
-    }, { routerRoot })
+      { routerRoot }
+    )
   }
 
   return {
@@ -412,7 +415,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             res.end()
             return
           } catch (error) {
-            console.error(`One routing error: ${error}`)
+            console.error(`[one] routing error ${req.url}: ${error}`)
             // Forward the error to Vite
             next(error)
           }
