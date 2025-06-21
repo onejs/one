@@ -96,6 +96,34 @@ export async function applyOptimizePatches(patches: DepPatch[], config: UserConf
   deepMergeOptimizeDeps(config.ssr!, { optimizeDeps }, undefined, true)
 }
 
+// --- HACK! ---
+// These originally lives inside applyDependencyPatches
+// but we can't be sure that `applyDependencyPatches` will only be called
+// once, at least one is calling applyDependencyPatches directly, in fixDependenciesPlugin.ts
+/**
+ * Determine if a file has already been patched by a previous run.
+ *
+ * We need this to be cached not only for performance but also for the
+ * fact that we may patch the same file multiple times but the "ogfile"
+ * will be created during the first patching.
+ */
+const getIsAlreadyPatched = (fullFilePath: string) => {
+  if (_isAlreadyPatchedMap.has(fullFilePath)) {
+    return _isAlreadyPatchedMap.get(fullFilePath)
+  }
+  const isAlreadyPatched = FSExtra.existsSync(getOgFilePath(fullFilePath))
+  _isAlreadyPatchedMap.set(fullFilePath, isAlreadyPatched)
+  return isAlreadyPatched
+}
+const _isAlreadyPatchedMap = new Map<string, boolean>()
+
+/**
+ * A set of full paths to files that have been patched during the
+ * current run.
+ */
+const pathsBeingPatched = new Set<string>()
+// --- HACK! ---
+
 export async function applyDependencyPatches(
   patches: DepPatch[],
   { root = process.cwd() }: { root?: string } = {}
@@ -127,44 +155,50 @@ export async function applyDependencyPatches(
               }
 
               const filesToApply = file.includes('*') ? globDir(nodeModuleDir, file) : [file]
-              const appliedContents = new Map<string, string>()
 
               await Promise.all(
                 filesToApply.map(async (relativePath) => {
                   try {
                     const fullPath = join(nodeModuleDir, relativePath)
-                    const ogFile = fullPath + '.vxrn.ogfile'
 
-                    // for any update we store an "og" file to compare and decide if we need to run again
-                    let existingPatch: string | null = appliedContents.get(ogFile) || null
-
-                    if (!existingPatch) {
-                      if (!process.env.VXRN_FORCE_PATCH) {
-                        if (FSExtra.existsSync(ogFile)) {
-                          try {
-                            // for some reason with bun install this would say it exists? but then fail here?
-                            existingPatch = await FSExtra.readFile(ogFile, 'utf-8')
-                          } catch (err) {
-                            console.warn(`Error reading patch`, err)
-                          }
-                        }
-                      }
+                    if (!process.env.VXRN_FORCE_PATCH && getIsAlreadyPatched(fullPath)) {
+                      // if the file is already patched, skip it
+                      return
                     }
 
-                    let contentsIn =
-                      existingPatch ||
-                      (FSExtra.existsSync(fullPath)
-                        ? await FSExtra.readFile(fullPath, 'utf-8')
-                        : '')
+                    let contentsIn = await (async () => {
+                      if (pathsBeingPatched.has(fullPath)) {
+                        // If the file has been patched during the current run,
+                        // we should always start from the already patched file
+                        return await FSExtra.readFile(fullPath, 'utf-8')
+                      }
+
+                      if (getIsAlreadyPatched(fullPath)) {
+                        // If a original file exists, we should start from it
+                        // If we can reach here, basically it means
+                        // VXRN_FORCE_PATCH is set
+                        return await FSExtra.readFile(getOgFilePath(fullPath), 'utf-8')
+                      }
+
+                      return await FSExtra.readFile(fullPath, 'utf-8')
+                    })()
 
                     const write = async (contents: string) => {
+                      const possibleOrigContents = contentsIn
                       // update contentsIn so the next patch gets the new value if it runs multiple
                       contentsIn = contents
-                      appliedContents.set(ogFile, contents)
-                      await Promise.all([
-                        FSExtra.writeFile(ogFile, contentsIn),
-                        FSExtra.writeFile(fullPath, contents),
-                      ])
+                      const alreadyPatchedPreviouslyInCurrentRun = pathsBeingPatched.has(fullPath)
+                      pathsBeingPatched.add(fullPath)
+                      await Promise.all(
+                        [
+                          !alreadyPatchedPreviouslyInCurrentRun /* only write ogfile if this is the first patch, otherwise contentsIn will be already patched content */ &&
+                            !getIsAlreadyPatched(
+                              fullPath
+                            ) /* an ogfile must already be there, no need to write */ &&
+                            FSExtra.writeFile(getOgFilePath(fullPath), possibleOrigContents),
+                          FSExtra.writeFile(fullPath, contents),
+                        ].filter((p) => !!p)
+                      )
 
                       if (!hasLogged) {
                         hasLogged = true
@@ -226,8 +260,6 @@ export async function applyDependencyPatches(
                   }
                 })
               )
-
-              appliedContents.clear()
             }
           }
         } catch (err) {
@@ -237,4 +269,15 @@ export async function applyDependencyPatches(
       })
     })
   )
+}
+
+/**
+ * For every patch we store an "og" file as a backup of the original.
+ * If such file exists, we can skip the patching since the
+ * file should be already patched, unless the user forces
+ * to apply the patch again - in such case we use the
+ * contents of the original file as a base to reapply patches.
+ */
+function getOgFilePath(fullPath: string) {
+  return fullPath + '.vxrn.ogfile'
 }
