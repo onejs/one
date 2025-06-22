@@ -28,7 +28,7 @@
     "clean:build": "tamagui-build clean:build"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.127.2"
+    "@tamagui/build": "^1.128.1"
   },
   "publishConfig": {
     "access": "public"
