@@ -213,8 +213,7 @@ async function run() {
         await spawnify(`yarn typecheck`)
         await spawnify(`yarn typecheck`)
         await spawnify(`yarn test`)
-
-        console.warn(`‼️ Skipping ios tests for now appium installm failing locally`)
+        // need this
         // await spawnify(`yarn test-ios`)
       }
     }

@@ -4,6 +4,9 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+# # for a clean build
+# rm -r tests/rn-test-container/ios || true
+
 tests/rn-test-container/scripts/build-ios.sh Debug
 tests/rn-test-container/scripts/build-ios.sh Release
 
