@@ -13,7 +13,8 @@ if [[ "$INSTALLED_VERSION" != "null" ]]; then
     echo "Driver '$DRIVER_NAME' is already installed (version: $INSTALLED_VERSION)."
 else
     echo "Installing driver '$DRIVER_NAME'..."
-    npx appium driver install --source=npm appium-$DRIVER_NAME
+    # npx appium driver install --source=npm appium-$DRIVER_NAME # not working
+    npx appium driver install xcuitest
 fi
 npx appium > /tmp/appium.log &
 sleep 3
