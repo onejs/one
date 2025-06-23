@@ -7453,37 +7453,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/elements@npm:^2.3.8":
-  version: 2.3.8
-  resolution: "@react-navigation/elements@npm:2.3.8"
+"@react-navigation/native-stack@npm:7.3.4":
+  version: 7.3.4
+  resolution: "@react-navigation/native-stack@npm:7.3.4"
   dependencies:
-    color: "npm:^4.2.3"
-  peerDependencies:
-    "@react-native-masked-view/masked-view": ">= 0.2.0"
-    "@react-navigation/native": ^7.1.6
-    react: ">= 18.2.0"
-    react-native: "*"
-    react-native-safe-area-context: ">= 4.0.0"
-  peerDependenciesMeta:
-    "@react-native-masked-view/masked-view":
-      optional: true
-  checksum: 10/5893f44e540b2cf25ddbed98bc97a7828420cd4e7bfebb8f67383db760abdbacce1a7112de0b82e1f1efc5d8916e7f62d907b4ca4eb0861773efae45bad933db
-  languageName: node
-  linkType: hard
-
-"@react-navigation/native-stack@npm:~7.3.4":
-  version: 7.3.10
-  resolution: "@react-navigation/native-stack@npm:7.3.10"
-  dependencies:
-    "@react-navigation/elements": "npm:^2.3.8"
+    "@react-navigation/elements": "npm:^2.3.2"
     warn-once: "npm:^0.1.1"
   peerDependencies:
-    "@react-navigation/native": ^7.1.6
+    "@react-navigation/native": ^7.1.0
     react: ">= 18.2.0"
     react-native: "*"
     react-native-safe-area-context: ">= 4.0.0"
     react-native-screens: ">= 4.0.0"
-  checksum: 10/25c1dcad003183e491a7e34d11913ba73ba9557accb41a57082fbb525dafdeae64bf2d7c4c5a0478db6e3d9346edf1385a0432c188c78106f24df5fa77a900b2
+  checksum: 10/29c2293c1d1dc2c9e63334a9ff71edae60f78ee7a81ff7f57ee03d54054ed9aa8552c7caca5161366a1ca4d16d7a51f307b6b5a6058f11e7e22c18b6479b139b
   languageName: node
   linkType: hard
 
@@ -21698,7 +21680,7 @@ __metadata:
     "@react-navigation/drawer": "npm:7.3.3"
     "@react-navigation/elements": "npm:2.3.2"
     "@react-navigation/native": "npm:~7.1.0"
-    "@react-navigation/native-stack": "npm:~7.3.4"
+    "@react-navigation/native-stack": "npm:7.3.4"
     "@react-navigation/routers": "npm:~7.3.2"
     "@swc/core": "npm:^1.10.4"
     "@tamagui/build": "npm:^1.128.1"
