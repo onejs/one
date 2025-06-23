@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-hmr",
-  "version": "1.1.499",
+  "version": "1.1.500",
   "exports": {
     "./package.json": "./package.json",
     ".": {
