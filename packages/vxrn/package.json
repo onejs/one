@@ -1,6 +1,6 @@
 {
   "name": "vxrn",
-  "version": "1.1.486",
+  "version": "1.1.501",
   "sideEffects": false,
   "type": "module",
   "exports": {
@@ -61,7 +61,6 @@
     "@hono/node-server": "^1.13.7",
     "@react-native/dev-middleware": "^0.76.5",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@tamagui/react-native-svg": "^1.126.4",
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
     "@vxrn/query-string": "workspace:*",
@@ -95,7 +94,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@react-native-community/cli": "19.0.0",
-    "@tamagui/build": "^1.126.4",
+    "@tamagui/build": "^1.128.1",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",
     "@types/qrcode-terminal": "^0",

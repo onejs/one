@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "1.1.486",
+  "version": "1.1.501",
   "license": "BSD-3-Clause",
   "sideEffects": [
     "setup.mjs",
@@ -104,12 +104,12 @@
     "@babel/types": "^7.26.10",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-native-masked-view/masked-view": "^0.3.1",
-    "@react-navigation/bottom-tabs": "~7.3.4",
+    "@react-navigation/bottom-tabs": "7.3.4",
     "@react-navigation/core": "~7.8.0",
-    "@react-navigation/drawer": "~7.3.3",
-    "@react-navigation/elements": "~2.3.2",
+    "@react-navigation/drawer": "7.3.3",
+    "@react-navigation/elements": "2.3.2",
     "@react-navigation/native": "~7.1.0",
-    "@react-navigation/native-stack": "~7.3.4",
+    "@react-navigation/native-stack": "7.3.4",
     "@react-navigation/routers": "~7.3.2",
     "@swc/core": "^1.10.4",
     "@ungap/structured-clone": "^1.2.0",
@@ -135,12 +135,12 @@
     "nanoid": "^3.3.7",
     "perfect-debounce": "^1.0.0",
     "picocolors": "^1.0.0",
-    "react": "^18.3.1 || ~19.0.0",
+    "react": "~19.0.0",
     "react-compiler-runtime": "^19.0.0-beta-201e55d-20241215",
-    "react-dom": "^18.3.1 || ~19.0.0",
+    "react-dom": "~19.0.0",
     "react-native-css-interop": "^0.1.22",
     "react-native-gesture-handler": "^2.18.1",
-    "react-native-reanimated": "~3.17.1",
+    "react-native-reanimated": "^3.18.0",
     "react-native-safe-area-context": "5.4.1",
     "react-native-screens": "4.10.0",
     "ts-pattern": "^5.6.2",
@@ -154,7 +154,7 @@
     "xxhashjs": "^0.2.2"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.126.4",
+    "@tamagui/build": "^1.128.1",
     "@types/node": "^22.1.0",
     "@types/react-dom": "^18.2.25",
     "@types/xxhashjs": "^0.2.4",
@@ -164,7 +164,7 @@
     "react-native": "~0.79.2",
     "rollup": "^4.29.1",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "vitest": "^3.2.0"
   },
   "peerDependencies": {
     "react-native": "*",

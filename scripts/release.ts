@@ -8,7 +8,9 @@ import prompts from 'prompts'
 import { spawnify } from './spawnify'
 
 // avoid emitter error
-process.setMaxListeners(0)
+process.setMaxListeners(50)
+process.stderr.setMaxListeners(50)
+process.stdout.setMaxListeners(50)
 
 // --resume would be cool here where it stores the last failed step somewhere and tries resuming
 
@@ -211,8 +213,6 @@ async function run() {
         await spawnify(`yarn typecheck`)
         await spawnify(`yarn typecheck`)
         await spawnify(`yarn test`)
-
-        console.warn(`‼️ Skipping ios tests for now appium installm failing locally`)
         // await spawnify(`yarn test-ios`)
       }
     }

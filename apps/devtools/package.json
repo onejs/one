@@ -1,6 +1,6 @@
 {
   "name": "devtools",
-  "version": "1.1.486",
+  "version": "1.1.501",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,10 +14,10 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@tamagui/config": "^1.126.4",
-    "@tamagui/image-next": "^1.126.4",
-    "@tamagui/lucide-icons": "^1.126.4",
-    "@tamagui/vite-plugin": "^1.126.4",
+    "@tamagui/config": "^1.128.1",
+    "@tamagui/image-next": "^1.128.1",
+    "@tamagui/lucide-icons": "^1.128.1",
+    "@tamagui/vite-plugin": "^1.128.1",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-shell": "^2",
@@ -26,11 +26,11 @@
     "react": "~19.0.0",
     "react-hotkeys-hook": "^4.6.1",
     "react-native": "~0.79.2",
-    "react-native-reanimated": "~3.17.1",
+    "react-native-reanimated": "^3.18.0",
     "react-native-safe-area-context": "5.4.1",
     "react-native-svg": "15.12.0",
     "react-native-web": "~0.20.0",
-    "tamagui": "^1.126.4"
+    "tamagui": "^1.128.1"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",

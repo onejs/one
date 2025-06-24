@@ -1,6 +1,6 @@
 {
   "name": "example-bare",
-  "version": "1.1.486",
+  "version": "1.1.501",
   "private": true,
   "type": "module",
   "main": "index.js",
@@ -21,9 +21,9 @@
     "react-native": "~0.79.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.8",
-    "@babel/preset-env": "^7.26.8",
-    "@babel/runtime": "^7.26.7",
+    "@babel/core": "~7.26.8",
+    "@babel/preset-env": "~7.26.8",
+    "@babel/runtime": "~7.26.7",
     "@react-native-community/cli": "19.0.0",
     "@react-native-community/template": "^0.76.5",
     "@react-native/babel-preset": "~0.79.2",
@@ -31,7 +31,7 @@
     "@react-native/typescript-config": "0.73.1",
     "@types/react": "^18.3.11",
     "@types/react-test-renderer": "^18.0.0",
-    "babel-jest": "^29.6.3",
+    "babel-jest": "~29.6.3",
     "react-test-renderer": "18.2.0",
     "typescript": "^5.7.3",
     "vxrn": "workspace:*"
