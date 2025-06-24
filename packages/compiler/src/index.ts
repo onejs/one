@@ -265,34 +265,32 @@ ${rootJS.code}
           }
         }
 
-        // dont need refresh for ssr, but do for client
-        if (environment !== 'ssr') {
-          // on native we always go to swc for now to ensure class transforms + react refesh
-          // we could make the babel plugin support those if we want to avoid
-          const swcOptions = {
-            environment: environment,
-            mode: optionsIn?.mode || config.command,
-            production,
-            ...optionsIn,
-          } satisfies Options
+        // on native we always go to swc for now to ensure class transforms + react refesh
+        // we could make the babel plugin support those if we want to avoid
+        const swcOptions = {
+          environment,
+          mode: optionsIn?.mode || config.command,
+          production,
+          ...optionsIn,
+        } satisfies Options
 
-          const swcOut = await transformSWC(id, out?.code || code, {
-            ...swcOptions,
-            es5: true,
-            noHMR: isPreProcess,
-          })
+        const swcOut = await transformSWC(id, out?.code || code, {
+          es5: true,
+          // dont need refresh for ssr, but do for client
+          noHMR: isPreProcess || environment === 'ssr',
+          ...swcOptions,
+        })
 
-          if (swcOut) {
-            out = {
-              code: swcOut?.code,
-              map: swcOut?.map,
-            }
+        if (swcOut) {
+          out = {
+            code: swcOut?.code,
+            map: swcOut?.map,
           }
+        }
 
-          if (shouldDebug) {
-            console.info(`swcOptions`, swcOptions)
-            console.info(`final output:`, out?.code)
-          }
+        if (shouldDebug) {
+          console.info(`swcOptions`, swcOptions)
+          console.info(`final output:`, out?.code)
         }
 
         if (out) {

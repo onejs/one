@@ -95,6 +95,8 @@ function invalidateModule(server: ViteDevServer, id: string) {
 // https://github.com/vikejs/vike/blob/f9a91f3c47cab9c2871526ef714cc0f87a41fda0/vike/node/runtime/renderPage/getPageAssets/retrieveAssetsDev.ts
 
 export async function collectStyle(server: ViteDevServer, entries: string[]) {
+  const { transform } = await import('lightningcss')
+
   const urls = await collectStyleUrls(server, entries)
   const codes = await Promise.all(
     urls.map(async (url) => {
@@ -103,10 +105,10 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
       const prefix = `/* [collectStyle] ${url} */`
 
       try {
-        const { transform } = await import('lightningcss')
         const buffer = Buffer.from(code)
         const codeOut = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
-        const processed = transform({
+
+        let processed = transform({
           filename: 'code.css',
           code: codeOut,
           ...server.config.css.lightningcss,
@@ -119,7 +121,23 @@ export async function collectStyle(server: ViteDevServer, entries: string[]) {
       }
     })
   )
-  return codes.flat().filter(Boolean).join('\n\n')
+
+  let out = codes.flat().filter(Boolean).join('\n\n')
+
+  try {
+    // run once more at the end to de-dupe!
+    const buffer = Buffer.from(out)
+    const codeOut = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
+    out = transform({
+      filename: 'code.css',
+      code: codeOut,
+      ...server.config.css.lightningcss,
+    }).code.toString()
+  } catch (err) {
+    console.error(` [one] Error post-processing merged CSS, leaving un-processed`)
+  }
+
+  return out
 }
 
 async function collectStyleUrls(server: ViteDevServer, entries: string[]): Promise<string[]> {

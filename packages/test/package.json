@@ -1,7 +1,7 @@
 {
   "name": "@vxrn/test",
   "private": true,
-  "version": "1.1.486",
+  "version": "1.1.501",
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
@@ -14,13 +14,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "react": "^18.3.1 || ~19.0.0",
-    "zx": "^8.4.1"
+    "react": "~19.0.0",
+    "zx": "^8.5.5"
   },
   "devDependencies": {
     "@vxrn/utils": "workspace:*",
     "get-port": "^7.1.0",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "vitest": "^3.2.0"
   }
 }

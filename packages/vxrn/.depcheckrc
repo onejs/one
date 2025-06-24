@@ -6,7 +6,6 @@ ignores:
   - "@vxrn/vendor"
   - "react"
   - "expo"
-  - "@tamagui/react-native-svg"
   - "@vxrn/query-string"
   - "@vxrn/url-parse"
   - "metro-react-native-babel-preset"

@@ -9,14 +9,6 @@ export default {
         find: '@docsearch/react',
         replacement: resolvePath('@docsearch/react'),
       },
-      {
-        find: 'tabbable',
-        replacement: resolvePath('@tamagui/proxy-tabbable'),
-      },
-      {
-        find: '@tamagui/select',
-        replacement: resolvePath('@tamagui/proxy-tabbable'),
-      },
       // {
       //   find: 'tslib',
       //   replacement: resolve('@tamagui/proxy-worm'),

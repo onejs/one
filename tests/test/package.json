@@ -1,17 +1,18 @@
 {
   "name": "test-test",
-  "version": "1.1.486",
+  "version": "1.1.501",
   "private": true,
   "type": "module",
   "scripts": {
-    "android": "expo run:android",
+    "android": "one run:android",
     "build:web": "one build",
     "clean": "one clean",
     "dev": "one dev",
     "dev:clean": "yarn dev --clean",
-    "ios": "expo run:ios",
+    "ios": "one run:ios",
     "prod": "one build && one serve",
     "serve": "one serve",
+    "prebuild:native": "one prebuild",
     "test": "yarn test:dev && yarn test:prod && yarn test:app-cases-dev && yarn test:app-cases-prod",
     "test-ios": "yarn test-ios:dev && yarn test-ios:prod",
     "test-ios:dev": "TEST_ONLY=dev TEST_ENV=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",
@@ -29,25 +30,26 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
-    "@tamagui/config": "^1.126.4",
-    "@tamagui/image-next": "^1.126.4",
-    "@tamagui/lucide-icons": "^1.126.4",
-    "@tamagui/vite-plugin": "^1.126.4",
+    "@tamagui/config": "^1.128.1",
+    "@tamagui/image-next": "^1.128.1",
+    "@tamagui/lucide-icons": "^1.128.1",
+    "@tamagui/vite-plugin": "^1.128.1",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/test-package": "workspace:*",
     "expo": "^53.0.4",
+    "expo-linear-gradient": "~14.1.5",
     "expo-video": "^2.0.4",
     "one": "workspace:*",
     "postgres": "^3.4.4",
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
     "react-native": "~0.79.2",
-    "react-native-reanimated": "~3.17.1",
+    "react-native-reanimated": "^3.18.0",
     "react-native-safe-area-context": "5.4.1",
     "react-native-screens": "4.10.0",
     "react-native-svg": "15.12.0",
     "react-native-web": "~0.20.0",
-    "tamagui": "^1.126.4"
+    "tamagui": "^1.128.1"
   },
   "devDependencies": {
     "@react-native-community/cli": "latest",
@@ -58,6 +60,6 @@
     "tsx": "^4.19.0",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",
-    "vitest": "^3.0.5"
+    "vitest": "^3.2.0"
   }
 }

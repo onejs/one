@@ -46,7 +46,8 @@ jobs:
         run: yarn typecheck
 
   tests:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: macos-14 # temporarily fix ubuntu runner being killed (https://github.com/actions/runner/issues/2468)
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - name: Checkout
