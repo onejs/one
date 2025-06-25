@@ -43,6 +43,8 @@ const disableOptimizationConfig = {
 } satisfies UserConfig
 
 export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) => {
+  process.env.IS_VXRN_CLI = 'true'
+
   // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
   process.env.NODE_ENV = 'production'
 

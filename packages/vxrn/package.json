@@ -32,6 +32,10 @@
     "./loadEnv": {
       "types": "./types/exports/loadEnv.d.ts",
       "default": "./dist/exports/loadEnv.mjs"
+    },
+    "./vite-plugin": {
+      "types": "./types/vxrn-vite-plugin.d.ts",
+      "default": "./dist/vxrn-vite-plugin.mjs"
     }
   },
   "module": "dist",

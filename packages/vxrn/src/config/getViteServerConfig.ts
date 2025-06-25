@@ -8,6 +8,10 @@ import { mergeUserConfig } from './mergeUserConfig'
 import { getReactNativePlugins } from './getReactNativePlugins'
 import { getAdditionalViteConfig } from './getAdditionalViteConfig'
 
+/**
+ * Only used in CLI mode since this hard-codes the `mode` to `'serve'` and contains
+ * custom config merging logic.
+ */
 export async function getViteServerConfig(config: VXRNOptionsFilled, userViteConfig?: UserConfig) {
   const { root, server } = config
   const { optimizeDeps } = getOptimizeDeps('serve')
