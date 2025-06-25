@@ -10,6 +10,8 @@ export type DevOptions = VXRNOptions & {
 }
 
 export const dev = async (optionsIn: DevOptions) => {
+  process.env.IS_VXRN_CLI = 'true'
+
   if (typeof optionsIn.debug === 'string') {
     process.env.DEBUG ||= !optionsIn.debug ? `vite` : `vite:${optionsIn.debug}`
   }

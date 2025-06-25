@@ -6,6 +6,7 @@ import type { Plugin, PluginOption, UserConfig } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { autoDepOptimizePlugin, getOptimizeDeps, getOptionsFilled, loadEnv } from 'vxrn'
+import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
 import '../polyfills-server'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
@@ -37,12 +38,19 @@ globalThis.__vxrnEnableNativeEnv = true
 // until then we want to avoid double loading everything on first start
 
 export function one(options: One.PluginOptions = {}): PluginOption {
-  if (!globalThis.__oneOptions) {
-    // first load we are just loading it ourselves to get the user options
-    // so we can just set here and return nothing
-    setOneOptions(options)
-    globalThis['__vxrnPluginConfig__'] = options
-    return []
+  const vxrnPlugins: PluginOption[] = []
+
+  if (!process.env.IS_VXRN_CLI) {
+    console.warn('Experimental: running VxRN as a Vite plugin. This is not yet stable.')
+    vxrnPlugins.push(vxrnVitePlugin(/* TODO: pass options in */))
+  } else {
+    if (!globalThis.__oneOptions) {
+      // first load we are just loading it ourselves to get the user options
+      // so we can just set here and return nothing
+      setOneOptions(options)
+      globalThis['__vxrnPluginConfig__'] = options
+      return []
+    }
   }
 
   clearCompilerCache()
@@ -453,6 +461,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const routerRoot = getRouterRootFromOneOptions(options)
 
   return [
+    ...vxrnPlugins,
     ...devAndProdPlugins,
     ...nativeWebDevAndProdPlugsin,
 
