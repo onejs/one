@@ -39,6 +39,8 @@ export async function build(args: {
   only?: string
   platform?: 'ios' | 'web' | 'android'
 }) {
+  process.env.IS_VXRN_CLI = 'true'
+
   // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
   process.env.NODE_ENV = 'production'
 
