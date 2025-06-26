@@ -15,23 +15,6 @@ export function getReactNativePlugins(config?: VXRNOptionsFilled) {
 
     applyBuiltInPatchesPlugin(),
 
-    // temp fix
-    // avoid logging the optimizeDeps we add that aren't in the app:
-    // likely we need a whole better solution to optimize deps
-    {
-      name: `avoid-optimize-logs`,
-
-      configureServer() {
-        const ogWarn = console.warn
-        console.warn = (...args: any[]) => {
-          if (typeof args[0] === 'string' && args[0].startsWith(`Failed to resolve dependency:`)) {
-            return
-          }
-          return ogWarn(...args)
-        }
-      },
-    },
-
     reactNativeHMRPlugin({
       ...config,
       assetExts: DEFAULT_ASSET_EXTS,
