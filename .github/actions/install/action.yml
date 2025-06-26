@@ -14,17 +14,17 @@ runs:
         node-version: 20.x
         registry-url: 'https://registry.npmjs.org'
 
-    - name: install yarn
-      shell: bash
-      run: npm i yarn -g
+    # - name: install yarn
+    #   shell: bash
+    #   run: npm i yarn -g
 
-    - name: Install npm
-      shell: bash
-      run: npm i -g npm@10.8.2
+    # - name: Install npm
+    #   shell: bash
+    #   run: npm i -g npm@10.8.2
 
     - name: Install corepack
       shell: bash
-      run: corepack enable && corepack prepare yarn@4.4.1 --activate
+      run: corepack enable
 
     - name: Get Home Dir Path
       id: get-home-dir-path
