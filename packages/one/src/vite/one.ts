@@ -257,7 +257,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
             ssr: {
               define: {
-                'process.env.VITE_ENVIRONMENT': '"ssr"',
+                'process.env.VITE_ENVIRONMENT': '"ssr"', // Note that we are also setting `process.env.VITE_ENVIRONMENT = 'ssr'` for this current process. See `setServerGlobals()` and `setupServerGlobals.ts`.
                 'process.env.TAMAGUI_ENVIRONMENT': '"ssr"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
                 'process.env.EXPO_OS': '"web"',

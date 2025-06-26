@@ -1,3 +1,4 @@
+import './server/setupServerGlobals';
 export { resolvePath } from '@vxrn/resolve';
 export { clientTreeShakePlugin } from './vite/plugins/clientTreeShakePlugin';
 export { createFileSystemRouterPlugin } from './vite/plugins/fileSystemRouterPlugin';
