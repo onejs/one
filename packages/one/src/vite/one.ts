@@ -20,6 +20,10 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import type { One } from './types'
+import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro'
+import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
+
+type MetroOptions = MetroPluginOptions
 
 /**
  * This needs a big refactor!
@@ -38,17 +42,59 @@ globalThis.__vxrnEnableNativeEnv = true
 // until then we want to avoid double loading everything on first start
 
 export function one(options: One.PluginOptions = {}): PluginOption {
+  const routerRoot = getRouterRootFromOneOptions(options)
+
+  /**
+   * A non-null value means that we are going to use Metro.
+   */
+  const metroOptions: MetroOptions | null = (() => {
+    if (options.native?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) return null
+
+    if (process.env.ONE_METRO_MODE) {
+      console.info('ONE_METRO_MODE environment variable is set, enabling Metro mode')
+    }
+
+    const routerRoot = getRouterRootFromOneOptions(options)
+
+    const defaultMetroOptions = getViteMetroPluginOptions({
+      projectRoot: process.cwd(), // TODO: hard-coded process.cwd(), we should make this optional since the plugin can have a default to vite's `config.root`.
+      relativeRouterRoot: routerRoot,
+    })
+
+    const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions
+
+    // TODO: [METRO-OPTIONS-MERGING] We only do shallow merge here.
+    return {
+      ...defaultMetroOptions,
+      ...userMetroOptions,
+      argv: {
+        ...defaultMetroOptions?.argv,
+        ...userMetroOptions?.argv,
+      },
+      babelConfig: {
+        ...defaultMetroOptions?.babelConfig,
+        ...userMetroOptions?.babelConfig,
+      },
+      // TODO: merge defaultConfigOverrides
+    }
+  })()
+
   const vxrnPlugins: PluginOption[] = []
 
   if (!process.env.IS_VXRN_CLI) {
     console.warn('Experimental: running VxRN as a Vite plugin. This is not yet stable.')
-    vxrnPlugins.push(vxrnVitePlugin(/* TODO: pass options in */))
+    vxrnPlugins.push(
+      vxrnVitePlugin({
+        metro: metroOptions,
+      })
+    )
   } else {
     if (!globalThis.__oneOptions) {
       // first load we are just loading it ourselves to get the user options
       // so we can just set here and return nothing
       setOneOptions(options)
       globalThis['__vxrnPluginConfig__'] = options
+      globalThis['__vxrnMetroOptions__'] = metroOptions
       return []
     }
   }
@@ -457,8 +503,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const flags: One.Flags = {
     experimentalPreventLayoutRemounting: options.router?.experimental?.preventLayoutRemounting,
   }
-
-  const routerRoot = getRouterRootFromOneOptions(options)
 
   return [
     ...vxrnPlugins,

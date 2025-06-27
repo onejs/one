@@ -4,6 +4,15 @@ import { getAdditionalViteConfig } from './config/getAdditionalViteConfig'
 import { getBaseVitePlugins } from './config/getBaseVitePlugins'
 import { getNonCliModeOnlyVitePlugins } from './config/getNonCliModeOnlyVitePlugins'
 import { getReactNativePlugins } from './config/getReactNativePlugins'
+import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro'
+
+/**
+ * This is considered private API for now, and may change anytime.
+ */
+type VxrnPluginOptions = {
+  /** Passing a non-null value will enable metro mode. */
+  metro?: MetroPluginOptions | null
+}
 
 /**
  * [Experimental] VxRN as a Vite plugin.
@@ -14,7 +23,7 @@ import { getReactNativePlugins } from './config/getReactNativePlugins'
  *
  * This is a experimental new approach that allows `vxrn` to be used as a Vite plugin.
  */
-export function vxrn(): PluginOption {
+export function vxrn(options?: VxrnPluginOptions): PluginOption {
   return [
     {
       name: 'vxrn-config',
@@ -40,7 +49,7 @@ export function vxrn(): PluginOption {
         if (!root) {
           root = process.cwd()
           console.warn(
-            `[vxrn-config] \`config.root\` is empty, using current working directory: ${root}`
+            `[vxrn-config] \`config.root\` is empty, using current working directory (process.cwd()): ${root}`
           )
         }
 
@@ -55,7 +64,7 @@ export function vxrn(): PluginOption {
     },
     ...getBaseVitePlugins(),
     ...getNonCliModeOnlyVitePlugins(),
-    ...getReactNativePlugins(),
+    ...getReactNativePlugins({}, { metro: options?.metro || null }),
   ]
 }
 

@@ -28508,6 +28508,7 @@ __metadata:
     "@vxrn/utils": "workspace:*"
     "@vxrn/vendor": "workspace:*"
     "@vxrn/vite-flow": "workspace:*"
+    "@vxrn/vite-plugin-metro": "workspace:*"
     citty: "npm:^0.1.6"
     depcheck: "npm:^1.4.7"
     env-editor: "npm:^1.1.0"

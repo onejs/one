@@ -1,4 +1,12 @@
 import { type PluginOption } from 'vite';
+import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro';
+/**
+ * This is considered private API for now, and may change anytime.
+ */
+type VxrnPluginOptions = {
+    /** Passing a non-null value will enable metro mode. */
+    metro?: MetroPluginOptions | null;
+};
 /**
  * [Experimental] VxRN as a Vite plugin.
  *
@@ -8,6 +16,6 @@ import { type PluginOption } from 'vite';
  *
  * This is a experimental new approach that allows `vxrn` to be used as a Vite plugin.
  */
-export declare function vxrn(): PluginOption;
+export declare function vxrn(options?: VxrnPluginOptions): PluginOption;
 export default vxrn;
 //# sourceMappingURL=vxrn-vite-plugin.d.ts.map
