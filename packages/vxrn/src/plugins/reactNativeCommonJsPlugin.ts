@@ -96,7 +96,20 @@ export function reactNativeCommonJsPlugin(options: {
           reportCompressedSize: false,
 
           rollupOptions: {
-            treeshake: false,
+            treeshake: {
+              // Disable treeshaking in general
+              correctVarValueBeforeDeclaration: false,
+              propertyReadSideEffects: false,
+              tryCatchDeoptimization: false,
+              unknownGlobalSideEffects: false,
+              annotations: true,
+              moduleSideEffects: (id, external) => {
+                // Enable treeshaking for eligible modules
+                // Set `moduleSideEffects` to true if a module is not tree-shakeable
+                // The `annotations: true` above seems to be needed to make tree-shakeable modules being tree-shaken
+                return !isModuleTreeShakeable(id)
+              },
+            },
 
             output: {
               preserveModules: true,
@@ -192,7 +205,7 @@ export function reactNativeCommonJsPlugin(options: {
 
                     return {
                       code: code + '\n' + forceExports,
-                      moduleSideEffects: 'no-treeshake',
+                      ...(isModuleTreeShakeable(id) ? {} : { moduleSideEffects: 'no-treeshake' }),
                     }
                   } catch (err) {
                     console.warn(`Error forcing exports, probably ok`, id)
@@ -296,6 +309,18 @@ function getAllImportedIdentifiers(importStatement: string): string[] {
       return parts[parts.length - 1].trim()
     })
     .filter(Boolean)
+}
+
+/**
+ * Given a module path, returns whether the module is tree-shakeable.
+ * For safety, currently we assume that all modules are not tree-shakeable unless we know otherwise.
+ */
+function isModuleTreeShakeable(modulePath: string) {
+  if (modulePath.includes('node_modules/react-scan/')) {
+    return true
+  }
+
+  return false
 }
 
 /**
