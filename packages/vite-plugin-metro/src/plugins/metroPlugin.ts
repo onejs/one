@@ -21,17 +21,19 @@ import type { TransformOptions } from '../transformer/babel-core'
 type MetroYargArguments = Parameters<typeof loadConfigT>[0]
 type MetroInputConfig = Parameters<typeof loadConfigT>[1]
 
-export function metroPlugin({
-  argv,
-  defaultConfigOverrides,
-  babelConfig,
-}: {
+export type MetroPluginOptions = {
   argv?: MetroYargArguments
   defaultConfigOverrides?:
     | MetroInputConfig
     | ((defaultConfig: MetroInputConfig) => MetroInputConfig)
   babelConfig?: TransformOptions
-} = {}): PluginOption {
+}
+
+export function metroPlugin({
+  argv,
+  defaultConfigOverrides,
+  babelConfig,
+}: MetroPluginOptions = {}): PluginOption {
   // let projectRoot = ''
 
   return {
@@ -215,6 +217,7 @@ export function metroPlugin({
             return
           }
 
+          // this is the actual Metro middleware that handles bundle requests
           await (middleware as any)(req, res, next)
         } catch (error) {
           // TODO: handle errors from Metro middleware?
