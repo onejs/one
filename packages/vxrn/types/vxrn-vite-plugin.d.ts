@@ -1,11 +1,11 @@
 import { type PluginOption } from 'vite';
-import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro';
+import type { MetroPluginOptions, ExpoManifestRequestHandlerPluginPluginOptions } from '@vxrn/vite-plugin-metro';
 /**
  * This is considered private API for now, and may change anytime.
  */
 type VxrnPluginOptions = {
     /** Passing a non-null value will enable metro mode. */
-    metro?: MetroPluginOptions | null;
+    metro?: (MetroPluginOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null;
 };
 /**
  * [Experimental] VxRN as a Vite plugin.

@@ -16,6 +16,7 @@ import type { createDevMiddleware as createDevMiddlewareT } from '@react-native/
 
 import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
+import { patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName } from '../utils/patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName'
 import type { TransformOptions } from '../transformer/babel-core'
 
 type MetroYargArguments = Parameters<typeof loadConfigT>[0]
@@ -27,12 +28,22 @@ export type MetroPluginOptions = {
     | MetroInputConfig
     | ((defaultConfig: MetroInputConfig) => MetroInputConfig)
   babelConfig?: TransformOptions
+  /**
+   * Overrides the main module name which is normally defined as the `main` field in `package.json`.
+   *
+   * This will affect how `/.expo/.virtual-metro-entry.bundle` behaves.
+   *
+   * It can be used to change the entry point of the React Native app without the need of using
+   * the `main` field in `package.json`.
+   */
+  mainModuleName?: string
 }
 
 export function metroPlugin({
   argv,
   defaultConfigOverrides,
   babelConfig,
+  mainModuleName,
 }: MetroPluginOptions = {}): PluginOption {
   // let projectRoot = ''
 
@@ -63,6 +74,53 @@ export function metroPlugin({
       }>(projectRoot, '@react-native/dev-middleware')
 
       const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
+
+      if (mainModuleName) {
+        const origRewriteRequestUrl = _defaultConfig!.server!.rewriteRequestUrl!
+
+        // We need to patch Expo's default `config.server.rewriteRequestUrl`
+        // to change how URLs like '/.expo/.virtual-metro-entry.bundle?' are
+        // rewritten.
+        // But since that function is difficult to override, here we borrow
+        // the ExpoGoManifestHandlerMiddleware and use it to resolve the
+        // URL to the main module name.
+        const resolveMainModuleName: (p: { platform: 'ios' | 'android' }) => string =
+          await (async () => {
+            const ExpoGoManifestHandlerMiddleware = (
+              await projectImport(
+                projectRoot,
+                '@expo/cli/build/src/start/server/middleware/ExpoGoManifestHandlerMiddleware.js'
+              )
+            ).default.ExpoGoManifestHandlerMiddleware
+
+            const manifestHandlerMiddleware = new ExpoGoManifestHandlerMiddleware(projectRoot, {})
+
+            patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
+              manifestHandlerMiddleware,
+              mainModuleName
+            )
+
+            return (p) => {
+              return manifestHandlerMiddleware.resolveMainModuleName({
+                pkg: { main: mainModuleName },
+                platform: p.platform,
+              })
+            }
+          })()
+
+        _defaultConfig!.server!.rewriteRequestUrl = (url) => {
+          if (url.includes('/.expo/.virtual-metro-entry.bundle?')) {
+            const resolvedMainModulePath = resolveMainModuleName({
+              platform: 'ios', // we probably need to handle android here, but currently in our use case this won't affect the result
+            })
+
+            return url.replace('.expo/.virtual-metro-entry', resolvedMainModulePath)
+          }
+
+          return origRewriteRequestUrl(url)
+        }
+      }
+
       const defaultConfig: MetroInputConfig = {
         ..._defaultConfig,
         resolver: {
