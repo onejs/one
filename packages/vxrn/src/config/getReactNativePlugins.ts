@@ -1,4 +1,5 @@
 import {
+  ExpoManifestRequestHandlerPluginPluginOptions,
   expoManifestRequestHandlerPlugin as metroExpoManifestRequestHandlerPlugin,
   metroPlugin,
   type MetroPluginOptions,
@@ -21,13 +22,13 @@ export function getReactNativePlugins(
     metro,
   }: {
     /** Passing a non-null value will enable metro mode */
-    metro?: MetroPluginOptions | null
+    metro?: (MetroPluginOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null
   } = {}
 ) {
   const metroOptions: typeof metro = metro || globalThis['__vxrnMetroOptions__']
   if (metroOptions) {
     // Metro mode
-    return [metroExpoManifestRequestHandlerPlugin(), metroPlugin(metroOptions)]
+    return [metroExpoManifestRequestHandlerPlugin(metroOptions), metroPlugin(metroOptions)]
   }
 
   return [

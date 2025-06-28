@@ -2,8 +2,23 @@ import { TLSSocket } from 'node:tls'
 import type { PluginOption } from 'vite'
 
 import { projectImport } from '../utils/projectImport'
+import { patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName } from '../utils/patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName'
 
-export function expoManifestRequestHandlerPlugin(): PluginOption {
+export type ExpoManifestRequestHandlerPluginPluginOptions = {
+  /**
+   * Overrides the main module name which is normally defined as the `main` field in `package.json`.
+   *
+   * This will affect the `launchAsset.url` field in the Expo manifest response.
+   *
+   * It can be used to change the entry point of the React Native app without the need of using
+   * the `main` field in `package.json`.
+   */
+  mainModuleName?: string
+}
+
+export function expoManifestRequestHandlerPlugin(
+  options: ExpoManifestRequestHandlerPluginPluginOptions
+): PluginOption {
   // let projectRoot = ''
 
   return {
@@ -44,6 +59,13 @@ export function expoManifestRequestHandlerPlugin(): PluginOption {
             return `${protocol || scheme}://${host}`
           },
         })
+
+        if (options.mainModuleName) {
+          patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
+            manifestHandlerMiddleware,
+            options.mainModuleName
+          )
+        }
 
         // Handle the Expo manifest request.
         manifestHandlerMiddleware.handleRequestAsync(req, res, next)

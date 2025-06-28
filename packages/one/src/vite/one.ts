@@ -20,7 +20,10 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import type { One } from './types'
-import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro'
+import type {
+  ExpoManifestRequestHandlerPluginPluginOptions,
+  MetroPluginOptions,
+} from '@vxrn/vite-plugin-metro'
 import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
 
 type MetroOptions = MetroPluginOptions
@@ -47,37 +50,39 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   /**
    * A non-null value means that we are going to use Metro.
    */
-  const metroOptions: MetroOptions | null = (() => {
-    if (options.native?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) return null
+  const metroOptions: (MetroOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null =
+    (() => {
+      if (options.native?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) return null
 
-    if (process.env.ONE_METRO_MODE) {
-      console.info('ONE_METRO_MODE environment variable is set, enabling Metro mode')
-    }
+      if (process.env.ONE_METRO_MODE) {
+        console.info('ONE_METRO_MODE environment variable is set, enabling Metro mode')
+      }
 
-    const routerRoot = getRouterRootFromOneOptions(options)
+      const routerRoot = getRouterRootFromOneOptions(options)
 
-    const defaultMetroOptions = getViteMetroPluginOptions({
-      projectRoot: process.cwd(), // TODO: hard-coded process.cwd(), we should make this optional since the plugin can have a default to vite's `config.root`.
-      relativeRouterRoot: routerRoot,
-    })
+      const defaultMetroOptions = getViteMetroPluginOptions({
+        projectRoot: process.cwd(), // TODO: hard-coded process.cwd(), we should make this optional since the plugin can have a default to vite's `config.root`.
+        relativeRouterRoot: routerRoot,
+      })
 
-    const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions
+      const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions
 
-    // TODO: [METRO-OPTIONS-MERGING] We only do shallow merge here.
-    return {
-      ...defaultMetroOptions,
-      ...userMetroOptions,
-      argv: {
-        ...defaultMetroOptions?.argv,
-        ...userMetroOptions?.argv,
-      },
-      babelConfig: {
-        ...defaultMetroOptions?.babelConfig,
-        ...userMetroOptions?.babelConfig,
-      },
-      // TODO: merge defaultConfigOverrides
-    }
-  })()
+      // TODO: [METRO-OPTIONS-MERGING] We only do shallow merge here.
+      return {
+        ...defaultMetroOptions,
+        ...userMetroOptions,
+        argv: {
+          ...defaultMetroOptions?.argv,
+          ...userMetroOptions?.argv,
+        },
+        babelConfig: {
+          ...defaultMetroOptions?.babelConfig,
+          ...userMetroOptions?.babelConfig,
+        },
+        // TODO: merge defaultConfigOverrides
+        mainModuleName: 'one/metro-entry', // So users won't need to write `"main": "one/metro-entry"` in their `package.json` like ordinary Expo apps.
+      }
+    })()
 
   const vxrnPlugins: PluginOption[] = []
 
