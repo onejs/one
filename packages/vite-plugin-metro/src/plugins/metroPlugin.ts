@@ -179,7 +179,11 @@ export function metroPlugin({
         }
       )
 
-      const { middleware, end, metroServer } = await Metro.createConnectMiddleware(config)
+      const { middleware, end, metroServer } = await Metro.createConnectMiddleware(config, {
+        // Force enable file watching, even on CI.
+        // This is needed for HMR tests to work on CI.
+        watch: true,
+      })
 
       // Patch transformFile to inject custom transform options.
       const originalTransformFile = metroServer
