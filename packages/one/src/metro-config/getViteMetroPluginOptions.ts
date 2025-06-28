@@ -32,6 +32,7 @@ export function getViteMetroPluginOptions({
           ...defaultConfig?.resolver,
           extraNodeModules: {
             ...defaultConfig?.resolver?.extraNodeModules,
+            // "vite-tsconfig-paths" for Metro
             ...Object.fromEntries(
               Object.entries(tsconfigPathsConfigLoadResult.paths)
                 .map(([k, v]) => {
@@ -47,6 +48,13 @@ export function getViteMetroPluginOptions({
                 .filter((i): i is NonNullable<typeof i> => !!i)
             ),
           },
+          nodeModulesPaths: tsconfigPathsConfigLoadResult.absoluteBaseUrl
+            ? [
+                // "vite-tsconfig-paths" for Metro
+                tsconfigPathsConfigLoadResult.absoluteBaseUrl,
+                ...(defaultConfig?.resolver?.nodeModulesPaths || []),
+              ]
+            : defaultConfig?.resolver?.nodeModulesPaths,
           resolveRequest: (context, moduleName, platform) => {
             if (moduleName.endsWith('.css')) {
               console.warn(
