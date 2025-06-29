@@ -1,4 +1,8 @@
 import { createMiddleware } from 'one'
+import { readFile } from 'node:fs'
+
+// testing it doesnt bundle on client
+console.info(readFile)
 
 export default createMiddleware(async ({ request, next }) => {
   if (request.url.includes(`test-middleware`)) {
