@@ -1,5 +1,8 @@
+import { createDebugger } from '@vxrn/debug'
 import FSExtra from 'fs-extra'
 import path, { dirname, extname, join, sep } from 'node:path'
+
+const { debug } = createDebugger(`vxrn:scanDepsToOptimize`)
 
 export type ScanDepsResult = {
   prebundleDeps: string[]
@@ -178,6 +181,8 @@ export async function scanDepsToOptimize(
           dep.startsWith('@expo/') ||
           dep.startsWith('expo-')
 
+        debug?.(`${dep} shouldPreBundle? ${shouldPreBundle}`)
+
         const depsToPreBundle = await (async () => {
           if (!shouldPreBundle) {
             return []
@@ -257,6 +262,8 @@ export async function scanDepsToOptimize(
         })()
 
         const result = [...depsToPreBundle, ...subDeps.prebundleDeps]
+
+        debug?.(`final result ${JSON.stringify(result, null, 2)}`)
 
         proceededDeps.set(dep, result)
         return result
