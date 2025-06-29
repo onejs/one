@@ -167,13 +167,16 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   webBuildConfig = mergeUserConfig(optimizeDeps, webBuildConfig, userViteConfig)
 
-  const excludeAPIRoutesPlugin = {
+  const excludeAPIAndMiddlewareRoutesPlugin = {
     enforce: 'pre',
     name: 'omit-api-routes',
     transform: {
       order: 'pre',
       handler(code, id) {
         if (/\+api.tsx?$/.test(id)) {
+          return ``
+        }
+        if (/_middleware.tsx?$/.test(id)) {
           return ``
         }
       },
@@ -185,7 +188,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   if (buildArgs.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
       plugins: [
-        excludeAPIRoutesPlugin,
+        excludeAPIAndMiddlewareRoutesPlugin,
         // if an error occurs (like can't find index.html, it seems to show an
         // error saying can't find report here instead, so a bit confusing)
         process.env.VXRN_ANALYZE_BUNDLE
@@ -236,7 +239,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   const shouldOutputCJS = getServerCJSSetting(options)
 
   let serverBuildConfig = mergeConfig(webBuildConfig, {
-    plugins: [excludeAPIRoutesPlugin, ...globalThis.__vxrnAddWebPluginsProd],
+    plugins: [excludeAPIAndMiddlewareRoutesPlugin, ...globalThis.__vxrnAddWebPluginsProd],
 
     define: {
       'process.env.TAMAGUI_IS_SERVER': '"1"',
