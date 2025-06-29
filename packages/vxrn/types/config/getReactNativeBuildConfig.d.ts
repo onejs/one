@@ -1,6 +1,17 @@
 import { type ResolvedConfig } from 'vite';
 import type { VXRNOptionsFilled } from './getOptionsFilled';
-export declare function getReactNativeConfig(options: VXRNOptionsFilled, internal: {
+/**
+ * This is not the config that you merge into the general Vite config.
+ *
+ * It is only for building native React Native bundles, while passed directly
+ * to Vite's `createBuilder` function.
+ *
+ * Mainly used by the `getReactNativeBundle` function.
+ */
+export declare function getReactNativeBuildConfig(options: Pick<VXRNOptionsFilled, 'root' | 'cacheDir'> & {
+    server: Pick<VXRNOptionsFilled['server'], 'url' | 'port'>;
+    entries: Pick<VXRNOptionsFilled['entries'], 'native'>;
+}, internal: {
     mode?: "dev" | "prod";
     assetsDest?: string;
 } | undefined, platform: 'ios' | 'android'): Promise<{
@@ -57,5 +68,6 @@ export declare function getReactNativeConfig(options: VXRNOptionsFilled, interna
         };
     };
 }>;
+/** Use by things such as the reactNativeHMRPlugin to get the config after the initial build. */
 export declare function getReactNativeResolvedConfig(): ResolvedConfig | null;
-//# sourceMappingURL=getReactNativeConfig.d.ts.map
+//# sourceMappingURL=getReactNativeBuildConfig.d.ts.map

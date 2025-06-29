@@ -13,5 +13,11 @@ ignores:
   - "react-scan"
   - "react-compiler-runtime"
 
+  # Used in metro-config (see getViteMetroPluginOptions)
+  - babel-plugin-module-resolver
+
 # we use this as jsx pragma if nativewind:
   - "react-native-css-interop"
+
+  # Used in metro-entry (can definitely import from self)
+  - "one"

@@ -5,10 +5,10 @@ import FSExtra from 'fs-extra'
 import { join } from 'node:path'
 import semver from 'semver'
 import type { UserConfig } from 'vite'
-import { depPatches } from './depPatches'
-import type { VXRNOptionsFilled } from './getOptionsFilled'
+import { builtInDepPatches } from '../patches/builtInDepPatches'
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { globDir } from './globDir'
-import { deepMergeOptimizeDeps } from './mergeUserConfig'
+import { deepMergeOptimizeDeps } from '../config/mergeUserConfig'
 
 type Strategies = 'swc' | 'flow' | 'jsx'
 
@@ -41,10 +41,10 @@ export function bailIfExists(haystack: string, needle: string) {
 export type SimpleDepPatchObject = Record<string, DepPatch['patchFiles']>
 
 export async function applyBuiltInPatches(
-  options: VXRNOptionsFilled,
+  options: Pick<VXRNOptionsFilled, 'root'>,
   extraPatches?: SimpleDepPatchObject
 ) {
-  const all = [...depPatches]
+  const all = [...builtInDepPatches]
 
   // merge user patches on top of built ins
   if (extraPatches) {

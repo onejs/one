@@ -9,7 +9,7 @@ import { readFile } from 'node:fs/promises'
 import { extname, join, sep } from 'node:path'
 import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
 import type { OutputChunk } from 'rollup'
-import type { PluginOption, UserConfig } from 'vite'
+import type { PluginOption, ResolvedConfig, UserConfig } from 'vite'
 import { configuration } from './configure'
 import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
@@ -61,6 +61,11 @@ export async function createVXRNCompilerPlugin(
   // fix so we can align the diff between vite and rollup id (rollup resolves from root monorepo)
   const rollupPath = resolvePath('rollup')
   const rollupNodeMods = rollupPath.slice(0, rollupPath.indexOf(sep + 'node_modules'))
+
+  /**
+   * Vite config, filled by a `configResolved` hook.
+   */
+  let config: ResolvedConfig
 
   return [
     {
@@ -153,6 +158,10 @@ ${rootJS.code}
             android: config,
           },
         }
+      },
+
+      configResolved(resolvedConfig) {
+        config = resolvedConfig
       },
 
       async transform(codeIn, _id) {
@@ -260,7 +269,7 @@ ${rootJS.code}
         // we could make the babel plugin support those if we want to avoid
         const swcOptions = {
           environment,
-          mode: optionsIn?.mode || 'serve',
+          mode: optionsIn?.mode || config.command,
           production,
           ...optionsIn,
         } satisfies Options

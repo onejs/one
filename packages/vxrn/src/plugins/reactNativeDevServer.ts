@@ -4,7 +4,7 @@ import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
-import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { clearCachedBundle, getReactNativeBundle } from '../utils/getReactNativeBundle'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { URL } from 'node:url'
@@ -12,6 +12,7 @@ import { existsSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { runOnWorker } from '../worker'
+import { getCacheDir } from '../utils/getCacheDir'
 
 type ClientMessage = {
   type: 'client-log'
@@ -66,20 +67,27 @@ export function openReactNativeDevTools() {
   })()
 }
 
-export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Plugin {
+export function createReactNativeDevServerPlugin(
+  options?: Partial<
+    Pick<VXRNOptionsFilled, 'cacheDir' | 'debugBundle' | 'debugBundlePaths' | 'entries'>
+  >
+): Plugin {
   let hmrSocket: WebSocket | null = null
 
   return {
     name: 'vite-plugin-react-native-server',
 
     configureServer(server: ViteDevServer) {
+      const { host, port } = server.config.server
+      const { root } = server.config
+      const cacheDir = options?.cacheDir || getCacheDir(root)
       const hmrWSS = new WebSocketServer({ noServer: true })
       const clientWSS = new WebSocketServer({ noServer: true })
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
-      reactNativeDevToolsUrl = `http://${options.server.host}:${options.server.port}`
+      reactNativeDevToolsUrl = `http://${host}:${port}`
       const { middleware, websocketEndpoints } = createDevMiddleware({
-        projectRoot: options.root,
+        projectRoot: root,
         serverBaseUrl: reactNativeDevToolsUrl,
         logger: console,
       })
@@ -201,7 +209,7 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
 
         try {
           const bundle = await (async () => {
-            if (typeof options.debugBundle === 'string') {
+            if (typeof options?.debugBundle === 'string' && options.debugBundlePaths) {
               const path = options.debugBundlePaths[platform]
               if (existsSync(path)) {
                 console.info(`  !!! - serving debug bundle from`, path)
@@ -209,12 +217,23 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
               }
             }
 
+            const getRnBundleOptions = {
+              root,
+              cacheDir,
+              server: {
+                port: port,
+                url: `http://${host}:${port}`,
+              },
+              entries: { native: options?.entries?.native || './src/entry-native.tsx' },
+              ...options,
+            }
+
             let outBundle = process.env.VXRN_WORKER_BUNDLE
               ? await runOnWorker('bundle-react-native', {
-                  options,
+                  options: getRnBundleOptions,
                   platform,
                 })
-              : await getReactNativeBundle(options, platform, {
+              : await getReactNativeBundle(getRnBundleOptions, platform, {
                   mode: process.env.RN_SERVE_PROD_BUNDLE ? 'prod' : 'dev',
                 })
 
@@ -222,7 +241,7 @@ export function createReactNativeDevServerPlugin(options: VXRNOptionsFilled): Pl
               outBundle = `globalThis.__VITE_WS_TOKEN__ = "${server.config.webSocketToken}";\n${outBundle}`
             }
 
-            if (options.debugBundle) {
+            if (options?.debugBundle && options.debugBundlePaths) {
               const path = options.debugBundlePaths[platform]
               if (!existsSync(path)) {
                 console.info(`  !!! - writing debug bundle to`, path)

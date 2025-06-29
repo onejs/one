@@ -1,8 +1,9 @@
-import type { VXRNOptionsFilled } from './utils/getOptionsFilled';
+import type { VXRNOptionsFilled } from './config/getOptionsFilled';
+import { getReactNativeBundle } from './utils/getReactNativeBundle';
 type WorkerCommands = {
     name: 'bundle-react-native';
     arg: {
-        options: VXRNOptionsFilled;
+        options: Pick<VXRNOptionsFilled, 'root'> & Partial<Pick<VXRNOptionsFilled, 'cacheDir'>> & Parameters<typeof getReactNativeBundle>[0];
         platform: 'ios' | 'android';
     };
     returns: string;

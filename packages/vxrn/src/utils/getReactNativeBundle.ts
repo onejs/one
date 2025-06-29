@@ -4,10 +4,11 @@ import { createBuilder } from 'vite'
 // import { buildEnvironment } from './fork/vite/build'
 import { resolvePath } from '@vxrn/resolve'
 import { filterPluginsForNative } from './filterPluginsForNative'
-import type { VXRNOptionsFilled } from './getOptionsFilled'
-import { getReactNativeConfig } from './getReactNativeConfig'
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
+import { getReactNativeBuildConfig } from '../config/getReactNativeBuildConfig'
 import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
 import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
+import { getCacheDir } from './getCacheDir'
 
 // used for normalizing hot reloads
 export let entryRoot = ''
@@ -21,7 +22,9 @@ export function clearCachedBundle() {
 type InternalProps = { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean }
 
 export async function getReactNativeBundle(
-  options: VXRNOptionsFilled,
+  options: Pick<VXRNOptionsFilled, 'root'> &
+    Partial<Pick<VXRNOptionsFilled, 'cacheDir'>> &
+    Parameters<typeof getReactNativeBuildConfig>[0],
   platform: 'ios' | 'android',
   internal: InternalProps = {
     mode: 'dev',
@@ -35,7 +38,7 @@ export async function getReactNativeBundle(
     return cached
   }
 
-  await prebuildReactNativeModules(options.cacheDir, {
+  await prebuildReactNativeModules(options.cacheDir || getCacheDir(options.root), {
     // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
     mode: internal.mode,
   })
@@ -53,7 +56,7 @@ export async function getReactNativeBundle(
   )
 
   // build app
-  const nativeBuildConfig = await getReactNativeConfig(options, internal, platform)
+  const nativeBuildConfig = await getReactNativeBuildConfig(options, internal, platform)
 
   nativeBuildConfig.plugins = filterPluginsForNative(nativeBuildConfig.plugins, { isNative: true })
 

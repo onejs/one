@@ -1,33 +1,41 @@
 import { transformSWC, transformSWCStripJSX } from '@vxrn/compiler'
 import { parse } from 'es-module-lexer'
 import FSExtra from 'fs-extra'
-import { createIdResolver, type Plugin, type ResolveFn } from 'vite'
+import { createIdResolver, type ResolvedConfig, type Plugin, type ResolveFn } from 'vite'
 import { connectedNativeClients } from '../utils/connectedNativeClients'
 import { filterPluginsForNative } from '../utils/filterPluginsForNative'
-import type { VXRNOptionsFilled } from '../utils/getOptionsFilled'
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { entryRoot } from '../utils/getReactNativeBundle'
-import { getReactNativeResolvedConfig } from '../utils/getReactNativeConfig'
+import { getReactNativeResolvedConfig } from '../config/getReactNativeBuildConfig'
 import { getVitePath } from '../utils/getVitePath'
 import { hotUpdateCache } from '../utils/hotUpdateCache'
 import { isWithin } from '../utils/isWithin'
 import { conditions } from './reactNativeCommonJsPlugin'
 
 export function reactNativeHMRPlugin({
-  root,
   assetExts,
-  mode,
-}: VXRNOptionsFilled & { assetExts: string[] }) {
+  root: rootIn,
+  mode: modeIn,
+}: Partial<Pick<VXRNOptionsFilled, 'root' | 'mode'>> & { assetExts: string[] }) {
   let idResolver: ReturnType<typeof createIdResolver>
 
   const assetExtsRegExp = new RegExp(`\\.(${assetExts.join('|')})$`)
   const isAssetFile = (id: string) => assetExtsRegExp.test(id)
 
+  let config: ResolvedConfig
+
   return {
     name: 'vxrn:native-hmr-transform',
+
+    configResolved(resolvedConfig) {
+      config = resolvedConfig
+    },
 
     // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
     async handleHotUpdate({ read, modules, file, server }) {
+      const root = rootIn || config.root
+      const mode = modeIn || config.mode
       const environment = server.environments.ios // TODO: android? How can we get the current environment here?
 
       if (!idResolver) {

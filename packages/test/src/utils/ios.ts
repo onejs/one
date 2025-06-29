@@ -65,12 +65,40 @@ async function prepareTestApp() {
   copySync(copyTestContainerFrom, appPath)
 
   if (TEST_ENV === 'dev') {
-    // TODO: Dynamically set the bundle URL in the app
+    // TODO: Dynamically set the server URL in the app
+
+    const serverUrl = `http://127.0.0.1:8081`
 
     // Since the initial bundle may take some time to build, we poke it first and make sure it's ready before running tests, which removes some flakiness during Appium tests.
-    const bundleUrl = `http://127.0.0.1:8081/index.bundle?platform=ios`
+    const startedAt = performance.now()
+    const bundleUrl = await new Promise<string>((resolve, reject) => {
+      let retries = 0
+      const checkUrl = async () => {
+        try {
+          const response = await fetch(serverUrl, {
+            method: 'GET',
+            headers: {
+              'Expo-Platform': 'ios',
+            },
+          })
+          if (response.ok) {
+            const json = await response.json()
+            resolve(json.launchAsset.url)
+          } else {
+            throw new Error(`${response.status}`)
+          }
+        } catch (error) {
+          if (retries >= 5) {
+            reject(new Error(`Expo manifest request didn't get respond within the expected time.`))
+          } else {
+            retries++
+            setTimeout(checkUrl, 1000)
+          }
+        }
+      }
+      checkUrl()
+    })
     await new Promise<void>((resolve, reject) => {
-      const startedAt = performance.now()
       let retries = 0
       const checkUrl = async () => {
         try {
@@ -81,11 +109,14 @@ async function prepareTestApp() {
             )
             resolve()
           } else {
-            throw new Error('not ready')
+            throw new Error(`${response.status}`)
           }
         } catch (error) {
           if (retries >= 5) {
-            reject(new Error(`${bundleUrl} didn't respond within the expected time.`))
+            const errorMsg = error instanceof Error ? error.message : String(error)
+            reject(
+              new Error(`${bundleUrl} didn't respond within the expected time. (${errorMsg})`)
+            )
           } else {
             retries++
             setTimeout(checkUrl, 1000)

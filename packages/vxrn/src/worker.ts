@@ -1,5 +1,5 @@
 import { parentPort, isMainThread, Worker } from 'node:worker_threads'
-import type { VXRNOptionsFilled } from './utils/getOptionsFilled'
+import type { VXRNOptionsFilled } from './config/getOptionsFilled'
 import { loadEnv } from './exports/loadEnv'
 import { getReactNativeBundle } from './utils/getReactNativeBundle'
 import { resolvePath } from '@vxrn/resolve'
@@ -12,7 +12,9 @@ import {
 type WorkerCommands = {
   name: 'bundle-react-native'
   arg: {
-    options: VXRNOptionsFilled
+    options: Pick<VXRNOptionsFilled, 'root'> &
+      Partial<Pick<VXRNOptionsFilled, 'cacheDir'>> &
+      Parameters<typeof getReactNativeBundle>[0]
     platform: 'ios' | 'android'
   }
   returns: string
