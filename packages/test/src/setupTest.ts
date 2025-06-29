@@ -47,6 +47,7 @@ const waitForServer = (
 }
 
 export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): Promise<TestInfo> {
+  const runWithNonCliMode = !!process.env.TEST_NON_CLI_MODE
   console.info('Setting up tests 🛠️')
 
   let prodServer: ChildProcess | null = null
@@ -109,9 +110,14 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
 
     if (shouldStartDevServer) {
       console.info(`Starting a dev server on http://localhost:${devPort}`)
+      if (runWithNonCliMode) {
+        console.info('Running in non-CLI mode, using Vite directly.')
+      }
       devServer = spawn(
         'node',
-        ['../../node_modules/.bin/one', 'dev', '--clean', '--port', devPort.toString()],
+        runWithNonCliMode
+          ? ['../../node_modules/.bin/vite', 'dev', '--host', '--port', devPort.toString()]
+          : ['../../node_modules/.bin/one', 'dev', '--clean', '--port', devPort.toString()],
         {
           cwd: process.cwd(),
           env: { ...process.env },

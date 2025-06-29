@@ -1,6 +1,6 @@
 import { mergeConfig, type DepOptimizationConfig, type UserConfig } from 'vite'
-import { coerceToArray } from './coerceToArray'
-import { uniq } from './uniq'
+import { coerceToArray } from '../utils/coerceToArray'
+import { uniq } from '../utils/uniq'
 
 type OptimizeDepsConf = {
   include: string[]

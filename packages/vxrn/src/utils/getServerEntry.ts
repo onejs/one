@@ -1,5 +1,5 @@
 import { resolve } from 'node:path'
-import type { VXRNOptionsFilled } from './getOptionsFilled'
+import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 
 type ServerOptions = Pick<VXRNOptionsFilled, 'build' | 'root'>
 

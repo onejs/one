@@ -1,7 +1,7 @@
 import FSExtra from 'fs-extra'
 import path from 'node:path'
 import { loadEnv } from '../../exports/loadEnv'
-import { fillOptions } from '../../utils/getOptionsFilled'
+import { fillOptions } from '../../config/getOptionsFilled'
 import { getReactNativeBundle } from '../../utils/getReactNativeBundle'
 
 export type BundleCommandArgs = {
@@ -52,6 +52,7 @@ export async function buildBundle(
     throw new Error(`Expected ctx.root to be a string, but got ${typeof root}`)
   }
 
+  process.env.IS_VXRN_CLI = 'true'
   loadEnv(dev ? 'development' : 'production', root)
 
   if (!dev) {

@@ -1,0 +1,10 @@
+ignores:
+  - "@biomejs/biome"
+  - "@expo/cli"
+  - "react"
+  - "expo"
+  # Metro is already listed as peer dependency, if we have metro we generally
+  # have these (see: https://www.npmjs.com/package/metro?activeTab=code).
+  - "metro-babel-transformer"
+  - "debug"
+  - "hermes-parser"

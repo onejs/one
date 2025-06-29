@@ -16,10 +16,10 @@ import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
 import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
 import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
-import { dedupe } from './getBaseViteConfig'
+import { dedupe } from './getBaseViteConfigOnly'
 import { getOptimizeDeps } from './getOptimizeDeps'
 import type { VXRNOptionsFilled } from './getOptionsFilled'
-import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
+import { swapPrebuiltReactModules } from '../utils/swapPrebuiltReactModules'
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
@@ -28,8 +28,19 @@ import { swapPrebuiltReactModules } from './swapPrebuiltReactModules'
 const IGNORE_ROLLUP_LOGS_RE =
   /vite-native-client\/dist\/esm\/client|node_modules\/\.vxrn\/react-native|react-native-prebuilt\/vendor|one\/dist/
 
-export async function getReactNativeConfig(
-  options: VXRNOptionsFilled,
+/**
+ * This is not the config that you merge into the general Vite config.
+ *
+ * It is only for building native React Native bundles, while passed directly
+ * to Vite's `createBuilder` function.
+ *
+ * Mainly used by the `getReactNativeBundle` function.
+ */
+export async function getReactNativeBuildConfig(
+  options: Pick<VXRNOptionsFilled, 'root' | 'cacheDir'> & {
+    server: Pick<VXRNOptionsFilled['server'], 'url' | 'port'>
+    entries: Pick<VXRNOptionsFilled['entries'], 'native'>
+  },
   internal: { mode?: 'dev' | 'prod'; assetsDest?: string } = { mode: 'dev' },
   platform: 'ios' | 'android'
 ) {
@@ -137,7 +148,6 @@ export async function getReactNativeConfig(
       }),
 
       reactNativeDevAssetPlugin({
-        projectRoot: options.root,
         mode: internal.mode,
         assetsDest: internal.assetsDest,
         assetExts: DEFAULT_ASSET_EXTS,
@@ -296,6 +306,7 @@ export async function getReactNativeConfig(
 }
 
 let resolvedConfig: ResolvedConfig | null = null
+/** Use by things such as the reactNativeHMRPlugin to get the config after the initial build. */
 export function getReactNativeResolvedConfig() {
   return resolvedConfig
 }

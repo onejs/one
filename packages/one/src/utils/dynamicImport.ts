@@ -5,7 +5,8 @@ export const dynamicImport = (path: string) => {
     // import causes an "invalid expression" bug in react native
     // TODO make this work, probably needs to fetch + eval?
     console.info(`dynamicImport TODO`, path)
-    return require(path)
+    // return require(path)
+    return Promise.resolve(undefined)
   }
 
   if (process.env.TAMAGUI_TARGET !== 'native') {

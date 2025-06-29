@@ -2,6 +2,8 @@ import type { GetTransform } from '@vxrn/compiler';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { RouteNode } from '../router/Route';
+import type { metroPlugin } from '@vxrn/vite-plugin-metro';
+type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type RouteInfo<TRegex = string> = {
     file: string;
     page: string;
@@ -167,7 +169,22 @@ export declare namespace One {
              * Turns on react-native-css-interop support when importing CSS on native
              */
             css?: boolean;
-        };
+            /**
+             * Experimental bundler to use for native builds. Current default is 'vite'.
+             * The ONE_METRO_MODE environment variable can override this setting to 'metro'.
+             */
+            bundler?: 'metro' | 'vite';
+        } & ({
+            bundler: 'metro';
+            /** Options merging for Metro is not fully implemented in the One plugin, changing this may not work properly. Search for "METRO-OPTIONS-MERGING" in the codebase for details. */
+            bundlerOptions?: MetroPluginOptions;
+        } | {
+            bundler?: 'vite';
+            /** No configurable options with the default vite bundler. */
+            bundlerOptions?: {
+                currentlyHaveNoOptions?: null;
+            };
+        });
         web?: {
             /**
              * Choose the default strategy for pages to be rendered on the web.
