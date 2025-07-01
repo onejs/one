@@ -16,6 +16,7 @@ import assert from 'node:assert'
 import type { TransformOptions } from './babel-core'
 import { loadBabelConfig } from './loadBabelConfig'
 import { transformSync } from './transformSync'
+import type { ViteCustomTransformOptions } from './types'
 
 export type ExpoBabelCaller = TransformOptions['caller'] & {
   supportsReactCompiler?: boolean
@@ -140,9 +141,23 @@ const transform: BabelTransformer['transform'] = ({
   // `plugins` is used for `functionMapBabelPlugin` from `metro-source-map`. Could make sense to move this to `babel-preset-expo` too.
   plugins,
 }: BabelTransformerArgs): ReturnType<BabelTransformer['transform']> => {
-  const customOptionsFromVite: {
-    [key: string]: unknown
-  } = options.customTransformOptions?.vite || ({} as any)
+  const customOptionsFromVite: ViteCustomTransformOptions = (() => {
+    const c: any = options.customTransformOptions?.vite
+    if (!c || typeof c !== 'object') {
+      throw new Error(
+        `[vite-plugin-metro/babel-transformer]: Expect options.customTransformOptions.vite to be an object, but got ${typeof c}.`
+      )
+    }
+
+    if (!c.config) {
+      throw new Error(
+        `[vite-plugin-metro/babel-transformer]: Expect options.customTransformOptions.vite to be an ViteCustomTransformOptions type, but the config property is missing.`
+      )
+    }
+
+    return c
+  })()
+
   const babelConfigFromVitePlugin: TransformOptions = customOptionsFromVite.babelConfig || {}
 
   const OLD_BABEL_ENV = process.env.BABEL_ENV
