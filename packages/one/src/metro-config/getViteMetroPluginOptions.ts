@@ -66,6 +66,14 @@ export function getViteMetroPluginOptions({
               }
             }
 
+            // On Vite side this is done by excludeAPIAndMiddlewareRoutesPlugin
+            if (/_middleware.tsx?$/.test(moduleName)) {
+              return {
+                type: 'sourceFile',
+                filePath: emptyPath,
+              }
+            }
+
             const defaultResolveRequest =
               defaultConfig?.resolver?.resolveRequest || context.resolveRequest
             const res = defaultResolveRequest(context, moduleName, platform)
