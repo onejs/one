@@ -18,6 +18,7 @@ import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
 import { patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName } from '../utils/patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName'
 import type { TransformOptions } from '../transformer/babel-core'
+import type { ViteCustomTransformOptions } from '../transformer/types'
 
 type MetroYargArguments = Parameters<typeof loadConfigT>[0]
 type MetroInputConfig = Parameters<typeof loadConfigT>[1]
@@ -195,15 +196,18 @@ export function metroPlugin({
         transformOptions: Parameters<typeof originalTransformFile>[1],
         fileBuffer?: Parameters<typeof originalTransformFile>[2]
       ) => {
+        const viteCustomTransformOptions: ViteCustomTransformOptions = {
+          config: server.config,
+          babelConfig,
+        }
         return originalTransformFile(
           filePath,
           {
             ...transformOptions,
             customTransformOptions: {
               ...transformOptions.customTransformOptions,
-              vite: {
-                babelConfig,
-              },
+              // Pass into our own babel-transformer
+              vite: viteCustomTransformOptions,
             },
           },
           fileBuffer
