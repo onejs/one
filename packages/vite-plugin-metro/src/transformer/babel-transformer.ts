@@ -149,11 +149,11 @@ const transform: BabelTransformer['transform'] = ({
       )
     }
 
-    if (!c.config) {
-      throw new Error(
-        `[vite-plugin-metro/babel-transformer]: Expect options.customTransformOptions.vite to be an ViteCustomTransformOptions type, but the config property is missing.`
-      )
-    }
+    // if (!c.config) {
+    //   throw new Error(
+    //     `[vite-plugin-metro/babel-transformer]: Expect options.customTransformOptions.vite to be an ViteCustomTransformOptions type, but the config property is missing.`
+    //   )
+    // }
 
     return c
   })()
