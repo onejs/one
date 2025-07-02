@@ -9,7 +9,7 @@ export type ViteCustomTransformOptions = {
   /**
    * The Vite config object.
    */
-  config: ResolvedConfig
+  // config: ResolvedConfig
   /**
    * Additional Babel config to use, specified directly by user of the
    * Vite Metro plugin as the `babelConfig` option.
