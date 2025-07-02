@@ -82,7 +82,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
         fileBuffer?: Parameters<typeof originalTransformFile>[2]
       ) => {
         const viteCustomTransformOptions: ViteCustomTransformOptions = {
-          config: server.config,
+          // config: server.config,
           babelConfig: options.babelConfig,
         }
         return originalTransformFile(
