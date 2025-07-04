@@ -31,10 +31,10 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
-    "@tamagui/config": "^1.129.15",
-    "@tamagui/image-next": "^1.129.15",
-    "@tamagui/lucide-icons": "^1.129.15",
-    "@tamagui/vite-plugin": "^1.129.15",
+    "@tamagui/config": "^1.129.16",
+    "@tamagui/image-next": "^1.129.16",
+    "@tamagui/lucide-icons": "^1.129.16",
+    "@tamagui/vite-plugin": "^1.129.16",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/test-package": "workspace:*",
     "expo": "^53.0.4",
@@ -50,7 +50,7 @@
     "react-native-screens": "4.10.0",
     "react-native-svg": "15.12.0",
     "react-native-web": "~0.20.0",
-    "tamagui": "^1.129.15"
+    "tamagui": "^1.129.16"
   },
   "devDependencies": {
     "@react-native-community/cli": "latest",
