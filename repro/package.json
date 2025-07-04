@@ -1,5 +1,5 @@
 {
-  "name": "example-basic",
+  "name": "repro",
   "version": "1.1.504",
   "private": true,
   "type": "module",
@@ -15,10 +15,11 @@
   },
   "dependencies": {
     "expo": "^53.0.4",
-    "one": "workspace:*",
+    "one": "1.1.504",
     "react": "~19.0.0",
+    "react-dom": "~19.0.0",
     "react-native": "~0.79.2",
-    "react-native-reanimated": "^3.18.0",
+    "react-native-reanimated": "~3.17.1",
     "react-native-safe-area-context": "5.4.1",
     "react-native-screens": "4.10.0",
     "react-native-web": "~0.20.0"
@@ -26,6 +27,6 @@
   "devDependencies": {
     "@react-native-community/cli": "19.0.0",
     "@types/react": "^18.3.11",
-    "vite": "^7.0.1"
+    "vite": "^6.0.6"
   }
 }
