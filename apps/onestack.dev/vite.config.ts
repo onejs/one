@@ -23,7 +23,6 @@ export default {
 
   define: {
     'process.env.TAMAGUI_DISABLE_NO_THEME_WARNING': '"1"',
-    'process.env.TAMAGUI_SKIP_THEME_OPTIMIZATION': '"1"',
   },
 
   plugins: [
