@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@tamagui/build": "^1.129.5"
+    "@tamagui/build": "^1.129.15"
   },
   "publishConfig": {
     "access": "public"

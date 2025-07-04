@@ -57,14 +57,14 @@
       "import": "./vendor/react-dom/cjs/react-dom.development.js"
     },
     "./babel-plugin-one-router-metro": {
+      "types": "./types/babel-plugins/one-router-metro.d.ts",
       "import": "./dist/esm/babel-plugins/one-router-metro.mjs",
-      "require": "./dist/cjs/babel-plugins/one-router-metro.cjs",
-      "types": "./types/babel-plugins/one-router-metro.d.ts"
+      "require": "./dist/cjs/babel-plugins/one-router-metro.cjs"
     },
     "./getViteMetroPluginOptions": {
+      "types": "./types/metro-config/getViteMetroPluginOptions.d.ts",
       "import": "./dist/esm/metro-config/getViteMetroPluginOptions.mjs",
-      "require": "./dist/cjs/metro-config/getViteMetroPluginOptions.cjs",
-      "types": "./types/metro-config/getViteMetroPluginOptions.d.ts"
+      "require": "./dist/cjs/metro-config/getViteMetroPluginOptions.cjs"
     },
     "./metro-entry": {
       "require": "./metro-entry.js",
@@ -130,7 +130,7 @@
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.2.0",
     "hono": "^4.6.16",
-    "lightningcss": "^1.27.0",
+    "lightningcss": "^1.30.1",
     "micromatch": "^4.0.7",
     "nanoid": "^3.3.7",
     "perfect-debounce": "^1.0.0",
@@ -146,7 +146,7 @@
     "ts-pattern": "^5.6.2",
     "tsconfig-paths": "^4",
     "use-latest-callback": "^0.2.3",
-    "vite": "^6.1.0",
+    "vite": "^7.0.1",
     "vite-plugin-barrel": "^0.4.1",
     "vite-tsconfig-paths": "^5.0.1",
     "vxrn": "workspace:*",
@@ -154,7 +154,7 @@
     "xxhashjs": "^0.2.2"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.129.5",
+    "@tamagui/build": "^1.129.15",
     "@types/node": "^22.1.0",
     "@types/react-dom": "^18.2.25",
     "@types/xxhashjs": "^0.2.4",
