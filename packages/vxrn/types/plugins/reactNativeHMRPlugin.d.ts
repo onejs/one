@@ -4,7 +4,7 @@ export declare function reactNativeHMRPlugin({ assetExts, root: rootIn, mode: mo
     assetExts: string[];
 }): {
     name: string;
-    configResolved(this: void, resolvedConfig: ResolvedConfig): void;
-    handleHotUpdate(this: void, { read, modules, file, server }: import("vite").HmrContext): Promise<void>;
+    configResolved(this: import("vite").MinimalPluginContextWithoutEnvironment, resolvedConfig: ResolvedConfig): void;
+    handleHotUpdate(this: import("vite").MinimalPluginContextWithoutEnvironment, { read, modules, file, server }: import("vite").HmrContext): Promise<void>;
 };
 //# sourceMappingURL=reactNativeHMRPlugin.d.ts.map

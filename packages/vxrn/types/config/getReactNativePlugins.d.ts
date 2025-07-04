@@ -5,6 +5,6 @@ export declare function getReactNativePlugins(config?: Partial<Pick<VXRNOptionsF
     metro?: (MetroPluginOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null;
 }): import("vite").PluginOption[] | (import("vite").Plugin<any> | {
     name: string;
-    configResolved(this: void, conf: import("vite").ResolvedConfig): void;
+    configResolved(this: import("vite").MinimalPluginContextWithoutEnvironment, conf: import("vite").ResolvedConfig): void;
 })[];
 //# sourceMappingURL=getReactNativePlugins.d.ts.map
