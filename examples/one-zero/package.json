@@ -25,11 +25,11 @@
   },
   "dependencies": {
     "@rocicorp/zero": "^0.20.2025052100",
-    "@tamagui/config": "^1.129.15",
-    "@tamagui/linear-gradient": "^1.129.15",
-    "@tamagui/lucide-icons": "^1.129.15",
-    "@tamagui/themes": "^1.129.15",
-    "@tamagui/toast": "^1.129.15",
+    "@tamagui/config": "^1.129.16",
+    "@tamagui/linear-gradient": "^1.129.16",
+    "@tamagui/lucide-icons": "^1.129.16",
+    "@tamagui/themes": "^1.129.16",
+    "@tamagui/toast": "^1.129.16",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-deep-link": "^2.0.1",
     "@tauri-apps/plugin-fs": "^2.2.0",
@@ -49,11 +49,11 @@
     "react-native-screens": "4.10.0",
     "react-native-svg": "15.12.0",
     "react-native-web": "~0.20.0",
-    "tamagui": "^1.129.15"
+    "tamagui": "^1.129.16"
   },
   "devDependencies": {
     "@react-native-community/cli": "19.0.0",
-    "@tamagui/vite-plugin": "^1.129.15",
+    "@tamagui/vite-plugin": "^1.129.16",
     "@tauri-apps/cli": "^2",
     "@types/node": "^22.1.0",
     "@types/pg": "^8.11.11",
