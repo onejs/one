@@ -17,6 +17,6 @@ export type MetroPluginOptions = {
      */
     mainModuleName?: string;
 };
-export declare function metroPlugin({ argv, defaultConfigOverrides, babelConfig, mainModuleName, }?: MetroPluginOptions): PluginOption;
+export declare function metroPlugin(options?: MetroPluginOptions): PluginOption;
 export {};
 //# sourceMappingURL=metroPlugin.d.ts.map
