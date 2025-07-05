@@ -47,6 +47,7 @@
     "@expo/metro-config": "^0.19.8",
     "expo": "^53.0.4",
     "metro": "^0.82",
+    "metro-config": "*",
     "react-native": "~0.79.2",
     "vite": "^6.1.0"
   },
