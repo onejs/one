@@ -14,6 +14,11 @@
       "require": "./dist/cjs/index.js",
       "import": "./dist/esm/index.mjs"
     },
+    "./rn-commands": {
+      "types": "./types/rn-commands/index.d.ts",
+      "import": "./dist/esm/rn-commands/index.mjs",
+      "require": "./dist/cjs/rn-commands/index.cjs"
+    },
     "./babel-transformer": {
       "types": "./types/transformer/babel-transformer.d.ts",
       "import": "./dist/esm/transformer/babel-transformer.mjs",
@@ -41,6 +46,7 @@
     "@expo/metro-config": "^0.19.8",
     "expo": "^53.0.4",
     "metro": "^0.82",
+    "metro-config": "*",
     "react-native": "~0.79.2",
     "vite": "^6.1.0"
   },
