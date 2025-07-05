@@ -136,16 +136,27 @@ jobs:
 
 
   test-ios-native-prod:
-    name: Native iOS Tests (Prod)
+    name: ${{ matrix.job_name }}
     needs:
       - build-ios-test-container-prod
     runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
+    strategy:
+      matrix:
+        include:
+          - job_name: Native iOS Tests (Prod) - Metro Mode
+            set_one_metro_mode: true
+          - job_name: Native iOS Tests (Prod)
+            set_one_metro_mode: false
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install
         uses: ./.github/actions/install
+
+      - name: Set ONE_METRO_MODE (if needed)
+        if: ${{ matrix.set_one_metro_mode == true }}
+        run: echo "ONE_METRO_MODE=true" >> $GITHUB_ENV
 
       - name: Download Built Test Container App
         uses: actions/cache/restore@v4
