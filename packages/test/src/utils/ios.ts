@@ -114,9 +114,7 @@ async function prepareTestApp() {
         } catch (error) {
           if (retries >= 5) {
             const errorMsg = error instanceof Error ? error.message : String(error)
-            reject(
-              new Error(`${bundleUrl} didn't respond within the expected time. (${errorMsg})`)
-            )
+            reject(new Error(`${bundleUrl} didn't respond within the expected time. (${errorMsg})`))
           } else {
             retries++
             setTimeout(checkUrl, 1000)
@@ -140,8 +138,12 @@ async function prepareTestApp() {
   // )
 
   $.cwd = root
-  $`yarn one patch` // Ensure patches are applied.
-  $`yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`
+  $({
+    stdio: 'inherit',
+  })`yarn one patch` // Ensure patches are applied.
+  $({
+    stdio: 'inherit',
+  })`yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`
   await new Promise((resolve) => {
     setTimeout(resolve, 1000)
   })
