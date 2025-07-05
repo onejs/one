@@ -15,8 +15,8 @@ import type { createDevMiddleware as createDevMiddlewareT } from '@react-native/
 
 import { projectImport } from '../utils/projectImport'
 import type { TransformOptions } from '../transformer/babel-core'
-import type { ViteCustomTransformOptions } from '../transformer/types'
 import { getMetroConfigFromViteConfig } from '../metro-config/getMetroConfigFromViteConfig'
+import { patchMetroServerWithMetroPluginOptions } from '../metro-config/patchMetroServerWithMetroPluginOptions'
 
 type MetroYargArguments = Parameters<typeof loadConfigT>[0]
 type MetroInputConfig = Parameters<typeof loadConfigT>[1]
@@ -71,33 +71,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
         watch: true,
       })
 
-      // Patch transformFile to inject custom transform options.
-      const originalTransformFile = metroServer
-        .getBundler()
-        .getBundler()
-        .transformFile.bind(metroServer.getBundler().getBundler())
-      metroServer.getBundler().getBundler().transformFile = async (
-        filePath: string,
-        transformOptions: Parameters<typeof originalTransformFile>[1],
-        fileBuffer?: Parameters<typeof originalTransformFile>[2]
-      ) => {
-        const viteCustomTransformOptions: ViteCustomTransformOptions = {
-          // config: server.config,
-          babelConfig: options.babelConfig,
-        }
-        return originalTransformFile(
-          filePath,
-          {
-            ...transformOptions,
-            customTransformOptions: {
-              ...transformOptions.customTransformOptions,
-              // Pass into our own babel-transformer
-              vite: viteCustomTransformOptions,
-            },
-          },
-          fileBuffer
-        )
-      }
+      patchMetroServerWithMetroPluginOptions(metroServer, options)
 
       const hmrServer = new MetroHmrServer(
         metroServer.getBundler(),
