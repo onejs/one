@@ -10,13 +10,15 @@ import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
 import { patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName } from '../utils/patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName'
 import type { MetroPluginOptions } from '../plugins/metroPlugin'
+import type { ExtraConfig, MetroConfigExtended } from './types'
 
 type MetroInputConfig = Parameters<typeof loadConfigT>[1]
 
 export async function getMetroConfigFromViteConfig(
   config: ResolvedConfig,
   metroPluginOptions: MetroPluginOptions
-) {
+): Promise<MetroConfigExtended> {
+  const extraConfig: ExtraConfig = {}
   const { root: projectRoot } = config
   const { mainModuleName, argv, defaultConfigOverrides } = metroPluginOptions
 
@@ -61,6 +63,8 @@ export async function getMetroConfigFromViteConfig(
           })
         }
       })()
+
+    extraConfig.getResolveMainModuleName = resolveMainModuleName
 
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
       if (url.includes('/.expo/.virtual-metro-entry.bundle?')) {
@@ -120,7 +124,7 @@ export async function getMetroConfigFromViteConfig(
     {
       cwd: projectRoot,
       projectRoot,
-      'reset-cache': !!process.env.METRO_RESET_CACHE,
+      'reset-cache': !!process.env.METRO_RESET_CACHE, // TODO: `--clean`
       ...argv,
     },
     {
@@ -131,5 +135,8 @@ export async function getMetroConfigFromViteConfig(
     }
   )
 
-  return metroConfig
+  return {
+    ...metroConfig,
+    ...extraConfig,
+  }
 }
