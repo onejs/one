@@ -1,5 +1,6 @@
-import FSExtra from 'fs-extra'
 import path from 'node:path'
+import FSExtra from 'fs-extra'
+import { bundle as metroBundle } from '@vxrn/vite-plugin-metro/rn-commands'
 import { loadEnv } from '../../exports/loadEnv'
 import { fillOptions } from '../../config/getOptionsFilled'
 import { getReactNativeBundle } from '../../utils/getReactNativeBundle'
@@ -50,6 +51,22 @@ export async function buildBundle(
   const { root } = ctx
   if (typeof root !== 'string') {
     throw new Error(`Expected ctx.root to be a string, but got ${typeof root}`)
+  }
+
+  const metroBuildBundleFn = await metroBundle.getBuildBundleFn()
+
+  if (metroBuildBundleFn) {
+    console.info('Using @vxrn/vite-plugin-metro to build the bundle.')
+    await metroBuildBundleFn(_argv, ctx, args, bundleImpl)
+
+    // Prevent the process not getting exited for some unknown reason.
+    // If the process is not exited, it might hang the native build process.
+    setTimeout(() => {
+      console.info('Exiting process to prevent hanging.')
+      process.exit()
+    }, 3000)
+
+    return
   }
 
   process.env.IS_VXRN_CLI = 'true'
@@ -105,6 +122,7 @@ export async function buildBundle(
   // Prevent the process not getting exited for some unknown reason.
   // If the process is not exited, it might hang the native build process.
   setTimeout(() => {
+    console.info('Exiting process to prevent hanging.')
     process.exit()
   }, 1000)
 }
