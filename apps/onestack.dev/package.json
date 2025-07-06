@@ -19,13 +19,13 @@
   "dependencies": {
     "@docsearch/react": "^3.9.0",
     "@supabase/supabase-js": "^2.44.4",
-    "@tamagui/button": "^1.129.16",
-    "@tamagui/input": "^1.129.16",
-    "@tamagui/linear-gradient": "^1.129.16",
-    "@tamagui/lucide-icons": "^1.129.16",
-    "@tamagui/react-native-web": "^1.129.16",
-    "@tamagui/themes": "^1.129.16",
-    "@tamagui/use-store": "^1.129.16",
+    "@tamagui/button": "^1.130.6",
+    "@tamagui/input": "^1.130.6",
+    "@tamagui/linear-gradient": "^1.130.6",
+    "@tamagui/lucide-icons": "^1.130.6",
+    "@tamagui/react-native-web": "^1.130.6",
+    "@tamagui/themes": "^1.130.6",
+    "@tamagui/use-store": "^1.130.6",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/mdx": "workspace:*",
     "body-scroll-lock": "^4.0.0-beta.0",
@@ -34,7 +34,7 @@
     "postmark": "^3.0.18",
     "react": "~19.0.0",
     "react-native": "~0.79.2",
-    "tamagui": "^1.129.16"
+    "tamagui": "^1.130.6"
   },
   "devDependencies": {
     "@algolia/client-search": "^5.8.1",

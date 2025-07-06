@@ -55,7 +55,7 @@
     "@biomejs/biome": "1.9.4",
     "@expo/metro-config": "^0.19.8",
     "@react-native/dev-middleware": "~0.79.2",
-    "@tamagui/build": "^1.129.16",
+    "@tamagui/build": "^1.130.6",
     "@types/node": "^22.1.0",
     "depcheck": "^1.4.7",
     "expo": "^53.0.4",
