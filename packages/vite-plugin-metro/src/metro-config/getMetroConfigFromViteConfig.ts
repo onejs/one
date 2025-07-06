@@ -115,7 +115,9 @@ export async function getMetroConfigFromViteConfig(
         '@vxrn/vite-plugin-metro/babel-transformer'
       ),
       // TODO: This is what Expo is doing, but do we really need this?
-      publicPath: '/assets/?unstable_path=.',
+      // Doing so seems to make the release build broken since assets will be
+      // copied to /.../Xcode/DerivedData/.../Build/Products/Release-iphonesimulator/...app/assets/?unstable_path=.%2Fsrc%2Fimages/logo.png
+      // publicPath: '/assets/?unstable_path=.',
     },
     reporter: await getTerminalReporter(projectRoot),
   }
