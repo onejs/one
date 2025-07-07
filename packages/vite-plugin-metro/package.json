@@ -24,6 +24,11 @@
       "import": "./dist/esm/transformer/babel-transformer.mjs",
       "require": "./dist/cjs/transformer/babel-transformer.cjs"
     },
+    "./babel-plugins/import-meta-env-plugin": {
+      "types": "./types/babel-plugins/import-meta-env-plugin.d.ts",
+      "import": "./dist/esm/babel-plugins/import-meta-env-plugin.mjs",
+      "require": "./dist/cjs/babel-plugins/import-meta-env-plugin.cjs"
+    },
     "./empty": {
       "import": "./empty.js",
       "require": "./empty.js"
