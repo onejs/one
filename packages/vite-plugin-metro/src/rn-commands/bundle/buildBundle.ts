@@ -2,7 +2,7 @@ import type { ResolvedConfig } from 'vite'
 import type { MetroPluginOptions } from '../../plugins/metroPlugin'
 import { getMetroConfigFromViteConfig } from '../../metro-config/getMetroConfigFromViteConfig'
 import { buildBundleWithConfig } from './buildBundleWithConfig'
-import { patchMetroServerWithMetroPluginOptions } from '../../metro-config/patchMetroServerWithMetroPluginOptions'
+import { patchMetroServerWithViteConfigAndMetroPluginOptions } from '../../metro-config/patchMetroServerWithViteConfigAndMetroPluginOptions'
 import { projectResolve } from '../../utils/projectImport'
 import type { BundleCommandArgs } from './types'
 
@@ -42,7 +42,7 @@ export async function buildBundle(
 
   await buildBundleWithConfig(args, metroConfig, undefined, {
     patchServer: (server) => {
-      patchMetroServerWithMetroPluginOptions(server, metroPluginOptions)
+      patchMetroServerWithViteConfigAndMetroPluginOptions(server, viteConfig, metroPluginOptions)
     },
   })
 

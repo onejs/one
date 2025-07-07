@@ -16,7 +16,7 @@ import type { createDevMiddleware as createDevMiddlewareT } from '@react-native/
 import { projectImport } from '../utils/projectImport'
 import type { TransformOptions } from '../transformer/babel-core'
 import { getMetroConfigFromViteConfig } from '../metro-config/getMetroConfigFromViteConfig'
-import { patchMetroServerWithMetroPluginOptions } from '../metro-config/patchMetroServerWithMetroPluginOptions'
+import { patchMetroServerWithViteConfigAndMetroPluginOptions } from '../metro-config/patchMetroServerWithViteConfigAndMetroPluginOptions'
 
 type MetroYargArguments = Parameters<typeof loadConfigT>[0]
 type MetroInputConfig = Parameters<typeof loadConfigT>[1]
@@ -77,7 +77,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
         watch: true,
       })
 
-      patchMetroServerWithMetroPluginOptions(metroServer, options)
+      patchMetroServerWithViteConfigAndMetroPluginOptions(metroServer, server.config, options)
 
       const hmrServer = new MetroHmrServer(
         metroServer.getBundler(),
