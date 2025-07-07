@@ -58,6 +58,8 @@
   },
   "dependencies": {
     "@babel/core": "^7.26.8",
+    "@babel/helper-plugin-utils": "^7.26.8",
+    "@babel/types": "^7.26.8",
     "@vxrn/debug": "workspace:*",
     "babel-preset-expo": "*",
     "launch-editor": "^2.10.0",
@@ -68,6 +70,7 @@
     "@expo/metro-config": "^0.19.8",
     "@react-native/dev-middleware": "~0.79.2",
     "@tamagui/build": "^1.130.6",
+    "@types/babel__helper-plugin-utils": "^7",
     "@types/node": "^22.1.0",
     "depcheck": "^1.4.7",
     "expo": "^53.0.4",
