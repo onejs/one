@@ -2,6 +2,7 @@ import { Link, useLoader } from 'one'
 import { Button, H2, Paragraph, Square, YStack } from 'tamagui'
 import { ToggleThemeButton } from '../features/theme/ToggleThemeButton'
 import { useAnimatedStyle } from 'react-native-reanimated'
+import { TestNavigationHelper } from '~/features/test-helpers/TestNavigationHelper'
 
 export async function loader() {
   return {
@@ -25,6 +26,8 @@ export default () => {
       <H2 testID="welcome-message">Welcome to One</H2>
 
       <Paragraph id="test-loader">{JSON.stringify(data)}</Paragraph>
+
+      <TestNavigationHelper />
 
       <Link asChild id="go-to-sub" href="/sub-page/sub">
         <Button size="$5" id="go-to-sub">
