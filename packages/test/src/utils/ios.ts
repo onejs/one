@@ -1,10 +1,13 @@
 import { exec, execSync } from 'node:child_process'
 import path, { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { dirname } from 'node:path'
 import { copySync, ensureDirSync } from 'fs-extra'
 import type { Environment } from 'vitest/environments'
 import type { remote } from 'webdriverio'
 import { $ } from 'zx'
 import { TEST_ENV } from '../constants'
+import { findIosBuiltAppFromXcode } from './findIosBuiltAppFromXcode'
 
 export type WebdriverIOConfig = Parameters<typeof remote>[0]
 
@@ -50,11 +53,41 @@ async function prepareTestApp() {
   const copyTestContainerFrom = (() => {
     const envName = `IOS_TEST_CONTAINER_PATH_${TEST_ENV.toUpperCase()}`
 
-    if (!process.env[envName]) {
-      throw new Error(`No ${envName} provided, this is required for now`)
+    if (process.env[envName]) {
+      return process.env[envName]
     }
 
-    return process.env[envName]
+    console.info(`No ${envName} provided, trying to find a built app automatically...`)
+
+    try {
+      const __filename = fileURLToPath(import.meta.url)
+      const __dirname = dirname(__filename)
+
+      const testContainerProjectPath = path.join(
+        __dirname,
+        '..',
+        '..',
+        '..',
+        '..',
+        'tests',
+        'rn-test-container'
+      )
+
+      const testAppPath = findIosBuiltAppFromXcode(
+        testContainerProjectPath,
+        TEST_ENV === 'dev' ? 'Debug' : 'Release'
+      )
+
+      console.info(`Using built app from Xcode: ${testAppPath}`)
+      console.info(`TIP: You can \`export ${envName}='${testAppPath}'\` to speed up this process.`)
+
+      return testAppPath
+    } catch (e) {
+      if (e instanceof Error) {
+        e.message = `Failed to find a built app. Please set ${envName}, or try to build the app from Xcode: ${e.message}.`
+      }
+      throw e
+    }
   })()
 
   const root = process.cwd()
