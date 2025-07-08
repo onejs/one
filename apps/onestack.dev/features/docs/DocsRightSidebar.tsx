@@ -1,4 +1,5 @@
-import { classNames } from '@tamagui/remove-scroll'
+// `@tamagui/remove-scroll` is not using `react-remove-scroll` and exporting `classNames` anymore
+// import { classNames } from '@tamagui/remove-scroll'
 import { type Frontmatter } from '@vxrn/mdx'
 import type { LinkProps } from 'one'
 import { Circle, H4, Paragraph, Separator, XStack, YStack } from 'tamagui'
@@ -24,7 +25,7 @@ export function DocsRightSidebar({ headings = [] }: { headings: Frontmatter['hea
   return (
     <YStack
       tag="aside"
-      className={classNames.zeroRight}
+      // className={classNames.zeroRight}
       display="none"
       $gtLg={{
         display: 'flex',
