@@ -14,7 +14,8 @@ export async function getBuildBundleFn() {
       // envFile,
       // forceOptimizeDeps,
     },
-    'build'
+    'build',
+    'production'
   )
 
   // Should call `resolveConfig` before checking for `globalThis['__viteMetroPluginOptions__']`
