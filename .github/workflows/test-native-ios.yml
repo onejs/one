@@ -41,6 +41,7 @@ jobs:
       - build-ios-test-container-dev
     runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
     strategy:
+      fail-fast: false
       matrix:
         include:
           - job_name: Native iOS Tests (Dev) - Metro Mode
@@ -141,6 +142,7 @@ jobs:
       - build-ios-test-container-prod
     runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
     strategy:
+      fail-fast: false
       matrix:
         include:
           - job_name: Native iOS Tests (Prod) - Metro Mode
