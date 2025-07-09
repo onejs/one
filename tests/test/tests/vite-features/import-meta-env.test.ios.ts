@@ -36,11 +36,13 @@ export async function typeSlowly(
   text: string,
   delay = 10
 ) {
-  await element.clearValue()
-  await element.click()
+  // Re-select every time to avoid stale element
+  const parent = await element.parent
+  await parent.$(await element.selector).clearValue()
+  await parent.$(await element.selector).click()
   await driver.pause(300)
   for (const char of text) {
-    await element.addValue(char)
+    await parent.$(await element.selector).addValue(char)
     await driver.pause(delay)
   }
 }
