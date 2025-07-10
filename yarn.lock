@@ -8986,47 +8986,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tamagui/babel-plugin-fully-specified@npm:1.130.6":
-  version: 1.130.6
-  resolution: "@tamagui/babel-plugin-fully-specified@npm:1.130.6"
-  dependencies:
-    "@babel/core": "npm:^7.25.2"
-  checksum: 10/ba93273d81cfac95fda201de297120b10013cddb315fdb4df24f8b06e8b163dc6c3f1b8aeb8f5c8671de602199c26d5655c638bf9d6300abbe2d46b2366b2f05
-  languageName: node
-  linkType: hard
-
 "@tamagui/babel-plugin-fully-specified@npm:1.131.2":
   version: 1.131.2
   resolution: "@tamagui/babel-plugin-fully-specified@npm:1.131.2"
   dependencies:
     "@babel/core": "npm:^7.25.2"
   checksum: 10/e5c93e9f35902917bac83d7efa66e45ad64eb451b322612f198eeaffafa85f60ccb7793a0840ed91be5ecf6b5c6e724f1d73ca2081f1a188fdaa704616b87f07
-  languageName: node
-  linkType: hard
-
-"@tamagui/build@npm:^1.130.6":
-  version: 1.130.6
-  resolution: "@tamagui/build@npm:1.130.6"
-  dependencies:
-    "@babel/core": "npm:^7.25.2"
-    "@swc/core": "npm:^1.7.21"
-    "@tamagui/babel-plugin-fully-specified": "npm:1.130.6"
-    "@types/fs-extra": "npm:^9.0.13"
-    "@typescript/native-preview": "npm:7.0.0-dev.20250619.1"
-    chokidar: "npm:^3.5.2"
-    esbuild: "npm:^0.25.0"
-    esbuild-plugin-es5: "npm:^2.1.1"
-    esbuild-register: "npm:^3.6.0"
-    execa: "npm:^5.0.0"
-    fast-glob: "npm:^3.2.11"
-    fs-extra: "npm:^11.2.0"
-    lodash.debounce: "npm:^4.0.8"
-    oxc-transform: "npm:^0.74.0"
-    typescript: "npm:^5.8.2"
-  bin:
-    tamagui-build: tamagui-build.js
-    teesx: teesx.sh
-  checksum: 10/85e47fb8dc521187febe50853a83e50a9d680b098fb5f03604483984fc2b709acc393114e1377a9013fe5284a3796444d6ce161b7e4119d91a5e8a46c6887ce6
   languageName: node
   linkType: hard
 
@@ -12051,7 +12016,7 @@ __metadata:
     "@biomejs/biome": "npm:1.9.4"
     "@expo/metro-config": "npm:^0.19.8"
     "@react-native/dev-middleware": "npm:~0.79.2"
-    "@tamagui/build": "npm:^1.130.6"
+    "@tamagui/build": "npm:^1.131.2"
     "@types/babel__helper-plugin-utils": "npm:^7"
     "@types/node": "npm:^22.1.0"
     "@vxrn/debug": "workspace:*"
