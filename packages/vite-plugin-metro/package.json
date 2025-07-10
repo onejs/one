@@ -41,8 +41,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tamagui-build && yarn build:workaround-fix-nodejs-22-defaults-to-esm",
-    "build:workaround-fix-nodejs-22-defaults-to-esm": "echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json",
+    "build": "tamagui-build",
     "watch": "yarn build --watch",
     "check": "yarn depcheck",
     "clean": "tamagui-build clean",
