@@ -24863,6 +24863,7 @@ __metadata:
     react-native-safe-area-context: "npm:5.4.1"
     react-native-screens: "npm:4.10.0"
     react-native-svg: "npm:15.12.0"
+    react-native-web: "npm:~0.20.0"
     vite: "npm:^7.0.1"
     vitest: "npm:^3.2.0"
     webdriverio: "npm:^9.5.4"
