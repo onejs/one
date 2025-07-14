@@ -30,3 +30,14 @@ export async function setValueSlowly(
     await driver.pause(delay)
   }
 }
+
+/**
+ * Currently, this only works when the `TestNavigationHelper` component is shown on the screen.
+ */
+export async function navigateTo(driver: Browser, path: string) {
+  const navigatePathInput = driver.$('~test-navigate-path-input')
+  await navigatePathInput.waitForDisplayed({ timeout: 2 * 60 * 1000 })
+  await setValueSlowly(driver, navigatePathInput, path)
+  await driver.$('~test-navigate').click()
+  await driver.pause(100)
+}

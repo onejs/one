@@ -1,16 +1,13 @@
 import { expect, test } from 'vitest'
-import { type ChainablePromiseElement, type Browser, remote } from 'webdriverio'
+import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
-import { setValueSlowly } from '@vxrn/test/utils/appium'
+import { navigateTo } from '@vxrn/test/utils/appium'
+
 const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 1 }
 
 test('import.meta.env', sharedTestOptions, async () => {
   const driver = await remote(getWebDriverConfig())
-
-  const navigatePathInput = driver.$('~test-navigate-path-input')
-  await navigatePathInput.waitForDisplayed({ timeout: 2 * 60 * 1000 })
-  await setValueSlowly(driver, navigatePathInput, '/vite-features/import-meta-env')
-  await driver.$('~test-navigate').click()
+  await navigateTo(driver, '/vite-features/import-meta-env')
 
   await driver.$('~import-meta-env-value-json').waitForDisplayed()
   const importMetaEnvValueJson = await driver.$('~import-meta-env-value-json').getText()
