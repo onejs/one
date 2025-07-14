@@ -23419,6 +23419,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-mmkv@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "react-native-mmkv@npm:3.3.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/809f89f0192eb856ca4a0cc931ba26d6e383da154ccbf23160b89c4c4fcbb8c2bc8976ad921a75ad5170f60bc6991cadf8c41579b4ca9bb892b0b7a10e2689f4
+  languageName: node
+  linkType: hard
+
 "react-native-reanimated@npm:^3.18.0":
   version: 3.18.0
   resolution: "react-native-reanimated@npm:3.18.0"
@@ -24430,6 +24440,7 @@ __metadata:
     react: "npm:~19.0.0"
     react-native: "npm:~0.79.2"
     react-native-gesture-handler: "npm:^2.22.0"
+    react-native-mmkv: "npm:^3.3.0"
     react-native-reanimated: "npm:^3.18.0"
     react-native-safe-area-context: "npm:5.4.1"
     react-native-screens: "npm:4.10.0"
@@ -26211,6 +26222,7 @@ __metadata:
     react: "npm:~19.0.0"
     react-dom: "npm:~19.0.0"
     react-native: "npm:~0.79.2"
+    react-native-mmkv: "npm:^3.3.0"
     react-native-reanimated: "npm:^3.18.0"
     react-native-safe-area-context: "npm:5.4.1"
     react-native-screens: "npm:4.10.0"
