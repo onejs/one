@@ -21,8 +21,12 @@ export async function setValueSlowly(
 
   await driver.pause(initialDelay)
 
+  const e = await getElement()
   for (const char of text) {
-    await getElement().addValue(char)
+    // await getElement().addValue(char)
+    // Faster but might be unstable
+    await e.addValue(char)
+
     await driver.pause(delay)
   }
 }
