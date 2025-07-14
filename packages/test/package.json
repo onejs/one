@@ -8,6 +8,7 @@
     "./setup": "./src/setup.ts",
     "./setup-ios": "./src/setup-ios.ts",
     "./ios": "./src/ios.ts",
+    "./utils/appium": "./src/utils/appium.ts",
     ".": "./src/index.ts"
   },
   "scripts": {
