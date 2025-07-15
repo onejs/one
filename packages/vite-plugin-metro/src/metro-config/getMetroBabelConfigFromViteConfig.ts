@@ -26,7 +26,21 @@ export function getMetroBabelConfigFromViteConfig(config: ResolvedConfig): Trans
   }
 
   // Collect from process.env
-  const envPrefix = config.envPrefix || 'VITE_'
+  // https://vite.dev/config/shared-options.html#envprefix
+  let envPrefix = config.envPrefix || 'VITE_'
+
+  // Vite seems to always include the `VITE_` prefix,
+  // so we do this to match it's behavior.
+  if (Array.isArray(envPrefix)) {
+    if (!envPrefix.includes('VITE_')) {
+      envPrefix = ['VITE_', ...envPrefix]
+    }
+  } else {
+    if (envPrefix !== 'VITE_') {
+      envPrefix = ['VITE_', envPrefix]
+    }
+  }
+
   if (envPrefix) {
     Object.keys(process.env).forEach((key) => {
       const shouldInclude = Array.isArray(envPrefix)
