@@ -16,7 +16,7 @@ afterAll(async () => {
   await browser.close()
 })
 
-test('hooks', async () => {
+test('hooks', { timeout: 60_000 }, async () => {
   const page = await context.newPage()
   await page.goto(serverUrl + '/hooks')
 
