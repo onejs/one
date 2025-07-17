@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { normalizePath } from 'vite'
 
-type Mode = 'development' | 'production'
+type Mode = 'development' | 'production' | string
 
 const DEFAULT_PREFIX = /^(ONE|VITE|TAMAGUI)_/
 
