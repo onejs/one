@@ -8,16 +8,25 @@ type Mode = 'development' | 'production'
 const DEFAULT_PREFIX = /^(ONE|VITE|TAMAGUI)_/
 
 export async function loadEnv(mode: Mode, root = process.cwd(), userPrefix?: string | string[]) {
-  const serverEnv = await loadJustEnvFiles(mode)
+  const loadedEnv = await loadJustEnvFiles(mode)
   const prefix = userPrefix ? (Array.isArray(userPrefix) ? userPrefix : [userPrefix]) : []
   const isPublicKey = (key: string) => {
     return prefix.some((p) => key.startsWith(p)) || DEFAULT_PREFIX.test(key)
   }
 
+  const loaded: Record<string, string | undefined> = {}
+
+  // defer to process.env
+  for (const key in loadedEnv) {
+    const val = process.env[key] || loadedEnv[key]
+    loaded[key] = val
+    process.env[key] = val
+  }
+
   const clientEnv = Object.fromEntries(
     Object.entries({
       ...process.env,
-      ...serverEnv,
+      ...loaded,
     }).flatMap(([key, value]) => {
       if (isPublicKey(key)) {
         return [[key, value]]
@@ -26,15 +35,8 @@ export async function loadEnv(mode: Mode, root = process.cwd(), userPrefix?: str
     })
   )
 
-  // define into process.env
-  for (const key in serverEnv) {
-    if (typeof process.env[key] === 'undefined') {
-      process.env[key] = serverEnv[key]
-    }
-  }
-
   return {
-    serverEnv,
+    serverEnv: loadedEnv,
     clientEnv,
     clientEnvDefine: Object.fromEntries(
       Object.entries(clientEnv).flatMap(([key, val]) => {
