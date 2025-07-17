@@ -1,4 +1,4 @@
-type Mode = 'development' | 'production';
+type Mode = 'development' | 'production' | string;
 export declare function loadEnv(mode: Mode, root?: string, userPrefix?: string | string[]): Promise<{
     serverEnv: {
         [k: string]: string;
