@@ -34,8 +34,9 @@ export async function setValueSlowly(
 }
 
 /**
- * Like `element.setValue` but using clipboard paste, to reduce the risk of missing characters.
+ * Like `element.setValue` but using some trick to reduce the risk of missing characters.
  *
+ * Note that the implementation may use the clipboard to paste the text.
  * See also: `setValueSafe` - it's safer since it does not rely on the clipboard, but is slower.
  */
 export async function setValueSafe(
@@ -43,45 +44,51 @@ export async function setValueSafe(
   element: ChainablePromiseElement,
   text: string
 ) {
-  await driver.setClipboard(Buffer.from(text).toString('base64'), 'plaintext')
-  await element.clearValue()
-  await element.click()
-  await driver.pause(50)
+  await setValueSlowly(driver, element, text)
+  return
 
-  // Not working on iOS
-  // await driver.executeScript('mobile: paste', [])
+  // Not working on CI
+  // Command + V pasting is not stable
 
-  // Not working on iOS
-  // await driver.execute('mobile: performEditorAction', { action: 'paste' })
+  // await driver.setClipboard(Buffer.from(text).toString('base64'), 'plaintext')
+  // await element.clearValue()
+  // await element.click()
+  // await driver.pause(50)
 
-  // Not working on iOS
-  // await driver.keys(['Meta', 'v']);
+  // // Not working on iOS
+  // // await driver.executeScript('mobile: paste', [])
 
-  // Not working on iOS
-  // await driver.performActions([
-  //   {
-  //     type: 'key',
-  //     id: 'keyboard',
-  //     actions: [
-  //       { type: 'keyDown', value: '\uE03D' },
-  //       { type: 'keyDown', value: 'v' },
-  //       { type: 'keyUp', value: 'v' },
-  //       { type: 'keyUp', value: '\uE03D' },
-  //     ],
-  //   },
-  // ])
-  // await driver.releaseActions()
+  // // Not working on iOS
+  // // await driver.execute('mobile: performEditorAction', { action: 'paste' })
 
-  // Works on iOS
-  // https://github.com/appium/appium-xcuitest-driver/blob/v9.9.6/docs/reference/execute-methods.md#mobile-keys
-  await driver.execute('mobile: keys', {
-    keys: [
-      {
-        key: 'v',
-        modifierFlags: 1 << 4, // XCUIKeyModifierCommand
-      },
-    ],
-  })
+  // // Not working on iOS
+  // // await driver.keys(['Meta', 'v']);
+
+  // // Not working on iOS
+  // // await driver.performActions([
+  // //   {
+  // //     type: 'key',
+  // //     id: 'keyboard',
+  // //     actions: [
+  // //       { type: 'keyDown', value: '\uE03D' },
+  // //       { type: 'keyDown', value: 'v' },
+  // //       { type: 'keyUp', value: 'v' },
+  // //       { type: 'keyUp', value: '\uE03D' },
+  // //     ],
+  // //   },
+  // // ])
+  // // await driver.releaseActions()
+
+  // // Works on iOS
+  // // https://github.com/appium/appium-xcuitest-driver/blob/v9.9.6/docs/reference/execute-methods.md#mobile-keys
+  // await driver.execute('mobile: keys', {
+  //   keys: [
+  //     {
+  //       key: 'v',
+  //       modifierFlags: 1 << 4, // XCUIKeyModifierCommand
+  //     },
+  //   ],
+  // })
 }
 
 /**
