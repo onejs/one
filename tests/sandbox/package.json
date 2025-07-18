@@ -14,10 +14,10 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@tamagui/config": "^1.132.7",
-    "@tamagui/image-next": "^1.132.7",
-    "@tamagui/lucide-icons": "^1.132.7",
-    "@tamagui/vite-plugin": "^1.132.7",
+    "@tamagui/config": "^1.132.9",
+    "@tamagui/image-next": "^1.132.9",
+    "@tamagui/lucide-icons": "^1.132.9",
+    "@tamagui/vite-plugin": "^1.132.9",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
     "react": "~19.0.0",
@@ -29,7 +29,7 @@
     "react-native-svg": "15.12.0",
     "react-native-web": "~0.20.0",
     "react-native-webview": "^13.12.5",
-    "tamagui": "^1.132.7"
+    "tamagui": "^1.132.9"
   },
   "devDependencies": {
     "expo": "^53.0.4"
