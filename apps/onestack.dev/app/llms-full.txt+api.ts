@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { glob } from 'glob'
 import { docsRoutes } from '~/features/docs/docsRoutes'
 
@@ -32,7 +32,11 @@ export async function GET() {
 
     for (const file of orderedFiles) {
       const filePath = join(docsPath, file)
-      const content = await readFile(filePath, 'utf-8')
+      const resolvedFilePath = resolve(filePath)
+      if (!resolvedFilePath.startsWith(resolve(docsPath))) {
+        throw new Error(`Path traversal detected: ${filePath}`)
+      }
+      const content = await readFile(resolvedFilePath, 'utf-8')
       consolidatedContent += content
       consolidatedContent += '\n\n\n\n'
     }
