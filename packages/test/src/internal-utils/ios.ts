@@ -103,6 +103,7 @@ async function prepareTestApp() {
     const serverUrl = `http://127.0.0.1:8081`
 
     // Since the initial bundle may take some time to build, we poke it first and make sure it's ready before running tests, which removes some flakiness during Appium tests.
+    console.info(`Checking dev server ${serverUrl}...`)
     const startedAt = performance.now()
     const bundleUrl = await new Promise<string>((resolve, reject) => {
       let retries = 0
@@ -131,6 +132,7 @@ async function prepareTestApp() {
       }
       checkUrl()
     })
+    console.info(`Waiting for the initial RN bundle to be ready from ${bundleUrl}...`)
     await new Promise<void>((resolve, reject) => {
       let retries = 0
       const checkUrl = async () => {
