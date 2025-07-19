@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { glob } from 'glob'
 import { docsRoutes } from '~/features/docs/docsRoutes'
 
