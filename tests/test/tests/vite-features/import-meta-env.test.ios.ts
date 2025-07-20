@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
 import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
-import { navigateTo } from '@vxrn/test/utils/appium'
+import { navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
 
 const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 1 }
 
@@ -9,7 +9,7 @@ test('import.meta.env', sharedTestOptions, async () => {
   const driver = await remote(getWebDriverConfig())
   await navigateTo(driver, '/vite-features/import-meta-env')
 
-  await driver.$('~import-meta-env-value-json').waitForDisplayed()
+  await waitForDisplayed(driver, driver.$('~import-meta-env-value-json'))
   const importMetaEnvValueJson = await driver.$('~import-meta-env-value-json').getText()
 
   const importMetaEnvValue = JSON.parse(importMetaEnvValueJson)

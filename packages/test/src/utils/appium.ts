@@ -1,3 +1,4 @@
+import fs from 'node:fs'
 import type { ChainablePromiseElement, Browser } from 'webdriverio'
 
 /**
@@ -118,4 +119,34 @@ export async function navigateTo(driver: Browser, path: string) {
   await setValueSafe(driver, navigatePathInput, path)
   await driver.$('~test-navigate').click()
   await driver.pause(100)
+}
+
+export async function waitForDisplayed(
+  driver: Browser,
+  element: ChainablePromiseElement,
+  { timeout = 10 * 1000 }: { timeout?: number } = {}
+) {
+  try {
+    await element.waitForDisplayed({ timeout })
+  } catch (err) {
+    const timestamp = Date.now()
+    const fileName = `${timestamp}-${sanitizeFileName(err instanceof Error ? err.message : 'Unknown error')}`
+
+    await fs.promises.mkdir('/tmp/appium-screenshots', { recursive: true })
+    const screenshotPath = `/tmp/appium-screenshots/${fileName}.png`
+    const sourcePath = `/tmp/appium-screenshots/${fileName}.xml`
+
+    await driver.saveScreenshot(screenshotPath)
+    const source = await driver.getPageSource()
+    await fs.promises.writeFile(sourcePath, source)
+
+    throw err
+  }
+}
+
+function sanitizeFileName(input: string): string {
+  return input
+    .replace(/[^a-zA-Z0-9-_\. ]/g, '')
+    .replace(/\s+/g, '_')
+    .slice(0, 100)
 }
