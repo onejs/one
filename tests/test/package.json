@@ -41,6 +41,7 @@
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/test-package": "workspace:*",
     "expo": "^53.0.4",
+    "expo-clipboard": "~7.1.5",
     "expo-linear-gradient": "~14.1.5",
     "expo-video": "^2.0.4",
     "one": "workspace:*",
