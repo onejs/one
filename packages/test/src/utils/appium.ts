@@ -101,7 +101,7 @@ export async function navigateTo(driver: Browser, path: string) {
     await quickNavigatePixel.waitForDisplayed({ timeout: 2 * 60 * 1000 })
     await driver.setClipboard(Buffer.from(path).toString('base64'), 'plaintext')
     await quickNavigatePixel.click()
-    await driver.pause(500)
+    await driver.pause(1500)
 
     // System alert dialog asking whether to allow clipboard access
     // on iOS, "Don't Allow" is the default button ('accept'),
