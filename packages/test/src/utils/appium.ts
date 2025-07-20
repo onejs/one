@@ -95,6 +95,20 @@ export async function setValueSafe(
  * Currently, this only works when the `TestNavigationHelper` component is shown on the screen.
  */
 export async function navigateTo(driver: Browser, path: string) {
+  const quickNavigatePixel = driver.$('~quick-navigate-pixel')
+  try {
+    await quickNavigatePixel.waitForDisplayed({ timeout: 2 * 60 * 1000 })
+    await driver.setClipboard(Buffer.from(path).toString('base64'), 'plaintext')
+    await quickNavigatePixel.click()
+    await driver.pause(50)
+
+    // System alert dialog asking whether to allow clipboard access
+    // on iOS, "Don't Allow" is the default button ('accept'),
+    // so we need to use 'dismiss' for "Allow".
+    await driver.execute('mobile: alert', { action: 'dismiss' });
+    return
+  } catch {}
+
   const navigatePathInput = driver.$('~test-navigate-path-input')
   await navigatePathInput.waitForDisplayed({ timeout: 2 * 60 * 1000 })
   await setValueSafe(driver, navigatePathInput, path)
