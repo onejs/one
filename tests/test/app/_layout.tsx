@@ -7,6 +7,7 @@ import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
 import { LoadProgressBar, Slot, useServerHeadInsertion } from 'one'
 import config from '../config/tamagui.config'
+import { QuickNavigatePixel } from '~/features/test-helpers/QuickNavigatePixel'
 
 export default function Layout() {
   useServerHeadInsertion(() => {
@@ -25,6 +26,7 @@ export default function Layout() {
       <SchemeProvider>
         <TamaguiRootProvider>
           <Slot />
+          <QuickNavigatePixel />
         </TamaguiRootProvider>
       </SchemeProvider>
     </html>
