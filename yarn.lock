@@ -16073,6 +16073,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-clipboard@npm:~7.1.5":
+  version: 7.1.5
+  resolution: "expo-clipboard@npm:7.1.5"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10/30503db81e3d233ed257d81e894f9a15a9da03cc0e9a8e410e1cc3a6797a80dd74b6512daaeed2547b034eabe44473e46257ce55aa490411e8b18968c99bdc18
+  languageName: node
+  linkType: hard
+
 "expo-constants@npm:~16.0.0":
   version: 16.0.2
   resolution: "expo-constants@npm:16.0.2"
@@ -24435,6 +24446,7 @@ __metadata:
   dependencies:
     "@react-native-picker/picker": "npm:^2.11.0"
     expo: "npm:^53.0.4"
+    expo-clipboard: "npm:~7.1.5"
     expo-modules-core: "npm:2.3.13"
     one: "workspace:*"
     react: "npm:~19.0.0"
@@ -26213,6 +26225,7 @@ __metadata:
     "@vxrn/test-package": "workspace:*"
     "@vxrn/utils": "workspace:*"
     expo: "npm:^53.0.4"
+    expo-clipboard: "npm:~7.1.5"
     expo-linear-gradient: "npm:~14.1.5"
     expo-video: "npm:^2.0.4"
     get-port-please: "npm:^3.1.2"

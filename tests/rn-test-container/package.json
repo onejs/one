@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-native-picker/picker": "^2.11.0",
     "expo": "^53.0.4",
+    "expo-clipboard": "~7.1.5",
     "expo-modules-core": "2.3.13",
     "one": "workspace:*",
     "react": "~19.0.0",
