@@ -135,6 +135,14 @@ jobs:
           path: |
             /tmp/appium.log
 
+      - name: Upload Appium Screenshots
+        uses: actions/upload-artifact@v4.3.1
+        if: ${{ always() }}
+        continue-on-error: true
+        with:
+          name: appium-dev-screenshots
+          path: |
+            /tmp/appium-screenshots
 
   test-ios-native-prod:
     name: ${{ matrix.job_name }}
@@ -235,3 +243,12 @@ jobs:
           name: appium-prod-tests.log
           path: |
             /tmp/appium.log
+
+      - name: Upload Appium Screenshots
+        uses: actions/upload-artifact@v4.3.1
+        if: ${{ always() }}
+        continue-on-error: true
+        with:
+          name: appium-prod-screenshots
+          path: |
+            /tmp/appium-screenshots
