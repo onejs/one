@@ -105,9 +105,13 @@ export async function navigateTo(driver: Browser, path: string) {
     // System alert dialog asking whether to allow clipboard access
     // on iOS, "Don't Allow" is the default button ('accept'),
     // so we need to use 'dismiss' for "Allow".
-    await driver.execute('mobile: alert', { action: 'dismiss' });
+    await driver.execute('mobile: alert', { action: 'dismiss' })
     return
-  } catch {}
+  } catch (e) {
+    console.warn(
+      `Quick navigate pixel not found, falling back to input field navigation: ${e instanceof Error ? e.message : 'Unknown error'}`
+    )
+  }
 
   const navigatePathInput = driver.$('~test-navigate-path-input')
   await navigatePathInput.waitForDisplayed({ timeout: 2 * 60 * 1000 })
