@@ -24,10 +24,11 @@ export type OneLinkingOptions = LinkingOptions<object> & {
 }
 
 export function getLinkingConfig(routes: RouteNode, metaOnly = true): OneLinkingOptions {
+  const config = getNavigationConfig(routes, metaOnly)
   return {
     prefixes: [],
     // @ts-expect-error
-    config: getNavigationConfig(routes, metaOnly),
+    config,
     // A custom getInitialURL is used on native to ensure the app always starts at
     // the root path if it's launched from something other than a deep link.
     // This helps keep the native functionality working like the web functionality.
@@ -39,8 +40,7 @@ export function getLinkingConfig(routes: RouteNode, metaOnly = true): OneLinking
     getPathFromState(state: State, options: Parameters<typeof getPathFromState>[1]) {
       return (
         getPathFromState(state, {
-          screens: [],
-          ...this.config,
+          ...config,
           ...options,
         }) ?? '/'
       )
