@@ -96,7 +96,7 @@ export async function setValueSafe(
  * Currently, this only works when the `TestNavigationHelper` component is shown on the screen.
  */
 export async function navigateTo(driver: Browser, path: string) {
-  if (!process.env.CI) {
+  if (!process.env.CI || true) {
     // Don't know why but this does not work on CI
 
     const quickNavigatePixel = driver.$('~quick-navigate-pixel')

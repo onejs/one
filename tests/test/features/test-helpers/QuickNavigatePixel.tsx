@@ -38,7 +38,7 @@ export function QuickNavigatePixel() {
         height: 20,
 
         // Make it visible
-        // backgroundColor: 'green',
+        backgroundColor: 'green',
       }}
       onPress={navigate}
     ></Pressable>
