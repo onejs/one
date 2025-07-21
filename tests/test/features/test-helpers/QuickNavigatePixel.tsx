@@ -30,8 +30,8 @@ export function QuickNavigatePixel() {
         position: 'absolute',
 
         // Need to be in the safe area to be tappable
-        bottom: (safeAreaInsets?.bottom || 0) + 1,
-        right: (safeAreaInsets?.right || 0) + 1,
+        bottom: (safeAreaInsets?.bottom || 0) + 10,
+        right: (safeAreaInsets?.right || 0) + 10,
 
         // Need to be big enough, otherwise appium selector will not be able to find it
         width: 20,
