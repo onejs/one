@@ -28,7 +28,11 @@ export function getReactNativePlugins(
   const metroOptions: typeof metro = metro || globalThis['__vxrnMetroOptions__']
   if (metroOptions) {
     // Metro mode
-    return [metroExpoManifestRequestHandlerPlugin(metroOptions), metroPlugin(metroOptions)]
+    return [
+      applyBuiltInPatchesPlugin(),
+      metroExpoManifestRequestHandlerPlugin(metroOptions),
+      metroPlugin(metroOptions),
+    ]
   }
 
   return [
