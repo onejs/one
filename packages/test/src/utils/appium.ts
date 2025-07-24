@@ -112,6 +112,7 @@ export async function navigateTo(driver: Browser, path: string) {
     console.warn(
       `Quick navigate pixel not found, falling back to input field navigation: ${e instanceof Error ? e.message : 'Unknown error'}`
     )
+    await takeScreenshotForError(driver, e)
   }
 
   const navigatePathInput = driver.$('~test-navigate-path-input')
@@ -129,19 +130,23 @@ export async function waitForDisplayed(
   try {
     await element.waitForDisplayed({ timeout })
   } catch (err) {
-    const timestamp = Date.now()
-    const fileName = `${timestamp}-${sanitizeFileName(err instanceof Error ? err.message : 'Unknown error')}`
-
-    await fs.promises.mkdir('/tmp/appium-screenshots', { recursive: true })
-    const screenshotPath = `/tmp/appium-screenshots/${fileName}.png`
-    const sourcePath = `/tmp/appium-screenshots/${fileName}.xml`
-
-    await driver.saveScreenshot(screenshotPath)
-    const source = await driver.getPageSource()
-    await fs.promises.writeFile(sourcePath, source)
+    await takeScreenshotForError(driver, err)
 
     throw err
   }
+}
+
+async function takeScreenshotForError(driver: Browser, err: unknown) {
+  const timestamp = Date.now()
+  const fileName = `${timestamp}-${sanitizeFileName(err instanceof Error ? err.message : 'Unknown error')}`
+
+  await fs.promises.mkdir('/tmp/appium-screenshots', { recursive: true })
+  const screenshotPath = `/tmp/appium-screenshots/${fileName}.png`
+  const sourcePath = `/tmp/appium-screenshots/${fileName}.xml`
+
+  await driver.saveScreenshot(screenshotPath)
+  const source = await driver.getPageSource()
+  await fs.promises.writeFile(sourcePath, source)
 }
 
 function sanitizeFileName(input: string): string {
