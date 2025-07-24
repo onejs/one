@@ -115,6 +115,7 @@ export async function navigateTo(driver: Browser, path: string) {
       console.warn(
         `Quick navigate pixel not found, falling back to input field navigation: ${e instanceof Error ? e.message : 'Unknown error'}`
       )
+      takeScreenshotForError(driver, e)
     }
   }
 
