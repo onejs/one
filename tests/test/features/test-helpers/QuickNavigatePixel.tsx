@@ -34,8 +34,8 @@ export function QuickNavigatePixel() {
         right: (safeAreaInsets?.right || 0) + 10,
 
         // Need to be big enough, otherwise appium selector will not be able to find it
-        width: 20,
-        height: 20,
+        width: 80,
+        height: 80,
 
         // Make it visible
         backgroundColor: 'green',
