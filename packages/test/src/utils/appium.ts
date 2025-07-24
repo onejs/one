@@ -102,14 +102,20 @@ export async function navigateTo(driver: Browser, path: string) {
     const quickNavigatePixel = driver.$('~quick-navigate-pixel')
     try {
       await quickNavigatePixel.waitForDisplayed({ timeout: 2 * 60 * 1000 })
+      console.log('A8923 quickNavigatePixel.waitForDisplayed')
       await driver.setClipboard(Buffer.from(path).toString('base64'), 'plaintext')
+      console.log('A8923 Clipboard set to:', path)
       await quickNavigatePixel.click()
-      await driver.pause(1500)
+      console.log('A8923 quickNavigatePixel.click()')
+      await driver.pause(5000)
+      console.log('A8923 pause ended')
 
       // System alert dialog asking whether to allow clipboard access
       // on iOS, "Don't Allow" is the default button ('accept'),
       // so we need to use 'dismiss' for "Allow".
       await driver.execute('mobile: alert', { action: 'dismiss' })
+      console.log('A8923 mobile: alert dismissed')
+
       return
     } catch (e) {
       console.warn(
