@@ -46,8 +46,10 @@ jobs:
         include:
           - job_name: Native iOS Tests (Dev) - Metro Mode
             set_one_metro_mode: true
+            artifact_postfix: "-metro"
           - job_name: Native iOS Tests (Dev)
             set_one_metro_mode: false
+            artifact_postfix: ""
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -131,7 +133,7 @@ jobs:
         if: ${{ always() }}
         continue-on-error: true
         with:
-          name: appium-dev-tests.log
+          name: appium-prod-tests${{ matrix.artifact_postfix }}.log
           path: |
             /tmp/appium.log
 
@@ -140,7 +142,7 @@ jobs:
         if: ${{ always() }}
         continue-on-error: true
         with:
-          name: appium-dev-screenshots
+          name: appium-dev-screenshots${{ matrix.artifact_postfix }}
           path: |
             /tmp/appium-screenshots
 
@@ -155,8 +157,10 @@ jobs:
         include:
           - job_name: Native iOS Tests (Prod) - Metro Mode
             set_one_metro_mode: true
+            artifact_postfix: "-metro"
           - job_name: Native iOS Tests (Prod)
             set_one_metro_mode: false
+            artifact_postfix: ""
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -240,7 +244,7 @@ jobs:
         if: ${{ always() }}
         continue-on-error: true
         with:
-          name: appium-prod-tests.log
+          name: appium-prod-tests${{ matrix.artifact_postfix }}.log
           path: |
             /tmp/appium.log
 
@@ -249,6 +253,6 @@ jobs:
         if: ${{ always() }}
         continue-on-error: true
         with:
-          name: appium-prod-screenshots
+          name: appium-prod-screenshots${{ matrix.artifact_postfix }}
           path: |
             /tmp/appium-screenshots
