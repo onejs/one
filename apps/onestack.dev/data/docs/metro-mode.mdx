@@ -13,6 +13,10 @@ One supports using Metro as the bundler for native builds, providing a more stab
 - **Better Compatibility**: Works seamlessly with all React Native packages and libraries
 - **Familiar Tooling**: If you're coming from standard React Native development, Metro works as expected
 
+<Notice theme="blue">
+  While Metro mode provides stability today, the One team is actively working on bringing Rolldown support to Vite mode and developing it to be production-ready.
+</Notice>
+
 ## Enabling Metro Mode
 
 There are two ways to enable Metro mode in your One app:
@@ -56,23 +60,55 @@ This is useful for:
 - CI/CD pipeline overrides
 - Development vs production bundler switching
 
+## Limitations
+
+When using Metro mode, only some of the Vite features are supported. One provides only a subset of Vite functionality in Metro mode to maintain compatibility and stability.
+
+<Notice theme="blue">
+  Metro mode intentionally supports only a subset of Vite configurations and features. This approach helps avoid implementation differences between Vite and Metro that could cause compatibility issues with React Native packages.
+  <br />
+  We are actively working on expanding Vite feature support, but for any features we don't yet provide through Vite configuration, you can always use the standard React Native way to change the configuration using `babel.config.js` and `metro.config.js`.
+</Notice>
+
+Only the following Vite features and configurations are supported in Metro mode for now:
+
+- [`import.meta.env` Built-in Constants](https://vite.dev/guide/env-and-mode.html#built-in-constants) <Status is="mostly-stable" text="Partially Supported" />: supported but may not work as expected for web specific variables.
+- [`import.meta.env` Env Variables](https://vite.dev/guide/env-and-mode.html#env-variables) <Status is="stable" text="Supported" />
+- `tsconfig-paths` <Status is="mostly-stable" text="Partially Supported" />: As one automatically configures [`vite-tsconfig-paths`](https://www.npmjs.com/package/vite-tsconfig-paths) to support path mappings defined in `tsconfig.json` for your project, the same applies to Metro mode. However, if you are using the `vite-tsconfig-paths` plugin manually, the custom options you provide there will not be applied for Metro.
+
 ## Configuration
 
-When using Metro mode, you can pass Metro-specific configuration through the `bundlerOptions` field:
+By default, the Metro bundler is configured with [Expo's defaults](https://docs.expo.dev/versions/latest/config/metro/).
 
-```tsx
-one({
-  native: {
-    bundler: 'metro',
-    bundlerOptions: {
-      // Metro plugin options
-      // Note: Options merging is not fully implemented yet
-      // Search for "METRO-OPTIONS-MERGING" in the codebase for details
-    },
-  },
-})
+<Notice theme="green">
+  We recommend using the standard Vite way for configuring if possible, as it provides a more consistent experience across web and native builds, and will be more future-proof to switch between bundlers.
+</Notice>
+
+Like ordinary React Native apps, you can still configure Metro using standard configuration files:
+
+**`babel.config.js`** - Configure Babel transformations for your JavaScript/TypeScript code:
+
+```js fileName=babel.config.js
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+  };
+};
 ```
 
-While Metro mode provides stability today, the One team is actively working on bringin Rolldown support to Vite mode and developing it to be production-ready.
+**`metro.config.js`** - Configure more advanced Metro bundler settings, such as resolver, transformations, or watcher options:
 
-For now, **Metro mode is the recommended choice for production React Native apps** using One.
+```js fileName=metro.config.js
+const { getDefaultConfig } = require('expo/metro-config');
+
+const config = getDefaultConfig(__dirname);
+
+module.exports = config;
+```
+
+These configuration files work exactly as they would in a standard React Native project, giving you full control over the bundling process.
+
+## Performance
+
+Metro mode is designed for production stability, but it may not match the performance of Vite as it is not optimized for speed, and is using Babel instead of SWC for transformations. However, we observed that Metro mode somehow provides better memory efficiency.
