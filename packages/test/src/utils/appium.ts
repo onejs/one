@@ -107,9 +107,9 @@ export async function navigateTo(driver: Browser, path: string) {
       console.log('A8923 Clipboard set to:', path)
       await quickNavigatePixel.click()
       console.log('A8923 quickNavigatePixel.click()')
-      takeScreenshotForError(driver, new Error('Quick navigate pixel clicked'))
+      await takeScreenshotForError(driver, new Error('Quick navigate pixel clicked'))
       await driver.pause(10000)
-      takeScreenshotForError(driver, new Error('Quick navigate pixel clicked pause ended'))
+      await takeScreenshotForError(driver, new Error('Quick navigate pixel clicked pause ended'))
       console.log('A8923 pause ended')
 
       // System alert dialog asking whether to allow clipboard access
@@ -117,7 +117,7 @@ export async function navigateTo(driver: Browser, path: string) {
       // so we need to use 'dismiss' for "Allow".
       await driver.execute('mobile: alert', { action: 'dismiss' })
       console.log('A8923 mobile: alert dismissed')
-      takeScreenshotForError(driver, new Error('Quick navigate pixel alert dismissed'))
+      await takeScreenshotForError(driver, new Error('Quick navigate pixel alert dismissed'))
 
       return
     } catch (e) {
