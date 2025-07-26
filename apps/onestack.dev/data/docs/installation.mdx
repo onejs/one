@@ -52,21 +52,18 @@ npm install one@latest --save-exact
 This ensures consistent behavior across different environments and deployments.
 
 If using pnpm or a package manager that symlinks dependencies, you'll want to disable that setting.
-One has (just a few) patches that fix dependencies. In part this is to enable switching between React 19 on web and React 18 on native, in part this is because the React Native ecosystem has many, many weirdly published packages - think JSX or Flowtype published in `.js` files, or non-standard legacy babel experimental transforms, etc. We are working with package authors to improve this, but we've found patches to be both simpler and require less mysterious behavior/slowdowns than the alternative of making Vite handle everything internally.
+One has (just a few) patches that fix dependencies. This is because the React Native ecosystem has many weirdly published packages (think JSX or Flowtype published in `.js` files, or non-standard legacy babel experimental transforms, etc). We are working with package authors to improve this, but we've found patches to be more reliable, simpler and less mysterious than other solutions.
 
 ### Vite Config
 
 Next, let's add our ultra-simple `vite.config.ts`:
 
 ```tsx fileName=vite.config.ts
-// Typed as UserConfig for handy autocomplete
 import type { UserConfig } from 'vite'
 import { one } from 'one/vite'
 
 export default {
-  plugins: [
-    one(),
-  ],
+  plugins: [one()],
 } satisfies UserConfig
 ```
 
@@ -79,9 +76,7 @@ One will create a TSConfig for you when you first start the dev server, with som
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./*"
-      ]
+      "~/*": ["./*"]
     },
     "strict": true,
     "rootDir": ".",
@@ -91,24 +86,10 @@ One will create a TSConfig for you when you first start the dev server, with som
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "noImplicitAny": false,
-    "types": [
-      "node",
-      "react",
-      "vite/client"
-    ],
-    "lib": [
-      "dom",
-      "esnext"
-    ]
+    "types": ["node", "react", "vite/client"],
+    "lib": ["dom", "esnext"]
   },
-  "exclude": [
-    "node_modules",
-    ".expo",
-    "**/test",
-    "**/dist",
-    "**/types",
-    "**/__tests__"
-  ]
+  "exclude": ["node_modules", ".expo", "**/test", "**/dist", "**/types", "**/__tests__"]
 }
 ```
 
@@ -138,21 +119,21 @@ export default function Layout() {
 And then create a simple index page `app/index.tsx`:
 
 ```tsx fileName=app/index.tsx
-import { View, Text } from "react-native";
+import { View, Text } from 'react-native'
 
 export default function MyApp() {
   return (
     <View
       style={{
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100%',
       }}
     >
       <Text>Hello from One</Text>
     </View>
-  );
+  )
 }
 ```
 
@@ -170,5 +151,12 @@ On native, you can use an [Expo Go](https://apps.apple.com/us/app/expo-go/id9821
 
 Note that for web-only projects you don't need `react-native`, and further note that if you want something that has a much broader styling featureset and much lighter bundle-size on web, you can use [Tamagui](https://tamagui.dev), which has no dependency on React Native.
 
+### About Metro Mode
 
+In the configuration above, we've enabled Metro mode by setting `bundler: 'metro'`. This is the recommended setting for production React Native apps as it provides:
 
+- **Stability**: Metro is the battle-tested bundler used by React Native
+- **Compatibility**: Works with all React Native packages without modification
+- **Production-ready**: Used by thousands of production apps
+
+While One's experimental Vite native bundler offers faster build times, Metro mode ensures maximum stability and compatibility. See the [Metro Mode documentation](/docs/metro-mode) for more details.

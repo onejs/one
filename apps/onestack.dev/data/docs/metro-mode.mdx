@@ -1,0 +1,78 @@
+---
+title: Metro Mode
+description: Using Metro bundler for more stable native builds
+---
+
+## Overview
+
+One supports using Metro as the bundler for native builds, providing a more stable and battle-tested bundling experience. While the default Vite bundler for native is experimental, Metro mode offers production-ready stability by leveraging React Native's standard bundler.
+
+## Why Use Metro Mode?
+
+- **Production Stability**: Metro is the official React Native bundler with years of production use
+- **Better Compatibility**: Works seamlessly with all React Native packages and libraries
+- **Familiar Tooling**: If you're coming from standard React Native development, Metro works as expected
+
+## Enabling Metro Mode
+
+There are two ways to enable Metro mode in your One app:
+
+### 1. Vite Config (Recommended)
+
+Configure Metro mode in your `vite.config.ts`:
+
+```tsx fileName=vite.config.ts
+import type { UserConfig } from 'vite'
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        // Enable Metro bundler for native builds
+        bundler: 'metro',
+
+        // Optional: Configure Metro-specific options
+        bundlerOptions: {
+          // Metro configuration options
+        },
+      },
+    }),
+  ],
+} satisfies UserConfig
+```
+
+### 2. Environment Variable
+
+You can also enable Metro mode using an environment variable:
+
+```bash
+ONE_METRO_MODE=1 npm run dev
+```
+
+This is useful for:
+
+- Quick testing without changing configuration
+- CI/CD pipeline overrides
+- Development vs production bundler switching
+
+## Configuration
+
+When using Metro mode, you can pass Metro-specific configuration through the `bundlerOptions` field:
+
+```tsx
+one({
+  native: {
+    bundler: 'metro',
+    bundlerOptions: {
+      // Metro plugin options
+      // Note: Options merging is not fully implemented yet
+      // Search for "METRO-OPTIONS-MERGING" in the codebase for details
+    },
+  },
+})
+```
+
+While Metro mode provides stability today, the One team is actively working on bringin Rolldown support to Vite mode and developing it to be production-ready.
+
+For now, **Metro mode is the recommended choice for production React Native apps** using One.
