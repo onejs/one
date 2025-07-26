@@ -124,7 +124,7 @@ export async function navigateTo(driver: Browser, path: string) {
       console.warn(
         `Quick navigate pixel not found, falling back to input field navigation: ${e instanceof Error ? e.message : 'Unknown error'}`
       )
-      takeScreenshotForError(driver, e)
+      await takeScreenshotForError(driver, e)
     }
   }
 
@@ -143,7 +143,7 @@ export async function waitForDisplayed(
   try {
     await element.waitForDisplayed({ timeout })
   } catch (err) {
-    takeScreenshotForError(driver, err)
+    await takeScreenshotForError(driver, err)
 
     throw err
   }
