@@ -50,7 +50,7 @@ export default {
         * Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel/tree/master).
         * Optimizes barrel export files to speed up your build, you must list the packages that have
         * barrel exports. Especially useful for icon packs.
-        * 
+        *
         * @default ['@tamagui/lucide-icons']
         * @type boolean | string[]
         */
@@ -62,6 +62,16 @@ export default {
         // One will set up your React Native app to run via AppRegistry.registerComponent(app.key)
         // This setting determines app.key and must match the React Native app container you've built
         key: 'AppName',
+
+        // Choose the bundler for native builds
+        // 'metro' is recommended for production stability
+        // 'vite' is experimental but offers faster builds with SWC
+        bundler: 'metro', // defaults to 'vite'
+
+        // Configure bundler-specific options
+        bundlerOptions: {
+          // Metro-specific configuration when bundler is 'metro'
+        }
       },
 
       config: {
@@ -166,6 +176,31 @@ One will set up your React Native app to run via `AppRegistry.registerComponent(
 
 This setting must match the key you gave the React Native app container you've built.
 
+### native.bundler
+
+Choose the bundler for native builds. Options are:
+
+- `'metro'` (recommended): Uses the standard React Native Metro bundler for maximum stability and compatibility
+- `'vite'` (experimental): Uses Vite for native bundling with faster builds via SWC
+
+**We strongly recommend using Metro mode for production applications** as it provides:
+
+- Full compatibility with all React Native packages
+- Battle-tested stability
+- Standard React Native bundling behavior
+
+You can also enable Metro mode via environment variable:
+
+```bash
+ONE_METRO_MODE=1 npm run dev
+```
+
+See the [Metro Mode documentation](/docs/metro-mode) for detailed information.
+
+### native.bundlerOptions
+
+Configure bundler-specific options. When using Metro mode, you can pass Metro configuration options here. Note that options merging is not fully implemented yet.
+
 ## web
 
 The web object allows you to configure web specific settings.
@@ -189,7 +224,7 @@ to the users browser. This mode avoids some complexity - you don't have to make 
 
 - `ssr` stands for "Sever Side Rendered".
 
-This mode will render your page on the server at the time the browser requests it, running loaders as well for each request. 
+This mode will render your page on the server at the time the browser requests it, running loaders as well for each request.
 
 This mode is likely the least useful, as it means that you must make a full trip to your database at the time of each request, and your client is left waiting for the full render from the server before it can show anything. That said, this mode can be useful if you have dynamically generated content but still want to have the best possible SEO, at the cost of some complexity in supporting server rendering.
 
@@ -231,7 +266,7 @@ import { one } from 'one/vite'
 
 export default {
   plugins: [
-    one({      
+    one({
       deps: {
         // setting to true is the same as setting:
         // viteConfig.ssr.optimizeDeps.include.push('moti/author')
@@ -321,17 +356,17 @@ We also detect if you have a PostCSS config file (js, ts, or json) and set the `
 
 ```tsx
 {
-  css: postCSSConfigPath ?
-    {
-      postcss: postCSSConfigPath
-    } : 
-    {
-      transformer: 'lightningcss',
-      lightningcss: {
-        targets: {
-          safari: (15 << 16) | (2 << 8),
+  css: postCSSConfigPath
+    ? {
+        postcss: postCSSConfigPath,
+      }
+    : {
+        transformer: 'lightningcss',
+        lightningcss: {
+          targets: {
+            safari: (15 << 16) | (2 << 8),
+          },
         },
-      },
-    }
+      }
 }
 ```
