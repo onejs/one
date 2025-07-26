@@ -87,6 +87,13 @@ export const docsRoutes = [
   },
 
   {
+    title: 'Native',
+    pages: [
+      { title: 'Metro Mode', route: '/docs/metro-mode' },
+    ],
+  },
+
+  {
     title: 'Etc',
     pages: [
       { title: 'Utility Functions', route: '/docs/helpers-utility-functions' },
