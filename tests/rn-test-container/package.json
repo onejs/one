@@ -12,11 +12,13 @@
   "dependencies": {
     "@react-native-picker/picker": "^2.11.0",
     "expo": "^53.0.4",
+    "expo-clipboard": "~7.1.5",
     "expo-modules-core": "2.3.13",
     "one": "workspace:*",
     "react": "~19.0.0",
     "react-native": "~0.79.2",
     "react-native-gesture-handler": "^2.22.0",
+    "react-native-mmkv": "^3.3.0",
     "react-native-reanimated": "^3.18.0",
     "react-native-safe-area-context": "5.4.1",
     "react-native-screens": "4.10.0",

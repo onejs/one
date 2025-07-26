@@ -1,17 +1,15 @@
 import { expect, test } from 'vitest'
-import { type ChainablePromiseElement, type Browser, remote } from 'webdriverio'
+import { remote } from 'webdriverio'
 import { getWebDriverConfig } from '@vxrn/test/ios'
+import { navigateTo, waitForDisplayed } from '@vxrn/test/utils/appium'
+
 const sharedTestOptions = { timeout: 10 * 60 * 1000, retry: 1 }
 
 test('import.meta.env', sharedTestOptions, async () => {
   const driver = await remote(getWebDriverConfig())
+  await navigateTo(driver, '/vite-features/import-meta-env')
 
-  const navigatePathInput = driver.$('~test-navigate-path-input')
-  await navigatePathInput.waitForDisplayed({ timeout: 2 * 60 * 1000 })
-  await typeSlowly(driver, navigatePathInput, '/vite-features/import-meta-env')
-  await driver.$('~test-navigate').click()
-
-  await driver.$('~import-meta-env-value-json').waitForDisplayed()
+  await waitForDisplayed(driver, driver.$('~import-meta-env-value-json'))
   const importMetaEnvValueJson = await driver.$('~import-meta-env-value-json').getText()
 
   const importMetaEnvValue = JSON.parse(importMetaEnvValueJson)
@@ -29,20 +27,3 @@ test('import.meta.env', sharedTestOptions, async () => {
   const testEnvValue2 = await driver.$('~import-meta-env-VITE_TEST_ENV_VAR_1-value-2').getText()
   expect(testEnvValue2).toBe('test_value_1')
 })
-
-export async function typeSlowly(
-  driver: Browser,
-  element: ChainablePromiseElement,
-  text: string,
-  delay = 10
-) {
-  // Re-select every time to avoid stale element
-  const parent = await element.parent
-  await parent.$(await element.selector).clearValue()
-  await parent.$(await element.selector).click()
-  await driver.pause(300)
-  for (const char of text) {
-    await parent.$(await element.selector).addValue(char)
-    await driver.pause(delay)
-  }
-}

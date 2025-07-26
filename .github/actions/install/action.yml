@@ -33,35 +33,35 @@ runs:
         echo "Home dir path: $HOME"
         echo "path=$HOME" >> $GITHUB_OUTPUT
 
-    - name: Cache Yarn Cache
-      uses: cirruslabs/cache@v4
-      env:
-        cache-name: yarn_cache
-      with:
-        path: ${{ steps.get-home-dir-path.outputs.path }}/.yarn/berry
-        key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-
+    # - name: Cache Yarn Cache
+    #   uses: cirruslabs/cache@v4
+    #   env:
+    #     cache-name: yarn_cache
+    #   with:
+    #     path: ${{ steps.get-home-dir-path.outputs.path }}/.yarn/berry
+    #     key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('yarn.lock') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-
 
-    - name: Cache node_modules
-      uses: cirruslabs/cache@v4
-      env:
-        cache-name: node_modules
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}-${{ hashFiles('yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}-
+    # - name: Cache node_modules
+    #   uses: cirruslabs/cache@v4
+    #   env:
+    #     cache-name: node_modules
+    #   with:
+    #     path: '**/node_modules'
+    #     key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}-${{ hashFiles('yarn.lock') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('packages/vxrn/src/utils/depPatches.ts') }}-
 
-    - name: Cache Playwright
-      uses: cirruslabs/cache@v4
-      env:
-        cache-name: playwright_cache
-      with:
-        path: ${{ steps.get-home-dir-path.outputs.path }}/.cache/ms-playwright
-        key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-
+    # - name: Cache Playwright
+    #   uses: cirruslabs/cache@v4
+    #   env:
+    #     cache-name: playwright_cache
+    #   with:
+    #     path: ${{ steps.get-home-dir-path.outputs.path }}/.cache/ms-playwright
+    #     key: ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-${{ hashFiles('yarn.lock') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-${{ env.cache-name }}${{ inputs.workspace-focus && format('-{0}', inputs.workspace-focus) || '' }}-
 
     - name: Install Dependencies
       shell: bash
