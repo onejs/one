@@ -142,7 +142,7 @@ jobs:
         if: ${{ always() }}
         continue-on-error: true
         with:
-          name: appium-prod-screenshots${{ matrix.artifact_postfix }}
+          name: appium-dev-screenshots${{ matrix.artifact_postfix }}
           path: |
             /tmp/appium-screenshots
 
