@@ -24,7 +24,15 @@ const badgeStatuses = {
   },
 } as const
 
-export const Status = ({ is, ...rest }: ViewProps & { is: keyof typeof badgeStatuses }) => {
+export const Status = ({
+  is,
+  text,
+  ...rest
+}: ViewProps & {
+  is: keyof typeof badgeStatuses
+  /** Overrides the badge text */
+  text?: string
+}) => {
   const info = badgeStatuses[is]
   return (
     <Badge
@@ -36,7 +44,7 @@ export const Status = ({ is, ...rest }: ViewProps & { is: keyof typeof badgeStat
       variant={info.theme}
       {...rest}
     >
-      {info.text}
+      {text || info.text}
     </Badge>
   )
 }
