@@ -19,8 +19,18 @@ export function QuickNavigatePixel() {
   const router = useRouter()
 
   const navigate = useCallback(async () => {
-    const target = await Clipboard.getStringAsync()
-    router.navigate(target as any)
+    try {
+      const target = await Clipboard.getStringAsync()
+
+      if (!target) {
+        console.warn('QuickNavigatePixel: Nothing in clipboard')
+        return
+      }
+
+      router.navigate(target as any)
+    } catch (e) {
+      console.warn(`QuickNavigatePixel: Failed to navigate ${e instanceof Error ? e.message : 'Unknown error'}`)
+    }
   }, [])
 
   return (
