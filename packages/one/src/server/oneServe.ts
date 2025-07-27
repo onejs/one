@@ -16,6 +16,7 @@ import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 import { serveStaticAssets } from 'vxrn'
+import { isRolldown } from '../utils/isRolldown'
 
 export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.BuildInfo, app: Hono) {
   const { resolveAPIRoute, resolveLoaderRoute, resolvePageRoute } = await import(
@@ -57,13 +58,18 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
   const render = entry.default.render as (props: RenderAppProps) => any
   const apiCJS = oneOptions.build?.api?.outputFormat === 'cjs'
 
+  const useRolldown = await isRolldown()
+
   const requestHandlers: RequestHandlers = {
     async handleAPI({ route }) {
+      const fileName = useRolldown 
+        ? route.page.slice(1) // rolldown doesn't replace brackets
+        : route.page.replace('[', '_').replace(']', '_') // esbuild replaces brackets with underscores
       const apiFile = join(
         process.cwd(),
         'dist',
         'api',
-        route.page.replace('[', '_').replace(']', '_') + (apiCJS ? '.cjs' : '.js')
+        fileName + (apiCJS ? '.cjs' : '.js')
       )
       return await import(apiFile)
     },

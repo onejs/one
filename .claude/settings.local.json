@@ -5,7 +5,14 @@
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(grep:*)",
-      "Bash(npm ls:*)"
+      "Bash(npm ls:*)",
+      "Bash(yarn profile:*)",
+      "Bash(yarn test:dev:*)",
+      "Bash(git checkout:*)",
+      "Bash(yarn test)",
+      "Bash(yarn install)",
+      "Bash(yarn test:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }
