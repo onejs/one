@@ -45,6 +45,7 @@ export async function setValueSafe(
   element: ChainablePromiseElement,
   text: string
 ) {
+  // TODO: using setValueSlowly for now since we can't find a way to paste text reliably on CI.
   await setValueSlowly(driver, element, text)
   return
 
