@@ -23,7 +23,10 @@ export const importMetaEnvPlugin = declare<PluginOptions>((api, options): Plugin
         // Replace import.meta.env
         if (isImportMeta && t.isIdentifier(node.property, { name: 'env' })) {
           const envEntries = Object.entries(options.env ?? {}).map(([key, value]) =>
-            t.objectProperty(t.identifier(key), value === undefined ? t.identifier('undefined') : t.valueToNode(value))
+            t.objectProperty(
+              t.identifier(key),
+              value === undefined ? t.identifier('undefined') : t.valueToNode(value)
+            )
           )
           path.replaceWith(t.objectExpression(envEntries))
           return
