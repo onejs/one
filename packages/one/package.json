@@ -101,7 +101,7 @@
     "@babel/generator": "^7.26.8",
     "@babel/parser": "^7.26.8",
     "@babel/traverse": "^7.26.8",
-    "@babel/types": "^7.26.10",
+    "@babel/types": "^7.26.8",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@react-navigation/bottom-tabs": "7.3.4",
