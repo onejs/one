@@ -2,6 +2,10 @@ import type { UserConfig } from 'vite'
 import { one } from 'one/vite'
 
 export default {
+  // @ts-ignore - rolldown experimental option
+  experimental: {
+    enableNativePlugin: true,
+  },
   plugins: [
     one({
       web: {

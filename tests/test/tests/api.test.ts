@@ -1,4 +1,5 @@
 import { beforeAll, describe, expect, inject, it } from 'vitest'
+import './api-rolldown.test'
 
 describe(`API Tests`, () => {
   const serverUrl = process.env.ONE_SERVER_URL
