@@ -17,13 +17,10 @@ One supports using Metro as the bundler for native builds, providing a more stab
   While Metro mode provides stability today, the One team is actively working on bringing Rolldown support to Vite mode and developing it to be production-ready.
 </Notice>
 
+
 ## Enabling Metro Mode
 
-There are two ways to enable Metro mode in your One app:
-
-### 1. Vite Config (Recommended)
-
-Configure Metro mode in your `vite.config.ts`:
+Configure the native bundler to Metro in your `vite.config.ts`:
 
 ```tsx fileName=vite.config.ts
 import type { UserConfig } from 'vite'
@@ -41,19 +38,6 @@ export default {
 } satisfies UserConfig
 ```
 
-### 2. Environment Variable
-
-You can also enable Metro mode using an environment variable:
-
-```bash
-ONE_METRO_MODE=1 npm run dev
-```
-
-This is useful for:
-
-- Quick testing without changing configuration
-- CI/CD pipeline overrides
-- Development vs production bundler switching
 
 ## Limitations
 
