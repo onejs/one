@@ -13,8 +13,6 @@ export function ParamsSSR() {
   const { path } = useLoader(loader)
   const href = `/ssr/${path}-next` as any
 
-  console.info('got data', path)
-
   return (
     <View
       flexDirection="column"
@@ -45,6 +43,5 @@ export function ParamsSSR() {
 
 const TestSubComponentParams = memo(() => {
   const params = useParams()
-  console.info('did i render?')
   return <Text id="sub-params">sub params are: {JSON.stringify(params)}</Text>
 })
