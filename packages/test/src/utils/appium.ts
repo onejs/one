@@ -104,9 +104,22 @@ export async function navigateTo(driver: Browser, path: string) {
     await driver.pause(50)
 
     // System alert dialog asking whether to allow clipboard access
-    // on iOS, "Don't Allow" is the default button ('accept'),
-    // so we need to use 'dismiss' for "Allow".
-    await driver.execute('mobile: alert', { action: 'dismiss' })
+    const alertButtons: Array<string> = await driver.execute('mobile: alert', {
+      action: 'getButtons',
+    })
+    const allowButton = alertButtons.find((label: string) => {
+      return label.startsWith('Allow') || label.startsWith('允許')
+    })
+    if (allowButton) {
+      // If we can find the "Allow" button, we can just press it.
+      await driver.execute('mobile: alert', { action: 'accept', buttonLabel: allowButton })
+    } else {
+      console.warn('appium.navigateTo: "Allow Paste" button not found, trying another way')
+      // On iOS, "Don't Allow" is the default button ('accept'),
+      // so we need to use 'dismiss' for "Allow".
+      await driver.execute('mobile: alert', { action: 'dismiss' })
+    }
+
     return
   } catch (e) {
     console.warn(
