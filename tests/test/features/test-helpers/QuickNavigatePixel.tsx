@@ -47,7 +47,7 @@ export function QuickNavigatePixel() {
         width: 5,
         height: 5,
 
-        // Make it visible
+        // Make it visible for debugging
         // backgroundColor: 'green',
       }}
       onPress={navigate}
