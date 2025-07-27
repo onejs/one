@@ -64,7 +64,7 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
     async handleAPI({ route }) {
       const fileName = useRolldown 
         ? route.page.slice(1) // rolldown doesn't replace brackets
-        : route.page.replace('[', '_').replace(']', '_') // esbuild replaces brackets with underscores
+        : route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_') // esbuild replaces brackets with underscores
       const apiFile = join(
         process.cwd(),
         'dist',
