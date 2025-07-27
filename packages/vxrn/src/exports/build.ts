@@ -184,6 +184,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   } satisfies Plugin
 
   let clientOutput
+  let clientBuildPromise: Promise<RollupOutput> | undefined
 
   if (buildArgs.step !== 'generate') {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
@@ -229,8 +230,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     console.info(`\n 🔨 build client\n`)
 
-    const { output } = (await viteBuild(clientBuildConfig)) as RollupOutput
-    clientOutput = output
+    clientBuildPromise = viteBuild(clientBuildConfig) as Promise<RollupOutput>
   }
 
   const serverOptions = options.build?.server
@@ -291,6 +291,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   let serverOutput: [OutputChunk, ...(OutputChunk | OutputAsset)[]] | undefined
   let clientManifest
+  let serverBuildPromise: Promise<RollupOutput> | undefined
 
   if (serverOptions !== false) {
     console.info(`\n 🔨 build server\n`)
@@ -298,12 +299,25 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     const userServerConf = optionsIn.build?.server
     const userServerBuildConf = typeof userServerConf === 'boolean' ? null : userServerConf?.config
 
-    const { output } = (await viteBuild(
+    serverBuildPromise = viteBuild(
       userServerBuildConf ? mergeConfig(serverBuildConfig, userServerBuildConf) : serverBuildConfig
-    )) as RollupOutput
+    ) as Promise<RollupOutput>
+  }
 
-    serverOutput = output
+  // Wait for both builds to complete in parallel
+  if (clientBuildPromise && serverBuildPromise) {
+    const [clientResult, serverResult] = await Promise.all([clientBuildPromise, serverBuildPromise])
+    clientOutput = clientResult.output
+    serverOutput = serverResult.output
+  } else if (clientBuildPromise) {
+    const clientResult = await clientBuildPromise
+    clientOutput = clientResult.output
+  } else if (serverBuildPromise) {
+    const serverResult = await serverBuildPromise
+    serverOutput = serverResult.output
+  }
 
+  if (serverOptions !== false) {
     clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
 
     // temp fix - react native web is importing non-existent react 19 apis
