@@ -25,7 +25,6 @@ import type {
   MetroPluginOptions,
 } from '@vxrn/vite-plugin-metro'
 import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
-import { ONE_METRO_MODE } from '../env'
 
 type MetroOptions = MetroPluginOptions
 
@@ -53,9 +52,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
    */
   const metroOptions: (MetroOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null =
     (() => {
-      if (options.native?.bundler !== 'metro' && !ONE_METRO_MODE) return null
+      if (options.native?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) return null
 
-      if (ONE_METRO_MODE) {
+      if (process.env.ONE_METRO_MODE) {
         console.info('ONE_METRO_MODE environment variable is set, enabling Metro mode')
       }
 
