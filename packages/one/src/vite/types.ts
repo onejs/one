@@ -205,8 +205,12 @@ export namespace One {
       css?: boolean
 
       /**
-       * Experimental bundler to use for native builds. Current default is 'vite'.
-       * The ONE_METRO_MODE environment variable can override this setting to 'metro'.
+       * Specifies the bundler to use for native builds. Defaults to 'vite'.
+       *
+       * - 'metro' is recommended for production stability. Note that this option comes with some limitations, see https://onestack.dev/docs/metro-mode#limitations for more info.
+       * - 'vite' is experimental but offers faster builds with SWC.
+       *
+       * Note that the ONE_METRO_MODE environment variable can override this setting to 'metro'.
        */
       bundler?: 'metro' | 'vite'
     } & (
