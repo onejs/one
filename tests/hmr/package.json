@@ -11,13 +11,13 @@
     "test-macos": "TEST_ONLY=dev vitest"
   },
   "dependencies": {
-    "expo": "^53.0.4",
-    "expo-modules-core": "2.3.13",
+    "expo": "53.0.20",
+    "expo-modules-core": "~2.5.0",
     "one": "workspace:*",
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
     "react-native": "~0.79.2",
-    "react-native-screens": "4.10.0",
+    "react-native-screens": "~4.11.1",
     "vite": "^7.0.1"
   },
   "devDependencies": {
