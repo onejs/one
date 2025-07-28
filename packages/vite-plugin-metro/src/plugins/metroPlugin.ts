@@ -114,9 +114,10 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
           // See: https://github.com/facebook/react-native/blob/v0.80.0-rc.4/packages/react-native/React/Base/RCTBundleURLProvider.mm#L87-L113
           if (
             req.url === '/status' &&
-            req.headers['user-agent']?.includes(
-              'CFNetwork/'
-            ) /* The path (`/status`) is too general and may conflict with the user's web app, so we also check the User-Agent header to ensure it's a request from a native app. */ /* TODO: Android */
+            // The path (`/status`) is too general and may conflict with the user's web app, so we also check the User-Agent header to ensure it's a request from a native app.
+            // Fail to handle this correctly will cause the native app to show a "Packager is not running at ..." error.
+            (req.headers['user-agent']?.includes('CFNetwork/' /* iOS */) ||
+              req.headers['user-agent']?.includes('okhttp/' /* Android */))
           ) {
             res.statusCode = 200
             res.end('packager-status:running')
