@@ -2,13 +2,17 @@ import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import module from 'node:module'
 import path from 'node:path'
 import tsconfigPaths from 'tsconfig-paths'
+import mm from 'micromatch'
+import { API_ROUTE_GLOB_PATTERN } from '../router/glob-patterns'
 
 export function getViteMetroPluginOptions({
   projectRoot,
   relativeRouterRoot,
+  ignoredRouteFiles,
 }: {
   projectRoot: string
   relativeRouterRoot: string
+  ignoredRouteFiles?: Array<`**/*${string}`>
 }): Parameters<typeof metroPlugin>[0] {
   const tsconfigPathsConfigLoadResult = tsconfigPaths.loadConfig(projectRoot)
 
@@ -24,6 +28,53 @@ export function getViteMetroPluginOptions({
   const metroEntryPath = require.resolve('one/metro-entry', {
     paths: [projectRoot],
   })
+
+  const routerRequireContextRegexString = (() => {
+    const excludeRes = [
+      ...(ignoredRouteFiles || []).map((pattern) => mm.makeRe(pattern)),
+      mm.makeRe(API_ROUTE_GLOB_PATTERN),
+    ]
+
+    const supportedRegexMustStartWith = String.raw`^(?:(?:^|\/|(?:(?:(?!(?:^|\/)\.).)*?)\/)(?!\.)(?=.)[^/]*?`
+    const supportedRegexMustEndWith = String.raw`)$`
+
+    const negativeLookaheadGroups = excludeRes.map((re, i) => {
+      /**
+       * Example:
+       * ```
+       * ^(?:(?:^|\/|(?:(?:(?!(?:^|\/)\.).)*?)\/)(?!\.)(?=.)[^/]*?\+api\.(ts|tsx))$
+       * ```
+       */
+      const reSource = re.source
+
+      if (
+        !(
+          reSource.startsWith(supportedRegexMustStartWith) &&
+          reSource.endsWith(supportedRegexMustEndWith)
+        )
+      ) {
+        const ignoredRouteFile = ignoredRouteFiles?.[i]
+
+        if (ignoredRouteFile) {
+          throw new Error(
+            `[one/metro] ignoredRouteFile pattern "${ignoredRouteFile}" is not supported. We cannot process the corresponding regex "${reSource}" for now.`
+          )
+        }
+
+        throw new Error(`Unsupported regex "${reSource}" in "ignoredRouteFiles".`)
+      }
+
+      const rePart = reSource.slice(
+        supportedRegexMustStartWith.length,
+        reSource.length - supportedRegexMustEndWith.length
+      )
+
+      return String.raw`(?:.*${rePart})`
+    })
+
+    return String.raw`^(?:\.\/)(?!${negativeLookaheadGroups.join('|')}$).*\.tsx?$`
+  })()
+
   return {
     defaultConfigOverrides: (defaultConfig) => {
       return {
@@ -111,6 +162,7 @@ export function getViteMetroPluginOptions({
               path.join(projectRoot, relativeRouterRoot)
             ),
             ONE_ROUTER_ROOT_FOLDER_NAME: relativeRouterRoot,
+            ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING: routerRequireContextRegexString,
           },
         ],
       ],

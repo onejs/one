@@ -63,6 +63,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       const defaultMetroOptions = getViteMetroPluginOptions({
         projectRoot: process.cwd(), // TODO: hard-coded process.cwd(), we should make this optional since the plugin can have a default to vite's `config.root`.
         relativeRouterRoot: routerRoot,
+        ignoredRouteFiles: options.router?.ignoredRouteFiles,
       })
 
       const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions
