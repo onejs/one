@@ -118,6 +118,12 @@ export namespace One {
 
     router?: {
       /**
+       * An array of globs that One will match to files while reading your routes directory. If a file matches, it will be ignored rather than treated as a route. This is useful for ignoring test files you wish to colocate.
+       *
+       * Currently, we only support patterns starting with <code>**</code><code>/*</code>.
+       */
+      ignoredRouteFiles?: Array<`**/*${string}`>,
+      /**
        * Dangerously customize the router root directory. This may lead to unexpected behavior.
        */
       root?: string

@@ -8,6 +8,10 @@ export default {
   },
   plugins: [
     one({
+      router: {
+        ignoredRouteFiles: ['**/*.should-be-ignored.*'],
+      },
+
       web: {
         deploy: 'vercel',
       },

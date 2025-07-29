@@ -7,6 +7,7 @@ import {
   virtualEntryId,
   virtualEntryIdNative,
 } from './virtualEntryConstants'
+import { API_ROUTE_GLOB_PATTERN, ROUTE_GLOB_PATTERN } from '../../router/glob-patterns'
 
 const USE_ONE_SETUP_FILE = `
 if (process.env.ONE_SETUP_FILE) {
@@ -14,9 +15,18 @@ if (process.env.ONE_SETUP_FILE) {
 }
 `
 
-export function createVirtualEntry(options: { root: string; flags: One.Flags }): Plugin {
-  const appDirGlob = `/${options.root}/**/*.tsx`
-  const appDirApiGlob = `/${options.root}/**/*+api.tsx`
+export function createVirtualEntry(options: {
+  root: string
+  router?: {
+    ignoredRouteFiles?: Array<string>
+  }
+  flags: One.Flags
+}): Plugin {
+  const routeGlobs = [
+    `/${options.root}/${ROUTE_GLOB_PATTERN}`,
+    ...(options.router?.ignoredRouteFiles?.map((pattern) => `!/${options.root}/${pattern}`) || []),
+  ]
+  const apiRouteGlobs = `/${options.root}/${API_ROUTE_GLOB_PATTERN}`
 
   return {
     name: 'one-virtual-entry',
@@ -41,9 +51,9 @@ ${prependCode}
 
 import { createApp } from 'one'
 
-// globbing ${appDirGlob}
+// globbing ${JSON.stringify(routeGlobs)}
 export default createApp({
-  routes: import.meta.glob('${appDirGlob}', { exhaustive: true }),
+  routes: import.meta.glob(${JSON.stringify(routeGlobs)}, { exhaustive: true }),
   routerRoot: ${JSON.stringify(options.root)},
   flags: ${JSON.stringify(options.flags)},
 })
@@ -59,9 +69,9 @@ ${prependCode}
 
 import { createApp } from 'one'
 
-// globbing ${appDirGlob}
+// globbing ${JSON.stringify(routeGlobs)}
 export default createApp({
-  routes: import.meta.glob(['${appDirGlob}', '!${appDirApiGlob}'], { exhaustive: true }),
+  routes: import.meta.glob(${JSON.stringify([...routeGlobs, `!${apiRouteGlobs}`])}, { exhaustive: true }),
   routerRoot: ${JSON.stringify(options.root)},
   flags: ${JSON.stringify(options.flags)},
 })
