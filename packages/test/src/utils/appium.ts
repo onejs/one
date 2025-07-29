@@ -136,18 +136,21 @@ export async function navigateTo(driver: Browser, path: string) {
   await driver.pause(100)
 }
 
+/**
+ * Note that this will not throw an error if the element is not displayed.
+ * Instead, it will return the element as is.
+ */
 export async function waitForDisplayed(
   driver: Browser,
   element: ChainablePromiseElement,
   { timeout = 10 * 1000 }: { timeout?: number } = {}
-) {
+): Promise<ChainablePromiseElement> {
   try {
     await element.waitForDisplayed({ timeout })
   } catch (err) {
     await takeScreenshotForError(driver, err)
-
-    throw err
   }
+  return element
 }
 
 async function takeScreenshotForError(driver: Browser, err: unknown) {
