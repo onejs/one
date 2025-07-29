@@ -137,7 +137,7 @@ iOS:
       `
 Android:
 
-  \`cd android\` then \`./gradlew assembleRelease\` or \`./gradlew assembleDebug\` to build the Android project.
+  \`cd android\` and run \`./gradlew generateCodegenArtifactsFromSchema\`, then \`./gradlew assembleRelease\` or \`./gradlew assembleDebug\` to build the Android project.
 
   Afterwards, you can find the built APK at \`android/app/build/outputs/apk/release/app-release.apk\` or
   \`android/app/build/outputs/apk/debug/app-debug.apk\`.
