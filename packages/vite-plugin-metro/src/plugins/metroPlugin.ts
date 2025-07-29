@@ -115,7 +115,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
           if (
             req.url === '/status' &&
             // The path (`/status`) is too general and may conflict with the user's web app, so we also check the User-Agent header to ensure it's a request from a native app.
-            // Fail to handle this correctly will cause the native app to show a "Packager is not running at ..." error.
+            // Failing to handle this correctly will cause the native app to show a "Packager is not running at ..." error.
             (req.headers['user-agent']?.includes('CFNetwork/' /* iOS */) ||
               req.headers['user-agent']?.includes('okhttp/' /* Android */))
           ) {
