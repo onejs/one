@@ -19,6 +19,7 @@ import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystem
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
+import { serverClientOnlyPlugin } from './plugins/serverClientOnlyPlugin'
 import type { One } from './types'
 import type {
   ExpoManifestRequestHandlerPluginPluginOptions,
@@ -142,6 +143,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       // @ts-ignore
       __get: options,
     },
+
+    serverClientOnlyPlugin(),
 
     barrelOption === false
       ? null

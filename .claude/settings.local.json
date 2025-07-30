@@ -16,7 +16,10 @@
       "Bash(mkdir:*)",
       "Bash(TEST_ONLY=dev yarn vitest --config ./vitest.config.rolldown.ts --run --reporter=dot --color=false api-rolldown.test.ts)",
       "Bash(bun llink:*)",
-      "Bash(bun:*)"
+      "Bash(bun:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run test:dev:*)"
     ],
     "deny": []
   }

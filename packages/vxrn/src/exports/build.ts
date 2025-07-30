@@ -243,7 +243,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     define: {
       'process.env.TAMAGUI_IS_SERVER': '"1"',
-      'process.env.VITE_ENVIRONMENT': '"server"',
+      'process.env.VITE_ENVIRONMENT': '"ssr"',
       ...processEnvDefines,
       ...webBuildConfig.define,
     },

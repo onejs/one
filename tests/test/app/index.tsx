@@ -53,6 +53,14 @@ export default () => {
         <Button>Go to hooks</Button>
       </Link>
 
+      <Link asChild href="/test-server-only">
+        <Button>Test Server Only</Button>
+      </Link>
+
+      <Link asChild href="/test-client-only">
+        <Button>Test Client Only</Button>
+      </Link>
+
       <ToggleThemeButton />
     </YStack>
   )
