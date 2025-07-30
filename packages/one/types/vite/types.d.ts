@@ -96,9 +96,14 @@ export declare namespace One {
         transform?: GetTransform;
         router?: {
             /**
-             * An array of globs that One will match to files while reading your routes directory. If a file matches, it will be ignored rather than treated as a route. This is useful for ignoring test files you wish to colocate.
+             * An array of globs that One uses to ignore files in your routes directory. If a file matches any pattern, it will not be treated as a route.
              *
-             * Currently, we only support patterns starting with <code>**</code><code>/*</code>.
+             * This is useful for ignoring test or utility files you wish to colocate.
+             *
+             * Currently, we only support patterns starting with <code>&#42;&#42;/&#42;</code>.
+             *
+             * Example:
+             * * <code>&#42;&#42;/&#42;.test.*</code>
              */
             ignoredRouteFiles?: Array<`**/*${string}`>;
             /**

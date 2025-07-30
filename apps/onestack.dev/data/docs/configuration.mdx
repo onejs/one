@@ -39,21 +39,30 @@ export default {
       },
 
       /**
-      * Path to a js or ts file to import before the rest of your app runs
-      * One controls your root, but you may want to run some JS before anything else
-      * Use this to give One the entrypoint to run
-      */
+       * Path to a js or ts file to import before the rest of your app runs
+       * One controls your root, but you may want to run some JS before anything else
+       * Use this to give One the entrypoint to run
+       */
       setupFile: './setup.ts',
+
+      router: {
+        /**
+         * An array of globs that One uses to ignore files in your routes directory. If a file matches any pattern, it will not be treated as a route.
+         *
+         * This is useful for ignoring test or utility files you wish to colocate.
+         */
+        ignoredRouteFiles: ['**/*.test.*'],
+      },
 
       optimization: {
         /**
-        * Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel/tree/master).
-        * Optimizes barrel export files to speed up your build, you must list the packages that have
-        * barrel exports. Especially useful for icon packs.
-        *
-        * @default ['@tamagui/lucide-icons']
-        * @type boolean | string[]
-        */
+         * Turn on [vite-plugin-barrel](https://github.com/JiangWeixian/vite-plugin-barrel/tree/master).
+         * Optimizes barrel export files to speed up your build, you must list the packages that have
+         * barrel exports. Especially useful for icon packs.
+         *
+         * @default ['@tamagui/lucide-icons']
+         * @type boolean | string[]
+         */
         barrel: ['my-icon-package']
       },
 
@@ -186,10 +195,6 @@ Choose the bundler for native builds. Options are:
 
 For detailed information including limitations, configuration options, and performance considerations, see the [Metro Mode documentation](/docs/metro-mode).
 
-### native.bundlerOptions
-
-Configure bundler-specific options. When using Metro mode, you can pass Metro configuration options here. Note that options merging is not fully implemented yet.
-
 ## web
 
 The web object allows you to configure web specific settings.
@@ -293,6 +298,35 @@ export default {
 ```
 
 Any transforms that are applied to specific files in node_modules will only be applied once. The original files will be stored alongside the transformed ones.
+
+## router
+
+The router object allows you to configure routing behavior.
+
+### router.ignoredRouteFiles
+
+An array of globs that One uses to ignore files in your routes directory. If a file matches any pattern, it will not be treated as a route.
+
+This is particularly useful for ignoring test files, stories, or other files you want to colocate with your routes but don't want to be treated as actual routes.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      router: {
+        ignoredRouteFiles: [
+          '**/*.test.*',
+          '**/*.spec.*',
+          '**/*.stories.*',
+          '**/*.utilities.*',
+        ],
+      },
+    })
+  ]
+}
+```
+
+**Limitations:** Currently, we only support patterns starting with `**/*`.
 
 ## The Environment API
 

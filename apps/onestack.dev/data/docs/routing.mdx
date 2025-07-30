@@ -2,7 +2,7 @@
 title: Routing
 ---
 
-The `app` directory is where One handles universal file system routing. Every file you create in it will be turned into a route, except for files named `_layout` or `_middleware`. One only supports file system routes at this time, but we have a [discussion](https://github.com/onejs/one/discussions/108) for those who want to help us figure out a configuration-based approach.
+The `app` directory is where One handles universal file system routing. Every file you create in it will be turned into a route, except for files named `_layout` or `_middleware` (or files that match patterns in your [`ignoredRouteFiles`](/docs/configuration#routerignoredRouteFiles) configuration, if you have that). One only supports file system routes at this time, but we have a [discussion](https://github.com/onejs/one/discussions/108) for those who want to help us figure out a configuration-based approach.
 
 Here's an example:
 
