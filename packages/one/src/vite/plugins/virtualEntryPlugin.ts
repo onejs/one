@@ -7,7 +7,12 @@ import {
   virtualEntryId,
   virtualEntryIdNative,
 } from './virtualEntryConstants'
-import { API_ROUTE_GLOB_PATTERN, ROUTE_GLOB_PATTERN } from '../../router/glob-patterns'
+import {
+  API_ROUTE_GLOB_PATTERN,
+  ROUTE_GLOB_PATTERN,
+  ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
+  ROUTE_WEB_EXCLUSION_GLOB_PATTERNS,
+} from '../../router/glob-patterns'
 
 const USE_ONE_SETUP_FILE = `
 if (process.env.ONE_SETUP_FILE) {
@@ -53,7 +58,7 @@ import { createApp } from 'one'
 
 // globbing ${JSON.stringify(routeGlobs)}
 export default createApp({
-  routes: import.meta.glob(${JSON.stringify(routeGlobs)}, { exhaustive: true }),
+  routes: import.meta.glob(${JSON.stringify([...routeGlobs, ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS.map((p) => `!${p}`)])}, { exhaustive: true }),
   routerRoot: ${JSON.stringify(options.root)},
   flags: ${JSON.stringify(options.flags)},
 })
@@ -71,7 +76,7 @@ import { createApp } from 'one'
 
 // globbing ${JSON.stringify(routeGlobs)}
 export default createApp({
-  routes: import.meta.glob(${JSON.stringify([...routeGlobs, `!${apiRouteGlobs}`])}, { exhaustive: true }),
+  routes: import.meta.glob(${JSON.stringify([...routeGlobs, ...ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS.map((p) => `!${p}`), `!${apiRouteGlobs}`])}, { exhaustive: true }),
   routerRoot: ${JSON.stringify(options.root)},
   flags: ${JSON.stringify(options.flags)},
 })

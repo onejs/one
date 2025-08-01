@@ -3,7 +3,7 @@ import module from 'node:module'
 import path from 'node:path'
 import tsconfigPaths from 'tsconfig-paths'
 import mm from 'micromatch'
-import { API_ROUTE_GLOB_PATTERN } from '../router/glob-patterns'
+import { API_ROUTE_GLOB_PATTERN, ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS } from '../router/glob-patterns'
 
 export function getViteMetroPluginOptions({
   projectRoot,
@@ -32,6 +32,7 @@ export function getViteMetroPluginOptions({
   const routerRequireContextRegexString = (() => {
     const excludeRes = [
       ...(ignoredRouteFiles || []).map((pattern) => mm.makeRe(pattern)),
+      ...ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS.map((pattern) => mm.makeRe(pattern)),
       mm.makeRe(API_ROUTE_GLOB_PATTERN),
     ]
 
