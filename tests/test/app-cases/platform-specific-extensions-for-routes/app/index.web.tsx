@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
 
 export default function Page() {
@@ -11,14 +11,16 @@ export default function Page() {
   // Metro will error with `Invalid call at line x: import(importPath)`
   const importPath = `../src/${fileName}`
 
-  import(importPath)
-    .then((mod) => {
-      console.info(`Foo from ${importPath} is`, mod.FOO)
-      setFoo(mod.FOO)
-    })
-    .catch((err) => {
-      console.error('Error loading module:', err)
-    })
+  useEffect(() => {
+    import(importPath)
+      .then((mod) => {
+        console.info(`Foo from ${importPath} is`, mod.FOO)
+        setFoo(mod.FOO)
+      })
+      .catch((err) => {
+        console.error('Error loading module:', err)
+      })
+  }, [importPath])
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
