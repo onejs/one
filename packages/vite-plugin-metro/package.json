@@ -69,7 +69,7 @@
     "@biomejs/biome": "1.9.4",
     "@expo/metro-config": "^0.19.8",
     "@react-native/dev-middleware": "~0.79.2",
-    "@tamagui/build": "^1.132.9",
+    "@tamagui/build": "^1.132.16",
     "@types/babel__helper-plugin-utils": "^7",
     "@types/node": "^22.1.0",
     "depcheck": "^1.4.7",
