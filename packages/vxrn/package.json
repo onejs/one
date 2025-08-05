@@ -99,7 +99,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@react-native-community/cli": "19.0.0",
-    "@tamagui/build": "^1.132.9",
+    "@tamagui/build": "^1.132.16",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",
     "@types/qrcode-terminal": "^0",
