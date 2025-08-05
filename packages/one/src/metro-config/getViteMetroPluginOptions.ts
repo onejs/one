@@ -3,7 +3,10 @@ import module from 'node:module'
 import path from 'node:path'
 import tsconfigPaths from 'tsconfig-paths'
 import mm from 'micromatch'
-import { API_ROUTE_GLOB_PATTERN, ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS } from '../router/glob-patterns'
+import {
+  API_ROUTE_GLOB_PATTERN,
+  ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
+} from '../router/glob-patterns'
 
 export function getViteMetroPluginOptions({
   projectRoot,
@@ -85,20 +88,21 @@ export function getViteMetroPluginOptions({
           extraNodeModules: {
             ...defaultConfig?.resolver?.extraNodeModules,
             // "vite-tsconfig-paths" for Metro
-            ...Object.fromEntries(
-              Object.entries(tsconfigPathsConfigLoadResult.paths)
-                .map(([k, v]) => {
-                  if (k.endsWith('/*') && v[0]?.endsWith('/*')) {
-                    const key = k.replace(/\/\*$/, '')
-                    let value = v[0].replace(/\/\*$/, '')
+            // Commenting out since we are using babel-plugin-module-resolver alias instead
+            // ...Object.fromEntries(
+            //   Object.entries(tsconfigPathsConfigLoadResult.paths)
+            //     .map(([k, v]) => {
+            //       if (k.endsWith('/*') && v[0]?.endsWith('/*')) {
+            //         const key = k.replace(/\/\*$/, '')
+            //         let value = v[0].replace(/\/\*$/, '')
 
-                    value = path.join(tsconfigPathsConfigLoadResult.absoluteBaseUrl, value)
+            //         value = path.join(tsconfigPathsConfigLoadResult.absoluteBaseUrl, value)
 
-                    return [key, value]
-                  }
-                })
-                .filter((i): i is NonNullable<typeof i> => !!i)
-            ),
+            //         return [key, value]
+            //       }
+            //     })
+            //     .filter((i): i is NonNullable<typeof i> => !!i)
+            // ),
           },
           nodeModulesPaths: tsconfigPathsConfigLoadResult.absoluteBaseUrl
             ? [
@@ -140,9 +144,19 @@ export function getViteMetroPluginOptions({
           'babel-plugin-module-resolver',
           {
             alias: {
+              // "vite-tsconfig-paths" for Metro
               ...Object.fromEntries(
                 Object.entries(tsconfigPathsConfigLoadResult.paths).map(([k, v]) => {
-                  const key = k.replace(/\/\*$/, '')
+                  const key = (() => {
+                    if (k.endsWith('/*')) {
+                      return k.replace(/\/\*$/, '')
+                    }
+
+                    // If the key does not end with "/*", only alias exact matches.
+                    // Ref: https://www.npmjs.com/package/babel-plugin-module-resolver/v/3.0.0#regular-expression-alias
+                    return `${k}$`
+                  })()
+
                   let value = v[0].replace(/\/\*$/, '')
 
                   if (!value.startsWith('./')) {
