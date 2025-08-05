@@ -13,13 +13,10 @@ export async function generateRouteTypes(
 ) {
   let routePaths = globDir(routerRoot)
   if (ignoredRouteFiles && ignoredRouteFiles.length > 0) {
-    routePaths = routePaths.filter(
-      (path) =>
-      !micromatch.isMatch(path, ignoredRouteFiles, {
-        // The path starts with './', such as './foo/bar/baz.test.tsx', and ignoredRouteFiles is like ['**/*.test.*'], so we need matchBase here.
-        matchBase: true,
-      })
-    )
+    routePaths = micromatch.not(routePaths, ignoredRouteFiles, {
+      // The path starts with './', such as './foo/bar/baz.test.tsx', and ignoredRouteFiles is like ['**/*.test.*'], so we need matchBase here.
+      matchBase: true,
+    })
   }
   const routes = routePaths.reduce((acc, cur) => {
     acc[cur] = {}
