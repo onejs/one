@@ -29,7 +29,7 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
         if (type === 'add' || type === 'delete') {
           if (path.startsWith(appDir)) {
             // generate
-            generateRouteTypes(outFile, routerRoot)
+            generateRouteTypes(outFile, routerRoot, options.router?.ignoredRouteFiles)
           }
         }
       }, 100)
@@ -39,7 +39,7 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
       return () => {
         // once on startup:
 
-        generateRouteTypes(outFile, routerRoot)
+        generateRouteTypes(outFile, routerRoot, options.router?.ignoredRouteFiles)
       }
     },
   } satisfies Plugin
