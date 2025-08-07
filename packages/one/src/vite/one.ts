@@ -144,7 +144,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       __get: options,
     },
 
-    barrelOption === false
+    !barrelOption
       ? null
       : (barrel({
           packages: Array.isArray(barrelOption) ? barrelOption : ['@tamagui/lucide-icons'],
