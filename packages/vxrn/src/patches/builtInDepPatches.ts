@@ -260,21 +260,9 @@ install('URLSearchParams', () => URLSearchParams);
     module: 'expo-modules-core',
     patchFiles: {
       version: '2.*',
-      'src/ts-declarations/global.ts': (contents) => {
-        assertString(contents)
 
-        // Make it compatible with other packages that also overrides ProcessEnv, such as `bun-types`.
-        // Prevents type-checking errors like "Named property 'NODE_ENV' of types 'ExpoProcessEnv' and 'Env' are not identical."
-        return contents.replace('NODE_ENV: string;', 'NODE_ENV?: string;')
-      },
-
-      // lets us use tsconfig verbatimModuleSyntax in peace
-      'src/uuid/uuid.ts': (contents) => {
-        return contents?.replace(
-          `import { UUID, Uuidv5Namespace } from './uuid.types`,
-          `import { type UUID, Uuidv5Namespace } from './uuid.types`
-        )
-      },
+      'src/**/*.ts': addNoCheck,
+      'src/**/*.tsx': addNoCheck,
     },
   },
 
@@ -421,3 +409,9 @@ install('URLSearchParams', () => URLSearchParams);
     },
   },
 ]
+
+function addNoCheck(contents?: string) {
+  if (!contents?.includes('// @ts-nocheck')) {
+    return `// @ts-nocheck\n${contents}`
+  }
+}
