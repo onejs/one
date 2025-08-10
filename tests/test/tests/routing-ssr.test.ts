@@ -52,4 +52,66 @@ describe(`SSR Routing Tests`, () => {
 
     await page.close()
   })
+
+  it(`SSR loader should receive request parameter`, async () => {
+    const page = await context.newPage()
+
+    await page.goto(`${serverUrl}/ssr/request-test`)
+
+    // Verify that the loader received a request object
+    expect(await page.textContent('#has-request')).toBe('true')
+    
+    // Verify the request method is GET
+    expect(await page.textContent('#request-method')).toBe('"GET"')
+    
+    // Verify the request URL contains the correct path
+    const requestUrl = await page.textContent('#request-url')
+    expect(requestUrl).toContain('/ssr/request-test')
+    
+    // Verify user agent is present
+    const userAgent = await page.textContent('#user-agent')
+    expect(userAgent).not.toBe('null')
+    expect(userAgent).not.toBe('undefined')
+    
+    // Verify path is correct
+    expect(await page.textContent('#path')).toBe('"/ssr/request-test"')
+    
+    // Verify params is an empty object for this route
+    expect(await page.textContent('#params')).toBe('{}')
+
+    await page.close()
+  })
+
+  it(`SSR loader should receive request parameter with dynamic route params`, async () => {
+    const page = await context.newPage()
+    const testId = 'test-123'
+
+    await page.goto(`${serverUrl}/ssr/${testId}/request-test`)
+
+    // Verify that the loader received a request object
+    expect(await page.textContent('#has-request')).toBe('true')
+    
+    // Verify the request method is GET
+    expect(await page.textContent('#request-method')).toBe('"GET"')
+    
+    // Verify the request URL contains the correct path
+    const requestUrl = await page.textContent('#request-url')
+    expect(requestUrl).toContain(`/ssr/${testId}/request-test`)
+    
+    // Verify user agent is present
+    const userAgent = await page.textContent('#user-agent')
+    expect(userAgent).not.toBe('null')
+    expect(userAgent).not.toBe('undefined')
+    
+    // Verify path is correct
+    expect(await page.textContent('#path')).toBe(`"/ssr/${testId}/request-test"`)
+    
+    // Verify params contains the id
+    expect(await page.textContent('#params')).toBe(`{"id":"${testId}"}`)
+    
+    // Verify id is extracted correctly
+    expect(await page.textContent('#id')).toBe(`"${testId}"`)
+
+    await page.close()
+  })
 })
