@@ -12,10 +12,14 @@ export function getViteMetroPluginOptions({
   projectRoot,
   relativeRouterRoot,
   ignoredRouteFiles,
+  userDefaultConfigOverrides,
 }: {
   projectRoot: string
   relativeRouterRoot: string
   ignoredRouteFiles?: Array<`**/*${string}`>
+  userDefaultConfigOverrides?: NonNullable<
+    Parameters<typeof metroPlugin>[0]
+  >['defaultConfigOverrides']
 }): Parameters<typeof metroPlugin>[0] {
   const tsconfigPathsConfigLoadResult = tsconfigPaths.loadConfig(projectRoot)
 
@@ -81,7 +85,7 @@ export function getViteMetroPluginOptions({
 
   return {
     defaultConfigOverrides: (defaultConfig) => {
-      return {
+      let config: typeof defaultConfig = {
         ...defaultConfig,
         resolver: {
           ...defaultConfig?.resolver,
@@ -137,6 +141,12 @@ export function getViteMetroPluginOptions({
           },
         },
       }
+
+      if (typeof userDefaultConfigOverrides === 'function') {
+        config = userDefaultConfigOverrides(config)
+      } // TODO: support if userDefaultConfigOverrides is an object, or do not let userDefaultConfigOverrides be an object at all?
+
+      return config
     },
     babelConfig: {
       plugins: [
