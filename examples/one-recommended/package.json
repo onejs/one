@@ -23,9 +23,9 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
-    "@tamagui/config": "^1.132.16",
-    "@tamagui/image-next": "^1.132.16",
-    "@tamagui/lucide-icons": "^1.132.16",
+    "@tamagui/config": "^1.132.17",
+    "@tamagui/image-next": "^1.132.17",
+    "@tamagui/lucide-icons": "^1.132.17",
     "@vxrn/color-scheme": "workspace:*",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^16.4.5",
@@ -42,13 +42,13 @@
     "react-native-screens": "4.10.0",
     "react-native-svg": "15.11.2",
     "react-native-web": "~0.20.0",
-    "tamagui": "^1.132.16"
+    "tamagui": "^1.132.17"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@faker-js/faker": "next",
     "@react-native-community/cli": "19.0.0",
-    "@tamagui/vite-plugin": "^1.132.16",
+    "@tamagui/vite-plugin": "^1.132.17",
     "@types/react": "^18.3.11",
     "tsx": "^4.19.0",
     "typescript": "^5.7.3",
