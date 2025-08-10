@@ -64,6 +64,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         projectRoot: process.cwd(), // TODO: hard-coded process.cwd(), we should make this optional since the plugin can have a default to vite's `config.root`.
         relativeRouterRoot: routerRoot,
         ignoredRouteFiles: options.router?.ignoredRouteFiles,
+        userDefaultConfigOverrides: (options.native?.bundlerOptions as any)?.defaultConfigOverrides,
       })
 
       const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions
@@ -72,6 +73,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       return {
         ...defaultMetroOptions,
         ...userMetroOptions,
+        defaultConfigOverrides: defaultMetroOptions?.defaultConfigOverrides, // defaultConfigOverrides is merged by getViteMetroPluginOptions, so we need to set it here again.
         argv: {
           ...defaultMetroOptions?.argv,
           ...userMetroOptions?.argv,
@@ -80,7 +82,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           ...defaultMetroOptions?.babelConfig,
           ...userMetroOptions?.babelConfig,
         },
-        // TODO: merge defaultConfigOverrides
         mainModuleName: 'one/metro-entry', // So users won't need to write `"main": "one/metro-entry"` in their `package.json` like ordinary Expo apps.
       }
     })()
