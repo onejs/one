@@ -66,14 +66,13 @@ export async function loader({ path }: LoaderProps) {
           .where(eq(posts.userId, USER_ID))
       )
       .union(
-        // @ts-expect-error TODO
         db
           .select({
             username: users.username,
             avatar: users.avatarUrl,
             userId: users.id,
-            postId: sql`NULL`.as('postId'),
-            postContent: sql`NULL`.as('postContent'),
+            postId: sql<number | null>`NULL`.as('postId'),
+            postContent: sql<string | null>`NULL`.as('postContent'),
             createdAt: sql<Date>`${follows.createdAt} as created_at`,
             actionType: sql<NotificationType>`'follow'`.as('actionType'),
           })
@@ -91,7 +90,7 @@ export async function loader({ path }: LoaderProps) {
       action: notification.actionType as NotificationType,
       fromUser: {
         username: notification.username,
-        userLink: '/TODO' as Href,
+        userLink: (notification.userId ? `/user/${notification.userId}` : '/') as Href,
         avatar: notification.avatar,
       },
       post: notification.postId

@@ -65,8 +65,7 @@ export const EmailSignup = () => {
       <form onSubmit={handleSubmit} action="/api/mailing-list-signup" method="POST">
         <View fd="row" gap="$3">
           <Input
-            // @ts-ignore TODO
-            type={'email' as any}
+            {...(typeof window !== 'undefined' && { type: 'email' })}
             f={1}
             size="$4"
             placeholderTextColor="$color11"

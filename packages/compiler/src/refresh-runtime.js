@@ -161,8 +161,8 @@ function performReactRefresh() {
       }
     })
 
-    // TODO: rename these fields to something more meaningful.
-    const update = {
+    // React Refresh update payload containing families to update/remount
+    const refreshPayload = {
       updatedFamilies, // Families that will re-render preserving state
       staleFamilies, // Families that will be remounted
     }
@@ -218,7 +218,7 @@ function performReactRefresh() {
         // No longer mounted.
       }
       try {
-        helpers.scheduleRefresh(root, update)
+        helpers.scheduleRefresh(root, refreshPayload)
       } catch (err) {
         if (!didError) {
           didError = true
@@ -230,7 +230,7 @@ function performReactRefresh() {
     if (didError) {
       throw firstError
     }
-    return update
+    return refreshPayload
   } finally {
     isPerformingRefresh = false
   }

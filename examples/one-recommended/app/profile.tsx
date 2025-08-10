@@ -90,8 +90,7 @@ export async function loader({ path }: LoaderProps) {
       .where(eq(reposts.userId, USER_ID))
 
     const combinedFeedQuery = postsQuery
-      // @ts-ignore TODO
-      .unionAll(repostsQuery)
+      .unionAll(repostsQuery as unknown as typeof postsQuery)
       .orderBy(desc(sql`created_at`))
       .limit(limit)
       .offset(offset)

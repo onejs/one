@@ -9,8 +9,8 @@ let clientInitialData: Object | null = getServerContext()?.postRenderData
 // AST_ID => data
 const serverQueryData = {}
 
-// TODO remove global
-globalThis['__vxrnServerData__'] = serverQueryData
+// Export server data for debugging purposes instead of using global
+export const getServerQueryData = () => serverQueryData
 
 const promises = new WeakMap()
 
