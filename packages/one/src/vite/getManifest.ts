@@ -9,13 +9,17 @@ export function getManifest({
   routerRoot: string
   ignoredRouteFiles?: string[]
 }) {
-  const routePaths = globDir(routerRoot)
+  let routePaths = globDir(routerRoot)
   
-  // Convert ignored glob patterns to RegExp for the ignore option
-  const ignorePatterns = ignoredRouteFiles?.map((pattern) => mm.makeRe(pattern, { matchBase: true }))
+  // Filter out ignored routes using the same approach as generateRouteTypes
+  if (ignoredRouteFiles && ignoredRouteFiles.length > 0) {
+    routePaths = mm.not(routePaths, ignoredRouteFiles, {
+      // The path starts with './', such as './foo/bar/baz.test.tsx', and ignoredRouteFiles is like ['**/*.test.*'], so we need matchBase here.
+      matchBase: true,
+    })
+  }
   
   return createRoutesManifest(routePaths, {
     platform: 'web',
-    ignore: ignorePatterns,
   })
 }
