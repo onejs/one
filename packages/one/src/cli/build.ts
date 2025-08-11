@@ -115,6 +115,12 @@ export async function build(args: {
         ...vxrnOutput!.processEnvDefines,
       },
 
+      ssr: {
+        noExternal: true,
+        external: ['react', 'react-dom'],
+        optimizeDeps,
+      },
+
       build: {
         ssr: true,
         emptyOutDir: false,
