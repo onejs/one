@@ -118,14 +118,6 @@ export async function build(args: {
         ...vxrnOutput!.processEnvDefines,
       },
 
-      // dont think this is doing anything
-      ssr: {
-        noExternal: true,
-        // we patched them to switch to react 19
-        external: ['react', 'react-dom'],
-        optimizeDeps,
-      },
-
       build: {
         ssr: true,
         emptyOutDir: false,
@@ -185,9 +177,13 @@ export async function build(args: {
 
     const userApiBuildConf = oneOptions.build?.api?.config
 
+    const finalApiBuildConf = userApiBuildConf
+      ? mergeConfig(mergedConfig, userApiBuildConf)
+      : mergedConfig
+
     const output = await viteBuild(
       // allow user merging api build config
-      userApiBuildConf ? mergeConfig(mergedConfig, userApiBuildConf) : mergedConfig
+      finalApiBuildConf
     )
 
     return output as RollupOutput
