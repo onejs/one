@@ -23,7 +23,7 @@ export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
     environments: {
       client: {
         optimizeDeps: {
-          include: ['react-native-screens', '@rocicorp/zero'],
+          include: ['react-native-screens'],
           esbuildOptions: {
             resolveExtensions: webExtensions,
           },
