@@ -1,6 +1,6 @@
 {
   "name": "repro",
-  "version": "1.1.518",
+  "version": "1.1.519",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "expo": "53.0.20",
-    "one": "1.1.518",
+    "one": "1.1.519",
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
     "react-native": "~0.79.2",
