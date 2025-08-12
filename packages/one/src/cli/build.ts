@@ -52,7 +52,10 @@ export async function build(args: {
   const routerRoot = getRouterRootFromOneOptions(oneOptions)
   const routerRootRegexp = new RegExp(`^${routerRoot}`)
 
-  const manifest = getManifest({ routerRoot })!
+  const manifest = getManifest({ 
+    routerRoot, 
+    ignoredRouteFiles: oneOptions.router?.ignoredRouteFiles 
+  })!
 
   const serverOutputFormat =
     oneOptions.build?.server === false ? 'esm' : (oneOptions.build?.server?.outputFormat ?? 'esm')
