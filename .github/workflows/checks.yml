@@ -60,19 +60,3 @@ jobs:
 
       - name: Test
         run: yarn test
-
-  notify:
-    needs: [checks, tests]
-    runs-on: ubuntu-latest
-    if: failure()
-    steps:
-      - name: Notify Discord on failure
-        run: |
-          echo "Checks or tests failed, sending message to Discord..."
-          curl -H "Content-Type: application/json" \
-            -X POST \
-            -d '{
-              "content": "🚨 Checks or tests failed for commit `${{ github.sha }}` in [${{ github.repository }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}).\nSee the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})."
-            }' \
-            ${{ secrets.DISCORD_WEBHOOK_URL }}
-
