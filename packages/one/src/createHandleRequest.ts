@@ -177,6 +177,8 @@ export async function resolvePageRoute(
         url,
         loaderProps: {
           path: pathname + search,
+          // Ensure SSR loaders receive the original request
+          request: route.type === 'ssr' ? request : undefined,
           params: getLoaderParams(url, route),
         },
       })
