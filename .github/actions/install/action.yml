@@ -26,6 +26,14 @@ runs:
       shell: bash
       run: corepack enable
 
+    # Expo prebuild runs a command like `npm view expo-template-bare-minimum@sdk-53 dist --json`
+    # under the hood, which may fail with older npm versions (see https://github.com/npm/cli/issues/7834).
+    - name: Upgrade npm
+      shell: bash
+      run: |
+        npm install -g npm@latest
+        npm --version
+
     - name: Get Home Dir Path
       id: get-home-dir-path
       shell: bash
