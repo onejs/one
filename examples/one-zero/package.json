@@ -24,6 +24,7 @@
     "zero": "zero-cache-dev -p ./src/zero/schema.ts"
   },
   "dependencies": {
+    "@react-navigation/native": "~7.1.0",
     "@rocicorp/zero": "^0.20.2025052100",
     "@tamagui/config": "^1.132.17",
     "@tamagui/linear-gradient": "^1.132.17",

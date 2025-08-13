@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@docsearch/react": "^3.9.0",
+    "@react-navigation/native": "~7.1.0",
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/button": "^1.132.17",
     "@tamagui/input": "^1.132.17",
@@ -34,6 +35,8 @@
     "postmark": "^3.0.18",
     "react": "~19.0.0",
     "react-native": "~0.79.2",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "4.10.0",
     "tamagui": "^1.132.17"
   },
   "devDependencies": {

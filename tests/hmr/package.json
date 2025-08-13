@@ -11,12 +11,14 @@
     "test-macos": "TEST_ONLY=dev vitest"
   },
   "dependencies": {
+    "@react-navigation/native": "~7.1.0",
     "expo": "53.0.20",
     "expo-modules-core": "~2.5.0",
     "one": "workspace:*",
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
     "react-native": "~0.79.2",
+    "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "4.10.0",
     "vite": "^7.0.1"
   },

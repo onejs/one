@@ -12,6 +12,7 @@
     "serve": "one serve"
   },
   "dependencies": {
+    "@react-navigation/native": "~7.1.0",
     "expo": "53.0.20",
     "nativewind": "^4.1.23",
     "one": "workspace:*",

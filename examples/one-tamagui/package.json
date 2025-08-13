@@ -16,6 +16,7 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
+    "@react-navigation/native": "~7.1.0",
     "@tamagui/animations-css": "^1.132.17",
     "@tamagui/animations-moti": "^1.132.17",
     "@tamagui/colors": "^1.132.17",
