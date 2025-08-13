@@ -14517,6 +14517,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "devtools@workspace:apps/devtools"
   dependencies:
+    "@react-navigation/native": "npm:~7.1.0"
     "@tamagui/config": "npm:^1.132.17"
     "@tamagui/image-next": "npm:^1.132.17"
     "@tamagui/lucide-icons": "npm:^1.132.17"
@@ -14532,6 +14533,7 @@ __metadata:
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
+    react-native-screens: "npm:4.10.0"
     react-native-svg: "npm:15.11.2"
     react-native-web: "npm:~0.20.0"
     tamagui: "npm:^1.132.17"
@@ -15854,6 +15856,7 @@ __metadata:
   resolution: "example-basic@workspace:examples/one-basic"
   dependencies:
     "@react-native-community/cli": "npm:19.0.0"
+    "@react-navigation/native": "npm:~7.1.0"
     "@types/react": "npm:^18.3.11"
     expo: "npm:53.0.20"
     one: "workspace:*"
@@ -15875,6 +15878,7 @@ __metadata:
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
     "@react-native-community/cli": "npm:19.0.0"
+    "@react-navigation/native": "npm:~7.1.0"
     "@tamagui/config": "npm:^1.132.17"
     "@tamagui/image-next": "npm:^1.132.17"
     "@tamagui/lucide-icons": "npm:^1.132.17"
@@ -15908,6 +15912,7 @@ __metadata:
   resolution: "example-tailwind@workspace:examples/one-tailwind"
   dependencies:
     "@react-native-community/cli": "npm:19.0.0"
+    "@react-navigation/native": "npm:~7.1.0"
     autoprefixer: "npm:^10.4.20"
     expo: "npm:53.0.20"
     nativewind: "npm:^4.1.23"
@@ -15933,6 +15938,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:1.9.4"
     "@react-native-community/cli": "npm:19.0.0"
+    "@react-navigation/native": "npm:~7.1.0"
     "@tamagui/animations-css": "npm:^1.132.17"
     "@tamagui/animations-moti": "npm:^1.132.17"
     "@tamagui/colors": "npm:^1.132.17"
@@ -15970,6 +15976,7 @@ __metadata:
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
     "@react-native-community/cli": "npm:19.0.0"
+    "@react-navigation/native": "npm:~7.1.0"
     "@tamagui/config": "npm:^1.132.17"
     "@tamagui/image-next": "npm:^1.132.17"
     "@tamagui/lucide-icons": "npm:^1.132.17"
@@ -21597,6 +21604,7 @@ __metadata:
   resolution: "one-zero@workspace:examples/one-zero"
   dependencies:
     "@react-native-community/cli": "npm:19.0.0"
+    "@react-navigation/native": "npm:~7.1.0"
     "@rocicorp/zero": "npm:^0.20.2025052100"
     "@tamagui/config": "npm:^1.132.17"
     "@tamagui/linear-gradient": "npm:^1.132.17"
@@ -21690,8 +21698,6 @@ __metadata:
     react-native-css-interop: "npm:^0.1.22"
     react-native-gesture-handler: "npm:~2.24.0"
     react-native-reanimated: "npm:~3.17.4"
-    react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
     rollup: "npm:^4.29.1"
     ts-pattern: "npm:^5.6.2"
     tsconfig-paths: "npm:^4"
@@ -21705,7 +21711,10 @@ __metadata:
     ws: "npm:^8.18.0"
     xxhashjs: "npm:^0.2.2"
   peerDependencies:
+    "@react-navigation/native": ~7.1.0
     react-native: "*"
+    react-native-safe-area-context: 5.4.0
+    react-native-screens: 4.10.0
     react-scan: ^0.1.3
   peerDependenciesMeta:
     react-native:
@@ -24485,6 +24494,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rn-test-container@workspace:tests/rn-test-container"
   dependencies:
+    "@react-navigation/native": "npm:~7.1.0"
     expo: "npm:53.0.20"
     expo-clipboard: "npm:~7.1.5"
     expo-modules-core: "npm:~2.5.0"
@@ -25162,6 +25172,7 @@ __metadata:
   dependencies:
     "@algolia/client-search": "npm:^5.8.1"
     "@docsearch/react": "npm:^3.9.0"
+    "@react-navigation/native": "npm:~7.1.0"
     "@supabase/supabase-js": "npm:^2.44.4"
     "@tamagui/button": "npm:^1.132.17"
     "@tamagui/input": "npm:^1.132.17"
@@ -25182,6 +25193,8 @@ __metadata:
     postmark: "npm:^3.0.18"
     react: "npm:~19.0.0"
     react-native: "npm:~0.79.2"
+    react-native-safe-area-context: "npm:5.4.0"
+    react-native-screens: "npm:4.10.0"
     subset-font: "npm:^2.4.0"
     tamagui: "npm:^1.132.17"
     tsx: "npm:^4.19.0"
@@ -26191,8 +26204,11 @@ __metadata:
   dependencies:
     "@cloudflare/vitest-pool-workers": "npm:^0.5.38"
     "@cloudflare/workers-types": "npm:^4.20241216.0"
+    "@react-navigation/native": "npm:~7.1.0"
     one: "workspace:*"
     react-native: "npm:~0.79.2"
+    react-native-safe-area-context: "npm:5.4.0"
+    react-native-screens: "npm:4.10.0"
     vite: "npm:^7.0.1"
     vitest: "npm:^3.2.0"
     wrangler: "npm:^3.97.0"
@@ -26214,6 +26230,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "test-hmr@workspace:tests/hmr"
   dependencies:
+    "@react-navigation/native": "npm:~7.1.0"
     expo: "npm:53.0.20"
     expo-modules-core: "npm:~2.5.0"
     one: "workspace:*"
@@ -26221,6 +26238,7 @@ __metadata:
     react: "npm:~19.0.0"
     react-dom: "npm:~19.0.0"
     react-native: "npm:~0.79.2"
+    react-native-safe-area-context: "npm:5.4.0"
     react-native-screens: "npm:4.10.0"
     vite: "npm:^7.0.1"
     vitest: "npm:^3.2.0"
@@ -26232,6 +26250,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "test-sandbox@workspace:tests/sandbox"
   dependencies:
+    "@react-navigation/native": "npm:~7.1.0"
     "@tamagui/config": "npm:^1.132.17"
     "@tamagui/image-next": "npm:^1.132.17"
     "@tamagui/lucide-icons": "npm:^1.132.17"
@@ -26257,6 +26276,7 @@ __metadata:
   resolution: "test-test@workspace:tests/test"
   dependencies:
     "@react-native-community/cli": "npm:latest"
+    "@react-navigation/native": "npm:~7.1.0"
     "@tamagui/config": "npm:^1.132.17"
     "@tamagui/image-next": "npm:^1.132.17"
     "@tamagui/lucide-icons": "npm:^1.132.17"
@@ -26294,6 +26314,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "test-use-dom@workspace:tests/test-use-dom"
   dependencies:
+    "@react-navigation/native": "npm:~7.1.0"
     "@types/react": "npm:^18.3.11"
     expo: "npm:53.0.20"
     one: "workspace:*"
@@ -26313,6 +26334,7 @@ __metadata:
   dependencies:
     "@lexical/react": "npm:^0.21.0"
     "@react-native-masked-view/masked-view": "npm:^0.3.1"
+    "@react-navigation/native": "npm:~7.1.0"
     "@rn-primitives/slot": "npm:^1.1.0"
     "@sentry/react-native": "npm:^5.30.0"
     "@shopify/flash-list": "npm:^1.7.2"
@@ -26327,6 +26349,8 @@ __metadata:
     react-dom: "npm:~19.0.0"
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
+    react-native-safe-area-context: "npm:5.4.0"
+    react-native-screens: "npm:4.10.0"
     react-native-svg: "npm:15.11.2"
     react-native-webview: "npm:^13.12.5"
     tamagui: "npm:^1.132.17"
