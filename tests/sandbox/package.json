@@ -14,6 +14,7 @@
     "serve": "one serve"
   },
   "dependencies": {
+    "@react-navigation/native": "~7.1.0",
     "@tamagui/config": "^1.132.17",
     "@tamagui/image-next": "^1.132.17",
     "@tamagui/lucide-icons": "^1.132.17",
