@@ -109,6 +109,41 @@ For more details, see the [`deps` section in Configuration](/docs/configuration#
   If appropriate, it's also nice to reach out to the maintainers of those packages to help improve their compatibility with non-Metro bundlers.
 </Notice>
 
+### Making fetch() requests on native platforms
+
+When using `fetch()` on native platforms (iOS/Android), relative URLs behave differently than on web. You need to use the `ONE_SERVER_URL` environment variable to construct absolute URLs for API calls.
+
+#### URL behavior by platform:
+
+**Web** – works as expected:
+- Relative URL (`/api/hello`) ✅
+- localhost URL (`http://localhost:8081/api/hello`) ✅
+- Local IP URL (`http://192.168.0.[x]:8081/api/hello`) ✅
+
+**iOS Simulator**:
+- Relative URL (`/api/hello`) ❌ – Network request failed
+- localhost URL (`http://localhost:8081/api/hello`) ✅
+- Local IP URL (`http://192.168.0.[x]:8081/api/hello`) ✅
+
+**Real iOS Device**:
+- Relative URL (`/api/hello`) ❌ – Network request failed
+- localhost URL (`http://localhost:8081/api/hello`) ❌ – Network request failed
+- Local IP URL (`http://192.168.0.[x]:8081/api/hello`) ✅
+
+#### Solution
+
+Use the `ONE_SERVER_URL` environment variable to construct absolute URLs:
+
+```tsx
+// ❌ Won't work on native
+const response = await fetch('/api/hello')
+
+// ✅ Works everywhere
+const response = await fetch(`${process.env.ONE_SERVER_URL}/api/hello`)
+```
+
+One automatically sets `ONE_SERVER_URL` in development mode to the current running server URL (e.g., `http://0.0.0.0:8081`). For production builds, you'll need to set this environment variable yourself.
+
 ### Application has not been registered
 
 One calls AppRegistry.registerComponent for you to set up your React Native entry component.
