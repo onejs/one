@@ -15,7 +15,8 @@ async function pathExists(p: string) {
 
 async function hasGlobal(pm: PackageManagerName): Promise<boolean> {
   try {
-    const res = exec(`which ${pm}`)
+    const command = process.platform === 'win32' ? `where ${pm}` : `which ${pm}`
+    const res = exec(command)
     return !!res.length
   } catch {
     return false
