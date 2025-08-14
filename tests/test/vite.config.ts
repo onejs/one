@@ -1,11 +1,7 @@
-import type { UserConfig } from 'vite'
 import { one } from 'one/vite'
+import type { UserConfig } from 'vite'
 
 export default {
-  experimental: {
-    // @ts-ignore - rolldown experimental option
-    enableNativePlugin: true,
-  },
   plugins: [
     one({
       router: {
@@ -18,7 +14,6 @@ export default {
 
       react: {
         compiler: true,
-        // scan: true,
       },
 
       config: {

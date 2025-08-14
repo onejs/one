@@ -88,18 +88,13 @@ export default {
       },
 
       server: {
-        // Configures production server to be compatible
-        // defaults to node
+        // Configures production server to be compatible (default node)
         platform: 'node' | 'vercel'
       },
 
       react: {
-        // enable the new react compiler
+        // Enable react compiler (default false)
         compiler: true,
-
-        // react-scan support, must add the react-scan package to your package.json
-        // native is experimental, web is better supported
-        scan: true | 'web' | 'native',
       },
 
       // The deps configuration is a powerful way to apply patches to node_modules
@@ -232,18 +227,6 @@ You can apply server-level redirects. One serves your app with Hono in productio
 
 Enables the new [React Compiler](https://react.dev/learn/react-compiler) for both native and web. Will slow down compilation as it uses Babel, but will improve app performance and reduce the need to write memoization.
 
-### scan: boolean
-
-Enables [React Scan](https://react-scan.com). Helps you re-rendering and other performance issues.
-
-You'll need to install react-scan first:
-
-```sh
-npm install react-scan
-```
-
-We've disabled native support until [this PR](https://github.com/aidenybai/react-scan/pull/23) is released.
-
 ## deps
 
 While building One we found ourselves needing to apply small patches to a variety of packages. Packages in the React Native ecosystem are often published only for Metro, and so have a variety of weird setups.
@@ -321,8 +304,8 @@ export default {
           '**/*.utilities.*',
         ],
       },
-    })
-  ]
+    }),
+  ],
 }
 ```
 

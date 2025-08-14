@@ -10,7 +10,6 @@ ignores:
   # this is used dependend on by react-native-screens and errors vite during scan if not here
   - "react-native-reanimated"
   - "react-native-gesture-handler"
-  - "react-scan"
   - "react-compiler-runtime"
 
   # Used in metro-config (see getViteMetroPluginOptions)

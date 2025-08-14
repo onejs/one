@@ -11,12 +11,12 @@ import {
   type UserConfig,
 } from 'vite'
 import { analyzer } from 'vite-bundle-analyzer'
-import type { BuildArgs, VXRNOptions } from '../types'
 import { getBaseViteConfigWithPlugins } from '../config/getBaseViteConfigWithPlugins'
 import { getOptimizeDeps } from '../config/getOptimizeDeps'
 import { fillOptions } from '../config/getOptionsFilled'
-import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { mergeUserConfig } from '../config/mergeUserConfig'
+import type { BuildArgs, VXRNOptions } from '../types'
+import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
 import { applyBuiltInPatches } from '../utils/patches'
 import { loadEnv } from './loadEnv'
 
@@ -47,10 +47,6 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
   // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
   process.env.NODE_ENV = 'production'
-
-  // TODO WHY ISNT THIS BEING SHAKEN FROM dist/server/_virtual_one-entry.js
-  // @ts-ignore
-  process.env.ONE_ENABLE_REACT_SCAN = ''
 
   const [{ serverEnv }, options, userViteConfig] = await Promise.all([
     loadEnv('production'),
