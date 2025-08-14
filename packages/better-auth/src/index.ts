@@ -87,7 +87,7 @@ export function createBetterAuthClient<Opts extends ClientOptions>(
   function subscribeToAuthClientSession() {
     disposeSessionSub?.()
     disposeSessionSub = authClient.useSession.subscribe(async ({ data, error, isPending }) => {
-      loading = isPending;
+      loading = isPending
       if (error) {
         console.error(`Auth error`, error)
       }

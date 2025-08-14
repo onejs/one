@@ -116,9 +116,7 @@ export function usePathname(): string {
  *
  * @see `useParams`
  */
-export function useActiveParams<
-  TParams extends Object = SearchParams
->(): Partial<TParams> {
+export function useActiveParams<TParams extends Object = SearchParams>(): Partial<TParams> {
   return useRouteInfo().params as Partial<TParams>
 }
 

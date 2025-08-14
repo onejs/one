@@ -1,9 +1,5 @@
 // Copyright © 2024 650 Industries.
-import {
-  StackRouter,
-  useNavigationBuilder,
-  type RouterFactory,
-} from '@react-navigation/native'
+import { StackRouter, useNavigationBuilder, type RouterFactory } from '@react-navigation/native'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
@@ -35,12 +31,7 @@ export type NavigatorProps = {
 }
 
 /** An unstyled custom navigator. Good for basic web layouts */
-export function Navigator({
-  initialRouteName,
-  screenOptions,
-  children,
-  router,
-}: NavigatorProps) {
+export function Navigator({ initialRouteName, screenOptions, children, router }: NavigatorProps) {
   const contextKey = useContextKey()
 
   // Allows adding Screen components as children to configure routes.
@@ -77,16 +68,13 @@ function QualifiedNavigator({
   contextKey,
   router = StackRouter,
 }: NavigatorProps & { contextKey: string; screens: React.ReactNode[] }) {
-  const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(
-    router,
-    {
-      // Used for getting the parent with navigation.getParent('/normalized/path')
-      id: contextKey,
-      children: screens,
-      screenOptions,
-      initialRouteName,
-    }
-  )
+  const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(router, {
+    // Used for getting the parent with navigation.getParent('/normalized/path')
+    id: contextKey,
+    children: screens,
+    screenOptions,
+    initialRouteName,
+  })
 
   const value = React.useMemo(() => {
     return {

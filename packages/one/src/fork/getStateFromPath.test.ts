@@ -4,8 +4,6 @@ import { getPathFromState } from './getPathFromState'
 import { getStateFromPath } from './getStateFromPath'
 import { getUrlWithReactNavigationConcessions, stripBaseUrl } from './getStateFromPath-mods'
 
-
-
 describe(stripBaseUrl, () => {
   ;[
     [
@@ -65,13 +63,11 @@ describe(getUrlWithReactNavigationConcessions, () => {
   beforeEach(() => {
     delete process.env.EXPO_BASE_URL
   })
-
   ;['/', 'foo/', 'foo/bar/', 'foo/bar/baz/'].forEach((path) => {
     it(`returns the pathname for ${path}`, () => {
       expect(getUrlWithReactNavigationConcessions(path).nonstandardPathname).toBe(path)
     })
   })
-
   ;[
     ['', '/'],
     ['https://acme.com/hello/world?foo=bar#123', 'hello/world/'],
@@ -81,7 +77,6 @@ describe(getUrlWithReactNavigationConcessions, () => {
       expect(getUrlWithReactNavigationConcessions(url).nonstandardPathname).toBe(expected)
     })
   })
-
   ;[
     ['/gh-pages/', '/'],
     ['https://acme.com/gh-pages/hello/world?foo=bar#123', 'hello/world/'],

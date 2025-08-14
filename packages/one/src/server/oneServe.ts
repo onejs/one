@@ -62,15 +62,10 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
 
   const requestHandlers: RequestHandlers = {
     async handleAPI({ route }) {
-      const fileName = useRolldown 
+      const fileName = useRolldown
         ? route.page.slice(1) // rolldown doesn't replace brackets
         : route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_') // esbuild replaces brackets with underscores
-      const apiFile = join(
-        process.cwd(),
-        'dist',
-        'api',
-        fileName + (apiCJS ? '.cjs' : '.js')
-      )
+      const apiFile = join(process.cwd(), 'dist', 'api', fileName + (apiCJS ? '.cjs' : '.js'))
       return await import(apiFile)
     },
 

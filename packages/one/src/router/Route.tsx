@@ -46,9 +46,7 @@ export type RouteNode = {
   middlewares?: RouteNode[]
 }
 
-export const RouteParamsContext = createContext<
-  Record<string, string | undefined> | undefined
->({})
+export const RouteParamsContext = createContext<Record<string, string | undefined> | undefined>({})
 
 const CurrentRouteContext = React.createContext<RouteNode | null>(null)
 

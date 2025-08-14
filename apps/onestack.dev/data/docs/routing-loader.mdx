@@ -6,6 +6,16 @@ Loaders are useful for one-time loading of data from the server to the client an
 
 Loaders run on the server, for now they run based on their render mode - during build-time for SSG routes, or on each request for SPA or SSR routes.
 
+## Native Platform Behavior
+
+Loaders work similarly on native platforms as they do on web:
+
+- **SSG routes**: Data is fetched at compile-time and included in the bundle
+- **SSR routes**: Data is fetched from the server on each load
+- **SPA routes**: Data is fetched from the server on each load
+
+This means native apps can use the same loader patterns as web apps, with data fetching behavior determined by the route's render mode rather than the platform.
+
 Loaders and their imports are removed from client bundles, so you can access private information from within the loader. The data returned from the loader will be passed to the client, and so should be clear of private information. To access the loader data on the client, you must use the `useLoader` hook:
 
 ```tsx

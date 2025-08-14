@@ -213,7 +213,10 @@ export function compileManifest(manifest: { pageRoutes: RouteInfo[]; apiRoutes: 
 }
 
 // in dev mode we do it more simply:
-export function createHandleRequest(handlers: RequestHandlers, { routerRoot }: { routerRoot: string }) {
+export function createHandleRequest(
+  handlers: RequestHandlers,
+  { routerRoot }: { routerRoot: string }
+) {
   const manifest = getManifest({ routerRoot })
   if (!manifest) {
     throw new Error(`No routes manifest`)

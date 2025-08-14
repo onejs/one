@@ -15,7 +15,9 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
       const appDir = join(process.cwd(), getRouterRootFromOneOptions(options))
       const outFile = (() => {
         if (dirname(appDir) !== process.cwd()) {
-          console.warn('Seems that the router root has been customized and is in a nested folder. For now we will generate the routes.d.ts file beside the app folder. This behavior might be changed in the future.')
+          console.warn(
+            'Seems that the router root has been customized and is in a nested folder. For now we will generate the routes.d.ts file beside the app folder. This behavior might be changed in the future.'
+          )
           return join(dirname(appDir), 'routes.d.ts')
         }
 

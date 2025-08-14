@@ -63,7 +63,10 @@ export async function transformTreeShakeClient(code: string, id: string) {
   } catch (error) {
     // If finding referenced identifiers fails, skip transformation
     const errorMessage = error instanceof Error ? error.message : String(error)
-    console.warn(`[one] Skipping tree shaking for ${id} due to identifier analysis error:`, errorMessage)
+    console.warn(
+      `[one] Skipping tree shaking for ${id} due to identifier analysis error:`,
+      errorMessage
+    )
     return
   }
 
@@ -138,7 +141,10 @@ export async function transformTreeShakeClient(code: string, id: string) {
     } catch (error) {
       // If code generation fails, skip transformation
       const errorMessage = error instanceof Error ? error.message : String(error)
-      console.warn(`[one] Skipping tree shaking for ${id} due to code generation error:`, errorMessage)
+      console.warn(
+        `[one] Skipping tree shaking for ${id} due to code generation error:`,
+        errorMessage
+      )
       return
     }
   }
