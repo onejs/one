@@ -26,7 +26,11 @@ export function useViteRoutes(
   return context
 }
 
-export function loadRoutes(paths: GlobbedRouteImports, routerRoot: string, options?: One.RouteOptions) {
+export function loadRoutes(
+  paths: GlobbedRouteImports,
+  routerRoot: string,
+  options?: One.RouteOptions
+) {
   if (context) return context
   globalThis['__importMetaGlobbed'] = paths
   context = globbedRoutesToRouteContext(paths, routerRoot, options)

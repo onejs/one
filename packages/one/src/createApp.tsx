@@ -118,8 +118,7 @@ export function createApp(options: CreateAppProps) {
   }
 
   // run their root layout before calling resolveClientLoader so they can register hook
-  const rootLayoutImport =
-    options.routes[`/${options.routerRoot}/_layout.tsx`]?.()
+  const rootLayoutImport = options.routes[`/${options.routerRoot}/_layout.tsx`]?.()
 
   return rootLayoutImport
     .then(() => {
@@ -137,10 +136,7 @@ export function createApp(options: CreateAppProps) {
           )
         })
         .catch((err) => {
-          console.error(
-            `Error running client loader resolver "onClientLoaderResolve":`,
-            err
-          )
+          console.error(`Error running client loader resolver "onClientLoaderResolve":`, err)
         })
     })
     .catch((err) => {

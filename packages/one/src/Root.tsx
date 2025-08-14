@@ -62,12 +62,10 @@ type InnerProps = {
 // we bridge it to react because reacts weird rendering loses it
 const ServerAsyncLocalIDContext = createContext<One.ServerContext | null>(null)
 
-globalThis['__vxrnGetContextFromReactContext'] = () =>
-  useContext(ServerAsyncLocalIDContext)
+globalThis['__vxrnGetContextFromReactContext'] = () => useContext(ServerAsyncLocalIDContext)
 
 export function Root(props: RootProps) {
-  const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } =
-    props
+  const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } = props
 
   const context = useViteRoutes(routes, props.routerRoot, routeOptions, globalThis['__vxrnVersion'])
   const location =
@@ -134,9 +132,7 @@ export function Root(props: RootProps) {
   )
 
   if (props.flags) {
-    contents = (
-      <FlagsContext.Provider value={props.flags}>{contents}</FlagsContext.Provider>
-    )
+    contents = <FlagsContext.Provider value={props.flags}>{contents}</FlagsContext.Provider>
   }
 
   if (!process.env.ONE_DISABLE_STRICT_MODE) {

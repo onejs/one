@@ -56,9 +56,7 @@ export function RouteInfoContextProvider({ children }: { children: React.ReactNo
   currentStateRef.current = currentState
 
   return (
-    <RouteInfoContext.Provider
-      value={currentState ? lazilyCalculatedRouteInfo.current : undefined}
-    >
+    <RouteInfoContext.Provider value={currentState ? lazilyCalculatedRouteInfo.current : undefined}>
       {children}
     </RouteInfoContext.Provider>
   )
