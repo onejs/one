@@ -1,4 +1,5 @@
 import type { GetTransform } from '@vxrn/compiler'
+import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths'
 import type {
   AutoDepOptimizationOptions,
@@ -9,7 +10,6 @@ import type {
   VXRNOptions,
 } from 'vxrn'
 import type { RouteNode } from '../router/Route'
-import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0]
 
@@ -26,15 +26,6 @@ export type RouteInfo<TRegex = string> = {
   middlewares?: RouteNode[]
   type: One.RouteType
   isNotFound?: boolean
-}
-
-interface ReactScanOptions {
-  log?: boolean
-  showToolbar?: boolean
-  animationSpeed?: 'slow' | 'fast' | 'off'
-  trackUnnecessaryRenders?: boolean
-  showFPS?: boolean
-  _debug?: 'verbose' | false
 }
 
 export namespace One {
@@ -127,7 +118,7 @@ export namespace One {
        * Example:
        * * <code>&#42;&#42;/&#42;.test.*</code>
        */
-      ignoredRouteFiles?: Array<`**/*${string}`>,
+      ignoredRouteFiles?: Array<`**/*${string}`>
       /**
        * Dangerously customize the router root directory. This may lead to unexpected behavior.
        */
@@ -145,18 +136,11 @@ export namespace One {
     }
 
     react?: {
-      compiler?: boolean | PluginPlatformTarget
-
       /**
-       * Enable react-scan, we've given a minimal subset of options here
-       * So long as the options can be serialized they should work here
+       * Enable the React Compiler, for all or specific platforms
+       * @default false
        */
-      scan?:
-        | boolean
-        | PluginPlatformTarget
-        | (Record<PluginPlatformTarget, ReactScanOptions> & {
-            options?: ReactScanOptions
-          })
+      compiler?: boolean | PluginPlatformTarget
     }
 
     optimization?: {

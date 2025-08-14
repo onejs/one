@@ -64,7 +64,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'ipaddr.js',
     'cross-fetch',
     'pg',
-    'react-scan',
     'react-native-svg',
     'react-native-screens',
 
