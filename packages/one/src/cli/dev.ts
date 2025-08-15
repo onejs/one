@@ -47,5 +47,12 @@ export async function dev(args: {
     console.error(err?.message || err)
   })
 
+  // Prevent syntax errors in user's code from crashing the dev server.
+  // TODO: It seems that Vite CLI isn't doing this and is using another way
+  // to prevent such crashes. May need to investigate further.
+  process.on('unhandledRejection', (err) => {
+    console.error(err)
+  })
+
   await closePromise
 }
