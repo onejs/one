@@ -19,7 +19,7 @@
     "@rn-primitives/slot": "^1.1.0",
     "@sentry/react-native": "^5.30.0",
     "@shopify/flash-list": "^1.7.2",
-    "@tamagui/config": "^1.132.17",
+    "@tamagui/config": "^1.132.19",
     "expo": "53.0.20",
     "expo-image": "~1.13.0",
     "expo-structured-headers": "^4.0.0",
@@ -34,7 +34,7 @@
     "react-native-screens": "4.10.0",
     "react-native-svg": "15.11.2",
     "react-native-webview": "^13.12.5",
-    "tamagui": "^1.132.17",
+    "tamagui": "^1.132.19",
     "uuid": "9.0.0"
   },
   "devDependencies": {
