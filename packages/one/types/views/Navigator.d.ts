@@ -15,7 +15,7 @@ export type NavigatorProps = {
     router?: Parameters<typeof useNavigationBuilder>[0];
 };
 /** An unstyled custom navigator. Good for basic web layouts */
-export declare function Navigator({ initialRouteName, screenOptions, children, router, }: NavigatorProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function Navigator({ initialRouteName, screenOptions, children, router }: NavigatorProps): import("react/jsx-runtime").JSX.Element | null;
 export declare namespace Navigator {
     var Slot: React.NamedExoticComponent<Omit<NavigatorProps, "children">>;
     var useContext: typeof useNavigatorContext;
