@@ -55,6 +55,7 @@ export const EXCLUDE_LIST = [
   '@vxrn/vite-native-client',
   'react-native-ios-utilities',
   'react-native-ios-modal',
+  'react-native-ios-context-menu',
   'react-native-image-colors',
   'react-native-fast-image',
   'react-native-device-info',
