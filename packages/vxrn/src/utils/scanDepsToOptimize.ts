@@ -56,6 +56,8 @@ export const EXCLUDE_LIST = [
   'react-native-ios-utilities',
   'react-native-ios-modal',
   'react-native-ios-context-menu',
+  'react-native-haptic-feedback',
+  'react-native-sortables',
   'react-native-image-colors',
   'react-native-fast-image',
   'react-native-device-info',
