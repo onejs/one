@@ -164,7 +164,7 @@ export { wrappedMiddlewareFunction as default }
         .filter((r) => r.routeKeys && Object.keys(r.routeKeys).length > 0)
         .map((r) => ({
           src: r.namedRegex,
-          dest: `${getPathFromRoute(r)}?${Object.entries(r.routeKeys)
+          dest: `${getPathFromRoute(r) || '/'}?${Object.entries(r.routeKeys)
             .map(([k, v]) => `${k}=$${v}`)
             .join('&')}`,
         })),
