@@ -23,7 +23,7 @@ export async function createApiServerlessFunction(
   postBuildLogs: string[]
 ) {
   try {
-    const path = getPathFromRoute(route) || 'index'
+    const path = getPathFromRoute(route, { includeIndex: true })
 
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] pageName: ${path}`)
 
