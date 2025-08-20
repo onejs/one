@@ -251,6 +251,8 @@ export declare namespace One {
              *
              * You can disable with false, or configure the include/exclude with options.
              *
+             * Note: the **full path** (e.g. `<your_project_path>/node_modules/<some_package>`) will be used to match dependencies, if you are using a string to match a package name you may want to add `*` + `/` at the start and `/*` the end.
+             *
              * @default { include: /node_modules/ }
              */
             autoDepsOptimization?: boolean | AutoDepOptimizationOptions;
