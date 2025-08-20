@@ -1,6 +1,8 @@
 import { statSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import { parse } from 'dotenv'
+import { type DotenvPopulateInput, expand } from 'dotenv-expand'
 import { normalizePath } from 'vite'
 
 type Mode = 'development' | 'production' | string
@@ -67,63 +69,27 @@ function getEnvFilesForMode(mode: Mode) {
 
 async function loadJustEnvFiles(mode: Mode) {
   const envFiles = getEnvFilesForMode(mode)
-  const loadedEnvs = (
-    await Promise.all(
+  
+  // load all env files and merge them
+  const parsed = Object.fromEntries(
+    (await Promise.all(
       envFiles.map(async (filePath) => {
         if (!tryStatSync(filePath)?.isFile()) return []
         const contents = await readFile(filePath, 'utf-8')
-        const parsed = parse(contents)
-        return Object.entries(parsed)
+        return Object.entries(parse(contents))
       })
-    )
-  ).flat()
-  return Object.fromEntries(loadedEnvs)
+    )).flat()
+  )
+  
+  // support dotenv-expand for variable expansion
+  const processEnv = { ...process.env } as DotenvPopulateInput
+  expand({ parsed, processEnv })
+  
+  return parsed
 }
 
 function tryStatSync(file: string) {
   try {
     return statSync(file, { throwIfNoEntry: false })
   } catch {}
-}
-
-// Parse src into an Object
-const LINE =
-  /(?:^|^)\s*(?:export\s+)?([\w.-]+)(?:\s*=\s*?|:\s+?)(\s*'(?:\\'|[^'])*'|\s*"(?:\\"|[^"])*"|\s*`(?:\\`|[^`])*`|[^#\r\n]+)?\s*(?:#.*)?(?:$|$)/gm
-
-function parse(src: string) {
-  const obj: Record<string, string> = {}
-
-  // Convert buffer to string
-  let lines = src.toString()
-
-  // Convert line breaks to same format
-  lines = lines.replace(/\r\n?/gm, '\n')
-
-  let match
-  while ((match = LINE.exec(lines)) != null) {
-    const key = match[1]
-
-    // Default undefined or null to empty string
-    let value = match[2] || ''
-
-    // Remove whitespace
-    value = value.trim()
-
-    // Check if double quoted
-    const maybeQuote = value[0]
-
-    // Remove surrounding quotes
-    value = value.replace(/^(['"`])([\s\S]*)\1$/gm, '$2')
-
-    // Expand newlines if double quoted
-    if (maybeQuote === '"') {
-      value = value.replace(/\\n/g, '\n')
-      value = value.replace(/\\r/g, '\r')
-    }
-
-    // Add to object
-    obj[key] = value
-  }
-
-  return obj
 }

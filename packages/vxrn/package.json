@@ -77,6 +77,8 @@
     "@vxrn/vite-flow": "workspace:*",
     "@vxrn/vite-plugin-metro": "workspace:*",
     "citty": "^0.1.6",
+    "dotenv": "^17.2.1",
+    "dotenv-expand": "^12.0.2",
     "env-editor": "^1.1.0",
     "es-module-lexer": "^1.3.0",
     "fast-glob": "^3.3.3",
