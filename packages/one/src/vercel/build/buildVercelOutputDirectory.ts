@@ -23,6 +23,13 @@ async function moveAllFiles(src: string, dest: string) {
   }
 }
 
+function getMiddlewaresByNamedRegex(buildInfoForWriting: One.BuildInfo) {
+  return buildInfoForWriting.manifest.allRoutes
+    .filter((r) => r.middlewares && r.middlewares.length > 0)
+    .map((r) => [r.namedRegex, r.middlewares!.map((m) => m.contextKey.startsWith('dist/middlewares/') ? m.contextKey.substring('dist/middlewares/'.length) : m.contextKey)])
+    .sort((a, b) => b[0].length - a[0].length);
+}
+
 export const buildVercelOutputDirectory = async ({
   apiOutput,
   buildInfoForWriting,
@@ -96,7 +103,7 @@ export const buildVercelOutputDirectory = async ({
       `[one.build][vercel] copying middlewares from ${distMiddlewareDir} to ${vercelMiddlewareDir}`
     )
     await moveAllFiles(resolve(join(oneOptionsRoot, 'dist', 'middlewares')), vercelMiddlewareDir)
-    const vercelMiddlewarePackageJsonFilePath = resolve(join(vercelMiddlewareDir, 'index.js'))
+    const vercelMiddlewarePackageJsonFilePath = resolve(join(vercelMiddlewareDir, 'package.json'))
     postBuildLogs.push(
       `[one.build][vercel] writing package.json to ${vercelMiddlewarePackageJsonFilePath}`
     )
@@ -105,10 +112,26 @@ export const buildVercelOutputDirectory = async ({
     const wrappedMiddlewareEntryPointPath = resolve(
       join(vercelMiddlewareDir, wrappedMiddlewareEntryPointFilename)
     )
+    const middlewaresByNamedRegex = getMiddlewaresByNamedRegex(buildInfoForWriting)
+    const middlewaresToVariableNameMap = middlewaresByNamedRegex.reduce((acc, [namedRegex, middlewares]) => {
+      (Array.isArray(middlewares) ? middlewares : [middlewares]).forEach(middleware => {
+        const middlewareVariableName = middleware.replace(/\.[a-z]+$/, '').replaceAll('/', '_');
+        acc[middleware] = middlewareVariableName
+      })
+      return acc
+    }, {})
     await FSExtra.writeFile(
       wrappedMiddlewareEntryPointPath,
       `
-import middlewareFunction from './_middleware.js'
+const middlewaresByNamedRegex = ${JSON.stringify(middlewaresByNamedRegex)}
+${Object.entries(middlewaresToVariableNameMap).map(([path, variableName]) => `import ${variableName} from './${path}'`).join('\n')}
+
+function getMiddleware(path) {
+  switch (path){
+      ${Object.entries(middlewaresToVariableNameMap).map(([path, variableName]) => `case '${path}': return ${variableName}`).join('\n')}
+      default: return null
+  }
+}
 
 const next = (e) => {
   const t = new Headers(null == e ? void 0 : e.headers)
@@ -117,7 +140,24 @@ const next = (e) => {
 }
 
 const wrappedMiddlewareFunction = (request, event) => {
-  return middlewareFunction({ request, event, next })
+  const url = new URL(request.url)
+  const pathname = url.pathname
+  
+  // Find matching middlewares for this request
+  const matchingMiddlewares = middlewaresByNamedRegex
+    .filter(([namedRegex]) => new RegExp(namedRegex).test(pathname))
+    .reduce((prev, current) => prev.length > current[1]?.length ? prev : current[1], []);
+  
+  // Import and execute the middleware function
+  const boundNext = () => {
+    if (matchingMiddlewares.length === 0) {
+      return next(request)
+    }
+      
+    const middleware = getMiddleware(matchingMiddlewares.shift())
+    return middleware ? middleware({request, event, next: boundNext}) : next(request)
+  };
+  return boundNext()
 }
 
 export { wrappedMiddlewareFunction as default }
