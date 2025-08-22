@@ -26,4 +26,7 @@ test('import.meta.env', sharedTestOptions, async () => {
 
   const testEnvValue2 = await driver.$('~import-meta-env-VITE_TEST_ENV_VAR_1-value-2').getText()
   expect(testEnvValue2).toBe('test_value_1')
+
+  const testModeSpecificEnvValue = await driver.$('~import-meta-env-VITE_TEST_ENV_MODE').getText()
+  expect(testModeSpecificEnvValue).toBe(`${process.env.TEST_ENV.startsWith('prod') ? 'production' : 'development'}_value`)
 })
