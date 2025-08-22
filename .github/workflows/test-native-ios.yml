@@ -39,7 +39,8 @@ jobs:
     name: ${{ matrix.job_name }}
     needs:
       - build-ios-test-container-dev
-    runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
+    # runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
+    runs-on: warp-macos-15-arm64-6x
     strategy:
       fail-fast: false
       matrix:
@@ -150,7 +151,8 @@ jobs:
     name: ${{ matrix.job_name }}
     needs:
       - build-ios-test-container-prod
-    runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
+    # runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
+    runs-on: warp-macos-15-arm64-6x
     strategy:
       fail-fast: false
       matrix:
