@@ -28,7 +28,7 @@ export function getMetroBabelConfigFromViteConfig(config: ResolvedConfig): Trans
   // Collect from process.env
   const envPrefix = config.envPrefix || 'VITE_'
   if (envPrefix) {
-    Object.keys(process.env).forEach((key) => {
+    Object.keys(config.env).forEach((key) => {
       const shouldInclude = Array.isArray(envPrefix)
         ? envPrefix.some((p) => key.startsWith(p))
         : key.startsWith(envPrefix)
