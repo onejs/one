@@ -173,10 +173,10 @@ async function prepareTestApp() {
   // )
 
   $.cwd = root
-  $({
+  await $({
     stdio: 'inherit',
   })`yarn one patch` // Ensure patches are applied.
-  $({
+  await $({
     stdio: 'inherit',
   })`yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`
   await new Promise((resolve) => {
