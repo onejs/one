@@ -176,9 +176,15 @@ async function prepareTestApp() {
   await $({
     stdio: 'inherit',
   })`yarn one patch` // Ensure patches are applied.
+
+  // [WR-B3ATY2VK] Vitest also loads `.env` and `.env.*`, and it loads with
+  // MODE=test, also it exposes those env to underlying shell processes, which
+  // those explicit env vars will override Vite loading `.env` and `.env.*`,
+  // making some of our test fail because env vars are not loaded correctly.
+  // So we need to use `env -u` to unset MODE and any env vars we care here.
   await $({
     stdio: 'inherit',
-  })`yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`
+  })`env -u MODE -u VITE_TEST_ENV_MODE yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`
   await new Promise((resolve) => {
     setTimeout(resolve, 1000)
   })
