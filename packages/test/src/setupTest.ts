@@ -121,7 +121,7 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
         {
           cwd: process.cwd(),
           env: {
-            ...Object.fromEntries(
+            ...(Object.fromEntries(
               Object.entries(process.env).filter(([k, _v]) => {
                 // [WR-B3ATY2VK] Vitest also loads `.env` and `.env.*`, and it loads with
                 // MODE=test, also it exposes those env to underlying shell processes, which
@@ -134,7 +134,7 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
 
                 return true
               })
-            ),
+            ) as typeof process.env),
           },
           detached: true,
           stdio: 'inherit',
