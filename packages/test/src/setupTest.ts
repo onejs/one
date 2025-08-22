@@ -120,7 +120,22 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
           : ['../../node_modules/.bin/one', 'dev', '--clean', '--port', devPort.toString()],
         {
           cwd: process.cwd(),
-          env: { ...process.env },
+          env: {
+            ...Object.fromEntries(
+              Object.entries(process.env).filter(([k, _v]) => {
+                // [WR-B3ATY2VK] Vitest also loads `.env` and `.env.*`, and it loads with
+                // MODE=test, also it exposes those env to underlying shell processes, which
+                // those explicit env vars will override Vite loading `.env` and `.env.*`,
+                // making some of our test fail because env vars are not loaded correctly.
+                // So we need to use `env -u` to unset MODE and any env vars we care here.
+                if (k === 'MODE' || k === 'VITE_TEST_ENV_MODE') {
+                  return false
+                }
+
+                return true
+              })
+            ),
+          },
           detached: true,
           stdio: 'inherit',
         }
