@@ -31,4 +31,8 @@ export default defineConfig({
     testTimeout: 30000,
     hookTimeout: 30000,
   },
+
+  // Need this because the default mode for testing will be 'test'.
+  // This does not work, we are using [WR-B3ATY2VK] instead.
+  // mode: process.env.TEST_ENV.startsWith('prod') ? 'production' : 'development',
 })
