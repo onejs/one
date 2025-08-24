@@ -330,6 +330,9 @@ export async function build(args: {
       }) ?? []
 
     const layoutImports = layoutEntries.flatMap((entry) => {
+      if (!entry) {
+        return []
+      }
       return [entry.file, ...collectImports(entry)]
     })
 
