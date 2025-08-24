@@ -326,13 +326,11 @@ export async function build(args: {
     const layoutEntries =
       foundRoute.layouts?.flatMap((layout) => {
         const clientKey = `${routerRoot}${layout.contextKey.slice(1)}`
-        return vxrnOutput.clientManifest[clientKey]
+        const found = vxrnOutput.clientManifest[clientKey]
+        return found ? found : []
       }) ?? []
 
     const layoutImports = layoutEntries.flatMap((entry) => {
-      if (!entry.file) {
-        return collectImports(entry)
-      }
       return [entry.file, ...collectImports(entry)]
     })
 
