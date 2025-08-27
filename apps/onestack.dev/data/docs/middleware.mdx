@@ -1,0 +1,214 @@
+---
+title: Middleware
+description: Learn how to use middleware to intercept and modify requests and responses
+---
+
+# Middleware
+
+Middleware allows you to run code before a request is completed. You can use middleware to:
+
+- Modify incoming requests before they reach your route handlers
+- Return responses directly without reaching route handlers
+- Add headers or modify responses
+- Implement authentication and authorization
+- Log requests and responses
+- Implement URL rewriting and redirects
+
+## Creating Middleware
+
+Create a `_middleware.ts` file in any route directory. The middleware will apply to all routes in that directory and its subdirectories.
+
+```tsx
+// app/_middleware.tsx
+import { createMiddleware } from 'one'
+
+export default createMiddleware(async ({ request, next, context }) => {
+  // Code here runs before the request is handled
+  console.log('Incoming request:', request.url)
+  
+  // Continue to the next middleware or route handler
+  const response = await next()
+  
+  // Code here runs after the response is generated
+  console.log('Outgoing response:', response.status)
+  
+  return response
+})
+```
+
+## Request Modification
+
+Middleware can modify the incoming request before passing it to the next handler. This is useful for URL rewriting, adding headers, or transforming the request.
+
+```tsx
+export default createMiddleware(async ({ request, next }) => {
+  // Create a new request with modified URL
+  const url = new URL(request.url)
+  url.searchParams.set('modified', 'true')
+  
+  const modifiedRequest = new Request(url.toString(), request)
+  
+  // Pass the modified request to the next handler
+  return next(modifiedRequest)
+})
+```
+
+### URL Rewriting Example
+
+A common use case is rewriting URLs based on subdomains:
+
+```tsx
+export default createMiddleware(async ({ request, next }) => {
+  const host = request.headers.get('host') || ''
+  
+  // Extract subdomain
+  if (host.includes('.')) {
+    const subdomain = host.split('.')[0]
+    
+    // Rewrite subdomain.example.com/path to /tenants/subdomain/path
+    if (subdomain && subdomain !== 'www') {
+      const url = new URL(request.url)
+      url.pathname = `/tenants/${subdomain}${url.pathname}`
+      
+      return next(new Request(url, request))
+    }
+  }
+  
+  return next()
+})
+```
+
+## Response Handling
+
+Middleware can return a response directly, bypassing route handlers entirely:
+
+```tsx
+export default createMiddleware(async ({ request, next }) => {
+  // Check authentication
+  const token = request.headers.get('authorization')
+  
+  if (!token) {
+    // Return early with an error response
+    return new Response('Unauthorized', { status: 401 })
+  }
+  
+  // Continue if authenticated
+  return next()
+})
+```
+
+## Middleware Context
+
+The context object allows sharing data between middlewares in the chain:
+
+```tsx
+// app/_middleware.tsx - Root middleware
+export default createMiddleware(async ({ request, next, context }) => {
+  // Add user info to context
+  context.user = await getUserFromToken(request.headers.get('authorization'))
+  
+  return next()
+})
+
+// app/admin/_middleware.tsx - Nested middleware
+export default createMiddleware(async ({ request, next, context }) => {
+  // Access context from parent middleware
+  if (!context.user?.isAdmin) {
+    return new Response('Forbidden', { status: 403 })
+  }
+  
+  return next()
+})
+```
+
+## Middleware Execution Order
+
+Middlewares execute in order from parent to child directories:
+
+1. `app/_middleware.tsx` runs first
+2. `app/blog/_middleware.tsx` runs second (for `/blog` routes)
+3. `app/blog/posts/_middleware.tsx` runs third (for `/blog/posts` routes)
+
+Each middleware can:
+- Modify the request before calling `next()`
+- Return early without calling `next()`
+- Modify the response after `next()` returns
+
+## Common Patterns
+
+### Authentication
+
+```tsx
+export default createMiddleware(async ({ request, next }) => {
+  const session = await getSession(request)
+  
+  if (!session) {
+    // Redirect to login
+    return new Response(null, {
+      status: 302,
+      headers: { Location: '/login' }
+    })
+  }
+  
+  return next()
+})
+```
+
+### Request Logging
+
+```tsx
+export default createMiddleware(async ({ request, next }) => {
+  const start = Date.now()
+  
+  const response = await next()
+  
+  const duration = Date.now() - start
+  console.log(`${request.method} ${request.url} - ${response.status} - ${duration}ms`)
+  
+  return response
+})
+```
+
+### CORS Headers
+
+```tsx
+export default createMiddleware(async ({ request, next }) => {
+  const response = await next()
+  
+  // Add CORS headers to the response
+  response.headers.set('Access-Control-Allow-Origin', '*')
+  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  
+  return response
+})
+```
+
+### Rate Limiting
+
+```tsx
+const requestCounts = new Map()
+
+export default createMiddleware(async ({ request, next }) => {
+  const ip = request.headers.get('x-forwarded-for') || 'unknown'
+  const count = requestCounts.get(ip) || 0
+  
+  if (count > 100) {
+    return new Response('Rate limit exceeded', { status: 429 })
+  }
+  
+  requestCounts.set(ip, count + 1)
+  
+  // Reset counts periodically
+  setTimeout(() => requestCounts.delete(ip), 60000)
+  
+  return next()
+})
+```
+
+## Best Practices
+
+1. **Keep middleware focused**: Each middleware should have a single responsibility
+2. **Call next() when appropriate**: Always call `next()` unless you're intentionally stopping the request
+3. **Handle errors gracefully**: Wrap async operations in try-catch blocks
+4. **Minimize performance impact**: Avoid expensive operations in middleware that runs on every request
+5. **Use context sparingly**: Only add necessary data to context to avoid memory overhead

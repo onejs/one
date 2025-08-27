@@ -29,12 +29,12 @@ export async function runMiddlewares(
   handlers: RequestHandlers,
   request: Request,
   route: RouteInfo,
-  getResponse: () => Promise<Response>
+  getResponse: (finalRequest: Request) => Promise<Response>
 ): Promise<Response> {
   const middlewares = route.middlewares
 
   if (!middlewares?.length) {
-    return await getResponse()
+    return await getResponse(request)
   }
   if (!handlers.loadMiddleware) {
     throw new Error(`No middleware handler configured`)
@@ -42,12 +42,12 @@ export async function runMiddlewares(
 
   const context: MiddlewareContext = {}
 
-  async function dispatch(index: number): Promise<Response> {
+  async function dispatch(index: number, currentRequest = request): Promise<Response> {
     const middlewareModule = middlewares![index]
 
-    // no more middlewares, finish
+    // no more middlewares, finish with potentially modified request
     if (!middlewareModule) {
-      return await getResponse()
+      return await getResponse(currentRequest)
     }
 
     const exported = (await handlers.loadMiddleware!(middlewareModule))?.default as
@@ -58,20 +58,20 @@ export async function runMiddlewares(
       throw new Error(`No valid export found in middleware: ${middlewareModule.contextKey}`)
     }
 
-    // go to next middleware
-    const next = async () => {
-      return dispatch(index + 1)
+    // go to next middleware, optionally with a modified request
+    const next = async (modifiedRequest?: Request) => {
+      return dispatch(index + 1, modifiedRequest || currentRequest)
     }
 
     // run middlewares, if response returned, exit early
-    const response = await exported({ request, next, context })
+    const response = await exported({ request: currentRequest, next, context })
 
     if (response) {
       return response
     }
 
-    // If the middleware returns null/void, keep going
-    return dispatch(index + 1)
+    // If the middleware returns null/void, keep going with current request
+    return dispatch(index + 1, currentRequest)
   }
 
   // Start with the first middleware (index 0).
@@ -127,20 +127,23 @@ export async function resolveLoaderRoute(
   url: URL,
   route: RouteInfoCompiled
 ) {
-  return await runMiddlewares(handlers, request, route, async () => {
+  return await runMiddlewares(handlers, request, route, async (finalRequest) => {
+    // Extract URL from potentially modified request
+    const finalUrl = new URL(finalRequest.url)
+
     return await resolveResponse(async () => {
       const headers = new Headers()
       headers.set('Content-Type', 'text/javascript')
 
       try {
         const loaderResponse = await handlers.handleLoader!({
-          request,
+          request: finalRequest,
           route,
-          url,
+          url: finalUrl,
           loaderProps: {
-            path: url.pathname,
-            request: route.type === 'ssr' ? request : undefined,
-            params: getLoaderParams(url, route),
+            path: finalUrl.pathname,
+            request: route.type === 'ssr' ? finalRequest : undefined,
+            params: getLoaderParams(finalUrl, route),
           },
         })
 
@@ -167,19 +170,21 @@ export async function resolvePageRoute(
   url: URL,
   route: RouteInfoCompiled
 ) {
-  const { pathname, search } = url
-
   return resolveResponse(async () => {
-    const resolved = await runMiddlewares(handlers, request, route, async () => {
+    const resolved = await runMiddlewares(handlers, request, route, async (finalRequest) => {
+      // Extract URL from potentially modified request
+      const finalUrl = new URL(finalRequest.url)
+      const { pathname, search } = finalUrl
+
       return await handlers.handlePage!({
-        request,
+        request: finalRequest,
         route,
-        url,
+        url: finalUrl,
         loaderProps: {
           path: pathname + search,
-          // Ensure SSR loaders receive the original request
-          request: route.type === 'ssr' ? request : undefined,
-          params: getLoaderParams(url, route),
+          // Ensure SSR loaders receive the potentially modified request
+          request: route.type === 'ssr' ? finalRequest : undefined,
+          params: getLoaderParams(finalUrl, route),
         },
       })
     })

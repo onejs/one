@@ -1,4 +1,6 @@
 import type { OneRouter } from '../interfaces/router'
+import { Platform } from 'react-native'
+import { getRewriteConfig, reverseRewrite } from '../utils/rewrite'
 
 /** Resolve an href object into a fully qualified, relative href. */
 export const resolveHref = (href: OneRouter.Href): string => {
@@ -7,13 +9,38 @@ export const resolveHref = (href: OneRouter.Href): string => {
   }
   const path = href.pathname ?? ''
   if (!href?.params) {
+    // Apply reverse rewrites if on web
+    if (Platform.OS === 'web') {
+      const rewrites = getRewriteConfig()
+      if (Object.keys(rewrites).length > 0) {
+        const externalUrl = reverseRewrite(path, rewrites)
+        // If it's a full URL (subdomain rewrite), return it as-is
+        if (externalUrl.startsWith('http://') || externalUrl.startsWith('https://')) {
+          return externalUrl
+        }
+      }
+    }
     return path
   }
   const { pathname, params } = createQualifiedPathname(path, {
     ...href.params,
   })
   const paramsString = createQueryParams(params)
-  return pathname + (paramsString ? `?${paramsString}` : '')
+  const fullPath = pathname + (paramsString ? `?${paramsString}` : '')
+
+  // Apply reverse rewrites if on web
+  if (Platform.OS === 'web') {
+    const rewrites = getRewriteConfig()
+    if (Object.keys(rewrites).length > 0) {
+      const externalUrl = reverseRewrite(fullPath, rewrites)
+      // If it's a full URL (subdomain rewrite), return it as-is
+      if (externalUrl.startsWith('http://') || externalUrl.startsWith('https://')) {
+        return externalUrl
+      }
+    }
+  }
+
+  return fullPath
 }
 
 function createQualifiedPathname(
