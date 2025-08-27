@@ -8,6 +8,7 @@ import {
   getPathFromState,
   getStateFromPath,
 } from '../link/linking'
+import { applyRewrites, getRewriteConfig, reverseRewrite } from '../utils/rewrite'
 
 export function getNavigationConfig(
   routes: RouteNode,
@@ -38,12 +39,19 @@ export function getLinkingConfig(routes: RouteNode, metaOnly = true): OneLinking
     subscribe: addEventListener,
     getStateFromPath: getStateFromPathMemoized,
     getPathFromState(state: State, options: Parameters<typeof getPathFromState>[1]) {
-      return (
+      const path =
         getPathFromState(state, {
           ...config,
           ...options,
         }) ?? '/'
-      )
+
+      // Apply reverse rewrites for external URLs
+      const rewrites = getRewriteConfig()
+      if (Object.keys(rewrites).length > 0) {
+        return reverseRewrite(path, rewrites)
+      }
+
+      return path
     },
     // Add all functions to ensure the types never need to fallback.
     // This is a convenience for usage in the package.
@@ -55,11 +63,33 @@ export const stateCache = new Map<string, any>()
 
 /** We can reduce work by memoizing the state by the pathname. This only works because the options (linking config) theoretically never change.  */
 function getStateFromPathMemoized(path: string, options: Parameters<typeof getStateFromPath>[1]) {
+  // Apply rewrites to incoming path
+  const rewrites = getRewriteConfig()
+  let finalPath = path
+
+  if (Object.keys(rewrites).length > 0) {
+    try {
+      // Parse the path as a URL to apply rewrites
+      // We need to handle both full URLs and paths
+      const isFullUrl = path.startsWith('http://') || path.startsWith('https://')
+      const url = isFullUrl ? new URL(path) : new URL(path, 'http://temp')
+
+      const rewrittenUrl = applyRewrites(url, rewrites)
+      if (rewrittenUrl) {
+        finalPath = rewrittenUrl.pathname + rewrittenUrl.search
+      }
+    } catch (err) {
+      // If URL parsing fails, use original path
+      console.warn('Failed to apply rewrites to path:', err)
+    }
+  }
+
+  // Cache with original path as key
   const cached = stateCache.get(path)
   if (cached) {
     return cached
   }
-  const result = getStateFromPath(path, options)
+  const result = getStateFromPath(finalPath, options)
   stateCache.set(path, result)
   return result
 }
