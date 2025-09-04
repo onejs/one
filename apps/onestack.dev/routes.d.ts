@@ -6,9 +6,9 @@ import type { OneRouter } from 'one'
 declare module 'one' {
   export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
-      StaticRoutes: `/` | `/_sitemap` | `/docs` | `/test`
-      DynamicRoutes: `/docs/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: `/docs/[slug]`
+      StaticRoutes: `/` | `/_sitemap` | `/docs` | `/subdomain/myapp` | `/subdomain/myapp/about` | `/subdomain/testapp` | `/subdomain/testapp/about` | `/test` | `/test-rewrites`
+      DynamicRoutes: `/docs/${OneRouter.SingleRoutePart<T>}` | `/subdomain/${OneRouter.SingleRoutePart<T>}` | `/subdomain/${OneRouter.SingleRoutePart<T>}/about`
+      DynamicRouteTemplate: `/docs/[slug]` | `/subdomain/[name]` | `/subdomain/[name]/about`
       IsTyped: true
     }
   }
