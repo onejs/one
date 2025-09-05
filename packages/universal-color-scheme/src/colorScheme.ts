@@ -56,8 +56,6 @@ export function useColorScheme() {
       setState(val)
     })
 
-    startWebMediaListener()
-
     return () => {
       dispose()
     }
@@ -81,15 +79,17 @@ if (process.env.TAMAGUI_TARGET === 'native') {
   }
 }
 
+if (process.env.TAMAGUI_TARGET === 'web') {
+  startWebMediaListener()
+}
+
 export function useColorSchemeSetting() {
   const [state, setState] = useState(getColorSchemeSetting())
 
   useIsomorphicLayoutEffect(() => {
-    const dispose = onColorSchemeChange(() => {
+    return onColorSchemeChange(() => {
       setState(getColorSchemeSetting())
     })
-    startWebMediaListener()
-    return dispose
   }, [])
 
   return [state, setColorScheme] as const
@@ -101,8 +101,9 @@ const getColorSchemeSetting = (): ColorSchemeSetting => {
   return currentSetting
 }
 
-const getWebIsDarkMatcher = () =>
-  typeof window !== 'undefined' ? window.matchMedia?.('(prefers-color-scheme: dark)') : null
+function getWebIsDarkMatcher() {
+  return typeof window !== 'undefined' ? window.matchMedia?.('(prefers-color-scheme: dark)') : null
+}
 
 function getSystemColorScheme() {
   if (process.env.TAMAGUI_TARGET === 'native') {
