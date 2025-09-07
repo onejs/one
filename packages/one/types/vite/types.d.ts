@@ -210,6 +210,18 @@ export declare namespace One {
              */
             defaultRenderMode?: RouteRenderMode;
             /**
+             * URL rewrite rules for subdomain-based routing and path rewrites.
+             * Supports wildcard patterns with * for matching.
+             *
+             * @example
+             * {
+             *   '*.start.chat': '/server/*',
+             *   'admin.app.com': '/admin',
+             *   '/old/*': '/new/*'
+             * }
+             */
+            rewrites?: Record<string, string>;
+            /**
              * An array of redirect objects, works in development and production:
              *
              * @example

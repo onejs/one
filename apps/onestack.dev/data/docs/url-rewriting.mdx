@@ -1,0 +1,366 @@
+---
+title: URL Rewriting
+description: Configure URL rewriting for subdomain routing and path transformations
+---
+
+# URL Rewriting
+
+One supports URL rewriting to enable subdomain-based routing, path transformations, and multi-tenant applications. This feature works seamlessly with the Link component and React Navigation.
+
+## Configuration
+
+Configure URL rewrites in your `vite.config.ts` file:
+
+```ts
+// vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      web: {
+        rewrites: {
+          // Subdomain wildcards
+          '*.app.com': '/tenants/*',
+          
+          // Exact subdomain match
+          'admin.app.com': '/admin',
+          
+          // Path rewrites
+          '/api/v1/*': '/api/v2/*'
+        }
+      }
+    })
+  ]
+}
+```
+
+## Rewrite Patterns
+
+### Wildcard Subdomains
+
+Use `*` to match any subdomain segment:
+
+```ts
+{
+  '*.app.com': '/tenants/*'
+}
+```
+
+This rewrites:
+- `acme.app.com/dashboard` → `/tenants/acme/dashboard`
+- `beta.app.com/settings` → `/tenants/beta/settings`
+
+### Multiple Wildcards
+
+You can use multiple wildcards for complex patterns:
+
+```ts
+{
+  '*.*.cdn.com': '/cdn/*/*'
+}
+```
+
+This rewrites:
+- `images.user.cdn.com/avatar.jpg` → `/cdn/images/user/avatar.jpg`
+
+### Exact Matches
+
+For specific subdomains without wildcards:
+
+```ts
+{
+  'admin.app.com': '/admin',
+  'api.app.com': '/api'
+}
+```
+
+### Path Rewrites
+
+Rewrite URL paths without subdomain changes:
+
+```ts
+{
+  '/old/*': '/new/*',
+  '/api/v1/*': '/api/v2/*'
+}
+```
+
+## Middleware Implementation
+
+To handle subdomain rewrites, create a middleware:
+
+```tsx
+// app/_middleware.tsx
+import { createMiddleware } from 'one'
+
+export default createMiddleware(async ({ request, next }) => {
+  const url = new URL(request.url)
+  const host = request.headers.get('host') || ''
+  
+  // Handle subdomain.app.com
+  const match = host.match(/^([^.]+)\.app\.com/)
+  if (match) {
+    const subdomain = match[1]
+    
+    // Rewrite to /tenants/subdomain/...
+    url.pathname = `/tenants/${subdomain}${url.pathname}`
+    
+    // Pass modified request to route handler
+    return next(new Request(url, request))
+  }
+  
+  return next()
+})
+```
+
+## Link Component Integration
+
+The Link component automatically handles reverse rewrites. Internal paths are converted to external URLs:
+
+```tsx
+// Your code
+<Link href="/tenants/acme/dashboard">Dashboard</Link>
+
+// Renders as
+<a href="https://acme.app.com/dashboard">Dashboard</a>
+```
+
+This works automatically when you have configured:
+
+```ts
+{
+  '*.app.com': '/tenants/*'
+}
+```
+
+## File Structure
+
+With subdomain routing, organize your files to match the rewritten paths:
+
+```
+app/
+  tenants/
+    [tenant]/
+      index.tsx      // Homepage for each tenant
+      dashboard.tsx  // Tenant dashboard
+      settings.tsx   // Tenant settings
+```
+
+Access the tenant parameter in your routes:
+
+```tsx
+// app/tenants/[tenant]/dashboard.tsx
+export default function TenantDashboard({ 
+  params 
+}: { 
+  params: { tenant: string } 
+}) {
+  return <h1>Dashboard for {params.tenant}</h1>
+}
+
+export async function loader({ params }) {
+  const tenantData = await fetchTenantData(params.tenant)
+  return { tenantData }
+}
+```
+
+## Testing Locally
+
+For local development, use `.localhost` subdomains which automatically resolve to `127.0.0.1`:
+
+```ts
+// Development configuration
+{
+  '*.localhost': '/tenants/*'
+}
+```
+
+This allows you to test with:
+- `http://acme.localhost:3000`
+- `http://beta.localhost:3000`
+
+No hosts file modification needed on modern macOS and Linux systems.
+
+## Multi-Tenant Example
+
+Here's a complete example for a multi-tenant SaaS application:
+
+### 1. Configure Rewrites
+
+```ts
+// vite.config.ts
+export default {
+  plugins: [
+    one({
+      web: {
+        rewrites: {
+          '*.myapp.com': '/app/*',
+          'admin.myapp.com': '/admin',
+          'api.myapp.com': '/api'
+        }
+      }
+    })
+  ]
+}
+```
+
+### 2. Create Middleware
+
+```tsx
+// app/_middleware.tsx
+export default createMiddleware(async ({ request, next }) => {
+  const host = request.headers.get('host') || ''
+  
+  // Extract tenant from subdomain
+  const match = host.match(/^([^.]+)\.myapp\.com/)
+  if (match && match[1] !== 'www') {
+    const tenant = match[1]
+    
+    // Special handling for reserved subdomains
+    if (tenant === 'admin') {
+      const url = new URL(request.url)
+      url.pathname = `/admin${url.pathname}`
+      return next(new Request(url, request))
+    }
+    
+    if (tenant === 'api') {
+      const url = new URL(request.url)
+      url.pathname = `/api${url.pathname}`
+      return next(new Request(url, request))
+    }
+    
+    // Regular tenant
+    const url = new URL(request.url)
+    url.pathname = `/app/${tenant}${url.pathname}`
+    return next(new Request(url, request))
+  }
+  
+  return next()
+})
+```
+
+### 3. Create Routes
+
+```tsx
+// app/app/[tenant]/index.tsx
+export default function TenantHome({ params, data }) {
+  return (
+    <div>
+      <h1>{data.tenant.name}</h1>
+      <Link href={`/app/${params.tenant}/settings`}>
+        Settings
+      </Link>
+    </div>
+  )
+}
+
+export async function loader({ params }) {
+  const tenant = await db.tenant.findUnique({
+    where: { slug: params.tenant }
+  })
+  
+  if (!tenant) {
+    throw new Response('Tenant not found', { status: 404 })
+  }
+  
+  return { tenant }
+}
+```
+
+### 4. Use Links
+
+```tsx
+// Links automatically use the correct subdomain
+<Link href="/app/acme/dashboard">
+  Acme Dashboard
+</Link>
+// Renders as: https://acme.myapp.com/dashboard
+
+<Link href="/admin/users">
+  Admin Panel
+</Link>
+// Renders as: https://admin.myapp.com/users
+```
+
+## Production Deployment
+
+For production, configure your DNS and hosting provider:
+
+### DNS Configuration
+
+Add wildcard DNS records:
+```
+*.myapp.com    CNAME    myapp.com
+admin.myapp.com    CNAME    myapp.com
+api.myapp.com    CNAME    myapp.com
+```
+
+### Vercel
+
+Vercel automatically handles wildcard domains. Add them in your project settings:
+- `*.myapp.com`
+- `myapp.com`
+
+### Other Providers
+
+Most modern hosting providers support wildcard domains. Check their documentation for specific configuration.
+
+## Advanced Patterns
+
+### Conditional Rewrites
+
+```tsx
+export default createMiddleware(async ({ request, next }) => {
+  const host = request.headers.get('host') || ''
+  const userAgent = request.headers.get('user-agent') || ''
+  
+  // Different rewrites for mobile
+  if (userAgent.includes('Mobile')) {
+    // Mobile-specific rewrite logic
+  }
+  
+  return next()
+})
+```
+
+### Geographic Rewrites
+
+```tsx
+export default createMiddleware(async ({ request, next }) => {
+  const country = request.headers.get('cf-ipcountry') || 'US'
+  
+  // Rewrite based on country
+  const url = new URL(request.url)
+  url.pathname = `/${country.toLowerCase()}${url.pathname}`
+  
+  return next(new Request(url, request))
+})
+```
+
+## Troubleshooting
+
+### Links Not Rewriting
+
+Ensure your rewrite configuration is properly set in `vite.config.ts` and that the patterns match your use case.
+
+### Middleware Not Running
+
+Check that your `_middleware.tsx` file is in the correct location and exports a default function created with `createMiddleware`.
+
+### Local Testing Issues
+
+Use `.localhost` domains for local testing, or configure your hosts file:
+
+```bash
+# /etc/hosts
+127.0.0.1 acme.local
+127.0.0.1 beta.local
+```
+
+## Performance Considerations
+
+- URL rewriting happens on every request, so keep the logic simple
+- Cache tenant data when possible
+- Consider using CDN rules for static assets
+- Use the `context` object to share data between middlewares
