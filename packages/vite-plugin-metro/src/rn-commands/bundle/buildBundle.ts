@@ -5,6 +5,7 @@ import { buildBundleWithConfig } from './buildBundleWithConfig'
 import { patchMetroServerWithViteConfigAndMetroPluginOptions } from '../../metro-config/patchMetroServerWithViteConfigAndMetroPluginOptions'
 import { projectResolve } from '../../utils/projectImport'
 import type { BundleCommandArgs } from './types'
+import { ensureProcessExitsAfterDelay } from '../../utils/exit'
 
 export async function buildBundle(
   this: { viteConfig: ResolvedConfig; metroPluginOptions: MetroPluginOptions },
@@ -48,10 +49,5 @@ export async function buildBundle(
 
   console.info('Done.')
 
-  // Prevent the process not getting exited for some unknown reason.
-  // If the process is not exited, it might hang the native build process.
-  setTimeout(() => {
-    console.info('Exiting process to prevent hanging.')
-    process.exit()
-  }, 3000)
+  ensureProcessExitsAfterDelay()
 }

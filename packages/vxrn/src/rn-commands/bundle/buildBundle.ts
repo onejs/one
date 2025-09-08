@@ -64,7 +64,7 @@ export async function buildBundle(
     setTimeout(() => {
       console.info('Exiting process to prevent hanging.')
       process.exit()
-    }, 3000)
+    }, 30000)
 
     return
   }
@@ -124,5 +124,5 @@ export async function buildBundle(
   setTimeout(() => {
     console.info('Exiting process to prevent hanging.')
     process.exit()
-  }, 1000)
+  }, 30000)
 }
