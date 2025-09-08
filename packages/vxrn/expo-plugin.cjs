@@ -92,8 +92,17 @@ function removeExpoDefaultsFromAppBuildGradle(appBuildGradleContents) {
 }
 
 // TODO: Get the content of this block from @react-native-community/template (for example, get https://registry.npmjs.org/@react-native-community/template/0.76.6, find the tarball, download it into a tmp dir, extract it, read template/android/app/build.gradle, parse out the react block) to ensure it stays up to date.
+// Note that we need to add patches marked with [vxrn/one], not just copy the block from the template as is.
 const ANDROID_APP_BUILD_GRADLE_REACT_BLOCK = `
 react {
+    // [vxrn/one] the bundle command should find the entry file automatically,
+    // we are setting this to a file that will definitely exist to avoid
+    // 'detectEntryFile' (defined in react-native-gradle-plugin/src/main/kotlin/com/facebook/react/utils/PathUtils.kt)
+    // to use a non-existing 'index.js' file as default and make the Android
+    // build fail with Gradle error:
+    // 'An input file was expected to be present but it doesn't exist.'
+    entryFile = file("../../package.json")
+
     /* Folders */
     //   The root of your project, i.e. where "package.json" lives. Default is '../..'
     // root = file("../../")
