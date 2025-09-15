@@ -21,7 +21,6 @@ export const dev = async (optionsIn: DevOptions) => {
   const { bindKeypressInput } = await import('../utils/bindKeypressInput')
   const { fillOptions } = await import('../config/getOptionsFilled')
   const { getViteServerConfig } = await import('../config/getViteServerConfig')
-  const { applyBuiltInPatches } = await import('../utils/patches')
   const { printServerUrls } = await import('../utils/printServerUrls')
   const { clean } = await import('./clean')
   const { filterViteServerResolvedUrls } = await import('../utils/filterViteServerResolvedUrls')
@@ -118,10 +117,10 @@ export default defineConfig({
       }
     },
 
-    stop: async () => {
+    stop: () => {
       if (viteServer) {
         viteServer.watcher.removeAllListeners()
-        await viteServer.close()
+        return viteServer.close()
       }
     },
   }

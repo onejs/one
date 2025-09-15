@@ -7,6 +7,6 @@ export declare const dev: (optionsIn: DevOptions) => Promise<{
     start: () => Promise<{
         closePromise: Promise<unknown>;
     }>;
-    stop: () => Promise<void>;
+    stop: () => Promise<void> | undefined;
 }>;
 //# sourceMappingURL=dev.d.ts.map
