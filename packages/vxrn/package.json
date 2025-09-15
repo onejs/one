@@ -1,6 +1,6 @@
 {
   "name": "vxrn",
-  "version": "1.1.531",
+  "version": "1.1.532",
   "sideEffects": false,
   "type": "module",
   "exports": {
