@@ -40,7 +40,11 @@ export async function dev(args: {
   })
 
   process.on('SIGINT', () => {
-    stop()
+    try {
+      stop()
+    } finally {
+      process.exit(2)
+    }
   })
 
   process.on('uncaughtException', (err) => {
