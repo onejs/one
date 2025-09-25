@@ -4,7 +4,7 @@ export function getPathnameFromFilePath(
   inputPath: string,
   params = {},
   strict = false,
-  options: { preserveExtensions?: boolean, includeIndex?: boolean } = {}
+  options: { preserveExtensions?: boolean; includeIndex?: boolean } = {}
 ) {
   const path = inputPath.replace(/\+(spa|ssg|ssr|api)\.tsx?$/, '')
   const dirname = Path.dirname(path).replace(/\([^\/]+\)/gi, '')

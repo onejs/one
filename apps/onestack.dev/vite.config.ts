@@ -30,6 +30,15 @@ export default {
       react: {
         compiler: process.env.NODE_ENV === 'production',
       },
+      web: {
+        rewrites: {
+          // Test subdomain rewrites with .localhost
+          '*.localhost': '/subdomain/*',
+          'docs.localhost': '/docs',
+          // Test path rewrites
+          '/old-docs/*': '/docs/*',
+        },
+      },
     }),
 
     tamaguiPlugin({
