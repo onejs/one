@@ -53,7 +53,7 @@
     "expo": "54.0.10",
     "metro": "^0.82",
     "metro-config": "*",
-    "react-native": "~0.79.2",
+    "react-native": "0.81.4",
     "vite": "^6.1.0"
   },
   "dependencies": {
