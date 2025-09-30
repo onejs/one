@@ -7,7 +7,7 @@
     "start": "expo start"
   },
   "dependencies": {
-    "expo": "53.0.20",
+    "expo": "54.0.10",
     "one": "workspace:*",
     "react": "~19.0.0",
     "react-dom": "19.0.0",

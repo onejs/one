@@ -33,6 +33,6 @@
     "tamagui": "^1.132.23"
   },
   "devDependencies": {
-    "expo": "53.0.20"
+    "expo": "54.0.10"
   }
 }

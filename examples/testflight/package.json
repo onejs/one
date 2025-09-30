@@ -31,7 +31,7 @@
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.2",
     "drizzle-orm": "^0.33.0",
-    "expo": "53.0.20",
+    "expo": "54.0.10",
     "expo-build-properties": "^0.13.1",
     "expo-modules-core": "~2.5.0",
     "one": "workspace:*",

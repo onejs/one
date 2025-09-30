@@ -39,7 +39,7 @@
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/emitter": "workspace:*",
     "better-auth": "^1.2.8",
-    "expo": "53.0.20",
+    "expo": "54.0.10",
     "one": "workspace:*",
     "pg": "^8.13.1",
     "react": "~19.0.0",
