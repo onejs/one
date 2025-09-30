@@ -13,4 +13,5 @@
 // fixes bad import error in expo-modules-core
 // without this you run into error loading web immediately
 // where globalThis.expo is not defined
-import 'expo-modules-core/src/web/index.web.ts'
+// @zetavg: the actual thing we need to do is maybe import and call `installExpoGlobalPolyfill`. This is currently the file that does it, so we import it.
+import 'expo-modules-core/src/polyfill/index.web.ts'
