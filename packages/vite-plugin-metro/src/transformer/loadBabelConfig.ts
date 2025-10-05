@@ -28,7 +28,13 @@ export const loadBabelConfig = (() => {
     if (projectRoot) {
       // Check for various babel config files in the project root
       // TODO(EvanBacon): We might want to disable babelrc lookup when the user specifies `enableBabelRCLookup: false`.
-      const possibleBabelRCPaths = ['.babelrc', '.babelrc.js', 'babel.config.js']
+      const possibleBabelRCPaths = [
+        '.babelrc',
+        '.babelrc.js',
+        'babel.config.js',
+        'babel.config.cjs',
+        'babel.config.mjs',
+      ]
 
       const foundBabelRCPath = possibleBabelRCPaths.find((configFileName) =>
         fs.existsSync(path.resolve(projectRoot, configFileName))
