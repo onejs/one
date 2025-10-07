@@ -69,6 +69,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
       const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions
 
+      const babelConfig = {
+        ...defaultMetroOptions?.babelConfig,
+        ...userMetroOptions?.babelConfig,
+      }
+
       // TODO: [METRO-OPTIONS-MERGING] We only do shallow merge here.
       return {
         ...defaultMetroOptions,
@@ -79,8 +84,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           ...userMetroOptions?.argv,
         },
         babelConfig: {
-          ...defaultMetroOptions?.babelConfig,
-          ...userMetroOptions?.babelConfig,
+          ...babelConfig,
+          plugins: [
+            ...(babelConfig.plugins || []),
+            ...(options.react?.compiler === true || options.react?.compiler === 'native'
+              ? ['babel-plugin-react-compiler']
+              : []),
+          ],
         },
         mainModuleName: 'one/metro-entry', // So users won't need to write `"main": "one/metro-entry"` in their `package.json` like ordinary Expo apps.
       }

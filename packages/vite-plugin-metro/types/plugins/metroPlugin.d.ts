@@ -6,7 +6,7 @@ type MetroInputConfig = Parameters<typeof loadConfigT>[1];
 export type MetroPluginOptions = {
     argv?: MetroYargArguments;
     defaultConfigOverrides?: MetroInputConfig | ((defaultConfig: MetroInputConfig) => MetroInputConfig);
-    /** @deprecated use babelConfigOverrides instead */
+    /** Consider using babelConfigOverrides instead */
     babelConfig?: TransformOptions;
     babelConfigOverrides?: (defaultConfig: TransformOptions) => TransformOptions;
     /**

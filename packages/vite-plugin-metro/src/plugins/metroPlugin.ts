@@ -26,7 +26,7 @@ export type MetroPluginOptions = {
   defaultConfigOverrides?:
     | MetroInputConfig
     | ((defaultConfig: MetroInputConfig) => MetroInputConfig)
-  /** @deprecated use babelConfigOverrides instead */
+  /** Consider using babelConfigOverrides instead */
   babelConfig?: TransformOptions
   babelConfigOverrides?: (defaultConfig: TransformOptions) => TransformOptions
   /**
