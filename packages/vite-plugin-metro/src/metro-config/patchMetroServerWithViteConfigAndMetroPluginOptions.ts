@@ -15,7 +15,9 @@ export function patchMetroServerWithViteConfigAndMetroPluginOptions(
     .getBundler()
     .getBundler()
     .transformFile.bind(metroServer.getBundler().getBundler())
+
   const defaultBabelConfig = getMetroBabelConfigFromViteConfig(config)
+
   metroServer.getBundler().getBundler().transformFile = async (
     filePath: string,
     transformOptions: Parameters<typeof originalTransformFile>[1],
