@@ -3,7 +3,8 @@ import { Text, YStack } from 'tamagui'
 import { Link } from 'one'
 import { ToggleThemeButton } from '~/interface/ToggleThemeButton'
 import oneBall from '~/app-icon.png'
-import { version } from 'react'
+import { useState, version } from 'react'
+import { Button } from 'react-native'
 
 export function HomePage() {
   return (
@@ -11,6 +12,8 @@ export function HomePage() {
       <Text fontSize="$8" text="center">
         Hello, One
       </Text>
+
+      <CompilerTest />
 
       <Image src={oneBall} width={128} height={128} />
 
@@ -37,4 +40,23 @@ export function HomePage() {
       </YStack>
     </YStack>
   )
+}
+
+function CompilerTest() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <Button title="Increment" onPress={() => setCount((c) => c + 1)} />
+      <Text>Count: {count}</Text>
+      <Child />
+      <Child />
+      <Child />
+    </>
+  )
+}
+
+function Child() {
+  console.log('Child render')
+  return <Text>Child</Text>
 }
