@@ -1913,6 +1913,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/types@npm:^7.26.0":
+  version: 7.28.4
+  resolution: "@babel/types@npm:7.28.4"
+  dependencies:
+    "@babel/helper-string-parser": "npm:^7.27.1"
+    "@babel/helper-validator-identifier": "npm:^7.27.1"
+  checksum: 10/db50bf257aafa5d845ad16dae0587f57d596e4be4cbb233ea539976a4c461f9fbcc0bf3d37adae3f8ce5dcb4001462aa608f3558161258b585f6ce6ce21a2e45
+  languageName: node
+  linkType: hard
+
 "@badrap/valita@npm:0.3.11":
   version: 0.3.11
   resolution: "@badrap/valita@npm:0.3.11"
@@ -12405,6 +12415,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-react-compiler@npm:^19.1.0-rc.3":
+  version: 19.1.0-rc.3
+  resolution: "babel-plugin-react-compiler@npm:19.1.0-rc.3"
+  dependencies:
+    "@babel/types": "npm:^7.26.0"
+  checksum: 10/69981f07a382cbd1e2f1dc41b25084ca1e5355331ad4a60d5c49ff33dba7db2e27180f7f5cf5017fc334d14500956322fd4a6a405b95aba9662cb2744cd39fae
+  languageName: node
+  linkType: hard
+
 "babel-plugin-react-native-web@npm:~0.19.13":
   version: 0.19.13
   resolution: "babel-plugin-react-native-web@npm:0.19.13"
@@ -15747,6 +15766,7 @@ __metadata:
     "@tamagui/vite-plugin": "npm:^1.132.23"
     "@types/react": "npm:^18.3.11"
     "@vxrn/color-scheme": "workspace:*"
+    babel-plugin-react-compiler: "npm:^19.1.0-rc.3"
     expo: "npm:53.0.20"
     expo-modules-core: "npm:~2.5.0"
     one: "workspace:*"
