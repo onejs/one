@@ -3,6 +3,7 @@ import type { ResolvedConfig } from 'vite'
 import type { MetroPluginOptions } from '../plugins/metroPlugin'
 import type { ViteCustomTransformOptions } from '../transformer/types'
 import { getMetroBabelConfigFromViteConfig } from './getMetroBabelConfigFromViteConfig'
+import type { TransformOptions } from '@babel/core'
 
 export function patchMetroServerWithViteConfigAndMetroPluginOptions(
   metroServer: Server,
@@ -20,13 +21,19 @@ export function patchMetroServerWithViteConfigAndMetroPluginOptions(
     transformOptions: Parameters<typeof originalTransformFile>[1],
     fileBuffer?: Parameters<typeof originalTransformFile>[2]
   ) => {
+    let babelConfig: TransformOptions = {
+      ...defaultBabelConfig,
+      ...options.babelConfig,
+      plugins: [...(defaultBabelConfig.plugins || []), ...(options.babelConfig?.plugins || [])],
+    }
+
+    if (options.babelConfigOverrides) {
+      babelConfig = options.babelConfigOverrides(babelConfig)
+    }
+
     const viteCustomTransformOptions: ViteCustomTransformOptions = {
       // config: server.config,
-      babelConfig: {
-        ...defaultBabelConfig,
-        ...options.babelConfig,
-        plugins: [...(defaultBabelConfig.plugins || []), ...(options.babelConfig?.plugins || [])],
-      },
+      babelConfig,
     }
     return originalTransformFile(
       filePath,
