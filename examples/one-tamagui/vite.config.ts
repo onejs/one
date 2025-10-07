@@ -17,6 +17,19 @@ export default {
         // set to the key of your native app
         // will call AppRegistry.registerComponent(app.key)
         key: 'one-example',
+        bundler: 'metro',
+        bundlerOptions: {
+          babelConfigOverrides(defaultConfig) {
+            return {
+              ...defaultConfig,
+              plugins: [
+                ...(defaultConfig.plugins || []),
+                // React Compiler
+                ['babel-plugin-react-compiler', {}],
+              ],
+            }
+          },
+        },
       },
     }),
 
