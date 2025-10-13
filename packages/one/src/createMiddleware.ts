@@ -5,7 +5,7 @@ export interface MiddlewareContext {}
 
 export type Middleware = (props: {
   request: Request
-  next: () => Promise<MaybeResponse>
+  next: (request?: Request) => Promise<Response | null | void>
   context: MiddlewareContext
 }) => RequestResponse
 

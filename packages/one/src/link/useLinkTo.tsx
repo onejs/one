@@ -48,9 +48,13 @@ export function useLinkTo(props: { href: string; replace?: boolean }) {
     }
   }
 
+  // Don't strip group segments from full URLs (subdomain rewrites)
+  const isFullUrl = props.href.startsWith('http://') || props.href.startsWith('https://')
+  const processedHref = isFullUrl ? props.href : stripGroupSegmentsFromPath(props.href) || '/'
+  
   return {
     // Ensure there's always a value for href. Manually append the baseUrl to the href prop that shows in the static HTML.
-    href: appendBaseUrl(stripGroupSegmentsFromPath(props.href) || '/'),
+    href: isFullUrl ? processedHref : appendBaseUrl(processedHref),
     role: 'link' as const,
     onPress,
   }

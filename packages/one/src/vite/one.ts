@@ -297,6 +297,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               ),
             }),
 
+            ...(options.web?.rewrites && {
+              'process.env.ONE_URL_REWRITES': JSON.stringify(JSON.stringify(options.web.rewrites)),
+              'import.meta.env.ONE_URL_REWRITES': JSON.stringify(JSON.stringify(options.web.rewrites)),
+            }),
+
             ...(options.setupFile && {
               'process.env.ONE_SETUP_FILE': JSON.stringify(options.setupFile),
             }),
@@ -315,6 +320,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 'process.env.TAMAGUI_ENVIRONMENT': '"client"',
                 'import.meta.env.VITE_ENVIRONMENT': '"client"',
                 'process.env.EXPO_OS': '"web"',
+                ...(options.web?.rewrites && {
+                  'process.env.ONE_URL_REWRITES': JSON.stringify(JSON.stringify(options.web.rewrites)),
+                  'import.meta.env.ONE_URL_REWRITES': JSON.stringify(JSON.stringify(options.web.rewrites)),
+                }),
               },
             },
 
@@ -324,6 +333,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 'process.env.TAMAGUI_ENVIRONMENT': '"ssr"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
                 'process.env.EXPO_OS': '"web"',
+                ...(options.web?.rewrites && {
+                  'process.env.ONE_URL_REWRITES': JSON.stringify(JSON.stringify(options.web.rewrites)),
+                  'import.meta.env.ONE_URL_REWRITES': JSON.stringify(JSON.stringify(options.web.rewrites)),
+                }),
               },
             },
 
