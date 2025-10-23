@@ -2019,7 +2019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.1.6, @babel/types@npm:^7.19.0, @babel/types@npm:^7.20.0, @babel/types@npm:^7.20.7, @babel/types@npm:^7.23.0, @babel/types@npm:^7.23.6, @babel/types@npm:^7.24.7, @babel/types@npm:^7.25.2, @babel/types@npm:^7.25.4, @babel/types@npm:^7.25.9, @babel/types@npm:^7.26.10, @babel/types@npm:^7.26.3, @babel/types@npm:^7.26.8, @babel/types@npm:^7.27.1, @babel/types@npm:^7.27.3, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4":
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.1.6, @babel/types@npm:^7.20.0, @babel/types@npm:^7.20.7, @babel/types@npm:^7.23.0, @babel/types@npm:^7.23.6, @babel/types@npm:^7.24.7, @babel/types@npm:^7.25.2, @babel/types@npm:^7.25.4, @babel/types@npm:^7.25.9, @babel/types@npm:^7.26.10, @babel/types@npm:^7.26.3, @babel/types@npm:^7.26.8, @babel/types@npm:^7.27.1, @babel/types@npm:^7.27.3, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4":
   version: 7.28.0
   resolution: "@babel/types@npm:7.28.0"
   dependencies:
@@ -11641,7 +11641,7 @@ __metadata:
     "@tamagui/build": "npm:^1.132.23"
     "@vxrn/utils": "workspace:*"
     "@vxrn/vite-native-client": "workspace:*"
-    babel-plugin-react-compiler: "npm:^19.0.0-beta-201e55d-20241215"
+    babel-plugin-react-compiler: "npm:^19.1.0-rc.3"
     depcheck: "npm:^1.4.7"
     react-native: "npm:0.81.4"
     react-native-css-interop: "npm:^0.1.22"
@@ -12729,16 +12729,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-react-compiler@npm:^19.0.0-beta-201e55d-20241215":
-  version: 19.0.0-beta-e552027-20250112
-  resolution: "babel-plugin-react-compiler@npm:19.0.0-beta-e552027-20250112"
-  dependencies:
-    "@babel/types": "npm:^7.19.0"
-  checksum: 10/d17b6166912c1a421561acd1be6d0d4b84bfbafe866f708bee31986afaf1c65f1a34bf7f02b9db370306932eaa09cdaa115f0152e19895e17c800f90817ed234
-  languageName: node
-  linkType: hard
-
-"babel-plugin-react-compiler@npm:^19.1.0-rc.2":
+"babel-plugin-react-compiler@npm:^19.1.0-rc.2, babel-plugin-react-compiler@npm:^19.1.0-rc.3":
   version: 19.1.0-rc.3
   resolution: "babel-plugin-react-compiler@npm:19.1.0-rc.3"
   dependencies:
@@ -16182,6 +16173,7 @@ __metadata:
     "@tamagui/vite-plugin": "npm:^1.132.23"
     "@types/react": "npm:^18.3.11"
     "@vxrn/color-scheme": "workspace:*"
+    babel-plugin-react-compiler: "npm:^19.1.0-rc.3"
     expo: "npm:54.0.10"
     expo-modules-core: "npm:~3.0.18"
     one: "workspace:*"

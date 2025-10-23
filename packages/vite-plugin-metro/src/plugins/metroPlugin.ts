@@ -26,7 +26,9 @@ export type MetroPluginOptions = {
   defaultConfigOverrides?:
     | MetroInputConfig
     | ((defaultConfig: MetroInputConfig) => MetroInputConfig)
+  /** Consider using babelConfigOverrides instead */
   babelConfig?: TransformOptions
+  babelConfigOverrides?: (defaultConfig: TransformOptions) => TransformOptions
   /**
    * Overrides the main module name which is normally defined as the `main` field in `package.json`.
    *
