@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "@babel/core": "~7.26.8",
-    "@babel/helper-plugin-utils": "7.26.5",
-    "@babel/plugin-transform-private-methods": "~7.25.9",
-    "@react-native/babel-plugin-codegen": "^0.76.5",
+    "@babel/helper-plugin-utils": "7.27.1",
+    "@babel/plugin-transform-private-methods": "~7.27.1",
+    "@react-native/babel-plugin-codegen": "^0.76.9",
     "@vxrn/resolve": "workspace:*",
     "babel-plugin-syntax-hermes-parser": "^0.32.1",
     "flow-remove-types": "^2.289.0",

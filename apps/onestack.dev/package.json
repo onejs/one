@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@docsearch/react": "^3.9.0",
-    "@react-navigation/native": "~7.1.0",
+    "@react-navigation/native": "~7.1.18",
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/button": "^1.132.23",
     "@tamagui/input": "^1.132.23",

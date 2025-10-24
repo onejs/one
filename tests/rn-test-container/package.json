@@ -10,7 +10,7 @@
     "prebuild:native": "one prebuild"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.1.0",
+    "@react-navigation/native": "~7.1.18",
     "expo": "54.0.20",
     "expo-clipboard": "~7.1.5",
     "expo-modules-core": "~3.0.18",

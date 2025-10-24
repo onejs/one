@@ -22,7 +22,7 @@
   "dependencies": {
     "@bottom-tabs/react-navigation": "^0.9.1",
     "@dotenvx/dotenvx": "^1.12.1",
-    "@react-navigation/native": "~7.1.0",
+    "@react-navigation/native": "~7.1.18",
     "@tamagui/config": "^1.132.23",
     "@tamagui/image-next": "^1.132.23",
     "@tamagui/lucide-icons": "^1.132.23",

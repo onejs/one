@@ -149,9 +149,6 @@ export async function buildReactNative(
     entryPoints: [requireResolve('react-native')],
     format: 'cjs',
     target: 'node20',
-    // Note: JSX is actually being transformed by the "remove-flow" plugin defined underneath, not by esbuild. The following JSX options may not actually make a difference.
-    jsx: 'transform',
-    jsxFactory: 'react',
     allowOverwrite: true,
     platform: 'node',
     external,
@@ -169,8 +166,6 @@ export async function buildReactNative(
     resolveExtensions: [
       `.${platform}.js`,
       '.native.js',
-      '.native.ts',
-      '.native.tsx',
       '.js',
       '.jsx',
       '.json',
