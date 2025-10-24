@@ -11,6 +11,9 @@ ignores:
   - "react-native-gesture-handler"
   - "react-compiler-runtime"
 
+  # Imported by @react-navigation components (drawer/bottom-tabs), needed for native builds
+  - "@react-native-masked-view/masked-view"
+
   # Used in metro-config (see getViteMetroPluginOptions)
   - babel-plugin-module-resolver
 
