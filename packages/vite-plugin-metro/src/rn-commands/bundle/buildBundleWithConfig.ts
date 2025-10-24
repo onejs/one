@@ -50,6 +50,9 @@ export async function buildBundleWithConfig(
     unstable_transformProfile: args.unstableTransformProfile,
     customResolverOptions,
   }
+
+  console.info(`TODO`, config)
+  // @ts-expect-error TODO
   const server = new Server(config)
 
   if (patchServer) {

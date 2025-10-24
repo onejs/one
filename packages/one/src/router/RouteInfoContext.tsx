@@ -2,7 +2,7 @@ import type React from 'react'
 import { createContext, useRef } from 'react'
 import type { UrlObject } from './getNormalizedStatePath'
 import { useStateForPath } from '@react-navigation/core'
-import { getRouteInfo } from './router'
+import { getRouteInfo } from './getRouteInfo'
 
 export const RouteInfoContext = createContext<UrlObject | undefined>(undefined)
 

@@ -11,6 +11,11 @@
     "./examples/*",
     "./tests/*"
   ],
+  "packageManager": "yarn@4.9.2",
+  "engines": {
+    "node": "20.17.0",
+    "npm": "10.8.3"
+  },
   "scripts": {
     "build": "turbo run build --filter='*' --filter='!example/*'",
     "build:js": "yarn build --no-cache --force -- --skip-types",
@@ -78,21 +83,16 @@
     "typescript": "^5.7.3",
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
-    "vitepress": "^1.1.4",
+    "vitepress": "^1.6.4",
     "zod": "3.25.67"
-  },
-  "packageManager": "yarn@4.9.2",
-  "engines": {
-    "node": "20.17.0",
-    "npm": "10.8.3"
   },
   "profile": {
     "//": "yarn profile [name] to toggle package resolutions",
     "react-19": {
       "applied": false,
       "resolutions": {
-        "react": "19.0.0",
-        "react-dom": "19.0.0"
+        "react": "19.1.0",
+        "react-dom": "19.1.0"
       }
     },
     "react-18": {

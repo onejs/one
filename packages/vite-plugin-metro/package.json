@@ -49,17 +49,17 @@
     "clean:build": "tamagui-build clean:build"
   },
   "peerDependencies": {
-    "@expo/metro-config": "^0.19.8",
-    "expo": "53.0.20",
+    "@expo/metro-config": "^54.0.7",
+    "expo": "54.0.20",
     "metro": "^0.82",
     "metro-config": "*",
-    "react-native": "~0.79.2",
+    "react-native": "0.81.5",
     "vite": "^6.1.0"
   },
   "dependencies": {
     "@babel/core": "^7.26.8",
-    "@babel/helper-plugin-utils": "^7.26.8",
-    "@babel/types": "^7.26.8",
+    "@babel/helper-plugin-utils": "^7.27.1",
+    "@babel/types": "^7.28.5",
     "@vxrn/debug": "workspace:*",
     "babel-preset-expo": "*",
     "launch-editor": "^2.10.0",
@@ -67,15 +67,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@expo/metro-config": "^0.19.8",
-    "@react-native/dev-middleware": "~0.79.2",
+    "@expo/metro-config": "^54.0.7",
+    "@react-native/dev-middleware": "~0.79.7",
     "@tamagui/build": "^1.132.23",
     "@types/babel__helper-plugin-utils": "^7",
     "@types/node": "^22.1.0",
     "depcheck": "^1.4.7",
-    "expo": "53.0.20",
+    "expo": "54.0.20",
     "metro": "^0.82",
-    "vite": "^7.0.1"
+    "vite": "^7.1.12"
   },
   "publishConfig": {
     "access": "public"

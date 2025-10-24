@@ -29,22 +29,22 @@
   },
   "dependencies": {
     "@babel/core": "~7.26.8",
-    "@babel/plugin-transform-destructuring": "~7.25.9",
-    "@babel/plugin-transform-private-methods": "~7.25.9",
-    "@babel/plugin-transform-react-jsx": "~7.25.9",
-    "@babel/plugin-transform-regenerator": "~7.25.9",
+    "@babel/plugin-transform-destructuring": "~7.28.5",
+    "@babel/plugin-transform-private-methods": "~7.27.1",
+    "@babel/plugin-transform-react-jsx": "~7.27.1",
+    "@babel/plugin-transform-regenerator": "~7.28.4",
     "@swc/core": "^1.10.4",
     "@vxrn/utils": "workspace:*",
     "@vxrn/vite-native-client": "workspace:*",
-    "babel-plugin-react-compiler": "^19.1.0-rc.3",
+    "babel-plugin-react-compiler": "^1.0.0",
     "react-native-css-interop": "^0.1.22",
     "ts-deepmerge": "^7.0.2",
-    "vite": "^7.0.1"
+    "vite": "^7.1.12"
   },
   "devDependencies": {
     "@tamagui/build": "^1.132.23",
     "depcheck": "^1.4.7",
-    "react-native": "~0.79.2",
+    "react-native": "0.81.5",
     "rollup": "^4.29.1"
   },
   "peerDependencies": {

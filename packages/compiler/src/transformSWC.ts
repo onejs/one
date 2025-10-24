@@ -181,7 +181,7 @@ export async function transformSWC(
         if (!alreadyExported) {
           const fakeExport = `export let ${name} = {};`
           console.info(
-            ` ⚠️ Fixing non-type-specifc import in node_module, this should be fixed upstream: ${fakeExport} in ${id}`
+            ` ⚠️ Fixing non-type-specific import in node_module, this should be fixed upstream: ${fakeExport} in ${id}`
           )
           result.code += `\n${fakeExport}\n`
         }

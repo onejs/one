@@ -63,8 +63,8 @@
   "dependencies": {
     "@expo/config-plugins": "^8.0.8",
     "@hono/node-server": "^1.13.7",
-    "@react-native/dev-middleware": "^0.76.5",
-    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@react-native/dev-middleware": "^0.76.9",
+    "@rollup/plugin-node-resolve": "^15.3.1",
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
     "@vxrn/query-string": "workspace:*",
@@ -94,13 +94,13 @@
     "qrcode-terminal": "^0.12.0",
     "rollup": "^4.29.1",
     "semver": "^7.6.3",
-    "vite": "^7.0.1",
+    "vite": "^7.1.12",
     "vite-bundle-analyzer": "^0.9.4",
     "ws": "^8.18.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@react-native-community/cli": "19.0.0",
+    "@react-native-community/cli": "^20.0.2",
     "@tamagui/build": "^1.132.23",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",
