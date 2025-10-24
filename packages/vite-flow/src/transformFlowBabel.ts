@@ -4,7 +4,7 @@ import { stat } from 'node:fs/promises'
 
 export async function transformFlowBabel(
   input: string,
-  { development = false }: { development?: boolean } = {}
+  { development = false, path }: { development?: boolean; path?: string } = {}
 ) {
   let metroPresetPath = 'module:metro-react-native-babel-preset'
 
@@ -23,7 +23,7 @@ export async function transformFlowBabel(
     babel.transform(
       input,
       {
-        filename: 'file.js', // this is required for @react-native/babel-plugin-codegen to work.
+        filename: path || 'file.js', // this is required for @react-native/babel-plugin-codegen to work.
         presets: [
           [
             metroPresetPath,

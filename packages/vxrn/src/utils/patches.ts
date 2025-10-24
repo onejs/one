@@ -1,14 +1,14 @@
-import { transformFlow } from '@vxrn/vite-flow'
 import { transformSWC } from '@vxrn/compiler'
+import { transformFlowBabel } from '@vxrn/vite-flow'
 import findNodeModules from 'find-node-modules'
 import FSExtra from 'fs-extra'
 import { join } from 'node:path'
 import semver from 'semver'
 import type { UserConfig } from 'vite'
-import { builtInDepPatches } from '../patches/builtInDepPatches'
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
-import { globDir } from './globDir'
 import { deepMergeOptimizeDeps } from '../config/mergeUserConfig'
+import { builtInDepPatches } from '../patches/builtInDepPatches'
+import { globDir } from './globDir'
 
 type Strategies = 'swc' | 'flow' | 'jsx'
 
@@ -224,7 +224,7 @@ export async function applyDependencyPatches(
 
                       for (const strategy of patchDefinition) {
                         if (strategy === 'flow') {
-                          contents = await transformFlow(contents)
+                          contents = await transformFlowBabel(contents)
                         }
                         if (strategy === 'swc' || strategy === 'jsx') {
                           contents =

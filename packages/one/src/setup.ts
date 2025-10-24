@@ -14,4 +14,4 @@
 // without this you run into error loading web immediately
 // where globalThis.expo is not defined
 // @zetavg: the actual thing we need to do is maybe import and call `installExpoGlobalPolyfill`. This is currently the file that does it, so we import it.
-import 'expo-modules-core/src/polyfill/index.web.ts'
+// import 'expo-modules-core/src/polyfill/index.web.ts'

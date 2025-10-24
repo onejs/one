@@ -49,7 +49,7 @@
     "clean:build": "tamagui-build clean:build"
   },
   "peerDependencies": {
-    "@expo/metro-config": "^0.19.8",
+    "@expo/metro-config": "^54.0.7",
     "expo": "54.0.20",
     "metro": "^0.82",
     "metro-config": "*",
@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@expo/metro-config": "^0.19.8",
+    "@expo/metro-config": "^54.0.7",
     "@react-native/dev-middleware": "~0.79.2",
     "@tamagui/build": "^1.132.23",
     "@types/babel__helper-plugin-utils": "^7",

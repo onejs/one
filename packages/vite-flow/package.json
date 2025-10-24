@@ -32,8 +32,8 @@
     "@babel/plugin-transform-private-methods": "~7.25.9",
     "@react-native/babel-plugin-codegen": "^0.76.5",
     "@vxrn/resolve": "workspace:*",
-    "babel-plugin-syntax-hermes-parser": "^0.25.1",
-    "flow-remove-types": "^2.247.1",
+    "babel-plugin-syntax-hermes-parser": "^0.32.1",
+    "flow-remove-types": "^2.289.0",
     "metro-react-native-babel-preset": "^0.77.0",
     "vite": "^7.1.12"
   },
