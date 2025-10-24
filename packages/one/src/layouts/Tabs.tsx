@@ -68,7 +68,7 @@ export const Tabs = withLayoutContext<
                 Platform.OS === 'web' ? props.children : <Pressable>{props.children}</Pressable>
               return (
                 <Link
-                  {...props}
+                  {...(props as any)}
                   style={[{ display: 'flex' }, props.style]}
                   href={href}
                   asChild={Platform.OS !== 'web'}

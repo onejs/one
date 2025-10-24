@@ -39,12 +39,12 @@
     "babel-plugin-react-compiler": "^19.1.0-rc.3",
     "react-native-css-interop": "^0.1.22",
     "ts-deepmerge": "^7.0.2",
-    "vite": "^7.0.1"
+    "vite": "^7.1.12"
   },
   "devDependencies": {
     "@tamagui/build": "^1.132.23",
     "depcheck": "^1.4.7",
-    "react-native": "0.81.4",
+    "react-native": "0.81.5",
     "rollup": "^4.29.1"
   },
   "peerDependencies": {
