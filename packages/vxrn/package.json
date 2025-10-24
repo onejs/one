@@ -100,7 +100,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@react-native-community/cli": "19.0.0",
+    "@react-native-community/cli": "^20.0.2",
     "@tamagui/build": "^1.132.23",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",

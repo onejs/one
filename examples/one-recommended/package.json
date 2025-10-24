@@ -48,7 +48,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@faker-js/faker": "next",
-    "@react-native-community/cli": "19.0.0",
+    "@react-native-community/cli": "^20.0.2",
     "@tamagui/vite-plugin": "^1.132.23",
     "@types/react": "^18.3.11",
     "tsx": "^4.19.0",
