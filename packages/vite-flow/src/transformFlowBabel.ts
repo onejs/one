@@ -31,6 +31,10 @@ export async function transformFlowBabel(
               // To use the `@babel/plugin-transform-react-jsx` plugin for JSX.
               useTransformReactJSXExperimental: true,
               unstable_transformProfile: 'hermes-stable',
+              // enableBabelRuntime: false,
+              // customTransformOptions: {
+              //   unstable_preserveClasses: true,
+              // },
             },
           ],
         ],
