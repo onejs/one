@@ -16,7 +16,7 @@
     "one": "workspace:*",
     "react-native": "~0.79.2",
     "react-native-safe-area-context": "5.4.0",
-    "react-native-screens": "4.10.0"
+    "react-native-screens": "^4.18.0"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.5.38",
