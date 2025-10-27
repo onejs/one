@@ -14464,7 +14464,7 @@ __metadata:
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-svg: "npm:15.11.2"
     react-native-web: "npm:~0.20.0"
     tamagui: "npm:^1.132.23"
@@ -15811,7 +15811,7 @@ __metadata:
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-web: "npm:~0.20.0"
     vite: "npm:^7.1.12"
   languageName: unknown
@@ -15844,7 +15844,7 @@ __metadata:
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-svg: "npm:15.11.2"
     react-native-web: "npm:~0.20.0"
     tamagui: "npm:^1.132.23"
@@ -15870,7 +15870,7 @@ __metadata:
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-web: "npm:~0.20.0"
     tailwindcss: "npm:^3.4.17"
     tailwindcss-animate: "npm:^1.0.7"
@@ -15906,7 +15906,7 @@ __metadata:
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-svg: "npm:15.11.2"
     react-native-web: "npm:~0.20.0"
     tamagui: "npm:^1.132.23"
@@ -15945,7 +15945,7 @@ __metadata:
     react-native-bottom-tabs: "npm:^0.9.1"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-svg: "npm:15.11.2"
     react-native-web: "npm:~0.20.0"
     tamagui: "npm:^1.132.23"
@@ -21572,7 +21572,7 @@ __metadata:
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-svg: "npm:15.11.2"
     react-native-web: "npm:~0.20.0"
     tamagui: "npm:^1.132.23"
@@ -23462,16 +23462,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-screens@npm:4.10.0":
-  version: 4.10.0
-  resolution: "react-native-screens@npm:4.10.0"
+"react-native-screens@npm:^4.18.0":
+  version: 4.18.0
+  resolution: "react-native-screens@npm:4.18.0"
   dependencies:
     react-freeze: "npm:^1.0.0"
     warn-once: "npm:^0.1.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10/298dd76829e20949662da7c96ebc432844df035d83ee305464b8e671b85d24558c9a4b22002512b5b515ec70f006d00417bf5b3cfd047cb6babc00ccbd90ab0e
+  checksum: 10/456c18069ab8fee1d6c341d6bd13cba477fcda10f266844fb5f486ad5ac2c7336a5181956e261be010318be53585d4a72fd9bd00289117bbbdea681309de21f4
   languageName: node
   linkType: hard
 
@@ -24396,7 +24396,7 @@ __metadata:
     react-native-mmkv: "npm:^3.3.0"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-svg: "npm:15.11.2"
     react-native-web: "npm:~0.20.0"
     vite: "npm:^7.1.12"
@@ -25166,7 +25166,7 @@ __metadata:
     react: "npm:~19.0.0"
     react-native: "npm:~0.79.2"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     subset-font: "npm:^2.4.0"
     tamagui: "npm:^1.132.23"
     tsx: "npm:^4.19.0"
@@ -26171,7 +26171,7 @@ __metadata:
     one: "workspace:*"
     react-native: "npm:~0.79.2"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     vite: "npm:^7.1.12"
     vitest: "npm:^4.0.4"
     wrangler: "npm:^3.97.0"
@@ -26202,7 +26202,7 @@ __metadata:
     react-dom: "npm:~19.0.0"
     react-native: "npm:~0.79.2"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     vite: "npm:^7.1.12"
     vitest: "npm:^4.0.4"
     webdriverio: "npm:^9.5.4"
@@ -26226,7 +26226,7 @@ __metadata:
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-svg: "npm:15.11.2"
     react-native-web: "npm:~0.20.0"
     react-native-webview: "npm:^13.12.5"
@@ -26261,7 +26261,7 @@ __metadata:
     react-native-mmkv: "npm:^3.3.0"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-svg: "npm:15.11.2"
     react-native-web: "npm:~0.20.0"
     tamagui: "npm:^1.132.23"
@@ -26284,7 +26284,7 @@ __metadata:
     react-dom: "npm:~19.0.0"
     react-native: "npm:~0.79.2"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-web: "npm:~0.20.0"
     vite: "npm:^7.1.12"
   languageName: unknown
@@ -26312,7 +26312,7 @@ __metadata:
     react-native: "npm:~0.79.2"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:4.10.0"
+    react-native-screens: "npm:^4.18.0"
     react-native-svg: "npm:15.11.2"
     react-native-webview: "npm:^13.12.5"
     tamagui: "npm:^1.132.23"

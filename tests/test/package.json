@@ -53,7 +53,7 @@
     "react-native-mmkv": "^3.3.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
-    "react-native-screens": "4.10.0",
+    "react-native-screens": "^4.18.0",
     "react-native-svg": "15.11.2",
     "react-native-web": "~0.20.0",
     "tamagui": "^1.132.23"
