@@ -143,9 +143,9 @@
     "ts-pattern": "^5.6.2",
     "tsconfig-paths": "^4",
     "use-latest-callback": "^0.2.3",
-    "vite": "^7.0.1",
+    "vite": "^7.1.12",
     "vite-plugin-barrel": "^0.4.1",
-    "vite-tsconfig-paths": "^5.0.1",
+    "vite-tsconfig-paths": "^5.1.4",
     "vxrn": "workspace:*",
     "ws": "^8.18.0",
     "xxhashjs": "^0.2.2"
@@ -154,7 +154,7 @@
     "@react-navigation/native": "~7.1.0",
     "react-native": "*",
     "react-native-safe-area-context": "5.4.0",
-    "react-native-screens": "4.10.0"
+    "react-native-screens": "4.18.0"
   },
   "peerDependenciesMeta": {
     "react-native": {
@@ -173,7 +173,7 @@
     "react-native": "~0.79.2",
     "rollup": "^4.29.1",
     "typescript": "^5.7.3",
-    "vitest": "^3.2.0"
+    "vitest": "^4.0.4"
   },
   "publishConfig": {
     "access": "public"

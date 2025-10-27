@@ -1,4 +1,9 @@
-const { withPlugins, withXcodeProject, withAppBuildGradle } = require('@expo/config-plugins')
+const {
+  withPlugins,
+  withXcodeProject,
+  withAppBuildGradle,
+  withMainActivity,
+} = require('@expo/config-plugins')
 
 const plugin = (config, options = {}) => {
   return withPlugins(config, [
@@ -33,6 +38,13 @@ const plugin = (config, options = {}) => {
           config.modResults.contents
         )
         config.modResults.contents = addDepsPatchToAppBuildGradle(config.modResults.contents)
+        return config
+      },
+    ],
+    [
+      withMainActivity,
+      async (config) => {
+        config.modResults.contents = addReactNativeScreensFix(config.modResults.contents)
         return config
       },
     ],
@@ -221,4 +233,99 @@ gradle.taskGraph.whenReady { taskGraph ->
   )
 }
 
+/**
+ * Add react-native-screens Android fix to prevent crashes on Activity restarts.
+ * This fix passes null to super.onCreate() to prevent Fragment restoration issues.
+ *
+ * On Android the View state is not persisted consistently across Activity restarts,
+ * which can lead to crashes. By passing null to onCreate, we discard any saved
+ * instance state that could cause Fragment restoration issues.
+ *
+ * This fix is required for react-native-screens and is integrated directly into vxrn
+ * since we depend on react-native-screens internally.
+ *
+ * Reference: https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704067
+ */
+function addReactNativeScreensFix(input) {
+  console.info(`🔨 Ensuring react-native-screens android fix`, input)
+
+  // Determine if this is Kotlin or Java
+  const isKotlin = input.includes('.kt') || input.includes('class MainActivity : ReactActivity()')
+
+  // Check if the fix is already applied
+  if (input.includes('super.onCreate(null)')) {
+    console.info('ℹ️  Fragment crash fix already applied (super.onCreate(null))')
+    return input
+  }
+
+  if (isKotlin) {
+    // Kotlin version - replace existing super.onCreate or add new method
+    if (input.includes('super.onCreate(savedInstanceState)')) {
+      input = input.replace(
+        /super\.onCreate\(savedInstanceState\)/g,
+        `// Fragment crash fix: Pass null to onCreate to prevent Fragment restoration issues
+        // https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704067
+        super.onCreate(null)`
+      )
+      console.info('✅ Applied Fragment crash fix to MainActivity.kt (super.onCreate(null))')
+    } else if (!input.includes('onCreate')) {
+      // Need to add onCreate method for Kotlin
+      const classMatch = input.match(/class\s+MainActivity\s*:\s*ReactActivity\(\)\s*\{/)
+      if (classMatch) {
+        const classDeclarationEnd = input.indexOf('{', classMatch.index) + 1
+
+        const onCreateMethod = `
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // Fragment crash fix: Pass null to onCreate to prevent Fragment restoration issues
+        // https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704067
+        super.onCreate(null)
+    }`
+
+        input =
+          input.slice(0, classDeclarationEnd) + onCreateMethod + input.slice(classDeclarationEnd)
+        console.info('✅ Added onCreate with Fragment crash fix to MainActivity.kt')
+      }
+    }
+  } else {
+    // Java version - replace existing super.onCreate or add new method
+    if (input.includes('super.onCreate(savedInstanceState)')) {
+      input = input.replace(
+        /super\.onCreate\(savedInstanceState\)/g,
+        `// Fragment crash fix: Pass null to onCreate to prevent Fragment restoration issues
+        // https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704067
+        super.onCreate(null)`
+      )
+      console.info('✅ Applied Fragment crash fix to MainActivity.java (super.onCreate(null))')
+    } else if (!input.includes('onCreate')) {
+      // Need to add onCreate method for Java
+      // First add Bundle import if needed
+      if (!input.includes('import android.os.Bundle;')) {
+        input = input.replace(/package\s+[\w.]+;/, '$&\nimport android.os.Bundle;')
+      }
+
+      const classMatch = input.match(/public\s+class\s+MainActivity\s+extends\s+ReactActivity\s*\{/)
+      if (classMatch) {
+        const classDeclarationEnd = input.indexOf('{', classMatch.index) + 1
+
+        const onCreateMethod = `
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // Fragment crash fix: Pass null to onCreate to prevent Fragment restoration issues
+        // https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704067
+        super.onCreate(null);
+    }`
+
+        input =
+          input.slice(0, classDeclarationEnd) + onCreateMethod + input.slice(classDeclarationEnd)
+        console.info('✅ Added onCreate with Fragment crash fix to MainActivity.java')
+      }
+    }
+  }
+
+  return input
+}
+
 module.exports = plugin
+module.exports.addReactNativeScreensFix = addReactNativeScreensFix

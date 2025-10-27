@@ -46,6 +46,6 @@
     "@types/react": "^18.3.11",
     "babel-plugin-react-compiler": "^19.1.0-rc.3",
     "typescript": "^5.7.3",
-    "vite": "^7.0.1"
+    "vite": "^7.1.12"
   }
 }
