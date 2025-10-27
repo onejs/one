@@ -247,10 +247,10 @@ gradle.taskGraph.whenReady { taskGraph ->
  * Reference: https://github.com/software-mansion/react-native-screens/issues/17#issuecomment-424704067
  */
 function addReactNativeScreensFix(input) {
-  console.info(`🔨 Ensuring react-native-screens android fix`, input)
+  console.info(`🔨 Ensuring react-native-screens android fix`)
 
   // Determine if this is Kotlin or Java
-  const isKotlin = input.includes('.kt') || input.includes('class MainActivity : ReactActivity()')
+  const isKotlin = input.includes('class MainActivity : ReactActivity()')
 
   // Check if the fix is already applied
   if (input.includes('super.onCreate(null)')) {
