@@ -38,6 +38,6 @@
     "uuid": "9.0.0"
   },
   "devDependencies": {
-    "vite": "^7.0.1"
+    "vite": "^7.1.12"
   }
 }

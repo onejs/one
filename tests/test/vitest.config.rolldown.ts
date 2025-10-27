@@ -21,12 +21,7 @@ export default defineConfig({
         include: [`${testsDir}/**/*.{test,spec}.?(c|m)[jt]s?(x)`],
       }
     })(),
-    // Ensure tests run sequentially
-    poolOptions: {
-      threads: {
-        singleThread: true,
-      },
-    },
+    fileParallelism: false,
     // Add reasonable timeouts
     testTimeout: 30000,
     hookTimeout: 30000,

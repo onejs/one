@@ -41,7 +41,7 @@ Let's begin with our package.json:
     "react-native-screens": "~4.11.1"
   },
   "devDependencies": {
-    "vite": "^6.1.0"
+    "vite": "^7"
   }
 }
 ```
@@ -58,7 +58,10 @@ If using pnpm or a package manager that symlinks dependencies, you'll want to di
 One has (just a few) patches that fix dependencies. This is because the React Native ecosystem has many weirdly published packages (think JSX or Flowtype published in `.js` files, or non-standard legacy babel experimental transforms, etc). We are working with package authors to improve this, but we've found patches to be more reliable, simpler and less mysterious than other solutions.
 
 <Notice>
-  **Platform Support**: One currently doesn't support Windows or Bun with the `--bun` runtime for development. We're happy to accept contributions that add support for these platforms. For now, please use macOS or Linux with Node.js or other supported package managers.
+  **Platform Support**: One currently doesn't support Windows or Bun with the `--bun`
+  runtime for development. We're happy to accept contributions that add support for these
+  platforms. For now, please use macOS or Linux with Node.js or other supported package
+  managers.
 </Notice>
 
 ### Vite Config

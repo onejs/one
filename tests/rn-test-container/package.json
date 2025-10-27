@@ -24,10 +24,10 @@
     "react-native-screens": "4.10.0",
     "react-native-svg": "15.11.2",
     "react-native-web": "~0.20.0",
-    "vite": "^7.0.1"
+    "vite": "^7.1.12"
   },
   "devDependencies": {
-    "vitest": "^3.2.0",
+    "vitest": "^4.0.4",
     "webdriverio": "^9.5.4"
   }
 }

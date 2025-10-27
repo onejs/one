@@ -36,6 +36,6 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
-    "vite": "^7.0.1"
+    "vite": "^7.1.12"
   }
 }
