@@ -35,10 +35,10 @@
   },
   "dependencies": {
     "@react-navigation/native": "~7.1.0",
-    "@tamagui/config": "^1.132.23",
-    "@tamagui/image-next": "^1.132.23",
-    "@tamagui/lucide-icons": "^1.132.23",
-    "@tamagui/vite-plugin": "^1.132.23",
+    "@tamagui/config": "^1.135.5",
+    "@tamagui/image-next": "^1.135.5",
+    "@tamagui/lucide-icons": "^1.135.5",
+    "@tamagui/vite-plugin": "^1.135.5",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/test-package": "workspace:*",
     "expo": "53.0.20",
@@ -56,7 +56,7 @@
     "react-native-screens": "^4.18.0",
     "react-native-svg": "15.11.2",
     "react-native-web": "~0.20.0",
-    "tamagui": "^1.132.23"
+    "tamagui": "^1.135.5"
   },
   "devDependencies": {
     "@react-native-community/cli": "latest",
