@@ -286,7 +286,7 @@ function addReactNativeScreensFix(input) {
         supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
         `
           // Ensure super.onCreate uses savedInstanceState
-          const fixedSuperCall = 'super.onCreate(savedInstanceState)'
+          const fixedSuperCall = 'super.onCreate(null)'
           return withFactory + fixedSuperCall
         }
       )
@@ -302,7 +302,7 @@ function addReactNativeScreensFix(input) {
     override fun onCreate(savedInstanceState: Bundle?) {
         // react-native-screens override
         supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
-        super.onCreate(savedInstanceState)
+        super.onCreate(null)
     }`
 
         input =
