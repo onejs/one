@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@react-navigation/native": "~7.1.0",
-    "@tamagui/config": "^1.135.5",
-    "@tamagui/image-next": "^1.135.5",
-    "@tamagui/lucide-icons": "^1.135.5",
-    "@tamagui/vite-plugin": "^1.135.5",
+    "@tamagui/config": "^1.135.6",
+    "@tamagui/image-next": "^1.135.6",
+    "@tamagui/lucide-icons": "^1.135.6",
+    "@tamagui/vite-plugin": "^1.135.6",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
     "react": "~19.0.0",
@@ -30,7 +30,7 @@
     "react-native-svg": "15.11.2",
     "react-native-web": "~0.20.0",
     "react-native-webview": "^13.12.5",
-    "tamagui": "^1.135.5"
+    "tamagui": "^1.135.6"
   },
   "devDependencies": {
     "expo": "53.0.20"
