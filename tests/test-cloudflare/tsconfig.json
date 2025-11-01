@@ -37,6 +37,7 @@
       "node",
       "react",
       "vite/client",
+      "one-routes",
       "vitest/globals",
       "@cloudflare/workers-types/experimental",
       "@cloudflare/vitest-pool-workers"

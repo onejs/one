@@ -22,7 +22,8 @@
     "types": [
       "node",
       "react",
-      "vite/client"
+      "vite/client",
+      "one-routes"
     ],
     "lib": [
       "dom",
