@@ -3,20 +3,6 @@ import * as BasicTemplateSteps from './steps/one'
 
 export const templates = [
   {
-    title: `One + Zero`,
-    value: 'one-zero',
-    type: 'included-in-monorepo',
-    hidden: false,
-    repo: {
-      url: `https://github.com/onejs/one.git`,
-      sshFallback: `git@github.com:onejs/one.git`,
-      dir: [`examples`, `one-zero`],
-      branch: 'main',
-    },
-    ...BasicTemplateSteps,
-  },
-
-  {
     title: `Minimal`,
     value: 'Minimal',
     type: 'included-in-monorepo',
