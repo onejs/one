@@ -176,6 +176,16 @@ Groups are useful for a couple reasons:
 
 One generates types for your routes, so that you get type checking on a variety of things like the [Link component](/docs/components-Link).
 
-The types are automatically generated into `node_modules/@types/one-routes/index.d.ts` during development. This keeps your source directory clean and out of version control.
+The types are automatically generated into `app/routes.d.ts` during development. This file is committed to your repository and TypeScript automatically discovers it.
 
-On first run, One will automatically add `"one-routes"` to your `tsconfig.json` `types` array if one exists, ensuring TypeScript discovers the generated types. After the first `yarn dev`, you'll have full type safety for all your routes!
+You can also manually regenerate route types at any time:
+
+```bash
+yarn one generate-routes
+```
+
+If your app directory is not named `app`, you can specify it:
+
+```bash
+yarn one generate-routes --appDir=src
+```

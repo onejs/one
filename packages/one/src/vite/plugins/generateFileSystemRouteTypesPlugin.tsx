@@ -13,8 +13,8 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
 
     configureServer(server) {
       const appDir = join(process.cwd(), getRouterRootFromOneOptions(options))
-      // Generate types in node_modules/@types/one-routes to keep them out of the source tree
-      const outFile = join(process.cwd(), 'node_modules', '@types', 'one-routes', 'index.d.ts')
+      // Generate routes.d.ts inside the app directory to keep it organized
+      const outFile = join(appDir, 'routes.d.ts')
 
       const routerRoot = getRouterRootFromOneOptions(options)
 
