@@ -1,7 +1,7 @@
 import { type Browser, type BrowserContext, chromium } from 'playwright'
 import { afterAll, beforeAll, describe, expect, it, test } from 'vitest'
 
-const serverUrl = process.env.ONE_SERVER_URL
+const serverUrl = process.env.ONE_SERVER_URL!
 const isDebug = !!process.env.DEBUG
 
 let browser: Browser

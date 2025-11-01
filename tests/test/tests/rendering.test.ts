@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-const serverUrl = process.env.ONE_SERVER_URL
+const serverUrl = process.env.ONE_SERVER_URL!
 
 describe(`Rendering Tests`, () => {
   it('the root layout can insert meta and title tags', async () => {
