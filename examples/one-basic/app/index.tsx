@@ -1,4 +1,5 @@
 import { Text, View } from 'react-native'
+import { Link } from 'one'
 
 export default function Index() {
   return (
@@ -12,6 +13,9 @@ export default function Index() {
       }}
     >
       <Text>Hello world, from One</Text>
+      <Link href="/test">
+        <Text>Go to Test</Text>
+      </Link>
     </View>
   )
 }
