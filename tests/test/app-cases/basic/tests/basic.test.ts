@@ -45,6 +45,24 @@ test('middleware', async () => {
   `)
 })
 
+test('.d.ts files should not become routes', async () => {
+  // Test that test-types.d.ts doesn't become a route
+  // In prod mode, non-existent routes return 404
+  // In dev mode, they return 200 with SPA shell (client-side routing)
+  // Either way, the actual .d.ts file content should NOT be served
+
+  const page = await context.newPage()
+  await page.goto(serverUrl + '/test-types')
+
+  // The critical test: page should NOT contain the TypeScript file content
+  const content = await page.textContent('body')
+  expect(content).not.toContain('export interface TestType')
+  expect(content).not.toContain('interface TestType') // Also check without export
+  expect(content).not.toContain('.d.ts file') // From our comment in the file
+
+  await page.close()
+})
+
 async function fetchThing(path = '/', type: 'text' | 'json' | 'headers') {
   return await fetch(`${process.env.ONE_SERVER_URL}${path}`).then((res) => {
     if (type === 'headers') {

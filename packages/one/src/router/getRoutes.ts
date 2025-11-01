@@ -67,7 +67,10 @@ export function getRoutes(
 function getDirectoryTree(contextModule: One.RouteContext, options: Options) {
   const importMode = options.importMode || process.env.One_ROUTER_IMPORT_MODE
 
-  const ignoreList: RegExp[] = [/^\.\/\+html\.[tj]sx?$/] // Ignore the top level ./+html file
+  const ignoreList: RegExp[] = [
+    /^\.\/\+html\.[tj]sx?$/, // Ignore the top level ./+html file
+    /\.d\.ts$/, // Ignore TypeScript declaration files
+  ]
 
   if (options.ignore) {
     ignoreList.push(...options.ignore)

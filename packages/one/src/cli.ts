@@ -240,6 +240,24 @@ const patch = defineCommand({
   },
 })
 
+const generateRoutes = defineCommand({
+  meta: {
+    name: 'generate-routes',
+    version: version,
+    description: 'Generate route type definitions',
+  },
+  args: {
+    appDir: {
+      type: 'string',
+      description: 'Path to app directory (default: "app")',
+    },
+  },
+  async run({ args }) {
+    const { run } = await import('./cli/generateRoutes')
+    await run(args)
+  },
+})
+
 const subCommands = {
   dev,
   clean,
@@ -249,6 +267,7 @@ const subCommands = {
   'run:android': runAndroid,
   patch,
   serve: serveCommand,
+  'generate-routes': generateRoutes,
 }
 
 // workaround for having sub-commands but also positional arg for naming in the create flow

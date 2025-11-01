@@ -69,7 +69,12 @@ export function stripInvisibleSegmentsFromPath(path: string): string {
  * Match:
  *  - _layout files, +html, +not-found, string+api, etc
  *  - Routes can still use `+`, but it cannot be in the last segment.
+ *  - .d.ts files (type definition files)
  */
 export function isTypedRoute(name: string) {
-  return !name.startsWith('+') && name.match(/(_layout|[^/]*?\+[^/]*?)\.[tj]sx?$/) === null
+  return (
+    !name.startsWith('+') &&
+    !name.endsWith('.d.ts') &&
+    name.match(/(_layout|[^/]*?\+[^/]*?)\.[tj]sx?$/) === null
+  )
 }

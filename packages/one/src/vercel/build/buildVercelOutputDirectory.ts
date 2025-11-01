@@ -26,8 +26,15 @@ async function moveAllFiles(src: string, dest: string) {
 function getMiddlewaresByNamedRegex(buildInfoForWriting: One.BuildInfo) {
   return buildInfoForWriting.manifest.allRoutes
     .filter((r) => r.middlewares && r.middlewares.length > 0)
-    .map((r) => [r.namedRegex, r.middlewares!.map((m) => m.contextKey.startsWith('dist/middlewares/') ? m.contextKey.substring('dist/middlewares/'.length) : m.contextKey)])
-    .sort((a, b) => b[0].length - a[0].length);
+    .map((r) => [
+      r.namedRegex,
+      r.middlewares!.map((m) =>
+        m.contextKey.startsWith('dist/middlewares/')
+          ? m.contextKey.substring('dist/middlewares/'.length)
+          : m.contextKey
+      ),
+    ])
+    .sort((a, b) => b[0].length - a[0].length)
 }
 
 export const buildVercelOutputDirectory = async ({
@@ -113,22 +120,29 @@ export const buildVercelOutputDirectory = async ({
       join(vercelMiddlewareDir, wrappedMiddlewareEntryPointFilename)
     )
     const middlewaresByNamedRegex = getMiddlewaresByNamedRegex(buildInfoForWriting)
-    const middlewaresToVariableNameMap = middlewaresByNamedRegex.reduce((acc, [namedRegex, middlewares]) => {
-      (Array.isArray(middlewares) ? middlewares : [middlewares]).forEach(middleware => {
-        const middlewareVariableName = middleware.replace(/\.[a-z]+$/, '').replaceAll('/', '_');
-        acc[middleware] = middlewareVariableName
-      })
-      return acc
-    }, {})
+    const middlewaresToVariableNameMap = middlewaresByNamedRegex.reduce(
+      (acc, [namedRegex, middlewares]) => {
+        ;(Array.isArray(middlewares) ? middlewares : [middlewares]).forEach((middleware) => {
+          const middlewareVariableName = middleware.replace(/\.[a-z]+$/, '').replaceAll('/', '_')
+          acc[middleware] = middlewareVariableName
+        })
+        return acc
+      },
+      {}
+    )
     await FSExtra.writeFile(
       wrappedMiddlewareEntryPointPath,
       `
 const middlewaresByNamedRegex = ${JSON.stringify(middlewaresByNamedRegex)}
-${Object.entries(middlewaresToVariableNameMap).map(([path, variableName]) => `import ${variableName} from './${path}'`).join('\n')}
+${Object.entries(middlewaresToVariableNameMap)
+  .map(([path, variableName]) => `import ${variableName} from './${path}'`)
+  .join('\n')}
 
 function getMiddleware(path) {
   switch (path){
-      ${Object.entries(middlewaresToVariableNameMap).map(([path, variableName]) => `case '${path}': return ${variableName}`).join('\n')}
+      ${Object.entries(middlewaresToVariableNameMap)
+        .map(([path, variableName]) => `case '${path}': return ${variableName}`)
+        .join('\n')}
       default: return null
   }
 }
