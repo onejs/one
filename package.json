@@ -11,6 +11,12 @@
     "./examples/*",
     "./tests/*"
   ],
+  "resolutionsComments": {
+    "react-native-reanimated": "i loosened up so end-users can use v4 easily but until we get to new RN leaving on old version"
+  },
+  "resolutions": {
+    "react-native-reanimated": "3.17.4"
+  },
   "scripts": {
     "build": "turbo run build --filter='*' --filter='!example/*'",
     "build:js": "yarn build --no-cache --force -- --skip-types",
