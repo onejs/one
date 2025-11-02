@@ -1,5 +1,5 @@
 import babel from '@babel/core'
-import { resolvePath } from '@vxrn/utils'
+import { createDebugger, resolvePath } from '@vxrn/utils'
 import { relative } from 'node:path'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
@@ -238,8 +238,9 @@ function shouldBabelReanimated({ code, id }: Props) {
     return false
   }
   if (!REANIMATED_IGNORED_PATHS_REGEX.test(id) && REANIMATED_REGEX.test(code)) {
-    // console.info(` 🪄 [reanimated] ${relative(process.cwd(), id)}`)
+    debug?.(` 🪄 [reanimated] ${relative(process.cwd(), id)}`)
     return true
   }
+  debug?.(` not using reanimated ${relative(process.cwd(), id)}`)
   return false
 }

@@ -137,9 +137,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
       include: depsToOptimize,
       exclude: ['util', '@swc/wasm', '@swc/core-darwin-arm64', 'moti/author'],
       needsInterop,
-      // TODO this should go away! native doesnt want this
       esbuildOptions: {
-        target: 'esnext',
         resolveExtensions: webExtensions,
       },
     } satisfies UserConfig['optimizeDeps'],
