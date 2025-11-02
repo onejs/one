@@ -1,9 +1,10 @@
 import MaskedView from '@react-native-masked-view/masked-view'
+import { View } from '@rn-primitives/slot'
 import * as Sentry from '@sentry/react-native'
 import { FlashList } from '@shopify/flash-list'
 import { Path } from 'react-native-svg'
 import WebView from 'react-native-webview'
-import { View } from '@rn-primitives/slot'
+import * as Worklets from 'react-native-worklets'
 
 function ensureExists(name: string, x: any) {
   if (!x) {
@@ -11,6 +12,7 @@ function ensureExists(name: string, x: any) {
   }
 }
 
+ensureExists('react-native-worklets', Worklets)
 ensureExists('@rn-primitives/slot', View)
 ensureExists('react-native-svg', Path)
 ensureExists('@react-native-masked-view/masked-view', MaskedView)

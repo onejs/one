@@ -206,7 +206,9 @@ ${rootJS.code}
           return cached.out
         }
 
-        const extension = extname(_id)
+        let id = _id.split('?')[0]
+
+        const extension = extname(id)
 
         if (extension === '.css') {
           // handled in one:compiler-css-to-js
@@ -216,8 +218,6 @@ ${rootJS.code}
         if (!validParsers.has(extension)) {
           return
         }
-
-        let id = _id.split('?')[0]
 
         // pre process = hmr just are removing jsx but leaving imports as esm
         const isPreProcess = id.startsWith(`vxrn-swc-preprocess:`)
