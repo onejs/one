@@ -1,6 +1,6 @@
 {
   "name": "expo-blank-with-vite-metro",
-  "version": "1.1.544",
+  "version": "1.1.545",
   "private": true,
   "scripts": {
     "dev": "vite dev --host",
