@@ -10771,7 +10771,6 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.28.5"
     "@babel/plugin-transform-destructuring": "npm:^7.28.5"
-    "@babel/plugin-transform-private-methods": "npm:^7.27.1"
     "@babel/plugin-transform-react-jsx": "npm:^7.27.1"
     "@babel/plugin-transform-regenerator": "npm:^7.28.4"
     "@swc/core": "npm:^1.10.4"

@@ -26,7 +26,6 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
 }
 
 const getOptions = (props: Props, force = false): babel.TransformOptions | null => {
-  const presets: string[] = []
   let plugins: babel.PluginItem[] = []
 
   if (force || shouldBabelGenerators(props)) {
@@ -48,7 +47,7 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
   }
 
   if (enableNativewind || shouldBabelReanimated(props)) {
-    debug?.(`Using babel reanimated on file`)
+    debug?.(`Using babel reanimated on file ${props.id}`)
     plugins.push(
       // TODO make this configurable
       process.env.VXRN_WORKLET_PLUGIN
@@ -67,8 +66,8 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
     plugins.push('@react-native/babel-plugin-codegen')
   }
 
-  if (plugins.length || presets.length) {
-    return { plugins, presets }
+  if (plugins.length) {
+    return { plugins }
   }
 
   return null
@@ -79,43 +78,39 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
  */
 export async function transformBabel(id: string, code: string, options: babel.TransformOptions) {
   const compilerPlugin = options.plugins?.find((x) => x && x[0] === 'babel-plugin-react-compiler')
+  const extension = extname(id)
+  const isTSX = extension === '.tsx'
+  const isTS = isTSX || extension === '.ts'
+  const babelOptions = {
+    filename: id,
+    compact: false,
+    babelrc: false,
+    configFile: false,
+    sourceMaps: false,
+    minified: false,
+    ...options,
+    presets: [
+      isTS
+        ? [
+            '@babel/preset-typescript',
+            {
+              isTSX,
+              allExtensions: isTSX,
+            },
+          ]
+        : '',
+      ...(options.presets || []),
+    ].filter(Boolean),
+  }
 
   try {
-    const extension = extname(id)
-    const isTSX = extension === '.tsx'
-    const isTS = isTSX || extension === '.ts'
-
     const out = await new Promise<babel.BabelFileResult>((res, rej) => {
-      babel.transform(
-        code,
-        {
-          filename: id,
-          compact: false,
-          babelrc: false,
-          configFile: false,
-          sourceMaps: false,
-          minified: false,
-          ...options,
-          presets: [
-            isTS
-              ? [
-                  '@babel/preset-typescript',
-                  {
-                    isTSX,
-                    allExtensions: isTSX,
-                  },
-                ]
-              : '',
-            ...(options.presets || []),
-          ].filter(Boolean),
-        },
-        (err: any, result) => {
-          if (!result || err) {
-            return rej(err || 'no res')
-          }
-          res(result!)
+      babel.transform(code, babelOptions, (err: any, result) => {
+        if (!result || err) {
+          return rej(err || 'no res')
         }
-      )
+        res(result!)
+      })
     })
 
     if (
@@ -130,7 +125,7 @@ export async function transformBabel(id: string, code: string, options: babel.Tr
 
     return out
   } catch (err) {
-    console.error(`[vxrn:compiler] babel transform error`, err)
+    console.error(`[vxrn:compiler] babel transform error`, err, `with options`, babelOptions)
     console.error('code', code)
     console.error('id', id)
   }
@@ -188,7 +183,7 @@ const shouldBabelReactCompiler = (props: Props) => {
       return false
     }
   }
-  if (!/.*(.tsx?)$/.test(props.id)) return false
+  if (!/(\.tsx?)$/.test(props.id)) return false
   // disable node modules for now...
   if (props.id.includes('node_modules')) return false
   // we had OG image generation on the server using react, this fixes a bug because compiler breaks @vercel/og
