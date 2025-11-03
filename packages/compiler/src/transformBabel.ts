@@ -93,7 +93,7 @@ export async function transformBabel(id: string, code: string, options: babel.Tr
           compact: false,
           babelrc: false,
           configFile: false,
-          sourceMaps: true,
+          sourceMaps: false,
           minified: false,
           ...options,
           presets: [
