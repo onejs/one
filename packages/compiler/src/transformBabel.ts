@@ -100,11 +100,10 @@ export async function transformBabel(id: string, code: string, options: babel.Tr
             isTS
               ? [
                   '@babel/preset-typescript',
-                  [
-                    {
-                      isTSX,
-                    },
-                  ],
+                  {
+                    isTSX,
+                    allExtensions: isTSX,
+                  },
                 ]
               : '',
             ...(options.presets || []),
