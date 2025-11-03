@@ -57,9 +57,9 @@
     "vite": "*"
   },
   "dependencies": {
-    "@babel/core": "^7.26.8",
-    "@babel/helper-plugin-utils": "^7.26.8",
-    "@babel/types": "^7.26.8",
+    "@babel/core": "^7.28.5",
+    "@babel/helper-plugin-utils": "^7.27.1",
+    "@babel/types": "^7.28.5",
     "@vxrn/debug": "workspace:*",
     "babel-preset-expo": "*",
     "launch-editor": "^2.10.0",
