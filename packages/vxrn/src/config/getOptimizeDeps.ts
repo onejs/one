@@ -15,6 +15,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
 
     'secure-json-parse',
 
+    '@react-native/normalize-colors',
     '@vxrn/safe-area',
     '@vxrn/vendor/react-19-prod',
     '@vxrn/vendor/react-19',

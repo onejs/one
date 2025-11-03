@@ -1,13 +1,18 @@
-import { clearCompilerCache, configureVXRNCompilerPlugin } from '@vxrn/compiler'
+import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
+import type {
+  ExpoManifestRequestHandlerPluginPluginOptions,
+  MetroPluginOptions,
+} from '@vxrn/vite-plugin-metro'
 import events from 'node:events'
 import path from 'node:path'
-import type { Plugin, PluginOption, UserConfig } from 'vite'
+import type { Plugin, PluginOption } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { autoDepOptimizePlugin, getOptimizeDeps, getOptionsFilled, loadEnv } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
+import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
 import '../polyfills-server'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { ensureTSConfig } from './ensureTsConfig'
@@ -20,11 +25,6 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import type { One } from './types'
-import type {
-  ExpoManifestRequestHandlerPluginPluginOptions,
-  MetroPluginOptions,
-} from '@vxrn/vite-plugin-metro'
-import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
 
 type MetroOptions = MetroPluginOptions
 
@@ -115,8 +115,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       return []
     }
   }
-
-  clearCompilerCache()
 
   // ensure tsconfig
   if (options.config?.ensureTSConfig !== false) {
