@@ -107,6 +107,10 @@ export namespace One {
      */
     transform?: GetTransform
 
+    // compiler?: {
+    //   workletTransform?: 'reanimated' | 'worklets'
+    // }
+
     router?: {
       /**
        * An array of globs that One uses to ignore files in your routes directory. If a file matches any pattern, it will not be treated as a route.

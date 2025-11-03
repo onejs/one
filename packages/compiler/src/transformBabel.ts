@@ -1,6 +1,6 @@
 import babel from '@babel/core'
-import { createDebugger, resolvePath } from '@vxrn/utils'
-import { relative } from 'node:path'
+import { resolvePath } from '@vxrn/utils'
+import { extname, relative } from 'node:path'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
 import type { GetTransformProps, GetTransformResponse } from './types'
@@ -49,7 +49,12 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
 
   if (enableNativewind || shouldBabelReanimated(props)) {
     debug?.(`Using babel reanimated on file`)
-    plugins.push('react-native-reanimated/plugin')
+    plugins.push(
+      // TODO make this configurable
+      process.env.VXRN_WORKLET_PLUGIN
+        ? 'react-native-worklets/plugin'
+        : 'react-native-reanimated/plugin'
+    )
   }
 
   if (shouldBabelReactCompiler(props)) {
@@ -75,39 +80,61 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
 export async function transformBabel(id: string, code: string, options: babel.TransformOptions) {
   const compilerPlugin = options.plugins?.find((x) => x && x[0] === 'babel-plugin-react-compiler')
 
-  const out = await new Promise<babel.BabelFileResult>((res, rej) => {
-    babel.transform(
-      code,
-      {
-        filename: id,
-        compact: false,
-        babelrc: false,
-        configFile: false,
-        sourceMaps: true,
-        minified: false,
-        ...options,
-        presets: ['@babel/preset-typescript', ...(options.presets || [])],
-      },
-      (err: any, result) => {
-        if (!result || err) {
-          return rej(err || 'no res')
+  try {
+    const extension = extname(id)
+    const isTSX = extension === '.tsx'
+    const isTS = isTSX || extension === '.ts'
+
+    const out = await new Promise<babel.BabelFileResult>((res, rej) => {
+      babel.transform(
+        code,
+        {
+          filename: id,
+          compact: false,
+          babelrc: false,
+          configFile: false,
+          sourceMaps: true,
+          minified: false,
+          ...options,
+          presets: [
+            isTS
+              ? [
+                  '@babel/preset-typescript',
+                  [
+                    {
+                      isTSX,
+                    },
+                  ],
+                ]
+              : '',
+            ...(options.presets || []),
+          ].filter(Boolean),
+        },
+        (err: any, result) => {
+          if (!result || err) {
+            return rej(err || 'no res')
+          }
+          res(result!)
         }
-        res(result!)
-      }
-    )
-  })
+      )
+    })
 
-  if (
-    compilerPlugin &&
-    // TODO this detection could be a lot faster
-    out.code?.includes(
-      compilerPlugin[1] === '18' ? `react-compiler-runtime` : `react/compiler-runtime`
-    )
-  ) {
-    console.info(` 🪄 [compiler] ${relative(process.cwd(), id)}`)
+    if (
+      compilerPlugin &&
+      // TODO this detection could be a lot faster
+      out.code?.includes(
+        compilerPlugin[1] === '18' ? `react-compiler-runtime` : `react/compiler-runtime`
+      )
+    ) {
+      console.info(` 🪄 [compiler] ${relative(process.cwd(), id)}`)
+    }
+
+    return out
+  } catch (err) {
+    console.error(`[vxrn:compiler] babel transform error`, err)
+    console.error('code', code)
+    console.error('id', id)
   }
-
-  return out
 }
 
 const getBasePlugins = ({ development }: Props) =>
