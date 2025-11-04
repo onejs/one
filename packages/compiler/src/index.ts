@@ -15,23 +15,164 @@ import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, GetTransformProps, Options } from './types'
-import { createHash } from 'node:crypto'
 
 export * from './configure'
 export * from './transformBabel'
 export * from './transformSWC'
 export type { GetTransform } from './types'
 
-const getCacheId = (environment: string, id: string) => `${environment}${id}`
-const getCacheHash = (code: string) => createHash('sha1').update(code).digest('base64')
+// Shared Babel transform logic
+async function performBabelTransform({
+  id,
+  code,
+  environment,
+  production,
+  reactForRNVersion,
+  optionsIn,
+}: {
+  id: string
+  code: string
+  environment: Environment
+  production: boolean
+  reactForRNVersion: '18' | '19'
+  optionsIn?: Partial<Options>
+}) {
+  const transformProps: GetTransformProps = {
+    id,
+    code,
+    development: !production,
+    environment,
+    reactForRNVersion,
+  }
 
-export const clearCompilerCache = () => {
-  memoryCache = {}
-  cacheSize = 0
+  const userTransform = optionsIn?.transform?.(transformProps)
+
+  if (userTransform === false) {
+    return null
+  }
+
+  const isPreProcess = id.startsWith(`vxrn-swc-preprocess:`)
+
+  if (!isPreProcess && userTransform !== 'swc') {
+    const babelOptions = getBabelOptions({
+      ...transformProps,
+      userSetting: userTransform,
+    })
+
+    if (babelOptions) {
+      const babelOut = await transformBabel(id, code, babelOptions)
+      if (babelOut?.code) {
+        debug?.(`[babel] ${id}`)
+        return { code: babelOut.code, map: babelOut.map }
+      }
+    }
+  }
+
+  return null
 }
 
-let memoryCache: Record<string, { hash: string; out: { code: string; map?: any } }> = {}
-let cacheSize = 0
+// Full transform (Babel + SWC) for Vite transform hook
+async function performFullTransform({
+  codeIn,
+  _id,
+  environment,
+  production,
+  reactForRNVersion,
+  optionsIn,
+  mode,
+}: {
+  codeIn: string
+  _id: string
+  environment: Environment
+  production: boolean
+  reactForRNVersion: '18' | '19'
+  optionsIn?: Partial<Options>
+  mode: 'serve' | 'build'
+}) {
+  const shouldDebug = process.env.NODE_ENV === 'development' && codeIn.startsWith('// debug')
+
+  if (shouldDebug) {
+    console.info(`[one] ${_id} input:`)
+    console.info(codeIn)
+  }
+
+  let id = _id.split('?')[0]
+
+  const extension = extname(id)
+
+  if (extension === '.css') {
+    return
+  }
+
+  if (!validParsers.has(extension)) {
+    return
+  }
+
+  // Skip node_modules to avoid double-processing files already handled by optimizeDeps
+  if (id.includes('node_modules')) {
+    debug?.(`[skip node_modules] ${id}`)
+    return
+  }
+
+  const isPreProcess = id.startsWith(`vxrn-swc-preprocess:`)
+  if (isPreProcess) {
+    id = id.replace(`vxrn-swc-preprocess:`, '')
+  }
+
+  if (id.includes(`virtual:`)) {
+    return
+  }
+
+  let code = codeIn
+  let out: {
+    code: string
+    map: any
+  } | null = null
+
+  // Try Babel first
+  const babelResult = await performBabelTransform({
+    id,
+    code,
+    environment,
+    production,
+    reactForRNVersion,
+    optionsIn,
+  })
+
+  if (babelResult) {
+    out = babelResult
+    code = babelResult.code
+  }
+
+  // Always run SWC for class transforms + react refresh
+  const swcOptions = {
+    environment,
+    mode: optionsIn?.mode || mode,
+    production,
+    ...optionsIn,
+  } satisfies Options
+
+  const swcOut = await transformSWC(id, code, {
+    es5: true,
+    noHMR: isPreProcess || environment === 'ssr',
+    ...swcOptions,
+  })
+
+  if (swcOut) {
+    debug?.(`[swc] ${id}`)
+    out = {
+      code: swcOut.code,
+      map: swcOut.map,
+    }
+  }
+
+  if (shouldDebug) {
+    console.info(`swcOptions`, swcOptions)
+    console.info(`final output:`, out?.code)
+  }
+
+  return out
+}
 
 export async function createVXRNCompilerPlugin(
   optionsIn?: Partial<Options>
@@ -141,21 +282,72 @@ ${rootJS.code}
       enforce: 'pre',
 
       config: () => {
-        const config = {
-          esbuild: false,
-          optimizeDeps: {
-            noDiscovery: true,
-          },
+        const createEnvironmentConfig = (environment: Environment) => {
+          return {
+            optimizeDeps: {
+              esbuildOptions: {
+                plugins: [
+                  {
+                    name: `transform-before-optimize-deps-${environment}`,
+                    setup(build) {
+                      build.onLoad(
+                        { filter: /node_modules\/.*\.(tsx?|jsx?|mjs|cjs)$/ },
+                        async (args) => {
+                          const production = process.env.NODE_ENV === 'production'
+                          const code = await readFile(args.path, 'utf-8')
 
-          define: {
-            'process.env.NATIVEWIND_OS': 'native',
-          },
-        } satisfies UserConfig
+                          debug?.(`[esbuild optimizeDeps] ${args.path}`)
+
+                          const result = await performBabelTransform({
+                            id: args.path,
+                            code,
+                            environment,
+                            production,
+                            reactForRNVersion,
+                            optionsIn,
+                          })
+
+                          if (!result) {
+                            return null
+                          }
+
+                          // Determine loader based on file extension
+                          const ext = extname(args.path)
+                          const loader =
+                            ext === '.tsx'
+                              ? 'tsx'
+                              : ext === '.ts'
+                                ? 'ts'
+                                : ext === '.jsx'
+                                  ? 'jsx'
+                                  : 'js'
+
+                          return {
+                            contents: result.code,
+                            loader,
+                          }
+                        }
+                      )
+                    },
+                  },
+                ],
+              },
+            },
+
+            define: {
+              'process.env.NATIVEWIND_OS': JSON.stringify(
+                environment === 'ios' || environment === 'android' ? 'native' : 'web'
+              ),
+            },
+          } satisfies UserConfig
+        }
 
         return {
           environments: {
-            ios: config,
-            android: config,
+            ios: createEnvironmentConfig('ios'),
+            android: createEnvironmentConfig('android'),
+            client: createEnvironmentConfig('client'),
+            ssr: createEnvironmentConfig('ssr'),
           },
         }
       },
@@ -190,119 +382,15 @@ ${rootJS.code}
           return code
         }
 
-        const shouldDebug = process.env.NODE_ENV === 'development' && codeIn.startsWith('// debug')
-
-        if (shouldDebug) {
-          console.info(`[one] ${_id} input:`)
-          console.info(codeIn)
-        }
-
-        const cacheId = getCacheId(environment, _id)
-        const cacheHash = getCacheHash(code)
-        const cached = memoryCache[cacheId]
-
-        if (cached?.hash === cacheHash) {
-          debug?.(`Using cache ${_id} ${cacheId}`)
-          return cached.out
-        }
-
-        const extension = extname(_id)
-
-        if (extension === '.css') {
-          // handled in one:compiler-css-to-js
-          return
-        }
-
-        if (!validParsers.has(extension)) {
-          return
-        }
-
-        let id = _id.split('?')[0]
-
-        // pre process = hmr just are removing jsx but leaving imports as esm
-        const isPreProcess = id.startsWith(`vxrn-swc-preprocess:`)
-        if (isPreProcess) {
-          id = id.replace(`vxrn-swc-preprocess:`, '')
-        }
-
-        if (id.includes(`virtual:`)) {
-          return
-        }
-
-        const transformProps: GetTransformProps = {
-          id,
-          code,
-          development: !production,
+        return performFullTransform({
+          codeIn,
+          _id,
           environment,
-          reactForRNVersion,
-        }
-
-        const userTransform = optionsIn?.transform?.(transformProps)
-
-        if (userTransform === false) {
-          return
-        }
-
-        let out: {
-          code: string
-          map: any
-        } | null = null
-
-        if (!isPreProcess && userTransform !== 'swc') {
-          const babelOptions = getBabelOptions({
-            ...transformProps,
-            userSetting: userTransform,
-          })
-
-          if (babelOptions) {
-            const babelOut = await transformBabel(id, code, babelOptions)
-            if (babelOut?.code) {
-              debug?.(`[${id}] transformed with babel options: ${JSON.stringify(babelOptions)}`)
-              // TODO we may want to just avoid SWC after babel it likely is faster
-              // we'd need to have metro or metro-like preset
-              out = { code: babelOut.code, map: babelOut.map }
-            }
-          }
-        }
-
-        // on native we always go to swc for now to ensure class transforms + react refesh
-        // we could make the babel plugin support those if we want to avoid
-        const swcOptions = {
-          environment,
-          mode: optionsIn?.mode || config.command,
           production,
-          ...optionsIn,
-        } satisfies Options
-
-        const swcOut = await transformSWC(id, out?.code || code, {
-          es5: true,
-          // dont need refresh for ssr, but do for client
-          noHMR: isPreProcess || environment === 'ssr',
-          ...swcOptions,
+          reactForRNVersion,
+          optionsIn,
+          mode: config.command,
         })
-
-        if (swcOut) {
-          out = {
-            code: swcOut?.code,
-            map: swcOut?.map,
-          }
-        }
-
-        if (shouldDebug) {
-          console.info(`swcOptions`, swcOptions)
-          console.info(`final output:`, out?.code)
-        }
-
-        if (out) {
-          cacheSize += out?.code.length
-          // ~100Mb cache for recent compiler files
-          if (cacheSize > 52_428_800) {
-            clearCompilerCache()
-          }
-          memoryCache[cacheId] = { out, hash: cacheHash }
-        }
-
-        return out
       },
     },
   ]

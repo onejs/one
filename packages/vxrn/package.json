@@ -1,6 +1,6 @@
 {
   "name": "vxrn",
-  "version": "1.1.535",
+  "version": "1.1.547",
   "sideEffects": false,
   "type": "module",
   "exports": {
@@ -95,13 +95,13 @@
     "rollup": "^4.29.1",
     "semver": "^7.6.3",
     "vite": "^7.1.12",
-    "vite-bundle-analyzer": "^0.9.4",
+    "vite-bundle-analyzer": "^1.2.3",
     "ws": "^8.18.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@react-native-community/cli": "^20.0.2",
-    "@tamagui/build": "^1.132.23",
+    "@tamagui/build": "^1.135.7",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^22.1.0",
     "@types/qrcode-terminal": "^0",

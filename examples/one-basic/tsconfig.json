@@ -31,5 +31,8 @@
     "**/dist",
     "**/types",
     "**/__tests__"
-  ]
+  ],
+  "typeAcquisition": {
+    "enable": true
+  },
 }

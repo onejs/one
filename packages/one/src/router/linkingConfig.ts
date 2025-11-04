@@ -4,15 +4,15 @@ import type { RouteNode } from './Route'
 
 let linkingConfig: OneLinkingOptions | undefined
 
-export function getLinkingConfig() {
+export function getLinking() {
   return linkingConfig
 }
 
-export function setLinkingConfig(_: OneLinkingOptions) {
+export function setLinking(_: OneLinkingOptions) {
   linkingConfig = _
 }
 
-export function resetLinkingConfig() {
+export function resetLinking() {
   linkingConfig = undefined
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "rn-test-container",
-  "version": "1.1.535",
+  "version": "1.1.547",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
     "prebuild:native": "one prebuild"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.1.18",
+    "@react-navigation/native": "^7.1.19",
     "expo": "54.0.20",
     "expo-clipboard": "~7.1.5",
     "expo-modules-core": "~3.0.18",
@@ -28,7 +28,7 @@
     "vite": "^7.1.12"
   },
   "devDependencies": {
-    "vitest": "^4.0.2",
+    "vitest": "^4.0.6",
     "webdriverio": "^9.5.4"
   }
 }

@@ -20,7 +20,7 @@ import type { UrlObject } from './getNormalizedStatePath'
 import { getRouteInfo } from './getRouteInfo'
 import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
-import { getLinkingConfig, resetLinkingConfig, setupLinking } from './linkingConfig'
+import { getLinking, resetLinking, setupLinking } from './linkingConfig'
 import type { RouteNode } from './Route'
 import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
@@ -75,7 +75,7 @@ function cleanUpState() {
   rootState = undefined
   nextState = undefined
   routeInfo = undefined
-  resetLinkingConfig()
+  resetLinking()
   navigationRefSubscription?.()
   rootStateSubscribers.clear()
   storeSubscribers.clear()
@@ -269,7 +269,7 @@ function getSnapshot() {
     linkTo,
     routeNode,
     rootComponent,
-    linking: getLinkingConfig(),
+    linking: getLinking(),
     hasAttemptedToHideSplash,
     initialState,
     rootState,
@@ -380,7 +380,7 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
     )
   }
 
-  const linking = getLinkingConfig()
+  const linking = getLinking()
 
   if (!linking) {
     throw new Error('Attempted to link to route when no routes are present')

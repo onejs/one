@@ -8,7 +8,6 @@ import { useColorScheme } from '@vxrn/universal-color-scheme'
 import {
   createContext,
   StrictMode,
-  Suspense,
   useContext,
   useId,
   useLayoutEffect,
@@ -19,10 +18,11 @@ import {
 import { SERVER_CONTEXT_KEY } from './constants'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
 import { getURL } from './getURL'
+import { FlagsContext } from './router/FlagsContext'
+import { getLinking } from './router/linkingConfig'
 import { ServerLocationContext } from './router/serverLocationContext'
 import { useInitializeOneRouter } from './router/useInitializeOneRouter'
 import { useViteRoutes } from './router/useViteRoutes'
-import { FlagsContext } from './router/FlagsContext'
 import type { GlobbedRouteImports } from './types'
 import { ServerRenderID } from './useServerHeadInsertion'
 import { PreloadLinks } from './views/PreloadLinks'
@@ -97,7 +97,7 @@ export function Root(props: RootProps) {
         <UpstreamNavigationContainer
           ref={store.navigationRef}
           initialState={store.initialState}
-          linking={store.linking}
+          linking={getLinking()}
           onUnhandledAction={onUnhandledAction}
           theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
           documentTitle={{

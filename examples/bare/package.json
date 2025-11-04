@@ -1,6 +1,6 @@
 {
   "name": "example-bare",
-  "version": "1.1.535",
+  "version": "1.1.547",
   "private": true,
   "type": "module",
   "main": "index.js",
@@ -21,7 +21,7 @@
     "react-native": "0.81.5"
   },
   "devDependencies": {
-    "@babel/core": "~7.26.8",
+    "@babel/core": "^7.28.5",
     "@babel/preset-env": "~7.28.5",
     "@babel/runtime": "~7.28.4",
     "@react-native-community/cli": "^20.0.2",

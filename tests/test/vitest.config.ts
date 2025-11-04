@@ -22,12 +22,7 @@ export default defineConfig({
       }
     })(),
     // Ensure tests run sequentially
-    // @ts-expect-error - poolOptions exists but is not in the type definition
-    poolOptions: {
-      threads: {
-        singleThread: true,
-      },
-    },
+    fileParallelism: false,
     // Add reasonable timeouts
     testTimeout: 30000,
     hookTimeout: 30000,

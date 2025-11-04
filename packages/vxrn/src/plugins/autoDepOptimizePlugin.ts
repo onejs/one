@@ -20,7 +20,8 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
   return {
     name,
     enforce: 'pre',
-    config(_cfg, env) {
+
+    async config(_cfg, env) {
       debug?.('Config hook called')
 
       // TODO not use global here we should move deps into vxrn
@@ -35,11 +36,17 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
 
       const userExcludes = Array.isArray(props.exclude) ? props.exclude : [props.exclude]
 
-      return getScannedOptimizeDepsConfig({
+      const finalConfig = await getScannedOptimizeDepsConfig({
         ...props,
         mode: env.mode,
         exclude: [...exclude, ...userExcludes].filter(Boolean),
       })
+
+      debugDetails?.(
+        `Final auto-dep-optimize config: ${JSON.stringify(finalConfig, null, 2)}\nfrom props: ${JSON.stringify(props)}`
+      )
+
+      return finalConfig
     },
   } satisfies Plugin
 }

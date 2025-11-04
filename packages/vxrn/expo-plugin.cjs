@@ -1,4 +1,9 @@
-const { withPlugins, withXcodeProject, withAppBuildGradle } = require('@expo/config-plugins')
+const {
+  withPlugins,
+  withXcodeProject,
+  withAppBuildGradle,
+  withMainActivity,
+} = require('@expo/config-plugins')
 
 const plugin = (config, options = {}) => {
   return withPlugins(config, [
@@ -33,6 +38,13 @@ const plugin = (config, options = {}) => {
           config.modResults.contents
         )
         config.modResults.contents = addDepsPatchToAppBuildGradle(config.modResults.contents)
+        return config
+      },
+    ],
+    [
+      withMainActivity,
+      async (config) => {
+        config.modResults.contents = addReactNativeScreensFix(config.modResults.contents)
         return config
       },
     ],
@@ -221,4 +233,140 @@ gradle.taskGraph.whenReady { taskGraph ->
   )
 }
 
+/**
+ * Add react-native-screens Android fix to prevent crashes on Activity restarts.
+ * This sets up RNScreensFragmentFactory to handle fragment restoration properly.
+ *
+ * On Android the View state is not persisted consistently across Activity restarts,
+ * which can lead to crashes. By setting the fragment factory, we ensure proper
+ * handling of fragment state restoration.
+ *
+ * This fix is required for react-native-screens and is integrated directly into vxrn
+ * since we depend on react-native-screens internally.
+ *
+ * Reference: https://github.com/software-mansion/react-native-screens#android
+ */
+function addReactNativeScreensFix(input) {
+  console.info(`🔨 Ensuring react-native-screens android fix`)
+
+  // Determine if this is Kotlin or Java
+  const isKotlin = input.includes('class MainActivity : ReactActivity()')
+
+  // Check if the RNScreensFragmentFactory fix is already applied
+  if (input.includes('RNScreensFragmentFactory')) {
+    console.info('ℹ️  react-native-screens fix already applied (RNScreensFragmentFactory)')
+    return input
+  }
+
+  if (isKotlin) {
+    // Kotlin version
+    // Add necessary imports
+    if (!input.includes('import android.os.Bundle')) {
+      input = input.replace(/package\s+[\w.]+/, '$&\nimport android.os.Bundle')
+    }
+    if (
+      !input.includes(
+        'import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory'
+      )
+    ) {
+      input = input.replace(
+        /package\s+[\w.]+/,
+        '$&\nimport com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory'
+      )
+    }
+
+    // Check if onCreate exists and update it, or add new onCreate
+    if (input.includes('super.onCreate(')) {
+      // Insert fragment factory setup before super.onCreate and ensure savedInstanceState is passed
+      input = input.replace(
+        /(override\s+fun\s+onCreate\([^)]*\)\s*\{[^}]*?)(super\.onCreate\([^)]*\))/,
+        (match, beforeSuper, superCall) => {
+          // Add fragment factory before super.onCreate
+          const withFactory = `${beforeSuper}// react-native-screens override
+        supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
+        `
+          // Ensure super.onCreate uses savedInstanceState
+          const fixedSuperCall = 'super.onCreate(null)'
+          return withFactory + fixedSuperCall
+        }
+      )
+      console.info('✅ Updated onCreate with react-native-screens fix in MainActivity.kt')
+    } else {
+      // Add new onCreate method
+      const classMatch = input.match(/class\s+MainActivity\s*:\s*ReactActivity\(\)\s*\{/)
+      if (classMatch) {
+        const classDeclarationEnd = input.indexOf('{', classMatch.index) + 1
+
+        const onCreateMethod = `
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // react-native-screens override
+        supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
+        super.onCreate(null)
+    }`
+
+        input =
+          input.slice(0, classDeclarationEnd) + onCreateMethod + input.slice(classDeclarationEnd)
+        console.info('✅ Added onCreate with react-native-screens fix to MainActivity.kt')
+      }
+    }
+  } else {
+    // Java version
+    // Add necessary imports
+    if (!input.includes('import android.os.Bundle;')) {
+      input = input.replace(/package\s+[\w.]+;/, '$&\nimport android.os.Bundle;')
+    }
+    if (
+      !input.includes(
+        'import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory;'
+      )
+    ) {
+      input = input.replace(
+        /package\s+[\w.]+;/,
+        '$&\nimport com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory;'
+      )
+    }
+
+    // Check if onCreate exists and update it, or add new onCreate
+    if (input.includes('super.onCreate(')) {
+      // Insert fragment factory setup before super.onCreate and ensure savedInstanceState is passed
+      input = input.replace(
+        /(@Override\s*\n?\s*protected\s+void\s+onCreate\([^)]*\)\s*\{[^}]*?)(super\.onCreate\([^)]*\);?)/,
+        (match, beforeSuper, superCall) => {
+          // Add fragment factory before super.onCreate
+          const withFactory = `${beforeSuper}// react-native-screens override
+        getSupportFragmentManager().setFragmentFactory(new RNScreensFragmentFactory());
+        `
+          // Ensure super.onCreate uses savedInstanceSpace (with semicolon for Java)
+          const fixedSuperCall = 'super.onCreate(savedInstanceState);'
+          return withFactory + fixedSuperCall
+        }
+      )
+      console.info('✅ Updated onCreate with react-native-screens fix in MainActivity.java')
+    } else {
+      // Add new onCreate method
+      const classMatch = input.match(/public\s+class\s+MainActivity\s+extends\s+ReactActivity\s*\{/)
+      if (classMatch) {
+        const classDeclarationEnd = input.indexOf('{', classMatch.index) + 1
+
+        const onCreateMethod = `
+
+    // react-native-screens override
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        getSupportFragmentManager().setFragmentFactory(new RNScreensFragmentFactory());
+        super.onCreate(savedInstanceState);
+    }`
+
+        input =
+          input.slice(0, classDeclarationEnd) + onCreateMethod + input.slice(classDeclarationEnd)
+        console.info('✅ Added onCreate with react-native-screens fix to MainActivity.java')
+      }
+    }
+  }
+
+  return input
+}
+
 module.exports = plugin
+module.exports.addReactNativeScreensFix = addReactNativeScreensFix

@@ -1,6 +1,6 @@
 import babel from '@babel/core'
 import { resolvePath } from '@vxrn/utils'
-import { relative } from 'node:path'
+import { extname, relative } from 'node:path'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
 import type { GetTransformProps, GetTransformResponse } from './types'
@@ -26,7 +26,6 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
 }
 
 const getOptions = (props: Props, force = false): babel.TransformOptions | null => {
-  const presets: string[] = []
   let plugins: babel.PluginItem[] = []
 
   if (force || shouldBabelGenerators(props)) {
@@ -48,8 +47,13 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
   }
 
   if (enableNativewind || shouldBabelReanimated(props)) {
-    debug?.(`Using babel reanimated on file`)
-    plugins.push('react-native-reanimated/plugin')
+    debug?.(`Using babel reanimated on file ${props.id}`)
+    plugins.push(
+      // TODO make this configurable
+      process.env.VXRN_WORKLET_PLUGIN
+        ? 'react-native-worklets/plugin'
+        : 'react-native-reanimated/plugin'
+    )
   }
 
   if (shouldBabelReactCompiler(props)) {
@@ -62,8 +66,8 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
     plugins.push('@react-native/babel-plugin-codegen')
   }
 
-  if (plugins.length || presets.length) {
-    return { plugins, presets }
+  if (plugins.length) {
+    return { plugins }
   }
 
   return null
@@ -74,40 +78,57 @@ const getOptions = (props: Props, force = false): babel.TransformOptions | null 
  */
 export async function transformBabel(id: string, code: string, options: babel.TransformOptions) {
   const compilerPlugin = options.plugins?.find((x) => x && x[0] === 'babel-plugin-react-compiler')
+  const extension = extname(id)
+  const isTSX = extension === '.tsx'
+  const isTS = isTSX || extension === '.ts'
+  const babelOptions = {
+    filename: id,
+    compact: false,
+    babelrc: false,
+    configFile: false,
+    sourceMaps: false,
+    minified: false,
+    ...options,
+    presets: [
+      isTS
+        ? [
+            '@babel/preset-typescript',
+            {
+              isTSX,
+              allExtensions: isTSX,
+            },
+          ]
+        : '',
+      ...(options.presets || []),
+    ].filter(Boolean),
+  }
 
-  const out = await new Promise<babel.BabelFileResult>((res, rej) => {
-    babel.transform(
-      code,
-      {
-        filename: id,
-        compact: false,
-        babelrc: false,
-        configFile: false,
-        sourceMaps: true,
-        minified: false,
-        ...options,
-        presets: ['@babel/preset-typescript', ...(options.presets || [])],
-      },
-      (err: any, result) => {
+  try {
+    const out = await new Promise<babel.BabelFileResult>((res, rej) => {
+      babel.transform(code, babelOptions, (err: any, result) => {
         if (!result || err) {
           return rej(err || 'no res')
         }
         res(result!)
-      }
-    )
-  })
+      })
+    })
 
-  if (
-    compilerPlugin &&
-    // TODO this detection could be a lot faster
-    out.code?.includes(
-      compilerPlugin[1] === '18' ? `react-compiler-runtime` : `react/compiler-runtime`
-    )
-  ) {
-    console.info(` 🪄 [compiler] ${relative(process.cwd(), id)}`)
+    if (
+      compilerPlugin &&
+      // TODO this detection could be a lot faster
+      out.code?.includes(
+        compilerPlugin[1] === '18' ? `react-compiler-runtime` : `react/compiler-runtime`
+      )
+    ) {
+      console.info(` 🪄 [compiler] ${relative(process.cwd(), id)}`)
+    }
+
+    return out
+  } catch (err) {
+    console.error(`[vxrn:compiler] babel transform error`, err, `with options`, babelOptions)
+    console.error('code', code)
+    console.error('id', id)
   }
-
-  return out
 }
 
 const getBasePlugins = ({ development }: Props) =>
@@ -162,7 +183,7 @@ const shouldBabelReactCompiler = (props: Props) => {
       return false
     }
   }
-  if (!/.*(.tsx?)$/.test(props.id)) return false
+  if (!/(\.tsx?)$/.test(props.id)) return false
   // disable node modules for now...
   if (props.id.includes('node_modules')) return false
   // we had OG image generation on the server using react, this fixes a bug because compiler breaks @vercel/og
@@ -238,8 +259,9 @@ function shouldBabelReanimated({ code, id }: Props) {
     return false
   }
   if (!REANIMATED_IGNORED_PATHS_REGEX.test(id) && REANIMATED_REGEX.test(code)) {
-    // console.info(` 🪄 [reanimated] ${relative(process.cwd(), id)}`)
+    debug?.(` 🪄 [reanimated] ${relative(process.cwd(), id)}`)
     return true
   }
+  debug?.(` not using reanimated ${relative(process.cwd(), id)}`)
   return false
 }

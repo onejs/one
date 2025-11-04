@@ -24,6 +24,7 @@ export async function generateRouteTypes(
   }, {})
   const context = globbedRoutesToRouteContext(routes, routerRoot)
   const declarations = getTypedRoutesDeclarationFile(context)
-  await FSExtra.ensureDir(dirname(outFile))
+  const outDir = dirname(outFile)
+  await FSExtra.ensureDir(outDir)
   await writeFile(outFile, declarations)
 }

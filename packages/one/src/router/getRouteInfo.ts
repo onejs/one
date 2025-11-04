@@ -4,14 +4,14 @@ import { stripBaseUrl } from '../fork/getStateFromPath-mods'
 import type { OneRouter } from '../interfaces/router'
 import { getNormalizedStatePath, type UrlObject } from './getNormalizedStatePath'
 import { isIndexPath } from './isIndexPath'
-import { getLinkingConfig } from './linkingConfig'
+import { getLinking } from './linkingConfig'
 
 export function getRouteInfo(state: OneRouter.ResultState) {
   return getRouteInfoFromState(
     (state: Parameters<typeof originalGetPathFromState>[0], asPath: boolean) => {
       return getPathDataFromState(state, {
         screens: [],
-        ...getLinkingConfig()?.config,
+        ...getLinking()?.config,
         preserveDynamicRoutes: asPath,
         preserveGroups: asPath,
       })

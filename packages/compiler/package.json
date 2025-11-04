@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "1.1.535",
+  "version": "1.1.547",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -42,7 +42,7 @@
     "vite": "^7.1.12"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.132.23",
+    "@tamagui/build": "^1.135.7",
     "depcheck": "^1.4.7",
     "react-native": "0.81.5",
     "rollup": "^4.29.1"

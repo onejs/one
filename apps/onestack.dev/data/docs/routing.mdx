@@ -176,4 +176,16 @@ Groups are useful for a couple reasons:
 
 One generates types for your routes, so that you get type checking on a variety of things like the [Link component](/docs/components-Link).
 
-The types are generated into your root directory, in a `routes.d.ts` file. You must make sure your tsconfig.json picks up this file.
+The types are automatically generated into `app/routes.d.ts` during development. This file is committed to your repository and TypeScript automatically discovers it.
+
+You can also manually regenerate route types at any time:
+
+```bash
+yarn one generate-routes
+```
+
+If your app directory is not named `app`, you can specify it:
+
+```bash
+yarn one generate-routes --appDir=src
+```

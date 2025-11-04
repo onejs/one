@@ -1,6 +1,6 @@
 {
   "name": "test-sandbox",
-  "version": "1.1.535",
+  "version": "1.1.547",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,11 +14,11 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@react-navigation/native": "~7.1.18",
-    "@tamagui/config": "^1.132.23",
-    "@tamagui/image-next": "^1.132.23",
-    "@tamagui/lucide-icons": "^1.132.23",
-    "@tamagui/vite-plugin": "^1.132.23",
+    "@react-navigation/native": "^7.1.19",
+    "@tamagui/config": "^1.135.7",
+    "@tamagui/image-next": "^1.135.7",
+    "@tamagui/lucide-icons": "^1.135.7",
+    "@tamagui/vite-plugin": "^1.135.7",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
     "react": "19.1.0",
@@ -31,7 +31,7 @@
     "react-native-web": "^0.21.2",
     "react-native-webview": "^13.16.0",
     "react-native-worklets": "^0.6.1",
-    "tamagui": "^1.132.23"
+    "tamagui": "^1.135.7"
   },
   "devDependencies": {
     "expo": "54.0.20"
