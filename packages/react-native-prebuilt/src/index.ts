@@ -1,8 +1,8 @@
-import { readFile } from 'node:fs/promises'
 import { mustReplace } from '@vxrn/utils'
 import { transformFlowBabel } from '@vxrn/vite-flow'
 import { build, type BuildOptions } from 'esbuild'
 import FSExtra from 'fs-extra'
+import { readFile } from 'node:fs/promises'
 
 import { createRequire } from 'node:module'
 

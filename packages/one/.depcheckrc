@@ -1,4 +1,5 @@
 ignores:
+  - "react-native-worklets"
   - "expo-modules-core"
   - "react-native-web"
   - "zql"

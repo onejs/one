@@ -63,7 +63,7 @@
   "dependencies": {
     "@expo/config-plugins": "^8.0.8",
     "@hono/node-server": "^1.13.7",
-    "@react-native/dev-middleware": "^0.76.9",
+    "@react-native/dev-middleware": "^0.82.1",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@vxrn/compiler": "workspace:*",
     "@vxrn/debug": "workspace:*",
@@ -88,7 +88,6 @@
     "hono": "^4.9.2",
     "ip": "^2.0.1",
     "lightningcss": "^1.30.1",
-    "metro-react-native-babel-preset": "^0.77.0",
     "picocolors": "^1.0.0",
     "pkg-types": "^1.0.3",
     "qrcode-terminal": "^0.12.0",

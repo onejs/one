@@ -1,6 +1,6 @@
-import { expect, describe, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
-import { RExports, RNExportNames } from './index'
+import { RExports } from './index'
 
 describe('RExports', () => {
   it('should contain all keys that the `react` package exports', async () => {
