@@ -29,9 +29,6 @@
     "dev:uniswap": "yarn dev:test uniswap",
     "devtools": "yarn workspace devtools dev:tauri",
     "docker:build": "DOCKER_BUILDKIT=1 docker build --ssh default -t one-test .",
-    "docs:build": "vitepress build docs",
-    "docs:dev": "vitepress dev docs",
-    "docs:preview": "vitepress preview docs",
     "fix": "yarn fix:packages",
     "fix:packages": "manypkg fix",
     "fix:references": "update-ts-references",
@@ -86,7 +83,6 @@
     "typescript": "~5.9.2",
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
-    "vitepress": "^1.6.4",
     "zod": "3.25.67"
   },
   "profile": {
