@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
-import { View, Text, TextInput, Button } from 'react-native'
 import { useRouter } from 'one'
-import { MMKV } from 'react-native-mmkv'
+import { useCallback, useEffect, useState } from 'react'
+import { Button, Text, TextInput, View } from 'react-native'
+import { createMMKV } from 'react-native-mmkv'
 
-const storage = new MMKV()
+const storage = createMMKV()
 const STORAGE_KEY = 'TestNavigationHelper_recentPaths'
 
 export function TestNavigationHelper() {
@@ -48,12 +48,7 @@ export function TestNavigationHelper() {
         <View>
           <Text>Recent</Text>
           {recentPaths.map((p) => (
-            <Button
-              key={p}
-              testID={`recent-${p}`}
-              title={p}
-              onPress={() => navigateTo(p)}
-            />
+            <Button key={p} testID={`recent-${p}`} title={p} onPress={() => navigateTo(p)} />
           ))}
         </View>
       )}

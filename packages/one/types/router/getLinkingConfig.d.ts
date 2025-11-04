@@ -1,7 +1,7 @@
 import { type LinkingOptions } from '@react-navigation/native';
-import type { RouteNode } from './Route';
 import { type Screen } from '../getReactNavigationConfig';
 import { getPathFromState } from '../link/linking';
+import type { RouteNode } from './Route';
 export declare function getNavigationConfig(routes: RouteNode, metaOnly?: boolean): {
     initialRouteName?: string;
     screens: Record<string, Screen>;

@@ -5,7 +5,7 @@ import { adjustPathname } from '../fork/extractPathFromURL'
 import { getPathFromState } from '../fork/getPathFromState'
 import { getStateFromPath } from '../fork/getStateFromPath'
 
-// @ts-ignore
+// @ts-expect-error
 const isExpoGo = typeof expo !== 'undefined' && globalThis.expo?.modules?.ExpoGo
 
 // A custom getInitialURL is used on native to ensure the app always starts at

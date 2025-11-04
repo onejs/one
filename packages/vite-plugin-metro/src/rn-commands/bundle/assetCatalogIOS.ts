@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of https://github.com/facebook/react-native.
  */
 
-import type {AssetData} from 'metro/src/Assets';
+import type {AssetData} from 'metro/private/Assets';
 
 import assetPathUtils from './assetPathUtils';
 import fs from 'node:fs';

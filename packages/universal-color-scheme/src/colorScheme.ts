@@ -122,6 +122,8 @@ function update(setting: ColorSchemeSetting) {
       Appearance.setColorScheme(next)
     }
 
-    listeners.forEach((l) => l(currentSetting, currentName))
+    listeners.forEach((l) => {
+      l(currentSetting, currentName)
+    })
   }
 }

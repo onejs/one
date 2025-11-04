@@ -1,16 +1,16 @@
 import { useLayoutEffect, useState } from 'react'
+
 // import type { Schema } from 'zql/src/zql/query/schema.js'
 type Schema = any
 
-// @ts-ignore
+// @ts-expect-error
 import type { Query, QueryType, Smash } from 'zql/src/zql/query/query.js'
-// @ts-ignore
-import type { TypedView } from 'zql/src/zql/query/typed-view.js'
-// @ts-ignore
+// @ts-expect-error
 import type { QueryImpl } from 'zql/src/zql/query/query-impl.js'
+// @ts-expect-error
+import type { TypedView } from 'zql/src/zql/query/typed-view.js'
 
 export function useQuery<TSchema extends Schema, TReturn extends QueryType>(
-  // @ts-ignore
   q: Query<TSchema, TReturn>,
   enable = true
 ): Smash<TReturn> {

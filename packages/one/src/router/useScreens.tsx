@@ -8,7 +8,7 @@ import type {
   ScreenListeners,
 } from '@react-navigation/native'
 import React, { memo, Suspense, useId } from 'react'
-import { SafeAreaView, ScrollView, View, TouchableOpacity, Text } from 'react-native'
+import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { getPageExport } from '../utils/getPageExport'
 import { EmptyRoute } from '../views/EmptyRoute'
@@ -17,11 +17,11 @@ import { DevHead } from '../vite/DevHead'
 import { useServerContext } from '../vite/one-server-only'
 import { filterRootHTML } from './filterRootHTML'
 import {
-  Route,
-  useRouteNode,
   type DynamicConvention,
   type LoadedRoute,
+  Route,
   type RouteNode,
+  useRouteNode,
 } from './Route'
 import { sortRoutesWithInitial } from './sortRoutes'
 
@@ -185,7 +185,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       const out = Component(props, ref)
 
       const { children, bodyProps, head, htmlProps } = filterRootHTML(out)
-      const { children: headChildren, ...headProps } = head?.props || {}
+      const { children: headChildren, ...headProps } = (head?.props || {}) as Record<string, any>
       const serverContext = useServerContext()
 
       // let finalChildren = <Suspense fallback={null}>{children}</Suspense>

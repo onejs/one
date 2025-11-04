@@ -1,17 +1,15 @@
 import { dirname, join, resolve } from 'node:path'
-import FSExtra from 'fs-extra'
-import { resolvePath } from '@vxrn/resolve'
-
+import generator from '@babel/generator'
 import parser from '@babel/parser'
 import traverse from '@babel/traverse'
 import t from '@babel/types'
-import generator from '@babel/generator'
+import { resolvePath } from '@vxrn/resolve'
+import FSExtra from 'fs-extra'
 
 import fs from 'fs-extra'
 import type { RouteInfo } from '../../../vite/types'
-
-import { serverlessVercelPackageJson } from '../config/vc-package-base'
 import { serverlessVercelNodeJsConfig } from '../config/vc-config-base'
+import { serverlessVercelPackageJson } from '../config/vc-package-base'
 import { getPathFromRoute } from '../getPathFromRoute'
 
 // Documentation - Vercel Build Output v3

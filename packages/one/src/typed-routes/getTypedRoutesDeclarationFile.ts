@@ -89,6 +89,7 @@ function addRouteNode(
     for (const path of generateCombinations(routePath)) {
       dynamicRouteContextKeys.add(path)
       dynamicRoutes.add(
+        // biome-ignore lint/suspicious/noTemplateCurlyInString: intentionally generating type string
         `${path.replaceAll(CATCH_ALL, '${string}').replaceAll(SLUG, '${OneRouter.SingleRoutePart<T>}')}`
       )
     }

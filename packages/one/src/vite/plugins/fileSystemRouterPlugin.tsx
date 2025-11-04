@@ -7,6 +7,7 @@ import type { ModuleRunner } from 'vite/module-runner'
 import { getSpaHeaderElements } from '../../constants'
 import { createHandleRequest } from '../../createHandleRequest'
 import type { RenderAppProps } from '../../types'
+import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
 import { isResponse } from '../../utils/isResponse'
 import { isStatusRedirect } from '../../utils/isStatus'
 import { promiseWithResolvers } from '../../utils/promiseWithResolvers'
@@ -15,7 +16,6 @@ import { replaceLoader } from '../../vite/replaceLoader'
 import type { One } from '../../vite/types'
 import { setServerContext } from '../one-server-only'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
-import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
 
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
@@ -72,7 +72,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             const exported = routeFile === '' ? {} : await runner.import(routeFile)
             const loaderData = await exported.loader?.(loaderProps)
 
-            // biome-ignore lint/security/noGlobalEval: <explanation>
+            // biome-ignore lint/security/noGlobalEval: needed to set server env at runtime
             eval(`process.env.TAMAGUI_IS_SERVER = '1'`)
 
             const entry = await runner.import(virtualEntryId)

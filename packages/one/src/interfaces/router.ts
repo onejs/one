@@ -3,8 +3,8 @@ import type {
   NavigationState,
   PartialState,
 } from '@react-navigation/core'
-import type { ReactNode } from 'react'
-import type { TextProps, GestureResponderEvent, PressableProps } from 'react-native'
+import type { JSX, ReactNode } from 'react'
+import type { GestureResponderEvent, PressableProps, TextProps } from 'react-native'
 
 export namespace OneRouter {
   export interface __routes<T extends string = string> extends Record<string, unknown> {}

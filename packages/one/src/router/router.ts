@@ -1,14 +1,13 @@
-import {
-  StackActions,
-  type NavigationContainerRefWithCurrent,
-  type getPathFromState as originalGetPathFromState,
-} from '@react-navigation/native'
+/**
+ * Note: this entire module is exported as an interface router.*
+ * We need to treat exports as an API and not change them, maybe not
+ * the best decision.
+ */
+
+import { type NavigationContainerRefWithCurrent, StackActions } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
-import { Fragment, startTransition, type ComponentType, useSyncExternalStore } from 'react'
+import { type ComponentType, Fragment, startTransition, useSyncExternalStore } from 'react'
 import { Platform } from 'react-native'
-import type { State } from '../fork/getPathFromState'
-import { getPathDataFromState } from '../fork/getPathFromState'
-import { stripBaseUrl } from '../fork/getStateFromPath-mods'
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
 import { resolve } from '../link/path'
@@ -17,10 +16,11 @@ import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
 import { dynamicImport } from '../utils/dynamicImport'
 import { shouldLinkExternally } from '../utils/url'
 import type { One } from '../vite/types'
-import { getLinkingConfig, type OneLinkingOptions } from './getLinkingConfig'
-import { getNormalizedStatePath, type UrlObject } from './getNormalizedStatePath'
+import type { UrlObject } from './getNormalizedStatePath'
+import { getRouteInfo } from './getRouteInfo'
 import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
+import { getLinking, resetLinking, setupLinking } from './linkingConfig'
 import type { RouteNode } from './Route'
 import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
@@ -29,7 +29,6 @@ import { getNavigateAction } from './utils/getNavigateAction'
 // Module-scoped variables
 export let routeNode: RouteNode | null = null
 export let rootComponent: ComponentType
-export let linking: OneLinkingOptions | undefined
 
 export let hasAttemptedToHideSplash = false
 export let initialState: OneRouter.ResultState | undefined
@@ -67,7 +66,7 @@ export function initialize(
   }
 
   navigationRef = ref
-  setupLinking(initialLocation)
+  setupLinkingAndRouteInfo(initialLocation)
   subscribeToNavigationChanges()
 }
 
@@ -76,24 +75,14 @@ function cleanUpState() {
   rootState = undefined
   nextState = undefined
   routeInfo = undefined
-  linking = undefined
+  resetLinking()
   navigationRefSubscription?.()
   rootStateSubscribers.clear()
   storeSubscribers.clear()
 }
 
-function setupLinking(initialLocation?: URL) {
-  if (routeNode) {
-    linking = getLinkingConfig(routeNode)
-
-    if (initialLocation) {
-      linking.getInitialURL = () => initialLocation.toString()
-      initialState = linking.getStateFromPath?.(
-        initialLocation.pathname + (initialLocation.search || ''),
-        linking.config
-      )
-    }
-  }
+function setupLinkingAndRouteInfo(initialLocation?: URL) {
+  initialState = setupLinking(routeNode, initialLocation)
 
   if (initialState) {
     rootState = initialState
@@ -232,36 +221,6 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
   }
 }
 
-export function getRouteInfo(state: OneRouter.ResultState) {
-  return getRouteInfoFromState(
-    (state: Parameters<typeof originalGetPathFromState>[0], asPath: boolean) => {
-      return getPathDataFromState(state, {
-        screens: [],
-        ...linking?.config,
-        preserveDynamicRoutes: asPath,
-        preserveGroups: asPath,
-      })
-    },
-    state
-  )
-}
-
-function getRouteInfoFromState(
-  getPathFromState: (state: State, asPath: boolean) => { path: string; params: any },
-  state: State,
-  baseUrl?: string
-): UrlObject {
-  const { path } = getPathFromState(state, false)
-  const qualified = getPathFromState(state, true)
-
-  return {
-    unstable_globalHref: path,
-    pathname: stripBaseUrl(path, baseUrl).split('?')[0],
-    isIndex: isIndexPath(state),
-    ...getNormalizedStatePath(qualified, baseUrl),
-  }
-}
-
 // Subscription functions
 export function subscribeToRootState(subscriber: OneRouter.RootStateListener) {
   rootStateSubscribers.add(subscriber)
@@ -310,7 +269,7 @@ function getSnapshot() {
     linkTo,
     routeNode,
     rootComponent,
-    linking,
+    linking: getLinking(),
     hasAttemptedToHideSplash,
     initialState,
     rootState,
@@ -357,39 +316,6 @@ export function useStoreRootState() {
 export function useStoreRouteInfo() {
   syncStoreRootState()
   return useSyncExternalStore(subscribeToRootState, routeInfoSnapshot, routeInfoSnapshot)
-}
-
-// Utility functions
-function isIndexPath(state: State) {
-  const route = getActualLastRoute(state.routes[state.index ?? state.routes.length - 1])
-
-  if (route.state) {
-    return isIndexPath(route.state)
-  }
-
-  if (route.name === 'index') {
-    return true
-  }
-
-  if (route.params && 'screen' in route.params) {
-    return route.params.screen === 'index'
-  }
-
-  if (route.name.match(/.+\/index$/)) {
-    return true
-  }
-
-  return false
-}
-
-type RouteLikeTree = { name: string; state?: { routes?: RouteLikeTree[] } }
-
-function getActualLastRoute<A extends RouteLikeTree>(routeLike: A): A {
-  if (routeLike.name[0] === '(' && routeLike.state?.routes) {
-    const routes = routeLike.state.routes
-    return getActualLastRoute(routes[routes.length - 1]) as any
-  }
-  return routeLike
 }
 
 // Cleanup function
@@ -453,6 +379,8 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
       "Couldn't find a navigation object. Is your component inside NavigationContainer?"
     )
   }
+
+  const linking = getLinking()
 
   if (!linking) {
     throw new Error('Attempted to link to route when no routes are present')

@@ -1,7 +1,6 @@
 import path from 'node:path'
-
-import { getRoutes } from './router/getRoutes'
 import { getReactNavigationConfig } from './getReactNavigationConfig'
+import { getRoutes } from './router/getRoutes'
 
 export type ReactComponent = () => React.ReactElement<any, any> | null
 export type FileStub =

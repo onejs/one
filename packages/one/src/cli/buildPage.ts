@@ -1,5 +1,5 @@
-import FSExtra from 'fs-extra'
 import { join } from 'node:path'
+import FSExtra from 'fs-extra'
 import * as constants from '../constants'
 import type { LoaderProps, RenderApp } from '../types'
 import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'

@@ -6,7 +6,7 @@
 
 import escape_ from 'escape-string-regexp'
 import { matchGroupName, stripGroupSegmentsFromPath } from '../router/matchers'
-import type { RouteConfig, ParsedRoute, InitialRouteConfig } from './getStateFromPath'
+import type { InitialRouteConfig, ParsedRoute, RouteConfig } from './getStateFromPath'
 
 export type AdditionalRouteConfig = {
   type: 'static' | 'dynamic' | 'layout'
@@ -365,7 +365,7 @@ export function parseQueryParamsExtended(
         )
       }
     } else {
-      // biome-ignore lint/suspicious/noPrototypeBuiltins: <explanation>
+      // biome-ignore lint/suspicious/noPrototypeBuiltins: forked code from react-navigation
       const values = parseConfig?.hasOwnProperty(name)
         ? searchParams.getAll(name).map((value) => parseConfig[name](value))
         : searchParams.getAll(name)

@@ -2,7 +2,7 @@
 export function matchDynamicName(name: string): string | undefined {
   // Don't match `...` or `[` or `]` inside the brackets
   // eslint-disable-next-line no-useless-escape
-  return name.match(/^\[([^[\](?:\.\.\.)]+?)\]$/)?.[1]
+  return name.match(/^\[([^[\](?:...)]+?)\]$/)?.[1]
 }
 
 /** Match `[...page]` -> `page` */
@@ -22,7 +22,7 @@ export function matchGroupName(name: string): string | undefined {
 
 /** Match the first array group name `(a,b,c)/(d,c)` -> `'a,b,c'` */
 export function matchArrayGroupName(name: string) {
-  return name.match(/(?:[^\\(\\)])*?\(?([^\\/\(\)]+,[^\\/\(\)]+)\)?.*?$/)?.[1]
+  return name.match(/(?:[^\\(\\)])*?\(?([^\\/()]+,[^\\/()]+)\)?.*?$/)?.[1]
 }
 
 export function getNameFromFilePath(name: string): string {

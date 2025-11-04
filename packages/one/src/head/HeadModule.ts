@@ -42,7 +42,7 @@ let HeadModule: {
 } | null = null
 
 // If running in Expo Go.
-// @ts-ignore
+// @ts-expect-error
 if (typeof expo !== 'undefined' && globalThis.expo?.modules?.ExpoGo) {
   HeadModule = globalThis.expo?.modules?.HeadModule
 }

@@ -2,9 +2,9 @@ import { bundleMDX } from 'mdx-bundler'
 import readingTime from 'reading-time'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
+import { getHeadings } from './getHeadings'
 import { rehypeHighlightCode } from './rehypeHighlightCode'
 import rehypeMetaAttribute from './rehypeMetaAttribute'
-import { getHeadings } from './getHeadings'
 import type { Frontmatter, UnifiedPlugin } from './types'
 
 export async function getMDX(source: string, extraPlugins?: UnifiedPlugin) {

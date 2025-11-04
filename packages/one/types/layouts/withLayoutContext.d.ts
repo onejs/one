@@ -1,14 +1,14 @@
 import type { EventMapBase, NavigationState } from '@react-navigation/native';
 import React from 'react';
-import type { PickPartial } from '../types';
 import { type ScreenProps } from '../router/useScreens';
+import type { PickPartial } from '../types';
 import { Screen } from '../views/Screen';
 export declare function useFilterScreenChildren(children: React.ReactNode, { isCustomNavigator, contextKey, }?: {
     isCustomNavigator?: boolean;
     /** Used for sending developer hints */
     contextKey?: string;
 }): {
-    screens: any[] | undefined;
+    screens: ScreenProps[] | undefined;
     children: any[];
 };
 /** Return a navigator that automatically injects matched routes and renders nothing when there are no children. Return type with children prop optional */

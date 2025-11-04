@@ -3,10 +3,10 @@
  * to work on both native and web, and with reanimated and other babel fallbacks
  */
 
-import { resolvePath } from '@vxrn/utils'
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { extname, join, sep } from 'node:path'
+import { resolvePath } from '@vxrn/utils'
 import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
 import type { OutputChunk } from 'rollup'
 import type { PluginOption, ResolvedConfig, UserConfig } from 'vite'
@@ -63,7 +63,8 @@ async function performBabelTransform({
       const babelOut = await transformBabel(id, code, babelOptions)
       if (babelOut?.code) {
         debug?.(`[babel] ${id}`)
-        return { code: babelOut.code, map: babelOut.map }
+        const outCode = `${babelOut.code}\n// vxrn-did-babel`
+        return { code: outCode, map: babelOut.map }
       }
     }
   }
@@ -108,12 +109,6 @@ async function performFullTransform({
     return
   }
 
-  // Skip node_modules to avoid double-processing files already handled by optimizeDeps
-  if (id.includes('node_modules')) {
-    debug?.(`[skip node_modules] ${id}`)
-    return
-  }
-
   const isPreProcess = id.startsWith(`vxrn-swc-preprocess:`)
   if (isPreProcess) {
     id = id.replace(`vxrn-swc-preprocess:`, '')
@@ -129,19 +124,23 @@ async function performFullTransform({
     map: any
   } | null = null
 
-  // Try Babel first
-  const babelResult = await performBabelTransform({
-    id,
-    code,
-    environment,
-    production,
-    reactForRNVersion,
-    optionsIn,
-  })
+  // avoid double-processing files already handled by optimizeDeps
+  if (codeIn.endsWith(`// vxrn-did-babel`)) {
+    debug?.(`[skip babel] ${id}`)
+  } else {
+    const babelResult = await performBabelTransform({
+      id,
+      code,
+      environment,
+      production,
+      reactForRNVersion,
+      optionsIn,
+    })
 
-  if (babelResult) {
-    out = babelResult
-    code = babelResult.code
+    if (babelResult) {
+      out = babelResult
+      code = babelResult.code
+    }
   }
 
   // Always run SWC for class transforms + react refresh

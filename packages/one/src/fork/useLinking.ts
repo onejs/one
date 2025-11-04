@@ -16,15 +16,14 @@ import {
   type ParamListBase,
   useNavigationIndependentTree,
 } from '@react-navigation/core'
+// @modified - end
+import type { LinkingOptions } from '@react-navigation/native' // @modified: change import path
 import isEqual from 'fast-deep-equal'
 import * as React from 'react'
-
-import { createMemoryHistory } from './createMemoryHistory'
 // @modified - start
 // import { ServerContext } from '@react-navigation/web';
 import { ServerLocationContext } from '../router/serverLocationContext'
-// @modified - end
-import type { LinkingOptions } from '@react-navigation/native' // @modified: change import path
+import { createMemoryHistory } from './createMemoryHistory'
 import { appendBaseUrl } from './getPathFromState-mods'
 
 type ResultState = ReturnType<typeof getStateFromPathDefault>
@@ -86,7 +85,7 @@ const linkingHandlers: symbol[] = []
 type Options = LinkingOptions<ParamListBase>
 
 export function useLinking(
-  ref: React.RefObject<NavigationContainerRef<ParamListBase>>,
+  ref: React.RefObject<NavigationContainerRef<ParamListBase> | null>,
   {
     enabled = true,
     config,

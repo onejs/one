@@ -2,14 +2,7 @@ import type { FilterPattern, PluginOption } from 'vite'
 import { createFilter } from 'vite'
 import { transformFlowBabel } from './transformFlowBabel'
 
-export async function transformFlow(
-  input: string,
-  { development = false }: { development?: boolean } = {}
-) {
-  const final = await transformFlowBabel(input)
-
-  return final
-}
+export { transformFlowBabel } from './transformFlowBabel'
 
 export type Options = {
   include?: FilterPattern
@@ -28,7 +21,7 @@ export default function createFlowPlugin(opts?: Options): PluginOption {
     enforce: 'pre',
     transform(code, id) {
       if (filter(id)) {
-        return transformFlow(code)
+        return transformFlowBabel(code)
       }
       return null
     },

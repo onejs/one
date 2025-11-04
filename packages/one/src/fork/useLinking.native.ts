@@ -13,11 +13,10 @@ import {
   type ParamListBase,
   useNavigationIndependentTree,
 } from '@react-navigation/core'
+import type { LinkingOptions } from '@react-navigation/native' // @modified: import from @react-navigation/native
 import * as React from 'react'
 import { Linking, Platform } from 'react-native'
-
 import { extractPathFromURL } from './extractPathFromURL'
-import type { LinkingOptions } from '@react-navigation/native' // @modified: import from @react-navigation/native
 
 type ResultState = ReturnType<typeof getStateFromPathDefault>
 
@@ -156,7 +155,6 @@ export function useLinking(
 
             return state
           })
-          // biome-ignore lint/style/noUselessElse: don't check copied code
         } else {
           onUnhandledLinking(extractPathFromURL(prefixes, url))
         }

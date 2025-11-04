@@ -1,5 +1,5 @@
-import type { DynamicConvention, RouteNode } from './Route'
 import { matchGroupName } from './matchers'
+import type { DynamicConvention, RouteNode } from './Route'
 
 function sortDynamicConvention(a: DynamicConvention, b: DynamicConvention) {
   if (a.deep && !b.deep) {

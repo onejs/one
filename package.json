@@ -11,11 +11,10 @@
     "./examples/*",
     "./tests/*"
   ],
-  "resolutionsComments": {
-    "react-native-reanimated": "i loosened up so end-users can use v4 easily but until we get to new RN leaving on old version"
-  },
-  "resolutions": {
-    "react-native-reanimated": "3.17.4"
+  "packageManager": "yarn@4.10.3",
+  "engines": {
+    "node": "20.17.0",
+    "npm": "10.8.3"
   },
   "scripts": {
     "build": "turbo run build --filter='*' --filter='!example/*'",
@@ -30,9 +29,6 @@
     "dev:uniswap": "yarn dev:test uniswap",
     "devtools": "yarn workspace devtools dev:tauri",
     "docker:build": "DOCKER_BUILDKIT=1 docker build --ssh default -t one-test .",
-    "docs:build": "vitepress build docs",
-    "docs:dev": "vitepress dev docs",
-    "docs:preview": "vitepress preview docs",
     "fix": "yarn fix:packages",
     "fix:packages": "manypkg fix",
     "fix:references": "update-ts-references",
@@ -67,10 +63,13 @@
     "watch:js": "SKIP_TYPES=1 yarn watch:build",
     "watch:ts": "ultra -r --no-pretty --concurrency 400 typecheck -w --preserveWatchOutput"
   },
+  "resolutions": {
+    "esbuild": "0.25.11"
+  },
   "dependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.3.3",
     "@manypkg/cli": "^0.19.1",
-    "@types/react": "^18.3.11",
+    "@types/react": "^19.2.2",
     "check-dependency-version-consistency": "^3.0.3",
     "lllink": "workspace:*",
     "npm-run-all": "^4.1.5",
@@ -79,26 +78,20 @@
     "playwright": "^1.49.1",
     "sst": "^3.6.18",
     "ts-pattern": "^5.6.2",
-    "tsx": "^4.19.0",
+    "tsx": "^4.20.6",
     "turbo": "^2.1.0",
-    "typescript": "^5.7.3",
+    "typescript": "~5.9.2",
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
-    "vitepress": "^1.1.4",
     "zod": "3.25.67"
-  },
-  "packageManager": "yarn@4.9.2",
-  "engines": {
-    "node": "20.17.0",
-    "npm": "10.8.3"
   },
   "profile": {
     "//": "yarn profile [name] to toggle package resolutions",
     "react-19": {
       "applied": false,
       "resolutions": {
-        "react": "19.0.0",
-        "react-dom": "19.0.0"
+        "react": "19.1.0",
+        "react-dom": "19.1.0"
       }
     },
     "react-18": {

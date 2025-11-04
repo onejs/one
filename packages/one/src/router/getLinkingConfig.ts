@@ -1,5 +1,4 @@
 import { getActionFromState, type LinkingOptions } from '@react-navigation/native'
-import type { RouteNode } from './Route'
 import type { State } from '../fork/getPathFromState'
 import { getReactNavigationConfig, type Screen } from '../getReactNavigationConfig'
 import {
@@ -8,6 +7,7 @@ import {
   getPathFromState,
   getStateFromPath,
 } from '../link/linking'
+import type { RouteNode } from './Route'
 
 export function getNavigationConfig(
   routes: RouteNode,

@@ -1,4 +1,4 @@
-const getTitle = (source: string) => source.replace(/^\#+\s+/, '').replace(/\<.*\>/, ' ')
+const getTitle = (source: string) => source.replace(/^#+\s+/, '').replace(/<.*>/, ' ')
 
 export const getHeadings = (source: string) =>
   source

@@ -48,7 +48,7 @@ export function globbedRoutesToRouteContext(
   const loadedRoutes = {}
   const clears = {}
 
-  Object.keys(paths).map((path) => {
+  Object.keys(paths).forEach((path) => {
     if (!paths[path]) {
       console.error(`Error: Missing route at path ${path}`)
       return

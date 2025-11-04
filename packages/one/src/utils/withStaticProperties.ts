@@ -17,7 +17,7 @@ export const withStaticProperties = <A extends Function, B>(
       // attach existing things again
       for (const key in component) {
         const v = component[key]
-        // @ts-ignore
+        // @ts-expect-error
         _[key] = v && typeof v === 'object' ? { ...v } : v
       }
     }

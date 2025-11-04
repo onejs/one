@@ -8,7 +8,7 @@ export declare function useNavigationContainerRef(): OneRouter.NavigationRef;
 export declare function Frozen({ on, children }: {
     on?: boolean;
     children: ReactNode;
-}): string | number | boolean | Iterable<React.ReactNode> | import("react/jsx-runtime").JSX.Element | null | undefined;
+}): string | number | bigint | boolean | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | import("react/jsx-runtime").JSX.Element | null | undefined;
 export declare function useRouter(): OneRouter.Router;
 /**
  * @private

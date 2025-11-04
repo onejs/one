@@ -3,14 +3,12 @@ import { join, resolve } from 'node:path'
 import FSExtra from 'fs-extra'
 import type { RollupOutput } from 'rollup'
 import { isMatching, P } from 'ts-pattern'
-
-import { createApiServerlessFunction } from './generate/createApiServerlessFunction'
-import { createSsrServerlessFunction } from './generate/createSsrServerlessFunction'
+import type { One } from '../../vite/types'
+import { vercelBuildOutputConfigBase } from './config/vc-build-output-config-base'
 import { serverlessVercelNodeJsConfig } from './config/vc-config-base'
 import { serverlessVercelPackageJson } from './config/vc-package-base'
-import { vercelBuildOutputConfigBase } from './config/vc-build-output-config-base'
-
-import type { One } from '../../vite/types'
+import { createApiServerlessFunction } from './generate/createApiServerlessFunction'
+import { createSsrServerlessFunction } from './generate/createSsrServerlessFunction'
 import { getPathFromRoute } from './getPathFromRoute'
 
 const { copy, ensureDir, existsSync, writeJSON } = FSExtra

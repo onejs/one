@@ -8,8 +8,9 @@
  *
  * Based on https://github.com/vercel/next.js/blob/1df2686bc9964f1a86c444701fa5cbf178669833/packages/next/src/shared/lib/router/utils/route-regex.ts
  */
-import type { RouteNode } from '../router/Route'
+
 import { getContextKey, matchGroupName } from '../router/matchers'
+import type { RouteNode } from '../router/Route'
 import { sortRoutes } from '../router/sortRoutes'
 import type { One, RouteInfo } from '../vite/types'
 

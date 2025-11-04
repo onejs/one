@@ -1,75 +1,66 @@
 export { createApp } from './createApp'
 
-export type { OneRouter, One } from './interfaces/router'
+export type { One, OneRouter } from './interfaces/router'
+
 import type { OneRouter } from './interfaces/router'
 
 export type Href = OneRouter.Href
 export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<T>
 
-export type { Endpoint, LoaderProps } from './types'
-
-// base
-export { router } from './router/imperative-api'
-export { createRoute, route } from './router/createRoute'
-export { onClientLoaderResolve } from './clientLoaderResolver'
-
-// middleware
-export { createMiddleware, type Middleware } from './createMiddleware'
-
-// internals
-export { render } from './render'
-export { Root } from './Root'
-export * as routerStore from './router/router'
-
-// components
-export { Stack } from './layouts/Stack'
-export { Tabs } from './layouts/Tabs'
+// hooks
+export { useIsFocused } from '@react-navigation/core'
+// re-export
+export * from '@vxrn/universal-color-scheme'
 // TODO breaking due to react-native-gesture-handler
 // export { Drawer } from './layouts/Drawer'
 // export { Unmatched } from './fallbackViews/Unmatched'
 export { SafeAreaView } from 'react-native-safe-area-context'
-export { Navigator, Slot } from './views/Navigator'
-export { ErrorBoundary } from './views/ErrorBoundary'
-export { ScrollBehavior } from './views/ScrollBehavior'
-export { LoadProgressBar } from './views/LoadProgressBar'
-export { Link } from './link/Link'
-export { Redirect } from './link/Redirect'
-export { Head } from './head'
+export { onClientLoaderResolve } from './clientLoaderResolver'
 
-// hooks
-export { useIsFocused } from '@react-navigation/core'
-export { useLinkTo } from './link/useLinkTo'
-export { useServerHeadInsertion, type ServerHeadInsertionCallback } from './useServerHeadInsertion'
-export {
-  useRouter,
-  useUnstableGlobalHref,
-  usePathname,
-  useNavigationContainerRef,
-  useParams,
-  useActiveParams,
-  useSegments,
-  useRootNavigationState,
-} from './hooks'
+// middleware
+export { createMiddleware, type Middleware } from './createMiddleware'
+export { getURL } from './getURL'
+export { Head } from './head'
 // for easier expo-router migration
 export {
-  useLocalSearchParams,
+  useActiveParams,
   useGlobalSearchParams,
+  useLocalSearchParams,
+  useNavigationContainerRef,
+  useParams,
+  usePathname,
+  useRootNavigationState,
+  useRouter,
+  useSegments,
+  useUnstableGlobalHref,
 } from './hooks'
-
+export { href } from './href'
+// components
+export { Stack } from './layouts/Stack'
+export { Tabs } from './layouts/Tabs'
 // utilities
 export { withLayoutContext } from './layouts/withLayoutContext'
-export { isResponse } from './utils/isResponse'
-export { getURL } from './getURL'
-export { redirect } from './utils/redirect'
-export { href } from './href'
-
-// server
-export { setResponseHeaders, getServerData, setServerData } from './vite/one-server-only'
-
-// re-export
-export * from '@vxrn/universal-color-scheme'
-
+export { Link } from './link/Link'
+export { Redirect } from './link/Redirect'
+export { useLinkTo } from './link/useLinkTo'
+export { Root } from './Root'
+// internals
+export { render } from './render'
+export { createRoute, route } from './router/createRoute'
+// base
+export { router } from './router/imperative-api'
+export * as routerStore from './router/router'
+export { useNavigation } from './router/useNavigation'
+export type { Endpoint, LoaderProps } from './types'
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'
-export { useNavigation } from './router/useNavigation'
 export { useLoader } from './useLoader'
+export { type ServerHeadInsertionCallback, useServerHeadInsertion } from './useServerHeadInsertion'
+export { isResponse } from './utils/isResponse'
+export { redirect } from './utils/redirect'
+export { ErrorBoundary } from './views/ErrorBoundary'
+export { LoadProgressBar } from './views/LoadProgressBar'
+export { Navigator, Slot } from './views/Navigator'
+export { ScrollBehavior } from './views/ScrollBehavior'
+// server
+export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only'

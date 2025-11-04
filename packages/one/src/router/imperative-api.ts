@@ -1,5 +1,5 @@
-import * as store from './router'
 import type { OneRouter } from '../interfaces/router'
+import * as store from './router'
 
 export const router: OneRouter.Router = {
   navigate: store.navigate,
