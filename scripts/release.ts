@@ -342,21 +342,19 @@ async function run() {
 
           await spawnify(`git commit -m ${gitTag}`, { cwd, allowFail: finish })
 
-          if (!canary) {
-            await spawnify(`git tag ${gitTag}`, { cwd, allowFail: finish })
-          }
+          await spawnify(`git tag ${gitTag}`, { cwd, allowFail: finish })
 
-          if (!dirty) {
-            // pull once more before pushing so if there was a push in interim we get it
-            await spawnify(`git pull --rebase origin HEAD`, { cwd })
-          }
-
-          await spawnify(`git push origin head`, { cwd, allowFail: finish })
           if (!canary) {
+            if (!dirty) {
+              // pull once more before pushing so if there was a push in interim we get it
+              await spawnify(`git pull --rebase origin HEAD`, { cwd })
+            }
+
+            await spawnify(`git push origin head`, { cwd, allowFail: finish })
             await spawnify(`git push origin ${gitTag}`, { cwd })
           }
 
-          console.info(`✅ Pushed and versioned\n`)
+          console.info(`✅ ${canary ? 'Tagged locally' : 'Pushed and versioned'}\n`)
         }
       }
 
