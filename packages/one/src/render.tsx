@@ -31,7 +31,6 @@ export function render(element: React.ReactNode) {
             console.error(...args)
             console.groupEnd()
           },
-          // @ts-expect-error
           onUncaughtError(...args) {
             console.error(`[one] onUncaughtError`, ...args)
           },

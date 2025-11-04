@@ -1,10 +1,10 @@
 import type { AssetData } from 'metro/private/Assets'
+import fs from 'node:fs'
+import path from 'node:path'
 import { cleanAssetCatalog, getImageSet, isCatalogAsset, writeImageSet } from './assetCatalogIOS'
 import filterPlatformAssetScales from './filterPlatformAssetScales'
 import getAssetDestPathAndroid from './getAssetDestPathAndroid'
 import getAssetDestPathIOS from './getAssetDestPathIOS'
-import fs from 'node:fs'
-import path from 'node:path'
 
 type CopiedFiles = {
   [src: string]: string
@@ -100,7 +100,7 @@ function copyAll(filesToCopy: CopiedFiles) {
   })
 }
 
-function copy(src: string, dest: string, callback: (error: Error) => void): void {
+function copy(src: string, dest: string, callback: (error?: Error) => void): void {
   const destDir = path.dirname(dest)
   fs.mkdir(destDir, { recursive: true }, (err?) => {
     if (err) {
