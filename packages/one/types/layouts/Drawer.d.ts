@@ -1,4 +1,4 @@
-import { type DrawerNavigationOptions, type DrawerNavigationEventMap } from '@react-navigation/drawer';
+import { type DrawerNavigationEventMap, type DrawerNavigationOptions } from '@react-navigation/drawer';
 import type { DrawerNavigationState, ParamListBase } from '@react-navigation/native';
 export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/drawer").DrawerNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;

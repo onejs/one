@@ -11,7 +11,6 @@ import type { QueryImpl } from 'zql/src/zql/query/query-impl.js'
 import type { TypedView } from 'zql/src/zql/query/typed-view.js'
 
 export function useQuery<TSchema extends Schema, TReturn extends QueryType>(
-  // @ts-expect-error
   q: Query<TSchema, TReturn>,
   enable = true
 ): Smash<TReturn> {

@@ -1,7 +1,6 @@
 import './setup'
 
 import { cloneElement } from 'react'
-// @ts-expect-error
 import ReactDOMServer from 'react-dom/server.browser'
 import { AppRegistry } from 'react-native'
 import { resolveClientLoader } from './clientLoaderResolver'

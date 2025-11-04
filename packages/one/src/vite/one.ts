@@ -149,9 +149,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const devAndProdPlugins: Plugin[] = [
     {
       name: 'one:config',
-      // @ts-expect-error
       __get: options,
-    },
+    } as any,
 
     !barrelOption
       ? null

@@ -51,8 +51,8 @@
     "@faker-js/faker": "next",
     "@react-native-community/cli": "^20.0.2",
     "@tamagui/vite-plugin": "^1.136.0",
-    "@types/react": "~19.1.10",
-    "tsx": "^4.19.0",
+    "@types/react": "^19.2.2",
+    "tsx": "^4.20.6",
     "typescript": "~5.9.2",
     "vite": "^7.1.12"
   }

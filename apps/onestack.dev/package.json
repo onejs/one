@@ -46,7 +46,7 @@
     "marked": "^14.1.2",
     "playwright": "^1.49.1",
     "subset-font": "^2.4.0",
-    "tsx": "^4.19.0",
+    "tsx": "^4.20.6",
     "vitest": "^4.0.6"
   },
   "publishConfig": {

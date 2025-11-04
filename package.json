@@ -11,7 +11,7 @@
     "./examples/*",
     "./tests/*"
   ],
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.10.3",
   "engines": {
     "node": "20.17.0",
     "npm": "10.8.3"
@@ -66,10 +66,13 @@
     "watch:js": "SKIP_TYPES=1 yarn watch:build",
     "watch:ts": "ultra -r --no-pretty --concurrency 400 typecheck -w --preserveWatchOutput"
   },
+  "resolutions": {
+    "esbuild": "0.25.11"
+  },
   "dependencies": {
     "@biomejs/biome": "^2.1.2",
     "@manypkg/cli": "^0.19.1",
-    "@types/react": "~19.1.10",
+    "@types/react": "^19.2.2",
     "check-dependency-version-consistency": "^3.0.3",
     "lllink": "workspace:*",
     "npm-run-all": "^4.1.5",
@@ -78,16 +81,13 @@
     "playwright": "^1.49.1",
     "sst": "^3.6.18",
     "ts-pattern": "^5.6.2",
-    "tsx": "^4.19.0",
+    "tsx": "^4.20.6",
     "turbo": "^2.1.0",
     "typescript": "~5.9.2",
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
     "vitepress": "^1.6.4",
     "zod": "3.25.67"
-  },
-  "resolutions": {
-    "react-native-web": "^0.21.2"
   },
   "profile": {
     "//": "yarn profile [name] to toggle package resolutions",

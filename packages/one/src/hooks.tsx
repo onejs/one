@@ -55,11 +55,7 @@ export function Frozen({ on = false, children }: { on?: boolean; children: React
   return (
     <FrozeContext.Provider value={on}>
       {/* <Freeze freeze={on}> */}
-      <div
-        // @ts-expect-error
-        inert
-        style={{ display: 'contents' }}
-      >
+      <div {...(on && { inert: true })} style={{ display: 'contents' }}>
         {children}
       </div>
       {/* </Freeze> */}

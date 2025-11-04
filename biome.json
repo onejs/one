@@ -56,8 +56,7 @@
         "useLiteralKeys": "off",
         "useSimplifiedLogicExpression": "off",
         "useOptionalChain": "off",
-        "noExtraBooleanCast": "off",
-        "noArguments": "off"
+        "noExtraBooleanCast": "off"
       },
       "a11y": {
         "noSvgWithoutTitle": "off",

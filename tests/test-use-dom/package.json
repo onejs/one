@@ -23,7 +23,7 @@
     "react-native-web": "^0.21.2"
   },
   "devDependencies": {
-    "@types/react": "^18.3.11",
+    "@types/react": "^19.2.2",
     "vite": "^7.1.12"
   }
 }

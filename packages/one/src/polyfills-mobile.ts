@@ -33,6 +33,4 @@ import 'core-js/actual/url-search-params'
 
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
 
-Promise.withResolvers ||
-  // @ts-expect-error
-  (Promise.withResolvers = promiseWithResolvers)
+Promise.withResolvers || (Promise.withResolvers = promiseWithResolvers)

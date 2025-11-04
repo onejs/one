@@ -1,4 +1,3 @@
-// @ts-expect-error
 import ReactDOMServer from 'react-dom/server.browser'
 
 export const renderToString = async (app: React.ReactElement, options: { preloads?: string[] }) => {
