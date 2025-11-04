@@ -73,7 +73,6 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
 
       const config = await getMetroConfigFromViteConfig(server.config, options)
 
-      console.info(`config`, config)
       // @ts-expect-error TODO
       const { middleware, end, metroServer } = await Metro.createConnectMiddleware(config, {
         // Force enable file watching, even on CI.
