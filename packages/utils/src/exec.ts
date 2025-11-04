@@ -1,4 +1,4 @@
-import { execSync, spawn, type SpawnOptions } from 'node:child_process'
+import { execSync, type SpawnOptions, spawn } from 'node:child_process'
 
 // Synchronous exec function using execSync
 export const exec = (cmd: string, options?: Parameters<typeof execSync>[1]) => {

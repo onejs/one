@@ -18,10 +18,6 @@ import {
   ThemeProvider,
   validatePathConfig,
 } from '@react-navigation/core'
-import * as React from 'react'
-import { I18nManager } from 'react-native'
-import useLatestCallback from 'use-latest-callback'
-
 // @modified - start
 // import { LinkingContext } from './LinkingContext'
 // import { LocaleDirContext } from './LocaleDirContext'
@@ -29,14 +25,17 @@ import useLatestCallback from 'use-latest-callback'
 // import type { DocumentTitleOptions, LinkingOptions, LocaleDirection } from './types'
 // import { UnhandledLinkingContext } from './UnhandledLinkingContext'
 import {
-  LinkingContext,
-  LocaleDirContext,
   DefaultTheme,
   type DocumentTitleOptions,
+  LinkingContext,
   type LinkingOptions,
+  LocaleDirContext,
   type LocaleDirection,
   UNSTABLE_UnhandledLinkingContext as UnhandledLinkingContext,
 } from '@react-navigation/native'
+import * as React from 'react'
+import { I18nManager } from 'react-native'
+import useLatestCallback from 'use-latest-callback'
 // @modified - end
 import { useBackButton } from './useBackButton'
 import { useDocumentTitle } from './useDocumentTitle'
@@ -95,7 +94,7 @@ function NavigationContainerInner(
     validatePathConfig(linking.config)
   }
 
-  const refContainer = React.useRef<NavigationContainerRef<ParamListBase>>(null)
+  const refContainer = React.useRef<NavigationContainerRef<ParamListBase> | null>(null)
 
   useBackButton(refContainer)
   useDocumentTitle(refContainer, documentTitle)
@@ -165,7 +164,7 @@ function NavigationContainerInner(
 
   const [isResolved, initialState] = useThenable(getInitialState)
 
-  React.useImperativeHandle(ref, () => refContainer.current)
+  React.useImperativeHandle(ref, () => refContainer.current!)
 
   const isLinkingReady = rest.initialState != null || !isLinkingEnabled || isResolved
 

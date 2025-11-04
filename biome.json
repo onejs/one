@@ -1,18 +1,16 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": false
-  },
+  "$schema": "https://biomejs.dev/schemas/2.3.3/schema.json",
   "linter": {
     "enabled": true,
-    "ignore": ["**/*/generated-new.ts", "**/*/generated-v2.ts", ".tamagui"],
-
     "rules": {
       "correctness": {
+        "noUnusedFunctionParameters": "off",
+        "useHookAtTopLevel": "off",
         "useExhaustiveDependencies": "off",
+        "noUnusedImports": "off",
         "noInnerDeclarations": "off",
-        "noUnnecessaryContinue": "off",
-        "noConstructorReturn": "off"
+        "noConstructorReturn": "off",
+        "noUnusedVariables": "off"
       },
       "suspicious": {
         "noImplicitAnyLet": "off",
@@ -21,21 +19,27 @@
         "noExplicitAny": "off",
         "noArrayIndexKey": "off",
         "noDoubleEquals": "off",
-        "noConsoleLog": "error",
         "noAssignInExpressions": "off",
-        "noRedeclare": "off"
+        "noRedeclare": "off",
+        "noCommentText": "off",
+        "noConsole": {
+          "level": "error",
+          "options": {
+            "allow": ["error", "warn", "info", "groupCollapsed", "groupEnd", "trace"]
+          }
+        }
       },
       "style": {
         "noParameterAssign": "off",
         "noNonNullAssertion": "off",
-        "noArguments": "off",
         "noUnusedTemplateLiteral": "off",
         "useDefaultParameterLast": "off",
         "useConst": "off",
         "useEnumInitializers": "off",
         "useTemplate": "off",
         "useSelfClosingElements": "off",
-        "useImportType": "error"
+        "useImportType": "error",
+        "noUselessElse": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off",
@@ -46,12 +50,14 @@
         "noAccumulatingSpread": "off"
       },
       "complexity": {
+        "noUselessFragments": "off",
         "noForEach": "off",
         "noBannedTypes": "off",
-        "noUselessFragments": "off",
         "useLiteralKeys": "off",
         "useSimplifiedLogicExpression": "off",
-        "useOptionalChain": "off"
+        "useOptionalChain": "off",
+        "noExtraBooleanCast": "off",
+        "noArguments": "off"
       },
       "a11y": {
         "noSvgWithoutTitle": "off",
@@ -68,7 +74,7 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 100,
-    "ignore": ["**/*/generated-new.ts", "**/*/generated-v2.ts", ".tamagui"]
+    "lineEnding": "lf"
   },
   "javascript": {
     "formatter": {

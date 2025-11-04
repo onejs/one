@@ -42,7 +42,6 @@ export function validatePathConfig(config: unknown, root = true) {
           const type = validation[key as keyof typeof validation] as string
           const value: string = config[key]
 
-          // biome-ignore lint/suspicious/useValidTypeof: do not check copied code
           if (value !== undefined && typeof value !== type) {
             return [key, `expected '${type}', got '${typeof value}'`]
           }

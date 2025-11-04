@@ -6,7 +6,7 @@ export async function isRolldown(): Promise<boolean> {
   }
 
   try {
-    // @ts-ignore - withFilter only exists in rolldown-vite
+    // @ts-expect-error - withFilter only exists in rolldown-vite
     const vite = await import('vite')
     _isRolldown = 'withFilter' in vite
   } catch {

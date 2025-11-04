@@ -1,6 +1,6 @@
+import { stat } from 'node:fs/promises'
 import babel from '@babel/core'
 import { resolvePath } from '@vxrn/resolve'
-import { stat } from 'node:fs/promises'
 
 export async function transformFlowBabel(
   input: string,

@@ -7,13 +7,13 @@ import {
 import { useColorScheme } from '@vxrn/universal-color-scheme'
 import {
   createContext,
+  type FunctionComponent,
+  type ReactNode,
   StrictMode,
   useContext,
   useId,
   useLayoutEffect,
   useState,
-  type FunctionComponent,
-  type ReactNode,
 } from 'react'
 import { SERVER_CONTEXT_KEY } from './constants'
 import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
@@ -244,22 +244,22 @@ if (process.env.NODE_ENV !== 'production') {
 // // its so hard to debug ssr and we get no componentstack trace, this helps:
 // if (typeof window === 'undefined') {
 //   const og = React.createElement
-//   // @ts-ignore
+//   // @ts-expect-error
 //   React.createElement = (...args) => {
 //     if (!args[0]) {
 //       console.trace('Missing export, better stack trace here', !!args[0])
 //     }
-//     // @ts-ignore
+//     // @ts-expect-error
 //     return og(...args)
 //   }
 
 //   const og2 = JSX.jsx
-//   // @ts-ignore
+//   // @ts-expect-error
 //   JSX.jsx = (...args) => {
 //     if (!args[0]) {
 //       console.trace('Missing export, better stack trace here', !!args[0])
 //     }
-//     // @ts-ignore
+//     // @ts-expect-error
 //     return og2(...args)
 //   }
 // }

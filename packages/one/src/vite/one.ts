@@ -1,11 +1,11 @@
+import events from 'node:events'
+import path from 'node:path'
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import type {
   ExpoManifestRequestHandlerPluginPluginOptions,
   MetroPluginOptions,
 } from '@vxrn/vite-plugin-metro'
-import events from 'node:events'
-import path from 'node:path'
 import type { Plugin, PluginOption } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -149,7 +149,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const devAndProdPlugins: Plugin[] = [
     {
       name: 'one:config',
-      // @ts-ignore
+      // @ts-expect-error
       __get: options,
     },
 

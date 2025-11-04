@@ -1,9 +1,9 @@
-import React, { createContext, useContext, type ReactNode } from 'react'
+import React, { createContext, type ReactNode, useContext } from 'react'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
 import { RouteParamsContext, useRouteNode } from './router/Route'
-import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 import { RouteInfoContext } from './router/RouteInfoContext'
+import { navigationRef, useStoreRootState, useStoreRouteInfo } from './router/router'
 
 type SearchParams = OneRouter.SearchParams
 
@@ -56,7 +56,7 @@ export function Frozen({ on = false, children }: { on?: boolean; children: React
     <FrozeContext.Provider value={on}>
       {/* <Freeze freeze={on}> */}
       <div
-        // @ts-ignore
+        // @ts-expect-error
         inert
         style={{ display: 'contents' }}
       >

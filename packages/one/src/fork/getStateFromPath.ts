@@ -9,11 +9,12 @@
 import type { InitialState, NavigationState, PartialState } from '@react-navigation/routers'
 // biome-ignore lint/suspicious/noShadowRestrictedNames: ignore from forked code // @modified
 import escape from 'escape-string-regexp'
+
 // import * as queryString from 'query-string'
 
-import { findFocusedRoute } from './findFocusedRoute'
 import type { PathConfigMap } from '@react-navigation/core' // @modified
-import { validatePathConfig } from './validatePathConfig'
+import { getParamValue, isDynamicPart, replacePart } from './_shared'
+import { findFocusedRoute } from './findFocusedRoute'
 import {
   type AdditionalRouteConfig,
   appendIsInitial,
@@ -26,7 +27,7 @@ import {
   parseQueryParamsExtended,
   populateParams,
 } from './getStateFromPath-mods'
-import { getParamValue, isDynamicPart, replacePart } from './_shared'
+import { validatePathConfig } from './validatePathConfig'
 
 type Options<ParamList extends {}> = {
   path?: string
@@ -648,20 +649,17 @@ const createStateObject = (
         index: 1,
         routes: [{ name: initialRoute }, route],
       }
-      // biome-ignore lint/style/noUselessElse: not changing forked code
     } else {
       return {
         routes: [route],
       }
     }
-    // biome-ignore lint/style/noUselessElse: not changing forked code
   } else {
     if (initialRoute) {
       return {
         index: 1,
         routes: [{ name: initialRoute }, { ...route, state: { routes: [] } }],
       }
-      // biome-ignore lint/style/noUselessElse: not changing forked code
     } else {
       return {
         routes: [{ ...route, state: { routes: [] } }],

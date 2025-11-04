@@ -1,19 +1,19 @@
 import './setup'
 
+import { cloneElement } from 'react'
+// @ts-expect-error
+import ReactDOMServer from 'react-dom/server.browser'
 import { AppRegistry } from 'react-native'
-import { Root } from './Root'
 import { resolveClientLoader } from './clientLoaderResolver'
+import { Root } from './Root'
 import { render } from './render'
 import { renderToString } from './server-render'
 import type { RenderAppProps } from './types'
-// @ts-ignore
-import ReactDOMServer from 'react-dom/server.browser'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
-import type { One } from './vite/types'
 import { SERVER_CONTEXT_POST_RENDER_STRING } from './vite/constants'
 import { getServerContext, setServerContext } from './vite/one-server-only'
-import { cloneElement } from 'react'
+import type { One } from './vite/types'
 
 export type CreateAppProps = {
   routes: Record<string, () => Promise<unknown>>

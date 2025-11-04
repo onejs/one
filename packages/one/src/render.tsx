@@ -43,7 +43,9 @@ export function render(element: React.ReactNode) {
     })
   }
 
-  listeners.forEach((cb) => cb())
+  listeners.forEach((cb) => {
+    cb()
+  })
   didRender = true
 }
 

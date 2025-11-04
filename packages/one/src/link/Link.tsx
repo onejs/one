@@ -2,7 +2,7 @@
 // `to` / `action` support removed.
 import { Slot } from '@radix-ui/react-slot'
 import * as React from 'react'
-import { Platform, Text, type GestureResponderEvent, type TextProps } from 'react-native'
+import { type GestureResponderEvent, Platform, Text, type TextProps } from 'react-native'
 
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from './href'

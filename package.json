@@ -67,7 +67,7 @@
     "watch:ts": "ultra -r --no-pretty --concurrency 400 typecheck -w --preserveWatchOutput"
   },
   "dependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "^2.1.2",
     "@manypkg/cli": "^0.19.1",
     "@types/react": "~19.1.10",
     "check-dependency-version-consistency": "^3.0.3",

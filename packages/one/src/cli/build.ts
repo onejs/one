@@ -1,32 +1,31 @@
-import FSExtra from 'fs-extra'
-import MicroMatch from 'micromatch'
 import { createRequire } from 'node:module'
 import Path, { join, relative, resolve } from 'node:path'
+import FSExtra from 'fs-extra'
+import MicroMatch from 'micromatch'
 import type { OutputAsset, RollupOutput } from 'rollup'
-import { mergeConfig, build as viteBuild, type InlineConfig } from 'vite'
+import { type InlineConfig, mergeConfig, build as viteBuild } from 'vite'
 import {
+  type ClientManifestEntry,
   fillOptions,
   getOptimizeDeps,
   loadEnv,
   rollupRemoveUnusedImportsPlugin,
   build as vxrnBuild,
-  type ClientManifestEntry,
 } from 'vxrn'
 
 import * as constants from '../constants'
 import { setServerGlobals } from '../server/setServerGlobals'
+import { getPathnameFromFilePath } from '../utils/getPathnameFromFilePath'
+import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { toAbsolute } from '../utils/toAbsolute'
+import { buildVercelOutputDirectory } from '../vercel/build/buildVercelOutputDirectory'
 import { getManifest } from '../vite/getManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 import { runWithAsyncLocalContext } from '../vite/one-server-only'
 import type { One, RouteInfo } from '../vite/types'
-import { buildVercelOutputDirectory } from '../vercel/build/buildVercelOutputDirectory'
-import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
-
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { labelProcess } from './label-process'
-import { getPathnameFromFilePath } from '../utils/getPathnameFromFilePath'
 
 const { ensureDir, writeJSON } = FSExtra
 

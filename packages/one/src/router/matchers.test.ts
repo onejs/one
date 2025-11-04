@@ -1,11 +1,11 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
-  matchDynamicName,
-  matchDeepDynamicRouteName,
   getNameFromFilePath,
+  matchArrayGroupName,
+  matchDeepDynamicRouteName,
+  matchDynamicName,
   matchGroupName,
   stripGroupSegmentsFromPath,
-  matchArrayGroupName,
 } from './matchers'
 
 describe(stripGroupSegmentsFromPath, () => {

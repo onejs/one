@@ -4,9 +4,9 @@
  * the best decision.
  */
 
-import { StackActions, type NavigationContainerRefWithCurrent } from '@react-navigation/native'
+import { type NavigationContainerRefWithCurrent, StackActions } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
-import { Fragment, startTransition, useSyncExternalStore, type ComponentType } from 'react'
+import { type ComponentType, Fragment, startTransition, useSyncExternalStore } from 'react'
 import { Platform } from 'react-native'
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'

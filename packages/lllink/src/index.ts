@@ -5,7 +5,7 @@
  *   bun run link-workspaces.ts <workspaceDir1> <workspaceDir2> ...
  */
 
-import { cp, mkdir, readdir, readFile, rename, rm, stat, symlink } from 'node:fs/promises'
+import { cp, mkdir, readFile, readdir, rename, rm, stat, symlink } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { join, relative, resolve } from 'node:path'
 

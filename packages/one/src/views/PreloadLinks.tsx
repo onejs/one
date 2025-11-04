@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { preloadRoute } from '../router/router'
 import { getURL } from '../getURL'
+import { preloadRoute } from '../router/router'
 
 export function PreloadLinks() {
   // only in prod because we don't generate them until build
-  // @ts-ignore
+  // @ts-expect-error
   if (typeof window !== 'undefined' && import.meta.env.PROD) {
     useEffect(() => {
       const url = getURL()

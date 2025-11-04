@@ -3,10 +3,10 @@
  * to work on both native and web, and with reanimated and other babel fallbacks
  */
 
-import { resolvePath } from '@vxrn/utils'
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { extname, join, sep } from 'node:path'
+import { resolvePath } from '@vxrn/utils'
 import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
 import type { OutputChunk } from 'rollup'
 import type { PluginOption, ResolvedConfig, UserConfig } from 'vite'

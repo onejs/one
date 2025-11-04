@@ -1,11 +1,11 @@
+import { extname, sep } from 'node:path'
 import {
-  transform,
   type Output,
   type ParserConfig,
   type Options as SWCOptions,
   type TransformConfig,
+  transform,
 } from '@swc/core'
-import { extname, sep } from 'node:path'
 import { merge } from 'ts-deepmerge'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug, parsers, runtimePublicPath } from './constants'
