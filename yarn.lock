@@ -7300,7 +7300,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.1.0":
+"@types/node@npm:*":
   version: 22.10.9
   resolution: "@types/node@npm:22.10.9"
   dependencies:
@@ -7329,6 +7329,15 @@ __metadata:
   dependencies:
     undici-types: "npm:~6.19.2"
   checksum: 10/60e3ce01266eb1b5a8e6815829b5becec471c5c33f1b30fe4568102919b4704b53a31e86de463257ccab93b8c2eeb80beaef8075ef84dc3fbd51fe258cef66f7
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^24.10.0":
+  version: 24.10.0
+  resolution: "@types/node@npm:24.10.0"
+  dependencies:
+    undici-types: "npm:~7.16.0"
+  checksum: 10/bc3abd9adc61423b1a72324208f3fcfe4f957b9fc8b9e81bf3fed584deb0b40f0e2af63cd0e2afa8f408d06f14bdba899ac638ac619f646badf8e72de246c052
   languageName: node
   linkType: hard
 
@@ -8130,7 +8139,7 @@ __metadata:
     "@react-native/dev-middleware": "npm:^0.82.1"
     "@tamagui/build": "npm:^1.136.0"
     "@types/babel__helper-plugin-utils": "npm:^7"
-    "@types/node": "npm:^22.1.0"
+    "@types/node": "npm:^24.10.0"
     "@vxrn/debug": "workspace:*"
     babel-preset-expo: "npm:*"
     depcheck: "npm:^1.4.7"
@@ -16999,7 +17008,7 @@ __metadata:
     "@react-navigation/routers": "npm:^7.5.1"
     "@swc/core": "npm:^1.14.0"
     "@tamagui/build": "npm:^1.136.0"
-    "@types/node": "npm:^22.1.0"
+    "@types/node": "npm:^24.10.0"
     "@types/react-dom": "npm:^19.2.2"
     "@types/xxhashjs": "npm:^0.2.4"
     "@ungap/structured-clone": "npm:^1.2.0"
@@ -21641,6 +21650,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"undici-types@npm:~7.16.0":
+  version: 7.16.0
+  resolution: "undici-types@npm:7.16.0"
+  checksum: 10/db43439f69c2d94cc29f75cbfe9de86df87061d6b0c577ebe9bb3255f49b22c50162a7d7eb413b0458b6510b8ca299ac7cff38c3a29fbd31af9f504bcf7fbc0d
+  languageName: node
+  linkType: hard
+
 "undici@npm:^5.28.4":
   version: 5.28.5
   resolution: "undici@npm:5.28.5"
@@ -22425,7 +22441,7 @@ __metadata:
     "@rollup/plugin-node-resolve": "npm:^15.3.1"
     "@tamagui/build": "npm:^1.136.0"
     "@types/find-node-modules": "npm:^2.1.2"
-    "@types/node": "npm:^22.1.0"
+    "@types/node": "npm:^24.10.0"
     "@types/qrcode-terminal": "npm:^0"
     "@types/ws": "npm:^8.5.10"
     "@vxrn/compiler": "workspace:*"

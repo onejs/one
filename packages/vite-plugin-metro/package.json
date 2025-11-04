@@ -71,7 +71,7 @@
     "@react-native/dev-middleware": "^0.82.1",
     "@tamagui/build": "^1.136.0",
     "@types/babel__helper-plugin-utils": "^7",
-    "@types/node": "^22.1.0",
+    "@types/node": "^24.10.0",
     "depcheck": "^1.4.7",
     "expo": "~54.0.20",
     "metro": "^0.82",

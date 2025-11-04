@@ -15,7 +15,7 @@
   "testDependencies": {
     "@lexical/react": "^0.21.0",
     "@react-native-masked-view/masked-view": "^0.3.2",
-    "@react-navigation/native": "^7.1.18",
+    "@react-navigation/native": "^7.1.19",
     "@rn-primitives/slot": "^1.1.0",
     "@sentry/react-native": "^7.4.0",
     "@shopify/flash-list": "^2.1.0",
