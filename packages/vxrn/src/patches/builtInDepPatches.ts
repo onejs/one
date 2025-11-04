@@ -160,7 +160,7 @@ ${contents}
   {
     module: '@react-native-community/cli-config',
     patchFiles: {
-      version: '^13',
+      version: '>=13.0.0 <16.0.0',
       'build/readConfigFromDisk.js': (contents) => {
         assertString(contents)
 
@@ -226,7 +226,7 @@ ${contents}
   {
     module: 'expo',
     patchFiles: {
-      version: '52.*',
+      version: '>=52.0.0 <55.0.0',
       'src/winter/runtime.native.ts': (contents) => {
         assertString(contents)
 
@@ -259,8 +259,7 @@ install('URLSearchParams', () => URLSearchParams);
   {
     module: 'expo-modules-core',
     patchFiles: {
-      version: '2.*',
-
+      version: '<=3.*',
       'src/**/*.ts': addNoCheck,
       'src/**/*.tsx': addNoCheck,
     },
@@ -401,7 +400,6 @@ install('URLSearchParams', () => URLSearchParams);
   {
     module: 'expo-camera',
     patchFiles: {
-      version: '<=16.0.0',
       '**/*.js': ['jsx'],
     },
   },
