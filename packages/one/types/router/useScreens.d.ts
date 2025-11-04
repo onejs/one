@@ -27,7 +27,7 @@ export declare function useSortedScreens(order: ScreenProps[], options?: {
     onlyMatching?: boolean;
 }): React.ReactNode[];
 /** Wrap the component with various enhancements and add access to child routes. */
-export declare function getQualifiedRouteComponent(value: RouteNode): React.ComponentType<any> | React.MemoExoticComponent<React.ForwardRefExoticComponent<Omit<any, "ref"> & React.RefAttributes<unknown>>>;
+export declare function getQualifiedRouteComponent(value: RouteNode): React.ComponentType<any> | React.NamedExoticComponent<Omit<any, "ref"> & React.RefAttributes<unknown>>;
 /** @returns a function which provides a screen id that matches the dynamic route name in params. */
 export declare function createGetIdForRoute(route: Pick<RouteNode, 'dynamic' | 'route' | 'contextKey' | 'children'>): ({ params }?: {
     params?: Record<string, any>;

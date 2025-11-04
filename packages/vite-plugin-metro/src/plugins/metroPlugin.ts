@@ -9,8 +9,8 @@ import launchEditor from 'launch-editor'
 // at runtime to ensure they are loaded from the user's project root.
 import type MetroT from 'metro'
 import type { loadConfig as loadConfigT } from 'metro'
-import type MetroHmrServerT from 'metro/src/HmrServer'
-import type createWebsocketServerT from 'metro/src/lib/createWebsocketServer'
+import type MetroHmrServerT from 'metro/private/HmrServer'
+import type createWebsocketServerT from 'metro/private/lib/createWebsocketServer'
 import type { createDevMiddleware as createDevMiddlewareT } from '@react-native/dev-middleware'
 
 import { projectImport } from '../utils/projectImport'
@@ -63,10 +63,10 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
       }>(projectRoot, 'metro')
       const { default: MetroHmrServer } = await projectImport<{
         default: typeof MetroHmrServerT
-      }>(projectRoot, 'metro/src/HmrServer')
+      }>(projectRoot, 'metro/private/HmrServer')
       const { default: createWebsocketServer } = await projectImport<{
         default: typeof createWebsocketServerT
-      }>(projectRoot, 'metro/src/lib/createWebsocketServer')
+      }>(projectRoot, 'metro/private/lib/createWebsocketServer')
       const { createDevMiddleware } = await projectImport<{
         createDevMiddleware: typeof createDevMiddlewareT
       }>(projectRoot, '@react-native/dev-middleware')

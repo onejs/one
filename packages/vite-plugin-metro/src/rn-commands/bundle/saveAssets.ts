@@ -1,4 +1,4 @@
-import type { AssetData } from 'metro/src/Assets'
+import type { AssetData } from 'metro/private/Assets'
 import { cleanAssetCatalog, getImageSet, isCatalogAsset, writeImageSet } from './assetCatalogIOS'
 import filterPlatformAssetScales from './filterPlatformAssetScales'
 import getAssetDestPathAndroid from './getAssetDestPathAndroid'
