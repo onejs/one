@@ -1,6 +1,6 @@
 {
   "name": "test-hmr",
-  "version": "1.1.547-1762276634821",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "scripts": {
