@@ -4265,7 +4265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/elements@npm:^2.8.1":
+"@react-navigation/elements@npm:^2.6.3, @react-navigation/elements@npm:^2.8.1":
   version: 2.8.1
   resolution: "@react-navigation/elements@npm:2.8.1"
   dependencies:
@@ -16430,7 +16430,7 @@ __metadata:
     "@react-navigation/bottom-tabs": "npm:^7.7.3"
     "@react-navigation/core": "npm:^7.13.0"
     "@react-navigation/drawer": "npm:^7.7.2"
-    "@react-navigation/elements": "npm:^2.8.1"
+    "@react-navigation/elements": "npm:^2.6.3"
     "@react-navigation/native": "npm:^7.1.19"
     "@react-navigation/native-stack": "npm:^7.6.2"
     "@react-navigation/routers": "npm:^7.5.1"
