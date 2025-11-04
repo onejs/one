@@ -4210,7 +4210,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/bottom-tabs@npm:^7.7.3":
+"@react-navigation/bottom-tabs@npm:~7.7.3":
   version: 7.7.3
   resolution: "@react-navigation/bottom-tabs@npm:7.7.3"
   dependencies:
@@ -4245,7 +4245,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/drawer@npm:^7.7.2":
+"@react-navigation/drawer@npm:~7.7.2":
   version: 7.7.2
   resolution: "@react-navigation/drawer@npm:7.7.2"
   dependencies:
@@ -4265,7 +4265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/elements@npm:^2.6.3, @react-navigation/elements@npm:^2.8.1":
+"@react-navigation/elements@npm:^2.8.1":
   version: 2.8.1
   resolution: "@react-navigation/elements@npm:2.8.1"
   dependencies:
@@ -4285,7 +4285,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/native-stack@npm:^7.6.2":
+"@react-navigation/elements@npm:~2.6.3":
+  version: 2.6.5
+  resolution: "@react-navigation/elements@npm:2.6.5"
+  dependencies:
+    color: "npm:^4.2.3"
+    use-latest-callback: "npm:^0.2.4"
+    use-sync-external-store: "npm:^1.5.0"
+  peerDependencies:
+    "@react-native-masked-view/masked-view": ">= 0.2.0"
+    "@react-navigation/native": ^7.1.18
+    react: ">= 18.2.0"
+    react-native: "*"
+    react-native-safe-area-context: ">= 4.0.0"
+  peerDependenciesMeta:
+    "@react-native-masked-view/masked-view":
+      optional: true
+  checksum: 10/b939f1dc1981c12379cea7ee26348e29bff94de6f29fefe74e8f1d311662d2235e6d87322c5e27e10a59648b88fa5648cb64c646daf65e94dd2664f060408ed2
+  languageName: node
+  linkType: hard
+
+"@react-navigation/native-stack@npm:~7.6.2":
   version: 7.6.2
   resolution: "@react-navigation/native-stack@npm:7.6.2"
   dependencies:
@@ -4303,7 +4323,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/native@npm:^7.1.19":
+"@react-navigation/native@npm:~7.1.19":
   version: 7.1.19
   resolution: "@react-navigation/native@npm:7.1.19"
   dependencies:
@@ -4319,7 +4339,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/routers@npm:^7.5.1":
+"@react-navigation/routers@npm:^7.5.1, @react-navigation/routers@npm:~7.5.1":
   version: 7.5.1
   resolution: "@react-navigation/routers@npm:7.5.1"
   dependencies:
@@ -10169,7 +10189,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "devtools@workspace:apps/devtools"
   dependencies:
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     "@tamagui/config": "npm:^1.136.1"
     "@tamagui/image-next": "npm:^1.136.1"
     "@tamagui/lucide-icons": "npm:^1.136.1"
@@ -11111,7 +11131,7 @@ __metadata:
   resolution: "example-basic@workspace:examples/one-basic"
   dependencies:
     "@react-native-community/cli": "npm:^20.0.2"
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     "@types/react": "npm:^19.2.2"
     expo: "npm:54.0.22"
     one: "workspace:*"
@@ -11134,7 +11154,7 @@ __metadata:
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
     "@react-native-community/cli": "npm:^20.0.2"
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     "@tamagui/config": "npm:^1.136.1"
     "@tamagui/image-next": "npm:^1.136.1"
     "@tamagui/lucide-icons": "npm:^1.136.1"
@@ -11169,7 +11189,7 @@ __metadata:
   resolution: "example-tailwind@workspace:examples/one-tailwind"
   dependencies:
     "@react-native-community/cli": "npm:^20.0.2"
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     autoprefixer: "npm:^10.4.20"
     expo: "npm:54.0.22"
     nativewind: "npm:^4.1.23"
@@ -11196,7 +11216,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:2.3.3"
     "@react-native-community/cli": "npm:^20.0.2"
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     "@tamagui/animations-css": "npm:^1.136.1"
     "@tamagui/animations-moti": "npm:^1.136.1"
     "@tamagui/colors": "npm:^1.136.1"
@@ -11235,7 +11255,7 @@ __metadata:
     "@dotenvx/dotenvx": "npm:^1.12.1"
     "@faker-js/faker": "npm:next"
     "@react-native-community/cli": "npm:^20.0.2"
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     "@tamagui/config": "npm:^1.136.1"
     "@tamagui/image-next": "npm:^1.136.1"
     "@tamagui/lucide-icons": "npm:^1.136.1"
@@ -16427,13 +16447,13 @@ __metadata:
     "@babel/types": "npm:^7.28.5"
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@react-native-masked-view/masked-view": "npm:^0.3.2"
-    "@react-navigation/bottom-tabs": "npm:^7.7.3"
+    "@react-navigation/bottom-tabs": "npm:~7.7.3"
     "@react-navigation/core": "npm:^7.13.0"
-    "@react-navigation/drawer": "npm:^7.7.2"
-    "@react-navigation/elements": "npm:^2.6.3"
-    "@react-navigation/native": "npm:^7.1.19"
-    "@react-navigation/native-stack": "npm:^7.6.2"
-    "@react-navigation/routers": "npm:^7.5.1"
+    "@react-navigation/drawer": "npm:~7.7.2"
+    "@react-navigation/elements": "npm:~2.6.3"
+    "@react-navigation/native": "npm:~7.1.19"
+    "@react-navigation/native-stack": "npm:~7.6.2"
+    "@react-navigation/routers": "npm:~7.5.1"
     "@swc/core": "npm:^1.14.0"
     "@tamagui/build": "npm:^1.136.1"
     "@types/node": "npm:^24.10.0"
@@ -18772,7 +18792,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rn-test-container@workspace:tests/rn-test-container"
   dependencies:
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     expo: "npm:54.0.22"
     expo-clipboard: "npm:~7.1.5"
     one: "workspace:*"
@@ -19378,7 +19398,7 @@ __metadata:
   dependencies:
     "@algolia/client-search": "npm:^5.8.1"
     "@docsearch/react": "npm:^3.9.0"
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     "@supabase/supabase-js": "npm:^2.44.4"
     "@tamagui/button": "npm:^1.136.1"
     "@tamagui/input": "npm:^1.136.1"
@@ -20343,7 +20363,7 @@ __metadata:
   dependencies:
     "@cloudflare/vitest-pool-workers": "npm:^0.5.38"
     "@cloudflare/workers-types": "npm:^4.20241216.0"
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     one: "workspace:*"
     react-native: "npm:0.81.5"
     react-native-safe-area-context: "npm:~5.6.1"
@@ -20369,7 +20389,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "test-hmr@workspace:tests/hmr"
   dependencies:
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     expo: "npm:54.0.22"
     one: "workspace:*"
     playwright: "npm:^1.49.1"
@@ -20388,7 +20408,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "test-sandbox@workspace:tests/sandbox"
   dependencies:
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     "@tamagui/config": "npm:^1.136.1"
     "@tamagui/image-next": "npm:^1.136.1"
     "@tamagui/lucide-icons": "npm:^1.136.1"
@@ -20415,7 +20435,7 @@ __metadata:
   resolution: "test-test@workspace:tests/test"
   dependencies:
     "@react-native-community/cli": "npm:^20.0.2"
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     "@tamagui/config": "npm:^1.136.1"
     "@tamagui/image-next": "npm:^1.136.1"
     "@tamagui/lucide-icons": "npm:^1.136.1"
@@ -20453,7 +20473,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "test-use-dom@workspace:tests/test-use-dom"
   dependencies:
-    "@react-navigation/native": "npm:^7.1.19"
+    "@react-navigation/native": "npm:~7.1.19"
     "@types/react": "npm:^19.2.2"
     expo: "npm:54.0.22"
     one: "workspace:*"

@@ -34,7 +34,7 @@
     "upgrade:tamagui": "$npm_execpath up '*tamagui*' '@tamagui/*'"
   },
   "dependencies": {
-    "@react-navigation/native": "^7.1.19",
+    "@react-navigation/native": "~7.1.19",
     "@tamagui/config": "^1.136.1",
     "@tamagui/image-next": "^1.136.1",
     "@tamagui/lucide-icons": "^1.136.1",
