@@ -1,8 +1,10 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.3.3/schema.json",
+  "assist": {
+    "enabled": false
+  },
   "linter": {
     "enabled": true,
-    "include": ["**/*.ts", "**/*.tsx"],
     "rules": {
       "correctness": {
         "noUnusedFunctionParameters": "off",
@@ -14,6 +16,7 @@
         "noUnusedVariables": "off"
       },
       "suspicious": {
+        "noTsIgnore": "off",
         "noImplicitAnyLet": "off",
         "noConfusingVoidType": "off",
         "noEmptyInterface": "off",
@@ -26,7 +29,15 @@
         "noConsole": {
           "level": "error",
           "options": {
-            "allow": ["error", "warn", "info", "debug", "groupCollapsed", "groupEnd", "trace"]
+            "allow": [
+              "error",
+              "warn",
+              "info",
+              "debug",
+              "groupCollapsed",
+              "groupEnd",
+              "trace"
+            ]
           }
         }
       },
@@ -51,6 +62,7 @@
         "noAccumulatingSpread": "off"
       },
       "complexity": {
+        "noArguments": "off",
         "noUselessFragments": "off",
         "noForEach": "off",
         "noBannedTypes": "off",

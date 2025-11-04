@@ -22,7 +22,7 @@
     "lint:fix": "../../node_modules/.bin/biome check --write --unsafe src"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.3.3",
     "@tamagui/build": "^1.136.1"
   },
   "publishConfig": {

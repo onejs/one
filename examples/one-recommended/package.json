@@ -47,7 +47,7 @@
     "tamagui": "^1.136.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.3.3",
     "@faker-js/faker": "next",
     "@react-native-community/cli": "^20.0.2",
     "@tamagui/vite-plugin": "^1.136.1",
