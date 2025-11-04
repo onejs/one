@@ -6,6 +6,7 @@ globalThis['global'] = globalThis
 // --------------- structuredClone -------------------
 
 import structuredClone from '@ungap/structured-clone'
+
 globalThis['structuredClone'] ||= structuredClone
 
 // --------------- structuredClone -------------------
@@ -31,6 +32,5 @@ import 'core-js/actual/url-search-params'
 // --------------- Promise.withResolver -------------------
 
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
-Promise.withResolvers ||
-  // @ts-ignore
-  (Promise.withResolvers = promiseWithResolvers)
+
+Promise.withResolvers || (Promise.withResolvers = promiseWithResolvers)

@@ -1,8 +1,8 @@
-import { readFile } from 'node:fs/promises'
 import { mustReplace } from '@vxrn/utils'
-import { transformFlow } from '@vxrn/vite-flow'
+import { transformFlowBabel } from '@vxrn/vite-flow'
 import { build, type BuildOptions } from 'esbuild'
 import FSExtra from 'fs-extra'
+import { readFile } from 'node:fs/promises'
 
 import { createRequire } from 'node:module'
 
@@ -149,9 +149,6 @@ export async function buildReactNative(
     entryPoints: [requireResolve('react-native')],
     format: 'cjs',
     target: 'node20',
-    // Note: JSX is actually being transformed by the "remove-flow" plugin defined underneath, not by esbuild. The following JSX options may not actually make a difference.
-    jsx: 'transform',
-    jsxFactory: 'react',
     allowOverwrite: true,
     platform: 'node',
     external,
@@ -166,18 +163,7 @@ export async function buildReactNative(
       'process.env.NODE_ENV': `"development"`,
     },
     logLevel: 'warning',
-    resolveExtensions: [
-      `.${platform}.js`,
-      '.native.js',
-      '.native.ts',
-      '.native.tsx',
-      '.js',
-      '.jsx',
-      '.json',
-      '.ts',
-      '.tsx',
-      '.mjs',
-    ],
+    resolveExtensions: [`.${platform}.js`, '.native.js', '.js', '.jsx', '.json', '.mjs'],
     ...options,
     plugins: [
       {
@@ -235,8 +221,8 @@ export async function buildReactNative(
 
               const code = await readFile(input.path, 'utf-8')
 
-              // omg so ugly but no class support?
-              let outagain = await transformFlow(code, { development: true })
+              // so ugly but no class support?
+              let outagain = await transformFlowBabel(code, { development: true, path: input.path })
 
               // Some libs such as Tamagui are importing `react-native/Libraries/Core/ReactNativeVersion`, but it may be tree-shaken away in the production bundle, since in RN it's only used when `__DEV__` is true (https://github.com/facebook/react-native/blob/v0.77.0/packages/react-native/Libraries/Core/InitializeCore.js#L44). The main purpose of exporting this is here to let it not be tree-shaken away by esbuild.
               if (input.path.endsWith('react-native/index.js')) {

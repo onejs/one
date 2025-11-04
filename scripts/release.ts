@@ -297,11 +297,29 @@ async function run() {
         async ({ name, cwd }) => {
           const publishOptions = [canary && `--tag canary`].filter(Boolean).join(' ')
 
+          // Check for and temporarily remove symlinks (like biome.json) before packing
+          const biomePath = join(cwd, 'biome.json')
+          let biomeTarget: string | null = null
+          try {
+            const stats = await fs.lstat(biomePath)
+            if (stats.isSymbolicLink()) {
+              biomeTarget = await fs.readlink(biomePath)
+              await fs.unlink(biomePath)
+            }
+          } catch (err) {
+            // biome.json doesn't exist, that's fine
+          }
+
           const absolutePath = `${tmpDir}/${name.replace('/', '_')}-package.tmp.tgz`
           await spawnify(`yarn pack --out ${absolutePath}`, {
             cwd,
             avoidLog: true,
           })
+
+          // Restore the symlink after packing
+          if (biomeTarget) {
+            await fs.symlink(biomeTarget, biomePath)
+          }
 
           const publishCommand = [
             'npm publish',
@@ -342,21 +360,19 @@ async function run() {
 
           await spawnify(`git commit -m ${gitTag}`, { cwd, allowFail: finish })
 
-          if (!canary) {
-            await spawnify(`git tag ${gitTag}`, { cwd, allowFail: finish })
-          }
+          await spawnify(`git tag ${gitTag}`, { cwd, allowFail: finish })
 
-          if (!dirty) {
-            // pull once more before pushing so if there was a push in interim we get it
-            await spawnify(`git pull --rebase origin HEAD`, { cwd })
-          }
-
-          await spawnify(`git push origin head`, { cwd, allowFail: finish })
           if (!canary) {
+            if (!dirty) {
+              // pull once more before pushing so if there was a push in interim we get it
+              await spawnify(`git pull --rebase origin HEAD`, { cwd })
+            }
+
+            await spawnify(`git push origin head`, { cwd, allowFail: finish })
             await spawnify(`git push origin ${gitTag}`, { cwd })
           }
 
-          console.info(`✅ Pushed and versioned\n`)
+          console.info(`✅ ${canary ? 'Tagged locally' : 'Pushed and versioned'}\n`)
         }
       }
 

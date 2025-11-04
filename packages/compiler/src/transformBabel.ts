@@ -1,6 +1,6 @@
+import { extname, relative } from 'node:path'
 import babel from '@babel/core'
 import { resolvePath } from '@vxrn/utils'
-import { extname, relative } from 'node:path'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug } from './constants'
 import type { GetTransformProps, GetTransformResponse } from './types'
@@ -157,7 +157,7 @@ const getBasePlugins = ({ development }: Props) =>
 // * https://reactnative.dev/docs/turbo-native-modules-introduction#1-declare-typed-specification
 
 const NATIVE_COMPONENT_RE = /NativeComponent\.[jt]sx?$/
-const SPEC_FILE_RE = /[\/\\]specs?[\/\\]/
+const SPEC_FILE_RE = /[/\\]specs?[/\\]/
 
 const shouldBabelReactNativeCodegen = ({ id, environment }: Props) => {
   return (

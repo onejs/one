@@ -6,8 +6,8 @@
  * All modifications except formatting should be marked with `// @modified` comment.
  */
 import { type NavigationContainerProps, type NavigationContainerRef } from '@react-navigation/core';
-import * as React from 'react';
 import { type DocumentTitleOptions, type LinkingOptions, type LocaleDirection } from '@react-navigation/native';
+import * as React from 'react';
 declare global {
     var REACT_NAVIGATION_DEVTOOLS: WeakMap<NavigationContainerRef<any>, {
         readonly linking: LinkingOptions<any>;

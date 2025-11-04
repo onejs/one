@@ -137,6 +137,7 @@ export async function getMetroConfigFromViteConfig(
     }
   )
 
+  // @ts-expect-error TODO
   return {
     ...metroConfig,
     ...extraConfig,

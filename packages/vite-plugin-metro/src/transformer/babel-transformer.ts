@@ -116,7 +116,7 @@ function getBabelCaller({
 
     isNodeModule,
 
-    isHMREnabled: options.hot,
+    isHMREnabled: options.dev,
 
     // Set the standard Babel flag to disable ESM transformations.
     supportsStaticESM:

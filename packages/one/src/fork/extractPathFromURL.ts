@@ -37,7 +37,7 @@ function extractExactPathFromURL(url: string): string {
     return href.replace(origin, '')
   }
 
-  const isExpoGo = typeof expo !== 'undefined' && globalThis.expo?.modules?.ExpoGo
+  const isExpoGo = typeof globalThis.expo !== 'undefined' && globalThis.expo?.modules?.ExpoGo
 
   // Handle special URLs used in Expo Go: `/--/pathname` -> `pathname`
   if (

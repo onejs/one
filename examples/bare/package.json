@@ -1,6 +1,6 @@
 {
   "name": "example-bare",
-  "version": "1.1.547",
+  "version": "1.1.547-1762276634821",
   "private": true,
   "type": "module",
   "main": "index.js",
@@ -17,22 +17,22 @@
   },
   "dependencies": {
     "expo-constants": "~16.0.0",
-    "react": "~19.0.0",
-    "react-native": "~0.79.2"
+    "react": "19.1.0",
+    "react-native": "0.81.5"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "@babel/runtime": "^7.28.4",
-    "@react-native-community/cli": "19.0.0",
+    "@react-native-community/cli": "^20.0.2",
     "@react-native-community/template": "^0.76.5",
-    "@react-native/babel-preset": "~0.79.2",
-    "@react-native/metro-config": "~0.79.2",
-    "@react-native/typescript-config": "0.73.1",
-    "@types/react": "^18.3.11",
-    "@types/react-test-renderer": "^18.0.0",
-    "babel-jest": "~29.6.3",
-    "react-test-renderer": "18.2.0",
+    "@react-native/babel-preset": "^0.82.1",
+    "@react-native/metro-config": "^0.82.1",
+    "@react-native/typescript-config": "^0.82.1",
+    "@types/react": "^19.2.2",
+    "@types/react-test-renderer": "^19.1.0",
+    "babel-jest": "~29.6.4",
+    "react-test-renderer": "^19.2.0",
     "typescript": "^5.7.3",
     "vxrn": "workspace:*"
   },

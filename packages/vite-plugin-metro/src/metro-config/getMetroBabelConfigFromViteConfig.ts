@@ -4,13 +4,7 @@ import type { ResolvedConfig } from 'vite'
 // We use `projectImport` to dynamically import the actual modules
 // at runtime to ensure they are loaded from the user's project root.
 import type { loadConfig as loadConfigT } from 'metro'
-import type { getDefaultConfig as getDefaultConfigT } from '@expo/metro-config'
 
-import { projectImport, projectResolve } from '../utils/projectImport'
-import { getTerminalReporter } from '../utils/getTerminalReporter'
-import { patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName } from '../utils/patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName'
-import type { MetroPluginOptions } from '../plugins/metroPlugin'
-import type { ExtraConfig, MetroConfigExtended } from './types'
 import type { TransformOptions } from '@babel/core'
 
 type MetroInputConfig = Parameters<typeof loadConfigT>[1]

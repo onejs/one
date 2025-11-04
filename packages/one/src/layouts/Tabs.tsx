@@ -1,9 +1,9 @@
 import {
-  createBottomTabNavigator,
-  type BottomTabNavigationEventMap,
-  type BottomTabNavigationOptions,
   BottomTabBar,
   type BottomTabBarProps,
+  type BottomTabNavigationEventMap,
+  type BottomTabNavigationOptions,
+  createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs'
 import type { ParamListBase, TabNavigationState } from '@react-navigation/native'
 import { Platform, Pressable } from 'react-native'
@@ -68,11 +68,11 @@ export const Tabs = withLayoutContext<
                 Platform.OS === 'web' ? props.children : <Pressable>{props.children}</Pressable>
               return (
                 <Link
-                  {...props}
+                  {...(props as any)}
                   style={[{ display: 'flex' }, props.style]}
                   href={href}
                   asChild={Platform.OS !== 'web'}
-                  // biome-ignore lint/correctness/noChildrenProp: <explanation>
+                  // biome-ignore lint/correctness/noChildrenProp: children prop needed for asChild pattern
                   children={children}
                 />
               )

@@ -18,7 +18,6 @@
       "node",
       "react",
       "vite/client",
-      "one-routes",
       "nativewind/types"
     ],
     "lib": [

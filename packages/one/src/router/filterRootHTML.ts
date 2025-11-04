@@ -21,7 +21,7 @@ export type FoundRootHTML = {
 
 export function filterRootHTML(el: React.ReactNode): FoundRootHTML {
   let htmlProps: Props | undefined
-  let bodyProps: React.ReactElement | undefined
+  let bodyProps: Props | undefined
   let head: React.ReactElement | undefined
 
   function traverse(element: React.ReactNode) {
@@ -36,9 +36,16 @@ export function filterRootHTML(el: React.ReactNode): FoundRootHTML {
     const { type, props } = reactElement
 
     if (type === 'html') {
-      const { children, ...restProps } = reactElement.props
-      htmlProps = restProps
-      return traverse(children)
+      if (
+        reactElement.props &&
+        typeof reactElement.props === 'object' &&
+        'children' in reactElement.props
+      ) {
+        const { children, ...restProps } = reactElement.props
+        htmlProps = restProps
+        return traverse(children as React.ReactNode)
+      }
+      return null
     }
 
     if (type === 'head') {
@@ -47,9 +54,16 @@ export function filterRootHTML(el: React.ReactNode): FoundRootHTML {
     }
 
     if (type === 'body') {
-      const { children, ...restProps } = reactElement.props
-      bodyProps = restProps
-      return children
+      if (
+        reactElement.props &&
+        typeof reactElement.props === 'object' &&
+        'children' in reactElement.props
+      ) {
+        const { children, ...restProps } = reactElement.props
+        bodyProps = restProps
+        return children as React.ReactNode
+      }
+      return null
     }
 
     if (process.env.TAMAGUI_TARGET === 'native') {

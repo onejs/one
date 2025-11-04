@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of https://github.com/facebook/react-native.
  */
-import type { AssetData } from 'metro/src/Assets';
+import type { AssetData } from 'metro/private/Assets';
 export declare function cleanAssetCatalog(catalogDir: string): void;
 type ImageSet = {
     basePath: string;

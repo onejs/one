@@ -26,7 +26,6 @@ export declare const conditions: string[];
  *
  * `"react-native": "src/index.ts"` will be used as the entry point instead of `"module": "lib/module/index.js"`.
  *
- * Note that the current (v0.76) React Native has the practice of releasing the source code (which is often in the `src/` folder) directly, and which is often written in TypeScript or JS with Flow types, so that the `@react-native/babel-plugin-codegen` plugin can leverage the type definitions to generate an JS interface for the native code.
  *
  * See:
  * * https://v5.vite.dev/config/shared-options.html#resolve-mainfields

@@ -1,10 +1,10 @@
 import path from 'node:path'
 import { promises as fs } from 'node:fs'
 import type { ConfigT } from 'metro-config'
-import Server from 'metro/src/Server'
-import metroBundle from 'metro/src/shared/output/bundle'
-import type metroRamBundle from 'metro/src/shared/output/RamBundle'
-import type { RequestOptions } from 'metro/src/shared/types.flow'
+import Server from 'metro/private/Server'
+import metroBundle from 'metro/private/shared/output/bundle'
+import type metroRamBundle from 'metro/private/shared/output/RamBundle'
+import type { RequestOptions } from 'metro/private/shared/types.flow'
 import type { BundleCommandArgs } from './types'
 import saveAssets from './saveAssets'
 
@@ -50,6 +50,9 @@ export async function buildBundleWithConfig(
     unstable_transformProfile: args.unstableTransformProfile,
     customResolverOptions,
   }
+
+  console.info(`TODO`, config)
+  // @ts-expect-error TODO
   const server = new Server(config)
 
   if (patchServer) {

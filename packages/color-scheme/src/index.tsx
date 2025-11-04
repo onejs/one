@@ -51,7 +51,10 @@ export function SchemeProvider({
   children,
   // defaults to tamagui-compatible
   getClassName = (name) => `t_${name}`,
-}: { children: any; getClassName?: (name: ColorSchemeName) => string }) {
+}: {
+  children: any
+  getClassName?: (name: ColorSchemeName) => string
+}) {
   const [colorSchemeSetting] = useColorSchemeSetting()
   const [colorScheme] = useColorScheme()
 
@@ -107,7 +110,11 @@ export const MetaTheme = ({
   color,
   darkColor,
   lightColor,
-}: { color: string; darkColor: string; lightColor: string }) => {
+}: {
+  color: string
+  darkColor: string
+  lightColor: string
+}) => {
   const [colorScheme] = useColorScheme()
 
   return (

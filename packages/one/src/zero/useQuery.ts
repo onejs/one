@@ -1,8 +1,8 @@
 import { useRef } from 'react'
+import { getServerContext } from '../vite/one-server-only'
 import { getQueryKey } from './getQueryKey'
 import { resolveZeroQuery } from './resolveQuery'
 import { useQuery as useQueryZero } from './useQueryZero'
-import { getServerContext } from '../vite/one-server-only'
 
 let clientInitialData: Object | null = getServerContext()?.postRenderData
 
@@ -21,7 +21,7 @@ const promises = new WeakMap()
 export const useQuery = ((query: any, enable = true) => {
   const snapshot = useQueryZero(query, enable)
 
-  const queryIdRef = useRef<string>()
+  const queryIdRef = useRef<string | undefined>(undefined)
   if (query && !queryIdRef.current) {
     queryIdRef.current = getQueryKey(query)
   }

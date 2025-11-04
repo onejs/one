@@ -14,7 +14,9 @@ export class Emitter<const T> {
 
   emit = (next: T) => {
     this.value = next
-    this.disposables.forEach((cb) => cb(next))
+    this.disposables.forEach((cb) => {
+      cb(next)
+    })
   }
 
   use = (cb: (cb: T) => void, args?: any[]) => {
