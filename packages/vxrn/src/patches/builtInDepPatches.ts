@@ -267,6 +267,34 @@ install('URLSearchParams', () => URLSearchParams);
   },
 
   {
+    module: '@expo/cli',
+    patchFiles: {
+      version: '<=54',
+
+      'build/src/export/embed/exportEmbedAsync.js': (contents) => {
+        return contents?.replace(
+          'exportEmbedAsync(projectRoot, options) {',
+          'exportEmbedAsync(projectRoot, options) { console.warn("[one] skipping expo export:embed since it will not work properly, we just let the JS bundle build during the native build process where VxRN has control"); return;'
+        )
+      },
+    },
+  },
+
+  {
+    module: 'expo-liquid-glass-view',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
+    module: '@expo/ui',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
     module: 'expo-image',
     patchFiles: {
       'build/**/*.js': ['jsx'],
@@ -377,6 +405,7 @@ install('URLSearchParams', () => URLSearchParams);
       '**/*.js': ['jsx'],
     },
   },
+
   {
     module: 'expo-blur',
     patchFiles: {
@@ -396,15 +425,15 @@ install('URLSearchParams', () => URLSearchParams);
   },
 
   {
-    module: 'html-entities',
+    module: '@hot-updater/plugin-core',
     patchFiles: {
-      version: '2.*',
-      // [react-native-live-markdown] `parseExpensiMark` requires `html-entities` package to be workletized.
-      'lib/index.js': (contents) => {
-        assertString(contents)
-        if (contents.startsWith(`'worklet';`)) return contents
-
-        return `'worklet';\n\n${contents}`
+      version: '0.*',
+      'dist/index.cjs': (contents) => {
+        // patch require('mime') to use dynamic import workaround
+        return contents?.replace(
+          'let mime = require("mime");',
+          'let mime = { getType: () => "application/octet-stream", getExtension: () => null };'
+        )
       },
     },
   },

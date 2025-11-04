@@ -10,5 +10,5 @@ export type ExpoManifestRequestHandlerPluginPluginOptions = {
      */
     mainModuleName?: string;
 };
-export declare function expoManifestRequestHandlerPlugin(options: ExpoManifestRequestHandlerPluginPluginOptions): PluginOption;
+export declare function expoManifestRequestHandlerPlugin(options?: ExpoManifestRequestHandlerPluginPluginOptions): PluginOption;
 //# sourceMappingURL=expoManifestRequestHandlerPlugin.d.ts.map

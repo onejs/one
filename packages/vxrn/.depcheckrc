@@ -8,6 +8,5 @@ ignores:
   - "expo"
   - "@vxrn/query-string"
   - "@vxrn/url-parse"
-  - "metro-react-native-babel-preset"
   # Should probably be a peer dependency, this is only used while running prebuild without expo
   - "@react-native-community/template"

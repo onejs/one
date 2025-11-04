@@ -1,5 +1,5 @@
-import module from 'node:module'
 import { createDebugger } from '@vxrn/debug'
+import module from 'node:module'
 
 export const { debug } = createDebugger('vite-metro:projectImport')
 
@@ -15,7 +15,17 @@ export async function projectImport<T = any>(projectRoot: string, path: string):
 
     debug?.(`Importing "${path}" from project root: "${projectRoot}" at "${importPath}"`)
 
-    return await import(importPath)
+    const out = await import(importPath)
+
+    // somewhat hacky fix but for some reason in new takeout repo its double-wrapping default export
+    if (out?.default?.default) {
+      return {
+        ...out,
+        default: out.default.default,
+      }
+    }
+
+    return out
   } catch (e) {
     if (e instanceof Error) {
       e.message = `[vite-plugin-metro] Failed to import ${path} from your project (${projectRoot}): ${e.message}`

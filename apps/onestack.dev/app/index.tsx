@@ -577,17 +577,3 @@ const CopyCommand = () => {
     </Tooltip>
   )
 }
-
-const Corners = () => (
-  <>
-    <span className="corner top-left"></span>
-    <span className="corner top-right"></span>
-    <span className="corner bottom-left"></span>
-    <span className="corner bottom-right"></span>
-
-    {/* <span className="triangle top-left"></span>
-    <span className="triangle top-right"></span>
-    <span className="triangle bottom-left"></span>
-    <span className="triangle bottom-right"></span> */}
-  </>
-)

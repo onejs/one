@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  **/
 
-import type { Plugin } from 'vite'
-import * as swc from '@swc/core'
 import { extname } from 'node:path'
+import * as swc from '@swc/core'
+import type { Plugin } from 'vite'
 
 // PLAN
 // see if we can use react server dom for the bridge between 'use dom' and native

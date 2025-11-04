@@ -1,8 +1,8 @@
+import { extname, relative } from 'node:path'
 import BabelGenerate from '@babel/generator'
 import { parse } from '@babel/parser'
 import BabelTraverse from '@babel/traverse'
 import { deadCodeElimination, findReferencedIdentifiers } from 'babel-dead-code-elimination'
-import { extname, relative } from 'node:path'
 import type { Plugin } from 'vite'
 import { EMPTY_LOADER_STRING } from '../constants'
 

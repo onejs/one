@@ -16,6 +16,8 @@
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
-    "ios": {}
+    "ios": {
+      "bundleIdentifier": "com.natew.one-example"
+    }
   }
 }

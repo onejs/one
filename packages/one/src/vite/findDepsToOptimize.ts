@@ -1,9 +1,9 @@
 // thanks vitefu!
 
-import FSExtra from 'fs-extra'
 import fs from 'node:fs/promises'
-import path, { dirname } from 'node:path'
 import { createRequire } from 'node:module'
+import path, { dirname } from 'node:path'
+import FSExtra from 'fs-extra'
 
 // given a package finds its dependencies and sub-dependencies
 export async function getAllDependencies(root: string, depth = 20) {
@@ -33,8 +33,6 @@ async function crawl(pkgJsonPath: string, depth = Number.POSITIVE_INFINITY) {
           dependencies = [...dependencies, ...subDeps]
         }
       } catch (err) {
-        // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-        console.log(`Couldn't resolve`, depName)
         // ok skip
       }
     })

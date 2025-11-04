@@ -1,7 +1,6 @@
-import { type Options, getRoutes } from '../router/getRoutes'
-import { getServerManifest } from './getServerManifest'
-
+import { getRoutes, type Options } from '../router/getRoutes'
 import type { One, RouteInfo } from '../vite/types'
+import { getServerManifest } from './getServerManifest'
 
 export type { Options } from '../router/getRoutes'
 

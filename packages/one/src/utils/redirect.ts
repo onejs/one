@@ -1,5 +1,5 @@
-import type { OneRouter } from '../interfaces/router'
 import { getURL } from '../getURL'
+import type { OneRouter } from '../interfaces/router'
 import { router } from '../router/imperative-api'
 
 export const redirect = (path: OneRouter.Href & string, status?: number) => {

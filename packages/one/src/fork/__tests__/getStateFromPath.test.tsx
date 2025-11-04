@@ -5,12 +5,12 @@
  * All modifications except formatting should be marked with `// @modified` comment.
  */
 
-// @modified - start: use vitest instead of jest
-// import { expect, test } from '@jest/globals';
-import { expect, test } from 'vitest'
 // @modified - end: use vitest instead of jest
 import type { InitialState } from '@react-navigation/routers'
 import { produce } from 'immer'
+// @modified - start: use vitest instead of jest
+// import { expect, test } from '@jest/globals';
+import { expect, test } from 'vitest'
 
 import { findFocusedRoute } from '../findFocusedRoute'
 import { getPathFromState } from '../getPathFromState'

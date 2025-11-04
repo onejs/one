@@ -1,11 +1,11 @@
+import { extname, sep } from 'node:path'
 import {
-  transform,
   type Output,
   type ParserConfig,
   type Options as SWCOptions,
   type TransformConfig,
+  transform,
 } from '@swc/core'
-import { extname, sep } from 'node:path'
 import { merge } from 'ts-deepmerge'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug, parsers, runtimePublicPath } from './constants'
@@ -181,7 +181,7 @@ export async function transformSWC(
         if (!alreadyExported) {
           const fakeExport = `export let ${name} = {};`
           console.info(
-            ` ⚠️ Fixing non-type-specifc import in node_module, this should be fixed upstream: ${fakeExport} in ${id}`
+            ` ⚠️ Fixing non-type-specific import in node_module, this should be fixed upstream: ${fakeExport} in ${id}`
           )
           result.code += `\n${fakeExport}\n`
         }

@@ -7,7 +7,7 @@ export function ServerContextScript() {
     return (
       <script
         async
-        // @ts-ignore
+        // @ts-expect-error
         href={SERVER_CONTEXT_KEY}
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
@@ -23,7 +23,7 @@ export function ServerContextScript() {
     return (
       <script
         async
-        // @ts-ignore
+        // @ts-expect-error
         href={SERVER_CONTEXT_KEY}
         suppressHydrationWarning
         dangerouslySetInnerHTML={{

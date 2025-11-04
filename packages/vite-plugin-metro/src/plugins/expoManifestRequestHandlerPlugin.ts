@@ -17,7 +17,7 @@ export type ExpoManifestRequestHandlerPluginPluginOptions = {
 }
 
 export function expoManifestRequestHandlerPlugin(
-  options: ExpoManifestRequestHandlerPluginPluginOptions
+  options?: ExpoManifestRequestHandlerPluginPluginOptions
 ): PluginOption {
   // let projectRoot = ''
 
@@ -60,7 +60,7 @@ export function expoManifestRequestHandlerPlugin(
           },
         })
 
-        if (options.mainModuleName) {
+        if (options?.mainModuleName) {
           patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
             manifestHandlerMiddleware,
             options.mainModuleName

@@ -87,7 +87,7 @@ export function getPathWithConventionsCollapsed({
         // Optional params without value assigned in route.params should be ignored
         const value = params[name]
         if (value === undefined && p.endsWith('?')) {
-          return
+          return undefined
         }
 
         // return params[name]

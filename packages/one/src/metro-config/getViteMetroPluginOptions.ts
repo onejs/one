@@ -1,8 +1,8 @@
-import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import module from 'node:module'
 import path from 'node:path'
-import tsconfigPaths from 'tsconfig-paths'
+import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import mm from 'micromatch'
+import tsconfigPaths from 'tsconfig-paths'
 import {
   API_ROUTE_GLOB_PATTERN,
   ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
@@ -44,6 +44,7 @@ export function getViteMetroPluginOptions({
     ]
 
     const supportedRegexMustStartWith = String.raw`^(?:(?:^|\/|(?:(?:(?!(?:^|\/)\.).)*?)\/)(?!\.)(?=.)[^/]*?`
+    // biome-ignore lint/complexity/noUselessStringRaw: keep original code
     const supportedRegexMustEndWith = String.raw`)$`
 
     const negativeLookaheadGroups = excludeRes.map((re, i) => {
@@ -77,6 +78,7 @@ export function getViteMetroPluginOptions({
         reSource.length - supportedRegexMustEndWith.length
       )
 
+      // biome-ignore lint/complexity/noUselessStringRaw: keep original code
       return String.raw`(?:.*${rePart})`
     })
 

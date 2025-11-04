@@ -47,7 +47,6 @@ async function getFromPackage(cwd = '.') {
   }
 }
 
-// @ts-ignore
 const foundSome = (obj: Object) => Object.keys(obj).some((k) => !!obj[k])
 
 export const detectPackageManager = async ({ cwd }: { cwd?: string } = {}) => {

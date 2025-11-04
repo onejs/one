@@ -98,7 +98,8 @@ export async function findDepsToOptimize({ root, mode, exclude, include }: FindD
 
   const lockFileHash = lockFile ? await getFileHash(lockFile) : undefined
 
-  let value: ScanDepsResult | undefined = undefined
+  let value: ScanDepsResult | undefined
+
   if (lockFileHash && !noCache) {
     try {
       const { lockFileHash: cachedLockFileHash, depsToPreBundleForSsr: cachedDepsToPreBundle } =

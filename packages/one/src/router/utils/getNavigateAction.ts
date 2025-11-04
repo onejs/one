@@ -1,8 +1,8 @@
-import { nanoid } from 'nanoid/non-secure'
 import type { NavigationState, PartialRoute } from '@react-navigation/core'
+import { nanoid } from 'nanoid/non-secure'
 import type { OneRouter } from '../../interfaces/router'
-import { matchDynamicName } from '../matchers'
 import { setLastAction } from '../lastAction'
+import { matchDynamicName } from '../matchers'
 
 /**
  * Generates a navigation action to transition from the current state to the desired state.

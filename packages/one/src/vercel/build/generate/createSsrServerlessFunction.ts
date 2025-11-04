@@ -1,8 +1,8 @@
-import fs from 'fs-extra'
 import { join, resolve } from 'node:path'
+import fs from 'fs-extra'
+import type { One, RouteInfo } from '../../../vite/types'
 import { serverlessVercelNodeJsConfig } from '../config/vc-config-base'
 import { serverlessVercelPackageJson } from '../config/vc-package-base'
-import type { One, RouteInfo } from '../../../vite/types'
 import { getPathFromRoute } from '../getPathFromRoute'
 
 // Documentation - Vercel Build Output v3

@@ -1,6 +1,6 @@
-import FSExtra from 'fs-extra'
 import { writeFile } from 'node:fs/promises'
 import { dirname } from 'node:path'
+import FSExtra from 'fs-extra'
 import micromatch from 'micromatch'
 import { globbedRoutesToRouteContext } from '../router/useViteRoutes'
 import { globDir } from '../utils/globDir'

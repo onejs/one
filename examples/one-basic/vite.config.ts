@@ -7,6 +7,12 @@ export default defineConfig({
       web: {
         defaultRenderMode: 'ssg',
       },
+
+      ...process.env.TEST_METRO && {
+        native: {
+          bundler: 'metro'
+        }
+      }
     }),
   ],
 })

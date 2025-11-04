@@ -1,10 +1,10 @@
 import type { EventMapBase, NavigationState } from '@react-navigation/native'
 import React from 'react'
 import { useContextKey } from '../router/Route'
+import { type ScreenProps, useSortedScreens } from '../router/useScreens'
 import type { PickPartial } from '../types'
-import { useSortedScreens, type ScreenProps } from '../router/useScreens'
-import { Screen } from '../views/Screen'
 import { withStaticProperties } from '../utils/withStaticProperties'
+import { Screen } from '../views/Screen'
 
 export function useFilterScreenChildren(
   children: React.ReactNode,
@@ -22,19 +22,28 @@ export function useFilterScreenChildren(
 
     const screens = React.Children.map(children, (child) => {
       if (React.isValidElement(child) && child && child.type === Screen) {
-        if (!child.props.name) {
+        if (
+          typeof child.props === 'object' &&
+          child.props &&
+          'name' in child.props &&
+          !child.props.name
+        ) {
           throw new Error(
             `<Screen /> component in \`default export\` at \`app${contextKey}/_layout\` must have a \`name\` prop when used as a child of a Layout Route.`
           )
         }
         if (process.env.NODE_ENV !== 'production') {
-          if (['children', 'component', 'getComponent'].some((key) => key in child.props)) {
+          if (
+            ['children', 'component', 'getComponent'].some(
+              (key) => child.props && typeof child.props === 'object' && key in child.props
+            )
+          ) {
             throw new Error(
               `<Screen /> component in \`default export\` at \`app${contextKey}/_layout\` must not have a \`children\`, \`component\`, or \`getComponent\` prop when used as a child of a Layout Route`
             )
           }
         }
-        return child.props
+        return child.props as ScreenProps
       }
 
       if (isCustomNavigator) {
@@ -44,6 +53,8 @@ export function useFilterScreenChildren(
           `Layout children must be of type Screen, all other children are ignored. To use custom children, create a custom <Layout />. Update Layout Route at: "app${contextKey}/_layout"`
         )
       }
+
+      return null
     })?.filter(Boolean)
 
     // Add an assertion for development
@@ -83,8 +94,8 @@ export function withLayoutContext<
         contextKey,
       })
 
-      const processed = processor ? processor(screens ?? []) : screens
-      const sorted = useSortedScreens(processed ?? [], {
+      const processed = processor ? processor(screens ?? ([] as any)) : screens
+      const sorted = useSortedScreens((processed ?? []) as any, {
         onlyMatching: true,
       })
 

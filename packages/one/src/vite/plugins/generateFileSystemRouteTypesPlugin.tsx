@@ -1,9 +1,9 @@
 import { join } from 'node:path'
 import { debounce } from 'perfect-debounce'
 import type { Plugin } from 'vite'
-import type { One } from '../types'
 import { generateRouteTypes } from '../../typed-routes/generateRouteTypes'
 import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
+import type { One } from '../types'
 
 export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): Plugin {
   return {

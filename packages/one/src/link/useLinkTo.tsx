@@ -1,9 +1,9 @@
 import type * as React from 'react'
-import { Platform, type GestureResponderEvent } from 'react-native'
+import { type GestureResponderEvent, Platform } from 'react-native'
 
 import { appendBaseUrl } from '../fork/getPathFromState-mods'
-import { useOneRouter } from '../router/router'
 import { stripGroupSegmentsFromPath } from '../router/matchers'
+import { useOneRouter } from '../router/router'
 
 function eventShouldPreventDefault(
   e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent

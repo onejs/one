@@ -1,10 +1,4 @@
-export function replaceLoader({
-  code,
-  loaderData,
-}: {
-  code: string
-  loaderData: Object
-}) {
+export function replaceLoader({ code, loaderData }: { code: string; loaderData: Object }) {
   const stringifiedData = JSON.stringify(loaderData)
 
   const out = (() => {

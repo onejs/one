@@ -3,7 +3,7 @@
  *
  * The purpose of keeping things in this separated file is to keep changes to the copied code as little as possible, making merging upstream updates easier.
  */
-import type { RouteConfig, ParsedRoute, InitialRouteConfig } from './getStateFromPath';
+import type { InitialRouteConfig, ParsedRoute, RouteConfig } from './getStateFromPath';
 export type AdditionalRouteConfig = {
     type: 'static' | 'dynamic' | 'layout';
     userReadableName: string;

@@ -69,6 +69,12 @@ export const EXCLUDE_LIST = [
   '@tamagui/core/native-test',
 
   '@storybook/react',
+
+  // Stuff we had in fleek
+  '@nandorojo/galeria',
+  'expo-video',
+  '@hot-updater/react-native',
+  'zlib',
 ]
 
 export const EXCLUDE_LIST_SET = new Set(EXCLUDE_LIST)

@@ -24,7 +24,9 @@ export const stringify = (obj: Record<string, string | string[]>) => {
 
   Object.entries(obj).forEach(([key, value]) => {
     if (Array.isArray(value)) {
-      value.forEach((v) => params.append(key, v))
+      value.forEach((v) => {
+        params.append(key, v)
+      })
     } else {
       params.append(key, value)
     }

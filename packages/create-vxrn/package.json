@@ -1,6 +1,6 @@
 {
   "name": "create-vxrn",
-  "version": "1.1.547",
+  "version": "1.1.547-1762276634821",
   "bin": "run.js",
   "main": "dist/cjs",
   "module": "dist/esm",
@@ -41,7 +41,7 @@
     "yocto-spinner": "^0.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.135.6",
+    "@tamagui/build": "^1.136.1",
     "@types/prompts": "^2.4.9",
     "typescript": "^5.7.3"
   },

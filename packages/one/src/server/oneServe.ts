@@ -1,22 +1,22 @@
+import { extname, join } from 'node:path'
 import { default as FSExtra } from 'fs-extra'
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
-import { extname, join } from 'node:path'
+import { serveStaticAssets } from 'vxrn'
 import { getServerEntry, serveStatic } from 'vxrn/serve'
 import { LOADER_JS_POSTFIX_UNCACHED, PRELOAD_JS_POSTFIX } from '../constants'
 import {
   compileManifest,
   getURLfromRequestURL,
-  runMiddlewares,
   type RequestHandlers,
+  runMiddlewares,
 } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
+import { isRolldown } from '../utils/isRolldown'
 import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
-import { serveStaticAssets } from 'vxrn'
-import { isRolldown } from '../utils/isRolldown'
 
 export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.BuildInfo, app: Hono) {
   const { resolveAPIRoute, resolveLoaderRoute, resolvePageRoute } = await import(

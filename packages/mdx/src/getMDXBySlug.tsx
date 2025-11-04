@@ -1,8 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import compareVersions from 'compare-versions'
-import type { Frontmatter, UnifiedPlugin } from './types'
 import { getMDX } from './getMDX'
+import type { Frontmatter, UnifiedPlugin } from './types'
 
 export const getMDXBySlug = async (
   basePath: string,

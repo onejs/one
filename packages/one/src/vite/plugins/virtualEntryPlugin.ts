@@ -1,5 +1,11 @@
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from 'vxrn'
+import {
+  API_ROUTE_GLOB_PATTERN,
+  ROUTE_GLOB_PATTERN,
+  ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
+  ROUTE_WEB_EXCLUSION_GLOB_PATTERNS,
+} from '../../router/glob-patterns'
 import type { One } from '../types'
 import {
   resolvedVirtualEntryId,
@@ -7,12 +13,6 @@ import {
   virtualEntryId,
   virtualEntryIdNative,
 } from './virtualEntryConstants'
-import {
-  API_ROUTE_GLOB_PATTERN,
-  ROUTE_GLOB_PATTERN,
-  ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
-  ROUTE_WEB_EXCLUSION_GLOB_PATTERNS,
-} from '../../router/glob-patterns'
 
 const USE_ONE_SETUP_FILE = `
 if (process.env.ONE_SETUP_FILE) {

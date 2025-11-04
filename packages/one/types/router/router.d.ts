@@ -1,13 +1,16 @@
+/**
+ * Note: this entire module is exported as an interface router.*
+ * We need to treat exports as an API and not change them, maybe not
+ * the best decision.
+ */
 import { type NavigationContainerRefWithCurrent } from '@react-navigation/native';
 import { type ComponentType } from 'react';
 import type { OneRouter } from '../interfaces/router';
 import type { One } from '../vite/types';
-import { type OneLinkingOptions } from './getLinkingConfig';
-import { type UrlObject } from './getNormalizedStatePath';
+import type { UrlObject } from './getNormalizedStatePath';
 import type { RouteNode } from './Route';
 export declare let routeNode: RouteNode | null;
 export declare let rootComponent: ComponentType;
-export declare let linking: OneLinkingOptions | undefined;
 export declare let hasAttemptedToHideSplash: boolean;
 export declare let initialState: OneRouter.ResultState | undefined;
 export declare let rootState: OneRouter.ResultState | undefined;
@@ -25,7 +28,6 @@ export declare function canGoBack(): boolean;
 export declare function canDismiss(): boolean;
 export declare function getSortedRoutes(): RouteNode[];
 export declare function updateState(state: OneRouter.ResultState, nextStateParam?: OneRouter.ResultState): void;
-export declare function getRouteInfo(state: OneRouter.ResultState): UrlObject;
 export declare function subscribeToRootState(subscriber: OneRouter.RootStateListener): () => void;
 export declare function subscribeToStore(subscriber: () => void): () => void;
 export declare function subscribeToLoadingState(subscriber: OneRouter.LoadingStateListener): () => void;
@@ -34,7 +36,7 @@ export declare function snapshot(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
     rootComponent: ComponentType;
-    linking: OneLinkingOptions | undefined;
+    linking: import("./getLinkingConfig").OneLinkingOptions | undefined;
     hasAttemptedToHideSplash: boolean;
     initialState: OneRouter.ResultState | undefined;
     rootState: OneRouter.ResultState | undefined;
@@ -52,7 +54,7 @@ export declare function useOneRouter(): {
     linkTo: typeof linkTo;
     routeNode: RouteNode | null;
     rootComponent: ComponentType;
-    linking: OneLinkingOptions | undefined;
+    linking: import("./getLinkingConfig").OneLinkingOptions | undefined;
     hasAttemptedToHideSplash: boolean;
     initialState: OneRouter.ResultState | undefined;
     rootState: OneRouter.ResultState | undefined;

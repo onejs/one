@@ -1,4 +1,4 @@
-export declare function replaceLoader({ code, loaderData, }: {
+export declare function replaceLoader({ code, loaderData }: {
     code: string;
     loaderData: Object;
 }): string;

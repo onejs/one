@@ -1,9 +1,9 @@
-import type Server from 'metro/src/Server'
+import type { TransformOptions } from '@babel/core'
+import type Server from 'metro/private/Server'
 import type { ResolvedConfig } from 'vite'
 import type { MetroPluginOptions } from '../plugins/metroPlugin'
 import type { ViteCustomTransformOptions } from '../transformer/types'
 import { getMetroBabelConfigFromViteConfig } from './getMetroBabelConfigFromViteConfig'
-import type { TransformOptions } from '@babel/core'
 
 export function patchMetroServerWithViteConfigAndMetroPluginOptions(
   metroServer: Server,

@@ -1,7 +1,7 @@
 import { useNavigationContainerRef } from '@react-navigation/native'
-import { initialize } from './router'
-import * as routerStore from './router'
 import type { One } from '../vite/types'
+import * as routerStore from './router'
+import { initialize } from './router'
 
 let initialized = false
 

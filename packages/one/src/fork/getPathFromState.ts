@@ -6,14 +6,14 @@
  * All modifications except formatting should be marked with `// @modified` comment.
  */
 
+import * as sharedModUtils from './_shared'
 // @modified - start
 import {
+  type AdditionalOptions,
+  appendBaseUrl,
   type ConfigItemMods,
   getPathWithConventionsCollapsed,
-  appendBaseUrl,
-  type AdditionalOptions,
 } from './getPathFromState-mods'
-import * as sharedModUtils from './_shared'
 // @modified - end
 
 import type { NavigationState, PartialState, Route } from '@react-navigation/routers'

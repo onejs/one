@@ -1,12 +1,12 @@
 // Copyright © 2024 650 Industries.
-import { StackRouter, useNavigationBuilder, type RouterFactory } from '@react-navigation/native'
+import { type RouterFactory, StackRouter, useNavigationBuilder } from '@react-navigation/native'
 import * as React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFilterScreenChildren } from '../layouts/withLayoutContext'
+import { FlagsContext } from '../router/FlagsContext'
 import { useContextKey } from '../router/Route'
 import { useSortedScreens } from '../router/useScreens'
 import { Screen } from './Screen'
-import { FlagsContext } from '../router/FlagsContext'
 
 type NavigatorTypes = ReturnType<typeof useNavigationBuilder>
 
