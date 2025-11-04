@@ -12,7 +12,7 @@
     "test-failing": "vitest --run"
   },
   "dependencies": {
-    "@react-navigation/native": "^7.1.19",
+    "@react-navigation/native": "~7.1.19",
     "one": "workspace:*",
     "react-native": "0.81.5",
     "react-native-safe-area-context": "~5.6.1",

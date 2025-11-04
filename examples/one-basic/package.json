@@ -14,7 +14,7 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "@react-navigation/native": "^7.1.19",
+    "@react-navigation/native": "~7.1.19",
     "expo": "54.0.22",
     "one": "workspace:*",
     "react": "19.1.0",
