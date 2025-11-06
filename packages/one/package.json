@@ -18,6 +18,15 @@
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
     },
+    "./ui": {
+      "react-native": {
+        "import": "./dist/esm/ui/index.native.js",
+        "require": "./dist/cjs/ui/index.native.js"
+      },
+      "types": "./types/ui/index.d.ts",
+      "import": "./dist/esm/ui/index.mjs",
+      "require": "./dist/cjs/ui/index.cjs"
+    },
     "./vite": {
       "types": "./types/vite.d.ts",
       "import": "./dist/esm/vite.mjs",
