@@ -9,7 +9,6 @@
       "// 👋 note - import === require here, mdx-bundler is cjs only must await import() this package": "./",
       "import": "./dist/index.js",
       "require": "./dist/index.js",
-      "react-native": "./dist/index.native.js",
       "default": "./dist/index.native.js"
     }
   },
@@ -21,7 +20,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tamagui-build --bundle --bundle-modules",
+    "build": "tamagui-build --skip-native --bundle --bundle-modules",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
     "lint": "biome check src",
