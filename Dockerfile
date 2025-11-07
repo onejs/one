@@ -1,6 +1,6 @@
 # for onstack.dev railway
 
-FROM node:22.4
+FROM node:24
 
 ARG ONE_SERVER_URL
 
