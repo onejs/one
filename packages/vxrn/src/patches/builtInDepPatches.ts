@@ -287,6 +287,13 @@ install('URLSearchParams', () => URLSearchParams);
   },
 
   {
+    module: 'expo-glass-effect',
+    patchFiles: {
+      'build/**/*.js': ['jsx'],
+    },
+  },
+
+  {
     module: '@expo/ui',
     patchFiles: {
       'build/**/*.js': ['jsx'],
