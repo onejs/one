@@ -63,6 +63,7 @@
     "@vxrn/debug": "workspace:*",
     "babel-preset-expo": "*",
     "launch-editor": "^2.10.0",
+    "micromatch": "^4.0.8",
     "picocolors": "^1.0.0"
   },
   "devDependencies": {

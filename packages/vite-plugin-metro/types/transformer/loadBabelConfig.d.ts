@@ -6,5 +6,5 @@ import type { TransformOptions } from './babel-core';
  */
 export declare const loadBabelConfig: ({ projectRoot }: {
     projectRoot: string;
-}) => Pick<TransformOptions, "extends" | "presets">;
+}) => Pick<TransformOptions, "presets" | "extends">;
 //# sourceMappingURL=loadBabelConfig.d.ts.map
