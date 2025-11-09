@@ -14,11 +14,23 @@ import {
   virtualEntryIdNative,
 } from './virtualEntryConstants'
 
-const USE_ONE_SETUP_FILE = `
-if (process.env.ONE_SETUP_FILE) {
-  import(/* @vite-ignore */ process.env.ONE_SETUP_FILE)
+function getSetupFileImport(environmentName: string): string {
+  const envVarMap = {
+    client: 'ONE_SETUP_FILE_CLIENT',
+    ssr: 'ONE_SETUP_FILE_SERVER',
+    ios: 'ONE_SETUP_FILE_IOS',
+    android: 'ONE_SETUP_FILE_ANDROID',
+  }
+
+  const envVar = envVarMap[environmentName]
+  if (!envVar) return ''
+
+  return `
+if (process.env.${envVar}) {
+  import(/* @vite-ignore */ process.env.${envVar})
 }
 `
+}
 
 export function createVirtualEntry(options: {
   root: string
@@ -50,7 +62,7 @@ export function createVirtualEntry(options: {
       if (id === resolvedVirtualEntryId) {
         const prependCode = isNativeEnvironment(this.environment)
           ? '' /* `import()` will not work on native */
-          : USE_ONE_SETUP_FILE
+          : getSetupFileImport(this.environment.name)
         return `
 ${prependCode}
 
@@ -68,7 +80,7 @@ export default createApp({
       if (id === resolvedVirtualEntryIdNative) {
         const prependCode = isNativeEnvironment(this.environment)
           ? '' /* `import()` will not work on native */
-          : USE_ONE_SETUP_FILE
+          : getSetupFileImport(this.environment.name)
         return `
 ${prependCode}
 

@@ -334,17 +334,25 @@ export async function build(args: {
     })
 
     const preloadSetupFilePreloads = (() => {
-      if (oneOptions.setupFile) {
-        const needle = oneOptions.setupFile.replace(/^\.\//, '')
-        for (const file in vxrnOutput.clientManifest) {
-          if (file === needle) {
-            const entry = vxrnOutput.clientManifest[file]
-            return [
-              entry.file as string,
-              // getting 404s for preloading the imports as well?
-              // ...(entry.imports as string[])
-            ]
-          }
+      if (!oneOptions.setupFile) return []
+
+      // Get the client setup file path
+      const clientSetupFile =
+        typeof oneOptions.setupFile === 'string'
+          ? oneOptions.setupFile
+          : oneOptions.setupFile.client
+
+      if (!clientSetupFile) return []
+
+      const needle = clientSetupFile.replace(/^\.\//, '')
+      for (const file in vxrnOutput.clientManifest) {
+        if (file === needle) {
+          const entry = vxrnOutput.clientManifest[file]
+          return [
+            entry.file as string,
+            // getting 404s for preloading the imports as well?
+            // ...(entry.imports as string[])
+          ]
         }
       }
 

@@ -144,8 +144,38 @@ export declare namespace One {
          * Path to a js or ts file to import before the rest of your app runs
          * One controls your root, but you may want to runs some JS before anything else
          * Use this to give One the entrypoint to run
+         *
+         * Can be a string to use the same file for all environments, or an object to specify
+         * different files per environment:
+         *
+         * @example
+         * setupFile: './setup.ts'
+         *
+         * @example
+         * setupFile: {
+         *   client: './setup.client.ts',
+         *   server: './setup.server.ts',
+         *   native: './setup.native.ts'
+         * }
+         *
+         * @example
+         * setupFile: {
+         *   client: './setup.client.ts',
+         *   server: './setup.server.ts',
+         *   ios: './setup.ios.ts',
+         *   android: './setup.android.ts'
+         * }
          */
-        setupFile?: string;
+        setupFile?: string | {
+            client?: string;
+            server?: string;
+            native?: string;
+        } | {
+            client?: string;
+            server?: string;
+            ios?: string;
+            android?: string;
+        };
         config?: {
             ensureTSConfig?: false;
             /**

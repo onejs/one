@@ -294,9 +294,50 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               ),
             }),
 
-            ...(options.setupFile && {
-              'process.env.ONE_SETUP_FILE': JSON.stringify(options.setupFile),
-            }),
+            ...(() => {
+              if (!options.setupFile) return {}
+
+              // normalize setupFile to object format
+              let setupFiles: {
+                client?: string
+                server?: string
+                ios?: string
+                android?: string
+              }
+
+              if (typeof options.setupFile === 'string') {
+                setupFiles = {
+                  client: options.setupFile,
+                  server: options.setupFile,
+                  ios: options.setupFile,
+                  android: options.setupFile,
+                }
+              } else if ('native' in options.setupFile) {
+                setupFiles = {
+                  client: options.setupFile.client,
+                  server: options.setupFile.server,
+                  ios: options.setupFile.native,
+                  android: options.setupFile.native,
+                }
+              } else {
+                setupFiles = options.setupFile
+              }
+
+              return {
+                ...(setupFiles.client && {
+                  'process.env.ONE_SETUP_FILE_CLIENT': JSON.stringify(setupFiles.client),
+                }),
+                ...(setupFiles.server && {
+                  'process.env.ONE_SETUP_FILE_SERVER': JSON.stringify(setupFiles.server),
+                }),
+                ...(setupFiles.ios && {
+                  'process.env.ONE_SETUP_FILE_IOS': JSON.stringify(setupFiles.ios),
+                }),
+                ...(setupFiles.android && {
+                  'process.env.ONE_SETUP_FILE_ANDROID': JSON.stringify(setupFiles.android),
+                }),
+              }
+            })(),
 
             ...(process.env.NODE_ENV !== 'production' &&
               vxrnOptions && {
