@@ -6,29 +6,8 @@ type MetroInputConfig = Parameters<typeof loadConfigT>[1];
 export type MetroPluginOptions = {
     argv?: MetroYargArguments;
     defaultConfigOverrides?: MetroInputConfig | ((defaultConfig: MetroInputConfig) => MetroInputConfig);
-    /**
-     * Shorthand for setting `useWatchman` in Metro's resolver config.
-     * When true, enables Watchman for file watching. When false, disables it.
-     */
-    watchman?: boolean;
-    /**
-     * Array of module names or glob patterns that should be resolved to an empty module.
-     * This is useful for excluding modules that break the React Native build.
-     *
-     * Supports glob patterns via micromatch:
-     * - Exact match: `'jsonwebtoken'`
-     * - Wildcard: `'@aws-sdk/*'`
-     * - Multiple wildcards: `'@aws-sdk/**'`
-     *
-     * Example: `['node:http2', 'jsonwebtoken', '@aws-sdk/*']`
-     */
-    excludeModules?: string[];
-    /**
-     * Babel configuration that will be deep merged with the default config.
-     * This is a more convenient alternative to babelConfigOverrides.
-     */
+    /** Consider using babelConfigOverrides instead */
     babelConfig?: TransformOptions;
-    /** Advanced: Use this for full control over babel config merging */
     babelConfigOverrides?: (defaultConfig: TransformOptions) => TransformOptions;
     /**
      * Overrides the main module name which is normally defined as the `main` field in `package.json`.

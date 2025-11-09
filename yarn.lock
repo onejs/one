@@ -7667,7 +7667,6 @@ __metadata:
     expo: "npm:~54.0.20"
     launch-editor: "npm:^2.10.0"
     metro: "npm:^0.82"
-    micromatch: "npm:^4.0.8"
     picocolors: "npm:^1.0.0"
     vite: "npm:^7.1.12"
   peerDependencies:
