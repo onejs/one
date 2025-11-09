@@ -1,4 +1,5 @@
 import type { ResolvedConfig } from 'vite'
+import micromatch from 'micromatch'
 
 // For Metro and Expo, we only import types here.
 // We use `projectImport` to dynamically import the actual modules
@@ -20,7 +21,8 @@ export async function getMetroConfigFromViteConfig(
 ): Promise<MetroConfigExtended> {
   const extraConfig: ExtraConfig = {}
   const { root: projectRoot } = config
-  const { mainModuleName, argv, defaultConfigOverrides } = metroPluginOptions
+  const { mainModuleName, argv, defaultConfigOverrides, watchman, excludeModules } =
+    metroPluginOptions
 
   const { loadConfig } = await projectImport<{
     loadConfig: typeof loadConfigT
@@ -83,10 +85,18 @@ export async function getMetroConfigFromViteConfig(
     ..._defaultConfig,
     resolver: {
       ..._defaultConfig?.resolver,
+      ...(watchman !== undefined ? { useWatchman: watchman } : {}),
       sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This somehow fixes `.native` files not being resolved correctly when `.mjs` files are present.
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
+
+        // Handle excludeModules - resolve excluded modules to empty module using glob patterns
+        if (excludeModules && excludeModules.length > 0) {
+          if (micromatch.isMatch(moduleName, excludeModules)) {
+            return origResolveRequestFn(context, '@vxrn/vite-plugin-metro/empty', platform)
+          }
+        }
 
         // HACK: Do not assert the "import" condition for `@babel/runtime`. This
         // is a workaround for ESM <-> CJS interop, as we need the CJS versions of
