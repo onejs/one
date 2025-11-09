@@ -91,13 +91,6 @@ export async function getMetroConfigFromViteConfig(
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 
-        // Handle excludeModules - resolve excluded modules to empty module using glob patterns
-        if (excludeModules && excludeModules.length > 0) {
-          if (micromatch.isMatch(moduleName, excludeModules)) {
-            return origResolveRequestFn(context, '@vxrn/vite-plugin-metro/empty', platform)
-          }
-        }
-
         // HACK: Do not assert the "import" condition for `@babel/runtime`. This
         // is a workaround for ESM <-> CJS interop, as we need the CJS versions of
         // `@babel/runtime` helpers.
@@ -132,43 +125,40 @@ export async function getMetroConfigFromViteConfig(
     reporter: await getTerminalReporter(projectRoot),
   }
 
-  // Apply user's defaultConfigOverrides to get the final config with user's custom resolveRequest
-  const userConfig =
-    typeof defaultConfigOverrides === 'function'
-      ? defaultConfigOverrides(defaultConfig)
-      : defaultConfigOverrides
-
-  // Get the user's custom resolveRequest if they provided one
-  const userResolveRequest = userConfig?.resolver?.resolveRequest
-
-  // Build the final config, wrapping resolveRequest to handle excludeModules
-  const finalConfig: MetroInputConfig = {
+  // Apply user's defaultConfigOverrides first
+  let finalConfig: MetroInputConfig = {
     ...defaultConfig,
-    ...userConfig,
-    resolver: {
-      ...defaultConfig.resolver,
-      ...userConfig?.resolver,
-      resolveRequest: (context, moduleName, platform) => {
-        const origResolveRequestFn =
-          _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
+    ...(typeof defaultConfigOverrides === 'function'
+      ? defaultConfigOverrides(defaultConfig)
+      : defaultConfigOverrides),
+  }
 
-        // Handle excludeModules first - resolve excluded modules to empty module using glob patterns
-        if (excludeModules && excludeModules.length > 0) {
+  // If excludeModules is provided, wrap the resolveRequest to handle it
+  if (excludeModules && excludeModules.length > 0) {
+    const existingResolveRequest = finalConfig.resolver?.resolveRequest
+
+    finalConfig = {
+      ...finalConfig,
+      resolver: {
+        ...finalConfig.resolver,
+        resolveRequest: (context, moduleName, platform) => {
+          // Handle excludeModules first - resolve excluded modules to empty module using glob patterns
           if (micromatch.isMatch(moduleName, excludeModules)) {
+            const origResolveRequestFn =
+              _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
             return origResolveRequestFn(context, '@vxrn/vite-plugin-metro/empty', platform)
           }
-        }
 
-        // If user provided their own resolveRequest, use it
-        if (userResolveRequest) {
-          return userResolveRequest(context, moduleName, platform)
-        }
+          // Otherwise use the existing resolveRequest (which includes user overrides and @babel/runtime logic)
+          if (existingResolveRequest) {
+            return existingResolveRequest(context, moduleName, platform)
+          }
 
-        // Otherwise use the default logic
-        const defaultResolveRequestFn = defaultConfig.resolver!.resolveRequest!
-        return defaultResolveRequestFn(context, moduleName, platform)
+          // Fallback to context.resolveRequest
+          return context.resolveRequest(context, moduleName, platform)
+        },
       },
-    },
+    }
   }
 
   const metroConfig = await loadConfig(
