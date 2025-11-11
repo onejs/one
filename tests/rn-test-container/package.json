@@ -1,6 +1,6 @@
 {
   "name": "rn-test-container",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "private": true,
   "type": "module",
   "scripts": {
