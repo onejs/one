@@ -3,7 +3,7 @@ import type { OneRouter } from '../interfaces/router'
 import { router } from '../router/imperative-api'
 
 export const redirect = (
-  path: OneRouter.Href extends string ? OneRouter.Href : string,
+  path: OneRouter.Href extends { __branded__: any } ? string : OneRouter.Href,
   status?: number
 ) => {
   if (process.env.VITE_ENVIRONMENT === 'client') {
@@ -12,5 +12,5 @@ export const redirect = (
   }
 
   const finalPath = path[0] === '/' ? `${getURL()}${path}` : path
-  return Response.redirect(finalPath, status)
+  return Response.redirect(finalPath as string, status)
 }
