@@ -1,7 +1,9 @@
 export { createApp } from './createApp';
 export type { One, OneRouter } from './interfaces/router';
 import type { OneRouter } from './interfaces/router';
-export type Href = OneRouter.Href extends string ? OneRouter.Href : string;
+export type Href = OneRouter.Href extends {
+    __branded__: any;
+} ? string : OneRouter.Href;
 export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<T>;
 export { useIsFocused } from '@react-navigation/core';
 export * from '@vxrn/universal-color-scheme';
