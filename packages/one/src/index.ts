@@ -5,7 +5,7 @@ export type { One, OneRouter } from './interfaces/router'
 import type { OneRouter } from './interfaces/router'
 
 // if not overridden keep it as just string
-export type Href = OneRouter.Href extends { __branded__: any } ? string : OneRouter.Href
+export type Href = '__branded__' extends keyof OneRouter.Href ? string : OneRouter.Href
 
 export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<T>
 
