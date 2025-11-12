@@ -32,7 +32,7 @@
     "debug": "^4.3.7"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.136.1",
+    "@tamagui/build": "^1.137.1",
     "@types/debug": "^4"
   },
   "publishConfig": {
