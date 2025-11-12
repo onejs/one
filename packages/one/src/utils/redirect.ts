@@ -3,7 +3,7 @@ import type { OneRouter } from '../interfaces/router'
 import { router } from '../router/imperative-api'
 
 export const redirect = (
-  path: OneRouter.Href extends { __branded__: any } ? string : OneRouter.Href,
+  path: '__branded__' extends keyof OneRouter.Href ? string : OneRouter.Href,
   status?: number
 ) => {
   if (process.env.VITE_ENVIRONMENT === 'client') {
