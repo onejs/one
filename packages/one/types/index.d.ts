@@ -1,10 +1,20 @@
 export { createApp } from './createApp';
 export type { One, OneRouter } from './interfaces/router';
 import type { OneRouter } from './interfaces/router';
-export type Href = OneRouter.Href extends {
-    __branded__: any;
-} ? string : OneRouter.Href;
+export type Href = '__branded__' extends keyof OneRouter.Href ? string : OneRouter.Href;
 export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<T>;
+/**
+ * Helper type to get route information including params and loader props.
+ * Can be overridden in generated routes.d.ts for per-route types.
+ *
+ * @example
+ * import type { RouteType } from 'one'
+ *
+ * type MyRoute = RouteType<'(site)/docs/[slug]'>
+ * // MyRoute.Params = { slug: string }
+ * // MyRoute.LoaderProps = { params: { slug: string }, path: string, request?: Request }
+ */
+export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>;
 export { useIsFocused } from '@react-navigation/core';
 export * from '@vxrn/universal-color-scheme';
 export { SafeAreaView } from 'react-native-safe-area-context';

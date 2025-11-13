@@ -9,6 +9,19 @@ export type Href = '__branded__' extends keyof OneRouter.Href ? string : OneRout
 
 export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<T>
 
+/**
+ * Helper type to get route information including params and loader props.
+ * Can be overridden in generated routes.d.ts for per-route types.
+ *
+ * @example
+ * import type { RouteType } from 'one'
+ *
+ * type MyRoute = RouteType<'(site)/docs/[slug]'>
+ * // MyRoute.Params = { slug: string }
+ * // MyRoute.LoaderProps = { params: { slug: string }, path: string, request?: Request }
+ */
+export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>
+
 // hooks
 export { useIsFocused } from '@react-navigation/core'
 // re-export

@@ -10,6 +10,17 @@ declare module 'one' {
       DynamicRoutes: `/docs/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: `/docs/[slug]`
       IsTyped: true
+      RouteTypes: {
+        '/docs/[slug]': RouteInfo<{ slug: string }>
+      }
     }
   }
+}
+
+/**
+ * Helper type for route information
+ */
+type RouteInfo<Params = Record<string, never>> = {
+  Params: Params
+  LoaderProps: { path: string; params: Params; request?: Request }
 }
