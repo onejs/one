@@ -311,6 +311,45 @@ export default {
 
 **Limitations:** Currently, we only support patterns starting with `**/*`.
 
+### router.experimental.typedRoutesGeneration
+
+Auto-generate route type helpers in your route files. Route types are always generated in `app/routes.d.ts`, but this option controls whether One automatically inserts type helpers into your route files.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      router: {
+        experimental: {
+          typedRoutesGeneration: 'runtime', // or 'type' or false
+        },
+      },
+    }),
+  ],
+}
+```
+
+**Options:**
+
+- **`false`** (default): No auto-generation, manually add types yourself
+- **`'type'`**: Auto-inserts type-only helpers:
+
+```tsx
+import type { RouteType } from 'one'
+type Route = RouteType<'/your/[route]'>
+```
+
+- **`'runtime'`**: Auto-inserts runtime helpers:
+
+```tsx
+import { createRoute } from 'one'
+const route = createRoute<'/your/[route]'>()
+```
+
+The insertion happens automatically when route files are created or modified, with proper spacing and without modifying your existing code.
+
+For more information, see the [Typed Routes documentation](/docs/routing-typed-routes).
+
 ## The Environment API
 
 One runs on Vite 6 and makes use of their [new Environment API](https://main.vitejs.dev/guide/api-environment).

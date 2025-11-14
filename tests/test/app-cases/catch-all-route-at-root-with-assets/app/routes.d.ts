@@ -10,6 +10,17 @@ declare module 'one' {
       DynamicRoutes: `/${string}`
       DynamicRouteTemplate: `/[...path]`
       IsTyped: true
+      RouteTypes: {
+        '/[...path]': RouteInfo<{ path: string[] }>
+      }
     }
   }
+}
+
+/**
+ * Helper type for route information
+ */
+type RouteInfo<Params = Record<string, never>> = {
+  Params: Params
+  LoaderProps: { path: string; params: Params; request?: Request }
 }
