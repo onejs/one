@@ -15,24 +15,36 @@ function getUserOneOptions() {
   return globalThis.__oneOptions as One.PluginOptions
 }
 
-export async function loadUserOneOptions(command: 'serve' | 'build') {
-  const config = await loadConfigFromFile({
-    mode: command === 'serve' ? 'dev' : 'prod',
-    command,
-  })
-
-  if (!config) {
-    throw new Error(`No config config in ${process.cwd()}. Is this the correct directory?`)
+export async function loadUserOneOptions(command: 'serve' | 'build', silent = false) {
+  // Suppress console output if silent
+  const originalConsoleError = console.error
+  if (silent) {
+    console.error = () => {}
   }
 
-  const oneOptions = getUserOneOptions()
+  try {
+    const config = await loadConfigFromFile({
+      mode: command === 'serve' ? 'dev' : 'prod',
+      command,
+    })
 
-  if (!oneOptions) {
-    throw new Error(`No One plugin config in this vite.config`)
-  }
+    if (!config) {
+      throw new Error(`No config config in ${process.cwd()}. Is this the correct directory?`)
+    }
 
-  return {
-    config,
-    oneOptions,
+    const oneOptions = getUserOneOptions()
+
+    if (!oneOptions) {
+      throw new Error(`No One plugin config in this vite.config`)
+    }
+
+    return {
+      config,
+      oneOptions,
+    }
+  } finally {
+    if (silent) {
+      console.error = originalConsoleError
+    }
   }
 }

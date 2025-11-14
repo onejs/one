@@ -17,13 +17,19 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
       const outFile = join(appDir, 'routes.d.ts')
 
       const routerRoot = getRouterRootFromOneOptions(options)
+      const typedRoutesGeneration = options.router?.experimental?.typedRoutesGeneration || undefined
 
       // on change ./app stuff lets reload this to pick up any route changes
       const fileWatcherChangeListener = debounce(async (type: string, path: string) => {
-        if (type === 'add' || type === 'delete') {
+        if (type === 'add' || type === 'delete' || type === 'change') {
           if (path.startsWith(appDir)) {
             // generate
-            generateRouteTypes(outFile, routerRoot, options.router?.ignoredRouteFiles)
+            generateRouteTypes(
+              outFile,
+              routerRoot,
+              options.router?.ignoredRouteFiles,
+              typedRoutesGeneration
+            )
           }
         }
       }, 100)
@@ -33,7 +39,12 @@ export function generateFileSystemRouteTypesPlugin(options: One.PluginOptions): 
       return () => {
         // once on startup:
 
-        generateRouteTypes(outFile, routerRoot, options.router?.ignoredRouteFiles)
+        generateRouteTypes(
+          outFile,
+          routerRoot,
+          options.router?.ignoredRouteFiles,
+          typedRoutesGeneration
+        )
       }
     },
   } satisfies Plugin

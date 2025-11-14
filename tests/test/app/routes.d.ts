@@ -10,6 +10,30 @@ declare module 'one' {
       DynamicRoutes: `/dynamic-folder-routes/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}` | `/hooks/contents/with-nested-slug/${OneRouter.SingleRoutePart<T>}` | `/hooks/contents/with-nested-slug/${OneRouter.SingleRoutePart<T>}/${OneRouter.SingleRoutePart<T>}` | `/hooks/contents/with-slug/${OneRouter.SingleRoutePart<T>}` | `/layouts/nested-layout/with-slug-layout-folder/${OneRouter.SingleRoutePart<T>}` | `/not-found/+not-found` | `/not-found/deep/+not-found` | `/router/ignoredRouteFiles/+not-found` | `/routes/subpath/${string}` | `/segments-stable-ids/${string}` | `/spa/${OneRouter.SingleRoutePart<T>}` | `/ssr/${OneRouter.SingleRoutePart<T>}` | `/ssr/${OneRouter.SingleRoutePart<T>}/request-test` | `/ssr/${string}`
       DynamicRouteTemplate: `/dynamic-folder-routes/[serverId]/[channelId]` | `/hooks/contents/with-nested-slug/[folderSlug]` | `/hooks/contents/with-nested-slug/[folderSlug]/[fileSlug]` | `/hooks/contents/with-slug/[slug]` | `/layouts/nested-layout/with-slug-layout-folder/[layoutSlug]` | `/not-found/+not-found` | `/not-found/deep/+not-found` | `/router/ignoredRouteFiles/+not-found` | `/routes/subpath/[...subpath]` | `/segments-stable-ids/[...segments]` | `/spa/[spaparams]` | `/ssr/[...rest]` | `/ssr/[id]/request-test` | `/ssr/[param]`
       IsTyped: true
+      RouteTypes: {
+        '/dynamic-folder-routes/[serverId]/[channelId]': RouteInfo<{ serverId: string; channelId: string }>
+        '/hooks/contents/with-nested-slug/[folderSlug]': RouteInfo<{ folderSlug: string }>
+        '/hooks/contents/with-nested-slug/[folderSlug]/[fileSlug]': RouteInfo<{ folderSlug: string; fileSlug: string }>
+        '/hooks/contents/with-slug/[slug]': RouteInfo<{ slug: string }>
+        '/layouts/nested-layout/with-slug-layout-folder/[layoutSlug]': RouteInfo<{ layoutSlug: string }>
+        '/not-found/+not-found': RouteInfo<{}>
+        '/not-found/deep/+not-found': RouteInfo<{}>
+        '/router/ignoredRouteFiles/+not-found': RouteInfo<{}>
+        '/routes/subpath/[...subpath]': RouteInfo<{ subpath: string[] }>
+        '/segments-stable-ids/[...segments]': RouteInfo<{ segments: string[] }>
+        '/spa/[spaparams]': RouteInfo<{ spaparams: string }>
+        '/ssr/[...rest]': RouteInfo<{ rest: string[] }>
+        '/ssr/[id]/request-test': RouteInfo<{ id: string }>
+        '/ssr/[param]': RouteInfo<{ param: string }>
+      }
     }
   }
+}
+
+/**
+ * Helper type for route information
+ */
+type RouteInfo<Params = Record<string, never>> = {
+  Params: Params
+  LoaderProps: { path: string; params: Params; request?: Request }
 }

@@ -251,6 +251,11 @@ const generateRoutes = defineCommand({
       type: 'string',
       description: 'Path to app directory (default: "app")',
     },
+    typed: {
+      type: 'string',
+      description:
+        'Auto-generate route helpers. Options: "type" (type-only helpers) or "runtime" (runtime helpers)',
+    },
   },
   async run({ args }) {
     const { run } = await import('./cli/generateRoutes')

@@ -9,10 +9,6 @@ export default {
         find: '@docsearch/react',
         replacement: resolvePath('@docsearch/react'),
       },
-      // {
-      //   find: 'tslib',
-      //   replacement: resolve('@tamagui/proxy-worm'),
-      // },
     ],
   },
 
@@ -29,6 +25,12 @@ export default {
     one({
       react: {
         compiler: process.env.NODE_ENV === 'production',
+      },
+
+      router: {
+        experimental: {
+          typedRoutesGeneration: 'runtime',
+        },
       },
     }),
 

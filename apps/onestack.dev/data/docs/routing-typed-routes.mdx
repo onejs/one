@@ -1,0 +1,168 @@
+---
+title: Typed Routes
+---
+
+One provides full TypeScript support for route parameters and loader props, automatically generating types from your file system routes.
+
+## Overview
+
+When you create route files with dynamic segments like `[slug]` or `[...rest]`, One automatically generates TypeScript types that make your route parameters fully type-safe.
+
+### Generated Types
+
+All route types are generated in `app/routes.d.ts`:
+
+```typescript
+declare module 'one' {
+  export namespace OneRouter {
+    export interface __routes<T extends string = string> {
+      StaticRoutes: '/' | '/about' | '/docs'
+      DynamicRoutes: `/docs/${OneRouter.SingleRoutePart<T>}`
+      DynamicRouteTemplate: '/docs/[slug]'
+      IsTyped: true
+      RouteTypes: {
+        '/docs/[slug]': {
+          Params: { slug: string }
+          LoaderProps: { path: string; params: { slug: string }; request?: Request }
+        }
+      }
+    }
+  }
+}
+```
+
+## Using Typed Routes
+
+### With `createRoute` Helper
+
+The recommended approach is to use the `createRoute` helper, which provides fully typed methods:
+
+```tsx fileName=app/docs/[slug].tsx
+import { createRoute } from 'one'
+
+const route = createRoute<'/docs/[slug]'>()
+
+export const loader = route.createLoader(async ({ params }) => {
+  // params.slug is string - fully typed!
+  return { doc: await fetchDoc(params.slug) }
+})
+
+export default function DocPage() {
+  const params = route.useParams()
+  // params.slug is string - fully typed!
+  return <div>Viewing: {params.slug}</div>
+}
+```
+
+### Manual Type Usage
+
+You can also use the `RouteType` helper to get types for any route:
+
+```tsx fileName=app/docs/[slug].tsx
+import type { RouteType } from 'one'
+
+type Route = RouteType<'/docs/[slug]'>
+
+export const loader = ({ params }: Route['LoaderProps']) => {
+  // params.slug is fully typed!
+  return { doc: await fetchDoc(params.slug) }
+}
+```
+
+## Auto-Generation
+
+Enable the experimental `typedRoutesGeneration` option to automatically insert type helpers into your route files:
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      router: {
+        experimental: {
+          typedRoutesGeneration: 'runtime', // or 'type'
+        },
+      },
+    }),
+  ],
+}
+```
+
+### Generation Modes
+
+- **`false`** (default): No auto-generation, manually add types yourself
+- **`'type'`**: Auto-inserts type-only helpers:
+
+```tsx
+import type { RouteType } from 'one'
+type Route = RouteType<'/your/[route]'>
+```
+
+- **`'runtime'`**: Auto-inserts runtime helpers:
+
+```tsx
+import { createRoute } from 'one'
+const route = createRoute<'/your/[route]'>()
+```
+
+The insertion happens automatically when route files are created or modified, with proper spacing and without modifying your existing loader code.
+
+## CLI Command
+
+Generate route types manually using the One CLI:
+
+```bash
+npx one generate-routes                  # Generate types only
+npx one generate-routes --typed=runtime  # Generate + inject runtime helpers
+npx one generate-routes --typed=type     # Generate + inject type helpers
+```
+
+**Note:** The CLI command requires `--typed` to inject helpers. The `typedRoutesGeneration` config option works automatically during development (watches files and injects on changes), while the CLI flag gives you manual control when needed.
+
+## Complex Routes
+
+### Multiple Parameters
+
+```tsx fileName=app/blog/[category]/[year]/[slug].tsx
+import { createRoute } from 'one'
+
+const route = createRoute<'/blog/[category]/[year]/[slug]'>()
+
+export const loader = route.createLoader(({ params }) => {
+  // All params are fully typed!
+  const { category, year, slug } = params
+  // category: string, year: string, slug: string
+
+  return { post: await fetchPost(category, year, slug) }
+})
+```
+
+### Catch-All Routes
+
+```tsx fileName=app/files/[...path].tsx
+import { createRoute } from 'one'
+
+const route = createRoute<'/files/[...path]'>()
+
+export const loader = route.createLoader(({ params }) => {
+  // params.path is string[] - fully typed!
+  const filePath = params.path.join('/')
+  return { file: await fetchFile(filePath) }
+})
+```
+
+## Benefits
+
+- **Type Safety**: Catch route parameter errors at compile time
+- **Better DX**: Auto-complete for route params in loaders
+- **Clean Intellisense**: Shows `{ slug: string }` instead of complex type aliases
+- **Refactor-Friendly**: Rename routes and TypeScript catches all usages
+- **Zero Runtime Cost**: Types are erased during build
+
+## How It Works
+
+1. One scans your `app` directory for route files
+2. Extracts dynamic segments like `[slug]` and `[...rest]`
+3. Generates TypeScript types in `app/routes.d.ts`
+4. TypeScript provides autocomplete and type checking
+
+The `RouteType` helper looks up the generated types from `routes.d.ts` and provides dot-notation access to `Params` and `LoaderProps`.

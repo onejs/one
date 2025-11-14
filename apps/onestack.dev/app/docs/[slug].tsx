@@ -1,11 +1,13 @@
 import { getMDXComponent } from 'mdx-bundler/client'
-import { useEffect, useMemo } from 'react'
+import { useLoader, createRoute } from 'one'
+import { useMemo } from 'react'
 import { H1 } from 'tamagui'
-import { useLoader, useParams } from 'one'
 import { DocsRightSidebar } from '~/features/docs/DocsRightSidebar'
 import { components } from '~/features/docs/MDXComponents'
 import { HeadInfo } from '~/features/site/HeadInfo'
 import { nbspLastWord, SubTitle } from '~/features/site/SubTitle'
+
+const route = createRoute<'/docs/[slug]'>()
 
 export async function generateStaticParams() {
   const { getAllFrontmatter } = await import('@vxrn/mdx')
@@ -16,14 +18,14 @@ export async function generateStaticParams() {
   return paths
 }
 
-export async function loader({ params }) {
+export const loader = route.createLoader(async ({ params }) => {
   const { getMDXBySlug } = await import('@vxrn/mdx')
   const { frontmatter, code } = await getMDXBySlug('data/docs', params.slug)
   return {
     frontmatter,
     code,
   }
-}
+})
 
 export function DocCorePage() {
   const { code, frontmatter } = useLoader(loader)

@@ -16,6 +16,25 @@ export namespace OneRouter {
     Loader: (props: { params: InputRouteParams<Path> }) => any
   }
 
+  /**
+   * Helper type to get route information including params and loader props.
+   * Uses generated RouteTypes from routes.d.ts if available for better intellisense.
+   *
+   * @example
+   * const route = createRoute<'/docs/[slug]'>()
+   * // route.createLoader gets params typed as { slug: string }
+   *
+   * type Route = RouteType<'/docs/[slug]'>
+   * // Route.Params = { slug: string }
+   * // Route.LoaderProps = { path: string; params: { slug: string }; request?: Request }
+   */
+  export type RouteType<Path extends string> = Path extends keyof __routes['RouteTypes']
+    ? __routes['RouteTypes'][Path]
+    : {
+        Params: InputRouteParams<Path>
+        LoaderProps: import('../types').LoaderProps<InputRouteParams<Path>>
+      }
+
   type StaticRoutes = __routes extends { StaticRoutes: string } ? __routes['StaticRoutes'] : string
 
   type DynamicRoutes<T extends string> = __routes<T> extends { DynamicRoutes: any }

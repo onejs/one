@@ -26,6 +26,8 @@ export function getTypedRoutesDeclarationFile(ctx: One.RouteContext) {
     dynamicRouteContextKeys
   )
 
+  const hasRoutes = dynamicRouteContextKeys.size > 0
+
   return `// deno-lint-ignore-file
 /* eslint-disable */
 // biome-ignore: needed import
@@ -38,10 +40,78 @@ declare module 'one' {
       DynamicRoutes: ${setToUnionType(dynamicRoutes)}
       DynamicRouteTemplate: ${setToUnionType(dynamicRouteContextKeys)}
       IsTyped: true
+      ${hasRoutes ? `RouteTypes: ${generateRouteTypesMap(dynamicRouteContextKeys)}` : ''}
     }
   }
 }
+${
+  hasRoutes
+    ? `
+/**
+ * Helper type for route information
+ */
+type RouteInfo<Params = Record<string, never>> = {
+  Params: Params
+  LoaderProps: { path: string; params: Params; request?: Request }
+}`
+    : ''
+}
 `.trim()
+}
+
+/**
+ * Generates a mapped type for all routes with their expanded types
+ * This improves intellisense by showing actual param types instead of aliases
+ */
+function generateRouteTypesMap(dynamicRouteContextKeys: Set<string>): string {
+  if (dynamicRouteContextKeys.size === 0) {
+    return '{}'
+  }
+
+  const routes = [...dynamicRouteContextKeys].sort()
+
+  const entries = routes
+    .map((routePath) => {
+      // Generate the param type inline for better intellisense
+      const params = extractParams(routePath)
+      const paramsType = params.length === 0 ? '{}' : generateInlineParamsType(params)
+
+      return `        '${routePath}': RouteInfo<${paramsType}>`
+    })
+    .join('\n')
+
+  return `{\n${entries}\n      }`
+}
+
+/**
+ * Extract parameter names from a route path
+ * e.g., "/docs/[slug]/[id]" -> ["slug", "id"]
+ */
+function extractParams(routePath: string): Array<{ name: string; isCatchAll: boolean }> {
+  const params: Array<{ name: string; isCatchAll: boolean }> = []
+  const paramRegex = /\[(\.\.\.)?([\w]+)\]/g
+  let match
+
+  while ((match = paramRegex.exec(routePath)) !== null) {
+    params.push({
+      name: match[2],
+      isCatchAll: match[1] === '...',
+    })
+  }
+
+  return params
+}
+
+/**
+ * Generate inline params type for better intellisense
+ * e.g., [{ name: "slug", isCatchAll: false }] -> "{ slug: string }"
+ */
+function generateInlineParamsType(params: Array<{ name: string; isCatchAll: boolean }>): string {
+  const entries = params.map((p) => {
+    const type = p.isCatchAll ? 'string[]' : 'string'
+    return `${p.name}: ${type}`
+  })
+  return `{ ${entries.join('; ')} }`
 }
 
 /**

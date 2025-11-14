@@ -1,14 +1,27 @@
 import { useActiveParams, useParams, usePathname } from '../hooks'
 import type { OneRouter } from '../interfaces/router'
+import type { LoaderProps } from '../types'
 
-export function createRoute<Path>() {
-  type Route = OneRouter.Route<Path>
+export function createRoute<Path extends string = string>() {
+  type Route = OneRouter.RouteType<Path>
   type Params = Route['Params']
+  type TypedLoaderProps = LoaderProps<Params>
 
   return {
     useParams: () => useParams<Params>(),
     useActiveParams: () => useActiveParams<Params>(),
-    createLoader: (a: Route['Loader']) => a,
+    /**
+     * Creates a typed loader function for this route.
+     * The loader receives LoaderProps with typed params.
+     *
+     * @example
+     * const route = createRoute<'(site)/docs/[slug]'>()
+     * export const loader = route.createLoader(({ params }) => {
+     *   // params is typed as { slug: string }
+     *   return { doc: getDoc(params.slug) }
+     * })
+     */
+    createLoader: <T>(fn: (props: TypedLoaderProps) => T) => fn,
   }
 }
 

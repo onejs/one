@@ -111,6 +111,31 @@ export declare namespace One {
                  * Currently, this will only effect the `<Slot />` navigator, where it will modify the screen element provided by `react-navigation` and set the `key` to a static value to prevent re-mounting.
                  */
                 preventLayoutRemounting?: boolean;
+                /**
+                 * Auto-generate route type helpers in route files.
+                 *
+                 * Route types are always generated in routes.d.ts. This option controls whether
+                 * One automatically inserts type helpers into your route files.
+                 *
+                 * Options:
+                 * - `false` (default): No auto-generation, manually add types yourself
+                 * - `'type'`: Auto-inserts type-only helpers:
+                 *   ```typescript
+                 *   import type { RouteType } from 'one'
+                 *   type Route = RouteType<'/your/[route]'>
+                 *   ```
+                 * - `'runtime'`: Auto-inserts runtime helpers:
+                 *   ```typescript
+                 *   import { createRoute } from 'one'
+                 *   const route = createRoute<'/your/[route]'>()
+                 *   ```
+                 *
+                 * The insertion happens automatically when route files are created or modified,
+                 * and respects your existing code (won't modify loaders, etc).
+                 *
+                 * @default false
+                 */
+                typedRoutesGeneration?: false | 'type' | 'runtime';
             };
         };
         react?: {
