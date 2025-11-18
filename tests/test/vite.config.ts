@@ -1,9 +1,9 @@
-import { resolve } from 'node:path'
+import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { one } from 'one/vite'
 import type { UserConfig } from 'vite'
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default {
   plugins: [
