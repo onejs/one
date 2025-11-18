@@ -1,17 +1,30 @@
 import { useRouter } from 'one'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Button, Text, TextInput, View } from 'react-native'
+import { MMKV } from 'react-native-mmkv'
 
-// Web version - no persistence with mmkv
+const storage = new MMKV()
+const STORAGE_KEY = 'TestNavigationHelper_recentPaths'
+
 export function TestNavigationHelper() {
   const [path, setPath] = useState('')
   const [recentPaths, setRecentPaths] = useState<string[]>([])
+
+  useEffect(() => {
+    const raw = storage.getString(STORAGE_KEY)
+    if (raw) {
+      try {
+        setRecentPaths(JSON.parse(raw))
+      } catch {}
+    }
+  }, [])
 
   const navigateTo = useCallback((target: string) => {
     if (!target) return
 
     setRecentPaths((prev) => {
       const next = [target, ...prev.filter((p) => p !== target)].slice(0, 3)
+      storage.set(STORAGE_KEY, JSON.stringify(next))
       return next
     })
 
