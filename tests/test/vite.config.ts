@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import { one } from 'one/vite'
 import type { UserConfig } from 'vite'
 
@@ -27,4 +28,16 @@ export default {
       },
     }),
   ],
+
+  resolve: {
+    alias: {
+      // Stub out native-only modules for web builds
+      'react-native-nitro-modules': fileURLToPath(
+        new URL('./vite-shims/react-native-nitro-modules.js', import.meta.url)
+      ),
+      'react-native-mmkv': fileURLToPath(
+        new URL('./vite-shims/react-native-mmkv.js', import.meta.url)
+      ),
+    },
+  },
 } satisfies UserConfig
