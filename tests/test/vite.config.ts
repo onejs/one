@@ -1,9 +1,5 @@
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { one } from 'one/vite'
 import type { UserConfig } from 'vite'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default {
   plugins: [
@@ -32,11 +28,4 @@ export default {
     }),
   ],
 
-  resolve: {
-    alias: {
-      // Stub out native-only modules for web builds
-      'react-native-nitro-modules': resolve(__dirname, 'vite-shims/react-native-nitro-modules.js'),
-      'react-native-mmkv': resolve(__dirname, 'vite-shims/react-native-mmkv.js'),
-    },
-  },
 } satisfies UserConfig
