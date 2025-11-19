@@ -1,4 +1,4 @@
-import getDevServer from 'react-native/Libraries/Core/Devtools/getDevServer'
+import { getDevServer } from './getDevServer'
 
 export function getURL() {
   let url = process.env.ONE_SERVER_URL

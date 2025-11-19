@@ -75,6 +75,10 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
     async configureServer(server) {
       const { logger, root: projectRoot } = server.config
 
+      // Track Metro startup separately from Vite
+      const metroStartTime = Date.now()
+      let metroReady = false
+
       const { default: Metro } = await projectImport<{
         default: typeof MetroT
       }>(projectRoot, 'metro')
@@ -90,113 +94,153 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
 
       const config = await getMetroConfigFromViteConfig(server.config, options)
 
-      // @ts-expect-error TODO
-      const { middleware, end, metroServer } = await Metro.createConnectMiddleware(config, {
-        // Force enable file watching, even on CI.
-        // This is needed for HMR tests to work on CI.
-        watch: true,
-      })
+      // Start Metro in background WITHOUT blocking Vite server startup
+      let middleware: Awaited<ReturnType<typeof MetroT.createConnectMiddleware>>['middleware']
+      let metroServer: Awaited<ReturnType<typeof MetroT.createConnectMiddleware>>['metroServer']
+      let hmrServer: MetroHmrServerT
+      let websocketEndpoints: Record<string, ReturnType<typeof createWebsocketServerT>>
+      let rnDevtoolsMiddleware: ReturnType<typeof createDevMiddlewareT>['middleware']
 
-      patchMetroServerWithViteConfigAndMetroPluginOptions(metroServer, server.config, options)
+      const metroPromise = (async () => {
+        console.info('[metro] Starting Metro bundler in background...')
 
-      const hmrServer = new MetroHmrServer(
-        metroServer.getBundler(),
-        metroServer.getCreateModuleId(),
-        config
-      )
+        try {
+          // @ts-expect-error TODO
+          const metroResult = await Metro.createConnectMiddleware(config, {
+            // Force enable file watching, even on CI.
+            // This is needed for HMR tests to work on CI.
+            watch: true,
+          })
 
-      const reactNativeDevToolsUrl = `http://${typeof server.config.server.host === 'boolean' ? 'localhost' : server.config.server.host}:${server.config.server.port}`
-      const { middleware: rnDevtoolsMiddleware, websocketEndpoints: rnDevtoolsWebsocketEndpoints } =
-        createDevMiddleware({
+        middleware = metroResult.middleware
+        metroServer = metroResult.metroServer
+
+        patchMetroServerWithViteConfigAndMetroPluginOptions(metroServer, server.config, options)
+
+        hmrServer = new MetroHmrServer(
+          metroServer.getBundler(),
+          metroServer.getCreateModuleId(),
+          config
+        )
+
+        const reactNativeDevToolsUrl = `http://${typeof server.config.server.host === 'boolean' ? 'localhost' : server.config.server.host}:${server.config.server.port}`
+        const devMiddleware = createDevMiddleware({
           projectRoot,
           serverBaseUrl: reactNativeDevToolsUrl,
           logger: console,
         })
 
-      server.middlewares.use(async (req, res, next) => {
-        try {
-          // Just for debugging purposes.
-          if (req.url?.includes('.bundle')) {
-            const VITE_METRO_DEBUG_BUNDLE = process.env.VITE_METRO_DEBUG_BUNDLE
-            if (VITE_METRO_DEBUG_BUNDLE) {
-              if (existsSync(VITE_METRO_DEBUG_BUNDLE)) {
-                console.info(`  !!! - serving debug bundle from`, VITE_METRO_DEBUG_BUNDLE)
-                const content = await readFile(VITE_METRO_DEBUG_BUNDLE, 'utf-8')
-                res.setHeader('Content-Type', 'application/javascript')
-                res.end(content)
-                return
-              }
-            }
-          }
-
-          // Handle `isPackagerRunning` request from native app.
-          // Without this, people may see a `No script URL provided. Make sure the packager is running or you have embedded a JS bundle in your application bundle.`, `unsanitizedScriptURLString = (null)` error in their native app running with the "Debug" configuration.
-          // See: https://github.com/facebook/react-native/blob/v0.80.0-rc.4/packages/react-native/React/Base/RCTBundleURLProvider.mm#L87-L113
-          if (
-            req.url === '/status' &&
-            // The path (`/status`) is too general and may conflict with the user's web app, so we also check the User-Agent header to ensure it's a request from a native app.
-            // Failing to handle this correctly will cause the native app to show a "Packager is not running at ..." error.
-            (req.headers['user-agent']?.includes('CFNetwork/' /* iOS */) ||
-              req.headers['user-agent']?.includes('okhttp/' /* Android */))
-          ) {
-            res.statusCode = 200
-            res.end('packager-status:running')
-            return
-          }
-
-          if (req.url === '/open-stack-frame' && req.method === 'POST') {
-            let body = ''
-
-            req.on('data', (chunk) => {
-              body += chunk.toString()
-            })
-
-            req.on('end', () => {
-              try {
-                const frame = JSON.parse(body)
-
-                // https://github.com/yyx990803/launch-editor/blob/master/packages/launch-editor-middleware/index.js
-                launchEditor(frame.file)
-                res.statusCode = 200
-                res.end('Stack frame opened in editor')
-              } catch (e) {
-                console.error('Failed to parse stack frame:', e)
-                res.statusCode = 400
-                return res.end('Invalid stack frame JSON')
-              }
-            })
-
-            return
-          }
-
-          // this is the actual Metro middleware that handles bundle requests
-          await (middleware as any)(req, res, next)
-        } catch (error) {
-          // TODO: handle errors from Metro middleware?
-          console.error('Metro middleware error:', error)
-          next()
+        rnDevtoolsMiddleware = devMiddleware.middleware
+        websocketEndpoints = {
+          '/hot': createWebsocketServer({
+            websocketServer: hmrServer,
+          }),
+          ...devMiddleware.websocketEndpoints,
         }
+
+          metroReady = true
+          const metroElapsed = Date.now() - metroStartTime
+          console.info(`[metro] Metro bundler ready (${metroElapsed}ms)`)
+        } catch (err) {
+          console.error('[metro] Error during Metro initialization:', err)
+          throw err
+        }
+      })()
+
+      // Don't await - let Metro initialize in parallel
+      metroPromise.catch((err) => {
+        console.error('[metro] Failed to start Metro:', err)
       })
 
-      server.middlewares.use(rnDevtoolsMiddleware)
+      // Setup websocket handling after Metro is ready
+      metroPromise.then(() => {
+        server.httpServer?.on('upgrade', (request, socket, head) => {
+          const { pathname } = parse(request.url!)
 
-      const websocketEndpoints = {
-        '/hot': createWebsocketServer({
-          websocketServer: hmrServer,
-        }),
-        ...rnDevtoolsWebsocketEndpoints,
-      }
+          if (pathname != null && websocketEndpoints[pathname]) {
+            websocketEndpoints[pathname].handleUpgrade(request, socket, head, (ws) => {
+              websocketEndpoints[pathname].emit('connection', ws, request)
+            })
+          }
+        })
 
-      server.httpServer?.on('upgrade', (request, socket, head) => {
-        const { pathname } = parse(request.url!)
+        // Insert devtools middleware after Metro is ready
+        server.middlewares.use(rnDevtoolsMiddleware)
+      })
 
-        if (pathname != null && websocketEndpoints[pathname]) {
-          websocketEndpoints[pathname].handleUpgrade(request, socket, head, (ws) => {
-            websocketEndpoints[pathname].emit('connection', ws, request)
-          })
+      server.middlewares.use(async (req, res, next) => {
+        // Wait for Metro if it's a bundle request and Metro isn't ready yet
+        if (req.url?.includes('.bundle') && !metroReady) {
+          await metroPromise
+        }
+
+        // If Metro middleware is ready, use it
+        if (middleware) {
+          try {
+            // Just for debugging purposes.
+            if (req.url?.includes('.bundle')) {
+              const VITE_METRO_DEBUG_BUNDLE = process.env.VITE_METRO_DEBUG_BUNDLE
+              if (VITE_METRO_DEBUG_BUNDLE) {
+                if (existsSync(VITE_METRO_DEBUG_BUNDLE)) {
+                  console.info(`  !!! - serving debug bundle from`, VITE_METRO_DEBUG_BUNDLE)
+                  const content = await readFile(VITE_METRO_DEBUG_BUNDLE, 'utf-8')
+                  res.setHeader('Content-Type', 'application/javascript')
+                  res.end(content)
+                  return
+                }
+              }
+            }
+
+            // Handle `isPackagerRunning` request from native app.
+            // Without this, people may see a `No script URL provided. Make sure the packager is running or you have embedded a JS bundle in your application bundle.`, `unsanitizedScriptURLString = (null)` error in their native app running with the "Debug" configuration.
+            // See: https://github.com/facebook/react-native/blob/v0.80.0-rc.4/packages/react-native/React/Base/RCTBundleURLProvider.mm#L87-L113
+            if (
+              req.url === '/status' &&
+              // The path (`/status`) is too general and may conflict with the user's web app, so we also check the User-Agent header to ensure it's a request from a native app.
+              // Failing to handle this correctly will cause the native app to show a "Packager is not running at ..." error.
+              (req.headers['user-agent']?.includes('CFNetwork/' /* iOS */) ||
+                req.headers['user-agent']?.includes('okhttp/' /* Android */))
+            ) {
+              res.statusCode = 200
+              res.end('packager-status:running')
+              return
+            }
+
+            if (req.url === '/open-stack-frame' && req.method === 'POST') {
+              let body = ''
+
+              req.on('data', (chunk) => {
+                body += chunk.toString()
+              })
+
+              req.on('end', () => {
+                try {
+                  const frame = JSON.parse(body)
+
+                  // https://github.com/yyx990803/launch-editor/blob/master/packages/launch-editor-middleware/index.js
+                  launchEditor(frame.file)
+                  res.statusCode = 200
+                  res.end('Stack frame opened in editor')
+                } catch (e) {
+                  console.error('Failed to parse stack frame:', e)
+                  res.statusCode = 400
+                  return res.end('Invalid stack frame JSON')
+                }
+              })
+
+              return
+            }
+
+            // this is the actual Metro middleware that handles bundle requests
+            await (middleware as any)(req, res, next)
+          } catch (error) {
+            // TODO: handle errors from Metro middleware?
+            console.error('Metro middleware error:', error)
+            next()
+          }
         } else {
-          // TODO: Do we need this?
-          // socket.destroy()
+          // Metro not ready yet, pass through
+          next()
         }
       })
     },
