@@ -138,6 +138,9 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
       include: depsToOptimize,
       exclude: ['util', '@swc/wasm', '@swc/core-darwin-arm64', 'moti/author'],
       needsInterop,
+      // Enable lazy optimization - don't wait for all deps before starting server
+      // This allows browser to process requests in parallel for faster initial load
+      holdUntilCrawlEnd: false,
       esbuildOptions: {
         resolveExtensions: webExtensions,
       },

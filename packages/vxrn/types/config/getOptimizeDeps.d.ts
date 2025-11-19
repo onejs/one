@@ -5,6 +5,7 @@ export declare function getOptimizeDeps(mode: 'build' | 'serve'): {
         include: string[];
         exclude: string[];
         needsInterop: string[];
+        holdUntilCrawlEnd: false;
         esbuildOptions: {
             resolveExtensions: string[];
         };
