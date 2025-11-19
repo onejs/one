@@ -426,7 +426,8 @@ ${rootJS.code}
                         }
 
                         // Log cache stats when all environments are done
-                        const allDone = Object.keys(perfStats.optimizeDeps.byEnvironment).length >= 2
+                        const allDone =
+                          Object.keys(perfStats.optimizeDeps.byEnvironment).length >= 2
                         if (allDone) {
                           logCacheStats()
                           logPerfSummary()
