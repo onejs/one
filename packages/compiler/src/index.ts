@@ -15,11 +15,56 @@ import { debug, runtimePublicPath, validParsers } from './constants'
 import { getBabelOptions, transformBabel } from './transformBabel'
 import { transformSWC } from './transformSWC'
 import type { Environment, GetTransformProps, Options } from './types'
+import { getCachedTransform, logCacheStats, setCachedTransform } from './cache'
 
 export * from './configure'
 export * from './transformBabel'
 export * from './transformSWC'
 export type { GetTransform } from './types'
+
+// Performance tracking
+const perfStats = {
+  babel: {
+    totalCalls: 0,
+    totalTransforms: 0,
+    totalTime: 0,
+    byEnvironment: {} as Record<string, { calls: number; transforms: number; time: number }>,
+  },
+  optimizeDeps: {
+    byEnvironment: {} as Record<
+      string,
+      { filesChecked: number; filesTransformed: number; startTime: number }
+    >,
+  },
+}
+
+function logPerfSummary() {
+  // Only log detailed perf stats when debugging
+  if (!process.env.DEBUG_COMPILER_PERF) {
+    return
+  }
+
+  console.info('\n📊 [Compiler Performance Summary]')
+  console.info(
+    `Babel: ${perfStats.babel.totalTransforms} transforms / ${perfStats.babel.totalCalls} calls (${((perfStats.babel.totalTransforms / Math.max(perfStats.babel.totalCalls, 1)) * 100).toFixed(1)}% transform rate)`
+  )
+  console.info(`Babel total time: ${perfStats.babel.totalTime}ms`)
+
+  for (const [env, stats] of Object.entries(perfStats.babel.byEnvironment)) {
+    if (stats.transforms > 0) {
+      console.info(
+        `  ${env}: ${stats.transforms} transforms, ${stats.time}ms (${(stats.time / stats.transforms).toFixed(1)}ms avg)`
+      )
+    }
+  }
+
+  for (const [env, stats] of Object.entries(perfStats.optimizeDeps.byEnvironment)) {
+    const elapsed = Date.now() - stats.startTime
+    console.info(
+      `optimizeDeps ${env}: checked ${stats.filesChecked} files, transformed ${stats.filesTransformed} (${elapsed}ms)`
+    )
+  }
+}
 
 // Shared Babel transform logic
 async function performBabelTransform({
@@ -37,6 +82,13 @@ async function performBabelTransform({
   reactForRNVersion: '18' | '19'
   optionsIn?: Partial<Options>
 }) {
+  // Track stats
+  perfStats.babel.totalCalls++
+  if (!perfStats.babel.byEnvironment[environment]) {
+    perfStats.babel.byEnvironment[environment] = { calls: 0, transforms: 0, time: 0 }
+  }
+  perfStats.babel.byEnvironment[environment].calls++
+
   const transformProps: GetTransformProps = {
     id,
     code,
@@ -60,11 +112,33 @@ async function performBabelTransform({
     })
 
     if (babelOptions) {
+      // Check cache first
+      const cached = getCachedTransform(id, code, environment)
+      if (cached) {
+        perfStats.babel.byEnvironment[environment].transforms++
+        debug?.(`[babel/cached] ${id}`)
+        return cached
+      }
+
+      // Cache miss - do the transform
+      const startTime = Date.now()
       const babelOut = await transformBabel(id, code, babelOptions)
+      const babelTime = Date.now() - startTime
+
       if (babelOut?.code) {
+        perfStats.babel.totalTransforms++
+        perfStats.babel.totalTime += babelTime
+        perfStats.babel.byEnvironment[environment].transforms++
+        perfStats.babel.byEnvironment[environment].time += babelTime
+
         debug?.(`[babel] ${id}`)
         const outCode = `${babelOut.code}\n// vxrn-did-babel`
-        return { code: outCode, map: babelOut.map }
+        const result = { code: outCode, map: babelOut.map }
+
+        // Cache the result
+        setCachedTransform(id, code, result, environment)
+
+        return result
       }
     }
   }
@@ -121,7 +195,7 @@ async function performFullTransform({
   let code = codeIn
   let out: {
     code: string
-    map: any
+    map?: any
   } | null = null
 
   // avoid double-processing files already handled by optimizeDeps
@@ -289,9 +363,20 @@ ${rootJS.code}
                   {
                     name: `transform-before-optimize-deps-${environment}`,
                     setup(build) {
+                      // Init stats for this environment
+                      if (!perfStats.optimizeDeps.byEnvironment[environment]) {
+                        perfStats.optimizeDeps.byEnvironment[environment] = {
+                          filesChecked: 0,
+                          filesTransformed: 0,
+                          startTime: Date.now(),
+                        }
+                      }
+
                       build.onLoad(
                         { filter: /node_modules\/.*\.(tsx?|jsx?|mjs|cjs)$/ },
                         async (args) => {
+                          perfStats.optimizeDeps.byEnvironment[environment].filesChecked++
+
                           const production = process.env.NODE_ENV === 'production'
                           const code = await readFile(args.path, 'utf-8')
 
@@ -310,6 +395,8 @@ ${rootJS.code}
                             return null
                           }
 
+                          perfStats.optimizeDeps.byEnvironment[environment].filesTransformed++
+
                           // Determine loader based on file extension
                           const ext = extname(args.path)
                           const loader =
@@ -327,6 +414,24 @@ ${rootJS.code}
                           }
                         }
                       )
+
+                      build.onEnd(() => {
+                        // Only log detailed stats when debugging
+                        if (process.env.DEBUG_COMPILER_PERF) {
+                          const stats = perfStats.optimizeDeps.byEnvironment[environment]
+                          const elapsed = Date.now() - stats.startTime
+                          console.info(
+                            `[optimizeDeps ${environment}] Done: ${stats.filesChecked} files checked, ${stats.filesTransformed} transformed (${elapsed}ms)`
+                          )
+                        }
+
+                        // Log cache stats when all environments are done
+                        const allDone = Object.keys(perfStats.optimizeDeps.byEnvironment).length >= 2
+                        if (allDone) {
+                          logCacheStats()
+                          logPerfSummary()
+                        }
+                      })
                     },
                   },
                 ],
