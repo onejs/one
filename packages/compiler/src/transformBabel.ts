@@ -243,11 +243,18 @@ const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
  */
 const REANIMATED_REGEX = new RegExp(REANIMATED_AUTOWORKLETIZATION_KEYWORDS.join('|'))
 
+// Packages to skip for reanimated babel transform
+// These either have false positives (mention keywords but don't use worklets)
+// or cause issues when transformed
 const REANIMATED_IGNORED_PATHS = [
-  // React and React Native libraries are not likely to use reanimated.
-  // This can also avoid the "[BABEL] Note: The code generator has deoptimised the styling of ... as it exceeds the max of 500KB" warning since the react-native source code also contains `useAnimatedProps`.
+  // Prebuilt/vendored react-native that shouldn't be transformed
   'react-native-prebuilt',
   'node_modules/.vxrn/react-native',
+  // Known false positives - they mention worklet keywords in comments/strings but don't use them
+  'node_modules/react/',
+  'node_modules/react-dom/',
+  'node_modules/react-native/',
+  'node_modules/react-native-web/',
 ]
 
 const REANIMATED_IGNORED_PATHS_REGEX = new RegExp(
@@ -258,10 +265,18 @@ function shouldBabelReanimated({ code, id }: Props) {
   if (!configuration.enableReanimated) {
     return false
   }
-  if (!REANIMATED_IGNORED_PATHS_REGEX.test(id) && REANIMATED_REGEX.test(code)) {
-    debug?.(` 🪄 [reanimated] ${relative(process.cwd(), id)}`)
+
+  // Check if path should be ignored
+  if (REANIMATED_IGNORED_PATHS_REGEX.test(id)) {
+    return false
+  }
+
+  // Check regex for all files (both node_modules and user code)
+  if (REANIMATED_REGEX.test(code)) {
+    const location = id.includes('node_modules') ? 'node_modules' : 'user-code'
+    debug?.(` 🪄 [reanimated/${location}] ${relative(process.cwd(), id)}`)
     return true
   }
-  debug?.(` not using reanimated ${relative(process.cwd(), id)}`)
+
   return false
 }

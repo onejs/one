@@ -10,6 +10,7 @@ export type DevOptions = VXRNOptions & {
 }
 
 export const dev = async (optionsIn: DevOptions) => {
+  const devStartTime = Date.now()
   process.env.IS_VXRN_CLI = 'true'
 
   if (typeof optionsIn.debug === 'string') {
@@ -98,6 +99,8 @@ export default defineConfig({
       })
 
       await viteServer.listen()
+
+      const totalStartupTime = Date.now() - devStartTime
 
       console.info()
       console.info(colors.bold('Server running on') + ' ⪢')
