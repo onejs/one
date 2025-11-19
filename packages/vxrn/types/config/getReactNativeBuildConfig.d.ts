@@ -36,6 +36,7 @@ export declare function getReactNativeBuildConfig(options: Pick<VXRNOptionsFille
         include: string[];
         exclude: string[];
         needsInterop: string[];
+        holdUntilCrawlEnd: false;
     };
     resolve: {
         dedupe: string[];

@@ -308,7 +308,7 @@ const InfoCard = ({ title, Icon, children }) => {
       <YStack fullscreen o={0.25}></YStack>
       <YStack gap="$2" p="$4">
         <Icon als="flex-end" mb={-20} o={0.1} size={28} />
-        <H5 fontFamily="$mono" size="$2" color="$color13" mt={-10}>
+        <H5 fontFamily="$mono" size="$2" color="$color12" mt={-10}>
           {title}
         </H5>
         <PrettyText color="$gray11">{children}</PrettyText>
@@ -414,7 +414,7 @@ function Video() {
               y={35}
               ai="center"
               size={60}
-              shac="$shadowColorStrong"
+              shac="$shadowColor"
               shar={10}
             >
               <svg style={{ marginTop: -10 }} width="100%" height="100%" viewBox="0 0 100 100">
@@ -439,7 +439,7 @@ function Video() {
           pb={11}
           bg="$color2"
           br="$8"
-          shac="$shadowColorStrong"
+          shac="$shadowColor"
           shar={10}
           cur="pointer"
           $group-card-hover={{

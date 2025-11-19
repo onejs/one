@@ -116,7 +116,7 @@ export const TopNav = () => {
 
           <XStack pe="none" ai="center" jc="flex-end" f={10} $gtSm={{ f: 0 }}>
             <SimpleButton marginTop={-3} mr={8} onPress={onOpen}>
-              <Search width={24} height={24} color="$color13" strokeWidth={2} />
+              <Search width={24} height={24} color="$color12" strokeWidth={2} />
             </SimpleButton>
 
             <ToggleThemeButton />
