@@ -251,6 +251,7 @@ export function useLoaderState<
     } else if (loader && !promises[currentPath]) {
       const loadData = async () => {
         try {
+          // Always use dynamic import (loaders are transformed by compiler)
           const loaderJSUrl = getLoaderPath(currentPath, true)
           const module = await dynamicImport(loaderJSUrl)
           const result = await module.loader()
@@ -278,13 +279,12 @@ export function useLoaderState<
       delete promises[currentPath]
       delete errors[currentPath]
 
-      // Get loader URL with cache busting
+      // Always use dynamic import for loaders (they're transformed by the compiler)
       let loaderJSUrl = getLoaderPath(currentPath, true)
       const timestamp = Date.now()
       const random = Math.random()
       loaderJSUrl += `${loaderJSUrl.includes('?') ? '&' : '?'}_t=${timestamp}&_r=${random}`
 
-      // Import and execute loader
       const module = await dynamicImport(loaderJSUrl)
       const result = await module.loader()
 

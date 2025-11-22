@@ -287,6 +287,9 @@ describe('loader() SSG', () => {
     console.log('Navigating to /simple-refetch')
     await page.goto(serverUrl + '/simple-refetch')
 
+    // Wait for hydration
+    await page.waitForTimeout(1000)
+
     // Get initial state
     console.log('Getting initial state')
     const initialTimestamp = await page.textContent('#timestamp')
@@ -298,6 +301,7 @@ describe('loader() SSG', () => {
 
     // Click refetch
     console.log('Clicking refetch button')
+    await page.waitForSelector('#refetch-btn', { state: 'visible' })
     await page.click('#refetch-btn')
 
     console.log('Waiting 3 seconds for refetch to complete')
