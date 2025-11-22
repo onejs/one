@@ -279,28 +279,20 @@ export function useLoaderState<
       delete promises[currentPath]
       delete errors[currentPath]
 
-      // Use fetch instead of dynamic import to avoid ES module caching
+      // Use fetch with JSON response to avoid ES module caching
       let loaderJSUrl = getLoaderPath(currentPath, true)
       const timestamp = Date.now()
       const random = Math.random()
-      loaderJSUrl += `${loaderJSUrl.includes('?') ? '&' : '?'}_t=${timestamp}&_r=${random}`
+      // Add _json to get JSON response instead of JS module
+      loaderJSUrl += `${loaderJSUrl.includes('?') ? '&' : '?'}_t=${timestamp}&_r=${random}&_json=1`
 
-      // Fetch the loader data from the server
+      // Fetch the loader data as JSON
       const response = await fetch(loaderJSUrl)
       if (!response.ok) {
         throw new Error(`Failed to fetch loader: ${response.status}`)
       }
 
-      const responseText = await response.text()
-
-      // Parse the response which is in the format: export function loader() { return {...} }
-      // We need to extract the JSON data
-      const match = responseText.match(/export\s+function\s+loader\(\)\s*{\s*return\s+(.+)\s*}/)
-      if (!match) {
-        throw new Error('Invalid loader response format')
-      }
-
-      const result = JSON.parse(match[1])
+      const result = await response.json()
 
       // Update cache and state
       loadedData[currentPath] = result

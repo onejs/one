@@ -107,6 +107,12 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
 
       const json = await loader(loaderProps)
 
+      // Return JSON directly for refetch requests
+      if (url.searchParams.has('_json')) {
+        return JSON.stringify(json)
+      }
+
+      // Return as JS module for initial load
       return `export function loader() { return ${JSON.stringify(json)} }`
     },
 
