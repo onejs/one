@@ -79,6 +79,7 @@ export const docsRoutes = [
       { title: 'useIsFocused', route: '/docs/hooks-useIsFocused' },
       { title: 'useLinkTo', route: '/docs/hooks-useLinkTo' },
       { title: 'useLoader', route: '/docs/hooks-useLoader' },
+      { title: 'useLoaderState', route: '/docs/hooks-useLoaderState' },
       { title: 'useNavigation', route: '/docs/hooks-useNavigation' },
       { title: 'useParams', route: '/docs/hooks-useParams' },
       { title: 'usePathname', route: '/docs/hooks-usePathname' },

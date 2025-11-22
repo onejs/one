@@ -1,0 +1,264 @@
+---
+title: useLoaderState
+---
+
+A hook that provides manual refetch control and loading state for loaders. It extends the functionality of `useLoader` by adding the ability to manually refetch data and track loading states.
+
+## Basic Usage
+
+`useLoaderState` can be used in two different ways:
+
+### With a loader (replaces useLoader)
+
+When you pass a loader function, you get back the data along with refetch and state:
+
+```tsx
+import { useLoaderState } from 'one'
+
+export function loader({ path }) {
+  const url = new URL(path, 'http://localhost')
+  const query = url.searchParams.get('q') || ''
+
+  return fetch(`/api/search?q=${query}`).then(r => r.json())
+}
+
+export default function SearchPage() {
+  const { data, refetch, state } = useLoaderState(loader)
+
+  return (
+    <div>
+      <h1>Search Results</h1>
+      {state === 'loading' ? (
+        <Spinner />
+      ) : (
+        <Results data={data} />
+      )}
+      <button onClick={refetch} disabled={state === 'loading'}>
+        Refresh Results
+      </button>
+    </div>
+  )
+}
+```
+
+### Without a loader (access from anywhere)
+
+When called without arguments, you can access the refetch function and state from any component in the tree:
+
+```tsx
+import { useLoaderState } from 'one'
+
+function RefreshButton() {
+  const { refetch, state } = useLoaderState()
+
+  return (
+    <button
+      onClick={refetch}
+      disabled={state === 'loading'}
+    >
+      {state === 'loading' ? 'Refreshing...' : 'Refresh Page'}
+    </button>
+  )
+}
+
+// This button can be placed anywhere in your component tree
+// and will refetch the current route's loader
+```
+
+## Return Values
+
+### When called with a loader
+
+```tsx
+const { data, refetch, state } = useLoaderState(loader)
+```
+
+- **`data`**: The data returned by the loader (same as `useLoader`)
+- **`refetch`**: A function to manually trigger a fresh loader fetch
+- **`state`**: Current loading state - either `'idle'` or `'loading'`
+
+### When called without a loader
+
+```tsx
+const { refetch, state } = useLoaderState()
+```
+
+- **`refetch`**: A function to manually trigger a fresh loader fetch
+- **`state`**: Current loading state - either `'idle'` or `'loading'`
+
+## How It Works
+
+All `useLoaderState` hooks on the same route share state through an internal subscription system. This means:
+
+1. When `refetch()` is called from any component, the loader cache for that route is cleared
+2. All components subscribed to that route are notified and re-render
+3. The loader is executed again with fresh data
+4. All components receive the updated data simultaneously
+
+This architecture enables powerful patterns like having a refresh button in your header that can refetch data for the current page, without needing to pass props down through your component tree.
+
+## Common Use Cases
+
+### Pull-to-Refresh
+
+```tsx
+function PullToRefreshWrapper({ children }) {
+  const { refetch, state } = useLoaderState()
+
+  return (
+    <PullToRefresh onRefresh={refetch} refreshing={state === 'loading'}>
+      {children}
+    </PullToRefresh>
+  )
+}
+```
+
+### Polling for Live Data
+
+```tsx
+function useLivePolling(intervalMs = 5000) {
+  const { refetch, state } = useLoaderState()
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Only refetch if not already loading
+      if (state === 'idle') {
+        refetch()
+      }
+    }, intervalMs)
+
+    return () => clearInterval(interval)
+  }, [refetch, state, intervalMs])
+}
+
+export default function LiveDashboard() {
+  const { data } = useLoaderState(loader)
+  useLivePolling(3000) // Poll every 3 seconds
+
+  return <Dashboard data={data} />
+}
+```
+
+### Error Recovery
+
+```tsx
+export default function DataPage() {
+  const { data, refetch, state } = useLoaderState(loader)
+
+  if (data?.error) {
+    return (
+      <ErrorBoundary
+        error={data.error}
+        onRetry={refetch}
+        retrying={state === 'loading'}
+      />
+    )
+  }
+
+  return <PageContent data={data} />
+}
+```
+
+### Form Revalidation
+
+```tsx
+function CommentForm({ postId }) {
+  const { refetch } = useLoaderState()
+
+  const handleSubmit = async (formData) => {
+    await submitComment(postId, formData)
+    // Refetch the loader to get updated comments
+    refetch()
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* form fields */}
+    </form>
+  )
+}
+```
+
+## Comparison with useLoader
+
+| Feature | useLoader | useLoaderState |
+|---------|-----------|----------------|
+| Returns loader data | ✅ | ✅ |
+| Manual refetch | ❌ | ✅ |
+| Loading state | ❌ | ✅ |
+| Can be called without loader | ❌ | ✅ |
+| Can be used in child components | ❌ | ✅ |
+
+Use `useLoader` when you only need the data and automatic refetching is sufficient.
+
+Use `useLoaderState` when you need:
+- Manual refresh capabilities
+- Loading indicators
+- Error retry mechanisms
+- To trigger refetches from child components
+
+## TypeScript
+
+The hook is fully typed based on your loader's return type:
+
+```tsx
+export function loader() {
+  return {
+    users: [] as User[],
+    total: 0
+  }
+}
+
+// TypeScript knows the shape of data
+const { data, refetch, state } = useLoaderState(loader)
+//     ^? { users: User[], total: number }
+
+// Without a loader, data is not available
+const { refetch, state } = useLoaderState()
+//     ^? { refetch: () => void, state: 'idle' | 'loading' }
+// Note: no 'data' property when called without loader
+```
+
+## Migration from useLoader
+
+Migrating from `useLoader` to `useLoaderState` is straightforward:
+
+```tsx
+// Before
+import { useLoader } from 'one'
+
+export default function Page() {
+  const data = useLoader(loader)
+  return <div>{data.content}</div>
+}
+
+// After
+import { useLoaderState } from 'one'
+
+export default function Page() {
+  const { data, refetch, state } = useLoaderState(loader)
+  return (
+    <div>
+      {state === 'loading' && <LoadingSpinner />}
+      {data.content}
+      <button onClick={refetch}>Refresh</button>
+    </div>
+  )
+}
+```
+
+## Working with Different Rendering Modes
+
+`useLoaderState` works consistently across all rendering modes:
+
+- **SPA (`+spa`)**: Loaders execute on the client, refetch triggers client-side fetching
+- **SSR (`+ssr`)**: Initial load on server, refetch executes on client
+- **SSG (`+ssg`)**: Build-time data as initial state, refetch provides fresh client data
+
+The refetch functionality always executes on the client, ensuring consistent behavior regardless of the initial rendering mode.
+
+## Related
+
+- [useLoader](/docs/hooks-useLoader) - Basic loader data access
+- [loader](/docs/routing-loader) - Defining route loaders
+- [Data Loading Guide](/docs/guides-data-loading) - Comprehensive data loading patterns

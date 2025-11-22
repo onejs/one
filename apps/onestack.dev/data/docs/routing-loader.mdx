@@ -16,7 +16,15 @@ Loaders work similarly on native platforms as they do on web:
 
 This means native apps can use the same loader patterns as web apps, with data fetching behavior determined by the route's render mode rather than the platform.
 
-Loaders and their imports are removed from client bundles, so you can access private information from within the loader. The data returned from the loader will be passed to the client, and so should be clear of private information. To access the loader data on the client, you must use the `useLoader` hook:
+Loaders and their imports are removed from client bundles, so you can access private information from within the loader. The data returned from the loader will be passed to the client, and so should be clear of private information.
+
+## Accessing Loader Data
+
+There are two hooks available for accessing loader data:
+
+### useLoader
+
+The basic hook for accessing loader data:
 
 ```tsx
 import { useLoader } from 'one'
@@ -29,7 +37,7 @@ export async function loader() {
 
 export default function HomePage() {
   const data = useLoader(loader)
-  
+
   return (
     <p>
       {data.user}
@@ -38,7 +46,34 @@ export default function HomePage() {
 }
 ```
 
-The useLoader hook is automatically type safe.
+### useLoaderState
+
+For advanced use cases requiring manual refetch or loading states:
+
+```tsx
+import { useLoaderState } from 'one'
+
+export async function loader() {
+  return {
+    user: 'tamagui'
+  }
+}
+
+export default function HomePage() {
+  const { data, refetch, state } = useLoaderState(loader)
+
+  return (
+    <>
+      <p>{data.user}</p>
+      <button onClick={refetch} disabled={state === 'loading'}>
+        Refresh
+      </button>
+    </>
+  )
+}
+```
+
+Both hooks are automatically type safe. See [useLoader](/docs/hooks-useLoader) and [useLoaderState](/docs/hooks-useLoaderState) for detailed documentation.
 
 ## Loader arguments
 
