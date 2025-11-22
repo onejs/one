@@ -1,0 +1,67 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
+    "paths": {
+      "~/*": [
+        "./*"
+      ]
+    },
+    "importHelpers": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "preserveSymlinks": true,
+    "jsx": "react-jsx",
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "noEmit": false,
+    "noEmitOnError": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strictNullChecks": true,
+    "target": "es2020",
+    "types": [
+      "node",
+      "react",
+      "vite/client"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".expo",
+    "**/test",
+    "**/dist",
+    "**/types",
+    "**/__tests__",
+    "app-cases" // We need to use a different tsconfig.json for each app-case, since each one will have totally different routes and will have different `routes.d.ts`.
+  ],
+  "typeAcquisition": {
+    "enable": true
+  },
+  "references": [
+    {
+      "path": "../../packages/color-scheme"
+    },
+    {
+      "path": "../../packages/one"
+    }
+  ],
+  "extends": "expo/tsconfig.base"
+}

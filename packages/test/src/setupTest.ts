@@ -1,6 +1,24 @@
 import getPort from 'get-port'
 import { exec, spawn, type ChildProcess } from 'node:child_process'
+import { promisify } from 'node:util'
 import { ONLY_TEST_DEV, ONLY_TEST_PROD } from './constants'
+
+const execAsync = promisify(exec)
+
+async function killProcessOnPort(port: number): Promise<void> {
+  try {
+    const { stdout } = await execAsync(`lsof -i :${port} -t`)
+    const pids = stdout.trim().split('\n').filter(Boolean)
+
+    if (pids.length > 0) {
+      console.info(`Killing processes on port ${port}: ${pids.join(', ')}`)
+      await Promise.all(pids.map(pid => execAsync(`kill -9 ${pid}`).catch(() => {})))
+      await new Promise(resolve => setTimeout(resolve, 500))
+    }
+  } catch (error) {
+    // No process found on port, which is fine
+  }
+}
 
 export type TestInfo = {
   testProdPort: number
@@ -61,6 +79,10 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
   const prodPort = await getPort()
   const devPort =
     (process.env.DEV_PORT && Number.parseInt(process.env.DEV_PORT, 10)) || (await getPort())
+
+  // Ensure ports are clear before starting servers
+  await killProcessOnPort(prodPort)
+  await killProcessOnPort(devPort)
 
   try {
     if (shouldStartProdServer && !process.env.SKIP_BUILD && !process.env.IS_NATIVE_TEST) {

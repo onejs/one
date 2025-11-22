@@ -1,0 +1,43 @@
+{
+  "name": "test-loaders",
+  "version": "1.2.18",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "android": "one run:android",
+    "build:web": "one build",
+    "clean": "one clean",
+    "dev": "one dev",
+    "dev:clean": "yarn dev --clean",
+    "prod": "one build && one serve",
+    "serve": "one serve",
+    "prebuild:native": "one prebuild",
+    "test": "yarn test:dev && yarn test:prod ",
+    "test:dev": "TEST_ONLY=dev yarn vitest --run --reporter=dot --color=false",
+    "test:prod": "TEST_ONLY=prod yarn vitest --run --reporter=dot --color=false",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-navigation/native": "~7.1.19",
+    "@tamagui/config": "^1.138.2",
+    "@vxrn/color-scheme": "workspace:*",
+    "expo": "54.0.22",
+    "one": "workspace:*",
+    "postgres": "^3.4.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-reanimated": "~4.1.3",
+    "react-native-web": "^0.21.2",
+    "tamagui": "^1.138.2"
+  },
+  "devDependencies": {
+    "@react-native-community/cli": "^20.0.2",
+    "get-port-please": "^3.1.2",
+    "playwright": "^1.49.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.7.3",
+    "vite": "^7.1.12",
+    "vitest": "^4.0.6"
+  }
+}
