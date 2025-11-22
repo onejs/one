@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useActiveParams, useParams, usePathname } from './hooks'
 import { resolveHref } from './link/href'
 import { preloadingLoader } from './router/router'
@@ -11,6 +11,27 @@ import { useServerContext } from './vite/one-server-only'
 const promises: Record<string, undefined | Promise<void>> = {}
 const errors = {}
 const loadedData: Record<string, any> = {}
+
+// Subscription system for data changes
+const dataSubscribers = new Map<string, Set<() => void>>()
+
+function subscribeToData(path: string, callback: () => void) {
+  if (!dataSubscribers.has(path)) {
+    dataSubscribers.set(path, new Set())
+  }
+  dataSubscribers.get(path)!.add(callback)
+
+  return () => {
+    dataSubscribers.get(path)?.delete(callback)
+    if (dataSubscribers.get(path)?.size === 0) {
+      dataSubscribers.delete(path)
+    }
+  }
+}
+
+function notifyDataChange(path: string) {
+  dataSubscribers.get(path)?.forEach(cb => cb())
+}
 
 export function useLoader<
   Loader extends Function,
@@ -35,15 +56,24 @@ export function useLoader<
 
   // Cannot use usePathname() here since it will change every time the route changes,
   // but here here we want to get the current local pathname which renders this screen.
-  const currentPath = resolveHref({ pathname: pathname, params })
-    .replace(/index$/, '')
-    .replace(/\?.*/, '')
+  const currentPath = resolveHref({ pathname: pathname, params }).replace(/index$/, '')
 
   // only if it matches current route
   const preloadedData =
     loaderPropsFromServerContext?.path === currentPath ? loaderDataFromServerContext : undefined
 
   const currentData = useRef(preloadedData)
+  const [, forceUpdate] = useReducer((x: number) => x + 1, 0)
+
+  // Subscribe to data changes
+  useEffect(() => {
+    const unsubscribe = subscribeToData(currentPath, () => {
+      // Update our ref and force re-render when data changes
+      currentData.current = loadedData[currentPath]
+      forceUpdate()
+    })
+    return unsubscribe
+  }, [currentPath])
 
   useEffect(() => {
     if (preloadedData) {
@@ -57,6 +87,11 @@ export function useLoader<
   }
 
   const loaded = loadedData[currentPath]
+
+  // Check if we have updated data from subscription
+  if (currentData.current !== undefined && currentData.current !== preloadedData) {
+    return currentData.current
+  }
 
   if (typeof loaded !== 'undefined') {
     return loaded
@@ -72,7 +107,6 @@ export function useLoader<
           loadedData[currentPath] = val
         })
         .catch((err) => {
-          console.error(`Error loading loader`, err)
           errors[currentPath] = err
           delete promises[currentPath]
           delete preloadingLoader[currentPath]
@@ -82,7 +116,8 @@ export function useLoader<
     if (!promises[currentPath]) {
       const getData = async () => {
         // for native add a prefix to route around vite dev server being in front of ours
-        const loaderJSUrl = getLoaderPath(currentPath, true)
+        let loaderJSUrl = getLoaderPath(currentPath, true)
+
 
         try {
           const response = await (async () => {
@@ -166,4 +201,115 @@ function useAsyncFn(val: any, props?: any) {
   }
 
   return current
+}
+
+export function useLoaderState<
+  Loader extends Function = any,
+  Returned = Loader extends (p: any) => any ? ReturnType<Loader> : unknown,
+>(
+  loader?: Loader
+): Loader extends undefined
+  ? { refetch: () => void; state: 'idle' | 'loading' }
+  : {
+      data: Returned extends Promise<any> ? Awaited<Returned> : Returned
+      refetch: () => void
+      state: 'idle' | 'loading'
+    } {
+  const params = useParams()
+  const pathname = usePathname()
+  const currentPath = resolveHref({ pathname: pathname, params }).replace(/index$/, '')
+
+  // State management
+  const [isLoading, setIsLoading] = useState(false)
+  const [data, setData] = useState<any>(() => loadedData[currentPath])
+  const [error, setError] = useState<any>(null)
+
+  // Subscribe to data changes
+  useEffect(() => {
+    const unsubscribe = subscribeToData(currentPath, () => {
+      setData(loadedData[currentPath])
+    })
+    return unsubscribe
+  }, [currentPath])
+
+  // Initial load
+  useEffect(() => {
+    // If we already have data, use it
+    if (loadedData[currentPath]) {
+      setData(loadedData[currentPath])
+    } else if (loader && !promises[currentPath]) {
+      const loadData = async () => {
+        try {
+          const loaderJSUrl = getLoaderPath(currentPath, true)
+          const module = await dynamicImport(loaderJSUrl)
+          const result = await module.loader()
+
+          loadedData[currentPath] = result
+          setData(result)
+          notifyDataChange(currentPath)
+          delete promises[currentPath]
+        } catch (err) {
+          errors[currentPath] = err
+          setError(err)
+          delete promises[currentPath]
+        }
+      }
+
+      promises[currentPath] = loadData()
+    }
+  }, [currentPath, loader])
+
+  const refetch = useCallback(async () => {
+    setIsLoading(true)
+
+    try {
+      // Clear promises and errors but keep existing data until we have new data
+      delete promises[currentPath]
+      delete errors[currentPath]
+
+      // Get loader URL with cache busting
+      let loaderJSUrl = getLoaderPath(currentPath, true)
+      const timestamp = Date.now()
+      const random = Math.random()
+      loaderJSUrl += `${loaderJSUrl.includes('?') ? '&' : '?'}_t=${timestamp}&_r=${random}`
+
+      // Import and execute loader
+      const module = await dynamicImport(loaderJSUrl)
+      const result = await module.loader()
+
+      // Update cache and state
+      loadedData[currentPath] = result
+      setData(result)
+      setError(null) // Clear any previous errors
+      notifyDataChange(currentPath)
+    } catch (err) {
+      setError(err)
+      errors[currentPath] = err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [currentPath])
+
+  // Handle SSR (simplified for now - just focusing on SPA/SSG)
+  if (typeof window === 'undefined' && loader) {
+    const serverData = useAsyncFn(loader, { path: pathname, params })
+    return { data: serverData, refetch: () => {}, state: 'idle' } as any
+  }
+
+  if (loader) {
+    // Handle initial load suspension
+    if (!data && promises[currentPath]) {
+      throw promises[currentPath]
+    }
+
+    if (error) {
+      throw error
+    }
+
+    const state: 'idle' | 'loading' = isLoading ? 'loading' : 'idle'
+    return { data, refetch, state } as any
+  } else {
+    const state: 'idle' | 'loading' = isLoading ? 'loading' : 'idle'
+    return { refetch, state } as any
+  }
 }

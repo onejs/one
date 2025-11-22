@@ -69,7 +69,7 @@ export { useNavigation } from './router/useNavigation'
 export type { Endpoint, LoaderProps } from './types'
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'
-export { useLoader } from './useLoader'
+export { useLoader, useLoaderState } from './useLoader'
 export { type ServerHeadInsertionCallback, useServerHeadInsertion } from './useServerHeadInsertion'
 export { isResponse } from './utils/isResponse'
 export { redirect } from './utils/redirect'
