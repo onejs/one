@@ -175,7 +175,7 @@
   "devDependencies": {
     "@react-navigation/core": "^7.13.0",
     "@react-navigation/native": "~7.1.19",
-    "@tamagui/build": "^1.137.3",
+    "@tamagui/build": "^1.138.2",
     "@types/node": "^24.10.0",
     "@types/react-dom": "^19.2.2",
     "@types/xxhashjs": "^0.2.4",

@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { useLoader, useLoaderState } from 'one'
 import { Button, Text, YStack } from 'tamagui'
 
@@ -14,10 +14,16 @@ export function loader() {
 
 function UseLoaderComponent() {
   const data = useLoader(loader)
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   return (
     <YStack>
-      <Text id="useloader-timestamp">useLoader: {data?.timestamp}</Text>
-      <Text id="useloader-random">useLoader: {data?.random}</Text>
+      <Text id="useloader-timestamp">useLoader: {isClient && data ? data.timestamp : 'loading'}</Text>
+      <Text id="useloader-random">useLoader: {isClient && data ? data.random : 'loading'}</Text>
     </YStack>
   )
 }
@@ -25,6 +31,11 @@ function UseLoaderComponent() {
 function UseLoaderStateComponent() {
   const { data, refetch, state } = useLoaderState(loader)
   const [refetchCount, setRefetchCount] = useState(0)
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const handleRefetch = async () => {
     setRefetchCount(c => c + 1)
@@ -33,8 +44,8 @@ function UseLoaderStateComponent() {
 
   return (
     <YStack>
-      <Text id="useloaderstate-timestamp">useLoaderState: {data?.timestamp}</Text>
-      <Text id="useloaderstate-random">useLoaderState: {data?.random}</Text>
+      <Text id="useloaderstate-timestamp">useLoaderState: {isClient && data ? data.timestamp : 'loading'}</Text>
+      <Text id="useloaderstate-random">useLoaderState: {isClient && data ? data.random : 'loading'}</Text>
       <Text id="refetch-count">Refetch count: {refetchCount}</Text>
       <Text id="state">State: {state}</Text>
 

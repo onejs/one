@@ -96,6 +96,7 @@ export async function resolveAPIRoute(
           url,
           loaderProps: {
             path: pathname,
+            search: url.search,
             params,
           },
         }),
@@ -139,6 +140,7 @@ export async function resolveLoaderRoute(
           url,
           loaderProps: {
             path: url.pathname,
+            search: url.search,
             request: route.type === 'ssr' ? request : undefined,
             params: getLoaderParams(url, route),
           },
@@ -176,7 +178,8 @@ export async function resolvePageRoute(
         route,
         url,
         loaderProps: {
-          path: pathname + search,
+          path: pathname,
+          search: search,
           // Ensure SSR loaders receive the original request
           request: route.type === 'ssr' ? request : undefined,
           params: getLoaderParams(url, route),
