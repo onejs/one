@@ -65,11 +65,6 @@ const nextVersion = (() => {
   return next
 })()
 
-const sleep = (ms) => {
-  console.info(`Sleeping ${ms}ms`)
-  return new Promise((res) => setTimeout(res, ms))
-}
-
 if (!skipVersion) {
   console.info('Current:', curVersion, '\n')
 } else {

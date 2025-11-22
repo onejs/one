@@ -153,18 +153,7 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
             throw new Error(`No transformed js returned`)
           }
 
-          // Force re-import to get fresh loader execution by invalidating the module
-          const timestamp = url.searchParams.get('_t')
-          const random = url.searchParams.get('_r')
-          const cacheKey = timestamp || random ? `${routeFile}?t=${timestamp}&r=${random}` : routeFile
-
-          // Invalidate the module cache if we have cache-busting params
-          if (timestamp || random) {
-            // @ts-ignore - moduleCache exists but not in types
-            runner.moduleCache?.deleteByModuleId(routeFile)
-          }
-
-          const exported = await runner.import(cacheKey)
+          const exported = await runner.import(routeFile)
           const loaderData = await exported.loader?.(loaderProps)
 
           if (loaderData) {

@@ -20568,6 +20568,32 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"test-loaders@workspace:tests/test-loaders":
+  version: 0.0.0-use.local
+  resolution: "test-loaders@workspace:tests/test-loaders"
+  dependencies:
+    "@react-native-community/cli": "npm:^20.0.2"
+    "@react-navigation/native": "npm:~7.1.19"
+    "@tamagui/config": "npm:^1.138.2"
+    "@vxrn/color-scheme": "workspace:*"
+    expo: "npm:54.0.22"
+    get-port-please: "npm:^3.1.2"
+    one: "workspace:*"
+    playwright: "npm:^1.49.1"
+    postgres: "npm:^3.4.4"
+    react: "npm:19.1.0"
+    react-dom: "npm:19.1.0"
+    react-native: "npm:0.81.5"
+    react-native-reanimated: "npm:~4.1.3"
+    react-native-web: "npm:^0.21.2"
+    tamagui: "npm:^1.138.2"
+    tsx: "npm:^4.20.6"
+    typescript: "npm:^5.7.3"
+    vite: "npm:^7.1.12"
+    vitest: "npm:^4.0.6"
+  languageName: unknown
+  linkType: soft
+
 "test-sandbox@workspace:tests/sandbox":
   version: 0.0.0-use.local
   resolution: "test-sandbox@workspace:tests/sandbox"

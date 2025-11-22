@@ -5,7 +5,7 @@ export function loader(props: LoaderProps) {
   return {
     hasRequest: !!props.request,
     requestMethod: props.request?.method,
-    requestUrl: props.request?.url,
+    requestUrl: props.request?.url ? new URL(props.request.url).pathname : undefined,
     userAgent: props.request?.headers.get('user-agent'),
     path: props.path,
     params: props.params,

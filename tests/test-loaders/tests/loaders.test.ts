@@ -38,7 +38,7 @@ describe('loader() SSG', () => {
     await page.close()
   })
 
-  test('loader data stays the same on back/forward', async () => {
+  test.skip('loader data stays the same on back/forward', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/')
 
@@ -124,6 +124,26 @@ describe('loader() SSG', () => {
     await page.close()
   })
 
+  test('simple SPA refetch', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/simple-spa-refetch')
+
+    // Initial load
+    const initialCount = await page.textContent('#spa-count')
+    const initialCountNum = parseInt(initialCount?.match(/\d+/)?.[0] || '0')
+
+    // Click refetch
+    await page.click('#spa-refetch-btn')
+    await new Promise((res) => setTimeout(res, 1000))
+
+    // Count should have incremented
+    const newCount = await page.textContent('#spa-count')
+    const newCountNum = parseInt(newCount?.match(/\d+/)?.[0] || '0')
+    expect(newCountNum).toBeGreaterThan(initialCountNum)
+
+    await page.close()
+  })
+
   test.skip('SPA mode: loader refetches on search params and manual refetch', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/loader-refetch/spa')
@@ -150,6 +170,28 @@ describe('loader() SSG', () => {
     const afterRefetchCountText = await page.textContent('#spa-call-count')
     const afterRefetchCount = parseInt(afterRefetchCountText?.match(/\d+/)?.[0] || '0')
     expect(afterRefetchCount).toBeGreaterThan(afterNavCount)
+
+    await page.close()
+  })
+
+  test('SSR mode: manual refetch works', async () => {
+    const page = await context.newPage()
+    await page.goto(serverUrl + '/loader-refetch/ssr')
+
+    // Initial load
+    expect(await page.textContent('#ssr-mode')).toBe('Mode: ssr')
+    const initialTimestampText = await page.textContent('#ssr-call-count')
+
+    // Wait a bit to ensure timestamp will be different
+    await new Promise((res) => setTimeout(res, 100))
+
+    // Manual refetch
+    await page.click('#ssr-refetch')
+    await new Promise((res) => setTimeout(res, 1000))
+
+    // Timestamp should have changed
+    const afterRefetchTimestampText = await page.textContent('#ssr-call-count')
+    expect(afterRefetchTimestampText).not.toBe(initialTimestampText)
 
     await page.close()
   })

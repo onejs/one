@@ -74,29 +74,7 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
     },
 
     async handleLoader({ request, route, url, loaderProps }) {
-      // Check for cache-busting params
-      const timestamp = url.searchParams.get('_t')
-      const random = url.searchParams.get('_r')
-
-      const modulePath = toAbsolute(join('./', 'dist/server', route.file))
-
-      // Clear module cache if refetch is happening
-      if (timestamp || random) {
-        // Clear require cache
-        delete require.cache[require.resolve(modulePath)]
-        // Clear all related module caches
-        Object.keys(require.cache).forEach((key) => {
-          if (key.includes(route.file.replace(/\.(tsx?|jsx?)$/, ''))) {
-            delete require.cache[key]
-          }
-        })
-      }
-
-      // Use timestamp/random in import to force re-import
-      const importPath =
-        timestamp || random ? `${modulePath}?t=${timestamp}&r=${random}` : modulePath
-
-      const exports = await import(importPath)
+      const exports = await import(toAbsolute(join('./', 'dist/server', route.file)))
 
       const { loader } = exports
 
@@ -107,12 +85,6 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
 
       const json = await loader(loaderProps)
 
-      // Return JSON directly for refetch requests
-      if (url.searchParams.has('_json')) {
-        return JSON.stringify(json)
-      }
-
-      // Return as JS module for initial load
       return `export function loader() { return ${JSON.stringify(json)} }`
     },
 
@@ -198,12 +170,12 @@ url: ${url}`)
         const url = getURLfromRequestURL(request)
 
         const response = await (() => {
-          // this handles the ...rest style routes
-          // where to put this best? can likely be after some of the switch?
+          // this handles all loader refetches or fetches due to navigation
           if (url.pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)) {
             const originalUrl = getPathFromLoaderPath(url.pathname)
             const finalUrl = new URL(originalUrl, url.origin)
-            return resolveLoaderRoute(requestHandlers, request, finalUrl, route)
+            const cleanedRequest = new Request(finalUrl, request)
+            return resolveLoaderRoute(requestHandlers, cleanedRequest, finalUrl, route)
           }
 
           switch (route.type) {
@@ -325,9 +297,15 @@ url: ${url}`)
         }
 
         const finalUrl = new URL(originalUrl, url.origin)
+        const cleanedRequest = new Request(finalUrl, request)
 
         try {
-          const resolved = await resolveLoaderRoute(requestHandlers, request, finalUrl, loaderRoute)
+          const resolved = await resolveLoaderRoute(
+            requestHandlers,
+            cleanedRequest,
+            finalUrl,
+            loaderRoute
+          )
           return resolved
         } catch (err) {
           console.error(`Error running loader: ${err}`)

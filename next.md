@@ -17,13 +17,11 @@
   - restore GestureHandlerRootView
   - enable StrictMode
   - lower priority useLoader(loader, { suspense: false, disable: true })
-    - useLoaderState() or change to array return in v1
 
   - fix _preloads.js for dynamic segments
 
   - tests
     - native tests that run in `yarn test`
-    - disabled javascript ensure styles are all right (currently onestack.dev is missing some)
     - fix loader search params refetch tests (currently skipped):
       - `loader refetches when search params change` - needs automatic refetch on search param changes
       - `SPA mode: loader refetches on search params and manual refetch` - SPA mode search param handling

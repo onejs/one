@@ -268,7 +268,8 @@ export function createHandleRequest(
               continue
             }
 
-            return resolveLoaderRoute(handlers, request, finalUrl, route)
+            const cleanedRequest = new Request(finalUrl, request)
+            return resolveLoaderRoute(handlers, cleanedRequest, finalUrl, route)
           }
 
           if (process.env.NODE_ENV === 'development') {
