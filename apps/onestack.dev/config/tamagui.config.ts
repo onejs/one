@@ -64,7 +64,7 @@ export const config = createTamagui({
     },
     defaultFont: 'body',
     fastSchemeChange: true,
-    shouldAddPrefersColorThemes: false,
+    shouldAddPrefersColorThemes: true,
     themeClassNameOnRoot: true,
     maxDarkLightNesting: 1,
   },
