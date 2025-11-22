@@ -1,4 +1,4 @@
-import type { ViewProps } from 'tamagui'
+import type { TextProps } from 'tamagui'
 import { Badge } from '../features/docs/Badge'
 
 const badgeStatuses = {
@@ -28,7 +28,7 @@ export const Status = ({
   is,
   text,
   ...rest
-}: ViewProps & {
+}: TextProps & {
   is: keyof typeof badgeStatuses
   /** Overrides the badge text */
   text?: string
@@ -38,6 +38,7 @@ export const Status = ({
     <Badge
       alignSelf="flex-start"
       fontFamily="$mono"
+      letterSpacing={-0.5}
       dsp="inline-flex"
       y={-2}
       mx={6}

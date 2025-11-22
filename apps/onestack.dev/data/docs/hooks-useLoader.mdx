@@ -2,7 +2,9 @@
 title: useLoader
 ---
 
-Returns the data of the the given loader. Only supports the loader from within the same file.
+Returns the data from a route loader. The loader must be defined in the same file as the component using it.
+
+## Basic Usage
 
 ```tsx
 import { useLoader } from 'one'
@@ -20,6 +22,43 @@ export default function Page() {
 }
 ```
 
-### Related to
+## Automatic Refetching
 
-- [loader]()
+Loaders automatically refetch when:
+- The pathname changes (e.g., `/home` → `/about`)
+- Dynamic params change (e.g., `/user/1` → `/user/2`)
+- Search params change (e.g., `/search?q=hello` → `/search?q=world`)
+
+## When to Use
+
+Use `useLoader` when:
+- You only need to access the loader data
+- Automatic refetching based on route changes is sufficient
+- You don't need loading states or manual refetch control
+
+For more advanced use cases like manual refetching, loading states, or accessing refetch from child components, see [useLoaderState](/docs/hooks-useLoaderState).
+
+## TypeScript
+
+The hook is fully typed based on your loader's return type:
+
+```tsx
+export function loader() {
+  return {
+    user: { id: 1, name: 'John' },
+    posts: [] as Post[]
+  }
+}
+
+export default function Page() {
+  const data = useLoader(loader)
+  // TypeScript knows: data.user.name is string
+  // TypeScript knows: data.posts is Post[]
+}
+```
+
+## Related
+
+- [useLoaderState](/docs/hooks-useLoaderState) - Advanced loader hook with refetch and state
+- [loader](/docs/routing-loader) - Defining route loaders
+- [Data Loading Guide](/docs/guides-data-loading) - Comprehensive data loading patterns
