@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { useLoaderState } from 'one'
 import { Button, Text, YStack } from 'tamagui'
 
@@ -15,7 +15,14 @@ export function loader() {
 
 function LoaderContent() {
   const { data, refetch, state } = useLoaderState(loader)
-  const [initialData] = useState(() => data)
+  const [initialData, setInitialData] = useState<typeof data>(null)
+
+  // Capture initial data after first load
+  useEffect(() => {
+    if (data && !initialData) {
+      setInitialData(data)
+    }
+  }, [data, initialData])
 
   // Guard against undefined data during initial load
   if (!data) {
@@ -28,12 +35,17 @@ function LoaderContent() {
       <Text id="random">Random: {data.random}</Text>
       <Text id="state">State: {state}</Text>
       <Text id="changed">
-        Changed: {data.timestamp !== initialData?.timestamp ? 'YES' : 'NO'}
+        Changed: {initialData && data.timestamp !== initialData.timestamp ? 'YES' : 'NO'}
       </Text>
 
-      <Button id="refetch-btn" onPress={refetch} disabled={state === 'loading'}>
+      <button
+        id="refetch-btn"
+        onClick={refetch}
+        disabled={state === 'loading'}
+        style={{ padding: 10, fontSize: 16 }}
+      >
         {state === 'loading' ? 'Loading...' : 'Refetch'}
-      </Button>
+      </button>
     </YStack>
   )
 }
