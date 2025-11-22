@@ -15,7 +15,7 @@ export function loader() {
 
 function LoaderContent() {
   const { data, refetch, state } = useLoaderState(loader)
-  const [initialData, setInitialData] = useState<typeof data>(null)
+  const [initialData, setInitialData] = useState<any>(null)
 
   // Capture initial data after first load
   useEffect(() => {
