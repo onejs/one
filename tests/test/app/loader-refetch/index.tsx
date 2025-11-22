@@ -4,10 +4,10 @@ import { Button, Text, YStack } from 'tamagui'
 
 let callCount = 0
 
-export function loader({ path }: { path: string }) {
+export function loader({ path, search }: { path: string; search?: string }) {
   callCount++
-  const url = new URL(path, 'http://localhost')
-  const q = url.searchParams.get('q') || 'default'
+  const searchParams = new URLSearchParams(search || '')
+  const q = searchParams.get('q') || 'default'
 
   return {
     query: q,

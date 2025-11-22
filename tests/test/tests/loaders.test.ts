@@ -94,10 +94,10 @@ describe('loader() SSG', () => {
 
   test('useLoaderState refetch works from child component', async () => {
     const page = await context.newPage()
-    await page.goto(serverUrl + '/loader-refetch?q=test')
+    await page.goto(serverUrl + '/loader-refetch')
 
-    // Initial load
-    expect(await page.textContent('#loader-query')).toContain('Query: test')
+    // Initial load - SSG pages don't have search params at build time
+    expect(await page.textContent('#loader-query')).toContain('Query: default')
     const initialCount = await page.textContent('#loader-call-count')
 
     // Button should show "Refetch" when idle
@@ -116,8 +116,8 @@ describe('loader() SSG', () => {
     // Button should be back to "Refetch"
     expect(await page.textContent('#refetch-button')).toBe('Refetch')
 
-    // Query should stay the same but call count should increment
-    expect(await page.textContent('#loader-query')).toContain('Query: test')
+    // Query should stay the same (no search params) but call count should increment
+    expect(await page.textContent('#loader-query')).toContain('Query: default')
     const newCount = await page.textContent('#loader-call-count')
     expect(newCount).not.toBe(initialCount)
 
@@ -287,8 +287,14 @@ describe('loader() SSG', () => {
     console.log('Navigating to /simple-refetch')
     await page.goto(serverUrl + '/simple-refetch')
 
-    // Wait for hydration
-    await page.waitForTimeout(1000)
+    // Wait for hydration and client-side rendering
+    await page.waitForTimeout(1500)
+
+    // Wait for timestamp to be loaded (not "loading")
+    await page.waitForFunction(
+      () => !document.querySelector('#timestamp')?.textContent?.includes('loading'),
+      { timeout: 5000 }
+    )
 
     // Get initial state
     console.log('Getting initial state')
@@ -352,7 +358,13 @@ describe('loader() SSG', () => {
 
     console.log('Navigating to /shared-cache')
     await page.goto(serverUrl + '/shared-cache')
-    await new Promise((res) => setTimeout(res, 500))
+    await new Promise((res) => setTimeout(res, 1000))
+
+    // Wait for client-side rendering
+    await page.waitForFunction(
+      () => !document.querySelector('#useloader-timestamp')?.textContent?.includes('loading'),
+      { timeout: 5000 }
+    )
 
     // Get initial data from both hooks
     const initialUseLoaderText = await page.textContent('#useloader-timestamp')

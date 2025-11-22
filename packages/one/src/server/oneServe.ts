@@ -1,9 +1,9 @@
-import { extname, join } from 'node:path'
 import { default as FSExtra } from 'fs-extra'
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
+import { extname, join } from 'node:path'
 import { serveStaticAssets } from 'vxrn'
-import { getServerEntry, serveStatic } from 'vxrn/serve'
+import { getServerEntry } from 'vxrn/serve'
 import { LOADER_JS_POSTFIX_UNCACHED, PRELOAD_JS_POSTFIX } from '../constants'
 import {
   compileManifest,
@@ -74,7 +74,29 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
     },
 
     async handleLoader({ request, route, url, loaderProps }) {
-      const exports = await import(toAbsolute(join('./', 'dist/server', route.file)))
+      // Check for cache-busting params
+      const timestamp = url.searchParams.get('_t')
+      const random = url.searchParams.get('_r')
+
+      const modulePath = toAbsolute(join('./', 'dist/server', route.file))
+
+      // Clear module cache if refetch is happening
+      if (timestamp || random) {
+        // Clear require cache
+        delete require.cache[require.resolve(modulePath)]
+        // Clear all related module caches
+        Object.keys(require.cache).forEach((key) => {
+          if (key.includes(route.file.replace(/\.(tsx?|jsx?)$/, ''))) {
+            delete require.cache[key]
+          }
+        })
+      }
+
+      // Use timestamp/random in import to force re-import
+      const importPath =
+        timestamp || random ? `${modulePath}?t=${timestamp}&r=${random}` : modulePath
+
+      const exports = await import(importPath)
 
       const { loader } = exports
 

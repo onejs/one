@@ -22,10 +22,7 @@
   - fix _preloads.js for dynamic segments
 
   - tests
-    - 20-40 deps, native + web (ssr) (see weird-deps for some)
-      - `@datadog/mobile-react-native` breaking on tests/uniswap
     - native tests that run in `yarn test`
-    - add loader tests (SPA, SSR pages)
     - disabled javascript ensure styles are all right (currently onestack.dev is missing some)
     - fix loader search params refetch tests (currently skipped):
       - `loader refetches when search params change` - needs automatic refetch on search param changes

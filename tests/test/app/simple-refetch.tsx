@@ -16,11 +16,18 @@ export function loader() {
 function LoaderContent() {
   const { data, refetch, state } = useLoaderState(loader)
   const [initialData, setInitialData] = useState<any>(null)
+  const [hasChanged, setHasChanged] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
-  // Capture initial data after first load
+  // Capture initial data after first load (client-side only)
   useEffect(() => {
-    if (data && !initialData) {
-      setInitialData(data)
+    setIsClient(true)
+    if (data) {
+      if (!initialData) {
+        setInitialData(data)
+      } else if (data.timestamp !== initialData.timestamp) {
+        setHasChanged(true)
+      }
     }
   }, [data, initialData])
 
@@ -31,11 +38,11 @@ function LoaderContent() {
 
   return (
     <YStack gap="$4" p="$4">
-      <Text id="timestamp">Timestamp: {data.timestamp}</Text>
-      <Text id="random">Random: {data.random}</Text>
+      <Text id="timestamp">Timestamp: {isClient ? data.timestamp : 'loading'}</Text>
+      <Text id="random">Random: {isClient ? data.random : 'loading'}</Text>
       <Text id="state">State: {state}</Text>
       <Text id="changed">
-        Changed: {initialData && data.timestamp !== initialData.timestamp ? 'YES' : 'NO'}
+        Changed: {hasChanged ? 'YES' : 'NO'}
       </Text>
 
       <button
