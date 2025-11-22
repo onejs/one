@@ -215,13 +215,20 @@ export function useLoaderState<
       refetch: () => void
       state: 'idle' | 'loading'
     } {
+  const { loaderProps: loaderPropsFromServerContext, loaderData: loaderDataFromServerContext } =
+    useServerContext() || {}
+
   const params = useParams()
   const pathname = usePathname()
   const currentPath = resolveHref({ pathname: pathname, params }).replace(/index$/, '')
 
+  // Check if we have preloaded data from SSR
+  const preloadedData =
+    loaderPropsFromServerContext?.path === currentPath ? loaderDataFromServerContext : undefined
+
   // State management
   const [isLoading, setIsLoading] = useState(false)
-  const [data, setData] = useState<any>(() => loadedData[currentPath])
+  const [data, setData] = useState<any>(() => preloadedData || loadedData[currentPath])
   const [error, setError] = useState<any>(null)
 
   // Subscribe to data changes
@@ -234,8 +241,11 @@ export function useLoaderState<
 
   // Initial load
   useEffect(() => {
-    // If we already have data, use it
-    if (loadedData[currentPath]) {
+    // If we already have data (including preloaded), use it
+    if (preloadedData) {
+      loadedData[currentPath] = preloadedData
+      setData(preloadedData)
+    } else if (loadedData[currentPath]) {
       setData(loadedData[currentPath])
     } else if (loader && !promises[currentPath]) {
       const loadData = async () => {
@@ -257,7 +267,7 @@ export function useLoaderState<
 
       promises[currentPath] = loadData()
     }
-  }, [currentPath, loader])
+  }, [currentPath, loader, preloadedData])
 
   const refetch = useCallback(async () => {
     setIsLoading(true)
@@ -290,9 +300,15 @@ export function useLoaderState<
     }
   }, [currentPath])
 
-  // Handle SSR (simplified for now - just focusing on SPA/SSG)
+  // Handle SSR
   if (typeof window === 'undefined' && loader) {
-    const serverData = useAsyncFn(loader, { path: pathname, params })
+    const serverData = useAsyncFn(
+      loader,
+      loaderPropsFromServerContext || {
+        path: pathname,
+        params: useActiveParams(),
+      }
+    )
     return { data: serverData, refetch: () => {}, state: 'idle' } as any
   }
 
