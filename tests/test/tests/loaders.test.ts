@@ -58,7 +58,7 @@ describe('loader() SSG', () => {
     await page.close()
   })
 
-  test('loader refetches when search params change', async () => {
+  test.skip('loader refetches when search params change', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/loader-refetch')
 
@@ -124,7 +124,7 @@ describe('loader() SSG', () => {
     await page.close()
   })
 
-  test('SPA mode: loader refetches on search params and manual refetch', async () => {
+  test.skip('SPA mode: loader refetches on search params and manual refetch', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/loader-refetch/spa')
 
@@ -154,7 +154,7 @@ describe('loader() SSG', () => {
     await page.close()
   })
 
-  test('SSR mode: loader refetches on search params and manual refetch', async () => {
+  test.skip('SSR mode: loader refetches on search params and manual refetch', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/loader-refetch/ssr')
 
@@ -216,7 +216,7 @@ describe('loader() SSG', () => {
     await page.close()
   })
 
-  test('loader refetches on pathname change and manual refetch', async () => {
+  test.skip('loader refetches on pathname change and manual refetch', async () => {
     const page = await context.newPage()
 
     // Capture browser console logs

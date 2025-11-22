@@ -27,6 +27,11 @@
     - native tests that run in `yarn test`
     - add loader tests (SPA, SSR pages)
     - disabled javascript ensure styles are all right (currently onestack.dev is missing some)
+    - fix loader search params refetch tests (currently skipped):
+      - `loader refetches when search params change` - needs automatic refetch on search param changes
+      - `SPA mode: loader refetches on search params and manual refetch` - SPA mode search param handling
+      - `SSR mode: loader refetches on search params and manual refetch` - SSR mode search param handling
+      - `loader refetches on pathname change and manual refetch` - pathname change refetch issues
 
   - native
     - hmr tests + multi-file
