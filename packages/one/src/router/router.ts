@@ -65,6 +65,30 @@ export function initialize(
     throw new Error('No routes found')
   }
 
+  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER && routeNode) {
+    const formatRouteTree = (node: RouteNode, indent = '', isLast = true): string => {
+      const prefix = indent + (isLast ? '└─ ' : '├─ ')
+      const childIndent = indent + (isLast ? '   ' : '│  ')
+
+      const dynamicBadge = node.dynamic ? ` [${node.dynamic.map((d) => d.name).join(', ')}]` : ''
+      const typeBadge = node.type !== 'layout' ? ` (${node.type})` : ''
+      const routeName = node.route || '/'
+
+      let line = `${prefix}${routeName}${dynamicBadge}${typeBadge}`
+
+      const visibleChildren = node.children.filter((child) => !child.internal)
+      for (let i = 0; i < visibleChildren.length; i++) {
+        const child = visibleChildren[i]
+        const childIsLast = i === visibleChildren.length - 1
+        line += '\n' + formatRouteTree(child, childIndent, childIsLast)
+      }
+
+      return line
+    }
+
+    console.info(`[one] 📍 Route structure:\n${formatRouteTree(routeNode)}`)
+  }
+
   navigationRef = ref
   setupLinkingAndRouteInfo(initialLocation)
   subscribeToNavigationChanges()
@@ -156,6 +180,9 @@ export function push(url: OneRouter.Href, options?: OneRouter.LinkToOptions) {
 }
 
 export function dismiss(count?: number) {
+  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+    console.info(`[one] 🔙 dismiss${count ? ` (${count})` : ''}`)
+  }
   navigationRef?.dispatch(StackActions.pop(count))
 }
 
@@ -172,10 +199,16 @@ export function setParams(params: OneRouter.InpurRouteParamsGeneric = {}) {
 }
 
 export function dismissAll() {
+  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+    console.info(`[one] 🔙 dismissAll`)
+  }
   navigationRef?.dispatch(StackActions.popToTop())
 }
 
 export function goBack() {
+  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+    console.info(`[one] 🔙 goBack`)
+  }
   assertIsReady(navigationRef)
   navigationRef?.current?.goBack()
 }
@@ -217,6 +250,14 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
   const nextRouteInfo = getRouteInfo(state)
 
   if (!deepEqual(routeInfo, nextRouteInfo)) {
+    if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+      const from = routeInfo?.pathname || '(initial)'
+      const to = nextRouteInfo.pathname
+      const params = Object.keys(nextRouteInfo.params || {}).length
+        ? nextRouteInfo.params
+        : undefined
+      console.info(`[one] 🧭 ${from} → ${to}`, params ? { params } : '')
+    }
     routeInfo = nextRouteInfo
   }
 }
@@ -361,6 +402,10 @@ export function preloadRoute(href: string) {
 }
 
 export async function linkTo(href: string, event?: string, options?: OneRouter.LinkToOptions) {
+  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+    console.info(`[one] 🔗 ${event || 'NAVIGATE'} ${href}`)
+  }
+
   if (href[0] === '#') {
     // this is just linking to a section of the current page on web
     return
