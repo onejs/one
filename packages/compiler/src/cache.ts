@@ -52,8 +52,10 @@ export function getCachedTransform(
   environment: string
 ): { code: string; map?: any } | null {
   try {
+    // Strip leading null byte (Vite virtual module prefix) if present
+    const cleanPath = filePath.startsWith('\0') ? filePath.slice(1) : filePath
     const cacheDir = getCacheDir()
-    const cacheKey = getCacheKey(filePath, environment)
+    const cacheKey = getCacheKey(cleanPath, environment)
     const cachePath = join(cacheDir, `${cacheKey}.json`)
 
     if (!existsSync(cachePath)) {
@@ -64,7 +66,7 @@ export function getCachedTransform(
     const cached: CacheEntry = JSON.parse(readFileSync(cachePath, 'utf-8'))
 
     // Check file mtime
-    const currentMtime = statSync(filePath).mtimeMs
+    const currentMtime = statSync(cleanPath).mtimeMs
     if (cached.mtime !== currentMtime) {
       stats.misses++
       return null
@@ -93,11 +95,13 @@ export function setCachedTransform(
   environment: string
 ): void {
   try {
+    // Strip leading null byte (Vite virtual module prefix) if present
+    const cleanPath = filePath.startsWith('\0') ? filePath.slice(1) : filePath
     const cacheDir = getCacheDir()
-    const cacheKey = getCacheKey(filePath, environment)
+    const cacheKey = getCacheKey(cleanPath, environment)
     const cachePath = join(cacheDir, `${cacheKey}.json`)
 
-    const mtime = statSync(filePath).mtimeMs
+    const mtime = statSync(cleanPath).mtimeMs
     const hash = getContentHash(code)
 
     const entry: CacheEntry = {
@@ -111,7 +115,7 @@ export function setCachedTransform(
     stats.writes++
   } catch (err) {
     // Silently fail cache writes
-    console.warn(`[cache] Failed to write cache for ${filePath}:`, err)
+    console.warn(`[cache] Failed to write cache for ${cleanPath}:`, err)
   }
 }
 
