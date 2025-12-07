@@ -18,6 +18,8 @@ import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 
+const debugRouter = process.env.ONE_DEBUG_ROUTER
+
 export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.BuildInfo, app: Hono) {
   const { resolveAPIRoute, resolveLoaderRoute, resolvePageRoute } = await import(
     '../createHandleRequest'
@@ -36,6 +38,9 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
           const paramName = param.substring(1)
           return context.req.param(paramName) || ''
         })
+        if (debugRouter) {
+          console.info(`[one] ↪ redirect ${context.req.path} → ${destinationUrl}`)
+        }
         return context.redirect(destinationUrl, redirect.permanent ? 301 : 302)
       })
     }
@@ -180,11 +185,17 @@ url: ${url}`)
 
           switch (route.type) {
             case 'api': {
+              if (debugRouter) {
+                console.info(`[one] ⚡ ${url.pathname} → matched API route: ${route.page}`)
+              }
               return resolveAPIRoute(requestHandlers, request, url, route)
             }
             case 'ssg':
             case 'spa':
             case 'ssr': {
+              if (debugRouter) {
+                console.info(`[one] ⚡ ${url.pathname} → matched page route: ${route.page} (${route.type})`)
+              }
               return resolvePageRoute(requestHandlers, request, url, route)
             }
           }

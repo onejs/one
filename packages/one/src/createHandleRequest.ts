@@ -25,6 +25,8 @@ type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
 
 type RequestHandlerResponse = null | string | Response
 
+const debugRouter = process.env.ONE_DEBUG_ROUTER
+
 export async function runMiddlewares(
   handlers: RequestHandlers,
   request: Request,
@@ -40,6 +42,10 @@ export async function runMiddlewares(
     throw new Error(`No middleware handler configured`)
   }
 
+  if (debugRouter) {
+    console.info(`[one] 🔗 middleware chain (${middlewares.length}) for ${route.page}`)
+  }
+
   const context: MiddlewareContext = {}
 
   async function dispatch(index: number): Promise<Response> {
@@ -47,7 +53,14 @@ export async function runMiddlewares(
 
     // no more middlewares, finish
     if (!middlewareModule) {
+      if (debugRouter) {
+        console.info(`[one] ✓ middleware chain complete`)
+      }
       return await getResponse()
+    }
+
+    if (debugRouter) {
+      console.info(`[one]   → middleware[${index}]: ${middlewareModule.contextKey}`)
     }
 
     const exported = (await handlers.loadMiddleware!(middlewareModule))?.default as
@@ -67,6 +80,9 @@ export async function runMiddlewares(
     const response = await exported({ request, next, context })
 
     if (response) {
+      if (debugRouter) {
+        console.info(`[one]   ← middleware[${index}] returned early (status: ${response.status})`)
+      }
       return response
     }
 
@@ -86,6 +102,10 @@ export async function resolveAPIRoute(
 ) {
   const { pathname } = url
   const params = getRouteParams(pathname, route)
+
+  if (debugRouter) {
+    console.info(`[one] 📡 API ${request.method} ${pathname} → ${route.file}`, params)
+  }
 
   try {
     return resolveAPIEndpoint(
@@ -128,6 +148,10 @@ export async function resolveLoaderRoute(
   url: URL,
   route: RouteInfoCompiled
 ) {
+  if (debugRouter) {
+    console.info(`[one] 📦 loader ${url.pathname} → ${route.file}`)
+  }
+
   return await runMiddlewares(handlers, request, route, async () => {
     return await resolveResponse(async () => {
       const headers = new Headers()
@@ -170,6 +194,10 @@ export async function resolvePageRoute(
   route: RouteInfoCompiled
 ) {
   const { pathname, search } = url
+
+  if (debugRouter) {
+    console.info(`[one] 📄 page ${pathname} → ${route.file} (${route.type})`)
+  }
 
   return resolveResponse(async () => {
     const resolved = await runMiddlewares(handlers, request, route, async () => {
@@ -241,6 +269,9 @@ export function createHandleRequest(
           return route.compiledRegex.test(pathname)
         })
         if (apiRoute) {
+          if (debugRouter) {
+            console.info(`[one] ⚡ ${pathname} → matched API route: ${apiRoute.page}`)
+          }
           return await resolveAPIRoute(handlers, request, url, apiRoute)
         }
       }
@@ -290,6 +321,9 @@ export function createHandleRequest(
         for (const route of compiledManifest.pageRoutes) {
           if (!route.compiledRegex.test(pathname)) {
             continue
+          }
+          if (debugRouter) {
+            console.info(`[one] ⚡ ${pathname} → matched page route: ${route.page} (${route.type})`)
           }
           return resolvePageRoute(handlers, request, url, route)
         }

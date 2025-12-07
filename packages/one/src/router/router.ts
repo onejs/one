@@ -65,7 +65,7 @@ export function initialize(
     throw new Error('No routes found')
   }
 
-  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER && routeNode) {
+  if (process.env.ONE_DEBUG_ROUTER && routeNode) {
     const formatRouteTree = (node: RouteNode, indent = '', isLast = true): string => {
       const prefix = indent + (isLast ? '└─ ' : '├─ ')
       const childIndent = indent + (isLast ? '   ' : '│  ')
@@ -180,7 +180,7 @@ export function push(url: OneRouter.Href, options?: OneRouter.LinkToOptions) {
 }
 
 export function dismiss(count?: number) {
-  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+  if (process.env.ONE_DEBUG_ROUTER) {
     console.info(`[one] 🔙 dismiss${count ? ` (${count})` : ''}`)
   }
   navigationRef?.dispatch(StackActions.pop(count))
@@ -199,14 +199,14 @@ export function setParams(params: OneRouter.InpurRouteParamsGeneric = {}) {
 }
 
 export function dismissAll() {
-  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+  if (process.env.ONE_DEBUG_ROUTER) {
     console.info(`[one] 🔙 dismissAll`)
   }
   navigationRef?.dispatch(StackActions.popToTop())
 }
 
 export function goBack() {
-  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+  if (process.env.ONE_DEBUG_ROUTER) {
     console.info(`[one] 🔙 goBack`)
   }
   assertIsReady(navigationRef)
@@ -250,7 +250,7 @@ export function updateState(state: OneRouter.ResultState, nextStateParam = state
   const nextRouteInfo = getRouteInfo(state)
 
   if (!deepEqual(routeInfo, nextRouteInfo)) {
-    if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+    if (process.env.ONE_DEBUG_ROUTER) {
       const from = routeInfo?.pathname || '(initial)'
       const to = nextRouteInfo.pathname
       const params = Object.keys(nextRouteInfo.params || {}).length
@@ -402,7 +402,7 @@ export function preloadRoute(href: string) {
 }
 
 export async function linkTo(href: string, event?: string, options?: OneRouter.LinkToOptions) {
-  if (process.env.NODE_ENV === 'development' && process.env.ONE_DEBUG_ROUTER) {
+  if (process.env.ONE_DEBUG_ROUTER) {
     console.info(`[one] 🔗 ${event || 'NAVIGATE'} ${href}`)
   }
 

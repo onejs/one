@@ -82,6 +82,10 @@ export function createMemoryHistory() {
       items.push({ path, state, id })
       index = items.length - 1
 
+      if (process.env.ONE_DEBUG_ROUTER) {
+        console.info(`[one] 📜 history.push path=${path}`)
+      }
+
       // We pass empty string for title because it's ignored in all browsers except safari
       // We don't store state object in history.state because:
       // - browsers have limits on how big it can be, and we don't control the size
@@ -115,6 +119,10 @@ export function createMemoryHistory() {
           pathWithHash = pathWithHash + hash
         }
         items[index] = { path, state, id }
+      }
+
+      if (process.env.ONE_DEBUG_ROUTER) {
+        console.info(`[one] 📜 history.replace path=${pathWithHash}`)
       }
 
       window.history.replaceState({ id }, '', pathWithHash)
