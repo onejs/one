@@ -194,7 +194,9 @@ url: ${url}`)
             case 'spa':
             case 'ssr': {
               if (debugRouter) {
-                console.info(`[one] ⚡ ${url.pathname} → matched page route: ${route.page} (${route.type})`)
+                console.info(
+                  `[one] ⚡ ${url.pathname} → matched page route: ${route.page} (${route.type})`
+                )
               }
               return resolvePageRoute(requestHandlers, request, url, route)
             }

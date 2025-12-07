@@ -22,6 +22,7 @@ import isEqual from 'fast-deep-equal'
 import * as React from 'react'
 // @modified - start
 // import { ServerContext } from '@react-navigation/web';
+import { rootState as routerRootState } from '../router/router'
 import { ServerLocationContext } from '../router/serverLocationContext'
 import { createMemoryHistory } from './createMemoryHistory'
 import { appendBaseUrl } from './getPathFromState-mods'
@@ -180,8 +181,15 @@ export function useLinking(
 
       const path = location ? location.pathname + location.search : undefined
 
+      if (process.env.ONE_DEBUG_ROUTER) {
+        console.info(`[one] 🔍 getInitialState path=${path}`)
+      }
+
       if (path) {
         value = getStateFromPathRef.current(path, configRef.current)
+        if (process.env.ONE_DEBUG_ROUTER) {
+          console.info(`[one] 🔍 getInitialState result:`, JSON.stringify(value, null, 2))
+        }
       }
 
       // If the link were handled, it gets cleared in NavigationContainer
@@ -223,6 +231,12 @@ export function useLinking(
 
       const previousIndex = previousIndexRef.current ?? 0
 
+      if (process.env.ONE_DEBUG_ROUTER) {
+        console.info(
+          `[one] 📜 history.listen path=${path} index=${index} prevIndex=${previousIndex}`
+        )
+      }
+
       previousIndexRef.current = index
       pendingPopStatePathRef.current = path
 
@@ -232,11 +246,18 @@ export function useLinking(
       const record = history.get(index)
 
       if (record?.path === path && record?.state) {
+        if (process.env.ONE_DEBUG_ROUTER) {
+          console.info(`[one] 📜 history record found, resetRoot to:`, record.state)
+        }
         navigation.resetRoot(record.state)
         return
       }
 
       const state = getStateFromPathRef.current(path, configRef.current)
+
+      if (process.env.ONE_DEBUG_ROUTER) {
+        console.info(`[one] 📜 getStateFromPath result:`, state)
+      }
 
       // We should only dispatch an action when going forward
       // Otherwise the action will likely add items to history, which would mess things up
@@ -246,6 +267,9 @@ export function useLinking(
         // Make sure that the routes in the state exist in the root navigator
         // Otherwise there's an error in the linking configuration
         if (validateRoutesNotExistInRootState(state)) {
+          if (process.env.ONE_DEBUG_ROUTER) {
+            console.info(`[one] 📜 routes not in root state, skipping`)
+          }
           return
         }
 
@@ -255,6 +279,10 @@ export function useLinking(
           (index === previousIndex && (!record || `${record?.path}${location.hash}` === path))
         ) {
           const action = getActionFromStateRef.current(state, configRef.current)
+
+          if (process.env.ONE_DEBUG_ROUTER) {
+            console.info(`[one] 📜 dispatching action:`, action)
+          }
 
           if (action !== undefined) {
             try {
@@ -269,13 +297,22 @@ export function useLinking(
               )
             }
           } else {
+            if (process.env.ONE_DEBUG_ROUTER) {
+              console.info(`[one] 📜 no action, resetRoot`)
+            }
             navigation.resetRoot(state)
           }
         } else {
+          if (process.env.ONE_DEBUG_ROUTER) {
+            console.info(`[one] 📜 going back, resetRoot`)
+          }
           navigation.resetRoot(state)
         }
       } else {
         // if current path didn't return any state, we should revert to initial state
+        if (process.env.ONE_DEBUG_ROUTER) {
+          console.info(`[one] 📜 no state for path, resetRoot to undefined`)
+        }
         navigation.resetRoot(state)
       }
     })
@@ -291,6 +328,11 @@ export function useLinking(
       state: NavigationState
     ): string => {
       let path
+
+      if (process.env.ONE_DEBUG_ROUTER) {
+        console.info(`[one] 📜 getPathForRoute - route:`, route)
+        console.info(`[one] 📜 getPathForRoute - state:`, JSON.stringify(state, null, 2))
+      }
 
       // If the `route` object contains a `path`, use that path as long as `route.name` and `params` still match
       // This makes sure that we preserve the original URL for wildcard routes
@@ -315,6 +357,9 @@ export function useLinking(
 
       if (path == null) {
         path = getPathFromStateRef.current(state, configRef.current)
+        if (process.env.ONE_DEBUG_ROUTER) {
+          console.info(`[one] 📜 getPathForRoute - computed from state:`, path)
+        }
       }
 
       // @modified - start: One will handle hashes itself, so these lines are not needed
@@ -340,14 +385,41 @@ export function useLinking(
     if (ref.current) {
       // We need to record the current metadata on the first render if they aren't set
       // This will allow the initial state to be in the history entry
-      const state = ref.current.getRootState()
+      // @modified - start: Use routerRootState instead of getRootState() to avoid stale state
+      // getRootState() can return incomplete state during initial render before children mount
+      // routerRootState is updated via navigation listener callbacks which only fire with complete state
+      const refState = ref.current.getRootState()
+      const state = (routerRootState || refState) as NavigationState | undefined
+
+      if (process.env.ONE_DEBUG_ROUTER) {
+        console.info(
+          `[one] 📜 useEffect initial state check - refState:`,
+          JSON.stringify(refState, null, 2)
+        )
+        console.info(
+          `[one] 📜 useEffect initial state check - routerRootState:`,
+          JSON.stringify(routerRootState, null, 2)
+        )
+      }
+      // @modified - end
 
       if (state) {
         const route = findFocusedRoute(state)
+
+        if (process.env.ONE_DEBUG_ROUTER) {
+          console.info(`[one] 📜 useEffect focused route:`, route)
+        }
+
         const path = getPathForRoute(route, state)
 
+        if (process.env.ONE_DEBUG_ROUTER) {
+          console.info(`[one] 📜 initial history.replace - state:`, JSON.stringify(state, null, 2))
+          console.info(`[one] 📜 initial history.replace - focusedRoute:`, route)
+          console.info(`[one] 📜 initial history.replace - computed path:`, path)
+        }
+
         if (previousStateRef.current === undefined) {
-          previousStateRef.current = state
+          previousStateRef.current = refState
         }
 
         history.replace({ path, state })
@@ -362,7 +434,10 @@ export function useLinking(
       }
 
       const previousState = previousStateRef.current
-      const state = navigation.getRootState()
+      // @modified - start: Use routerRootState for path calculation, refState for comparison
+      const refState = navigation.getRootState()
+      const state = (routerRootState || refState) as NavigationState | undefined
+      // @modified - end
 
       // root state may not available, for example when root navigators switch inside the container
       if (!state) {
@@ -373,7 +448,7 @@ export function useLinking(
       const route = findFocusedRoute(state)
       const path = getPathForRoute(route, state)
 
-      previousStateRef.current = state
+      previousStateRef.current = refState
       pendingPopStatePathRef.current = undefined
 
       // To detect the kind of state change, we need to:
