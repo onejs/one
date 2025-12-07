@@ -12,6 +12,7 @@ export type AdditionalRouteConfig = {
     hasChildren: boolean;
     expandedRouteNames: string[];
     parts: string[];
+    staticPartCount: number;
 };
 interface UrlWithReactNavigationConcessions {
     path: string;
@@ -36,6 +37,7 @@ export declare function matchForEmptyPath(configs: RouteConfig[]): {
     hasChildren: boolean;
     expandedRouteNames: string[];
     parts: string[];
+    staticPartCount: number;
 } | undefined;
 export declare function appendIsInitial(initialRoutes: InitialRouteConfig[]): (config: RouteConfig) => RouteConfig;
 export declare function getRouteConfigSorter(previousSegments?: string[]): (a: RouteConfig, b: RouteConfig) => number;
