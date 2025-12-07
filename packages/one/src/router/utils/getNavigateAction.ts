@@ -39,14 +39,15 @@ export function getNavigateAction(
     const childState = actionStateRoute.state
     const nextNavigationState = stateRoute.state
 
-    const dynamicName = matchDynamicName(actionStateRoute.name)
+    const dynamicMatch = matchDynamicName(actionStateRoute.name)
 
     const didActionAndCurrentStateDiverge =
       actionStateRoute.name !== stateRoute.name ||
       // !deepEqual(actionStateRoute.params, stateRoute.params) ||
       !childState ||
       !nextNavigationState ||
-      (dynamicName && actionStateRoute.params?.[dynamicName] !== stateRoute.params?.[dynamicName])
+      (dynamicMatch &&
+        actionStateRoute.params?.[dynamicMatch.name] !== stateRoute.params?.[dynamicMatch.name])
 
     if (didActionAndCurrentStateDiverge) {
       break

@@ -6,7 +6,7 @@
 
 import type { Route } from '@react-navigation/core'
 
-import { matchDeepDynamicRouteName, matchDynamicName, matchGroupName } from '../router/matchers'
+import { matchDynamicName, matchGroupName } from '../router/matchers'
 import { getParamName } from './_shared'
 
 export type AdditionalOptions = {
@@ -139,8 +139,7 @@ function segmentMatchesConvention(segment: string): boolean {
   return (
     segment === 'index' ||
     matchDynamicName(segment) != null ||
-    matchGroupName(segment) != null ||
-    matchDeepDynamicRouteName(segment) != null
+    matchGroupName(segment) != null
   )
 }
 
