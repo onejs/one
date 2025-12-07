@@ -21,7 +21,8 @@ export async function buildPage(
   builtMiddlewares: Record<string, string>,
   serverJsPath: string,
   preloads: string[],
-  allCSS: string[]
+  allCSS: string[],
+  routePreloads: Record<string, string>
 ): Promise<One.RouteBuildInfo> {
   const render = await getRender(serverEntry)
   const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
@@ -73,6 +74,7 @@ if (typeof document === 'undefined') globalThis.document = {}
           loaderData,
           css: allCSS,
           mode: 'ssg',
+          routePreloads,
         })
         await outputFile(htmlOutPath, html)
       } else if (foundRoute.type === 'spa') {

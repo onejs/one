@@ -18,5 +18,6 @@ export type RenderAppProps = {
     loaderServerData?: any;
     loaderData?: any;
     loaderProps?: LoaderProps;
+    routePreloads?: Record<string, string>;
 };
 //# sourceMappingURL=types.d.ts.map
