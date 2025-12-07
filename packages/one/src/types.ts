@@ -24,4 +24,5 @@ export type RenderAppProps = {
   loaderServerData?: any
   loaderData?: any
   loaderProps?: LoaderProps
+  routePreloads?: Record<string, string>
 }

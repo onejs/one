@@ -333,6 +333,30 @@ export async function build(args: {
       return [entry.file, ...collectImports(entry)]
     })
 
+    // create mapping of route keys to bundle paths for hydration preloading
+    const routePreloads: Record<string, string> = {}
+
+    // add root layout
+    const rootLayoutKey = `${routerRoot}/_layout.tsx`
+    const rootLayoutEntry = vxrnOutput.clientManifest[rootLayoutKey]
+    if (rootLayoutEntry) {
+      routePreloads[`/${rootLayoutKey}`] = `/${rootLayoutEntry.file}`
+    }
+
+    // add all layouts for this route
+    if (foundRoute.layouts) {
+      for (const layout of foundRoute.layouts) {
+        const clientKey = `${routerRoot}${layout.contextKey.slice(1)}`
+        const entry = vxrnOutput.clientManifest[clientKey]
+        if (entry) {
+          routePreloads[`/${clientKey}`] = `/${entry.file}`
+        }
+      }
+    }
+
+    // add the page itself
+    routePreloads[`/${clientManifestKey}`] = `/${clientManifestEntry.file}`
+
     const preloadSetupFilePreloads = (() => {
       if (!oneOptions.setupFile) return []
 
@@ -443,7 +467,8 @@ export async function build(args: {
           builtMiddlewares,
           serverJsPath,
           preloads,
-          allCSS
+          allCSS,
+          routePreloads
         )
       })
 

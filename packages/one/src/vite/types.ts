@@ -419,6 +419,8 @@ export namespace One {
     loaderData?: any
     loaderProps?: any
     mode?: 'spa' | 'ssg' | 'ssr'
+    // mapping of route keys to bundle paths for hydration preloading
+    routePreloads?: Record<string, string>
   }
 
   export type Flags = {

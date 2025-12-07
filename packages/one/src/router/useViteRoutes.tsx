@@ -26,6 +26,17 @@ export function useViteRoutes(
   return context
 }
 
+// store preloaded modules so resolve() can use them synchronously
+let preloadedModules: Record<string, any> = {}
+
+export function registerPreloadedRoute(key: string, module: any): void {
+  preloadedModules[key] = module
+}
+
+export function getPreloadedModule(key: string): any {
+  return preloadedModules[key]
+}
+
 export function loadRoutes(
   paths: GlobbedRouteImports,
   routerRoot: string,
@@ -77,6 +88,14 @@ export function globbedRoutesToRouteContext(
       return loadedRoutes[id]
     }
 
+    // check if this route was preloaded before hydration
+    const preloadKey = id.replace('./', `/${routerRoot}/`)
+    const preloaded = getPreloadedModule(preloadKey)
+    if (preloaded) {
+      loadedRoutes[id] = preloaded
+      return preloaded
+    }
+
     if (typeof routesSync[id] !== 'function') {
       return routesSync[id]
     }
@@ -98,23 +117,6 @@ export function globbedRoutesToRouteContext(
           console.error(`Error loading route`, id, err, new Error().stack)
           loadedRoutes[id] = {
             default: () => null,
-            // <View
-            //   style={{
-            //     position: 'absolute',
-            //     top: 0,
-            //     left: 0,
-            //     right: 0,
-            //     bottom: 0,
-            //     alignItems: 'center',
-            //     justifyContent: 'center',
-            //     backgroundColor: '#000',
-            //     gap: 20,
-            //   }}
-            // >
-            //   <Text style={{ fontSize: 24, color: '#fff' }}>Error loading route</Text>
-            //   <Text style={{ fontSize: 16, color: '#fff' }}>{id}</Text>
-            //   <Text style={{ fontSize: 18, color: '#fff', maxWidth: 800 }}>{`${err}`}</Text>
-            // </View>
           }
           delete promises[id]
         })

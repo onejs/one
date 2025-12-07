@@ -365,6 +365,7 @@ export declare namespace One {
         loaderData?: any;
         loaderProps?: any;
         mode?: 'spa' | 'ssg' | 'ssr';
+        routePreloads?: Record<string, string>;
     };
     export type Flags = {
         /** See PluginOptions.router.experimental.PreventLayoutRemounting */

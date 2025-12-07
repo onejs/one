@@ -6,6 +6,7 @@ import { AppRegistry } from 'react-native'
 import { resolveClientLoader } from './clientLoaderResolver'
 import { Root } from './Root'
 import { render } from './render'
+import { registerPreloadedRoute } from './router/useViteRoutes'
 import { renderToString } from './server-render'
 import type { RenderAppProps } from './types'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
@@ -25,7 +26,7 @@ export function createApp(options: CreateAppProps) {
     return {
       options,
       render: async (props: RenderAppProps) => {
-        let { loaderData, loaderProps, css, mode, loaderServerData } = props
+        let { loaderData, loaderProps, css, mode, loaderServerData, routePreloads } = props
 
         setServerContext({
           postRenderData: loaderServerData,
@@ -33,6 +34,7 @@ export function createApp(options: CreateAppProps) {
           loaderProps,
           mode,
           css,
+          routePreloads,
         })
 
         let renderId: string | undefined
@@ -116,29 +118,34 @@ export function createApp(options: CreateAppProps) {
     }
   }
 
-  // run their root layout before calling resolveClientLoader so they can register hook
-  const rootLayoutImport = options.routes[`/${options.routerRoot}/_layout.tsx`]?.()
+  const serverContext = getServerContext() || {}
+  const routePreloads = serverContext.routePreloads
 
-  return rootLayoutImport
+  // preload routes using build-time mapping (production only, dev has no preloads)
+  const preloadPromises = routePreloads
+    ? Object.entries(routePreloads).map(async ([routeKey, bundlePath]) => {
+        const mod = await import(/* @vite-ignore */ bundlePath)
+        registerPreloadedRoute(routeKey, mod)
+        return mod
+      })
+    : []
+
+  return Promise.all(preloadPromises)
     .then(() => {
-      resolveClientLoader(getServerContext() || {})
-        .then(() => {
-          // on client we just render
-          render(
-            <Root
-              isClient
-              flags={options.flags}
-              routes={options.routes}
-              routerRoot={options.routerRoot}
-              path={window.location.href}
-            />
-          )
-        })
-        .catch((err) => {
-          console.error(`Error running client loader resolver "onClientLoaderResolve":`, err)
-        })
+      return resolveClientLoader(serverContext)
+    })
+    .then(() => {
+      render(
+        <Root
+          isClient
+          flags={options.flags}
+          routes={options.routes}
+          routerRoot={options.routerRoot}
+          path={window.location.href}
+        />
+      )
     })
     .catch((err) => {
-      console.error(`Error importing root layout on client`, err)
+      console.error(`Error during client initialization:`, err)
     })
 }
