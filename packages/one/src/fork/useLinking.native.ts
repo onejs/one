@@ -189,7 +189,7 @@ export function useLinking(
         // If the link were handled, it gets cleared in NavigationContainer
         onUnhandledLinking(extractPathFromURL(prefixes, url))
         const rootState = navigation.getRootState()
-        if (state.routes.some((r) => !rootState?.routeNames.includes(r.name))) {
+        if (state.routes.some((r) => !rootState?.routeNames?.includes(r.name))) {
           return
         }
 

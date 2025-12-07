@@ -136,11 +136,7 @@ export function appendBaseUrl(
 }
 
 function segmentMatchesConvention(segment: string): boolean {
-  return (
-    segment === 'index' ||
-    matchDynamicName(segment) != null ||
-    matchGroupName(segment) != null
-  )
+  return segment === 'index' || matchDynamicName(segment) != null || matchGroupName(segment) != null
 }
 
 function encodeURISegment(str: string, { preserveBrackets = false } = {}) {
