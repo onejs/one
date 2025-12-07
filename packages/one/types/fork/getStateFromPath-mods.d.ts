@@ -13,19 +13,13 @@ export type AdditionalRouteConfig = {
     expandedRouteNames: string[];
     parts: string[];
 };
-export declare function getUrlWithReactNavigationConcessions(path: string, baseUrl?: string | undefined): {
-    path: string;
-    cleanUrl: string;
-    nonstandardPathname: string;
-    url: URL;
-    pathWithoutGroups?: undefined;
-} | {
+interface UrlWithReactNavigationConcessions {
     path: string;
     nonstandardPathname: string;
-    url: URL;
+    hash: string;
     pathWithoutGroups: string;
-    cleanUrl?: undefined;
-};
+}
+export declare function getUrlWithReactNavigationConcessions(path: string, baseUrl?: string | undefined): UrlWithReactNavigationConcessions;
 export declare function matchForEmptyPath(configs: RouteConfig[]): {
     path: string;
     screen: string;
@@ -54,4 +48,5 @@ export declare function populateParams(routes?: ParsedRoute[], params?: Record<s
 export declare function createConfigItemAdditionalProperties(screen: string, pattern: string, routeNames: string[], config?: Record<string, any>): Omit<AdditionalRouteConfig, 'isInitial'>;
 export declare function parseQueryParamsExtended(path: string, route: ParsedRoute, parseConfig?: Record<string, (value: string) => any>, hash?: string): Record<string, string | string[]> | undefined;
 export declare function stripBaseUrl(path: string, baseUrl?: string | undefined): string;
+export {};
 //# sourceMappingURL=getStateFromPath-mods.d.ts.map
