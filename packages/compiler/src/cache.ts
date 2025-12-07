@@ -115,7 +115,7 @@ export function setCachedTransform(
     stats.writes++
   } catch (err) {
     // Silently fail cache writes
-    console.warn(`[cache] Failed to write cache for ${cleanPath}:`, err)
+    console.warn(`[cache] Failed to write cache for ${filePath}:`, err)
   }
 }
 
