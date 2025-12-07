@@ -17,6 +17,8 @@ import type { One } from '../../vite/types'
 import { setServerContext } from '../one-server-only'
 import { virtalEntryIdClient, virtualEntryId } from './virtualEntryConstants'
 
+const debugRouter = process.env.ONE_DEBUG_ROUTER
+
 // server needs better dep optimization
 const USE_SERVER_ENV = false //!!process.env.USE_SERVER_ENV
 
@@ -329,7 +331,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
                     })
                   }
 
-                  console.warn(` [one] redirecting via redirect: ${destination}`)
+                  if (debugRouter) {
+                    console.info(`[one] ↪ redirect ${url.pathname} → ${destination}`)
+                  }
 
                   res.writeHead(redirect.permanent ? 301 : 302, { Location: destination })
                   res.end()
@@ -338,13 +342,21 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
               }
             }
 
-            const reply = await handleRequest.handler(await convertIncomingMessageToRequest(req))
+            const reply = await handleRequest.handler(convertIncomingMessageToRequest(req))
 
             if (!reply) {
               return next()
             }
 
             if (typeof reply !== 'string' && isResponse(reply)) {
+              if (debugRouter) {
+                const headers: Record<string, string> = {}
+                reply.headers.forEach((v, k) => {
+                  headers[k] = v
+                })
+                console.info(`[one] 📤 response ${reply.status}`, headers)
+              }
+
               reply.headers.forEach((value, key) => {
                 if (key === 'set-cookie') {
                   // for some reason it wasnt doing working without this?
@@ -359,7 +371,9 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
               if (isStatusRedirect(reply.status)) {
                 const location = `${reply.headers.get('location') || ''}`
-                console.info(` ↦ Redirect ${location}`)
+                if (debugRouter) {
+                  console.info(`[one] ↪ response redirect → ${location}`)
+                }
                 if (location) {
                   res.writeHead(reply.status, {
                     Location: location,
@@ -372,8 +386,6 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
               res.statusCode = reply.status
               res.statusMessage = reply.statusText
-
-              let outString = ''
 
               if (reply.body) {
                 if (reply.body.locked) {

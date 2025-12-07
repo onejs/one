@@ -164,6 +164,11 @@ function NavigationContainerInner(
 
   const [isResolved, initialState] = useThenable(getInitialState)
 
+  if (process.env.ONE_DEBUG_ROUTER) {
+    console.info(`[one] 🏠 NavigationContainer isResolved=${isResolved} initialState=`, JSON.stringify(initialState, null, 2))
+    console.info(`[one] 🏠 NavigationContainer rest.initialState=`, rest.initialState)
+  }
+
   React.useImperativeHandle(ref, () => refContainer.current!)
 
   const isLinkingReady = rest.initialState != null || !isLinkingEnabled || isResolved

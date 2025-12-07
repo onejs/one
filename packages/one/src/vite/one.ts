@@ -1,15 +1,15 @@
-import events from 'node:events'
-import path from 'node:path'
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import type {
   ExpoManifestRequestHandlerPluginPluginOptions,
   MetroPluginOptions,
 } from '@vxrn/vite-plugin-metro'
+import events from 'node:events'
+import path from 'node:path'
 import type { Plugin, PluginOption } from 'vite'
 import { barrel } from 'vite-plugin-barrel'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { autoDepOptimizePlugin, getOptimizeDeps, getOptionsFilled, loadEnv } from 'vxrn'
+import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
 import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
@@ -121,15 +121,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     void ensureTSConfig()
   }
 
-  // build is superset for now
-  const { optimizeDeps } = getOptimizeDeps('build')
-  const optimizeIds = optimizeDeps.include
-  const optimizeIdRegex = new RegExp(
-    // santize ids for regex
-    // https://stackoverflow.com/questions/6300183/sanitize-string-of-regex-characters-before-regexp-build
-    `${optimizeIds.map((id) => id.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&')).join('|')}`
-  )
-
   let tsConfigPathsPlugin: Plugin | null = null
 
   const vxrnOptions = getOptionsFilled()
@@ -167,7 +158,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           userConfig?.envPrefix
         )
         return {
-          define: clientEnvDefine,
+          define: {
+            ...clientEnvDefine,
+            ...(process.env.ONE_DEBUG_ROUTER && {
+              'process.env.ONE_DEBUG_ROUTER': JSON.stringify(process.env.ONE_DEBUG_ROUTER),
+            }),
+          },
         }
       },
     },
