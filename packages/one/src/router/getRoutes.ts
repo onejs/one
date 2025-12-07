@@ -3,7 +3,6 @@ import { getPageExport } from '../utils/getPageExport'
 import type { One } from '../vite/types'
 import {
   matchArrayGroupName,
-  matchDeepDynamicRouteName,
   matchDynamicName,
   matchGroupName,
   removeSupportedExtensions,
@@ -479,11 +478,9 @@ export function generateDynamic(path: string): DynamicConvention[] | null {
         }
       }
 
-      const deepDynamicName = matchDeepDynamicRouteName(part)
-      const dynamicName = deepDynamicName ?? matchDynamicName(part)
-
-      if (!dynamicName) return null
-      return { name: dynamicName, deep: !!deepDynamicName }
+      const dynamicMatch = matchDynamicName(part)
+      if (!dynamicMatch) return null
+      return { name: dynamicMatch.name, deep: dynamicMatch.deep }
     })
     .filter((part): part is DynamicConvention => !!part)
 

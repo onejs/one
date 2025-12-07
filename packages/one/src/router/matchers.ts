@@ -1,11 +1,27 @@
-/** Match `[page]` -> `page` */
-export function matchDynamicName(name: string): string | undefined {
-  // Don't match `...` or `[` or `]` inside the brackets
-  // eslint-disable-next-line no-useless-escape
-  return name.match(/^\[([^[\](?:...)]+?)\]$/)?.[1]
+/** Match `[page]` -> `page` or `[...page]` -> `page` with deep flag */
+const dynamicNameRe = /^\[([^[\]]+?)\]$/
+
+export interface DynamicNameMatch {
+  name: string
+  deep: boolean
 }
 
-/** Match `[...page]` -> `page` */
+/** Match `[page]` -> `{ name: 'page', deep: false }` or `[...page]` -> `{ name: 'page', deep: true }` */
+export function matchDynamicName(name: string): DynamicNameMatch | undefined {
+  const paramName = name.match(dynamicNameRe)?.[1]
+  if (paramName == null) {
+    return undefined
+  } else if (paramName.startsWith('...')) {
+    return { name: paramName.slice(3), deep: true }
+  } else {
+    return { name: paramName, deep: false }
+  }
+}
+
+/**
+ * Match `[...page]` -> `page`
+ * @deprecated Use matchDynamicName instead which returns {name, deep}
+ */
 export function matchDeepDynamicRouteName(name: string): string | undefined {
   return name.match(/^\[\.\.\.([^/]+?)\]$/)?.[1]
 }

@@ -1,6 +1,13 @@
-/** Match `[page]` -> `page` */
-export declare function matchDynamicName(name: string): string | undefined;
-/** Match `[...page]` -> `page` */
+export interface DynamicNameMatch {
+    name: string;
+    deep: boolean;
+}
+/** Match `[page]` -> `{ name: 'page', deep: false }` or `[...page]` -> `{ name: 'page', deep: true }` */
+export declare function matchDynamicName(name: string): DynamicNameMatch | undefined;
+/**
+ * Match `[...page]` -> `page`
+ * @deprecated Use matchDynamicName instead which returns {name, deep}
+ */
 export declare function matchDeepDynamicRouteName(name: string): string | undefined;
 /** Test `/` -> `page` */
 export declare function testNotFound(name: string): boolean;
