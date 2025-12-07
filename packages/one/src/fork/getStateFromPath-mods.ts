@@ -16,6 +16,7 @@ export type AdditionalRouteConfig = {
   hasChildren: boolean
   expandedRouteNames: string[]
   parts: string[]
+  staticPartCount: number
 }
 
 interface UrlWithReactNavigationConcessions {
@@ -151,6 +152,13 @@ export function getRouteConfigSorter(previousSegments: string[] = []) {
     }
     if (a.type !== 'static' && b.type === 'static') {
       return 1
+    }
+
+    /*
+     * If the routes have any static segments, the one with the most static segments should be higher
+     */
+    if (a.staticPartCount !== b.staticPartCount) {
+      return b.staticPartCount - a.staticPartCount
     }
 
     /*
@@ -320,15 +328,23 @@ export function createConfigItemAdditionalProperties(
 ): Omit<AdditionalRouteConfig, 'isInitial'> {
   const parts: string[] = []
   let isDynamic = false
+  let staticPartCount = 0
   const isIndex = screen === 'index' || screen.endsWith('/index')
 
   for (const part of pattern.split('/')) {
     if (part) {
       // If any part is dynamic, then the route is dynamic
-      isDynamic ||= part.startsWith(':') || part.startsWith('*') || part.includes('*not-found')
+      const isDynamicPart =
+        part.startsWith(':') || part.startsWith('*') || part.includes('*not-found')
+
+      isDynamic ||= isDynamicPart
 
       if (!matchGroupName(part)) {
         parts.push(part)
+
+        if (!isDynamicPart) {
+          staticPartCount++
+        }
       }
     }
   }
@@ -338,6 +354,7 @@ export function createConfigItemAdditionalProperties(
 
   if (isIndex) {
     parts.push('index')
+    staticPartCount++
   }
 
   return {
@@ -345,6 +362,7 @@ export function createConfigItemAdditionalProperties(
     isIndex,
     hasChildren,
     parts,
+    staticPartCount,
     userReadableName: [...routeNames.slice(0, -1), config.path || screen].join('/'),
     expandedRouteNames: routeNames.flatMap((name) => {
       return name.split('/')
