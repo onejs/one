@@ -723,7 +723,7 @@ const createNestedStateObject = (
     path,
     route,
     flatConfig ? findParseConfigForRoute(route.name, flatConfig) : undefined,
-    restPathData.url.hash
+    restPathData.hash
   )
   // @modified - end
 
