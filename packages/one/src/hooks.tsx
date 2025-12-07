@@ -133,24 +133,26 @@ export function useParams<TParams extends Object = SearchParams>(): Partial<TPar
   const params = React.useContext(RouteParamsContext) ?? {}
 
   return Object.fromEntries(
-    Object.entries(params).map(([key, value]) => {
-      if (Array.isArray(value)) {
-        return [
-          key,
-          value.map((v) => {
-            try {
-              return decodeURIComponent(v)
-            } catch {
-              return v
-            }
-          }),
-        ]
-      }
-      try {
-        return [key, decodeURIComponent(value as string)]
-      } catch {
-        return [key, value]
-      }
-    })
+    Object.entries(params)
+      .filter(([_, value]) => value !== undefined)
+      .map(([key, value]) => {
+        if (Array.isArray(value)) {
+          return [
+            key,
+            value.map((v) => {
+              try {
+                return decodeURIComponent(v)
+              } catch {
+                return v
+              }
+            }),
+          ]
+        }
+        try {
+          return [key, decodeURIComponent(value as string)]
+        } catch {
+          return [key, value]
+        }
+      })
   ) as TParams
 }
