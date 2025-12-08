@@ -32,7 +32,7 @@
     "react": "19.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.139.1"
+    "@tamagui/build": "^1.139.2"
   },
   "publishConfig": {
     "access": "public"
