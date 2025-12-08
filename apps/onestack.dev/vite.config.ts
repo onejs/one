@@ -9,6 +9,11 @@ export default {
         find: '@docsearch/react',
         replacement: resolvePath('@docsearch/react'),
       },
+      {
+        // use lightweight svg for web (~2KB vs ~50KB)
+        find: 'react-native-svg',
+        replacement: '@tamagui/react-native-svg',
+      },
     ],
   },
 
@@ -25,6 +30,10 @@ export default {
     one({
       react: {
         compiler: process.env.NODE_ENV === 'production',
+      },
+
+      web: {
+        inlineLayoutCSS: true,
       },
 
       router: {
