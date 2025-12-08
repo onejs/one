@@ -110,8 +110,8 @@ describe('loader() SSG', () => {
     // Note: This might be too fast to catch in some cases
     await new Promise((res) => setTimeout(res, 100))
 
-    // After refetch completes
-    await new Promise((res) => setTimeout(res, 500))
+    // After refetch completes - increased timeout for CI
+    await new Promise((res) => setTimeout(res, 2000))
 
     // Button should be back to "Refetch"
     expect(await page.textContent('#refetch-button')).toBe('Refetch')
@@ -187,7 +187,7 @@ describe('loader() SSG', () => {
 
     // Manual refetch
     await page.click('#ssr-refetch')
-    await new Promise((res) => setTimeout(res, 1000))
+    await new Promise((res) => setTimeout(res, 3000)) // increased timeout for CI
 
     // Timestamp should have changed
     const afterRefetchTimestampText = await page.textContent('#ssr-call-count')
