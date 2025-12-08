@@ -99,6 +99,12 @@ describe('loader() SSG', () => {
 
     await page.goto(serverUrl + '/loader-refetch')
 
+    // Wait for client-side hydration (timestamp becomes visible)
+    await page.waitForFunction(
+      () => !document.querySelector('#loader-timestamp')?.textContent?.includes('loading'),
+      { timeout: 5000 }
+    )
+
     // Initial load - SSG pages don't have search params at build time
     expect(await page.textContent('#loader-query')).toContain('Query: default')
     const initialTimestamp = await page.textContent('#loader-timestamp')
@@ -110,10 +116,6 @@ describe('loader() SSG', () => {
     // Click refetch button (in child component)
     console.log('Clicking refetch button')
     await page.click('#refetch-button')
-
-    // Button should show "Loading..." during refetch
-    // Note: This might be too fast to catch in some cases
-    await new Promise((res) => setTimeout(res, 100))
 
     // After refetch completes - increased timeout for CI
     console.log('Waiting for refetch to complete')
@@ -244,6 +246,12 @@ describe('loader() SSG', () => {
   test('useLoaderState with loader provides data, refetch, and state', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/loader-refetch')
+
+    // Wait for client-side hydration
+    await page.waitForFunction(
+      () => !document.querySelector('#loader-timestamp')?.textContent?.includes('loading'),
+      { timeout: 5000 }
+    )
 
     // Check initial state
     expect(await page.textContent('#refetch-button')).toBe('Refetch')
