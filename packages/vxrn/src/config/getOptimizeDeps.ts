@@ -112,7 +112,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'one/zero',
     'refractor/lang/tsx',
     'invariant',
-    // 'tamagui/linear-gradient', // removed - causes SSR config duplication issues
+    'tamagui/linear-gradient',
     '@react-native/normalize-color',
     'expo-modules-core',
     'expo-status-bar',
@@ -121,7 +121,7 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'react-native',
     '@floating-ui/react',
     '@floating-ui/react-dom',
-    // 'tamagui', // removed - causes SSR config duplication issues
+    'tamagui',
     'react-native-web',
     'reforest',
   ]
