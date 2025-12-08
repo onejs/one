@@ -35,7 +35,6 @@ export async function getViteServerConfig(config: VXRNOptionsFilled, userViteCon
 
   const rerouteNoExternalConfig = userViteConfig?.ssr?.noExternal === true
   if (rerouteNoExternalConfig) {
-    console.warn(`[rerouteNoExternalConfig] delete userViteConfig.ssr.noExternal`)
     delete userViteConfig.ssr!.noExternal
   }
 
