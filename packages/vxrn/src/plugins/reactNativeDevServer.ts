@@ -13,6 +13,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { runOnWorker } from '../worker'
 import { getCacheDir } from '../utils/getCacheDir'
+import { debounce } from 'perfect-debounce'
 
 type ClientMessage = {
   type: 'client-log'
@@ -233,9 +234,14 @@ export function createReactNativeDevServerPlugin(
         res.end('TODO')
       })
 
-      // Clear bundle cache on file changes
-      server.watcher.on('change', () => {
-        clearCachedBundle()
+      // Clear bundle cache on file changes (debounced to avoid CPU spikes during builds)
+      const debouncedClearCache = debounce(clearCachedBundle, 100)
+      server.watcher.on('change', (path: string) => {
+        // Skip clearing cache for dist files to avoid loops during builds
+        if (path.includes('/dist/') || path.includes('\\dist\\')) {
+          return
+        }
+        debouncedClearCache()
       })
     },
   }

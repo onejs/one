@@ -1,5 +1,6 @@
 import FSExtra from 'fs-extra'
 import colors from 'picocolors'
+import { debounce } from 'perfect-debounce'
 import type { ViteDevServer } from 'vite'
 import type { VXRNOptions } from '../types'
 
@@ -86,16 +87,35 @@ export default defineConfig({
       viteServer = await createServer(serverConfig)
 
       // This fakes vite into thinking its loading files for HMR
+      // Debounced per-file to avoid CPU spikes during builds
+      const pendingTransforms = new Map<string, ReturnType<typeof debounce>>()
+
       viteServer.watcher.addListener('change', async (path) => {
+        // Skip dist files to avoid loops during builds
+        if (path.includes('/dist/') || path.includes('\\dist\\')) {
+          return
+        }
+
         const id = path.replace(process.cwd(), '')
         if (!id.endsWith('tsx') && !id.endsWith('jsx')) {
           return
         }
-        try {
-          void viteServer!.transformRequest(id)
-        } catch (err) {
-          console.info('err', err)
+
+        // Get or create a debounced transform for this file
+        if (!pendingTransforms.has(id)) {
+          pendingTransforms.set(
+            id,
+            debounce(async () => {
+              try {
+                await viteServer!.transformRequest(id)
+              } catch (err) {
+                console.info('err', err)
+              }
+            }, 100)
+          )
         }
+
+        pendingTransforms.get(id)!()
       })
 
       await viteServer.listen()
