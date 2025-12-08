@@ -6,7 +6,13 @@
 
 import { type NavigationContainerRefWithCurrent, StackActions } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
-import { type ComponentType, Fragment, startTransition, useSyncExternalStore } from 'react'
+import {
+  type ComponentType,
+  Fragment,
+  startTransition,
+  useDeferredValue,
+  useSyncExternalStore,
+} from 'react'
 import { Platform } from 'react-native'
 import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
@@ -335,7 +341,9 @@ export function routeInfoSnapshot() {
 
 // Hook functions
 export function useOneRouter() {
-  return useSyncExternalStore(subscribeToStore, snapshot, snapshot)
+  const state = useSyncExternalStore(subscribeToStore, snapshot, snapshot)
+  // useDeferredValue makes the transition concurrent, preventing main thread blocking
+  return useDeferredValue(state)
 }
 
 function syncStoreRootState() {
@@ -352,12 +360,14 @@ function syncStoreRootState() {
 
 export function useStoreRootState() {
   syncStoreRootState()
-  return useSyncExternalStore(subscribeToRootState, rootStateSnapshot, rootStateSnapshot)
+  const state = useSyncExternalStore(subscribeToRootState, rootStateSnapshot, rootStateSnapshot)
+  return useDeferredValue(state)
 }
 
 export function useStoreRouteInfo() {
   syncStoreRootState()
-  return useSyncExternalStore(subscribeToRootState, routeInfoSnapshot, routeInfoSnapshot)
+  const state = useSyncExternalStore(subscribeToRootState, routeInfoSnapshot, routeInfoSnapshot)
+  return useDeferredValue(state)
 }
 
 // Cleanup function

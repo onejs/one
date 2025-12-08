@@ -403,6 +403,22 @@ export async function build(args: {
       // nested path pages need to reference root assets
       .map((path) => `/${path}`)
 
+    // Read CSS file contents if inlineLayoutCSS is enabled
+    let allCSSContents: string[] | undefined
+    if (oneOptions.web?.inlineLayoutCSS) {
+      allCSSContents = await Promise.all(
+        allCSS.map(async (cssPath) => {
+          const filePath = join(clientDir, cssPath)
+          try {
+            return await FSExtra.readFile(filePath, 'utf-8')
+          } catch (err) {
+            console.warn(`[one] Warning: Could not read CSS file ${filePath}`)
+            return ''
+          }
+        })
+      )
+    }
+
     if (process.env.DEBUG) {
       console.info('[one] building routes', { foundRoute, layoutEntries, allEntries, allCSS })
     }
@@ -468,7 +484,8 @@ export async function build(args: {
           serverJsPath,
           preloads,
           allCSS,
-          routePreloads
+          routePreloads,
+          allCSSContents
         )
       })
 

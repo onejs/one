@@ -22,7 +22,8 @@ export async function buildPage(
   serverJsPath: string,
   preloads: string[],
   allCSS: string[],
-  routePreloads: Record<string, string>
+  routePreloads: Record<string, string>,
+  allCSSContents?: string[]
 ): Promise<One.RouteBuildInfo> {
   const render = await getRender(serverEntry)
   const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
@@ -94,11 +95,20 @@ if (typeof document === 'undefined') globalThis.document = {}
           loaderProps,
           loaderData,
           css: allCSS,
+          cssContents: allCSSContents,
           mode: 'ssg',
           routePreloads,
         })
         await outputFile(htmlOutPath, html)
       } else if (foundRoute.type === 'spa') {
+        // Generate CSS - either inline styles or link tags
+        const cssOutput = allCSSContents
+          ? allCSSContents
+              .filter(Boolean)
+              .map((content) => `    <style>${content}</style>`)
+              .join('\n')
+          : allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')
+
         await outputFile(
           htmlOutPath,
           `<html><head>
@@ -106,7 +116,7 @@ if (typeof document === 'undefined') globalThis.document = {}
           ${preloads
             .map((preload) => `   <script type="module" src="${preload}"></script>`)
             .join('\n')}
-          ${allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')}
+          ${cssOutput}
         </head></html>`
         )
       }
@@ -133,6 +143,7 @@ params:\n\n${JSON.stringify(params || null, null, 2)}`
   return {
     type: foundRoute.type,
     css: allCSS,
+    cssContents: allCSSContents,
     routeFile: foundRoute.file,
     middlewares,
     cleanPath,

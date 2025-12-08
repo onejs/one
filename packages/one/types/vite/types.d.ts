@@ -291,6 +291,14 @@ export declare namespace One {
              * @default node
              */
             deploy?: 'vercel' | 'node';
+            /**
+             * @experimental
+             * When true, inlines the CSS content directly into the HTML instead of using <link> tags.
+             * This can improve performance by eliminating an extra network request for CSS.
+             *
+             * @default false
+             */
+            inlineLayoutCSS?: boolean;
         };
         server?: VXRNOptions['server'];
         build?: {
@@ -358,9 +366,13 @@ export declare namespace One {
         loaderData: any;
         preloads: string[];
         css: string[];
+        /** When inlineLayoutCSS is enabled, contains the actual CSS content */
+        cssContents?: string[];
     };
     export type ServerContext = {
         css?: string[];
+        /** When inlineLayoutCSS is enabled, this contains the actual CSS content to inline */
+        cssContents?: string[];
         postRenderData?: any;
         loaderData?: any;
         loaderProps?: any;

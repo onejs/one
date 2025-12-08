@@ -15,6 +15,8 @@ export type RenderAppProps = {
     path: string;
     preloads?: string[];
     css?: string[];
+    /** When inlineLayoutCSS is enabled, this contains the actual CSS content to inline */
+    cssContents?: string[];
     loaderServerData?: any;
     loaderData?: any;
     loaderProps?: LoaderProps;

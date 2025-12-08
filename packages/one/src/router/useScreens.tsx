@@ -205,9 +205,15 @@ export function getQualifiedRouteComponent(value: RouteNode) {
                 __html: `globalThis['global'] = globalThis`,
               }}
             />
-            {serverContext?.css?.map((file) => {
-              return <link key={file} rel="stylesheet" href={file} />
-            })}
+            {serverContext?.cssContents
+              ? serverContext.cssContents.map((content, i) =>
+                  content ? (
+                    <style key={i} dangerouslySetInnerHTML={{ __html: content }} />
+                  ) : null
+                )
+              : serverContext?.css?.map((file) => (
+                  <link key={file} rel="stylesheet" href={file} />
+                ))}
             <ServerContextScript />
             {headChildren}
           </head>
