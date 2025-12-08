@@ -1,11 +1,11 @@
 import { Hono } from 'hono'
 export { serveStatic } from '@hono/node-server/serve-static'
 import type { VXRNServeOptions } from '../types'
-import { createProdServer } from './createServer'
+import { applyCompression, createProdServer } from './createServer'
 
 export { loadEnv } from '../exports/loadEnv'
 export * from '../utils/getServerEntry'
-export { createProdServer } from './createServer'
+export { createProdServer, applyCompression } from './createServer'
 
 export const serve = async ({
   afterRegisterRoutes,
@@ -16,12 +16,15 @@ export const serve = async ({
   const { getServerOptionsFilled } = await import('../config/getServerOptionsFilled')
   const options = await getServerOptionsFilled(optionsIn, 'prod')
 
+  // apply compression before any routes so it applies to all handlers
+  applyCompression(app, options)
+
   if (beforeRegisterRoutes) {
     await beforeRegisterRoutes(options, app)
   }
 
-  // see this for more hono setup
-  await createProdServer(app, options)
+  // createProdServer will skip compression since we already applied it
+  await createProdServer(app, options, { skipCompression: true })
 
   if (afterRegisterRoutes) {
     await afterRegisterRoutes(options, app)
