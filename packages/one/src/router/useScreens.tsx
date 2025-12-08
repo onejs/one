@@ -207,13 +207,9 @@ export function getQualifiedRouteComponent(value: RouteNode) {
             />
             {serverContext?.cssContents
               ? serverContext.cssContents.map((content, i) =>
-                  content ? (
-                    <style key={i} dangerouslySetInnerHTML={{ __html: content }} />
-                  ) : null
+                  content ? <style key={i} dangerouslySetInnerHTML={{ __html: content }} /> : null
                 )
-              : serverContext?.css?.map((file) => (
-                  <link key={file} rel="stylesheet" href={file} />
-                ))}
+              : serverContext?.css?.map((file) => <link key={file} rel="stylesheet" href={file} />)}
             <ServerContextScript />
             {headChildren}
           </head>
