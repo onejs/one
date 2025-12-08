@@ -33,30 +33,49 @@ export async function setup(project: TestProject) {
 export const teardown = async () => {
   if (!testInfo) return
 
+  // Kill process groups (negative PID) to ensure child processes are also terminated
+  // This is necessary because servers are spawned with detached: true
   if (testInfo.devServerPid) {
     try {
-      process.kill(testInfo.devServerPid)
+      // First try to kill the process group
+      process.kill(-testInfo.devServerPid, 'SIGTERM')
       console.info(`Dev server process (PID: ${testInfo.devServerPid}) killed successfully.`)
     } catch (error) {
-      console.error(`Failed to kill dev server process (PID: ${testInfo.devServerPid}):`, error)
+      // Fallback to killing just the process if process group kill fails
+      try {
+        process.kill(testInfo.devServerPid, 'SIGTERM')
+        console.info(`Dev server process (PID: ${testInfo.devServerPid}) killed successfully.`)
+      } catch (e) {
+        console.error(`Failed to kill dev server process (PID: ${testInfo.devServerPid}):`, e)
+      }
     }
   }
 
   if (testInfo.prodServerPid) {
     try {
-      process.kill(testInfo.prodServerPid)
+      process.kill(-testInfo.prodServerPid, 'SIGTERM')
       console.info(`Prod server process (PID: ${testInfo.prodServerPid}) killed successfully.`)
     } catch (error) {
-      console.error(`Failed to kill prod server process (PID: ${testInfo.prodServerPid}):`, error)
+      try {
+        process.kill(testInfo.prodServerPid, 'SIGTERM')
+        console.info(`Prod server process (PID: ${testInfo.prodServerPid}) killed successfully.`)
+      } catch (e) {
+        console.error(`Failed to kill prod server process (PID: ${testInfo.prodServerPid}):`, e)
+      }
     }
   }
 
   if (testInfo.buildPid) {
     try {
-      process.kill(testInfo.buildPid)
+      process.kill(-testInfo.buildPid, 'SIGTERM')
       console.info(`Build process (PID: ${testInfo.buildPid}) killed successfully.`)
     } catch (error) {
-      console.error(`Failed to kill build process (PID: ${testInfo.buildPid}):`, error)
+      try {
+        process.kill(testInfo.buildPid, 'SIGTERM')
+        console.info(`Build process (PID: ${testInfo.buildPid}) killed successfully.`)
+      } catch (e) {
+        console.error(`Failed to kill build process (PID: ${testInfo.buildPid}):`, e)
+      }
     }
   }
 }
