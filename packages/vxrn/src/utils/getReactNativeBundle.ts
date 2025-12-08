@@ -220,6 +220,15 @@ async function getReactNativeTemplate(mode: 'dev' | 'prod') {
   if (mode === 'prod') {
     // `process` might not available in release runtime
     template = template.replace(/process\.env\.DEBUG/g, 'undefined')
+
+    // In production mode, the prebuilt modules have `.production` in their filenames
+    template = template.replaceAll('.vxrn/react-jsx-runtime.js', '.vxrn/react-jsx-runtime.production.js')
+    template = template.replaceAll('.vxrn/react.js', '.vxrn/react.production.js')
+    // react-native already has platform in filename, need to add .production before platform
+    template = template.replace(
+      /\.vxrn\/react-native\.(\$\{__VXRN_PLATFORM__\.toLowerCase\(\)\})\.js/g,
+      '.vxrn/react-native.production.$1.js'
+    )
   }
 
   return template
