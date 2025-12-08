@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/use-isomorphic-layout-effect",
-  "version": "1.2.22-1765155190908",
+  "version": "1.2.23",
   "source": "src/index.ts",
   "types": "./types/index.d.ts",
   "type": "module",
