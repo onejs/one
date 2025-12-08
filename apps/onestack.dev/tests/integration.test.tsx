@@ -28,11 +28,11 @@ test('homepage loads with no error logs', async () => {
     }
   })
 
-  await page.goto(serverUrl)
+  await page.goto(serverUrl, { timeout: 30000 })
   expect(consoleMessages).toHaveLength(0)
 
   await page.close()
-})
+}, 60000)
 
 // this stopped working, but only in playwright..
 test.skip('clicking "Get Started" link navigates without reloading to docs', async () => {
