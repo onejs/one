@@ -5,9 +5,20 @@ import type { VXRNServeOptions } from '../types'
 import type { Hono } from 'hono'
 import { serveStaticAssets } from './serveStaticAssets'
 
-export const createProdServer = async (app: Hono, options: VXRNServeOptions) => {
+export const applyCompression = (app: Hono, options: VXRNServeOptions) => {
   if (options.compress !== false) {
     app.use(compress())
+  }
+}
+
+export const createProdServer = async (
+  app: Hono,
+  options: VXRNServeOptions,
+  { skipCompression }: { skipCompression?: boolean } = {}
+) => {
+  // when called via serve(), compression is already applied before beforeRegisterRoutes
+  if (!skipCompression) {
+    applyCompression(app, options)
   }
 
   app.use('*', async (context, next) => {
