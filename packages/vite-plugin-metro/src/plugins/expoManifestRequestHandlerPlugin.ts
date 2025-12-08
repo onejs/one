@@ -26,20 +26,27 @@ export function expoManifestRequestHandlerPlugin(
     // configResolved(config) {
     //   projectRoot = config.root
     // },
-    async configureServer(server) {
+    configureServer(server) {
       const { root: projectRoot } = server.config
 
-      const ExpoGoManifestHandlerMiddleware = (
-        await projectImport(
-          projectRoot,
-          '@expo/cli/build/src/start/server/middleware/ExpoGoManifestHandlerMiddleware.js'
-        )
-      ).default.ExpoGoManifestHandlerMiddleware
+      // Lazy load the ExpoGoManifestHandlerMiddleware to avoid blocking Vite startup
+      let ExpoGoManifestHandlerMiddleware: any
+      const importPromise = projectImport(
+        projectRoot,
+        '@expo/cli/build/src/start/server/middleware/ExpoGoManifestHandlerMiddleware.js'
+      ).then((mod) => {
+        ExpoGoManifestHandlerMiddleware = mod.default.ExpoGoManifestHandlerMiddleware
+      })
 
       server.middlewares.use(async (req, res, next) => {
         if (!req.headers['expo-platform']) {
           // Not an Expo manifest request, skip this middleware and proceed.
           return next()
+        }
+
+        // Wait for the import to complete if it hasn't yet
+        if (!ExpoGoManifestHandlerMiddleware) {
+          await importPromise
         }
 
         const protocol = req.socket instanceof TLSSocket && req.socket.encrypted ? 'https' : 'http'
