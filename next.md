@@ -27,6 +27,14 @@
       - `SPA mode: loader refetches on search params and manual refetch` - SPA mode search param handling
       - `SSR mode: loader refetches on search params and manual refetch` - SSR mode search param handling
       - `loader refetches on pathname change and manual refetch` - pathname change refetch issues
+    - browser goForward navigation issue (goBack works, goForward doesn't update UI):
+      - Test skipped in `tests/test-routing-flicker/tests/ssg-flicker.test.ts`
+      - URL changes but UI stays on current content when using browser forward button
+      - Root cause: `useLinking.ts` forward/back decision logic at lines 286-319 uses `index > previousIndex`
+      - The `index` getter in `createMemoryHistory.tsx` looks up `window.history.state?.id` in `items` array
+      - May return stale value or `previousIndexRef` doesn't update correctly during forward navigation
+      - Expo has similar fix in PR #33524 (Dec 2024) but already applied to our code
+      - See `docs/SSG_HYDRATION_FIX.md` for detailed investigation notes
 
   - native
     - hmr tests + multi-file

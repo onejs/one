@@ -66,6 +66,7 @@ export { createRoute, route } from './router/createRoute'
 export { router } from './router/imperative-api'
 export * as routerStore from './router/router'
 export { useNavigation } from './router/useNavigation'
+export { registerPreloadedRoute } from './router/useViteRoutes'
 export type { Endpoint, LoaderProps } from './types'
 // React Navigation
 export { useFocusEffect } from './useFocusEffect'

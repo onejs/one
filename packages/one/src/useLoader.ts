@@ -1,7 +1,6 @@
 import { useCallback, useSyncExternalStore } from 'react'
 import { useParams, usePathname } from './hooks'
-import { resolveHref } from './link/href'
-import { preloadingLoader } from './router/router'
+import { preloadedLoaderData, preloadingLoader } from './router/router'
 import { getLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
@@ -89,7 +88,9 @@ export function useLoaderState<
 
   const params = useParams()
   const pathname = usePathname()
-  const currentPath = resolveHref({ pathname, params }).replace(/index$/, '')
+  // use just the pathname for matching, don't use resolveHref which adds params as query string
+  // (the pathname is already resolved like /docs/getting-started, not /docs/[slug])
+  const currentPath = pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
 
   // server-side
   if (typeof window === 'undefined' && loader) {
@@ -103,9 +104,9 @@ export function useLoaderState<
     return { data: serverData, refetch: async () => {}, state: 'idle' } as any
   }
 
-  // preloaded data from SSR
-  const preloadedData =
-    loaderPropsFromServerContext?.path === currentPath ? loaderDataFromServerContext : undefined
+  // preloaded data from SSR/SSG - only use if server context path matches current path
+  const serverContextPath = loaderPropsFromServerContext?.path
+  const preloadedData = serverContextPath === currentPath ? loaderDataFromServerContext : undefined
 
   const loaderStateEntry = useSyncExternalStore(
     subscribe,
@@ -130,14 +131,21 @@ export function useLoaderState<
     !loaderStateEntry.hasLoadedOnce &&
     loader
   ) {
-    // check for preloading loader first
-    if (preloadingLoader[currentPath]) {
-      if (typeof preloadingLoader[currentPath] === 'function') {
-        preloadingLoader[currentPath] = preloadingLoader[currentPath]()
-      }
-      const promise = preloadingLoader[currentPath]
+    // check for already-resolved preloaded data first (synchronous)
+    const resolvedPreloadData = preloadedLoaderData[currentPath]
+    if (resolvedPreloadData !== undefined) {
+      // Data was preloaded and already resolved - use it directly
+      delete preloadedLoaderData[currentPath]
+      delete preloadingLoader[currentPath]
+      loaderStateEntry.data = resolvedPreloadData
+      loaderStateEntry.hasLoadedOnce = true
+    } else if (preloadingLoader[currentPath]) {
+      // Preload is in progress - wait for it
+      const preloadPromise = preloadingLoader[currentPath]!
+      const promise = preloadPromise
         .then((val: any) => {
           delete preloadingLoader[currentPath]
+          delete preloadedLoaderData[currentPath]
           updateState(currentPath, {
             data: val,
             hasLoadedOnce: true,

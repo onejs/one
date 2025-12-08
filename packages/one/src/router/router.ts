@@ -24,6 +24,7 @@ import { getLinking, resetLinking, setupLinking } from './linkingConfig'
 import type { RouteNode } from './Route'
 import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
+import { preloadRouteModules } from './useViteRoutes'
 import { getNavigateAction } from './utils/getNavigateAction'
 
 // Module-scoped variables
@@ -367,38 +368,49 @@ export function cleanup() {
 }
 
 // TODO
-export const preloadingLoader = {}
+export const preloadingLoader: Record<string, Promise<any> | undefined> = {}
 
-function setupPreload(href: string) {
-  if (preloadingLoader[href]) return
-  preloadingLoader[href] = async () => {
-    try {
-      const [_preload, loader] = await Promise.all([
-        dynamicImport(getPreloadPath(href)),
-        dynamicImport(getLoaderPath(href)),
-      ])
-      const response = await loader
-      return await response.loader?.()
-    } catch (err) {
-      console.error(`Error preloading loader: ${err}`)
+async function doPreload(href: string) {
+  const preloadPath = getPreloadPath(href)
+  const loaderPath = getLoaderPath(href)
+  try {
+    const [_preload, loader] = await Promise.all([
+      dynamicImport(preloadPath),
+      dynamicImport(loaderPath),
+      preloadRouteModules(href),
+    ])
+
+    if (!loader?.loader) {
       return null
     }
+
+    const result = await loader.loader()
+    return result ?? null
+  } catch (err) {
+    console.error(`[one] preload error for ${href}:`, err)
+    return null
   }
 }
 
-export function preloadRoute(href: string) {
+// Store resolved preload data separately from promises
+export const preloadedLoaderData: Record<string, any> = {}
+
+export function preloadRoute(href: string): Promise<any> | undefined {
   if (process.env.TAMAGUI_TARGET === 'native') {
-    // not enabled for now
     return
   }
   if (process.env.NODE_ENV === 'development') {
     return
   }
 
-  setupPreload(href)
-  if (typeof preloadingLoader[href] === 'function') {
-    void preloadingLoader[href]()
+  if (!preloadingLoader[href]) {
+    preloadingLoader[href] = doPreload(href).then((data) => {
+      // Store the resolved data for synchronous access
+      preloadedLoaderData[href] = data
+      return data
+    })
   }
+  return preloadingLoader[href]
 }
 
 export async function linkTo(href: string, event?: string, options?: OneRouter.LinkToOptions) {
@@ -477,7 +489,8 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
 
   setLoadingState('loading')
 
-  preloadRoute(href)
+  // await preload on web to ensure route modules are loaded before navigating
+  await preloadRoute(href)
 
   const rootState = navigationRef.getRootState()
 
