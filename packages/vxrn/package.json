@@ -101,7 +101,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
     "@react-native-community/cli": "^20.0.2",
-    "@tamagui/build": "^1.139.1",
+    "@tamagui/build": "^1.139.2",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^24.10.0",
     "@types/qrcode-terminal": "^0",
