@@ -1,4 +1,4 @@
-import { useCallback, useSyncExternalStore } from 'react'
+import { useCallback, useDeferredValue, useSyncExternalStore } from 'react'
 import { useParams, usePathname } from './hooks'
 import { preloadedLoaderData, preloadingLoader } from './router/router'
 import { getLoaderPath } from './utils/cleanUrl'

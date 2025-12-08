@@ -119,6 +119,7 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
             path: loaderProps?.path || '/',
             preloads,
             css: buildInfo.css,
+            cssContents: buildInfo.cssContents,
           })
 
           return new Response(rendered, {
