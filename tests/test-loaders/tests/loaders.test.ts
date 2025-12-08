@@ -64,8 +64,7 @@ describe('loader() SSG', () => {
 
     // Initial load
     expect(await page.textContent('#loader-query')).toContain('Query: default')
-    const initialCallCount = await page.textContent('#loader-call-count')
-    const initialCount = parseInt(initialCallCount?.match(/\d+/)?.[0] || '0')
+    const initialTimestampText = await page.textContent('#loader-timestamp')
 
     // Change search params via navigation
     await page.fill('#query-input', 'hello')
@@ -74,9 +73,8 @@ describe('loader() SSG', () => {
 
     // Loader should have refetched with new search param
     expect(await page.textContent('#loader-query')).toContain('Query: hello')
-    const afterFirstNavCount = await page.textContent('#loader-call-count')
-    const firstNavCount = parseInt(afterFirstNavCount?.match(/\d+/)?.[0] || '0')
-    expect(firstNavCount).toBeGreaterThan(initialCount)
+    const afterFirstNavTimestamp = await page.textContent('#loader-timestamp')
+    expect(afterFirstNavTimestamp).not.toBe(initialTimestampText)
 
     // Change search params again
     await page.fill('#query-input', 'world')
@@ -85,25 +83,32 @@ describe('loader() SSG', () => {
 
     // Loader should have refetched again
     expect(await page.textContent('#loader-query')).toContain('Query: world')
-    const afterSecondNavCount = await page.textContent('#loader-call-count')
-    const secondNavCount = parseInt(afterSecondNavCount?.match(/\d+/)?.[0] || '0')
-    expect(secondNavCount).toBeGreaterThan(firstNavCount)
+    const afterSecondNavTimestamp = await page.textContent('#loader-timestamp')
+    expect(afterSecondNavTimestamp).not.toBe(afterFirstNavTimestamp)
 
     await page.close()
   })
 
   test('useLoaderState refetch works from child component', async () => {
     const page = await context.newPage()
+
+    // Capture browser console logs
+    page.on('console', (msg) => {
+      console.log('[Browser]', msg.text())
+    })
+
     await page.goto(serverUrl + '/loader-refetch')
 
     // Initial load - SSG pages don't have search params at build time
     expect(await page.textContent('#loader-query')).toContain('Query: default')
-    const initialCount = await page.textContent('#loader-call-count')
+    const initialTimestamp = await page.textContent('#loader-timestamp')
+    console.log('Initial timestamp:', initialTimestamp)
 
     // Button should show "Refetch" when idle
     expect(await page.textContent('#refetch-button')).toBe('Refetch')
 
     // Click refetch button (in child component)
+    console.log('Clicking refetch button')
     await page.click('#refetch-button')
 
     // Button should show "Loading..." during refetch
@@ -111,15 +116,17 @@ describe('loader() SSG', () => {
     await new Promise((res) => setTimeout(res, 100))
 
     // After refetch completes - increased timeout for CI
+    console.log('Waiting for refetch to complete')
     await new Promise((res) => setTimeout(res, 2000))
 
     // Button should be back to "Refetch"
     expect(await page.textContent('#refetch-button')).toBe('Refetch')
 
-    // Query should stay the same (no search params) but call count should increment
+    // Query should stay the same (no search params) but timestamp should change
     expect(await page.textContent('#loader-query')).toContain('Query: default')
-    const newCount = await page.textContent('#loader-call-count')
-    expect(newCount).not.toBe(initialCount)
+    const newTimestamp = await page.textContent('#loader-timestamp')
+    console.log('New timestamp:', newTimestamp)
+    expect(newTimestamp).not.toBe(initialTimestamp)
 
     await page.close()
   })
@@ -243,17 +250,20 @@ describe('loader() SSG', () => {
 
     // Data should be available
     expect(await page.textContent('#loader-query')).toContain('Query:')
-    expect(await page.textContent('#loader-call-count')).toContain('Call count:')
+    expect(await page.textContent('#loader-timestamp')).toContain('Timestamp:')
+
+    // Get initial timestamp
+    const initialTimestamp = await page.textContent('#loader-timestamp')
 
     // Test multiple rapid refetches
     for (let i = 0; i < 3; i++) {
       await page.click('#refetch-button')
-      await new Promise((res) => setTimeout(res, 200))
+      await new Promise((res) => setTimeout(res, 500))
     }
 
-    // Call count should have incremented
-    const finalCount = await page.textContent('#loader-call-count')
-    expect(finalCount).toContain('Call count: ')
+    // Timestamp should have changed after refetches
+    const finalTimestamp = await page.textContent('#loader-timestamp')
+    expect(finalTimestamp).not.toBe(initialTimestamp)
 
     await page.close()
   })
