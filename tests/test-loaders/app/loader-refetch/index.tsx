@@ -2,24 +2,33 @@ import { Link, useLoader, useLoaderState } from 'one'
 import { useState } from 'react'
 import { Button, Text, YStack } from 'tamagui'
 
-let callCount = 0
-
 export function loader({ path, search }: { path: string; search?: string }) {
-  callCount++
   const searchParams = new URLSearchParams(search || '')
   const q = searchParams.get('q') || 'default'
+  const timestamp = Date.now()
 
+  console.log('[loader-refetch] loader called, timestamp:', timestamp)
   return {
     query: q,
-    callCount,
+    timestamp,
   }
 }
 
 function RefetchButton() {
   const { refetch, state } = useLoaderState()
 
+  const handleRefetch = async () => {
+    console.log('[RefetchButton] refetch starting')
+    try {
+      await refetch()
+      console.log('[RefetchButton] refetch completed')
+    } catch (err) {
+      console.error('[RefetchButton] refetch error:', err)
+    }
+  }
+
   return (
-    <Button id="refetch-button" onPress={refetch} disabled={state === 'loading'}>
+    <Button id="refetch-button" onPress={handleRefetch} disabled={state === 'loading'}>
       {state === 'loading' ? 'Loading...' : 'Refetch'}
     </Button>
   )
@@ -32,7 +41,7 @@ export default () => {
   return (
     <YStack gap="$4">
       <Text id="loader-query">Query: {data.query}</Text>
-      <Text id="loader-call-count">Call count: {data.callCount}</Text>
+      <Text id="loader-timestamp">Timestamp: {data.timestamp}</Text>
 
       <input
         id="query-input"
