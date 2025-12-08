@@ -155,7 +155,9 @@ export async function scanDepsToOptimize(
         if (cachedResult) {
           return cachedResult
         }
-        if (EXCLUDE_LIST_SET.has(dep)) {
+        if (EXCLUDE_LIST_SET.has(dep) || dep.startsWith('@tamagui/') || dep === 'tamagui') {
+          // Tamagui uses a global config that gets duplicated when pre-bundled,
+          // causing SSR issues. Exclude from optimization to use the native ESM.
           return []
         }
         const localPath = await findDepPkgJsonPath(dep, currentRoot)
