@@ -3,6 +3,7 @@ import { transformFlowBabel } from '@vxrn/vite-flow'
 import findNodeModules from 'find-node-modules'
 import FSExtra from 'fs-extra'
 import { join } from 'node:path'
+import { rename } from 'node:fs/promises'
 import semver from 'semver'
 import type { UserConfig } from 'vite'
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
@@ -195,8 +196,8 @@ export async function applyDependencyPatches(
                             !getIsAlreadyPatched(
                               fullPath
                             ) /* an ogfile must already be there, no need to write */ &&
-                            FSExtra.writeFile(getOgFilePath(fullPath), possibleOrigContents),
-                          FSExtra.writeFile(fullPath, contents),
+                            atomicWriteFile(getOgFilePath(fullPath), possibleOrigContents),
+                          atomicWriteFile(fullPath, contents),
                         ].filter((p) => !!p)
                       )
 
@@ -280,4 +281,14 @@ export async function applyDependencyPatches(
  */
 function getOgFilePath(fullPath: string) {
   return fullPath + '.vxrn.ogfile'
+}
+
+/**
+ * Atomically write a file by writing to a temp file first then renaming.
+ * This prevents other processes from reading a partially written file.
+ */
+async function atomicWriteFile(filePath: string, contents: string) {
+  const tempPath = filePath + '.vxrn.tmp.' + process.pid + '.' + Date.now()
+  await FSExtra.writeFile(tempPath, contents)
+  await rename(tempPath, filePath)
 }
