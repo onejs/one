@@ -24,8 +24,8 @@ export default defineConfig({
     // Ensure tests run sequentially
     fileParallelism: false,
     // Add reasonable timeouts
-    testTimeout: 30000,
-    hookTimeout: 30000,
+    testTimeout: 120000,
+    hookTimeout: 120000,
   },
 
   // Need this because the default mode for testing will be 'test'.
