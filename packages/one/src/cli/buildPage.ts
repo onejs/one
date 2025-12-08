@@ -35,11 +35,32 @@ export async function buildPage(
   let loaderData = {}
 
   try {
-    // todo await optimize
-    await FSExtra.writeFile(
-      join(clientDir, preloadPath),
-      preloads.map((preload) => `import "${preload}"`).join('\n')
+    // generate preload file with route module registration
+    const routeImports: string[] = []
+    const routeRegistrations: string[] = []
+    let routeIndex = 0
+
+    for (const [routeKey, bundlePath] of Object.entries(routePreloads)) {
+      const varName = `_r${routeIndex++}`
+      routeImports.push(`import * as ${varName} from "${bundlePath}"`)
+      routeRegistrations.push(`registerPreloadedRoute("${routeKey}", ${varName})`)
+    }
+
+    // Use window global for registration since ES module exports get tree-shaken
+    const registrationCalls = routeRegistrations.map((call) =>
+      call.replace('registerPreloadedRoute(', 'window.__oneRegisterPreloadedRoute(')
     )
+
+    const preloadContent = [
+      // import all route modules
+      ...routeImports,
+      // static imports for cache warming (original behavior)
+      ...preloads.map((preload) => `import "${preload}"`),
+      // register all route modules using window global
+      ...registrationCalls,
+    ].join('\n')
+
+    await FSExtra.writeFile(join(clientDir, preloadPath), preloadContent)
 
     const exported = await import(toAbsolute(serverJsPath))
 

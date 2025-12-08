@@ -121,14 +121,15 @@ export function createApp(options: CreateAppProps) {
   const serverContext = getServerContext() || {}
   const routePreloads = serverContext.routePreloads
 
-  // preload routes using build-time mapping (production only, dev has no preloads)
+  // preload routes using build-time mapping (production SSG)
+  // for SPA/dev mode, fall back to importing root layout directly
   const preloadPromises = routePreloads
     ? Object.entries(routePreloads).map(async ([routeKey, bundlePath]) => {
         const mod = await import(/* @vite-ignore */ bundlePath)
         registerPreloadedRoute(routeKey, mod)
         return mod
       })
-    : []
+    : [options.routes[`/${options.routerRoot}/_layout.tsx`]?.()]
 
   return Promise.all(preloadPromises)
     .then(() => {

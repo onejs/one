@@ -66,7 +66,18 @@ export function createVirtualEntry(options: {
         return `
 ${prependCode}
 
-import { createApp } from 'one'
+import { createApp, registerPreloadedRoute as _registerPreloadedRoute } from 'one'
+
+// Export registerPreloadedRoute so preload files can import it from this bundle
+// Named export that wraps the original function
+export function registerPreloadedRoute(key, module) {
+  return _registerPreloadedRoute(key, module)
+}
+
+// Also expose on window for debugging and to prevent tree-shaking
+if (typeof window !== 'undefined') {
+  window.__oneRegisterPreloadedRoute = registerPreloadedRoute
+}
 
 // globbing ${JSON.stringify(routeGlobs)}
 export default createApp({

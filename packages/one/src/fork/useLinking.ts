@@ -157,9 +157,18 @@ export function useLinking(
     (state: ResultState) => {
       const navigation = ref.current
       const rootState = navigation?.getRootState()
+      // @modified - start
+      // Fix for back/forward button navigation: if routeNames is undefined (stale state),
+      // don't reject the navigation. This can happen during browser back/forward.
+      // See: https://github.com/expo/expo/pull/37747
+      const routeNames = rootState?.routeNames
+      if (!routeNames) {
+        return false // Don't reject navigation if we can't validate
+      }
+      // @modified - end
       // Make sure that the routes in the state exist in the root navigator
       // Otherwise there's an error in the linking configuration
-      return state?.routes.some((r) => !rootState?.routeNames?.includes(r.name))
+      return state?.routes.some((r) => !routeNames.includes(r.name))
     },
     [ref]
   )

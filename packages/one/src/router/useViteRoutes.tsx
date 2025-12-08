@@ -37,6 +37,114 @@ export function getPreloadedModule(key: string): any {
   return preloadedModules[key]
 }
 
+export function getPreloadedModuleKeys(): string[] {
+  return Object.keys(preloadedModules)
+}
+
+/**
+ * Checks if a dynamic route pattern matches an actual path.
+ * Used to preload route modules for dynamic routes like [slug].
+ *
+ * @example
+ * matchDynamicRoute("docs/[slug]", "docs/getting-started") // true
+ * matchDynamicRoute("[...slug]", "a/b/c") // true (catch-all)
+ */
+function matchDynamicRoute(routePattern: string, actualPath: string): boolean {
+  const routeSegments = routePattern.split('/')
+  const pathSegments = actualPath.split('/')
+
+  // handle catch-all routes like [...slug]
+  const hasCatchAll = routeSegments.some((s) => s.startsWith('[...'))
+  if (hasCatchAll) {
+    // find the catch-all segment position
+    const catchAllIdx = routeSegments.findIndex((s) => s.startsWith('[...'))
+    // all segments before catch-all must match exactly (or be dynamic)
+    for (let i = 0; i < catchAllIdx; i++) {
+      if (!routeSegments[i]) continue
+      if (routeSegments[i].startsWith('[')) continue // dynamic segment matches anything
+      if (routeSegments[i] !== pathSegments[i]) return false
+    }
+    // catch-all matches any remaining segments
+    return pathSegments.length >= catchAllIdx
+  }
+
+  // for non-catch-all, segment count should match
+  if (routeSegments.length !== pathSegments.length) return false
+
+  for (let i = 0; i < routeSegments.length; i++) {
+    const routeSeg = routeSegments[i]
+    const pathSeg = pathSegments[i]
+
+    // dynamic segment [param] matches any value
+    if (routeSeg.startsWith('[') && routeSeg.endsWith(']')) {
+      continue
+    }
+
+    // static segment must match exactly
+    if (routeSeg !== pathSeg) return false
+  }
+
+  return true
+}
+
+/**
+ * Preloads route modules for a given URL path (production only).
+ * This ensures route components are loaded before navigation completes,
+ * preventing Suspense boundaries from triggering and causing flicker.
+ *
+ * Called during `linkTo()` to preload routes before client-side navigation.
+ */
+export async function preloadRouteModules(href: string): Promise<void> {
+  const globbed = globalThis['__importMetaGlobbed']
+  if (!globbed) return
+
+  // normalize href to match route keys - /docs -> docs
+  const normalizedHref = href === '/' ? '' : href.replace(/^\//, '').replace(/\/$/, '')
+
+  const promises: Promise<any>[] = []
+
+  for (const key of Object.keys(globbed)) {
+    // key looks like "/app/(site)/docs/_layout.tsx" or "/app/(site)/docs/index+ssg.tsx"
+    // strip the /app/ prefix first
+    let routePath = key.replace(/^\/[^/]+\//, '')
+
+    // strip route groups like (site), (app) etc
+    routePath = routePath.replace(/\([^)]+\)\//g, '')
+
+    // strip file suffixes but keep the path structure
+    routePath = routePath
+      .replace(/\/_layout\.tsx$/, '')
+      .replace(/\/index(\+[a-z]+)?\.tsx$/, '')
+      .replace(/(\+[a-z]+)?\.tsx$/, '')
+
+    // remove leading slash if any
+    routePath = routePath.replace(/^\//, '')
+
+    // check if this route is part of the target path
+    const isStaticMatch =
+      routePath === normalizedHref || // exact match
+      routePath.startsWith(normalizedHref + '/') || // child route
+      normalizedHref.startsWith(routePath + '/') || // parent layout
+      routePath === '' || // root layout
+      (normalizedHref !== '' && routePath === normalizedHref.split('/')[0]) // top-level match
+
+    // also check dynamic route patterns like docs/[slug]
+    const isDynamicMatch = routePath.includes('[') && matchDynamicRoute(routePath, normalizedHref)
+
+    if ((isStaticMatch || isDynamicMatch) && typeof globbed[key] === 'function') {
+      promises.push(
+        globbed[key]()
+          .then((mod: any) => {
+            preloadedModules[key] = mod
+          })
+          .catch(() => {})
+      )
+    }
+  }
+
+  await Promise.all(promises)
+}
+
 export function loadRoutes(
   paths: GlobbedRouteImports,
   routerRoot: string,
@@ -88,7 +196,7 @@ export function globbedRoutesToRouteContext(
       return loadedRoutes[id]
     }
 
-    // check if this route was preloaded before hydration
+    // check if this route was preloaded (via preload file or hydration)
     const preloadKey = id.replace('./', `/${routerRoot}/`)
     const preloaded = getPreloadedModule(preloadKey)
     if (preloaded) {
