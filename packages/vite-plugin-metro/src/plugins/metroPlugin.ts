@@ -1,6 +1,5 @@
 import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
-import { parse } from 'node:url'
 import type { PluginOption } from 'vite'
 import launchEditor from 'launch-editor'
 
@@ -72,29 +71,15 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
     //   projectRoot = config.root
     // },
 
-    async configureServer(server) {
-      const { logger, root: projectRoot } = server.config
+    configureServer(server) {
+      const { root: projectRoot } = server.config
 
       // Track Metro startup separately from Vite
       const metroStartTime = Date.now()
       let metroReady = false
 
-      const { default: Metro } = await projectImport<{
-        default: typeof MetroT
-      }>(projectRoot, 'metro')
-      const { default: MetroHmrServer } = await projectImport<{
-        default: typeof MetroHmrServerT
-      }>(projectRoot, 'metro/private/HmrServer')
-      const { default: createWebsocketServer } = await projectImport<{
-        default: typeof createWebsocketServerT
-      }>(projectRoot, 'metro/private/lib/createWebsocketServer')
-      const { createDevMiddleware } = await projectImport<{
-        createDevMiddleware: typeof createDevMiddlewareT
-      }>(projectRoot, '@react-native/dev-middleware')
-
-      const config = await getMetroConfigFromViteConfig(server.config, options)
-
       // Start Metro in background WITHOUT blocking Vite server startup
+      // All imports and config are done inside metroPromise to avoid blocking
       let middleware: Awaited<ReturnType<typeof MetroT.createConnectMiddleware>>['middleware']
       let metroServer: Awaited<ReturnType<typeof MetroT.createConnectMiddleware>>['metroServer']
       let hmrServer: MetroHmrServerT
@@ -102,9 +87,23 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
       let rnDevtoolsMiddleware: ReturnType<typeof createDevMiddlewareT>['middleware']
 
       const metroPromise = (async () => {
-        console.info('[metro] Starting Metro bundler in background...')
-
         try {
+          // Import Metro modules lazily to avoid blocking Vite startup
+          const { default: Metro } = await projectImport<{
+            default: typeof MetroT
+          }>(projectRoot, 'metro')
+          const { default: MetroHmrServer } = await projectImport<{
+            default: typeof MetroHmrServerT
+          }>(projectRoot, 'metro/private/HmrServer')
+          const { default: createWebsocketServer } = await projectImport<{
+            default: typeof createWebsocketServerT
+          }>(projectRoot, 'metro/private/lib/createWebsocketServer')
+          const { createDevMiddleware } = await projectImport<{
+            createDevMiddleware: typeof createDevMiddlewareT
+          }>(projectRoot, '@react-native/dev-middleware')
+
+          const config = await getMetroConfigFromViteConfig(server.config, options)
+
           // @ts-expect-error TODO
           const metroResult = await Metro.createConnectMiddleware(config, {
             // Force enable file watching, even on CI.
@@ -155,9 +154,9 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
       // Setup websocket handling after Metro is ready
       metroPromise.then(() => {
         server.httpServer?.on('upgrade', (request, socket, head) => {
-          const { pathname } = parse(request.url!)
+          const pathname = new URL(request.url!, `http://${request.headers.host}`).pathname
 
-          if (pathname != null && websocketEndpoints[pathname]) {
+          if (websocketEndpoints[pathname]) {
             websocketEndpoints[pathname].handleUpgrade(request, socket, head, (ws) => {
               websocketEndpoints[pathname].emit('connection', ws, request)
             })
