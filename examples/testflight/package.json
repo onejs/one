@@ -1,6 +1,6 @@
 {
   "name": "example-testflight",
-  "version": "1.2.22",
+  "version": "1.2.22-1765155190908",
   "private": true,
   "type": "module",
   "scripts": {
