@@ -1,5 +1,5 @@
 import { Link, useLoader, useLoaderState } from 'one'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Text, YStack } from 'tamagui'
 
 export function loader({ path, search }: { path: string; search?: string }) {
@@ -37,11 +37,17 @@ function RefetchButton() {
 export default () => {
   const data = useLoader(loader)
   const [query, setQuery] = useState('')
+  const [isClient, setIsClient] = useState(false)
+
+  // Only show timestamp after client-side hydration to avoid hydration mismatch
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   return (
     <YStack gap="$4">
       <Text id="loader-query">Query: {data.query}</Text>
-      <Text id="loader-timestamp">Timestamp: {data.timestamp}</Text>
+      <Text id="loader-timestamp">Timestamp: {isClient ? data.timestamp : 'loading'}</Text>
 
       <input
         id="query-input"
