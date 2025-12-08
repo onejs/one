@@ -1,5 +1,6 @@
 import type { TestProject } from 'vitest/node'
 import type { Assertion } from 'vitest'
+import { spawn } from 'node:child_process'
 import { setupTestServers, type TestInfo } from './setupTest'
 
 // to keep the import which is needed for declare
@@ -15,7 +16,7 @@ let testInfo: TestInfo | null = null
 
 export async function setup(project: TestProject) {
   /**
-   * When running tests locally, sometimes it’s more convenient to run your own dev server manually instead of having the test framework managing it for you. For example, it’s more easy to see the server logs, or you won’t have to wait for another dev server to start if you’re already running one.
+   * When running tests locally, sometimes it's more convenient to run your own dev server manually instead of having the test framework managing it for you. For example, it's more easy to see the server logs, or you won't have to wait for another dev server to start if you're already running one.
    */
   const urlOfDevServerWhichIsAlreadyRunning = process.env.DEV_SERVER_URL
 
@@ -30,52 +31,104 @@ export async function setup(project: TestProject) {
   project.provide('testInfo', testInfo)
 }
 
+// Get all child PIDs of a process using pgrep
+async function getChildPids(parentPid: number): Promise<number[]> {
+  try {
+    const proc = spawn('pgrep', ['-P', parentPid.toString()], {
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+
+    return new Promise((resolve) => {
+      let output = ''
+      proc.stdout?.on('data', (data) => {
+        output += data.toString()
+      })
+
+      proc.on('close', () => {
+        const childPids = output.trim().split('\n').filter(Boolean).map(Number)
+        resolve(childPids)
+      })
+    })
+  } catch {
+    return []
+  }
+}
+
+// Recursively get all descendant PIDs
+async function getAllDescendantPids(parentPid: number): Promise<number[]> {
+  const childPids = await getChildPids(parentPid)
+  const descendantPids = [...childPids]
+
+  for (const childPid of childPids) {
+    const grandchildren = await getAllDescendantPids(childPid)
+    descendantPids.push(...grandchildren)
+  }
+
+  return descendantPids
+}
+
+// Kill a process and all its descendants
+async function killProcessTree(pid: number, name: string): Promise<void> {
+  try {
+    const descendants = await getAllDescendantPids(pid)
+
+    // First send SIGTERM to all descendants (reverse order - children first)
+    for (const descendantPid of descendants.reverse()) {
+      try {
+        process.kill(descendantPid, 'SIGTERM')
+      } catch {
+        // process may already be gone
+      }
+    }
+
+    // Send SIGTERM to parent
+    try {
+      process.kill(pid, 'SIGTERM')
+    } catch {
+      // process may already be gone
+    }
+
+    // Wait for graceful shutdown
+    await new Promise((r) => setTimeout(r, 200))
+
+    // Force kill any remaining processes with SIGKILL
+    for (const descendantPid of descendants.reverse()) {
+      try {
+        process.kill(descendantPid, 'SIGKILL')
+      } catch {
+        // process may already be gone
+      }
+    }
+
+    try {
+      process.kill(pid, 'SIGKILL')
+    } catch {
+      // process may already be gone
+    }
+
+    console.info(`${name} process (PID: ${pid}) killed successfully.`)
+  } catch (error) {
+    console.error(`Error killing ${name} process tree for ${pid}: ${error}`)
+  }
+}
+
 export const teardown = async () => {
   if (!testInfo) return
 
-  // Kill process groups (negative PID) to ensure child processes are also terminated
-  // This is necessary because servers are spawned with detached: true
+  // Kill process trees to ensure all child processes are terminated
+  const killPromises: Promise<void>[] = []
+
   if (testInfo.devServerPid) {
-    try {
-      // First try to kill the process group
-      process.kill(-testInfo.devServerPid, 'SIGTERM')
-      console.info(`Dev server process (PID: ${testInfo.devServerPid}) killed successfully.`)
-    } catch (error) {
-      // Fallback to killing just the process if process group kill fails
-      try {
-        process.kill(testInfo.devServerPid, 'SIGTERM')
-        console.info(`Dev server process (PID: ${testInfo.devServerPid}) killed successfully.`)
-      } catch (e) {
-        console.error(`Failed to kill dev server process (PID: ${testInfo.devServerPid}):`, e)
-      }
-    }
+    killPromises.push(killProcessTree(testInfo.devServerPid, 'Dev server'))
   }
 
   if (testInfo.prodServerPid) {
-    try {
-      process.kill(-testInfo.prodServerPid, 'SIGTERM')
-      console.info(`Prod server process (PID: ${testInfo.prodServerPid}) killed successfully.`)
-    } catch (error) {
-      try {
-        process.kill(testInfo.prodServerPid, 'SIGTERM')
-        console.info(`Prod server process (PID: ${testInfo.prodServerPid}) killed successfully.`)
-      } catch (e) {
-        console.error(`Failed to kill prod server process (PID: ${testInfo.prodServerPid}):`, e)
-      }
-    }
+    killPromises.push(killProcessTree(testInfo.prodServerPid, 'Prod server'))
   }
 
   if (testInfo.buildPid) {
-    try {
-      process.kill(-testInfo.buildPid, 'SIGTERM')
-      console.info(`Build process (PID: ${testInfo.buildPid}) killed successfully.`)
-    } catch (error) {
-      try {
-        process.kill(testInfo.buildPid, 'SIGTERM')
-        console.info(`Build process (PID: ${testInfo.buildPid}) killed successfully.`)
-      } catch (e) {
-        console.error(`Failed to kill build process (PID: ${testInfo.buildPid}):`, e)
-      }
-    }
+    killPromises.push(killProcessTree(testInfo.buildPid, 'Build'))
   }
+
+  await Promise.all(killPromises)
 }
