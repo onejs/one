@@ -12,7 +12,7 @@
     "serve": "one serve",
     "serve:railway": "one serve --host 0.0.0.0",
     "subset-font-pn": "tsx ./helpers/subset-font.ts",
-    "test:disabled": "echo 'tests disabled due to tamagui ssr regression' && exit 0",
+    "test": "yarn test:dev && yarn test:prod",
     "test:dev": "TEST_ONLY=dev yarn vitest run --mode dev",
     "test:prod": "TEST_ONLY=prod yarn vitest run --mode prod"
   },
