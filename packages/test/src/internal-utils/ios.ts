@@ -210,12 +210,20 @@ async function prepareTestApp() {
   const hbcBundlePath = `${appPath}/main.jsbundle`
 
   console.info(`Compiling bundle with Hermes: ${hermescPath}`)
+  // -O flag enables optimizations for production builds (same as react-native-xcode.sh)
   await $({
     stdio: 'inherit',
-  })`${hermescPath} -emit-binary -max-diagnostic-width=80 -out ${hbcBundlePath} ${jsBundlePath}`
+  })`${hermescPath} -emit-binary -max-diagnostic-width=80 -O -out ${hbcBundlePath} ${jsBundlePath}`
 
   // Clean up the intermediate JS bundle
   await $`rm -f ${jsBundlePath}`
+
+  // Re-sign the app after modifying the bundle
+  // The app was signed when built, but modifying files invalidates the signature
+  console.info('Re-signing app after bundle replacement...')
+  await $({
+    stdio: 'inherit',
+  })`codesign --force --sign - ${appPath}`
 
   await new Promise((resolve) => {
     setTimeout(resolve, 1000)
