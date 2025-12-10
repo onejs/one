@@ -201,7 +201,10 @@ export function getViteMetroPluginOptions({
                   : setupFile.native || setupFile.ios || setupFile.android
               if (!nativeSetupFile) return undefined
               // Return path relative to metro entry
-              return path.relative(path.dirname(metroEntryPath), path.join(projectRoot, nativeSetupFile))
+              return path.relative(
+                path.dirname(metroEntryPath),
+                path.join(projectRoot, nativeSetupFile)
+              )
             })(),
           },
         ],

@@ -42,10 +42,7 @@ function oneRouterMetroPlugin(_: any, options: PluginOptions) {
       Program(path: NodePath<t.Program>, state: any) {
         // Inject setup file import at the top of metro-entry.js
         if (ONE_SETUP_FILE_NATIVE && state.filename?.includes('metro-entry')) {
-          const importDeclaration = t.importDeclaration(
-            [],
-            t.stringLiteral(ONE_SETUP_FILE_NATIVE)
-          )
+          const importDeclaration = t.importDeclaration([], t.stringLiteral(ONE_SETUP_FILE_NATIVE))
           path.unshiftContainer('body', importDeclaration)
         }
       },
