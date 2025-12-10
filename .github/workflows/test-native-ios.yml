@@ -147,11 +147,7 @@ jobs:
           path: |
             /tmp/appium-screenshots
 
-  # TODO: Prod tests are temporarily disabled while investigating crash on launch
-  # The Hermes bytecode compilation is working but the app crashes in CI
-  # See: https://github.com/onejs/one/issues/XXX
   test-ios-native-prod:
-    if: false # Temporarily disabled
     name: ${{ matrix.job_name }}
     needs:
       - build-ios-test-container-prod
