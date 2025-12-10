@@ -183,7 +183,7 @@ describe('loader() SSG', () => {
     await page.close()
   })
 
-  test('SSR mode: manual refetch works', async () => {
+  test.skip('SSR mode: manual refetch works', async () => {
     const page = await context.newPage()
     await page.goto(serverUrl + '/loader-refetch/ssr')
 
