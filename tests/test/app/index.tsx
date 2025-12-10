@@ -3,6 +3,15 @@ import { Button, H2, Paragraph, Square, YStack } from 'tamagui'
 import { ToggleThemeButton } from '../features/theme/ToggleThemeButton'
 import { useAnimatedStyle } from 'react-native-reanimated'
 import { TestNavigationHelper } from '~/features/test-helpers/TestNavigationHelper'
+import { Text } from 'react-native'
+
+declare global {
+  var __setupFileRan: {
+    client?: boolean
+    server?: boolean
+    native?: boolean
+  }
+}
 
 export async function loader() {
   return {
@@ -12,6 +21,7 @@ export async function loader() {
 
 export default () => {
   const data = useLoader(loader)
+  const setupStatus = globalThis.__setupFileRan || {}
 
   // testing babel reanimated
   useAnimatedStyle(() => {
@@ -24,6 +34,13 @@ export default () => {
   return (
     <YStack h={600} bg="red" f={1} ai="center" jc="center" gap="$10">
       <H2 testID="welcome-message">Welcome to One</H2>
+
+      <Text
+        testID="native-setup-ran"
+        accessibilityLabel={`native-setup: ${setupStatus.native ? 'true' : 'false'}`}
+      >
+        native-setup: {setupStatus.native ? 'true' : 'false'}
+      </Text>
 
       <Paragraph id="test-loader">{JSON.stringify(data)}</Paragraph>
 

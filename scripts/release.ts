@@ -205,7 +205,7 @@ async function run() {
         await spawnify(`yarn check`)
         await spawnify(`yarn typecheck`)
         await spawnify(`yarn test`)
-        // await spawnify(`yarn test-ios`)
+        await spawnify(`yarn test-ios`)
       }
     }
 

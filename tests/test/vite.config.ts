@@ -8,6 +8,12 @@ export default {
         ignoredRouteFiles: ['**/*.should-be-ignored.*'],
       },
 
+      setupFile: {
+        client: './setup.ts',
+        server: './setup.ts',
+        native: './setup.native.ts',
+      },
+
       web: {
         deploy: 'vercel',
       },
