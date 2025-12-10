@@ -172,11 +172,9 @@ async function navigateViaLink(
     throw new Error(`Link #${linkId} not found after waiting. Current URL: ${currentUrl}. Body preview: ${bodyText}`)
   }
 
-  const link = await page.$(`#${linkId}`)
-  if (!link) {
-    throw new Error(`Link #${linkId} disappeared`)
-  }
-  await link.click()
+  // Use page.click with selector instead of storing ElementHandle to avoid "element detached" errors
+  // during rapid navigation where React may re-render the element
+  await page.click(`#${linkId}`)
   return waitForPageReady(page, targetTitleId, expectedTitle)
 }
 

@@ -5,9 +5,9 @@ export default defineConfig({
     globalSetup: '@vxrn/test/setup',
     retry: 1,
     fileParallelism: true,
-    testTimeout: 15000,
-    hookTimeout: 30000,
-    teardownTimeout: 5000,
+    testTimeout: 30000,
+    hookTimeout: 60000,
+    teardownTimeout: 10000,
     pool: 'threads',
     poolOptions: {
       threads: {

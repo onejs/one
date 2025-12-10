@@ -1,3 +1,4 @@
+// Note: Setup file import (if configured) is injected at the top by babel-plugin-one-router-metro
 import { createApp } from 'one'
 import { ctx } from './metro-entry-ctx.js'
 

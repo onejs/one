@@ -13,6 +13,7 @@ export function getViteMetroPluginOptions({
   relativeRouterRoot,
   ignoredRouteFiles,
   userDefaultConfigOverrides,
+  setupFile,
 }: {
   projectRoot: string
   relativeRouterRoot: string
@@ -20,6 +21,7 @@ export function getViteMetroPluginOptions({
   userDefaultConfigOverrides?: NonNullable<
     Parameters<typeof metroPlugin>[0]
   >['defaultConfigOverrides']
+  setupFile?: string | { native?: string; ios?: string; android?: string }
 }): Parameters<typeof metroPlugin>[0] {
   const tsconfigPathsConfigLoadResult = tsconfigPaths.loadConfig(projectRoot)
 
@@ -190,6 +192,17 @@ export function getViteMetroPluginOptions({
             ),
             ONE_ROUTER_ROOT_FOLDER_NAME: relativeRouterRoot,
             ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING: routerRequireContextRegexString,
+            ONE_SETUP_FILE_NATIVE: (() => {
+              if (!setupFile) return undefined
+              // Extract native setup file path
+              const nativeSetupFile =
+                typeof setupFile === 'string'
+                  ? setupFile
+                  : setupFile.native || setupFile.ios || setupFile.android
+              if (!nativeSetupFile) return undefined
+              // Return path relative to metro entry
+              return path.relative(path.dirname(metroEntryPath), path.join(projectRoot, nativeSetupFile))
+            })(),
           },
         ],
       ],
