@@ -5,6 +5,7 @@ type PluginOptions = {
   ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY?: string
   ONE_ROUTER_ROOT_FOLDER_NAME?: string
   ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING?: string
+  ONE_SETUP_FILE_NATIVE?: string
 }
 
 function oneRouterMetroPlugin(_: any, options: PluginOptions) {
@@ -16,6 +17,7 @@ function oneRouterMetroPlugin(_: any, options: PluginOptions) {
     ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY,
     ONE_ROUTER_ROOT_FOLDER_NAME,
     ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING,
+    ONE_SETUP_FILE_NATIVE,
   } = options
 
   if (!ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY) {
@@ -37,6 +39,16 @@ function oneRouterMetroPlugin(_: any, options: PluginOptions) {
   return {
     name: 'one-router-metro',
     visitor: {
+      Program(path: NodePath<t.Program>, state: any) {
+        // Inject setup file import at the top of metro-entry.js
+        if (ONE_SETUP_FILE_NATIVE && state.filename?.includes('metro-entry')) {
+          const importDeclaration = t.importDeclaration(
+            [],
+            t.stringLiteral(ONE_SETUP_FILE_NATIVE)
+          )
+          path.unshiftContainer('body', importDeclaration)
+        }
+      },
       MemberExpression(path: any, state: any) {
         if (path.get('object').matchesPattern('process.env')) {
           const key = path.toComputedKey()
@@ -47,6 +59,12 @@ function oneRouterMetroPlugin(_: any, options: PluginOptions) {
               path.replaceWith(t.stringLiteral(ONE_ROUTER_ROOT_FOLDER_NAME))
             } else if (key.value.startsWith('ONE_ROUTER_REQUIRE_CONTEXT_REGEX')) {
               path.replaceWith(t.regExpLiteral(ONE_ROUTER_REQUIRE_CONTEXT_REGEX_STRING))
+            } else if (key.value === 'ONE_SETUP_FILE_NATIVE') {
+              path.replaceWith(
+                ONE_SETUP_FILE_NATIVE
+                  ? t.stringLiteral(ONE_SETUP_FILE_NATIVE)
+                  : t.identifier('undefined')
+              )
             }
           }
         }

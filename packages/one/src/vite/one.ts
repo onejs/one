@@ -65,6 +65,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         relativeRouterRoot: routerRoot,
         ignoredRouteFiles: options.router?.ignoredRouteFiles,
         userDefaultConfigOverrides: (options.native?.bundlerOptions as any)?.defaultConfigOverrides,
+        setupFile: options.setupFile,
       })
 
       const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions

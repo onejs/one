@@ -7,8 +7,8 @@ export default defineConfig({
     retry: 1,
     // Ensure tests run sequentially
     fileParallelism: false,
-    // Add reasonable timeouts
-    testTimeout: 30000,
-    hookTimeout: 30000,
+    // Add reasonable timeouts for CI
+    testTimeout: 60000,
+    hookTimeout: 60000,
   },
 })

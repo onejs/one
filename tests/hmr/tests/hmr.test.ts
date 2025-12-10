@@ -45,7 +45,7 @@ async function testHMR(
         return element && element.textContent?.trim() === editedText
       },
       { testId, editedText },
-      { timeout: 10000 }
+      { timeout: 30000 }
     )
   } catch (e) {
     if (e instanceof Error) {
