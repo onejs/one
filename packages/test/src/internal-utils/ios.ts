@@ -164,18 +164,15 @@ async function prepareTestApp() {
 
   // Prod
   // Build prod bundle and replace it in the app
-
-  // Not working, this will make the app hang with a blank white screen, idk why but if we use zx it works.
-  // await execSync(`rm -f ${appPath}/main.jsbundle`, { cwd: root })
-  // await execSync(
-  //   `yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`,
-  //   { cwd: root }
-  // )
+  // The bundle must be compiled to Hermes bytecode since the Release app is built with Hermes enabled
 
   $.cwd = root
   await $({
     stdio: 'inherit',
   })`yarn one patch` // Ensure patches are applied.
+
+  // First, bundle the JS to a temporary file
+  const jsBundlePath = `${appPath}/main.jsbundle.js`
 
   // [WR-B3ATY2VK] Vitest also loads `.env` and `.env.*`, and it loads with
   // MODE=test, also it exposes those env to underlying shell processes, which
@@ -184,7 +181,42 @@ async function prepareTestApp() {
   // So we need to use `env -u` to unset MODE and any env vars we care here.
   await $({
     stdio: 'inherit',
-  })`env -u MODE -u VITE_TEST_ENV_MODE yarn react-native bundle --platform ios --dev false --bundle-output ${appPath}/main.jsbundle --assets-dest ${appPath}`
+  })`env -u MODE -u VITE_TEST_ENV_MODE yarn react-native bundle --platform ios --dev false --bundle-output ${jsBundlePath} --assets-dest ${appPath}`
+
+  // Compile the JS bundle to Hermes bytecode
+  // The Release app is built with Hermes enabled, so we must emit bytecode
+  // Try multiple locations for hermesc
+  const possibleHermescPaths = [
+    path.join(root, 'ios', 'Pods', 'hermes-engine', 'destroot', 'bin', 'hermesc'),
+    path.join(root, 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
+    path.join(root, '..', '..', 'node_modules', 'react-native', 'sdks', 'hermesc', 'osx-bin', 'hermesc'),
+  ]
+
+  let hermescPath: string | undefined
+  for (const p of possibleHermescPaths) {
+    try {
+      const fs = await import('node:fs')
+      if (fs.existsSync(p)) {
+        hermescPath = p
+        break
+      }
+    } catch {}
+  }
+
+  if (!hermescPath) {
+    throw new Error(`Could not find hermesc at any of: ${possibleHermescPaths.join(', ')}`)
+  }
+
+  const hbcBundlePath = `${appPath}/main.jsbundle`
+
+  console.info(`Compiling bundle with Hermes: ${hermescPath}`)
+  await $({
+    stdio: 'inherit',
+  })`${hermescPath} -emit-binary -max-diagnostic-width=80 -out ${hbcBundlePath} ${jsBundlePath}`
+
+  // Clean up the intermediate JS bundle
+  await $`rm -f ${jsBundlePath}`
+
   await new Promise((resolve) => {
     setTimeout(resolve, 1000)
   })
