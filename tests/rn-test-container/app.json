@@ -2,11 +2,6 @@
   "name": "RN Test Container",
   "slug": "rn-test-container",
   "newArchEnabled": true,
-  "expo": {
-    "extra": {
-      "cacheBuster": "2025-12-10"
-    }
-  },
   "plugins": [
     "vxrn/expo-plugin"
   ],

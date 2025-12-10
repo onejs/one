@@ -180,7 +180,8 @@ jobs:
           # restore-keys: |
           #   ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-
           #   ${{ runner.os }}-${{ env.cache-name }}-
-          key: ${{ runner.os }}-${{ env.cache-name }}
+          # v2: invalidate stale build cache from RN 0.81 migration
+          key: ${{ runner.os }}-${{ env.cache-name }}-v2
           path: |
             ${{ env.test_container_app_path }}/build
 
