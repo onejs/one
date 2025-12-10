@@ -37,19 +37,17 @@ iOS Prod tests have been failing since Expo 54/RN 0.81 upgrade (Nov 3rd)
 - `packages/test/src/internal-utils/ios.ts` - Added Hermes compile + re-sign
 - `tests/rn-test-container/app.json` - Cache buster
 
-## Current Status
-- Build cache was stale - fixed by changing cache key to v2
-- Hermes compilation and re-signing ARE working in CI
-- App is STILL CRASHING at launch despite correct bytecode format
-- Error: "Cannot launch dev.onestack.rntestcontainer application"
-- Need to investigate WHY the app crashes at runtime
+## Current Status - FIXED!
+All iOS Prod tests are now passing in CI.
+
+## Root Cause
+The cached iOS app binary was built with an older Hermes version before the RN 0.81 migration. Even though the test was compiling the JS bundle with the correct hermesc (HBC bytecode v96), the app binary had an incompatible Hermes engine.
+
+## Final Fixes Applied
+1. Added Hermes bytecode compilation (`hermesc -emit-binary`) - `packages/test/src/internal-utils/ios.ts`
+2. Added app re-signing after bundle replacement (`codesign --force --sign -`) - same file
+3. Invalidated stale build directory cache by adding `-v2` to cache key - `.github/workflows/build-ios-test-container-app.yml`
+4. Invalidated stale built app cache by adding `-v2` to cache key - same file
 
 ## CI Runs
-- Build ID: 20110602613 (cache fix applied, builds succeeded, tests still fail)
-- Hermes compiles successfully, re-signing happens
-- App crashes immediately when Appium tries to launch it
-
-## Next Investigation
-- Check if there's a Hermes version mismatch between app binary and bundle
-- Look at simulator logs for actual crash reason
-- Compare working local environment vs CI environment
+- Build ID: 20111397047 - ALL TESTS PASSED!
