@@ -14,22 +14,65 @@ import {
   virtualEntryIdNative,
 } from './virtualEntryConstants'
 
-function getSetupFileImport(environmentName: string): string {
-  const envVarMap = {
-    client: 'ONE_SETUP_FILE_CLIENT',
-    ssr: 'ONE_SETUP_FILE_SERVER',
-    ios: 'ONE_SETUP_FILE_IOS',
-    android: 'ONE_SETUP_FILE_ANDROID',
+type NormalizedSetupFiles = {
+  client?: string
+  server?: string
+  ios?: string
+  android?: string
+}
+
+function normalizeSetupFile(setupFile: One.PluginOptions['setupFile']): NormalizedSetupFiles {
+  if (!setupFile) return {}
+  if (typeof setupFile === 'string') {
+    return {
+      client: setupFile,
+      server: setupFile,
+      ios: setupFile,
+      android: setupFile,
+    }
+  }
+  if ('native' in setupFile) {
+    return {
+      client: setupFile.client,
+      server: setupFile.server,
+      ios: setupFile.native,
+      android: setupFile.native,
+    }
+  }
+  const sf = setupFile as { client?: string; server?: string; ios?: string; android?: string }
+  return {
+    client: sf.client,
+    server: sf.server,
+    ios: sf.ios,
+    android: sf.android,
+  }
+}
+
+function getSetupFileImport(
+  environmentName: string,
+  setupFiles: NormalizedSetupFiles,
+  useStaticImport: boolean
+): string {
+  const envMap: Record<string, keyof NormalizedSetupFiles> = {
+    client: 'client',
+    ssr: 'server',
+    ios: 'ios',
+    android: 'android',
   }
 
-  const envVar = envVarMap[environmentName]
-  if (!envVar) return ''
+  const key = envMap[environmentName]
+  if (!key) return ''
 
-  return `
-if (process.env.${envVar}) {
-  import(/* @vite-ignore */ process.env.${envVar})
-}
-`
+  const setupFile = setupFiles[key]
+  if (!setupFile) return ''
+
+  // For native, use static import since dynamic import doesn't work
+  // For web, use top-level await with dynamic import to ensure setup runs before app
+  if (useStaticImport) {
+    return `import ${JSON.stringify(setupFile)}`
+  }
+
+  return `await import(/* @vite-ignore */ ${JSON.stringify(setupFile)})`
 }
 
 export function createVirtualEntry(options: {
@@ -38,12 +81,15 @@ export function createVirtualEntry(options: {
     ignoredRouteFiles?: Array<string>
   }
   flags: One.Flags
+  setupFile?: One.PluginOptions['setupFile']
 }): Plugin {
   const routeGlobs = [
     `/${options.root}/${ROUTE_GLOB_PATTERN}`,
     ...(options.router?.ignoredRouteFiles?.map((pattern) => `!/${options.root}/${pattern}`) || []),
   ]
   const apiRouteGlobs = `/${options.root}/${API_ROUTE_GLOB_PATTERN}`
+
+  const setupFiles = normalizeSetupFile(options.setupFile)
 
   return {
     name: 'one-virtual-entry',
@@ -60,9 +106,8 @@ export function createVirtualEntry(options: {
 
     load(id) {
       if (id === resolvedVirtualEntryId) {
-        const prependCode = isNativeEnvironment(this.environment)
-          ? '' /* `import()` will not work on native */
-          : getSetupFileImport(this.environment.name)
+        const isNative = isNativeEnvironment(this.environment)
+        const prependCode = getSetupFileImport(this.environment.name, setupFiles, isNative)
         return `
 ${prependCode}
 
@@ -89,9 +134,8 @@ export default createApp({
       }
 
       if (id === resolvedVirtualEntryIdNative) {
-        const prependCode = isNativeEnvironment(this.environment)
-          ? '' /* `import()` will not work on native */
-          : getSetupFileImport(this.environment.name)
+        const isNative = isNativeEnvironment(this.environment)
+        const prependCode = getSetupFileImport(this.environment.name, setupFiles, isNative)
         return `
 ${prependCode}
 

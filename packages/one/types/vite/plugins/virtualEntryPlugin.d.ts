@@ -6,5 +6,6 @@ export declare function createVirtualEntry(options: {
         ignoredRouteFiles?: Array<string>;
     };
     flags: One.Flags;
+    setupFile?: One.PluginOptions['setupFile'];
 }): Plugin;
 //# sourceMappingURL=virtualEntryPlugin.d.ts.map
