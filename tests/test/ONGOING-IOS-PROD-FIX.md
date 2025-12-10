@@ -38,5 +38,18 @@ iOS Prod tests have been failing since Expo 54/RN 0.81 upgrade (Nov 3rd)
 - `tests/rn-test-container/app.json` - Cache buster
 
 ## Current Status
-- Waiting for fresh Release build in CI (app.json change invalidates cache)
-- Build ID: 20110177510
+- Build cache was stale - fixed by changing cache key to v2
+- Hermes compilation and re-signing ARE working in CI
+- App is STILL CRASHING at launch despite correct bytecode format
+- Error: "Cannot launch dev.onestack.rntestcontainer application"
+- Need to investigate WHY the app crashes at runtime
+
+## CI Runs
+- Build ID: 20110602613 (cache fix applied, builds succeeded, tests still fail)
+- Hermes compiles successfully, re-signing happens
+- App crashes immediately when Appium tries to launch it
+
+## Next Investigation
+- Check if there's a Hermes version mismatch between app binary and bundle
+- Look at simulator logs for actual crash reason
+- Compare working local environment vs CI environment
