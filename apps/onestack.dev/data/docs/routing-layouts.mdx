@@ -35,7 +35,7 @@ export default function Layout() {
 }
 ```
 
-As of now, layouts don't support loaders. If you need to access the current route params, you can use [the useParams hook](/hooks-useParams).
+As of now, layouts don't support loaders. If you need to access the current route params, you can use [the useParams hook](/docs/hooks-useParams).
 
 ## Root Layout
 
@@ -124,7 +124,6 @@ The top level Layout will define our tabs:
 
 ```tsx fileName=app/_layout.tsx
 import { Bell, Home, User } from '@tamagui/lucide-icons'
-import { Home } from '~/features/icons'
 
 export function RootLayout() {
   return (

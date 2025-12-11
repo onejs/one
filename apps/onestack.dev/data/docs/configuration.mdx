@@ -81,15 +81,16 @@ export default {
       config: {
         // Disable or configure the auto-added vite-tsconfig-paths
         // https://www.npmjs.com/package/vite-tsconfig-paths
-        tsConfigPaths: false
+        tsConfigPaths: false,
 
         // Disable auto-adding default tsconfig.json if not found
-        ensureTSConfig: false
+        ensureTSConfig: false,
       },
 
       server: {
         // Configures production server to be compatible (default node)
-        platform: 'node' | 'vercel'
+        // Options: 'node' or 'vercel'
+        platform: 'node',
       },
 
       react: {
