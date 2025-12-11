@@ -2,14 +2,30 @@
 title: <Redirect />
 ---
 
-Redirect to another page when this page is focused.
+Redirect to another route. Useful for protecting routes or redirecting from old paths.
 
-This component uses `useFocusEffect` to only run when the route it's rendered inside of is active. Once active, it will redirect immediately to a new route.
+### Usage
+
+```tsx
+import { Redirect } from 'one'
+
+export default function ProtectedPage() {
+  const { user } = useAuth()
+
+  if (!user) {
+    return <Redirect href="/login" />
+  }
+
+  return <Dashboard user={user} />
+}
+```
 
 ### Props
 
-```
-interface RedirectProps {
-  href: string
-}
-```
+| Prop | Type | Description |
+|------|------|-------------|
+| `href` | `string` | The path to redirect to |
+
+### Behavior
+
+The redirect only fires once per mount, even if the screen is focused multiple times (e.g., navigating away and back). This prevents redirect loops in scenarios like authentication guards.
