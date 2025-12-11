@@ -86,7 +86,7 @@ A convenience function for setting headers of the current response from anywhere
 import { createMiddleware, setResponseHeaders } from 'one'
 
 export default createMiddleware(({ request }) => {
-  ØsetResponseHeaders((headers) => {
+  setResponseHeaders((headers) => {
     headers.append('test-header', 'test-value')
   })
 })

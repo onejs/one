@@ -5,3 +5,19 @@ title: useIsFocused
 Re-export of [useIsFocused from React Navigation](https://reactnavigation.org/docs/use-is-focused/).
 
 Returns a boolean, `true` if the current screen is active.
+
+```tsx
+import { useIsFocused } from 'one'
+
+export default function ProfileScreen() {
+  const isFocused = useIsFocused()
+
+  return (
+    <View>
+      <Text>{isFocused ? 'Screen is focused' : 'Screen is not focused'}</Text>
+    </View>
+  )
+}
+```
+
+Note: If you need to run side effects when a screen becomes focused rather than just checking focus state, consider using [useFocusEffect](/docs/hooks-useFocusEffect) instead.

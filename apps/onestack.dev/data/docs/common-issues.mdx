@@ -47,7 +47,7 @@ export default {
 The first thing you'll want to try is optimizing this dependency using the Vite interop transforms:
 
 ```tsx fileName=vite.config.ts
-import one from 'one/vite'
+import { one } from 'one/vite'
 
 {
   plugins: [
@@ -148,7 +148,7 @@ One automatically sets `ONE_SERVER_URL` in development mode to the current runni
 
 One calls AppRegistry.registerComponent for you to set up your React Native entry component.
 
-If you React Native app is erroring on startup, you need to make sure your One Vite plugin is configured to
+If your React Native app is erroring on startup, you need to make sure your One Vite plugin is configured to
 register the component:
 
 ```tsx fileName=vite.config.ts

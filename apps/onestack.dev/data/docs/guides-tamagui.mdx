@@ -51,10 +51,10 @@ const ThemeProvider = ({ children }) => {
 And add your `config/tamagui.config.ts`:
 
 ```tsx fileName=config/tamagui.config.ts
-import { config } from '@tamagui/config/v3'
+import { config as configBase } from '@tamagui/config/v3'
 import { createTamagui } from 'tamagui'
 
-export const config = createTamagui(config)
+export const config = createTamagui(configBase)
 ```
 
 The reason we separate this file out is that it lets the Tamagui compiler optimize things. You don't have to do this, but it's pretty easy.
@@ -124,4 +124,4 @@ const ThemeProvider = ({ children }) => {
 
 That should be about it! You now have SSR safe styling, light and dark mode, and a bunch of advanced styling features.
 
-Check out the [Tamagui site](https://tamagui.dev) for a lot documentation.
+Check out the [Tamagui site](https://tamagui.dev) for more documentation.

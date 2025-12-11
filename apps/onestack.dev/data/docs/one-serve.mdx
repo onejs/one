@@ -9,8 +9,8 @@ It takes the following arguments:
 ```bash
 --host          # string, set the hostname to bind to
 --port          # string, set the port to bind to
---platform      # node | vercel, instructs Hono server to use adapter
 --compress      # boolean, enable gzip compression, defaults to true
+--loadEnv       # boolean, whether to load .env files before running
 ```
 
 One comes with a serve command that is powered by [Hono](https://hono.dev).
@@ -19,7 +19,7 @@ If you are only using SPA and SSG routes and aren't using loaders, you don't nee
 
 You must run a `one build` before serve.
 
-You can also run your production server programatically:
+You can also run your production server programmatically:
 
 ```tsx
 import { serve } from 'one/serve'

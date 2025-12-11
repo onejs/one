@@ -6,3 +6,14 @@ Returns an object that describes the route segments. This will only update for t
 and avoids re-renders when, for example, a user navigates to another stack view that isn't matched.
 
 This is the recommended way to access the URL parameters. If you need to access parameters across all routes, see [useActiveParams](/docs/hooks-useActiveParams).
+
+```tsx
+import { useParams } from 'one'
+
+export default function PostPage() {
+  // For a route like /post/[id].tsx
+  const { id } = useParams()
+
+  return <Text>Post ID: {id}</Text>
+}
+```

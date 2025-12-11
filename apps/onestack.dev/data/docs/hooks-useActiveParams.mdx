@@ -2,9 +2,23 @@
 title: useActiveParams
 ---
 
-This will return the segments of the current URL paths, including dynamic path segments. 
+This will return the segments of the current URL paths, including dynamic path segments.
 
-Note that this function, as opposed to [useParams](/docs/hooks-useParams), will update even when the path is not relevant to the route it is used inside. In general when you need to access params , use `useParams`, as these will only
- update when the route is focused.
+Note that this function, as opposed to [useParams](/docs/hooks-useParams), will update even when the path is not relevant to the route it is used inside. In general when you need to access params, use `useParams`, as these will only update when the route is focused.
 
 This hook is useful for things like analytics where you need to access every change globally.
+
+```tsx
+import { useActiveParams } from 'one'
+
+export default function AnalyticsTracker() {
+  const params = useActiveParams()
+
+  // Track every route change, even when not inside the matched route
+  useEffect(() => {
+    analytics.track('page_view', params)
+  }, [params])
+
+  return null
+}
+```
