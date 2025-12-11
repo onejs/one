@@ -2,18 +2,17 @@
 title: useFocusEffect
 ---
 
-Similar to React `useEffect`, but only runs when the current route is focused. This is directly based off [React Navigation's useFocusEffect](https://reactnavigation.org/docs/use-focus-effect/).
+Similar to React `useEffect`, but only runs when the current route is focused. The effect runs when the screen comes into focus and the cleanup runs when it goes out of focus.
 
-You must pass it an array as the second argument to determine memoization, otherwise the effect will not change.
+Unlike [React Navigation's useFocusEffect](https://reactnavigation.org/docs/use-focus-effect/) which requires wrapping your callback in `useCallback`, One's version accepts a dependency array as the second argument directly.
 
-Example:
+### Usage
 
 ```tsx
-import { useFocusEffect } from '@react-navigation/native'
-import { useCallback } from 'react'
+import { useFocusEffect } from 'one'
 
 function Profile({ userId }) {
-  const [user, setUser] = React.useState(null)
+  const [user, setUser] = useState(null)
 
   useFocusEffect(
     () => {
@@ -26,3 +25,16 @@ function Profile({ userId }) {
   return <ProfileContent user={user} />
 }
 ```
+
+### Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `effect` | `() => void \| (() => void)` | The effect function to run. Can optionally return a cleanup function. |
+| `deps` | `any[]` | Dependency array, similar to `useEffect`. The effect re-runs when dependencies change. |
+
+### Behavior
+
+- **Focus**: The effect runs when the screen becomes focused
+- **Blur**: The cleanup function (if returned) runs when the screen loses focus
+- **Dependencies**: The effect also re-runs when dependencies change, but only if the screen is focused
