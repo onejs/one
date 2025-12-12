@@ -1,0 +1,4 @@
+# Ignore iOS build directories to ensure consistent fingerprints
+ios/build-Debug
+ios/build-Release
+ios/build
