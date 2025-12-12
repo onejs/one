@@ -16,29 +16,38 @@ cd "$(dirname "$0")/.."
 CACHE_DIR="${HOME}/.cache/one-ios-builds"
 mkdir -p "$CACHE_DIR"
 
-# Generate fingerprint based on files that affect the iOS build
+# Generate fingerprint using @expo/fingerprint for accurate native dependency tracking
 generate_fingerprint() {
   local config=$1
-  # Hash package.json, app.json, Podfile (if exists), and native source files
-  local hash_input=""
 
-  # Core config files
-  hash_input+=$(cat package.json 2>/dev/null || echo "")
-  hash_input+=$(cat app.json 2>/dev/null || echo "")
-  hash_input+=$(cat ios/Podfile 2>/dev/null || echo "")
+  # Get "one" package version - must be included since it affects prebuild output
+  # @expo/fingerprint won't track workspace packages, so we add this manually
+  local one_version=""
+  one_version=$(cat ../../packages/one/package.json 2>/dev/null | grep '"version"' | head -1 || echo "")
 
-  # Include One version since it affects prebuild output
-  hash_input+=$(cat ../../packages/one/package.json 2>/dev/null | grep '"version"' || echo "")
+  # Use @expo/fingerprint for accurate native dependency detection
+  # This properly tracks changes to native modules, Podfile.lock, etc.
+  local expo_fingerprint=""
+  expo_fingerprint=$(npx --yes @expo/fingerprint fingerprint:generate --platform ios 2>/dev/null | grep -o '"hash":"[^"]*"' | cut -d'"' -f4 || echo "")
 
-  # Include configuration
-  hash_input+="$config"
-
-  # Include native source files if they exist
-  if [ -d "ios/RNTestContainer" ]; then
-    hash_input+=$(find ios/RNTestContainer -type f \( -name "*.m" -o -name "*.mm" -o -name "*.h" -o -name "*.swift" -o -name "*.plist" -o -name "*.storyboard" \) -exec cat {} \; 2>/dev/null || echo "")
+  if [ -n "$expo_fingerprint" ]; then
+    # Combine expo fingerprint with config AND one version for final hash
+    echo "${expo_fingerprint}-${config}-${one_version}" | shasum -a 256 | cut -d' ' -f1
+  else
+    # Fallback to manual hashing if @expo/fingerprint fails
+    echo "Warning: @expo/fingerprint failed, falling back to manual hashing" >&2
+    local hash_input=""
+    hash_input+=$(cat package.json 2>/dev/null || echo "")
+    hash_input+=$(cat app.json 2>/dev/null || echo "")
+    hash_input+=$(cat ios/Podfile 2>/dev/null || echo "")
+    hash_input+=$(cat ios/Podfile.lock 2>/dev/null || echo "")
+    hash_input+="$one_version"
+    hash_input+="$config"
+    if [ -d "ios/RNTestContainer" ]; then
+      hash_input+=$(find ios/RNTestContainer -type f \( -name "*.m" -o -name "*.mm" -o -name "*.h" -o -name "*.swift" -o -name "*.plist" -o -name "*.storyboard" \) -exec cat {} \; 2>/dev/null || echo "")
+    fi
+    echo "$hash_input" | shasum -a 256 | cut -d' ' -f1
   fi
-
-  echo "$hash_input" | shasum -a 256 | cut -d' ' -f1
 }
 
 FINGERPRINT=$(generate_fingerprint "$CONFIGURATION")
@@ -71,8 +80,14 @@ echo "Building $CONFIGURATION (no cache hit)..."
 # React Native's post-install hook searches for Info.plist files and fails on binary plists
 rm -rf ios/build-Debug ios/build-Release 2>/dev/null || true
 
-# Run prebuild and pod install
+# Run prebuild and pod install with precompiled RN dependencies (~8x faster)
 yarn prebuild:native --platform ios
+
+# Enable precompiled React Native builds (RN 0.81+) and ccache for faster builds
+# RCT_USE_RN_DEP=1 - Use precompiled ReactNativeDependencies.xcframework
+# RCT_USE_PREBUILT_RNCORE=1 - Use precompiled RN core
+export RCT_USE_RN_DEP=1
+export RCT_USE_PREBUILT_RNCORE=1
 pod install --project-directory=ios
 
 # Build with xcodebuild

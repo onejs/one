@@ -11345,6 +11345,7 @@ __metadata:
     drizzle-kit: "npm:^0.24.2"
     drizzle-orm: "npm:^0.33.0"
     expo: "npm:~54.0.20"
+    expo-build-properties: "npm:~1.0.9"
     one: "workspace:*"
     postgres: "npm:^3.4.4"
     react: "npm:19.1.0"
@@ -11409,6 +11410,7 @@ __metadata:
     "@vxrn/color-scheme": "workspace:*"
     babel-plugin-react-compiler: "npm:^1.0.0"
     expo: "npm:54.0.22"
+    expo-build-properties: "npm:~1.0.9"
     one: "workspace:*"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
@@ -18965,6 +18967,7 @@ __metadata:
   dependencies:
     "@react-navigation/native": "npm:~7.1.19"
     expo: "npm:54.0.22"
+    expo-build-properties: "npm:~1.0.9"
     expo-clipboard: "npm:~7.1.5"
     one: "workspace:*"
     react: "npm:19.1.0"

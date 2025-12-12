@@ -8,7 +8,15 @@
       "android"
     ],
     "plugins": [
-      "vxrn/expo-plugin"
+      "vxrn/expo-plugin",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "ccacheEnabled": true
+          }
+        }
+      ]
     ],
     "icon": "./src/app-icon.png",
     "splash": {

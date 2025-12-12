@@ -3,7 +3,16 @@
   "slug": "rn-test-container",
   "newArchEnabled": true,
   "plugins": [
-    "vxrn/expo-plugin"
+    "vxrn/expo-plugin",
+    [
+      "expo-build-properties",
+      {
+        "ios": {
+          "deploymentTarget": "16.0",
+          "ccacheEnabled": true
+        }
+      }
+    ]
   ],
   "android": {
     "package": "dev.onestack.rntestcontainer"
