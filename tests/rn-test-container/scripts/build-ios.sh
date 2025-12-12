@@ -98,10 +98,6 @@ fi
 
 echo "Building $CONFIGURATION (no cache hit)..."
 
-# Clean build directories before pod install to avoid binary plist parsing errors
-# React Native's post-install hook searches for Info.plist files and fails on binary plists
-rm -rf ios/build-Debug ios/build-Release 2>/dev/null || true
-
 # Run prebuild and pod install with precompiled RN dependencies (~8x faster)
 yarn prebuild:native --platform ios
 
