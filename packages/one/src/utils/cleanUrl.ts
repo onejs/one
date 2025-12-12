@@ -1,5 +1,6 @@
 import {
   isNative,
+  CSS_PRELOAD_JS_POSTFIX,
   LOADER_JS_POSTFIX,
   LOADER_JS_POSTFIX_REGEX,
   PRELOAD_JS_POSTFIX,
@@ -21,6 +22,10 @@ const clientSideURL = isClient ? getURL() : ''
 
 export function getPreloadPath(currentPath: string) {
   return `${clientSideURL}/assets/${cleanUrl(currentPath.slice(1))}${PRELOAD_JS_POSTFIX}`
+}
+
+export function getPreloadCSSPath(currentPath: string) {
+  return `${clientSideURL}/assets/${cleanUrl(currentPath.slice(1))}${CSS_PRELOAD_JS_POSTFIX}`
 }
 
 export function getLoaderPath(currentPath: string, includeUrl = isNative, cacheBust?: string) {

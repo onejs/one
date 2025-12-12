@@ -348,6 +348,7 @@ export declare namespace One {
             allRoutes: RouteInfo[];
         };
         preloads: Record<string, boolean>;
+        cssPreloads: Record<string, boolean>;
         loaders: Record<string, boolean>;
     };
     export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo;
@@ -357,6 +358,7 @@ export declare namespace One {
         routeFile: string;
         middlewares: string[];
         preloadPath: string;
+        cssPreloadPath: string;
         loaderPath: string;
         cleanPath: string;
         htmlPath: string;

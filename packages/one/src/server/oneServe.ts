@@ -4,7 +4,11 @@ import type { BlankEnv } from 'hono/types'
 import { extname, join } from 'node:path'
 import { serveStaticAssets } from 'vxrn'
 import { getServerEntry } from 'vxrn/serve'
-import { LOADER_JS_POSTFIX_UNCACHED, PRELOAD_JS_POSTFIX } from '../constants'
+import {
+  CSS_PRELOAD_JS_POSTFIX,
+  LOADER_JS_POSTFIX_UNCACHED,
+  PRELOAD_JS_POSTFIX,
+} from '../constants'
 import {
   compileManifest,
   getURLfromRequestURL,
@@ -275,7 +279,7 @@ url: ${url}`)
     }
   }
 
-  const { preloads } = buildInfo
+  const { preloads, cssPreloads } = buildInfo
 
   // TODO make this inside each page, need to make loader urls just be REGULAR_URL + loaderpostfix
   app.get('*', async (c, next) => {
@@ -286,6 +290,15 @@ url: ${url}`)
         c.header('Content-Type', 'text/javascript')
         c.status(200)
         return c.body(``)
+      }
+    }
+
+    if (c.req.path.endsWith(CSS_PRELOAD_JS_POSTFIX)) {
+      // Return empty resolved promise if no CSS preload exists for this route
+      if (!cssPreloads?.[c.req.path]) {
+        c.header('Content-Type', 'text/javascript')
+        c.status(200)
+        return c.body(`export default Promise.resolve()`)
       }
     }
 

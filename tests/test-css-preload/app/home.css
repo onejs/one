@@ -1,0 +1,7 @@
+/* Home page specific CSS - scoped to home page container */
+.home-page #page-title {
+  color: blue;
+}
+#home-text {
+  color: green;
+}
