@@ -34,6 +34,8 @@ const skipTest =
   rePublish ||
   process.argv.includes('--skip-test') ||
   process.argv.includes('--skip-tests')
+const skipNativeTest =
+  process.argv.includes('--skip-native-test') || process.argv.includes('--skip-native-tests')
 const skipBuild = finish || rePublish || process.argv.includes('--skip-build')
 const dryRun = process.argv.includes('--dry-run')
 const tamaguiGitUser = process.argv.includes('--tamagui-git-user')
@@ -205,7 +207,9 @@ async function run() {
         await spawnify(`yarn check`)
         await spawnify(`yarn typecheck`)
         await spawnify(`yarn test`)
-        await spawnify(`yarn test-ios`)
+        if (!skipNativeTest) {
+          await spawnify(`yarn test-ios`)
+        }
       }
     }
 
