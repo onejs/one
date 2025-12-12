@@ -7,7 +7,7 @@ import './_layout.css'
  * The root _layout.tsx filters <html /> and <body /> out on native
  */
 
-import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
+import { SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar } from 'one'
 import { isWeb, TamaguiProvider } from 'tamagui'
 import { HomeLayout } from '~/code/home/HomeLayout'
@@ -33,10 +33,10 @@ export default function Layout() {
 }
 
 const TamaguiRootProvider = ({ children }: { children: React.ReactNode }) => {
-  const [scheme] = useColorScheme()
+  const userScheme = useUserScheme()
 
   return (
-    <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme} disableRootThemeClass>
+    <TamaguiProvider disableInjectCSS config={config} defaultTheme={userScheme.value} disableRootThemeClass>
       {children}
     </TamaguiProvider>
   )

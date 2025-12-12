@@ -32,7 +32,6 @@
     "watch": "tamagui-build --watch"
   },
   "dependencies": {
-    "@vxrn/universal-color-scheme": "workspace:*",
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
   },
   "devDependencies": {

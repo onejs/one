@@ -16,7 +16,7 @@ export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<
  */
 export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>;
 export { useIsFocused } from '@react-navigation/core';
-export * from '@vxrn/universal-color-scheme';
+export * from '@vxrn/color-scheme';
 export { SafeAreaView } from 'react-native-safe-area-context';
 export { onClientLoaderResolve } from './clientLoaderResolver';
 export { createMiddleware, type Middleware } from './createMiddleware';

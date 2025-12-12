@@ -3,10 +3,10 @@ import './fonts.css'
 import './syntax-highlight.css'
 import './tamagui.css'
 
-import { MetaTheme, SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
+import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot, usePathname } from 'one'
 import { useEffect } from 'react'
-import { TamaguiProvider, useTheme, YStack } from 'tamagui'
+import { TamaguiProvider, useTheme } from 'tamagui'
 import config from '~/config/tamagui.config'
 import { LayoutDecorativeStripe } from '~/features/site/LayoutDecorativeStripe'
 import { headerColors } from '~/features/site/headerColors'
@@ -34,11 +34,8 @@ export default function Layout() {
         <SchemeProvider>
           <ThemeProvider>
             <LayoutDecorativeStripe />
-            {/* <Theme name="yellow"> */}
-            <YStack zi={0} fullscreen className="grain" pe="none" />
             <ThemeMetaTag />
             <Slot />
-            {/* </Theme> */}
           </ThemeProvider>
         </SchemeProvider>
       </body>
@@ -47,11 +44,11 @@ export default function Layout() {
 }
 
 const ThemeProvider = ({ children }) => {
-  const [scheme] = useColorScheme()
+  const userScheme = useUserScheme()
 
   return (
     <>
-      <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme}>
+      <TamaguiProvider disableInjectCSS config={config} defaultTheme={userScheme.value}>
         {children}
       </TamaguiProvider>
     </>
@@ -59,12 +56,12 @@ const ThemeProvider = ({ children }) => {
 }
 
 const ThemeMetaTag = () => {
-  const [scheme] = useColorScheme()
+  const userScheme = useUserScheme()
   const theme = useTheme()
   const pathname = usePathname()
   const isHome = pathname === '/'
   const isScrolled = useIsScrolled()
-  let color = headerColors[scheme]
+  let color = headerColors[userScheme.value]
   if (isHome && isScrolled) {
     color = theme.color1.val
   }

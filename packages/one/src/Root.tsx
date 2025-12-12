@@ -4,7 +4,7 @@ import {
   type NavigationAction,
   type NavigationContainerProps,
 } from '@react-navigation/native'
-import { useColorScheme } from '@vxrn/universal-color-scheme'
+import { useUserScheme } from '@vxrn/color-scheme'
 import {
   createContext,
   type FunctionComponent,
@@ -74,7 +74,7 @@ export function Root(props: RootProps) {
       : new URL(path || '/', getURL())
 
   const store = useInitializeOneRouter(context, location)
-  const [colorScheme] = useColorScheme()
+  const userScheme = useUserScheme()
 
   // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
 
@@ -99,7 +99,7 @@ export function Root(props: RootProps) {
           initialState={store.initialState}
           linking={getLinking()}
           onUnhandledAction={onUnhandledAction}
-          theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+          theme={userScheme.value === 'dark' ? DarkTheme : DefaultTheme}
           documentTitle={{
             enabled: false,
           }}

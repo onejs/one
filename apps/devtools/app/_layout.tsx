@@ -1,7 +1,7 @@
 import '@tamagui/core/reset.css'
 import './_layout.css'
 
-import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
+import { SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
 import { LoadProgressBar, Slot } from 'one'
 import config from '../config/tamagui.config'
@@ -24,10 +24,10 @@ export default function Layout() {
 }
 
 const TamaguiRootProvider = ({ children }: { children: React.ReactNode }) => {
-  const [scheme] = useColorScheme()
+  const userScheme = useUserScheme()
 
   return (
-    <TamaguiProvider config={config} defaultTheme={scheme}>
+    <TamaguiProvider config={config} defaultTheme={userScheme.value}>
       {children}
     </TamaguiProvider>
   )

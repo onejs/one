@@ -18,7 +18,7 @@
       "path": "../resolve"
     },
     {
-      "path": "../universal-color-scheme"
+      "path": "../color-scheme"
     },
     {
       "path": "../compiler"

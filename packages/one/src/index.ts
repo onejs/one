@@ -25,7 +25,7 @@ export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>
 // hooks
 export { useIsFocused } from '@react-navigation/core'
 // re-export
-export * from '@vxrn/universal-color-scheme'
+export * from '@vxrn/color-scheme'
 // TODO breaking due to react-native-gesture-handler
 // export { Drawer } from './layouts/Drawer'
 // export { Unmatched } from './fallbackViews/Unmatched'

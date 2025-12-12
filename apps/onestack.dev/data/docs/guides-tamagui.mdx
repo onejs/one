@@ -23,7 +23,7 @@ Next, update your root `_layout.tsx`:
 
 ```tsx fileName=app/_layout.tsx
 import { TamaguiProvider, Theme } from 'tamagui'
-import { MetaTheme, SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
+import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot, usePathname } from 'one'
 import config from '../config/tamagui.config'
 
@@ -37,11 +37,11 @@ export default function Layout() {
   )
 }
 
-// this is in its own component so it can access the useColorScheme hook
+// this is in its own component so it can access the useUserScheme hook
 const ThemeProvider = ({ children }) => {
-  const [scheme] = useColorScheme()
+  const userScheme = useUserScheme()
   return (
-    <TamaguiProvider config={config} defaultTheme={scheme}>
+    <TamaguiProvider config={config} defaultTheme={userScheme.value}>
       {children}
     </TamaguiProvider>
   )
@@ -98,7 +98,7 @@ And then changing our root layout to add `disableInjectCSS`, and instead importi
 import '../public/tamagui.css'
 
 import { TamaguiProvider, Theme } from 'tamagui'
-import { MetaTheme, SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
+import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot, usePathname } from 'one'
 import config from '../config/tamagui.config'
 
@@ -113,9 +113,9 @@ export default function Layout() {
 }
 
 const ThemeProvider = ({ children }) => {
-  const [scheme] = useColorScheme()
+  const userScheme = useUserScheme()
   return (
-    <TamaguiProvider config={config} defaultTheme={scheme} disableInjectCSS>
+    <TamaguiProvider config={config} defaultTheme={userScheme.value} disableInjectCSS>
       {children}
     </TamaguiProvider>
   )
