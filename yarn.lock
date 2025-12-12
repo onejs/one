@@ -7619,7 +7619,6 @@ __metadata:
   resolution: "@vxrn/color-scheme@workspace:packages/color-scheme"
   dependencies:
     "@tamagui/build": "npm:^1.139.2"
-    "@vxrn/universal-color-scheme": "workspace:*"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
     react: "npm:19.1.0"
     react-native: "npm:0.81.5"
@@ -7771,19 +7770,6 @@ __metadata:
 "@vxrn/tslib-lite@workspace:*, @vxrn/tslib-lite@workspace:packages/tslib-lite":
   version: 0.0.0-use.local
   resolution: "@vxrn/tslib-lite@workspace:packages/tslib-lite"
-  languageName: unknown
-  linkType: soft
-
-"@vxrn/universal-color-scheme@workspace:*, @vxrn/universal-color-scheme@workspace:packages/universal-color-scheme":
-  version: 0.0.0-use.local
-  resolution: "@vxrn/universal-color-scheme@workspace:packages/universal-color-scheme"
-  dependencies:
-    "@tamagui/build": "npm:^1.139.2"
-    "@vxrn/use-isomorphic-layout-effect": "workspace:*"
-    react: "npm:19.1.0"
-    react-native: "npm:0.81.5"
-  peerDependencies:
-    react-native: "*"
   languageName: unknown
   linkType: soft
 
@@ -16653,10 +16639,10 @@ __metadata:
     "@types/react-dom": "npm:^19.2.2"
     "@types/xxhashjs": "npm:^0.2.4"
     "@ungap/structured-clone": "npm:^1.2.0"
+    "@vxrn/color-scheme": "workspace:*"
     "@vxrn/compiler": "workspace:*"
     "@vxrn/resolve": "workspace:*"
     "@vxrn/tslib-lite": "workspace:*"
-    "@vxrn/universal-color-scheme": "workspace:*"
     "@vxrn/use-isomorphic-layout-effect": "workspace:*"
     "@vxrn/vite-plugin-metro": "workspace:*"
     babel-dead-code-elimination: "npm:^1.0.10"

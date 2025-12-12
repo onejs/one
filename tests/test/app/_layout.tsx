@@ -3,7 +3,7 @@ import '~/features/styles/base.css'
 import '~/features/styles/tamagui.css'
 import './_layout.css'
 
-import { SchemeProvider, useColorScheme } from '@vxrn/color-scheme'
+import { SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { TamaguiProvider } from 'tamagui'
 import { LoadProgressBar, Slot, useServerHeadInsertion } from 'one'
 import config from '../config/tamagui.config'
@@ -34,10 +34,10 @@ export default function Layout() {
 }
 
 const TamaguiRootProvider = ({ children }: { children: React.ReactNode }) => {
-  const [scheme] = useColorScheme()
+  const userScheme = useUserScheme()
 
   return (
-    <TamaguiProvider disableInjectCSS config={config} defaultTheme={scheme}>
+    <TamaguiProvider disableInjectCSS config={config} defaultTheme={userScheme.value}>
       {children}
     </TamaguiProvider>
   )

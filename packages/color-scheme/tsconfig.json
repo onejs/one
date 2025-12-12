@@ -5,9 +5,6 @@
   },
   "references": [
     {
-      "path": "../universal-color-scheme"
-    },
-    {
       "path": "../use-isomorphic-layout-effect"
     }
   ]
