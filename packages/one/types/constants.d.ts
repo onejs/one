@@ -8,6 +8,7 @@ export declare const LOADER_JS_POSTFIX_REGEX_STRING = "_\\d+_vxrn_loader.js$";
 export declare const LOADER_JS_POSTFIX_REGEX: RegExp;
 export declare const LOADER_JS_POSTFIX: string;
 export declare const PRELOAD_JS_POSTFIX: string;
+export declare const CSS_PRELOAD_JS_POSTFIX: string;
 export declare const VIRTUAL_SSR_CSS_ENTRY = "virtual:ssr-css.css";
 export declare const VIRTUAL_SSR_CSS_HREF = "/@id/__x00__virtual:ssr-css.css";
 export declare const SERVER_CONTEXT_KEY = "__one_server_context__";

@@ -502,6 +502,7 @@ export async function build(args: {
   const routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>> = {}
   const pathToRoute: Record<string, string> = {}
   const preloads: Record<string, boolean> = {}
+  const cssPreloads: Record<string, boolean> = {}
   const loaders: Record<string, boolean> = {}
 
   for (const route of builtRoutes) {
@@ -519,6 +520,7 @@ export async function build(args: {
       pathToRoute[p] = route.routeFile
     }
     preloads[route.preloadPath] = true
+    cssPreloads[route.cssPreloadPath] = true
     loaders[route.loaderPath] = true
   }
 
@@ -554,6 +556,7 @@ export async function build(args: {
     routeMap,
     constants: JSON.parse(JSON.stringify({ ...constants })) as any,
     preloads,
+    cssPreloads,
     loaders,
   }
 

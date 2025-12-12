@@ -400,6 +400,7 @@ export namespace One {
 
     // for quick checking if preload exists
     preloads: Record<string, boolean>
+    cssPreloads: Record<string, boolean>
     loaders: Record<string, boolean>
   }
 
@@ -411,6 +412,7 @@ export namespace One {
     routeFile: string
     middlewares: string[]
     preloadPath: string
+    cssPreloadPath: string
     loaderPath: string
     cleanPath: string
     htmlPath: string

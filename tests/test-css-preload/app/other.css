@@ -1,0 +1,7 @@
+/* Other page specific CSS - scoped to other page container */
+.other-page #page-title {
+  color: red;
+}
+#other-text {
+  color: purple;
+}

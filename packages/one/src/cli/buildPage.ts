@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import FSExtra from 'fs-extra'
 import * as constants from '../constants'
 import type { LoaderProps, RenderApp } from '../types'
-import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
+import { getLoaderPath, getPreloadPath, getPreloadCSSPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import { replaceLoader } from '../vite/replaceLoader'
 import type { One, RouteInfo } from '../vite/types'
@@ -30,6 +30,7 @@ export async function buildPage(
   const clientJsPath = join(`dist/client`, clientManifestEntry.file)
   const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
   const preloadPath = getPreloadPath(path)
+  const cssPreloadPath = getPreloadCSSPath(path)
 
   let loaderPath = ''
 
@@ -62,6 +63,50 @@ export async function buildPage(
     ].join('\n')
 
     await FSExtra.writeFile(join(clientDir, preloadPath), preloadContent)
+
+    // Generate CSS preload file with prefetch (on hover) and inject (on navigation) functions
+    const cssPreloadContent = `
+const CSS_TIMEOUT = 1000
+const cssUrls = ${JSON.stringify(allCSS)}
+
+// Prefetch CSS without applying - called on link hover
+export function prefetchCSS() {
+  cssUrls.forEach(href => {
+    if (document.querySelector(\`link[href="\${href}"]\`)) return
+    const link = document.createElement('link')
+    link.rel = 'prefetch'
+    link.as = 'style'
+    link.href = href
+    document.head.appendChild(link)
+  })
+}
+
+// Inject CSS to apply styles - called on actual navigation
+export function injectCSS() {
+  return Promise.all(cssUrls.map(href => {
+    // Remove any prefetch link for this href
+    const prefetchLink = document.querySelector(\`link[rel="prefetch"][href="\${href}"]\`)
+    if (prefetchLink) prefetchLink.remove()
+    // Skip if stylesheet already exists
+    if (document.querySelector(\`link[rel="stylesheet"][href="\${href}"]\`)) return Promise.resolve()
+    return new Promise(resolve => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = href
+      link.onload = link.onerror = resolve
+      document.head.appendChild(link)
+      setTimeout(() => {
+        console.warn('[one] CSS load timeout:', href)
+        resolve()
+      }, CSS_TIMEOUT)
+    })
+  }))
+}
+
+// For backwards compatibility, also prefetch on import
+prefetchCSS()
+`
+    await FSExtra.writeFile(join(clientDir, cssPreloadPath), cssPreloadContent)
 
     const exported = await import(toAbsolute(serverJsPath))
 
@@ -148,6 +193,7 @@ params:\n\n${JSON.stringify(params || null, null, 2)}`
     middlewares,
     cleanPath,
     preloadPath,
+    cssPreloadPath,
     loaderPath,
     clientJsPath,
     serverJsPath,

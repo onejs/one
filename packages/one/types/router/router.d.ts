@@ -71,6 +71,6 @@ export declare function useStoreRouteInfo(): UrlObject;
 export declare function cleanup(): void;
 export declare const preloadingLoader: Record<string, Promise<any> | undefined>;
 export declare const preloadedLoaderData: Record<string, any>;
-export declare function preloadRoute(href: string): Promise<any> | undefined;
+export declare function preloadRoute(href: string, injectCSS?: boolean): Promise<any> | undefined;
 export declare function linkTo(href: string, event?: string, options?: OneRouter.LinkToOptions): Promise<void>;
 //# sourceMappingURL=router.d.ts.map

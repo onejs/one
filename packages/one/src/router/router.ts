@@ -18,7 +18,7 @@ import type { OneRouter } from '../interfaces/router'
 import { resolveHref } from '../link/href'
 import { resolve } from '../link/path'
 import { assertIsReady } from '../utils/assertIsReady'
-import { getLoaderPath, getPreloadPath } from '../utils/cleanUrl'
+import { getLoaderPath, getPreloadPath, getPreloadCSSPath } from '../utils/cleanUrl'
 import { dynamicImport } from '../utils/dynamicImport'
 import { shouldLinkExternally } from '../utils/url'
 import type { One } from '../vite/types'
@@ -383,12 +383,19 @@ export const preloadingLoader: Record<string, Promise<any> | undefined> = {}
 async function doPreload(href: string) {
   const preloadPath = getPreloadPath(href)
   const loaderPath = getLoaderPath(href)
+  const cssPreloadPath = getPreloadCSSPath(href)
   try {
-    const [_preload, loader] = await Promise.all([
+    const [_preload, cssPreloadModule, loader] = await Promise.all([
       dynamicImport(preloadPath),
+      dynamicImport(cssPreloadPath)?.catch(() => null) ?? Promise.resolve(null), // graceful fail if no CSS preload
       dynamicImport(loaderPath),
       preloadRouteModules(href),
     ])
+
+    // Store the CSS inject function for later use on navigation
+    if (cssPreloadModule?.injectCSS) {
+      cssInjectFunctions[href] = cssPreloadModule.injectCSS
+    }
 
     if (!loader?.loader) {
       return null
@@ -405,7 +412,10 @@ async function doPreload(href: string) {
 // Store resolved preload data separately from promises
 export const preloadedLoaderData: Record<string, any> = {}
 
-export function preloadRoute(href: string): Promise<any> | undefined {
+// Store CSS inject functions for calling on navigation
+const cssInjectFunctions: Record<string, (() => Promise<void[]>) | undefined> = {}
+
+export function preloadRoute(href: string, injectCSS = false): Promise<any> | undefined {
   if (process.env.TAMAGUI_TARGET === 'native') {
     return
   }
@@ -420,6 +430,18 @@ export function preloadRoute(href: string): Promise<any> | undefined {
       return data
     })
   }
+
+  if (injectCSS) {
+    // Wait for preload to populate cssInjectFunctions, then inject CSS (max 500ms)
+    return preloadingLoader[href]?.then(async (data) => {
+      const inject = cssInjectFunctions[href]
+      if (inject) {
+        await Promise.race([inject(), new Promise((r) => setTimeout(r, 500))])
+      }
+      return data
+    })
+  }
+
   return preloadingLoader[href]
 }
 
@@ -499,8 +521,7 @@ export async function linkTo(href: string, event?: string, options?: OneRouter.L
 
   setLoadingState('loading')
 
-  // await preload on web to ensure route modules are loaded before navigating
-  await preloadRoute(href)
+  await preloadRoute(href, true)
 
   const rootState = navigationRef.getRootState()
 
