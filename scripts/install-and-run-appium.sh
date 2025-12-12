@@ -25,5 +25,14 @@ if lsof -i :4723 >/dev/null 2>&1; then
 fi
 
 # Start fresh Appium
-npx appium > /tmp/appium.log &
+# Run in subshell so it doesn't hold parent's file descriptors open
+(npx appium > /tmp/appium.log 2>&1 &)
 sleep 3
+
+# Verify Appium started successfully
+if ! lsof -i :4723 >/dev/null 2>&1; then
+    echo "ERROR: Appium failed to start. Log contents:"
+    cat /tmp/appium.log
+    exit 1
+fi
+echo "Appium server running on port 4723"
