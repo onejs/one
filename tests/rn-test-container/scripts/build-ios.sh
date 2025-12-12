@@ -22,13 +22,35 @@ generate_fingerprint() {
 
   # Get "one" package version - must be included since it affects prebuild output
   # @expo/fingerprint won't track workspace packages, so we add this manually
+  #
+  # Smart version detection for release builds:
+  # If the only change to packages/one/package.json is a version bump (release scenario),
+  # use the OLD (committed) version so we can reuse the cache from before the bump.
   local one_version=""
-  one_version=$(cat ../../packages/one/package.json 2>/dev/null | grep '"version"' | head -1 || echo "")
+  local one_pkg="../../packages/one/package.json"
+
+  # Check if package.json has uncommitted changes
+  if git -C ../.. diff --quiet -- packages/one/package.json 2>/dev/null; then
+    # No changes, use current version
+    one_version=$(cat "$one_pkg" 2>/dev/null | grep '"version"' | head -1 || echo "")
+  else
+    # Has changes - check if it's ONLY the version field that changed
+    local diff_lines=$(git -C ../.. diff --no-color -- packages/one/package.json 2>/dev/null | grep "^[+-]" | grep -v "^[+-][+-][+-]" | grep -v '"version"' | wc -l | tr -d ' ')
+    if [ "$diff_lines" = "0" ]; then
+      # Only version changed - use the OLD (committed) version for cache compatibility
+      echo "Detected version-only change, using committed version for cache key" >&2
+      one_version=$(git -C ../.. show HEAD:packages/one/package.json 2>/dev/null | grep '"version"' | head -1 || echo "")
+    else
+      # Other changes too - use current version
+      one_version=$(cat "$one_pkg" 2>/dev/null | grep '"version"' | head -1 || echo "")
+    fi
+  fi
 
   # Use @expo/fingerprint for accurate native dependency detection
   # This properly tracks changes to native modules, Podfile.lock, etc.
+  # The output is JSON with a final "hash" field - we use jq to extract just that one
   local expo_fingerprint=""
-  expo_fingerprint=$(npx --yes @expo/fingerprint fingerprint:generate --platform ios 2>/dev/null | grep -o '"hash":"[^"]*"' | cut -d'"' -f4 || echo "")
+  expo_fingerprint=$(npx --yes @expo/fingerprint fingerprint:generate --platform ios 2>/dev/null | jq -r '.hash' 2>/dev/null || echo "")
 
   if [ -n "$expo_fingerprint" ]; then
     # Combine expo fingerprint with config AND one version for final hash
