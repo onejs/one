@@ -234,13 +234,17 @@ describe('SSG Navigation - Dynamic Route Back to Index', () => {
     const page = await context.newPage()
 
     await page.goto(serverUrl + '/docs/getting-started', { waitUntil: 'networkidle' })
+    await page.waitForSelector('#doc-title', { state: 'visible' })
     expect(await page.textContent('#doc-title')).toContain('Getting Started')
 
     await setupFlickerDetection(page)
 
-    await page.click('a[href="/docs"]')
-    await page.waitForURL(serverUrl + '/docs')
+    // Use ID selector for more reliable targeting, and wait for it to be visible
+    await page.waitForSelector('#nav-to-docs-index', { state: 'visible' })
+    await page.click('#nav-to-docs-index')
+    await page.waitForURL('**/docs', { timeout: 15000 })
     await page.waitForLoadState('networkidle')
+    await page.waitForSelector('#docs-title', { state: 'visible', timeout: 10000 })
 
     const results = await getFlickerResults(page)
     expect(await page.textContent('#docs-title')).toContain('Documentation')
