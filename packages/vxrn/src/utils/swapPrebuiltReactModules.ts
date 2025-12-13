@@ -177,7 +177,12 @@ export async function swapPrebuiltReactModules(
     name: `swap-react-native`,
     enforce: 'pre',
 
-    async resolveId(id) {
+    async resolveId(id, _importer, options) {
+      // Skip during Vite's dependency optimization scan
+      // @see https://github.com/remix-run/remix/discussions/8917
+      // @ts-expect-error - scan is not in Vite's types but exists at runtime
+      if (options?.scan) return
+
       if (!isNativeEnvironment(this.environment)) {
         return
       }

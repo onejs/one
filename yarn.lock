@@ -21975,6 +21975,7 @@ __metadata:
     semver: "npm:^7.6.3"
     vite: "npm:^7.1.12"
     vite-bundle-analyzer: "npm:^1.2.3"
+    vitest: "npm:^4.0.6"
     ws: "npm:^8.18.0"
   bin:
     vxrn: run.mjs
