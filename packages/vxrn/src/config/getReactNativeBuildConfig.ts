@@ -102,7 +102,12 @@ export async function getReactNativeBuildConfig(
          * 1. Filter out API routes in the RN bundle, so that we don't actually need to worry about Node.js built-ins used in the API routes not being externalized and ignored.
          * 2. Make Vite support a new environment type that is not a "server" nor a "client" (browser).
          */
-        async resolveId(id, importer) {
+        async resolveId(id, _importer, options) {
+          // Skip during Vite's dependency optimization scan
+          // @see https://github.com/remix-run/remix/discussions/8917
+          // @ts-expect-error - scan is not in Vite's types but exists at runtime
+          if (options?.scan) return
+
           // Only run this plugin for iOS and Android bundles
           if (this.environment.name !== 'ios' && this.environment.name !== 'android') {
             return

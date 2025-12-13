@@ -106,7 +106,8 @@
     "@types/node": "^24.10.0",
     "@types/qrcode-terminal": "^0",
     "@types/ws": "^8.5.10",
-    "depcheck": "^1.4.7"
+    "depcheck": "^1.4.7",
+    "vitest": "^4.0.6"
   },
   "publishConfig": {
     "access": "public"

@@ -41,6 +41,12 @@ export function getBaseVitePlugins(): PluginOption[] {
 
       // this fix platform extensions if they aren't picked up, but seems it is working with resolve.extensions
       async resolveId(source, importer, options) {
+        // Skip during Vite's dependency optimization scan to avoid interfering with dep discovery
+        // which can cause hard page reloads when new deps are found during navigation
+        // @see https://github.com/remix-run/remix/discussions/8917
+        // @ts-expect-error - scan is not in Vite's types but exists at runtime
+        if (options?.scan) return
+
         // if (process.env.NODE_ENV !== 'development') {
         //   // is this only dev mode problem?
         //   return
