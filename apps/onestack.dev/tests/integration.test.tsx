@@ -16,7 +16,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await browser.close()
-})
+}, 30000)
 
 test('homepage loads with no error logs', async () => {
   const page = await context.newPage()
