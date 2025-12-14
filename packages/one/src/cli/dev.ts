@@ -47,6 +47,14 @@ export async function dev(args: {
     }
   })
 
+  process.on('SIGTERM', () => {
+    try {
+      stop()
+    } finally {
+      process.exit(0)
+    }
+  })
+
   process.on('uncaughtException', (err) => {
     console.error(err?.message || err)
   })
