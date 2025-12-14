@@ -15,6 +15,7 @@ type Section = Item['section']
 export const DocsMenuContents = React.memo(function DocsMenuContents({
   inMenu,
 }: { inMenu?: boolean }) {
+  const { currentPath } = useDocsMenu()
   const activeItems = allItems
   const [items, setItems] = React.useState(activeItems)
 
@@ -25,10 +26,14 @@ export const DocsMenuContents = React.memo(function DocsMenuContents({
     itemsGrouped[key].push(item)
   }
 
+  // Find which section contains the current page
+  const currentSection = allItems.find((item) => item?.page.route === currentPath)
+  const defaultOpenSection = currentSection?.section.title || 'base'
+
   return (
     <>
       <div style={{ width: '100%' }}>
-        <Accordion defaultValue="base" type="single" collapsible>
+        <Accordion defaultValue={defaultOpenSection} type="single" collapsible>
           {Object.keys(itemsGrouped).map((sectionTitle) => {
             const items = itemsGrouped[sectionTitle]
             return (

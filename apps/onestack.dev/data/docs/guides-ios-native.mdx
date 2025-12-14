@@ -45,7 +45,23 @@ Once finished, your iOS project will be available in the `./ios` directory and r
 
 ## Running the App in Development
 
-To run the app, open the `.xcworkspace` file in the `./ios` directory. The filename will vary based on your app's name, but you can generally open it by running this command:
+### Using `one run:ios`
+
+The simplest way to run your app after prebuild is using the CLI:
+
+```bash
+one run:ios
+```
+
+This will build and launch the app on your default iOS simulator. For Android, use `one run:android`.
+
+<Notice theme="blue">
+  Make sure the One dev server is running (`one dev`) before launching the native app so it can connect to the bundler.
+</Notice>
+
+### Using Xcode
+
+Alternatively, you can open the `.xcworkspace` file in the `./ios` directory. The filename will vary based on your app's name, but you can generally open it by running this command:
 
 ```bash
 open ios/*.xcworkspace

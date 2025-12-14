@@ -20,6 +20,24 @@ function getPackageVersion() {
 
 const version = getPackageVersion()
 
+const DOCS_BASE = 'https://onestack.dev/docs'
+
+const docsLinks = {
+  dev: `${DOCS_BASE}/one-dev`,
+  build: `${DOCS_BASE}/one-build`,
+  serve: `${DOCS_BASE}/one-serve`,
+  prebuild: `${DOCS_BASE}/guides-ios-native`,
+  'run:ios': `${DOCS_BASE}/guides-ios-native`,
+  'run:android': `${DOCS_BASE}/guides-ios-native`,
+  clean: `${DOCS_BASE}/configuration`,
+  patch: `${DOCS_BASE}/configuration`,
+  'generate-routes': `${DOCS_BASE}/routing-typed-routes`,
+} as const
+
+function withDocsLink(description: string, command: keyof typeof docsLinks): string {
+  return `${description}\n\nDocs: ${docsLinks[command]}`
+}
+
 if (path.sep !== '/') {
   console.warn(
     colors.bgYellow('WARNING: UNSUPPORTED OS') +
@@ -38,7 +56,7 @@ const dev = defineCommand({
   meta: {
     name: 'dev',
     version: version,
-    description: 'Start the dev server',
+    description: withDocsLink('Start the dev server', 'dev'),
   },
   args: {
     clean: {
@@ -81,7 +99,7 @@ const buildCommand = defineCommand({
   meta: {
     name: 'build',
     version: version,
-    description: 'Build your app',
+    description: withDocsLink('Build your app', 'build'),
   },
   args: {
     step: {
@@ -129,7 +147,7 @@ const serveCommand = defineCommand({
   meta: {
     name: 'serve',
     version: version,
-    description: 'Serve a built app for production',
+    description: withDocsLink('Serve a built app for production', 'serve'),
   },
   args: {
     host: {
@@ -160,7 +178,7 @@ const prebuild = defineCommand({
   meta: {
     name: 'prebuild',
     version: version,
-    description: 'Prebuild native project',
+    description: withDocsLink('Prebuild native project', 'prebuild'),
   },
   args: {
     platform: {
@@ -192,6 +210,7 @@ const runIos = defineCommand({
   meta: {
     name: 'run:ios',
     version: version,
+    description: withDocsLink('Run the iOS app', 'run:ios'),
   },
   args: {},
   async run({ args }) {
@@ -204,6 +223,7 @@ const runAndroid = defineCommand({
   meta: {
     name: 'run:android',
     version: version,
+    description: withDocsLink('Run the Android app', 'run:android'),
   },
   args: {},
   async run({ args }) {
@@ -216,7 +236,7 @@ const clean = defineCommand({
   meta: {
     name: 'clean',
     version: '0.0.0',
-    description: 'Clean build folders',
+    description: withDocsLink('Clean build folders', 'clean'),
   },
   args: {},
   async run() {
@@ -231,7 +251,7 @@ const patch = defineCommand({
   meta: {
     name: 'patch',
     version: '0.0.0',
-    description: 'Apply package patches',
+    description: withDocsLink('Apply package patches', 'patch'),
   },
   args: {},
   async run({ args }) {
@@ -244,7 +264,7 @@ const generateRoutes = defineCommand({
   meta: {
     name: 'generate-routes',
     version: version,
-    description: 'Generate route type definitions',
+    description: withDocsLink('Generate route type definitions', 'generate-routes'),
   },
   args: {
     appDir: {
