@@ -43,7 +43,7 @@
     "import-meta-resolve": "^4.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.140.2",
+    "@tamagui/build": "^1.140.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",

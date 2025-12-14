@@ -70,7 +70,7 @@
     "@biomejs/biome": "2.3.3",
     "@expo/metro-config": "^54.0.7",
     "@react-native/dev-middleware": "^0.82.1",
-    "@tamagui/build": "^1.140.2",
+    "@tamagui/build": "^1.140.4",
     "@types/babel__helper-plugin-utils": "^7",
     "@types/node": "^24.10.0",
     "depcheck": "^1.4.7",
