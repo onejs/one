@@ -7868,7 +7868,6 @@ __metadata:
     micromatch: "npm:^4.0.8"
     picocolors: "npm:^1.0.0"
     vite: "npm:^7.1.12"
-    vitest: "npm:^4.0.6"
   peerDependencies:
     "@expo/metro-config": ^54.0.7
     expo: ~54.0.20
