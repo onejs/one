@@ -98,6 +98,10 @@ fi
 
 echo "Building $CONFIGURATION (no cache hit)..."
 
+# Clean up old build directory to avoid UTF-8 plist errors during pod install
+# (React Native's cocoapods script reads all Info.plist files and chokes on binary ones)
+rm -rf "$BUILD_DIR"
+
 # Run prebuild and pod install with precompiled RN dependencies (~8x faster)
 yarn prebuild:native --platform ios
 
