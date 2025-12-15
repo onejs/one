@@ -25,6 +25,7 @@ export { Head } from './head';
 export { useActiveParams, useGlobalSearchParams, useLocalSearchParams, useNavigationContainerRef, useParams, usePathname, useRootNavigationState, useRouter, useSegments, useUnstableGlobalHref, } from './hooks';
 export { href } from './href';
 export { Stack } from './layouts/Stack';
+export type { StackHeaderProps, StackHeaderTitleProps, StackHeaderLeftProps, StackHeaderRightProps, StackHeaderBackButtonProps, StackHeaderSearchBarProps, StackScreenProps, } from './layouts/stack-utils';
 export { Tabs } from './layouts/Tabs';
 export { withLayoutContext } from './layouts/withLayoutContext';
 export { Link } from './link/Link';
