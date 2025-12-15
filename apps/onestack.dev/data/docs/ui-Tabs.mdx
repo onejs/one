@@ -1,0 +1,185 @@
+---
+title: Headless Tabs
+---
+
+A headless tabs system that provides complete control over tab navigation UI while integrating with One's file-based routing.
+
+Unlike the standard `<Tabs />` component which uses `@react-navigation/bottom-tabs` with opinionated styling, these components are completely unstyled - you bring your own design.
+
+## Installation
+
+```tsx
+import { Tabs, TabList, TabTrigger, TabSlot } from 'one/ui'
+```
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| `Tabs` | Root container managing navigation state |
+| `TabList` | Container for tab triggers (the tab bar) |
+| `TabTrigger` | Pressable that switches between tabs |
+| `TabSlot` | Renders the active tab's content |
+
+## Basic Usage
+
+```tsx
+import { Tabs, TabList, TabTrigger, TabSlot } from 'one/ui'
+
+export default function Layout() {
+  return (
+    <Tabs style={{ flex: 1 }}>
+      <TabSlot />
+      <TabList style={styles.tabBar}>
+        <TabTrigger name="home" href="/">
+          <Text>Home</Text>
+        </TabTrigger>
+        <TabTrigger name="profile" href="/profile">
+          <Text>Profile</Text>
+        </TabTrigger>
+      </TabList>
+    </Tabs>
+  )
+}
+```
+
+## Custom Styled Tabs
+
+Use `asChild` to compose with your own button components:
+
+```tsx
+<TabList style={styles.tabBar}>
+  <TabTrigger name="home" href="/" asChild resetOnFocus>
+    <CustomTabButton icon="home">Home</CustomTabButton>
+  </TabTrigger>
+  <TabTrigger name="search" href="/search" asChild>
+    <CustomTabButton icon="search">Search</CustomTabButton>
+  </TabTrigger>
+</TabList>
+```
+
+## Hooks
+
+### useTabsWithChildren()
+
+Hook version of `<Tabs>` for custom wrapper components:
+
+```tsx
+import { useTabsWithChildren } from 'one/ui'
+
+export function MyTabs({ children }) {
+  const { NavigationContent } = useTabsWithChildren({ children })
+  return <NavigationContent />
+}
+```
+
+### useTabsWithTriggers()
+
+For explicit trigger control without parsing children:
+
+```tsx
+import { useTabsWithTriggers } from 'one/ui'
+
+export function MyTabs() {
+  const { NavigationContent } = useTabsWithTriggers({
+    triggers: [
+      { type: 'internal', name: 'home', href: '/' },
+      { type: 'internal', name: 'profile', href: '/profile' },
+    ]
+  })
+  return <NavigationContent />
+}
+```
+
+### useTabSlot()
+
+Returns current tab element for custom slot rendering:
+
+```tsx
+import { useTabSlot } from 'one/ui'
+
+function MyTabSlot() {
+  const slot = useTabSlot()
+  return slot
+}
+```
+
+### useTabTrigger()
+
+Build fully custom tab triggers:
+
+```tsx
+import { useTabTrigger } from 'one/ui'
+
+function CustomTabBar() {
+  const home = useTabTrigger({ name: 'home' })
+  const profile = useTabTrigger({ name: 'profile' })
+
+  return (
+    <View style={styles.bar}>
+      <Pressable {...home.triggerProps}>
+        <Text style={home.trigger?.isFocused && styles.active}>
+          Home
+        </Text>
+      </Pressable>
+      <Pressable {...profile.triggerProps}>
+        <Text style={profile.trigger?.isFocused && styles.active}>
+          Profile
+        </Text>
+      </Pressable>
+    </View>
+  )
+}
+```
+
+## TabTrigger Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `name` | `string` | Route name (required) |
+| `href` | `Href` | Navigation target (required) |
+| `asChild` | `boolean` | Compose with child component |
+| `resetOnFocus` | `boolean` | Reset tab state when focused |
+
+## TabSlot Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `detachInactiveScreens` | `boolean` | Unmount inactive tabs |
+| `renderFn` | `function` | Custom render function |
+
+## When to Use
+
+Use **Headless Tabs** when you need:
+- Complete control over tab bar styling
+- Custom animations or transitions
+- Non-standard tab layouts (side tabs, floating tabs, etc.)
+- Integration with design systems
+
+Use **Standard Tabs** (`import { Tabs } from 'one'`) when you want:
+- Quick setup with React Navigation's bottom tabs
+- Standard iOS/Android tab bar appearance
+- Less code for common use cases
+
+## Comparison
+
+**Standard Tabs:**
+```tsx
+import { Tabs } from 'one'
+
+<Tabs>
+  <Tabs.Screen name="home" options={{ title: 'Home' }} />
+</Tabs>
+```
+
+**Headless Tabs:**
+```tsx
+import { Tabs, TabList, TabTrigger, TabSlot } from 'one/ui'
+
+<Tabs>
+  <TabSlot />
+  <TabList>
+    <TabTrigger name="home" href="/">Home</TabTrigger>
+  </TabList>
+</Tabs>
+```

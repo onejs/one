@@ -1,5 +1,6 @@
 import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
 import { type NativeStackNavigationEventMap, type NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { StackScreen } from './stack-utils';
 export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<import("@react-navigation/native-stack").NativeStackNavigatorProps, "children" | "initialRouteName" | "layout" | "id" | "screenOptions" | "screenListeners" | "screenLayout" | "UNSTABLE_router" | "UNSTABLE_routeNamesChangeBehavior"> & import("@react-navigation/routers").DefaultRouterOptions<string> & {
     children: React.ReactNode;
     layout?: ((props: {
@@ -92,6 +93,15 @@ export declare const Stack: import("react").ForwardRefExoticComponent<Omit<Omit<
     id?: undefined;
 }, "children">> & import("react").RefAttributes<unknown>> & {
     Screen: typeof import("../views/Screen").Screen;
+} & {
+    Screen: typeof StackScreen;
+    Header: typeof import("./stack-utils").StackHeaderComponent & {
+        Left: typeof import("./stack-utils").StackHeaderLeft;
+        Right: typeof import("./stack-utils").StackHeaderRight;
+        BackButton: typeof import("./stack-utils").StackHeaderBackButton;
+        Title: typeof import("./stack-utils").StackHeaderTitle;
+        SearchBar: typeof import("./stack-utils").StackHeaderSearchBar;
+    };
 };
 export default Stack;
 //# sourceMappingURL=Stack.d.ts.map
