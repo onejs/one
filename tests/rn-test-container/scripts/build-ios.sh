@@ -74,7 +74,9 @@ generate_fingerprint() {
 
 FINGERPRINT=$(generate_fingerprint "$CONFIGURATION")
 CACHE_FILE="$CACHE_DIR/rn-test-container-${CONFIGURATION}-${FINGERPRINT}.tar.gz"
-BUILD_DIR="ios/build-${CONFIGURATION}"
+# Use ios/build/${CONFIGURATION} so React Native's pod install script excludes it
+# (RN excludes paths containing "build/" from Info.plist scanning)
+BUILD_DIR="ios/build/${CONFIGURATION}"
 APP_PATH="$BUILD_DIR/Build/Products/${CONFIGURATION}-iphonesimulator/RNTestContainer.app"
 
 echo "Build fingerprint: $FINGERPRINT"
@@ -97,10 +99,6 @@ if [ -f "$CACHE_FILE" ]; then
 fi
 
 echo "Building $CONFIGURATION (no cache hit)..."
-
-# Clean up old build directory to avoid UTF-8 plist errors during pod install
-# (React Native's cocoapods script reads all Info.plist files and chokes on binary ones)
-rm -rf "$BUILD_DIR"
 
 # Run prebuild and pod install with precompiled RN dependencies (~8x faster)
 yarn prebuild:native --platform ios
