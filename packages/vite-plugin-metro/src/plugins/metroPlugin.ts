@@ -2,6 +2,9 @@ import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import type { PluginOption } from 'vite'
 import launchEditor from 'launch-editor'
+import { createDebugger } from '@vxrn/debug'
+
+const { debug } = createDebugger('vite-plugin-metro')
 
 // For Metro and Expo, we only import types here.
 // We use `projectImport` to dynamically import the actual modules
@@ -74,21 +77,28 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
     configureServer(server) {
       const { root: projectRoot } = server.config
 
-      // Track Metro startup separately from Vite
-      const metroStartTime = Date.now()
       let metroReady = false
 
-      // Start Metro in background WITHOUT blocking Vite server startup
-      // All imports and config are done inside metroPromise to avoid blocking
+      // Metro state - initialized after Vite server is listening
       let middleware: Awaited<ReturnType<typeof MetroT.createConnectMiddleware>>['middleware']
       let metroServer: Awaited<ReturnType<typeof MetroT.createConnectMiddleware>>['metroServer']
       let hmrServer: MetroHmrServerT
       let websocketEndpoints: Record<string, ReturnType<typeof createWebsocketServerT>>
       let rnDevtoolsMiddleware: ReturnType<typeof createDevMiddlewareT>['middleware']
 
-      const metroPromise = (async () => {
+      let metroPromise: Promise<void>
+      let metroPromiseResolvers: { resolve: () => void; reject: (err: Error) => void }
+
+      // Create a promise that will be resolved when Metro is ready
+      // This is used by the middleware to wait for Metro on bundle requests
+      metroPromise = new Promise((resolve, reject) => {
+        metroPromiseResolvers = { resolve, reject }
+      })
+
+      const startMetro = async () => {
+        const metroStartTime = Date.now()
         try {
-          // Import Metro modules lazily to avoid blocking Vite startup
+          // Import Metro modules lazily - only after Vite server is listening
           const { default: Metro } = await projectImport<{
             default: typeof MetroT
           }>(projectRoot, 'metro')
@@ -111,61 +121,94 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
             watch: true,
           })
 
-        middleware = metroResult.middleware
-        metroServer = metroResult.metroServer
+          middleware = metroResult.middleware
+          metroServer = metroResult.metroServer
 
-        patchMetroServerWithViteConfigAndMetroPluginOptions(metroServer, server.config, options)
+          patchMetroServerWithViteConfigAndMetroPluginOptions(metroServer, server.config, options)
 
-        hmrServer = new MetroHmrServer(
-          metroServer.getBundler(),
-          metroServer.getCreateModuleId(),
-          config
-        )
+          hmrServer = new MetroHmrServer(
+            metroServer.getBundler(),
+            metroServer.getCreateModuleId(),
+            config
+          )
 
-        const reactNativeDevToolsUrl = `http://${typeof server.config.server.host === 'boolean' ? 'localhost' : server.config.server.host}:${server.config.server.port}`
-        const devMiddleware = createDevMiddleware({
-          projectRoot,
-          serverBaseUrl: reactNativeDevToolsUrl,
-          logger: console,
-        })
+          const reactNativeDevToolsUrl = `http://${typeof server.config.server.host === 'boolean' ? 'localhost' : server.config.server.host}:${server.config.server.port}`
+          const devMiddleware = createDevMiddleware({
+            projectRoot,
+            serverBaseUrl: reactNativeDevToolsUrl,
+            logger: console,
+          })
 
-        rnDevtoolsMiddleware = devMiddleware.middleware
-        websocketEndpoints = {
-          '/hot': createWebsocketServer({
-            websocketServer: hmrServer,
-          }),
-          ...devMiddleware.websocketEndpoints,
-        }
+          rnDevtoolsMiddleware = devMiddleware.middleware
+          websocketEndpoints = {
+            '/hot': createWebsocketServer({
+              websocketServer: hmrServer,
+            }),
+            ...devMiddleware.websocketEndpoints,
+          }
+
+          // Setup websocket handling
+          server.httpServer?.on('upgrade', (request, socket, head) => {
+            const pathname = new URL(request.url!, `http://${request.headers.host}`).pathname
+
+            if (websocketEndpoints[pathname]) {
+              websocketEndpoints[pathname].handleUpgrade(request, socket, head, (ws) => {
+                websocketEndpoints[pathname].emit('connection', ws, request)
+              })
+            }
+          })
+
+          // Insert devtools middleware
+          server.middlewares.use(rnDevtoolsMiddleware)
 
           metroReady = true
           const metroElapsed = Date.now() - metroStartTime
-          console.info(`[metro] Metro bundler ready (${metroElapsed}ms)`)
+          debug?.(`Metro bundler ready (${metroElapsed}ms)`)
+          metroPromiseResolvers.resolve()
         } catch (err) {
-          console.error('[metro] Error during Metro initialization:', err)
+          debug?.(`Error during Metro initialization: ${err}`)
+          metroPromiseResolvers.reject(err as Error)
           throw err
         }
-      })()
+      }
 
-      // Don't await - let Metro initialize in parallel
-      metroPromise.catch((err) => {
-        console.error('[metro] Failed to start Metro:', err)
-      })
-
-      // Setup websocket handling after Metro is ready
-      metroPromise.then(() => {
-        server.httpServer?.on('upgrade', (request, socket, head) => {
-          const pathname = new URL(request.url!, `http://${request.headers.host}`).pathname
-
-          if (websocketEndpoints[pathname]) {
-            websocketEndpoints[pathname].handleUpgrade(request, socket, head, (ws) => {
-              websocketEndpoints[pathname].emit('connection', ws, request)
+      // Wait for Vite server to be listening before starting Metro
+      // This ensures Metro logs appear AFTER Vite's server URLs
+      if (server.httpServer) {
+        if (server.httpServer.listening) {
+          // Server is already listening (unlikely but handle it)
+          startMetro().catch((err) => {
+            debug?.(`Failed to start Metro: ${err}`)
+          })
+        } else {
+          server.httpServer.on('listening', () => {
+            startMetro().catch((err) => {
+              debug?.(`Failed to start Metro: ${err}`)
             })
+          })
+        }
+      } else {
+        // No httpServer yet, wait for it via a small delay and retry
+        // This shouldn't normally happen but is a safety fallback
+        const waitForServer = () => {
+          if (server.httpServer) {
+            if (server.httpServer.listening) {
+              startMetro().catch((err) => {
+                debug?.(`Failed to start Metro: ${err}`)
+              })
+            } else {
+              server.httpServer.on('listening', () => {
+                startMetro().catch((err) => {
+                  debug?.(`Failed to start Metro: ${err}`)
+                })
+              })
+            }
+          } else {
+            setTimeout(waitForServer, 10)
           }
-        })
-
-        // Insert devtools middleware after Metro is ready
-        server.middlewares.use(rnDevtoolsMiddleware)
-      })
+        }
+        waitForServer()
+      }
 
       server.middlewares.use(async (req, res, next) => {
         // Wait for Metro if it's a bundle request and Metro isn't ready yet
@@ -181,7 +224,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
               const VITE_METRO_DEBUG_BUNDLE = process.env.VITE_METRO_DEBUG_BUNDLE
               if (VITE_METRO_DEBUG_BUNDLE) {
                 if (existsSync(VITE_METRO_DEBUG_BUNDLE)) {
-                  console.info(`  !!! - serving debug bundle from`, VITE_METRO_DEBUG_BUNDLE)
+                  debug?.(`serving debug bundle from ${VITE_METRO_DEBUG_BUNDLE}`)
                   const content = await readFile(VITE_METRO_DEBUG_BUNDLE, 'utf-8')
                   res.setHeader('Content-Type', 'application/javascript')
                   res.end(content)
@@ -221,7 +264,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
                   res.statusCode = 200
                   res.end('Stack frame opened in editor')
                 } catch (e) {
-                  console.error('Failed to parse stack frame:', e)
+                  debug?.(`Failed to parse stack frame: ${e}`)
                   res.statusCode = 400
                   return res.end('Invalid stack frame JSON')
                 }
@@ -233,8 +276,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
             // this is the actual Metro middleware that handles bundle requests
             await (middleware as any)(req, res, next)
           } catch (error) {
-            // TODO: handle errors from Metro middleware?
-            console.error('Metro middleware error:', error)
+            debug?.(`Metro middleware error: ${error}`)
             next()
           }
         } else {
