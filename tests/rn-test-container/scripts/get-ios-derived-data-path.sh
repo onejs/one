@@ -10,4 +10,4 @@ fi
 
 cd "$(dirname "$0")/.."
 
-echo "$(pwd)/ios/build-${CONFIGURATION}"
+echo "$(pwd)/ios/build/${CONFIGURATION}"
