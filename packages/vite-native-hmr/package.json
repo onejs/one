@@ -38,7 +38,7 @@
     "pretty-format": "^28.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.140.4",
+    "@tamagui/build": "^1.141.0",
     "react-native": "0.81.5"
   },
   "peerDependencies": {
