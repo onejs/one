@@ -222,6 +222,48 @@ This mode is likely the least useful, as it means that you must make a full trip
 
 You can apply server-level redirects. One serves your app with Hono in production, and so the redirect pattern is simple: your `source` will be passed to `Hono.app.get(source)`. Any matching path segments that start with `:` will be replaced into the matching segments in `destination`. And the redirect will send a response type of `301` if permanent is true, otherwise it will be `302`.
 
+### web.sitemap
+
+Generate a `sitemap.xml` file automatically during build. This helps search engines discover and index your pages.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      web: {
+        // Simple: just enable it
+        sitemap: true,
+
+        // Or configure it
+        sitemap: {
+          // Base URL for sitemap entries (defaults to ONE_SERVER_URL env var)
+          baseUrl: 'https://example.com',
+
+          // Default priority for all routes (0.0 to 1.0)
+          priority: 0.7,
+
+          // Default change frequency
+          changefreq: 'weekly',
+
+          // Glob patterns for routes to exclude
+          exclude: ['/admin/*', '/internal/*'],
+        },
+      },
+    }),
+  ],
+}
+```
+
+The sitemap automatically:
+
+- Includes all page routes (SSG, SPA, SSR)
+- Expands dynamic routes using their `generateStaticParams` output
+- Excludes API routes and not-found pages
+
+**Route-level overrides:** Routes can export a `sitemap` object to customize their entry. See [Routing Exports](/docs/routing-exports#sitemap) for details.
+
+**Base URL:** If `baseUrl` isn't specified, One uses the `ONE_SERVER_URL` environment variable. If neither is set, paths are relative.
+
 ## react
 
 ### compiler: boolean
