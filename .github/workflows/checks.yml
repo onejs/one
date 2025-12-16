@@ -21,6 +21,9 @@ jobs:
         # with:
         #  workspace-focus: ${{ env.test_app_package_name }}
 
+      - name: Security Audit
+        run: yarn npm audit --severity high
+
       - name: Check
         run: yarn check
 
