@@ -16,7 +16,7 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "playwright": "^1.49.1",
+    "playwright": "^1.57.0",
     "typescript": "^5.7.3",
     "vite": "^7.1.12",
     "vitest": "^4.0.6"
