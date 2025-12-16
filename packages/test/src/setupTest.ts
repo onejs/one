@@ -158,7 +158,7 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
               })
             ) as typeof process.env),
           },
-          detached: true,
+          // Note: removed detached: true to prevent orphan processes when parent is killed
           stdio: 'inherit',
         }
       )
@@ -178,7 +178,7 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
             ...process.env,
             ONE_SERVER_URL: `http://localhost:${prodPort}`,
           },
-          detached: true,
+          // Note: removed detached: true to prevent orphan processes when parent is killed
           stdio: 'inherit',
         }
       )

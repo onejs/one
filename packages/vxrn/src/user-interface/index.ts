@@ -8,6 +8,9 @@ type Context = {
   server: ViteDevServer
 }
 
+let stdinDataListener: ((key: string) => void) | null = null
+let stdinWasRaw = false
+
 type Command = {
   keys: string
   label: string
@@ -153,10 +156,46 @@ function startInterceptingKeyStrokes(context: Context) {
     console.warn('Using a non-interactive terminal, keyboard commands are disabled.')
     return
   }
+  stdinWasRaw = stdin.isRaw ?? false
   stdin.setRawMode(true)
   stdin.resume()
   stdin.setEncoding('utf8')
-  stdin.on('data', handleKeypress.bind(null, context))
+  stdinDataListener = handleKeypress.bind(null, context)
+  stdin.on('data', stdinDataListener)
+}
+
+/**
+ * Cleanup stdin listeners and restore raw mode.
+ * Must be called before process exit to prevent hanging.
+ */
+export function cleanupUserInterface() {
+  const { stdin } = process
+
+  if (stdinDataListener) {
+    stdin.off('data', stdinDataListener)
+    stdinDataListener = null
+  }
+
+  if (stdin.setRawMode) {
+    try {
+      stdin.setRawMode(stdinWasRaw)
+    } catch {
+      // stdin may already be closed
+    }
+  }
+
+  // Clear any pending timers
+  if (clearPressedKeysTimer) {
+    clearTimeout(clearPressedKeysTimer)
+    clearPressedKeysTimer = null
+  }
+
+  // Unref stdin so it doesn't keep the process alive
+  try {
+    stdin.unref()
+  } catch {
+    // ignore
+  }
 }
 
 let pressedKeys = ''
