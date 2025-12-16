@@ -469,7 +469,7 @@ export async function build(args: {
     }
 
     // Get route-level sitemap export if present
-    const routeSitemapExport = exported.sitemap as One.RouteSitemapExport | undefined
+    const routeSitemapExport = exported.sitemap as One.RouteSitemap | undefined
 
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params, foundRoute.type === 'ssg')
