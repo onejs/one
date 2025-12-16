@@ -25,6 +25,7 @@ import { runWithAsyncLocalContext } from '../vite/one-server-only'
 import type { One, RouteInfo } from '../vite/types'
 import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
+import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 import { labelProcess } from './label-process'
 
 const { ensureDir, writeJSON } = FSExtra
@@ -219,6 +220,7 @@ export async function build(args: {
   const assets: OutputAsset[] = []
 
   const builtRoutes: One.RouteBuildInfo[] = []
+  const sitemapData: RouteSitemapData[] = []
 
   console.info(`\n 🔨 build static routes\n`)
 
@@ -466,6 +468,9 @@ export async function build(args: {
       console.info(`paramsList`, JSON.stringify(paramsList, null, 2))
     }
 
+    // Get route-level sitemap export if present
+    const routeSitemapExport = exported.sitemap as One.RouteSitemapExport | undefined
+
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params, foundRoute.type === 'ssg')
       console.info(`  ↦ route ${path}`)
@@ -490,6 +495,20 @@ export async function build(args: {
       })
 
       builtRoutes.push(built)
+
+      // Collect sitemap data for page routes (exclude API, not-found, layouts)
+      if (
+        foundRoute.type !== 'api' &&
+        foundRoute.type !== 'layout' &&
+        !foundRoute.isNotFound &&
+        !foundRoute.page.includes('+not-found') &&
+        !foundRoute.page.includes('_sitemap')
+      ) {
+        sitemapData.push({
+          path,
+          routeExport: routeSitemapExport,
+        })
+      }
     }
   }
 
@@ -561,6 +580,18 @@ export async function build(args: {
   }
 
   await writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
+
+  // Generate sitemap.xml if enabled
+  const sitemapConfig = oneOptions.web?.sitemap
+  if (sitemapConfig) {
+    const sitemapOptions: One.SitemapOptions =
+      typeof sitemapConfig === 'boolean' ? {} : sitemapConfig
+
+    const sitemapXml = generateSitemap(sitemapData, sitemapOptions)
+    const sitemapPath = join(clientDir, 'sitemap.xml')
+    await FSExtra.writeFile(sitemapPath, sitemapXml)
+    console.info(`\n 📄 generated sitemap.xml (${sitemapData.length} URLs)\n`)
+  }
 
   let postBuildLogs: string[] = []
 

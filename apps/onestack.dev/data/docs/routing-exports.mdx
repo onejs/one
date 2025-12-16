@@ -5,7 +5,8 @@ title: Routing Exports
 This page catalogs all the special exports One supports from route files.
 
 <Notice>
-  Note that `_layout` routes are special and do not support these exports unless specified.
+  Note that `_layout` routes are special and do not support these exports unless
+  specified.
 </Notice>
 
 ### generateStaticParams
@@ -20,7 +21,7 @@ You'll need to return an array of objects, where the object keys match the name 
 export async function generateStaticParams() {
   const blogPosts = await getAllBlogPosts()
 
-  return blogPosts.map(post => {
+  return blogPosts.map((post) => {
     return {
       month: post.month,
       year: post.year,
@@ -33,13 +34,50 @@ export async function generateStaticParams() {
 If this function returned this:
 
 ```tsx
-[
+;[
   {
     month: 10,
     year: 2025,
-    slug: 'some-slug'
-  }
+    slug: 'some-slug',
+  },
 ]
 ```
 
 Then you'd generate one page at `/blog/10/2025/some-slug`.
+
+### sitemap
+
+Control how a route appears in the generated `sitemap.xml`. This export is only used when `web.sitemap` is enabled in your config.
+
+```tsx fileName=app/blog/[slug].tsx
+// Customize sitemap entry for this route
+export const sitemap = {
+  // Priority (0.0 to 1.0) - higher means more important
+  priority: 0.8,
+
+  // How often the content changes
+  changefreq: 'daily',
+
+  // Last modification date (optional)
+  lastmod: '2024-12-15',
+}
+```
+
+You can also exclude a route from the sitemap entirely:
+
+```tsx fileName=app/admin/dashboard.tsx
+export const sitemap = {
+  exclude: true,
+}
+```
+
+**Available options:**
+
+| Option       | Type             | Description                                                                               |
+| ------------ | ---------------- | ----------------------------------------------------------------------------------------- |
+| `priority`   | `number`         | Value from 0.0 to 1.0 indicating relative importance                                      |
+| `changefreq` | `string`         | One of: `'always'`, `'hourly'`, `'daily'`, `'weekly'`, `'monthly'`, `'yearly'`, `'never'` |
+| `lastmod`    | `string \| Date` | Last modification date for this route                                                     |
+| `exclude`    | `boolean`        | Set to `true` to exclude this route from the sitemap                                      |
+
+Route-level exports override the defaults set in your [config](/docs/configuration#websitemap).

@@ -342,6 +342,30 @@ export namespace One {
        * @default false
        */
       inlineLayoutCSS?: boolean
+
+      /**
+       * Generate a sitemap.xml file during build.
+       *
+       * Set to `true` for default behavior, or pass an object to configure:
+       *
+       * @example
+       * sitemap: true
+       *
+       * @example
+       * sitemap: {
+       *   baseUrl: 'https://example.com',  // defaults to ONE_SERVER_URL env var
+       *   priority: 0.7,                    // default priority for all routes
+       *   changefreq: 'weekly',             // default changefreq for all routes
+       *   exclude: ['/admin/*', '/api/*'],  // glob patterns to exclude
+       * }
+       *
+       * Routes can also export sitemap metadata:
+       * ```ts
+       * export const sitemap = { priority: 0.9, changefreq: 'daily' }
+       * // or exclude: export const sitemap = { exclude: true }
+       * ```
+       */
+      sitemap?: boolean | SitemapOptions
     }
 
     server?: VXRNOptions['server']
@@ -441,5 +465,54 @@ export namespace One {
   export type Flags = {
     /** See PluginOptions.router.experimental.PreventLayoutRemounting */
     experimentalPreventLayoutRemounting?: boolean
+  }
+
+  export type SitemapChangefreq =
+    | 'always'
+    | 'hourly'
+    | 'daily'
+    | 'weekly'
+    | 'monthly'
+    | 'yearly'
+    | 'never'
+
+  export type SitemapOptions = {
+    /**
+     * Base URL for the sitemap. Defaults to ONE_SERVER_URL environment variable.
+     */
+    baseUrl?: string
+    /**
+     * Default priority for all routes (0.0 to 1.0).
+     * @default 0.5
+     */
+    priority?: number
+    /**
+     * Default change frequency for all routes.
+     */
+    changefreq?: SitemapChangefreq
+    /**
+     * Glob patterns for routes to exclude from the sitemap.
+     * API routes and not-found routes are always excluded.
+     */
+    exclude?: string[]
+  }
+
+  export type RouteSitemapExport = {
+    /**
+     * Priority for this route (0.0 to 1.0).
+     */
+    priority?: number
+    /**
+     * Change frequency for this route.
+     */
+    changefreq?: SitemapChangefreq
+    /**
+     * Last modification date for this route.
+     */
+    lastmod?: string | Date
+    /**
+     * Exclude this route from the sitemap.
+     */
+    exclude?: boolean
   }
 }
