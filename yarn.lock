@@ -20562,6 +20562,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"test-env@workspace:tests/test-env":
+  version: 0.0.0-use.local
+  resolution: "test-env@workspace:tests/test-env"
+  dependencies:
+    one: "workspace:*"
+    react: "npm:19.1.0"
+    react-dom: "npm:19.1.0"
+    typescript: "npm:^5.7.3"
+    vite: "npm:^7.1.12"
+  languageName: unknown
+  linkType: soft
+
 "test-exclude@npm:^6.0.0":
   version: 6.0.0
   resolution: "test-exclude@npm:6.0.0"

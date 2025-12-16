@@ -1,0 +1,20 @@
+{
+  "name": "test-env",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "one dev",
+    "build": "one build",
+    "serve": "one serve"
+  },
+  "dependencies": {
+    "one": "workspace:*",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "vite": "^7.1.12"
+  }
+}
