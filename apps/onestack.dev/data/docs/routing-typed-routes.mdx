@@ -166,3 +166,13 @@ export const loader = route.createLoader(({ params }) => {
 4. TypeScript provides autocomplete and type checking
 
 The `RouteType` helper looks up the generated types from `routes.d.ts` and provides dot-notation access to `Params` and `LoaderProps`.
+
+## Environment Variables
+
+One also provides TypeScript types for [preset environment variables](/docs/environment#preset-environment-variables). Add this to any `.d.ts` file in your project:
+
+```ts
+/// <reference types="one/env" />
+```
+
+This gives you typed access to `import.meta.env.VITE_PLATFORM`, `process.env.VITE_ENVIRONMENT`, and other One environment variables.

@@ -78,6 +78,9 @@
     "./metro-entry": {
       "require": "./metro-entry.js",
       "import": "./metro-entry.js"
+    },
+    "./env": {
+      "types": "./types/env.d.ts"
     }
   },
   "main": "dist/cjs",
