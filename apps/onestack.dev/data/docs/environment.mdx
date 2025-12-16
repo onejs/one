@@ -20,10 +20,34 @@ But, `SOME_RANDOM_VAR=2` would *not* be exposed to the client side, because it l
 
 One also sets some environment variables for you, available on both `process.env` and `import.meta.env`.
 
-- `ONE_CACHE_KEY` is set to a random number for each production build, or once for each development server run. You can use this to have a stable cache key across releases.
-- `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"server"` for server-side web, and `"ios`" or `"android"` for native platforms, respectively.
+#### Core Variables
+
+- `ONE_CACHE_KEY` is set to a random number for each production build, or stable per dev server run. Useful for cache keys.
+- `ONE_APP_NAME` is set to your [app.key setting](/docs/configuration#app-key).
 - `ONE_SERVER_URL` is set in development mode to the current running server URL, like `http://0.0.0.0:8081`. You are expected to set this yourself for production builds.
-- `ONE_DEFAULT_RENDER_MODE` is set to either `"ssr"`, `"ssg"`, or `"spa"` based on your [defaultRenderMode setting](/docs/configuration#web-defaultRenderMode)
-- `ONE_APP_NAME` is set to your [app.key setting](/docs/configuration#app-key)
-- `TAMAGUI_REACT_19` is set to `1`, which turns on Tamagui React 19 mode automatically for you, for performance if using Tamagui.
+- `ONE_DEFAULT_RENDER_MODE` is set to either `"ssr"`, `"ssg"`, or `"spa"` based on your [defaultRenderMode setting](/docs/configuration#web-defaultRenderMode).
+
+#### Platform Detection
+
+- `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"ssr"` for server-side web, or `"ios"` / `"android"` for native platforms.
+- `VITE_PLATFORM` is set to `"web"` for web builds (both client and SSR), or `"native"` for native platforms (iOS and Android). Useful for branching on web vs native without checking multiple OS values.
 - `EXPO_OS` is set to `"web"` for web builds (both client and SSR), or `"ios"` / `"android"` for native platforms. This matches the Expo convention for platform detection.
+
+#### React Native
+
+Available in native builds:
+
+- `REACT_NATIVE_VERSION` contains the React Native version string.
+- `REACT_NATIVE_PLATFORM` is set to `"ios"` or `"android"` in native builds.
+
+### TypeScript Types
+
+One provides TypeScript types for all preset environment variables. To enable them, add a triple-slash reference to your project:
+
+```ts
+/// <reference types="one/env" />
+```
+
+You can add this to any `.d.ts` file in your project (such as `env.d.ts` or `vite-env.d.ts`), or include it in a file that's part of your TypeScript compilation.
+
+This gives you autocomplete and type checking for `import.meta.env.VITE_ENVIRONMENT`, `process.env.VITE_PLATFORM`, and all other One environment variables.

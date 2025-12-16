@@ -354,9 +354,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           },
 
           environments: {
+            // we define client vars not in environment.client because there must be a bug in vite
+            // it doesnt define the import.meta.env at all if you do that
             // client: {
             //   define: {
-
             //   },
             // },
 
