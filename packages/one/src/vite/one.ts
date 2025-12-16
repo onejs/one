@@ -350,6 +350,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 'process.env.TAMAGUI_ENVIRONMENT': '"client"',
                 'import.meta.env.VITE_ENVIRONMENT': '"client"',
                 'process.env.EXPO_OS': '"web"',
+                'import.meta.env.EXPO_OS': '"web"',
               },
             },
 
@@ -359,6 +360,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 'process.env.TAMAGUI_ENVIRONMENT': '"ssr"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
                 'process.env.EXPO_OS': '"web"',
+                'import.meta.env.EXPO_OS': '"web"',
               },
             },
 
@@ -368,6 +370,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 'process.env.TAMAGUI_ENVIRONMENT': '"ios"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ios"',
                 'process.env.EXPO_OS': '"ios"',
+                'import.meta.env.EXPO_OS': '"ios"',
               },
             },
 
@@ -377,6 +380,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 'process.env.TAMAGUI_ENVIRONMENT': '"android"',
                 'import.meta.env.VITE_ENVIRONMENT': '"android"',
                 'process.env.EXPO_OS': '"android"',
+                'import.meta.env.EXPO_OS': '"android"',
               },
             },
           },
