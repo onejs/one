@@ -25,7 +25,7 @@ const ASYNC_LOCAL_STORE = {
 }
 
 export const requestAsyncLocalStore =
-  process.env.VITE_ENVIRONMENT === 'ssr' ? ASYNC_LOCAL_STORE.current : null
+  typeof window === 'undefined' ? ASYNC_LOCAL_STORE.current : null
 
 const newCache = new WeakMap<any, Headers>()
 
@@ -82,7 +82,7 @@ export type MaybeServerContext = null | One.ServerContext
 const serverContexts = new WeakMap<any, One.ServerContext>()
 
 export function setServerContext(data: One.ServerContext) {
-  if (process.env.VITE_ENVIRONMENT === 'ssr') {
+  if (typeof window === 'undefined') {
     const id = ensureAsyncLocalID()
     if (!serverContexts.has(id)) {
       serverContexts.set(id, {})
@@ -97,7 +97,7 @@ export function setServerContext(data: One.ServerContext) {
 
 export function getServerContext() {
   const out = (() => {
-    if (process.env.VITE_ENVIRONMENT === 'ssr') {
+    if (typeof window === 'undefined') {
       const id = ensureAsyncLocalID()
       return serverContexts.get(id)
     }
@@ -108,7 +108,7 @@ export function getServerContext() {
 }
 
 export function useServerContext() {
-  if (process.env.VITE_ENVIRONMENT === 'ssr') {
+  if (typeof window === 'undefined') {
     try {
       const useContext = globalThis['__vxrnGetContextFromReactContext']
       if (useContext) {
@@ -132,7 +132,7 @@ export function setServerData<Key extends keyof One.ClientData>(
   key: Key,
   value: One.ClientData[Key]
 ) {
-  if (process.env.VITE_ENVIRONMENT === 'ssr') {
+  if (typeof window === 'undefined') {
     const context = getServerContext()
     setServerContext({
       postRenderData: {
@@ -149,7 +149,7 @@ export function setServerData<Key extends keyof One.ClientData>(
  * For getting data set by setServerData on the server.
  */
 export function getServerData(key: keyof One.ClientData) {
-  if (process.env.VITE_ENVIRONMENT === 'ssr') {
+  if (typeof window === 'undefined') {
     throw new Error(`Cannot getServerData on the server`)
   }
   if (process.env.VITE_ENVIRONMENT !== 'ssr') {

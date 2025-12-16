@@ -284,6 +284,16 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         return {
           define: {
+            // we define this not in environment.client because there must be a bug in vite
+            // it doesnt define the import.meta.env at all if you do that
+            'process.env.TAMAGUI_ENVIRONMENT': '"client"',
+            'process.env.VITE_ENVIRONMENT': '"client"',
+            'import.meta.env.VITE_ENVIRONMENT': '"client"',
+            'process.env.VITE_PLATFORM': '"web"',
+            'import.meta.env.VITE_PLATFORM': '"web"',
+            'process.env.EXPO_OS': '"web"',
+            'import.meta.env.EXPO_OS': '"web"',
+
             ...(options.web?.defaultRenderMode && {
               'process.env.ONE_DEFAULT_RENDER_MODE': JSON.stringify(options.web.defaultRenderMode),
               'import.meta.env.ONE_DEFAULT_RENDER_MODE': JSON.stringify(
@@ -344,21 +354,19 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           },
 
           environments: {
-            client: {
-              define: {
-                'process.env.VITE_ENVIRONMENT': '"client"',
-                'process.env.TAMAGUI_ENVIRONMENT': '"client"',
-                'import.meta.env.VITE_ENVIRONMENT': '"client"',
-                'process.env.EXPO_OS': '"web"',
-                'import.meta.env.EXPO_OS': '"web"',
-              },
-            },
+            // client: {
+            //   define: {
+
+            //   },
+            // },
 
             ssr: {
               define: {
-                'process.env.VITE_ENVIRONMENT': '"ssr"', // Note that we are also setting `process.env.VITE_ENVIRONMENT = 'ssr'` for this current process. See `setServerGlobals()` and `setupServerGlobals.ts`.
                 'process.env.TAMAGUI_ENVIRONMENT': '"ssr"',
+                'process.env.VITE_ENVIRONMENT': '"ssr"', // Note that we are also setting `process.env.VITE_ENVIRONMENT = 'ssr'` for this current process. See `setServerGlobals()` and `setupServerGlobals.ts`.
                 'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
+                'process.env.VITE_PLATFORM': '"web"',
+                'import.meta.env.VITE_PLATFORM': '"web"',
                 'process.env.EXPO_OS': '"web"',
                 'import.meta.env.EXPO_OS': '"web"',
               },
@@ -366,9 +374,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
             ios: {
               define: {
-                'process.env.VITE_ENVIRONMENT': '"ios"',
                 'process.env.TAMAGUI_ENVIRONMENT': '"ios"',
+                'process.env.VITE_ENVIRONMENT': '"ios"',
                 'import.meta.env.VITE_ENVIRONMENT': '"ios"',
+                'process.env.VITE_PLATFORM': '"native"',
+                'import.meta.env.VITE_PLATFORM': '"native"',
                 'process.env.EXPO_OS': '"ios"',
                 'import.meta.env.EXPO_OS': '"ios"',
               },
@@ -376,9 +386,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
             android: {
               define: {
-                'process.env.VITE_ENVIRONMENT': '"android"',
                 'process.env.TAMAGUI_ENVIRONMENT': '"android"',
+                'process.env.VITE_ENVIRONMENT': '"android"',
                 'import.meta.env.VITE_ENVIRONMENT': '"android"',
+                'process.env.VITE_PLATFORM': '"native"',
+                'import.meta.env.VITE_PLATFORM': '"native"',
                 'process.env.EXPO_OS': '"android"',
                 'import.meta.env.EXPO_OS': '"android"',
               },
