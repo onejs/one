@@ -7,7 +7,7 @@ export type SitemapEntry = {
 };
 export type RouteSitemapData = {
     path: string;
-    routeExport?: One.RouteSitemapExport;
+    routeExport?: One.RouteSitemap;
 };
 export declare function generateSitemap(routes: RouteSitemapData[], options: One.SitemapOptions): string;
 //# sourceMappingURL=generateSitemap.d.ts.map

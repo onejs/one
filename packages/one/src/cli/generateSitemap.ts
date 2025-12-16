@@ -10,7 +10,7 @@ export type SitemapEntry = {
 
 export type RouteSitemapData = {
   path: string
-  routeExport?: One.RouteSitemapExport
+  routeExport?: One.RouteSitemap
 }
 
 export function generateSitemap(routes: RouteSitemapData[], options: One.SitemapOptions): string {

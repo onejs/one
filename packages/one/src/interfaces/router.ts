@@ -429,4 +429,32 @@ export namespace OneRouter {
 // TEMP
 export namespace One {
   export type Route<Path> = OneRouter.Route<Path>
+
+  export type SitemapChangefreq =
+    | 'always'
+    | 'hourly'
+    | 'daily'
+    | 'weekly'
+    | 'monthly'
+    | 'yearly'
+    | 'never'
+
+  export type RouteSitemap = {
+    /**
+     * Priority for this route (0.0 to 1.0).
+     */
+    priority?: number
+    /**
+     * Change frequency for this route.
+     */
+    changefreq?: SitemapChangefreq
+    /**
+     * Last modification date for this route.
+     */
+    lastmod?: string | Date
+    /**
+     * Exclude this route from the sitemap.
+     */
+    exclude?: boolean
+  }
 }

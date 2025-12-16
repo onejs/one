@@ -3,6 +3,7 @@ import type { metroPlugin } from '@vxrn/vite-plugin-metro';
 import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths';
 import type { AutoDepOptimizationOptions, DepOptimize, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { RouteNode } from '../router/Route';
+import type { One as OneShared } from '../interfaces/router';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type RouteInfo<TRegex = string> = {
     file: string;
@@ -408,7 +409,8 @@ export declare namespace One {
         /** See PluginOptions.router.experimental.PreventLayoutRemounting */
         experimentalPreventLayoutRemounting?: boolean;
     };
-    export type SitemapChangefreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+    export type SitemapChangefreq = OneShared.SitemapChangefreq;
+    export type RouteSitemap = OneShared.RouteSitemap;
     export type SitemapOptions = {
         /**
          * Base URL for the sitemap. Defaults to ONE_SERVER_URL environment variable.
@@ -428,24 +430,6 @@ export declare namespace One {
          * API routes and not-found routes are always excluded.
          */
         exclude?: string[];
-    };
-    export type RouteSitemapExport = {
-        /**
-         * Priority for this route (0.0 to 1.0).
-         */
-        priority?: number;
-        /**
-         * Change frequency for this route.
-         */
-        changefreq?: SitemapChangefreq;
-        /**
-         * Last modification date for this route.
-         */
-        lastmod?: string | Date;
-        /**
-         * Exclude this route from the sitemap.
-         */
-        exclude?: boolean;
     };
     export {};
 }
