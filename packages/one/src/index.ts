@@ -52,15 +52,6 @@ export {
 export { href } from './href'
 // components
 export { Stack } from './layouts/Stack'
-export type {
-  StackHeaderProps,
-  StackHeaderTitleProps,
-  StackHeaderLeftProps,
-  StackHeaderRightProps,
-  StackHeaderBackButtonProps,
-  StackHeaderSearchBarProps,
-  StackScreenProps,
-} from './layouts/stack-utils'
 export { Tabs } from './layouts/Tabs'
 // utilities
 export { withLayoutContext } from './layouts/withLayoutContext'
