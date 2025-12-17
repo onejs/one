@@ -7,6 +7,7 @@ import { resolveHref } from '../link/href'
 import { sortRoutesWithInitial } from '../router/sortRoutes'
 import type { OneRouter } from '../interfaces/router'
 import { Slot } from './Slot'
+import { Screen, createGetIdForRoute, getQualifiedRouteComponent } from '../router/useScreens'
 
 export const ViewSlot = Slot
 
@@ -190,10 +191,6 @@ export function triggersToScreens(
   const children: React.JSX.Element[] = []
   const triggerMap: TriggerMap = { ...parentTriggerMap }
 
-  // Import routeToScreen from One's useScreens
-  const { Screen } = require('../router/useScreens')
-  const { createGetIdForRoute } = require('../router/useScreens')
-
   for (const [index, config] of sortedConfigs.entries()) {
     triggerMap[config.name] = { ...config, index }
 
@@ -219,10 +216,7 @@ export function triggersToScreens(
 
             return output
           }}
-          getComponent={() => {
-            const { getQualifiedRouteComponent } = require('../router/useScreens')
-            return getQualifiedRouteComponent(route)
-          }}
+          getComponent={() => getQualifiedRouteComponent(route)}
         />
       )
     }
