@@ -2824,16 +2824,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/core@npm:^1.0.0":
-  version: 1.6.9
-  resolution: "@floating-ui/core@npm:1.6.9"
-  dependencies:
-    "@floating-ui/utils": "npm:^0.2.9"
-  checksum: 10/656fcd383da17fffca2efa0635cbe3c0b835c3312949e30bd19d05bf42479f2ac22aaf336a6a31cb160621fc6f35cfc9e115e76c5cf48ba96e33474d123ced22
-  languageName: node
-  linkType: hard
-
-"@floating-ui/core@npm:^1.7.3":
+"@floating-ui/core@npm:^1.0.0, @floating-ui/core@npm:^1.7.3":
   version: 1.7.3
   resolution: "@floating-ui/core@npm:1.7.3"
   dependencies:
@@ -2894,13 +2885,6 @@ __metadata:
   version: 0.2.10
   resolution: "@floating-ui/utils@npm:0.2.10"
   checksum: 10/b635ea865a8be2484b608b7157f5abf9ed439f351011a74b7e988439e2898199a9a8b790f52291e05bdcf119088160dc782d98cff45cc98c5a271bc6f51327ae
-  languageName: node
-  linkType: hard
-
-"@floating-ui/utils@npm:^0.2.9":
-  version: 0.2.9
-  resolution: "@floating-ui/utils@npm:0.2.9"
-  checksum: 10/0ca786347db3dd8d9034b86d1449fabb96642788e5900cc5f2aee433cd7b243efbcd7a165bead50b004ee3f20a90ddebb6a35296fc41d43cfd361b6f01b69ffb
   languageName: node
   linkType: hard
 
@@ -19581,6 +19565,7 @@ __metadata:
     "@tamagui/react-native-web": "npm:^1.141.0"
     "@tamagui/themes": "npm:^1.141.0"
     "@tamagui/use-store": "npm:^1.141.0"
+    "@tamagui/vite-plugin": "npm:^1.141.0"
     "@vxrn/color-scheme": "workspace:*"
     "@vxrn/mdx": "workspace:*"
     "@vxrn/test": "workspace:*"

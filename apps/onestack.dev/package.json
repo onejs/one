@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@algolia/client-search": "^5.8.1",
+    "@tamagui/vite-plugin": "^1.141.0",
     "@vxrn/test": "workspace:*",
     "gray-matter": "^4.0.3",
     "marked": "^14.1.2",

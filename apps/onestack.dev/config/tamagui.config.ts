@@ -34,7 +34,9 @@ const selectionStyles = (theme) =>
 
 export const config = createTamagui({
   animations,
-  themes: tamaguiThemes,
+  // tamagui optimization - reduce bundle size by avoiding themes js on client
+  // tamagui will hydrate it from CSS which improves lighthouse scores
+  themes: process.env.VITE_ENVIRONMENT === 'client' ? ({} as typeof tamaguiThemes) : tamaguiThemes,
   media: {
     xl: { maxWidth: 1450 },
     lg: { maxWidth: 1180 },
