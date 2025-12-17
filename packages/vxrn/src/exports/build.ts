@@ -224,7 +224,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       clientBuildConfig = mergeConfig(clientBuildConfig, disableOptimizationConfig)
     }
 
-    console.info(`\n 🔨 build client\n`)
+    console.info(`\n 🔨 build ${options.build?.server !== false ? 'client + server' : 'client'}\n`)
 
     clientBuildPromise = viteBuild(clientBuildConfig) as Promise<RollupOutput>
   }
@@ -290,7 +290,9 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
   let serverBuildPromise: Promise<RollupOutput> | undefined
 
   if (serverOptions !== false) {
-    console.info(`\n 🔨 build server\n`)
+    if (!clientBuildPromise) {
+      console.info(`\n 🔨 build server\n`)
+    }
 
     const userServerConf = optionsIn.build?.server
     const userServerBuildConf = typeof userServerConf === 'boolean' ? null : userServerConf?.config
