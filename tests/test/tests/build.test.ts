@@ -36,4 +36,17 @@ describe('Simple Build Tests', () => {
     const fileExists = await pathExists(dynamicEndpointPath)
     expect(fileExists).toBeTruthy()
   })
+
+  it('should build tabs routes with headless ui components', async () => {
+    // This test catches a regression where dynamic require() calls in one/ui/common.tsx
+    // would fail during SSR build because relative paths don't resolve in bundled output
+    const tabsHomePath = join(fixturePath, 'dist', 'client', 'tabs', 'index.html')
+    const tabsOtherPath = join(fixturePath, 'dist', 'client', 'tabs', 'other.html')
+
+    expect(await pathExists(tabsHomePath)).toBeTruthy()
+    expect(await pathExists(tabsOtherPath)).toBeTruthy()
+
+    const tabsHomeContent = await readFile(tabsHomePath, 'utf-8')
+    expect(tabsHomeContent).toContain('Tabs Home')
+  })
 })
