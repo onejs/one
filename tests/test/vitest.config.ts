@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig, configDefaults } from 'vitest/config'
 
 export default defineConfig({
   test: {
@@ -8,7 +8,7 @@ export default defineConfig({
       const routerRoot = process.env.ONE_ROUTER_ROOT
       if (!routerRoot) {
         return {
-          exclude: ['app-cases/**'],
+          exclude: [...configDefaults.exclude, 'app-cases/**'],
         }
       }
 
@@ -19,6 +19,7 @@ export default defineConfig({
 
       return {
         include: [`${testsDir}/**/*.{test,spec}.?(c|m)[jt]s?(x)`],
+        exclude: configDefaults.exclude,
       }
     })(),
     // Ensure tests run sequentially
