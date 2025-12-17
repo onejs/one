@@ -1,13 +1,11 @@
 import './setup'
 
 import { cloneElement } from 'react'
-import ReactDOMServer from 'react-dom/server.browser'
 import { AppRegistry } from 'react-native'
 import { resolveClientLoader } from './clientLoaderResolver'
-import { Root } from './Root'
 import { render } from './render'
+import { Root } from './Root'
 import { registerPreloadedRoute } from './router/useViteRoutes'
-import { renderToString } from './server-render'
 import type { RenderAppProps } from './types'
 import { getServerHeadInsertions } from './useServerHeadInsertion'
 import { ensureExists } from './utils/ensureExists'
@@ -26,6 +24,16 @@ export function createApp(options: CreateAppProps) {
     return {
       options,
       render: async (props: RenderAppProps) => {
+        // Dynamic imports for server-only modules to avoid bundling in client
+        const [ReactDOMServer, serverRender] = await Promise.all([
+          import('react-dom/server.browser'),
+          import('./server-render'),
+        ])
+
+        const renderToStaticMarkup =
+          ReactDOMServer.renderToStaticMarkup || ReactDOMServer.default?.renderToStaticMarkup
+        const renderToString = serverRender.renderToString
+
         let { loaderData, loaderProps, css, cssContents, mode, loaderServerData, routePreloads } =
           props
 
@@ -87,7 +95,7 @@ export function createApp(options: CreateAppProps) {
           }
 
           if (extraHeadElements.length) {
-            const extraHeadHTML = ReactDOMServer.renderToStaticMarkup(
+            const extraHeadHTML = renderToStaticMarkup(
               <>{extraHeadElements.map((x, i) => cloneElement(x, { key: i }))}</>
             )
 
