@@ -1,8 +1,23 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, beforeEach, afterEach } from 'vitest'
 import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 import type { One } from '../vite/types'
 
 describe('generateSitemap', () => {
+  let originalEnv: string | undefined
+
+  beforeEach(() => {
+    originalEnv = process.env.ONE_SERVER_URL
+    delete process.env.ONE_SERVER_URL
+  })
+
+  afterEach(() => {
+    if (originalEnv !== undefined) {
+      process.env.ONE_SERVER_URL = originalEnv
+    } else {
+      delete process.env.ONE_SERVER_URL
+    }
+  })
+
   it('generates basic sitemap XML', () => {
     const routes: RouteSitemapData[] = [{ path: '/' }, { path: '/about' }, { path: '/blog' }]
     const options: One.SitemapOptions = {}
@@ -42,19 +57,14 @@ describe('generateSitemap', () => {
   })
 
   it('uses ONE_SERVER_URL env var when baseUrl not provided', () => {
-    const originalEnv = process.env.ONE_SERVER_URL
     process.env.ONE_SERVER_URL = 'https://env-url.com'
 
-    try {
-      const routes: RouteSitemapData[] = [{ path: '/test' }]
-      const options: One.SitemapOptions = {}
+    const routes: RouteSitemapData[] = [{ path: '/test' }]
+    const options: One.SitemapOptions = {}
 
-      const result = generateSitemap(routes, options)
+    const result = generateSitemap(routes, options)
 
-      expect(result).toContain('<loc>https://env-url.com/test</loc>')
-    } finally {
-      process.env.ONE_SERVER_URL = originalEnv
-    }
+    expect(result).toContain('<loc>https://env-url.com/test</loc>')
   })
 
   it('applies default priority to all routes', () => {
