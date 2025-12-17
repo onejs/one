@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/mdx",
-  "version": "1.2.36",
+  "version": "1.2.37",
   "type": "commonjs",
   "exports": {
     "./package.json": "./package.json",
