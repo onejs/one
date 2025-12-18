@@ -19,6 +19,7 @@ export function ServerContextScript() {
 
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
     const context = useServerContext()
+    const cssUrls = context?.css || []
 
     return (
       <script
@@ -32,6 +33,7 @@ export function ServerContextScript() {
                 ...context,
                 postRenderData: SERVER_CONTEXT_POST_RENDER_STRING,
               })};
+              globalThis.__oneLoadedCSS = new Set(${JSON.stringify(cssUrls)});
           `,
         }}
       />
