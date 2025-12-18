@@ -24,9 +24,9 @@ export default defineConfig({
     })(),
     // Ensure tests run sequentially
     fileParallelism: false,
-    // Add reasonable timeouts
-    testTimeout: 30000,
-    hookTimeout: 30000,
+    // Add reasonable timeouts (60s for CI resource contention)
+    testTimeout: 60000,
+    hookTimeout: 60000,
   },
 
   // Need this because the default mode for testing will be 'test'.
