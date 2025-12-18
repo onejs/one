@@ -1,6 +1,6 @@
 {
   "name": "repro",
-  "version": "1.2.39-1766066124062",
+  "version": "1.2.39-1766067384268",
   "private": true,
   "type": "module",
   "scripts": {
@@ -18,7 +18,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
-    "one": "1.2.39-1766066124062",
+    "one": "1.2.39-1766067384268",
     "react-native-reanimated": "~4.1.3",
     "react-native-worklets": "^0.6.1",
     "react-native-safe-area-context": "~5.6.1",
