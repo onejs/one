@@ -283,15 +283,15 @@ function removeTrailingSlash(path: string) {
 /**
  * Transforms HTML to delay script execution until after first paint.
  * Keeps modulepreload links so critical scripts download in parallel.
- * Removes async script tags and adds a double-rAF loader that executes
- * scripts after at least one paint has happened.
+ * Removes async script tags and adds a loader that executes scripts after paint.
  */
 function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
   // Remove all <script type="module" ... async> tags (prevents immediate execution)
   // Keep modulepreload links so critical scripts download in parallel
   html = html.replace(/<script\s+type="module"[^>]*async[^>]*><\/script>/gi, '')
 
-  // Create the double-rAF loader script
+  // Create the loader script
+  // setTimeout(0) + double-rAF ensures scripts load after paint
   const loaderScript = `
 <script>
 (function() {
@@ -304,10 +304,11 @@ function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
       document.head.appendChild(script);
     });
   }
-  // Double rAF ensures at least one paint has happened before executing JS
-  requestAnimationFrame(function() {
-    requestAnimationFrame(loadScripts);
-  });
+  setTimeout(function() {
+    requestAnimationFrame(function() {
+      requestAnimationFrame(loadScripts);
+    });
+  }, 0);
 })();
 </script>`
 

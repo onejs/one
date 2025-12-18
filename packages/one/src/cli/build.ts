@@ -401,11 +401,13 @@ export async function build(args: {
     // Check experimental script loading mode
     const scriptLoadingMode = oneOptions.web?.experimental_scriptLoading
 
-    // When 'defer-non-critical' is enabled, separate critical from non-critical
+    // Modes that need separated critical/deferred preloads
     const useDeferredLoading = scriptLoadingMode === 'defer-non-critical'
+    const useAggressiveLCP = scriptLoadingMode === 'after-lcp-aggressive'
+    const needsSeparatedPreloads = useDeferredLoading || useAggressiveLCP
 
-    // Critical: scripts that must execute immediately (async)
-    const criticalPreloads = useDeferredLoading
+    // Critical: scripts that must execute immediately (entry points, layouts)
+    const criticalPreloads = needsSeparatedPreloads
       ? [
           ...new Set([
             ...preloadSetupFilePreloads,
@@ -420,14 +422,14 @@ export async function build(args: {
       : undefined
 
     // Non-critical: component imports, utilities - will be modulepreload hints only
-    const deferredPreloads = useDeferredLoading
+    const deferredPreloads = needsSeparatedPreloads
       ? [...new Set([...entryImports, ...layoutEntries.flatMap((entry) => collectImports(entry))])]
           .filter((path) => !criticalPreloads!.includes(`/${path}`))
           .map((path) => `/${path}`)
       : undefined
 
     // Use all preloads when not using deferred loading
-    const preloads = useDeferredLoading ? [...criticalPreloads!, ...deferredPreloads!] : allPreloads
+    const preloads = needsSeparatedPreloads ? [...criticalPreloads!, ...deferredPreloads!] : allPreloads
 
     const allEntries = [clientManifestEntry, ...layoutEntries]
     const allCSS = allEntries
