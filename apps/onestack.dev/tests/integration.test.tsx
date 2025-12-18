@@ -49,3 +49,65 @@ test.skip('clicking "Get Started" link navigates without reloading to docs', asy
 
   await page.close()
 })
+
+test('ScrollBehavior docs page loads correctly with title', async () => {
+  const page = await context.newPage()
+
+  await page.goto(`${serverUrl}/docs/components-ScrollBehavior`, { timeout: 120000 })
+
+  // Check that the page title contains ScrollBehavior
+  const title = await page.title()
+  expect(title).toContain('ScrollBehavior')
+
+  // Check that the H1 heading is rendered correctly
+  const h1 = await page.locator('h1').first()
+  const h1Text = await h1.textContent()
+  expect(h1Text).toContain('ScrollBehavior')
+
+  await page.close()
+}, 180000)
+
+test('accordion auto-opens to Components section when visiting ScrollBehavior page', async () => {
+  const page = await context.newPage()
+
+  // Set desktop viewport to ensure sidebar is visible
+  await page.setViewportSize({ width: 1280, height: 800 })
+
+  await page.goto(`${serverUrl}/docs/components-ScrollBehavior`, { timeout: 120000 })
+
+  // Wait for the page to load
+  await page.waitForSelector('h1', { timeout: 10000 })
+
+  // Wait a bit for the accordion to initialize
+  await page.waitForTimeout(500)
+
+  // Check that we can see the ScrollBehavior link in the sidebar (meaning the accordion is open)
+  const scrollBehaviorLink = page.locator('a[href="/docs/components-ScrollBehavior"]')
+  const isVisible = await scrollBehaviorLink.isVisible()
+  expect(isVisible).toBe(true)
+
+  await page.close()
+}, 180000)
+
+test('accordion auto-opens to Hooks section when visiting useRouter page', async () => {
+  const page = await context.newPage()
+
+  // Set desktop viewport to ensure sidebar is visible
+  await page.setViewportSize({ width: 1280, height: 800 })
+
+  await page.goto(`${serverUrl}/docs/hooks-useRouter`, { timeout: 120000 })
+
+  // Wait for the page to load
+  await page.waitForSelector('h1', { timeout: 10000 })
+
+  // Wait a bit for the accordion to initialize
+  await page.waitForTimeout(500)
+
+  // The useRouter link should be visible in the sidebar (meaning Hooks accordion is open)
+  const useRouterLink = page.locator('a[href="/docs/hooks-useRouter"]')
+  const isVisible = await useRouterLink.isVisible()
+  expect(isVisible).toBe(true)
+
+  await page.close()
+}, 180000)
+
