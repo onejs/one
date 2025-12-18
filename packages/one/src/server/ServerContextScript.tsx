@@ -21,9 +21,15 @@ export function ServerContextScript() {
     const context = useServerContext()
     const cssUrls = context?.css || []
 
-    // Exclude cssContents from client context - CSS is already inlined in <style> tags
-    // Including it would duplicate 100KB+ of CSS as JSON, blocking the main thread
-    const { cssContents: _, ...clientContext } = context || {}
+    // Strip cssContents from JSON payload - we'll read it from DOM instead.
+    // This avoids duplicating 100KB+ of CSS as JSON in the HTML.
+    // The CSSPrehydrateScript reads the actual <style> elements' innerHTML
+    // and stores them in globalThis.__oneCSSContents for hydration matching.
+    const { cssContents, ...restContext } = context || {}
+    const clientContext = {
+      ...restContext,
+      cssInlineCount: cssContents?.length || 0,
+    }
 
     return (
       <script

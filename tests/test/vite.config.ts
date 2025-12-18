@@ -16,6 +16,7 @@ export default {
 
       web: {
         deploy: 'vercel',
+        inlineLayoutCSS: true, // Enable to test CSS hydration fix
       },
 
       react: {

@@ -29,6 +29,22 @@ import { sortRoutesWithInitial } from './sortRoutes'
 // do this hack.
 export const { Screen, Group } = createNavigatorFactory({} as any)()
 
+// Cache inline CSS elements at module load (before React hydrates).
+// Reads CSS content from SSR'd <style> elements and creates matching JSX
+// so hydration sees identical content without 100KB+ JSON payload.
+const cachedInlineCSSElements: React.ReactNode[] =
+  typeof document !== 'undefined'
+    ? Array.from(document.querySelectorAll<HTMLStyleElement>('style[id^="__one_css_"]')).map(
+        (el, i) => (
+          <style
+            key={`inline-css-${i}`}
+            id={el.id}
+            dangerouslySetInnerHTML={{ __html: el.innerHTML }}
+          />
+        )
+      )
+    : []
+
 export type ScreenProps<
   TOptions extends Record<string, any> = Record<string, any>,
   State extends NavigationState = NavigationState,
@@ -205,10 +221,17 @@ export function getQualifiedRouteComponent(value: RouteNode) {
                 __html: `globalThis['global'] = globalThis`,
               }}
             />
-            {serverContext?.cssContents
-              ? serverContext.cssContents.map((content, i) =>
-                  content ? <style key={i} dangerouslySetInnerHTML={{ __html: content }} /> : null
-                )
+            {serverContext?.cssContents?.length || serverContext?.cssInlineCount
+              ? // Inline CSS: SSR renders fresh, client uses cached elements from module load
+                serverContext?.cssContents
+                ? serverContext.cssContents.map((content, i) => (
+                    <style
+                      key={`inline-css-${i}`}
+                      id={`__one_css_${i}`}
+                      dangerouslySetInnerHTML={{ __html: content }}
+                    />
+                  ))
+                : cachedInlineCSSElements
               : serverContext?.css?.map((file) => <link key={file} rel="stylesheet" href={file} />)}
             <ServerContextScript />
             {headChildren}
