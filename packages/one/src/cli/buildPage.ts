@@ -274,27 +274,23 @@ function removeTrailingSlash(path: string) {
 }
 
 /**
- * Transforms HTML to use after-LCP script loading.
- * Removes all script tags and modulepreload links, replacing them with
- * a single script that waits for LCP before loading JavaScript.
+ * Transforms HTML to delay script execution until after first paint.
+ * Keeps modulepreload links so scripts download immediately in parallel.
+ * Removes async script tags and adds a double-rAF loader that executes
+ * scripts after at least one paint has happened.
  */
 function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
-  // Remove all <script type="module" ... async> tags
+  // Remove all <script type="module" ... async> tags (prevents immediate execution)
+  // Keep modulepreload links so scripts download in parallel immediately
   html = html.replace(/<script\s+type="module"[^>]*async[^>]*><\/script>/gi, '')
 
-  // Remove all <link rel="modulepreload"> tags
-  html = html.replace(/<link\s+rel="modulepreload"[^>]*\/?>/gi, '')
-
-  // Create the LCP-aware loading script
-  const lcpLoaderScript = `
+  // Create the double-rAF loader script
+  // Downloads happen immediately via modulepreload, execution waits for paint
+  const loaderScript = `
 <script>
 (function() {
   var scripts = ${JSON.stringify(preloads)};
-  var loaded = false;
-
   function loadScripts() {
-    if (loaded) return;
-    loaded = true;
     scripts.forEach(function(src) {
       var script = document.createElement('script');
       script.type = 'module';
@@ -302,47 +298,15 @@ function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
       document.head.appendChild(script);
     });
   }
-
-  // Wait for LCP before loading scripts
-  if ('PerformanceObserver' in window) {
-    try {
-      var observer = new PerformanceObserver(function(list) {
-        var entries = list.getEntries();
-        if (entries.length > 0) {
-          observer.disconnect();
-          // Small delay to ensure LCP is captured
-          setTimeout(loadScripts, 0);
-        }
-      });
-      observer.observe({ type: 'largest-contentful-paint', buffered: true });
-
-      // Fallback: load after 3s if LCP hasn't fired
-      setTimeout(function() {
-        observer.disconnect();
-        loadScripts();
-      }, 3000);
-    } catch (e) {
-      // If PerformanceObserver fails, load immediately
-      loadScripts();
-    }
-  } else {
-    // Fallback for browsers without PerformanceObserver
-    if (document.readyState === 'complete') {
-      loadScripts();
-    } else {
-      window.addEventListener('load', loadScripts);
-    }
-  }
-
-  // Also load on user interaction (for fast interactivity)
-  ['click', 'touchstart', 'keydown', 'scroll'].forEach(function(event) {
-    document.addEventListener(event, loadScripts, { once: true, passive: true });
+  // Double rAF ensures at least one paint has happened before executing JS
+  requestAnimationFrame(function() {
+    requestAnimationFrame(loadScripts);
   });
 })();
 </script>`
 
   // Insert the loader script before </head>
-  html = html.replace('</head>', `${lcpLoaderScript}</head>`)
+  html = html.replace('</head>', `${loaderScript}</head>`)
 
   return html
 }

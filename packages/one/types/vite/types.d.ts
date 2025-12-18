@@ -308,8 +308,9 @@ export declare namespace One {
              *   Non-critical scripts (component imports, utilities) become modulepreload hints only,
              *   reducing network/CPU contention.
              *
-             * - `'after-lcp'`: Waits for Largest Contentful Paint to be captured before loading any
-             *   JavaScript. Dramatically improves LCP scores for static pages. Only applies to SSG pages.
+             * - `'after-lcp'`: Scripts download immediately via modulepreload but execution is deferred
+             *   until after first paint using double requestAnimationFrame. This allows the browser to
+             *   paint the SSR content before executing JavaScript. Only applies to SSG pages.
              *
              * @default undefined (all scripts load with async)
              */

@@ -7,9 +7,9 @@ import * as path from 'node:path'
  * Script Loading Tests
  *
  * Tests the experimental_scriptLoading: 'after-lcp' option which:
- * - Removes async script tags from HTML
- * - Injects an LCP-aware loader that waits for Largest Contentful Paint
- * - Falls back to loading on user interaction if LCP hasn't fired yet
+ * - Keeps modulepreload links so scripts download immediately in parallel
+ * - Removes async script tags to prevent immediate execution
+ * - Uses double rAF to execute scripts after first paint
  */
 
 const serverUrl = process.env.ONE_SERVER_URL
@@ -29,13 +29,12 @@ afterAll(async () => {
 
 describe('after-lcp script loading', () => {
   describe('HTML structure', () => {
-    test('built HTML contains LCP loader script', async () => {
+    test('built HTML contains double-rAF loader script', async () => {
       const htmlPath = path.join(process.cwd(), 'dist/client/index.html')
       const html = fs.readFileSync(htmlPath, 'utf-8')
 
-      // Should contain the LCP loader script
-      expect(html).toContain('PerformanceObserver')
-      expect(html).toContain('largest-contentful-paint')
+      // Should contain the double-rAF loader
+      expect(html).toContain('requestAnimationFrame')
       expect(html).toContain('loadScripts')
     })
 
@@ -48,21 +47,12 @@ describe('after-lcp script loading', () => {
       expect(asyncScriptMatch).toBeNull()
     })
 
-    test('built HTML does not contain modulepreload links', async () => {
+    test('built HTML keeps modulepreload links for parallel download', async () => {
       const htmlPath = path.join(process.cwd(), 'dist/client/index.html')
       const html = fs.readFileSync(htmlPath, 'utf-8')
 
-      // Should NOT contain modulepreload links (they should be removed)
-      const modulepreloadMatch = html.match(/<link\s+rel="modulepreload"[^>]*\/?>/gi)
-      expect(modulepreloadMatch).toBeNull()
-    })
-
-    test('LCP loader includes fallback timeout', async () => {
-      const htmlPath = path.join(process.cwd(), 'dist/client/index.html')
-      const html = fs.readFileSync(htmlPath, 'utf-8')
-
-      // Should have 3 second fallback timeout
-      expect(html).toContain('3000')
+      // Should contain modulepreload links (scripts download immediately)
+      expect(html).toContain('rel="modulepreload"')
     })
   })
 
@@ -104,7 +94,7 @@ describe('after-lcp script loading', () => {
       // Initial state
       expect(await page.textContent('#count-display')).toBe('Count: 0')
 
-      // Click should trigger hydration and update state
+      // Click should update state (React is hydrated)
       await page.click('#increment-btn')
 
       // Wait for React to hydrate and update
@@ -128,7 +118,7 @@ describe('after-lcp script loading', () => {
       // Initial state
       expect(await page.textContent('#message-display')).toBe('Not clicked')
 
-      // Click should trigger hydration and update state
+      // Click should update state
       await page.click('#click-btn')
 
       await page.waitForFunction(
