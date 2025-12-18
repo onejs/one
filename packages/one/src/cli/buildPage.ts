@@ -23,7 +23,10 @@ export async function buildPage(
   preloads: string[],
   allCSS: string[],
   routePreloads: Record<string, string>,
-  allCSSContents?: string[]
+  allCSSContents?: string[],
+  criticalPreloads?: string[],
+  deferredPreloads?: string[],
+  useAfterLCP?: boolean
 ): Promise<One.RouteBuildInfo> {
   const render = await getRender(serverEntry)
   const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
@@ -134,9 +137,11 @@ if (typeof document === 'undefined') globalThis.document = {}
       globalThis['__vxrnresetState']?.()
 
       if (foundRoute.type === 'ssg') {
-        const html = await render({
+        let html = await render({
           path,
-          preloads,
+          // Use separated preloads if available, otherwise fall back to all preloads
+          preloads: criticalPreloads || preloads,
+          deferredPreloads: deferredPreloads,
           loaderProps,
           loaderData,
           css: allCSS,
@@ -144,6 +149,12 @@ if (typeof document === 'undefined') globalThis.document = {}
           mode: 'ssg',
           routePreloads,
         })
+
+        // Apply after-LCP script loading if enabled
+        if (useAfterLCP) {
+          html = applyAfterLCPScriptLoad(html, preloads)
+        }
+
         await outputFile(htmlOutPath, html)
       } else if (foundRoute.type === 'spa') {
         // Generate CSS - either inline styles or link tags
@@ -154,13 +165,22 @@ if (typeof document === 'undefined') globalThis.document = {}
               .join('\n')
           : allCSS.map((file) => `    <link rel="stylesheet" href=${file} />`).join('\n')
 
+        // Use separated preloads if available
+        const criticalScripts = (criticalPreloads || preloads)
+          .map((preload) => `   <script type="module" src="${preload}" async=""></script>`)
+          .join('\n')
+
+        // Non-critical scripts as modulepreload hints only
+        const deferredLinks = (deferredPreloads || [])
+          .map((preload) => `   <link rel="modulepreload" fetchPriority="low" href="${preload}"/>`)
+          .join('\n')
+
         await outputFile(
           htmlOutPath,
           `<html><head>
           ${constants.getSpaHeaderElements({ serverContext: { loaderProps, loaderData } })}
-          ${preloads
-            .map((preload) => `   <script type="module" src="${preload}"></script>`)
-            .join('\n')}
+          ${criticalScripts}
+          ${deferredLinks}
           ${cssOutput}
         </head></html>`
         )
@@ -202,6 +222,8 @@ params:\n\n${JSON.stringify(params || null, null, 2)}`
     params,
     path,
     preloads,
+    criticalPreloads,
+    deferredPreloads,
   }
 }
 
@@ -233,4 +255,78 @@ async function getRender(serverEntry: string) {
 
 function removeTrailingSlash(path: string) {
   return path.endsWith('/') ? path.slice(0, path.length - 1) : path
+}
+
+/**
+ * Transforms HTML to use after-LCP script loading.
+ * Removes all script tags and modulepreload links, replacing them with
+ * a single script that waits for LCP before loading JavaScript.
+ */
+function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
+  // Remove all <script type="module" ... async> tags
+  html = html.replace(/<script\s+type="module"[^>]*async[^>]*><\/script>/gi, '')
+
+  // Remove all <link rel="modulepreload"> tags
+  html = html.replace(/<link\s+rel="modulepreload"[^>]*\/?>/gi, '')
+
+  // Create the LCP-aware loading script
+  const lcpLoaderScript = `
+<script>
+(function() {
+  var scripts = ${JSON.stringify(preloads)};
+  var loaded = false;
+
+  function loadScripts() {
+    if (loaded) return;
+    loaded = true;
+    scripts.forEach(function(src) {
+      var script = document.createElement('script');
+      script.type = 'module';
+      script.src = src;
+      document.head.appendChild(script);
+    });
+  }
+
+  // Wait for LCP before loading scripts
+  if ('PerformanceObserver' in window) {
+    try {
+      var observer = new PerformanceObserver(function(list) {
+        var entries = list.getEntries();
+        if (entries.length > 0) {
+          observer.disconnect();
+          // Small delay to ensure LCP is captured
+          setTimeout(loadScripts, 0);
+        }
+      });
+      observer.observe({ type: 'largest-contentful-paint', buffered: true });
+
+      // Fallback: load after 3s if LCP hasn't fired
+      setTimeout(function() {
+        observer.disconnect();
+        loadScripts();
+      }, 3000);
+    } catch (e) {
+      // If PerformanceObserver fails, load immediately
+      loadScripts();
+    }
+  } else {
+    // Fallback for browsers without PerformanceObserver
+    if (document.readyState === 'complete') {
+      loadScripts();
+    } else {
+      window.addEventListener('load', loadScripts);
+    }
+  }
+
+  // Also load on user interaction (for fast interactivity)
+  ['click', 'touchstart', 'keydown', 'scroll'].forEach(function(event) {
+    document.addEventListener(event, loadScripts, { once: true, passive: true });
+  });
+})();
+</script>`
+
+  // Insert the loader script before </head>
+  html = html.replace('</head>', `${lcpLoaderScript}</head>`)
+
+  return html
 }

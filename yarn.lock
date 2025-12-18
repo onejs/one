@@ -20669,6 +20669,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"test-script-loading@workspace:tests/test-script-loading":
+  version: 0.0.0-use.local
+  resolution: "test-script-loading@workspace:tests/test-script-loading"
+  dependencies:
+    one: "workspace:*"
+    playwright: "npm:^1.57.0"
+    react: "npm:19.1.0"
+    react-dom: "npm:19.1.0"
+    typescript: "npm:^5.7.3"
+    vite: "npm:^7.1.12"
+    vitest: "npm:^4.0.6"
+  languageName: unknown
+  linkType: soft
+
 "test-test@workspace:tests/test":
   version: 0.0.0-use.local
   resolution: "test-test@workspace:tests/test"

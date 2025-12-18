@@ -73,6 +73,7 @@ export function createApp(options: CreateAppProps) {
 
         let html = await renderToString(rootElement, {
           preloads: props.preloads,
+          deferredPreloads: props.deferredPreloads,
         })
 
         try {
