@@ -28,12 +28,27 @@ export const DocsMenuContents = React.memo(function DocsMenuContents({
 
   // Find which section contains the current page
   const currentSection = allItems.find((item) => item?.page.route === currentPath)
-  const defaultOpenSection = currentSection?.section.title || 'base'
+  const currentSectionTitle = currentSection?.section.title || ''
+
+  // Use controlled value that updates when path changes
+  const [openSection, setOpenSection] = React.useState(currentSectionTitle)
+
+  // Update open section when navigating to a new page
+  React.useEffect(() => {
+    if (currentSectionTitle) {
+      setOpenSection(currentSectionTitle)
+    }
+  }, [currentSectionTitle])
 
   return (
     <>
       <div style={{ width: '100%' }}>
-        <Accordion defaultValue={defaultOpenSection} type="single" collapsible>
+        <Accordion
+          value={openSection}
+          onValueChange={setOpenSection}
+          type="single"
+          collapsible
+        >
           {Object.keys(itemsGrouped).map((sectionTitle) => {
             const items = itemsGrouped[sectionTitle]
             return (
