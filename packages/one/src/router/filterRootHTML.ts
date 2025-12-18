@@ -57,6 +57,7 @@ export function filterRootHTML(el: React.ReactNode): FoundRootHTML {
           // must traverse children so nested HTML elements (e.g. <div>) get filtered on native
           return traverse(children as React.ReactNode)
         }
+        return children as React.ReactNode
       }
       return null
     }
