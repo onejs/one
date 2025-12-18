@@ -291,7 +291,7 @@ function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
   html = html.replace(/<script\s+type="module"[^>]*async[^>]*><\/script>/gi, '')
 
   // Create the loader script
-  // setTimeout(0) + double-rAF ensures scripts load after paint
+  // Nested setTimeout yields to event loop multiple times, letting browser settle before loading scripts
   const loaderScript = `
 <script>
 (function() {
@@ -304,11 +304,20 @@ function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
       document.head.appendChild(script);
     });
   }
-  setTimeout(function() {
-    requestAnimationFrame(function() {
-      requestAnimationFrame(loadScripts);
-    });
-  }, 0);
+  function waitIdle(n) {
+    if (n <= 0) {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(loadScripts);
+      });
+      return;
+    }
+    setTimeout(function() {
+      setTimeout(function() {
+        waitIdle(n - 1);
+      }, 0);
+    }, 0);
+  }
+  waitIdle(5);
 })();
 </script>`
 
