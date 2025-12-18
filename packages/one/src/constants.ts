@@ -28,4 +28,5 @@ export const getSpaHeaderElements = ({
   <script>globalThis['global'] = globalThis</script>
   <script>globalThis['__vxrnIsSPA'] = true</script>
   <script>globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify(serverContext)}</script>
+  <script>globalThis.__oneLoadedCSS = new Set(${JSON.stringify(serverContext.css || [])})</script>
 `
