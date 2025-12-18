@@ -301,6 +301,20 @@ export declare namespace One {
              */
             inlineLayoutCSS?: boolean;
             /**
+             * @experimental
+             * Controls how scripts are loaded for improved performance.
+             *
+             * - `'defer-non-critical'`: Critical scripts (framework entry, page, layouts) load immediately.
+             *   Non-critical scripts (component imports, utilities) become modulepreload hints only,
+             *   reducing network/CPU contention.
+             *
+             * - `'after-lcp'`: Waits for Largest Contentful Paint to be captured before loading any
+             *   JavaScript. Dramatically improves LCP scores for static pages. Only applies to SSG pages.
+             *
+             * @default undefined (all scripts load with async)
+             */
+            experimental_scriptLoading?: 'defer-non-critical' | 'after-lcp';
+            /**
              * Generate a sitemap.xml file during build.
              *
              * Set to `true` for default behavior, or pass an object to configure:
@@ -390,7 +404,12 @@ export declare namespace One {
         serverJsPath: string;
         params: Object;
         loaderData: any;
+        /** All preloads (for backwards compatibility) */
         preloads: string[];
+        /** Critical preloads that load immediately with async */
+        criticalPreloads?: string[];
+        /** Non-critical preloads that are modulepreload hints only */
+        deferredPreloads?: string[];
         css: string[];
         /** When inlineLayoutCSS is enabled, contains the actual CSS content */
         cssContents?: string[];

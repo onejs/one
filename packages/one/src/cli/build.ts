@@ -385,7 +385,8 @@ export async function build(args: {
       return []
     })()
 
-    const preloads = [
+    // All preloads combined (original behavior)
+    const allPreloads = [
       ...new Set([
         ...preloadSetupFilePreloads,
         // add the route entry js (like ./app/index.ts)
@@ -395,9 +396,38 @@ export async function build(args: {
         ...entryImports,
         ...layoutImports,
       ]),
-    ]
-      // nested path pages need to reference root assets
-      .map((path) => `/${path}`)
+    ].map((path) => `/${path}`)
+
+    // Check experimental script loading mode
+    const scriptLoadingMode = oneOptions.web?.experimental_scriptLoading
+
+    // When 'defer-non-critical' is enabled, separate critical from non-critical
+    const useDeferredLoading = scriptLoadingMode === 'defer-non-critical'
+
+    // Critical: scripts that must execute immediately (async)
+    const criticalPreloads = useDeferredLoading
+      ? [
+          ...new Set([
+            ...preloadSetupFilePreloads,
+            // add the virtual entry (framework bootstrap)
+            vxrnOutput.clientManifest['virtual:one-entry'].file,
+            // add the route entry js (like ./app/index.ts)
+            clientManifestEntry.file,
+            // add layout files (but not their deep imports)
+            ...layoutEntries.map((entry) => entry.file),
+          ]),
+        ].map((path) => `/${path}`)
+      : undefined
+
+    // Non-critical: component imports, utilities - will be modulepreload hints only
+    const deferredPreloads = useDeferredLoading
+      ? [...new Set([...entryImports, ...layoutEntries.flatMap((entry) => collectImports(entry))])]
+          .filter((path) => !criticalPreloads!.includes(`/${path}`))
+          .map((path) => `/${path}`)
+      : undefined
+
+    // Use all preloads when not using deferred loading
+    const preloads = useDeferredLoading ? [...criticalPreloads!, ...deferredPreloads!] : allPreloads
 
     const allEntries = [clientManifestEntry, ...layoutEntries]
     const allCSS = allEntries
@@ -471,9 +501,13 @@ export async function build(args: {
     // Get route-level sitemap export if present
     const routeSitemapExport = exported.sitemap as One.RouteSitemap | undefined
 
+    // Determine if after-lcp script loading should be used for this route
+    // Only applies to SSG pages (SPA pages need JS to render anything)
+    const useAfterLCP = foundRoute.type === 'ssg' && scriptLoadingMode === 'after-lcp'
+
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params, foundRoute.type === 'ssg')
-      console.info(`  ↦ route ${path}`)
+      console.info(`  ↦ route ${path}${useAfterLCP ? ' (after-lcp)' : ''}`)
 
       const built = await runWithAsyncLocalContext(async () => {
         return await buildPage(
@@ -490,7 +524,10 @@ export async function build(args: {
           preloads,
           allCSS,
           routePreloads,
-          allCSSContents
+          allCSSContents,
+          criticalPreloads,
+          deferredPreloads,
+          useAfterLCP
         )
       })
 

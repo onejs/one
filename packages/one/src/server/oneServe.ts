@@ -111,7 +111,6 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
         try {
           const exported = await import(toAbsolute(buildInfo.serverJsPath))
           const loaderData = await exported.loader?.(loaderProps)
-          const preloads = buildInfo.preloads
 
           const headers = new Headers()
           headers.set('content-type', 'text/html')
@@ -121,7 +120,9 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
             loaderData,
             loaderProps,
             path: loaderProps?.path || '/',
-            preloads,
+            // Use separated preloads for optimal loading
+            preloads: buildInfo.criticalPreloads || buildInfo.preloads,
+            deferredPreloads: buildInfo.deferredPreloads,
             css: buildInfo.css,
             cssContents: buildInfo.cssContents,
           })

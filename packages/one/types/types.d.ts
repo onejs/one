@@ -13,7 +13,16 @@ export type LoaderProps<Params extends Object = Record<string, string | string[]
 export type RenderAppProps = {
     mode: One.RouteRenderMode;
     path: string;
+    /**
+     * Critical scripts that need to execute immediately (will use async).
+     * These generate both modulepreload links and async script tags.
+     */
     preloads?: string[];
+    /**
+     * Non-critical scripts that can wait (will only be modulepreload hints).
+     * These only generate <link rel="modulepreload"> tags and load when imported.
+     */
+    deferredPreloads?: string[];
     css?: string[];
     /** When inlineLayoutCSS is enabled, this contains the actual CSS content to inline */
     cssContents?: string[];
