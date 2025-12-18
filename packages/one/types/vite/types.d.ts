@@ -423,6 +423,8 @@ export declare namespace One {
         css?: string[];
         /** When inlineLayoutCSS is enabled, this contains the actual CSS content to inline */
         cssContents?: string[];
+        /** Number of inline CSS entries - used for hydration matching when cssContents is stripped */
+        cssInlineCount?: number;
         postRenderData?: any;
         loaderData?: any;
         loaderProps?: any;
