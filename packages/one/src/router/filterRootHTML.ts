@@ -61,7 +61,8 @@ export function filterRootHTML(el: React.ReactNode): FoundRootHTML {
       ) {
         const { children, ...restProps } = reactElement.props
         bodyProps = restProps
-        return children as React.ReactNode
+        // must traverse children so nested HTML elements (e.g. <div>) get filtered on native
+        return traverse(children as React.ReactNode)
       }
       return null
     }
@@ -72,8 +73,11 @@ export function filterRootHTML(el: React.ReactNode): FoundRootHTML {
         typeof element.type === 'string' &&
         element.type.toLowerCase() === element.type
       ) {
-        // filter out things like <meta /> etc on native
-        // because it could just be thown in <html> or a fragment to be hoisted on web
+        // filter out HTML elements on native (e.g. <div>, <meta>)
+        // preserve children so <div><Slot/></div> renders <Slot/> instead of nothing
+        if (element.props && typeof element.props === 'object' && 'children' in element.props) {
+          return traverse(element.props.children as React.ReactNode)
+        }
         return null
       }
     }
