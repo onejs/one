@@ -21,6 +21,10 @@ export function ServerContextScript() {
     const context = useServerContext()
     const cssUrls = context?.css || []
 
+    // Exclude cssContents from client context - CSS is already inlined in <style> tags
+    // Including it would duplicate 100KB+ of CSS as JSON, blocking the main thread
+    const { cssContents: _, ...clientContext } = context || {}
+
     return (
       <script
         async
@@ -30,7 +34,7 @@ export function ServerContextScript() {
         dangerouslySetInnerHTML={{
           __html: `
               globalThis["${SERVER_CONTEXT_KEY}"] = ${JSON.stringify({
-                ...context,
+                ...clientContext,
                 postRenderData: SERVER_CONTEXT_POST_RENDER_STRING,
               })};
               globalThis.__oneLoadedCSS = new Set(${JSON.stringify(cssUrls)});
