@@ -204,9 +204,15 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             return
           }
 
-          tsConfigPathsPlugin = tsconfigPaths(
-            pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}
-          )
+          const skipDotDirs = (dir: string) => {
+            const name = dir.split('/').pop() || ''
+            return name.startsWith('.')
+          }
+
+          tsConfigPathsPlugin = tsconfigPaths({
+            skip: skipDotDirs,
+            ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
+          })
         },
 
         configResolved() {},
