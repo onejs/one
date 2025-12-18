@@ -1,0 +1,24 @@
+{
+  "name": "test-script-loading",
+  "version": "1.2.39",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:web": "one build",
+    "dev": "one dev",
+    "serve": "one serve",
+    "test": "yarn test:prod",
+    "test:prod": "TEST_ONLY=prod yarn vitest --run --reporter=dot --color=false"
+  },
+  "dependencies": {
+    "one": "workspace:*",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.57.0",
+    "typescript": "^5.7.3",
+    "vite": "^7.1.12",
+    "vitest": "^4.0.6"
+  }
+}
