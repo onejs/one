@@ -1,4 +1,4 @@
-import { cloneElement, isValidElement } from 'react'
+import { isValidElement } from 'react'
 
 type Props = Record<string, any>
 
@@ -36,12 +36,8 @@ export function filterRootHTML(el: React.ReactNode): FoundRootHTML {
     const { type, props } = reactElement
 
     if (type === 'html') {
-      if (
-        reactElement.props &&
-        typeof reactElement.props === 'object' &&
-        'children' in reactElement.props
-      ) {
-        const { children, ...restProps } = reactElement.props
+      if (props && typeof props === 'object' && 'children' in props) {
+        const { children, ...restProps } = props
         htmlProps = restProps
         return traverse(children as React.ReactNode)
       }
@@ -54,15 +50,13 @@ export function filterRootHTML(el: React.ReactNode): FoundRootHTML {
     }
 
     if (type === 'body') {
-      if (
-        reactElement.props &&
-        typeof reactElement.props === 'object' &&
-        'children' in reactElement.props
-      ) {
-        const { children, ...restProps } = reactElement.props
+      if (props && typeof props === 'object' && 'children' in props) {
+        const { children, ...restProps } = props
         bodyProps = restProps
-        // must traverse children so nested HTML elements (e.g. <div>) get filtered on native
-        return traverse(children as React.ReactNode)
+        if (process.env.TAMAGUI_TARGET === 'native') {
+          // must traverse children so nested HTML elements (e.g. <div>) get filtered on native
+          return traverse(children as React.ReactNode)
+        }
       }
       return null
     }
