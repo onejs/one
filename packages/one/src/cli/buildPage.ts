@@ -26,7 +26,8 @@ export async function buildPage(
   allCSSContents?: string[],
   criticalPreloads?: string[],
   deferredPreloads?: string[],
-  useAfterLCP?: boolean
+  useAfterLCP?: boolean,
+  useAfterLCPAggressive?: boolean
 ): Promise<One.RouteBuildInfo> {
   const render = await getRender(serverEntry)
   const htmlPath = `${path.endsWith('/') ? `${removeTrailingSlash(path)}/index` : path}.html`
@@ -153,11 +154,16 @@ if (typeof document === 'undefined') globalThis.document = {}
       globalThis['__vxrnresetState']?.()
 
       if (foundRoute.type === 'ssg') {
+        // Aggressive mode: only modulepreload critical scripts, skip deferred to prevent network saturation
+        // Regular after-lcp mode: modulepreload all scripts for parallel downloads, defer execution
+        // Default: all scripts load normally
+        const renderPreloads = criticalPreloads || preloads
+        const renderDeferredPreloads = useAfterLCPAggressive ? [] : deferredPreloads
+
         let html = await render({
           path,
-          // Use separated preloads if available, otherwise fall back to all preloads
-          preloads: criticalPreloads || preloads,
-          deferredPreloads: deferredPreloads,
+          preloads: renderPreloads,
+          deferredPreloads: renderDeferredPreloads,
           loaderProps,
           loaderData,
           css: allCSS,
@@ -167,6 +173,7 @@ if (typeof document === 'undefined') globalThis.document = {}
         })
 
         // Apply after-LCP script loading if enabled
+        // Load all preloads (not just critical) to ensure good TTI after first paint
         if (useAfterLCP) {
           html = applyAfterLCPScriptLoad(html, preloads)
         }
@@ -183,7 +190,7 @@ if (typeof document === 'undefined') globalThis.document = {}
 
         // Use separated preloads if available
         const criticalScripts = (criticalPreloads || preloads)
-          .map((preload) => `   <script type="module" src="${preload}" async=""></script>`)
+          .map((preload) => `   <script type="module" src="${preload}"></script>`)
           .join('\n')
 
         // Non-critical scripts as modulepreload hints only
@@ -275,17 +282,16 @@ function removeTrailingSlash(path: string) {
 
 /**
  * Transforms HTML to delay script execution until after first paint.
- * Keeps modulepreload links so scripts download immediately in parallel.
- * Removes async script tags and adds a double-rAF loader that executes
- * scripts after at least one paint has happened.
+ * Keeps modulepreload links so critical scripts download in parallel.
+ * Removes async script tags and adds a loader that executes scripts after paint.
  */
 function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
   // Remove all <script type="module" ... async> tags (prevents immediate execution)
-  // Keep modulepreload links so scripts download in parallel immediately
+  // Keep modulepreload links so critical scripts download in parallel
   html = html.replace(/<script\s+type="module"[^>]*async[^>]*><\/script>/gi, '')
 
-  // Create the double-rAF loader script
-  // Downloads happen immediately via modulepreload, execution waits for paint
+  // Create the loader script
+  // Nested setTimeout yields to event loop multiple times, letting browser settle before loading scripts
   const loaderScript = `
 <script>
 (function() {
@@ -298,10 +304,20 @@ function applyAfterLCPScriptLoad(html: string, preloads: string[]): string {
       document.head.appendChild(script);
     });
   }
-  // Double rAF ensures at least one paint has happened before executing JS
-  requestAnimationFrame(function() {
-    requestAnimationFrame(loadScripts);
-  });
+  function waitIdle(n) {
+    if (n <= 0) {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(loadScripts);
+      });
+      return;
+    }
+    setTimeout(function() {
+      setTimeout(function() {
+        waitIdle(n - 1);
+      }, 0);
+    }, 0);
+  }
+  waitIdle(5);
 })();
 </script>`
 

@@ -401,11 +401,13 @@ export async function build(args: {
     // Check experimental script loading mode
     const scriptLoadingMode = oneOptions.web?.experimental_scriptLoading
 
-    // When 'defer-non-critical' is enabled, separate critical from non-critical
+    // Modes that need separated critical/deferred preloads
     const useDeferredLoading = scriptLoadingMode === 'defer-non-critical'
+    const useAggressiveLCP = scriptLoadingMode === 'after-lcp-aggressive'
+    const needsSeparatedPreloads = useDeferredLoading || useAggressiveLCP
 
-    // Critical: scripts that must execute immediately (async)
-    const criticalPreloads = useDeferredLoading
+    // Critical: scripts that must execute immediately (entry points, layouts)
+    const criticalPreloads = needsSeparatedPreloads
       ? [
           ...new Set([
             ...preloadSetupFilePreloads,
@@ -420,14 +422,16 @@ export async function build(args: {
       : undefined
 
     // Non-critical: component imports, utilities - will be modulepreload hints only
-    const deferredPreloads = useDeferredLoading
+    const deferredPreloads = needsSeparatedPreloads
       ? [...new Set([...entryImports, ...layoutEntries.flatMap((entry) => collectImports(entry))])]
           .filter((path) => !criticalPreloads!.includes(`/${path}`))
           .map((path) => `/${path}`)
       : undefined
 
     // Use all preloads when not using deferred loading
-    const preloads = useDeferredLoading ? [...criticalPreloads!, ...deferredPreloads!] : allPreloads
+    const preloads = needsSeparatedPreloads
+      ? [...criticalPreloads!, ...deferredPreloads!]
+      : allPreloads
 
     const allEntries = [clientManifestEntry, ...layoutEntries]
     const allCSS = allEntries
@@ -503,11 +507,17 @@ export async function build(args: {
 
     // Determine if after-lcp script loading should be used for this route
     // Only applies to SSG pages (SPA pages need JS to render anything)
-    const useAfterLCP = foundRoute.type === 'ssg' && scriptLoadingMode === 'after-lcp'
+    const isAfterLCPMode =
+      scriptLoadingMode === 'after-lcp' || scriptLoadingMode === 'after-lcp-aggressive'
+    const useAfterLCP = foundRoute.type === 'ssg' && isAfterLCPMode
+    const useAfterLCPAggressive =
+      foundRoute.type === 'ssg' && scriptLoadingMode === 'after-lcp-aggressive'
 
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params, foundRoute.type === 'ssg')
-      console.info(`  ↦ route ${path}${useAfterLCP ? ' (after-lcp)' : ''}`)
+      console.info(
+        `  ↦ route ${path}${useAfterLCPAggressive ? ' (after-lcp-aggressive)' : useAfterLCP ? ' (after-lcp)' : ''}`
+      )
 
       const built = await runWithAsyncLocalContext(async () => {
         return await buildPage(
@@ -527,7 +537,8 @@ export async function build(args: {
           allCSSContents,
           criticalPreloads,
           deferredPreloads,
-          useAfterLCP
+          useAfterLCP,
+          useAfterLCPAggressive
         )
       })
 

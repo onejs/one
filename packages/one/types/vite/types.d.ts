@@ -312,9 +312,13 @@ export declare namespace One {
              *   until after first paint using double requestAnimationFrame. This allows the browser to
              *   paint the SSR content before executing JavaScript. Only applies to SSG pages.
              *
+             * - `'after-lcp-aggressive'`: Only modulepreloads critical scripts (entry, layouts).
+             *   Non-critical scripts have no modulepreload hints, reducing network saturation.
+             *   Best for pages with many chunks or slow networks.
+             *
              * @default undefined (all scripts load with async)
              */
-            experimental_scriptLoading?: 'defer-non-critical' | 'after-lcp';
+            experimental_scriptLoading?: 'defer-non-critical' | 'after-lcp' | 'after-lcp-aggressive';
             /**
              * Generate a sitemap.xml file during build.
              *
