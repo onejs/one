@@ -503,11 +503,13 @@ export async function build(args: {
 
     // Determine if after-lcp script loading should be used for this route
     // Only applies to SSG pages (SPA pages need JS to render anything)
-    const useAfterLCP = foundRoute.type === 'ssg' && scriptLoadingMode === 'after-lcp'
+    const isAfterLCPMode = scriptLoadingMode === 'after-lcp' || scriptLoadingMode === 'after-lcp-aggressive'
+    const useAfterLCP = foundRoute.type === 'ssg' && isAfterLCPMode
+    const useAfterLCPAggressive = foundRoute.type === 'ssg' && scriptLoadingMode === 'after-lcp-aggressive'
 
     for (const params of paramsList) {
       const path = getPathnameFromFilePath(relativeId, params, foundRoute.type === 'ssg')
-      console.info(`  ↦ route ${path}${useAfterLCP ? ' (after-lcp)' : ''}`)
+      console.info(`  ↦ route ${path}${useAfterLCPAggressive ? ' (after-lcp-aggressive)' : useAfterLCP ? ' (after-lcp)' : ''}`)
 
       const built = await runWithAsyncLocalContext(async () => {
         return await buildPage(
@@ -527,7 +529,8 @@ export async function build(args: {
           allCSSContents,
           criticalPreloads,
           deferredPreloads,
-          useAfterLCP
+          useAfterLCP,
+          useAfterLCPAggressive
         )
       })
 
