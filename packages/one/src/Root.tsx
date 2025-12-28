@@ -88,7 +88,11 @@ export function Root(props: RootProps) {
 
   onRenderId?.(id)
 
-  const value = globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
+  // Use Vercel's global ID if available, otherwise use AsyncLocalStorage
+  const value =
+    process.env.VERCEL
+      ? globalThis['__oneGlobalContextId']
+      : globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
 
   let contents = (
     <ServerAsyncLocalIDContext.Provider value={value}>

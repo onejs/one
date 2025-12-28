@@ -47,10 +47,35 @@ export async function createSsrServerlessFunction(
   const handler = async (req, res) => {
     // console.debug("req.url", req.url);
     const url = new URL(req.url, \`https://\${process.env.VERCEL_URL}\`);
+
+    // Extract route params by matching against the route pattern
+    const routePattern = ${JSON.stringify(route.page)};
+    const paramNames = [];
+    const regexPattern = routePattern
+      .replace(/\\[\\.\\.\\.(\\w+)\\]/g, (_, name) => { paramNames.push({ name, catch: true }); return '(.+)'; })
+      .replace(/\\[(\\w+)\\]/g, (_, name) => { paramNames.push({ name, catch: false }); return '([^/]+)'; });
+
+    const routeParams = {};
+    const match = url.pathname.match(new RegExp(\`^\${regexPattern}$\`));
+    if (match) {
+      paramNames.forEach((param, index) => {
+        const value = match[index + 1];
+        routeParams[param.name] = param.catch ? value.split('/') : value;
+      });
+    }
+
+    // Create a proper Request object for SSR loaders
+    const request = new Request(url.toString(), {
+      method: req.method || 'GET',
+      headers: new Headers(req.headers || {}),
+    });
+
     const loaderProps = {
       path: url.pathname,
-      params: Object.fromEntries(url.searchParams.entries())
+      params: routeParams,
+      request,
     }
+
     const postfix = url.pathname.endsWith('/') ? 'index.tsx' : '+ssr.tsx';
     // const routeFile = \`.\${url.pathname}\${postfix}\`;
     let route = buildInfoConfig.default.routeToBuildInfo[routeFile];
@@ -67,12 +92,14 @@ export async function createSsrServerlessFunction(
     const exported = await import(route.serverJsPath.replace('dist/','../'))
     const loaderData = await exported.loader?.(loaderProps)
     const preloads = route.preloads
+    const css = route.css || []
     const rendered = await render({
       mode: route.type,
       loaderData,
       loaderProps,
       path: loaderProps?.path || '/',
       preloads,
+      css,
     })
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
     // https://vercel.com/docs/deployments/skew-protection#supported-frameworks__
