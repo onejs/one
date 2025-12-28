@@ -18,6 +18,7 @@ import { getPathFromLoaderPath } from '../utils/cleanUrl'
 import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
+import { getFetchStaticHtml } from './staticHtmlFetcher'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
@@ -29,6 +30,7 @@ type LazyRoutes = {
   serverEntry: () => Promise<{ default: { render: (props: any) => any } }>
   pages: Record<string, () => Promise<any>>
   api: Record<string, () => Promise<any>>
+  middlewares: Record<string, () => Promise<any>>
 }
 
 export async function oneServe(
@@ -113,6 +115,10 @@ export async function oneServe(
     },
 
     async loadMiddleware(route) {
+      // Use lazy import if available (workers), otherwise dynamic import (Node.js)
+      if (options?.lazyRoutes?.middlewares?.[route.contextKey]) {
+        return await options.lazyRoutes.middlewares[route.contextKey]()
+      }
       return await import(toAbsolute(route.contextKey))
     },
 
@@ -182,10 +188,28 @@ url: ${url}`)
         const htmlPath = routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {
-          const html = await readFile(join('dist/client', htmlPath), 'utf-8')
-          const headers = new Headers()
-          headers.set('content-type', 'text/html')
-          return new Response(html, { headers, status: route.isNotFound ? 404 : 200 })
+          // Try Worker ASSETS binding first (for Cloudflare Workers), fall back to filesystem
+          const fetchStaticHtml = getFetchStaticHtml()
+          let html: string | null = null
+
+          if (fetchStaticHtml) {
+            html = await fetchStaticHtml(htmlPath)
+          }
+
+          if (!html) {
+            // Fall back to filesystem (Node.js)
+            try {
+              html = await readFile(join('dist/client', htmlPath), 'utf-8')
+            } catch {
+              // File not found
+            }
+          }
+
+          if (html) {
+            const headers = new Headers()
+            headers.set('content-type', 'text/html')
+            return new Response(html, { headers, status: route.isNotFound ? 404 : 200 })
+          }
         }
       }
     },
