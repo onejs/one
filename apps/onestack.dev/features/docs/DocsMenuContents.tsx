@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Accordion, Paragraph, Square, XStack, YStack } from 'tamagui'
+import { Link } from 'one'
 import { DocsRouteNavItem } from './DocsRouteNavItem'
 import { docsRoutes } from './docsRoutes'
 import { useDocsMenu } from './useDocsMenu'
@@ -43,6 +44,7 @@ export const DocsMenuContents = React.memo(function DocsMenuContents({
   return (
     <>
       <div style={{ width: '100%' }}>
+        {/* Blog link hidden for now - pages still accessible at /blog */}
         <Accordion
           value={openSection}
           onValueChange={setOpenSection}
