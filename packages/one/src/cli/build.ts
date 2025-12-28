@@ -681,9 +681,12 @@ export async function build(args: {
       // Generate lazy imports for API routes
       for (const route of buildInfoForWriting.manifest.apiRoutes) {
         if (route.file) {
-          // API files are built to dist/api/ with brackets replaced by underscores
+          // API files are built to dist/api/
           // route.page is like "/api/hello", files are at "dist/api/api/hello.js"
-          const apiFileName = route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
+          // rolldown preserves brackets, esbuild replaces them with underscores
+          const apiFileName = buildInfoForWriting.useRolldown
+            ? route.page.slice(1)
+            : route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
           const importPath = `./api/${apiFileName}.js`
           apiRouteMap.push(`  '${route.page}': () => import('${importPath}')`)
         }
