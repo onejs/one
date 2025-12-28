@@ -1,0 +1,24 @@
+{
+  "name": "test-vercel",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "one dev",
+    "build:web": "one build --platform web",
+    "serve": "one serve",
+    "serve:vercel": "node ./vercel-server.mjs",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "one": "workspace:*",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@vxrn/test": "workspace:*",
+    "hono": "^4.0.0",
+    "playwright": "^1.45.0",
+    "typescript": "^5.5.3",
+    "vitest": "^4.0.6"
+  }
+}
