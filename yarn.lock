@@ -11508,6 +11508,7 @@ __metadata:
     babel-plugin-react-compiler: "npm:^1.0.0"
     expo: "npm:54.0.22"
     expo-build-properties: "npm:~1.0.9"
+    expo-linear-gradient: "npm:~14.0.2"
     one: "workspace:*"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
@@ -11737,6 +11738,17 @@ __metadata:
     expo: "*"
     react: "*"
   checksum: 10/574f3932356a23b3ee5f415115f95884d146cfd8d62bc19cdca463639c2d0941df01f7b82b489df8bdcd40e77fb088bcdd1724b001b157e25e2f97311f2c9ad1
+  languageName: node
+  linkType: hard
+
+"expo-linear-gradient@npm:~14.0.2":
+  version: 14.0.2
+  resolution: "expo-linear-gradient@npm:14.0.2"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10/73471a435fa720137c5bb16ddc699c64181101db081cd4ff892b383e9f047db56039fd1235f3570dd2fccd099214230f98405963c9c8afc32891c43eabae2c60
   languageName: node
   linkType: hard
 

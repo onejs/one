@@ -124,8 +124,11 @@ export async function oneServe(
 
     async handleLoader({ route, loaderProps }) {
       // Use lazy import if available (workers), otherwise dynamic import (Node.js)
-      const exports = options?.lazyRoutes?.pages?.[route.file]
-        ? await options.lazyRoutes.pages[route.file]()
+      // For workers, look up by routeFile (original file path like "./dynamic/[id]+ssr.tsx")
+      // For Node.js, use route.file which may be loaderServerPath
+      const routeFile = (route as any).routeFile || route.file
+      const exports = options?.lazyRoutes?.pages?.[routeFile]
+        ? await options.lazyRoutes.pages[routeFile]()
         : await import(toAbsolute(join('./', 'dist/server', route.file)))
 
       const { loader } = exports
@@ -388,6 +391,7 @@ url: ${url}`)
         // for now just change this
         const loaderRoute = {
           ...route,
+          routeFile: route.file, // preserve original for lazy route lookup
           file: route.loaderServerPath || c.req.path,
         }
 
