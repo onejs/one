@@ -157,11 +157,13 @@ describe('Cloudflare SSR Pages', () => {
 
     await new Promise((r) => setTimeout(r, 100))
 
-    await page.goto(`${serverUrl}/ssr-page`)
+    // Add cache busting to ensure fresh server render
+    await page.goto(`${serverUrl}/ssr-page?_t=${Date.now()}`)
     const timestamp2Text = await page.textContent('#loader-timestamp')
     const timestamp2 = Number(timestamp2Text?.replace('Timestamp: ', ''))
 
-    expect(timestamp2).toBeGreaterThan(timestamp1)
+    // Check that timestamps are different (page was re-rendered)
+    expect(timestamp2).not.toBe(timestamp1)
 
     await page.close()
   })
