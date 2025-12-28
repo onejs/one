@@ -12,6 +12,7 @@ type LazyRoutes = {
     }>;
     pages: Record<string, () => Promise<any>>;
     api: Record<string, () => Promise<any>>;
+    middlewares: Record<string, () => Promise<any>>;
 };
 export declare function oneServe(oneOptions: One.PluginOptions, buildInfo: One.BuildInfo, app: Hono, options?: {
     serveStaticAssets?: (ctx: {
