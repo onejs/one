@@ -86,9 +86,21 @@ The router handles hydration boundaries automatically with automatic preloading 
 
 ### Deployment
 
-One deploys cleanly to Vercel (Build Output API v3, ISR, middleware), Cloudflare Workers, or any Node host.
+One deploys to **Vercel**, **Cloudflare Workers**, or any **Node.js** host with a single config change:
 
-A bit more rare: you also get a full production Hono server out of the box with every feature supported from SSR to middleware, and proper error handling. Many other frameworks make you figure this out yourself.
+```tsx
+one({
+  web: {
+    deploy: 'vercel' // or 'cloudflare' or 'node'
+  }
+})
+```
+
+**Vercel** gets first-class support via the Build Output API v3. One generates the `.vercel/output` directory directly — no adapter needed. Each SSR page and API route becomes its own serverless function. This is rare: most frameworks require community adapters to support the Build Output API.
+
+**Cloudflare Workers** support landed in this RC with lazy module loading. Routes load on-demand rather than bundling everything upfront, keeping cold starts fast even for large apps.
+
+**Node** gives you a production-ready Hono server out of the box. SSR, API routes, static assets, compression — it all works. Many frameworks leave this as an exercise for the reader.
 
 ### Terminal UI
 
