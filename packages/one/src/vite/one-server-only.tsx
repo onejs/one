@@ -62,13 +62,19 @@ export function mergeHeaders(onto: Headers, from: Headers) {
 
 const globalId = { _id: Math.random() }
 
+// Store globalId in globalThis to ensure single instance across module duplicates
+const GLOBAL_ID_KEY = '__oneGlobalContextId'
+if (!globalThis[GLOBAL_ID_KEY]) {
+  globalThis[GLOBAL_ID_KEY] = globalId
+}
+
 export function ensureAsyncLocalID() {
   // NOTE: this is a hack to get around AsyncLocalStorage.getStore() being undefined on Vercel
   // We don't think there's a need to invoke runWithAsyncLocalContext to handle multiple requests
   // since Vercel ultimately deploys to AWS Lambda, which does not have this issue
   // The Error you willl see is something like this:
   //    Error: Internal One error, no AsyncLocalStorage id! at ensureAsyncLocalID (file:///var/task/server/_virtual_one-entry.js:37411:64)
-  const id = process.env.VERCEL ? globalId : requestAsyncLocalStore?.getStore()
+  const id = process.env.VERCEL ? globalThis[GLOBAL_ID_KEY] : requestAsyncLocalStore?.getStore()
 
   if (!id) {
     throw new Error(`Internal One error, no AsyncLocalStorage id!`)
@@ -79,7 +85,12 @@ export function ensureAsyncLocalID() {
 
 export type MaybeServerContext = null | One.ServerContext
 
-const serverContexts = new WeakMap<any, One.ServerContext>()
+// Store serverContexts in globalThis to ensure single instance across module duplicates
+const SERVER_CONTEXTS_KEY = '__oneServerContexts'
+if (!globalThis[SERVER_CONTEXTS_KEY]) {
+  globalThis[SERVER_CONTEXTS_KEY] = new WeakMap<any, One.ServerContext>()
+}
+const serverContexts = globalThis[SERVER_CONTEXTS_KEY] as WeakMap<any, One.ServerContext>
 
 export function setServerContext(data: One.ServerContext) {
   if (process.env.VITE_ENVIRONMENT === 'ssr') {

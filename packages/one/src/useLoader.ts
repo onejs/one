@@ -92,16 +92,11 @@ export function useLoaderState<
   // (the pathname is already resolved like /docs/getting-started, not /docs/[slug])
   const currentPath = pathname.replace(/\/index$/, '').replace(/\/$/, '') || '/'
 
-  // server-side
-  if (typeof window === 'undefined' && loader) {
-    const serverData = useAsyncFn(
-      loader,
-      loaderPropsFromServerContext || {
-        path: pathname,
-        params,
-      }
-    )
-    return { data: serverData, refetch: async () => {}, state: 'idle' } as any
+  // server-side - use a runtime check that can't be optimized away
+  // We use loaderDataFromServerContext as the primary source of truth on the server
+  // since the entrypoint already ran the loader
+  if (loaderDataFromServerContext !== undefined && loader) {
+    return { data: loaderDataFromServerContext, refetch: async () => {}, state: 'idle' } as any
   }
 
   // preloaded data from SSR/SSG - only use if server context path matches current path
