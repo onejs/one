@@ -11,7 +11,6 @@ import config from '~/config/tamagui.config'
 import { LayoutDecorativeStripe } from '~/features/site/LayoutDecorativeStripe'
 import { headerColors } from '~/features/site/headerColors'
 import { useIsScrolled } from '~/features/site/useIsScrolled'
-import { SearchProvider } from '~/features/search/SearchProvider'
 
 export default function Layout() {
   return (
@@ -34,11 +33,9 @@ export default function Layout() {
 
         <SchemeProvider>
           <ThemeProvider>
-            <SearchProvider>
-              <LayoutDecorativeStripe />
-              <ThemeMetaTag />
-              <Slot />
-            </SearchProvider>
+            <LayoutDecorativeStripe />
+            <ThemeMetaTag />
+            <Slot />
           </ThemeProvider>
         </SchemeProvider>
       </body>
