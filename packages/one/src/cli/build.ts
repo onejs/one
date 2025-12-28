@@ -669,6 +669,7 @@ export async function build(args: {
       // Uses find_additional_modules in wrangler config to keep modules separate
       const pageRouteMap: string[] = []
       const apiRouteMap: string[] = []
+      const middlewareRouteMap: string[] = []
 
       // Generate lazy imports for SSR/SSG page server bundles
       for (const [routeFile, info] of Object.entries(buildInfoForWriting.routeToBuildInfo)) {
@@ -692,6 +693,13 @@ export async function build(args: {
         }
       }
 
+      // Generate lazy imports for middlewares
+      // The key must match the contextKey used to look up the middleware (e.g., "dist/middlewares/_middleware.js")
+      for (const [middlewareFile, builtPath] of Object.entries(builtMiddlewares)) {
+        const importPath = './' + builtPath.replace(/^dist\//, '')
+        middlewareRouteMap.push(`  '${builtPath}': () => import('${importPath}')`)
+      }
+
       const workerSrcPath = join(options.root, 'dist', '_worker-src.js')
       const workerCode = `// Polyfill MessageChannel for React SSR (not available in Cloudflare Workers by default)
 if (typeof MessageChannel === 'undefined') {
@@ -703,7 +711,7 @@ if (typeof MessageChannel === 'undefined') {
   }
 }
 
-import { serve } from 'one/serve-worker'
+import { serve, setFetchStaticHtml } from 'one/serve-worker'
 
 // Lazy import map - modules load on-demand when route is matched
 const lazyRoutes = {
@@ -713,6 +721,9 @@ ${pageRouteMap.join(',\n')}
   },
   api: {
 ${apiRouteMap.join(',\n')}
+  },
+  middlewares: {
+${middlewareRouteMap.join(',\n')}
   }
 }
 
@@ -725,7 +736,48 @@ export default {
     if (!app) {
       app = await serve(buildInfo, lazyRoutes)
     }
-    return app.fetch(request, env, ctx)
+
+    // Set up static HTML fetcher for this request (uses ASSETS binding)
+    if (env.ASSETS) {
+      setFetchStaticHtml(async (path) => {
+        try {
+          const url = new URL(request.url)
+          url.pathname = path
+          const assetResponse = await env.ASSETS.fetch(new Request(url))
+          if (assetResponse && assetResponse.ok) {
+            return await assetResponse.text()
+          }
+        } catch (e) {
+          // Asset not found
+        }
+        return null
+      })
+    }
+
+    try {
+      // Try the app first
+      const response = await app.fetch(request, env, ctx)
+
+      // If no route matched (404) or no response, try serving static assets
+      if (!response || response.status === 404) {
+        if (env.ASSETS) {
+          try {
+            const assetResponse = await env.ASSETS.fetch(request)
+            // If asset exists, return it
+            if (assetResponse && assetResponse.status !== 404) {
+              return assetResponse
+            }
+          } catch (e) {
+            // Asset not found, continue with original response
+          }
+        }
+      }
+
+      return response
+    } finally {
+      // Clean up per-request state
+      setFetchStaticHtml(null)
+    }
   }
 }
 `
@@ -780,6 +832,7 @@ export default {
       await FSExtra.remove(workerSrcPath)
 
       // Use jsonc for wrangler config (recommended for new projects)
+      // Use assets with run_worker_first so all requests go through worker (enables middleware on SSG pages)
       const wranglerConfig = `{
   "name": "one-app",
   "main": "worker.js",
@@ -788,9 +841,10 @@ export default {
   "find_additional_modules": true,
   "rules": [
     { "type": "ESModule", "globs": ["./server/**/*.js"], "fallthrough": true },
-    { "type": "ESModule", "globs": ["./api/**/*.js"], "fallthrough": true }
+    { "type": "ESModule", "globs": ["./api/**/*.js"], "fallthrough": true },
+    { "type": "ESModule", "globs": ["./middlewares/**/*.js"], "fallthrough": true }
   ],
-  "assets": { "directory": "client" }
+  "assets": { "directory": "client", "binding": "ASSETS", "run_worker_first": true }
 }
 `
       await FSExtra.writeFile(join(options.root, 'dist', 'wrangler.jsonc'), wranglerConfig)

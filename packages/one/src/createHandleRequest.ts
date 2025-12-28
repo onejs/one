@@ -107,39 +107,41 @@ export async function resolveAPIRoute(
     console.info(`[one] 📡 API ${request.method} ${pathname} → ${route.file}`, params)
   }
 
-  try {
-    return resolveAPIEndpoint(
-      () =>
-        handlers.handleAPI!({
-          request,
-          route,
-          url,
-          loaderProps: {
-            path: pathname,
-            search: url.search,
-            params,
-          },
-        }),
-      request,
-      params || {}
-    )
-  } catch (err) {
-    if (isResponse(err)) {
-      return err
+  return await runMiddlewares(handlers, request, route, async () => {
+    try {
+      return resolveAPIEndpoint(
+        () =>
+          handlers.handleAPI!({
+            request,
+            route,
+            url,
+            loaderProps: {
+              path: pathname,
+              search: url.search,
+              params,
+            },
+          }),
+        request,
+        params || {}
+      )
+    } catch (err) {
+      if (isResponse(err)) {
+        return err
+      }
+
+      if (process.env.NODE_ENV === 'development') {
+        console.error(`\n [one] Error importing API route at ${pathname}:
+
+          ${err}
+
+          If this is an import error, you can likely fix this by adding this dependency to
+          the "optimizeDeps.include" array in your vite.config.ts.
+        `)
+      }
+
+      throw err
     }
-
-    if (process.env.NODE_ENV === 'development') {
-      console.error(`\n [one] Error importing API route at ${pathname}:
-
-        ${err}
-
-        If this is an import error, you can likely fix this by adding this dependency to
-        the "optimizeDeps.include" array in your vite.config.ts.
-      `)
-    }
-
-    throw err
-  }
+  })
 }
 
 export async function resolveLoaderRoute(
