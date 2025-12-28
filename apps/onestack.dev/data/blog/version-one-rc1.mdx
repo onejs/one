@@ -1,0 +1,136 @@
+---
+title: 'One v1 Release Candidate 1'
+publishedAt: '2024-12-28'
+description: 'After months of development, One v1 RC1 is here. A complete cross-platform React framework.'
+by: nate
+---
+
+<IntroParagraph>After months of work, One v1 Release Candidate 1 is here.</IntroParagraph>
+
+We first announced One in September 2024 as an experiment: what if web, iOS, and Android actually shared a single React mental model without giving up native performance or modern DX?
+
+Since then, One has grown from "interesting" into something we're confident teams can build real products on. This RC is the point where we stop adding foundations and start hardening them.
+
+---
+
+## What is One?
+
+One is a React framework that lets you build for web, iOS, and Android from a single codebase — without turning everything into a lowest-common-denominator app.
+
+It combines Vite's speed, React Native's native rendering, a file-based router that works everywhere, and SSR when you want it.
+
+You write React. One handles the rest.
+
+---
+
+## What changed since September
+
+Since the announcement, we've shipped around 2,200 commits across 300+ releases. More importantly, we closed the biggest gaps that stopped One from feeling production-ready.
+
+### Typed routes
+
+Routing is now fully type-safe — params, loaders, links, and redirects. No stringly-typed URLs, no guessing what params exist, no runtime surprises.
+
+```tsx
+import { createRoute } from 'one'
+
+const route = createRoute<'/users/[id]'>()
+
+export const loader = route.createLoader(async ({ params }) => {
+  // params.id is typed
+  return { user: await getUser(params.id) }
+})
+```
+
+We also added an option to generate types for dynamic routes automatically — so your IDE knows about routes before you even visit them.
+
+### useLoader and useLoaderState
+
+Data loading in One feels right now.
+
+- `useLoader` gives you typed, SSR-safe data loading that works identically on web and native. No `getServerSideProps`, no `useEffect` fetch chains — just a loader function that runs where it should.
+- `useLoaderState` takes it further: you get loading states, error handling, and the ability to refetch on demand.
+
+### React 19
+
+One now defaults to React 19, including first-class support for the React Compiler.
+
+You can enable the compiler with a single flag, opt out per file when needed, and run the same setup on web and native. No experimental branches, no hacks.
+
+```tsx
+// one.config.ts
+export default {
+  react: {
+    compiler: true,
+  },
+}
+```
+
+### Native builds
+
+We spent a lot of time here.
+
+You can now generate iOS and Android projects with a single command:
+
+```bash
+one prebuild
+```
+
+It works with or without Expo, in monorepos, with EAS, and with React Native 0.81. The goal was simple: native should feel boring again.
+
+### Per-page render modes
+
+Every route can independently choose its render mode: SSG, SSR, SPA, or API. Mix them freely in the same app. A marketing page can be static while your dashboard is client-only — and the handoff between them is seamless.
+
+The router handles hydration boundaries automatically with automatic preloading of all next-page assets on hover. No manual configuration, overfetching, layout shift, or flash of wrong content.
+
+### Deployment
+
+One deploys cleanly to Vercel (Build Output API v3, ISR, middleware), Cloudflare Workers, or any Node host.
+
+A bit more rare: you also get a full production Hono server out of the box with every feature supported from SSR to middleware, and proper error handling. Many other frameworks make you figure this out yourself.
+
+### Terminal UI
+
+The dev server now launches with an interactive TUI instead of a wall of logs. QR codes for Expo Go, keyboard shortcuts for simulators, quick access to React Native DevTools. It's small, but it changes how development feels.
+
+### Plugin options
+
+A few configuration additions worth mentioning:
+
+- `web.defaultRenderMode` — set your app's default render strategy
+- `build.analyze` — bundle analysis built in
+- `native.entryFile` — customize native entry points
+- `server.compress` — gzip/brotli compression out of the box
+
+### Small things
+
+Many smaller wins are here. Sitemaps generate automatically. Build output is more predictable. Many more packages are automatically fixed for web + native support.
+
+---
+
+## Getting started
+
+```bash
+npx one@latest init myapp
+```
+
+Or upgrade:
+
+```bash
+npm install one@latest
+```
+
+---
+
+## Thank you
+
+This RC exists because people actually tried to use One — and told us where it broke.
+
+If you're one of them: thank you.
+
+If you're new here: welcome. We're excited to see what you build.
+
+---
+
+_Questions or feedback? Find us on [Discord](https://discord.gg/one) or [GitHub](https://github.com/onejs/one)._
