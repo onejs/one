@@ -29,6 +29,26 @@ afterAll(async () => {
   await browser.close()
 })
 
+describe('Vercel Middleware', () => {
+  it('should run middleware and add custom header on SSG page', async () => {
+    const response = await fetch(`${serverUrl}/`)
+    expect(response.status).toBe(200)
+    expect(response.headers.get('X-Middleware-Test')).toBe('vercel-middleware-works')
+  })
+
+  it('should run middleware on API routes', async () => {
+    const response = await fetch(`${serverUrl}/api/hello`)
+    expect(response.status).toBe(200)
+    expect(response.headers.get('X-Middleware-Test')).toBe('vercel-middleware-works')
+  })
+
+  it('should run middleware on SSR pages', async () => {
+    const response = await fetch(`${serverUrl}/ssr-page`)
+    expect(response.status).toBe(200)
+    expect(response.headers.get('X-Middleware-Test')).toBe('vercel-middleware-works')
+  })
+})
+
 describe('Vercel API Routes', () => {
   it('should handle basic GET request', async () => {
     const response = await fetch(`${serverUrl}/api/hello`)

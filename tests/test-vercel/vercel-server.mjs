@@ -25,6 +25,18 @@ process.env.VERCEL_URL = `localhost:${PORT}`
 // Required for SSR mode detection in One
 process.env.VITE_ENVIRONMENT = 'ssr'
 
+// Load Edge Middleware if it exists
+let middleware = null
+try {
+  const middlewarePath = join(FUNCTIONS_DIR, '_middleware.func', '_wrapped_middleware.js')
+  await stat(middlewarePath)
+  const middlewareModule = await import(pathToFileURL(middlewarePath).href)
+  middleware = middlewareModule.default
+  console.log('Loaded Edge Middleware')
+} catch (err) {
+  // Middleware doesn't exist, that's fine
+}
+
 const MIME_TYPES = {
   '.html': 'text/html',
   '.js': 'application/javascript',
@@ -270,9 +282,56 @@ async function executeFunction(funcDir, req, res, pathname) {
   }
 }
 
+/**
+ * Run Edge Middleware and collect headers to add to response
+ */
+async function runMiddleware(req, pathname) {
+  if (!middleware) return {}
+
+  const protocol = 'http'
+  const host = req.headers.host || `localhost:${PORT}`
+  const url = new URL(pathname + (req.url.includes('?') ? '?' + req.url.split('?')[1] : ''), `${protocol}://${host}`)
+
+  const request = new Request(url.toString(), {
+    method: req.method,
+    headers: req.headers,
+  })
+
+  try {
+    const response = await middleware(request, {})
+
+    // Collect headers to pass along (excluding internal headers)
+    // Don't copy content-length, content-type, or other headers that should come from the actual response
+    const excludeHeaders = new Set(['x-middleware-next', 'content-length', 'content-type', 'accept', 'host', 'user-agent'])
+    const middlewareHeaders = {}
+    for (const [key, value] of response.headers.entries()) {
+      if (!excludeHeaders.has(key.toLowerCase())) {
+        middlewareHeaders[key] = value
+      }
+    }
+    return middlewareHeaders
+  } catch (err) {
+    console.error('Middleware error:', err)
+    return {}
+  }
+}
+
 const server = createServer(async (req, res) => {
   const pathname = new URL(req.url, `http://localhost:${PORT}`).pathname
   console.log(`${req.method} ${pathname}`)
+
+  // Run middleware and collect headers
+  const middlewareHeaders = await runMiddleware(req, pathname)
+
+  // Wrap the response to add middleware headers
+  const originalWriteHead = res.writeHead.bind(res)
+  res.writeHead = (statusCode, ...args) => {
+    // Add middleware headers
+    for (const [key, value] of Object.entries(middlewareHeaders)) {
+      res.setHeader(key, value)
+    }
+    return originalWriteHead(statusCode, ...args)
+  }
 
   // Try to find a matching function first
   const funcDir = await findFunction(pathname)
