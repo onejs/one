@@ -16,8 +16,7 @@ import { TopNav } from '~/components/TopNav'
 import { OneLogo } from '~/features/brand/Logo'
 import { DocsMenuContents } from '~/features/docs/DocsMenuContents'
 import { useDocsMenu } from '~/features/docs/useDocsMenu'
-import { SearchProvider } from '~/features/search/SearchProvider'
-import { ContainerDocs, ContainerSm } from '~/features/site/Containers'
+import { ContainerDocs } from '~/features/site/Containers'
 
 const GITHUB_URL = 'https://github.com'
 const REPO_NAME = 'onejs/one'
@@ -28,7 +27,7 @@ export default function DocsLayout() {
   const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/${BRANCH}/apps/onestack.dev/data${currentPath}${documentVersionPath}.mdx`
 
   return (
-    <SearchProvider>
+    <>
       <TopNav />
 
       <View
@@ -193,7 +192,7 @@ export default function DocsLayout() {
           </Paragraph>
         </Link>
       </ContainerDocs>
-    </SearchProvider>
+    </>
   )
 }
 
