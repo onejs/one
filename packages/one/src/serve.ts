@@ -23,7 +23,7 @@ export async function serve(args: VXRNOptions['server'] & { app?: Hono } = {}) {
   // to avoid loading the CACHE_KEY before we set it use async imports:
   const { labelProcess } = await import('./cli/label-process')
   const { removeUndefined } = await import('./utils/removeUndefined')
-  const { loadEnv, serve: vxrnServe } = await import('vxrn/serve')
+  const { loadEnv, serve: vxrnServe, serveStaticAssets } = await import('vxrn/serve')
   const { oneServe } = await import('./server/oneServe')
 
   labelProcess('serve')
@@ -44,7 +44,7 @@ export async function serve(args: VXRNOptions['server'] & { app?: Hono } = {}) {
     }),
 
     async beforeRegisterRoutes(options, app) {
-      await oneServe(oneOptions, buildInfo, app)
+      await oneServe(oneOptions, buildInfo, app, { serveStaticAssets })
     },
 
     async afterRegisterRoutes(options, app) {},

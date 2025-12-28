@@ -286,12 +286,14 @@ export declare namespace One {
              */
             redirects?: Redirect[];
             /**
-             * Can be one of "node" or "vercel" ("vercel" support is experimental and currently not recommended for production use), this will determine the Hono adapter and build to run
-             * properly in production for each platform.
+             * Deployment target for production builds.
+             * - 'node': Default Node.js server using Hono
+             * - 'vercel': Vercel serverless functions
+             * - 'cloudflare': Cloudflare Workers
              *
              * @default node
              */
-            deploy?: 'vercel' | 'node';
+            deploy?: 'node' | 'vercel' | 'cloudflare';
             /**
              * @experimental
              * When true, inlines the CSS content directly into the HTML instead of using <link> tags.
@@ -393,6 +395,7 @@ export declare namespace One {
         preloads: Record<string, boolean>;
         cssPreloads: Record<string, boolean>;
         loaders: Record<string, boolean>;
+        useRolldown?: boolean;
     };
     export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo;
     export type RouteBuildInfo = {
