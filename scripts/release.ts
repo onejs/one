@@ -25,6 +25,7 @@ const finish = process.argv.includes('--finish')
 const skipFinish = process.argv.includes('--skip-finish')
 
 const canary = process.argv.includes('--canary')
+const isRC = process.argv.includes('--rc')
 const skipVersion = finish || rePublish || process.argv.includes('--skip-version')
 const shouldPatch = process.argv.includes('--patch')
 const dirty = finish || process.argv.includes('--dirty')
@@ -43,6 +44,12 @@ const isCI = finish || process.argv.includes('--ci')
 
 const curVersion = fs.readJSONSync('./packages/one/package.json').version
 
+// Check if current version is an RC (e.g., 1.3.0-rc.1)
+const rcMatch = curVersion.match(/^(\d+\.\d+\.\d+)-rc\.(\d+)$/)
+const isCurrentRC = !!rcMatch
+const currentRCBase = rcMatch ? rcMatch[1] : null
+const currentRCNumber = rcMatch ? Number.parseInt(rcMatch[2], 10) : 0
+
 const nextVersion = (() => {
   if (canary) {
     return `${curVersion.replace(/(-\d+)+$/, '')}-${Date.now()}`
@@ -50,6 +57,16 @@ const nextVersion = (() => {
 
   if (rePublish) {
     return curVersion
+  }
+
+  // RC mode: bump existing RC or will prompt for new RC version
+  if (isRC) {
+    if (isCurrentRC) {
+      // Already an RC, bump the RC number
+      return `${currentRCBase}-rc.${currentRCNumber + 1}`
+    }
+    // Not an RC yet, return placeholder - will be set via prompt
+    return null
   }
 
   let plusVersion = skipVersion ? 0 : 1
@@ -68,7 +85,15 @@ const nextVersion = (() => {
 })()
 
 if (!skipVersion) {
-  console.info('Current:', curVersion, '\n')
+  console.info('Current:', curVersion)
+  if (isRC) {
+    if (isCurrentRC) {
+      console.info(`RC mode: bumping RC ${currentRCNumber} → ${currentRCNumber + 1}`)
+    } else {
+      console.info('RC mode: will prompt for version to RC')
+    }
+  }
+  console.info('')
 } else {
   console.info(`Releasing ${curVersion}`)
 }
@@ -174,15 +199,37 @@ async function run() {
     }
 
     if (!finish) {
-      const answer =
-        isCI || skipVersion
-          ? { version: nextVersion }
-          : await prompts({
-              type: 'text',
-              name: 'version',
-              message: 'Version?',
-              initial: nextVersion,
-            })
+      let answer: { version: string }
+
+      if (isCI || skipVersion) {
+        answer = { version: nextVersion! }
+      } else if (isRC && !isCurrentRC) {
+        // New RC - prompt for which version to RC
+        const baseVersion = curVersion.replace(/-.*$/, '') // strip any existing prerelease
+        const [major, minor, patch] = baseVersion.split('.').map(Number)
+
+        const rcChoices = [
+          { title: `${major}.${minor + 1}.0-rc.1 (next minor)`, value: `${major}.${minor + 1}.0-rc.1` },
+          { title: `${major}.${minor}.${patch + 1}-rc.1 (next patch)`, value: `${major}.${minor}.${patch + 1}-rc.1` },
+          { title: `${major + 1}.0.0-rc.1 (next major)`, value: `${major + 1}.0.0-rc.1` },
+        ]
+
+        const rcAnswer = await prompts({
+          type: 'select',
+          name: 'version',
+          message: 'Which version to release as RC?',
+          choices: rcChoices,
+        })
+
+        answer = rcAnswer
+      } else {
+        answer = await prompts({
+          type: 'text',
+          name: 'version',
+          message: 'Version?',
+          initial: nextVersion,
+        })
+      }
 
       version = answer.version
       console.info('Next:', version, '\n')
@@ -294,7 +341,8 @@ async function run() {
       await pMap(
         packageJsons,
         async ({ name, cwd }) => {
-          const publishOptions = [canary && `--tag canary`].filter(Boolean).join(' ')
+          const publishTag = canary ? 'canary' : version.includes('-rc.') ? 'rc' : undefined
+          const publishOptions = [publishTag && `--tag ${publishTag}`].filter(Boolean).join(' ')
 
           // Check for and temporarily remove symlinks (like biome.json) before packing
           const biomePath = join(cwd, 'biome.json')
