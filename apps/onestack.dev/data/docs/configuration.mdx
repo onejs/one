@@ -36,6 +36,10 @@ export default {
             permanent: true,
           },
         ],
+
+        // Configure production server compatibility (default node)
+        // Options: 'node' or 'vercel'
+        deploy: 'node',
       },
 
       /**
@@ -85,12 +89,6 @@ export default {
 
         // Disable auto-adding default tsconfig.json if not found
         ensureTSConfig: false,
-      },
-
-      server: {
-        // Configures production server to be compatible (default node)
-        // Options: 'node' or 'vercel'
-        platform: 'node',
       },
 
       react: {

@@ -1,0 +1,221 @@
+---
+title: Deployment
+description: Deploy your One app to production
+---
+
+One supports multiple deployment targets for web applications. Choose the target that best fits your infrastructure needs.
+
+## Configuration
+
+Set your deployment target in `vite.config.ts`:
+
+```tsx fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      web: {
+        deploy: 'node' // 'node' (default), 'vercel', or 'cloudflare'
+      }
+    })
+  ]
+}
+```
+
+## Deployment Targets
+
+### Node (Default)
+
+The default deployment target outputs a Node.js server using Hono. This is suitable for any Node.js hosting environment.
+
+```bash
+# Build for production
+npx one build
+
+# Start the production server
+npx one serve
+```
+
+The build output is in the `dist` directory:
+
+- `dist/client` - Static assets and client-side bundles
+- `dist/server` - Server-side rendering bundles
+- `dist/api` - API route handlers
+
+You can deploy this to any platform that supports Node.js:
+
+- **Docker**: Create a Dockerfile that runs `npx one serve`
+- **Railway, Render, Fly.io**: Point to your repo and set the start command to `npx one serve`
+- **AWS, GCP, Azure**: Deploy as a containerized application or using their Node.js runtimes
+
+### Vercel
+
+One supports deploying to Vercel's serverless infrastructure using the [Build Output API](https://vercel.com/docs/build-output-api/v3).
+
+```tsx fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      web: {
+        deploy: 'vercel'
+      }
+    })
+  ]
+}
+```
+
+#### Build and Deploy
+
+```bash
+# Build for Vercel
+npx one build
+
+# Deploy using Vercel CLI
+vercel deploy --prebuilt
+```
+
+The `--prebuilt` flag tells Vercel to use the pre-generated output in `.vercel/output` instead of running its own build process.
+
+#### What Gets Built
+
+When targeting Vercel, One generates:
+
+- `.vercel/output/static` - Static assets served from Vercel's Edge Network
+- `.vercel/output/functions` - Serverless functions for:
+  - SSR pages (`+ssr.tsx` files)
+  - API routes (`app/api/**`)
+  - Loaders (data fetching functions)
+
+#### Supported Features
+
+| Feature | Status |
+|---------|--------|
+| Static pages (SSG) | Supported |
+| SPA pages | Supported |
+| SSR pages | Supported |
+| Loaders | Supported |
+| API routes | Supported |
+| Dynamic routes | Supported |
+| Catch-all routes | Supported |
+| Middlewares | Supported |
+
+#### Environment Variables
+
+Set `ONE_SERVER_URL` to your production URL:
+
+```bash
+# In your Vercel project settings or .env
+ONE_SERVER_URL=https://your-app.vercel.app
+```
+
+#### Vercel Project Settings
+
+When using `--prebuilt`, Vercel should automatically detect the pre-built output. If you need to configure manually:
+
+1. **Framework Preset**: Other
+2. **Build Command**: `npx one build`
+3. **Output Directory**: `.vercel/output`
+4. **Install Command**: `npm install` (or your package manager)
+
+## Static Export
+
+If you're only using SSG and SPA routes without loaders or API routes, you can statically serve the `dist/client` directory from any static hosting:
+
+- Netlify
+- GitHub Pages
+- Cloudflare Pages (static only)
+- AWS S3 + CloudFront
+- Any CDN or static file server
+
+```bash
+npx one build
+# Upload dist/client to your static host
+```
+
+### Cloudflare Workers
+
+One supports deploying to Cloudflare Workers with full SSR, API routes, and edge performance.
+
+```tsx fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      web: {
+        deploy: 'cloudflare'
+      }
+    })
+  ]
+}
+```
+
+#### Build and Deploy
+
+```bash
+# Build for Cloudflare
+npx one build
+
+# Deploy using Wrangler
+cd dist && wrangler deploy
+```
+
+#### What Gets Built
+
+When targeting Cloudflare, One generates:
+
+- `dist/worker.js` - The Cloudflare Worker entry point
+- `dist/wrangler.jsonc` - Wrangler configuration with lazy loading
+- `dist/client` - Static assets served from Cloudflare's edge
+- `dist/server` - Server-side bundles (lazy-loaded per route)
+- `dist/api` - API route handlers (lazy-loaded per route)
+
+#### Lazy Loading
+
+One uses a lazy loading pattern for Cloudflare Workers. Route modules are loaded on-demand when matched, not all upfront. This improves cold start times for apps with many routes.
+
+The generated `wrangler.jsonc` includes:
+
+```jsonc
+{
+  "find_additional_modules": true,
+  "rules": [
+    { "type": "ESModule", "globs": ["./server/**/*.js"], "fallthrough": true },
+    { "type": "ESModule", "globs": ["./api/**/*.js"], "fallthrough": true }
+  ]
+}
+```
+
+#### Supported Features
+
+| Feature | Status |
+|---------|--------|
+| Static pages (SSG) | Supported |
+| SPA pages | Supported |
+| SSR pages | Supported |
+| Loaders | Supported |
+| API routes | Supported |
+| Dynamic routes | Supported |
+| Catch-all routes | Supported |
+
+#### Requirements
+
+- Cloudflare Workers with `nodejs_compat` compatibility flag (auto-configured)
+- Wrangler CLI for deployment
+
+#### Wrangler Configuration
+
+The generated `wrangler.jsonc` is ready to use. To customize, create your own `wrangler.jsonc` in your project root and One will use it as a base.
+
+Key settings:
+
+```jsonc
+{
+  "name": "your-app-name",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": "client" }
+}
+```

@@ -14,6 +14,7 @@ export const docsRoutes = [
   {
     title: 'Guides',
     pages: [
+      { title: 'Deployment', route: '/docs/guides-deployment' },
       { title: 'MDX for web', route: '/docs/guides-mdx' },
       { title: 'Light and Dark mode', route: '/docs/guides-dark-mode' },
       { title: 'Tamagui', route: '/docs/guides-tamagui' },
