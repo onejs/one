@@ -290,7 +290,10 @@ export async function createVXRNCompilerPlugin(
       resolveId: (id) => (id === runtimePublicPath ? id : undefined),
       load: (id) =>
         id === runtimePublicPath
-          ? readFileSync(join(dirname(fileURLToPath(import.meta.url)), 'refresh-runtime.js'), 'utf-8')
+          ? readFileSync(
+              join(dirname(fileURLToPath(import.meta.url)), 'refresh-runtime.js'),
+              'utf-8'
+            )
           : undefined,
     },
 
