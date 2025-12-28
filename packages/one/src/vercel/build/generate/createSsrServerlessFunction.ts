@@ -48,7 +48,10 @@ export async function createSsrServerlessFunction(
     // console.debug("req.url", req.url);
     const url = new URL(req.url, \`https://\${process.env.VERCEL_URL}\`);
 
-    // Extract route params by matching against the route pattern
+    // Check if this is a loader request (routed here by config.json rewrite)
+    const isLoaderRequest = url.searchParams.get('__loader') === '1';
+
+    // Extract route params - from URL path match OR from query params (for loader requests)
     const routePattern = ${JSON.stringify(route.page)};
     const paramNames = [];
     const regexPattern = routePattern
@@ -56,12 +59,25 @@ export async function createSsrServerlessFunction(
       .replace(/\\[(\\w+)\\]/g, (_, name) => { paramNames.push({ name, catch: false }); return '([^/]+)'; });
 
     const routeParams = {};
-    const match = url.pathname.match(new RegExp(\`^\${regexPattern}$\`));
-    if (match) {
-      paramNames.forEach((param, index) => {
-        const value = match[index + 1];
+
+    // First try to get params from query string (set by Vercel rewrite rules)
+    // This handles both loader requests and regular page requests that went through rewrites
+    for (const param of paramNames) {
+      const value = url.searchParams.get(param.name);
+      if (value) {
         routeParams[param.name] = param.catch ? value.split('/') : value;
-      });
+      }
+    }
+
+    // If no params found in query string, try extracting from URL path
+    if (Object.keys(routeParams).length === 0) {
+      const match = url.pathname.match(new RegExp(\`^\${regexPattern}$\`));
+      if (match) {
+        paramNames.forEach((param, index) => {
+          const value = match[index + 1];
+          routeParams[param.name] = param.catch ? value.split('/') : value;
+        });
+      }
     }
 
     // Create a proper Request object for SSR loaders
@@ -70,8 +86,15 @@ export async function createSsrServerlessFunction(
       headers: new Headers(req.headers || {}),
     });
 
+    // Reconstruct the original path by replacing :param placeholders with actual values
+    // The pathname might be the rewritten path (e.g., /dynamic/:id instead of /dynamic/123)
+    let originalPath = url.pathname;
+    for (const [key, value] of Object.entries(routeParams)) {
+      originalPath = originalPath.replace(\`:$\{key}\`, String(value));
+    }
+
     const loaderProps = {
-      path: url.pathname,
+      path: originalPath,
       params: routeParams,
       request,
     }
@@ -88,9 +111,19 @@ export async function createSsrServerlessFunction(
       route = buildInfoConfig.default.routeToBuildInfo[routeName];
     }
 
-    const render = entry.default.render;
     const exported = await import(route.serverJsPath.replace('dist/','../'))
     const loaderData = await exported.loader?.(loaderProps)
+
+    // For loader requests, return the loader data as a JavaScript module
+    if (isLoaderRequest) {
+      res.setHeader('Content-Type', 'application/javascript; charset=utf-8')
+      res.setHeader('Cache-Control', 'no-store')
+      res.end(\`export function loader() { return \${JSON.stringify(loaderData)} }\`)
+      return
+    }
+
+    // For page requests, render the full HTML
+    const render = entry.default.render;
     const preloads = route.preloads
     const css = route.css || []
     const rendered = await render({

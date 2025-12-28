@@ -195,6 +195,40 @@ export { wrappedMiddlewareFunction as default }
 
   // Documentation - Vercel Build Output v3 config.json
   //   https://vercel.com/docs/build-output-api/v3/configuration#config.json-supported-properties
+  // Generate loader routes for SSR pages
+  // These intercept /assets/*_vxrn_loader.js requests and route to the SSR function
+  const ssrLoaderRoutes = buildInfoForWriting.manifest.pageRoutes
+    .filter((r) => r.type === 'ssr')
+    .map((r) => {
+      const pagePath = getPathFromRoute(r) || '/'
+      // Convert page path to loader asset pattern
+      // /ssr-page -> ssr-page
+      // /dynamic/:id -> dynamic_:id (getPathFromRoute converts [id] to :id)
+      const cleanPath = pagePath.slice(1).replace(/\//g, '_')
+
+      // Build regex pattern for the loader asset
+      // Replace :param with capture groups for dynamic segments
+      // The loader URL pattern uses the actual param value, not :param
+      // e.g., /dynamic/123 -> /assets/dynamic_123_12345_vxrn_loader.js
+      let loaderPattern = cleanPath.replace(/:([^_]+)/g, '(?<$1>[^_]+)')
+
+      // Match the loader file pattern: {path}_{cacheKey}_vxrn_loader.js
+      // Also handle _refetch_ pattern for cache busting
+      const src = `^/assets/${loaderPattern}(?:_refetch_\\d+)?_\\d+_vxrn_loader\\.js$`
+
+      // Build destination with captured params
+      let dest = `${pagePath}?__loader=1`
+      const paramMatches = cleanPath.match(/:([^_]+)/g)
+      if (paramMatches) {
+        for (const match of paramMatches) {
+          const paramName = match.slice(1) // remove leading :
+          dest += `&${paramName}=$${paramName}`
+        }
+      }
+
+      return { src, dest }
+    })
+
   const vercelConfigFilePath = resolve(join(oneOptionsRoot, '.vercel/output', 'config.json'))
   await writeJSON(vercelConfigFilePath, {
     ...vercelBuildOutputConfigBase,
@@ -212,6 +246,8 @@ export { wrappedMiddlewareFunction as default }
       {
         handle: 'rewrite',
       },
+      // SSR loader routes must come before dynamic page routes
+      ...ssrLoaderRoutes,
       ...buildInfoForWriting.manifest.allRoutes
         .filter((r) => r.routeKeys && Object.keys(r.routeKeys).length > 0)
         .map((r) => ({

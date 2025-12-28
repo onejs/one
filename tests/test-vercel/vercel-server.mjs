@@ -53,6 +53,99 @@ const MIME_TYPES = {
   '.map': 'application/json',
 }
 
+// Loader request pattern: /assets/dynamic_123_vxrn_loader.js or /assets/ssr-page_vxrn_loader.js
+const LOADER_REGEX = /^\/assets\/(.+?)_\d+_vxrn_loader\.js$/
+
+// Load routes from config.json
+let configRoutes = []
+try {
+  const configPath = join(VERCEL_OUTPUT, 'config.json')
+  const config = JSON.parse(await readFile(configPath, 'utf-8'))
+  configRoutes = config.routes || []
+  console.log('Loaded', configRoutes.length, 'routes from config.json')
+} catch (err) {
+  console.log('No config.json found or error loading routes')
+}
+
+/**
+ * Process routes from config.json and return rewritten pathname if matched
+ * skipCatchAll: if true, skip catch-all routes (used before checking files/functions)
+ */
+function processRoutes(pathname, skipCatchAll = false) {
+  let inRewritePhase = false
+
+  for (const route of configRoutes) {
+    // Handle phase markers
+    if (route.handle === 'rewrite') {
+      inRewritePhase = true
+      continue
+    }
+
+    // Skip middleware routes (handled separately)
+    if (route.middlewarePath) {
+      continue
+    }
+
+    // Only process rewrite routes after the 'rewrite' handle marker
+    if (!inRewritePhase) continue
+
+    // Match the route pattern
+    if (route.src && route.dest) {
+      // Skip catch-all routes if requested (they should only apply after files/functions fail)
+      // Catch-all routes typically have patterns like "^(?:/.*)?$" or match everything
+      if (skipCatchAll && route.dest.includes('notfound=')) {
+        continue
+      }
+
+      const regex = new RegExp(route.src)
+      const match = pathname.match(regex)
+
+      if (match) {
+        // Apply the rewrite - replace $param with captured groups
+        let dest = route.dest
+
+        // Handle named groups
+        if (match.groups) {
+          for (const [name, value] of Object.entries(match.groups)) {
+            const before = dest
+            dest = dest.replace(new RegExp(`\\$${name}`, 'g'), value)
+            if (before !== dest) {
+              console.log(`  Replaced $${name} -> ${value}`)
+            }
+          }
+        }
+
+        // Handle numbered groups
+        for (let i = 1; i < match.length; i++) {
+          dest = dest.replace(new RegExp(`\\$${i}`, 'g'), match[i])
+        }
+
+        console.log(`Route rewrite: ${pathname} -> ${dest}`)
+        return dest
+      }
+    }
+  }
+
+  return null
+}
+
+/**
+ * Parse a loader request path and return the original page path
+ * e.g., /assets/dynamic_123_12345_vxrn_loader.js -> /dynamic/123
+ * e.g., /assets/ssr-page_12345_vxrn_loader.js -> /ssr-page
+ */
+function parseLoaderPath(pathname) {
+  const match = pathname.match(LOADER_REGEX)
+  if (!match) return null
+
+  // Convert underscores back to slashes, but handle special cases
+  // dynamic_123 -> /dynamic/123
+  // ssr-page -> /ssr-page
+  let pagePath = '/' + match[1].replace(/_/g, '/')
+
+  return pagePath
+}
+
 /**
  * Find a matching function directory for a given path
  */
@@ -237,6 +330,7 @@ async function executeFunction(funcDir, req, res, pathname) {
 
       // Extract route params from the func directory path (e.g., "api/echo/:param.func")
       // Vercel adds route params as query params via rewrites
+      // Only extract from pathname if not already set in query (rewrites already set them)
       const funcRelPath = funcDir.replace(FUNCTIONS_DIR + '/', '').replace('.func', '')
       const paramPattern = funcRelPath
         .replace(/\[\.\.\.(\w+)\]/g, '(?<$1>.+)')
@@ -246,8 +340,11 @@ async function executeFunction(funcDir, req, res, pathname) {
       const paramMatch = pathname.match(new RegExp(`^/${paramPattern}$`))
       if (paramMatch?.groups) {
         // Add route params as query params (simulating Vercel's routing)
+        // But don't overwrite if already set by rewrite rules
         for (const [key, value] of Object.entries(paramMatch.groups)) {
-          url.searchParams.set(key, value)
+          if (!url.searchParams.has(key)) {
+            url.searchParams.set(key, value)
+          }
         }
       }
 
@@ -317,7 +414,8 @@ async function runMiddleware(req, pathname) {
 }
 
 const server = createServer(async (req, res) => {
-  const pathname = new URL(req.url, `http://localhost:${PORT}`).pathname
+  const url = new URL(req.url, `http://localhost:${PORT}`)
+  let pathname = url.pathname
   console.log(`${req.method} ${pathname}`)
 
   // Run middleware and collect headers
@@ -333,6 +431,25 @@ const server = createServer(async (req, res) => {
     return originalWriteHead(statusCode, ...args)
   }
 
+  // Process routes from config.json (rewrites, etc.)
+  // Skip catch-all routes initially - they should only apply after checking files/functions
+  const rewrittenDest = processRoutes(pathname, true /* skipCatchAll */)
+  const isLoaderRewrite = rewrittenDest && rewrittenDest.includes('__loader=1')
+
+  if (rewrittenDest) {
+    // Parse the rewritten destination (may include query params)
+    const rewrittenUrl = new URL(rewrittenDest, `http://localhost:${PORT}`)
+    pathname = rewrittenUrl.pathname
+
+    // Merge query params from rewrite with original request
+    for (const [key, value] of rewrittenUrl.searchParams.entries()) {
+      url.searchParams.set(key, value)
+    }
+
+    // Update the request URL for the function handler
+    req.url = pathname + '?' + url.searchParams.toString()
+  }
+
   // Try to find a matching function first
   const funcDir = await findFunction(pathname)
 
@@ -342,8 +459,14 @@ const server = createServer(async (req, res) => {
   }
 
   // Try serving static file
-  const served = await serveStatic(res, pathname)
-  if (served) return
+  // For loader rewrites, we explicitly DON'T serve static files (we want dynamic data)
+  // For other rewrites (like the catch-all), still try static files
+  if (!isLoaderRewrite) {
+    // For rewrites, try the rewritten path; for non-rewrites, use original path
+    const staticPath = rewrittenDest ? pathname : url.pathname
+    const served = await serveStatic(res, staticPath)
+    if (served) return
+  }
 
   // 404
   res.writeHead(404, { 'Content-Type': 'text/plain' })
