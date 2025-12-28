@@ -226,7 +226,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     console.info(`\n 🔨 build ${options.build?.server !== false ? 'client + server' : 'client'}\n`)
 
-    clientBuildPromise = viteBuild(clientBuildConfig) as Promise<RollupOutput>
+    clientBuildPromise = viteBuild(clientBuildConfig) as unknown as Promise<RollupOutput>
   }
 
   const serverOptions = options.build?.server
@@ -299,7 +299,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     serverBuildPromise = viteBuild(
       userServerBuildConf ? mergeConfig(serverBuildConfig, userServerBuildConf) : serverBuildConfig
-    ) as Promise<RollupOutput>
+    ) as unknown as Promise<RollupOutput>
   }
 
   // Wait for both builds to complete in parallel

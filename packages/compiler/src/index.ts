@@ -331,7 +331,7 @@ export async function createVXRNCompilerPlugin(
             throw new Error(`Can't find root js, internal one error`)
           }
 
-          const rootJS = bundle[rootJSName] as OutputChunk
+          const rootJS = bundle[rootJSName] as unknown as OutputChunk
 
           const cssAssets = Object.keys(bundle).filter((i) =>
             bundle[i].fileName.endsWith('.css.js')

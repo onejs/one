@@ -66,13 +66,10 @@ function getSetupFileImport(
   const setupFile = setupFiles[key]
   if (!setupFile) return ''
 
-  // For native, use static import since dynamic import doesn't work
-  // For web, use top-level await with dynamic import to ensure setup runs before app
-  if (useStaticImport) {
-    return `import ${JSON.stringify(setupFile)}`
-  }
-
-  return `await import(/* @vite-ignore */ ${JSON.stringify(setupFile)})`
+  // Always use static import for all environments
+  // This ensures the setup file is bundled correctly with both Vite and Rolldown
+  // For client-side, the import is at module top level which ensures it runs before app
+  return `import ${JSON.stringify(setupFile)}`
 }
 
 export function createVirtualEntry(options: {
