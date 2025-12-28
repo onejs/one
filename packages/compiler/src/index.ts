@@ -5,7 +5,8 @@
 
 import { readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
-import { extname, join, sep } from 'node:path'
+import { dirname, extname, join, sep } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { resolvePath } from '@vxrn/utils'
 import { cssToReactNativeRuntime } from 'react-native-css-interop/css-to-rn/index.js'
 import type { OutputChunk } from 'rollup'
@@ -289,7 +290,7 @@ export async function createVXRNCompilerPlugin(
       resolveId: (id) => (id === runtimePublicPath ? id : undefined),
       load: (id) =>
         id === runtimePublicPath
-          ? readFileSync(join(import.meta.dirname, 'refresh-runtime.js'), 'utf-8')
+          ? readFileSync(join(dirname(fileURLToPath(import.meta.url)), 'refresh-runtime.js'), 'utf-8')
           : undefined,
     },
 
