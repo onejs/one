@@ -28,6 +28,7 @@
     "@vxrn/color-scheme": "workspace:*",
     "expo": "54.0.22",
     "expo-build-properties": "~1.0.9",
+    "expo-linear-gradient": "~14.0.2",
     "one": "workspace:*",
     "react": "19.1.0",
     "react-dom": "19.1.0",
