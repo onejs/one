@@ -1,9 +1,7 @@
-import { default as FSExtra } from 'fs-extra'
 import type { Hono, MiddlewareHandler } from 'hono'
 import type { BlankEnv } from 'hono/types'
-import { extname, join } from 'node:path'
-import { serveStaticAssets } from 'vxrn'
-import { getServerEntry } from 'vxrn/serve'
+import { readFile } from 'node:fs/promises'
+import { extname, join, resolve } from 'node:path'
 import {
   CSS_PRELOAD_JS_POSTFIX,
   LOADER_JS_POSTFIX_UNCACHED,
@@ -17,14 +15,31 @@ import {
 } from '../createHandleRequest'
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
-import { isRolldown } from '../utils/isRolldown'
 import { toAbsolute } from '../utils/toAbsolute'
 import type { One } from '../vite/types'
 import type { RouteInfoCompiled } from './createRoutesManifest'
 
 const debugRouter = process.env.ONE_DEBUG_ROUTER
 
-export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.BuildInfo, app: Hono) {
+/**
+ * Lazy import functions for route modules.
+ * Modules are loaded on-demand when a route is matched, not all upfront.
+ */
+type LazyRoutes = {
+  serverEntry: () => Promise<{ default: { render: (props: any) => any } }>
+  pages: Record<string, () => Promise<any>>
+  api: Record<string, () => Promise<any>>
+}
+
+export async function oneServe(
+  oneOptions: One.PluginOptions,
+  buildInfo: One.BuildInfo,
+  app: Hono,
+  options?: {
+    serveStaticAssets?: (ctx: { context: any }) => Promise<Response | undefined>
+    lazyRoutes?: LazyRoutes
+  }
+) {
   const { resolveAPIRoute, resolveLoaderRoute, resolvePageRoute } = await import(
     '../createHandleRequest'
   )
@@ -61,19 +76,38 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
     root: '.',
   }
 
-  const entryServer = getServerEntry(serverOptions)
-  const entry = await import(entryServer)
-
-  const render = entry.default.render as (props: RenderAppProps) => any
   const apiCJS = oneOptions.build?.api?.outputFormat === 'cjs'
 
-  const useRolldown = await isRolldown()
+  // useRolldown is determined at build time and stored in buildInfo
+  const useRolldown = buildInfo.useRolldown ?? false
+
+  // Lazy load server entry only when needed for SSR
+  let render: ((props: RenderAppProps) => any) | null = null
+  async function getRender() {
+    if (!render) {
+      // Use lazy import if available (workers), otherwise dynamic import (Node.js)
+      const entry = options?.lazyRoutes?.serverEntry
+        ? await options.lazyRoutes.serverEntry()
+        : await import(
+            resolve(
+              process.cwd(),
+              `${serverOptions.root}/dist/server/_virtual_one-entry.${typeof oneOptions.build?.server === 'object' && oneOptions.build.server.outputFormat === 'cjs' ? 'c' : ''}js`
+            )
+          )
+      render = entry.default.render as (props: RenderAppProps) => any
+    }
+    return render
+  }
 
   const requestHandlers: RequestHandlers = {
     async handleAPI({ route }) {
+      // Use lazy import if available (workers), otherwise dynamic import (Node.js)
+      if (options?.lazyRoutes?.api?.[route.page]) {
+        return await options.lazyRoutes.api[route.page]()
+      }
       const fileName = useRolldown
-        ? route.page.slice(1) // rolldown doesn't replace brackets
-        : route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_') // esbuild replaces brackets with underscores
+        ? route.page.slice(1)
+        : route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
       const apiFile = join(process.cwd(), 'dist', 'api', fileName + (apiCJS ? '.cjs' : '.js'))
       return await import(apiFile)
     },
@@ -82,8 +116,11 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
       return await import(toAbsolute(route.contextKey))
     },
 
-    async handleLoader({ request, route, url, loaderProps }) {
-      const exports = await import(toAbsolute(join('./', 'dist/server', route.file)))
+    async handleLoader({ route, loaderProps }) {
+      // Use lazy import if available (workers), otherwise dynamic import (Node.js)
+      const exports = options?.lazyRoutes?.pages?.[route.file]
+        ? await options.lazyRoutes.pages[route.file]()
+        : await import(toAbsolute(join('./', 'dist/server', route.file)))
 
       const { loader } = exports
 
@@ -109,13 +146,16 @@ export async function oneServe(oneOptions: One.PluginOptions, buildInfo: One.Bui
         }
 
         try {
-          const exported = await import(toAbsolute(buildInfo.serverJsPath))
+          // Use lazy import if available (workers), otherwise dynamic import (Node.js)
+          const exported = options?.lazyRoutes?.pages?.[route.file]
+            ? await options.lazyRoutes.pages[route.file]()
+            : await import(toAbsolute(buildInfo.serverJsPath))
           const loaderData = await exported.loader?.(loaderProps)
 
           const headers = new Headers()
           headers.set('content-type', 'text/html')
 
-          const rendered = await render({
+          const rendered = await (await getRender())({
             mode: route.type,
             loaderData,
             loaderProps,
@@ -142,7 +182,7 @@ url: ${url}`)
         const htmlPath = routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
 
         if (htmlPath) {
-          const html = await FSExtra.readFile(join('dist/client', htmlPath), 'utf-8')
+          const html = await readFile(join('dist/client', htmlPath), 'utf-8')
           const headers = new Headers()
           headers.set('content-type', 'text/html')
           return new Response(html, { headers, status: route.isNotFound ? 404 : 200 })
@@ -161,14 +201,17 @@ url: ${url}`)
           // But if we handle every matching static asset here, it seems to break some of the static routes.
           // So we only handle it if there's a matching not-found or dynamic route, to prevent One from taking over the static asset.
           // If there's no matching not-found or dynamic route, it's very likely that One won't handle it and will fallback to VxRN serving the static asset so it will also work.
-          const staticAssetResponse = await serveStaticAssets({ context })
-          if (staticAssetResponse) {
-            return await runMiddlewares(
-              requestHandlers,
-              request,
-              route,
-              async () => staticAssetResponse
-            )
+          // Note: serveStaticAssets is optional - workers handle static assets via platform config
+          if (options?.serveStaticAssets) {
+            const staticAssetResponse = await options.serveStaticAssets({ context })
+            if (staticAssetResponse) {
+              return await runMiddlewares(
+                requestHandlers,
+                request,
+                route,
+                async () => staticAssetResponse
+              )
+            }
           }
         }
 

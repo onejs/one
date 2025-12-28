@@ -328,12 +328,14 @@ export namespace One {
       redirects?: Redirect[]
 
       /**
-       * Can be one of "node" or "vercel" ("vercel" support is experimental and currently not recommended for production use), this will determine the Hono adapter and build to run
-       * properly in production for each platform.
+       * Deployment target for production builds.
+       * - 'node': Default Node.js server using Hono
+       * - 'vercel': Vercel serverless functions
+       * - 'cloudflare': Cloudflare Workers
        *
        * @default node
        */
-      deploy?: 'vercel' | 'node'
+      deploy?: 'node' | 'vercel' | 'cloudflare'
 
       /**
        * @experimental
@@ -447,6 +449,8 @@ export namespace One {
     preloads: Record<string, boolean>
     cssPreloads: Record<string, boolean>
     loaders: Record<string, boolean>
+    // Whether the build used rolldown (affects API file naming)
+    useRolldown?: boolean
   }
 
   export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo

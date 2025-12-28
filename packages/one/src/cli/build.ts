@@ -27,6 +27,7 @@ import { buildPage } from './buildPage'
 import { checkNodeVersion } from './checkNodeVersion'
 import { generateSitemap, type RouteSitemapData } from './generateSitemap'
 import { labelProcess } from './label-process'
+import { isRolldown } from '../utils/isRolldown'
 
 const { ensureDir, writeJSON } = FSExtra
 
@@ -625,6 +626,7 @@ export async function build(args: {
     preloads,
     cssPreloads,
     loaders,
+    useRolldown: await isRolldown(),
   }
 
   await writeJSON(toAbsolute(`dist/buildInfo.json`), buildInfoForWriting)
@@ -662,29 +664,139 @@ export async function build(args: {
       break
     }
 
-    //     case 'cloudflare': {
-    //       await FSExtra.writeFile(
-    //         join(options.root, 'dist', 'worker.js'),
-    //         `import { serve } from 'one/serve-worker'
+    case 'cloudflare': {
+      // Generate lazy import functions - modules load on-demand, not all upfront
+      // Uses find_additional_modules in wrangler config to keep modules separate
+      const pageRouteMap: string[] = []
+      const apiRouteMap: string[] = []
 
-    // const buildInfo = ${JSON.stringify(buildInfoForWriting)}
+      // Generate lazy imports for SSR/SSG page server bundles
+      for (const [routeFile, info] of Object.entries(buildInfoForWriting.routeToBuildInfo)) {
+        if (info.serverJsPath) {
+          const importPath = './' + info.serverJsPath.replace(/^dist\//, '')
+          pageRouteMap.push(`  '${routeFile}': () => import('${importPath}')`)
+        }
+      }
 
-    // const handler = await serve(buildInfo)
+      // Generate lazy imports for API routes
+      for (const route of buildInfoForWriting.manifest.apiRoutes) {
+        if (route.file) {
+          // API files are built to dist/api/ with brackets replaced by underscores
+          // route.page is like "/api/hello", files are at "dist/api/api/hello.js"
+          const apiFileName = route.page.slice(1).replace(/\[/g, '_').replace(/\]/g, '_')
+          const importPath = `./api/${apiFileName}.js`
+          apiRouteMap.push(`  '${route.page}': () => import('${importPath}')`)
+        }
+      }
 
-    // export default {
-    //   fetch: handler.fetch,
-    // }`
-    //       )
+      const workerSrcPath = join(options.root, 'dist', '_worker-src.js')
+      const workerCode = `// Polyfill MessageChannel for React SSR (not available in Cloudflare Workers by default)
+if (typeof MessageChannel === 'undefined') {
+  globalThis.MessageChannel = class MessageChannel {
+    constructor() {
+      this.port1 = { postMessage: () => {}, onmessage: null, close: () => {} }
+      this.port2 = { postMessage: () => {}, onmessage: null, close: () => {} }
+    }
+  }
+}
 
-    //       await FSExtra.writeFile(
-    //         join(options.root, 'dist', 'wrangler.toml'),
-    //         `assets = { directory = "client" }
-    // compatibility_date = "2024-12-05"
-    // `
-    //       )
+import { serve } from 'one/serve-worker'
 
-    //       break
-    //     }
+// Lazy import map - modules load on-demand when route is matched
+const lazyRoutes = {
+  serverEntry: () => import('./server/_virtual_one-entry.js'),
+  pages: {
+${pageRouteMap.join(',\n')}
+  },
+  api: {
+${apiRouteMap.join(',\n')}
+  }
+}
+
+const buildInfo = ${JSON.stringify(buildInfoForWriting)}
+
+let app
+
+export default {
+  async fetch(request, env, ctx) {
+    if (!app) {
+      app = await serve(buildInfo, lazyRoutes)
+    }
+    return app.fetch(request, env, ctx)
+  }
+}
+`
+      await FSExtra.writeFile(workerSrcPath, workerCode)
+
+      // Bundle the worker using Vite/esbuild
+      // Cloudflare Workers with nodejs_compat supports Node.js built-ins
+      console.info('\n [cloudflare] Bundling worker...')
+      await viteBuild({
+        root: options.root,
+        logLevel: 'warn',
+        build: {
+          outDir: 'dist',
+          emptyOutDir: false,
+          // Use SSR mode with node target for proper Node.js module resolution
+          ssr: workerSrcPath,
+          rollupOptions: {
+            external: [
+              // React Native dev tools - not needed in production
+              '@react-native/dev-middleware',
+              '@react-native/debugger-shell',
+              'metro',
+              'metro-core',
+              'metro-runtime',
+              // Native modules that can't run in workers
+              /\.node$/,
+            ],
+            output: {
+              entryFileNames: 'worker.js',
+              format: 'es',
+              // Keep dynamic imports separate for lazy loading
+              inlineDynamicImports: false,
+            },
+          },
+          minify: true,
+          target: 'esnext',
+        },
+        define: {
+          'process.env.NODE_ENV': JSON.stringify('production'),
+          'process.env.VITE_ENVIRONMENT': JSON.stringify('ssr'),
+        },
+        resolve: {
+          conditions: ['workerd', 'worker', 'node', 'module', 'default'],
+        },
+        ssr: {
+          target: 'node',
+          noExternal: true,
+        },
+      })
+
+      // Clean up temp file
+      await FSExtra.remove(workerSrcPath)
+
+      // Use jsonc for wrangler config (recommended for new projects)
+      const wranglerConfig = `{
+  "name": "one-app",
+  "main": "worker.js",
+  "compatibility_date": "2024-12-05",
+  "compatibility_flags": ["nodejs_compat"],
+  "find_additional_modules": true,
+  "rules": [
+    { "type": "ESModule", "globs": ["./server/**/*.js"], "fallthrough": true },
+    { "type": "ESModule", "globs": ["./api/**/*.js"], "fallthrough": true }
+  ],
+  "assets": { "directory": "client" }
+}
+`
+      await FSExtra.writeFile(join(options.root, 'dist', 'wrangler.jsonc'), wranglerConfig)
+
+      postBuildLogs.push(`Cloudflare worker bundled at dist/worker.js`)
+      postBuildLogs.push(`To deploy: cd dist && wrangler deploy`)
+
+      break
+    }
   }
 
   if (process.env.VXRN_ANALYZE_BUNDLE) {
