@@ -7,5 +7,5 @@ export const getHeadings = (source: string) =>
     .map((x) => ({
       title: getTitle(x),
       priority: x.trim().split(' ')[0].length,
-      id: `#${getTitle(x).replace(/\s+/g, '-').toLowerCase()}`,
+      id: getTitle(x).replace(/\s+/g, '-').toLowerCase(),
     }))
