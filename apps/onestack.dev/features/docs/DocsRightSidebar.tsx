@@ -60,7 +60,7 @@ export function DocsRightSidebar({ headings = [] }: { headings: Frontmatter['hea
                   return (
                     <XStack key={i} tag="li" ai="center" py="$2">
                       {priority > 2 && <Circle size={4} mx="$2" />}
-                      <QuickNavLink href={id}>{title}</QuickNavLink>
+                      <QuickNavLink href={`#${id}`}>{title}</QuickNavLink>
                     </XStack>
                   )
                 })}
