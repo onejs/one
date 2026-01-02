@@ -284,7 +284,9 @@ export async function build(args: {
 
     // If not found, search for shared chunk containing this route
     if (!clientManifestKey) {
-      const routeBaseName = Path.basename(id).replace(/\+(ssg|ssr|spa)/, '_$1').replace(/\.tsx?$/, '')
+      const routeBaseName = Path.basename(id)
+        .replace(/\+(ssg|ssr|spa)/, '_$1')
+        .replace(/\.tsx?$/, '')
       clientManifestKey =
         Object.keys(vxrnOutput.clientManifest).find((key) => {
           return key.includes(routeBaseName) && key.startsWith('_')
