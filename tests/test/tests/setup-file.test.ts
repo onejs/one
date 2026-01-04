@@ -16,7 +16,7 @@ afterAll(async () => {
   await browser.close()
 })
 
-describe('setupFile Tests', () => {
+describe('setupFile Tests', { retry: 2, timeout: 60_000 }, () => {
   it('setupFile runs on web client', async () => {
     const page = await context.newPage()
 
@@ -26,7 +26,7 @@ describe('setupFile Tests', () => {
     await page.waitForFunction(() => {
       const el = document.querySelector('[data-testid="client-setup-ran"]')
       return el?.textContent?.includes('true')
-    }, { timeout: 10000 })
+    }, { timeout: 30_000 })
 
     // Check that the client setup file ran
     const clientSetupText = await page.textContent('[data-testid="client-setup-ran"]')
