@@ -2012,21 +2012,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emnapi/runtime@npm:^1.2.0":
+"@emnapi/runtime@npm:^1.2.0, @emnapi/runtime@npm:^1.4.3, @emnapi/runtime@npm:^1.5.0":
   version: 1.7.1
   resolution: "@emnapi/runtime@npm:1.7.1"
   dependencies:
     tslib: "npm:^2.4.0"
   checksum: 10/6fc83f938e3c70e32e84c1fbe5cab6cb9340b8107cee4048384ad5b8f2998a06502b4bed342acaf6e44f473f2c14c4ab1e3fd5083bd7823fc63abfca9eff0175
-  languageName: node
-  linkType: hard
-
-"@emnapi/runtime@npm:^1.4.3, @emnapi/runtime@npm:^1.5.0":
-  version: 1.6.0
-  resolution: "@emnapi/runtime@npm:1.6.0"
-  dependencies:
-    tslib: "npm:^2.4.0"
-  checksum: 10/88f685ecb23df070a61447bf61b12a113b7edecc248969e1dc18e4637ee8519389cde8b95c22b2144de41490b42aedc6a791fe1b00940a02fdeaadac1352bbf6
   languageName: node
   linkType: hard
 

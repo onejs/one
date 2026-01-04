@@ -46,7 +46,7 @@
     "site:prod": "yarn site:build && yarn site:serve",
     "site:serve": "yarn workspace site serve --host 0.0.0.0 --port 3000",
     "start": "yarn workspace start dev",
-    "test": "yarn turbo:run test --concurrency=3",
+    "test": "yarn turbo:run test --concurrency=2",
     "test-ios": "./scripts/test-ios.sh",
     "test-ios:run": "yarn workspaces foreach --exclude vxrn-monorepo -A run test-ios",
     "test-macos": "yarn workspaces foreach -A run test-macos",

@@ -43,6 +43,9 @@ const waitForServer = (
           console.info(
             `Server at ${url} is ready after ${Math.round(performance.now() - startedAt)}ms`
           )
+          // Warmup: make a few more requests to ensure server is stable
+          // This helps prevent crashes from the initial burst of test requests
+          await warmupServer(url)
           resolve()
         } else {
           throw new Error('Server not ready')
@@ -62,6 +65,18 @@ const waitForServer = (
     }
     checkServer()
   })
+}
+
+async function warmupServer(url: string, requests = 3): Promise<void> {
+  for (let i = 0; i < requests; i++) {
+    try {
+      await fetch(url)
+      // Small delay between warmup requests
+      await new Promise(r => setTimeout(r, 100))
+    } catch {
+      // Ignore warmup errors, the server is still starting up
+    }
+  }
 }
 
 export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): Promise<TestInfo> {
