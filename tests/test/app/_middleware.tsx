@@ -1,8 +1,8 @@
 import { createMiddleware } from 'one'
+// testing it doesnt bundle on client - importing node:fs should work in middleware
 import { readFile } from 'node:fs'
 
-// testing it doesnt bundle on client
-console.info(readFile)
+void readFile
 
 export default createMiddleware(async ({ request, next }) => {
   if (request.url.includes(`test-middleware`)) {
