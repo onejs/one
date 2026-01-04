@@ -49,4 +49,22 @@ describe('Simple Build Tests', () => {
     const tabsHomeContent = await readFile(tabsHomePath, 'utf-8')
     expect(tabsHomeContent).toContain('Tabs Home')
   })
+
+  it('should build SSG routes in nested route groups', async () => {
+    // This test catches a regression where nested route groups like (site)/(legal)/
+    // would return 404 on direct URL access because Rollup bundles them into shared
+    // chunks, and the build loop couldn't find the client manifest entry by key match.
+    // The fix uses the src property of manifest entries instead of guessing chunk names.
+    const termsPath = join(fixturePath, 'dist', 'client', 'terms-of-service.html')
+    const privacyPath = join(fixturePath, 'dist', 'client', 'privacy-policy.html')
+
+    expect(await pathExists(termsPath)).toBeTruthy()
+    expect(await pathExists(privacyPath)).toBeTruthy()
+
+    const termsContent = await readFile(termsPath, 'utf-8')
+    expect(termsContent).toContain('Terms of Service')
+
+    const privacyContent = await readFile(privacyPath, 'utf-8')
+    expect(privacyContent).toContain('Privacy Policy')
+  })
 })
