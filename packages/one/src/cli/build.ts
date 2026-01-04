@@ -276,20 +276,19 @@ export async function build(args: {
       continue
     }
 
-    // Find client manifest entry - first by exact match, then by shared chunk
+    // Find client manifest entry - first by exact key match, then by src property
     let clientManifestKey =
       Object.keys(vxrnOutput.clientManifest).find((key) => {
         return id.endsWith(key)
       }) || ''
 
-    // If not found, search for shared chunk containing this route
+    // If not found by key, search by src property (handles shared chunks)
     if (!clientManifestKey) {
-      const routeBaseName = Path.basename(id)
-        .replace(/\+(ssg|ssr|spa)/, '_$1')
-        .replace(/\.tsx?$/, '')
+      const expectedSrc = `${routerRoot}${foundRoute.file.slice(1)}`
       clientManifestKey =
         Object.keys(vxrnOutput.clientManifest).find((key) => {
-          return key.includes(routeBaseName) && key.startsWith('_')
+          const entry = vxrnOutput.clientManifest[key]
+          return entry.src === expectedSrc
         }) || ''
     }
 
