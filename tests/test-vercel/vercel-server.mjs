@@ -11,6 +11,7 @@ import { readFile, stat, readdir } from 'node:fs/promises'
 import { join, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { pathToFileURL } from 'node:url'
+import { AsyncLocalStorage } from 'node:async_hooks'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const VERCEL_OUTPUT = join(__dirname, '.vercel', 'output')
@@ -19,8 +20,13 @@ const FUNCTIONS_DIR = join(VERCEL_OUTPUT, 'functions')
 
 const PORT = process.env.PORT || 3456
 
-// Simulate Vercel environment - needed for AsyncLocalStorage workaround
-process.env.VERCEL = '1'
+// Set up AsyncLocalStorage for request isolation
+// This allows each request to have its own context instead of sharing a global one
+const requestAsyncLocalStore = new AsyncLocalStorage()
+globalThis.__vxrnrequestAsyncLocalStore = requestAsyncLocalStore
+
+// Don't set VERCEL=1 - this would make the One framework use a global context
+// instead of per-request AsyncLocalStorage isolation
 process.env.VERCEL_URL = `localhost:${PORT}`
 // Required for SSR mode detection in One
 process.env.VITE_ENVIRONMENT = 'ssr'
@@ -413,64 +419,70 @@ async function runMiddleware(req, pathname) {
   }
 }
 
-const server = createServer(async (req, res) => {
-  const url = new URL(req.url, `http://localhost:${PORT}`)
-  let pathname = url.pathname
-  console.log(`${req.method} ${pathname}`)
+const server = createServer((req, res) => {
+  // Run each request in its own AsyncLocalStorage context for proper isolation
+  // This ensures each request has its own server context (loaderProps, params, etc.)
+  const requestContext = { _id: Math.random() }
 
-  // Run middleware and collect headers
-  const middlewareHeaders = await runMiddleware(req, pathname)
+  requestAsyncLocalStore.run(requestContext, async () => {
+    const url = new URL(req.url, `http://localhost:${PORT}`)
+    let pathname = url.pathname
+    console.log(`${req.method} ${pathname}`)
 
-  // Wrap the response to add middleware headers
-  const originalWriteHead = res.writeHead.bind(res)
-  res.writeHead = (statusCode, ...args) => {
-    // Add middleware headers
-    for (const [key, value] of Object.entries(middlewareHeaders)) {
-      res.setHeader(key, value)
-    }
-    return originalWriteHead(statusCode, ...args)
-  }
+    // Run middleware and collect headers
+    const middlewareHeaders = await runMiddleware(req, pathname)
 
-  // Process routes from config.json (rewrites, etc.)
-  // Skip catch-all routes initially - they should only apply after checking files/functions
-  const rewrittenDest = processRoutes(pathname, true /* skipCatchAll */)
-  const isLoaderRewrite = rewrittenDest && rewrittenDest.includes('__loader=1')
-
-  if (rewrittenDest) {
-    // Parse the rewritten destination (may include query params)
-    const rewrittenUrl = new URL(rewrittenDest, `http://localhost:${PORT}`)
-    pathname = rewrittenUrl.pathname
-
-    // Merge query params from rewrite with original request
-    for (const [key, value] of rewrittenUrl.searchParams.entries()) {
-      url.searchParams.set(key, value)
+    // Wrap the response to add middleware headers
+    const originalWriteHead = res.writeHead.bind(res)
+    res.writeHead = (statusCode, ...args) => {
+      // Add middleware headers
+      for (const [key, value] of Object.entries(middlewareHeaders)) {
+        res.setHeader(key, value)
+      }
+      return originalWriteHead(statusCode, ...args)
     }
 
-    // Update the request URL for the function handler
-    req.url = pathname + '?' + url.searchParams.toString()
-  }
+    // Process routes from config.json (rewrites, etc.)
+    // Skip catch-all routes initially - they should only apply after checking files/functions
+    const rewrittenDest = processRoutes(pathname, true /* skipCatchAll */)
+    const isLoaderRewrite = rewrittenDest && rewrittenDest.includes('__loader=1')
 
-  // Try to find a matching function first
-  const funcDir = await findFunction(pathname)
+    if (rewrittenDest) {
+      // Parse the rewritten destination (may include query params)
+      const rewrittenUrl = new URL(rewrittenDest, `http://localhost:${PORT}`)
+      pathname = rewrittenUrl.pathname
 
-  if (funcDir) {
-    await executeFunction(funcDir, req, res, pathname)
-    return
-  }
+      // Merge query params from rewrite with original request
+      for (const [key, value] of rewrittenUrl.searchParams.entries()) {
+        url.searchParams.set(key, value)
+      }
 
-  // Try serving static file
-  // For loader rewrites, we explicitly DON'T serve static files (we want dynamic data)
-  // For other rewrites (like the catch-all), still try static files
-  if (!isLoaderRewrite) {
-    // For rewrites, try the rewritten path; for non-rewrites, use original path
-    const staticPath = rewrittenDest ? pathname : url.pathname
-    const served = await serveStatic(res, staticPath)
-    if (served) return
-  }
+      // Update the request URL for the function handler
+      req.url = pathname + '?' + url.searchParams.toString()
+    }
 
-  // 404
-  res.writeHead(404, { 'Content-Type': 'text/plain' })
-  res.end('Not Found')
+    // Try to find a matching function first
+    const funcDir = await findFunction(pathname)
+
+    if (funcDir) {
+      await executeFunction(funcDir, req, res, pathname)
+      return
+    }
+
+    // Try serving static file
+    // For loader rewrites, we explicitly DON'T serve static files (we want dynamic data)
+    // For other rewrites (like the catch-all), still try static files
+    if (!isLoaderRewrite) {
+      // For rewrites, try the rewritten path; for non-rewrites, use original path
+      const staticPath = rewrittenDest ? pathname : url.pathname
+      const served = await serveStatic(res, staticPath)
+      if (served) return
+    }
+
+    // 404
+    res.writeHead(404, { 'Content-Type': 'text/plain' })
+    res.end('Not Found')
+  })
 })
 
 server.listen(PORT, () => {
