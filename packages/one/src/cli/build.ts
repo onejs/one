@@ -265,27 +265,39 @@ export async function build(args: {
       }
     }
 
-    // gather the initial import.meta.glob js parts:
-    const clientManifestKey =
+    // Match route by server output id against manifest.pageRoutes
+    const foundRoute = manifest.pageRoutes.find((route: RouteInfo<string>) => {
+      if (!route.file) return false
+      const routePath = `${routerRoot}${route.file.slice(1)}`
+      return id.endsWith(routePath)
+    })
+
+    if (!foundRoute) {
+      continue
+    }
+
+    // Find client manifest entry - first by exact key match, then by src property
+    let clientManifestKey =
       Object.keys(vxrnOutput.clientManifest).find((key) => {
         return id.endsWith(key)
       }) || ''
 
+    // If not found by key, search by src property (handles shared chunks)
     if (!clientManifestKey) {
-      // this is something that has /app in it but isnt actually in our manifest, ignore
+      const expectedSrc = `${routerRoot}${foundRoute.file.slice(1)}`
+      clientManifestKey =
+        Object.keys(vxrnOutput.clientManifest).find((key) => {
+          const entry = vxrnOutput.clientManifest[key]
+          return entry.src === expectedSrc
+        }) || ''
+    }
+
+    if (!clientManifestKey) {
+      console.warn(`No client manifest entry found for route: ${id}`)
       continue
     }
 
     const clientManifestEntry = vxrnOutput.clientManifest[clientManifestKey]
-
-    const foundRoute = manifest.pageRoutes.find((route: RouteInfo<string>) => {
-      return route.file && clientManifestKey.replace(routerRootRegexp, '') === route.file.slice(1)
-    })
-
-    if (!foundRoute) {
-      // should probably error?
-      continue
-    }
 
     foundRoute.loaderServerPath = output.fileName
 
