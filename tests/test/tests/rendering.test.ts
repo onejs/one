@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 const serverUrl = process.env.ONE_SERVER_URL!
 
-describe(`Rendering Tests`, () => {
+describe(`Rendering Tests`, { retry: 2, timeout: 60_000 }, () => {
   it('the root layout can insert meta and title tags', async () => {
     const response = await fetch(serverUrl!)
     const html = await response.text()

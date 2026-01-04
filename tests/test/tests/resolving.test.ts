@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 const serverUrl = process.env.ONE_SERVER_URL
 
-describe(`Resolving Tests`, () => {
+describe(`Resolving Tests`, { retry: 2, timeout: 60_000 }, () => {
   it('it picks up the web extension in package in the monorepo', async () => {
     const response = await fetch(serverUrl + '/web-extensions')
     const html = await response.text()

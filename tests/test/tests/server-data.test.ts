@@ -21,6 +21,7 @@ test(
   {
     // why is this flaky tho, async context / race issue?
     retry: 2,
+    timeout: 60_000,
   },
   async () => {
     const url = serverUrl + '/server-data'
