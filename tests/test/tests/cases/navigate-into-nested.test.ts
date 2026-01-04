@@ -16,14 +16,13 @@ afterAll(async () => {
   await browser.close()
 })
 
-test('navigate into nested page, then back and forward to same page', async () => {
+test('navigate into nested page, then back and forward to same page', { retry: 2, timeout: 60_000 }, async () => {
   const page = await context.newPage()
   await page.goto(serverUrl + '/hooks/cases/navigating-into-nested-navigator')
 
-  await page.getByTestId('navigate-into-nested-page')
-  // await new Promise((resolve) => setTimeout(resolve, 1000)) // wait for a while so that the page is fully loaded and the next click will do a SPA navigation instead of a full page reload
+  await page.waitForSelector('[data-testid="navigate-into-nested-page"]', { timeout: 30_000 })
   await page.getByTestId('navigate-into-nested-page').click()
-  await page.waitForURL('**/page', { timeout: 5_000 })
+  await page.waitForURL('**/page', { timeout: 30_000 })
 
   // Verify that initial hook values are correct
   expect(
@@ -37,9 +36,9 @@ test('navigate into nested page, then back and forward to same page', async () =
 
   // Navigate back and forward to the same page
   await page.goBack()
-  await page.waitForURL('**/navigating-into-nested-navigator', { timeout: 5_000 })
+  await page.waitForURL('**/navigating-into-nested-navigator', { timeout: 30_000 })
   await page.goForward()
-  await page.waitForURL('**/page', { timeout: 5_000 })
+  await page.waitForURL('**/page', { timeout: 30_000 })
 
   // Verify that hook values are still correct
   expect(

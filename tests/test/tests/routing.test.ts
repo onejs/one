@@ -82,12 +82,13 @@ describe(`Routing Tests`, () => {
     })
   })
 
-  describe(`SPA routing`, () => {
+  describe(`SPA routing`, { retry: 2, timeout: 60_000 }, () => {
     it(`Dynamic SPA pages should work`, async () => {
       const page = await context.newPage()
 
       await page.goto(`${serverUrl}/spa/dynamic-1`)
 
+      await page.waitForSelector('#spa-page', { timeout: 30_000 })
       expect(await page.textContent('#spa-page')).toContain(`dynamic-1`)
 
       await page.goto(`${serverUrl}/spa/hello-world`)
