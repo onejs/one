@@ -212,7 +212,12 @@ const runIos = defineCommand({
     version: version,
     description: withDocsLink('Run the iOS app', 'run:ios'),
   },
-  args: {},
+  args: {
+    dev: {
+      type: 'boolean',
+      description: 'Start the Vite dev server automatically',
+    },
+  },
   async run({ args }) {
     const { run } = await import('./cli/runIos')
     await run(args)
@@ -225,7 +230,12 @@ const runAndroid = defineCommand({
     version: version,
     description: withDocsLink('Run the Android app', 'run:android'),
   },
-  args: {},
+  args: {
+    dev: {
+      type: 'boolean',
+      description: 'Start the Vite dev server automatically',
+    },
+  },
   async run({ args }) {
     const { run } = await import('./cli/runAndroid')
     await run(args)

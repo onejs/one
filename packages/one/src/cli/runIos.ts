@@ -1,13 +1,33 @@
-import { loadUserOneOptions } from '../vite/loadConfig'
+import { virtualEntryIdNative } from '../vite/plugins/virtualEntryConstants'
+import { setServerGlobals } from '../server/setServerGlobals'
+import { labelProcess } from './label-process'
 
-export async function run(args: {}) {
+export async function run(args: { dev?: boolean }) {
   const { runIos } = await import('vxrn')
 
-  // disabling: cant set no-bundler and port?
-  // const options = await loadUserOneOptions('serve')
+  if (args.dev) {
+    labelProcess('dev')
+    setServerGlobals()
 
-  await runIos({
-    root: process.cwd(),
-    // port: options?.server?.port,
-  })
+    const { dev } = await import('vxrn/dev')
+
+    // Start dev server first
+    const { start } = await dev({
+      mode: 'development',
+      root: process.cwd(),
+      entries: {
+        native: virtualEntryIdNative,
+      },
+    })
+    await start()
+
+    // Then build and launch iOS app
+    await runIos({
+      root: process.cwd(),
+    })
+  } else {
+    await runIos({
+      root: process.cwd(),
+    })
+  }
 }
