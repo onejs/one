@@ -86,7 +86,7 @@ describe(`Routing Tests`, () => {
     it(`Dynamic SPA pages should work`, async () => {
       const page = await context.newPage()
 
-      await page.goto(`${serverUrl}/spa/dynamic-1`)
+      await page.goto(`${serverUrl}/spa/dynamic-1`, { waitUntil: 'networkidle' })
 
       await page.waitForSelector('#spa-page', { timeout: 30_000 })
       expect(await page.textContent('#spa-page')).toContain(`dynamic-1`)

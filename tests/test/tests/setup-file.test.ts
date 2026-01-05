@@ -20,7 +20,7 @@ describe('setupFile Tests', { retry: 2, timeout: 60_000 }, () => {
   it('setupFile runs on web client', async () => {
     const page = await context.newPage()
 
-    await page.goto(`${serverUrl}/setup-file-test`)
+    await page.goto(`${serverUrl}/setup-file-test`, { waitUntil: 'networkidle' })
 
     // Wait for the client-side effect to run and re-render
     await page.waitForFunction(() => {
