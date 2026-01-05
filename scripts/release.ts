@@ -113,8 +113,8 @@ async function run() {
     let version = curVersion
 
     // ensure we are up to date
-    // ensure we are on main
-    if (!canary) {
+    // ensure we are on main (skip for canary and rc releases)
+    if (!canary && !isRC) {
       if ((await exec(`git rev-parse --abbrev-ref HEAD`)).stdout.trim() !== 'main') {
         throw new Error(`Not on main`)
       }
