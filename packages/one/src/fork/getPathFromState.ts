@@ -126,6 +126,11 @@ export function getPathDataFromState<ParamList extends {}>(
   const allParams: Record<string, any> = {}
 
   while (current) {
+    // bail out if state has incomplete structure (can happen during rapid navigation due to useDeferredValue)
+    if (!current.routes?.length) {
+      break
+    }
+
     let index = typeof current.index === 'number' ? current.index : 0
 
     let route = current.routes[index] as Route<string> & {
