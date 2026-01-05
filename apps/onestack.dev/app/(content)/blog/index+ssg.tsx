@@ -26,13 +26,15 @@ export default function BlogIndex() {
       <TopNav />
 
       <Container>
-        <YStack py="$8" gap="$6">
-          <H1 size="$10">Blog</H1>
-          <Paragraph size="$6" color="$color11">
-            News, updates, and insights from the One team.
-          </Paragraph>
+        <YStack pt="$12" pb="$8" gap="$6">
+          <YStack gap="$2">
+            <H1 size="$10">Blog</H1>
+            <Paragraph size="$6" color="$color11">
+              News, updates, and insights from the One team.
+            </Paragraph>
+          </YStack>
 
-          <YStack gap="$4" mt="$4">
+          <YStack gap="$4">
             {frontmatters.map((post) => {
               const author = post.by ? authors[post.by as keyof typeof authors] : null
               const date = post.publishedAt

@@ -1,7 +1,7 @@
 import { Paragraph, Spacer, XStack, YStack } from 'tamagui'
 import { SocialLinksRow } from '~/features/site/SocialLinksRow'
 import { OneBall } from '../brand/Logo'
-import { Link } from 'one'
+import { Link } from './Link'
 
 export const Footer = () => {
   return (
@@ -17,7 +17,7 @@ export const Footer = () => {
     >
       <XStack
         ai="center"
-        gap="$5"
+        gap="$4"
         $sm={{
           fd: 'column',
           jc: 'center',
@@ -29,14 +29,15 @@ export const Footer = () => {
           </YStack>
         </Link>
 
-        <XStack gap="$4" ai="center">
+        <XStack  ai="center">
           <SocialLinksRow />
-          <Link href="/blog">
-            <Paragraph cur="pointer" o={0.5} hoverStyle={{ o: 1 }}>
-              Blog
-            </Paragraph>
-          </Link>
         </XStack>
+
+        <Link href="/blog">
+          <Paragraph cur="pointer">
+            Blog
+          </Paragraph>
+        </Link>
       </XStack>
 
       <Paragraph $sm={{ mt: '$8' }} o={0.5}>

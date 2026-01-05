@@ -10,6 +10,7 @@ export const PrettyText = styled(Paragraph, {
 
 export const PrettyTextMedium = styled(PrettyText, {
   fontFamily: '$mono',
+  color: '$gray11',
   fontSize: '$5',
   lineHeight: '$5',
 })

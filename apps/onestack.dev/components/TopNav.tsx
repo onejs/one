@@ -1,9 +1,9 @@
 import { Search } from '@tamagui/lucide-icons'
 import { useContext, useRef } from 'react'
 import { Separator, styled, View, XStack, YStack } from 'tamagui'
-import { Link } from 'one'
+import { Link, usePathname } from 'one'
 import { OneLogo } from '~/features/brand/Logo'
-import { Status } from '~/components/Status'
+import { ReleaseStatus } from '~/components/ReleaseStatus'
 import { SearchContext } from '~/features/search/SearchContext'
 import { HeaderMenu } from '~/features/site/HeaderMenu'
 import { SocialLinksRow } from '~/features/site/SocialLinksRow'
@@ -31,6 +31,8 @@ const SimpleButton = styled(View, {
 export const TopNav = () => {
   const scrollParentRef = useRef<HTMLDivElement>(null)
   const { onOpen } = useContext(SearchContext)
+  const pathname = usePathname()
+  const inlineLayout = pathname.startsWith('/blog')
 
   return (
     <>
@@ -40,7 +42,7 @@ export const TopNav = () => {
         ref={scrollParentRef}
         jc="space-between"
         ai="center"
-        maw={1400}
+        maw={inlineLayout ? 1100 : 1400}
         w="100%"
         zi={90_000}
         pe="none"
@@ -51,7 +53,7 @@ export const TopNav = () => {
           y: 20,
         }}
         $gtMd={{
-          jc: 'flex-end',
+          jc: inlineLayout ? 'space-between' : 'flex-end',
           top: 26,
           px: 25,
         }}
@@ -61,9 +63,11 @@ export const TopNav = () => {
           left="$0"
           ai="center"
           pe="auto"
-          $gtMd={{
-            display: 'none',
-          }}
+          {...(!inlineLayout && {
+            $gtMd: {
+              display: 'none',
+            },
+          })}
         >
           <Link href="/">
             <View
@@ -73,11 +77,8 @@ export const TopNav = () => {
               mx="auto"
               pointerEvents="none"
               y={-2}
-              $gtMd={{
-                display: 'none',
-              }}
             >
-              <OneLogo size={0.5} animate />
+              <OneLogo size={0.5} animate minimal={inlineLayout} />
             </View>
           </Link>
         </XStack>
@@ -102,9 +103,7 @@ export const TopNav = () => {
                 y: 2,
               }}
             >
-              <Link href="/docs/status">
-                <Status cur="pointer" is="beta" />
-              </Link>
+              <ReleaseStatus />
             </View>
 
             <XStack pe="auto" y={-2} mx="$4">
@@ -121,7 +120,7 @@ export const TopNav = () => {
 
             <ToggleThemeButton />
 
-            <YStack w={50} />
+            {!inlineLayout && <YStack w={50} />}
           </XStack>
         </XStack>
       </XStack>

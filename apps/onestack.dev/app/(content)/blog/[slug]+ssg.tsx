@@ -1,13 +1,13 @@
-import { getMDXComponent } from 'mdx-bundler/client'
-import { useLoader, createRoute, Link } from 'one'
-import { useMemo } from 'react'
-import { H1, Paragraph, XStack, YStack, Text, Separator } from 'tamagui'
 import { ChevronLeft } from '@tamagui/lucide-icons'
+import { getMDXComponent } from 'mdx-bundler/client'
+import { createRoute, Link, useLoader } from 'one'
+import { useMemo } from 'react'
+import { H1, Paragraph, Separator, SizableText, XStack, YStack } from 'tamagui'
 import { TopNav } from '~/components/TopNav'
-import { Container } from '~/features/site/Containers'
-import { components } from '~/features/docs/MDXComponents'
-import { HeadInfo } from '~/features/site/HeadInfo'
 import { authors } from '~/data/authors'
+import { components } from '~/features/docs/MDXComponents'
+import { Container } from '~/features/site/Containers'
+import { HeadInfo } from '~/features/site/HeadInfo'
 
 const route = createRoute<'/blog/[slug]'>()
 
@@ -57,11 +57,11 @@ export default function BlogPost() {
             <XStack
               gap="$2"
               ai="center"
-              color="$color10"
-              hoverStyle={{ color: '$color12' }}
+              opacity={0.5}
+              hoverStyle={{ opacity: 1 }}
             >
               <ChevronLeft size={16} />
-              <Text size="$3">Back to Blog</Text>
+              <SizableText size="$3">Back to Blog</SizableText>
             </XStack>
           </Link>
 
@@ -74,24 +74,24 @@ export default function BlogPost() {
             )}
             <XStack gap="$3" ai="center">
               {author && (
-                <Text size="$4" fontWeight="500">
+                <SizableText size="$4" fontWeight="500">
                   {author.name}
-                </Text>
+                </SizableText>
               )}
               {author && date && (
-                <Text color="$color10">·</Text>
+                <SizableText color="$color10">·</SizableText>
               )}
               {date && (
-                <Text size="$4" color="$color10">
+                <SizableText size="$4" color="$color10">
                   {date}
-                </Text>
+                </SizableText>
               )}
               {frontmatter.readingTime && (
                 <>
-                  <Text color="$color10">·</Text>
-                  <Text size="$4" color="$color10">
+                  <SizableText color="$color10">·</SizableText>
+                  <SizableText size="$4" color="$color10">
                     {frontmatter.readingTime.text}
-                  </Text>
+                  </SizableText>
                 </>
               )}
             </XStack>

@@ -26,7 +26,7 @@ import {
 import { Button } from '~/components/Button'
 import { Community } from '~/components/Community'
 import { Team } from '~/components/Team'
-import { PrettyText, PrettyTextBigger } from '~/components/typography'
+import { PrettyText, PrettyTextBigger, PrettyTextMedium } from '~/components/typography'
 import { OneLogo } from '~/features/brand/Logo'
 import { useClipboard } from '~/features/docs/useClipboard'
 import { ContainerSm } from '~/features/site/Containers'
@@ -123,25 +123,16 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View theme="yellow" gap="$4" pt="$6">
+        <View theme="yellow" gap="$4" pt="$5">
           <PrettyTextBigger>
-            One aims to make web + native with React and React&nbsp;Native much simpler, and faster.
-            <br />
-            <br />
-            One takes{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
-              Vite
-            </Link>
-            ,{' '}
-            <Link target="_blank" href="https://vxrn.dev">
-              makes it serve
-            </Link>{' '}
-            React&nbsp;web and React&nbsp;Native. Then adds{' '}
+            Build websites and apps with React and React&nbsp;Native with a single Vite plugin.
+
+            Fully typed{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
-              FS routes
+              file-system routes
             </Link>
             ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-modes">
+            per-page <Link style={{ color: 'var(--color11)' }} href="/docs/routing-modes">
               render modes
             </Link>
             ,{' '}
@@ -156,32 +147,22 @@ export default function HomePage() {
             <Link style={{ color: 'var(--color11)' }} href="/docs/one-dev">
               CLI
             </Link>
-            ,{' '}
+            ,{' '}and production{' '}
             <Link target="_blank" href="https://hono.dev">
               Hono
-            </Link>
-            ,{' '}
+            </Link>, Vercel or Cloudflare output,{' '}
             <Link style={{ color: 'var(--color11)' }} href="/docs/features">
-              etc
-            </Link>
-            .
+              plus more
+            </Link>.
           </PrettyTextBigger>
 
-          <PrettyTextBigger>
-            One is a simpler framework because it's being designed alongside a sync engine,{' '}
-            <Link
-              style={{ color: 'var(--color11)' }}
-              target="_blank"
-              href="https://zero.rocicorp.dev/"
-            >
-              Zero
-            </Link>
-            .
-          </PrettyTextBigger>
+          <PrettyTextMedium>
+            One avoids the complexity of RSC in favor of SSG, SPA, or SSR, with loaders or a sync-engine for data.
+          </PrettyTextMedium>
 
-          <YStack mt={40} als="center" ai="center" jc="center" gap="$1" px="$6" bc="$color4">
-            <Paragraph size="$5" theme="gray" color="$color8" mb={-20}>
-              Bootstrap an app with
+          <YStack mt={30} als="center" ai="center" jc="center" gap="$1" px="$6" bc="$color4">
+            <Paragraph size="$5" theme="gray" color="$color9" mb={-20}>
+              Bootstrap instantly with
             </Paragraph>
             <br />
             <CopyCommand />
@@ -212,6 +193,7 @@ export default function HomePage() {
                 als="center"
                 px="$4"
                 py="$5"
+                mt="$-4"
                 br="$9"
                 hoverStyle={{
                   y: -2,
@@ -255,8 +237,6 @@ export default function HomePage() {
           <Separator />
 
           <Team />
-
-          <Footer />
         </View>
       </ContainerSm>
     </>
@@ -278,15 +258,15 @@ const InfoBoxes = () => {
       <InfoCard title="Web + Native" Icon={TabletSmartphone}>
         Build a website with React. Or a native app with React Native. Or both at once.
       </InfoCard>
-      <InfoCard title="100% Vite" Icon={ViteIcon}>
-        Not based on Metro, One is a single Vite plugin with few dependencies.
+      <InfoCard title="Vite-native" Icon={ViteIcon}>
+        Use just Vite, even for native, or defer to Metro. One lets you choose.
       </InfoCard>
-      <InfoCard title="The future of data" Icon={Database}>
-        Integration with{' '}
+      <InfoCard title="Simplistic model" Icon={Database}>
+        Simple render modes with loaders, or BYO sync engine like{' '}
         <a target="_blank" href="https://zerosync.dev" rel="noreferrer">
-          ZeroSync
+          Zero
         </a>{' '}
-        and other sync engines. Coming soon.
+        for better apps.
       </InfoCard>
     </XStack>
   )
@@ -300,7 +280,7 @@ const InfoCard = ({ title, Icon, children }) => {
       pos="relative"
       width="calc(50% - var(--t-space-3))"
       mb="$4"
-      py="$2"
+      py="$1"
       // br="$5"
       // bg="$background06"
       $sm={{ w: '100%', mb: '$2' }}
@@ -323,7 +303,7 @@ function Video() {
   return (
     <>
       {showVideo && (
-        <Portal zi={1000}>
+        <Portal zIndex={1000}>
           <YStack
             position={'fixed' as any}
             t={0}
@@ -383,7 +363,7 @@ function Video() {
         <View
           animation="quick"
           als="center"
-          maxWidth={380}
+          maxWidth={320}
           w="100%"
           ov="hidden"
           cursor="pointer"
@@ -430,7 +410,7 @@ function Video() {
         <Paragraph
           animation="quickest"
           fontFamily="$mono"
-          size="$5"
+          size="$4"
           ta="center"
           w={340}
           zi={2}
@@ -448,9 +428,6 @@ function Video() {
           $group-card-press={{
             y: 0,
             scale: 0.99,
-          }}
-          $sm={{
-            size: '$6',
           }}
         >
           5m video intro
@@ -520,7 +497,6 @@ const CopyCommand = () => {
             color="inherit"
             fontSize={46}
             lineHeight={46}
-            ls={-2}
             lh={0}
             y={-3}
             fow="bold"

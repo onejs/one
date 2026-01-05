@@ -11,6 +11,8 @@ import config from '~/config/tamagui.config'
 import { LayoutDecorativeStripe } from '~/features/site/LayoutDecorativeStripe'
 import { headerColors } from '~/features/site/headerColors'
 import { useIsScrolled } from '~/features/site/useIsScrolled'
+import { Footer } from '../features/site/Footer'
+import { ContainerSm } from '../features/site/Containers'
 
 export default function Layout() {
   return (
@@ -35,7 +37,13 @@ export default function Layout() {
           <ThemeProvider>
             <LayoutDecorativeStripe />
             <ThemeMetaTag />
-            <Slot />
+            <main style={{ minHeight: 'calc(100vh - 220px)' }}>
+              <Slot />
+            </main>
+
+            <ContainerSm>
+              <Footer />
+            </ContainerSm>
           </ThemeProvider>
         </SchemeProvider>
       </body>
