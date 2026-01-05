@@ -6,14 +6,28 @@ by: nate
 ---
 
 <IntroParagraph>
-  One v1 RC is here. It represents ~1,800 commits from a small team, plus a lot of
-  community help. This post explains what One is and what changed since the v1
-  announcement.
+  **One is a unified cross-platform React web and React Native framework that lives
+  entirely in a Vite plugin**. One v1 is almost here - we've just released 1.0.0-rc.1,
+  marking it ready for production use. With over 1,800 commits since the announcement of
+  the alpha about a year ago we're incredibly proud of the simple, robust framework it's
+  become.
 </IntroParagraph>
 
-[TODO]
+One makes building apps for both web and native a delight, bringing simplicity and sanity to
+what typically is an incredibly messy affair. Where before you'd need two frameworks, two bundlers, and a ton glue code, with One it's now as simple as can be - Vite, a single plugin, and some file-system routes.
 
----
+The huge benefit of One, beyond simplicity and the upsides of Vite, is that it lets you build
+**extremely performant websites, apps, and APIs at once** - beyond what any other framework can. That's thanks to it's support of per-page render modes and nested layouts, as well as a host
+of nice optimizations that let you slim down React Native into something much lighter on web. **Achieving a 100 Lighthouse performance score while sharing code between web and native has turned from a pipe-dream into the expectation with One**.
+
+One gives you a lot more in the box than many of the most popular web-only frameworks:
+
+- Fully typed routes with advanced auto-generation of types for loaders, links, and params.
+- A built-in Hono production server that "just works" for every type of route: API, SSR, SPA, SSG.
+- Target Cloudflare or Vercel with a single configuration change.
+- Advanced and automatic code splitting and preloading of routes on hover.
+- Advanced loaders with proper types, easy refetching, and support across SSR, SSG, and SPA pages.
+- Easily switch between using Metro or Vite to serve your native app in dev mode, so no more need to risk going all-in on Vite.
 
 ## Getting started
 
@@ -35,8 +49,6 @@ npx one
 
 Pick a starter and go.
 
----
-
 ## What you get from the plugin
 
 - **File-system routing** in `./app` for web + native
@@ -47,8 +59,6 @@ Pick a starter and go.
 - **A production server** built on [Hono](https://hono.dev)
 
 The goal is straightforward configuration: one plugin, one routing model, one data-loading model.
-
----
 
 ## Routing
 
@@ -119,8 +129,6 @@ app/
   settings.ios.tsx
 ```
 
----
-
 ## Data loading
 
 ### Loaders
@@ -178,8 +186,6 @@ import { getServerData } from 'one'
 const user = getServerData('user')
 ```
 
----
-
 ## Middleware
 
 Add `_middleware.ts` in any folder:
@@ -197,8 +203,6 @@ export default createMiddleware(async ({ request, next, context }) => {
 ```
 
 Middleware runs top-to-bottom for routes beneath it, can intercept requests, and can pass data through `context`.
-
----
 
 ## Native (today)
 
@@ -232,12 +236,6 @@ npx one prebuild --platform ios
 npx one prebuild --no-install
 ```
 
-### NativeWind
-
-If NativeWind is installed, One detects it and configures compilation automatically.
-
----
-
 ## Web performance knobs (optional)
 
 These are optional switches—use them if they help your app.
@@ -269,8 +267,6 @@ one({
   },
 })
 ```
-
----
 
 ## Deployment
 
@@ -330,8 +326,6 @@ Routes can export:
 export const sitemap = { priority: 0.9, changefreq: 'daily' }
 ```
 
----
-
 ## Developer experience
 
 ### Dev server shortcuts
@@ -344,10 +338,6 @@ qr  → show QR for Expo Go
 dt  → open React Native DevTools
 ```
 
-### Debug routing
-
-Set `ONE_DEBUG_ROUTER=1` to get detailed logs (route tree, navigation, middleware chains, matches).
-
 ### Error boundaries by default
 
 Routes get an error boundary automatically so you see actionable errors instead of a blank screen.
@@ -356,12 +346,11 @@ Routes get an error boundary automatically so you see actionable errors instead 
 
 ```tsx
 import { ScrollBehavior } from 'one'
-;<ScrollBehavior />
+
+export default () => <ScrollBehavior />
 ```
 
 Handles scroll position + basic hash routing (renamed from `ScrollRestoration`).
-
----
 
 ## What’s new since the v1 announcement
 
@@ -418,45 +407,6 @@ If you looked at One earlier and bounced, these are the major additions and fixe
 - better process handling (clean shutdown on SIGINT/SIGTERM)
 - smarter dependency scanning (fewer hard reloads)
 - HMR fixes for platform extensions and file type edge cases
-
----
-
-## Breaking changes / migration notes
-
-A few things moved around:
-
-| Old                              | New                              |
-| -------------------------------- | -------------------------------- |
-| `ScrollRestoration`              | `ScrollBehavior`                 |
-| `ssr.disableAutoDepsPreBundling` | `ssr.autoDepsOptimization`       |
-| `one.server.platform`            | `one.web.deploy`                 |
-| `useFocusEffect(callback)`       | `useFocusEffect(callback, deps)` |
-
-Removed:
-
-- `afterBuild`, `server.beforeStart` hooks (use Vite plugins instead)
-- `one/server` export (import from `one` directly)
-
-React Navigation is now a peer dependency:
-
-```bash
-npm install @react-navigation/native react-native-screens react-native-safe-area-context
-```
-
----
-
-## Where we’d love contributions
-
-If you want to help, areas that make a big difference:
-
-- docs (especially “first app”, deployment guides, native troubleshooting)
-- example apps that show real patterns (auth, forms, caching, offline)
-- issue triage + minimal repros (Vite/Metro edge cases)
-- platform-specific polish (iOS/Android differences, navigation quirks)
-
-If you’re unsure where to start, jump into Discord and we’ll point to a good first issue.
-
----
 
 ## Thanks
 
