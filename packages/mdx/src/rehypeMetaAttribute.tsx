@@ -15,7 +15,15 @@ export default (options = {}) => {
       re.lastIndex = 0 // Reset regex.
 
       while ((match = re.exec(node.data.meta))) {
-        node.properties[match[1]] = match[2] || match[3] || match[4] || ''
+        const key = match[1]
+        const value = match[2] || match[3] || match[4] || ''
+
+        // Merge class/className into existing className array to avoid duplicate key warning
+        if (key === 'class' || key === 'className') {
+          node.properties.className = [...(node.properties.className || []), value]
+        } else {
+          node.properties[key] = value
+        }
       }
     }
   }
