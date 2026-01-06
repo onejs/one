@@ -1,6 +1,6 @@
 ---
 title: 'One v1 Release Candidate'
-publishedAt: '2024-12-28'
+publishedAt: '2025-12-28'
 description: 'Cross-platform React Native apps as simply as Rails.'
 by: nate
 ---
@@ -13,7 +13,6 @@ by: nate
 
 [TODO]
 
----
 
 ## Getting started
 
@@ -35,8 +34,6 @@ npx one
 
 Pick a starter and go.
 
----
-
 ## What you get from the plugin
 
 - **File-system routing** in `./app` for web + native
@@ -47,8 +44,6 @@ Pick a starter and go.
 - **A production server** built on [Hono](https://hono.dev)
 
 The goal is straightforward configuration: one plugin, one routing model, one data-loading model.
-
----
 
 ## Routing
 
@@ -119,8 +114,6 @@ app/
   settings.ios.tsx
 ```
 
----
-
 ## Data loading
 
 ### Loaders
@@ -178,8 +171,6 @@ import { getServerData } from 'one'
 const user = getServerData('user')
 ```
 
----
-
 ## Middleware
 
 Add `_middleware.ts` in any folder:
@@ -197,8 +188,6 @@ export default createMiddleware(async ({ request, next, context }) => {
 ```
 
 Middleware runs top-to-bottom for routes beneath it, can intercept requests, and can pass data through `context`.
-
----
 
 ## Native (today)
 
@@ -236,8 +225,6 @@ npx one prebuild --no-install
 
 If NativeWind is installed, One detects it and configures compilation automatically.
 
----
-
 ## Web performance knobs (optional)
 
 These are optional switches—use them if they help your app.
@@ -269,8 +256,6 @@ one({
   },
 })
 ```
-
----
 
 ## Deployment
 
@@ -330,8 +315,6 @@ Routes can export:
 export const sitemap = { priority: 0.9, changefreq: 'daily' }
 ```
 
----
-
 ## Developer experience
 
 ### Dev server shortcuts
@@ -355,13 +338,12 @@ Routes get an error boundary automatically so you see actionable errors instead 
 ### Scroll behavior
 
 ```tsx
-import { ScrollBehavior } from 'one'
-;<ScrollBehavior />
+import { ScrollBehavior } from 'one';
+
+<ScrollBehavior />
 ```
 
 Handles scroll position + basic hash routing (renamed from `ScrollRestoration`).
-
----
 
 ## What’s new since the v1 announcement
 
@@ -419,18 +401,16 @@ If you looked at One earlier and bounced, these are the major additions and fixe
 - smarter dependency scanning (fewer hard reloads)
 - HMR fixes for platform extensions and file type edge cases
 
----
-
 ## Breaking changes / migration notes
 
 A few things moved around:
 
-| Old                              | New                              |
-| -------------------------------- | -------------------------------- |
-| `ScrollRestoration`              | `ScrollBehavior`                 |
-| `ssr.disableAutoDepsPreBundling` | `ssr.autoDepsOptimization`       |
-| `one.server.platform`            | `one.web.deploy`                 |
-| `useFocusEffect(callback)`       | `useFocusEffect(callback, deps)` |
+| Old                            | New                            |
+| ------------------------------ | ------------------------------ |
+| ScrollRestoration              | ScrollBehavior                 |
+| ssr.disableAutoDepsPreBundling | ssr.autoDepsOptimization       |
+| one.server.platform            | one.web.deploy                 |
+| useFocusEffect(callback)       | useFocusEffect(callback, deps) |
 
 Removed:
 
@@ -443,8 +423,6 @@ React Navigation is now a peer dependency:
 npm install @react-navigation/native react-native-screens react-native-safe-area-context
 ```
 
----
-
 ## Where we’d love contributions
 
 If you want to help, areas that make a big difference:
@@ -455,8 +433,6 @@ If you want to help, areas that make a big difference:
 - platform-specific polish (iOS/Android differences, navigation quirks)
 
 If you’re unsure where to start, jump into Discord and we’ll point to a good first issue.
-
----
 
 ## Thanks
 
@@ -478,8 +454,6 @@ And thank you to folks who helped directly:
 
 One started as a fork of [Expo Router](https://expo.dev/router), built on top of [vxrn](https://vxrn.dev).
 It maintains nearly full API compatibility with Expo Router, while adding features One needs (typed routes, loaders on web + native, per-route render modes, middleware, and broader deployment targets).
-
----
 
 ## Try it / report issues
 

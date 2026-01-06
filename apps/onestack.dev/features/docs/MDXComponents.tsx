@@ -65,6 +65,63 @@ const UL = styled(YStack, {
   mr: '$2',
 })
 
+const TableBase = styled(View, {
+  tag: 'table',
+  display: 'table' as any,
+  width: '100%',
+  borderBottomWidth: 1,
+  borderColor: '$color5',
+  borderCollapse: 'collapse' as any,
+  my: '$4',
+})
+
+const Table = (props: any) => (
+  <>
+    <style>{`.mdx-table th:first-child, .mdx-table td:first-child { border-right: none !important; }`}</style>
+    <TableBase className="mdx-table" {...props} />
+  </>
+)
+
+const Thead = styled(View, {
+  tag: 'thead',
+  display: 'table-header-group' as any,
+})
+
+const Tbody = styled(View, {
+  tag: 'tbody',
+  display: 'table-row-group' as any,
+})
+
+const Tr = styled(View, {
+  tag: 'tr',
+  display: 'table-row' as any,
+})
+
+const Th = styled(Text, {
+  tag: 'th',
+  display: 'table-cell' as any,
+  padding: '$3',
+  fontWeight: '600',
+  fontSize: '$5',
+  backgroundColor: '$color3',
+  textAlign: 'center' as any,
+  borderWidth: 1,
+  borderBottomWidth: 0,
+  borderColor: '$color5',
+})
+
+const Td = styled(Text, {
+  tag: 'td',
+  display: 'table-cell' as any,
+  padding: '$3',
+  fontSize: '$5',
+  textAlign: 'center' as any,
+  borderTopWidth: 1,
+  borderLeftWidth: 1,
+  borderRightWidth: 1,
+  borderColor: '$color5',
+})
+
 const HR = () => (
   <YStack mt="$9" mb="$5" mx="auto" maxWidth="50%">
     <EnsureFlexed />
@@ -285,6 +342,13 @@ const componentsIn = {
   // },
 
   strong: (props) => <Paragraph tag="strong" fontSize="inherit" {...props} fontWeight="700" />,
+
+  table: Table,
+  thead: Thead,
+  tbody: Tbody,
+  tr: Tr,
+  th: Th,
+  td: Td,
 
   img: ({ ...props }) => (
     <View tag="span" my="$6">

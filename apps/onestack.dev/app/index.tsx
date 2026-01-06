@@ -83,6 +83,29 @@ export default function HomePage() {
             <XStack ai="center" gap="$6" $sm={{ jc: 'center' }}>
               <ToggleThemeButton />
 
+              <Link href="/blog" asChild>
+                <Button
+                  size="$5"
+                  bg="$color2"
+                  br="$10"
+                  group
+                  animation="quickest"
+                  containerType="normal"
+                  gap={0}
+                  bw={0}
+                  hoverStyle={{
+                    bg: '$color5',
+                  }}
+                  pressStyle={{
+                    bg: '$color9',
+                  }}
+                >
+                  <ButtonText fontFamily="$mono" lh={0}>
+                    Blog
+                  </ButtonText>
+                </Button>
+              </Link>
+
               <Theme name="accent">
                 <Link href="/docs/introduction" asChild>
                   <Button
