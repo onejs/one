@@ -22,6 +22,7 @@
     "check": "turbo check",
     "ci": "yarn && yarn build && yarn check && yarn typecheck && yarn lint && yarn test && git diff --exit-code",
     "clean": "yarn turbo:run clean:build",
+    "clean:all": "yarn clean:build && find . -name 'node_modules' -type d -prune -exec rm -rf {} +",
     "clean:build": "yarn turbo:run clean:build",
     "clean:ts": "tsc -b --clean tsconfig.json",
     "dev:example": "tsx ./scripts/dev.ts example",
