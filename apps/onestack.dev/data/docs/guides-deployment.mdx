@@ -67,7 +67,40 @@ export default {
 }
 ```
 
-#### Build and Deploy
+#### Project Setup
+
+1. **Add vercel.json** to your project root:
+
+```json fileName=vercel.json
+{
+  "framework": null,
+  "buildCommand": "npx one build",
+  "installCommand": "npm install"
+}
+```
+
+Setting `framework: null` tells Vercel to use the pre-built output from the Build Output API instead of auto-detecting a framework.
+
+2. **Install the Vercel CLI** (optional, for manual deploys):
+
+```bash
+npm install -g vercel
+```
+
+#### Git Push Deploys
+
+The easiest way to deploy is connecting your Git repository to Vercel:
+
+1. Go to [vercel.com/new](https://vercel.com/new)
+2. Import your Git repository
+3. Vercel auto-detects settings from `vercel.json`
+4. Click **Deploy**
+
+Once connected, every push to your main branch triggers a production deploy. Pull requests get preview deployments automatically.
+
+#### Manual CLI Deploy
+
+For manual deploys or CI/CD pipelines:
 
 ```bash
 # Build for Vercel
@@ -79,6 +112,35 @@ vercel deploy --prebuilt
 
 The `--prebuilt` flag tells Vercel to use the pre-generated output in `.vercel/output` instead of running its own build process.
 
+For production deploys:
+
+```bash
+vercel deploy --prebuilt --prod
+```
+
+#### Testing Production Build Locally
+
+You can do a basic sanity check of your production build locally:
+
+```bash
+# Build the app
+npx one build
+
+# Serve the production build
+npx one serve
+```
+
+Note: This runs the Hono server from `dist/`, not the actual Vercel serverless functions. It's useful for catching build errors and checking that pages render correctly, but it's not a perfect simulation of the Vercel environment.
+
+For true Vercel testing, use a preview deploy:
+
+```bash
+# Deploy a preview (not production)
+vercel deploy --prebuilt
+```
+
+Every push to a non-main branch also triggers a preview deployment automatically when using Git integration. This is the most reliable way to test before promoting to production.
+
 #### What Gets Built
 
 When targeting Vercel, One generates:
@@ -89,23 +151,56 @@ When targeting Vercel, One generates:
   - API routes (`app/api/**`)
   - Loaders (data fetching functions)
 
+Static routes (`+ssg.tsx`) are pre-rendered to `.vercel/output/static` as HTML files.
+
 #### Environment Variables
 
-Set `ONE_SERVER_URL` to your production URL:
+Set environment variables in your Vercel project dashboard under **Settings > Environment Variables**:
 
 ```bash
-# In your Vercel project settings or .env
+# Required for SSR and API routes
 ONE_SERVER_URL=https://your-app.vercel.app
+```
+
+For local development, add to `.env.local`:
+
+```bash fileName=.env.local
+ONE_SERVER_URL=http://localhost:8081
 ```
 
 #### Vercel Project Settings
 
-When using `--prebuilt`, Vercel should automatically detect the pre-built output. If you need to configure manually:
+When using `vercel.json`, settings are auto-configured. If you need to configure manually in the Vercel dashboard:
 
 1. **Framework Preset**: Other
 2. **Build Command**: `npx one build`
 3. **Output Directory**: `.vercel/output`
-4. **Install Command**: `npm install` (or your package manager)
+4. **Install Command**: `npm install` (or `bun install`, `pnpm install`)
+
+#### Static-Only Sites
+
+If your site only uses SSG routes (`+ssg.tsx`) without SSR, loaders, or API routes, you can simplify:
+
+```tsx fileName=vite.config.ts
+one({
+  web: {
+    deploy: 'vercel',
+    defaultRenderMode: 'ssg',
+  }
+})
+```
+
+This generates only static files with no serverless functions, resulting in faster deploys and lower costs.
+
+#### Troubleshooting
+
+**Build fails with "Cannot find module"**: Ensure all dependencies are in `dependencies`, not `devDependencies`, if they're used at runtime.
+
+**404 on dynamic routes**: Check that your route files use the correct suffix (`+ssr.tsx` for server-rendered, `+ssg.tsx` with `generateStaticParams` for static).
+
+**Environment variables not available**: Variables must be added in Vercel dashboard and redeployed. Local `.env` files are not uploaded.
+
+**Slow cold starts**: Consider using `+ssg.tsx` for routes that don't need real-time data. Static routes have no cold start.
 
 ## Static Export
 
