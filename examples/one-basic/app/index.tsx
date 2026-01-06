@@ -1,7 +1,7 @@
-import { Text, View } from 'react-native'
 import { Link } from 'one'
+import { Text, View } from 'react-native'
 
-export default function Index() {
+export function Index() {
   return (
     <View
       style={{
@@ -10,6 +10,8 @@ export default function Index() {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100%',
+        minWidth: '100%',
+        backgroundColor: '#fff',
       }}
     >
       <Text>Hello world, from One</Text>
