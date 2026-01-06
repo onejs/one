@@ -114,7 +114,6 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
 
           const config = await getMetroConfigFromViteConfig(server.config, options)
 
-          // @ts-expect-error TODO
           const metroResult = await Metro.createConnectMiddleware(config, {
             // Force enable file watching, even on CI.
             // This is needed for HMR tests to work on CI.
@@ -134,7 +133,6 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
 
           const reactNativeDevToolsUrl = `http://${typeof server.config.server.host === 'boolean' ? 'localhost' : server.config.server.host}:${server.config.server.port}`
           const devMiddleware = createDevMiddleware({
-            projectRoot,
             serverBaseUrl: reactNativeDevToolsUrl,
             logger: console,
           })

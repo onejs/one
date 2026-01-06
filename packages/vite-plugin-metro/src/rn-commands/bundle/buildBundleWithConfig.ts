@@ -4,9 +4,19 @@ import type { ConfigT } from 'metro-config'
 import Server from 'metro/private/Server'
 import metroBundle from 'metro/private/shared/output/bundle'
 import type metroRamBundle from 'metro/private/shared/output/RamBundle'
-import type { RequestOptions } from 'metro/private/shared/types.flow'
 import type { BundleCommandArgs } from './types'
 import saveAssets from './saveAssets'
+
+// RequestOptions type from Metro - inlined since the path changed between versions
+type RequestOptions = {
+  entryFile: string
+  sourceMapUrl?: string | null
+  dev: boolean
+  minify: boolean
+  platform: string
+  unstable_transformProfile?: string
+  customResolverOptions?: unknown[]
+}
 
 export async function buildBundleWithConfig(
   args: BundleCommandArgs,
@@ -52,7 +62,6 @@ export async function buildBundleWithConfig(
   }
 
   console.info(`TODO`, config)
-  // @ts-expect-error TODO
   const server = new Server(config)
 
   if (patchServer) {
@@ -74,8 +83,7 @@ export async function buildBundleWithConfig(
     const outputAssets = await server.getAssets({
       ...Server.DEFAULT_BUNDLE_OPTIONS,
       ...requestOpts,
-      bundleType: 'todo',
-    })
+    } as any)
 
     // When we're done saving bundle output and the assets, we're done.
     return await saveAssets(outputAssets, args.platform, args.assetsDest, args.assetCatalogDest)
