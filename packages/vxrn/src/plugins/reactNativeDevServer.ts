@@ -41,7 +41,6 @@ export function createReactNativeDevServerPlugin(
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${host}:${port}`
       const { middleware, websocketEndpoints } = createDevMiddleware({
-        projectRoot: root,
         serverBaseUrl: reactNativeDevToolsUrl,
         logger: console,
       })
