@@ -3,7 +3,7 @@ import { useContext, useRef } from 'react'
 import { Separator, styled, View, XStack, YStack } from 'tamagui'
 import { Link } from 'one'
 import { OneLogo } from '~/features/brand/Logo'
-import { Status } from '~/components/Status'
+import { StatusBadgePopover } from '~/components/StatusBadgePopover'
 import { SearchContext } from '~/features/search/SearchContext'
 import { HeaderMenu } from '~/features/site/HeaderMenu'
 import { SocialLinksRow } from '~/features/site/SocialLinksRow'
@@ -102,9 +102,7 @@ export const TopNav = () => {
                 y: 2,
               }}
             >
-              <Link href="/docs/status">
-                <Status cur="pointer" is="beta" />
-              </Link>
+              <StatusBadgePopover is="beta" />
             </View>
 
             <XStack pe="auto" y={-2} mx="$4">

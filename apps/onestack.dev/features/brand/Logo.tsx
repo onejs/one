@@ -1,8 +1,7 @@
 import { View } from '@tamagui/core'
-import { Link } from 'one'
 import React, { useState } from 'react'
 import type { ViewProps } from 'tamagui'
-import { Status } from '../../components/Status'
+import { StatusBadgePopover } from '../../components/StatusBadgePopover'
 
 export const OneBall = (props) => {
   const scaleDownBy = (1 / 20) * (props.size ?? 1)
@@ -161,7 +160,7 @@ export function OneLogo({
         scale={10 * scaleDownBy}
         transformOrigin="center top"
       >
-        <Status cur="pointer" is="beta" />
+        <StatusBadgePopover is="beta" />
       </View>
     </View>
   )
