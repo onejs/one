@@ -1,0 +1,32 @@
+{
+  "name": "test-native-tree-shaking",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "one dev",
+    "build:web": "one build",
+    "ios": "one run:ios",
+    "android": "one run:android",
+    "prebuild:native": "one prebuild",
+    "test:native-bundle": "tsx scripts/test-native-bundle.ts"
+  },
+  "dependencies": {
+    "@react-navigation/native": "~7.1.19",
+    "@vxrn/mdx": "workspace:*",
+    "expo": "54.0.22",
+    "mdx-bundler": "^10.0.2",
+    "one": "workspace:*",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-safe-area-context": "~5.6.1",
+    "react-native-screens": "~4.16.0",
+    "react-native-web": "^0.21.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6",
+    "typescript": "^5.7.3",
+    "vite": "^7.1.12"
+  }
+}
