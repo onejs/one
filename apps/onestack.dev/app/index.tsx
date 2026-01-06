@@ -409,14 +409,7 @@ function Video() {
           </YStack>
 
           <View pos="absolute" top={0} right={0} bottom={0} left={0} ai="center" jc="center">
-            <Circle
-              animation="bouncy"
-              y={35}
-              ai="center"
-              size={60}
-              shac="$shadowColor"
-              shar={10}
-            >
+            <Circle animation="bouncy" y={35} ai="center" size={60} shac="$shadowColor" shar={10}>
               <svg style={{ marginTop: -10 }} width="100%" height="100%" viewBox="0 0 100 100">
                 <polygon
                   style={{ transform: 'translateY(6px)' }}
