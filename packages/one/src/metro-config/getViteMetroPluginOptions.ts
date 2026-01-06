@@ -1,7 +1,7 @@
-import module from 'node:module'
-import path from 'node:path'
 import type { metroPlugin } from '@vxrn/vite-plugin-metro'
 import mm from 'micromatch'
+import module from 'node:module'
+import path from 'node:path'
 import tsconfigPaths from 'tsconfig-paths'
 import {
   API_ROUTE_GLOB_PATTERN,
@@ -154,6 +154,14 @@ export function getViteMetroPluginOptions({
     },
     babelConfig: {
       plugins: [
+        // Remove server-only code (loader, generateStaticParams) from route files
+        // This must run early to prevent server-only imports from being bundled
+        [
+          'one/babel-plugin-remove-server-code',
+          {
+            routerRoot: relativeRouterRoot,
+          },
+        ],
         [
           'babel-plugin-module-resolver',
           {
