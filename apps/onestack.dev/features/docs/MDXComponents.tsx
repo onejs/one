@@ -1,4 +1,5 @@
 import { ChevronRight } from '@tamagui/lucide-icons'
+import { Link } from 'one'
 import React from 'react'
 import {
   EnsureFlexed,
@@ -17,8 +18,11 @@ import {
   YStack,
   styled,
 } from 'tamagui'
-import { Link } from 'one'
+import { Status } from '../../components/Status'
+import { StatusBadgePopover } from '../../components/StatusBadgePopover'
+import { SupportedVersions } from '../../components/SupportedVersions'
 import { SubTitle } from '../site/SubTitle'
+import { Badge } from './Badge'
 import { Code, CodeInline } from './Code'
 import { DocCodeBlock } from './DocsCodeBlock'
 import { LinkHeading } from './LinkHeading'
@@ -26,10 +30,6 @@ import { Notice } from './Notice'
 import { PropsTable } from './PropsTable'
 import { RouteTree } from './RouteTree'
 import { unwrapText } from './unwrapText'
-import { Status } from '../../components/Status'
-import { StatusBadgePopover } from '../../components/StatusBadgePopover'
-import { SupportedVersions, SupportedVersionsCompact } from '../../components/SupportedVersions'
-import { Badge } from './Badge'
 
 const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
   return (
@@ -118,7 +118,6 @@ const componentsIn = {
   Status,
   StatusBadgePopover,
   SupportedVersions,
-  SupportedVersionsCompact,
   Badge,
   XStack,
   YStack,
