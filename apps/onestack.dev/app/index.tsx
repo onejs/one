@@ -25,6 +25,7 @@ import {
 } from 'tamagui'
 import { Button } from '~/components/Button'
 import { Community } from '~/components/Community'
+import { SupportedVersionsCompact } from '~/components/SupportedVersions'
 import { Team } from '~/components/Team'
 import { PrettyText, PrettyTextBigger } from '~/components/typography'
 import { OneLogo } from '~/features/brand/Logo'
@@ -186,6 +187,8 @@ export default function HomePage() {
             <br />
             <CopyCommand />
           </YStack>
+
+          <SupportedVersionsCompact als="center" mb="$-4" />
 
           <YStack>
             <Video />

@@ -27,6 +27,8 @@ import { PropsTable } from './PropsTable'
 import { RouteTree } from './RouteTree'
 import { unwrapText } from './unwrapText'
 import { Status } from '../../components/Status'
+import { StatusBadgePopover } from '../../components/StatusBadgePopover'
+import { SupportedVersions, SupportedVersionsCompact } from '../../components/SupportedVersions'
 import { Badge } from './Badge'
 
 const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
@@ -114,6 +116,9 @@ const componentsIn = {
   RouteTree,
   PropsTable,
   Status,
+  StatusBadgePopover,
+  SupportedVersions,
+  SupportedVersionsCompact,
   Badge,
   XStack,
   YStack,
