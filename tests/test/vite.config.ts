@@ -1,7 +1,18 @@
 import { one } from 'one/vite'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
 import type { UserConfig } from 'vite'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
 export default {
+  root: __dirname,
+
+  ssr: {
+    noExternal: true,
+    external: ['@vxrn/mdx'],
+  },
+
   plugins: [
     one({
       router: {
@@ -17,6 +28,10 @@ export default {
       web: {
         deploy: 'vercel',
         inlineLayoutCSS: true, // Enable to test CSS hydration fix
+      },
+
+      native: {
+        bundler: 'metro',
       },
 
       react: {
