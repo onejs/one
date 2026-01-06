@@ -68,6 +68,7 @@ export async function getMetroConfigFromViteConfig(
 
     extraConfig.getResolveMainModuleName = resolveMainModuleName
 
+    // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
       if (url.includes('/.expo/.virtual-metro-entry.bundle?')) {
         const resolvedMainModulePath = resolveMainModuleName({
@@ -147,9 +148,8 @@ export async function getMetroConfigFromViteConfig(
     }
   )
 
-  // @ts-expect-error TODO
   return {
     ...metroConfig,
     ...extraConfig,
-  }
+  } as MetroConfigExtended
 }
