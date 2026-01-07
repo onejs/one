@@ -75,11 +75,17 @@ const TableBase = styled(View, {
   my: '$4',
 })
 
+const TableWrapper = styled(View, {
+  width: '100%',
+  overflowX: 'auto' as any,
+  my: '$4',
+})
+
 const Table = (props: any) => (
-  <>
+  <TableWrapper>
     <style>{`.mdx-table th:first-child, .mdx-table td:first-child { border-right: none !important; }`}</style>
-    <TableBase className="mdx-table" {...props} />
-  </>
+    <TableBase className="mdx-table" my={0} {...props} />
+  </TableWrapper>
 )
 
 const Thead = styled(View, {
