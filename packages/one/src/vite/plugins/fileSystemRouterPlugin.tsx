@@ -107,6 +107,11 @@ export function createFileSystemRouterPlugin(options: One.PluginOptions): Plugin
 
             return html
           } catch (err) {
+            // allow throwing a response in a loader (e.g. redirect)
+            if (isResponse(err)) {
+              return err
+            }
+
             console.error(`SSR error while loading file ${route.file} from URL ${url.href}\n`, err)
             const title = `Error rendering ${url.pathname} on server`
             const message = err instanceof Error ? err.message : `${err}`
