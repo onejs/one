@@ -71,7 +71,7 @@ export async function oneServe(
     throw new Error(`No build info found, have you run build?`)
   }
 
-  const { routeToBuildInfo, routeMap } = buildInfo as One.BuildInfo
+  const { routeToBuildInfo, routeMap, pathToRoute } = buildInfo as One.BuildInfo
 
   const serverOptions = {
     ...oneOptions,
@@ -144,7 +144,17 @@ export async function oneServe(
     },
 
     async handlePage({ route, url, loaderProps }) {
-      const buildInfo = routeToBuildInfo[route.file]
+      // Look up build info by route file
+      let buildInfo = routeToBuildInfo[route.file]
+
+      // If not found by exact file match, use pathToRoute for O(1) fallback lookup
+      if (!buildInfo && pathToRoute) {
+        // Try to find the route file from the URL pathname
+        const routeFile = pathToRoute[url.pathname] || pathToRoute[route.page]
+        if (routeFile) {
+          buildInfo = routeToBuildInfo[routeFile]
+        }
+      }
 
       if (route.type === 'ssr') {
         if (!buildInfo) {
@@ -203,7 +213,21 @@ ${err?.['stack'] ?? err}
 url: ${url}`)
         }
       } else {
-        const htmlPath = routeMap[url.pathname] || routeMap[buildInfo?.cleanPath]
+        // For spa/ssg routes, try to find the HTML file
+        // First try exact pathname match, then try buildInfo.cleanPath if available
+        let htmlPath = routeMap[url.pathname]
+
+        if (!htmlPath && buildInfo?.cleanPath) {
+          htmlPath = routeMap[buildInfo.cleanPath]
+        }
+
+        // If no buildInfo exists for this route, warn in development
+        if (!buildInfo && process.env.NODE_ENV !== 'production') {
+          console.warn(
+            `[one] Warning: No build info found for ${route.type} route "${route.file}". ` +
+            `This may indicate a mismatch between the route manifest and build output.`
+          )
+        }
 
         if (htmlPath) {
           // Try Worker ASSETS binding first (for Cloudflare Workers), fall back to filesystem
