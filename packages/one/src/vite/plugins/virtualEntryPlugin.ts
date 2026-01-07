@@ -1,3 +1,4 @@
+import { configuration } from '@vxrn/compiler'
 import type { Plugin } from 'vite'
 import { isNativeEnvironment } from 'vxrn'
 import {
@@ -108,8 +109,13 @@ export function createVirtualEntry(options: {
       if (id === resolvedVirtualEntryId) {
         const isNative = isNativeEnvironment(this.environment)
         const prependCode = getSetupFileImport(this.environment.name, setupFiles, isNative)
+        // When nativewind is enabled, import the components module to register Text, View, etc. with cssInterop
+        const nativewindImport = configuration.enableNativewind
+          ? `import 'react-native-css-interop/dist/runtime/components'`
+          : ''
         return `
 ${prependCode}
+${nativewindImport}
 
 import { createApp, registerPreloadedRoute as _registerPreloadedRoute } from 'one'
 

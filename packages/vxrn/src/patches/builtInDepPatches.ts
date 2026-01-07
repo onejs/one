@@ -318,6 +318,33 @@ install('URLSearchParams', () => URLSearchParams);
     module: 'react-native-css-interop',
     patchFiles: {
       'dist/**/*.js': ['jsx'],
+
+      // Fix the dynamic require inside wrapJSX function to be a top-level import
+      // This ensures components.js is bundled and executed to register Text, View, etc. with cssInterop
+      'dist/runtime/wrap-jsx.js': (contents) => {
+        assertString(contents)
+        // Move the require("./components") from inside the function to module level
+        return contents
+          .replace(
+            /if\s*\(\s*process\.env\.NODE_ENV\s*!==\s*["']test["']\s*\)\s*require\s*\(\s*["']\.\/components["']\s*\)\s*;?/,
+            ''
+          )
+          .replace(
+            '"use strict";',
+            `"use strict";
+if (process.env.NODE_ENV !== "test") require("./components");`
+          )
+      },
+
+      // Fix sideEffects: false causing components.js to be tree-shaken
+      // components.js registers Text, View, etc. with cssInterop and MUST run
+      'package.json': (contents) => {
+        assertString(contents)
+        const pkg = JSON.parse(contents)
+        // Change sideEffects to include components.js
+        pkg.sideEffects = ['dist/runtime/components.js']
+        return JSON.stringify(pkg, null, 2)
+      },
     },
   },
 
