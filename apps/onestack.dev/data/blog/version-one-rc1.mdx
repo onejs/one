@@ -6,387 +6,60 @@ by: nate
 ---
 
 <IntroParagraph>
-  One is a new React framework that lives in a single Vite plugin. By simply adding it to
-  your Vite config, you suddenly can target both web and native at once, with shared
-  routing, tons of great features, and a free production server.
+  **One is a unified cross-platform React web and React Native framework that lives
+  entirely in a Vite plugin**. One v1 is almost here - we've just released 1.0.0-rc.1,
+  marking it ready for production use. With over 1,800 commits since the announcement of
+  the alpha about a year ago we're incredibly proud of the simple, robust framework it's
+  become.
 </IntroParagraph>
 
-Version one of One is nearly here. Since we [announced One in September 2024 at ViteConf](https://youtu.be/HWeUin_9asM),
-we've landed nearly 2,000 commits from 37 contributors. Over the last year our team built several large websites and apps with One, one now in both app stores. We're happy to announce that **we feel confident it's ready for production today**.
+One makes building apps for both web and native a delight, bringing simplicity and sanity to
+what typically is an incredibly messy affair. Where before you'd need two frameworks, two bundlers, and a ton of glue code, with One it's now as simple as can be - Vite, a single plugin, and some file-system routes. **Achieving a 100 Lighthouse performance score while sharing code between web and native has turned from a pipe-dream into the expectation with One**.
 
-**One is a great framework even if you are only targeting web**, in a world haunted by the complexity of RSC, One has always
-taken a simple-is-better stance, while still giving you best-in-class features:
+**One is a great framework even if you are only targeting web**. In a world haunted by the complexity of RSC, One has always taken a simple-is-better stance, while still giving you best-in-class features:
 
 - **[Typed file system routes](/docs/routing-typed-routes)** with `.platform` file-level forking.
 - **Fully typed links**, params, and more with auto-generation.
 - Global and per-page **[render modes](/docs/routing-modes)** - SSR, SSG, SPA - for flexibility and performance.
 - **[Typed loaders](/docs/routing-loader)** for easy and simple data loading.
 - **Lock-in-free**: build to a `dist` folder, built-in Hono production server.
-- <New /> **[Metro-mode](/docs/metro-mode)**: use Metro for native, for maximum
-  compatibility.
-- <New /> **[Middleware](/docs/routing-middlewares)** for request interception and shared
-  context.
+- <New /> **[Metro-mode](/docs/metro-mode)**: use Metro for native, for maximum compatibility.
+- <New /> **[Middleware](/docs/routing-middlewares)** for request interception and shared context.
 - <New /> **[Sitemaps](/docs/configuration#sitemap)** with per-route overrides.
-- <New /> **[Deploy to Vercel or Cloudflare](/docs/guides-deployment)** workers with a
-  single config option.
-- <New /> **[useLoaderState](/docs/hooks-useLoaderState)**, **[setServerData and
-  getServerData](/docs/helpers-utility-functions)** for advanced data loading.
+- <New /> **[Deploy to Vercel or Cloudflare](/docs/guides-deployment)** workers with a single config option.
+- <New /> **[useLoaderState](/docs/hooks-useLoaderState)**, **[setServerData and getServerData](/docs/helpers-utility-functions)** for advanced data loading.
 - <New /> Automatic **NativeWind** and **Reanimated** detection and support.
-- <New /> **[Advanced loading strategies](/docs/configuration#web)** that significantly
-  improve Lighthouse scores.
+- <New /> **[Advanced loading strategies](/docs/configuration#web)** that significantly improve Lighthouse scores.
 
-## Getting started
+## Getting Started
 
-Add One to your Vite config:
-
-```tsx
-import { one } from 'one/vite'
-
-export default {
-  plugins: [one()],
-}
-```
-
-Then run:
+The quickest way to start:
 
 ```bash
 npx one
 ```
 
-Pick a starter and go.
+Pick a starter and you're up and running. From there, check out the [introduction](/docs/introduction), [routing guide](/docs/routing), or [deployment docs](/docs/guides-deployment).
 
-## What you get from the plugin
+## What's new in RC1
 
-- **File-system routing** in `./app` for web + native
-- **Render modes** (SSG, SSR, SPA, API) per-route or globally
-- **Loaders** that run on the server and tree-shake out of the client
-- **React Native support** via Metro (recommended today), with ongoing work on Vite-native builds
-- **Middleware** for request interception and shared context
-- **A production server** built on [Hono](https://hono.dev)
+Since the v1 announcement, here are some highlights:
 
-The goal is straightforward configuration: one plugin, one routing model, one data-loading model.
+- **React Native 0.81 + Expo 54** support
+- **Prebuild without Expo** via `npx one prebuild --expo false`
+- **`--platform` flag** for iOS or Android-only prebuild
+- **Vercel + Cloudflare Workers** deployment targets
+- **Metro mode** with full HMR, DevTools, and production builds
 
-## Routing
-
-Routes map directly from files:
-
-```
-app/
-  index.tsx              → /
-  about.tsx              → /about
-  blog/[slug].tsx        → /blog/:slug
-  settings/_layout.tsx   → wraps /settings/*
-```
-
-On web you get URLs; on native you get screens (React Navigation). Same files.
-
-### Render modes (per route)
-
-Use filename suffixes to choose how a route runs:
-
-```
-app/
-  index+ssg.tsx          # static HTML at build time
-  dashboard+spa.tsx      # client-only, no SSR
-  posts/[id]+ssr.tsx     # server render on each request
-  api/users+api.tsx      # JSON endpoint
-```
-
-Or set a default:
-
-```tsx
-one({ web: { defaultRenderMode: 'spa' } })
-```
-
-(SSG is the default right now because it’s a solid baseline for most pages.)
-
-### Typed routes
-
-One generates route types and provides a helper that keeps params + loaders typed:
-
-```tsx
-import { createRoute } from 'one'
-
-const route = createRoute<'/blog/[slug]'>()
-
-export const loader = route.createLoader(async ({ params }) => {
-  const post = await db.posts.find(params.slug)
-  return { post }
-})
-
-export default function Post() {
-  const { slug } = route.useParams()
-  const { post } = useLoader(loader)
-  return <article>{post.content}</article>
-}
-```
-
-This generates a `routes.d.ts` so your editor knows what exists.
-
-### Platform-specific routes
-
-If you need different implementations:
-
-```
-app/
-  settings.tsx
-  settings.web.tsx
-  settings.native.tsx
-  settings.ios.tsx
-```
-
-## Data loading
-
-### Loaders
-
-A loader runs on the server (SSG/SSR) and its result is available to your component:
-
-```tsx
-export const loader = async ({ params, request }) => {
-  const post = await db.posts.find(params.slug)
-  return { post }
-}
-
-export default function Post() {
-  const { post } = useLoader(loader)
-  return <article>{post.content}</article>
-}
-```
-
-Loader code is **tree-shaken out of the client**.
-
-We took inspiration from [Remix](https://remix.run)’s loader ergonomics and focused on making the same approach work on native too.
-
-### useLoaderState (loading + refetch)
-
-```tsx
-function Post() {
-  const { data, refetch, state } = useLoaderState(loader)
-
-  return (
-    <div>
-      {state === 'loading' && <Spinner />}
-      <button onClick={refetch}>Refresh</button>
-      <article>{data.post.content}</article>
-    </div>
-  )
-}
-```
-
-## Middleware
-
-Add `_middleware.ts` in any folder:
-
-```tsx
-import { createMiddleware } from 'one'
-
-export default createMiddleware(async ({ request, next, context }) => {
-  const user = await getUser(request)
-  if (!user) return new Response('Unauthorized', { status: 401 })
-
-  context.user = user
-  return next()
-})
-```
-
-Middleware runs top-to-bottom for routes beneath it, can intercept requests, and can pass data through `context`.
-
-## Native (today)
-
-One supports React Native and aims to keep the workflow familiar.
-
-### Metro mode (recommended)
-
-```tsx
-one({ native: { bundler: 'metro' } })
-```
-
-Metro is the stable choice today. It supports:
-
-- Fast Refresh / HMR
-- React Native DevTools
-- `import.meta.env` (Vite-like env behavior)
-- React Compiler support
-- production bundle builds
-
-### Prebuild
-
-```bash
-npx one prebuild
-```
-
-Options:
-
-```bash
-npx one prebuild --expo false
-npx one prebuild --platform ios
-npx one prebuild --no-install
-```
-
-### NativeWind
-
-If NativeWind is installed, One detects it and configures compilation automatically.
-
-## Web performance knobs (optional)
-
-These are optional switches—use them if they help your app.
-
-### Route preloading
-
-Routes preload before navigation completes to reduce flicker and surprise loading boundaries. CSS is also preloaded and injected during client-side navigation.
-
-### Script loading
-
-```tsx
-one({
-  web: {
-    experimental_scriptLoading: 'after-lcp',
-  },
-})
-```
-
-- `defer-non-critical`
-- `after-lcp`
-- `after-lcp-aggressive`
-
-### Inline layout CSS
-
-```tsx
-one({
-  web: {
-    inlineLayoutCSS: true,
-  },
-})
-```
-
-## Deployment
-
-### Node (default)
-
-```bash
-npx one build
-npx one serve
-```
-
-This runs a [Hono](https://hono.dev) server. Deploy anywhere Node runs.
-
-### Vercel
-
-```tsx
-one({ web: { deploy: 'vercel' } })
-```
-
-```bash
-npx one build
-vercel deploy --prebuilt
-```
-
-Uses Vercel Build Output API v3 directly: SSR routes become serverless functions; static routes deploy statically.
-
-### Cloudflare Workers
-
-```tsx
-one({ web: { deploy: 'cloudflare' } })
-```
-
-```bash
-npx one build
-cd dist && wrangler deploy
-```
-
-Routes lazy-load to keep cold starts reasonable.
-
-### Sitemap generation
-
-```tsx
-one({
-  web: {
-    sitemap: {
-      baseUrl: 'https://example.com',
-      priority: 0.7,
-      changefreq: 'weekly',
-      exclude: ['/admin/*', '/api/*'],
-    },
-  },
-})
-```
-
-Routes can export:
-
-```tsx
-export const sitemap = { priority: 0.9, changefreq: 'daily' }
-```
-
-## Developer experience
-
-### Dev server shortcuts
-
-```
-ow  → open web
-oi  → open iOS simulator
-oa  → open Android emulator
-qr  → show QR for Expo Go
-dt  → open React Native DevTools
-```
-
-### Debug routing
-
-Set `ONE_DEBUG_ROUTER=1` to get detailed logs (route tree, navigation, middleware chains, matches).
-
-### Error boundaries by default
-
-Routes get an error boundary automatically so you see actionable errors instead of a blank screen.
-
-### Scroll behavior
-
-```tsx
-import { ScrollBehavior } from 'one'
-;<ScrollBehavior />
-```
-
-Handles scroll position + basic hash routing (renamed from `ScrollRestoration`).
-
-## What’s new since the v1 announcement
-
-If you looked at One earlier and bounced, these are the major additions and fixes since the initial announcement.
-
-### Data loading
-
-- `useLoaderState` (loading state + refetch)
-- `setServerData` / `getServerData`
-- loaders receive `request`
-- loaders receive `search` params
-- typed loaders via `route.createLoader()`
-
-### Routing
-
-- typed routes via `createRoute`
-- middleware via `createMiddleware`
-- platform route extensions (`.web`, `.native`, `.ios`)
-- sitemap generation
-- error boundaries on every route
-- hash routing support via `ScrollBehavior`
-- `ignoredRouteFiles` config
-- improved sorting for dynamic segments + layout nesting
-- fixes for layout hook values during first render
-
-### Native
-
-- React Native 0.81 + Expo 54
-- Metro mode with HMR + DevTools + production builds
-- NativeWind auto-detection
-- prebuild without Expo (`--expo false`)
-- `--platform` flag for iOS/Android-only generation
-
-### Web
-
-- Vercel deployment support (Build Output API v3)
-- Cloudflare Workers deploy mode with lazy route loading
-- URL rewrites via `web.rewrites`
+For the full changelog, see [the release notes](https://github.com/onejs/one/releases).
 
 ## Thanks
 
-One builds on a lot of excellent open source work:
+One wouldn't be possible without our core team:
+
+- [Pokai Chang](https://github.com/pockiiie) and [Quan Nguyen](https://github.com/anhquan291) - for countless hours of contributions, bug fixes, and helping shape One into what it is today.
+
+One builds on excellent open source work:
 
 - [Vite](https://vitejs.dev)
 - [React Navigation](https://reactnavigation.org)
@@ -402,15 +75,16 @@ And thank you to folks who helped directly:
 - [Matias Capeletto](https://github.com/patak-dev)
 - Dan Maier (for the `one` package name)
 
-One started as a fork of [Expo Router](https://expo.dev/router), built on top of [vxrn](https://vxrn.dev).
-It maintains nearly full API compatibility with Expo Router, while adding features One needs (typed routes, loaders on web + native, per-route render modes, middleware, and broader deployment targets).
+One started as a fork of [Expo Router](https://expo.dev/router), built on top of [vxrn](https://vxrn.dev). It maintains nearly full API compatibility with Expo Router, while adding features One needs (typed routes, loaders on web + native, per-route render modes, middleware, and broader deployment targets).
 
-## Try it / report issues
+## Community
+
+We'd love to have you involved:
+
+- [Join our Discord](https://discord.gg/one) to chat, ask questions, or share what you're building
+- [Open an issue](https://github.com/onejs/one/issues) if you hit a bug (repros help a lot!)
+- Contributions welcome — docs, examples, bug fixes, or just helping others in Discord
 
 ```bash
 npx one
 ```
-
-If something breaks, please [open an issue](https://github.com/onejs/one/issues) with a repro if you can.
-
-If you want to talk through whether One fits your project (or you want to help shape v1), [join Discord](https://discord.gg/one).
