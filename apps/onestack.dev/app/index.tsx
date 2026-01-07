@@ -82,6 +82,29 @@ export default function HomePage() {
           >
             <XStack ai="center" gap="$6" $sm={{ jc: 'center' }}>
               <ToggleThemeButton />
+              {/* commenting this out till the blog page is ready */}
+              {/*<Link href="/blog" asChild>
+                <Button
+                  size="$5"
+                  bg="$color2"
+                  br="$10"
+                  group
+                  animation="quickest"
+                  containerType="normal"
+                  gap={0}
+                  bw={0}
+                  hoverStyle={{
+                    bg: '$color5',
+                  }}
+                  pressStyle={{
+                    bg: '$color9',
+                  }}
+                >
+                  <ButtonText fontFamily="$mono" lh={0}>
+                    Blog
+                  </ButtonText>
+                </Button>
+              </Link>*/}
 
               <Theme name="accent">
                 <Link href="/docs/introduction" asChild>
@@ -125,7 +148,8 @@ export default function HomePage() {
 
         <View theme="yellow" gap="$4" pt="$6">
           <PrettyTextBigger>
-            One aims to make web + native with React and React&nbsp;Native much simpler, and faster.
+            One aims to make web + native with React and React&nbsp;Native much simpler,
+            and faster.
             <br />
             <br />
             One takes{' '}
@@ -168,7 +192,8 @@ export default function HomePage() {
           </PrettyTextBigger>
 
           <PrettyTextBigger>
-            One is a simpler framework because it's being designed alongside a sync engine,{' '}
+            One is a simpler framework because it's being designed alongside a sync
+            engine,{' '}
             <Link
               style={{ color: 'var(--color11)' }}
               target="_blank"
@@ -179,7 +204,15 @@ export default function HomePage() {
             .
           </PrettyTextBigger>
 
-          <YStack mt={40} als="center" ai="center" jc="center" gap="$1" px="$6" bc="$color4">
+          <YStack
+            mt={40}
+            als="center"
+            ai="center"
+            jc="center"
+            gap="$1"
+            px="$6"
+            bc="$color4"
+          >
             <Paragraph size="$5" theme="gray" color="$color8" mb={-20}>
               Bootstrap an app with
             </Paragraph>
@@ -200,7 +233,11 @@ export default function HomePage() {
           <Spacer /> */}
 
           <Theme name="gray">
-            <Link asChild href="https://testflight.apple.com/join/aNcDUHZY" target="_blank">
+            <Link
+              asChild
+              href="https://testflight.apple.com/join/aNcDUHZY"
+              target="_blank"
+            >
               <XStack
                 tag="a"
                 className="text-underline-none"
@@ -221,7 +258,12 @@ export default function HomePage() {
                   fd: 'column',
                 }}
               >
-                <img width={80} height={80} src="/testflight.webp" alt="Testflight Icon" />
+                <img
+                  width={80}
+                  height={80}
+                  src="/testflight.webp"
+                  alt="Testflight Icon"
+                />
 
                 <YStack>
                   <PrettyText
@@ -265,7 +307,14 @@ export default function HomePage() {
 
 const InfoBoxes = () => {
   return (
-    <XStack mx="$-8" fw="wrap" rowGap="$1" columnGap="$5" mb="$13" $sm={{ fd: 'column', mx: 0 }}>
+    <XStack
+      mx="$-8"
+      fw="wrap"
+      rowGap="$1"
+      columnGap="$5"
+      mb="$13"
+      $sm={{ fd: 'column', mx: 0 }}
+    >
       <InfoCard title="Typed FS Routing" Icon={FolderCheck}>
         Typed file-system routing, nested layouts with groups.
       </InfoCard>
@@ -408,9 +457,30 @@ function Video() {
             />
           </YStack>
 
-          <View pos="absolute" top={0} right={0} bottom={0} left={0} ai="center" jc="center">
-            <Circle animation="bouncy" y={35} ai="center" size={60} shac="$shadowColor" shar={10}>
-              <svg style={{ marginTop: -10 }} width="100%" height="100%" viewBox="0 0 100 100">
+
+          <View
+            pos="absolute"
+            top={0}
+            right={0}
+            bottom={0}
+            left={0}
+            ai="center"
+            jc="center"
+          >
+            <Circle
+              animation="bouncy"
+              y={35}
+              ai="center"
+              size={60}
+              shac="$shadowColor"
+              shar={10}
+            >
+              <svg
+                style={{ marginTop: -10 }}
+                width="100%"
+                height="100%"
+                viewBox="0 0 100 100"
+              >
                 <polygon
                   style={{ transform: 'translateY(6px)' }}
                   points="35,25 75,50 35,75"

@@ -52,57 +52,62 @@ export default function BlogPost() {
       <TopNav />
 
       <Container>
-        <YStack py="$8" gap="$6" maw={720} mx="auto">
-          <Link href="/blog">
-            <XStack
-              gap="$2"
-              ai="center"
-              color="$color10"
-              hoverStyle={{ color: '$color12' }}
-            >
-              <ChevronLeft size={16} />
-              <Text size="$3">Back to Blog</Text>
-            </XStack>
-          </Link>
+        <Link href="/blog">
+          <XStack
+            gap="$2"
+            ai="center"
+            color="$color10"
+            hoverStyle={{ color: '$color12' }}
+            mb="$4"
+          >
+            <ChevronLeft size={16} />
+            <Text size="$3">Back to Blog</Text>
+          </XStack>
+        </Link>
 
-          <YStack gap="$4">
-            <H1 size="$10">{frontmatter.title}</H1>
-            {frontmatter.description && (
-              <Paragraph size="$6" color="$color11">
-                {frontmatter.description}
-              </Paragraph>
-            )}
-            <XStack gap="$3" ai="center">
-              {author && (
-                <Text size="$4" fontWeight="500">
-                  {author.name}
-                </Text>
-              )}
-              {author && date && (
-                <Text color="$color10">·</Text>
-              )}
-              {date && (
-                <Text size="$4" color="$color10">
-                  {date}
-                </Text>
-              )}
-              {frontmatter.readingTime && (
-                <>
-                  <Text color="$color10">·</Text>
-                  <Text size="$4" color="$color10">
-                    {frontmatter.readingTime.text}
-                  </Text>
-                </>
-              )}
-            </XStack>
-          </YStack>
+        <H1
+          size="$10"
+          mb="$4"
+          $platform-web={{
+            textWrap: 'balance',
+          }}
+        >
+          {frontmatter.title}
+        </H1>
 
-          <Separator />
+        {frontmatter.description && (
+          <Paragraph size="$6" color="$color11" mb="$3">
+            {frontmatter.description}
+          </Paragraph>
+        )}
 
-          <YStack className="blog-content">
-            <Component components={components as any} />
-          </YStack>
-        </YStack>
+        <XStack gap="$3" ai="center" mb="$6">
+          {author && (
+            <Text size="$4" fontWeight="500">
+              {author.name}
+            </Text>
+          )}
+          {author && date && (
+            <Text color="$color10">·</Text>
+          )}
+          {date && (
+            <Text size="$4" color="$color10">
+              {date}
+            </Text>
+          )}
+          {frontmatter.readingTime && (
+            <>
+              <Text color="$color10">·</Text>
+              <Text size="$4" color="$color10">
+                {frontmatter.readingTime.text}
+              </Text>
+            </>
+          )}
+        </XStack>
+
+        <Separator mb="$6" />
+
+        <Component components={components as any} />
       </Container>
     </>
   )

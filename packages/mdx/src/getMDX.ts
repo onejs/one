@@ -2,6 +2,7 @@ import { bundleMDX } from 'mdx-bundler'
 import readingTime from 'reading-time'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
+import remarkGfm from 'remark-gfm'
 import { getHeadings } from './getHeadings'
 import { rehypeHighlightCode } from './rehypeHighlightCode'
 import rehypeMetaAttribute from './rehypeMetaAttribute'
@@ -11,6 +12,7 @@ export async function getMDX(source: string, extraPlugins?: UnifiedPlugin) {
   const { frontmatter, code } = await bundleMDX({
     source,
     mdxOptions(options) {
+      options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm]
       const plugins = [
         ...(extraPlugins || []),
         ...(options.rehypePlugins ?? []),

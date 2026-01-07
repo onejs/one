@@ -109,7 +109,14 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
             </YStack>
 
             <Tabs.Content value={selectedPackageManager} forceMount>
-              {content}
+              <ScrollView
+                style={{ width: '100%' }}
+                contentContainerStyle={{ minWidth: '100%' }}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+              >
+                <YStack minWidth="100%">{content}</YStack>
+              </ScrollView>
             </Tabs.Content>
           </YStack>
         </Tabs>
@@ -120,7 +127,7 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
           horizontal
           showsHorizontalScrollIndicator={false}
         >
-          {content}
+          <YStack minWidth="100%">{content}</YStack>
         </ScrollView>
       )}
     </>

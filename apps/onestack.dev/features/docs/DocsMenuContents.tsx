@@ -15,7 +15,9 @@ type Section = Item['section']
 
 export const DocsMenuContents = React.memo(function DocsMenuContents({
   inMenu,
-}: { inMenu?: boolean }) {
+}: {
+  inMenu?: boolean
+}) {
   const { currentPath } = useDocsMenu()
   const activeItems = allItems
   const [items, setItems] = React.useState(activeItems)
@@ -72,7 +74,11 @@ const SubSection = ({
   section,
   items,
   inMenu,
-}: { section: Section; items: Item[]; inMenu?: boolean }) => {
+}: {
+  section: Section
+  items: Item[]
+  inMenu?: boolean
+}) => {
   const { currentPath } = useDocsMenu()
   const [visible, setVisible] = React.useState(!section.title)
 
@@ -123,10 +129,10 @@ const SubSection = ({
               onPress={() => {
                 setVisible(!visible)
               }}
-              fd={inMenu ? 'row-reverse' : 'row'}
+              fd="row"
               py="$2"
               px="$4"
-              jc="space-between"
+              jc="flex-start"
               tag="span"
               ai="center"
               gap="$3"
