@@ -29,8 +29,13 @@ export function mergeUserConfig(
       serverConfig.css = userViteConfig.css
     }
 
-    if (serverConfig.ssr?.noExternal && !Array.isArray(serverConfig.ssr?.noExternal)) {
-      throw new Error(`ssr.noExternal must be array`)
+    // noExternal can be true (bundle everything) or an array of strings/RegExp
+    if (
+      serverConfig.ssr?.noExternal &&
+      serverConfig.ssr.noExternal !== true &&
+      !Array.isArray(serverConfig.ssr.noExternal)
+    ) {
+      throw new Error(`ssr.noExternal must be true or an array`)
     }
 
     // vite doesnt merge arrays but we want that
@@ -56,19 +61,24 @@ export function deepMergeOptimizeDeps(
   b.optimizeDeps ||= {}
 
   if (!avoidMergeExternal) {
-    a.noExternal = uniq([
-      ...coerceToArray((a.noExternal as string[]) || []),
-      ...(a.optimizeDeps.include || []),
-      ...(b.optimizeDeps.include || []),
-      ...coerceToArray(b.noExternal || []),
-      ...(extraDepsOpt?.include || []),
+    // If either config has noExternal: true, preserve it (means "bundle everything")
+    if (a.noExternal === true || b.noExternal === true) {
+      a.noExternal = true
+    } else {
+      a.noExternal = uniq([
+        ...coerceToArray((a.noExternal as string[]) || []),
+        ...(a.optimizeDeps.include || []),
+        ...(b.optimizeDeps.include || []),
+        ...coerceToArray(b.noExternal || []),
+        ...(extraDepsOpt?.include || []),
 
-      // TODO at least move to getOptimizeDeps
-      'react',
-      'react-dom',
-      'react-dom/server',
-      'react-dom/client',
-    ])
+        // TODO at least move to getOptimizeDeps
+        'react',
+        'react-dom',
+        'react-dom/server',
+        'react-dom/client',
+      ])
+    }
   }
 
   a.optimizeDeps.exclude = uniq([
