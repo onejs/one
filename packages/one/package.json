@@ -120,6 +120,7 @@
     "@babel/parser": "^7.28.5",
     "@babel/traverse": "^7.28.5",
     "@babel/types": "^7.28.5",
+    "@bacons/text-decoder": "^0.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-native-masked-view/masked-view": "^0.3.2",
     "@react-navigation/bottom-tabs": "~7.7.3",
