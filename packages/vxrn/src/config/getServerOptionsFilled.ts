@@ -18,6 +18,9 @@ export async function getServerOptionsFilled(
     host,
   })
 
+  // Use localhost for the URL when host is 0.0.0.0 since that's how clients will access it
+  const urlHost = host === '0.0.0.0' ? 'localhost' : host
+
   return {
     loadEnv: false,
     compress: true,
@@ -25,6 +28,6 @@ export async function getServerOptionsFilled(
     port,
     host,
     protocol,
-    url: `${protocol}//${host}:${port}`,
+    url: `${protocol}//${urlHost}:${port}`,
   }
 }

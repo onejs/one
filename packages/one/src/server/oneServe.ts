@@ -159,7 +159,17 @@ export async function oneServe(
           const exported = options?.lazyRoutes?.pages?.[route.file]
             ? await options.lazyRoutes.pages[route.file]()
             : await import(toAbsolute(buildInfo.serverJsPath))
-          const loaderData = await exported.loader?.(loaderProps)
+
+          let loaderData
+          try {
+            loaderData = await exported.loader?.(loaderProps)
+          } catch (loaderErr) {
+            // Handle thrown responses (e.g., redirect) from loader
+            if (isResponse(loaderErr)) {
+              return loaderErr
+            }
+            throw loaderErr
+          }
 
           const headers = new Headers()
           headers.set('content-type', 'text/html')
@@ -181,6 +191,11 @@ export async function oneServe(
             status: route.isNotFound ? 404 : 200,
           })
         } catch (err) {
+          // Handle thrown responses (e.g., redirect) that weren't caught above
+          if (isResponse(err)) {
+            return err
+          }
+
           console.error(`[one] Error rendering SSR route ${route.file}
 
 ${err?.['stack'] ?? err}
