@@ -1,5 +1,5 @@
-import { HooksTestingPageContent } from '~/features/hooks-testing/HooksTestingPageContent'
+import { HooksTestingPageContent } from "~/features/hooks-testing/HooksTestingPageContent";
 
 export default function HooksTestingPage() {
-  return <HooksTestingPageContent pageName="page-2" />
+  return <HooksTestingPageContent pageName="page-2" />;
 }

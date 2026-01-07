@@ -1,9 +1,9 @@
-import { router, useParams } from 'one'
-import { useId } from 'react'
-import { Button, H1, H3, YStack } from 'tamagui'
+import { router, useParams } from "one";
+import { useId } from "react";
+import { Button, H1, H3, YStack } from "tamagui";
 
 export default () => {
-  const params = useParams()
+  const params = useParams();
   return (
     <YStack>
       <H1 id="stable-id">id: {useId()}</H1>
@@ -11,7 +11,7 @@ export default () => {
 
       <Button
         onPress={() => {
-          router.back()
+          router.back();
         }}
       >
         Go back
@@ -19,7 +19,7 @@ export default () => {
 
       <Button
         onPress={() => {
-          router.navigate(`/segments-stable-ids/a/b`)
+          router.navigate(`/segments-stable-ids/a/b`);
         }}
       >
         Go to /a/b
@@ -27,7 +27,7 @@ export default () => {
 
       <Button
         onPress={() => {
-          router.navigate(`/segments-stable-ids/a/b/c`)
+          router.navigate(`/segments-stable-ids/a/b/c`);
         }}
       >
         Go to /a/b/c
@@ -35,11 +35,11 @@ export default () => {
 
       <Button
         onPress={() => {
-          router.navigate(`/segments-stable-ids/c/d`)
+          router.navigate(`/segments-stable-ids/c/d`);
         }}
       >
         Go to /c/d
       </Button>
     </YStack>
-  )
-}
+  );
+};

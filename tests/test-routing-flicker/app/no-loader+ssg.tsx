@@ -1,5 +1,5 @@
-import { Link } from 'one'
-import { Text, YStack, H1, Paragraph } from 'tamagui'
+import { Link } from "one";
+import { Text, YStack, H1, Paragraph } from "tamagui";
 
 // This page has NO loader - tests navigation from loader pages to non-loader pages
 export default function NoLoaderPage() {
@@ -41,5 +41,5 @@ export default function NoLoaderPage() {
         </Link>
       </YStack>
     </YStack>
-  )
+  );
 }

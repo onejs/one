@@ -14,8 +14,7 @@ function formatProdErrorMessage(code) {
   var url = "https://react.dev/errors/" + code;
   if (1 < arguments.length) {
     url += "?args[]=" + encodeURIComponent(arguments[1]);
-    for (var i = 2; i < arguments.length; i++)
-      url += "&args[]=" + encodeURIComponent(arguments[i]);
+    for (var i = 2; i < arguments.length; i++) url += "&args[]=" + encodeURIComponent(arguments[i]);
   }
   return (
     "Minified React error #" +
@@ -39,8 +38,7 @@ var isArrayImpl = Array.isArray,
 function getIteratorFn(maybeIterable) {
   if (null === maybeIterable || "object" !== typeof maybeIterable) return null;
   maybeIterable =
-    (MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL]) ||
-    maybeIterable["@@iterator"];
+    (MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL]) || maybeIterable["@@iterator"];
   return "function" === typeof maybeIterable ? maybeIterable : null;
 }
 var hasOwnProperty = Object.prototype.hasOwnProperty,
@@ -52,25 +50,14 @@ function ReactElement(type, key, self, source, owner, props) {
     type: type,
     key: key,
     ref: void 0 !== self ? self : null,
-    props: props
+    props: props,
   };
 }
 function cloneAndReplaceKey(oldElement, newKey) {
-  return ReactElement(
-    oldElement.type,
-    newKey,
-    void 0,
-    void 0,
-    void 0,
-    oldElement.props
-  );
+  return ReactElement(oldElement.type, newKey, void 0, void 0, void 0, oldElement.props);
 }
 function isValidElement(object) {
-  return (
-    "object" === typeof object &&
-    null !== object &&
-    object.$$typeof === REACT_ELEMENT_TYPE
-  );
+  return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
 }
 function escape(key) {
   var escaperLookup = { "=": "=0", ":": "=2" };
@@ -102,13 +89,12 @@ function resolveThenable(thenable) {
             thenable.then(
               function (fulfilledValue) {
                 "pending" === thenable.status &&
-                  ((thenable.status = "fulfilled"),
-                  (thenable.value = fulfilledValue));
+                  ((thenable.status = "fulfilled"), (thenable.value = fulfilledValue));
               },
               function (error) {
                 "pending" === thenable.status &&
                   ((thenable.status = "rejected"), (thenable.reason = error));
-              }
+              },
             )),
         thenable.status)
       ) {
@@ -146,7 +132,7 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
                 array,
                 escapedPrefix,
                 nameSoFar,
-                callback
+                callback,
               )
             );
         }
@@ -154,13 +140,11 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
   if (invokeCallback)
     return (
       (callback = callback(children)),
-      (invokeCallback =
-        "" === nameSoFar ? "." + getElementKey(children, 0) : nameSoFar),
+      (invokeCallback = "" === nameSoFar ? "." + getElementKey(children, 0) : nameSoFar),
       isArrayImpl(callback)
         ? ((escapedPrefix = ""),
           null != invokeCallback &&
-            (escapedPrefix =
-              invokeCallback.replace(userProvidedKeyEscapeRegex, "$&/") + "/"),
+            (escapedPrefix = invokeCallback.replace(userProvidedKeyEscapeRegex, "$&/") + "/"),
           mapIntoArray(callback, array, escapedPrefix, "", function (c) {
             return c;
           }))
@@ -169,14 +153,10 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
             (callback = cloneAndReplaceKey(
               callback,
               escapedPrefix +
-                (null == callback.key ||
-                (children && children.key === callback.key)
+                (null == callback.key || (children && children.key === callback.key)
                   ? ""
-                  : ("" + callback.key).replace(
-                      userProvidedKeyEscapeRegex,
-                      "$&/"
-                    ) + "/") +
-                invokeCallback
+                  : ("" + callback.key).replace(userProvidedKeyEscapeRegex, "$&/") + "/") +
+                invokeCallback,
             )),
           array.push(callback)),
       1
@@ -185,47 +165,25 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
   var nextNamePrefix = "" === nameSoFar ? "." : nameSoFar + ":";
   if (isArrayImpl(children))
     for (var i = 0; i < children.length; i++)
-      (nameSoFar = children[i]),
+      ((nameSoFar = children[i]),
         (type = nextNamePrefix + getElementKey(nameSoFar, i)),
-        (invokeCallback += mapIntoArray(
-          nameSoFar,
-          array,
-          escapedPrefix,
-          type,
-          callback
-        ));
+        (invokeCallback += mapIntoArray(nameSoFar, array, escapedPrefix, type, callback)));
   else if (((i = getIteratorFn(children)), "function" === typeof i))
-    for (
-      children = i.call(children), i = 0;
-      !(nameSoFar = children.next()).done;
-
-    )
-      (nameSoFar = nameSoFar.value),
+    for (children = i.call(children), i = 0; !(nameSoFar = children.next()).done; )
+      ((nameSoFar = nameSoFar.value),
         (type = nextNamePrefix + getElementKey(nameSoFar, i++)),
-        (invokeCallback += mapIntoArray(
-          nameSoFar,
-          array,
-          escapedPrefix,
-          type,
-          callback
-        ));
+        (invokeCallback += mapIntoArray(nameSoFar, array, escapedPrefix, type, callback)));
   else if ("object" === type) {
     if ("function" === typeof children.then)
-      return mapIntoArray(
-        resolveThenable(children),
-        array,
-        escapedPrefix,
-        nameSoFar,
-        callback
-      );
+      return mapIntoArray(resolveThenable(children), array, escapedPrefix, nameSoFar, callback);
     array = String(children);
     throw Error(
       formatProdErrorMessage(
         31,
         "[object Object]" === array
           ? "object with keys {" + Object.keys(children).join(", ") + "}"
-          : array
-      )
+          : array,
+      ),
     );
   }
   return invokeCallback;
@@ -246,12 +204,12 @@ function lazyInitializer(payload) {
     ctor.then(
       function (moduleObject) {
         if (0 === payload._status || -1 === payload._status)
-          (payload._status = 1), (payload._result = moduleObject);
+          ((payload._status = 1), (payload._result = moduleObject));
       },
       function (error) {
         if (0 === payload._status || -1 === payload._status)
-          (payload._status = 2), (payload._result = error);
-      }
+          ((payload._status = 2), (payload._result = error));
+      },
     );
     -1 === payload._status && ((payload._status = 0), (payload._result = ctor));
   }
@@ -272,7 +230,7 @@ exports.Children = {
       function () {
         forEachFunc.apply(this, arguments);
       },
-      forEachContext
+      forEachContext,
     );
   },
   count: function (children) {
@@ -292,41 +250,35 @@ exports.Children = {
   only: function (children) {
     if (!isValidElement(children)) throw Error(formatProdErrorMessage(143));
     return children;
-  }
+  },
 };
 exports.Fragment = REACT_FRAGMENT_TYPE;
 exports.Profiler = REACT_PROFILER_TYPE;
 exports.StrictMode = REACT_STRICT_MODE_TYPE;
 exports.Suspense = REACT_SUSPENSE_TYPE;
-exports.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE =
-  ReactSharedInternals;
+exports.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = ReactSharedInternals;
 exports.cache = function (fn) {
   return function () {
     var dispatcher = ReactSharedInternals.A;
     if (!dispatcher) return fn.apply(null, arguments);
     var fnMap = dispatcher.getCacheForType(createCacheRoot);
     dispatcher = fnMap.get(fn);
-    void 0 === dispatcher &&
-      ((dispatcher = createCacheNode()), fnMap.set(fn, dispatcher));
+    void 0 === dispatcher && ((dispatcher = createCacheNode()), fnMap.set(fn, dispatcher));
     fnMap = 0;
     for (var l = arguments.length; fnMap < l; fnMap++) {
       var arg = arguments[fnMap];
-      if (
-        "function" === typeof arg ||
-        ("object" === typeof arg && null !== arg)
-      ) {
+      if ("function" === typeof arg || ("object" === typeof arg && null !== arg)) {
         var objectCache = dispatcher.o;
         null === objectCache && (dispatcher.o = objectCache = new WeakMap());
         dispatcher = objectCache.get(arg);
         void 0 === dispatcher &&
           ((dispatcher = createCacheNode()), objectCache.set(arg, dispatcher));
       } else
-        (objectCache = dispatcher.p),
+        ((objectCache = dispatcher.p),
           null === objectCache && (dispatcher.p = objectCache = new Map()),
           (dispatcher = objectCache.get(arg)),
           void 0 === dispatcher &&
-            ((dispatcher = createCacheNode()),
-            objectCache.set(arg, dispatcher));
+            ((dispatcher = createCacheNode()), objectCache.set(arg, dispatcher)));
     }
     if (1 === dispatcher.s) return dispatcher.v;
     if (2 === dispatcher.s) throw dispatcher.v;
@@ -341,8 +293,7 @@ exports.cache = function (fn) {
   };
 };
 exports.cloneElement = function (element, config, children) {
-  if (null === element || void 0 === element)
-    throw Error(formatProdErrorMessage(267, element));
+  if (null === element || void 0 === element) throw Error(formatProdErrorMessage(267, element));
   var props = assign({}, element.props),
     key = element.key,
     owner = void 0;
@@ -385,8 +336,7 @@ exports.createElement = function (type, config, children) {
   }
   if (type && type.defaultProps)
     for (propName in ((childrenLength = type.defaultProps), childrenLength))
-      void 0 === props[propName] &&
-        (props[propName] = childrenLength[propName]);
+      void 0 === props[propName] && (props[propName] = childrenLength[propName]);
   return ReactElement(type, key, void 0, void 0, null, props);
 };
 exports.createRef = function () {
@@ -400,14 +350,14 @@ exports.lazy = function (ctor) {
   return {
     $$typeof: REACT_LAZY_TYPE,
     _payload: { _status: -1, _result: ctor },
-    _init: lazyInitializer
+    _init: lazyInitializer,
   };
 };
 exports.memo = function (type, compare) {
   return {
     $$typeof: REACT_MEMO_TYPE,
     type: type,
-    compare: void 0 === compare ? null : compare
+    compare: void 0 === compare ? null : compare,
   };
 };
 exports.use = function (usable) {

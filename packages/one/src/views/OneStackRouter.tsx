@@ -1,14 +1,14 @@
 // forked from @react-navigation/routers/src/StackRouter.tsx
 // the only changes have @nate before them
 
-import { StackRouter, type StackRouterOptions } from '@react-navigation/native'
+import { StackRouter, type StackRouterOptions } from "@react-navigation/native";
 
 export const CustomStackRouter = (options: StackRouterOptions) => {
-  const router = StackRouter(options)
+  const router = StackRouter(options);
 
-  const og = router.getStateForAction.bind(router)
+  const og = router.getStateForAction.bind(router);
   router.getStateForAction = (state, action, options) => {
-    const next = og(state, action, options)
+    const next = og(state, action, options);
 
     // @nate
     // fix for [...spread] routes not having a stable useId() causing issues
@@ -16,13 +16,13 @@ export const CustomStackRouter = (options: StackRouterOptions) => {
     // i added a demo for this in test/test app /segments-stable-ids/c/d
 
     // for now only fixing on web since i don't want to test native too throughly
-    if (process.env.TAMAGUI_TARGET !== 'native') {
-      if (action.type === 'NAVIGATE') {
+    if (process.env.TAMAGUI_TARGET !== "native") {
+      if (action.type === "NAVIGATE") {
         if (next?.routes) {
-          const outRoutes = next.routes
+          const outRoutes = next.routes;
 
-          const firstRoute = outRoutes[0]
-          if (firstRoute.name.includes('[...')) {
+          const firstRoute = outRoutes[0];
+          if (firstRoute.name.includes("[...")) {
             if (outRoutes.every((x) => x.name === firstRoute.name)) {
               // this isn't working, we need a deeper solution
               // change keys to be stable
@@ -67,9 +67,9 @@ export const CustomStackRouter = (options: StackRouterOptions) => {
       }
     }
 
-    return next
-  }
+    return next;
+  };
 
   // react nav type error exporting
-  return router as any
-}
+  return router as any;
+};

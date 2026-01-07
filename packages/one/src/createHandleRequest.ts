@@ -1,110 +1,110 @@
-import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
-import type { Middleware, MiddlewareContext } from './createMiddleware'
-import type { RouteNode } from './router/Route'
-import type { RouteInfoCompiled } from './server/createRoutesManifest'
-import type { LoaderProps } from './types'
-import { getPathFromLoaderPath } from './utils/cleanUrl'
-import { isResponse } from './utils/isResponse'
-import { getManifest } from './vite/getManifest'
-import { resolveAPIEndpoint, resolveResponse } from './vite/resolveResponse'
-import type { RouteInfo } from './vite/types'
+import { LOADER_JS_POSTFIX_UNCACHED } from "./constants";
+import type { Middleware, MiddlewareContext } from "./createMiddleware";
+import type { RouteNode } from "./router/Route";
+import type { RouteInfoCompiled } from "./server/createRoutesManifest";
+import type { LoaderProps } from "./types";
+import { getPathFromLoaderPath } from "./utils/cleanUrl";
+import { isResponse } from "./utils/isResponse";
+import { getManifest } from "./vite/getManifest";
+import { resolveAPIEndpoint, resolveResponse } from "./vite/resolveResponse";
+import type { RouteInfo } from "./vite/types";
 
 export type RequestHandlers = {
-  handlePage?: (props: RequestHandlerProps) => Promise<any>
-  handleLoader?: (props: RequestHandlerProps) => Promise<any>
-  handleAPI?: (props: RequestHandlerProps) => Promise<any>
-  loadMiddleware?: (route: RouteNode) => Promise<any>
-}
+  handlePage?: (props: RequestHandlerProps) => Promise<any>;
+  handleLoader?: (props: RequestHandlerProps) => Promise<any>;
+  handleAPI?: (props: RequestHandlerProps) => Promise<any>;
+  loadMiddleware?: (route: RouteNode) => Promise<any>;
+};
 
 type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
-  request: Request
-  route: RouteInfo<string> & RouteExtraProps
-  url: URL
-  loaderProps?: LoaderProps
-}
+  request: Request;
+  route: RouteInfo<string> & RouteExtraProps;
+  url: URL;
+  loaderProps?: LoaderProps;
+};
 
-type RequestHandlerResponse = null | string | Response
+type RequestHandlerResponse = null | string | Response;
 
-const debugRouter = process.env.ONE_DEBUG_ROUTER
+const debugRouter = process.env.ONE_DEBUG_ROUTER;
 
 export async function runMiddlewares(
   handlers: RequestHandlers,
   request: Request,
   route: RouteInfo,
-  getResponse: () => Promise<Response>
+  getResponse: () => Promise<Response>,
 ): Promise<Response> {
-  const middlewares = route.middlewares
+  const middlewares = route.middlewares;
 
   if (!middlewares?.length) {
-    return await getResponse()
+    return await getResponse();
   }
   if (!handlers.loadMiddleware) {
-    throw new Error(`No middleware handler configured`)
+    throw new Error(`No middleware handler configured`);
   }
 
   if (debugRouter) {
-    console.info(`[one] 🔗 middleware chain (${middlewares.length}) for ${route.page}`)
+    console.info(`[one] 🔗 middleware chain (${middlewares.length}) for ${route.page}`);
   }
 
-  const context: MiddlewareContext = {}
+  const context: MiddlewareContext = {};
 
   async function dispatch(index: number): Promise<Response> {
-    const middlewareModule = middlewares![index]
+    const middlewareModule = middlewares![index];
 
     // no more middlewares, finish
     if (!middlewareModule) {
       if (debugRouter) {
-        console.info(`[one] ✓ middleware chain complete`)
+        console.info(`[one] ✓ middleware chain complete`);
       }
-      return await getResponse()
+      return await getResponse();
     }
 
     if (debugRouter) {
-      console.info(`[one]   → middleware[${index}]: ${middlewareModule.contextKey}`)
+      console.info(`[one]   → middleware[${index}]: ${middlewareModule.contextKey}`);
     }
 
     const exported = (await handlers.loadMiddleware!(middlewareModule))?.default as
       | Middleware
-      | undefined
+      | undefined;
 
     if (!exported) {
-      throw new Error(`No valid export found in middleware: ${middlewareModule.contextKey}`)
+      throw new Error(`No valid export found in middleware: ${middlewareModule.contextKey}`);
     }
 
     // go to next middleware
     const next = async () => {
-      return dispatch(index + 1)
-    }
+      return dispatch(index + 1);
+    };
 
     // run middlewares, if response returned, exit early
-    const response = await exported({ request, next, context })
+    const response = await exported({ request, next, context });
 
     if (response) {
       if (debugRouter) {
-        console.info(`[one]   ← middleware[${index}] returned early (status: ${response.status})`)
+        console.info(`[one]   ← middleware[${index}] returned early (status: ${response.status})`);
       }
-      return response
+      return response;
     }
 
     // If the middleware returns null/void, keep going
-    return dispatch(index + 1)
+    return dispatch(index + 1);
   }
 
   // Start with the first middleware (index 0).
-  return dispatch(0)
+  return dispatch(0);
 }
 
 export async function resolveAPIRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,
-  route: RouteInfoCompiled
+  route: RouteInfoCompiled,
 ) {
-  const { pathname } = url
-  const params = getRouteParams(pathname, route)
+  const { pathname } = url;
+  const params = getRouteParams(pathname, route);
 
   if (debugRouter) {
-    console.info(`[one] 📡 API ${request.method} ${pathname} → ${route.file}`, params)
+    console.info(`[one] 📡 API ${request.method} ${pathname} → ${route.file}`, params);
   }
 
   return await runMiddlewares(handlers, request, route, async () => {
@@ -122,42 +122,42 @@ export async function resolveAPIRoute(
             },
           }),
         request,
-        params || {}
-      )
+        params || {},
+      );
     } catch (err) {
       if (isResponse(err)) {
-        return err
+        return err;
       }
 
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env.NODE_ENV === "development") {
         console.error(`\n [one] Error importing API route at ${pathname}:
 
           ${err}
 
           If this is an import error, you can likely fix this by adding this dependency to
           the "optimizeDeps.include" array in your vite.config.ts.
-        `)
+        `);
       }
 
-      throw err
+      throw err;
     }
-  })
+  });
 }
 
 export async function resolveLoaderRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,
-  route: RouteInfoCompiled
+  route: RouteInfoCompiled,
 ) {
   if (debugRouter) {
-    console.info(`[one] 📦 loader ${url.pathname} → ${route.file}`)
+    console.info(`[one] 📦 loader ${url.pathname} → ${route.file}`);
   }
 
   return await runMiddlewares(handlers, request, route, async () => {
     return await resolveResponse(async () => {
-      const headers = new Headers()
-      headers.set('Content-Type', 'text/javascript')
+      const headers = new Headers();
+      headers.set("Content-Type", "text/javascript");
 
       try {
         const loaderResponse = await handlers.handleLoader!({
@@ -167,38 +167,38 @@ export async function resolveLoaderRoute(
           loaderProps: {
             path: url.pathname,
             search: url.search,
-            request: route.type === 'ssr' ? request : undefined,
+            request: route.type === "ssr" ? request : undefined,
             params: getLoaderParams(url, route),
           },
-        })
+        });
 
         return new Response(loaderResponse, {
           headers,
-        })
+        });
       } catch (err) {
         // allow throwing a response in a loader
         if (isResponse(err)) {
-          return err
+          return err;
         }
 
-        console.error(`Error running loader: ${err}`)
+        console.error(`Error running loader: ${err}`);
 
-        throw err
+        throw err;
       }
-    })
-  })
+    });
+  });
 }
 
 export async function resolvePageRoute(
   handlers: RequestHandlers,
   request: Request,
   url: URL,
-  route: RouteInfoCompiled
+  route: RouteInfoCompiled,
 ) {
-  const { pathname, search } = url
+  const { pathname, search } = url;
 
   if (debugRouter) {
-    console.info(`[one] 📄 page ${pathname} → ${route.file} (${route.type})`)
+    console.info(`[one] 📄 page ${pathname} → ${route.file} (${route.type})`);
   }
 
   return resolveResponse(async () => {
@@ -211,154 +211,156 @@ export async function resolvePageRoute(
           path: pathname,
           search: search,
           // Ensure SSR loaders receive the original request
-          request: route.type === 'ssr' ? request : undefined,
+          request: route.type === "ssr" ? request : undefined,
           params: getLoaderParams(url, route),
         },
-      })
-    })
-    return resolved
-  })
+      });
+    });
+    return resolved;
+  });
 }
 
 export function getURLfromRequestURL(request: Request) {
-  const urlString = request.url || ''
+  const urlString = request.url || "";
   return new URL(
-    urlString || '',
-    request.headers.get('host') ? `http://${request.headers.get('host')}` : ''
-  )
+    urlString || "",
+    request.headers.get("host") ? `http://${request.headers.get("host")}` : "",
+  );
 }
 
 function compileRouteRegex(route: RouteInfo): RouteInfoCompiled {
   return {
     ...route,
     compiledRegex: new RegExp(route.namedRegex),
-  }
+  };
 }
 
 export function compileManifest(manifest: { pageRoutes: RouteInfo[]; apiRoutes: RouteInfo[] }): {
-  pageRoutes: RouteInfoCompiled[]
-  apiRoutes: RouteInfoCompiled[]
+  pageRoutes: RouteInfoCompiled[];
+  apiRoutes: RouteInfoCompiled[];
 } {
   return {
     pageRoutes: manifest.pageRoutes.map(compileRouteRegex),
     apiRoutes: manifest.apiRoutes.map(compileRouteRegex),
-  }
+  };
 }
 
 // in dev mode we do it more simply:
 export function createHandleRequest(
   handlers: RequestHandlers,
-  { routerRoot }: { routerRoot: string }
+  { routerRoot }: { routerRoot: string },
 ) {
-  const manifest = getManifest({ routerRoot })
+  const manifest = getManifest({ routerRoot });
   if (!manifest) {
-    throw new Error(`No routes manifest`)
+    throw new Error(`No routes manifest`);
   }
-  const compiledManifest = compileManifest(manifest)
+  const compiledManifest = compileManifest(manifest);
 
   return {
     manifest,
     handler: async function handleRequest(request: Request): Promise<RequestHandlerResponse> {
-      const url = getURLfromRequestURL(request)
-      const { pathname, search } = url
+      const url = getURLfromRequestURL(request);
+      const { pathname, search } = url;
 
-      if (pathname === '/__vxrnhmr' || pathname.startsWith('/@')) {
-        return null
+      if (pathname === "/__vxrnhmr" || pathname.startsWith("/@")) {
+        return null;
       }
 
       if (handlers.handleAPI) {
         const apiRoute = compiledManifest.apiRoutes.find((route) => {
-          return route.compiledRegex.test(pathname)
-        })
+          return route.compiledRegex.test(pathname);
+        });
         if (apiRoute) {
           if (debugRouter) {
-            console.info(`[one] ⚡ ${pathname} → matched API route: ${apiRoute.page}`)
+            console.info(`[one] ⚡ ${pathname} → matched API route: ${apiRoute.page}`);
           }
-          return await resolveAPIRoute(handlers, request, url, apiRoute)
+          return await resolveAPIRoute(handlers, request, url, apiRoute);
         }
       }
 
-      if (request.method !== 'GET') {
-        return null
+      if (request.method !== "GET") {
+        return null;
       }
 
       if (handlers.handleLoader) {
-        const isClientRequestingNewRoute = pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED)
+        const isClientRequestingNewRoute = pathname.endsWith(LOADER_JS_POSTFIX_UNCACHED);
 
         if (isClientRequestingNewRoute) {
-          const originalUrl = getPathFromLoaderPath(pathname)
+          const originalUrl = getPathFromLoaderPath(pathname);
 
           for (const route of compiledManifest.pageRoutes) {
-            if (route.file === '') {
+            if (route.file === "") {
               // ignore not found route
-              continue
+              continue;
             }
 
-            const finalUrl = new URL(originalUrl, url.origin)
-            finalUrl.search = url.search
+            const finalUrl = new URL(originalUrl, url.origin);
+            finalUrl.search = url.search;
 
             if (!route.compiledRegex.test(finalUrl.pathname)) {
-              continue
+              continue;
             }
 
-            const cleanedRequest = new Request(finalUrl, request)
-            return resolveLoaderRoute(handlers, cleanedRequest, finalUrl, route)
+            const cleanedRequest = new Request(finalUrl, request);
+            return resolveLoaderRoute(handlers, cleanedRequest, finalUrl, route);
           }
 
-          if (process.env.NODE_ENV === 'development') {
+          if (process.env.NODE_ENV === "development") {
             console.error(`No matching route found for loader!`, {
               originalUrl,
               pathname,
               routes: manifest.pageRoutes,
-            })
+            });
           }
 
           // error no match!
 
-          return Response.error()
+          return Response.error();
         }
       }
 
       if (handlers.handlePage) {
         for (const route of compiledManifest.pageRoutes) {
           if (!route.compiledRegex.test(pathname)) {
-            continue
+            continue;
           }
           if (debugRouter) {
-            console.info(`[one] ⚡ ${pathname} → matched page route: ${route.page} (${route.type})`)
+            console.info(
+              `[one] ⚡ ${pathname} → matched page route: ${route.page} (${route.type})`,
+            );
           }
-          return resolvePageRoute(handlers, request, url, route)
+          return resolvePageRoute(handlers, request, url, route);
         }
       }
 
-      return null
+      return null;
     },
-  }
+  };
 }
 
 function getLoaderParams(
   url: URL,
-  config: { compiledRegex: RegExp; routeKeys: Record<string, string> }
+  config: { compiledRegex: RegExp; routeKeys: Record<string, string> },
 ) {
-  const params: Record<string, string> = {}
-  const match = new RegExp(config.compiledRegex).exec(url.pathname)
+  const params: Record<string, string> = {};
+  const match = new RegExp(config.compiledRegex).exec(url.pathname);
   if (match?.groups) {
     for (const [key, value] of Object.entries(match.groups)) {
-      const namedKey = config.routeKeys[key]
-      params[namedKey] = value as string
+      const namedKey = config.routeKeys[key];
+      params[namedKey] = value as string;
     }
   }
-  return params
+  return params;
 }
 
 // Add this helper function
 function getRouteParams(pathname: string, route: RouteInfo<string>) {
-  const regex = new RegExp(route.namedRegex)
-  const match = regex.exec(pathname)
-  if (!match) return {}
+  const regex = new RegExp(route.namedRegex);
+  const match = regex.exec(pathname);
+  if (!match) return {};
   return Object.fromEntries(
     Object.entries(route.routeKeys).map(([key, value]) => {
-      return [value, (match.groups?.[key] || '') as string]
-    })
-  )
+      return [value, (match.groups?.[key] || "") as string];
+    }),
+  );
 }

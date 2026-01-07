@@ -1,10 +1,10 @@
-import { Paragraph, Spacer, XStack, YStack } from 'tamagui'
-import { SocialLinksRow } from '~/features/site/SocialLinksRow'
-import { OneBall } from '../brand/Logo'
-import { useLinkTo } from 'one'
+import { Paragraph, Spacer, XStack, YStack } from "tamagui";
+import { SocialLinksRow } from "~/features/site/SocialLinksRow";
+import { OneBall } from "../brand/Logo";
+import { useLinkTo } from "one";
 
 export const Footer = () => {
-  const linkProps = useLinkTo({ href: '/' })
+  const linkProps = useLinkTo({ href: "/" });
   return (
     <XStack
       group="card"
@@ -12,16 +12,16 @@ export const Footer = () => {
       ai="center"
       jc="space-between"
       $sm={{
-        fd: 'column',
-        jc: 'center',
+        fd: "column",
+        jc: "center",
       }}
     >
       <XStack
         ai="center"
         gap="$5"
         $sm={{
-          fd: 'column',
-          jc: 'center',
+          fd: "column",
+          jc: "center",
         }}
       >
         <YStack $sm={{ x: 3 }} {...linkProps} cursor="pointer">
@@ -33,9 +33,9 @@ export const Footer = () => {
         </XStack>
       </XStack>
 
-      <Paragraph $sm={{ mt: '$8' }} o={0.5}>
+      <Paragraph $sm={{ mt: "$8" }} o={0.5}>
         Copyright 2024 Tamagui, LLC
       </Paragraph>
     </XStack>
-  )
-}
+  );
+};

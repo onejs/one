@@ -1,5 +1,5 @@
-import type { OneRouter } from '../interfaces/router'
-import * as store from './router'
+import type { OneRouter } from "../interfaces/router";
+import * as store from "./router";
 
 export const router: OneRouter.Router = {
   navigate: store.navigate,
@@ -13,4 +13,4 @@ export const router: OneRouter.Router = {
   setParams: (params) => store.setParams(params),
   subscribe: store.subscribeToRootState,
   onLoadState: store.subscribeToLoadingState,
-}
+};

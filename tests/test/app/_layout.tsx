@@ -1,18 +1,18 @@
-import '@tamagui/core/reset.css'
-import '~/features/styles/base.css'
-import '~/features/styles/tamagui.css'
-import './_layout.css'
+import "@tamagui/core/reset.css";
+import "~/features/styles/base.css";
+import "~/features/styles/tamagui.css";
+import "./_layout.css";
 
-import { SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
-import { TamaguiProvider } from 'tamagui'
-import { LoadProgressBar, Slot, useServerHeadInsertion } from 'one'
-import config from '../config/tamagui.config'
-import { QuickNavigatePixel } from '~/features/test-helpers/QuickNavigatePixel'
+import { SchemeProvider, useUserScheme } from "@vxrn/color-scheme";
+import { TamaguiProvider } from "tamagui";
+import { LoadProgressBar, Slot, useServerHeadInsertion } from "one";
+import config from "../config/tamagui.config";
+import { QuickNavigatePixel } from "~/features/test-helpers/QuickNavigatePixel";
 
 export default function Layout() {
   useServerHeadInsertion(() => {
-    return <style id="test-server-insert-style">hi</style>
-  })
+    return <style id="test-server-insert-style">hi</style>;
+  });
 
   return (
     <html lang="ab">
@@ -30,15 +30,15 @@ export default function Layout() {
         </TamaguiRootProvider>
       </SchemeProvider>
     </html>
-  )
+  );
 }
 
 const TamaguiRootProvider = ({ children }: { children: React.ReactNode }) => {
-  const userScheme = useUserScheme()
+  const userScheme = useUserScheme();
 
   return (
     <TamaguiProvider disableInjectCSS config={config} defaultTheme={userScheme.value}>
       {children}
     </TamaguiProvider>
-  )
-}
+  );
+};

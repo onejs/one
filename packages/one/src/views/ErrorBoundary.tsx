@@ -1,12 +1,12 @@
 // import { LogContext } from '@expo/metro-runtime/build/error-overlay/Data/LogContext'
 // import { LogBoxInspectorStackFrames } from '@expo/metro-runtime/build/error-overlay/overlay/LogBoxInspectorStackFrames'
 // import { LogBoxLog, parseErrorStack } from '@expo/metro-runtime/symbolicate'
-import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs'
-import React from 'react'
-import { View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { BottomTabBarHeightContext } from "@react-navigation/bottom-tabs";
+import React from "react";
+import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import type { ErrorBoundaryProps } from './Try'
+import type { ErrorBoundaryProps } from "./Try";
 
 // function useMetroSymbolication(error: Error) {
 //   const [logBoxLog, setLogBoxLog] = React.useState<LogBoxLog | null>(null)
@@ -43,12 +43,12 @@ import type { ErrorBoundaryProps } from './Try'
 
 export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   // const logBoxLog = useMetroSymbolication(error)
-  const inTabBar = React.useContext(BottomTabBarHeightContext)
-  const Wrapper = inTabBar ? View : SafeAreaView
+  const inTabBar = React.useContext(BottomTabBarHeightContext);
+  const Wrapper = inTabBar ? View : SafeAreaView;
 
-  console.error('error', error)
+  console.error("error", error);
 
-  return null
+  return null;
 
   // return (
   //   <View style={styles.container}>

@@ -1,15 +1,15 @@
-import type { UserConfig } from 'vite'
-import { one } from 'one/vite'
+import type { UserConfig } from "vite";
+import { one } from "one/vite";
 
 export default {
   plugins: [
     one({
       web: {
-        defaultRenderMode: 'ssg',
+        defaultRenderMode: "ssg",
       },
 
       native: {
-        key: 'one-example',
+        key: "one-example",
       },
 
       config: {
@@ -21,4 +21,4 @@ export default {
       },
     }),
   ],
-} satisfies UserConfig
+} satisfies UserConfig;

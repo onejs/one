@@ -22,25 +22,25 @@
 // https://github.com/browserify/path-browserify/blob/master/index.js
 
 function assertPath(path: string) {
-  if (typeof path !== 'string') {
-    throw new TypeError('Path must be a string. Received ' + JSON.stringify(path))
+  if (typeof path !== "string") {
+    throw new TypeError("Path must be a string. Received " + JSON.stringify(path));
   }
 }
 
 // Resolves . and .. elements in a path with directory names
 function normalizeStringPosix(path: string, allowAboveRoot?: boolean) {
-  let res = ''
-  let lastSegmentLength = 0
-  let lastSlash = -1
-  let dots = 0
-  let code
+  let res = "";
+  let lastSegmentLength = 0;
+  let lastSlash = -1;
+  let dots = 0;
+  let code;
   for (let i = 0; i <= path.length; ++i) {
     if (i < path.length) {
-      code = path.charCodeAt(i)
+      code = path.charCodeAt(i);
     } else if (code === 47 /*/*/) {
-      break
+      break;
     } else {
-      code = 47 /*/*/
+      code = 47; /*/*/
     }
     if (code === 47 /*/*/) {
       if (lastSlash === i - 1 || dots === 1) {
@@ -53,86 +53,86 @@ function normalizeStringPosix(path: string, allowAboveRoot?: boolean) {
           res.charCodeAt(res.length - 2) !== 46 /*.*/
         ) {
           if (res.length > 2) {
-            const lastSlashIndex = res.lastIndexOf('/')
+            const lastSlashIndex = res.lastIndexOf("/");
             if (lastSlashIndex !== res.length - 1) {
               if (lastSlashIndex === -1) {
-                res = ''
-                lastSegmentLength = 0
+                res = "";
+                lastSegmentLength = 0;
               } else {
-                res = res.slice(0, lastSlashIndex)
-                lastSegmentLength = res.length - 1 - res.lastIndexOf('/')
+                res = res.slice(0, lastSlashIndex);
+                lastSegmentLength = res.length - 1 - res.lastIndexOf("/");
               }
-              lastSlash = i
-              dots = 0
-              continue
+              lastSlash = i;
+              dots = 0;
+              continue;
             }
           } else if (res.length === 2 || res.length === 1) {
-            res = ''
-            lastSegmentLength = 0
-            lastSlash = i
-            dots = 0
-            continue
+            res = "";
+            lastSegmentLength = 0;
+            lastSlash = i;
+            dots = 0;
+            continue;
           }
         }
         if (allowAboveRoot) {
-          if (res.length > 0) res += '/..'
-          else res = '..'
-          lastSegmentLength = 2
+          if (res.length > 0) res += "/..";
+          else res = "..";
+          lastSegmentLength = 2;
         }
       } else {
-        if (res.length > 0) res += '/' + path.slice(lastSlash + 1, i)
-        else res = path.slice(lastSlash + 1, i)
-        lastSegmentLength = i - lastSlash - 1
+        if (res.length > 0) res += "/" + path.slice(lastSlash + 1, i);
+        else res = path.slice(lastSlash + 1, i);
+        lastSegmentLength = i - lastSlash - 1;
       }
-      lastSlash = i
-      dots = 0
+      lastSlash = i;
+      dots = 0;
     } else if (code === 46 /*.*/ && dots !== -1) {
-      ++dots
+      ++dots;
     } else {
-      dots = -1
+      dots = -1;
     }
   }
-  return res
+  return res;
 }
 
 // path.resolve([from ...], to)
 export function resolve(...segments: string[]) {
-  let resolvedPath = ''
-  let resolvedAbsolute = false
+  let resolvedPath = "";
+  let resolvedAbsolute = false;
 
   for (let i = segments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-    let path
+    let path;
     if (i >= 0) {
-      path = segments[i]
+      path = segments[i];
     } else {
-      path = '/'
+      path = "/";
     }
 
-    assertPath(path)
+    assertPath(path);
 
     // Skip empty entries
     if (path.length === 0) {
-      continue
+      continue;
     }
 
-    resolvedPath = path + '/' + resolvedPath
-    resolvedAbsolute = path.charCodeAt(0) === 47 /*/*/
+    resolvedPath = path + "/" + resolvedPath;
+    resolvedAbsolute = path.charCodeAt(0) === 47; /*/*/
   }
 
   // At this point the path should be resolved to a full absolute path, but
   // handle relative paths to be safe (might happen when process.cwd() fails)
 
   // Normalize the path
-  resolvedPath = normalizeStringPosix(resolvedPath, !resolvedAbsolute)
+  resolvedPath = normalizeStringPosix(resolvedPath, !resolvedAbsolute);
 
   if (resolvedAbsolute) {
     if (resolvedPath.length > 0) {
-      return '/' + resolvedPath
+      return "/" + resolvedPath;
     }
-    return '/'
+    return "/";
   }
   if (resolvedPath.length > 0) {
-    return resolvedPath
+    return resolvedPath;
   }
-  return '.'
+  return ".";
 }

@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text } from "react-native";
 
 export default function ImportMetaEnv() {
   return (
@@ -13,13 +13,11 @@ export default function ImportMetaEnv() {
 
       <Text>import.meta.env['VITE_TEST_ENV_VAR_1']:</Text>
       <Text testID="import-meta-env-VITE_TEST_ENV_VAR_1-value-2">
-        {import.meta.env['VITE_TEST_ENV_VAR_1']}
+        {import.meta.env["VITE_TEST_ENV_VAR_1"]}
       </Text>
 
       <Text>import.meta.env.VITE_TEST_ENV_MODE:</Text>
-      <Text testID="import-meta-env-VITE_TEST_ENV_MODE">
-        {import.meta.env.VITE_TEST_ENV_MODE}
-      </Text>
+      <Text testID="import-meta-env-VITE_TEST_ENV_MODE">{import.meta.env.VITE_TEST_ENV_MODE}</Text>
     </View>
-  )
+  );
 }

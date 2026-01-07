@@ -1,17 +1,17 @@
-import { Link, useParams, useLoader } from 'one'
+import { Link, useParams, useLoader } from "one";
 
 export async function loader({ params }: { params: { id?: string } }) {
-  const id = params?.id ?? 'unknown'
+  const id = params?.id ?? "unknown";
   return {
     id,
     message: `Dynamic page for ID: ${id}`,
     timestamp: Date.now(),
-  }
+  };
 }
 
 export default function DynamicPage() {
-  const params = useParams<{ id: string }>()
-  const data = useLoader(loader)
+  const params = useParams<{ id: string }>();
+  const data = useLoader(loader);
 
   return (
     <div>
@@ -32,5 +32,5 @@ export default function DynamicPage() {
         </Link>
       </nav>
     </div>
-  )
+  );
 }

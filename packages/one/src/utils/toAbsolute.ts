@@ -1,3 +1,3 @@
-import { resolve } from 'node:path'
+import { resolve } from "node:path";
 
-export const toAbsolute = (p: string) => resolve(process.cwd(), p)
+export const toAbsolute = (p: string) => resolve(process.cwd(), p);

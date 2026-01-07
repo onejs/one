@@ -1,22 +1,22 @@
-import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import React from "react";
+import { StyleSheet, Text } from "react-native";
 
 function NoSSR({ children }: { children: React.ReactNode }) {
-  const [render, setRender] = React.useState(false)
+  const [render, setRender] = React.useState(false);
   React.useEffect(() => {
-    setRender(true)
-  }, [])
+    setRender(true);
+  }, []);
 
   if (!render) {
-    return null
+    return null;
   }
 
-  return <>{children}</>
+  return <>{children}</>;
 }
 
 /** Default screen for unmatched routes. */
 export function Unmatched() {
-  return <Text>unmmatched!!!!!!!!!</Text>
+  return <Text>unmmatched!!!!!!!!!</Text>;
   // const router = useRouter()
   // const navigation = useNavigation()
   // const pathname = usePathname()
@@ -65,26 +65,26 @@ export function Unmatched() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: "black",
     padding: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
-    color: 'white',
+    color: "white",
     fontSize: 36,
     paddingBottom: 12,
     marginBottom: 12,
-    borderBottomColor: '#323232',
+    borderBottomColor: "#323232",
     borderBottomWidth: 1,
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
   },
   subtitle: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
     marginBottom: 12,
-    textAlign: 'center',
+    textAlign: "center",
   },
-  link: { color: 'rgba(255,255,255,0.4)', textAlign: 'center' },
-})
+  link: { color: "rgba(255,255,255,0.4)", textAlign: "center" },
+});

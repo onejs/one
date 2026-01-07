@@ -1,5 +1,5 @@
-import { AsyncLocalStorage } from 'node:async_hooks';
-import type { One } from './types';
+import { AsyncLocalStorage } from "node:async_hooks";
+import type { One } from "./types";
 type ALSInstance = AsyncLocalStorage<unknown>;
 export declare const requestAsyncLocalStore: ALSInstance | null | undefined;
 export declare const asyncHeadersCache: WeakMap<any, Headers>;
@@ -17,7 +17,10 @@ export declare function useServerContext(): MaybeServerContext | undefined;
  *
  * On the client, you can access the data with `getServerData`.
  */
-export declare function setServerData<Key extends keyof One.ClientData>(key: Key, value: One.ClientData[Key]): void;
+export declare function setServerData<Key extends keyof One.ClientData>(
+  key: Key,
+  value: One.ClientData[Key],
+): void;
 /**
  * For getting data set by setServerData on the server.
  */

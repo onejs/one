@@ -1,5 +1,5 @@
 type ScrollBehaviorProps = {
-    disable?: boolean | 'restore';
+  disable?: boolean | "restore";
 };
 export declare function ScrollBehavior(props: ScrollBehaviorProps): null;
 export {};

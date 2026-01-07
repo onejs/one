@@ -1,115 +1,115 @@
-import type { PathConfigMap } from '@react-navigation/core'
-import { describe, expect, it } from 'vitest'
+import type { PathConfigMap } from "@react-navigation/core";
+import { describe, expect, it } from "vitest";
 
-import { getPathFromState, type State } from './getPathFromState'
+import { getPathFromState, type State } from "./getPathFromState";
 
-describe('hash support', () => {
-  it('appends hash to the path', () => {
+describe("hash support", () => {
+  it("appends hash to the path", () => {
     const state = {
       index: 0,
-      key: 'key',
+      key: "key",
       routes: [
         {
-          name: 'index',
-          path: '/',
+          name: "index",
+          path: "/",
           params: {
-            '#': 'hash1',
+            "#": "hash1",
           },
         },
       ],
       stale: true,
-      type: 'stack',
-    }
+      type: "stack",
+    };
 
     const config = {
       screens: {
-        index: '',
-        _sitemap: '_sitemap',
+        index: "",
+        _sitemap: "_sitemap",
       },
-    }
+    };
 
-    expect(getPathFromState(state, config)).toBe('/#hash1')
-  })
+    expect(getPathFromState(state, config)).toBe("/#hash1");
+  });
 
-  it('works with nested state, existing router and path params', () => {
+  it("works with nested state, existing router and path params", () => {
     const state = {
       index: 1,
-      key: 'key',
-      routeNames: ['index', '[test]', '_sitemap', '+not-found'],
+      key: "key",
+      routeNames: ["index", "[test]", "_sitemap", "+not-found"],
       routes: [
         {
-          key: 'key',
-          name: 'index',
+          key: "key",
+          name: "index",
           params: undefined,
-          path: '/',
+          path: "/",
         },
         {
-          key: 'key',
-          name: '[test]',
+          key: "key",
+          name: "[test]",
           params: {
-            test: 'hello-world',
-            query: 'true',
-            '#': 'a',
+            test: "hello-world",
+            query: "true",
+            "#": "a",
           },
           path: undefined,
         },
       ],
       stale: false,
-      type: 'stack',
-    }
+      type: "stack",
+    };
 
     const config = {
       screens: {
-        '[test]': ':test',
-        index: '',
-        _sitemap: '_sitemap',
+        "[test]": ":test",
+        index: "",
+        _sitemap: "_sitemap",
       },
-    }
+    };
 
-    expect(getPathFromState(state, config)).toBe('/hello-world?query=true#a')
-  })
-})
+    expect(getPathFromState(state, config)).toBe("/hello-world?query=true#a");
+  });
+});
 
 // TODO
 it.skip(`handles url search params params`, () => {
   const state = {
     routes: [
       {
-        name: 'index',
+        name: "index",
         params: {
-          test: 'true',
-          hello: 'world',
-          array: ['1', '2'],
+          test: "true",
+          hello: "world",
+          array: ["1", "2"],
         },
-        path: '/?test=true&hello=world&array=1&array=2',
+        path: "/?test=true&hello=world&array=1&array=2",
       },
     ],
-  }
+  };
 
   const config = {
     screens: {
-      index: '',
-      _sitemap: '_sitemap',
+      index: "",
+      _sitemap: "_sitemap",
     },
-  }
+  };
 
-  expect(getPathFromState(state, config)).toBe('/?test=true&hello=world&array=1&array=2')
-})
+  expect(getPathFromState(state, config)).toBe("/?test=true&hello=world&array=1&array=2");
+});
 
 it(`handles uninitialized state on nested navigation with route params`, () => {
   const config = {
     screens: {
-      index: '',
-      '[folderSlugL1]': {
-        path: ':folderSlugL1',
+      index: "",
+      "[folderSlugL1]": {
+        path: ":folderSlugL1",
         screens: {
-          '[folderSlugL2]': {
-            path: ':folderSlugL2',
+          "[folderSlugL2]": {
+            path: ":folderSlugL2",
             screens: {
-              '[folderSlugL3]': {
-                path: ':folderSlugL3',
+              "[folderSlugL3]": {
+                path: ":folderSlugL3",
                 screens: {
-                  page: 'page',
+                  page: "page",
                 },
               },
             },
@@ -117,30 +117,30 @@ it(`handles uninitialized state on nested navigation with route params`, () => {
         },
       },
     },
-  } satisfies { screens: PathConfigMap<any> }
+  } satisfies { screens: PathConfigMap<any> };
 
   const state = {
     routes: [
       {
-        name: '[folderSlugL1]',
+        name: "[folderSlugL1]",
         params: {
-          folderSlugL1: 'foo',
-          screen: '[folderSlugL2]',
+          folderSlugL1: "foo",
+          screen: "[folderSlugL2]",
           params: {
-            folderSlugL1: 'foo',
-            folderSlugL2: 'bar',
-            screen: '[folderSlugL3]',
+            folderSlugL1: "foo",
+            folderSlugL2: "bar",
+            screen: "[folderSlugL3]",
             params: {
-              folderSlugL1: 'foo',
-              folderSlugL2: 'bar',
-              folderSlugL3: 'baz',
-              screen: 'page',
+              folderSlugL1: "foo",
+              folderSlugL2: "bar",
+              folderSlugL3: "baz",
+              screen: "page",
             },
           },
         },
       },
     ],
-  } satisfies State
+  } satisfies State;
 
-  expect(getPathFromState(state, config)).toBe('/foo/bar/baz/page')
-})
+  expect(getPathFromState(state, config)).toBe("/foo/bar/baz/page");
+});

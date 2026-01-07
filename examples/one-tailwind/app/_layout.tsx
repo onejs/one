@@ -1,5 +1,5 @@
-import { Slot } from 'one'
-import './base.css'
+import { Slot } from "one";
+import "./base.css";
 
 /**
  * The root _layout.tsx filters <html /> and <body /> out on native
@@ -8,7 +8,7 @@ import './base.css'
 export default function Layout() {
   return (
     <>
-      {typeof document !== 'undefined' && (
+      {typeof document !== "undefined" && (
         <>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -18,5 +18,5 @@ export default function Layout() {
       )}
       <Slot />
     </>
-  )
+  );
 }

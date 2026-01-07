@@ -1,147 +1,147 @@
-import { readFile } from 'node:fs/promises'
-import { dirname, relative } from 'node:path'
-import { createBuilder } from 'vite'
+import { readFile } from "node:fs/promises";
+import { dirname, relative } from "node:path";
+import { createBuilder } from "vite";
 // import { buildEnvironment } from './fork/vite/build'
-import { resolvePath } from '@vxrn/resolve'
-import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
-import { getReactNativeBuildConfig } from '../config/getReactNativeBuildConfig'
-import { filterPluginsForNative } from './filterPluginsForNative'
-import { getCacheDir } from './getCacheDir'
-import { isBuildingNativeBundle, setIsBuildingNativeBundle } from './isBuildingNativeBundle'
-import { prebuildReactNativeModules } from './swapPrebuiltReactModules'
+import { resolvePath } from "@vxrn/resolve";
+import type { VXRNOptionsFilled } from "../config/getOptionsFilled";
+import { getReactNativeBuildConfig } from "../config/getReactNativeBuildConfig";
+import { filterPluginsForNative } from "./filterPluginsForNative";
+import { getCacheDir } from "./getCacheDir";
+import { isBuildingNativeBundle, setIsBuildingNativeBundle } from "./isBuildingNativeBundle";
+import { prebuildReactNativeModules } from "./swapPrebuiltReactModules";
 
 // used for normalizing hot reloads
-export let entryRoot = ''
+export let entryRoot = "";
 
-let cachedReactNativeBundles: Record<string, string | undefined> = {}
+let cachedReactNativeBundles: Record<string, string | undefined> = {};
 
 export function clearCachedBundle() {
-  cachedReactNativeBundles = {}
+  cachedReactNativeBundles = {};
 }
 
-type InternalProps = { mode?: 'dev' | 'prod'; assetsDest?: string; useCache?: boolean }
+type InternalProps = { mode?: "dev" | "prod"; assetsDest?: string; useCache?: boolean };
 
 export async function getReactNativeBundle(
-  options: Pick<VXRNOptionsFilled, 'root'> &
-    Partial<Pick<VXRNOptionsFilled, 'cacheDir'>> &
+  options: Pick<VXRNOptionsFilled, "root"> &
+    Partial<Pick<VXRNOptionsFilled, "cacheDir">> &
     Parameters<typeof getReactNativeBuildConfig>[0],
-  platform: 'ios' | 'android',
+  platform: "ios" | "android",
   internal: InternalProps = {
-    mode: 'dev',
+    mode: "dev",
     useCache: true,
-  }
+  },
 ) {
-  entryRoot = options.root
+  entryRoot = options.root;
 
-  const cached = cachedReactNativeBundles[platform]
+  const cached = cachedReactNativeBundles[platform];
   if (cached && !process.env.VXRN_DISABLE_CACHE) {
-    return cached
+    return cached;
   }
 
   await prebuildReactNativeModules(options.cacheDir || getCacheDir(options.root), {
     // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
     mode: internal.mode,
-  })
+  });
 
   if (isBuildingNativeBundle) {
-    const res = await isBuildingNativeBundle
-    return res
+    const res = await isBuildingNativeBundle;
+    return res;
   }
 
-  let done
+  let done;
   setIsBuildingNativeBundle(
     new Promise((res) => {
-      done = res
-    })
-  )
+      done = res;
+    }),
+  );
 
   // build app
-  const nativeBuildConfig = await getReactNativeBuildConfig(options, internal, platform)
+  const nativeBuildConfig = await getReactNativeBuildConfig(options, internal, platform);
 
-  nativeBuildConfig.plugins = filterPluginsForNative(nativeBuildConfig.plugins, { isNative: true })
+  nativeBuildConfig.plugins = filterPluginsForNative(nativeBuildConfig.plugins, { isNative: true });
 
   // instrument plugins:
-  const buildStats: Record<string, number> = {}
+  const buildStats: Record<string, number> = {};
   if (process.env.ONE_DEBUG_BUILD_PERF) {
     nativeBuildConfig.plugins = nativeBuildConfig.plugins.map((plugin) => {
       return new Proxy(plugin, {
         get(target, key) {
-          const value = Reflect.get(target, key)
+          const value = Reflect.get(target, key);
           // wrap with instrumentation
-          if (typeof value === 'function') {
+          if (typeof value === "function") {
             return function (this, ...args) {
-              const name = `${plugin.name}:${key as any}`
-              const start = performance.now()
+              const name = `${plugin.name}:${key as any}`;
+              const start = performance.now();
               const logEnd = () => {
-                buildStats[name] ||= 0
-                buildStats[name] += performance.now() - start
-              }
-              const out = value.call(this, ...args)
+                buildStats[name] ||= 0;
+                buildStats[name] += performance.now() - start;
+              };
+              const out = value.call(this, ...args);
               if (out instanceof Promise) {
                 return out
                   .then((val) => {
-                    logEnd()
-                    return val
+                    logEnd();
+                    return val;
                   })
                   .catch((err) => {
-                    logEnd()
-                    throw err
-                  })
+                    logEnd();
+                    throw err;
+                  });
               }
-              logEnd()
-              return out
-            }
+              logEnd();
+              return out;
+            };
           }
-          return value
+          return value;
         },
-      })
-    })
+      });
+    });
   }
 
-  const builder = await createBuilder(nativeBuildConfig)
+  const builder = await createBuilder(nativeBuildConfig);
 
-  const environment = builder.environments[platform]
+  const environment = builder.environments[platform];
 
   // We are using a forked version of the Vite internal function `buildEnvironment` (which is what `builder.build` calls) that will return the Rollup cache object with the build output, and also with some performance improvements.
   // disabled due to differences in vite 6 stable upgrade
 
-  const buildOutput = await builder.build(environment)
+  const buildOutput = await builder.build(environment);
 
   if (process.env.ONE_DEBUG_BUILD_PERF) {
-    console.info(JSON.stringify(buildStats, null, 2))
+    console.info(JSON.stringify(buildStats, null, 2));
   }
 
-  if (!('output' in buildOutput)) {
-    throw `❌`
+  if (!("output" in buildOutput)) {
+    throw `❌`;
   }
 
   let appCode = buildOutput.output
     // entry last
-    .sort((a, b) => (a['isEntry'] ? 1 : a['fileName'].localeCompare(b['fileName']) + -2))
+    .sort((a, b) => (a["isEntry"] ? 1 : a["fileName"].localeCompare(b["fileName"]) + -2))
     .map((outputModule) => {
-      const id = outputModule.fileName.replace(/.*node_modules\//, '')
+      const id = outputModule.fileName.replace(/.*node_modules\//, "");
 
-      if (outputModule.type == 'chunk') {
-        const importsMap = {}
+      if (outputModule.type == "chunk") {
+        const importsMap = {};
         for (const imp of outputModule.imports) {
-          const relativePath = relative(dirname(id), imp)
-          importsMap[relativePath[0] === '.' ? relativePath : './' + relativePath] = imp.replace(
+          const relativePath = relative(dirname(id), imp);
+          importsMap[relativePath[0] === "." ? relativePath : "./" + relativePath] = imp.replace(
             /.*node_modules\//,
-            ''
-          )
+            "",
+          );
         }
 
-        let code = outputModule.code
+        let code = outputModule.code;
 
         // A hacky way to exclude node-fetch from the bundle.
         //
         // Some part of Supabase SDK will import node-fetch statically (https://github.com/supabase/supabase-js/blob/v2.45.1/src/lib/fetch.ts#L2), or dynamically (https://github.com/supabase/auth-js/blob/8222ee198a0ab10570e8b4c31ffb2aeafef86392/src/lib/helpers.ts#L99), causing the node-fetch to be included in the bundle, and while imported statically it will throw a runtime error when running on React Native.
-        if (outputModule.facadeModuleId?.includes('@supabase/node-fetch')) {
+        if (outputModule.facadeModuleId?.includes("@supabase/node-fetch")) {
           // This should be safe since the imported '@supabase/node-fetch' will not actually be used in Supabase SDK as there's already a global `fetch` in React Native.
-          code = ''
+          code = "";
         }
 
-        if (id.startsWith('.vxrn/react-native')) {
+        if (id.startsWith(".vxrn/react-native")) {
           // Turn eager imports of RN back into dynamic lazy imports.
           // We needed them eager so rollup won't be unhappy with missing exports, but now we need them lazy again to match the original RN behavior, which may avoid some issues. Such as:
           // * react-native v0.76 with: Codegen didn't run for RNCSafeAreaView. This will be an error in the future. Make sure you are using @react-native/babel-preset when building your JavaScript code.
@@ -149,13 +149,13 @@ export async function getReactNativeBundle(
             .replace(
               // Step 1: Replace the whole `exports` block which contains `exports.REACT_NATIVE_ESM_MANUAL_EXPORTS_` with `module.exports = RN;`
               /(^exports.+$\s)*(^exports\.REACT_NATIVE_ESM_MANUAL_EXPORTS_.+$\s)(^exports.+$\s)*/m,
-              'module.exports = RN;'
+              "module.exports = RN;",
             )
             .replace(
               // Step 2: Remove other unnecessary `var thing = RN.thing;` lines
               /^.*REACT_NATIVE_ESM_MANUAL_EXPORTS_START[\s\S]*REACT_NATIVE_ESM_MANUAL_EXPORTS_END.*$/m,
-              ''
-            )
+              "",
+            );
         }
 
         return `
@@ -179,57 +179,60 @@ globalThis.ReactNative = __require("react-native")
 globalThis.React = __require("react")
 __require("${id}")
 `
-    : ''
+    : ""
 }
-`
+`;
       }
     })
-    .join('\n')
+    .join("\n");
 
   if (!appCode) {
-    throw `❌`
+    throw `❌`;
   }
 
   appCode = appCode
     // TEMP FIX for router tamagui thing since expo router 3 upgrade
-    .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"')
+    .replaceAll('dist/esm/index.mjs"', 'dist/esm/index.js"');
 
-  const template = (await getReactNativeTemplate(internal.mode || 'dev')).replaceAll(
-    '__VXRN_PLATFORM__',
-    `"${platform}"`
-  )
+  const template = (await getReactNativeTemplate(internal.mode || "dev")).replaceAll(
+    "__VXRN_PLATFORM__",
+    `"${platform}"`,
+  );
 
-  const out = template + appCode
+  const out = template + appCode;
 
-  cachedReactNativeBundles[platform] = out
-  done(out)
-  setIsBuildingNativeBundle(null)
+  cachedReactNativeBundles[platform] = out;
+  done(out);
+  setIsBuildingNativeBundle(null);
 
-  return out
+  return out;
 }
 
 /**
  * Get `react-native-template.js` with some `process.env.*` replaced with static values.
  */
-async function getReactNativeTemplate(mode: 'dev' | 'prod') {
-  const templateFile = resolvePath('vxrn/react-native-template.js')
-  let template = await readFile(templateFile, 'utf-8')
+async function getReactNativeTemplate(mode: "dev" | "prod") {
+  const templateFile = resolvePath("vxrn/react-native-template.js");
+  let template = await readFile(templateFile, "utf-8");
 
-  template = template.replace(/process\.env\.__DEV__/g, mode === 'dev' ? 'true' : 'false')
+  template = template.replace(/process\.env\.__DEV__/g, mode === "dev" ? "true" : "false");
 
-  if (mode === 'prod') {
+  if (mode === "prod") {
     // `process` might not available in release runtime
-    template = template.replace(/process\.env\.DEBUG/g, 'undefined')
+    template = template.replace(/process\.env\.DEBUG/g, "undefined");
 
     // In production mode, the prebuilt modules have `.production` in their filenames
-    template = template.replaceAll('.vxrn/react-jsx-runtime.js', '.vxrn/react-jsx-runtime.production.js')
-    template = template.replaceAll('.vxrn/react.js', '.vxrn/react.production.js')
+    template = template.replaceAll(
+      ".vxrn/react-jsx-runtime.js",
+      ".vxrn/react-jsx-runtime.production.js",
+    );
+    template = template.replaceAll(".vxrn/react.js", ".vxrn/react.production.js");
     // react-native already has platform in filename, need to add .production before platform
     template = template.replace(
       /\.vxrn\/react-native\.(\$\{__VXRN_PLATFORM__\.toLowerCase\(\)\})\.js/g,
-      '.vxrn/react-native.production.$1.js'
-    )
+      ".vxrn/react-native.production.$1.js",
+    );
   }
 
-  return template
+  return template;
 }

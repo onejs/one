@@ -1,10 +1,10 @@
-import { Link } from 'one'
+import { Link } from "one";
 
 export function loader() {
   return {
-    message: 'Hello from SSG loader!',
+    message: "Hello from SSG loader!",
     timestamp: Date.now(),
-  }
+  };
 }
 
 export default function Home() {
@@ -38,5 +38,5 @@ export default function Home() {
         </ul>
       </nav>
     </div>
-  )
+  );
 }

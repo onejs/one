@@ -1,3 +1,3 @@
-'use strict';
+"use strict";
 
-module.exports = require('./static.node');
+module.exports = require("./static.node");

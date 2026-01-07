@@ -21,6 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  **/
-import type { Plugin } from 'vite';
+import type { Plugin } from "vite";
 export declare function useDOMPlugin(): Plugin;
 //# sourceMappingURL=useDomPlugin.d.ts.map

@@ -1,6 +1,6 @@
 export interface DynamicNameMatch {
-    name: string;
-    deep: boolean;
+  name: string;
+  deep: boolean;
 }
 /** Match `[page]` -> `{ name: 'page', deep: false }` or `[...page]` -> `{ name: 'page', deep: true }` */
 export declare function matchDynamicName(name: string): DynamicNameMatch | undefined;

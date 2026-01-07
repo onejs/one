@@ -9,36 +9,36 @@
  * Based on https://github.com/vercel/next.js/blob/1df2686bc9964f1a86c444701fa5cbf178669833/packages/next/src/shared/lib/router/utils/route-regex.ts
  */
 
-import { getContextKey, matchGroupName } from '../router/matchers'
-import type { RouteNode } from '../router/Route'
-import { sortRoutes } from '../router/sortRoutes'
-import type { One, RouteInfo } from '../vite/types'
+import { getContextKey, matchGroupName } from "../router/matchers";
+import type { RouteNode } from "../router/Route";
+import { sortRoutes } from "../router/sortRoutes";
+import type { One, RouteInfo } from "../vite/types";
 
 // TODO: Share these types across cli, server, router, etc.
 export type OneRouterServerManifestV1Route<TRegex = string> = RouteInfo & {
-  generated?: boolean
-}
+  generated?: boolean;
+};
 
 export type OneRouterServerManifestV1<TRegex = string> = {
-  apiRoutes: OneRouterServerManifestV1Route<TRegex>[]
-  middlewareRoutes: OneRouterServerManifestV1Route<TRegex>[]
-  pageRoutes: OneRouterServerManifestV1Route<TRegex>[]
-  allRoutes: OneRouterServerManifestV1Route<TRegex>[]
-}
+  apiRoutes: OneRouterServerManifestV1Route<TRegex>[];
+  middlewareRoutes: OneRouterServerManifestV1Route<TRegex>[];
+  pageRoutes: OneRouterServerManifestV1Route<TRegex>[];
+  allRoutes: OneRouterServerManifestV1Route<TRegex>[];
+};
 
 export interface Group {
-  pos: number
-  repeat: boolean
-  optional: boolean
+  pos: number;
+  repeat: boolean;
+  optional: boolean;
 }
 
 export interface RouteRegex {
-  groups: Record<string, Group>
-  re: RegExp
+  groups: Record<string, Group>;
+  re: RegExp;
 }
 
 function isNotFoundRoute(route: RouteNode) {
-  return Boolean(route.dynamic && route.dynamic[route.dynamic.length - 1].notFound)
+  return Boolean(route.dynamic && route.dynamic[route.dynamic.length - 1].notFound);
 }
 
 // Given a nested route tree, return a flattened array of all routes that can be matched.
@@ -46,31 +46,31 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
   function getFlatNodes(route: RouteNode, layouts?: RouteNode[]): [string, RouteNode][] {
     if (route.children.length) {
       return route.children.flatMap((child) => {
-        return getFlatNodes(child, [...(layouts || []), route])
-      })
+        return getFlatNodes(child, [...(layouts || []), route]);
+      });
     }
 
     // API Routes are handled differently to HTML routes because they have no nested behavior.
     // An HTML route can be different based on parent segments due to layout routes, therefore multiple
     // copies should be rendered. However, an API route is always the same regardless of parent segments.
-    let key: string
-    if (route.type === 'api') {
-      key = getContextKey(route.contextKey).replace(/\/index$/, '') || '/'
+    let key: string;
+    if (route.type === "api") {
+      key = getContextKey(route.contextKey).replace(/\/index$/, "") || "/";
     } else {
       const parentSegments = layouts?.flatMap((route) => {
-        const key = getContextKey(route.route).replace(/\/index$/, '') || '/'
-        if (key === '/' || key.startsWith('/(')) {
-          return []
+        const key = getContextKey(route.route).replace(/\/index$/, "") || "/";
+        if (key === "/" || key.startsWith("/(")) {
+          return [];
         }
-        return [key]
-      })
+        return [key];
+      });
 
       key =
-        (parentSegments ? parentSegments.join('') : '') +
-          getContextKey(route.route).replace(/\/index$/, '') || '/'
+        (parentSegments ? parentSegments.join("") : "") +
+          getContextKey(route.route).replace(/\/index$/, "") || "/";
     }
 
-    return [[key, { ...route, layouts }]]
+    return [[key, { ...route, layouts }]];
   }
 
   // TODO this could be a lot faster if not functional:
@@ -78,48 +78,48 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
   // Remove duplicates from the runtime manifest which expands array syntax.
   const flat = getFlatNodes(route)
     .sort(([, a], [, b]) => sortRoutes(b, a))
-    .reverse()
+    .reverse();
 
   // warn on having multiple routes with the same path!
-  const pathToRoute: Record<string, RouteNode> = {}
+  const pathToRoute: Record<string, RouteNode> = {};
   for (const [path, route] of flat) {
     if (pathToRoute[path]) {
-      console.warn(`\n[one] ❌ Duplicate routes error`)
-      console.warn(`  Multiple routes at the same path! One route will always win over the other.`)
-      console.warn(`    path: ${path}`)
-      console.warn(`    first route: ${pathToRoute[path].contextKey}`)
-      console.warn(`    second route: ${route.contextKey}\n`)
+      console.warn(`\n[one] ❌ Duplicate routes error`);
+      console.warn(`  Multiple routes at the same path! One route will always win over the other.`);
+      console.warn(`    path: ${path}`);
+      console.warn(`    first route: ${pathToRoute[path].contextKey}`);
+      console.warn(`    second route: ${route.contextKey}\n`);
     }
-    pathToRoute[path] = route
+    pathToRoute[path] = route;
   }
 
-  const apiRoutes: OneRouterServerManifestV1Route[] = []
-  const middlewareRoutes: OneRouterServerManifestV1Route[] = []
-  const pageRoutes: OneRouterServerManifestV1Route[] = []
-  const allRoutes: OneRouterServerManifestV1Route[] = []
+  const apiRoutes: OneRouterServerManifestV1Route[] = [];
+  const middlewareRoutes: OneRouterServerManifestV1Route[] = [];
+  const pageRoutes: OneRouterServerManifestV1Route[] = [];
+  const allRoutes: OneRouterServerManifestV1Route[] = [];
 
-  const addedMiddlewares: Record<string, boolean> = {}
+  const addedMiddlewares: Record<string, boolean> = {};
 
   for (const [path, node] of flat) {
-    if (node.type === 'api') {
-      const route = getGeneratedNamedRouteRegex(path, node)
-      apiRoutes.push(route)
-      allRoutes.push(route)
-      continue
+    if (node.type === "api") {
+      const route = getGeneratedNamedRouteRegex(path, node);
+      apiRoutes.push(route);
+      allRoutes.push(route);
+      continue;
     }
 
     if (node.middlewares?.length) {
       for (const middleware of node.middlewares) {
         if (!addedMiddlewares[middleware.contextKey]) {
-          addedMiddlewares[middleware.contextKey] = true
-          middlewareRoutes.push(getGeneratedNamedRouteRegex(path, middleware))
+          addedMiddlewares[middleware.contextKey] = true;
+          middlewareRoutes.push(getGeneratedNamedRouteRegex(path, middleware));
         }
       }
     }
 
-    const route = getGeneratedNamedRouteRegex(path, node)
-    pageRoutes.push(route)
-    allRoutes.push(route)
+    const route = getGeneratedNamedRouteRegex(path, node);
+    pageRoutes.push(route);
+    allRoutes.push(route);
   }
 
   return {
@@ -127,22 +127,22 @@ export function getServerManifest(route: RouteNode): OneRouterServerManifestV1 {
     middlewareRoutes,
     pageRoutes,
     allRoutes,
-  }
+  };
 }
 
 function getGeneratedNamedRouteRegex(
   normalizedRoute: string,
-  node: RouteNode
+  node: RouteNode,
 ): OneRouterServerManifestV1Route {
   return {
     ...getRouteEntry(normalizedRoute, node),
     generated: true,
     isNotFound: isNotFoundRoute(node),
-  }
+  };
 }
 
 function getRouteEntry(normalizedRoute: string, node: RouteNode): OneRouterServerManifestV1Route {
-  const result = getPathMeta(normalizedRoute)
+  const result = getPathMeta(normalizedRoute);
   return {
     file: node.contextKey,
     page: getContextKey(node.route),
@@ -153,7 +153,7 @@ function getRouteEntry(normalizedRoute: string, node: RouteNode): OneRouterServe
     routeKeys: result.routeKeys,
     layouts: node.layouts,
     middlewares: node.middlewares,
-  }
+  };
 }
 
 /**
@@ -161,155 +161,155 @@ function getRouteEntry(normalizedRoute: string, node: RouteNode): OneRouterServe
  * number of characters.
  */
 function buildGetSafeRouteKey() {
-  let currentCharCode = 96 // Starting one before 'a' to make the increment logic simpler
-  let currentLength = 1
+  let currentCharCode = 96; // Starting one before 'a' to make the increment logic simpler
+  let currentLength = 1;
 
   return () => {
-    let result = ''
-    let incrementNext = true
+    let result = "";
+    let incrementNext = true;
 
     // Iterate from right to left to build the key
     for (let i = 0; i < currentLength; i++) {
       if (incrementNext) {
-        currentCharCode++
+        currentCharCode++;
         if (currentCharCode > 122) {
-          currentCharCode = 97 // Reset to 'a'
-          incrementNext = true // Continue to increment the next character
+          currentCharCode = 97; // Reset to 'a'
+          incrementNext = true; // Continue to increment the next character
         } else {
-          incrementNext = false
+          incrementNext = false;
         }
       }
-      result = String.fromCharCode(currentCharCode) + result
+      result = String.fromCharCode(currentCharCode) + result;
     }
 
     // If all characters are 'z', increase the length of the key
     if (incrementNext) {
-      currentLength++
-      currentCharCode = 96 // This will make the next key start with 'a'
+      currentLength++;
+      currentCharCode = 96; // This will make the next key start with 'a'
     }
 
-    return result
-  }
+    return result;
+  };
 }
 
 function removeTrailingSlash(route: string): string {
-  return route.replace(/\/$/, '') || '/'
+  return route.replace(/\/$/, "") || "/";
 }
 
 function getPathMeta(route: string) {
-  const segments = removeTrailingSlash(route).slice(1).split('/')
-  const getSafeRouteKey = buildGetSafeRouteKey()
-  const routeKeys: Record<string, string> = {}
+  const segments = removeTrailingSlash(route).slice(1).split("/");
+  const getSafeRouteKey = buildGetSafeRouteKey();
+  const routeKeys: Record<string, string> = {};
 
-  const urlPathParts: Array<{ content: string; type?: 'group' }> = []
+  const urlPathParts: Array<{ content: string; type?: "group" }> = [];
 
   const routeSegments = segments
     .map((segment, index) => {
-      if (segment === '+not-found' && index === segments.length - 1) {
-        segment = '[...not-found]'
+      if (segment === "+not-found" && index === segments.length - 1) {
+        segment = "[...not-found]";
       }
 
       if (/^\[.*\]$/.test(segment)) {
-        const { name, optional, repeat } = parseParam(segment)
+        const { name, optional, repeat } = parseParam(segment);
         // replace non-word characters since they can break the named regex
-        let cleanedKey = name.replace(/\W/g, '')
-        let invalidKey = false
+        let cleanedKey = name.replace(/\W/g, "");
+        let invalidKey = false;
 
         // check if the key is still invalid and fallback to using a known safe key
         if (cleanedKey.length === 0 || cleanedKey.length > 30) {
-          invalidKey = true
+          invalidKey = true;
         }
         if (!Number.isNaN(Number.parseInt(cleanedKey.slice(0, 1), 10))) {
-          invalidKey = true
+          invalidKey = true;
         }
 
         // Prevent duplicates after sanitizing the key
         if (cleanedKey in routeKeys) {
-          invalidKey = true
+          invalidKey = true;
         }
 
         if (invalidKey) {
-          cleanedKey = getSafeRouteKey()
+          cleanedKey = getSafeRouteKey();
         }
 
-        urlPathParts.push({ content: repeat ? '/*' : `/:${name}${optional ? '?' : ''}` })
-        routeKeys[cleanedKey] = name
+        urlPathParts.push({ content: repeat ? "/*" : `/:${name}${optional ? "?" : ""}` });
+        routeKeys[cleanedKey] = name;
 
         return repeat
           ? optional
             ? `(?:/(?<${cleanedKey}>.+?))?`
             : `/(?<${cleanedKey}>.+?)`
-          : `/(?<${cleanedKey}>[^/]+?)`
+          : `/(?<${cleanedKey}>[^/]+?)`;
       }
 
       if (insideParensRegex.test(segment)) {
         const groupName = matchGroupName(segment)!
-          .split(',')
+          .split(",")
           .map((group) => group.trim())
-          .filter(Boolean)
+          .filter(Boolean);
 
-        urlPathParts.push({ content: `/:${groupName}?`, type: 'group' })
+        urlPathParts.push({ content: `/:${groupName}?`, type: "group" });
 
         if (groupName.length > 1) {
-          const optionalSegment = `\\((?:${groupName.map(escapeStringRegexp).join('|')})\\)`
+          const optionalSegment = `\\((?:${groupName.map(escapeStringRegexp).join("|")})\\)`;
 
           // Make section optional
-          return `(?:/${optionalSegment})?`
+          return `(?:/${optionalSegment})?`;
         }
 
         // Use simpler regex for single groups
-        return `(?:/${escapeStringRegexp(segment)})?`
+        return `(?:/${escapeStringRegexp(segment)})?`;
       }
 
-      urlPathParts.push({ content: `/${segment}` })
+      urlPathParts.push({ content: `/${segment}` });
 
-      return `/${escapeStringRegexp(segment)}`
+      return `/${escapeStringRegexp(segment)}`;
     })
-    .join('')
+    .join("");
 
-  const urlPath = urlPathParts.map((p) => p.content).join('')
+  const urlPath = urlPathParts.map((p) => p.content).join("");
   const urlCleanPath = urlPathParts
-    .filter((p) => p.type !== 'group')
+    .filter((p) => p.type !== "group")
     .map((p) => p.content)
-    .join('')
+    .join("");
 
   return {
     namedRegex: `^${routeSegments}(?:/)?$`,
-    urlPath: urlPath === '' ? '/' : urlPath,
-    urlCleanPath: urlCleanPath === '' ? '/' : urlCleanPath,
+    urlPath: urlPath === "" ? "/" : urlPath,
+    urlCleanPath: urlCleanPath === "" ? "/" : urlCleanPath,
     routeKeys,
-  }
+  };
 }
 
-const insideBracketsRegex = /^\[.*\]$/
-const insideParensRegex = /^\(.*\)$/
-const tripleDotRegex = /^\.\.\./
-const replaceRegex = /[|\\{}()[\]^$+*?.-]/g
+const insideBracketsRegex = /^\[.*\]$/;
+const insideParensRegex = /^\(.*\)$/;
+const tripleDotRegex = /^\.\.\./;
+const replaceRegex = /[|\\{}()[\]^$+*?.-]/g;
 // based on https://github.com/sindresorhus/escape-string-regexp
-const hasRegExpRegex = /[|\\{}()[\]^$+*?.-]/
+const hasRegExpRegex = /[|\\{}()[\]^$+*?.-]/;
 
 function escapeStringRegexp(str: string) {
   // see also: https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/escapeRegExp.js#L23
   if (hasRegExpRegex.test(str)) {
-    return str.replace(replaceRegex, '\\$&')
+    return str.replace(replaceRegex, "\\$&");
   }
-  return str
+  return str;
 }
 
 export function parseParam(param: string) {
-  let repeat = false
-  let optional = false
-  let name = param
+  let repeat = false;
+  let optional = false;
+  let name = param;
 
   if (insideBracketsRegex.test(name)) {
-    optional = true
-    name = name.slice(1, -1)
+    optional = true;
+    name = name.slice(1, -1);
   }
 
   if (tripleDotRegex.test(name)) {
-    repeat = true
-    name = name.slice(3)
+    repeat = true;
+    name = name.slice(3);
   }
 
-  return { name, repeat, optional }
+  return { name, repeat, optional };
 }

@@ -1,5 +1,5 @@
-import type { ResolvedConfig } from 'vite'
-import type { TransformOptions } from '@babel/core'
+import type { ResolvedConfig } from "vite";
+import type { TransformOptions } from "@babel/core";
 
 /**
  * A bag of stuff we will pass into Metro's transformFile function under the
@@ -14,5 +14,5 @@ export type ViteCustomTransformOptions = {
    * Additional Babel config to use, specified directly by user of the
    * Vite Metro plugin as the `babelConfig` option.
    */
-  babelConfig?: TransformOptions
-}
+  babelConfig?: TransformOptions;
+};

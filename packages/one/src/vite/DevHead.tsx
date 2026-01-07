@@ -1,11 +1,11 @@
-import { VIRTUAL_SSR_CSS_HREF } from '../constants'
+import { VIRTUAL_SSR_CSS_HREF } from "../constants";
 
 // replacing Vites since we control the root
 export function DevHead() {
-  if (process.env.TAMAGUI_TARGET === 'native') {
-    return null
+  if (process.env.TAMAGUI_TARGET === "native") {
+    return null;
   }
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     return (
       <>
         <link rel="preload" href={VIRTUAL_SSR_CSS_HREF} as="style" />
@@ -32,8 +32,8 @@ export function DevHead() {
           }}
         />
       </>
-    )
+    );
   }
 
-  return null
+  return null;
 }

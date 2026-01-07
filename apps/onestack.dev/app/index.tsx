@@ -6,8 +6,8 @@ import {
   TabletSmartphone,
   Triangle,
   X,
-} from '@tamagui/lucide-icons'
-import { useState, type KeyboardEvent } from 'react'
+} from "@tamagui/lucide-icons";
+import { useState, type KeyboardEvent } from "react";
 import {
   Circle,
   EnsureFlexed,
@@ -22,26 +22,26 @@ import {
   XStack,
   YStack,
   styled,
-} from 'tamagui'
-import { Button } from '~/components/Button'
-import { Community } from '~/components/Community'
-import { Team } from '~/components/Team'
-import { PrettyText, PrettyTextBigger } from '~/components/typography'
-import { OneLogo } from '~/features/brand/Logo'
-import { useClipboard } from '~/features/docs/useClipboard'
-import { ContainerSm } from '~/features/site/Containers'
-import { Footer } from '~/features/site/Footer'
-import { HeadInfo } from '~/features/site/HeadInfo'
-import { Link } from '~/features/site/Link'
-import { SocialLinksRow } from '~/features/site/SocialLinksRow'
-import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
+} from "tamagui";
+import { Button } from "~/components/Button";
+import { Community } from "~/components/Community";
+import { Team } from "~/components/Team";
+import { PrettyText, PrettyTextBigger } from "~/components/typography";
+import { OneLogo } from "~/features/brand/Logo";
+import { useClipboard } from "~/features/docs/useClipboard";
+import { ContainerSm } from "~/features/site/Containers";
+import { Footer } from "~/features/site/Footer";
+import { HeadInfo } from "~/features/site/HeadInfo";
+import { Link } from "~/features/site/Link";
+import { SocialLinksRow } from "~/features/site/SocialLinksRow";
+import { ToggleThemeButton } from "~/features/theme/ThemeToggleButton";
 
 const ButtonText = styled(Text, {
   lh: 0,
-  animation: 'quickest',
-  color: '$color11',
-  fontWeight: '600',
-})
+  animation: "quickest",
+  color: "$color11",
+  fontWeight: "600",
+});
 
 export default function HomePage() {
   return (
@@ -51,7 +51,7 @@ export default function HomePage() {
         description="One is a React framework focused on simplicity that lets you target both web and native at once with a single Vite plugin."
       />
 
-      <Spacer size="$8" $gtSm={{ size: '$4' }} />
+      <Spacer size="$8" $gtSm={{ size: "$4" }} />
 
       <ContainerSm>
         <XStack jc="space-between" mb="$2">
@@ -74,13 +74,13 @@ export default function HomePage() {
             ai="center"
             contain="paint layout"
             $sm={{
-              gap: '$3',
-              fd: 'column',
-              ai: 'flex-end',
+              gap: "$3",
+              fd: "column",
+              ai: "flex-end",
               mt: -20,
             }}
           >
-            <XStack ai="center" gap="$6" $sm={{ jc: 'center' }}>
+            <XStack ai="center" gap="$6" $sm={{ jc: "center" }}>
               <ToggleThemeButton />
               {/* commenting this out till the blog page is ready */}
               {/*<Link href="/blog" asChild>
@@ -118,10 +118,10 @@ export default function HomePage() {
                     gap={0}
                     bw={0}
                     hoverStyle={{
-                      bg: '$color5',
+                      bg: "$color5",
                     }}
                     pressStyle={{
-                      bg: '$color9',
+                      bg: "$color9",
                     }}
                   >
                     <ButtonText color="$color12" fontFamily="$mono" lh={0}>
@@ -139,7 +139,7 @@ export default function HomePage() {
               y={-2}
               mr={-10}
               gap="$2"
-              $sm={{ jc: 'center' }}
+              $sm={{ jc: "center" }}
             >
               <SocialLinksRow />
             </XStack>
@@ -148,54 +148,52 @@ export default function HomePage() {
 
         <View theme="yellow" gap="$4" pt="$6">
           <PrettyTextBigger>
-            One aims to make web + native with React and React&nbsp;Native much simpler,
-            and faster.
+            One aims to make web + native with React and React&nbsp;Native much simpler, and faster.
             <br />
             <br />
-            One takes{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/faq#why-vite">
+            One takes{" "}
+            <Link style={{ color: "var(--color11)" }} href="/docs/faq#why-vite">
               Vite
             </Link>
-            ,{' '}
+            ,{" "}
             <Link target="_blank" href="https://vxrn.dev">
               makes it serve
-            </Link>{' '}
-            React&nbsp;web and React&nbsp;Native. Then adds{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
+            </Link>{" "}
+            React&nbsp;web and React&nbsp;Native. Then adds{" "}
+            <Link style={{ color: "var(--color11)" }} href="/docs/routing">
               FS routes
             </Link>
-            ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-modes">
+            ,{" "}
+            <Link style={{ color: "var(--color11)" }} href="/docs/routing-modes">
               render modes
             </Link>
-            ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-loader">
+            ,{" "}
+            <Link style={{ color: "var(--color11)" }} href="/docs/routing-loader">
               loaders
             </Link>
-            ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-middlewares">
+            ,{" "}
+            <Link style={{ color: "var(--color11)" }} href="/docs/routing-middlewares">
               middleware
             </Link>
-            , a{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/one-dev">
+            , a{" "}
+            <Link style={{ color: "var(--color11)" }} href="/docs/one-dev">
               CLI
             </Link>
-            ,{' '}
+            ,{" "}
             <Link target="_blank" href="https://hono.dev">
               Hono
             </Link>
-            ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/features">
+            ,{" "}
+            <Link style={{ color: "var(--color11)" }} href="/docs/features">
               etc
             </Link>
             .
           </PrettyTextBigger>
 
           <PrettyTextBigger>
-            One is a simpler framework because it's being designed alongside a sync
-            engine,{' '}
+            One is a simpler framework because it's being designed alongside a sync engine,{" "}
             <Link
-              style={{ color: 'var(--color11)' }}
+              style={{ color: "var(--color11)" }}
               target="_blank"
               href="https://zero.rocicorp.dev/"
             >
@@ -204,15 +202,7 @@ export default function HomePage() {
             .
           </PrettyTextBigger>
 
-          <YStack
-            mt={40}
-            als="center"
-            ai="center"
-            jc="center"
-            gap="$1"
-            px="$6"
-            bc="$color4"
-          >
+          <YStack mt={40} als="center" ai="center" jc="center" gap="$1" px="$6" bc="$color4">
             <Paragraph size="$5" theme="gray" color="$color8" mb={-20}>
               Bootstrap an app with
             </Paragraph>
@@ -233,11 +223,7 @@ export default function HomePage() {
           <Spacer /> */}
 
           <Theme name="gray">
-            <Link
-              asChild
-              href="https://testflight.apple.com/join/aNcDUHZY"
-              target="_blank"
-            >
+            <Link asChild href="https://testflight.apple.com/join/aNcDUHZY" target="_blank">
               <XStack
                 tag="a"
                 className="text-underline-none"
@@ -252,18 +238,13 @@ export default function HomePage() {
                 br="$9"
                 hoverStyle={{
                   y: -2,
-                  bg: '$color2',
+                  bg: "$color2",
                 }}
                 $sm={{
-                  fd: 'column',
+                  fd: "column",
                 }}
               >
-                <img
-                  width={80}
-                  height={80}
-                  src="/testflight.webp"
-                  alt="Testflight Icon"
-                />
+                <img width={80} height={80} src="/testflight.webp" alt="Testflight Icon" />
 
                 <YStack>
                   <PrettyText
@@ -276,7 +257,7 @@ export default function HomePage() {
                     cur="inherit"
                     color="$color"
                     $sm={{
-                      size: '$5',
+                      size: "$5",
                     }}
                   >
                     Demo
@@ -302,19 +283,12 @@ export default function HomePage() {
         </View>
       </ContainerSm>
     </>
-  )
+  );
 }
 
 const InfoBoxes = () => {
   return (
-    <XStack
-      mx="$-8"
-      fw="wrap"
-      rowGap="$1"
-      columnGap="$5"
-      mb="$13"
-      $sm={{ fd: 'column', mx: 0 }}
-    >
+    <XStack mx="$-8" fw="wrap" rowGap="$1" columnGap="$5" mb="$13" $sm={{ fd: "column", mx: 0 }}>
       <InfoCard title="Typed FS Routing" Icon={FolderCheck}>
         Typed file-system routing, nested layouts with groups.
       </InfoCard>
@@ -331,17 +305,17 @@ const InfoBoxes = () => {
         Not based on Metro, One is a single Vite plugin with few dependencies.
       </InfoCard>
       <InfoCard title="The future of data" Icon={Database}>
-        Integration with{' '}
+        Integration with{" "}
         <a target="_blank" href="https://zerosync.dev" rel="noreferrer">
           ZeroSync
-        </a>{' '}
+        </a>{" "}
         and other sync engines. Coming soon.
       </InfoCard>
     </XStack>
-  )
-}
+  );
+};
 
-const ViteIcon = (props) => <Triangle rotate="180deg" {...props} />
+const ViteIcon = (props) => <Triangle rotate="180deg" {...props} />;
 
 const InfoCard = ({ title, Icon, children }) => {
   return (
@@ -352,7 +326,7 @@ const InfoCard = ({ title, Icon, children }) => {
       py="$2"
       // br="$5"
       // bg="$background06"
-      $sm={{ w: '100%', mb: '$2' }}
+      $sm={{ w: "100%", mb: "$2" }}
     >
       <YStack fullscreen o={0.25}></YStack>
       <YStack gap="$2" p="$4">
@@ -363,18 +337,18 @@ const InfoCard = ({ title, Icon, children }) => {
         <PrettyText color="$gray11">{children}</PrettyText>
       </YStack>
     </YStack>
-  )
-}
+  );
+};
 
 function Video() {
-  const [showVideo, setShowVideo] = useState(false)
+  const [showVideo, setShowVideo] = useState(false);
 
   return (
     <>
       {showVideo && (
         <Portal zi={1000}>
           <YStack
-            position={'fixed' as any}
+            position={"fixed" as any}
             t={0}
             l={0}
             r={0}
@@ -392,7 +366,7 @@ function Video() {
               <iframe
                 src="https://www.youtube.com/embed/ZJH4bKkwo90?si=tIVSYmbpEY_0c4-8&amp;autoplay=1&amp;vq=hd1080p;hd=1&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;rel=0"
                 title="One Demo Video"
-                style={{ maxWidth: '95%' }}
+                style={{ maxWidth: "95%" }}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
@@ -447,42 +421,21 @@ function Video() {
             <div
               style={{
                 backgroundImage: `url(/cover.webp)`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'contain',
-                backgroundPosition: 'bottom center',
-                width: '100%',
-                height: '100%',
-                border: 'none',
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+                backgroundPosition: "bottom center",
+                width: "100%",
+                height: "100%",
+                border: "none",
               }}
             />
           </YStack>
 
-
-          <View
-            pos="absolute"
-            top={0}
-            right={0}
-            bottom={0}
-            left={0}
-            ai="center"
-            jc="center"
-          >
-            <Circle
-              animation="bouncy"
-              y={35}
-              ai="center"
-              size={60}
-              shac="$shadowColor"
-              shar={10}
-            >
-              <svg
-                style={{ marginTop: -10 }}
-                width="100%"
-                height="100%"
-                viewBox="0 0 100 100"
-              >
+          <View pos="absolute" top={0} right={0} bottom={0} left={0} ai="center" jc="center">
+            <Circle animation="bouncy" y={35} ai="center" size={60} shac="$shadowColor" shar={10}>
+              <svg style={{ marginTop: -10 }} width="100%" height="100%" viewBox="0 0 100 100">
                 <polygon
-                  style={{ transform: 'translateY(6px)' }}
+                  style={{ transform: "translateY(6px)" }}
                   points="35,25 75,50 35,75"
                   fill="var(--color8)"
                 />
@@ -513,39 +466,39 @@ function Video() {
             scale: 0.99,
           }}
           $sm={{
-            size: '$6',
+            size: "$6",
           }}
         >
           5m video intro
         </Paragraph>
       </View>
     </>
-  )
+  );
 }
 
 const Separator = styled(View, {
-  width: '100%',
+  width: "100%",
   height: 1,
-  bc: '$color2',
-  borderStyle: 'dotted',
+  bc: "$color2",
+  borderStyle: "dotted",
   bw: 0,
   bbw: 1,
-  my: '$4',
-})
+  my: "$4",
+});
 
 const CopyCommand = () => {
-  const [hovered, setHovered] = useState(false)
+  const [hovered, setHovered] = useState(false);
   const { hasCopied: hasNpxRunCommandCopied, onCopy: handleCopyNpxRunCommand } =
-    useClipboard(`npx one@latest`)
+    useClipboard(`npx one@latest`);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      handleCopyNpxRunCommand()
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleCopyNpxRunCommand();
     }
-  }
+  };
 
-  const showCopy = hasNpxRunCommandCopied || hovered
+  const showCopy = hasNpxRunCommandCopied || hovered;
 
   return (
     <Tooltip open={showCopy} placement="right">
@@ -564,12 +517,12 @@ const CopyCommand = () => {
           fd="row"
           ai="center"
           hoverStyle={{
-            bg: '$color2',
+            bg: "$color2",
             //@ts-ignore
-            color: '$color11',
+            color: "$color11",
           }}
           pressStyle={{
-            bg: '$color2',
+            bg: "$color2",
           }}
           // Add these props
           role="button"
@@ -608,7 +561,7 @@ const CopyCommand = () => {
                 marginRight: 4,
                 marginTop: -5,
                 marginLeft: 20,
-                transform: 'translateY(-1px)',
+                transform: "translateY(-1px)",
               }}
             >
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -625,7 +578,7 @@ const CopyCommand = () => {
         y={-1}
         opacity={1}
         animation={[
-          'quick',
+          "quick",
           {
             opacity: {
               overshootClamping: true,
@@ -634,9 +587,9 @@ const CopyCommand = () => {
         ]}
       >
         <Paragraph size="$2" lineHeight="$1">
-          {hasNpxRunCommandCopied ? 'Copied!' : 'Copy'}
+          {hasNpxRunCommandCopied ? "Copied!" : "Copy"}
         </Paragraph>
       </Tooltip.Content>
     </Tooltip>
-  )
-}
+  );
+};

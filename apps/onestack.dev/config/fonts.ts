@@ -1,5 +1,5 @@
-import type { FillInFont, GenericFont } from '@tamagui/core'
-import { createFont } from 'tamagui'
+import type { FillInFont, GenericFont } from "@tamagui/core";
+import { createFont } from "tamagui";
 
 const defaultSizes = {
   1: 11,
@@ -19,7 +19,7 @@ const defaultSizes = {
   14: 92,
   15: 114,
   16: 134,
-} as const
+} as const;
 
 function createMainFont<A extends GenericFont>(
   font: Partial<A> = {},
@@ -27,30 +27,30 @@ function createMainFont<A extends GenericFont>(
     sizeLineHeight = (size) => size + 10,
     sizeSize = (size) => size * 1,
   }: {
-    sizeLineHeight?: (fontSize: number) => number
-    sizeSize?: (size: number) => number
-  } = {}
+    sizeLineHeight?: (fontSize: number) => number;
+    sizeSize?: (size: number) => number;
+  } = {},
 ): FillInFont<A, keyof typeof defaultSizes> {
   // merge to allow individual overrides
   const size = Object.fromEntries(
     Object.entries({
       ...defaultSizes,
       ...font.size,
-    }).map(([k, v]) => [k, sizeSize(+v)])
-  )
+    }).map(([k, v]) => [k, sizeSize(+v)]),
+  );
   return createFont({
     family:
       '-apple-system, Inter, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     lineHeight: Object.fromEntries(Object.entries(size).map(([k, v]) => [k, sizeLineHeight(v)])),
     weight: {
-      4: '300',
+      4: "300",
     },
     letterSpacing: {
       4: 0,
     },
     ...(font as any),
     size,
-  })
+  });
 }
 
 const heading = createMainFont(
@@ -62,16 +62,16 @@ const heading = createMainFont(
       10: 48,
     },
     transform: {
-      6: 'uppercase',
-      7: 'none',
+      6: "uppercase",
+      7: "none",
     },
     weight: {
-      6: '400',
-      7: '700',
+      6: "400",
+      7: "700",
     },
     color: {
-      6: '$colorFocus',
-      7: '$color',
+      6: "$colorFocus",
+      7: "$color",
     },
     letterSpacing: {
       5: 2,
@@ -86,26 +86,26 @@ const heading = createMainFont(
     },
     // for native
     face: {
-      700: { normal: 'InterBold' },
-      800: { normal: 'InterBold' },
-      900: { normal: 'InterBold' },
+      700: { normal: "InterBold" },
+      800: { normal: "InterBold" },
+      900: { normal: "InterBold" },
     },
   },
-  { sizeLineHeight: (size) => Math.round(size * 1.1 + (size < 30 ? 10 : 5)) }
-)
+  { sizeLineHeight: (size) => Math.round(size * 1.1 + (size < 30 ? 10 : 5)) },
+);
 
 const body = createMainFont(
   {
     weight: {
-      1: '400',
-      7: '600',
+      1: "400",
+      7: "600",
     },
   },
   {
     sizeSize: (size) => Math.round(size),
     sizeLineHeight: (size) => Math.round(size * 1.1 + (size >= 12 ? 10 : 4)),
-  }
-)
+  },
+);
 
 const mono = createFont({
   ...body,
@@ -155,10 +155,10 @@ const mono = createFont({
     9: 2.5,
     10: 3,
   },
-})
+});
 
 export const fonts = {
   heading,
   body,
   mono,
-}
+};

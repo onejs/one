@@ -17,8 +17,7 @@ function jsxProd(type, config, maybeKey) {
   void 0 !== config.key && (key = "" + config.key);
   if ("key" in config) {
     maybeKey = {};
-    for (var propName in config)
-      "key" !== propName && (maybeKey[propName] = config[propName]);
+    for (var propName in config) "key" !== propName && (maybeKey[propName] = config[propName]);
   } else maybeKey = config;
   config = maybeKey.ref;
   return {
@@ -26,7 +25,7 @@ function jsxProd(type, config, maybeKey) {
     type: type,
     key: key,
     ref: void 0 !== config ? config : null,
-    props: maybeKey
+    props: maybeKey,
   };
 }
 exports.Fragment = REACT_FRAGMENT_TYPE;

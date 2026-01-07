@@ -4,58 +4,58 @@
  * The purpose of keeping things in this separated file is to keep changes to the copied code as little as possible, making merging upstream updates easier.
  */
 
-import escape_ from 'escape-string-regexp'
-import { matchGroupName, stripGroupSegmentsFromPath } from '../router/matchers'
-import type { InitialRouteConfig, ParsedRoute, RouteConfig } from './getStateFromPath'
+import escape_ from "escape-string-regexp";
+import { matchGroupName, stripGroupSegmentsFromPath } from "../router/matchers";
+import type { InitialRouteConfig, ParsedRoute, RouteConfig } from "./getStateFromPath";
 
 export type AdditionalRouteConfig = {
-  type: 'static' | 'dynamic' | 'layout'
-  userReadableName: string
-  isIndex: boolean
-  isInitial?: boolean
-  hasChildren: boolean
-  expandedRouteNames: string[]
-  parts: string[]
-  staticPartCount: number
-}
+  type: "static" | "dynamic" | "layout";
+  userReadableName: string;
+  isIndex: boolean;
+  isInitial?: boolean;
+  hasChildren: boolean;
+  expandedRouteNames: string[];
+  parts: string[];
+  staticPartCount: number;
+};
 
 interface UrlWithReactNavigationConcessions {
-  path: string
-  nonstandardPathname: string
-  hash: string
-  pathWithoutGroups: string
+  path: string;
+  nonstandardPathname: string;
+  hash: string;
+  pathWithoutGroups: string;
 }
 
 export function getUrlWithReactNavigationConcessions(
   path: string,
-  baseUrl: string | undefined = process.env.EXPO_BASE_URL
+  baseUrl: string | undefined = process.env.EXPO_BASE_URL,
 ): UrlWithReactNavigationConcessions {
-  const pathWithoutGroups = stripGroupSegmentsFromPath(stripBaseUrl(path, baseUrl))
+  const pathWithoutGroups = stripGroupSegmentsFromPath(stripBaseUrl(path, baseUrl));
 
-  let pathname = ''
-  let hash = ''
+  let pathname = "";
+  let hash = "";
   try {
     // NOTE: This used to use a dummy base URL for parsing (phony.example)
     // However, this seems to get flagged since it's preserved 1:1 in the output bytecode by certain scanners
     // Instead, we use an empty `file:` URL. This will still perform `pathname` normalization, search parameter parsing
     // encoding, and all other logic, except the logic that applies to hostnames and protocols, and also not leave a
     // dummy URL in the output bytecode
-    const parsed = new URL(path, 'file:')
-    pathname = parsed.pathname
-    hash = parsed.hash
+    const parsed = new URL(path, "file:");
+    pathname = parsed.pathname;
+    hash = parsed.hash;
   } catch {
     // Do nothing with invalid URLs.
   }
 
-  const withoutBaseUrl = stripBaseUrl(pathname, baseUrl)
+  const withoutBaseUrl = stripBaseUrl(pathname, baseUrl);
   return {
     path,
     // Make sure there is a trailing slash
     // The slashes are at the end, not the beginning
-    nonstandardPathname: withoutBaseUrl.replace(/^\/+/g, '').replace(/\/+$/g, '') + '/',
+    nonstandardPathname: withoutBaseUrl.replace(/^\/+/g, "").replace(/\/+$/g, "") + "/",
     hash,
     pathWithoutGroups,
-  }
+  };
 }
 
 export function matchForEmptyPath(configs: RouteConfig[]) {
@@ -71,45 +71,45 @@ export function matchForEmptyPath(configs: RouteConfig[]) {
         // Collapse all levels of group segments before testing.
         // This enables `app/(one)/(two)/index.js` to be matched.
         path: stripGroupSegmentsFromPath(value.path),
-      }
-    })
+      };
+    });
 
   const match =
     leafNodes.find(
       (config) =>
         // NOTE: Test leaf node index routes that either don't have a regex or match an empty string.
-        config.path === '' && (!config.regex || config.regex.test(''))
+        config.path === "" && (!config.regex || config.regex.test("")),
     ) ??
     leafNodes.find(
       (config) =>
         // NOTE: Test leaf node dynamic routes that match an empty string.
-        config.path.startsWith(':') && config.regex!.test('')
+        config.path.startsWith(":") && config.regex!.test(""),
     ) ??
     // NOTE: Test leaf node deep dynamic routes that match a slash.
     // This should be done last to enable dynamic routes having a higher priority.
-    leafNodes.find((config) => config.path.startsWith('*') && config.regex!.test('/'))
+    leafNodes.find((config) => config.path.startsWith("*") && config.regex!.test("/"));
 
-  return match
+  return match;
 }
 
 export function appendIsInitial(initialRoutes: InitialRouteConfig[]) {
   const resolvedInitialPatterns = initialRoutes.map((route) =>
-    joinPaths(...route.parentScreens, route.initialRouteName)
-  )
+    joinPaths(...route.parentScreens, route.initialRouteName),
+  );
 
   return (config: RouteConfig) => {
     // TODO: Probably a safer way to do this
     // Mark initial routes to give them potential priority over other routes that match.
-    config.isInitial = resolvedInitialPatterns.includes(config.routeNames.join('/'))
-    return config
-  }
+    config.isInitial = resolvedInitialPatterns.includes(config.routeNames.join("/"));
+    return config;
+  };
 }
 
 const joinPaths = (...paths: string[]): string =>
   ([] as string[])
-    .concat(...paths.map((p) => p.split('/')))
+    .concat(...paths.map((p) => p.split("/")))
     .filter(Boolean)
-    .join('/')
+    .join("/");
 
 export function getRouteConfigSorter(previousSegments: string[] = []) {
   return function sortConfigs(a: RouteConfig, b: RouteConfig) {
@@ -120,7 +120,7 @@ export function getRouteConfigSorter(previousSegments: string[] = []) {
     // If 2 patterns are same, move the one with less route names up
     // This is an error state, so it's only useful for consistent error messages
     if (a.pattern === b.pattern) {
-      return b.routeNames.join('>').localeCompare(a.routeNames.join('>'))
+      return b.routeNames.join(">").localeCompare(a.routeNames.join(">"));
     }
 
     /*
@@ -137,47 +137,47 @@ export function getRouteConfigSorter(previousSegments: string[] = []) {
      * NOTE: Is this a feature we want? I'm unsure if this is a gimmick or a feature.
      */
     if (a.pattern.startsWith(b.pattern) && !b.isIndex) {
-      return -1
+      return -1;
     }
 
     if (b.pattern.startsWith(a.pattern) && !a.isIndex) {
-      return 1
+      return 1;
     }
 
     /*
      * Static routes should always be higher than dynamic and layout routes.
      */
-    if (a.type === 'static' && b.type !== 'static') {
-      return -1
+    if (a.type === "static" && b.type !== "static") {
+      return -1;
     }
-    if (a.type !== 'static' && b.type === 'static') {
-      return 1
+    if (a.type !== "static" && b.type === "static") {
+      return 1;
     }
 
     /*
      * If the routes have any static segments, the one with the most static segments should be higher
      */
     if (a.staticPartCount !== b.staticPartCount) {
-      return b.staticPartCount - a.staticPartCount
+      return b.staticPartCount - a.staticPartCount;
     }
 
     /*
      * If both are static/dynamic or a layout file, then we check group similarity
      */
     const similarToPreviousA = previousSegments.filter((value, index) => {
-      return value === a.expandedRouteNames[index] && value.startsWith('(') && value.endsWith(')')
-    })
+      return value === a.expandedRouteNames[index] && value.startsWith("(") && value.endsWith(")");
+    });
 
     const similarToPreviousB = previousSegments.filter((value, index) => {
-      return value === b.expandedRouteNames[index] && value.startsWith('(') && value.endsWith(')')
-    })
+      return value === b.expandedRouteNames[index] && value.startsWith("(") && value.endsWith(")");
+    });
 
     if (
       (similarToPreviousA.length > 0 || similarToPreviousB.length > 0) &&
       similarToPreviousA.length !== similarToPreviousB.length
     ) {
       // One matches more than the other, so pick the one that matches more
-      return similarToPreviousB.length - similarToPreviousA.length
+      return similarToPreviousB.length - similarToPreviousA.length;
     }
 
     /*
@@ -186,66 +186,66 @@ export function getRouteConfigSorter(previousSegments: string[] = []) {
     for (let i = 0; i < Math.max(a.parts.length, b.parts.length); i++) {
       // if b is longer, b get higher priority
       if (a.parts[i] == null) {
-        return 1
+        return 1;
       }
       // if a is longer, a get higher priority
       if (b.parts[i] == null) {
-        return -1
+        return -1;
       }
 
-      const aWildCard = a.parts[i].startsWith('*')
-      const bWildCard = b.parts[i].startsWith('*')
+      const aWildCard = a.parts[i].startsWith("*");
+      const bWildCard = b.parts[i].startsWith("*");
       // if both are wildcard we compare next component
       if (aWildCard && bWildCard) {
-        const aNotFound = a.parts[i].match(/^[*]not-found$/)
-        const bNotFound = b.parts[i].match(/^[*]not-found$/)
+        const aNotFound = a.parts[i].match(/^[*]not-found$/);
+        const bNotFound = b.parts[i].match(/^[*]not-found$/);
 
         if (aNotFound && bNotFound) {
-          continue
+          continue;
         }
         if (aNotFound) {
-          return 1
+          return 1;
         }
         if (bNotFound) {
-          return -1
+          return -1;
         }
-        continue
+        continue;
       }
       // if only a is wild card, b get higher priority
       if (aWildCard) {
-        return 1
+        return 1;
       }
       // if only b is wild card, a get higher priority
       if (bWildCard) {
-        return -1
+        return -1;
       }
 
-      const aSlug = a.parts[i].startsWith(':')
-      const bSlug = b.parts[i].startsWith(':')
+      const aSlug = a.parts[i].startsWith(":");
+      const bSlug = b.parts[i].startsWith(":");
       // if both are wildcard we compare next component
       if (aSlug && bSlug) {
-        const aNotFound = a.parts[i].match(/^[*]not-found$/)
-        const bNotFound = b.parts[i].match(/^[*]not-found$/)
+        const aNotFound = a.parts[i].match(/^[*]not-found$/);
+        const bNotFound = b.parts[i].match(/^[*]not-found$/);
 
         if (aNotFound && bNotFound) {
-          continue
+          continue;
         }
         if (aNotFound) {
-          return 1
+          return 1;
         }
         if (bNotFound) {
-          return -1
+          return -1;
         }
 
-        continue
+        continue;
       }
       // if only a is wild card, b get higher priority
       if (aSlug) {
-        return 1
+        return 1;
       }
       // if only b is wild card, a get higher priority
       if (bSlug) {
-        return -1
+        return -1;
       }
     }
 
@@ -265,27 +265,27 @@ export function getRouteConfigSorter(previousSegments: string[] = []) {
      * that group. The current work around is to ways provide initialRouteName for all groups
      */
     if (a.isInitial && !b.isInitial) {
-      return -1
+      return -1;
     }
     if (!a.isInitial && b.isInitial) {
-      return 1
+      return 1;
     }
 
-    return b.parts.length - a.parts.length
-  }
+    return b.parts.length - a.parts.length;
+  };
 }
 
 export function formatRegexPattern(it: string): string {
   // Allow spaces in file path names.
-  it = it.replace(' ', '%20')
+  it = it.replace(" ", "%20");
 
-  if (it.startsWith(':')) {
+  if (it.startsWith(":")) {
     // TODO: Remove unused match group
-    return `(([^/]+\\/)${it.endsWith('?') ? '?' : ''})`
+    return `(([^/]+\\/)${it.endsWith("?") ? "?" : ""})`;
   }
 
-  if (it.startsWith('*')) {
-    return `((.*\\/)${it.endsWith('?') ? '?' : ''})`
+  if (it.startsWith("*")) {
+    return `((.*\\/)${it.endsWith("?") ? "?" : ""})`;
   }
 
   // Strip groups from the matcher
@@ -293,17 +293,17 @@ export function formatRegexPattern(it: string): string {
     // Groups are optional segments
     // this enables us to match `/bar` and `/(foo)/bar` for the same route
     // NOTE(EvanBacon): Ignore this match in the regex to avoid capturing the group
-    return `(?:${escape(it)}\\/)?`
+    return `(?:${escape(it)}\\/)?`;
   }
 
-  return escape_(it) + `\\/`
+  return escape_(it) + `\\/`;
 }
 
 export function decodeURIComponentSafe(str: string) {
   try {
-    return decodeURIComponent(str)
+    return decodeURIComponent(str);
   } catch {
-    return str
+    return str;
   }
 }
 
@@ -311,50 +311,50 @@ export function decodeURIComponentSafe(str: string) {
  * In One, the params are available at all levels of the routing config
  */
 export function populateParams(routes?: ParsedRoute[], params?: Record<string, any>) {
-  if (!routes || !params || Object.keys(params).length === 0) return
+  if (!routes || !params || Object.keys(params).length === 0) return;
 
   for (const route of routes) {
-    Object.assign(route, { params })
+    Object.assign(route, { params });
   }
 
-  return routes
+  return routes;
 }
 
 export function createConfigItemAdditionalProperties(
   screen: string,
   pattern: string,
   routeNames: string[],
-  config: Record<string, any> = {}
-): Omit<AdditionalRouteConfig, 'isInitial'> {
-  const parts: string[] = []
-  let isDynamic = false
-  let staticPartCount = 0
-  const isIndex = screen === 'index' || screen.endsWith('/index')
+  config: Record<string, any> = {},
+): Omit<AdditionalRouteConfig, "isInitial"> {
+  const parts: string[] = [];
+  let isDynamic = false;
+  let staticPartCount = 0;
+  const isIndex = screen === "index" || screen.endsWith("/index");
 
-  for (const part of pattern.split('/')) {
+  for (const part of pattern.split("/")) {
     if (part) {
       // If any part is dynamic, then the route is dynamic
       const isDynamicPart =
-        part.startsWith(':') || part.startsWith('*') || part.includes('*not-found')
+        part.startsWith(":") || part.startsWith("*") || part.includes("*not-found");
 
-      isDynamic ||= isDynamicPart
+      isDynamic ||= isDynamicPart;
 
       if (!matchGroupName(part)) {
-        parts.push(part)
+        parts.push(part);
 
         if (!isDynamicPart) {
-          staticPartCount++
+          staticPartCount++;
         }
       }
     }
   }
 
-  const hasChildren = config.screens ? !!Object.keys(config.screens)?.length : false
-  const type = hasChildren ? 'layout' : isDynamic ? 'dynamic' : 'static'
+  const hasChildren = config.screens ? !!Object.keys(config.screens)?.length : false;
+  const type = hasChildren ? "layout" : isDynamic ? "dynamic" : "static";
 
   if (isIndex) {
-    parts.push('index')
-    staticPartCount++
+    parts.push("index");
+    staticPartCount++;
   }
 
   return {
@@ -363,56 +363,56 @@ export function createConfigItemAdditionalProperties(
     hasChildren,
     parts,
     staticPartCount,
-    userReadableName: [...routeNames.slice(0, -1), config.path || screen].join('/'),
+    userReadableName: [...routeNames.slice(0, -1), config.path || screen].join("/"),
     expandedRouteNames: routeNames.flatMap((name) => {
-      return name.split('/')
+      return name.split("/");
     }),
-  }
+  };
 }
 
 export function parseQueryParamsExtended(
   path: string,
   route: ParsedRoute,
   parseConfig?: Record<string, (value: string) => any>,
-  hash?: string
+  hash?: string,
 ) {
-  const searchParams = new URL(path, 'file:').searchParams
-  const params: Record<string, string | string[]> = Object.create(null)
+  const searchParams = new URL(path, "file:").searchParams;
+  const params: Record<string, string | string[]> = Object.create(null);
 
   if (hash) {
-    params['#'] = hash.slice(1)
+    params["#"] = hash.slice(1);
   }
 
   for (const name of searchParams.keys()) {
     if (route.params?.[name]) {
-      if (process.env.NODE_ENV !== 'production') {
+      if (process.env.NODE_ENV !== "production") {
         console.warn(
-          `Route '/${route.name}' with param '${name}' was specified both in the path and as a param, removing from path`
-        )
+          `Route '/${route.name}' with param '${name}' was specified both in the path and as a param, removing from path`,
+        );
       }
     } else {
       // biome-ignore lint/suspicious/noPrototypeBuiltins: forked code from react-navigation
       const values = parseConfig?.hasOwnProperty(name)
         ? searchParams.getAll(name).map((value) => parseConfig[name](value))
-        : searchParams.getAll(name)
+        : searchParams.getAll(name);
 
       // searchParams.getAll returns an array.
       // if we only have a single value, and its not an array param, we need to extract the value
-      params[name] = values.length === 1 ? values[0] : values
+      params[name] = values.length === 1 ? values[0] : values;
     }
   }
 
-  return Object.keys(params).length ? params : undefined
+  return Object.keys(params).length ? params : undefined;
 }
 
 export function stripBaseUrl(
   path: string,
-  baseUrl: string | undefined = process.env.EXPO_BASE_URL
+  baseUrl: string | undefined = process.env.EXPO_BASE_URL,
 ) {
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== "development") {
     if (baseUrl) {
-      return path.replace(/^\/+/g, '/').replace(new RegExp(`^\\/?${escape(baseUrl)}`, 'g'), '')
+      return path.replace(/^\/+/g, "/").replace(new RegExp(`^\\/?${escape(baseUrl)}`, "g"), "");
     }
   }
-  return path
+  return path;
 }

@@ -1,14 +1,14 @@
-import { View } from '@tamagui/core'
-import React, { useState } from 'react'
-import type { ViewProps } from 'tamagui'
-import { StatusBadgePopover } from '../../components/StatusBadgePopover'
+import { View } from "@tamagui/core";
+import React, { useState } from "react";
+import type { ViewProps } from "tamagui";
+import { StatusBadgePopover } from "../../components/StatusBadgePopover";
 
 export const OneBall = (props) => {
-  const scaleDownBy = (1 / 20) * (props.size ?? 1)
+  const scaleDownBy = (1 / 20) * (props.size ?? 1);
   const size = {
     width: 590 * scaleDownBy,
     height: 590 * scaleDownBy,
-  }
+  };
 
   return (
     <svg
@@ -17,7 +17,7 @@ export const OneBall = (props) => {
       {...props}
       style={{
         borderRadius: 1000,
-        overflow: 'hidden',
+        overflow: "hidden",
         ...size,
         ...props.style,
       }}
@@ -93,16 +93,16 @@ export const OneBall = (props) => {
         </g>
       </svg>
     </svg>
-  )
-}
+  );
+};
 
 export function OneLogo({
   size = 1,
   animate,
   ...props
 }: ViewProps & { size?: number; animate?: boolean }) {
-  const [start, setStart] = React.useState(false)
-  const scaleDownBy = 0.12 * size
+  const [start, setStart] = React.useState(false);
+  const scaleDownBy = 0.12 * size;
 
   return (
     <View
@@ -115,11 +115,11 @@ export function OneLogo({
       transformOrigin="left top"
       onMouseEnter={() => {
         if (animate) {
-          setStart(true)
+          setStart(true);
         }
       }}
       onMouseLeave={() => {
-        setStart(false)
+        setStart(false);
       }}
       {...props}
     >
@@ -143,7 +143,7 @@ export function OneLogo({
       <OneBall
         size={1.36 * size}
         style={{
-          position: 'absolute',
+          position: "absolute",
           transform: `translateY(${83 * size}px) translateX(${198 * size}px)`,
           zIndex: -1,
         }}
@@ -163,14 +163,14 @@ export function OneLogo({
         <StatusBadgePopover is="beta" />
       </View>
     </View>
-  )
+  );
 }
 
 function OneBallAnimation({ start, size: sizeProp = 1 }: { start: boolean; size?: number }) {
-  const [hovered, setHovered] = useState(false)
-  const [step, setStep] = React.useState(0)
-  const size = 76 * sizeProp
-  const balls = hovered ? 16 : 1
+  const [hovered, setHovered] = useState(false);
+  const [step, setStep] = React.useState(0);
+  const size = 76 * sizeProp;
+  const balls = hovered ? 16 : 1;
 
   React.useEffect(() => {
     if (!start) {
@@ -178,26 +178,26 @@ function OneBallAnimation({ start, size: sizeProp = 1 }: { start: boolean; size?
         // finish rotation
         const tm = setInterval(() => {
           setStep((prev) => {
-            const next = (prev + 1) % balls
+            const next = (prev + 1) % balls;
             if (next === 0) {
-              clearTimeout(tm as any)
+              clearTimeout(tm as any);
             }
-            return next
-          })
-        }, 100)
+            return next;
+          });
+        }, 100);
         return () => {
-          clearTimeout(tm as any)
-        }
+          clearTimeout(tm as any);
+        };
       }
-      return
+      return;
     }
     const tm = setInterval(() => {
-      setStep((prev) => (prev + 1) % balls)
-    }, 80)
+      setStep((prev) => (prev + 1) % balls);
+    }, 80);
     return () => {
-      clearTimeout(tm as any)
-    }
-  }, [balls, start])
+      clearTimeout(tm as any);
+    };
+  }, [balls, start]);
 
   return (
     <View
@@ -215,7 +215,7 @@ function OneBallAnimation({ start, size: sizeProp = 1 }: { start: boolean; size?
         return (
           <img
             style={{
-              position: 'absolute',
+              position: "absolute",
               top: 0,
               left: 0,
               opacity: step === index ? 1 : 0,
@@ -226,8 +226,8 @@ function OneBallAnimation({ start, size: sizeProp = 1 }: { start: boolean; size?
             src={`/ball-${index + 1}.svg`}
             alt="One Logo Pool Ball"
           />
-        )
+        );
       })}
     </View>
-  )
+  );
 }

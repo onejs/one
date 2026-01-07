@@ -1,13 +1,13 @@
-import { useParams, usePathname } from 'one'
-import { View, Text, H1 } from 'tamagui'
+import { useParams, usePathname } from "one";
+import { View, Text, H1 } from "tamagui";
 
 type Props = {
-  pageName: string
-}
+  pageName: string;
+};
 
 export function HooksTestingPageContent({ pageName }: Props) {
-  const pathname = usePathname()
-  const params = useParams()
+  const pathname = usePathname();
+  const params = useParams();
 
   return (
     <View>
@@ -19,5 +19,5 @@ export function HooksTestingPageContent({ pageName }: Props) {
         Page `useParams()`: <Text testID="page-useParams">{JSON.stringify(params)}</Text>
       </Text>
     </View>
-  )
+  );
 }

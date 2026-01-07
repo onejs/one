@@ -1,10 +1,10 @@
-import prettyFormat from 'pretty-format'
+import prettyFormat from "pretty-format";
 
-import { getDevServerLocation } from './getDevServerLocation'
-import { loadHMRClient } from './hmr-client'
+import { getDevServerLocation } from "./getDevServerLocation";
+import { loadHMRClient } from "./hmr-client";
 
 // force import hmr client hacky
-loadHMRClient()
+loadHMRClient();
 
 /**
  * With Webpack we don't use built-in metro-specific HMR client,
@@ -18,31 +18,31 @@ loadHMRClient()
  */
 
 class DevServerClient {
-  socket?: WebSocket
-  buffer: Array<{ level: string; data: any[] }> = []
+  socket?: WebSocket;
+  buffer: Array<{ level: string; data: any[] }> = [];
 
   constructor() {
     const initSocket = () => {
-      const address = `ws://${getDevServerLocation().host}/__client`
-      this.socket = new WebSocket(address)
+      const address = `ws://${getDevServerLocation().host}/__client`;
+      this.socket = new WebSocket(address);
 
       const onClose = (event: Event) => {
         console.warn(
-          'Disconnected from the Dev Server:',
-          (event as unknown as { message: string | null }).message
-        )
-        this.socket = undefined
-      }
+          "Disconnected from the Dev Server:",
+          (event as unknown as { message: string | null }).message,
+        );
+        this.socket = undefined;
+      };
 
-      this.socket.onclose = onClose
-      this.socket.onerror = onClose
+      this.socket.onclose = onClose;
+      this.socket.onerror = onClose;
       this.socket.onopen = () => {
-        this.flushBuffer()
-      }
-    }
+        this.flushBuffer();
+      };
+    };
 
-    if (process.env.NODE_ENV === 'development') {
-      initSocket()
+    if (process.env.NODE_ENV === "development") {
+      initSocket();
     }
   }
 
@@ -50,10 +50,10 @@ class DevServerClient {
     try {
       this.socket?.send(
         JSON.stringify({
-          type: 'client-log',
+          type: "client-log",
           level,
           data: data.map((item: any) =>
-            typeof item === 'string'
+            typeof item === "string"
               ? item
               : prettyFormat(item, {
                   escapeString: true,
@@ -64,34 +64,34 @@ class DevServerClient {
                     // @ts-expect-error
                     prettyFormat.plugins.ReactElement,
                   ],
-                })
+                }),
           ),
-        })
-      )
+        }),
+      );
     } catch {
       try {
         this.socket?.send(
           JSON.stringify({
-            type: 'client-log',
+            type: "client-log",
             level,
             data: data.map((item: any, index) => {
               try {
-                return typeof item === 'string' ? item : JSON.stringify(item)
+                return typeof item === "string" ? item : JSON.stringify(item);
               } catch (err) {
-                return `Error stringifying item at index ${index} - ${item} - ${err}`
+                return `Error stringifying item at index ${index} - ${item} - ${err}`;
               }
             }),
-          })
-        )
+          }),
+        );
       } catch (err) {
         try {
           this.socket?.send(
             JSON.stringify({
-              type: 'client-log',
-              level: 'error',
-              data: ['error sending client log: ' + err],
-            })
-          )
+              type: "client-log",
+              level: "error",
+              data: ["error sending client log: " + err],
+            }),
+          );
         } catch {
           // final err
         }
@@ -101,30 +101,30 @@ class DevServerClient {
   }
 
   flushBuffer() {
-    if (globalThis['__vxrnTmpLogs']) {
-      globalThis['__vxrnTmpLogs'].forEach(({ level, data }) => {
-        this.buffer.push({ level, data })
-      })
-      delete globalThis['__vxrnTmpLogs']
+    if (globalThis["__vxrnTmpLogs"]) {
+      globalThis["__vxrnTmpLogs"].forEach(({ level, data }) => {
+        this.buffer.push({ level, data });
+      });
+      delete globalThis["__vxrnTmpLogs"];
     }
 
     for (const { level, data } of this.buffer) {
-      this.send(level, data)
+      this.send(level, data);
     }
-    this.buffer = []
+    this.buffer = [];
   }
 
   log(level: string, data: any[]) {
-    if (level === 'groupEnd') {
-      return
+    if (level === "groupEnd") {
+      return;
     }
 
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
-      this.flushBuffer()
-      this.send(level, data)
+      this.flushBuffer();
+      this.send(level, data);
     } else {
-      if (globalThis['__vxrnTmpLogs']) return
-      this.buffer.push({ level, data })
+      if (globalThis["__vxrnTmpLogs"]) return;
+      this.buffer.push({ level, data });
     }
   }
 
@@ -134,12 +134,12 @@ class DevServerClient {
   }
 }
 
-export const client = new DevServerClient()
+export const client = new DevServerClient();
 
-export const setup = () => {}
-export const enable = () => {}
-export const disable = () => {}
-export const registerBundle = () => {}
+export const setup = () => {};
+export const enable = () => {};
+export const disable = () => {};
+export const registerBundle = () => {};
 export const log = (level: string, data: any[]) => {
-  client.log(level, data)
-}
+  client.log(level, data);
+};

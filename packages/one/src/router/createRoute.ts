@@ -1,11 +1,11 @@
-import { useActiveParams, useParams, usePathname } from '../hooks'
-import type { OneRouter } from '../interfaces/router'
-import type { LoaderProps } from '../types'
+import { useActiveParams, useParams, usePathname } from "../hooks";
+import type { OneRouter } from "../interfaces/router";
+import type { LoaderProps } from "../types";
 
 export function createRoute<Path extends string = string>() {
-  type Route = OneRouter.RouteType<Path>
-  type Params = Route['Params']
-  type TypedLoaderProps = LoaderProps<Params>
+  type Route = OneRouter.RouteType<Path>;
+  type Params = Route["Params"];
+  type TypedLoaderProps = LoaderProps<Params>;
 
   return {
     useParams: () => useParams<Params>(),
@@ -22,10 +22,10 @@ export function createRoute<Path extends string = string>() {
      * })
      */
     createLoader: <T>(fn: (props: TypedLoaderProps) => T) => fn,
-  }
+  };
 }
 
-const defaults = createRoute()
+const defaults = createRoute();
 
 const getProxy = () =>
   new Proxy(
@@ -33,20 +33,20 @@ const getProxy = () =>
     {
       get(target, key) {
         if (Reflect.has(defaults, key)) {
-          return Reflect.get(defaults, key)
+          return Reflect.get(defaults, key);
         }
 
-        return getProxy()
+        return getProxy();
       },
-    }
-  )
+    },
+  );
 
-const postIdRoute = createRoute<'/feed/[id]'>()
+const postIdRoute = createRoute<"/feed/[id]">();
 
 export const route = getProxy() as {
   feed: {
-    $id: typeof postIdRoute
-  }
-  notifications: {}
-  profile: {}
-}
+    $id: typeof postIdRoute;
+  };
+  notifications: {};
+  profile: {};
+};

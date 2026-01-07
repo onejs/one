@@ -1,10 +1,6 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList } from "react-native";
 
-const data = [
-  'First item in flat list',
-  'Second item in flat list',
-  'Third item in flat list',
-]
+const data = ["First item in flat list", "Second item in flat list", "Third item in flat list"];
 
 export function TestComponentWithFlatList() {
   return (
@@ -16,5 +12,5 @@ export function TestComponentWithFlatList() {
         )}
       />
     </View>
-  )
+  );
 }

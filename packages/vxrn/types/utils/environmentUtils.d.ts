@@ -1,5 +1,5 @@
 type PartialEnvironment = {
-    name: string;
+  name: string;
 };
 export declare function isWebEnvironment(environment: PartialEnvironment): boolean;
 export declare function isNativeEnvironment(environment: PartialEnvironment): boolean;

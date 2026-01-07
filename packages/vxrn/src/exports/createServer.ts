@@ -1,54 +1,54 @@
-import { serveStatic } from '@hono/node-server/serve-static'
-import { compress } from 'hono/compress'
-import { dirname, join } from 'node:path'
-import type { VXRNServeOptions } from '../types'
-import type { Hono } from 'hono'
-import { serveStaticAssets } from './serveStaticAssets'
+import { serveStatic } from "@hono/node-server/serve-static";
+import { compress } from "hono/compress";
+import { dirname, join } from "node:path";
+import type { VXRNServeOptions } from "../types";
+import type { Hono } from "hono";
+import { serveStaticAssets } from "./serveStaticAssets";
 
 export const applyCompression = (app: Hono, options: VXRNServeOptions) => {
   if (options.compress !== false) {
-    app.use(compress())
+    app.use(compress());
   }
-}
+};
 
 export const createProdServer = async (
   app: Hono,
   options: VXRNServeOptions,
-  { skipCompression }: { skipCompression?: boolean } = {}
+  { skipCompression }: { skipCompression?: boolean } = {},
 ) => {
   // when called via serve(), compression is already applied before beforeRegisterRoutes
   if (!skipCompression) {
-    applyCompression(app, options)
+    applyCompression(app, options);
   }
 
-  app.use('*', async (context, next) => {
-    return await serveStaticAssets({ context, next })
-  })
+  app.use("*", async (context, next) => {
+    return await serveStaticAssets({ context, next });
+  });
 
   app.notFound(async (c) => {
-    const path = c.req.path
-    let currentDir = dirname(path)
+    const path = c.req.path;
+    let currentDir = dirname(path);
 
     while (true) {
       const response = await serveStatic({
-        root: './dist/client',
-        path: join(currentDir, '+not-found.html'),
-      })(c, async () => {})
+        root: "./dist/client",
+        path: join(currentDir, "+not-found.html"),
+      })(c, async () => {});
 
       if (response && response.body) {
-        c.status(404)
-        return c.body(response.body)
+        c.status(404);
+        return c.body(response.body);
       }
 
-      const nextDir = dirname(currentDir)
+      const nextDir = dirname(currentDir);
       if (nextDir === currentDir) {
-        break
+        break;
       }
-      currentDir = nextDir
+      currentDir = nextDir;
     }
 
-    return c.text('404 Not Found', { status: 404 })
-  })
+    return c.text("404 Not Found", { status: 404 });
+  });
 
-  return app
-}
+  return app;
+};

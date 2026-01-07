@@ -1,5 +1,5 @@
-import { Text } from 'react-native'
+import { Text } from "react-native";
 
 export default () => {
-  return <Text>middleware-route</Text>
-}
+  return <Text>middleware-route</Text>;
+};

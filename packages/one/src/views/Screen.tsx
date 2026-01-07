@@ -1,5 +1,5 @@
-import { useIsomorphicLayoutEffect } from '@vxrn/use-isomorphic-layout-effect'
-import { useNavigation } from '../router/useNavigation'
+import { useIsomorphicLayoutEffect } from "@vxrn/use-isomorphic-layout-effect";
+import { useNavigation } from "../router/useNavigation";
 
 export type ScreenProps<TOptions extends Record<string, any> = Record<string, any>> = {
   /**
@@ -9,14 +9,14 @@ export type ScreenProps<TOptions extends Record<string, any> = Record<string, an
    * This should not be used inside of a Layout component.
    * @example `/(root)` maps to a layout route `/app/(root).tsx`.
    */
-  name?: string
-  initialParams?: { [key: string]: any }
-  options?: TOptions
-}
+  name?: string;
+  initialParams?: { [key: string]: any };
+  options?: TOptions;
+};
 
 /** Component for setting the current screen's options dynamically. */
 export function Screen<TOptions extends object = object>({ name, options }: ScreenProps<TOptions>) {
-  const navigation = useNavigation(name)
+  const navigation = useNavigation(name);
 
   useIsomorphicLayoutEffect(() => {
     if (
@@ -25,9 +25,9 @@ export function Screen<TOptions extends object = object>({ name, options }: Scre
       // https://github.com/expo/router/issues/452
       Object.keys(options).length
     ) {
-      navigation.setOptions(options)
+      navigation.setOptions(options);
     }
-  }, [navigation, options])
+  }, [navigation, options]);
 
-  return null
+  return null;
 }

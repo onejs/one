@@ -1,20 +1,20 @@
-import { desc, eq, sql } from 'drizzle-orm'
-import { type Href, type LoaderProps, SafeAreaView, getURL, href, useLoader } from 'one'
-import { ScrollView } from 'react-native'
-import { isWeb } from 'tamagui'
-import { db } from '~/code/db/connection'
-import { follows, likes, posts, reposts, users } from '~/code/db/schema'
-import { NotificationCard } from '~/code/notifications/NotificationCard'
-import { PageContainer } from '~/code/ui/PageContainer'
+import { desc, eq, sql } from "drizzle-orm";
+import { type Href, type LoaderProps, SafeAreaView, getURL, href, useLoader } from "one";
+import { ScrollView } from "react-native";
+import { isWeb } from "tamagui";
+import { db } from "~/code/db/connection";
+import { follows, likes, posts, reposts, users } from "~/code/db/schema";
+import { NotificationCard } from "~/code/notifications/NotificationCard";
+import { PageContainer } from "~/code/ui/PageContainer";
 
-type NotificationType = 'like' | 'follow' | 'repost'
+type NotificationType = "like" | "follow" | "repost";
 
 export async function loader({ path }: LoaderProps) {
   try {
-    const url = new URL(getURL() + path)
-    const page = Number(url.searchParams.get('page') || '1')
-    const limit = Number(url.searchParams.get('limit') || '50')
-    const offset = (page - 1) * limit
+    const url = new URL(getURL() + path);
+    const page = Number(url.searchParams.get("page") || "1");
+    const limit = Number(url.searchParams.get("limit") || "50");
+    const offset = (page - 1) * limit;
 
     // Fetch a random user from the database
     const randomUserQuery = db
@@ -25,15 +25,15 @@ export async function loader({ path }: LoaderProps) {
       })
       .from(users)
       .orderBy(sql`RANDOM()`)
-      .limit(1)
+      .limit(1);
 
-    const randomUser = await randomUserQuery
+    const randomUser = await randomUserQuery;
 
     if (randomUser.length === 0) {
-      throw new Error('No users found in the database')
+      throw new Error("No users found in the database");
     }
 
-    const USER_ID = randomUser[0].id
+    const USER_ID = randomUser[0].id;
 
     const notificationsQuery = db
       .select({
@@ -43,7 +43,7 @@ export async function loader({ path }: LoaderProps) {
         postId: posts.id,
         postContent: posts.content,
         createdAt: sql`${likes.createdAt} as created_at`,
-        actionType: sql`'like'`.as('actionType'),
+        actionType: sql`'like'`.as("actionType"),
       })
       .from(likes)
       .leftJoin(users, eq(users.id, likes.userId))
@@ -58,12 +58,12 @@ export async function loader({ path }: LoaderProps) {
             postId: posts.id,
             postContent: posts.content,
             createdAt: sql<Date>`${reposts.createdAt} as created_at`,
-            actionType: sql<NotificationType>`'repost'`.as('actionType'),
+            actionType: sql<NotificationType>`'repost'`.as("actionType"),
           })
           .from(reposts)
           .leftJoin(users, eq(users.id, reposts.userId))
           .leftJoin(posts, eq(posts.id, reposts.postId))
-          .where(eq(posts.userId, USER_ID))
+          .where(eq(posts.userId, USER_ID)),
       )
       .union(
         // @ts-expect-error TODO
@@ -72,26 +72,26 @@ export async function loader({ path }: LoaderProps) {
             username: users.username,
             avatar: users.avatarUrl,
             userId: users.id,
-            postId: sql`NULL`.as('postId'),
-            postContent: sql`NULL`.as('postContent'),
+            postId: sql`NULL`.as("postId"),
+            postContent: sql`NULL`.as("postContent"),
             createdAt: sql<Date>`${follows.createdAt} as created_at`,
-            actionType: sql<NotificationType>`'follow'`.as('actionType'),
+            actionType: sql<NotificationType>`'follow'`.as("actionType"),
           })
           .from(follows)
           .leftJoin(users, eq(users.id, follows.followerId))
-          .where(eq(follows.followingId, USER_ID))
+          .where(eq(follows.followingId, USER_ID)),
       )
       .orderBy(desc(sql`created_at`))
       .limit(limit)
-      .offset(offset)
+      .offset(offset);
 
-    const notifications = await notificationsQuery
+    const notifications = await notificationsQuery;
 
     const formattedNotifications = notifications.map((notification) => ({
       action: notification.actionType as NotificationType,
       fromUser: {
         username: notification.username,
-        userLink: '/TODO' as Href,
+        userLink: "/TODO" as Href,
         avatar: notification.avatar,
       },
       post: notification.postId
@@ -101,30 +101,30 @@ export async function loader({ path }: LoaderProps) {
           }
         : null,
       createdAt: notification.createdAt as Date,
-    }))
+    }));
 
     return {
       notifications: formattedNotifications,
       total: notifications.length,
       page,
       limit,
-    }
+    };
   } catch (error) {
-    console.error(error)
-    throw new Error(`Failed to fetch notifications: ${(error as Error).message}`)
+    console.error(error);
+    throw new Error(`Failed to fetch notifications: ${(error as Error).message}`);
   }
 }
 
 export default function NotificationsPage() {
-  const { notifications } = useLoader(loader)
+  const { notifications } = useLoader(loader);
   const feed = notifications.map((item, i) => {
-    item.post?.postLink
-    return <NotificationCard key={i} {...item} />
-  })
+    item.post?.postLink;
+    return <NotificationCard key={i} {...item} />;
+  });
 
   return (
     <ScrollView>
       <PageContainer>{isWeb ? feed : <SafeAreaView>{feed}</SafeAreaView>}</PageContainer>
     </ScrollView>
-  )
+  );
 }

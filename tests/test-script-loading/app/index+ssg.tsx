@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { Link } from 'one'
+import { useState } from "react";
+import { Link } from "one";
 
 export default function HomePage() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div style={{ padding: 20 }}>
@@ -20,5 +20,5 @@ export default function HomePage() {
         Go to Other Page
       </Link>
     </div>
-  )
+  );
 }

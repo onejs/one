@@ -1,16 +1,16 @@
-import { Link, useLoader } from 'one'
-import { Text, YStack, H1, Paragraph } from 'tamagui'
+import { Link, useLoader } from "one";
+import { Text, YStack, H1, Paragraph } from "tamagui";
 
 export function loader() {
   return {
-    title: 'Home Page',
-    description: 'Welcome to the Routing Flicker Test App',
+    title: "Home Page",
+    description: "Welcome to the Routing Flicker Test App",
     timestamp: Date.now(),
-  }
+  };
 }
 
 export default function HomePage() {
-  const data = useLoader(loader)
+  const data = useLoader(loader);
 
   return (
     <YStack padding="$4" gap="$4">
@@ -55,5 +55,5 @@ export default function HomePage() {
         </YStack>
       </YStack>
     </YStack>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import { Slot } from 'one'
-import { Platform } from 'react-native'
+import { Slot } from "one";
+import { Platform } from "react-native";
 
 export default function Layout() {
-  if (Platform.OS === 'web') {
+  if (Platform.OS === "web") {
     return (
       <html lang="en-US">
         <meta charSet="utf-8" />
@@ -12,8 +12,8 @@ export default function Layout() {
 
         <Slot />
       </html>
-    )
+    );
   }
 
-  return <Slot />
+  return <Slot />;
 }

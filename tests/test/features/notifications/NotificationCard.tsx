@@ -1,27 +1,27 @@
-import { Paragraph, Text, YStack } from 'tamagui'
-import { type Href, Link } from 'one'
-import { Card } from '../ui/Card'
-import { Image } from '../ui/Image'
+import { Paragraph, Text, YStack } from "tamagui";
+import { type Href, Link } from "one";
+import { Card } from "../ui/Card";
+import { Image } from "../ui/Image";
 
 type NotificationItem = {
-  action: 'like' | 'repost' | 'follow'
+  action: "like" | "repost" | "follow";
   fromUser: {
-    username: string
-    userLink: Href
-    avatar: string
-  }
+    username: string;
+    userLink: Href;
+    avatar: string;
+  };
   post: {
-    postLink: Href
-    content: string
-  } | null
-  createdAt: string
-}
+    postLink: Href;
+    content: string;
+  } | null;
+  createdAt: string;
+};
 
-const actionVerbs: { [key in NotificationItem['action']]: string } = {
-  like: 'liked',
-  repost: 'reposted',
-  follow: 'followed',
-}
+const actionVerbs: { [key in NotificationItem["action"]]: string } = {
+  like: "liked",
+  repost: "reposted",
+  follow: "followed",
+};
 
 export const NotificationCard = (props: NotificationItem) => {
   return (
@@ -33,10 +33,10 @@ export const NotificationCard = (props: NotificationItem) => {
             <Text fontWeight="bold">{props.fromUser.username}</Text>
             &nbsp;
             {actionVerbs[props.action]}&nbsp;
-            {props.post ? 'your post.' : 'you.'}
+            {props.post ? "your post." : "you."}
           </Paragraph>
         </YStack>
       </Card>
     </Link>
-  )
-}
+  );
+};

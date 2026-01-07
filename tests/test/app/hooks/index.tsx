@@ -1,5 +1,5 @@
-import { View, H1 } from 'tamagui'
-import { HooksTestingLinks } from '~/features/hooks-testing/HooksTestingLinks'
+import { View, H1 } from "tamagui";
+import { HooksTestingLinks } from "~/features/hooks-testing/HooksTestingLinks";
 
 export default function HooksTestingIndexPage() {
   return (
@@ -8,5 +8,5 @@ export default function HooksTestingIndexPage() {
 
       <HooksTestingLinks />
     </View>
-  )
+  );
 }

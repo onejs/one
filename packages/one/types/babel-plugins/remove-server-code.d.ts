@@ -14,9 +14,9 @@
  * Options:
  * - routerRoot: The router root directory (e.g., 'app'). Only files in this directory are transformed.
  */
-import type { PluginObj } from '@babel/core';
+import type { PluginObj } from "@babel/core";
 type PluginOptions = {
-    routerRoot?: string;
+  routerRoot?: string;
 };
 declare function removeServerCodePlugin(_: unknown, options: PluginOptions): PluginObj;
 export default removeServerCodePlugin;

@@ -1,1 +1,1 @@
-export { useSystemScheme as useSystemTheme } from '@vxrn/color-scheme'
+export { useSystemScheme as useSystemTheme } from "@vxrn/color-scheme";

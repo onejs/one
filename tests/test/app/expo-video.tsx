@@ -6,4 +6,4 @@
 //   return <VideoView player={player} />
 // }
 
-export default () => null
+export default () => null;

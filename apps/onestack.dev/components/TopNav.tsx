@@ -1,36 +1,36 @@
-import { Search } from '@tamagui/lucide-icons'
-import { useContext, useRef } from 'react'
-import { Separator, styled, View, XStack, YStack } from 'tamagui'
-import { Link } from 'one'
-import { OneLogo } from '~/features/brand/Logo'
-import { StatusBadgePopover } from '~/components/StatusBadgePopover'
-import { SearchContext } from '~/features/search/SearchContext'
-import { HeaderMenu } from '~/features/site/HeaderMenu'
-import { SocialLinksRow } from '~/features/site/SocialLinksRow'
-import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
+import { Search } from "@tamagui/lucide-icons";
+import { useContext, useRef } from "react";
+import { Separator, styled, View, XStack, YStack } from "tamagui";
+import { Link } from "one";
+import { OneLogo } from "~/features/brand/Logo";
+import { StatusBadgePopover } from "~/components/StatusBadgePopover";
+import { SearchContext } from "~/features/search/SearchContext";
+import { HeaderMenu } from "~/features/site/HeaderMenu";
+import { SocialLinksRow } from "~/features/site/SocialLinksRow";
+import { ToggleThemeButton } from "~/features/theme/ThemeToggleButton";
 
 const SimpleButton = styled(View, {
-  role: 'button',
-  cursor: 'pointer',
-  pe: 'auto',
+  role: "button",
+  cursor: "pointer",
+  pe: "auto",
   w: 42,
   h: 42,
-  ai: 'center',
-  jc: 'center',
-  br: '$10',
+  ai: "center",
+  jc: "center",
+  br: "$10",
 
   hoverStyle: {
-    bg: '$color3',
+    bg: "$color3",
   },
 
   pressStyle: {
-    bg: '$color2',
+    bg: "$color2",
   },
-})
+});
 
 export const TopNav = () => {
-  const scrollParentRef = useRef<HTMLDivElement>(null)
-  const { onOpen } = useContext(SearchContext)
+  const scrollParentRef = useRef<HTMLDivElement>(null);
+  const { onOpen } = useContext(SearchContext);
 
   return (
     <>
@@ -46,12 +46,12 @@ export const TopNav = () => {
         pe="none"
         mx="auto"
         $md={{
-          px: '$5',
-          py: '$3',
+          px: "$5",
+          py: "$3",
           y: 20,
         }}
         $gtMd={{
-          jc: 'flex-end',
+          jc: "flex-end",
           top: 26,
           px: 25,
         }}
@@ -62,7 +62,7 @@ export const TopNav = () => {
           ai="center"
           pe="auto"
           $gtMd={{
-            display: 'none',
+            display: "none",
           }}
         >
           <Link href="/">
@@ -74,7 +74,7 @@ export const TopNav = () => {
               pointerEvents="none"
               y={-2}
               $gtMd={{
-                display: 'none',
+                display: "none",
               }}
             >
               <OneLogo size={0.5} animate />
@@ -88,7 +88,7 @@ export const TopNav = () => {
             containerType="normal"
             ai="center"
             jc="flex-end"
-            $sm={{ dsp: 'none' }}
+            $sm={{ dsp: "none" }}
             f={10}
           >
             <View
@@ -124,5 +124,5 @@ export const TopNav = () => {
         </XStack>
       </XStack>
     </>
-  )
-}
+  );
+};

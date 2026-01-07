@@ -17,4 +17,4 @@ export const GithubIcon = (props) => (
       clipRule="evenodd"
     ></path>
   </svg>
-)
+);

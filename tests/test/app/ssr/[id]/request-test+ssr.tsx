@@ -1,20 +1,20 @@
-import { type LoaderProps, useLoader } from 'one'
-import { Text, View } from 'tamagui'
+import { type LoaderProps, useLoader } from "one";
+import { Text, View } from "tamagui";
 
 export function loader(props: LoaderProps) {
   return {
     hasRequest: !!props.request,
     requestMethod: props.request?.method,
     requestUrl: props.request?.url ? new URL(props.request.url).pathname : undefined,
-    userAgent: props.request?.headers.get('user-agent'),
+    userAgent: props.request?.headers.get("user-agent"),
     path: props.path,
     params: props.params,
     id: props.params.id,
-  }
+  };
 }
 
 export default function RequestTestWithParamsSSR() {
-  const data = useLoader(loader)
+  const data = useLoader(loader);
 
   return (
     <View
@@ -40,5 +40,5 @@ export default function RequestTestWithParamsSSR() {
       <Text>ID:</Text>
       <Text id="id">{JSON.stringify(data.id)}</Text>
     </View>
-  )
-} 
+  );
+}

@@ -7,7 +7,10 @@ export declare function installExitHooks(asyncExitHook: AsyncExitHook): () => vo
  *
  * @see https://nodejs.org/docs/latest-v18.x/api/process.html#processgetactiveresourcesinfo
  */
-export declare function ensureProcessExitsAfterDelay(waitUntilExitMs?: number, startedAtMs?: number): void;
+export declare function ensureProcessExitsAfterDelay(
+  waitUntilExitMs?: number,
+  startedAtMs?: number,
+): void;
 /** memoizes an async function to prevent subsequent calls that might be invoked before the function has finished resolving. */
 export declare function guardAsync<V, T extends (...args: any[]) => Promise<V>>(fn: T): T;
 export declare function warn(...message: string[]): void;

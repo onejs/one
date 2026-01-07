@@ -2,19 +2,19 @@ import type {
   NavigationContainerRefWithCurrent,
   NavigationState,
   PartialState,
-} from '@react-navigation/core'
-import type { JSX, ReactNode } from 'react'
-import type { GestureResponderEvent, PressableProps, TextProps } from 'react-native'
+} from "@react-navigation/core";
+import type { JSX, ReactNode } from "react";
+import type { GestureResponderEvent, PressableProps, TextProps } from "react-native";
 
 export namespace OneRouter {
   export interface __routes<T extends string = string> extends Record<string, unknown> {}
 
   // making a simple helper that gives you everything for a route
   export type Route<Path> = {
-    Params: InputRouteParams<Path>
-    Props: { params: InputRouteParams<Path> }
-    Loader: (props: { params: InputRouteParams<Path> }) => any
-  }
+    Params: InputRouteParams<Path>;
+    Props: { params: InputRouteParams<Path> };
+    Loader: (props: { params: InputRouteParams<Path> }) => any;
+  };
 
   /**
    * Helper type to get route information including params and loader props.
@@ -28,45 +28,46 @@ export namespace OneRouter {
    * // Route.Params = { slug: string }
    * // Route.LoaderProps = { path: string; params: { slug: string }; request?: Request }
    */
-  export type RouteType<Path extends string> = Path extends keyof __routes['RouteTypes']
-    ? __routes['RouteTypes'][Path]
+  export type RouteType<Path extends string> = Path extends keyof __routes["RouteTypes"]
+    ? __routes["RouteTypes"][Path]
     : {
-        Params: InputRouteParams<Path>
-        LoaderProps: import('../types').LoaderProps<InputRouteParams<Path>>
-      }
+        Params: InputRouteParams<Path>;
+        LoaderProps: import("../types").LoaderProps<InputRouteParams<Path>>;
+      };
 
-  type StaticRoutes = __routes extends { StaticRoutes: string } ? __routes['StaticRoutes'] : string
+  type StaticRoutes = __routes extends { StaticRoutes: string } ? __routes["StaticRoutes"] : string;
 
-  type DynamicRoutes<T extends string> = __routes<T> extends { DynamicRoutes: any }
-    ? T extends __routes<infer _>['DynamicRoutes']
-      ? T
-      : never
-    : string
+  type DynamicRoutes<T extends string> =
+    __routes<T> extends { DynamicRoutes: any }
+      ? T extends __routes<infer _>["DynamicRoutes"]
+        ? T
+        : never
+      : string;
 
   export type DynamicRouteTemplate = __routes extends { DynamicRouteTemplate: string }
-    ? __routes['DynamicRouteTemplate']
-    : string
+    ? __routes["DynamicRouteTemplate"]
+    : string;
 
-  export type NavigationRef = NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>
+  export type NavigationRef = NavigationContainerRefWithCurrent<ReactNavigation.RootParamList>;
 
-  export type RelativePathString = `./${string}` | `../${string}` | '..'
-  export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes
-  export type ExternalPathString = `${string}:${string}`
-  export type OneRouterRoutes = DynamicRouteTemplate | StaticRoutes | RelativePathString
-  export type AllRoutes = OneRouterRoutes | ExternalPathString
+  export type RelativePathString = `./${string}` | `../${string}` | "..";
+  export type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;
+  export type ExternalPathString = `${string}:${string}`;
+  export type OneRouterRoutes = DynamicRouteTemplate | StaticRoutes | RelativePathString;
+  export type AllRoutes = OneRouterRoutes | ExternalPathString;
 
   export type LinkToOptions = {
-    scroll?: boolean
-  }
+    scroll?: boolean;
+  };
 
-  type SearchOrHash = `?${string}` | `#${string}`
+  type SearchOrHash = `?${string}` | `#${string}`;
 
   export type UnknownInputParams = Record<
     string,
     string | number | undefined | null | (string | number)[]
-  >
+  >;
 
-  type UnknownOutputParams = Record<string, string | string[]>
+  type UnknownOutputParams = Record<string, string | string[]>;
 
   /**
    * Return only the RoutePart of a string. If the string has multiple parts return never
@@ -84,26 +85,26 @@ export namespace OneRouter {
     ? never
     : S extends `${string}${SearchOrHash}`
       ? never
-      : S extends ''
+      : S extends ""
         ? never
         : S extends `(${string})`
           ? never
           : S extends `[${string}]`
             ? never
-            : S
+            : S;
 
   /**
    * Return only the CatchAll router part. If the string has search parameters or a hash return never
    */
   export type CatchAllRoutePart<S extends string> = S extends `${string}${SearchOrHash}`
     ? never
-    : S extends ''
+    : S extends ""
       ? never
       : S extends `${string}(${string})${string}`
         ? never
         : S extends `${string}[${string}]${string}`
           ? never
-          : S
+          : S;
 
   /**
    * Return the name of a route parameter
@@ -111,7 +112,7 @@ export namespace OneRouter {
    * 'test'      -> never
    * '[...test]' -> '...test'
    */
-  type IsParameter<Part> = Part extends `[${infer ParamName}]` ? ParamName : never
+  type IsParameter<Part> = Part extends `[${infer ParamName}]` ? ParamName : never;
 
   /**
    * Return a union of all raw parameter names. If there are no names return never
@@ -123,7 +124,7 @@ export namespace OneRouter {
    */
   type ParameterNames<Path> = Path extends `${infer PartA}/${infer PartB}`
     ? IsParameter<PartA> | ParameterNames<PartB>
-    : IsParameter<Path>
+    : IsParameter<Path>;
 
   /**
    * Returns all segments of a route.
@@ -131,16 +132,16 @@ export namespace OneRouter {
    * /(group)/123/abc/[id]/[...rest] -> ['(group)', '123', 'abc', '[id]', '[...rest]'
    */
   type RouteSegments<Path> = Path extends `${infer PartA}/${infer PartB}`
-    ? PartA extends '' | '.'
+    ? PartA extends "" | "."
       ? [...RouteSegments<PartB>]
       : [PartA, ...RouteSegments<PartB>]
-    : Path extends ''
+    : Path extends ""
       ? []
-      : [Path]
+      : [Path];
 
   type AllUngroupedRoutes<Path> = Path extends `(${infer PartA})/${infer PartB}`
     ? `(${PartA})/${AllUngroupedRoutes<PartB>}` | AllUngroupedRoutes<PartB>
-    : Path
+    : Path;
 
   /**
    * Returns a Record of the routes parameters as strings and CatchAll parameters
@@ -154,16 +155,16 @@ export namespace OneRouter {
   export type InputRouteParams<Path> = {
     [Key in ParameterNames<Path> as Key extends `...${infer Name}`
       ? Name
-      : Key]: Key extends `...${string}` ? string[] : string
-  }
+      : Key]: Key extends `...${string}` ? string[] : string;
+  };
   // TODO @nate: i commented this out to get better types but we probably need to fix better
   // & UnknownInputParams
 
   type OutputRouteParams<Path> = {
     [Key in ParameterNames<Path> as Key extends `...${infer Name}`
       ? Name
-      : Key]: Key extends `...${string}` ? string[] : string
-  } & UnknownOutputParams
+      : Key]: Key extends `...${string}` ? string[] : string;
+  } & UnknownOutputParams;
 
   /**
    * Returns the search parameters for a route.
@@ -172,14 +173,14 @@ export namespace OneRouter {
     ? OutputRouteParams<T>
     : T extends StaticRoutes
       ? never
-      : UnknownOutputParams
+      : UnknownOutputParams;
 
   /*********
    * Href  *
    *********/
 
-  export type DynamicRoutesHref = DynamicRouteString<{ __branded__: any }, DynamicRouteTemplate>
-  export type DynamicRoutesHref2 = DynamicRouteString<string, DynamicRouteTemplate>
+  export type DynamicRoutesHref = DynamicRouteString<{ __branded__: any }, DynamicRouteTemplate>;
+  export type DynamicRoutesHref2 = DynamicRouteString<string, DynamicRouteTemplate>;
 
   /**
    * The main routing type for One. Includes all available routes with strongly typed parameters.
@@ -189,12 +190,12 @@ export namespace OneRouter {
     | DynamicRouteString<T, DynamicRouteTemplate>
     | DynamicRouteObject<
         StaticRoutes | RelativePathString | ExternalPathString | DynamicRouteTemplate
-      >
+      >;
 
   type StringRouteToType<T extends string> =
     | T
     | `${T}${SearchOrHash}`
-    | { pathname: T; params?: UnknownInputParams | never }
+    | { pathname: T; params?: UnknownInputParams | never };
 
   /**
    * Converts a dynamic route template to a Href string type
@@ -202,11 +203,11 @@ export namespace OneRouter {
   type DynamicRouteString<
     T extends string | object,
     P = DynamicRouteTemplate,
-  > = '__branded__' extends keyof T
+  > = "__branded__" extends keyof T
     ? DynamicTemplateToHrefString<P>
     : T extends string
       ? DynamicRoutes<T>
-      : never
+      : never;
 
   type DynamicTemplateToHrefString<Path> = Path extends `${infer PartA}/${infer PartB}`
     ? // If the current segment (PartA) is dynamic, allow any string. This loop again with the next segment (PartB)
@@ -214,60 +215,62 @@ export namespace OneRouter {
     : // Path is the last segment.
       Path extends `[${string}]`
       ? string
-      : Path
+      : Path;
 
   type DynamicRouteObject<T> = T extends DynamicRouteTemplate
     ? {
-        pathname: T
-        params: InputRouteParams<T>
+        pathname: T;
+        params: InputRouteParams<T>;
       }
-    : never
+    : never;
 
-  export type LoadingState = 'loading' | 'loaded'
+  export type LoadingState = "loading" | "loaded";
 
   export type ResultState = PartialState<NavigationState> & {
-    state?: ResultState
-    hash?: string
-    linkOptions?: OneRouter.LinkToOptions
-  }
+    state?: ResultState;
+    hash?: string;
+    linkOptions?: OneRouter.LinkToOptions;
+  };
 
-  export type RootStateListener = (state: ResultState) => void
-  export type LoadingStateListener = (state: LoadingState) => void
+  export type RootStateListener = (state: ResultState) => void;
+  export type LoadingStateListener = (state: LoadingState) => void;
 
   /***********************
    * One Exports *
    ***********************/
 
-  export type InputRouteParamsBlank = Record<string, string | undefined | null>
-  export type InpurRouteParamsGeneric = InputRouteParamsBlank | InputRouteParams<any>
+  export type InputRouteParamsBlank = Record<string, string | undefined | null>;
+  export type InpurRouteParamsGeneric = InputRouteParamsBlank | InputRouteParams<any>;
 
   export type Router = {
     /** Go back in the history. */
-    back: () => void
+    back: () => void;
     /** If there's history that supports invoking the `back` function. */
-    canGoBack: () => boolean
+    canGoBack: () => boolean;
     /** Navigate to the provided href using a push operation if possible. */
-    push: (href: Href, options?: LinkToOptions) => void
+    push: (href: Href, options?: LinkToOptions) => void;
     /** Navigate to the provided href. */
-    navigate: (href: Href, options?: LinkToOptions) => void
+    navigate: (href: Href, options?: LinkToOptions) => void;
     /** Navigate to route without appending to the history. */
-    replace: (href: Href, options?: LinkToOptions) => void
+    replace: (href: Href, options?: LinkToOptions) => void;
     /** Navigate to the provided href using a push operation if possible. */
-    dismiss: (count?: number) => void
+    dismiss: (count?: number) => void;
     /** Navigate to first screen within the lowest stack. */
-    dismissAll: () => void
+    dismissAll: () => void;
     /** If there's history that supports invoking the `dismiss` and `dismissAll` function. */
-    canDismiss: () => boolean
+    canDismiss: () => boolean;
     /** Update the current route query params. */
-    setParams: <T = ''>(params?: T extends '' ? InputRouteParamsBlank : InputRouteParams<T>) => void
+    setParams: <T = "">(
+      params?: T extends "" ? InputRouteParamsBlank : InputRouteParams<T>,
+    ) => void;
     /** Subscribe to state updates from the router */
-    subscribe: (listener: RootStateListener) => () => void
+    subscribe: (listener: RootStateListener) => () => void;
     /** Subscribe to loading state updates */
-    onLoadState: (listener: LoadingStateListener) => () => void
-  }
+    onLoadState: (listener: LoadingStateListener) => () => void;
+  };
 
   /** The imperative router. */
-  export declare const router: Router
+  export declare const router: Router;
 
   /************
    * <Link /> *
@@ -288,7 +291,7 @@ export namespace OneRouter {
      * @example
      * <Link href="https://expo.dev" target="_blank">Go to Expo in new tab</Link>
      */
-    target?: '_self' | '_blank' | '_parent' | '_top' | (string & object)
+    target?: "_self" | "_blank" | "_parent" | "_top" | (string & object);
 
     /**
      * **Web only:** Specifies the relationship between the `href` and the current route.
@@ -308,7 +311,7 @@ export namespace OneRouter {
      * @example
      * <Link href="https://expo.dev" rel="nofollow">Go to Expo</Link>
      */
-    rel?: string
+    rel?: string;
 
     /**
      * **Web only:** Specifies that the `href` should be downloaded when the user clicks on the link,
@@ -321,35 +324,36 @@ export namespace OneRouter {
      * @example
      * <Link href="/image.jpg" download="my-image.jpg">Download image</Link>
      */
-    download?: string
+    download?: string;
   }
 
   export interface LinkProps<T extends string | object>
-    extends Omit<TextProps, 'href' | 'disabled' | 'onLongPress' | 'onPressIn' | 'onPressOut'>,
-      Pick<PressableProps, 'disabled' | 'onLongPress' | 'onPressIn' | 'onPressOut'>,
+    extends
+      Omit<TextProps, "href" | "disabled" | "onLongPress" | "onPressIn" | "onPressOut">,
+      Pick<PressableProps, "disabled" | "onLongPress" | "onPressIn" | "onPressOut">,
       WebAnchorProps {
     /** Path to route to. */
-    href: Href<T>
+    href: Href<T>;
 
     // TODO: This may need to be extracted for React Native style support.
     /** Forward props to child component. Useful for custom buttons. */
-    asChild?: boolean
+    asChild?: boolean;
 
     /** Should replace the current route without adding to the history. */
-    replace?: boolean
+    replace?: boolean;
     /** Should push the current route  */
-    push?: boolean
+    push?: boolean;
 
     /** On web, this sets the HTML `class` directly. On native, this can be used with CSS interop tools like Nativewind. */
-    className?: string
+    className?: string;
 
-    onPress?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => void
+    onPress?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => void;
   }
 
   export interface LinkComponent {
-    <T extends string | object>(props: React.PropsWithChildren<LinkProps<T>>): JSX.Element
+    <T extends string | object>(props: React.PropsWithChildren<LinkProps<T>>): JSX.Element;
     /** Helper method to resolve an Href object into a string. */
-    resolveHref: (href: Href) => string
+    resolveHref: (href: Href) => string;
   }
 
   /**
@@ -362,18 +366,18 @@ export namespace OneRouter {
    * @param props.children Child elements to render the content.
    * @param props.className On web, this sets the HTML \`class\` directly. On native, this can be used with CSS interop tools like Nativewind.
    */
-  export declare const Link: LinkComponent
+  export declare const Link: LinkComponent;
 
   /** Redirects to the href as soon as the component is mounted. */
-  export declare const Redirect: (props: React.PropsWithChildren<{ href: Href }>) => ReactNode
-  export type Redirect = typeof Redirect
+  export declare const Redirect: (props: React.PropsWithChildren<{ href: Href }>) => ReactNode;
+  export type Redirect = typeof Redirect;
 
   /**
    * Hooks
    */
 
-  export declare function useRouter(): Router
-  type useRouter = typeof useRouter
+  export declare function useRouter(): Router;
+  type useRouter = typeof useRouter;
 
   /**
    * Returns the URL search parameters for the contextually focused route. e.g. \`/acme?foo=bar\` -> \`{ foo: "bar" }\`.
@@ -384,8 +388,8 @@ export namespace OneRouter {
    */
   export declare function useParams<
     TParams extends AllRoutes | UnknownOutputParams = UnknownOutputParams,
-  >(): TParams extends AllRoutes ? SearchParams<TParams> : TParams
-  type useParams = typeof useParams
+  >(): TParams extends AllRoutes ? SearchParams<TParams> : TParams;
+  type useParams = typeof useParams;
 
   /**
    * Get the globally selected query parameters, including dynamic path segments. This function will update even when the route is not focused.
@@ -398,8 +402,8 @@ export namespace OneRouter {
    */
   export declare function useActiveParams<
     T extends AllRoutes | UnknownOutputParams = UnknownOutputParams,
-  >(): T extends AllRoutes ? SearchParams<T> : T
-  type useActiveParams = typeof useActiveParams
+  >(): T extends AllRoutes ? SearchParams<T> : T;
+  type useActiveParams = typeof useActiveParams;
 
   /**
    * Get a list of selected file segments for the currently selected route. Segments are not normalized, so they will be the same as the file path. e.g. /[id]?id=normal -> ["[id]"]
@@ -422,39 +426,39 @@ export namespace OneRouter {
    */
   export declare function useSegments<
     T extends AbsoluteRoute | RouteSegments<AbsoluteRoute> | RelativePathString,
-  >(): T extends AbsoluteRoute ? RouteSegments<T> : T extends string ? string[] : T
-  type useSegments = typeof useSegments
+  >(): T extends AbsoluteRoute ? RouteSegments<T> : T extends string ? string[] : T;
+  type useSegments = typeof useSegments;
 }
 
 // TEMP
 export namespace One {
-  export type Route<Path> = OneRouter.Route<Path>
+  export type Route<Path> = OneRouter.Route<Path>;
 
   export type SitemapChangefreq =
-    | 'always'
-    | 'hourly'
-    | 'daily'
-    | 'weekly'
-    | 'monthly'
-    | 'yearly'
-    | 'never'
+    | "always"
+    | "hourly"
+    | "daily"
+    | "weekly"
+    | "monthly"
+    | "yearly"
+    | "never";
 
   export type RouteSitemap = {
     /**
      * Priority for this route (0.0 to 1.0).
      */
-    priority?: number
+    priority?: number;
     /**
      * Change frequency for this route.
      */
-    changefreq?: SitemapChangefreq
+    changefreq?: SitemapChangefreq;
     /**
      * Last modification date for this route.
      */
-    lastmod?: string | Date
+    lastmod?: string | Date;
     /**
      * Exclude this route from the sitemap.
      */
-    exclude?: boolean
-  }
+    exclude?: boolean;
+  };
 }

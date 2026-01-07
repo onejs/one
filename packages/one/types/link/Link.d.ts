@@ -1,4 +1,4 @@
-import type { OneRouter } from '../interfaces/router';
+import type { OneRouter } from "../interfaces/router";
 /**
  * Component to render link to another route using a path.
  * Uses an anchor tag on the web.

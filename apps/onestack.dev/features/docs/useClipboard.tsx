@@ -1,31 +1,31 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 export const copyToClipboard = (text: string) => {
   if (!navigator.clipboard) {
-    alert(`No navigator.clipboard, can't copy, sorry!\n\n${text}`)
-    return
+    alert(`No navigator.clipboard, can't copy, sorry!\n\n${text}`);
+    return;
   }
-  return navigator.clipboard.writeText(text)
-}
+  return navigator.clipboard.writeText(text);
+};
 
 export function useClipboard(
-  text = '',
-  { timeout = 1500, showToast = true }: { timeout?: number; showToast?: boolean } = {}
+  text = "",
+  { timeout = 1500, showToast = true }: { timeout?: number; showToast?: boolean } = {},
 ) {
-  const [hasCopied, setHasCopied] = useState(false)
+  const [hasCopied, setHasCopied] = useState(false);
 
   const onCopy = async () => {
-    await copyToClipboard(text)
-    setHasCopied(true)
-  }
+    await copyToClipboard(text);
+    setHasCopied(true);
+  };
 
   useEffect(() => {
-    if (!hasCopied) return
+    if (!hasCopied) return;
     const id = setTimeout(() => {
-      setHasCopied(false)
-    }, timeout)
-    return () => clearTimeout(id)
-  }, [timeout, hasCopied])
+      setHasCopied(false);
+    }, timeout);
+    return () => clearTimeout(id);
+  }, [timeout, hasCopied]);
 
-  return { value: text, onCopy, hasCopied, timeout }
+  return { value: text, onCopy, hasCopied, timeout };
 }

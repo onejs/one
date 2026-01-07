@@ -1,22 +1,22 @@
-import { Hono } from 'hono'
-import { setServerGlobals } from './server/setServerGlobals'
-import { setupBuildInfo } from './server/setupBuildOptions'
-import { ensureExists } from './utils/ensureExists'
-import type { One } from './vite/types'
+import { Hono } from "hono";
+import { setServerGlobals } from "./server/setServerGlobals";
+import { setupBuildInfo } from "./server/setupBuildOptions";
+import { ensureExists } from "./utils/ensureExists";
+import type { One } from "./vite/types";
 
 // Re-export static HTML fetcher utilities for worker use
-export { setFetchStaticHtml, getFetchStaticHtml } from './server/staticHtmlFetcher'
+export { setFetchStaticHtml, getFetchStaticHtml } from "./server/staticHtmlFetcher";
 
 /**
  * Lazy import functions for route modules.
  * Modules are loaded on-demand when a route is matched, not all upfront.
  */
 export type LazyRoutes = {
-  serverEntry: () => Promise<{ default: { render: (props: any) => any } }>
-  pages: Record<string, () => Promise<any>>
-  api: Record<string, () => Promise<any>>
-  middlewares: Record<string, () => Promise<any>>
-}
+  serverEntry: () => Promise<{ default: { render: (props: any) => any } }>;
+  pages: Record<string, () => Promise<any>>;
+  api: Record<string, () => Promise<any>>;
+  middlewares: Record<string, () => Promise<any>>;
+};
 
 /**
  * Creates a Hono app for edge/worker environments (Cloudflare Workers, etc.)
@@ -27,14 +27,14 @@ export type LazyRoutes = {
  * @param lazyRoutes - Lazy import functions for route modules (loaded on-demand)
  */
 export async function serve(buildInfo: One.BuildInfo, lazyRoutes?: LazyRoutes) {
-  setupBuildInfo(buildInfo)
-  ensureExists(buildInfo.oneOptions)
-  setServerGlobals()
+  setupBuildInfo(buildInfo);
+  ensureExists(buildInfo.oneOptions);
+  setServerGlobals();
 
-  const app = new Hono()
+  const app = new Hono();
 
-  const { oneServe } = await import('./server/oneServe')
-  await oneServe(buildInfo.oneOptions, buildInfo, app, { lazyRoutes })
+  const { oneServe } = await import("./server/oneServe");
+  await oneServe(buildInfo.oneOptions, buildInfo, app, { lazyRoutes });
 
-  return app
+  return app;
 }

@@ -1,14 +1,18 @@
-import { Link, Slot, usePathname } from 'one'
-import { View, Text } from 'tamagui'
+import { Link, Slot, usePathname } from "one";
+import { View, Text } from "tamagui";
 
 export async function generateStaticParams() {
-  return [{
-    subpath: '/routes/subpath/some-path'
-  }, {
-    subpath: '/routes/subpath/other-path'
-  }, {
-    subpath: '/routes/subpath/nested/path'
-  }]
+  return [
+    {
+      subpath: "/routes/subpath/some-path",
+    },
+    {
+      subpath: "/routes/subpath/other-path",
+    },
+    {
+      subpath: "/routes/subpath/nested/path",
+    },
+  ];
 }
 
 export default function SubPathPage() {
@@ -24,5 +28,5 @@ export default function SubPathPage() {
         <Text>Go to nested/path</Text>
       </Link>
     </View>
-  )
+  );
 }

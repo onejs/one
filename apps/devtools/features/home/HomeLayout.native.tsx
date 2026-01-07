@@ -1,9 +1,9 @@
-import { Tabs } from 'one'
-import { HomeIcons } from './HomeIcons'
-import { useTheme } from 'tamagui'
+import { Tabs } from "one";
+import { HomeIcons } from "./HomeIcons";
+import { useTheme } from "tamagui";
 
 export function HomeLayout() {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <Tabs
@@ -16,7 +16,7 @@ export function HomeLayout() {
       <Tabs.Screen
         name="(feed)"
         options={{
-          title: 'Feed',
+          title: "Feed",
           tabBarIcon: ({ color }) => <HomeIcons.Home size={20} color={color} />,
         }}
       />
@@ -24,7 +24,7 @@ export function HomeLayout() {
       <Tabs.Screen
         name="notifications"
         options={{
-          title: 'Notifications',
+          title: "Notifications",
           tabBarIcon: ({ color }) => <HomeIcons.Notifications size={20} color={color} />,
         }}
       />
@@ -32,10 +32,10 @@ export function HomeLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
+          title: "Profile",
           tabBarIcon: ({ color }) => <HomeIcons.User size={20} color={color} />,
         }}
       />
     </Tabs>
-  )
+  );
 }
