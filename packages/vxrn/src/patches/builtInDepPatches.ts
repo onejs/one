@@ -428,6 +428,23 @@ if (process.env.NODE_ENV !== "test") require("./components");`
   },
 
   {
+    module: 'expo-asset',
+    patchFiles: {
+      // Fix: expo-asset re-exports from react-native but RN uses properties on default export, not named exports
+      // This patch explicitly re-exports the functions so they're available as named exports
+      'build/resolveAssetSource.native.js': (contents) => {
+        assertString(contents)
+        return contents.replace(
+          `export * from 'react-native/Libraries/Image/resolveAssetSource';`,
+          `export const pickScale = resolveAssetSource.pickScale;
+export const setCustomSourceTransformer = resolveAssetSource.setCustomSourceTransformer;
+export const addCustomSourceTransformer = resolveAssetSource.addCustomSourceTransformer;`
+        )
+      },
+    },
+  },
+
+  {
     module: 'whatwg-url-without-unicode',
     // https://github.com/onejs/one/issues/258
     patchFiles: {
