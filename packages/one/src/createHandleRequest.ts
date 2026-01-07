@@ -16,7 +16,7 @@ export type RequestHandlers = {
   loadMiddleware?: (route: RouteNode) => Promise<any>;
 };
 
-type RequestHandlerProps<RouteExtraProps extends Object = {}> = {
+type RequestHandlerProps<RouteExtraProps extends object = {}> = {
   request: Request;
   route: RouteInfo<string> & RouteExtraProps;
   url: URL;

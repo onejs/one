@@ -127,7 +127,7 @@ export function expoManifestRequestHandlerPlugin(
 
             // Seems that results.body may have a leading and trailing string that is not JSON, so we need to extract the JSON from it.
             const [, beforeBodyJson, bodyJson, afterBodyJson] =
-              results.body.match(/([^\{]*)(\{.*\})([^\}]*)/) || [];
+              results.body.match(/([^{]*)({.*})([^}]*)/) || [];
             if (!bodyJson) {
               throw new Error(`Unrecognized manifest response from expo: ${results.body}`);
             }

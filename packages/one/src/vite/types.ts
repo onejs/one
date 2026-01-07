@@ -467,7 +467,7 @@ export namespace One {
     htmlPath: string;
     clientJsPath: string;
     serverJsPath: string;
-    params: Object;
+    params: object;
     loaderData: any;
     /** All preloads (for backwards compatibility) */
     preloads: string[];

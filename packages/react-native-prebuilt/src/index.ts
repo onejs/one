@@ -290,7 +290,7 @@ var __commonJS = function __commonJS(cb, mod) {
 `,
         },
         {
-          find: /module\.exports = require_(react_native|index)\(\)\;/,
+          find: /module\.exports = require_(react_native|index)\(\);/,
           replace: [
             `const rn = require_$1();`,
             `rn.AssetRegistry = require_registry();`,

@@ -4,7 +4,7 @@ import { getQueryKey } from "./getQueryKey";
 import { resolveZeroQuery } from "./resolveQuery";
 import { useQuery as useQueryZero } from "./useQueryZero";
 
-let clientInitialData: Object | null = getServerContext()?.postRenderData;
+let clientInitialData: object | null = getServerContext()?.postRenderData;
 
 // AST_ID => data
 const serverQueryData = {};
