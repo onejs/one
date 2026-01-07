@@ -3,6 +3,7 @@ import FSExtra from 'fs-extra'
 import * as constants from '../constants'
 import type { LoaderProps, RenderApp } from '../types'
 import { getLoaderPath, getPreloadPath, getPreloadCSSPath } from '../utils/cleanUrl'
+import { isResponse } from '../utils/isResponse'
 import { toAbsolute } from '../utils/toAbsolute'
 import { replaceLoader } from '../vite/replaceLoader'
 import type { One, RouteInfo } from '../vite/types'
@@ -138,7 +139,18 @@ prefetchCSS()
     const exported = await import(toAbsolute(serverJsPath))
 
     if (exported.loader) {
-      loaderData = (await exported.loader?.({ path, params })) ?? null
+      try {
+        loaderData = (await exported.loader?.({ path, params })) ?? null
+      } catch (err) {
+        // Handle thrown responses (e.g., redirect) - skip loader data generation for this page
+        // The redirect will happen at runtime instead
+        if (isResponse(err)) {
+          // Keep loaderData as empty object, the redirect will happen at runtime
+        } else {
+          throw err
+        }
+      }
+
       const code = await readFile(clientJsPath, 'utf-8')
       const withLoader =
         // super dirty to quickly make ssr loaders work until we have better
