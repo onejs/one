@@ -177,6 +177,8 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
           stdio: 'inherit',
         }
       )
+      // Allow Node.js event loop to exit even if this process is still running
+      devServer.unref()
     }
 
     // Start prod server
@@ -197,6 +199,8 @@ export async function setupTestServers({ skipDev = false }: { skipDev? } = {}): 
           stdio: 'inherit',
         }
       )
+      // Allow Node.js event loop to exit even if this process is still running
+      prodServer.unref()
     }
 
     // Wait for both servers to be ready
