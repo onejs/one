@@ -1,5 +1,5 @@
-import type React from 'react';
-import type { UrlObject } from './getNormalizedStatePath';
+import type React from "react";
+import type { UrlObject } from "./getNormalizedStatePath";
 export declare const RouteInfoContext: React.Context<UrlObject | undefined>;
 /**
  * Provides the route info (a `UrlObject`) through a context for child page.
@@ -21,7 +21,9 @@ export declare const RouteInfoContext: React.Context<UrlObject | undefined>;
  *
  * This is implemented with the `useStateForPath` hook provided by React Navigation, which is known to be safe for not returning a stale or incomplete state when used in pages. See: https://github.com/react-navigation/react-navigation/pull/12521
  */
-export declare function RouteInfoContextProvider({ children }: {
-    children: React.ReactNode;
+export declare function RouteInfoContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
 }): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=RouteInfoContext.d.ts.map

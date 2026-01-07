@@ -1,9 +1,9 @@
-import '~/tamagui/tamagui.css'
-import './_layout.css'
+import "~/tamagui/tamagui.css";
+import "./_layout.css";
 
-import { SchemeProvider } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot } from 'one'
-import { TamaguiRootProvider } from '../src/tamagui/TamaguiRootProvider'
+import { SchemeProvider } from "@vxrn/color-scheme";
+import { LoadProgressBar, Slot } from "one";
+import { TamaguiRootProvider } from "../src/tamagui/TamaguiRootProvider";
 
 /**
  * The root _layout.tsx filters <html /> and <body /> out on native
@@ -31,5 +31,5 @@ export default function Layout() {
         </SchemeProvider>
       </body>
     </html>
-  )
+  );
 }

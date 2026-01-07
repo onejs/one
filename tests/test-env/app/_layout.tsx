@@ -1,4 +1,4 @@
-import { Slot } from 'one'
+import { Slot } from "one";
 
 export default function Layout() {
   return (
@@ -10,5 +10,5 @@ export default function Layout() {
         <Slot />
       </body>
     </html>
-  )
+  );
 }

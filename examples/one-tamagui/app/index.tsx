@@ -1,10 +1,10 @@
-import { Image } from '@tamagui/image-next'
-import { Text, YStack } from 'tamagui'
-import { Link } from 'one'
-import { ToggleThemeButton } from '~/interface/ToggleThemeButton'
-import oneBall from '~/app-icon.png'
-import { useState, version } from 'react'
-import { Button } from 'react-native'
+import { Image } from "@tamagui/image-next";
+import { Text, YStack } from "tamagui";
+import { Link } from "one";
+import { ToggleThemeButton } from "~/interface/ToggleThemeButton";
+import oneBall from "~/app-icon.png";
+import { useState, version } from "react";
+import { Button } from "react-native";
 
 export function HomePage() {
   return (
@@ -23,12 +23,12 @@ export function HomePage() {
           edits.
         </Text>
         <Text fontSize="$5" lineHeight="$5" text="center" color="$color11">
-          Read{' '}
+          Read{" "}
           <Link href="https://onestack.dev/docs/introduction">
-            <Text color="$yellow10" $platform-web={{ fontSize: 'inherit' }}>
+            <Text color="$yellow10" $platform-web={{ fontSize: "inherit" }}>
               the docs
             </Text>
-          </Link>{' '}
+          </Link>{" "}
           to discover what to do next.
         </Text>
 
@@ -39,11 +39,11 @@ export function HomePage() {
         <ToggleThemeButton />
       </YStack>
     </YStack>
-  )
+  );
 }
 
 function CompilerTest() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -53,10 +53,10 @@ function CompilerTest() {
       <Child />
       <Child />
     </>
-  )
+  );
 }
 
 function Child() {
-  console.log('Child render')
-  return <Text>Child</Text>
+  console.log("Child render");
+  return <Text>Child</Text>;
 }

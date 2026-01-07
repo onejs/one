@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { Link } from 'one'
+import { useState } from "react";
+import { Link } from "one";
 
 export default function OtherPage() {
-  const [message, setMessage] = useState('Not clicked')
+  const [message, setMessage] = useState("Not clicked");
 
   return (
     <div style={{ padding: 20 }}>
@@ -11,7 +11,7 @@ export default function OtherPage() {
 
       <div id="interactive-section">
         <p id="message-display">{message}</p>
-        <button id="click-btn" onClick={() => setMessage('Clicked!')}>
+        <button id="click-btn" onClick={() => setMessage("Clicked!")}>
           Click Me
         </button>
       </div>
@@ -20,5 +20,5 @@ export default function OtherPage() {
         Go to Home Page
       </Link>
     </div>
-  )
+  );
 }

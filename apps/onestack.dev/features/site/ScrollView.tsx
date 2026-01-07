@@ -1,7 +1,7 @@
-import { ScrollView as TScrollView } from 'tamagui'
+import { ScrollView as TScrollView } from "tamagui";
 
 // we need this cause the menu in sheet otherwise wont prevent drag
-export const ScrollView = TScrollView
+export const ScrollView = TScrollView;
 
 // (props: { children?: any }) => {
 //   return (

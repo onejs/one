@@ -1,35 +1,35 @@
-import { Link, useLoader } from 'one'
-import { Button, H2, Paragraph, Square, YStack } from 'tamagui'
-import { ToggleThemeButton } from '../features/theme/ToggleThemeButton'
-import { useAnimatedStyle } from 'react-native-reanimated'
-import { TestNavigationHelper } from '~/features/test-helpers/TestNavigationHelper'
-import { Text } from 'react-native'
+import { Link, useLoader } from "one";
+import { Button, H2, Paragraph, Square, YStack } from "tamagui";
+import { ToggleThemeButton } from "../features/theme/ToggleThemeButton";
+import { useAnimatedStyle } from "react-native-reanimated";
+import { TestNavigationHelper } from "~/features/test-helpers/TestNavigationHelper";
+import { Text } from "react-native";
 
 declare global {
   var __setupFileRan: {
-    client?: boolean
-    server?: boolean
-    native?: boolean
-  }
+    client?: boolean;
+    server?: boolean;
+    native?: boolean;
+  };
 }
 
 export async function loader() {
   return {
-    test: 'hello',
-  }
+    test: "hello",
+  };
 }
 
 export default () => {
-  const data = useLoader(loader)
-  const setupStatus = globalThis.__setupFileRan || {}
+  const data = useLoader(loader);
+  const setupStatus = globalThis.__setupFileRan || {};
 
   // testing babel reanimated
   useAnimatedStyle(() => {
-    'worklet'
+    "worklet";
     return {
-      backgroundColor: 'red',
-    }
-  })
+      backgroundColor: "red",
+    };
+  });
 
   return (
     <YStack h={600} bg="red" f={1} ai="center" jc="center" gap="$10">
@@ -37,9 +37,9 @@ export default () => {
 
       <Text
         testID="native-setup-ran"
-        accessibilityLabel={`native-setup: ${setupStatus.native ? 'true' : 'false'}`}
+        accessibilityLabel={`native-setup: ${setupStatus.native ? "true" : "false"}`}
       >
-        native-setup: {setupStatus.native ? 'true' : 'false'}
+        native-setup: {setupStatus.native ? "true" : "false"}
       </Text>
 
       <Paragraph id="test-loader">{JSON.stringify(data)}</Paragraph>
@@ -72,5 +72,5 @@ export default () => {
 
       <ToggleThemeButton />
     </YStack>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import '@tamagui/core/reset.css'
+import "@tamagui/core/reset.css";
 
-import { TamaguiProvider } from '@tamagui/core'
-import { LoadProgressBar, Slot } from 'one'
-import config from '../tamagui.config'
+import { TamaguiProvider } from "@tamagui/core";
+import { LoadProgressBar, Slot } from "one";
+import config from "../tamagui.config";
 
 export default function Layout() {
   return (
@@ -20,5 +20,5 @@ export default function Layout() {
         <Slot />
       </TamaguiProvider>
     </>
-  )
+  );
 }

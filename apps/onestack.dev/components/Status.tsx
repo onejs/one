@@ -1,39 +1,39 @@
-import type { TextProps } from 'tamagui'
-import { Badge } from '../features/docs/Badge'
+import type { TextProps } from "tamagui";
+import { Badge } from "../features/docs/Badge";
 
 const badgeStatuses = {
   stable: {
-    theme: 'green',
-    text: 'Stable',
+    theme: "green",
+    text: "Stable",
   },
-  'mostly-stable': {
-    theme: 'blue',
-    text: 'Mostly Stable',
+  "mostly-stable": {
+    theme: "blue",
+    text: "Mostly Stable",
   },
   developing: {
-    theme: 'purple',
-    text: 'Developing',
+    theme: "purple",
+    text: "Developing",
   },
   early: {
-    theme: 'red',
-    text: 'Early',
+    theme: "red",
+    text: "Early",
   },
   beta: {
-    theme: 'pink',
-    text: 'Beta',
+    theme: "pink",
+    text: "Beta",
   },
-} as const
+} as const;
 
 export const Status = ({
   is,
   text,
   ...rest
 }: TextProps & {
-  is: keyof typeof badgeStatuses
+  is: keyof typeof badgeStatuses;
   /** Overrides the badge text */
-  text?: string
+  text?: string;
 }) => {
-  const info = badgeStatuses[is]
+  const info = badgeStatuses[is];
   return (
     <Badge
       alignSelf="flex-start"
@@ -47,5 +47,5 @@ export const Status = ({
     >
       {text || info.text}
     </Badge>
-  )
-}
+  );
+};

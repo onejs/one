@@ -1,23 +1,23 @@
-import type { UserConfig } from 'vite'
-import { one } from 'one/vite'
-import { tamaguiPlugin } from '@tamagui/vite-plugin'
+import type { UserConfig } from "vite";
+import { one } from "one/vite";
+import { tamaguiPlugin } from "@tamagui/vite-plugin";
 
 export default {
   plugins: [
     one({
       react: {
-        compiler: process.env.NODE_ENV === 'production',
+        compiler: process.env.NODE_ENV === "production",
       },
 
       web: {
-        defaultRenderMode: 'ssg',
+        defaultRenderMode: "ssg",
       },
 
       native: {
         // set to the key of your native app
         // will call AppRegistry.registerComponent(app.key)
-        key: 'one-example',
-        bundler: 'metro',
+        key: "one-example",
+        bundler: "metro",
         bundlerOptions: {
           babelConfigOverrides(defaultConfig) {
             return {
@@ -25,19 +25,19 @@ export default {
               plugins: [
                 ...(defaultConfig.plugins || []),
                 // React Compiler
-                ['babel-plugin-react-compiler', {}],
+                ["babel-plugin-react-compiler", {}],
               ],
-            }
+            };
           },
         },
       },
     }),
 
     tamaguiPlugin({
-      optimize: process.env.NODE_ENV === 'production',
-      components: ['tamagui'],
-      config: './src/tamagui/tamagui.config.ts',
-      outputCSS: './src/tamagui/tamagui.css',
+      optimize: process.env.NODE_ENV === "production",
+      components: ["tamagui"],
+      config: "./src/tamagui/tamagui.config.ts",
+      outputCSS: "./src/tamagui/tamagui.css",
     }),
   ],
-} satisfies UserConfig
+} satisfies UserConfig;

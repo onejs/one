@@ -14,8 +14,7 @@ function formatProdErrorMessage(code) {
   var url = "https://react.dev/errors/" + code;
   if (1 < arguments.length) {
     url += "?args[]=" + encodeURIComponent(arguments[1]);
-    for (var i = 2; i < arguments.length; i++)
-      url += "&args[]=" + encodeURIComponent(arguments[i]);
+    for (var i = 2; i < arguments.length; i++) url += "&args[]=" + encodeURIComponent(arguments[i]);
   }
   return (
     "Minified React error #" +
@@ -38,40 +37,33 @@ var Internals = {
       m: noop,
       X: noop,
       S: noop,
-      M: noop
+      M: noop,
     },
     p: 0,
-    findDOMNode: null
+    findDOMNode: null,
   },
   REACT_PORTAL_TYPE = Symbol.for("react.portal");
 function createPortal$1(children, containerInfo, implementation) {
-  var key =
-    3 < arguments.length && void 0 !== arguments[3] ? arguments[3] : null;
+  var key = 3 < arguments.length && void 0 !== arguments[3] ? arguments[3] : null;
   return {
     $$typeof: REACT_PORTAL_TYPE,
     key: null == key ? null : "" + key,
     children: children,
     containerInfo: containerInfo,
-    implementation: implementation
+    implementation: implementation,
   };
 }
-var ReactSharedInternals =
-  React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+var ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
 function getCrossOriginStringAs(as, input) {
   if ("font" === as) return "";
-  if ("string" === typeof input)
-    return "use-credentials" === input ? input : "";
+  if ("string" === typeof input) return "use-credentials" === input ? input : "";
 }
-exports.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE =
-  Internals;
+exports.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = Internals;
 exports.createPortal = function (children, container) {
-  var key =
-    2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
+  var key = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
   if (
     !container ||
-    (1 !== container.nodeType &&
-      9 !== container.nodeType &&
-      11 !== container.nodeType)
+    (1 !== container.nodeType && 9 !== container.nodeType && 11 !== container.nodeType)
   )
     throw Error(formatProdErrorMessage(299));
   return createPortal$1(children, container, null, key);
@@ -82,9 +74,9 @@ exports.flushSync = function (fn) {
   try {
     if (((ReactSharedInternals.T = null), (Internals.p = 2), fn)) return fn();
   } finally {
-    (ReactSharedInternals.T = previousTransition),
+    ((ReactSharedInternals.T = previousTransition),
       (Internals.p = previousUpdatePriority),
-      Internals.d.f();
+      Internals.d.f());
   }
 };
 exports.preconnect = function (href, options) {
@@ -92,11 +84,7 @@ exports.preconnect = function (href, options) {
     (options
       ? ((options = options.crossOrigin),
         (options =
-          "string" === typeof options
-            ? "use-credentials" === options
-              ? options
-              : ""
-            : void 0))
+          "string" === typeof options ? ("use-credentials" === options ? options : "") : void 0))
       : (options = null),
     Internals.d.C(href, options));
 };
@@ -107,28 +95,20 @@ exports.preinit = function (href, options) {
   if ("string" === typeof href && options && "string" === typeof options.as) {
     var as = options.as,
       crossOrigin = getCrossOriginStringAs(as, options.crossOrigin),
-      integrity =
-        "string" === typeof options.integrity ? options.integrity : void 0,
-      fetchPriority =
-        "string" === typeof options.fetchPriority
-          ? options.fetchPriority
-          : void 0;
+      integrity = "string" === typeof options.integrity ? options.integrity : void 0,
+      fetchPriority = "string" === typeof options.fetchPriority ? options.fetchPriority : void 0;
     "style" === as
-      ? Internals.d.S(
-          href,
-          "string" === typeof options.precedence ? options.precedence : void 0,
-          {
-            crossOrigin: crossOrigin,
-            integrity: integrity,
-            fetchPriority: fetchPriority
-          }
-        )
+      ? Internals.d.S(href, "string" === typeof options.precedence ? options.precedence : void 0, {
+          crossOrigin: crossOrigin,
+          integrity: integrity,
+          fetchPriority: fetchPriority,
+        })
       : "script" === as &&
         Internals.d.X(href, {
           crossOrigin: crossOrigin,
           integrity: integrity,
           fetchPriority: fetchPriority,
-          nonce: "string" === typeof options.nonce ? options.nonce : void 0
+          nonce: "string" === typeof options.nonce ? options.nonce : void 0,
         });
   }
 };
@@ -136,15 +116,11 @@ exports.preinitModule = function (href, options) {
   if ("string" === typeof href)
     if ("object" === typeof options && null !== options) {
       if (null == options.as || "script" === options.as) {
-        var crossOrigin = getCrossOriginStringAs(
-          options.as,
-          options.crossOrigin
-        );
+        var crossOrigin = getCrossOriginStringAs(options.as, options.crossOrigin);
         Internals.d.M(href, {
           crossOrigin: crossOrigin,
-          integrity:
-            "string" === typeof options.integrity ? options.integrity : void 0,
-          nonce: "string" === typeof options.nonce ? options.nonce : void 0
+          integrity: "string" === typeof options.integrity ? options.integrity : void 0,
+          nonce: "string" === typeof options.nonce ? options.nonce : void 0,
         });
       }
     } else null == options && Internals.d.M(href);
@@ -160,23 +136,14 @@ exports.preload = function (href, options) {
       crossOrigin = getCrossOriginStringAs(as, options.crossOrigin);
     Internals.d.L(href, as, {
       crossOrigin: crossOrigin,
-      integrity:
-        "string" === typeof options.integrity ? options.integrity : void 0,
+      integrity: "string" === typeof options.integrity ? options.integrity : void 0,
       nonce: "string" === typeof options.nonce ? options.nonce : void 0,
       type: "string" === typeof options.type ? options.type : void 0,
-      fetchPriority:
-        "string" === typeof options.fetchPriority
-          ? options.fetchPriority
-          : void 0,
-      referrerPolicy:
-        "string" === typeof options.referrerPolicy
-          ? options.referrerPolicy
-          : void 0,
-      imageSrcSet:
-        "string" === typeof options.imageSrcSet ? options.imageSrcSet : void 0,
-      imageSizes:
-        "string" === typeof options.imageSizes ? options.imageSizes : void 0,
-      media: "string" === typeof options.media ? options.media : void 0
+      fetchPriority: "string" === typeof options.fetchPriority ? options.fetchPriority : void 0,
+      referrerPolicy: "string" === typeof options.referrerPolicy ? options.referrerPolicy : void 0,
+      imageSrcSet: "string" === typeof options.imageSrcSet ? options.imageSrcSet : void 0,
+      imageSizes: "string" === typeof options.imageSizes ? options.imageSizes : void 0,
+      media: "string" === typeof options.media ? options.media : void 0,
     });
   }
 };
@@ -185,13 +152,9 @@ exports.preloadModule = function (href, options) {
     if (options) {
       var crossOrigin = getCrossOriginStringAs(options.as, options.crossOrigin);
       Internals.d.m(href, {
-        as:
-          "string" === typeof options.as && "script" !== options.as
-            ? options.as
-            : void 0,
+        as: "string" === typeof options.as && "script" !== options.as ? options.as : void 0,
         crossOrigin: crossOrigin,
-        integrity:
-          "string" === typeof options.integrity ? options.integrity : void 0
+        integrity: "string" === typeof options.integrity ? options.integrity : void 0,
       });
     } else Internals.d.m(href);
 };

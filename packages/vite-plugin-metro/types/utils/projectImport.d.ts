@@ -1,6 +1,8 @@
-export declare const debug: (((...args: any[]) => any) & {
-    namespace: string;
-}) | undefined;
+export declare const debug:
+  | (((...args: any[]) => any) & {
+      namespace: string;
+    })
+  | undefined;
 /**
  * Dynamically imports a module from the user's project root instead of this package's location.
  *

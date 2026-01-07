@@ -6,10 +6,10 @@
  */
 
 export type PackagerAsset = Readonly<{
-  httpServerLocation: string
-  name: string
-  type: string
-}>
+  httpServerLocation: string;
+  name: string;
+  type: string;
+}>;
 
 /**
  * FIXME: using number to represent discrete scale numbers is fragile in essence because of
@@ -18,54 +18,54 @@ export type PackagerAsset = Readonly<{
 function getAndroidAssetSuffix(scale: number): string {
   switch (scale) {
     case 0.75:
-      return 'ldpi'
+      return "ldpi";
     case 1:
-      return 'mdpi'
+      return "mdpi";
     case 1.5:
-      return 'hdpi'
+      return "hdpi";
     case 2:
-      return 'xhdpi'
+      return "xhdpi";
     case 3:
-      return 'xxhdpi'
+      return "xxhdpi";
     case 4:
-      return 'xxxhdpi'
+      return "xxxhdpi";
     default:
-      return ''
+      return "";
   }
 }
 
 // See https://developer.android.com/guide/topics/resources/drawable-resource.html
-const drawableFileTypes = new Set<string>(['gif', 'jpeg', 'jpg', 'png', 'webp', 'xml'])
+const drawableFileTypes = new Set<string>(["gif", "jpeg", "jpg", "png", "webp", "xml"]);
 
 function getAndroidResourceFolderName(asset: PackagerAsset, scale: number): string {
   if (!drawableFileTypes.has(asset.type)) {
-    return 'raw'
+    return "raw";
   }
-  const suffix = getAndroidAssetSuffix(scale)
+  const suffix = getAndroidAssetSuffix(scale);
   if (!suffix) {
     throw new Error(
-      `Don't know which android drawable suffix to use for asset: ${JSON.stringify(asset)}`
-    )
+      `Don't know which android drawable suffix to use for asset: ${JSON.stringify(asset)}`,
+    );
   }
-  const androidFolder = `drawable-${suffix}`
-  return androidFolder
+  const androidFolder = `drawable-${suffix}`;
+  return androidFolder;
 }
 
 function getResourceIdentifier(asset: PackagerAsset): string {
-  const folderPath = getBasePath(asset)
+  const folderPath = getBasePath(asset);
   return `${folderPath}/${asset.name}`
     .toLowerCase()
-    .replace(/\//g, '_') // Encode folder structure in file name
-    .replace(/([^a-z0-9_])/g, '') // Remove illegal chars
-    .replace(/^assets_/, '') // Remove "assets_" prefix
+    .replace(/\//g, "_") // Encode folder structure in file name
+    .replace(/([^a-z0-9_])/g, "") // Remove illegal chars
+    .replace(/^assets_/, ""); // Remove "assets_" prefix
 }
 
 function getBasePath(asset: PackagerAsset): string {
-  let basePath = asset.httpServerLocation
-  if (basePath[0] === '/') {
-    basePath = basePath.substr(1)
+  let basePath = asset.httpServerLocation;
+  if (basePath[0] === "/") {
+    basePath = basePath.substr(1);
   }
-  return basePath
+  return basePath;
 }
 
 export default {
@@ -73,4 +73,4 @@ export default {
   getAndroidResourceFolderName,
   getResourceIdentifier,
   getBasePath,
-}
+};

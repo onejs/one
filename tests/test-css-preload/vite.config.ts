@@ -1,5 +1,5 @@
-import { one } from 'one/vite'
-import type { UserConfig } from 'vite'
+import { one } from "one/vite";
+import type { UserConfig } from "vite";
 
 export default {
   plugins: [
@@ -11,4 +11,4 @@ export default {
       },
     }),
   ],
-} satisfies UserConfig
+} satisfies UserConfig;

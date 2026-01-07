@@ -1,5 +1,5 @@
-import { Link } from 'one'
-import { View, Text } from 'tamagui'
+import { Link } from "one";
+import { View, Text } from "tamagui";
 
 export function HooksTestingLinks() {
   return (
@@ -29,5 +29,5 @@ export function HooksTestingLinks() {
         <Text>Go to index</Text>
       </Link>
     </View>
-  )
+  );
 }

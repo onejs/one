@@ -1,5 +1,5 @@
-import { Text } from 'tamagui'
+import { Text } from "tamagui";
 
 export default () => {
-  return <Text>i am spa</Text>
-}
+  return <Text>i am spa</Text>;
+};

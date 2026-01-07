@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite';
+import type { Plugin } from "vite";
 /**
  * Plugin to set the config for pre-bundling dependencies that we already know
  * are needed and listed in `getOptimizeDeps`.

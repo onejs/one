@@ -1,4 +1,4 @@
-import { Slot } from 'one'
+import { Slot } from "one";
 
 /**
  * The root _layout.tsx filters <html /> and <body /> out on native
@@ -16,5 +16,5 @@ export default function Layout() {
         <Slot />
       </body>
     </html>
-  )
+  );
 }

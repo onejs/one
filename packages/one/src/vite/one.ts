@@ -1,32 +1,32 @@
-import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
-import { resolvePath } from '@vxrn/resolve'
+import { configureVXRNCompilerPlugin } from "@vxrn/compiler";
+import { resolvePath } from "@vxrn/resolve";
 import type {
   ExpoManifestRequestHandlerPluginPluginOptions,
   MetroPluginOptions,
-} from '@vxrn/vite-plugin-metro'
-import events from 'node:events'
-import path from 'node:path'
-import type { Plugin, PluginOption } from 'vite'
-import { barrel } from 'vite-plugin-barrel'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
-import vxrnVitePlugin from 'vxrn/vite-plugin'
-import { CACHE_KEY } from '../constants'
-import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
-import '../polyfills-server'
-import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
-import { ensureTSConfig } from './ensureTsConfig'
-import { setOneOptions } from './loadConfig'
-import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
-import { createFileSystemRouterPlugin } from './plugins/fileSystemRouterPlugin'
-import { fixDependenciesPlugin } from './plugins/fixDependenciesPlugin'
-import { generateFileSystemRouteTypesPlugin } from './plugins/generateFileSystemRouteTypesPlugin'
-import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
-import { virtualEntryId } from './plugins/virtualEntryConstants'
-import { createVirtualEntry } from './plugins/virtualEntryPlugin'
-import type { One } from './types'
+} from "@vxrn/vite-plugin-metro";
+import events from "node:events";
+import path from "node:path";
+import type { Plugin, PluginOption } from "vite";
+import { barrel } from "vite-plugin-barrel";
+import tsconfigPaths from "vite-tsconfig-paths";
+import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from "vxrn";
+import vxrnVitePlugin from "vxrn/vite-plugin";
+import { CACHE_KEY } from "../constants";
+import { getViteMetroPluginOptions } from "../metro-config/getViteMetroPluginOptions";
+import "../polyfills-server";
+import { getRouterRootFromOneOptions } from "../utils/getRouterRootFromOneOptions";
+import { ensureTSConfig } from "./ensureTsConfig";
+import { setOneOptions } from "./loadConfig";
+import { clientTreeShakePlugin } from "./plugins/clientTreeShakePlugin";
+import { createFileSystemRouterPlugin } from "./plugins/fileSystemRouterPlugin";
+import { fixDependenciesPlugin } from "./plugins/fixDependenciesPlugin";
+import { generateFileSystemRouteTypesPlugin } from "./plugins/generateFileSystemRouteTypesPlugin";
+import { SSRCSSPlugin } from "./plugins/SSRCSSPlugin";
+import { virtualEntryId } from "./plugins/virtualEntryConstants";
+import { createVirtualEntry } from "./plugins/virtualEntryPlugin";
+import type { One } from "./types";
 
-type MetroOptions = MetroPluginOptions
+type MetroOptions = MetroPluginOptions;
 
 /**
  * This needs a big refactor!
@@ -35,30 +35,30 @@ type MetroOptions = MetroPluginOptions
  * here are wrong. we can probably refactor and merge all the stuff
  */
 
-events.setMaxListeners(1_000)
+events.setMaxListeners(1_000);
 
 // temporary for tamagui plugin compat
-globalThis.__vxrnEnableNativeEnv = true
+globalThis.__vxrnEnableNativeEnv = true;
 
 // temporary until we fix double-load issue, which means we'd have to somehow
 // not control the port/host from our config, but still pass it into ENV
 // until then we want to avoid double loading everything on first start
 
 export function one(options: One.PluginOptions = {}): PluginOption {
-  const routerRoot = getRouterRootFromOneOptions(options)
+  const routerRoot = getRouterRootFromOneOptions(options);
 
   /**
    * A non-null value means that we are going to use Metro.
    */
   const metroOptions: (MetroOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null =
     (() => {
-      if (options.native?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) return null
+      if (options.native?.bundler !== "metro" && !process.env.ONE_METRO_MODE) return null;
 
       if (process.env.ONE_METRO_MODE) {
-        console.info('ONE_METRO_MODE environment variable is set, enabling Metro mode')
+        console.info("ONE_METRO_MODE environment variable is set, enabling Metro mode");
       }
 
-      const routerRoot = getRouterRootFromOneOptions(options)
+      const routerRoot = getRouterRootFromOneOptions(options);
 
       const defaultMetroOptions = getViteMetroPluginOptions({
         projectRoot: process.cwd(), // TODO: hard-coded process.cwd(), we should make this optional since the plugin can have a default to vite's `config.root`.
@@ -66,14 +66,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         ignoredRouteFiles: options.router?.ignoredRouteFiles,
         userDefaultConfigOverrides: (options.native?.bundlerOptions as any)?.defaultConfigOverrides,
         setupFile: options.setupFile,
-      })
+      });
 
-      const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions
+      const userMetroOptions = options.native?.bundlerOptions as typeof defaultMetroOptions;
 
       const babelConfig = {
         ...defaultMetroOptions?.babelConfig,
         ...userMetroOptions?.babelConfig,
-      }
+      };
 
       // TODO: [METRO-OPTIONS-MERGING] We only do shallow merge here.
       return {
@@ -88,84 +88,84 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           ...babelConfig,
           plugins: [
             ...(babelConfig.plugins || []),
-            ...(options.react?.compiler === true || options.react?.compiler === 'native'
-              ? ['babel-plugin-react-compiler']
+            ...(options.react?.compiler === true || options.react?.compiler === "native"
+              ? ["babel-plugin-react-compiler"]
               : []),
           ],
         },
-        mainModuleName: 'one/metro-entry', // So users won't need to write `"main": "one/metro-entry"` in their `package.json` like ordinary Expo apps.
-      }
-    })()
+        mainModuleName: "one/metro-entry", // So users won't need to write `"main": "one/metro-entry"` in their `package.json` like ordinary Expo apps.
+      };
+    })();
 
-  const vxrnPlugins: PluginOption[] = []
+  const vxrnPlugins: PluginOption[] = [];
 
   if (!process.env.IS_VXRN_CLI) {
-    console.warn('Experimental: running VxRN as a Vite plugin. This is not yet stable.')
+    console.warn("Experimental: running VxRN as a Vite plugin. This is not yet stable.");
     vxrnPlugins.push(
       vxrnVitePlugin({
         metro: metroOptions,
-      })
-    )
+      }),
+    );
   } else {
     if (!globalThis.__oneOptions) {
       // first load we are just loading it ourselves to get the user options
       // so we can just set here and return nothing
-      setOneOptions(options)
-      globalThis['__vxrnPluginConfig__'] = options
-      globalThis['__vxrnMetroOptions__'] = metroOptions
-      return []
+      setOneOptions(options);
+      globalThis["__vxrnPluginConfig__"] = options;
+      globalThis["__vxrnMetroOptions__"] = metroOptions;
+      return [];
     }
   }
 
   // ensure tsconfig
   if (options.config?.ensureTSConfig !== false) {
-    void ensureTSConfig()
+    void ensureTSConfig();
   }
 
-  let tsConfigPathsPlugin: Plugin | null = null
+  let tsConfigPathsPlugin: Plugin | null = null;
 
-  const vxrnOptions = getOptionsFilled()
-  const root = vxrnOptions?.root || process.cwd()
-  const barrelOption = options.optimization?.barrel
+  const vxrnOptions = getOptionsFilled();
+  const root = vxrnOptions?.root || process.cwd();
+  const barrelOption = options.optimization?.barrel;
 
-  const compiler = options.react?.compiler
+  const compiler = options.react?.compiler;
   if (compiler) {
     configureVXRNCompilerPlugin({
       enableCompiler:
-        compiler === 'native' ? ['ios', 'android'] : compiler === 'web' ? ['ssr', 'client'] : true,
-    })
+        compiler === "native" ? ["ios", "android"] : compiler === "web" ? ["ssr", "client"] : true,
+    });
   }
 
-  const autoDepsOptions = options.ssr?.autoDepsOptimization
+  const autoDepsOptions = options.ssr?.autoDepsOptimization;
 
   const devAndProdPlugins: Plugin[] = [
     {
-      name: 'one:config',
+      name: "one:config",
       __get: options,
     } as any,
 
     !barrelOption
       ? null
       : (barrel({
-          packages: Array.isArray(barrelOption) ? barrelOption : ['@tamagui/lucide-icons'],
+          packages: Array.isArray(barrelOption) ? barrelOption : ["@tamagui/lucide-icons"],
         }) as any),
 
     {
-      name: 'one-define-client-env',
+      name: "one-define-client-env",
       async config(userConfig) {
         const { clientEnvDefine } = await loadEnv(
-          vxrnOptions?.mode ?? userConfig?.mode ?? 'development',
+          vxrnOptions?.mode ?? userConfig?.mode ?? "development",
           process.cwd(),
-          userConfig?.envPrefix
-        )
+          userConfig?.envPrefix,
+        );
         return {
           define: {
             ...clientEnvDefine,
             ...(process.env.ONE_DEBUG_ROUTER && {
-              'process.env.ONE_DEBUG_ROUTER': JSON.stringify(process.env.ONE_DEBUG_ROUTER),
+              "process.env.ONE_DEBUG_ROUTER": JSON.stringify(process.env.ONE_DEBUG_ROUTER),
             }),
           },
-        }
+        };
       },
     },
 
@@ -178,7 +178,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                 enableReanimated: hasReanimated,
                 enableNativeCSS: options.native?.css ?? hasNativewind,
                 enableNativewind: hasNativewind,
-              })
+              });
             },
             root,
             include: /node_modules/,
@@ -189,30 +189,30 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     // proxy because you cant add a plugin inside a plugin
     new Proxy(
       {
-        name: 'one:tsconfig-paths',
+        name: "one:tsconfig-paths",
         config(configIncoming) {
-          const pathsConfig = options.config?.tsConfigPaths
+          const pathsConfig = options.config?.tsConfigPaths;
           if (pathsConfig === false) {
-            return
+            return;
           }
           if (
             configIncoming.plugins
               ?.flat()
-              .some((p) => p && (p as any)['name'] === 'vite-tsconfig-paths')
+              .some((p) => p && (p as any)["name"] === "vite-tsconfig-paths")
           ) {
             // already has it configured
-            return
+            return;
           }
 
           const skipDotDirs = (dir: string) => {
-            const name = dir.split('/').pop() || ''
-            return name.startsWith('.')
-          }
+            const name = dir.split("/").pop() || "";
+            return name.startsWith(".");
+          };
 
           tsConfigPathsPlugin = tsconfigPaths({
             skip: skipDotDirs,
-            ...(pathsConfig && typeof pathsConfig === 'object' ? pathsConfig : {}),
-          })
+            ...(pathsConfig && typeof pathsConfig === "object" ? pathsConfig : {}),
+          });
         },
 
         configResolved() {},
@@ -220,34 +220,34 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       },
       {
         get(target, key, thisArg) {
-          if (key === 'config' || key === 'name') {
-            return Reflect.get(target, key, thisArg)
+          if (key === "config" || key === "name") {
+            return Reflect.get(target, key, thisArg);
           }
 
           if (tsConfigPathsPlugin) {
-            return Reflect.get(tsConfigPathsPlugin, key, thisArg)
+            return Reflect.get(tsConfigPathsPlugin, key, thisArg);
           }
         },
-      }
+      },
     ),
 
     {
-      name: 'one-aliases',
-      enforce: 'pre',
+      name: "one-aliases",
+      enforce: "pre",
 
       config() {
         // const forkPath = dirname(resolvePath('one'))
 
-        let tslibLitePath = ''
+        let tslibLitePath = "";
 
         try {
           // temp fix for seeing
           // Could not read from file: modules/@vxrn/resolve/dist/esm/@vxrn/tslib-lite
-          tslibLitePath = resolvePath('@vxrn/tslib-lite', process.cwd())
+          tslibLitePath = resolvePath("@vxrn/tslib-lite", process.cwd());
         } catch (err) {
-          console.info(`Can't find tslib-lite, falling back to tslib`)
+          console.info(`Can't find tslib-lite, falling back to tslib`);
           if (process.env.DEBUG) {
-            console.error(err)
+            console.error(err);
           }
         }
 
@@ -280,82 +280,82 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             //   // },
             // ],
           },
-        }
+        };
       },
     },
 
     {
-      name: 'one:init-config',
+      name: "one:init-config",
 
       config() {
         return {
           define: {
             // we define this not in environment.client because there must be a bug in vite
             // it doesnt define the import.meta.env at all if you do that
-            'process.env.TAMAGUI_ENVIRONMENT': '"client"',
-            'process.env.VITE_ENVIRONMENT': '"client"',
-            'import.meta.env.VITE_ENVIRONMENT': '"client"',
-            'process.env.VITE_PLATFORM': '"web"',
-            'import.meta.env.VITE_PLATFORM': '"web"',
-            'process.env.EXPO_OS': '"web"',
-            'import.meta.env.EXPO_OS': '"web"',
+            "process.env.TAMAGUI_ENVIRONMENT": '"client"',
+            "process.env.VITE_ENVIRONMENT": '"client"',
+            "import.meta.env.VITE_ENVIRONMENT": '"client"',
+            "process.env.VITE_PLATFORM": '"web"',
+            "import.meta.env.VITE_PLATFORM": '"web"',
+            "process.env.EXPO_OS": '"web"',
+            "import.meta.env.EXPO_OS": '"web"',
 
             ...(options.web?.defaultRenderMode && {
-              'process.env.ONE_DEFAULT_RENDER_MODE': JSON.stringify(options.web.defaultRenderMode),
-              'import.meta.env.ONE_DEFAULT_RENDER_MODE': JSON.stringify(
-                options.web.defaultRenderMode
+              "process.env.ONE_DEFAULT_RENDER_MODE": JSON.stringify(options.web.defaultRenderMode),
+              "import.meta.env.ONE_DEFAULT_RENDER_MODE": JSON.stringify(
+                options.web.defaultRenderMode,
               ),
             }),
 
             ...(() => {
-              if (!options.setupFile) return {}
+              if (!options.setupFile) return {};
 
               // normalize setupFile to object format
               let setupFiles: {
-                client?: string
-                server?: string
-                ios?: string
-                android?: string
-              }
+                client?: string;
+                server?: string;
+                ios?: string;
+                android?: string;
+              };
 
-              if (typeof options.setupFile === 'string') {
+              if (typeof options.setupFile === "string") {
                 setupFiles = {
                   client: options.setupFile,
                   server: options.setupFile,
                   ios: options.setupFile,
                   android: options.setupFile,
-                }
-              } else if ('native' in options.setupFile) {
+                };
+              } else if ("native" in options.setupFile) {
                 setupFiles = {
                   client: options.setupFile.client,
                   server: options.setupFile.server,
                   ios: options.setupFile.native,
                   android: options.setupFile.native,
-                }
+                };
               } else {
-                setupFiles = options.setupFile
+                setupFiles = options.setupFile;
               }
 
               return {
                 ...(setupFiles.client && {
-                  'process.env.ONE_SETUP_FILE_CLIENT': JSON.stringify(setupFiles.client),
+                  "process.env.ONE_SETUP_FILE_CLIENT": JSON.stringify(setupFiles.client),
                 }),
                 ...(setupFiles.server && {
-                  'process.env.ONE_SETUP_FILE_SERVER': JSON.stringify(setupFiles.server),
+                  "process.env.ONE_SETUP_FILE_SERVER": JSON.stringify(setupFiles.server),
                 }),
                 ...(setupFiles.ios && {
-                  'process.env.ONE_SETUP_FILE_IOS': JSON.stringify(setupFiles.ios),
+                  "process.env.ONE_SETUP_FILE_IOS": JSON.stringify(setupFiles.ios),
                 }),
                 ...(setupFiles.android && {
-                  'process.env.ONE_SETUP_FILE_ANDROID': JSON.stringify(setupFiles.android),
+                  "process.env.ONE_SETUP_FILE_ANDROID": JSON.stringify(setupFiles.android),
                 }),
-              }
+              };
             })(),
 
-            ...(process.env.NODE_ENV !== 'production' &&
+            ...(process.env.NODE_ENV !== "production" &&
               vxrnOptions && {
-                'process.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
-                'import.meta.env.ONE_SERVER_URL': JSON.stringify(vxrnOptions.server.url),
+                "process.env.ONE_SERVER_URL": JSON.stringify(vxrnOptions.server.url),
+                "import.meta.env.ONE_SERVER_URL": JSON.stringify(vxrnOptions.server.url),
               }),
           },
 
@@ -369,128 +369,128 @@ export function one(options: One.PluginOptions = {}): PluginOption {
 
             ssr: {
               define: {
-                'process.env.TAMAGUI_ENVIRONMENT': '"ssr"',
-                'process.env.VITE_ENVIRONMENT': '"ssr"', // Note that we are also setting `process.env.VITE_ENVIRONMENT = 'ssr'` for this current process. See `setServerGlobals()` and `setupServerGlobals.ts`.
-                'import.meta.env.VITE_ENVIRONMENT': '"ssr"',
-                'process.env.VITE_PLATFORM': '"web"',
-                'import.meta.env.VITE_PLATFORM': '"web"',
-                'process.env.EXPO_OS': '"web"',
-                'import.meta.env.EXPO_OS': '"web"',
+                "process.env.TAMAGUI_ENVIRONMENT": '"ssr"',
+                "process.env.VITE_ENVIRONMENT": '"ssr"', // Note that we are also setting `process.env.VITE_ENVIRONMENT = 'ssr'` for this current process. See `setServerGlobals()` and `setupServerGlobals.ts`.
+                "import.meta.env.VITE_ENVIRONMENT": '"ssr"',
+                "process.env.VITE_PLATFORM": '"web"',
+                "import.meta.env.VITE_PLATFORM": '"web"',
+                "process.env.EXPO_OS": '"web"',
+                "import.meta.env.EXPO_OS": '"web"',
               },
             },
 
             ios: {
               define: {
-                'process.env.TAMAGUI_ENVIRONMENT': '"ios"',
-                'process.env.VITE_ENVIRONMENT': '"ios"',
-                'import.meta.env.VITE_ENVIRONMENT': '"ios"',
-                'process.env.VITE_PLATFORM': '"native"',
-                'import.meta.env.VITE_PLATFORM': '"native"',
-                'process.env.EXPO_OS': '"ios"',
-                'import.meta.env.EXPO_OS': '"ios"',
+                "process.env.TAMAGUI_ENVIRONMENT": '"ios"',
+                "process.env.VITE_ENVIRONMENT": '"ios"',
+                "import.meta.env.VITE_ENVIRONMENT": '"ios"',
+                "process.env.VITE_PLATFORM": '"native"',
+                "import.meta.env.VITE_PLATFORM": '"native"',
+                "process.env.EXPO_OS": '"ios"',
+                "import.meta.env.EXPO_OS": '"ios"',
               },
             },
 
             android: {
               define: {
-                'process.env.TAMAGUI_ENVIRONMENT': '"android"',
-                'process.env.VITE_ENVIRONMENT': '"android"',
-                'import.meta.env.VITE_ENVIRONMENT': '"android"',
-                'process.env.VITE_PLATFORM': '"native"',
-                'import.meta.env.VITE_PLATFORM': '"native"',
-                'process.env.EXPO_OS': '"android"',
-                'import.meta.env.EXPO_OS': '"android"',
+                "process.env.TAMAGUI_ENVIRONMENT": '"android"',
+                "process.env.VITE_ENVIRONMENT": '"android"',
+                "import.meta.env.VITE_ENVIRONMENT": '"android"',
+                "process.env.VITE_PLATFORM": '"native"',
+                "import.meta.env.VITE_PLATFORM": '"native"',
+                "process.env.EXPO_OS": '"android"',
+                "import.meta.env.EXPO_OS": '"android"',
               },
             },
           },
-        }
+        };
       },
     } satisfies Plugin,
 
     {
-      name: 'one:tamagui',
+      name: "one:tamagui",
       config() {
         return {
           define: {
             // safe to set because it only affects web in tamagui, and one is always react 19
-            'process.env.TAMAGUI_REACT_19': '"1"',
+            "process.env.TAMAGUI_REACT_19": '"1"',
           },
 
           environments: {
             ssr: {
               define: {
-                'process.env.TAMAGUI_IS_SERVER': '"1"',
-                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+                "process.env.TAMAGUI_IS_SERVER": '"1"',
+                "process.env.TAMAGUI_KEEP_THEMES": '"1"',
               },
             },
             ios: {
               define: {
-                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+                "process.env.TAMAGUI_KEEP_THEMES": '"1"',
               },
             },
             android: {
               define: {
-                'process.env.TAMAGUI_KEEP_THEMES': '"1"',
+                "process.env.TAMAGUI_KEEP_THEMES": '"1"',
               },
             },
           },
-        }
+        };
       },
     } satisfies Plugin,
 
     {
-      name: 'route-module-hmr-fix',
+      name: "route-module-hmr-fix",
       hotUpdate({ server, modules }) {
         return modules.map((m) => {
-          const { id } = m
-          if (!id) return m
+          const { id } = m;
+          if (!id) return m;
 
-          const relativePath = path.relative(server.config.root, id)
+          const relativePath = path.relative(server.config.root, id);
           // Get the root dir from relativePath
-          const rootDir = relativePath.split(path.sep)[0]
-          if (rootDir === 'app') {
+          const rootDir = relativePath.split(path.sep)[0];
+          if (rootDir === "app") {
             // If the file is a route, Vite might force a full-reload due to that file not being imported by any other modules (`!node.importers.size`) (see https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L440-L443, https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L427 and https://github.com/vitejs/vite/blob/v6.0.0-alpha.18/packages/vite/src/node/server/hmr.ts#L557-L566)
             // Here we trick Vite to skip that check.
-            m.acceptedHmrExports = new Set()
+            m.acceptedHmrExports = new Set();
           }
 
-          return m
-        })
+          return m;
+        });
       },
     } satisfies Plugin,
 
     // Plugins may transform the source code and add imports of `react/jsx-dev-runtime`, which won't be discovered by Vite's initial `scanImports` since the implementation is using ESbuild where such plugins are not executed.
     // Thus, if the project has a valid `react/jsx-dev-runtime` import, we tell Vite to optimize it, so Vite won't only discover it on the next page load and trigger a full reload.
     {
-      name: 'one:optimize-dev-deps',
+      name: "one:optimize-dev-deps",
 
       config(_, env) {
-        if (env.mode === 'development') {
+        if (env.mode === "development") {
           return {
             optimizeDeps: {
-              include: ['react/jsx-dev-runtime', 'react/compiler-runtime'],
+              include: ["react/jsx-dev-runtime", "react/compiler-runtime"],
             },
-          }
+          };
         }
       },
     } satisfies Plugin,
 
     {
-      name: 'one:remove-server-from-client',
-      enforce: 'pre',
+      name: "one:remove-server-from-client",
+      enforce: "pre",
 
       transform(code, id) {
-        if (this.environment.name === 'client') {
+        if (this.environment.name === "client") {
           if (id.includes(`one-server-only`)) {
             return code.replace(
               `import { AsyncLocalStorage } from "node:async_hooks"`,
-              `class AsyncLocalStorage {}`
-            )
+              `class AsyncLocalStorage {}`,
+            );
           }
         }
       },
     },
-  ] satisfies Plugin[]
+  ] satisfies Plugin[];
 
   // leaving this as a good example of an option that loads a library conditionally
   // // react scan
@@ -573,15 +573,15 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     clientTreeShakePlugin(),
     //
     // reactScanPlugin
-  ]
+  ];
 
   // TODO make this passed into vxrn through real API
-  globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin
-  globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
+  globalThis.__vxrnAddNativePlugins = nativeWebDevAndProdPlugsin;
+  globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins;
 
   const flags: One.Flags = {
     experimentalPreventLayoutRemounting: options.router?.experimental?.preventLayoutRemounting,
-  }
+  };
 
   return [
     ...vxrnPlugins,
@@ -604,24 +604,24 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     }),
 
     {
-      name: 'one-define-environment',
+      name: "one-define-environment",
       config() {
         return {
           define: {
             ...(options.native?.key && {
-              'process.env.ONE_APP_NAME': JSON.stringify(options.native.key),
-              'import.meta.env.ONE_APP_NAME': JSON.stringify(options.native.key),
+              "process.env.ONE_APP_NAME": JSON.stringify(options.native.key),
+              "import.meta.env.ONE_APP_NAME": JSON.stringify(options.native.key),
             }),
 
-            'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
-            'import.meta.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
+            "process.env.ONE_CACHE_KEY": JSON.stringify(CACHE_KEY),
+            "import.meta.env.ONE_CACHE_KEY": JSON.stringify(CACHE_KEY),
           },
-        }
+        };
       },
     } satisfies Plugin,
 
     SSRCSSPlugin({
       entries: [virtualEntryId],
     }),
-  ]
+  ];
 }

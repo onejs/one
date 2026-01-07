@@ -1,13 +1,13 @@
-import type { One } from '../vite/types';
-import type { DynamicConvention, RouteNode } from './Route';
+import type { One } from "../vite/types";
+import type { DynamicConvention, RouteNode } from "./Route";
 export type Options = {
-    ignore?: RegExp[];
-    preserveApiRoutes?: boolean;
-    ignoreRequireErrors?: boolean;
-    ignoreEntryPoints?: boolean;
-    importMode?: 'sync';
-    platformRoutes?: boolean;
-    platform?: string;
+  ignore?: RegExp[];
+  preserveApiRoutes?: boolean;
+  ignoreRequireErrors?: boolean;
+  ignoreEntryPoints?: boolean;
+  importMode?: "sync";
+  platformRoutes?: boolean;
+  platform?: string;
 };
 /**
  * Given a Metro context module, return an array of nested routes.
@@ -21,7 +21,10 @@ export type Options = {
  *      - The name of the route is relative to the nearest _layout
  *      - If multiple routes have the same name, the most specific route is used
  */
-export declare function getRoutes(contextModule: One.RouteContext, options?: Options): RouteNode | null;
+export declare function getRoutes(
+  contextModule: One.RouteContext,
+  options?: Options,
+): RouteNode | null;
 export declare function getIgnoreList(options?: Options): RegExp[];
 /**
  * Generates a set of strings which have the router array syntax extrapolated.

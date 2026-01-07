@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
 var l, s;
-if (process.env.NODE_ENV === 'production') {
-  l = require('./cjs/react-dom-server-legacy.node.production.min.js');
-  s = require('./cjs/react-dom-server.node.production.min.js');
+if (process.env.NODE_ENV === "production") {
+  l = require("./cjs/react-dom-server-legacy.node.production.min.js");
+  s = require("./cjs/react-dom-server.node.production.min.js");
 } else {
-  l = require('./cjs/react-dom-server-legacy.node.development.js');
-  s = require('./cjs/react-dom-server.node.development.js');
+  l = require("./cjs/react-dom-server-legacy.node.development.js");
+  s = require("./cjs/react-dom-server.node.development.js");
 }
 
 exports.version = l.version;

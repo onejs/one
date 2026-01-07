@@ -1,15 +1,15 @@
-import { writeFile } from 'node:fs/promises'
-import '../polyfills-server'
-import { existsAsync } from '../utils/existsAsync'
+import { writeFile } from "node:fs/promises";
+import "../polyfills-server";
+import { existsAsync } from "../utils/existsAsync";
 
 export function ensureTSConfig() {
-  existsAsync('tsconfig.json').then((hasTsConfig) => {
+  existsAsync("tsconfig.json").then((hasTsConfig) => {
     if (!hasTsConfig) {
       console.info(
-        `[one] adding default tsconfig.json. to disable set one/vite { config: { tsConfigPaths: false } }`
-      )
+        `[one] adding default tsconfig.json. to disable set one/vite { config: { tsConfigPaths: false } }`,
+      );
       writeFile(
-        'tsconfig.json',
+        "tsconfig.json",
         `{
 "compilerOptions": {
   "baseUrl": ".",
@@ -44,8 +44,8 @@ export function ensureTSConfig() {
   "**/__tests__"
 ],
 }
-`
-      )
+`,
+      );
     }
-  })
+  });
 }

@@ -1,7 +1,7 @@
-import type { TestInfo } from '@vxrn/test'
+import type { TestInfo } from "@vxrn/test";
 
-declare module 'vitest' {
+declare module "vitest" {
   export interface ProvidedContext {
-    testInfo: TestInfo
+    testInfo: TestInfo;
   }
 }

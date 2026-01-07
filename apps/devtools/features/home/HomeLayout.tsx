@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 import {
   createStyledContext,
   isTouchable,
@@ -9,22 +9,22 @@ import {
   type ViewProps,
   XStack,
   YStack,
-} from 'tamagui'
-import { type Href, Link, Slot, usePathname } from 'one'
-import { Logo } from '../brand/Logo'
-import { useToggleTheme } from '../theme/ToggleThemeButton'
-import { HomeIcons } from './HomeIcons'
+} from "tamagui";
+import { type Href, Link, Slot, usePathname } from "one";
+import { Logo } from "../brand/Logo";
+import { useToggleTheme } from "../theme/ToggleThemeButton";
+import { HomeIcons } from "./HomeIcons";
 
 const Context = createStyledContext({
   isVertical: false,
-})
+});
 
 export function HomeLayout() {
   return (
     <Context.Provider isVertical={isTouchable}>
       {isTouchable ? <HomeLayoutTouch /> : <HomeLayoutMouse />}
     </Context.Provider>
-  )
+  );
 }
 
 function HomeLayoutTouch() {
@@ -45,7 +45,7 @@ function HomeLayoutTouch() {
         <NavLinks />
       </XStack>
     </YStack>
-  )
+  );
 }
 
 function HomeLayoutMouse() {
@@ -60,16 +60,16 @@ function HomeLayoutMouse() {
         py="$4"
         gap="$1"
         $xs={{
-          miw: 'auto',
+          miw: "auto",
         }}
       >
         <XStack
           mb="$3"
           $xs={{
-            w: '$5',
-            h: '$5',
-            ai: 'center',
-            jc: 'center',
+            w: "$5",
+            h: "$5",
+            ai: "center",
+            jc: "center",
           }}
         >
           <Logo />
@@ -88,13 +88,13 @@ function HomeLayoutMouse() {
         </ScrollView>
       </YStack>
     </XStack>
-  )
+  );
 }
 
 function NavLinks() {
   return (
     <>
-      <SideMenuLink href="/" subPaths={['/post/']} Icon={HomeIcons.Home}>
+      <SideMenuLink href="/" subPaths={["/post/"]} Icon={HomeIcons.Home}>
         Feed
       </SideMenuLink>
 
@@ -106,7 +106,7 @@ function NavLinks() {
         Profile
       </SideMenuLink>
     </>
-  )
+  );
 }
 
 const IconFrame = styled(View, {
@@ -114,10 +114,10 @@ const IconFrame = styled(View, {
     scale: 0.8,
     m: -5,
   },
-})
+});
 
 const ToggleThemeLink = (props: ViewProps) => {
-  const { onPress, Icon, setting } = useToggleTheme()
+  const { onPress, Icon, setting } = useToggleTheme();
   return (
     <LinkContainer {...props} onPress={onPress}>
       <IconFrame>
@@ -128,8 +128,8 @@ const ToggleThemeLink = (props: ViewProps) => {
         {setting.slice(1)}
       </LinkText>
     </LinkContainer>
-  )
-}
+  );
+};
 
 const SideMenuLink = ({
   href,
@@ -137,13 +137,13 @@ const SideMenuLink = ({
   Icon,
   children,
 }: {
-  subPaths?: string[]
-  href: Href
-  Icon: (typeof HomeIcons)['Home']
-  children: ReactNode
+  subPaths?: string[];
+  href: Href;
+  Icon: (typeof HomeIcons)["Home"];
+  children: ReactNode;
 }) => {
-  const pathname = usePathname()
-  const isActive = pathname === href || subPaths?.some((p) => pathname.startsWith(p))
+  const pathname = usePathname();
+  const isActive = pathname === href || subPaths?.some((p) => pathname.startsWith(p));
 
   return (
     <Link asChild href={href}>
@@ -154,18 +154,18 @@ const SideMenuLink = ({
         <LinkText>{children}</LinkText>
       </LinkContainer>
     </Link>
-  )
-}
+  );
+};
 
 const LinkText = styled(SizableText, {
   context: Context,
-  userSelect: 'none',
-  dsp: 'flex',
+  userSelect: "none",
+  dsp: "flex",
   f: 10,
-  size: '$5',
-  cur: 'pointer',
+  size: "$5",
+  cur: "pointer",
   $xs: {
-    display: 'none',
+    display: "none",
   },
 
   variants: {
@@ -173,50 +173,50 @@ const LinkText = styled(SizableText, {
       true: {},
     },
   } as const,
-})
+});
 
 const LinkContainer = styled(XStack, {
   context: Context,
-  tag: 'a',
-  className: 'text-decoration-none',
-  gap: '$4',
-  br: '$6',
-  cur: 'pointer',
-  ai: 'center',
+  tag: "a",
+  className: "text-decoration-none",
+  gap: "$4",
+  br: "$6",
+  cur: "pointer",
+  ai: "center",
   hoverStyle: {
-    bg: '$color3',
+    bg: "$color3",
   },
   pressStyle: {
-    bg: '$color3',
+    bg: "$color3",
   },
 
   variants: {
     isActive: {
       true: {
-        backgroundColor: '$color2',
+        backgroundColor: "$color2",
       },
     },
 
     isVertical: {
       true: {
         f: 1,
-        jc: 'center',
-        px: '$2',
-        py: '$2.5',
+        jc: "center",
+        px: "$2",
+        py: "$2.5",
       },
       false: {
-        w: '100%',
-        px: '$4',
-        py: '$2.5',
+        w: "100%",
+        px: "$4",
+        py: "$2.5",
 
         $xs: {
           p: 0,
-          w: '$6',
-          h: '$6',
-          ai: 'center',
-          jc: 'center',
+          w: "$6",
+          h: "$6",
+          ai: "center",
+          jc: "center",
         },
       },
     },
   } as const,
-})
+});

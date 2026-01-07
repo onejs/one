@@ -1,8 +1,8 @@
-import nodeResolve from '@rollup/plugin-node-resolve'
-import { createVXRNCompilerPlugin } from '@vxrn/compiler'
-import { resolvePath } from '@vxrn/resolve'
-import { stat } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
+import nodeResolve from "@rollup/plugin-node-resolve";
+import { createVXRNCompilerPlugin } from "@vxrn/compiler";
+import { resolvePath } from "@vxrn/resolve";
+import { stat } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import {
   createLogger,
   type InlineConfig,
@@ -11,22 +11,22 @@ import {
   resolveConfig,
   type ResolvedConfig,
   type UserConfig,
-} from 'vite'
-import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
-import { nativeClientInjectPlugin } from '../plugins/clientInjectPlugin'
-import { reactNativeCommonJsPlugin } from '../plugins/reactNativeCommonJsPlugin'
-import { reactNativeDevAssetPlugin } from '../plugins/reactNativeDevAssetPlugin'
-import { dedupe } from './getBaseViteConfigOnly'
-import { getOptimizeDeps } from './getOptimizeDeps'
-import type { VXRNOptionsFilled } from './getOptionsFilled'
-import { swapPrebuiltReactModules } from '../utils/swapPrebuiltReactModules'
+} from "vite";
+import { DEFAULT_ASSET_EXTS } from "../constants/defaults";
+import { nativeClientInjectPlugin } from "../plugins/clientInjectPlugin";
+import { reactNativeCommonJsPlugin } from "../plugins/reactNativeCommonJsPlugin";
+import { reactNativeDevAssetPlugin } from "../plugins/reactNativeDevAssetPlugin";
+import { dedupe } from "./getBaseViteConfigOnly";
+import { getOptimizeDeps } from "./getOptimizeDeps";
+import type { VXRNOptionsFilled } from "./getOptionsFilled";
+import { swapPrebuiltReactModules } from "../utils/swapPrebuiltReactModules";
 
 // Suppress these logs:
 // * Use of eval in "(...)/react-native-prebuilt/vendor/react-native-0.74.1/index.js" is strongly discouraged as it poses security risks and may cause issues with minification.
 // * Use of eval in "(...)/one/dist/esm/useLoader.native.js" is strongly discouraged as it poses security risks and may cause issues with minification.
 // (not an exhaustive list)
 const IGNORE_ROLLUP_LOGS_RE =
-  /vite-native-client\/dist\/esm\/client|node_modules\/\.vxrn\/react-native|react-native-prebuilt\/vendor|one\/dist/
+  /vite-native-client\/dist\/esm\/client|node_modules\/\.vxrn\/react-native|react-native-prebuilt\/vendor|one\/dist/;
 
 /**
  * This is not the config that you merge into the general Vite config.
@@ -37,58 +37,58 @@ const IGNORE_ROLLUP_LOGS_RE =
  * Mainly used by the `getReactNativeBundle` function.
  */
 export async function getReactNativeBuildConfig(
-  options: Pick<VXRNOptionsFilled, 'root' | 'cacheDir'> & {
-    server: Pick<VXRNOptionsFilled['server'], 'url' | 'port'>
-    entries: Pick<VXRNOptionsFilled['entries'], 'native'>
+  options: Pick<VXRNOptionsFilled, "root" | "cacheDir"> & {
+    server: Pick<VXRNOptionsFilled["server"], "url" | "port">;
+    entries: Pick<VXRNOptionsFilled["entries"], "native">;
   },
-  internal: { mode?: 'dev' | 'prod'; assetsDest?: string } = { mode: 'dev' },
-  platform: 'ios' | 'android'
+  internal: { mode?: "dev" | "prod"; assetsDest?: string } = { mode: "dev" },
+  platform: "ios" | "android",
 ) {
   const {
     root,
     server: { port },
-  } = options
-  const { optimizeDeps } = getOptimizeDeps('build')
+  } = options;
+  const { optimizeDeps } = getOptimizeDeps("build");
 
-  const { mode } = internal
-  const serverUrl = process.env.ONE_SERVER_URL || options.server.url
+  const { mode } = internal;
+  const serverUrl = process.env.ONE_SERVER_URL || options.server.url;
 
-  const defaultLogger = createLogger()
+  const defaultLogger = createLogger();
 
-  let disableLogging = false
+  let disableLogging = false;
   const customLogger = {
     ...defaultLogger,
     info(msg, options) {
       if (disableLogging) {
         if (msg.includes(`built in`)) {
-          disableLogging = false
-          defaultLogger.info(msg, options)
+          disableLogging = false;
+          defaultLogger.info(msg, options);
         }
-        return
+        return;
       }
       // this is a super noisy and large log on most react native apps
       // actually slows down compile-time significantly
-      if (msg.includes('modules transformed.')) {
-        disableLogging = true
+      if (msg.includes("modules transformed.")) {
+        disableLogging = true;
         // safeguard, re-enable after a beat
         setTimeout(() => {
-          disableLogging = false
-        }, 2000)
+          disableLogging = false;
+        }, 2000);
       }
-      defaultLogger.info(msg, options)
+      defaultLogger.info(msg, options);
     },
-  } satisfies Logger
+  } satisfies Logger;
 
   // build app
   let nativeBuildConfig = {
     plugins: [
       ...(globalThis.__vxrnAddNativePlugins || []),
 
-      ...(mode === 'dev' ? [nativeClientInjectPlugin()] : []),
+      ...(mode === "dev" ? [nativeClientInjectPlugin()] : []),
 
       {
-        name: 'native-special-case-resolver',
-        enforce: 'pre',
+        name: "native-special-case-resolver",
+        enforce: "pre",
 
         /**
          * WORKAROUND: Since currently RN is considered as a "server" environment,
@@ -106,41 +106,41 @@ export async function getReactNativeBuildConfig(
           // Skip during Vite's dependency optimization scan
           // @see https://github.com/remix-run/remix/discussions/8917
           // @ts-expect-error - scan is not in Vite's types but exists at runtime
-          if (options?.scan) return
+          if (options?.scan) return;
 
           // Only run this plugin for iOS and Android bundles
-          if (this.environment.name !== 'ios' && this.environment.name !== 'android') {
-            return
+          if (this.environment.name !== "ios" && this.environment.name !== "android") {
+            return;
           }
 
           switch (id) {
-            case 'buffer': {
-              return findModulePath(join('buffer', 'index.js'), root)
+            case "buffer": {
+              return findModulePath(join("buffer", "index.js"), root);
             }
-            case 'punycode': {
-              return findModulePath(join('punycode', 'punycode.es6.js'), root)
+            case "punycode": {
+              return findModulePath(join("punycode", "punycode.es6.js"), root);
             }
           }
         },
       } satisfies Plugin,
 
       {
-        name: 'one:native-no-external',
-        enforce: 'pre',
+        name: "one:native-no-external",
+        enforce: "pre",
         config() {
           const noExternalsEnvConfig = {
-            consumer: 'server',
+            consumer: "server",
             resolve: {
               noExternal: true,
             },
-          } as const
+          } as const;
 
           return {
             environments: {
               ios: noExternalsEnvConfig,
               android: noExternalsEnvConfig,
             },
-          }
+          };
         },
       } satisfies Plugin,
 
@@ -148,7 +148,7 @@ export async function getReactNativeBuildConfig(
 
       await swapPrebuiltReactModules(options.cacheDir, {
         // TODO: a better way to pass the mode (dev/prod) to PrebuiltReactModules
-        mode: internal.mode || 'dev',
+        mode: internal.mode || "dev",
         platform,
       }),
 
@@ -161,50 +161,50 @@ export async function getReactNativeBuildConfig(
       reactNativeCommonJsPlugin({
         root,
         port,
-        mode: 'build',
+        mode: "build",
       }),
 
       // Avoid "failed to read input source map: failed to parse inline source map url" errors on certain packages, such as react-native-reanimated.
       {
-        name: 'remove-inline-source-maps',
+        name: "remove-inline-source-maps",
         transform: {
-          order: 'pre',
+          order: "pre",
           async handler(code, id) {
-            if (!id.includes('react-native-reanimated')) {
-              return null
+            if (!id.includes("react-native-reanimated")) {
+              return null;
             }
 
-            const inlineSourceMapIndex = code.lastIndexOf('//# sourceMappingURL=')
+            const inlineSourceMapIndex = code.lastIndexOf("//# sourceMappingURL=");
             if (inlineSourceMapIndex >= 0) {
-              return code.slice(0, inlineSourceMapIndex).trimEnd()
+              return code.slice(0, inlineSourceMapIndex).trimEnd();
             }
 
-            return null
+            return null;
           },
         },
       },
 
       createVXRNCompilerPlugin({
-        mode: 'build',
-        environment: 'ios',
+        mode: "build",
+        environment: "ios",
       }),
 
       {
         // FIXME: This is a workaround to "tree-shake" things that will cause problems away before we have Rollup tree-shaking configured properly (https://github.com/onejs/one/pull/340).
-        name: 'vxrn:manual-tree-shake',
-        enforce: 'post',
+        name: "vxrn:manual-tree-shake",
+        enforce: "post",
         async renderChunk(code, chunk, options, meta) {
-          if (chunk.name.endsWith('packages/one/dist/esm/createApp.native')) {
+          if (chunk.name.endsWith("packages/one/dist/esm/createApp.native")) {
             // What we want to do here is to "tree-shake" `require('react-scan/native')` away if it's value is not assigned to anything (i.e. not used).
             // However, `react-scan/native` will be wrapped with a "commonjs-es-import" virtual module by the `@rollup/plugin-commonjs` plugin (Vite built-in) so that import won't have `react-scan/native` in it's name. The only thing for sure is that it's path will contain `_virtual`.
             // As in `createApp.native` the only "side-effect modules" we are currently using are './polyfills-mobile' and './setup', which won't be wrapped with a virtual module, this won't remove unintended things for now.
-            return { code: code.replace(/^require\(.+_virtual.+\);/gm, '') }
+            return { code: code.replace(/^require\(.+_virtual.+\);/gm, "") };
           }
         },
       } satisfies Plugin,
     ].filter(Boolean),
 
-    appType: 'custom',
+    appType: "custom",
     root,
     clearScreen: false,
     esbuild: false,
@@ -215,7 +215,7 @@ export async function getReactNativeBuildConfig(
     optimizeDeps: {
       ...optimizeDeps,
       esbuildOptions: {
-        jsx: 'automatic',
+        jsx: "automatic",
       },
     },
 
@@ -223,22 +223,22 @@ export async function getReactNativeBuildConfig(
       dedupe,
 
       alias: {
-        'react-native-css-interop/jsx-dev-runtime': join(
-          resolvePath('react-native-css-interop'),
-          '..',
-          '..',
-          'dist',
-          'runtime',
-          'jsx-dev-runtime.js'
+        "react-native-css-interop/jsx-dev-runtime": join(
+          resolvePath("react-native-css-interop"),
+          "..",
+          "..",
+          "dist",
+          "runtime",
+          "jsx-dev-runtime.js",
         ),
       },
     },
 
-    mode: mode === 'dev' ? 'development' : 'production',
+    mode: mode === "dev" ? "development" : "production",
 
     define: {
-      'process.env.NODE_ENV': mode === 'dev' ? `"development"` : `"production"`,
-      'process.env.ONE_SERVER_URL': JSON.stringify(serverUrl),
+      "process.env.NODE_ENV": mode === "dev" ? `"development"` : `"production"`,
+      "process.env.ONE_SERVER_URL": JSON.stringify(serverUrl),
     },
 
     build: {
@@ -247,47 +247,47 @@ export async function getReactNativeBuildConfig(
       commonjsOptions: {
         transformMixedEsModules: true,
         ignore(id) {
-          return id === 'react/jsx-runtime' || id === 'react/jsx-dev-runtime'
+          return id === "react/jsx-runtime" || id === "react/jsx-dev-runtime";
         },
       },
       rollupOptions: {
         input: options.entries.native,
         treeshake: false,
-        preserveEntrySignatures: 'strict',
+        preserveEntrySignatures: "strict",
         output: {
           preserveModules: true,
-          format: 'cjs',
+          format: "cjs",
         },
 
         onwarn(message, warn) {
           // Suppress "Module level directives cause errors when bundled" warnings
-          if (!process.env.DEBUG?.startsWith('vxrn')) {
+          if (!process.env.DEBUG?.startsWith("vxrn")) {
             if (
-              message.code === 'MODULE_LEVEL_DIRECTIVE' ||
-              message.code === 'INVALID_ANNOTATION' ||
-              message.code === 'MISSING_EXPORT' ||
-              message.code === 'SOURCEMAP_ERROR'
+              message.code === "MODULE_LEVEL_DIRECTIVE" ||
+              message.code === "INVALID_ANNOTATION" ||
+              message.code === "MISSING_EXPORT" ||
+              message.code === "SOURCEMAP_ERROR"
             ) {
-              warnAboutSuppressingLogsOnce()
-              return
+              warnAboutSuppressingLogsOnce();
+              return;
             }
           }
-          warn(message)
+          warn(message);
         },
 
         onLog(level, log, handler) {
-          if (!process.env.DEBUG?.startsWith('vxrn')) {
+          if (!process.env.DEBUG?.startsWith("vxrn")) {
             if (IGNORE_ROLLUP_LOGS_RE.test(log.message)) {
-              warnAboutSuppressingLogsOnce()
-              return
+              warnAboutSuppressingLogsOnce();
+              return;
             }
           }
 
-          handler(level, log)
+          handler(level, log);
         },
       },
     },
-  } satisfies InlineConfig
+  } satisfies InlineConfig;
 
   // TODO
   // if (options.nativeConfig) {
@@ -295,7 +295,7 @@ export async function getReactNativeBuildConfig(
   // }
 
   // // this fixes my swap-react-native plugin not being called pre 😳
-  resolvedConfig = await resolveConfig(nativeBuildConfig, 'build')
+  resolvedConfig = await resolveConfig(nativeBuildConfig, "build");
 
   // The `resolveConfig` function will load user's `vite.config.*` (by calling `loadConfigFromFile`).
   // Here we do this to make user defined global constant replacements (https://vite.dev/config/shared-options#define) to take effect in RN.
@@ -304,22 +304,22 @@ export async function getReactNativeBuildConfig(
     nativeBuildConfig.define = {
       ...nativeBuildConfig.define,
       ...resolvedConfig.define,
-    }
+    };
   }
 
-  return nativeBuildConfig satisfies UserConfig
+  return nativeBuildConfig satisfies UserConfig;
 }
 
-let resolvedConfig: ResolvedConfig | null = null
+let resolvedConfig: ResolvedConfig | null = null;
 /** Use by things such as the reactNativeHMRPlugin to get the config after the initial build. */
 export function getReactNativeResolvedConfig() {
-  return resolvedConfig
+  return resolvedConfig;
 }
 
-let didWarnSuppressingLogs = false
+let didWarnSuppressingLogs = false;
 function warnAboutSuppressingLogsOnce() {
   if (!didWarnSuppressingLogs) {
-    didWarnSuppressingLogs = true
+    didWarnSuppressingLogs = true;
     // honestly they are harmdless so no need to warn, but it would be nice to do it once ever and then save that we did to disk
     // console.warn(` [vxrn] Suppressing mostly harmless logs, enable with DEBUG=vxrn`)
   }
@@ -331,20 +331,20 @@ function warnAboutSuppressingLogsOnce() {
 async function findModulePath(
   modulePath: string,
   currentDir: string,
-  triedPaths?: Array<string>
+  triedPaths?: Array<string>,
 ): Promise<string | null> {
-  const currentModulePath = join(currentDir, 'node_modules', modulePath)
+  const currentModulePath = join(currentDir, "node_modules", modulePath);
 
   try {
-    await stat(currentModulePath)
-    return currentModulePath
+    await stat(currentModulePath);
+    return currentModulePath;
   } catch {
-    const parentDir = dirname(currentDir)
+    const parentDir = dirname(currentDir);
 
     if (parentDir === currentDir) {
-      throw new Error(`Could not find module in any of these paths: ${triedPaths?.join(', ')}`)
+      throw new Error(`Could not find module in any of these paths: ${triedPaths?.join(", ")}`);
     }
 
-    return findModulePath(modulePath, parentDir, [...(triedPaths || []), currentModulePath])
+    return findModulePath(modulePath, parentDir, [...(triedPaths || []), currentModulePath]);
   }
 }

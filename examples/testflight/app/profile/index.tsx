@@ -1,19 +1,19 @@
-import { useRef, type ElementRef } from 'react'
-import { useScrollToTop } from '@react-navigation/native'
-import { ScrollView, YStack, Text, SizableStack, XStack } from 'tamagui'
-import { getURL, type LoaderProps, useLoader } from 'one'
-import { FeedCard } from '~/code/feed/FeedCard'
-import { Image } from '~/code/ui/Image'
-import { PageContainer } from '~/code/ui/PageContainer'
-import { Repeat2 } from '@tamagui/lucide-icons'
-import { db } from '~/code/db/connection'
-import { posts, reposts, users, likes, replies } from '~/code/db/schema'
-import { eq, sql, desc } from 'drizzle-orm'
-import { profileFeed, userData } from '~/code/data'
+import { useRef, type ElementRef } from "react";
+import { useScrollToTop } from "@react-navigation/native";
+import { ScrollView, YStack, Text, SizableStack, XStack } from "tamagui";
+import { getURL, type LoaderProps, useLoader } from "one";
+import { FeedCard } from "~/code/feed/FeedCard";
+import { Image } from "~/code/ui/Image";
+import { PageContainer } from "~/code/ui/PageContainer";
+import { Repeat2 } from "@tamagui/lucide-icons";
+import { db } from "~/code/db/connection";
+import { posts, reposts, users, likes, replies } from "~/code/db/schema";
+import { eq, sql, desc } from "drizzle-orm";
+import { profileFeed, userData } from "~/code/data";
 
 export default function ProfilePage() {
-  const scrollViewRef = useRef<ElementRef<typeof ScrollView>>(null)
-  useScrollToTop(scrollViewRef)
+  const scrollViewRef = useRef<ElementRef<typeof ScrollView>>(null);
+  useScrollToTop(scrollViewRef);
 
   return (
     <PageContainer>
@@ -34,7 +34,7 @@ export default function ProfilePage() {
             width={100}
             height={100}
             br={100}
-            src={userData.avatar || ''}
+            src={userData.avatar || ""}
             bw={1}
             bc="$color1"
             shadowColor="rgba(0,0,0,0.5)"
@@ -47,7 +47,7 @@ export default function ProfilePage() {
         </YStack>
 
         {profileFeed.map((post) => {
-          if (post.type === 'repost') {
+          if (post.type === "repost") {
             return (
               <YStack
                 key={post.id}
@@ -66,11 +66,11 @@ export default function ProfilePage() {
                 </XStack>
                 <FeedCard {...post} />
               </YStack>
-            )
+            );
           }
-          return <FeedCard key={post.id} {...post} />
+          return <FeedCard key={post.id} {...post} />;
         })}
       </ScrollView>
     </PageContainer>
-  )
+  );
 }

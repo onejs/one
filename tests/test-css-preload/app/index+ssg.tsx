@@ -1,5 +1,5 @@
-import { Link } from 'one'
-import './home.css'
+import { Link } from "one";
+import "./home.css";
 
 export default function HomePage() {
   return (
@@ -10,5 +10,5 @@ export default function HomePage() {
         Go to Other Page
       </Link>
     </div>
-  )
+  );
 }

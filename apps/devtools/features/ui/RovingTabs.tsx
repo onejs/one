@@ -1,55 +1,59 @@
-import { useState } from 'react'
-import type { TabLayout, TabsTabProps, ViewProps } from 'tamagui'
-import { Avatar, SizableText, XStack, styled } from 'tamagui'
-import { AnimatePresence, Tabs, YStack } from 'tamagui'
-import { Logo } from '../brand/Logo'
+import { useState } from "react";
+import type { TabLayout, TabsTabProps, ViewProps } from "tamagui";
+import { Avatar, SizableText, XStack, styled } from "tamagui";
+import { AnimatePresence, Tabs, YStack } from "tamagui";
+import { Logo } from "../brand/Logo";
 
 export function RovingTabs({
   tabs,
   children,
   initialTab,
-}: { tabs: { label: any; value: string }[]; children: any; initialTab: string }) {
-  const [selected, setSelected] = useState<string>(initialTab)
+}: {
+  tabs: { label: any; value: string }[];
+  children: any;
+  initialTab: string;
+}) {
+  const [selected, setSelected] = useState<string>(initialTab);
 
   const [tabState, setTabState] = useState<{
     // Layout of the Tab user might intend to select (hovering / focusing)
-    intentAt: TabLayout | null
+    intentAt: TabLayout | null;
     // Layout of the Tab user selected
-    activeAt: TabLayout | null
+    activeAt: TabLayout | null;
     // Used to get the direction of activation for animating the active indicator
-    prevActiveAt: TabLayout | null
+    prevActiveAt: TabLayout | null;
   }>({
     intentAt: null,
     activeAt: null,
     prevActiveAt: null,
-  })
+  });
 
   const setIntentIndicator = (intentAt: TabLayout | null) =>
-    setTabState((prevTabState) => ({ ...prevTabState, intentAt }))
+    setTabState((prevTabState) => ({ ...prevTabState, intentAt }));
   const setActiveIndicator = (activeAt: TabLayout | null) =>
     setTabState((prevTabState) => ({
       ...prevTabState,
       prevActiveAt: tabState.activeAt,
       activeAt,
-    }))
+    }));
 
-  const { activeAt, intentAt, prevActiveAt } = tabState
+  const { activeAt, intentAt, prevActiveAt } = tabState;
 
   // 1 = right, 0 = nowhere, -1 = left
   const direction = (() => {
     if (!activeAt || !prevActiveAt || activeAt.x === prevActiveAt.x) {
-      return 0
+      return 0;
     }
-    return activeAt.x > prevActiveAt.x ? -1 : 1
-  })()
+    return activeAt.x > prevActiveAt.x ? -1 : 1;
+  })();
 
-  const handleOnInteraction: TabsTabProps['onInteraction'] = (type, layout) => {
-    if (type === 'select') {
-      setActiveIndicator(layout)
+  const handleOnInteraction: TabsTabProps["onInteraction"] = (type, layout) => {
+    if (type === "select") {
+      setActiveIndicator(layout);
     } else {
-      setIntentIndicator(layout)
+      setIntentIndicator(layout);
     }
-  }
+  };
 
   return (
     <Tabs
@@ -110,7 +114,7 @@ export function RovingTabs({
                       onInteraction={handleOnInteraction}
                       value={tab.value}
                     />
-                  )
+                  );
                 })}
               </Tabs.List>
             </XStack>
@@ -126,7 +130,7 @@ export function RovingTabs({
         </AnimatePresence>
       </YStack>
     </Tabs>
-  )
+  );
 }
 
 function Tab({
@@ -135,10 +139,10 @@ function Tab({
   onInteraction,
   active,
 }: {
-  label: string
-  value: string
-  onInteraction: TabsTabProps['onInteraction']
-  active?: boolean
+  label: string;
+  value: string;
+  onInteraction: TabsTabProps["onInteraction"];
+  active?: boolean;
 }) {
   return (
     <Tabs.Tab
@@ -162,7 +166,7 @@ function Tab({
         </SizableText>
       </XStack>
     </Tabs.Tab>
-  )
+  );
 }
 
 function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
@@ -179,11 +183,11 @@ function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
         o: 0,
       }}
       {...(active && {
-        bg: '$color10',
+        bg: "$color10",
       })}
       {...props}
     />
-  )
+  );
 }
 
 const AnimatedYStack = styled(YStack, {
@@ -191,11 +195,11 @@ const AnimatedYStack = styled(YStack, {
   x: 0,
   o: 1,
 
-  animation: '100ms',
+  animation: "100ms",
   variants: {
     // 1 = right, 0 = nowhere, -1 = left
     direction: {
-      ':number': (direction) => ({
+      ":number": (direction) => ({
         enterStyle: {
           x: direction > 0 ? -10 : -10,
           opacity: 0,
@@ -208,4 +212,4 @@ const AnimatedYStack = styled(YStack, {
       }),
     },
   } as const,
-})
+});

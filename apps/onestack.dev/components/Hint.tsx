@@ -1,25 +1,25 @@
-import { ColorTokens, Paragraph, Text, Tooltip } from 'tamagui'
-import type { KeyboardEvent } from 'react'
+import { ColorTokens, Paragraph, Text, Tooltip } from "tamagui";
+import type { KeyboardEvent } from "react";
 
 export const Hint = ({
   children,
   hintContents,
-  tint = 'blue',
+  tint = "blue",
 }: {
-  children: React.ReactNode
-  hintContents: React.ReactNode
-  tint?: 'green' | 'pink' | 'blue' | 'red' | 'purple'
+  children: React.ReactNode;
+  hintContents: React.ReactNode;
+  tint?: "green" | "pink" | "blue" | "red" | "purple";
 }) => {
   const handleKeyDown = (event: KeyboardEvent<HTMLSpanElement>) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
       // Trigger the tooltip (this depends on how Tamagui's Tooltip handles this)
       // You might need to use a ref or other method to programmatically show the tooltip
     }
-  }
+  };
 
-  const color = `$${tint}Fg` as ColorTokens
-  const bg = `$${tint}` as ColorTokens
+  const color = `$${tint}Fg` as ColorTokens;
+  const bg = `$${tint}` as ColorTokens;
 
   return (
     <Tooltip placement="top" allowFlip disableRTL offset={15} restMs={40} delay={240}>
@@ -56,14 +56,14 @@ export const Hint = ({
         elevation="$8"
         p="$5"
         maw={250}
-        animateOnly={['transform', 'opacity']}
+        animateOnly={["transform", "opacity"]}
         bg={bg}
         style={{
-          backdropFilter: 'blur(18px)',
-          WebkitBackdropFilter: 'blur(18px)',
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
         }}
         animation={[
-          'quicker',
+          "quicker",
           {
             opacity: {
               overshootClamping: true,
@@ -76,8 +76,8 @@ export const Hint = ({
       >
         <Tooltip.Arrow
           style={{
-            backdropFilter: 'blur(18px)',
-            WebkitBackdropFilter: 'blur(18px)',
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
           }}
           bg={bg}
           size="$4"
@@ -87,5 +87,5 @@ export const Hint = ({
         </Paragraph>
       </Tooltip.Content>
     </Tooltip>
-  )
-}
+  );
+};

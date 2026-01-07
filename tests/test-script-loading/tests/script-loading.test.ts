@@ -1,7 +1,7 @@
-import { type Browser, type BrowserContext, chromium } from 'playwright'
-import { afterAll, beforeAll, describe, expect, test } from 'vitest'
-import * as fs from 'node:fs'
-import * as path from 'node:path'
+import { type Browser, type BrowserContext, chromium } from "playwright";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 /**
  * Script Loading Tests
@@ -12,151 +12,151 @@ import * as path from 'node:path'
  * - Uses double rAF to execute scripts after first paint
  */
 
-const serverUrl = process.env.ONE_SERVER_URL
-const isDebug = !!process.env.DEBUG
+const serverUrl = process.env.ONE_SERVER_URL;
+const isDebug = !!process.env.DEBUG;
 
-let browser: Browser
-let context: BrowserContext
+let browser: Browser;
+let context: BrowserContext;
 
 beforeAll(async () => {
-  browser = await chromium.launch({ headless: !isDebug })
-  context = await browser.newContext()
-})
+  browser = await chromium.launch({ headless: !isDebug });
+  context = await browser.newContext();
+});
 
 afterAll(async () => {
-  await browser.close()
-})
+  await browser.close();
+});
 
-describe('after-lcp script loading', () => {
-  describe('HTML structure', () => {
-    test('built HTML contains double-rAF loader script', async () => {
-      const htmlPath = path.join(process.cwd(), 'dist/client/index.html')
-      const html = fs.readFileSync(htmlPath, 'utf-8')
+describe("after-lcp script loading", () => {
+  describe("HTML structure", () => {
+    test("built HTML contains double-rAF loader script", async () => {
+      const htmlPath = path.join(process.cwd(), "dist/client/index.html");
+      const html = fs.readFileSync(htmlPath, "utf-8");
 
       // Should contain the double-rAF loader
-      expect(html).toContain('requestAnimationFrame')
-      expect(html).toContain('loadScripts')
-    })
+      expect(html).toContain("requestAnimationFrame");
+      expect(html).toContain("loadScripts");
+    });
 
-    test('built HTML does not contain async module scripts', async () => {
-      const htmlPath = path.join(process.cwd(), 'dist/client/index.html')
-      const html = fs.readFileSync(htmlPath, 'utf-8')
+    test("built HTML does not contain async module scripts", async () => {
+      const htmlPath = path.join(process.cwd(), "dist/client/index.html");
+      const html = fs.readFileSync(htmlPath, "utf-8");
 
       // Should NOT contain async script tags (they should be removed)
-      const asyncScriptMatch = html.match(/<script\s+type="module"[^>]*async[^>]*><\/script>/gi)
-      expect(asyncScriptMatch).toBeNull()
-    })
+      const asyncScriptMatch = html.match(/<script\s+type="module"[^>]*async[^>]*><\/script>/gi);
+      expect(asyncScriptMatch).toBeNull();
+    });
 
-    test('built HTML keeps modulepreload links for parallel download', async () => {
-      const htmlPath = path.join(process.cwd(), 'dist/client/index.html')
-      const html = fs.readFileSync(htmlPath, 'utf-8')
+    test("built HTML keeps modulepreload links for parallel download", async () => {
+      const htmlPath = path.join(process.cwd(), "dist/client/index.html");
+      const html = fs.readFileSync(htmlPath, "utf-8");
 
       // Should contain modulepreload links (scripts download immediately)
-      expect(html).toContain('rel="modulepreload"')
-    })
-  })
+      expect(html).toContain('rel="modulepreload"');
+    });
+  });
 
-  describe('server-rendered content', () => {
-    test('home page shows SSR content immediately', async () => {
-      const page = await context.newPage()
-      await page.goto(serverUrl + '/', { waitUntil: 'domcontentloaded' })
+  describe("server-rendered content", () => {
+    test("home page shows SSR content immediately", async () => {
+      const page = await context.newPage();
+      await page.goto(serverUrl + "/", { waitUntil: "domcontentloaded" });
 
       // SSR content should be visible immediately (before JS loads)
-      expect(await page.textContent('#page-title')).toBe('Home Page')
-      expect(await page.textContent('#ssr-content')).toBe('This content is server-rendered')
+      expect(await page.textContent("#page-title")).toBe("Home Page");
+      expect(await page.textContent("#ssr-content")).toBe("This content is server-rendered");
 
-      await page.close()
-    })
+      await page.close();
+    });
 
-    test('other page shows SSR content immediately', async () => {
-      const page = await context.newPage()
-      await page.goto(serverUrl + '/other', { waitUntil: 'domcontentloaded' })
+    test("other page shows SSR content immediately", async () => {
+      const page = await context.newPage();
+      await page.goto(serverUrl + "/other", { waitUntil: "domcontentloaded" });
 
-      expect(await page.textContent('#page-title')).toBe('Other Page')
-      expect(await page.textContent('#ssr-content')).toBe('This is the other page')
+      expect(await page.textContent("#page-title")).toBe("Other Page");
+      expect(await page.textContent("#ssr-content")).toBe("This is the other page");
 
-      await page.close()
-    })
-  })
+      await page.close();
+    });
+  });
 
-  describe('hydration and interactivity', () => {
-    test('home page hydrates and responds to clicks', async () => {
-      const page = await context.newPage()
+  describe("hydration and interactivity", () => {
+    test("home page hydrates and responds to clicks", async () => {
+      const page = await context.newPage();
 
       // Listen for any JS errors
-      const errors: string[] = []
-      page.on('pageerror', (error) => {
-        errors.push(error.message)
-      })
+      const errors: string[] = [];
+      page.on("pageerror", (error) => {
+        errors.push(error.message);
+      });
 
-      await page.goto(serverUrl + '/', { waitUntil: 'networkidle' })
+      await page.goto(serverUrl + "/", { waitUntil: "networkidle" });
 
       // Initial state
-      expect(await page.textContent('#count-display')).toBe('Count: 0')
+      expect(await page.textContent("#count-display")).toBe("Count: 0");
 
       // Click should update state (React is hydrated)
-      await page.click('#increment-btn')
+      await page.click("#increment-btn");
 
       // Wait for React to hydrate and update
       await page.waitForFunction(
-        () => document.querySelector('#count-display')?.textContent === 'Count: 1',
-        { timeout: 5000 }
-      )
+        () => document.querySelector("#count-display")?.textContent === "Count: 1",
+        { timeout: 5000 },
+      );
 
-      expect(await page.textContent('#count-display')).toBe('Count: 1')
+      expect(await page.textContent("#count-display")).toBe("Count: 1");
 
       // No JS errors should have occurred
-      expect(errors).toEqual([])
+      expect(errors).toEqual([]);
 
-      await page.close()
-    })
+      await page.close();
+    });
 
-    test('other page hydrates and responds to clicks', async () => {
-      const page = await context.newPage()
-      await page.goto(serverUrl + '/other', { waitUntil: 'networkidle' })
+    test("other page hydrates and responds to clicks", async () => {
+      const page = await context.newPage();
+      await page.goto(serverUrl + "/other", { waitUntil: "networkidle" });
 
       // Initial state
-      expect(await page.textContent('#message-display')).toBe('Not clicked')
+      expect(await page.textContent("#message-display")).toBe("Not clicked");
 
       // Click should update state
-      await page.click('#click-btn')
+      await page.click("#click-btn");
 
       await page.waitForFunction(
-        () => document.querySelector('#message-display')?.textContent === 'Clicked!',
-        { timeout: 5000 }
-      )
+        () => document.querySelector("#message-display")?.textContent === "Clicked!",
+        { timeout: 5000 },
+      );
 
-      expect(await page.textContent('#message-display')).toBe('Clicked!')
+      expect(await page.textContent("#message-display")).toBe("Clicked!");
 
-      await page.close()
-    })
-  })
+      await page.close();
+    });
+  });
 
-  describe('client-side navigation', () => {
-    test('can navigate between pages and interact', async () => {
-      const page = await context.newPage()
-      await page.goto(serverUrl + '/', { waitUntil: 'networkidle' })
+  describe("client-side navigation", () => {
+    test("can navigate between pages and interact", async () => {
+      const page = await context.newPage();
+      await page.goto(serverUrl + "/", { waitUntil: "networkidle" });
 
       // Verify we're on home
-      expect(await page.textContent('#page-title')).toBe('Home Page')
+      expect(await page.textContent("#page-title")).toBe("Home Page");
 
       // Navigate via client-side link
-      await page.click('#nav-to-other')
-      await page.waitForURL(serverUrl + '/other')
+      await page.click("#nav-to-other");
+      await page.waitForURL(serverUrl + "/other");
 
       // Verify navigation worked
-      expect(await page.textContent('#page-title')).toBe('Other Page')
+      expect(await page.textContent("#page-title")).toBe("Other Page");
 
       // Interact with the other page
-      await page.click('#click-btn')
+      await page.click("#click-btn");
       await page.waitForFunction(
-        () => document.querySelector('#message-display')?.textContent === 'Clicked!',
-        { timeout: 5000 }
-      )
+        () => document.querySelector("#message-display")?.textContent === "Clicked!",
+        { timeout: 5000 },
+      );
 
-      expect(await page.textContent('#message-display')).toBe('Clicked!')
+      expect(await page.textContent("#message-display")).toBe("Clicked!");
 
-      await page.close()
-    })
-  })
-})
+      await page.close();
+    });
+  });
+});

@@ -1,8 +1,8 @@
-import React from 'react'
-import { Text } from 'react-native'
-import { Slot } from 'one'
+import React from "react";
+import { Text } from "react-native";
+import { Slot } from "one";
 
-const text = 'Some text'
+const text = "Some text";
 
 export default function Layout() {
   return (
@@ -10,5 +10,5 @@ export default function Layout() {
       <Text testID="layout-text-content">{text}</Text>
       <Slot />
     </>
-  )
+  );
 }

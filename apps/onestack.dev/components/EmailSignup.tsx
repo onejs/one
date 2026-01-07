@@ -1,50 +1,50 @@
-import { useDidFinishSSR } from '@tamagui/use-did-finish-ssr'
-import { useState } from 'react'
-import { Button, Input, Text, View } from 'tamagui'
+import { useDidFinishSSR } from "@tamagui/use-did-finish-ssr";
+import { useState } from "react";
+import { Button, Input, Text, View } from "tamagui";
 
 export const EmailSignup = () => {
-  const isHydrated = useDidFinishSSR()
+  const isHydrated = useDidFinishSSR();
   const [formState, setFormState] = useState<{
-    loading: boolean
-    message: string
-    type: null | 'success' | 'error'
-  }>({ loading: false, message: '', type: null })
+    loading: boolean;
+    message: string;
+    type: null | "success" | "error";
+  }>({ loading: false, message: "", type: null });
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    setFormState({ loading: true, message: '', type: null })
+    event.preventDefault();
+    setFormState({ loading: true, message: "", type: null });
 
-    const formData = new FormData(event.target)
+    const formData = new FormData(event.target);
 
     try {
-      const response = await fetch('/api/mailing-list-signup', {
-        method: 'POST',
+      const response = await fetch("/api/mailing-list-signup", {
+        method: "POST",
         body: formData,
-      })
+      });
 
-      const result = await response.json()
+      const result = await response.json();
 
-      if (result.status === 'success') {
+      if (result.status === "success") {
         setFormState({
           loading: false,
-          message: 'Thank you for signing up!',
-          type: 'success',
-        })
+          message: "Thank you for signing up!",
+          type: "success",
+        });
       } else {
         setFormState({
           loading: false,
           message: `Error: ${result.message}`,
-          type: 'error',
-        })
+          type: "error",
+        });
       }
     } catch (error) {
       setFormState({
         loading: false,
-        message: 'An unexpected error occurred. Please try again later.',
-        type: 'error',
-      })
+        message: "An unexpected error occurred. Please try again later.",
+        type: "error",
+      });
     }
-  }
+  };
 
   return (
     <View
@@ -57,7 +57,7 @@ export const EmailSignup = () => {
       maw={600}
       als="center"
       $gtSm={{
-        px: '$8',
+        px: "$8",
       }}
     >
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
@@ -66,7 +66,7 @@ export const EmailSignup = () => {
         <View fd="row" gap="$3">
           <Input
             // @ts-ignore TODO
-            type={'email' as any}
+            type={"email" as any}
             f={1}
             size="$4"
             placeholderTextColor="$color11"
@@ -123,18 +123,8 @@ export const EmailSignup = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
-                    <rect
-                      width="20"
-                      height="16"
-                      x="2"
-                      y="4"
-                      rx="2"
-                      stroke="currentColor"
-                    />
-                    <path
-                      d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-                      stroke="currentColor"
-                    />
+                    <rect width="20" height="16" x="2" y="4" rx="2" stroke="currentColor" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" stroke="currentColor" />
                   </svg>
                 )}
               </Text>
@@ -152,7 +142,7 @@ export const EmailSignup = () => {
 
         {formState.message && (
           <View
-            theme={formState.type === 'success' ? 'green' : 'red'}
+            theme={formState.type === "success" ? "green" : "red"}
             mt="$3"
             p="$2"
             br="$4"
@@ -163,5 +153,5 @@ export const EmailSignup = () => {
         )}
       </form>
     </View>
-  )
-}
+  );
+};

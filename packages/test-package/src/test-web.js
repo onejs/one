@@ -1,1 +1,1 @@
-export const webWorks = 'no'
+export const webWorks = "no";

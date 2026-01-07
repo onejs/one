@@ -1,12 +1,12 @@
-import type { ReactElement, ComponentProps } from 'react'
-import { View, StyleSheet, type ViewProps } from 'react-native'
+import type { ReactElement, ComponentProps } from "react";
+import { View, StyleSheet, type ViewProps } from "react-native";
 
-import { ViewSlot } from './common'
+import { ViewSlot } from "./common";
 
 export type TabListProps = ViewProps & {
   /** Forward props to child component and removes the extra `<View>`. Useful for custom wrappers. */
-  asChild?: boolean
-}
+  asChild?: boolean;
+};
 
 /**
  * Wrapper component for `TabTriggers`. `TabTriggers` within the `TabList` define the tabs.
@@ -22,26 +22,26 @@ export type TabListProps = ViewProps & {
  * ```
  */
 export function TabList({ asChild, style, ...props }: TabListProps) {
-  const Comp = asChild ? ViewSlot : View
-  return <Comp style={[styles.tabList, style]} {...props} />
+  const Comp = asChild ? ViewSlot : View;
+  return <Comp style={[styles.tabList, style]} {...props} />;
 }
 
 /**
  * @hidden
  */
 export function isTabList(
-  child: ReactElement<any>
+  child: ReactElement<any>,
 ): child is ReactElement<ComponentProps<typeof TabList>> {
-  return child.type === TabList
+  return child.type === TabList;
 }
 
 const styles = StyleSheet.create({
   tabList: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   tabTrigger: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-})
+});

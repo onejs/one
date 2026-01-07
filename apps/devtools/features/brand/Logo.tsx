@@ -1,13 +1,13 @@
-import React from 'react'
-import { Text, View, type TextProps } from '@tamagui/core'
-import type { ViewProps } from 'tamagui'
+import React from "react";
+import { Text, View, type TextProps } from "@tamagui/core";
+import type { ViewProps } from "tamagui";
 
 export function Logo({
   size = 1,
   animate,
   ...props
 }: ViewProps & { size?: number; animate?: boolean }) {
-  const scaleDownBy = 0.12 * size
+  const scaleDownBy = 0.12 * size;
 
   return (
     <View
@@ -98,5 +98,5 @@ export function Logo({
         </g>
       </svg>
     </View>
-  )
+  );
 }

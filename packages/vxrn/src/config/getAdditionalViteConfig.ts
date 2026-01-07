@@ -1,20 +1,20 @@
-import type { InlineConfig, UserConfig } from 'vite'
+import type { InlineConfig, UserConfig } from "vite";
 
-import { getOptimizeDeps } from './getOptimizeDeps'
+import { getOptimizeDeps } from "./getOptimizeDeps";
 
-import { webExtensions } from '../constants'
+import { webExtensions } from "../constants";
 
 /**
  * These configs are originally in `getViteServerConfig`. Maybe we should organize and move each of them into other more appropriate places.
  */
-export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
-  const { optimizeDeps } = getOptimizeDeps('serve')
+export function getAdditionalViteConfig(): Omit<InlineConfig, "plugins"> {
+  const { optimizeDeps } = getOptimizeDeps("serve");
 
   // TODO: can we move most of this into `one` plugin:
   return {
-    appType: 'custom',
+    appType: "custom",
     clearScreen: false,
-    publicDir: 'public',
+    publicDir: "public",
 
     ssr: {
       optimizeDeps,
@@ -23,7 +23,7 @@ export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
     environments: {
       client: {
         optimizeDeps: {
-          include: ['react-native-screens'],
+          include: ["react-native-screens"],
           esbuildOptions: {
             resolveExtensions: webExtensions,
           },
@@ -33,12 +33,12 @@ export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
 
     optimizeDeps: {
       esbuildOptions: {
-        target: 'esnext',
+        target: "esnext",
       },
     },
 
     server: {
       cors: true,
     },
-  } satisfies Omit<UserConfig, 'plugins'>
+  } satisfies Omit<UserConfig, "plugins">;
 }

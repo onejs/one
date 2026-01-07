@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import { useRouteNode } from '../router/Route'
+import { useRouteNode } from "../router/Route";
 
 // import { Toast, ToastWrapper } from './Toast'
 
 export function EmptyRoute() {
-  const route = useRouteNode()
+  const route = useRouteNode();
 
-  return null
+  return null;
   // return (
   //   <ToastWrapper>
   //     <Toast warning filename={route?.contextKey}>

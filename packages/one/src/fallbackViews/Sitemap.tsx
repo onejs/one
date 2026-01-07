@@ -1,5 +1,5 @@
-import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import type { NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 // import React from 'react'
 // import { Platform, ScrollView, StatusBar, useWindowDimensions } from 'react-native'
@@ -11,32 +11,32 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 // import { matchDeepDynamicRouteName } from '../matchers'
 // import { RouteNode } from '../Route'
 
-const INDENT = 24
+const INDENT = 24;
 
 export function getNavOptions(): NativeStackNavigationOptions {
   return {
-    title: 'sitemap',
+    title: "sitemap",
     headerShown: false,
-    presentation: 'modal',
-    animation: 'default',
+    presentation: "modal",
+    animation: "default",
     headerLargeTitle: false,
     headerTitleStyle: {
-      color: 'white',
+      color: "white",
     },
-    headerTintColor: 'white',
+    headerTintColor: "white",
     headerLargeTitleStyle: {
-      color: 'white',
+      color: "white",
     },
     headerStyle: {
-      backgroundColor: 'black',
+      backgroundColor: "black",
       // @ts-expect-error: mistyped
-      borderBottomColor: '#323232',
+      borderBottomColor: "#323232",
     },
-  }
+  };
 }
 
 export function Sitemap() {
-  return <Text>sitemap!!!!!!!!!</Text>
+  return <Text>sitemap!!!!!!!!!</Text>;
   //   const { top, bottom } = useSafeAreaInsets()
   //   const { width } = useWindowDimensions()
   //   return (
@@ -208,37 +208,37 @@ export function Sitemap() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
+    backgroundColor: "black",
     flex: 1,
-    alignItems: 'stretch',
+    alignItems: "stretch",
   },
   main: {
-    marginHorizontal: 'auto',
+    marginHorizontal: "auto",
     flex: 1,
 
-    alignItems: 'stretch',
+    alignItems: "stretch",
   },
   scroll: {
     paddingHorizontal: 12,
     // flex: 1,
     // paddingTop: top + 12,
-    alignItems: 'stretch',
+    alignItems: "stretch",
   },
   itemContainer: {
     borderWidth: 1,
-    borderColor: '#323232',
+    borderColor: "#323232",
     borderRadius: 19,
     marginBottom: 12,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   itemPressable: {
     paddingHorizontal: INDENT,
     paddingVertical: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
-  filename: { color: 'white', fontSize: 20, marginLeft: 12 },
-  virtual: { textAlign: 'right', color: 'white' },
-  image: { width: 24, height: 24, resizeMode: 'contain' },
-})
+  filename: { color: "white", fontSize: 20, marginLeft: 12 },
+  virtual: { textAlign: "right", color: "white" },
+  image: { width: 24, height: 24, resizeMode: "contain" },
+});

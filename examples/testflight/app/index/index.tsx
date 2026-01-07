@@ -1,24 +1,24 @@
-import { useScrollToTop } from '@react-navigation/native'
-import { Stack } from 'one'
-import { useRef, type ElementRef } from 'react'
-import { RefreshControl } from 'react-native'
-import { ScrollView } from 'tamagui'
-import { FeedCard } from '~/code/feed/FeedCard'
-import { PageContainer } from '~/code/ui/PageContainer'
+import { useScrollToTop } from "@react-navigation/native";
+import { Stack } from "one";
+import { useRef, type ElementRef } from "react";
+import { RefreshControl } from "react-native";
+import { ScrollView } from "tamagui";
+import { FeedCard } from "~/code/feed/FeedCard";
+import { PageContainer } from "~/code/ui/PageContainer";
 
-import { feed as allFeed } from '~/code/data'
+import { feed as allFeed } from "~/code/data";
 
-const feed = allFeed.slice(0, 16)
+const feed = allFeed.slice(0, 16);
 
 export function FeedPage() {
-  const scrollViewRef = useRef<ElementRef<typeof ScrollView>>(null)
-  useScrollToTop(scrollViewRef)
+  const scrollViewRef = useRef<ElementRef<typeof ScrollView>>(null);
+  useScrollToTop(scrollViewRef);
 
   return (
     <>
       <Stack.Screen
         options={{
-          title: 'Feed',
+          title: "Feed",
         }}
       />
 
@@ -31,5 +31,5 @@ export function FeedPage() {
         </ScrollView>
       </PageContainer>
     </>
-  )
+  );
 }

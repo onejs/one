@@ -1,6 +1,6 @@
-import type { GetTransform } from '@vxrn/compiler'
-import type { metroPlugin } from '@vxrn/vite-plugin-metro'
-import type { PluginOptions as TSConfigPluginOptions } from 'vite-tsconfig-paths'
+import type { GetTransform } from "@vxrn/compiler";
+import type { metroPlugin } from "@vxrn/vite-plugin-metro";
+import type { PluginOptions as TSConfigPluginOptions } from "vite-tsconfig-paths";
 import type {
   AutoDepOptimizationOptions,
   DepOptimize,
@@ -8,46 +8,46 @@ import type {
   AfterBuildProps as VXRNAfterBuildProps,
   VXRNBuildOptions,
   VXRNOptions,
-} from 'vxrn'
-import type { RouteNode } from '../router/Route'
-import type { One as OneShared } from '../interfaces/router'
+} from "vxrn";
+import type { RouteNode } from "../router/Route";
+import type { One as OneShared } from "../interfaces/router";
 
-type MetroPluginOptions = Parameters<typeof metroPlugin>[0]
+type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 
 export type RouteInfo<TRegex = string> = {
-  file: string
-  page: string
-  namedRegex: TRegex
-  loaderPath?: string
-  loaderServerPath?: string
-  urlPath: string
-  urlCleanPath: string
-  routeKeys: Record<string, string>
-  layouts?: RouteNode[]
-  middlewares?: RouteNode[]
-  type: One.RouteType
-  isNotFound?: boolean
-}
+  file: string;
+  page: string;
+  namedRegex: TRegex;
+  loaderPath?: string;
+  loaderServerPath?: string;
+  urlPath: string;
+  urlCleanPath: string;
+  routeKeys: Record<string, string>;
+  layouts?: RouteNode[];
+  middlewares?: RouteNode[];
+  type: One.RouteType;
+  isNotFound?: boolean;
+};
 
 export namespace One {
-  export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions
+  export type Options = Omit<VXRNOptions, keyof PluginOptions> & PluginOptions;
 
-  export type RouteRenderMode = 'ssg' | 'spa' | 'ssr'
+  export type RouteRenderMode = "ssg" | "spa" | "ssr";
 
-  export type RouteType = RouteRenderMode | 'api' | 'layout'
+  export type RouteType = RouteRenderMode | "api" | "layout";
 
-  export type ClientData = Record<string, any>
+  export type ClientData = Record<string, any>;
 
   export type RouteOptions = {
-    routeModes?: Record<string, RouteRenderMode>
-  }
+    routeModes?: Record<string, RouteRenderMode>;
+  };
 
   // todo move into vxrn
   export type FixDependencies = {
-    [key: string]: DepOptimize | DepPatch['patchFiles']
-  }
+    [key: string]: DepOptimize | DepPatch["patchFiles"];
+  };
 
-  type PluginPlatformTarget = 'native' | 'web'
+  type PluginPlatformTarget = "native" | "web";
 
   export type PluginOptions = {
     /**
@@ -106,7 +106,7 @@ export namespace One {
      * SWC defaults to target es5 for native, es2020 for web.
      *
      */
-    transform?: GetTransform
+    transform?: GetTransform;
 
     // compiler?: {
     //   workletTransform?: 'reanimated' | 'worklets'
@@ -123,11 +123,11 @@ export namespace One {
        * Example:
        * * <code>&#42;&#42;/&#42;.test.*</code>
        */
-      ignoredRouteFiles?: Array<`**/*${string}`>
+      ignoredRouteFiles?: Array<`**/*${string}`>;
       /**
        * Dangerously customize the router root directory. This may lead to unexpected behavior.
        */
-      root?: string
+      root?: string;
       experimental?: {
         /**
          * If enabled, the router will try to avoid unnecessary remounts of _layout components.
@@ -136,7 +136,7 @@ export namespace One {
          *
          * Currently, this will only effect the `<Slot />` navigator, where it will modify the screen element provided by `react-navigation` and set the `key` to a static value to prevent re-mounting.
          */
-        preventLayoutRemounting?: boolean
+        preventLayoutRemounting?: boolean;
 
         /**
          * Auto-generate route type helpers in route files.
@@ -162,17 +162,17 @@ export namespace One {
          *
          * @default false
          */
-        typedRoutesGeneration?: false | 'type' | 'runtime'
-      }
-    }
+        typedRoutesGeneration?: false | "type" | "runtime";
+      };
+    };
 
     react?: {
       /**
        * Enable the React Compiler, for all or specific platforms
        * @default false
        */
-      compiler?: boolean | PluginPlatformTarget
-    }
+      compiler?: boolean | PluginPlatformTarget;
+    };
 
     optimization?: {
       /**
@@ -182,7 +182,7 @@ export namespace One {
        *
        * @default ['@tamagui/lucide-icons']
        */
-      barrel?: boolean | string[]
+      barrel?: boolean | string[];
 
       /**
        * By default One scans your fs routes and adds them as Vite `entries`, this prevents some hard
@@ -193,8 +193,8 @@ export namespace One {
        *
        * @default 'flat'
        */
-      autoEntriesScanning?: boolean | 'flat'
-    }
+      autoEntriesScanning?: boolean | "flat";
+    };
 
     /**
      * Path to a js or ts file to import before the rest of your app runs
@@ -225,19 +225,19 @@ export namespace One {
     setupFile?:
       | string
       | {
-          client?: string
-          server?: string
-          native?: string
+          client?: string;
+          server?: string;
+          native?: string;
         }
       | {
-          client?: string
-          server?: string
-          ios?: string
-          android?: string
-        }
+          client?: string;
+          server?: string;
+          ios?: string;
+          android?: string;
+        };
 
     config?: {
-      ensureTSConfig?: false
+      ensureTSConfig?: false;
 
       /**
        * One automatically adds vite-tsconfig-paths, set this to false to disable, or
@@ -248,20 +248,20 @@ export namespace One {
        *
        * @default false
        */
-      tsConfigPaths?: boolean | TSConfigPluginOptions
-    }
+      tsConfigPaths?: boolean | TSConfigPluginOptions;
+    };
 
     native?: {
       /**
        * The uid of your native app, this will be used internally in one to call
        * `AppRegistry.registerComponent(key)`
        */
-      key?: string
+      key?: string;
 
       /**
        * Turns on react-native-css-interop support when importing CSS on native
        */
-      css?: boolean
+      css?: boolean;
 
       /**
        * Specifies the bundler to use for native builds. Defaults to 'vite'.
@@ -271,19 +271,19 @@ export namespace One {
        *
        * Note that the ONE_METRO_MODE environment variable can override this setting to 'metro'.
        */
-      bundler?: 'metro' | 'vite'
+      bundler?: "metro" | "vite";
     } & (
       | {
-          bundler: 'metro'
+          bundler: "metro";
           /** Options merging for Metro is not fully implemented in the One plugin, changing this may not work properly. Search for "METRO-OPTIONS-MERGING" in the codebase for details. */
-          bundlerOptions?: MetroPluginOptions
+          bundlerOptions?: MetroPluginOptions;
         }
       | {
-          bundler?: 'vite'
+          bundler?: "vite";
           /** No configurable options with the default vite bundler. */
-          bundlerOptions?: { currentlyHaveNoOptions?: null }
+          bundlerOptions?: { currentlyHaveNoOptions?: null };
         }
-    )
+    );
 
     web?: {
       /**
@@ -304,7 +304,7 @@ export namespace One {
        *
        * @default 'ssg'
        */
-      defaultRenderMode?: RouteRenderMode
+      defaultRenderMode?: RouteRenderMode;
 
       /**
        * An array of redirect objects, works in development and production:
@@ -325,7 +325,7 @@ export namespace One {
        * ]
        *
        */
-      redirects?: Redirect[]
+      redirects?: Redirect[];
 
       /**
        * Deployment target for production builds.
@@ -335,7 +335,7 @@ export namespace One {
        *
        * @default node
        */
-      deploy?: 'node' | 'vercel' | 'cloudflare'
+      deploy?: "node" | "vercel" | "cloudflare";
 
       /**
        * @experimental
@@ -344,7 +344,7 @@ export namespace One {
        *
        * @default false
        */
-      inlineLayoutCSS?: boolean
+      inlineLayoutCSS?: boolean;
 
       /**
        * @experimental
@@ -364,7 +364,7 @@ export namespace One {
        *
        * @default undefined (all scripts load with async)
        */
-      experimental_scriptLoading?: 'defer-non-critical' | 'after-lcp' | 'after-lcp-aggressive'
+      experimental_scriptLoading?: "defer-non-critical" | "after-lcp" | "after-lcp-aggressive";
 
       /**
        * Generate a sitemap.xml file during build.
@@ -388,17 +388,17 @@ export namespace One {
        * // or exclude: export const sitemap = { exclude: true }
        * ```
        */
-      sitemap?: boolean | SitemapOptions
-    }
+      sitemap?: boolean | SitemapOptions;
+    };
 
-    server?: VXRNOptions['server']
+    server?: VXRNOptions["server"];
 
     build?: {
-      server?: VXRNBuildOptions | false
-      api?: VXRNBuildOptions
-    }
+      server?: VXRNBuildOptions | false;
+      api?: VXRNBuildOptions;
+    };
 
-    deps?: FixDependencies
+    deps?: FixDependencies;
 
     ssr?: {
       /**
@@ -412,115 +412,115 @@ export namespace One {
        *
        * @default { include: /node_modules/ }
        */
-      autoDepsOptimization?: boolean | AutoDepOptimizationOptions
-    }
-  }
+      autoDepsOptimization?: boolean | AutoDepOptimizationOptions;
+    };
+  };
 
   export interface RouteContext {
-    keys(): string[]
-    (id: string): any
-    <T>(id: string): T
-    resolve(id: string): string
-    id: string
+    keys(): string[];
+    (id: string): any;
+    <T>(id: string): T;
+    resolve(id: string): string;
+    id: string;
   }
 
   export type Redirect = {
-    source: string
-    destination: string
-    permanent: boolean
-  }
+    source: string;
+    destination: string;
+    permanent: boolean;
+  };
 
   export type BuildInfo = {
     constants: {
-      CACHE_KEY: string
-    }
-    oneOptions?: PluginOptions
-    routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, 'loaderData'>>
+      CACHE_KEY: string;
+    };
+    oneOptions?: PluginOptions;
+    routeToBuildInfo: Record<string, Omit<One.RouteBuildInfo, "loaderData">>;
     /** A mapping to lookup the full route name from a path */
-    pathToRoute: Record<string, string>
-    routeMap: Record<string, string>
+    pathToRoute: Record<string, string>;
+    routeMap: Record<string, string>;
     manifest: {
-      pageRoutes: RouteInfo[]
-      apiRoutes: RouteInfo[]
-      allRoutes: RouteInfo[]
-    }
+      pageRoutes: RouteInfo[];
+      apiRoutes: RouteInfo[];
+      allRoutes: RouteInfo[];
+    };
 
     // for quick checking if preload exists
-    preloads: Record<string, boolean>
-    cssPreloads: Record<string, boolean>
-    loaders: Record<string, boolean>
+    preloads: Record<string, boolean>;
+    cssPreloads: Record<string, boolean>;
+    loaders: Record<string, boolean>;
     // Whether the build used rolldown (affects API file naming)
-    useRolldown?: boolean
-  }
+    useRolldown?: boolean;
+  };
 
-  export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo
+  export type AfterBuildProps = VXRNAfterBuildProps & BuildInfo;
 
   export type RouteBuildInfo = {
-    type: One.RouteType
-    path: string
-    routeFile: string
-    middlewares: string[]
-    preloadPath: string
-    cssPreloadPath: string
-    loaderPath: string
-    cleanPath: string
-    htmlPath: string
-    clientJsPath: string
-    serverJsPath: string
-    params: Object
-    loaderData: any
+    type: One.RouteType;
+    path: string;
+    routeFile: string;
+    middlewares: string[];
+    preloadPath: string;
+    cssPreloadPath: string;
+    loaderPath: string;
+    cleanPath: string;
+    htmlPath: string;
+    clientJsPath: string;
+    serverJsPath: string;
+    params: Object;
+    loaderData: any;
     /** All preloads (for backwards compatibility) */
-    preloads: string[]
+    preloads: string[];
     /** Critical preloads that load immediately with async */
-    criticalPreloads?: string[]
+    criticalPreloads?: string[];
     /** Non-critical preloads that are modulepreload hints only */
-    deferredPreloads?: string[]
-    css: string[]
+    deferredPreloads?: string[];
+    css: string[];
     /** When inlineLayoutCSS is enabled, contains the actual CSS content */
-    cssContents?: string[]
-  }
+    cssContents?: string[];
+  };
 
   export type ServerContext = {
-    css?: string[]
+    css?: string[];
     /** When inlineLayoutCSS is enabled, this contains the actual CSS content to inline */
-    cssContents?: string[]
+    cssContents?: string[];
     /** Number of inline CSS entries - used for hydration matching when cssContents is stripped */
-    cssInlineCount?: number
-    postRenderData?: any
-    loaderData?: any
-    loaderProps?: any
-    mode?: 'spa' | 'ssg' | 'ssr'
+    cssInlineCount?: number;
+    postRenderData?: any;
+    loaderData?: any;
+    loaderProps?: any;
+    mode?: "spa" | "ssg" | "ssr";
     // mapping of route keys to bundle paths for hydration preloading
-    routePreloads?: Record<string, string>
-  }
+    routePreloads?: Record<string, string>;
+  };
 
   export type Flags = {
     /** See PluginOptions.router.experimental.PreventLayoutRemounting */
-    experimentalPreventLayoutRemounting?: boolean
-  }
+    experimentalPreventLayoutRemounting?: boolean;
+  };
 
   // Re-export from shared types so they're available from both 'one' and 'one/vite'
-  export type SitemapChangefreq = OneShared.SitemapChangefreq
-  export type RouteSitemap = OneShared.RouteSitemap
+  export type SitemapChangefreq = OneShared.SitemapChangefreq;
+  export type RouteSitemap = OneShared.RouteSitemap;
 
   export type SitemapOptions = {
     /**
      * Base URL for the sitemap. Defaults to ONE_SERVER_URL environment variable.
      */
-    baseUrl?: string
+    baseUrl?: string;
     /**
      * Default priority for all routes (0.0 to 1.0).
      * @default 0.5
      */
-    priority?: number
+    priority?: number;
     /**
      * Default change frequency for all routes.
      */
-    changefreq?: SitemapChangefreq
+    changefreq?: SitemapChangefreq;
     /**
      * Glob patterns for routes to exclude from the sitemap.
      * API routes and not-found routes are always excluded.
      */
-    exclude?: string[]
-  }
+    exclude?: string[];
+  };
 }

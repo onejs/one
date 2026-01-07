@@ -1,6 +1,6 @@
-let lastUserRouteAction = Date.now()
+let lastUserRouteAction = Date.now();
 
-export const getLastAction = () => lastUserRouteAction
+export const getLastAction = () => lastUserRouteAction;
 export const setLastAction = () => {
-  lastUserRouteAction = Date.now()
-}
+  lastUserRouteAction = Date.now();
+};

@@ -1,1 +1,1 @@
-export default URL
+export default URL;

@@ -10,4 +10,4 @@ export const vercelBuildOutputConfigBase = {
     //   status: 200,
     // },
   ],
-}
+};

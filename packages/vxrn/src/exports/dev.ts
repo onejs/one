@@ -1,39 +1,39 @@
-import FSExtra from 'fs-extra'
-import colors from 'picocolors'
-import { debounce } from 'perfect-debounce'
-import type { ViteDevServer } from 'vite'
-import type { VXRNOptions } from '../types'
+import FSExtra from "fs-extra";
+import colors from "picocolors";
+import { debounce } from "perfect-debounce";
+import type { ViteDevServer } from "vite";
+import type { VXRNOptions } from "../types";
 
-const { ensureDir } = FSExtra
+const { ensureDir } = FSExtra;
 
 export type DevOptions = VXRNOptions & {
-  clean?: boolean
-}
+  clean?: boolean;
+};
 
 export const dev = async (optionsIn: DevOptions) => {
-  const devStartTime = Date.now()
-  process.env.IS_VXRN_CLI = 'true'
+  const devStartTime = Date.now();
+  process.env.IS_VXRN_CLI = "true";
 
-  if (typeof optionsIn.debug === 'string') {
-    process.env.DEBUG ||= !optionsIn.debug ? `vite` : `vite:${optionsIn.debug}`
+  if (typeof optionsIn.debug === "string") {
+    process.env.DEBUG ||= !optionsIn.debug ? `vite` : `vite:${optionsIn.debug}`;
   }
 
   // import vite only after setting process.env.DEBUG
-  const { startUserInterface } = await import('../user-interface/index')
-  const { bindKeypressInput } = await import('../utils/bindKeypressInput')
-  const { fillOptions } = await import('../config/getOptionsFilled')
-  const { getViteServerConfig } = await import('../config/getViteServerConfig')
-  const { printServerUrls } = await import('../utils/printServerUrls')
-  const { clean } = await import('./clean')
-  const { filterViteServerResolvedUrls } = await import('../utils/filterViteServerResolvedUrls')
-  const { removeUndefined } = await import('../utils/removeUndefined')
-  const { createServer, loadConfigFromFile } = await import('vite')
+  const { startUserInterface } = await import("../user-interface/index");
+  const { bindKeypressInput } = await import("../utils/bindKeypressInput");
+  const { fillOptions } = await import("../config/getOptionsFilled");
+  const { getViteServerConfig } = await import("../config/getViteServerConfig");
+  const { printServerUrls } = await import("../utils/printServerUrls");
+  const { clean } = await import("./clean");
+  const { filterViteServerResolvedUrls } = await import("../utils/filterViteServerResolvedUrls");
+  const { removeUndefined } = await import("../utils/removeUndefined");
+  const { createServer, loadConfigFromFile } = await import("vite");
 
   const { config } =
     (await loadConfigFromFile({
-      mode: 'dev',
-      command: 'serve',
-    })) ?? {}
+      mode: "dev",
+      command: "serve",
+    })) ?? {};
 
   if (!config) {
     console.error(`
@@ -48,15 +48,15 @@ export default defineConfig({
   ]
 })
 
-`)
-    process.exit(0)
+`);
+    process.exit(0);
   }
 
   // use one server config as defaults
   // this is a bit hacky for now passing it in like this
   const oneServerConfig = config?.plugins?.find(
-    (x) => Array.isArray(x) && x[0]?.['name'] === 'one:config'
-  )?.[0]?.['__get']?.server
+    (x) => Array.isArray(x) && x[0]?.["name"] === "one:config",
+  )?.[0]?.["__get"]?.server;
 
   const options = await fillOptions({
     ...optionsIn,
@@ -64,41 +64,41 @@ export default defineConfig({
       ...(oneServerConfig || {}),
       ...removeUndefined(optionsIn.server || {}),
     },
-  })
+  });
 
-  const { cacheDir } = options
+  const { cacheDir } = options;
 
-  bindKeypressInput()
+  bindKeypressInput();
 
   if (options.clean) {
-    await clean(optionsIn, options.clean)
+    await clean(optionsIn, options.clean);
   }
 
-  await ensureDir(cacheDir)
+  await ensureDir(cacheDir);
 
-  const serverConfig = await getViteServerConfig(options, config)
+  const serverConfig = await getViteServerConfig(options, config);
 
-  let viteServer: ViteDevServer | null = null
+  let viteServer: ViteDevServer | null = null;
 
   return {
     viteServer,
 
     start: async () => {
-      viteServer = await createServer(serverConfig)
+      viteServer = await createServer(serverConfig);
 
       // This fakes vite into thinking its loading files for HMR
       // Debounced per-file to avoid CPU spikes during builds
-      const pendingTransforms = new Map<string, ReturnType<typeof debounce>>()
+      const pendingTransforms = new Map<string, ReturnType<typeof debounce>>();
 
-      viteServer.watcher.addListener('change', async (path) => {
+      viteServer.watcher.addListener("change", async (path) => {
         // Skip dist files to avoid loops during builds
-        if (path.includes('/dist/') || path.includes('\\dist\\')) {
-          return
+        if (path.includes("/dist/") || path.includes("\\dist\\")) {
+          return;
         }
 
-        const id = path.replace(process.cwd(), '')
-        if (!id.endsWith('tsx') && !id.endsWith('jsx')) {
-          return
+        const id = path.replace(process.cwd(), "");
+        if (!id.endsWith("tsx") && !id.endsWith("jsx")) {
+          return;
         }
 
         // Get or create a debounced transform for this file
@@ -107,44 +107,44 @@ export default defineConfig({
             id,
             debounce(async () => {
               try {
-                await viteServer!.transformRequest(id)
+                await viteServer!.transformRequest(id);
               } catch (err) {
-                console.info('err', err)
+                console.info("err", err);
               }
-            }, 100)
-          )
+            }, 100),
+          );
         }
 
-        pendingTransforms.get(id)!()
-      })
+        pendingTransforms.get(id)!();
+      });
 
-      await viteServer.listen()
+      await viteServer.listen();
 
-      const totalStartupTime = Date.now() - devStartTime
+      const totalStartupTime = Date.now() - devStartTime;
 
-      console.info()
-      console.info(colors.bold('Server running on') + ' ⪢')
-      console.info()
+      console.info();
+      console.info(colors.bold("Server running on") + " ⪢");
+      console.info();
 
-      const viteServerResolvedUrls = filterViteServerResolvedUrls(viteServer.resolvedUrls)
+      const viteServerResolvedUrls = filterViteServerResolvedUrls(viteServer.resolvedUrls);
       if (viteServerResolvedUrls) {
-        printServerUrls(viteServerResolvedUrls, {}, viteServer.config.logger.info)
+        printServerUrls(viteServerResolvedUrls, {}, viteServer.config.logger.info);
       }
 
-      startUserInterface({ server: viteServer })
+      startUserInterface({ server: viteServer });
 
       return {
         closePromise: new Promise((res) => {
-          viteServer?.httpServer?.on('close', res)
+          viteServer?.httpServer?.on("close", res);
         }),
-      }
+      };
     },
 
     stop: () => {
       if (viteServer) {
-        viteServer.watcher.removeAllListeners()
-        return viteServer.close()
+        viteServer.watcher.removeAllListeners();
+        return viteServer.close();
       }
     },
-  }
-}
+  };
+};

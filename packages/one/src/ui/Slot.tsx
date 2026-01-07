@@ -1,12 +1,12 @@
-import { Slot as RUISlot } from '@radix-ui/react-slot'
+import { Slot as RUISlot } from "@radix-ui/react-slot";
 import {
   forwardRef,
   useMemo,
   type ForwardRefExoticComponent,
   type Component,
   type RefAttributes,
-} from 'react'
-import { StyleSheet, type ViewProps } from 'react-native'
+} from "react";
+import { StyleSheet, type ViewProps } from "react-native";
 
 /**
  * RadixUI has special logic to handle the merging of `style` and `className` props.
@@ -23,12 +23,14 @@ import { StyleSheet, type ViewProps } from 'react-native'
  */
 function ShimSlotForReactNative(Component: typeof RUISlot): typeof RUISlot {
   return forwardRef(function RNSlotHOC({ style, ...props }, ref) {
-    style = useMemo(() => StyleSheet.flatten(style), [style])
-    return <Component ref={ref} {...props} style={style} />
-  })
+    style = useMemo(() => StyleSheet.flatten(style), [style]);
+    return <Component ref={ref} {...props} style={style} />;
+  });
 }
 
-export interface Slot<Props = ViewProps, Ref = Component<ViewProps>>
-  extends ForwardRefExoticComponent<Props & RefAttributes<Ref>> {}
+export interface Slot<
+  Props = ViewProps,
+  Ref = Component<ViewProps>,
+> extends ForwardRefExoticComponent<Props & RefAttributes<Ref>> {}
 
-export const Slot: Slot = ShimSlotForReactNative(RUISlot) as Slot
+export const Slot: Slot = ShimSlotForReactNative(RUISlot) as Slot;

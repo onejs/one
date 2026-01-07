@@ -3,8 +3,8 @@ import {
   DefaultTheme,
   type NavigationAction,
   type NavigationContainerProps,
-} from '@react-navigation/native'
-import { useUserScheme } from '@vxrn/color-scheme'
+} from "@react-navigation/native";
+import { useUserScheme } from "@vxrn/color-scheme";
 import {
   createContext,
   type FunctionComponent,
@@ -14,84 +14,89 @@ import {
   useId,
   useLayoutEffect,
   useState,
-} from 'react'
-import { SERVER_CONTEXT_KEY } from './constants'
-import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
-import { getURL } from './getURL'
-import { FlagsContext } from './router/FlagsContext'
-import { getLinking } from './router/linkingConfig'
-import { ServerLocationContext } from './router/serverLocationContext'
-import { useInitializeOneRouter } from './router/useInitializeOneRouter'
-import { useViteRoutes } from './router/useViteRoutes'
-import type { GlobbedRouteImports } from './types'
-import { ServerRenderID } from './useServerHeadInsertion'
-import { PreloadLinks } from './views/PreloadLinks'
-import { RootErrorBoundary } from './views/RootErrorBoundary'
-import { ScrollBehavior } from './views/ScrollBehavior'
-import type { One } from './vite/types'
+} from "react";
+import { SERVER_CONTEXT_KEY } from "./constants";
+import { NavigationContainer as UpstreamNavigationContainer } from "./fork/NavigationContainer";
+import { getURL } from "./getURL";
+import { FlagsContext } from "./router/FlagsContext";
+import { getLinking } from "./router/linkingConfig";
+import { ServerLocationContext } from "./router/serverLocationContext";
+import { useInitializeOneRouter } from "./router/useInitializeOneRouter";
+import { useViteRoutes } from "./router/useViteRoutes";
+import type { GlobbedRouteImports } from "./types";
+import { ServerRenderID } from "./useServerHeadInsertion";
+import { PreloadLinks } from "./views/PreloadLinks";
+import { RootErrorBoundary } from "./views/RootErrorBoundary";
+import { ScrollBehavior } from "./views/ScrollBehavior";
+import type { One } from "./vite/types";
 
-type RootProps = Omit<InnerProps, 'context'> & {
-  onRenderId?: (id: string) => void
-  path: string
-  isClient?: boolean
-  routes: GlobbedRouteImports
-  routerRoot: string
-  routeOptions?: One.RouteOptions
-  flags?: One.Flags
-}
+type RootProps = Omit<InnerProps, "context"> & {
+  onRenderId?: (id: string) => void;
+  path: string;
+  isClient?: boolean;
+  routes: GlobbedRouteImports;
+  routerRoot: string;
+  routeOptions?: One.RouteOptions;
+  flags?: One.Flags;
+};
 
 type InnerProps = {
-  context: One.RouteContext
-  location?: URL
-  wrapper?: FunctionComponent<{ children: ReactNode }>
+  context: One.RouteContext;
+  location?: URL;
+  wrapper?: FunctionComponent<{ children: ReactNode }>;
   navigationContainerProps?: NavigationContainerProps & {
     theme?: {
-      dark: boolean
+      dark: boolean;
       colors: {
-        primary: string
-        background: string
-        card: string
-        text: string
-        border: string
-        notification: string
-      }
-    }
-  }
-}
+        primary: string;
+        background: string;
+        card: string;
+        text: string;
+        border: string;
+        notification: string;
+      };
+    };
+  };
+};
 
 // we bridge it to react because reacts weird rendering loses it
-const ServerAsyncLocalIDContext = createContext<One.ServerContext | null>(null)
+const ServerAsyncLocalIDContext = createContext<One.ServerContext | null>(null);
 
-globalThis['__vxrnGetContextFromReactContext'] = () => useContext(ServerAsyncLocalIDContext)
+globalThis["__vxrnGetContextFromReactContext"] = () => useContext(ServerAsyncLocalIDContext);
 
 export function Root(props: RootProps) {
-  const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } = props
+  const { path, routes, routeOptions, isClient, navigationContainerProps, onRenderId } = props;
 
-  const context = useViteRoutes(routes, props.routerRoot, routeOptions, globalThis['__vxrnVersion'])
+  const context = useViteRoutes(
+    routes,
+    props.routerRoot,
+    routeOptions,
+    globalThis["__vxrnVersion"],
+  );
   const location =
-    typeof window !== 'undefined' && window.location
-      ? new URL(path || window.location.href || '/', window.location.href)
-      : new URL(path || '/', getURL())
+    typeof window !== "undefined" && window.location
+      ? new URL(path || window.location.href || "/", window.location.href)
+      : new URL(path || "/", getURL());
 
-  const store = useInitializeOneRouter(context, location)
-  const userScheme = useUserScheme()
+  const store = useInitializeOneRouter(context, location);
+  const userScheme = useUserScheme();
 
   // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
 
-  const Component = store.rootComponent
+  const Component = store.rootComponent;
 
   if (!Component) {
-    throw new Error(`No root component found`)
+    throw new Error(`No root component found`);
   }
 
-  const id = useId()
+  const id = useId();
 
-  onRenderId?.(id)
+  onRenderId?.(id);
 
   // Use Vercel's global ID if available, otherwise use AsyncLocalStorage
   const value = process.env.VERCEL
-    ? globalThis['__oneGlobalContextId']
-    : globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
+    ? globalThis["__oneGlobalContextId"]
+    : globalThis["__vxrnrequestAsyncLocalStore"]?.getStore() || null;
 
   let contents = (
     <ServerAsyncLocalIDContext.Provider value={value}>
@@ -102,7 +107,7 @@ export function Root(props: RootProps) {
           initialState={store.initialState}
           linking={getLinking()}
           onUnhandledAction={onUnhandledAction}
-          theme={userScheme.value === 'dark' ? DarkTheme : DefaultTheme}
+          theme={userScheme.value === "dark" ? DarkTheme : DefaultTheme}
           documentTitle={{
             enabled: false,
           }}
@@ -132,34 +137,34 @@ export function Root(props: RootProps) {
         <PreloadLinks key="preload-links" />
       </ServerRenderID.Provider>
     </ServerAsyncLocalIDContext.Provider>
-  )
+  );
 
   if (props.flags) {
-    contents = <FlagsContext.Provider value={props.flags}>{contents}</FlagsContext.Provider>
+    contents = <FlagsContext.Provider value={props.flags}>{contents}</FlagsContext.Provider>;
   }
 
   if (!process.env.ONE_DISABLE_STRICT_MODE) {
-    contents = <StrictMode>{contents}</StrictMode>
+    contents = <StrictMode>{contents}</StrictMode>;
   }
 
   if (isClient) {
     // only on client can read like this
-    if (globalThis[SERVER_CONTEXT_KEY]?.mode === 'spa') {
+    if (globalThis[SERVER_CONTEXT_KEY]?.mode === "spa") {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const [show, setShow] = useState(false)
+      const [show, setShow] = useState(false);
 
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useLayoutEffect(() => {
-        setShow(true)
-      }, [])
+        setShow(true);
+      }, []);
 
-      return show ? contents : null
+      return show ? contents : null;
     }
 
-    return contents
+    return contents;
   }
 
-  return contents
+  return contents;
 }
 
 // function getGestureHandlerRootView() {
@@ -197,49 +202,49 @@ export function Root(props: RootProps) {
 //   Platform.OS === 'ios' &&
 //   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
 
-let onUnhandledAction: (action: NavigationAction) => void
+let onUnhandledAction: (action: NavigationAction) => void;
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   onUnhandledAction = (action: NavigationAction) => {
-    const payload: Record<string, any> | undefined = action.payload
+    const payload: Record<string, any> | undefined = action.payload;
 
     let message = `The action '${action.type}'${
-      payload ? ` with payload ${JSON.stringify(action.payload)}` : ''
-    } was not handled by any navigator.`
+      payload ? ` with payload ${JSON.stringify(action.payload)}` : ""
+    } was not handled by any navigator.`;
 
     switch (action.type) {
-      case 'NAVIGATE':
-      case 'PUSH':
-      case 'REPLACE':
-      case 'JUMP_TO':
+      case "NAVIGATE":
+      case "PUSH":
+      case "REPLACE":
+      case "JUMP_TO":
         if (payload?.name) {
-          message += `\n\nDo you have a route named '${payload.name}'?`
+          message += `\n\nDo you have a route named '${payload.name}'?`;
         } else {
-          message += `\n\nYou need to pass the name of the screen to navigate to. This may be a bug.`
+          message += `\n\nYou need to pass the name of the screen to navigate to. This may be a bug.`;
         }
 
-        break
-      case 'GO_BACK':
-      case 'POP':
-      case 'POP_TO_TOP':
-        message += `\n\nIs there any screen to go back to?`
-        break
-      case 'OPEN_DRAWER':
-      case 'CLOSE_DRAWER':
-      case 'TOGGLE_DRAWER':
-        message += `\n\nIs your screen inside a Drawer navigator?`
-        break
+        break;
+      case "GO_BACK":
+      case "POP":
+      case "POP_TO_TOP":
+        message += `\n\nIs there any screen to go back to?`;
+        break;
+      case "OPEN_DRAWER":
+      case "CLOSE_DRAWER":
+      case "TOGGLE_DRAWER":
+        message += `\n\nIs your screen inside a Drawer navigator?`;
+        break;
     }
 
-    message += `\n\nThis is a development-only warning and won't be shown in production.`
+    message += `\n\nThis is a development-only warning and won't be shown in production.`;
 
-    if (process.env.NODE_ENV === 'test') {
-      throw new Error(message)
+    if (process.env.NODE_ENV === "test") {
+      throw new Error(message);
     }
-    console.error(message)
-  }
+    console.error(message);
+  };
 } else {
-  onUnhandledAction = () => {}
+  onUnhandledAction = () => {};
 }
 
 // if getting element type is undefined

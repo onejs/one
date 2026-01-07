@@ -3,53 +3,53 @@ const {
   withXcodeProject,
   withAppBuildGradle,
   withMainActivity,
-} = require('@expo/config-plugins')
+} = require("@expo/config-plugins");
 
 const plugin = (config, options = {}) => {
   return withPlugins(config, [
     [
       withXcodeProject,
       async (config) => {
-        const xcodeProject = config.modResults
+        const xcodeProject = config.modResults;
 
         const bundleReactNativeCodeAndImagesBuildPhase = xcodeProject.buildPhaseObject(
-          'PBXShellScriptBuildPhase',
-          'Bundle React Native code and images'
-        )
+          "PBXShellScriptBuildPhase",
+          "Bundle React Native code and images",
+        );
 
         if (!bundleReactNativeCodeAndImagesBuildPhase) {
-          return config
+          return config;
         }
 
-        const originalScript = JSON.parse(bundleReactNativeCodeAndImagesBuildPhase.shellScript)
-        let patchedScript = originalScript
-        patchedScript = removeExpoDefaultsFromBundleReactNativeShellScript(patchedScript)
-        patchedScript = addSetCliPathToBundleReactNativeShellScript(patchedScript)
-        patchedScript = addDepsPatchToBundleReactNativeShellScript(patchedScript)
-        bundleReactNativeCodeAndImagesBuildPhase.shellScript = JSON.stringify(patchedScript)
+        const originalScript = JSON.parse(bundleReactNativeCodeAndImagesBuildPhase.shellScript);
+        let patchedScript = originalScript;
+        patchedScript = removeExpoDefaultsFromBundleReactNativeShellScript(patchedScript);
+        patchedScript = addSetCliPathToBundleReactNativeShellScript(patchedScript);
+        patchedScript = addDepsPatchToBundleReactNativeShellScript(patchedScript);
+        bundleReactNativeCodeAndImagesBuildPhase.shellScript = JSON.stringify(patchedScript);
 
-        return config
+        return config;
       },
     ],
     [
       withAppBuildGradle,
       async (config) => {
         config.modResults.contents = removeExpoDefaultsFromAppBuildGradle(
-          config.modResults.contents
-        )
-        config.modResults.contents = addDepsPatchToAppBuildGradle(config.modResults.contents)
-        return config
+          config.modResults.contents,
+        );
+        config.modResults.contents = addDepsPatchToAppBuildGradle(config.modResults.contents);
+        return config;
       },
     ],
     [
       withMainActivity,
       async (config) => {
-        config.modResults.contents = addReactNativeScreensFix(config.modResults.contents)
-        return config
+        config.modResults.contents = addReactNativeScreensFix(config.modResults.contents);
+        return config;
       },
     ],
-  ])
-}
+  ]);
+};
 
 /**
  * The Expo templates defaults the `CLI_PATH` and `BUNDLE_COMMAND` environment variables to use Expo CLI with the `export:embed` command.
@@ -71,36 +71,36 @@ const plugin = (config, options = {}) => {
  */
 function removeExpoDefaultsFromBundleReactNativeShellScript(input) {
   // Regular expression to match the CLI_PATH block
-  const cliPathRegex = /if \[\[ -z "\$CLI_PATH" \]\]; then[\s\S]*?fi\n?/g
+  const cliPathRegex = /if \[\[ -z "\$CLI_PATH" \]\]; then[\s\S]*?fi\n?/g;
   // Regular expression to match the BUNDLE_COMMAND block
-  const bundleCommandRegex = /if \[\[ -z "\$BUNDLE_COMMAND" \]\]; then[\s\S]*?fi\n?/g
+  const bundleCommandRegex = /if \[\[ -z "\$BUNDLE_COMMAND" \]\]; then[\s\S]*?fi\n?/g;
 
   // Remove both sections from the input string
-  return input.replace(cliPathRegex, '').replace(bundleCommandRegex, '')
+  return input.replace(cliPathRegex, "").replace(bundleCommandRegex, "");
 }
 
 /**
  * Modify android/app/build.gradle to remove Expo defaults so it won't force the use of Expo CLI.
  */
 function removeExpoDefaultsFromAppBuildGradle(appBuildGradleContents) {
-  const appBuildGradleContentLines = appBuildGradleContents.split('\n')
-  const reactBlockStartIndex = appBuildGradleContentLines.findIndex((l) => l.startsWith('react {'))
+  const appBuildGradleContentLines = appBuildGradleContents.split("\n");
+  const reactBlockStartIndex = appBuildGradleContentLines.findIndex((l) => l.startsWith("react {"));
   const reactBlockEndIndex =
-    appBuildGradleContentLines.slice(reactBlockStartIndex).findIndex((l) => l === '}') +
-    reactBlockStartIndex
+    appBuildGradleContentLines.slice(reactBlockStartIndex).findIndex((l) => l === "}") +
+    reactBlockStartIndex;
 
   if (reactBlockStartIndex === -1 || reactBlockEndIndex === -1) {
     console.warn(
-      '[vxrn/expo-plugin] failed to patch Android app/build.gradle: react block not found'
-    )
-    return appBuildGradleContents
+      "[vxrn/expo-plugin] failed to patch Android app/build.gradle: react block not found",
+    );
+    return appBuildGradleContents;
   }
 
   return [
     ...appBuildGradleContentLines.slice(0, reactBlockStartIndex),
     ANDROID_APP_BUILD_GRADLE_REACT_BLOCK,
     ...appBuildGradleContentLines.slice(reactBlockEndIndex + 1),
-  ].join('\n')
+  ].join("\n");
 }
 
 // TODO: Get the content of this block from @react-native-community/template (for example, get https://registry.npmjs.org/@react-native-community/template/0.76.6, find the tarball, download it into a tmp dir, extract it, read template/android/app/build.gradle, parse out the react block) to ensure it stays up to date.
@@ -161,7 +161,7 @@ react {
     /* Autolinking */
     autolinkLibrariesWithApp()
 }
-`.trim()
+`.trim();
 
 /**
  * React Native v0.76 defaults the CLI_PATH to an internal scripts/bundle.js for iOS (see: https://github.com/facebook/react-native/blob/v0.76.0/packages/react-native/scripts/react-native-xcode.sh#L93), which loads the bundle command directly from `@react-native/community-cli-plugin`, and will ignore the override of the bundle command in `react-native.config.cjs`.
@@ -171,23 +171,23 @@ react {
  */
 function addSetCliPathToBundleReactNativeShellScript(input) {
   if (input.includes('CLI_PATH="')) {
-    return input
+    return input;
   }
 
   const codeToAdd = `
 # [vxrn/one] React Native now defaults CLI_PATH to scripts/bundle.js, which loads the bundle command directly from @react-native/community-cli-plugin, we need to set it back to the main CLI endpoint so the override of the bundle command in react-native.config.cjs can take effect
 export CLI_PATH="$("$NODE_BINARY" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
-`.trim()
+`.trim();
 
-  return input.replace(/^`"\$NODE_BINARY"/m, codeToAdd + '\n\n' + '`"$NODE_BINARY"')
+  return input.replace(/^`"\$NODE_BINARY"/m, codeToAdd + "\n\n" + '`"$NODE_BINARY"');
 }
 
 /**
  * Ensure patches are applied.
  */
 function addDepsPatchToBundleReactNativeShellScript(input) {
-  if (input.includes('[vxrn/one] ensure patches are applied')) {
-    return input
+  if (input.includes("[vxrn/one] ensure patches are applied")) {
+    return input;
   }
 
   return (
@@ -201,20 +201,20 @@ elif [ -f node_modules/.bin/vxrn ]; then
 fi
 cd -
 ` + input
-  )
+  );
 }
 
 /**
  * Ensure patches are applied.
  */
 function addDepsPatchToAppBuildGradle(input) {
-  if (input.includes('[vxrn/one] ensure patches are applied')) {
-    return input
+  if (input.includes("[vxrn/one] ensure patches are applied")) {
+    return input;
   }
 
   return (
     input +
-    '\n' +
+    "\n" +
     `
 /**
  * [vxrn/one] ensure patches are applied
@@ -230,7 +230,7 @@ gradle.taskGraph.whenReady { taskGraph ->
     }
 }
 `.trim()
-  )
+  );
 }
 
 /**
@@ -247,36 +247,36 @@ gradle.taskGraph.whenReady { taskGraph ->
  * Reference: https://github.com/software-mansion/react-native-screens#android
  */
 function addReactNativeScreensFix(input) {
-  console.info(`🔨 Ensuring react-native-screens android fix`)
+  console.info(`🔨 Ensuring react-native-screens android fix`);
 
   // Determine if this is Kotlin or Java
-  const isKotlin = input.includes('class MainActivity : ReactActivity()')
+  const isKotlin = input.includes("class MainActivity : ReactActivity()");
 
   // Check if the RNScreensFragmentFactory fix is already applied
-  if (input.includes('RNScreensFragmentFactory')) {
-    console.info('ℹ️  react-native-screens fix already applied (RNScreensFragmentFactory)')
-    return input
+  if (input.includes("RNScreensFragmentFactory")) {
+    console.info("ℹ️  react-native-screens fix already applied (RNScreensFragmentFactory)");
+    return input;
   }
 
   if (isKotlin) {
     // Kotlin version
     // Add necessary imports
-    if (!input.includes('import android.os.Bundle')) {
-      input = input.replace(/package\s+[\w.]+/, '$&\nimport android.os.Bundle')
+    if (!input.includes("import android.os.Bundle")) {
+      input = input.replace(/package\s+[\w.]+/, "$&\nimport android.os.Bundle");
     }
     if (
       !input.includes(
-        'import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory'
+        "import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory",
       )
     ) {
       input = input.replace(
         /package\s+[\w.]+/,
-        '$&\nimport com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory'
-      )
+        "$&\nimport com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory",
+      );
     }
 
     // Check if onCreate exists and update it, or add new onCreate
-    if (input.includes('super.onCreate(')) {
+    if (input.includes("super.onCreate(")) {
       // Insert fragment factory setup before super.onCreate and ensure savedInstanceState is passed
       input = input.replace(
         /(override\s+fun\s+onCreate\([^)]*\)\s*\{[^}]*?)(super\.onCreate\([^)]*\))/,
@@ -284,18 +284,18 @@ function addReactNativeScreensFix(input) {
           // Add fragment factory before super.onCreate
           const withFactory = `${beforeSuper}// react-native-screens override
         supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
-        `
+        `;
           // Ensure super.onCreate uses savedInstanceState
-          const fixedSuperCall = 'super.onCreate(null)'
-          return withFactory + fixedSuperCall
-        }
-      )
-      console.info('✅ Updated onCreate with react-native-screens fix in MainActivity.kt')
+          const fixedSuperCall = "super.onCreate(null)";
+          return withFactory + fixedSuperCall;
+        },
+      );
+      console.info("✅ Updated onCreate with react-native-screens fix in MainActivity.kt");
     } else {
       // Add new onCreate method
-      const classMatch = input.match(/class\s+MainActivity\s*:\s*ReactActivity\(\)\s*\{/)
+      const classMatch = input.match(/class\s+MainActivity\s*:\s*ReactActivity\(\)\s*\{/);
       if (classMatch) {
-        const classDeclarationEnd = input.indexOf('{', classMatch.index) + 1
+        const classDeclarationEnd = input.indexOf("{", classMatch.index) + 1;
 
         const onCreateMethod = `
 
@@ -303,32 +303,32 @@ function addReactNativeScreensFix(input) {
         // react-native-screens override
         supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
         super.onCreate(null)
-    }`
+    }`;
 
         input =
-          input.slice(0, classDeclarationEnd) + onCreateMethod + input.slice(classDeclarationEnd)
-        console.info('✅ Added onCreate with react-native-screens fix to MainActivity.kt')
+          input.slice(0, classDeclarationEnd) + onCreateMethod + input.slice(classDeclarationEnd);
+        console.info("✅ Added onCreate with react-native-screens fix to MainActivity.kt");
       }
     }
   } else {
     // Java version
     // Add necessary imports
-    if (!input.includes('import android.os.Bundle;')) {
-      input = input.replace(/package\s+[\w.]+;/, '$&\nimport android.os.Bundle;')
+    if (!input.includes("import android.os.Bundle;")) {
+      input = input.replace(/package\s+[\w.]+;/, "$&\nimport android.os.Bundle;");
     }
     if (
       !input.includes(
-        'import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory;'
+        "import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory;",
       )
     ) {
       input = input.replace(
         /package\s+[\w.]+;/,
-        '$&\nimport com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory;'
-      )
+        "$&\nimport com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory;",
+      );
     }
 
     // Check if onCreate exists and update it, or add new onCreate
-    if (input.includes('super.onCreate(')) {
+    if (input.includes("super.onCreate(")) {
       // Insert fragment factory setup before super.onCreate and ensure savedInstanceState is passed
       input = input.replace(
         /(@Override\s*\n?\s*protected\s+void\s+onCreate\([^)]*\)\s*\{[^}]*?)(super\.onCreate\([^)]*\);?)/,
@@ -336,18 +336,20 @@ function addReactNativeScreensFix(input) {
           // Add fragment factory before super.onCreate
           const withFactory = `${beforeSuper}// react-native-screens override
         getSupportFragmentManager().setFragmentFactory(new RNScreensFragmentFactory());
-        `
+        `;
           // Ensure super.onCreate uses savedInstanceSpace (with semicolon for Java)
-          const fixedSuperCall = 'super.onCreate(savedInstanceState);'
-          return withFactory + fixedSuperCall
-        }
-      )
-      console.info('✅ Updated onCreate with react-native-screens fix in MainActivity.java')
+          const fixedSuperCall = "super.onCreate(savedInstanceState);";
+          return withFactory + fixedSuperCall;
+        },
+      );
+      console.info("✅ Updated onCreate with react-native-screens fix in MainActivity.java");
     } else {
       // Add new onCreate method
-      const classMatch = input.match(/public\s+class\s+MainActivity\s+extends\s+ReactActivity\s*\{/)
+      const classMatch = input.match(
+        /public\s+class\s+MainActivity\s+extends\s+ReactActivity\s*\{/,
+      );
       if (classMatch) {
-        const classDeclarationEnd = input.indexOf('{', classMatch.index) + 1
+        const classDeclarationEnd = input.indexOf("{", classMatch.index) + 1;
 
         const onCreateMethod = `
 
@@ -356,17 +358,17 @@ function addReactNativeScreensFix(input) {
     protected void onCreate(Bundle savedInstanceState) {
         getSupportFragmentManager().setFragmentFactory(new RNScreensFragmentFactory());
         super.onCreate(savedInstanceState);
-    }`
+    }`;
 
         input =
-          input.slice(0, classDeclarationEnd) + onCreateMethod + input.slice(classDeclarationEnd)
-        console.info('✅ Added onCreate with react-native-screens fix to MainActivity.java')
+          input.slice(0, classDeclarationEnd) + onCreateMethod + input.slice(classDeclarationEnd);
+        console.info("✅ Added onCreate with react-native-screens fix to MainActivity.java");
       }
     }
   }
 
-  return input
+  return input;
 }
 
-module.exports = plugin
-module.exports.addReactNativeScreensFix = addReactNativeScreensFix
+module.exports = plugin;
+module.exports.addReactNativeScreensFix = addReactNativeScreensFix;

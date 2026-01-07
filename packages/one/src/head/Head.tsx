@@ -1,9 +1,9 @@
-import { HeadModule } from './HeadModule'
-import type { HeadType } from './types'
+import { HeadModule } from "./HeadModule";
+import type { HeadType } from "./types";
 
 // @ts-expect-error
 export const Head: HeadType = ({ children }: { children?: any }) => {
-  return children
-}
+  return children;
+};
 
-Object.assign(Head, HeadModule)
+Object.assign(Head, HeadModule);

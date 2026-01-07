@@ -1,48 +1,48 @@
-import { transformSWC, transformSWCStripJSX } from '@vxrn/compiler'
-import { parse } from 'es-module-lexer'
-import FSExtra from 'fs-extra'
-import { createIdResolver, type ResolvedConfig, type Plugin, type ResolveFn } from 'vite'
-import { connectedNativeClients } from '../utils/connectedNativeClients'
-import { filterPluginsForNative } from '../utils/filterPluginsForNative'
-import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
-import { entryRoot } from '../utils/getReactNativeBundle'
-import { getReactNativeResolvedConfig } from '../config/getReactNativeBuildConfig'
-import { getVitePath } from '../utils/getVitePath'
-import { hotUpdateCache } from '../utils/hotUpdateCache'
-import { isWithin } from '../utils/isWithin'
-import { conditions } from './reactNativeCommonJsPlugin'
+import { transformSWC, transformSWCStripJSX } from "@vxrn/compiler";
+import { parse } from "es-module-lexer";
+import FSExtra from "fs-extra";
+import { createIdResolver, type ResolvedConfig, type Plugin, type ResolveFn } from "vite";
+import { connectedNativeClients } from "../utils/connectedNativeClients";
+import { filterPluginsForNative } from "../utils/filterPluginsForNative";
+import type { VXRNOptionsFilled } from "../config/getOptionsFilled";
+import { entryRoot } from "../utils/getReactNativeBundle";
+import { getReactNativeResolvedConfig } from "../config/getReactNativeBuildConfig";
+import { getVitePath } from "../utils/getVitePath";
+import { hotUpdateCache } from "../utils/hotUpdateCache";
+import { isWithin } from "../utils/isWithin";
+import { conditions } from "./reactNativeCommonJsPlugin";
 
 export function reactNativeHMRPlugin({
   assetExts,
   root: rootIn,
   mode: modeIn,
-}: Partial<Pick<VXRNOptionsFilled, 'root' | 'mode'>> & { assetExts: string[] }) {
-  let idResolver: ReturnType<typeof createIdResolver>
+}: Partial<Pick<VXRNOptionsFilled, "root" | "mode">> & { assetExts: string[] }) {
+  let idResolver: ReturnType<typeof createIdResolver>;
 
-  const assetExtsRegExp = new RegExp(`\\.(${assetExts.join('|')})$`)
-  const isAssetFile = (id: string) => assetExtsRegExp.test(id)
+  const assetExtsRegExp = new RegExp(`\\.(${assetExts.join("|")})$`);
+  const isAssetFile = (id: string) => assetExtsRegExp.test(id);
 
-  let config: ResolvedConfig
+  let config: ResolvedConfig;
 
   return {
-    name: 'vxrn:native-hmr-transform',
+    name: "vxrn:native-hmr-transform",
 
     configResolved(resolvedConfig) {
-      config = resolvedConfig
+      config = resolvedConfig;
     },
 
     // TODO see about moving to hotUpdate
     // https://deploy-preview-16089--vite-docs-main.netlify.app/guide/api-vite-environment.html#the-hotupdate-hook
     async handleHotUpdate({ read, modules, file, server }) {
-      const root = rootIn || config.root
-      const mode = modeIn || config.mode
-      const environment = server.environments.ios // TODO: android? How can we get the current environment here?
+      const root = rootIn || config.root;
+      const mode = modeIn || config.mode;
+      const environment = server.environments.ios; // TODO: android? How can we get the current environment here?
 
       if (!idResolver) {
-        const rnConfig = getReactNativeResolvedConfig()
+        const rnConfig = getReactNativeResolvedConfig();
         if (!rnConfig) {
           // they are only running web app not native
-          return
+          return;
         }
 
         // for some reason rnConfig.resolve.conditions is empty array
@@ -50,45 +50,45 @@ export function reactNativeHMRPlugin({
           conditions,
           mainFields: rnConfig.resolve.mainFields,
           extensions: rnConfig.resolve.extensions,
-        }
-        idResolver = createIdResolver(rnConfig, resolverConfig)
+        };
+        idResolver = createIdResolver(rnConfig, resolverConfig);
       }
 
       try {
         if (!isWithin(root, file)) {
-          return
+          return;
         }
         if (!connectedNativeClients) {
-          return
+          return;
         }
 
-        const [module] = modules
-        if (!module) return
+        const [module] = modules;
+        if (!module) return;
 
-        const fullId = module?.url || file
+        const fullId = module?.url || file;
 
-        let id = fullId.replace(root, '').replace('/@id', '')
-        if (id[0] !== '/') {
-          id = `/${id}`
+        let id = fullId.replace(root, "").replace("/@id", "");
+        if (id[0] !== "/") {
+          id = `/${id}`;
         }
 
         if (isAssetFile(id)) {
           // TODO: Handle asset updates.
-          return
+          return;
         }
 
-        const code = await read()
+        const code = await read();
 
         // got a weird pre compiled file on startup
         if (code.startsWith(`'use strict';`)) {
-          return
+          return;
         }
 
         if (!code) {
-          return
+          return;
         }
 
-        let source = code
+        let source = code;
 
         // we have to remove jsx before we can parse imports...
         try {
@@ -102,89 +102,89 @@ export function reactNativeHMRPlugin({
             filterPluginsForNative(environment.plugins, { isNative: true }).filter(
               (p) =>
                 p.name !==
-                'vite:import-analysis' /* will cause `ERR_OUTDATED_OPTIMIZED_DEP` error */
+                "vite:import-analysis" /* will cause `ERR_OUTDATED_OPTIMIZED_DEP` error */,
             ),
-            server.watcher
-          )
+            server.watcher,
+          );
 
           const transformResult = await pluginContainerForTransform.transform(
             source,
-            `vxrn-swc-preprocess:${file}`
-          )
+            `vxrn-swc-preprocess:${file}`,
+          );
 
-          source = transformResult.code
+          source = transformResult.code;
         } catch (e) {
-          console.warn(`Error transforming source for HMR: ${e}. Retrying without plugins.`)
-          source = (await transformSWCStripJSX(id, source))?.code || ''
+          console.warn(`Error transforming source for HMR: ${e}. Retrying without plugins.`);
+          source = (await transformSWCStripJSX(id, source))?.code || "";
         }
 
         // TODO: This is a hacky way to make HMR route files work, since if we don't run through the `clientTreeShakePlugin`, the source code might include imports to server side stuff (typically used inside `loader` functions) that will break the HMR update. Ideally, we should go though all user plugins for HMR updates.
         const clientTreeShakePlugin = environment.plugins.find((p) =>
-          p.name.endsWith('client-tree-shake')
-        )
+          p.name.endsWith("client-tree-shake"),
+        );
         if (clientTreeShakePlugin) {
-          let clientTreeShakePluginTransformFn = (clientTreeShakePlugin as any).transform
-          if (typeof clientTreeShakePluginTransformFn === 'function') {
+          let clientTreeShakePluginTransformFn = (clientTreeShakePlugin as any).transform;
+          if (typeof clientTreeShakePluginTransformFn === "function") {
             try {
               clientTreeShakePluginTransformFn = clientTreeShakePluginTransformFn.bind({
                 environment,
-              })
-              const result = await clientTreeShakePluginTransformFn(source, id, {})
+              });
+              const result = await clientTreeShakePluginTransformFn(source, id, {});
               if (result) {
-                source = result.code
+                source = result.code;
               }
             } catch (e) {
-              console.warn(`client-tree-shake failed on HMR: ${e}`)
+              console.warn(`client-tree-shake failed on HMR: ${e}`);
             }
           }
         }
 
-        const importsMap = {}
+        const importsMap = {};
 
         // parse imports of modules into ids:
         // eg `import x from '@tamagui/core'` => `import x from '/me/node_modules/@tamagui/core/index.js'`
-        const [imports] = parse(source)
+        const [imports] = parse(source);
 
-        let accumulatedSliceOffset = 0
+        let accumulatedSliceOffset = 0;
 
         for (const specifier of imports) {
-          const { n: importName, s: start } = specifier
+          const { n: importName, s: start } = specifier;
 
           if (importName) {
             // TODO: maybe we only need `resolverWithPlugins`?
-            const resolver: ResolveFn = idResolver.bind(null, environment)
+            const resolver: ResolveFn = idResolver.bind(null, environment);
             const resolverWithPlugins: ResolveFn = async (id, importer) => {
               // Need this since `idResolver` will not run through user plugins, but we might need plugins like `vite-tsconfig-paths` to work if they are used
-              const resolvedIdData = await environment.pluginContainer.resolveId(id, importer)
-              return resolvedIdData?.id
-            }
+              const resolvedIdData = await environment.pluginContainer.resolveId(id, importer);
+              return resolvedIdData?.id;
+            };
 
-            let id = await getVitePath(entryRoot, file, importName, resolver, resolverWithPlugins)
+            let id = await getVitePath(entryRoot, file, importName, resolver, resolverWithPlugins);
             if (!id) {
-              console.warn('???')
-              continue
+              console.warn("???");
+              continue;
             }
 
             // It seems that it's not possible for Vite to use customized extensions for resolving imports from package.json entry (see: https://github.com/vitejs/vite/blob/v6.0.0-beta.2/packages/vite/src/node/plugins/resolve.ts#L1018),
             // so we need to manually check if the file with `.native.js` extension exists, and use it if it does.
             // @zetavg: We need to check how this is done during bundling, make sure it's consistent and probably merge the logic.
-            const nativePath = id.replace(/(.m?js)/, '.native.js')
+            const nativePath = id.replace(/(.m?js)/, ".native.js");
             try {
               if (nativePath !== id && (await FSExtra.stat(nativePath)).isFile()) {
-                id = nativePath
+                id = nativePath;
               }
             } catch (e) {}
 
-            importsMap[id] = id.replace(/^(\.\.\/)+/, '')
+            importsMap[id] = id.replace(/^(\.\.\/)+/, "");
 
             // replace module name with id for hmr
-            const len = importName.length
-            const extraLen = id.length - len
+            const len = importName.length;
+            const extraLen = id.length - len;
             source =
               source.slice(0, start + accumulatedSliceOffset) +
               id +
-              source.slice(start + accumulatedSliceOffset + len)
-            accumulatedSliceOffset += extraLen
+              source.slice(start + accumulatedSliceOffset + len);
+            accumulatedSliceOffset += extraLen;
           }
         }
 
@@ -192,14 +192,14 @@ export function reactNativeHMRPlugin({
         source =
           (
             await transformSWC(file, source, {
-              mode: 'serve-cjs',
-              environment: 'ios',
-              production: mode === 'production',
+              mode: "serve-cjs",
+              environment: "ios",
+              production: mode === "production",
             })
-          )?.code || ''
+          )?.code || "";
 
         if (!source) {
-          throw '❌ no source'
+          throw "❌ no source";
         }
 
         const hotUpdateSource = `exports = ((exports) => {
@@ -208,16 +208,16 @@ export function reactNativeHMRPlugin({
             .replace(`import.meta.hot.accept(() => {})`, ``)
             // replace import.meta.glob with empty array in hot reloads
             .replaceAll(/import.meta.glob\(.*\)/gi, `globalThis['__importMetaGlobbed'] || {}`)};
-          return exports })({})`
+          return exports })({})`;
 
         if (process.env.DEBUG) {
-          console.info(`Sending hot update`, id, hotUpdateSource)
+          console.info(`Sending hot update`, id, hotUpdateSource);
         }
 
-        hotUpdateCache.set(id, hotUpdateSource)
+        hotUpdateCache.set(id, hotUpdateSource);
       } catch (err) {
-        console.error(`Error processing hmr update:`, err)
+        console.error(`Error processing hmr update:`, err);
       }
     },
-  } satisfies Plugin
+  } satisfies Plugin;
 }

@@ -1,7 +1,7 @@
-import FSExtra from 'fs-extra'
-import { rm } from 'node:fs/promises'
-import { sep } from 'node:path'
-import type { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
+import FSExtra from "fs-extra";
+import { rm } from "node:fs/promises";
+import { sep } from "node:path";
+import type { OutputAsset, OutputChunk, RollupOutput } from "rollup";
 import {
   loadConfigFromFile,
   mergeConfig,
@@ -9,20 +9,20 @@ import {
   type InlineConfig,
   type Plugin,
   type UserConfig,
-} from 'vite'
-import { analyzer } from 'vite-bundle-analyzer'
-import { getBaseViteConfigWithPlugins } from '../config/getBaseViteConfigWithPlugins'
-import { getOptimizeDeps } from '../config/getOptimizeDeps'
-import { fillOptions } from '../config/getOptionsFilled'
-import { mergeUserConfig } from '../config/mergeUserConfig'
-import type { BuildArgs, VXRNOptions } from '../types'
-import { getServerCJSSetting, getServerEntry } from '../utils/getServerEntry'
-import { applyBuiltInPatches } from '../utils/patches'
-import { loadEnv } from './loadEnv'
+} from "vite";
+import { analyzer } from "vite-bundle-analyzer";
+import { getBaseViteConfigWithPlugins } from "../config/getBaseViteConfigWithPlugins";
+import { getOptimizeDeps } from "../config/getOptimizeDeps";
+import { fillOptions } from "../config/getOptionsFilled";
+import { mergeUserConfig } from "../config/mergeUserConfig";
+import type { BuildArgs, VXRNOptions } from "../types";
+import { getServerCJSSetting, getServerEntry } from "../utils/getServerEntry";
+import { applyBuiltInPatches } from "../utils/patches";
+import { loadEnv } from "./loadEnv";
 
-const { existsSync } = FSExtra
+const { existsSync } = FSExtra;
 
-Error.stackTraceLimit = Number.POSITIVE_INFINITY
+Error.stackTraceLimit = Number.POSITIVE_INFINITY;
 
 const disableOptimizationConfig = {
   optimizeDeps: {
@@ -40,58 +40,58 @@ const disableOptimizationConfig = {
       },
     },
   },
-} satisfies UserConfig
+} satisfies UserConfig;
 
 export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) => {
-  process.env.IS_VXRN_CLI = 'true'
+  process.env.IS_VXRN_CLI = "true";
 
   // set NODE_ENV, do before loading vite.config (see loadConfigFromFile)
-  process.env.NODE_ENV = 'production'
+  process.env.NODE_ENV = "production";
 
   const [{ serverEnv }, options, userViteConfig] = await Promise.all([
-    loadEnv('production'),
+    loadEnv("production"),
     fillOptions(optionsIn),
     loadConfigFromFile({
-      command: 'build',
-      mode: 'prod',
+      command: "build",
+      mode: "prod",
     }).then((_) => _?.config),
-  ])
+  ]);
 
   if (!process.env.ONE_SERVER_URL) {
     console.warn(
-      `⚠️ No ONE_SERVER_URL environment set, set it in your .env to your target deploy URL`
-    )
+      `⚠️ No ONE_SERVER_URL environment set, set it in your .env to your target deploy URL`,
+    );
   }
 
   // const externalRegex = buildRegexExcludingDeps(optimizeDeps.include)
   const processEnvDefines = Object.fromEntries(
     Object.entries(serverEnv).map(([key, value]) => {
-      return [`process.env.${key}`, JSON.stringify(value)]
-    })
-  )
+      return [`process.env.${key}`, JSON.stringify(value)];
+    }),
+  );
 
   await applyBuiltInPatches(options).catch((err) => {
-    console.error(`\n 🥺 error applying built-in patches`, err)
-  })
+    console.error(`\n 🥺 error applying built-in patches`, err);
+  });
 
   // clean
   await Promise.all([
     (async () => {
       // lets always clean dist folder for now to be sure were correct
-      if (existsSync('dist')) {
-        await rm('dist', { recursive: true, force: true })
+      if (existsSync("dist")) {
+        await rm("dist", { recursive: true, force: true });
       }
     })(),
     (async () => {
       // lets always clean dist folder for now to be sure were correct
-      if (existsSync('node_modules/.vite')) {
-        await rm('node_modules/.vite', { recursive: true, force: true })
+      if (existsSync("node_modules/.vite")) {
+        await rm("node_modules/.vite", { recursive: true, force: true });
       }
     })(),
-  ])
+  ]);
 
-  if (buildArgs.platform === 'ios' || buildArgs.platform === 'android') {
-    const { buildBundle } = await import('../rn-commands/bundle/buildBundle')
+  if (buildArgs.platform === "ios" || buildArgs.platform === "android") {
+    const { buildBundle } = await import("../rn-commands/bundle/buildBundle");
 
     return buildBundle(
       [],
@@ -100,89 +100,89 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         platform: buildArgs.platform,
         bundleOutput: `dist${sep}${buildArgs.platform}.js`,
         dev: false,
-        entryFile: '',
+        entryFile: "",
         resetCache: true,
         resetGlobalCache: true,
         sourcemapUseAbsolutePath: true,
         verbose: false,
-        unstableTransformProfile: '',
-      }
-    )
+        unstableTransformProfile: "",
+      },
+    );
   }
 
-  const { optimizeDeps } = getOptimizeDeps('build')
+  const { optimizeDeps } = getOptimizeDeps("build");
 
   let webBuildConfig = mergeConfig(
     await getBaseViteConfigWithPlugins({
       ...options,
-      mode: 'production',
+      mode: "production",
     }),
     {
       plugins: globalThis.__vxrnAddWebPluginsProd,
       clearScreen: false,
       configFile: false,
       optimizeDeps,
-      logLevel: 'warn',
+      logLevel: "warn",
       build: {
         rollupOptions: {
           onwarn(warning, defaultHandler) {
             if (
-              warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
-              warning.message.includes('use client')
+              warning.code === "MODULE_LEVEL_DIRECTIVE" &&
+              warning.message.includes("use client")
             ) {
-              return
+              return;
             }
 
             // TODO: temp until we fix sourcemap issues!
             if (
-              warning.code === 'SOURCEMAP_ERROR' &&
+              warning.code === "SOURCEMAP_ERROR" &&
               warning.message.includes(`Can't resolve original location of error.`)
             ) {
-              return
+              return;
             }
 
-            if (warning.code === 'EVAL') {
-              warning.message = warning.message.replace(/(\.+\/){0,}node_modules/, 'node_modules')
+            if (warning.code === "EVAL") {
+              warning.message = warning.message.replace(/(\.+\/){0,}node_modules/, "node_modules");
             }
 
-            if (warning.code === 'INVALID_ANNOTATION') {
-              return
+            if (warning.code === "INVALID_ANNOTATION") {
+              return;
             }
 
-            defaultHandler(warning)
+            defaultHandler(warning);
           },
         },
       },
-    } satisfies InlineConfig
-  )
+    } satisfies InlineConfig,
+  );
 
-  const rerouteNoExternalConfig = userViteConfig?.ssr?.noExternal === true
+  const rerouteNoExternalConfig = userViteConfig?.ssr?.noExternal === true;
   if (rerouteNoExternalConfig) {
-    delete userViteConfig.ssr!.noExternal
+    delete userViteConfig.ssr!.noExternal;
   }
 
-  webBuildConfig = mergeUserConfig(optimizeDeps, webBuildConfig, userViteConfig)
+  webBuildConfig = mergeUserConfig(optimizeDeps, webBuildConfig, userViteConfig);
 
   const excludeAPIAndMiddlewareRoutesPlugin = {
-    enforce: 'pre',
-    name: 'omit-api-routes',
+    enforce: "pre",
+    name: "omit-api-routes",
     transform: {
-      order: 'pre',
+      order: "pre",
       handler(code, id) {
         if (/\+api.tsx?$/.test(id)) {
-          return ``
+          return ``;
         }
         if (/_middleware.tsx?$/.test(id)) {
-          return ``
+          return ``;
         }
       },
     },
-  } satisfies Plugin
+  } satisfies Plugin;
 
-  let clientOutput
-  let clientBuildPromise: Promise<RollupOutput> | undefined
+  let clientOutput;
+  let clientBuildPromise: Promise<RollupOutput> | undefined;
 
-  if (buildArgs.step !== 'generate') {
+  if (buildArgs.step !== "generate") {
     let clientBuildConfig = mergeConfig(webBuildConfig, {
       plugins: [
         excludeAPIAndMiddlewareRoutesPlugin,
@@ -190,26 +190,26 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         // error saying can't find report here instead, so a bit confusing)
         process.env.VXRN_ANALYZE_BUNDLE
           ? analyzer({
-              analyzerMode: 'static',
-              fileName: '../report',
+              analyzerMode: "static",
+              fileName: "../report",
             })
           : null,
       ],
 
       define: {
-        'process.env.VITE_ENVIRONMENT': '"client"',
+        "process.env.VITE_ENVIRONMENT": '"client"',
         ...(process.env.ONE_SERVER_URL && {
-          'process.env.ONE_SERVER_URL': JSON.stringify(process.env.ONE_SERVER_URL),
+          "process.env.ONE_SERVER_URL": JSON.stringify(process.env.ONE_SERVER_URL),
         }),
       },
 
       build: {
         ssrManifest: true,
-        outDir: 'dist/client',
+        outDir: "dist/client",
         sourcemap: false,
         manifest: true,
         rollupOptions: {
-          input: ['virtual:one-entry'],
+          input: ["virtual:one-entry"],
 
           // output: {
           //   manualChunks: {
@@ -218,28 +218,28 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
           // },
         },
       },
-    } satisfies UserConfig)
+    } satisfies UserConfig);
 
     if (process.env.VXRN_DISABLE_PROD_OPTIMIZATION) {
-      clientBuildConfig = mergeConfig(clientBuildConfig, disableOptimizationConfig)
+      clientBuildConfig = mergeConfig(clientBuildConfig, disableOptimizationConfig);
     }
 
-    console.info(`\n 🔨 build ${options.build?.server !== false ? 'client + server' : 'client'}\n`)
+    console.info(`\n 🔨 build ${options.build?.server !== false ? "client + server" : "client"}\n`);
 
-    clientBuildPromise = viteBuild(clientBuildConfig) as Promise<RollupOutput>
+    clientBuildPromise = viteBuild(clientBuildConfig) as Promise<RollupOutput>;
   }
 
-  const serverOptions = options.build?.server
+  const serverOptions = options.build?.server;
 
   // default to cjs
-  const shouldOutputCJS = getServerCJSSetting(options)
+  const shouldOutputCJS = getServerCJSSetting(options);
 
   let serverBuildConfig = mergeConfig(webBuildConfig, {
     plugins: [excludeAPIAndMiddlewareRoutesPlugin, ...globalThis.__vxrnAddWebPluginsProd],
 
     define: {
-      'process.env.TAMAGUI_IS_SERVER': '"1"',
-      'process.env.VITE_ENVIRONMENT': '"server"',
+      "process.env.TAMAGUI_IS_SERVER": '"1"',
+      "process.env.VITE_ENVIRONMENT": '"server"',
       ...processEnvDefines,
       ...webBuildConfig.define,
     },
@@ -257,7 +257,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
       cssCodeSplit: false,
       ssr: true,
       sourcemap: false,
-      outDir: 'dist/server',
+      outDir: "dist/server",
       rollupOptions: {
         treeshake: true,
         // fixes some weird issues with optimizing tamagui and other packages
@@ -267,71 +267,74 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
         //   // return /^@tamagui/.test(id)
         // },
 
-        input: ['virtual:one-entry'],
+        input: ["virtual:one-entry"],
 
         ...(shouldOutputCJS && {
           output: {
-            format: 'cjs', // Ensure the format is set to 'cjs'
-            entryFileNames: '[name].cjs', // Customize the output file extension
+            format: "cjs", // Ensure the format is set to 'cjs'
+            entryFileNames: "[name].cjs", // Customize the output file extension
           },
         }),
       },
     },
-  } satisfies UserConfig)
+  } satisfies UserConfig);
 
   if (rerouteNoExternalConfig) {
-    serverBuildConfig.ssr!.noExternal = true
+    serverBuildConfig.ssr!.noExternal = true;
   }
 
-  const serverEntry = getServerEntry(options)
+  const serverEntry = getServerEntry(options);
 
-  let serverOutput: [OutputChunk, ...(OutputChunk | OutputAsset)[]] | undefined
-  let clientManifest
-  let serverBuildPromise: Promise<RollupOutput> | undefined
+  let serverOutput: [OutputChunk, ...(OutputChunk | OutputAsset)[]] | undefined;
+  let clientManifest;
+  let serverBuildPromise: Promise<RollupOutput> | undefined;
 
   if (serverOptions !== false) {
     if (!clientBuildPromise) {
-      console.info(`\n 🔨 build server\n`)
+      console.info(`\n 🔨 build server\n`);
     }
 
-    const userServerConf = optionsIn.build?.server
-    const userServerBuildConf = typeof userServerConf === 'boolean' ? null : userServerConf?.config
+    const userServerConf = optionsIn.build?.server;
+    const userServerBuildConf = typeof userServerConf === "boolean" ? null : userServerConf?.config;
 
     serverBuildPromise = viteBuild(
-      userServerBuildConf ? mergeConfig(serverBuildConfig, userServerBuildConf) : serverBuildConfig
-    ) as Promise<RollupOutput>
+      userServerBuildConf ? mergeConfig(serverBuildConfig, userServerBuildConf) : serverBuildConfig,
+    ) as Promise<RollupOutput>;
   }
 
   // Wait for both builds to complete in parallel
   if (clientBuildPromise && serverBuildPromise) {
-    const [clientResult, serverResult] = await Promise.all([clientBuildPromise, serverBuildPromise])
-    clientOutput = clientResult.output
-    serverOutput = serverResult.output
+    const [clientResult, serverResult] = await Promise.all([
+      clientBuildPromise,
+      serverBuildPromise,
+    ]);
+    clientOutput = clientResult.output;
+    serverOutput = serverResult.output;
   } else if (clientBuildPromise) {
-    const clientResult = await clientBuildPromise
-    clientOutput = clientResult.output
+    const clientResult = await clientBuildPromise;
+    clientOutput = clientResult.output;
   } else if (serverBuildPromise) {
-    const serverResult = await serverBuildPromise
-    serverOutput = serverResult.output
+    const serverResult = await serverBuildPromise;
+    serverOutput = serverResult.output;
   }
 
   if (serverOptions !== false) {
-    clientManifest = await FSExtra.readJSON('dist/client/.vite/manifest.json')
+    clientManifest = await FSExtra.readJSON("dist/client/.vite/manifest.json");
 
     // temp fix - react native web is importing non-existent react 19 apis
-    const old = await FSExtra.readFile(serverEntry, 'utf-8')
+    const old = await FSExtra.readFile(serverEntry, "utf-8");
     await FSExtra.writeFile(
       serverEntry,
       old
         .replace(
           `import { hydrate as hydrate$1, unmountComponentAtNode, render as render$1 } from "react-dom";`,
-          ''
+          "",
         )
         .replace(
           `import ReactDOM__default, { render as render$2, unmountComponentAtNode as unmountComponentAtNode$1, hydrate as hydrate$1 } from "react-dom";`,
-          'import ReactDOM__default from "react-dom";'
-        )
-    )
+          'import ReactDOM__default from "react-dom";',
+        ),
+    );
   }
 
   return {
@@ -344,5 +347,5 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
     serverBuildConfig,
     webBuildConfig,
     clientManifest,
-  }
-}
+  };
+};

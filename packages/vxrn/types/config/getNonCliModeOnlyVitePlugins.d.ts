@@ -1,4 +1,4 @@
-import type { PluginOption } from 'vite';
+import type { PluginOption } from "vite";
 /**
  * Configs that should (currently) apply when using VxRN in non-CLI mode (vxrn-vite-plugin.ts).
  *

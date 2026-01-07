@@ -1,16 +1,16 @@
-import './app.css'
-import './fonts.css'
-import './syntax-highlight.css'
-import './tamagui.css'
+import "./app.css";
+import "./fonts.css";
+import "./syntax-highlight.css";
+import "./tamagui.css";
 
-import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot, usePathname } from 'one'
-import { useEffect } from 'react'
-import { TamaguiProvider, useTheme } from 'tamagui'
-import config from '~/config/tamagui.config'
-import { LayoutDecorativeStripe } from '~/features/site/LayoutDecorativeStripe'
-import { headerColors } from '~/features/site/headerColors'
-import { useIsScrolled } from '~/features/site/useIsScrolled'
+import { MetaTheme, SchemeProvider, useUserScheme } from "@vxrn/color-scheme";
+import { LoadProgressBar, Slot, usePathname } from "one";
+import { useEffect } from "react";
+import { TamaguiProvider, useTheme } from "tamagui";
+import config from "~/config/tamagui.config";
+import { LayoutDecorativeStripe } from "~/features/site/LayoutDecorativeStripe";
+import { headerColors } from "~/features/site/headerColors";
+import { useIsScrolled } from "~/features/site/useIsScrolled";
 
 export default function Layout() {
   return (
@@ -40,11 +40,11 @@ export default function Layout() {
         </SchemeProvider>
       </body>
     </html>
-  )
+  );
 }
 
 const ThemeProvider = ({ children }) => {
-  const userScheme = useUserScheme()
+  const userScheme = useUserScheme();
 
   return (
     <>
@@ -52,23 +52,23 @@ const ThemeProvider = ({ children }) => {
         {children}
       </TamaguiProvider>
     </>
-  )
-}
+  );
+};
 
 const ThemeMetaTag = () => {
-  const userScheme = useUserScheme()
-  const theme = useTheme()
-  const pathname = usePathname()
-  const isHome = pathname === '/'
-  const isScrolled = useIsScrolled()
-  let color = headerColors[userScheme.value]
+  const userScheme = useUserScheme();
+  const theme = useTheme();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const isScrolled = useIsScrolled();
+  let color = headerColors[userScheme.value];
   if (isHome && isScrolled) {
-    color = theme.color1.val
+    color = theme.color1.val;
   }
 
   useEffect(() => {
-    document.body.style.background = color
-  }, [color])
+    document.body.style.background = color;
+  }, [color]);
 
-  return <MetaTheme color={color} darkColor={headerColors.dark} lightColor={headerColors.light} />
-}
+  return <MetaTheme color={color} darkColor={headerColors.dark} lightColor={headerColors.light} />;
+};

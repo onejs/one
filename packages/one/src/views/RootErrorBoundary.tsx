@@ -1,12 +1,12 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React from "react";
+import { Text, View } from "react-native";
 
 export class RootErrorBoundary extends React.Component<{ children: any }> {
-  state = { hasError: false }
+  state = { hasError: false };
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
-    return { hasError: true }
+    return { hasError: true };
   }
 
   componentDidCatch(error, info) {
@@ -15,19 +15,19 @@ export class RootErrorBoundary extends React.Component<{ children: any }> {
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
     //   in App
-    console.error(`RootErrorBoundary.error:\n${printError(error)}\n${info.componentStack}`)
+    console.error(`RootErrorBoundary.error:\n${printError(error)}\n${info.componentStack}`);
   }
 
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return null
+      return null;
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }
 
 function printError(err) {
-  return `${err instanceof Error ? `${err.message}\n${err.stack}` : err}`
+  return `${err instanceof Error ? `${err.message}\n${err.stack}` : err}`;
 }

@@ -1,7 +1,7 @@
-import { isWeb, View } from 'tamagui'
-import { Slot, Stack } from 'one'
-import { ToggleThemeButton } from '~/code/theme/ToggleThemeButton'
-import { Logo } from '~/code/brand/Logo'
+import { isWeb, View } from "tamagui";
+import { Slot, Stack } from "one";
+import { ToggleThemeButton } from "~/code/theme/ToggleThemeButton";
+import { Logo } from "~/code/brand/Logo";
 
 export default function FeedLayout() {
   return (
@@ -18,18 +18,18 @@ export default function FeedLayout() {
                   <View px="$2">
                     <ToggleThemeButton />
                   </View>
-                )
+                );
               },
-            }
+            };
           }}
         >
           <Stack.Screen
             name="index"
             options={{
-              title: 'Feed',
+              title: "Feed",
               gestureEnabled: true,
               headerLeft() {
-                return <Logo mr="$4" />
+                return <Logo mr="$4" />;
               },
             }}
           />
@@ -37,5 +37,5 @@ export default function FeedLayout() {
         </Stack>
       )}
     </View>
-  )
+  );
 }

@@ -1,5 +1,10 @@
-export declare function getPathnameFromFilePath(inputPath: string, params?: {}, strict?: boolean, options?: {
+export declare function getPathnameFromFilePath(
+  inputPath: string,
+  params?: {},
+  strict?: boolean,
+  options?: {
     preserveExtensions?: boolean;
     includeIndex?: boolean;
-}): string;
+  },
+): string;
 //# sourceMappingURL=getPathnameFromFilePath.d.ts.map

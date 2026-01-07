@@ -2,9 +2,9 @@
 //   https://vercel.com/docs/build-output-api/v3/primitives#node.js-config
 export const serverlessVercelNodeJsConfig = {
   environment: {},
-  runtime: 'nodejs20.x',
-  handler: 'entrypoint/index.js',
-  launcherType: 'Nodejs',
+  runtime: "nodejs20.x",
+  handler: "entrypoint/index.js",
+  launcherType: "Nodejs",
   shouldAddHelpers: true,
   shouldAddSourceMapSupport: true,
   // @TODO: We could support edge functions in the future.
@@ -19,4 +19,4 @@ export const serverlessVercelNodeJsConfig = {
   // We would need to generate the bypassToken and copy *.html fallback files to the *.func folder.
   //   https://vercel.com/docs/build-output-api/v3/primitives#fallback-static-file
   // bypassToken?: string;
-}
+};

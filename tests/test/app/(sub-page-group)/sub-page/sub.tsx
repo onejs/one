@@ -1,10 +1,10 @@
-import { Button, Dialog, H1, Paragraph, Sheet, YStack } from 'tamagui'
-import { Logo } from '~/features/brand/Logo'
-import { testData } from '~/features/feed/testData'
-import { ToggleThemeButton } from '~/features/theme/ToggleThemeButton'
+import { Button, Dialog, H1, Paragraph, Sheet, YStack } from "tamagui";
+import { Logo } from "~/features/brand/Logo";
+import { testData } from "~/features/feed/testData";
+import { ToggleThemeButton } from "~/features/theme/ToggleThemeButton";
 
 export function loader() {
-  return testData
+  return testData;
 }
 
 export default function Test() {
@@ -19,7 +19,7 @@ export default function Test() {
 
       <DialogTest />
     </>
-  )
+  );
 }
 
 export const DialogTest = (props) => {
@@ -50,5 +50,5 @@ export const DialogTest = (props) => {
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog>
-  )
-}
+  );
+};

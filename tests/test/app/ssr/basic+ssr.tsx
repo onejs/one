@@ -1,7 +1,7 @@
-import { Text, View } from 'tamagui'
-import { useLoader } from 'one'
+import { Text, View } from "tamagui";
+import { useLoader } from "one";
 
-let loadCount = 0
+let loadCount = 0;
 
 // export const loader = async () => {
 //   loadCount++
@@ -28,5 +28,5 @@ export default function BasicSSR() {
         {data.loadCount} - {data.date}
       </Text> */}
     </View>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { type Plugin } from 'vite';
+import { type Plugin } from "vite";
 /**
  * Supporting the ["react-native" community condition](https://nodejs.org/docs/latest-v19.x/api/packages.html#community-conditions-definitions) in dependencies' `package.json`.
  *
@@ -32,8 +32,8 @@ export declare const conditions: string[];
  */
 export declare const mainFields: string[];
 export declare function reactNativeCommonJsPlugin(options: {
-    root: string;
-    port: number;
-    mode: 'build' | 'serve';
+  root: string;
+  port: number;
+  mode: "build" | "serve";
 }): Plugin;
 //# sourceMappingURL=reactNativeCommonJsPlugin.d.ts.map

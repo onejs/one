@@ -1,17 +1,17 @@
-import { Link, type LoaderProps, useLoader, useParams } from 'one'
-import { memo } from 'react'
-import { Separator, Text, View } from 'tamagui'
+import { Link, type LoaderProps, useLoader, useParams } from "one";
+import { memo } from "react";
+import { Separator, Text, View } from "tamagui";
 
 export function loader(props: LoaderProps) {
   return {
     // @ts-ignore
-    path: [].concat(props.params.rest).join('/'),
-  }
+    path: [].concat(props.params.rest).join("/"),
+  };
 }
 
 export function ParamsSSR() {
-  const { path } = useLoader(loader)
-  const href = `/ssr/${path}-next` as any
+  const { path } = useLoader(loader);
+  const href = `/ssr/${path}-next` as any;
 
   return (
     <View
@@ -38,10 +38,10 @@ export function ParamsSSR() {
 
       <TestSubComponentParams />
     </View>
-  )
+  );
 }
 
 const TestSubComponentParams = memo(() => {
-  const params = useParams()
-  return <Text id="sub-params">sub params are: {JSON.stringify(params)}</Text>
-})
+  const params = useParams();
+  return <Text id="sub-params">sub params are: {JSON.stringify(params)}</Text>;
+});

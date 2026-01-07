@@ -1,5 +1,5 @@
-const somethingInHook = 'Something in hook'
+const somethingInHook = "Something in hook";
 
 export function useSomething() {
-  return somethingInHook
+  return somethingInHook;
 }

@@ -1,1 +1,1 @@
-export * as bundle from './bundle/index'
+export * as bundle from "./bundle/index";

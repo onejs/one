@@ -1,14 +1,14 @@
-import { Component } from 'react'
+import { Component } from "react";
 
 export class ErrorBoundary extends Component<any> {
   constructor(props) {
-    super(props)
-    this.state.noMessage = props.noMessage
+    super(props);
+    this.state.noMessage = props.noMessage;
   }
-  state = { hasError: false, noMessage: false }
+  state = { hasError: false, noMessage: false };
 
   static getDerivedStateFromError(error) {
-    return { hasError: true }
+    return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {}
@@ -16,7 +16,7 @@ export class ErrorBoundary extends Component<any> {
   render() {
     if (this.state.hasError) {
       if (this.state.noMessage) {
-        return null
+        return null;
       }
       return (
         <div>
@@ -25,8 +25,8 @@ export class ErrorBoundary extends Component<any> {
             Try again?
           </button>
         </div>
-      )
+      );
     }
-    return this.props.children
+    return this.props.children;
   }
 }

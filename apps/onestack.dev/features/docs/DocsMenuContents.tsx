@@ -1,60 +1,55 @@
-import * as React from 'react'
-import { Accordion, Paragraph, Square, XStack, YStack } from 'tamagui'
-import { Link } from 'one'
-import { DocsRouteNavItem } from './DocsRouteNavItem'
-import { docsRoutes } from './docsRoutes'
-import { useDocsMenu } from './useDocsMenu'
-import { ChevronDown } from '@tamagui/lucide-icons'
+import * as React from "react";
+import { Accordion, Paragraph, Square, XStack, YStack } from "tamagui";
+import { Link } from "one";
+import { DocsRouteNavItem } from "./DocsRouteNavItem";
+import { docsRoutes } from "./docsRoutes";
+import { useDocsMenu } from "./useDocsMenu";
+import { ChevronDown } from "@tamagui/lucide-icons";
 
 const allItems = docsRoutes.flatMap((section, sectionIndex) =>
-  section.pages?.map((page, index) => ({ page, section, sectionIndex, index }))
-)
+  section.pages?.map((page, index) => ({ page, section, sectionIndex, index })),
+);
 
-type Item = (typeof allItems)[0]
-type Section = Item['section']
+type Item = (typeof allItems)[0];
+type Section = Item["section"];
 
 export const DocsMenuContents = React.memo(function DocsMenuContents({
   inMenu,
 }: {
-  inMenu?: boolean
+  inMenu?: boolean;
 }) {
-  const { currentPath } = useDocsMenu()
-  const activeItems = allItems
-  const [items, setItems] = React.useState(activeItems)
+  const { currentPath } = useDocsMenu();
+  const activeItems = allItems;
+  const [items, setItems] = React.useState(activeItems);
 
-  const itemsGrouped: Record<string, Item[]> = {}
+  const itemsGrouped: Record<string, Item[]> = {};
   for (const item of items) {
-    const key = item.section.title || ''
-    itemsGrouped[key] ||= []
-    itemsGrouped[key].push(item)
+    const key = item.section.title || "";
+    itemsGrouped[key] ||= [];
+    itemsGrouped[key].push(item);
   }
 
   // Find which section contains the current page
-  const currentSection = allItems.find((item) => item?.page.route === currentPath)
-  const currentSectionTitle = currentSection?.section.title || ''
+  const currentSection = allItems.find((item) => item?.page.route === currentPath);
+  const currentSectionTitle = currentSection?.section.title || "";
 
   // Use controlled value that updates when path changes
-  const [openSection, setOpenSection] = React.useState(currentSectionTitle)
+  const [openSection, setOpenSection] = React.useState(currentSectionTitle);
 
   // Update open section when navigating to a new page
   React.useEffect(() => {
     if (currentSectionTitle) {
-      setOpenSection(currentSectionTitle)
+      setOpenSection(currentSectionTitle);
     }
-  }, [currentSectionTitle])
+  }, [currentSectionTitle]);
 
   return (
     <>
-      <div style={{ width: '100%' }}>
+      <div style={{ width: "100%" }}>
         {/* Blog link hidden for now - pages still accessible at /blog */}
-        <Accordion
-          value={openSection}
-          onValueChange={setOpenSection}
-          type="single"
-          collapsible
-        >
+        <Accordion value={openSection} onValueChange={setOpenSection} type="single" collapsible>
           {Object.keys(itemsGrouped).map((sectionTitle) => {
-            const items = itemsGrouped[sectionTitle]
+            const items = itemsGrouped[sectionTitle];
             return (
               <SubSection
                 key={sectionTitle}
@@ -62,25 +57,25 @@ export const DocsMenuContents = React.memo(function DocsMenuContents({
                 section={items?.[0].section}
                 items={items}
               />
-            )
+            );
           })}
         </Accordion>
       </div>
     </>
-  )
-})
+  );
+});
 
 const SubSection = ({
   section,
   items,
   inMenu,
 }: {
-  section: Section
-  items: Item[]
-  inMenu?: boolean
+  section: Section;
+  items: Item[];
+  inMenu?: boolean;
 }) => {
-  const { currentPath } = useDocsMenu()
-  const [visible, setVisible] = React.useState(!section.title)
+  const { currentPath } = useDocsMenu();
+  const [visible, setVisible] = React.useState(!section.title);
 
   const content = (
     <YStack px="$2" py="$3" mb="$3">
@@ -90,44 +85,44 @@ const SubSection = ({
             inMenu={inMenu}
             href={page.route}
             active={currentPath === page.route}
-            pending={page['pending']}
+            pending={page["pending"]}
             key={`${page.route}${index}`}
             index={index}
           >
             {page.title}
           </DocsRouteNavItem>
-        )
+        );
       })}
     </YStack>
-  )
+  );
 
   const wrapper = (children) => {
     return (
-      <YStack bbw={0} bc={inMenu ? 'transparent' : '$background02'}>
+      <YStack bbw={0} bc={inMenu ? "transparent" : "$background02"}>
         {children}
       </YStack>
-    )
-  }
+    );
+  };
 
   if (!section.title) {
-    return wrapper(<YStack mb="$1">{content}</YStack>)
+    return wrapper(<YStack mb="$1">{content}</YStack>);
   }
 
   return wrapper(
-    <Accordion.Item bw={0} value={section.title || 'base'}>
+    <Accordion.Item bw={0} value={section.title || "base"}>
       <Accordion.Trigger
         unstyled
         bg="transparent"
         bw={0}
         hoverStyle={{
-          bg: '$background02',
+          bg: "$background02",
         }}
       >
         {({ open }) => {
           return (
             <XStack
               onPress={() => {
-                setVisible(!visible)
+                setVisible(!visible);
               }}
               fd="row"
               py="$2"
@@ -141,11 +136,11 @@ const SubSection = ({
                 {section.title}
               </Paragraph>
 
-              <Square animation="quick" rotate={open ? '180deg' : '0deg'}>
+              <Square animation="quick" rotate={open ? "180deg" : "0deg"}>
                 <ChevronDown color="$color7" size="$1" />
               </Square>
             </XStack>
-          )
+          );
         }}
       </Accordion.Trigger>
 
@@ -159,6 +154,6 @@ const SubSection = ({
           {content}
         </Accordion.Content>
       </Accordion.HeightAnimator>
-    </Accordion.Item>
-  )
-}
+    </Accordion.Item>,
+  );
+};

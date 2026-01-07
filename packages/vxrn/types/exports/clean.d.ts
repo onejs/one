@@ -1,4 +1,4 @@
-import type { VXRNOptions } from '../types';
+import type { VXRNOptions } from "../types";
 /**
  * The main entry point for dev mode
  *

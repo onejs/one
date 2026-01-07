@@ -1,50 +1,50 @@
-import { loadConfigFromFile } from 'vite'
-import '../polyfills-server'
-import type { One } from './types'
+import { loadConfigFromFile } from "vite";
+import "../polyfills-server";
+import type { One } from "./types";
 
 // globalThis, otherwise we get issues with duplicates due to however vite calls loadConfigFromFile
 
 export function setOneOptions(next: One.PluginOptions) {
-  globalThis.__oneOptions = next
+  globalThis.__oneOptions = next;
 }
 
 function getUserOneOptions() {
   if (!globalThis.__oneOptions) {
-    throw new Error(`One not loaded properly, is the one() plugin in your vite.config.ts?`)
+    throw new Error(`One not loaded properly, is the one() plugin in your vite.config.ts?`);
   }
-  return globalThis.__oneOptions as One.PluginOptions
+  return globalThis.__oneOptions as One.PluginOptions;
 }
 
-export async function loadUserOneOptions(command: 'serve' | 'build', silent = false) {
+export async function loadUserOneOptions(command: "serve" | "build", silent = false) {
   // Suppress console output if silent
-  const originalConsoleError = console.error
+  const originalConsoleError = console.error;
   if (silent) {
-    console.error = () => {}
+    console.error = () => {};
   }
 
   try {
     const config = await loadConfigFromFile({
-      mode: command === 'serve' ? 'dev' : 'prod',
+      mode: command === "serve" ? "dev" : "prod",
       command,
-    })
+    });
 
     if (!config) {
-      throw new Error(`No config config in ${process.cwd()}. Is this the correct directory?`)
+      throw new Error(`No config config in ${process.cwd()}. Is this the correct directory?`);
     }
 
-    const oneOptions = getUserOneOptions()
+    const oneOptions = getUserOneOptions();
 
     if (!oneOptions) {
-      throw new Error(`No One plugin config in this vite.config`)
+      throw new Error(`No One plugin config in this vite.config`);
     }
 
     return {
       config,
       oneOptions,
-    }
+    };
   } finally {
     if (silent) {
-      console.error = originalConsoleError
+      console.error = originalConsoleError;
     }
   }
 }

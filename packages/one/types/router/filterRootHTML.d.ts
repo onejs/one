@@ -1,9 +1,9 @@
 type Props = Record<string, any>;
 export type FoundRootHTML = {
-    children: React.ReactElement;
-    htmlProps?: Props;
-    bodyProps?: Props;
-    head?: React.ReactElement;
+  children: React.ReactElement;
+  htmlProps?: Props;
+  bodyProps?: Props;
+  head?: React.ReactElement;
 };
 /**
  * To enable custom <html> and other html-like stuff in the root _layout

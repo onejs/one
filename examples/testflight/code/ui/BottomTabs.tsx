@@ -1,3 +1,3 @@
-import { Tabs } from 'one'
+import { Tabs } from "one";
 
-export const NativeTabs = Tabs
+export const NativeTabs = Tabs;

@@ -1,4 +1,4 @@
-import type { OneRouter } from './interfaces/router';
+import type { OneRouter } from "./interfaces/router";
 /**
  * Type-level utility function to help pass valid Href typed strings.
  * Does not actually validate at runtime, though we could add this later.

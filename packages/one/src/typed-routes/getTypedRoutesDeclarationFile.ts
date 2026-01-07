@@ -1,17 +1,17 @@
-import { getRoutes } from '../router/getRoutes'
-import { isTypedRoute, removeSupportedExtensions } from '../router/matchers'
-import type { RouteNode } from '../router/Route'
-import type { One } from '../vite/types'
+import { getRoutes } from "../router/getRoutes";
+import { isTypedRoute, removeSupportedExtensions } from "../router/matchers";
+import type { RouteNode } from "../router/Route";
+import type { One } from "../vite/types";
 
 // /[...param1]/ - Match [...param1]
-const CATCH_ALL = /\[\.\.\..+?\]/g
+const CATCH_ALL = /\[\.\.\..+?\]/g;
 // /[param1] - Match [param1]
-const SLUG = /\[.+?\]/g
+const SLUG = /\[.+?\]/g;
 
 export function getTypedRoutesDeclarationFile(ctx: One.RouteContext) {
-  const staticRoutes = new Set<string>()
-  const dynamicRoutes = new Set<string>()
-  const dynamicRouteContextKeys = new Set<string>()
+  const staticRoutes = new Set<string>();
+  const dynamicRoutes = new Set<string>();
+  const dynamicRouteContextKeys = new Set<string>();
 
   walkRouteNode(
     getRoutes(ctx, {
@@ -20,13 +20,13 @@ export function getTypedRoutesDeclarationFile(ctx: One.RouteContext) {
       ignoreRequireErrors: true,
       // importMode: 'async',
     }),
-    '',
+    "",
     staticRoutes,
     dynamicRoutes,
-    dynamicRouteContextKeys
-  )
+    dynamicRouteContextKeys,
+  );
 
-  const hasRoutes = dynamicRouteContextKeys.size > 0
+  const hasRoutes = dynamicRouteContextKeys.size > 0;
 
   return `// deno-lint-ignore-file
 /* eslint-disable */
@@ -40,7 +40,7 @@ declare module 'one' {
       DynamicRoutes: ${setToUnionType(dynamicRoutes)}
       DynamicRouteTemplate: ${setToUnionType(dynamicRouteContextKeys)}
       IsTyped: true
-      ${hasRoutes ? `RouteTypes: ${generateRouteTypesMap(dynamicRouteContextKeys)}` : ''}
+      ${hasRoutes ? `RouteTypes: ${generateRouteTypesMap(dynamicRouteContextKeys)}` : ""}
     }
   }
 }
@@ -54,9 +54,9 @@ type RouteInfo<Params = Record<string, never>> = {
   Params: Params
   LoaderProps: { path: string; params: Params; request?: Request }
 }`
-    : ''
+    : ""
 }
-`.trim()
+`.trim();
 }
 
 /**
@@ -65,22 +65,22 @@ type RouteInfo<Params = Record<string, never>> = {
  */
 function generateRouteTypesMap(dynamicRouteContextKeys: Set<string>): string {
   if (dynamicRouteContextKeys.size === 0) {
-    return '{}'
+    return "{}";
   }
 
-  const routes = [...dynamicRouteContextKeys].sort()
+  const routes = [...dynamicRouteContextKeys].sort();
 
   const entries = routes
     .map((routePath) => {
       // Generate the param type inline for better intellisense
-      const params = extractParams(routePath)
-      const paramsType = params.length === 0 ? '{}' : generateInlineParamsType(params)
+      const params = extractParams(routePath);
+      const paramsType = params.length === 0 ? "{}" : generateInlineParamsType(params);
 
-      return `        '${routePath}': RouteInfo<${paramsType}>`
+      return `        '${routePath}': RouteInfo<${paramsType}>`;
     })
-    .join('\n')
+    .join("\n");
 
-  return `{\n${entries}\n      }`
+  return `{\n${entries}\n      }`;
 }
 
 /**
@@ -88,18 +88,18 @@ function generateRouteTypesMap(dynamicRouteContextKeys: Set<string>): string {
  * e.g., "/docs/[slug]/[id]" -> ["slug", "id"]
  */
 function extractParams(routePath: string): Array<{ name: string; isCatchAll: boolean }> {
-  const params: Array<{ name: string; isCatchAll: boolean }> = []
-  const paramRegex = /\[(\.\.\.)?([\w]+)\]/g
-  let match
+  const params: Array<{ name: string; isCatchAll: boolean }> = [];
+  const paramRegex = /\[(\.\.\.)?([\w]+)\]/g;
+  let match;
 
   while ((match = paramRegex.exec(routePath)) !== null) {
     params.push({
       name: match[2],
-      isCatchAll: match[1] === '...',
-    })
+      isCatchAll: match[1] === "...",
+    });
   }
 
-  return params
+  return params;
 }
 
 /**
@@ -108,10 +108,10 @@ function extractParams(routePath: string): Array<{ name: string; isCatchAll: boo
  */
 function generateInlineParamsType(params: Array<{ name: string; isCatchAll: boolean }>): string {
   const entries = params.map((p) => {
-    const type = p.isCatchAll ? 'string[]' : 'string'
-    return `${p.name}: ${type}`
-  })
-  return `{ ${entries.join('; ')} }`
+    const type = p.isCatchAll ? "string[]" : "string";
+    return `${p.name}: ${type}`;
+  });
+  return `{ ${entries.join("; ")} }`;
 }
 
 /**
@@ -122,16 +122,16 @@ function walkRouteNode(
   parentRoutePath: string,
   staticRoutes: Set<string>,
   dynamicRoutes: Set<string>,
-  dynamicRouteContextKeys: Set<string>
+  dynamicRouteContextKeys: Set<string>,
 ) {
-  if (!routeNode) return
+  if (!routeNode) return;
 
-  addRouteNode(routeNode, parentRoutePath, staticRoutes, dynamicRoutes, dynamicRouteContextKeys)
+  addRouteNode(routeNode, parentRoutePath, staticRoutes, dynamicRoutes, dynamicRouteContextKeys);
 
-  parentRoutePath = `${removeSupportedExtensions(`${parentRoutePath}/${routeNode.route}`).replace(/\/?index$/, '')}` // replace /index with /
+  parentRoutePath = `${removeSupportedExtensions(`${parentRoutePath}/${routeNode.route}`).replace(/\/?index$/, "")}`; // replace /index with /
 
   for (const child of routeNode.children) {
-    walkRouteNode(child, parentRoutePath, staticRoutes, dynamicRoutes, dynamicRouteContextKeys)
+    walkRouteNode(child, parentRoutePath, staticRoutes, dynamicRoutes, dynamicRouteContextKeys);
   }
 }
 
@@ -144,28 +144,28 @@ function addRouteNode(
   parentRoutePath: string,
   staticRoutes: Set<string>,
   dynamicRoutes: Set<string>,
-  dynamicRouteContextKeys: Set<string>
+  dynamicRouteContextKeys: Set<string>,
 ) {
-  if (!routeNode?.route) return
-  if (!isTypedRoute(routeNode.route)) return
+  if (!routeNode?.route) return;
+  if (!isTypedRoute(routeNode.route)) return;
 
-  let routePath = `${parentRoutePath}/${removeSupportedExtensions(routeNode.route).replace(/\/?index$/, '')}` // replace /index with /
+  let routePath = `${parentRoutePath}/${removeSupportedExtensions(routeNode.route).replace(/\/?index$/, "")}`; // replace /index with /
 
-  if (!routePath.startsWith('/')) {
-    routePath = `/${routePath}`
+  if (!routePath.startsWith("/")) {
+    routePath = `/${routePath}`;
   }
 
   if (routeNode.dynamic) {
     for (const path of generateCombinations(routePath)) {
-      dynamicRouteContextKeys.add(path)
+      dynamicRouteContextKeys.add(path);
       dynamicRoutes.add(
         // biome-ignore lint/suspicious/noTemplateCurlyInString: intentionally generating type string
-        `${path.replaceAll(CATCH_ALL, '${string}').replaceAll(SLUG, '${OneRouter.SingleRoutePart<T>}')}`
-      )
+        `${path.replaceAll(CATCH_ALL, "${string}").replaceAll(SLUG, "${OneRouter.SingleRoutePart<T>}")}`,
+      );
     }
   } else {
     for (const combination of generateCombinations(routePath)) {
-      staticRoutes.add(combination)
+      staticRoutes.add(combination);
     }
   }
 }
@@ -178,26 +178,26 @@ const setToUnionType = <T>(set: Set<T>) => {
     ? [...set]
         .sort()
         .map((s) => `\`${s}\``)
-        .join(' | ')
-    : 'never'
-}
+        .join(" | ")
+    : "never";
+};
 
 function generateCombinations(pathname) {
-  const groups = pathname.split('/').filter((part) => part.startsWith('(') && part.endsWith(')'))
-  const combinations: string[] = []
+  const groups = pathname.split("/").filter((part) => part.startsWith("(") && part.endsWith(")"));
+  const combinations: string[] = [];
 
   function generate(currentIndex, currentPath) {
     if (currentIndex === groups.length) {
-      combinations.push(currentPath.replace(/\/{2,}/g, '/'))
-      return
+      combinations.push(currentPath.replace(/\/{2,}/g, "/"));
+      return;
     }
 
-    const group = groups[currentIndex]
-    const withoutGroup = currentPath.replace(`/${group}`, '')
-    generate(currentIndex + 1, withoutGroup)
-    generate(currentIndex + 1, currentPath)
+    const group = groups[currentIndex];
+    const withoutGroup = currentPath.replace(`/${group}`, "");
+    generate(currentIndex + 1, withoutGroup);
+    generate(currentIndex + 1, currentPath);
   }
 
-  generate(0, pathname)
-  return combinations
+  generate(0, pathname);
+  return combinations;
 }

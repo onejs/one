@@ -1,5 +1,5 @@
-import { one } from 'one/vite'
-import type { UserConfig } from 'vite'
+import { one } from "one/vite";
+import type { UserConfig } from "vite";
 
 export default {
   plugins: [
@@ -10,9 +10,9 @@ export default {
         },
       },
       web: {
-        defaultRenderMode: 'ssg',
-        experimental_scriptLoading: 'after-lcp',
+        defaultRenderMode: "ssg",
+        experimental_scriptLoading: "after-lcp",
       },
     }),
   ],
-} satisfies UserConfig
+} satisfies UserConfig;

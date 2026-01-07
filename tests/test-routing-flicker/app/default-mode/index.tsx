@@ -1,16 +1,16 @@
-import { Link, useLoader } from 'one'
-import { Text, YStack, H1, Paragraph } from 'tamagui'
+import { Link, useLoader } from "one";
+import { Text, YStack, H1, Paragraph } from "tamagui";
 
 // This page has NO render mode suffix - uses defaultRenderMode from config
 export function loader() {
   return {
-    title: 'Default Mode Index',
-    description: 'This page uses the defaultRenderMode from vite config',
-  }
+    title: "Default Mode Index",
+    description: "This page uses the defaultRenderMode from vite config",
+  };
 }
 
 export default function DefaultModeIndexPage() {
-  const data = useLoader(loader)
+  const data = useLoader(loader);
 
   return (
     <YStack padding="$4" gap="$4">
@@ -49,5 +49,5 @@ export default function DefaultModeIndexPage() {
         </Link>
       </YStack>
     </YStack>
-  )
+  );
 }

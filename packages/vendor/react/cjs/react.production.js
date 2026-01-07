@@ -24,8 +24,7 @@ var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"),
 function getIteratorFn(maybeIterable) {
   if (null === maybeIterable || "object" !== typeof maybeIterable) return null;
   maybeIterable =
-    (MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL]) ||
-    maybeIterable["@@iterator"];
+    (MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL]) || maybeIterable["@@iterator"];
   return "function" === typeof maybeIterable ? maybeIterable : null;
 }
 var ReactNoopUpdateQueue = {
@@ -34,7 +33,7 @@ var ReactNoopUpdateQueue = {
     },
     enqueueForceUpdate: function () {},
     enqueueReplaceState: function () {},
-    enqueueSetState: function () {}
+    enqueueSetState: function () {},
   },
   assign = Object.assign,
   emptyObject = {};
@@ -52,7 +51,7 @@ Component.prototype.setState = function (partialState, callback) {
     null != partialState
   )
     throw Error(
-      "takes an object of state variables to update or a function which returns an object of state variables."
+      "takes an object of state variables to update or a function which returns an object of state variables.",
     );
   this.updater.enqueueSetState(this, partialState, callback, "setState");
 };
@@ -81,25 +80,14 @@ function ReactElement(type, key, self, source, owner, props) {
     type: type,
     key: key,
     ref: void 0 !== self ? self : null,
-    props: props
+    props: props,
   };
 }
 function cloneAndReplaceKey(oldElement, newKey) {
-  return ReactElement(
-    oldElement.type,
-    newKey,
-    void 0,
-    void 0,
-    void 0,
-    oldElement.props
-  );
+  return ReactElement(oldElement.type, newKey, void 0, void 0, void 0, oldElement.props);
 }
 function isValidElement(object) {
-  return (
-    "object" === typeof object &&
-    null !== object &&
-    object.$$typeof === REACT_ELEMENT_TYPE
-  );
+  return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
 }
 function escape(key) {
   var escaperLookup = { "=": "=0", ":": "=2" };
@@ -131,13 +119,12 @@ function resolveThenable(thenable) {
             thenable.then(
               function (fulfilledValue) {
                 "pending" === thenable.status &&
-                  ((thenable.status = "fulfilled"),
-                  (thenable.value = fulfilledValue));
+                  ((thenable.status = "fulfilled"), (thenable.value = fulfilledValue));
               },
               function (error) {
                 "pending" === thenable.status &&
                   ((thenable.status = "rejected"), (thenable.reason = error));
-              }
+              },
             )),
         thenable.status)
       ) {
@@ -175,7 +162,7 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
                 array,
                 escapedPrefix,
                 nameSoFar,
-                callback
+                callback,
               )
             );
         }
@@ -183,13 +170,11 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
   if (invokeCallback)
     return (
       (callback = callback(children)),
-      (invokeCallback =
-        "" === nameSoFar ? "." + getElementKey(children, 0) : nameSoFar),
+      (invokeCallback = "" === nameSoFar ? "." + getElementKey(children, 0) : nameSoFar),
       isArrayImpl(callback)
         ? ((escapedPrefix = ""),
           null != invokeCallback &&
-            (escapedPrefix =
-              invokeCallback.replace(userProvidedKeyEscapeRegex, "$&/") + "/"),
+            (escapedPrefix = invokeCallback.replace(userProvidedKeyEscapeRegex, "$&/") + "/"),
           mapIntoArray(callback, array, escapedPrefix, "", function (c) {
             return c;
           }))
@@ -198,14 +183,10 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
             (callback = cloneAndReplaceKey(
               callback,
               escapedPrefix +
-                (null == callback.key ||
-                (children && children.key === callback.key)
+                (null == callback.key || (children && children.key === callback.key)
                   ? ""
-                  : ("" + callback.key).replace(
-                      userProvidedKeyEscapeRegex,
-                      "$&/"
-                    ) + "/") +
-                invokeCallback
+                  : ("" + callback.key).replace(userProvidedKeyEscapeRegex, "$&/") + "/") +
+                invokeCallback,
             )),
           array.push(callback)),
       1
@@ -214,46 +195,24 @@ function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
   var nextNamePrefix = "" === nameSoFar ? "." : nameSoFar + ":";
   if (isArrayImpl(children))
     for (var i = 0; i < children.length; i++)
-      (nameSoFar = children[i]),
+      ((nameSoFar = children[i]),
         (type = nextNamePrefix + getElementKey(nameSoFar, i)),
-        (invokeCallback += mapIntoArray(
-          nameSoFar,
-          array,
-          escapedPrefix,
-          type,
-          callback
-        ));
+        (invokeCallback += mapIntoArray(nameSoFar, array, escapedPrefix, type, callback)));
   else if (((i = getIteratorFn(children)), "function" === typeof i))
-    for (
-      children = i.call(children), i = 0;
-      !(nameSoFar = children.next()).done;
-
-    )
-      (nameSoFar = nameSoFar.value),
+    for (children = i.call(children), i = 0; !(nameSoFar = children.next()).done; )
+      ((nameSoFar = nameSoFar.value),
         (type = nextNamePrefix + getElementKey(nameSoFar, i++)),
-        (invokeCallback += mapIntoArray(
-          nameSoFar,
-          array,
-          escapedPrefix,
-          type,
-          callback
-        ));
+        (invokeCallback += mapIntoArray(nameSoFar, array, escapedPrefix, type, callback)));
   else if ("object" === type) {
     if ("function" === typeof children.then)
-      return mapIntoArray(
-        resolveThenable(children),
-        array,
-        escapedPrefix,
-        nameSoFar,
-        callback
-      );
+      return mapIntoArray(resolveThenable(children), array, escapedPrefix, nameSoFar, callback);
     array = String(children);
     throw Error(
       "Objects are not valid as a React child (found: " +
         ("[object Object]" === array
           ? "object with keys {" + Object.keys(children).join(", ") + "}"
           : array) +
-        "). If you meant to render a collection of children, use an array instead."
+        "). If you meant to render a collection of children, use an array instead.",
     );
   }
   return invokeCallback;
@@ -274,12 +233,12 @@ function lazyInitializer(payload) {
     ctor.then(
       function (moduleObject) {
         if (0 === payload._status || -1 === payload._status)
-          (payload._status = 1), (payload._result = moduleObject);
+          ((payload._status = 1), (payload._result = moduleObject));
       },
       function (error) {
         if (0 === payload._status || -1 === payload._status)
-          (payload._status = 2), (payload._result = error);
-      }
+          ((payload._status = 2), (payload._result = error));
+      },
     );
     -1 === payload._status && ((payload._status = 0), (payload._result = ctor));
   }
@@ -290,26 +249,18 @@ var reportGlobalError =
   "function" === typeof reportError
     ? reportError
     : function (error) {
-        if (
-          "object" === typeof window &&
-          "function" === typeof window.ErrorEvent
-        ) {
+        if ("object" === typeof window && "function" === typeof window.ErrorEvent) {
           var event = new window.ErrorEvent("error", {
             bubbles: !0,
             cancelable: !0,
             message:
-              "object" === typeof error &&
-              null !== error &&
-              "string" === typeof error.message
+              "object" === typeof error && null !== error && "string" === typeof error.message
                 ? String(error.message)
                 : String(error),
-            error: error
+            error: error,
           });
           if (!window.dispatchEvent(event)) return;
-        } else if (
-          "object" === typeof process &&
-          "function" === typeof process.emit
-        ) {
+        } else if ("object" === typeof process && "function" === typeof process.emit) {
           process.emit("uncaughtException", error);
           return;
         }
@@ -324,7 +275,7 @@ exports.Children = {
       function () {
         forEachFunc.apply(this, arguments);
       },
-      forEachContext
+      forEachContext,
     );
   },
   count: function (children) {
@@ -343,11 +294,9 @@ exports.Children = {
   },
   only: function (children) {
     if (!isValidElement(children))
-      throw Error(
-        "React.Children.only expected to receive a single React element child."
-      );
+      throw Error("React.Children.only expected to receive a single React element child.");
     return children;
-  }
+  },
 };
 exports.Component = Component;
 exports.Fragment = REACT_FRAGMENT_TYPE;
@@ -355,8 +304,7 @@ exports.Profiler = REACT_PROFILER_TYPE;
 exports.PureComponent = PureComponent;
 exports.StrictMode = REACT_STRICT_MODE_TYPE;
 exports.Suspense = REACT_SUSPENSE_TYPE;
-exports.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE =
-  ReactSharedInternals;
+exports.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = ReactSharedInternals;
 exports.act = function () {
   throw Error("act(...) is not supported in production builds of React.");
 };
@@ -367,9 +315,7 @@ exports.cache = function (fn) {
 };
 exports.cloneElement = function (element, config, children) {
   if (null === element || void 0 === element)
-    throw Error(
-      "The argument must be a React element, but you passed " + element + "."
-    );
+    throw Error("The argument must be a React element, but you passed " + element + ".");
   var props = assign({}, element.props),
     key = element.key,
     owner = void 0;
@@ -399,12 +345,12 @@ exports.createContext = function (defaultValue) {
     _currentValue2: defaultValue,
     _threadCount: 0,
     Provider: null,
-    Consumer: null
+    Consumer: null,
   };
   defaultValue.Provider = defaultValue;
   defaultValue.Consumer = {
     $$typeof: REACT_CONSUMER_TYPE,
-    _context: defaultValue
+    _context: defaultValue,
   };
   return defaultValue;
 };
@@ -428,8 +374,7 @@ exports.createElement = function (type, config, children) {
   }
   if (type && type.defaultProps)
     for (propName in ((childrenLength = type.defaultProps), childrenLength))
-      void 0 === props[propName] &&
-        (props[propName] = childrenLength[propName]);
+      void 0 === props[propName] && (props[propName] = childrenLength[propName]);
   return ReactElement(type, key, void 0, void 0, null, props);
 };
 exports.createRef = function () {
@@ -443,14 +388,14 @@ exports.lazy = function (ctor) {
   return {
     $$typeof: REACT_LAZY_TYPE,
     _payload: { _status: -1, _result: ctor },
-    _init: lazyInitializer
+    _init: lazyInitializer,
   };
 };
 exports.memo = function (type, compare) {
   return {
     $$typeof: REACT_MEMO_TYPE,
     type: type,
-    compare: void 0 === compare ? null : compare
+    compare: void 0 === compare ? null : compare,
   };
 };
 exports.startTransition = function (scope) {
@@ -460,8 +405,7 @@ exports.startTransition = function (scope) {
   try {
     var returnValue = scope(),
       onStartTransitionFinish = ReactSharedInternals.S;
-    null !== onStartTransitionFinish &&
-      onStartTransitionFinish(currentTransition, returnValue);
+    null !== onStartTransitionFinish && onStartTransitionFinish(currentTransition, returnValue);
     "object" === typeof returnValue &&
       null !== returnValue &&
       "function" === typeof returnValue.then &&
@@ -521,16 +465,8 @@ exports.useRef = function (initialValue) {
 exports.useState = function (initialState) {
   return ReactSharedInternals.H.useState(initialState);
 };
-exports.useSyncExternalStore = function (
-  subscribe,
-  getSnapshot,
-  getServerSnapshot
-) {
-  return ReactSharedInternals.H.useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot
-  );
+exports.useSyncExternalStore = function (subscribe, getSnapshot, getServerSnapshot) {
+  return ReactSharedInternals.H.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 };
 exports.useTransition = function () {
   return ReactSharedInternals.H.useTransition();

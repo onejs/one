@@ -1,10 +1,10 @@
-import { Text } from 'tamagui'
-import { useLinkTo, type Href, type LinkProps as OneLinkProps } from 'one'
+import { Text } from "tamagui";
+import { useLinkTo, type Href, type LinkProps as OneLinkProps } from "one";
 
-export type LinkProps = OneLinkProps<Href>
+export type LinkProps = OneLinkProps<Href>;
 
 export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
-  const linkProps = useLinkTo({ href: href as string, replace })
+  const linkProps = useLinkTo({ href: href as string, replace });
 
   return (
     <Text
@@ -12,7 +12,7 @@ export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
       // @ts-ignore
       fontFamily="inherit"
       // always except-style
-      asChild={asChild ? 'except-style' : false}
+      asChild={asChild ? "except-style" : false}
       className="t_Link"
       cursor="pointer"
       color="inherit"
@@ -20,11 +20,11 @@ export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
       lineHeight="inherit"
       textDecorationColor="$color04"
       hoverStyle={{
-        color: '$color12',
-        textDecorationColor: '$color12',
+        color: "$color12",
+        textDecorationColor: "$color12",
       }}
       {...props}
       {...(linkProps as any)}
     />
-  )
-}
+  );
+};

@@ -1,5 +1,5 @@
-import { Text } from 'react-native'
+import { Text } from "react-native";
 
 export default function About() {
-  return <Text>About Our Company</Text>
+  return <Text>About Our Company</Text>;
 }

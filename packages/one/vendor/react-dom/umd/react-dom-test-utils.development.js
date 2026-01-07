@@ -8,10 +8,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom'], factory) :
-  (global = global || self, factory(global.ReactTestUtils = {}, global.React, global.ReactDOM));
-}(this, (function (exports, React, ReactDOM) { 'use strict';
+  typeof exports === "object" && typeof module !== "undefined"
+    ? factory(exports, require("react"), require("react-dom"))
+    : typeof define === "function" && define.amd
+      ? define(["exports", "react", "react-dom"], factory)
+      : ((global = global || self),
+        factory((global.ReactTestUtils = {}), global.React, global.ReactDOM));
+})(this, function (exports, React, ReactDOM) {
+  "use strict";
 
   var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
@@ -23,22 +27,30 @@
   function warn(format) {
     {
       {
-        for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        for (
+          var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1;
+          _key < _len;
+          _key++
+        ) {
           args[_key - 1] = arguments[_key];
         }
 
-        printWarning('warn', format, args);
+        printWarning("warn", format, args);
       }
     }
   }
   function error(format) {
     {
       {
-        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        for (
+          var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1;
+          _key2 < _len2;
+          _key2++
+        ) {
           args[_key2 - 1] = arguments[_key2];
         }
 
-        printWarning('error', format, args);
+        printWarning("error", format, args);
       }
     }
   }
@@ -50,17 +62,16 @@
       var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
       var stack = ReactDebugCurrentFrame.getStackAddendum();
 
-      if (stack !== '') {
-        format += '%s';
+      if (stack !== "") {
+        format += "%s";
         args = args.concat([stack]);
       } // eslint-disable-next-line react-internal/safe-string-coercion
-
 
       var argsWithFormat = args.map(function (item) {
         return String(item);
       }); // Careful: RN currently depends on this prefix
 
-      argsWithFormat.unshift('Warning: ' + format); // We intentionally don't use spread (or .apply) directly because it
+      argsWithFormat.unshift("Warning: " + format); // We intentionally don't use spread (or .apply) directly because it
       // breaks IE9: https://github.com/facebook/react/issues/13610
       // eslint-disable-next-line react-internal/no-production-logging
 
@@ -91,15 +102,15 @@
 
   // Don't change these two values. They're used by React Dev Tools.
   var NoFlags =
-  /*                      */
-  0;
+    /*                      */
+    0;
 
   var Placement =
-  /*                    */
-  2;
+    /*                    */
+    2;
   var Hydrating =
-  /*                    */
-  4096;
+    /*                    */
+    4096;
 
   var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
   function getNearestMountedFiber(fiber) {
@@ -136,13 +147,12 @@
     } // If we didn't hit the root, that means that we're in an disconnected tree
     // that has been unmounted.
 
-
     return null;
   }
 
   function assertIsMounted(fiber) {
     if (getNearestMountedFiber(fiber) !== fiber) {
-      throw new Error('Unable to find node on an unmounted component.');
+      throw new Error("Unable to find node on an unmounted component.");
     }
   }
 
@@ -154,7 +164,7 @@
       var nearestMounted = getNearestMountedFiber(fiber);
 
       if (nearestMounted === null) {
-        throw new Error('Unable to find node on an unmounted component.');
+        throw new Error("Unable to find node on an unmounted component.");
       }
 
       if (nearestMounted !== fiber) {
@@ -165,7 +175,6 @@
     } // If we have two possible branches, we'll walk backwards up to the root
     // to see what path the root points to. On the way we may hit one of the
     // special cases and we'll deal with them.
-
 
     var a = fiber;
     var b = alternate;
@@ -192,12 +201,10 @@
           continue;
         } // If there's no parent, we're at the root.
 
-
         break;
       } // If both copies of the parent fiber point to the same child, we can
       // assume that the child is current. This happens when we bailout on low
       // priority: the bailed out fiber's child reuses the current child.
-
 
       if (parentA.child === parentB.child) {
         var child = parentA.child;
@@ -219,8 +226,7 @@
         } // We should never have an alternate for any mounting node. So the only
         // way this could possibly happen is if this was unmounted, if at all.
 
-
-        throw new Error('Unable to find node on an unmounted component.');
+        throw new Error("Unable to find node on an unmounted component.");
       }
 
       if (a.return !== b.return) {
@@ -280,27 +286,31 @@
           }
 
           if (!didFindChild) {
-            throw new Error('Child was not found in either parent set. This indicates a bug ' + 'in React related to the return pointer. Please file an issue.');
+            throw new Error(
+              "Child was not found in either parent set. This indicates a bug " +
+                "in React related to the return pointer. Please file an issue.",
+            );
           }
         }
       }
 
       if (a.alternate !== b) {
-        throw new Error("Return fibers should always be each others' alternates. " + 'This error is likely caused by a bug in React. Please file an issue.');
+        throw new Error(
+          "Return fibers should always be each others' alternates. " +
+            "This error is likely caused by a bug in React. Please file an issue.",
+        );
       }
     } // If the root is not a host container, we're in a disconnected tree. I.e.
     // unmounted.
 
-
     if (a.tag !== HostRoot) {
-      throw new Error('Unable to find node on an unmounted component.');
+      throw new Error("Unable to find node on an unmounted component.");
     }
 
     if (a.stateNode.current === a) {
       // We've determined that A is the current branch.
       return fiber;
     } // Otherwise B has to be current branch.
-
 
     return alternate;
   }
@@ -321,7 +331,7 @@
     var charCode;
     var keyCode = nativeEvent.keyCode;
 
-    if ('charCode' in nativeEvent) {
+    if ("charCode" in nativeEvent) {
       charCode = nativeEvent.charCode; // FF does not set `charCode` for the Enter-key, check against `keyCode`.
 
       if (charCode === 0 && keyCode === 13) {
@@ -333,12 +343,10 @@
     } // IE and Edge (on Windows) and Chrome / Safari (on Windows and Linux)
     // report Enter as charCode 10 when ctrl is pressed.
 
-
     if (charCode === 10) {
       charCode = 13;
     } // Some non-printable keys are reported in `charCode`/`keyCode`, discard them.
     // Must not discard the (non-)printable Enter-key.
-
 
     if (charCode >= 32 || charCode === 13) {
       return charCode;
@@ -356,7 +364,6 @@
   } // This is intentionally a factory so that we have different returned constructors.
   // If we had a single constructor, it would be megamorphic and engines would deopt.
 
-
   function createSyntheticEvent(Interface) {
     /**
      * Synthetic events are dispatched by event plugins, typically in response to a
@@ -371,7 +378,13 @@
      * normalizing browser quirks. Subclasses do not necessarily have to implement a
      * DOM interface; custom application-specific events can also subclass this.
      */
-    function SyntheticBaseEvent(reactName, reactEventType, targetInst, nativeEvent, nativeEventTarget) {
+    function SyntheticBaseEvent(
+      reactName,
+      reactEventType,
+      targetInst,
+      nativeEvent,
+      nativeEventTarget,
+    ) {
       this._reactName = reactName;
       this._targetInst = targetInst;
       this.type = reactEventType;
@@ -393,7 +406,10 @@
         }
       }
 
-      var defaultPrevented = nativeEvent.defaultPrevented != null ? nativeEvent.defaultPrevented : nativeEvent.returnValue === false;
+      var defaultPrevented =
+        nativeEvent.defaultPrevented != null
+          ? nativeEvent.defaultPrevented
+          : nativeEvent.returnValue === false;
 
       if (defaultPrevented) {
         this.isDefaultPrevented = functionThatReturnsTrue;
@@ -416,7 +432,7 @@
 
         if (event.preventDefault) {
           event.preventDefault(); // $FlowFixMe - flow is not aware of `unknown` in IE
-        } else if (typeof event.returnValue !== 'unknown') {
+        } else if (typeof event.returnValue !== "unknown") {
           event.returnValue = false;
         }
 
@@ -431,7 +447,7 @@
 
         if (event.stopPropagation) {
           event.stopPropagation(); // $FlowFixMe - flow is not aware of `unknown` in IE
-        } else if (typeof event.cancelBubble !== 'unknown') {
+        } else if (typeof event.cancelBubble !== "unknown") {
           // The ChangeEventPlugin registers a "propertychange" event for
           // IE. This event does not support bubbling or cancelling, and
           // any references to cancelBubble throw "Member not found".  A
@@ -448,7 +464,8 @@
        * them back into the pool. This allows a way to hold onto a reference that
        * won't be added back into the pool.
        */
-      persist: function () {// Modern event system doesn't use pooling.
+      persist: function () {
+        // Modern event system doesn't use pooling.
       },
 
       /**
@@ -456,7 +473,7 @@
        *
        * @return {boolean} True if this should not be released, false otherwise.
        */
-      isPersistent: functionThatReturnsTrue
+      isPersistent: functionThatReturnsTrue,
     });
     return SyntheticBaseEvent;
   }
@@ -464,7 +481,6 @@
    * @interface Event
    * @see http://www.w3.org/TR/DOM-Level-3-Events/
    */
-
 
   var EventInterface = {
     eventPhase: 0,
@@ -474,13 +490,13 @@
       return event.timeStamp || Date.now();
     },
     defaultPrevented: 0,
-    isTrusted: 0
+    isTrusted: 0,
   };
   var SyntheticEvent = createSyntheticEvent(EventInterface);
 
   var UIEventInterface = assign({}, EventInterface, {
     view: 0,
-    detail: 0
+    detail: 0,
   });
 
   var SyntheticUIEvent = createSyntheticEvent(UIEventInterface);
@@ -490,7 +506,7 @@
 
   function updateMouseMovementPolyfillState(event) {
     if (event !== lastMouseEvent) {
-      if (lastMouseEvent && event.type === 'mousemove') {
+      if (lastMouseEvent && event.type === "mousemove") {
         lastMovementX = event.screenX - lastMouseEvent.screenX;
         lastMovementY = event.screenY - lastMouseEvent.screenY;
       } else {
@@ -505,7 +521,6 @@
    * @interface MouseEvent
    * @see http://www.w3.org/TR/DOM-Level-3-Events/
    */
-
 
   var MouseEventInterface = assign({}, UIEventInterface, {
     screenX: 0,
@@ -522,11 +537,12 @@
     button: 0,
     buttons: 0,
     relatedTarget: function (event) {
-      if (event.relatedTarget === undefined) return event.fromElement === event.srcElement ? event.toElement : event.fromElement;
+      if (event.relatedTarget === undefined)
+        return event.fromElement === event.srcElement ? event.toElement : event.fromElement;
       return event.relatedTarget;
     },
     movementX: function (event) {
-      if ('movementX' in event) {
+      if ("movementX" in event) {
         return event.movementX;
       }
 
@@ -534,15 +550,14 @@
       return lastMovementX;
     },
     movementY: function (event) {
-      if ('movementY' in event) {
+      if ("movementY" in event) {
         return event.movementY;
       } // Don't need to call updateMouseMovementPolyfillState() here
       // because it's guaranteed to have already run when movementX
       // was copied.
 
-
       return lastMovementY;
-    }
+    },
   });
 
   var SyntheticMouseEvent = createSyntheticEvent(MouseEventInterface);
@@ -552,7 +567,7 @@
    */
 
   var DragEventInterface = assign({}, MouseEventInterface, {
-    dataTransfer: 0
+    dataTransfer: 0,
   });
 
   var SyntheticDragEvent = createSyntheticEvent(DragEventInterface);
@@ -562,7 +577,7 @@
    */
 
   var FocusEventInterface = assign({}, UIEventInterface, {
-    relatedTarget: 0
+    relatedTarget: 0,
   });
 
   var SyntheticFocusEvent = createSyntheticEvent(FocusEventInterface);
@@ -575,7 +590,7 @@
   var AnimationEventInterface = assign({}, EventInterface, {
     animationName: 0,
     elapsedTime: 0,
-    pseudoElement: 0
+    pseudoElement: 0,
   });
 
   var SyntheticAnimationEvent = createSyntheticEvent(AnimationEventInterface);
@@ -586,8 +601,8 @@
 
   var ClipboardEventInterface = assign({}, EventInterface, {
     clipboardData: function (event) {
-      return 'clipboardData' in event ? event.clipboardData : window.clipboardData;
-    }
+      return "clipboardData" in event ? event.clipboardData : window.clipboardData;
+    },
   });
 
   var SyntheticClipboardEvent = createSyntheticEvent(ClipboardEventInterface);
@@ -597,7 +612,7 @@
    */
 
   var CompositionEventInterface = assign({}, EventInterface, {
-    data: 0
+    data: 0,
   });
 
   var SyntheticCompositionEvent = createSyntheticEvent(CompositionEventInterface);
@@ -607,18 +622,18 @@
    */
 
   var normalizeKey = {
-    Esc: 'Escape',
-    Spacebar: ' ',
-    Left: 'ArrowLeft',
-    Up: 'ArrowUp',
-    Right: 'ArrowRight',
-    Down: 'ArrowDown',
-    Del: 'Delete',
-    Win: 'OS',
-    Menu: 'ContextMenu',
-    Apps: 'ContextMenu',
-    Scroll: 'ScrollLock',
-    MozPrintableKey: 'Unidentified'
+    Esc: "Escape",
+    Spacebar: " ",
+    Left: "ArrowLeft",
+    Up: "ArrowUp",
+    Right: "ArrowRight",
+    Down: "ArrowDown",
+    Del: "Delete",
+    Win: "OS",
+    Menu: "ContextMenu",
+    Apps: "ContextMenu",
+    Scroll: "ScrollLock",
+    MozPrintableKey: "Unidentified",
   };
   /**
    * Translation from legacy `keyCode` to HTML5 `key`
@@ -627,42 +642,42 @@
    */
 
   var translateToKey = {
-    '8': 'Backspace',
-    '9': 'Tab',
-    '12': 'Clear',
-    '13': 'Enter',
-    '16': 'Shift',
-    '17': 'Control',
-    '18': 'Alt',
-    '19': 'Pause',
-    '20': 'CapsLock',
-    '27': 'Escape',
-    '32': ' ',
-    '33': 'PageUp',
-    '34': 'PageDown',
-    '35': 'End',
-    '36': 'Home',
-    '37': 'ArrowLeft',
-    '38': 'ArrowUp',
-    '39': 'ArrowRight',
-    '40': 'ArrowDown',
-    '45': 'Insert',
-    '46': 'Delete',
-    '112': 'F1',
-    '113': 'F2',
-    '114': 'F3',
-    '115': 'F4',
-    '116': 'F5',
-    '117': 'F6',
-    '118': 'F7',
-    '119': 'F8',
-    '120': 'F9',
-    '121': 'F10',
-    '122': 'F11',
-    '123': 'F12',
-    '144': 'NumLock',
-    '145': 'ScrollLock',
-    '224': 'Meta'
+    8: "Backspace",
+    9: "Tab",
+    12: "Clear",
+    13: "Enter",
+    16: "Shift",
+    17: "Control",
+    18: "Alt",
+    19: "Pause",
+    20: "CapsLock",
+    27: "Escape",
+    32: " ",
+    33: "PageUp",
+    34: "PageDown",
+    35: "End",
+    36: "Home",
+    37: "ArrowLeft",
+    38: "ArrowUp",
+    39: "ArrowRight",
+    40: "ArrowDown",
+    45: "Insert",
+    46: "Delete",
+    112: "F1",
+    113: "F2",
+    114: "F3",
+    115: "F4",
+    116: "F5",
+    117: "F6",
+    118: "F7",
+    119: "F8",
+    120: "F9",
+    121: "F10",
+    122: "F11",
+    123: "F12",
+    144: "NumLock",
+    145: "ScrollLock",
+    224: "Meta",
   };
   /**
    * @param {object} nativeEvent Native browser event.
@@ -677,38 +692,36 @@
       // printable characters (normalized to `Unidentified`), ignore it.
       var key = normalizeKey[nativeEvent.key] || nativeEvent.key;
 
-      if (key !== 'Unidentified') {
+      if (key !== "Unidentified") {
         return key;
       }
     } // Browser does not implement `key`, polyfill as much of it as we can.
 
-
-    if (nativeEvent.type === 'keypress') {
+    if (nativeEvent.type === "keypress") {
       var charCode = getEventCharCode(nativeEvent); // The enter-key is technically both printable and non-printable and can
       // thus be captured by `keypress`, no other non-printable key should.
 
-      return charCode === 13 ? 'Enter' : String.fromCharCode(charCode);
+      return charCode === 13 ? "Enter" : String.fromCharCode(charCode);
     }
 
-    if (nativeEvent.type === 'keydown' || nativeEvent.type === 'keyup') {
+    if (nativeEvent.type === "keydown" || nativeEvent.type === "keyup") {
       // While user keyboard layout determines the actual meaning of each
       // `keyCode` value, almost all function keys have a universal value.
-      return translateToKey[nativeEvent.keyCode] || 'Unidentified';
+      return translateToKey[nativeEvent.keyCode] || "Unidentified";
     }
 
-    return '';
+    return "";
   }
   /**
    * Translation from modifier key to the associated property in the event.
    * @see http://www.w3.org/TR/DOM-Level-3-Events/#keys-Modifiers
    */
 
-
   var modifierKeyToProp = {
-    Alt: 'altKey',
-    Control: 'ctrlKey',
-    Meta: 'metaKey',
-    Shift: 'shiftKey'
+    Alt: "altKey",
+    Control: "ctrlKey",
+    Meta: "metaKey",
+    Shift: "shiftKey",
   }; // Older browsers (Safari <= 10, iOS Safari <= 10.2) do not support
   // getModifierState. If getModifierState is not supported, we map it to a set of
   // modifier keys exposed by the event. In this case, Lock-keys are not supported.
@@ -733,7 +746,6 @@
    * @see http://www.w3.org/TR/DOM-Level-3-Events/
    */
 
-
   var KeyboardEventInterface = assign({}, UIEventInterface, {
     key: getEventKey,
     code: 0,
@@ -751,7 +763,7 @@
       // the actual printable character.
       // KeyPress is deprecated, but its replacement is not yet final and not
       // implemented in any major browser. Only KeyPress has charCode.
-      if (event.type === 'keypress') {
+      if (event.type === "keypress") {
         return getEventCharCode(event);
       }
 
@@ -764,7 +776,7 @@
       // which cannot be detected. Assuming that it is a US keyboard layout
       // provides a surprisingly accurate mapping for US and European users.
       // Due to this, it is left to the user to implement at this time.
-      if (event.type === 'keydown' || event.type === 'keyup') {
+      if (event.type === "keydown" || event.type === "keyup") {
         return event.keyCode;
       }
 
@@ -773,16 +785,16 @@
     which: function (event) {
       // `which` is an alias for either `keyCode` or `charCode` depending on the
       // type of the event.
-      if (event.type === 'keypress') {
+      if (event.type === "keypress") {
         return getEventCharCode(event);
       }
 
-      if (event.type === 'keydown' || event.type === 'keyup') {
+      if (event.type === "keydown" || event.type === "keyup") {
         return event.keyCode;
       }
 
       return 0;
-    }
+    },
   });
 
   var SyntheticKeyboardEvent = createSyntheticEvent(KeyboardEventInterface);
@@ -801,7 +813,7 @@
     tiltY: 0,
     twist: 0,
     pointerType: 0,
-    isPrimary: 0
+    isPrimary: 0,
   });
 
   var SyntheticPointerEvent = createSyntheticEvent(PointerEventInterface);
@@ -818,7 +830,7 @@
     metaKey: 0,
     ctrlKey: 0,
     shiftKey: 0,
-    getModifierState: getEventModifierState
+    getModifierState: getEventModifierState,
   });
 
   var SyntheticTouchEvent = createSyntheticEvent(TouchEventInterface);
@@ -831,7 +843,7 @@
   var TransitionEventInterface = assign({}, EventInterface, {
     propertyName: 0,
     elapsedTime: 0,
-    pseudoElement: 0
+    pseudoElement: 0,
   });
 
   var SyntheticTransitionEvent = createSyntheticEvent(TransitionEventInterface);
@@ -842,20 +854,27 @@
 
   var WheelEventInterface = assign({}, MouseEventInterface, {
     deltaX: function (event) {
-      return 'deltaX' in event ? event.deltaX : // Fallback to `wheelDeltaX` for Webkit and normalize (right is positive).
-      'wheelDeltaX' in event ? -event.wheelDeltaX : 0;
+      return "deltaX" in event
+        ? event.deltaX // Fallback to `wheelDeltaX` for Webkit and normalize (right is positive).
+        : "wheelDeltaX" in event
+          ? -event.wheelDeltaX
+          : 0;
     },
     deltaY: function (event) {
-      return 'deltaY' in event ? event.deltaY : // Fallback to `wheelDeltaY` for Webkit and normalize (down is positive).
-      'wheelDeltaY' in event ? -event.wheelDeltaY : // Fallback to `wheelDelta` for IE<9 and normalize (down is positive).
-      'wheelDelta' in event ? -event.wheelDelta : 0;
+      return "deltaY" in event
+        ? event.deltaY // Fallback to `wheelDeltaY` for Webkit and normalize (down is positive).
+        : "wheelDeltaY" in event
+          ? -event.wheelDeltaY // Fallback to `wheelDelta` for IE<9 and normalize (down is positive).
+          : "wheelDelta" in event
+            ? -event.wheelDelta
+            : 0;
     },
     deltaZ: 0,
     // Browsers without "deltaMode" is reporting in raw wheel delta where one
     // notch on the scroll is always +/- 120, roughly equivalent to pixels.
     // A good approximation of DOM_DELTA_LINE (1) is 5% of viewport size or
     // ~40 pixels, for DOM_DELTA_SCREEN (2) it is 87.5% of viewport size.
-    deltaMode: 0
+    deltaMode: 0,
   });
 
   var SyntheticWheelEvent = createSyntheticEvent(WheelEventInterface);
@@ -898,19 +917,42 @@
     // try-catch. Neat!
     // Check that the browser supports the APIs we need to implement our special
     // DEV version of invokeGuardedCallback
-    if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
-      var fakeNode = document.createElement('react');
+    if (
+      typeof window !== "undefined" &&
+      typeof window.dispatchEvent === "function" &&
+      typeof document !== "undefined" &&
+      typeof document.createEvent === "function"
+    ) {
+      var fakeNode = document.createElement("react");
 
-      invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a, b, c, d, e, f) {
+      invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(
+        name,
+        func,
+        context,
+        a,
+        b,
+        c,
+        d,
+        e,
+        f,
+      ) {
         // If document doesn't exist we know for sure we will crash in this method
         // when we call document.createEvent(). However this can cause confusing
         // errors: https://github.com/facebook/create-react-app/issues/3482
         // So we preemptively throw with a better message instead.
-        if (typeof document === 'undefined' || document === null) {
-          throw new Error('The `document` global was defined when React was initialized, but is not ' + 'defined anymore. This can happen in a test environment if a component ' + 'schedules an update from an asynchronous callback, but the test has already ' + 'finished running. To solve this, you can either unmount the component at ' + 'the end of your test (and ensure that any asynchronous operations get ' + 'canceled in `componentWillUnmount`), or you can change the test itself ' + 'to be asynchronous.');
+        if (typeof document === "undefined" || document === null) {
+          throw new Error(
+            "The `document` global was defined when React was initialized, but is not " +
+              "defined anymore. This can happen in a test environment if a component " +
+              "schedules an update from an asynchronous callback, but the test has already " +
+              "finished running. To solve this, you can either unmount the component at " +
+              "the end of your test (and ensure that any asynchronous operations get " +
+              "canceled in `componentWillUnmount`), or you can change the test itself " +
+              "to be asynchronous.",
+          );
         }
 
-        var evt = document.createEvent('Event');
+        var evt = document.createEvent("Event");
         var didCall = false; // Keeps track of whether the user-provided callback threw an error. We
         // set this to true at the beginning, then set it to false right after
         // calling the function. If the function errors, `didError` will never be
@@ -925,7 +967,7 @@
         var windowEvent = window.event; // Keeps track of the descriptor of window.event to restore it after event
         // dispatching: https://github.com/facebook/react/issues/13688
 
-        var windowEventDescriptor = Object.getOwnPropertyDescriptor(window, 'event');
+        var windowEventDescriptor = Object.getOwnPropertyDescriptor(window, "event");
 
         function restoreAfterDispatch() {
           // We immediately remove the callback from event listeners so that
@@ -937,13 +979,12 @@
           // "Member not found" in strict mode, and in Firefox which does not
           // support window.event.
 
-          if (typeof window.event !== 'undefined' && window.hasOwnProperty('event')) {
+          if (typeof window.event !== "undefined" && window.hasOwnProperty("event")) {
             window.event = windowEvent;
           }
         } // Create an event handler for our fake event. We will synchronously
         // dispatch our fake event using `dispatchEvent`. Inside the handler, we
         // call the user-provided callback.
-
 
         var funcArgs = Array.prototype.slice.call(arguments, 3);
 
@@ -964,7 +1005,6 @@
         // the callback doesn't error, but the error event was fired, we know to
         // ignore it because `didError` will be false, as described above.
 
-
         var error; // Use this to track whether the error event is ever called.
 
         var didSetError = false;
@@ -982,19 +1022,19 @@
             // Some other error handler has prevented default.
             // Browsers silence the error report if this happens.
             // We'll remember this to later decide whether to log it or not.
-            if (error != null && typeof error === 'object') {
+            if (error != null && typeof error === "object") {
               try {
                 error._suppressLogging = true;
-              } catch (inner) {// Ignore.
+              } catch (inner) {
+                // Ignore.
               }
             }
           }
         } // Create a fake event type.
 
+        var evtType = "react-" + (name ? name : "invokeguardedcallback"); // Attach our event handlers
 
-        var evtType = "react-" + (name ? name : 'invokeguardedcallback'); // Attach our event handlers
-
-        window.addEventListener('error', handleWindowError);
+        window.addEventListener("error", handleWindowError);
         fakeNode.addEventListener(evtType, callCallback, false); // Synchronously dispatch our fake event. If the user-provided function
         // errors, it will trigger our global error handler.
 
@@ -1002,24 +1042,36 @@
         fakeNode.dispatchEvent(evt);
 
         if (windowEventDescriptor) {
-          Object.defineProperty(window, 'event', windowEventDescriptor);
+          Object.defineProperty(window, "event", windowEventDescriptor);
         }
 
         if (didCall && didError) {
           if (!didSetError) {
             // The callback errored, but the error event never fired.
             // eslint-disable-next-line react-internal/prod-error-codes
-            error = new Error('An error was thrown inside one of your components, but React ' + "doesn't know what it was. This is likely due to browser " + 'flakiness. React does its best to preserve the "Pause on ' + 'exceptions" behavior of the DevTools, which requires some ' + "DEV-mode only tricks. It's possible that these don't work in " + 'your browser. Try triggering the error in production mode, ' + 'or switching to a modern browser. If you suspect that this is ' + 'actually an issue with React, please file an issue.');
+            error = new Error(
+              "An error was thrown inside one of your components, but React " +
+                "doesn't know what it was. This is likely due to browser " +
+                'flakiness. React does its best to preserve the "Pause on ' +
+                'exceptions" behavior of the DevTools, which requires some ' +
+                "DEV-mode only tricks. It's possible that these don't work in " +
+                "your browser. Try triggering the error in production mode, " +
+                "or switching to a modern browser. If you suspect that this is " +
+                "actually an issue with React, please file an issue.",
+            );
           } else if (isCrossOriginError) {
             // eslint-disable-next-line react-internal/prod-error-codes
-            error = new Error("A cross-origin error was thrown. React doesn't have access to " + 'the actual error object in development. ' + 'See https://reactjs.org/link/crossorigin-error for more information.');
+            error = new Error(
+              "A cross-origin error was thrown. React doesn't have access to " +
+                "the actual error object in development. " +
+                "See https://reactjs.org/link/crossorigin-error for more information.",
+            );
           }
 
           this.onError(error);
         } // Remove our event listeners
 
-
-        window.removeEventListener('error', handleWindowError);
+        window.removeEventListener("error", handleWindowError);
 
         if (!didCall) {
           // Something went really wrong, and our event was not dispatched.
@@ -1044,7 +1096,7 @@
     onError: function (error) {
       hasError = true;
       caughtError = error;
-    }
+    },
   };
   /**
    * Call a function while guarding against errors that happens within it.
@@ -1108,7 +1160,10 @@
       caughtError = null;
       return error;
     } else {
-      throw new Error('clearCaughtError was called but no error was captured. This error ' + 'is likely caused by a bug in React. Please file an issue.');
+      throw new Error(
+        "clearCaughtError was called but no error was captured. This error " +
+          "is likely caused by a bug in React. Please file an issue.",
+      );
     }
   }
 
@@ -1149,7 +1204,12 @@
     var ret = [];
 
     while (true) {
-      if (node.tag === HostComponent || node.tag === HostText || node.tag === ClassComponent || node.tag === FunctionComponent) {
+      if (
+        node.tag === HostComponent ||
+        node.tag === HostText ||
+        node.tag === ClassComponent ||
+        node.tag === FunctionComponent
+      ) {
         var publicInst = node.stateNode;
 
         if (test(publicInst)) {
@@ -1195,16 +1255,20 @@
     var stringified = String(inst);
 
     if (isArray(inst)) {
-      received = 'an array';
+      received = "an array";
     } else if (inst && inst.nodeType === ELEMENT_NODE && inst.tagName) {
-      received = 'a DOM node';
-    } else if (stringified === '[object Object]') {
-      received = 'object with keys {' + Object.keys(inst).join(', ') + '}';
+      received = "a DOM node";
+    } else if (stringified === "[object Object]") {
+      received = "object with keys {" + Object.keys(inst).join(", ") + "}";
     } else {
       received = stringified;
     }
 
-    throw new Error(methodName + "(...): the first argument must be a React class instance. " + ("Instead received: " + received + "."));
+    throw new Error(
+      methodName +
+        "(...): the first argument must be a React class instance. " +
+        ("Instead received: " + received + "."),
+    );
   }
   /**
    * Utilities for making it easy to test React components.
@@ -1216,7 +1280,6 @@
    * @lends ReactTestUtils
    */
 
-
   var didWarnAboutReactTestUtilsDeprecation = false;
 
   function renderIntoDocument(element) {
@@ -1224,11 +1287,17 @@
       if (!didWarnAboutReactTestUtilsDeprecation) {
         didWarnAboutReactTestUtilsDeprecation = true;
 
-        error('ReactDOMTestUtils is deprecated and will be removed in a future ' + 'major release, because it exposes internal implementation details ' + 'that are highly likely to change between releases. Upgrade to a ' + 'modern testing library, such as @testing-library/react. See ' + 'https://react.dev/warnings/react-dom-test-utils for more info.');
+        error(
+          "ReactDOMTestUtils is deprecated and will be removed in a future " +
+            "major release, because it exposes internal implementation details " +
+            "that are highly likely to change between releases. Upgrade to a " +
+            "modern testing library, such as @testing-library/react. See " +
+            "https://react.dev/warnings/react-dom-test-utils for more info.",
+        );
       }
     }
 
-    var div = document.createElement('div'); // None of our tests actually require attaching the container to the
+    var div = document.createElement("div"); // None of our tests actually require attaching the container to the
     // DOM, and doing so creates a mess that we rely on test isolation to
     // clean up, so we're going to stop honoring the name of this method
     // (and probably rename it eventually) if no problems arise.
@@ -1260,7 +1329,7 @@
       return false;
     }
 
-    return inst != null && typeof inst.render === 'function' && typeof inst.setState === 'function';
+    return inst != null && typeof inst.render === "function" && typeof inst.setState === "function";
   }
 
   function isCompositeComponentWithType(inst, type) {
@@ -1274,7 +1343,7 @@
   }
 
   function findAllInRenderedTree(inst, test) {
-    validateClassInstance(inst, 'findAllInRenderedTree');
+    validateClassInstance(inst, "findAllInRenderedTree");
 
     if (!inst) {
       return [];
@@ -1289,23 +1358,25 @@
    * @return {array} an array of all the matches.
    */
 
-
   function scryRenderedDOMComponentsWithClass(root, classNames) {
-    validateClassInstance(root, 'scryRenderedDOMComponentsWithClass');
+    validateClassInstance(root, "scryRenderedDOMComponentsWithClass");
     return findAllInRenderedTree(root, function (inst) {
       if (isDOMComponent(inst)) {
         var className = inst.className;
 
-        if (typeof className !== 'string') {
+        if (typeof className !== "string") {
           // SVG, probably.
-          className = inst.getAttribute('class') || '';
+          className = inst.getAttribute("class") || "";
         }
 
         var classList = className.split(/\s+/);
 
         if (!isArray(classNames)) {
           if (classNames === undefined) {
-            throw new Error('TestUtils.scryRenderedDOMComponentsWithClass expects a ' + 'className as a second argument.');
+            throw new Error(
+              "TestUtils.scryRenderedDOMComponentsWithClass expects a " +
+                "className as a second argument.",
+            );
           }
 
           classNames = classNames.split(/\s+/);
@@ -1326,13 +1397,14 @@
    * @return {!ReactDOMComponent} The one match.
    */
 
-
   function findRenderedDOMComponentWithClass(root, className) {
-    validateClassInstance(root, 'findRenderedDOMComponentWithClass');
+    validateClassInstance(root, "findRenderedDOMComponentWithClass");
     var all = scryRenderedDOMComponentsWithClass(root, className);
 
     if (all.length !== 1) {
-      throw new Error('Did not find exactly one match (found: ' + all.length + ') ' + 'for class:' + className);
+      throw new Error(
+        "Did not find exactly one match (found: " + all.length + ") " + "for class:" + className,
+      );
     }
 
     return all[0];
@@ -1343,9 +1415,8 @@
    * @return {array} an array of all the matches.
    */
 
-
   function scryRenderedDOMComponentsWithTag(root, tagName) {
-    validateClassInstance(root, 'scryRenderedDOMComponentsWithTag');
+    validateClassInstance(root, "scryRenderedDOMComponentsWithTag");
     return findAllInRenderedTree(root, function (inst) {
       return isDOMComponent(inst) && inst.tagName.toUpperCase() === tagName.toUpperCase();
     });
@@ -1357,13 +1428,14 @@
    * @return {!ReactDOMComponent} The one match.
    */
 
-
   function findRenderedDOMComponentWithTag(root, tagName) {
-    validateClassInstance(root, 'findRenderedDOMComponentWithTag');
+    validateClassInstance(root, "findRenderedDOMComponentWithTag");
     var all = scryRenderedDOMComponentsWithTag(root, tagName);
 
     if (all.length !== 1) {
-      throw new Error('Did not find exactly one match (found: ' + all.length + ') ' + 'for tag:' + tagName);
+      throw new Error(
+        "Did not find exactly one match (found: " + all.length + ") " + "for tag:" + tagName,
+      );
     }
 
     return all[0];
@@ -1373,9 +1445,8 @@
    * @return {array} an array of all the matches.
    */
 
-
   function scryRenderedComponentsWithType(root, componentType) {
-    validateClassInstance(root, 'scryRenderedComponentsWithType');
+    validateClassInstance(root, "scryRenderedComponentsWithType");
     return findAllInRenderedTree(root, function (inst) {
       return isCompositeComponentWithType(inst, componentType);
     });
@@ -1387,13 +1458,18 @@
    * @return {!ReactComponent} The one match.
    */
 
-
   function findRenderedComponentWithType(root, componentType) {
-    validateClassInstance(root, 'findRenderedComponentWithType');
+    validateClassInstance(root, "findRenderedComponentWithType");
     var all = scryRenderedComponentsWithType(root, componentType);
 
     if (all.length !== 1) {
-      throw new Error('Did not find exactly one match (found: ' + all.length + ') ' + 'for componentType:' + componentType);
+      throw new Error(
+        "Did not find exactly one match (found: " +
+          all.length +
+          ") " +
+          "for componentType:" +
+          componentType,
+      );
     }
 
     return all[0];
@@ -1412,17 +1488,20 @@
    * @return {object} the ReactTestUtils object (for chaining)
    */
 
-
   function mockComponent(module, mockTagName) {
     {
       if (!hasWarnedAboutDeprecatedMockComponent) {
         hasWarnedAboutDeprecatedMockComponent = true;
 
-        warn('ReactTestUtils.mockComponent() is deprecated. ' + 'Use shallow rendering or jest.mock() instead.\n\n' + 'See https://reactjs.org/link/test-utils-mock-component for more information.');
+        warn(
+          "ReactTestUtils.mockComponent() is deprecated. " +
+            "Use shallow rendering or jest.mock() instead.\n\n" +
+            "See https://reactjs.org/link/test-utils-mock-component for more information.",
+        );
       }
     }
 
-    mockTagName = mockTagName || module.mockTagName || 'div';
+    mockTagName = mockTagName || module.mockTagName || "div";
     module.prototype.render.mockImplementation(function () {
       return React.createElement(mockTagName, null, this.props.children);
     });
@@ -1431,10 +1510,12 @@
 
   function nativeTouchData(x, y) {
     return {
-      touches: [{
-        pageX: x,
-        pageY: y
-      }]
+      touches: [
+        {
+          pageX: x,
+          pageY: y,
+        },
+      ],
     };
   } // Start of inline: the below functions were inlined from
   // EventPropagator.js, as they deviated from ReactDOM's newer
@@ -1447,9 +1528,8 @@
    * @param {*} inst Internal component instance
    */
 
-
   function executeDispatch(event, listener, inst) {
-    var type = event.type || 'unknown-event';
+    var type = event.type || "unknown-event";
     event.currentTarget = getNodeFromInstance(inst);
     invokeGuardedCallbackAndCatchFirstError(type, listener, undefined, event);
     event.currentTarget = null;
@@ -1457,7 +1537,6 @@
   /**
    * Standard/simple iteration through an event's collected dispatches.
    */
-
 
   function executeDispatchesInOrder(event) {
     var dispatchListeners = event._dispatchListeners;
@@ -1468,7 +1547,6 @@
         if (event.isPropagationStopped()) {
           break;
         } // Listeners and Instances are two parallel arrays that are always in sync.
-
 
         executeDispatch(event, dispatchListeners[i], dispatchInstances[i]);
       }
@@ -1486,7 +1564,6 @@
    * @private
    */
 
-
   var executeDispatchesAndRelease = function (event) {
     if (event) {
       executeDispatchesInOrder(event);
@@ -1498,7 +1575,7 @@
   };
 
   function isInteractive(tag) {
-    return tag === 'button' || tag === 'input' || tag === 'select' || tag === 'textarea';
+    return tag === "button" || tag === "input" || tag === "select" || tag === "textarea";
   }
 
   function getParent(inst) {
@@ -1520,7 +1597,6 @@
    * Simulates the traversal of a two-phase, capture/bubble event dispatch.
    */
 
-
   function traverseTwoPhase(inst, fn, arg) {
     var path = [];
 
@@ -1531,28 +1607,28 @@
 
     var i;
 
-    for (i = path.length; i-- > 0;) {
-      fn(path[i], 'captured', arg);
+    for (i = path.length; i-- > 0; ) {
+      fn(path[i], "captured", arg);
     }
 
     for (i = 0; i < path.length; i++) {
-      fn(path[i], 'bubbled', arg);
+      fn(path[i], "bubbled", arg);
     }
   }
 
   function shouldPreventMouseEvent(name, type, props) {
     switch (name) {
-      case 'onClick':
-      case 'onClickCapture':
-      case 'onDoubleClick':
-      case 'onDoubleClickCapture':
-      case 'onMouseDown':
-      case 'onMouseDownCapture':
-      case 'onMouseMove':
-      case 'onMouseMoveCapture':
-      case 'onMouseUp':
-      case 'onMouseUpCapture':
-      case 'onMouseEnter':
+      case "onClick":
+      case "onClickCapture":
+      case "onDoubleClick":
+      case "onDoubleClickCapture":
+      case "onMouseDown":
+      case "onMouseDownCapture":
+      case "onMouseMove":
+      case "onMouseMoveCapture":
+      case "onMouseUp":
+      case "onMouseUpCapture":
+      case "onMouseEnter":
         return !!(props.disabled && isInteractive(type));
 
       default:
@@ -1564,7 +1640,6 @@
    * @param {string} registrationName Name of listener (e.g. `onClick`).
    * @return {?function} The stored callback.
    */
-
 
   function getListener(inst, registrationName) {
     // TODO: shouldPreventMouseEvent is DOM-specific and definitely should not
@@ -1589,8 +1664,14 @@
       return null;
     }
 
-    if (listener && typeof listener !== 'function') {
-      throw new Error("Expected `" + registrationName + "` listener to be a function, instead got a value of `" + typeof listener + "` type.");
+    if (listener && typeof listener !== "function") {
+      throw new Error(
+        "Expected `" +
+          registrationName +
+          "` listener to be a function, instead got a value of `" +
+          typeof listener +
+          "` type.",
+      );
     }
 
     return listener;
@@ -1599,8 +1680,8 @@
   function listenerAtPhase(inst, event, propagationPhase) {
     var registrationName = event._reactName;
 
-    if (propagationPhase === 'captured') {
-      registrationName += 'Capture';
+    if (propagationPhase === "captured") {
+      registrationName += "Capture";
     }
 
     return getListener(inst, registrationName);
@@ -1630,7 +1711,7 @@
   function accumulateDirectionalDispatches(inst, phase, event) {
     {
       if (!inst) {
-        error('Dispatching inst must not be null');
+        error("Dispatching inst must not be null");
       }
     }
 
@@ -1663,9 +1744,13 @@
     }
   } // End of inline
 
-
   var Simulate = {};
-  var directDispatchEventTypes = new Set(['mouseEnter', 'mouseLeave', 'pointerEnter', 'pointerLeave']);
+  var directDispatchEventTypes = new Set([
+    "mouseEnter",
+    "mouseLeave",
+    "pointerEnter",
+    "pointerLeave",
+  ]);
   /**
    * Exports:
    *
@@ -1678,19 +1763,32 @@
   function makeSimulator(eventType) {
     return function (domNode, eventData) {
       if (React.isValidElement(domNode)) {
-        throw new Error('TestUtils.Simulate expected a DOM node as the first argument but received ' + 'a React element. Pass the DOM node you wish to simulate the event on instead. ' + 'Note that TestUtils.Simulate will not work if you are using shallow rendering.');
+        throw new Error(
+          "TestUtils.Simulate expected a DOM node as the first argument but received " +
+            "a React element. Pass the DOM node you wish to simulate the event on instead. " +
+            "Note that TestUtils.Simulate will not work if you are using shallow rendering.",
+        );
       }
 
       if (isCompositeComponent(domNode)) {
-        throw new Error('TestUtils.Simulate expected a DOM node as the first argument but received ' + 'a component instance. Pass the DOM node you wish to simulate the event on instead.');
+        throw new Error(
+          "TestUtils.Simulate expected a DOM node as the first argument but received " +
+            "a component instance. Pass the DOM node you wish to simulate the event on instead.",
+        );
       }
 
-      var reactName = 'on' + eventType[0].toUpperCase() + eventType.slice(1);
+      var reactName = "on" + eventType[0].toUpperCase() + eventType.slice(1);
       var fakeNativeEvent = new Event();
       fakeNativeEvent.target = domNode;
       fakeNativeEvent.type = eventType.toLowerCase();
       var targetInst = getInstanceFromNode(domNode);
-      var event = new SyntheticEvent(reactName, fakeNativeEvent.type, targetInst, fakeNativeEvent, domNode); // Since we aren't using pooling, always persist the event. This will make
+      var event = new SyntheticEvent(
+        reactName,
+        fakeNativeEvent.type,
+        targetInst,
+        fakeNativeEvent,
+        domNode,
+      ); // Since we aren't using pooling, always persist the event. This will make
       // sure it's marked and won't warn when setting additional properties.
 
       event.persist();
@@ -1713,8 +1811,93 @@
     };
   } // A one-time snapshot with no plans to update. We'll probably want to deprecate Simulate API.
 
-
-  var simulatedEventTypes = ['blur', 'cancel', 'click', 'close', 'contextMenu', 'copy', 'cut', 'auxClick', 'doubleClick', 'dragEnd', 'dragStart', 'drop', 'focus', 'input', 'invalid', 'keyDown', 'keyPress', 'keyUp', 'mouseDown', 'mouseUp', 'paste', 'pause', 'play', 'pointerCancel', 'pointerDown', 'pointerUp', 'rateChange', 'reset', 'resize', 'seeked', 'submit', 'touchCancel', 'touchEnd', 'touchStart', 'volumeChange', 'drag', 'dragEnter', 'dragExit', 'dragLeave', 'dragOver', 'mouseMove', 'mouseOut', 'mouseOver', 'pointerMove', 'pointerOut', 'pointerOver', 'scroll', 'toggle', 'touchMove', 'wheel', 'abort', 'animationEnd', 'animationIteration', 'animationStart', 'canPlay', 'canPlayThrough', 'durationChange', 'emptied', 'encrypted', 'ended', 'error', 'gotPointerCapture', 'load', 'loadedData', 'loadedMetadata', 'loadStart', 'lostPointerCapture', 'playing', 'progress', 'seeking', 'stalled', 'suspend', 'timeUpdate', 'transitionEnd', 'waiting', 'mouseEnter', 'mouseLeave', 'pointerEnter', 'pointerLeave', 'change', 'select', 'beforeInput', 'compositionEnd', 'compositionStart', 'compositionUpdate'];
+  var simulatedEventTypes = [
+    "blur",
+    "cancel",
+    "click",
+    "close",
+    "contextMenu",
+    "copy",
+    "cut",
+    "auxClick",
+    "doubleClick",
+    "dragEnd",
+    "dragStart",
+    "drop",
+    "focus",
+    "input",
+    "invalid",
+    "keyDown",
+    "keyPress",
+    "keyUp",
+    "mouseDown",
+    "mouseUp",
+    "paste",
+    "pause",
+    "play",
+    "pointerCancel",
+    "pointerDown",
+    "pointerUp",
+    "rateChange",
+    "reset",
+    "resize",
+    "seeked",
+    "submit",
+    "touchCancel",
+    "touchEnd",
+    "touchStart",
+    "volumeChange",
+    "drag",
+    "dragEnter",
+    "dragExit",
+    "dragLeave",
+    "dragOver",
+    "mouseMove",
+    "mouseOut",
+    "mouseOver",
+    "pointerMove",
+    "pointerOut",
+    "pointerOver",
+    "scroll",
+    "toggle",
+    "touchMove",
+    "wheel",
+    "abort",
+    "animationEnd",
+    "animationIteration",
+    "animationStart",
+    "canPlay",
+    "canPlayThrough",
+    "durationChange",
+    "emptied",
+    "encrypted",
+    "ended",
+    "error",
+    "gotPointerCapture",
+    "load",
+    "loadedData",
+    "loadedMetadata",
+    "loadStart",
+    "lostPointerCapture",
+    "playing",
+    "progress",
+    "seeking",
+    "stalled",
+    "suspend",
+    "timeUpdate",
+    "transitionEnd",
+    "waiting",
+    "mouseEnter",
+    "mouseLeave",
+    "pointerEnter",
+    "pointerLeave",
+    "change",
+    "select",
+    "beforeInput",
+    "compositionEnd",
+    "compositionStart",
+    "compositionUpdate",
+  ];
 
   function buildSimulators() {
     simulatedEventTypes.forEach(function (eventType) {
@@ -1724,17 +1907,21 @@
 
   buildSimulators();
   var didWarnAboutUsingAct = false;
-  var act =  function actWithWarning(callback) {
+  var act = function actWithWarning(callback) {
     {
       if (!didWarnAboutUsingAct) {
         didWarnAboutUsingAct = true;
 
-        error('`ReactDOMTestUtils.act` is deprecated in favor of `React.act`. ' + 'Import `act` from `react` instead of `react-dom/test-utils`. ' + 'See https://react.dev/warnings/react-dom-test-utils for more info.');
+        error(
+          "`ReactDOMTestUtils.act` is deprecated in favor of `React.act`. " +
+            "Import `act` from `react` instead of `react-dom/test-utils`. " +
+            "See https://react.dev/warnings/react-dom-test-utils for more info.",
+        );
       }
     }
 
     return reactAct(callback);
-  } ;
+  };
 
   exports.Simulate = Simulate;
   exports.act = act;
@@ -1755,5 +1942,4 @@
   exports.scryRenderedDOMComponentsWithClass = scryRenderedDOMComponentsWithClass;
   exports.scryRenderedDOMComponentsWithTag = scryRenderedDOMComponentsWithTag;
   exports.traverseTwoPhase = traverseTwoPhase;
-
-})));
+});

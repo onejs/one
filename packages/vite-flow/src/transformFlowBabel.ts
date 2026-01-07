@@ -1,19 +1,19 @@
-import { stat } from 'node:fs/promises'
-import babel from '@babel/core'
-import { resolvePath } from '@vxrn/resolve'
+import { stat } from "node:fs/promises";
+import babel from "@babel/core";
+import { resolvePath } from "@vxrn/resolve";
 
 export async function transformFlowBabel(
   input: string,
-  { development = false, path }: { development?: boolean; path?: string } = {}
+  { development = false, path }: { development?: boolean; path?: string } = {},
 ) {
-  let babelPreset = 'module:@react-native/babel-preset'
+  let babelPreset = "module:@react-native/babel-preset";
 
   try {
     // the above doesn't work in some monorepos so lets try resolving it specifically ourselves
     // has to be relative to this package as it is installed below it
-    const attempt = resolvePath('@react-native/babel-preset')
+    const attempt = resolvePath("@react-native/babel-preset");
     if ((await stat(attempt)).isDirectory()) {
-      babelPreset = attempt
+      babelPreset = attempt;
     }
   } catch (err) {
     // fallback to original
@@ -23,16 +23,16 @@ export async function transformFlowBabel(
     babel.transform(
       input,
       {
-        filename: path || 'file.js',
+        filename: path || "file.js",
         presets: [babelPreset],
         plugins: [],
       },
       (err: any, result) => {
         if (!result || err) {
-          return rej(err || 'no res')
+          return rej(err || "no res");
         }
-        res(result!.code!)
-      }
-    )
-  })
+        res(result!.code!);
+      },
+    );
+  });
 }

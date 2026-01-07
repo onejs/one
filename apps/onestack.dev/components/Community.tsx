@@ -1,6 +1,6 @@
-import { VisuallyHidden, XStack, YStack } from 'tamagui'
-import { SocialLinksRow } from '~/features/site/SocialLinksRow'
-import { PrettyText } from './typography'
+import { VisuallyHidden, XStack, YStack } from "tamagui";
+import { SocialLinksRow } from "~/features/site/SocialLinksRow";
+import { PrettyText } from "./typography";
 
 export const Community = () => {
   return (
@@ -11,9 +11,9 @@ export const Community = () => {
         </PrettyText>
       </VisuallyHidden>
 
-      <XStack gap="$8" als="center" $xs={{ fd: 'column', ai: 'center', jc: 'center' }}>
+      <XStack gap="$8" als="center" $xs={{ fd: "column", ai: "center", jc: "center" }}>
         <SocialLinksRow large />
       </XStack>
     </YStack>
-  )
-}
+  );
+};

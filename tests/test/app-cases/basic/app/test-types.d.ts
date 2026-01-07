@@ -2,6 +2,6 @@
 // It's here to test that type definition files are properly ignored
 
 export interface TestType {
-  id: string
-  name: string
+  id: string;
+  name: string;
 }
